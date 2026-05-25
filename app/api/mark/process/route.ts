@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
 import Anthropic from '@anthropic-ai/sdk'
+import { createClient as createServerClient } from '@/lib/supabase-server'
 
 export const maxDuration = 60
 
@@ -70,6 +71,13 @@ export async function POST(request: NextRequest) {
     }
 
     const currentCount = existingLimit?.mark_count || 0
+
+    // ============ GET CURRENT USER (IF SIGNED IN) ============
+    const supabaseAuth = await createServerClient()
+    const {
+      data: { user },
+    } = await supabaseAuth.auth.getUser()
+    const userId = user?.id || null
 
     // ============ PARSE FORM DATA ============
     const formData = await request.formData()
@@ -161,6 +169,7 @@ Return ONLY this JSON (no markdown):
         .insert({
           mark_scheme_id: markSchemeId,
           source_type: 'past_paper',
+          user_id: userId,
           ocr_text: ocrText,
           ai_marking: markingResult,
           marks_earned: markingResult.marks_earned,
@@ -295,6 +304,7 @@ Return ONLY this JSON (no markdown):
         .insert({
           mark_scheme_id: null,
           source_type: 'other',
+          user_id: userId,
           question_text: questionText,
           ocr_text: ocrText,
           ai_marking: markingResult,

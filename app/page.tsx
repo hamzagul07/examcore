@@ -50,10 +50,10 @@ export default function Home() {
         <div className="max-w-lg text-center space-y-6">
           <h1 className="text-4xl font-bold">You are on the list.</h1>
           <p className="text-lg text-slate-700">
-            Send PKR 100 to JazzCash {process.env.NEXT_PUBLIC_JAZZCASH_NUMBER} to lock in your spot.
+            We will WhatsApp you the moment Examcore is ready to try, in about 6 weeks.
           </p>
           <p className="text-slate-600">
-            WhatsApp us once sent. We will confirm within 1 hour. Refundable if we do not ship in 8 weeks.
+            First 100 students get free access during the beta period.
           </p>
         </div>
       </main>
@@ -98,19 +98,19 @@ export default function Home() {
 
       <section className="px-6 py-16 bg-slate-50">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">First 100 students lock in early-access pricing.</h2>
-          <p className="text-lg text-slate-700 mb-2">Normal: PKR 1,500 per month</p>
-          <p className="text-2xl font-bold text-slate-900 mb-4">Early access: PKR 500 per month for 3 months</p>
+          <h2 className="text-3xl font-bold mb-6">First 100 students get free beta access.</h2>
+          <p className="text-lg text-slate-700 mb-2">After beta: PKR 1,500 per month (or $5 USD)</p>
+          <p className="text-2xl font-bold text-slate-900 mb-4">During beta: completely free</p>
           <p className="text-slate-600">
-            PKR 100 deposit today, applied to your first month. Full refund if Examcore is not live in 8 weeks.
+            Help us shape the product. Your feedback during beta earns you 50 percent off for life when paid plans launch.
           </p>
         </div>
       </section>
 
       <section id="reserve" className="px-6 py-20 max-w-md mx-auto">
-        <h2 className="text-3xl font-bold mb-2 text-center">Reserve your spot</h2>
+        <h2 className="text-3xl font-bold mb-2 text-center">Get early access</h2>
         <p className="text-slate-600 text-center mb-8">
-          100 spots. PKR 100 refundable deposit.
+          Be one of the first 100 students. Free during beta.
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -143,7 +143,7 @@ export default function Home() {
             </div>
           )}
           <Button type="submit" disabled={loading} className="w-full">
-            {loading ? 'Reserving...' : 'Reserve my spot'}
+            {loading ? 'Joining...' : 'Get early access'}
           </Button>
         </form>
       </section>

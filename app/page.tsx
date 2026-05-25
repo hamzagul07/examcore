@@ -155,7 +155,7 @@ export default async function Home() {
               number="3"
               icon={TrendingUp}
               title="See exactly what to improve"
-              description="Get a mark-by-mark breakdown showing what you earned, what you missed, and which topics to revise next."
+              description="Get a mark-by-mark breakdown showing what you earned and which topics to revise."
             />
           </div>
         </section>
@@ -167,8 +167,7 @@ export default async function Home() {
               Subjects we cover
             </h2>
             <p className="mx-auto max-w-xl text-lg text-slate-600">
-              Starting with A-Level Mathematics. More subjects rolling out
-              monthly.
+              Starting with A-Level Mathematics. More subjects coming soon.
             </p>
           </div>
           <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">

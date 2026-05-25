@@ -49,8 +49,17 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Brand system */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --brand-primary: #10b981;
+  --brand-primary-hover: #059669;
+  --brand-secondary: #1e40af;
+  --border: #e2e8f0;
+  --muted: #64748b;
+  --muted-foreground: #94a3b8;
+  --card-bg: #f8fafc;
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -115,6 +124,15 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.hero-bg {
+  background: radial-gradient(
+    ellipse at top,
+    rgba(16, 185, 129, 0.06) 0%,
+    rgba(30, 64, 175, 0.04) 35%,
+    #ffffff 70%
+  );
 }
 
 @layer base {

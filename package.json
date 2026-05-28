@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync-papers": "node scripts/sync-bestexamhelp-papers.mjs",
+    "sync-papers:probe": "node scripts/sync-bestexamhelp-papers.mjs --probe",
+    "sync-papers:discover": "node scripts/sync-bestexamhelp-papers.mjs --discover",
+    "generate-subject-papers-cache": "node scripts/generate-subject-papers-cache.mjs",
+    "investigate-mark-schemes": "node scripts/investigate-mark-schemes.mjs",
+    "extract-syllabi": "node scripts/extract-syllabi.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.98.0",

@@ -44,11 +44,19 @@ const PAPER_NAMES: Record<string, string> = {
   P6: 'Statistics 2',
 }
 
+function paperLabel(paper: string, masteries: TopicMastery[]): string {
+  const meta = masteries.find((m) => m.paper === paper)
+  return meta?.paperName || PAPER_NAMES[paper] || paper
+}
+
 export function generateActionPlan(
   attempts: AttemptLite[],
   masteries: TopicMastery[],
-  streak: number
+  streak: number,
+  opts?: { subjectLabel?: string; totalTopics?: number }
 ): ActionPlanItem[] {
+  const subjectLabel = opts?.subjectLabel ?? 'Cambridge 9709'
+  const totalTopics = opts?.totalTopics ?? 38
   // ============ TIER 1: cold start ============
   if (attempts.length === 0) {
     return [
@@ -62,7 +70,7 @@ export function generateActionPlan(
       {
         type: 'coverage',
         title: 'Aim for breadth, not perfection',
-        body: 'The Cambridge 9709 syllabus has 38 topics. Even 5 minutes a day across different topics builds coverage fast.',
+        body: `The ${subjectLabel} syllabus has ${totalTopics} topics. Even 5 minutes a day across different topics builds coverage fast.`,
         ctaText: 'See the syllabus',
         ctaHref: '#mastery-matrix',
       },
@@ -93,7 +101,7 @@ export function generateActionPlan(
       const paper = uncoveredPapers[0]
       items.push({
         type: 'blindspot',
-        title: `Try a ${PAPER_NAMES[paper] || paper} question next`,
+        title: `Try a ${paperLabel(paper, masteries)} question next`,
         body: `You haven\u2019t touched any ${paper} topics yet. Mixing papers builds resilience and gives your trajectory chart more signal.`,
         ctaText: `Mark a ${paper} question`,
         ctaHref: '/mark',
@@ -137,11 +145,11 @@ export function generateActionPlan(
   // (1) Syllabus Blindspot
   const blindspot = findBiggestBlindspot(attempts, masteries)
   if (blindspot) {
-    const paperLabel = PAPER_NAMES[blindspot.paper] || blindspot.paper
+    const paperLabelText = paperLabel(blindspot.paper, masteries)
     items.push({
       type: 'blindspot',
       title: 'Syllabus Blindspot Detected',
-      body: `You haven\u2019t yet attempted any questions under ${blindspot.name} (${blindspot.code}). This topic appears regularly in ${paperLabel} papers.`,
+      body: `You haven\u2019t yet attempted any questions under ${blindspot.name} (${blindspot.code}). This topic appears regularly in ${paperLabelText} papers.`,
       ctaText: 'Practice this topic',
       ctaHref: `/mark?topic=${encodeURIComponent(blindspot.code)}`,
     })

@@ -8,16 +8,16 @@ import {
   type AttemptLite,
   type TopicMastery,
 } from '@/lib/mastery'
-import { CAMBRIDGE_9709_SYLLABUS, type SyllabusPaper } from '@/lib/syllabus'
 import { EmptyState } from './EmptyState'
 
 type Props = {
   masteries: TopicMastery[]
   attempts: AttemptLite[]
   hasAnyData: boolean
+  subjectCode: string
 }
 
-const PAPERS: SyllabusPaper[] = ['P1', 'P2', 'P3', 'P4', 'P5', 'P6']
+const PAPER_ORDER = ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'AS', 'A2']
 
 function chipClass(level: TopicMastery['level']): string {
   switch (level) {
@@ -32,17 +32,39 @@ function chipClass(level: TopicMastery['level']): string {
   }
 }
 
-export function MasteryMatrix({ masteries, attempts, hasAnyData }: Props) {
+export function MasteryMatrix({
+  masteries,
+  attempts,
+  hasAnyData,
+}: Props) {
   const [selected, setSelected] = useState<TopicMastery | null>(null)
 
+  const papers = useMemo(() => {
+    const seen = new Set<string>()
+    const ordered: string[] = []
+    for (const p of PAPER_ORDER) {
+      if (masteries.some((m) => m.paper === p)) {
+        seen.add(p)
+        ordered.push(p)
+      }
+    }
+    for (const m of masteries) {
+      if (!seen.has(m.paper)) {
+        seen.add(m.paper)
+        ordered.push(m.paper)
+      }
+    }
+    return ordered
+  }, [masteries])
+
   const byPaper = useMemo(() => {
-    const map = new Map<SyllabusPaper, TopicMastery[]>()
-    for (const paper of PAPERS) map.set(paper, [])
+    const map = new Map<string, TopicMastery[]>()
+    for (const paper of papers) map.set(paper, [])
     for (const m of masteries) {
       map.get(m.paper)?.push(m)
     }
     return map
-  }, [masteries])
+  }, [masteries, papers])
 
   if (!hasAnyData) {
     return (
@@ -59,7 +81,7 @@ export function MasteryMatrix({ masteries, attempts, hasAnyData }: Props) {
 
   return (
     <>
-      <section className="ec-card-premium p-5 sm:p-7">
+      <section id="mastery-matrix" className="ec-card-premium p-5 sm:p-7">
         <div className="mb-5 flex items-center gap-2">
           <Grid3X3 className="h-4 w-4" style={{ color: 'var(--ec-brand)' }} />
           <p className="ec-label-tech">MASTERY MATRIX</p>
@@ -70,14 +92,17 @@ export function MasteryMatrix({ masteries, attempts, hasAnyData }: Props) {
         </p>
 
         <div className="mt-6 space-y-6">
-          {PAPERS.map((paper) => {
+          {papers.map((paper) => {
             const topics = byPaper.get(paper) || []
             if (topics.length === 0) return null
             return (
               <div key={paper}>
                 <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider">
                   <span className="ec-text-gradient">{paper}</span>
-                  <span className="ml-2 font-normal normal-case" style={{ color: 'var(--ec-text-secondary)' }}>
+                  <span
+                    className="ml-2 font-normal normal-case"
+                    style={{ color: 'var(--ec-text-secondary)' }}
+                  >
                     {topics[0]?.paperName}
                   </span>
                 </h3>
@@ -127,7 +152,6 @@ function TopicDetailModal({
   attempts: AttemptLite[]
   onClose: () => void
 }) {
-  const meta = CAMBRIDGE_9709_SYLLABUS.find((t) => t.code === topic.code)
   const style = MASTERY_STYLES[topic.level]
 
   return (
@@ -141,7 +165,7 @@ function TopicDetailModal({
         <p className="ec-label-tech mb-2">{topic.code}</p>
         <h3 className="text-xl font-bold">{topic.name}</h3>
         <p className="mt-1 text-sm" style={{ color: 'var(--ec-text-secondary)' }}>
-          {meta?.paperName} ·{' '}
+          {topic.paperName} ·{' '}
           <span className={chipClass(topic.level)}>{style.label}</span>
         </p>
 
@@ -195,7 +219,10 @@ function Stat({ label, value }: { label: string; value: string }) {
       className="rounded-xl border px-2 py-3"
       style={{ borderColor: 'var(--ec-border)', background: 'var(--ec-surface-raised)' }}
     >
-      <p className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--ec-text-secondary)' }}>
+      <p
+        className="text-[10px] font-semibold uppercase tracking-wider"
+        style={{ color: 'var(--ec-text-secondary)' }}
+      >
         {label}
       </p>
       <p className="mt-1 text-lg font-bold">{value}</p>

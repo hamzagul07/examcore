@@ -4,7 +4,6 @@ import {
   MASTERY_STYLES,
   type TopicMastery,
 } from '@/lib/mastery'
-import { TOTAL_SYLLABUS_TOPICS } from '@/lib/syllabus'
 import { Card } from '@/components/ui/Card'
 import { Progress } from '@/components/ui/Progress'
 import { AnimatedCoverageNumber } from './SyllabusCoverage.client'
@@ -13,9 +12,17 @@ type Props = {
   masteries: TopicMastery[]
   coverage: number
   hasAnyData: boolean
+  subjectLabel: string
+  totalTopics: number
 }
 
-export function SyllabusCoverage({ masteries, coverage, hasAnyData }: Props) {
+export function SyllabusCoverage({
+  masteries,
+  coverage,
+  hasAnyData,
+  subjectLabel,
+  totalTopics,
+}: Props) {
   const counts = countMasteries(masteries)
   const mastered = counts.proficient + counts.exam_ready
   const pct = Math.round(coverage)
@@ -52,12 +59,12 @@ export function SyllabusCoverage({ masteries, coverage, hasAnyData }: Props) {
               <span className="text-3xl font-bold text-slate-600 sm:text-4xl">%</span>
             </div>
             <p className="mt-3 max-w-md text-base font-medium text-slate-200 sm:text-lg">
-              Cambridge 9709 syllabus mastered
+              {subjectLabel} syllabus mastered
             </p>
             <p className="mt-1 text-sm text-slate-500">
               {hasAnyData ? (
                 <>
-                  {mastered} of {TOTAL_SYLLABUS_TOPICS} topics at{' '}
+                  {mastered} of {totalTopics} topics at{' '}
                   <span className="font-semibold text-slate-300">
                     Proficient or Exam Ready
                   </span>

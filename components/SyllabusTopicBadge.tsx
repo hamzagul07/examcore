@@ -1,7 +1,13 @@
-import { getSyllabusTopicByCode, type SyllabusCode } from '@/lib/syllabus'
+import {
+  getSyllabusTopicByCode as get9709Topic,
+  CAMBRIDGE_9709_SYLLABUS,
+  type SyllabusCode,
+} from '@/lib/syllabus'
+import { getSyllabusTopicByCode } from '@/lib/syllabi'
 
 type Props = {
   code: SyllabusCode
+  subjectCode?: string
   size?: 'sm' | 'md'
   /** If true, hide the topic name and only render the numeric code. */
   compact?: boolean
@@ -21,8 +27,16 @@ const paperColors: Record<string, string> = {
   P6: 'bg-pink-500/10 text-pink-300 border-pink-500/30',
 }
 
-export function SyllabusTopicBadge({ code, size = 'sm', compact = false }: Props) {
-  const topic = getSyllabusTopicByCode(code)
+export function SyllabusTopicBadge({
+  code,
+  subjectCode = '9709',
+  size = 'sm',
+  compact = false,
+}: Props) {
+  const topic =
+    subjectCode === '9709'
+      ? get9709Topic(code)
+      : getSyllabusTopicByCode(subjectCode, code) ?? get9709Topic(code)
   if (!topic) return null
 
   const sizeClasses =

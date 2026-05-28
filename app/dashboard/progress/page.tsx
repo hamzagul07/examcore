@@ -12,16 +12,26 @@ import {
 import { predictGrade } from '@/lib/prediction'
 import { generateActionPlan } from '@/lib/action-plan'
 import { MOCK_ATTEMPTS, PREVIEW_BANNER_COPY } from '@/lib/mock-data'
+import { getSubjectById } from '@/lib/profile-options'
+import {
+  getSyllabusByCode,
+  getSyllabusSubjectName,
+  getTotalSyllabusTopics,
+  hasSyllabusTree,
+} from '@/lib/syllabi'
+import {
+  filterAttemptsBySubject,
+  type AttemptWithPaper,
+} from '@/lib/syllabi/attempts'
 
 import { SyllabusCoverage } from '@/components/progress/SyllabusCoverage'
 import { GradeTrajectory } from '@/components/progress/GradeTrajectory'
 import { MasteryMatrix } from '@/components/progress/MasteryMatrix'
 import { SpeedAccuracy } from '@/components/progress/SpeedAccuracy'
 import { ActionPlan } from '@/components/progress/ActionPlan'
+import { ProgressSubjectPicker } from '@/components/progress/ProgressSubjectPicker'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 
-// Always render fresh — progress data changes with every new attempt and
-// caching would lie to the user.
 export const dynamic = 'force-dynamic'
 
 const supabaseAdmin = createClient(
@@ -29,7 +39,12 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-export default async function ProgressPage() {
+type PageProps = {
+  searchParams: Promise<{ subject?: string }>
+}
+
+export default async function ProgressPage({ searchParams }: PageProps) {
+  const params = await searchParams
   const supabase = await createServerClient()
   const {
     data: { user },
@@ -41,41 +56,76 @@ export default async function ProgressPage() {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name')
+    .select('full_name, subjects')
     .eq('id', user.id)
     .maybeSingle()
 
   const firstName = (profile?.full_name || '').trim().split(/\s+/)[0]
+  const userSubjects: string[] = profile?.subjects?.length
+    ? profile.subjects
+    : ['Mathematics']
 
-  // Pull up to 200 attempts for analysis. Newest-first ordering matters: the
-  // prediction logic slices the first 10 for "recent form".
+  const subjectOptions = userSubjects
+    .map((name) => getSubjectById(name))
+    .filter((s): s is NonNullable<typeof s> => !!s)
+    .map((s) => ({
+      code: s.code,
+      label: s.label,
+      hasTree: hasSyllabusTree(s.code),
+    }))
+
+  const defaultCode =
+    subjectOptions.find((s) => s.hasTree && s.code === '9709')?.code ??
+    subjectOptions.find((s) => s.hasTree)?.code ??
+    subjectOptions[0]?.code ??
+    '9709'
+
+  const selectedCode =
+    params.subject && subjectOptions.some((s) => s.code === params.subject)
+      ? params.subject
+      : defaultCode
+
+  const selectedSubject = subjectOptions.find((s) => s.code === selectedCode)
+  const syllabus = getSyllabusByCode(selectedCode)
+  const analyticsAvailable = !!syllabus?.length
+
   const { data: rawAttempts } = await supabaseAdmin
     .from('attempts')
     .select(
       `
       id, marks_earned, total_marks, syllabus_tags, created_at,
-      time_spent_seconds, question_text, source_type
+      time_spent_seconds, question_text, source_type,
+      mark_schemes ( paper_code )
     `
     )
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
     .limit(200)
 
-  const realAttempts: AttemptLite[] = (rawAttempts || []) as AttemptLite[]
-  const hasAnyData = realAttempts.length > 0
+  const allAttempts = (rawAttempts || []) as AttemptWithPaper[]
+  const filteredReal = filterAttemptsBySubject(allAttempts, selectedCode)
+  const hasSubjectData = filteredReal.length > 0
 
-  // Preview mode: when the user has zero attempts we feed mock data to every
-  // derived view so the dashboard visualises what it WILL look like rather
-  // than showing five empty-state cards. A banner up top makes the framing
-  // explicit so we don't lie about their actual progress.
-  const attempts = hasAnyData ? realAttempts : MOCK_ATTEMPTS
+  const usePreview =
+    !hasSubjectData && selectedCode === '9709' && allAttempts.length === 0
+  const attempts: AttemptLite[] = usePreview ? MOCK_ATTEMPTS : filteredReal
+  const showPreviewBanner = usePreview
 
-  // All derived state computed once, server-side. Components stay dumb.
-  const masteries = calculateMastery(attempts)
+  const masteries = analyticsAvailable
+    ? calculateMastery(attempts, syllabus)
+    : []
   const coverage = calculateSyllabusCoverage(masteries)
   const prediction = predictGrade(attempts, masteries)
   const streak = computeStreak(attempts.map((a) => new Date(a.created_at)))
-  const actionItems = generateActionPlan(attempts, masteries, streak)
+  const subjectLabel =
+    getSyllabusSubjectName(selectedCode) ||
+    selectedSubject?.label ||
+    'Cambridge A-Level'
+  const totalTopics = getTotalSyllabusTopics(selectedCode)
+  const actionItems = generateActionPlan(attempts, masteries, streak, {
+    subjectLabel: `Cambridge ${selectedCode} ${subjectLabel}`,
+    totalTopics: totalTopics || 38,
+  })
 
   const lastUpdated = new Date().toLocaleString('en-US', {
     month: 'short',
@@ -96,7 +146,6 @@ export default async function ProgressPage() {
   return (
     <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
         <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between animate-entry">
           <div>
             <Link
@@ -116,7 +165,7 @@ export default async function ProgressPage() {
             </h1>
             <p className="mt-4 max-w-xl text-base text-slate-400 sm:text-lg">
               Mastery, coverage, predicted grade, and your next three moves —
-              all derived from your marked attempts.
+              derived from your marked {subjectLabel} attempts.
             </p>
           </div>
           <div className="inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-white/10 bg-dark-900/60 px-3 py-1.5 font-mono text-xs font-medium text-slate-400 backdrop-blur">
@@ -125,47 +174,83 @@ export default async function ProgressPage() {
           </div>
         </div>
 
-        {!hasAnyData && <PreviewBanner />}
+        <ProgressSubjectPicker
+          subjects={subjectOptions}
+          selectedCode={selectedCode}
+        />
 
-        {/* Layout — when in preview mode we pass hasAnyData=true to the
-            children so they render the mock data without their own empty
-            states. The banner above makes the framing clear. */}
+        {showPreviewBanner && <PreviewBanner />}
+
+        {!analyticsAvailable && (
+          <div className="mb-6 animate-entry">
+            <div className="ec-card border-amber-500/20 p-4 text-sm text-slate-400">
+              Detailed topic analytics coming soon for{' '}
+              <span className="font-semibold text-white">{subjectLabel}</span>.
+              Mark questions to build your score history — the mastery matrix
+              will unlock once the syllabus topic map is ready.
+            </div>
+          </div>
+        )}
+
+        {analyticsAvailable && !hasSubjectData && !showPreviewBanner && (
+          <div className="mb-6 animate-entry">
+            <div className="ec-card border-white/10 p-4 text-sm text-slate-400">
+              No {subjectLabel} attempts yet.{' '}
+              <Link href="/mark" className="font-semibold text-emerald-400 hover:underline">
+                Mark your first question
+              </Link>{' '}
+              to populate this dashboard.
+            </div>
+          </div>
+        )}
+
         <div className="space-y-5 sm:space-y-6">
-          <div className="animate-entry stagger-1">
-            <SyllabusCoverage
-              masteries={masteries}
-              coverage={coverage}
-              hasAnyData
-            />
-          </div>
+          {analyticsAvailable && (
+            <>
+              <div className="animate-entry stagger-1">
+                <SyllabusCoverage
+                  masteries={masteries}
+                  coverage={coverage}
+                  hasAnyData={hasSubjectData || showPreviewBanner}
+                  subjectLabel={`Cambridge ${selectedCode} ${subjectLabel}`}
+                  totalTopics={totalTopics}
+                />
+              </div>
 
-          <div className="animate-entry stagger-2">
-            <GradeTrajectory attempts={attempts} prediction={prediction} />
-          </div>
+              <div className="animate-entry stagger-2">
+                <GradeTrajectory attempts={attempts} prediction={prediction} />
+              </div>
 
-          <div className="animate-entry stagger-3">
-            <MasteryMatrix
-              masteries={masteries}
-              attempts={attempts}
-              hasAnyData
-            />
-          </div>
+              <div className="animate-entry stagger-3">
+                <MasteryMatrix
+                  masteries={masteries}
+                  attempts={attempts}
+                  hasAnyData={hasSubjectData || showPreviewBanner}
+                  subjectCode={selectedCode}
+                />
+              </div>
+            </>
+          )}
 
           <div className="animate-entry stagger-4">
             <SpeedAccuracy attempts={attempts} />
           </div>
 
-          <div className="animate-entry stagger-5">
-            <ActionPlan items={actionItems} />
-          </div>
+          {analyticsAvailable && (
+            <div className="animate-entry stagger-5">
+              <ActionPlan items={actionItems} />
+            </div>
+          )}
         </div>
       </div>
-      <OmniAIBridge
-        context={{
-          type: 'mastery_matrix',
-          data: { weakTopics, coverage },
-        }}
-      />
+      {analyticsAvailable && (
+        <OmniAIBridge
+          context={{
+            type: 'mastery_matrix',
+            data: { weakTopics, coverage },
+          }}
+        />
+      )}
     </main>
   )
 }
@@ -211,11 +296,6 @@ function PreviewBanner() {
   )
 }
 
-/**
- * Same streak logic as the main dashboard. Kept here (vs. exported from one
- * spot) to avoid creating a one-line module; if a third caller appears we
- * promote it to `lib/streak.ts`.
- */
 function computeStreak(timestamps: Date[]): number {
   if (timestamps.length === 0) return 0
 

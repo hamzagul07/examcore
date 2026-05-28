@@ -1,282 +1,381 @@
-import Link from "next/link";
+import Link from 'next/link'
+import { createClient } from '@/lib/supabase-server'
 import {
-  Atom,
-  Calculator,
+  LandingHeroEntry,
+  LandingMockup,
+  LandingMockupHero,
+} from './page.client'
+import { LandingChat } from '@/components/omni-ai/LandingChat'
+import {
+  Brain,
+  Zap,
+  Target,
+  Sparkles,
+  ArrowRight,
   Camera,
+  TrendingUp,
+  Calculator,
+  Atom,
   FlaskConical,
   Microscope,
-  Sparkles,
-  TrendingUp,
   type LucideIcon,
-} from "lucide-react";
-import { createClient } from "@/lib/supabase-server";
-
-const primaryButtonClass =
-  "inline-block bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)] text-white px-6 py-3 rounded-md font-medium transition-all duration-200";
-
-const linkTransitionClass = "transition-colors duration-200";
+} from 'lucide-react'
 
 export default async function Home() {
-  const supabase = await createClient();
+  const supabase = await createClient()
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await supabase.auth.getUser()
 
   return (
-    <div className="min-h-screen bg-white text-[var(--foreground)]">
-      {/* Section 1: Sticky header */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-lg">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className={`text-xl font-bold text-slate-900 hover:text-slate-700 ${linkTransitionClass}`}
-          >
-            Examcore
-          </Link>
-          <nav>
-            {user ? (
-              <Link
-                href="/dashboard"
-                className={`text-sm font-medium text-slate-700 hover:text-slate-900 ${linkTransitionClass}`}
-              >
-                Dashboard
-              </Link>
-            ) : (
-              <Link
-                href="/auth/signin"
-                className={`text-sm font-medium text-slate-700 hover:text-slate-900 ${linkTransitionClass}`}
-              >
-                Sign in
-              </Link>
-            )}
-          </nav>
-        </div>
-      </header>
-
+    <div className="relative min-h-screen">
       <main>
-        {/* Section 2: Hero */}
-        <section className="hero-bg">
-          <div className="mx-auto max-w-5xl px-6 pt-20 pb-16 text-center md:pt-28 md:pb-20">
-            <span className="inline-block rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
-              Free during beta
-            </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 md:text-6xl">
-              AI marking that grades like a real Cambridge examiner
-            </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600 md:text-xl">
-              Upload a photo of your answer. Get a Cambridge-grade marking
-              breakdown in 30 seconds. Works on past papers and textbook
-              questions.
-            </p>
-            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link href="/auth/signin" className={primaryButtonClass}>
-                Start marking free
-              </Link>
-              <Link
-                href="#how-it-works"
-                className={`inline-block rounded-md border border-slate-300 bg-white px-6 py-3 font-medium text-slate-900 hover:border-slate-400 ${linkTransitionClass}`}
-              >
-                See how it works
-              </Link>
+        {/* ====== Hero ====== */}
+        <section className="relative px-6 pb-24 pt-24 sm:pt-32">
+          <LandingHeroEntry>
+            <div className="mx-auto max-w-7xl text-center">
+              <div className="mb-8 flex justify-center">
+                <span className="ec-label-tech">AI-Powered Marking · Free Beta</span>
+              </div>
+
+              <h1 className="text-display mb-6">
+                <span className="gradient-text">Get marked</span>
+                <br />
+                <span className="ec-text-gradient brand-breathe">in 30 seconds</span>
+              </h1>
+
+              <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl md:text-2xl">
+                Cambridge A-Level Mathematics, marked by AI with{' '}
+                <span className="text-white">examiner-grade precision</span>.
+              </p>
+
+              {/* Omni-AI — streaming conversational assistant (replaces Command Bar) */}
+              <div className="mb-10">
+                <LandingChat />
+              </div>
+
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Link
+                  href={user ? '/mark' : '/auth/signup'}
+                  className="ec-btn-primary text-base"
+                  style={{ padding: '16px 32px' }}
+                >
+                  Start marking free <ArrowRight className="h-5 w-5" />
+                </Link>
+                <a
+                  href="#how-it-works"
+                  className="ec-btn-secondary text-base"
+                  style={{ padding: '16px 32px' }}
+                >
+                  See how it works
+                </a>
+              </div>
             </div>
 
-            {/* Product mockup */}
-            <div className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl ring-1 ring-slate-200/50">
-              <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50 px-4 py-3">
-                <div className="h-3 w-3 rounded-full bg-red-400" />
-                <div className="h-3 w-3 rounded-full bg-amber-400" />
-                <div className="h-3 w-3 rounded-full bg-emerald-400" />
-                <div className="ml-3 flex-1 rounded border border-slate-200 bg-white px-3 py-1 text-left text-xs text-slate-500">
-                  examcore.ai/mark
-                </div>
+            {/* Product preview — floating with multi-color glow */}
+            <div className="relative mx-auto mt-20 max-w-4xl sm:mt-24">
+              {/* Massive glow behind mockup */}
+              <div className="pointer-events-none absolute -inset-x-16 inset-y-0 -z-10">
+                <div className="absolute left-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-emerald-500/30 blur-[120px]" />
+                <div className="absolute right-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-violet-500/30 blur-[120px]" />
+                <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/20 blur-[140px]" />
               </div>
-              <div className="p-6 text-left sm:p-8">
-                <p className="mb-1 text-sm font-semibold text-slate-500">
-                  Q1 — Cambridge 9709/12, May/June 2024
+
+              <LandingMockupHero />
+            </div>
+          </LandingHeroEntry>
+        </section>
+
+        {/* ====== Features bento grid ====== */}
+        <section
+          id="how-it-works"
+          className="mx-auto max-w-7xl scroll-mt-20 px-6 py-24 sm:py-32"
+        >
+          <div className="mb-12">
+            <p className="ec-label-tech mb-4">FEATURES</p>
+            <h2 className="max-w-3xl text-[44px] font-extrabold leading-[1] tracking-[-0.035em] sm:text-[64px] md:text-[72px]">
+              <span className="gradient-text">Everything you need</span>
+              <br />
+              <span className="ec-text-gradient">to ace your exams.</span>
+            </h2>
+          </div>
+
+          <div className="bento-grid">
+            {/* Large feature — Brain */}
+            <div className="ec-card ec-card-interactive col-span-6 row-span-2 relative overflow-hidden p-8 md:col-span-4 md:p-10">
+              <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-emerald-500/15 blur-[100px]" />
+              <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-cyan-500/10 blur-[80px]" />
+              <div className="relative z-10">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.3)]">
+                  <Brain className="h-7 w-7 text-emerald-400" strokeWidth={1.75} />
+                </div>
+                <h3 className="mb-3 text-3xl font-bold tracking-tight text-white md:text-4xl">
+                  Real Cambridge mark schemes
+                </h3>
+                <p className="max-w-md text-base leading-relaxed text-slate-400 md:text-lg">
+                  Your work is marked against the actual Cambridge 9709 mark
+                  scheme. Every B1, M1, A1 awarded exactly as a real examiner
+                  would.
                 </p>
-                <div className="mt-4 flex flex-wrap items-baseline gap-2">
-                  <span className="text-5xl font-bold text-emerald-600 sm:text-6xl">
-                    3
-                  </span>
-                  <span className="text-2xl font-bold text-slate-300 sm:text-3xl">
-                    / 3
-                  </span>
-                  <span className="ml-0 text-sm text-slate-600 sm:ml-3">
-                    marks earned
-                  </span>
-                </div>
-                <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100">
-                  <div className="h-full w-full rounded-full bg-emerald-500" />
-                </div>
-                <div className="mt-6 space-y-2">
-                  <MarkRow
-                    badge="B1"
-                    text="Correctly identified the coefficient of x² as 240"
-                  />
-                  <MarkRow
-                    badge="M1"
-                    text="Set up the equation 240 = 12 × 80a² correctly"
-                  />
-                  <MarkRow
-                    badge="A1"
-                    text="Found a = 0.5 (within accepted range)"
-                  />
+                <div className="mt-8 flex flex-wrap gap-2">
+                  <span className="font-mono text-xs rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-400">B1</span>
+                  <span className="font-mono text-xs rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-400">M1</span>
+                  <span className="font-mono text-xs rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-400">A1</span>
+                  <span className="font-mono text-xs rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-slate-400">A1ft</span>
                 </div>
               </div>
+            </div>
+
+            {/* Medium — speed */}
+            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-2">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                <Zap className="h-6 w-6 text-cyan-400" strokeWidth={1.75} />
+              </div>
+              <h3 className="mb-2 text-xl font-bold text-white">
+                30-second feedback
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-400">
+                Upload, mark, learn — instantly.
+              </p>
+            </div>
+
+            {/* Medium — topics */}
+            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-2">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-500/30 bg-violet-500/10 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                <Target className="h-6 w-6 text-violet-400" strokeWidth={1.75} />
+              </div>
+              <h3 className="mb-2 text-xl font-bold text-white">
+                Track every topic
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-400">
+                Mastery across the full syllabus.
+              </p>
+            </div>
+
+            {/* Stat card */}
+            <div className="ec-card col-span-6 flex flex-col justify-center p-8 md:col-span-2 relative overflow-hidden">
+              <div className="pointer-events-none absolute -right-8 -bottom-8 h-40 w-40 rounded-full bg-violet-500/15 blur-[60px]" />
+              <span className="relative z-10 text-7xl font-extrabold ec-text-gradient">38</span>
+              <span className="relative z-10 mt-3 text-sm text-slate-400">
+                Cambridge 9709 topics covered, end to end
+              </span>
+            </div>
+
+            {/* Wide — solutions */}
+            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-4">
+              <div className="flex items-start gap-5">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                  <Sparkles className="h-6 w-6 text-emerald-400" strokeWidth={1.75} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="mb-2 text-2xl font-bold text-white">
+                    Worked solutions on demand
+                  </h3>
+                  <p className="leading-relaxed text-slate-400">
+                    Stuck on a question? See the full step-by-step solution
+                    after marking — learn the way a great tutor would teach it.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Wide — trajectory */}
+            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-3">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                <TrendingUp className="h-6 w-6 text-cyan-400" strokeWidth={1.75} />
+              </div>
+              <h3 className="mb-2 text-2xl font-bold text-white">
+                Predicted grade trajectory
+              </h3>
+              <p className="leading-relaxed text-slate-400">
+                Watch your score line track against A* boundaries in real time.
+              </p>
+            </div>
+
+            {/* Wide — camera */}
+            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-3">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-500/30 bg-violet-500/10 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                <Camera className="h-6 w-6 text-violet-400" strokeWidth={1.75} />
+              </div>
+              <h3 className="mb-2 text-2xl font-bold text-white">
+                Snap a photo. That's it.
+              </h3>
+              <p className="leading-relaxed text-slate-400">
+                Handwritten on paper or typed on screen — both work. No setup.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Section 3: How it works */}
-        <section
-          id="how-it-works"
-          className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20"
-        >
-          <h2 className="mb-4 text-center text-3xl font-bold text-slate-900 md:text-4xl">
-            How it works
-          </h2>
-          <p className="mb-12 text-center text-slate-600">
-            Three steps. About 30 seconds per answer.
-          </p>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* ====== Subjects ====== */}
+        <section className="mx-auto max-w-7xl px-6 py-24">
+          <div className="mb-12">
+            <p className="ec-label-tech ec-label-tech-violet mb-4">SUBJECTS</p>
+            <h2 className="text-[44px] font-extrabold leading-[1] tracking-[-0.035em] sm:text-[64px]">
+              <span className="gradient-text">Starting with maths.</span>
+            </h2>
+            <p className="mt-4 max-w-xl text-lg text-slate-400">
+              Cambridge 9709 first. More subjects rolling out monthly.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            <SubjectCard
+              icon={Calculator}
+              name="Mathematics"
+              code="Cambridge 9709"
+              available
+            />
+            <SubjectCard icon={Atom} name="Physics" code="Cambridge 9702" />
+            <SubjectCard icon={FlaskConical} name="Chemistry" code="Cambridge 9701" />
+            <SubjectCard icon={Microscope} name="Biology" code="Cambridge 9700" />
+          </div>
+        </section>
+
+        {/* ====== How it works mockup ====== */}
+        <section className="mx-auto max-w-7xl px-6 py-24">
+          <div className="mb-12">
+            <p className="ec-label-tech ec-label-tech-cyan mb-4">HOW IT WORKS</p>
+            <h2 className="text-[44px] font-extrabold leading-[1] tracking-[-0.035em] sm:text-[64px]">
+              <span className="gradient-text">Three steps.</span>
+              <br />
+              <span className="ec-text-gradient">About 30 seconds.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <StepCard
-              number="1"
+              number="01"
               icon={Camera}
               title="Upload your answer"
               description="Take a photo of your handwritten working. Works from your phone or laptop."
+              accent="emerald"
             />
             <StepCard
-              number="2"
+              number="02"
               icon={Sparkles}
               title="AI marks like an examiner"
-              description="Our AI applies official Cambridge mark schemes, awarding M1, A1, B1 marks just like a real examiner would."
+              description="Cambridge mark schemes applied automatically. B1, M1, A1 awarded exactly as a real examiner would."
+              accent="cyan"
             />
             <StepCard
-              number="3"
+              number="03"
               icon={TrendingUp}
-              title="See exactly what to improve"
-              description="Get a mark-by-mark breakdown showing what you earned and which topics to revise."
+              title="See what to improve"
+              description="A mark-by-mark breakdown plus targeted topics to revise — your fastest path to A*."
+              accent="violet"
             />
           </div>
+
+          {/* Compact mockup */}
+          <div className="mt-20">
+            <LandingMockup />
+          </div>
         </section>
 
-        {/* Section 4: Subjects we cover */}
-        <section className="mx-auto max-w-6xl px-6 py-20">
-          <div className="text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">
-              Subjects we cover
-            </h2>
-            <p className="mx-auto max-w-xl text-lg text-slate-600">
-              Starting with A-Level Mathematics. More subjects coming soon.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-            <div className="rounded-2xl border-2 border-emerald-200 bg-emerald-50 p-4 text-center sm:p-6">
-              <Calculator className="mx-auto mb-3 h-10 w-10 text-emerald-700" />
-              <p className="text-lg font-semibold text-slate-900">
-                Mathematics
-              </p>
-              <p className="mt-1 text-xs text-slate-600">Cambridge 9709</p>
-              <span className="mt-3 inline-block rounded bg-emerald-600 px-2 py-1 text-xs font-bold text-white">
-                AVAILABLE NOW
-              </span>
+        {/* ====== Final CTA ====== */}
+        <section className="mx-auto max-w-4xl px-6 py-24 text-center">
+          <div className="ec-card relative overflow-hidden p-12 sm:p-16">
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute -left-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-emerald-500/20 blur-[100px]" />
+              <div className="absolute -right-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-violet-500/20 blur-[100px]" />
+              <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[120px]" />
             </div>
-            <SubjectComingSoon icon={Atom} name="Physics" />
-            <SubjectComingSoon icon={FlaskConical} name="Chemistry" />
-            <SubjectComingSoon icon={Microscope} name="Biology" />
-          </div>
-        </section>
-
-        {/* Section 5: Final CTA */}
-        <section className="mx-auto max-w-4xl px-6 py-20">
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-emerald-50 via-white to-blue-50 p-10 text-center md:p-16">
-            <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">
-              Start marking your practice answers today
-            </h2>
-            <p className="mt-4 text-lg text-slate-600">
-              Free during beta. No credit card required.
-            </p>
-            <div className="mt-8">
-              <Link href="/auth/signin" className={primaryButtonClass}>
-                Get started free
+            <div className="relative">
+              <p className="ec-label-tech mb-6 justify-center" style={{ display: 'inline-flex' }}>
+                Ready when you are
+              </p>
+              <h2 className="mb-8 text-[44px] font-extrabold leading-[1] tracking-[-0.035em] sm:text-[64px]">
+                <span className="gradient-text">Know your real</span>
+                <br />
+                <span className="ec-text-gradient">A-Level score.</span>
+              </h2>
+              <Link
+                href={user ? '/mark' : '/auth/signup'}
+                className="ec-btn-primary inline-flex text-lg"
+                style={{ padding: '18px 36px' }}
+              >
+                Start marking free <ArrowRight className="h-5 w-5" />
               </Link>
+              <p className="mt-6 text-sm text-slate-500">
+                Free during beta · Cambridge A-Level Mathematics 9709
+              </p>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Section 6: Footer */}
-      <footer className="border-t border-slate-200 bg-[var(--card-bg)]">
-        <div className="mx-auto max-w-6xl px-6 py-12">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div>
-              <p className="text-lg font-bold text-slate-900">Examcore</p>
-              <p className="mt-2 text-sm text-slate-600">
-                AI marking for Cambridge A-Level mathematics.
-              </p>
-            </div>
-            <div>
-              <p className="mb-3 text-sm font-semibold text-slate-900">
-                Product
-              </p>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li>
-                  <Link
-                    href="#how-it-works"
-                    className={`hover:text-slate-900 ${linkTransitionClass}`}
-                  >
-                    How it works
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/auth/signin"
-                    className={`hover:text-slate-900 ${linkTransitionClass}`}
-                  >
-                    Sign in
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/dashboard"
-                    className={`hover:text-slate-900 ${linkTransitionClass}`}
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="mb-3 text-sm font-semibold text-slate-900">
-                Contact
-              </p>
-              <a
-                href="mailto:hello@examcore.ai"
-                className={`text-sm text-slate-600 hover:text-slate-900 ${linkTransitionClass}`}
-              >
-                hello@examcore.ai
-              </a>
-            </div>
+      {/* ====== Footer ====== */}
+      <footer className="border-t border-white/5 px-6 py-12">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-sm text-slate-500 sm:flex-row">
+          <span className="font-bold ec-text-gradient text-base">Examcore</span>
+          <div className="flex items-center gap-6">
+            <Link href="/auth/signin" className="transition-colors hover:text-white">
+              Sign in
+            </Link>
+            <a
+              href="mailto:hello@examcore.ai"
+              className="transition-colors hover:text-white"
+            >
+              hello@examcore.ai
+            </a>
           </div>
-          <div className="mt-12 flex flex-col justify-between gap-3 border-t border-slate-200 pt-8 text-sm text-slate-500 md:flex-row">
-            <span>© 2026 Examcore</span>
-            <span>Built in Pakistan</span>
-          </div>
+          <span>© 2026 · Built in Pakistan</span>
         </div>
       </footer>
     </div>
-  );
+  )
 }
 
-function MarkRow({ badge, text }: { badge: string; text: string }) {
+// ----------------------------- pieces -----------------------------
+
+function SubjectCard({
+  icon: Icon,
+  name,
+  code,
+  available,
+}: {
+  icon: LucideIcon
+  name: string
+  code: string
+  available?: boolean
+}) {
   return (
-    <div className="flex items-start gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 sm:items-center">
-      <span className="shrink-0 rounded bg-emerald-600 px-2 py-0.5 text-xs font-bold text-white">
-        {badge}
-      </span>
-      <span className="text-sm text-slate-700">{text}</span>
+    <div
+      className={`ec-card relative overflow-hidden p-6 text-center transition-all duration-300 ${
+        available ? 'ec-card-interactive' : 'opacity-60'
+      }`}
+    >
+      {available && (
+        <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-emerald-500/15 blur-[60px]" />
+      )}
+      <div className="relative">
+        <div
+          className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border ${
+            available
+              ? 'border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.25)]'
+              : 'border-white/5 bg-white/5'
+          }`}
+        >
+          <Icon
+            className={`h-7 w-7 ${available ? 'text-emerald-400' : 'text-slate-500'}`}
+            strokeWidth={1.75}
+          />
+        </div>
+        <p className="text-base font-bold text-white sm:text-lg">{name}</p>
+        <p className="mt-1 text-xs text-slate-500">{code}</p>
+        <span
+          className={`mt-4 inline-flex rounded-md px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider ${
+            available
+              ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
+              : 'bg-white/5 text-slate-500 border border-white/10'
+          }`}
+        >
+          {available ? 'Available' : 'Coming soon'}
+        </span>
+      </div>
     </div>
-  );
+  )
 }
 
 function StepCard({
@@ -284,41 +383,61 @@ function StepCard({
   icon: Icon,
   title,
   description,
+  accent,
 }: {
-  number: string;
-  icon: LucideIcon;
-  title: string;
-  description: string;
+  number: string
+  icon: LucideIcon
+  title: string
+  description: string
+  accent: 'emerald' | 'cyan' | 'violet'
 }) {
-  return (
-    <div className="relative rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-200 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg">
-      <div className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full border border-emerald-200 bg-emerald-50 text-sm font-bold text-emerald-700">
-        {number}
-      </div>
-      <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-emerald-100">
-        <Icon className="h-7 w-7 text-emerald-700" />
-      </div>
-      <h3 className="mb-2 text-xl font-semibold text-slate-900">{title}</h3>
-      <p className="leading-relaxed text-slate-600">{description}</p>
-    </div>
-  );
-}
+  const styles = {
+    emerald: {
+      glow: 'bg-emerald-500/15',
+      ring: 'border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.3)]',
+      icon: 'text-emerald-400',
+      number: 'text-emerald-400',
+    },
+    cyan: {
+      glow: 'bg-cyan-500/15',
+      ring: 'border-cyan-500/30 bg-cyan-500/10 shadow-[0_0_24px_rgba(6,182,212,0.3)]',
+      icon: 'text-cyan-400',
+      number: 'text-cyan-400',
+    },
+    violet: {
+      glow: 'bg-violet-500/15',
+      ring: 'border-violet-500/30 bg-violet-500/10 shadow-[0_0_24px_rgba(139,92,246,0.3)]',
+      icon: 'text-violet-400',
+      number: 'text-violet-400',
+    },
+  }[accent]
 
-function SubjectComingSoon({
-  icon: Icon,
-  name,
-}: {
-  icon: LucideIcon;
-  name: string;
-}) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 text-center opacity-70 sm:p-6">
-      <Icon className="mx-auto mb-3 h-10 w-10 text-slate-400" />
-      <p className="text-lg font-semibold text-slate-700">{name}</p>
-      <p className="mt-1 text-xs text-slate-500">Cambridge A-Level</p>
-      <span className="mt-3 inline-block rounded bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
-        COMING SOON
-      </span>
+    <div className="ec-card ec-card-interactive relative h-full overflow-hidden p-8">
+      <div
+        className={`pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full ${styles.glow} blur-[80px]`}
+      />
+      <div className="relative">
+        <div className="mb-6 flex items-center justify-between">
+          <div
+            className={`flex h-14 w-14 items-center justify-center rounded-2xl border ${styles.ring}`}
+          >
+            <Icon
+              className={`h-7 w-7 ${styles.icon}`}
+              strokeWidth={1.75}
+            />
+          </div>
+          <span
+            className={`font-mono text-2xl font-extrabold ${styles.number}`}
+          >
+            {number}
+          </span>
+        </div>
+        <h3 className="mb-2 text-2xl font-bold tracking-tight text-white">
+          {title}
+        </h3>
+        <p className="leading-relaxed text-slate-400">{description}</p>
+      </div>
     </div>
-  );
+  )
 }

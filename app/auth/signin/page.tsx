@@ -1,24 +1,35 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
-import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
+import { AuthShell } from '@/components/AuthShell'
+import { PasswordInput } from '@/components/PasswordInput'
+import {
+  type AuthMethod,
+  MethodTabs,
+  ErrorBox,
+  SubmitButton,
+} from '@/components/AuthFormBits'
 
 export default function SignInPage() {
+  const router = useRouter()
+  const [method, setMethod] = useState<AuthMethod>('magic')
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleMagicLink(e: React.FormEvent) {
     e.preventDefault()
     if (!email.includes('@')) {
       setErrorMsg('Enter a valid email address.')
       return
     }
-
     setLoading(true)
     setErrorMsg('')
 
@@ -31,86 +42,164 @@ export default function SignInPage() {
     })
 
     setLoading(false)
-
     if (error) {
       setErrorMsg(error.message)
       return
     }
-
     setSent(true)
   }
 
+  async function handlePasswordSignIn(e: React.FormEvent) {
+    e.preventDefault()
+    if (!email.includes('@')) {
+      setErrorMsg('Enter a valid email address.')
+      return
+    }
+    if (password.length < 8) {
+      setErrorMsg('Password must be at least 8 characters.')
+      return
+    }
+    setLoading(true)
+    setErrorMsg('')
+
+    const supabase = createClient()
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+
+    setLoading(false)
+    if (error) {
+      setErrorMsg(error.message)
+      return
+    }
+    // Middleware decides whether to send them to /onboarding or /dashboard.
+    router.push('/dashboard')
+    router.refresh()
+  }
+
   return (
-    <main className="min-h-screen bg-white flex items-center justify-center px-6 py-12">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <Link href="/" className="text-2xl font-bold text-slate-900">
-            Examcore
-          </Link>
-        </div>
+    <AuthShell>
+      {!sent ? (
+        <>
+          <p className="ec-label-tech mb-3">WELCOME BACK</p>
+          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+            Sign in to <span className="ec-text-gradient">Examcore</span>
+          </h1>
+          <p className="mb-6 leading-relaxed text-slate-400">
+            Pick how you&apos;d like to sign in.
+          </p>
 
-        <div className="bg-white border border-slate-200 rounded-lg p-8 shadow-sm">
-          {!sent ? (
-            <>
-              <h1 className="text-2xl font-bold text-slate-900 mb-2">Sign in</h1>
-              <p className="text-slate-600 mb-6">
-                Enter your email and we will send you a magic link.
-              </p>
+          <MethodTabs method={method} setMethod={setMethod} setError={setErrorMsg} />
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    placeholder="you@example.com"
-                    className="mt-1 w-full p-2 border border-slate-300 rounded-md"
-                  />
-                </div>
+          {method === 'magic' ? (
+            <form onSubmit={handleMagicLink} className="mt-6 space-y-4">
+              <div>
+                <Label htmlFor="email" className="label-overline mb-2 inline-block">
+                  Email
+                </Label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  className="ec-input"
+                />
+              </div>
 
-                {errorMsg && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded text-red-800 text-sm">
-                    {errorMsg}
-                  </div>
-                )}
+              {errorMsg && <ErrorBox message={errorMsg} />}
 
-                <Button type="submit" disabled={loading} className="w-full">
-                  {loading ? 'Sending...' : 'Send magic link'}
-                </Button>
-              </form>
-            </>
+              <SubmitButton
+                loading={loading}
+                idleLabel="Send magic link"
+                loadingLabel="Sending magic link..."
+              />
+            </form>
           ) : (
-            <div className="text-center space-y-3">
-              <h2 className="text-xl font-bold text-slate-900">Check your email</h2>
-              <p className="text-slate-600">
-                We sent a magic link to <strong>{email}</strong>. Click it to sign in.
-              </p>
-              <p className="text-xs text-slate-500 pt-4">
-                Did not get it? Check your spam folder, or{' '}
-                <button
-                  onClick={() => {
-                    setSent(false)
-                    setEmail('')
-                  }}
-                  className="underline hover:text-slate-700"
-                >
-                  try again
-                </button>
-                .
-              </p>
-            </div>
-          )}
-        </div>
+            <form onSubmit={handlePasswordSignIn} className="mt-6 space-y-4">
+              <div>
+                <Label htmlFor="email" className="label-overline mb-2 inline-block">
+                  Email
+                </Label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  className="ec-input"
+                />
+              </div>
+              <div>
+                <Label htmlFor="password" className="label-overline mb-2 inline-block">
+                  Password
+                </Label>
+                <PasswordInput
+                  id="password"
+                  value={password}
+                  onChange={setPassword}
+                  autoComplete="current-password"
+                />
+                <div className="mt-2 text-right">
+                  <Link
+                    href="/auth/forgot-password"
+                    className="text-xs font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+              </div>
 
-        <div className="text-center mt-6">
-          <Link href="/" className="text-sm text-slate-500 hover:text-slate-700">
-            Back to home
-          </Link>
+              {errorMsg && <ErrorBox message={errorMsg} />}
+
+              <SubmitButton
+                loading={loading}
+                idleLabel="Sign in"
+                loadingLabel="Signing in..."
+              />
+            </form>
+          )}
+
+          <p className="mt-6 text-center text-sm text-slate-400">
+            Don&apos;t have an account?{' '}
+            <Link
+              href="/auth/signup"
+              className="font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+            >
+              Sign up
+            </Link>
+          </p>
+        </>
+      ) : (
+        <div className="space-y-3 text-center">
+          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.3)]">
+            <Mail className="h-8 w-8 text-emerald-400" />
+          </div>
+          <h2 className="text-2xl font-bold tracking-tight text-white">
+            Check your email
+          </h2>
+          <p className="leading-relaxed text-slate-400">
+            We sent a magic link to{' '}
+            <strong className="text-white">{email}</strong>. Click it to sign in.
+          </p>
+          <p className="pt-4 text-xs leading-relaxed text-slate-500">
+            Did not get it? Check your spam folder, or{' '}
+            <button
+              type="button"
+              onClick={() => {
+                setSent(false)
+                setEmail('')
+              }}
+              className="font-medium text-emerald-400 underline transition-colors hover:text-emerald-300"
+            >
+              try again
+            </button>
+            .
+          </p>
         </div>
-      </div>
-    </main>
+      )}
+    </AuthShell>
   )
 }

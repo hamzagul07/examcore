@@ -13,11 +13,7 @@
  * day one.
  */
 
-import {
-  CAMBRIDGE_9709_SYLLABUS,
-  type SyllabusCode,
-  type SyllabusPaper,
-} from './syllabus'
+import type { SyllabusCode, SyllabusTopic } from './syllabus'
 
 /**
  * Minimal Attempt shape that all `lib/` helpers depend on. Mirrors the columns
@@ -44,7 +40,7 @@ export type MasteryLevel =
 export interface TopicMastery {
   code: SyllabusCode
   name: string
-  paper: SyllabusPaper
+  paper: string
   paperName: string
   level: MasteryLevel
   /** 0-100. Zero when unattempted (use `level` to distinguish). */
@@ -57,8 +53,13 @@ export interface TopicMastery {
 const CRITICAL_THRESHOLD = 40
 const PROFICIENT_THRESHOLD = 75
 
-export function calculateMastery(attempts: AttemptLite[]): TopicMastery[] {
-  return CAMBRIDGE_9709_SYLLABUS.map((topic): TopicMastery => {
+export function calculateMastery(
+  attempts: AttemptLite[],
+  syllabus: SyllabusTopic[] | null
+): TopicMastery[] {
+  if (!syllabus?.length) return []
+
+  return syllabus.map((topic): TopicMastery => {
     const taggedAttempts = attempts.filter((a) =>
       (a.syllabus_tags || []).includes(topic.code)
     )

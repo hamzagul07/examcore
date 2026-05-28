@@ -1,0 +1,31 @@
+/*
+ * Handwritten font utility classes for the Examiner's Ink overlay.
+ *
+ * Fonts themselves are loaded via `next/font/google` in `app/layout.tsx`,
+ * which self-hosts them and exposes the family names as CSS variables. That
+ * gets us better font CLS protection than a raw Google Fonts @import. The
+ * variables we read here:
+ *
+ *   --font-caveat   — friendly looped script. Default for margin notes.
+ *   --font-kalam    — chunkier red-pen feel. Reserved for stamps + bolder copy.
+ */
+
+.font-handwritten {
+  font-family: var(--font-caveat, 'Caveat', 'Comic Sans MS', cursive);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.font-examiner {
+  font-family: var(--font-kalam, 'Kalam', 'Comic Sans MS', cursive);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+/* Slight stroke wobble that makes the red ink read as drawn rather than typed. */
+.examiner-ink {
+  color: #dc2626;
+  text-shadow:
+    0 0 0.5px rgba(220, 38, 38, 0.4),
+    0.5px 0.5px 0 rgba(220, 38, 38, 0.15);
+}

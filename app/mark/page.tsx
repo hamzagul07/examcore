@@ -1,74 +1,230 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import { useEffect, useMemo, useState } from 'react'
+import { UploadCloud, ChevronRight, Loader2, Sparkles } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Label } from '@/components/ui/label'
+import {
+  MarkingResultView,
+  type MarkingResultData,
+} from '@/components/MarkingResultView'
+import { SolutionSection } from '@/components/SolutionSection'
+import { Skeleton } from '@/components/ui/Skeleton'
+import {
+  ExaminerInkOverlay,
+  type LineReference,
+} from '@/components/examiner-ink/ExaminerInkOverlay'
+import { useSetAIContext } from '@/lib/omni-ai/context'
+import { SidebarChat } from '@/components/omni-ai/SidebarChat'
 
-type MarkScheme = {
-  id: string
-  question_number: string
-  question_text: string
-  total_marks: number
+type SessionInfo = {
+  year: number
+  season: string
+  components: string[]
 }
 
-type MarkAwarded = {
-  mark_id: number
-  type: string
-  earned: boolean
-  reasoning: string
+type SubjectInfo = {
+  subject: string
+  sessions: Record<string, SessionInfo>
 }
 
-type MarkingResult = {
-  marks_earned: number
-  total_marks: number
-  ai_marking: {
-    marks_awarded: MarkAwarded[]
-    summary: string
-    weak_topics: string[]
-    what_to_study_next: string
-    estimated_marks_explanation?: string
-  }
-  ocr_text?: string
-  question_text?: string
+type AvailablePapers = Record<string, SubjectInfo>
+
+type MarkingResult = MarkingResultData & {
+  attempt_id?: string | null
+  answer_photo_url?: string | null
+  line_references?: LineReference[] | null
 }
 
 export default function MarkPage() {
-  const [mode, setMode] = useState<'past_paper' | 'other'>('past_paper')
-  const [questions, setQuestions] = useState<MarkScheme[]>([])
-  const [selectedQuestionId, setSelectedQuestionId] = useState('')
   const [answerPhoto, setAnswerPhoto] = useState<File | null>(null)
   const [questionPhoto, setQuestionPhoto] = useState<File | null>(null)
   const [questionTextInput, setQuestionTextInput] = useState('')
+  const [showOptional, setShowOptional] = useState(false)
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<MarkingResult | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
-  const [showOCR, setShowOCR] = useState(false)
+
+  const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
+    null
+  )
+  const [papersLoading, setPapersLoading] = useState(true)
+  const [showManualPaper, setShowManualPaper] = useState(false)
+  const [selectedSubject, setSelectedSubject] = useState('')
+  const [selectedYear, setSelectedYear] = useState<number | ''>('')
+  const [selectedSession, setSelectedSession] = useState('')
+  const [selectedComponent, setSelectedComponent] = useState('')
+  const [questionNumber, setQuestionNumber] = useState('')
 
   useEffect(() => {
-    async function loadQuestions() {
+    let cancelled = false
+    fetch('/api/papers/available')
+      .then((r) => r.json())
+      .then((d) => {
+        if (!cancelled) setAvailablePapers(d.available || {})
+      })
+      .catch((err) => {
+        console.error('Failed to load papers:', err)
+        if (!cancelled) setAvailablePapers({})
+      })
+      .finally(() => {
+        if (!cancelled) setPapersLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  // Restore last manual selection from localStorage on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    try {
+      const saved = window.localStorage.getItem('examcore_last_selection')
+      if (!saved) return
+      const data = JSON.parse(saved)
+      let hasAny = false
+      if (typeof data.subject === 'string' && data.subject) {
+        setSelectedSubject(data.subject)
+        hasAny = true
+      }
+      if (typeof data.year === 'number') {
+        setSelectedYear(data.year)
+        hasAny = true
+      }
+      if (typeof data.session === 'string' && data.session) {
+        setSelectedSession(data.session)
+        hasAny = true
+      }
+      if (typeof data.component === 'string' && data.component) {
+        setSelectedComponent(data.component)
+        hasAny = true
+      }
+      if (hasAny) setShowManualPaper(true)
+    } catch {
+      // ignore corrupted localStorage entry
+    }
+  }, [])
+
+  // One-shot pickup of a pending question number written by the attempt
+  // detail page's "Mark again" button. Cleared on read so it only applies once.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    try {
+      const pending = window.localStorage.getItem('examcore_pending_question')
+      if (pending) {
+        setQuestionNumber(pending)
+        setShowManualPaper(true)
+        window.localStorage.removeItem('examcore_pending_question')
+      }
+    } catch {
+      // ignore
+    }
+  }, [])
+
+  // Persist manual selection (without question number) whenever it changes
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (
+      selectedSubject ||
+      selectedYear !== '' ||
+      selectedSession ||
+      selectedComponent
+    ) {
       try {
-        const res = await fetch('/api/mark/questions')
-        const data = await res.json()
-        if (res.ok) setQuestions(data.questions)
-      } catch (err) {
-        console.error('Failed to load questions:', err)
+        window.localStorage.setItem(
+          'examcore_last_selection',
+          JSON.stringify({
+            subject: selectedSubject,
+            year: selectedYear === '' ? '' : selectedYear,
+            session: selectedSession,
+            component: selectedComponent,
+          })
+        )
+      } catch {
+        // localStorage may be unavailable (private mode, quota); silently skip
       }
     }
-    loadQuestions()
-  }, [])
+  }, [selectedSubject, selectedYear, selectedSession, selectedComponent])
+
+  const availableYears = useMemo<number[]>(() => {
+    if (!selectedSubject || !availablePapers?.[selectedSubject]) return []
+    const years = new Set<number>()
+    for (const s of Object.values(availablePapers[selectedSubject].sessions)) {
+      years.add(s.year)
+    }
+    return Array.from(years).sort((a, b) => b - a)
+  }, [selectedSubject, availablePapers])
+
+  const availableSeasons = useMemo<string[]>(() => {
+    if (!selectedSubject || selectedYear === '' || !availablePapers?.[selectedSubject])
+      return []
+    const seasons = new Set<string>()
+    for (const s of Object.values(availablePapers[selectedSubject].sessions)) {
+      if (s.year === selectedYear) seasons.add(s.season)
+    }
+    return Array.from(seasons)
+  }, [selectedSubject, selectedYear, availablePapers])
+
+  const matchedSessionCode = useMemo<string>(() => {
+    if (
+      !selectedSubject ||
+      selectedYear === '' ||
+      !selectedSession ||
+      !availablePapers?.[selectedSubject]
+    )
+      return ''
+    const sessions = availablePapers[selectedSubject].sessions
+    for (const [code, s] of Object.entries(sessions)) {
+      if (s.year === selectedYear && s.season === selectedSession) return code
+    }
+    return ''
+  }, [selectedSubject, selectedYear, selectedSession, availablePapers])
+
+  const availableComponents = useMemo<string[]>(() => {
+    if (!matchedSessionCode || !selectedSubject || !availablePapers) return []
+    return (
+      availablePapers[selectedSubject]?.sessions[matchedSessionCode]?.components ||
+      []
+    )
+  }, [matchedSessionCode, selectedSubject, availablePapers])
+
+  const isManualFilled = !!(
+    selectedSubject &&
+    selectedYear !== '' &&
+    selectedSession &&
+    selectedComponent &&
+    questionNumber.trim()
+  )
+
+  const markingMode =
+    showManualPaper || isManualFilled ? 'past_paper' : 'general'
+
+  useSetAIContext({ type: 'marking', data: { mode: markingMode } }, [
+    markingMode,
+  ])
+
+  function handleSubjectChange(value: string) {
+    setSelectedSubject(value)
+    setSelectedYear('')
+    setSelectedSession('')
+    setSelectedComponent('')
+  }
+
+  function handleYearChange(value: string) {
+    setSelectedYear(value === '' ? '' : Number(value))
+    setSelectedSession('')
+    setSelectedComponent('')
+  }
+
+  function handleSessionChange(value: string) {
+    setSelectedSession(value)
+    setSelectedComponent('')
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!answerPhoto) {
       setErrorMsg('Upload a photo of your answer.')
-      return
-    }
-    if (mode === 'past_paper' && !selectedQuestionId) {
-      setErrorMsg('Select a question.')
-      return
-    }
-    if (mode === 'other' && !questionPhoto && !questionTextInput.trim()) {
-      setErrorMsg('Upload a question photo or type the question.')
       return
     }
 
@@ -78,14 +234,20 @@ export default function MarkPage() {
 
     try {
       const formData = new FormData()
-      formData.append('mode', mode)
       formData.append('photo', answerPhoto)
+      if (questionPhoto) formData.append('question_photo', questionPhoto)
+      if (questionTextInput.trim()) formData.append('question_text', questionTextInput)
 
-      if (mode === 'past_paper') {
-        formData.append('mark_scheme_id', selectedQuestionId)
-      } else {
-        if (questionPhoto) formData.append('question_photo', questionPhoto)
-        if (questionTextInput.trim()) formData.append('question_text', questionTextInput)
+      if (isManualFilled) {
+        formData.append(
+          'manual_paper_code',
+          `${selectedSubject}/${selectedComponent}`
+        )
+        formData.append(
+          'manual_paper_session',
+          `${selectedSession} ${selectedYear}`
+        )
+        formData.append('manual_question_number', questionNumber.trim())
       }
 
       const res = await fetch('/api/mark/process', { method: 'POST', body: formData })
@@ -109,269 +271,519 @@ export default function MarkPage() {
     setAnswerPhoto(null)
     setQuestionPhoto(null)
     setQuestionTextInput('')
-    setShowOCR(false)
+    setShowOptional(false)
+    // Keep subject/year/session/component so the next question on the same paper
+    // doesn't require re-selecting. Only clear the per-question number.
+    setQuestionNumber('')
     setErrorMsg('')
   }
 
-  const selectedQuestion = questions.find((q) => q.id === selectedQuestionId)
-  const percentage = result ? Math.round((result.marks_earned / result.total_marks) * 100) : 0
-  const scoreColor = result
-    ? result.marks_earned === result.total_marks
-      ? 'text-green-600'
-      : result.marks_earned >= result.total_marks * 0.5
-      ? 'text-amber-600'
-      : 'text-red-600'
-    : 'text-slate-900'
+  // After a result is shown: clear the photo + result, keep the question
+  // context (manual selection + the optional question text) so the student
+  // can immediately mark another attempt at the same question.
+  function handleMarkAnotherAttempt() {
+    setResult(null)
+    setAnswerPhoto(null)
+    setErrorMsg('')
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  // Full reset — back to a blank form for a different question.
+  function handleMarkNewQuestion() {
+    resetForm()
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   return (
-    <main className="min-h-screen bg-white px-6 py-12">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2">Mark your answer</h1>
-        <p className="text-slate-600 mb-8">A-Level Mathematics marking, examiner-grade.</p>
+    <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          className="mb-10 sm:mb-12"
+        >
+          <p className="ec-label-tech mb-4">MARK ANSWER</p>
+          <h1 className="text-[44px] font-extrabold leading-[1] tracking-[-0.035em] sm:text-[56px] md:text-[72px]">
+            <span className="gradient-text">Get marked</span>
+            <br />
+            <span className="ec-text-gradient brand-breathe">in 30 seconds.</span>
+          </h1>
+          <p className="mt-4 text-base text-slate-400 sm:text-lg">
+            Cambridge A-Level mathematics, examiner-grade.
+          </p>
+        </motion.div>
 
         {!result && (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Mode toggle */}
-            <div>
-              <Label>Where is this question from?</Label>
-              <div className="mt-2 grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={() => setMode('past_paper')}
-                  className={`p-3 rounded-md border text-sm font-medium transition ${
-                    mode === 'past_paper'
-                      ? 'bg-slate-900 text-white border-slate-900'
-                      : 'bg-white text-slate-700 border-slate-300 hover:border-slate-400'
+          <form onSubmit={handleSubmit} className="space-y-10">
+            {/* ====== STEP 1 ====== */}
+            <section className="animate-entry stagger-1">
+              <StepLabel number={1} label="Upload your answer" />
+              <div className="relative mt-4 group">
+                {/* Outer multi-color glow */}
+                <div
+                  className={`pointer-events-none absolute -inset-0.5 rounded-[28px] bg-gradient-to-r from-emerald-500 via-cyan-400 to-violet-500 blur transition-opacity duration-300 ${
+                    answerPhoto
+                      ? 'opacity-60'
+                      : 'opacity-25 group-hover:opacity-50'
                   }`}
-                >
-                  Cambridge past paper
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setMode('other')}
-                  className={`p-3 rounded-md border text-sm font-medium transition ${
-                    mode === 'other'
-                      ? 'bg-slate-900 text-white border-slate-900'
-                      : 'bg-white text-slate-700 border-slate-300 hover:border-slate-400'
+                />
+                <label
+                  htmlFor="answer-photo"
+                  className={`relative ec-card group block w-full cursor-pointer overflow-hidden p-10 text-center transition-all duration-300 hover:-translate-y-1 sm:p-12 ${
+                    answerPhoto
+                      ? 'border-emerald-500/60'
+                      : 'border-2 border-dashed border-white/15 group-hover:border-emerald-500/50'
                   }`}
+                  style={
+                    answerPhoto
+                      ? {
+                          borderStyle: 'solid',
+                          borderWidth: '2px',
+                          boxShadow:
+                            '0 1px 0 rgba(255,255,255,0.08) inset, 0 0 48px rgba(16,185,129,0.3), 0 24px 64px -16px rgba(16,185,129,0.35)',
+                        }
+                      : { borderStyle: 'dashed', borderWidth: '2px' }
+                  }
                 >
-                  Textbook / other source
-                </button>
-              </div>
-            </div>
-
-            {/* Past paper mode */}
-            {mode === 'past_paper' && (
-              <>
-                <div>
-                  <Label htmlFor="question">Which question?</Label>
-                  <select
-                    id="question"
-                    value={selectedQuestionId}
-                    onChange={(e) => setSelectedQuestionId(e.target.value)}
-                    className="mt-1 w-full p-2 border border-slate-300 rounded-md"
-                  >
-                    <option value="">Select a question...</option>
-                    {questions.map((q) => (
-                      <option key={q.id} value={q.id}>
-                        Question {q.question_number} ({q.total_marks} marks)
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {selectedQuestion && (
-                  <div className="p-4 bg-slate-50 border border-slate-200 rounded-md">
-                    <p className="text-sm font-semibold text-slate-700 mb-2">
-                      Question {selectedQuestion.question_number}:
-                    </p>
-                    <p className="text-sm text-slate-700">{selectedQuestion.question_text}</p>
+                  <div className="relative mx-auto mb-5 flex h-18 w-18 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_32px_rgba(16,185,129,0.4)] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" style={{ width: 72, height: 72 }}>
+                    <UploadCloud className="h-9 w-9 text-emerald-400" />
                   </div>
-                )}
-              </>
-            )}
-
-            {/* Other question mode */}
-            {mode === 'other' && (
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="question-photo">Upload a photo of the question</Label>
+                  <div className="relative text-lg font-bold text-white">
+                    {answerPhoto ? answerPhoto.name : 'Click or drop a photo here'}
+                  </div>
+                  <div className="relative mt-2 font-mono text-xs text-slate-500">
+                    {answerPhoto
+                      ? `${(answerPhoto.size / 1024).toFixed(1)} KB`
+                      : 'JPEG, PNG, or WebP · up to ~10 MB'}
+                  </div>
                   <input
-                    id="question-photo"
+                    id="answer-photo"
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
-                    onChange={(e) => setQuestionPhoto(e.target.files?.[0] || null)}
-                    className="mt-1 w-full p-2 border border-slate-300 rounded-md"
+                    onChange={(e) => setAnswerPhoto(e.target.files?.[0] || null)}
+                    required
+                    className="hidden"
                   />
-                  {questionPhoto && (
-                    <p className="text-xs text-slate-500 mt-1">{questionPhoto.name}</p>
-                  )}
-                </div>
-
-                <div className="text-center text-slate-400 text-sm">OR</div>
-
-                <div>
-                  <Label htmlFor="question-text">Type the question</Label>
-                  <textarea
-                    id="question-text"
-                    value={questionTextInput}
-                    onChange={(e) => setQuestionTextInput(e.target.value)}
-                    rows={3}
-                    placeholder="e.g., Find dy/dx if y = 3x^2 + 5x - 2"
-                    className="mt-1 w-full p-2 border border-slate-300 rounded-md"
-                  />
-                </div>
+                </label>
               </div>
-            )}
+            </section>
 
-            {/* Answer upload (both modes) */}
-            <div>
-              <Label htmlFor="answer-photo">Upload a photo of your answer</Label>
-              <input
-                id="answer-photo"
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                onChange={(e) => setAnswerPhoto(e.target.files?.[0] || null)}
-                required
-                className="mt-1 w-full p-2 border border-slate-300 rounded-md"
+            {/* ====== STEP 2 ====== */}
+            <section className="animate-entry stagger-2 space-y-4">
+              <StepLabel
+                number={2}
+                label="Tell us about the question"
+                hint="Optional"
               />
-              {answerPhoto && (
-                <p className="text-xs text-slate-500 mt-1">
-                  {answerPhoto.name} ({(answerPhoto.size / 1024).toFixed(1)} KB)
-                </p>
-              )}
-            </div>
+
+              {/* Manual paper selection */}
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setShowManualPaper(!showManualPaper)}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                >
+                  <ChevronRight
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      showManualPaper ? 'rotate-90' : ''
+                    }`}
+                  />
+                  {showManualPaper
+                    ? 'Hide paper selection'
+                    : 'Select paper manually if needed'}
+                </button>
+
+                {showManualPaper && (
+                  <div className="ec-card mt-4 space-y-4 p-5 sm:p-6">
+                    <p className="text-xs leading-relaxed text-slate-400">
+                      Use this if your photo doesn&apos;t show the paper header or AI
+                      can&apos;t auto-detect. We&apos;ll remember your selections for
+                      next time.
+                    </p>
+
+                    {papersLoading && (
+                      <p className="text-sm text-slate-500">
+                        Loading available papers...
+                      </p>
+                    )}
+
+                    {!papersLoading &&
+                      availablePapers &&
+                      Object.keys(availablePapers).length === 0 && (
+                        <p className="text-sm text-slate-500">
+                          No past papers available yet.
+                        </p>
+                      )}
+
+                    {!papersLoading &&
+                      availablePapers &&
+                      Object.keys(availablePapers).length > 0 && (
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                          <div>
+                            <Label htmlFor="manual-subject" className="label-overline mb-2 inline-block">
+                              Subject
+                            </Label>
+                            <select
+                              id="manual-subject"
+                              value={selectedSubject}
+                              onChange={(e) => handleSubjectChange(e.target.value)}
+                              className="ec-input select-chevron appearance-none"
+                            >
+                              <option value="">Select...</option>
+                              {Object.entries(availablePapers)
+                                .sort(([, a], [, b]) =>
+                                  a.subject.localeCompare(b.subject)
+                                )
+                                .map(([code, info]) => (
+                                  <option key={code} value={code}>
+                                    {info.subject} ({code})
+                                  </option>
+                                ))}
+                            </select>
+                          </div>
+
+                          <div>
+                            <Label htmlFor="manual-year" className="label-overline mb-2 inline-block">
+                              Year
+                            </Label>
+                            <select
+                              id="manual-year"
+                              value={selectedYear === '' ? '' : String(selectedYear)}
+                              onChange={(e) => handleYearChange(e.target.value)}
+                              disabled={!selectedSubject}
+                              className="ec-input select-chevron appearance-none"
+                            >
+                              <option value="">Select...</option>
+                              {availableYears.map((y) => (
+                                <option key={y} value={y}>
+                                  {y}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div>
+                            <Label htmlFor="manual-session" className="label-overline mb-2 inline-block">
+                              Session
+                            </Label>
+                            <select
+                              id="manual-session"
+                              value={selectedSession}
+                              onChange={(e) => handleSessionChange(e.target.value)}
+                              disabled={selectedYear === ''}
+                              className="ec-input select-chevron appearance-none"
+                            >
+                              <option value="">Select...</option>
+                              {availableSeasons.map((s) => (
+                                <option key={s} value={s}>
+                                  {s}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div>
+                            <Label htmlFor="manual-component" className="label-overline mb-2 inline-block">
+                              Paper
+                            </Label>
+                            <select
+                              id="manual-component"
+                              value={selectedComponent}
+                              onChange={(e) => setSelectedComponent(e.target.value)}
+                              disabled={!selectedSession}
+                              className="ec-input select-chevron appearance-none"
+                            >
+                              <option value="">Select...</option>
+                              {availableComponents.map((c) => (
+                                <option key={c} value={c}>
+                                  Paper {c}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div className="sm:col-span-2">
+                            <Label htmlFor="manual-question" className="label-overline mb-2 inline-block">
+                              Question number
+                            </Label>
+                            <input
+                              id="manual-question"
+                              type="text"
+                              value={questionNumber}
+                              onChange={(e) => setQuestionNumber(e.target.value)}
+                              disabled={!selectedComponent}
+                              placeholder="e.g., 1, 2(a), 3(b)(i)"
+                              className="ec-input"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                    {isManualFilled && (
+                      <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 text-sm text-emerald-300 backdrop-blur shadow-[0_0_24px_rgba(16,185,129,0.15)]">
+                        Selected:{' '}
+                        <strong className="text-emerald-200">
+                          {selectedSubject}/{selectedComponent}
+                        </strong>{' '}
+                        — {selectedSession} {selectedYear}, Question{' '}
+                        <strong className="text-emerald-200">{questionNumber.trim()}</strong>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Question text/photo */}
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setShowOptional(!showOptional)}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                >
+                  <ChevronRight
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      showOptional ? 'rotate-90' : ''
+                    }`}
+                  />
+                  {showOptional
+                    ? 'Hide question details'
+                    : 'Add the question (improves accuracy)'}
+                </button>
+
+                {showOptional && (
+                  <div className="ec-card mt-4 space-y-4 p-5 sm:p-6">
+                    <p className="text-xs leading-relaxed text-slate-400">
+                      If your handwritten work doesn&apos;t show the question or paper
+                      header, add it here so we can mark more accurately.
+                    </p>
+
+                    <div>
+                      <Label htmlFor="question-photo" className="label-overline mb-2 inline-block">
+                        Photo of the question
+                      </Label>
+                      <label
+                        htmlFor="question-photo"
+                        className="group block w-full cursor-pointer rounded-2xl border-2 border-dashed border-white/10 bg-dark-900/40 p-5 text-center text-sm transition-all duration-200 hover:border-emerald-500/50 hover:bg-emerald-500/5"
+                      >
+                        <UploadCloud className="mx-auto mb-2 h-5 w-5 text-slate-500 transition-colors group-hover:text-emerald-400" />
+                        <div className="font-medium text-slate-300">
+                          {questionPhoto ? questionPhoto.name : 'Click to upload'}
+                        </div>
+                        <input
+                          id="question-photo"
+                          type="file"
+                          accept="image/jpeg,image/png,image/webp"
+                          onChange={(e) =>
+                            setQuestionPhoto(e.target.files?.[0] || null)
+                          }
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+
+                    <div className="flex items-center gap-3 font-mono text-xs font-medium text-slate-600">
+                      <div className="h-px flex-1 bg-white/10" />
+                      <span>OR</span>
+                      <div className="h-px flex-1 bg-white/10" />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="question-text" className="label-overline mb-2 inline-block">
+                        Type the question
+                      </Label>
+                      <textarea
+                        id="question-text"
+                        value={questionTextInput}
+                        onChange={(e) => setQuestionTextInput(e.target.value)}
+                        rows={3}
+                        placeholder="e.g., Find dy/dx if y = 3x^2 + 5x - 2"
+                        className="ec-input ec-question-text"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
 
             {errorMsg && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded text-red-800 text-sm">
+              <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-3.5 text-sm text-red-300 backdrop-blur">
                 {errorMsg}
               </div>
             )}
 
-            <Button type="submit" disabled={loading} className="w-full">
-              {loading ? 'Marking... (up to 45 sec)' : 'Mark my answer'}
-            </Button>
+            <motion.button
+              type="submit"
+              disabled={loading || !answerPhoto}
+              whileHover={loading || !answerPhoto ? undefined : { y: -2, scale: 1.01 }}
+              whileTap={loading || !answerPhoto ? undefined : { y: 0, scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 18 }}
+              className={`ec-btn-primary w-full justify-center text-base ${
+                answerPhoto && !loading ? 'brand-pulse' : ''
+              }`}
+              style={{ padding: '18px 32px' }}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  Marking your answer...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-5 w-5" />
+                  Mark my answer
+                </>
+              )}
+            </motion.button>
           </form>
         )}
 
+        <AnimatePresence>
+          {loading && (
+            <motion.div
+              key="loading-skeleton"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.15, duration: 0.4 }}
+              className="mt-10 space-y-5"
+            >
+              <div className="ec-card overflow-hidden p-6">
+                <Skeleton className="mx-auto h-3 w-24" />
+                <Skeleton className="mx-auto mt-4 h-20 w-48" />
+                <Skeleton className="mx-auto mt-4 h-3 w-40" />
+                <Skeleton className="mx-auto mt-6 h-2.5 w-72" />
+              </div>
+              <div className="ec-card space-y-3 p-5">
+                <Skeleton className="h-4 w-32" />
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-16 w-full" />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {result && (
-          <div className="space-y-6">
-            <div className="text-center py-8 border-b border-slate-200">
-              <div className={`text-7xl font-bold ${scoreColor}`}>
-                {result.marks_earned}
-                <span className="text-slate-400">/{result.total_marks}</span>
-              </div>
-              <p className="mt-2 text-slate-600">marks earned</p>
-              <div className="mt-4 max-w-md mx-auto">
-                <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
-                  <div
-                    className={`h-full rounded-full transition-all ${
-                      percentage === 100
-                        ? 'bg-green-500'
-                        : percentage >= 50
-                        ? 'bg-amber-500'
-                        : 'bg-red-500'
-                    }`}
-                    style={{ width: `${percentage}%` }}
-                  />
-                </div>
-                <p className="mt-2 text-sm text-slate-500">{percentage}%</p>
-              </div>
-            </div>
+          <div className="space-y-8">
+            <MarkingResultView result={result} />
 
-            {result.question_text && (
-              <div className="p-4 bg-slate-50 border border-slate-200 rounded-md">
-                <p className="text-sm font-semibold text-slate-700 mb-2">Question (as read):</p>
-                <p className="text-sm text-slate-700 whitespace-pre-wrap">
-                  {result.question_text}
-                </p>
-              </div>
+            {result.answer_photo_url &&
+              Array.isArray(result.line_references) &&
+              result.line_references.length > 0 && (
+                <ExaminerInkSection
+                  imageUrl={result.answer_photo_url}
+                  lineReferences={result.line_references}
+                />
+              )}
+
+            {result.attempt_id && (
+              <SolutionSection attemptId={result.attempt_id} />
             )}
 
-            <div>
-              <h2 className="text-xl font-bold mb-2">Summary</h2>
-              <p className="text-slate-700">{result.ai_marking.summary}</p>
-            </div>
-
-            {result.ai_marking.estimated_marks_explanation && (
-              <div className="p-3 bg-amber-50 border border-amber-200 rounded text-amber-900 text-sm">
-                <strong>Marking note:</strong> {result.ai_marking.estimated_marks_explanation}
-              </div>
-            )}
-
-            <div>
-              <h2 className="text-xl font-bold mb-3">Mark-by-mark breakdown</h2>
-              <div className="space-y-3">
-                {result.ai_marking.marks_awarded.map((mark) => (
-                  <div
-                    key={mark.mark_id}
-                    className={`p-4 rounded-md border ${
-                      mark.earned ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <span
-                        className={`px-2 py-1 text-xs font-bold rounded ${
-                          mark.earned ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
-                        }`}
-                      >
-                        {mark.type}
-                      </span>
-                      <span className="text-sm font-semibold text-slate-700">
-                        {mark.earned ? 'Earned' : 'Not earned'}
-                      </span>
-                    </div>
-                    <p className="text-sm text-slate-700">{mark.reasoning}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {result.ai_marking.weak_topics && result.ai_marking.weak_topics.length > 0 && (
-              <div>
-                <h2 className="text-xl font-bold mb-3">Topics to work on</h2>
-                <ul className="space-y-1">
-                  {result.ai_marking.weak_topics.map((topic, i) => (
-                    <li key={i} className="text-slate-700 flex items-start">
-                      <span className="text-amber-500 mr-2">•</span>
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {result.ai_marking.what_to_study_next && (
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-md">
-                <h3 className="font-bold text-blue-900 mb-2">Study next:</h3>
-                <p className="text-blue-800">{result.ai_marking.what_to_study_next}</p>
-              </div>
-            )}
-
-            {result.ocr_text && (
-              <div>
-                <button
-                  onClick={() => setShowOCR(!showOCR)}
-                  className="text-sm text-slate-500 hover:text-slate-700 underline"
-                >
-                  {showOCR ? 'Hide' : 'Show'} what the AI read from your handwriting
-                </button>
-                {showOCR && (
-                  <pre className="mt-2 text-xs whitespace-pre-wrap bg-slate-50 p-3 rounded text-slate-700 border border-slate-200">
-                    {result.ocr_text}
-                  </pre>
-                )}
-              </div>
-            )}
-
-            <div className="pt-4">
-              <Button onClick={resetForm} className="w-full">
-                Mark another answer
-              </Button>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+              <button
+                type="button"
+                onClick={handleMarkAnotherAttempt}
+                className="ec-btn-secondary w-full justify-center text-base"
+                style={{ padding: '16px 24px' }}
+              >
+                Mark another attempt at this question
+              </button>
+              <button
+                type="button"
+                onClick={handleMarkNewQuestion}
+                className="ec-btn-primary w-full justify-center text-base"
+                style={{ padding: '16px 24px' }}
+              >
+                Mark a new question
+              </button>
             </div>
           </div>
         )}
       </div>
+      <SidebarChat />
     </main>
+  )
+}
+
+/**
+ * Wraps the overlay behind a reveal button. Two reasons:
+ *  1. The overlay reads best AFTER the student has read the mark-by-mark
+ *     breakdown — without context, the red ink can feel like an attack.
+ *  2. Loading the image (and the framer-motion timer chain) lazily means we
+ *     don't block the initial render with a network round-trip for the photo.
+ */
+function ExaminerInkSection({
+  imageUrl,
+  lineReferences,
+}: {
+  imageUrl: string
+  lineReferences: LineReference[]
+}) {
+  const [open, setOpen] = useState(false)
+  return (
+    <section className="ec-card relative overflow-hidden p-6 sm:p-8">
+      <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-red-500/15 blur-[80px]" />
+      <div className="relative">
+        <p className="ec-label-tech mb-3">EXAMINER&rsquo;S MARKS</p>
+        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          See exactly where you earned and lost marks
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm text-slate-400">
+          The AI examiner&rsquo;s annotations, drawn directly on your handwritten
+          answer. Stamps go in the margin; red underlines flag where marks
+          were lost.
+        </p>
+
+        {!open ? (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="ec-btn-primary mt-6 self-start text-base"
+            style={{ padding: '14px 24px' }}
+          >
+            <Sparkles className="h-5 w-5" />
+            View examiner&rsquo;s marks
+          </button>
+        ) : (
+          <div className="mt-6">
+            <ExaminerInkOverlay
+              imageUrl={imageUrl}
+              lineReferences={lineReferences}
+              animate
+            />
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+function StepLabel({
+  number,
+  label,
+  hint,
+}: {
+  number: number
+  label: string
+  hint?: string
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/15 font-mono text-xs font-bold text-emerald-300 shadow-[0_0_16px_rgba(16,185,129,0.4)]">
+        {number}
+      </span>
+      <span className="text-base font-bold tracking-tight text-white">
+        {label}
+      </span>
+      {hint && (
+        <span className="font-mono text-xs font-medium text-slate-500">· {hint}</span>
+      )}
+    </div>
   )
 }

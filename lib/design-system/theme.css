@@ -1,0 +1,314 @@
+/* ============================================================
+   EXAMCORE DESIGN SYSTEM — ec-* tokens & components
+   State A: Late Night (default) | State B: Zen (warm sand)
+   ============================================================ */
+
+:root,
+[data-ec-theme='late-night'] {
+  --ec-canvas: #0a0b0f;
+  --ec-surface: #14161c;
+  --ec-surface-raised: #1a1d26;
+  --ec-border: rgba(255, 255, 255, 0.08);
+  --ec-text-primary: #f1f5f9;
+  --ec-text-secondary: #94a3b8;
+  --ec-brand: #00f5a0;
+  --ec-brand-muted: rgba(0, 245, 160, 0.15);
+  --ec-brand-gradient: linear-gradient(135deg, #00f5a0 0%, #34d399 50%, #6ee7b7 100%);
+  --ec-ink-crimson: #ff4b6e;
+  --ec-chip-success-bg: rgba(0, 245, 160, 0.15);
+  --ec-chip-success-text: #00f5a0;
+  --ec-chip-warning-bg: rgba(255, 176, 32, 0.15);
+  --ec-chip-warning-text: #ffb020;
+  --ec-chip-critical-bg: rgba(255, 75, 110, 0.15);
+  --ec-chip-critical-text: #ff4b6e;
+  --ec-chip-neutral-bg: rgba(148, 163, 184, 0.12);
+  --ec-chip-neutral-text: #94a3b8;
+  --ec-radius-card: 16px;
+  --ec-radius-button: 12px;
+  --ec-wireframe-opacity: 0.09;
+  --ec-wireframe-color: 0, 245, 160;
+  --ec-btn-glow: 0 8px 24px rgba(0, 245, 160, 0.35);
+  --ec-btn-glow-hover: 0 12px 32px rgba(0, 245, 160, 0.5);
+  --ec-card-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
+  --ec-card-hover-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.6), 0 0 48px rgba(0, 245, 160, 0.12);
+  color-scheme: dark;
+}
+
+[data-ec-theme='zen'] {
+  color-scheme: light;
+  --ec-canvas: #f5f0e8;
+  --ec-surface: #faf7f2;
+  --ec-surface-raised: #fffdf9;
+  --ec-border: rgba(90, 80, 60, 0.12);
+  --ec-text-primary: #000000;
+  --ec-text-secondary: #333333;
+  --ec-brand: #5a9a6a;
+  --ec-brand-muted: rgba(90, 154, 106, 0.12);
+  --ec-brand-gradient: linear-gradient(135deg, #5a9a6a 0%, #7ab88a 50%, #a8c5a0 100%);
+  --ec-ink-crimson: #a85c5c;
+  --ec-chip-success-bg: rgba(90, 154, 106, 0.15);
+  --ec-chip-success-text: #4a7a54;
+  --ec-chip-warning-bg: rgba(196, 168, 120, 0.2);
+  --ec-chip-warning-text: #9a7a40;
+  --ec-chip-critical-bg: rgba(168, 92, 92, 0.15);
+  --ec-chip-critical-text: #a85c5c;
+  --ec-chip-neutral-bg: rgba(122, 114, 104, 0.12);
+  --ec-chip-neutral-text: #7a7268;
+  --ec-wireframe-opacity: 0.04;
+  --ec-wireframe-color: 90, 154, 106;
+  --ec-btn-glow: 0 4px 16px rgba(90, 154, 106, 0.2);
+  --ec-btn-glow-hover: 0 8px 24px rgba(90, 154, 106, 0.3);
+  --ec-card-shadow: 0 8px 24px rgba(61, 56, 48, 0.08);
+  --ec-card-hover-shadow: 0 16px 40px rgba(61, 56, 48, 0.12);
+}
+
+html,
+body {
+  background: var(--ec-canvas);
+  color: var(--ec-text-primary);
+  transition:
+    background-color 500ms ease,
+    color 500ms ease;
+}
+
+/* ============ Typography ============ */
+.text-display {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.ec-text-gradient {
+  background: var(--ec-brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ec-question-text {
+  font-family: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--ec-text-primary);
+}
+
+.examiner-ink {
+  color: var(--ec-ink-crimson);
+}
+
+/* ============ Cards ============ */
+@layer components {
+  .ec-card {
+    background: var(--ec-surface);
+    border: 1px solid var(--ec-border);
+    border-radius: var(--ec-radius-card);
+    box-shadow: var(--ec-card-shadow);
+    position: relative;
+  }
+
+  .ec-card-interactive {
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ec-card-interactive:hover {
+    background: var(--ec-surface-raised);
+    border-color: color-mix(in srgb, var(--ec-brand) 30%, transparent);
+    transform: translateY(-2px);
+    box-shadow: var(--ec-card-hover-shadow);
+  }
+
+  .ec-card-premium {
+    background: var(--ec-surface-raised);
+    border: 1px solid var(--ec-border);
+    border-radius: var(--ec-radius-card);
+    box-shadow: var(--ec-card-shadow);
+    position: relative;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ec-card-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ec-card-hover-shadow);
+  }
+
+  .ec-card-brand {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--ec-brand) 8%, var(--ec-surface)) 0%,
+      var(--ec-surface) 50%,
+      color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface)) 100%
+    );
+    border: 1px solid color-mix(in srgb, var(--ec-brand) 25%, transparent);
+    border-radius: var(--ec-radius-card);
+    box-shadow: var(--ec-card-shadow), 0 0 40px color-mix(in srgb, var(--ec-brand) 15%, transparent);
+    position: relative;
+  }
+
+  /* ============ Buttons ============ */
+  .ec-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ec-brand-gradient);
+    color: #0a0b0f;
+    padding: 14px 28px;
+    border-radius: var(--ec-radius-button);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    border: none;
+    box-shadow: var(--ec-btn-glow);
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  [data-ec-theme='zen'] .ec-btn-primary {
+    color: #fffdf9;
+  }
+
+  .ec-btn-primary:hover:not(:disabled) {
+    box-shadow: var(--ec-btn-glow-hover);
+    transform: translateY(-1px);
+  }
+
+  .ec-btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .ec-btn-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .ec-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ec-surface);
+    color: var(--ec-text-primary);
+    padding: 12px 24px;
+    border-radius: var(--ec-radius-button);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.2;
+    border: 1px solid var(--ec-border);
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .ec-btn-secondary:hover:not(:disabled) {
+    background: var(--ec-surface-raised);
+    border-color: color-mix(in srgb, var(--ec-brand) 25%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .ec-btn-secondary:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .ec-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--ec-text-secondary);
+    padding: 12px 18px;
+    border-radius: var(--ec-radius-button);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.2;
+    border: 1px solid transparent;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .ec-btn-ghost:hover:not(:disabled) {
+    background: var(--ec-brand-muted);
+    color: var(--ec-text-primary);
+  }
+
+  /* ============ Chips ============ */
+  .ec-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .ec-chip-success {
+    background: var(--ec-chip-success-bg);
+    color: var(--ec-chip-success-text);
+  }
+
+  .ec-chip-warning {
+    background: var(--ec-chip-warning-bg);
+    color: var(--ec-chip-warning-text);
+  }
+
+  .ec-chip-critical {
+    background: var(--ec-chip-critical-bg);
+    color: var(--ec-chip-critical-text);
+  }
+
+  .ec-chip-neutral {
+    background: var(--ec-chip-neutral-bg);
+    color: var(--ec-chip-neutral-text);
+  }
+
+  /* ============ Inputs ============ */
+  .ec-input {
+    width: 100%;
+    background: var(--ec-surface);
+    border: 1px solid var(--ec-border);
+    border-radius: var(--ec-radius-button);
+    padding: 14px 16px;
+    color: var(--ec-text-primary);
+    font-size: 15px;
+    line-height: 1.4;
+    transition:
+      border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+  }
+
+  .ec-input::placeholder {
+    color: var(--ec-text-secondary);
+  }
+
+  .ec-input:focus {
+    border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
+    box-shadow: 0 0 0 4px var(--ec-brand-muted);
+  }
+
+  /* ============ Labels ============ */
+  .ec-label-tech {
+    font-family: ui-monospace, var(--font-geist-mono), monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ec-brand);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ec-label-tech::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--ec-brand);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--ec-brand);
+  }
+}

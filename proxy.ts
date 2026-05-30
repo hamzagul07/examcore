@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { isOnboardingComplete } from '@/lib/onboarding'
 
 const PROTECTED_PREFIXES = [
   '/dashboard',
@@ -69,16 +70,20 @@ export async function proxy(request: NextRequest) {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('onboarded')
+    .select('onboarded, onboarding_completed')
     .eq('id', user.id)
     .maybeSingle()
 
-  const onboarded = profile?.onboarded === true
+  const onboarded = isOnboardingComplete(profile)
   const onOnboardingPage = matchesPrefix(pathname, ['/onboarding'])
 
   if (onOnboardingPage && onboarded) {
     const redirectUrl = request.nextUrl.clone()
-    redirectUrl.pathname = '/dashboard'
+    const next = request.nextUrl.searchParams.get('next')
+    redirectUrl.pathname =
+      next && next.startsWith('/') && !next.startsWith('//') && !next.includes('://')
+        ? next
+        : '/dashboard'
     redirectUrl.search = ''
     return NextResponse.redirect(redirectUrl)
   }
@@ -91,6 +96,8 @@ export async function proxy(request: NextRequest) {
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = '/onboarding'
     redirectUrl.search = ''
+    const intended = request.nextUrl.pathname + request.nextUrl.search
+    redirectUrl.searchParams.set('next', intended)
     return NextResponse.redirect(redirectUrl)
   }
 

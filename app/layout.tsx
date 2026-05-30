@@ -4,9 +4,11 @@ import "./globals.css";
 import "./fonts/handwritten.css";
 import { WireframeBackground } from "@/components/design-system/WireframeBackground";
 import { ThemeProvider } from "@/lib/design-system/ThemeProvider";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import { RootHeader } from "@/components/layout/RootHeader";
+import { RootFooter } from "@/components/layout/RootFooter";
 import { OmniAIProviders } from "@/components/omni-ai/OmniAIProviders";
 import { OmniAI } from "@/components/omni-ai/OmniAI";
+import { SITE_NAME, SITE_URL } from "@/lib/site-config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,9 +46,21 @@ const kalam = Kalam({
 });
 
 export const metadata: Metadata = {
-  title: "Examcore — AI marking for Cambridge A-Level Mathematics",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — AI marking for Cambridge A-Levels`,
+    template: `%s — ${SITE_NAME}`,
+  },
   description:
-    "Upload a photo of your handwritten A-Level math answer. Get mark-by-mark feedback in 30 seconds.",
+    "Upload handwritten A-Level answers and get mark-by-mark feedback in seconds. Fifteen Cambridge subjects — free during early access.",
+  openGraph: {
+    siteName: SITE_NAME,
+    type: "website",
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -62,8 +76,9 @@ export default function RootLayout({
         <ThemeProvider>
           <OmniAIProviders>
             <WireframeBackground />
-            <SiteHeader />
+            <RootHeader />
             <div className="relative z-[1] flex flex-1 flex-col">{children}</div>
+            <RootFooter />
             <OmniAI />
           </OmniAIProviders>
         </ThemeProvider>

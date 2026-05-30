@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase-server'
-import { LandingHeroEntry, LandingMockupHero } from './page.client'
-import { LandingChat } from '@/components/omni-ai/LandingChat'
+import { createPageMetadata } from '@/lib/seo/metadata'
+import { LandingHero } from '@/components/landing/LandingHero'
 import { LandingSubjects } from '@/components/landing/LandingSubjects'
 import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSteps'
 import { LandingFounder } from '@/components/landing/LandingFounder'
@@ -10,14 +10,21 @@ import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 import {
   Brain,
-  ArrowRight,
   Camera,
   TrendingUp,
   PenLine,
   FileStack,
   Layers,
   ListChecks,
+  ArrowRight,
 } from 'lucide-react'
+
+export const metadata = createPageMetadata({
+  title: 'AI marking for Cambridge A-Levels',
+  description:
+    'Upload handwritten A-Level answers and get mark-by-mark feedback in seconds. Fifteen Cambridge subjects — free during early access.',
+  path: '/',
+})
 
 export default async function Home() {
   const supabase = await createClient()
@@ -30,64 +37,11 @@ export default async function Home() {
   return (
     <div className="relative min-h-screen">
       <main>
-        {/* Hero */}
         <section className="landing-section relative scroll-mt-20 pb-16 pt-20 sm:pb-24 sm:pt-28">
           <div className="landing-hero-glow" aria-hidden />
-          <LandingHeroEntry>
-            <div className="relative mx-auto max-w-7xl text-center">
-              <div className="mb-8 flex justify-center">
-                <span className="ec-label-tech">
-                  Early access · Free · 15 subjects
-                </span>
-              </div>
-
-              <h1 className="text-display mb-6 text-[var(--ec-text-primary)]">
-                <span className="gradient-text">Your past papers,</span>
-                <br />
-                <span className="ec-text-gradient brand-breathe">
-                  marked like the exam
-                </span>
-              </h1>
-
-              <p className="landing-lead mx-auto mb-12 max-w-2xl">
-                Snap your working, pick the paper, get examiner-style feedback —
-                MCQ keys, B1/M1/A1, or essay bands from the real Cambridge
-                scheme.
-              </p>
-
-              <div className="mb-10">
-                <LandingChat />
-              </div>
-
-              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Link
-                  href={markHref}
-                  className="ec-btn-primary w-full min-h-[52px] text-base sm:w-auto"
-                  style={{ padding: '16px 32px' }}
-                >
-                  Mark your first question <ArrowRight className="h-5 w-5" />
-                </Link>
-                <a
-                  href="#how-it-works"
-                  className="ec-btn-secondary w-full min-h-[52px] text-base sm:w-auto"
-                  style={{ padding: '16px 32px' }}
-                >
-                  See how it works
-                </a>
-              </div>
-            </div>
-
-            <div className="relative mx-auto mt-16 max-w-4xl sm:mt-20">
-              <div className="pointer-events-none absolute -inset-x-16 inset-y-0 -z-10">
-                <div className="absolute left-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-emerald-500/20 blur-[120px]" />
-                <div className="absolute right-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-violet-500/20 blur-[120px]" />
-              </div>
-              <LandingMockupHero />
-            </div>
-          </LandingHeroEntry>
+          <LandingHero markHref={markHref} />
         </section>
 
-        {/* What you get */}
         <section id="features" className="landing-section scroll-mt-20">
           <LandingSectionReveal>
             <div className="mb-12 max-w-3xl">
@@ -210,7 +164,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* How it works — real screenshots */}
         <section id="how-it-works" className="landing-section scroll-mt-20">
           <LandingSectionReveal>
             <div className="mb-16 max-w-2xl">
@@ -225,9 +178,16 @@ export default async function Home() {
             </div>
           </LandingSectionReveal>
           <LandingScreenshotSteps />
+          <div className="mt-12 text-center">
+            <Link
+              href="/how-it-works"
+              className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+            >
+              Full walkthrough →
+            </Link>
+          </div>
         </section>
 
-        {/* Subjects */}
         <section id="subjects" className="landing-section scroll-mt-20">
           <LandingSectionReveal>
             <div className="mb-12 max-w-2xl">
@@ -242,24 +202,28 @@ export default async function Home() {
             </div>
           </LandingSectionReveal>
           <LandingSubjects />
+          <div className="mt-12 text-center">
+            <Link
+              href="/subjects"
+              className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+            >
+              All subjects & paper codes →
+            </Link>
+          </div>
         </section>
 
-        {/* Founder */}
         <section id="story" className="landing-section scroll-mt-20">
           <LandingFounder />
         </section>
 
-        {/* Comparison */}
         <section className="landing-section">
           <LandingComparison />
         </section>
 
-        {/* FAQ */}
         <section id="faq" className="landing-section scroll-mt-20">
           <LandingFaq />
         </section>
 
-        {/* Final CTA */}
         <section className="landing-section pb-28">
           <LandingSectionReveal>
             <div className="ec-card relative overflow-hidden p-10 text-center sm:p-16">
@@ -294,40 +258,6 @@ export default async function Home() {
           </LandingSectionReveal>
         </section>
       </main>
-
-      <footer className="border-t border-[var(--ec-border)] px-6 py-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-sm text-[var(--ec-text-secondary)] sm:flex-row">
-          <div className="text-center sm:text-left">
-            <span className="font-bold ec-text-gradient text-base">Examcore</span>
-            <p className="mt-2 max-w-xs text-xs leading-relaxed">
-              Built for students preparing for Cambridge A-Levels.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link
-              href="/auth/signin"
-              className="min-h-[44px] py-2 transition-colors hover:text-[var(--ec-text-primary)]"
-            >
-              Sign in
-            </Link>
-            <Link
-              href={markHref}
-              className="min-h-[44px] py-2 transition-colors hover:text-[var(--ec-text-primary)]"
-            >
-              Mark an answer
-            </Link>
-            <a
-              href="mailto:hello@examcore.ai"
-              className="min-h-[44px] py-2 transition-colors hover:text-[var(--ec-text-primary)]"
-            >
-              hello@examcore.ai
-            </a>
-          </div>
-          <span className="text-center text-xs sm:text-right">
-            © 2026 Examcore · Early access
-          </span>
-        </div>
-      </footer>
     </div>
   )
 }

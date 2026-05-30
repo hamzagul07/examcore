@@ -8,6 +8,7 @@ import {
   DEFAULT_LEVEL,
   DEFAULT_SUBJECTS,
 } from '@/lib/profile-options'
+import { isOnboardingComplete } from '@/lib/onboarding'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,14 +25,14 @@ export default async function AccountPage() {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name, board, level, subjects, onboarded')
+    .select('full_name, board, level, subjects, onboarded, onboarding_completed')
     .eq('id', user.id)
     .maybeSingle()
 
   // Middleware ordinarily redirects unfinished onboarders to /onboarding before
   // they ever reach here, but in case middleware is bypassed (e.g. caching),
   // do the same here for defensive routing.
-  if (profile && !profile.onboarded) {
+  if (profile && !isOnboardingComplete(profile)) {
     redirect('/onboarding')
   }
 

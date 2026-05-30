@@ -5,7 +5,7 @@ import {
   ENABLED_LEVEL_IDS,
   ENABLED_SUBJECT_IDS,
 } from '@/lib/profile-options'
-import type { UserRole } from '@/lib/database.types'
+import type { UserRole, PrimaryGoal, UserStage } from '@/lib/database.types'
 
 type Body = {
   full_name?: string | null
@@ -14,7 +14,16 @@ type Body = {
   subjects?: string[]
   role?: UserRole
   classroom_name?: string
+  stage?: UserStage
+  primary_goal?: PrimaryGoal
 }
+
+const VALID_STAGES = new Set<UserStage>(['as_level', 'a2_level', 'other'])
+const VALID_GOALS = new Set<PrimaryGoal>([
+  'mark_papers',
+  'track_progress',
+  'essay_feedback',
+])
 
 export async function POST(request: Request) {
   const supabase = await createClient()
@@ -64,6 +73,12 @@ export async function POST(request: Request) {
         { status: 400 }
       )
     }
+    if (subjects.length > 4) {
+      return NextResponse.json(
+        { error: 'Pick up to four subjects.' },
+        { status: 400 }
+      )
+    }
     for (const s of subjects) {
       if (!ENABLED_SUBJECT_IDS.has(s)) {
         return NextResponse.json(
@@ -79,6 +94,12 @@ export async function POST(request: Request) {
       ? body.full_name.trim().slice(0, 80)
       : null
 
+  const stage = body.stage && VALID_STAGES.has(body.stage) ? body.stage : null
+  const primaryGoal =
+    body.primary_goal && VALID_GOALS.has(body.primary_goal)
+      ? body.primary_goal
+      : null
+
   const { error } = await supabase.from('user_profiles').upsert(
     {
       id: user.id,
@@ -87,7 +108,10 @@ export async function POST(request: Request) {
       level,
       subjects,
       role,
+      stage,
+      primary_goal: primaryGoal,
       onboarded: true,
+      onboarding_completed: true,
       updated_at: new Date().toISOString(),
     },
     { onConflict: 'id' }

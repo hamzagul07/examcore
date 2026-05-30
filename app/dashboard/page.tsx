@@ -16,7 +16,7 @@ import {
 import { SyllabusTopicBadgeList } from '@/components/SyllabusTopicBadge'
 import { TOTAL_SYLLABUS_TOPICS, type SyllabusCode } from '@/lib/syllabus'
 import { getSubjectById } from '@/lib/profile-options'
-import { EmptyStateIllustration } from '@/components/ui/EmptyStateIllustration'
+import { AppEmptyState } from '@/components/ui/AppEmptyState'
 import { DashboardEntry, AttemptRowAnim } from './dashboard.client'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 
@@ -314,26 +314,12 @@ export default async function DashboardPage() {
             </div>
 
             {attemptsList.length === 0 ? (
-              <div className="ec-card relative overflow-hidden p-12 text-center">
-                <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-emerald-500/15 blur-[100px]" />
-                <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-violet-500/15 blur-[100px]" />
-                <div className="relative">
-                  <div className="mx-auto mb-4 flex items-center justify-center">
-                    <EmptyStateIllustration variant="no-attempts" size={180} />
-                  </div>
-                  <h3 className="text-2xl font-bold tracking-tight text-white">
-                    Ready to mark your first answer?
-                  </h3>
-                  <p className="mx-auto mb-7 mt-3 max-w-sm text-base leading-relaxed text-slate-400">
-                    Upload a photo of your handwritten working and get
-                    examiner-grade feedback in 30 seconds.
-                  </p>
-                  <Link href="/mark" className="ec-btn-primary inline-flex">
-                    <Plus className="h-4 w-4" />
-                    Mark your first answer
-                  </Link>
-                </div>
-              </div>
+              <AppEmptyState
+                title="Ready when you are"
+                body="Mark your first question to start seeing your progress here."
+                ctaLabel="Mark your first question"
+                ctaHref="/mark"
+              />
             ) : (
               <div className="space-y-3">
                 {attemptsList.map((attempt, idx) => {

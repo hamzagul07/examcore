@@ -196,12 +196,23 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
         {analyticsAvailable && !hasSubjectData && !showPreviewBanner && (
           <div className="mb-6 animate-entry">
-            <div className="ec-card border-white/10 p-4 text-sm text-slate-400">
-              No {subjectLabel} attempts yet.{' '}
-              <Link href="/mark" className="font-semibold text-emerald-400 hover:underline">
-                Mark your first question
-              </Link>{' '}
-              to populate this dashboard.
+            <div
+              className="ec-card border px-5 py-4 text-sm"
+              style={{
+                borderColor: 'var(--ec-banner-info-border)',
+                background: 'var(--ec-banner-info-bg)',
+                color: 'var(--ec-text-secondary)',
+              }}
+            >
+              <p className="font-semibold text-[var(--ec-text-primary)]">
+                Nothing tracked yet for {subjectLabel}
+              </p>
+              <p className="mt-1">
+                Mark a question and your topic-by-topic progress will appear here.{' '}
+                <Link href="/mark" className="font-semibold text-emerald-400 hover:underline">
+                  Mark a {subjectLabel} question →
+                </Link>
+              </p>
             </div>
           </div>
         )}
@@ -229,6 +240,8 @@ export default async function ProgressPage({ searchParams }: PageProps) {
                   attempts={attempts}
                   hasAnyData={hasSubjectData || showPreviewBanner}
                   subjectCode={selectedCode}
+                  subjectLabel={subjectLabel}
+                  emptyBanner={!hasSubjectData && !showPreviewBanner}
                 />
               </div>
             </>

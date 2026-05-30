@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
+import { createClient, createServiceClient } from '@/lib/supabase-server'
 import { buildSystemPrompt } from '@/lib/omni-ai/system-prompts'
 import {
   extractActionFromText,
@@ -9,6 +10,12 @@ import {
   createSupabaseAdmin,
   hydrateOmniAction,
 } from '@/lib/omni-ai/hydrate-actions'
+import {
+  fetchRecentAttemptsForUser,
+  formatAttemptForPrompt,
+  loadAttemptForOmni,
+} from '@/lib/omni-ai/marking-context'
+import { OMNI_MARKING_TOOLS } from '@/lib/omni-ai/marking-tools'
 import type { AIContextType, OmniAIRequestBody } from '@/lib/omni-ai/types'
 
 export const maxDuration = 60
@@ -36,6 +43,8 @@ function checkRateLimit(ip: string): boolean {
 function sse(data: unknown): string {
   return `data: ${JSON.stringify(data)}\n\n`
 }
+
+type AnthropicMessage = Anthropic.MessageParam
 
 export async function POST(req: NextRequest) {
   const ip =
@@ -85,8 +94,35 @@ export async function POST(req: NextRequest) {
         .filter((m) => m && typeof m.content === 'string' && m.content.trim())
     : []
 
-  const systemPrompt = buildSystemPrompt(context)
-  const supabase = createSupabaseAdmin()
+  const supabaseAuth = await createClient()
+  const {
+    data: { user },
+  } = await supabaseAuth.auth.getUser()
+
+  const supabaseAdmin = createSupabaseAdmin()
+  const supabaseService = createServiceClient()
+  const attemptIdFromBody = body.attemptId?.trim()
+  const attemptIdFromContext =
+    context.type === 'marking_result' ? context.data.attemptId : undefined
+  const resolvedAttemptId = attemptIdFromBody || attemptIdFromContext
+
+  let focusedAttemptBlock: string | null = null
+  if (user && resolvedAttemptId) {
+    const row = await loadAttemptForOmni(
+      supabaseService,
+      resolvedAttemptId,
+      user.id
+    )
+    if (row) {
+      focusedAttemptBlock = formatAttemptForPrompt(row)
+    }
+  }
+
+  const markingAwareness = !!user && context.type !== 'teacher_dashboard'
+  const systemPrompt = buildSystemPrompt(context, {
+    markingAwareness,
+    focusedAttemptBlock,
+  })
 
   const stream = new ReadableStream({
     async start(controller) {
@@ -106,19 +142,86 @@ export async function POST(req: NextRequest) {
           return
         }
 
-        const anthropicMessages = [
+        const anthropicMessages: AnthropicMessage[] = [
           ...history.map((m) => ({
             role: m.role as 'user' | 'assistant',
             content: m.content,
           })),
-          { role: 'user' as const, content: query },
+          { role: 'user', content: query },
         ]
+
+        const toolsEnabled = markingAwareness
+        let messagesForStream = anthropicMessages
+
+        if (toolsEnabled) {
+          for (let round = 0; round < 3; round++) {
+            const toolResponse = await anthropic.messages.create({
+              model: 'claude-sonnet-4-6',
+              max_tokens: 1500,
+              system: systemPrompt,
+              messages: messagesForStream,
+              tools: OMNI_MARKING_TOOLS,
+            })
+
+            const toolUses = toolResponse.content.filter(
+              (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use'
+            )
+
+            if (toolUses.length === 0) {
+              break
+            }
+
+            if (!user) {
+              break
+            }
+
+            messagesForStream = [
+              ...messagesForStream,
+              { role: 'assistant', content: toolResponse.content },
+            ]
+
+            const toolResults: Anthropic.ToolResultBlockParam[] = []
+            for (const tu of toolUses) {
+              if (tu.name === 'fetch_recent_attempts') {
+                const input = (tu.input || {}) as {
+                  subject_code?: string
+                  topic_code?: string
+                  limit?: number
+                }
+                const { attempts, error } = await fetchRecentAttemptsForUser(
+                  supabaseService,
+                  user.id,
+                  input
+                )
+                toolResults.push({
+                  type: 'tool_result',
+                  tool_use_id: tu.id,
+                  content: JSON.stringify(
+                    error ? { error, attempts: [] } : { attempts }
+                  ),
+                })
+              } else {
+                toolResults.push({
+                  type: 'tool_result',
+                  tool_use_id: tu.id,
+                  content: JSON.stringify({ error: 'Unknown tool' }),
+                  is_error: true,
+                })
+              }
+            }
+
+            messagesForStream = [
+              ...messagesForStream,
+              { role: 'user', content: toolResults },
+            ]
+          }
+        }
 
         const messageStream = anthropic.messages.stream({
           model: 'claude-sonnet-4-6',
           max_tokens: 1500,
           system: systemPrompt,
-          messages: anthropicMessages,
+          messages: messagesForStream,
         })
 
         let fullText = ''
@@ -131,7 +234,6 @@ export async function POST(req: NextRequest) {
           ) {
             fullText += chunk.delta.text
 
-            // Stream only the "clean" portion — hide partial [[ACTION:...]] tails.
             const displayText = stripPartialActionTail(fullText)
             const delta = displayText.slice(sentLength)
             if (delta) {
@@ -147,10 +249,9 @@ export async function POST(req: NextRequest) {
         let action = rawAction
 
         if (action) {
-          action = await hydrateOmniAction(action, query, supabase)
+          action = await hydrateOmniAction(action, query, supabaseAdmin)
         }
 
-        // Send any remaining clean text not yet streamed.
         const finalDisplay = stripPartialActionTail(cleanText)
         const remainder = finalDisplay.slice(sentLength)
         if (remainder) {

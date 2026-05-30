@@ -344,9 +344,17 @@ export default function MarkPage() {
   const markingMode =
     showManualPaper || isManualFilled ? 'past_paper' : 'general'
 
-  useSetAIContext({ type: 'marking', data: { mode: markingMode } }, [
-    markingMode,
-  ])
+  const omniContext = result?.attempt_id
+    ? ({
+        type: 'marking_result' as const,
+        data: { attemptId: result.attempt_id },
+      })
+    : ({
+        type: 'marking' as const,
+        data: { mode: markingMode as 'past_paper' | 'general' },
+      })
+
+  useSetAIContext(omniContext, [result?.attempt_id, markingMode])
 
   function handleSubjectChange(value: string) {
     setSelectedSubject(value)
@@ -1038,7 +1046,10 @@ export default function MarkPage() {
 
         {result && !result.whole_paper && (
           <div className="space-y-8">
-            <MarkingResultView result={result} />
+            <MarkingResultView
+              result={result}
+              attemptId={result.attempt_id ?? null}
+            />
 
             {(result.ink_pages?.length ||
               (result.answer_photo_url &&

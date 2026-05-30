@@ -1,7 +1,40 @@
 import type { AIContextType } from './types'
 
-export function buildSystemPrompt(context: AIContextType): string {
-  const base = `You are Omni-AI, the premium conversational assistant for Examcore — an AI marking platform for Cambridge A-Level Mathematics students.
+export const MARKING_AWARENESS_SECTION = `
+MARKING RESULTS ACCESS:
+You now have access to the student's marking results. When they ask questions like:
+- "Why did I lose M1 marks?"
+- "What was wrong with my answer to question 3?"
+- "Why didn't I get an A on this paper?"
+- "What's my weakest topic in Physics?"
+- "How can I improve my essay band?"
+
+...use the marking context provided in this prompt for the focused attempt, or call the fetch_recent_attempts tool for older or cross-topic lookups. Reference the actual mark scheme, the specific marks awarded/withheld, and the examiner's reasoning. Be concrete: cite line references, specific marks (M1, A1, B1), and exact band descriptors where applicable.
+
+When explaining why marks were lost, walk through the specific marking criterion the student missed. Be encouraging but precise — students learn from specific feedback, not generic platitudes.
+
+Don't fabricate marks or feedback that don't exist in the data. If you don't have context for what they're asking about, say so and offer to look it up via fetch_recent_attempts.`
+
+export type SystemPromptOptions = {
+  /** Append marking-awareness instructions and enable tool use on the API side. */
+  markingAwareness?: boolean
+  /** Full attempt payload injected when user opened Omni from a result page. */
+  focusedAttemptBlock?: string | null
+}
+
+export function buildSystemPrompt(
+  context: AIContextType,
+  options: SystemPromptOptions = {}
+): string {
+  const markingExtra =
+    options.markingAwareness || options.focusedAttemptBlock
+      ? MARKING_AWARENESS_SECTION +
+        (options.focusedAttemptBlock
+          ? `\n\nFOCUSED ATTEMPT (answer questions about THIS attempt unless they ask about others):\n${options.focusedAttemptBlock}`
+          : '')
+      : ''
+
+  const base = `You are Omni-AI, the premium conversational assistant for Examcore — an AI marking platform for Cambridge A-Level students (Math, Sciences, Humanities, Accounting, and more).
 
 CORE PERSONALITY:
 - Empathetic, sharp, authoritative on exam strategy
@@ -45,7 +78,7 @@ Examples:
 [[ACTION:render_upload]]
 [[ACTION:render_cta|text=Map my blindspots|href=/auth/signup?intent=diagnostic]]
 
-If no action, omit the directive entirely.`
+If no action, omit the directive entirely.${markingExtra}`
 
   switch (context.type) {
     case 'landing':
@@ -124,6 +157,15 @@ CURRENT CONTEXT: User on the marking upload page (mode: ${context.data.mode})
 GOAL: Help them prepare to upload, explain the marking process, or answer questions about specific topics they're about to upload`
       )
 
+    case 'marking_result':
+      return (
+        base +
+        `
+
+CURRENT CONTEXT: User just viewed (or is asking about) a specific marked attempt.
+GOAL: Act as their 1-on-1 examiner tutor for THIS attempt. Use the FOCUSED ATTEMPT data above — cite real mark types, reasoning, and mark scheme requirements.`
+      )
+
     case 'teacher_dashboard': {
       const metrics = context.data.classMetrics as
         | {
@@ -195,6 +237,8 @@ export function getProactiveOpener(context: AIContextType): string | null {
     }
     case 'examiner_ink':
       return `I have full visibility of your marked work on this question. Ask me anything — "Why did I lose this mark?", "What did I do wrong on step 3?", or "How could I have approached this differently?"`
+    case 'marking_result':
+      return `I've loaded your marking for this question. Ask me anything — e.g. "Why did I lose M1?" or "What should I fix in my working?"`
     case 'teacher_dashboard':
       return `I can help you draft progress reports, analyze class struggles, generate practice sets, and more. What do you need?`
     default:
@@ -208,6 +252,7 @@ export function getContextLabel(type: AIContextType['type']): string {
     dashboard_home: 'Your dashboard',
     mastery_matrix: 'Syllabus advisor',
     examiner_ink: '1-on-1 tutor mode',
+    marking_result: 'This mark',
     marking: 'Marking helper',
     teacher_dashboard: 'Teacher assistant',
   }
@@ -222,6 +267,8 @@ export function getEmptyStateMessage(type: AIContextType['type']): string {
       return 'Ask about your weak topics, get explanations, or generate practice questions.'
     case 'examiner_ink':
       return 'Ask about any mark on this paper — earned or lost.'
+    case 'marking_result':
+      return 'Ask why you earned or lost specific marks on this attempt.'
     case 'teacher_dashboard':
       return 'Draft parent emails, analyze class performance, or generate practice sets.'
     default:

@@ -2,10 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
-import ReactMarkdown from 'react-markdown'
-import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
-import 'katex/dist/katex.min.css'
+import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { OmniAIMessage, OmniAIAction } from '@/lib/omni-ai/types'
 import { PaperPreview } from '@/components/command-bar/PaperPreview'
 import { DiagnosticPreview } from '@/components/command-bar/DiagnosticPreview'
@@ -52,7 +49,7 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
       <div className="min-w-0 flex-1 space-y-3">
         {!showSplitPaper && (
           <div className="prose prose-invert prose-sm max-w-none rounded-2xl rounded-bl-md border border-white/10 bg-white/5 px-4 py-3">
-            <MarkdownBody content={message.content} />
+            <RichTextRenderer text={message.content} />
             {message.isStreaming && (
               <span className="ml-0.5 inline-block h-4 w-2 animate-pulse bg-emerald-400" />
             )}
@@ -62,7 +59,7 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
         {showSplitPaper && message.action?.paper && (
           <>
             <div className="prose prose-invert prose-sm max-w-none rounded-2xl rounded-bl-md border border-white/10 bg-white/5 px-4 py-3 hidden lg:block">
-              <MarkdownBody content={message.content} />
+              <RichTextRenderer text={message.content} />
             </div>
             <SplitScreenPreview
               paper={message.action.paper}
@@ -76,50 +73,6 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
         )}
       </div>
     </motion.div>
-  )
-}
-
-function MarkdownBody({ content }: { content: string }) {
-  if (!content) return null
-  return (
-    <ReactMarkdown
-      remarkPlugins={[remarkMath]}
-      rehypePlugins={[rehypeKatex]}
-      components={{
-        p: ({ children }) => (
-          <p className="mb-2 leading-relaxed text-slate-200 last:mb-0">{children}</p>
-        ),
-        strong: ({ children }) => (
-          <strong className="font-semibold text-white">{children}</strong>
-        ),
-        em: ({ children }) => <em className="text-emerald-300">{children}</em>,
-        ul: ({ children }) => (
-          <ul className="my-2 list-disc space-y-1 pl-5 text-slate-200">{children}</ul>
-        ),
-        ol: ({ children }) => (
-          <ol className="my-2 list-decimal space-y-1 pl-5 text-slate-200">{children}</ol>
-        ),
-        li: ({ children }) => <li className="leading-relaxed">{children}</li>,
-        code: ({ children }) => (
-          <code className="rounded bg-white/10 px-1.5 py-0.5 text-sm text-emerald-300">
-            {children}
-          </code>
-        ),
-        h3: ({ children }) => (
-          <h3 className="mb-2 mt-3 text-lg font-bold text-white">{children}</h3>
-        ),
-        h4: ({ children }) => (
-          <h4 className="mb-2 mt-2 text-base font-semibold text-white">{children}</h4>
-        ),
-        blockquote: ({ children }) => (
-          <blockquote className="border-l-2 border-emerald-500/40 pl-3 italic text-slate-400">
-            {children}
-          </blockquote>
-        ),
-      }}
-    >
-      {content}
-    </ReactMarkdown>
   )
 }
 

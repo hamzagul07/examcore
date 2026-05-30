@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import { AlertCircle, CheckCircle2, Info } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { MathText } from '@/components/MathText'
+import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { AnimatedScore } from '@/components/effects/AnimatedScore'
 import { Progress } from '@/components/ui/Progress'
 import type { SyllabusCode } from '@/lib/syllabus'
+import type { LorBandResult } from '@/lib/marking/types'
 import {
   ERROR_LABELS,
   normalizeErrorClassification,
@@ -32,6 +34,7 @@ export type MarkingResultData = {
     weak_topics: string[]
     what_to_study_next: string
     estimated_marks_explanation?: string
+    band_result?: LorBandResult
   }
   ocr_text?: string | null
   question_text?: string | null
@@ -47,7 +50,14 @@ export type MarkingResultData = {
   syllabus_tags?: SyllabusCode[] | null
 }
 
-export function MarkingResultView({ result }: { result: MarkingResultData }) {
+export function MarkingResultView({
+  result,
+  attemptId,
+}: {
+  result: MarkingResultData
+  /** When set, shows "Ask Omni about this mark" and enables full attempt context in Omni. */
+  attemptId?: string | null
+}) {
   const [showOCR, setShowOCR] = useState(false)
 
   const percentage = Math.round((result.marks_earned / result.total_marks) * 100)
@@ -193,7 +203,7 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
         <div className="ec-card-premium p-5 sm:p-7">
           <p className="ec-label-tech mb-3">QUESTION (AS READ)</p>
           <div className="ec-question-text whitespace-pre-wrap text-base">
-            <MathText text={result.question_text} />
+            <RichTextRenderer text={result.question_text} />
           </div>
         </div>
       )}
@@ -204,7 +214,7 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
           What the examiner saw
         </h2>
         <div className="leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
-          <MathText text={result.ai_marking.summary} />
+          <RichTextRenderer text={result.ai_marking.summary} />
         </div>
       </div>
 
@@ -212,11 +222,36 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
         <div className="ec-banner ec-banner-warning">
           <p className="ec-banner__meta leading-relaxed">
             <strong className="ec-banner__title">Marking note:</strong>{' '}
-            <MathText text={result.ai_marking.estimated_marks_explanation} />
+            <RichTextRenderer text={result.ai_marking.estimated_marks_explanation} />
           </p>
         </div>
       )}
 
+      {result.ai_marking.band_result && (
+        <div className="ec-card p-5 sm:p-7">
+          <p className="ec-label-tech mb-3">BAND PLACEMENT</p>
+          <p className="font-semibold text-amber-200">
+            Band {result.ai_marking.band_result.level} —{' '}
+            {result.ai_marking.band_result.marks_awarded}/
+            {result.ai_marking.band_result.marks_available} marks
+          </p>
+          <div className="mt-3">
+            <RichTextRenderer text={result.ai_marking.band_result.justification} />
+          </div>
+          {result.ai_marking.band_result.strengths &&
+            result.ai_marking.band_result.strengths.length > 0 && (
+              <ul className="mt-3 list-inside list-disc space-y-1">
+                {result.ai_marking.band_result.strengths.map((s, i) => (
+                  <li key={i}>
+                    <RichTextRenderer text={s} />
+                  </li>
+                ))}
+              </ul>
+            )}
+        </div>
+      )}
+
+      {result.ai_marking.marks_awarded.length > 0 && (
       <div>
         <p className="ec-label-tech mb-3">MARK BY MARK</p>
         <h2 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: 'var(--ec-text-primary)' }}>
@@ -263,12 +298,13 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
                 />
               </div>
               <div className="text-sm leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
-                <MathText text={mark.reasoning} />
+                <RichTextRenderer text={mark.reasoning} />
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+      )}
 
       {result.ai_marking.weak_topics &&
         result.ai_marking.weak_topics.length > 0 && (
@@ -282,7 +318,7 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
                 <li key={i} className="flex items-start gap-2" style={{ color: 'var(--ec-text-secondary)' }}>
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
                   <span>
-                    <MathText text={topic} />
+                    <RichTextRenderer text={topic} />
                   </span>
                 </li>
               ))}
@@ -297,9 +333,15 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
           <div className="relative">
             <p className="ec-label-tech ec-label-tech-cyan mb-3">WHAT TO STUDY NEXT</p>
             <div className="leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
-              <MathText text={result.ai_marking.what_to_study_next} />
+              <RichTextRenderer text={result.ai_marking.what_to_study_next} />
             </div>
           </div>
+        </div>
+      )}
+
+      {attemptId && (
+        <div className="flex justify-center pt-2">
+          <AskOmniAboutMark attemptId={attemptId} />
         </div>
       )}
 

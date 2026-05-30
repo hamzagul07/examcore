@@ -152,10 +152,6 @@ export default async function AttemptDetailPage({
     year: 'numeric',
   })
 
-  const marksAwarded = Array.isArray(result.ai_marking?.marks_awarded)
-    ? result.ai_marking.marks_awarded
-    : []
-
   return (
     <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-3xl">
@@ -203,7 +199,7 @@ export default async function AttemptDetailPage({
 
         {/* Marking result (re-render of the original feedback) */}
         <div className="animate-entry stagger-2">
-          <MarkingResultView result={result} />
+          <MarkingResultView result={result} attemptId={attempt.id} />
         </div>
 
         {/* Examiner's ink overlay — only renders when we have both a saved
@@ -268,14 +264,8 @@ export default async function AttemptDetailPage({
       </div>
       <OmniAIBridge
         context={{
-          type: 'examiner_ink',
-          data: {
-            attemptId: attempt.id,
-            questionText: attempt.question_text || '',
-            marksAwarded,
-            lineReferences: attempt.line_references || [],
-            score: `${attempt.marks_earned}/${attempt.total_marks}`,
-          },
+          type: 'marking_result',
+          data: { attemptId: attempt.id },
         }}
       />
     </main>

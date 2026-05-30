@@ -5,7 +5,8 @@ import { ChevronDown, ChevronRight, AlertCircle, RotateCcw } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedScore } from '@/components/effects/AnimatedScore'
 import { Progress } from '@/components/ui/Progress'
-import { MarkdownMath } from '@/components/MarkdownMath'
+import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import type { QuestionMarkResult, WholePaperResult } from '@/lib/marking/types'
@@ -94,12 +95,12 @@ function QuestionDetail({ question }: { question: QuestionMarkResult }) {
           Band {ai.band_result.level} — {ai.band_result.marks_awarded}/
           {ai.band_result.marks_available} marks
         </p>
-        <MarkdownMath text={ai.band_result.justification} />
+        <RichTextRenderer text={ai.band_result.justification} />
         {ai.band_result.strengths && ai.band_result.strengths.length > 0 && (
           <ul className="list-inside list-disc text-slate-400">
             {ai.band_result.strengths.map((s, i) => (
               <li key={i}>
-                <MarkdownMath text={s} />
+                <RichTextRenderer text={s} />
               </li>
             ))}
           </ul>
@@ -149,13 +150,13 @@ function QuestionDetail({ question }: { question: QuestionMarkResult }) {
                 {mark.earned ? 'Earned' : 'Not earned'}
               </span>
               <div className="mt-2">
-                <MarkdownMath text={mark.reasoning} />
+                <RichTextRenderer text={mark.reasoning} />
               </div>
             </div>
           ))}
         </div>
       )}
-      <MarkdownMath text={ai.summary} className="text-slate-300" />
+      <RichTextRenderer text={ai.summary} className="text-slate-300" />
     </div>
   )
 }
@@ -246,8 +247,14 @@ export function WholePaperResultView({
 
       <div className="ec-card p-6">
         <p className="ec-label-tech mb-3">SUMMARY</p>
-        <MarkdownMath text={result.summary} className="text-slate-300" />
+        <RichTextRenderer text={result.summary} className="text-slate-300" />
       </div>
+
+      {attemptId && (
+        <div className="flex justify-center">
+          <AskOmniAboutMark attemptId={attemptId} />
+        </div>
+      )}
 
       <div className="ec-card p-6">
         <p className="ec-label-tech mb-4">ALL QUESTIONS</p>
@@ -312,7 +319,7 @@ export function WholePaperResultView({
 
                 {!isUnattempted && !isOpen && (
                   <div className="mt-2 pl-6 text-sm text-slate-400">
-                    <MarkdownMath text={q.summary} />
+                    <RichTextRenderer text={q.summary} />
                   </div>
                 )}
 

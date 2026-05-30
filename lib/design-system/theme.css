@@ -179,6 +179,69 @@ body {
   filter: blur(40px);
 }
 
+/* ============ Typography scale ============ */
+.text-headline {
+  font-size: clamp(1.625rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ec-text-primary);
+}
+
+.text-title {
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ec-text-primary);
+}
+
+.text-body {
+  font-size: clamp(0.9375rem, 2vw, 1rem);
+  line-height: 1.55;
+  color: var(--ec-text-secondary);
+}
+
+.text-caption {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.app-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 640px) {
+  .app-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-section {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+.animate-entry {
+  animation: ec-fade-up 0.2s ease-out both;
+}
+
+@keyframes ec-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .ec-text-gradient {
   background: var(--ec-brand-gradient);
   -webkit-background-clip: text;

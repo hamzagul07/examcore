@@ -1,7 +1,7 @@
 'use client'
 
 import { LandingSectionReveal } from './LandingSectionReveal'
-import { LandingScreenshotFrame } from './LandingScreenshotFrame'
+import { DeviceFrame } from '@/components/marketing/DeviceFrame'
 
 const STEPS = [
   {
@@ -47,7 +47,7 @@ export function LandingScreenshotSteps() {
           <LandingSectionReveal key={step.src} delay={index * 0.05}>
             <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div className={imageOnRight ? 'lg:order-2' : ''}>
-                <LandingScreenshotFrame
+                <DeviceFrame
                   src={step.src}
                   alt={step.alt}
                   width={step.width}

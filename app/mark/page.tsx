@@ -30,6 +30,7 @@ import {
 } from '@/lib/profile-options'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { SingleQuestionMarkingProgress } from '@/components/mark/SingleQuestionMarkingProgress'
+import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import type { WholePaperResult } from '@/lib/marking/types'
 import type { MarkProgressStage } from '@/lib/marking/mark-progress'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'
@@ -72,6 +73,7 @@ export default function MarkPage() {
   const [result, setResult] = useState<MarkingResult | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [errorRetryable, setErrorRetryable] = useState(false)
+  const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
 
   const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
     null
@@ -498,6 +500,16 @@ export default function MarkPage() {
       setMarkProgress(null)
       if (finalPayload) {
         setResult(finalPayload)
+        void fetch('/api/celebrations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key: 'first_mark' }),
+        })
+          .then((r) => r.json())
+          .then((data: { show?: boolean }) => {
+            if (data.show) setFirstMarkCelebration(true)
+          })
+          .catch(() => {})
       } else {
         setErrorMsg('Marking finished without a result. Please try again.')
       }
@@ -1083,6 +1095,12 @@ export default function MarkPage() {
         )}
       </div>
       <SidebarChat />
+      <CelebrationModal
+        open={firstMarkCelebration}
+        title="First mark complete!"
+        message="That's your first examiner-style review on Examcore. Read the breakdown, then try another question when you're ready."
+        onDismiss={() => setFirstMarkCelebration(false)}
+      />
     </main>
   )
 }

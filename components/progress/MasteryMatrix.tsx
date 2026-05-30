@@ -17,6 +17,8 @@ type Props = {
   attempts: AttemptLite[]
   hasAnyData: boolean
   subjectCode: string
+  subjectLabel?: string
+  emptyBanner?: boolean
 }
 
 function chipClass(level: LeafMastery['level']): string {
@@ -39,6 +41,8 @@ export function MasteryMatrix({
   attempts,
   hasAnyData,
   subjectCode,
+  subjectLabel,
+  emptyBanner = false,
 }: Props) {
   const [selected, setSelected] = useState<LeafMastery | null>(null)
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set())
@@ -82,7 +86,7 @@ export function MasteryMatrix({
     })
   }
 
-  if (!hasAnyData) {
+  if (parentMasteries.length === 0) {
     return (
       <section className="ec-card-premium p-5 sm:p-7">
         <EmptyState
@@ -98,6 +102,22 @@ export function MasteryMatrix({
   return (
     <>
       <section id="mastery-matrix" className="ec-card-premium p-5 sm:p-7">
+        {emptyBanner && (
+          <div
+            className="mb-5 rounded-xl border px-4 py-3 text-sm"
+            style={{
+              borderColor: 'var(--ec-banner-info-border)',
+              background: 'var(--ec-banner-info-bg)',
+              color: 'var(--ec-banner-info-meta)',
+            }}
+          >
+            Mark questions in{' '}
+            <strong style={{ color: 'var(--ec-banner-info-title)' }}>
+              {subjectLabel || subjectCode}
+            </strong>{' '}
+            to start filling this in. Every topic you touch will appear here.
+          </div>
+        )}
         <div className="mb-5 flex items-center gap-2">
           <Grid3X3 className="h-4 w-4" style={{ color: 'var(--ec-brand)' }} />
           <p className="ec-label-tech">MASTERY MATRIX</p>

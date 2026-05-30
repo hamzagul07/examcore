@@ -5,6 +5,7 @@ import { WholePaperUploadSection, type WholePaperPage } from './WholePaperUpload
 import { WholePaperMarkingProgress } from './WholePaperMarkingProgress'
 import { WholePaperResultView } from '@/components/WholePaperResultView'
 import type { WholePaperResult } from '@/lib/marking/types'
+import { prepareWholePaperUpload } from '@/lib/upload/prepare-upload'
 
 type Props = {
   paperCode: string
@@ -94,22 +95,32 @@ export function WholePaperFlow({
     })
 
     try {
+      const prepared = await prepareWholePaperUpload(pages, pdf)
+      if (prepared.error) {
+        onError(prepared.error)
+        setPhase('upload')
+        return
+      }
+
+      const readyPages = prepared.pages
+      const readyPdf = prepared.pdf
+
       const formData = new FormData()
       formData.append('manual_paper_code', paperCode)
       formData.append('manual_paper_session', paperSession)
       formData.append(
         'page_assignments',
         JSON.stringify(
-          pages.map((p, index) => ({
+          readyPages.map((p, index) => ({
             index,
             question_number: p.manualQuestion ?? p.detectedQuestion,
           }))
         )
       )
-      if (pdf) {
-        formData.append('pdf', pdf)
+      if (readyPdf) {
+        formData.append('pdf', readyPdf)
       } else {
-        pages.forEach((p, i) => {
+        readyPages.forEach((p, i) => {
           formData.append(`pages[${i}]`, p.file)
         })
       }

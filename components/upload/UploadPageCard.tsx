@@ -1,9 +1,15 @@
 'use client'
 
-import { GripVertical, X, RotateCcw } from 'lucide-react'
+import { GripVertical, X, RotateCcw, Loader2 } from 'lucide-react'
 import { formatQuestionLabel } from '@/lib/marking/page-detection'
+import { formatFileSize } from '@/lib/upload/upload-limits'
 
-export type PageUploadStatus = 'queued' | 'processing' | 'done' | 'failed'
+export type PageUploadStatus =
+  | 'compressing'
+  | 'queued'
+  | 'processing'
+  | 'done'
+  | 'failed'
 
 export type UploadPage = {
   id: string
@@ -12,6 +18,10 @@ export type UploadPage = {
   detectedQuestion: string | null
   manualQuestion: string | null
   status: PageUploadStatus
+  /** Size shown in UI (compressed when ready) */
+  fileSizeBytes?: number
+  /** Original size before compression, if compressed */
+  originalSizeBytes?: number
 }
 
 export function UploadPageCard({
@@ -42,11 +52,23 @@ export function UploadPageCard({
     : `Page ${index + 1}`
 
   const statusStyles: Record<PageUploadStatus, string> = {
+    compressing: 'border-cyan-500/40 bg-cyan-500/10 text-cyan-200',
     queued: 'border-white/15 bg-white/5 text-slate-400',
     processing: 'border-amber-500/40 bg-amber-500/10 text-amber-200',
     done: 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300',
     failed: 'border-red-500/40 bg-red-500/10 text-red-300',
   }
+
+  const statusLabel =
+    page.status === 'compressing' ? 'optimizing' : page.status
+
+  const sizeLabel =
+    page.fileSizeBytes != null
+      ? page.originalSizeBytes != null &&
+        page.originalSizeBytes > page.fileSizeBytes
+        ? `${formatFileSize(page.fileSizeBytes)} (was ${formatFileSize(page.originalSizeBytes)})`
+        : formatFileSize(page.fileSizeBytes)
+      : null
 
   return (
     <div
@@ -77,13 +99,22 @@ export function UploadPageCard({
         <div className="flex flex-wrap items-center gap-2">
           <span className="font-mono text-xs text-slate-500">Page {index + 1}</span>
           <span
-            className={`rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider ${statusStyles[page.status]}`}
+            className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider ${statusStyles[page.status]}`}
           >
-            {page.status}
+            {page.status === 'compressing' && (
+              <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
+            )}
+            {statusLabel}
           </span>
         </div>
 
         <p className="mt-1 text-sm font-semibold text-white">{label}</p>
+        {page.status === 'compressing' && (
+          <p className="mt-1 text-xs text-cyan-300/90">Optimizing image…</p>
+        )}
+        {sizeLabel && page.status !== 'compressing' && (
+          <p className="mt-1 font-mono text-[10px] text-slate-500">{sizeLabel}</p>
+        )}
 
         {showQuestionAssign && (
           <>

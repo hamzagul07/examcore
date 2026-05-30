@@ -1,7 +1,9 @@
 'use client'
 
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useRef, useState, type Dispatch, type SetStateAction } from 'react'
 import { UploadCloud, Plus, Camera } from 'lucide-react'
+import { compressImage } from '@/lib/upload/compress-image'
+import { formatFileSize, getPdfSizeError } from '@/lib/upload/upload-limits'
 import {
   UploadPageCard,
   type UploadPage,
@@ -14,30 +16,61 @@ function newPageId() {
   return `page-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
 }
 
-export function fileToUploadPage(file: File): UploadPage {
+export function fileToUploadPage(
+  file: File,
+  status: PageUploadStatus = 'queued'
+): UploadPage {
   return {
     id: newPageId(),
     file,
     previewUrl: URL.createObjectURL(file),
     detectedQuestion: null,
     manualQuestion: null,
-    status: 'queued',
+    status,
+    fileSizeBytes: file.size,
   }
 }
 
 export type PageUploaderProps = {
   pages: UploadPage[]
-  onPagesChange: (pages: UploadPage[]) => void
-  /** Show per-page question assignment (whole-paper mode) */
+  onPagesChange: Dispatch<SetStateAction<UploadPage[]>>
   showQuestionAssign?: boolean
   questionOptions?: string[]
-  /** Allow PDF upload (whole-paper only) */
   allowPdf?: boolean
   pdfFile?: File | null
   onPdfChange?: (file: File | null) => void
+  onPdfError?: (message: string | null) => void
   disabled?: boolean
   emptyLabel?: string
   emptyHint?: string
+}
+
+async function compressPageInPlace(
+  pageId: string,
+  sourceFile: File,
+  onPagesChange: Dispatch<SetStateAction<UploadPage[]>>
+) {
+  const compressed = await compressImage(sourceFile)
+  const needsNewPreview = compressed !== sourceFile
+  onPagesChange((prev) =>
+    prev.map((p) => {
+      if (p.id !== pageId) return p
+      if (needsNewPreview) {
+        URL.revokeObjectURL(p.previewUrl)
+      }
+      return {
+        ...p,
+        file: compressed,
+        previewUrl: needsNewPreview
+          ? URL.createObjectURL(compressed)
+          : p.previewUrl,
+        status: 'queued' as const,
+        fileSizeBytes: compressed.size,
+        originalSizeBytes:
+          sourceFile.size > compressed.size ? sourceFile.size : undefined,
+      }
+    })
+  )
 }
 
 export function PageUploader({
@@ -48,61 +81,116 @@ export function PageUploader({
   allowPdf = false,
   pdfFile = null,
   onPdfChange,
+  onPdfError,
   disabled,
   emptyLabel = 'Drop pages here or click to upload',
   emptyHint = 'Multiple JPEG, PNG, or WebP images',
 }: PageUploaderProps) {
   const [dragIndex, setDragIndex] = useState<number | null>(null)
+  const [pdfError, setPdfError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const pdfInputRef = useRef<HTMLInputElement>(null)
   const cameraInputRef = useRef<HTMLInputElement>(null)
   const retakeTargetRef = useRef<string | null>(null)
 
+  const isCompressing = pages.some((p) => p.status === 'compressing')
+  const controlsDisabled = disabled || isCompressing
+
+  const setPdf = useCallback(
+    (file: File | null) => {
+      if (!file) {
+        setPdfError(null)
+        onPdfError?.(null)
+        onPdfChange?.(null)
+        return
+      }
+      const err = getPdfSizeError(file)
+      setPdfError(err)
+      onPdfError?.(err)
+      if (err) {
+        onPdfChange?.(null)
+        return
+      }
+      onPdfChange?.(file)
+    },
+    [onPdfChange, onPdfError]
+  )
+
+  const ingestImages = useCallback(
+    (images: File[]) => {
+      if (!images.length) return
+      onPdfChange?.(null)
+      setPdfError(null)
+      onPdfError?.(null)
+
+      const placeholders = images.map((file) => ({
+        ...fileToUploadPage(file, 'compressing'),
+        originalSizeBytes: file.size,
+      }))
+      onPagesChange((prev) => [...prev, ...placeholders])
+
+      for (let i = 0; i < placeholders.length; i++) {
+        void compressPageInPlace(
+          placeholders[i].id,
+          images[i],
+          onPagesChange
+        )
+      }
+    },
+    [onPdfChange, onPdfError, onPagesChange]
+  )
+
   const addFiles = useCallback(
     (files: FileList | File[]) => {
       const list = Array.from(files)
-      const pdf = list.find((f) => f.type === 'application/pdf')
+      const pdf = list.find(
+        (f) =>
+          f.type === 'application/pdf' ||
+          f.name.toLowerCase().endsWith('.pdf')
+      )
       if (allowPdf && pdf && list.length === 1 && onPdfChange) {
-        onPdfChange(pdf)
-        onPagesChange([])
+        setPdf(pdf)
+        onPagesChange(() => [])
         return
       }
       const images = list.filter((f) => f.type.startsWith('image/'))
-      if (images.length) {
-        onPdfChange?.(null)
-        onPagesChange([...pages, ...images.map(fileToUploadPage)])
-      }
+      if (images.length) ingestImages(images)
     },
-    [allowPdf, onPdfChange, onPagesChange, pages]
+    [allowPdf, onPdfChange, ingestImages, onPagesChange, setPdf]
   )
 
   const reorder = (from: number, to: number) => {
     if (from === to) return
-    const next = [...pages]
-    const [item] = next.splice(from, 1)
-    next.splice(to, 0, item)
-    onPagesChange(next)
+    onPagesChange((prev) => {
+      const next = [...prev]
+      const [item] = next.splice(from, 1)
+      next.splice(to, 0, item)
+      return next
+    })
   }
 
   const handleCameraCapture = (file: File) => {
     const targetId = retakeTargetRef.current
     retakeTargetRef.current = null
+
     if (targetId) {
-      onPagesChange(
-        pages.map((p) =>
-          p.id === targetId
-            ? {
-                ...fileToUploadPage(file),
-                id: p.id,
-                manualQuestion: p.manualQuestion,
-                detectedQuestion: p.detectedQuestion,
-              }
-            : p
-        )
+      onPagesChange((prev) =>
+        prev.map((p) => {
+          if (p.id !== targetId) return p
+          URL.revokeObjectURL(p.previewUrl)
+          return {
+            ...p,
+            file,
+            previewUrl: URL.createObjectURL(file),
+            status: 'compressing' as const,
+            originalSizeBytes: file.size,
+            fileSizeBytes: undefined,
+          }
+        })
       )
+      void compressPageInPlace(targetId, file, onPagesChange)
     } else {
-      onPdfChange?.(null)
-      onPagesChange([...pages, fileToUploadPage(file)])
+      ingestImages([file])
     }
   }
 
@@ -110,6 +198,12 @@ export function PageUploader({
 
   return (
     <div className="space-y-4">
+      {isCompressing && (
+        <p className="rounded-xl border border-cyan-500/25 bg-cyan-500/10 px-4 py-2 text-center text-sm text-cyan-200">
+          Preparing images…
+        </p>
+      )}
+
       <div className="relative group">
         <div
           className={`pointer-events-none absolute -inset-0.5 rounded-[28px] bg-gradient-to-r from-emerald-500 via-cyan-400 to-violet-500 blur transition-opacity duration-300 ${
@@ -135,7 +229,7 @@ export function PageUploader({
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               type="button"
-              disabled={disabled}
+              disabled={controlsDisabled}
               onClick={() => fileInputRef.current?.click()}
               className="ec-btn-secondary justify-center text-sm"
             >
@@ -145,7 +239,7 @@ export function PageUploader({
             {allowPdf && onPdfChange && (
               <button
                 type="button"
-                disabled={disabled}
+                disabled={controlsDisabled}
                 onClick={() => pdfInputRef.current?.click()}
                 className="ec-btn-secondary justify-center text-sm"
               >
@@ -154,7 +248,7 @@ export function PageUploader({
             )}
             <button
               type="button"
-              disabled={disabled}
+              disabled={controlsDisabled}
               onClick={() => {
                 retakeTargetRef.current = null
                 cameraInputRef.current?.click()
@@ -185,8 +279,8 @@ export function PageUploader({
               onChange={(e) => {
                 const f = e.target.files?.[0]
                 if (f) {
-                  onPdfChange(f)
-                  onPagesChange([])
+                  setPdf(f)
+                  onPagesChange(() => [])
                 }
                 e.target.value = ''
               }}
@@ -207,17 +301,23 @@ export function PageUploader({
         </div>
       </div>
 
-      {pdfFile && (
+      {pdfError && (
+        <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+          {pdfError}
+        </p>
+      )}
+
+      {pdfFile && !pdfError && (
         <div className="ec-card flex items-center justify-between gap-3 p-4">
           <div>
             <p className="font-semibold text-white">{pdfFile.name}</p>
             <p className="font-mono text-xs text-slate-500">
-              PDF · {(pdfFile.size / 1024).toFixed(1)} KB
+              PDF · {formatFileSize(pdfFile.size)}
             </p>
           </div>
           <button
             type="button"
-            onClick={() => onPdfChange?.(null)}
+            onClick={() => setPdf(null)}
             className="text-sm text-red-400 hover:text-red-300"
           >
             Remove
@@ -236,11 +336,11 @@ export function PageUploader({
               showQuestionAssign={showQuestionAssign}
               questionOptions={questionOptions}
               onRemove={() =>
-                onPagesChange(pages.filter((p) => p.id !== page.id))
+                onPagesChange((prev) => prev.filter((p) => p.id !== page.id))
               }
               onQuestionChange={(q) =>
-                onPagesChange(
-                  pages.map((p) =>
+                onPagesChange((prev) =>
+                  prev.map((p) =>
                     p.id === page.id ? { ...p, manualQuestion: q } : p
                   )
                 )
@@ -262,7 +362,7 @@ export function PageUploader({
 
       <button
         type="button"
-        disabled={disabled}
+        disabled={controlsDisabled}
         onClick={() => fileInputRef.current?.click()}
         className="ec-btn-secondary w-full justify-center"
       >

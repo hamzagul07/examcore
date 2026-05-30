@@ -10,6 +10,7 @@ import {
   estimateMarkingSeconds,
   formatEstimatedTime,
 } from '@/lib/marking/whole-paper'
+import { hasCompressingPages } from '@/lib/upload/prepare-upload'
 
 export type WholePaperPage = UploadPage
 
@@ -45,7 +46,8 @@ export function WholePaperUploadSection({
     Math.max(questionCount, pages.length || 1)
   )
 
-  const canSubmit = !!(pdfFile || pages.length > 0)
+  const isCompressing = hasCompressingPages(pages)
+  const canSubmit = !!(pdfFile || pages.length > 0) && !isCompressing
 
   if (showConfirm) {
     return (
@@ -76,7 +78,7 @@ export function WholePaperUploadSection({
         <div className="flex flex-col gap-3 sm:flex-row">
           <button
             type="button"
-            disabled={disabled}
+            disabled={disabled || isCompressing}
             onClick={() => onSubmit(pages, pdfFile)}
             className="ec-btn-primary flex-1 justify-center"
           >
@@ -119,7 +121,7 @@ export function WholePaperUploadSection({
       {canSubmit && (
         <button
           type="button"
-          disabled={disabled}
+          disabled={disabled || isCompressing}
           onClick={() => setShowConfirm(true)}
           className="ec-btn-primary w-full justify-center text-base brand-pulse"
           style={{ padding: '18px 32px' }}

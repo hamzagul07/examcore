@@ -59,18 +59,18 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-        className="ec-card-brand relative overflow-hidden p-8 text-center sm:p-14"
+        className="ec-card-brand relative overflow-hidden p-6 text-center sm:p-10"
       >
         <div
-          className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-emerald-500/30 blur-[100px]"
+          className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-emerald-500/15 blur-[100px]"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -bottom-20 -left-16 h-72 w-72 rounded-full bg-violet-500/25 blur-[100px]"
+          className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-violet-500/10 blur-[100px]"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute right-1/3 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-cyan-500/20 blur-[90px]"
+          className="pointer-events-none absolute right-1/3 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[90px]"
           aria-hidden="true"
         />
         <div className="relative">
@@ -78,13 +78,13 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="ec-label-tech mb-8 justify-center"
+            className="ec-label-tech mb-6 justify-center"
             style={{ display: 'inline-flex' }}
           >
             YOUR SCORE
           </motion.p>
 
-          <div className="brand-breathe">
+          <div>
             <AnimatedScore
               earned={result.marks_earned}
               total={result.total_marks}
@@ -92,7 +92,7 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
             />
           </div>
 
-          <div className="mx-auto mt-10 max-w-sm">
+          <div className="mx-auto mt-8 max-w-sm">
             <Progress
               value={percentage}
               variant={
@@ -109,7 +109,8 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.4 }}
-              className="mt-4 font-mono text-base font-semibold text-emerald-400"
+              className="mt-4 font-mono text-base font-semibold"
+              style={{ color: 'var(--ec-brand)' }}
             >
               {percentage}%
             </motion.p>
@@ -119,13 +120,13 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
 
       {/* Marking-mode banner */}
       {result.marking_mode === 'official_mark_scheme' && result.detected_paper && (
-        <div className="flex items-center gap-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 backdrop-blur shadow-[0_0_24px_rgba(16,185,129,0.15)]">
-          <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
+        <div className="ec-banner ec-banner-success">
+          <CheckCircle2 className="ec-banner__icon h-5 w-5 shrink-0" />
           <div>
-            <p className="text-sm font-semibold text-emerald-200">
+            <p className="ec-banner__title">
               Marked with official Cambridge mark scheme
             </p>
-            <p className="mt-0.5 font-mono text-xs text-emerald-400">
+            <p className="ec-banner__meta">
               {result.detected_paper.paper_code} •{' '}
               {result.detected_paper.paper_session} • Question{' '}
               {result.detected_paper.question_number}
@@ -135,44 +136,42 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
       )}
 
       {result.marking_mode === 'general_criteria_paper_not_in_db' && (
-        <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 backdrop-blur">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-amber-200">
-                This past paper is not in our database yet
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-amber-300/80">
-                {result.detected_paper && (
-                  <>
-                    We detected: {result.detected_paper.paper_code} •{' '}
-                    {result.detected_paper.paper_session} • Question{' '}
-                    {result.detected_paper.question_number}.{' '}
-                  </>
-                )}
-                We marked your answer using general A-Level criteria. Think we
-                should add this paper? Email{' '}
-                <a
-                  href="mailto:hello@examcore.ai"
-                  className="font-medium underline"
-                >
-                  hello@examcore.ai
-                </a>
-                .
-              </p>
-            </div>
+        <div className="ec-banner ec-banner-warning">
+          <AlertCircle className="ec-banner__icon mt-0.5 h-5 w-5 shrink-0" />
+          <div className="flex-1">
+            <p className="ec-banner__title">
+              This past paper is not in our database yet
+            </p>
+            <p className="ec-banner__meta leading-relaxed">
+              {result.detected_paper && (
+                <>
+                  We detected: {result.detected_paper.paper_code} •{' '}
+                  {result.detected_paper.paper_session} • Question{' '}
+                  {result.detected_paper.question_number}.{' '}
+                </>
+              )}
+              We marked your answer using general A-Level criteria. Think we
+              should add this paper? Email{' '}
+              <a
+                href="mailto:hello@examcore.ai"
+                className="font-medium underline"
+              >
+                hello@examcore.ai
+              </a>
+              .
+            </p>
           </div>
         </div>
       )}
 
       {result.marking_mode === 'general_criteria' && (
-        <div className="flex items-center gap-3 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-4 backdrop-blur">
-          <Info className="h-5 w-5 shrink-0 text-cyan-400" />
+        <div className="ec-banner ec-banner-info">
+          <Info className="ec-banner__icon h-5 w-5 shrink-0" />
           <div>
-            <p className="text-sm font-semibold text-cyan-200">
+            <p className="ec-banner__title">
               Marked with general A-Level criteria
             </p>
-            <p className="mt-0.5 text-xs text-cyan-400">
+            <p className="ec-banner__meta">
               This was not detected as a Cambridge past paper question
             </p>
           </div>
@@ -201,24 +200,26 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
 
       <div>
         <p className="ec-label-tech mb-3">SUMMARY</p>
-        <h2 className="mb-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        <h2 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: 'var(--ec-text-primary)' }}>
           What the examiner saw
         </h2>
-        <div className="leading-relaxed text-slate-300">
+        <div className="leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
           <MathText text={result.ai_marking.summary} />
         </div>
       </div>
 
       {result.ai_marking.estimated_marks_explanation && (
-        <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-200 backdrop-blur">
-          <strong className="font-semibold text-amber-100">Marking note:</strong>{' '}
-          <MathText text={result.ai_marking.estimated_marks_explanation} />
+        <div className="ec-banner ec-banner-warning">
+          <p className="ec-banner__meta leading-relaxed">
+            <strong className="ec-banner__title">Marking note:</strong>{' '}
+            <MathText text={result.ai_marking.estimated_marks_explanation} />
+          </p>
         </div>
       )}
 
       <div>
         <p className="ec-label-tech mb-3">MARK BY MARK</p>
-        <h2 className="mb-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        <h2 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: 'var(--ec-text-primary)' }}>
           Breakdown
         </h2>
         <div className="space-y-3">
@@ -261,7 +262,7 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
                   classification={mark.error_classification}
                 />
               </div>
-              <div className="text-sm leading-relaxed text-slate-300">
+              <div className="text-sm leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
                 <MathText text={mark.reasoning} />
               </div>
             </motion.div>
@@ -273,12 +274,12 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
         result.ai_marking.weak_topics.length > 0 && (
           <div>
             <p className="ec-label-tech ec-label-tech-orange mb-3">TOPICS TO WORK ON</p>
-            <h2 className="mb-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            <h2 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: 'var(--ec-text-primary)' }}>
               Where you lost marks
             </h2>
             <ul className="space-y-2">
               {result.ai_marking.weak_topics.map((topic, i) => (
-                <li key={i} className="flex items-start gap-2 text-slate-300">
+                <li key={i} className="flex items-start gap-2" style={{ color: 'var(--ec-text-secondary)' }}>
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
                   <span>
                     <MathText text={topic} />
@@ -295,7 +296,7 @@ export function MarkingResultView({ result }: { result: MarkingResultData }) {
           <div className="pointer-events-none absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-violet-500/15 blur-[80px]" />
           <div className="relative">
             <p className="ec-label-tech ec-label-tech-cyan mb-3">WHAT TO STUDY NEXT</p>
-            <div className="leading-relaxed text-slate-200">
+            <div className="leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
               <MathText text={result.ai_marking.what_to_study_next} />
             </div>
           </div>

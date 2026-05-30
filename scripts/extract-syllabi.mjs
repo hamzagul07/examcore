@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Extract Cambridge syllabus topic trees from PDFs in syllabi-source/
+ * Extract Cambridge syllabus parent → leaf trees from PDFs in syllabi-source/
  * via Gemini, writing lib/syllabi/{code}.json
  *
  * Run: node scripts/extract-syllabi.mjs
@@ -24,7 +24,7 @@ const ROOT = join(__dirname, '..')
 const SOURCE_DIR = join(ROOT, 'syllabi-source')
 const OUT_DIR = join(ROOT, 'lib', 'syllabi')
 
-/** Skip — Math topic map lives in lib/syllabus.ts */
+/** Skip — Math topic map lives in lib/syllabus.ts unless 9709.pdf is added */
 const SKIP_CODES = new Set(['9709'])
 
 const SUBJECT_NAMES = {
@@ -43,6 +43,35 @@ const SUBJECT_NAMES = {
   '9708': 'Economics',
   '9990': 'Psychology',
 }
+
+/** Expected leaf counts [min, max] — Sprint B bullet-level grain targets */
+const EXPECTED_LEAF_RANGES = {
+  '9084': [60, 120],
+  '9231': [40, 90],
+  '9488': [35, 70],
+  '9489': [50, 150],
+  '9607': [30, 70],
+  '9609': [80, 180],
+  '9618': [70, 140],
+  '9699': [50, 100],
+  '9700': [150, 250],
+  '9701': [150, 250],
+  '9702': [130, 200],
+  '9706': [50, 100],
+  '9708': [100, 180],
+  '9990': [80, 150],
+}
+
+const FINE_GRAIN_BIOLOGY_EXAMPLE = `EXAMPLE — Cambridge Biology Topic 1 "Cell structure" granularity (EACH bullet = one leaf):
+Parent "1" Cell structure must have leaves like:
+- 1.1.1 "make temporary preparations of cellular material, including stained samples for light microscopy"
+- 1.1.2 "draw cells from microscope slides and photomicrographs"
+- 1.1.3 "calculate magnifications and actual sizes of specimens"
+- 1.1.4 "use an eyepiece graticule and stage micrometer scale to make measurements"
+- 1.1.5 "define resolution and magnification and explain differences"
+- 1.1.6 "recognise organelles and outline their structures and functions: cell surface membrane"
+- (continue for ALL bullets under 1.1, then ALL bullets under 1.2, etc.)
+This is the required grain for ALL science topics — NOT just one leaf per numbered sub-topic heading.`
 
 const GEMINI_RETRYABLE_STATUS = [429, 500, 503]
 const OVERLOAD_PATTERN =
@@ -104,40 +133,107 @@ async function withGeminiRetry(fn, opts = {}) {
   throw lastErr
 }
 
-function buildExtractionPrompt(subjectCode, subjectName) {
-  return `You are extracting the official Cambridge International A-Level syllabus topic structure from this PDF.
+function buildExtractionPrompt(
+  subjectCode,
+  subjectName,
+  { strict = false, expand = false, fineGrain = false } = {}
+) {
+  const range = EXPECTED_LEAF_RANGES[subjectCode]
+  const rangeHint = range
+    ? `Target ${range[0]}–${range[1]} leaf rows for this subject.`
+    : 'Aim for a complete but not over-granular leaf set.'
+
+  const econNote =
+    subjectCode === '9708'
+      ? `
+ECONOMICS-SPECIFIC: Cambridge lists many bullet points under each numbered sub-topic.
+- Parents = major syllabus sections (e.g. "1 Basic economic ideas", "3 Microeconomics", "7 Macroeconomics", "10 International trade").
+- Leaves = numbered sub-topics only (e.g. 1.1, 3.2, 7.4) — NOT every bullet sentence as its own row.
+- Do NOT produce 200+ leaves from bullet lists. Group under sensible parents.`
+      : ''
+
+  const historyNote =
+    ['9489', '9699', '9084', '9488'].includes(subjectCode)
+      ? `
+ESSAY/HUMANITIES: Parents = paper option or outline study (e.g. "P2 European option").
+Leaves = key content themes / periods / sub-questions Cambridge lists under each outline study (typically 4-12 per parent) — NOT one leaf for an entire outline study, NOT every footnote bullet.`
+      : ''
+
+  const scienceNote = ['9700', '9701', '9702'].includes(subjectCode)
+    ? `
+SCIENCE: Parents = major numbered topics (e.g. "1 Cell structure", "2 Kinematics").
+Leaves = EVERY specification bullet / learning outcome Cambridge prints — use codes like 1.1.1, 1.1.2, 2.1.1 when bullets are not separately numbered in the PDF.
+Do NOT collapse multiple bullets into one leaf. Topic 1 Biology alone should have 25-35+ leaves, not 2.`
+    : ''
+
+  const fineGrainNote = fineGrain
+    ? `
+FINE-GRAIN PASS (Sprint B): Previous extraction was too coarse (major topics only).
+${['9700', '9701', '9702'].includes(subjectCode) ? FINE_GRAIN_BIOLOGY_EXAMPLE : ''}
+Extract at bullet-by-bullet specification grain. Each assessable learning outcome = one leaf row.`
+    : ''
+
+  const strictNote = strict
+    ? `
+REFINEMENT PASS: Previous output had quality issues (too many leaves, missing parents, or bad grouping).
+Reduce granularity — merge bullet-level rows into proper numbered leaves only. Ensure every leaf has a valid parent code.`
+    : ''
+
+  const expandNote = expand
+    ? `
+COMPLETENESS PASS: Previous output had too few leaves. Include every Cambridge numbered sub-topic (e.g. 1.1, 1.2, 3.4.1) as separate leaf rows — still NOT individual bullet sentences. Target the full numbered syllabus list.`
+    : ''
+
+  return `You are extracting the official Cambridge International A-Level syllabus structure from this PDF.
 
 Subject code: ${subjectCode}
 Subject name: ${subjectName}
 
-Extract the FULL topic hierarchy Cambridge uses in this syllabus document:
-- For science subjects: numbered topics (e.g. "1 Physical quantities and units", "2 Kinematics") grouped by paper/unit
-- For essay subjects (History, Sociology, Law, etc.): content areas, key questions, themes, or sections — extract whatever hierarchy the document actually presents; do NOT invent fake numbered sub-topics
-- Preserve Cambridge's own codes/numbering exactly as printed
-- Include AS and A Level content where the syllabus distinguishes them
+Extract a TWO-LEVEL hierarchy:
+1. **parents** — Cambridge major topics / sections / paper themes (the headings students recognise)
+2. **topics** (leaves) — assessable sub-topics tagged in marking; each leaf MUST reference its parent code
+
+${rangeHint}
+${econNote}
+${historyNote}
+${scienceNote}
+${fineGrainNote}
+${strictNote}
+${expandNote}
 
 Return ONLY valid JSON (no markdown, no prose) in this exact shape:
 {
   "subjectCode": "${subjectCode}",
   "subjectName": "${subjectName}",
+  "parents": [
+    {
+      "code": "17",
+      "paper": "P4",
+      "paperName": "Paper 4: A Level Structured Questions",
+      "name": "Oscillations"
+    }
+  ],
   "topics": [
     {
-      "code": "1",
-      "paper": "P1",
-      "paperName": "Paper 1: Multiple Choice",
-      "name": "Physical quantities and units"
+      "code": "17.1",
+      "parent": "17",
+      "paper": "P4",
+      "paperName": "Paper 4: A Level Structured Questions",
+      "name": "Simple harmonic oscillations"
     }
   ]
 }
 
 Field rules:
-- "code": Cambridge topic number/code as a string (e.g. "1", "1.1", "3.2", "A1", "Theme 1")
-- "paper": short paper id — use P1, P2, P3… for numbered papers; AS, A2 for level splits; or a short slug if papers are named differently
-- "paperName": full official paper/section name from the syllabus
-- "name": topic/content area title (without the leading number if the number is in code)
-- Flatten to leaf-level topics only (one row per assessable topic). Include sub-topics as separate rows if Cambridge numbers them separately.
-- Aim for completeness — every numbered syllabus topic should appear
-- Do not include administrative sections (introduction, assessment overview, command words glossary)`
+- "code" on parents: Cambridge major topic number/code (e.g. "1", "3.2", "Theme 1", "European_P2")
+- "parent" on leaves: MUST match a parent "code" exactly
+- "code" on leaves: Cambridge sub-topic code (e.g. "1.1", "17.3", "3.2.1")
+- "paper": short id — P1, P2, … or AS, A2, or a short slug for options
+- "paperName": full official paper/section name
+- "name": title without repeating the code prefix
+- Leaves only — one row per assessable sub-topic Cambridge numbers separately
+- Do not include introduction, assessment overview, command words, or appendix admin text
+- Preserve Cambridge numbering exactly as printed`
 }
 
 function parseGeminiJson(text) {
@@ -150,14 +246,112 @@ function parseGeminiJson(text) {
   }
 }
 
+function inferParentCode(leafCode, parentCodes) {
+  const sorted = [...parentCodes].sort(
+    (a, b) => b.split('.').length - a.split('.').length || b.length - a.length
+  )
+  for (const p of sorted) {
+    if (leafCode === p) continue
+    if (leafCode.startsWith(`${p}.`)) return p
+  }
+  const parts = leafCode.split('.')
+  while (parts.length > 1) {
+    parts.pop()
+    const candidate = parts.join('.')
+    if (parentCodes.has(candidate)) return candidate
+  }
+  return null
+}
+
+function normalizeRow(t, requireParent = false) {
+  if (!t || typeof t !== 'object') return null
+  const code = String(t.code ?? '').trim()
+  const name = String(t.name ?? '').trim()
+  const paper = String(t.paper ?? '').trim() || 'P1'
+  const paperName = String(t.paperName ?? paper).trim()
+  const parent = String(t.parent ?? '').trim()
+  if (!code || !name) return null
+  if (requireParent && !parent) return null
+  return { code, name, paper, paperName, ...(parent ? { parent } : {}) }
+}
+
+function normalizeTree(parsed) {
+  const rawParents = Array.isArray(parsed.parents) ? parsed.parents : []
+  const rawTopics = Array.isArray(parsed.topics) ? parsed.topics : []
+
+  const parents = []
+  const parentByCode = new Map()
+  const seenParent = new Set()
+
+  for (const p of rawParents) {
+    const row = normalizeRow(p, false)
+    if (!row || seenParent.has(row.code)) continue
+    seenParent.add(row.code)
+    const { parent: _drop, ...parentRow } = row
+    parents.push(parentRow)
+    parentByCode.set(row.code, parentRow)
+  }
+
+  const leaves = []
+  const seenLeaf = new Set()
+  for (const t of rawTopics) {
+    const row = normalizeRow(t, false)
+    if (!row || seenLeaf.has(row.code)) continue
+    seenLeaf.add(row.code)
+    leaves.push(row)
+  }
+
+  const parentCodes = new Set(parents.map((p) => p.code))
+
+  for (const leaf of leaves) {
+    if (!leaf.parent) {
+      const inferred = inferParentCode(leaf.code, parentCodes)
+      if (inferred) leaf.parent = inferred
+    }
+    if (leaf.parent && !parentByCode.has(leaf.parent)) {
+      const p = parents.find((x) => x.code === leaf.parent)
+      if (!p) {
+        parents.push({
+          code: leaf.parent,
+          name: leaf.parent,
+          paper: leaf.paper,
+          paperName: leaf.paperName,
+        })
+        parentByCode.set(leaf.parent, parents[parents.length - 1])
+        parentCodes.add(leaf.parent)
+      }
+    }
+  }
+
+  for (const leaf of leaves) {
+    if (!leaf.parent) {
+      const inferred = inferParentCode(leaf.code, parentCodes)
+      if (inferred) leaf.parent = inferred
+    }
+    if (leaf.parent && parentByCode.has(leaf.parent)) {
+      const p = parentByCode.get(leaf.parent)
+      if (!leaf.paper && p.paper) leaf.paper = p.paper
+      if (!leaf.paperName && p.paperName) leaf.paperName = p.paperName
+    }
+  }
+
+  const finalLeaves = leaves.filter((l) => l.parent && parentByCode.has(l.parent))
+
+  return { parents, topics: finalLeaves }
+}
+
 function assessQuality(data, subjectCode) {
-  const topics = data?.topics
+  const parents = data?.parents ?? []
+  const topics = data?.topics ?? []
   if (!Array.isArray(topics) || topics.length === 0) {
-    return { quality: 'failed', reason: 'no topics array' }
+    return { quality: 'failed', reason: 'no topics array', needsRetry: true }
   }
 
   let valid = 0
-  const codes = new Set()
+  let missingParent = 0
+  let emptyPaper = 0
+  const parentLeafCount = new Map()
+
   for (const t of topics) {
     if (
       typeof t.code === 'string' &&
@@ -165,68 +359,102 @@ function assessQuality(data, subjectCode) {
       typeof t.name === 'string' &&
       t.name.trim() &&
       typeof t.paper === 'string' &&
-      typeof t.paperName === 'string'
+      t.paper.trim() &&
+      typeof t.paperName === 'string' &&
+      typeof t.parent === 'string' &&
+      t.parent.trim()
     ) {
       valid++
-      codes.add(t.code.trim())
+      parentLeafCount.set(t.parent, (parentLeafCount.get(t.parent) || 0) + 1)
+      if (!t.paper.trim()) emptyPaper++
+    } else if (!t.parent?.trim()) {
+      missingParent++
     }
   }
 
   const ratio = valid / topics.length
   if (valid < 3) {
-    return { quality: 'failed', reason: `only ${valid} valid topics` }
+    return {
+      quality: 'failed',
+      reason: `only ${valid} valid leaves`,
+      needsRetry: true,
+    }
   }
-  if (ratio < 0.8) {
+  if (ratio < 0.85) {
     return {
       quality: 'sparse',
-      reason: `${valid}/${topics.length} valid rows (${Math.round(ratio * 100)}%)`,
+      reason: `${valid}/${topics.length} valid leaves`,
+      needsRetry: true,
     }
   }
 
-  const essayCodes = ['9489', '9699', '9084', '9488', '9607']
-  if (essayCodes.includes(subjectCode) && topics.length < 8) {
+  const range = EXPECTED_LEAF_RANGES[subjectCode]
+  if (range && (valid < range[0] || valid > range[1])) {
     return {
       quality: 'needs_review',
-      reason: `essay subject with only ${topics.length} topics — verify content areas captured`,
+      reason: `leaf count ${valid} outside expected ${range[0]}–${range[1]}`,
+      needsRetry:
+        valid > range[1] * 1.15 ||
+        valid < range[0] * 0.85,
     }
   }
 
-  if (topics.length < 5) {
+  const orphanParents = parents.filter(
+    (p) => !parentLeafCount.has(p.code)
+  ).length
+  if (orphanParents > 0) {
     return {
-      quality: 'sparse',
-      reason: `only ${topics.length} topics extracted`,
+      quality: 'needs_review',
+      reason: `${orphanParents} parent(s) with 0 leaves`,
+      needsRetry: false,
     }
   }
 
-  return { quality: 'clean', topicCount: valid }
-}
-
-function normalizeTopics(raw) {
-  if (!Array.isArray(raw)) return []
-  const out = []
-  const seen = new Set()
-  for (const t of raw) {
-    if (!t || typeof t !== 'object') continue
-    const code = String(t.code ?? '').trim()
-    const name = String(t.name ?? '').trim()
-    const paper = String(t.paper ?? 'P1').trim()
-    const paperName = String(t.paperName ?? paper).trim()
-    if (!code || !name) continue
-    if (seen.has(code)) continue
-    seen.add(code)
-    out.push({ code, paper, paperName, name })
+  if (parentLeafCount.size === 1 && valid > 15) {
+    return {
+      quality: 'needs_review',
+      reason: 'all leaves under a single parent',
+      needsRetry: true,
+    }
   }
-  return out
+
+  if (missingParent > 0 || emptyPaper > 0) {
+    return {
+      quality: 'needs_review',
+      reason: `${missingParent} missing parent, ${emptyPaper} empty paper`,
+      needsRetry: missingParent > valid * 0.1,
+    }
+  }
+
+  const maxShare = Math.max(...parentLeafCount.values()) / valid
+  if (maxShare > 0.65 && parentLeafCount.size > 2) {
+    return {
+      quality: 'needs_review',
+      reason: 'one parent holds >65% of leaves',
+      needsRetry: subjectCode === '9708',
+    }
+  }
+
+  return { quality: 'clean', topicCount: valid, parentCount: parents.length }
 }
 
-async function extractSubject(genAI, subjectCode, subjectName) {
+async function extractSubject(
+  genAI,
+  subjectCode,
+  subjectName,
+  { strict = false, expand = false, fineGrain = false } = {}
+) {
   const pdfPath = join(SOURCE_DIR, `${subjectCode}.pdf`)
   if (!existsSync(pdfPath)) {
     return { subjectCode, status: 'missing_pdf' }
   }
 
   const base64 = readFileSync(pdfPath).toString('base64')
-  const prompt = buildExtractionPrompt(subjectCode, subjectName)
+  const prompt = buildExtractionPrompt(subjectCode, subjectName, {
+    strict,
+    expand,
+    fineGrain,
+  })
 
   const response = await withGeminiRetry(
     () =>
@@ -242,7 +470,9 @@ async function extractSubject(genAI, subjectCode, subjectName) {
           },
         ],
       }),
-    { label: `extract-${subjectCode}` }
+    {
+      label: `extract-${subjectCode}${fineGrain ? '-fine' : strict ? '-strict' : expand ? '-expand' : ''}`,
+    }
   )
 
   const text = response.text || ''
@@ -255,11 +485,12 @@ async function extractSubject(genAI, subjectCode, subjectName) {
     }
   }
 
-  const topics = normalizeTopics(parsed.topics)
+  const { parents, topics } = normalizeTree(parsed)
   const payload = {
     subjectCode,
     subjectName: subjectName || parsed.subjectName || subjectCode,
     extractedAt: new Date().toISOString(),
+    parents,
     topics,
   }
 
@@ -270,7 +501,15 @@ async function extractSubject(genAI, subjectCode, subjectName) {
     'utf8'
   )
 
-  return { subjectCode, status: 'ok', ...assessment, topicCount: topics.length }
+  return {
+    subjectCode,
+    status: 'ok',
+    ...assessment,
+    topicCount: topics.length,
+    parentCount: parents.length,
+    strict,
+    expand,
+  }
 }
 
 function listAvailablePdfs() {
@@ -298,6 +537,8 @@ async function main() {
       ? process.argv[process.argv.indexOf('--subject') + 1]
       : null)
   const force = process.argv.includes('--force')
+  const fineGrain =
+    process.argv.includes('--fine-grain') || process.argv.includes('--fine')
 
   const available = listAvailablePdfs()
   console.log('\n=== Syllabi source PDFs ===')
@@ -305,15 +546,12 @@ async function main() {
   for (const code of available) {
     console.log(`  ✓ ${code}.pdf`)
   }
-  console.log(`Skipped (existing topic map): 9709`)
-  const expected = [
-    '9700', '9701', '9702', '9708', '9489', '9699', '9990', '9609',
-    '9706', '9618', '9084', '9488', '9607', '9231',
-  ]
-  const missing = expected.filter((c) => !available.includes(c))
-  if (missing.length) {
-    console.log(`Missing PDFs (not processed): ${missing.join(', ')}`)
-  }
+  const has9709 = existsSync(join(SOURCE_DIR, '9709.pdf'))
+  console.log(
+    has9709
+      ? '9709.pdf present — would extract Math (not in SKIP_CODES if added)'
+      : 'Skipped (existing topic map): 9709 — lib/syllabus.ts'
+  )
 
   let codes = available
   if (filterSubject) {
@@ -326,6 +564,7 @@ async function main() {
 
   const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
   const results = []
+  const secondPass = []
 
   for (const code of codes) {
     const outPath = join(OUT_DIR, `${code}.json`)
@@ -338,14 +577,28 @@ async function main() {
     const name = SUBJECT_NAMES[code] || code
     console.log(`\n[${code}] extracting ${name}…`)
     try {
-      const result = await extractSubject(genAI, code, name)
+      let result = await extractSubject(genAI, code, name, { fineGrain })
+      if (result.status === 'ok' && result.needsRetry) {
+        const range = EXPECTED_LEAF_RANGES[code]
+        const under =
+          range && result.topicCount < range[0] * 0.85
+        const mode = under ? 'expand' : 'strict'
+        console.log(`  → retrying with ${mode} prompt (${result.reason})`)
+        result = await extractSubject(genAI, code, name, {
+          strict: !under,
+          expand: under,
+        })
+        secondPass.push(`${code}(${mode})`)
+      }
       results.push(result)
       if (result.status === 'ok') {
         console.log(
-          `  → ${result.quality}: ${result.topicCount} topics${result.reason ? ` (${result.reason})` : ''}`
+          `  → ${result.quality}: ${result.topicCount} leaves, ${result.parentCount} parents${result.reason ? ` (${result.reason})` : ''}`
         )
       } else {
-        console.log(`  → ${result.status}${result.reason ? `: ${result.reason}` : ''}`)
+        console.log(
+          `  → ${result.status}${result.reason ? `: ${result.reason}` : ''}`
+        )
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err)
@@ -358,9 +611,12 @@ async function main() {
   for (const r of results) {
     const detail =
       r.status === 'ok'
-        ? `${r.quality} (${r.topicCount} topics)`
+        ? `${r.quality} (${r.topicCount} leaves, ${r.parentCount} parents)`
         : r.status
     console.log(`  ${r.subjectCode}: ${detail}`)
+  }
+  if (secondPass.length) {
+    console.log(`\nSecond pass (strict): ${secondPass.join(', ')}`)
   }
 }
 

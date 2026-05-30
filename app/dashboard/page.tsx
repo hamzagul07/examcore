@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import { SyllabusTopicBadgeList } from '@/components/SyllabusTopicBadge'
 import { TOTAL_SYLLABUS_TOPICS, type SyllabusCode } from '@/lib/syllabus'
+import { getSubjectById } from '@/lib/profile-options'
 import { EmptyStateIllustration } from '@/components/ui/EmptyStateIllustration'
 import { DashboardEntry, AttemptRowAnim } from './dashboard.client'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
@@ -42,9 +43,19 @@ export default async function DashboardPage() {
 
   const firstName = (profile?.full_name || '').trim().split(/\s+/)[0]
   const greetingName = firstName || 'student'
+  const userSubjects: string[] = profile?.subjects?.length
+    ? profile.subjects
+    : ['Mathematics']
   const contextTag = profile
-    ? [profile.level, profile.subjects?.[0]].filter(Boolean).join(' · ')
+    ? [profile.level, ...userSubjects].filter(Boolean).join(' · ')
     : ''
+  const nonMathSubjects = userSubjects.filter((name) => {
+    const s = getSubjectById(name)
+    return s && !s.markingEnabled
+  })
+  const hasMathSubject = userSubjects.some(
+    (name) => getSubjectById(name)?.markingEnabled
+  )
 
   const { data: attempts } = await supabaseAdmin
     .from('attempts')
@@ -208,7 +219,7 @@ export default async function DashboardPage() {
 
             {/* Topics */}
             <div className="ec-card p-6 col-span-3 md:col-span-1">
-              <p className="ec-label-tech mb-3">TOPICS</p>
+              <p className="ec-label-tech mb-3">TOPICS (MATHEMATICS)</p>
               <div className="text-4xl font-extrabold text-white">
                 {topicsAttempted}
                 <span className="text-xl text-slate-600">
@@ -217,6 +228,21 @@ export default async function DashboardPage() {
               </div>
             </div>
           </div>
+
+          {nonMathSubjects.length > 0 && (
+            <div className="mb-8 space-y-3">
+              {nonMathSubjects.map((name) => (
+                <div
+                  key={name}
+                  className="ec-card border-amber-500/20 p-4 text-sm text-slate-400"
+                >
+                  Detailed analytics coming soon for{' '}
+                  <span className="font-semibold text-white">{name}</span>.
+                  {hasMathSubject && ' Mathematics stats are shown above.'}
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* ====== Primary CTA + progress link ====== */}
           <div className="bento-grid mb-12">
@@ -262,6 +288,7 @@ export default async function DashboardPage() {
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-400">
                 Mastery, trajectory, predicted grade
+                {hasMathSubject ? ' (Mathematics)' : ''}
               </p>
               <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-cyan-400 transition-transform duration-200 group-hover:translate-x-1">
                 Explore <ArrowRight className="h-3.5 w-3.5" />

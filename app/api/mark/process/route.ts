@@ -3,20 +3,10 @@ import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
 import Anthropic from '@anthropic-ai/sdk'
 import { createClient as createServerClient } from '@/lib/supabase-server'
-import { normalizeSyllabusTagsForSubject, type SyllabusCode } from '@/lib/syllabi'
-import {
-  buildLineReferences,
-  type OcrLine,
-} from '@/lib/examiner-ink-positioning'
-import { normalizeErrorClassification } from '@/lib/error-classifications'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
-import { parsePaperCode } from '@/lib/marking/component-types'
-import { buildMarkingPrompt, maxTokensForStyle } from '@/lib/marking/build-marking-prompt'
-import { extractJSON } from '@/lib/marking/json'
-import {
-  tryExtractFromStorage,
-  resolveQuestionMarkingStyle,
-} from '@/lib/marking/storage-extract'
+import type { OcrLine } from '@/lib/examiner-ink-positioning'
+import { runSingleQuestionMark } from '@/lib/marking/single-question-pipeline'
+import { formatSseEvent, SSE_HEADERS } from '@/lib/marking/sse'
 import {
   ANSWER_OCR_PROMPT_MATH,
   ANSWER_OCR_PROMPT_GENERAL,
@@ -25,25 +15,20 @@ import {
   questionPhotoOcrPrompt,
 } from '@/lib/marking/ocr'
 import {
-  buildDetectionPrompt,
-} from '@/lib/marking/prompts'
-import {
   aggregateWholePaperResults,
   buildWholePaperSegmentPrompt,
   parseWholePaperSegment,
-  toMarkingAIResult,
 } from '@/lib/marking/whole-paper'
-import type {
-  MarkSchemeRow,
-  MarkingMode,
-  UploadMode,
-  QuestionMarkResult,
-} from '@/lib/marking/types'
+import type { UploadMode, QuestionMarkResult } from '@/lib/marking/types'
 import {
   withGeminiRetry,
   withAnthropicRetry,
   isTransientOverloadError,
 } from '@/lib/marking/gemini-retry'
+import {
+  ocrAnswerBufferWithBoxes,
+  uploadAnswerPhoto as uploadAnswerPhotoBuffer,
+} from '@/lib/marking/mark-runner'
 
 export const maxDuration = 300
 
@@ -122,235 +107,6 @@ async function uploadAnswerPhoto(
   }
 }
 
-const storageDeps = {
-  downloadPdf: async (path: string) => {
-    const { data, error } = await supabaseAdmin.storage
-      .from('paper-pdfs')
-      .download(path)
-    if (error || !data) return null
-    return data.arrayBuffer()
-  },
-  extractFromPdfs: async (
-    qpBase64: string,
-    msBase64: string,
-    prompt: string
-  ) => {
-    const extractionResponse = await withGeminiRetry(
-      () =>
-        genAI.models.generateContent({
-          model: 'gemini-2.5-flash',
-          contents: [
-            {
-              role: 'user',
-              parts: [
-                { inlineData: { mimeType: 'application/pdf', data: qpBase64 } },
-                { inlineData: { mimeType: 'application/pdf', data: msBase64 } },
-                { text: prompt },
-              ],
-            },
-          ],
-        }),
-      { label: 'pdf-extraction' }
-    )
-    return extractionResponse.text || ''
-  },
-  upsertSchemes: async (rows: Record<string, unknown>[]) => {
-    const { error } = await supabaseAdmin
-      .from('mark_schemes')
-      .upsert(rows, { onConflict: 'paper_code,paper_session,question_number' })
-    if (error) console.error('Mark scheme upsert error:', error)
-  },
-  findScheme: async (
-    paperCode: string,
-    paperSession: string,
-    questionNumber: string
-  ) => {
-    const { data } = await supabaseAdmin
-      .from('mark_schemes')
-      .select('*')
-      .eq('paper_code', paperCode)
-      .eq('paper_session', paperSession)
-      .eq('question_number', questionNumber)
-      .maybeSingle()
-    return (data as MarkSchemeRow) ?? null
-  },
-}
-
-async function lookupMarkScheme(
-  paperCode: string,
-  paperSession: string,
-  questionNumber: string
-): Promise<{ scheme: MarkSchemeRow | null; mode: MarkingMode }> {
-  const { data: foundScheme } = await supabaseAdmin
-    .from('mark_schemes')
-    .select('*')
-    .eq('paper_code', paperCode)
-    .eq('paper_session', paperSession)
-    .eq('question_number', questionNumber)
-    .maybeSingle()
-
-  if (foundScheme) {
-    return { scheme: foundScheme as MarkSchemeRow, mode: 'official_mark_scheme' }
-  }
-
-  const extracted = await tryExtractFromStorage(
-    paperCode,
-    paperSession,
-    questionNumber,
-    storageDeps
-  )
-  if (extracted) {
-    return { scheme: extracted, mode: 'official_mark_scheme' }
-  }
-  return { scheme: null, mode: 'general_criteria_paper_not_in_db' }
-}
-
-async function runClaudeMarking(
-  prompt: string,
-  maxTokens: number
-): Promise<Record<string, unknown>> {
-  const claudeResponse = await withAnthropicRetry(
-    () =>
-      anthropic.messages.create({
-        model: 'claude-sonnet-4-6',
-        max_tokens: maxTokens,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    { label: 'claude-marking' }
-  )
-  const markingText =
-    claudeResponse.content[0].type === 'text'
-      ? claudeResponse.content[0].text
-      : ''
-  return extractJSON(markingText) as Record<string, unknown>
-}
-
-async function markSingleQuestion(params: {
-  ocrText: string
-  ocrLines: OcrLine[]
-  questionText: string
-  markScheme: MarkSchemeRow | null
-  markingMode: MarkingMode
-  paperCode?: string
-  paperSession?: string
-  questionNumber?: string
-}): Promise<{
-  markingResult: Record<string, unknown>
-  lineReferences: ReturnType<typeof buildLineReferences>
-  errorClassifications: unknown[]
-  resolvedTags: SyllabusCode[]
-  markingMode: MarkingMode
-}> {
-  const {
-    ocrText,
-    ocrLines,
-    questionText,
-    markScheme,
-    markingMode: initialMode,
-    paperCode,
-  } = params
-
-  let markingMode = initialMode
-
-  const parsed = paperCode ? parsePaperCode(paperCode) : null
-  const subjectCode = parsed?.subjectCode ?? '9709'
-  const subjectName = SUBJECT_CODE_MAP[subjectCode] || 'A-Level'
-  const markingStyle = markScheme
-    ? resolveQuestionMarkingStyle(markScheme, paperCode || '9709/12')
-    : subjectCode === '9709'
-      ? 'point_based'
-      : 'point_based'
-
-  const isOfficial = markingMode === 'official_mark_scheme' && !!markScheme
-
-  if (markingMode === 'general_criteria' && subjectCode === '9709') {
-    // preserve legacy math general path
-  } else if (
-    markingMode === 'general_criteria_paper_not_in_db' &&
-    !questionText.trim()
-  ) {
-    markingMode = 'general_criteria'
-  }
-
-  const markingPrompt = buildMarkingPrompt({
-    markScheme,
-    markingStyle,
-    ocrText,
-    questionText,
-    subjectName,
-    subjectCode,
-    isOfficial,
-  })
-
-  const markingResult = await runClaudeMarking(
-    markingPrompt,
-    maxTokensForStyle(markingStyle)
-  )
-
-  const lineReferences = buildLineReferences(
-    Array.isArray(markingResult?.marks_awarded)
-      ? markingResult.marks_awarded
-      : [],
-    ocrLines
-  )
-
-  const errorClassifications = Array.isArray(markingResult?.marks_awarded)
-    ? markingResult.marks_awarded.map((m: Record<string, unknown>, idx: number) => {
-        const classification = normalizeErrorClassification(
-          m?.error_classification as string
-        )
-        return {
-          mark_id:
-            typeof m?.type === 'string' && m.type.trim()
-              ? m.type.trim().toUpperCase()
-              : `M${idx + 1}`,
-          classification,
-          description:
-            typeof m?.margin_note === 'string' && m.margin_note.trim()
-              ? m.margin_note.trim()
-              : typeof m?.reasoning === 'string'
-                ? m.reasoning.slice(0, 240)
-                : '',
-          line_reference:
-            typeof m?.line_reference === 'string' ? m.line_reference.trim() : '',
-        }
-      })
-    : []
-
-  const claudeTags: SyllabusCode[] = normalizeSyllabusTagsForSubject(
-    subjectCode,
-    markingResult?.syllabus_tags
-  )
-  let resolvedTags: SyllabusCode[] = []
-  const cachedTags: SyllabusCode[] = Array.isArray(markScheme?.syllabus_tags)
-    ? normalizeSyllabusTagsForSubject(subjectCode, markScheme.syllabus_tags)
-    : []
-
-  if (markingMode === 'official_mark_scheme' && markScheme) {
-    if (cachedTags.length > 0) {
-      resolvedTags = cachedTags
-    } else {
-      resolvedTags = claudeTags
-      if (resolvedTags.length > 0 && markScheme.id) {
-        await supabaseAdmin
-          .from('mark_schemes')
-          .update({ syllabus_tags: resolvedTags })
-          .eq('id', markScheme.id)
-      }
-    }
-  } else {
-    resolvedTags = claudeTags
-  }
-
-  return {
-    markingResult,
-    lineReferences,
-    errorClassifications,
-    resolvedTags,
-    markingMode,
-  }
-}
-
 export async function POST(request: NextRequest) {
   const startTime = Date.now()
 
@@ -387,7 +143,16 @@ export async function POST(request: NextRequest) {
     const userId = user?.id || null
 
     const formData = await request.formData()
-    const answerPhoto = formData.get('photo') as File
+    const pageFiles: File[] = []
+    for (const [key, value] of formData.entries()) {
+      if (key.startsWith('pages') && value instanceof File && value.size > 0) {
+        pageFiles.push(value)
+      }
+    }
+    const answerPhoto = formData.get('photo') as File | null
+    if (pageFiles.length === 0 && answerPhoto?.size) {
+      pageFiles.push(answerPhoto)
+    }
     const questionPhoto = formData.get('question_photo') as File | null
     const questionTextInput = formData.get('question_text') as string | null
     const manualPaperCode = formData.get('manual_paper_code') as string | null
@@ -397,22 +162,128 @@ export async function POST(request: NextRequest) {
     const uploadMode: UploadMode =
       uploadModeRaw === 'whole_paper' ? 'whole_paper' : 'single_question'
     const manualSubjectCode = manualPaperCode?.split('/')[0]
+    const streamRequested = formData.get('stream') === '1'
 
-    const hasManualSelection = !!(
-      manualPaperCode &&
-      manualPaperSession &&
-      manualQuestionNumber
-    )
-
-    if (!answerPhoto) {
+    if (pageFiles.length === 0) {
       return NextResponse.json({ error: 'Answer photo is required' }, { status: 400 })
     }
 
-    const [{ full_text: ocrText, lines: ocrLines }, answerPhotoUrl] =
-      await Promise.all([
-        ocrAnswerWithBoxes(answerPhoto, uploadMode, manualSubjectCode),
-        uploadAnswerPhoto(answerPhoto, userId),
+    if (uploadMode === 'single_question') {
+      const pipelineInput = {
+        pageFiles,
+        questionPhoto: questionPhoto?.size ? questionPhoto : null,
+        questionTextInput: questionTextInput?.trim() || '',
+        manualPaperCode,
+        manualPaperSession,
+        manualQuestionNumber,
+        userId,
+        startedAt: startTime,
+      }
+
+      const bumpRateLimit = async () => {
+        await supabaseAdmin.from('rate_limits').upsert(
+          { ip, date: today, mark_count: currentCount + 1 },
+          { onConflict: 'ip,date' }
+        )
+      }
+
+      const clientError = (message: string) =>
+        NextResponse.json({ error: message }, { status: 400 })
+
+      if (streamRequested) {
+        const encoder = new TextEncoder()
+        const stream = new ReadableStream({
+          async start(controller) {
+            const send = (data: unknown) =>
+              controller.enqueue(encoder.encode(formatSseEvent(data)))
+            try {
+              const payload = await runSingleQuestionMark({
+                ...pipelineInput,
+                onProgress: (ev) => send(ev),
+              })
+              await bumpRateLimit()
+              send({ type: 'result', payload })
+              controller.close()
+            } catch (err: unknown) {
+              const isOverload = isTransientOverloadError(err)
+              const message =
+                err instanceof Error
+                  ? err.message
+                  : 'Something went wrong while marking. Please try again.'
+              const isClient =
+                message.includes('handwriting') ||
+                message.includes('past paper question')
+              send({
+                type: 'error',
+                error: isOverload
+                  ? 'Marking is busy right now — please try again in a moment.'
+                  : message,
+                retryable: isOverload,
+                status: isClient ? 400 : isOverload ? 503 : 500,
+              })
+              controller.close()
+            }
+          },
+        })
+        return new Response(stream, { headers: SSE_HEADERS })
+      }
+
+      try {
+        const payload = await runSingleQuestionMark(pipelineInput)
+        await bumpRateLimit()
+        return NextResponse.json(payload)
+      } catch (err: unknown) {
+        const isOverload = isTransientOverloadError(err)
+        const message =
+          err instanceof Error
+            ? err.message
+            : 'Something went wrong while marking. Please try again.'
+        if (
+          message.includes('handwriting') ||
+          message.includes('past paper question')
+        ) {
+          return clientError(message)
+        }
+        return NextResponse.json(
+          {
+            error: isOverload
+              ? 'Marking is busy right now — please try again in a moment.'
+              : message,
+            retryable: isOverload,
+          },
+          { status: isOverload ? 503 : 500 }
+        )
+      }
+    }
+
+    const pageOcrResults: Array<{
+      full_text: string
+      lines: OcrLine[]
+      photo_url: string | null
+    }> = []
+
+    for (let i = 0; i < pageFiles.length; i++) {
+      const file = pageFiles[i]
+      const buf = Buffer.from(await file.arrayBuffer())
+      const [{ full_text, lines }, photo_url] = await Promise.all([
+        ocrAnswerBufferWithBoxes(
+          buf,
+          file.type || 'image/jpeg',
+          manualSubjectCode
+        ),
+        uploadAnswerPhotoBuffer(buf, file.type || 'image/jpeg', userId),
       ])
+      pageOcrResults.push({ full_text, lines, photo_url })
+    }
+
+    const ocrText = pageOcrResults
+      .map((p, i) => `[Page ${i + 1}]\n${p.full_text}`)
+      .join('\n\n')
+    const ocrLines = pageOcrResults.flatMap((p) => p.lines)
+    const answerPhotoUrl = pageOcrResults[0]?.photo_url ?? null
+    const pagePhotoUrls = pageOcrResults
+      .map((p) => p.photo_url)
+      .filter((u): u is string => !!u)
 
     if (!ocrText || ocrText.trim().length < 5) {
       return NextResponse.json(
@@ -483,43 +354,43 @@ export async function POST(request: NextRequest) {
 
       const questionResults: QuestionMarkResult[] = []
 
-      for (const seg of segments.questions.slice(0, 15)) {
-        const { scheme, mode } = await lookupMarkScheme(
-          paperCode,
-          paperSession,
-          seg.question_number
-        )
-        const style = scheme
-          ? resolveQuestionMarkingStyle(scheme, paperCode)
-          : 'point_based'
+      const { markWholePaperQuestionSafe } = await import(
+        '@/lib/marking/mark-runner'
+      )
+      const { fetchPaperQuestionMeta } = await import(
+        '@/lib/marking/paper-questions'
+      )
 
-        const { markingResult } = await markSingleQuestion({
-          ocrText: seg.answer_text,
-          ocrLines: [],
-          questionText: scheme?.question_text || '',
-          markScheme: scheme,
-          markingMode: scheme ? mode : 'general_criteria_paper_not_in_db',
+      for (const seg of segments.questions.slice(0, 15)) {
+        const qResult = await markWholePaperQuestionSafe({
           paperCode,
           paperSession,
           questionNumber: seg.question_number,
+          answerText: seg.answer_text,
         })
-
-        const ai = toMarkingAIResult(markingResult)
-        questionResults.push({
-          question_number: seg.question_number,
-          marks_earned: ai.marks_earned,
-          total_marks: ai.total_marks,
-          marking_style: style,
-          summary: ai.summary,
-          ai_marking: ai,
-          mark_scheme_id: scheme?.id ?? null,
-        })
+        questionResults.push({ ...qResult, answer_text: seg.answer_text })
       }
+
+      const paperQuestions = await fetchPaperQuestionMeta(
+        paperCode,
+        paperSession,
+        {
+          listSchemes: async (code, session) => {
+            const { data } = await supabaseAdmin
+              .from('mark_schemes')
+              .select('question_number, total_marks')
+              .eq('paper_code', code)
+              .eq('paper_session', session)
+            return data || []
+          },
+        }
+      )
 
       const wholePaper = aggregateWholePaperResults(
         paperCode,
         paperSession,
-        questionResults
+        questionResults,
+        paperQuestions
       )
 
       const timeSpentSeconds = Math.max(
@@ -563,141 +434,10 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // ============ SINGLE QUESTION MODE (existing flow) ============
-    let detection: Record<string, unknown> = { is_past_paper: false }
-
-    if (hasManualSelection) {
-      detection = {
-        is_past_paper: true,
-        confidence: 'high',
-        paper_code: manualPaperCode,
-        paper_session: manualPaperSession,
-        question_number: manualQuestionNumber,
-        reasoning: 'Manually selected by user',
-      }
-    } else {
-      const detectionResponse = await withAnthropicRetry(
-        () =>
-          anthropic.messages.create({
-            model: 'claude-sonnet-4-6',
-            max_tokens: 500,
-            messages: [
-              {
-                role: 'user',
-                content: buildDetectionPrompt(ocrText, questionText, subjectHint),
-              },
-            ],
-          }),
-        { label: 'claude-detection' }
-      )
-      const detectionText =
-        detectionResponse.content[0].type === 'text'
-          ? detectionResponse.content[0].text
-          : ''
-      try {
-        detection = extractJSON(detectionText) as Record<string, unknown>
-      } catch {
-        detection = { is_past_paper: false }
-      }
-    }
-
-    let markingMode: MarkingMode = 'general_criteria'
-    let markScheme: MarkSchemeRow | null = null
-    let detectedPaper: Record<string, string> | null = null
-
-    if (
-      detection.is_past_paper &&
-      detection.paper_code &&
-      detection.paper_session &&
-      detection.question_number
-    ) {
-      detectedPaper = {
-        paper_code: String(detection.paper_code),
-        paper_session: String(detection.paper_session),
-        question_number: String(detection.question_number),
-      }
-
-      const lookup = await lookupMarkScheme(
-        detectedPaper.paper_code,
-        detectedPaper.paper_session,
-        detectedPaper.question_number
-      )
-      markScheme = lookup.scheme
-      markingMode = lookup.scheme ? lookup.mode : lookup.mode
-    }
-
-    if (markingMode === 'general_criteria' && (!questionText || questionText.trim().length < 10)) {
-      return NextResponse.json(
-        {
-          error:
-            'We could not identify this as a past paper question. Please also upload a photo of the question, or type the question text below.',
-        },
-        { status: 400 }
-      )
-    }
-
-    const {
-      markingResult,
-      lineReferences,
-      errorClassifications,
-      resolvedTags,
-      markingMode: finalMode,
-    } = await markSingleQuestion({
-      ocrText,
-      ocrLines,
-      questionText,
-      markScheme,
-      markingMode,
-      paperCode: detectedPaper?.paper_code,
-      paperSession: detectedPaper?.paper_session,
-      questionNumber: detectedPaper?.question_number,
-    })
-
-    const timeSpentSeconds = Math.max(
-      1,
-      Math.round((Date.now() - startTime) / 1000)
+    return NextResponse.json(
+      { error: 'Invalid upload mode' },
+      { status: 400 }
     )
-
-    const { data: attempt } = await supabaseAdmin
-      .from('attempts')
-      .insert({
-        mark_scheme_id: markScheme?.id || null,
-        source_type: finalMode === 'official_mark_scheme' ? 'past_paper' : 'other',
-        user_id: userId,
-        question_text: questionText || (markScheme?.question_text ?? null),
-        ocr_text: ocrText,
-        ai_marking: markingResult,
-        marks_earned: markingResult.marks_earned,
-        total_marks: markingResult.total_marks,
-        syllabus_tags: resolvedTags,
-        time_spent_seconds: timeSpentSeconds,
-        answer_photo_url: answerPhotoUrl,
-        error_classifications: errorClassifications,
-        line_references: lineReferences,
-      })
-      .select()
-      .single()
-
-    await supabaseAdmin.from('rate_limits').upsert(
-      { ip, date: today, mark_count: currentCount + 1 },
-      { onConflict: 'ip,date' }
-    )
-
-    return NextResponse.json({
-      marks_earned: markingResult.marks_earned,
-      total_marks: markingResult.total_marks,
-      ai_marking: markingResult,
-      ocr_text: ocrText,
-      question_text: questionText || markScheme?.question_text || null,
-      marking_mode: finalMode,
-      detected_paper: detectedPaper,
-      attempt_id: attempt?.id,
-      syllabus_tags: resolvedTags,
-      answer_photo_url: answerPhotoUrl,
-      line_references: lineReferences,
-      error_classifications: errorClassifications,
-      upload_mode: 'single_question',
-    })
   } catch (err: unknown) {
     const isOverload = isTransientOverloadError(err)
     console.error('Marking error:', err)

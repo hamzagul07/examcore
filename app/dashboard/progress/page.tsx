@@ -5,8 +5,9 @@ import Link from 'next/link'
 import { ArrowLeft, RefreshCw, Sparkles } from 'lucide-react'
 
 import {
-  calculateMastery,
+  calculateParentMastery,
   calculateSyllabusCoverage,
+  flattenLeafMasteries,
   type AttemptLite,
 } from '@/lib/mastery'
 import { predictGrade } from '@/lib/prediction'
@@ -16,7 +17,7 @@ import { getSubjectById } from '@/lib/profile-options'
 import {
   getSyllabusByCode,
   getSyllabusSubjectName,
-  getTotalSyllabusTopics,
+  getTotalSyllabusLeaves,
   hasSyllabusTree,
 } from '@/lib/syllabi'
 import {
@@ -111,9 +112,10 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const attempts: AttemptLite[] = usePreview ? MOCK_ATTEMPTS : filteredReal
   const showPreviewBanner = usePreview
 
-  const masteries = analyticsAvailable
-    ? calculateMastery(attempts, syllabus)
+  const parentMasteries = analyticsAvailable
+    ? calculateParentMastery(attempts, selectedCode)
     : []
+  const masteries = flattenLeafMasteries(parentMasteries)
   const coverage = calculateSyllabusCoverage(masteries)
   const prediction = predictGrade(attempts, masteries)
   const streak = computeStreak(attempts.map((a) => new Date(a.created_at)))
@@ -121,7 +123,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     getSyllabusSubjectName(selectedCode) ||
     selectedSubject?.label ||
     'Cambridge A-Level'
-  const totalTopics = getTotalSyllabusTopics(selectedCode)
+  const totalTopics = getTotalSyllabusLeaves(selectedCode)
   const actionItems = generateActionPlan(attempts, masteries, streak, {
     subjectLabel: `Cambridge ${selectedCode} ${subjectLabel}`,
     totalTopics: totalTopics || 38,
@@ -223,7 +225,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
               <div className="animate-entry stagger-3">
                 <MasteryMatrix
-                  masteries={masteries}
+                  parentMasteries={parentMasteries}
                   attempts={attempts}
                   hasAnyData={hasSubjectData || showPreviewBanner}
                   subjectCode={selectedCode}

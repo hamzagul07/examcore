@@ -9,13 +9,24 @@ import {
   type MarkingResultData,
 } from '@/components/MarkingResultView'
 import { SolutionSection } from '@/components/SolutionSection'
-import { Skeleton } from '@/components/ui/Skeleton'
+import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
+import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import {
-  ExaminerInkOverlay,
-  type LineReference,
-} from '@/components/examiner-ink/ExaminerInkOverlay'
+  PageUploader,
+  type UploadPage,
+} from '@/components/upload/PageUploader'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 import { SidebarChat } from '@/components/omni-ai/SidebarChat'
+import { createClient } from '@/lib/supabase'
+import {
+  getSubjectByCode,
+  getSubjectById,
+} from '@/lib/profile-options'
+import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
+import { SingleQuestionMarkingProgress } from '@/components/mark/SingleQuestionMarkingProgress'
+import type { WholePaperResult } from '@/lib/marking/types'
+import type { MarkProgressStage } from '@/lib/marking/mark-progress'
+import { getSubjectPaperStructure } from '@/lib/subject-papers'
 
 type SessionInfo = {
   year: number
@@ -33,17 +44,27 @@ type AvailablePapers = Record<string, SubjectInfo>
 type MarkingResult = MarkingResultData & {
   attempt_id?: string | null
   answer_photo_url?: string | null
+  page_photo_urls?: string[]
   line_references?: LineReference[] | null
+  ink_pages?: Array<{ photo_url: string; line_references: LineReference[] }>
+  upload_mode?: 'single_question' | 'whole_paper'
+  whole_paper?: WholePaperResult
 }
 
 export default function MarkPage() {
-  const [answerPhoto, setAnswerPhoto] = useState<File | null>(null)
+  const [answerPages, setAnswerPages] = useState<UploadPage[]>([])
   const [questionPhoto, setQuestionPhoto] = useState<File | null>(null)
   const [questionTextInput, setQuestionTextInput] = useState('')
   const [showOptional, setShowOptional] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [markProgress, setMarkProgress] = useState<{
+    percent: number
+    stage: MarkProgressStage
+    questionNumber?: string
+  } | null>(null)
   const [result, setResult] = useState<MarkingResult | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
+  const [errorRetryable, setErrorRetryable] = useState(false)
 
   const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
     null
@@ -55,6 +76,46 @@ export default function MarkPage() {
   const [selectedSession, setSelectedSession] = useState('')
   const [selectedComponent, setSelectedComponent] = useState('')
   const [questionNumber, setQuestionNumber] = useState('')
+  const [uploadMode, setUploadMode] = useState<'single_question' | 'whole_paper'>(
+    'single_question'
+  )
+  const [paperQuestionOptions, setPaperQuestionOptions] = useState<string[]>([])
+  const [wholePaperKey, setWholePaperKey] = useState(0)
+  const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
+  const [profileLoading, setProfileLoading] = useState(true)
+
+  useEffect(() => {
+    let cancelled = false
+    async function loadProfile() {
+      try {
+        const supabase = createClient()
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+        if (!user || cancelled) return
+        const { data: profile } = await supabase
+          .from('user_profiles')
+          .select('subjects')
+          .eq('id', user.id)
+          .maybeSingle()
+        const subjectNames: string[] = profile?.subjects?.length
+          ? profile.subjects
+          : ['Mathematics']
+        const codes = subjectNames
+          .map((name) => getSubjectById(name)?.code)
+          .filter((c): c is string => !!c)
+        if (!cancelled) setProfileSubjectCodes(codes.length ? codes : ['9709'])
+      } catch {
+        if (!cancelled) setProfileSubjectCodes(['9709'])
+      } finally {
+        if (!cancelled) setProfileLoading(false)
+      }
+    }
+    loadProfile()
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -188,13 +249,90 @@ export default function MarkPage() {
     )
   }, [matchedSessionCode, selectedSubject, availablePapers])
 
+  const profileSelectableSubjects = useMemo(() => {
+    if (!availablePapers) return []
+    const codes = profileSubjectCodes.length ? profileSubjectCodes : ['9709']
+    return codes.filter((code) => availablePapers[code])
+  }, [profileSubjectCodes, availablePapers])
+
+  const activeSubjectMeta = useMemo(
+    () => (selectedSubject ? getSubjectByCode(selectedSubject) : undefined),
+    [selectedSubject]
+  )
+
+  const paperStructure = useMemo(
+    () => (selectedSubject ? getSubjectPaperStructure(selectedSubject) : null),
+    [selectedSubject]
+  )
+
+  const componentLabel = useMemo(() => {
+    const labels = new Map<string, string>()
+    if (paperStructure) {
+      for (const group of paperStructure.papers) {
+        for (const c of group.components) {
+          labels.set(c, `${group.name} (${c})`)
+        }
+      }
+    }
+    return (component: string) =>
+      labels.get(component) ?? `Component ${component}`
+  }, [paperStructure])
+
+  useEffect(() => {
+    if (profileLoading || papersLoading || selectedSubject) return
+    const preferred =
+      profileSelectableSubjects.find((c) => c === '9709') ??
+      profileSelectableSubjects[0]
+    if (preferred) {
+      setSelectedSubject(preferred)
+      setShowManualPaper(true)
+    }
+  }, [
+    profileLoading,
+    papersLoading,
+    selectedSubject,
+    profileSelectableSubjects,
+  ])
+
   const isManualFilled = !!(
     selectedSubject &&
     selectedYear !== '' &&
     selectedSession &&
     selectedComponent &&
-    questionNumber.trim()
+    (uploadMode === 'whole_paper' || questionNumber.trim())
   )
+
+  const wholePaperCode =
+    selectedSubject && selectedComponent
+      ? `${selectedSubject}/${selectedComponent}`
+      : ''
+  const wholePaperSession =
+    selectedSession && selectedYear !== ''
+      ? `${selectedSession} ${selectedYear}`
+      : ''
+
+  useEffect(() => {
+    if (uploadMode !== 'whole_paper' || !wholePaperCode || !wholePaperSession) {
+      setPaperQuestionOptions([])
+      return
+    }
+    let cancelled = false
+    fetch(
+      `/api/mark/paper-questions?paper_code=${encodeURIComponent(wholePaperCode)}&paper_session=${encodeURIComponent(wholePaperSession)}`
+    )
+      .then((r) => r.json())
+      .then((d) => {
+        if (!cancelled && Array.isArray(d.questions)) {
+          setPaperQuestionOptions(d.questions)
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setPaperQuestionOptions([])
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [uploadMode, wholePaperCode, wholePaperSession])
 
   const markingMode =
     showManualPaper || isManualFilled ? 'past_paper' : 'general'
@@ -223,22 +361,35 @@ export default function MarkPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!answerPhoto) {
-      setErrorMsg('Upload a photo of your answer.')
+    if (answerPages.length === 0) {
+      setErrorMsg('Upload at least one page of your answer.')
+      return
+    }
+    if (uploadMode === 'whole_paper') {
+      setErrorMsg('Use the whole-paper upload area to submit your pages.')
       return
     }
 
     setLoading(true)
+    setMarkProgress({ percent: 5, stage: 'reading_work' })
     setErrorMsg('')
+    setErrorRetryable(false)
     setResult(null)
 
     try {
       const formData = new FormData()
-      formData.append('photo', answerPhoto)
+      answerPages.forEach((p, i) => {
+        formData.append(`pages[${i}]`, p.file)
+      })
+      if (answerPages.length === 1) {
+        formData.append('photo', answerPages[0].file)
+      }
+      formData.append('upload_mode', uploadMode)
+      formData.append('stream', '1')
       if (questionPhoto) formData.append('question_photo', questionPhoto)
       if (questionTextInput.trim()) formData.append('question_text', questionTextInput)
 
-      if (isManualFilled) {
+      if (selectedSubject && selectedYear !== '' && selectedSession && selectedComponent) {
         formData.append(
           'manual_paper_code',
           `${selectedSubject}/${selectedComponent}`
@@ -247,28 +398,81 @@ export default function MarkPage() {
           'manual_paper_session',
           `${selectedSession} ${selectedYear}`
         )
-        formData.append('manual_question_number', questionNumber.trim())
+        if (uploadMode === 'single_question' && questionNumber.trim()) {
+          formData.append('manual_question_number', questionNumber.trim())
+        }
       }
 
       const res = await fetch('/api/mark/process', { method: 'POST', body: formData })
-      const data = await res.json()
-      setLoading(false)
-
-      if (!res.ok) {
+      if (!res.ok || !res.body) {
+        const data = await res.json().catch(() => ({}))
+        setLoading(false)
+        setMarkProgress(null)
         setErrorMsg(data.error || 'Marking failed.')
+        setErrorRetryable(!!data.retryable)
         return
       }
 
-      setResult(data)
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let buffer = ''
+      let finalPayload: MarkingResult | null = null
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        buffer += decoder.decode(value, { stream: true })
+        const parts = buffer.split('\n\n')
+        buffer = parts.pop() ?? ''
+        for (const part of parts) {
+          const line = part.trim()
+          if (!line.startsWith('data: ')) continue
+          const event = JSON.parse(line.slice(6)) as {
+            type: string
+            stage?: MarkProgressStage
+            percent?: number
+            payload?: MarkingResult
+            error?: string
+            retryable?: boolean
+          }
+          if (event.type === 'progress' && event.stage && event.percent != null) {
+            setMarkProgress({
+              percent: event.percent,
+              stage: event.stage,
+              questionNumber: questionNumber.trim() || undefined,
+            })
+          }
+          if (event.type === 'result' && event.payload) {
+            finalPayload = event.payload as MarkingResult
+          }
+          if (event.type === 'error') {
+            setLoading(false)
+            setMarkProgress(null)
+            setErrorMsg(event.error || 'Marking failed.')
+            setErrorRetryable(!!event.retryable)
+            return
+          }
+        }
+      }
+
+      setLoading(false)
+      setMarkProgress(null)
+      if (finalPayload) {
+        setResult(finalPayload)
+      } else {
+        setErrorMsg('Marking finished without a result. Please try again.')
+      }
     } catch (err) {
       setLoading(false)
+      setMarkProgress(null)
       setErrorMsg(err instanceof Error ? err.message : 'Network error')
     }
   }
 
   function resetForm() {
     setResult(null)
-    setAnswerPhoto(null)
+    setMarkProgress(null)
+    setAnswerPages([])
     setQuestionPhoto(null)
     setQuestionTextInput('')
     setShowOptional(false)
@@ -276,6 +480,7 @@ export default function MarkPage() {
     // doesn't require re-selecting. Only clear the per-question number.
     setQuestionNumber('')
     setErrorMsg('')
+    setErrorRetryable(false)
   }
 
   // After a result is shown: clear the photo + result, keep the question
@@ -283,8 +488,9 @@ export default function MarkPage() {
   // can immediately mark another attempt at the same question.
   function handleMarkAnotherAttempt() {
     setResult(null)
-    setAnswerPhoto(null)
+    setAnswerPages([])
     setErrorMsg('')
+    setErrorRetryable(false)
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -314,64 +520,131 @@ export default function MarkPage() {
             <span className="ec-text-gradient brand-breathe">in 30 seconds.</span>
           </h1>
           <p className="mt-4 text-base text-slate-400 sm:text-lg">
-            Cambridge A-Level mathematics, examiner-grade.
+            {activeSubjectMeta
+              ? `Cambridge A-Level ${activeSubjectMeta.label}, examiner-grade.`
+              : 'Cambridge A-Level past papers, examiner-grade.'}
           </p>
         </motion.div>
 
         {!result && (
           <form onSubmit={handleSubmit} className="space-y-10">
-            {/* ====== STEP 1 ====== */}
-            <section className="animate-entry stagger-1">
-              <StepLabel number={1} label="Upload your answer" />
-              <div className="relative mt-4 group">
-                {/* Outer multi-color glow */}
-                <div
-                  className={`pointer-events-none absolute -inset-0.5 rounded-[28px] bg-gradient-to-r from-emerald-500 via-cyan-400 to-violet-500 blur transition-opacity duration-300 ${
-                    answerPhoto
-                      ? 'opacity-60'
-                      : 'opacity-25 group-hover:opacity-50'
+            {/* Upload mode */}
+            <section className="animate-entry">
+              <div className="ec-card flex flex-wrap gap-2 p-2">
+                <button
+                  type="button"
+                  onClick={() => setUploadMode('single_question')}
+                  className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
+                    uploadMode === 'single_question'
+                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                      : 'text-slate-400 hover:text-white'
                   }`}
-                />
-                <label
-                  htmlFor="answer-photo"
-                  className={`relative ec-card group block w-full cursor-pointer overflow-hidden p-10 text-center transition-all duration-300 hover:-translate-y-1 sm:p-12 ${
-                    answerPhoto
-                      ? 'border-emerald-500/60'
-                      : 'border-2 border-dashed border-white/15 group-hover:border-emerald-500/50'
-                  }`}
-                  style={
-                    answerPhoto
-                      ? {
-                          borderStyle: 'solid',
-                          borderWidth: '2px',
-                          boxShadow:
-                            '0 1px 0 rgba(255,255,255,0.08) inset, 0 0 48px rgba(16,185,129,0.3), 0 24px 64px -16px rgba(16,185,129,0.35)',
-                        }
-                      : { borderStyle: 'dashed', borderWidth: '2px' }
-                  }
                 >
-                  <div className="relative mx-auto mb-5 flex h-18 w-18 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_32px_rgba(16,185,129,0.4)] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" style={{ width: 72, height: 72 }}>
-                    <UploadCloud className="h-9 w-9 text-emerald-400" />
-                  </div>
-                  <div className="relative text-lg font-bold text-white">
-                    {answerPhoto ? answerPhoto.name : 'Click or drop a photo here'}
-                  </div>
-                  <div className="relative mt-2 font-mono text-xs text-slate-500">
-                    {answerPhoto
-                      ? `${(answerPhoto.size / 1024).toFixed(1)} KB`
-                      : 'JPEG, PNG, or WebP · up to ~10 MB'}
-                  </div>
-                  <input
-                    id="answer-photo"
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp"
-                    onChange={(e) => setAnswerPhoto(e.target.files?.[0] || null)}
-                    required
-                    className="hidden"
-                  />
-                </label>
+                  Single question
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUploadMode('whole_paper')}
+                  className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
+                    uploadMode === 'whole_paper'
+                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Whole paper
+                </button>
               </div>
             </section>
+
+            {/* Subject context */}
+            <section className="animate-entry">
+              <div className="ec-card space-y-4 p-5 sm:p-6">
+                <div>
+                  <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
+                    Subject
+                  </Label>
+                  <select
+                    id="mark-subject"
+                    value={selectedSubject}
+                    onChange={(e) => {
+                      handleSubjectChange(e.target.value)
+                      setShowManualPaper(true)
+                    }}
+                    disabled={profileLoading || papersLoading}
+                    className="ec-input select-chevron appearance-none"
+                  >
+                    <option value="">
+                      {profileLoading ? 'Loading your subjects…' : 'Select subject…'}
+                    </option>
+                    {profileSelectableSubjects.map((code) => {
+                      const meta = getSubjectByCode(code)
+                      const label = availablePapers?.[code]?.subject ?? meta?.label ?? code
+                      return (
+                        <option key={code} value={code}>
+                          {label} ({code})
+                        </option>
+                      )
+                    })}
+                  </select>
+                </div>
+
+                {selectedSubject && paperStructure && paperStructure.papers.length > 0 && (
+                  <div className="rounded-2xl border border-white/10 bg-dark-900/40 p-4">
+                    <p className="label-overline mb-3">Available papers</p>
+                    <ul className="space-y-1.5 text-sm text-slate-400">
+                      {paperStructure.papers.map((p) => (
+                        <li key={p.paper}>
+                          <span className="font-medium text-slate-300">{p.name}</span>
+                          <span className="font-mono text-xs text-slate-500">
+                            {' '}
+                            — {p.components.join(', ')}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </section>
+
+            {/* ====== STEP 1 ====== */}
+            {uploadMode === 'whole_paper' ? (
+              <section className="animate-entry stagger-1 space-y-4">
+                <StepLabel number={1} label="Upload your full answer paper" />
+                {!isManualFilled ? (
+                  <div className="ec-card p-5 text-sm text-slate-400">
+                    Select subject, year, session, and paper below before uploading
+                    your pages.
+                  </div>
+                ) : (
+                  <WholePaperFlow
+                    key={wholePaperKey}
+                    paperCode={wholePaperCode}
+                    paperSession={wholePaperSession}
+                    questionOptions={paperQuestionOptions}
+                    onError={(msg, retryable) => {
+                      setErrorMsg(msg)
+                      setErrorRetryable(!!retryable)
+                    }}
+                    onReset={() => {
+                      setWholePaperKey((k) => k + 1)
+                      setErrorMsg('')
+                    }}
+                  />
+                )}
+              </section>
+            ) : (
+            <section className="animate-entry stagger-1 space-y-4">
+              <StepLabel number={1} label="Upload your answer" />
+              <PageUploader
+                pages={answerPages}
+                onPagesChange={setAnswerPages}
+                disabled={loading}
+                emptyLabel="Click or drop your working here"
+                emptyHint="One or more pages · JPEG, PNG, or WebP"
+              />
+            </section>
+            )}
 
             {/* ====== STEP 2 ====== */}
             <section className="animate-entry stagger-2 space-y-4">
@@ -435,15 +708,15 @@ export default function MarkPage() {
                               className="ec-input select-chevron appearance-none"
                             >
                               <option value="">Select...</option>
-                              {Object.entries(availablePapers)
-                                .sort(([, a], [, b]) =>
-                                  a.subject.localeCompare(b.subject)
-                                )
-                                .map(([code, info]) => (
+                              {profileSelectableSubjects.map((code) => {
+                                const info = availablePapers[code]
+                                if (!info) return null
+                                return (
                                   <option key={code} value={code}>
                                     {info.subject} ({code})
                                   </option>
-                                ))}
+                                )
+                              })}
                             </select>
                           </div>
 
@@ -501,7 +774,7 @@ export default function MarkPage() {
                               <option value="">Select...</option>
                               {availableComponents.map((c) => (
                                 <option key={c} value={c}>
-                                  Paper {c}
+                                  {componentLabel(c)}
                                 </option>
                               ))}
                             </select>
@@ -510,13 +783,18 @@ export default function MarkPage() {
                           <div className="sm:col-span-2">
                             <Label htmlFor="manual-question" className="label-overline mb-2 inline-block">
                               Question number
+                              {uploadMode === 'whole_paper' && (
+                                <span className="ml-2 font-normal normal-case text-slate-500">
+                                  (not needed for whole paper)
+                                </span>
+                              )}
                             </Label>
                             <input
                               id="manual-question"
                               type="text"
                               value={questionNumber}
                               onChange={(e) => setQuestionNumber(e.target.value)}
-                              disabled={!selectedComponent}
+                              disabled={!selectedComponent || uploadMode === 'whole_paper'}
                               placeholder="e.g., 1, 2(a), 3(b)(i)"
                               className="ec-input"
                             />
@@ -525,13 +803,20 @@ export default function MarkPage() {
                       )}
 
                     {isManualFilled && (
-                      <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 text-sm text-emerald-300 backdrop-blur shadow-[0_0_24px_rgba(16,185,129,0.15)]">
+                      <div className="ec-highlight-success">
                         Selected:{' '}
-                        <strong className="text-emerald-200">
+                        <strong>
                           {selectedSubject}/{selectedComponent}
                         </strong>{' '}
-                        — {selectedSession} {selectedYear}, Question{' '}
-                        <strong className="text-emerald-200">{questionNumber.trim()}</strong>
+                        — {selectedSession} {selectedYear}
+                        {uploadMode === 'single_question' && (
+                          <>
+                            , Question <strong>{questionNumber.trim()}</strong>
+                          </>
+                        )}
+                        {uploadMode === 'whole_paper' && (
+                          <span> (whole paper)</span>
+                        )}
                       </div>
                     )}
                   </div>
@@ -611,75 +896,88 @@ export default function MarkPage() {
             </section>
 
             {errorMsg && (
-              <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-3.5 text-sm text-red-300 backdrop-blur">
-                {errorMsg}
+              <div
+                className={`rounded-2xl border p-3.5 text-sm backdrop-blur ${
+                  errorRetryable
+                    ? 'border-amber-500/30 bg-amber-500/10 text-amber-200'
+                    : 'border-red-500/30 bg-red-500/10 text-red-300'
+                }`}
+              >
+                <p>{errorMsg}</p>
+                {errorRetryable && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setErrorMsg('')
+                      setErrorRetryable(false)
+                      void handleSubmit({
+                        preventDefault: () => {},
+                      } as React.FormEvent)
+                    }}
+                    disabled={loading || !answerPages.length}
+                    className="mt-3 rounded-xl border border-amber-500/40 bg-amber-500/15 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-amber-500/25 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Try again
+                  </button>
+                )}
               </div>
             )}
 
-            <motion.button
-              type="submit"
-              disabled={loading || !answerPhoto}
-              whileHover={loading || !answerPhoto ? undefined : { y: -2, scale: 1.01 }}
-              whileTap={loading || !answerPhoto ? undefined : { y: 0, scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-              className={`ec-btn-primary w-full justify-center text-base ${
-                answerPhoto && !loading ? 'brand-pulse' : ''
-              }`}
-              style={{ padding: '18px 32px' }}
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="h-5 w-5 animate-spin" />
-                  Marking your answer...
-                </>
-              ) : (
-                <>
-                  <Sparkles className="h-5 w-5" />
-                  Mark my answer
-                </>
-              )}
-            </motion.button>
+            {uploadMode === 'single_question' && (
+              <motion.button
+                type="submit"
+                disabled={loading || !answerPages.length}
+                whileHover={loading || !answerPages.length ? undefined : { y: -2, scale: 1.01 }}
+                whileTap={loading || !answerPages.length ? undefined : { y: 0, scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 18 }}
+                className={`ec-btn-primary w-full justify-center text-base ${
+                  answerPages.length > 0 && !loading ? 'brand-pulse' : ''
+                }`}
+                style={{ padding: '18px 32px' }}
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                    Marking your answer...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="h-5 w-5" />
+                    Mark my answer
+                  </>
+                )}
+              </motion.button>
+            )}
           </form>
         )}
 
         <AnimatePresence>
-          {loading && (
+          {loading && markProgress && (
             <motion.div
-              key="loading-skeleton"
+              key="marking-progress"
+              className="mt-10"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ delay: 0.15, duration: 0.4 }}
-              className="mt-10 space-y-5"
             >
-              <div className="ec-card overflow-hidden p-6">
-                <Skeleton className="mx-auto h-3 w-24" />
-                <Skeleton className="mx-auto mt-4 h-20 w-48" />
-                <Skeleton className="mx-auto mt-4 h-3 w-40" />
-                <Skeleton className="mx-auto mt-6 h-2.5 w-72" />
-              </div>
-              <div className="ec-card space-y-3 p-5">
-                <Skeleton className="h-4 w-32" />
-                <Skeleton className="h-16 w-full" />
-                <Skeleton className="h-16 w-full" />
-                <Skeleton className="h-16 w-full" />
-              </div>
+              <SingleQuestionMarkingProgress
+                percent={markProgress.percent}
+                stage={markProgress.stage}
+                questionNumber={markProgress.questionNumber}
+              />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {result && (
+        {result && !result.whole_paper && (
           <div className="space-y-8">
             <MarkingResultView result={result} />
 
-            {result.answer_photo_url &&
-              Array.isArray(result.line_references) &&
-              result.line_references.length > 0 && (
-                <ExaminerInkSection
-                  imageUrl={result.answer_photo_url}
-                  lineReferences={result.line_references}
-                />
-              )}
+            {(result.ink_pages?.length ||
+              (result.answer_photo_url &&
+                result.line_references?.length)) && (
+              <ExaminerInkSection result={result} />
+            )}
 
             {result.attempt_id && (
               <SolutionSection attemptId={result.attempt_id} />
@@ -718,14 +1016,21 @@ export default function MarkPage() {
  *  2. Loading the image (and the framer-motion timer chain) lazily means we
  *     don't block the initial render with a network round-trip for the photo.
  */
-function ExaminerInkSection({
-  imageUrl,
-  lineReferences,
-}: {
-  imageUrl: string
-  lineReferences: LineReference[]
-}) {
+function ExaminerInkSection({ result }: { result: MarkingResult }) {
   const [open, setOpen] = useState(false)
+  const inkPages =
+    result.ink_pages ??
+    (result.answer_photo_url && result.line_references?.length
+      ? [
+          {
+            photo_url: result.answer_photo_url,
+            line_references: result.line_references,
+          },
+        ]
+      : [])
+
+  if (!inkPages.length) return null
+
   return (
     <section className="ec-card relative overflow-hidden p-6 sm:p-8">
       <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-red-500/15 blur-[80px]" />
@@ -752,11 +1057,7 @@ function ExaminerInkSection({
           </button>
         ) : (
           <div className="mt-6">
-            <ExaminerInkOverlay
-              imageUrl={imageUrl}
-              lineReferences={lineReferences}
-              animate
-            />
+            <ExaminerInkPerPage pages={inkPages} animate />
           </div>
         )}
       </div>

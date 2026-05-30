@@ -1,271 +1,444 @@
 {
   "subjectCode": "9618",
   "subjectName": "Computer Science",
-  "extractedAt": "2026-05-28T17:27:11.561Z",
+  "extractedAt": "2026-05-29T11:19:25.385Z",
+  "parents": [
+    {
+      "code": "1",
+      "name": "Information representation",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals"
+    },
+    {
+      "code": "2",
+      "name": "Communication",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals"
+    },
+    {
+      "code": "3",
+      "name": "Hardware",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals"
+    },
+    {
+      "code": "4",
+      "name": "Processor Fundamentals",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals"
+    },
+    {
+      "code": "5",
+      "name": "System Software",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals"
+    },
+    {
+      "code": "6",
+      "name": "Security, privacy and data integrity",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals"
+    },
+    {
+      "code": "7",
+      "name": "Ethics and Ownership",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals"
+    },
+    {
+      "code": "8",
+      "name": "Databases",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals"
+    },
+    {
+      "code": "9",
+      "name": "Algorithm Design and Problem-solving",
+      "paper": "P2",
+      "paperName": "Fundamental Problem-solving and Programming Skills"
+    },
+    {
+      "code": "10",
+      "name": "Data Types and Structures",
+      "paper": "P2",
+      "paperName": "Fundamental Problem-solving and Programming Skills"
+    },
+    {
+      "code": "11",
+      "name": "Programming",
+      "paper": "P2",
+      "paperName": "Fundamental Problem-solving and Programming Skills"
+    },
+    {
+      "code": "12",
+      "name": "Software Development",
+      "paper": "P2",
+      "paperName": "Fundamental Problem-solving and Programming Skills"
+    },
+    {
+      "code": "13",
+      "name": "Data Representation",
+      "paper": "P3",
+      "paperName": "Advanced Theory"
+    },
+    {
+      "code": "14",
+      "name": "Communication and internet technologies",
+      "paper": "P3",
+      "paperName": "Advanced Theory"
+    },
+    {
+      "code": "15",
+      "name": "Hardware and Virtual Machines",
+      "paper": "P3",
+      "paperName": "Advanced Theory"
+    },
+    {
+      "code": "16",
+      "name": "System Software",
+      "paper": "P3",
+      "paperName": "Advanced Theory"
+    },
+    {
+      "code": "17",
+      "name": "Security",
+      "paper": "P3",
+      "paperName": "Advanced Theory"
+    },
+    {
+      "code": "18",
+      "name": "Artificial Intelligence (AI)",
+      "paper": "P3",
+      "paperName": "Advanced Theory"
+    },
+    {
+      "code": "19",
+      "name": "Computational thinking and Problem-solving",
+      "paper": "P4",
+      "paperName": "Practical"
+    },
+    {
+      "code": "20",
+      "name": "Further Programming",
+      "paper": "P4",
+      "paperName": "Practical"
+    }
+  ],
   "topics": [
     {
       "code": "1.1",
+      "name": "Data Representation",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Data Representation"
+      "paperName": "Theory Fundamentals",
+      "parent": "1"
     },
     {
-      "code": "1.2",
+      "code": "1.2.1",
+      "name": "Multimedia - Graphics",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Multimedia - Graphics, Sound"
+      "paperName": "Theory Fundamentals",
+      "parent": "1"
+    },
+    {
+      "code": "1.2.2",
+      "name": "Multimedia - Sound",
+      "paper": "P1",
+      "paperName": "Theory Fundamentals",
+      "parent": "1"
     },
     {
       "code": "1.3",
+      "name": "Compression",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Compression"
+      "paperName": "Theory Fundamentals",
+      "parent": "1"
     },
     {
       "code": "2.1",
+      "name": "Networks including the internet",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Networks including the internet"
+      "paperName": "Theory Fundamentals",
+      "parent": "2"
     },
     {
       "code": "3.1",
+      "name": "Computers and their components",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Computers and their components"
+      "paperName": "Theory Fundamentals",
+      "parent": "3"
     },
     {
       "code": "3.2",
+      "name": "Logic Gates and Logic Circuits",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Logic Gates and Logic Circuits"
+      "paperName": "Theory Fundamentals",
+      "parent": "3"
     },
     {
       "code": "4.1",
+      "name": "Central Processing Unit (CPU) Architecture",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Central Processing Unit (CPU) Architecture"
+      "paperName": "Theory Fundamentals",
+      "parent": "4"
     },
     {
       "code": "4.2",
+      "name": "Assembly Language",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Assembly Language"
+      "paperName": "Theory Fundamentals",
+      "parent": "4"
     },
     {
       "code": "4.3",
+      "name": "Bit manipulation",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Bit manipulation"
+      "paperName": "Theory Fundamentals",
+      "parent": "4"
     },
     {
       "code": "5.1",
+      "name": "Operating Systems",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Operating Systems"
+      "paperName": "Theory Fundamentals",
+      "parent": "5"
     },
     {
       "code": "5.2",
+      "name": "Language Translators",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Language Translators"
+      "paperName": "Theory Fundamentals",
+      "parent": "5"
     },
     {
       "code": "6.1",
+      "name": "Data Security",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Data Security"
+      "paperName": "Theory Fundamentals",
+      "parent": "6"
     },
     {
       "code": "6.2",
+      "name": "Data Integrity",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Data Integrity"
+      "paperName": "Theory Fundamentals",
+      "parent": "6"
     },
     {
       "code": "7.1",
+      "name": "Ethics and Ownership",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Ethics and Ownership"
+      "paperName": "Theory Fundamentals",
+      "parent": "7"
     },
     {
       "code": "8.1",
+      "name": "Database Concepts",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Database Concepts"
+      "paperName": "Theory Fundamentals",
+      "parent": "8"
     },
     {
       "code": "8.2",
+      "name": "Database Management Systems (DBMS)",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Database Management Systems (DBMS)"
+      "paperName": "Theory Fundamentals",
+      "parent": "8"
     },
     {
       "code": "8.3",
+      "name": "Data Definition Language (DDL) and Data Manipulation Language (DML)",
       "paper": "P1",
-      "paperName": "Paper 1: Theory Fundamentals",
-      "name": "Data Definition Language (DDL) and Data Manipulation Language (DML)"
+      "paperName": "Theory Fundamentals",
+      "parent": "8"
     },
     {
       "code": "9.1",
+      "name": "Computational Thinking Skills",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Computational Thinking Skills"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "9"
     },
     {
       "code": "9.2",
+      "name": "Algorithms",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Algorithms"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "9"
     },
     {
       "code": "10.1",
+      "name": "Data Types and Records",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Data Types and Records"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "10"
     },
     {
       "code": "10.2",
+      "name": "Arrays",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Arrays"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "10"
     },
     {
       "code": "10.3",
+      "name": "Files",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Files"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "10"
     },
     {
       "code": "10.4",
+      "name": "Introduction to Abstract Data Types (ADT)",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Introduction to Abstract Data Types (ADT)"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "10"
     },
     {
       "code": "11.1",
+      "name": "Programming Basics",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Programming Basics"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "11"
     },
     {
       "code": "11.2",
+      "name": "Constructs",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Constructs"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "11"
     },
     {
       "code": "11.3",
+      "name": "Structured Programming",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Structured Programming"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "11"
     },
     {
       "code": "12.1",
+      "name": "Program Development Life cycle",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Program Development Life cycle"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "12"
     },
     {
       "code": "12.2",
+      "name": "Program Design",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Program Design"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "12"
     },
     {
       "code": "12.3",
+      "name": "Program Testing and Maintenance",
       "paper": "P2",
-      "paperName": "Paper 2: Fundamental Problem-solving and Programming Skills",
-      "name": "Program Testing and Maintenance"
+      "paperName": "Fundamental Problem-solving and Programming Skills",
+      "parent": "12"
     },
     {
       "code": "13.1",
+      "name": "User-defined data types",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "User-defined data types"
+      "paperName": "Advanced Theory",
+      "parent": "13"
     },
     {
       "code": "13.2",
+      "name": "File organisation and access",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "File organisation and access"
+      "paperName": "Advanced Theory",
+      "parent": "13"
     },
     {
       "code": "13.3",
+      "name": "Floating-point numbers, representation and manipulation",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Floating-point numbers, representation and manipulation"
+      "paperName": "Advanced Theory",
+      "parent": "13"
     },
     {
       "code": "14.1",
+      "name": "Protocols",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Protocols"
+      "paperName": "Advanced Theory",
+      "parent": "14"
     },
     {
       "code": "14.2",
+      "name": "Circuit switching, packet switching",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Circuit switching, packet switching"
+      "paperName": "Advanced Theory",
+      "parent": "14"
     },
     {
       "code": "15.1",
+      "name": "Processors, Parallel Processing and Virtual Machines",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Processors, Parallel Processing and Virtual Machines"
+      "paperName": "Advanced Theory",
+      "parent": "15"
     },
     {
       "code": "15.2",
+      "name": "Boolean Algebra and Logic Circuits",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Boolean Algebra and Logic Circuits"
+      "paperName": "Advanced Theory",
+      "parent": "15"
     },
     {
       "code": "16.1",
+      "name": "Purposes of an Operating System (OS)",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Purposes of an Operating System (OS)"
+      "paperName": "Advanced Theory",
+      "parent": "16"
     },
     {
       "code": "16.2",
+      "name": "Translation Software",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Translation Software"
+      "paperName": "Advanced Theory",
+      "parent": "16"
     },
     {
       "code": "17.1",
+      "name": "Encryption, Encryption Protocols and Digital Certificates",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Encryption, Encryption Protocols and Digital certificates"
+      "paperName": "Advanced Theory",
+      "parent": "17"
     },
     {
       "code": "18.1",
+      "name": "Artificial Intelligence (AI)",
       "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Artificial Intelligence (AI)"
+      "paperName": "Advanced Theory",
+      "parent": "18"
     },
     {
       "code": "19.1",
-      "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Algorithms"
+      "name": "Algorithms",
+      "paper": "P4",
+      "paperName": "Practical",
+      "parent": "19"
     },
     {
       "code": "19.2",
-      "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Recursion"
+      "name": "Recursion",
+      "paper": "P4",
+      "paperName": "Practical",
+      "parent": "19"
     },
     {
       "code": "20.1",
-      "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "Programming Paradigms"
+      "name": "Programming Paradigms",
+      "paper": "P4",
+      "paperName": "Practical",
+      "parent": "20"
     },
     {
       "code": "20.2",
-      "paper": "P3",
-      "paperName": "Paper 3: Advanced Theory",
-      "name": "File Processing and Exception Handling"
+      "name": "File Processing and Exception Handling",
+      "paper": "P4",
+      "paperName": "Practical",
+      "parent": "20"
     }
   ]
 }

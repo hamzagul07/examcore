@@ -12,7 +12,8 @@
     "sync-papers:discover": "node scripts/sync-bestexamhelp-papers.mjs --discover",
     "generate-subject-papers-cache": "node scripts/generate-subject-papers-cache.mjs",
     "investigate-mark-schemes": "node scripts/investigate-mark-schemes.mjs",
-    "extract-syllabi": "node scripts/extract-syllabi.mjs"
+    "extract-syllabi": "node scripts/extract-syllabi.mjs",
+    "prewarm-schemes": "node scripts/prewarm-mark-schemes.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.98.0",
@@ -53,6 +54,7 @@
     "@types/three": "^0.184.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

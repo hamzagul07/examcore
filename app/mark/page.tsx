@@ -15,6 +15,12 @@ import {
   PageUploader,
   type UploadPage,
 } from '@/components/upload/PageUploader'
+import { compressImage } from '@/lib/upload/compress-image'
+import {
+  hasCompressingPages,
+  prepareImageFilesForSubmit,
+} from '@/lib/upload/prepare-upload'
+import { formatFileSize } from '@/lib/upload/upload-limits'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 import { SidebarChat } from '@/components/omni-ai/SidebarChat'
 import { createClient } from '@/lib/supabase'
@@ -54,6 +60,7 @@ type MarkingResult = MarkingResultData & {
 export default function MarkPage() {
   const [answerPages, setAnswerPages] = useState<UploadPage[]>([])
   const [questionPhoto, setQuestionPhoto] = useState<File | null>(null)
+  const [questionPhotoCompressing, setQuestionPhotoCompressing] = useState(false)
   const [questionTextInput, setQuestionTextInput] = useState('')
   const [showOptional, setShowOptional] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -365,6 +372,14 @@ export default function MarkPage() {
       setErrorMsg('Upload at least one page of your answer.')
       return
     }
+    if (hasCompressingPages(answerPages)) {
+      setErrorMsg('Still preparing your images — wait a moment.')
+      return
+    }
+    if (questionPhotoCompressing) {
+      setErrorMsg('Still preparing your question photo — wait a moment.')
+      return
+    }
     if (uploadMode === 'whole_paper') {
       setErrorMsg('Use the whole-paper upload area to submit your pages.')
       return
@@ -377,16 +392,32 @@ export default function MarkPage() {
     setResult(null)
 
     try {
+      const { pageFiles, extras, error: payloadError } =
+        await prepareImageFilesForSubmit(
+          answerPages.map((p) => p.file),
+          [questionPhoto]
+        )
+      if (payloadError) {
+        setLoading(false)
+        setMarkProgress(null)
+        setErrorMsg(payloadError)
+        return
+      }
+
+      const compressedQuestion = extras[0] ?? null
+
       const formData = new FormData()
-      answerPages.forEach((p, i) => {
-        formData.append(`pages[${i}]`, p.file)
+      pageFiles.forEach((file, i) => {
+        formData.append(`pages[${i}]`, file)
       })
-      if (answerPages.length === 1) {
-        formData.append('photo', answerPages[0].file)
+      if (pageFiles.length === 1) {
+        formData.append('photo', pageFiles[0])
       }
       formData.append('upload_mode', uploadMode)
       formData.append('stream', '1')
-      if (questionPhoto) formData.append('question_photo', questionPhoto)
+      if (compressedQuestion) {
+        formData.append('question_photo', compressedQuestion)
+      }
       if (questionTextInput.trim()) formData.append('question_text', questionTextInput)
 
       if (selectedSubject && selectedYear !== '' && selectedSession && selectedComponent) {
@@ -857,15 +888,27 @@ export default function MarkPage() {
                       >
                         <UploadCloud className="mx-auto mb-2 h-5 w-5 text-slate-500 transition-colors group-hover:text-emerald-400" />
                         <div className="font-medium text-slate-300">
-                          {questionPhoto ? questionPhoto.name : 'Click to upload'}
+                          {questionPhotoCompressing
+                            ? 'Preparing image…'
+                            : questionPhoto
+                              ? `${questionPhoto.name} · ${formatFileSize(questionPhoto.size)}`
+                              : 'Click to upload'}
                         </div>
                         <input
                           id="question-photo"
                           type="file"
                           accept="image/jpeg,image/png,image/webp"
-                          onChange={(e) =>
-                            setQuestionPhoto(e.target.files?.[0] || null)
-                          }
+                          onChange={(e) => {
+                            const raw = e.target.files?.[0]
+                            if (!raw) {
+                              setQuestionPhoto(null)
+                              return
+                            }
+                            setQuestionPhotoCompressing(true)
+                            void compressImage(raw)
+                              .then((compressed) => setQuestionPhoto(compressed))
+                              .finally(() => setQuestionPhotoCompressing(false))
+                          }}
                           className="hidden"
                         />
                       </label>
@@ -914,7 +957,12 @@ export default function MarkPage() {
                         preventDefault: () => {},
                       } as React.FormEvent)
                     }}
-                    disabled={loading || !answerPages.length}
+                    disabled={
+                      loading ||
+                      !answerPages.length ||
+                      hasCompressingPages(answerPages) ||
+                      questionPhotoCompressing
+                    }
                     className="mt-3 rounded-xl border border-amber-500/40 bg-amber-500/15 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-amber-500/25 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Try again
@@ -926,9 +974,28 @@ export default function MarkPage() {
             {uploadMode === 'single_question' && (
               <motion.button
                 type="submit"
-                disabled={loading || !answerPages.length}
-                whileHover={loading || !answerPages.length ? undefined : { y: -2, scale: 1.01 }}
-                whileTap={loading || !answerPages.length ? undefined : { y: 0, scale: 0.98 }}
+                disabled={
+                  loading ||
+                  !answerPages.length ||
+                  hasCompressingPages(answerPages) ||
+                  questionPhotoCompressing
+                }
+                whileHover={
+                  loading ||
+                  !answerPages.length ||
+                  hasCompressingPages(answerPages) ||
+                  questionPhotoCompressing
+                    ? undefined
+                    : { y: -2, scale: 1.01 }
+                }
+                whileTap={
+                  loading ||
+                  !answerPages.length ||
+                  hasCompressingPages(answerPages) ||
+                  questionPhotoCompressing
+                    ? undefined
+                    : { y: 0, scale: 0.98 }
+                }
                 transition={{ type: 'spring', stiffness: 400, damping: 18 }}
                 className={`ec-btn-primary w-full justify-center text-base ${
                   answerPages.length > 0 && !loading ? 'brand-pulse' : ''

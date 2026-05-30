@@ -1,31 +1,21 @@
 /**
- * Action Plan: 3 personalized "do this next" bullets.
- *
- * Tiered by data density:
- *   - 0 attempts: pure onboarding. We don't have signal yet; nudge them to mark.
- *   - 1-3 attempts: emphasize breadth ("you've started P1, try a P3 topic next").
- *   - 4+ attempts: real diagnostics — biggest blindspot, highest-yield critical
- *     topic, streak/time encouragement.
- *
- * Each tier always returns exactly 3 items so the UI never collapses to fewer
- * cards (which would look broken next to the 3-up grid).
+ * Action Plan: 3 personalized "do this next" bullets (leaf-level).
  */
 
-import type { AttemptLite, TopicMastery } from './mastery'
+import type { AttemptLite, LeafMastery } from './mastery'
+import { MIN_ATTEMPTS_FOR_CONFIDENT_MASTERY } from './mastery'
 
 export type ActionPlanType =
   | 'onboarding'
-  /** Sprint 21: a high-yield topic the student hasn't attempted yet. */
   | 'blindspot'
-  /** Sprint 21: estimate of raw marks currently at risk across critical topics. */
   | 'deficit'
   | 'grade_booster'
   | 'time_warning'
-  /** Sprint 21: nudge to build a daily practice habit when no streak exists. */
   | 'time_optimization'
   | 'streak'
   | 'coverage'
   | 'encouragement'
+  | 'sampled'
 
 export interface ActionPlanItem {
   type: ActionPlanType
@@ -44,20 +34,20 @@ const PAPER_NAMES: Record<string, string> = {
   P6: 'Statistics 2',
 }
 
-function paperLabel(paper: string, masteries: TopicMastery[]): string {
+function paperLabel(paper: string, masteries: LeafMastery[]): string {
   const meta = masteries.find((m) => m.paper === paper)
   return meta?.paperName || PAPER_NAMES[paper] || paper
 }
 
 export function generateActionPlan(
   attempts: AttemptLite[],
-  masteries: TopicMastery[],
+  masteries: LeafMastery[],
   streak: number,
   opts?: { subjectLabel?: string; totalTopics?: number }
 ): ActionPlanItem[] {
   const subjectLabel = opts?.subjectLabel ?? 'Cambridge 9709'
   const totalTopics = opts?.totalTopics ?? 38
-  // ============ TIER 1: cold start ============
+
   if (attempts.length === 0) {
     return [
       {
@@ -70,7 +60,7 @@ export function generateActionPlan(
       {
         type: 'coverage',
         title: 'Aim for breadth, not perfection',
-        body: `The ${subjectLabel} syllabus has ${totalTopics} topics. Even 5 minutes a day across different topics builds coverage fast.`,
+        body: `The ${subjectLabel} syllabus has ${totalTopics} specification leaves. Even 5 minutes a day across different topics builds coverage fast.`,
         ctaText: 'See the syllabus',
         ctaHref: '#mastery-matrix',
       },
@@ -84,7 +74,6 @@ export function generateActionPlan(
     ]
   }
 
-  // ============ TIER 2: warming up ============
   if (attempts.length < 4) {
     const uncoveredPapers = findUncoveredPapers(masteries)
     const items: ActionPlanItem[] = []
@@ -102,7 +91,7 @@ export function generateActionPlan(
       items.push({
         type: 'blindspot',
         title: `Try a ${paperLabel(paper, masteries)} question next`,
-        body: `You haven\u2019t touched any ${paper} topics yet. Mixing papers builds resilience and gives your trajectory chart more signal.`,
+        body: `You haven\u2019t touched any ${paper} leaves yet. Mixing papers builds resilience and gives your trajectory chart more signal.`,
         ctaText: `Mark a ${paper} question`,
         ctaHref: '/mark',
       })
@@ -130,38 +119,28 @@ export function generateActionPlan(
     return items.slice(0, 3)
   }
 
-  // ============ TIER 3: data-driven (Sprint 21 wording) ============
-  //
-  // Three bullet types in priority order:
-  //   1. Syllabus Blindspot — high-yield topic the student hasn't attempted.
-  //   2. Syllabus Deficit  — estimate of raw marks at risk across Critical
-  //      topics. Concrete numeric framing is more motivating than "improve X".
-  //   3. Streak / time_optimization — a habit-driven nudge.
-  //
-  // If any slot can't be filled (e.g. zero Critical topics) we fall back to
-  // grade_booster / encouragement so the 3-up grid never collapses.
   const items: ActionPlanItem[] = []
 
-  // (1) Syllabus Blindspot
   const blindspot = findBiggestBlindspot(attempts, masteries)
   if (blindspot) {
     const paperLabelText = paperLabel(blindspot.paper, masteries)
+    const parentNote =
+      blindspot.parent.code !== blindspot.code
+        ? ` (part of ${blindspot.parent.name})`
+        : ''
     items.push({
       type: 'blindspot',
       title: 'Syllabus Blindspot Detected',
-      body: `You haven\u2019t yet attempted any questions under ${blindspot.name} (${blindspot.code}). This topic appears regularly in ${paperLabelText} papers.`,
-      ctaText: 'Practice this topic',
+      body: `You haven\u2019t attempted any questions on ${blindspot.name} (${blindspot.code}${parentNote}). This appears in ${paperLabelText} papers.`,
+      ctaText: 'Practice this leaf',
       ctaHref: `/mark?topic=${encodeURIComponent(blindspot.code)}`,
     })
   }
 
-  // (2) Syllabus Deficit
   const deficit = buildDeficitItem(masteries)
   if (deficit) {
     items.push(deficit)
   } else {
-    // No critical topics — surface the lowest Proficient instead, framed as a
-    // grade-booster so we still give the student a concrete fix.
     const booster = findGradeBooster(masteries)
     if (booster) {
       items.push({
@@ -174,11 +153,21 @@ export function generateActionPlan(
     }
   }
 
-  // (3) Streak / time_optimization
-  items.push(buildStreakOrHabitItem(streak))
+  const sampled = buildSampledItem(masteries)
+  if (sampled && items.length < 3) {
+    items.push(sampled)
+  } else {
+    items.push(buildStreakOrHabitItem(streak))
+  }
 
-  // Belt-and-braces: if any of the above returned null we fall back gracefully.
   while (items.length < 3) {
+    if (!sampled) {
+      const sampledItem = buildSampledItem(masteries)
+      if (sampledItem) {
+        items.push(sampledItem)
+        continue
+      }
+    }
     items.push({
       type: 'encouragement',
       title: 'Keep the rhythm going',
@@ -191,9 +180,7 @@ export function generateActionPlan(
   return items.slice(0, 3)
 }
 
-// ----------------------------- helpers -----------------------------
-
-function findUncoveredPapers(masteries: TopicMastery[]): string[] {
+function findUncoveredPapers(masteries: LeafMastery[]): string[] {
   const papersWithActivity = new Set(
     masteries.filter((m) => m.attemptsCount > 0).map((m) => m.paper)
   )
@@ -203,9 +190,8 @@ function findUncoveredPapers(masteries: TopicMastery[]): string[] {
 
 function findBiggestBlindspot(
   attempts: AttemptLite[],
-  masteries: TopicMastery[]
-): TopicMastery | null {
-  // "Most-used paper" = the paper holding the most tagged attempts.
+  masteries: LeafMastery[]
+): LeafMastery | null {
   const paperCount: Record<string, number> = {}
   for (const a of attempts) {
     for (const tag of a.syllabus_tags || []) {
@@ -220,27 +206,26 @@ function findBiggestBlindspot(
     )
     if (blank) return blank
   }
-  // Fall back to ANY unattempted topic if their paper is complete.
   return masteries.find((m) => m.level === 'unattempted') || null
 }
 
-function findGradeBooster(masteries: TopicMastery[]): TopicMastery | null {
+function findGradeBooster(masteries: LeafMastery[]): LeafMastery | null {
   const candidates = masteries
-    .filter((m) => m.level === 'critical' && m.attemptsCount > 0)
+    .filter(
+      (m) =>
+        m.level === 'critical' &&
+        m.attemptsCount >= MIN_ATTEMPTS_FOR_CONFIDENT_MASTERY
+    )
     .sort((a, b) => a.percentage - b.percentage)
   return candidates[0] || null
 }
 
-/**
- * Estimate raw marks at risk across Critical topics, framed as a Syllabus
- * Deficit bullet. The "at risk" number is a deliberate approximation: we
- * weight each Critical topic by how far it is below 100% and divide by 20
- * (i.e. assume the typical Critical topic costs ~5 marks if left untouched).
- * It's directional, not precise — Cambridge papers don't have a fixed mark
- * count per topic — but a concrete number reads better than "several".
- */
-function buildDeficitItem(masteries: TopicMastery[]): ActionPlanItem | null {
-  const critical = masteries.filter((m) => m.level === 'critical')
+function buildDeficitItem(masteries: LeafMastery[]): ActionPlanItem | null {
+  const critical = masteries.filter(
+    (m) =>
+      m.level === 'critical' &&
+      m.attemptsCount >= MIN_ATTEMPTS_FOR_CONFIDENT_MASTERY
+  )
   if (critical.length === 0) return null
 
   const totalAtRisk = critical.reduce(
@@ -248,14 +233,27 @@ function buildDeficitItem(masteries: TopicMastery[]): ActionPlanItem | null {
     0
   )
 
-  const featured = critical.slice(0, 3).map((m) => m.name)
+  const featured = critical.slice(0, 3).map((m) => `${m.name} (${m.code})`)
   const moreSuffix = critical.length > 3 ? ', and others' : ''
 
   return {
     type: 'deficit',
     title: 'Syllabus Deficit',
-    body: `Approximately ${totalAtRisk} raw marks are currently at risk based on ${critical.length} Critical topic${critical.length === 1 ? '' : 's'}: ${featured.join(', ')}${moreSuffix}.`,
-    ctaText: 'Review critical topics',
+    body: `Approximately ${totalAtRisk} raw marks are at risk across ${critical.length} critical leaf${critical.length === 1 ? '' : 'es'}: ${featured.join(', ')}${moreSuffix}.`,
+    ctaText: 'Review critical leaves',
+    ctaHref: '/dashboard/progress#mastery-matrix',
+  }
+}
+
+function buildSampledItem(masteries: LeafMastery[]): ActionPlanItem | null {
+  const sampled = masteries.filter((m) => m.level === 'sampled')
+  if (sampled.length < 5) return null
+
+  return {
+    type: 'sampled',
+    title: 'Confirm your sampled topics',
+    body: `You\u2019ve touched ${sampled.length} leaves with only 1–2 attempts each. Practice them further (${MIN_ATTEMPTS_FOR_CONFIDENT_MASTERY}+ attempts per leaf) to confirm mastery.`,
+    ctaText: 'See sampled leaves',
     ctaHref: '/dashboard/progress#mastery-matrix',
   }
 }

@@ -8,15 +8,7 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-const SUBJECT_CODE_MAP: Record<string, string> = {
-  '9709': 'Mathematics',
-  '9231': 'Further Mathematics',
-  '9702': 'Physics',
-  '9701': 'Chemistry',
-  '9700': 'Biology',
-  '9618': 'Computer Science',
-  '9608': 'Computer Science (legacy)',
-}
+import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 
 const SEASON_MAP: Record<string, string> = {
   s: 'May/June',

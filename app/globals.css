@@ -166,6 +166,43 @@
   color: var(--ec-text-primary) !important;
 }
 
+/* Zen: remap accent colors designed for dark UI → readable on warm sand */
+[data-ec-theme='zen'] .text-emerald-100,
+[data-ec-theme='zen'] .text-emerald-200,
+[data-ec-theme='zen'] .text-emerald-300 {
+  color: var(--ec-chip-success-text) !important;
+}
+
+[data-ec-theme='zen'] .text-emerald-400,
+[data-ec-theme='zen'] .text-emerald-500 {
+  color: var(--ec-brand) !important;
+}
+
+[data-ec-theme='zen'] .text-amber-100,
+[data-ec-theme='zen'] .text-amber-200,
+[data-ec-theme='zen'] .text-amber-300,
+[data-ec-theme='zen'] .text-amber-400 {
+  color: var(--ec-chip-warning-text) !important;
+}
+
+[data-ec-theme='zen'] .text-cyan-100,
+[data-ec-theme='zen'] .text-cyan-200,
+[data-ec-theme='zen'] .text-cyan-300,
+[data-ec-theme='zen'] .text-cyan-400 {
+  color: var(--ec-chip-info-text) !important;
+}
+
+[data-ec-theme='zen'] .text-red-200,
+[data-ec-theme='zen'] .text-red-300,
+[data-ec-theme='zen'] .text-red-400 {
+  color: var(--ec-chip-critical-text) !important;
+}
+
+[data-ec-theme='zen'] .text-violet-300,
+[data-ec-theme='zen'] .text-violet-400 {
+  color: #6b5b8a !important;
+}
+
 .hero-bg,
 .mesh-bg {
   background: transparent;

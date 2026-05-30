@@ -71,7 +71,7 @@ export function ErrorBox({ message }: { message: string }) {
 
 export function SuccessBox({ message }: { message: string }) {
   return (
-    <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 text-sm leading-relaxed text-emerald-300 backdrop-blur">
+    <div className="ec-highlight-success leading-relaxed">
       {message}
     </div>
   )

@@ -2,24 +2,24 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { Grid3X3 } from 'lucide-react'
+import { ChevronDown, ChevronRight, Grid3X3 } from 'lucide-react'
 import {
   MASTERY_STYLES,
+  formatParentLeafBreakdown,
   type AttemptLite,
-  type TopicMastery,
+  type LeafMastery,
+  type ParentMastery,
 } from '@/lib/mastery'
 import { EmptyState } from './EmptyState'
 
 type Props = {
-  masteries: TopicMastery[]
+  parentMasteries: ParentMastery[]
   attempts: AttemptLite[]
   hasAnyData: boolean
   subjectCode: string
 }
 
-const PAPER_ORDER = ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'AS', 'A2']
-
-function chipClass(level: TopicMastery['level']): string {
+function chipClass(level: LeafMastery['level']): string {
   switch (level) {
     case 'exam_ready':
       return 'ec-chip ec-chip-success'
@@ -27,44 +27,60 @@ function chipClass(level: TopicMastery['level']): string {
       return 'ec-chip ec-chip-warning'
     case 'critical':
       return 'ec-chip ec-chip-critical'
+    case 'sampled':
+      return 'ec-chip ec-chip-sampled'
     default:
       return 'ec-chip ec-chip-neutral'
   }
 }
 
 export function MasteryMatrix({
-  masteries,
+  parentMasteries,
   attempts,
   hasAnyData,
+  subjectCode,
 }: Props) {
-  const [selected, setSelected] = useState<TopicMastery | null>(null)
+  const [selected, setSelected] = useState<LeafMastery | null>(null)
+  const [expanded, setExpanded] = useState<Set<string>>(() => new Set())
+
+  const isMathFlat = subjectCode === '9709'
 
   const papers = useMemo(() => {
     const seen = new Set<string>()
     const ordered: string[] = []
-    for (const p of PAPER_ORDER) {
-      if (masteries.some((m) => m.paper === p)) {
+    const order = ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'AS', 'A2']
+    for (const p of order) {
+      if (parentMasteries.some((m) => m.paper === p)) {
         seen.add(p)
         ordered.push(p)
       }
     }
-    for (const m of masteries) {
+    for (const m of parentMasteries) {
       if (!seen.has(m.paper)) {
         seen.add(m.paper)
         ordered.push(m.paper)
       }
     }
     return ordered
-  }, [masteries])
+  }, [parentMasteries])
 
   const byPaper = useMemo(() => {
-    const map = new Map<string, TopicMastery[]>()
+    const map = new Map<string, ParentMastery[]>()
     for (const paper of papers) map.set(paper, [])
-    for (const m of masteries) {
+    for (const m of parentMasteries) {
       map.get(m.paper)?.push(m)
     }
     return map
-  }, [masteries, papers])
+  }, [parentMasteries, papers])
+
+  const toggleParent = (code: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev)
+      if (next.has(code)) next.delete(code)
+      else next.add(code)
+      return next
+    })
+  }
 
   if (!hasAnyData) {
     return (
@@ -88,13 +104,15 @@ export function MasteryMatrix({
         </div>
         <h2 className="text-2xl font-bold tracking-tight">Topic-by-topic strength</h2>
         <p className="mt-1 text-sm" style={{ color: 'var(--ec-text-secondary)' }}>
-          Tap a topic to see recent attempts. Colors map to exam readiness.
+          {isMathFlat
+            ? 'Each topic is scored independently. Tap for attempt history.'
+            : 'Expand a section to see leaf-level mastery. One tagged question affects only that leaf.'}
         </p>
 
         <div className="mt-6 space-y-6">
           {papers.map((paper) => {
-            const topics = byPaper.get(paper) || []
-            if (topics.length === 0) return null
+            const parents = byPaper.get(paper) || []
+            if (parents.length === 0) return null
             return (
               <div key={paper}>
                 <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider">
@@ -103,24 +121,114 @@ export function MasteryMatrix({
                     className="ml-2 font-normal normal-case"
                     style={{ color: 'var(--ec-text-secondary)' }}
                   >
-                    {topics[0]?.paperName}
+                    {parents[0]?.paperName}
                   </span>
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {topics.map((topic) => {
-                    const style = MASTERY_STYLES[topic.level]
+                <div className="space-y-2">
+                  {parents.map((parent) => {
+                    const style = MASTERY_STYLES[parent.level]
+                    const isOpen =
+                      expanded.has(parent.code) ||
+                      (isMathFlat && parent.leaves.length <= 1)
+                    const singleLeaf =
+                      isMathFlat && parent.leaves.length === 1
+                    const leaf = parent.leaves[0]
+
+                    if (singleLeaf && leaf) {
+                      const leafStyle = MASTERY_STYLES[leaf.level]
+                      return (
+                        <button
+                          key={parent.code}
+                          type="button"
+                          onClick={() => setSelected(leaf)}
+                          className={`flex w-full items-center gap-2 rounded-xl border px-3 py-2.5 text-left transition-all hover:-translate-y-0.5 ${chipClass(leaf.level)}`}
+                          style={{ borderColor: 'var(--ec-border)' }}
+                          title={`${leaf.name} — ${leafStyle.label}`}
+                        >
+                          <span
+                            className={`h-2 w-2 shrink-0 rounded-full ${leafStyle.dot}`}
+                          />
+                          <span className="font-mono text-xs opacity-70">
+                            {leaf.code}
+                          </span>
+                          <span className="flex-1 truncate text-sm font-medium">
+                            {leaf.name}
+                          </span>
+                          <span className="text-xs font-semibold">
+                            {leaf.attemptsCount > 0
+                              ? `${Math.round(leaf.percentage)}%`
+                              : leafStyle.label}
+                          </span>
+                        </button>
+                      )
+                    }
+
                     return (
-                      <button
-                        key={topic.code}
-                        type="button"
-                        onClick={() => setSelected(topic)}
-                        className={`${chipClass(topic.level)} transition-all duration-300 hover:-translate-y-0.5`}
-                        title={`${topic.name} — ${style.label}`}
+                      <div
+                        key={parent.code}
+                        className="overflow-hidden rounded-xl border"
+                        style={{ borderColor: 'var(--ec-border)' }}
                       >
-                        <span className={`h-1.5 w-1.5 rounded-full ${style.dot}`} />
-                        <span className="font-mono opacity-70">{topic.code}</span>
-                        <span>{Math.round(topic.percentage)}%</span>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => toggleParent(parent.code)}
+                          className="flex w-full items-center gap-3 px-3 py-3 text-left transition-colors hover:bg-white/[0.03]"
+                        >
+                          {isOpen ? (
+                            <ChevronDown className="h-4 w-4 shrink-0 text-slate-400" />
+                          ) : (
+                            <ChevronRight className="h-4 w-4 shrink-0 text-slate-400" />
+                          )}
+                          <span
+                            className={`h-2 w-2 shrink-0 rounded-full ${style.dot}`}
+                          />
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-sm font-semibold">
+                              {parent.name}
+                            </p>
+                            <p
+                              className="mt-0.5 truncate text-xs"
+                              style={{ color: 'var(--ec-text-secondary)' }}
+                            >
+                              {formatParentLeafBreakdown(parent.leafCounts)}
+                            </p>
+                          </div>
+                          <span className={`shrink-0 text-xs ${chipClass(parent.level)}`}>
+                            {style.label}
+                          </span>
+                        </button>
+                        {isOpen && (
+                          <div className="flex flex-wrap gap-2 border-t px-3 py-3" style={{ borderColor: 'var(--ec-border)' }}>
+                            {parent.leaves.map((leaf) => {
+                              const leafStyle = MASTERY_STYLES[leaf.level]
+                              return (
+                                <button
+                                  key={leaf.code}
+                                  type="button"
+                                  onClick={() => setSelected(leaf)}
+                                  className={`${chipClass(leaf.level)} transition-all duration-300 hover:-translate-y-0.5`}
+                                  title={`${leaf.name} — ${leafStyle.label} (${leaf.attemptsCount} attempts)`}
+                                >
+                                  <span
+                                    className={`h-1.5 w-1.5 rounded-full ${leafStyle.dot}`}
+                                  />
+                                  <span className="font-mono opacity-70">
+                                    {leaf.code}
+                                  </span>
+                                  <span className="max-w-[140px] truncate">
+                                    {leaf.name}
+                                  </span>
+                                  {leaf.attemptsCount > 0 && (
+                                    <span className="opacity-80">
+                                      {Math.round(leaf.percentage)}%
+                                    </span>
+                                  )}
+                                </button>
+                              )
+                            })}
+                          </div>
+                        )}
+                      </div>
                     )
                   })}
                 </div>
@@ -148,7 +256,7 @@ function TopicDetailModal({
   attempts,
   onClose,
 }: {
-  topic: TopicMastery
+  topic: LeafMastery
   attempts: AttemptLite[]
   onClose: () => void
 }) {
@@ -160,14 +268,24 @@ function TopicDetailModal({
       role="dialog"
       aria-modal="true"
     >
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={onClose}
+      />
       <div className="ec-card relative w-full max-w-lg overflow-hidden p-6">
         <p className="ec-label-tech mb-2">{topic.code}</p>
         <h3 className="text-xl font-bold">{topic.name}</h3>
         <p className="mt-1 text-sm" style={{ color: 'var(--ec-text-secondary)' }}>
-          {topic.paperName} ·{' '}
+          {topic.parent.name} · {topic.paperName} ·{' '}
           <span className={chipClass(topic.level)}>{style.label}</span>
         </p>
+        {topic.level === 'sampled' && (
+          <p className="mt-2 text-xs text-sky-300/90">
+            Only {topic.attemptsCount} attempt
+            {topic.attemptsCount === 1 ? '' : 's'} so far — mark 2+ more on this
+            leaf to confirm mastery.
+          </p>
+        )}
 
         <div className="mt-4 grid grid-cols-3 gap-3 text-center">
           <Stat label="Score" value={`${Math.round(topic.percentage)}%`} />
@@ -197,7 +315,7 @@ function TopicDetailModal({
           </ul>
         ) : (
           <p className="mt-4 text-sm" style={{ color: 'var(--ec-text-secondary)' }}>
-            No attempts tagged to this topic yet.
+            No attempts tagged to this leaf yet.
           </p>
         )}
 
@@ -217,7 +335,10 @@ function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div
       className="rounded-xl border px-2 py-3"
-      style={{ borderColor: 'var(--ec-border)', background: 'var(--ec-surface-raised)' }}
+      style={{
+        borderColor: 'var(--ec-border)',
+        background: 'var(--ec-surface-raised)',
+      }}
     >
       <p
         className="text-[10px] font-semibold uppercase tracking-wider"

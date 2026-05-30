@@ -31,6 +31,7 @@ const ICONS: Record<ActionPlanType, LucideIcon> = {
   streak: Flame,
   coverage: Map,
   encouragement: Sparkles,
+  sampled: Sparkles,
 }
 
 const TINTS: Record<
@@ -91,6 +92,12 @@ const TINTS: Record<
     iconColor: 'text-emerald-400',
     chip: 'bg-emerald-950 text-emerald-400 border-emerald-900',
   },
+  sampled: {
+    iconBg: 'bg-sky-500/10 shadow-[0_0_20px_rgba(56,189,248,0.3)]',
+    iconRing: 'border-sky-500/30',
+    iconColor: 'text-sky-400',
+    chip: 'bg-sky-950 text-sky-300 border-sky-900',
+  },
 }
 
 const TYPE_LABELS: Record<ActionPlanType, string> = {
@@ -103,6 +110,7 @@ const TYPE_LABELS: Record<ActionPlanType, string> = {
   streak: 'Streak',
   coverage: 'Coverage',
   encouragement: 'Keep going',
+  sampled: 'Confirm mastery',
 }
 
 export function ActionPlan({ items }: Props) {

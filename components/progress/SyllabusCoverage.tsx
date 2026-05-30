@@ -2,14 +2,14 @@ import { Target } from 'lucide-react'
 import {
   countMasteries,
   MASTERY_STYLES,
-  type TopicMastery,
+  type LeafMastery,
 } from '@/lib/mastery'
 import { Card } from '@/components/ui/Card'
 import { Progress } from '@/components/ui/Progress'
 import { AnimatedCoverageNumber } from './SyllabusCoverage.client'
 
 type Props = {
-  masteries: TopicMastery[]
+  masteries: LeafMastery[]
   coverage: number
   hasAnyData: boolean
   subjectLabel: string
@@ -64,7 +64,7 @@ export function SyllabusCoverage({
             <p className="mt-1 text-sm text-slate-500">
               {hasAnyData ? (
                 <>
-                  {mastered} of {totalTopics} topics at{' '}
+                  {mastered} of {totalTopics} leaves at{' '}
                   <span className="font-semibold text-slate-300">
                     Proficient or Exam Ready
                   </span>
@@ -104,11 +104,12 @@ function CoverageStats({
   const items: Array<{ key: keyof typeof counts; label: string }> = [
     { key: 'exam_ready', label: 'Exam Ready' },
     { key: 'proficient', label: 'Proficient' },
+    { key: 'sampled', label: 'Sampled' },
     { key: 'critical', label: 'Critical' },
     { key: 'unattempted', label: 'Unattempted' },
   ]
   return (
-    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5 sm:gap-3">
       {items.map(({ key, label }) => {
         const style = MASTERY_STYLES[key]
         return (

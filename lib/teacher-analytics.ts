@@ -170,7 +170,7 @@ export function computeStudentQuadrants(
     }
     const coverage = (attemptedTopics.size / TOTAL_SYLLABUS_TOPICS) * 100
 
-    const masteries = calculateMastery(studentAttempts, CAMBRIDGE_9709_SYLLABUS)
+    const masteries = calculateMastery(studentAttempts, '9709')
     const critical = masteries
       .filter((m) => m.attemptsCount > 0)
       .sort((a, b) => a.percentage - b.percentage)

@@ -99,6 +99,10 @@ export function ChatPanel({
           messages: messages.slice(-8),
           context,
           query: text,
+          attemptId:
+            context.type === 'marking_result'
+              ? context.data.attemptId
+              : undefined,
         }),
       })
 

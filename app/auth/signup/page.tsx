@@ -170,7 +170,11 @@ function SignUpForm() {
     // email and `data.session` is null. We surface the same "check your email"
     // state. If email confirmation is OFF, the user is signed in immediately.
     if (!data.session) {
-      setSent(true)
+      const params = new URLSearchParams({ email })
+      if (intentDestination !== '/onboarding') {
+        params.set('next', intentDestination)
+      }
+      router.push(`/auth/verify-email?${params.toString()}`)
       return
     }
 

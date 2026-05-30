@@ -34,6 +34,10 @@ export type AIContextType =
         score: string
       }
     }
+  | {
+      type: 'marking_result'
+      data: { attemptId: string }
+    }
   | { type: 'marking'; data: { mode: 'past_paper' | 'general' } }
   /** Scaffolded — activates when teacher dashboard pages ship. */
   | { type: 'teacher_dashboard'; data: { classMetrics?: unknown } }
@@ -64,4 +68,6 @@ export interface OmniAIRequestBody {
   query: string
   context: AIContextType
   messages?: Array<{ role: 'user' | 'assistant'; content: string }>
+  /** Optional — server loads this attempt for the authenticated user when context is marking_result. */
+  attemptId?: string
 }

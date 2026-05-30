@@ -25,6 +25,11 @@ const CONTEXT_SUGGESTIONS: Record<string, string[]> = {
     'Explain step 3',
     'How could I improve?',
   ],
+  marking_result: [
+    'Why did I lose M1?',
+    'What should I fix in my working?',
+    'How do I get full marks next time?',
+  ],
   marking: ['What does this question test?', 'Tips for this topic'],
   teacher_dashboard: [
     'Draft parent email',

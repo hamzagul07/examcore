@@ -62,6 +62,8 @@ export async function proxy(request: NextRequest) {
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = '/auth/signin'
     redirectUrl.search = ''
+    const intended = request.nextUrl.pathname + request.nextUrl.search
+    redirectUrl.searchParams.set('next', intended)
     return NextResponse.redirect(redirectUrl)
   }
 

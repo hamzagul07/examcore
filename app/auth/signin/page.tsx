@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { Suspense, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
@@ -14,15 +14,47 @@ import {
   ErrorBox,
   SubmitButton,
 } from '@/components/AuthFormBits'
+import { isSafeNextPath, sanitizeNextPath } from '@/lib/auth-redirect'
 
 export default function SignInPage() {
+  return (
+    <Suspense fallback={<SignInSkeleton />}>
+      <SignInForm />
+    </Suspense>
+  )
+}
+
+function SignInSkeleton() {
+  return (
+    <AuthShell>
+      <p className="ec-label-tech mb-3">WELCOME BACK</p>
+      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+        Sign in to <span className="ec-text-gradient">Examcore</span>
+      </h1>
+      <p className="leading-relaxed text-slate-400">Loading...</p>
+    </AuthShell>
+  )
+}
+
+function SignInForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const nextParam = searchParams.get('next')
+
   const [method, setMethod] = useState<AuthMethod>('magic')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+
+  function callbackUrl(): string {
+    const origin = window.location.origin
+    if (isSafeNextPath(nextParam)) {
+      return `${origin}/auth/callback?next=${encodeURIComponent(nextParam)}`
+    }
+    return `${origin}/auth/callback`
+  }
 
   async function handleMagicLink(e: React.FormEvent) {
     e.preventDefault()
@@ -37,7 +69,7 @@ export default function SignInPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
+        emailRedirectTo: callbackUrl(),
       },
     })
 
@@ -70,10 +102,14 @@ export default function SignInPage() {
       setErrorMsg(error.message)
       return
     }
-    // Middleware decides whether to send them to /onboarding or /dashboard.
-    router.push('/dashboard')
+
+    router.push(sanitizeNextPath(nextParam, '/dashboard'))
     router.refresh()
   }
+
+  const signupHref = isSafeNextPath(nextParam)
+    ? `/auth/signup?redirect=${encodeURIComponent(nextParam)}`
+    : '/auth/signup'
 
   return (
     <AuthShell>
@@ -165,7 +201,7 @@ export default function SignInPage() {
           <p className="mt-6 text-center text-sm text-slate-400">
             Don&apos;t have an account?{' '}
             <Link
-              href="/auth/signup"
+              href={signupHref}
               className="font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
             >
               Sign up

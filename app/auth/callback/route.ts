@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
+import { isSafeNextPath } from '@/lib/auth-redirect'
 
 /**
  * Lands here after a magic-link click, password-signup confirmation, or
@@ -28,8 +29,8 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  // Explicit `next` (e.g. password recovery) always wins.
-  if (next) {
+  // Explicit `next` (e.g. password recovery, deep-link after signin) always wins.
+  if (next && isSafeNextPath(next)) {
     return NextResponse.redirect(`${requestUrl.origin}${next}`)
   }
 

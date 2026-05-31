@@ -12,13 +12,13 @@ export const STUDY_TIPS: Record<string, string> = {
     'When completing the square on $ax^2 + bx + c$, factor out the $a$ from the $x^2$ and $x$ terms first — then complete inside the bracket. Half of mistakes happen from skipping that factoring step.',
   '9709:1.2':
     'For inverse functions, state the domain restriction before finding $f^{-1}$. Examiners deduct when students invert without checking one-to-one behaviour on the given domain.',
-  '9709:1.4':
-    'When solving $\\sin\\theta = k$ over $0 \\le \\theta \\le 2\\pi$, find ALL solutions — students typically give one and forget the second by symmetry. The mark scheme awards the second solution separately.',
   '9709:1.5':
     'When solving $\\sin\\theta = k$ over $0 \\le \\theta \\le 2\\pi$, find ALL solutions — students typically give one and forget the second by symmetry. The mark scheme awards the second solution separately.',
   '9709:1.6':
-    'For implicit differentiation, write $\\frac{dy}{dx}$ as a separate factor when differentiating $y^2 \\to 2y \\cdot \\frac{dy}{dx}$. Half of students drop the chain rule and lose the method mark.',
+    'For arithmetic series, write out the first three terms before applying the sum formula. Students often confuse $a + (n-1)d$ (nth term) with $\\frac{n}{2}[2a + (n-1)d]$ (sum) — mixing them is a common method-mark loss.',
   '9709:1.7':
+    'For implicit differentiation, write $\\frac{dy}{dx}$ as a separate factor when differentiating $y^2 \\to 2y \\cdot \\frac{dy}{dx}$. Half of students drop the chain rule and lose the method mark.',
+  '9709:1.8':
     'Integration marks split into antiderivative (M1) and simplified result (A1). Even with the integral correct, examiners deduct if you leave $+C$ off indefinite integrals or skip evaluating limits properly on definite ones.',
 
   // ── Chemistry 9701 ───────────────────────────────────────────────────────

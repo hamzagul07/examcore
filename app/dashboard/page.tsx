@@ -427,6 +427,9 @@ export default async function DashboardPage() {
                                     syllabus_tags?: string[] | null
                                   }).syllabus_tags!
                                 }
+                                subjectCode={
+                                  ms?.paper_code?.split('/')[0] || undefined
+                                }
                                 max={2}
                                 size="sm"
                               />

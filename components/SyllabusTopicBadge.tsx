@@ -1,12 +1,12 @@
 import {
   getSyllabusTopicByCode as get9709Topic,
-  CAMBRIDGE_9709_SYLLABUS,
   type SyllabusCode,
 } from '@/lib/syllabus'
 import { getSyllabusTopicByCode } from '@/lib/syllabi'
 
 type Props = {
   code: SyllabusCode
+  /** Cambridge subject code (e.g. 9701). Required for correct topic names. */
   subjectCode?: string
   size?: 'sm' | 'md'
   /** If true, hide the topic name and only render the numeric code. */
@@ -25,26 +25,51 @@ const paperColors: Record<string, string> = {
   P4: 'bg-orange-500/10 text-orange-300 border-orange-500/30',
   P5: 'bg-violet-500/10 text-violet-300 border-violet-500/30',
   P6: 'bg-pink-500/10 text-pink-300 border-pink-500/30',
+  AS: 'bg-teal-500/10 text-teal-300 border-teal-500/30',
+  A2: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30',
+}
+
+const FALLBACK_CHIP =
+  'border-white/10 bg-white/5 text-slate-300 border backdrop-blur'
+
+function lookupTopic(
+  subjectCode: string | undefined,
+  code: SyllabusCode
+): { paper: string; paperName: string; name: string } | null {
+  if (!subjectCode) return null
+  if (subjectCode === '9709') {
+    return get9709Topic(code) ?? null
+  }
+  const topic = getSyllabusTopicByCode(subjectCode, code)
+  return topic ?? null
 }
 
 export function SyllabusTopicBadge({
   code,
-  subjectCode = '9709',
+  subjectCode,
   size = 'sm',
   compact = false,
 }: Props) {
-  const topic =
-    subjectCode === '9709'
-      ? get9709Topic(code)
-      : getSyllabusTopicByCode(subjectCode, code) ?? get9709Topic(code)
-  if (!topic) return null
-
+  const topic = lookupTopic(subjectCode, code)
   const sizeClasses =
     size === 'sm' ? 'text-xs px-2.5 py-0.5' : 'text-sm px-3 py-1'
 
+  if (!topic) {
+    return (
+      <span
+        className={`inline-flex items-center gap-1.5 rounded-full border font-medium tracking-tight ${FALLBACK_CHIP} ${sizeClasses}`}
+        title={subjectCode ? `${subjectCode} • ${code}` : code}
+      >
+        <span className="font-mono opacity-80">{code}</span>
+      </span>
+    )
+  }
+
+  const chipClass = paperColors[topic.paper] ?? FALLBACK_CHIP
+
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border font-medium tracking-tight backdrop-blur transition-transform duration-200 hover:scale-[1.03] ${paperColors[topic.paper]} ${sizeClasses}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border font-medium tracking-tight transition-transform duration-200 hover:scale-[1.03] ${chipClass} ${sizeClasses}`}
       title={`${topic.paperName} • ${topic.name}`}
     >
       <span className="font-mono opacity-60">{code}</span>
@@ -59,10 +84,12 @@ export function SyllabusTopicBadge({
  */
 export function SyllabusTopicBadgeList({
   codes,
+  subjectCode,
   max = 2,
   size = 'sm',
 }: {
   codes: SyllabusCode[]
+  subjectCode?: string
   max?: number
   size?: 'sm' | 'md'
 }) {
@@ -74,7 +101,12 @@ export function SyllabusTopicBadgeList({
   return (
     <div className="flex flex-wrap items-center gap-1.5">
       {visible.map((code) => (
-        <SyllabusTopicBadge key={code} code={code} size={size} />
+        <SyllabusTopicBadge
+          key={code}
+          code={code}
+          subjectCode={subjectCode}
+          size={size}
+        />
       ))}
       {overflow > 0 && (
         <span

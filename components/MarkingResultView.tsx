@@ -10,6 +10,7 @@ import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { AnimatedScore } from '@/components/effects/AnimatedScore'
 import { Progress } from '@/components/ui/Progress'
 import type { SyllabusCode } from '@/lib/syllabus'
+import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import type { LorBandResult } from '@/lib/marking/types'
 import {
   ERROR_LABELS,
@@ -49,6 +50,8 @@ export type MarkingResultData = {
     question_number: string
   } | null
   syllabus_tags?: SyllabusCode[] | null
+  /** Cambridge subject code (9701, 9709, …) for syllabus badge lookups. */
+  subject_code?: string | null
 }
 
 export function MarkingResultView({
@@ -60,6 +63,13 @@ export function MarkingResultView({
   attemptId?: string | null
 }) {
   const [showOCR, setShowOCR] = useState(false)
+
+  const badgeSubjectCode =
+    resolveMarkResultSubjectCode({
+      subject_code: result.subject_code,
+      paper_code: result.detected_paper?.paper_code,
+      syllabus_tags: result.syllabus_tags,
+    }) ?? undefined
 
   const percentage = Math.round((result.marks_earned / result.total_marks) * 100)
 
@@ -194,7 +204,12 @@ export function MarkingResultView({
           <p className="ec-label-tech mb-3">TOPICS COVERED</p>
           <div className="flex flex-wrap gap-2">
             {result.syllabus_tags.map((code) => (
-              <SyllabusTopicBadge key={code} code={code} size="md" />
+              <SyllabusTopicBadge
+                key={code}
+                code={code}
+                subjectCode={badgeSubjectCode}
+                size="md"
+              />
             ))}
           </div>
         </div>

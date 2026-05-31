@@ -39,7 +39,7 @@ export function RichTextRenderer({
   return (
     <div className={`${proseClass} ${className}`.trim()}>
       <ReactMarkdown
-        remarkPlugins={[[remarkMath, { singleDollarTextMath: false }], remarkGfm]}
+        remarkPlugins={[[remarkMath, { singleDollarTextMath: true }], remarkGfm]}
         rehypePlugins={[rehypeKatex]}
         components={components}
       >

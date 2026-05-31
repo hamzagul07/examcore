@@ -4,14 +4,20 @@
  * - Real math: $11{,}900 \\times \\$40 = \\$476{,}000$
  * - Stray $ (e.g. "85 - x$") that swallow paragraphs into one math node
  *
- * remark-math with singleDollarTextMath treats every $...$ as KaTeX, which
- * produces italic squashed prose. We normalize before render.
+ * The renderer (RichTextRenderer) runs remark-math with
+ * `singleDollarTextMath: true`, so every UNESCAPED `$...$` is treated as
+ * inline KaTeX. This normalizer prepares the text so that:
+ * - genuine math (inline `$...$` / `\\(...\\)`, block `$$...$$`) is preserved
+ *   verbatim for KaTeX, even when it embeds escaped currency like `\\$40`,
+ * - currency / non-math `$...$` is rendered as plain text,
+ * - any stray/leftover `$` is escaped (`\\$`) so it never opens math mode.
+ *
+ * Matching is escape-aware: an inner `\\$` is a literal dollar, not a math
+ * delimiter, so `$\\$152{,}000$` and `$... \\$40 ... \\$476{,}000$` parse
+ * correctly instead of breaking at the first embedded `$`.
  */
 
-const BLOCK_STASH = '\x00BLK'
-const INLINE_STASH = '\x00INL'
-
-/** LaTeX with operators/commands — render with KaTeX via \( \). */
+/** True when the delimiter contents are genuine math (vs currency/numbers). */
 export function isRealMath(inner: string): boolean {
   const s = inner.trim()
   if (!s) return false
@@ -49,57 +55,51 @@ export function formatPlainCurrency(inner: string): string {
     .trim()
 }
 
-function stashBlockMath(text: string): { text: string; blocks: string[] } {
-  const blocks: string[] = []
-  const out = text.replace(/\$\$([\s\S]+?)\$\$/g, (_, m) => {
-    blocks.push(m)
-    return `${BLOCK_STASH}${blocks.length - 1}\x00`
-  })
-  return { text: out, blocks }
-}
-
-function restoreBlockMath(text: string, blocks: string[]): string {
-  return text.replace(
-    new RegExp(`${BLOCK_STASH}(\\d+)\\x00`, 'g'),
-    (_, i) => `$$${blocks[parseInt(i, 10)]}$$`
-  )
-}
-
-function convertDollarPairs(text: string): string {
-  return text.replace(/\$([^$\n]+?)\$/g, (full, inner: string) => {
-    if (isRealMath(inner)) {
-      return `\\(${inner}\\)`
-    }
-    return formatPlainCurrency(inner)
-  })
-}
-
-function normalizeParenMath(text: string): string {
-  return text.replace(/\\\(([\s\S]*?)\\\)/g, (full, inner: string) => {
-    if (isRealMath(inner)) return full
-    return formatPlainCurrency(inner)
-  })
-}
-
-/** Escape $ not part of $$ blocks so remark-math never opens math mode on them. */
-function escapeRemainingDollars(text: string): string {
-  const parts = text.split(/\$\$/)
-  return parts
-    .map((part, i) => {
-      if (i % 2 === 1) return part
-      return part.replace(/\$/g, '\\$')
-    })
-    .join('$$')
-}
+const STASH_OPEN = '\x00'
+const STASH_CLOSE = '\x01'
 
 export function normalizeMarkingText(text: string): string {
   if (!text) return text
 
-  let { text: working, blocks } = stashBlockMath(text)
-  working = convertDollarPairs(working)
-  working = restoreBlockMath(working, blocks)
-  working = normalizeParenMath(working)
-  working = escapeRemainingDollars(working)
+  const stash: string[] = []
+  const stashMath = (latex: string, display: boolean): string => {
+    // A literal `$` inside a `$...$` span would prematurely close it in
+    // remark-math (it ignores the backslash escape). Render embedded currency
+    // dollars via KaTeX's `\textdollar`, which needs no `$` character.
+    const safe = latex.replace(/\\\$/g, '\\textdollar ').replace(/\$/g, '\\textdollar ')
+    stash.push(display ? `$$${safe}$$` : `$${safe}$`)
+    return `${STASH_OPEN}${stash.length - 1}${STASH_CLOSE}`
+  }
+
+  let working = text
+
+  // 1. Block math `$$...$$` — stash verbatim for KaTeX.
+  working = working.replace(/\$\$([\s\S]+?)\$\$/g, (_full, inner: string) =>
+    stashMath(inner, true)
+  )
+
+  // 2. Inline math `$...$`, escape-aware: an inner `\$` is a literal dollar.
+  //    Opening/closing `$` must not be escaped.
+  working = working.replace(
+    /(?<!\\)\$((?:\\.|[^$\n])+?)(?<!\\)\$/g,
+    (_full, inner: string) =>
+      isRealMath(inner) ? stashMath(inner, false) : formatPlainCurrency(inner)
+  )
+
+  // 3. Inline math written as `\(...\)` (Claude sometimes emits this directly).
+  working = working.replace(/\\\(([\s\S]*?)\\\)/g, (full, inner: string) =>
+    isRealMath(inner) ? stashMath(inner, false) : formatPlainCurrency(inner)
+  )
+
+  // 4. Escape every remaining unescaped `$` (currency / stray) so remark-math
+  //    never opens math mode on them.
+  working = working.replace(/(?<!\\)\$/g, '\\$')
+
+  // 5. Restore stashed real math verbatim (its `$` delimiters stay unescaped).
+  working = working.replace(
+    new RegExp(`${STASH_OPEN}(\\d+)${STASH_CLOSE}`, 'g'),
+    (_m, i: string) => stash[parseInt(i, 10)]
+  )
 
   return working
 }

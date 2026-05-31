@@ -1,5 +1,18 @@
 import type { MarkingStyle } from './types'
 
+const MATH_NOTATION_BLOCK = `MATH NOTATION IN EXTRACTED TEXT:
+For question_text, mark scheme descriptions, and any extracted math, wrap every mathematical expression in LaTeX delimiters so it renders as math (the text is displayed with KaTeX, which requires $ delimiters), NOT as plain text:
+- Inline math: $x^2$, $\\frac{1}{2}$, $(1-4x)^6$, $\\binom{6}{2}$, $\\sin\\theta$
+- Display math (standalone equations on their own line): $$y = mx + c$$
+- Exponents: $x^2$ not x^2
+- Algebraic expressions in parentheses: $(2 + ax)^5$ not (2 + ax)^5
+- Fractions: $\\frac{1}{2}$ not 1/2
+- Variables and functions: even single variables like $a$, $x$, $\\theta$, and functions $\\tan\\theta$, $\\log_2(n)$
+
+DO NOT output math as plain text with carets and slashes. Preserve the question wording EXACTLY — only wrap the math expressions, never the surrounding English.
+Correct: "The coefficient of $x^2$ in the expansion of $(1 - 4x)^6$ is..."
+Wrong: "The coefficient of x^2 in the expansion of (1 - 4x)^6 is..."`
+
 export function buildExtractionPrompt(markingType: MarkingStyle): string {
   const base = `You are extracting Cambridge International A-Level mark schemes from official PDFs. You have been given:
 - The QUESTION PAPER (first PDF) — contains the actual problem statements
@@ -14,6 +27,8 @@ For every question and sub-part in this paper (including 1, 2(a), 2(b), 3(a)(i),
 5. mark_scheme — structured JSON appropriate to the marking type (see below)
 
 Be thorough. Extract EVERY question, every sub-part. Don't skip any.
+
+${MATH_NOTATION_BLOCK}
 
 Output ONLY this JSON (no markdown):
 {
@@ -101,6 +116,8 @@ For the targeted question(s), cross-reference both PDFs to extract:
 3. total_marks — sum of marks for this question/sub-part from the mark scheme
 4. marking_type — one of: mcq, point_based, level_of_response, mixed (for this specific question)
 5. mark_scheme — structured JSON appropriate to the marking type (see below)
+
+${MATH_NOTATION_BLOCK}
 
 Output ONLY this JSON (no markdown):
 {

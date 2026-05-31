@@ -8,6 +8,8 @@ import {
   type LineReference,
 } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { OverrideConsole } from '@/components/teacher/OverrideConsole'
+import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import type { MarkAwarded } from '@/components/MarkingResultView'
 
 interface AttemptData {
@@ -56,7 +58,9 @@ export default function ReviewDetailPage() {
         <div className="ec-label-tech mb-2">REVIEW</div>
         <h1 className="text-2xl font-bold text-white">{studentName}</h1>
         {attempt.question_text && (
-          <p className="mt-2 text-sm text-slate-400">{attempt.question_text}</p>
+          <div className="mt-2 text-sm text-slate-400">
+            <RichTextRenderer text={normalizeQuestionText(attempt.question_text)} />
+          </div>
         )}
       </div>
 

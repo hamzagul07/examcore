@@ -9,8 +9,11 @@ interface HeroProps {
 
 export function Hero({ primaryHref }: HeroProps) {
   return (
-    <section aria-labelledby="hero-headline">
-      <div>
+    <section
+      aria-labelledby="hero-headline"
+      className="bg-[var(--ec-surface)] pt-24 pb-24 md:pt-32 md:pb-36"
+    >
+      <div className="mx-auto max-w-[640px] px-6 text-center md:max-w-[720px] md:px-8">
         <HeroHeadline text="Past papers, marked like an examiner. In minutes." />
         <HeroSubhead>
           Trained on real Cambridge mark schemes. Returns red-pen annotations and
@@ -21,7 +24,7 @@ export function Hero({ primaryHref }: HeroProps) {
           secondary={{ label: 'See how marking works', targetId: 'how-it-works' }}
         />
       </div>
-      <div>
+      <div className="mx-auto mt-16 max-w-[920px] px-4 md:mt-24 md:px-8">
         <ExaminerInkDemoLazy />
       </div>
     </section>

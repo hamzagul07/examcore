@@ -1,16 +1,11 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
-import { computeAllowance } from '@/lib/billing/enforcement'
-import { isUnlimited } from '@/lib/billing/caps'
+import { computeBillingSummary } from '@/lib/billing/enforcement'
+import { getEnforcementMode } from '@/lib/billing/enforcement-mode'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-/**
- * Lightweight billing summary for the header chip + account page. Pure read
- * (no shadow logging). Returns 401 for signed-out users so the client can show
- * the anonymous state. Refetched after each mark so the count decrements.
- */
 export async function GET() {
   const supabase = await createClient()
   const {
@@ -20,19 +15,42 @@ export async function GET() {
     return NextResponse.json({ signedIn: false }, { status: 401 })
   }
 
-  const a = await computeAllowance(user.id)
-  const unlimited = isUnlimited(a.tier)
+  const summary = await computeBillingSummary(user.id)
+  const enforce = getEnforcementMode() === 'enforce'
 
   return NextResponse.json({
     signedIn: true,
-    tier: a.tier,
-    status: a.status,
-    unlimited,
-    marks_used: a.marks_used,
-    cap: unlimited ? null : a.cap,
-    remaining: unlimited ? null : a.remaining,
-    credit_balance: a.credit_balance,
-    founding_member: a.founding_member,
-    period_resets_at: a.period_resets_at ?? null,
+    tier: summary.tier,
+    status: summary.status,
+    founding_member: summary.founding_member,
+    credit_balance: summary.credit_balance,
+    period_resets_at: summary.period_resets_at ?? null,
+    enforcement_mode: summary.enforcement_mode,
+    questions: {
+      used: summary.questions.used,
+      cap: summary.questions.cap,
+      remaining: summary.questions.remaining,
+      warning: summary.questions.warning,
+      blocked:
+        enforce &&
+        summary.questions.remaining <= 0 &&
+        summary.credit_balance <= 0 &&
+        Boolean(summary.questions.reason),
+    },
+    omni: {
+      used: summary.omni.used,
+      cap: summary.omni.cap,
+      remaining: summary.omni.remaining,
+      warning: summary.omni.warning,
+      blocked:
+        enforce &&
+        summary.omni.remaining <= 0 &&
+        summary.credit_balance <= 0 &&
+        Boolean(summary.omni.reason),
+    },
+    // Legacy fields for gradual client migration
+    marks_used: summary.questions.used,
+    cap: summary.questions.cap,
+    remaining: summary.questions.remaining,
   })
 }

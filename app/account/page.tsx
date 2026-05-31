@@ -9,7 +9,7 @@ import {
   DEFAULT_SUBJECTS,
 } from '@/lib/profile-options'
 import { isOnboardingComplete } from '@/lib/onboarding'
-import { computeAllowance } from '@/lib/billing/enforcement'
+import { computeBillingSummary } from '@/lib/billing/enforcement'
 
 export const dynamic = 'force-dynamic'
 
@@ -30,7 +30,7 @@ export default async function AccountPage() {
     .eq('id', user.id)
     .maybeSingle()
 
-  const [{ data: subscription }, { data: credits }, { data: recentUsage }, allowance] =
+  const [{ data: subscription }, { data: credits }, { data: recentUsage }, billing] =
     await Promise.all([
       supabase
         .from('user_subscriptions')
@@ -44,10 +44,10 @@ export default async function AccountPage() {
         .from('usage_events')
         .select('id, event_type, source, credits_delta, created_at')
         .eq('user_id', user.id)
-        .in('event_type', ['mark_single', 'mark_whole_paper'])
+        .in('event_type', ['mark_single', 'mark_whole_paper', 'omni_message'])
         .order('created_at', { ascending: false })
         .limit(10),
-      computeAllowance(user.id),
+      computeBillingSummary(user.id),
     ])
 
   // Middleware ordinarily redirects unfinished onboarders to /onboarding before
@@ -95,9 +95,11 @@ export default async function AccountPage() {
             hasCustomer: Boolean(subscription?.stripe_customer_id),
             credits: credits?.balance ?? 0,
             foundingMember: Boolean(subscription?.founding_member),
-            marksUsed: allowance.marks_used,
-            markCap: Number.isFinite(allowance.cap) ? allowance.cap : null,
-            periodResetsAt: allowance.period_resets_at ?? null,
+            marksUsed: billing.questions.used,
+            markCap: billing.questions.cap,
+            omniUsed: billing.omni.used,
+            omniCap: billing.omni.cap,
+            periodResetsAt: billing.period_resets_at ?? null,
             recentUsage: (recentUsage ?? []).map((u) => ({
               id: u.id as string,
               eventType: u.event_type as string,

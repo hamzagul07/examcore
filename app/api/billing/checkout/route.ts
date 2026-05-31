@@ -20,7 +20,8 @@ export const dynamic = 'force-dynamic'
 
 const VALID_PRODUCTS: ProductKey[] = [
   'student',
-  'unlimited',
+  'scholar',
+  'mastery',
   'credits_25',
   'credits_100',
   'credits_500',

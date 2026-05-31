@@ -34,7 +34,14 @@ import { SingleQuestionMarkingProgress } from '@/components/mark/SingleQuestionM
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
 import { ApproachingLimitBanner } from '@/components/billing/ApproachingLimitBanner'
+import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
+import { PaidFeatureGate } from '@/components/billing/PaidFeatureGate'
 import { capForTier } from '@/lib/billing/caps'
+import { isPaidTier } from '@/lib/billing/features'
+import {
+  questionUsageMessage,
+  type BillingSummaryClient,
+} from '@/lib/billing/question-copy'
 import type { AllowanceBlock } from '@/lib/billing/client-types'
 import type { SubscriptionTier } from '@/lib/database.types'
 import type { WholePaperResult } from '@/lib/marking/types'
@@ -100,6 +107,7 @@ export default function MarkPage() {
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [upgradeModal, setUpgradeModal] = useState<UpgradeModalState | null>(null)
   const [showFreeNudge, setShowFreeNudge] = useState(false)
+  const [billingSummary, setBillingSummary] = useState<BillingSummaryClient | null>(null)
 
   const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
     null
@@ -118,6 +126,30 @@ export default function MarkPage() {
   const [wholePaperKey, setWholePaperKey] = useState(0)
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
   const [profileLoading, setProfileLoading] = useState(true)
+
+  useEffect(() => {
+    let cancelled = false
+    async function loadBilling() {
+      try {
+        const res = await fetch('/api/billing/summary', { cache: 'no-store' })
+        if (!res.ok || cancelled) return
+        setBillingSummary((await res.json()) as BillingSummaryClient)
+      } catch {
+        if (!cancelled) setBillingSummary(null)
+      }
+    }
+    void loadBilling()
+    const onRefresh = () => void loadBilling()
+    window.addEventListener('ec:billing-refresh', onRefresh)
+    return () => {
+      cancelled = true
+      window.removeEventListener('ec:billing-refresh', onRefresh)
+    }
+  }, [])
+
+  const submitBlocked = billingSummary
+    ? questionUsageMessage(billingSummary).disableSubmit
+    : false
 
   useEffect(() => {
     let cancelled = false
@@ -730,6 +762,12 @@ export default function MarkPage() {
                     Select subject, year, session, and paper below before uploading
                     your pages.
                   </div>
+                ) : billingSummary && !isPaidTier(billingSummary.tier) ? (
+                  <PaidFeatureGate
+                    feature="whole_paper"
+                    title="Whole papers are a paid feature"
+                    body="Upgrade to mark entire papers in one go — assign pages to questions and get a projected grade in a single submission."
+                  />
                 ) : (
                   <WholePaperFlow
                     key={wholePaperKey}
@@ -1067,13 +1105,16 @@ export default function MarkPage() {
             )}
 
             {uploadMode === 'single_question' && (
-              <motion.button
+              <>
+                <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />
+                <motion.button
                 type="submit"
                 disabled={
                   loading ||
                   !answerPages.length ||
                   hasCompressingPages(answerPages) ||
-                  questionPhotoCompressing
+                  questionPhotoCompressing ||
+                  submitBlocked
                 }
                 whileHover={
                   loading ||
@@ -1109,6 +1150,7 @@ export default function MarkPage() {
                   </>
                 )}
               </motion.button>
+              </>
             )}
           </form>
         )}

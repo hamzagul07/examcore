@@ -26,7 +26,7 @@ export function ApproachingLimitBanner({ used, cap, onDismiss }: ApproachingLimi
     >
       <AlertTriangle className="h-5 w-5 shrink-0 text-amber-400" />
       <p className="flex-1 text-sm text-[var(--ec-text-primary)]">
-        You&apos;ve used {used} of your {cap} marks this month.{' '}
+        You&apos;ve used {used} of your {cap} questions this month.{' '}
         <Link href="/pricing" className="font-semibold text-emerald-400 hover:text-emerald-300">
           See plans →
         </Link>

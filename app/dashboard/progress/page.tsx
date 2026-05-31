@@ -32,6 +32,9 @@ import { SpeedAccuracy } from '@/components/progress/SpeedAccuracy'
 import { ActionPlan } from '@/components/progress/ActionPlan'
 import { ProgressSubjectPicker } from '@/components/progress/ProgressSubjectPicker'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
+import { MasteryDashboardTeaser } from '@/components/billing/MasteryDashboardTeaser'
+import { isPaidTier } from '@/lib/billing/features'
+import type { SubscriptionTier } from '@/lib/database.types'
 
 export const dynamic = 'force-dynamic'
 
@@ -60,6 +63,15 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     .select('full_name, subjects')
     .eq('id', user.id)
     .maybeSingle()
+
+  const { data: subscription } = await supabase
+    .from('user_subscriptions')
+    .select('tier')
+    .eq('user_id', user.id)
+    .maybeSingle()
+
+  const userTier = (subscription?.tier ?? 'free') as SubscriptionTier
+  const masteryUnlocked = isPaidTier(userTier)
 
   const firstName = (profile?.full_name || '').trim().split(/\s+/)[0]
   const userSubjects: string[] = profile?.subjects?.length
@@ -221,28 +233,59 @@ export default async function ProgressPage({ searchParams }: PageProps) {
           {analyticsAvailable && (
             <>
               <div className="animate-entry stagger-1">
-                <SyllabusCoverage
-                  masteries={masteries}
-                  coverage={coverage}
-                  hasAnyData={hasSubjectData || showPreviewBanner}
-                  subjectLabel={`Cambridge ${selectedCode} ${subjectLabel}`}
-                  totalTopics={totalTopics}
-                />
+                {masteryUnlocked ? (
+                  <SyllabusCoverage
+                    masteries={masteries}
+                    coverage={coverage}
+                    hasAnyData={hasSubjectData || showPreviewBanner}
+                    subjectLabel={`Cambridge ${selectedCode} ${subjectLabel}`}
+                    totalTopics={totalTopics}
+                  />
+                ) : (
+                  <MasteryDashboardTeaser>
+                    <SyllabusCoverage
+                      masteries={masteries}
+                      coverage={coverage}
+                      hasAnyData={hasSubjectData || showPreviewBanner}
+                      subjectLabel={`Cambridge ${selectedCode} ${subjectLabel}`}
+                      totalTopics={totalTopics}
+                    />
+                  </MasteryDashboardTeaser>
+                )}
               </div>
 
               <div className="animate-entry stagger-2">
-                <GradeTrajectory attempts={attempts} prediction={prediction} />
+                {masteryUnlocked ? (
+                  <GradeTrajectory attempts={attempts} prediction={prediction} />
+                ) : (
+                  <MasteryDashboardTeaser>
+                    <GradeTrajectory attempts={attempts} prediction={prediction} />
+                  </MasteryDashboardTeaser>
+                )}
               </div>
 
               <div className="animate-entry stagger-3">
-                <MasteryMatrix
-                  parentMasteries={parentMasteries}
-                  attempts={attempts}
-                  hasAnyData={hasSubjectData || showPreviewBanner}
-                  subjectCode={selectedCode}
-                  subjectLabel={subjectLabel}
-                  emptyBanner={!hasSubjectData && !showPreviewBanner}
-                />
+                {masteryUnlocked ? (
+                  <MasteryMatrix
+                    parentMasteries={parentMasteries}
+                    attempts={attempts}
+                    hasAnyData={hasSubjectData || showPreviewBanner}
+                    subjectCode={selectedCode}
+                    subjectLabel={subjectLabel}
+                    emptyBanner={!hasSubjectData && !showPreviewBanner}
+                  />
+                ) : (
+                  <MasteryDashboardTeaser>
+                    <MasteryMatrix
+                      parentMasteries={parentMasteries}
+                      attempts={attempts}
+                      hasAnyData={hasSubjectData || showPreviewBanner}
+                      subjectCode={selectedCode}
+                      subjectLabel={subjectLabel}
+                      emptyBanner={!hasSubjectData && !showPreviewBanner}
+                    />
+                  </MasteryDashboardTeaser>
+                )}
               </div>
             </>
           )}
@@ -253,7 +296,13 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
           {analyticsAvailable && (
             <div className="animate-entry stagger-5">
-              <ActionPlan items={actionItems} />
+              {masteryUnlocked ? (
+                <ActionPlan items={actionItems} />
+              ) : (
+                <MasteryDashboardTeaser>
+                  <ActionPlan items={actionItems} />
+                </MasteryDashboardTeaser>
+              )}
             </div>
           )}
         </div>

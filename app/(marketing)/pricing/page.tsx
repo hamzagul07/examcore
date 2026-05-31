@@ -18,7 +18,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = createPageMetadata({
   title: 'Pricing',
   description:
-    'Simple plans for Cambridge A-Level marking. Free tier, Student, and Unlimited — regional pricing, monthly or yearly. Credits never expire.',
+    'Simple plans for Cambridge A-Level marking. Free tier plus Student, Scholar, and Mastery — regional pricing, monthly or yearly. Credits never expire.',
   path: '/pricing',
 })
 
@@ -28,8 +28,12 @@ const PRICING_FAQ: FaqCategory[] = [
     title: 'Questions',
     items: [
       {
-        q: 'What counts as one mark?',
-        a: 'One mark = one single question OR one whole paper. A whole paper counts as a single mark no matter how many questions it contains.',
+        q: 'What counts as one question?',
+        a: 'Whether you submit a single question or a whole paper, it counts as one question against your monthly allowance. Whole papers don\'t cost more even if they contain 15 sub-questions.',
+      },
+      {
+        q: 'I signed up during early access — what happens to my pricing?',
+        a: 'You\'re a founding member. You get 50% off any paid plan, locked in forever. That discount applies even as we add features or raise prices for new users — your founding rate is permanent.',
       },
       {
         q: 'Can I cancel anytime?',
@@ -37,15 +41,11 @@ const PRICING_FAQ: FaqCategory[] = [
       },
       {
         q: 'What if I run out mid-month?',
-        a: 'Buy a credit top-up (1 credit = 1 mark, never expires) or upgrade to a higher plan. Credits are used automatically once your monthly marks are spent.',
+        a: 'Buy a credit top-up or upgrade to a higher plan. Credits work for questions or Omni messages and are used automatically once your monthly allowance is spent.',
       },
       {
         q: 'Do credits expire?',
         a: 'No. Credits never expire — they sit in your balance until you use them.',
-      },
-      {
-        q: 'Why am I a founding member?',
-        a: 'You signed up during early access. Founding members get 50% off any paid plan, locked in forever.',
       },
       {
         q: 'Can I switch tiers?',

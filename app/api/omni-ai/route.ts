@@ -17,6 +17,11 @@ import {
 } from '@/lib/omni-ai/marking-context'
 import { OMNI_MARKING_TOOLS } from '@/lib/omni-ai/marking-tools'
 import type { AIContextType, OmniAIRequestBody } from '@/lib/omni-ai/types'
+import {
+  checkOmniAllowance,
+  omniQuotaExceededBody,
+  recordOmniUsage,
+} from '@/lib/billing/enforcement'
 
 export const maxDuration = 60
 
@@ -119,6 +124,36 @@ export async function POST(req: NextRequest) {
   }
 
   const markingAwareness = !!user && context.type !== 'teacher_dashboard'
+
+  // Landing demo chat stays unrestricted; in-app Omni is metered for signed-in users.
+  if (user && context.type !== 'landing') {
+    const omniAllowance = await checkOmniAllowance(user.id)
+    if (omniAllowance.blocked_by_mode) {
+      const body = omniQuotaExceededBody(omniAllowance)
+      return new Response(
+        sse({
+          type: 'error',
+          message:
+            'You\'ve used all your Omni messages this month. Upgrade or top up credits to continue.',
+          code: body.error,
+          tier: body.tier,
+          cap: body.cap,
+          period_resets_at: body.period_resets_at,
+          credit_balance: body.credit_balance,
+          upgrade_url: body.upgrade_url,
+        }),
+        {
+          status: 402,
+          headers: {
+            'Content-Type': 'text/event-stream',
+            'Cache-Control': 'no-cache',
+            Connection: 'keep-alive',
+          },
+        }
+      )
+    }
+  }
+
   const systemPrompt = buildSystemPrompt(context, {
     markingAwareness,
     focusedAttemptBlock,
@@ -265,6 +300,15 @@ export async function POST(req: NextRequest) {
             sse({ type: 'done', cleanText: finalDisplay, action })
           )
         )
+
+        if (user && context.type !== 'landing') {
+          try {
+            await recordOmniUsage(user.id)
+          } catch (err) {
+            console.error('[omni-ai] recordOmniUsage failed:', err)
+          }
+        }
+
         controller.close()
       } catch (error) {
         console.error('Omni-AI stream error:', error)

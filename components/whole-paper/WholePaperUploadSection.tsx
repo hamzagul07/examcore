@@ -6,6 +6,7 @@ import {
   fileToUploadPage,
   type UploadPage,
 } from '@/components/upload/PageUploader'
+import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
 import {
   estimateMarkingSeconds,
   formatEstimatedTime,
@@ -75,6 +76,7 @@ export function WholePaperUploadSection({
           what you earned on attempted questions, and your score if the rest
           were left blank.
         </p>
+        <MarkUsageIndicator variant="whole_paper" className="border-t border-[var(--ec-border)] pt-4" />
         <div className="flex flex-col gap-3 sm:flex-row">
           <button
             type="button"

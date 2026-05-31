@@ -1,34 +1,40 @@
 import type { SubscriptionTier } from '@/lib/database.types'
 
 /**
- * Monthly mark caps per tier. 1 mark = 1 single question OR 1 whole paper.
- * `Infinity` for unlimited. Centralized so UI and API agree.
- *
- * This module is import-safe on the client (no server-only deps).
+ * Monthly question caps per tier. 1 question = 1 single question OR 1 whole paper.
+ * Centralized so UI and API agree. Client-safe (no server-only deps).
  */
 export const TIER_MONTHLY_CAPS: Record<SubscriptionTier, number> = {
   free: 5,
+  student: 50,
+  scholar: 150,
+  mastery: 400,
+}
+
+/** Monthly in-app Omni AI message caps per tier (landing demo chat is not metered). */
+export const TIER_OMNI_CAPS: Record<SubscriptionTier, number> = {
+  free: 10,
   student: 100,
-  unlimited: Infinity,
+  scholar: 300,
+  mastery: 2000,
 }
 
 export function capForTier(tier: SubscriptionTier): number {
   return TIER_MONTHLY_CAPS[tier] ?? TIER_MONTHLY_CAPS.free
 }
 
-export function isUnlimited(tier: SubscriptionTier): boolean {
-  return !Number.isFinite(capForTier(tier))
+export function omniCapForTier(tier: SubscriptionTier): number {
+  return TIER_OMNI_CAPS[tier] ?? TIER_OMNI_CAPS.free
 }
 
-/** Human label for a cap (∞ for unlimited). */
+/** Human label for a question cap. */
 export function capLabel(tier: SubscriptionTier): string {
-  return isUnlimited(tier) ? '∞' : String(capForTier(tier))
+  return String(capForTier(tier))
 }
 
 /**
  * Current usage window for a tier. Subscribers use their Stripe period;
- * free users use the calendar month. Returns ISO strings (or null end for
- * open-ended). `source` is the usage_events.source we count against.
+ * free users use the calendar month.
  */
 export function currentPeriodWindow(opts: {
   tier: SubscriptionTier
@@ -42,7 +48,6 @@ export function currentPeriodWindow(opts: {
       source: 'subscription',
     }
   }
-  // Free tier (or subscriber without period dates yet): calendar month.
   const now = new Date()
   const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1))
   const end = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1))

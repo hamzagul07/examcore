@@ -61,6 +61,21 @@ For each mark NOT awarded, set "margin_note" to a short, examiner-style note (ma
 - "Method shown but no final answer"
 Keep it terse and concrete — this is what a real Cambridge examiner would scrawl in the margin.`
 
+export const MATH_NOTATION_BLOCK = `MATH NOTATION IN YOUR OUTPUT (CRITICAL):
+Any mathematical expression in your written feedback (summary, mark-by-mark reasoning, error explanations, examiner commentary, band justification, suggestions for improvement, encouragement, study advice) MUST be wrapped in LaTeX delimiters so it renders as math, not raw text:
+- Inline math: single dollar signs — $x^2$, $\\frac{1}{2}$, $\\binom{6}{2}$, $\\sin\\theta$, $\\pm\\frac{1}{2}$
+- Block/display math (standalone equations on their own line): double dollar signs — $$240 = 12 \\times 80a^2$$
+- Variables: even single variables like $a$, $x$, $\\theta$ — wrap them
+- Functions: $\\tan\\theta$, $\\sin(x)$, $\\log_2(n)$ — all inside delimiters
+- Constants and numbers that are part of an equation belong INSIDE the delimiters, not outside
+
+DO NOT use parentheses around a math expression as a substitute for delimiters.
+- WRONG: "you computed (\\binom{6}{2}(-4)^2 = 240)" or "the value (x^2)"
+- RIGHT: "you computed $\\binom{6}{2}(-4)^2 = 240$" or "the value $x^2$"
+
+DO NOT use code blocks or backticks for math. Use only $ delimiters.
+Apply this in EVERY written prose field without exception.`
+
 export const JSON_RULES_BLOCK = `CRITICAL JSON FORMATTING RULES:
 - Output valid JSON ONLY. No prose before or after.
 - When including LaTeX math in string values, escape ALL backslashes as double backslashes.
@@ -96,6 +111,8 @@ ${TONE_BLOCK}
 ${SYLLABUS_BLOCK_9709}
 
 ${ERROR_CLASSIFICATION_BLOCK}
+
+${MATH_NOTATION_BLOCK}
 
 ${JSON_RULES_BLOCK}
 
@@ -153,6 +170,8 @@ ${TONE_BLOCK}
 ${SYLLABUS_BLOCK_9709}
 
 ${ERROR_CLASSIFICATION_BLOCK}
+
+${MATH_NOTATION_BLOCK}
 
 ${JSON_RULES_BLOCK}
 
@@ -222,6 +241,8 @@ ${TONE_BLOCK}
 ${taggingBlock}
 ${ERROR_CLASSIFICATION_BLOCK}
 
+${MATH_NOTATION_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -282,6 +303,8 @@ ${ocrText}
 
 ${TONE_BLOCK}
 ${taggingBlock}
+${MATH_NOTATION_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:
@@ -333,6 +356,8 @@ ${ocrText}
 For each question: record student answer, correct answer, whether correct.
 Score = number of correct answers. If partial paper, only mark questions present in student work.
 ${taggingBlock}
+${MATH_NOTATION_BLOCK}
+
 ${JSON_RULES_BLOCK}
 
 Return ONLY this JSON:

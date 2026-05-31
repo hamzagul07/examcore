@@ -45,7 +45,10 @@ import {
 import type { AllowanceBlock } from '@/lib/billing/client-types'
 import type { SubscriptionTier } from '@/lib/database.types'
 import type { WholePaperResult } from '@/lib/marking/types'
-import type { MarkProgressStage } from '@/lib/marking/mark-progress'
+import type {
+  MarkContextPayload,
+  MarkProgressStage,
+} from '@/lib/marking/mark-progress'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'
 
 type SessionInfo = {
@@ -99,6 +102,10 @@ export default function MarkPage() {
     stage: MarkProgressStage
     questionNumber?: string
   } | null>(null)
+  const [markContext, setMarkContext] = useState<MarkContextPayload | null>(
+    null
+  )
+  const [markStreamError, setMarkStreamError] = useState<string | null>(null)
   const [result, setResult] = useState<MarkingResult | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [errorRetryable, setErrorRetryable] = useState(false)
@@ -455,6 +462,8 @@ export default function MarkPage() {
 
     setLoading(true)
     setMarkProgress({ percent: 5, stage: 'reading_work' })
+    setMarkContext(null)
+    setMarkStreamError(null)
     setErrorMsg('')
     setErrorRetryable(false)
     setResult(null)
@@ -543,6 +552,11 @@ export default function MarkPage() {
             type: string
             stage?: MarkProgressStage
             percent?: number
+            paper_code?: string | null
+            paper_session?: string | null
+            question_number?: string | null
+            subject_code?: string | null
+            syllabus_tags?: string[] | null
             payload?: MarkingResult
             error?: string
             retryable?: boolean
@@ -554,14 +568,27 @@ export default function MarkPage() {
               questionNumber: questionNumber.trim() || undefined,
             })
           }
+          if (event.type === 'context') {
+            setMarkContext((prev) => ({
+              ...prev,
+              paper_code: event.paper_code ?? prev?.paper_code,
+              paper_session: event.paper_session ?? prev?.paper_session,
+              question_number: event.question_number ?? prev?.question_number,
+              subject_code: event.subject_code ?? prev?.subject_code,
+              syllabus_tags: event.syllabus_tags ?? prev?.syllabus_tags,
+            }))
+          }
           if (event.type === 'result' && event.payload) {
             finalPayload = event.payload as MarkingResult
           }
           if (event.type === 'error') {
+            const msg = event.error || 'Marking failed.'
+            setMarkStreamError(msg)
+            setErrorMsg(msg)
+            setErrorRetryable(!!event.retryable)
             setLoading(false)
             setMarkProgress(null)
-            setErrorMsg(event.error || 'Marking failed.')
-            setErrorRetryable(!!event.retryable)
+            setMarkContext(null)
             return
           }
         }
@@ -569,6 +596,8 @@ export default function MarkPage() {
 
       setLoading(false)
       setMarkProgress(null)
+      setMarkContext(null)
+      setMarkStreamError(null)
       if (finalPayload) {
         setResult(finalPayload)
         handleAllowance(finalPayload._allowance)
@@ -1156,7 +1185,7 @@ export default function MarkPage() {
         )}
 
         <AnimatePresence>
-          {loading && markProgress && (
+          {((loading && markProgress) || markStreamError) && (
             <motion.div
               key="marking-progress"
               className="mt-10"
@@ -1165,9 +1194,9 @@ export default function MarkPage() {
               exit={{ opacity: 0 }}
             >
               <SingleQuestionMarkingProgress
-                percent={markProgress.percent}
-                stage={markProgress.stage}
-                questionNumber={markProgress.questionNumber}
+                stage={markProgress?.stage ?? 'reading_work'}
+                context={markContext}
+                error={markStreamError}
               />
             </motion.div>
           )}

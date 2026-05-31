@@ -424,16 +424,17 @@ export async function markWholePaperQuestion(params: {
   const ocrLines =
     questionPages?.flatMap((p) => p.ocr_lines) ?? []
 
-  const { markingResult, lineReferences } = await markSingleQuestion({
-    ocrText: answerText,
-    ocrLines,
-    questionText: scheme?.question_text || '',
-    markScheme: scheme,
-    markingMode: scheme ? mode : 'general_criteria_paper_not_in_db',
-    paperCode,
-    paperSession,
-    questionNumber,
-  })
+  const { markingResult, lineReferences, resolvedTags } =
+    await markSingleQuestion({
+      ocrText: answerText,
+      ocrLines,
+      questionText: scheme?.question_text || '',
+      markScheme: scheme,
+      markingMode: scheme ? mode : 'general_criteria_paper_not_in_db',
+      paperCode,
+      paperSession,
+      questionNumber,
+    })
 
   const ai = toMarkingAIResult(markingResult)
   const pageSources =
@@ -454,6 +455,9 @@ export async function markWholePaperQuestion(params: {
     page_photo_urls: pagePhotoUrls.length ? pagePhotoUrls : undefined,
     ink_pages: inkPages.length ? inkPages : undefined,
     status: 'attempted' as const,
+    syllabus_tags: resolvedTags.length
+      ? resolvedTags
+      : ai.syllabus_tags ?? scheme?.syllabus_tags ?? undefined,
   }
 }
 

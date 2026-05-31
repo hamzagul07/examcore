@@ -34,6 +34,7 @@ export async function GET(request: NextRequest) {
       questions_completed: marking.questions_completed,
       current_question: marking.current_question,
       estimated_seconds_remaining: marking.estimated_seconds_remaining,
+      loading_context: marking.loading_context,
       partial_questions: marking.partial_questions,
       result,
       error: marking.error,

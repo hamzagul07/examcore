@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
 import { Card } from '@/components/ui/Card'
@@ -16,12 +17,37 @@ type InitialProfile = {
   subjects: string[]
 }
 
+type UsageRow = {
+  id: string
+  eventType: string
+  source: string
+  creditsDelta: number
+  createdAt: string
+}
+
+type BillingInfo = {
+  tier: string
+  status: string
+  billingPeriod: string | null
+  currentPeriodEnd: string | null
+  cancelAtPeriodEnd: boolean
+  hasCustomer: boolean
+  credits: number
+  foundingMember: boolean
+  marksUsed: number
+  markCap: number | null
+  periodResetsAt: string | null
+  recentUsage: UsageRow[]
+}
+
 export function AccountClient({
   email,
   initialProfile,
+  billing,
 }: {
   email: string
   initialProfile: InitialProfile
+  billing: BillingInfo
 }) {
   return (
     <div className="space-y-5 sm:space-y-6">
@@ -29,12 +55,15 @@ export function AccountClient({
         <ProfileSection initialProfile={initialProfile} />
       </div>
       <div className="animate-entry stagger-2">
-        <EmailSection email={email} />
+        <BillingSection billing={billing} />
       </div>
       <div className="animate-entry stagger-3">
-        <PasswordSection />
+        <EmailSection email={email} />
       </div>
       <div className="animate-entry stagger-4">
+        <PasswordSection />
+      </div>
+      <div className="animate-entry stagger-5">
         <DangerSection />
       </div>
     </div>
@@ -134,6 +163,183 @@ function ProfileSection({ initialProfile }: { initialProfile: InitialProfile }) 
           Save changes
         </Button>
       </form>
+    </SectionCard>
+  )
+}
+
+const TIER_LABELS: Record<string, string> = {
+  free: 'Free',
+  student: 'Student',
+  unlimited: 'Unlimited',
+}
+
+const STATUS_LABELS: Record<string, string> = {
+  active: 'Active',
+  trialing: 'Trialing',
+  past_due: 'Past due',
+  canceled: 'Canceled',
+  incomplete: 'Incomplete',
+  incomplete_expired: 'Expired',
+  unpaid: 'Unpaid',
+}
+
+function BillingSection({ billing }: { billing: BillingInfo }) {
+  const [loading, setLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+
+  // Safety net: if this user has no Stripe customer yet (e.g. signed up before
+  // billing launched, or sync failed at verify time), lazily create one on
+  // first visit to the billing surface. Fire-and-forget.
+  useEffect(() => {
+    if (!billing.hasCustomer) {
+      void fetch('/api/billing/sync-customer', { method: 'POST' }).catch(() => {})
+    }
+  }, [billing.hasCustomer])
+
+  async function openPortal() {
+    setLoading(true)
+    setErrorMsg('')
+    try {
+      const res = await fetch('/api/billing/portal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ return_url: '/account' }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data?.url) {
+        setErrorMsg(data?.error || 'Could not open the billing portal.')
+        setLoading(false)
+        return
+      }
+      window.location.href = data.url
+    } catch {
+      setErrorMsg('Could not open the billing portal.')
+      setLoading(false)
+    }
+  }
+
+  const tierLabel = TIER_LABELS[billing.tier] ?? billing.tier
+  const statusLabel = STATUS_LABELS[billing.status] ?? billing.status
+  const renews = billing.currentPeriodEnd
+    ? new Date(billing.currentPeriodEnd).toLocaleDateString()
+    : null
+  const isPaid = billing.tier !== 'free'
+
+  const unlimited = billing.markCap === null
+  const pct = unlimited
+    ? 0
+    : Math.min(100, Math.round((billing.marksUsed / Math.max(1, billing.markCap ?? 1)) * 100))
+  const resetDate = billing.periodResetsAt
+    ? new Date(billing.periodResetsAt).toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+      })
+    : null
+
+  return (
+    <SectionCard>
+      <SectionHeader
+        title="Billing"
+        description="Your current plan, credits, and subscription management."
+      />
+
+      <div className="space-y-4">
+        {billing.foundingMember && (
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-400">
+            🎉 Founding member · 50% off forever
+          </span>
+        )}
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-dark-900/60 px-4 py-3">
+            <p className="label-overline mb-1 text-slate-500">Plan</p>
+            <p className="text-base font-semibold text-slate-100">{tierLabel}</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-dark-900/60 px-4 py-3">
+            <p className="label-overline mb-1 text-slate-500">Status</p>
+            <p className="text-base font-semibold text-slate-100">{statusLabel}</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-dark-900/60 px-4 py-3">
+            <p className="label-overline mb-1 text-slate-500">Credits</p>
+            <p className="text-base font-semibold text-slate-100">{billing.credits}</p>
+          </div>
+        </div>
+
+        {/* Usage this period */}
+        <div className="rounded-2xl border border-white/10 bg-dark-900/60 px-4 py-3">
+          <div className="mb-2 flex items-baseline justify-between">
+            <p className="label-overline text-slate-500">Marks this period</p>
+            <p className="text-sm font-semibold text-slate-200">
+              {unlimited ? `${billing.marksUsed} · Unlimited` : `${billing.marksUsed} / ${billing.markCap}`}
+            </p>
+          </div>
+          {!unlimited && (
+            <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+              <div
+                className="h-full rounded-full bg-emerald-500 transition-all"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+          )}
+          {resetDate && (
+            <p className="mt-2 text-xs text-slate-500">Resets {resetDate}.</p>
+          )}
+        </div>
+
+        {/* Recent usage */}
+        {billing.recentUsage.length > 0 && (
+          <div className="rounded-2xl border border-white/10 bg-dark-900/60 px-4 py-3">
+            <p className="label-overline mb-2 text-slate-500">Recent activity</p>
+            <ul className="divide-y divide-white/5">
+              {billing.recentUsage.map((u) => (
+                <li key={u.id} className="flex items-center justify-between py-2 text-sm">
+                  <span className="text-slate-200">
+                    {u.eventType === 'mark_whole_paper' ? 'Whole paper' : 'Single question'}
+                    {u.source === 'credits' && (
+                      <span className="ml-2 text-xs text-emerald-400">(credit)</span>
+                    )}
+                  </span>
+                  <span className="text-xs text-slate-500">
+                    {new Date(u.createdAt).toLocaleDateString(undefined, {
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {isPaid && billing.cancelAtPeriodEnd && (
+          <p className="text-sm text-amber-400">
+            Your plan is set to cancel
+            {renews ? ` on ${renews}` : ' at the end of the current period'}.
+          </p>
+        )}
+        {isPaid && !billing.cancelAtPeriodEnd && renews && (
+          <p className="text-sm text-slate-500">Renews on {renews}.</p>
+        )}
+
+        {errorMsg && <ErrorBox message={errorMsg} />}
+
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button
+            variant="secondary"
+            size="md"
+            onClick={openPortal}
+            isLoading={loading}
+            loadingText="Opening..."
+          >
+            Manage subscription
+          </Button>
+          <Link href="/pricing" className="inline-flex">
+            <Button variant="primary" size="md" type="button">
+              View pricing
+            </Button>
+          </Link>
+        </div>
+      </div>
     </SectionCard>
   )
 }

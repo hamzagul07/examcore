@@ -29,6 +29,13 @@ import {
   ocrAnswerBufferWithBoxes,
   uploadAnswerPhoto as uploadAnswerPhotoBuffer,
 } from '@/lib/marking/mark-runner'
+import {
+  checkMarkAllowance,
+  recordMarkUsage,
+  allowanceForResponse,
+  quotaExceededBody,
+  type MarkAllowance,
+} from '@/lib/billing/enforcement'
 
 export const maxDuration = 300
 
@@ -142,6 +149,17 @@ export async function POST(request: NextRequest) {
     } = await supabaseAuth.auth.getUser()
     const userId = user?.id || null
 
+    // Enforcement gate (entry point). Anonymous users (userId=null) are skipped
+    // entirely — they're covered by the IP rate limit above. Allowance is
+    // computed in every mode; it only blocks here in 'enforce' mode.
+    let allowance: MarkAllowance | null = null
+    if (userId) {
+      allowance = await checkMarkAllowance(userId)
+      if (allowance.blocked_by_mode) {
+        return NextResponse.json(quotaExceededBody(allowance), { status: 402 })
+      }
+    }
+
     const formData = await request.formData()
     const pageFiles: File[] = []
     for (const [key, value] of formData.entries()) {
@@ -202,7 +220,20 @@ export async function POST(request: NextRequest) {
                 onProgress: (ev) => send(ev),
               })
               await bumpRateLimit()
-              send({ type: 'result', payload })
+              if (userId) {
+                await recordMarkUsage(
+                  userId,
+                  (payload as { attempt_id?: string })?.attempt_id ?? null,
+                  'mark_single'
+                )
+              }
+              send({
+                type: 'result',
+                payload: {
+                  ...payload,
+                  _allowance: allowance ? allowanceForResponse(allowance) : undefined,
+                },
+              })
               controller.close()
             } catch (err: unknown) {
               const isOverload = isTransientOverloadError(err)
@@ -231,7 +262,17 @@ export async function POST(request: NextRequest) {
       try {
         const payload = await runSingleQuestionMark(pipelineInput)
         await bumpRateLimit()
-        return NextResponse.json(payload)
+        if (userId) {
+          await recordMarkUsage(
+            userId,
+            (payload as { attempt_id?: string })?.attempt_id ?? null,
+            'mark_single'
+          )
+        }
+        return NextResponse.json({
+          ...payload,
+          _allowance: allowance ? allowanceForResponse(allowance) : undefined,
+        })
       } catch (err: unknown) {
         const isOverload = isTransientOverloadError(err)
         const message =
@@ -423,6 +464,11 @@ export async function POST(request: NextRequest) {
         { onConflict: 'ip,date' }
       )
 
+      // Whole paper = exactly 1 mark (not N questions).
+      if (userId) {
+        await recordMarkUsage(userId, attempt?.id ?? null, 'mark_whole_paper')
+      }
+
       return NextResponse.json({
         upload_mode: 'whole_paper',
         whole_paper: wholePaper,
@@ -431,6 +477,7 @@ export async function POST(request: NextRequest) {
         attempt_id: attempt?.id,
         answer_photo_url: answerPhotoUrl,
         marking_mode: 'official_mark_scheme',
+        _allowance: allowance ? allowanceForResponse(allowance) : undefined,
       })
     }
 

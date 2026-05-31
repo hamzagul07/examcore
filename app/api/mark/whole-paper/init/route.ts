@@ -15,6 +15,11 @@ import {
   type StoredPageOcr,
 } from '@/lib/marking/whole-paper-pages'
 import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
+import {
+  checkMarkAllowance,
+  allowanceForResponse,
+  quotaExceededBody,
+} from '@/lib/billing/enforcement'
 import { ocrPdfToPages } from '@/lib/marking/pdf-pages'
 import { genAI } from '@/lib/marking/mark-runner'
 import { detectQuestionFromPageText } from '@/lib/marking/page-detection'
@@ -58,6 +63,15 @@ export async function POST(request: NextRequest) {
       data: { user },
     } = await supabaseAuth.auth.getUser()
     const userId = user?.id || null
+
+    // Enforcement gate (entry point). Recording happens on completion in /run.
+    let allowance: Awaited<ReturnType<typeof checkMarkAllowance>> | null = null
+    if (userId) {
+      allowance = await checkMarkAllowance(userId)
+      if (allowance.blocked_by_mode) {
+        return NextResponse.json(quotaExceededBody(allowance), { status: 402 })
+      }
+    }
 
     const formData = await request.formData()
     const manualPaperCode = formData.get('manual_paper_code') as string | null
@@ -249,6 +263,7 @@ export async function POST(request: NextRequest) {
       estimated_seconds: estSeconds,
       paper_code: manualPaperCode,
       paper_session: manualPaperSession,
+      _allowance: allowance ? allowanceForResponse(allowance) : undefined,
     })
   } catch (err) {
     console.error('whole-paper init error:', err)

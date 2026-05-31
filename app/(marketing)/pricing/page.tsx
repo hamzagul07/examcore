@@ -1,79 +1,114 @@
-import Link from 'next/link'
-import { ArrowRight, Check } from 'lucide-react'
+import { cookies, headers } from 'next/headers'
 import { createPageMetadata } from '@/lib/seo/metadata'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import {
+  MarketingHero,
+  MarketingPageShell,
+  MarketingSection,
+} from '@/components/marketing/MarketingPageShell'
+import { FaqAccordion } from '@/components/marketing/FaqAccordion'
+import type { FaqCategory } from '@/lib/faq-data'
+import { PricingClient } from '@/components/pricing/PricingClient'
+import { createClient } from '@/lib/supabase-server'
+import { resolveRegion, REGION_COOKIE } from '@/lib/billing/region-cookie'
+import { getPricingDisplay } from '@/lib/billing/display-prices'
+import type { SubscriptionTier } from '@/lib/database.types'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata = createPageMetadata({
   title: 'Pricing',
   description:
-    'Free during early access. Unlimited marking across 15 Cambridge A-Level subjects — no card required.',
+    'Simple plans for Cambridge A-Level marking. Free tier, Student, and Unlimited — regional pricing, monthly or yearly. Credits never expire.',
   path: '/pricing',
 })
 
-const INCLUDED = [
-  'Unlimited marking',
-  'All 15 Cambridge subjects',
-  'Single questions or whole papers',
-  'Syllabus mastery tracking',
-  'Omni AI study companion',
-  'Examiner\'s Ink on your handwriting',
-  'All current features during early access',
+const PRICING_FAQ: FaqCategory[] = [
+  {
+    id: 'pricing-faq',
+    title: 'Questions',
+    items: [
+      {
+        q: 'What counts as one mark?',
+        a: 'One mark = one single question OR one whole paper. A whole paper counts as a single mark no matter how many questions it contains.',
+      },
+      {
+        q: 'Can I cancel anytime?',
+        a: 'Yes. Cancel from the billing portal and you keep full access until the end of your current period — no further charges.',
+      },
+      {
+        q: 'What if I run out mid-month?',
+        a: 'Buy a credit top-up (1 credit = 1 mark, never expires) or upgrade to a higher plan. Credits are used automatically once your monthly marks are spent.',
+      },
+      {
+        q: 'Do credits expire?',
+        a: 'No. Credits never expire — they sit in your balance until you use them.',
+      },
+      {
+        q: 'Why am I a founding member?',
+        a: 'You signed up during early access. Founding members get 50% off any paid plan, locked in forever.',
+      },
+      {
+        q: 'Can I switch tiers?',
+        a: 'Yes — upgrade or downgrade anytime from the billing portal. Changes are prorated by Stripe.',
+      },
+    ],
+  },
 ]
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const cookieStore = await cookies()
+  const headerStore = await headers()
+  const region = resolveRegion(
+    cookieStore.get(REGION_COOKIE)?.value,
+    headerStore.get('x-vercel-ip-country')
+  )
+
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  let currentTier: SubscriptionTier | null = null
+  let founding = false
+  if (user) {
+    const { data: sub } = await supabase
+      .from('user_subscriptions')
+      .select('tier, founding_member')
+      .eq('user_id', user.id)
+      .maybeSingle()
+    currentTier = (sub?.tier ?? 'free') as SubscriptionTier
+    founding = Boolean(sub?.founding_member)
+  }
+
+  const display = await getPricingDisplay(region, founding)
+
   return (
     <MarketingPageShell>
       <MarketingHero
         label="PRICING"
         title={
           <>
-            <span className="gradient-text">Free</span>{' '}
-            <span className="ec-text-gradient">during early access</span>
+            Pick a plan that fits <span className="ec-text-gradient">your study</span>
           </>
         }
-        lead="No card required. Mark as much as you need while we learn from real students."
+        lead="Cancel anytime. No card required for Free. Founding members get permanent early-access pricing."
       />
 
       <MarketingSection className="!pt-0">
-        <div className="mx-auto max-w-lg">
-          <div className="ec-card relative overflow-hidden border-emerald-500/30 p-8 sm:p-10">
-            <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-500/20 blur-[80px]" />
-            <div className="relative">
-              <p className="ec-label-tech mb-2">EARLY ACCESS</p>
-              <div className="mb-6 flex items-baseline gap-2">
-                <span className="text-5xl font-extrabold ec-text-gradient">£0</span>
-                <span className="text-[var(--ec-text-secondary)]">/ now</span>
-              </div>
-              <ul className="space-y-3">
-                {INCLUDED.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[var(--ec-text-primary)]">
-                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/auth/signup"
-                className="ec-btn-primary mt-8 flex w-full min-h-[52px] justify-center"
-              >
-                Get started free <ArrowRight className="h-5 w-5" />
-              </Link>
-            </div>
-          </div>
+        <div className="mx-auto max-w-6xl">
+          <PricingClient
+            display={display}
+            signedIn={Boolean(user)}
+            currentTier={currentTier}
+            founding={founding}
+            region={{ currency: region.currency, country: region.country, override: region.override }}
+          />
         </div>
+      </MarketingSection>
 
-        <div className="mx-auto mt-12 max-w-2xl space-y-6 text-center">
-          <p className="landing-lead">
-            Examcore will move to a subscription model after early access.
-            Students who join now will get a{' '}
-            <strong className="text-[var(--ec-text-primary)]">meaningful discount</strong>{' '}
-            when paid plans launch — our way of thanking founding members who
-            helped shape the product.
-          </p>
-          <p className="text-base text-[var(--ec-text-secondary)]">
-            No card required to start. We&apos;ll let you know well before
-            anything changes, and you won&apos;t be charged without warning.
-          </p>
+      <MarketingSection>
+        <div className="mx-auto max-w-3xl">
+          <FaqAccordion categories={PRICING_FAQ} />
         </div>
       </MarketingSection>
     </MarketingPageShell>

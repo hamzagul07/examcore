@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { Sparkles } from 'lucide-react'
 import { ThemeSwitcher } from '@/components/design-system/ThemeSwitcher'
 import { WordmarkLink } from '@/components/layout/Wordmark'
+import { CreditChip } from '@/components/billing/CreditChip'
 import { useOmniAI } from '@/lib/omni-ai/context'
 
 /** App chrome for /mark, /dashboard, and other authenticated routes. */
@@ -51,6 +52,7 @@ export function AppHeader() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <CreditChip />
           <ThemeSwitcher />
           <button
             type="button"

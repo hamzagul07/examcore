@@ -109,6 +109,10 @@ function VerifyEmailForm() {
       return
     }
 
+    // Best-effort: create + link the user's Stripe customer now that they're
+    // verified. Fire-and-forget — never block the redirect on billing setup.
+    void fetch('/api/billing/sync-customer', { method: 'POST' }).catch(() => {})
+
     const destination = sanitizeNextPath(nextRaw, '/dashboard')
     router.push(destination)
     router.refresh()

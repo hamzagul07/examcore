@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { UploadCloud, ChevronRight, Loader2, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -30,7 +30,7 @@ import {
   getSubjectById,
 } from '@/lib/profile-options'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
-import { SingleQuestionMarkingProgress } from '@/components/mark/SingleQuestionMarkingProgress'
+import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperience'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
 import { ApproachingLimitBanner } from '@/components/billing/ApproachingLimitBanner'
@@ -107,6 +107,11 @@ export default function MarkPage() {
   )
   const [markStreamError, setMarkStreamError] = useState<string | null>(null)
   const [result, setResult] = useState<MarkingResult | null>(null)
+  // Sprint 46: the final payload is buffered here the instant marking finishes,
+  // but the real results page is not shown until the cinematic wait signals it
+  // is ready to hand off (onReveal). The ref mirrors it for the reveal callback.
+  const [pendingResult, setPendingResult] = useState<MarkingResult | null>(null)
+  const pendingResultRef = useRef<MarkingResult | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [errorRetryable, setErrorRetryable] = useState(false)
   const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
@@ -467,6 +472,8 @@ export default function MarkPage() {
     setErrorMsg('')
     setErrorRetryable(false)
     setResult(null)
+    setPendingResult(null)
+    pendingResultRef.current = null
 
     try {
       const { pageFiles, extras, error: payloadError } =
@@ -594,24 +601,17 @@ export default function MarkPage() {
         }
       }
 
-      setLoading(false)
-      setMarkProgress(null)
-      setMarkContext(null)
-      setMarkStreamError(null)
       if (finalPayload) {
-        setResult(finalPayload)
-        handleAllowance(finalPayload._allowance)
-        void fetch('/api/celebrations', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ key: 'first_mark' }),
-        })
-          .then((r) => r.json())
-          .then((data: { show?: boolean }) => {
-            if (data.show) setFirstMarkCelebration(true)
-          })
-          .catch(() => {})
+        // Buffer the payload and let the cinematic wait choreograph the reveal.
+        // Marking stays "in flight" (loading + markProgress) until onReveal
+        // commits the real results — see handleReveal.
+        pendingResultRef.current = finalPayload
+        setPendingResult(finalPayload)
       } else {
+        setLoading(false)
+        setMarkProgress(null)
+        setMarkContext(null)
+        setMarkStreamError(null)
         setErrorMsg('Marking finished without a result. Please try again.')
       }
     } catch (err) {
@@ -621,8 +621,37 @@ export default function MarkPage() {
     }
   }
 
+  // Called by the cinematic wait once it is ready to hand off. Commits the
+  // buffered payload to the results view and tears down the wait surface so the
+  // simulated examiner ink dissolves into the real ExaminerInkOverlay.
+  const handleReveal = useCallback(() => {
+    const payload = pendingResultRef.current
+    if (!payload) return
+    setResult(payload)
+    setLoading(false)
+    setMarkProgress(null)
+    setMarkContext(null)
+    setMarkStreamError(null)
+    setPendingResult(null)
+    pendingResultRef.current = null
+    handleAllowance(payload._allowance)
+    void fetch('/api/celebrations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key: 'first_mark' }),
+    })
+      .then((r) => r.json())
+      .then((data: { show?: boolean }) => {
+        if (data.show) setFirstMarkCelebration(true)
+      })
+      .catch(() => {})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   function resetForm() {
     setResult(null)
+    setPendingResult(null)
+    pendingResultRef.current = null
     setMarkProgress(null)
     setAnswerPages([])
     setQuestionPhoto(null)
@@ -701,7 +730,7 @@ export default function MarkPage() {
           />
         )}
 
-        {!result && (
+        {!result && !loading && (
           <form onSubmit={handleSubmit} className="space-y-10">
             {/* Upload mode */}
             <section className="animate-entry">
@@ -1193,9 +1222,13 @@ export default function MarkPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
             >
-              <SingleQuestionMarkingProgress
+              <CinematicMarkingExperience
                 stage={markProgress?.stage ?? 'reading_work'}
                 context={markContext}
+                imageUrl={answerPages[0]?.previewUrl ?? null}
+                resultReady={!!pendingResult}
+                lineReferences={pendingResult?.line_references ?? null}
+                onReveal={handleReveal}
                 error={markStreamError}
               />
             </motion.div>

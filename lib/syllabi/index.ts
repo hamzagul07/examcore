@@ -256,15 +256,33 @@ export function getSyllabusTopicCounts(): Record<string, number> {
   return counts
 }
 
+function passthroughSyllabusTags(raw: unknown, max: number): SyllabusCode[] {
+  if (!Array.isArray(raw)) return []
+  const seen = new Set<string>()
+  const out: SyllabusCode[] = []
+  for (const item of raw) {
+    if (typeof item !== 'string') continue
+    const code = item.trim()
+    if (!code || seen.has(code)) continue
+    seen.add(code)
+    out.push(code)
+    if (out.length >= max) break
+  }
+  return out
+}
+
 /**
  * Normalize LLM syllabus_tags for a given subject. Math (9709) delegates to
  * lib/syllabus.ts to preserve regression-safe behavior.
+ * When subjectCode is null, tags are returned trimmed/deduped but not filtered.
  */
 export function normalizeSyllabusTagsForSubject(
-  subjectCode: string,
+  subjectCode: string | null,
   raw: unknown,
   max: number = 5
 ): SyllabusCode[] {
+  if (!subjectCode) return passthroughSyllabusTags(raw, max)
+
   if (subjectCode === MATH_CODE) return normalize9709Tags(raw, max)
 
   const valid = new Set(getValidSyllabusCodes(subjectCode))

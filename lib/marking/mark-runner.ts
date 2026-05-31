@@ -368,12 +368,10 @@ export async function markSingleQuestion(params: {
     : []
 
   const taggingSubject = subjectCode ?? inferredSubject
-  const claudeTags: SyllabusCode[] = taggingSubject
-    ? normalizeSyllabusTagsForSubject(
-        taggingSubject,
-        markingResult?.syllabus_tags
-      )
-    : []
+  const claudeTags: SyllabusCode[] = normalizeSyllabusTagsForSubject(
+    taggingSubject,
+    markingResult?.syllabus_tags
+  )
   let resolvedTags: SyllabusCode[] = []
   const cachedTags: SyllabusCode[] = Array.isArray(markScheme?.syllabus_tags)
     ? normalizeSyllabusTagsForSubject(taggingSubject, markScheme.syllabus_tags)

@@ -11,11 +11,19 @@ import {
 } from '@/lib/rich-text/markdown-components'
 import { normalizeMarkingText } from '@/lib/rich-text/normalize-marking-text'
 
+export type RichTextContentKind = 'marking' | 'question'
+
 export type RichTextRendererProps = {
   /** Markdown + LaTeX source ($...$ inline, $$...$$ block). */
   text: string
   className?: string
   variant?: RichTextVariant
+  /**
+   * `question` — skip accounting-oriented normalizeMarkingText (preserves $...$
+   * in table cells). Caller should run normalizeQuestionText first.
+   * `marking` — default; Claude/Accounting currency normalization applies.
+   */
+  contentKind?: RichTextContentKind
 }
 
 /**
@@ -26,10 +34,12 @@ export function RichTextRenderer({
   text,
   className = '',
   variant = 'dark',
+  contentKind = 'marking',
 }: RichTextRendererProps) {
   if (!text?.trim()) return null
 
-  const normalized = normalizeMarkingText(text)
+  const normalized =
+    contentKind === 'question' ? text : normalizeMarkingText(text)
   const components = createMarkdownComponents(variant)
   const proseClass =
     variant === 'dark'
@@ -39,7 +49,10 @@ export function RichTextRenderer({
   return (
     <div className={`${proseClass} ${className}`.trim()}>
       <ReactMarkdown
-        remarkPlugins={[[remarkMath, { singleDollarTextMath: true }], remarkGfm]}
+        remarkPlugins={[
+          remarkGfm,
+          [remarkMath, { singleDollarTextMath: true }],
+        ]}
         rehypePlugins={[rehypeKatex]}
         components={components}
       >

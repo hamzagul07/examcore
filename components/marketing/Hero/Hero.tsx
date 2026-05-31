@@ -14,7 +14,7 @@ export function Hero({ primaryHref }: HeroProps) {
       aria-labelledby="hero-headline"
       className="bg-[var(--ec-surface)] pt-24 pb-24 md:pt-32 md:pb-36"
     >
-      <div className="mx-auto max-w-[640px] px-6 text-center md:max-w-[720px] md:px-8">
+      <div className="mx-auto max-w-[640px] px-6 text-center md:max-w-[720px] md:px-8 lg:max-w-[860px]">
         <HeroCopy
           headline={
             <HeroHeadline text="Past papers, marked like an examiner. In minutes." />

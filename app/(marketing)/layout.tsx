@@ -7,10 +7,10 @@ export default function MarketingLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
+    <div data-ec-theme="zen">
       <MarketingHeader />
       {children}
       <MarketingFooter />
-    </>
+    </div>
   )
 }

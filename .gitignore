@@ -44,3 +44,77 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# Debug/QA artifacts — never commit these
+_imported/
+screenshots/
+.chrome-*/
+.chrome-profile/
+.chrome-inspect/
+chrome-user-data/
+
+# Chrome / browser profile artifacts
+**/Default/
+**/shared_proto_db/
+**/leveldb/
+**/Local Storage/
+**/Session Storage/
+**/Service Worker/
+**/Sync Data/
+**/Extension Rules/
+**/Extension Scripts/
+**/Extension State/
+**/GCM Store/
+
+# Log files
+*.log
+*.log.*
+*.dump
+*.tmp
+
+# Cursor artifacts
+.cursor-server/
+
+# Misc
+.DS_Store
+Thumbs.db
+# Browser profile / screenshot QA artifacts — never commit these
+_imported/
+screenshots/
+.chrome-*/
+.chrome-profile/
+.chrome-inspect/
+chrome-user-data/
+
+# Chrome / Chromium profile directory contents
+**/Default/Cookies
+**/Default/Login Data
+**/Default/Account Web Data
+**/Default/Web Data
+**/Default/History
+**/Default/Local State
+**/Default/Sync Data/
+**/Default/Local Storage/
+**/Default/Session Storage/
+**/Default/Service Worker/
+**/Default/Extension State/
+**/Default/Extension Scripts/
+**/Default/Extension Rules/
+**/Default/GCM Store/
+**/Default/Site Characteristics Database/
+**/Default/Storage/
+**/Default/IndexedDB/
+**/shared_proto_db/
+**/leveldb/
+
+# Log + debug
+*.log
+*.log.*
+*.dump
+*.tmp
+*.sqlite
+*.sqlite-journal
+*.crash
+
+# Cursor server / VS Code workspace
+.cursor-server/
+.vscode/.shared/

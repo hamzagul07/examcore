@@ -1,4 +1,34 @@
-export const demoQuestion = {
+export interface DemoAnswerLine {
+  id: string
+  text: string
+  correct: boolean
+}
+
+interface MarkBase {
+  id: string
+  delay: number
+}
+
+export type TickMark = MarkBase & { type: 'tick'; anchorLineId: string }
+export type UnderlineMark = MarkBase & { type: 'underline'; anchorLineId: string }
+export type AnnotationMark = MarkBase & {
+  type: 'annotation'
+  anchorLineId: string
+  label: string
+}
+export type ScoreMark = MarkBase & { type: 'score'; label: string }
+
+export type DemoMark = TickMark | UnderlineMark | AnnotationMark | ScoreMark
+export type AnchoredMark = TickMark | UnderlineMark | AnnotationMark
+
+export interface DemoQuestionData {
+  subjectCode: string
+  question: string
+  answer: DemoAnswerLine[]
+  marks: DemoMark[]
+}
+
+export const demoQuestion: DemoQuestionData = {
   subjectCode: 'Physics 9702 · Paper 4 · Q3(a)',
   question:
     'A ball of mass 0.20 kg is dropped from rest from a height of 1.8 m. Calculate the speed of the ball just before it hits the ground. (4 marks)',
@@ -20,8 +50,4 @@ export const demoQuestion = {
     },
     { id: 'm4', delay: 2.4, type: 'score', label: '3 / 4' },
   ],
-} as const
-
-export type DemoQuestion = typeof demoQuestion
-export type DemoAnswerLine = DemoQuestion['answer'][number]
-export type DemoMark = DemoQuestion['marks'][number]
+}

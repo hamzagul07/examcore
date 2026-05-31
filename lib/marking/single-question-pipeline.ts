@@ -15,6 +15,7 @@ import {
 } from '@/lib/marking/mark-runner'
 import { buildDetectionPrompt } from '@/lib/marking/prompts'
 import { reconcileDetectionWithQuestion } from '@/lib/marking/subject-inference'
+import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
@@ -258,6 +259,13 @@ export async function runSingleQuestionMark(
     .select()
     .single()
 
+  const paperCodeForSubject =
+    detectedPaper?.paper_code ?? markScheme?.paper_code ?? null
+  const subject_code = resolveMarkResultSubjectCode({
+    paper_code: paperCodeForSubject,
+    syllabus_tags: resolvedTags,
+  })
+
   const aiResult = toMarkingAIResult(markingResult)
   const inkPages = buildPerPageInk(
     aiResult,
@@ -274,6 +282,7 @@ export async function runSingleQuestionMark(
     question_text: questionText || markScheme?.question_text || null,
     marking_mode: finalMode,
     detected_paper: detectedPaper,
+    subject_code,
     attempt_id: attempt?.id,
     syllabus_tags: resolvedTags,
     answer_photo_url: answerPhotoUrl,

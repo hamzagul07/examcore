@@ -63,6 +63,19 @@ export function getAttemptSubjectCode(attempt: AttemptWithPaper): string | null 
   return paperCodeFromAttempt(attempt) ?? subjectFromTags(attempt.syllabus_tags)
 }
 
+/** Resolve subject for marking UI / badges (API field, paper code, or tag voting). */
+export function resolveMarkResultSubjectCode(params: {
+  subject_code?: string | null
+  paper_code?: string | null
+  syllabus_tags?: string[] | null
+}): string | null {
+  const explicit = params.subject_code?.trim()
+  if (explicit) return explicit
+  const fromPaper = params.paper_code?.split('/')[0]?.trim()
+  if (fromPaper) return fromPaper
+  return subjectFromTags(params.syllabus_tags)
+}
+
 export function filterAttemptsBySubject(
   attempts: AttemptWithPaper[],
   subjectCode: string

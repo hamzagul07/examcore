@@ -72,6 +72,7 @@ function toMarkingResult(attempt: AttemptRow): MarkingResultData {
           }
         : null,
     syllabus_tags: attempt.syllabus_tags ?? [],
+    subject_code: attempt.mark_schemes?.paper_code?.split('/')[0] ?? null,
   }
 }
 

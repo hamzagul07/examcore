@@ -1,3 +1,5 @@
+import { normalizeMarkdownTables } from '@/lib/rich-text/normalize-marking-text'
+
 /**
  * Wrap obvious math in `$...$` for question text that arrives WITHOUT LaTeX
  * delimiters (Gemini PDF extraction / question-photo OCR produce plain text
@@ -20,9 +22,10 @@ const STASH = '\x00Q'
 export function normalizeQuestionText(text: string): string {
   if (!text) return text
 
-  // Already contains LaTeX delimiters — assume it's correctly formatted and
-  // leave it entirely alone (prevents double-wrapping new extractions).
-  if (/\$[^$]+\$/.test(text)) return text
+  const withTables = normalizeMarkdownTables(text)
+
+  // Already contains LaTeX delimiters — skip math wrapping only (tables still normalized).
+  if (/\$[^$]+\$/.test(withTables)) return withTables
 
   const stashed: string[] = []
   const stash = (s: string): string => {
@@ -30,7 +33,7 @@ export function normalizeQuestionText(text: string): string {
     return `${STASH}${stashed.length - 1}\x00`
   }
 
-  let out = text
+  let out = withTables
 
   // Pattern A: (expr)^power — a parenthesised base that contains a variable or
   // operator, raised to a digit / letter / braced exponent. e.g. (1 - 4x)^6.

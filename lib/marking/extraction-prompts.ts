@@ -13,6 +13,34 @@ DO NOT output math as plain text with carets and slashes. Preserve the question 
 Correct: "The coefficient of $x^2$ in the expansion of $(1 - 4x)^6$ is..."
 Wrong: "The coefficient of x^2 in the expansion of (1 - 4x)^6 is..."`
 
+export const TABLE_NOTATION_BLOCK = `## Tables in question_text
+
+When the question contains a table (rows and columns of data the student must read or complete), output it in proper GFM markdown table format. This is REQUIRED for tables to render correctly:
+
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Row 1A   | Row 1B   | Row 1C   |
+| Row 2A   | Row 2B   | Row 2C   |
+
+The separator row with hyphens between header and data rows is MANDATORY — without it, the table renders as raw text with pipes.
+
+For empty cells students must fill in, use a single space or leave blank between pipes:
+| Mg$^{2+}$ | 24 |  |
+| Al$^{3+}$ | 27 |  |
+
+For multi-line cells or cells with math, keep math in $...$ as usual:
+| Reaction | Rate constant $k$ | Order |
+|----------|-------------------|-------|
+
+Common question table patterns to recognize and format properly:
+- "Complete Table X.Y using..." — student fills in blank cells
+- Periodic table excerpts
+- Data tables for analysis (concentration vs time, etc.)
+- Truth tables (computer science)
+- Comparison tables
+
+DO NOT use plain pipes without separator rows. DO NOT use ASCII-art tables. ALWAYS use proper markdown with --- separator and leading/trailing | on every row.`
+
 export function buildExtractionPrompt(markingType: MarkingStyle): string {
   const base = `You are extracting Cambridge International A-Level mark schemes from official PDFs. You have been given:
 - The QUESTION PAPER (first PDF) — contains the actual problem statements
@@ -29,6 +57,8 @@ For every question and sub-part in this paper (including 1, 2(a), 2(b), 3(a)(i),
 Be thorough. Extract EVERY question, every sub-part. Don't skip any.
 
 ${MATH_NOTATION_BLOCK}
+
+${TABLE_NOTATION_BLOCK}
 
 Output ONLY this JSON (no markdown):
 {
@@ -118,6 +148,8 @@ For the targeted question(s), cross-reference both PDFs to extract:
 5. mark_scheme — structured JSON appropriate to the marking type (see below)
 
 ${MATH_NOTATION_BLOCK}
+
+${TABLE_NOTATION_BLOCK}
 
 Output ONLY this JSON (no markdown):
 {

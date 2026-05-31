@@ -3,7 +3,10 @@ import Anthropic from '@anthropic-ai/sdk'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { buildLineReferences, type OcrLine } from '@/lib/examiner-ink-positioning'
 import { extractJSON } from '@/lib/marking/json'
-import type { MarkProgressEvent } from '@/lib/marking/mark-progress'
+import type {
+  MarkContextPayload,
+  MarkProgressEvent,
+} from '@/lib/marking/mark-progress'
 import {
   lookupMarkScheme,
   markSingleQuestion,
@@ -35,7 +38,7 @@ export type SingleQuestionMarkInput = {
   manualQuestionNumber: string | null
   userId: string | null
   startedAt?: number
-  onProgress?: (event: Extract<MarkProgressEvent, { type: 'progress' }>) => void
+  onProgress?: (event: MarkProgressEvent) => void
 }
 
 function emit(
@@ -44,6 +47,13 @@ function emit(
   percent: number
 ) {
   onProgress?.({ type: 'progress', stage, percent })
+}
+
+function emitContext(
+  onProgress: SingleQuestionMarkInput['onProgress'],
+  ctx: MarkContextPayload
+) {
+  onProgress?.({ type: 'context', ...ctx })
 }
 
 async function runPaperDetection(
@@ -204,6 +214,23 @@ export async function runSingleQuestionMark(
     if (!lookup.wasCached && !lookup.scheme) {
       // cold extract attempted but failed — no extra progress stage
     }
+
+    const subjectFromPaper = detectedPaper.paper_code.split('/')[0]
+    emitContext(onProgress, {
+      paper_code: detectedPaper.paper_code,
+      paper_session: detectedPaper.paper_session,
+      question_number: detectedPaper.question_number,
+      subject_code: subjectFromPaper,
+      syllabus_tags: markScheme?.syllabus_tags ?? null,
+    })
+  } else if (hasManualSelection && manualPaperCode) {
+    emitContext(onProgress, {
+      paper_code: manualPaperCode,
+      paper_session: manualPaperSession,
+      question_number: manualQuestionNumber,
+      subject_code: manualSubjectCode ?? manualPaperCode.split('/')[0],
+      syllabus_tags: null,
+    })
   }
 
   if (
@@ -233,6 +260,19 @@ export async function runSingleQuestionMark(
     paperSession: detectedPaper?.paper_session,
     questionNumber: detectedPaper?.question_number,
   })
+
+  if (resolvedTags.length > 0 || detectedPaper || hasManualSelection) {
+    emitContext(onProgress, {
+      paper_code: detectedPaper?.paper_code ?? manualPaperCode,
+      paper_session: detectedPaper?.paper_session ?? manualPaperSession,
+      question_number:
+        detectedPaper?.question_number ?? manualQuestionNumber,
+      subject_code:
+        (detectedPaper?.paper_code ?? manualPaperCode)?.split('/')[0] ??
+        null,
+      syllabus_tags: resolvedTags.length ? resolvedTags : null,
+    })
+  }
 
   const timeSpentSeconds = Math.max(
     1,

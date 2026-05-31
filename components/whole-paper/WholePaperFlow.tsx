@@ -4,7 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { WholePaperUploadSection, type WholePaperPage } from './WholePaperUploadSection'
 import { WholePaperMarkingProgress } from './WholePaperMarkingProgress'
 import { WholePaperResultView } from '@/components/WholePaperResultView'
-import type { WholePaperResult } from '@/lib/marking/types'
+import type { WholePaperLoadingContext, WholePaperResult } from '@/lib/marking/types'
+import type { MarkContextPayload } from '@/lib/marking/mark-progress'
 import { prepareWholePaperUpload } from '@/lib/upload/prepare-upload'
 import type { AllowanceBlock, QuotaExceeded } from '@/lib/billing/client-types'
 
@@ -24,7 +25,22 @@ type JobStatus = {
   questions_total: number
   questions_completed: number
   estimated_seconds_remaining?: number
+  loading_context?: WholePaperLoadingContext
   result?: WholePaperResult
+}
+
+function toMarkContext(
+  ctx: WholePaperLoadingContext | undefined,
+  paperCode: string,
+  paperSession: string
+): MarkContextPayload | null {
+  if (!ctx?.question_number) return null
+  return {
+    paper_code: ctx.paper_code ?? paperCode,
+    paper_session: ctx.paper_session ?? paperSession,
+    question_number: ctx.question_number,
+    syllabus_tags: ctx.syllabus_tags ?? null,
+  }
 }
 
 export function WholePaperFlow({
@@ -38,6 +54,8 @@ export function WholePaperFlow({
 }: Props) {
   const [phase, setPhase] = useState<'upload' | 'marking' | 'result'>('upload')
   const [jobStatus, setJobStatus] = useState<JobStatus | null>(null)
+  const [markingError, setMarkingError] = useState<string | null>(null)
+  const [retrying, setRetrying] = useState(false)
   const [result, setResult] = useState<WholePaperResult | null>(null)
   const [attemptId, setAttemptId] = useState<string | null>(null)
   const [answerPhotoUrl, setAnswerPhotoUrl] = useState<string | null>(null)
@@ -68,6 +86,7 @@ export function WholePaperFlow({
             questions_total: data.questions_total ?? 0,
             questions_completed: data.questions_completed ?? 0,
             estimated_seconds_remaining: data.estimated_seconds_remaining,
+            loading_context: data.loading_context,
             result: data.result,
           })
           if (data.phase === 'complete' && data.result) {
@@ -78,8 +97,15 @@ export function WholePaperFlow({
           }
           if (data.phase === 'failed') {
             stopPolling()
-            onError(data.error || 'Marking failed.')
-            setPhase('upload')
+            setMarkingError(data.error || 'Marking failed.')
+            setJobStatus((prev) => ({
+              phase: 'failed',
+              message: data.message || 'Marking failed',
+              questions_total: data.questions_total ?? prev?.questions_total ?? 0,
+              questions_completed:
+                data.questions_completed ?? prev?.questions_completed ?? 0,
+              loading_context: data.loading_context ?? prev?.loading_context,
+            }))
           }
         } catch {
           // keep polling
@@ -89,8 +115,73 @@ export function WholePaperFlow({
     [onError, stopPolling]
   )
 
+  const runWholePaperMarking = useCallback(
+    (id: string) => {
+      fetch('/api/mark/whole-paper/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ attempt_id: id }),
+      })
+        .then(async (runRes) => {
+          const runData = await runRes.json()
+          if (!runRes.ok) {
+            stopPolling()
+            setMarkingError(runData.error || 'Marking failed.')
+            setJobStatus((prev) => ({
+              phase: 'failed',
+              message: 'Marking failed',
+              questions_total: prev?.questions_total ?? 0,
+              questions_completed: prev?.questions_completed ?? 0,
+              loading_context: prev?.loading_context,
+            }))
+            setRetrying(false)
+            return
+          }
+          if (runData.whole_paper) {
+            stopPolling()
+            setResult(runData.whole_paper as WholePaperResult)
+            setAnswerPhotoUrl(runData.answer_photo_url ?? null)
+            setPhase('result')
+            setMarkingError(null)
+            onAllowance?.(runData._allowance as AllowanceBlock | undefined)
+          }
+          setRetrying(false)
+        })
+        .catch(() => {
+          setRetrying(false)
+        })
+    },
+    [onAllowance, stopPolling]
+  )
+
+  const handleRetryMarking = useCallback(() => {
+    if (!attemptId) return
+    setMarkingError(null)
+    setRetrying(true)
+    setJobStatus((prev) => ({
+      phase: 'marking',
+      message: 'Retrying marking…',
+      questions_total: prev?.questions_total ?? 0,
+      questions_completed: prev?.questions_completed ?? 0,
+      loading_context: prev?.loading_context,
+    }))
+    pollStatus(attemptId)
+    runWholePaperMarking(attemptId)
+  }, [attemptId, pollStatus, runWholePaperMarking])
+
+  const handleBackToUpload = useCallback(() => {
+    stopPolling()
+    setMarkingError(null)
+    setRetrying(false)
+    setAttemptId(null)
+    setJobStatus(null)
+    setPhase('upload')
+    onError('')
+  }, [onError, stopPolling])
+
   const handleSubmit = async (pages: WholePaperPage[], pdf: File | null) => {
     onError('')
+    setMarkingError(null)
     setPhase('marking')
     setJobStatus({
       phase: 'ocr',
@@ -160,31 +251,7 @@ export function WholePaperFlow({
       })
 
       pollStatus(id)
-
-      fetch('/api/mark/whole-paper/run', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ attempt_id: id }),
-      })
-        .then(async (runRes) => {
-          const runData = await runRes.json()
-          if (!runRes.ok) {
-            stopPolling()
-            onError(runData.error || 'Marking failed.')
-            setPhase('upload')
-            return
-          }
-          if (runData.whole_paper) {
-            stopPolling()
-            setResult(runData.whole_paper as WholePaperResult)
-            setAnswerPhotoUrl(runData.answer_photo_url ?? null)
-            setPhase('result')
-            onAllowance?.(runData._allowance as AllowanceBlock | undefined)
-          }
-        })
-        .catch(() => {
-          // polling will surface completion or failure
-        })
+      runWholePaperMarking(id)
     } catch (err) {
       onError(err instanceof Error ? err.message : 'Network error')
       setPhase('upload')
@@ -227,14 +294,20 @@ export function WholePaperFlow({
     )
   }
 
-  if (phase === 'marking' && jobStatus) {
+  if (phase === 'marking' && (jobStatus || markingError)) {
     return (
       <WholePaperMarkingProgress
-        phase={jobStatus.phase}
-        message={jobStatus.message}
-        questionsCompleted={jobStatus.questions_completed}
-        questionsTotal={jobStatus.questions_total}
-        estimatedSecondsRemaining={jobStatus.estimated_seconds_remaining}
+        phase={jobStatus?.phase ?? 'marking'}
+        message={jobStatus?.message ?? 'Marking your paper…'}
+        questionsCompleted={jobStatus?.questions_completed ?? 0}
+        questionsTotal={jobStatus?.questions_total ?? 0}
+        paperCode={paperCode}
+        paperSession={paperSession}
+        context={toMarkContext(jobStatus?.loading_context, paperCode, paperSession)}
+        error={markingError}
+        onRetry={markingError && attemptId ? handleRetryMarking : undefined}
+        onBackToUpload={markingError ? handleBackToUpload : undefined}
+        retryDisabled={retrying}
       />
     )
   }

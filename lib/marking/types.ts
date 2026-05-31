@@ -95,6 +95,8 @@ export type QuestionMarkResult = {
   }>
   /** OCR answer text — used for per-question retry */
   answer_text?: string
+  /** Syllabus tags for loading UI / progress */
+  syllabus_tags?: string[]
 }
 
 export type WholePaperScoreBlock = {
@@ -139,6 +141,13 @@ export type WholePaperJobPhase =
   | 'complete'
   | 'failed'
 
+export type WholePaperLoadingContext = {
+  paper_code: string
+  paper_session: string
+  question_number: string
+  syllabus_tags?: string[]
+}
+
 export type WholePaperJobProgress = {
   phase: WholePaperJobPhase
   message: string
@@ -146,6 +155,7 @@ export type WholePaperJobProgress = {
   questions_completed: number
   current_question?: string
   estimated_seconds_remaining?: number
+  loading_context?: WholePaperLoadingContext
   result?: WholePaperResult
   error?: string
 }

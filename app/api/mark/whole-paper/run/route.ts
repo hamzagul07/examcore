@@ -139,6 +139,11 @@ export async function POST(request: NextRequest) {
       })
       results.push({ ...qResult, answer_text: seg.answer_text })
 
+      const tags =
+        qResult.syllabus_tags ??
+        qResult.ai_marking?.syllabus_tags ??
+        []
+
       await updateJob(attemptId, {
         ...markingState,
         phase: 'marking',
@@ -148,6 +153,12 @@ export async function POST(request: NextRequest) {
         questions_total: segments.length,
         estimated_seconds_remaining: estimateMarkingSeconds(segments.length - i - 1),
         partial_questions: results,
+        loading_context: {
+          paper_code: paperCode,
+          paper_session: paperSession,
+          question_number: seg.question_number,
+          syllabus_tags: tags.length ? tags : undefined,
+        },
       })
     }
 

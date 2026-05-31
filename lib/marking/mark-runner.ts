@@ -11,6 +11,7 @@ import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { parsePaperCode } from '@/lib/marking/component-types'
 import { buildMarkingPrompt, maxTokensForStyle } from '@/lib/marking/build-marking-prompt'
 import { extractJSON } from '@/lib/marking/json'
+import { normalizeMarkingResult } from '@/lib/marking/normalize-math'
 import {
   tryExtractFromStorage,
   resolveQuestionMarkingStyle,
@@ -326,9 +327,8 @@ export async function markSingleQuestion(params: {
     isOfficial,
   })
 
-  const markingResult = await runClaudeMarking(
-    markingPrompt,
-    maxTokensForStyle(markingStyle)
+  const markingResult = normalizeMarkingResult(
+    await runClaudeMarking(markingPrompt, maxTokensForStyle(markingStyle))
   )
 
   const lineReferences = buildLineReferences(

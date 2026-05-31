@@ -103,3 +103,82 @@ export function normalizeMarkingText(text: string): string {
 
   return working
 }
+
+/** True when a line looks like a markdown/GFM table row (not a one-off pipe in prose). */
+function isPipeTableRow(line: string): boolean {
+  const trimmed = line.trim()
+  if (!trimmed.includes('|')) return false
+  const cells = trimmed
+    .split('|')
+    .map((c) => c.trim())
+    .filter((c) => c.length > 0)
+  return cells.length >= 2
+}
+
+function isSeparatorRow(line: string): boolean {
+  const t = line.trim()
+  return t.includes('---') && /^\|?[\s|:\-]+\|?$/.test(t)
+}
+
+/** Ensure leading/trailing pipes for remark-gfm table parsing. */
+function toGfmTableRow(line: string): string {
+  const trimmed = line.trim()
+  let cells = trimmed.split('|').map((c) => c.trim())
+  if (cells[0] === '') cells = cells.slice(1)
+  if (cells.length > 0 && cells[cells.length - 1] === '') {
+    cells = cells.slice(0, -1)
+  }
+  if (cells.length === 0) return trimmed
+  return `| ${cells.join(' | ')} |`
+}
+
+function separatorRow(columnCount: number): string {
+  return `|${' --- |'.repeat(columnCount)}`
+}
+
+/**
+ * Detect pipe-separated table rows missing the GFM header separator (---).
+ * Inserts the separator and normalizes row delimiters so remark-gfm renders tables.
+ */
+export function normalizeMarkdownTables(text: string): string {
+  if (!text) return text
+
+  const lines = text.split('\n')
+  const out: string[] = []
+  let i = 0
+
+  while (i < lines.length) {
+    if (!isPipeTableRow(lines[i]) || isSeparatorRow(lines[i])) {
+      out.push(lines[i])
+      i += 1
+      continue
+    }
+
+    const blockStart = i
+    const block: string[] = []
+    while (
+      i < lines.length &&
+      isPipeTableRow(lines[i]) &&
+      !isSeparatorRow(lines[i])
+    ) {
+      block.push(lines[i])
+      i += 1
+    }
+
+    if (block.length >= 2) {
+      const header = toGfmTableRow(block[0])
+      const colCount = header.split('|').filter((c) => c.trim()).length
+      out.push(header)
+      out.push(separatorRow(colCount))
+      for (let r = 1; r < block.length; r++) {
+        out.push(toGfmTableRow(block[r]))
+      }
+    } else {
+      for (const row of block) {
+        out.push(row)
+      }
+    }
+  }
+
+  return out.join('\n')
+}

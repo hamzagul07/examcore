@@ -75,8 +75,12 @@ export function questionPhotoOcrPrompt(subjectName?: string): string {
 Also capture ANY paper headers, codes, sessions, or question numbers visible.
 Rules:
 - Capture the full question including any sub-parts like (a), (b)
-- Use ^ for exponents, sqrt() for roots, _ for subscripts where applicable
+- Wrap math in $...$ (e.g. $Mg^{2+}$, $x^2$)
 - Include any marks notation in brackets like [4]
 - Include any header text like "9709/12", "May/June 2024"
+- Tables: use GFM markdown with a --- separator row, e.g.:
+  | Header 1 | Header 2 |
+  |----------|----------|
+  | Row 1A   | Row 1B   |
 - Output only the question text and headers, nothing else`
 }

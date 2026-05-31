@@ -1,10 +1,21 @@
 'use client'
 
+import { motion, useReducedMotion } from 'framer-motion'
 import { demoQuestion } from './demo-data'
+import { heroDemoEntrance, heroDemoEntranceReduced } from './motion'
 
 export function ExaminerInkDemo() {
+  const prefersReducedMotion = useReducedMotion()
+  const entrance = prefersReducedMotion
+    ? heroDemoEntranceReduced
+    : heroDemoEntrance
+
   return (
-    <figure
+    <motion.figure
+      variants={entrance}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
       role="img"
       aria-label="Demonstration of Examcore marking a Physics past paper question, earning 3 out of 4 marks"
       className="relative rounded-[16px] border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-6 md:p-10"
@@ -21,6 +32,6 @@ export function ExaminerInkDemo() {
           </li>
         ))}
       </ul>
-    </figure>
+    </motion.figure>
   )
 }

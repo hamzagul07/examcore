@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { AlertCircle, CheckCircle2, Info } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { AnimatedScore } from '@/components/effects/AnimatedScore'
@@ -203,7 +204,7 @@ export function MarkingResultView({
         <div className="ec-card-premium p-5 sm:p-7">
           <p className="ec-label-tech mb-3">QUESTION (AS READ)</p>
           <div className="ec-question-text whitespace-pre-wrap text-base">
-            <RichTextRenderer text={result.question_text} />
+            <RichTextRenderer text={normalizeQuestionText(result.question_text)} />
           </div>
         </div>
       )}

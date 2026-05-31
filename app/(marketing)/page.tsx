@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase-server'
 import { createPageMetadata } from '@/lib/seo/metadata'
-import { LandingHero } from '@/components/landing/LandingHero'
+import { Hero } from '@/components/marketing/Hero'
 import { LandingSubjects } from '@/components/landing/LandingSubjects'
 import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSteps'
 import { LandingFounder } from '@/components/landing/LandingFounder'
@@ -37,10 +37,7 @@ export default async function Home() {
   return (
     <div className="relative min-h-screen">
       <main>
-        <section className="landing-section relative scroll-mt-20 pb-16 pt-20 sm:pb-24 sm:pt-28">
-          <div className="landing-hero-glow" aria-hidden />
-          <LandingHero markHref={markHref} />
-        </section>
+        <Hero primaryHref={markHref} />
 
         <section id="features" className="landing-section scroll-mt-20">
           <LandingSectionReveal>

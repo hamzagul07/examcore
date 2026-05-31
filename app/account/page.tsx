@@ -9,6 +9,7 @@ import {
   DEFAULT_SUBJECTS,
 } from '@/lib/profile-options'
 import { isOnboardingComplete } from '@/lib/onboarding'
+import { computeAllowance } from '@/lib/billing/enforcement'
 
 export const dynamic = 'force-dynamic'
 
@@ -28,6 +29,26 @@ export default async function AccountPage() {
     .select('full_name, board, level, subjects, onboarded, onboarding_completed')
     .eq('id', user.id)
     .maybeSingle()
+
+  const [{ data: subscription }, { data: credits }, { data: recentUsage }, allowance] =
+    await Promise.all([
+      supabase
+        .from('user_subscriptions')
+        .select(
+          'tier, status, billing_period, current_period_end, cancel_at_period_end, stripe_customer_id, founding_member'
+        )
+        .eq('user_id', user.id)
+        .maybeSingle(),
+      supabase.from('user_credits').select('balance').eq('user_id', user.id).maybeSingle(),
+      supabase
+        .from('usage_events')
+        .select('id, event_type, source, credits_delta, created_at')
+        .eq('user_id', user.id)
+        .in('event_type', ['mark_single', 'mark_whole_paper'])
+        .order('created_at', { ascending: false })
+        .limit(10),
+      computeAllowance(user.id),
+    ])
 
   // Middleware ordinarily redirects unfinished onboarders to /onboarding before
   // they ever reach here, but in case middleware is bypassed (e.g. caching),
@@ -64,6 +85,26 @@ export default async function AccountPage() {
             board: profile?.board ?? DEFAULT_BOARD,
             level: profile?.level ?? DEFAULT_LEVEL,
             subjects: profile?.subjects ?? DEFAULT_SUBJECTS,
+          }}
+          billing={{
+            tier: subscription?.tier ?? 'free',
+            status: subscription?.status ?? 'active',
+            billingPeriod: subscription?.billing_period ?? null,
+            currentPeriodEnd: subscription?.current_period_end ?? null,
+            cancelAtPeriodEnd: subscription?.cancel_at_period_end ?? false,
+            hasCustomer: Boolean(subscription?.stripe_customer_id),
+            credits: credits?.balance ?? 0,
+            foundingMember: Boolean(subscription?.founding_member),
+            marksUsed: allowance.marks_used,
+            markCap: Number.isFinite(allowance.cap) ? allowance.cap : null,
+            periodResetsAt: allowance.period_resets_at ?? null,
+            recentUsage: (recentUsage ?? []).map((u) => ({
+              id: u.id as string,
+              eventType: u.event_type as string,
+              source: u.source as string,
+              creditsDelta: (u.credits_delta as number) ?? 0,
+              createdAt: u.created_at as string,
+            })),
           }}
         />
       </div>

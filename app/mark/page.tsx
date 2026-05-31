@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
 import { UploadCloud, ChevronRight, Loader2, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Label } from '@/components/ui/label'
@@ -31,6 +32,11 @@ import {
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { SingleQuestionMarkingProgress } from '@/components/mark/SingleQuestionMarkingProgress'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
+import { UpgradeModal } from '@/components/billing/UpgradeModal'
+import { ApproachingLimitBanner } from '@/components/billing/ApproachingLimitBanner'
+import { capForTier } from '@/lib/billing/caps'
+import type { AllowanceBlock } from '@/lib/billing/client-types'
+import type { SubscriptionTier } from '@/lib/database.types'
 import type { WholePaperResult } from '@/lib/marking/types'
 import type { MarkProgressStage } from '@/lib/marking/mark-progress'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'
@@ -56,6 +62,22 @@ type MarkingResult = MarkingResultData & {
   ink_pages?: Array<{ photo_url: string; line_references: LineReference[] }>
   upload_mode?: 'single_question' | 'whole_paper'
   whole_paper?: WholePaperResult
+  _allowance?: AllowanceBlock
+}
+
+type UpgradeModalState = {
+  variant: 'anonymous' | 'cap'
+  tier?: SubscriptionTier
+  cap?: number | null
+  periodResetsAt?: string | null
+  creditBalance?: number
+}
+
+/** Notify the header chip (and anyone listening) to refetch billing summary. */
+function refreshBillingSummary() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('ec:billing-refresh'))
+  }
 }
 
 export default function MarkPage() {
@@ -74,6 +96,10 @@ export default function MarkPage() {
   const [errorMsg, setErrorMsg] = useState('')
   const [errorRetryable, setErrorRetryable] = useState(false)
   const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
+  const [limitBanner, setLimitBanner] = useState<{ used: number; cap: number } | null>(null)
+  const [bannerDismissed, setBannerDismissed] = useState(false)
+  const [upgradeModal, setUpgradeModal] = useState<UpgradeModalState | null>(null)
+  const [showFreeNudge, setShowFreeNudge] = useState(false)
 
   const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
     null
@@ -449,6 +475,19 @@ export default function MarkPage() {
         const data = await res.json().catch(() => ({}))
         setLoading(false)
         setMarkProgress(null)
+        // Cap breach (only happens in 'enforce' mode). Show the upgrade modal.
+        if (data?.error === 'mark_quota_exceeded') {
+          const tier = (data.tier ?? 'free') as SubscriptionTier
+          setUpgradeModal({
+            variant: 'cap',
+            tier,
+            cap: capForTier(tier),
+            periodResetsAt: data.period_resets_at ?? null,
+            creditBalance: data.credit_balance ?? 0,
+          })
+          refreshBillingSummary()
+          return
+        }
         setErrorMsg(data.error || 'Marking failed.')
         setErrorRetryable(!!data.retryable)
         return
@@ -500,6 +539,7 @@ export default function MarkPage() {
       setMarkProgress(null)
       if (finalPayload) {
         setResult(finalPayload)
+        handleAllowance(finalPayload._allowance)
         void fetch('/api/celebrations', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -555,6 +595,21 @@ export default function MarkPage() {
     }
   }
 
+  // Apply the `_allowance` block from a successful mark: refresh the header chip,
+  // set the approaching-limit banner (only set by the API in warn/enforce), and
+  // nudge free users to explore plans (any mode).
+  function handleAllowance(block?: AllowanceBlock) {
+    refreshBillingSummary()
+    if (block?.tier === 'free') setShowFreeNudge(true)
+    if (block?.warning && block.cap != null && block.remaining_after != null) {
+      setLimitBanner({
+        used: Math.max(0, block.cap - block.remaining_after),
+        cap: block.cap,
+      })
+      setBannerDismissed(false)
+    }
+  }
+
   return (
     <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-3xl">
@@ -576,6 +631,14 @@ export default function MarkPage() {
               : 'Cambridge A-Level past papers, examiner-grade.'}
           </p>
         </motion.div>
+
+        {!result && limitBanner && !bannerDismissed && (
+          <ApproachingLimitBanner
+            used={limitBanner.used}
+            cap={limitBanner.cap}
+            onDismiss={() => setBannerDismissed(true)}
+          />
+        )}
 
         {!result && (
           <form onSubmit={handleSubmit} className="space-y-10">
@@ -681,6 +744,18 @@ export default function MarkPage() {
                       setWholePaperKey((k) => k + 1)
                       setErrorMsg('')
                     }}
+                    onQuotaExceeded={(data) => {
+                      const tier = (data.tier ?? 'free') as SubscriptionTier
+                      setUpgradeModal({
+                        variant: 'cap',
+                        tier,
+                        cap: capForTier(tier),
+                        periodResetsAt: data.period_resets_at ?? null,
+                        creditBalance: data.credit_balance ?? 0,
+                      })
+                      refreshBillingSummary()
+                    }}
+                    onAllowance={handleAllowance}
                   />
                 )}
               </section>
@@ -1091,6 +1166,15 @@ export default function MarkPage() {
                 Mark a new question
               </button>
             </div>
+
+            {showFreeNudge && (
+              <p className="pt-1 text-center text-sm text-[var(--ec-text-secondary)]">
+                Want to mark more?{' '}
+                <Link href="/pricing" className="font-semibold text-emerald-400 hover:text-emerald-300">
+                  See plans →
+                </Link>
+              </p>
+            )}
           </div>
         )}
       </div>
@@ -1100,6 +1184,15 @@ export default function MarkPage() {
         title="First mark complete!"
         message="That's your first examiner-style review on Examcore. Read the breakdown, then try another question when you're ready."
         onDismiss={() => setFirstMarkCelebration(false)}
+      />
+      <UpgradeModal
+        open={!!upgradeModal}
+        onClose={() => setUpgradeModal(null)}
+        variant={upgradeModal?.variant ?? 'cap'}
+        tier={upgradeModal?.tier}
+        cap={upgradeModal?.cap}
+        periodResetsAt={upgradeModal?.periodResetsAt}
+        creditBalance={upgradeModal?.creditBalance}
       />
     </main>
   )

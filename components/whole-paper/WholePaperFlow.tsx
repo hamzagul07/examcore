@@ -6,6 +6,7 @@ import { WholePaperMarkingProgress } from './WholePaperMarkingProgress'
 import { WholePaperResultView } from '@/components/WholePaperResultView'
 import type { WholePaperResult } from '@/lib/marking/types'
 import { prepareWholePaperUpload } from '@/lib/upload/prepare-upload'
+import type { AllowanceBlock, QuotaExceeded } from '@/lib/billing/client-types'
 
 type Props = {
   paperCode: string
@@ -13,6 +14,8 @@ type Props = {
   questionOptions: string[]
   onError: (msg: string, retryable?: boolean) => void
   onReset: () => void
+  onQuotaExceeded?: (data: QuotaExceeded) => void
+  onAllowance?: (block: AllowanceBlock | undefined) => void
 }
 
 type JobStatus = {
@@ -30,6 +33,8 @@ export function WholePaperFlow({
   questionOptions,
   onError,
   onReset,
+  onQuotaExceeded,
+  onAllowance,
 }: Props) {
   const [phase, setPhase] = useState<'upload' | 'marking' | 'result'>('upload')
   const [jobStatus, setJobStatus] = useState<JobStatus | null>(null)
@@ -131,10 +136,18 @@ export function WholePaperFlow({
       })
       const initData = await initRes.json()
       if (!initRes.ok) {
+        // Cap breach (enforce mode only) — surface the upgrade modal, not an error.
+        if (initData?.error === 'mark_quota_exceeded') {
+          onQuotaExceeded?.(initData as QuotaExceeded)
+          setPhase('upload')
+          return
+        }
         onError(initData.error || 'Failed to start marking.')
         setPhase('upload')
         return
       }
+
+      if (initData._allowance) onAllowance?.(initData._allowance as AllowanceBlock)
 
       const id = initData.attempt_id as string
       setAttemptId(id)
@@ -166,6 +179,7 @@ export function WholePaperFlow({
             setResult(runData.whole_paper as WholePaperResult)
             setAnswerPhotoUrl(runData.answer_photo_url ?? null)
             setPhase('result')
+            onAllowance?.(runData._allowance as AllowanceBlock | undefined)
           }
         })
         .catch(() => {

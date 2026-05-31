@@ -14,6 +14,11 @@ import {
 import type { QuestionMarkResult } from '@/lib/marking/types'
 import { estimateMarkingSeconds } from '@/lib/marking/whole-paper'
 import { pagesForQuestion } from '@/lib/marking/whole-paper-pages'
+import {
+  recordMarkUsage,
+  computeAllowance,
+  allowanceForResponse,
+} from '@/lib/billing/enforcement'
 
 export const maxDuration = 300
 
@@ -50,7 +55,7 @@ export async function POST(request: NextRequest) {
 
     const { data: attempt, error: fetchError } = await supabaseAdmin
       .from('attempts')
-      .select('id, ai_marking')
+      .select('id, ai_marking, user_id')
       .eq('id', attemptId)
       .maybeSingle()
 
@@ -192,6 +197,14 @@ export async function POST(request: NextRequest) {
       { onConflict: 'ip,date' }
     )
 
+    // Whole paper = exactly 1 mark, recorded on completion success only.
+    const markUserId = (attempt as { user_id?: string | null }).user_id ?? null
+    let allowanceBlock: ReturnType<typeof allowanceForResponse> | undefined
+    if (markUserId) {
+      await recordMarkUsage(markUserId, attemptId, 'mark_whole_paper')
+      allowanceBlock = allowanceForResponse(await computeAllowance(markUserId))
+    }
+
     return NextResponse.json({
       status: 'complete',
       whole_paper: wholePaper,
@@ -202,6 +215,7 @@ export async function POST(request: NextRequest) {
       answer_photo_url: job.page_photo_urls?.[0] ?? null,
       marking_mode: 'official_mark_scheme',
       job: finalState,
+      _allowance: allowanceBlock,
     })
   } catch (err) {
     console.error('whole-paper run error:', err)

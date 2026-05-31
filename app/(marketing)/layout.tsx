@@ -7,7 +7,7 @@ export default function MarketingLayout({
   children: React.ReactNode
 }) {
   return (
-    <div data-ec-theme="zen">
+    <div data-ec-theme="zen" className="flex flex-1 flex-col">
       <MarketingHeader />
       {children}
       <MarketingFooter />

@@ -35,7 +35,9 @@ type BillingInfo = {
   credits: number
   foundingMember: boolean
   marksUsed: number
-  markCap: number | null
+  markCap: number
+  omniUsed: number
+  omniCap: number
   periodResetsAt: string | null
   recentUsage: UsageRow[]
 }
@@ -170,7 +172,8 @@ function ProfileSection({ initialProfile }: { initialProfile: InitialProfile }) 
 const TIER_LABELS: Record<string, string> = {
   free: 'Free',
   student: 'Student',
-  unlimited: 'Unlimited',
+  scholar: 'Scholar',
+  mastery: 'Mastery',
 }
 
 const STATUS_LABELS: Record<string, string> = {
@@ -225,10 +228,14 @@ function BillingSection({ billing }: { billing: BillingInfo }) {
     : null
   const isPaid = billing.tier !== 'free'
 
-  const unlimited = billing.markCap === null
-  const pct = unlimited
-    ? 0
-    : Math.min(100, Math.round((billing.marksUsed / Math.max(1, billing.markCap ?? 1)) * 100))
+  const qPct = Math.min(
+    100,
+    Math.round((billing.marksUsed / Math.max(1, billing.markCap)) * 100)
+  )
+  const omniPct = Math.min(
+    100,
+    Math.round((billing.omniUsed / Math.max(1, billing.omniCap)) * 100)
+  )
   const resetDate = billing.periodResetsAt
     ? new Date(billing.periodResetsAt).toLocaleDateString(undefined, {
         month: 'short',
@@ -265,25 +272,37 @@ function BillingSection({ billing }: { billing: BillingInfo }) {
           </div>
         </div>
 
-        {/* Usage this period */}
         <div className="rounded-2xl border border-white/10 bg-dark-900/60 px-4 py-3">
           <div className="mb-2 flex items-baseline justify-between">
-            <p className="label-overline text-slate-500">Marks this period</p>
+            <p className="label-overline text-slate-500">Questions this period</p>
             <p className="text-sm font-semibold text-slate-200">
-              {unlimited ? `${billing.marksUsed} · Unlimited` : `${billing.marksUsed} / ${billing.markCap}`}
+              {billing.marksUsed} / {billing.markCap}
             </p>
           </div>
-          {!unlimited && (
-            <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
-              <div
-                className="h-full rounded-full bg-emerald-500 transition-all"
-                style={{ width: `${pct}%` }}
-              />
-            </div>
-          )}
+          <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+            <div
+              className="h-full rounded-full bg-emerald-500 transition-all"
+              style={{ width: `${qPct}%` }}
+            />
+          </div>
           {resetDate && (
             <p className="mt-2 text-xs text-slate-500">Resets {resetDate}.</p>
           )}
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-dark-900/60 px-4 py-3">
+          <div className="mb-2 flex items-baseline justify-between">
+            <p className="label-overline text-slate-500">Omni messages this period</p>
+            <p className="text-sm font-semibold text-slate-200">
+              {billing.omniUsed} / {billing.omniCap}
+            </p>
+          </div>
+          <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+            <div
+              className="h-full rounded-full bg-emerald-500 transition-all"
+              style={{ width: `${omniPct}%` }}
+            />
+          </div>
         </div>
 
         {/* Recent usage */}

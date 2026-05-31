@@ -1,8 +1,5 @@
 /**
- * Shared pricing helpers used by the checkout endpoint (price lookup) and the
- * webhook handler (reverse price -> tier/period resolution). Source of truth
- * for prices lives in the `pricing_config` table (seeded by
- * scripts/setup-stripe-products.mjs); these helpers just read it.
+ * Shared pricing helpers used by checkout and webhook handlers.
  */
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type {
@@ -13,15 +10,16 @@ import type {
 
 export type ProductKey =
   | 'student'
-  | 'unlimited'
+  | 'scholar'
+  | 'mastery'
   | 'credits_25'
   | 'credits_100'
   | 'credits_500'
 
-export const SUBSCRIPTION_PRODUCTS: ProductKey[] = ['student', 'unlimited']
+export const SUBSCRIPTION_PRODUCTS: ProductKey[] = ['student', 'scholar', 'mastery']
 
 export const CREDIT_PRODUCTS: Record<
-  Exclude<ProductKey, 'student' | 'unlimited'>,
+  Exclude<ProductKey, 'student' | 'scholar' | 'mastery'>,
   number
 > = {
   credits_25: 25,
@@ -31,7 +29,6 @@ export const CREDIT_PRODUCTS: Record<
 
 export const FOUNDING_MEMBER_COUPON = 'FOUNDING_MEMBER_50'
 
-/** Founding members get 50% off, forever. Rounded to nearest cent. */
 export function applyFoundingMemberDiscount(amountCents: number): number {
   return Math.round(amountCents * 0.5)
 }
@@ -44,14 +41,13 @@ export function isCreditProduct(product: ProductKey): boolean {
   return product in CREDIT_PRODUCTS
 }
 
-/** Map a subscription product key to the tier it grants. */
 export function tierForProduct(product: ProductKey): SubscriptionTier {
   if (product === 'student') return 'student'
-  if (product === 'unlimited') return 'unlimited'
+  if (product === 'scholar') return 'scholar'
+  if (product === 'mastery') return 'mastery'
   return 'free'
 }
 
-/** Number of credits granted by a one-time credit product. */
 export function creditsForProduct(product: ProductKey): number {
   return product in CREDIT_PRODUCTS
     ? CREDIT_PRODUCTS[product as keyof typeof CREDIT_PRODUCTS]
@@ -66,11 +62,6 @@ export type ResolvedPrice = {
   billing_period: BillingPeriod | null
 }
 
-/**
- * Look up the active Stripe price id for a (product, region, [period]) combo,
- * preferring the user's `currency` and falling back to USD. Returns null when
- * nothing matches (products not yet created / inactive).
- */
 export async function resolvePrice(
   supabase: SupabaseClient,
   opts: {
@@ -113,10 +104,6 @@ export async function resolvePrice(
   }
 }
 
-/**
- * Reverse lookup used by the webhook: given a Stripe price id, find the product
- * it represents so we can set the subscription tier/period.
- */
 export async function lookupPriceConfig(
   supabase: SupabaseClient,
   stripePriceId: string

@@ -8,15 +8,20 @@ import type { RegionChoice } from './region-cookie'
 export type DisplayPrice = {
   amountCents: number
   currency: string
-  /** false when this came from the fallback table (pricing_config not seeded) */
   fromConfig: boolean
+}
+
+export type SubscriptionDisplayPrices = {
+  monthly: DisplayPrice
+  yearly: DisplayPrice
 }
 
 export type PricingDisplay = {
   currency: string
-  configured: boolean // true when pricing_config had ANY matching rows
-  student: { monthly: DisplayPrice; yearly: DisplayPrice }
-  unlimited: { monthly: DisplayPrice; yearly: DisplayPrice }
+  configured: boolean
+  student: SubscriptionDisplayPrices
+  scholar: SubscriptionDisplayPrices
+  mastery: SubscriptionDisplayPrices
   credits: Record<'credits_25' | 'credits_100' | 'credits_500', DisplayPrice>
 }
 
@@ -45,12 +50,21 @@ function pickAmount(
     : { amountCents: fallback, currency, fromConfig: false }
 }
 
-/**
- * Resolve all display prices for a region. Reads pricing_config (service role,
- * filtered by region tier + currency) and falls back to the hardcoded table for
- * any missing combination. Applies the founding-member 50% discount when
- * `founding` is true. Display only — never used to charge.
- */
+function subscriptionPrices(
+  rows: ConfigRow[],
+  product: ProductKey,
+  currency: string,
+  founding: boolean,
+  fb: (product: ProductKey, period: BillingPeriod | null) => number
+): SubscriptionDisplayPrices {
+  const discount = (p: DisplayPrice): DisplayPrice =>
+    founding ? { ...p, amountCents: applyFoundingMemberDiscount(p.amountCents) } : p
+  return {
+    monthly: discount(pickAmount(rows, product, currency, 'monthly', fb(product, 'monthly'))),
+    yearly: discount(pickAmount(rows, product, currency, 'yearly', fb(product, 'yearly'))),
+  }
+}
+
 export async function getPricingDisplay(
   region: RegionChoice,
   founding: boolean
@@ -80,14 +94,9 @@ export async function getPricingDisplay(
   return {
     currency: region.currency,
     configured,
-    student: {
-      monthly: discount(pickAmount(rows, 'student', region.currency, 'monthly', fb('student', 'monthly'))),
-      yearly: discount(pickAmount(rows, 'student', region.currency, 'yearly', fb('student', 'yearly'))),
-    },
-    unlimited: {
-      monthly: discount(pickAmount(rows, 'unlimited', region.currency, 'monthly', fb('unlimited', 'monthly'))),
-      yearly: discount(pickAmount(rows, 'unlimited', region.currency, 'yearly', fb('unlimited', 'yearly'))),
-    },
+    student: subscriptionPrices(rows, 'student', region.currency, founding, fb),
+    scholar: subscriptionPrices(rows, 'scholar', region.currency, founding, fb),
+    mastery: subscriptionPrices(rows, 'mastery', region.currency, founding, fb),
     credits: {
       credits_25: discount(pickAmount(rows, 'credits_25', region.currency, null, fb('credits_25', null))),
       credits_100: discount(pickAmount(rows, 'credits_100', region.currency, null, fb('credits_100', null))),

@@ -8,7 +8,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
     items: [
       {
         q: 'How do I sign up?',
-        a: 'Create an account with your email — magic link or password. No card required during early access. After signup, pick your subjects and upload your first answer.',
+        a: 'Create an account with your email — magic link or password. No card required on the Free plan. After signup, pick your subjects and upload your first answer.',
       },
       {
         q: 'How do I mark my first question?',
@@ -58,11 +58,11 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'What is Examiner\'s Ink?',
-        a: 'Visual feedback anchored to your actual handwriting — stamps and notes on the lines where marks were earned or lost, not just a paragraph at the bottom.',
+        a: 'Visual feedback anchored to your actual handwriting — stamps and notes on the lines where marks were earned or lost, not just a paragraph at the bottom. Available on the Free plan.',
       },
       {
         q: 'Can I upload a whole paper?',
-        a: 'Yes. Upload multiple pages, assign them to questions, and get per-question marks plus a projected grade if you only attempted some questions.',
+        a: 'Whole-paper marking is available on any paid plan. Upload multiple pages, assign them to questions, and get per-question marks plus a projected grade if you only attempted some questions.',
       },
     ],
   },
@@ -97,24 +97,24 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
     title: 'Pricing',
     items: [
       {
-        q: 'Is it really free?',
-        a: 'Yes — during early access, all current features are free with no card required. We are learning from real students before introducing paid plans.',
+        q: 'Is there a free plan?',
+        a: 'Yes. Free includes 5 questions and 10 Omni messages per month across all fifteen subjects, plus Examiner\'s Ink on single-question marking. No card required.',
       },
       {
-        q: 'What happens when paid plans launch?',
-        a: 'We will announce pricing well in advance. Students who join during early access will receive a meaningful discount when paid plans launch.',
+        q: 'I signed up during early access — what happens to my pricing?',
+        a: 'You\'re a founding member. You get 50% off any paid plan, locked in forever. That discount applies even as we add features or raise prices for new users — your founding rate is permanent.',
       },
       {
-        q: 'Will I lose access without warning?',
-        a: 'No. We will email active users before any billing changes. Early access is free until we tell you otherwise.',
+        q: 'What counts as one question?',
+        a: 'Whether you submit a single question or a whole paper, it counts as one question against your monthly allowance. Whole papers don\'t cost more even if they contain 15 sub-questions.',
       },
       {
-        q: 'Are there hidden limits?',
-        a: 'During early access, marking is unlimited across all fifteen subjects. If we introduce fair-use limits later, we will communicate them clearly.',
+        q: 'What happens when I run out mid-month?',
+        a: 'Buy a credit top-up or upgrade to a higher plan. Credits work for questions or Omni messages and never expire.',
       },
       {
         q: 'Do teachers pay separately?',
-        a: 'Teacher and classroom features may have different pricing when paid plans launch. Student early-access benefits apply to student accounts.',
+        a: 'Teacher and classroom features may have different pricing. Student plans apply to individual student accounts.',
       },
     ],
   },
@@ -128,7 +128,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'What if I have a long paper?',
-        a: 'Use whole-paper mode: upload all pages, reorder if needed, and assign pages to question numbers. Marking runs per question and may take a few minutes for a full script.',
+        a: 'Use whole-paper mode on a paid plan: upload all pages, reorder if needed, and assign pages to question numbers. Marking runs per question and may take a few minutes for a full script.',
       },
       {
         q: 'Does it work offline?',

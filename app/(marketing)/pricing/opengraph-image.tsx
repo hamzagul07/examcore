@@ -7,6 +7,6 @@ export const contentType = 'image/png'
 export default function OgImage() {
   return createOgImage({
     title: 'Free during early access',
-    subtitle: 'Unlimited marking · 15 subjects · No card required',
+    subtitle: 'Four plans · 15 subjects · No card on Free',
   })
 }

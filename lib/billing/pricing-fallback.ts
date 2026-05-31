@@ -1,25 +1,24 @@
 /**
- * Display-only fallback prices, used when `pricing_config` is empty (i.e. the
- * Stripe setup script hasn't run yet during soft launch). These mirror the
- * numbers in scripts/setup-stripe-products.mjs so the pricing page renders
- * sensible amounts. They are NEVER used to charge — checkout always uses real
- * Stripe price ids from pricing_config and returns `pricing_not_configured`
- * until the script runs.
+ * Display-only fallback prices when pricing_config is empty.
  */
 import type { BillingPeriod, RegionTier } from '@/lib/database.types'
 import type { ProductKey } from './pricing'
 
-// USD cents
 const PRICING_USD = {
   student: {
     A: { monthly: 900, yearly: 7900 },
     B: { monthly: 500, yearly: 4500 },
     C: { monthly: 300, yearly: 2500 },
   },
-  unlimited: {
+  scholar: {
     A: { monthly: 1900, yearly: 14900 },
     B: { monthly: 1100, yearly: 8900 },
     C: { monthly: 700, yearly: 5500 },
+  },
+  mastery: {
+    A: { monthly: 3900, yearly: 32900 },
+    B: { monthly: 2200, yearly: 18900 },
+    C: { monthly: 1500, yearly: 12900 },
   },
   credits_25: { A: 500, B: 300, C: 200 },
   credits_100: { A: 1500, B: 900, C: 600 },
@@ -49,6 +48,8 @@ function convert(usdCents: number, currency: string): number {
   return Math.max(unit, Math.round(raw / unit) * unit)
 }
 
+const SUBSCRIPTION_KEYS = ['student', 'scholar', 'mastery'] as const
+
 export function getFallbackAmountCents(opts: {
   product: ProductKey
   tier: RegionTier
@@ -57,11 +58,11 @@ export function getFallbackAmountCents(opts: {
 }): number {
   const { product, tier, currency } = opts
   let usd: number
-  if (product === 'student' || product === 'unlimited') {
+  if (SUBSCRIPTION_KEYS.includes(product as (typeof SUBSCRIPTION_KEYS)[number])) {
     const period = opts.billingPeriod === 'yearly' ? 'yearly' : 'monthly'
-    usd = PRICING_USD[product][tier][period]
+    usd = PRICING_USD[product as (typeof SUBSCRIPTION_KEYS)[number]][tier][period]
   } else {
-    usd = PRICING_USD[product][tier]
+    usd = PRICING_USD[product as 'credits_25' | 'credits_100' | 'credits_500'][tier]
   }
   return convert(usd, currency.toLowerCase())
 }

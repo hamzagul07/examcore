@@ -58,14 +58,19 @@ const PRICING = {
     B: { monthly: 500, yearly: 4500 }, // $5 / $45
     C: { monthly: 300, yearly: 2500 }, // $3 / $25
   },
-  unlimited: {
+  scholar: {
     A: { monthly: 1900, yearly: 14900 }, // $19 / $149
     B: { monthly: 1100, yearly: 8900 }, // $11 / $89
     C: { monthly: 700, yearly: 5500 }, // $7 / $55
   },
-  credits_25: { A: 500, B: 300, C: 200 }, // $5 / $3 / $2
-  credits_100: { A: 1500, B: 900, C: 600 }, // $15 / $9 / $6
-  credits_500: { A: 5000, B: 3000, C: 2000 }, // $50 / $30 / $20
+  mastery: {
+    A: { monthly: 3900, yearly: 32900 }, // $39 / $329
+    B: { monthly: 2200, yearly: 18900 }, // $22 / $189
+    C: { monthly: 1500, yearly: 12900 }, // $15 / $129
+  },
+  credits_25: { A: 500, B: 300, C: 200 },
+  credits_100: { A: 1500, B: 900, C: 600 },
+  credits_500: { A: 5000, B: 3000, C: 2000 },
 }
 
 const CURRENCIES_PER_TIER = {
@@ -80,12 +85,13 @@ const FX = { usd: 1, gbp: 0.79, eur: 0.92, aud: 1.52, inr: 83, pkr: 280 }
 // Round to a sensible unit per currency so prices look intentional, not noisy.
 const ROUND_TO_CENTS = { usd: 1, gbp: 1, eur: 1, aud: 1, inr: 100, pkr: 10000 }
 
-const SUBSCRIPTION_KEYS = ['student', 'unlimited']
+const SUBSCRIPTION_KEYS = ['student', 'scholar', 'mastery']
 const CREDIT_KEYS = ['credits_25', 'credits_100', 'credits_500']
 
 const DISPLAY_NAMES = {
   student: 'Examcore Student',
-  unlimited: 'Examcore Unlimited',
+  scholar: 'Examcore Scholar',
+  mastery: 'Examcore Mastery',
   credits_25: 'Examcore Credits 25',
   credits_100: 'Examcore Credits 100',
   credits_500: 'Examcore Credits 500',
@@ -175,6 +181,22 @@ async function ensureFoundingCoupon() {
   }
 }
 
+async function deactivateLegacyProducts() {
+  if (DRY_RUN) {
+    console.log('[DRY RUN] would deactivate pricing_config rows for unlimited')
+    return
+  }
+  const { error } = await supabase
+    .from('pricing_config')
+    .update({ is_active: false })
+    .eq('product_key', 'unlimited')
+  if (error) {
+    console.error('Failed to deactivate unlimited pricing_config rows:', error.message)
+    process.exit(1)
+  }
+  console.log('Deprecated Unlimited tier in pricing_config (is_active=false).')
+}
+
 async function upsertPricingConfig(rows) {
   if (DRY_RUN || rows.length === 0) return
   const { error } = await supabase
@@ -192,6 +214,7 @@ async function main() {
   console.log(DRY_RUN ? '[DRY RUN] No Stripe/DB writes.\n' : 'Creating Stripe products + prices...\n')
 
   await ensureFoundingCoupon()
+  await deactivateLegacyProducts()
 
   const output = { createdAt: new Date().toISOString(), dryRun: DRY_RUN, products: {} }
   const pricingRows = []
@@ -255,7 +278,11 @@ async function main() {
   const outPath = join(__dirname, 'stripe-products-output.json')
   writeFileSync(outPath, JSON.stringify(output, null, 2))
   console.log(`\nWrote ${pricingRows.length} price rows. Output -> ${outPath}`)
-  if (!DRY_RUN) console.log('pricing_config seeded.')
+  if (!DRY_RUN) {
+    console.log(
+      `Created Scholar + Mastery tiers, deprecated Unlimited tier, seeded ${pricingRows.length} pricing_config rows.`
+    )
+  }
 }
 
 main().catch((err) => {

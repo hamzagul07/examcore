@@ -20,6 +20,9 @@ import {
   allowanceForResponse,
   quotaExceededBody,
 } from '@/lib/billing/enforcement'
+import { paidFeatureRequiredBody } from '@/lib/billing/features'
+import { createServiceClient } from '@/lib/supabase/service'
+import type { SubscriptionTier } from '@/lib/database.types'
 import { ocrPdfToPages } from '@/lib/marking/pdf-pages'
 import { genAI } from '@/lib/marking/mark-runner'
 import { detectQuestionFromPageText } from '@/lib/marking/page-detection'
@@ -64,9 +67,20 @@ export async function POST(request: NextRequest) {
     } = await supabaseAuth.auth.getUser()
     const userId = user?.id || null
 
-    // Enforcement gate (entry point). Recording happens on completion in /run.
+    // Whole-paper marking is a paid feature; quota applies after tier check.
     let allowance: Awaited<ReturnType<typeof checkMarkAllowance>> | null = null
     if (userId) {
+      const service = createServiceClient()
+      const { data: subRow } = await service
+        .from('user_subscriptions')
+        .select('tier')
+        .eq('user_id', userId)
+        .maybeSingle()
+      const tier = (subRow?.tier ?? 'free') as SubscriptionTier
+      if (tier === 'free') {
+        return NextResponse.json(paidFeatureRequiredBody('whole_paper'), { status: 402 })
+      }
+
       allowance = await checkMarkAllowance(userId)
       if (allowance.blocked_by_mode) {
         return NextResponse.json(quotaExceededBody(allowance), { status: 402 })

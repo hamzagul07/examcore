@@ -3,8 +3,8 @@ import type { SubscriptionTier } from '@/lib/database.types'
 /** The `_allowance` block attached to successful marking responses. */
 export type AllowanceBlock = {
   warning: boolean
-  remaining_after: number | null // null = unlimited
-  cap: number | null // null = unlimited
+  remaining_after: number
+  cap: number
   tier: SubscriptionTier
   credit_balance: number
   period_resets_at: string | null

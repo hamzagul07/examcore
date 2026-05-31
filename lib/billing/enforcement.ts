@@ -1,6 +1,5 @@
 // NOTE: server-only module. Imports the Supabase service-role client, so it
-// must never be bundled into client components. Marking routes + summary API
-// are the only callers.
+// must never be bundled into client components.
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { createServiceClient } from '@/lib/supabase/service'
 import {
@@ -9,65 +8,73 @@ import {
   shouldShowApproachingLimitBanner,
   type EnforcementMode,
 } from './enforcement-mode'
-import { capForTier, currentPeriodWindow, isUnlimited, TIER_MONTHLY_CAPS } from './caps'
+import {
+  capForTier,
+  currentPeriodWindow,
+  omniCapForTier,
+  TIER_MONTHLY_CAPS,
+  TIER_OMNI_CAPS,
+} from './caps'
 import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
 
-export { TIER_MONTHLY_CAPS }
+export { TIER_MONTHLY_CAPS, TIER_OMNI_CAPS }
 
 export type MarkEventType = 'mark_single' | 'mark_whole_paper'
+export type OmniEventType = 'omni_message'
+export type UsageEventType = MarkEventType | OmniEventType
+
 export type AllowanceReason =
   | 'free_tier_cap'
-  | 'student_cap'
+  | 'tier_cap'
+  | 'omni_cap'
   | 'no_credits'
   | 'subscription_inactive'
 
-export type MarkAllowance = {
+export type QuotaAllowance = {
   allowed: boolean
-  blocked_by_mode: boolean // would have been blocked in 'enforce' mode
+  blocked_by_mode: boolean
   reason?: AllowanceReason
-  remaining: number // Infinity for unlimited
-  marks_used: number
-  cap: number // Infinity for unlimited
+  remaining: number
+  used: number
+  cap: number
   credit_balance: number
   tier: SubscriptionTier
   status: SubscriptionStatus
   period_resets_at?: string
   founding_member: boolean
-  warning: boolean // true at 80%+ of cap (banner gate handled separately)
+  warning: boolean
   enforcement_mode: EnforcementMode
+}
+
+/** Mark-specific alias — `marks_used` mirrors `used` for existing callers. */
+export type MarkAllowance = QuotaAllowance & { marks_used: number }
+
+export type BillingSummary = {
+  tier: SubscriptionTier
+  status: SubscriptionStatus
+  founding_member: boolean
+  credit_balance: number
+  period_resets_at?: string
+  enforcement_mode: EnforcementMode
+  questions: QuotaAllowance
+  omni: QuotaAllowance
 }
 
 const ACTIVE_STATUSES: SubscriptionStatus[] = ['active', 'trialing']
 
-async function countMarksInWindow(
-  supabase: SupabaseClient,
-  userId: string,
-  source: 'subscription' | 'free_tier',
-  start: string,
-  end: string | null
-): Promise<number> {
-  let q = supabase
-    .from('usage_events')
-    .select('*', { count: 'exact', head: true })
-    .eq('user_id', userId)
-    .eq('source', source)
-    .in('event_type', ['mark_single', 'mark_whole_paper'])
-    .gte('created_at', start)
-  if (end) q = q.lt('created_at', end)
-  const { count } = await q
-  return count ?? 0
+type BillingContext = {
+  tier: SubscriptionTier
+  status: SubscriptionStatus
+  founding_member: boolean
+  credit_balance: number
+  window: ReturnType<typeof currentPeriodWindow>
+  enforcement_mode: EnforcementMode
 }
 
-/**
- * Pure read of the user's current allowance. NO side effects (does not write to
- * the shadow log) — safe to call from the header summary endpoint on every
- * page/refetch. Marking routes use `checkMarkAllowance` instead, which adds
- * shadow logging.
- */
-export async function computeAllowance(
+async function loadBillingContext(
   userId: string,
-  supabase: SupabaseClient = createServiceClient()
-): Promise<MarkAllowance> {
+  supabase: SupabaseClient
+): Promise<BillingContext> {
   const [{ data: sub }, { data: credits }] = await Promise.all([
     supabase
       .from('user_subscriptions')
@@ -78,25 +85,52 @@ export async function computeAllowance(
   ])
 
   const tier = (sub?.tier ?? 'free') as SubscriptionTier
-  const status = (sub?.status ?? 'active') as SubscriptionStatus
-  const founding_member = Boolean(sub?.founding_member)
-  const credit_balance = credits?.balance ?? 0
-
-  const window = currentPeriodWindow({
+  return {
     tier,
-    periodStart: sub?.current_period_start,
-    periodEnd: sub?.current_period_end,
-  })
+    status: (sub?.status ?? 'active') as SubscriptionStatus,
+    founding_member: Boolean(sub?.founding_member),
+    credit_balance: credits?.balance ?? 0,
+    window: currentPeriodWindow({
+      tier,
+      periodStart: sub?.current_period_start,
+      periodEnd: sub?.current_period_end,
+    }),
+    enforcement_mode: getEnforcementMode(),
+  }
+}
 
-  const cap = capForTier(tier)
-  const unlimited = isUnlimited(tier)
-  const marks_used = unlimited
-    ? 0
-    : await countMarksInWindow(supabase, userId, window.source, window.start, window.end)
+async function countUsageInWindow(
+  supabase: SupabaseClient,
+  userId: string,
+  eventTypes: UsageEventType[],
+  source: 'subscription' | 'free_tier',
+  start: string,
+  end: string | null
+): Promise<number> {
+  let q = supabase
+    .from('usage_events')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
+    .eq('source', source)
+    .in('event_type', eventTypes)
+    .gte('created_at', start)
+  if (end) q = q.lt('created_at', end)
+  const { count } = await q
+  return count ?? 0
+}
 
-  const remaining = unlimited ? Infinity : Math.max(0, cap - marks_used)
+function buildQuotaAllowance(
+  ctx: BillingContext,
+  opts: {
+    used: number
+    cap: number
+    omni?: boolean
+  }
+): QuotaAllowance {
+  const { tier, status, founding_member, credit_balance, window, enforcement_mode } = ctx
+  const remaining = Math.max(0, opts.cap - opts.used)
   const subscriptionInactive = tier !== 'free' && !ACTIVE_STATUSES.includes(status)
-  const atCap = !unlimited && marks_used >= cap
+  const atCap = opts.used >= opts.cap
 
   let would_block = false
   let reason: AllowanceReason | undefined
@@ -105,43 +139,118 @@ export async function computeAllowance(
     reason = 'subscription_inactive'
   } else if (atCap && credit_balance <= 0) {
     would_block = true
-    reason = tier === 'free' ? 'free_tier_cap' : 'student_cap'
+    reason = opts.omni ? 'omni_cap' : tier === 'free' ? 'free_tier_cap' : 'tier_cap'
   }
 
-  const warning = !unlimited && cap > 0 && marks_used >= 0.8 * cap
-
-  const mode = getEnforcementMode()
+  const warning = opts.cap > 0 && opts.used >= 0.8 * opts.cap
   const blocked_by_mode = would_block && shouldBlockAtCap()
-  const allowed = mode === 'enforce' ? !would_block : true
+  const allowed = enforcement_mode === 'enforce' ? !would_block : true
 
   return {
     allowed,
     blocked_by_mode,
     reason,
     remaining,
-    marks_used,
-    cap,
+    used: opts.used,
+    cap: opts.cap,
     credit_balance,
     tier,
     status,
     period_resets_at: window.end ?? undefined,
     founding_member,
     warning,
-    enforcement_mode: mode,
+    enforcement_mode,
+  }
+}
+
+function asMarkAllowance(q: QuotaAllowance): MarkAllowance {
+  return { ...q, marks_used: q.used }
+}
+
+async function computeQuestionAllowanceFromContext(
+  userId: string,
+  ctx: BillingContext,
+  supabase: SupabaseClient
+): Promise<QuotaAllowance> {
+  const used = await countUsageInWindow(
+    supabase,
+    userId,
+    ['mark_single', 'mark_whole_paper'],
+    ctx.window.source,
+    ctx.window.start,
+    ctx.window.end
+  )
+  return buildQuotaAllowance(ctx, { used, cap: capForTier(ctx.tier) })
+}
+
+async function computeOmniAllowanceFromContext(
+  userId: string,
+  ctx: BillingContext,
+  supabase: SupabaseClient
+): Promise<QuotaAllowance> {
+  const used = await countUsageInWindow(
+    supabase,
+    userId,
+    ['omni_message'],
+    ctx.window.source,
+    ctx.window.start,
+    ctx.window.end
+  )
+  return buildQuotaAllowance(ctx, { used, cap: omniCapForTier(ctx.tier), omni: true })
+}
+
+/**
+ * Pure read of question allowance. Safe for summary endpoint (no shadow log).
+ */
+export async function computeAllowance(
+  userId: string,
+  supabase: SupabaseClient = createServiceClient()
+): Promise<MarkAllowance> {
+  const ctx = await loadBillingContext(userId, supabase)
+  const q = await computeQuestionAllowanceFromContext(userId, ctx, supabase)
+  return asMarkAllowance(q)
+}
+
+export async function computeOmniAllowance(
+  userId: string,
+  supabase: SupabaseClient = createServiceClient()
+): Promise<QuotaAllowance> {
+  const ctx = await loadBillingContext(userId, supabase)
+  return computeOmniAllowanceFromContext(userId, ctx, supabase)
+}
+
+/** Combined question + Omni allowances for header chip and account page. */
+export async function computeBillingSummary(
+  userId: string,
+  supabase: SupabaseClient = createServiceClient()
+): Promise<BillingSummary> {
+  const ctx = await loadBillingContext(userId, supabase)
+  const [questions, omni] = await Promise.all([
+    computeQuestionAllowanceFromContext(userId, ctx, supabase),
+    computeOmniAllowanceFromContext(userId, ctx, supabase),
+  ])
+  return {
+    tier: ctx.tier,
+    status: ctx.status,
+    founding_member: ctx.founding_member,
+    credit_balance: ctx.credit_balance,
+    period_resets_at: ctx.window.end ?? undefined,
+    enforcement_mode: ctx.enforcement_mode,
+    questions,
+    omni,
   }
 }
 
 async function recordShadowEvent(
   supabase: SupabaseClient,
   userId: string,
-  allowance: MarkAllowance
+  allowance: QuotaAllowance,
+  kind: 'mark' | 'omni'
 ): Promise<void> {
-  const atCap = Number.isFinite(allowance.cap) && allowance.marks_used >= allowance.cap
+  const atCap = allowance.used >= allowance.cap
 
   let eventType: 'would_warn' | 'would_block' | 'allowed_via_credits' | null = null
   if (allowance.blocked_by_mode || allowance.reason) {
-    // would_block: a real cap/inactive hit (reason set). In enforce mode this is
-    // an actual block; in off/warn it's a "would have blocked".
     eventType = 'would_block'
   } else if (atCap && allowance.credit_balance > 0) {
     eventType = 'allowed_via_credits'
@@ -155,47 +264,40 @@ async function recordShadowEvent(
     event_type: eventType,
     reason: allowance.reason ?? null,
     tier: allowance.tier,
-    marks_used: allowance.marks_used,
-    mark_cap: Number.isFinite(allowance.cap) ? allowance.cap : 2147483647,
+    marks_used: allowance.used,
+    mark_cap: allowance.cap,
     credit_balance: allowance.credit_balance,
     enforcement_mode: allowance.enforcement_mode,
-    metadata: { remaining: Number.isFinite(allowance.remaining) ? allowance.remaining : null },
+    metadata: { kind, remaining: allowance.remaining },
   })
   if (error) console.error('[enforcement] shadow log insert failed:', error.message)
 }
 
-/**
- * Allowance check for marking routes. Computes the real picture in EVERY mode
- * and records a shadow-log row when relevant (would_block / would_warn /
- * allowed_via_credits). The caller decides what to do based on
- * `blocked_by_mode`.
- */
 export async function checkMarkAllowance(userId: string): Promise<MarkAllowance> {
   const supabase = createServiceClient()
   const allowance = await computeAllowance(userId, supabase)
-  // Fire-and-forget shadow log — never block marking on logging failure.
-  await recordShadowEvent(supabase, userId, allowance)
+  await recordShadowEvent(supabase, userId, allowance, 'mark')
   return allowance
 }
 
-/**
- * Record a SUCCESSFUL mark. Failed marks never call this. Whole-paper counts as
- * exactly 1 event. Chooses the source:
- *   - within tier cap / unlimited  -> source='subscription' | 'free_tier'
- *   - over cap (or inactive sub) with credits -> consume_credit RPC (source='credits')
- *   - over cap with no credits (off/warn mode let it through) -> tier source so
- *     metering still reflects reality.
- */
-export async function recordMarkUsage(
+export async function checkOmniAllowance(userId: string): Promise<QuotaAllowance> {
+  const supabase = createServiceClient()
+  const allowance = await computeOmniAllowance(userId, supabase)
+  await recordShadowEvent(supabase, userId, allowance, 'omni')
+  return allowance
+}
+
+async function recordUsageEvent(
   userId: string,
+  eventType: UsageEventType,
   attemptId: string | null,
-  eventType: MarkEventType
+  computeQuota: (userId: string, supabase: SupabaseClient) => Promise<QuotaAllowance>
 ): Promise<void> {
   const supabase = createServiceClient()
-  const allowance = await computeAllowance(userId, supabase)
+  const allowance = await computeQuota(userId, supabase)
 
   const atCapOrInactive =
-    (Number.isFinite(allowance.cap) && allowance.marks_used >= allowance.cap) ||
+    allowance.used >= allowance.cap ||
     (allowance.tier !== 'free' && !ACTIVE_STATUSES.includes(allowance.status))
 
   if (atCapOrInactive && allowance.credit_balance > 0) {
@@ -208,9 +310,8 @@ export async function recordMarkUsage(
     if (error) {
       console.error('[enforcement] consume_credit failed:', error.message)
     } else if (spent === true) {
-      return // credit spent + usage_events row inserted by the RPC
+      return
     }
-    // spent === false (race: credits gone) → fall through to tier-source record
   }
 
   const source = allowance.tier === 'free' ? 'free_tier' : 'subscription'
@@ -223,27 +324,33 @@ export async function recordMarkUsage(
     source,
     metadata: { recorded_at: new Date().toISOString() },
   })
-  if (error) console.error('[enforcement] recordMarkUsage insert failed:', error.message)
+  if (error) console.error('[enforcement] recordUsage insert failed:', error.message)
 }
 
-/** Serialize remaining/cap (Infinity -> null) for JSON. */
-function jsonNum(n: number): number | null {
-  return Number.isFinite(n) ? n : null
+export async function recordMarkUsage(
+  userId: string,
+  attemptId: string | null,
+  eventType: MarkEventType
+): Promise<void> {
+  await recordUsageEvent(userId, eventType, attemptId, async (uid, sb) => {
+    const ctx = await loadBillingContext(uid, sb)
+    return computeQuestionAllowanceFromContext(uid, ctx, sb)
+  })
 }
 
-/**
- * `_allowance` block attached to successful marking responses. `warning` is only
- * surfaced when the banner is enabled (warn/enforce) — in `off` mode it's always
- * false so the client shows nothing.
- */
+export async function recordOmniUsage(userId: string): Promise<void> {
+  await recordUsageEvent(userId, 'omni_message', null, async (uid, sb) => {
+    const ctx = await loadBillingContext(uid, sb)
+    return computeOmniAllowanceFromContext(uid, ctx, sb)
+  })
+}
+
 export function allowanceForResponse(allowance: MarkAllowance) {
-  const remainingAfter = Number.isFinite(allowance.remaining)
-    ? Math.max(0, allowance.remaining - 1)
-    : null
+  const remainingAfter = Math.max(0, allowance.remaining - 1)
   return {
     warning: allowance.warning && shouldShowApproachingLimitBanner(),
     remaining_after: remainingAfter,
-    cap: jsonNum(allowance.cap),
+    cap: allowance.cap,
     tier: allowance.tier,
     credit_balance: allowance.credit_balance,
     period_resets_at: allowance.period_resets_at ?? null,
@@ -251,12 +358,23 @@ export function allowanceForResponse(allowance: MarkAllowance) {
   }
 }
 
-/** 402 body for a cap breach (only sent in enforce mode). */
-export function quotaExceededBody(allowance: MarkAllowance) {
+export function quotaExceededBody(allowance: MarkAllowance | QuotaAllowance) {
   return {
     error: 'mark_quota_exceeded' as const,
     reason: allowance.reason,
     tier: allowance.tier,
+    period_resets_at: allowance.period_resets_at ?? null,
+    credit_balance: allowance.credit_balance,
+    upgrade_url: '/pricing',
+  }
+}
+
+export function omniQuotaExceededBody(allowance: QuotaAllowance) {
+  return {
+    error: 'omni_quota_exceeded' as const,
+    reason: allowance.reason,
+    tier: allowance.tier,
+    cap: allowance.cap,
     period_resets_at: allowance.period_resets_at ?? null,
     credit_balance: allowance.credit_balance,
     upgrade_url: '/pricing',

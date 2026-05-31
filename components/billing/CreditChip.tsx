@@ -3,31 +3,36 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Zap, Loader2 } from 'lucide-react'
+import type { SubscriptionTier } from '@/lib/database.types'
 
 type Summary = {
   signedIn: boolean
-  tier: 'free' | 'student' | 'unlimited'
+  tier: SubscriptionTier
   status: string
-  unlimited: boolean
-  marks_used: number
-  cap: number | null
-  remaining: number | null
-  credit_balance: number
   founding_member: boolean
+  credit_balance: number
   period_resets_at: string | null
+  questions: {
+    used: number
+    cap: number
+    remaining: number
+    warning: boolean
+  }
+  omni: {
+    used: number
+    cap: number
+    remaining: number
+    warning: boolean
+  }
 }
 
 const TIER_LABELS: Record<string, string> = {
   free: 'Free',
   student: 'Student',
-  unlimited: 'Unlimited',
+  scholar: 'Scholar',
+  mastery: 'Mastery',
 }
 
-/**
- * Header chip: tier + remaining marks (Option A: `[ Student · 47 left ]`).
- * Refetches on the `ec:billing-refresh` window event (dispatched after a mark)
- * so the count visibly decrements. Click opens a small popover.
- */
 export function CreditChip() {
   const [summary, setSummary] = useState<Summary | null>(null)
   const [loading, setLoading] = useState(true)
@@ -51,17 +56,12 @@ export function CreditChip() {
   }, [])
 
   useEffect(() => {
-    // Async wrapper: state updates happen after the await, not synchronously
-    // in the effect body.
-    void (async () => {
-      await load()
-    })()
+    void load()
     const onRefresh = () => void load()
     window.addEventListener('ec:billing-refresh', onRefresh)
     return () => window.removeEventListener('ec:billing-refresh', onRefresh)
   }, [load])
 
-  // Close popover on outside click.
   useEffect(() => {
     if (!open) return
     const onClick = (e: MouseEvent) => {
@@ -93,10 +93,9 @@ export function CreditChip() {
   if (loading || !summary?.signedIn) return null
 
   const tierLabel = TIER_LABELS[summary.tier] ?? summary.tier
-  const countLabel = summary.unlimited
-    ? '∞'
-    : `${Math.max(0, summary.remaining ?? 0)} left`
-  const creditSuffix = summary.credit_balance > 0 ? ` · +${summary.credit_balance} credits` : ''
+  const qLeft = Math.max(0, summary.questions.remaining)
+  const oLeft = Math.max(0, summary.omni.remaining)
+  const chipLabel = `${qLeft} questions · ${oLeft} Omni`
   const resetDate = summary.period_resets_at
     ? new Date(summary.period_resets_at).toLocaleDateString(undefined, {
         month: 'short',
@@ -111,36 +110,35 @@ export function CreditChip() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="flex min-h-[36px] items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors"
+        className="flex min-h-[36px] max-w-[min(100vw-8rem,20rem)] items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors"
         style={{
           borderColor: 'var(--ec-border)',
           color: 'var(--ec-text-secondary)',
           background: 'color-mix(in srgb, var(--ec-canvas) 60%, transparent)',
         }}
       >
-        <Zap className="h-3.5 w-3.5 text-emerald-400" />
-        <span className="hidden sm:inline">{tierLabel} · </span>
-        {summary.unlimited ? '∞' : countLabel}
-        <span className="hidden text-emerald-400 sm:inline">{creditSuffix}</span>
+        <Zap className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
+        <span className="hidden truncate sm:inline">{tierLabel} · </span>
+        <span className="truncate">{chipLabel}</span>
       </button>
 
       {open && (
         <div
           role="dialog"
-          className="ec-card absolute right-0 z-50 mt-2 w-64 p-4 text-sm"
+          className="ec-card absolute right-0 z-50 mt-2 w-72 p-4 text-sm"
         >
           <p className="font-semibold text-[var(--ec-text-primary)]">{tierLabel} plan</p>
-          {!summary.unlimited && (
-            <p className="mt-1 text-[var(--ec-text-secondary)]">
-              {Math.max(0, summary.remaining ?? 0)} of {summary.cap} marks left
-              {resetDate ? ` · resets ${resetDate}` : ''}
-            </p>
-          )}
-          {summary.unlimited && (
-            <p className="mt-1 text-[var(--ec-text-secondary)]">Unlimited marks.</p>
-          )}
+          <p className="mt-1 text-[var(--ec-text-secondary)]">
+            {qLeft} of {summary.questions.cap} questions left
+            {resetDate ? ` · resets ${resetDate}` : ''}
+          </p>
+          <p className="mt-1 text-[var(--ec-text-secondary)]">
+            {oLeft} of {summary.omni.cap} Omni messages left
+          </p>
           {summary.credit_balance > 0 && (
-            <p className="mt-1 text-emerald-400">{summary.credit_balance} credits available</p>
+            <p className="mt-1 text-emerald-400">
+              {summary.credit_balance} credits (questions or Omni)
+            </p>
           )}
           {summary.founding_member && (
             <p className="mt-2 inline-block rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-400">

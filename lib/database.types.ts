@@ -61,7 +61,7 @@ export interface InterventionTest {
 
 // --- Billing (Sprint 42) ---
 
-export type SubscriptionTier = 'free' | 'student' | 'unlimited'
+export type SubscriptionTier = 'free' | 'student' | 'scholar' | 'mastery'
 export type SubscriptionStatus =
   | 'active'
   | 'past_due'

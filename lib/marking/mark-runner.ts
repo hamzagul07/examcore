@@ -24,6 +24,7 @@ import {
   questionPhotoOcrPrompt,
 } from '@/lib/marking/ocr'
 import { buildDetectionPrompt } from '@/lib/marking/prompts'
+import { inferSubjectFromQuestionText } from '@/lib/marking/subject-inference'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import type { StoredPageOcr } from '@/lib/marking/whole-paper-pages'
@@ -75,7 +76,7 @@ export async function ocrAnswerWithBoxes(
   uploadMode: UploadMode,
   subjectCode?: string
 ): Promise<{ full_text: string; lines: OcrLine[] }> {
-  const isMath = subjectCode === '9709' || !subjectCode
+  const isMath = subjectCode === '9709'
   const prompt =
     uploadMode === 'whole_paper'
       ? WHOLE_PAPER_OCR_PROMPT
@@ -91,7 +92,7 @@ export async function ocrAnswerBufferWithBoxes(
   mimeType: string,
   subjectCode?: string
 ): Promise<{ full_text: string; lines: OcrLine[] }> {
-  const isMath = subjectCode === '9709' || !subjectCode
+  const isMath = subjectCode === '9709'
   const prompt = isMath
     ? ANSWER_OCR_PROMPT_MATH
     : ANSWER_OCR_PROMPT_GENERAL
@@ -298,13 +299,17 @@ export async function markSingleQuestion(params: {
   let markingMode = initialMode
 
   const parsed = paperCode ? parsePaperCode(paperCode) : null
-  const subjectCode = parsed?.subjectCode ?? '9709'
-  const subjectName = SUBJECT_CODE_MAP[subjectCode] || 'A-Level'
+  const inferredSubject = inferSubjectFromQuestionText(questionText)
+  const subjectCode = parsed?.subjectCode ?? inferredSubject ?? null
+  const subjectName = subjectCode
+    ? SUBJECT_CODE_MAP[subjectCode] || 'A-Level'
+    : 'A-Level'
   const markingStyle = markScheme
-    ? resolveQuestionMarkingStyle(markScheme, paperCode || '9709/12')
-    : subjectCode === '9709'
-      ? 'point_based'
-      : 'point_based'
+    ? resolveQuestionMarkingStyle(
+        markScheme,
+        paperCode || (subjectCode ? `${subjectCode}/01` : '9709/12')
+      )
+    : 'point_based'
 
   const isOfficial = markingMode === 'official_mark_scheme' && !!markScheme
 
@@ -317,13 +322,14 @@ export async function markSingleQuestion(params: {
     markingMode = 'general_criteria'
   }
 
+  const promptSubjectCode = subjectCode ?? inferredSubject
   const markingPrompt = buildMarkingPrompt({
     markScheme,
     markingStyle,
     ocrText,
     questionText,
     subjectName,
-    subjectCode,
+    subjectCode: promptSubjectCode ?? '',
     isOfficial,
   })
 
@@ -361,13 +367,16 @@ export async function markSingleQuestion(params: {
       })
     : []
 
-  const claudeTags: SyllabusCode[] = normalizeSyllabusTagsForSubject(
-    subjectCode,
-    markingResult?.syllabus_tags
-  )
+  const taggingSubject = subjectCode ?? inferredSubject
+  const claudeTags: SyllabusCode[] = taggingSubject
+    ? normalizeSyllabusTagsForSubject(
+        taggingSubject,
+        markingResult?.syllabus_tags
+      )
+    : []
   let resolvedTags: SyllabusCode[] = []
   const cachedTags: SyllabusCode[] = Array.isArray(markScheme?.syllabus_tags)
-    ? normalizeSyllabusTagsForSubject(subjectCode, markScheme.syllabus_tags)
+    ? normalizeSyllabusTagsForSubject(taggingSubject, markScheme.syllabus_tags)
     : []
 
   if (markingMode === 'official_mark_scheme' && markScheme) {

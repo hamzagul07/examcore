@@ -6,13 +6,20 @@ import { ExaminerInkDemoLazy } from './ExaminerInkDemoLazy'
 
 interface HeroProps {
   primaryHref: string
+  /** When true, renders inside another section (e.g. how-it-works) without full-page hero chrome */
+  embedded?: boolean
 }
 
-export function Hero({ primaryHref }: HeroProps) {
+export function Hero({ primaryHref, embedded = false }: HeroProps) {
+  const Root = embedded ? 'div' : 'section'
   return (
-    <section
+    <Root
       aria-labelledby="hero-headline"
-      className="bg-[var(--ec-surface)] pt-24 pb-24 md:pt-32 md:pb-36"
+      className={
+        embedded
+          ? 'pt-4'
+          : 'bg-[var(--ec-surface)] pt-24 pb-24 md:pt-32 md:pb-36'
+      }
     >
       <div className="mx-auto max-w-[640px] px-6 text-center md:max-w-[720px] md:px-8 lg:max-w-[860px]">
         <HeroCopy
@@ -43,6 +50,6 @@ export function Hero({ primaryHref }: HeroProps) {
       <div className="mx-auto mt-16 max-w-[920px] px-4 md:mt-24 md:px-8">
         <ExaminerInkDemoLazy />
       </div>
-    </section>
+    </Root>
   )
 }

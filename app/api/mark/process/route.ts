@@ -74,7 +74,7 @@ async function ocrAnswerWithBoxes(
   uploadMode: UploadMode,
   subjectCode?: string
 ): Promise<{ full_text: string; lines: OcrLine[] }> {
-  const isMath = subjectCode === '9709' || !subjectCode
+  const isMath = subjectCode === '9709'
   const prompt =
     uploadMode === 'whole_paper'
       ? WHOLE_PAPER_OCR_PROMPT

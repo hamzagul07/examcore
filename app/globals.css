@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "../lib/design-system/theme.css";
+@import "../lib/design-system/zen-contrast.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -151,20 +152,6 @@
 [data-ec-theme='late-night'] .text-slate-500,
 [data-ec-theme='late-night'] .text-slate-400 { color: #94a3b8; }
 [data-ec-theme='late-night'] .text-slate-300 { color: #64748b; }
-
-/* Zen: block late-night slate → light remaps */
-[data-ec-theme='zen'] .text-white,
-[data-ec-theme='zen'] .text-slate-100,
-[data-ec-theme='zen'] .text-slate-200,
-[data-ec-theme='zen'] .text-slate-300,
-[data-ec-theme='zen'] .text-slate-400,
-[data-ec-theme='zen'] .text-slate-500,
-[data-ec-theme='zen'] .text-slate-600,
-[data-ec-theme='zen'] .text-slate-700,
-[data-ec-theme='zen'] .text-slate-800,
-[data-ec-theme='zen'] .text-slate-900 {
-  color: var(--ec-text-primary) !important;
-}
 
 /* Zen: remap accent colors designed for dark UI → readable on warm sand */
 [data-ec-theme='zen'] .text-emerald-100,
@@ -323,4 +310,26 @@
   *::after {
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Zen contrast (tail): wins over utilities in this bundle */
+html[data-ec-theme='zen'] .text-white,
+html[data-ec-theme='zen'] .text-white\/90,
+html[data-ec-theme='zen'] .text-white\/80,
+html[data-ec-theme='zen'] .text-slate-100,
+html[data-ec-theme='zen'] .text-slate-200,
+html[data-ec-theme='zen'] .text-slate-300 {
+  color: var(--ec-text-primary) !important;
+}
+
+html[data-ec-theme='zen'] .text-slate-400,
+html[data-ec-theme='zen'] .text-slate-500,
+html[data-ec-theme='zen'] .text-slate-600 {
+  color: var(--ec-text-secondary) !important;
+}
+
+html[data-ec-theme='zen'] .text-slate-700,
+html[data-ec-theme='zen'] .text-slate-800,
+html[data-ec-theme='zen'] .text-slate-900 {
+  color: var(--ec-text-primary) !important;
 }

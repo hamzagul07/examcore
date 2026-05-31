@@ -118,13 +118,13 @@ export default async function DashboardPage() {
                 <br />
                 <span className="ec-text-gradient">{greetingName}</span>
               </h1>
-              <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-400">
+              <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-[var(--ec-text-secondary)]">
                 {contextTag && (
                   <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-mono font-semibold text-emerald-300 shadow-[0_0_16px_rgba(16,185,129,0.15)]">
                     {contextTag}
                   </span>
                 )}
-                <span className="truncate font-mono text-xs text-slate-500">
+                <span className="truncate font-mono text-xs text-[var(--ec-text-secondary)]">
                   {user.email}
                 </span>
               </div>
@@ -163,11 +163,11 @@ export default async function DashboardPage() {
                 <div className="text-[112px] font-extrabold leading-none tracking-[-0.04em] ec-text-gradient brand-breathe">
                   {totalAttempts}
                 </div>
-                <p className="mt-5 text-base text-slate-400">
+                <p className="mt-5 text-base text-[var(--ec-text-secondary)]">
                   questions marked all-time
                 </p>
                 {totalAttempts > 0 && (
-                  <p className="mt-2 text-sm text-slate-500">
+                  <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
                     {avgScore}% average · {bestScore}% best ever
                   </p>
                 )}
@@ -177,19 +177,19 @@ export default async function DashboardPage() {
             {/* Avg score */}
             <div className="ec-card p-6 col-span-3 md:col-span-2">
               <p className="ec-label-tech ec-label-tech-cyan mb-3">AVERAGE</p>
-              <div className="text-5xl font-extrabold tracking-tight text-white">
+              <div className="text-5xl font-extrabold tracking-tight text-[var(--ec-text-primary)]">
                 {avgScore}
-                <span className="text-3xl text-slate-600">%</span>
+                <span className="text-3xl text-[var(--ec-text-secondary)]">%</span>
               </div>
-              <p className="mt-2 text-xs text-slate-500">across all attempts</p>
+              <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">across all attempts</p>
             </div>
 
             {/* Best */}
             <div className="ec-card p-6 col-span-3 md:col-span-1">
               <p className="ec-label-tech ec-label-tech-violet mb-3">BEST</p>
-              <div className="text-4xl font-extrabold text-white">
+              <div className="text-4xl font-extrabold text-[var(--ec-text-primary)]">
                 {bestScore}
-                <span className="text-2xl text-slate-600">%</span>
+                <span className="text-2xl text-[var(--ec-text-secondary)]">%</span>
               </div>
             </div>
 
@@ -203,14 +203,14 @@ export default async function DashboardPage() {
                   <p className="ec-label-tech ec-label-tech-orange mb-3">STREAK</p>
                   <div className="streak-glow text-4xl font-extrabold text-orange-400">
                     {streak}
-                    <span className="ml-1 text-base font-semibold text-slate-500">
+                    <span className="ml-1 text-base font-semibold text-[var(--ec-text-secondary)]">
                       day{streak === 1 ? '' : 's'}
                     </span>
                   </div>
                 </div>
                 <Flame
                   className={`h-8 w-8 ${
-                    streak > 0 ? 'text-orange-400' : 'text-slate-700'
+                    streak > 0 ? 'text-orange-400' : 'text-[var(--ec-text-secondary)]'
                   }`}
                   strokeWidth={1.75}
                 />
@@ -220,9 +220,9 @@ export default async function DashboardPage() {
             {/* Topics */}
             <div className="ec-card p-6 col-span-3 md:col-span-1">
               <p className="ec-label-tech mb-3">TOPICS (MATHEMATICS)</p>
-              <div className="text-4xl font-extrabold text-white">
+              <div className="text-4xl font-extrabold text-[var(--ec-text-primary)]">
                 {topicsAttempted}
-                <span className="text-xl text-slate-600">
+                <span className="text-xl text-[var(--ec-text-secondary)]">
                   /{TOTAL_SYLLABUS_TOPICS}
                 </span>
               </div>
@@ -234,10 +234,10 @@ export default async function DashboardPage() {
               {nonMathSubjects.map((name) => (
                 <div
                   key={name}
-                  className="ec-card border-amber-500/20 p-4 text-sm text-slate-400"
+                  className="ec-card border-amber-500/20 p-4 text-sm text-[var(--ec-text-secondary)]"
                 >
                   Detailed analytics coming soon for{' '}
-                  <span className="font-semibold text-white">{name}</span>.
+                  <span className="font-semibold text-[var(--ec-text-primary)]">{name}</span>.
                   {hasMathSubject && ' Mathematics stats are shown above.'}
                 </div>
               ))}
@@ -261,12 +261,12 @@ export default async function DashboardPage() {
               <div className="relative flex items-center justify-between flex-wrap gap-4">
                 <div>
                   <p className="ec-label-tech mb-4">MARK NEW ANSWER</p>
-                  <h2 className="text-4xl font-extrabold tracking-tight text-white">
+                  <h2 className="text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)]">
                     Ready to mark
                     <br />
                     <span className="ec-text-gradient">something new?</span>
                   </h2>
-                  <p className="mt-3 max-w-md text-slate-400">
+                  <p className="mt-3 max-w-md text-[var(--ec-text-secondary)]">
                     Upload your answer and get marked in 30 seconds.
                   </p>
                 </div>
@@ -283,10 +283,10 @@ export default async function DashboardPage() {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
                 <TrendingUp className="h-6 w-6 text-cyan-400" strokeWidth={1.75} />
               </div>
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-xl font-bold text-[var(--ec-text-primary)]">
                 View detailed progress
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">
+              <p className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
                 Mastery, trajectory, predicted grade
                 {hasMathSubject ? ' (Mathematics)' : ''}
               </p>
@@ -301,7 +301,7 @@ export default async function DashboardPage() {
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <p className="ec-label-tech mb-2">RECENT</p>
-                <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                <h2 className="text-3xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-4xl">
                   Recent attempts
                 </h2>
               </div>
@@ -376,10 +376,10 @@ export default async function DashboardPage() {
                               )}
                             </div>
                             <div className="min-w-0 flex-1">
-                              <p className="truncate font-semibold text-white">
+                              <p className="truncate font-semibold text-[var(--ec-text-primary)]">
                                 {questionLabel}
                               </p>
-                              <p className="mt-0.5 font-mono text-xs text-slate-500">
+                              <p className="mt-0.5 font-mono text-xs text-[var(--ec-text-secondary)]">
                                 {dateStr}
                               </p>
                             </div>
@@ -390,15 +390,15 @@ export default async function DashboardPage() {
                                 className={`text-3xl font-extrabold tracking-tight ${scoreColor}`}
                               >
                                 {attempt.marks_earned}
-                                <span className="text-slate-700">
+                                <span className="text-[var(--ec-text-secondary)]">
                                   /{attempt.total_marks}
                                 </span>
                               </div>
-                              <div className="font-mono text-xs font-medium text-slate-500">
+                              <div className="font-mono text-xs font-medium text-[var(--ec-text-secondary)]">
                                 {percentage}%
                               </div>
                             </div>
-                            <ChevronRight className="h-5 w-5 text-slate-600 transition-all duration-200 group-hover:translate-x-1 group-hover:text-emerald-400" />
+                            <ChevronRight className="h-5 w-5 text-[var(--ec-text-secondary)] transition-all duration-200 group-hover:translate-x-1 group-hover:text-emerald-400" />
                           </div>
                         </div>
                         <div className="mt-4 h-1.5 overflow-hidden rounded-full border border-white/5 bg-dark-900">

@@ -12,10 +12,10 @@
  *   4. Writes scripts/stripe-products-output.json for record-keeping.
  *
  * Idempotency: products are looked up by a metadata key (`examcore_product`)
- * before creation, and pricing_config rows are upserted on their unique
- * constraint. Re-running creates NEW Stripe prices (Stripe prices are
- * immutable) but won't duplicate products or pricing_config rows. Pass
- * --dry-run to preview without touching Stripe or the DB.
+ * before creation. Subscription rows upsert on (product_key, region_tier,
+ * currency, billing_period). Credit packs use billing_period=null — Postgres
+ * treats NULL as distinct in UNIQUE, so credit re-runs deactivate prior active
+ * rows explicitly before inserting the new price (see deactivatePriorCreditPricing).
  */
 
 import Stripe from 'stripe'
@@ -197,14 +197,55 @@ async function deactivateLegacyProducts() {
   console.log('Deprecated Unlimited tier in pricing_config (is_active=false).')
 }
 
-async function upsertPricingConfig(rows) {
-  if (DRY_RUN || rows.length === 0) return
+async function deactivatePriorCreditPricing(productKey, regionTier, currency) {
+  if (DRY_RUN) {
+    console.log(
+      `[DRY RUN] would deactivate prior active ${productKey} ${regionTier} ${currency} (billing_period IS NULL)`
+    )
+    return
+  }
+  // Credit packs store billing_period=null. Postgres UNIQUE treats each NULL as
+  // distinct (unless NULLS NOT DISTINCT), so upsert on that column never
+  // merges re-runs — deactivating first guarantees one active row per combo.
   const { error } = await supabase
     .from('pricing_config')
-    .upsert(rows, { onConflict: 'product_key,region_tier,currency,billing_period' })
+    .update({ is_active: false })
+    .eq('product_key', productKey)
+    .eq('region_tier', regionTier)
+    .eq('currency', currency)
+    .is('billing_period', null)
+    .eq('is_active', true)
   if (error) {
-    console.error('pricing_config upsert failed:', error.message)
+    console.error('deactivatePriorCreditPricing failed:', error.message)
     process.exit(1)
+  }
+}
+
+async function upsertPricingConfig(rows) {
+  if (DRY_RUN || rows.length === 0) return
+
+  const subscriptionRows = rows.filter((r) => r.billing_period != null)
+  const creditRows = rows.filter((r) => r.billing_period == null)
+
+  if (subscriptionRows.length > 0) {
+    const { error } = await supabase
+      .from('pricing_config')
+      .upsert(subscriptionRows, {
+        onConflict: 'product_key,region_tier,currency,billing_period',
+      })
+    if (error) {
+      console.error('pricing_config subscription upsert failed:', error.message)
+      process.exit(1)
+    }
+  }
+
+  // Insert (not upsert): NULL billing_period never conflicts on the unique key.
+  for (const row of creditRows) {
+    const { error } = await supabase.from('pricing_config').insert(row)
+    if (error) {
+      console.error('pricing_config credit insert failed:', error.message)
+      process.exit(1)
+    }
   }
 }
 
@@ -239,6 +280,11 @@ async function main() {
 
         for (const currency of currencies) {
           const amountCents = convert(usdCents, currency)
+
+          if (!isSub) {
+            await deactivatePriorCreditPricing(productKey, tier, currency)
+          }
+
           const price = await createPrice({
             productId: product.id,
             productKey,

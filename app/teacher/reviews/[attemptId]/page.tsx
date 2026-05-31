@@ -59,7 +59,10 @@ export default function ReviewDetailPage() {
         <h1 className="text-2xl font-bold text-white">{studentName}</h1>
         {attempt.question_text && (
           <div className="mt-2 text-sm text-slate-400">
-            <RichTextRenderer text={normalizeQuestionText(attempt.question_text)} />
+            <RichTextRenderer
+              text={normalizeQuestionText(attempt.question_text)}
+              contentKind="question"
+            />
           </div>
         )}
       </div>

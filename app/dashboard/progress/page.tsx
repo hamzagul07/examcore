@@ -199,7 +199,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
           <div className="mb-6 animate-entry">
             <div className="ec-card border-amber-500/20 p-4 text-sm text-slate-400">
               Detailed topic analytics coming soon for{' '}
-              <span className="font-semibold text-white">{subjectLabel}</span>.
+              <span className="font-semibold text-[var(--ec-text-primary)]">{subjectLabel}</span>.
               Mark questions to build your score history — the mastery matrix
               will unlock once the syllabus topic map is ready.
             </div>

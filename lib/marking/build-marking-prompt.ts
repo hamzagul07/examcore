@@ -32,9 +32,12 @@ export function buildMarkingPrompt(params: {
   const parsed = markScheme?.paper_code
     ? parsePaperCode(markScheme.paper_code)
     : null
-  const is9709 = (parsed?.subjectCode ?? subjectCode) === '9709'
+  const effectiveCode = parsed?.subjectCode ?? subjectCode
+  const is9709 = effectiveCode === '9709'
   const syllabusBlock =
-    !is9709 ? buildSyllabusTaggingBlock(subjectCode) : undefined
+    effectiveCode && !is9709
+      ? buildSyllabusTaggingBlock(effectiveCode)
+      : undefined
 
   if (is9709 && isOfficial && markScheme) {
     return build9709OfficialMarkingPrompt(

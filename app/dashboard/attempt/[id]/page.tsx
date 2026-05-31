@@ -210,7 +210,7 @@ export default async function AttemptDetailPage({
           attempt.line_references.length > 0 && (
             <section className="animate-entry stagger-3 ec-card mt-8 p-6 sm:p-8">
               <p className="ec-label-tech mb-3">EXAMINER&rsquo;S MARKS</p>
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-3xl">
                 Where you earned and lost marks
               </h2>
               <p className="mt-2 mb-6 max-w-2xl text-sm text-slate-400">

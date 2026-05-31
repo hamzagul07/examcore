@@ -375,46 +375,73 @@ Return ONLY this JSON:
 }`
 }
 
+const DETECTION_SUBJECT_CODES = `9084 Law, 9231 Further Math, 9488 Islamic Studies, 9489 History, 9607 Media Studies, 9609 Business, 9618 Computer Science, 9699 Sociology, 9700 Biology, 9701 Chemistry, 9702 Physics, 9706 Accounting, 9708 Economics, 9709 Math, 9990 Psychology`
+
 export function buildDetectionPrompt(
   ocrText: string,
   questionText: string,
   subjectHint?: string
 ): string {
   const subjectLine = subjectHint
-    ? `The student is studying ${subjectHint}. Look for that subject's paper codes.`
-    : 'Look for any Cambridge A-Level subject code (9709, 9702, 9489, etc.)'
+    ? `The student is studying ${subjectHint}. Prefer that subject's paper codes when headers match.`
+    : `Consider ALL of these Cambridge A-Level codes before deciding: ${DETECTION_SUBJECT_CODES}.`
 
-  return `You are analyzing a Cambridge International A-Level student work submission. Determine if this is from an official past exam paper.
+  const questionBlock =
+    questionText.trim().length > 0
+      ? questionText.trim()
+      : '[not provided — rely on answer headers only]'
 
-STUDENT'S TRANSCRIBED ANSWER (and any visible headers):
+  return `You are analyzing a Cambridge International A-Level student work submission. Determine if this is from an official past exam paper AND which subject it belongs to.
+
+STEP 1 — SUBJECT FROM CONTENT (do this FIRST; question text outweighs weak header guesses):
+Read the QUESTION TEXT and answer for subject-specific signals. Consider every code in: ${DETECTION_SUBJECT_CODES}.
+
+Subject markers (non-exhaustive):
+- Math (9709/9231): equations, integrals, derivatives, quadratics, "differentiate", "integrate", "binomial expansion", trigonometric identities, x^2 coefficients
+- Physics (9702): forces, velocity, acceleration, circuits, waves, F = ma, units m/s, N, J
+- Chemistry (9701): chemical formulas (H2O, NaCl, Al^3+, Mg^2+), ionic/covalent bonding, "ionic radius", moles, electronegativity, pH, redox
+- Biology (9700): cells, DNA, photosynthesis, enzymes, organisms
+- History (9489): dates, named events, "to what extent", causes of wars/revolutions
+- Economics (9708): demand/supply, GDP, inflation, elasticity
+- Psychology (9990): cognitive/behavioural psychology terms
+- And analogous discipline-specific vocabulary for the other codes listed above.
+
+Do NOT default to Mathematics (9709) when the question is clearly science, humanities, or social science.
+
+STEP 2 — PAST PAPER HEADERS (only if present in the OCR):
+- Paper code patterns: "9701/22", "9709/12", "9702/11", "9489/21", etc. (subject/component with slash)
+- Session: "May/June 2024", "m/j/24", "October/November 2023"
+- Question number: "1", "2(a)", "3(b)(i)" (lowercase letters, roman numerals)
+
+The paper_code subject prefix MUST match the subject you identified in Step 1. If headers say 9709 but the question is clearly Chemistry (9701), set is_past_paper=false and explain the mismatch — do not guess Math.
+
+QUESTION TEXT (primary for subject identification):
+${questionBlock}
+
+STUDENT'S TRANSCRIBED ANSWER (headers / handwriting):
 ${ocrText}
-
-QUESTION TEXT (if separately provided):
-${questionText || '[not provided]'}
 
 ${subjectLine}
 
-Look for indicators that this is from a past paper:
-- Paper code patterns like "9709/12", "9702/11", "9489/21", etc.
-- Session indicators like "May/June 2024", "m/j/24", "Oct/Nov 23"
-- Standard question number formats like "1", "2(a)", "3(b)(i)"
-
-Normalize the paper info to standard format:
-- paper_code: "9709/12" (subject/component, with slash)
-- paper_session: "May/June 2024" or "October/November 2023" (full session name)
-- question_number: "1" or "2(a)" or "3(b)(i)" (use lowercase letters and roman numerals)
+Normalize when confident:
+- paper_code: "9701/22" (subject/component with slash — use the code from Step 1)
+- paper_session: full session name
+- question_number: as on the paper
 
 Return ONLY this JSON, no markdown:
 {
   "is_past_paper": true,
   "confidence": "high",
-  "paper_code": "9709/12",
+  "paper_code": "9701/22",
   "paper_session": "May/June 2024",
-  "question_number": "1",
-  "reasoning": "Brief explanation of what indicators you found"
+  "question_number": "1(b)",
+  "reasoning": "Brief explanation citing subject markers and any header evidence"
 }
 
-Set is_past_paper=false if confidence would be "low" or you have no clear indicators. When in doubt, return false.`
+Rules:
+- Set is_past_paper=false if confidence is "low", headers are absent/ambiguous, or subject in headers conflicts with question content.
+- When genuinely uncertain after considering all subjects, return is_past_paper=false and omit paper_code (or set it to null) — never guess 9709 as a fallback.
+- Examples of valid codes: 9701/22 (Chemistry), 9702/11 (Physics), 9709/12 (Math), 9489/21 (History).`
 }
 
 export function buildWholePaperSegmentPrompt(ocrText: string): string {

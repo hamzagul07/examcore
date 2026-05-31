@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { Brain, Layers, PenLine } from 'lucide-react'
+import { createClient } from '@/lib/supabase-server'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { Hero } from '@/components/marketing/Hero'
 import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSteps'
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 
@@ -12,7 +14,13 @@ export const metadata = createPageMetadata({
   path: '/how-it-works',
 })
 
-export default function HowItWorksPage() {
+export default async function HowItWorksPage() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const markHref = user ? '/mark' : '/auth/signup'
+
   return (
     <MarketingPageShell>
       <MarketingHero
@@ -28,6 +36,10 @@ export default function HowItWorksPage() {
 
       <MarketingSection className="!pt-0">
         <LandingScreenshotSteps />
+      </MarketingSection>
+
+      <MarketingSection className="!pt-0">
+        <Hero primaryHref={markHref} embedded />
       </MarketingSection>
 
       <MarketingSection>

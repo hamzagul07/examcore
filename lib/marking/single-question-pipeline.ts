@@ -14,6 +14,7 @@ import {
   anthropic,
 } from '@/lib/marking/mark-runner'
 import { buildDetectionPrompt } from '@/lib/marking/prompts'
+import { reconcileDetectionWithQuestion } from '@/lib/marking/subject-inference'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
@@ -117,28 +118,12 @@ export async function runSingleQuestionMark(
     return { full_text, lines, photo_url }
   }
 
-  let detectionPromise: Promise<Record<string, unknown>> | null = null
   const subjectHint = manualSubjectCode
     ? SUBJECT_CODE_MAP[manualSubjectCode]
     : undefined
 
   const first = await ocrOnePage(pageFiles[0])
   pageOcrResults.push(first)
-
-  if (!hasManualSelection && pageFiles.length > 0) {
-    const partialSnippet = first.full_text
-      .split('\n')
-      .filter((l) => l.trim())
-      .slice(0, 10)
-      .join('\n')
-    if (partialSnippet.trim().length >= 3) {
-      detectionPromise = runPaperDetection(
-        partialSnippet,
-        questionTextInput.trim(),
-        subjectHint
-      )
-    }
-  }
 
   if (pageFiles.length > 1) {
     const rest = await Promise.all(pageFiles.slice(1).map((f) => ocrOnePage(f)))
@@ -181,10 +166,9 @@ export async function runSingleQuestionMark(
       question_number: manualQuestionNumber,
       reasoning: 'Manually selected by user',
     }
-  } else if (detectionPromise) {
-    detection = await detectionPromise
   } else {
     detection = await runPaperDetection(ocrText, questionText, subjectHint)
+    detection = reconcileDetectionWithQuestion(detection, questionText)
   }
 
   let markingMode: MarkingMode = 'general_criteria'

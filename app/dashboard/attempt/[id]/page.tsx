@@ -155,7 +155,7 @@ export default async function AttemptDetailPage({
 
   return (
     <main className="app-shell app-shell-tabbed">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto min-w-0 max-w-3xl">
         {/* Back link */}
         <Link
           href="/dashboard"

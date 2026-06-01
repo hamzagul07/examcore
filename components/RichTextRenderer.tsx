@@ -47,7 +47,7 @@ export function RichTextRenderer({
       : 'prose prose-sm max-w-none'
 
   return (
-    <div className={`${proseClass} ${className}`.trim()}>
+    <div className={`${proseClass} ec-break-anywhere min-w-0 max-w-full overflow-x-auto ${className}`.trim()}>
       <ReactMarkdown
         remarkPlugins={[
           remarkGfm,

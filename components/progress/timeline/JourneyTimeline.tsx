@@ -78,7 +78,7 @@ export function JourneyTimeline({ stations, subjectLabel }: Props) {
   }
 
   return (
-    <section className="ec-card p-5 sm:p-8">
+    <section className="ec-card min-w-0 p-5 sm:p-8">
       <Header subjectLabel={subjectLabel} view={view} setView={setView} />
       {vertical ? (
         <VerticalMetro stations={shown} reduce={!!reduce} />
@@ -173,7 +173,7 @@ function HorizontalMetro({
     .join(' ')
 
   return (
-    <div className="relative overflow-x-auto">
+    <div className="relative min-w-0 overflow-x-auto">
       <div className="relative min-w-full" style={{ width }}>
         <svg
           viewBox={`0 0 ${width} ${height}`}

@@ -49,6 +49,9 @@
   --ec-btn-glow-hover: 0 12px 32px rgba(0, 245, 160, 0.5);
   --ec-card-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
   --ec-card-hover-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.6), 0 0 48px rgba(0, 245, 160, 0.12);
+  --ec-shadow-elevation-1: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --ec-shadow-elevation-2: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --ec-shadow-elevation-3: 0 16px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   --ec-touch-min: 44px;
   --ec-z-sticky: 50;
   --ec-z-overlay: 60;
@@ -100,6 +103,9 @@
   --ec-btn-glow-hover: 0 8px 24px rgba(90, 154, 106, 0.3);
   --ec-card-shadow: 0 8px 24px rgba(61, 56, 48, 0.08);
   --ec-card-hover-shadow: 0 16px 40px rgba(61, 56, 48, 0.12);
+  --ec-shadow-elevation-1: 0 2px 8px rgba(61, 56, 48, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --ec-shadow-elevation-2: 0 8px 20px rgba(61, 56, 48, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --ec-shadow-elevation-3: 0 14px 32px rgba(61, 56, 48, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 html,
@@ -225,6 +231,8 @@ body {
 
 .app-shell {
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
   padding: 2.5rem 1rem;
 }
 
@@ -330,11 +338,19 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.ec-break-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .ec-question-text {
   font-family: var(--font-fraunces), Georgia, 'Times New Roman', serif;
   font-weight: 500;
   line-height: 1.55;
   color: var(--ec-text-primary);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .examiner-ink {
@@ -359,7 +375,33 @@ body {
     background: var(--ec-surface-raised);
     border-color: color-mix(in srgb, var(--ec-brand) 30%, transparent);
     transform: translateY(-2px);
-    box-shadow: var(--ec-card-hover-shadow);
+    box-shadow: var(--ec-shadow-elevation-2);
+  }
+
+  .ec-shadow-elevation-1 {
+    box-shadow: var(--ec-shadow-elevation-1);
+  }
+
+  .ec-shadow-elevation-2 {
+    box-shadow: var(--ec-shadow-elevation-2);
+  }
+
+  .ec-shadow-elevation-3 {
+    box-shadow: var(--ec-shadow-elevation-3);
+  }
+
+  .dashboard-presence-breathe {
+    animation: ec-dashboard-breathe 14s ease-in-out infinite;
+  }
+
+  @keyframes ec-dashboard-breathe {
+    0%,
+    100% {
+      opacity: 0.92;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 
   .ec-card-premium {

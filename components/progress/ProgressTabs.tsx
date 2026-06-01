@@ -57,7 +57,7 @@ export function ProgressTabs({ insights, journey, topics, attempts }: Props) {
   }
 
   return (
-    <div>
+    <div className="min-w-0">
       <div
         role="tablist"
         aria-label="Progress views"
@@ -87,7 +87,7 @@ export function ProgressTabs({ insights, journey, topics, attempts }: Props) {
         })}
       </div>
 
-      <div role="tabpanel" key={active} className="animate-entry">
+      <div role="tabpanel" key={active} className="min-w-0 animate-entry">
         {content[active]}
       </div>
     </div>

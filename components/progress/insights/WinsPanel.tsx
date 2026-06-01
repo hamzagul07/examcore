@@ -22,14 +22,14 @@ const ICONS: Record<WinKind, LucideIcon> = {
 
 export function WinsPanel({ state, wins }: { state: DashboardState; wins: Win[] }) {
   return (
-    <section className="ec-card p-5 sm:p-6">
+    <section className="ec-card min-w-0 p-5 sm:p-6">
       <div className="mb-5 flex items-center gap-2">
         <Trophy className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
         <p className="ec-label-tech">WINS</p>
       </div>
 
       {wins.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface)] p-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+        <div className="ec-break-anywhere rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface)] p-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
           {state === 'zero'
             ? 'Wins will appear here once you start — your first marked question is the first one.'
             : 'Wins will appear here as you hit real milestones.'}
@@ -50,7 +50,7 @@ export function WinsPanel({ state, wins }: { state: DashboardState; wins: Win[] 
                   <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
                     {win.title}
                   </p>
-                  <p className="mt-0.5 text-sm leading-snug text-[var(--ec-text-secondary)]">
+                  <p className="ec-break-anywhere mt-0.5 text-sm leading-snug text-[var(--ec-text-secondary)]">
                     {win.detail}
                   </p>
                 </div>

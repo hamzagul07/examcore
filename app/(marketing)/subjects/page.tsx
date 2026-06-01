@@ -31,8 +31,8 @@ export default function SubjectsPage() {
             Pick your subject and start marking
           </h2>
           <p className="landing-lead mx-auto mb-8 max-w-lg">
-            Free during early access — try marking before you sign up. Founding
-            members who complete setup lock in 50% off any paid plan, forever.
+            Start free — no card required. Founding members who complete setup
+            lock in 50% off any paid plan, forever.
           </p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/mark" className="ec-btn-primary inline-flex min-h-[52px]">

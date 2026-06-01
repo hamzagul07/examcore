@@ -11,11 +11,14 @@ export default function NotFound() {
           dashboard or try marking a question.
         </p>
         <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
-          <Link href="/dashboard" className="ec-btn-primary justify-center px-7 py-3.5">
-            Go to dashboard
+          <Link href="/" className="ec-btn-primary justify-center px-7 py-3.5">
+            Go home
           </Link>
           <Link href="/mark" className="ec-btn-secondary justify-center px-7 py-3.5">
             Mark a question
+          </Link>
+          <Link href="/dashboard" className="ec-btn-ghost justify-center px-7 py-3.5">
+            Dashboard
           </Link>
         </div>
       </div>

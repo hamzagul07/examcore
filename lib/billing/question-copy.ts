@@ -83,15 +83,37 @@ export function questionUsageMessage(summary: BillingSummaryClient): {
     }
   }
 
+  if (summary.enforcement_mode === 'warn') {
+    const pool =
+      summary.tier === 'free' ? `${q.cap} free questions` : `${q.cap} monthly questions`
+    return {
+      text: `You've used all ${pool} this month. You can still submit while we're in warning mode — upgrade or top up credits soon.`,
+      tone: 'warning',
+      disableSubmit: false,
+    }
+  }
+
   return {
-    text: `You've used your ${q.cap} ${tierLabel.toLowerCase()} questions this month. This will still submit while limits are soft.`,
+    text: `You've used your ${q.cap} ${tierLabel.toLowerCase()} questions this month.`,
     tone: 'warning',
     disableSubmit: false,
   }
 }
 
 export function wholePaperUsageMessage(summary: BillingSummaryClient): string {
-  return 'This whole paper will use 1 question (regardless of how many sub-questions it contains).'
+  const q = summary.questions
+  const base =
+    'This whole paper will use 1 question (regardless of how many sub-questions it contains).'
+  if (q.remaining > 0) {
+    return `${base} You'll have ${Math.max(0, q.remaining - 1)} left after this.`
+  }
+  if (summary.credit_balance > 0) {
+    return `${base} This will use 1 credit (${summary.credit_balance - 1} credits left after).`
+  }
+  if (summary.enforcement_mode === 'warn') {
+    return `${base} You're over your monthly cap — warning mode still allows submission.`
+  }
+  return base
 }
 
 export function tierQuestionCap(tier: SubscriptionTier): number {
@@ -100,4 +122,55 @@ export function tierQuestionCap(tier: SubscriptionTier): number {
 
 export function tierOmniCap(tier: SubscriptionTier): number {
   return omniCapForTier(tier)
+}
+
+/** Pre-submit copy for Omni chat input. */
+export function omniUsageMessage(summary: BillingSummaryClient): {
+  text: string
+  tone: 'normal' | 'warning' | 'error'
+  disableSubmit: boolean
+} {
+  const o = summary.omni
+
+  if (o.blocked && summary.enforcement_mode === 'enforce') {
+    const reset = summary.period_resets_at
+      ? new Date(summary.period_resets_at).toLocaleDateString(undefined, {
+          month: 'long',
+          day: 'numeric',
+        })
+      : null
+    return {
+      text: reset
+        ? `You've used all ${o.cap} Omni messages this month (resets ${reset}). Upgrade or top up credits to continue.`
+        : `You've used all ${o.cap} Omni messages this month. Upgrade or top up credits to continue.`,
+      tone: 'error',
+      disableSubmit: true,
+    }
+  }
+
+  if (summary.enforcement_mode === 'warn' && o.remaining <= 0 && summary.credit_balance <= 0) {
+    return {
+      text: `You've used all ${o.cap} Omni messages this month. Warning mode still allows chat — upgrade or top up soon.`,
+      tone: 'warning',
+      disableSubmit: false,
+    }
+  }
+
+  if (o.warning) {
+    return {
+      text: `${o.used} of ${o.cap} Omni messages used this month — ${o.remaining} left.`,
+      tone: 'warning',
+      disableSubmit: false,
+    }
+  }
+
+  if (summary.enforcement_mode !== 'off') {
+    return {
+      text: `${o.remaining} Omni messages left this month.`,
+      tone: 'normal',
+      disableSubmit: false,
+    }
+  }
+
+  return { text: '', tone: 'normal', disableSubmit: false }
 }

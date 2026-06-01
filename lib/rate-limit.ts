@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 
-const ANON_DAILY_MARK_LIMIT = 10
+export const ANON_DAILY_MARK_LIMIT = 10
 const ANON_DAILY_CONTACT_LIMIT = 5
 const AUTH_DAILY_CONTACT_LIMIT = 20
 const DAILY_SIGNUP_LIMIT = 3

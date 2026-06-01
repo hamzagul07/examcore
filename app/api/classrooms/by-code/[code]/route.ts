@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServiceClient } from '@/lib/supabase-server'
+import { createServiceClient } from '@/lib/supabase/service'
 
 export async function GET(
   _req: NextRequest,
@@ -8,19 +8,14 @@ export async function GET(
   const { code: rawCode } = await params
   const code = rawCode.trim()
 
-  console.log(
-    '[by-code] Looking up:',
-    code,
-    'env service key present:',
-    !!process.env.SUPABASE_SERVICE_ROLE_KEY
-  )
+  if (!code) {
+    return NextResponse.json({ classroom: null, error: 'Invalid invite code' })
+  }
 
   let supabase
   try {
     supabase = createServiceClient()
-  } catch (err) {
-    const message = err instanceof Error ? err.message : 'Service client error'
-    console.error('[by-code] Service client failed:', message)
+  } catch {
     return NextResponse.json(
       { error: 'Invite lookup is temporarily unavailable' },
       { status: 503 }
@@ -35,13 +30,8 @@ export async function GET(
     .ilike('invite_code', code)
     .maybeSingle()
 
-  console.log('[by-code] Result:', { found: !!data, error: error?.message })
-
   if (error || !data) {
-    return NextResponse.json({
-      classroom: null,
-      debug: { code, error: error?.message },
-    })
+    return NextResponse.json({ classroom: null })
   }
 
   const { count } = await supabase

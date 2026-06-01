@@ -25,6 +25,7 @@ import {
   clientIp,
   incrementAnonymousMarkRateLimit,
 } from '@/lib/rate-limit'
+import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { createServiceClient } from '@/lib/supabase/service'
 import { wholePaperQuestionLimit } from '@/lib/billing/features'
 import type { SubscriptionTier } from '@/lib/database.types'
@@ -52,7 +53,7 @@ export async function POST(request: NextRequest) {
     const ip = clientIp(request)
     const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, userId)
     if (!rateCheck.allowed) {
-      return NextResponse.json({ error: rateCheck.message }, { status: 429 })
+      return rateLimitJson(rateCheck.message)
     }
 
     let allowance: Awaited<ReturnType<typeof checkMarkAllowance>> | null = null

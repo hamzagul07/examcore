@@ -27,8 +27,11 @@ export default function Error({
           <button type="button" onClick={reset} className="ec-btn-primary justify-center px-7 py-3.5">
             Try again
           </button>
-          <Link href="/dashboard" className="ec-btn-secondary justify-center px-7 py-3.5">
-            Go to dashboard
+          <Link href="/" className="ec-btn-secondary justify-center px-7 py-3.5">
+            Go home
+          </Link>
+          <Link href="/dashboard" className="ec-btn-ghost justify-center px-7 py-3.5">
+            Dashboard
           </Link>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import { CONTACT_EMAIL } from '@/lib/site-config'
+import { HONEYPOT_FIELD } from '@/lib/honeypot'
 import { MarketingHero, MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 
@@ -10,6 +11,7 @@ export function ContactForm() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [honeypot, setHoneypot] = useState('')
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
@@ -23,7 +25,7 @@ export function ContactForm() {
     const res = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, message }),
+      body: JSON.stringify({ name, email, message, [HONEYPOT_FIELD]: honeypot }),
     })
 
     setLoading(false)
@@ -60,7 +62,17 @@ export function ContactForm() {
 
         <div className="ec-card p-6 sm:p-8">
           <p className="ec-label-tech mb-4">SEND A MESSAGE</p>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="relative space-y-4">
+            <input
+              type="text"
+              name={HONEYPOT_FIELD}
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
             <div>
               <label htmlFor="name" className="label-overline mb-2 block">
                 Name

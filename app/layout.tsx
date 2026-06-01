@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     template: `%s — ${SITE_NAME}`,
   },
   description:
-    "Upload handwritten Cambridge answers and get mark-by-mark feedback in seconds. Free during early access — founding members lock in 50% off forever.",
+    "Upload handwritten Cambridge answers and get mark-by-mark feedback in seconds. Free tier plus paid plans — founding members lock in 50% off forever.",
   openGraph: {
     siteName: SITE_NAME,
     type: "website",
@@ -76,8 +76,20 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <OmniAIProviders>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-[var(--ec-brand)] focus:px-4 focus:py-2 focus:font-semibold focus:text-[var(--ec-canvas)]"
+            >
+              Skip to content
+            </a>
             <RootHeader />
-            <div className="relative z-[1] flex min-w-0 flex-1 flex-col">{children}</div>
+            <div
+              id="main-content"
+              tabIndex={-1}
+              className="relative z-[1] flex min-w-0 flex-1 flex-col outline-none"
+            >
+              {children}
+            </div>
             <RootFooter />
             <MobileTabBarGate />
             <OmniFABGate />

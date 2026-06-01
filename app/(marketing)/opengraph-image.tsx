@@ -7,6 +7,6 @@ export const contentType = 'image/png'
 export default function OgImage() {
   return createOgImage({
     title: 'Your past papers, marked like the exam',
-    subtitle: 'Cambridge A-Level marking across 15 subjects — free during early access',
+    subtitle: 'Cambridge A-Level marking across 15 subjects — start free, upgrade when ready',
   })
 }

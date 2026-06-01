@@ -42,6 +42,7 @@ import {
   clientIp,
   incrementAnonymousMarkRateLimit,
 } from '@/lib/rate-limit'
+import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
 
 export const maxDuration = 300
@@ -105,7 +106,7 @@ export async function POST(request: NextRequest) {
     const ip = clientIp(request)
     const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, userId)
     if (!rateCheck.allowed) {
-      return NextResponse.json({ error: rateCheck.message }, { status: 429 })
+      return rateLimitJson(rateCheck.message)
     }
     const anonMarkCount = rateCheck.count
 

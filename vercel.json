@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "functions": {
+    "app/api/mark/whole-paper/run/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/mark/process/route.ts": {
+      "maxDuration": 120
+    },
+    "app/api/omni-ai/route.ts": {
+      "maxDuration": 120
+    }
+  }
+}

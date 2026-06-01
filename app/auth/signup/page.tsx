@@ -15,6 +15,8 @@ import {
   SubmitButton,
 } from '@/components/AuthFormBits'
 
+import { isSafeNextPath } from '@/lib/auth-redirect'
+
 /**
  * Map a Command Bar `?intent=` query param to a post-signup destination.
  *
@@ -29,7 +31,7 @@ function destinationForIntent(
   paper: string | null,
   redirect: string | null
 ): string {
-  if (redirect && redirect.startsWith('/')) return redirect
+  if (isSafeNextPath(redirect)) return redirect
   if (!intent) return '/onboarding'
   switch (intent) {
     case 'mark':

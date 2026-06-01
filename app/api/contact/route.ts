@@ -8,11 +8,14 @@ import {
   incrementContactRateLimit,
 } from '@/lib/rate-limit'
 import { notifyAdminContactMessage } from '@/lib/email/admin-notify'
+import { HONEYPOT_FIELD, isHoneypotTripped } from '@/lib/honeypot'
+import { rateLimitJson } from '@/lib/http/rate-limit-response'
 
 type Body = {
   name?: string
   email?: string
   message?: string
+  company?: string
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -23,6 +26,10 @@ export async function POST(request: Request) {
     body = await request.json()
   } catch {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+  }
+
+  if (isHoneypotTripped(body[HONEYPOT_FIELD])) {
+    return NextResponse.json({ ok: true })
   }
 
   const name = (body.name || '').trim().slice(0, 80)
@@ -51,7 +58,7 @@ export async function POST(request: Request) {
   const ip = clientIp(request)
   const rate = await checkContactRateLimit(admin, ip, user?.id ?? null)
   if (!rate.allowed) {
-    return NextResponse.json({ error: rate.message }, { status: 429 })
+    return rateLimitJson(rate.message)
   }
 
   const { error } = await admin.from('contact_messages').insert({

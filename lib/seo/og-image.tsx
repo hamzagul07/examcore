@@ -95,7 +95,7 @@ export function createOgImage({ title, subtitle }: OgImageProps) {
             textTransform: 'uppercase',
           }}
         >
-          Cambridge A-Level marking · Early access
+          Cambridge A-Level marking · Free tier available
         </div>
       </div>
     ),

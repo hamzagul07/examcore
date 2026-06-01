@@ -7,6 +7,7 @@ import {
 } from '@/lib/profile-options'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
+import { shouldShowApproachingLimitBanner } from '@/lib/billing/enforcement-mode'
 import type { SettingsContext } from './types'
 
 export async function loadAccountContext(): Promise<SettingsContext> {
@@ -78,6 +79,19 @@ export async function loadAccountContext(): Promise<SettingsContext> {
       omniUsed: billing.omni.used,
       omniCap: billing.omni.cap,
       periodResetsAt: billing.period_resets_at ?? null,
+      enforcementMode: billing.enforcement_mode,
+      questionsWarning: billing.questions.warning && shouldShowApproachingLimitBanner(),
+      questionsBlocked:
+        billing.enforcement_mode === 'enforce' &&
+        billing.questions.remaining <= 0 &&
+        billing.credit_balance <= 0 &&
+        Boolean(billing.questions.reason),
+      omniWarning: billing.omni.warning && shouldShowApproachingLimitBanner(),
+      omniBlocked:
+        billing.enforcement_mode === 'enforce' &&
+        billing.omni.remaining <= 0 &&
+        billing.credit_balance <= 0 &&
+        Boolean(billing.omni.reason),
       recentUsage: (recentUsage ?? []).map((u) => ({
         id: u.id as string,
         eventType: u.event_type as string,

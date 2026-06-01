@@ -5,6 +5,7 @@ import {
   clientIp,
   incrementSignupRateLimit,
 } from '@/lib/rate-limit'
+import { rateLimitJson } from '@/lib/http/rate-limit-response'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     const ip = clientIp(request)
     const rate = await checkSignupRateLimit(admin, ip)
     if (!rate.allowed) {
-      return NextResponse.json({ error: rate.message }, { status: 429 })
+      return rateLimitJson(rate.message)
     }
 
     const { error } = await admin.from('signups').insert({

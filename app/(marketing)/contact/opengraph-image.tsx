@@ -7,6 +7,6 @@ export const contentType = 'image/png'
 export default function OgImage() {
   return createOgImage({
     title: 'Get in touch',
-    subtitle: 'Feedback & support during early access',
+    subtitle: 'Questions, feedback, and support',
   })
 }

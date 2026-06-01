@@ -17,6 +17,8 @@ type Props = {
   onReset: () => void
   onQuotaExceeded?: (data: QuotaExceeded) => void
   onAllowance?: (block: AllowanceBlock | undefined) => void
+  onGuestRateLimit?: () => void
+  disabled?: boolean
 }
 
 type JobStatus = {
@@ -51,6 +53,8 @@ export function WholePaperFlow({
   onReset,
   onQuotaExceeded,
   onAllowance,
+  onGuestRateLimit,
+  disabled,
 }: Props) {
   const [phase, setPhase] = useState<'upload' | 'marking' | 'result'>('upload')
   const [jobStatus, setJobStatus] = useState<JobStatus | null>(null)
@@ -227,6 +231,12 @@ export function WholePaperFlow({
       })
       const initData = await initRes.json()
       if (!initRes.ok) {
+        if (initRes.status === 429) {
+          onGuestRateLimit?.()
+          onError(initData.error || 'Daily guest limit reached.')
+          setPhase('upload')
+          return
+        }
         // Cap breach (enforce mode only) — surface the upgrade modal, not an error.
         if (initData?.error === 'mark_quota_exceeded') {
           onQuotaExceeded?.(initData as QuotaExceeded)
@@ -318,6 +328,7 @@ export function WholePaperFlow({
       detectedQuestionCount={questionOptions.length}
       onCancel={onReset}
       onSubmit={handleSubmit}
+      disabled={disabled}
     />
   )
 }

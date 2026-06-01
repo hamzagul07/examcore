@@ -18,7 +18,7 @@ export function LandingHero({ markHref }: LandingHeroProps) {
     <LandingHeroEntry>
       <div className="relative mx-auto max-w-7xl text-center">
         <div className="mb-8 flex justify-center">
-          <span className="ec-label-tech">Early access · Free · A-Level & O-Level</span>
+          <span className="ec-label-tech">Free tier · A-Level & O-Level</span>
         </div>
 
         {/* Headline + sub — collapse when chat is active */}

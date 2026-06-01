@@ -56,8 +56,14 @@ function SignInForm() {
 
   useEffect(() => {
     const code = searchParams.get('error')
+    const detail = searchParams.get('detail')
     if (code && AUTH_CALLBACK_ERRORS[code]) {
-      setErrorMsg(AUTH_CALLBACK_ERRORS[code])
+      const base = AUTH_CALLBACK_ERRORS[code]
+      setErrorMsg(
+        detail && code === 'auth_failed'
+          ? `${base} (${detail.slice(0, 120)})`
+          : base
+      )
     }
   }, [searchParams])
 

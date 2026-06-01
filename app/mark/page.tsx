@@ -35,7 +35,8 @@ import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
-import { ApproachingLimitBanner } from '@/components/billing/ApproachingLimitBanner'
+import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
+import { GuestMarkNotice } from '@/components/billing/GuestMarkNotice'
 import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
 import { capForTier } from '@/lib/billing/caps'
 import { isPaidTier, FREE_WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
@@ -122,8 +123,6 @@ export default function MarkPage() {
   const [errorMsg, setErrorMsg] = useState('')
   const [errorRetryable, setErrorRetryable] = useState(false)
   const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
-  const [limitBanner, setLimitBanner] = useState<{ used: number; cap: number } | null>(null)
-  const [bannerDismissed, setBannerDismissed] = useState(false)
   const [upgradeModal, setUpgradeModal] = useState<UpgradeModalState | null>(null)
   const [showFreeNudge, setShowFreeNudge] = useState(false)
   const [billingSummary, setBillingSummary] = useState<BillingSummaryClient | null>(null)
@@ -658,6 +657,10 @@ export default function MarkPage() {
           refreshBillingSummary()
           return
         }
+        if (res.status === 429 && !billingSummary?.signedIn) {
+          setUpgradeModal({ variant: 'anonymous' })
+          return
+        }
         setErrorMsg(data.error || 'Marking failed.')
         setErrorRetryable(!!data.retryable)
         return
@@ -813,13 +816,6 @@ export default function MarkPage() {
   function handleAllowance(block?: AllowanceBlock) {
     refreshBillingSummary()
     if (block?.tier === 'free') setShowFreeNudge(true)
-    if (block?.warning && block.cap != null && block.remaining_after != null) {
-      setLimitBanner({
-        used: Math.max(0, block.cap - block.remaining_after),
-        cap: block.cap,
-      })
-      setBannerDismissed(false)
-    }
   }
 
   return (
@@ -862,13 +858,11 @@ export default function MarkPage() {
           </div>
         )}
 
-        {!result && limitBanner && !bannerDismissed && (
-          <ApproachingLimitBanner
-            used={limitBanner.used}
-            cap={limitBanner.cap}
-            onDismiss={() => setBannerDismissed(true)}
-          />
+        {!result && (
+          <BillingLimitBanner className="mb-5" />
         )}
+
+        {!result && !loading && <GuestMarkNotice className="mb-5" />}
 
         {!result && !loading && (
           <form onSubmit={handleSubmit} className="space-y-10">
@@ -1000,6 +994,8 @@ export default function MarkPage() {
                       refreshBillingSummary()
                     }}
                     onAllowance={handleAllowance}
+                    onGuestRateLimit={() => setUpgradeModal({ variant: 'anonymous' })}
+                    disabled={submitBlocked}
                   />
                   </>
                 )}
@@ -1431,6 +1427,7 @@ export default function MarkPage() {
         cap={upgradeModal?.cap}
         periodResetsAt={upgradeModal?.periodResetsAt}
         creditBalance={upgradeModal?.creditBalance}
+        returnPath="/mark"
       />
     </main>
   )

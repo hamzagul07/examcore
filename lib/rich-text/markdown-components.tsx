@@ -19,21 +19,7 @@ const DARK = {
   link: 'text-[var(--ec-brand)] underline underline-offset-2 hover:opacity-80',
 } as const
 
-const LIGHT = {
-  textPrimary: 'text-slate-900',
-  textBody: 'text-slate-700',
-  textMuted: 'text-slate-500',
-  textEm: 'text-emerald-700',
-  codeBg: 'border border-slate-200 bg-slate-100',
-  codeText: 'text-emerald-800',
-  preBg: 'border border-slate-200 bg-slate-100',
-  preText: 'text-slate-800',
-  tableBorder: 'border-slate-200',
-  tableHead: 'bg-slate-100 text-slate-800',
-  blockquoteBorder: 'border-emerald-500/50',
-  hr: 'my-4 border-slate-200',
-  link: 'text-emerald-700 underline underline-offset-2 hover:text-emerald-800',
-} as const
+const LIGHT = DARK
 
 /**
  * Shared react-markdown component map for marking feedback and Omni-AI.

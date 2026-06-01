@@ -30,18 +30,18 @@ export interface GradeBoundary {
 }
 
 export const GRADE_BOUNDARIES: GradeBoundary[] = [
-  { grade: 'A*', percentage: 80, color: '#10b981' }, // emerald-500
-  { grade: 'A',  percentage: 70, color: '#22c55e' }, // green-500
-  { grade: 'B',  percentage: 60, color: '#84cc16' }, // lime-500
-  { grade: 'C',  percentage: 50, color: '#eab308' }, // yellow-500
-  { grade: 'D',  percentage: 40, color: '#f97316' }, // orange-500
-  { grade: 'E',  percentage: 30, color: '#ef4444' }, // red-500
+  { grade: 'A*', percentage: 80, color: 'var(--ec-brand, #00f5a0)' },
+  { grade: 'A', percentage: 70, color: 'var(--ec-score-high, #22c55e)' },
+  { grade: 'B', percentage: 60, color: 'var(--ec-score-mid, #84cc16)' },
+  { grade: 'C', percentage: 50, color: '#eab308' },
+  { grade: 'D', percentage: 40, color: '#f97316' },
+  { grade: 'E', percentage: 30, color: 'var(--ec-error, #ef4444)' },
 ]
 
 const UNGRADED: GradeBoundary = {
   grade: 'U',
   percentage: 0,
-  color: '#94a3b8', // slate-400
+  color: 'var(--ec-text-secondary, #94a3b8)',
 }
 
 /**

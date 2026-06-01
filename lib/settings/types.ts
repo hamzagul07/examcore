@@ -1,4 +1,5 @@
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
+import type { EnforcementMode } from '@/lib/billing/enforcement-mode'
 
 export type SettingsProfile = {
   full_name: string
@@ -33,6 +34,11 @@ export type SettingsBilling = {
   omniUsed: number
   omniCap: number
   periodResetsAt: string | null
+  enforcementMode: EnforcementMode
+  questionsWarning: boolean
+  questionsBlocked: boolean
+  omniWarning: boolean
+  omniBlocked: boolean
   recentUsage: SettingsUsageRow[]
 }
 

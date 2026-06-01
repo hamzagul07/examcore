@@ -25,12 +25,14 @@ export function TeacherNav() {
       className="ec-app-header sticky top-0 z-50 border-b lg:backdrop-blur-xl"
       style={{ borderColor: 'var(--ec-border)' }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/teacher/dashboard" className="flex shrink-0 items-center gap-2">
-          <BookOpen className="h-5 w-5 text-[var(--ec-brand)]" aria-hidden />
-          <span className="font-bold text-[var(--ec-text-primary)]">
+      <div className="mx-auto flex w-full min-w-0 max-w-7xl items-center gap-2 overflow-x-clip px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3">
+        <Link href="/teacher/dashboard" className="flex shrink-0 items-center gap-2 max-[420px]:gap-1.5">
+          <BookOpen className="h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden />
+          <span className="font-bold text-[var(--ec-text-primary)] max-[420px]:text-sm">
             Examcore{' '}
-            <span className="font-normal text-[var(--ec-text-secondary)]">Teacher</span>
+            <span className="font-normal text-[var(--ec-text-secondary)] max-[420px]:hidden">
+              Teacher
+            </span>
           </span>
         </Link>
 

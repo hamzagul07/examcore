@@ -1,10 +1,15 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { isOnboardingComplete } from '@/lib/onboarding'
+import { isAdminEmail } from '@/lib/admin-auth'
+import { requireTeacher } from '@/lib/teacher-auth'
 
-const PROTECTED_PREFIXES = ['/dashboard', '/account', '/onboarding']
+const PROTECTED_PREFIXES = ['/dashboard', '/account', '/onboarding', '/teacher', '/admin']
 
 const ONBOARDING_REQUIRED_PREFIXES = ['/dashboard', '/account']
+
+const TEACHER_PREFIXES = ['/teacher']
+const ADMIN_PREFIXES = ['/admin']
 
 function matchesPrefix(pathname: string, prefixes: string[]) {
   return prefixes.some(
@@ -14,10 +19,6 @@ function matchesPrefix(pathname: string, prefixes: string[]) {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
-
-  if (pathname.startsWith('/teacher') || pathname.startsWith('/join')) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
 
   let supabaseResponse = NextResponse.next({ request })
 
@@ -57,6 +58,17 @@ export async function proxy(request: NextRequest) {
     const intended = request.nextUrl.pathname + request.nextUrl.search
     redirectUrl.searchParams.set('next', intended)
     return NextResponse.redirect(redirectUrl)
+  }
+
+  if (matchesPrefix(pathname, TEACHER_PREFIXES)) {
+    const teacherCheck = await requireTeacher(supabase, user.id)
+    if (!teacherCheck.ok) {
+      return NextResponse.redirect(new URL('/dashboard', request.url))
+    }
+  }
+
+  if (matchesPrefix(pathname, ADMIN_PREFIXES) && !isAdminEmail(user.email)) {
+    return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
   const { data: profile } = await supabase

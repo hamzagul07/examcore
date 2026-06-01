@@ -1,8 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase-server'
+import { isAdminUser } from '@/lib/admin-auth'
 import IngestClient from './ingest-client'
-
-const OWNER_EMAIL = 'hg9256970@gmail.com'
 
 export default async function AdminIngestPage() {
   const supabase = await createClient()
@@ -10,7 +9,7 @@ export default async function AdminIngestPage() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (!user || user.email?.toLowerCase() !== OWNER_EMAIL.toLowerCase()) {
+  if (!isAdminUser(user)) {
     redirect('/dashboard')
   }
 

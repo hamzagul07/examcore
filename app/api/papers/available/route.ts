@@ -9,6 +9,7 @@ const supabaseAdmin = createClient(
 )
 
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
+import { ALL_PAPER_STORAGE_PREFIXES } from '@/lib/paper-storage'
 
 const SEASON_MAP: Record<string, string> = {
   s: 'May/June',
@@ -56,61 +57,61 @@ async function listFolder(path: string): Promise<string[]> {
 async function buildAvailableMap(): Promise<AvailableMap> {
   const result: AvailableMap = {}
 
-  const subjectFolders = await listFolder('cambridge')
+  for (const storagePrefix of ALL_PAPER_STORAGE_PREFIXES) {
+    const subjectFolders = await listFolder(storagePrefix)
 
-  await Promise.all(
-    subjectFolders.map(async (subjectCode) => {
-      // Subject codes are 4-digit numerics; skip anything else
-      if (!/^\d{4}$/.test(subjectCode)) return
+    await Promise.all(
+      subjectFolders.map(async (subjectCode) => {
+        if (!/^\d{4}$/.test(subjectCode)) return
 
-      const sessionFolders = await listFolder(`cambridge/${subjectCode}`)
-      const sessions: Record<string, SessionInfo> = {}
+        const sessionFolders = await listFolder(`${storagePrefix}/${subjectCode}`)
+        const sessions: Record<string, SessionInfo> = {}
 
-      await Promise.all(
-        sessionFolders.map(async (sessionCode) => {
-          const parsedSession = parseSessionCode(sessionCode)
-          if (!parsedSession) return
+        await Promise.all(
+          sessionFolders.map(async (sessionCode) => {
+            const parsedSession = parseSessionCode(sessionCode)
+            if (!parsedSession) return
 
-          const files = await listFolder(
-            `cambridge/${subjectCode}/${sessionCode}`
-          )
+            const files = await listFolder(
+              `${storagePrefix}/${subjectCode}/${sessionCode}`
+            )
 
-          // Track which components have both qp_ and ms_ PDFs
-          const componentStatus: Record<string, { qp: boolean; ms: boolean }> = {}
-          for (const fileName of files) {
-            const m = fileName.toLowerCase().match(/^(qp|ms)_(.+)\.pdf$/)
-            if (!m) continue
-            const [, kind, component] = m
-            if (!componentStatus[component]) {
-              componentStatus[component] = { qp: false, ms: false }
+            const componentStatus: Record<string, { qp: boolean; ms: boolean }> = {}
+            for (const fileName of files) {
+              const m = fileName.toLowerCase().match(/^(qp|ms)_(.+)\.pdf$/)
+              if (!m) continue
+              const [, kind, component] = m
+              if (!componentStatus[component]) {
+                componentStatus[component] = { qp: false, ms: false }
+              }
+              if (kind === 'qp') componentStatus[component].qp = true
+              if (kind === 'ms') componentStatus[component].ms = true
             }
-            if (kind === 'qp') componentStatus[component].qp = true
-            if (kind === 'ms') componentStatus[component].ms = true
-          }
 
-          const components = Object.entries(componentStatus)
-            .filter(([, status]) => status.qp && status.ms)
-            .map(([component]) => component)
-            .sort()
+            const components = Object.entries(componentStatus)
+              .filter(([, status]) => status.qp && status.ms)
+              .map(([component]) => component)
+              .sort()
 
-          if (components.length > 0) {
-            sessions[sessionCode] = {
-              year: parsedSession.year,
-              season: parsedSession.season,
-              components,
+            if (components.length > 0) {
+              sessions[sessionCode] = {
+                year: parsedSession.year,
+                season: parsedSession.season,
+                components,
+              }
             }
-          }
-        })
-      )
+          })
+        )
 
-      if (Object.keys(sessions).length > 0) {
-        result[subjectCode] = {
-          subject: SUBJECT_CODE_MAP[subjectCode] || `Subject ${subjectCode}`,
-          sessions,
+        if (Object.keys(sessions).length > 0) {
+          result[subjectCode] = {
+            subject: SUBJECT_CODE_MAP[subjectCode] || `Subject ${subjectCode}`,
+            sessions,
+          }
         }
-      }
-    })
-  )
+      })
+    )
+  }
 
   return result
 }

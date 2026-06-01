@@ -14,7 +14,12 @@ import { createClient } from '@/lib/supabase'
 
 const STORAGE_BUCKET = 'paper-pdfs'
 const UPLOAD_CONCURRENCY = 10
-const AVAILABLE_YEARS = [2023, 2024, 2025, 2026]
+const AVAILABLE_YEARS = [2020, 2021, 2022, 2023, 2024, 2025, 2026]
+
+const STORAGE_BOARDS = [
+  { id: 'cambridge', label: 'Cambridge A-Level' },
+  { id: 'cambridge-o-level', label: 'Cambridge O-Level' },
+] as const
 
 const SUBJECT_NAMES: Record<string, string> = {
   '9709': 'Mathematics',
@@ -24,9 +29,18 @@ const SUBJECT_NAMES: Record<string, string> = {
   '9700': 'Biology',
   '9608': 'Computer Science',
   '9618': 'Computer Science',
+  '2210': 'Computer Science (O-Level)',
   '9707': 'Business',
   '9706': 'Accounting',
+  '7707': 'Accounting (O-Level)',
   '9708': 'Economics',
+  '2281': 'Economics (O-Level)',
+  '4024': 'Mathematics (O-Level)',
+  '4037': 'Additional Mathematics (O-Level)',
+  '5054': 'Physics (O-Level)',
+  '5070': 'Chemistry (O-Level)',
+  '5090': 'Biology (O-Level)',
+  '7115': 'Business Studies (O-Level)',
   '9695': 'English Literature',
 }
 
@@ -130,6 +144,7 @@ export default function IngestClient() {
   const [selectedYears, setSelectedYears] = useState<Set<number>>(
     () => new Set(AVAILABLE_YEARS)
   )
+  const [storagePrefix, setStoragePrefix] = useState<string>('cambridge')
   const [scanning, setScanning] = useState(false)
   const [hasScanResult, setHasScanResult] = useState(false)
   const [scanResult, setScanResult] = useState<ScanResult>(EMPTY_SCAN_RESULT)
@@ -271,7 +286,7 @@ export default function IngestClient() {
     await asyncPool(UPLOAD_CONCURRENCY, entriesToUpload, async (entry) => {
       if (!entry.parsed.valid) return
       const { subject_code, session_code, type, component } = entry.parsed
-      const storagePath = `cambridge/${subject_code}/${session_code}/${type}_${component}.pdf`
+      const storagePath = `${storagePrefix}/${subject_code}/${session_code}/${type}_${component}.pdf`
 
       try {
         const zipObject = zip.file(entry.zipPath)
@@ -355,6 +370,38 @@ export default function IngestClient() {
         </div>
 
         <div className="space-y-6">
+          {/* Board / storage prefix */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6">
+            <h2 className="mb-1 text-lg font-semibold text-slate-900">Board</h2>
+            <p className="mb-4 text-sm text-slate-600">
+              Choose where PDFs are stored in Supabase (`paper-pdfs` bucket).
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {STORAGE_BOARDS.map((board) => {
+                const checked = storagePrefix === board.id
+                return (
+                  <label
+                    key={board.id}
+                    className={`flex cursor-pointer items-center gap-2 rounded-xl border-2 px-4 py-2 text-sm font-medium transition-all ${
+                      checked
+                        ? 'border-emerald-500 bg-emerald-50 text-emerald-900'
+                        : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="storage-board"
+                      checked={checked}
+                      onChange={() => setStoragePrefix(board.id)}
+                      className="h-4 w-4 accent-emerald-600"
+                    />
+                    {board.label}
+                  </label>
+                )
+              })}
+            </div>
+          </div>
+
           {/* Year filter */}
           <div className="rounded-2xl border border-slate-200 bg-white p-6">
             <h2 className="mb-1 text-lg font-semibold text-slate-900">Year filter</h2>

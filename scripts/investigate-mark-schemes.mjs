@@ -170,7 +170,13 @@ async function main() {
   report.samples = [...(existing.samples || [])]
 
   for (const { code, session, component } of pending) {
-    const msPath = `cambridge/${code}/${session}/ms_${component}.pdf`
+    const cachePath = join(ROOT, 'lib', 'subject-papers-cache.json')
+    let storagePrefix = 'cambridge'
+    if (existsSync(cachePath)) {
+      const cache = JSON.parse(readFileSync(cachePath, 'utf8'))
+      storagePrefix = cache[code]?.storagePrefix ?? 'cambridge'
+    }
+    const msPath = `${storagePrefix}/${code}/${session}/ms_${component}.pdf`
     process.stdout.write(`${msPath} ... `)
     const result = await classifyPdf(msPath)
     report.samples.push({ code, session, component, path: msPath, ...result })

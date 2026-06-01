@@ -12,6 +12,11 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 
+const STORAGE_PREFIXES = [
+  { prefix: 'cambridge', level: 'A-Level' },
+  { prefix: 'cambridge-o-level', level: 'O-Level' },
+]
+
 function loadEnvFile(filename) {
   const path = join(ROOT, filename)
   if (!existsSync(path)) return
@@ -70,20 +75,20 @@ function groupComponents(components) {
     }))
 }
 
-async function main() {
+async function scanPrefix(storagePrefix, level) {
   const result = {}
-  const subjectFolders = await listFolder('cambridge')
+  const subjectFolders = await listFolder(storagePrefix)
 
   for (const subjectCode of subjectFolders) {
     if (!/^\d{4}$/.test(subjectCode)) continue
 
-    const sessionFolders = await listFolder(`cambridge/${subjectCode}`)
+    const sessionFolders = await listFolder(`${storagePrefix}/${subjectCode}`)
     const sessions = []
     const allComponents = new Set()
 
     for (const sessionCode of sessionFolders.sort()) {
       if (!/^[smw]\d{2}$/i.test(sessionCode)) continue
-      const files = await listFolder(`cambridge/${subjectCode}/${sessionCode}`)
+      const files = await listFolder(`${storagePrefix}/${subjectCode}/${sessionCode}`)
       const componentStatus = {}
 
       for (const fileName of files) {
@@ -112,16 +117,32 @@ async function main() {
 
     result[subjectCode] = {
       code: subjectCode,
+      level,
+      storagePrefix,
       sessions: [...new Set(sessions)].sort(),
       papers: groupComponents([...allComponents]),
     }
+  }
+
+  return result
+}
+
+async function main() {
+  const result = {}
+
+  for (const { prefix, level } of STORAGE_PREFIXES) {
+    const scanned = await scanPrefix(prefix, level)
+    Object.assign(result, scanned)
+    console.log(`  ${prefix}: ${Object.keys(scanned).length} subjects`)
   }
 
   const outPath = join(ROOT, 'lib', 'subject-papers-cache.json')
   writeFileSync(outPath, JSON.stringify(result, null, 2) + '\n')
   console.log(`Wrote ${Object.keys(result).length} subjects to ${outPath}`)
   for (const [code, data] of Object.entries(result).sort()) {
-    console.log(`  ${code}: ${data.sessions.length} sessions, ${data.papers.length} paper groups`)
+    console.log(
+      `  ${code} (${data.level}): ${data.sessions.length} sessions, ${data.papers.length} paper groups`
+    )
   }
 }
 

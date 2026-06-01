@@ -98,9 +98,10 @@ export default async function DashboardPage() {
   const profileSubjects: string[] = profile?.subjects?.length
     ? profile.subjects
     : ['Mathematics']
+  const profileLevel = profile?.level ?? 'A-Level'
   const subjectAttemptCounts = new Map<string, number>()
   for (const name of profileSubjects) {
-    const subj = getSubjectById(name)
+    const subj = getSubjectById(name, profileLevel)
     const code = subj?.code
     const count = attemptsList.filter((a) => {
       const attemptCode = getAttemptSubjectCode(a)
@@ -112,17 +113,21 @@ export default async function DashboardPage() {
     .filter((name) => (subjectAttemptCounts.get(name) ?? 0) > 0)
     .map((name) => ({
       name,
-      code: getSubjectById(name)?.code ?? null,
+      code: getSubjectById(name, profileLevel)?.code ?? null,
     }))
 
   let recommendations: Recommendation[] = []
   let continueSubjectLabel: string | null = null
 
   const primarySubject = profileSubjects.find((name) => {
-    const s = getSubjectById(name)
+    const s = getSubjectById(name, profileLevel)
     return s?.markingEnabled && hasSyllabusTree(s.code)
   })
-  const primaryCode = primarySubject ? getSubjectById(primarySubject)?.code : '9709'
+  const primaryCode = primarySubject
+    ? getSubjectById(primarySubject, profileLevel)?.code
+    : profileLevel === 'O-Level'
+      ? '4024'
+      : '9709'
 
   if (primaryCode && attemptsList.length > 0) {
     const syllabus = getSyllabusByCode(primaryCode)

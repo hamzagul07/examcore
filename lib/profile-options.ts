@@ -20,6 +20,8 @@ export type SubjectOption = {
   label: string
   code: string
   group: string
+  /** Which profile levels this entry applies to */
+  levels: string[]
   enabled: boolean
   markingEnabled: boolean
   markingType: MarkingType
@@ -45,6 +47,7 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Mathematics',
     code: '9709',
     group: 'Mathematics',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
     markingType: 'point_based',
@@ -54,8 +57,29 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Further Mathematics',
     code: '9231',
     group: 'Mathematics',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Mathematics',
+    label: 'Mathematics',
+    code: '4024',
+    group: 'Mathematics',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Additional Mathematics',
+    label: 'Additional Mathematics',
+    code: '4037',
+    group: 'Mathematics',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
     markingType: 'point_based',
   },
   {
@@ -63,8 +87,19 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Biology',
     code: '9700',
     group: 'Sciences',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Biology',
+    label: 'Biology',
+    code: '5090',
+    group: 'Sciences',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
     markingType: 'point_based',
   },
   {
@@ -72,8 +107,19 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Chemistry',
     code: '9701',
     group: 'Sciences',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Chemistry',
+    label: 'Chemistry',
+    code: '5070',
+    group: 'Sciences',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
     markingType: 'point_based',
   },
   {
@@ -81,8 +127,19 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Physics',
     code: '9702',
     group: 'Sciences',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Physics',
+    label: 'Physics',
+    code: '5054',
+    group: 'Sciences',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
     markingType: 'point_based',
   },
   {
@@ -90,8 +147,19 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Economics',
     code: '9708',
     group: 'Business & Economics',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
+    markingType: 'mixed',
+  },
+  {
+    id: 'Economics',
+    label: 'Economics',
+    code: '2281',
+    group: 'Business & Economics',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
     markingType: 'mixed',
   },
   {
@@ -99,8 +167,19 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Business',
     code: '9609',
     group: 'Business & Economics',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
+    markingType: 'mixed',
+  },
+  {
+    id: 'Business Studies',
+    label: 'Business Studies',
+    code: '7115',
+    group: 'Business & Economics',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
     markingType: 'mixed',
   },
   {
@@ -108,8 +187,19 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Accounting',
     code: '9706',
     group: 'Business & Economics',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Accounting',
+    label: 'Accounting',
+    code: '7707',
+    group: 'Business & Economics',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
     markingType: 'point_based',
   },
   {
@@ -117,6 +207,7 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'History',
     code: '9489',
     group: 'Humanities & Social Sciences',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
     markingType: 'level_of_response',
@@ -126,6 +217,7 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Sociology',
     code: '9699',
     group: 'Humanities & Social Sciences',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
     markingType: 'level_of_response',
@@ -135,6 +227,7 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Psychology',
     code: '9990',
     group: 'Humanities & Social Sciences',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
     markingType: 'mixed',
@@ -144,6 +237,7 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Law',
     code: '9084',
     group: 'Humanities & Social Sciences',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
     markingType: 'level_of_response',
@@ -153,6 +247,7 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Islamic Studies',
     code: '9488',
     group: 'Humanities & Social Sciences',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
     markingType: 'level_of_response',
@@ -162,8 +257,19 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Computer Science',
     code: '9618',
     group: 'Computing',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
+    markingType: 'point_based',
+  },
+  {
+    id: 'Computer Science',
+    label: 'Computer Science',
+    code: '2210',
+    group: 'Computing',
+    levels: ['O-Level'],
+    enabled: true,
+    markingEnabled: false,
     markingType: 'point_based',
   },
   {
@@ -171,6 +277,7 @@ export const SUBJECTS: SubjectOption[] = [
     label: 'Media Studies',
     code: '9607',
     group: 'Media',
+    levels: ['AS Level', 'A-Level'],
     enabled: true,
     markingEnabled: true,
     markingType: 'level_of_response',
@@ -186,19 +293,40 @@ export const SUBJECT_GROUPS = [
   'Media',
 ] as const
 
-const SUBJECT_BY_ID = new Map(SUBJECTS.map((s) => [s.id, s]))
 const SUBJECT_BY_CODE = new Map(SUBJECTS.map((s) => [s.code, s]))
 
-export function getSubjectById(id: string): SubjectOption | undefined {
-  return SUBJECT_BY_ID.get(id)
+export function getSubjectById(
+  id: string,
+  level?: string
+): SubjectOption | undefined {
+  const candidates = SUBJECTS.filter((s) => s.id === id)
+  if (candidates.length === 0) return undefined
+  if (level) {
+    const match = candidates.find((s) => s.levels.includes(level))
+    if (match) return match
+  }
+  return candidates[0]
 }
 
 export function getSubjectByCode(code: string): SubjectOption | undefined {
   return SUBJECT_BY_CODE.get(code)
 }
 
-export function subjectsInGroup(group: string): SubjectOption[] {
-  return SUBJECTS.filter((s) => s.group === group)
+export function subjectsInGroup(group: string, level?: string): SubjectOption[] {
+  return SUBJECTS.filter(
+    (s) =>
+      s.group === group &&
+      s.enabled &&
+      (!level || s.levels.includes(level))
+  )
+}
+
+export function subjectsForLevel(level: string): SubjectOption[] {
+  return SUBJECTS.filter((s) => s.enabled && s.levels.includes(level))
+}
+
+export function isSubjectValidForLevel(id: string, level: string): boolean {
+  return SUBJECTS.some((s) => s.id === id && s.enabled && s.levels.includes(level))
 }
 
 /** Names accepted by onboarding/account API */

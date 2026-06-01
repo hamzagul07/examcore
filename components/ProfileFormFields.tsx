@@ -111,7 +111,7 @@ export function ProfileFormFields({
       >
         <div className="space-y-5">
           {SUBJECT_GROUPS.map((group) => {
-            const groupSubjects = subjectsInGroup(group)
+            const groupSubjects = subjectsInGroup(group, level)
             if (groupSubjects.length === 0) return null
             return (
               <div key={group}>

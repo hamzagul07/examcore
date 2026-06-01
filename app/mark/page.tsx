@@ -182,16 +182,21 @@ export default function MarkPage() {
         if (!user || cancelled) return
         const { data: profile } = await supabase
           .from('user_profiles')
-          .select('subjects')
+          .select('subjects, level')
           .eq('id', user.id)
           .maybeSingle()
+        const profileLevel = profile?.level ?? 'A-Level'
         const subjectNames: string[] = profile?.subjects?.length
           ? profile.subjects
           : ['Mathematics']
         const codes = subjectNames
-          .map((name) => getSubjectById(name)?.code)
+          .map((name) => getSubjectById(name, profileLevel)?.code)
           .filter((c): c is string => !!c)
-        if (!cancelled) setProfileSubjectCodes(codes.length ? codes : ['9709'])
+        if (!cancelled) {
+          setProfileSubjectCodes(
+            codes.length ? codes : [profileLevel === 'O-Level' ? '4024' : '9709']
+          )
+        }
       } catch {
         if (!cancelled) setProfileSubjectCodes(['9709'])
       } finally {

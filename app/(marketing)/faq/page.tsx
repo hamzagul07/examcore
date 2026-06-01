@@ -25,7 +25,7 @@ export default function FaqPage() {
         <FaqAccordion categories={FAQ_CATEGORIES} />
         <p className="landing-lead mt-12 text-center">
           Still stuck?{' '}
-          <Link href="/contact" className="font-semibold text-emerald-400 hover:text-emerald-300">
+          <Link href="/contact" className="ec-link">
             Get in touch
           </Link>
           .

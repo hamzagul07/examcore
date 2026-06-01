@@ -253,28 +253,28 @@ export const MASTERY_STYLES: Record<
   { pill: string; dot: string; label: string }
 > = {
   unattempted: {
-    pill: 'bg-slate-800/50 text-slate-400 border-slate-700',
-    dot: 'bg-slate-500',
+    pill: 'ec-tint-neutral-chip',
+    dot: 'bg-[var(--ec-chip-neutral-text)]',
     label: 'Unattempted',
   },
   sampled: {
-    pill: 'bg-sky-950/60 text-sky-300 border-sky-800/70',
-    dot: 'bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.5)]',
+    pill: 'ec-tint-sampled-chip',
+    dot: 'bg-[var(--ec-chip-sampled-text)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-sampled-text)_50%,transparent)]',
     label: 'Sampled',
   },
   critical: {
-    pill: 'bg-red-950/60 text-red-300 border-red-800/70',
-    dot: 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]',
+    pill: 'ec-tint-critical-chip',
+    dot: 'bg-[var(--ec-chip-critical-text)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-critical-text)_60%,transparent)]',
     label: 'Critical',
   },
   proficient: {
-    pill: 'bg-amber-950/60 text-amber-300 border-amber-800/70',
-    dot: 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]',
+    pill: 'ec-tint-warning-chip',
+    dot: 'bg-[var(--ec-chip-warning-text)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-warning-text)_60%,transparent)]',
     label: 'Proficient',
   },
   exam_ready: {
-    pill: 'bg-emerald-950/60 text-emerald-300 border-emerald-800/70',
-    dot: 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]',
+    pill: 'ec-tint-success-chip',
+    dot: 'bg-[var(--ec-chip-success-text)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-success-text)_60%,transparent)]',
     label: 'Exam Ready',
   },
 }

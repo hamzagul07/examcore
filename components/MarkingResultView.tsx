@@ -83,15 +83,15 @@ export function MarkingResultView({
         className="ec-card-brand relative overflow-hidden p-6 text-center sm:p-10"
       >
         <div
-          className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-emerald-500/15 blur-[100px]"
+          className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full ec-glow-orb blur-[100px]"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-violet-500/10 blur-[100px]"
+          className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full ec-glow-orb-accent blur-[100px]"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute right-1/3 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[90px]"
+          className="pointer-events-none absolute right-1/3 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full ec-glow-orb-info blur-[90px]"
           aria-hidden="true"
         />
         <div className="relative">
@@ -100,7 +100,6 @@ export function MarkingResultView({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.4 }}
             className="ec-label-tech mb-6 justify-center"
-            style={{ display: 'inline-flex' }}
           >
             YOUR SCORE
           </motion.p>
@@ -130,8 +129,7 @@ export function MarkingResultView({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.4 }}
-              className="mt-4 font-mono text-base font-semibold"
-              style={{ color: 'var(--ec-brand)' }}
+              className="mt-4 font-mono text-base font-semibold ec-text-brand"
             >
               {percentage}%
             </motion.p>
@@ -232,7 +230,7 @@ export function MarkingResultView({
         <h2 className="text-title mb-4">
           What the examiner saw
         </h2>
-        <div className="leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
+        <div className="leading-relaxed ec-text-secondary">
           <RichTextRenderer text={result.ai_marking.summary} />
         </div>
       </div>
@@ -249,7 +247,7 @@ export function MarkingResultView({
       {result.ai_marking.band_result && (
         <div className="ec-card p-5 sm:p-7">
           <p className="ec-label-tech mb-3">BAND PLACEMENT</p>
-          <p className="font-semibold text-amber-200">
+          <p className="font-semibold text-[var(--ec-banner-warning-title)]">
             Band {result.ai_marking.band_result.level} —{' '}
             {result.ai_marking.band_result.marks_awarded}/
             {result.ai_marking.band_result.marks_available} marks
@@ -288,25 +286,21 @@ export function MarkingResultView({
                 ease: [0.4, 0, 0.2, 1],
               }}
               whileHover={{ y: -2, transition: { duration: 0.2 } }}
-              className={`rounded-2xl border p-5 backdrop-blur ${
-                mark.earned
-                  ? 'border-emerald-500/30 bg-emerald-500/[0.08] shadow-[0_8px_32px_-8px_rgba(16,185,129,0.3)]'
-                  : 'border-red-500/30 bg-red-500/[0.08] shadow-[0_8px_32px_-8px_rgba(239,68,68,0.25)]'
+              className={`rounded-2xl p-5 backdrop-blur ${
+                mark.earned ? 'ec-mark-row--earned' : 'ec-mark-row--missed'
               }`}
             >
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 <span
-                  className={`rounded-md border px-2.5 py-1 font-mono text-xs font-bold tracking-wider ${
-                    mark.earned
-                      ? 'border-emerald-500/40 bg-emerald-500/20 text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.4)]'
-                      : 'border-red-500/40 bg-red-500/20 text-red-300 shadow-[0_0_12px_rgba(239,68,68,0.4)]'
+                  className={`rounded-md px-2.5 py-1 font-mono text-xs font-bold tracking-wider ${
+                    mark.earned ? 'ec-mark-badge--earned' : 'ec-mark-badge--missed'
                   }`}
                 >
                   {mark.type}
                 </span>
                 <span
                   className={`font-mono text-xs font-semibold uppercase tracking-[0.18em] ${
-                    mark.earned ? 'text-emerald-400' : 'text-red-400'
+                    mark.earned ? 'ec-score-high' : 'ec-score-low'
                   }`}
                 >
                   {mark.earned ? 'Earned' : 'Not earned'}
@@ -316,7 +310,7 @@ export function MarkingResultView({
                   classification={mark.error_classification}
                 />
               </div>
-              <div className="text-sm leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
+              <div className="text-sm leading-relaxed ec-text-secondary">
                 <RichTextRenderer text={mark.reasoning} />
               </div>
             </motion.div>
@@ -334,8 +328,8 @@ export function MarkingResultView({
             </h2>
             <ul className="space-y-2">
               {result.ai_marking.weak_topics.map((topic, i) => (
-                <li key={i} className="flex items-start gap-2" style={{ color: 'var(--ec-text-secondary)' }}>
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+                <li key={i} className="flex items-start gap-2 ec-text-secondary">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--ec-chip-warning-text)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-warning-text)_60%,transparent)]" />
                   <span>
                     <RichTextRenderer text={topic} />
                   </span>
@@ -347,11 +341,11 @@ export function MarkingResultView({
 
       {result.ai_marking.what_to_study_next && (
         <div className="ec-card relative overflow-hidden p-6">
-          <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-cyan-500/15 blur-[80px]" />
-          <div className="pointer-events-none absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-violet-500/15 blur-[80px]" />
+          <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full ec-glow-orb-info blur-[80px]" />
+          <div className="pointer-events-none absolute -bottom-12 -left-12 h-48 w-48 rounded-full ec-glow-orb-accent blur-[80px]" />
           <div className="relative">
             <p className="ec-label-tech ec-label-tech-cyan mb-3">WHAT TO STUDY NEXT</p>
-            <div className="leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
+            <div className="leading-relaxed ec-text-secondary">
               <RichTextRenderer text={result.ai_marking.what_to_study_next} />
             </div>
           </div>
@@ -369,12 +363,12 @@ export function MarkingResultView({
           <button
             type="button"
             onClick={() => setShowOCR(!showOCR)}
-            className="font-mono text-xs font-medium text-slate-500 underline transition-colors hover:text-emerald-400"
+            className="font-mono text-xs font-medium text-[var(--ec-text-secondary)] underline ec-link-muted"
           >
             {showOCR ? 'HIDE' : 'SHOW'} WHAT THE AI READ FROM YOUR HANDWRITING
           </button>
           {showOCR && (
-            <pre className="mt-2 max-w-full overflow-x-auto break-words whitespace-pre-wrap rounded-2xl border border-white/10 bg-dark-900/60 p-4 font-mono text-xs text-slate-400 backdrop-blur">
+            <pre className="mt-2 max-w-full overflow-x-auto break-words whitespace-pre-wrap rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 font-mono text-xs text-[var(--ec-text-secondary)] backdrop-blur">
               {result.ocr_text}
             </pre>
           )}

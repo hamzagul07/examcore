@@ -357,8 +357,8 @@ function StepSubjects({
             onClick={() => onLevelChange(opt.id)}
             className={`min-h-[44px] rounded-xl border px-4 py-3 text-left text-sm font-semibold transition-all ${
               level === opt.id
-                ? 'border-emerald-500/50 bg-emerald-500/10 text-[var(--ec-text-primary)]'
-                : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] hover:border-emerald-500/30'
+                ? 'ec-select-active text-[var(--ec-text-primary)]'
+                : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] ec-hover-brand-border-mild'
             }`}
           >
             {opt.label}
@@ -389,8 +389,8 @@ function StepSubjects({
                       onClick={() => onToggle(subject.id)}
                       className={`min-h-[48px] rounded-xl border px-4 py-3 text-left text-sm font-semibold transition-all ${
                         active
-                          ? 'border-emerald-500/50 bg-emerald-500/10 text-[var(--ec-text-primary)]'
-                          : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] hover:border-emerald-500/30'
+                          ? 'ec-select-active text-[var(--ec-text-primary)]'
+                          : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] ec-hover-brand-border-mild'
                       }`}
                     >
                       {subject.label}
@@ -453,7 +453,7 @@ function StepStage({
             type="button"
             onClick={() => onSelect(opt.id)}
             className={`ec-card w-full p-5 text-left transition-all min-h-[44px] ${
-              selected === opt.id ? 'border-emerald-500/40 ring-1 ring-emerald-500/30' : ''
+              selected === opt.id ? 'ec-select-ring' : ''
             }`}
           >
             <p className="font-bold text-[var(--ec-text-primary)]">{opt.title}</p>
@@ -475,8 +475,8 @@ function StepStage({
               onClick={() => onExamDateChange(s.value)}
               className={`min-h-[44px] rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all ${
                 examDate === s.value
-                  ? 'border-emerald-500/50 bg-emerald-500/10 text-[var(--ec-text-primary)]'
-                  : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] hover:border-emerald-500/30'
+                  ? 'ec-select-active text-[var(--ec-text-primary)]'
+                  : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] ec-hover-brand-border-mild'
               }`}
             >
               {s.label}
@@ -537,11 +537,11 @@ function StepGoal({
               type="button"
               onClick={() => onSelect(opt.id)}
               className={`ec-card flex w-full items-start gap-4 p-5 text-left transition-all ${
-                selected === opt.id ? 'border-emerald-500/40 ring-1 ring-emerald-500/30' : ''
+                selected === opt.id ? 'ec-select-ring' : ''
               }`}
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
-                <Icon className="h-5 w-5 text-emerald-400" />
+              <div className="ec-tint-success-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
+                <Icon className="h-5 w-5 ec-text-brand" />
               </div>
               <div>
                 <p className="font-bold text-[var(--ec-text-primary)]">{opt.title}</p>

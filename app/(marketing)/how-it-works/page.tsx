@@ -105,8 +105,8 @@ function FeatureBlock({
 }) {
   return (
     <div className="ec-card p-6 sm:p-8">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
-        <Icon className="h-6 w-6 text-emerald-400" strokeWidth={1.75} />
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border ec-tint-success-icon">
+        <Icon className="h-6 w-6" strokeWidth={1.75} />
       </div>
       <h3 className="landing-h3 mb-3 text-[var(--ec-text-primary)]">{title}</h3>
       <p className="text-base leading-relaxed text-[var(--ec-text-secondary)]">{body}</p>

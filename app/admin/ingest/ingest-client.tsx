@@ -363,7 +363,7 @@ export default function IngestClient() {
           <h1 className="text-4xl font-bold tracking-tight text-slate-900">
             Bulk PDF upload
           </h1>
-          <p className="mt-2 text-slate-600">
+          <p className="mt-2 text-[var(--ec-text-secondary)]">
             Upload a ZIP of Cambridge past papers. Years and subjects extracted
             automatically.
           </p>
@@ -373,7 +373,7 @@ export default function IngestClient() {
           {/* Board / storage prefix */}
           <div className="rounded-2xl border border-slate-200 bg-white p-6">
             <h2 className="mb-1 text-lg font-semibold text-slate-900">Board</h2>
-            <p className="mb-4 text-sm text-slate-600">
+            <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
               Choose where PDFs are stored in Supabase (`paper-pdfs` bucket).
             </p>
             <div className="flex flex-wrap gap-3">
@@ -405,7 +405,7 @@ export default function IngestClient() {
           {/* Year filter */}
           <div className="rounded-2xl border border-slate-200 bg-white p-6">
             <h2 className="mb-1 text-lg font-semibold text-slate-900">Year filter</h2>
-            <p className="mb-4 text-sm text-slate-600">
+            <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
               Only papers from selected years will be uploaded.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -436,18 +436,18 @@ export default function IngestClient() {
           {/* ZIP picker */}
           <div className="rounded-2xl border border-slate-200 bg-white p-6">
             <h2 className="mb-1 text-lg font-semibold text-slate-900">ZIP archive</h2>
-            <p className="mb-4 text-sm text-slate-600">
+            <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
               Select a single .zip file. PDFs in any sub-folder are detected.
             </p>
             <label
               htmlFor="zip-input"
               className="block w-full cursor-pointer rounded-xl border-2 border-dashed border-slate-300 p-8 text-center transition-all hover:border-emerald-400 hover:bg-emerald-50/30"
             >
-              <FileArchive className="mx-auto mb-3 h-8 w-8 text-slate-400" />
+              <FileArchive className="mx-auto mb-3 h-8 w-8 text-[var(--ec-text-secondary)]" />
               <div className="font-medium text-slate-700">
                 {hasZipFile ? zipFileName : 'Click to select a ZIP'}
               </div>
-              <div className="mt-1 text-xs text-slate-500">
+              <div className="mt-1 text-xs text-[var(--ec-text-secondary)]">
                 {hasZipFile ? formatBytes(zipFileSize) : '.zip only'}
               </div>
               <input
@@ -494,7 +494,7 @@ export default function IngestClient() {
 
               <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                  <div className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  <div className="text-xs font-medium uppercase tracking-wide text-[var(--ec-text-secondary)]">
                     PDFs in archive
                   </div>
                   <div className="mt-1 text-2xl font-bold text-slate-900">
@@ -536,7 +536,7 @@ export default function IngestClient() {
                             className={`rounded-lg border px-3 py-1 ${
                               included
                                 ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
-                                : 'border-slate-200 bg-slate-50 text-slate-500 line-through'
+                                : 'border-slate-200 bg-slate-50 text-[var(--ec-text-secondary)] line-through'
                             }`}
                           >
                             {year}: {count} PDFs
@@ -572,17 +572,17 @@ export default function IngestClient() {
                   <h3 className="mb-2 text-sm font-semibold text-slate-900">
                     Will skip — unrecognized filenames ({scanResult.invalidEntries.length})
                   </h3>
-                  <div className="max-h-40 overflow-y-auto rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+                  <div className="max-h-40 overflow-y-auto rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-[var(--ec-text-secondary)]">
                     {scanResult.invalidEntries.slice(0, 50).map((e) => (
                       <div key={e.zipPath} className="truncate">
                         {e.basename}{' '}
-                        <span className="text-slate-400">
+                        <span className="text-[var(--ec-text-secondary)]">
                           ({e.parsed.valid ? '' : e.parsed.reason})
                         </span>
                       </div>
                     ))}
                     {scanResult.invalidEntries.length > 50 && (
-                      <div className="mt-1 text-slate-400">
+                      <div className="mt-1 text-[var(--ec-text-secondary)]">
                         ...and {scanResult.invalidEntries.length - 50} more
                       </div>
                     )}
@@ -591,7 +591,7 @@ export default function IngestClient() {
               )}
 
               {yearFilteredOut > 0 && (
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-[var(--ec-text-secondary)]">
                   {yearFilteredOut} additional PDFs skipped because their year is
                   not in your filter.
                 </p>
@@ -602,7 +602,7 @@ export default function IngestClient() {
           {/* Upload trigger */}
           <div className="rounded-2xl border border-slate-200 bg-white p-6">
             <h2 className="mb-1 text-lg font-semibold text-slate-900">Upload</h2>
-            <p className="mb-4 text-sm text-slate-600">
+            <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
               Uploads run in parallel ({UPLOAD_CONCURRENCY} at a time) directly from
               your browser to Supabase Storage. Existing files at the same path will
               be overwritten.
@@ -641,7 +641,7 @@ export default function IngestClient() {
                   <span className="font-medium text-slate-700">
                     {progress.done} of {progress.total} uploaded
                   </span>
-                  <span className="text-slate-500">{progressPct}%</span>
+                  <span className="text-[var(--ec-text-secondary)]">{progressPct}%</span>
                 </div>
                 <div className="h-2 overflow-hidden rounded-full bg-slate-100">
                   <div
@@ -652,7 +652,7 @@ export default function IngestClient() {
               </div>
 
               {currentFile && uploading && (
-                <p className="mb-4 truncate text-xs text-slate-500">
+                <p className="mb-4 truncate text-xs text-[var(--ec-text-secondary)]">
                   Current: {currentFile}
                 </p>
               )}
@@ -675,7 +675,7 @@ export default function IngestClient() {
                   </div>
                 </div>
                 <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                  <div className="text-xs font-medium uppercase tracking-wide text-slate-600">
+                  <div className="text-xs font-medium uppercase tracking-wide text-[var(--ec-text-secondary)]">
                     Skipped
                   </div>
                   <div className="mt-1 text-xl font-bold text-slate-900">
@@ -694,7 +694,7 @@ export default function IngestClient() {
                           ? 'text-red-700'
                           : entry.level === 'success'
                           ? 'text-emerald-700'
-                          : 'text-slate-600'
+                          : 'text-[var(--ec-text-secondary)]'
                       }`}
                     >
                       {entry.level === 'success' ? (

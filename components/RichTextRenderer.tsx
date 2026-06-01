@@ -43,7 +43,7 @@ export function RichTextRenderer({
   const components = createMarkdownComponents(variant)
   const proseClass =
     variant === 'dark'
-      ? 'prose prose-invert prose-sm max-w-none'
+      ? 'prose prose-sm max-w-none'
       : 'prose prose-sm max-w-none'
 
   return (

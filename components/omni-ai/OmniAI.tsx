@@ -71,7 +71,7 @@ export function OmniAI() {
           }`}
         >
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 ec-modal-backdrop"
             onClick={() => setIsOpen(false)}
           />
 
@@ -91,15 +91,19 @@ export function OmniAI() {
             className={`relative overflow-hidden border shadow-2xl ec-card ${
               isLanding
                 ? 'h-[85vh] max-h-[800px] w-full rounded-t-3xl md:h-[80vh] md:w-[680px] md:rounded-3xl'
-                : 'h-full w-full md:w-[440px] rounded-none border-l'
+                : 'h-full w-full border-[var(--ec-border)] md:w-[440px] rounded-none border-l'
             }`}
-            style={{ background: 'var(--ec-surface)' }}
+            style={{
+              background: 'var(--ec-surface)',
+              paddingBottom: isLanding
+                ? undefined
+                : 'env(safe-area-inset-bottom, 0px)',
+            }}
           >
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="absolute right-4 top-4 z-10 rounded-lg p-2 transition-colors"
-              style={{ color: 'var(--ec-text-secondary)' }}
+              className="absolute right-4 top-4 z-10 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
               aria-label="Close chat"
             >
               <X className="h-5 w-5" />

@@ -1,41 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServiceClient } from '@/lib/supabase/service'
+import {
+  checkSignupRateLimit,
+  clientIp,
+  incrementSignupRateLimit,
+} from '@/lib/rate-limit'
 
-// Server-side client using service_role key (bypasses RLS)
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { email, whatsapp, subject_interest } = body
+    const email = (body.email || '').trim().slice(0, 120)
+    const whatsapp = (body.whatsapp || '').trim().slice(0, 40)
+    const subject_interest = (body.subject_interest || 'A-Level Math')
+      .trim()
+      .slice(0, 80)
 
-    if (!email || !whatsapp) {
-      return NextResponse.json(
-        { error: 'Email and WhatsApp are required' },
-        { status: 400 }
-      )
+    if (!email || !EMAIL_RE.test(email)) {
+      return NextResponse.json({ error: 'Valid email is required' }, { status: 400 })
+    }
+    if (!whatsapp) {
+      return NextResponse.json({ error: 'WhatsApp number is required' }, { status: 400 })
     }
 
-    const { data, error } = await supabaseAdmin
-      .from('signups')
-      .insert({ email, whatsapp, subject_interest: subject_interest || 'A-Level Math' })
-      .select()
+    const admin = createServiceClient()
+    const ip = clientIp(request)
+    const rate = await checkSignupRateLimit(admin, ip)
+    if (!rate.allowed) {
+      return NextResponse.json({ error: rate.message }, { status: 429 })
+    }
+
+    const { error } = await admin.from('signups').insert({
+      email,
+      whatsapp,
+      subject_interest,
+    })
 
     if (error) {
-      console.error('Supabase insert error:', error)
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      )
+      console.error('[signup]', error)
+      return NextResponse.json({ error: 'Could not save signup' }, { status: 500 })
     }
 
-    return NextResponse.json({ success: true, data })
+    await incrementSignupRateLimit(admin, ip, rate.count)
+
+    return NextResponse.json({ success: true })
   } catch (err) {
-    console.error('Unexpected error:', err)
-    const message = err instanceof Error ? err.message : 'Unknown error'
-    return NextResponse.json({ error: message }, { status: 500 })
+    console.error('[signup] unexpected:', err)
+    return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   }
 }

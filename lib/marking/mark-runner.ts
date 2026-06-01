@@ -29,6 +29,7 @@ import { inferSubjectFromQuestionText } from '@/lib/marking/subject-inference'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import type { StoredPageOcr } from '@/lib/marking/whole-paper-pages'
+import { uploadAnswerPhoto as uploadAnswerPhotoToStorage } from '@/lib/storage/answer-photos'
 import type {
   MarkSchemeRow,
   MarkingMode,
@@ -130,28 +131,7 @@ export async function uploadAnswerPhoto(
   mimeType: string,
   userId: string | null
 ): Promise<string | null> {
-  try {
-    const ext = (mimeType.split('/')[1] || 'jpg').toLowerCase()
-    const prefix = userId || 'anon'
-    const path = `${prefix}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
-    const { error: uploadError } = await supabaseAdmin.storage
-      .from('answer-photos')
-      .upload(path, buffer, {
-        contentType: mimeType || 'image/jpeg',
-        upsert: false,
-      })
-    if (uploadError) {
-      console.error('answer-photos upload error:', uploadError)
-      return null
-    }
-    const { data: pub } = supabaseAdmin.storage
-      .from('answer-photos')
-      .getPublicUrl(path)
-    return pub?.publicUrl || null
-  } catch (err) {
-    console.error('uploadAnswerPhoto unexpected error:', err)
-    return null
-  }
+  return uploadAnswerPhotoToStorage(buffer, mimeType, userId)
 }
 
 const storageDeps = {

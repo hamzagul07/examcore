@@ -4,13 +4,16 @@ import {
   ExaminerInkOverlay,
   type LineReference,
 } from '@/components/examiner-ink/ExaminerInkOverlay'
+import { toAnswerPhotoStoragePath } from '@/lib/storage/answer-photo-paths'
 
 export function ExaminerInkPerPage({
   pages,
   animate = false,
+  attemptId,
 }: {
   pages: Array<{ photo_url: string; line_references: LineReference[] }>
   animate?: boolean
+  attemptId?: string
 }) {
   if (!pages.length) return null
 
@@ -24,6 +27,8 @@ export function ExaminerInkPerPage({
           <ExaminerInkOverlay
             imageUrl={page.photo_url}
             lineReferences={page.line_references}
+            attemptId={attemptId}
+            photoRef={toAnswerPhotoStoragePath(page.photo_url)}
             animate={animate}
           />
         </div>

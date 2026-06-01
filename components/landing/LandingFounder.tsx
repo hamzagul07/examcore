@@ -6,7 +6,7 @@ export function LandingFounder() {
   return (
     <LandingSectionReveal>
       <div className="ec-card relative overflow-hidden p-8 sm:p-12">
-        <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-500/10 blur-[80px]" />
+        <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full ec-glow-orb blur-[80px]" />
         <p className="ec-label-tech ec-label-tech-violet mb-4">WHY THIS EXISTS</p>
         <h2 className="landing-h2 mb-6">
           <span className="gradient-text">Built by a student,</span>

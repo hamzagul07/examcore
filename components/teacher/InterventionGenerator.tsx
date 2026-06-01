@@ -89,7 +89,7 @@ export function InterventionGenerator({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+        className="fixed inset-0 z-50 flex items-center justify-center ec-modal-backdrop p-4"
         onClick={onClose}
       >
         <motion.div
@@ -102,17 +102,17 @@ export function InterventionGenerator({
           <div className="mb-6 flex items-start justify-between">
             <div>
               <div className="ec-label-tech mb-2">INTERVENTION GENERATOR</div>
-              <h3 className="text-2xl font-bold text-white">
+              <h3 className="text-2xl font-bold text-[var(--ec-text-primary)]">
                 Target failing topics
               </h3>
-              <p className="mt-2 text-sm text-slate-400">
+              <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
                 Codes: {targetCodes.join(', ')} — select 3–8 questions
               </p>
             </div>
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg p-2 text-slate-400 hover:bg-white/5 hover:text-white"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
             >
               <X className="h-5 w-5" />
             </button>
@@ -120,11 +120,11 @@ export function InterventionGenerator({
 
           {result ? (
             <div className="text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                <Check className="h-8 w-8 text-emerald-400" />
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ec-glow-orb-lg">
+                <Check className="h-8 w-8 ec-score-high" />
               </div>
-              <h4 className="text-xl font-bold text-white">{result.title}</h4>
-              <p className="mt-2 text-slate-400">
+              <h4 className="text-xl font-bold text-[var(--ec-text-primary)]">{result.title}</h4>
+              <p className="mt-2 text-[var(--ec-text-secondary)]">
                 Created with {result.count} questions. Share with your class via
                 your LMS or print for in-class use.
               </p>
@@ -133,7 +133,7 @@ export function InterventionGenerator({
               </button>
             </div>
           ) : loading ? (
-            <div className="flex items-center justify-center py-12 text-slate-400">
+            <div className="flex items-center justify-center py-12 text-[var(--ec-text-secondary)]">
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               Loading questions...
             </div>
@@ -141,7 +141,7 @@ export function InterventionGenerator({
             <>
               <div className="mb-6 max-h-80 space-y-2 overflow-y-auto">
                 {questions.length === 0 && (
-                  <p className="text-slate-400">
+                  <p className="text-[var(--ec-text-secondary)]">
                     No past paper questions found for these topics in the
                     database.
                   </p>
@@ -153,15 +153,15 @@ export function InterventionGenerator({
                     onClick={() => toggle(q.id)}
                     className={`w-full rounded-xl border p-4 text-left transition-all ${
                       selected.has(q.id)
-                        ? 'border-emerald-500/40 bg-emerald-500/5'
-                        : 'border-white/10 bg-white/[0.02] hover:border-white/20'
+                        ? 'border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_5%,transparent)]'
+                        : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] ec-hover-brand-border-mild hover:bg-[var(--ec-brand-muted)]'
                     }`}
                   >
-                    <div className="mb-1 text-xs text-slate-500">
+                    <div className="mb-1 text-xs text-[var(--ec-text-secondary)]">
                       {q.paper_code} · {q.paper_session} · Q{q.question_number}{' '}
                       · {q.total_marks} marks
                     </div>
-                    <p className="line-clamp-2 text-sm text-white">
+                    <p className="line-clamp-2 text-sm text-[var(--ec-text-primary)]">
                       {q.question_text}
                     </p>
                   </button>

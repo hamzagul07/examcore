@@ -102,15 +102,15 @@ export function PreferencesSection({
               <span
                 className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
                   examReminders
-                    ? 'border-emerald-500/50 bg-emerald-500/20'
-                    : 'border-white/10 bg-dark-900'
+                    ? 'ec-select-active'
+                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
                 }`}
               >
                 <span
                   className={`h-5 w-5 rounded-full transition-transform ${
                     examReminders
-                      ? 'translate-x-5 bg-emerald-400'
-                      : 'translate-x-0 bg-slate-400'
+                      ? 'translate-x-5 bg-[var(--ec-brand)]'
+                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
                   }`}
                 />
               </span>
@@ -151,15 +151,15 @@ export function PreferencesSection({
               <span
                 className={`flex h-6 w-11 items-center rounded-full border px-0.5 transition-colors ${
                   productUpdates
-                    ? 'border-emerald-500/50 bg-emerald-500/20'
-                    : 'border-white/10 bg-dark-900'
+                    ? 'ec-select-active'
+                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
                 }`}
               >
                 <span
                   className={`h-5 w-5 rounded-full transition-transform ${
                     productUpdates
-                      ? 'translate-x-5 bg-emerald-400'
-                      : 'translate-x-0 bg-slate-400'
+                      ? 'translate-x-5 bg-[var(--ec-brand)]'
+                      : 'translate-x-0 bg-[var(--ec-text-secondary)]'
                   }`}
                 />
               </span>

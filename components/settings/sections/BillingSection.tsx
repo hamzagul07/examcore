@@ -156,8 +156,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
                         : 'Single question'}
                     {u.source === 'credits' && (
                       <span
-                        className="ml-2 text-caption"
-                        style={{ color: 'var(--ec-chip-success-text)' }}
+                        className="ml-2 text-caption ec-score-high"
                       >
                         (credit)
                       </span>
@@ -186,8 +185,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
 
         {state === 'opened' && (
           <p
-            className="text-caption mt-4 font-medium"
-            style={{ color: 'var(--ec-chip-success-text)' }}
+            className="text-caption mt-4 font-medium ec-score-high"
           >
             Opened in new tab — you can keep using Examcore here.
           </p>

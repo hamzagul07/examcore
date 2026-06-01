@@ -36,25 +36,25 @@ export function InviteCard({ classroom }: InviteCardProps) {
         <div>
           <div className="ec-label-tech mb-3">INVITE STUDENTS</div>
           <div className="flex items-center gap-3">
-            <code className="font-mono text-4xl font-bold tracking-widest text-emerald-400">
+            <code className="font-mono text-4xl font-bold tracking-widest ec-text-brand">
               {classroom.invite_code}
             </code>
             <button
               type="button"
               onClick={copyCode}
-              className="rounded-xl bg-white/5 p-2.5 transition-colors hover:bg-white/10"
+              className="rounded-xl bg-[var(--ec-surface-raised)] p-2.5 transition-colors hover:bg-[var(--ec-brand-muted)]"
               title="Copy code"
             >
               {copiedCode ? (
-                <Check className="h-5 w-5 text-emerald-400" />
+                <Check className="h-5 w-5 ec-score-high" />
               ) : (
-                <Copy className="h-5 w-5 text-slate-400" />
+                <Copy className="h-5 w-5 text-[var(--ec-text-secondary)]" />
               )}
             </button>
           </div>
-          <p className="mt-3 text-sm text-slate-400">
+          <p className="mt-3 text-sm text-[var(--ec-text-secondary)]">
             Students enter this code at{' '}
-            <span className="text-emerald-400">/join</span> or use the share
+            <span className="ec-text-brand">/join</span> or use the share
             link.
           </p>
         </div>

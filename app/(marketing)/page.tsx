@@ -54,10 +54,10 @@ export default async function Home() {
 
           <div className="bento-grid">
             <div className="ec-card ec-card-interactive col-span-2 relative overflow-hidden p-6 sm:col-span-2 sm:p-8 lg:col-span-4 lg:row-span-2 lg:p-10">
-              <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-emerald-500/15 blur-[100px]" />
+              <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full ec-glow-orb blur-[100px]" />
               <div className="relative z-10">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
-                  <Brain className="h-7 w-7 text-emerald-400" strokeWidth={1.75} />
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border ec-tint-success-icon">
+                  <Brain className="h-7 w-7" strokeWidth={1.75} />
                 </div>
                 <h3 className="landing-h3 mb-3">Official mark schemes</h3>
                 <p className="landing-lead max-w-md">
@@ -65,13 +65,13 @@ export default async function Home() {
                   B1/M1/A1, MCQ keys, and essay bands.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-2">
-                  <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs text-emerald-400">
+                  <span className="ec-tint-success-chip rounded-md px-2.5 py-1 font-mono text-xs">
                     B1 · M1 · A1
                   </span>
-                  <span className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1 font-mono text-xs text-cyan-400">
+                  <span className="ec-tint-info-chip rounded-md px-2.5 py-1 font-mono text-xs">
                     MCQ
                   </span>
-                  <span className="rounded-md border border-violet-500/30 bg-violet-500/10 px-2.5 py-1 font-mono text-xs text-violet-400">
+                  <span className="ec-tint-accent-chip rounded-md px-2.5 py-1 font-mono text-xs">
                     Essay bands
                   </span>
                 </div>
@@ -79,8 +79,8 @@ export default async function Home() {
             </div>
 
             <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-2">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
-                <ListChecks className="h-6 w-6 text-cyan-400" strokeWidth={1.75} />
+              <div className="ec-tint-info-icon-wrap mb-4 flex h-12 w-12 items-center justify-center rounded-xl border">
+                <ListChecks className="h-6 w-6" strokeWidth={1.75} />
               </div>
               <h3 className="landing-h3 mb-2">Right marking style</h3>
               <p className="text-base leading-relaxed text-[var(--ec-text-secondary)]">
@@ -89,8 +89,8 @@ export default async function Home() {
             </div>
 
             <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-2">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-500/30 bg-violet-500/10">
-                <PenLine className="h-6 w-6 text-violet-400" strokeWidth={1.75} />
+              <div className="ec-tint-accent-icon-wrap mb-4 flex h-12 w-12 items-center justify-center rounded-xl border">
+                <PenLine className="h-6 w-6" strokeWidth={1.75} />
               </div>
               <h3 className="landing-h3 mb-2">Examiner&apos;s Ink</h3>
               <p className="text-base leading-relaxed text-[var(--ec-text-secondary)]">
@@ -107,8 +107,8 @@ export default async function Home() {
 
             <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-4">
               <div className="flex items-start gap-5">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
-                  <FileStack className="h-6 w-6 text-emerald-400" strokeWidth={1.75} />
+                <div className="ec-tint-success-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border">
+                  <FileStack className="h-6 w-6" strokeWidth={1.75} />
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="landing-h3 mb-2">One question or whole paper</h3>
@@ -121,8 +121,8 @@ export default async function Home() {
             </div>
 
             <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-3">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
-                <Layers className="h-6 w-6 text-cyan-400" strokeWidth={1.75} />
+              <div className="ec-tint-info-icon-wrap mb-4 flex h-12 w-12 items-center justify-center rounded-xl border">
+                <Layers className="h-6 w-6" strokeWidth={1.75} />
               </div>
               <h3 className="landing-h3 mb-2">Spec-point mastery</h3>
               <p className="text-base leading-relaxed text-[var(--ec-text-secondary)]">
@@ -132,8 +132,8 @@ export default async function Home() {
             </div>
 
             <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-3">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-500/30 bg-violet-500/10">
-                <Camera className="h-6 w-6 text-violet-400" strokeWidth={1.75} />
+              <div className="ec-tint-accent-icon-wrap mb-4 flex h-12 w-12 items-center justify-center rounded-xl border">
+                <Camera className="h-6 w-6" strokeWidth={1.75} />
               </div>
               <h3 className="landing-h3 mb-2">Photos, camera, PDF</h3>
               <p className="text-base leading-relaxed text-[var(--ec-text-secondary)]">
@@ -144,8 +144,8 @@ export default async function Home() {
 
             <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-2">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
-                  <TrendingUp className="h-6 w-6 text-emerald-400" strokeWidth={1.75} />
+                <div className="ec-tint-success-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border">
+                  <TrendingUp className="h-6 w-6" strokeWidth={1.75} />
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="landing-h3 mb-2">Grade boundaries</h3>
@@ -179,7 +179,7 @@ export default async function Home() {
           <div className="mt-12 text-center">
             <Link
               href="/how-it-works"
-              className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+              className="text-sm ec-link"
             >
               Full walkthrough →
             </Link>
@@ -203,7 +203,7 @@ export default async function Home() {
           <div className="mt-12 text-center">
             <Link
               href="/subjects"
-              className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+              className="text-sm ec-link"
             >
               All subjects & paper codes →
             </Link>
@@ -226,8 +226,8 @@ export default async function Home() {
           <LandingSectionReveal>
             <div className="ec-card relative overflow-hidden p-10 text-center sm:p-16">
               <div className="pointer-events-none absolute inset-0">
-                <div className="absolute -left-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-emerald-500/15 blur-[100px]" />
-                <div className="absolute -right-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-violet-500/15 blur-[100px]" />
+                <div className="absolute -left-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full ec-glow-orb blur-[100px]" />
+                <div className="absolute -right-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full ec-glow-orb-accent blur-[100px]" />
               </div>
               <div className="relative">
                 <h2 className="landing-h2 mb-4">
@@ -241,8 +241,7 @@ export default async function Home() {
                 </p>
                 <Link
                   href={markHref}
-                  className="ec-btn-primary inline-flex min-h-[52px] text-lg"
-                  style={{ padding: '18px 36px' }}
+                  className="ec-btn-primary inline-flex min-h-[52px] px-9 py-[18px] text-lg"
                 >
                   Mark your first question
                   <ArrowRight className="h-5 w-5" />

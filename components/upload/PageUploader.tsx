@@ -199,19 +199,20 @@ export function PageUploader({
   return (
     <div className="space-y-4">
       {isCompressing && (
-        <p className="rounded-xl border border-cyan-500/25 bg-cyan-500/10 px-4 py-2 text-center text-sm text-cyan-200">
+        <p className="rounded-xl border ec-tint-info-chip px-4 py-2 text-center text-sm">
           Preparing images…
         </p>
       )}
 
       <div className="relative group">
         <div
-          className={`pointer-events-none absolute -inset-0.5 rounded-[28px] bg-gradient-to-r from-emerald-500 via-cyan-400 to-violet-500 blur transition-opacity duration-300 ${
+          className={`pointer-events-none absolute -inset-0.5 rounded-[28px] ec-upload-glow-ring blur transition-opacity duration-300 ${
             hasContent ? 'opacity-60' : 'opacity-25 group-hover:opacity-50'
           }`}
         />
         <div
-          className="relative ec-card border-2 border-dashed border-white/15 p-8 text-center transition-all duration-300 hover:-translate-y-1 sm:p-10"
+          className="relative ec-card border-2 border-dashed p-8 text-center transition-all duration-300 hover:-translate-y-1 sm:p-10"
+          style={{ borderColor: 'var(--ec-border)' }}
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => {
             e.preventDefault()
@@ -219,13 +220,13 @@ export function PageUploader({
           }}
         >
           <div
-            className="relative mx-auto mb-5 flex items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_32px_rgba(16,185,129,0.4)]"
+            className="ec-upload-icon-wrap relative mx-auto mb-5 flex items-center justify-center rounded-2xl"
             style={{ width: 72, height: 72 }}
           >
-            <UploadCloud className="h-9 w-9 text-emerald-400" />
+            <UploadCloud className="h-9 w-9 ec-text-brand" />
           </div>
-          <p className="text-lg font-bold text-white">{emptyLabel}</p>
-          <p className="mt-2 font-mono text-xs text-slate-500">{emptyHint}</p>
+          <p className="text-lg font-bold text-[var(--ec-text-primary)]">{emptyLabel}</p>
+          <p className="mt-2 font-mono text-xs text-[var(--ec-text-secondary)]">{emptyHint}</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               type="button"
@@ -302,7 +303,7 @@ export function PageUploader({
       </div>
 
       {pdfError && (
-        <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+        <p className="rounded-xl border ec-tint-critical-chip px-4 py-3 text-sm">
           {pdfError}
         </p>
       )}
@@ -310,15 +311,15 @@ export function PageUploader({
       {pdfFile && !pdfError && (
         <div className="ec-card flex items-center justify-between gap-3 p-4">
           <div>
-            <p className="font-semibold text-white">{pdfFile.name}</p>
-            <p className="font-mono text-xs text-slate-500">
+            <p className="font-semibold text-[var(--ec-text-primary)]">{pdfFile.name}</p>
+            <p className="font-mono text-xs text-[var(--ec-text-secondary)]">
               PDF · {formatFileSize(pdfFile.size)}
             </p>
           </div>
           <button
             type="button"
             onClick={() => setPdf(null)}
-            className="text-sm text-red-400 hover:text-red-300"
+            className="text-sm ec-score-low hover:opacity-80"
           >
             Remove
           </button>

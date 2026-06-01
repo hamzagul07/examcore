@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
-import Link from 'next/link'
+import {
+  TeacherBackLink,
+  TeacherPageContainer,
+  TeacherPageHeader,
+} from '@/components/teacher/TeacherPageChrome'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
 export default function StudentDetailPage() {
@@ -25,58 +29,56 @@ export default function StudentDetailPage() {
 
   if (loading) {
     return (
-      <div className="mx-auto max-w-4xl px-6 py-12">
-        <p className="text-slate-400">Loading student profile...</p>
-      </div>
+      <TeacherPageContainer className="max-w-4xl">
+        <p className="text-[var(--ec-text-secondary)]">Loading student profile...</p>
+      </TeacherPageContainer>
     )
   }
 
   if (!student) {
     return (
-      <div className="mx-auto max-w-4xl px-6 py-12">
-        <Link
-          href={`/teacher/classroom/${id}/students`}
-          className="mb-6 inline-block text-sm text-slate-400 hover:text-white"
-        >
+      <TeacherPageContainer className="max-w-4xl">
+        <TeacherBackLink href={`/teacher/classroom/${id}/students`}>
           ← Back to roster
-        </Link>
-        <p className="text-slate-400">Student not found in this classroom.</p>
-      </div>
+        </TeacherBackLink>
+        <p className="text-[var(--ec-text-secondary)]">Student not found in this classroom.</p>
+      </TeacherPageContainer>
     )
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-12">
-      <Link
-        href={`/teacher/classroom/${id}/students`}
-        className="mb-6 inline-block text-sm text-slate-400 hover:text-white"
-      >
+    <TeacherPageContainer className="max-w-4xl">
+      <TeacherBackLink href={`/teacher/classroom/${id}/students`}>
         ← Back to roster
-      </Link>
+      </TeacherBackLink>
 
-      <div className="ec-label-tech mb-3">STUDENT PROFILE</div>
-      <h1 className="mb-2 text-3xl font-bold text-white">{student.name}</h1>
-      <p className="mb-8 text-slate-400">
-        Predicted grade: {student.predictedGrade} · {student.attemptCount}{' '}
-        attempts · {student.accuracy.toFixed(0)}% accuracy
-      </p>
+      <TeacherPageHeader
+        label="STUDENT PROFILE"
+        title={student.name}
+        lead={
+          <>
+            Predicted grade: {student.predictedGrade} · {student.attemptCount}{' '}
+            attempts · {student.accuracy.toFixed(0)}% accuracy
+          </>
+        }
+      />
 
       <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <div className="ec-card p-5">
           <div className="ec-label-tech mb-2">ACCURACY</div>
-          <div className="text-2xl font-bold text-white">
+          <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
             {student.accuracy.toFixed(0)}%
           </div>
         </div>
         <div className="ec-card p-5">
           <div className="ec-label-tech mb-2">SPEED</div>
-          <div className="text-2xl font-bold text-white">
+          <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
             {student.timePerMark.toFixed(1)} min/mark
           </div>
         </div>
         <div className="ec-card p-5">
           <div className="ec-label-tech mb-2">COVERAGE</div>
-          <div className="text-2xl font-bold text-white">
+          <div className="text-2xl font-bold text-[var(--ec-text-primary)]">
             {student.coverage.toFixed(0)}%
           </div>
         </div>
@@ -84,16 +86,16 @@ export default function StudentDetailPage() {
 
       {student.biggestDeficit && (
         <div className="ec-card p-6">
-          <div className="ec-label-tech mb-2 text-red-400">BIGGEST DEFICIT</div>
-          <h3 className="text-xl font-bold text-white">
+          <div className="ec-label-tech mb-2 ec-score-low">BIGGEST DEFICIT</div>
+          <h3 className="text-xl font-bold text-[var(--ec-text-primary)]">
             {student.biggestDeficit.name}
           </h3>
-          <p className="mt-1 font-mono text-sm text-slate-400">
+          <p className="mt-1 font-mono text-sm text-[var(--ec-text-secondary)]">
             {student.biggestDeficit.code} ·{' '}
             {student.biggestDeficit.percentage.toFixed(0)}% mastery
           </p>
         </div>
       )}
-    </div>
+    </TeacherPageContainer>
   )
 }

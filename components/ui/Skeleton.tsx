@@ -22,12 +22,12 @@ export function Skeleton({ className, circle = false }: SkeletonProps) {
     <div
       aria-hidden="true"
       className={cn(
-        'relative overflow-hidden border border-white/5 bg-dark-800/60',
+        'relative overflow-hidden border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]',
         circle ? 'rounded-full' : 'rounded-xl',
         className
       )}
     >
-      <div className="animate-shimmer-skeleton absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="animate-shimmer-skeleton absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[color-mix(in_srgb,var(--ec-text-primary)_10%,transparent)] to-transparent" />
     </div>
   )
 }

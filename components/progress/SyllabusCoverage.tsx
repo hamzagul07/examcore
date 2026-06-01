@@ -34,21 +34,21 @@ export function SyllabusCoverage({
       className="relative overflow-hidden"
     >
       <div
-        className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald-500/25 blur-[100px]"
+        className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full ec-glow-orb-lg blur-[100px]"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-violet-500/20 blur-[100px]"
+        className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full ec-glow-orb-accent blur-[100px]"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute right-1/3 top-1/3 h-48 w-48 rounded-full bg-cyan-500/15 blur-[80px]"
+        className="pointer-events-none absolute right-1/3 top-1/3 h-48 w-48 rounded-full ec-glow-orb-info blur-[80px]"
         aria-hidden="true"
       />
 
       <div className="relative">
         <div className="mb-6 flex items-center gap-2">
-          <Target className="h-4 w-4 text-emerald-400" aria-hidden="true" />
+          <Target className="h-4 w-4 ec-text-brand" aria-hidden="true" />
           <p className="ec-label-tech">SYLLABUS COVERAGE</p>
         </div>
 
@@ -56,16 +56,16 @@ export function SyllabusCoverage({
           <div>
             <div className="flex items-baseline gap-3">
               <AnimatedCoverageNumber value={pct} />
-              <span className="text-3xl font-bold text-slate-600 sm:text-4xl">%</span>
+              <span className="text-3xl font-bold text-[var(--ec-text-secondary)] sm:text-4xl">%</span>
             </div>
-            <p className="mt-3 max-w-md text-base font-medium text-slate-200 sm:text-lg">
+            <p className="mt-3 max-w-md text-base font-medium text-[var(--ec-text-primary)] sm:text-lg">
               {subjectLabel} syllabus mastered
             </p>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
               {hasAnyData ? (
                 <>
                   {mastered} of {totalTopics} leaves at{' '}
-                  <span className="font-semibold text-slate-300">
+                  <span className="font-semibold text-[var(--ec-text-secondary)]">
                     Proficient or Exam Ready
                   </span>
                 </>
@@ -85,7 +85,7 @@ export function SyllabusCoverage({
             size="lg"
             ariaLabel="Syllabus coverage"
           />
-          <div className="mt-2 flex justify-between font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-600">
+          <div className="mt-2 flex justify-between font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
             <span>0%</span>
             <span>50%</span>
             <span>100%</span>
@@ -115,15 +115,15 @@ function CoverageStats({
         return (
           <div
             key={key}
-            className="rounded-2xl border border-white/10 bg-dark-900/60 px-3 py-3 text-center backdrop-blur"
+            className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-3 py-3 text-center backdrop-blur"
           >
             <div className="flex items-center justify-center gap-1.5">
               <span className={`h-2 w-2 rounded-full ${style.dot}`} />
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
                 {label}
               </span>
             </div>
-            <div className="mt-1 text-2xl font-extrabold tracking-tight text-white">
+            <div className="mt-1 text-2xl font-extrabold tracking-tight text-[var(--ec-text-primary)]">
               {counts[key]}
             </div>
           </div>

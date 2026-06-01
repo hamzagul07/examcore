@@ -26,7 +26,7 @@ export function LandingComparison() {
   return (
     <LandingSectionReveal>
       <div className="mb-10 text-center sm:mb-12">
-        <p className="ec-label-tech mb-4 justify-center" style={{ display: 'inline-flex' }}>
+        <p className="ec-label-tech mb-4 justify-center">
           THE OLD WAY VS THIS
         </p>
         <h2 className="landing-h2">
@@ -55,7 +55,7 @@ export function LandingComparison() {
           </ul>
         </div>
 
-        <div className="ec-card ec-card-interactive border-emerald-500/20 p-6 sm:p-8">
+        <div className="ec-card ec-card-interactive border-[color-mix(in_srgb,var(--ec-brand)_20%,transparent)] p-6 sm:p-8">
           <p className="mb-6 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ec-chip-success-text)]">
             With Examcore
           </p>

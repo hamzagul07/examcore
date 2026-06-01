@@ -52,7 +52,7 @@ export function ContactForm() {
           <p className="ec-label-tech mb-3">EMAIL</p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="text-xl font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+            className="text-xl ec-link"
           >
             {CONTACT_EMAIL}
           </a>

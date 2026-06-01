@@ -2,6 +2,12 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { CONTACT_EMAIL } from '@/lib/site-config'
+import {
+  checkContactRateLimit,
+  clientIp,
+  incrementContactRateLimit,
+} from '@/lib/rate-limit'
+import { notifyAdminContactMessage } from '@/lib/email/admin-notify'
 
 type Body = {
   name?: string
@@ -42,6 +48,12 @@ export async function POST(request: Request) {
   } = await supabaseAuth.auth.getUser()
 
   const admin = createServiceClient()
+  const ip = clientIp(request)
+  const rate = await checkContactRateLimit(admin, ip, user?.id ?? null)
+  if (!rate.allowed) {
+    return NextResponse.json({ error: rate.message }, { status: 429 })
+  }
+
   const { error } = await admin.from('contact_messages').insert({
     name,
     email,
@@ -58,6 +70,15 @@ export async function POST(request: Request) {
       { status: 500 }
     )
   }
+
+  await incrementContactRateLimit(admin, ip, rate.count)
+
+  void notifyAdminContactMessage({
+    name,
+    email,
+    message,
+    userId: user?.id ?? null,
+  })
 
   return NextResponse.json({ ok: true })
 }

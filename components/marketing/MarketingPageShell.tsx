@@ -60,7 +60,7 @@ export function MarketingSection({
 
 export function LegalDisclaimer() {
   return (
-    <div className="mb-8 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+    <div className="ec-highlight-warning-panel mb-8 rounded-2xl p-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
       This is a draft policy written for transparency during early access. If you
       have legal needs requiring formal review, consult a lawyer before relying on
       it for compliance.

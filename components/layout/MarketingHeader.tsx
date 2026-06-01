@@ -54,13 +54,11 @@ export function MarketingHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[var(--ec-surface-raised)]"
-                style={{
-                  color:
-                    pathname === item.href || pathname.startsWith(item.href + '/')
-                      ? 'var(--ec-text-primary)'
-                      : 'var(--ec-text-secondary)',
-                }}
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[var(--ec-surface-raised)] ${
+                  pathname === item.href || pathname.startsWith(item.href + '/')
+                    ? 'ec-text-primary'
+                    : 'ec-text-secondary'
+                }`}
               >
                 {item.label}
               </Link>
@@ -72,23 +70,20 @@ export function MarketingHeader() {
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="hidden items-center gap-2 rounded-xl border border-[var(--ec-border)] px-3 py-2 text-sm font-medium transition-colors hover:bg-[var(--ec-surface-raised)] sm:inline-flex"
-              style={{ color: 'var(--ec-text-secondary)' }}
+              className="hidden items-center gap-2 rounded-xl border border-[var(--ec-border)] px-3 py-2 text-sm font-medium ec-text-secondary transition-colors hover:bg-[var(--ec-surface-raised)] lg:inline-flex"
             >
-              <Sparkles className="h-4 w-4 text-emerald-400" />
+              <Sparkles className="h-4 w-4 ec-text-brand" />
               Ask Omni
             </button>
             <Link
               href="/auth/signin"
-              className="hidden text-sm font-medium transition-colors sm:inline-block"
-              style={{ color: 'var(--ec-text-secondary)' }}
+              className="hidden text-sm font-medium ec-text-secondary transition-colors lg:inline-block"
             >
               Sign in
             </Link>
             <Link
               href="/auth/signup"
-              className="ec-btn-primary hidden text-sm sm:inline-flex"
-              style={{ padding: '8px 18px' }}
+              className="ec-btn-primary hidden px-[18px] py-2 text-sm lg:inline-flex"
             >
               Get started free
             </Link>
@@ -98,7 +93,7 @@ export function MarketingHeader() {
               className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-[var(--ec-border)] lg:hidden"
               aria-label="Open menu"
             >
-              <Menu className="h-5 w-5" style={{ color: 'var(--ec-text-primary)' }} />
+              <Menu className="h-5 w-5 ec-text-primary" />
             </button>
           </div>
         </div>
@@ -111,7 +106,7 @@ export function MarketingHeader() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[70] ec-modal-backdrop lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -119,13 +114,9 @@ export function MarketingHeader() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 320, damping: 32 }}
-              className="fixed inset-y-0 right-0 z-[71] flex w-[min(100vw,320px)] flex-col border-l lg:hidden"
-              style={{
-                borderColor: 'var(--ec-border)',
-                background: 'var(--ec-surface)',
-              }}
+              className="fixed inset-y-0 right-0 z-[71] flex w-[min(100vw,320px)] flex-col border-l ec-border-color bg-[var(--ec-surface)] lg:hidden"
             >
-              <div className="flex items-center justify-between border-b px-5 py-4" style={{ borderColor: 'var(--ec-border)' }}>
+              <div className="flex items-center justify-between border-b ec-border-color px-5 py-4">
                 <span className="font-bold ec-text-gradient">Examcore</span>
                 <button
                   type="button"
@@ -133,7 +124,7 @@ export function MarketingHeader() {
                   className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg"
                   aria-label="Close menu"
                 >
-                  <X className="h-5 w-5" style={{ color: 'var(--ec-text-primary)' }} />
+                  <X className="h-5 w-5 ec-text-primary" />
                 </button>
               </div>
               <nav className="flex-1 overflow-y-auto px-4 py-4" aria-label="Mobile">
@@ -141,8 +132,7 @@ export function MarketingHeader() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="flex min-h-[48px] items-center rounded-xl px-4 text-base font-medium transition-colors hover:bg-[var(--ec-surface-raised)]"
-                    style={{ color: 'var(--ec-text-primary)' }}
+                    className="flex min-h-[48px] items-center rounded-xl px-4 text-base font-medium ec-text-primary transition-colors hover:bg-[var(--ec-surface-raised)]"
                   >
                     {item.label}
                   </Link>
@@ -153,18 +143,16 @@ export function MarketingHeader() {
                     setMobileOpen(false)
                     setIsOpen(true)
                   }}
-                  className="mt-2 flex min-h-[48px] w-full items-center gap-2 rounded-xl px-4 text-base font-medium transition-colors hover:bg-[var(--ec-surface-raised)]"
-                  style={{ color: 'var(--ec-text-primary)' }}
+                  className="mt-2 flex min-h-[48px] w-full items-center gap-2 rounded-xl px-4 text-base font-medium ec-text-primary transition-colors hover:bg-[var(--ec-surface-raised)]"
                 >
-                  <Sparkles className="h-4 w-4 text-emerald-400" />
+                  <Sparkles className="h-4 w-4 ec-text-brand" />
                   Ask Omni
                 </button>
               </nav>
-              <div className="space-y-3 border-t p-4" style={{ borderColor: 'var(--ec-border)' }}>
+              <div className="space-y-3 border-t ec-border-color p-4">
                 <Link
                   href="/auth/signin"
-                  className="flex min-h-[48px] items-center justify-center rounded-xl border border-[var(--ec-border)] text-base font-semibold"
-                  style={{ color: 'var(--ec-text-primary)' }}
+                  className="flex min-h-[48px] items-center justify-center rounded-xl border border-[var(--ec-border)] text-base font-semibold ec-text-primary"
                 >
                   Sign in
                 </Link>

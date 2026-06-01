@@ -2,12 +2,17 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import Link from 'next/link'
 import {
   ExaminerInkOverlay,
   type LineReference,
 } from '@/components/examiner-ink/ExaminerInkOverlay'
+import { toAnswerPhotoStoragePath } from '@/lib/storage/answer-photo-paths'
 import { OverrideConsole } from '@/components/teacher/OverrideConsole'
+import {
+  TeacherBackLink,
+  TeacherPageContainer,
+  TeacherPageHeader,
+} from '@/components/teacher/TeacherPageChrome'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import type { MarkAwarded } from '@/components/MarkingResultView'
@@ -38,7 +43,7 @@ export default function ReviewDetailPage() {
 
   if (!attempt) {
     return (
-      <div className="p-12 text-slate-400">Loading submission...</div>
+      <div className="p-12 text-[var(--ec-text-secondary)]">Loading submission...</div>
     )
   }
 
@@ -46,37 +51,38 @@ export default function ReviewDetailPage() {
     attempt.user_profiles?.full_name?.trim() || 'Student'
 
   return (
-    <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col px-6 py-8">
-      <Link
-        href="/teacher/reviews"
-        className="mb-6 inline-block text-sm text-slate-400 hover:text-white"
-      >
-        ← Back to inbox
-      </Link>
+    <TeacherPageContainer className="flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col">
+      <TeacherBackLink href="/teacher/reviews">← Back to inbox</TeacherBackLink>
 
-      <div className="mb-6">
-        <div className="ec-label-tech mb-2">REVIEW</div>
-        <h1 className="text-2xl font-bold text-white">{studentName}</h1>
-        {attempt.question_text && (
-          <div className="mt-2 text-sm text-slate-400">
+      <TeacherPageHeader
+        label="REVIEW"
+        title={studentName}
+        lead={
+          attempt.question_text ? (
             <RichTextRenderer
               text={normalizeQuestionText(attempt.question_text)}
               contentKind="question"
             />
-          </div>
-        )}
-      </div>
+          ) : undefined
+        }
+      />
 
       <div className="grid flex-1 grid-cols-1 gap-6 lg:grid-cols-5">
         <div className="ec-card overflow-hidden p-4 lg:col-span-3">
           {attempt.answer_photo_url ? (
             <ExaminerInkOverlay
               imageUrl={attempt.answer_photo_url}
+              attemptId={attempt.id}
+              photoRef={
+                attempt.answer_photo_url
+                  ? toAnswerPhotoStoragePath(attempt.answer_photo_url)
+                  : undefined
+              }
               lineReferences={attempt.line_references || []}
               animate={false}
             />
           ) : (
-            <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-slate-900/50 text-slate-500">
+            <div className="flex aspect-[4/3] items-center justify-center rounded-xl bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)]">
               No answer image for this demo submission. Mark overrides still
               work via the console →
             </div>
@@ -95,6 +101,6 @@ export default function ReviewDetailPage() {
           />
         </div>
       </div>
-    </div>
+    </TeacherPageContainer>
   )
 }

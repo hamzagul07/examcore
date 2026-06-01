@@ -257,7 +257,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
       />
     </div>
   ) : (
-    <div className="ec-card border-amber-500/20 p-5 text-sm text-[var(--ec-text-secondary)]">
+    <div className="ec-highlight-warning-panel ec-card border-0 p-5 text-sm text-[var(--ec-text-secondary)]">
       Detailed topic analytics are coming soon for{' '}
       <span className="font-semibold text-[var(--ec-text-primary)]">{subjectLabel}</span>.
       Keep marking — your insights, journey, and attempt history are tracked above.

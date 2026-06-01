@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Loader2, Info, ExternalLink } from 'lucide-react'
 import { formatMoney } from '@/lib/billing/format'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
+import { creditsForProduct, type ProductKey } from '@/lib/billing/pricing'
 import type { SubscriptionTier } from '@/lib/database.types'
 import type { PricingDisplay } from '@/lib/billing/display-prices'
 import { SUPPORTED_CURRENCIES } from '@/lib/billing/region-cookie'
@@ -170,7 +171,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
               onClick={() => setPeriod(p)}
               className={`rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
                 period === p
-                  ? 'bg-[color-mix(in_srgb,var(--ec-brand)_20%,transparent)] text-[var(--ec-brand)]'
+                  ? 'ec-tab-active'
                   : 'text-[var(--ec-text-secondary)] hover:text-[var(--ec-text-primary)]'
               }`}
             >
@@ -186,7 +187,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
       </div>
 
       {founding && (
-        <div className="ec-card border-[color-mix(in_srgb,var(--ec-brand)_35%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_8%,transparent)] px-5 py-3 text-center text-sm">
+        <div className="ec-panel-highlight px-5 py-3 text-center text-sm">
           <span className="text-[var(--ec-text-primary)]">
             <strong>Founding member:</strong> 50% off any paid plan, locked in forever. Prices
             below already reflect your discount.
@@ -195,7 +196,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
       )}
 
       {notice && (
-        <p className="mx-auto max-w-xl rounded-2xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-center text-sm text-[var(--ec-text-primary)]">
+        <p className="ec-highlight-warning-panel mx-auto max-w-xl rounded-2xl px-4 py-3 text-center text-sm text-[var(--ec-text-primary)]">
           {notice}
         </p>
       )}
@@ -225,7 +226,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
             return (
               <div
                 key={tier.id}
-                className={`px-5 py-5 md:grid md:grid-cols-[1.4fr_0.9fr_0.9fr_0.8fr] md:items-center md:gap-4 ${
+                className={`min-w-0 px-5 py-5 md:grid md:grid-cols-[1.4fr_0.9fr_0.9fr_0.8fr] md:items-center md:gap-4 ${
                   tier.popular ? 'bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)]' : ''
                 }`}
               >
@@ -356,11 +357,12 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
           </p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {([
-            ['credits_25', 25, display.credits.credits_25],
-            ['credits_100', 100, display.credits.credits_100],
-            ['credits_500', 500, display.credits.credits_500],
-          ] as const).map(([product, count, price]) => (
+          {(
+            ['credits_25', 'credits_100', 'credits_500'] as const satisfies readonly ProductKey[]
+          ).map((product) => {
+            const count = creditsForProduct(product)
+            const price = display.credits[product]
+            return (
             <div key={product} className="ec-card flex flex-col p-5">
               <p className="text-2xl font-extrabold text-[var(--ec-text-primary)]">{count}</p>
               <p className="text-sm text-[var(--ec-text-secondary)]">credits</p>
@@ -380,7 +382,8 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
                 )}
               </button>
             </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </div>

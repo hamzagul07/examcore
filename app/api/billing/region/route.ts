@@ -3,6 +3,8 @@ import {
   REGION_COOKIE,
   REGION_COOKIE_MAX_AGE,
   isSupportedCurrency,
+  parseRegionCookie,
+  regionFromCountry,
   regionFromCurrency,
   serializeRegion,
 } from '@/lib/billing/region-cookie'
@@ -24,7 +26,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unsupported currency' }, { status: 400 })
   }
 
-  const choice = regionFromCurrency(currency)
+  const cookieRaw = req.cookies.get(REGION_COOKIE)?.value
+  const existing = parseRegionCookie(cookieRaw)
+  const geo = regionFromCountry(req.headers.get('x-vercel-ip-country'))
+  const preserveTier = existing?.tier ?? geo.tier
+
+  const choice = regionFromCurrency(currency, {
+    preserveTier,
+    country: existing?.country ?? geo.country,
+  })
   const res = NextResponse.json({ ok: true, currency: choice.currency, tier: choice.tier })
   res.cookies.set(REGION_COOKIE, serializeRegion(choice), {
     maxAge: REGION_COOKIE_MAX_AGE,

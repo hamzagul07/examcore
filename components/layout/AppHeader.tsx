@@ -48,11 +48,44 @@ export function AppHeader() {
           >
             Mark
           </Link>
+          <Link
+            href="/dashboard/progress"
+            className="text-sm font-medium transition-colors duration-300"
+            style={{
+              color:
+                pathname.startsWith('/dashboard/progress') ||
+                pathname.startsWith('/dashboard/attempt/')
+                  ? 'var(--ec-text-primary)'
+                  : 'var(--ec-text-secondary)',
+            }}
+          >
+            Progress
+          </Link>
+          <Link
+            href="/account"
+            className="text-sm font-medium transition-colors duration-300"
+            style={{
+              color:
+                pathname.startsWith('/account')
+                  ? 'var(--ec-text-primary)'
+                  : 'var(--ec-text-secondary)',
+            }}
+          >
+            Account
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
           <CreditChip />
           <ThemeSwitcher />
+          <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            className="ec-btn-primary inline-flex min-h-[44px] min-w-[44px] justify-center p-0 lg:hidden"
+            aria-label="Ask Examcore"
+          >
+            <Sparkles className="h-4 w-4" />
+          </button>
           <button
             type="button"
             onClick={() => setIsOpen(true)}

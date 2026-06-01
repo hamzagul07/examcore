@@ -115,10 +115,10 @@ function SubjectCard({
   if (!detailed) {
     return (
       <div className="ec-card ec-card-interactive relative overflow-hidden p-4 text-center sm:p-5">
-        <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-emerald-500/10 blur-[50px]" />
+        <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[color-mix(in_srgb,var(--ec-brand)_10%,transparent)] blur-[50px]" />
         <div className="relative">
-          <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 sm:h-12 sm:w-12">
-            <Icon className="h-5 w-5 text-emerald-400 sm:h-6 sm:w-6" strokeWidth={1.75} />
+          <div className="ec-tint-success-icon mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl border sm:h-12 sm:w-12">
+            <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.75} />
           </div>
           <p className="text-sm font-bold leading-tight text-[var(--ec-text-primary)] sm:text-base">
             {subject.label}
@@ -126,7 +126,7 @@ function SubjectCard({
           <p className="mt-0.5 font-mono text-[10px] text-[var(--ec-text-secondary)] sm:text-xs">
             {subject.code}
             {levelLabel(subject.levels) && (
-              <span className="ml-1.5 text-[9px] uppercase tracking-wider text-emerald-400/80">
+              <span className="ml-1.5 text-[9px] uppercase tracking-wider text-[color-mix(in_srgb,var(--ec-brand)_80%,transparent)]">
                 · {levelLabel(subject.levels)}
               </span>
             )}
@@ -138,8 +138,8 @@ function SubjectCard({
 
   return (
     <div className="ec-card ec-card-interactive flex gap-4 p-5 sm:p-6">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
-        <Icon className="h-6 w-6 text-emerald-400" strokeWidth={1.75} />
+      <div className="ec-tint-success-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border">
+        <Icon className="h-6 w-6" strokeWidth={1.75} />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline gap-2">
@@ -150,7 +150,7 @@ function SubjectCard({
             {subject.code}
           </span>
           {levelLabel(subject.levels) && (
-            <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-400/90">
+            <span className="ec-tint-success-chip rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
               {levelLabel(subject.levels)}
             </span>
           )}
@@ -158,7 +158,7 @@ function SubjectCard({
         <p className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
           {formatComponents(subject)}
         </p>
-        <p className="mt-2 text-xs font-medium text-emerald-400/90">
+        <p className="mt-2 text-xs font-medium text-[color-mix(in_srgb,var(--ec-brand)_90%,transparent)]">
           {markingTypeLabel(subject.markingType)}
         </p>
       </div>

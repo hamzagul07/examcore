@@ -9,10 +9,6 @@ interface SplitScreenPreviewProps {
   messageContent: string
 }
 
-/**
- * Split layout: conversational text on the left, past-paper preview on the
- * right (stacks vertically on mobile).
- */
 export function SplitScreenPreview({
   paper,
   messageContent,
@@ -24,7 +20,13 @@ export function SplitScreenPreview({
       className="grid grid-cols-1 gap-4 lg:grid-cols-2"
     >
       {messageContent && (
-        <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300 lg:hidden">
+        <div
+          className="rounded-2xl border px-4 py-3 text-sm text-[var(--ec-text-secondary)] lg:hidden"
+          style={{
+            borderColor: 'var(--ec-border)',
+            background: 'var(--ec-surface-raised)',
+          }}
+        >
           {messageContent}
         </div>
       )}

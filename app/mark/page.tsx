@@ -151,6 +151,7 @@ export default function MarkPage() {
   const [paperQuestionOptions, setPaperQuestionOptions] = useState<string[]>([])
   const [wholePaperKey, setWholePaperKey] = useState(0)
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
+  const [profileLevel, setProfileLevel] = useState('A-Level')
   const [profileLoading, setProfileLoading] = useState(true)
 
   useEffect(() => {
@@ -177,6 +178,19 @@ export default function MarkPage() {
     ? questionUsageMessage(billingSummary).disableSubmit
     : false
 
+  const cinematicActive = loading && !!markProgress
+
+  useEffect(() => {
+    if (!cinematicActive || typeof window === 'undefined') return
+    const mq = window.matchMedia('(max-width: 1023px)')
+    if (!mq.matches) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [cinematicActive])
+
   useEffect(() => {
     let cancelled = false
     async function loadProfile() {
@@ -199,6 +213,7 @@ export default function MarkPage() {
           .map((name) => getSubjectById(name, profileLevel)?.code)
           .filter((c): c is string => !!c)
         if (!cancelled) {
+          setProfileLevel(profileLevel)
           setProfileSubjectCodes(
             codes.length ? codes : [profileLevel === 'O-Level' ? '4024' : '9709']
           )
@@ -822,17 +837,16 @@ export default function MarkPage() {
             <br />
             <span className="ec-text-gradient brand-breathe">in 30 seconds.</span>
           </h1>
-          <p className="mt-4 text-base text-slate-400 sm:text-lg">
+          <p className="mt-4 text-base text-[var(--ec-text-secondary)] sm:text-lg">
             {activeSubjectMeta
-              ? `Cambridge A-Level ${activeSubjectMeta.label}, examiner-grade.`
-              : 'Cambridge A-Level past papers, examiner-grade.'}
+              ? `Cambridge ${profileLevel} ${activeSubjectMeta.label}, examiner-grade.`
+              : `Cambridge ${profileLevel} past papers, examiner-grade.`}
           </p>
         </motion.div>
 
         {!result && practiceContext && (
           <div
-            className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 p-4 min-w-0"
-            style={{ background: 'var(--ec-brand-muted)' }}
+            className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0"
           >
             <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
             <div className="min-w-0 flex-1">
@@ -864,10 +878,10 @@ export default function MarkPage() {
                 <button
                   type="button"
                   onClick={() => setUploadMode('single_question')}
-                  className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
+                  className={`flex-1 rounded-xl border px-4 py-3 text-sm font-semibold transition-colors ${
                     uploadMode === 'single_question'
-                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'ec-tab-active'
+                      : 'border-transparent ec-text-secondary hover:text-[var(--ec-text-primary)]'
                   }`}
                 >
                   Single question
@@ -875,10 +889,10 @@ export default function MarkPage() {
                 <button
                   type="button"
                   onClick={() => setUploadMode('whole_paper')}
-                  className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
+                  className={`flex-1 rounded-xl border px-4 py-3 text-sm font-semibold transition-colors ${
                     uploadMode === 'whole_paper'
-                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'ec-tab-active'
+                      : 'border-transparent ec-text-secondary hover:text-[var(--ec-text-primary)]'
                   }`}
                 >
                   Whole paper
@@ -919,13 +933,13 @@ export default function MarkPage() {
                 </div>
 
                 {selectedSubject && paperStructure && paperStructure.papers.length > 0 && (
-                  <div className="rounded-2xl border border-white/10 bg-dark-900/40 p-4">
+                  <div className="rounded-2xl border ec-border-color ec-bg-surface-raised p-4">
                     <p className="label-overline mb-3">Available papers</p>
-                    <ul className="space-y-1.5 text-sm text-slate-400">
+                    <ul className="space-y-1.5 text-sm text-[var(--ec-text-secondary)]">
                       {paperStructure.papers.map((p) => (
                         <li key={p.paper}>
-                          <span className="font-medium text-slate-300">{p.name}</span>
-                          <span className="font-mono text-xs text-slate-500">
+                          <span className="font-medium text-[var(--ec-text-primary)]">{p.name}</span>
+                          <span className="font-mono text-xs opacity-70">
                             {' '}
                             — {p.components.join(', ')}
                           </span>
@@ -942,20 +956,20 @@ export default function MarkPage() {
               <section className="animate-entry stagger-1 space-y-4">
                 <StepLabel number={1} label="Upload your full answer paper" />
                 {!isManualFilled ? (
-                  <div className="ec-card p-5 text-sm text-slate-400">
+                  <div className="ec-card p-5 text-sm text-[var(--ec-text-secondary)]">
                     Select subject, year, session, and paper below before uploading
                     your pages.
                   </div>
                 ) : (
                   <>
                     {billingSummary && !isPaidTier(billingSummary.tier) && (
-                      <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-[var(--ec-text-secondary)]">
-                        <span className="font-semibold text-amber-200/90">Free preview:</span>{' '}
+                      <div className="ec-banner-warning-inline rounded-xl px-4 py-3 text-sm">
+                        <span className="font-semibold">Free preview:</span>{' '}
                         we mark up to {FREE_WHOLE_PAPER_QUESTION_LIMIT} questions per
                         whole-paper upload.{' '}
                         <Link
                           href="/pricing"
-                          className="font-semibold text-emerald-400 hover:text-emerald-300"
+                          className="ec-link"
                         >
                           Upgrade for full papers →
                         </Link>
@@ -1016,7 +1030,7 @@ export default function MarkPage() {
                 <button
                   type="button"
                   onClick={() => setShowManualPaper(!showManualPaper)}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                  className="inline-flex items-center gap-1.5 text-sm ec-link"
                 >
                   <ChevronRight
                     className={`h-4 w-4 transition-transform duration-200 ${
@@ -1030,21 +1044,21 @@ export default function MarkPage() {
 
                 {showManualPaper && (
                   <div className="ec-card mt-4 space-y-4 p-5 sm:p-6">
-                    <p className="text-xs leading-relaxed text-slate-400">
+                    <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
                       Use this if your photo doesn&apos;t show the paper header or AI
                       can&apos;t auto-detect. We&apos;ll remember your selections for
                       next time.
                     </p>
 
                     {papersLoading && (
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm text-[var(--ec-text-secondary)]">
                         Loading available papers...
                       </p>
                     )}
 
                     {!papersLoading &&
                       profileSelectableSubjects.length === 0 && (
-                        <p className="text-sm text-slate-500">
+                        <p className="text-sm text-[var(--ec-text-secondary)]">
                           No past papers available yet.
                         </p>
                       )}
@@ -1141,7 +1155,7 @@ export default function MarkPage() {
                             <Label htmlFor="manual-question" className="label-overline mb-2 inline-block">
                               Question number
                               {uploadMode === 'whole_paper' && (
-                                <span className="ml-2 font-normal normal-case text-slate-500">
+                                <span className="ml-2 font-normal normal-case text-[var(--ec-text-secondary)]">
                                   (not needed for whole paper)
                                 </span>
                               )}
@@ -1185,7 +1199,7 @@ export default function MarkPage() {
                 <button
                   type="button"
                   onClick={() => setShowOptional(!showOptional)}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                  className="inline-flex items-center gap-1.5 text-sm ec-link"
                 >
                   <ChevronRight
                     className={`h-4 w-4 transition-transform duration-200 ${
@@ -1199,7 +1213,7 @@ export default function MarkPage() {
 
                 {showOptional && (
                   <div className="ec-card mt-4 space-y-4 p-5 sm:p-6">
-                    <p className="text-xs leading-relaxed text-slate-400">
+                    <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
                       If your handwritten work doesn&apos;t show the question or paper
                       header, add it here so we can mark more accurately.
                     </p>
@@ -1210,10 +1224,10 @@ export default function MarkPage() {
                       </Label>
                       <label
                         htmlFor="question-photo"
-                        className="group block w-full cursor-pointer rounded-2xl border-2 border-dashed border-white/10 bg-dark-900/40 p-5 text-center text-sm transition-all duration-200 hover:border-emerald-500/50 hover:bg-emerald-500/5"
+                        className="group block w-full cursor-pointer rounded-2xl border-2 border-dashed ec-border-color ec-bg-surface-raised p-5 text-center text-sm transition-all duration-200 hover:border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] hover:bg-[var(--ec-brand-muted)]"
                       >
-                        <UploadCloud className="mx-auto mb-2 h-5 w-5 text-slate-500 transition-colors group-hover:text-emerald-400" />
-                        <div className="font-medium text-slate-300">
+                        <UploadCloud className="mx-auto mb-2 h-5 w-5 ec-text-secondary transition-colors group-hover:text-[var(--ec-brand)]" />
+                        <div className="font-medium text-[var(--ec-text-primary)]">
                           {questionPhotoCompressing
                             ? 'Preparing image…'
                             : questionPhoto
@@ -1240,10 +1254,10 @@ export default function MarkPage() {
                       </label>
                     </div>
 
-                    <div className="flex items-center gap-3 font-mono text-xs font-medium text-slate-600">
-                      <div className="h-px flex-1 bg-white/10" />
+                    <div className="flex items-center gap-3 font-mono text-xs font-medium ec-text-secondary">
+                      <div className="h-px flex-1 bg-[var(--ec-border)]" />
                       <span>OR</span>
-                      <div className="h-px flex-1 bg-white/10" />
+                      <div className="h-px flex-1 bg-[var(--ec-border)]" />
                     </div>
 
                     <div>
@@ -1268,8 +1282,8 @@ export default function MarkPage() {
               <div
                 className={`rounded-2xl border p-3.5 text-sm backdrop-blur ${
                   errorRetryable
-                    ? 'border-amber-500/30 bg-amber-500/10 text-amber-200'
-                    : 'border-red-500/30 bg-red-500/10 text-red-300'
+                    ? 'border-[color-mix(in_srgb,var(--ec-chip-warning-text)_30%,transparent)] bg-[var(--ec-chip-warning-bg)] text-[var(--ec-banner-warning-title)]'
+                    : 'border-[color-mix(in_srgb,var(--ec-chip-critical-text)_30%,transparent)] bg-[var(--ec-chip-critical-bg)] text-[var(--ec-chip-critical-text)]'
                 }`}
               >
                 <p>{errorMsg}</p>
@@ -1289,7 +1303,7 @@ export default function MarkPage() {
                       hasCompressingPages(answerPages) ||
                       questionPhotoCompressing
                     }
-                    className="mt-3 rounded-xl border border-amber-500/40 bg-amber-500/15 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-amber-500/25 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="mt-3 rounded-xl border border-[color-mix(in_srgb,var(--ec-chip-warning-text)_40%,transparent)] bg-[var(--ec-chip-warning-bg)] px-4 py-2 text-sm font-medium text-[var(--ec-banner-warning-title)] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Try again
                   </button>
@@ -1325,10 +1339,10 @@ export default function MarkPage() {
         )}
 
         <AnimatePresence>
-          {((loading && markProgress) || markStreamError) && (
+          {((cinematicActive) || markStreamError) && (
             <motion.div
               key="marking-progress"
-              className="mt-10"
+              className="fixed inset-0 z-[55] overflow-y-auto bg-[var(--ec-canvas)] px-4 pt-4 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] lg:relative lg:inset-auto lg:z-auto lg:mt-10 lg:overflow-visible lg:bg-transparent lg:p-0 lg:pb-0"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
@@ -1395,7 +1409,7 @@ export default function MarkPage() {
             {showFreeNudge && (
               <p className="pt-1 text-center text-sm text-[var(--ec-text-secondary)]">
                 Want to mark more?{' '}
-                <Link href="/pricing" className="font-semibold text-emerald-400 hover:text-emerald-300">
+                <Link href="/pricing" className="ec-link">
                   See plans →
                 </Link>
               </p>
@@ -1446,13 +1460,13 @@ function ExaminerInkSection({ result }: { result: MarkingResult }) {
 
   return (
     <section className="ec-card relative overflow-hidden p-6 sm:p-8">
-      <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-red-500/15 blur-[80px]" />
+      <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full ec-glow-orb-critical blur-[80px]" />
       <div className="relative">
         <p className="ec-label-tech mb-3">EXAMINER&rsquo;S MARKS</p>
-        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-3xl">
           See exactly where you earned and lost marks
         </h2>
-        <p className="mt-2 max-w-2xl text-sm text-slate-400">
+        <p className="mt-2 max-w-2xl text-sm text-[var(--ec-text-secondary)]">
           The AI examiner&rsquo;s annotations, drawn directly on your handwritten
           answer. Stamps go in the margin; red underlines flag where marks
           were lost.
@@ -1462,15 +1476,18 @@ function ExaminerInkSection({ result }: { result: MarkingResult }) {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="ec-btn-primary mt-6 self-start text-base"
-            style={{ padding: '14px 24px' }}
+            className="ec-btn-primary mt-6 self-start px-6 py-3.5 text-base"
           >
             <Sparkles className="h-5 w-5" />
             View examiner&rsquo;s marks
           </button>
         ) : (
           <div className="mt-6">
-            <ExaminerInkPerPage pages={inkPages} animate />
+            <ExaminerInkPerPage
+              pages={inkPages}
+              attemptId={result.attempt_id ?? undefined}
+              animate
+            />
           </div>
         )}
       </div>
@@ -1489,14 +1506,14 @@ function StepLabel({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/15 font-mono text-xs font-bold text-emerald-300 shadow-[0_0_16px_rgba(16,185,129,0.4)]">
+      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full ec-mark-badge--earned font-mono text-xs font-bold">
         {number}
       </span>
-      <span className="text-base font-bold tracking-tight text-white">
+      <span className="text-base font-bold tracking-tight text-[var(--ec-text-primary)]">
         {label}
       </span>
       {hint && (
-        <span className="font-mono text-xs font-medium text-slate-500">· {hint}</span>
+        <span className="font-mono text-xs font-medium text-[var(--ec-text-secondary)]">· {hint}</span>
       )}
     </div>
   )

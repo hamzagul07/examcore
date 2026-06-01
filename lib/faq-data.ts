@@ -1,3 +1,6 @@
+import { capForTier, omniCapForTier } from '@/lib/billing/caps'
+import { WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
+
 export type FaqItem = { q: string; a: string }
 export type FaqCategory = { id: string; title: string; items: FaqItem[] }
 
@@ -98,7 +101,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
     items: [
       {
         q: 'Is there a free plan?',
-        a: 'Yes. Free includes 5 questions and 10 Omni messages per month across all fifteen subjects, plus Examiner\'s Ink on single-question marking. No card required.',
+        a: `Yes. Free includes ${capForTier('free')} questions and ${omniCapForTier('free')} Omni messages per month across all fifteen subjects, plus Examiner's Ink on single-question marking. No card required.`,
       },
       {
         q: 'I signed up during early access — what happens to my pricing?',
@@ -106,7 +109,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'What counts as one question?',
-        a: 'Whether you submit a single question or a whole paper, it counts as one question against your monthly allowance. Whole papers don\'t cost more even if they contain 15 sub-questions.',
+        a: `Whether you submit a single question or a whole paper, it counts as one question against your monthly allowance. Whole papers don't cost more even if they contain ${WHOLE_PAPER_QUESTION_LIMIT} sub-questions.`,
       },
       {
         q: 'What happens when I run out mid-month?',

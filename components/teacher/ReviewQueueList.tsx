@@ -41,22 +41,22 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <div className="ec-label-tech mb-2">REVIEW QUEUE</div>
-          <h2 className="text-2xl font-bold text-white">Recent submissions</h2>
+          <h2 className="text-2xl font-bold text-[var(--ec-text-primary)]">Recent submissions</h2>
         </div>
         <Link
           href="/teacher/reviews"
-          className="text-sm text-emerald-400 hover:text-emerald-300"
+          className="text-sm ec-link"
         >
           View all →
         </Link>
       </div>
 
       {loading && (
-        <p className="text-slate-400">Loading submissions...</p>
+        <p className="text-[var(--ec-text-secondary)]">Loading submissions...</p>
       )}
 
       {!loading && reviews.length === 0 && (
-        <p className="text-slate-400">
+        <p className="text-[var(--ec-text-secondary)]">
           No AI-marked submissions yet. Students need to complete marked attempts
           with full marking data.
         </p>
@@ -67,21 +67,21 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
           <Link
             key={r.id}
             href={`/teacher/reviews/${r.id}`}
-            className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-emerald-500/20 hover:bg-white/[0.04]"
+            className="flex items-center justify-between rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 transition-colors ec-hover-brand-border-mild hover:bg-[var(--ec-surface-raised)]"
           >
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-white">{r.studentName}</span>
+                <span className="font-semibold text-[var(--ec-text-primary)]">{r.studentName}</span>
                 {r.overridden && (
-                  <span className="rounded-full bg-violet-500/20 px-2 py-0.5 text-xs text-violet-300">
+                  <span className="ec-tint-accent-chip rounded-full px-2 py-0.5 text-xs">
                     Overridden
                   </span>
                 )}
               </div>
-              <p className="mt-1 truncate text-sm text-slate-400">
+              <p className="mt-1 truncate text-sm text-[var(--ec-text-secondary)]">
                 {r.questionPreview}
               </p>
-              <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
+              <div className="mt-2 flex items-center gap-3 text-xs text-[var(--ec-text-secondary)]">
                 <span>
                   AI score: {r.marksEarned}/{r.totalMarks}
                 </span>
@@ -91,7 +91,7 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
                 </span>
               </div>
             </div>
-            <ChevronRight className="h-5 w-5 shrink-0 text-slate-500" />
+            <ChevronRight className="h-5 w-5 shrink-0 text-[var(--ec-text-secondary)]" />
           </Link>
         ))}
       </div>

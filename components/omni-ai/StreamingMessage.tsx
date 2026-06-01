@@ -23,7 +23,7 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
         animate={{ opacity: 1, y: 0 }}
         className="flex justify-end"
       >
-        <div className="max-w-[85%] rounded-2xl rounded-br-md border border-emerald-500/30 bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 px-4 py-2.5 text-white">
+        <div className="max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 ec-chat-user-bubble text-[var(--ec-text-primary)]">
           {message.content}
         </div>
       </motion.div>
@@ -42,23 +42,25 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
       animate={{ opacity: 1, y: 0 }}
       className="flex gap-3"
     >
-      <div className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500">
-        <Sparkles className="h-4 w-4 text-white" />
+      <div className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ec-chat-avatar">
+        <Sparkles className="h-4 w-4 ec-on-brand-text" />
       </div>
 
       <div className="min-w-0 flex-1 space-y-3">
         {!showSplitPaper && (
-          <div className="prose prose-invert prose-sm max-w-none rounded-2xl rounded-bl-md border border-white/10 bg-white/5 px-4 py-3">
+          <div className="prose prose-sm max-w-none ec-card rounded-2xl rounded-bl-md border ec-border-color px-4 py-3 text-[var(--ec-text-primary)]">
             <RichTextRenderer text={message.content} />
             {message.isStreaming && (
-              <span className="ml-0.5 inline-block h-4 w-2 animate-pulse bg-emerald-400" />
+              <span className="ec-chat-caret ml-0.5 inline-block h-4 w-2 animate-pulse" />
             )}
           </div>
         )}
 
         {showSplitPaper && message.action?.paper && (
           <>
-            <div className="prose prose-invert prose-sm max-w-none rounded-2xl rounded-bl-md border border-white/10 bg-white/5 px-4 py-3 hidden lg:block">
+            <div
+              className="prose prose-sm max-w-none ec-card hidden rounded-2xl rounded-bl-md border ec-border-color px-4 py-3 text-[var(--ec-text-primary)] lg:block"
+            >
               <RichTextRenderer text={message.content} />
             </div>
             <SplitScreenPreview

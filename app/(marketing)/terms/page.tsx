@@ -19,7 +19,7 @@ export default function TermsPage() {
           Terms of Service
         </h1>
         <LegalDisclaimer />
-        <div className="prose prose-invert max-w-none space-y-6 text-[var(--ec-text-secondary)] prose-headings:text-[var(--ec-text-primary)] prose-a:text-emerald-400">
+        <div className="prose prose-sm max-w-none space-y-6 text-[var(--ec-text-secondary)] prose-headings:text-[var(--ec-text-primary)] prose-a:text-[var(--ec-brand)] prose-strong:text-[var(--ec-text-primary)]">
           <p className="text-sm">Last updated: May 2026</p>
 
           <section>

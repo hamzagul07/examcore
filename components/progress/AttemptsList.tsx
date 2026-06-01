@@ -46,10 +46,10 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
             : 0
         const scoreColor =
           percentage === 100
-            ? 'text-emerald-400'
+            ? 'ec-score-high'
             : percentage >= 50
-            ? 'text-amber-400'
-            : 'text-red-400'
+            ? 'ec-score-mid'
+            : 'ec-score-low'
 
         const ms = scheme(attempt)
         const isPastPaper = attempt.source_type === 'past_paper' && ms
@@ -74,9 +74,7 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
               <div className="flex min-w-0 flex-1 items-center gap-4">
                 <div
                   className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border ${
-                    isPastPaper
-                      ? 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400'
-                      : 'border-violet-500/30 bg-violet-500/10 text-violet-400'
+                    isPastPaper ? 'ec-tint-info-icon-wrap' : 'ec-tint-accent-icon-wrap'
                   }`}
                 >
                   {isPastPaper ? (
@@ -111,10 +109,10 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
                   percentage === 100
-                    ? 'bg-gradient-to-r from-emerald-400 to-emerald-600'
+                    ? 'ec-score-bar-high'
                     : percentage >= 50
-                    ? 'bg-gradient-to-r from-amber-400 to-amber-500'
-                    : 'bg-gradient-to-r from-red-400 to-red-500'
+                    ? 'ec-score-bar-mid'
+                    : 'ec-score-bar-low'
                 }`}
                 style={{ width: `${percentage}%` }}
               />

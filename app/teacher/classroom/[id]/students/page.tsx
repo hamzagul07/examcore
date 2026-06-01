@@ -2,8 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
-import Link from 'next/link'
 import { StudentCard } from '@/components/teacher/StudentCard'
+import {
+  TeacherBackLink,
+  TeacherPageContainer,
+  TeacherPageHeader,
+} from '@/components/teacher/TeacherPageChrome'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
 interface Student {
@@ -32,20 +36,16 @@ export default function ClassroomStudentsPage() {
   }, [id])
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-12">
-      <Link
-        href={`/teacher/classroom/${id}`}
-        className="mb-6 inline-block text-sm text-slate-400 hover:text-white"
-      >
+    <TeacherPageContainer>
+      <TeacherBackLink href={`/teacher/classroom/${id}`}>
         ← Back to analytics
-      </Link>
-      <div className="ec-label-tech mb-3">STUDENTS</div>
-      <h1 className="mb-8 text-3xl font-bold text-white">Class roster</h1>
+      </TeacherBackLink>
+      <TeacherPageHeader label="STUDENTS" title="Class roster" />
 
-      {loading && <p className="text-slate-400">Loading students...</p>}
+      {loading && <p className="text-[var(--ec-text-secondary)]">Loading students...</p>}
 
       {!loading && students.length === 0 && (
-        <div className="ec-card p-8 text-center text-slate-400">
+        <div className="ec-card p-8 text-center text-[var(--ec-text-secondary)]">
           No students in this classroom yet.
         </div>
       )}
@@ -64,6 +64,6 @@ export default function ClassroomStudentsPage() {
           />
         ))}
       </div>
-    </div>
+    </TeacherPageContainer>
   )
 }

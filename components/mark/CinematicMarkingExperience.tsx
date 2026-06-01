@@ -173,18 +173,12 @@ export function CinematicMarkingExperience(
         <div className="mt-6 space-y-1.5">
           <p className="ec-label-tech">MARKING</p>
           {display.paperLine && (
-            <p
-              className="text-sm font-medium leading-snug"
-              style={{ color: 'var(--ec-text-primary)' }}
-            >
+            <p className="text-sm font-medium leading-snug ec-text-primary">
               {display.paperLine}
             </p>
           )}
           {display.topicLine && (
-            <p
-              className="text-sm leading-relaxed"
-              style={{ color: 'var(--ec-text-secondary)' }}
-            >
+            <p className="text-sm leading-relaxed ec-text-secondary">
               <span className="font-mono text-xs uppercase tracking-wider opacity-70">
                 Topic{' '}
               </span>
@@ -218,8 +212,7 @@ export function CinematicMarkingExperience(
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.3 }}
-                className="text-lg font-semibold leading-snug tracking-tight sm:text-xl"
-                style={{ color: 'var(--ec-text-primary)' }}
+                className="text-lg font-semibold leading-snug tracking-tight sm:text-xl ec-text-primary"
               >
                 {stageText}
               </motion.p>
@@ -233,13 +226,9 @@ export function CinematicMarkingExperience(
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="mt-7 border-t pt-5"
-            style={{ borderColor: 'var(--ec-border)' }}
+            className="mt-7 border-t ec-border-color pt-5"
           >
-            <p
-              className="text-sm leading-relaxed"
-              style={{ color: 'var(--ec-text-secondary)' }}
-            >
+            <p className="text-sm leading-relaxed ec-text-secondary">
               <span className="font-mono text-xs uppercase tracking-wider opacity-70">
                 Tip{' '}
               </span>
@@ -306,12 +295,7 @@ function ImageStage({
           animate={{ opacity: 0.82 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
-          className="relative mx-auto w-full overflow-hidden rounded-2xl"
-          style={{
-            maxWidth: 520,
-            border: '1px solid var(--ec-border)',
-            boxShadow: '0 24px 64px -16px rgba(0,0,0,0.5)',
-          }}
+          className="relative mx-auto w-full max-w-[520px] overflow-hidden rounded-2xl border ec-border-color ec-shadow-elevation-3"
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- continuity with the overlay components; same cached src. */}
           <img
@@ -332,8 +316,7 @@ function SurgeDots() {
       {[0, 1, 2, 3, 4].map((i) => (
         <motion.span
           key={i}
-          className="h-1.5 w-1.5 rounded-full"
-          style={{ background: 'var(--ec-brand)' }}
+          className="h-1.5 w-1.5 rounded-full bg-[var(--ec-brand)]"
           initial={{ opacity: 0.2 }}
           animate={{ opacity: [0.2, 0.9, 0.2] }}
           transition={{

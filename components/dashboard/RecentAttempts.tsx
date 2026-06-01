@@ -39,10 +39,10 @@ export function RecentAttempts({ attempts }: Props) {
         {attempts.map((attempt) => {
           const scoreColor =
             attempt.percentage === 100
-              ? 'text-emerald-400'
+              ? 'ec-score-high'
               : attempt.percentage >= 50
-                ? 'text-amber-400'
-                : 'text-red-400'
+                ? 'ec-score-mid'
+                : 'ec-score-low'
 
           return (
             <motion.div
@@ -60,8 +60,8 @@ export function RecentAttempts({ attempts }: Props) {
                     <div
                       className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${
                         attempt.source_type === 'past_paper'
-                          ? 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400'
-                          : 'border-violet-500/30 bg-violet-500/10 text-violet-400'
+                          ? 'ec-tint-info-icon-wrap'
+                          : 'ec-tint-accent-icon-wrap'
                       }`}
                     >
                       {attempt.source_type === 'past_paper' ? (

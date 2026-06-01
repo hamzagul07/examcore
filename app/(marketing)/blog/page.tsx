@@ -56,7 +56,7 @@ export default function BlogIndexPage() {
                 <p className="mt-2 text-base leading-relaxed text-[var(--ec-text-secondary)]">
                   {post.description}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-400">
+                <span className="ec-link mt-4 inline-flex items-center gap-1 text-sm">
                   Read article <ArrowRight className="h-4 w-4" />
                 </span>
               </Link>

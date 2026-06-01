@@ -117,7 +117,7 @@ export function PrivacySection() {
           size="md"
           onClick={() => void handleDelete()}
           disabled={deleteLoading || deleteConfirm !== 'DELETE'}
-          className="border-red-500/40 text-red-400 hover:border-red-500/60"
+          className="ec-btn-secondary border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] ec-score-low hover:border-[color-mix(in_srgb,var(--ec-chip-critical-text)_60%,transparent)]"
         >
           {deleteLoading ? 'Deleting…' : 'Delete my account'}
         </Button>

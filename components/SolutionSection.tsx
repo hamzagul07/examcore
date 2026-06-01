@@ -64,14 +64,14 @@ export function SolutionSection({
         className="ec-card p-5 sm:p-6"
       >
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-            <BookOpen className="h-5 w-5 text-emerald-400" />
+          <div className="ec-tint-success-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
+            <BookOpen className="h-5 w-5 ec-text-brand" />
           </div>
           <div className="flex-1">
-            <p className="font-semibold tracking-tight text-white">
+            <p className="font-semibold tracking-tight text-[var(--ec-text-primary)]">
               Worked solution available
             </p>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[var(--ec-text-secondary)]">
               We&apos;ve already written out a step-by-step solution for this
               question.
             </p>
@@ -102,11 +102,11 @@ export function SolutionSection({
         className="ec-card-brand relative overflow-hidden p-8 text-center sm:p-12"
       >
         <div
-          className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-emerald-500/25 blur-[100px]"
+          className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full ec-glow-orb-lg blur-[100px]"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-violet-500/20 blur-[100px]"
+          className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full ec-glow-orb-accent blur-[100px]"
           aria-hidden="true"
         />
         <div className="relative">
@@ -116,15 +116,15 @@ export function SolutionSection({
           <motion.div
             animate={{ rotate: [0, 5, -5, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/40 bg-emerald-500/15 shadow-[0_0_32px_rgba(16,185,129,0.4)]"
+            className="ec-upload-icon-wrap mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl"
           >
-            <Sparkles className="h-8 w-8 text-emerald-300" />
+            <Sparkles className="h-8 w-8 ec-text-brand" />
           </motion.div>
           <h3 className="text-3xl font-extrabold tracking-tight">
             <span className="gradient-text">Want to see</span>{' '}
             <span className="ec-text-gradient">how it&apos;s done?</span>
           </h3>
-          <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
+          <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-[var(--ec-text-secondary)]">
             Get a step-by-step worked solution to learn from. Generated once,
             saved forever for revision.
           </p>
@@ -152,7 +152,7 @@ export function SolutionSection({
               </>
             )}
           </motion.button>
-          {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
+          {error && <p className="mt-4 text-sm ec-score-low">{error}</p>}
 
           <AnimatePresence>
             {loading && (
@@ -184,12 +184,12 @@ export function SolutionSection({
       className="ec-card p-5 sm:p-7"
     >
       <div className="mb-5 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-          <BookOpen className="h-5 w-5 text-emerald-400" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl border ec-tint-success-icon">
+          <BookOpen className="h-5 w-5" />
         </div>
         <div>
           <p className="ec-label-tech mb-1">WORKED SOLUTION</p>
-          <h2 className="text-2xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
             Step-by-step
           </h2>
         </div>

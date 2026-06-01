@@ -52,11 +52,11 @@ export function AuthShell({
           className="ec-card relative overflow-hidden p-7 sm:p-10"
         >
           <div
-            className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-emerald-500/20 blur-[100px]"
+            className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full ec-glow-orb-lg blur-[100px]"
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute -bottom-24 -left-20 h-56 w-56 rounded-full bg-violet-500/15 blur-[100px]"
+            className="pointer-events-none absolute -bottom-24 -left-20 h-56 w-56 rounded-full ec-glow-orb-accent blur-[100px]"
             aria-hidden="true"
           />
           <div className="relative">{children}</div>
@@ -70,7 +70,7 @@ export function AuthShell({
         >
           <Link
             href={backHref}
-            className="inline-flex items-center gap-1.5 text-sm text-slate-500 transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             {backLabel}

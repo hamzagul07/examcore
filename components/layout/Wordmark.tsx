@@ -13,7 +13,7 @@ export function Wordmark({ className = '', size = 'md' }: WordmarkProps) {
   return (
     <span className={`inline-flex items-center gap-2 ${className}`}>
       <span
-        className={`flex shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-cyan-500 font-extrabold text-white shadow-[0_0_16px_rgba(16,185,129,0.35)] ${iconSize}`}
+        className={`ec-chat-avatar flex shrink-0 items-center justify-center rounded-lg font-extrabold ec-on-brand-text shadow-[var(--ec-btn-glow)] ${iconSize}`}
         aria-hidden
       >
         E

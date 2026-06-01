@@ -53,9 +53,7 @@ export function Card({
 }: CardProps) {
   const variantClass = pickVariant(variant)
   const paddingClass = pickPadding(padding)
-  const hoverClass = hover
-    ? 'transition-shadow duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-8px_rgba(15,23,42,0.16),0_0_0_1px_rgba(255,255,255,0.5)_inset]'
-    : ''
+  const hoverClass = hover ? 'ec-card-lift' : ''
 
   const className_ = cn(variantClass, paddingClass, hoverClass, className)
 

@@ -39,13 +39,13 @@ export function LandingChat() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-dark-800/60 px-6 py-5 backdrop-blur-2xl transition-all hover:border-emerald-500/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
+          className="group flex w-full items-center gap-3 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]/80 px-6 py-5 backdrop-blur-2xl transition-all ec-hover-brand-border"
         >
-          <Sparkles className="h-5 w-5 text-emerald-400 transition-transform group-hover:rotate-12" />
-          <span className="flex-1 text-left text-slate-400 group-hover:text-slate-300">
+          <Sparkles className="h-5 w-5 ec-text-brand transition-transform group-hover:rotate-12" />
+          <span className="flex-1 text-left text-[var(--ec-text-secondary)] transition-colors group-hover:text-[var(--ec-text-primary)]">
             Ask Omni-AI anything...
           </span>
-          <kbd className="hidden items-center gap-1 rounded border border-white/10 bg-white/5 px-2 py-1 font-mono text-xs text-slate-400 md:flex">
+          <kbd className="hidden items-center gap-1 rounded border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-xs text-[var(--ec-text-secondary)] md:flex">
             <span>⌘</span>
             <span>K</span>
           </kbd>
@@ -63,7 +63,7 @@ export function LandingChat() {
         className="fixed inset-0 z-[60] flex items-end justify-center p-0 md:items-center md:p-6"
       >
         <div
-          className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+          className="absolute inset-0 ec-modal-backdrop"
           onClick={() => setIsOpen(false)}
         />
 
@@ -72,12 +72,12 @@ export function LandingChat() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 40, scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="relative h-[85vh] max-h-[800px] w-full overflow-hidden rounded-t-3xl border border-white/10 bg-dark-900 shadow-2xl md:h-[80vh] md:w-[680px] md:rounded-3xl"
+          className="relative h-[85vh] max-h-[800px] w-full overflow-hidden rounded-t-3xl border border-[var(--ec-border)] bg-[var(--ec-surface)] shadow-2xl md:h-[80vh] md:w-[680px] md:rounded-3xl"
         >
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute right-4 top-4 z-10 rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/5"
+            className="absolute right-4 top-4 z-10 rounded-lg p-2 text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)]"
             aria-label="Close chat"
           >
             <X className="h-5 w-5" />

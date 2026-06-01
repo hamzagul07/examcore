@@ -123,7 +123,7 @@ export function ProfileFormFields({
             if (groupSubjects.length === 0) return null
             return (
               <div key={group}>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
                   {group}
                 </p>
                 <SubjectGrid
@@ -153,7 +153,7 @@ function FieldGroup({
     <div>
       <div className="mb-2.5 flex items-baseline justify-between">
         <span className="label-overline">{label}</span>
-        {hint && <span className="text-xs text-slate-500">{hint}</span>}
+        {hint && <span className="text-xs text-[var(--ec-text-secondary)]">{hint}</span>}
       </div>
       {children}
     </div>
@@ -200,7 +200,7 @@ function OptionGrid(props: OptionGridProps) {
             <span>{opt.label}</span>
             {isDisabled && (
               <span
-                className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500"
+                className="rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]"
                 title="Not available yet — we're focused on Cambridge International first"
               >
                 Planned
@@ -245,8 +245,8 @@ function SubjectGrid({
                 aria-hidden="true"
                 className={`flex items-center justify-center rounded-md border transition-colors ${
                   isActive
-                    ? 'border-emerald-500 bg-emerald-500 text-white shadow-[0_0_12px_rgba(16,185,129,0.5)]'
-                    : 'border-white/20 bg-dark-900'
+                    ? 'ec-checkbox-active border'
+                    : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
                 }`}
                 style={{ width: 18, height: 18 }}
               >
@@ -254,7 +254,7 @@ function SubjectGrid({
               </span>
               <span>
                 {opt.label}
-                <span className="ml-1.5 font-mono text-[10px] text-slate-500">
+                <span className="ml-1.5 font-mono text-[10px] text-[var(--ec-text-secondary)]">
                   {opt.code}
                 </span>
               </span>
@@ -269,9 +269,9 @@ function SubjectGrid({
 function optionButtonClass(isActive: boolean, isDisabled: boolean) {
   return `group relative flex items-center justify-between rounded-2xl border px-4 py-3.5 text-left text-sm font-medium transition-all duration-200 ${
     isDisabled
-      ? 'cursor-not-allowed border-white/5 bg-white/[0.02] text-slate-600'
+      ? 'cursor-not-allowed border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)]'
       : isActive
-        ? 'border-emerald-500/50 bg-gradient-to-br from-emerald-500/15 to-emerald-500/5 text-white shadow-[0_0_0_3px_rgba(16,185,129,0.15),0_0_24px_rgba(16,185,129,0.25)]'
-        : 'border-white/10 bg-dark-900/60 text-slate-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-dark-800/70 hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.4)]'
+        ? 'ec-option-active text-[var(--ec-text-primary)]'
+        : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] hover:bg-[var(--ec-brand-muted)] hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.15)]'
   }`
 }

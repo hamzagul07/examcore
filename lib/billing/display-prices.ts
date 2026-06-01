@@ -45,6 +45,7 @@ function pickAmount(
       r.currency === currency &&
       (period === null ? r.billing_period === null : r.billing_period === period)
   )
+  // Prefer synced Stripe/DB amounts so display matches checkout in every currency.
   return match
     ? { amountCents: match.amount_cents, currency, fromConfig: true }
     : { amountCents: fallback, currency, fromConfig: false }

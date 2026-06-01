@@ -59,10 +59,10 @@ function SignUpFormSkeleton() {
   return (
     <AuthShell backLabel="Back to sign in" backHref="/auth/signin">
       <p className="ec-label-tech mb-3">GET STARTED</p>
-      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
         Create your <span className="ec-text-gradient">account</span>
       </h1>
-      <p className="leading-relaxed text-slate-400">Loading...</p>
+      <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
     </AuthShell>
   )
 }
@@ -189,10 +189,10 @@ function SignUpForm() {
       {!sent ? (
         <>
           <p className="ec-label-tech mb-3">GET STARTED</p>
-          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
             Create your <span className="ec-text-gradient">account</span>
           </h1>
-          <p className="mb-6 leading-relaxed text-slate-400">
+          <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
             Pick how you&apos;d like to sign up.
           </p>
 
@@ -255,10 +255,10 @@ function SignUpForm() {
                 <p
                   className={`mt-1.5 text-xs ${
                     password.length === 0
-                      ? 'text-slate-500'
+                      ? 'text-[var(--ec-text-secondary)]'
                       : passwordValid
-                      ? 'text-emerald-400'
-                      : 'text-amber-400'
+                      ? 'ec-score-high'
+                      : 'ec-score-mid'
                   }`}
                 >
                   {password.length === 0
@@ -279,7 +279,7 @@ function SignUpForm() {
                   autoComplete="new-password"
                 />
                 {!passwordsMatch && (
-                  <p className="mt-1.5 text-xs text-red-400">
+                  <p className="mt-1.5 text-xs ec-score-low">
                     Passwords don&apos;t match.
                   </p>
                 )}
@@ -296,11 +296,11 @@ function SignUpForm() {
             </form>
           )}
 
-          <p className="mt-6 text-center text-sm text-slate-400">
+          <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Already have an account?{' '}
             <Link
               href="/auth/signin"
-              className="font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+              className="ec-link"
             >
               Sign in
             </Link>
@@ -308,15 +308,15 @@ function SignUpForm() {
         </>
       ) : (
         <div className="space-y-3 text-center">
-          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.3)]">
-            <Mail className="h-8 w-8 text-emerald-400" />
+          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border ec-tint-success-icon">
+            <Mail className="h-8 w-8 ec-text-brand" />
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
             Check your email
           </h2>
-          <p className="leading-relaxed text-slate-400">
+          <p className="leading-relaxed text-[var(--ec-text-secondary)]">
             We sent a confirmation link to{' '}
-            <strong className="text-white">{email}</strong>. Click it to finish
+            <strong className="text-[var(--ec-text-primary)]">{email}</strong>. Click it to finish
             setting up your account.
           </p>
         </div>

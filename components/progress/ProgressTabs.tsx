@@ -61,7 +61,7 @@ export function ProgressTabs({ insights, journey, topics, attempts }: Props) {
       <div
         role="tablist"
         aria-label="Progress views"
-        className="-mx-4 mb-6 flex gap-1 overflow-x-auto px-4 pb-px sm:mx-0 sm:px-0"
+        className="-mx-4 mb-6 flex gap-1 overflow-x-auto px-4 pb-px [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,black_90%,transparent)] sm:[mask-image:none]"
       >
         {TABS.map((tab) => {
           const selected = tab.key === active

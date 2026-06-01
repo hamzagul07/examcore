@@ -65,18 +65,18 @@ export function SpeedAccuracy({ attempts }: Props) {
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
           <div className="mb-2 flex items-center gap-2">
-            <Gauge className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+            <Gauge className="h-4 w-4 text-[var(--ec-chip-info-text)]" aria-hidden="true" />
             <p className="ec-label-tech ec-label-tech-cyan">SPEED VS ACCURACY</p>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-3xl">
             How efficient are you under pressure?
           </h2>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
             Each attempt is plotted by time-per-mark and accuracy.
             {median !== null && (
               <>
                 {' '}
-                Median pace: <span className="font-mono font-semibold text-cyan-400">
+                Median pace: <span className="font-mono font-semibold text-[var(--ec-chip-info-text)]">
                   {formatPerMark(median)}
                 </span>{' '}
                 per mark.
@@ -85,7 +85,7 @@ export function SpeedAccuracy({ attempts }: Props) {
           </p>
         </div>
         {hasTimedData && (
-          <div className="hidden items-center gap-1.5 rounded-full border border-white/10 bg-dark-900/60 px-3 py-1.5 font-mono text-xs font-semibold text-slate-400 sm:inline-flex">
+          <div className="hidden items-center gap-1.5 rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-3 py-1.5 font-mono text-xs font-semibold text-[var(--ec-text-secondary)] sm:inline-flex">
             <Clock className="h-3.5 w-3.5" aria-hidden="true" />
             {timed.length} timed attempt{timed.length === 1 ? '' : 's'}
           </div>
@@ -175,28 +175,28 @@ function QuadrantCard({
     { ring: string; badge: string; icon: string; tone: string }
   > = {
     emerald: {
-      ring: 'border-emerald-500/30',
-      badge: 'bg-emerald-950 text-emerald-400 border-emerald-900',
-      icon: 'text-emerald-400 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.3)]',
-      tone: 'hover:shadow-[0_10px_40px_rgba(16,185,129,0.18)]',
+      ring: 'border',
+      badge: 'ec-tint-success-chip',
+      icon: 'ec-tint-success-icon',
+      tone: 'hover:shadow-[0_10px_40px_color-mix(in_srgb,var(--ec-chip-success-text)_18%,transparent)]',
     },
     amber: {
-      ring: 'border-amber-500/30',
-      badge: 'bg-amber-950 text-amber-400 border-amber-900',
-      icon: 'text-amber-400 bg-amber-500/10 shadow-[0_0_20px_rgba(245,158,11,0.3)]',
-      tone: 'hover:shadow-[0_10px_40px_rgba(245,158,11,0.18)]',
+      ring: 'border',
+      badge: 'ec-tint-warning-chip',
+      icon: 'ec-tint-warning-icon',
+      tone: 'hover:shadow-[0_10px_40px_color-mix(in_srgb,var(--ec-chip-warning-text)_18%,transparent)]',
     },
     orange: {
-      ring: 'border-orange-500/30',
-      badge: 'bg-orange-950 text-orange-400 border-orange-900',
-      icon: 'text-orange-400 bg-orange-500/10 shadow-[0_0_20px_rgba(249,115,22,0.3)]',
-      tone: 'hover:shadow-[0_10px_40px_rgba(249,115,22,0.18)]',
+      ring: 'border',
+      badge: 'ec-tint-warning-chip',
+      icon: 'ec-tint-warning-icon',
+      tone: 'hover:shadow-[0_10px_40px_color-mix(in_srgb,var(--ec-chip-warning-text)_18%,transparent)]',
     },
     red: {
-      ring: 'border-red-500/30',
-      badge: 'bg-red-950 text-red-400 border-red-900',
-      icon: 'text-red-400 bg-red-500/10 shadow-[0_0_20px_rgba(239,68,68,0.3)]',
-      tone: 'hover:shadow-[0_10px_40px_rgba(239,68,68,0.18)]',
+      ring: 'border',
+      badge: 'ec-tint-critical-chip',
+      icon: 'ec-tint-critical-icon',
+      tone: 'hover:shadow-[0_10px_40px_color-mix(in_srgb,var(--ec-chip-critical-text)_18%,transparent)]',
     },
   }
   const t = accents[accent]
@@ -215,17 +215,17 @@ function QuadrantCard({
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="text-base font-bold tracking-tight text-white">
+            <h3 className="text-base font-bold tracking-tight text-[var(--ec-text-primary)]">
               {title}
             </h3>
             <span
-              className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-semibold ${t.badge}`}
+              className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${t.badge}`}
             >
               {count}
             </span>
           </div>
-          <p className="text-xs font-medium text-slate-500">{subtitle}</p>
-          <p className="mt-2 text-sm leading-relaxed text-slate-400">
+          <p className="text-xs font-medium text-[var(--ec-text-secondary)]">{subtitle}</p>
+          <p className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
             {message}
           </p>
         </div>

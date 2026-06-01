@@ -64,8 +64,7 @@ export function MarkAgainButton({
       whileHover={pending ? undefined : { y: -2, scale: 1.02 }}
       whileTap={pending ? undefined : { y: 0, scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-      className="ec-btn-primary w-full justify-center text-base sm:w-auto"
-      style={{ padding: '16px 28px' }}
+      className="ec-btn-primary w-full justify-center px-7 py-4 text-base sm:w-auto"
     >
       {pending ? (
         <>

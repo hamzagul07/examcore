@@ -16,7 +16,7 @@ export function MethodTabs({
   setError: (s: string) => void
 }) {
   return (
-    <div className="grid grid-cols-2 gap-1 rounded-2xl border border-white/10 bg-dark-900/70 p-1 backdrop-blur">
+    <div className="grid grid-cols-2 gap-1 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-1 backdrop-blur">
       <TabButton
         active={method === 'magic'}
         onClick={() => {
@@ -54,8 +54,8 @@ function TabButton({
       onClick={onClick}
       className={`rounded-xl px-3 py-2 text-sm font-semibold tracking-tight transition-all duration-200 active:scale-[0.98] ${
         active
-          ? 'bg-gradient-to-br from-emerald-500/20 to-emerald-500/10 text-white shadow-[0_0_0_1px_rgba(16,185,129,0.4),0_0_20px_rgba(16,185,129,0.2)]'
-          : 'text-slate-400 hover:text-white'
+          ? 'ec-tab-active'
+          : 'text-[var(--ec-text-secondary)] hover:text-[var(--ec-text-primary)]'
       }`}
     >
       {children}
@@ -65,7 +65,7 @@ function TabButton({
 
 export function ErrorBox({ message }: { message: string }) {
   return (
-    <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-3.5 text-sm leading-relaxed text-red-300 backdrop-blur">
+    <div className="rounded-2xl border ec-tint-critical-chip p-3.5 text-sm leading-relaxed backdrop-blur">
       {message}
     </div>
   )
@@ -104,8 +104,7 @@ export function SubmitButton({
       onClick={() => {
         if (!isDisabled) triggerPrimaryHaptic()
       }}
-      className="ec-btn-primary w-full justify-center"
-      style={{ padding: '14px 24px' }}
+      className="ec-btn-primary w-full justify-center px-6 py-3.5"
     >
       {loading ? (
         <>

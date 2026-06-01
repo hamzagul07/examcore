@@ -8,7 +8,7 @@ export default function TeacherLayout({
   return (
     <div className="min-h-screen">
       <TeacherNav />
-      <main>{children}</main>
+      <main className="app-shell min-h-[calc(100vh-4rem)]">{children}</main>
     </div>
   )
 }

@@ -17,17 +17,13 @@ export type ApproachingLimitBannerProps = {
 export function ApproachingLimitBanner({ used, cap, onDismiss }: ApproachingLimitBannerProps) {
   return (
     <div
-      className="mb-5 flex items-center gap-3 rounded-2xl border px-4 py-3"
-      style={{
-        borderColor: 'color-mix(in srgb, #f59e0b 40%, transparent)',
-        background: 'color-mix(in srgb, #f59e0b 12%, transparent)',
-      }}
+      className="mb-5 flex items-center gap-3 rounded-2xl border ec-highlight-warning-panel px-4 py-3"
       role="status"
     >
-      <AlertTriangle className="h-5 w-5 shrink-0 text-amber-400" />
+      <AlertTriangle className="h-5 w-5 shrink-0 ec-score-mid" />
       <p className="min-w-0 flex-1 text-sm text-[var(--ec-text-primary)]">
         You&apos;ve used {used} of your {cap} questions this month.{' '}
-        <Link href="/pricing" className="font-semibold text-emerald-400 hover:text-emerald-300">
+        <Link href="/pricing" className="ec-link">
           See plans →
         </Link>
       </p>

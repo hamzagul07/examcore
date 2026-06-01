@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { ArrowRight, Calendar } from 'lucide-react'
+import { Calendar } from 'lucide-react'
 import { examCountdown, timeGreeting } from '@/lib/dashboard/exam-date'
 import { ExamCountdownHero } from './ExamCountdownHero'
+import { MarkQuestionCta } from './MarkQuestionCta'
 
 type Props = {
   firstName: string
@@ -58,13 +59,7 @@ export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
 
       {countdown.kind !== 'future' && (
         <>
-          <Link
-            href="/mark"
-            className="ec-btn-primary inline-flex w-full justify-center sm:w-auto"
-          >
-            Mark a question
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          <MarkQuestionCta />
 
           {weeklyAttempts > 0 && (
             <p className="text-caption mt-3">

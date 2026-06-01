@@ -1,8 +1,10 @@
 'use client'
 
+import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { RotateCcw } from 'lucide-react'
+import { RotateCcw, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
 type Props = {
   /** Subject code, e.g. "9709" */
@@ -25,6 +27,7 @@ export function MarkAgainButton({
   questionNumber,
 }: Props) {
   const router = useRouter()
+  const [pending, startTransition] = useTransition()
 
   function handleClick() {
     if (typeof window !== 'undefined') {
@@ -45,21 +48,36 @@ export function MarkAgainButton({
         // localStorage may be unavailable; navigation still works without prefill.
       }
     }
-    router.push('/mark')
+    triggerPrimaryHaptic()
+    startTransition(() => {
+      router.push('/mark')
+    })
   }
 
   return (
     <motion.button
       type="button"
       onClick={handleClick}
-      whileHover={{ y: -2, scale: 1.02 }}
-      whileTap={{ y: 0, scale: 0.97 }}
+      disabled={pending}
+      aria-busy={pending || undefined}
+      data-loading={pending ? 'true' : undefined}
+      whileHover={pending ? undefined : { y: -2, scale: 1.02 }}
+      whileTap={pending ? undefined : { y: 0, scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 400, damping: 18 }}
       className="ec-btn-primary w-full justify-center text-base sm:w-auto"
       style={{ padding: '16px 28px' }}
     >
-      <RotateCcw className="h-4 w-4" />
-      Mark this question again
+      {pending ? (
+        <>
+          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+          Opening...
+        </>
+      ) : (
+        <>
+          <RotateCcw className="h-4 w-4" />
+          Mark this question again
+        </>
+      )}
     </motion.button>
   )
 }

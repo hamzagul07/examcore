@@ -566,18 +566,22 @@ body {
     color: #fffdf9;
   }
 
-  .ec-btn-primary:hover:not(:disabled) {
+  .ec-btn-primary:hover:not(:disabled):not([data-loading='true']) {
     box-shadow: var(--ec-btn-glow-hover);
     transform: translateY(-1px);
   }
 
-  .ec-btn-primary:active:not(:disabled) {
-    transform: translateY(0);
+  .ec-btn-primary:active:not(:disabled):not([data-loading='true']) {
+    transform: scale(0.98) translateY(0);
+    filter: brightness(0.95);
   }
 
-  .ec-btn-primary:disabled {
+  .ec-btn-primary:disabled,
+  .ec-btn-primary[data-loading='true'],
+  .ec-btn-primary[aria-busy='true'] {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.6;
+    pointer-events: none;
   }
 
   .ec-btn-secondary {
@@ -598,15 +602,23 @@ body {
     cursor: pointer;
   }
 
-  .ec-btn-secondary:hover:not(:disabled) {
+  .ec-btn-secondary:hover:not(:disabled):not([data-loading='true']) {
     background: var(--ec-surface-raised);
     border-color: color-mix(in srgb, var(--ec-brand) 25%, transparent);
     transform: translateY(-1px);
   }
 
-  .ec-btn-secondary:disabled {
+  .ec-btn-secondary:active:not(:disabled):not([data-loading='true']) {
+    transform: scale(0.98) translateY(0);
+    filter: brightness(0.95);
+  }
+
+  .ec-btn-secondary:disabled,
+  .ec-btn-secondary[data-loading='true'],
+  .ec-btn-secondary[aria-busy='true'] {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.6;
+    pointer-events: none;
   }
 
   .ec-btn-ghost {
@@ -627,9 +639,31 @@ body {
     cursor: pointer;
   }
 
-  .ec-btn-ghost:hover:not(:disabled) {
+  .ec-btn-ghost:hover:not(:disabled):not([data-loading='true']) {
     background: var(--ec-brand-muted);
     color: var(--ec-text-primary);
+  }
+
+  .ec-btn-ghost:active:not(:disabled):not([data-loading='true']) {
+    transform: scale(0.98);
+    filter: brightness(0.95);
+  }
+
+  .ec-btn-ghost:disabled,
+  .ec-btn-ghost[data-loading='true'],
+  .ec-btn-ghost[aria-busy='true'] {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ec-btn-primary:active:not(:disabled):not([data-loading='true']),
+    .ec-btn-secondary:active:not(:disabled):not([data-loading='true']),
+    .ec-btn-ghost:active:not(:disabled):not([data-loading='true']),
+    .ec-pill:active {
+      transform: none;
+    }
   }
 
   /* ============ Chips ============ */
@@ -691,6 +725,11 @@ body {
   .ec-pill:hover {
     border-color: color-mix(in srgb, var(--ec-brand) 30%, transparent);
     background: var(--ec-brand-muted);
+  }
+
+  .ec-pill:active {
+    transform: scale(0.98);
+    filter: brightness(0.95);
   }
 
   /* ============ Inputs ============ */

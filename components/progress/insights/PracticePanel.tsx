@@ -3,6 +3,7 @@ import { ArrowRight, Dumbbell, ChevronRight } from 'lucide-react'
 import type { Recommendation, DashboardState } from '@/lib/insights/types'
 import type { ActionPlanItem } from '@/lib/action-plan'
 import { drillHref } from '@/lib/insights/drill-link'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type Props = {
   state: DashboardState
@@ -47,13 +48,14 @@ export function PracticePanel({ state, recommendations, actionItems, generic }: 
                   <p className="ec-break-anywhere mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
                     {rec.reason}
                   </p>
-                  <Link
+                  <LoadingLink
                     href={drillHref(rec)}
+                    loadingText="Opening..."
                     className="ec-btn-secondary mt-3 inline-flex text-sm"
                   >
                     Drill this
                     <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                  </Link>
+                  </LoadingLink>
                 </li>
               ))}
             </ul>

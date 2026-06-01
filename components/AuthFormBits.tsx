@@ -1,6 +1,8 @@
 'use client'
 
 import type React from 'react'
+import { Loader2 } from 'lucide-react'
+import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
 export type AuthMethod = 'magic' | 'password'
 
@@ -50,7 +52,7 @@ function TabButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-xl px-3 py-2 text-sm font-semibold tracking-tight transition-all duration-200 ${
+      className={`rounded-xl px-3 py-2 text-sm font-semibold tracking-tight transition-all duration-200 active:scale-[0.98] ${
         active
           ? 'bg-gradient-to-br from-emerald-500/20 to-emerald-500/10 text-white shadow-[0_0_0_1px_rgba(16,185,129,0.4),0_0_20px_rgba(16,185,129,0.2)]'
           : 'text-slate-400 hover:text-white'
@@ -97,14 +99,19 @@ export function SubmitButton({
     <button
       type="submit"
       disabled={isDisabled}
+      aria-busy={loading || undefined}
+      data-loading={loading ? 'true' : undefined}
+      onClick={() => {
+        if (!isDisabled) triggerPrimaryHaptic()
+      }}
       className="ec-btn-primary w-full justify-center"
       style={{ padding: '14px 24px' }}
     >
       {loading ? (
-        <span className="inline-flex items-center gap-2">
-          <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+        <>
+          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
           {loadingLabel}
-        </span>
+        </>
       ) : (
         idleLabel
       )}

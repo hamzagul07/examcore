@@ -280,10 +280,15 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
                       type="button"
                       onClick={() => void openPortal()}
                       disabled={portalState === 'loading'}
+                      aria-busy={portalState === 'loading' || undefined}
+                      data-loading={portalState === 'loading' ? 'true' : undefined}
                       className="ec-btn-secondary inline-flex w-full justify-center md:w-auto"
                     >
                       {portalState === 'loading' ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                          Opening...
+                        </>
                       ) : (
                         <>
                           {stripePortalButtonLabel(portalState, 'Manage')}
@@ -296,10 +301,15 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
                       type="button"
                       onClick={() => checkout(tier.product!, period)}
                       disabled={busy === tier.product}
+                      aria-busy={busy === tier.product || undefined}
+                      data-loading={busy === tier.product ? 'true' : undefined}
                       className="ec-btn-primary inline-flex w-full justify-center md:w-auto"
                     >
                       {busy === tier.product ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                          Opening checkout...
+                        </>
                       ) : (
                         `Get ${tier.name}`
                       )}

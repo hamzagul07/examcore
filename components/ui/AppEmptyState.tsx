@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { EmptyStateIllustration } from '@/components/ui/EmptyStateIllustration'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type AppEmptyStateProps = {
   title: string
@@ -31,9 +31,13 @@ export function AppEmptyState({
         <p className="text-body mx-auto mt-3 max-w-sm text-[var(--ec-text-secondary)]">
           {body}
         </p>
-        <Link href={ctaHref} className="ec-btn-primary mt-7 inline-flex min-h-[48px]">
+        <LoadingLink
+          href={ctaHref}
+          loadingText="Opening..."
+          className="ec-btn-primary mt-7 inline-flex min-h-[48px]"
+        >
           {ctaLabel} <ArrowRight className="h-4 w-4" />
-        </Link>
+        </LoadingLink>
       </div>
     </div>
   )

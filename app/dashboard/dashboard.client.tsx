@@ -2,7 +2,6 @@
 
 import { Children, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { DashboardPresence } from '@/components/dashboard/presence/DashboardPresence'
 
 const container = {
   hidden: { opacity: 0 },
@@ -21,24 +20,22 @@ const item = {
   },
 }
 
-/** Dashboard entry with staggered section reveal + ambient presence layer. */
+/** Dashboard entry with staggered section reveal. */
 export function DashboardEntry({ children }: { children: ReactNode }) {
   const reduce = useReducedMotion()
 
   if (reduce) {
-    return <DashboardPresence>{children}</DashboardPresence>
+    return <>{children}</>
   }
 
   return (
-    <DashboardPresence>
-      <motion.div variants={container} initial="hidden" animate="show">
-        {Children.toArray(children).map((child, i) => (
-          <motion.div key={i} variants={item}>
-            {child}
-          </motion.div>
-        ))}
-      </motion.div>
-    </DashboardPresence>
+    <motion.div variants={container} initial="hidden" animate="show">
+      {Children.toArray(children).map((child, i) => (
+        <motion.div key={i} variants={item}>
+          {child}
+        </motion.div>
+      ))}
+    </motion.div>
   )
 }
 

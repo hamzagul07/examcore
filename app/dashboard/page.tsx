@@ -13,22 +13,18 @@ import { getAttemptSubjectCode } from '@/lib/syllabi/attempts'
 import { DashboardEntry } from './dashboard.client'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
-import { RecentAttempts, type RecentAttempt } from '@/components/dashboard/RecentAttempts'
-import { StudyJournal } from '@/components/dashboard/StudyJournal'
+import { StudyNotebook } from '@/components/dashboard/StudyNotebook'
 import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { computeStreak } from '@/lib/dashboard/streak'
-import { attemptsThisWeek } from '@/lib/dashboard/home-stats'
+import { attemptsThisMonth, attemptsThisWeek, bestSubjectThisWeek } from '@/lib/dashboard/home-stats'
+import { displaySubjectName } from '@/lib/dashboard/subject-display'
 import { resolveDashboardState, type Recommendation } from '@/lib/insights/types'
 import {
   fetchGenericRecommendations,
   fetchTopicRecommendations,
   topicTargetsFromMasteries,
 } from '@/lib/insights/recommendations'
-import {
-  buildJournalPages,
-  type JournalAttemptInput,
-} from '@/lib/dashboard/journal-data'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -82,37 +78,22 @@ export default async function DashboardPage() {
     )
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
-    .limit(500)
+    .limit(200)
 
   const attemptsList = attempts || []
   const timestamps = attemptsList.map((a) => new Date(a.created_at))
   const streak = computeStreak(timestamps)
   const weeklyCount = attemptsThisWeek(timestamps)
+  const monthlyCount = attemptsThisMonth(timestamps)
+  const bestSubjectCode = bestSubjectThisWeek(attemptsList)
+  const bestSubjectLabel = displaySubjectName(bestSubjectCode)
 
-  const journalInputs: JournalAttemptInput[] = attemptsList.map((attempt) => ({
-    ...attempt,
-    syllabus_tags: attempt.syllabus_tags as string[] | null,
-  })) as JournalAttemptInput[]
-
-  const journalPages = buildJournalPages(journalInputs)
-
-  const recentRows: RecentAttempt[] = attemptsList.slice(0, 5).map((attempt) => {
-    const percentage = Math.round((attempt.marks_earned / attempt.total_marks) * 100)
-    return {
-      id: attempt.id,
-      marks_earned: attempt.marks_earned,
-      total_marks: attempt.total_marks,
-      source_type: attempt.source_type,
-      question_text: attempt.question_text,
-      created_at: attempt.created_at,
-      label: attemptLabel(attempt),
-      dateStr: new Date(attempt.created_at).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-      }),
-      percentage,
-    }
-  })
+  const notebookRecent = attemptsList.slice(0, 3).map((attempt) => ({
+    id: attempt.id,
+    label: attemptLabel(attempt),
+    marks_earned: attempt.marks_earned,
+    total_marks: attempt.total_marks,
+  }))
 
   const profileSubjects: string[] = profile?.subjects?.length
     ? profile.subjects
@@ -183,13 +164,14 @@ export default async function DashboardPage() {
             weeklyAttempts={weeklyCount}
           />
 
-          <StudyJournal
-            userId={user.id}
-            firstName={greetingName}
-            pages={journalPages}
+          <StudyNotebook
+            monthlyAttempts={monthlyCount}
+            streak={streak}
+            bestSubjectLabel={bestSubjectLabel}
+            recentAttempts={notebookRecent}
+            recommendations={recommendations}
+            isEmpty={isEmpty}
           />
-
-          {!isEmpty && <RecentAttempts attempts={recentRows} />}
 
           {!isEmpty && (
             <div className="grid gap-8 lg:grid-cols-2 lg:items-start">

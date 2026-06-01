@@ -16,6 +16,7 @@ type Body = {
   classroom_name?: string
   stage?: UserStage
   primary_goal?: PrimaryGoal
+  exam_date?: string | null
 }
 
 const VALID_STAGES = new Set<UserStage>(['as_level', 'a2_level', 'other'])
@@ -100,6 +101,11 @@ export async function POST(request: Request) {
       ? body.primary_goal
       : null
 
+  let examDate: string | null = null
+  if (typeof body.exam_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(body.exam_date)) {
+    examDate = body.exam_date
+  }
+
   const { error } = await supabase.from('user_profiles').upsert(
     {
       id: user.id,
@@ -110,6 +116,7 @@ export async function POST(request: Request) {
       role,
       stage,
       primary_goal: primaryGoal,
+      exam_date: examDate,
       onboarded: true,
       onboarding_completed: true,
       updated_at: new Date().toISOString(),

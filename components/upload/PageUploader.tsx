@@ -327,12 +327,13 @@ export function PageUploader({
 
       {pages.length > 0 && (
         <div className="space-y-3">
-          <p className="ec-label-tech">YOUR PAGES — DRAG TO REORDER</p>
+          <p className="ec-label-tech">YOUR PAGES — REORDER</p>
           {pages.map((page, index) => (
             <UploadPageCard
               key={page.id}
               page={page}
               index={index}
+              total={pages.length}
               showQuestionAssign={showQuestionAssign}
               questionOptions={questionOptions}
               onRemove={() =>
@@ -349,6 +350,8 @@ export function PageUploader({
                 retakeTargetRef.current = page.id
                 cameraInputRef.current?.click()
               }}
+              onMoveUp={() => reorder(index, index - 1)}
+              onMoveDown={() => reorder(index, index + 1)}
               onDragStart={() => setDragIndex(index)}
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => {

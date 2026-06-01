@@ -9,6 +9,7 @@ import {
   type SyllabusParent,
 } from './syllabi'
 import type { SyllabusCode } from './syllabus'
+import type { ErrorClassificationDetail } from './error-classifications'
 
 export interface AttemptLite {
   id: string
@@ -19,6 +20,8 @@ export interface AttemptLite {
   time_spent_seconds?: number | null
   question_text?: string | null
   source_type?: string | null
+  /** Per-mark error labels from the marking pipeline; powers the Patterns panel. */
+  error_classifications?: ErrorClassificationDetail[] | null
 }
 
 export type MasteryLevel =

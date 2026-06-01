@@ -57,6 +57,17 @@ export const ecMotion = {
   themeTransition: '500ms ease',
 } as const
 
+export const ecTouch = {
+  min: '44px',
+} as const
+
+export const ecZIndex = {
+  sticky: 50,
+  overlay: 60,
+  modal: 90,
+  toast: 100,
+} as const
+
 export const ecTypography = {
   display: {
     fontFamily: 'var(--font-sans)',

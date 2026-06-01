@@ -1,6 +1,6 @@
 'use client'
 
-import { GripVertical, X, RotateCcw, Loader2 } from 'lucide-react'
+import { GripVertical, X, RotateCcw, Loader2, ChevronUp, ChevronDown } from 'lucide-react'
 import { formatQuestionLabel } from '@/lib/marking/page-detection'
 import { formatFileSize } from '@/lib/upload/upload-limits'
 
@@ -27,22 +27,28 @@ export type UploadPage = {
 export function UploadPageCard({
   page,
   index,
+  total,
   showQuestionAssign,
   questionOptions,
   onRemove,
   onQuestionChange,
   onRetake,
+  onMoveUp,
+  onMoveDown,
   onDragStart,
   onDragOver,
   onDrop,
 }: {
   page: UploadPage
   index: number
+  total: number
   showQuestionAssign?: boolean
   questionOptions: string[]
   onRemove: () => void
   onQuestionChange: (q: string | null) => void
   onRetake: () => void
+  onMoveUp?: () => void
+  onMoveDown?: () => void
   onDragStart: () => void
   onDragOver: (e: React.DragEvent) => void
   onDrop: () => void
@@ -78,13 +84,38 @@ export function UploadPageCard({
       onDrop={onDrop}
       className="ec-card flex gap-3 p-3 sm:p-4"
     >
-      <button
-        type="button"
-        className="mt-1 shrink-0 cursor-grab touch-none text-slate-500 hover:text-slate-300 active:cursor-grabbing"
-        aria-label="Drag to reorder"
-      >
-        <GripVertical className="h-5 w-5" />
-      </button>
+      <div className="flex shrink-0 flex-col items-center gap-1">
+        <button
+          type="button"
+          className="hidden min-h-[44px] min-w-[44px] cursor-grab touch-none items-center justify-center text-slate-500 hover:text-slate-300 active:cursor-grabbing sm:flex"
+          aria-label="Drag to reorder"
+          tabIndex={-1}
+        >
+          <GripVertical className="h-5 w-5" />
+        </button>
+        {onMoveUp && (
+          <button
+            type="button"
+            onClick={onMoveUp}
+            disabled={index === 0}
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-white/5 hover:text-slate-300 disabled:opacity-30 sm:hidden"
+            aria-label="Move page up"
+          >
+            <ChevronUp className="h-5 w-5" />
+          </button>
+        )}
+        {onMoveDown && (
+          <button
+            type="button"
+            onClick={onMoveDown}
+            disabled={index >= total - 1}
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-white/5 hover:text-slate-300 disabled:opacity-30 sm:hidden"
+            aria-label="Move page down"
+          >
+            <ChevronDown className="h-5 w-5" />
+          </button>
+        )}
+      </div>
 
       <div className="relative h-20 w-16 shrink-0 overflow-hidden rounded-xl border border-white/10 sm:h-24 sm:w-20">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -126,7 +157,7 @@ export function UploadPageCard({
               onChange={(e) =>
                 onQuestionChange(e.target.value === '' ? null : e.target.value)
               }
-              className="ec-input select-chevron w-full appearance-none py-2 text-sm"
+              className="ec-input select-chevron min-h-[44px] w-full appearance-none py-2 text-sm"
             >
               <option value="">Unassigned</option>
               {questionOptions.map((q) => (
@@ -147,7 +178,7 @@ export function UploadPageCard({
         <button
           type="button"
           onClick={onRetake}
-          className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-emerald-400 hover:text-emerald-300"
+          className="mt-2 inline-flex min-h-[44px] items-center gap-1 text-xs font-medium text-emerald-400 hover:text-emerald-300"
         >
           <RotateCcw className="h-3.5 w-3.5" />
           Retake
@@ -157,7 +188,7 @@ export function UploadPageCard({
       <button
         type="button"
         onClick={onRemove}
-        className="shrink-0 rounded-lg p-1.5 text-slate-500 transition hover:bg-red-500/10 hover:text-red-400"
+        className="flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-lg text-slate-500 transition hover:bg-red-500/10 hover:text-red-400"
         aria-label="Remove page"
       >
         <X className="h-5 w-5" />

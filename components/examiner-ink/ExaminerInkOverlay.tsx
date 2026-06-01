@@ -84,7 +84,7 @@ export function ExaminerInkOverlay({
     <div className="space-y-5">
       <div
         ref={containerRef}
-        className="relative inline-block w-full overflow-hidden rounded-2xl border border-white/10 bg-dark-900/40 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.6)]"
+        className="relative inline-block w-full overflow-visible rounded-2xl border border-white/10 bg-dark-900/40 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.6)] sm:overflow-hidden"
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- we don't know the image dimensions, and next/image's sizing breaks the percentage-based overlay math. */}
         <img

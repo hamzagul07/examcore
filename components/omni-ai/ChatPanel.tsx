@@ -287,7 +287,7 @@ export function ChatPanel({
               <button
                 type="button"
                 onClick={clearChat}
-                className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/5"
+                className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5"
                 title="Clear chat"
               >
                 <RotateCcw className="h-4 w-4" />
@@ -312,7 +312,7 @@ export function ChatPanel({
                     key={s}
                     type="button"
                     onClick={() => sendMessage(s)}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-300 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-300"
+                    className="min-h-[44px] rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-300 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-300"
                   >
                     {s}
                   </button>

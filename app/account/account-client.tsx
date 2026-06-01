@@ -15,6 +15,7 @@ type InitialProfile = {
   board: string
   level: string
   subjects: string[]
+  exam_date: string
 }
 
 type UsageRow = {
@@ -89,9 +90,9 @@ function SectionHeader({
 }) {
   return (
     <div className="mb-6">
-      <h2 className="text-h3 tracking-tight text-slate-900">{title}</h2>
+      <h2 className="text-h3 tracking-tight text-[var(--ec-text-primary)]">{title}</h2>
       {description && (
-        <p className="mt-1 text-sm leading-relaxed text-slate-600">{description}</p>
+        <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{description}</p>
       )}
     </div>
   )
@@ -102,6 +103,7 @@ function ProfileSection({ initialProfile }: { initialProfile: InitialProfile }) 
   const [board, setBoard] = useState(initialProfile.board)
   const [level, setLevel] = useState(initialProfile.level)
   const [subjects, setSubjects] = useState<string[]>(initialProfile.subjects)
+  const [examDate, setExamDate] = useState(initialProfile.exam_date)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
@@ -120,6 +122,7 @@ function ProfileSection({ initialProfile }: { initialProfile: InitialProfile }) 
         board,
         level,
         subjects,
+        exam_date: examDate || null,
       }),
     })
 
@@ -149,6 +152,8 @@ function ProfileSection({ initialProfile }: { initialProfile: InitialProfile }) 
           setLevel={setLevel}
           subjects={subjects}
           setSubjects={setSubjects}
+          examDate={examDate}
+          setExamDate={setExamDate}
         />
 
         {errorMsg && <ErrorBox message={errorMsg} />}
@@ -311,14 +316,14 @@ function BillingSection({ billing }: { billing: BillingInfo }) {
             <p className="label-overline mb-2 text-slate-500">Recent activity</p>
             <ul className="divide-y divide-white/5">
               {billing.recentUsage.map((u) => (
-                <li key={u.id} className="flex items-center justify-between py-2 text-sm">
-                  <span className="text-slate-200">
+                <li key={u.id} className="flex items-center justify-between gap-3 py-2 text-sm">
+                  <span className="min-w-0 truncate text-slate-200">
                     {u.eventType === 'mark_whole_paper' ? 'Whole paper' : 'Single question'}
                     {u.source === 'credits' && (
                       <span className="ml-2 text-xs text-emerald-400">(credit)</span>
                     )}
                   </span>
-                  <span className="text-xs text-slate-500">
+                  <span className="shrink-0 text-xs text-slate-500">
                     {new Date(u.createdAt).toLocaleDateString(undefined, {
                       month: 'short',
                       day: 'numeric',
@@ -346,14 +351,16 @@ function BillingSection({ billing }: { billing: BillingInfo }) {
           <Button
             variant="secondary"
             size="md"
+            fullWidth
+            className="sm:w-auto"
             onClick={openPortal}
             isLoading={loading}
             loadingText="Opening..."
           >
             Manage subscription
           </Button>
-          <Link href="/pricing" className="inline-flex">
-            <Button variant="primary" size="md" type="button">
+          <Link href="/pricing" className="inline-flex w-full sm:w-auto">
+            <Button variant="primary" size="md" type="button" fullWidth className="sm:w-auto">
               View pricing
             </Button>
           </Link>

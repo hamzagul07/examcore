@@ -110,7 +110,7 @@ export function CreditChip() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="flex min-h-[36px] max-w-[min(100vw-8rem,20rem)] items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors"
+        className="flex min-h-[44px] max-w-[min(100vw-8rem,20rem)] items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-semibold transition-colors"
         style={{
           borderColor: 'var(--ec-border)',
           color: 'var(--ec-text-secondary)',

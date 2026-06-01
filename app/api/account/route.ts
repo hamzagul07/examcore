@@ -11,6 +11,7 @@ type Body = {
   board?: string
   level?: string
   subjects?: string[]
+  exam_date?: string | null
 }
 
 export async function POST(request: Request) {
@@ -68,6 +69,13 @@ export async function POST(request: Request) {
       ? body.full_name.trim().slice(0, 80)
       : null
 
+  let examDate: string | null = null
+  if (body.exam_date === null || body.exam_date === '') {
+    examDate = null
+  } else if (typeof body.exam_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(body.exam_date)) {
+    examDate = body.exam_date
+  }
+
   // Account edits should not silently un-onboard a user. Preserve onboarded=true
   // (which is also our gate for /onboarding redirects).
   const { error } = await supabase
@@ -79,6 +87,7 @@ export async function POST(request: Request) {
         board,
         level,
         subjects,
+        exam_date: examDate,
         onboarded: true,
         updated_at: new Date().toISOString(),
       },

@@ -154,12 +154,12 @@ export default async function AttemptDetailPage({
   })
 
   return (
-    <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12">
+    <main className="app-shell app-shell-tabbed">
       <div className="mx-auto max-w-3xl">
         {/* Back link */}
         <Link
           href="/dashboard"
-          className="animate-entry mb-8 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-dark-900/60 px-3 py-1.5 text-xs font-semibold text-slate-400 backdrop-blur transition-colors hover:border-emerald-500/40 hover:text-emerald-400"
+          className="animate-entry mb-8 inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-white/10 bg-dark-900/60 px-4 py-2 text-xs font-semibold text-slate-400 backdrop-blur transition-colors hover:border-emerald-500/40 hover:text-emerald-400"
         >
           <ArrowLeft className="h-3 w-3" />
           Back to dashboard
@@ -168,7 +168,7 @@ export default async function AttemptDetailPage({
         {/* Page header */}
         <div className="animate-entry stagger-1 mb-10">
           <p className="ec-label-tech mb-3">ATTEMPT</p>
-          <h1 className="text-[36px] font-extrabold leading-[1] tracking-[-0.035em] sm:text-[48px] md:text-[56px]">
+          <h1 className="text-hero">
             <span className="gradient-text">
               {result.marking_mode === 'official_mark_scheme' && result.detected_paper
                 ? result.detected_paper.paper_code

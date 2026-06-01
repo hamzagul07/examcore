@@ -59,7 +59,7 @@ export default async function Home() {
           </LandingSectionReveal>
 
           <div className="bento-grid">
-            <div className="ec-card ec-card-interactive col-span-6 row-span-2 relative overflow-hidden p-8 md:col-span-4 md:p-10">
+            <div className="ec-card ec-card-interactive col-span-2 relative overflow-hidden p-6 sm:col-span-2 sm:p-8 lg:col-span-4 lg:row-span-2 lg:p-10">
               <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-emerald-500/15 blur-[100px]" />
               <div className="relative z-10">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
@@ -84,7 +84,7 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-2">
+            <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-2">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
                 <ListChecks className="h-6 w-6 text-cyan-400" strokeWidth={1.75} />
               </div>
@@ -94,7 +94,7 @@ export default async function Home() {
               </p>
             </div>
 
-            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-2">
+            <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-2">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-500/30 bg-violet-500/10">
                 <PenLine className="h-6 w-6 text-violet-400" strokeWidth={1.75} />
               </div>
@@ -104,14 +104,14 @@ export default async function Home() {
               </p>
             </div>
 
-            <div className="ec-card col-span-6 flex flex-col justify-center p-8 md:col-span-2 relative overflow-hidden">
+            <div className="ec-card col-span-2 flex flex-col justify-center p-8 md:col-span-2 relative overflow-hidden">
               <span className="text-7xl font-extrabold ec-text-gradient">15</span>
               <span className="mt-3 text-base text-[var(--ec-text-secondary)]">
                 Cambridge subjects ready to mark
               </span>
             </div>
 
-            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-4">
+            <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-4">
               <div className="flex items-start gap-5">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
                   <FileStack className="h-6 w-6 text-emerald-400" strokeWidth={1.75} />
@@ -126,7 +126,7 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-3">
+            <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-3">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10">
                 <Layers className="h-6 w-6 text-cyan-400" strokeWidth={1.75} />
               </div>
@@ -137,7 +137,7 @@ export default async function Home() {
               </p>
             </div>
 
-            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-3">
+            <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-3">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-500/30 bg-violet-500/10">
                 <Camera className="h-6 w-6 text-violet-400" strokeWidth={1.75} />
               </div>
@@ -148,7 +148,7 @@ export default async function Home() {
               </p>
             </div>
 
-            <div className="ec-card ec-card-interactive col-span-6 p-8 md:col-span-6">
+            <div className="ec-card ec-card-interactive col-span-2 p-8 md:col-span-2">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
                   <TrendingUp className="h-6 w-6 text-emerald-400" strokeWidth={1.75} />

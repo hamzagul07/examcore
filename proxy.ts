@@ -78,6 +78,11 @@ export async function proxy(request: NextRequest) {
   const onOnboardingPage = matchesPrefix(pathname, ['/onboarding'])
 
   if (onOnboardingPage && onboarded) {
+    const rerun = request.nextUrl.searchParams.get('rerun') === '1'
+    if (rerun) {
+      return supabaseResponse
+    }
+
     const redirectUrl = request.nextUrl.clone()
     const next = request.nextUrl.searchParams.get('next')
     redirectUrl.pathname =

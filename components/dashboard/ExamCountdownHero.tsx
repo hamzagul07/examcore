@@ -54,9 +54,8 @@ export function ExamCountdownHero({
         />
 
         <p
-          className="relative font-[family-name:var(--font-fraunces)] font-semibold leading-none tracking-tight"
+          className="ec-countdown-number relative font-[family-name:var(--font-fraunces)] leading-none tracking-tight"
           style={{
-            fontSize: 'clamp(4.5rem, 12vw, 9rem)',
             color: 'var(--ec-brand)',
             textShadow:
               '0 0 40px color-mix(in srgb, var(--ec-brand) 35%, transparent)',
@@ -78,7 +77,7 @@ export function ExamCountdownHero({
           className="text-caption relative mt-3"
         >
           <Link
-            href="/account"
+            href="/account/exam"
             className="text-[var(--ec-text-secondary)] underline-offset-2 hover:text-[var(--ec-brand)] hover:underline"
           >
             Change exam date →

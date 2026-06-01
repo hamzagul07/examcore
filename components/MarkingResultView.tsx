@@ -229,7 +229,7 @@ export function MarkingResultView({
 
       <div>
         <p className="ec-label-tech mb-3">SUMMARY</p>
-        <h2 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: 'var(--ec-text-primary)' }}>
+        <h2 className="text-title mb-4">
           What the examiner saw
         </h2>
         <div className="leading-relaxed" style={{ color: 'var(--ec-text-secondary)' }}>
@@ -273,7 +273,7 @@ export function MarkingResultView({
       {result.ai_marking.marks_awarded.length > 0 && (
       <div>
         <p className="ec-label-tech mb-3">MARK BY MARK</p>
-        <h2 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: 'var(--ec-text-primary)' }}>
+        <h2 className="text-title mb-4">
           Breakdown
         </h2>
         <div className="space-y-3">
@@ -329,7 +329,7 @@ export function MarkingResultView({
         result.ai_marking.weak_topics.length > 0 && (
           <div>
             <p className="ec-label-tech ec-label-tech-orange mb-3">TOPICS TO WORK ON</p>
-            <h2 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: 'var(--ec-text-primary)' }}>
+            <h2 className="text-title mb-4">
               Where you lost marks
             </h2>
             <ul className="space-y-2">

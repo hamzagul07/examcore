@@ -50,16 +50,29 @@ const GOAL_OPTIONS: {
   },
 ]
 
-export function OnboardingWizard() {
+export function OnboardingWizard({
+  rerun = false,
+  initialProfile = null,
+}: {
+  rerun?: boolean
+  initialProfile?: {
+    subjects: string[]
+    stage: UserStage | null
+    primary_goal: PrimaryGoal | null
+    exam_date: string | null
+  } | null
+}) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const nextParam = searchParams.get('next')
 
-  const [step, setStep] = useState(1)
-  const [subjects, setSubjects] = useState<string[]>([])
-  const [stage, setStage] = useState<UserStage | null>(null)
-  const [primaryGoal, setPrimaryGoal] = useState<PrimaryGoal | null>(null)
-  const [examDate, setExamDate] = useState<string | null>(null)
+  const [step, setStep] = useState(rerun ? 2 : 1)
+  const [subjects, setSubjects] = useState<string[]>(initialProfile?.subjects ?? [])
+  const [stage, setStage] = useState<UserStage | null>(initialProfile?.stage ?? null)
+  const [primaryGoal, setPrimaryGoal] = useState<PrimaryGoal | null>(
+    initialProfile?.primary_goal ?? null
+  )
+  const [examDate, setExamDate] = useState<string | null>(initialProfile?.exam_date ?? null)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [showCelebration, setShowCelebration] = useState(false)
@@ -105,6 +118,11 @@ export function OnboardingWizard() {
     }
 
     setPendingHref(redirectHref)
+    if (rerun) {
+      router.push(redirectHref)
+      router.refresh()
+      return
+    }
     setShowCelebration(true)
   }
 
@@ -136,11 +154,13 @@ export function OnboardingWizard() {
     setStep((s) => Math.max(s - 1, 1))
   }
 
-  const markHref = sanitizeNextPath(nextParam, '/mark')
+  const markHref = sanitizeNextPath(nextParam, rerun ? '/account/study' : '/mark')
+  const backHref = rerun ? sanitizeNextPath(nextParam, '/account/study') : '/auth/signout'
+  const backLabel = rerun ? 'Back to settings' : 'Sign out'
 
   return (
     <>
-      <AuthShell showBetaBadge={false} backLabel="Sign out" backHref="/auth/signout">
+      <AuthShell showBetaBadge={false} backLabel={backLabel} backHref={backHref}>
         <ProgressSteps current={step} total={TOTAL_STEPS} />
 
         <AnimatePresence mode="wait">
@@ -188,8 +208,11 @@ export function OnboardingWizard() {
                 loading={loading}
                 errorMsg={errorMsg}
                 onBack={goBack}
-                onMark={() => completeOnboarding(markHref)}
-                onDashboard={() => completeOnboarding('/dashboard')}
+                onMark={() => completeOnboarding(rerun ? markHref : markHref)}
+                onDashboard={() =>
+                  completeOnboarding(rerun ? markHref : '/dashboard')
+                }
+                rerun={rerun}
               />
             )}
           </motion.div>
@@ -384,7 +407,7 @@ function StepStage({
       </div>
 
       <div className="mt-8 border-t border-[var(--ec-border)] pt-6">
-        <h2 className="text-title text-base">When&apos;s your exam?</h2>
+        <h2 className="text-title">When&apos;s your exam?</h2>
         <p className="text-caption mt-1">Optional — we&apos;ll show a countdown on your home page.</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {suggestions.map((s) => (
@@ -484,21 +507,26 @@ function StepFirstMark({
   onBack,
   onMark,
   onDashboard,
+  rerun = false,
 }: {
   loading: boolean
   errorMsg: string
   onBack: () => void
   onMark: () => void
   onDashboard: () => void
+  rerun?: boolean
 }) {
   return (
     <div>
       <h1 className="text-headline text-[var(--ec-text-primary)]">
-        You&apos;re all set. Let&apos;s mark your first question.
+        {rerun
+          ? 'Save your updated profile'
+          : "You're all set. Let's mark your first question."}
       </h1>
       <p className="text-body mt-4 text-[var(--ec-text-secondary)]">
-        Upload something you&apos;ve already done. We&apos;ll mark it and show you
-        what an examiner-style review looks like — usually under a minute.
+        {rerun
+          ? 'Review your choices, then save to update your dashboard and paper recommendations.'
+          : "Upload something you've already done. We'll mark it and show you what an examiner-style review looks like — usually under a minute."}
       </p>
       {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
       <div className="mt-8 space-y-3">
@@ -513,18 +541,22 @@ function StepFirstMark({
               <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
               Saving profile...
             </span>
+          ) : rerun ? (
+            <>Save and return to settings</>
           ) : (
             <>Mark a question now <ArrowRight className="h-4 w-4" /></>
           )}
         </button>
-        <button
-          type="button"
-          disabled={loading}
-          onClick={onDashboard}
-          className="ec-btn-secondary w-full justify-center"
-        >
-          Explore the dashboard first
-        </button>
+        {!rerun && (
+          <button
+            type="button"
+            disabled={loading}
+            onClick={onDashboard}
+            className="ec-btn-secondary w-full justify-center"
+          >
+            Explore the dashboard first
+          </button>
+        )}
       </div>
       <button
         type="button"

@@ -90,7 +90,7 @@ export function StudyNotebook({
           This month
         </p>
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[var(--ec-text-primary)]">
-          <span className={`${handwriting} text-xl text-[var(--ec-notebook-ink)]`}>
+          <span className={`${handwriting} ec-notebook-stat text-[var(--ec-notebook-ink)]`}>
             {monthlyAttempts}
           </span>
           <span>questions marked</span>
@@ -98,7 +98,7 @@ export function StudyNotebook({
         </div>
 
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[var(--ec-text-primary)]">
-          <span className={`${handwriting} text-xl text-[var(--ec-notebook-ink)]`}>{streak}</span>
+          <span className={`${handwriting} ec-notebook-stat text-[var(--ec-notebook-ink)]`}>{streak}</span>
           <span>day streak</span>
           <HandArrow direction="up" animate={animate} delay={0.2} size={14} color={ink} />
         </div>

@@ -272,9 +272,9 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
   return (
     <main className="app-shell app-shell-tabbed">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between animate-entry">
-          <div>
+      <div className="mx-auto min-w-0 max-w-7xl">
+        <div className="mb-10 flex min-w-0 flex-col gap-4 sm:flex-row sm:items-start sm:justify-between animate-entry">
+          <div className="min-w-0">
             <Link
               href="/dashboard"
               className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] backdrop-blur transition-colors hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"

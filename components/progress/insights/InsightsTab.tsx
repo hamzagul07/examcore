@@ -36,17 +36,17 @@ export function InsightsTab({
   wins,
 }: Props) {
   return (
-    <div className="space-y-5">
+    <div className="min-w-0 space-y-5">
       {state === 'zero' && (
         <Link
           href="/mark"
-          className="ec-card group flex items-center justify-between gap-4 border-[var(--ec-brand)]/30 px-5 py-4 transition-colors hover:border-[var(--ec-brand)]/50"
+          className="ec-card group flex flex-col gap-3 border-[var(--ec-brand)]/30 px-5 py-4 transition-colors hover:border-[var(--ec-brand)]/50 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
         >
-          <span className="text-sm font-semibold text-[var(--ec-text-primary)]">
+          <span className="min-w-0 text-sm font-semibold text-[var(--ec-text-primary)]">
             Mark your first question to unlock your insights
           </span>
-          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
-            Mark your first question
+          <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
+            Mark now
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
           </span>
         </Link>
@@ -54,7 +54,7 @@ export function InsightsTab({
 
       <InsightHero insight={heroInsight} />
 
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid min-w-0 gap-5 lg:grid-cols-3">
         <PatternsPanel state={state} patterns={patterns} speedProfile={speedProfile} />
         <PracticePanel
           state={state}

@@ -1,7 +1,8 @@
 'use client'
 
-import { Children } from 'react'
+import { Children, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { DashboardPresence } from '@/components/dashboard/presence/DashboardPresence'
 
 const container = {
   hidden: { opacity: 0 },
@@ -20,22 +21,24 @@ const item = {
   },
 }
 
-/** Dashboard entry with staggered section reveal. */
-export function DashboardEntry({ children }: { children: React.ReactNode }) {
+/** Dashboard entry with staggered section reveal + ambient presence layer. */
+export function DashboardEntry({ children }: { children: ReactNode }) {
   const reduce = useReducedMotion()
 
   if (reduce) {
-    return <div>{children}</div>
+    return <DashboardPresence>{children}</DashboardPresence>
   }
 
   return (
-    <motion.div variants={container} initial="hidden" animate="show">
-      {Children.toArray(children).map((child, i) => (
-        <motion.div key={i} variants={item}>
-          {child}
-        </motion.div>
-      ))}
-    </motion.div>
+    <DashboardPresence>
+      <motion.div variants={container} initial="hidden" animate="show">
+        {Children.toArray(children).map((child, i) => (
+          <motion.div key={i} variants={item}>
+            {child}
+          </motion.div>
+        ))}
+      </motion.div>
+    </DashboardPresence>
   )
 }
 
@@ -45,7 +48,7 @@ export function AttemptRowAnim({
   children,
 }: {
   index: number
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const reduce = useReducedMotion()
 

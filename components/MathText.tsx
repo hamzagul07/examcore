@@ -115,7 +115,7 @@ export function MathText({ text }: { text: string }) {
   const segments = parse(text)
 
   return (
-    <>
+    <span className="ec-break-anywhere">
       {segments.map((seg, i) => {
         if (seg.kind === 'text') {
           return <Fragment key={i}>{seg.content}</Fragment>
@@ -137,6 +137,6 @@ export function MathText({ text }: { text: string }) {
           />
         )
       })}
-    </>
+    </span>
   )
 }

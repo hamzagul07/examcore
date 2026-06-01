@@ -59,7 +59,7 @@ export default async function AccountPage() {
 
   return (
     <main className="app-shell app-shell-tabbed md:py-14">
-      <div className="mx-auto w-full max-w-2xl">
+      <div className="mx-auto min-w-0 w-full max-w-2xl">
         <div className="animate-entry mb-10">
           <Link
             href="/dashboard"

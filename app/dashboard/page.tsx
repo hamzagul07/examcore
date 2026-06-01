@@ -14,7 +14,7 @@ import { DashboardEntry } from './dashboard.client'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
 import { RecentAttempts, type RecentAttempt } from '@/components/dashboard/RecentAttempts'
-import { StudyConstellation } from '@/components/dashboard/StudyConstellation'
+import { StudyJournal } from '@/components/dashboard/StudyJournal'
 import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { computeStreak } from '@/lib/dashboard/streak'
@@ -25,7 +25,10 @@ import {
   fetchTopicRecommendations,
   topicTargetsFromMasteries,
 } from '@/lib/insights/recommendations'
-import type { ConstellationAttemptInput } from '@/lib/dashboard/constellation'
+import {
+  buildJournalPages,
+  type JournalAttemptInput,
+} from '@/lib/dashboard/journal-data'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -68,10 +71,6 @@ export default async function DashboardPage() {
   const greetingName = firstName || 'student'
   const examDate = (profile?.exam_date as string | null) ?? null
 
-  const thirtyDaysAgo = new Date()
-  thirtyDaysAgo.setUTCDate(thirtyDaysAgo.getUTCDate() - 30)
-  thirtyDaysAgo.setUTCHours(0, 0, 0, 0)
-
   const { data: attempts } = await supabaseAdmin
     .from('attempts')
     .select(
@@ -82,23 +81,20 @@ export default async function DashboardPage() {
     `
     )
     .eq('user_id', user.id)
-    .gte('created_at', thirtyDaysAgo.toISOString())
     .order('created_at', { ascending: false })
-    .limit(100)
+    .limit(500)
 
   const attemptsList = attempts || []
   const timestamps = attemptsList.map((a) => new Date(a.created_at))
   const streak = computeStreak(timestamps)
   const weeklyCount = attemptsThisWeek(timestamps)
 
-  const constellationAttempts: ConstellationAttemptInput[] = attemptsList.map((attempt) => ({
-    id: attempt.id,
-    created_at: attempt.created_at,
-    marks_earned: attempt.marks_earned,
-    total_marks: attempt.total_marks,
-    subjectCode: getAttemptSubjectCode(attempt),
-    label: attemptLabel(attempt),
-  }))
+  const journalInputs: JournalAttemptInput[] = attemptsList.map((attempt) => ({
+    ...attempt,
+    syllabus_tags: attempt.syllabus_tags as string[] | null,
+  })) as JournalAttemptInput[]
+
+  const journalPages = buildJournalPages(journalInputs)
 
   const recentRows: RecentAttempt[] = attemptsList.slice(0, 5).map((attempt) => {
     const percentage = Math.round((attempt.marks_earned / attempt.total_marks) * 100)
@@ -179,13 +175,7 @@ export default async function DashboardPage() {
 
   return (
     <main className="app-shell app-shell-tabbed">
-      <div
-        className="mx-auto max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded-2xl"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 50% at 50% 0%, var(--ec-surface) 0%, var(--ec-canvas) 70%)',
-        }}
-      >
+      <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded-2xl">
         <DashboardEntry>
           <HomeHero
             firstName={greetingName}
@@ -193,7 +183,11 @@ export default async function DashboardPage() {
             weeklyAttempts={weeklyCount}
           />
 
-          <StudyConstellation attempts={constellationAttempts} />
+          <StudyJournal
+            userId={user.id}
+            firstName={greetingName}
+            pages={journalPages}
+          />
 
           {!isEmpty && <RecentAttempts attempts={recentRows} />}
 

@@ -13,7 +13,7 @@ type Props = {
 
 export function PracticePanel({ state, recommendations, actionItems, generic }: Props) {
   return (
-    <section className="ec-card p-5 sm:p-6">
+    <section className="ec-card min-w-0 p-5 sm:p-6">
       <div className="mb-5 flex items-center gap-2">
         <Dumbbell className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
         <p className="ec-label-tech">PRACTICE</p>
@@ -24,7 +24,7 @@ export function PracticePanel({ state, recommendations, actionItems, generic }: 
       ) : (
         <>
           {generic && recommendations.length > 0 && (
-            <p className="mb-3 text-xs text-[var(--ec-text-secondary)]">
+            <p className="ec-break-anywhere mb-3 text-xs text-[var(--ec-text-secondary)]">
               Starter questions for your subject — these get personal once you&rsquo;ve marked a few more.
             </p>
           )}
@@ -36,7 +36,7 @@ export function PracticePanel({ state, recommendations, actionItems, generic }: 
                   key={`${rec.paperCode}-${rec.paperSession}-${rec.questionNumber}`}
                   className="rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4"
                 >
-                  <div className="flex min-w-0 items-center justify-between gap-3">
+                  <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                     <span className="min-w-0 truncate text-sm font-semibold text-[var(--ec-text-primary)]">
                       {rec.targetLabel}
                     </span>
@@ -44,7 +44,7 @@ export function PracticePanel({ state, recommendations, actionItems, generic }: 
                       {rec.paperCode} · Q{rec.questionNumber} · {rec.totalMarks}m
                     </span>
                   </div>
-                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                  <p className="ec-break-anywhere mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
                     {rec.reason}
                   </p>
                   <Link
@@ -93,7 +93,7 @@ export function PracticePanel({ state, recommendations, actionItems, generic }: 
 
 function Hint({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface)] p-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+    <div className="ec-break-anywhere rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface)] p-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
       {children}
     </div>
   )

@@ -1,8 +1,13 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import * as THREE from 'three'
 import { useEcTheme } from '@/lib/design-system/ThemeProvider'
+import {
+  getWireframePaused,
+  subscribeWireframePause,
+} from '@/lib/dashboard/wireframe-pause'
 
 /**
  * Signature wireframe lattice background — visible on every page at low contrast.
@@ -10,6 +15,14 @@ import { useEcTheme } from '@/lib/design-system/ThemeProvider'
 export function WireframeBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { theme } = useEcTheme()
+  const pathname = usePathname()
+  const pausedRef = useRef(getWireframePaused())
+
+  useEffect(() => {
+    return subscribeWireframePause(() => {
+      pausedRef.current = getWireframePaused()
+    })
+  }, [])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -70,11 +83,13 @@ export function WireframeBackground() {
     const speed = isZen ? 0.002 : 0.004
 
     const animate = () => {
-      frame += speed
-      ico.rotation.x = frame * 0.7
-      ico.rotation.y = frame
-      dode.rotation.z = -frame * 0.5
-      edgeLines.rotation.y = frame * 0.3
+      if (!pausedRef.current && pathname !== '/dashboard') {
+        frame += speed
+        ico.rotation.x = frame * 0.7
+        ico.rotation.y = frame
+        dode.rotation.z = -frame * 0.5
+        edgeLines.rotation.y = frame * 0.3
+      }
       renderer.render(scene, camera)
       raf = requestAnimationFrame(animate)
     }
@@ -97,7 +112,7 @@ export function WireframeBackground() {
         container.removeChild(renderer.domElement)
       }
     }
-  }, [theme])
+  }, [theme, pathname])
 
   return (
     <div

@@ -738,7 +738,7 @@ export default function MarkPage() {
 
   return (
     <main className="app-shell app-shell-tabbed">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto min-w-0 max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

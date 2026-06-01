@@ -218,7 +218,7 @@ export function MarkingResultView({
       {result.question_text && (
         <div className="ec-card-premium p-5 sm:p-7">
           <p className="ec-label-tech mb-3">QUESTION (AS READ)</p>
-          <div className="ec-question-text whitespace-pre-wrap text-base">
+          <div className="ec-question-text min-w-0 max-w-full overflow-x-auto break-words whitespace-pre-wrap text-base">
             <RichTextRenderer
               text={normalizeQuestionText(result.question_text)}
               contentKind="question"

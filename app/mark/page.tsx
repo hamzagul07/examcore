@@ -29,7 +29,7 @@ import {
   getSubjectById,
 } from '@/lib/profile-options'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
-import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperience'
+import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
 import { ApproachingLimitBanner } from '@/components/billing/ApproachingLimitBanner'

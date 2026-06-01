@@ -123,14 +123,14 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
     }
   }, [hasMessages, onActiveChange])
 
-  // ── Auto-scroll to bottom ───────────────────────────────────────────────────
+  // ── Auto-scroll within conversation panel only (never the page) ─────────────
   useEffect(() => {
-    if (bottomSentinelRef.current) {
-      bottomSentinelRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
-    }
+    const panel = conversationRef.current
+    if (!panel || messages.length === 0) return
+    panel.scrollTo({ top: panel.scrollHeight, behavior: 'smooth' })
   }, [messages])
 
-  // ── Mobile keyboard scroll ──────────────────────────────────────────────────
+  // ── Mobile keyboard: scroll input into view only while focused ──────────────
   useEffect(() => {
     const input = inputRef.current
     if (!input) return
@@ -138,16 +138,16 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
     let timeoutId: ReturnType<typeof setTimeout>
 
     function onFocus() {
-      // Only apply on touch devices
       if (!('ontouchstart' in window)) return
       timeoutId = setTimeout(() => {
-        input?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+        if (document.activeElement !== input || !input) return
+        input.scrollIntoView({ block: 'center', behavior: 'smooth' })
       }, 300)
     }
 
     function onViewportResize() {
-      if (!window.visualViewport) return
-      input?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      if (document.activeElement !== input || !input) return
+      input.scrollIntoView({ block: 'center', behavior: 'smooth' })
     }
 
     input.addEventListener('focus', onFocus)

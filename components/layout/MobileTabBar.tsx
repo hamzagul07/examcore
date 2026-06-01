@@ -43,13 +43,9 @@ export function MobileTabBar() {
   return (
     <nav
       aria-label="Main navigation"
-      className="fixed inset-x-0 bottom-0 z-40 border-t lg:hidden"
+      className="ec-mobile-tab-bar fixed inset-x-0 bottom-0 z-40 border-t lg:hidden"
       style={{
         borderColor: 'var(--ec-border)',
-        background: 'color-mix(in srgb, var(--ec-canvas) 92%, transparent)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        boxShadow: '0 -4px 24px rgba(0, 0, 0, 0.18)',
         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
       }}
     >

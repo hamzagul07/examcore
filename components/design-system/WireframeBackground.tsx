@@ -1,17 +1,28 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { useEcTheme } from '@/lib/design-system/ThemeProvider'
+import { usePrefersReducedMotion } from '@/lib/hooks/usePrefersReducedMotion'
 
 /**
- * Signature wireframe lattice background — visible on every page at low contrast.
+ * Signature wireframe lattice — marketing routes only (via WireframeBackgroundGate).
+ * Pauses RAF when tab is hidden to avoid idle GPU work on background tabs.
  */
 export function WireframeBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { theme } = useEcTheme()
+  const reduce = usePrefersReducedMotion()
+  const [pageVisible, setPageVisible] = useState(true)
 
   useEffect(() => {
+    const onVis = () => setPageVisible(document.visibilityState === 'visible')
+    document.addEventListener('visibilitychange', onVis)
+    return () => document.removeEventListener('visibilitychange', onVis)
+  }, [])
+
+  useEffect(() => {
+    if (reduce || !pageVisible) return
     if (!containerRef.current) return
 
     const container = containerRef.current
@@ -68,8 +79,10 @@ export function WireframeBackground() {
     let frame = 0
     let raf = 0
     const speed = isZen ? 0.002 : 0.004
+    let running = true
 
     const animate = () => {
+      if (!running) return
       frame += speed
       ico.rotation.x = frame * 0.7
       ico.rotation.y = frame
@@ -90,14 +103,23 @@ export function WireframeBackground() {
     window.addEventListener('resize', onResize)
 
     return () => {
+      running = false
       cancelAnimationFrame(raf)
       window.removeEventListener('resize', onResize)
       renderer.dispose()
+      icoGeo.dispose()
+      dodeGeo.dispose()
+      edges.dispose()
+      icoMat.dispose()
+      dodeMat.dispose()
+      edgeMat.dispose()
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement)
       }
     }
-  }, [theme])
+  }, [theme, reduce, pageVisible])
+
+  if (reduce) return null
 
   return (
     <div

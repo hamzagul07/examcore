@@ -15,10 +15,9 @@ export function AppHeader() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b backdrop-blur-xl"
+      className="ec-app-header sticky top-0 z-50 border-b lg:backdrop-blur-xl"
       style={{
         borderColor: 'var(--ec-border)',
-        background: 'color-mix(in srgb, var(--ec-canvas) 85%, transparent)',
       }}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">

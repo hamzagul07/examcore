@@ -34,3 +34,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Performance baselines
+
+Measure scroll + Lighthouse scores on primary pages (requires a running app):
+
+```bash
+pnpm dev
+# separate terminal:
+pnpm add -D playwright lighthouse chrome-launcher
+npx playwright install chromium
+pnpm perf:baseline --base=http://localhost:3000 --tag=before
+```
+
+Reports are written to `perf-baseline/<tag>/*.json`. Re-run with `--tag=after` to compare.
+
+Auth routes (`/dashboard`, `/mark`, `/account/*`) need a logged-in Playwright storage state — extend `scripts/perf-baseline.mjs` or use DevTools on a real device for ground-truth scroll feel.
+
+Manual check: Chrome DevTools → Performance → record while scrolling at **375×667**, **6× CPU**, Slow 4G.

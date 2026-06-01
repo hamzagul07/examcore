@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Caveat, Kalam, Fraunces } from "next/font/google";
 import "./globals.css";
 import "./fonts/handwritten.css";
-import { WireframeBackground } from "@/components/design-system/WireframeBackground";
 import { ThemeProvider } from "@/lib/design-system/ThemeProvider";
 import { RootHeader } from "@/components/layout/RootHeader";
 import { RootFooter } from "@/components/layout/RootFooter";
@@ -77,7 +76,6 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <OmniAIProviders>
-            <WireframeBackground />
             <RootHeader />
             <div className="relative z-[1] flex flex-1 flex-col">{children}</div>
             <RootFooter />

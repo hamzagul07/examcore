@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -9,6 +9,7 @@ import {
   examSessionLabel,
   timeGreeting,
 } from '@/lib/dashboard/exam-date'
+import { useIntersectionVisible } from '@/lib/hooks/useIntersectionVisible'
 import { CountdownParticles } from './CountdownParticles'
 
 type Props = {
@@ -25,24 +26,28 @@ export function ExamCountdownHero({
   weeklyAttempts,
 }: Props) {
   const reduce = useReducedMotion()
+  const heroRef = useRef<HTMLDivElement>(null)
+  const inView = useIntersectionVisible(heroRef, !reduce)
   const [revealed, setRevealed] = useState(false)
   const greeting = timeGreeting(firstName)
   const encouragement = examEncouragement(daysLeft)
   const session = examSessionLabel(examDate)
+  const animateDecor = !reduce && inView
 
   return (
     <div className="mb-6">
       <div
+        ref={heroRef}
         className="relative mx-auto max-w-3xl text-center"
         onMouseEnter={() => setRevealed(true)}
         onMouseLeave={() => setRevealed(false)}
         onClick={() => setRevealed((v) => !v)}
       >
-        <CountdownParticles />
+        <CountdownParticles paused={!animateDecor} />
 
         <div
-          className={`pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${
-            reduce ? '' : 'animate-[ec-breathe_10s_ease-in-out_infinite]'
+          className={`pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 will-change-transform ${
+            animateDecor ? 'animate-[ec-breathe_10s_ease-in-out_infinite]' : ''
           }`}
           style={{
             width: 'min(420px, 90vw)',

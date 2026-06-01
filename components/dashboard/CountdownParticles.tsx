@@ -10,17 +10,17 @@ const PARTICLES = [
   { left: '28%', top: '48%', dx: 7, dy: 9, duration: 17 },
 ]
 
-export function CountdownParticles() {
+export function CountdownParticles({ paused = false }: { paused?: boolean }) {
   const reduce = useReducedMotion()
 
-  if (reduce) return null
+  if (reduce || paused) return null
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       {PARTICLES.map((p, i) => (
         <motion.span
           key={i}
-          className="absolute h-0.5 w-0.5 rounded-full bg-[var(--ec-brand)] opacity-20"
+          className="absolute h-0.5 w-0.5 rounded-full bg-[var(--ec-brand)] opacity-20 will-change-transform"
           style={{ left: p.left, top: p.top }}
           animate={{
             x: [0, p.dx, 0],

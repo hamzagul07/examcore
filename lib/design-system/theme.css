@@ -21,7 +21,7 @@
   --ec-notebook-ink: var(--ec-brand);
   --ec-notebook-pencil: color-mix(in srgb, var(--ec-text-secondary) 70%, transparent);
   --ec-notebook-rule: color-mix(in srgb, var(--ec-brand) 8%, transparent);
-  --ec-paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  --ec-paper-texture: none;
   --ec-chip-success-bg: rgba(0, 245, 160, 0.15);
   --ec-chip-success-text: #00f5a0;
   --ec-chip-warning-bg: rgba(255, 176, 32, 0.15);
@@ -486,6 +486,7 @@ body {
     box-shadow: var(--ec-shadow-elevation-1);
     color: var(--ec-text-primary);
     overflow: hidden;
+    contain: paint;
   }
 
   .ec-notebook::before {
@@ -493,9 +494,19 @@ body {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.035;
-    background-image: var(--ec-paper-texture);
-    background-size: 180px 180px;
+    opacity: 0.05;
+    background-image:
+      radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.06) 0%, transparent 45%),
+      radial-gradient(circle at 82% 68%, rgba(0, 0, 0, 0.05) 0%, transparent 40%),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(255, 255, 255, 0.012) 3px,
+        rgba(255, 255, 255, 0.012) 4px
+      );
+    background-size: 100% 100%, 100% 100%, 100% 8px;
+    background-repeat: no-repeat, no-repeat, repeat;
   }
 
   .ec-notebook > * {
@@ -847,5 +858,33 @@ body {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ec-text-secondary);
+  }
+}
+
+/* ============ App chrome — opaque on mobile, blur on desktop ============ */
+.ec-app-header {
+  background: var(--ec-canvas);
+}
+
+@media (min-width: 1024px) {
+  .ec-app-header {
+    background: color-mix(in srgb, var(--ec-canvas) 85%, transparent);
+  }
+}
+
+.ec-mobile-tab-bar {
+  background: var(--ec-canvas);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* ============ Reduced motion — disable decorative motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text,
+  .brand-breathe,
+  .animate-shimmer,
+  .animate-shimmer-skeleton,
+  .animate-entry,
+  [class*='animate-[ec-breathe'] {
+    animation: none !important;
   }
 }

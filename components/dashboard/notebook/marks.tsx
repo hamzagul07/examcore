@@ -1,7 +1,20 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useId } from 'react'
+import { useEffect, useId, useState } from 'react'
+
+/** feTurbulence SVG filters are expensive on mobile — desktop fine pointer only. */
+function useSvgRoughFilter(): boolean {
+  const [rough, setRough] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(pointer: fine) and (min-width: 1024px)')
+    const sync = () => setRough(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+  return rough
+}
 
 type MarkProps = {
   color?: string
@@ -39,9 +52,11 @@ function HandDrawnPath({
   viewBox = '0 0 24 24',
   width,
   height,
-  rough = true,
+  rough: roughProp,
   opacity = 1,
 }: HandDrawnPathProps) {
+  const roughDefault = useSvgRoughFilter()
+  const rough = roughProp ?? roughDefault
   const filterId = useId()
 
   return (

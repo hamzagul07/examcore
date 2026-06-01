@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase-server'
 import {
   ENABLED_BOARD_IDS,
   ENABLED_LEVEL_IDS,
-  ENABLED_SUBJECT_IDS,
+  isSubjectValidForLevel,
 } from '@/lib/profile-options'
 import type { UserRole, PrimaryGoal, UserStage } from '@/lib/database.types'
 
@@ -81,9 +81,9 @@ export async function POST(request: Request) {
       )
     }
     for (const s of subjects) {
-      if (!ENABLED_SUBJECT_IDS.has(s)) {
+      if (!isSubjectValidForLevel(s, level)) {
         return NextResponse.json(
-          { error: `Subject "${s}" is not supported yet.` },
+          { error: `Subject "${s}" is not supported for ${level} yet.` },
           { status: 400 }
         )
       }

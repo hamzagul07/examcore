@@ -13,6 +13,8 @@ export type SubjectPaperGroup = {
 
 export type SubjectPaperStructure = {
   code: string
+  level?: string
+  storagePrefix?: string
   papers: SubjectPaperGroup[]
   sessions: string[]
 }
@@ -27,10 +29,18 @@ export function getSubjectPaperStructure(
   return CACHE[code] ?? null
 }
 
+export function getStoragePrefixForSubjectCode(code: string): string {
+  return CACHE[code]?.storagePrefix ?? 'cambridge'
+}
+
 export function getAllCachedSubjectCodes(): string[] {
   return Object.keys(CACHE).sort()
 }
 
 export function hasPaperPdfsInStorage(code: string): boolean {
   return code in CACHE
+}
+
+export function getCachedSubjectsForLevel(level: string): SubjectPaperStructure[] {
+  return Object.values(CACHE).filter((entry) => entry.level === level)
 }

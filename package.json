@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "sync-papers": "node scripts/sync-bestexamhelp-papers.mjs",
+    "sync-papers:a-level": "node scripts/sync-bestexamhelp-papers.mjs --board a-level",
+    "sync-papers:o-level": "node scripts/sync-bestexamhelp-papers.mjs --board o-level",
     "sync-papers:probe": "node scripts/sync-bestexamhelp-papers.mjs --probe",
     "sync-papers:discover": "node scripts/sync-bestexamhelp-papers.mjs --discover",
     "generate-subject-papers-cache": "node scripts/generate-subject-papers-cache.mjs",

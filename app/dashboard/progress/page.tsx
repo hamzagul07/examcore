@@ -82,7 +82,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name, subjects')
+    .select('full_name, subjects, level')
     .eq('id', user.id)
     .maybeSingle()
 
@@ -100,8 +100,9 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     ? profile.subjects
     : ['Mathematics']
 
+  const profileLevel = profile?.level ?? 'A-Level'
   const subjectOptions = userSubjects
-    .map((name) => getSubjectById(name))
+    .map((name) => getSubjectById(name, profileLevel))
     .filter((s): s is NonNullable<typeof s> => !!s)
     .map((s) => ({
       code: s.code,

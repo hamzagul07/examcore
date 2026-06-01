@@ -261,8 +261,14 @@ async function isPaperCached(paperCode, paperSession) {
 
 async function extractFullPaper(paper) {
   const { paperCode, paperSession, subject, session, component } = paper
-  const qpPath = `cambridge/${subject}/${session}/qp_${component}.pdf`
-  const msPath = `cambridge/${subject}/${session}/ms_${component}.pdf`
+  const cachePath = join(ROOT, 'lib', 'subject-papers-cache.json')
+  let storagePrefix = 'cambridge'
+  if (existsSync(cachePath)) {
+    const cache = JSON.parse(readFileSync(cachePath, 'utf8'))
+    storagePrefix = cache[subject]?.storagePrefix ?? 'cambridge'
+  }
+  const qpPath = `${storagePrefix}/${subject}/${session}/qp_${component}.pdf`
+  const msPath = `${storagePrefix}/${subject}/${session}/ms_${component}.pdf`
 
   const [qpRes, msRes] = await Promise.all([
     supabase.storage.from('paper-pdfs').download(qpPath),

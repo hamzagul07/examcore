@@ -1,4 +1,6 @@
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
+import { paperPdfPath } from '@/lib/paper-storage'
+import { getStoragePrefixForSubjectCode } from '@/lib/subject-papers'
 import { resolveMarkingTypeForPaper } from './component-types'
 import {
   buildExtractionPrompt,
@@ -51,8 +53,9 @@ export async function tryExtractFromStorage(
     if (!session_code) return null
 
     const paperMarkingType = resolveMarkingTypeForPaper(paper_code)
-    const qpPath = `cambridge/${subject_code}/${session_code}/qp_${component}.pdf`
-    const msPath = `cambridge/${subject_code}/${session_code}/ms_${component}.pdf`
+    const storagePrefix = getStoragePrefixForSubjectCode(subject_code)
+    const qpPath = paperPdfPath(storagePrefix, subject_code, session_code, 'qp', component)
+    const msPath = paperPdfPath(storagePrefix, subject_code, session_code, 'ms', component)
 
     const [qpBuf, msBuf] = await Promise.all([
       deps.downloadPdf(qpPath),

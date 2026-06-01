@@ -4,7 +4,17 @@ export function isPaidTier(tier: SubscriptionTier): boolean {
   return tier !== 'free'
 }
 
+/** Max questions marked per whole-paper upload on the free tier (preview). */
+export const FREE_WHOLE_PAPER_QUESTION_LIMIT = 3
+
+/** Paid / preview cap for whole-paper segmentation. */
+export const WHOLE_PAPER_QUESTION_LIMIT = 15
+
 export type PaidFeature = 'whole_paper' | 'mastery_dashboard'
+
+export function wholePaperQuestionLimit(tier: SubscriptionTier): number {
+  return isPaidTier(tier) ? WHOLE_PAPER_QUESTION_LIMIT : FREE_WHOLE_PAPER_QUESTION_LIMIT
+}
 
 export function paidFeatureRequiredBody(feature: PaidFeature) {
   return {

@@ -5,8 +5,8 @@ import { Label } from '@/components/ui/label'
 import {
   BOARDS,
   LEVELS,
-  SUBJECTS,
   SUBJECT_GROUPS,
+  isSubjectValidForLevel,
   subjectsInGroup,
   type ProfileOption,
   type SubjectOption,
@@ -39,6 +39,11 @@ export function ProfileFormFields({
   setExamDate,
   showFullName = true,
 }: Props) {
+  function handleLevelChange(nextLevel: string) {
+    setLevel(nextLevel)
+    setSubjects(subjects.filter((id) => isSubjectValidForLevel(id, nextLevel)))
+  }
+
   function toggleSubject(id: string) {
     if (subjects.includes(id)) {
       setSubjects(subjects.filter((s) => s !== id))
@@ -87,7 +92,10 @@ export function ProfileFormFields({
         </div>
       )}
 
-      <FieldGroup label="Exam board" hint="More boards arriving soon.">
+      <FieldGroup
+        label="Exam board"
+        hint="Cambridge International is live. Edexcel, AQA, and IB are planned."
+      >
         <OptionGrid
           options={BOARDS}
           selected={board}
@@ -100,7 +108,7 @@ export function ProfileFormFields({
         <OptionGrid
           options={LEVELS}
           selected={level}
-          onSelect={setLevel}
+          onSelect={handleLevelChange}
           mode="single"
         />
       </FieldGroup>
@@ -191,8 +199,11 @@ function OptionGrid(props: OptionGridProps) {
           >
             <span>{opt.label}</span>
             {isDisabled && (
-              <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-                Coming soon
+              <span
+                className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500"
+                title="Not available yet — we're focused on Cambridge International first"
+              >
+                Planned
               </span>
             )}
           </button>
@@ -219,7 +230,7 @@ function SubjectGrid({
 
         return (
           <button
-            key={opt.id}
+            key={opt.code}
             type="button"
             disabled={isDisabled}
             onClick={() => {

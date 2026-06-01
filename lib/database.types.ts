@@ -16,6 +16,8 @@ export interface UserProfile {
   celebrations_seen: string[] | null
   exam_date: string | null
   role: UserRole
+  email_exam_reminders?: boolean
+  email_product_updates?: boolean
   created_at?: string
   updated_at?: string
 }

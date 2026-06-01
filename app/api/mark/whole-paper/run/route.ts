@@ -19,6 +19,7 @@ import {
   computeAllowance,
   allowanceForResponse,
 } from '@/lib/billing/enforcement'
+import { clientIp, checkAnonymousMarkRateLimit, incrementAnonymousMarkRateLimit } from '@/lib/rate-limit'
 
 export const maxDuration = 300
 
@@ -38,12 +39,6 @@ export async function POST(request: NextRequest) {
   let attemptId: string | null = null
 
   try {
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown'
-    const today = new Date().toISOString().split('T')[0]
-
     const body = await request.json().catch(() => ({}))
     attemptId =
       (body.attempt_id as string) ||
@@ -196,20 +191,18 @@ export async function POST(request: NextRequest) {
       })
       .eq('id', attemptId)
 
-    const { data: existingLimit } = await supabaseAdmin
-      .from('rate_limits')
-      .select('mark_count')
-      .eq('ip', ip)
-      .eq('date', today)
-      .maybeSingle()
-    const currentCount = existingLimit?.mark_count || 0
-    await supabaseAdmin.from('rate_limits').upsert(
-      { ip, date: today, mark_count: currentCount + 1 },
-      { onConflict: 'ip,date' }
-    )
-
     // Whole paper = exactly 1 mark, recorded on completion success only.
     const markUserId = (attempt as { user_id?: string | null }).user_id ?? null
+    if (!markUserId) {
+      const ip = clientIp(request)
+      const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, null)
+      await incrementAnonymousMarkRateLimit(
+        supabaseAdmin,
+        ip,
+        null,
+        rateCheck.allowed ? rateCheck.count : 0
+      )
+    }
     let allowanceBlock: ReturnType<typeof allowanceForResponse> | undefined
     if (markUserId) {
       await recordMarkUsage(markUserId, attemptId, 'mark_whole_paper')

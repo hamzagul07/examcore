@@ -4,6 +4,11 @@
  */
 
 import cache from './subject-papers-cache.json'
+import {
+  seasonNameFromSessionCode,
+  sessionCodeFromYearSeason,
+  sessionCodeToYear,
+} from './marking/session'
 
 export type SubjectPaperGroup = {
   paper: number
@@ -43,4 +48,38 @@ export function hasPaperPdfsInStorage(code: string): boolean {
 
 export function getCachedSubjectsForLevel(level: string): SubjectPaperStructure[] {
   return Object.values(CACHE).filter((entry) => entry.level === level)
+}
+
+export function getYearsFromSessions(sessions: string[]): number[] {
+  const years = new Set<number>()
+  for (const session of sessions) {
+    const year = sessionCodeToYear(session)
+    if (year) years.add(year)
+  }
+  return [...years].sort((a, b) => b - a)
+}
+
+export function getSeasonsForYearFromSessions(
+  sessions: string[],
+  year: number
+): string[] {
+  const yy = String(year).slice(-2)
+  const seasons = new Set<string>()
+  for (const session of sessions) {
+    const match = session.toLowerCase().match(/^([smw])(\d{2})$/)
+    if (!match || match[2] !== yy) continue
+    const season = seasonNameFromSessionCode(session)
+    if (season) seasons.add(season)
+  }
+  return [...seasons]
+}
+
+export function getComponentsForSession(
+  structure: SubjectPaperStructure,
+  year: number,
+  season: string
+): string[] {
+  const sessionCode = sessionCodeFromYearSeason(year, season)
+  if (!sessionCode || !structure.sessions.includes(sessionCode)) return []
+  return structure.papers.flatMap((group) => group.components).sort()
 }

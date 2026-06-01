@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase-server'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { LandingHero } from '@/components/landing/LandingHero'
 import { Hero } from '@/components/marketing/Hero'
@@ -21,19 +20,14 @@ import {
 } from 'lucide-react'
 
 export const metadata = createPageMetadata({
-  title: 'AI marking for Cambridge A-Levels',
+  title: 'AI marking for Cambridge A-Levels & O-Levels',
   description:
-    'Upload handwritten A-Level answers and get mark-by-mark feedback in seconds. Fifteen Cambridge subjects — free during early access.',
+    'Upload handwritten Cambridge answers and get mark-by-mark feedback in seconds. A-Level and O-Level subjects — free during early access. Founding members lock in 50% off forever.',
   path: '/',
 })
 
 export default async function Home() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const markHref = user ? '/mark' : '/auth/signup'
+  const markHref = '/mark'
 
   return (
     <div className="relative min-h-screen">
@@ -254,8 +248,8 @@ export default async function Home() {
                   <ArrowRight className="h-5 w-5" />
                 </Link>
                 <p className="mt-6 text-sm text-[var(--ec-text-secondary)]">
-                  Free during early access · Not endorsed by Cambridge
-                  International
+                  Free during early access · Founding members get 50% off forever ·
+                  Not endorsed by Cambridge International
                 </p>
               </div>
             </div>

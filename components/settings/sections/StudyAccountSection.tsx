@@ -9,7 +9,7 @@ import { PasswordInput } from '@/components/PasswordInput'
 import { ProfileFormFields } from '@/components/ProfileFormFields'
 import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
-import { BOARDS, LEVELS, SUBJECTS } from '@/lib/profile-options'
+import { BOARDS, LEVELS, getSubjectById } from '@/lib/profile-options'
 import {
   SettingsFieldGroup,
   SettingsSectionCard,
@@ -78,7 +78,7 @@ export function StudyAccountSection({ initialProfile }: Props) {
           <SettingsFieldGroup label="Subjects">
             <ul className="flex flex-wrap gap-2">
               {initialProfile.subjects.map((id) => {
-                const subject = SUBJECTS.find((s) => s.id === id)
+                const subject = getSubjectById(id, initialProfile.level)
                 return (
                   <li
                     key={id}

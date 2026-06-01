@@ -69,7 +69,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Mathematics',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'point_based',
   },
   {
@@ -79,7 +79,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Mathematics',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'point_based',
   },
   {
@@ -99,7 +99,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Sciences',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'point_based',
   },
   {
@@ -119,7 +119,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Sciences',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'point_based',
   },
   {
@@ -139,7 +139,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Sciences',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'point_based',
   },
   {
@@ -159,7 +159,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Business & Economics',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'mixed',
   },
   {
@@ -179,7 +179,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Business & Economics',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'mixed',
   },
   {
@@ -199,7 +199,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Business & Economics',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'point_based',
   },
   {
@@ -269,7 +269,7 @@ export const SUBJECTS: SubjectOption[] = [
     group: 'Computing',
     levels: ['O-Level'],
     enabled: true,
-    markingEnabled: false,
+    markingEnabled: true,
     markingType: 'point_based',
   },
   {

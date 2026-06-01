@@ -1,43 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Examcore
 
-## Getting Started
+AI marking for Cambridge International A-Level and O-Level past papers. Students upload handwritten answers and get mark-by-mark feedback tied to real mark schemes.
 
-First, run the development server:
+## Stack
+
+- **Next.js** (App Router) + TypeScript
+- **Supabase** — auth, Postgres, storage (`paper-pdfs`, `answer-photos`)
+- **Anthropic + Gemini** — OCR and marking pipelines
+- **Stripe** — subscriptions and credits
+
+## Local setup
+
+### 1. Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local` and fill in:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Client-side Supabase key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server/admin operations |
+| `ANTHROPIC_API_KEY` | Marking + segmentation |
+| `GEMINI_API_KEY` | OCR |
+| `STRIPE_SECRET_KEY` | Billing (optional locally) |
+| `STRIPE_WEBHOOK_SECRET` | Webhook verification |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Checkout |
 
-## Learn More
+### 3. Database
 
-To learn more about Next.js, take a look at the following resources:
+Apply migrations in `supabase/migrations/` to your Supabase project (CLI or dashboard SQL editor). Recent additions include contact form storage and email notification prefs (`20260601_contact_notifications.sql`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Paper library (optional)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Sync Cambridge past papers from Best Exam Help into Supabase storage:
 
-## Deploy on Vercel
+```bash
+pnpm sync-papers:a-level    # Cambridge A-Level, 2020–2025
+pnpm sync-papers:o-level    # Cambridge O-Level, 2020–2025
+pnpm generate-subject-papers-cache
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Use `--skip-existing` to resume interrupted syncs.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. Run the app
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). Marking works for guests (IP rate-limited); signed-in users get per-account quotas.
+
+## Key routes
+
+| Path | Description |
+|------|-------------|
+| `/mark` | Upload and mark answers |
+| `/dashboard` | Home + progress |
+| `/account/*` | Settings (profile, study setup, billing, privacy) |
+| `/pricing` | Plans — founding members get 50% off forever |
+
+## Scripts
+
+```bash
+pnpm dev              # Development server
+pnpm build            # Production build
+pnpm lint             # ESLint
+pnpm sync-papers:a-level
+pnpm sync-papers:o-level
+pnpm generate-subject-papers-cache
+pnpm perf:baseline    # Lighthouse baselines (see perf-baseline/)
+```
 
 ## Performance baselines
-
-Measure scroll + Lighthouse scores on primary pages (requires a running app):
 
 ```bash
 pnpm dev
@@ -47,8 +87,11 @@ npx playwright install chromium
 pnpm perf:baseline --base=http://localhost:3000 --tag=before
 ```
 
-Reports are written to `perf-baseline/<tag>/*.json`. Re-run with `--tag=after` to compare.
+Reports go to `perf-baseline/<tag>/*.json`.
 
-Auth routes (`/dashboard`, `/mark`, `/account/*`) need a logged-in Playwright storage state — extend `scripts/perf-baseline.mjs` or use DevTools on a real device for ground-truth scroll feel.
+## Notes
 
-Manual check: Chrome DevTools → Performance → record while scrolling at **375×667**, **6× CPU**, Slow 4G.
+- Cambridge International is the only supported board today; others are planned.
+- Whole-paper marking on the free tier marks up to **3 questions** per upload (preview); paid plans mark up to 15.
+- Guest marks are capped at **10/day per IP**; signed-in users use account quotas instead (avoids shared school Wi‑Fi blocking students).
+- Not endorsed by Cambridge Assessment International Education.

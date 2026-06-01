@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
 import Anthropic from '@anthropic-ai/sdk'
 import { createClient as createServerClient } from '@/lib/supabase-server'
+import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { runSingleQuestionMark } from '@/lib/marking/single-question-pipeline'
@@ -36,6 +37,11 @@ import {
   quotaExceededBody,
   type MarkAllowance,
 } from '@/lib/billing/enforcement'
+import {
+  checkAnonymousMarkRateLimit,
+  clientIp,
+  incrementAnonymousMarkRateLimit,
+} from '@/lib/rate-limit'
 
 export const maxDuration = 300
 
@@ -74,7 +80,7 @@ async function ocrAnswerWithBoxes(
   uploadMode: UploadMode,
   subjectCode?: string
 ): Promise<{ full_text: string; lines: OcrLine[] }> {
-  const isMath = subjectCode === '9709'
+  const isMath = isMathSubjectCode(subjectCode)
   const prompt =
     uploadMode === 'whole_paper'
       ? WHOLE_PAPER_OCR_PROMPT
@@ -118,40 +124,20 @@ export async function POST(request: NextRequest) {
   const startTime = Date.now()
 
   try {
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown'
-    const today = new Date().toISOString().split('T')[0]
-
-    const { data: existingLimit } = await supabaseAdmin
-      .from('rate_limits')
-      .select('mark_count')
-      .eq('ip', ip)
-      .eq('date', today)
-      .maybeSingle()
-
-    if (existingLimit && existingLimit.mark_count >= 10) {
-      return NextResponse.json(
-        {
-          error:
-            'Daily limit reached (10 marks per day). The free beta is rate-limited to prevent abuse. Try again tomorrow.',
-        },
-        { status: 429 }
-      )
-    }
-
-    const currentCount = existingLimit?.mark_count || 0
-
     const supabaseAuth = await createServerClient()
     const {
       data: { user },
     } = await supabaseAuth.auth.getUser()
     const userId = user?.id || null
 
-    // Enforcement gate (entry point). Anonymous users (userId=null) are skipped
-    // entirely — they're covered by the IP rate limit above. Allowance is
-    // computed in every mode; it only blocks here in 'enforce' mode.
+    const ip = clientIp(request)
+    const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, userId)
+    if (!rateCheck.allowed) {
+      return NextResponse.json({ error: rateCheck.message }, { status: 429 })
+    }
+    const anonMarkCount = rateCheck.count
+
+    // Signed-in users rely on subscription quotas; guests use the IP cap above.
     let allowance: MarkAllowance | null = null
     if (userId) {
       allowance = await checkMarkAllowance(userId)
@@ -199,9 +185,11 @@ export async function POST(request: NextRequest) {
       }
 
       const bumpRateLimit = async () => {
-        await supabaseAdmin.from('rate_limits').upsert(
-          { ip, date: today, mark_count: currentCount + 1 },
-          { onConflict: 'ip,date' }
+        await incrementAnonymousMarkRateLimit(
+          supabaseAdmin,
+          ip,
+          userId,
+          anonMarkCount
         )
       }
 
@@ -459,9 +447,11 @@ export async function POST(request: NextRequest) {
         .select()
         .single()
 
-      await supabaseAdmin.from('rate_limits').upsert(
-        { ip, date: today, mark_count: currentCount + 1 },
-        { onConflict: 'ip,date' }
+      await incrementAnonymousMarkRateLimit(
+        supabaseAdmin,
+        ip,
+        userId,
+        anonMarkCount
       )
 
       // Whole paper = exactly 1 mark (not N questions).

@@ -1,50 +1,126 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
+import { Loader2 } from 'lucide-react'
+import { Button } from '@/components/ui/Button'
+import { ErrorBox, SuccessBox } from '@/components/AuthFormBits'
 import { SettingsSectionCard } from '@/components/settings/SettingsSectionCard'
 
 export function PrivacySection() {
+  const [exportLoading, setExportLoading] = useState(false)
+  const [deleteConfirm, setDeleteConfirm] = useState('')
+  const [deleteLoading, setDeleteLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+  const [successMsg, setSuccessMsg] = useState('')
+
+  async function handleExport() {
+    setExportLoading(true)
+    setErrorMsg('')
+    setSuccessMsg('')
+    try {
+      const res = await fetch('/api/account/export')
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data?.error || 'Export failed')
+      }
+      const blob = await res.blob()
+      const disposition = res.headers.get('Content-Disposition') || ''
+      const match = disposition.match(/filename="([^"]+)"/)
+      const filename = match?.[1] ?? 'examcore-export.json'
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = filename
+      a.click()
+      URL.revokeObjectURL(url)
+      setSuccessMsg('Your data export has downloaded.')
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : 'Export failed')
+    } finally {
+      setExportLoading(false)
+    }
+  }
+
+  async function handleDelete() {
+    if (deleteConfirm !== 'DELETE') {
+      setErrorMsg('Type DELETE in the box to confirm.')
+      return
+    }
+    setDeleteLoading(true)
+    setErrorMsg('')
+    setSuccessMsg('')
+    try {
+      const res = await fetch('/api/account/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ confirm: 'DELETE' }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(data?.error || 'Could not delete account')
+      }
+      window.location.href = '/'
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : 'Delete failed')
+      setDeleteLoading(false)
+    }
+  }
+
   return (
     <div className="space-y-6">
       <SettingsSectionCard
         title="Your data"
-        description="Export and privacy controls."
+        description="Download everything we store about your account."
       >
-        <div
-          className="rounded-2xl border px-4 py-4"
-          style={{
-            borderColor: 'var(--ec-border)',
-            background: 'var(--ec-surface-raised)',
-          }}
+        <p className="text-body mb-4">
+          Includes your profile, marking attempts, subscription status, and usage
+          history (last 500 attempts).
+        </p>
+        <Button
+          type="button"
+          variant="secondary"
+          size="md"
+          onClick={() => void handleExport()}
+          disabled={exportLoading}
         >
-          <p className="text-body-large font-semibold text-[var(--ec-text-primary)]">
-            Download my data
-          </p>
-          <p className="text-caption mt-1">Planned feature</p>
-          <p className="text-body mt-3">
-            You&apos;ll be able to export your attempts, marks, and profile data.
-            For now, email{' '}
-            <a
-              href="mailto:hello@examcore.ai"
-              className="font-semibold text-[var(--ec-brand)] underline-offset-2 hover:underline"
-            >
-              hello@examcore.ai
-            </a>{' '}
-            to request a copy.
-          </p>
-        </div>
+          {exportLoading ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+              Preparing export…
+            </>
+          ) : (
+            'Download my data'
+          )}
+        </Button>
       </SettingsSectionCard>
 
       <SettingsSectionCard title="Delete account">
-        <p className="text-body">
-          Account deletion from settings is coming soon. To remove your account and
-          uploads now, contact{' '}
-          <a
-            href="mailto:hello@examcore.ai"
-            className="font-semibold text-[var(--ec-brand)] underline-offset-2 hover:underline"
-          >
-            hello@examcore.ai
-          </a>
-          .
+        <p className="text-body mb-4">
+          Permanently removes your account, attempts, and uploads. This cannot be
+          undone.
         </p>
+        <label className="label-overline mb-2 block" htmlFor="deleteConfirm">
+          Type DELETE to confirm
+        </label>
+        <input
+          id="deleteConfirm"
+          type="text"
+          value={deleteConfirm}
+          onChange={(e) => setDeleteConfirm(e.target.value)}
+          className="ec-input mb-4 max-w-xs"
+          autoComplete="off"
+        />
+        <Button
+          type="button"
+          variant="secondary"
+          size="md"
+          onClick={() => void handleDelete()}
+          disabled={deleteLoading || deleteConfirm !== 'DELETE'}
+          className="border-red-500/40 text-red-400 hover:border-red-500/60"
+        >
+          {deleteLoading ? 'Deleting…' : 'Delete my account'}
+        </Button>
       </SettingsSectionCard>
 
       <SettingsSectionCard title="Legal">
@@ -67,6 +143,9 @@ export function PrivacySection() {
           </li>
         </ul>
       </SettingsSectionCard>
+
+      {errorMsg && <ErrorBox message={errorMsg} />}
+      {successMsg && <SuccessBox message={successMsg} />}
     </div>
   )
 }

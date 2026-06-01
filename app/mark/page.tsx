@@ -31,14 +31,14 @@ import {
   getSubjectById,
 } from '@/lib/profile-options'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
+import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
 import { ApproachingLimitBanner } from '@/components/billing/ApproachingLimitBanner'
 import { MarkUsageIndicator } from '@/components/billing/MarkUsageIndicator'
-import { PaidFeatureGate } from '@/components/billing/PaidFeatureGate'
 import { capForTier } from '@/lib/billing/caps'
-import { isPaidTier } from '@/lib/billing/features'
+import { isPaidTier, FREE_WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
 import {
   questionUsageMessage,
   type BillingSummaryClient,
@@ -50,7 +50,13 @@ import type {
   MarkContextPayload,
   MarkProgressStage,
 } from '@/lib/marking/mark-progress'
-import { getSubjectPaperStructure } from '@/lib/subject-papers'
+import {
+  getComponentsForSession,
+  getSeasonsForYearFromSessions,
+  getSubjectPaperStructure,
+  getYearsFromSessions,
+} from '@/lib/subject-papers'
+import { sessionCodeFromYearSeason } from '@/lib/marking/session'
 
 type SessionInfo = {
   year: number
@@ -329,24 +335,45 @@ export default function MarkPage() {
     }
   }, [selectedSubject, selectedYear, selectedSession, selectedComponent])
 
+  const paperStructure = useMemo(
+    () => (selectedSubject ? getSubjectPaperStructure(selectedSubject) : null),
+    [selectedSubject]
+  )
+
   const availableYears = useMemo<number[]>(() => {
-    if (!selectedSubject || !availablePapers?.[selectedSubject]) return []
+    if (!selectedSubject) return []
     const years = new Set<number>()
-    for (const s of Object.values(availablePapers[selectedSubject].sessions)) {
-      years.add(s.year)
+    if (availablePapers?.[selectedSubject]) {
+      for (const s of Object.values(availablePapers[selectedSubject].sessions)) {
+        years.add(s.year)
+      }
+    }
+    if (paperStructure?.sessions?.length) {
+      for (const year of getYearsFromSessions(paperStructure.sessions)) {
+        years.add(year)
+      }
     }
     return Array.from(years).sort((a, b) => b - a)
-  }, [selectedSubject, availablePapers])
+  }, [selectedSubject, availablePapers, paperStructure])
 
   const availableSeasons = useMemo<string[]>(() => {
-    if (!selectedSubject || selectedYear === '' || !availablePapers?.[selectedSubject])
-      return []
+    if (!selectedSubject || selectedYear === '') return []
     const seasons = new Set<string>()
-    for (const s of Object.values(availablePapers[selectedSubject].sessions)) {
-      if (s.year === selectedYear) seasons.add(s.season)
+    if (availablePapers?.[selectedSubject]) {
+      for (const s of Object.values(availablePapers[selectedSubject].sessions)) {
+        if (s.year === selectedYear) seasons.add(s.season)
+      }
+    }
+    if (paperStructure?.sessions?.length) {
+      for (const season of getSeasonsForYearFromSessions(
+        paperStructure.sessions,
+        selectedYear
+      )) {
+        seasons.add(season)
+      }
     }
     return Array.from(seasons)
-  }, [selectedSubject, selectedYear, availablePapers])
+  }, [selectedSubject, selectedYear, availablePapers, paperStructure])
 
   const matchedSessionCode = useMemo<string>(() => {
     if (
@@ -354,36 +381,66 @@ export default function MarkPage() {
       selectedYear === '' ||
       !selectedSession ||
       !availablePapers?.[selectedSubject]
-    )
+    ) {
+      if (
+        selectedSubject &&
+        selectedYear !== '' &&
+        selectedSession &&
+        paperStructure?.sessions?.length
+      ) {
+        return (
+          sessionCodeFromYearSeason(selectedYear, selectedSession) ??
+          ''
+        )
+      }
       return ''
+    }
     const sessions = availablePapers[selectedSubject].sessions
     for (const [code, s] of Object.entries(sessions)) {
       if (s.year === selectedYear && s.season === selectedSession) return code
     }
-    return ''
-  }, [selectedSubject, selectedYear, selectedSession, availablePapers])
+    return (
+      sessionCodeFromYearSeason(selectedYear, selectedSession) ??
+      ''
+    )
+  }, [selectedSubject, selectedYear, selectedSession, availablePapers, paperStructure])
 
   const availableComponents = useMemo<string[]>(() => {
-    if (!matchedSessionCode || !selectedSubject || !availablePapers) return []
-    return (
-      availablePapers[selectedSubject]?.sessions[matchedSessionCode]?.components ||
-      []
-    )
-  }, [matchedSessionCode, selectedSubject, availablePapers])
+    if (!matchedSessionCode || !selectedSubject) return []
+    const fromStorage =
+      availablePapers?.[selectedSubject]?.sessions[matchedSessionCode]
+        ?.components ?? []
+    if (fromStorage.length > 0) return fromStorage
+    if (
+      paperStructure &&
+      selectedYear !== '' &&
+      selectedSession
+    ) {
+      return getComponentsForSession(
+        paperStructure,
+        selectedYear,
+        selectedSession
+      )
+    }
+    return []
+  }, [
+    matchedSessionCode,
+    selectedSubject,
+    availablePapers,
+    paperStructure,
+    selectedYear,
+    selectedSession,
+  ])
 
   const profileSelectableSubjects = useMemo(() => {
-    if (!availablePapers) return []
     const codes = profileSubjectCodes.length ? profileSubjectCodes : ['9709']
-    return codes.filter((code) => availablePapers[code])
+    return codes.filter(
+      (code) => availablePapers?.[code] || getSubjectPaperStructure(code)
+    )
   }, [profileSubjectCodes, availablePapers])
 
   const activeSubjectMeta = useMemo(
     () => (selectedSubject ? getSubjectByCode(selectedSubject) : undefined),
-    [selectedSubject]
-  )
-
-  const paperStructure = useMemo(
-    () => (selectedSubject ? getSubjectPaperStructure(selectedSubject) : null),
     [selectedSubject]
   )
 
@@ -889,14 +946,22 @@ export default function MarkPage() {
                     Select subject, year, session, and paper below before uploading
                     your pages.
                   </div>
-                ) : billingSummary && !isPaidTier(billingSummary.tier) ? (
-                  <PaidFeatureGate
-                    feature="whole_paper"
-                    title="Whole papers are a paid feature"
-                    body="Upgrade to mark entire papers in one go — assign pages to questions and get a projected grade in a single submission."
-                  />
                 ) : (
-                  <WholePaperFlow
+                  <>
+                    {billingSummary && !isPaidTier(billingSummary.tier) && (
+                      <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-[var(--ec-text-secondary)]">
+                        <span className="font-semibold text-amber-200/90">Free preview:</span>{' '}
+                        we mark up to {FREE_WHOLE_PAPER_QUESTION_LIMIT} questions per
+                        whole-paper upload.{' '}
+                        <Link
+                          href="/pricing"
+                          className="font-semibold text-emerald-400 hover:text-emerald-300"
+                        >
+                          Upgrade for full papers →
+                        </Link>
+                      </div>
+                    )}
+                    <WholePaperFlow
                     key={wholePaperKey}
                     paperCode={wholePaperCode}
                     paperSession={wholePaperSession}
@@ -922,6 +987,7 @@ export default function MarkPage() {
                     }}
                     onAllowance={handleAllowance}
                   />
+                  </>
                 )}
               </section>
             ) : (
@@ -977,16 +1043,14 @@ export default function MarkPage() {
                     )}
 
                     {!papersLoading &&
-                      availablePapers &&
-                      Object.keys(availablePapers).length === 0 && (
+                      profileSelectableSubjects.length === 0 && (
                         <p className="text-sm text-slate-500">
                           No past papers available yet.
                         </p>
                       )}
 
                     {!papersLoading &&
-                      availablePapers &&
-                      Object.keys(availablePapers).length > 0 && (
+                      profileSelectableSubjects.length > 0 && (
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                           <div>
                             <Label htmlFor="manual-subject" className="label-overline mb-2 inline-block">
@@ -1000,11 +1064,13 @@ export default function MarkPage() {
                             >
                               <option value="">Select...</option>
                               {profileSelectableSubjects.map((code) => {
-                                const info = availablePapers[code]
-                                if (!info) return null
+                                const info = availablePapers?.[code]
+                                const meta = getSubjectByCode(code)
+                                const label =
+                                  info?.subject ?? meta?.label ?? `Subject ${code}`
                                 return (
                                   <option key={code} value={code}>
-                                    {info.subject} ({code})
+                                    {label} ({code})
                                   </option>
                                 )
                               })}
@@ -1320,24 +1386,11 @@ export default function MarkPage() {
               <SolutionSection attemptId={result.attempt_id} />
             )}
 
-            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-              <button
-                type="button"
-                onClick={handleMarkAnotherAttempt}
-                className="ec-btn-secondary w-full justify-center text-base"
-                style={{ padding: '16px 24px' }}
-              >
-                Mark another attempt at this question
-              </button>
-              <button
-                type="button"
-                onClick={handleMarkNewQuestion}
-                className="ec-btn-primary w-full justify-center text-base"
-                style={{ padding: '16px 24px' }}
-              >
-                Mark a new question
-              </button>
-            </div>
+            <PostMarkNextSteps
+              result={result}
+              onMarkAnother={handleMarkAnotherAttempt}
+              onMarkNewQuestion={handleMarkNewQuestion}
+            />
 
             {showFreeNudge && (
               <p className="pt-1 text-center text-sm text-[var(--ec-text-secondary)]">

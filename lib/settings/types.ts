@@ -40,4 +40,8 @@ export type SettingsContext = {
   email: string
   profile: SettingsProfile
   billing: SettingsBilling
+  notifications: {
+    emailExamReminders: boolean
+    emailProductUpdates: boolean
+  }
 }

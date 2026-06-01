@@ -49,11 +49,11 @@ const kalam = Kalam({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — AI marking for Cambridge A-Levels`,
+    default: `${SITE_NAME} — AI marking for Cambridge A-Levels & O-Levels`,
     template: `%s — ${SITE_NAME}`,
   },
   description:
-    "Upload handwritten A-Level answers and get mark-by-mark feedback in seconds. Fifteen Cambridge subjects — free during early access.",
+    "Upload handwritten Cambridge answers and get mark-by-mark feedback in seconds. Free during early access — founding members lock in 50% off forever.",
   openGraph: {
     siteName: SITE_NAME,
     type: "website",

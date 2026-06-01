@@ -7,6 +7,7 @@ import {
   type OcrLine,
 } from '@/lib/examiner-ink-positioning'
 import { normalizeErrorClassification } from '@/lib/error-classifications'
+import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { parsePaperCode } from '@/lib/marking/component-types'
 import { buildMarkingPrompt, maxTokensForStyle } from '@/lib/marking/build-marking-prompt'
@@ -76,7 +77,7 @@ export async function ocrAnswerWithBoxes(
   uploadMode: UploadMode,
   subjectCode?: string
 ): Promise<{ full_text: string; lines: OcrLine[] }> {
-  const isMath = subjectCode === '9709'
+  const isMath = isMathSubjectCode(subjectCode)
   const prompt =
     uploadMode === 'whole_paper'
       ? WHOLE_PAPER_OCR_PROMPT
@@ -92,7 +93,7 @@ export async function ocrAnswerBufferWithBoxes(
   mimeType: string,
   subjectCode?: string
 ): Promise<{ full_text: string; lines: OcrLine[] }> {
-  const isMath = subjectCode === '9709'
+  const isMath = isMathSubjectCode(subjectCode)
   const prompt = isMath
     ? ANSWER_OCR_PROMPT_MATH
     : ANSWER_OCR_PROMPT_GENERAL

@@ -26,7 +26,7 @@ export const SETTINGS_NAV: SettingsNavItem[] = [
   },
   {
     slug: 'study',
-    label: 'Account',
+    label: 'Study setup',
     description: 'Subjects, level, and security',
     href: '/account/study',
     icon: GraduationCap,

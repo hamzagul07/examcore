@@ -21,13 +21,22 @@ function paperFromComponent(component: string): number {
 const SUBJECT_DEFAULT: Record<string, MarkingStyle> = {
   '9709': 'point_based',
   '9231': 'point_based',
+  '4024': 'point_based',
+  '4037': 'point_based',
   '9700': 'point_based',
   '9701': 'point_based',
   '9702': 'point_based',
+  '5090': 'point_based',
+  '5070': 'point_based',
+  '5054': 'point_based',
   '9706': 'point_based',
+  '7707': 'point_based',
   '9618': 'point_based',
+  '2210': 'point_based',
   '9708': 'mixed',
+  '2281': 'mixed',
   '9609': 'mixed',
+  '7115': 'mixed',
   '9990': 'mixed',
   '9084': 'level_of_response',
   '9488': 'level_of_response',
@@ -96,16 +105,16 @@ function heuristicStyle(subjectCode: string, component: string): MarkingStyle {
   const paper = paperFromComponent(component)
   const subjectDefault = SUBJECT_DEFAULT[subjectCode] ?? 'point_based'
 
-  if (['9700', '9701', '9702'].includes(subjectCode) && paper === 1) {
+  if (['9700', '9701', '9702', '5090', '5070', '5054'].includes(subjectCode) && paper === 1) {
     return 'mcq'
   }
-  if (['9709', '9231', '9706', '9618'].includes(subjectCode)) {
+  if (['9709', '9231', '4024', '4037', '9706', '7707', '9618', '2210'].includes(subjectCode)) {
     return 'point_based'
   }
   if (['9489', '9084', '9488', '9607'].includes(subjectCode)) {
     return paper === 1 ? 'mixed' : 'level_of_response'
   }
-  if (['9699', '9708', '9609', '9990'].includes(subjectCode)) {
+  if (['9699', '9708', '9609', '9990', '2281', '7115'].includes(subjectCode)) {
     if (paper === 1) return 'mixed'
     if (paper === 2 && subjectCode !== '9699') return 'point_based'
     if (paper === 2 && subjectCode === '9699') return 'level_of_response'

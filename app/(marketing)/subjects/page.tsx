@@ -7,7 +7,7 @@ import { SubjectsGrid } from '@/components/marketing/SubjectsGrid'
 export const metadata = createPageMetadata({
   title: 'Subjects',
   description:
-    'Mark Cambridge A-Level past papers across 15 subjects — Maths, Sciences, Humanities, Business, and more.',
+    'Mark Cambridge A-Level and O-Level past papers — Maths, Sciences, Humanities, Business, and more. Real mark schemes, adaptive marking for MCQ, point-based questions, and essays.',
   path: '/subjects',
 })
 
@@ -22,7 +22,7 @@ export default function SubjectsPage() {
             <span className="ec-text-gradient">we mark</span>
           </>
         }
-        lead="Fifteen subject codes, real mark schemes, adaptive marking for MCQ, point-based questions, and essays."
+        lead="Cambridge A-Level and O-Level subject codes, real mark schemes, adaptive marking for MCQ, point-based questions, and essays."
       />
       <MarketingSection className="!pt-0">
         <SubjectsGrid detailed />
@@ -31,12 +31,17 @@ export default function SubjectsPage() {
             Pick your subject and start marking
           </h2>
           <p className="landing-lead mx-auto mb-8 max-w-lg">
-            Free during early access. Upload something you already wrote and see
-            examiner-style feedback in under a minute.
+            Free during early access — try marking before you sign up. Founding
+            members who complete setup lock in 50% off any paid plan, forever.
           </p>
-          <Link href="/auth/signup" className="ec-btn-primary inline-flex min-h-[52px]">
-            Get started free <ArrowRight className="h-5 w-5" />
-          </Link>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link href="/mark" className="ec-btn-primary inline-flex min-h-[52px]">
+              Try marking free <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link href="/auth/signup" className="ec-btn-secondary inline-flex min-h-[52px]">
+              Create free account
+            </Link>
+          </div>
         </div>
       </MarketingSection>
     </MarketingPageShell>

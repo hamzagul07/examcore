@@ -23,7 +23,7 @@ export async function loadAccountContext(): Promise<SettingsContext> {
   const { data: profile } = await supabase
     .from('user_profiles')
     .select(
-      'full_name, board, level, subjects, onboarded, onboarding_completed, exam_date, stage, primary_goal, created_at'
+      'full_name, board, level, subjects, onboarded, onboarding_completed, exam_date, stage, primary_goal, created_at, email_exam_reminders, email_product_updates'
     )
     .eq('id', user.id)
     .maybeSingle()
@@ -85,6 +85,10 @@ export async function loadAccountContext(): Promise<SettingsContext> {
         creditsDelta: (u.credits_delta as number) ?? 0,
         createdAt: u.created_at as string,
       })),
+    },
+    notifications: {
+      emailExamReminders: Boolean(profile?.email_exam_reminders),
+      emailProductUpdates: Boolean(profile?.email_product_updates),
     },
   }
 }

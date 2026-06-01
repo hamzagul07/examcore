@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
+import { createServiceClient } from '@/lib/supabase/service'
 import {
   ENABLED_BOARD_IDS,
   ENABLED_LEVEL_IDS,
@@ -131,6 +132,15 @@ export async function POST(request: Request) {
       { status: 500 }
     )
   }
+
+  const service = createServiceClient()
+  await service.from('user_subscriptions').upsert(
+    {
+      user_id: user.id,
+      founding_member: true,
+    },
+    { onConflict: 'user_id' }
+  )
 
   if (role === 'teacher') {
     const classroomName = (body.classroom_name || '').trim()

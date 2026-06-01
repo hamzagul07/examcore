@@ -8,9 +8,12 @@ import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import {
-  SUBJECTS,
   SUBJECT_GROUPS,
   DEFAULT_BOARD,
+  DEFAULT_LEVEL,
+  LEVELS,
+  isSubjectValidForLevel,
+  subjectsInGroup,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
@@ -67,6 +70,7 @@ export function OnboardingWizard({
   const nextParam = searchParams.get('next')
 
   const [step, setStep] = useState(rerun ? 2 : 1)
+  const [level, setLevel] = useState(DEFAULT_LEVEL)
   const [subjects, setSubjects] = useState<string[]>(initialProfile?.subjects ?? [])
   const [stage, setStage] = useState<UserStage | null>(initialProfile?.stage ?? null)
   const [primaryGoal, setPrimaryGoal] = useState<PrimaryGoal | null>(
@@ -87,14 +91,20 @@ export function OnboardingWizard({
     setErrorMsg('')
   }
 
+  function handleLevelChange(nextLevel: string) {
+    setLevel(nextLevel)
+    setSubjects((prev) => prev.filter((id) => isSubjectValidForLevel(id, nextLevel)))
+    if (nextLevel === 'O-Level') {
+      setStage('other')
+    }
+    setErrorMsg('')
+  }
+
   async function completeOnboarding(redirectHref: string) {
     if (!stage || !primaryGoal || subjects.length === 0) return
 
     setLoading(true)
     setErrorMsg('')
-
-    const level =
-      stage === 'as_level' ? 'AS Level' : stage === 'a2_level' ? 'A-Level' : 'A-Level'
 
     const res = await fetch('/api/onboarding', {
       method: 'POST',
@@ -176,6 +186,8 @@ export function OnboardingWizard({
             )}
             {step === 2 && (
               <StepSubjects
+                level={level}
+                onLevelChange={handleLevelChange}
                 selected={subjects}
                 onToggle={toggleSubject}
                 errorMsg={errorMsg}
@@ -185,6 +197,7 @@ export function OnboardingWizard({
             )}
             {step === 3 && (
               <StepStage
+                level={level}
                 selected={stage}
                 onSelect={setStage}
                 examDate={examDate}
@@ -302,29 +315,66 @@ function StepWelcome({ onContinue }: { onContinue: () => void }) {
 }
 
 function StepSubjects({
+  level,
+  onLevelChange,
   selected,
   onToggle,
   errorMsg,
   onContinue,
   onBack,
 }: {
+  level: string
+  onLevelChange: (level: string) => void
   selected: string[]
   onToggle: (id: string) => void
   errorMsg: string
   onContinue: () => void
   onBack: () => void
 }) {
+  const levelHeading =
+    level === 'O-Level'
+      ? 'O-Levels'
+      : level === 'IGCSE'
+        ? 'IGCSE subjects'
+        : level === 'AS Level'
+          ? 'AS Levels'
+          : 'A-Levels'
+
   return (
     <div>
       <h1 className="text-headline text-[var(--ec-text-primary)]">
-        Which Cambridge A-Levels are you taking?
+        What level are you studying?
       </h1>
       <p className="text-body mt-3 text-[var(--ec-text-secondary)]">
-        Pick up to four. We&apos;ll tailor papers and progress to these subjects.
+        Pick your Cambridge level, then choose up to four subjects.
       </p>
-      <div className="mt-6 space-y-6 sm:max-h-[min(50vh,420px)] sm:space-y-6 sm:overflow-y-auto sm:pr-1">
+
+      <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {LEVELS.filter((l) => l.enabled).map((opt) => (
+          <button
+            key={opt.id}
+            type="button"
+            onClick={() => onLevelChange(opt.id)}
+            className={`min-h-[44px] rounded-xl border px-4 py-3 text-left text-sm font-semibold transition-all ${
+              level === opt.id
+                ? 'border-emerald-500/50 bg-emerald-500/10 text-[var(--ec-text-primary)]'
+                : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] hover:border-emerald-500/30'
+            }`}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+
+      <h2 className="text-title mt-8 text-[var(--ec-text-primary)]">
+        Which Cambridge {levelHeading} are you taking?
+      </h2>
+      <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
+        We&apos;ll tailor papers and progress to these subjects.
+      </p>
+      <div className="mt-6 space-y-6 sm:max-h-[min(40vh,360px)] sm:space-y-6 sm:overflow-y-auto sm:pr-1">
         {SUBJECT_GROUPS.map((group) => {
-          const items = SUBJECTS.filter((s) => s.enabled && s.group === group)
+          const items = subjectsInGroup(group, level)
           if (!items.length) return null
           return (
             <div key={group}>
@@ -334,7 +384,7 @@ function StepSubjects({
                   const active = selected.includes(subject.id)
                   return (
                     <button
-                      key={subject.id}
+                      key={subject.code}
                       type="button"
                       onClick={() => onToggle(subject.id)}
                       className={`min-h-[48px] rounded-xl border px-4 py-3 text-left text-sm font-semibold transition-all ${
@@ -362,6 +412,7 @@ function StepSubjects({
 }
 
 function StepStage({
+  level,
   selected,
   onSelect,
   examDate,
@@ -370,6 +421,7 @@ function StepStage({
   onContinue,
   onBack,
 }: {
+  level: string
   selected: UserStage | null
   onSelect: (s: UserStage) => void
   examDate: string | null
@@ -379,6 +431,10 @@ function StepStage({
   onBack: () => void
 }) {
   const suggestions = suggestedExamDates()
+  const stageOptions =
+    level === 'O-Level' || level === 'IGCSE'
+      ? STAGE_OPTIONS.filter((opt) => opt.id === 'other')
+      : STAGE_OPTIONS
 
   return (
     <div>
@@ -386,10 +442,12 @@ function StepStage({
         Where are you in your studies?
       </h1>
       <p className="text-body mt-3 text-[var(--ec-text-secondary)]">
-        This helps us pitch feedback at the right level.
+        {level === 'O-Level'
+          ? 'This helps us tailor papers and feedback for your O-Level year.'
+          : 'This helps us pitch feedback at the right level.'}
       </p>
       <div className="mt-6 space-y-3">
-        {STAGE_OPTIONS.map((opt) => (
+        {stageOptions.map((opt) => (
           <button
             key={opt.id}
             type="button"

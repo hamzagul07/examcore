@@ -40,6 +40,17 @@ const ICON_BY_CODE: Record<string, LucideIcon> = {
   '9488': BookOpen,
   '9618': Cpu,
   '9607': Tv,
+  '4024': Calculator,
+  '4037': Sigma,
+  '5090': FlaskConical,
+  '5070': FlaskConical,
+  '5054': Atom,
+}
+
+function levelLabel(levels: string[]): string {
+  if (levels.includes('O-Level') && !levels.includes('A-Level')) return 'O-Level'
+  if (levels.includes('A-Level') && !levels.includes('O-Level')) return 'A-Level'
+  return levels[0] ?? ''
 }
 
 function markingTypeLabel(type: MarkingType): string {
@@ -114,6 +125,11 @@ function SubjectCard({
           </p>
           <p className="mt-0.5 font-mono text-[10px] text-[var(--ec-text-secondary)] sm:text-xs">
             {subject.code}
+            {levelLabel(subject.levels) && (
+              <span className="ml-1.5 text-[9px] uppercase tracking-wider text-emerald-400/80">
+                · {levelLabel(subject.levels)}
+              </span>
+            )}
           </p>
         </div>
       </div>
@@ -133,6 +149,11 @@ function SubjectCard({
           <span className="font-mono text-xs text-[var(--ec-text-secondary)]">
             {subject.code}
           </span>
+          {levelLabel(subject.levels) && (
+            <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-400/90">
+              {levelLabel(subject.levels)}
+            </span>
+          )}
         </div>
         <p className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
           {formatComponents(subject)}

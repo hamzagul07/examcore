@@ -20,8 +20,13 @@ import {
   allowanceForResponse,
   quotaExceededBody,
 } from '@/lib/billing/enforcement'
-import { paidFeatureRequiredBody } from '@/lib/billing/features'
+import {
+  checkAnonymousMarkRateLimit,
+  clientIp,
+  incrementAnonymousMarkRateLimit,
+} from '@/lib/rate-limit'
 import { createServiceClient } from '@/lib/supabase/service'
+import { wholePaperQuestionLimit } from '@/lib/billing/features'
 import type { SubscriptionTier } from '@/lib/database.types'
 import { ocrPdfToPages } from '@/lib/marking/pdf-pages'
 import { genAI } from '@/lib/marking/mark-runner'
@@ -38,37 +43,20 @@ type PageAssignment = { index: number; question_number: string | null }
 
 export async function POST(request: NextRequest) {
   try {
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown'
-    const today = new Date().toISOString().split('T')[0]
-
-    const { data: existingLimit } = await supabaseAdmin
-      .from('rate_limits')
-      .select('mark_count')
-      .eq('ip', ip)
-      .eq('date', today)
-      .maybeSingle()
-
-    if (existingLimit && existingLimit.mark_count >= 10) {
-      return NextResponse.json(
-        {
-          error:
-            'Daily limit reached (10 marks per day). The free beta is rate-limited to prevent abuse. Try again tomorrow.',
-        },
-        { status: 429 }
-      )
-    }
-
     const supabaseAuth = await createServerClient()
     const {
       data: { user },
     } = await supabaseAuth.auth.getUser()
     const userId = user?.id || null
 
-    // Whole-paper marking is a paid feature; quota applies after tier check.
+    const ip = clientIp(request)
+    const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, userId)
+    if (!rateCheck.allowed) {
+      return NextResponse.json({ error: rateCheck.message }, { status: 429 })
+    }
+
     let allowance: Awaited<ReturnType<typeof checkMarkAllowance>> | null = null
+    let tier: SubscriptionTier = 'free'
     if (userId) {
       const service = createServiceClient()
       const { data: subRow } = await service
@@ -76,16 +64,15 @@ export async function POST(request: NextRequest) {
         .select('tier')
         .eq('user_id', userId)
         .maybeSingle()
-      const tier = (subRow?.tier ?? 'free') as SubscriptionTier
-      if (tier === 'free') {
-        return NextResponse.json(paidFeatureRequiredBody('whole_paper'), { status: 402 })
-      }
+      tier = (subRow?.tier ?? 'free') as SubscriptionTier
 
       allowance = await checkMarkAllowance(userId)
       if (allowance.blocked_by_mode) {
         return NextResponse.json(quotaExceededBody(allowance), { status: 402 })
       }
     }
+
+    const questionLimit = wholePaperQuestionLimit(tier)
 
     const formData = await request.formData()
     const manualPaperCode = formData.get('manual_paper_code') as string | null
@@ -218,10 +205,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const questionCount = Math.min(segments.questions.length, 15)
+    const questionCount = Math.min(segments.questions.length, questionLimit)
     const estSeconds = estimateMarkingSeconds(questionCount)
     const enrichedSegments = enrichSegmentsWithPages(
-      segments.questions.slice(0, 15),
+      segments.questions.slice(0, questionLimit),
       pagesOcr
     )
     const pagePhotoUrls = pagesOcr.map((p) => p.photo_url)
@@ -272,6 +259,9 @@ export async function POST(request: NextRequest) {
       attempt_id: attempt.id,
       page_count: pagesOcr.length,
       question_count: questionCount,
+      questions_in_paper: segments.questions.length,
+      question_limit: questionLimit,
+      preview_mode: tier === 'free',
       detected_labels: detectedLabels,
       estimated_time: formatEstimatedTime(estSeconds),
       estimated_seconds: estSeconds,

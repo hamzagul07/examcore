@@ -138,7 +138,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
   }
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 min-w-0 max-w-full overflow-x-clip">
       <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-[var(--ec-text-secondary)]">
         <span>
           Showing prices in{' '}

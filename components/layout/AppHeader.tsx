@@ -20,10 +20,10 @@ export function AppHeader() {
         borderColor: 'var(--ec-border)',
       }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+      <div className="mx-auto flex w-full min-w-0 max-w-7xl items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3">
         <WordmarkLink href="/" size="sm" />
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden min-w-0 items-center gap-6 md:flex">
           <Link
             href="/dashboard"
             className="text-sm font-medium transition-colors duration-300"
@@ -75,25 +75,20 @@ export function AppHeader() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="ml-auto flex min-w-0 shrink items-center justify-end gap-1 sm:gap-2">
           <CreditChip />
-          <ThemeSwitcher />
+          <div className="hidden shrink-0 sm:block">
+            <ThemeSwitcher />
+          </div>
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="ec-btn-primary inline-flex min-h-[44px] min-w-[44px] justify-center p-0 lg:hidden"
+            className="ec-btn-primary inline-flex min-h-[44px] shrink-0 justify-center px-3 text-sm sm:min-w-[44px] sm:px-4 lg:px-5"
             aria-label="Ask Examcore"
           >
-            <Sparkles className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            onClick={() => setIsOpen(true)}
-            className="ec-btn-primary hidden min-h-[44px] text-sm lg:inline-flex"
-          >
-            <Sparkles className="h-4 w-4" />
-            <span className="hidden sm:inline">Ask Examcore</span>
-            <span className="sm:hidden">Ask</span>
+            <Sparkles className="h-4 w-4 shrink-0" />
+            <span className="hidden lg:inline">Ask Examcore</span>
+            <span className="hidden sm:inline lg:hidden">Ask</span>
           </button>
         </div>
       </div>

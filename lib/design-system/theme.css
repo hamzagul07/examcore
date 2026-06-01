@@ -1459,6 +1459,8 @@ body {
 /* ============ App chrome — opaque on mobile, blur on desktop ============ */
 .ec-app-header {
   background: var(--ec-canvas);
+  max-width: 100vw;
+  overflow-x: clip;
 }
 
 @media (min-width: 1024px) {

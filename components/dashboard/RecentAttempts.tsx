@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FileText, NotebookPen, ChevronRight } from 'lucide-react'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 
 export type RecentAttempt = {
   id: string
@@ -49,9 +50,10 @@ export function RecentAttempts({ attempts }: Props) {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Link
+              <LoadingLink
                 href={`/dashboard/attempt/${attempt.id}`}
-                className="ec-card ec-card-interactive block p-4 sm:p-5"
+                variant="card"
+                className="ec-card ec-card-interactive relative block p-4 sm:p-5"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 flex-1 items-start gap-3">
@@ -86,7 +88,7 @@ export function RecentAttempts({ attempts }: Props) {
                     View <ChevronRight className="inline h-3 w-3" />
                   </span>
                 </div>
-              </Link>
+              </LoadingLink>
             </motion.div>
           )
         })}

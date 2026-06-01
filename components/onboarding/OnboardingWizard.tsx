@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, BookOpen, LineChart, PenLine } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, LineChart, Loader2, PenLine } from 'lucide-react'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
@@ -533,14 +533,16 @@ function StepFirstMark({
         <button
           type="button"
           disabled={loading}
+          aria-busy={loading || undefined}
+          data-loading={loading ? 'true' : undefined}
           onClick={onMark}
           className="ec-btn-primary w-full justify-center"
         >
           {loading ? (
-            <span className="inline-flex items-center gap-2">
-              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
               Saving profile...
-            </span>
+            </>
           ) : rerun ? (
             <>Save and return to settings</>
           ) : (

@@ -2,9 +2,15 @@
 
 import { Moon, Sun } from 'lucide-react'
 import { useEcTheme } from '@/lib/design-system/ThemeProvider'
+import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useEcTheme()
+
+  function select(next: 'late-night' | 'zen') {
+    triggerPrimaryHaptic()
+    setTheme(next)
+  }
 
   return (
     <div
@@ -19,8 +25,8 @@ export function ThemeSwitcher() {
       <button
         type="button"
         title="Late Night"
-        onClick={() => setTheme('late-night')}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all duration-300 md:px-3"
+        onClick={() => select('late-night')}
+        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all duration-300 active:scale-[0.98] md:px-3"
         style={{
           background:
             theme === 'late-night' ? 'var(--ec-brand-muted)' : 'transparent',
@@ -36,8 +42,8 @@ export function ThemeSwitcher() {
       <button
         type="button"
         title="Zen"
-        onClick={() => setTheme('zen')}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all duration-300 md:px-3"
+        onClick={() => select('zen')}
+        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all duration-300 active:scale-[0.98] md:px-3"
         style={{
           background: theme === 'zen' ? 'var(--ec-brand-muted)' : 'transparent',
           color:

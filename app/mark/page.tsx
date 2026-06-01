@@ -1,9 +1,11 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
 import Link from 'next/link'
-import { UploadCloud, ChevronRight, Loader2, Sparkles } from 'lucide-react'
+import { UploadCloud, ChevronRight, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/label'
 import {
   MarkingResultView,
@@ -484,34 +486,41 @@ export default function MarkPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (answerPages.length === 0) {
-      setErrorMsg('Upload at least one page of your answer.')
-      return
-    }
-    if (hasCompressingPages(answerPages)) {
-      setErrorMsg('Still preparing your images — wait a moment.')
-      return
-    }
-    if (questionPhotoCompressing) {
-      setErrorMsg('Still preparing your question photo — wait a moment.')
-      return
-    }
-    if (uploadMode === 'whole_paper') {
-      setErrorMsg('Use the whole-paper upload area to submit your pages.')
-      return
-    }
-
-    setLoading(true)
-    setMarkProgress({ percent: 5, stage: 'reading_work' })
-    setMarkContext(null)
-    setMarkStreamError(null)
-    setErrorMsg('')
-    setErrorRetryable(false)
-    setResult(null)
-    setPendingResult(null)
-    pendingResultRef.current = null
+    flushSync(() => {
+      setLoading(true)
+    })
 
     try {
+      if (answerPages.length === 0) {
+        setLoading(false)
+        setErrorMsg('Upload at least one page of your answer.')
+        return
+      }
+      if (hasCompressingPages(answerPages)) {
+        setLoading(false)
+        setErrorMsg('Still preparing your images — wait a moment.')
+        return
+      }
+      if (questionPhotoCompressing) {
+        setLoading(false)
+        setErrorMsg('Still preparing your question photo — wait a moment.')
+        return
+      }
+      if (uploadMode === 'whole_paper') {
+        setLoading(false)
+        setErrorMsg('Use the whole-paper upload area to submit your pages.')
+        return
+      }
+
+      setMarkProgress({ percent: 5, stage: 'reading_work' })
+      setMarkContext(null)
+      setMarkStreamError(null)
+      setErrorMsg('')
+      setErrorRetryable(false)
+      setResult(null)
+      setPendingResult(null)
+      pendingResultRef.current = null
+
       const { pageFiles, extras, error: payloadError } =
         await prepareImageFilesForSubmit(
           answerPages.map((p) => p.file),
@@ -1220,49 +1229,25 @@ export default function MarkPage() {
             {uploadMode === 'single_question' && (
               <>
                 <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />
-                <motion.button
+                <Button
                 type="submit"
+                variant="primary"
+                size="lg"
+                fullWidth
+                loading={loading}
+                loadingText="Marking..."
                 disabled={
-                  loading ||
                   !answerPages.length ||
                   hasCompressingPages(answerPages) ||
                   questionPhotoCompressing ||
                   submitBlocked
                 }
-                whileHover={
-                  loading ||
-                  !answerPages.length ||
-                  hasCompressingPages(answerPages) ||
-                  questionPhotoCompressing
-                    ? undefined
-                    : { y: -2, scale: 1.01 }
-                }
-                whileTap={
-                  loading ||
-                  !answerPages.length ||
-                  hasCompressingPages(answerPages) ||
-                  questionPhotoCompressing
-                    ? undefined
-                    : { y: 0, scale: 0.98 }
-                }
-                transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-                className={`ec-btn-primary w-full justify-center text-base ${
-                  answerPages.length > 0 && !loading ? 'brand-pulse' : ''
-                }`}
-                style={{ padding: '18px 32px' }}
+                pulse={answerPages.length > 0 && !loading}
+                leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
+                className="justify-center text-base"
               >
-                {loading ? (
-                  <>
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                    Marking your answer...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="h-5 w-5" />
-                    Mark my answer
-                  </>
-                )}
-              </motion.button>
+                Mark my answer
+              </Button>
               </>
             )}
           </form>

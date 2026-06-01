@@ -46,7 +46,7 @@ export function DrillToast() {
               type="button"
               onClick={() => setShow(false)}
               aria-label="Dismiss"
-              className="ml-1 flex min-h-[44px] min-w-[44px] items-center justify-center text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
+              className="ml-1 flex min-h-[44px] min-w-[44px] items-center justify-center text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)] active:scale-95"
             >
               <X className="h-4 w-4" />
             </button>

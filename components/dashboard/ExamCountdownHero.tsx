@@ -2,7 +2,6 @@
 
 import { useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
   examEncouragement,
@@ -11,6 +10,7 @@ import {
 } from '@/lib/dashboard/exam-date'
 import { useIntersectionVisible } from '@/lib/hooks/useIntersectionVisible'
 import { CountdownParticles } from './CountdownParticles'
+import { MarkQuestionCta } from './MarkQuestionCta'
 
 type Props = {
   firstName: string
@@ -92,13 +92,7 @@ export function ExamCountdownHero({
 
       <div className="mt-6 flex flex-col items-center">
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Link
-            href="/mark"
-            className="ec-btn-primary inline-flex w-full justify-center sm:w-auto"
-          >
-            Mark a question
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          <MarkQuestionCta />
         </motion.div>
         {weeklyAttempts > 0 && (
           <p className="text-caption mt-3 text-center">

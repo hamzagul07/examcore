@@ -1,4 +1,5 @@
-import Link from 'next/link'
+'use client'
+
 import {
   ArrowRight,
   Target,
@@ -16,6 +17,7 @@ import type {
   ActionPlanType,
 } from '@/lib/action-plan'
 import { TiltCard } from '@/components/effects/TiltCard'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type Props = {
   items: ActionPlanItem[]
@@ -175,14 +177,15 @@ function ActionCard({
         {item.body}
       </p>
 
-      <Link
+      <LoadingLink
         href={item.ctaHref}
+        loadingText="Opening..."
         className="ec-btn-secondary mt-5 self-start text-sm"
         style={{ padding: '8px 14px' }}
       >
         {item.ctaText}
         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-      </Link>
+      </LoadingLink>
       </div>
     </TiltCard>
   )

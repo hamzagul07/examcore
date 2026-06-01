@@ -2,8 +2,9 @@
 
 import * as React from 'react'
 import { motion } from 'framer-motion'
-import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ButtonSpinner } from '@/components/ui/ButtonSpinner'
+import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
 type ButtonSize = 'sm' | 'md' | 'lg'
@@ -17,10 +18,14 @@ export interface ButtonProps {
   children?: React.ReactNode
   variant?: ButtonVariant
   size?: ButtonSize
+  /** Alias for isLoading — either enables loading state. */
+  loading?: boolean
   isLoading?: boolean
   loadingText?: string
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
+  /** Light haptic on tap. Defaults true for primary, false otherwise. */
+  haptic?: boolean
   /** Render full width (e.g. for form submit buttons in cards). */
   fullWidth?: boolean
   /** Apply the subtle brand pulsing aura. Use on a single hero CTA only. */
@@ -47,61 +52,32 @@ export interface ButtonProps {
 }
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
-  sm: 'min-h-[44px] px-3.5 py-2 text-sm rounded-xl',
-  md: 'min-h-[44px] px-5 py-2.5 text-sm rounded-2xl',
-  lg: 'min-h-[48px] px-6 py-3.5 text-base rounded-2xl',
+  sm: 'min-h-[44px] px-3.5 py-2 text-sm',
+  md: 'min-h-[44px] px-5 py-2.5 text-sm',
+  lg: 'min-h-[48px] px-6 py-3.5 text-base',
 }
 
-/* Variant base classes. Spring transform comes from framer; visual chrome
-   (gradient, glow, border) is layered on per-variant. */
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  primary: cn(
-    'relative inline-flex items-center justify-center gap-2 font-semibold tracking-tight text-white',
-    'bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600',
-    'shadow-[0_4px_24px_rgba(16,185,129,0.4),inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-2px_0_rgba(0,0,0,0.05)]',
-    'hover:shadow-[0_8px_32px_rgba(16,185,129,0.55),inset_0_1px_0_rgba(255,255,255,0.3)]',
-    'transition-shadow duration-200'
-  ),
-  secondary: cn(
-    'relative inline-flex items-center justify-center gap-2 font-semibold tracking-tight text-slate-900',
-    'bg-white/70 backdrop-blur-xl border border-slate-200/80',
-    'shadow-[0_2px_12px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.6)]',
-    'hover:bg-white hover:shadow-[0_8px_24px_rgba(15,23,42,0.1)]',
-    'transition-all duration-200'
-  ),
-  ghost: cn(
-    'relative inline-flex items-center justify-center gap-2 font-semibold tracking-tight text-slate-700',
-    'bg-transparent',
-    'hover:bg-slate-900/5'
-  ),
+  primary: 'ec-btn-primary',
+  secondary: 'ec-btn-secondary',
+  ghost: 'ec-btn-ghost',
   danger: cn(
-    'relative inline-flex items-center justify-center gap-2 font-semibold tracking-tight text-red-700',
-    'bg-white/70 backdrop-blur-xl border border-red-200/70',
-    'shadow-[0_2px_12px_rgba(239,68,68,0.08)]',
-    'hover:bg-red-50/80 hover:border-red-300 hover:shadow-[0_8px_24px_rgba(239,68,68,0.15)]'
+    'ec-btn-secondary border-red-500/40 text-red-400',
+    'hover:border-red-400/50 hover:bg-red-500/10'
   ),
 }
 
-/**
- * Premium button — spring-physics interactions powered by framer-motion.
- *
- * - whileHover lifts the button slightly with a small scale bump.
- * - whileTap dips it back down.
- * - Variants ship gradient fills + colored shadows so the hover state is
- *   visibly stronger, not just transformed.
- *
- * The matching .btn-primary / .ec-btn-secondary / .ec-btn-ghost CSS classes still
- * exist in globals.css for non-component callers (Link-as-button, etc.).
- */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(props, ref) {
     const {
       variant = 'primary',
       size = 'md',
-      isLoading = false,
+      loading,
+      isLoading: isLoadingProp = false,
       loadingText,
       leftIcon,
       rightIcon,
+      haptic,
       fullWidth = false,
       pulse = false,
       className,
@@ -119,7 +95,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       tabIndex,
       title,
     } = props
+
+    const isLoading = loading ?? isLoadingProp
     const isDisabled = disabled || isLoading
+    const useHaptic = haptic ?? variant === 'primary'
+
+    const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+      if (useHaptic && !isDisabled) {
+        triggerPrimaryHaptic()
+      }
+      onClick?.(e)
+    }
 
     return (
       <motion.button
@@ -138,10 +124,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         aria-describedby={props['aria-describedby']}
         aria-pressed={props['aria-pressed']}
         aria-expanded={props['aria-expanded']}
-        whileHover={isDisabled ? undefined : { y: -2, scale: 1.02 }}
-        whileTap={isDisabled ? undefined : { y: 0, scale: 0.97 }}
-        transition={{ type: 'spring', stiffness: 420, damping: 18, mass: 0.6 }}
-        onClick={onClick}
+        aria-busy={isLoading || undefined}
+        data-loading={isLoading ? 'true' : undefined}
+        whileHover={isDisabled ? undefined : { y: -1 }}
+        whileTap={isDisabled ? undefined : { scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 420, damping: 22, mass: 0.55 }}
+        onClick={handleClick}
         onFocus={onFocus}
         onBlur={onBlur}
         className={cn(
@@ -149,14 +137,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           SIZE_CLASSES[size],
           fullWidth && 'w-full',
           pulse && !isDisabled && variant === 'primary' && 'brand-pulse',
-          isDisabled && 'cursor-not-allowed opacity-60',
           className
         )}
       >
         {isLoading ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-            <span>{loadingText || children}</span>
+            <ButtonSpinner size={16} />
+            <span>{loadingText ?? children}</span>
           </>
         ) : (
           <>

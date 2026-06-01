@@ -1,8 +1,11 @@
 'use client'
 
-import Link from 'next/link'
+import { TiltCard } from '@/components/effects/TiltCard'
+import type { HeroInsight } from '@/lib/insights/types'
+import { drillHref } from '@/lib/insights/drill-link'
+import { InsightHeroCta } from '@/components/progress/insights/InsightHeroCta'
+
 import {
-  ArrowRight,
   Brain,
   Target,
   TrendingUp,
@@ -10,9 +13,6 @@ import {
   Sparkles,
   type LucideIcon,
 } from 'lucide-react'
-import { TiltCard } from '@/components/effects/TiltCard'
-import type { HeroInsight } from '@/lib/insights/types'
-import { drillHref } from '@/lib/insights/drill-link'
 
 const KIND_ICON: Record<HeroInsight['kind'], LucideIcon> = {
   error_pattern: Brain,
@@ -57,10 +57,7 @@ export function InsightHero({ insight }: { insight: HeroInsight }) {
           )}
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Link href={href} className="ec-btn-primary text-sm">
-              {insight.ctaLabel}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+            <InsightHeroCta href={href} label={insight.ctaLabel} />
             {insight.drill && (
               <span className="ec-break-anywhere font-mono text-xs text-[var(--ec-text-secondary)]">
                 {insight.drill.paperCode} · Q{insight.drill.questionNumber} · {insight.drill.totalMarks} marks

@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { getSubjectById } from '@/lib/profile-options'
 import { getSubjectColor } from '@/lib/design-system/subject-colors'
+import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type SubjectChip = {
   name: string
@@ -35,8 +35,9 @@ export function ActiveSubjects({ subjects }: Props) {
               whileTap={{ scale: 0.98 }}
               className="shrink-0"
             >
-              <Link
+              <LoadingLink
                 href={href}
+                variant="inline"
                 className="ec-chip ec-chip-info inline-flex min-h-[44px] items-center gap-2 px-4 py-2.5 text-sm"
               >
                 <span
@@ -45,7 +46,7 @@ export function ActiveSubjects({ subjects }: Props) {
                   aria-hidden
                 />
                 <span className="font-semibold">{meta?.label ?? name}</span>
-              </Link>
+              </LoadingLink>
             </motion.div>
           )
         })}

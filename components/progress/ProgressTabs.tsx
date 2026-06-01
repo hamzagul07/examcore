@@ -74,7 +74,7 @@ export function ProgressTabs({ insights, journey, topics, attempts }: Props) {
               aria-selected={selected}
               onClick={() => setActive(tab.key)}
               className={[
-                'group inline-flex min-h-[44px] shrink-0 items-center gap-2 whitespace-nowrap rounded-xl border px-4 py-2.5 text-sm font-semibold transition-colors',
+                'group inline-flex min-h-[44px] shrink-0 items-center gap-2 whitespace-nowrap rounded-xl border px-4 py-2.5 text-sm font-semibold transition-colors active:scale-[0.98]',
                 selected
                   ? 'border-[var(--ec-brand)]/40 bg-[var(--ec-brand-muted)] text-[var(--ec-brand)]'
                   : 'border-[var(--ec-border)] bg-[var(--ec-surface)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/30 hover:text-[var(--ec-text-primary)]',

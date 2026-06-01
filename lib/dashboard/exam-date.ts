@@ -39,3 +39,22 @@ export function timeGreeting(firstName: string): string {
   if (hour < 17) return `Good afternoon, ${name}`
   return `Good evening, ${name}`
 }
+
+/** Contextual encouragement copy keyed to days remaining. */
+export function examEncouragement(daysLeft: number): string {
+  if (daysLeft <= 0) return "Today is the day. You've got this."
+  if (daysLeft <= 3) return 'Almost there. Stay calm.'
+  if (daysLeft <= 7) return 'Final week. Make it count.'
+  if (daysLeft <= 14) return 'Two weeks out. Trust your prep.'
+  if (daysLeft <= 30) return 'The home stretch. Stay consistent.'
+  return 'Plenty of time. Steady wins.'
+}
+
+/** Derive session label from exam date (e.g. "May/June session"). */
+export function examSessionLabel(examDate: string): string {
+  const month = new Date(`${examDate}T00:00:00Z`).getUTCMonth()
+  if (month >= 4 && month <= 6) return 'May/June session'
+  if (month >= 9 && month <= 11) return 'Oct/Nov session'
+  if (month === 2 || month === 3) return 'March session'
+  return 'exam session'
+}

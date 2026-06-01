@@ -9,6 +9,7 @@ import { RootFooter } from "@/components/layout/RootFooter";
 import { OmniAIProviders } from "@/components/omni-ai/OmniAIProviders";
 import { OmniAI } from "@/components/omni-ai/OmniAI";
 import { MobileTabBarGate } from "@/components/layout/MobileTabBarGate";
+import { OmniFABGate } from "@/components/omni-ai/OmniFABGate";
 import { SITE_NAME, SITE_URL } from "@/lib/site-config";
 
 const inter = Inter({
@@ -81,6 +82,7 @@ export default function RootLayout({
             <div className="relative z-[1] flex flex-1 flex-col">{children}</div>
             <RootFooter />
             <MobileTabBarGate />
+            <OmniFABGate />
             <OmniAI />
           </OmniAIProviders>
         </ThemeProvider>

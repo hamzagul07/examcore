@@ -10,7 +10,6 @@ import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
 import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
 import { InviteCard } from '@/components/teacher/InviteCard'
 import { useSetAIContext } from '@/lib/omni-ai/context'
-import { SidebarChat } from '@/components/omni-ai/SidebarChat'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
 interface ClassroomData {
@@ -156,7 +155,6 @@ export default function ClassroomPage() {
 
         <ReviewQueueList classroomId={id} />
       </div>
-      <SidebarChat />
     </>
   )
 }

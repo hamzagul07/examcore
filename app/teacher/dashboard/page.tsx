@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Users, BookOpen, Plus, Sparkles, TrendingUp } from 'lucide-react'
-import { SidebarChat } from '@/components/omni-ai/SidebarChat'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 
 interface Classroom {
@@ -99,7 +98,6 @@ export default function TeacherDashboard() {
           ))}
         </div>
       </div>
-      <SidebarChat />
     </>
   )
 }

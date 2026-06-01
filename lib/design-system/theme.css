@@ -311,6 +311,18 @@ body {
   }
 }
 
+@keyframes ec-breathe {
+  0%,
+  100% {
+    opacity: 0.08;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.18;
+    transform: scale(1.04);
+  }
+}
+
 .ec-text-gradient {
   background: var(--ec-brand-gradient);
   -webkit-background-clip: text;

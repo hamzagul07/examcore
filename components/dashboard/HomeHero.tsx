@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Calendar } from 'lucide-react'
 import { examCountdown, timeGreeting } from '@/lib/dashboard/exam-date'
+import { ExamCountdownHero } from './ExamCountdownHero'
 
 type Props = {
   firstName: string
@@ -16,23 +17,13 @@ export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
     <section className="mb-8 lg:mb-10">
       <p className="ec-label-tech mb-3">HOME</p>
 
-      {countdown.kind === 'future' ? (
-        <div className="mb-6">
-          <div className="flex flex-wrap items-end gap-x-4 gap-y-2">
-            <span
-              className="text-[clamp(3rem,12vw,5rem)] font-extrabold leading-none tracking-tight ec-text-gradient"
-              aria-label={`${countdown.daysLeft} days until your exam`}
-            >
-              {countdown.daysLeft}
-            </span>
-            <div className="pb-1">
-              <p className="text-title text-[var(--ec-text-primary)]">
-                days until your exam
-              </p>
-              <p className="text-caption mt-1">{greeting}</p>
-            </div>
-          </div>
-        </div>
+      {countdown.kind === 'future' && examDate ? (
+        <ExamCountdownHero
+          firstName={firstName}
+          examDate={examDate}
+          daysLeft={countdown.daysLeft}
+          weeklyAttempts={weeklyAttempts}
+        />
       ) : countdown.kind === 'past' ? (
         <div className="ec-banner ec-banner-info mb-6">
           <Calendar className="ec-banner__icon h-5 w-5 shrink-0" aria-hidden />
@@ -65,16 +56,23 @@ export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
         </div>
       )}
 
-      <Link href="/mark" className="ec-btn-primary inline-flex w-full justify-center sm:w-auto">
-        Mark a question
-        <ArrowRight className="h-4 w-4" />
-      </Link>
+      {countdown.kind !== 'future' && (
+        <>
+          <Link
+            href="/mark"
+            className="ec-btn-primary inline-flex w-full justify-center sm:w-auto"
+          >
+            Mark a question
+            <ArrowRight className="h-4 w-4" />
+          </Link>
 
-      {weeklyAttempts > 0 && (
-        <p className="text-caption mt-3">
-          You&apos;ve marked {weeklyAttempts} question{weeklyAttempts === 1 ? '' : 's'} this
-          week
-        </p>
+          {weeklyAttempts > 0 && (
+            <p className="text-caption mt-3">
+              You&apos;ve marked {weeklyAttempts} question
+              {weeklyAttempts === 1 ? '' : 's'} this week
+            </p>
+          )}
+        </>
       )}
     </section>
   )

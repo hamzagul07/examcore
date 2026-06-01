@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
-import { SidebarChat } from '@/components/omni-ai/SidebarChat'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 
 type Filter = 'all' | 'pending' | 'overridden'
@@ -108,7 +107,6 @@ export default function ReviewsPage() {
           ))}
         </div>
       </div>
-      <SidebarChat />
     </>
   )
 }

@@ -14,6 +14,7 @@ export interface UserProfile {
   stage: UserStage | null
   primary_goal: PrimaryGoal | null
   celebrations_seen: string[] | null
+  exam_date: string | null
   role: UserRole
   created_at?: string
   updated_at?: string

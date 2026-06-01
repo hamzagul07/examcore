@@ -120,6 +120,13 @@ export default function MarkPage() {
   const [upgradeModal, setUpgradeModal] = useState<UpgradeModalState | null>(null)
   const [showFreeNudge, setShowFreeNudge] = useState(false)
   const [billingSummary, setBillingSummary] = useState<BillingSummaryClient | null>(null)
+  // Set when the user arrived via a "Drill this" link from the insights
+  // dashboard. Drives the practice banner and the return-to-insights CTA.
+  const [practiceContext, setPracticeContext] = useState<{
+    pattern: string
+    reason: string
+    returnTo: string | null
+  } | null>(null)
 
   const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
     null
@@ -259,6 +266,36 @@ export default function MarkPage() {
     } catch {
       // ignore
     }
+  }, [])
+
+  // "Drill this" deep-link from the insights dashboard. Preloads the exact
+  // recommended question (which always exists in mark_schemes) and shows a
+  // practice banner. Declared after the localStorage effects so it wins.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const sp = new URLSearchParams(window.location.search)
+    if (sp.get('practice') !== '1') return
+    const paper = sp.get('paper') || ''
+    const session = sp.get('session') || ''
+    const q = sp.get('q') || ''
+    const [subjectCode, componentCode] = paper.split('/')
+    if (subjectCode) setSelectedSubject(subjectCode)
+    if (componentCode) setSelectedComponent(componentCode)
+    const sessionMatch = session.match(/^(.*)\s+(\d{4})$/)
+    if (sessionMatch) {
+      setSelectedSession(sessionMatch[1])
+      setSelectedYear(Number(sessionMatch[2]))
+    } else if (session) {
+      setSelectedSession(session)
+    }
+    if (q) setQuestionNumber(q)
+    setShowManualPaper(true)
+    setShowOptional(true)
+    setPracticeContext({
+      pattern: sp.get('pattern') || 'this pattern',
+      reason: sp.get('reason') || '',
+      returnTo: sp.get('return'),
+    })
   }, [])
 
   // Persist manual selection (without question number) whenever it changes
@@ -701,7 +738,7 @@ export default function MarkPage() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-10 sm:px-6 sm:py-12">
+    <main className="app-shell app-shell-tabbed">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -710,7 +747,7 @@ export default function MarkPage() {
           className="mb-10 sm:mb-12"
         >
           <p className="ec-label-tech mb-4">MARK ANSWER</p>
-          <h1 className="text-[44px] font-extrabold leading-[1] tracking-[-0.035em] sm:text-[56px] md:text-[72px]">
+          <h1 className="text-hero">
             <span className="gradient-text">Get marked</span>
             <br />
             <span className="ec-text-gradient brand-breathe">in 30 seconds.</span>
@@ -721,6 +758,25 @@ export default function MarkPage() {
               : 'Cambridge A-Level past papers, examiner-grade.'}
           </p>
         </motion.div>
+
+        {!result && practiceContext && (
+          <div
+            className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 p-4 min-w-0"
+            style={{ background: 'var(--ec-brand-muted)' }}
+          >
+            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+                Practicing: {practiceContext.pattern}
+              </p>
+              {practiceContext.reason && (
+                <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                  Why this question helps: {practiceContext.reason}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
 
         {!result && limitBanner && !bannerDismissed && (
           <ApproachingLimitBanner
@@ -1237,6 +1293,29 @@ export default function MarkPage() {
 
         {result && !result.whole_paper && (
           <div className="space-y-8">
+            {practiceContext?.returnTo === 'progress' && (
+              <Link
+                href="/dashboard/progress?tab=insights&drilled=1"
+                className="ec-card group flex items-center justify-between gap-4 border-[var(--ec-brand)]/30 p-4 transition-colors hover:border-[var(--ec-brand)]/50"
+              >
+                <div className="flex items-start gap-3">
+                  <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+                      Practice complete
+                    </p>
+                    <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
+                      See how this changed your insights for {practiceContext.pattern}.
+                    </p>
+                  </div>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
+                  See updated insights
+                  <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </span>
+              </Link>
+            )}
+
             <MarkingResultView
               result={result}
               attemptId={result.attempt_id ?? null}

@@ -49,6 +49,11 @@
   --ec-btn-glow-hover: 0 12px 32px rgba(0, 245, 160, 0.5);
   --ec-card-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
   --ec-card-hover-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.6), 0 0 48px rgba(0, 245, 160, 0.12);
+  --ec-touch-min: 44px;
+  --ec-z-sticky: 50;
+  --ec-z-overlay: 60;
+  --ec-z-modal: 90;
+  --ec-z-toast: 100;
   color-scheme: dark;
 }
 
@@ -108,10 +113,17 @@ body {
 
 /* ============ Typography ============ */
 .text-display {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.25rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.04em;
+}
+
+.text-hero {
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
 }
 
 .landing-section {
@@ -184,7 +196,7 @@ body {
 
 /* ============ Typography scale ============ */
 .text-headline {
-  font-size: clamp(1.625rem, 3.5vw, 2.25rem);
+  font-size: clamp(1.75rem, 4vw, 3rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -192,7 +204,7 @@ body {
 }
 
 .text-title {
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-size: clamp(1.375rem, 2.5vw, 2rem);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.015em;
@@ -200,15 +212,69 @@ body {
 }
 
 .text-body {
-  font-size: clamp(0.9375rem, 2vw, 1rem);
+  font-size: 1rem;
   line-height: 1.55;
   color: var(--ec-text-secondary);
 }
 
 .text-caption {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--ec-text-secondary);
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 2.5rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .app-shell {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.app-shell-tabbed {
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 1024px) {
+  .app-shell-tabbed {
+    padding-bottom: 3rem;
+  }
+}
+
+.app-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .app-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 .app-section {
@@ -320,9 +386,10 @@ body {
     background: var(--ec-brand-gradient);
     color: #0a0b0f;
     padding: 14px 28px;
+    min-height: 44px;
     border-radius: var(--ec-radius-button);
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
     letter-spacing: -0.01em;
     line-height: 1.2;
     border: none;
@@ -357,9 +424,10 @@ body {
     background: var(--ec-surface);
     color: var(--ec-text-primary);
     padding: 12px 24px;
+    min-height: 44px;
     border-radius: var(--ec-radius-button);
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.2;
     border: 1px solid var(--ec-border);
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -385,9 +453,10 @@ body {
     background: transparent;
     color: var(--ec-text-secondary);
     padding: 12px 18px;
+    min-height: 44px;
     border-radius: var(--ec-radius-button);
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.2;
     border: 1px solid transparent;
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -436,6 +505,30 @@ body {
     color: var(--ec-chip-sampled-text);
   }
 
+  /* Interactive pill — tappable filters (44px min) */
+  .ec-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: var(--ec-touch-min, 44px);
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    border: 1px solid var(--ec-border);
+    background: var(--ec-surface);
+    color: var(--ec-text-primary);
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ec-pill:hover {
+    border-color: color-mix(in srgb, var(--ec-brand) 30%, transparent);
+    background: var(--ec-brand-muted);
+  }
+
   /* ============ Inputs ============ */
   .ec-input {
     width: 100%;
@@ -444,7 +537,7 @@ body {
     border-radius: var(--ec-radius-button);
     padding: 14px 16px;
     color: var(--ec-text-primary);
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.4;
     transition:
       border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),

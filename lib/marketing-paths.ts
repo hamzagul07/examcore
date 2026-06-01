@@ -33,6 +33,11 @@ export function shouldShowAppHeader(pathname: string): boolean {
   return true
 }
 
+/** Same route gate as app header — auth/onboarding gating happens in MobileTabBarGate. */
+export function shouldShowMobileTabBar(pathname: string): boolean {
+  return shouldShowAppHeader(pathname)
+}
+
 export const MARKETING_ROUTES = [
   '/',
   '/subjects',

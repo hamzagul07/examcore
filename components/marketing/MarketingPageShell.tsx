@@ -9,7 +9,13 @@ type MarketingPageShellProps = {
 export function MarketingPageShell({ children, narrow = false }: MarketingPageShellProps) {
   return (
     <div className="relative min-h-screen">
-      <main className={narrow ? 'mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20' : ''}>
+      <main
+        className={
+          narrow
+            ? 'mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20'
+            : 'app-padding'
+        }
+      >
         {children}
       </main>
     </div>

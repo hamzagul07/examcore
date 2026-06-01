@@ -14,6 +14,7 @@ import {
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
+import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 
 const TOTAL_STEPS = 5
 
@@ -58,6 +59,7 @@ export function OnboardingWizard() {
   const [subjects, setSubjects] = useState<string[]>([])
   const [stage, setStage] = useState<UserStage | null>(null)
   const [primaryGoal, setPrimaryGoal] = useState<PrimaryGoal | null>(null)
+  const [examDate, setExamDate] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [showCelebration, setShowCelebration] = useState(false)
@@ -90,6 +92,7 @@ export function OnboardingWizard() {
         subjects,
         stage,
         primary_goal: primaryGoal,
+        exam_date: examDate,
         role: 'student',
       }),
     })
@@ -164,6 +167,8 @@ export function OnboardingWizard() {
               <StepStage
                 selected={stage}
                 onSelect={setStage}
+                examDate={examDate}
+                onExamDateChange={setExamDate}
                 errorMsg={errorMsg}
                 onContinue={goNext}
                 onBack={goBack}
@@ -294,7 +299,7 @@ function StepSubjects({
       <p className="text-body mt-3 text-[var(--ec-text-secondary)]">
         Pick up to four. We&apos;ll tailor papers and progress to these subjects.
       </p>
-      <div className="mt-6 max-h-[min(50vh,420px)] space-y-6 overflow-y-auto pr-1">
+      <div className="mt-6 space-y-6 sm:max-h-[min(50vh,420px)] sm:space-y-6 sm:overflow-y-auto sm:pr-1">
         {SUBJECT_GROUPS.map((group) => {
           const items = SUBJECTS.filter((s) => s.enabled && s.group === group)
           if (!items.length) return null
@@ -336,16 +341,22 @@ function StepSubjects({
 function StepStage({
   selected,
   onSelect,
+  examDate,
+  onExamDateChange,
   errorMsg,
   onContinue,
   onBack,
 }: {
   selected: UserStage | null
   onSelect: (s: UserStage) => void
+  examDate: string | null
+  onExamDateChange: (d: string | null) => void
   errorMsg: string
   onContinue: () => void
   onBack: () => void
 }) {
+  const suggestions = suggestedExamDates()
+
   return (
     <div>
       <h1 className="text-headline text-[var(--ec-text-primary)]">
@@ -360,7 +371,7 @@ function StepStage({
             key={opt.id}
             type="button"
             onClick={() => onSelect(opt.id)}
-            className={`ec-card w-full p-5 text-left transition-all ${
+            className={`ec-card w-full p-5 text-left transition-all min-h-[44px] ${
               selected === opt.id ? 'border-emerald-500/40 ring-1 ring-emerald-500/30' : ''
             }`}
           >
@@ -371,6 +382,44 @@ function StepStage({
           </button>
         ))}
       </div>
+
+      <div className="mt-8 border-t border-[var(--ec-border)] pt-6">
+        <h2 className="text-title text-base">When&apos;s your exam?</h2>
+        <p className="text-caption mt-1">Optional — we&apos;ll show a countdown on your home page.</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {suggestions.map((s) => (
+            <button
+              key={s.value}
+              type="button"
+              onClick={() => onExamDateChange(s.value)}
+              className={`min-h-[44px] rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all ${
+                examDate === s.value
+                  ? 'border-emerald-500/50 bg-emerald-500/10 text-[var(--ec-text-primary)]'
+                  : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] hover:border-emerald-500/30'
+              }`}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
+        <label className="mt-4 block">
+          <span className="text-caption mb-1.5 block">Or pick a specific date</span>
+          <input
+            type="date"
+            value={examDate ?? ''}
+            onChange={(e) => onExamDateChange(e.target.value || null)}
+            className="ec-input"
+          />
+        </label>
+        <button
+          type="button"
+          onClick={() => onExamDateChange(null)}
+          className="ec-btn-ghost mt-3 text-sm"
+        >
+          I&apos;ll set this later
+        </button>
+      </div>
+
       {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
       <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
     </div>

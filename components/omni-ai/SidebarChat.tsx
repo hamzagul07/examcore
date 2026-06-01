@@ -1,8 +1,10 @@
 'use client'
 
+import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
+import { useBodyScrollLock } from '@/lib/hooks/useBodyScrollLock'
 import { ChatPanel } from './ChatPanel'
 import { FloatingActionButton } from './FloatingActionButton'
 
@@ -35,6 +37,8 @@ export function SidebarChat() {
   const { isOpen, setIsOpen, context } = useOmniAI()
   const suggestions = CONTEXT_SUGGESTIONS[context.type] || []
 
+  useBodyScrollLock(isOpen)
+
   return (
     <>
       <FloatingActionButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} />
@@ -60,7 +64,7 @@ export function SidebarChat() {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/5"
+                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/5"
                   aria-label="Close sidebar"
                 >
                   <X className="h-5 w-5" />

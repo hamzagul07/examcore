@@ -21,6 +21,8 @@ type Props = {
   setLevel: (s: string) => void
   subjects: string[]
   setSubjects: (s: string[]) => void
+  examDate?: string
+  setExamDate?: (s: string) => void
   showFullName?: boolean
 }
 
@@ -33,6 +35,8 @@ export function ProfileFormFields({
   setLevel,
   subjects,
   setSubjects,
+  examDate,
+  setExamDate,
   showFullName = true,
 }: Props) {
   function toggleSubject(id: string) {
@@ -62,6 +66,24 @@ export function ProfileFormFields({
             placeholder="Hassan"
             className="ec-input"
           />
+        </div>
+      )}
+
+      {setExamDate !== undefined && (
+        <div>
+          <Label htmlFor="examDate" className="label-overline mb-2 inline-block">
+            Exam date (optional)
+          </Label>
+          <input
+            id="examDate"
+            type="date"
+            value={examDate ?? ''}
+            onChange={(e) => setExamDate(e.target.value)}
+            className="ec-input max-w-xs"
+          />
+          <p className="text-caption mt-1.5">
+            Shown as a countdown on your dashboard home page.
+          </p>
         </div>
       )}
 

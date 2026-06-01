@@ -25,7 +25,7 @@ export function ApproachingLimitBanner({ used, cap, onDismiss }: ApproachingLimi
       role="status"
     >
       <AlertTriangle className="h-5 w-5 shrink-0 text-amber-400" />
-      <p className="flex-1 text-sm text-[var(--ec-text-primary)]">
+      <p className="min-w-0 flex-1 text-sm text-[var(--ec-text-primary)]">
         You&apos;ve used {used} of your {cap} questions this month.{' '}
         <Link href="/pricing" className="font-semibold text-emerald-400 hover:text-emerald-300">
           See plans →
@@ -35,7 +35,7 @@ export function ApproachingLimitBanner({ used, cap, onDismiss }: ApproachingLimi
         type="button"
         onClick={onDismiss}
         aria-label="Dismiss"
-        className="shrink-0 rounded-lg p-1 text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
+        className="flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-lg p-2 text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
       >
         <X className="h-4 w-4" />
       </button>

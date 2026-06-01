@@ -374,7 +374,7 @@ export function MarkingResultView({
             {showOCR ? 'HIDE' : 'SHOW'} WHAT THE AI READ FROM YOUR HANDWRITING
           </button>
           {showOCR && (
-            <pre className="mt-2 whitespace-pre-wrap rounded-2xl border border-white/10 bg-dark-900/60 p-4 font-mono text-xs text-slate-400 backdrop-blur">
+            <pre className="mt-2 max-w-full overflow-x-auto break-words whitespace-pre-wrap rounded-2xl border border-white/10 bg-dark-900/60 p-4 font-mono text-xs text-slate-400 backdrop-blur">
               {result.ocr_text}
             </pre>
           )}

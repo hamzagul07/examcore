@@ -180,7 +180,7 @@ function VerifyEmailForm() {
             Verification code
           </label>
           <div
-            className="flex justify-center gap-2 sm:gap-3"
+            className="flex justify-center gap-1.5 sm:gap-3"
             onPaste={handlePaste}
           >
             {digits.map((digit, index) => (
@@ -197,7 +197,7 @@ function VerifyEmailForm() {
                 onChange={(e) => handleDigitChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 aria-label={`Digit ${index + 1} of ${CODE_LENGTH}`}
-                className="h-12 w-10 rounded-xl border border-white/10 bg-dark-900/70 text-center text-lg font-semibold text-white outline-none transition-all focus:border-emerald-500/50 focus:shadow-[0_0_20px_rgba(16,185,129,0.25)] sm:h-14 sm:w-12 sm:text-xl"
+                className="h-12 w-9 rounded-xl border border-white/10 bg-dark-900/70 text-center text-lg font-semibold text-white outline-none transition-all focus:border-emerald-500/50 focus:shadow-[0_0_20px_rgba(16,185,129,0.25)] sm:h-14 sm:w-12 sm:text-xl"
               />
             ))}
           </div>

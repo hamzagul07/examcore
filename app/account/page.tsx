@@ -26,7 +26,7 @@ export default async function AccountPage() {
 
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('full_name, board, level, subjects, onboarded, onboarding_completed')
+    .select('full_name, board, level, subjects, onboarded, onboarding_completed, exam_date')
     .eq('id', user.id)
     .maybeSingle()
 
@@ -58,7 +58,7 @@ export default async function AccountPage() {
   }
 
   return (
-    <main className="min-h-screen px-4 py-10 sm:px-6 md:py-14">
+    <main className="app-shell app-shell-tabbed md:py-14">
       <div className="mx-auto w-full max-w-2xl">
         <div className="animate-entry mb-10">
           <Link
@@ -69,7 +69,7 @@ export default async function AccountPage() {
             Back to dashboard
           </Link>
           <p className="ec-label-tech mt-5 mb-3">SETTINGS</p>
-          <h1 className="text-[44px] font-extrabold leading-[1] tracking-[-0.035em] sm:text-[56px] md:text-[64px]">
+          <h1 className="text-hero">
             <span className="gradient-text">Account</span>{' '}
             <span className="ec-text-gradient">settings</span>
           </h1>
@@ -85,6 +85,7 @@ export default async function AccountPage() {
             board: profile?.board ?? DEFAULT_BOARD,
             level: profile?.level ?? DEFAULT_LEVEL,
             subjects: profile?.subjects ?? DEFAULT_SUBJECTS,
+            exam_date: (profile?.exam_date as string | null) ?? '',
           }}
           billing={{
             tier: subscription?.tier ?? 'free',

@@ -10,32 +10,43 @@ import {
 import { getSubjectById } from '@/lib/profile-options'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
 import { getAttemptSubjectCode } from '@/lib/syllabi/attempts'
-import { AppEmptyState } from '@/components/ui/AppEmptyState'
 import { DashboardEntry } from './dashboard.client'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
 import { RecentAttempts, type RecentAttempt } from '@/components/dashboard/RecentAttempts'
-import { QuickStats } from '@/components/dashboard/QuickStats'
+import { StudyConstellation } from '@/components/dashboard/StudyConstellation'
 import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
 import { computeStreak } from '@/lib/dashboard/streak'
-import {
-  attemptsThisWeek,
-  attemptsThisMonth,
-  bestSubjectThisWeek,
-} from '@/lib/dashboard/home-stats'
+import { attemptsThisWeek } from '@/lib/dashboard/home-stats'
 import { resolveDashboardState, type Recommendation } from '@/lib/insights/types'
 import {
   fetchGenericRecommendations,
   fetchTopicRecommendations,
   topicTargetsFromMasteries,
 } from '@/lib/insights/recommendations'
-import type { SyllabusCode } from '@/lib/syllabus'
+import type { ConstellationAttemptInput } from '@/lib/dashboard/constellation'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
+
+function attemptLabel(attempt: {
+  source_type: string
+  question_text: string | null
+  mark_schemes: unknown
+}): string {
+  const ms = attempt.mark_schemes as {
+    question_number?: string | null
+    paper_code?: string | null
+  } | null
+  if (attempt.source_type === 'past_paper' && ms) {
+    return `Q${ms.question_number} — ${ms.paper_code}`
+  }
+  const text = attempt.question_text || ''
+  return `Custom: ${text.substring(0, 50)}${text.length > 50 ? '…' : ''}`
+}
 
 export default async function DashboardPage() {
   const supabase = await createServerClient()
@@ -57,6 +68,10 @@ export default async function DashboardPage() {
   const greetingName = firstName || 'student'
   const examDate = (profile?.exam_date as string | null) ?? null
 
+  const thirtyDaysAgo = new Date()
+  thirtyDaysAgo.setUTCDate(thirtyDaysAgo.getUTCDate() - 30)
+  thirtyDaysAgo.setUTCHours(0, 0, 0, 0)
+
   const { data: attempts } = await supabaseAdmin
     .from('attempts')
     .select(
@@ -67,37 +82,26 @@ export default async function DashboardPage() {
     `
     )
     .eq('user_id', user.id)
+    .gte('created_at', thirtyDaysAgo.toISOString())
     .order('created_at', { ascending: false })
-    .limit(50)
+    .limit(100)
 
   const attemptsList = attempts || []
   const timestamps = attemptsList.map((a) => new Date(a.created_at))
   const streak = computeStreak(timestamps)
   const weeklyCount = attemptsThisWeek(timestamps)
-  const monthlyCount = attemptsThisMonth(timestamps)
-  const bestSubject = bestSubjectThisWeek(attemptsList)
 
-  const uniqueTopics = new Set<SyllabusCode>()
-  for (const a of attemptsList) {
-    const tags = (a as { syllabus_tags?: string[] | null }).syllabus_tags
-    if (tags?.length) {
-      for (const t of tags) uniqueTopics.add(t as SyllabusCode)
-    }
-  }
+  const constellationAttempts: ConstellationAttemptInput[] = attemptsList.map((attempt) => ({
+    id: attempt.id,
+    created_at: attempt.created_at,
+    marks_earned: attempt.marks_earned,
+    total_marks: attempt.total_marks,
+    subjectCode: getAttemptSubjectCode(attempt),
+    label: attemptLabel(attempt),
+  }))
 
   const recentRows: RecentAttempt[] = attemptsList.slice(0, 5).map((attempt) => {
     const percentage = Math.round((attempt.marks_earned / attempt.total_marks) * 100)
-    const ms = attempt.mark_schemes as {
-      question_number?: string | null
-      paper_code?: string | null
-      paper_session?: string | null
-    } | null
-    const label =
-      attempt.source_type === 'past_paper' && ms
-        ? `Q${ms.question_number} — ${ms.paper_code}`
-        : `Custom: ${(attempt.question_text || '').substring(0, 50)}${
-            (attempt.question_text || '').length > 50 ? '…' : ''
-          }`
     return {
       id: attempt.id,
       marks_earned: attempt.marks_earned,
@@ -105,7 +109,7 @@ export default async function DashboardPage() {
       source_type: attempt.source_type,
       question_text: attempt.question_text,
       created_at: attempt.created_at,
-      label,
+      label: attemptLabel(attempt),
       dateStr: new Date(attempt.created_at).toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
@@ -114,7 +118,6 @@ export default async function DashboardPage() {
     }
   })
 
-  // Subject chips: count attempts per profile subject
   const profileSubjects: string[] = profile?.subjects?.length
     ? profile.subjects
     : ['Mathematics']
@@ -123,8 +126,7 @@ export default async function DashboardPage() {
     const subj = getSubjectById(name)
     const code = subj?.code
     const count = attemptsList.filter((a) => {
-      const ms = a.mark_schemes as { paper_code?: string | null } | null
-      const attemptCode = ms?.paper_code?.split('/')[0]
+      const attemptCode = getAttemptSubjectCode(a)
       return code ? attemptCode === code : false
     }).length
     subjectAttemptCounts.set(name, count)
@@ -134,10 +136,8 @@ export default async function DashboardPage() {
     .map((name) => ({
       name,
       code: getSubjectById(name)?.code ?? null,
-      attemptCount: subjectAttemptCounts.get(name) ?? 0,
     }))
 
-  // Recommendations from primary math/syllabus subject
   let recommendations: Recommendation[] = []
   let continueSubjectLabel: string | null = null
 
@@ -179,7 +179,13 @@ export default async function DashboardPage() {
 
   return (
     <main className="app-shell app-shell-tabbed">
-      <div className="mx-auto max-w-7xl">
+      <div
+        className="mx-auto max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded-2xl"
+        style={{
+          background:
+            'radial-gradient(ellipse 80% 50% at 50% 0%, var(--ec-surface) 0%, var(--ec-canvas) 70%)',
+        }}
+      >
         <DashboardEntry>
           <HomeHero
             firstName={greetingName}
@@ -187,36 +193,27 @@ export default async function DashboardPage() {
             weeklyAttempts={weeklyCount}
           />
 
-          {isEmpty ? (
-            <AppEmptyState
-              title="Ready when you are"
-              body="Mark your first question to start seeing your progress here."
-              ctaLabel="Mark your first question"
-              ctaHref="/mark"
-            />
-          ) : (
-            <>
-              <RecentAttempts attempts={recentRows} />
-              <QuickStats
-                monthlyAttempts={monthlyCount}
-                streak={streak}
-                bestSubjectCode={bestSubject}
-                topicsAttempted={uniqueTopics.size}
+          <StudyConstellation attempts={constellationAttempts} />
+
+          {!isEmpty && <RecentAttempts attempts={recentRows} />}
+
+          {!isEmpty && (
+            <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+              <ContinueWork
+                recommendations={recommendations}
+                subjectLabel={continueSubjectLabel}
               />
-              <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
-                <ContinueWork
-                  recommendations={recommendations}
-                  subjectLabel={continueSubjectLabel}
-                />
-                <ActiveSubjects subjects={activeSubjects} />
-              </div>
-              <p className="text-caption text-center lg:text-left">
-                Want mastery matrix, journey timeline, and grade trajectory?{' '}
-                <Link href="/dashboard/progress" className="font-semibold text-[var(--ec-brand)]">
-                  View detailed progress →
-                </Link>
-              </p>
-            </>
+              <ActiveSubjects subjects={activeSubjects} />
+            </div>
+          )}
+
+          {!isEmpty && (
+            <p className="text-caption text-center lg:text-left">
+              Want mastery matrix, journey timeline, and grade trajectory?{' '}
+              <Link href="/dashboard/progress" className="font-semibold text-[var(--ec-brand)]">
+                View detailed progress →
+              </Link>
+            </p>
           )}
         </DashboardEntry>
       </div>

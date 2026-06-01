@@ -57,7 +57,7 @@ export function AppHeader() {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="ec-btn-primary min-h-[44px] text-sm"
+            className="ec-btn-primary hidden min-h-[44px] text-sm lg:inline-flex"
           >
             <Sparkles className="h-4 w-4" />
             <span className="hidden sm:inline">Ask Examcore</span>

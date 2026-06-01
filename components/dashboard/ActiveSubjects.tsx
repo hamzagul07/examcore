@@ -1,10 +1,13 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { getSubjectById } from '@/lib/profile-options'
+import { getSubjectColor } from '@/lib/design-system/subject-colors'
 
 type SubjectChip = {
   name: string
   code: string | null
-  attemptCount: number
 }
 
 type Props = {
@@ -18,21 +21,32 @@ export function ActiveSubjects({ subjects }: Props) {
     <section className="mb-8">
       <h2 className="text-title mb-4">Subjects active</h2>
       <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-wrap lg:overflow-visible">
-        {subjects.map(({ name, code, attemptCount }) => {
+        {subjects.map(({ name, code }) => {
           const href = code
             ? `/dashboard/progress?subject=${encodeURIComponent(code)}`
             : '/dashboard/progress'
           const meta = getSubjectById(name)
+          const dotColor = getSubjectColor(code)
 
           return (
-            <Link
+            <motion.div
               key={name}
-              href={href}
-              className="ec-chip ec-chip-info shrink-0 px-4 py-2.5 text-sm min-h-[44px] inline-flex items-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="shrink-0"
             >
-              <span className="font-semibold">{meta?.label ?? name}</span>
-              <span className="font-mono text-xs opacity-80">{attemptCount}</span>
-            </Link>
+              <Link
+                href={href}
+                className="ec-chip ec-chip-info inline-flex min-h-[44px] items-center gap-2 px-4 py-2.5 text-sm"
+              >
+                <span
+                  className="h-2 w-2 shrink-0 rounded-full"
+                  style={{ backgroundColor: dotColor }}
+                  aria-hidden
+                />
+                <span className="font-semibold">{meta?.label ?? name}</span>
+              </Link>
+            </motion.div>
           )
         })}
       </div>

@@ -1,7 +1,6 @@
 'use client'
 
 import { useSetAIContext } from '@/lib/omni-ai/context'
-import { SidebarChat } from '@/components/omni-ai/SidebarChat'
 import type { AIContextType } from '@/lib/omni-ai/types'
 
 interface OmniAIBridgeProps {
@@ -9,10 +8,10 @@ interface OmniAIBridgeProps {
 }
 
 /**
- * Client bridge for server pages — sets Omni-AI context from server-fetched
- * data and mounts the dashboard sidebar + FAB.
+ * Client bridge for server pages — sets Omni-AI context from server-fetched data.
+ * Drawer + mobile FAB are handled globally by OmniAI + OmniFABGate.
  */
 export function OmniAIBridge({ context }: OmniAIBridgeProps) {
   useSetAIContext(context, [JSON.stringify(context)])
-  return <SidebarChat />
+  return null
 }

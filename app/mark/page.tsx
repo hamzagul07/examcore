@@ -23,7 +23,6 @@ import {
 } from '@/lib/upload/prepare-upload'
 import { formatFileSize } from '@/lib/upload/upload-limits'
 import { useSetAIContext } from '@/lib/omni-ai/context'
-import { SidebarChat } from '@/components/omni-ai/SidebarChat'
 import { createClient } from '@/lib/supabase'
 import {
   getSubjectByCode,
@@ -1361,7 +1360,6 @@ export default function MarkPage() {
           </div>
         )}
       </div>
-      <SidebarChat />
       <CelebrationModal
         open={firstMarkCelebration}
         title="First mark complete!"

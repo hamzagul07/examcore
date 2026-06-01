@@ -37,7 +37,9 @@ export async function POST(req: NextRequest) {
     .maybeSingle()
 
   if (existing) {
-    console.log('Webhook already processed:', event.id)
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Webhook already processed:', event.id)
+    }
     return NextResponse.json({ received: true, duplicate: true })
   }
 
@@ -290,6 +292,8 @@ async function handleStripeEvent(event: Stripe.Event, supabase: SupabaseClient) 
 
     default:
       // Unknown / unhandled event types must NOT crash — just log and ACK.
-      console.log('Unhandled webhook type:', event.type)
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('Unhandled webhook type:', event.type)
+      }
   }
 }

@@ -1,5 +1,12 @@
 import { NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/service'
+import {
+  allPresent,
+  envPresence,
+  RECOMMENDED_PRODUCTION_ENV,
+  REQUIRED_ENV,
+} from '@/lib/env/required'
+import { getEnforcementMode } from '@/lib/billing/enforcement-mode'
 
 export const dynamic = 'force-dynamic'
 
@@ -8,7 +15,11 @@ export const dynamic = 'force-dynamic'
  * Does not expose secrets — only checks that core deps respond.
  */
 export async function GET() {
+  const required = envPresence(REQUIRED_ENV)
+  const recommended = envPresence(RECOMMENDED_PRODUCTION_ENV)
+
   const checks: Record<string, 'ok' | 'error'> = {
+    env_required: allPresent(required) ? 'ok' : 'error',
     supabase: 'error',
   }
 
@@ -20,12 +31,18 @@ export async function GET() {
     checks.supabase = 'error'
   }
 
-  const healthy = Object.values(checks).every((v) => v === 'ok')
+  const healthy = checks.env_required === 'ok' && checks.supabase === 'ok'
 
   return NextResponse.json(
     {
       status: healthy ? 'ok' : 'degraded',
       checks,
+      env: {
+        required,
+        recommended,
+      },
+      enforcement_mode: getEnforcementMode(),
+      build: process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? null,
       timestamp: new Date().toISOString(),
     },
     { status: healthy ? 200 : 503 }

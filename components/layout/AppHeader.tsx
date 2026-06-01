@@ -6,6 +6,7 @@ import { Sparkles } from 'lucide-react'
 import { ThemeSwitcher } from '@/components/design-system/ThemeSwitcher'
 import { WordmarkLink } from '@/components/layout/Wordmark'
 import { CreditChip } from '@/components/billing/CreditChip'
+import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
 import { useOmniAI } from '@/lib/omni-ai/context'
 
 /** App chrome for /mark, /dashboard, and other authenticated routes. */
@@ -20,7 +21,7 @@ export function AppHeader() {
         borderColor: 'var(--ec-border)',
       }}
     >
-      <div className="mx-auto flex w-full min-w-0 max-w-7xl items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3">
+      <div className="mx-auto flex w-full min-w-0 max-w-7xl items-center gap-2 overflow-x-clip px-3 py-2.5 sm:gap-3 sm:px-6 sm:py-3">
         <WordmarkLink href="/" size="sm" />
 
         <nav className="hidden min-w-0 items-center gap-6 md:flex">
@@ -76,6 +77,7 @@ export function AppHeader() {
         </nav>
 
         <div className="ml-auto flex min-w-0 shrink items-center justify-end gap-1 sm:gap-2">
+          <GuestSignInChip />
           <CreditChip />
           <div className="hidden shrink-0 sm:block">
             <ThemeSwitcher />
@@ -83,12 +85,11 @@ export function AppHeader() {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="ec-btn-primary inline-flex min-h-[44px] shrink-0 justify-center px-3 text-sm sm:min-w-[44px] sm:px-4 lg:px-5"
+            className="ec-btn-primary hidden min-h-[44px] shrink-0 justify-center px-5 text-sm lg:inline-flex"
             aria-label="Ask Examcore"
           >
             <Sparkles className="h-4 w-4 shrink-0" />
-            <span className="hidden lg:inline">Ask Examcore</span>
-            <span className="hidden sm:inline lg:hidden">Ask</span>
+            <span>Ask Examcore</span>
           </button>
         </div>
       </div>

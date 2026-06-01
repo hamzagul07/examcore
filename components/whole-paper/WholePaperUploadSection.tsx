@@ -77,6 +77,11 @@ export function WholePaperUploadSection({
           were left blank.
         </p>
         <MarkUsageIndicator variant="whole_paper" className="border-t border-[var(--ec-border)] pt-4" />
+        {disabled && (
+          <p className="text-sm ec-score-low">
+            Monthly cap reached — upgrade or top up credits to mark this paper.
+          </p>
+        )}
         <div className="flex flex-col gap-3 sm:flex-row">
           <button
             type="button"

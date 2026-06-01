@@ -8,6 +8,10 @@ import {
 import { pagesForQuestion } from '@/lib/marking/whole-paper-pages'
 import type { StoredPageOcr } from '@/lib/marking/whole-paper-pages'
 import type { QuestionMarkResult, WholePaperResult } from '@/lib/marking/types'
+import { createClient } from '@/lib/supabase-server'
+import { requireTeacher } from '@/lib/teacher-auth'
+import { checkAnonymousMarkRateLimit, clientIp } from '@/lib/rate-limit'
+import { rateLimitJson } from '@/lib/http/rate-limit-response'
 
 export const maxDuration = 120
 
@@ -24,14 +28,37 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const supabaseAuth = await createClient()
+    const {
+      data: { user },
+    } = await supabaseAuth.auth.getUser()
+
     const { data: attempt, error } = await supabaseAdmin
       .from('attempts')
-      .select('ai_marking')
+      .select('ai_marking, user_id')
       .eq('id', attemptId)
       .maybeSingle()
 
     if (error || !attempt?.ai_marking) {
       return NextResponse.json({ error: 'Attempt not found' }, { status: 404 })
+    }
+
+    if (attempt.user_id) {
+      if (!user) {
+        return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+      }
+      if (attempt.user_id !== user.id) {
+        const teacherCheck = await requireTeacher(supabaseAuth, user.id)
+        if (!teacherCheck.ok) {
+          return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+        }
+      }
+    } else {
+      const ip = clientIp(request)
+      const rateCheck = await checkAnonymousMarkRateLimit(supabaseAdmin, ip, null)
+      if (!rateCheck.allowed) {
+        return rateLimitJson(rateCheck.message)
+      }
     }
 
     const existing = attempt.ai_marking as WholePaperResult

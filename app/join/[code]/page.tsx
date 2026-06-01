@@ -150,12 +150,20 @@ export default function JoinClassroomPage() {
       )}
 
       {needsAuth ? (
-        <a
-          href={`/auth/signup?redirect=${encodeURIComponent(joinPath)}`}
-          className="ec-btn-primary inline-flex w-full min-h-[48px] items-center justify-center gap-2"
-        >
-          Sign up to join
-        </a>
+        <div className="space-y-3">
+          <a
+            href={`/auth/signup?redirect=${encodeURIComponent(joinPath)}`}
+            className="ec-btn-primary inline-flex w-full min-h-[48px] items-center justify-center gap-2"
+          >
+            Sign up to join
+          </a>
+          <a
+            href={`/auth/signin?next=${encodeURIComponent(joinPath)}`}
+            className="ec-btn-secondary inline-flex w-full min-h-[48px] items-center justify-center"
+          >
+            Already have an account? Sign in
+          </a>
+        </div>
       ) : (
         <button
           type="button"

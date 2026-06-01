@@ -22,6 +22,7 @@ import {
   omniQuotaExceededBody,
   recordOmniUsage,
 } from '@/lib/billing/enforcement'
+import { hourlyRateLimitHeaders } from '@/lib/http/rate-limit-response'
 
 export const maxDuration = 60
 
@@ -69,6 +70,7 @@ export async function POST(req: NextRequest) {
           'Content-Type': 'text/event-stream',
           'Cache-Control': 'no-cache',
           Connection: 'keep-alive',
+          ...hourlyRateLimitHeaders(),
         },
       }
     )

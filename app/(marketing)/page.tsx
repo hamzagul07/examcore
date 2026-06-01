@@ -22,7 +22,7 @@ import {
 export const metadata = createPageMetadata({
   title: 'AI marking for Cambridge A-Levels & O-Levels',
   description:
-    'Upload handwritten Cambridge answers and get mark-by-mark feedback in seconds. A-Level and O-Level subjects — free during early access. Founding members lock in 50% off forever.',
+    'Upload handwritten Cambridge answers and get mark-by-mark feedback in seconds. A-Level and O-Level subjects — free tier available. Founding members lock in 50% off forever.',
   path: '/',
 })
 
@@ -247,7 +247,7 @@ export default async function Home() {
                   <ArrowRight className="h-5 w-5" />
                 </Link>
                 <p className="mt-6 text-sm text-[var(--ec-text-secondary)]">
-                  Free during early access · Founding members get 50% off forever ·
+                  Free tier available · Founding members get 50% off forever ·
                   Not endorsed by Cambridge International
                 </p>
               </div>

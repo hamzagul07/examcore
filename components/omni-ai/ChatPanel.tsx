@@ -5,6 +5,7 @@ import { Send, Sparkles, RotateCcw } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
 import { StreamingMessage } from './StreamingMessage'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
+import { OmniUsageStrip, useOmniSubmitBlocked } from '@/components/billing/OmniUsageStrip'
 import { omniCapForTier } from '@/lib/billing/caps'
 import type { SubscriptionTier } from '@/lib/database.types'
 import type { OmniAIMessage } from '@/lib/omni-ai/types'
@@ -87,6 +88,7 @@ export function ChatPanel({
   const openerInjectedRef = useRef(false)
 
   const isMetered = context.type !== 'landing'
+  const omniSubmitBlocked = useOmniSubmitBlocked()
 
   function handleOmniQuotaExceeded(
     quota: OmniQuotaModalState,
@@ -163,6 +165,27 @@ export function ChatPanel({
               : undefined,
         }),
       })
+
+      if (res.status === 429) {
+        const raw = await res.text()
+        let msg = 'Rate limit reached. Try again later.'
+        for (const line of raw.split('\n')) {
+          const data = parseSseLine(line)
+          if (data?.error) msg = data.error
+        }
+        setMessages((prev) =>
+          prev
+            .filter((m) => m.id !== userMsg.id && m.id !== assistantId)
+            .concat({
+              id: assistantId,
+              role: 'assistant',
+              content: msg,
+            })
+        )
+        setInput(text)
+        setIsStreaming(false)
+        return
+      }
 
       if (isMetered && res.status === 402) {
         const raw = await res.text()
@@ -340,6 +363,7 @@ export function ChatPanel({
           <div ref={messagesEndRef} />
         </div>
 
+        <OmniUsageStrip />
         <form
           onSubmit={handleSubmit}
           className="border-t px-5 py-4 backdrop-blur-xl"
@@ -356,12 +380,12 @@ export function ChatPanel({
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask Omni-AI anything..."
               maxLength={2000}
-              disabled={isStreaming}
+              disabled={isStreaming || (isMetered && omniSubmitBlocked)}
               className="ec-input flex-1 disabled:opacity-50"
             />
             <button
               type="submit"
-              disabled={!input.trim() || isStreaming}
+              disabled={!input.trim() || isStreaming || (isMetered && omniSubmitBlocked)}
               className="rounded-xl ec-btn-send ec-on-brand-text p-3 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Send className="h-5 w-5" />

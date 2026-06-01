@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
 import { computeBillingSummary } from '@/lib/billing/enforcement'
-import { getEnforcementMode } from '@/lib/billing/enforcement-mode'
+import { shouldShowApproachingLimitBanner } from '@/lib/billing/enforcement-mode'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -12,11 +12,12 @@ export async function GET() {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) {
-    return NextResponse.json({ signedIn: false }, { status: 401 })
+    return NextResponse.json({ signedIn: false })
   }
 
   const summary = await computeBillingSummary(user.id)
-  const enforce = getEnforcementMode() === 'enforce'
+  const showMetering = shouldShowApproachingLimitBanner()
+  const enforce = summary.enforcement_mode === 'enforce'
 
   return NextResponse.json({
     signedIn: true,
@@ -30,7 +31,7 @@ export async function GET() {
       used: summary.questions.used,
       cap: summary.questions.cap,
       remaining: summary.questions.remaining,
-      warning: summary.questions.warning,
+      warning: summary.questions.warning && showMetering,
       blocked:
         enforce &&
         summary.questions.remaining <= 0 &&
@@ -41,7 +42,7 @@ export async function GET() {
       used: summary.omni.used,
       cap: summary.omni.cap,
       remaining: summary.omni.remaining,
-      warning: summary.omni.warning,
+      warning: summary.omni.warning && showMetering,
       blocked:
         enforce &&
         summary.omni.remaining <= 0 &&

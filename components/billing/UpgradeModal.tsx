@@ -14,6 +14,8 @@ export type UpgradeModalProps = {
   cap?: number | null
   periodResetsAt?: string | null
   creditBalance?: number
+  /** Post-signup destination for the anonymous variant (e.g. /mark). */
+  returnPath?: string
 }
 
 function capCopy(
@@ -44,6 +46,7 @@ export function UpgradeModal({
   cap,
   periodResetsAt,
   creditBalance = 0,
+  returnPath = '/mark',
 }: UpgradeModalProps) {
   const isAnon = variant === 'anonymous'
   const title = isAnon ? 'Sign up to keep marking' : capCopy(variant, tier, cap)
@@ -83,7 +86,14 @@ export function UpgradeModal({
 
       <div className="mt-6 flex flex-col gap-3">
         {isAnon ? (
-          <Link href="/auth/signup" className="ec-btn-primary w-full justify-center">
+          <Link
+            href={
+              returnPath.startsWith('/')
+                ? `/auth/signup?redirect=${encodeURIComponent(returnPath)}`
+                : '/auth/signup'
+            }
+            className="ec-btn-primary w-full justify-center"
+          >
             Sign up to keep marking
           </Link>
         ) : (

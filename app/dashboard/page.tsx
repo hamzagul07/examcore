@@ -10,6 +10,7 @@ import {
 import { getSubjectById } from '@/lib/profile-options'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
 import { getAttemptSubjectCode } from '@/lib/syllabi/attempts'
+import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { DashboardEntry } from './dashboard.client'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
@@ -168,6 +169,8 @@ export default async function DashboardPage() {
             examDate={examDate}
             weeklyAttempts={weeklyCount}
           />
+
+          <BillingLimitBanner className="mb-6" />
 
           <StudyNotebook
             monthlyAttempts={monthlyCount}

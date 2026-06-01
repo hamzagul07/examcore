@@ -76,12 +76,31 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
         ? 'Monthly'
         : null
 
+  const enforcementLabel =
+    billing.enforcementMode === 'enforce'
+      ? 'Limits enforced'
+      : billing.enforcementMode === 'warn'
+        ? 'Warning mode'
+        : null
+
   return (
     <div className="space-y-6">
       <SettingsSectionCard
         title="Billing"
         description="Your plan, usage, and payment management."
       >
+        {enforcementLabel && (
+          <p
+            className={`mb-4 inline-flex rounded-full px-3 py-1 text-caption font-semibold ${
+              billing.enforcementMode === 'enforce'
+                ? 'ec-tint-critical-panel ec-score-low'
+                : 'ec-highlight-warning-panel ec-score-mid'
+            }`}
+          >
+            {enforcementLabel}
+          </p>
+        )}
+
         {billing.foundingMember && (
           <span
             className="mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-caption font-semibold"
@@ -123,6 +142,13 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           cap={billing.markCap}
           pct={qPct}
           resetDate={resetDate}
+          status={
+            billing.questionsBlocked
+              ? 'blocked'
+              : billing.questionsWarning
+                ? 'warning'
+                : 'normal'
+          }
         />
 
         <UsageBar
@@ -131,7 +157,30 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           used={billing.omniUsed}
           cap={billing.omniCap}
           pct={omniPct}
+          status={
+            billing.omniBlocked ? 'blocked' : billing.omniWarning ? 'warning' : 'normal'
+          }
         />
+
+        {(billing.questionsBlocked || billing.omniBlocked) &&
+          billing.enforcementMode === 'enforce' && (
+            <p className="text-body mt-4 rounded-2xl border ec-tint-critical-panel px-4 py-3 ec-score-low">
+              {billing.questionsBlocked && billing.omniBlocked
+                ? 'Monthly question and Omni caps reached — marking and Ask Omni are paused until you upgrade or top up credits.'
+                : billing.questionsBlocked
+                  ? 'Monthly question cap reached — marking and whole papers are paused until you upgrade or top up credits.'
+                  : 'Monthly Omni cap reached — Ask Omni is paused until you upgrade or top up credits.'}
+            </p>
+          )}
+
+        {billing.enforcementMode === 'warn' &&
+          (billing.marksUsed >= billing.markCap || billing.omniUsed >= billing.omniCap) &&
+          billing.credits <= 0 && (
+            <p className="text-body mt-4 rounded-2xl border ec-highlight-warning-panel px-4 py-3 ec-score-mid">
+              You&apos;re over one or more monthly caps. Warning mode still allows usage — upgrade
+              or top up before enforce goes live.
+            </p>
+          )}
 
         {billing.recentUsage.length > 0 && (
           <div
@@ -230,6 +279,7 @@ function UsageBar({
   cap,
   pct,
   resetDate,
+  status = 'normal',
   className = '',
 }: {
   label: string
@@ -237,8 +287,16 @@ function UsageBar({
   cap: number
   pct: number
   resetDate?: string | null
+  status?: 'normal' | 'warning' | 'blocked'
   className?: string
 }) {
+  const barColor =
+    status === 'blocked'
+      ? 'var(--ec-error, #f87171)'
+      : status === 'warning'
+        ? 'var(--ec-warning, #fbbf24)'
+        : 'var(--ec-brand)'
+
   return (
     <div
       className={`rounded-2xl border px-4 py-3 ${className}`}
@@ -261,7 +319,7 @@ function UsageBar({
           className="h-full rounded-full transition-all"
           style={{
             width: `${pct}%`,
-            background: 'var(--ec-brand)',
+            background: barColor,
           }}
         />
       </div>

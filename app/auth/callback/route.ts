@@ -12,6 +12,19 @@ import { isOnboardingComplete } from '@/lib/onboarding'
  */
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url)
+  const oauthError = requestUrl.searchParams.get('error')
+  const oauthDescription = requestUrl.searchParams.get('error_description')
+
+  if (oauthError) {
+    const params = new URLSearchParams({ error: 'auth_failed' })
+    if (oauthDescription) {
+      params.set('detail', oauthDescription.slice(0, 200))
+    }
+    return NextResponse.redirect(
+      `${requestUrl.origin}/auth/signin?${params.toString()}`
+    )
+  }
+
   const code = requestUrl.searchParams.get('code')
   const next = requestUrl.searchParams.get('next')
 

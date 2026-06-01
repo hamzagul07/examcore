@@ -8,6 +8,7 @@ import {
 import { FaqAccordion } from '@/components/marketing/FaqAccordion'
 import type { FaqCategory } from '@/lib/faq-data'
 import { PricingClient } from '@/components/pricing/PricingClient'
+import { EnforcementNotice } from '@/components/marketing/EnforcementNotice'
 import { createClient } from '@/lib/supabase-server'
 import { resolveRegion, REGION_COOKIE } from '@/lib/billing/region-cookie'
 import { getPricingDisplay } from '@/lib/billing/display-prices'
@@ -94,6 +95,8 @@ export default async function PricingPage() {
         }
         lead="Cancel anytime. No card required for Free. Founding members get permanent early-access pricing."
       />
+
+      <EnforcementNotice />
 
       <MarketingSection className="!pt-0">
         <div className="mx-auto max-w-6xl">

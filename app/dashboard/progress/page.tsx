@@ -34,6 +34,7 @@ import { DrillToast } from '@/components/progress/insights/DrillToast'
 import { JourneyTimeline } from '@/components/progress/timeline/JourneyTimeline'
 import { AttemptsList, type AttemptListRow } from '@/components/progress/AttemptsList'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
+import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { MasteryDashboardTeaser } from '@/components/billing/MasteryDashboardTeaser'
 import { isPaidTier } from '@/lib/billing/features'
 import type { SubscriptionTier } from '@/lib/database.types'
@@ -301,6 +302,8 @@ export default async function ProgressPage({ searchParams }: PageProps) {
             Updated {lastUpdated}
           </div>
         </div>
+
+        <BillingLimitBanner className="mb-6" />
 
         <ProgressSubjectPicker
           subjects={subjectOptions}

@@ -18,7 +18,7 @@ export function Wordmark({ className = '', size = 'md' }: WordmarkProps) {
       >
         E
       </span>
-      <span className={`font-bold tracking-tight ec-text-gradient ${textSize}`}>
+      <span className={`font-bold tracking-tight ec-text-gradient ${textSize} max-[420px]:hidden`}>
         Examcore
       </span>
     </span>

@@ -70,14 +70,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-ec-theme="late-night" className="h-full antialiased">
+    <html lang="en" data-ec-theme="late-night" className="h-full overflow-x-clip antialiased">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${caveat.variable} ${kalam.variable} ${inter.className} relative min-h-full flex flex-col`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${caveat.variable} ${kalam.variable} ${inter.className} relative flex min-h-full max-w-[100vw] flex-col overflow-x-clip`}
       >
         <ThemeProvider>
           <OmniAIProviders>
             <RootHeader />
-            <div className="relative z-[1] flex flex-1 flex-col">{children}</div>
+            <div className="relative z-[1] flex min-w-0 flex-1 flex-col">{children}</div>
             <RootFooter />
             <MobileTabBarGate />
             <OmniFABGate />

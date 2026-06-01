@@ -94,7 +94,7 @@ export function CreditChip() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="flex min-h-[44px] max-w-[min(100vw-8rem,20rem)] items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-semibold transition-colors"
+        className="flex min-h-[44px] max-w-[5.5rem] items-center gap-1 rounded-full border px-2 py-2 text-xs font-semibold transition-colors sm:max-w-[min(100vw-8rem,20rem)] sm:gap-1.5 sm:px-3"
         style={{
           borderColor: 'var(--ec-border)',
           color: 'var(--ec-text-secondary)',
@@ -102,8 +102,10 @@ export function CreditChip() {
         }}
       >
         <Zap className="h-3.5 w-3.5 shrink-0 text-[var(--ec-brand)]" />
-        <span className="hidden truncate sm:inline">{tierLabel} · </span>
-        <span className="truncate">{chipLabel}</span>
+        <span className="truncate sm:hidden">{qLeft}Q</span>
+        <span className="hidden truncate sm:inline">
+          {tierLabel} · {chipLabel}
+        </span>
       </button>
 
       {open && (

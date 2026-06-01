@@ -3,12 +3,13 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Loader2, Info } from 'lucide-react'
+import { Loader2, Info, ExternalLink } from 'lucide-react'
 import { formatMoney } from '@/lib/billing/format'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import type { SubscriptionTier } from '@/lib/database.types'
 import type { PricingDisplay } from '@/lib/billing/display-prices'
 import { SUPPORTED_CURRENCIES } from '@/lib/billing/region-cookie'
+import { stripePortalButtonLabel, useStripePortal } from '@/lib/hooks/useStripePortal'
 
 type Props = {
   display: PricingDisplay
@@ -80,6 +81,9 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
   const [busy, setBusy] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
   const [changingRegion, setChangingRegion] = useState(false)
+  const { state: portalState, openPortal } = useStripePortal({
+    returnUrl: '/account/billing',
+  })
 
   async function checkout(product: string, billingPeriod?: Period) {
     if (!signedIn) {
@@ -92,7 +96,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
       const res = await fetch('/api/billing/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product, billing_period: billingPeriod, return_url: '/account' }),
+        body: JSON.stringify({ product, billing_period: billingPeriod, return_url: '/account/billing' }),
       })
       const data = await res.json().catch(() => ({}))
       if (res.ok && data?.url) {
@@ -106,25 +110,6 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
       }
     } catch {
       setNotice('Could not start checkout. Try again.')
-    }
-    setBusy(null)
-  }
-
-  async function openPortal() {
-    setBusy('portal')
-    try {
-      const res = await fetch('/api/billing/portal', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ return_url: '/pricing' }),
-      })
-      const data = await res.json().catch(() => ({}))
-      if (res.ok && data?.url) {
-        window.location.href = data.url
-        return
-      }
-    } catch {
-      /* ignore */
     }
     setBusy(null)
   }
@@ -251,22 +236,22 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
                     </p>
                   )}
                   <h3 className="text-title text-[var(--ec-text-primary)]">{tier.name}</h3>
-                  <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">{tier.tagline}</p>
+                  <p className="mt-1 text-body text-[var(--ec-text-secondary)]">{tier.tagline}</p>
                   {tier.subtagline && (
-                    <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">{tier.subtagline}</p>
+                    <p className="mt-0.5 text-body text-[var(--ec-text-secondary)]">{tier.subtagline}</p>
                   )}
                 </div>
 
                 <div className="mt-3 flex items-baseline gap-1 md:mt-0">
-                  <span className="text-2xl font-extrabold tracking-tight text-[var(--ec-text-primary)]">
+                  <span className="text-title font-extrabold tracking-tight text-[var(--ec-text-primary)]">
                     {priceForTier(tier.id)}
                   </span>
                   {tier.id !== 'free' && (
-                    <span className="text-sm text-[var(--ec-text-secondary)]">{periodLabel}</span>
+                    <span className="text-body text-[var(--ec-text-secondary)]">{periodLabel}</span>
                   )}
                 </div>
 
-                <div className="mt-2 text-sm text-[var(--ec-text-primary)] md:mt-0">
+                <div className="mt-2 text-body text-[var(--ec-text-primary)] md:mt-0">
                   <p>
                     <strong>{qCap}</strong> questions
                   </p>
@@ -286,18 +271,25 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
                         Current plan
                       </span>
                     ) : (
-                      <Link href="/account" className="ec-btn-secondary inline-flex w-full justify-center md:w-auto">
+                      <Link href="/account/billing" className="ec-btn-secondary inline-flex w-full justify-center md:w-auto">
                         Your account
                       </Link>
                     )
                   ) : isCurrent ? (
                     <button
                       type="button"
-                      onClick={openPortal}
-                      disabled={busy === 'portal'}
+                      onClick={() => void openPortal()}
+                      disabled={portalState === 'loading'}
                       className="ec-btn-secondary inline-flex w-full justify-center md:w-auto"
                     >
-                      {busy === 'portal' ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Manage'}
+                      {portalState === 'loading' ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <>
+                          {stripePortalButtonLabel(portalState, 'Manage')}
+                          <ExternalLink className="h-4 w-4" aria-hidden />
+                        </>
+                      )}
                     </button>
                   ) : (
                     <button

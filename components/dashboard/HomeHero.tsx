@@ -32,8 +32,8 @@ export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
               Hope your exams went well — set a new date when you&apos;re ready
             </p>
             <p className="ec-banner__meta mt-1">
-              <Link href="/account" className="underline underline-offset-2">
-                Update exam date in account settings
+              <Link href="/account/exam" className="underline underline-offset-2">
+                Update exam date in settings
               </Link>
             </p>
           </div>
@@ -46,7 +46,7 @@ export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
           {!examDate && (
             <p className="text-caption mt-3">
               <Link
-                href="/account"
+                href="/account/exam"
                 className="text-[var(--ec-text-secondary)] underline-offset-2 hover:text-[var(--ec-brand)] hover:underline"
               >
                 Set your exam date to track progress

@@ -1,0 +1,43 @@
+import type { PrimaryGoal, UserStage } from '@/lib/database.types'
+
+export type SettingsProfile = {
+  full_name: string
+  board: string
+  level: string
+  subjects: string[]
+  exam_date: string
+  stage: UserStage | null
+  primary_goal: PrimaryGoal | null
+  created_at: string | null
+}
+
+export type SettingsUsageRow = {
+  id: string
+  eventType: string
+  source: string
+  creditsDelta: number
+  createdAt: string
+}
+
+export type SettingsBilling = {
+  tier: string
+  status: string
+  billingPeriod: string | null
+  currentPeriodEnd: string | null
+  cancelAtPeriodEnd: boolean
+  hasCustomer: boolean
+  credits: number
+  foundingMember: boolean
+  marksUsed: number
+  markCap: number
+  omniUsed: number
+  omniCap: number
+  periodResetsAt: string | null
+  recentUsage: SettingsUsageRow[]
+}
+
+export type SettingsContext = {
+  email: string
+  profile: SettingsProfile
+  billing: SettingsBilling
+}

@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
   }
 
   const origin = appOrigin(req)
-  const returnPath = sanitizeNextPath(body.return_url, '/account')
+  const returnPath = sanitizeNextPath(body.return_url, '/account/billing')
 
   try {
     const session = await stripe.billingPortal.sessions.create({

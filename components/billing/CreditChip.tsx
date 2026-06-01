@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Zap, Loader2 } from 'lucide-react'
+import { Zap, Loader2, ExternalLink } from 'lucide-react'
 import type { SubscriptionTier } from '@/lib/database.types'
+import { stripePortalButtonLabel, useStripePortal } from '@/lib/hooks/useStripePortal'
 
 type Summary = {
   signedIn: boolean
@@ -37,8 +38,10 @@ export function CreditChip() {
   const [summary, setSummary] = useState<Summary | null>(null)
   const [loading, setLoading] = useState(true)
   const [open, setOpen] = useState(false)
-  const [portalLoading, setPortalLoading] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const { state: portalState, openPortal } = useStripePortal({
+    returnUrl: '/account/billing',
+  })
 
   const load = useCallback(async () => {
     try {
@@ -70,25 +73,6 @@ export function CreditChip() {
     document.addEventListener('mousedown', onClick)
     return () => document.removeEventListener('mousedown', onClick)
   }, [open])
-
-  async function openPortal() {
-    setPortalLoading(true)
-    try {
-      const res = await fetch('/api/billing/portal', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ return_url: '/account' }),
-      })
-      const data = await res.json().catch(() => ({}))
-      if (res.ok && data?.url) {
-        window.location.href = data.url
-        return
-      }
-    } catch {
-      /* ignore */
-    }
-    setPortalLoading(false)
-  }
 
   if (loading || !summary?.signedIn) return null
 
@@ -149,11 +133,18 @@ export function CreditChip() {
           <div className="mt-4 flex flex-col gap-2">
             <button
               type="button"
-              onClick={openPortal}
-              disabled={portalLoading}
-              className="ec-btn-secondary w-full justify-center text-xs"
+              onClick={() => void openPortal()}
+              disabled={portalState === 'loading'}
+              className="ec-btn-secondary w-full justify-center text-body"
             >
-              {portalLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : 'Manage plan'}
+              {portalState === 'loading' ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <>
+                  {stripePortalButtonLabel(portalState, 'Manage plan')}
+                  <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                </>
+              )}
             </button>
             <Link
               href="/pricing#credits"

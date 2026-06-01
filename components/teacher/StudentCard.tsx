@@ -36,17 +36,17 @@ export function StudentCard({
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="font-bold text-white">{name}</h3>
-          <p className="mt-1 text-sm text-slate-400">
+          <h3 className="font-bold text-[var(--ec-text-primary)]">{name}</h3>
+          <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
             {attemptCount} attempt{attemptCount === 1 ? '' : 's'} ·{' '}
             {accuracy.toFixed(0)}% accuracy
           </p>
         </div>
-        <span className="rounded-lg bg-emerald-500/10 px-2 py-1 text-sm font-bold text-emerald-400">
+        <span className="rounded-lg ec-tint-success-chip px-2 py-1 text-sm font-bold">
           {predictedGrade}
         </span>
       </div>
-      <div className="mt-3 text-xs text-slate-500">
+      <div className="mt-3 text-xs text-[var(--ec-text-secondary)]">
         {QUADRANT_LABELS[quadrant]}
       </div>
     </Link>

@@ -54,24 +54,24 @@ export function WholePaperUploadSection({
     return (
       <div className="ec-card space-y-5 p-6 sm:p-8">
         <p className="ec-label-tech">READY TO MARK</p>
-        <ul className="space-y-2 text-sm text-slate-300">
+        <ul className="space-y-2 text-sm text-[var(--ec-text-secondary)]">
           <li>
-            <strong className="text-white">{pdfFile ? 1 : pages.length}</strong>{' '}
+            <strong className="text-[var(--ec-text-primary)]">{pdfFile ? 1 : pages.length}</strong>{' '}
             {pdfFile ? 'PDF' : 'pages'} uploaded
           </li>
           <li>
-            <strong className="text-white">{questionCount}</strong> question
+            <strong className="text-[var(--ec-text-primary)]">{questionCount}</strong> question
             {questionCount !== 1 ? 's' : ''} detected across{' '}
             {pdfFile ? 'PDF pages' : `${pages.length} pages`}
           </li>
           <li>
             Estimated marking time:{' '}
-            <strong className="text-emerald-300">
+            <strong className="ec-score-high">
               {formatEstimatedTime(estSeconds)}
             </strong>
           </li>
         </ul>
-        <p className="text-xs leading-relaxed text-slate-500">
+        <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
           If you only completed some questions, we&apos;ll show two scores:
           what you earned on attempted questions, and your score if the rest
           were left blank.
@@ -96,7 +96,7 @@ export function WholePaperUploadSection({
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-xl px-4 py-3 text-sm font-medium text-slate-400 transition hover:text-white"
+            className="rounded-xl px-4 py-3 text-sm font-medium text-[var(--ec-text-secondary)] transition hover:text-[var(--ec-text-primary)]"
           >
             Cancel
           </button>

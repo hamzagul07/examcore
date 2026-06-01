@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
@@ -16,6 +16,12 @@ import {
 } from '@/components/AuthFormBits'
 import { isSafeNextPath, sanitizeNextPath } from '@/lib/auth-redirect'
 
+const AUTH_CALLBACK_ERRORS: Record<string, string> = {
+  missing_code: 'That sign-in link is invalid or expired. Request a new one.',
+  auth_failed: 'We could not complete sign-in. Try again or use password sign-in.',
+  session_lost: 'Your session could not be established. Please sign in again.',
+}
+
 export default function SignInPage() {
   return (
     <Suspense fallback={<SignInSkeleton />}>
@@ -28,10 +34,10 @@ function SignInSkeleton() {
   return (
     <AuthShell>
       <p className="ec-label-tech mb-3">WELCOME BACK</p>
-      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
         Sign in to <span className="ec-text-gradient">Examcore</span>
       </h1>
-      <p className="leading-relaxed text-slate-400">Loading...</p>
+      <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
     </AuthShell>
   )
 }
@@ -47,6 +53,13 @@ function SignInForm() {
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+
+  useEffect(() => {
+    const code = searchParams.get('error')
+    if (code && AUTH_CALLBACK_ERRORS[code]) {
+      setErrorMsg(AUTH_CALLBACK_ERRORS[code])
+    }
+  }, [searchParams])
 
   function callbackUrl(): string {
     const origin = window.location.origin
@@ -116,10 +129,10 @@ function SignInForm() {
       {!sent ? (
         <>
           <p className="ec-label-tech mb-3">WELCOME BACK</p>
-          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
             Sign in to <span className="ec-text-gradient">Examcore</span>
           </h1>
-          <p className="mb-6 leading-relaxed text-slate-400">
+          <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
             Pick how you&apos;d like to sign in.
           </p>
 
@@ -181,7 +194,7 @@ function SignInForm() {
                 <div className="mt-2 text-right">
                   <Link
                     href="/auth/forgot-password"
-                    className="text-xs font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                    className="text-xs ec-link"
                   >
                     Forgot password?
                   </Link>
@@ -198,11 +211,11 @@ function SignInForm() {
             </form>
           )}
 
-          <p className="mt-6 text-center text-sm text-slate-400">
+          <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Don&apos;t have an account?{' '}
             <Link
               href={signupHref}
-              className="font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+              className="ec-link"
             >
               Sign up
             </Link>
@@ -210,17 +223,17 @@ function SignInForm() {
         </>
       ) : (
         <div className="space-y-3 text-center">
-          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.3)]">
-            <Mail className="h-8 w-8 text-emerald-400" />
+          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
+            <Mail className="h-8 w-8" />
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
             Check your email
           </h2>
-          <p className="leading-relaxed text-slate-400">
+          <p className="leading-relaxed text-[var(--ec-text-secondary)]">
             We sent a magic link to{' '}
-            <strong className="text-white">{email}</strong>. Click it to sign in.
+            <strong className="text-[var(--ec-text-primary)]">{email}</strong>. Click it to sign in.
           </p>
-          <p className="pt-4 text-xs leading-relaxed text-slate-500">
+          <p className="pt-4 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
             Did not get it? Check your spam folder, or{' '}
             <button
               type="button"
@@ -228,7 +241,7 @@ function SignInForm() {
                 setSent(false)
                 setEmail('')
               }}
-              className="font-medium text-emerald-400 underline transition-colors hover:text-emerald-300"
+              className="ec-link underline"
             >
               try again
             </button>

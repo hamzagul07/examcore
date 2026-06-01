@@ -23,6 +23,10 @@ export interface LineReference {
 interface ExaminerInkOverlayProps {
   imageUrl: string
   lineReferences: LineReference[]
+  /** When set, expired signed URLs are refreshed once on load error. */
+  attemptId?: string
+  /** Storage path used with attemptId for multi-page refresh. */
+  photoRef?: string
   /** When true, marks reveal sequentially as if being drawn live. */
   animate?: boolean
 }
@@ -44,9 +48,13 @@ interface ExaminerInkOverlayProps {
 export function ExaminerInkOverlay({
   imageUrl,
   lineReferences,
+  attemptId,
+  photoRef,
   animate = true,
 }: ExaminerInkOverlayProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const refreshedUrlRef = useRef(false)
+  const [displayUrl, setDisplayUrl] = useState(imageUrl)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [revealedCount, setRevealedCount] = useState<number>(
     animate ? 0 : lineReferences.length
@@ -60,6 +68,33 @@ export function ExaminerInkOverlay({
     () => lineReferences.filter((l) => l.bbox === null),
     [lineReferences]
   )
+
+  useEffect(() => {
+    setDisplayUrl(imageUrl)
+    setImageLoaded(false)
+    refreshedUrlRef.current = false
+  }, [imageUrl])
+
+  async function refreshSignedUrl() {
+    if (!attemptId || refreshedUrlRef.current) return
+    refreshedUrlRef.current = true
+    try {
+      const refQuery = photoRef
+        ? `&ref=${encodeURIComponent(photoRef)}`
+        : ''
+      const res = await fetch(
+        `/api/media/answer-photo?attempt_id=${encodeURIComponent(attemptId)}${refQuery}`
+      )
+      if (!res.ok) return
+      const data = (await res.json()) as { url?: string }
+      if (data.url) {
+        setDisplayUrl(data.url)
+        setImageLoaded(false)
+      }
+    } catch {
+      // Keep broken state — user can refresh the page
+    }
+  }
 
   useEffect(() => {
     if (!animate || !imageLoaded) return
@@ -84,13 +119,14 @@ export function ExaminerInkOverlay({
     <div className="space-y-5">
       <div
         ref={containerRef}
-        className="relative inline-block w-full overflow-visible rounded-2xl border border-white/10 bg-dark-900/40 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.6)] sm:overflow-hidden"
+        className="relative inline-block w-full overflow-visible rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[0_24px_64px_-16px_rgba(0,0,0,0.6)] sm:overflow-hidden"
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- we don't know the image dimensions, and next/image's sizing breaks the percentage-based overlay math. */}
         <img
-          src={imageUrl}
+          src={displayUrl}
           alt="Your handwritten answer"
           onLoad={() => setImageLoaded(true)}
+          onError={() => void refreshSignedUrl()}
           className="block h-auto w-full"
         />
 
@@ -110,16 +146,16 @@ export function ExaminerInkOverlay({
             className="absolute right-3 top-3 flex items-center gap-2 rounded-full bg-black/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--ec-chip-critical-text)] opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--ec-chip-critical-text)]" />
             </span>
             Examiner is marking&hellip;
           </motion.div>
         )}
 
         {animate && !imageLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center bg-dark-900/40">
-            <div className="h-10 w-10 animate-spin rounded-full border-2 border-emerald-500/40 border-t-emerald-400" />
+          <div className="absolute inset-0 flex items-center justify-center bg-[var(--ec-surface-raised)]">
+            <div className="h-10 w-10 animate-spin rounded-full border-2 border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] border-t-[var(--ec-brand)]" />
           </div>
         )}
       </div>
@@ -128,7 +164,7 @@ export function ExaminerInkOverlay({
         <UnpositionedNotes notes={unpositioned} />
       )}
 
-      <p className="flex items-center gap-2 text-xs text-slate-500">
+      <p className="flex items-center gap-2 text-xs text-[var(--ec-text-secondary)]">
         <Eye className="h-3.5 w-3.5" aria-hidden="true" />
         Stamps and notes are drawn from the AI examiner&rsquo;s reasoning.
         Positioning is approximate, but every annotation maps to a real mark
@@ -188,10 +224,10 @@ function UnpositionedNotes({ notes }: { notes: LineReference[] }) {
   return (
     <div className="ec-card p-5">
       <div className="mb-3 flex items-center gap-2">
-        <AlertCircle className="h-4 w-4 text-amber-400" aria-hidden="true" />
+        <AlertCircle className="h-4 w-4 ec-score-mid" aria-hidden="true" />
         <p className="ec-label-tech">GENERAL FEEDBACK</p>
       </div>
-      <p className="mb-4 text-xs leading-relaxed text-slate-400">
+      <p className="mb-4 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
         These marks couldn&rsquo;t be tied to a specific line of working, so
         they&rsquo;re shown together below the page.
       </p>
@@ -203,11 +239,11 @@ function UnpositionedNotes({ notes }: { notes: LineReference[] }) {
           return (
             <li
               key={`${n.mark_id}-unpos-${i}`}
-              className="flex items-start gap-3 rounded-2xl border border-white/5 bg-dark-900/60 p-3"
+              className="flex items-start gap-3 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-3"
             >
               <MarkStamp markId={n.mark_id} earned={n.earned} />
               <div className="flex-1">
-                <p className="text-sm font-medium text-slate-200">
+                <p className="text-sm font-medium text-[var(--ec-text-primary)]">
                   {n.margin_note ||
                     (n.earned ? 'Mark awarded.' : 'Mark not awarded.')}
                 </p>

@@ -11,7 +11,8 @@ const MARKETING_PREFIXES = [
 ] as const
 
 const AUTH_PREFIX = '/auth'
-const NO_HEADER_PREFIXES = ['/onboarding', '/join']
+/** Routes with their own chrome — no student app header or mobile tab bar. */
+const NO_APP_CHROME_PREFIXES = ['/onboarding', '/join', '/teacher', '/admin']
 
 export function isMarketingPath(pathname: string): boolean {
   if (pathname === '/') return true
@@ -27,7 +28,7 @@ export function isAuthPath(pathname: string): boolean {
 export function shouldShowAppHeader(pathname: string): boolean {
   if (isMarketingPath(pathname)) return false
   if (isAuthPath(pathname)) return false
-  if (NO_HEADER_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
+  if (NO_APP_CHROME_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
     return false
   }
   return true

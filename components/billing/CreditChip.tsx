@@ -101,7 +101,7 @@ export function CreditChip() {
           background: 'color-mix(in srgb, var(--ec-canvas) 60%, transparent)',
         }}
       >
-        <Zap className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
+        <Zap className="h-3.5 w-3.5 shrink-0 text-[var(--ec-brand)]" />
         <span className="hidden truncate sm:inline">{tierLabel} · </span>
         <span className="truncate">{chipLabel}</span>
       </button>
@@ -120,12 +120,12 @@ export function CreditChip() {
             {oLeft} of {summary.omni.cap} Omni messages left
           </p>
           {summary.credit_balance > 0 && (
-            <p className="mt-1 text-emerald-400">
+            <p className="mt-1 text-[var(--ec-brand)]">
               {summary.credit_balance} credits (questions or Omni)
             </p>
           )}
           {summary.founding_member && (
-            <p className="mt-2 inline-block rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-400">
+            <p className="mt-2 inline-block rounded-full bg-[var(--ec-brand-muted)] px-2 py-0.5 text-[11px] font-semibold text-[var(--ec-brand)]">
               Founding member · 50% off
             </p>
           )}

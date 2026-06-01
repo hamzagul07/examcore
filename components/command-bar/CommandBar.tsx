@@ -210,13 +210,13 @@ function CollapsedBar({
         type="button"
         onClick={onOpen}
         aria-label="Open Examcore agent"
-        className="group flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-dark-800/60 px-6 py-5 backdrop-blur-2xl transition-all hover:border-emerald-500/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
+        className="group flex w-full items-center gap-3 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]/80 px-6 py-5 backdrop-blur-2xl transition-all ec-hover-brand-border"
       >
-        <Sparkles className="h-5 w-5 text-emerald-400 transition-transform group-hover:rotate-12" />
-        <span className="flex-1 text-left text-slate-400 group-hover:text-slate-300">
+        <Sparkles className="h-5 w-5 ec-text-brand transition-transform group-hover:rotate-12" />
+        <span className="flex-1 text-left text-[var(--ec-text-secondary)] transition-colors group-hover:text-[var(--ec-text-primary)]">
           Ask Examcore anything — past papers, topics, marking...
         </span>
-        <kbd className="hidden items-center gap-1 rounded border border-white/10 bg-white/5 px-2 py-1 font-mono text-xs text-slate-400 md:flex">
+        <kbd className="hidden items-center gap-1 rounded border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-xs text-[var(--ec-text-secondary)] md:flex">
           <span>{shortcutLabel[0]}</span>
           <span>{shortcutLabel[1]}</span>
         </kbd>
@@ -268,7 +268,7 @@ function ExpandedPanel({
       aria-label="Examcore agent chat"
     >
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 ec-modal-backdrop"
         onClick={onClose}
       />
 
@@ -277,17 +277,17 @@ function ExpandedPanel({
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 40, scale: 0.95 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="relative flex h-[88vh] max-h-[820px] w-full flex-col overflow-hidden rounded-t-3xl border border-white/10 bg-dark-900 shadow-2xl md:h-[80vh] md:w-[640px] md:rounded-3xl"
+        className="relative flex h-[88vh] max-h-[820px] w-full flex-col overflow-hidden rounded-t-3xl border border-[var(--ec-border)] bg-[var(--ec-surface)] shadow-2xl md:h-[80vh] md:w-[640px] md:rounded-3xl"
       >
-        <header className="flex items-center justify-between border-b border-white/5 bg-dark-950/50 px-6 py-4 backdrop-blur-xl">
+        <header className="flex items-center justify-between border-b border-[var(--ec-border)] bg-[var(--ec-surface)]/80 px-6 py-4 backdrop-blur-xl">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500">
-              <Sparkles className="h-5 w-5 text-white" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-full ec-chat-avatar">
+              <Sparkles className="h-5 w-5 ec-on-brand-text" />
             </div>
             <div>
-              <h3 className="font-semibold text-white">Examcore Agent</h3>
-              <p className="flex items-center gap-1.5 text-xs text-emerald-400">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              <h3 className="font-semibold text-[var(--ec-text-primary)]">Examcore Agent</h3>
+              <p className="flex items-center gap-1.5 text-xs ec-text-brand">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--ec-brand)]" />
                 Online
               </p>
             </div>
@@ -296,20 +296,20 @@ function ExpandedPanel({
             type="button"
             onClick={onClose}
             aria-label="Close chat"
-            className="rounded-lg p-2 transition-colors hover:bg-white/5"
+            className="rounded-lg p-2 text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)]"
           >
-            <X className="h-5 w-5 text-slate-400" />
+            <X className="h-5 w-5 text-[var(--ec-text-secondary)]" />
           </button>
         </header>
 
         <div className="flex-1 space-y-4 overflow-y-auto px-6 py-6">
           {messages.length === 0 && (
             <div className="py-12 text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20">
-                <Sparkles className="h-8 w-8 text-emerald-400" />
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-chat-avatar-soft">
+                <Sparkles className="h-8 w-8 ec-text-brand" />
               </div>
-              <h4 className="mb-2 text-xl font-semibold text-white">How can I help?</h4>
-              <p className="mx-auto mb-6 max-w-sm text-sm text-slate-400">
+              <h4 className="mb-2 text-xl font-semibold text-[var(--ec-text-primary)]">How can I help?</h4>
+              <p className="mx-auto mb-6 max-w-sm text-sm text-[var(--ec-text-secondary)]">
                 Ask about a past paper, get a topic diagnostic, or upload your work
                 to see how marking works.
               </p>
@@ -325,18 +325,18 @@ function ExpandedPanel({
           ))}
 
           {isLoading && (
-            <div className="flex items-center gap-2 text-sm text-slate-400">
+            <div className="flex items-center gap-2 text-sm text-[var(--ec-text-secondary)]">
               <div className="flex gap-1">
                 <span
-                  className="h-2 w-2 animate-bounce rounded-full bg-emerald-400"
+                  className="h-2 w-2 animate-bounce rounded-full bg-[var(--ec-brand)]"
                   style={{ animationDelay: '0ms' }}
                 />
                 <span
-                  className="h-2 w-2 animate-bounce rounded-full bg-emerald-400"
+                  className="h-2 w-2 animate-bounce rounded-full bg-[var(--ec-brand)]"
                   style={{ animationDelay: '150ms' }}
                 />
                 <span
-                  className="h-2 w-2 animate-bounce rounded-full bg-emerald-400"
+                  className="h-2 w-2 animate-bounce rounded-full bg-[var(--ec-brand)]"
                   style={{ animationDelay: '300ms' }}
                 />
               </div>
@@ -347,7 +347,7 @@ function ExpandedPanel({
           <div ref={messagesEndRef} />
         </div>
 
-        <footer className="border-t border-white/5 bg-dark-950/50 px-6 py-4 backdrop-blur-xl">
+        <footer className="border-t border-[var(--ec-border)] bg-[var(--ec-surface)]/80 px-6 py-4 backdrop-blur-xl">
           <form
             onSubmit={(e) => {
               e.preventDefault()
@@ -362,19 +362,19 @@ function ExpandedPanel({
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask anything..."
               maxLength={1000}
-              className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-slate-500 transition-all focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none"
+              className="ec-input flex-1"
               disabled={isLoading}
             />
             <button
               type="submit"
               disabled={!input.trim() || isLoading}
               aria-label="Send message"
-              className="rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-3 text-white transition-shadow hover:shadow-[0_0_24px_rgba(16,185,129,0.4)] disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-xl ec-btn-send ec-on-brand-text p-3 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ArrowUp className="h-5 w-5" />
             </button>
           </form>
-          <p className="mt-2 text-center text-xs text-slate-500">
+          <p className="mt-2 text-center text-xs text-[var(--ec-text-secondary)]">
             Free during beta. Powered by Examcore.
           </p>
         </footer>

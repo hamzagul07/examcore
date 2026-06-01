@@ -98,8 +98,8 @@ export function LandingHero({ markHref }: LandingHeroProps) {
             className="relative mx-auto mt-16 max-w-4xl sm:mt-20"
           >
             <div className="pointer-events-none absolute -inset-x-16 inset-y-0 -z-10">
-              <div className="absolute left-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-emerald-500/20 blur-[120px]" />
-              <div className="absolute right-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-violet-500/20 blur-[120px]" />
+              <div className="absolute left-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full ec-glow-orb-lg blur-[120px]" />
+              <div className="absolute right-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full ec-glow-orb-accent blur-[120px]" />
             </div>
             <LandingMockupHero />
           </motion.div>

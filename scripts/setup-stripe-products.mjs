@@ -51,26 +51,27 @@ function loadEnvFile(filename) {
 loadEnvFile('.env.local')
 
 // --- Pricing definitions (USD cents) ---------------------------------------
+// Keep in sync with lib/billing/pricing-usd.ts
 
 const PRICING = {
   student: {
-    A: { monthly: 900, yearly: 7900 }, // $9 / $79
-    B: { monthly: 500, yearly: 4500 }, // $5 / $45
-    C: { monthly: 300, yearly: 2500 }, // $3 / $25
+    A: { monthly: 1800, yearly: 15800 }, // $18 / $158
+    B: { monthly: 1000, yearly: 9000 }, // $10 / $90
+    C: { monthly: 600, yearly: 5000 }, // $6 / $50
   },
   scholar: {
-    A: { monthly: 1900, yearly: 14900 }, // $19 / $149
-    B: { monthly: 1100, yearly: 8900 }, // $11 / $89
-    C: { monthly: 700, yearly: 5500 }, // $7 / $55
+    A: { monthly: 3800, yearly: 29800 }, // $38 / $298
+    B: { monthly: 2200, yearly: 17800 }, // $22 / $178
+    C: { monthly: 1400, yearly: 11000 }, // $14 / $110
   },
   mastery: {
-    A: { monthly: 3900, yearly: 32900 }, // $39 / $329
-    B: { monthly: 2200, yearly: 18900 }, // $22 / $189
-    C: { monthly: 1500, yearly: 12900 }, // $15 / $129
+    A: { monthly: 7800, yearly: 65800 }, // $78 / $658
+    B: { monthly: 4400, yearly: 37800 }, // $44 / $378
+    C: { monthly: 3000, yearly: 25800 }, // $30 / $258
   },
-  credits_25: { A: 500, B: 300, C: 200 },
-  credits_100: { A: 1500, B: 900, C: 600 },
-  credits_500: { A: 5000, B: 3000, C: 2000 },
+  credits_25: { A: 1000, B: 600, C: 400 },
+  credits_100: { A: 3000, B: 1800, C: 1200 },
+  credits_500: { A: 10000, B: 6000, C: 4000 },
 }
 
 const CURRENCIES_PER_TIER = {

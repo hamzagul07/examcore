@@ -2,18 +2,9 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { isOnboardingComplete } from '@/lib/onboarding'
 
-const PROTECTED_PREFIXES = [
-  '/dashboard',
-  '/mark',
-  '/account',
-  '/onboarding',
-]
+const PROTECTED_PREFIXES = ['/dashboard', '/account', '/onboarding']
 
-const ONBOARDING_REQUIRED_PREFIXES = [
-  '/dashboard',
-  '/mark',
-  '/account',
-]
+const ONBOARDING_REQUIRED_PREFIXES = ['/dashboard', '/account']
 
 function matchesPrefix(pathname: string, prefixes: string[]) {
   return prefixes.some(

@@ -6,18 +6,21 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const QUADRANT_CONFIG = {
-  safe: { label: 'Safe Zone', dotClass: 'bg-emerald-500 shadow-emerald-500/50' },
+  safe: { label: 'Safe Zone', dotClass: 'bg-[var(--ec-brand)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-brand)_50%,transparent)]' },
   pacing_risk: {
     label: 'Pacing Risk',
-    dotClass: 'bg-amber-500 shadow-amber-500/50',
+    dotClass:
+      'bg-[var(--ec-chip-warning-text)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-warning-text)_50%,transparent)]',
   },
   careless_risk: {
     label: 'Careless Risk',
-    dotClass: 'bg-orange-500 shadow-orange-500/50',
+    dotClass:
+      'bg-[color-mix(in_srgb,var(--ec-chip-warning-text)_45%,var(--ec-chip-critical-text))] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-critical-text)_35%,transparent)]',
   },
   under_prepared: {
     label: 'Under-Prepared',
-    dotClass: 'bg-red-500 shadow-red-500/50',
+    dotClass:
+      'bg-[var(--ec-chip-critical-text)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-critical-text)_50%,transparent)]',
   },
 } as const
 
@@ -30,8 +33,8 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
     return (
       <div className="ec-card p-8">
         <div className="ec-label-tech mb-2">RISK MATRIX</div>
-        <h2 className="text-3xl font-bold text-white">Grade Boundary Risk</h2>
-        <p className="mt-4 text-slate-400">
+        <h2 className="text-3xl font-bold text-[var(--ec-text-primary)]">Grade Boundary Risk</h2>
+        <p className="mt-4 text-[var(--ec-text-secondary)]">
           Add students to this classroom to see the risk matrix.
         </p>
       </div>
@@ -42,13 +45,13 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
     <div className="ec-card p-8">
       <div className="mb-6">
         <div className="ec-label-tech mb-2">RISK MATRIX</div>
-        <h2 className="text-3xl font-bold text-white">Grade Boundary Risk</h2>
-        <p className="mt-2 text-sm text-slate-400">
+        <h2 className="text-3xl font-bold text-[var(--ec-text-primary)]">Grade Boundary Risk</h2>
+        <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
           Each dot is a student. Hover for predicted grade and biggest deficit.
         </p>
       </div>
 
-      <div className="relative h-96 overflow-hidden rounded-2xl border border-white/5 bg-slate-950/40">
+      <div className="relative h-96 overflow-hidden rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]">
         <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
           <QuadrantBg label={QUADRANT_CONFIG.careless_risk.label} />
           <QuadrantBg label={QUADRANT_CONFIG.safe.label} />
@@ -56,13 +59,13 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
           <QuadrantBg label={QUADRANT_CONFIG.pacing_risk.label} />
         </div>
 
-        <div className="absolute bottom-0 left-1/2 top-0 w-px bg-white/10" />
-        <div className="absolute left-0 right-0 top-1/2 h-px bg-white/10" />
+        <div className="absolute bottom-0 left-1/2 top-0 w-px bg-[var(--ec-surface-raised)]" />
+        <div className="absolute left-0 right-0 top-1/2 h-px bg-[var(--ec-surface-raised)]" />
 
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-slate-500">
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-[var(--ec-text-secondary)]">
           ← Slow · Fast →
         </div>
-        <div className="absolute left-2 top-1/2 origin-left -translate-y-1/2 -rotate-90 text-xs text-slate-500">
+        <div className="absolute left-2 top-1/2 origin-left -translate-y-1/2 -rotate-90 text-xs text-[var(--ec-text-secondary)]">
           Low ← Accuracy → High
         </div>
 
@@ -108,12 +111,12 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
           return (
             <div
               key={key}
-              className="flex items-center gap-2 rounded-lg bg-white/5 p-3"
+              className="flex items-center gap-2 rounded-lg bg-[var(--ec-surface-raised)] p-3"
             >
               <div className={`h-3 w-3 rounded-full ${cfg.dotClass.split(' ')[0]}`} />
               <div>
-                <div className="text-xs text-slate-400">{cfg.label}</div>
-                <div className="text-lg font-bold text-white">{count}</div>
+                <div className="text-xs text-[var(--ec-text-secondary)]">{cfg.label}</div>
+                <div className="text-lg font-bold text-[var(--ec-text-primary)]">{count}</div>
               </div>
             </div>
           )
@@ -126,7 +129,7 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
 function QuadrantBg({ label }: { label: string }) {
   return (
     <div className="relative p-3">
-      <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+      <div className="text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
         {label}
       </div>
     </div>

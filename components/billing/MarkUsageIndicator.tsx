@@ -70,11 +70,11 @@ export function MarkUsageIndicator({ variant, summary: externalSummary, classNam
       <p className={`text-sm leading-relaxed ${toneClass}`}>{text}</p>
       {disableSubmit && (
         <p className="text-sm text-[var(--ec-text-secondary)]">
-          <Link href="/pricing#credits" className="font-semibold text-emerald-400 hover:text-emerald-300">
+          <Link href="/pricing#credits" className="ec-link">
             Top up credits
           </Link>
           {' · '}
-          <Link href="/pricing" className="font-semibold text-emerald-400 hover:text-emerald-300">
+          <Link href="/pricing" className="ec-link">
             Upgrade plan
           </Link>
         </p>

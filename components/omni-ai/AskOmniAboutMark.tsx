@@ -17,7 +17,7 @@ export function AskOmniAboutMark({ attemptId }: { attemptId: string }) {
         setContext({ type: 'marking_result', data: { attemptId } })
         setIsOpen(true)
       }}
-      className="inline-flex items-center gap-1.5 font-mono text-xs text-slate-500 transition-colors hover:text-emerald-400"
+      className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
     >
       <Sparkles className="h-3 w-3 shrink-0 opacity-70" />
       Ask Omni about this mark

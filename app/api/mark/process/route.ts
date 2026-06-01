@@ -42,6 +42,7 @@ import {
   clientIp,
   incrementAnonymousMarkRateLimit,
 } from '@/lib/rate-limit'
+import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
 
 export const maxDuration = 300
 
@@ -89,35 +90,6 @@ async function ocrAnswerWithBoxes(
         : ANSWER_OCR_PROMPT_GENERAL
   const raw = await ocrImage(file, prompt)
   return parseOcrAnswer(raw)
-}
-
-async function uploadAnswerPhoto(
-  file: File,
-  userId: string | null
-): Promise<string | null> {
-  try {
-    const bytes = await file.arrayBuffer()
-    const ext = (file.type.split('/')[1] || 'jpg').toLowerCase()
-    const prefix = userId || 'anon'
-    const path = `${prefix}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
-    const { error: uploadError } = await supabaseAdmin.storage
-      .from('answer-photos')
-      .upload(path, Buffer.from(bytes), {
-        contentType: file.type || 'image/jpeg',
-        upsert: false,
-      })
-    if (uploadError) {
-      console.error('answer-photos upload error:', uploadError)
-      return null
-    }
-    const { data: pub } = supabaseAdmin.storage
-      .from('answer-photos')
-      .getPublicUrl(path)
-    return pub?.publicUrl || null
-  } catch (err) {
-    console.error('uploadAnswerPhoto unexpected error:', err)
-    return null
-  }
 }
 
 export async function POST(request: NextRequest) {
@@ -217,10 +189,10 @@ export async function POST(request: NextRequest) {
               }
               send({
                 type: 'result',
-                payload: {
+                payload: await signMarkPayloadForClient({
                   ...payload,
                   _allowance: allowance ? allowanceForResponse(allowance) : undefined,
-                },
+                }),
               })
               controller.close()
             } catch (err: unknown) {
@@ -257,10 +229,12 @@ export async function POST(request: NextRequest) {
             'mark_single'
           )
         }
-        return NextResponse.json({
-          ...payload,
-          _allowance: allowance ? allowanceForResponse(allowance) : undefined,
-        })
+        return NextResponse.json(
+          await signMarkPayloadForClient({
+            ...payload,
+            _allowance: allowance ? allowanceForResponse(allowance) : undefined,
+          })
+        )
       } catch (err: unknown) {
         const isOverload = isTransientOverloadError(err)
         const message =
@@ -459,16 +433,18 @@ export async function POST(request: NextRequest) {
         await recordMarkUsage(userId, attempt?.id ?? null, 'mark_whole_paper')
       }
 
-      return NextResponse.json({
-        upload_mode: 'whole_paper',
-        whole_paper: wholePaper,
-        marks_earned: wholePaper.marks_earned,
-        total_marks: wholePaper.total_marks,
-        attempt_id: attempt?.id,
-        answer_photo_url: answerPhotoUrl,
-        marking_mode: 'official_mark_scheme',
-        _allowance: allowance ? allowanceForResponse(allowance) : undefined,
-      })
+      return NextResponse.json(
+        await signMarkPayloadForClient({
+          upload_mode: 'whole_paper',
+          whole_paper: wholePaper,
+          marks_earned: wholePaper.marks_earned,
+          total_marks: wholePaper.total_marks,
+          attempt_id: attempt?.id,
+          answer_photo_url: answerPhotoUrl,
+          marking_mode: 'official_mark_scheme',
+          _allowance: allowance ? allowanceForResponse(allowance) : undefined,
+        })
+      )
     }
 
     return NextResponse.json(

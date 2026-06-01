@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Users, BookOpen, Plus, Sparkles, TrendingUp } from 'lucide-react'
+import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 
 interface Classroom {
@@ -40,64 +41,62 @@ export default function TeacherDashboard() {
   }
 
   return (
-    <>
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="mb-12">
-          <div className="ec-label-tech mb-4">TEACHER DASHBOARD</div>
-          <h1 className="text-huge gradient-text">Your classrooms</h1>
-        </div>
+    <TeacherPageContainer>
+      <header className="mb-12">
+        <p className="ec-label-tech mb-4">TEACHER DASHBOARD</p>
+        <h1 className="text-huge gradient-text">Your classrooms</h1>
+      </header>
 
-        {classrooms.length === 0 && !loading && (
-          <div className="ec-card p-12 text-center">
-            <Users className="mx-auto mb-4 h-16 w-16 text-emerald-400" />
-            <h3 className="mb-2 text-2xl font-bold text-white">
-              No classrooms yet
-            </h3>
-            <p className="mb-6 text-slate-400">
-              Create one or seed a demo with simulated student data.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/teacher/classrooms/new" className="ec-btn-primary">
-                <Plus className="mr-2 inline h-5 w-5" />
-                Create classroom
-              </Link>
-              <button
-                type="button"
-                onClick={seedDemo}
-                disabled={seeding}
-                className="rounded-xl border border-white/10 px-6 py-3 text-white transition-colors hover:bg-white/5 disabled:opacity-50"
-              >
-                <Sparkles className="mr-2 inline h-5 w-5" />
-                {seeding ? 'Seeding...' : 'Seed demo data'}
-              </button>
-            </div>
-          </div>
-        )}
-
-        {loading && (
-          <p className="text-slate-400">Loading classrooms...</p>
-        )}
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {classrooms.map((c) => (
-            <Link
-              key={c.id}
-              href={`/teacher/classroom/${c.id}`}
-              className="ec-card ec-card-interactive p-6"
-            >
-              <BookOpen className="mb-4 h-8 w-8 text-emerald-400" />
-              <h3 className="mb-2 text-xl font-bold text-white">{c.name}</h3>
-              <p className="mb-4 text-sm text-slate-400">
-                {c.studentCount || 0} students
-              </p>
-              <div className="flex items-center gap-2 text-sm text-emerald-400">
-                <TrendingUp className="h-4 w-4" />
-                <span>View analytics →</span>
-              </div>
+      {classrooms.length === 0 && !loading && (
+        <div className="ec-card p-12 text-center">
+          <Users className="mx-auto mb-4 h-16 w-16 ec-text-brand" />
+          <h3 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)]">
+            No classrooms yet
+          </h3>
+          <p className="mb-6 text-[var(--ec-text-secondary)]">
+            Create one or seed a demo with simulated student data.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/teacher/classrooms/new" className="ec-btn-primary">
+              <Plus className="mr-2 inline h-5 w-5" />
+              Create classroom
             </Link>
-          ))}
+            <button
+              type="button"
+              onClick={seedDemo}
+              disabled={seeding}
+              className="ec-btn-secondary disabled:opacity-50"
+            >
+              <Sparkles className="mr-2 inline h-5 w-5" />
+              {seeding ? 'Seeding...' : 'Seed demo data'}
+            </button>
+          </div>
         </div>
+      )}
+
+      {loading && (
+        <p className="text-[var(--ec-text-secondary)]">Loading classrooms...</p>
+      )}
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {classrooms.map((c) => (
+          <Link
+            key={c.id}
+            href={`/teacher/classroom/${c.id}`}
+            className="ec-card ec-card-interactive p-6"
+          >
+            <BookOpen className="mb-4 h-8 w-8 ec-text-brand" />
+            <h3 className="mb-2 text-xl font-bold text-[var(--ec-text-primary)]">{c.name}</h3>
+            <p className="mb-4 text-sm text-[var(--ec-text-secondary)]">
+              {c.studentCount || 0} students
+            </p>
+            <div className="flex items-center gap-2 text-sm ec-text-brand">
+              <TrendingUp className="h-4 w-4" />
+              <span>View analytics →</span>
+            </div>
+          </Link>
+        ))}
       </div>
-    </>
+    </TeacherPageContainer>
   )
 }

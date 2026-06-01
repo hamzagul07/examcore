@@ -20,6 +20,7 @@ import {
   allowanceForResponse,
 } from '@/lib/billing/enforcement'
 import { clientIp, checkAnonymousMarkRateLimit, incrementAnonymousMarkRateLimit } from '@/lib/rate-limit'
+import { signMarkPayloadForClient } from '@/lib/storage/answer-photos'
 
 export const maxDuration = 300
 
@@ -209,18 +210,20 @@ export async function POST(request: NextRequest) {
       allowanceBlock = allowanceForResponse(await computeAllowance(markUserId))
     }
 
-    return NextResponse.json({
-      status: 'complete',
-      whole_paper: wholePaper,
-      attempt_id: attemptId,
-      upload_mode: 'whole_paper',
-      marks_earned: wholePaper.marks_earned,
-      total_marks: wholePaper.total_marks,
-      answer_photo_url: job.page_photo_urls?.[0] ?? null,
-      marking_mode: 'official_mark_scheme',
-      job: finalState,
-      _allowance: allowanceBlock,
-    })
+    return NextResponse.json(
+      await signMarkPayloadForClient({
+        status: 'complete',
+        whole_paper: wholePaper,
+        attempt_id: attemptId,
+        upload_mode: 'whole_paper',
+        marks_earned: wholePaper.marks_earned,
+        total_marks: wholePaper.total_marks,
+        answer_photo_url: job.page_photo_urls?.[0] ?? null,
+        marking_mode: 'official_mark_scheme',
+        job: finalState,
+        _allowance: allowanceBlock,
+      })
+    )
   } catch (err) {
     console.error('whole-paper run error:', err)
     if (attemptId) {

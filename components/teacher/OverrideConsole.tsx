@@ -66,21 +66,21 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
     <div className="ec-card flex h-full flex-col p-6">
       <div className="mb-6">
         <div className="ec-label-tech mb-2">OVERRIDE CONSOLE</div>
-        <h3 className="text-2xl font-bold text-white">Modify AI marking</h3>
+        <h3 className="text-2xl font-bold text-[var(--ec-text-primary)]">Modify AI marking</h3>
       </div>
 
       <div className="mb-6 grid grid-cols-2 gap-3">
         <div className="ec-card p-4">
-          <div className="mb-1 text-xs text-slate-400">AI SCORE</div>
-          <div className="text-3xl font-bold text-white">
+          <div className="mb-1 text-xs text-[var(--ec-text-secondary)]">AI SCORE</div>
+          <div className="text-3xl font-bold text-[var(--ec-text-primary)]">
             {aiTotal}/{attempt.total_marks}
           </div>
         </div>
         <div
-          className={`ec-card p-4 ${newTotal !== aiTotal ? 'border border-emerald-500/40' : ''}`}
+          className={`ec-card p-4 ${newTotal !== aiTotal ? 'border border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)]' : ''}`}
         >
-          <div className="mb-1 text-xs text-emerald-400">YOUR SCORE</div>
-          <div className="text-3xl font-bold text-emerald-400">
+          <div className="mb-1 text-xs ec-text-brand">YOUR SCORE</div>
+          <div className="text-3xl font-bold ec-score-high">
             {newTotal}/{attempt.total_marks}
           </div>
         </div>
@@ -93,21 +93,21 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
             key={String(m.mark_id)}
             type="button"
             onClick={() => toggleMark(m.mark_id)}
-            className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/5 p-3 transition-all hover:border-emerald-500/30"
+            className="flex w-full items-center justify-between rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-3 transition-all hover:border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)]"
           >
             <div className="flex min-w-0 items-center gap-3">
-              <span className="shrink-0 rounded-md bg-white/5 px-2 py-1 font-mono text-sm text-emerald-300">
+              <span className="shrink-0 rounded-md bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-sm ec-score-high">
                 {m.mark_id}
               </span>
-              <span className="truncate text-sm text-white">
+              <span className="truncate text-sm text-[var(--ec-text-primary)]">
                 {m.reasoning?.slice(0, 60)}
               </span>
             </div>
             <div
               className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
                 overrides[String(m.mark_id)]
-                  ? 'bg-emerald-500/20 text-emerald-400'
-                  : 'bg-red-500/20 text-red-400'
+                  ? 'ec-tint-success-chip border-0'
+                  : 'ec-tint-critical-chip border-0'
               }`}
             >
               {overrides[String(m.mark_id)] ? (
@@ -129,7 +129,7 @@ export function OverrideConsole({ attempt, onSubmit }: Props) {
           value={teacherNote}
           onChange={(e) => setTeacherNote(e.target.value)}
           placeholder="e.g. Excellent method but check your algebra carefully..."
-          className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-slate-500 transition-all focus:border-emerald-500/50 focus:outline-none"
+          className="ec-input w-full resize-none"
           rows={3}
         />
       </div>

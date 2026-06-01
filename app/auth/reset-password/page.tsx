@@ -60,10 +60,10 @@ export default function ResetPasswordPage() {
       {!done ? (
         <>
           <p className="ec-label-tech mb-3">NEW PASSWORD</p>
-          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
             Set a <span className="ec-text-gradient">new password</span>
           </h1>
-          <p className="mb-6 leading-relaxed text-slate-400">
+          <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
             Pick something at least 8 characters long. You&apos;ll use this from
             now on.
           </p>
@@ -103,11 +103,11 @@ export default function ResetPasswordPage() {
             />
           </form>
 
-          <p className="mt-6 text-center text-sm text-slate-400">
+          <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Need a fresh link?{' '}
             <Link
               href="/auth/forgot-password"
-              className="font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+              className="ec-link"
             >
               Request another
             </Link>
@@ -115,13 +115,13 @@ export default function ResetPasswordPage() {
         </>
       ) : (
         <div className="space-y-3 text-center">
-          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.3)]">
-            <CheckCircle2 className="h-8 w-8 text-emerald-400" />
+          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
+            <CheckCircle2 className="h-8 w-8 ec-score-high" />
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
             Password updated
           </h2>
-          <p className="leading-relaxed text-slate-400">
+          <p className="leading-relaxed text-[var(--ec-text-secondary)]">
             Taking you to your dashboard...
           </p>
         </div>

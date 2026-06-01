@@ -59,8 +59,7 @@ function ScanningLines() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="font-mono text-xs"
-      style={{ color: 'var(--ec-text-secondary, #94a3b8)' }}
+      className="font-mono text-xs text-[var(--ec-text-secondary)]"
     >
       {lines[idx]}
     </motion.p>
@@ -108,30 +107,20 @@ function ContextBlock({
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="space-y-3 border-t pt-6"
-      style={{ borderColor: 'var(--ec-border, rgba(255,255,255,0.1))' }}
+      className="space-y-3 border-t border-[var(--ec-border)] pt-6"
     >
       {paceLine && (
-        <p
-          className="font-mono text-xs font-semibold uppercase tracking-[0.14em]"
-          style={{ color: 'var(--ec-brand)' }}
-        >
+        <p className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ec-brand)]">
           {paceLine}
         </p>
       )}
       {display.paperLine && (
-        <p
-          className="text-sm font-medium leading-snug"
-          style={{ color: 'var(--ec-text-primary, #f8fafc)' }}
-        >
+        <p className="text-sm font-medium leading-snug text-[var(--ec-text-primary)]">
           {display.paperLine}
         </p>
       )}
       {display.topicLine && (
-        <p
-          className="text-sm leading-relaxed"
-          style={{ color: 'var(--ec-text-secondary, #cbd5e1)' }}
-        >
+        <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
           <span className="font-mono text-xs uppercase tracking-wider opacity-70">
             Topic{' '}
           </span>
@@ -139,18 +128,12 @@ function ContextBlock({
         </p>
       )}
       {display.tipLine && (
-        <p
-          className="text-sm leading-relaxed"
-          style={{ color: 'var(--ec-text-secondary, #94a3b8)' }}
-        >
+        <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
           {display.tipLine}
         </p>
       )}
       {!display.paperLine && !display.topicLine && analyzingFallback && (
-        <p
-          className="text-sm"
-          style={{ color: 'var(--ec-text-secondary, #94a3b8)' }}
-        >
+        <p className="text-sm text-[var(--ec-text-secondary)]">
           Analysing your question…
         </p>
       )}
@@ -170,13 +153,10 @@ function MarkingStoppedCard({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="ec-card border-red-500/30 p-6 sm:p-8"
+      className="ec-card ec-tint-critical-panel p-6 sm:p-8"
     >
-      <p className="ec-label-tech mb-3 text-red-400/90">MARKING STOPPED</p>
-      <p
-        className="text-base leading-relaxed"
-        style={{ color: 'var(--ec-text-primary, #f8fafc)' }}
-      >
+      <p className="ec-label-tech mb-3 ec-score-low">MARKING STOPPED</p>
+      <p className="text-base leading-relaxed text-[var(--ec-text-primary)]">
         {error}
       </p>
       {(onRetry || onBackToUpload) && (
@@ -195,11 +175,7 @@ function MarkingStoppedCard({
             <button
               type="button"
               onClick={onBackToUpload}
-              className="w-full rounded-xl border px-4 py-2.5 text-sm font-medium transition sm:w-auto"
-              style={{
-                borderColor: 'var(--ec-border)',
-                color: 'var(--ec-text-secondary, #94a3b8)',
-              }}
+              className="ec-btn-secondary w-full text-sm sm:w-auto"
             >
               Back to upload
             </button>
@@ -275,8 +251,7 @@ function SingleQuestionWait({
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="text-xl font-semibold tracking-tight sm:text-2xl"
-              style={{ color: 'var(--ec-text-primary, #f8fafc)' }}
+              className="text-xl font-semibold tracking-tight text-[var(--ec-text-primary)] sm:text-2xl"
             >
               {headline}
             </motion.h2>
@@ -312,13 +287,9 @@ function SingleQuestionWait({
               key="anticipation"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex flex-col gap-3 border-t pt-6 sm:flex-row sm:items-center sm:justify-between"
-              style={{ borderColor: 'var(--ec-border, rgba(255,255,255,0.1))' }}
+              className="flex flex-col gap-3 border-t border-[var(--ec-border)] pt-6 sm:flex-row sm:items-center sm:justify-between"
             >
-              <p
-                className="text-sm"
-                style={{ color: 'var(--ec-text-secondary, #94a3b8)' }}
-              >
+              <p className="text-sm text-[var(--ec-text-secondary)]">
                 Placing examiner&apos;s marks on your answer…
               </p>
               <AnticipationDots />
@@ -401,8 +372,7 @@ function WholePaperWait({
             key={headline}
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-xl font-semibold tracking-tight sm:text-2xl"
-            style={{ color: 'var(--ec-text-primary, #f8fafc)' }}
+            className="text-xl font-semibold tracking-tight text-[var(--ec-text-primary)] sm:text-2xl"
           >
             {headline}
           </motion.h2>
@@ -429,13 +399,9 @@ function WholePaperWait({
 
         {showAnticipation && (
           <div
-            className="flex flex-col gap-3 border-t pt-6 sm:flex-row sm:items-center sm:justify-between"
-            style={{ borderColor: 'var(--ec-border, rgba(255,255,255,0.1))' }}
+            className="flex flex-col gap-3 border-t border-[var(--ec-border)] pt-6 sm:flex-row sm:items-center sm:justify-between"
           >
-            <p
-              className="text-sm"
-              style={{ color: 'var(--ec-text-secondary, #94a3b8)' }}
-            >
+            <p className="text-sm text-[var(--ec-text-secondary)]">
               Placing examiner&apos;s marks on your answers…
             </p>
             <AnticipationDots />

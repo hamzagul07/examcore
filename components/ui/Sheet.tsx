@@ -52,7 +52,7 @@ export function Sheet({
           style={{ zIndex: 90 }}
         >
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 ec-modal-backdrop"
             onClick={onClose}
             aria-hidden
           />

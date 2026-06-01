@@ -15,7 +15,14 @@ export type RegionChoice = {
   override: boolean
 }
 
-// Currency -> default region tier when the user picks a currency manually.
+/** Currencies offered per region tier (must match setup-stripe-products.mjs). */
+export const CURRENCIES_BY_TIER: Record<RegionTier, readonly SupportedCurrency[]> = {
+  A: ['usd', 'gbp', 'eur', 'aud'],
+  B: ['usd', 'eur'],
+  C: ['usd', 'inr', 'pkr'],
+}
+
+// Fallback tier when the currency is not sold in the preserved tier.
 const CURRENCY_DEFAULT_TIER: Record<SupportedCurrency, RegionTier> = {
   usd: 'A',
   gbp: 'A',
@@ -27,6 +34,21 @@ const CURRENCY_DEFAULT_TIER: Record<SupportedCurrency, RegionTier> = {
 
 export function isSupportedCurrency(v: string | null | undefined): v is SupportedCurrency {
   return !!v && (SUPPORTED_CURRENCIES as readonly string[]).includes(v.toLowerCase())
+}
+
+export function isCurrencyInTier(currency: SupportedCurrency, tier: RegionTier): boolean {
+  return (CURRENCIES_BY_TIER[tier] as readonly string[]).includes(currency)
+}
+
+/** Pick region tier for a currency, keeping geo/cookie tier when that currency is sold there. */
+export function tierForCurrency(
+  currency: SupportedCurrency,
+  preserveTier?: RegionTier | null
+): RegionTier {
+  if (preserveTier && isCurrencyInTier(currency, preserveTier)) {
+    return preserveTier
+  }
+  return CURRENCY_DEFAULT_TIER[currency]
 }
 
 /** Serialize a region choice for the cookie value. */
@@ -44,11 +66,14 @@ export function parseRegionCookie(raw: string | null | undefined): RegionChoice 
 }
 
 /** Build a choice from a manually selected currency. */
-export function regionFromCurrency(currency: SupportedCurrency): RegionChoice {
+export function regionFromCurrency(
+  currency: SupportedCurrency,
+  opts?: { preserveTier?: RegionTier | null; country?: string | null }
+): RegionChoice {
   return {
     currency,
-    tier: CURRENCY_DEFAULT_TIER[currency],
-    country: null,
+    tier: tierForCurrency(currency, opts?.preserveTier),
+    country: opts?.country ?? null,
     override: true,
   }
 }
@@ -57,9 +82,10 @@ export function regionFromCurrency(currency: SupportedCurrency): RegionChoice {
 export function regionFromCountry(country: string | null): RegionChoice {
   const currency = getPreferredCurrency(country)
   const safe = isSupportedCurrency(currency) ? currency : 'usd'
+  const tier = getRegionTier(country)
   return {
-    currency: safe,
-    tier: getRegionTier(country),
+    currency: isCurrencyInTier(safe, tier) ? safe : 'usd',
+    tier,
     country,
     override: false,
   }

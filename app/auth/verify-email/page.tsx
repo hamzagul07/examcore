@@ -23,10 +23,10 @@ function VerifyEmailSkeleton() {
   return (
     <AuthShell backLabel="Back to sign up" backHref="/auth/signup">
       <p className="ec-label-tech mb-3">VERIFY EMAIL</p>
-      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
         Check your <span className="ec-text-gradient">email</span>
       </h1>
-      <p className="leading-relaxed text-slate-400">Loading...</p>
+      <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
     </AuthShell>
   )
 }
@@ -145,10 +145,10 @@ function VerifyEmailForm() {
     return (
       <AuthShell backLabel="Back to sign up" backHref="/auth/signup">
         <p className="ec-label-tech mb-3">VERIFY EMAIL</p>
-        <h1 className="mb-3 text-2xl font-bold tracking-tight text-white">
+        <h1 className="mb-3 text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
           No email address found
         </h1>
-        <p className="mb-6 leading-relaxed text-slate-400">
+        <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
           Start from the sign-up page so we know where to send your code.
         </p>
         <Link href="/auth/signup" className="ec-btn-primary inline-flex w-full justify-center">
@@ -161,16 +161,16 @@ function VerifyEmailForm() {
   return (
     <AuthShell backLabel="Back to sign up" backHref="/auth/signup">
       <div className="mb-6 text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.3)]">
-          <Mail className="h-8 w-8 text-emerald-400" />
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
+          <Mail className="h-8 w-8 ec-text-brand" />
         </div>
         <p className="ec-label-tech mb-3">VERIFY EMAIL</p>
-        <h1 className="mb-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+        <h1 className="mb-3 text-3xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-4xl">
           Check your <span className="ec-text-gradient">email</span>
         </h1>
-        <p className="leading-relaxed text-slate-400">
+        <p className="leading-relaxed text-[var(--ec-text-secondary)]">
           We sent a 6-digit code to{' '}
-          <strong className="text-white">{email}</strong>
+          <strong className="text-[var(--ec-text-primary)]">{email}</strong>
         </p>
       </div>
 
@@ -197,7 +197,7 @@ function VerifyEmailForm() {
                 onChange={(e) => handleDigitChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 aria-label={`Digit ${index + 1} of ${CODE_LENGTH}`}
-                className="h-12 w-9 rounded-xl border border-white/10 bg-dark-900/70 text-center text-lg font-semibold text-white outline-none transition-all focus:border-emerald-500/50 focus:shadow-[0_0_20px_rgba(16,185,129,0.25)] sm:h-14 sm:w-12 sm:text-xl"
+                className="ec-auth-input-focus h-12 w-9 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-center text-lg font-semibold text-[var(--ec-text-primary)] outline-none transition-all sm:h-14 sm:w-12 sm:text-xl"
               />
             ))}
           </div>
@@ -217,22 +217,22 @@ function VerifyEmailForm() {
       </form>
 
       <div className="mt-6 space-y-3 text-center text-sm">
-        <p className="text-slate-400">
+        <p className="text-[var(--ec-text-secondary)]">
           Didn&apos;t get the code?{' '}
           <button
             type="button"
             onClick={handleResend}
             disabled={resending}
-            className="font-semibold text-emerald-400 transition-colors hover:text-emerald-300 disabled:opacity-50"
+            className="ec-link disabled:opacity-50"
           >
             {resending ? 'Sending...' : 'Resend'}
           </button>
         </p>
-        <p className="text-slate-500">
+        <p className="text-[var(--ec-text-secondary)]">
           Wrong email?{' '}
           <Link
             href="/auth/signup"
-            className="font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+            className="ec-link"
           >
             Sign up again
           </Link>

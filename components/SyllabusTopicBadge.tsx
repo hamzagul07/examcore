@@ -19,7 +19,7 @@ type Props = {
  * tonal family used in the Mastery Matrix legend.
  */
 const paperColors: Record<string, string> = {
-  P1: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
+  P1: 'ec-tint-success-chip',
   P2: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30',
   P3: 'bg-blue-500/10 text-blue-300 border-blue-500/30',
   P4: 'bg-orange-500/10 text-orange-300 border-orange-500/30',
@@ -30,7 +30,7 @@ const paperColors: Record<string, string> = {
 }
 
 const FALLBACK_CHIP =
-  'border-white/10 bg-white/5 text-slate-300 border backdrop-blur'
+  'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] border backdrop-blur'
 
 function lookupTopic(
   subjectCode: string | undefined,
@@ -110,7 +110,7 @@ export function SyllabusTopicBadgeList({
       ))}
       {overflow > 0 && (
         <span
-          className={`inline-flex items-center rounded-full border border-white/10 bg-white/5 font-medium text-slate-400 backdrop-blur ${
+          className={`inline-flex items-center rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] font-medium text-[var(--ec-text-secondary)] backdrop-blur ${
             size === 'sm' ? 'text-xs px-2.5 py-0.5' : 'text-sm px-3 py-1'
           }`}
           title={`${overflow} more topic${overflow === 1 ? '' : 's'}`}

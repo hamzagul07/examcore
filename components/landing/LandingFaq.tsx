@@ -57,7 +57,7 @@ export function LandingFaq() {
       </div>
       <Link
         href="/faq"
-        className="mt-8 inline-flex min-h-[44px] items-center text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+        className="mt-8 inline-flex min-h-[44px] items-center text-sm ec-link"
       >
         See all questions →
       </Link>

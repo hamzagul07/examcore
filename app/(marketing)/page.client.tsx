@@ -35,7 +35,7 @@ export function LandingMockupHero() {
         <div className="flex items-center gap-2 border-b border-[var(--ec-border)] px-4 py-3">
           <div className="h-3 w-3 rounded-full bg-red-500/50" />
           <div className="h-3 w-3 rounded-full bg-amber-500/50" />
-          <div className="h-3 w-3 rounded-full bg-emerald-500/50" />
+          <div className="h-3 w-3 rounded-full bg-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)]" />
           <div className="ml-3 flex-1 rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-3 py-1 text-left font-mono text-xs text-[var(--ec-text-secondary)]">
             examcore.ai/mark
           </div>
@@ -84,7 +84,7 @@ export function LandingMockupHero() {
                   ease: [0.4, 0, 0.2, 1],
                   delay: 0.4,
                 }}
-                className="animate-shimmer h-full rounded-full bg-gradient-to-r from-emerald-500 via-cyan-400 to-emerald-500 shadow-[0_0_16px_rgba(16,185,129,0.5)]"
+                className="animate-shimmer ec-progress-fill-shimmer h-full rounded-full"
                 style={{ backgroundSize: '200% 100%' }}
               />
             </div>
@@ -128,9 +128,9 @@ function MarkRow({
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ delay, duration: 0.4 }}
-      className="flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 backdrop-blur-sm"
+      className="ec-panel-highlight flex items-start gap-3 rounded-xl p-4 backdrop-blur-sm"
     >
-      <span className="shrink-0 rounded-md border border-emerald-500/40 bg-emerald-500/15 px-2 py-0.5 font-mono text-xs font-bold text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+      <span className="ec-mark-badge--earned shrink-0 rounded-md px-2 py-0.5 font-mono text-xs font-bold">
         {badge}
       </span>
       <span className="text-sm leading-relaxed text-[var(--ec-text-primary)]">

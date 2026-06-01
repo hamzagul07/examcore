@@ -10,11 +10,6 @@ interface PaperPreviewProps {
   paper: ChatPaperPayload
 }
 
-/**
- * Inline past-paper card rendered inside an assistant message bubble. The
- * question text is run through `MathText` so LaTeX like `$x^2$` and `$\frac{}{}$`
- * renders with KaTeX, matching the marking UI.
- */
 export function PaperPreview({ paper }: PaperPreviewProps) {
   const ctaHref =
     '/auth/signup?intent=mark&paper=' +
@@ -27,24 +22,27 @@ export function PaperPreview({ paper }: PaperPreviewProps) {
       initial={{ opacity: 0, scale: 0.95, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-950/40 to-dark-900/40 backdrop-blur-xl"
+      className="ec-card relative overflow-hidden border-[color-mix(in_srgb,var(--ec-brand)_20%,transparent)]"
     >
-      <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-emerald-500/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-[color-mix(in_srgb,var(--ec-brand)_15%,transparent)] blur-3xl" />
 
-      <div className="relative p-6">
-        <div className="mb-4 flex items-center justify-between">
+      <div className="relative p-5 sm:p-6">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <FileText className="h-4 w-4 text-emerald-400" />
-            <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">
-              {paper.subject_code} · {paper.session} · {paper.paper} · Q{paper.question_number}
+            <FileText className="h-4 w-4 ec-text-brand" />
+            <span className="font-mono text-xs uppercase tracking-wider ec-text-brand">
+              {paper.subject_code} · {paper.session} · {paper.paper} · Q
+              {paper.question_number}
             </span>
           </div>
-          <span className="rounded-md bg-emerald-500/20 px-2 py-1 text-xs font-semibold text-emerald-300">
+          <span className="ec-tint-success-chip rounded-md px-2 py-1 text-xs font-semibold">
             {paper.total_marks} marks
           </span>
         </div>
 
-        <div className="mb-4 rounded-xl border border-white/5 bg-white/5 p-5 text-slate-100">
+        <div
+          className="mb-4 rounded-xl border ec-border-color ec-bg-surface-raised ec-text-primary p-4 sm:p-5"
+        >
           <MathText text={paper.question_text} />
         </div>
 
@@ -53,7 +51,11 @@ export function PaperPreview({ paper }: PaperPreviewProps) {
             {paper.syllabus_tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-slate-400"
+                className="rounded-full border px-2 py-0.5 text-xs text-[var(--ec-text-secondary)]"
+                style={{
+                  borderColor: 'var(--ec-border)',
+                  background: 'var(--ec-surface-raised)',
+                }}
               >
                 {tag}
               </span>

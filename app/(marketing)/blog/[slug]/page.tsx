@@ -33,7 +33,7 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="py-16 sm:py-20">
         <Link
           href="/blog"
-          className="text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+          className="text-sm ec-link"
         >
           ← Back to blog
         </Link>
@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: Props) {
             <p className="landing-lead mt-4">{post.description}</p>
           ) : null}
         </header>
-        <div className="prose prose-invert max-w-none prose-headings:text-[var(--ec-text-primary)] prose-p:text-[var(--ec-text-secondary)] prose-a:text-emerald-400 prose-strong:text-[var(--ec-text-primary)]">
+        <div className="prose prose-sm max-w-none prose-headings:text-[var(--ec-text-primary)] prose-p:text-[var(--ec-text-secondary)] prose-a:text-[var(--ec-brand)] prose-strong:text-[var(--ec-text-primary)]">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
         </div>
       </article>

@@ -22,13 +22,13 @@ function capCopy(
   cap: number | null | undefined
 ): string {
   if (variant === 'omni_cap') {
-    const omniCap = cap ?? (tier ? omniCapForTier(tier) : 10)
+    const omniCap = cap ?? (tier ? omniCapForTier(tier) : omniCapForTier('free'))
     if (tier === 'free') {
       return `You've used all ${omniCap} of your free Omni messages this month`
     }
     return `You've used all ${omniCap} of your Omni messages this month`
   }
-  const questionCap = tier ? capForTier(tier) : cap ?? 5
+  const questionCap = tier ? capForTier(tier) : cap ?? capForTier('free')
   if (tier === 'free') {
     return `You've used all ${questionCap} of your free questions this month`
   }
@@ -56,21 +56,21 @@ export function UpgradeModal({
 
   return (
     <Sheet open={open} onClose={onClose} title={title}>
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
-        <Sparkles className="h-6 w-6 text-emerald-400" />
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border ec-tint-success-icon">
+        <Sparkles className="h-6 w-6 ec-text-brand" />
       </div>
 
       <h2 className="text-headline text-[var(--ec-text-primary)]">{title}</h2>
       <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
         {isAnon
-          ? 'Create a free account to keep marking — 5 free questions and 10 Omni messages every month, no card required.'
+          ? `Create a free account to keep marking — ${capForTier('free')} free questions and ${omniCapForTier('free')} Omni messages every month, no card required.`
           : variant === 'omni_cap'
             ? 'Upgrade to keep chatting with Omni about your work, or top up credits.'
             : 'Upgrade or grab a credit top-up to keep marking now.'}
       </p>
 
       {!isAnon && creditBalance > 0 && (
-        <p className="mt-2 text-sm text-emerald-400">
+        <p className="mt-2 text-sm ec-score-high">
           You have {creditBalance} credit{creditBalance === 1 ? '' : 's'} — your next{' '}
           {variant === 'omni_cap' ? 'Omni message' : 'question'} will use one.
         </p>

@@ -5,20 +5,6 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { Camera, FileImage, Upload } from 'lucide-react'
 
-/**
- * Drag-and-drop / camera capture surface rendered inline inside a chat bubble.
- *
- * Visitor flow:
- *   1. They pick a file (drag, drop, choose, or camera capture).
- *   2. We turn it into a `blob:` URL stashed in sessionStorage under
- *      `examcore_pending_upload`. The marking page consumes it after auth.
- *   3. We route them to /auth/signup with `intent=upload` so the post-auth
- *      callback knows to drop them into /mark with the file pre-loaded.
- *
- * We DO NOT call the marking API directly here — the marking pipeline is
- * authenticated, rate-limited, and slow. The conversion play is to get them
- * to sign up first, then mark.
- */
 export function InlineUpload() {
   const router = useRouter()
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -40,8 +26,7 @@ export function InlineUpload() {
         })
       )
     } catch {
-      // sessionStorage / URL.createObjectURL not available — ignore, the
-      // signup page still receives the intent param.
+      // sessionStorage unavailable — signup still receives intent param.
     }
     router.push('/auth/signup?intent=upload')
   }
@@ -60,21 +45,27 @@ export function InlineUpload() {
         setIsDragging(false)
         handleFileSelect(e.dataTransfer.files?.[0])
       }}
-      className={`relative rounded-2xl border-2 border-dashed p-8 transition-all ${
-        isDragging
-          ? 'border-emerald-500 bg-emerald-500/10'
-          : 'border-white/20 bg-white/5'
+      className={`relative rounded-2xl border-2 border-dashed p-6 sm:p-8 transition-all ${
+        isDragging ? 'border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] bg-[var(--ec-brand-muted)]' : ''
       }`}
+      style={
+        isDragging
+          ? undefined
+          : {
+              borderColor: 'var(--ec-border)',
+              background: 'var(--ec-surface-raised)',
+            }
+      }
     >
       <div className="text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20">
-          <Upload className="h-8 w-8 text-emerald-400" />
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-chat-avatar-soft">
+          <Upload className="h-8 w-8 ec-text-brand" />
         </div>
 
-        <h4 className="mb-2 font-semibold text-white">
+        <h4 className="mb-2 font-semibold text-[var(--ec-text-primary)]">
           Take a picture of your handwritten working
         </h4>
-        <p className="mb-6 text-sm text-slate-400">
+        <p className="mb-6 text-sm text-[var(--ec-text-secondary)]">
           I&apos;ll mark it instantly to show you exactly how Examcore works.
         </p>
 
@@ -82,7 +73,7 @@ export function InlineUpload() {
           <button
             type="button"
             onClick={() => cameraInputRef.current?.click()}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 px-5 py-3 font-semibold text-white transition-shadow hover:shadow-[0_0_24px_rgba(16,185,129,0.4)]"
+            className="ec-btn-primary flex min-h-[44px] items-center justify-center gap-2"
           >
             <Camera className="h-5 w-5" />
             Use camera
@@ -90,7 +81,7 @@ export function InlineUpload() {
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-white transition-colors hover:bg-white/10"
+            className="ec-btn-secondary flex min-h-[44px] items-center justify-center gap-2"
           >
             <FileImage className="h-5 w-5" />
             Choose file

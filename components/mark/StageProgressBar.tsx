@@ -15,7 +15,7 @@ export function StageProgressBar({ percent }: { percent: number }) {
       aria-label="Marking stage progress"
       className="h-[3px] w-full overflow-hidden rounded-full"
       style={{
-        background: 'var(--ec-border, rgba(255,255,255,0.12))',
+        background: 'var(--ec-border)',
       }}
     >
       <motion.div

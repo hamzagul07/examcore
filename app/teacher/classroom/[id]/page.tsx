@@ -9,6 +9,7 @@ import { ClassBlindspotRadar } from '@/components/teacher/ClassBlindspotRadar'
 import { GradeRiskMatrix } from '@/components/teacher/GradeRiskMatrix'
 import { ReviewQueueList } from '@/components/teacher/ReviewQueueList'
 import { InviteCard } from '@/components/teacher/InviteCard'
+import { TeacherPageContainer } from '@/components/teacher/TeacherPageChrome'
 import { useSetAIContext } from '@/lib/omni-ai/context'
 import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
@@ -77,84 +78,82 @@ export default function ClassroomPage() {
 
   if (!data) {
     return (
-      <div className="p-12 text-slate-400">Loading classroom analytics...</div>
+      <div className="text-[var(--ec-text-secondary)]">Loading classroom analytics...</div>
     )
   }
 
   return (
-    <>
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <div className="ec-label-tech mb-3">CLASSROOM ANALYTICS</div>
-            <h1 className="text-huge gradient-text">
-              {data.analytics.classroomName}
-            </h1>
-            <ClassroomSummary
-              studentCount={data.analytics.studentCount}
-              totalAttempts={data.analytics.totalAttempts}
-              avgScore={data.analytics.avgScore}
-            />
-          </div>
-          <Link
-            href={`/teacher/classroom/${id}/students`}
-            className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2 text-sm text-white hover:bg-white/5"
-          >
-            <Users className="h-4 w-4 text-emerald-400" />
-            View all students
-          </Link>
-        </div>
-
-        {classroom?.invite_code && <InviteCard classroom={classroom} />}
-
-        <div className="ec-card mb-8 p-6">
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-xl font-bold text-white">
-              Students ({students.length})
-            </h3>
-          </div>
-
-          {students.length === 0 ? (
-            <div className="py-8 text-center">
-              <Users className="mx-auto mb-3 h-12 w-12 text-slate-600" />
-              <p className="text-slate-400">
-                No students yet. Share the invite code above.
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-2">
-              {students.map((s) => (
-                <Link
-                  key={s.id}
-                  href={`/teacher/classroom/${id}/students/${s.id}`}
-                  className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10"
-                >
-                  <div>
-                    <div className="font-medium text-white">{s.name}</div>
-                    <div className="text-xs text-slate-400">
-                      {s.attemptCount} attempts · {s.accuracy.toFixed(0)}% avg
-                    </div>
-                  </div>
-                  <ArrowRight className="h-4 w-4 text-slate-500" />
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="mb-8">
-          <ClassBlindspotRadar
-            classroomId={id}
-            blindspots={data.blindspots.topics || []}
+    <TeacherPageContainer>
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="ec-label-tech mb-3">CLASSROOM ANALYTICS</p>
+          <h1 className="text-huge gradient-text">
+            {data.analytics.classroomName}
+          </h1>
+          <ClassroomSummary
+            studentCount={data.analytics.studentCount}
+            totalAttempts={data.analytics.totalAttempts}
+            avgScore={data.analytics.avgScore}
           />
         </div>
+        <Link
+          href={`/teacher/classroom/${id}/students`}
+          className="ec-btn-secondary inline-flex min-h-[44px] items-center gap-2 text-sm"
+        >
+          <Users className="h-4 w-4 ec-text-brand" />
+          View all students
+        </Link>
+      </div>
 
-        <div className="mb-8">
-          <GradeRiskMatrix students={data.quadrants.students || []} />
+      {classroom?.invite_code && <InviteCard classroom={classroom} />}
+
+      <div className="ec-card mb-8 p-6">
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="text-xl font-bold text-[var(--ec-text-primary)]">
+            Students ({students.length})
+          </h3>
         </div>
 
-        <ReviewQueueList classroomId={id} />
+        {students.length === 0 ? (
+          <div className="py-8 text-center">
+            <Users className="mx-auto mb-3 h-12 w-12 text-[var(--ec-text-secondary)] opacity-50" />
+            <p className="text-[var(--ec-text-secondary)]">
+              No students yet. Share the invite code above.
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {students.map((s) => (
+              <Link
+                key={s.id}
+                href={`/teacher/classroom/${id}/students/${s.id}`}
+                className="flex min-h-[44px] items-center justify-between rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 transition-colors hover:bg-[var(--ec-brand-muted)]"
+              >
+                <div>
+                  <div className="font-medium text-[var(--ec-text-primary)]">{s.name}</div>
+                  <div className="text-xs text-[var(--ec-text-secondary)]">
+                    {s.attemptCount} attempts · {s.accuracy.toFixed(0)}% avg
+                  </div>
+                </div>
+                <ArrowRight className="h-4 w-4 text-[var(--ec-text-secondary)]" />
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
-    </>
+
+      <div className="mb-8">
+        <ClassBlindspotRadar
+          classroomId={id}
+          blindspots={data.blindspots.topics || []}
+        />
+      </div>
+
+      <div className="mb-8">
+        <GradeRiskMatrix students={data.quadrants.students || []} />
+      </div>
+
+      <ReviewQueueList classroomId={id} />
+    </TeacherPageContainer>
   )
 }

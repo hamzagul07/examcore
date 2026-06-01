@@ -270,15 +270,20 @@ export function ChatPanel({
     <>
       <div className={`flex h-full flex-col ${className}`}>
         {showHeader && (
-          <div className="flex items-center justify-between border-b border-white/5 px-5 py-4">
+          <div
+            className="flex items-center justify-between border-b px-5 py-4"
+            style={{ borderColor: 'var(--ec-border)' }}
+          >
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500">
-                <Sparkles className="h-5 w-5 text-white" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-full ec-chat-avatar">
+                <Sparkles className="h-5 w-5 ec-on-brand-text" />
               </div>
               <div>
-                <h3 className="font-semibold leading-tight text-white">Omni-AI</h3>
-                <p className="flex items-center gap-1.5 text-xs text-emerald-400">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                <h3 className="font-semibold leading-tight text-[var(--ec-text-primary)]">
+                  Omni-AI
+                </h3>
+                <p className="flex items-center gap-1.5 text-xs text-[var(--ec-brand)]">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--ec-brand)]" />
                   {getContextLabel(context.type)}
                 </p>
               </div>
@@ -287,7 +292,7 @@ export function ChatPanel({
               <button
                 type="button"
                 onClick={clearChat}
-                className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5"
+                className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)]"
                 title="Clear chat"
               >
                 <RotateCcw className="h-4 w-4" />
@@ -299,11 +304,13 @@ export function ChatPanel({
         <div className="flex-1 space-y-4 overflow-y-auto px-5 py-4">
           {messages.length === 0 && showSuggestions && (
             <div className="py-12 text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20">
-                <Sparkles className="h-8 w-8 text-emerald-400" />
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-chat-avatar-soft">
+                <Sparkles className="h-8 w-8 ec-text-brand" />
               </div>
-              <h4 className="mb-2 text-lg font-semibold text-white">How can I help?</h4>
-              <p className="mb-6 text-sm text-slate-400">
+              <h4 className="mb-2 text-lg font-semibold text-[var(--ec-text-primary)]">
+                How can I help?
+              </h4>
+              <p className="mb-6 text-sm text-[var(--ec-text-secondary)]">
                 {getEmptyStateMessage(context.type)}
               </p>
               <div className="flex flex-wrap justify-center gap-2">
@@ -312,7 +319,12 @@ export function ChatPanel({
                     key={s}
                     type="button"
                     onClick={() => sendMessage(s)}
-                    className="min-h-[44px] rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-300 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-300"
+                    className="min-h-[44px] rounded-full border px-4 py-2.5 text-sm transition-all ec-hover-brand-border-mild hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-brand)]"
+                    style={{
+                      borderColor: 'var(--ec-border)',
+                      background: 'var(--ec-surface-raised)',
+                      color: 'var(--ec-text-secondary)',
+                    }}
                   >
                     {s}
                   </button>
@@ -330,7 +342,11 @@ export function ChatPanel({
 
         <form
           onSubmit={handleSubmit}
-          className="border-t border-white/5 bg-dark-950/30 px-5 py-4 backdrop-blur-xl"
+          className="border-t px-5 py-4 backdrop-blur-xl"
+          style={{
+            borderColor: 'var(--ec-border)',
+            background: 'color-mix(in srgb, var(--ec-surface) 92%, transparent)',
+          }}
         >
           <div className="flex items-center gap-2">
             <input
@@ -341,12 +357,12 @@ export function ChatPanel({
               placeholder="Ask Omni-AI anything..."
               maxLength={2000}
               disabled={isStreaming}
-              className="flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-slate-500 transition-all focus:border-emerald-500/50 focus:bg-white/10 focus:outline-none disabled:opacity-50"
+              className="ec-input flex-1 disabled:opacity-50"
             />
             <button
               type="submit"
               disabled={!input.trim() || isStreaming}
-              className="rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-3 text-white transition-shadow hover:shadow-[0_0_24px_rgba(16,185,129,0.4)] disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-xl ec-btn-send ec-on-brand-text p-3 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Send className="h-5 w-5" />
             </button>

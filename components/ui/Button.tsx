@@ -62,8 +62,8 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   secondary: 'ec-btn-secondary',
   ghost: 'ec-btn-ghost',
   danger: cn(
-    'ec-btn-secondary border-red-500/40 text-red-400',
-    'hover:border-red-400/50 hover:bg-red-500/10'
+    'ec-btn-secondary border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] ec-score-low',
+    'hover:border-[color-mix(in_srgb,var(--ec-chip-critical-text)_50%,transparent)] hover:bg-[var(--ec-chip-critical-bg)]'
   ),
 }
 

@@ -14,6 +14,8 @@ import {
   ExaminerInkOverlay,
   type LineReference,
 } from '@/components/examiner-ink/ExaminerInkOverlay'
+import { toAnswerPhotoStoragePath } from '@/lib/storage/answer-photos'
+import { signAnswerPhotoUrl } from '@/lib/storage/answer-photos'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -141,6 +143,9 @@ export default async function AttemptDetailPage({
   }
 
   const result = toMarkingResult(attempt)
+  const signedPhotoUrl = attempt.answer_photo_url
+    ? await signAnswerPhotoUrl(attempt.answer_photo_url)
+    : null
   const sessionParts = splitSession(
     attempt.mark_schemes?.paper_code,
     attempt.mark_schemes?.paper_session
@@ -159,7 +164,7 @@ export default async function AttemptDetailPage({
         {/* Back link */}
         <Link
           href="/dashboard"
-          className="animate-entry mb-8 inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-white/10 bg-dark-900/60 px-4 py-2 text-xs font-semibold text-slate-400 backdrop-blur transition-colors hover:border-emerald-500/40 hover:text-emerald-400"
+          className="animate-entry mb-8 inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-4 py-2 text-xs font-semibold text-[var(--ec-text-secondary)] backdrop-blur transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] hover:text-[var(--ec-brand)]"
         >
           <ArrowLeft className="h-3 w-3" />
           Back to dashboard
@@ -189,7 +194,7 @@ export default async function AttemptDetailPage({
               </>
             )}
           </h1>
-          <p className="mt-3 font-mono text-xs text-slate-500">
+          <p className="mt-3 font-mono text-xs text-[var(--ec-text-secondary)]">
             Marked on {dateStr}
             {result.marking_mode === 'official_mark_scheme' &&
               result.detected_paper && (
@@ -206,7 +211,7 @@ export default async function AttemptDetailPage({
         {/* Examiner's ink overlay — only renders when we have both a saved
             answer image AND positioning data. Older attempts (from before
             Sprint 21) gracefully fall through with no overlay. */}
-        {attempt.answer_photo_url &&
+        {signedPhotoUrl &&
           Array.isArray(attempt.line_references) &&
           attempt.line_references.length > 0 && (
             <section className="animate-entry stagger-3 ec-card mt-8 p-6 sm:p-8">
@@ -214,12 +219,18 @@ export default async function AttemptDetailPage({
               <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-3xl">
                 Where you earned and lost marks
               </h2>
-              <p className="mt-2 mb-6 max-w-2xl text-sm text-slate-400">
+              <p className="mt-2 mb-6 max-w-2xl text-sm text-[var(--ec-text-secondary)]">
                 The AI examiner&rsquo;s annotations preserved from when this
                 question was marked.
               </p>
               <ExaminerInkOverlay
-                imageUrl={attempt.answer_photo_url}
+                imageUrl={signedPhotoUrl}
+                attemptId={attempt.id}
+                photoRef={
+                  attempt.answer_photo_url
+                    ? toAnswerPhotoStoragePath(attempt.answer_photo_url)
+                    : undefined
+                }
                 lineReferences={attempt.line_references}
                 animate={false}
               />
@@ -248,16 +259,14 @@ export default async function AttemptDetailPage({
           ) : (
             <Link
               href="/mark"
-              className="ec-btn-primary justify-center text-base sm:w-auto"
-              style={{ padding: '16px 28px' }}
+              className="ec-btn-primary justify-center px-7 py-4 text-base sm:w-auto"
             >
               Mark a new question
             </Link>
           )}
           <Link
             href="/dashboard"
-            className="ec-btn-secondary justify-center text-base sm:w-auto"
-            style={{ padding: '16px 28px' }}
+            className="ec-btn-secondary justify-center px-7 py-4 text-base sm:w-auto"
           >
             Back to dashboard
           </Link>

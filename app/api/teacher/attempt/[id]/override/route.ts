@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
 import { createAdminClient } from '@/lib/supabase-admin'
 import { requireTeacher } from '@/lib/teacher-auth'
+import { signAnswerPhotoUrl } from '@/lib/storage/answer-photos'
 
 type Body = {
   override_marks_awarded?: unknown[]
@@ -154,6 +155,9 @@ export async function GET(
   return NextResponse.json({
     attempt: {
       ...attempt,
+      answer_photo_url: attempt.answer_photo_url
+        ? await signAnswerPhotoUrl(attempt.answer_photo_url)
+        : attempt.answer_photo_url,
       marks_awarded: aiMarking?.marks_awarded ?? [],
       user_profiles: profile,
     },

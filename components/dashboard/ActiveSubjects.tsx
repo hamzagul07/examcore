@@ -20,7 +20,8 @@ export function ActiveSubjects({ subjects }: Props) {
   return (
     <section className="mb-8">
       <h2 className="text-title mb-4">Subjects active</h2>
-      <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-wrap lg:overflow-visible">
+      <div className="relative">
+        <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex-wrap lg:overflow-visible [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,black_90%,transparent)] lg:[mask-image:none]">
         {subjects.map(({ name, code }) => {
           const href = code
             ? `/dashboard/progress?subject=${encodeURIComponent(code)}`
@@ -50,6 +51,7 @@ export function ActiveSubjects({ subjects }: Props) {
             </motion.div>
           )
         })}
+        </div>
       </div>
     </section>
   )

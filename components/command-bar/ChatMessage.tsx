@@ -32,7 +32,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
         animate={{ opacity: 1, y: 0 }}
         className="flex justify-end"
       >
-        <div className="max-w-[85%] rounded-2xl rounded-br-md border border-emerald-500/30 bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 px-4 py-3 text-white">
+        <div className="max-w-[85%] rounded-2xl rounded-br-md px-4 py-3 ec-chat-user-bubble text-[var(--ec-text-primary)]">
           {message.content}
         </div>
       </motion.div>
@@ -47,13 +47,13 @@ export function ChatMessage({ message }: ChatMessageProps) {
       animate={{ opacity: 1, y: 0 }}
       className="flex gap-3"
     >
-      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500">
-        <Sparkles className="h-5 w-5 text-white" />
+      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full ec-chat-avatar">
+        <Sparkles className="h-5 w-5 ec-on-brand-text" />
       </div>
 
       <div className="flex-1 space-y-3 min-w-0">
         {message.content && (
-          <div className="rounded-2xl rounded-bl-md border border-white/10 bg-white/5 px-4 py-3 text-slate-200">
+          <div className="rounded-2xl rounded-bl-md border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-4 py-3 text-[var(--ec-text-primary)]">
             {message.content}
           </div>
         )}

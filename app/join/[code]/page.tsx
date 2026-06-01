@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { BookOpen, Users, Check, AlertCircle } from 'lucide-react'
 
@@ -32,8 +33,6 @@ export default function JoinClassroomPage() {
           `/api/classrooms/by-code/${encodeURIComponent(normalizedCode)}`
         )
         const data = await res.json()
-
-        console.log('[join] Classroom lookup:', data)
 
         if (!res.ok) {
           setError(data.error || 'Something went wrong. Try again later.')
@@ -83,34 +82,40 @@ export default function JoinClassroomPage() {
 
   if (loading) {
     return (
-      <div className="p-24 text-center text-slate-400">
+      <p className="text-center text-[var(--ec-text-secondary)]">
         Loading invitation...
-      </div>
+      </p>
     )
   }
 
   if (error && !classroom) {
     return (
-      <div className="mx-auto max-w-md px-6 py-24">
-        <div className="ec-card p-8 text-center">
-          <AlertCircle className="mx-auto mb-4 h-16 w-16 text-red-400" />
-          <h2 className="mb-2 text-2xl font-bold text-white">Can&apos;t join</h2>
-          <p className="text-slate-400">{error}</p>
-        </div>
+      <div className="ec-card p-8 text-center">
+        <AlertCircle className="mx-auto mb-4 h-16 w-16 ec-score-low" />
+        <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)]">
+          Can&apos;t join
+        </h2>
+        <p className="text-[var(--ec-text-secondary)]">{error}</p>
+        <Link
+          href="/join"
+          className="ec-btn-secondary mt-6 inline-flex min-h-[44px] items-center justify-center"
+        >
+          Try another code
+        </Link>
       </div>
     )
   }
 
   if (joined && classroom) {
     return (
-      <div className="mx-auto max-w-md px-6 py-24">
-        <div className="ec-card p-8 text-center">
-          <Check className="mx-auto mb-4 h-16 w-16 text-emerald-400" />
-          <h2 className="mb-2 text-2xl font-bold text-white">You&apos;re in!</h2>
-          <p className="text-slate-400">
-            Joined {classroom.name}. Redirecting to your dashboard...
-          </p>
-        </div>
+      <div className="ec-card p-8 text-center">
+        <Check className="mx-auto mb-4 h-16 w-16 ec-score-high" />
+        <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)]">
+          You&apos;re in!
+        </h2>
+        <p className="text-[var(--ec-text-secondary)]">
+          Joined {classroom.name}. Redirecting to your dashboard...
+        </p>
       </div>
     )
   }
@@ -119,44 +124,48 @@ export default function JoinClassroomPage() {
     return null
   }
 
+  const joinPath = `/join/${code}`
+
   return (
-    <div className="mx-auto max-w-md px-6 py-24">
-      <div className="ec-card p-8 text-center">
-        <BookOpen className="mx-auto mb-4 h-16 w-16 text-emerald-400" />
-        <div className="ec-label-tech mb-3">CLASSROOM INVITATION</div>
-        <h1 className="mb-2 text-3xl font-bold text-white">{classroom.name}</h1>
-        {classroom.description && (
-          <p className="mb-4 text-slate-400">{classroom.description}</p>
-        )}
-        <div className="mb-8 flex items-center justify-center gap-2 text-sm text-slate-400">
-          <Users className="h-4 w-4" />
-          <span>{classroom.studentCount} students enrolled</span>
-        </div>
-
-        {error && (
-          <div className="mb-4 rounded-xl border border-red-800/40 bg-red-950/50 p-3 text-sm text-red-300">
-            {error}
-          </div>
-        )}
-
-        {needsAuth ? (
-          <a
-            href={`/auth/signup?redirect=${encodeURIComponent(`/join/${code}`)}`}
-            className="ec-btn-primary inline-flex w-full items-center justify-center gap-2"
-          >
-            Sign up to join
-          </a>
-        ) : (
-          <button
-            type="button"
-            onClick={joinClassroom}
-            disabled={joining}
-            className="ec-btn-primary w-full"
-          >
-            {joining ? 'Joining...' : `Join ${classroom.name}`}
-          </button>
-        )}
+    <div className="ec-card p-8 text-center">
+      <BookOpen className="mx-auto mb-4 h-16 w-16 ec-text-brand" />
+      <div className="ec-label-tech mb-3">CLASSROOM INVITATION</div>
+      <h1 className="mb-2 text-3xl font-bold text-[var(--ec-text-primary)]">
+        {classroom.name}
+      </h1>
+      {classroom.description && (
+        <p className="mb-4 text-[var(--ec-text-secondary)]">
+          {classroom.description}
+        </p>
+      )}
+      <div className="mb-8 flex items-center justify-center gap-2 text-sm text-[var(--ec-text-secondary)]">
+        <Users className="h-4 w-4" />
+        <span>{classroom.studentCount} students enrolled</span>
       </div>
+
+      {error && (
+        <div className="ec-tint-critical-chip mb-4 rounded-xl p-3 text-sm">
+          {error}
+        </div>
+      )}
+
+      {needsAuth ? (
+        <a
+          href={`/auth/signup?redirect=${encodeURIComponent(joinPath)}`}
+          className="ec-btn-primary inline-flex w-full min-h-[48px] items-center justify-center gap-2"
+        >
+          Sign up to join
+        </a>
+      ) : (
+        <button
+          type="button"
+          onClick={joinClassroom}
+          disabled={joining}
+          className="ec-btn-primary w-full min-h-[48px]"
+        >
+          {joining ? 'Joining...' : `Join ${classroom.name}`}
+        </button>
+      )}
     </div>
   )
 }

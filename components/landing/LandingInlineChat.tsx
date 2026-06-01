@@ -409,9 +409,7 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
                             variant={richTextVariant}
                           />
                         ) : msg.isStreaming ? (
-                          <span
-                            style={{ color: 'var(--ec-text-secondary)', fontSize: 14 }}
-                          >
+                          <span className="text-sm ec-text-secondary">
                             Thinking
                             <StreamingCaret />
                           </span>
@@ -422,7 +420,7 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
                         {!msg.isStreaming && msg.action && renderAction(msg.action)}
                       </>
                     ) : (
-                      <span style={{ color: 'var(--ec-text-primary)' }}>{msg.content}</span>
+                      <span className="text-sm ec-text-primary">{msg.content}</span>
                     )}
                   </div>
                 </div>
@@ -442,49 +440,18 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 8,
-              marginBottom: 12,
-            }}
+            className="mb-3 flex flex-wrap gap-2"
             role="list"
             aria-label="Suggested prompts"
           >
             {SUGGESTED_PROMPTS.map((prompt) => (
               <button
                 key={prompt}
+                type="button"
                 role="listitem"
                 onClick={() => sendMessage(prompt)}
                 disabled={isStreaming}
-                style={{
-                  background: 'var(--ec-surface-raised)',
-                  border: '1px solid var(--ec-border)',
-                  borderRadius: 'var(--ec-radius-button)',
-                  padding: '8px 14px',
-                  fontSize: 13,
-                  color: 'var(--ec-text-secondary)',
-                  cursor: 'pointer',
-                  transition: 'all 150ms ease',
-                  minHeight: 36,
-                  lineHeight: 1.4,
-                }}
-                onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color =
-                    'var(--ec-text-primary)'
-                  ;(e.currentTarget as HTMLButtonElement).style.borderColor =
-                    'var(--ec-brand)'
-                  ;(e.currentTarget as HTMLButtonElement).style.background =
-                    'var(--ec-brand-muted)'
-                }}
-                onMouseLeave={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color =
-                    'var(--ec-text-secondary)'
-                  ;(e.currentTarget as HTMLButtonElement).style.borderColor =
-                    'var(--ec-border)'
-                  ;(e.currentTarget as HTMLButtonElement).style.background =
-                    'var(--ec-surface-raised)'
-                }}
+                className="ec-prompt-chip"
               >
                 {prompt}
               </button>
@@ -494,19 +461,7 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
       </AnimatePresence>
 
       {/* ── Input row ── */}
-      <div
-        style={{
-          display: 'flex',
-          gap: 8,
-          alignItems: 'center',
-          background: 'var(--ec-surface)',
-          border: '1px solid var(--ec-border)',
-          borderRadius: 'var(--ec-radius-button)',
-          padding: '6px 6px 6px 14px',
-          transition: 'border-color 200ms ease, box-shadow 200ms ease',
-        }}
-        onFocus={() => {}}
-      >
+      <div className="ec-chat-composer">
         <input
           ref={inputRef}
           type="text"
@@ -517,30 +472,12 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
           maxLength={2000}
           disabled={isStreaming}
           aria-label="Chat message input"
-          style={{
-            flex: 1,
-            background: 'none',
-            border: 'none',
-            outline: 'none',
-            fontSize: 15,
-            lineHeight: 1.4,
-            color: 'var(--ec-text-primary)',
-            minHeight: 44,
-            cursor: isStreaming ? 'not-allowed' : 'text',
-          }}
+          className="ec-chat-composer__input"
         />
         <button
           onClick={handleSubmit}
           disabled={!canSend}
-          className="ec-btn-primary"
-          style={{
-            padding: '10px 18px',
-            fontSize: 14,
-            minWidth: 44,
-            minHeight: 44,
-            flexShrink: 0,
-            borderRadius: 'var(--ec-radius-button)',
-          }}
+          className="ec-btn-primary min-h-[44px] min-w-[44px] shrink-0 px-4 py-2.5 text-sm"
           aria-label={isStreaming ? 'Sending…' : 'Send message'}
         >
           {isStreaming ? <Spinner /> : (

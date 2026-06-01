@@ -29,8 +29,8 @@ export function EmptyState({
   const visual = illustration ? (
     <EmptyStateIllustration variant={illustration} size={inline ? 96 : 140} />
   ) : (
-    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
-      <Icon className="h-5 w-5 text-slate-400" aria-hidden="true" />
+    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]">
+      <Icon className="h-5 w-5 text-[var(--ec-text-secondary)]" aria-hidden="true" />
     </div>
   )
 
@@ -39,20 +39,20 @@ export function EmptyState({
       <div className="flex flex-col items-center justify-center gap-3 py-6 text-center">
         {visual}
         <div className="max-w-sm">
-          <p className="text-sm font-semibold text-white">{title}</p>
-          <p className="mt-1 text-sm leading-relaxed text-slate-400">{body}</p>
+          <p className="text-sm font-semibold text-[var(--ec-text-primary)]">{title}</p>
+          <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{body}</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-8">
+    <div className="relative overflow-hidden rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-8">
       <div className="flex flex-col items-center gap-4 text-center">
         {visual}
         <div className="max-w-md">
-          <p className="text-base font-semibold text-white">{title}</p>
-          <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{body}</p>
+          <p className="text-base font-semibold text-[var(--ec-text-primary)]">{title}</p>
+          <p className="mt-1.5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">{body}</p>
         </div>
       </div>
     </div>

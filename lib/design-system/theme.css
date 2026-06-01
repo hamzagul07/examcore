@@ -34,6 +34,8 @@
   --ec-chip-info-text: #67e8f9;
   --ec-chip-sampled-bg: rgba(56, 189, 248, 0.14);
   --ec-chip-sampled-text: #7dd3fc;
+  --ec-chip-accent-bg: rgba(139, 92, 246, 0.12);
+  --ec-chip-accent-text: #a78bfa;
   --ec-banner-success-bg: rgba(0, 245, 160, 0.12);
   --ec-banner-success-border: rgba(0, 245, 160, 0.35);
   --ec-banner-success-title: #a7f3d0;
@@ -90,6 +92,8 @@
   --ec-chip-info-text: #3d6670;
   --ec-chip-sampled-bg: rgba(74, 144, 164, 0.16);
   --ec-chip-sampled-text: #4a7a8a;
+  --ec-chip-accent-bg: rgba(107, 91, 138, 0.14);
+  --ec-chip-accent-text: #6b5b8a;
   --ec-banner-success-bg: rgba(90, 154, 106, 0.18);
   --ec-banner-success-border: rgba(74, 122, 84, 0.45);
   --ec-banner-success-title: #2d5a38;
@@ -164,20 +168,22 @@ body {
   letter-spacing: -0.035em;
 }
 
-.landing-section {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 80rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
-@media (min-width: 640px) {
+@layer components {
   .landing-section {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 640px) {
+    .landing-section {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
   }
 }
 
@@ -423,6 +429,489 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.ec-text-primary {
+  color: var(--ec-text-primary);
+}
+
+.ec-text-secondary {
+  color: var(--ec-text-secondary);
+}
+
+.ec-text-brand {
+  color: var(--ec-brand);
+}
+
+.ec-border-color {
+  border-color: var(--ec-border);
+}
+
+.ec-bg-brand-muted {
+  background: var(--ec-brand-muted);
+}
+
+.ec-bg-surface-raised {
+  background: var(--ec-surface-raised);
+}
+
+.ec-score-high {
+  color: var(--ec-chip-success-text);
+}
+
+.ec-score-mid {
+  color: var(--ec-chip-warning-text);
+}
+
+.ec-score-low {
+  color: var(--ec-chip-critical-text);
+}
+
+.ec-tab-active {
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  background: var(--ec-brand-muted);
+  color: var(--ec-chip-success-text);
+}
+
+.ec-mark-row--earned {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-success-text) 30%, transparent);
+  background: var(--ec-chip-success-bg);
+  box-shadow: 0 8px 32px -8px color-mix(in srgb, var(--ec-chip-success-text) 25%, transparent);
+}
+
+.ec-mark-row--missed {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-critical-text) 30%, transparent);
+  background: var(--ec-chip-critical-bg);
+  box-shadow: 0 8px 32px -8px color-mix(in srgb, var(--ec-chip-critical-text) 20%, transparent);
+}
+
+.ec-mark-badge--earned {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-success-text) 40%, transparent);
+  background: color-mix(in srgb, var(--ec-chip-success-text) 20%, transparent);
+  color: var(--ec-chip-success-text);
+}
+
+.ec-mark-badge--missed {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-critical-text) 40%, transparent);
+  background: color-mix(in srgb, var(--ec-chip-critical-text) 20%, transparent);
+  color: var(--ec-chip-critical-text);
+}
+
+.ec-banner-info-inline {
+  border: 1px solid var(--ec-banner-info-border);
+  background: var(--ec-banner-info-bg);
+  color: var(--ec-banner-info-meta);
+}
+
+.ec-banner-info-inline strong {
+  color: var(--ec-banner-info-title);
+}
+
+.ec-banner-warning-inline {
+  border: 1px solid var(--ec-banner-warning-border);
+  background: var(--ec-banner-warning-bg);
+  color: var(--ec-banner-warning-meta);
+}
+
+.ec-banner-warning-inline strong {
+  color: var(--ec-banner-warning-title);
+}
+
+.ec-tint-success-icon {
+  background: var(--ec-chip-success-bg);
+  border-color: color-mix(in srgb, var(--ec-chip-success-text) 30%, transparent);
+  color: var(--ec-chip-success-text);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-success-text) 30%, transparent);
+}
+
+.ec-tint-success-chip {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-success-text) 30%, transparent);
+  background: var(--ec-chip-success-bg);
+  color: var(--ec-chip-success-text);
+}
+
+.ec-tint-warning-icon {
+  background: var(--ec-chip-warning-bg);
+  border-color: color-mix(in srgb, var(--ec-chip-warning-text) 30%, transparent);
+  color: var(--ec-chip-warning-text);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-warning-text) 30%, transparent);
+}
+
+.ec-tint-warning-chip {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-warning-text) 30%, transparent);
+  background: var(--ec-chip-warning-bg);
+  color: var(--ec-chip-warning-text);
+}
+
+.ec-tint-critical-icon {
+  background: var(--ec-chip-critical-bg);
+  border-color: color-mix(in srgb, var(--ec-chip-critical-text) 30%, transparent);
+  color: var(--ec-chip-critical-text);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-critical-text) 30%, transparent);
+}
+
+.ec-tint-critical-chip {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-critical-text) 30%, transparent);
+  background: var(--ec-chip-critical-bg);
+  color: var(--ec-chip-critical-text);
+}
+
+.ec-tint-critical-panel {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-critical-text) 20%, transparent);
+  background: color-mix(in srgb, var(--ec-chip-critical-bg) 55%, var(--ec-surface-raised));
+}
+
+.ec-tint-neutral-chip {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-neutral-text) 25%, transparent);
+  background: var(--ec-chip-neutral-bg);
+  color: var(--ec-chip-neutral-text);
+}
+
+.ec-tint-info-icon {
+  background: var(--ec-chip-info-bg);
+  border-color: color-mix(in srgb, var(--ec-chip-info-text) 30%, transparent);
+  color: var(--ec-chip-info-text);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-info-text) 30%, transparent);
+}
+
+.ec-tint-info-chip {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-info-text) 30%, transparent);
+  background: var(--ec-chip-info-bg);
+  color: var(--ec-chip-info-text);
+}
+
+.ec-tint-accent-icon {
+  background: var(--ec-chip-accent-bg);
+  border-color: color-mix(in srgb, var(--ec-chip-accent-text) 30%, transparent);
+  color: var(--ec-chip-accent-text);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-accent-text) 30%, transparent);
+}
+
+.ec-tint-accent-chip {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-accent-text) 30%, transparent);
+  background: var(--ec-chip-accent-bg);
+  color: var(--ec-chip-accent-text);
+}
+
+.ec-tint-accent-icon-wrap {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-accent-text) 30%, transparent);
+  background: var(--ec-chip-accent-bg);
+  color: var(--ec-chip-accent-text);
+}
+
+.ec-tint-sampled-icon {
+  background: var(--ec-chip-sampled-bg);
+  border-color: color-mix(in srgb, var(--ec-chip-sampled-text) 30%, transparent);
+  color: var(--ec-chip-sampled-text);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-sampled-text) 30%, transparent);
+}
+
+.ec-tint-sampled-chip {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-sampled-text) 30%, transparent);
+  background: var(--ec-chip-sampled-bg);
+  color: var(--ec-chip-sampled-text);
+}
+
+.ec-tint-sampled-icon-wrap {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-sampled-text) 30%, transparent);
+  background: var(--ec-chip-sampled-bg);
+  color: var(--ec-chip-sampled-text);
+}
+
+.ec-highlight-success-panel {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-success-text) 30%, transparent);
+  background: var(--ec-chip-success-bg);
+}
+
+.ec-highlight-warning-panel {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-warning-text) 30%, transparent);
+  background: var(--ec-chip-warning-bg);
+}
+
+.ec-glow-orb {
+  background: color-mix(in srgb, var(--ec-brand) 15%, transparent);
+}
+
+.ec-glow-orb-info {
+  background: color-mix(in srgb, var(--ec-chip-info-text) 15%, transparent);
+}
+
+.ec-glow-orb-accent {
+  background: color-mix(in srgb, var(--ec-chip-accent-text) 15%, transparent);
+}
+
+.ec-glow-orb-critical {
+  background: color-mix(in srgb, var(--ec-chip-critical-text) 15%, transparent);
+}
+
+.ec-glow-orb-lg {
+  background: color-mix(in srgb, var(--ec-brand) 20%, transparent);
+}
+
+.ec-chat-user-bubble {
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 30%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-brand) 20%, transparent),
+    color-mix(in srgb, var(--ec-brand) 12%, transparent)
+  );
+}
+
+.ec-chat-avatar {
+  background: linear-gradient(
+    135deg,
+    var(--ec-brand),
+    color-mix(in srgb, var(--ec-chip-info-text) 85%, var(--ec-brand))
+  );
+}
+
+.ec-chat-avatar-soft {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-brand) 20%, transparent),
+    color-mix(in srgb, var(--ec-chip-info-text) 20%, transparent)
+  );
+}
+
+.ec-chat-caret {
+  background: var(--ec-brand);
+}
+
+.ec-btn-send {
+  background: var(--ec-brand-gradient);
+  color: #0a0b0f;
+  box-shadow: var(--ec-btn-glow);
+  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ec-btn-send:hover:not(:disabled) {
+  box-shadow: var(--ec-btn-glow-hover);
+}
+
+[data-ec-theme='zen'] .ec-btn-send {
+  color: #fffdf9;
+}
+
+.ec-fab-brand {
+  background: var(--ec-brand-gradient);
+  color: #fff;
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ec-fab-brand:hover {
+  box-shadow: 0 8px 48px color-mix(in srgb, var(--ec-brand) 60%, transparent);
+}
+
+[data-ec-theme='zen'] .ec-fab-brand {
+  color: #fffdf9;
+}
+
+.ec-progress-fill-brand {
+  background: var(--ec-brand-gradient);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ec-brand) 40%, transparent);
+}
+
+.ec-progress-fill-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand),
+    color-mix(in srgb, var(--ec-chip-info-text) 70%, var(--ec-brand)),
+    var(--ec-brand)
+  );
+  background-size: 200% 100%;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ec-brand) 40%, transparent);
+}
+
+.ec-progress-fill-spectrum {
+  background: linear-gradient(
+    90deg,
+    var(--ec-chip-critical-text),
+    var(--ec-chip-warning-text),
+    var(--ec-chip-success-text)
+  );
+  background-size: 200% 100%;
+}
+
+.ec-score-bar-high {
+  background: linear-gradient(
+    to right,
+    var(--ec-chip-success-text),
+    color-mix(in srgb, var(--ec-brand) 80%, var(--ec-chip-success-text))
+  );
+}
+
+.ec-score-bar-mid {
+  background: linear-gradient(
+    to right,
+    var(--ec-chip-warning-text),
+    color-mix(in srgb, var(--ec-chip-warning-text) 70%, var(--ec-banner-warning-meta))
+  );
+}
+
+.ec-score-bar-low {
+  background: linear-gradient(
+    to right,
+    var(--ec-chip-critical-text),
+    color-mix(in srgb, var(--ec-chip-critical-text) 80%, transparent)
+  );
+}
+
+.ec-hover-brand-border:hover {
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  box-shadow: 0 0 40px color-mix(in srgb, var(--ec-brand) 20%, transparent);
+}
+
+.ec-hover-brand-border-mild:hover {
+  border-color: color-mix(in srgb, var(--ec-brand) 30%, transparent);
+}
+
+.ec-select-active {
+  border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
+  background: var(--ec-brand-muted);
+}
+
+.ec-select-ring {
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ec-brand) 30%, transparent);
+}
+
+.ec-upload-glow-ring {
+  background: linear-gradient(
+    90deg,
+    var(--ec-brand),
+    var(--ec-chip-info-text),
+    #a78bfa
+  );
+}
+
+.ec-upload-icon-wrap {
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 30%, transparent);
+  background: var(--ec-chip-success-bg);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--ec-brand) 40%, transparent);
+}
+
+.ec-icon-hero {
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 30%, transparent);
+  background: var(--ec-chip-success-bg);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--ec-brand) 30%, transparent);
+}
+
+.ec-icon-hero-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-brand) 20%, transparent),
+    color-mix(in srgb, var(--ec-chip-info-text) 20%, transparent)
+  );
+}
+
+.ec-panel-highlight {
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 20%, transparent);
+  background: color-mix(in srgb, var(--ec-brand) 5%, transparent);
+}
+
+.ec-prompt-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 14px;
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-button);
+  background: var(--ec-surface-raised);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ec-text-secondary);
+  cursor: pointer;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.ec-prompt-chip:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
+  background: var(--ec-brand-muted);
+  color: var(--ec-text-primary);
+}
+
+.ec-prompt-chip:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ec-chat-composer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 6px 6px 14px;
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-button);
+  background: var(--ec-surface);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.ec-chat-composer:focus-within {
+  border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
+  box-shadow: 0 0 0 4px var(--ec-brand-muted);
+}
+
+.ec-chat-composer__input {
+  flex: 1;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ec-text-primary);
+}
+
+.ec-chat-composer__input::placeholder {
+  color: var(--ec-text-secondary);
+}
+
+.ec-chat-composer__input:disabled {
+  cursor: not-allowed;
+}
+
+.ec-on-brand-text {
+  color: #fff;
+}
+
+[data-ec-theme='zen'] .ec-on-brand-text {
+  color: #fffdf9;
+}
+
+.ec-tint-info-icon-wrap {
+  border: 1px solid color-mix(in srgb, var(--ec-chip-info-text) 30%, transparent);
+  background: var(--ec-chip-info-bg);
+  color: var(--ec-chip-info-text);
+}
+
+.ec-auth-input-focus:focus {
+  border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-brand) 25%, transparent);
+}
+
+.ec-checkbox-active {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand);
+  color: var(--ec-text-primary);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ec-brand) 50%, transparent);
+}
+
+.ec-option-active {
+  border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ec-brand) 15%, transparent),
+    color-mix(in srgb, var(--ec-brand) 5%, transparent)
+  );
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--ec-brand) 15%, transparent),
+    0 0 24px color-mix(in srgb, var(--ec-brand) 25%, transparent);
 }
 
 .ec-break-anywhere {
@@ -703,6 +1192,46 @@ body {
     color: var(--ec-chip-sampled-text);
   }
 
+  /** Inline text links — brand colour, accessible contrast in both themes. */
+  .ec-link {
+    font-weight: 600;
+    color: var(--ec-brand);
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  .ec-link:hover {
+    opacity: 0.85;
+  }
+
+  .ec-link-muted {
+    font-weight: 500;
+    color: var(--ec-text-secondary);
+    transition: color 0.2s ease;
+  }
+
+  .ec-link-muted:hover {
+    color: var(--ec-text-primary);
+  }
+
+  /** Shared modal / drawer backdrop — works in default + Zen. */
+  .ec-modal-backdrop {
+    background: color-mix(in srgb, #000 55%, transparent);
+    backdrop-filter: blur(4px);
+  }
+
+  /** Optional lift for legacy Card hover prop. */
+  .ec-card-lift {
+    transition:
+      transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ec-card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ec-card-hover-shadow);
+  }
+
   /* Interactive pill — tappable filters (44px min) */
   .ec-pill {
     display: inline-flex;
@@ -777,6 +1306,33 @@ body {
     background: var(--ec-brand);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--ec-brand);
+  }
+
+  .ec-label-tech-cyan {
+    color: var(--ec-chip-info-text);
+  }
+
+  .ec-label-tech-cyan::before {
+    background: var(--ec-chip-info-text);
+    box-shadow: 0 0 10px var(--ec-chip-info-text);
+  }
+
+  .ec-label-tech-violet {
+    color: #a78bfa;
+  }
+
+  .ec-label-tech-violet::before {
+    background: #a78bfa;
+    box-shadow: 0 0 10px #a78bfa;
+  }
+
+  .ec-label-tech-orange {
+    color: var(--ec-chip-warning-text);
+  }
+
+  .ec-label-tech-orange::before {
+    background: var(--ec-chip-warning-text);
+    box-shadow: 0 0 10px var(--ec-chip-warning-text);
   }
 
   /* ============ Status banners (marking mode, alerts) ============ */

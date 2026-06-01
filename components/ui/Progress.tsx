@@ -40,10 +40,10 @@ export function Progress({
 
   const fillClass =
     variant === 'spectrum'
-      ? 'bg-gradient-to-r from-red-400 via-amber-400 to-emerald-500 animate-shimmer'
+      ? 'ec-progress-fill-spectrum animate-shimmer'
       : variant === 'gradient'
-      ? 'bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 animate-shimmer'
-      : 'bg-gradient-to-r from-emerald-500 to-emerald-600 animate-shimmer'
+      ? 'ec-progress-fill-shimmer animate-shimmer'
+      : 'ec-progress-fill-brand animate-shimmer'
 
   return (
     <div className={`w-full ${className}`}>
@@ -53,14 +53,14 @@ export function Progress({
         aria-valuemax={100}
         aria-valuenow={v}
         aria-label={ariaLabel}
-        className={`relative w-full overflow-hidden rounded-full border border-white/5 bg-dark-900 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] ${SIZE_CLASS[size]}`}
+        className={`relative w-full overflow-hidden rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] ${SIZE_CLASS[size]}`}
       >
         {/* Animated fill */}
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${v}%` }}
           transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1] }}
-          className={`absolute inset-y-0 left-0 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.4)] ${fillClass}`}
+          className={`absolute inset-y-0 left-0 rounded-full ${fillClass}`}
           style={{ backgroundSize: '200% 100%' }}
         />
 
@@ -69,11 +69,11 @@ export function Progress({
           initial={{ left: '0%' }}
           animate={{ left: `${v}%` }}
           transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1] }}
-          className="pointer-events-none absolute inset-y-0 -ml-3 w-6 bg-white/60 blur-md"
+          className="pointer-events-none absolute inset-y-0 -ml-3 w-6 blur-md bg-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)]"
         />
       </div>
       {showLabel && (
-        <p className="mt-2 text-sm font-semibold text-slate-700">{v}%</p>
+        <p className="mt-2 text-sm font-semibold text-[var(--ec-text-primary)]">{v}%</p>
       )}
     </div>
   )

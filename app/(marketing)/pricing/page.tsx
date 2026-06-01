@@ -11,6 +11,7 @@ import { PricingClient } from '@/components/pricing/PricingClient'
 import { createClient } from '@/lib/supabase-server'
 import { resolveRegion, REGION_COOKIE } from '@/lib/billing/region-cookie'
 import { getPricingDisplay } from '@/lib/billing/display-prices'
+import { WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
 import type { SubscriptionTier } from '@/lib/database.types'
 
 export const dynamic = 'force-dynamic'
@@ -29,7 +30,7 @@ const PRICING_FAQ: FaqCategory[] = [
     items: [
       {
         q: 'What counts as one question?',
-        a: 'Whether you submit a single question or a whole paper, it counts as one question against your monthly allowance. Whole papers don\'t cost more even if they contain 15 sub-questions.',
+        a: `Whether you submit a single question or a whole paper, it counts as one question against your monthly allowance. Whole papers don't cost more even if they contain ${WHOLE_PAPER_QUESTION_LIMIT} sub-questions.`,
       },
       {
         q: 'I signed up during early access — what happens to my pricing?',

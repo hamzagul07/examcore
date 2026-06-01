@@ -38,14 +38,14 @@ export function GradeTrajectory({ attempts, prediction }: Props) {
       >
         <div className="ec-card h-full p-5 sm:p-7">
           <div className="mb-5 flex items-center gap-2">
-            <LineChart className="h-4 w-4 text-emerald-400" aria-hidden="true" />
+            <LineChart className="h-4 w-4 ec-text-brand" aria-hidden="true" />
             <p className="ec-label-tech">GRADE TRAJECTORY</p>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
             Your last {Math.max(series.length, 1)} attempt
             {series.length === 1 ? '' : 's'}
           </h2>
-          <p className="mt-1 text-sm text-slate-400 sm:text-base">
+          <p className="mt-1 text-sm text-[var(--ec-text-secondary)] sm:text-base">
             Percentages charted against Cambridge 9709 grade boundaries.
           </p>
 
@@ -152,7 +152,7 @@ function TrajectoryChart({ series }: { series: Point[] }) {
         y1={padding.top + plotH}
         x2={padding.left + plotW}
         y2={padding.top + plotH}
-        stroke="rgba(255,255,255,0.1)"
+        stroke="var(--ec-border)"
         strokeWidth="1"
       />
 
@@ -165,7 +165,7 @@ function TrajectoryChart({ series }: { series: Point[] }) {
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          style={{ filter: 'drop-shadow(0 0 6px rgba(16,185,129,0.6))' }}
+          style={{ filter: 'drop-shadow(0 0 6px color-mix(in srgb, var(--ec-brand) 60%, transparent))' }}
         />
       )}
 
@@ -175,10 +175,10 @@ function TrajectoryChart({ series }: { series: Point[] }) {
             cx={xScale(p.x)}
             cy={yScale(p.y)}
             r="5"
-            fill="#0f172a"
+            fill="var(--ec-surface-raised)"
             stroke="var(--ec-brand)"
             strokeWidth="2.5"
-            style={{ filter: 'drop-shadow(0 0 4px rgba(16,185,129,0.7))' }}
+            style={{ filter: 'drop-shadow(0 0 4px color-mix(in srgb, var(--ec-brand) 70%, transparent))' }}
           />
           <title>
             {new Date(p.attempt.created_at).toLocaleDateString('en-US', {
@@ -195,7 +195,7 @@ function TrajectoryChart({ series }: { series: Point[] }) {
       <text
         x={padding.left}
         y={padding.top + plotH + 18}
-        fill="#475569"
+        fill="var(--ec-text-secondary)"
         fontSize="10"
         fontWeight={500}
       >
@@ -205,7 +205,7 @@ function TrajectoryChart({ series }: { series: Point[] }) {
         x={padding.left + plotW}
         y={padding.top + plotH + 18}
         textAnchor="end"
-        fill="#475569"
+        fill="var(--ec-text-secondary)"
         fontSize="10"
         fontWeight={500}
       >
@@ -253,7 +253,7 @@ function GradeBoundaryLines({
               x={padding.left - 6}
               y={y + 3}
               textAnchor="end"
-              fill="#475569"
+              fill="var(--ec-text-secondary)"
               fontSize="9"
             >
               {b.percentage}
@@ -277,7 +277,7 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
         borderColor: isPlaceholder ? undefined : `${prediction.color}55`,
         background: isPlaceholder
           ? undefined
-          : `linear-gradient(160deg, ${prediction.color}22 0%, rgba(15,23,42,0.7) 60%)`,
+          : `linear-gradient(160deg, color-mix(in srgb, ${prediction.color} 14%, transparent) 0%, color-mix(in srgb, var(--ec-surface) 92%, transparent) 60%)`,
         boxShadow: isPlaceholder
           ? undefined
           : `0 0 0 1px ${prediction.color}30 inset, 0 0 48px ${prediction.color}28, 0 24px 64px -12px rgba(0,0,0,0.6)`,
@@ -286,7 +286,9 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
       <div
         className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-[80px]"
         style={{
-          backgroundColor: isPlaceholder ? 'rgba(255,255,255,0.05)' : `${prediction.color}40`,
+          backgroundColor: isPlaceholder
+            ? 'color-mix(in srgb, var(--ec-text-primary) 5%, transparent)'
+            : `${prediction.color}40`,
         }}
         aria-hidden="true"
       />
@@ -303,7 +305,7 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
         </div>
 
         {!isPlaceholder && (
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
             Current trajectory
           </p>
         )}
@@ -312,7 +314,7 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
           <span
             className="text-7xl font-extrabold tracking-tighter sm:text-8xl"
             style={{
-              color: isPlaceholder ? '#475569' : prediction.color,
+              color: isPlaceholder ? 'var(--ec-text-secondary)' : prediction.color,
               textShadow: isPlaceholder
                 ? undefined
                 : `0 0 32px ${prediction.color}80, 0 0 64px ${prediction.color}40`,
@@ -321,30 +323,30 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
             {prediction.predictedGrade}
           </span>
           {!isPlaceholder && (
-            <span className="text-sm text-slate-400">
+            <span className="text-sm text-[var(--ec-text-secondary)]">
               {prediction.confidence}% confidence
             </span>
           )}
         </div>
 
         {prediction.averagePercentage !== null && (
-          <p className="mt-2 text-xs text-slate-500">
+          <p className="mt-2 text-xs text-[var(--ec-text-secondary)]">
             {Math.round(prediction.averagePercentage)}% rolling average across
             your last attempts
           </p>
         )}
 
         {!isPlaceholder ? (
-          <div className="mt-6 rounded-2xl border border-emerald-800/40 bg-emerald-950/40 p-4">
-            <div className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-400">
+          <div className="ec-highlight-success-panel mt-6 rounded-2xl p-4">
+            <div className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] ec-text-brand">
               Path to next grade
             </div>
-            <p className="text-sm leading-relaxed text-slate-300">
+            <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
               {prediction.nextLevelTip}
             </p>
           </div>
         ) : (
-          <p className="mt-4 text-sm leading-relaxed text-slate-300">
+          <p className="mt-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
             {prediction.nextLevelTip}
           </p>
         )}
@@ -371,11 +373,11 @@ function ConfidenceBar({
 }) {
   return (
     <div>
-      <div className="mb-1.5 flex items-center justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+      <div className="mb-1.5 flex items-center justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--ec-text-secondary)]">
         <span>Confidence</span>
         <span>{confidence}%</span>
       </div>
-      <div className="h-1.5 w-full overflow-hidden rounded-full border border-white/5 bg-dark-900">
+      <div className="h-1.5 w-full overflow-hidden rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]">
         <div
           className="h-full rounded-full transition-all duration-700"
           style={{

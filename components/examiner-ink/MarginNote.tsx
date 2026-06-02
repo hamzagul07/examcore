@@ -7,8 +7,6 @@ interface MarginNoteProps {
   /** When true, render the arrow pointing left instead of right. The overlay
    *  flips this when a line is near the right edge of the image. */
   flip?: boolean
-  /** Keep note inside the image bounds (mobile-friendly). */
-  compact?: boolean
 }
 
 /**
@@ -16,26 +14,15 @@ interface MarginNoteProps {
  * line it annotates. Path lengths animate so the arrow "draws" itself,
  * mimicking how an examiner would actually mark on paper.
  */
-export function MarginNote({
-  note,
-  flip = false,
-  compact = false,
-}: MarginNoteProps) {
-  const positionClass = compact
-    ? 'left-0 right-0 top-full mt-1 max-w-full'
-    : flip
-      ? 'right-full mr-3 top-full mt-1 max-w-[min(220px,40vw)]'
-      : 'left-full ml-3 top-full mt-1 max-w-[min(220px,40vw)]'
-
+export function MarginNote({ note, flip = false }: MarginNoteProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: compact ? 0 : flip ? 10 : -10 }}
+      initial={{ opacity: 0, x: flip ? 10 : -10 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.3, duration: 0.35 }}
-      className={`absolute ${positionClass}`}
+      className={`absolute top-full ${flip ? 'right-full mr-3' : 'left-full ml-3'} mt-1 max-w-[220px]`}
     >
       <div className="relative">
-        {!compact && (
         <svg
           className={`absolute -top-2 h-8 w-12 ${flip ? '-right-12' : '-left-12'}`}
           viewBox="0 0 50 30"
@@ -63,12 +50,11 @@ export function MarginNote({
             fill="none"
           />
         </svg>
-        )}
 
         <p
-          className={`font-handwritten examiner-ink whitespace-normal leading-tight ${
-            compact ? 'text-base' : 'text-lg'
-          } ${flip && !compact ? 'text-right' : 'text-left'}`}
+          className={`font-handwritten examiner-ink whitespace-normal text-lg leading-tight ${
+            flip ? 'text-right' : 'text-left'
+          }`}
           style={{
             transform: 'rotate(-2deg)',
             transformOrigin: flip ? 'right top' : 'left top',

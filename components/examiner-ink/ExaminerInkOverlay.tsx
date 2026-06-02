@@ -119,7 +119,7 @@ export function ExaminerInkOverlay({
     <div className="space-y-5">
       <div
         ref={containerRef}
-        className="relative w-full overflow-hidden rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[0_24px_64px_-16px_rgba(0,0,0,0.6)]"
+        className="relative inline-block w-full overflow-visible rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[0_24px_64px_-16px_rgba(0,0,0,0.6)] sm:overflow-hidden"
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- we don't know the image dimensions, and next/image's sizing breaks the percentage-based overlay math. */}
         <img
@@ -178,30 +178,19 @@ function ExaminerMark({ line }: { line: LineReference }) {
   const { bbox, mark_id, earned, margin_note } = line
   if (!bbox) return null
 
-  // When the line is close to the right edge, flip the stamp to the left margin.
-  const flipToLeft = bbox.left + bbox.width > 68
-  const stampTop = Math.max(4, Math.min(bbox.top + bbox.height / 2, 96))
-
+  // When the line is close to the right edge, flip the stamp/note to the
+  // left side so they don't shoot off the image.
+  const flipToLeft = bbox.left + bbox.width > 75
   const stampStyle: React.CSSProperties = flipToLeft
-    ? {
-        left: `${Math.max(2, Math.min(bbox.left - 2, 72))}%`,
-        top: `${stampTop}%`,
-        transform: 'translate(-100%, -50%)',
-      }
-    : {
-        left: `${Math.min(Math.max(bbox.left + bbox.width + 1, 4), 82)}%`,
-        top: `${stampTop}%`,
-        transform: 'translateY(-50%)',
-      }
+    ? { right: `${100 - bbox.left + 1}%`, top: `${bbox.top + bbox.height / 2}%`, transform: 'translateY(-50%)' }
+    : { left: `${Math.min(bbox.left + bbox.width + 1, 92)}%`, top: `${bbox.top + bbox.height / 2}%`, transform: 'translateY(-50%)' }
 
   // Clamp bbox to keep underline inside the image when OCR overshoots.
-  const safeLeft = Math.max(0, Math.min(bbox.left, 90))
-  const safeTop = Math.max(0, Math.min(bbox.top, 92))
   const safeBox = {
-    top: safeTop,
-    left: safeLeft,
-    width: Math.max(2, Math.min(bbox.width, 96 - safeLeft)),
-    height: Math.max(2, Math.min(bbox.height, 96 - safeTop)),
+    top: Math.max(0, Math.min(bbox.top, 98)),
+    left: Math.max(0, Math.min(bbox.left, 95)),
+    width: Math.max(2, Math.min(bbox.width, 100 - bbox.left)),
+    height: Math.max(2, Math.min(bbox.height, 100 - bbox.top)),
   }
 
   return (
@@ -221,9 +210,7 @@ function ExaminerMark({ line }: { line: LineReference }) {
         }}
       >
         <UnderlineMark earned={earned} />
-        {!earned && margin_note && (
-          <MarginNote note={margin_note} flip={flipToLeft} compact />
-        )}
+        {!earned && margin_note && <MarginNote note={margin_note} flip={flipToLeft} />}
       </div>
 
       <div className="absolute" style={stampStyle}>

@@ -294,15 +294,11 @@ export async function markSingleQuestion(params: {
 
   const isOfficial = markingMode === 'official_mark_scheme' && !!markScheme
 
-  const isPracticeMode = markingMode === 'general_criteria_practice'
-
-  if (
-    markingMode === 'general_criteria' ||
-    isPracticeMode
-  ) {
-    if (subjectCode === '9709') {
-      // preserve legacy math general path
-    }
+  if (markingMode === 'general_criteria' && subjectCode === '9709') {
+    // preserve legacy math general path
+  } else if (
+    markingMode === 'general_criteria_practice' && subjectCode === '9709') {
+    // same 9709 general path for practice questions
   } else if (
     markingMode === 'general_criteria_paper_not_in_db' &&
     !questionText.trim()
@@ -319,7 +315,6 @@ export async function markSingleQuestion(params: {
     subjectName,
     subjectCode: promptSubjectCode ?? '',
     isOfficial,
-    practiceQuestion: isPracticeMode,
   })
 
   const markingResult = normalizeMarkingResult(

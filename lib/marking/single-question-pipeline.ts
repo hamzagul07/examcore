@@ -22,7 +22,6 @@ import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
-import { markPracticeScript } from '@/lib/marking/practice-script'
 import type { MarkIntent, MarkingMode, MarkSchemeRow } from '@/lib/marking/types'
 
 const supabaseAdmin = createClient(
@@ -181,24 +180,12 @@ export async function runSingleQuestionMark(
   let markingMode: MarkingMode = 'general_criteria'
   let markScheme: MarkSchemeRow | null = null
   let detectedPaper: Record<string, string> | null = null
-  let answerTextForMarking = ocrText
 
   if (isPracticeQuestion) {
     if (!practiceCode) {
       throw new Error('Please select a subject for your question.')
     }
-
-    emit(onProgress, 'finding_scheme', 40)
-
-    const practiceOutcome = await markPracticeScript({
-      practiceCode,
-      ocrText,
-      ocrLines,
-      pageOcrResults,
-      userQuestionText: questionText,
-      onProgress,
-    })
-
+    markingMode = 'general_criteria_practice'
     emitContext(onProgress, {
       paper_code: null,
       paper_session: null,
@@ -206,49 +193,6 @@ export async function runSingleQuestionMark(
       subject_code: practiceCode,
       syllabus_tags: null,
     })
-
-    if (practiceOutcome.kind === 'multi') {
-      const { wholePaper } = practiceOutcome
-      const timeSpentSeconds = Math.max(
-        1,
-        Math.round((Date.now() - startedAt) / 1000)
-      )
-
-      const { data: attempt } = await supabaseAdmin
-        .from('attempts')
-        .insert({
-          mark_scheme_id: null,
-          source_type: 'other',
-          user_id: userId,
-          question_text: practiceOutcome.questionText,
-          ocr_text: ocrText,
-          ai_marking: { whole_paper: wholePaper },
-          marks_earned: wholePaper.marks_earned,
-          total_marks: wholePaper.total_marks,
-          syllabus_tags: [],
-          time_spent_seconds: timeSpentSeconds,
-          answer_photo_url: answerPhotoUrl,
-        })
-        .select()
-        .single()
-
-      return {
-        marks_earned: wholePaper.marks_earned,
-        total_marks: wholePaper.total_marks,
-        marking_mode: 'general_criteria_practice',
-        subject_code: practiceCode,
-        attempt_id: attempt?.id,
-        answer_photo_url: answerPhotoUrl,
-        page_photo_urls: pagePhotoUrls.length ? pagePhotoUrls : undefined,
-        upload_mode: 'single_question',
-        whole_paper: wholePaper,
-        question_count: wholePaper.questions.length,
-      }
-    }
-
-    questionText = practiceOutcome.questionText
-    answerTextForMarking = practiceOutcome.answerText
-    markingMode = 'general_criteria_practice'
   } else {
   let detection: Record<string, unknown> = { is_past_paper: false }
 
@@ -332,7 +276,7 @@ export async function runSingleQuestionMark(
     resolvedTags,
     markingMode: finalMode,
   } = await markSingleQuestion({
-    ocrText: answerTextForMarking,
+    ocrText,
     ocrLines,
     questionText,
     markScheme,

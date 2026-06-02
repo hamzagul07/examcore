@@ -37,7 +37,6 @@ import {
   getSubjectById,
 } from '@/lib/profile-options'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
-import { WholePaperResultView } from '@/components/WholePaperResultView'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
@@ -1108,8 +1107,7 @@ export default function MarkPage() {
                     <strong className="text-[var(--ec-text-primary)]">
                       Skip this if your answer photo already shows the question.
                     </strong>{' '}
-                    Otherwise add one — photo <em>or</em> typed text (not both). We detect
-                    multiple questions on the page and mark each separately using
+                    Otherwise add one — photo <em>or</em> typed text (not both). We mark using
                     Cambridge {activeSubjectMeta?.label ?? 'A-Level'} conventions.
                   </p>
 
@@ -1503,34 +1501,6 @@ export default function MarkPage() {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {result?.whole_paper && (
-          <div className="space-y-8">
-            <WholePaperResultView
-              result={result.whole_paper}
-              attemptId={result.attempt_id ?? null}
-            />
-            <PostMarkNextSteps
-              result={{
-                marks_earned: result.whole_paper.marks_earned,
-                total_marks: result.whole_paper.total_marks,
-                ai_marking: {
-                  marks_awarded: [],
-                  summary: result.whole_paper.summary,
-                  weak_topics: [],
-                  what_to_study_next: result.whole_paper.questions
-                    .map((q) => q.ai_marking?.what_to_study_next)
-                    .filter(Boolean)
-                    .join(' '),
-                },
-                marking_mode: 'general_criteria_practice',
-                subject_code: result.subject_code,
-              }}
-              onMarkAnother={handleMarkAnotherAttempt}
-              onMarkNewQuestion={handleMarkNewQuestion}
-            />
-          </div>
-        )}
 
         {result && !result.whole_paper && (
           <div className="space-y-8">

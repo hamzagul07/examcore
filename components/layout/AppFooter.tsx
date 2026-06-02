@@ -29,12 +29,14 @@ export function AppFooter() {
           >
             Settings
           </Link>
-          <Link
-            href="/auth/signout"
-            className="inline-flex min-h-[44px] items-center transition-colors hover:text-[var(--ec-text-primary)]"
-          >
-            Sign out
-          </Link>
+          <form action="/auth/signout" method="POST" className="inline">
+            <button
+              type="submit"
+              className="inline-flex min-h-[44px] items-center transition-colors hover:text-[var(--ec-text-primary)]"
+            >
+              Sign out
+            </button>
+          </form>
         </div>
       </div>
     </footer>

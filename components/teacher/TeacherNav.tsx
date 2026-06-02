@@ -70,13 +70,15 @@ export function TeacherNav() {
           >
             <Settings className="h-4 w-4" />
           </Link>
-          <Link
-            href="/auth/signout"
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
-            aria-label="Sign out"
-          >
-            <LogOut className="h-4 w-4" />
-          </Link>
+          <form action="/auth/signout" method="POST" className="inline">
+            <button
+              type="submit"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
+              aria-label="Sign out"
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
+          </form>
         </div>
       </div>
     </header>

@@ -9,8 +9,9 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: SITE_NAME,
     description:
       'Cambridge A-Level and O-Level marking with examiner-grade feedback in seconds.',
-    start_url: `${base}/dashboard`,
-    display: 'standalone',
+    start_url: `${base}/mark`,
+    /** Browser tab — avoids aggressive "install app" prompts on iOS until a native app exists. */
+    display: 'browser',
     background_color: '#0a0a0a',
     theme_color: '#00f5a0',
     icons: [

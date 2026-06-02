@@ -37,6 +37,7 @@ import {
   getSubjectById,
 } from '@/lib/profile-options'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
+import { WholePaperResultView } from '@/components/WholePaperResultView'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
@@ -507,9 +508,6 @@ export default function MarkPage() {
   const isPracticeMode =
     uploadMode === 'single_question' && markIntent === 'practice_question'
 
-  const hasPracticeQuestion =
-    questionTextInput.trim().length >= 10 || !!questionPhoto
-
   const isManualFilled = !!(
     selectedSubject &&
     selectedYear !== '' &&
@@ -614,19 +612,10 @@ export default function MarkPage() {
         return
       }
 
-      if (isPracticeMode) {
-        if (!selectedSubject) {
-          setLoading(false)
-          setErrorMsg('Select a subject so we can apply the right mark scheme style.')
-          return
-        }
-        if (!hasPracticeQuestion) {
-          setLoading(false)
-          setErrorMsg(
-            'Add your question — type it or upload a photo — so we can mark with Cambridge conventions for that subject.'
-          )
-          return
-        }
+      if (isPracticeMode && !selectedSubject) {
+        setLoading(false)
+        setErrorMsg('Select a subject so we can apply the right mark scheme style.')
+        return
       }
 
       setMarkProgress({ percent: 5, stage: 'reading_work' })
@@ -1096,22 +1085,37 @@ export default function MarkPage() {
             <section className="animate-entry stagger-2 space-y-4">
               <StepLabel
                 number={2}
-                label={isPracticeMode ? 'Add your question' : 'Tell us about the question'}
-                hint={isPracticeMode ? 'Required' : 'Optional'}
+                label={isPracticeMode ? 'Question (if needed)' : 'Tell us about the question'}
+                hint={
+                  isPracticeMode
+                    ? answerPages.length > 0
+                      ? 'Only if not on your answer photo'
+                      : 'After answer upload'
+                    : 'Optional'
+                }
               />
 
-              {isPracticeMode && (
+              {isPracticeMode && answerPages.length === 0 && (
+                <div className="ec-card p-5 text-sm text-[var(--ec-text-secondary)]">
+                  Upload your answer first. If the question is already visible on those
+                  pages, you can skip this step.
+                </div>
+              )}
+
+              {isPracticeMode && answerPages.length > 0 && (
                 <div className="ec-card space-y-4 p-5 sm:p-6">
                   <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-                    Paste or photograph the question from your textbook, worksheet, or
-                    notes. We mark your answer using standard Cambridge{' '}
-                    {activeSubjectMeta?.label ?? 'A-Level'} criteria — not an official
-                    past-paper mark scheme from our library.
+                    <strong className="text-[var(--ec-text-primary)]">
+                      Skip this if your answer photo already shows the question.
+                    </strong>{' '}
+                    Otherwise add one — photo <em>or</em> typed text (not both). We detect
+                    multiple questions on the page and mark each separately using
+                    Cambridge {activeSubjectMeta?.label ?? 'A-Level'} conventions.
                   </p>
 
                   <div>
                     <Label htmlFor="practice-question-photo" className="label-overline mb-2 inline-block">
-                      Photo of the question
+                      Photo of the question <span className="font-normal normal-case text-[var(--ec-text-secondary)]">(optional)</span>
                     </Label>
                     <label
                       htmlFor="practice-question-photo"
@@ -1153,7 +1157,7 @@ export default function MarkPage() {
 
                   <div>
                     <Label htmlFor="practice-question-text" className="label-overline mb-2 inline-block">
-                      Type the question
+                      Type the question <span className="font-normal normal-case text-[var(--ec-text-secondary)]">(optional)</span>
                     </Label>
                     <textarea
                       id="practice-question-text"
@@ -1162,7 +1166,6 @@ export default function MarkPage() {
                       rows={4}
                       placeholder="e.g., Explain why the rate of photosynthesis increases with light intensity up to a plateau."
                       className="ec-input ec-question-text"
-                      required
                     />
                   </div>
                 </div>
@@ -1462,14 +1465,12 @@ export default function MarkPage() {
                   hasCompressingPages(answerPages) ||
                   questionPhotoCompressing ||
                   submitBlocked ||
-                  (isPracticeMode &&
-                    (!selectedSubject || !hasPracticeQuestion))
+                  (isPracticeMode && !selectedSubject)
                 }
                 pulse={
                   answerPages.length > 0 &&
                   !loading &&
-                  (!isPracticeMode ||
-                    (!!selectedSubject && hasPracticeQuestion))
+                  (!isPracticeMode || !!selectedSubject)
                 }
                 leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
                 className="justify-center text-base"
@@ -1502,6 +1503,34 @@ export default function MarkPage() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {result?.whole_paper && (
+          <div className="space-y-8">
+            <WholePaperResultView
+              result={result.whole_paper}
+              attemptId={result.attempt_id ?? null}
+            />
+            <PostMarkNextSteps
+              result={{
+                marks_earned: result.whole_paper.marks_earned,
+                total_marks: result.whole_paper.total_marks,
+                ai_marking: {
+                  marks_awarded: [],
+                  summary: result.whole_paper.summary,
+                  weak_topics: [],
+                  what_to_study_next: result.whole_paper.questions
+                    .map((q) => q.ai_marking?.what_to_study_next)
+                    .filter(Boolean)
+                    .join(' '),
+                },
+                marking_mode: 'general_criteria_practice',
+                subject_code: result.subject_code,
+              }}
+              onMarkAnother={handleMarkAnotherAttempt}
+              onMarkNewQuestion={handleMarkNewQuestion}
+            />
+          </div>
+        )}
 
         {result && !result.whole_paper && (
           <div className="space-y-8">

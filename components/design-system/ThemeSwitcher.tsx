@@ -4,7 +4,12 @@ import { Moon, Sun } from 'lucide-react'
 import { useEcTheme } from '@/lib/design-system/ThemeProvider'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
-export function ThemeSwitcher() {
+type ThemeSwitcherProps = {
+  /** Icon-only toggle for tight headers (e.g. marketing desktop). */
+  compact?: boolean
+}
+
+export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
   const { theme, setTheme } = useEcTheme()
 
   function select(next: 'late-night' | 'zen') {
@@ -26,7 +31,9 @@ export function ThemeSwitcher() {
         type="button"
         title="Late Night"
         onClick={() => select('late-night')}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all duration-300 active:scale-[0.98] md:px-3"
+        className={`flex items-center gap-1.5 rounded-lg text-xs font-medium transition-all duration-300 active:scale-[0.98] ${
+          compact ? 'px-2 py-1.5' : 'px-2.5 py-1.5 md:px-3'
+        }`}
         style={{
           background:
             theme === 'late-night' ? 'var(--ec-brand-muted)' : 'transparent',
@@ -37,13 +44,15 @@ export function ThemeSwitcher() {
         }}
       >
         <Moon className="h-3.5 w-3.5" />
-        <span className="hidden sm:inline">Late Night</span>
+        {!compact && <span className="hidden sm:inline">Late Night</span>}
       </button>
       <button
         type="button"
         title="Zen"
         onClick={() => select('zen')}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-all duration-300 active:scale-[0.98] md:px-3"
+        className={`flex items-center gap-1.5 rounded-lg text-xs font-medium transition-all duration-300 active:scale-[0.98] ${
+          compact ? 'px-2 py-1.5' : 'px-2.5 py-1.5 md:px-3'
+        }`}
         style={{
           background: theme === 'zen' ? 'var(--ec-brand-muted)' : 'transparent',
           color:
@@ -51,7 +60,7 @@ export function ThemeSwitcher() {
         }}
       >
         <Sun className="h-3.5 w-3.5" />
-        <span className="hidden sm:inline">Zen</span>
+        {!compact && <span className="hidden sm:inline">Zen</span>}
       </button>
     </div>
   )

@@ -4,7 +4,13 @@ import { resolveSiteUrl } from '@/lib/site-url'
 export const SITE_URL = resolveSiteUrl()
 
 /** Hostname for display copy (e.g. privacy policy, hero mockup). */
-export const SITE_HOST = new URL(SITE_URL).host
+export const SITE_HOST = (() => {
+  try {
+    return new URL(SITE_URL).host
+  } catch {
+    return 'markscheme.app'
+  }
+})()
 
 export const SITE_NAME = 'MarkScheme'
 

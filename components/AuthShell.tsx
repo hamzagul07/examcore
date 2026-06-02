@@ -40,7 +40,7 @@ export function AuthShell({
           </Link>
           {showBetaBadge && (
             <div className="mt-5 flex justify-center">
-              <span className="ec-label-tech">FREE DURING BETA</span>
+              <span className="ec-label-tech">FREE TIER AVAILABLE</span>
             </div>
           )}
         </motion.div>

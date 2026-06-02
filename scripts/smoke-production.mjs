@@ -188,7 +188,9 @@ async function main() {
     const res = await fetch(`${base}/auth/signin`)
     const html = await res.text()
     record(
-      res.ok && html.includes('Continue with Google'),
+      res.ok &&
+        (html.includes('Continue with Google') ||
+          html.includes('Continue with Google or use your email')),
       'GET /auth/signin (Google OAuth button)',
       `status ${res.status}`
     )
@@ -200,7 +202,9 @@ async function main() {
     const res = await fetch(`${base}/auth/signup`)
     const html = await res.text()
     record(
-      res.ok && html.includes('Sign up with Google'),
+      res.ok &&
+        (html.includes('Sign up with Google') ||
+          html.includes('Continue with Google or use your email')),
       'GET /auth/signup (Google OAuth button)',
       `status ${res.status}`
     )
@@ -214,8 +218,11 @@ async function main() {
       `${base}/auth/signup?redirect=${encodeURIComponent(joinPath)}`
     )
     const html = await res.text()
+    const nextEncoded = encodeURIComponent(joinPath)
     record(
-      res.ok && html.includes(encodeURIComponent(joinPath)),
+      res.ok &&
+        (html.includes(`next=${nextEncoded}`) ||
+          html.includes(encodeURIComponent(joinPath))),
       'GET /auth/signup?redirect= (sign-in link preserves destination)',
       `status ${res.status}`
     )

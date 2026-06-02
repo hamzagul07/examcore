@@ -60,9 +60,11 @@ Implemented in `lib/seo/keywords.ts` and blog frontmatter `keywords:` fields.
 - [ ] Bing Webmaster Tools — same
 - [ ] Core Web Vitals — monitor after launch
 
-## Ongoing content ideas
+## Per-subject guides (live)
 
-- Per-subject posts (9702 Physics, 5090 Biology)  
+One SEO article per marking-enabled syllabus code under `content/blog/cambridge-{code}-*.md` (24 guides). Regenerate missing files with `node scripts/generate-subject-blog-posts.mjs`.
+
+## Ongoing content ideas
 - “May/June vs October/November” session tips  
 - Examiner report summaries by year  
 - Comparison: MarkScheme vs marking your own (no competitor bashing)

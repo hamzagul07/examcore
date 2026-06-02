@@ -4,6 +4,7 @@ import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { SubjectsGrid } from '@/components/marketing/SubjectsGrid'
+import { getSubjectGuidePosts } from '@/lib/seo/subject-guides'
 
 export const metadata = createPageMetadata({
   title: 'Cambridge subjects — A-Level & O-Level past paper marking',
@@ -14,6 +15,8 @@ export const metadata = createPageMetadata({
 })
 
 export default function SubjectsPage() {
+  const guideCount = getSubjectGuidePosts().length
+
   return (
     <MarketingPageShell>
       <MarketingHero
@@ -27,6 +30,15 @@ export default function SubjectsPage() {
         lead="Cambridge A-Level and O-Level subject codes, real mark schemes, adaptive marking for MCQ, point-based questions, and essays."
       />
       <MarketingSection className="!pt-0">
+        {guideCount > 0 && (
+          <p className="mb-8 text-center text-sm text-[var(--ec-text-secondary)]">
+            Each subject includes a{' '}
+            <Link href="/blog" className="ec-link font-semibold">
+              free past-paper &amp; marking guide
+            </Link>{' '}
+            ({guideCount} syllabuses) — paper structure, mark schemes, and revision tips.
+          </p>
+        )}
         <SubjectsGrid detailed />
         <div className="ec-card mt-16 p-8 text-center sm:p-12">
           <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">

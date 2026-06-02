@@ -179,7 +179,7 @@ export async function fetchRecentAttemptsForUser(
 ): Promise<{ attempts: Record<string, unknown>[]; error?: string }> {
   const limit = Math.min(10, Math.max(1, input.limit ?? 5))
 
-  let query = supabase
+  const query = supabase
     .from('attempts')
     .select(
       `

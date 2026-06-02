@@ -188,30 +188,19 @@ export async function runSingleQuestionMark(
       throw new Error('Please select a subject for your question.')
     }
 
-    const userProvidedQuestion = questionText.trim().length >= 10
+    if (!questionText || questionText.trim().length < 10) {
+      throw new Error(
+        'Add your question — type it or upload a photo — before we can mark your answer.'
+      )
+    }
 
     emit(onProgress, 'finding_scheme', 40)
     const extracted = await extractPracticeQuestionFromScript(
       ocrText,
       practiceCode
     )
-
-    if (userProvidedQuestion) {
-      if (extracted.answer_text.trim().length >= 5) {
-        ocrTextForMarking = extracted.answer_text
-      }
-    } else if (
-      extracted.question_found &&
-      extracted.question_text.trim().length >= 10
-    ) {
-      questionText = extracted.question_text
-      if (extracted.answer_text.trim().length >= 5) {
-        ocrTextForMarking = extracted.answer_text
-      }
-    } else {
-      throw new Error(
-        'We could not read the question on your answer photo. Add the question below — photo or typed text — then try again.'
-      )
+    if (extracted.answer_text.trim().length >= 5) {
+      ocrTextForMarking = extracted.answer_text
     }
 
     markingMode = 'general_criteria_practice'

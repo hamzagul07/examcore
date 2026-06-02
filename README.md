@@ -8,6 +8,11 @@ AI marking for Cambridge International A-Level and O-Level past papers. Students
 - **Supabase** — auth, Postgres, storage (`paper-pdfs`, `answer-photos`)
 - **Anthropic + Gemini** — OCR and marking pipelines
 - **Stripe** — subscriptions and credits
+- **Sentry** (optional) — errors and performance in production
+
+## CI
+
+GitHub Actions runs typecheck, lint, and build on pushes and PRs to `main` (see `.github/workflows/ci.yml`). No secrets required for the build step beyond placeholder env vars in the workflow.
 
 ## Local setup
 
@@ -31,6 +36,9 @@ Copy `.env.example` to `.env.local` and fill in:
 | `STRIPE_SECRET_KEY` | Billing (optional locally) |
 | `STRIPE_WEBHOOK_SECRET` | Webhook verification |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Checkout |
+| `NEXT_PUBLIC_SENTRY_DSN` | Error monitoring (optional; see [docs/GITHUB_STUDENT_PACK.md](docs/GITHUB_STUDENT_PACK.md)) |
+
+Student Pack benefits (Stripe fee waiver, Sentry, domains, etc.) are summarized in [docs/GITHUB_STUDENT_PACK.md](docs/GITHUB_STUDENT_PACK.md).
 
 ### 3. Database
 

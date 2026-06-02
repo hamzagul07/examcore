@@ -1,4 +1,6 @@
 import type { NextConfig } from 'next'
+import { withSentryConfig } from '@sentry/nextjs'
+import { isSentryEnabled } from '@/lib/sentry/options'
 
 const securityHeaders = [
   { key: 'X-Frame-Options', value: 'DENY' },
@@ -65,4 +67,18 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+const sentryBuildOptions = {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: true,
+  disable: !process.env.SENTRY_AUTH_TOKEN?.trim(),
+  widenClientFileUpload: true,
+  hideSourceMaps: true,
+  disableLogger: true,
+  automaticVercelMonitors: true,
+}
+
+export default isSentryEnabled()
+  ? withSentryConfig(nextConfig, sentryBuildOptions)
+  : nextConfig

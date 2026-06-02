@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import {
   Calculator,
   Sigma,
@@ -23,6 +25,7 @@ import {
   type SubjectOption,
 } from '@/lib/profile-options'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'
+import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
 
 const ICON_BY_CODE: Record<string, LucideIcon> = {
   '9709': Calculator,
@@ -42,9 +45,12 @@ const ICON_BY_CODE: Record<string, LucideIcon> = {
   '9607': Tv,
   '4024': Calculator,
   '4037': Sigma,
-  '5090': FlaskConical,
+  '5090': Microscope,
   '5070': FlaskConical,
   '5054': Atom,
+  '2281': LineChart,
+  '7115': Briefcase,
+  '7707': Wallet,
 }
 
 function levelLabel(levels: string[]): string {
@@ -136,6 +142,8 @@ function SubjectCard({
     )
   }
 
+  const guideSlug = getSubjectGuideSlugForCode(subject.code)
+
   return (
     <div className="ec-card ec-card-interactive flex gap-4 p-5 sm:p-6">
       <div className="ec-tint-success-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border">
@@ -161,6 +169,15 @@ function SubjectCard({
         <p className="mt-2 text-xs font-medium text-[color-mix(in_srgb,var(--ec-brand)_90%,transparent)]">
           {markingTypeLabel(subject.markingType)}
         </p>
+        {guideSlug && (
+          <Link
+            href={`/blog/${guideSlug}`}
+            className="ec-link mt-3 inline-flex items-center gap-1.5 text-sm font-semibold"
+          >
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Past papers &amp; marking guide
+          </Link>
+        )}
       </div>
     </div>
   )

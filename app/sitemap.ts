@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/site-config'
 import { getAllBlogSlugs, getBlogPostLastModified } from '@/lib/blog'
+import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
 
 const STATIC_ROUTES = [
   { path: '', priority: 1, changeFrequency: 'weekly' as const },
@@ -34,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${base}/blog/${slug}`,
     lastModified: getBlogPostLastModified(slug) ?? now,
     changeFrequency: 'monthly' as const,
-    priority: 0.65,
+    priority: isSubjectGuideSlug(slug) ? 0.78 : 0.65,
   }))
 
   return [...staticEntries, ...blogEntries]

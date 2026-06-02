@@ -507,6 +507,9 @@ export default function MarkPage() {
   const isPracticeMode =
     uploadMode === 'single_question' && markIntent === 'practice_question'
 
+  const hasPracticeQuestion =
+    questionTextInput.trim().length >= 10 || !!questionPhoto
+
   const isManualFilled = !!(
     selectedSubject &&
     selectedYear !== '' &&
@@ -611,10 +614,19 @@ export default function MarkPage() {
         return
       }
 
-      if (isPracticeMode && !selectedSubject) {
-        setLoading(false)
-        setErrorMsg('Select a subject so we can apply the right mark scheme style.')
-        return
+      if (isPracticeMode) {
+        if (!selectedSubject) {
+          setLoading(false)
+          setErrorMsg('Select a subject so we can apply the right mark scheme style.')
+          return
+        }
+        if (!hasPracticeQuestion) {
+          setLoading(false)
+          setErrorMsg(
+            'Add your question — type it or upload a photo — before marking.'
+          )
+          return
+        }
       }
 
       setMarkProgress({ percent: 5, stage: 'reading_work' })
@@ -928,7 +940,6 @@ export default function MarkPage() {
                   onClick={() => {
                     setUploadMode('single_question')
                     setMarkIntent('practice_question')
-                    setShowOptional(true)
                     setShowManualPaper(false)
                   }}
                   className={`min-w-[7rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors ${
@@ -1084,35 +1095,22 @@ export default function MarkPage() {
             <section className="animate-entry stagger-2 space-y-4">
               <StepLabel
                 number={2}
-                label={isPracticeMode ? 'Question (if needed)' : 'Tell us about the question'}
-                hint={
-                  isPracticeMode
-                    ? answerPages.length > 0
-                      ? 'Only if not on your answer photo'
-                      : 'After answer upload'
-                    : 'Optional'
-                }
+                label={isPracticeMode ? 'Add your question' : 'Tell us about the question'}
+                hint={isPracticeMode ? 'Required' : 'Optional'}
               />
 
-              {isPracticeMode && answerPages.length === 0 && (
-                <div className="ec-card p-5 text-sm text-[var(--ec-text-secondary)]">
-                  Upload your answer first. If the question is already visible on those
-                  pages, you can skip this step.
-                </div>
-              )}
-
-              {isPracticeMode && answerPages.length > 0 && (
+              {isPracticeMode && (
                 <div className="ec-card space-y-4 p-5 sm:p-6">
                   <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-                    If your answer photo already includes the question, you can skip this —
-                    we read the question from your upload automatically. If marks look wrong,
-                    add the question here (photo <em>or</em> typed text, not both) so the
-                    examiner knows exactly what to mark against.
+                    Paste or photograph the question from your textbook, worksheet, or
+                    notes. Add <strong className="text-[var(--ec-text-primary)]">one</strong> —
+                    photo <em>or</em> typed text, not both. We need the exact wording to mark
+                    your answer accurately.
                   </p>
 
                   <div>
                     <Label htmlFor="practice-question-photo" className="label-overline mb-2 inline-block">
-                      Photo of the question <span className="font-normal normal-case text-[var(--ec-text-secondary)]">(optional)</span>
+                      Photo of the question
                     </Label>
                     <label
                       htmlFor="practice-question-photo"
@@ -1154,7 +1152,7 @@ export default function MarkPage() {
 
                   <div>
                     <Label htmlFor="practice-question-text" className="label-overline mb-2 inline-block">
-                      Type the question <span className="font-normal normal-case text-[var(--ec-text-secondary)]">(optional)</span>
+                      Type the question
                     </Label>
                     <textarea
                       id="practice-question-text"
@@ -1462,12 +1460,14 @@ export default function MarkPage() {
                   hasCompressingPages(answerPages) ||
                   questionPhotoCompressing ||
                   submitBlocked ||
-                  (isPracticeMode && !selectedSubject)
+                  (isPracticeMode &&
+                    (!selectedSubject || !hasPracticeQuestion))
                 }
                 pulse={
                   answerPages.length > 0 &&
                   !loading &&
-                  (!isPracticeMode || !!selectedSubject)
+                  (!isPracticeMode ||
+                    (!!selectedSubject && hasPracticeQuestion))
                 }
                 leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
                 className="justify-center text-base"

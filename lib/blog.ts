@@ -93,15 +93,22 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
   const currentKeys = new Set(
     current.keywords.map((k) => k.toLowerCase())
   )
+  const codeMatch = slug.match(/^cambridge-(\d{4})-/)
+  const syllabusCode = codeMatch?.[1]
+
   return getBlogPosts()
     .filter((p) => p.slug !== slug)
     .map((p) => {
       const overlap = p.keywords.filter((k) =>
         currentKeys.has(k.toLowerCase())
       ).length
-      return { post: p, overlap }
+      const sameCode =
+        syllabusCode && p.slug.startsWith(`cambridge-${syllabusCode}-`)
+          ? 3
+          : 0
+      return { post: p, score: overlap + sameCode }
     })
-    .sort((a, b) => b.overlap - a.overlap)
+    .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map(({ post }) => post)
 }

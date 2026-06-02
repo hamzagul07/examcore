@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { createBlogPostMetadata } from '@/lib/seo/metadata'
 import { getAllBlogSlugs, getBlogPost, getRelatedPosts } from '@/lib/blog'
+import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
 import { BlogPostJsonLd } from '@/components/seo/BlogPostJsonLd'
@@ -59,7 +60,7 @@ export default async function BlogPostPage({ params }: Props) {
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
         </div>
 
-        <BlogPostCta />
+        <BlogPostCta variant={isSubjectGuideSlug(slug) ? 'subject' : 'default'} />
 
         {related.length > 0 && (
           <section className="mt-12 border-t border-[var(--ec-border)] pt-10">

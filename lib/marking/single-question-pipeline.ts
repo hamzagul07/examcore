@@ -22,7 +22,7 @@ import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
-import type { MarkingMode, MarkSchemeRow } from '@/lib/marking/types'
+import type { MarkIntent, MarkingMode, MarkSchemeRow } from '@/lib/marking/types'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -36,6 +36,9 @@ export type SingleQuestionMarkInput = {
   manualPaperCode: string | null
   manualPaperSession: string | null
   manualQuestionNumber: string | null
+  /** When `practice_question`, skips past-paper detection and uses subject conventions. */
+  markIntent?: MarkIntent
+  practiceSubjectCode?: string | null
   userId: string | null
   startedAt?: number
   onProgress?: (event: MarkProgressEvent) => void
@@ -96,16 +99,23 @@ export async function runSingleQuestionMark(
     manualPaperCode,
     manualPaperSession,
     manualQuestionNumber,
+    markIntent = 'past_paper',
+    practiceSubjectCode,
     userId,
     startedAt = Date.now(),
     onProgress,
   } = input
 
-  const hasManualSelection = !!(
-    manualPaperCode &&
-    manualPaperSession &&
-    manualQuestionNumber
-  )
+  const isPracticeQuestion = markIntent === 'practice_question'
+  const practiceCode = practiceSubjectCode?.trim() || null
+
+  const hasManualSelection =
+    !isPracticeQuestion &&
+    !!(
+      manualPaperCode &&
+      manualPaperSession &&
+      manualQuestionNumber
+    )
   const manualSubjectCode = manualPaperCode?.split('/')[0]
 
   emit(onProgress, 'reading_work', 5)
@@ -129,9 +139,10 @@ export async function runSingleQuestionMark(
     return { full_text, lines, photo_url }
   }
 
-  const subjectHint = manualSubjectCode
-    ? SUBJECT_CODE_MAP[manualSubjectCode]
-    : undefined
+  const subjectHint =
+    (isPracticeQuestion ? practiceCode : manualSubjectCode)
+      ? SUBJECT_CODE_MAP[isPracticeQuestion ? practiceCode! : manualSubjectCode!]
+      : undefined
 
   const first = await ocrOnePage(pageFiles[0])
   pageOcrResults.push(first)
@@ -166,6 +177,28 @@ export async function runSingleQuestionMark(
 
   emit(onProgress, 'finding_scheme', 30)
 
+  let markingMode: MarkingMode = 'general_criteria'
+  let markScheme: MarkSchemeRow | null = null
+  let detectedPaper: Record<string, string> | null = null
+
+  if (isPracticeQuestion) {
+    if (!practiceCode) {
+      throw new Error('Please select a subject for your question.')
+    }
+    if (!questionText || questionText.trim().length < 10) {
+      throw new Error(
+        'Add the question — type it or upload a photo — so we can mark using Cambridge conventions for that subject.'
+      )
+    }
+    markingMode = 'general_criteria_practice'
+    emitContext(onProgress, {
+      paper_code: null,
+      paper_session: null,
+      question_number: null,
+      subject_code: practiceCode,
+      syllabus_tags: null,
+    })
+  } else {
   let detection: Record<string, unknown> = { is_past_paper: false }
 
   if (hasManualSelection) {
@@ -181,10 +214,6 @@ export async function runSingleQuestionMark(
     detection = await runPaperDetection(ocrText, questionText, subjectHint)
     detection = reconcileDetectionWithQuestion(detection, questionText)
   }
-
-  let markingMode: MarkingMode = 'general_criteria'
-  let markScheme: MarkSchemeRow | null = null
-  let detectedPaper: Record<string, string> | null = null
 
   if (
     detection.is_past_paper &&
@@ -241,6 +270,7 @@ export async function runSingleQuestionMark(
       'We could not identify this as a past paper question. Please also upload a photo of the question, or type the question text below.'
     )
   }
+  }
 
   emit(onProgress, 'marking', 85)
 
@@ -256,7 +286,9 @@ export async function runSingleQuestionMark(
     questionText,
     markScheme,
     markingMode,
-    paperCode: detectedPaper?.paper_code,
+    paperCode: isPracticeQuestion
+      ? `${practiceCode}/00`
+      : detectedPaper?.paper_code,
     paperSession: detectedPaper?.paper_session,
     questionNumber: detectedPaper?.question_number,
   })
@@ -299,10 +331,12 @@ export async function runSingleQuestionMark(
     .select()
     .single()
 
-  const paperCodeForSubject =
-    detectedPaper?.paper_code ?? markScheme?.paper_code ?? null
+  const paperCodeForSubject = isPracticeQuestion
+    ? `${practiceCode}/00`
+    : detectedPaper?.paper_code ?? markScheme?.paper_code ?? null
   const subject_code = resolveMarkResultSubjectCode({
     paper_code: paperCodeForSubject,
+    subject_code: isPracticeQuestion ? practiceCode : undefined,
     syllabus_tags: resolvedTags,
   })
 

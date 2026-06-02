@@ -10,6 +10,9 @@ import type { MarkSchemeRow } from './types'
 import { parsePaperCode } from './component-types'
 import { buildSyllabusTaggingBlock } from '@/lib/syllabi'
 
+const PRACTICE_QUESTION_NOTE =
+  'This is the student\'s own practice or homework question (not from a specific Cambridge past paper). Apply standard Cambridge International A-Level marking conventions for this subject — the same mark types (B1, M1, A1, essay bands, etc.) examiners use on real papers.\n\n'
+
 export function buildMarkingPrompt(params: {
   markScheme: MarkSchemeRow | null
   markingStyle: MarkingStyle
@@ -18,6 +21,7 @@ export function buildMarkingPrompt(params: {
   subjectName: string
   subjectCode: string
   isOfficial: boolean
+  practiceQuestion?: boolean
 }): string {
   const {
     markScheme,
@@ -27,6 +31,7 @@ export function buildMarkingPrompt(params: {
     subjectName,
     subjectCode,
     isOfficial,
+    practiceQuestion = false,
   } = params
 
   const parsed = markScheme?.paper_code
@@ -49,11 +54,12 @@ export function buildMarkingPrompt(params: {
   }
 
   if (is9709 && !isOfficial) {
-    return build9709GeneralMarkingPrompt(questionText, ocrText)
+    const prompt = build9709GeneralMarkingPrompt(questionText, ocrText)
+    return practiceQuestion ? PRACTICE_QUESTION_NOTE + prompt : prompt
   }
 
   if (!markScheme) {
-    return buildPointBasedMarkingPrompt(
+    const prompt = buildPointBasedMarkingPrompt(
       subjectName,
       questionText || '[Question not provided — infer from student\'s work]',
       10,
@@ -61,6 +67,7 @@ export function buildMarkingPrompt(params: {
       ocrText,
       syllabusBlock
     )
+    return practiceQuestion ? PRACTICE_QUESTION_NOTE + prompt : prompt
   }
 
   const msJson = JSON.stringify(markScheme.mark_scheme, null, 2)

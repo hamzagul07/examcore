@@ -4,6 +4,11 @@ export type MarkingMode =
   | 'official_mark_scheme'
   | 'general_criteria_paper_not_in_db'
   | 'general_criteria'
+  /** User chose practice/homework — not a past paper; same Cambridge conventions. */
+  | 'general_criteria_practice'
+
+/** How the user intended single-question marking (past paper vs own question). */
+export type MarkIntent = 'past_paper' | 'practice_question'
 
 export type UploadMode = 'single_question' | 'whole_paper'
 

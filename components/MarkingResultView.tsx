@@ -17,6 +17,7 @@ import {
   ERROR_LABELS,
   normalizeErrorClassification,
 } from '@/lib/error-classifications'
+import { getSubjectByCode } from '@/lib/profile-options'
 
 export type MarkAwarded = {
   mark_id: number | string
@@ -45,6 +46,7 @@ export type MarkingResultData = {
     | 'official_mark_scheme'
     | 'general_criteria_paper_not_in_db'
     | 'general_criteria'
+    | 'general_criteria_practice'
   detected_paper?: {
     paper_code: string
     paper_session: string
@@ -179,6 +181,24 @@ export function MarkingResultView({
                 {CONTACT_EMAIL}
               </a>
               .
+            </p>
+          </div>
+        </div>
+      )}
+
+      {result.marking_mode === 'general_criteria_practice' && (
+        <div className="ec-banner ec-banner-info">
+          <Info className="ec-banner__icon h-5 w-5 shrink-0" />
+          <div>
+            <p className="ec-banner__title">
+              Marked with Cambridge{' '}
+              {getSubjectByCode(badgeSubjectCode ?? '')?.label ??
+                'A-Level'}{' '}
+              conventions
+            </p>
+            <p className="ec-banner__meta">
+              Your own question (not a past paper) — same mark types and bands
+              examiners use, without an official mark scheme from our database.
             </p>
           </div>
         </div>

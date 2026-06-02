@@ -20,7 +20,11 @@ import {
   buildWholePaperSegmentPrompt,
   parseWholePaperSegment,
 } from '@/lib/marking/whole-paper'
-import type { UploadMode, QuestionMarkResult } from '@/lib/marking/types'
+import type {
+  MarkIntent,
+  UploadMode,
+  QuestionMarkResult,
+} from '@/lib/marking/types'
 import {
   withGeminiRetry,
   withAnthropicRetry,
@@ -138,6 +142,12 @@ export async function POST(request: NextRequest) {
     const uploadModeRaw = formData.get('upload_mode') as string | null
     const uploadMode: UploadMode =
       uploadModeRaw === 'whole_paper' ? 'whole_paper' : 'single_question'
+    const markIntentRaw = formData.get('mark_intent') as string | null
+    const markIntent: MarkIntent =
+      markIntentRaw === 'practice_question' ? 'practice_question' : 'past_paper'
+    const practiceSubjectCode = (
+      formData.get('practice_subject_code') as string | null
+    )?.trim() || null
     const manualSubjectCode = manualPaperCode?.split('/')[0]
     const streamRequested = formData.get('stream') === '1'
 
@@ -150,9 +160,14 @@ export async function POST(request: NextRequest) {
         pageFiles,
         questionPhoto: questionPhoto?.size ? questionPhoto : null,
         questionTextInput: questionTextInput?.trim() || '',
-        manualPaperCode,
-        manualPaperSession,
-        manualQuestionNumber,
+        manualPaperCode: markIntent === 'practice_question' ? null : manualPaperCode,
+        manualPaperSession:
+          markIntent === 'practice_question' ? null : manualPaperSession,
+        manualQuestionNumber:
+          markIntent === 'practice_question' ? null : manualQuestionNumber,
+        markIntent,
+        practiceSubjectCode:
+          markIntent === 'practice_question' ? practiceSubjectCode : null,
         userId,
         startedAt: startTime,
       }
@@ -204,7 +219,9 @@ export async function POST(request: NextRequest) {
                   : 'Something went wrong while marking. Please try again.'
               const isClient =
                 message.includes('handwriting') ||
-                message.includes('past paper question')
+                message.includes('past paper question') ||
+                message.includes('select a subject') ||
+                message.includes('Add the question')
               send({
                 type: 'error',
                 error: isOverload
@@ -244,7 +261,9 @@ export async function POST(request: NextRequest) {
             : 'Something went wrong while marking. Please try again.'
         if (
           message.includes('handwriting') ||
-          message.includes('past paper question')
+          message.includes('past paper question') ||
+          message.includes('select a subject') ||
+          message.includes('Add the question')
         ) {
           return clientError(message)
         }

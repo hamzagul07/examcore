@@ -22,6 +22,7 @@ import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
+import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
 import type { MarkIntent, MarkingMode, MarkSchemeRow } from '@/lib/marking/types'
 
 const supabaseAdmin = createClient(
@@ -180,11 +181,39 @@ export async function runSingleQuestionMark(
   let markingMode: MarkingMode = 'general_criteria'
   let markScheme: MarkSchemeRow | null = null
   let detectedPaper: Record<string, string> | null = null
+  let ocrTextForMarking = ocrText
 
   if (isPracticeQuestion) {
     if (!practiceCode) {
       throw new Error('Please select a subject for your question.')
     }
+
+    const userProvidedQuestion = questionText.trim().length >= 10
+
+    emit(onProgress, 'finding_scheme', 40)
+    const extracted = await extractPracticeQuestionFromScript(
+      ocrText,
+      practiceCode
+    )
+
+    if (userProvidedQuestion) {
+      if (extracted.answer_text.trim().length >= 5) {
+        ocrTextForMarking = extracted.answer_text
+      }
+    } else if (
+      extracted.question_found &&
+      extracted.question_text.trim().length >= 10
+    ) {
+      questionText = extracted.question_text
+      if (extracted.answer_text.trim().length >= 5) {
+        ocrTextForMarking = extracted.answer_text
+      }
+    } else {
+      throw new Error(
+        'We could not read the question on your answer photo. Add the question below — photo or typed text — then try again.'
+      )
+    }
+
     markingMode = 'general_criteria_practice'
     emitContext(onProgress, {
       paper_code: null,
@@ -276,7 +305,7 @@ export async function runSingleQuestionMark(
     resolvedTags,
     markingMode: finalMode,
   } = await markSingleQuestion({
-    ocrText,
+    ocrText: ocrTextForMarking,
     ocrLines,
     questionText,
     markScheme,

@@ -56,7 +56,7 @@ export function useStripePortal({ returnUrl = '/account/billing' }: Options = {}
       if (!opened) {
         setState('error')
         setErrorMessage(
-          'Your browser blocked the new tab. Allow pop-ups for Examcore, then try again.'
+          'Your browser blocked the new tab. Allow pop-ups for MarkScheme, then try again.'
         )
         return
       }

@@ -1,4 +1,4 @@
-# Examcore
+# MarkScheme
 
 AI marking for Cambridge International A-Level and O-Level past papers. Students upload handwritten answers and get mark-by-mark feedback tied to real mark schemes.
 

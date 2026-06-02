@@ -1,5 +1,5 @@
 /**
- * Examcore design system — single source of truth for tokens.
+ * MarkScheme design system — single source of truth for tokens.
  * CSS custom properties in theme.css mirror these values for runtime theming.
  */
 

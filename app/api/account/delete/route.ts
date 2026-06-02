@@ -36,7 +36,7 @@ export async function POST(request: Request) {
   if (error) {
     console.error('[account/delete]', error)
     return NextResponse.json(
-      { error: 'Could not delete your account. Contact hello@examcore.ai for help.' },
+      { error: 'Could not delete your account. Contact hello@markscheme.app for help.' },
       { status: 500 }
     )
   }

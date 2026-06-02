@@ -6,7 +6,7 @@ import { LegalDisclaimer, MarketingPageShell } from '@/components/marketing/Mark
 export const metadata = createPageMetadata({
   title: 'Terms of Service',
   description:
-    'Terms for using Examcore — an AI marking tool for Cambridge A-Level self-study. Honest about AI limitations.',
+    'Terms for using MarkScheme — an AI marking tool for Cambridge A-Level self-study. Honest about AI limitations.',
   path: '/terms',
 })
 
@@ -23,9 +23,9 @@ export default function TermsPage() {
           <p className="text-sm">Last updated: May 2026</p>
 
           <section>
-            <h2 className="landing-h3">What Examcore is</h2>
+            <h2 className="landing-h3">What MarkScheme is</h2>
             <p>
-              Examcore is an AI-assisted marking tool for Cambridge A-Level
+              MarkScheme is an AI-assisted marking tool for Cambridge A-Level
               self-study. It helps you check past-paper answers against official
               mark schemes. It is not a tutoring agency, exam board, or
               replacement for qualified teachers or Cambridge examiners.
@@ -35,22 +35,22 @@ export default function TermsPage() {
           <section>
             <h2 className="landing-h3">Acceptable use</h2>
             <ul className="list-disc space-y-2 pl-5">
-              <li>Use Examcore to mark your own revision work or work you have permission to upload.</li>
+              <li>Use MarkScheme to mark your own revision work or work you have permission to upload.</li>
               <li>Do not upload content you do not have the right to use.</li>
               <li>Do not attempt to break, scrape, or overload the service.</li>
               <li>Do not redistribute marking outputs as if they were official Cambridge grades.</li>
-              <li>Do not use Examcore for cheating in live assessments or coursework submitted as solely your own work without disclosure where required.</li>
+              <li>Do not use MarkScheme for cheating in live assessments or coursework submitted as solely your own work without disclosure where required.</li>
             </ul>
           </section>
 
           <section>
             <h2 className="landing-h3">AI limitations</h2>
             <p>
-              AI marking is not perfect. Examcore provides feedback based on
+              AI marking is not perfect. MarkScheme provides feedback based on
               Cambridge mark schemes, but errors happen. Use it as a{' '}
               <strong className="text-[var(--ec-text-primary)]">study companion</strong>, not
               a final grade. Final grades are determined by Cambridge
-              International examiners, not Examcore.
+              International examiners, not MarkScheme.
             </p>
             <p>
               We do not guarantee that feedback will match what a human examiner
@@ -82,7 +82,7 @@ export default function TermsPage() {
             <p>
               Cambridge subject codes, syllabus references, and mark schemes
               are property of Cambridge Assessment International Education, used
-              here for educational purposes. Examcore is not affiliated with or
+              here for educational purposes. MarkScheme is not affiliated with or
               endorsed by Cambridge International.
             </p>
             <p>
@@ -94,7 +94,7 @@ export default function TermsPage() {
           <section>
             <h2 className="landing-h3">Disclaimer of warranties</h2>
             <p>
-              Examcore is provided &quot;as is&quot; during early access. We do not
+              MarkScheme is provided &quot;as is&quot; during early access. We do not
               warrant uninterrupted service, error-free marking, or fitness for
               a particular purpose. To the fullest extent permitted by law, we
               disclaim implied warranties.
@@ -104,7 +104,7 @@ export default function TermsPage() {
           <section>
             <h2 className="landing-h3">Limitation of liability</h2>
             <p>
-              To the fullest extent permitted by law, Examcore and its operators
+              To the fullest extent permitted by law, MarkScheme and its operators
               are not liable for indirect, incidental, or consequential damages
               arising from your use of the service, including reliance on AI
               marking for exam preparation decisions.

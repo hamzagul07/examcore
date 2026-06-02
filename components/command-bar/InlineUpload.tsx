@@ -66,7 +66,7 @@ export function InlineUpload() {
           Take a picture of your handwritten working
         </h4>
         <p className="mb-6 text-sm text-[var(--ec-text-secondary)]">
-          I&apos;ll mark it instantly to show you exactly how Examcore works.
+          I&apos;ll mark it instantly to show you exactly how MarkScheme works.
         </p>
 
         <div className="flex flex-col justify-center gap-3 sm:flex-row">

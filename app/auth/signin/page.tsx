@@ -35,7 +35,7 @@ function SignInSkeleton() {
     <AuthShell>
       <p className="ec-label-tech mb-3">WELCOME BACK</p>
       <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
-        Sign in to <span className="ec-text-gradient">Examcore</span>
+        Sign in to <span className="ec-text-gradient">MarkScheme</span>
       </h1>
       <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
     </AuthShell>
@@ -136,7 +136,7 @@ function SignInForm() {
         <>
           <p className="ec-label-tech mb-3">WELCOME BACK</p>
           <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
-            Sign in to <span className="ec-text-gradient">Examcore</span>
+            Sign in to <span className="ec-text-gradient">MarkScheme</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
             Pick how you&apos;d like to sign in.

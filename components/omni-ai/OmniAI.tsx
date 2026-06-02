@@ -10,7 +10,7 @@ const LANDING_SUGGESTIONS = [
   'Show me 9709 May/June 2024 Q1',
   'I need help with integration',
   "I'm stressed about exams",
-  'How does Examcore work?',
+  'How does MarkScheme work?',
 ]
 
 const CONTEXT_SUGGESTIONS: Record<string, string[]> = {
@@ -39,7 +39,7 @@ const CONTEXT_SUGGESTIONS: Record<string, string[]> = {
 }
 
 /**
- * Global Omni-AI shell — opens from SiteHeader "Ask Examcore" or ⌘K.
+ * Global Omni-AI shell — opens from SiteHeader "Ask MarkScheme" or ⌘K.
  */
 export function OmniAI() {
   const { isOpen, setIsOpen, context } = useOmniAI()

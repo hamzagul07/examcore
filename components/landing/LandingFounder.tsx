@@ -15,7 +15,7 @@ export function LandingFounder() {
         </h2>
         <div className="landing-lead max-w-2xl space-y-4">
           <p>
-            Examcore was built by Hassan, an A-Level student who got tired of
+            MarkScheme was built by Hassan, an A-Level student who got tired of
             waiting weeks for marked papers and guessing what examiners actually
             wanted.
           </p>

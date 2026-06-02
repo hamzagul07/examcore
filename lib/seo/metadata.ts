@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { SEO_KEYWORDS, SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 type PageMetadataOptions = {
   title: string
@@ -20,6 +20,7 @@ export function createPageMetadata({
   return {
     title: pageTitle,
     description,
+    keywords: [...SEO_KEYWORDS],
     openGraph: {
       title: pageTitle.includes(SITE_NAME) ? pageTitle : `${pageTitle} — ${SITE_NAME}`,
       description,

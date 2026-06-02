@@ -2,9 +2,9 @@ import type { ReactNode } from 'react'
 import { createPageMetadata } from '@/lib/seo/metadata'
 
 export const metadata = createPageMetadata({
-  title: 'Mark your answer',
+  title: 'Mark a Cambridge past paper — upload handwritten answers',
   description:
-    'Upload Cambridge past-paper working and get examiner-grade feedback in about 30 seconds. Single questions or whole papers.',
+    'Free Cambridge past-paper marking: upload a photo of your handwritten answer or a whole paper. MarkScheme scores against the real mark scheme — B1, M1, A1, MCQ, and essay bands in ~30 seconds.',
   path: '/mark',
 })
 

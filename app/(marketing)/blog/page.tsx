@@ -7,7 +7,7 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 export const metadata = createPageMetadata({
   title: 'Blog',
   description:
-    'Exam tips, study strategies, and updates from the Examcore build — articles for Cambridge A-Level students.',
+    'Exam tips, study strategies, and updates from the MarkScheme build — articles for Cambridge A-Level students.',
   path: '/blog',
 })
 

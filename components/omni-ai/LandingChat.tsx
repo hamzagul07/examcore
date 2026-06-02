@@ -10,7 +10,7 @@ const LANDING_SUGGESTIONS = [
   'Show me 9709 May/June 2024 Q1',
   'I need help with integration',
   "I'm stressed about exams",
-  'How does Examcore work?',
+  'How does MarkScheme work?',
 ]
 
 export function LandingChat() {

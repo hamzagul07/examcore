@@ -19,7 +19,7 @@ export async function notifyAdminContactMessage(
   if (!apiKey) return
 
   const from =
-    process.env.RESEND_FROM?.trim() || `Examcore <notifications@${CONTACT_EMAIL.split('@')[1] || 'examcore.ai'}>`
+    process.env.RESEND_FROM?.trim() || `MarkScheme <notifications@${CONTACT_EMAIL.split('@')[1] || 'markscheme.app'}>`
 
   const text = [
     `New contact form message`,
@@ -44,7 +44,7 @@ export async function notifyAdminContactMessage(
         from,
         to: process.env.CONTACT_NOTIFY_TO?.trim() || CONTACT_EMAIL,
         reply_to: payload.email,
-        subject: `[Examcore] Contact from ${payload.name}`,
+        subject: `[MarkScheme] Contact from ${payload.name}`,
         text,
       }),
     })

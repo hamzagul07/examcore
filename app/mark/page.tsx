@@ -1416,7 +1416,7 @@ export default function MarkPage() {
       <CelebrationModal
         open={firstMarkCelebration}
         title="First mark complete!"
-        message="That's your first examiner-style review on Examcore. Read the breakdown, then try another question when you're ready."
+        message="That's your first examiner-style review on MarkScheme. Read the breakdown, then try another question when you're ready."
         onDismiss={() => setFirstMarkCelebration(false)}
       />
       <UpgradeModal

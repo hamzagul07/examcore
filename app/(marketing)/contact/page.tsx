@@ -4,7 +4,7 @@ import { ContactForm } from './contact-form'
 export const metadata = createPageMetadata({
   title: 'Contact',
   description:
-    'Get in touch with the Examcore team — feedback, questions, and support.',
+    'Get in touch with the MarkScheme team — feedback, questions, and support.',
   path: '/contact',
 })
 

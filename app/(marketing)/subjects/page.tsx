@@ -5,9 +5,9 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 import { SubjectsGrid } from '@/components/marketing/SubjectsGrid'
 
 export const metadata = createPageMetadata({
-  title: 'Subjects',
+  title: 'Cambridge subjects — A-Level & O-Level past paper marking',
   description:
-    'Mark Cambridge A-Level and O-Level past papers — Maths, Sciences, Humanities, Business, and more. Real mark schemes, adaptive marking for MCQ, point-based questions, and essays.',
+    'MarkScheme supports Cambridge International past papers across Maths, Sciences, Humanities, Business, and more. Real mark schemes for MCQ, structured questions, and essays.',
   path: '/subjects',
 })
 

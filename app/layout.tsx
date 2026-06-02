@@ -9,7 +9,14 @@ import { OmniAIProviders } from "@/components/omni-ai/OmniAIProviders";
 import { OmniAI } from "@/components/omni-ai/OmniAI";
 import { MobileTabBarGate } from "@/components/layout/MobileTabBarGate";
 import { OmniFABGate } from "@/components/omni-ai/OmniFABGate";
-import { SITE_NAME, SITE_URL } from "@/lib/site-config";
+import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
+import {
+  DEFAULT_SITE_DESCRIPTION,
+  SEO_KEYWORDS,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+} from "@/lib/site-config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,15 +56,16 @@ const kalam = Kalam({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — AI marking for Cambridge A-Levels & O-Levels`,
+    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
     template: `%s — ${SITE_NAME}`,
   },
-  description:
-    "Upload handwritten Cambridge answers and get mark-by-mark feedback in seconds. Free tier plus paid plans — founding members lock in 50% off forever.",
+  description: DEFAULT_SITE_DESCRIPTION,
+  keywords: [...SEO_KEYWORDS],
   openGraph: {
     siteName: SITE_NAME,
     type: "website",
     locale: "en_GB",
+    description: DEFAULT_SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
@@ -74,6 +82,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${caveat.variable} ${kalam.variable} ${inter.className} relative flex min-h-full max-w-[100vw] flex-col overflow-x-clip`}
       >
+        <SiteJsonLd />
         <ThemeProvider>
           <OmniAIProviders>
             <a

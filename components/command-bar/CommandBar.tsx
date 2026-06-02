@@ -131,7 +131,7 @@ export function CommandBar() {
             id: `a-${Date.now()}`,
             role: 'assistant',
             content:
-              "Something went wrong on my end. Try again, or just upload a question to see Examcore in action.",
+              "Something went wrong on my end. Try again, or just upload a question to see MarkScheme in action.",
             action: { type: 'render_upload' },
           },
         ])
@@ -209,12 +209,12 @@ function CollapsedBar({
       <button
         type="button"
         onClick={onOpen}
-        aria-label="Open Examcore agent"
+        aria-label="Open MarkScheme agent"
         className="group flex w-full items-center gap-3 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]/80 px-6 py-5 backdrop-blur-2xl transition-all ec-hover-brand-border"
       >
         <Sparkles className="h-5 w-5 ec-text-brand transition-transform group-hover:rotate-12" />
         <span className="flex-1 text-left text-[var(--ec-text-secondary)] transition-colors group-hover:text-[var(--ec-text-primary)]">
-          Ask Examcore anything — past papers, topics, marking...
+          Ask MarkScheme anything — past papers, topics, marking...
         </span>
         <kbd className="hidden items-center gap-1 rounded border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-xs text-[var(--ec-text-secondary)] md:flex">
           <span>{shortcutLabel[0]}</span>
@@ -265,7 +265,7 @@ function ExpandedPanel({
       className="fixed inset-0 z-[60] flex items-end justify-center p-0 md:items-center md:p-6"
       role="dialog"
       aria-modal="true"
-      aria-label="Examcore agent chat"
+      aria-label="MarkScheme agent chat"
     >
       <div
         className="absolute inset-0 ec-modal-backdrop"
@@ -285,7 +285,7 @@ function ExpandedPanel({
               <Sparkles className="h-5 w-5 ec-on-brand-text" />
             </div>
             <div>
-              <h3 className="font-semibold text-[var(--ec-text-primary)]">Examcore Agent</h3>
+              <h3 className="font-semibold text-[var(--ec-text-primary)]">MarkScheme Agent</h3>
               <p className="flex items-center gap-1.5 text-xs ec-text-brand">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--ec-brand)]" />
                 Online
@@ -375,7 +375,7 @@ function ExpandedPanel({
             </button>
           </form>
           <p className="mt-2 text-center text-xs text-[var(--ec-text-secondary)]">
-            Free during beta. Powered by Examcore.
+            Free during beta. Powered by MarkScheme.
           </p>
         </footer>
       </motion.div>

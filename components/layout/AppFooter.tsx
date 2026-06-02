@@ -15,7 +15,7 @@ export function AppFooter() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs ec-text-secondary sm:flex-row sm:items-center sm:justify-between">
-        <span>Examcore — © 2026</span>
+        <span>MarkScheme — © 2026</span>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <Link
             href="/faq"

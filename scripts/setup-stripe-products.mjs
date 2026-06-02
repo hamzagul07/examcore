@@ -90,12 +90,12 @@ const SUBSCRIPTION_KEYS = ['student', 'scholar', 'mastery']
 const CREDIT_KEYS = ['credits_25', 'credits_100', 'credits_500']
 
 const DISPLAY_NAMES = {
-  student: 'Examcore Student',
-  scholar: 'Examcore Scholar',
-  mastery: 'Examcore Mastery',
-  credits_25: 'Examcore Credits 25',
-  credits_100: 'Examcore Credits 100',
-  credits_500: 'Examcore Credits 500',
+  student: 'MarkScheme Student',
+  scholar: 'MarkScheme Scholar',
+  mastery: 'MarkScheme Mastery',
+  credits_25: 'MarkScheme Credits 25',
+  credits_100: 'MarkScheme Credits 100',
+  credits_500: 'MarkScheme Credits 500',
 }
 
 function convert(usdCents, currency) {

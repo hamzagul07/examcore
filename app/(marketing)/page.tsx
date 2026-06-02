@@ -20,9 +20,9 @@ import {
 } from 'lucide-react'
 
 export const metadata = createPageMetadata({
-  title: 'AI marking for Cambridge A-Levels & O-Levels',
+  title: 'Cambridge past paper marking — handwritten answers, real mark schemes',
   description:
-    'Upload handwritten Cambridge answers and get mark-by-mark feedback in seconds. A-Level and O-Level subjects — free tier available. Founding members lock in 50% off forever.',
+    'MarkScheme marks your Cambridge A-Level and O-Level past papers mark-by-mark. Upload handwritten working, get B1/M1/A1 and essay-band feedback in seconds. Free tier to start.',
   path: '/',
 })
 

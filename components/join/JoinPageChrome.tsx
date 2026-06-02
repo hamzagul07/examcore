@@ -10,7 +10,7 @@ export function JoinPageChrome({ children }: { children: ReactNode }) {
           href="/"
           className="text-xl font-bold ec-text-gradient transition-opacity hover:opacity-90"
         >
-          Examcore
+          MarkScheme
         </Link>
       </header>
       {children}

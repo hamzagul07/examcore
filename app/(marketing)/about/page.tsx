@@ -6,7 +6,7 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 export const metadata = createPageMetadata({
   title: 'About',
   description:
-    'Examcore was built by an A-Level student who wanted faster, honest marking feedback — trained on real Cambridge mark schemes.',
+    'MarkScheme was built by an A-Level student who wanted faster, honest marking feedback — trained on real Cambridge mark schemes.',
   path: '/about',
 })
 
@@ -21,7 +21,7 @@ export default function AboutPage() {
             <span className="ec-text-gradient">when you need it</span>
           </>
         }
-        lead="Examcore exists so students revising alone can get examiner-style feedback without waiting weeks."
+        lead="MarkScheme exists so students revising alone can get examiner-style feedback without waiting weeks."
       />
 
       <MarketingSection className="!pt-0">
@@ -30,7 +30,7 @@ export default function AboutPage() {
             <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">The story</h2>
             <div className="landing-lead space-y-4">
               <p>
-                Examcore was built by Hassan, an A-Level student who got tired of
+                MarkScheme was built by Hassan, an A-Level student who got tired of
                 waiting weeks for marked papers and guessing what examiners
                 actually wanted.
               </p>
@@ -51,7 +51,7 @@ export default function AboutPage() {
 
           <section>
             <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
-              What makes Examcore different
+              What makes MarkScheme different
             </h2>
             <ul className="landing-lead list-disc space-y-3 pl-5">
               <li>

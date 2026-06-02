@@ -4,7 +4,7 @@ import { SettingsShell } from '@/components/settings/SettingsShell'
 
 export const metadata = createPageMetadata({
   title: 'Account settings',
-  description: 'Manage your Examcore profile, billing, study preferences, and privacy.',
+  description: 'Manage your MarkScheme profile, billing, study preferences, and privacy.',
   path: '/account',
 })
 

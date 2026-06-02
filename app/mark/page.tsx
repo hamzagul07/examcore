@@ -153,6 +153,9 @@ export default function MarkPage() {
   const [uploadMode, setUploadMode] = useState<'single_question' | 'whole_paper'>(
     'single_question'
   )
+  const [markIntent, setMarkIntent] = useState<'past_paper' | 'practice_question'>(
+    'past_paper'
+  )
   const [paperQuestionOptions, setPaperQuestionOptions] = useState<string[]>([])
   const [wholePaperKey, setWholePaperKey] = useState(0)
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
@@ -478,7 +481,14 @@ export default function MarkPage() {
   }, [paperStructure])
 
   useEffect(() => {
-    if (profileLoading || papersLoading || selectedSubject) return
+    if (
+      profileLoading ||
+      papersLoading ||
+      selectedSubject ||
+      markIntent === 'practice_question'
+    ) {
+      return
+    }
     const preferred =
       profileSelectableSubjects.find((c) => c === '9709') ??
       profileSelectableSubjects[0]
@@ -491,7 +501,14 @@ export default function MarkPage() {
     papersLoading,
     selectedSubject,
     profileSelectableSubjects,
+    markIntent,
   ])
+
+  const isPracticeMode =
+    uploadMode === 'single_question' && markIntent === 'practice_question'
+
+  const hasPracticeQuestion =
+    questionTextInput.trim().length >= 10 || !!questionPhoto
 
   const isManualFilled = !!(
     selectedSubject &&
@@ -533,8 +550,11 @@ export default function MarkPage() {
     }
   }, [uploadMode, wholePaperCode, wholePaperSession])
 
-  const markingMode =
-    showManualPaper || isManualFilled ? 'past_paper' : 'general'
+  const markingMode = isPracticeMode
+    ? 'general'
+    : showManualPaper || isManualFilled
+      ? 'past_paper'
+      : 'general'
 
   const omniContext = result?.attempt_id
     ? ({
@@ -594,6 +614,21 @@ export default function MarkPage() {
         return
       }
 
+      if (isPracticeMode) {
+        if (!selectedSubject) {
+          setLoading(false)
+          setErrorMsg('Select a subject so we can apply the right mark scheme style.')
+          return
+        }
+        if (!hasPracticeQuestion) {
+          setLoading(false)
+          setErrorMsg(
+            'Add your question — type it or upload a photo — so we can mark with Cambridge conventions for that subject.'
+          )
+          return
+        }
+      }
+
       setMarkProgress({ percent: 5, stage: 'reading_work' })
       setMarkContext(null)
       setMarkStreamError(null)
@@ -625,13 +660,24 @@ export default function MarkPage() {
         formData.append('photo', pageFiles[0])
       }
       formData.append('upload_mode', uploadMode)
+      formData.append('mark_intent', markIntent)
       formData.append('stream', '1')
       if (compressedQuestion) {
         formData.append('question_photo', compressedQuestion)
       }
       if (questionTextInput.trim()) formData.append('question_text', questionTextInput)
 
-      if (selectedSubject && selectedYear !== '' && selectedSession && selectedComponent) {
+      if (isPracticeMode && selectedSubject) {
+        formData.append('practice_subject_code', selectedSubject)
+      }
+
+      if (
+        !isPracticeMode &&
+        selectedSubject &&
+        selectedYear !== '' &&
+        selectedSession &&
+        selectedComponent
+      ) {
         formData.append(
           'manual_paper_code',
           `${selectedSubject}/${selectedComponent}`
@@ -877,19 +923,38 @@ export default function MarkPage() {
               <div className="ec-card flex flex-wrap gap-2 p-2">
                 <button
                   type="button"
-                  onClick={() => setUploadMode('single_question')}
-                  className={`flex-1 rounded-xl border px-4 py-3 text-sm font-semibold transition-colors ${
-                    uploadMode === 'single_question'
+                  onClick={() => {
+                    setUploadMode('single_question')
+                    setMarkIntent('past_paper')
+                  }}
+                  className={`min-w-[7rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors ${
+                    uploadMode === 'single_question' && markIntent === 'past_paper'
                       ? 'ec-tab-active'
                       : 'border-transparent ec-text-secondary hover:text-[var(--ec-text-primary)]'
                   }`}
                 >
-                  Single question
+                  Past paper
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setUploadMode('single_question')
+                    setMarkIntent('practice_question')
+                    setShowOptional(true)
+                    setShowManualPaper(false)
+                  }}
+                  className={`min-w-[7rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors ${
+                    isPracticeMode
+                      ? 'ec-tab-active'
+                      : 'border-transparent ec-text-secondary hover:text-[var(--ec-text-primary)]'
+                  }`}
+                >
+                  My question
                 </button>
                 <button
                   type="button"
                   onClick={() => setUploadMode('whole_paper')}
-                  className={`flex-1 rounded-xl border px-4 py-3 text-sm font-semibold transition-colors ${
+                  className={`min-w-[7rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors ${
                     uploadMode === 'whole_paper'
                       ? 'ec-tab-active'
                       : 'border-transparent ec-text-secondary hover:text-[var(--ec-text-primary)]'
@@ -898,6 +963,13 @@ export default function MarkPage() {
                   Whole paper
                 </button>
               </div>
+              {isPracticeMode && (
+                <p className="mt-3 text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
+                  Homework or textbook questions — marked with the same Cambridge
+                  conventions (B1, M1, A1, bands) without needing a past paper in our
+                  database.
+                </p>
+              )}
             </section>
 
             {/* Subject context */}
@@ -1020,14 +1092,84 @@ export default function MarkPage() {
             )}
 
             {/* ====== STEP 2 ====== */}
+            {uploadMode === 'single_question' && (
             <section className="animate-entry stagger-2 space-y-4">
               <StepLabel
                 number={2}
-                label="Tell us about the question"
-                hint="Optional"
+                label={isPracticeMode ? 'Add your question' : 'Tell us about the question'}
+                hint={isPracticeMode ? 'Required' : 'Optional'}
               />
 
-              {/* Manual paper selection */}
+              {isPracticeMode && (
+                <div className="ec-card space-y-4 p-5 sm:p-6">
+                  <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
+                    Paste or photograph the question from your textbook, worksheet, or
+                    notes. We mark your answer using standard Cambridge{' '}
+                    {activeSubjectMeta?.label ?? 'A-Level'} criteria — not an official
+                    past-paper mark scheme from our library.
+                  </p>
+
+                  <div>
+                    <Label htmlFor="practice-question-photo" className="label-overline mb-2 inline-block">
+                      Photo of the question
+                    </Label>
+                    <label
+                      htmlFor="practice-question-photo"
+                      className="group block w-full cursor-pointer rounded-2xl border-2 border-dashed ec-border-color ec-bg-surface-raised p-5 text-center text-sm transition-all duration-200 hover:border-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)] hover:bg-[var(--ec-brand-muted)]"
+                    >
+                      <UploadCloud className="mx-auto mb-2 h-5 w-5 ec-text-secondary transition-colors group-hover:text-[var(--ec-brand)]" />
+                      <div className="font-medium text-[var(--ec-text-primary)]">
+                        {questionPhotoCompressing
+                          ? 'Preparing image…'
+                          : questionPhoto
+                            ? `${questionPhoto.name} · ${formatFileSize(questionPhoto.size)}`
+                            : 'Click to upload'}
+                      </div>
+                      <input
+                        id="practice-question-photo"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        onChange={(e) => {
+                          const raw = e.target.files?.[0]
+                          if (!raw) {
+                            setQuestionPhoto(null)
+                            return
+                          }
+                          setQuestionPhotoCompressing(true)
+                          void compressImage(raw)
+                            .then((compressed) => setQuestionPhoto(compressed))
+                            .finally(() => setQuestionPhotoCompressing(false))
+                        }}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  <div className="flex items-center gap-3 font-mono text-xs font-medium ec-text-secondary">
+                    <div className="h-px flex-1 bg-[var(--ec-border)]" />
+                    <span>OR</span>
+                    <div className="h-px flex-1 bg-[var(--ec-border)]" />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="practice-question-text" className="label-overline mb-2 inline-block">
+                      Type the question
+                    </Label>
+                    <textarea
+                      id="practice-question-text"
+                      value={questionTextInput}
+                      onChange={(e) => setQuestionTextInput(e.target.value)}
+                      rows={4}
+                      placeholder="e.g., Explain why the rate of photosynthesis increases with light intensity up to a plateau."
+                      className="ec-input ec-question-text"
+                      required
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Manual paper selection — past paper only */}
+              {!isPracticeMode && (
               <div>
                 <button
                   type="button"
@@ -1156,18 +1298,13 @@ export default function MarkPage() {
                           <div className="sm:col-span-2">
                             <Label htmlFor="manual-question" className="label-overline mb-2 inline-block">
                               Question number
-                              {uploadMode === 'whole_paper' && (
-                                <span className="ml-2 font-normal normal-case text-[var(--ec-text-secondary)]">
-                                  (not needed for whole paper)
-                                </span>
-                              )}
                             </Label>
                             <input
                               id="manual-question"
                               type="text"
                               value={questionNumber}
                               onChange={(e) => setQuestionNumber(e.target.value)}
-                              disabled={!selectedComponent || uploadMode === 'whole_paper'}
+                              disabled={!selectedComponent}
                               placeholder="e.g., 1, 2(a), 3(b)(i)"
                               className="ec-input"
                             />
@@ -1182,21 +1319,16 @@ export default function MarkPage() {
                           {selectedSubject}/{selectedComponent}
                         </strong>{' '}
                         — {selectedSession} {selectedYear}
-                        {uploadMode === 'single_question' && (
-                          <>
-                            , Question <strong>{questionNumber.trim()}</strong>
-                          </>
-                        )}
-                        {uploadMode === 'whole_paper' && (
-                          <span> (whole paper)</span>
-                        )}
+                        , Question <strong>{questionNumber.trim()}</strong>
                       </div>
                     )}
                   </div>
                 )}
               </div>
+              )}
 
-              {/* Question text/photo */}
+              {/* Question text/photo — optional for past paper */}
+              {!isPracticeMode && (
               <div>
                 <button
                   type="button"
@@ -1278,7 +1410,9 @@ export default function MarkPage() {
                   </div>
                 )}
               </div>
+              )}
             </section>
+            )}
 
             {errorMsg && (
               <div
@@ -1327,13 +1461,20 @@ export default function MarkPage() {
                   !answerPages.length ||
                   hasCompressingPages(answerPages) ||
                   questionPhotoCompressing ||
-                  submitBlocked
+                  submitBlocked ||
+                  (isPracticeMode &&
+                    (!selectedSubject || !hasPracticeQuestion))
                 }
-                pulse={answerPages.length > 0 && !loading}
+                pulse={
+                  answerPages.length > 0 &&
+                  !loading &&
+                  (!isPracticeMode ||
+                    (!!selectedSubject && hasPracticeQuestion))
+                }
                 leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
                 className="justify-center text-base"
               >
-                Mark my answer
+                {isPracticeMode ? 'Mark my question' : 'Mark my answer'}
               </Button>
               </>
             )}

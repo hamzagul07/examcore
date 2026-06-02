@@ -1,59 +1,54 @@
 # Launch checklist (MarkScheme)
 
-Use this after pushing to `main`. Items marked **you** need your GitHub/Vercel/Sentry accounts.
+Production: **https://markscheme.app**
 
-## Done automatically (agent / Supabase)
+## Done
 
-- [x] Contact migration schema on Supabase (`contact_messages`, email prefs on `user_profiles`)
-- [x] Migration recorded as `contact_notifications` in remote history
-- [x] GitHub Actions workflow (`.github/workflows/ci.yml`)
+- [x] Domain `markscheme.app` → Vercel
+- [x] `NEXT_PUBLIC_SITE_URL=https://markscheme.app`
+- [x] Health: `/api/health` → `status: ok`
+- [x] Sitemap / canonical URLs use `markscheme.app`
+- [x] GitHub Actions CI (typecheck, lint, build)
+- [x] Supabase `contact_notifications` migration
+- [x] Sentry DSN in Vercel (optional monitoring)
+- [x] Smoke: 55/58 core routes (auth SSR + redirect checks fixed in repo — redeploy to get 58/58)
 
-## After push — **you**
+## You should do next
+
+### Stripe (production billing)
+
+1. Stripe Dashboard → **Webhooks** → endpoint  
+   `https://markscheme.app/api/billing/webhook`
+2. Copy signing secret → Vercel `STRIPE_WEBHOOK_SECRET` (currently missing in health check)
+3. Redeploy
+
+### Supabase
+
+1. **Authentication → URL configuration**  
+   - `https://markscheme.app/auth/callback`  
+   - `http://localhost:3000/auth/callback`
+2. **Auth → Password security** → enable [leaked password protection](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection)
 
 ### GitHub
 
-1. **Install GitHub CLI** (optional): `winget install GitHub.cli`
-2. **Branch protection** (Settings → Branches → `main`):
-   - Require status check: **quality** (job name in CI workflow)
-   - Require PR before merging (recommended)
+- **Branch protection** on `main`: require CI job **quality**
 
-### Vercel
+### Optional
 
-1. Redeploy **Production** from latest `main`
-2. Add env vars (if missing):
-   - `NEXT_PUBLIC_SENTRY_DSN` / `SENTRY_DSN` — after creating Sentry project
-   - `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT` — optional, for source maps
-3. Confirm `NEXT_PUBLIC_SUPABASE_*` and AI keys match production Supabase
+- `RESEND_API_KEY` — email alerts when someone uses `/contact`
+- Uptime monitor on `GET https://markscheme.app/api/health`
+- Google Search Console → submit `https://markscheme.app/sitemap.xml`
 
-### Sentry (Student Pack)
+### Enforcement
 
-1. [education.github.com/pack](https://education.github.com/pack) → claim **Sentry**
-2. New project → **Next.js** → copy DSN into Vercel (above)
-3. Send a test error: temporarily add `throw new Error('sentry test')` on a page, deploy, revert
+Production uses `ENFORCEMENT_MODE=enforce` (paid limits active). For a softer launch use `warn` in Vercel, then flip to `enforce` after monitoring.
 
-### Stripe / domain (Student Pack)
-
-- Stripe fee waiver: pack offers page → connect existing Stripe account
-- Domain: point DNS to Vercel when ready; set `NEXT_PUBLIC_SITE_URL`
-
-### Supabase Auth URLs
-
-Add production + preview URLs:
-
-- `https://<project>.vercel.app/auth/callback`
-- `https://markscheme.app/auth/callback` (when live)
-- `http://localhost:3000/auth/callback`
-
-### Smoke test
+## Verify after each deploy
 
 ```bash
-BASE_URL=https://<your-vercel-url> pnpm smoke:preflight
+BASE_URL=https://markscheme.app pnpm smoke:preflight
 ```
 
-### Uptime
-
-Monitor `GET /api/health` on production URL.
-
-## Student Pack reference
+## Student Pack
 
 See [GITHUB_STUDENT_PACK.md](./GITHUB_STUDENT_PACK.md).

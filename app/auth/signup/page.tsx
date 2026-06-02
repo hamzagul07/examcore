@@ -67,7 +67,9 @@ function SignUpFormSkeleton() {
       <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
         Create your <span className="ec-text-gradient">account</span>
       </h1>
-      <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
+      <p className="leading-relaxed text-[var(--ec-text-secondary)]">
+        Continue with Google or use your email.
+      </p>
     </AuthShell>
   )
 }

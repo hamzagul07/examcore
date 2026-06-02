@@ -141,8 +141,8 @@ export function omniUsageMessage(summary: BillingSummaryClient): {
       : null
     return {
       text: reset
-        ? `You've used all ${o.cap} Omni messages this month (resets ${reset}). Upgrade or top up credits to continue.`
-        : `You've used all ${o.cap} Omni messages this month. Upgrade or top up credits to continue.`,
+        ? `You've used all ${o.cap} study chat messages this month (resets ${reset}). Upgrade or top up credits to continue.`
+        : `You've used all ${o.cap} study chat messages this month. Upgrade or top up credits to continue.`,
       tone: 'error',
       disableSubmit: true,
     }
@@ -150,7 +150,7 @@ export function omniUsageMessage(summary: BillingSummaryClient): {
 
   if (summary.enforcement_mode === 'warn' && o.remaining <= 0 && summary.credit_balance <= 0) {
     return {
-      text: `You've used all ${o.cap} Omni messages this month. Warning mode still allows chat — upgrade or top up soon.`,
+      text: `You've used all ${o.cap} study chat messages this month. Warning mode still allows chat — upgrade or top up soon.`,
       tone: 'warning',
       disableSubmit: false,
     }
@@ -158,7 +158,7 @@ export function omniUsageMessage(summary: BillingSummaryClient): {
 
   if (o.warning) {
     return {
-      text: `${o.used} of ${o.cap} Omni messages used this month — ${o.remaining} left.`,
+      text: `${o.used} of ${o.cap} study chat messages used this month — ${o.remaining} left.`,
       tone: 'warning',
       disableSubmit: false,
     }
@@ -166,7 +166,7 @@ export function omniUsageMessage(summary: BillingSummaryClient): {
 
   if (summary.enforcement_mode !== 'off') {
     return {
-      text: `${o.remaining} Omni messages left this month.`,
+      text: `${o.remaining} study chat messages left this month.`,
       tone: 'normal',
       disableSubmit: false,
     }

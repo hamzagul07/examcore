@@ -56,6 +56,25 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000). Marking works for guests (IP rate-limited); signed-in users get per-account quotas.
 
+## Deploy (Vercel)
+
+1. Import the repo on [Vercel](https://vercel.com) and add env vars from `.env.example` (at minimum the three Supabase keys + AI keys).
+2. **Before custom domain:** the app uses `https://<your-project>.vercel.app` via `VERCEL_URL` for sitemap/OG when `NEXT_PUBLIC_SITE_URL` is unset.
+3. **Supabase → Authentication → URL configuration:** add your Vercel URL(s) to **Redirect URLs**, e.g. `https://your-app.vercel.app/auth/callback` and `http://localhost:3000/auth/callback`.
+4. After **markscheme.app** DNS is live, set `NEXT_PUBLIC_SITE_URL=https://markscheme.app`, redeploy, and update Supabase redirect URLs + Stripe webhook endpoint.
+5. **Google sign-in** (optional): enable in Supabase + Google Cloud after the domain is ready — UI is already on `/auth/signin` and `/auth/signup`.
+
+Production checks:
+
+```bash
+pnpm build
+node scripts/smoke-production.mjs --preflight
+# against preview/prod:
+BASE_URL=https://your-app.vercel.app node scripts/smoke-production.mjs --preflight
+```
+
+Point uptime monitoring at `GET /api/health`.
+
 ## Key routes
 
 | Path | Description |
@@ -71,6 +90,9 @@ Open [http://localhost:3000](http://localhost:3000). Marking works for guests (I
 pnpm dev              # Development server
 pnpm build            # Production build
 pnpm lint             # ESLint
+pnpm typecheck        # TypeScript (omit .next/dev while dev server runs)
+pnpm smoke:production # HTTP smoke tests (dev server must be running)
+pnpm smoke:preflight  # Smoke + launch checklist
 pnpm sync-papers:a-level
 pnpm sync-papers:o-level
 pnpm generate-subject-papers-cache

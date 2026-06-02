@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { FAQ_CATEGORIES } from '@/lib/faq-data'
 import { FaqAccordion } from '@/components/marketing/FaqAccordion'
+import { FaqJsonLd } from '@/components/seo/FaqJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
 export const metadata = createPageMetadata({
@@ -9,11 +10,13 @@ export const metadata = createPageMetadata({
   description:
     'Frequently asked questions about MarkScheme: handwritten uploads, mark scheme accuracy, free tier limits, pricing, privacy, and Cambridge A-Level / O-Level revision.',
   path: '/faq',
+  keywords: ['Cambridge marking FAQ', 'AI marking A-Level', 'free past paper marking'],
 })
 
 export default function FaqPage() {
   return (
     <MarketingPageShell>
+      <FaqJsonLd />
       <MarketingHero
         label="FAQ"
         title={

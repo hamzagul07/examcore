@@ -20,7 +20,7 @@ export default function Icon() {
           color: 'white',
         }}
       >
-        E
+        M
       </div>
     ),
     { ...size }

@@ -14,7 +14,10 @@ import {
   ErrorBox,
   SubmitButton,
 } from '@/components/AuthFormBits'
-import { isSafeNextPath, sanitizeNextPath } from '@/lib/auth-redirect'
+import { buildSignUpHref, sanitizeNextPath } from '@/lib/auth-redirect'
+import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
+import { GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
+import { AuthDivider } from '@/components/auth/AuthDivider'
 
 const AUTH_CALLBACK_ERRORS: Record<string, string> = {
   missing_code: 'That sign-in link is invalid or expired. Request a new one.',
@@ -68,11 +71,7 @@ function SignInForm() {
   }, [searchParams])
 
   function callbackUrl(): string {
-    const origin = window.location.origin
-    if (isSafeNextPath(nextParam)) {
-      return `${origin}/auth/callback?next=${encodeURIComponent(nextParam)}`
-    }
-    return `${origin}/auth/callback`
+    return buildAuthCallbackUrl(window.location.origin, nextParam)
   }
 
   async function handleMagicLink(e: React.FormEvent) {
@@ -126,9 +125,7 @@ function SignInForm() {
     router.refresh()
   }
 
-  const signupHref = isSafeNextPath(nextParam)
-    ? `/auth/signup?redirect=${encodeURIComponent(nextParam)}`
-    : '/auth/signup'
+  const signupHref = buildSignUpHref(nextParam)
 
   return (
     <AuthShell>
@@ -139,8 +136,17 @@ function SignInForm() {
             Sign in to <span className="ec-text-gradient">MarkScheme</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Pick how you&apos;d like to sign in.
+            Continue with Google or use your email.
           </p>
+
+          <GoogleAuthButton
+            label="Continue with Google"
+            redirectPath={nextParam}
+            disabled={loading}
+            onError={setErrorMsg}
+          />
+
+          <AuthDivider label="or use email" />
 
           <MethodTabs method={method} setMethod={setMethod} setError={setErrorMsg} />
 

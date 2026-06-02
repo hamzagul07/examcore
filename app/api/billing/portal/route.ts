@@ -4,6 +4,7 @@ import { createServiceClient } from '@/lib/supabase/service'
 import { stripe } from '@/lib/stripe/server'
 import { getOrCreateStripeCustomer } from '@/lib/billing/customer'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
+import { resolveSiteUrl } from '@/lib/site-url'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -11,11 +12,7 @@ export const dynamic = 'force-dynamic'
 type Body = { return_url?: string }
 
 function appOrigin(req: NextRequest): string {
-  return (
-    req.headers.get('origin') ||
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    new URL(req.url).origin
-  )
+  return req.headers.get('origin') || resolveSiteUrl() || new URL(req.url).origin
 }
 
 export async function POST(req: NextRequest) {

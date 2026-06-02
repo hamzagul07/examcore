@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { RotateCcw, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
+import { STORAGE_KEYS, writeClientStorage } from '@/lib/client-storage'
 
 type Props = {
   /** Subject code, e.g. "9709" */
@@ -33,16 +34,13 @@ export function MarkAgainButton({
     if (typeof window !== 'undefined') {
       try {
         if (subject && year && season && component) {
-          window.localStorage.setItem(
-            'examcore_last_selection',
+          writeClientStorage(
+            STORAGE_KEYS.lastSelection,
             JSON.stringify({ subject, year, session: season, component })
           )
         }
         if (questionNumber) {
-          window.localStorage.setItem(
-            'examcore_pending_question',
-            questionNumber
-          )
+          writeClientStorage(STORAGE_KEYS.pendingQuestion, questionNumber)
         }
       } catch {
         // localStorage may be unavailable; navigation still works without prefill.

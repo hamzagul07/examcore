@@ -60,7 +60,7 @@ export function CreditChip() {
   const tierLabel = TIER_LABELS[summary.tier] ?? summary.tier
   const qLeft = Math.max(0, summary.questions.remaining)
   const oLeft = Math.max(0, summary.omni.remaining)
-  const chipLabel = `${qLeft} questions · ${oLeft} Omni`
+  const chipLabel = `${qLeft} questions · ${oLeft} chat`
   const resetDate = summary.period_resets_at
     ? new Date(summary.period_resets_at).toLocaleDateString(undefined, {
         month: 'short',
@@ -109,11 +109,11 @@ export function CreditChip() {
               {resetDate ? ` · resets ${resetDate}` : ''}
             </p>
             <p className="mt-1 text-[var(--ec-text-secondary)]">
-              {oLeft} of {summary.omni.cap} Omni messages left
+              {oLeft} of {summary.omni.cap} study chat messages left
             </p>
             {summary.credit_balance > 0 && (
               <p className="mt-1 text-[var(--ec-brand)]">
-                {summary.credit_balance} credits (questions or Omni)
+                {summary.credit_balance} credits (questions or study chat)
               </p>
             )}
           {summary.founding_member && (

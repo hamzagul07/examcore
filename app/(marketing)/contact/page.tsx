@@ -2,9 +2,9 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { ContactForm } from './contact-form'
 
 export const metadata = createPageMetadata({
-  title: 'Contact',
+  title: 'Contact MarkScheme — support & feedback',
   description:
-    'Get in touch with the MarkScheme team — feedback, questions, and support.',
+    'Contact the MarkScheme team for Cambridge past-paper marking support, product feedback, billing questions, or partnership enquiries.',
   path: '/contact',
 })
 

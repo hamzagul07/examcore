@@ -11,12 +11,25 @@ export function SiteJsonLd() {
     '@context': 'https://schema.org',
     '@graph': [
       {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: SITE_NAME,
+        url: SITE_URL,
+        description: DEFAULT_SITE_DESCRIPTION,
+      },
+      {
         '@type': 'WebSite',
         '@id': `${SITE_URL}/#website`,
         url: SITE_URL,
         name: SITE_NAME,
         description: DEFAULT_SITE_DESCRIPTION,
         inLanguage: 'en-GB',
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        potentialAction: {
+          '@type': 'ReadAction',
+          target: `${SITE_URL}/mark`,
+          name: 'Mark a Cambridge past paper',
+        },
       },
       {
         '@type': 'SoftwareApplication',

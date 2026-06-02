@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Menu, X, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeSwitcher } from '@/components/design-system/ThemeSwitcher'
+import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
 import { MARKETING_NAV } from '@/lib/site-config'
 import { useOmniAI } from '@/lib/omni-ai/context'
 
@@ -73,7 +74,7 @@ export function MarketingHeader() {
               className="hidden items-center gap-2 rounded-xl border border-[var(--ec-border)] px-3 py-2 text-sm font-medium ec-text-secondary transition-colors hover:bg-[var(--ec-surface-raised)] lg:inline-flex"
             >
               <Sparkles className="h-4 w-4 ec-text-brand" />
-              Ask Omni
+              Ask MarkScheme
             </button>
             <Link
               href="/auth/signin"
@@ -82,10 +83,10 @@ export function MarketingHeader() {
               Sign in
             </Link>
             <Link
-              href="/auth/signup"
+              href="/mark"
               className="ec-btn-primary hidden px-[18px] py-2 text-sm lg:inline-flex"
             >
-              Get started free
+              Mark a paper
             </Link>
             <button
               type="button"
@@ -146,10 +147,16 @@ export function MarketingHeader() {
                   className="mt-2 flex min-h-[48px] w-full items-center gap-2 rounded-xl px-4 text-base font-medium ec-text-primary transition-colors hover:bg-[var(--ec-surface-raised)]"
                 >
                   <Sparkles className="h-4 w-4 ec-text-brand" />
-                  Ask Omni
+                  Ask MarkScheme
                 </button>
               </nav>
               <div className="space-y-3 border-t ec-border-color p-4">
+                <Link
+                  href="/mark"
+                  className="ec-btn-primary flex min-h-[48px] w-full justify-center text-base"
+                >
+                  Mark a paper
+                </Link>
                 <Link
                   href="/auth/signin"
                   className="flex min-h-[48px] items-center justify-center rounded-xl border border-[var(--ec-border)] text-base font-semibold ec-text-primary"
@@ -157,10 +164,10 @@ export function MarketingHeader() {
                   Sign in
                 </Link>
                 <Link
-                  href="/auth/signup"
-                  className="ec-btn-primary flex min-h-[48px] w-full justify-center text-base"
+                  href={buildSignUpHref(MARKETING_SIGNUP_DEST)}
+                  className="flex min-h-[48px] items-center justify-center text-base font-medium ec-text-secondary"
                 >
-                  Get started free
+                  Create free account
                 </Link>
               </div>
             </motion.div>

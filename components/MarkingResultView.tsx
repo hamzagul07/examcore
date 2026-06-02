@@ -12,6 +12,7 @@ import { Progress } from '@/components/ui/Progress'
 import type { SyllabusCode } from '@/lib/syllabus'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import type { LorBandResult } from '@/lib/marking/types'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 import {
   ERROR_LABELS,
   normalizeErrorClassification,
@@ -59,7 +60,7 @@ export function MarkingResultView({
   attemptId,
 }: {
   result: MarkingResultData
-  /** When set, shows "Ask Omni about this mark" and enables full attempt context in Omni. */
+  /** When set, shows "Ask MarkScheme about this mark" and enables full attempt context in study chat. */
   attemptId?: string | null
 }) {
   const [showOCR, setShowOCR] = useState(false)
@@ -172,10 +173,10 @@ export function MarkingResultView({
               We marked your answer using general A-Level criteria. Think we
               should add this paper? Email{' '}
               <a
-                href="mailto:hello@markscheme.app"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="font-medium underline"
               >
-                hello@markscheme.app
+                {CONTACT_EMAIL}
               </a>
               .
             </p>

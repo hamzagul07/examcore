@@ -4,9 +4,9 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
 export const metadata = createPageMetadata({
-  title: 'About',
+  title: 'About MarkScheme — Cambridge past paper marking',
   description:
-    'MarkScheme was built by an A-Level student who wanted faster, honest marking feedback — trained on real Cambridge mark schemes.',
+    'Built by an A-Level student for students: MarkScheme marks handwritten Cambridge past papers against real mark schemes — faster than waiting weeks for school feedback.',
   path: '/about',
 })
 
@@ -21,7 +21,7 @@ export default function AboutPage() {
             <span className="ec-text-gradient">when you need it</span>
           </>
         }
-        lead="MarkScheme exists so students revising alone can get examiner-style feedback without waiting weeks."
+        lead="Cambridge past-paper revision with real mark schemes — mark-by-mark feedback on your handwriting, not a generic AI grade."
       />
 
       <MarketingSection className="!pt-0">
@@ -73,7 +73,7 @@ export default function AboutPage() {
               {[
                 { title: 'Honest claims', body: 'We say what the product does and what it doesn\'t — including AI limitations.' },
                 { title: 'Students first', body: 'Built for revision, priced for students, not tutor-agency money.' },
-                { title: 'No fake proof', body: 'We don\'t invent user counts or testimonials. Early access is real.' },
+                { title: 'No fake proof', body: 'We don\'t invent user counts or testimonials. The free tier is real — try it on a past paper today.' },
               ].map((v) => (
                 <div key={v.title} className="ec-card p-5">
                   <h3 className="mb-2 font-bold text-[var(--ec-text-primary)]">{v.title}</h3>
@@ -88,8 +88,8 @@ export default function AboutPage() {
               Have feedback?
             </h2>
             <p className="landing-lead mb-6">
-              Early access means we&apos;re still learning. Tell us what works and
-              what doesn&apos;t.
+              We&apos;re still learning from real students. Tell us what works on
+              your past papers and what we should improve.
             </p>
             <Link href="/contact" className="ec-btn-primary inline-flex min-h-[48px]">
               Get in touch <ArrowRight className="h-5 w-5" />

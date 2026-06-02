@@ -111,6 +111,9 @@ async function main() {
       if (body.enforcement_mode) {
         console.log(`    enforcement_mode: ${body.enforcement_mode}`)
       }
+      if (body.site_url) {
+        console.log(`    site_url: ${body.site_url}`)
+      }
     }
     record(healthOk, 'GET /api/health', `status ${health.status}`)
   } catch (err) {
@@ -124,9 +127,16 @@ async function main() {
     '/join',
     '/how-it-works',
     '/auth/signin',
+    '/auth/signup',
     '/contact',
+    '/faq',
+    '/about',
+    '/blog',
+    '/terms',
+    '/privacy',
     '/robots.txt',
     '/sitemap.xml',
+    '/feed.xml',
     '/manifest.webmanifest',
   ]
   for (const path of publicRoutes) {
@@ -136,6 +146,144 @@ async function main() {
     } catch (err) {
       record(false, `GET ${path}`, err instanceof Error ? err.message : String(err))
     }
+  }
+
+  try {
+    const res = await fetch(`${base}/sitemap.xml`)
+    const text = await res.text()
+    record(
+      res.ok && text.includes('<loc>') && text.includes('/mark'),
+      'GET /sitemap.xml (lists /mark)',
+      `status ${res.status}`
+    )
+    record(
+      res.ok && text.includes('/auth/signin'),
+      'GET /sitemap.xml (lists /auth/signin)',
+      `status ${res.status}`
+    )
+    const blogCount = (text.match(/\/blog\//g) || []).length
+    record(
+      res.ok && blogCount >= 10,
+      `GET /sitemap.xml (blog posts ≥10, found ${blogCount})`,
+      `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /sitemap.xml (content)', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const res = await fetch(`${base}/robots.txt`)
+    const text = await res.text()
+    const blocksWholeAuthTree = /^Disallow: \/auth\/\s*$/m.test(text)
+    record(
+      res.ok && !blocksWholeAuthTree,
+      'GET /robots.txt (sign-in pages crawlable)',
+      blocksWholeAuthTree ? 'still disallows /auth/' : `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /robots.txt (content)', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const res = await fetch(`${base}/auth/signin`)
+    const html = await res.text()
+    record(
+      res.ok && html.includes('Continue with Google'),
+      'GET /auth/signin (Google OAuth button)',
+      `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /auth/signin (Google OAuth button)', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const res = await fetch(`${base}/auth/signup`)
+    const html = await res.text()
+    record(
+      res.ok && html.includes('Sign up with Google'),
+      'GET /auth/signup (Google OAuth button)',
+      `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /auth/signup (Google OAuth button)', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const joinPath = '/join/TESTCODE'
+    const res = await fetch(
+      `${base}/auth/signup?redirect=${encodeURIComponent(joinPath)}`
+    )
+    const html = await res.text()
+    record(
+      res.ok && html.includes(encodeURIComponent(joinPath)),
+      'GET /auth/signup?redirect= (sign-in link preserves destination)',
+      `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /auth/signup?redirect=', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const faqRes = await fetch(`${base}/faq`)
+    const faqHtml = await faqRes.text()
+    record(
+      faqRes.ok && faqHtml.includes('FAQPage'),
+      'GET /faq (FAQ JSON-LD)',
+      `status ${faqRes.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /faq (FAQ JSON-LD)', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const res = await fetch(`${base}/signup`, { redirect: 'manual' })
+    const location = res.headers.get('location') || ''
+    record(
+      (res.status === 308 || res.status === 301) &&
+        location.includes('/auth/signup'),
+      'GET /signup (redirect → sign up)',
+      `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /signup redirect', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const res = await fetch(`${base}/login`, { redirect: 'manual' })
+    const location = res.headers.get('location') || ''
+    record(
+      (res.status === 308 || res.status === 301) &&
+        location.includes('/auth/signin'),
+      'GET /login (redirect → sign in)',
+      `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /login redirect', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const res = await fetch(`${base}/examcore`, { redirect: 'manual' })
+    const location = res.headers.get('location') || ''
+    record(
+      (res.status === 308 || res.status === 301) && location.endsWith('/'),
+      'GET /examcore (redirect → home)',
+      `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /examcore redirect', err instanceof Error ? err.message : String(err))
+  }
+
+  try {
+    const res = await fetch(`${base}/blog/why-i-built-examcore`, { redirect: 'manual' })
+    const location = res.headers.get('location') || ''
+    record(
+      (res.status === 308 || res.status === 301) &&
+        location.includes('/blog/why-i-built-markscheme'),
+      'GET /blog/why-i-built-examcore (redirect → markscheme slug)',
+      `status ${res.status}`
+    )
+  } catch (err) {
+    record(false, 'GET /blog/why-i-built-examcore redirect', err instanceof Error ? err.message : String(err))
   }
 
   try {
@@ -362,14 +510,18 @@ async function main() {
 
   if (process.argv.includes('--preflight') && failed === 0) {
     console.log(`
-Launch checklist (passes 15–86 complete):
+Launch checklist (MarkScheme rebrand + passes 15–97):
   ENV
-  • NEXT_PUBLIC_SITE_URL=https://markscheme.app
+  • Vercel: Supabase + AI keys; optional NEXT_PUBLIC_SITE_URL until markscheme.app DNS
+  • After domain: NEXT_PUBLIC_SITE_URL=https://markscheme.app
   • ENFORCEMENT_MODE=warn → smoke caps → enforce
   • ADMIN_EMAILS set for /admin access
+  • RESEND_API_KEY for contact form admin alerts (optional)
   • Stripe live keys + webhook pointing at /api/billing/webhook
 
   SUPABASE (Dashboard)
+  • Redirect URLs: production + localhost + Vercel preview /auth/callback
+  • Google provider (after domain + Google Cloud OAuth client)
   • Leaked password protection enabled
   • Custom SMTP for auth emails
   • PITR backups confirmed

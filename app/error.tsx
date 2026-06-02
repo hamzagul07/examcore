@@ -20,18 +20,18 @@ export default function Error({
         <p className="ec-label-tech ec-score-low mb-4 justify-center">Something went wrong</p>
         <h1 className="text-headline mb-3">We hit a snag</h1>
         <p className="text-body mb-8">
-          An unexpected error occurred. You can try again, or return to a safe
-          page while we recover.
+          An unexpected error occurred. Try again, mark a question, or head home
+          while we recover.
         </p>
         <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
           <button type="button" onClick={reset} className="ec-btn-primary justify-center px-7 py-3.5">
             Try again
           </button>
-          <Link href="/" className="ec-btn-secondary justify-center px-7 py-3.5">
-            Go home
+          <Link href="/mark" className="ec-btn-secondary justify-center px-7 py-3.5">
+            Mark a paper
           </Link>
-          <Link href="/dashboard" className="ec-btn-ghost justify-center px-7 py-3.5">
-            Dashboard
+          <Link href="/" className="ec-btn-ghost justify-center px-7 py-3.5">
+            Go home
           </Link>
         </div>
       </div>

@@ -16,6 +16,45 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/blog/why-i-built-examcore',
+        destination: '/blog/why-i-built-markscheme',
+        permanent: true,
+      },
+      {
+        source: '/examcore',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/examcore/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
+      {
+        source: '/login',
+        destination: '/auth/signin',
+        permanent: true,
+      },
+      {
+        source: '/signup',
+        destination: '/auth/signup',
+        permanent: true,
+      },
+      {
+        source: '/sign-in',
+        destination: '/auth/signin',
+        permanent: true,
+      },
+      {
+        source: '/sign-up',
+        destination: '/auth/signup',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {

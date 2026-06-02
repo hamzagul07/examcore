@@ -15,7 +15,10 @@ import {
   SubmitButton,
 } from '@/components/AuthFormBits'
 
-import { isSafeNextPath } from '@/lib/auth-redirect'
+import { buildSignInHref, isSafeNextPath } from '@/lib/auth-redirect'
+import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
+import { GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
+import { AuthDivider } from '@/components/auth/AuthDivider'
 
 /**
  * Map a Command Bar `?intent=` query param to a post-signup destination.
@@ -84,6 +87,14 @@ function SignUpForm() {
     [intent, topic, paper, redirect]
   )
 
+  const signInHref = useMemo(
+    () =>
+      buildSignInHref(
+        intentDestination !== '/onboarding' ? intentDestination : null
+      ),
+    [intentDestination]
+  )
+
   const [method, setMethod] = useState<AuthMethod>('magic')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -110,10 +121,10 @@ function SignUpForm() {
     // Pipe the Command Bar `intent` through the magic-link callback so that
     // after the user clicks the email we can route them straight to /mark,
     // /dashboard, etc. instead of the generic onboarding step.
-    const callbackUrl =
-      intentDestination !== '/onboarding'
-        ? `${window.location.origin}/auth/callback?next=${encodeURIComponent(intentDestination)}`
-        : `${window.location.origin}/auth/callback`
+    const callbackUrl = buildAuthCallbackUrl(
+      window.location.origin,
+      intentDestination !== '/onboarding' ? intentDestination : null
+    )
 
     const { error } = await supabase.auth.signInWithOtp({
       email,
@@ -187,7 +198,7 @@ function SignUpForm() {
   }
 
   return (
-    <AuthShell backLabel="Back to sign in" backHref="/auth/signin">
+    <AuthShell backLabel="Back to sign in" backHref={signInHref}>
       {!sent ? (
         <>
           <p className="ec-label-tech mb-3">GET STARTED</p>
@@ -195,8 +206,19 @@ function SignUpForm() {
             Create your <span className="ec-text-gradient">account</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Pick how you&apos;d like to sign up.
+            Continue with Google or use your email.
           </p>
+
+          <GoogleAuthButton
+            label="Sign up with Google"
+            redirectPath={
+              intentDestination !== '/onboarding' ? intentDestination : null
+            }
+            disabled={loading}
+            onError={setErrorMsg}
+          />
+
+          <AuthDivider label="or use email" />
 
           <MethodTabs method={method} setMethod={setMethod} setError={setErrorMsg} />
 
@@ -300,10 +322,7 @@ function SignUpForm() {
 
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Already have an account?{' '}
-            <Link
-              href="/auth/signin"
-              className="ec-link"
-            >
+            <Link href={signInHref} className="ec-link">
               Sign in
             </Link>
           </p>

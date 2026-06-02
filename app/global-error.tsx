@@ -67,6 +67,18 @@ export default function GlobalError({
                 Try again
               </button>
               <Link
+                href="/mark"
+                style={{
+                  padding: '0.875rem 1.5rem',
+                  borderRadius: '0.75rem',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  color: '#f5f5f5',
+                  textDecoration: 'none',
+                }}
+              >
+                Mark a paper
+              </Link>
+              <Link
                 href="/"
                 style={{
                   padding: '0.875rem 1.5rem',

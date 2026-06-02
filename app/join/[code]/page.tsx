@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { BookOpen, Users, Check, AlertCircle } from 'lucide-react'
+import { buildSignInHref, buildSignUpHref } from '@/lib/auth-redirect'
 
 interface ClassroomPreview {
   name: string
@@ -125,6 +126,8 @@ export default function JoinClassroomPage() {
   }
 
   const joinPath = `/join/${code}`
+  const signUpHref = buildSignUpHref(joinPath)
+  const signInHref = buildSignInHref(joinPath)
 
   return (
     <div className="ec-card p-8 text-center">
@@ -152,13 +155,13 @@ export default function JoinClassroomPage() {
       {needsAuth ? (
         <div className="space-y-3">
           <a
-            href={`/auth/signup?redirect=${encodeURIComponent(joinPath)}`}
+            href={signUpHref}
             className="ec-btn-primary inline-flex w-full min-h-[48px] items-center justify-center gap-2"
           >
             Sign up to join
           </a>
           <a
-            href={`/auth/signin?next=${encodeURIComponent(joinPath)}`}
+            href={signInHref}
             className="ec-btn-secondary inline-flex w-full min-h-[48px] items-center justify-center"
           >
             Already have an account? Sign in

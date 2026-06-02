@@ -3,8 +3,9 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { JoinPageChrome } from '@/components/join/JoinPageChrome'
 
 export const metadata = createPageMetadata({
-  title: 'Join a classroom',
-  description: 'Accept a teacher invite and join your class on MarkScheme.',
+  title: 'Join a classroom on MarkScheme',
+  description:
+    'Accept your teacher\'s invite code and join a MarkScheme classroom for Cambridge past-paper marking and class progress.',
   path: '/join',
 })
 

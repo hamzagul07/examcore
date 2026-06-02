@@ -36,7 +36,7 @@ export function ApproachingLimitBanner({
   const body =
     focus === 'omni' && omniCap != null && omniUsed != null ? (
       <>
-        You&apos;ve used {omniUsed} of {omniCap} Omni messages this month
+        You&apos;ve used {omniUsed} of {omniCap} study chat messages this month
         {omniLeft != null && omniLeft > 0 ? ` — ${omniLeft} left` : ' — at your cap'}.{' '}
       </>
     ) : focus === 'questions' ? (
@@ -49,7 +49,7 @@ export function ApproachingLimitBanner({
         You&apos;ve used {used} of {cap} questions this month
         {left > 0 ? ` — ${left} left` : ' — at your cap'}.
         {omniLeft != null && (
-          <> {omniLeft} Omni messages left.</>
+          <> {omniLeft} study chat messages left.</>
         )}{' '}
       </>
     )

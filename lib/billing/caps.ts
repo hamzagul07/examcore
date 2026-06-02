@@ -11,7 +11,7 @@ export const TIER_MONTHLY_CAPS: Record<SubscriptionTier, number> = {
   mastery: 400,
 }
 
-/** Monthly in-app Omni AI message caps per tier (landing demo chat is not metered). */
+/** Monthly in-app study chat message caps per tier (landing demo chat is not metered). */
 export const TIER_OMNI_CAPS: Record<SubscriptionTier, number> = {
   free: 10,
   student: 100,

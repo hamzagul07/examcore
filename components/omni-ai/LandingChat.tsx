@@ -43,7 +43,7 @@ export function LandingChat() {
         >
           <Sparkles className="h-5 w-5 ec-text-brand transition-transform group-hover:rotate-12" />
           <span className="flex-1 text-left text-[var(--ec-text-secondary)] transition-colors group-hover:text-[var(--ec-text-primary)]">
-            Ask Omni-AI anything...
+            Ask MarkScheme about Cambridge revision…
           </span>
           <kbd className="hidden items-center gap-1 rounded border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-2 py-1 font-mono text-xs text-[var(--ec-text-secondary)] md:flex">
             <span>⌘</span>

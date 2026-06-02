@@ -2,7 +2,7 @@
 
 ## Overview
 
-ExamCore uses a **three-tier mark scheme pipeline** unchanged from Sprint 27:
+MarkScheme uses a **three-tier mark scheme pipeline** unchanged from Sprint 27:
 
 1. **Model B** — DB lookup (`mark_schemes` table)
 2. **Model A** — Lazy PDF extraction (Gemini reads `qp_` + `ms_` from Storage, caches to DB)

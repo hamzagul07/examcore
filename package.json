@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "sync-papers": "node scripts/sync-bestexamhelp-papers.mjs",
     "sync-papers:a-level": "node scripts/sync-bestexamhelp-papers.mjs --board a-level",
     "sync-papers:o-level": "node scripts/sync-bestexamhelp-papers.mjs --board o-level",

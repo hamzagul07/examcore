@@ -10,6 +10,7 @@ import { creditsForProduct, type ProductKey } from '@/lib/billing/pricing'
 import type { SubscriptionTier } from '@/lib/database.types'
 import type { PricingDisplay } from '@/lib/billing/display-prices'
 import { SUPPORTED_CURRENCIES } from '@/lib/billing/region-cookie'
+import { buildSignUpHref } from '@/lib/auth-redirect'
 import { stripePortalButtonLabel, useStripePortal } from '@/lib/hooks/useStripePortal'
 
 type Props = {
@@ -35,7 +36,7 @@ const TIERS: TierDef[] = [
   {
     id: 'free',
     name: 'Free',
-    tagline: 'Try any subject — see Examiner\'s Ink and Omni on real work.',
+    tagline: 'Try any subject — Examiner\'s Ink and study chat on real past papers.',
     product: null,
   },
   {
@@ -65,14 +66,14 @@ const FREE_FEATURES = [
   'Single-question marking',
   "Examiner's Ink overlay",
   'Basic feedback + per-mark reasoning',
-  'In-app Omni AI (monthly cap)',
+  'Ask MarkScheme study chat (monthly cap)',
 ]
 
 const PAID_FEATURES = [
   'Everything in Free',
   'Whole-paper marking',
   'Mastery tracking dashboard',
-  'Higher Omni message caps',
+  'Higher study chat caps',
   'Priority marking queue',
 ]
 
@@ -88,7 +89,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
 
   async function checkout(product: string, billingPeriod?: Period) {
     if (!signedIn) {
-      router.push(`/auth/signup?next=/pricing`)
+      router.push(buildSignUpHref('/pricing'))
       return
     }
     setBusy(product)
@@ -257,14 +258,17 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
                     <strong>{qCap}</strong> questions
                   </p>
                   <p className="text-[var(--ec-text-secondary)]">
-                    <strong className="text-[var(--ec-text-primary)]">{oCap}</strong> Omni messages
+                    <strong className="text-[var(--ec-text-primary)]">{oCap}</strong> study chat messages
                   </p>
                 </div>
 
                 <div className="mt-4 md:mt-0 md:text-right">
                   {tier.product === null ? (
                     !signedIn ? (
-                      <Link href="/auth/signup" className="ec-btn-secondary inline-flex w-full justify-center md:w-auto">
+                      <Link
+                        href={buildSignUpHref('/pricing')}
+                        className="ec-btn-secondary inline-flex w-full justify-center md:w-auto"
+                      >
                         Get started
                       </Link>
                     ) : isCurrent ? (
@@ -352,7 +356,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
         <div className="mb-6">
           <h2 className="text-headline text-[var(--ec-text-primary)]">Credit top-ups</h2>
           <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
-            Top up anytime. One credit = one question mark or one Omni message. Credits never
+            Top up anytime. One credit = one question mark or one study chat message. Credits never
             expire.
           </p>
         </div>

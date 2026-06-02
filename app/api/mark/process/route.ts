@@ -221,7 +221,8 @@ export async function POST(request: NextRequest) {
                 message.includes('handwriting') ||
                 message.includes('past paper question') ||
                 message.includes('select a subject') ||
-                message.includes('Add the question')
+                message.includes('Add the question') ||
+                message.includes('could not read the question')
               send({
                 type: 'error',
                 error: isOverload
@@ -263,7 +264,8 @@ export async function POST(request: NextRequest) {
           message.includes('handwriting') ||
           message.includes('past paper question') ||
           message.includes('select a subject') ||
-          message.includes('Add the question')
+          message.includes('Add the question') ||
+          message.includes('could not read the question')
         ) {
           return clientError(message)
         }

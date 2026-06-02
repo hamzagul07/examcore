@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ChevronRight, Target, BarChart3 } from 'lucide-react'
+import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { MarkingResultData } from '@/components/MarkingResultView'
 
 type Props = {
@@ -34,9 +35,9 @@ export function PostMarkNextSteps({
                   : 'Keep the momentum going'}
               </p>
               {studyNext && (
-                <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
-                  {studyNext}
-                </p>
+                <div className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
+                  <RichTextRenderer text={studyNext} />
+                </div>
               )}
             </div>
           </div>

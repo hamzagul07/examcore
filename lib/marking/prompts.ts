@@ -444,6 +444,49 @@ Rules:
 - Examples of valid codes: 9701/22 (Chemistry), 9702/11 (Physics), 9709/12 (Math), 9489/21 (History).`
 }
 
+export function buildPracticeScriptPrompt(
+  ocrText: string,
+  userQuestionText: string,
+  subjectName: string,
+  subjectCode: string
+): string {
+  const userBlock = userQuestionText.trim()
+    ? `\nQUESTION PROVIDED BY STUDENT (may apply to one or all parts):\n${userQuestionText.trim()}\n`
+    : ''
+
+  return `You are analyzing a student's ${subjectName} (${subjectCode}) homework or practice script.
+
+TRANSCRIBED PAGES (questions + answers may both appear):
+${ocrText}
+${userBlock}
+
+TASKS:
+1. Count how many distinct questions the student answered (e.g. "1", "2(a)", "3(b)(i)").
+2. For each question, extract:
+   - question_number (label as written, or assign 1, 2, 3…)
+   - question_text (wording of the question — from the script, student input above, or a short clear paraphrase)
+   - answer_text (only that question's working/answer)
+3. Set question_visible_on_answer true if the question wording appears on the uploaded pages (not only the answer).
+
+Return ONLY JSON:
+{
+  "question_visible_on_answer": true,
+  "questions": [
+    {
+      "question_number": "1",
+      "question_text": "Full question wording…",
+      "answer_text": "Student's answer for this question only"
+    }
+  ]
+}
+
+Rules:
+- If there is only one question, still return one entry in questions.
+- question_text must be at least one complete sentence when possible.
+- Do not merge separate numbered questions into one entry.
+- If you cannot split reliably, return a single question with the full script as answer_text.`
+}
+
 export function buildWholePaperSegmentPrompt(ocrText: string): string {
   return `Segment this student's handwritten exam paper into individual question answers.
 

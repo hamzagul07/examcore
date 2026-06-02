@@ -11,6 +11,13 @@ import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
 import { MARKETING_NAV } from '@/lib/site-config'
 import { useOmniAI } from '@/lib/omni-ai/context'
 
+/** Center nav — CTA is separate so "Mark a paper" is not duplicated. */
+const DESKTOP_NAV = MARKETING_NAV.filter((item) => item.href !== '/mark')
+
+function isNavActive(pathname: string, href: string) {
+  return pathname === href || (href !== '/' && pathname.startsWith(href + '/'))
+}
+
 export function MarketingHeader() {
   const pathname = usePathname()
   const { setIsOpen } = useOmniAI()
@@ -38,60 +45,63 @@ export function MarketingHeader() {
   return (
     <>
       <header
-        className="sticky top-0 z-50 border-b transition-[background,backdrop-filter] duration-300"
-        style={{
-          borderColor: 'var(--ec-border)',
-          background: scrolled
-            ? 'color-mix(in srgb, var(--ec-canvas) 92%, transparent)'
-            : 'color-mix(in srgb, var(--ec-canvas) 70%, transparent)',
-          backdropFilter: scrolled ? 'blur(16px)' : 'blur(8px)',
-        }}
+        className={`ec-marketing-header sticky top-0 z-50 border-b transition-[background,box-shadow,backdrop-filter] duration-300 ${
+          scrolled ? 'ec-marketing-header--scrolled' : ''
+        }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <div className="ec-marketing-header__inner mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5 sm:px-6 lg:gap-4">
           <WordmarkLink href="/" size="sm" />
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
-            {MARKETING_NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[var(--ec-surface-raised)] ${
-                  pathname === item.href || pathname.startsWith(item.href + '/')
-                    ? 'ec-text-primary'
-                    : 'ec-text-secondary'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <nav
+            className="ec-marketing-header__nav hidden min-w-0 flex-1 items-center justify-center lg:flex"
+            aria-label="Main"
+          >
+            <ul className="flex list-none items-center gap-0.5 p-0 m-0">
+              {DESKTOP_NAV.map((item) => {
+                const active = isNavActive(pathname, item.href)
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={`ec-marketing-header__link ${active ? 'ec-marketing-header__link--active' : ''}`}
+                      aria-current={active ? 'page' : undefined}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <ThemeSwitcher />
+          <div className="ec-marketing-header__actions flex shrink-0 items-center gap-2">
+            <div className="hidden lg:block">
+              <ThemeSwitcher compact />
+            </div>
+
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="hidden items-center gap-2 rounded-xl border border-[var(--ec-border)] px-3 py-2 text-sm font-medium ec-text-secondary transition-colors hover:bg-[var(--ec-surface-raised)] lg:inline-flex"
+              className="ec-marketing-header__ask hidden lg:inline-flex"
+              title="Ask MarkScheme"
             >
-              <Sparkles className="h-4 w-4 ec-text-brand" />
-              Ask MarkScheme
+              <Sparkles className="h-4 w-4 shrink-0 ec-text-brand" aria-hidden />
+              <span className="hidden 2xl:inline">Ask MarkScheme</span>
+              <span className="2xl:hidden">Ask</span>
             </button>
-            <Link
-              href="/auth/signin"
-              className="hidden text-sm font-medium ec-text-secondary transition-colors lg:inline-block"
-            >
+
+            <Link href="/auth/signin" className="ec-marketing-header__signin hidden lg:inline-flex">
               Sign in
             </Link>
-            <Link
-              href="/mark"
-              className="ec-btn-primary hidden px-[18px] py-2 text-sm lg:inline-flex"
-            >
+
+            <Link href="/mark" className="ec-btn-primary ec-marketing-header__cta hidden lg:inline-flex">
               Mark a paper
             </Link>
+
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-[var(--ec-border)] lg:hidden"
+              className="ec-marketing-header__menu inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-[var(--ec-border)] lg:hidden"
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5 ec-text-primary" />
@@ -133,7 +143,11 @@ export function MarketingHeader() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="flex min-h-[48px] items-center rounded-xl px-4 text-base font-medium ec-text-primary transition-colors hover:bg-[var(--ec-surface-raised)]"
+                    className={`flex min-h-[48px] items-center rounded-xl px-4 text-base font-medium transition-colors hover:bg-[var(--ec-surface-raised)] ${
+                      isNavActive(pathname, item.href)
+                        ? 'ec-text-brand'
+                        : 'ec-text-primary'
+                    }`}
                   >
                     {item.label}
                   </Link>
@@ -151,6 +165,9 @@ export function MarketingHeader() {
                 </button>
               </nav>
               <div className="space-y-3 border-t ec-border-color p-4">
+                <div className="flex justify-center pb-1">
+                  <ThemeSwitcher />
+                </div>
                 <Link
                   href="/mark"
                   className="ec-btn-primary flex min-h-[48px] w-full justify-center text-base"

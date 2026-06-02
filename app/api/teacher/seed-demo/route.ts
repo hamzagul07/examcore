@@ -103,7 +103,7 @@ export async function POST() {
 
   for (const name of DEMO_STUDENT_NAMES) {
     const slug = name.toLowerCase().replace(/\s/g, '')
-    const email = `demo-${classroom.id.slice(0, 8)}-${slug}@examcore-demo.local`
+    const email = `demo-${classroom.id.slice(0, 8)}-${slug}@markscheme-demo.local`
 
     const { data: authUser, error: authError } =
       await admin.auth.admin.createUser({

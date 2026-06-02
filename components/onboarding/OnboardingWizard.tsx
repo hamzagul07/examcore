@@ -297,7 +297,7 @@ function StepWelcome({ onContinue }: { onContinue: () => void }) {
         </div>
       </div>
       <h1 className="text-headline text-[var(--ec-text-primary)]">
-        Welcome to <span className="ec-text-gradient">Examcore</span>
+        Welcome to <span className="ec-text-gradient">MarkScheme</span>
       </h1>
       <p className="text-body mt-4 text-[var(--ec-text-secondary)]">
         Let&apos;s set up your account so we can mark your work the way you need

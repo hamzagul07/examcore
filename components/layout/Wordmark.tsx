@@ -5,7 +5,7 @@ type WordmarkProps = {
   size?: 'sm' | 'md'
 }
 
-/** Shared Examcore wordmark with optional icon mark. */
+/** Shared MarkScheme wordmark with optional icon mark. */
 export function Wordmark({ className = '', size = 'md' }: WordmarkProps) {
   const textSize = size === 'sm' ? 'text-lg' : 'text-xl'
   const iconSize = size === 'sm' ? 'h-7 w-7 text-sm' : 'h-8 w-8 text-base'
@@ -16,10 +16,10 @@ export function Wordmark({ className = '', size = 'md' }: WordmarkProps) {
         className={`ec-chat-avatar flex shrink-0 items-center justify-center rounded-lg font-extrabold ec-on-brand-text shadow-[var(--ec-btn-glow)] ${iconSize}`}
         aria-hidden
       >
-        E
+        M
       </span>
       <span className={`font-bold tracking-tight ec-text-gradient ${textSize} max-[420px]:hidden`}>
-        Examcore
+        MarkScheme
       </span>
     </span>
   )

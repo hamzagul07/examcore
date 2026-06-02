@@ -86,10 +86,10 @@ export function AppHeader() {
             type="button"
             onClick={() => setIsOpen(true)}
             className="ec-btn-primary hidden min-h-[44px] shrink-0 justify-center px-5 text-sm lg:inline-flex"
-            aria-label="Ask Examcore"
+            aria-label="Ask MarkScheme"
           >
             <Sparkles className="h-4 w-4 shrink-0" />
-            <span>Ask Examcore</span>
+            <span>Ask MarkScheme</span>
           </button>
         </div>
       </div>

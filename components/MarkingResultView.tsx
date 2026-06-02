@@ -172,10 +172,10 @@ export function MarkingResultView({
               We marked your answer using general A-Level criteria. Think we
               should add this paper? Email{' '}
               <a
-                href="mailto:hello@examcore.ai"
+                href="mailto:hello@markscheme.app"
                 className="font-medium underline"
               >
-                hello@examcore.ai
+                hello@markscheme.app
               </a>
               .
             </p>

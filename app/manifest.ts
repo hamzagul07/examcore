@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { DEFAULT_SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site-config'
 
 export default function manifest(): MetadataRoute.Manifest {
   const base = SITE_URL.replace(/\/$/, '')
@@ -7,8 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: SITE_NAME,
     short_name: SITE_NAME,
-    description:
-      'Cambridge A-Level and O-Level marking with examiner-grade feedback in seconds.',
+    description: DEFAULT_SITE_DESCRIPTION,
     start_url: `${base}/mark`,
     /** Browser tab — avoids aggressive "install app" prompts on iOS until a native app exists. */
     display: 'browser',

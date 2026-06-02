@@ -58,7 +58,7 @@ export async function GET() {
     usage_events: usage ?? [],
   }
 
-  const filename = `examcore-export-${user.id.slice(0, 8)}-${new Date().toISOString().slice(0, 10)}.json`
+  const filename = `markscheme-export-${user.id.slice(0, 8)}-${new Date().toISOString().slice(0, 10)}.json`
 
   return new NextResponse(JSON.stringify(exportPayload, null, 2), {
     status: 200,

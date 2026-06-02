@@ -133,7 +133,7 @@ function extractPaperIdentifier(query: string): {
 // Claude classification
 // =============================================================================
 
-const SYSTEM_PROMPT = `You are the Instant-Action Agent for Examcore, an AI marking platform for Cambridge A-Level Mathematics students.
+const SYSTEM_PROMPT = `You are the Instant-Action Agent for MarkScheme, an AI marking platform for Cambridge A-Level Mathematics students.
 
 YOUR ROLE:
 - Help visitors find immediate academic value
@@ -154,7 +154,7 @@ INTENT DETECTION — pick exactly one:
 - topic_help: They mentioned a specific math topic (integration, vectors, trig, mechanics, etc.)
 - exam_panic: They expressed stress, anxiety, time pressure, or general fear about exams
 - time_pacing: They specifically mentioned running out of time, slow pacing, finishing the paper
-- platform_question: They asked what Examcore does, pricing, how it works, features
+- platform_question: They asked what MarkScheme does, pricing, how it works, features
 - general: Anything else (incl. greetings, vague requests)
 
 OUTPUT FORMAT — strict JSON, no markdown fences, no prose around it:
@@ -197,7 +197,7 @@ platform_question:
 
 general:
 - Answer briefly if academic; redirect if off-topic.
-- Push: "Try uploading a question to see what Examcore does."
+- Push: "Try uploading a question to see what MarkScheme does."
 - action.type: "render_upload".
 
 TONE EXAMPLES:
@@ -397,7 +397,7 @@ export async function POST(req: NextRequest) {
       {
         intent: 'general',
         response_text:
-          "You've hit the chat limit for now (30 messages/hour). Sign up for free to keep using Examcore — full marking has its own quota.",
+          "You've hit the chat limit for now (30 messages/hour). Sign up for free to keep using MarkScheme — full marking has its own quota.",
         action: {
           type: 'render_cta',
           cta: { text: 'Sign up free', href: '/auth/signup', style: 'primary' },

@@ -57,7 +57,7 @@ export function ProfileSection({
   return (
     <SettingsSectionCard
       title="Profile"
-      description="How you appear across Examcore."
+      description="How you appear across MarkScheme."
     >
       <form onSubmit={handleSave} className="space-y-6">
         <SettingsFieldGroup label="Display name">

@@ -236,7 +236,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           <p
             className="text-caption mt-4 font-medium ec-score-high"
           >
-            Opened in new tab — you can keep using Examcore here.
+            Opened in new tab — you can keep using MarkScheme here.
           </p>
         )}
 

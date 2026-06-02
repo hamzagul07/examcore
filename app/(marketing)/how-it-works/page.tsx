@@ -8,9 +8,9 @@ import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSt
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 
 export const metadata = createPageMetadata({
-  title: 'How it works',
+  title: 'How MarkScheme marks Cambridge past papers',
   description:
-    'Upload your handwritten answer, get mark-by-mark feedback from real Cambridge schemes, and track syllabus mastery.',
+    'How it works: pick a past paper, upload handwritten working, and get mark-by-mark feedback from the real Cambridge mark scheme. Whole papers, Examiner\'s Ink, and progress tracking.',
   path: '/how-it-works',
 })
 
@@ -72,7 +72,7 @@ export default async function HowItWorksPage() {
           </h2>
           <div className="landing-lead max-w-3xl space-y-4">
             <p>
-              Examcore uses AI trained on real Cambridge mark schemes — not a
+              MarkScheme uses AI trained on real Cambridge mark schemes — not a
               replacement for examiners, and not a magic grade guarantee. Final
               grades are decided by Cambridge International, not us.
             </p>

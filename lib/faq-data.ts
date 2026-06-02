@@ -23,7 +23,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Do I need a teacher account?',
-        a: 'No — Examcore is built for students revising on their own. Teacher features exist for classroom use, but individual students can sign up and mark immediately.',
+        a: 'No — MarkScheme is built for students revising on their own. Teacher features exist for classroom use, but individual students can sign up and mark immediately.',
       },
       {
         q: 'Can I use it on my phone?',
@@ -31,7 +31,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Is this allowed for revision?',
-        a: 'Marking your own past papers is normal revision. Examcore marks work you have already done — like checking against a mark scheme yourself, but faster and more thorough.',
+        a: 'Marking your own past papers is normal revision. MarkScheme marks work you have already done — like checking against a mark scheme yourself, but faster and more thorough.',
       },
     ],
   },
@@ -83,7 +83,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Can I delete my account and data?',
-        a: 'Yes. Contact us at hello@examcore.ai or use account settings when deletion is available. We will remove your account and associated uploads on request.',
+        a: 'Yes. Contact us at hello@markscheme.app or use account settings when deletion is available. We will remove your account and associated uploads on request.',
       },
       {
         q: 'Where is my data stored?',
@@ -91,7 +91,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Do you share data with Cambridge?',
-        a: 'No. Examcore is not affiliated with or endorsed by Cambridge International. We do not send your work to Cambridge.',
+        a: 'No. MarkScheme is not affiliated with or endorsed by Cambridge International. We do not send your work to Cambridge.',
       },
     ],
   },

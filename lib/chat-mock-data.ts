@@ -109,11 +109,11 @@ const MOCK_MATCHERS: Array<{
   // Platform questions
   {
     pattern:
-      /\b(what.*(examcore|this|platform|do)|how does this|how it works|pricing|free|cost|features?)\b/i,
+      /\b(what.*(markscheme|this|platform|do)|how does this|how it works|pricing|free|cost|features?)\b/i,
     response: {
       intent: 'platform_question',
       response_text:
-        "Fastest way to see what Examcore does: upload a single handwritten question and watch it mark itself in 30 seconds.",
+        "Fastest way to see what MarkScheme does: upload a single handwritten question and watch it mark itself in 30 seconds.",
       action: { type: 'render_upload' },
     },
   },
@@ -132,7 +132,7 @@ const MOCK_MATCHERS: Array<{
 export const MOCK_GREETING: ChatResponse = {
   intent: 'general',
   response_text:
-    "Hey — I'm here to help. Got a past paper question, a topic you're stuck on, or just want to see how Examcore works?",
+    "Hey — I'm here to help. Got a past paper question, a topic you're stuck on, or just want to see how MarkScheme works?",
   action: { type: 'render_upload' },
 }
 
@@ -148,7 +148,7 @@ export function getMockResponse(query: string): ChatResponse {
   return {
     intent: 'general',
     response_text:
-      "Happy to help. The fastest way to see what Examcore can do is to upload a single question — I'll mark it instantly.",
+      "Happy to help. The fastest way to see what MarkScheme can do is to upload a single question — I'll mark it instantly.",
     action: { type: 'render_upload' },
   }
 }

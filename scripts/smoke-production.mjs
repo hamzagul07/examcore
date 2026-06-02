@@ -3,7 +3,7 @@
  * Production smoke checks — run against local dev or deployed preview/prod.
  *
  *   node scripts/smoke-production.mjs
- *   BASE_URL=https://examcore.ai node scripts/smoke-production.mjs
+ *   BASE_URL=https://markscheme.app node scripts/smoke-production.mjs
  *
  * Env keys mirror lib/env/required.ts (keep in sync).
  */
@@ -69,7 +69,7 @@ async function main() {
   loadEnvLocal()
 
   const base = (process.env.BASE_URL || 'http://localhost:3000').replace(/\/$/, '')
-  console.log(`\nExamcore production smoke — ${base}\n`)
+  console.log(`\nMarkScheme production smoke — ${base}\n`)
 
   let passed = 0
   let failed = 0
@@ -364,7 +364,7 @@ async function main() {
     console.log(`
 Launch checklist (passes 15–86 complete):
   ENV
-  • NEXT_PUBLIC_SITE_URL=https://examcore.ai
+  • NEXT_PUBLIC_SITE_URL=https://markscheme.app
   • ENFORCEMENT_MODE=warn → smoke caps → enforce
   • ADMIN_EMAILS set for /admin access
   • Stripe live keys + webhook pointing at /api/billing/webhook

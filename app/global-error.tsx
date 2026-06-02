@@ -35,7 +35,7 @@ export default function GlobalError({
         >
           <div style={{ maxWidth: '28rem', textAlign: 'center' }}>
             <p style={{ fontSize: '0.75rem', letterSpacing: '0.08em', opacity: 0.7 }}>
-              EXAMCORE
+              MARKSCHEME
             </p>
             <h1 style={{ fontSize: '1.75rem', margin: '0.75rem 0' }}>
               Something went wrong

@@ -5,9 +5,9 @@ import { FaqAccordion } from '@/components/marketing/FaqAccordion'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
 export const metadata = createPageMetadata({
-  title: 'FAQ',
+  title: 'FAQ — Cambridge past paper marking help',
   description:
-    'Answers about Cambridge A-Level marking, handwriting uploads, pricing, privacy, and getting started with Examcore.',
+    'Frequently asked questions about MarkScheme: handwritten uploads, mark scheme accuracy, free tier limits, pricing, privacy, and Cambridge A-Level / O-Level revision.',
   path: '/faq',
 })
 

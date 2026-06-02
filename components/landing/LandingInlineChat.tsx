@@ -468,7 +468,7 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Ask Examcore anything about your A-Levels..."
+          placeholder="Ask MarkScheme anything about your A-Levels..."
           maxLength={2000}
           disabled={isStreaming}
           aria-label="Chat message input"

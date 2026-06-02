@@ -10,7 +10,7 @@ const STEPS = [
     height: 808,
     title: 'Your score, right there',
     body: 'Marks earned, the paper, and the question — checked against the official Cambridge scheme for that session.',
-    alt: 'Examcore marking result showing 3 out of 3 marks, official 9709 mark scheme banner, and the binomial expansion question',
+    alt: 'MarkScheme marking result showing 3 out of 3 marks, official 9709 mark scheme banner, and the binomial expansion question',
   },
   {
     src: '/landing-screenshots/marking-result-2.png',

@@ -29,7 +29,7 @@ export function TeacherNav() {
         <Link href="/teacher/dashboard" className="flex shrink-0 items-center gap-2 max-[420px]:gap-1.5">
           <BookOpen className="h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden />
           <span className="font-bold text-[var(--ec-text-primary)] max-[420px]:text-sm">
-            Examcore{' '}
+            MarkScheme{' '}
             <span className="font-normal text-[var(--ec-text-secondary)] max-[420px]:hidden">
               Teacher
             </span>

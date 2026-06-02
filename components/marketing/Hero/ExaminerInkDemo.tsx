@@ -193,7 +193,7 @@ export function ExaminerInkDemo() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         role="img"
-        aria-label="Demonstration of Examcore marking a Physics past paper question, earning 3 out of 4 marks"
+        aria-label="Demonstration of MarkScheme marking a Physics past paper question, earning 3 out of 4 marks"
         className="relative rounded-[16px] border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-6 shadow-[var(--ec-card-shadow)] md:p-10"
       >
         {scoreMark && <DemoScoreBadge mark={scoreMark} reduced={reduced} />}

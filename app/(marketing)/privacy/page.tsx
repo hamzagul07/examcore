@@ -6,7 +6,7 @@ import { LegalDisclaimer, MarketingPageShell } from '@/components/marketing/Mark
 export const metadata = createPageMetadata({
   title: 'Privacy Policy',
   description:
-    'How Examcore collects, uses, and protects your data — account info, uploads, and marking history.',
+    'How MarkScheme collects, uses, and protects your data — account info, uploads, and marking history.',
   path: '/privacy',
 })
 
@@ -25,9 +25,9 @@ export default function PrivacyPage() {
           <section>
             <h2 className="landing-h3">Who we are</h2>
             <p>
-              Examcore (&quot;we&quot;, &quot;us&quot;) provides an AI-assisted marking
+              MarkScheme (&quot;we&quot;, &quot;us&quot;) provides an AI-assisted marking
               tool for Cambridge A-Level students at{' '}
-              <Link href="/">examcore.ai</Link>. This policy explains what data we
+              <Link href="/">markscheme.app</Link>. This policy explains what data we
               collect and how we use it during early access.
             </p>
           </section>
@@ -69,7 +69,7 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="landing-h3">Third-party services</h2>
-            <p>We rely on trusted providers to run Examcore:</p>
+            <p>We rely on trusted providers to run MarkScheme:</p>
             <ul className="list-disc space-y-2 pl-5">
               <li><strong className="text-[var(--ec-text-primary)]">Supabase</strong> — authentication, database, and file storage.</li>
               <li><strong className="text-[var(--ec-text-primary)]">Anthropic</strong> — AI marking and Omni AI conversational features.</li>
@@ -112,8 +112,8 @@ export default function PrivacyPage() {
           <section>
             <h2 className="landing-h3">Children</h2>
             <p>
-              Examcore is aimed at A-Level students, who are typically 16–19.
-              If you are under 16, please use Examcore with a parent or
+              MarkScheme is aimed at A-Level students, who are typically 16–19.
+              If you are under 16, please use MarkScheme with a parent or
               guardian&apos;s knowledge. We do not knowingly collect data from
               children under 13.
             </p>

@@ -26,7 +26,7 @@ export function MarketingFooter() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="text-xl font-bold ec-text-gradient">
-              Examcore
+              MarkScheme
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
               AI marking for Cambridge A-Levels — honest feedback when you&apos;re
@@ -93,7 +93,7 @@ export function MarketingFooter() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-[var(--ec-border)] pt-8 text-xs text-[var(--ec-text-secondary)] sm:flex-row sm:items-start sm:justify-between">
-          <span>© 2026 Examcore</span>
+          <span>© 2026 MarkScheme</span>
           <p className="max-w-xl leading-relaxed sm:text-right">
             Not affiliated with or endorsed by Cambridge International. Subject
             codes and syllabus references are Cambridge property used for

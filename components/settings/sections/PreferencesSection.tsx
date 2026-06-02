@@ -52,7 +52,7 @@ export function PreferencesSection({
     <div className="space-y-6">
       <SettingsSectionCard
         title="Appearance"
-        description="Choose how Examcore looks on your device."
+        description="Choose how MarkScheme looks on your device."
       >
         <p className="label-overline mb-3">Theme</p>
         <ThemeSwitcher />

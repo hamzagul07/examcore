@@ -1,5 +1,5 @@
 ---
-title: Why I built Examcore
+title: Why I built MarkScheme
 description: An A-Level student on waiting weeks for marked papers — and building the tool he wished existed.
 date: 2026-05-01
 ---
@@ -8,7 +8,7 @@ I was revising for A-Levels the way most students do: past papers, mark schemes,
 
 When you mark your own work against a scheme, you miss things. You think you got the method mark when you didn't. You don't know if your essay would sit in Band 3 or Band 4 until an examiner tells you, and that can take weeks through school.
 
-So I built Examcore — not to replace teachers or Cambridge examiners, but to give you honest, scheme-level feedback when you're working alone at midnight.
+So I built MarkScheme — not to replace teachers or Cambridge examiners, but to give you honest, scheme-level feedback when you're working alone at midnight.
 
 ## What it does differently
 
@@ -24,6 +24,6 @@ It *is* a study companion that works like an examiner when your teacher isn't av
 
 ## Early access
 
-Examcore is free while we learn from real students. If you're preparing for Cambridge A-Levels and want faster feedback on your past papers, [sign up](/auth/signup) and mark something you already wrote.
+MarkScheme is free while we learn from real students. If you're preparing for Cambridge A-Levels and want faster feedback on your past papers, [sign up](/auth/signup) and mark something you already wrote.
 
 — Hassan

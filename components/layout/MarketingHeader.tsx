@@ -117,7 +117,7 @@ export function MarketingHeader() {
               className="fixed inset-y-0 right-0 z-[71] flex w-[min(100vw,320px)] flex-col border-l ec-border-color bg-[var(--ec-surface)] lg:hidden"
             >
               <div className="flex items-center justify-between border-b ec-border-color px-5 py-4">
-                <span className="font-bold ec-text-gradient">Examcore</span>
+                <span className="font-bold ec-text-gradient">MarkScheme</span>
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}

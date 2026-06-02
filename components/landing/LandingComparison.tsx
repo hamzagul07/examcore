@@ -37,7 +37,7 @@ export function LandingComparison() {
       <div className="grid gap-4 md:grid-cols-2">
         <div className="ec-card p-6 sm:p-8">
           <p className="mb-6 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ec-text-secondary)]">
-            Without Examcore
+            Without MarkScheme
           </p>
           <ul className="space-y-4">
             {ROWS.map((row) => (
@@ -57,7 +57,7 @@ export function LandingComparison() {
 
         <div className="ec-card ec-card-interactive border-[color-mix(in_srgb,var(--ec-brand)_20%,transparent)] p-6 sm:p-8">
           <p className="mb-6 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ec-chip-success-text)]">
-            With Examcore
+            With MarkScheme
           </p>
           <ul className="space-y-4">
             {ROWS.map((row) => (

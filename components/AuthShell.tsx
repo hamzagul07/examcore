@@ -36,7 +36,7 @@ export function AuthShell({
             href="/"
             className="inline-flex items-center text-3xl font-extrabold tracking-tight ec-text-gradient"
           >
-            Examcore
+            MarkScheme
           </Link>
           {showBetaBadge && (
             <div className="mt-5 flex justify-center">

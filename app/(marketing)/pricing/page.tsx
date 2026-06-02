@@ -18,9 +18,9 @@ import type { SubscriptionTier } from '@/lib/database.types'
 export const dynamic = 'force-dynamic'
 
 export const metadata = createPageMetadata({
-  title: 'Pricing',
+  title: 'Pricing — Cambridge past paper marking plans',
   description:
-    'Simple plans for Cambridge A-Level marking. Free tier plus Student, Scholar, and Mastery — regional pricing, monthly or yearly. Credits never expire.',
+    'MarkScheme pricing for Cambridge A-Level and O-Level marking: free tier, Student, Scholar, and Mastery plans. Regional USD pricing, credits never expire, founding members 50% off.',
   path: '/pricing',
 })
 

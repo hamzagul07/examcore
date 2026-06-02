@@ -44,7 +44,7 @@ export function createOgImage({ title, subtitle }: OgImageProps) {
               color: 'white',
             }}
           >
-            E
+            M
           </div>
           <span
             style={{
@@ -95,7 +95,7 @@ export function createOgImage({ title, subtitle }: OgImageProps) {
             textTransform: 'uppercase',
           }}
         >
-          Cambridge A-Level marking · Free tier available
+          Cambridge past papers · markscheme.app
         </div>
       </div>
     ),

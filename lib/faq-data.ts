@@ -1,5 +1,6 @@
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { WHOLE_PAPER_QUESTION_LIMIT } from '@/lib/billing/features'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 
 export type FaqItem = { q: string; a: string }
 export type FaqCategory = { id: string; title: string; items: FaqItem[] }
@@ -83,7 +84,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'Can I delete my account and data?',
-        a: 'Yes. Contact us at hello@markscheme.app or use account settings when deletion is available. We will remove your account and associated uploads on request.',
+        a: `Yes. Go to Account → Privacy & data to export or delete your account, or email ${CONTACT_EMAIL} for help.`,
       },
       {
         q: 'Where is my data stored?',
@@ -101,7 +102,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
     items: [
       {
         q: 'Is there a free plan?',
-        a: `Yes. Free includes ${capForTier('free')} questions and ${omniCapForTier('free')} Omni messages per month across all fifteen subjects, plus Examiner's Ink on single-question marking. No card required.`,
+        a: `Yes. Free includes ${capForTier('free')} questions and ${omniCapForTier('free')} study chat messages per month across all fifteen subjects, plus Examiner's Ink on single-question marking. No card required.`,
       },
       {
         q: 'I signed up during early access — what happens to my pricing?',
@@ -113,7 +114,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         q: 'What happens when I run out mid-month?',
-        a: 'Buy a credit top-up or upgrade to a higher plan. Credits work for questions or Omni messages and never expire.',
+        a: 'Buy a credit top-up or upgrade to a higher plan. Credits work for questions or study chat messages and never expire.',
       },
       {
         q: 'Do teachers pay separately?',

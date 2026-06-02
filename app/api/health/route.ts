@@ -7,6 +7,7 @@ import {
   REQUIRED_ENV,
 } from '@/lib/env/required'
 import { getEnforcementMode } from '@/lib/billing/enforcement-mode'
+import { resolveSiteUrl } from '@/lib/site-url'
 
 export const dynamic = 'force-dynamic'
 
@@ -42,6 +43,7 @@ export async function GET() {
         recommended,
       },
       enforcement_mode: getEnforcementMode(),
+      site_url: resolveSiteUrl(),
       build: process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? null,
       timestamp: new Date().toISOString(),
     },

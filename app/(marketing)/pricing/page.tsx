@@ -43,7 +43,7 @@ const PRICING_FAQ: FaqCategory[] = [
       },
       {
         q: 'What if I run out mid-month?',
-        a: 'Buy a credit top-up or upgrade to a higher plan. Credits work for questions or Omni messages and are used automatically once your monthly allowance is spent.',
+        a: 'Buy a credit top-up or upgrade to a higher plan. Credits work for questions or study chat messages and are used automatically once your monthly allowance is spent.',
       },
       {
         q: 'Do credits expire?',

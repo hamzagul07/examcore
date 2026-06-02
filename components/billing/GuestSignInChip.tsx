@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { buildSignInHref, isSafeNextPath } from '@/lib/auth-redirect'
 
 /** Compact sign-in CTA in the app header when the user is a guest. */
 export function GuestSignInChip() {
@@ -26,14 +27,11 @@ export function GuestSignInChip() {
 
   if (!isGuest) return null
 
-  const next =
-    pathname && pathname.startsWith('/') && !pathname.startsWith('//')
-      ? pathname
-      : '/dashboard'
+  const next = isSafeNextPath(pathname) ? pathname : '/dashboard'
 
   return (
     <Link
-      href={`/auth/signin?next=${encodeURIComponent(next)}`}
+      href={buildSignInHref(next)}
       className="inline-flex shrink-0 rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-2.5 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] transition-colors hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)] sm:px-3"
     >
       Sign in

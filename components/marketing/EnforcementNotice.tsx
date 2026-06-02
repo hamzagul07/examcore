@@ -8,7 +8,7 @@ export function EnforcementNotice() {
   const copy =
     mode === 'warn'
       ? 'Usage limits are in warning mode — you can still submit when over cap while we tune the experience.'
-      : 'Usage limits are enforced — marking, whole papers, and Omni pause at your monthly cap unless you upgrade or use credits.'
+      : 'Usage limits are enforced — marking, whole papers, and study chat pause at your monthly cap unless you upgrade or use credits.'
 
   return (
     <p

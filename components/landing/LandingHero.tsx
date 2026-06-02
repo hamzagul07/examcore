@@ -18,7 +18,7 @@ export function LandingHero({ markHref }: LandingHeroProps) {
     <LandingHeroEntry>
       <div className="relative mx-auto max-w-7xl text-center">
         <div className="mb-8 flex justify-center">
-          <span className="ec-label-tech">Free tier · A-Level & O-Level</span>
+          <span className="ec-label-tech">Cambridge · Free tier · A-Level & O-Level</span>
         </div>
 
         {/* Headline + sub — collapse when chat is active */}
@@ -41,8 +41,9 @@ export function LandingHero({ markHref }: LandingHeroProps) {
               </h1>
 
               <p className="landing-lead mx-auto mb-12 max-w-2xl">
-                Snap your working, pick the paper, get examiner-style feedback —
-                MCQ keys, B1/M1/A1, or essay bands from the real Cambridge scheme.
+                Upload handwritten past-paper answers and get mark-by-mark feedback in
+                seconds — MCQ keys, B1/M1/A1, and essay bands from the real Cambridge
+                mark scheme for that question.
               </p>
             </motion.div>
           )}

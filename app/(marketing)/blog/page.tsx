@@ -3,12 +3,19 @@ import { ArrowRight } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getBlogPosts } from '@/lib/blog'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { BlogIndexJsonLd } from '@/components/seo/BlogPostJsonLd'
 
 export const metadata = createPageMetadata({
-  title: 'Blog',
+  title: 'Cambridge past paper tips & mark scheme guides',
   description:
-    'Exam tips, study strategies, and updates from the MarkScheme build — articles for Cambridge A-Level students.',
+    'Free guides for Cambridge A-Level and O-Level students: how to use past papers, read mark schemes, self-mark maths (B1/M1/A1), essays, MCQs, and when AI marking helps.',
   path: '/blog',
+  keywords: [
+    'Cambridge past paper tips',
+    'A-Level revision blog',
+    'mark scheme guide',
+    'past paper self marking',
+  ],
 })
 
 export default function BlogIndexPage() {
@@ -16,18 +23,24 @@ export default function BlogIndexPage() {
 
   return (
     <MarketingPageShell>
+      <BlogIndexJsonLd posts={posts} />
       <MarketingHero
         label="BLOG"
-        title={<span className="gradient-text">Articles & updates</span>}
-        lead="Exam tips, study strategies, and notes from the build."
+        title={
+          <>
+            <span className="gradient-text">Cambridge past paper</span>{' '}
+            <span className="ec-text-gradient">revision guides</span>
+          </>
+        }
+        lead="Mark scheme literacy, self-marking workflows, subject tips, and honest notes on AI feedback — written for A-Level and O-Level students."
       />
 
       <MarketingSection className="!pt-0">
         {posts.length === 0 ? (
           <div className="ec-card p-10 text-center sm:p-14">
             <p className="landing-lead mx-auto max-w-lg">
-              Articles coming soon — exam tips, study strategies, and updates
-              from the build.
+              New articles on past papers, mark schemes, and revision — check back
+              soon.
             </p>
           </div>
         ) : (
@@ -63,6 +76,18 @@ export default function BlogIndexPage() {
             ))}
           </div>
         )}
+      </MarketingSection>
+
+      <MarketingSection className="!pt-0">
+        <p className="text-center text-sm text-[var(--ec-text-secondary)]">
+          <a href="/feed.xml" className="ec-link">
+            RSS feed
+          </a>{' '}
+          ·{' '}
+          <Link href="/mark" className="ec-link">
+            Mark a paper free
+          </Link>
+        </p>
       </MarketingSection>
     </MarketingPageShell>
   )

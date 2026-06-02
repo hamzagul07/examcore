@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { SubjectsGrid } from '@/components/marketing/SubjectsGrid'
@@ -7,8 +8,9 @@ import { SubjectsGrid } from '@/components/marketing/SubjectsGrid'
 export const metadata = createPageMetadata({
   title: 'Cambridge subjects — A-Level & O-Level past paper marking',
   description:
-    'MarkScheme supports Cambridge International past papers across Maths, Sciences, Humanities, Business, and more. Real mark schemes for MCQ, structured questions, and essays.',
+    'MarkScheme supports Cambridge International past papers: 9709 Maths, 9708 Economics, 9702 Physics, 4024 O-Level Maths, and more. MCQ, B1/M1/A1, and essay marking from real mark schemes.',
   path: '/subjects',
+  keywords: ['9709 past papers', '9708 economics', 'Cambridge subject codes', 'O-Level 4024'],
 })
 
 export default function SubjectsPage() {
@@ -38,7 +40,10 @@ export default function SubjectsPage() {
             <Link href="/mark" className="ec-btn-primary inline-flex min-h-[52px]">
               Try marking free <ArrowRight className="h-5 w-5" />
             </Link>
-            <Link href="/auth/signup" className="ec-btn-secondary inline-flex min-h-[52px]">
+            <Link
+              href={buildSignUpHref(MARKETING_SIGNUP_DEST)}
+              className="ec-btn-secondary inline-flex min-h-[52px]"
+            >
               Create free account
             </Link>
           </div>

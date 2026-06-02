@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 
 type Body = {
   confirm?: string
@@ -36,7 +37,7 @@ export async function POST(request: Request) {
   if (error) {
     console.error('[account/delete]', error)
     return NextResponse.json(
-      { error: 'Could not delete your account. Contact hello@markscheme.app for help.' },
+      { error: `Could not delete your account. Contact ${CONTACT_EMAIL} for help.` },
       { status: 500 }
     )
   }

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createPageMetadata } from '@/lib/seo/metadata'
-import { CONTACT_EMAIL } from '@/lib/site-config'
+import { CONTACT_EMAIL, SITE_HOST } from '@/lib/site-config'
 import { LegalDisclaimer, MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 
 export const metadata = createPageMetadata({
@@ -27,7 +27,7 @@ export default function PrivacyPage() {
             <p>
               MarkScheme (&quot;we&quot;, &quot;us&quot;) provides an AI-assisted marking
               tool for Cambridge A-Level students at{' '}
-              <Link href="/">markscheme.app</Link>. This policy explains what data we
+              <Link href="/">{SITE_HOST}</Link>. This policy explains what data we
               collect and how we use it during early access.
             </p>
           </section>
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
                 <strong className="text-[var(--ec-text-primary)]">Usage data</strong> — basic logs (pages visited, errors, approximate location from IP) to keep the service running and secure.
               </li>
               <li>
-                <strong className="text-[var(--ec-text-primary)]">Communications</strong> — emails you send us and messages you exchange with Omni AI within the product.
+                <strong className="text-[var(--ec-text-primary)]">Communications</strong> — emails you send us and messages you exchange with MarkScheme study chat within the product.
               </li>
             </ul>
           </section>
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
             <p>We rely on trusted providers to run MarkScheme:</p>
             <ul className="list-disc space-y-2 pl-5">
               <li><strong className="text-[var(--ec-text-primary)]">Supabase</strong> — authentication, database, and file storage.</li>
-              <li><strong className="text-[var(--ec-text-primary)]">Anthropic</strong> — AI marking and Omni AI conversational features.</li>
+              <li><strong className="text-[var(--ec-text-primary)]">Anthropic</strong> — AI marking and MarkScheme study chat.</li>
               <li><strong className="text-[var(--ec-text-primary)]">Google (Gemini)</strong> — document extraction and OCR for uploaded scripts.</li>
               <li><strong className="text-[var(--ec-text-primary)]">Vercel</strong> — website hosting and infrastructure.</li>
             </ul>

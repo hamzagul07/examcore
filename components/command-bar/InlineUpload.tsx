@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { Camera, FileImage, Upload } from 'lucide-react'
+import { STORAGE_KEYS, writeSessionStorage } from '@/lib/client-storage'
 
 export function InlineUpload() {
   const router = useRouter()
@@ -15,9 +16,9 @@ export function InlineUpload() {
     if (!file) return
     try {
       const url = URL.createObjectURL(file)
-      sessionStorage.setItem('examcore_pending_upload', url)
-      sessionStorage.setItem(
-        'examcore_pending_upload_meta',
+      writeSessionStorage(STORAGE_KEYS.pendingUpload, url)
+      writeSessionStorage(
+        STORAGE_KEYS.pendingUploadMeta,
         JSON.stringify({
           name: file.name,
           type: file.type,

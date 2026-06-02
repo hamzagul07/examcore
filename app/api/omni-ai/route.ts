@@ -136,7 +136,7 @@ export async function POST(req: NextRequest) {
         sse({
           type: 'error',
           message:
-            'You\'ve used all your Omni messages this month. Upgrade or top up credits to continue.',
+            'You\'ve used all your study chat messages this month. Upgrade or top up credits to continue.',
           code: body.error,
           tier: body.tier,
           cap: body.cap,

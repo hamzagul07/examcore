@@ -38,7 +38,7 @@ export function ProgressSubjectSelector({ subjects, selectedCode }: Props) {
           {subjects.map((s) => (
             <option key={s.code} value={s.code}>
               {s.label}
-              {!s.hasTree ? ' (analytics coming soon)' : ''}
+              {!s.hasTree ? ' (detailed analytics soon)' : ''}
             </option>
           ))}
         </select>

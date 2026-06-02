@@ -153,7 +153,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
 
         <UsageBar
           className="mt-4"
-          label="Omni messages this period"
+          label="Study chat messages this period"
           used={billing.omniUsed}
           cap={billing.omniCap}
           pct={omniPct}
@@ -166,10 +166,10 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           billing.enforcementMode === 'enforce' && (
             <p className="text-body mt-4 rounded-2xl border ec-tint-critical-panel px-4 py-3 ec-score-low">
               {billing.questionsBlocked && billing.omniBlocked
-                ? 'Monthly question and Omni caps reached — marking and Ask Omni are paused until you upgrade or top up credits.'
+                ? 'Monthly question and study chat caps reached — marking and Ask MarkScheme are paused until you upgrade or top up credits.'
                 : billing.questionsBlocked
                   ? 'Monthly question cap reached — marking and whole papers are paused until you upgrade or top up credits.'
-                  : 'Monthly Omni cap reached — Ask Omni is paused until you upgrade or top up credits.'}
+                  : 'Monthly study chat cap reached — Ask MarkScheme is paused until you upgrade or top up credits.'}
             </p>
           )}
 
@@ -201,7 +201,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
                     {u.eventType === 'mark_whole_paper'
                       ? 'Whole paper'
                       : u.eventType === 'omni_message'
-                        ? 'Omni message'
+                        ? 'study chat message'
                         : 'Single question'}
                     {u.source === 'credits' && (
                       <span

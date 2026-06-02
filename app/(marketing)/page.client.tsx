@@ -37,7 +37,7 @@ export function LandingMockupHero() {
           <div className="h-3 w-3 rounded-full bg-amber-500/50" />
           <div className="h-3 w-3 rounded-full bg-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)]" />
           <div className="ml-3 flex-1 rounded-md border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-3 py-1 text-left font-mono text-xs text-[var(--ec-text-secondary)]">
-            markscheme.app/mark
+            /mark
           </div>
         </div>
 

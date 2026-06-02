@@ -1,13 +1,13 @@
 'use client'
 
-import { Suspense, useRef, useState, type KeyboardEvent } from 'react'
+import { Suspense, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox, SubmitButton, SuccessBox } from '@/components/AuthFormBits'
-import { sanitizeNextPath } from '@/lib/auth-redirect'
+import { buildSignUpHref, sanitizeNextPath } from '@/lib/auth-redirect'
 
 const CODE_LENGTH = 6
 
@@ -36,6 +36,7 @@ function VerifyEmailForm() {
   const searchParams = useSearchParams()
   const email = searchParams.get('email') || ''
   const nextRaw = searchParams.get('next')
+  const signUpHref = useMemo(() => buildSignUpHref(nextRaw), [nextRaw])
 
   const [digits, setDigits] = useState<string[]>(Array(CODE_LENGTH).fill(''))
   const [loading, setLoading] = useState(false)
@@ -143,7 +144,7 @@ function VerifyEmailForm() {
 
   if (!email) {
     return (
-      <AuthShell backLabel="Back to sign up" backHref="/auth/signup">
+      <AuthShell backLabel="Back to sign up" backHref={signUpHref}>
         <p className="ec-label-tech mb-3">VERIFY EMAIL</p>
         <h1 className="mb-3 text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
           No email address found
@@ -151,7 +152,7 @@ function VerifyEmailForm() {
         <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
           Start from the sign-up page so we know where to send your code.
         </p>
-        <Link href="/auth/signup" className="ec-btn-primary inline-flex w-full justify-center">
+        <Link href={signUpHref} className="ec-btn-primary inline-flex w-full justify-center">
           Go to sign up
         </Link>
       </AuthShell>
@@ -159,7 +160,7 @@ function VerifyEmailForm() {
   }
 
   return (
-    <AuthShell backLabel="Back to sign up" backHref="/auth/signup">
+    <AuthShell backLabel="Back to sign up" backHref={signUpHref}>
       <div className="mb-6 text-center">
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
           <Mail className="h-8 w-8 ec-text-brand" />
@@ -230,10 +231,7 @@ function VerifyEmailForm() {
         </p>
         <p className="text-[var(--ec-text-secondary)]">
           Wrong email?{' '}
-          <Link
-            href="/auth/signup"
-            className="ec-link"
-          >
+          <Link href={signUpHref} className="ec-link">
             Sign up again
           </Link>
         </p>

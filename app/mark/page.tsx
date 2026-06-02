@@ -25,6 +25,12 @@ import {
 } from '@/lib/upload/prepare-upload'
 import { formatFileSize } from '@/lib/upload/upload-limits'
 import { useSetAIContext } from '@/lib/omni-ai/context'
+import {
+  readClientStorage,
+  removeClientStorage,
+  STORAGE_KEYS,
+  writeClientStorage,
+} from '@/lib/client-storage'
 import { createClient } from '@/lib/supabase'
 import {
   getSubjectByCode,
@@ -252,7 +258,7 @@ export default function MarkPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     try {
-      const saved = window.localStorage.getItem('examcore_last_selection')
+      const saved = readClientStorage(STORAGE_KEYS.lastSelection)
       if (!saved) return
       const data = JSON.parse(saved)
       let hasAny = false
@@ -283,11 +289,11 @@ export default function MarkPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     try {
-      const pending = window.localStorage.getItem('examcore_pending_question')
+      const pending = readClientStorage(STORAGE_KEYS.pendingQuestion)
       if (pending) {
         setQuestionNumber(pending)
         setShowManualPaper(true)
-        window.localStorage.removeItem('examcore_pending_question')
+        removeClientStorage(STORAGE_KEYS.pendingQuestion)
       }
     } catch {
       // ignore
@@ -334,8 +340,8 @@ export default function MarkPage() {
       selectedComponent
     ) {
       try {
-        window.localStorage.setItem(
-          'examcore_last_selection',
+        writeClientStorage(
+          STORAGE_KEYS.lastSelection,
           JSON.stringify({
             subject: selectedSubject,
             year: selectedYear === '' ? '' : selectedYear,

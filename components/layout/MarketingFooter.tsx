@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 
 const PRODUCT_LINKS = [
+  { href: '/mark', label: 'Mark a paper' },
   { href: '/subjects', label: 'Subjects' },
   { href: '/how-it-works', label: 'How it works' },
   { href: '/pricing', label: 'Pricing' },
@@ -29,8 +30,8 @@ export function MarketingFooter() {
               MarkScheme
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-              AI marking for Cambridge A-Levels — honest feedback when you&apos;re
-              revising alone.
+              Cambridge A-Level &amp; O-Level past papers — mark-by-mark feedback on
+              your handwriting, tied to real mark schemes.
             </p>
             <p className="mt-3 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
               Built by an A-Level student for A-Level students

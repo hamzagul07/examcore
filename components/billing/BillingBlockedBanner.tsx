@@ -28,13 +28,13 @@ export function BillingBlockedBanner({ summary, className = '' }: Props) {
   let message: string
   if (qBlocked && oBlocked) {
     message =
-      "You've hit your monthly question and Omni caps. Marking, whole papers, and Ask Omni are paused until you upgrade, top up credits, or your allowance resets."
+      "You've hit your monthly question and study chat caps. Marking, whole papers, and Ask MarkScheme are paused until you upgrade, top up credits, or your allowance resets."
   } else if (qBlocked) {
     message =
       "You've hit your monthly question cap. Marking and whole papers are paused until you upgrade, top up credits, or your allowance resets."
   } else {
     message =
-      "You've hit your monthly Omni cap. Ask Omni is paused until you upgrade, top up credits, or your allowance resets."
+      "You've hit your monthly study chat cap. Ask MarkScheme is paused until you upgrade, top up credits, or your allowance resets."
   }
 
   return (

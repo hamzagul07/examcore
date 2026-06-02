@@ -13,6 +13,7 @@ import {
 } from '@/lib/billing/pricing'
 import { resolveRegion, REGION_COOKIE } from '@/lib/billing/region-cookie'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
+import { resolveSiteUrl } from '@/lib/site-url'
 import type { BillingPeriod } from '@/lib/database.types'
 
 export const runtime = 'nodejs'
@@ -34,11 +35,7 @@ type Body = {
 }
 
 function appOrigin(req: NextRequest): string {
-  return (
-    req.headers.get('origin') ||
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    new URL(req.url).origin
-  )
+  return req.headers.get('origin') || resolveSiteUrl() || new URL(req.url).origin
 }
 
 export async function POST(req: NextRequest) {

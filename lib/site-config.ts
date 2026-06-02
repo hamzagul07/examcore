@@ -1,6 +1,10 @@
-/** Production site URL — set NEXT_PUBLIC_SITE_URL in env (e.g. https://markscheme.app). */
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ?? 'https://markscheme.app'
+import { resolveSiteUrl } from '@/lib/site-url'
+
+/** Public site origin — see resolveSiteUrl() for env precedence. */
+export const SITE_URL = resolveSiteUrl()
+
+/** Hostname for display copy (e.g. privacy policy, hero mockup). */
+export const SITE_HOST = new URL(SITE_URL).host
 
 export const SITE_NAME = 'MarkScheme'
 
@@ -14,21 +18,11 @@ export const CONTACT_EMAIL = 'hello@markscheme.app'
 export const DEFAULT_SITE_DESCRIPTION =
   'Upload handwritten Cambridge A-Level and O-Level past-paper answers. Get instant mark-by-mark feedback tied to real mark schemes — B1, M1, A1, essay bands, and whole papers.'
 
-/** Shared SEO keywords for student revision search intent. */
-export const SEO_KEYWORDS = [
-  'Cambridge past papers',
-  'A-Level marking',
-  'O-Level marking',
-  'mark scheme',
-  'AI marking',
-  'handwritten answers',
-  'past paper feedback',
-  'Cambridge International',
-  'exam revision',
-  'mark by mark',
-] as const
+/** Shared SEO keywords — see lib/seo/keywords.ts for research clusters. */
+export { SEO_KEYWORDS } from '@/lib/seo/keywords'
 
 export const MARKETING_NAV = [
+  { href: '/mark', label: 'Mark a paper' },
   { href: '/subjects', label: 'Subjects' },
   { href: '/how-it-works', label: 'How it works' },
   { href: '/pricing', label: 'Pricing' },

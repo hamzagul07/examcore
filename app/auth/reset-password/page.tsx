@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { buildSignInHref } from '@/lib/auth-redirect'
 import { CheckCircle2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
@@ -56,7 +57,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <AuthShell backLabel="Back to sign in" backHref="/auth/signin">
+    <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
       {!done ? (
         <>
           <p className="ec-label-tech mb-3">NEW PASSWORD</p>

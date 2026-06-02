@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { buildSignInHref } from '@/lib/auth-redirect'
 import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
@@ -39,7 +40,7 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <AuthShell backLabel="Back to sign in" backHref="/auth/signin">
+    <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
       {!sent ? (
         <>
           <p className="ec-label-tech mb-3">PASSWORD RESET</p>
@@ -79,10 +80,7 @@ export default function ForgotPasswordPage() {
 
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Remembered it?{' '}
-            <Link
-              href="/auth/signin"
-              className="ec-link"
-            >
+            <Link href={buildSignInHref()} className="ec-link">
               Sign in
             </Link>
           </p>

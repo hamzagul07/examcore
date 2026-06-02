@@ -8,8 +8,21 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/auth/', '/dashboard', '/mark', '/account', '/onboarding', '/teacher', '/admin'],
+      disallow: [
+        '/api/',
+        '/auth/callback',
+        '/auth/signout',
+        '/auth/forgot-password',
+        '/auth/reset-password',
+        '/auth/verify-email',
+        '/dashboard',
+        '/account',
+        '/onboarding',
+        '/teacher',
+        '/admin',
+      ],
     },
     sitemap: `${base}/sitemap.xml`,
+    host: base.replace(/^https?:\/\//, ''),
   }
 }

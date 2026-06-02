@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Brain, Layers, PenLine } from 'lucide-react'
+import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
 import { createClient } from '@/lib/supabase-server'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
@@ -19,7 +20,7 @@ export default async function HowItWorksPage() {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  const markHref = user ? '/mark' : '/auth/signup'
+  const markHref = user ? '/mark' : buildSignUpHref(MARKETING_SIGNUP_DEST)
 
   return (
     <MarketingPageShell>
@@ -83,7 +84,7 @@ export default async function HowItWorksPage() {
             </p>
           </div>
           <Link
-            href="/auth/signup"
+            href={buildSignUpHref(MARKETING_SIGNUP_DEST)}
             className="ec-btn-primary mt-8 inline-flex min-h-[48px]"
           >
             Try it free

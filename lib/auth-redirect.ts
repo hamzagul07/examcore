@@ -28,3 +28,22 @@ export function isSafeNextPath(raw: string | null | undefined): raw is string {
     !trimmed.includes('://')
   )
 }
+
+/** `/auth/signup` preserving a post-auth destination (`redirect` query). */
+export function buildSignUpHref(nextPath?: string | null): string {
+  if (isSafeNextPath(nextPath)) {
+    return `/auth/signup?redirect=${encodeURIComponent(nextPath.trim())}`
+  }
+  return '/auth/signup'
+}
+
+/** `/auth/signin` preserving a post-auth destination (`next` query). */
+export function buildSignInHref(nextPath?: string | null): string {
+  if (isSafeNextPath(nextPath)) {
+    return `/auth/signin?next=${encodeURIComponent(nextPath.trim())}`
+  }
+  return '/auth/signin'
+}
+
+/** Default destination for marketing “Create account” CTAs. */
+export const MARKETING_SIGNUP_DEST = '/mark'

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { buildSignUpHref } from '@/lib/auth-redirect'
 import { Sparkles } from 'lucide-react'
 import { capForTier, omniCapForTier } from '@/lib/billing/caps'
 import { Sheet } from '@/components/ui/Sheet'
@@ -26,9 +27,9 @@ function capCopy(
   if (variant === 'omni_cap') {
     const omniCap = cap ?? (tier ? omniCapForTier(tier) : omniCapForTier('free'))
     if (tier === 'free') {
-      return `You've used all ${omniCap} of your free Omni messages this month`
+      return `You've used all ${omniCap} of your free study chat messages this month`
     }
-    return `You've used all ${omniCap} of your Omni messages this month`
+    return `You've used all ${omniCap} of your study chat messages this month`
   }
   const questionCap = tier ? capForTier(tier) : cap ?? capForTier('free')
   if (tier === 'free') {
@@ -66,32 +67,28 @@ export function UpgradeModal({
       <h2 className="text-headline text-[var(--ec-text-primary)]">{title}</h2>
       <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
         {isAnon
-          ? `Create a free account to keep marking — ${capForTier('free')} free questions and ${omniCapForTier('free')} Omni messages every month, no card required.`
+          ? `Create a free account to keep marking — ${capForTier('free')} free questions and ${omniCapForTier('free')} study chat messages every month, no card required.`
           : variant === 'omni_cap'
-            ? 'Upgrade to keep chatting with Omni about your work, or top up credits.'
+            ? 'Upgrade to keep using Ask MarkScheme about your work, or top up credits.'
             : 'Upgrade or grab a credit top-up to keep marking now.'}
       </p>
 
       {!isAnon && creditBalance > 0 && (
         <p className="mt-2 text-sm ec-score-high">
           You have {creditBalance} credit{creditBalance === 1 ? '' : 's'} — your next{' '}
-          {variant === 'omni_cap' ? 'Omni message' : 'question'} will use one.
+          {variant === 'omni_cap' ? 'study chat message' : 'question'} will use one.
         </p>
       )}
       {!isAnon && resetDate && (
         <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
-          Your {variant === 'omni_cap' ? 'Omni messages' : 'questions'} reset on {resetDate}.
+          Your {variant === 'omni_cap' ? 'study chat messages' : 'questions'} reset on {resetDate}.
         </p>
       )}
 
       <div className="mt-6 flex flex-col gap-3">
         {isAnon ? (
           <Link
-            href={
-              returnPath.startsWith('/')
-                ? `/auth/signup?redirect=${encodeURIComponent(returnPath)}`
-                : '/auth/signup'
-            }
+            href={buildSignUpHref(returnPath.startsWith('/') ? returnPath : null)}
             className="ec-btn-primary w-full justify-center"
           >
             Sign up to keep marking

@@ -281,7 +281,10 @@ export async function markSingleQuestion(params: {
 
   const parsed = paperCode ? parsePaperCode(paperCode) : null
   const inferredSubject = inferSubjectFromQuestionText(questionText)
-  const subjectCode = parsed?.subjectCode ?? inferredSubject ?? null
+  const subjectCode =
+    initialMode === 'general_criteria_practice' && parsed?.subjectCode
+      ? parsed.subjectCode
+      : parsed?.subjectCode ?? inferredSubject ?? null
   const subjectName = subjectCode
     ? SUBJECT_CODE_MAP[subjectCode] || 'A-Level'
     : 'A-Level'

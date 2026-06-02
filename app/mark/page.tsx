@@ -1104,11 +1104,10 @@ export default function MarkPage() {
               {isPracticeMode && answerPages.length > 0 && (
                 <div className="ec-card space-y-4 p-5 sm:p-6">
                   <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-                    <strong className="text-[var(--ec-text-primary)]">
-                      Skip this if your answer photo already shows the question.
-                    </strong>{' '}
-                    Otherwise add one — photo <em>or</em> typed text (not both). We mark using
-                    Cambridge {activeSubjectMeta?.label ?? 'A-Level'} conventions.
+                    If your answer photo already includes the question, you can skip this —
+                    we read the question from your upload automatically. If marks look wrong,
+                    add the question here (photo <em>or</em> typed text, not both) so the
+                    examiner knows exactly what to mark against.
                   </p>
 
                   <div>

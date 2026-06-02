@@ -444,6 +444,37 @@ Rules:
 - Examples of valid codes: 9701/22 (Chemistry), 9702/11 (Physics), 9709/12 (Math), 9489/21 (History).`
 }
 
+export function buildPracticeQuestionExtractPrompt(
+  ocrText: string,
+  subjectName: string,
+  subjectCode: string
+): string {
+  return `You are preparing a ${subjectName} (${subjectCode}) homework script for marking.
+
+The student uploaded one or more photos. The transcript may contain BOTH the question and their answer.
+
+TRANSCRIPT:
+${ocrText}
+
+TASK:
+1. Find the exam/homework QUESTION wording (stem, parts, given data). This is usually at the top or before working begins.
+2. Separate the student's ANSWER / working only (not the question text).
+3. If there is no clear question on the page — only working — set question_found to false.
+
+Return ONLY JSON:
+{
+  "question_found": true,
+  "question_text": "Full question as it appears or a faithful paraphrase",
+  "answer_text": "Only the student's working and final answer"
+}
+
+Rules:
+- question_text must be usable by an examiner who cannot see the image.
+- answer_text must not repeat the question stem.
+- For a single problem, return one question_found block (not multiple questions).
+- Use $...$ for maths where helpful.`
+}
+
 export function buildWholePaperSegmentPrompt(ocrText: string): string {
   return `Segment this student's handwritten exam paper into individual question answers.
 

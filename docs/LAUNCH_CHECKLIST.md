@@ -22,12 +22,16 @@ Production: **https://markscheme.app**
 2. Copy signing secret → Vercel `STRIPE_WEBHOOK_SECRET` (currently missing in health check)
 3. Redeploy
 
-### Supabase
+### Supabase + Google sign-in
 
 1. **Authentication → URL configuration**  
-   - `https://markscheme.app/auth/callback`  
-   - `http://localhost:3000/auth/callback`
-2. **Auth → Password security** → enable [leaked password protection](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection)
+   - Site URL: `https://markscheme.app`  
+   - Redirect URLs: `https://markscheme.app/auth/callback`, `http://localhost:3000/auth/callback`
+2. **Authentication → Providers → Google** — enabled with Client ID + Secret from Google Cloud
+3. **Google Cloud Console** → OAuth client → Authorized redirect URI:  
+   `https://mcnqxokprggjadtlloyr.supabase.co/auth/v1/callback`  
+   (not `markscheme.app` — Google talks to Supabase first)
+4. **Auth → Password security** → enable [leaked password protection](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection)
 
 ### GitHub
 

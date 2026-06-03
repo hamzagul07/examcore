@@ -17,7 +17,10 @@ import {
 
 import { buildSignInHref, isSafeNextPath } from '@/lib/auth-redirect'
 import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
-import { GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
+import {
+  GoogleAuthSection,
+  GoogleAuthSectionSkeleton,
+} from '@/components/auth/GoogleAuthSection'
 import { AuthDivider } from '@/components/auth/AuthDivider'
 
 /**
@@ -67,9 +70,10 @@ function SignUpFormSkeleton() {
       <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
         Create your <span className="ec-text-gradient">account</span>
       </h1>
-      <p className="leading-relaxed text-[var(--ec-text-secondary)]">
-        Continue with Google or use your email.
+      <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
+        Free tier included — start marking in under a minute.
       </p>
+      <GoogleAuthSectionSkeleton label="Sign up with Google" />
     </AuthShell>
   )
 }
@@ -208,19 +212,20 @@ function SignUpForm() {
             Create your <span className="ec-text-gradient">account</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Continue with Google or use your email.
+            Free tier included — start marking in under a minute.
           </p>
 
-          <GoogleAuthButton
+          <GoogleAuthSection
             label="Sign up with Google"
             redirectPath={
               intentDestination !== '/onboarding' ? intentDestination : null
             }
             disabled={loading}
             onError={setErrorMsg}
+            hint="School or personal Google — no password to remember."
           />
 
-          <AuthDivider label="or use email" />
+          <AuthDivider label="or continue with email" />
 
           <MethodTabs method={method} setMethod={setMethod} setError={setErrorMsg} />
 

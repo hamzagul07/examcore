@@ -16,7 +16,10 @@ import {
 } from '@/components/AuthFormBits'
 import { buildSignUpHref, sanitizeNextPath } from '@/lib/auth-redirect'
 import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
-import { GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
+import {
+  GoogleAuthSection,
+  GoogleAuthSectionSkeleton,
+} from '@/components/auth/GoogleAuthSection'
 import { AuthDivider } from '@/components/auth/AuthDivider'
 
 const AUTH_CALLBACK_ERRORS: Record<string, string> = {
@@ -40,9 +43,10 @@ function SignInSkeleton() {
       <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
         Sign in to <span className="ec-text-gradient">MarkScheme</span>
       </h1>
-      <p className="leading-relaxed text-[var(--ec-text-secondary)]">
-        Continue with Google or use your email.
+      <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
+        Pick up where you left off — mark papers and track progress.
       </p>
+      <GoogleAuthSectionSkeleton label="Continue with Google" />
     </AuthShell>
   )
 }
@@ -138,17 +142,17 @@ function SignInForm() {
             Sign in to <span className="ec-text-gradient">MarkScheme</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Continue with Google or use your email.
+            Pick up where you left off — mark papers and track progress.
           </p>
 
-          <GoogleAuthButton
+          <GoogleAuthSection
             label="Continue with Google"
             redirectPath={nextParam}
             disabled={loading}
             onError={setErrorMsg}
           />
 
-          <AuthDivider label="or use email" />
+          <AuthDivider label="or continue with email" />
 
           <MethodTabs method={method} setMethod={setMethod} setError={setErrorMsg} />
 

@@ -37,6 +37,9 @@ function GoogleIcon() {
   )
 }
 
+/**
+ * Google Identity–style button (light fill on dark auth card for recognition).
+ */
 export function GoogleAuthButton({
   label,
   redirectPath,
@@ -67,7 +70,6 @@ export function GoogleAuthButton({
       setLoading(false)
       onError?.(error.message)
     }
-    // Success redirects away — keep loading state.
   }
 
   return (
@@ -75,18 +77,19 @@ export function GoogleAuthButton({
       type="button"
       disabled={disabled || loading}
       aria-busy={loading || undefined}
+      aria-label={loading ? 'Connecting to Google' : label}
       onClick={() => void handleGoogle()}
-      className="flex min-h-[48px] w-full items-center justify-center gap-3 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)] px-4 py-3 text-sm font-semibold text-[var(--ec-text-primary)] transition-colors hover:border-[var(--ec-border-strong,var(--ec-border))] hover:bg-[var(--ec-surface-raised)] disabled:cursor-not-allowed disabled:opacity-60"
+      className="group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-[#747775] bg-white px-4 py-3.5 text-[15px] font-medium text-[#1f1f1f] shadow-[0_1px_2px_rgba(0,0,0,0.12)] transition-[box-shadow,transform,background-color] duration-200 hover:bg-[#f8f9fa] hover:shadow-[0_2px_6px_rgba(0,0,0,0.18)] active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100"
     >
       {loading ? (
         <>
-          <Loader2 className="h-5 w-5 animate-spin text-[var(--ec-text-secondary)]" />
-          Connecting to Google…
+          <Loader2 className="h-5 w-5 animate-spin text-[#5f6368]" aria-hidden />
+          <span>Connecting to Google…</span>
         </>
       ) : (
         <>
           <GoogleIcon />
-          {label}
+          <span>{label}</span>
         </>
       )}
     </button>

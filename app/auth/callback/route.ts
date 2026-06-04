@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
+import { createServiceClient } from '@/lib/supabase/service'
 import { isSafeNextPath } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
+import { handlePostAuthEmails } from '@/lib/email/notifications'
 
 /**
  * Lands here after a magic-link click, password-signup confirmation, or
@@ -58,6 +60,9 @@ export async function GET(request: NextRequest) {
       `${requestUrl.origin}/auth/signin?error=session_lost`
     )
   }
+
+  const admin = createServiceClient()
+  void handlePostAuthEmails(admin, user)
 
   const { data: profile } = await supabase
     .from('user_profiles')

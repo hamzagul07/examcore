@@ -4,6 +4,7 @@ import Stripe from 'stripe'
 import { stripe } from '@/lib/stripe/server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { lookupPriceConfig } from '@/lib/billing/pricing'
+import { notifyPurchaseEmails } from '@/lib/email/notifications'
 
 export const runtime = 'nodejs' // not edge — needs the raw body
 export const dynamic = 'force-dynamic'
@@ -208,6 +209,12 @@ async function handleStripeEvent(event: Stripe.Event, supabase: SupabaseClient) 
           },
         })
         if (error) throw new Error(`apply_credit_topup failed: ${error.message}`)
+
+        void notifyPurchaseEmails(supabase, userId, {
+          kind: 'credits',
+          detail: `${credits} marking credit${credits === 1 ? '' : 's'} have been added to your account.`,
+          stripeSessionId: session.id,
+        })
         break
       }
 
@@ -218,7 +225,24 @@ async function handleStripeEvent(event: Stripe.Event, supabase: SupabaseClient) 
             : session.subscription.id
         const sub = await stripe.subscriptions.retrieve(subId)
         const ok = await syncSubscription(supabase, sub)
-        if (!ok) console.warn(`checkout.session.completed (sub) ${session.id}: orphan/no-op.`)
+        if (!ok) {
+          console.warn(`checkout.session.completed (sub) ${session.id}: orphan/no-op.`)
+          break
+        }
+        const priceId = sub.items?.data?.[0]?.price?.id
+        const config = priceId ? await lookupPriceConfig(supabase, priceId) : null
+        const customerId = customerIdOf(session.customer)
+        const userId =
+          session.metadata?.supabase_user_id ??
+          (customerId ? await findUserIdByCustomer(supabase, customerId) : null)
+        if (userId) {
+          const tierLabel = config?.tier ?? 'paid'
+          void notifyPurchaseEmails(supabase, userId, {
+            kind: 'subscription',
+            detail: `Your ${tierLabel} plan is now active.`,
+            stripeSessionId: session.id,
+          })
+        }
       }
       break
     }

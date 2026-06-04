@@ -182,9 +182,10 @@ export default function MarkPage() {
     }
   }, [])
 
-  const submitBlocked = billingSummary
-    ? questionUsageMessage(billingSummary).disableSubmit
-    : false
+  const submitBlocked =
+    billingSummary?.signedIn && billingSummary.questions
+      ? questionUsageMessage(billingSummary).disableSubmit
+      : false
 
   const cinematicActive = loading && !!markProgress
 
@@ -1033,7 +1034,7 @@ export default function MarkPage() {
                   </div>
                 ) : (
                   <>
-                    {billingSummary && !isPaidTier(billingSummary.tier) && (
+                    {billingSummary?.signedIn && !isPaidTier(billingSummary.tier) && (
                       <div className="ec-banner-warning-inline rounded-xl px-4 py-3 text-sm">
                         <span className="font-semibold">Free preview:</span>{' '}
                         we mark up to {FREE_WHOLE_PAPER_QUESTION_LIMIT} questions per

@@ -31,6 +31,10 @@ export function questionUsageMessage(summary: BillingSummaryClient): {
   tone: 'normal' | 'warning' | 'error'
   disableSubmit: boolean
 } {
+  if (!summary.signedIn || !summary.questions) {
+    return { text: '', tone: 'normal', disableSubmit: false }
+  }
+
   const q = summary.questions
   const tierLabel =
     summary.tier === 'free'
@@ -101,6 +105,10 @@ export function questionUsageMessage(summary: BillingSummaryClient): {
 }
 
 export function wholePaperUsageMessage(summary: BillingSummaryClient): string {
+  if (!summary.signedIn || !summary.questions) {
+    return 'This whole paper will use 1 question (regardless of how many sub-questions it contains).'
+  }
+
   const q = summary.questions
   const base =
     'This whole paper will use 1 question (regardless of how many sub-questions it contains).'

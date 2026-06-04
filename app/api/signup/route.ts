@@ -6,6 +6,7 @@ import {
   incrementSignupRateLimit,
 } from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
+import { notifyAdminWaitlistSignup } from '@/lib/email/notifications'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -44,6 +45,12 @@ export async function POST(request: NextRequest) {
     }
 
     await incrementSignupRateLimit(admin, ip, rate.count)
+
+    notifyAdminWaitlistSignup({
+      email,
+      whatsapp,
+      subjectInterest: subject_interest,
+    })
 
     return NextResponse.json({ success: true })
   } catch (err) {

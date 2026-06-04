@@ -30,16 +30,21 @@ Production: **https://markscheme.app**
 2. **Authentication → Providers → Google** — enabled with Client ID + Secret from Google Cloud
 3. **Google Cloud Console** → OAuth client → Authorized redirect URI:  
    `https://mcnqxokprggjadtlloyr.supabase.co/auth/v1/callback`  
-   (not `markscheme.app` — Google talks to Supabase first)
+   (not `markscheme.app` — Google talks to Supabase first)  
+   **Consent screen shows `supabase.co`?** → [GOOGLE_OAUTH_BRANDING.md](./GOOGLE_OAUTH_BRANDING.md) (custom domain + Google brand verification)
 4. **Auth → Password security** → enable [leaked password protection](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection)
 
 ### GitHub
 
 - **Branch protection** on `main`: require CI job **quality**
 
-### Optional
+### Email (Resend)
 
-- `RESEND_API_KEY` — email alerts when someone uses `/contact`
+1. Verify domain **markscheme.app** in Resend → add `RESEND_API_KEY`, `RESEND_FROM`, `CONTACT_NOTIFY_TO` on Vercel  
+2. Supabase → **SMTP** with Resend (magic link / confirm emails) — [EMAIL_SETUP.md](./EMAIL_SETUP.md)  
+3. Sends: welcome, purchase receipts, admin alerts (contact, signup, billing)
+
+### Optional
 - Uptime monitor on `GET https://markscheme.app/api/health`
 - Google Search Console → submit `https://markscheme.app/sitemap.xml`
 

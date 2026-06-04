@@ -1,13 +1,27 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import { createBlogPostMetadata } from '@/lib/seo/metadata'
 import { getAllBlogSlugs, getBlogPost, getRelatedPosts } from '@/lib/blog'
+import { enrichPostMeta, extractHeadings } from '@/lib/blog/meta'
 import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
+import { BlogPillarLinks } from '@/components/seo/BlogPillarLinks'
 import { BlogPostCta } from '@/components/seo/BlogPostCta'
-import { BlogPostJsonLd } from '@/components/seo/BlogPostJsonLd'
+import { BlogPostGraphJsonLd } from '@/components/seo/BlogPostGraphJsonLd'
+import { BlogArticleHero } from '@/components/blog/BlogArticleHero'
+import { BlogAuthorByline } from '@/components/blog/BlogAuthorByline'
+import { BlogClusterNav } from '@/components/blog/BlogClusterNav'
+import { BlogQuickAnswer } from '@/components/blog/BlogQuickAnswer'
+import { BlogSourcesBlock } from '@/components/blog/BlogSourcesBlock'
+import { BlogSerpSnippets } from '@/components/blog/BlogSerpSnippets'
+import { BlogTaskCompleteCta } from '@/components/blog/BlogTaskCompleteCta'
+import { BlogReadingProgress } from '@/components/blog/BlogReadingProgress'
+import { BlogChunkedArticle } from '@/components/blog/BlogChunkedArticle'
+import { BlogFollowUpChain } from '@/components/blog/BlogFollowUpChain'
+import { BlogConversationalQueries } from '@/components/blog/BlogConversationalQueries'
+import { BlogInContentLinks } from '@/components/blog/BlogInContentLinks'
+import { BlogInformationGain } from '@/components/blog/BlogInformationGain'
+import { BlogTableOfContents } from '@/components/blog/BlogTableOfContents'
+import { BlogRelatedGrid } from '@/components/blog/BlogRelatedGrid'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -27,61 +41,46 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getBlogPost(slug)
   if (!post) notFound()
 
+  const enriched = enrichPostMeta(post, post.content)
+  const headings = extractHeadings(post.content)
   const related = getRelatedPosts(slug, 3)
 
   return (
     <MarketingPageShell narrow>
-      <BlogPostJsonLd post={post} />
-      <article className="py-16 sm:py-20">
-        <Link href="/blog" className="text-sm ec-link">
-          ← Back to blog
-        </Link>
-        <header className="mt-6 mb-10">
-          <time
-            dateTime={post.date}
-            className="font-mono text-xs text-[var(--ec-text-secondary)]"
-          >
-            {post.date
-              ? new Date(post.date).toLocaleDateString('en-GB', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                })
-              : ''}
-          </time>
-          <h1 className="text-display mt-3 text-[var(--ec-text-primary)]">
-            {post.title}
-          </h1>
-          {post.description ? (
-            <p className="landing-lead mt-4">{post.description}</p>
-          ) : null}
-        </header>
-        <div className="prose prose-sm max-w-none prose-headings:text-[var(--ec-text-primary)] prose-p:text-[var(--ec-text-secondary)] prose-a:text-[var(--ec-brand)] prose-strong:text-[var(--ec-text-primary)] prose-li:text-[var(--ec-text-secondary)]">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
+      <BlogPostGraphJsonLd post={post} content={post.content} />
+      <BlogReadingProgress />
+      <article className="py-12 sm:py-16">
+        <BlogArticleHero post={enriched} />
+        <BlogClusterNav slug={slug} />
+        <BlogQuickAnswer
+          title={post.title}
+          description={post.description}
+          content={post.content}
+          date={post.updated ?? post.date}
+        />
+        <BlogAuthorByline authorId={post.author} />
+        <BlogInformationGain
+          slug={slug}
+          content={post.content}
+          informationGain={post.informationGain}
+        />
+        <BlogConversationalQueries slug={slug} />
+        <BlogInContentLinks slug={slug} />
+
+        <div className="ec-blog-layout mt-10">
+          <BlogTableOfContents headings={headings} />
+          <div className="ec-blog-prose ec-fanout-prose min-w-0">
+            <BlogChunkedArticle content={post.content} slug={slug} />
+          </div>
         </div>
 
+        <BlogFollowUpChain slug={slug} />
+        <BlogSerpSnippets content={post.content} />
+        <BlogTaskCompleteCta />
+        <BlogSourcesBlock />
         <BlogPostCta variant={isSubjectGuideSlug(slug) ? 'subject' : 'default'} />
-
-        {related.length > 0 && (
-          <section className="mt-12 border-t border-[var(--ec-border)] pt-10">
-            <p className="ec-label-tech mb-4">RELATED READING</p>
-            <ul className="space-y-4">
-              {related.map((r) => (
-                <li key={r.slug}>
-                  <Link
-                    href={`/blog/${r.slug}`}
-                    className="text-base font-semibold text-[var(--ec-text-primary)] transition-colors hover:text-[var(--ec-brand)]"
-                  >
-                    {r.title}
-                  </Link>
-                  <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">
-                    {r.description}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+        <BlogPillarLinks showSubjects={!isSubjectGuideSlug(slug)} />
+        <BlogRelatedGrid posts={related} />
       </article>
     </MarketingPageShell>
   )

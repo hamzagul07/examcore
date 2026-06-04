@@ -1,4 +1,5 @@
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { ContactForm } from './contact-form'
 
 export const metadata = createPageMetadata({
@@ -9,5 +10,18 @@ export const metadata = createPageMetadata({
 })
 
 export default function ContactPage() {
-  return <ContactForm />
+  return (
+    <>
+      <PageJsonLd
+        path="/contact"
+        title="Contact MarkScheme"
+        description="Contact MarkScheme for Cambridge past-paper marking support, feedback, and billing questions."
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Contact', path: '/contact' },
+        ]}
+      />
+      <ContactForm />
+    </>
+  )
 }

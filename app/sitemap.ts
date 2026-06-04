@@ -1,7 +1,9 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/site-config'
 import { getAllBlogSlugs, getBlogPostLastModified } from '@/lib/blog'
-import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
+import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
+import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
+import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
 
 const STATIC_ROUTES = [
   { path: '', priority: 1, changeFrequency: 'weekly' as const },
@@ -12,7 +14,11 @@ const STATIC_ROUTES = [
   { path: '/faq', priority: 0.75, changeFrequency: 'monthly' as const },
   { path: '/about', priority: 0.7, changeFrequency: 'monthly' as const },
   { path: '/contact', priority: 0.65, changeFrequency: 'monthly' as const },
-  { path: '/blog', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/blog', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/guides', priority: 0.88, changeFrequency: 'weekly' as const },
+  { path: '/compare', priority: 0.82, changeFrequency: 'monthly' as const },
+  { path: '/research', priority: 0.75, changeFrequency: 'monthly' as const },
+  { path: '/insights', priority: 0.87, changeFrequency: 'weekly' as const },
   { path: '/join', priority: 0.5, changeFrequency: 'monthly' as const },
   { path: '/auth/signin', priority: 0.45, changeFrequency: 'monthly' as const },
   { path: '/auth/signup', priority: 0.45, changeFrequency: 'monthly' as const },
@@ -34,9 +40,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogEntries: MetadataRoute.Sitemap = getAllBlogSlugs().map((slug) => ({
     url: `${base}/blog/${slug}`,
     lastModified: getBlogPostLastModified(slug) ?? now,
-    changeFrequency: 'monthly' as const,
-    priority: isSubjectGuideSlug(slug) ? 0.78 : 0.65,
+    changeFrequency: 'weekly' as const,
+    priority: blogSitemapPriority(slug),
   }))
 
-  return [...staticEntries, ...blogEntries]
+  const guideEntries: MetadataRoute.Sitemap = CONTENT_CLUSTERS.map((c) => ({
+    url: `${base}${c.path}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.86,
+  }))
+
+  const subjectEntries: MetadataRoute.Sitemap = getMarkingSubjectCodes().map(
+    (code) => ({
+      url: `${base}/subjects/${code}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.84,
+    })
+  )
+
+  return [...staticEntries, ...guideEntries, ...subjectEntries, ...blogEntries]
 }

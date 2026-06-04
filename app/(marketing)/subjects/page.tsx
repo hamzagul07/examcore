@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
+import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { SubjectsGrid } from '@/components/marketing/SubjectsGrid'
 import { getSubjectGuidePosts } from '@/lib/seo/subject-guides'
@@ -19,6 +20,15 @@ export default function SubjectsPage() {
 
   return (
     <MarketingPageShell>
+      <PageJsonLd
+        path="/subjects"
+        title="Cambridge subjects — past paper marking"
+        description="MarkScheme supports Cambridge International past papers across A-Level and O-Level syllabuses."
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Subjects', path: '/subjects' },
+        ]}
+      />
       <MarketingHero
         label="SUBJECTS"
         title={
@@ -53,7 +63,7 @@ export default function SubjectsPage() {
               Try marking free <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
-              href={buildSignUpHref(MARKETING_SIGNUP_DEST)}
+              href={buildMarketingSignUpHref()}
               className="ec-btn-secondary inline-flex min-h-[52px]"
             >
               Create free account

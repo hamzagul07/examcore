@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
-import { isSafeNextPath } from '@/lib/auth-redirect'
+import { resolvePostAuthPath } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { handlePostAuthEmails } from '@/lib/email/notifications'
 
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
   }
 
   const code = requestUrl.searchParams.get('code')
-  const next = requestUrl.searchParams.get('next')
+  const nextParam = requestUrl.searchParams.get('next')
 
   if (!code) {
     return NextResponse.redirect(
@@ -45,17 +45,11 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  // Explicit `next` (e.g. password recovery, deep-link after signin) always wins.
-  if (next && isSafeNextPath(next)) {
-    return NextResponse.redirect(`${requestUrl.origin}${next}`)
-  }
-
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
   if (!user) {
-    // Shouldn't happen post-exchange, but fall back to signin defensively.
     return NextResponse.redirect(
       `${requestUrl.origin}/auth/signin?error=session_lost`
     )
@@ -71,7 +65,6 @@ export async function GET(request: NextRequest) {
     .maybeSingle()
 
   const onboarded = isOnboardingComplete(profile)
-  return NextResponse.redirect(
-    `${requestUrl.origin}${onboarded ? '/dashboard' : '/onboarding'}`
-  )
+  const destination = resolvePostAuthPath(onboarded, nextParam)
+  return NextResponse.redirect(`${requestUrl.origin}${destination}`)
 }

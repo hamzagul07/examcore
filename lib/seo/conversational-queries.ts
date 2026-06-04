@@ -1,0 +1,37 @@
+import { getClusterForSlug, type ContentClusterId } from '@/lib/seo/clusters'
+
+/**
+ * Real conversational sub-query phrasing (UGC-style) — align fan-out retrieval.
+ * Mine from Reddit r/igcse, r/alevel, school forums; refresh quarterly.
+ */
+export type ConversationalQuery = {
+  phrase: string
+  clusterId: ContentClusterId
+}
+
+export const CONVERSATIONAL_QUERIES: ConversationalQuery[] = [
+  { phrase: 'how do I mark my own past paper properly', clusterId: 'past-paper-marking' },
+  { phrase: 'am I marking too leniently when I self mark', clusterId: 'past-paper-marking' },
+  { phrase: 'best way to use mark schemes a level', clusterId: 'mark-schemes' },
+  { phrase: 'what does M1 mean in cambridge maths', clusterId: 'mark-schemes' },
+  { phrase: 'how many past papers should I do before exams', clusterId: 'revision-strategy' },
+  { phrase: 'when should I start doing timed past papers', clusterId: 'revision-strategy' },
+  { phrase: 'which a levels should I take for medicine', clusterId: 'subject-choice' },
+  { phrase: 'is further maths worth it with 9709', clusterId: 'subject-choice' },
+  { phrase: 'cambridge exam leaks 2026 what to do', clusterId: 'exam-integrity' },
+  { phrase: 'can you use chatgpt for cambridge revision', clusterId: 'exam-integrity' },
+  { phrase: 'best website for cambridge past papers', clusterId: 'resources-tools' },
+  { phrase: 'app to mark my handwritten maths answers', clusterId: 'past-paper-marking' },
+  { phrase: '9709 past paper revision plan', clusterId: 'subject-guides' },
+  { phrase: 'how to photograph exam answers for revision', clusterId: 'exam-technique' },
+]
+
+export function getQueriesForCluster(clusterId: ContentClusterId): string[] {
+  return CONVERSATIONAL_QUERIES.filter((q) => q.clusterId === clusterId).map(
+    (q) => q.phrase
+  )
+}
+
+export function getQueriesForSlug(slug: string): string[] {
+  return getQueriesForCluster(getClusterForSlug(slug).id)
+}

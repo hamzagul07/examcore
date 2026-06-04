@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
+import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 
 type BlogPostCtaProps = {
   variant?: 'default' | 'subject'
@@ -38,7 +38,7 @@ export function BlogPostCta({ variant = 'default' }: BlogPostCtaProps) {
           Mark a paper free
         </Link>
         <Link
-          href={buildSignUpHref(MARKETING_SIGNUP_DEST)}
+          href={buildMarketingSignUpHref()}
           className="ec-btn-secondary inline-flex min-h-[48px] justify-center"
         >
           Create free account

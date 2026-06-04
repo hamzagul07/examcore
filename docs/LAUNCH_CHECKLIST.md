@@ -44,9 +44,17 @@ Production: **https://markscheme.app**
 2. Supabase → **SMTP** with Resend (magic link / confirm emails) — [EMAIL_SETUP.md](./EMAIL_SETUP.md)  
 3. Sends: welcome, purchase receipts, admin alerts (contact, signup, billing)
 
+### SEO & authority (after deploy)
+
+1. Google Search Console + Bing Webmaster — submit `https://markscheme.app/sitemap.xml`
+2. Vercel env: `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION` (optional `NEXT_PUBLIC_TWITTER_HANDLE`, social `sameAs` URLs)
+3. Follow [SEO_TWELVE_PILLARS.md](./SEO_TWELVE_PILLARS.md) (in-site implementation) and [SEO_AUTHORITY_PLAYBOOK.md](./SEO_AUTHORITY_PLAYBOOK.md) (backlinks)
+4. Run `pnpm seo:audit` after content changes; track queries in [SEO_MEASUREMENT.md](./SEO_MEASUREMENT.md)
+5. Advanced stack: [SEO_ADVANCED_THIRTEEN.md](./SEO_ADVANCED_THIRTEEN.md) — entity env vars, `pnpm seo:ssr-check` on prod
+6. Information gain / AI retrieval: [SEO_INFORMATION_GAIN_TWELVE.md](./SEO_INFORMATION_GAIN_TWELVE.md) — `/insights`, `pnpm seo:fan-out-lint`, `pnpm seo:ai-visibility`
+
 ### Optional
 - Uptime monitor on `GET https://markscheme.app/api/health`
-- Google Search Console → submit `https://markscheme.app/sitemap.xml`
 
 ### Enforcement
 

@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { Brain, Layers, PenLine } from 'lucide-react'
-import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
+import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { createClient } from '@/lib/supabase-server'
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { Hero } from '@/components/marketing/Hero'
 import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSteps'
@@ -20,10 +21,19 @@ export default async function HowItWorksPage() {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  const markHref = user ? '/mark' : buildSignUpHref(MARKETING_SIGNUP_DEST)
+  const markHref = user ? '/mark' : buildMarketingSignUpHref()
 
   return (
     <MarketingPageShell>
+      <PageJsonLd
+        path="/how-it-works"
+        title="How MarkScheme marks Cambridge past papers"
+        description="Pick a past paper, upload handwritten working, and get mark-by-mark feedback from the real Cambridge mark scheme."
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'How it works', path: '/how-it-works' },
+        ]}
+      />
       <MarketingHero
         label="HOW IT WORKS"
         title={
@@ -84,7 +94,7 @@ export default async function HowItWorksPage() {
             </p>
           </div>
           <Link
-            href={buildSignUpHref(MARKETING_SIGNUP_DEST)}
+            href={buildMarketingSignUpHref()}
             className="ec-btn-primary mt-8 inline-flex min-h-[48px]"
           >
             Try it free

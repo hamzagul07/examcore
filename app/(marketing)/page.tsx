@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { HomeJsonLd } from '@/components/seo/HomeJsonLd'
 import { LandingHero } from '@/components/landing/LandingHero'
 import { Hero } from '@/components/marketing/Hero'
 import { LandingSubjects } from '@/components/landing/LandingSubjects'
@@ -7,6 +8,7 @@ import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSt
 import { LandingFounder } from '@/components/landing/LandingFounder'
 import { LandingComparison } from '@/components/landing/LandingComparison'
 import { LandingFaq } from '@/components/landing/LandingFaq'
+import { LandingTopicHub } from '@/components/landing/LandingTopicHub'
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 import {
   Brain,
@@ -31,6 +33,7 @@ export default async function Home() {
 
   return (
     <div className="relative min-h-screen">
+      <HomeJsonLd />
       <main>
         <section className="landing-section relative scroll-mt-20 pb-16 pt-20 sm:pb-24 sm:pt-28">
           <div className="landing-hero-glow" aria-hidden />
@@ -216,6 +219,10 @@ export default async function Home() {
 
         <section className="landing-section">
           <LandingComparison />
+        </section>
+
+        <section id="guides" className="landing-section scroll-mt-20">
+          <LandingTopicHub />
         </section>
 
         <section id="faq" className="landing-section scroll-mt-20">

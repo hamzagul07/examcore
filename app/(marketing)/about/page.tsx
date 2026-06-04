@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { AboutPersonJsonLd } from '@/components/seo/AboutPersonJsonLd'
+import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
 export const metadata = createPageMetadata({
@@ -13,6 +15,16 @@ export const metadata = createPageMetadata({
 export default function AboutPage() {
   return (
     <MarketingPageShell>
+      <AboutPersonJsonLd />
+      <PageJsonLd
+        path="/about"
+        title="About MarkScheme"
+        description="Built by an A-Level student: MarkScheme marks handwritten Cambridge past papers against real mark schemes."
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ]}
+      />
       <MarketingHero
         label="ABOUT"
         title={

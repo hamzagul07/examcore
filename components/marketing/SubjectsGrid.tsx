@@ -120,7 +120,10 @@ function SubjectCard({
 
   if (!detailed) {
     return (
-      <div className="ec-card ec-card-interactive relative overflow-hidden p-4 text-center sm:p-5">
+      <Link
+        href={`/subjects/${subject.code}`}
+        className="ec-card ec-card-interactive relative block overflow-hidden p-4 text-center sm:p-5"
+      >
         <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[color-mix(in_srgb,var(--ec-brand)_10%,transparent)] blur-[50px]" />
         <div className="relative">
           <div className="ec-tint-success-icon mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl border sm:h-12 sm:w-12">
@@ -138,7 +141,7 @@ function SubjectCard({
             )}
           </p>
         </div>
-      </div>
+      </Link>
     )
   }
 
@@ -152,7 +155,7 @@ function SubjectCard({
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline gap-2">
           <h4 className="text-lg font-bold text-[var(--ec-text-primary)]">
-            {subject.label}
+            <Link href={`/subjects/${subject.code}`}>{subject.label}</Link>
           </h4>
           <span className="font-mono text-xs text-[var(--ec-text-secondary)]">
             {subject.code}
@@ -169,15 +172,23 @@ function SubjectCard({
         <p className="mt-2 text-xs font-medium text-[color-mix(in_srgb,var(--ec-brand)_90%,transparent)]">
           {markingTypeLabel(subject.markingType)}
         </p>
-        {guideSlug && (
+        <div className="mt-3 flex flex-wrap gap-4">
           <Link
-            href={`/blog/${guideSlug}`}
-            className="ec-link mt-3 inline-flex items-center gap-1.5 text-sm font-semibold"
+            href={`/subjects/${subject.code}`}
+            className="ec-link inline-flex items-center gap-1.5 text-sm font-semibold"
           >
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            Past papers &amp; marking guide
+            Mark {subject.code} past papers
           </Link>
-        )}
+          {guideSlug && (
+            <Link
+              href={`/blog/${guideSlug}`}
+              className="text-sm font-medium text-[var(--ec-text-secondary)] hover:text-[var(--ec-brand)]"
+            >
+              Revision guide
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   )

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
+import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { ANON_DAILY_MARK_LIMIT } from '@/lib/rate-limit'
 
 type Props = {
@@ -35,7 +35,7 @@ export function GuestMarkNotice({ className = '' }: Props) {
       className={`rounded-2xl border ec-border-color ec-bg-surface-raised px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)] ${className}`}
     >
       Marking as a guest — up to {ANON_DAILY_MARK_LIMIT} marks per day from this network.{' '}
-      <Link href={buildSignUpHref(MARKETING_SIGNUP_DEST)} className="ec-link">
+      <Link href={buildMarketingSignUpHref()} className="ec-link">
         Create a free account
       </Link>{' '}
       for your own monthly allowance.

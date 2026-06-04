@@ -1540,21 +1540,379 @@ body {
   box-shadow: var(--ec-btn-glow);
 }
 
-/* ============ Theme wordmarks (transparent PNGs) ============ */
-.ec-wordmark-late-night {
-  display: inline-block;
+/* ============ Blog index & cards ============ */
+.ec-blog-stats {
+  display: grid;
 }
 
-.ec-wordmark-zen {
-  display: none;
+.ec-blog-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--ec-radius-card, 16px);
+  border: 1px solid var(--ec-border);
+  background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-surface));
 }
 
-html[data-ec-theme='zen'] .ec-wordmark-late-night {
-  display: none;
+.ec-blog-stat__value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: var(--ec-brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-html[data-ec-theme='zen'] .ec-wordmark-zen {
-  display: inline-block;
+.ec-blog-stat__label {
+  font-size: 0.8125rem;
+  color: var(--ec-text-secondary);
+}
+
+.ec-blog-card {
+  position: relative;
+  border-radius: var(--ec-radius-card, 16px);
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.ec-blog-card:hover {
+  border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+  box-shadow: var(--ec-card-hover-shadow);
+  transform: translateY(-2px);
+}
+
+.ec-blog-card--featured {
+  border-color: color-mix(in srgb, var(--ec-brand) 25%, var(--ec-border));
+}
+
+.ec-blog-card--editorial {
+  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--ec-brand) 10%, var(--ec-surface)) 0%,
+    var(--ec-surface) 55%
+  );
+}
+
+.ec-blog-card--editorial .ec-blog-card__glow {
+  opacity: 0.45;
+}
+
+.ec-blog-chip--editorial,
+.ec-blog-chip--spotlight {
+  color: var(--ec-canvas);
+  background: var(--ec-brand-gradient);
+  border-color: transparent;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.ec-blog-chip--spotlight {
+  box-shadow: var(--ec-btn-glow);
+}
+
+.ec-blog-hero--editorial {
+  border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--ec-brand) 14%, var(--ec-surface)) 0%,
+    var(--ec-surface) 50%,
+    color-mix(in srgb, var(--ec-brand) 6%, var(--ec-canvas)) 100%
+  );
+}
+
+.ec-blog-reading-progress {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ec-brand) 50%, transparent);
+}
+
+.ec-blog-card__glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    80% 60% at 10% 0%,
+    color-mix(in srgb, var(--ec-brand) 18%, transparent),
+    transparent 70%
+  );
+  transition: opacity 200ms ease;
+}
+
+.ec-blog-card:hover .ec-blog-card__glow {
+  opacity: 1;
+}
+
+.ec-blog-card__inner {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+}
+
+.ec-blog-card--featured .ec-blog-card__inner {
+  padding: 1.75rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .ec-blog-card--featured .ec-blog-card__inner {
+    padding: 2rem 2.25rem;
+  }
+}
+
+.ec-blog-card--compact .ec-blog-card__inner {
+  padding: 1.15rem 1.25rem;
+}
+
+.ec-blog-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 25%, transparent);
+}
+
+.ec-blog-chip--code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  color: var(--ec-text-primary);
+  background: var(--ec-surface-raised);
+  border-color: var(--ec-border);
+}
+
+.ec-blog-meta {
+  font-size: 0.75rem;
+  color: var(--ec-text-secondary);
+}
+
+.ec-blog-keyword {
+  opacity: 0.85;
+}
+
+.ec-blog-cta-banner {
+  background: color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface));
+}
+
+.ec-blog-hero {
+  background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-surface));
+}
+
+.ec-blog-hero__mesh {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 100% 0%, color-mix(in srgb, var(--ec-brand) 22%, transparent), transparent),
+    radial-gradient(ellipse 50% 40% at 0% 100%, color-mix(in srgb, var(--ec-brand) 10%, transparent), transparent);
+  opacity: 0.9;
+}
+
+.ec-blog-layout {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .ec-blog-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .ec-blog-toc {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+/* ============ Fan-out chunks (AI retrieval / passage optimization) ============ */
+.ec-fanout-chunk {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--ec-border) 60%, transparent);
+}
+
+.ec-fanout-chunk:last-child {
+  border-bottom: none;
+}
+
+.ec-chunk-lead {
+  border-left: 3px solid var(--ec-brand);
+  padding-left: 1rem;
+}
+
+.ec-fanout-prose .ec-fanout-chunk h2,
+.ec-fanout-prose .ec-fanout-chunk h3 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ============ Blog article typography ============ */
+.ec-blog-prose {
+  max-width: none;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ec-text-secondary);
+}
+
+.ec-blog-prose > *:first-child {
+  margin-top: 0;
+}
+
+.ec-blog-prose h2 {
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--ec-border);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ec-text-primary);
+}
+
+.ec-blog-prose h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.65rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ec-text-primary);
+}
+
+.ec-blog-prose p {
+  margin-top: 0;
+  margin-bottom: 1.15rem;
+}
+
+.ec-blog-prose ul,
+.ec-blog-prose ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.35rem;
+}
+
+.ec-blog-prose li {
+  margin-bottom: 0.45rem;
+}
+
+.ec-blog-prose li > p {
+  margin-bottom: 0.5rem;
+}
+
+.ec-blog-prose hr {
+  margin: 2.5rem 0;
+  border-color: var(--ec-border);
+}
+
+.ec-blog-prose table {
+  width: 100%;
+  margin: 1.25rem 0 1.5rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.ec-blog-prose th,
+.ec-blog-prose td {
+  border: 1px solid var(--ec-border);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ec-blog-prose th {
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-primary);
+  font-weight: 600;
+}
+
+.ec-blog-prose a {
+  color: var(--ec-brand);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ec-blog-prose a:hover {
+  color: var(--ec-text-primary);
+}
+
+.ec-blog-prose strong {
+  color: var(--ec-text-primary);
+  font-weight: 600;
+}
+
+.ec-blog-prose blockquote {
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--ec-brand);
+  border-radius: 0 var(--ec-radius-button, 12px) var(--ec-radius-button, 12px) 0;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--ec-brand) 14%, var(--ec-surface-raised)) 0%,
+    transparent 100%
+  );
+  color: var(--ec-text-primary);
+  font-style: normal;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.ec-blog-prose code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.9em;
+  padding: 0.12em 0.35em;
+  border-radius: 0.25rem;
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-primary);
+}
+
+.ec-blog-prose pre {
+  margin: 1.25rem 0 1.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: var(--ec-radius-card, 16px);
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface-raised);
+}
+
+.ec-blog-prose pre code {
+  padding: 0;
+  background: transparent;
+}
+
+/* ============ Handwritten wordmark ============ */
+.ec-wordmark-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+  transform: rotate(-1.25deg);
+}
+
+.ec-wordmark-name {
+  font-family: var(--ec-font-handwriting);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.ec-wordmark-scheme {
+  color: var(--ec-text-primary);
+}
+
+.ec-wordmark-underline {
+  width: 100%;
+  height: 0.35rem;
+  margin-top: 0.1rem;
+  margin-left: 0.12rem;
 }
 
 /* ============ Shared header controls (marketing + app) ============ */

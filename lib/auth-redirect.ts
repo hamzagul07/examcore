@@ -45,5 +45,23 @@ export function buildSignInHref(nextPath?: string | null): string {
   return '/auth/signin'
 }
 
-/** Default destination for marketing “Create account” CTAs. */
-export const MARKETING_SIGNUP_DEST = '/mark'
+/**
+ * Post-auth routing after OAuth / magic link.
+ * New users must finish onboarding before app destinations (e.g. /mark).
+ */
+export function resolvePostAuthPath(
+  onboarded: boolean,
+  next: string | null | undefined
+): string {
+  if (next && isSafeNextPath(next)) {
+    const authOnly = next.startsWith('/auth/')
+    if (onboarded || authOnly) return next.trim()
+    return `/onboarding?next=${encodeURIComponent(next.trim())}`
+  }
+  return onboarded ? '/dashboard' : '/onboarding'
+}
+
+/** Marketing signup — no redirect param; onboarding runs first. */
+export function buildMarketingSignUpHref(): string {
+  return '/auth/signup'
+}

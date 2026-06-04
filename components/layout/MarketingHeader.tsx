@@ -74,7 +74,7 @@ export function MarketingHeader() {
             </ul>
           </nav>
 
-          <div className="ec-marketing-header__actions flex shrink-0 items-center gap-2">
+          <div className="ec-marketing-header__actions ml-auto flex shrink-0 items-center gap-2">
             <div className="hidden lg:block">
               <ThemeSwitcher compact />
             </div>
@@ -101,7 +101,7 @@ export function MarketingHeader() {
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="ec-marketing-header__menu inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-[var(--ec-border)] lg:hidden"
+              className="ec-header-menu-btn lg:hidden"
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5 ec-text-primary" />

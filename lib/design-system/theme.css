@@ -1540,6 +1540,56 @@ body {
   box-shadow: var(--ec-btn-glow);
 }
 
+/* ============ Theme wordmarks (transparent PNGs) ============ */
+.ec-wordmark-late-night {
+  display: inline-block;
+}
+
+.ec-wordmark-zen {
+  display: none;
+}
+
+html[data-ec-theme='zen'] .ec-wordmark-late-night {
+  display: none;
+}
+
+html[data-ec-theme='zen'] .ec-wordmark-zen {
+  display: inline-block;
+}
+
+/* ============ Shared header controls (marketing + app) ============ */
+.ec-header-menu-btn,
+.ec-header-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: 0.75rem;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.ec-header-menu-btn {
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface);
+}
+
+.ec-header-menu-btn:hover {
+  background: var(--ec-surface-raised);
+}
+
+.ec-header-icon-btn {
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface);
+}
+
+.ec-header-icon-btn:hover {
+  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
+  background: var(--ec-surface-raised);
+}
+
 /* ============ App chrome — opaque on mobile, blur on desktop ============ */
 .ec-app-header {
   background: var(--ec-canvas);

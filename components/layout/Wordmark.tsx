@@ -1,26 +1,45 @@
+import Image from 'next/image'
 import Link from 'next/link'
+
+/** Zen (light) theme raster logo — transparent PNG. */
+export const MARKSCHEME_LOGO_ZEN = '/brand/markscheme-zen.png'
+
+/** Late Night (dark) theme raster logo — transparent PNG. */
+export const MARKSCHEME_LOGO_LATE_NIGHT = '/brand/markscheme-late-night.png'
 
 type WordmarkProps = {
   className?: string
   size?: 'sm' | 'md'
 }
 
-/** Shared MarkScheme wordmark with optional icon mark. */
+/** Display height; width follows each asset’s aspect ratio. */
+const LOGO_HEIGHT = { sm: 28, md: 32 } as const
+const LOGO_WIDTH = { sm: 140, md: 160 } as const
+
+/** Shared MarkScheme wordmark — theme-specific transparent PNGs. */
 export function Wordmark({ className = '', size = 'md' }: WordmarkProps) {
-  const textSize = size === 'sm' ? 'text-lg' : 'text-xl'
-  const iconSize = size === 'sm' ? 'h-7 w-7 text-sm' : 'h-8 w-8 text-base'
+  const logoH = LOGO_HEIGHT[size]
+  const logoW = LOGO_WIDTH[size]
+  const heightClass = size === 'sm' ? 'h-7' : 'h-8'
 
   return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      <span
-        className={`ec-chat-avatar flex shrink-0 items-center justify-center rounded-lg font-extrabold ec-on-brand-text shadow-[var(--ec-btn-glow)] ${iconSize}`}
-        aria-hidden
-      >
-        M
-      </span>
-      <span className={`font-bold tracking-tight ec-text-gradient ${textSize} max-[420px]:hidden`}>
-        MarkScheme
-      </span>
+    <span className={`inline-flex items-center ${className}`}>
+      <Image
+        src={MARKSCHEME_LOGO_LATE_NIGHT}
+        alt="Markscheme"
+        width={logoW}
+        height={logoH}
+        className={`ec-wordmark-late-night w-auto shrink-0 object-contain object-left ${heightClass}`}
+        priority
+      />
+      <Image
+        src={MARKSCHEME_LOGO_ZEN}
+        alt="Markscheme"
+        width={logoW}
+        height={logoH}
+        className={`ec-wordmark-zen hidden w-auto shrink-0 object-contain object-left ${heightClass}`}
+        priority
+      />
     </span>
   )
 }

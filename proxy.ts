@@ -6,7 +6,7 @@ import { requireTeacher } from '@/lib/teacher-auth'
 
 const PROTECTED_PREFIXES = ['/dashboard', '/account', '/onboarding', '/teacher', '/admin']
 
-const ONBOARDING_REQUIRED_PREFIXES = ['/dashboard', '/account']
+const ONBOARDING_REQUIRED_PREFIXES = ['/dashboard', '/account', '/mark']
 
 const TEACHER_PREFIXES = ['/teacher']
 const ADMIN_PREFIXES = ['/admin']

@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Menu, X, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeSwitcher } from '@/components/design-system/ThemeSwitcher'
-import { buildSignUpHref, MARKETING_SIGNUP_DEST } from '@/lib/auth-redirect'
+import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { MARKETING_NAV } from '@/lib/site-config'
 import { useOmniAI } from '@/lib/omni-ai/context'
 
@@ -181,7 +181,7 @@ export function MarketingHeader() {
                   Sign in
                 </Link>
                 <Link
-                  href={buildSignUpHref(MARKETING_SIGNUP_DEST)}
+                  href={buildMarketingSignUpHref()}
                   className="flex min-h-[48px] items-center justify-center text-base font-medium ec-text-secondary"
                 >
                   Create free account

@@ -197,9 +197,11 @@ function SignUpForm() {
       return
     }
 
-    // Immediate session — route by intent if we have one, otherwise the
-    // generic onboarding flow handles first-time profile setup.
-    router.push(intentDestination)
+    const afterSignup =
+      intentDestination === '/onboarding'
+        ? '/onboarding'
+        : `/onboarding?next=${encodeURIComponent(intentDestination)}`
+    router.push(afterSignup)
     router.refresh()
   }
 
@@ -217,12 +219,10 @@ function SignUpForm() {
 
           <GoogleAuthSection
             label="Sign up with Google"
-            redirectPath={
-              intentDestination !== '/onboarding' ? intentDestination : null
-            }
+            redirectPath={null}
             disabled={loading}
             onError={setErrorMsg}
-            hint="School or personal Google — no password to remember."
+            hint="School or personal Google — we’ll set up your subjects next."
           />
 
           <AuthDivider label="or continue with email" />

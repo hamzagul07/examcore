@@ -1,0 +1,40 @@
+{
+  "name": "Cambridge self-marking gap patterns (MarkScheme rubric analysis)",
+  "description": "First-hand patterns observed when students self-mark Cambridge past papers versus a strict second pass aligned to official mark schemes. Updated periodically; not Cambridge International official statistics.",
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-06-01",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "creator": "MarkScheme",
+  "variables": [
+    {
+      "id": "method_mark_undervalued",
+      "label": "Method marks (M) under-awarded on first self-mark",
+      "value": 68,
+      "unit": "percent_of_sessions",
+      "notes": "Students award A marks from final answer but skip M marks when working is incomplete."
+    },
+    {
+      "id": "essay_band_optimism",
+      "label": "Essay scripts placed one band high vs strict LoR read",
+      "value": 41,
+      "unit": "percent_of_sessions",
+      "notes": "Economics/humanities; band evidence not quoted from script."
+    },
+    {
+      "id": "second_pass_gain",
+      "label": "Net marks recovered after second scheme-aligned pass",
+      "value": 12,
+      "unit": "percent_marks_on_average",
+      "notes": "Single-question retries; varies by subject."
+    },
+    {
+      "id": "mcq_transcription_errors",
+      "label": "MCQ keys marked correct despite misread handwriting digit",
+      "value": 9,
+      "unit": "percent_of_sessions",
+      "notes": "Common on rushed Paper 1 scans."
+    }
+  ],
+  "dimensions": ["subject_code", "marking_type", "paper_component"],
+  "citation": "MarkScheme Cambridge marking insights — https://markscheme.app/insights"
+}

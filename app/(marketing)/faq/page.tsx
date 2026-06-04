@@ -3,6 +3,7 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { FAQ_CATEGORIES } from '@/lib/faq-data'
 import { FaqAccordion } from '@/components/marketing/FaqAccordion'
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd'
+import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
 export const metadata = createPageMetadata({
@@ -17,6 +18,15 @@ export default function FaqPage() {
   return (
     <MarketingPageShell>
       <FaqJsonLd />
+      <PageJsonLd
+        path="/faq"
+        title="FAQ — Cambridge past paper marking"
+        description="Frequently asked questions about MarkScheme, handwritten uploads, mark schemes, pricing, and privacy."
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'FAQ', path: '/faq' },
+        ]}
+      />
       <MarketingHero
         label="FAQ"
         title={

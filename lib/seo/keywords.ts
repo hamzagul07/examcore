@@ -106,9 +106,42 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
     'Cambridge marking FAQ',
     'AI marking questions',
   ],
+  '/compare': [
+    'MarkScheme vs tutor',
+    'self marking vs AI marking',
+    'Cambridge marking comparison',
+  ],
+  '/research': [
+    'Cambridge marking methodology',
+    'past paper marking research',
+  ],
+  '/guides': [
+    'Cambridge study guides hub',
+    'past paper marking guides',
+    'A-Level topic clusters',
+  ],
   '/blog': [
     'Cambridge exam tips',
     'past paper revision blog',
     'A-Level study guides',
+    'mark scheme guide',
+    '9709 past papers guide',
+    'Cambridge self marking',
+    'O-Level revision',
+    'exam technique Cambridge',
+    'which A-Level subjects to take',
+    'Cambridge exam leaks 2026',
+    'May June 2026 exams',
   ],
+  '/about': [
+    'Cambridge marking startup',
+    'student-built exam tool',
+    'past paper feedback app',
+  ],
+  '/contact': [
+    'MarkScheme support',
+    'Cambridge marking help',
+  ],
+  '/privacy': ['MarkScheme privacy', 'student data protection'],
+  '/terms': ['MarkScheme terms of service'],
 }

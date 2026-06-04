@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { getClusterForSlug } from '@/lib/seo/clusters'
 
 export type BlogPostMeta = {
   slug: string
@@ -7,6 +8,18 @@ export type BlogPostMeta = {
   description: string
   date: string
   keywords: string[]
+  /** Optional frontmatter: revision | mark-schemes | exam-technique | study-skills | editorial | subject-choice */
+  category?: string
+  /** Pin to top of blog index */
+  featured?: boolean
+  /** Large hero card on index */
+  spotlight?: boolean
+  /** E-E-A-T author id — see lib/seo/authors.ts */
+  author?: string
+  /** ISO date for dateModified schema */
+  updated?: string
+  /** first-hand | synthesis | dataset | editorial — information gain signal */
+  informationGain?: string
 }
 
 export type BlogPost = BlogPostMeta & {
@@ -54,6 +67,12 @@ function readPostFile(filename: string): BlogPost | null {
     description: meta.description || '',
     date: meta.date || '',
     keywords: parseKeywords(meta.keywords),
+    category: meta.category || undefined,
+    featured: meta.featured === 'true',
+    spotlight: meta.spotlight === 'true',
+    author: meta.author || undefined,
+    updated: meta.updated || undefined,
+    informationGain: meta.informationGain || undefined,
     content,
   }
 }
@@ -66,12 +85,18 @@ export function getBlogPosts(): BlogPostMeta[] {
     .map((f) => readPostFile(f))
     .filter((p): p is BlogPost => p !== null)
     .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .map(({ slug, title, description, date, keywords }) => ({
+    .map(({ slug, title, description, date, keywords, category, featured, spotlight, author, updated, informationGain }) => ({
       slug,
       title,
       description,
       date,
       keywords,
+      category,
+      featured,
+      spotlight,
+      author,
+      updated,
+      informationGain,
     }))
 }
 
@@ -86,10 +111,11 @@ export function getAllBlogSlugs(): string[] {
   return getBlogPosts().map((p) => p.slug)
 }
 
-/** Related posts by shared keywords (for internal linking / SEO). */
+/** Related posts — same cluster first, then keyword overlap (hub-and-spoke). */
 export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
   const current = getBlogPost(slug)
   if (!current) return []
+  const cluster = getClusterForSlug(slug)
   const currentKeys = new Set(
     current.keywords.map((k) => k.toLowerCase())
   )
@@ -99,6 +125,8 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
   return getBlogPosts()
     .filter((p) => p.slug !== slug)
     .map((p) => {
+      const sameCluster =
+        getClusterForSlug(p.slug).id === cluster.id ? 5 : 0
       const overlap = p.keywords.filter((k) =>
         currentKeys.has(k.toLowerCase())
       ).length
@@ -106,7 +134,8 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
         syllabusCode && p.slug.startsWith(`cambridge-${syllabusCode}-`)
           ? 3
           : 0
-      return { post: p, score: overlap + sameCode }
+      const isPillar = p.slug === cluster.pillarBlogSlug ? 2 : 0
+      return { post: p, score: sameCluster + overlap + sameCode + isPillar }
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)

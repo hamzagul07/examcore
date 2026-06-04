@@ -35,4 +35,5 @@ export const MARKETING_NAV = [
   { href: '/faq', label: 'FAQ' },
   { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
+  { href: '/guides', label: 'Guides' },
 ] as const

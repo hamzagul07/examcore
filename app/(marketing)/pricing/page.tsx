@@ -1,5 +1,6 @@
 import { cookies, headers } from 'next/headers'
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import {
   MarketingHero,
   MarketingPageShell,
@@ -86,6 +87,15 @@ export default async function PricingPage() {
 
   return (
     <MarketingPageShell>
+      <PageJsonLd
+        path="/pricing"
+        title="Pricing — Cambridge past paper marking"
+        description="MarkScheme pricing: free tier, Student, Scholar, and Mastery plans for Cambridge A-Level and O-Level marking."
+        breadcrumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'Pricing', path: '/pricing' },
+        ]}
+      />
       <MarketingHero
         label="PRICING"
         title={

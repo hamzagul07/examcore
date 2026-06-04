@@ -120,6 +120,11 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
     'past paper marking guides',
     'A-Level topic clusters',
   ],
+  '/insights': [
+    'Cambridge marking statistics',
+    'self marking accuracy',
+    'past paper marking data',
+  ],
   '/blog': [
     'Cambridge exam tips',
     'past paper revision blog',

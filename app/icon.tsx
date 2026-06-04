@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import { FAVICON, faviconDataUrl } from '@/lib/brand/favicon-svg'
 
 export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
@@ -13,14 +14,12 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #10b981, #06b6d4)',
-          borderRadius: 8,
-          fontSize: 20,
-          fontWeight: 800,
-          color: 'white',
+          background: FAVICON.bg,
+          borderRadius: 7,
         }}
       >
-        M
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={faviconDataUrl()} width={28} height={28} alt="" />
       </div>
     ),
     { ...size }

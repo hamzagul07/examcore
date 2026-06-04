@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { HomeJsonLd } from '@/components/seo/HomeJsonLd'
 import { LandingHero } from '@/components/landing/LandingHero'
 import { Hero } from '@/components/marketing/Hero'
@@ -21,12 +21,7 @@ import {
   ArrowRight,
 } from 'lucide-react'
 
-export const metadata = createPageMetadata({
-  title: 'Cambridge past paper marking — handwritten answers, real mark schemes',
-  description:
-    'MarkScheme marks your Cambridge A-Level and O-Level past papers mark-by-mark. Upload handwritten working, get B1/M1/A1 and essay-band feedback in seconds. Free tier to start.',
-  path: '/',
-})
+export const metadata = getPageMetadata('/')
 
 export default async function Home() {
   const markHref = '/mark'

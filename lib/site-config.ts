@@ -22,7 +22,7 @@ export const CONTACT_EMAIL = 'hello@markscheme.app'
 
 /** Default meta description — Cambridge + handwriting + real mark schemes. */
 export const DEFAULT_SITE_DESCRIPTION =
-  'Upload handwritten Cambridge A-Level and O-Level past-paper answers. Get instant mark-by-mark feedback tied to real mark schemes — B1, M1, A1, essay bands, and whole papers.'
+  'Mark Cambridge A-Level & O-Level past papers mark-by-mark. Upload handwriting, get B1/M1/A1 and essay-band feedback from real mark schemes — free tier to start.'
 
 /** Shared SEO keywords — see lib/seo/keywords.ts for research clusters. */
 export { SEO_KEYWORDS } from '@/lib/seo/keywords'

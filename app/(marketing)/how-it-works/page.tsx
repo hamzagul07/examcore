@@ -2,19 +2,14 @@ import Link from 'next/link'
 import { Brain, Layers, PenLine } from 'lucide-react'
 import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { createClient } from '@/lib/supabase-server'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { Hero } from '@/components/marketing/Hero'
 import { LandingScreenshotSteps } from '@/components/landing/LandingScreenshotSteps'
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 
-export const metadata = createPageMetadata({
-  title: 'How MarkScheme marks Cambridge past papers',
-  description:
-    'How it works: pick a past paper, upload handwritten working, and get mark-by-mark feedback from the real Cambridge mark scheme. Whole papers, Examiner\'s Ink, and progress tracking.',
-  path: '/how-it-works',
-})
+export const metadata = getPageMetadata('/how-it-works')
 
 export default async function HowItWorksPage() {
   const supabase = await createClient()

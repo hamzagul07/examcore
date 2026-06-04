@@ -36,10 +36,11 @@ export function buildSubjectPageCopy(subject: SubjectOption) {
   const guideSlug = getSubjectGuideSlugForCode(subject.code)
 
   const title = formatSerpTitle(
-    `Mark ${subject.label} (${subject.code}) past papers — ${level}`
+    `Mark ${subject.label} (${subject.code}) past papers`,
+    true
   )
   const description = formatMetaDescription(
-    `Upload handwritten ${subject.label} ${level} answers (${subject.code}). MarkScheme scores against real Cambridge mark schemes — ${subject.markingType === 'level_of_response' ? 'essay bands' : 'B1/M1/A1 and MCQ'} in seconds.`
+    `Upload ${subject.label} ${level} answers (${subject.code}). Get ${subject.markingType === 'level_of_response' ? 'essay band' : 'B1/M1/A1'} feedback from real Cambridge mark schemes in seconds. Free to try.`
   )
 
   return {

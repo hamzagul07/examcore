@@ -1,14 +1,9 @@
 import Link from 'next/link'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 import { LegalDisclaimer, MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 
-export const metadata = createPageMetadata({
-  title: 'Terms of Service',
-  description:
-    'Terms for using MarkScheme — an AI marking tool for Cambridge A-Level self-study. Honest about AI limitations.',
-  path: '/terms',
-})
+export const metadata = getPageMetadata('/terms')
 
 export default function TermsPage() {
   return (

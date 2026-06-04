@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import {
   getAllClusterIds,
   getClusterById,
@@ -27,10 +27,9 @@ export async function generateMetadata({ params }: Props) {
   const { cluster: clusterId } = await params
   const cluster = getClusterById(clusterId as ContentClusterId)
   if (!cluster) return {}
-  return createPageMetadata({
-    title: `${cluster.title} — Cambridge ${cluster.headTerm}`,
+  return getPageMetadata(cluster.path, {
+    title: `${cluster.title} — ${cluster.headTerm}`,
     description: cluster.description,
-    path: cluster.path,
     keywords: [cluster.headTerm, 'Cambridge A-Level', 'Cambridge O-Level'],
   })
 }

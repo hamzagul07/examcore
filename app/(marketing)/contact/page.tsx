@@ -1,13 +1,8 @@
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { ContactForm } from './contact-form'
 
-export const metadata = createPageMetadata({
-  title: 'Contact MarkScheme — support & feedback',
-  description:
-    'Contact the MarkScheme team for Cambridge past-paper marking support, product feedback, billing questions, or partnership enquiries.',
-  path: '/contact',
-})
+export const metadata = getPageMetadata('/contact')
 
 export default function ContactPage() {
   return (

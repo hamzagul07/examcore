@@ -1,17 +1,13 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { SubjectsGrid } from '@/components/marketing/SubjectsGrid'
 import { getSubjectGuidePosts } from '@/lib/seo/subject-guides'
 
-export const metadata = createPageMetadata({
-  title: 'Cambridge subjects — A-Level & O-Level past paper marking',
-  description:
-    'MarkScheme supports Cambridge International past papers: 9709 Maths, 9708 Economics, 9702 Physics, 4024 O-Level Maths, and more. MCQ, B1/M1/A1, and essay marking from real mark schemes.',
-  path: '/subjects',
+export const metadata = getPageMetadata('/subjects', {
   keywords: ['9709 past papers', '9708 economics', 'Cambridge subject codes', 'O-Level 4024'],
 })
 

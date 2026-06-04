@@ -1,14 +1,9 @@
 import Link from 'next/link'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { CONTACT_EMAIL, SITE_HOST } from '@/lib/site-config'
 import { LegalDisclaimer, MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 
-export const metadata = createPageMetadata({
-  title: 'Privacy Policy',
-  description:
-    'How MarkScheme collects, uses, and protects your data — account info, uploads, and marking history.',
-  path: '/privacy',
-})
+export const metadata = getPageMetadata('/privacy')
 
 export default function PrivacyPage() {
   return (

@@ -33,7 +33,10 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const post = getBlogPost(slug)
   if (!post) return {}
-  return createBlogPostMetadata(post)
+  return createBlogPostMetadata({
+    ...post,
+    updated: post.updated,
+  })
 }
 
 export default async function BlogPostPage({ params }: Props) {

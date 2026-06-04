@@ -1,17 +1,11 @@
 import Link from 'next/link'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { itemListNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
-export const metadata = createPageMetadata({
-  title: 'MarkScheme vs self-marking vs tutor',
-  description:
-    'Compare Cambridge past paper marking options: strict self-mark with the official scheme, MarkScheme second pass on handwriting, and tutor feedback — honest trade-offs.',
-  path: '/compare',
-  keywords: ['MarkScheme vs tutor', 'self marking past papers', 'AI marking comparison'],
-})
+export const metadata = getPageMetadata('/compare')
 
 const ROWS = [
   {

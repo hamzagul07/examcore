@@ -1,5 +1,5 @@
 import { cookies, headers } from 'next/headers'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import {
   MarketingHero,
@@ -18,12 +18,7 @@ import type { SubscriptionTier } from '@/lib/database.types'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata = createPageMetadata({
-  title: 'Pricing — Cambridge past paper marking plans',
-  description:
-    'MarkScheme pricing for Cambridge A-Level and O-Level marking: free tier, Student, Scholar, and Mastery plans. Regional USD pricing, credits never expire, founding members 50% off.',
-  path: '/pricing',
-})
+export const metadata = getPageMetadata('/pricing')
 
 const PRICING_FAQ: FaqCategory[] = [
   {

@@ -1,3 +1,4 @@
+/** Routes using MarketingHeader/Footer — must stay in sync with app/(marketing)/*. */
 const MARKETING_PREFIXES = [
   '/subjects',
   '/how-it-works',
@@ -6,6 +7,10 @@ const MARKETING_PREFIXES = [
   '/about',
   '/contact',
   '/blog',
+  '/guides',
+  '/insights',
+  '/compare',
+  '/research',
   '/privacy',
   '/terms',
 ] as const
@@ -48,6 +53,10 @@ export const MARKETING_ROUTES = [
   '/about',
   '/contact',
   '/blog',
+  '/guides',
+  '/insights',
+  '/compare',
+  '/research',
   '/privacy',
   '/terms',
 ] as const

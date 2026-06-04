@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { BookOpen, Sparkles, TrendingUp } from 'lucide-react'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { getBlogPosts, getBlogPost } from '@/lib/blog'
 import {
   getNonSubjectGuidePosts,
@@ -13,18 +13,11 @@ import { MarketingHero, MarketingPageShell, MarketingSection } from '@/component
 import { BlogIndexJsonLd } from '@/components/seo/BlogPostJsonLd'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 
-export const metadata = createPageMetadata({
-  title: 'Cambridge A-Level & O-Level blog — trends, subject choice & past papers',
-  description:
-    'Timely guides for Cambridge students: exam integrity, which subjects to take, May/June 2026 prep, AI rules, leaks & fairness, plus syllabus past-paper guides.',
-  path: '/blog',
+export const metadata = getPageMetadata('/blog', {
   keywords: [
     'Cambridge A-Level blog',
     'which A-Level subjects to take',
     'Cambridge exam leaks',
-    'O-Level subject choice',
-    'May June 2026 exams',
-    'Cambridge revision 2026',
     'past paper guides',
   ],
 })

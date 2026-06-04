@@ -1,16 +1,12 @@
 import Link from 'next/link'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { FAQ_CATEGORIES } from '@/lib/faq-data'
 import { FaqAccordion } from '@/components/marketing/FaqAccordion'
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
-export const metadata = createPageMetadata({
-  title: 'FAQ — Cambridge past paper marking help',
-  description:
-    'Frequently asked questions about MarkScheme: handwritten uploads, mark scheme accuracy, free tier limits, pricing, privacy, and Cambridge A-Level / O-Level revision.',
-  path: '/faq',
+export const metadata = getPageMetadata('/faq', {
   keywords: ['Cambridge marking FAQ', 'AI marking A-Level', 'free past paper marking'],
 })
 

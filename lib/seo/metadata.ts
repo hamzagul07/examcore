@@ -60,7 +60,7 @@ export function createPageMetadata({
   const rawTitle = title.includes(SITE_NAME)
     ? title.replace(new RegExp(`\\s*—\\s*${SITE_NAME}\\s*$`), '')
     : title
-  const pageTitle = formatSerpTitle(rawTitle)
+  const pageTitle = formatSerpTitle(rawTitle, true)
   const metaDescription = formatMetaDescription(description)
   const url = `${SITE_URL}${path}`
   const keywords = mergeKeywords(path, extraKeywords)
@@ -128,16 +128,27 @@ export function createBlogPostMetadata(post: {
   slug: string
   date: string
   keywords: string[]
+  updated?: string
 }): Metadata {
   const published = post.date ? `${post.date}T08:00:00.000Z` : undefined
+  const modified = post.updated
+    ? `${post.updated}T08:00:00.000Z`
+    : published
+  const shortTitle = post.title.replace(/\s*—\s*MarkScheme\s*$/i, '').trim()
   return createPageMetadata({
-    title: post.title,
+    title: shortTitle,
     description: post.description,
     path: `/blog/${post.slug}`,
     keywords: post.keywords,
     ogType: 'article',
     publishedTime: published,
-    modifiedTime: published,
+    modifiedTime: modified,
     ogImagePath: '/blog/opengraph-image',
   })
+}
+
+/** Shared favicon + apple touch icon for root metadata. */
+export const SITE_ICONS: Metadata['icons'] = {
+  icon: [{ url: '/icon', type: 'image/png', sizes: '32x32' }],
+  apple: [{ url: '/apple-icon', type: 'image/png', sizes: '180x180' }],
 }

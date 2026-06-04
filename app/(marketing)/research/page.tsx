@@ -1,15 +1,9 @@
 import Link from 'next/link'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
-export const metadata = createPageMetadata({
-  title: 'How we mark Cambridge papers — methodology',
-  description:
-    'MarkScheme methodology: real Cambridge mark schemes, mark-by-mark feedback on handwriting, and honest limits of AI-assisted marking — for press, educators, and link citations.',
-  path: '/research',
-  keywords: ['Cambridge marking methodology', 'mark scheme AI', 'past paper marking research'],
-})
+export const metadata = getPageMetadata('/research')
 
 const STATS = [
   { label: 'Syllabus guides', value: '24+', detail: 'Per-code revision hubs' },

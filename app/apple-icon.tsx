@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import { FAVICON, faviconDataUrl } from '@/lib/brand/favicon-svg'
 
 export const size = { width: 180, height: 180 }
 export const contentType = 'image/png'
@@ -13,14 +14,12 @@ export default function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #10b981, #06b6d4)',
+          background: FAVICON.bg,
           borderRadius: 36,
-          fontSize: 96,
-          fontWeight: 800,
-          color: 'white',
         }}
       >
-        M
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={faviconDataUrl()} width={152} height={152} alt="" />
       </div>
     ),
     { ...size }

@@ -11,6 +11,7 @@ import { MobileTabBarGate } from "@/components/layout/MobileTabBarGate";
 import { OmniFABGate } from "@/components/omni-ai/OmniFABGate";
 import { SeoAnalytics } from "@/components/seo/SeoAnalytics";
 import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
+import { SITE_ICONS } from "@/lib/seo/metadata";
 import {
   DEFAULT_SITE_DESCRIPTION,
   SEO_KEYWORDS,
@@ -57,10 +58,11 @@ const kalam = Kalam({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    default: `Cambridge past paper marking — ${SITE_TAGLINE}`,
     template: `%s — ${SITE_NAME}`,
   },
   description: DEFAULT_SITE_DESCRIPTION,
+  icons: SITE_ICONS,
   keywords: [...SEO_KEYWORDS],
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME, url: SITE_URL }],

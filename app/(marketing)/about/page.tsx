@@ -1,16 +1,11 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { AboutPersonJsonLd } from '@/components/seo/AboutPersonJsonLd'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 
-export const metadata = createPageMetadata({
-  title: 'About MarkScheme — Cambridge past paper marking',
-  description:
-    'Built by an A-Level student for students: MarkScheme marks handwritten Cambridge past papers against real mark schemes — faster than waiting weeks for school feedback.',
-  path: '/about',
-})
+export const metadata = getPageMetadata('/about')
 
 export default function AboutPage() {
   return (

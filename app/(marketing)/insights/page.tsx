@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import insights from '@/data/seo/marking-insights.json'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { datasetNode } from '@/lib/seo/structured-data'
@@ -8,17 +8,7 @@ import { buildSiteGraph } from '@/lib/seo/graph'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { SITE_URL } from '@/lib/site-config'
 
-export const metadata = createPageMetadata({
-  title: 'Cambridge marking insights — original benchmarks',
-  description:
-    'Proprietary MarkScheme dataset: patterns when students self-mark Cambridge past papers vs a strict second pass. Citable statistics for revision research.',
-  path: '/insights',
-  keywords: [
-    'Cambridge marking statistics',
-    'self marking accuracy',
-    'past paper marking data',
-  ],
-})
+export const metadata = getPageMetadata('/insights')
 
 export default function InsightsPage() {
   const url = `${SITE_URL}/insights`

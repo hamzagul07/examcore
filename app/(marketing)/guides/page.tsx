@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Layers } from 'lucide-react'
-import { createPageMetadata } from '@/lib/seo/metadata'
+import { getPageMetadata } from '@/lib/seo/page-meta'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getClusterSpokes } from '@/lib/seo/clusters'
 import { getBlogPost } from '@/lib/blog'
@@ -10,13 +10,7 @@ import { collectionPageNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { SITE_URL } from '@/lib/site-config'
 
-export const metadata = createPageMetadata({
-  title: 'Cambridge past paper guides — topic hubs',
-  description:
-    'Hub-and-spoke guides for Cambridge A-Level and O-Level: marking workflows, mark schemes, subject choice, syllabus codes, and 2026 exam prep — all interlinked.',
-  path: '/guides',
-  keywords: ['Cambridge study guides', 'past paper hub', 'A-Level revision topics'],
-})
+export const metadata = getPageMetadata('/guides')
 
 export default function GuidesIndexPage() {
   const parts = CONTENT_CLUSTERS.map((c) => {

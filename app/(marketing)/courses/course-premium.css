@@ -79,3 +79,53 @@
   border-color: color-mix(in srgb, var(--ec-brand) 30%, var(--ec-border-subtle));
   box-shadow: 0 12px 32px color-mix(in srgb, var(--ec-brand) 8%, transparent);
 }
+
+.course-topic-diagram {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  color: var(--ec-text-primary);
+}
+
+.course-visual-hero .course-topic-diagram {
+  max-height: 200px;
+}
+
+.course-visual-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.35rem;
+  color: var(--ec-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.course-visual-nav-btn:hover:not(:disabled) {
+  background: var(--ec-surface-muted);
+  color: var(--ec-text-primary);
+}
+
+.course-visual-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.course-snapshot-card {
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.course-snapshot-card:hover {
+  border-color: color-mix(in srgb, var(--ec-brand) 28%, var(--ec-border-subtle));
+  transform: translateY(-2px);
+}
+
+.course-formula-visual button:focus-visible,
+.course-visual-tabs button:focus-visible,
+.course-visual-nav-btn:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 2px;
+}

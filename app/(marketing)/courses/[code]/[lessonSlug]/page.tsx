@@ -10,12 +10,11 @@ import {
   getCourseSubject,
 } from '@/lib/courses'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
-import { CourseLessonContent } from '@/components/courses/CourseLessonContent'
+import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { CourseSidebar } from '@/components/courses/CourseSidebar'
 import { MarkLessonCompleteButton } from '@/components/courses/CourseProgressClient'
 import { CourseLearningObjectives } from '@/components/courses/CourseLearningObjectives'
-import { CourseSimpleExplain } from '@/components/courses/CourseSimpleExplain'
-import { CoursePastPaperSection } from '@/components/courses/CoursePastPaperSection'
+import { CourseLessonExperience } from '@/components/courses/CourseLessonExperience'
 import { CourseLessonFaq } from '@/components/courses/CourseLessonFaq'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
@@ -71,6 +70,7 @@ export default async function CourseLessonPage({ params }: Props) {
   )
 
   const isFullLesson = lesson.status === 'published' || lesson.status === 'premium'
+  const enriched = enrichLessonVisual(code, lesson)
 
   return (
     <MarketingPageShell narrow>
@@ -129,25 +129,10 @@ export default async function CourseLessonPage({ params }: Props) {
               </div>
             ) : null}
 
-            {lesson.diagram ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={lesson.diagram.src}
-                alt={lesson.diagram.alt}
-                className="mb-8 w-full rounded-2xl border border-[var(--ec-border-subtle)]"
-              />
-            ) : null}
-
-            <CourseLessonContent lesson={lesson} />
-
-            {lesson.simpleExplanation ? (
-              <div className="mt-8">
-                <CourseSimpleExplain data={lesson.simpleExplanation} />
-              </div>
-            ) : null}
-
-            <CoursePastPaperSection
-              questions={pastPaperQuestions}
+            <CourseLessonExperience
+              lesson={lesson}
+              enriched={enriched}
+              pastPaperQuestions={pastPaperQuestions}
               topicTitle={lesson.title}
             />
 

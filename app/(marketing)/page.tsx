@@ -9,6 +9,7 @@ import { LandingFounder } from '@/components/landing/LandingFounder'
 import { LandingComparison } from '@/components/landing/LandingComparison'
 import { LandingFaq } from '@/components/landing/LandingFaq'
 import { LandingTopicHub } from '@/components/landing/LandingTopicHub'
+import { LandingCoursesPromo } from '@/components/landing/LandingCoursesPromo'
 import { LandingSectionReveal } from '@/components/landing/LandingSectionReveal'
 import {
   Brain,
@@ -34,6 +35,8 @@ export default async function Home() {
           <div className="landing-hero-glow" aria-hidden />
           <LandingHero markHref={markHref} />
         </section>
+
+        <LandingCoursesPromo />
 
         <section id="features" className="landing-section scroll-mt-20">
           <LandingSectionReveal>

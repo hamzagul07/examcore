@@ -98,6 +98,14 @@ Paper: ${topic.paperName} (${topic.paper})
 
 Write ORIGINAL content aligned to the official Cambridge syllabus. Do NOT copy ZNotes, Save My Exams, Physics & Maths Tutor, or any third-party notes.
 
+VISUAL-FIRST RULES (critical):
+- Students learn from diagrams and bite-sized cards, not long essays.
+- Keep each "text" section under 80 words. Use more headings + short paragraphs instead of one wall of text.
+- "keyPoints" must be 4-6 short bullets (max 20 words each) — these power the step carousel.
+- "simpleExplanation.steps" must be 4 clear visual steps a 15-year-old can picture.
+- Include at least one "formula" section when the topic has a key equation.
+- "workedExample" solution should use numbered lines students can follow.
+
 Return ONLY valid JSON (no markdown outside the JSON) matching this schema:
 {
   "slug": "${topicToSlug(topic.code, topic.name)}",

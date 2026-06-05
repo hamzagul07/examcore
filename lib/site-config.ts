@@ -29,6 +29,7 @@ export { SEO_KEYWORDS } from '@/lib/seo/keywords'
 
 export const MARKETING_NAV = [
   { href: '/mark', label: 'Mark a paper' },
+  { href: '/courses', label: 'Free courses' },
   { href: '/subjects', label: 'Subjects' },
   { href: '/how-it-works', label: 'How it works' },
   { href: '/pricing', label: 'Pricing' },

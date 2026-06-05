@@ -1,0 +1,132 @@
+{
+  "slug": "10-1-practical-circuits",
+  "topicCode": "10.1",
+  "title": "Practical circuits",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master practical circuit analysis with Kirchhoff's laws, potential dividers, e.m.f., and internal resistance for Cambridge 9702 Physics.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Apply Kirchhoff's laws to analyse current and voltage distribution in both simple and complex circuits.",
+    "Calculate total resistance for resistors connected in series and parallel, including combined networks.",
+    "Explain and use the concepts of electromotive force (e.m.f.), internal resistance, and the potential divider principle."
+  ],
+  "simpleExplanation": {
+    "title": "Circuitry Unpacked: Powering Your Understanding",
+    "summary": "Practical circuits move beyond ideal components, helping you understand how real-world power sources and loads interact. This topic explores how current flows, voltage divides, and energy is transformed, ensuring you can design and analyse functional electrical systems.",
+    "analogy": "Imagine a complex plumbing system. Water flow is like current, pressure is like voltage, and narrow pipes or valves are like resistors. A pump providing the initial push (e.m.f.) might itself have internal friction (internal resistance), reducing the pressure available at the taps (terminal p.d.).",
+    "steps": [
+      "Grasp the fundamental conservation principles embodied by Kirchhoff's laws.",
+      "Master combining series and parallel resistors to simplify complex networks.",
+      "Understand how real power sources work by integrating e.m.f. and internal resistance.",
+      "Apply the potential divider principle to share voltage or create sensor circuits."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of **practical circuits**! While ideal circuit components are great for introducing concepts, the real world often throws in a few curveballs. This topic is all about understanding how electricity behaves in actual setups, where power sources aren't perfect and components interact in complex ways. We'll delve into the fundamental rules governing current and voltage, learn how to simplify resistor networks, and explore the crucial roles of **electromotive force (e.m.f.)**, **internal resistance**, and the highly versatile **potential divider**."
+    },
+    {
+      "type": "heading",
+      "content": "Kirchhoff's Laws: The Foundation of Circuit Analysis"
+    },
+    {
+      "type": "text",
+      "content": "To truly analyse any circuit, you need to call upon Kirchhoff's two powerful laws. These aren't new principles but rather applications of the fundamental laws of conservation of charge and energy.\n\n**Kirchhoff's First Law (Current Law / Junction Rule):** This law states that the sum of currents entering any junction in a circuit is equal to the sum of currents leaving that junction. It's a direct consequence of the **conservation of charge**, as charge cannot build up or be lost at a junction.\n\n**Kirchhoff's Second Law (Voltage Law / Loop Rule):** This law states that for any closed loop in a circuit, the algebraic sum of the e.m.f.s is equal to the algebraic sum of the potential differences (p.d.s) across the components. Alternatively, the algebraic sum of all potential changes (drops and rises) around any closed loop must be zero. This is a direct consequence of the **conservation of energy**, as charges moving around a closed loop return to their starting potential energy level."
+    },
+    {
+      "type": "formula",
+      "content": "ΣI_in = ΣI_out (Kirchhoff's First Law)\nΣE = ΣV (Kirchhoff's Second Law, where E is e.m.f. and V is p.d.)\nor ΣΔV = 0 (Kirchhoff's Second Law, where ΔV is potential change)"
+    },
+    {
+      "type": "heading",
+      "content": "Resistors in Series and Parallel"
+    },
+    {
+      "type": "text",
+      "content": "Simplifying complex resistor networks is a common task. Knowing how to combine resistors in series and parallel is essential.\n\n**Resistors in Series:** When resistors are connected end-to-end, they are in series. The current flowing through each resistor is the same, but the total voltage is divided across them. The total resistance is the sum of individual resistances.\n\n**Resistors in Parallel:** When resistors are connected across the same two points, they are in parallel. The voltage across each resistor is the same, but the total current is divided among them. The reciprocal of the total resistance is the sum of the reciprocals of individual resistances."
+    },
+    {
+      "type": "formula",
+      "content": "R_total = R₁ + R₂ + ... (Series)\n1/R_total = 1/R₁ + 1/R₂ + ... (Parallel)"
+    },
+    {
+      "type": "heading",
+      "content": "Electromotive Force (e.m.f.) and Internal Resistance"
+    },
+    {
+      "type": "text",
+      "content": "Real-world power sources, like batteries, aren't perfect. They have their own internal resistance, which causes some energy to be dissipated within the source itself. \n\n**Electromotive force (e.m.f., E):** This is the total energy supplied by the source per unit charge to the entire circuit, both internal and external. It's the maximum potential difference the source can provide when no current is drawn.\n\n**Internal resistance (r):** This is the resistance within the power source itself. When current flows, there's a potential drop across this internal resistance, meaning the terminal potential difference across the external circuit is less than the e.m.f.\n\n**Terminal potential difference (V):** This is the p.d. across the terminals of the power source when current is flowing. It's the voltage available to the external circuit.\n\nWhen a current (I) flows, the internal resistance causes a 'lost p.d.' of *Ir*. Therefore, the terminal p.d. is the e.m.f. minus this lost p.d."
+    },
+    {
+      "type": "formula",
+      "content": "V = E - Ir\nAlso, E = I(R_external + r), where R_external is the total resistance of the external circuit."
+    },
+    {
+      "type": "heading",
+      "content": "The Potential Divider"
+    },
+    {
+      "type": "text",
+      "content": "A **potential divider** is a simple yet powerful circuit used to obtain a desired output voltage from a larger input voltage. It consists of two or more resistors in series across a voltage source. The output voltage is taken across one of the resistors.\n\nThe voltage is divided proportionally to the resistances. This principle is fundamental for many applications, including sensors where the resistance of a component (like an **LDR** or a **thermistor**) changes with an environmental factor (light or temperature), thereby changing the output voltage."
+    },
+    {
+      "type": "formula",
+      "content": "V_out = (R_out / (R₁ + R₂)) * V_in \n(where V_in is the total input voltage, R_out is the resistance across which V_out is measured, and R₁ + R₂ is the total series resistance)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always define your chosen current directions and loop polarities when applying Kirchhoff's Laws to avoid sign errors.",
+        "Remember that ammeters have negligible resistance (connected in series) and voltmeters have infinite resistance (connected in parallel).",
+        "The terminal p.d. of a power source equals its e.m.f. only when no current is flowing (open circuit) or when its internal resistance is zero (ideal source).",
+        "When using potential dividers with sensors (LDRs, thermistors), understand how the sensor's resistance changes and what effect this has on the output voltage.",
+        "Power dissipated in any component is given by P = VI = I²R = V²/R. Don't forget to use the correct V and I for that specific component."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A battery has an e.m.f. of 6.0 V and an internal resistance of 0.50 Ω. It is connected to an external circuit consisting of a 2.0 Ω resistor in series with a parallel combination of a 3.0 Ω resistor and a 6.0 Ω resistor. Calculate:\n(a) The total external resistance.\n(b) The total current drawn from the battery.\n(c) The terminal potential difference across the battery.",
+      "solution": "(a) **Calculate total external resistance:**\nFirst, find the equivalent resistance of the parallel combination (3.0 Ω and 6.0 Ω):\n1/R_p = 1/3.0 + 1/6.0 = 2/6.0 + 1/6.0 = 3/6.0 = 1/2.0\nR_p = 2.0 Ω\n\nNext, add this in series with the 2.0 Ω resistor:\nR_external = R_series + R_p = 2.0 Ω + 2.0 Ω = 4.0 Ω\n\n(b) **Calculate total current drawn from the battery:**\nUse the e.m.f. and total resistance (external + internal):\nE = I(R_external + r)\n6.0 V = I(4.0 Ω + 0.50 Ω)\n6.0 V = I(4.5 Ω)\nI = 6.0 V / 4.5 Ω = 1.333... A ≈ 1.3 A (to 2 s.f.)\n\n(c) **Calculate the terminal potential difference across the battery:**\nUse V = E - Ir\nV = 6.0 V - (1.333... A × 0.50 Ω)\nV = 6.0 V - 0.666... V\nV = 5.333... V ≈ 5.3 V (to 2 s.f.)\n\nAlternatively, V = I × R_external\nV = 1.333... A × 4.0 Ω\nV = 5.333... V ≈ 5.3 V (to 2 s.f.)"
+    },
+    {
+      "type": "examTip",
+      "content": "When tackling complex circuit problems, draw clear diagrams. Label currents, voltages, and resistances. If using Kirchhoff's Second Law, choose consistent directions for your loops (clockwise or anti-clockwise) and stick to a sign convention (e.g., potential rise is positive, potential drop is negative). This systematic approach minimises errors and helps you earn those crucial method marks!"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=10.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What are practical circuits in Physics 9702?",
+      "a": "Practical circuits in Cambridge 9702 Physics involve analysing electrical circuits using concepts like electromotive force (e.m.f.), internal resistance, potential dividers, and Kirchhoff's laws. It moves beyond idealised components to understand how real power sources and components behave. Our free revision course and past papers provide detailed explanations and practice."
+    },
+    {
+      "q": "How do Kirchhoff's laws simplify circuit analysis?",
+      "a": "Kirchhoff's laws are essential because they apply fundamental conservation principles to circuits. The First Law (current) ensures charge conservation at junctions, while the Second Law (voltage) ensures energy conservation around loops. Together, they allow you to set up simultaneous equations to solve for unknown currents and voltages in complex networks, which is crucial for exam success."
+    },
+    {
+      "q": "Why is internal resistance important in circuit calculations?",
+      "a": "Internal resistance is crucial because it accounts for the energy lost within a power source, like a battery, when current flows. It explains why the terminal voltage (what the external circuit receives) is always less than the e.m.f. (total energy provided) when current is drawn. Ignoring it leads to inaccurate predictions of circuit behaviour and power delivery."
+    }
+  ],
+  "updated": "2026-06-05"
+}

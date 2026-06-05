@@ -1,0 +1,64 @@
+{
+  "slug": "3-5-integration",
+  "topicCode": "3.5",
+  "title": "Integration",
+  "paper": "P3",
+  "paperName": "Pure Mathematics 3",
+  "status": "premium",
+  "summary": "Free 9709 Pure Maths 3 integration lesson — reverse chain rule, integration by parts, and definite integrals with Cambridge mark-scheme habits.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Paper 3 integration is harder than Paper 1: you meet **substitution**, **integration by parts**, and **partial fractions** setups. Marks are often split between choosing the correct method (M1) and executing algebra (A1)."
+    },
+    {
+      "type": "heading",
+      "content": "Integration by parts"
+    },
+    {
+      "type": "formula",
+      "content": "∫ u dv/dx dx = uv − ∫ v du/dx dx. Choose u to simplify when differentiated (LIATE: Log, Inverse trig, Algebraic, Trig, Exp)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find ∫ x e^x dx.",
+      "solution": "Let u = x, dv/dx = e^x → du/dx = 1, v = e^x.\n\n∫ x e^x dx = x e^x − ∫ e^x dx = x e^x − e^x + C = e^x(x − 1) + C."
+    },
+    {
+      "type": "heading",
+      "content": "Definite integrals & areas"
+    },
+    {
+      "type": "text",
+      "content": "Evaluate definite integrals by finding the antiderivative, then **substitute limits**. For area between curves, ∫ (top − bottom) dx over the intersection interval. Sketching prevents sign errors."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always include + C for indefinite integrals",
+        "Check whether the integrand needs a substitution before parts",
+        "ECF can rescue later marks if your u/v choice is stated clearly",
+        "Show boundary substitution explicitly for A marks"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "If integration by parts needs a second round, write each line neatly — examiners penalise missing brackets that make v du/dx ambiguous. After integrating, differentiate your answer quickly to sanity-check."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an integration question",
+      "href": "/mark?subject=9709&topic=3.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
+        { "label": "Error carried forward (ECF)", "href": "/blog/understanding-error-carried-forward-ecf" },
+        { "label": "Free full 9709 course index", "href": "/courses/9709" }
+      ]
+    }
+  ]
+}

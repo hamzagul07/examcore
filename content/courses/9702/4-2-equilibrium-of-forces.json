@@ -1,0 +1,129 @@
+{
+  "slug": "4-2-equilibrium-of-forces",
+  "topicCode": "4.2",
+  "title": "Equilibrium of forces",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master equilibrium of forces for Cambridge 9702: conditions, resolving vectors, moments and worked exam examples for P1 and P2.",
+  "durationMin": 22,
+  "learningObjectives": [
+    "State and apply the two conditions for the equilibrium of a body: zero resultant force and zero resultant torque about any point",
+    "Resolve coplanar forces into perpendicular components and use the equilibrium condition ΣFx = 0 and ΣFy = 0 to find unknown forces",
+    "Use a triangle of forces (or polygon of forces) to confirm equilibrium and determine unknown magnitudes or directions graphically"
+  ],
+  "simpleExplanation": {
+    "title": "What does equilibrium actually mean?",
+    "summary": "A body is in equilibrium when it is not accelerating — either stationary or moving at constant velocity. This happens when all the forces acting on it perfectly cancel out and there is no net turning effect. Think of it as every push and pull being completely balanced.",
+    "analogy": "Imagine three friends in a tug-of-war — but instead of two sides, all three pull on a central knot from different directions. If no one wins and the knot stays perfectly still, the forces are in equilibrium. Change one person's pull and the whole system moves.",
+    "steps": [
+      "Step 1 — Identify all forces: draw a clear, labelled free-body diagram showing every force acting on the object, including weight, normal reaction, tension, and friction.",
+      "Step 2 — Resolve forces: split each force into horizontal (x) and vertical (y) components using F cosθ and F sinθ, taking care with your chosen positive directions.",
+      "Step 3 — Apply equilibrium conditions: set ΣFx = 0 and ΣFy = 0, then solve the simultaneous equations for any unknown forces.",
+      "Step 4 — Check moments if required: if the body could rotate, also apply the principle of moments — sum of clockwise moments = sum of anticlockwise moments about any chosen pivot."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Equilibrium is one of the most frequently examined topics across Paper 1 and Paper 2. Whether you are finding an unknown tension in a rope, deciding whether a sign hanging from a wall will stay put, or interpreting a triangle of forces, the same two elegant conditions govern everything. Master those two conditions — **zero resultant force** and **zero resultant torque** — and this topic becomes very predictable indeed."
+    },
+    {
+      "type": "heading",
+      "content": "The Two Conditions for Equilibrium"
+    },
+    {
+      "type": "text",
+      "content": "For a body to be in **static or dynamic equilibrium**, two independent conditions must both be satisfied simultaneously:\n\n**Condition 1 — Translational equilibrium:** The vector sum of all forces acting on the body is zero. This means the body has zero acceleration (Newton's first law). Resolving into two perpendicular directions gives ΣFx = 0 and ΣFy = 0.\n\n**Condition 2 — Rotational equilibrium:** The sum of all torques (moments) about *any* chosen point is zero. In practice: sum of clockwise moments = sum of anticlockwise moments. This condition is covered more deeply in Topic 4.3, but for coplanar force problems it is often needed here too.\n\nNeither condition alone is sufficient. A body could have zero net force but still spin — like a steering wheel with equal and opposite forces applied at opposite sides of the rim."
+    },
+    {
+      "type": "formula",
+      "content": "Equilibrium conditions: ΣFx = 0 and ΣFy = 0 (translational) | Σ(clockwise moments) = Σ(anticlockwise moments) (rotational)"
+    },
+    {
+      "type": "heading",
+      "content": "Resolving Forces and Using Components"
+    },
+    {
+      "type": "text",
+      "content": "When forces act at angles, resolve each one into a horizontal component and a vertical component before applying the equilibrium conditions.\n\nFor a force **F** acting at angle **θ** to the horizontal:\n• Horizontal component: Fx = F cos θ\n• Vertical component: Fy = F sin θ\n\nAlways define your positive directions at the start and stick to them. A common error in exams is an inconsistent sign convention part-way through a calculation. Label your free-body diagram clearly before writing a single equation — examiners award marks for method even if you make an arithmetic slip, but only if your working is visible and logical."
+    },
+    {
+      "type": "formula",
+      "content": "Fx = F cosθ  |  Fy = F sinθ  |  F = √(Fx² + Fy²)  |  θ = arctan(Fy / Fx)"
+    },
+    {
+      "type": "heading",
+      "content": "Triangle (and Polygon) of Forces"
+    },
+    {
+      "type": "text",
+      "content": "When **exactly three coplanar forces** act on a body in equilibrium, they can be represented as the three sides of a **closed triangle** drawn tip-to-tail. 'Closed' is key: the last arrow returns exactly to the starting point, confirming zero resultant.\n\nThis method is especially powerful in Paper 1 and in the early parts of Paper 2 questions where you need to find an unknown force graphically or by trigonometry (sine rule / cosine rule on the triangle).\n\nFor **more than three forces**, a closed **polygon of forces** applies by the same principle. The forces drawn tip-to-tail form a closed polygon if and only if the system is in equilibrium.\n\n**Key insight:** The order in which you draw the forces around the polygon does not matter — the closure condition holds regardless of the sequence."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Equilibrium requires BOTH zero net force AND zero net torque — stating only one condition in a written answer will cost you marks.",
+        "Always draw a fully labelled free-body diagram first; examiners look for this as evidence of method and sometimes award a dedicated mark for it.",
+        "When resolving, choose axes that minimise the number of forces you have to split — for example, align one axis along a slope or along an unknown force to eliminate it from one equation immediately.",
+        "A closed triangle/polygon of forces is a graphical proof of equilibrium; if the diagram does not close, the system is NOT in equilibrium and there is a net resultant force.",
+        "Three concurrent, coplanar forces in equilibrium must also be **coplanar** — their lines of action must all pass through a single common point; otherwise there would be a net torque.",
+        "In Paper 2, show all component calculations explicitly — do not combine steps mentally. Dropped marks almost always come from invisible working, not from wrong physics."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Worked Example — Finding Unknown Forces in Equilibrium"
+    },
+    {
+      "type": "workedExample",
+      "question": "A traffic sign of weight 120 N is suspended from two cables attached to the same point on the sign. Cable A makes an angle of 30° to the horizontal and cable B makes an angle of 50° to the horizontal, both sloping upward away from the sign on opposite sides. Find the tensions TA and TB in the two cables.",
+      "solution": "Step 1 — Free-body diagram: The sign has three forces acting on it: weight W = 120 N downward, tension TA along cable A (upward-left at 30° to horizontal), and tension TB along cable B (upward-right at 50° to horizontal).\n\nStep 2 — Define positive directions: take rightward as +x and upward as +y.\n\nStep 3 — Resolve horizontally (ΣFx = 0):\nTA cos30° acts to the left (negative) and TB cos50° acts to the right (positive).\n→ TB cos50° − TA cos30° = 0\n→ TB cos50° = TA cos30°  ... (equation 1)\n\nStep 4 — Resolve vertically (ΣFy = 0):\nBoth TA sin30° and TB sin50° act upward; weight 120 N acts downward.\n→ TA sin30° + TB sin50° − 120 = 0\n→ TA sin30° + TB sin50° = 120  ... (equation 2)\n\nStep 5 — Solve simultaneously:\nFrom equation 1: TB = TA cos30° / cos50° = TA × (0.8660 / 0.6428) = 1.347 TA\n\nSubstitute into equation 2:\nTA sin30° + (1.347 TA) sin50° = 120\nTA (0.5000) + (1.347 TA)(0.7660) = 120\nTA (0.5000 + 1.032) = 120\nTA × 1.532 = 120\nTA = 78.3 N\n\nThen: TB = 1.347 × 78.3 = 105.5 N ≈ 106 N\n\nStep 6 — Sense-check: TA sin30° + TB sin50° = 78.3 × 0.5 + 105.5 × 0.766 = 39.15 + 80.81 ≈ 120 N ✓\n\nFinal answers: TA ≈ 78 N, TB ≈ 106 N (both to 3 significant figures)."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, equilibrium questions often show a diagram with three forces and ask which arrow correctly represents the missing force to produce equilibrium. The trick: mentally draw the other two forces tip-to-tail — the missing force must point from the tail of the first to the tip of the last to close the triangle. You do not need to calculate anything; just visualise the closure. This saves valuable time on the multiple-choice paper."
+    },
+    {
+      "type": "heading",
+      "content": "Common Pitfalls to Avoid"
+    },
+    {
+      "type": "text",
+      "content": "**Mixing up cos and sin:** Always sketch the angle clearly on your diagram. If θ is measured from the horizontal, the horizontal component uses cosθ and the vertical uses sinθ. If θ is measured from the vertical (e.g. a rope hanging at an angle from the vertical), swap them. One quick sketch prevents this error every time.\n\n**Forgetting the weight:** In every equilibrium question involving a real object, gravity acts. Students frequently include the reaction forces and tensions but omit the weight of the object itself. Check your free-body diagram has as many forces as the problem describes plus gravity.\n\n**Choosing a poor pivot for moments:** When applying the rotational condition, choose a pivot at the point where an unknown force acts — this eliminates that unknown from the moments equation immediately and simplifies your algebra significantly."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What are the two conditions for equilibrium in Cambridge A Level Physics 9702?",
+      "a": "For Cambridge 9702, a body is in equilibrium when (1) the vector sum of all forces acting on it is zero — meaning ΣFx = 0 and ΣFy = 0 — and (2) the sum of all torques about any point is zero (principle of moments). Both conditions must hold simultaneously. Our free course covers worked examples and past-paper practice for both conditions so you can confidently answer P1 and P2 questions."
+    },
+    {
+      "q": "How do I use a triangle of forces to solve equilibrium problems in 9702?",
+      "a": "When three coplanar forces act on a body in equilibrium, draw them as vectors placed tip-to-tail in sequence. If the system is in equilibrium, the diagram will form a closed triangle — the last arrow returns exactly to the starting point of the first. You can then use the sine rule or cosine rule on this triangle to find unknown magnitudes or angles. This method appears frequently in Paper 1 diagrams and in early parts of Paper 2 questions. Practise it with our free past-paper marking tool on this site."
+    },
+    {
+      "q": "Why do I keep losing marks on equilibrium questions in Cambridge Paper 2?",
+      "a": "The most common reasons are: not drawing a free-body diagram before writing equations, using an inconsistent sign convention when resolving, forgetting to include the weight of the object, and not showing enough working steps. Cambridge mark schemes award method marks at each stage, so full working — even if your final answer is slightly wrong — can still earn you most of the marks. Our premium lesson walks you through the exact step-by-step approach that examiners expect, and you can use our mark tool to check your answers against real mark schemes."
+    }
+  ],
+  "updated": "2026-06-05"
+}

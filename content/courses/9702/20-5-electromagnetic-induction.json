@@ -1,0 +1,125 @@
+{
+  "slug": "20-5-electromagnetic-induction",
+  "topicCode": "20.5",
+  "title": "Electromagnetic induction",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master electromagnetic induction for 9702 Paper 4. Understand Faraday's and Lenz's laws, magnetic flux, and induced EMF calculations.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define magnetic flux and magnetic flux linkage, and calculate them for various scenarios.",
+    "State and apply Faraday's law of electromagnetic induction to calculate induced e.m.f.",
+    "Explain Lenz's law and use it to determine the direction of an induced current or e.m.f., linking it to energy conservation."
+  ],
+  "simpleExplanation": {
+    "title": "Electricity from Magnetism",
+    "summary": "Electromagnetic induction describes how a changing magnetic field can generate an electric current or voltage (e.m.f.) in a conductor. It's the core principle behind all electricity generators, converting mechanical energy into electrical energy.",
+    "analogy": "Imagine a seesaw. If you constantly apply an unbalanced force (changing magnetic field), the seesaw moves (induced current). A steady, balanced force (constant magnetic field) results in no net movement, just like a constant magnetic flux induces no e.m.f.",
+    "steps": [
+      "Grasp the definitions of magnetic flux (Φ) and magnetic flux linkage (NΦ).",
+      "Understand Faraday's Law: Induced e.m.f. depends on the *rate of change* of flux linkage.",
+      "Apply Lenz's Law: The induced e.m.f. always *opposes* the change that caused it, conserving energy.",
+      "Practise calculations involving changing magnetic fields, coils, and induced e.m.f."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Get ready to unravel one of physics' most elegant and practical principles: **electromagnetic induction**. This phenomenon, discovered by Michael Faraday, explains how changing magnetic fields can **generate an electromotive force (e.m.f.)** and subsequently, an electric current. It's the fundamental concept powering everything from bicycle dynamos to massive national grid generators. For your 9702 Paper 4, a deep understanding of **Faraday's Law** and **Lenz's Law** is essential for both conceptual explanations and intricate calculations."
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic Flux (Φ) and Flux Linkage (NΦ)"
+    },
+    {
+      "type": "text",
+      "content": "Before diving into induction, we must first understand **magnetic flux (Φ)**. It's a measure of the total number of magnetic field lines passing perpendicularly through a given area. Think of it as how much 'magnetic field' is piercing a surface."
+    },
+    {
+      "type": "formula",
+      "content": "Φ = BAcosθ"
+    },
+    {
+      "type": "text",
+      "content": "Here, B is the magnetic flux density (in Tesla, T), A is the area (in m²), and θ is the angle between the magnetic field lines and the normal to the area. The unit of magnetic flux is the **Weber (Wb)**, which is equivalent to T m².\n\nWhen we talk about a coil with N turns, each turn experiences the same magnetic flux. So, the **magnetic flux linkage (NΦ)** is simply the product of the number of turns and the magnetic flux through each turn. Its unit is also the Weber (Wb). It represents the total magnetic influence passing through all turns of a coil."
+    },
+    {
+      "type": "heading",
+      "content": "Faraday's Law of Electromagnetic Induction"
+    },
+    {
+      "type": "text",
+      "content": "Faraday's Law quantifies the magnitude of the induced e.m.f. It states that the magnitude of the induced e.m.f. (ε) in a circuit is directly proportional to the rate of change of magnetic flux linkage (NΦ) through the circuit."
+    },
+    {
+      "type": "formula",
+      "content": "ε = -d(NΦ)/dt  (for instantaneous change)  or  ε = -Δ(NΦ)/Δt  (for average change)"
+    },
+    {
+      "type": "text",
+      "content": "The negative sign is crucial and leads us to Lenz's Law. Without it, this formula only provides the magnitude. A larger change in flux linkage over a shorter time period will induce a larger e.m.f."
+    },
+    {
+      "type": "heading",
+      "content": "Lenz's Law and Conservation of Energy"
+    },
+    {
+      "type": "text",
+      "content": "While Faraday's Law tells us *how much* e.m.f. is induced, Lenz's Law tells us its *direction*. It states that the direction of the induced e.m.f. (and thus induced current) is always such as to oppose the change in magnetic flux that produced it.\n\nConsider this: if a magnet approaches a coil, an e.m.f. is induced to create a magnetic field that repels the approaching magnet. If the magnet moves away, an e.m.f. is induced to create a field that attracts it, attempting to prevent its departure.\n\nThis opposition isn't arbitrary; it's a direct consequence of the **conservation of energy**. If the induced current *aided* the change in flux, it would lead to a perpetual motion machine, creating energy out of nothing, which violates fundamental physical laws. Instead, work must be done (e.g., against the repulsive force) to induce the current. This mechanical work is then converted into electrical energy."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Magnetic flux (Φ) is measured in T m² or Wb; flux linkage (NΦ) is also measured in Wb. Understand the difference.",
+        "Faraday's Law focuses on the *rate of change* of flux linkage. A *constant* magnetic flux induces *no* e.m.f.",
+        "Lenz's Law is fundamentally about *opposition*. The induced effect always tries to counteract its cause.",
+        "The negative sign in Faraday's Law explicitly represents Lenz's Law, indicating the opposing direction.",
+        "Induced e.m.f. requires relative motion between a conductor and a magnetic field, or a changing magnetic field through a stationary coil.",
+        "Energy conservation is paramount to explaining Lenz's law. Mechanical work done against the opposing force is converted directly into electrical energy."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A small coil of 200 turns, each with an area of 5.0 cm², is placed in a uniform magnetic field of flux density 0.80 T. Initially, the plane of the coil is perpendicular to the magnetic field. The coil is then rotated through an angle of 90° in 0.15 s so that its plane becomes parallel to the magnetic field. Calculate the average e.m.f. induced in the coil during this rotation.",
+      "solution": "1.  **Identify knowns:**\n    *   Number of turns, N = 200\n    *   Area of each turn, A = 5.0 cm² = 5.0 × 10⁻⁴ m²\n    *   Magnetic flux density, B = 0.80 T\n    *   Time taken for rotation, Δt = 0.15 s\n\n2.  **Calculate initial flux linkage (NΦ₁):**\n    *   Initially, the plane of the coil is perpendicular to B. This means the normal to the plane is parallel to B. Therefore, the angle θ₁ = 0°.\n    *   Φ₁ = BAcos(0°) = BA = (0.80 T)(5.0 × 10⁻⁴ m²) = 4.0 × 10⁻⁴ Wb\n    *   NΦ₁ = N × Φ₁ = 200 × (4.0 × 10⁻⁴ Wb) = 0.080 Wb\n\n3.  **Calculate final flux linkage (NΦ₂):**\n    *   Finally, the plane of the coil is parallel to B. This means the normal to the plane is perpendicular to B. Therefore, the angle θ₂ = 90°.\n    *   Φ₂ = BAcos(90°) = 0 Wb\n    *   NΦ₂ = N × Φ₂ = 200 × (0 Wb) = 0 Wb\n\n4.  **Calculate the change in flux linkage (Δ(NΦ)):**\n    *   Δ(NΦ) = NΦ₂ - NΦ₁ = 0 - 0.080 Wb = -0.080 Wb\n\n5.  **Apply Faraday's Law to find the average induced e.m.f. (ε):**\n    *   ε = -Δ(NΦ)/Δt \n    *   ε = -(-0.080 Wb) / 0.15 s\n    *   ε = 0.080 / 0.15 V\n    *   ε ≈ 0.53 V (to 2 significant figures)\n\nThe average e.m.f. induced in the coil is approximately 0.53 V."
+    },
+    {
+      "type": "examTip",
+      "content": "When applying Faraday's Law, always pay close attention to the angle θ for calculating magnetic flux. It's defined as the angle between the *magnetic field lines* and the *normal to the area*. A common mistake is using the angle between the field and the plane of the coil directly, which would lead to incorrect results."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=20.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between magnetic flux and magnetic flux linkage in 9702 Physics?",
+      "a": "Magnetic flux (Φ) is a scalar quantity representing the amount of magnetic field passing perpendicularly through a *single* area, measured in Webers (Wb). Magnetic flux linkage (NΦ) is the total magnetic flux passing through *all turns* of a coil (N being the number of turns). Both are essential for calculating induced e.m.f. For comprehensive revision, explore our free course and practice past papers."
+    },
+    {
+      "q": "How does Lenz's Law relate to the conservation of energy?",
+      "a": "Lenz's Law states that the direction of induced e.m.f. always opposes the change in magnetic flux that caused it. This opposition ensures that energy is conserved. For an induced current to flow, external work must be done against this opposing force (e.g., pulling a magnet away from a coil against an attractive force). This mechanical work is precisely converted into the electrical energy of the induced current, preventing the spontaneous creation of energy. Our free course offers detailed explanations and past paper examples."
+    },
+    {
+      "q": "What factors affect the magnitude of induced e.m.f. in an AC generator?",
+      "a": "According to Faraday's Law, the magnitude of the induced e.m.f. in an AC generator (or any system) is directly proportional to the rate of change of magnetic flux linkage. Therefore, increasing the number of turns in the coil (N), the area of the coil (A), the strength of the magnetic field (B), or the angular speed of rotation (ω) will all increase the magnitude of the induced e.m.f. To master these calculations, use our free course and work through Cambridge past papers."
+    }
+  ],
+  "updated": "2026-06-05"
+}

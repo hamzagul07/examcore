@@ -1,0 +1,137 @@
+{
+  "slug": "7-5-polarisation",
+  "topicCode": "7.5",
+  "title": "Polarisation",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master the concept of polarisation for 9702 Physics. Understand transverse waves, polarisers, and apply Malus's Law. Essential for Paper 1 & 2 success.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Recall that polarisation is a phenomenon associated with transverse waves.",
+    "Describe and explain the effect of a polariser on the intensity of light.",
+    "State and use Malus's Law to calculate light intensity after passing through a polariser."
+  ],
+  "simpleExplanation": {
+    "title": "What is Polarisation?",
+    "summary": "Polarisation is about controlling the direction in which a wave vibrates. While unpolarised light vibrates in all directions perpendicular to its travel, a polariser filters it, allowing vibrations in only one specific direction to pass through. This makes the light 'plane-polarised'.",
+    "analogy": "Imagine shaking a rope tied to a fence. If the fence has only vertical slats, you can only shake the rope vertically for the wave to pass through. If you try to shake it horizontally, the fence blocks it. A polariser acts like that fence, selecting only one direction of light vibration to pass.",
+    "steps": [
+      "Understand what a transverse wave is and why polarisation only applies to them.",
+      "Distinguish between unpolarised and plane-polarised light.",
+      "Learn how a polariser works to create plane-polarised light.",
+      "Master Malus's Law to calculate light intensity changes through polarisers."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever wondered why some sunglasses cut out glare so effectively? Or how 3D cinema creates its stunning visual effects? The answer lies in **polarisation**—a fascinating property of light waves. In this lesson, we'll unravel the mystery of polarisation, discover how it's created and measured, and equip you with the knowledge to ace your Cambridge 9702 Physics exams."
+    },
+    {
+      "type": "heading",
+      "content": "Transverse Waves and Polarisation"
+    },
+    {
+      "type": "text",
+      "content": "First things first: polarisation is a phenomenon exclusively associated with **transverse waves**. This means electromagnetic waves like light, radio waves, and microwaves can be polarised, but longitudinal waves like sound waves cannot. Why? Because in a transverse wave, the oscillations (vibrations) are perpendicular to the direction of wave propagation."
+    },
+    {
+      "type": "text",
+      "content": "**Unpolarised light** consists of waves whose electric field vectors (and magnetic field vectors) vibrate randomly in all possible planes perpendicular to the direction of propagation. Think of it as light vibrating in every direction at once. When light interacts with certain materials or reflects off surfaces, it can become **partially polarised**, where some planes of vibration are more dominant than others."
+    },
+    {
+      "type": "text",
+      "content": "**Plane-polarised light** (or linearly polarised light) is light whose electric field vectors oscillate in a single, fixed plane perpendicular to the direction of propagation. It's like our rope analogy where the vibration is constrained to only vertical movement."
+    },
+    {
+      "type": "heading",
+      "content": "The Polarisers"
+    },
+    {
+      "type": "text",
+      "content": "A **polariser** is a special filter that produces plane-polarised light from unpolarised light. It achieves this by absorbing light waves that vibrate in certain planes and transmitting only those that vibrate in a specific plane, known as its **transmission axis**. Think of the transmission axis as the 'slot' in our fence analogy."
+    },
+    {
+      "type": "text",
+      "content": "When unpolarised light passes through an ideal polariser, its intensity is reduced by half. This is because, on average, half of the randomly vibrating light components align with the transmission axis and half are perpendicular to it (and thus absorbed). The light emerging from the first polariser is now plane-polarised."
+    },
+    {
+      "type": "text",
+      "content": "If this plane-polarised light then passes through a second polariser (often called an **analyser**), the intensity of the transmitted light depends on the angle between the transmission axes of the two polarisers."
+    },
+    {
+      "type": "heading",
+      "content": "Malus's Law: Quantifying Polarisation"
+    },
+    {
+      "type": "text",
+      "content": "Malus's Law describes how the intensity of plane-polarised light changes as it passes through an analyser. It's a key formula you'll need for calculations in your exams."
+    },
+    {
+      "type": "formula",
+      "content": "I = I₀ cos²θ"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n- `I` is the intensity of the light transmitted through the analyser.\n- `I₀` is the intensity of the plane-polarised light incident on the analyser.\n- `θ` is the angle between the plane of polarisation of the incident light (which is aligned with the transmission axis of the *first* polariser) and the transmission axis of the *analyser* (the second polariser)."
+    },
+    {
+      "type": "text",
+      "content": "If `θ = 0°`, the transmission axes are aligned, and `cos²(0°) = 1`, so `I = I₀` (maximum intensity).\nIf `θ = 90°`, the transmission axes are perpendicular, and `cos²(90°) = 0`, so `I = 0` (zero intensity, often called 'crossed polarisers')."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Polarisation is a defining characteristic of transverse waves, not longitudinal waves.",
+        "Unpolarised light has oscillations in all planes perpendicular to propagation; plane-polarised light has oscillations in only one plane.",
+        "An ideal polariser reduces the intensity of unpolarised light by half.",
+        "The angle `θ` in Malus's Law is between the *initial plane of polarisation* (set by the first polariser) and the *transmission axis of the second polariser* (analyser).",
+        "If two polarisers are crossed (transmission axes at 90°), no light is transmitted, demonstrating complete extinction.",
+        "Reflection from non-metallic surfaces often produces partially polarised light, used in anti-glare filters."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Unpolarised light of intensity 200 W m⁻² is incident on a polariser. The light then passes through a second polariser, whose transmission axis is oriented at 30° to the transmission axis of the first polariser.\nCalculate the final intensity of the light transmitted through the second polariser.",
+      "solution": "Step 1: Intensity after the first polariser.\nWhen unpolarised light passes through the first ideal polariser, its intensity is halved.\nI₁ = I_unpolarised / 2\nI₁ = 200 W m⁻² / 2 = 100 W m⁻²\nThis light (I₁) is now plane-polarised, with its plane of polarisation aligned with the transmission axis of the first polariser.\n\nStep 2: Intensity after the second polariser (analyser).\nNow, we apply Malus's Law, where I₀ is the intensity of the plane-polarised light incident on the analyser (I₁).\nThe angle θ is given as 30°.\nI₂ = I₁ cos²θ\nI₂ = 100 W m⁻² × cos²(30°)\nI₂ = 100 W m⁻² × (√3/2)²\nI₂ = 100 W m⁻² × (3/4)\nI₂ = 75 W m⁻²\n\nFinal answer: The final intensity of the light transmitted through the second polariser is 75 W m⁻²."
+    },
+    {
+      "type": "examTip",
+      "content": "Always be careful with the angle `θ` in Malus's Law. It's *not* the angle from the unpolarised source, but the angle between the *initial plane of polarisation* (usually set by the first polariser) and the *transmission axis of the analyser*. Draw diagrams if it helps you visualise the alignment!"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=7.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is polarisation in Cambridge 9702 Physics?",
+      "a": "Polarisation in 9702 Physics refers to the phenomenon where the oscillations of a transverse wave, such as light, are restricted to a single plane. Unpolarised light vibrates in all directions, but after passing through a polariser, it becomes plane-polarised, vibrating in only one specific direction. You can master this and other topics with our free 9702 Physics course and past paper practice."
+    },
+    {
+      "q": "How do polarisers affect light intensity?",
+      "a": "When unpolarised light passes through a polariser, its intensity is typically reduced by half, as the polariser absorbs vibrations not aligned with its transmission axis. If plane-polarised light then passes through a second polariser (analyser), the final intensity is determined by Malus's Law, `I = I₀ cos²θ`, where `θ` is the angle between the polarisation plane and the analyser's axis. This can reduce intensity further, even to zero if the polarisers are 'crossed'."
+    },
+    {
+      "q": "When should I use Malus's Law for 9702 polarisation calculations?",
+      "a": "You should use Malus's Law (`I = I₀ cos²θ`) when calculating the intensity of plane-polarised light after it passes through a second polariser (an analyser). `I₀` is the intensity of the plane-polarised light *incident* on the analyser, and `θ` is the angle between the plane of polarisation of that incident light and the transmission axis of the analyser. It's crucial for Paper 1 multiple-choice questions and Paper 2 structured problems, available for practice in our past papers."
+    }
+  ],
+  "updated": "2026-06-05"
+}

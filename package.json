@@ -27,7 +27,9 @@
     "seo:ssr-check": "node scripts/seo-ssr-check.mjs",
     "seo:fan-out-lint": "node scripts/seo-fan-out-lint.mjs",
     "seo:ai-visibility": "node scripts/seo-ai-visibility.mjs",
-    "seo:sitewide-quality": "node scripts/seo-sitewide-quality.mjs"
+    "seo:sitewide-quality": "node scripts/seo-sitewide-quality.mjs",
+    "course:generate": "node scripts/batch-generate-course.mjs",
+    "course:status": "node scripts/course-status.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.98.0",

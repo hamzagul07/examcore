@@ -1,0 +1,117 @@
+{
+  "slug": "13-4-gravitational-potential",
+  "topicCode": "13.4",
+  "title": "Gravitational potential",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master gravitational potential and potential energy for Cambridge 9702 Physics P4. Understand definitions, calculations, and problem-solving strategies.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define gravitational potential at a point and state its unit.",
+    "Solve problems involving changes in gravitational potential energy.",
+    "Relate gravitational potential to gravitational potential energy using appropriate formulae."
+  ],
+  "simpleExplanation": {
+    "title": "Gravity's Energy Landscape",
+    "summary": "Gravitational potential describes the 'energy landscape' around a massive object, telling you how much potential energy a 1 kg mass would have at any given point. Gravitational potential energy is then simply this potential multiplied by the actual mass of the object, representing the energy it possesses due to its position in a gravitational field.",
+    "analogy": "Imagine a deep pit. The bottom of the pit has the lowest 'potential' – it requires work to climb out. Infinity (far away from the pit) is like flat ground, where potential is zero. Gravitational potential is similar: points closer to a mass are deeper in its 'potential well' and require work to move away from.",
+    "steps": [
+      "Understand potential is work done per unit mass from infinity.",
+      "Remember potential is always negative and a scalar quantity.",
+      "Practise using `Φ = -GM/r` and `ΔE_p = mΔΦ`.",
+      "Pay close attention to signs and units in calculations."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to **Gravitational Potential**! In this crucial P4 topic, we'll dive deeper into how gravity affects energy. You've already explored gravitational fields and forces; now, we'll focus on the **energy associated with position** within these fields. Understanding **gravitational potential** and **gravitational potential energy** is key to tackling complex problems involving satellites, planets, and the work done against gravity."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Gravitational Potential (Φ)"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational potential, symbolised by Φ (phi), at a point in a gravitational field, is defined as the **work done per unit mass** by an external agent in bringing a test mass from infinity to that point without a change in kinetic energy.\n\nKey aspects of this definition:\n*   **Work done per unit mass**: This means it's about the location's inherent property, not a specific mass.\n*   **From infinity**: Infinity is chosen as the reference point where gravitational potential is defined as zero. This is a convention that simplifies calculations.\n*   **Without change in kinetic energy**: We're only interested in the change in potential energy, not any kinetic energy gains or losses."
+    },
+    {
+      "type": "formula",
+      "content": "Φ = -GM/r"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n*   `Φ` is the gravitational potential (J kg⁻¹)\n*   `G` is the universal gravitational constant (6.67 × 10⁻¹¹ N m² kg⁻²)\n*   `M` is the mass of the object creating the gravitational field (kg)\n*   `r` is the distance from the centre of mass `M` to the point (m)\n\nNotice the **negative sign**. This is because work must be done *against* the field to move an object *away* from mass `M` towards infinity. Conversely, the field does positive work as an object moves *towards* `M`. Since potential is zero at infinity, and work is done *by* the field as an object falls towards `M`, the potential must become increasingly negative closer to `M`. This makes gravitational potential a **scalar quantity** – it only has magnitude, not direction. Points of equal potential form **equipotential surfaces**."
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational Potential Energy (Eₚ)"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational potential energy (`Eₚ`) is the energy an object possesses due to its position in a gravitational field. It's directly related to gravitational potential:\n\n`Eₚ = mΦ`\n\nSubstituting the formula for Φ:\n"
+    },
+    {
+      "type": "formula",
+      "content": "Eₚ = -GMm/r"
+    },
+    {
+      "type": "text",
+      "content": "Where `m` is the mass of the object experiencing the potential (kg). The units for gravitational potential energy are Joules (J).\n\n**Work done** against or by gravity is equivalent to the **change in gravitational potential energy**. If an object moves from a point with potential `Φ₁` to `Φ₂`, the change in potential energy is:\n\n`ΔEₚ = Eₚ₂ - Eₚ₁ = mΦ₂ - mΦ₁ = m(Φ₂ - Φ₁)`\n\nIf `ΔEₚ` is positive, work has been done *on* the mass by an external force (e.g., lifting it). If `ΔEₚ` is negative, work has been done *by* the gravitational field (e.g., an object falling). This concept is crucial for understanding topics like escape velocity, where an object gains enough kinetic energy to reach infinity (where `Eₚ = 0`)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gravitational potential (Φ) is work done per unit mass (J kg⁻¹) to bring a mass from infinity (Φ=0) to a point.",
+        "It is always negative near a massive body, becoming more negative closer to the mass.",
+        "Potential is a scalar quantity, meaning it has magnitude but no direction.",
+        "Gravitational potential energy (Eₚ) is simply the potential multiplied by the mass of the object: Eₚ = mΦ.",
+        "The change in gravitational potential energy, `mΔΦ`, represents the work done in moving an object between two points.",
+        "Always remember the negative sign in the formulae for Φ and Eₚ – it's crucial for correct calculations."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A satellite of mass 800 kg is in a circular orbit around the Earth at a radius of 7.2 x 10⁶ m from the centre of the Earth. The Earth's mass is 5.97 x 10²⁴ kg.\n\na) Calculate the gravitational potential at the satellite's orbital radius.\nb) Calculate the work done by the satellite's engines to move it from this orbit to a new orbit at a radius of 8.5 x 10⁶ m.",
+      "solution": "a) Calculate the gravitational potential at the satellite's orbital radius.\n\nWe use the formula Φ = -GM/r.\nGiven: G = 6.67 × 10⁻¹¹ N m² kg⁻²\n        M = 5.97 × 10²⁴ kg (Mass of Earth)\n        r₁ = 7.2 × 10⁶ m\n\nΦ₁ = -(6.67 × 10⁻¹¹) × (5.97 × 10²⁴) / (7.2 × 10⁶)\nΦ₁ = -3.9822 × 10¹⁴ / 7.2 × 10⁶\nΦ₁ = -5.5308 × 10⁷ J kg⁻¹\n\nGravitational potential at the initial orbit = **-5.53 × 10⁷ J kg⁻¹** (3 s.f.)\n\nb) Calculate the work done by the satellite's engines to move it to a new orbit.\n\nFirst, calculate the gravitational potential at the new orbit (r₂ = 8.5 × 10⁶ m).\n\nΦ₂ = -(6.67 × 10⁻¹¹) × (5.97 × 10²⁴) / (8.5 × 10⁶)\nΦ₂ = -3.9822 × 10¹⁴ / 8.5 × 10⁶\nΦ₂ = -4.6850 × 10⁷ J kg⁻¹\n\nNow, calculate the change in gravitational potential energy, which is the work done by the engines (since the engines do work to increase the potential energy).\nWork done = ΔEₚ = m(Φ₂ - Φ₁)\nGiven: m = 800 kg\n        Φ₁ = -5.5308 × 10⁷ J kg⁻¹\n        Φ₂ = -4.6850 × 10⁷ J kg⁻¹\n\nWork done = 800 × (-4.6850 × 10⁷ - (-5.5308 × 10⁷))\nWork done = 800 × (-4.6850 × 10⁷ + 5.5308 × 10⁷)\nWork done = 800 × (8.458 × 10⁶)\nWork done = 6.7664 × 10⁹ J\n\nWork done by engines = **6.77 × 10⁹ J** (3 s.f.)"
+    },
+    {
+      "type": "examTip",
+      "content": "The most common error in gravitational potential problems is forgetting or misinterpreting the negative sign. Always remember that potential is *always* negative near a mass and becomes *less negative* (i.e., increases) as you move away from it. If you're calculating work done *by* an external force to lift an object, expect a positive result for `ΔEₚ`."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=13.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is gravitational potential and why is it negative in 9702 Physics?",
+      "a": "Gravitational potential (Φ) is the work done per unit mass to bring a test mass from infinity to a point in a gravitational field. It's conventionally negative in Cambridge 9702 Physics because infinity is defined as the point of zero potential. Since work is done *by* the gravitational field as an object moves towards a massive body, its potential energy (and thus potential per unit mass) decreases, becoming negative. For more in-depth explanations and practice, check out our free 9702 Physics courses and past papers."
+    },
+    {
+      "q": "How is gravitational potential different from gravitational field strength?",
+      "a": "Gravitational potential (Φ) is a scalar quantity (just magnitude), representing the potential energy per unit mass at a point. Gravitational field strength (g) is a vector quantity (magnitude and direction), representing the force per unit mass at a point. Mathematically, the gravitational field strength is the negative gradient of the gravitational potential, much like electric field strength is the negative gradient of electric potential."
+    },
+    {
+      "q": "What is the significance of the reference point at infinity for gravitational potential?",
+      "a": "Defining gravitational potential as zero at infinity is a convention that allows us to assign meaningful negative values to potential closer to massive objects. It reflects that work must be done *against* the gravitational field to move an object from a point near a mass all the way out to infinity, implying that objects closer to the mass are in a 'lower' (more negative) energy state. This convention simplifies calculations involving changes in potential energy and escape velocity."
+    }
+  ],
+  "updated": "2026-06-05"
+}

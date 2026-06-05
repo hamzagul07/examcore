@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
+import { getCourseSubject } from '@/lib/courses'
 import {
   buildSubjectPageCopy,
   getMarkingSubjectCodes,
@@ -59,6 +60,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
   if (!subject || !isValidMarkingSubjectCode(code)) notFound()
 
   const copy = buildSubjectPageCopy(subject)
+  const course = getCourseSubject(code)
   const url = `${SITE_URL}${copy.path}`
   const faq = SUBJECT_FAQ(subject.label, code, copy.level)
   const otherSubjects = getMarkingSubjectPages()
@@ -131,13 +133,18 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           </Link>
         </div>
 
-        {copy.guideSlug && (
-          <p className="landing-lead mb-10">
-            <Link href={`/blog/${copy.guideSlug}`} className="ec-link font-semibold">
-              Read the full {code} past papers &amp; revision guide →
+        <div className="landing-lead mb-10 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-6">
+          {course ? (
+            <Link href={course.path} className="ec-link font-semibold">
+              Free premium {code} course ({course.lessonCount} topics) →
             </Link>
-          </p>
-        )}
+          ) : null}
+          {copy.guideSlug ? (
+            <Link href={`/blog/${copy.guideSlug}`} className="ec-link font-semibold">
+              {code} past papers &amp; revision guide →
+            </Link>
+          ) : null}
+        </div>
 
         <section aria-labelledby="subject-faq">
           <h2 id="subject-faq" className="landing-h3 mb-4 text-[var(--ec-text-primary)]">

@@ -1,0 +1,133 @@
+{
+  "slug": "2-1-equations-of-motion",
+  "topicCode": "2.1",
+  "title": "Equations of motion",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master the four SUVAT equations for Cambridge 9702. Clear explanations, worked examples and exam tips for uniform acceleration questions.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define and distinguish between displacement, velocity, speed and acceleration in the context of uniformly accelerated motion",
+    "Select and apply the correct SUVAT equation to solve problems involving uniform acceleration in one dimension",
+    "Interpret and sketch velocity–time and displacement–time graphs to extract kinematic quantities including acceleration and displacement"
+  ],
+  "simpleExplanation": {
+    "title": "SUVAT in a nutshell",
+    "summary": "When an object accelerates at a constant rate, four variables — displacement (s), initial velocity (u), final velocity (v), acceleration (a) and time (t) — are linked by a set of equations. Know any three and you can always find the other two. These equations only work when acceleration is uniform, so check that condition first.",
+    "analogy": "Think of a car joining a motorway: it starts at 20 m/s, presses the accelerator steadily, and reaches 30 m/s. The engine delivers the same extra push every second — that steady push is constant acceleration, and SUVAT equations describe exactly what the car does between those two speeds.",
+    "steps": [
+      "Write down every variable given in the question and label them s, u, v, a or t — include a minus sign for anything in the opposite direction to your chosen positive direction.",
+      "Identify which variable you need to find, then pick the one SUVAT equation that contains only those variables (the one with no unknowns other than your target).",
+      "Substitute values carefully, keeping units consistent (metres, seconds, m/s, m/s²), and solve algebraically before plugging numbers in.",
+      "Check your answer makes physical sense — for example, a displacement cannot be negative if the object only moved forwards, and time must always be positive."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Kinematics is the language of motion, and **equations of motion** (often called SUVAT equations) are its grammar. Every time a ball is thrown, a car brakes, or a skydiver accelerates towards terminal velocity, these equations describe what is happening with precision. Cambridge 9702 tests SUVAT on Paper 1 through tricky multiple-choice scenarios and on Paper 2 through multi-step structured questions worth up to 6 marks — so a solid understanding here pays dividends across the entire AS Level."
+    },
+    {
+      "type": "heading",
+      "content": "The five kinematic variables"
+    },
+    {
+      "type": "text",
+      "content": "Before writing any equation, be clear on what each symbol means. **s** is displacement — the vector distance from start to finish, measured in metres (m). **u** is the initial velocity in m/s. **v** is the final velocity in m/s. **a** is the uniform acceleration in m/s². **t** is the time interval in seconds (s). Because displacement and velocity are vectors, direction matters: choose a positive direction at the start of every problem and assign negative values to anything pointing the other way. Acceleration due to gravity, g ≈ 9.81 m/s², is positive downwards if you choose downwards as positive."
+    },
+    {
+      "type": "heading",
+      "content": "The four SUVAT equations"
+    },
+    {
+      "type": "formula",
+      "content": "v = u + at"
+    },
+    {
+      "type": "formula",
+      "content": "s = ut + ½at²"
+    },
+    {
+      "type": "formula",
+      "content": "s = ½(u + v)t"
+    },
+    {
+      "type": "formula",
+      "content": "v² = u² + 2as"
+    },
+    {
+      "type": "text",
+      "content": "Each equation omits one of the five variables, making it easy to select the right one. The equation **v = u + at** omits s; use it when displacement is not involved. The equation **s = ut + ½at²** omits v; ideal when final velocity is not needed. The equation **s = ½(u + v)t** omits a; use it when acceleration is unknown but both velocities are given. The equation **v² = u² + 2as** omits t; the go-to formula when time is neither given nor required. A fifth expression, **s = vt − ½at²**, is occasionally useful but is derived from the others and does not need to be memorised separately."
+    },
+    {
+      "type": "heading",
+      "content": "Conditions for using SUVAT"
+    },
+    {
+      "type": "text",
+      "content": "These equations are **only valid under uniform (constant) acceleration**. If acceleration changes — for example, as air resistance increases during free fall — you cannot apply SUVAT directly. In such cases, Cambridge questions will either ask you to use a velocity–time graph (where the area under the curve gives displacement and the gradient gives acceleration) or break the motion into segments where acceleration is approximately constant. Always state or confirm that acceleration is constant before applying the equations in a Paper 2 answer; examiners award a mark for this assumption."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "SUVAT equations require uniform acceleration — state this assumption explicitly in structured-question answers.",
+        "Displacement (s) is a vector: assign a consistent positive direction and use negative values for opposite-direction quantities throughout the whole problem.",
+        "The equation v² = u² + 2as is particularly powerful for projectile problems where time is neither given nor required.",
+        "On a velocity–time graph, the gradient equals acceleration and the area between the line and the time-axis equals displacement — these graphical methods are tested equally as often as algebraic SUVAT.",
+        "For vertical free-fall problems, use a = g = 9.81 m/s² (or the value given in the question) and be consistent with sign: if upwards is positive, g is −9.81 m/s².",
+        "When a projectile problem is involved, treat horizontal and vertical motion completely independently: horizontal acceleration is zero, vertical acceleration is g."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A ball is projected vertically upwards from ground level with an initial velocity of 15 m/s. Taking g = 9.81 m/s² and ignoring air resistance, calculate (a) the maximum height reached by the ball, and (b) the time taken for the ball to return to ground level.",
+      "solution": "Step 1 — Define positive direction as upwards. List the known variables:\n• u = +15 m/s (upwards)\n• v = 0 m/s at maximum height (momentarily at rest)\n• a = −9.81 m/s² (gravity acts downwards)\n• s = ? (maximum height)\n• t = ? (not needed for part a)\n\nStep 2 — Part (a): Select v² = u² + 2as because t is not involved.\nRearrange: s = (v² − u²) / (2a)\ns = (0² − 15²) / (2 × −9.81)\ns = (−225) / (−19.62)\ns = +11.5 m (2 s.f.)\n\nThe maximum height is 11.5 m.\n\nStep 3 — Part (b): The ball returns to ground level, so the total displacement s = 0. Select s = ut + ½at².\n0 = 15t + ½ × (−9.81) × t²\n0 = 15t − 4.905t²\n0 = t(15 − 4.905t)\n\nEither t = 0 (the moment of projection — reject this solution) or:\n15 − 4.905t = 0\nt = 15 / 4.905\nt = 3.06 s (3 s.f.)\n\nThe ball returns to ground level after 3.06 s.\n\nQuick check: by symmetry, the time to reach maximum height should be half of 3.06 s ≈ 1.53 s. Verify using v = u + at: 0 = 15 + (−9.81)(1.53) → 15 ≈ 15.0 ✓"
+    },
+    {
+      "type": "examTip",
+      "content": "Cambridge mark schemes almost always award a separate mark for correctly substituting values into a stated equation, even if the final numerical answer is wrong due to an arithmetic slip. In Paper 2, always write the equation you are using before substituting — never skip straight to numbers. This habit can recover marks even on questions where you make a sign error or press the wrong button on your calculator."
+    },
+    {
+      "type": "heading",
+      "content": "Velocity–time graphs and SUVAT"
+    },
+    {
+      "type": "text",
+      "content": "A straight-line velocity–time (v–t) graph is the visual representation of uniform acceleration. The **gradient** of the line equals acceleration: a = Δv / Δt. The **area enclosed between the line and the time-axis** equals displacement. For a trapezium shape (object starts with non-zero velocity), use the trapezium area formula, which is exactly the SUVAT equation s = ½(u + v)t. Paper 1 questions frequently show a v–t graph and ask you to identify which SUVAT equation corresponds to the shaded area, or to calculate displacement from a graph where the object decelerates to rest and then moves in the reverse direction — remember that area below the time-axis represents negative displacement."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What are the SUVAT equations for Cambridge International AS Level Physics 9702?",
+      "a": "The four SUVAT equations tested in Cambridge 9702 are: v = u + at, s = ut + ½at², s = ½(u + v)t, and v² = u² + 2as. Each equation omits one of the five kinematic variables (s, u, v, a, t), so you select the one that fits the information given. Our free revision course on this page walks through each equation with worked examples and past-paper style questions you can mark yourself."
+    },
+    {
+      "q": "When can I NOT use SUVAT equations in a 9702 question?",
+      "a": "SUVAT only applies when acceleration is constant throughout the motion. If a question mentions increasing air resistance, a varying force, or shows a curved velocity–time graph, acceleration is not uniform and SUVAT cannot be used directly. In those cases, Cambridge 9702 questions will ask you to use graphical methods (area under a v–t graph or gradient of a tangent) or break the motion into short intervals. Always check for the condition of uniform acceleration before applying any SUVAT equation in your Paper 2 answer."
+    },
+    {
+      "q": "How do projectile motion questions relate to equations of motion in 9702?",
+      "a": "Projectile motion is a direct application of SUVAT where you treat horizontal and vertical motion as two independent one-dimensional problems. Horizontally, acceleration is zero, so displacement = horizontal velocity × time. Vertically, acceleration equals g = 9.81 m/s² downwards, and all four SUVAT equations apply. Cambridge 9702 Paper 2 commonly asks you to find the time of flight using vertical SUVAT, then substitute that time into the horizontal equation to find range. Our free course includes a dedicated projectile worked example to help you practise this two-stage approach."
+    }
+  ],
+  "updated": "2026-06-05"
+}

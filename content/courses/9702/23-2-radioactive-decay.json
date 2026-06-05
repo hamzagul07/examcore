@@ -1,0 +1,113 @@
+{
+  "slug": "23-2-radioactive-decay",
+  "topicCode": "23.2",
+  "title": "Radioactive decay",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master radioactive decay for Cambridge 9702 Paper 4. Understand half-life, decay constant, and exponential decay equations for top marks.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Describe radioactive decay as a random and spontaneous process, explaining its implications.",
+    "Use the concept of half-life and the decay constant to perform calculations related to radioactive sources.",
+    "Solve problems involving the exponential decay equations for number of undecayed nuclei (N) and activity (A)."
+  ],
+  "simpleExplanation": {
+    "title": "Unpacking Radioactive Decay",
+    "summary": "Radioactive decay is when unstable atomic nuclei spontaneously transform into more stable forms, releasing energy and particles. This process is entirely random for individual nuclei, but predictable for large numbers, governed by a characteristic 'half-life'.",
+    "analogy": "Imagine a large bag of popcorn kernels. Each kernel is unstable and will 'decay' (pop) at some point. You can't predict *which* kernel will pop next, but you know that after a certain amount of time, roughly half of the remaining unpopped kernels will have popped. This 'popping rate' is like the decay constant.",
+    "steps": [
+      "Understand the random and spontaneous nature of decay.",
+      "Memorise and apply the relationship between half-life and decay constant.",
+      "Practise using the exponential decay equations for activity and number of nuclei.",
+      "Be confident with graphical methods for determining half-life or decay constant."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to your premium revision lesson on **Radioactive decay**! This topic is a cornerstone of Nuclear Physics, frequently tested in Paper 4. Understanding the principles of how unstable nuclei transform and applying the relevant equations is key to securing those top grades. Let's dive in and master this essential area of the syllabus."
+    },
+    {
+      "type": "heading",
+      "content": "The Nature of Radioactive Decay"
+    },
+    {
+      "type": "text",
+      "content": "Radioactive decay is the process by which an unstable atomic nucleus loses energy by emitting radiation. For Cambridge 9702, it's crucial to describe this process as:\n\n*   **Random**: You cannot predict *when* a specific nucleus will decay. It's a matter of chance. Each nucleus has the same probability of decaying per unit time, regardless of how long it has already existed.\n*   **Spontaneous**: The decay is not affected by external physical or chemical conditions such as temperature, pressure, or chemical bonding. It originates from within the nucleus itself."
+    },
+    {
+      "type": "heading",
+      "content": "Half-Life (t½) and Decay Constant (λ)"
+    },
+    {
+      "type": "text",
+      "content": "While individual decays are random, the decay of a large number of nuclei is statistically predictable. This predictability is quantified by two key terms:\n\n*   **Half-Life (t½)**: The time taken for half of the original unstable nuclei in a sample to decay, or equivalently, the time taken for the activity of the sample to halve.\n*   **Decay Constant (λ)**: The probability that an individual nucleus will decay per unit time. It has units of s⁻¹.\n\nThese two quantities are inversely related. A larger decay constant means a shorter half-life, indicating a more rapidly decaying nuclide. The relationship is given by:"
+    },
+    {
+      "type": "formula",
+      "content": "`t½ = ln(2) / λ`"
+    },
+    {
+      "type": "heading",
+      "content": "Activity (A) and Number of Nuclei (N)"
+    },
+    {
+      "type": "text",
+      "content": "The **activity (A)** of a radioactive source is the rate at which nuclei decay, or the number of decays per unit time. Its unit is the Becquerel (Bq), where 1 Bq = 1 decay per second. The activity is directly proportional to the number of undecayed nuclei (N) present in the sample at that instant:\n\n`A = λN`\n\nBoth the number of undecayed nuclei and the activity decrease exponentially over time. If N₀ is the initial number of undecayed nuclei and A₀ is the initial activity, then after a time t:\n\n`N = N₀e⁻λt`\n\n`A = A₀e⁻λt`"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Units are crucial**: Half-life (s), decay constant (s⁻¹), activity (Bq or s⁻¹), time (s). Ensure consistency in units, converting minutes/hours/years to seconds if λ is in s⁻¹.",
+        "**Show your working**: For calculations involving logarithms and exponentials, clearly state the formulae used and show each step of your calculation.",
+        "**Graphical methods**: Remember that plotting ln(A) or ln(N) against time (t) yields a straight line with a gradient of -λ. This is a common Paper 4 question.",
+        "**Distinguish between N and N₀, A and A₀**: N and A are the values *at time t*, while N₀ and A₀ are the *initial* values.",
+        "**Random vs. Predictable**: Always remember that while individual decay is random, the decay of a *large number* of nuclei is predictable and follows exponential decay laws.",
+        "**Significance of 'e'**: The 'e' in the exponential decay equations is Euler's number (approximately 2.718). Make sure you know how to use the 'e^x' function on your calculator."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A radioactive isotope has a half-life of 25 minutes. A sample of this isotope initially has an activity of 4.8 × 10³ Bq.\n\n(a) Calculate the decay constant, λ, in s⁻¹.\n(b) Determine the activity of the sample after 1.5 hours.\n(c) Calculate the initial number of undecayed nuclei in the sample.",
+      "solution": "(a) Calculate the decay constant, λ, in s⁻¹.\n   First, convert the half-life to seconds:\n   t½ = 25 minutes = 25 × 60 s = 1500 s\n\n   Use the formula t½ = ln(2) / λ:\n   λ = ln(2) / t½\n   λ = ln(2) / 1500\n   λ = 0.6931... / 1500\n   λ = 4.62 × 10⁻⁴ s⁻¹ (3 s.f.)\n\n(b) Determine the activity of the sample after 1.5 hours.\n   Convert time to seconds:\n   t = 1.5 hours = 1.5 × 60 × 60 s = 5400 s\n\n   Use the formula A = A₀e⁻λt:\n   A₀ = 4.8 × 10³ Bq\n   λ = 4.621 × 10⁻⁴ s⁻¹ (using full value for precision)\n   t = 5400 s\n\n   A = (4.8 × 10³) × e⁻(4.621 × 10⁻⁴ × 5400)\n   A = (4.8 × 10³) × e⁻².⁴⁹⁵\n   A = (4.8 × 10³) × 0.0825\n   A = 396 Bq (3 s.f.)\n\n(c) Calculate the initial number of undecayed nuclei in the sample.\n   Use the formula A = λN, rearranged to N = A / λ.\n   We need the initial number of nuclei, N₀, so we use initial activity A₀.\n   N₀ = A₀ / λ\n   N₀ = (4.8 × 10³) / (4.621 × 10⁻⁴)\n   N₀ = 1.038 × 10⁷\n   N₀ = 1.04 × 10⁷ nuclei (3 s.f.)"
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 4, always ensure you use consistent units, typically SI units (seconds, Becquerels). If a half-life is given in minutes or hours, convert it to seconds before calculating the decay constant in s⁻¹. Show all your intermediate steps clearly, especially when dealing with exponential and logarithmic calculations – this allows examiners to award method marks even if a final answer has a numerical slip."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=23.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is meant by random and spontaneous decay in 9702 Physics?",
+      "a": "In Cambridge 9702 Physics, random means you cannot predict when a specific nucleus will decay, only the probability of it happening. Spontaneous means the decay process is unaffected by external factors like temperature or pressure. You can master these concepts and more with our free course materials and extensive past paper practice."
+    },
+    {
+      "q": "How do I calculate the decay constant (λ) from half-life (t½)?",
+      "a": "The decay constant (λ) can be calculated from the half-life (t½) using the formula λ = ln(2) / t½. Remember to ensure that t½ is in seconds to get λ in s⁻¹. Our platform offers worked examples and past papers to help you practise these calculations effectively."
+    },
+    {
+      "q": "What are the key equations for radioactive decay in A-Level Physics?",
+      "a": "The key equations for radioactive decay in A-Level Physics are t½ = ln(2) / λ, A = λN, N = N₀e⁻λt, and A = A₀e⁻λt. These relate half-life, decay constant, activity, and the number of undecayed nuclei over time. Explore our free course for detailed explanations and practice questions to solidify your understanding."
+    }
+  ],
+  "updated": "2026-06-05"
+}

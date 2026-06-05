@@ -1,0 +1,168 @@
+{
+  "slug": "19-1-capacitors-and-capacitance",
+  "topicCode": "19.1",
+  "title": "Capacitors and capacitance",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master capacitors and capacitance for A Level Physics 9702 Paper 4. Learn definitions, formulas for charge, energy, and combinations with exam-focused tips.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define capacitance and use the equation C = Q/V.",
+    "Calculate the energy stored in a capacitor using relevant formulae.",
+    "Determine the effective capacitance for capacitors connected in series and parallel."
+  ],
+  "simpleExplanation": {
+    "title": "Capacitors: Charge Storage Explained",
+    "summary": "Capacitors are electronic components designed to store electrical charge and energy. They consist of two conductive plates separated by an insulating material called a dielectric. The capacitance quantifies how much charge a capacitor can store for a given potential difference across its plates.",
+    "analogy": "Think of a capacitor like a small rechargeable battery for a very quick burst of energy. While batteries store energy chemically and release it slowly, capacitors store electrical charge directly and can release it almost instantly.",
+    "steps": [
+      "Understand the definition of capacitance (C=Q/V) and its units.",
+      "Memorise and apply the three forms of the energy stored formula (W=½QV, W=½CV², W=½Q²/C).",
+      "Learn how to combine capacitors in series and parallel – note the inverse relationship to resistors!",
+      "Practice calculations involving charge, voltage, energy, and effective capacitance from past papers."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the essential guide on **Capacitors and Capacitance** for Cambridge International A Level Physics 9702! Capacitors are fundamental electronic components, crucial for everything from smoothing power supplies to timing circuits and camera flashes. In this lesson, we'll dive into what **capacitance** means, how capacitors store **electrical charge** and **energy**, and how their behaviour changes when combined in **series or parallel** circuits. Get ready to build a solid foundation for Paper 4!"
+    },
+    {
+      "type": "heading",
+      "content": "What is Capacitance?"
+    },
+    {
+      "type": "text",
+      "content": "At its core, a capacitor is a device that stores electrical charge. It typically consists of two conductive plates separated by a non-conductive insulating material, known as a **dielectric**. When a potential difference (voltage) is applied across these plates, charge builds up – positive charge on one plate and an equal amount of negative charge on the other. The **capacitance (C)** of a capacitor is a measure of its ability to store this charge. A larger capacitance means more charge can be stored for a given voltage."
+    },
+    {
+      "type": "formula",
+      "content": "C = Q / V"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n*   `C` is the capacitance, measured in Farads (F). One Farad is a very large unit, so you'll often encounter microfarads (μF), nanofarads (nF), or picofarads (pF).\n*   `Q` is the magnitude of the charge stored on one plate (Coulombs, C).\n*   `V` is the potential difference across the plates (Volts, V)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The Farad (F) is the SI unit for capacitance. Remember 1 F = 1 C V⁻¹.",
+        "Capacitance is determined by the physical characteristics of the capacitor (plate area, separation, and dielectric material), not by the charge or voltage.",
+        "Always ensure consistent units in calculations; convert μF, nF, pF to Farads.",
+        "Charge on a capacitor refers to the magnitude of charge on *one* plate; the net charge of the capacitor as a whole is zero."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Energy Stored in a Capacitor"
+    },
+    {
+      "type": "text",
+      "content": "When a capacitor is charged, work is done to move charge against the existing electric field between the plates. This work is stored as electrical potential energy within the capacitor's electric field. The energy stored is not simply Q × V, because the voltage across the capacitor increases as it charges. The average voltage is used to derive the energy formulae."
+    },
+    {
+      "type": "formula",
+      "content": "W = ½QV = ½CV² = ½Q²/C"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n*   `W` is the energy stored (Joules, J).\n*   `Q` is the charge stored (Coulombs, C).\n*   `V` is the potential difference across the plates (Volts, V).\n*   `C` is the capacitance (Farads, F)."
+    },
+    {
+      "type": "examTip",
+      "content": "You have three equivalent formulas for energy stored. Choose the one that uses the values you are given directly to minimise calculation steps and potential errors. For example, if you know C and V, use ½CV²."
+    },
+    {
+      "type": "heading",
+      "content": "Capacitors in Series and Parallel"
+    },
+    {
+      "type": "text",
+      "content": "Just like resistors, capacitors can be connected in series or parallel to form equivalent capacitances. However, the rules for combining them are *opposite* to those for resistors, so be careful!"
+    },
+    {
+      "type": "heading",
+      "content": "Parallel Combination"
+    },
+    {
+      "type": "text",
+      "content": "When capacitors are connected in **parallel**, they are all connected to the same potential difference (voltage), but the total charge stored is the sum of the charges on each capacitor. This configuration effectively increases the total plate area, leading to a larger overall capacitance."
+    },
+    {
+      "type": "formula",
+      "content": "C_total = C₁ + C₂ + C₃ + ..."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Voltage across each capacitor is the same: V_total = V₁ = V₂ = V₃.",
+        "Total charge stored is the sum of individual charges: Q_total = Q₁ + Q₂ + Q₃.",
+        "Adding capacitors in parallel increases the total capacitance."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Series Combination"
+    },
+    {
+      "type": "text",
+      "content": "When capacitors are connected in **series**, they are connected end-to-end. The total potential difference across the combination is the sum of the potential differences across each capacitor. Crucially, the **charge stored on each capacitor in a series combination is the same** because charge is merely transferred from one plate to the next. This arrangement effectively increases the separation between the plates, leading to a smaller overall capacitance."
+    },
+    {
+      "type": "formula",
+      "content": "1/C_total = 1/C₁ + 1/C₂ + 1/C₃ + ..."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Charge on each capacitor is the same: Q_total = Q₁ = Q₂ = Q₃.",
+        "Total voltage is the sum of individual voltages: V_total = V₁ + V₂ + V₃.",
+        "Adding capacitors in series decreases the total capacitance.",
+        "For two capacitors in series, a useful shortcut is C_total = (C₁ × C₂) / (C₁ + C₂)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Two capacitors, C₁ = 20 μF and C₂ = 30 μF, are connected in parallel to a 12 V power supply.\n(a) Calculate the total capacitance of the combination.\n(b) Determine the total charge stored by the combination.\n(c) Calculate the energy stored in the 20 μF capacitor.",
+      "solution": "(a) For capacitors in parallel, C_total = C₁ + C₂.\nC_total = 20 μF + 30 μF = 50 μF.\n\n(b) The total charge stored is Q_total = C_total × V.\nQ_total = (50 × 10⁻⁶ F) × 12 V = 600 × 10⁻⁶ C = 600 μC.\n\n(c) The energy stored in the 20 μF capacitor is W = ½CV².\nNote that in parallel, the voltage across each capacitor is the supply voltage (12 V).\nW = ½ × (20 × 10⁻⁶ F) × (12 V)²\nW = ½ × (20 × 10⁻⁶) × 144\nW = 10 × 10⁻⁶ × 144 = 1440 × 10⁻⁶ J = 1.44 mJ."
+    },
+    {
+      "type": "examTip",
+      "content": "Always convert microfarads (μF), nanofarads (nF), etc., to Farads (F) and microcoulombs (μC) to Coulombs (C) before performing calculations for energy or standard formulas to avoid errors, especially when squaring values like voltage for energy."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=19.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is capacitance and why is it important in A Level Physics 9702?",
+      "a": "Capacitance is a measure of a capacitor's ability to store electrical charge, defined as the ratio of charge stored to the potential difference across its plates (C = Q/V). It's crucial in 9702 Physics as capacitors are fundamental components in many circuits, used for energy storage, filtering, and timing. Mastering this topic is essential for Paper 4 questions, and you can practice with free past papers on our site."
+    },
+    {
+      "q": "How do I calculate the energy stored in a capacitor for Cambridge Physics 9702?",
+      "a": "For Cambridge 9702, you should be able to use any of the three formulas for energy stored: W = ½QV, W = ½CV², or W = ½Q²/C. The choice depends on the given information. Always ensure your capacitance is in Farads, charge in Coulombs, and voltage in Volts for calculations. Our premium lessons include worked examples to help you apply these effectively."
+    },
+    {
+      "q": "What's the difference between capacitors in series and parallel, and how do I combine them for 9702?",
+      "a": "When capacitors are in parallel, their total capacitance adds up (C_total = C₁ + C₂ + ...), similar to resistors in series. They share the same voltage. When in series, their reciprocals add up (1/C_total = 1/C₁ + 1/C₂ + ...), similar to resistors in parallel. They share the same charge. Understanding these differences is vital for Paper 4 circuit analysis, and our free resources and past papers can provide further practice."
+    }
+  ],
+  "updated": "2026-06-05"
+}

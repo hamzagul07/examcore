@@ -1,0 +1,64 @@
+{
+  "slug": "1-7-differentiation",
+  "topicCode": "1.7",
+  "title": "Differentiation",
+  "paper": "P1",
+  "paperName": "Pure Mathematics 1",
+  "status": "premium",
+  "summary": "Free Cambridge 9709 Pure Maths 1 lesson on differentiation — power rule, tangents, stationary points, and how examiners award marks.",
+  "durationMin": 18,
+  "updated": "2026-06-10",
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Differentiation is the engine of **9709 Pure Paper 1**. You will differentiate polynomials, find gradients of tangents, and classify stationary points. Examiners often bundle two skills in one question — differentiate correctly **and** interpret what the derivative means."
+    },
+    {
+      "type": "heading",
+      "content": "Core rules you must know"
+    },
+    {
+      "type": "formula",
+      "content": "If y = x^n then dy/dx = n x^(n-1). Constant multiples and sums differentiate term by term."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Bring the power down, reduce the power by 1",
+        "dy/dx at a point = gradient of the tangent to the curve",
+        "Stationary points: set dy/dx = 0 and solve",
+        "Second derivative (or sign table) tells you max vs min"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Stationary points — exam favourite"
+    },
+    {
+      "type": "text",
+      "content": "When dy/dx = 0 you get turning points. Cambridge expects you to **find coordinates** (substitute x back into y) and **state the nature** (maximum, minimum, or point of inflection). A sign table of dy/dx around the point is acceptable if second derivative is messy."
+    },
+    {
+      "type": "workedExample",
+      "question": "y = x³ − 3x² + 2. Find stationary points and their nature.",
+      "solution": "dy/dx = 3x² − 6x = 3x(x − 2). Stationary when x = 0 or x = 2.\n\nWhen x = 0, y = 2 → (0, 2). When x = 2, y = 8 − 12 + 2 = −2 → (2, −2).\n\nd²y/dx² = 6x − 6. At x = 0: −6 (max). At x = 2: +6 (min)."
+    },
+    {
+      "type": "examTip",
+      "content": "Show **dy/dx** clearly before solving = 0. Method marks (M1) are lost when candidates jump to coordinates with no derivative shown. Use exact fractions unless the paper says otherwise."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a differentiation question on MarkScheme",
+      "href": "/mark?subject=9709&topic=1.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 maths past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
+        { "label": "B1 M1 A1 mark scheme guide", "href": "/blog/cambridge-a-level-maths-mark-scheme-b1-m1-a1" },
+        { "label": "Top 9709 topics to practise", "href": "/blog/top-9709-past-paper-topics-to-practise" }
+      ]
+    }
+  ]
+}

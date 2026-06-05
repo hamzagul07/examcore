@@ -1,0 +1,133 @@
+{
+  "slug": "10-3-potential-dividers",
+  "topicCode": "10.3",
+  "title": "Potential dividers",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master potential dividers for 9702 Physics. Learn how resistors divide voltage, calculate output, and apply them in sensing circuits.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Recall and apply the principle of a potential divider to calculate potential differences.",
+    "Explain how a potential divider can be used to produce a variable output voltage.",
+    "Describe and explain the operation of sensing circuits using thermistors and LDRs within a potential divider."
+  ],
+  "simpleExplanation": {
+    "title": "Understanding Potential Dividers",
+    "summary": "Imagine you have a battery providing a certain amount of electrical 'push', or voltage. A potential divider is a clever circuit arrangement, usually with two or more resistors in series, that allows you to 'tap into' a specific fraction of that total voltage. It's like slicing a cake into exact proportions to get the right amount of 'sweetness' where you need it.",
+    "analogy": "Think of a tall waterfall with several platforms at different heights. The total height of the waterfall is the total voltage. A potential divider lets you stand on any of these platforms to access only a fraction of that total height, providing a smaller, specific 'drop' for your energy needs.",
+    "steps": [
+      "Grasp the concept: voltage divides across series resistors proportionally to their resistance.",
+      "Master the formula: Learn and apply V_out = (R_out / R_total) * V_in for calculations.",
+      "Explore applications: Understand how potentiometers vary voltage and how sensors work.",
+      "Practise diverse problems: Work through calculations, explanations, and circuit analysis."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In circuits, we often don't need the full voltage supplied by a battery or power source. Sometimes, a component requires a smaller, specific voltage to operate correctly. This is where **potential dividers** come in. A potential divider is a simple yet fundamental circuit arrangement that allows us to obtain a **fraction of an input voltage** across a specific part of the circuit. It's essentially a voltage-splitting mechanism, crucial for everything from volume controls to sophisticated sensing systems."
+    },
+    {
+      "type": "heading",
+      "content": "The Principle of Potential Division"
+    },
+    {
+      "type": "text",
+      "content": "A potential divider typically consists of two or more resistors connected in series to a voltage source. Since the resistors are in series, the **current (I)** flowing through each resistor is the same. The total voltage supplied by the source, V_in, is divided across the individual resistors. According to Ohm's Law (V = IR), the potential difference across each resistor is directly proportional to its resistance. This means a larger resistance will 'take' a larger share of the total voltage."
+    },
+    {
+      "type": "text",
+      "content": "For a simple potential divider with two resistors, R₁ and R₂, in series with an input voltage V_in, the total resistance is R_total = R₁ + R₂. The current through the circuit is I = V_in / R_total. The output voltage (V_out) is usually taken across one of the resistors, say R₂. Thus, V_out = I * R₂."
+    },
+    {
+      "type": "heading",
+      "content": "The Potential Divider Formula"
+    },
+    {
+      "type": "text",
+      "content": "By substituting the expression for current (I) into the output voltage equation, we derive the core potential divider formula:"
+    },
+    {
+      "type": "formula",
+      "content": "V_out = (R_out / R_total) × V_in"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n- **V_out** is the output voltage across the resistor from which the output is taken.\n- **R_out** is the resistance of that specific resistor.\n- **R_total** is the total resistance of all resistors in the series combination (e.g., R₁ + R₂).\n- **V_in** is the total input voltage across the entire series combination."
+    },
+    {
+      "type": "heading",
+      "content": "Varying Output Voltage: The Potentiometer"
+    },
+    {
+      "type": "text",
+      "content": "A **potentiometer** is a type of variable resistor specifically designed to function as a potential divider. It has three terminals: two fixed terminals connected to the ends of a resistive track, and a third 'wiper' terminal that slides along the track. By moving the wiper, you change the ratio of resistances on either side of it, thereby continuously adjusting the output voltage. Common applications include volume controls on audio equipment, dimmers for lights, and position sensors."
+    },
+    {
+      "type": "heading",
+      "content": "Potential Dividers in Sensing Circuits"
+    },
+    {
+      "type": "text",
+      "content": "Potential dividers are essential in **sensing circuits** where the resistance of a component changes with an environmental factor (like temperature or light intensity). By placing such a component (a sensor) in series with a fixed resistor within a potential divider, the output voltage across either the sensor or the fixed resistor will vary in response to the environmental change."
+    },
+    {
+      "type": "text",
+      "content": "**Thermistors:** These are resistors whose resistance changes significantly with temperature. Most common are Negative Temperature Coefficient (NTC) thermistors, where resistance *decreases* as temperature *increases*. If an NTC thermistor is part of a potential divider, the output voltage will vary with temperature, allowing for temperature measurement or control (e.g., in fire alarms or thermostats).\n\n**Light-Dependent Resistors (LDRs):** These components have a resistance that changes with light intensity. Their resistance *decreases* as light intensity *increases*. When an LDR is used in a potential divider, the output voltage changes with ambient light, making them suitable for automatic lighting systems, light meters, or security sensors."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "In a series circuit, current is constant, but voltage divides across resistors.",
+        "The fraction of voltage across a resistor is directly proportional to its resistance relative to the total resistance.",
+        "Always identify V_in, R_total, and R_out correctly before applying the formula.",
+        "Potentiometers allow for continuous variation of output voltage by changing resistance ratios.",
+        "Remember the behaviour of sensing components: NTC thermistor resistance *decreases* with increasing temperature; LDR resistance *decreases* with increasing light intensity.",
+        "Potential dividers are fundamental for creating specific voltage levels or converting environmental changes into voltage signals."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A potential divider circuit consists of a 12 V power supply connected across two resistors in series: R₁ = 600 Ω and R₂ = 300 Ω. The output voltage, V_out, is taken across R₂.\n(a) Calculate the output voltage V_out.\n(b) If R₂ is replaced by an LDR, describe and explain how V_out changes as the light intensity on the LDR increases.",
+      "solution": "(a) To calculate the output voltage V_out:\n1.  **Identify input voltage (V_in):** V_in = 12 V.\n2.  **Calculate total resistance (R_total):** R_total = R₁ + R₂ = 600 Ω + 300 Ω = 900 Ω.\n3.  **Identify output resistance (R_out):** V_out is taken across R₂, so R_out = 300 Ω.\n4.  **Apply the potential divider formula:**\n    V_out = (R_out / R_total) × V_in\n    V_out = (300 Ω / 900 Ω) × 12 V\n    V_out = (1/3) × 12 V\n    **V_out = 4 V**\n\n(b) If R₂ is replaced by an LDR and light intensity increases:\n1.  **Effect of increasing light intensity on LDR:** The resistance of an LDR *decreases* as the light intensity incident on it increases.\n2.  **Impact on R_out:** As light intensity increases, R_LDR (which is now R_out) decreases.\n3.  **Impact on potential divider ratio:** The ratio (R_out / R_total) will change. Since R_out decreases, and R_total (R₁ + R_LDR) also decreases (but the decrease in R_out is the direct factor for the numerator), the fraction R_out / R_total will decrease.\n4.  **Impact on V_out:** According to V_out = (R_out / R_total) × V_in, if the ratio (R_out / R_total) decreases while V_in remains constant, then the **output voltage V_out will decrease**."
+    },
+    {
+      "type": "examTip",
+      "content": "When dealing with sensing circuits (thermistors/LDRs) in potential dividers, always start by stating how the sensor's resistance changes with the environmental factor. Then, explain how this change affects the resistance ratio in the potential divider formula, leading to a change in the output voltage. Clearly linking the physical change to the electrical outcome is key for full marks."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=10.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is a potential divider and why is it used in Cambridge Physics 9702?",
+      "a": "A potential divider is a circuit that uses series resistors to split a larger input voltage into smaller, specific output voltages. It's crucial in Cambridge Physics 9702 for tasks like obtaining a required voltage for a component, creating variable voltage outputs (potentiometers), and building sensing circuits. Our free course and extensive past paper collection can help you master these concepts."
+    },
+    {
+      "q": "How do thermistors and LDRs work in potential divider circuits?",
+      "a": "Thermistors (typically NTC) and LDRs are variable resistors whose resistance changes with temperature and light intensity, respectively. When placed in a potential divider circuit, their changing resistance alters the voltage ratio, causing the output voltage to vary in response to the environmental condition. This allows the circuit to act as a sensor, converting physical changes into measurable voltage signals."
+    },
+    {
+      "q": "What's the difference between a potential divider and a simple series circuit?",
+      "a": "A potential divider *is* a type of series circuit. The key distinction is its *purpose*: a potential divider is specifically designed to *tap off* a fraction of the total voltage across one of its series components as an output, often to provide a specific, lower voltage or to sense changes. While any series circuit divides voltage, not all are used as potential dividers for outputting a specific voltage fraction."
+    }
+  ],
+  "updated": "2026-06-05"
+}

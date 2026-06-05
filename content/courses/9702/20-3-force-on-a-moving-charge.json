@@ -1,0 +1,116 @@
+{
+  "slug": "20-3-force-on-a-moving-charge",
+  "topicCode": "20.3",
+  "title": "Force on a moving charge",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master the force on a moving charge in a magnetic field for Cambridge A-Level Physics 9702. Learn F=BQv sinθ, Fleming's Left-Hand Rule, and charged particle paths.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "State and apply the formula F = BQv sinθ to calculate the magnitude of the force on a charged particle moving in a magnetic field.",
+    "Determine the direction of the magnetic force on a charged particle using Fleming's Left-Hand Rule.",
+    "Describe and explain the path of a charged particle moving in a uniform magnetic field under various conditions."
+  ],
+  "simpleExplanation": {
+    "title": "The Magnetic Push",
+    "summary": "When a charged particle, such as an electron or proton, moves through a magnetic field, it experiences a force. This force depends on the particle's charge, speed, the magnetic field strength, and the angle between its velocity and the field direction.",
+    "analogy": "Imagine a small boat (the charged particle) trying to cross a river (the magnetic field). If the boat moves directly with or against the current, it won't be pushed sideways. But if it tries to cut across, the current pushes it to the side, similar to how a magnetic field exerts a sideways force on a moving charge.",
+    "steps": [
+      "Visualise the charge, its velocity vector, and the magnetic field vector.",
+      "Apply Fleming's Left-Hand Rule to determine the direction of the magnetic force.",
+      "Use the formula F = BQv sinθ to calculate the magnitude of the force.",
+      "Consider how this magnetic force influences the particle's subsequent motion and path."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever wondered why particles curve in accelerator labs or how mass spectrometers separate ions? It's all down to the **force on a moving charge** in a **magnetic field**. This fundamental concept is crucial for understanding a vast array of physics applications and is a favourite topic for examiners in Cambridge A-Level Physics 9702 Paper 4."
+    },
+    {
+      "type": "heading",
+      "content": "The Magnetic Force Explained"
+    },
+    {
+      "type": "text",
+      "content": "When a charged particle moves through a magnetic field, it experiences a force. This force is a direct consequence of the interaction between the moving charge (which inherently generates its own magnetic field) and the external magnetic field. Crucially, no force acts if the particle is stationary or if it moves perfectly parallel or anti-parallel to the magnetic field lines. The magnetic force is always perpendicular to both the velocity of the charge and the magnetic field direction."
+    },
+    {
+      "type": "formula",
+      "content": "F = BQv sinθ"
+    },
+    {
+      "type": "text",
+      "content": "Let's break down the components of this essential formula:\n*   `F` is the magnetic force experienced by the charge, measured in Newtons (N).\n*   `B` is the magnetic flux density (or magnetic field strength), measured in Tesla (T).\n*   `Q` is the magnitude of the charge, measured in Coulombs (C).\n*   `v` is the speed of the charge, measured in metres per second (m/s).\n*   `θ` is the angle between the velocity vector (`v`) of the charge and the magnetic field vector (`B`).\n\nThe `sinθ` term is particularly important:\n*   If `θ = 0°` or `θ = 180°` (meaning the velocity is parallel or anti-parallel to B), then `sinθ = 0`, resulting in `F = 0`. There is no magnetic force.\n*   If `θ = 90°` (meaning the velocity is perpendicular to B), then `sinθ = 1`, resulting in `F = BQv`. This is when the maximum magnetic force is experienced."
+    },
+    {
+      "type": "heading",
+      "content": "Determining Direction: Fleming's Left-Hand Rule"
+    },
+    {
+      "type": "text",
+      "content": "To determine the direction of the magnetic force, we use **Fleming's Left-Hand Rule**. This mnemonic is vital for solving problems in Paper 4 where charged particles enter magnetic fields. Extend your left hand with your thumb, forefinger, and centre finger mutually perpendicular:\n*   **Thumb:** Represents the direction of the **Force** (F).\n*   **Forefinger:** Represents the direction of the **Magnetic Field** (B), from North to South.\n*   **Centre Finger:** Represents the direction of the **Conventional Current** (I) or the **Velocity of a Positive Charge** (v).\n\nIt's crucial to remember that if the moving charge is negative (e.g., an electron), its 'conventional current' direction is opposite to its actual velocity. So, if an electron moves to the right, your centre finger should point to the left."
+    },
+    {
+      "type": "heading",
+      "content": "Path of a Charged Particle in a Uniform Magnetic Field"
+    },
+    {
+      "type": "text",
+      "content": "The path a charged particle takes in a uniform magnetic field is critically dependent on the initial angle between its velocity and the magnetic field:\n\n1.  **Velocity parallel or anti-parallel to B (θ = 0° or 180°):** In this scenario, `sinθ = 0`, so no magnetic force acts (`F = 0`). The particle will continue to move in a **straight line** at a constant velocity.\n\n2.  **Velocity perpendicular to B (θ = 90°):** Here, the magnetic force (`F = BQv`) is at its maximum and, crucially, always acts perpendicular to both the velocity and the magnetic field. This force provides the necessary centripetal force, causing the particle to move in a **circular path**.\n    *   Equating the magnetic force to the centripetal force: `BQv = mv²/r`\n    *   Rearranging, we get the radius of the circular path: `r = mv / BQ`.\n    *   This formula is frequently derived and applied in exam questions, linking the radius to the particle's momentum (`mv`), charge, and the magnetic field strength.\n\n3.  **Velocity at an angle to B (0° < θ < 90°):** In this case, the particle's velocity can be resolved into two components: one parallel to B (which experiences no force) and one perpendicular to B (which leads to circular motion). The combination of these two motions results in a **helical path** (a spiral)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The magnetic force `F` is always perpendicular to both the velocity `v` and the magnetic field `B`.",
+        "Because the magnetic force is always perpendicular to the displacement, no work is done by the magnetic force, meaning the particle's kinetic energy and speed remain constant.",
+        "Always apply Fleming's Left-Hand Rule using the direction of conventional current (i.e., the velocity of a positive charge). For negative charges, either reverse the centre finger direction or reverse the final force direction.",
+        "A charged particle experiences the maximum magnetic force when its velocity is perpendicular to the magnetic field (`θ = 90°`).",
+        "The radius of a circular path taken by a charged particle in a uniform magnetic field is inversely proportional to `B` and `Q`, and directly proportional to its mass `m` and speed `v` (`r = mv/BQ`)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An electron (charge `e = -1.60 × 10⁻¹⁹ C`, mass `m = 9.11 × 10⁻³¹ kg`) enters a uniform magnetic field of flux density `0.50 T` with a speed of `2.0 × 10⁷ m/s`. The electron's velocity is perpendicular to the magnetic field.\n(a) Calculate the magnitude of the force acting on the electron.\n(b) Describe the path of the electron in the magnetic field and calculate the radius of this path.",
+      "solution": "(a) Calculate the magnitude of the force:\nGiven:\n*   Magnetic flux density, `B = 0.50 T`\n*   Magnitude of electron charge, `Q = 1.60 × 10⁻¹⁹ C`\n*   Speed of electron, `v = 2.0 × 10⁷ m/s`\n*   Angle between velocity and field, `θ = 90°` (so `sinθ = 1`)\n\nUsing the formula `F = BQv sinθ`:\n`F = (0.50 T) × (1.60 × 10⁻¹⁹ C) × (2.0 × 10⁷ m/s) × sin(90°)`\n`F = 1.60 × 10⁻¹² N`\n\n(b) Describe the path and calculate the radius:\nSince the magnetic force is always perpendicular to the velocity, it provides the necessary centripetal force. Therefore, the electron will follow a **circular path**.\n\nTo find the radius, we equate the magnetic force to the centripetal force:\n`BQv = mv²/r`\n\nRearrange the formula to solve for `r`:\n`r = mv / BQ`\n\nSubstitute the given values:\n*   Mass of electron, `m = 9.11 × 10⁻³¹ kg`\n*   Speed of electron, `v = 2.0 × 10⁷ m/s`\n*   Magnetic flux density, `B = 0.50 T`\n*   Magnitude of electron charge, `Q = 1.60 × 10⁻¹⁹ C`\n\n`r = (9.11 × 10⁻³¹ kg) × (2.0 × 10⁷ m/s) / ((0.50 T) × (1.60 × 10⁻¹⁹ C))`\n`r = (1.822 × 10⁻²³ Nm) / (8.0 × 10⁻²⁰ T C)`\n`r = 0.00022775 m`\n`r ≈ 0.23 mm` (or `2.28 × 10⁻⁴ m` to 3 significant figures)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always be careful with the sign of the charge when applying Fleming's Left-Hand Rule. If it's a negative charge (like an electron), the direction of the conventional current is opposite to its actual velocity. Many students lose marks here by forgetting this crucial detail!"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=20.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I calculate the force on a moving charge in Cambridge Physics 9702?",
+      "a": "You calculate the magnitude of the force using the formula `F = BQv sinθ`, where F is force, B is magnetic flux density, Q is the charge magnitude, v is the particle's speed, and θ is the angle between its velocity and the magnetic field direction. For a deeper dive and more practice, check out our premium lessons and extensive past papers."
+    },
+    {
+      "q": "What is Fleming's Left-Hand Rule and when is it used for A-Level Physics?",
+      "a": "Fleming's Left-Hand Rule is a mnemonic used to determine the direction of the force (thumb), magnetic field (forefinger), and conventional current/positive charge velocity (centre finger) when a charged particle or current-carrying conductor moves in a magnetic field. It's crucial for understanding force directions in motors and on individual charges, a common topic in Cambridge 9702 Paper 4."
+    },
+    {
+      "q": "How does a magnetic field affect the path of a charged particle?",
+      "a": "A magnetic field can cause a charged particle to follow a circular, helical, or straight path. If the velocity is perpendicular to the field, it's a circular path. If parallel, it's a straight path. If at an angle, it results in a helical (spiral) path. Our free course offers detailed explanations and worked examples to clarify these concepts."
+    }
+  ],
+  "updated": "2026-06-05"
+}

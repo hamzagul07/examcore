@@ -1,0 +1,161 @@
+{
+  "slug": "9-3-resistance-and-resistivity",
+  "topicCode": "9.3",
+  "title": "Resistance and resistivity",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master A-Level Physics 9702 Resistance and Resistivity. Understand R=V/I, Ohm's Law, and resistivity ρ=RA/L. Perfect for P1 and P2 success!",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define resistance and state Ohm's Law under specific conditions.",
+    "Recall and use the formula for resistivity, explaining how material and dimensions influence resistance.",
+    "Sketch and interpret I-V characteristics for ohmic conductors and filament lamps."
+  ],
+  "simpleExplanation": {
+    "title": "What are Resistance and Resistivity?",
+    "summary": "Resistance measures how much an electrical component opposes the flow of current. Resistivity, on the other hand, is a fundamental property of the *material* itself, indicating its inherent ability to resist current, regardless of its shape or size.",
+    "analogy": "Imagine electricity as cars on a road. Resistance is like the overall difficulty for cars to travel on a specific section of road – it might be long, narrow, or have lots of potholes. Resistivity is like the inherent 'bumpiness' or 'roughness' of the road *material* itself. A gravel path has high resistivity, while a smooth tarmac road has low resistivity.",
+    "steps": [
+      "Understand resistance as the ratio of potential difference to current.",
+      "Grasp Ohm's Law and the conditions under which it applies.",
+      "Learn how resistivity relates to a material's dimensions and its effect on resistance.",
+      "Practise sketching and interpreting I-V graphs for common components."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every time an electric current flows, it encounters some opposition. This opposition is fundamental to how circuits work, from powering your phone to lighting your home. In this lesson, we'll dive deep into **resistance** – the measure of this opposition – and **resistivity**, an intrinsic property of the materials themselves. Mastering these concepts is crucial for both Paper 1 multiple-choice questions and Paper 2 structured problems in Cambridge International Physics 9702."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Resistance (R)"
+    },
+    {
+      "type": "text",
+      "content": "Resistance is simply the opposition a component offers to the flow of electric current. If a component has high resistance, a larger potential difference (voltage) is needed across it to drive a given current through it. Conversely, if it has low resistance, a smaller potential difference is sufficient. It's formally defined as the ratio of the potential difference (V) across the component to the current (I) flowing through it."
+    },
+    {
+      "type": "formula",
+      "content": "R = V/I"
+    },
+    {
+      "type": "text",
+      "content": "The SI unit for resistance is the **ohm (Ω)**, which is equivalent to volts per ampere (V/A)."
+    },
+    {
+      "type": "heading",
+      "content": "Ohm's Law"
+    },
+    {
+      "type": "text",
+      "content": "Ohm's Law is a specific relationship between potential difference and current. It states that:\n\n*The current in a metallic conductor is directly proportional to the potential difference across its ends, provided that its temperature and other physical conditions remain constant.*"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Ohmic conductors** are those that obey Ohm's Law, meaning their resistance remains constant as the current and potential difference change. Examples include most metals at a constant temperature.",
+        "**Non-ohmic conductors** do not obey Ohm's Law; their resistance changes with temperature, current, or potential difference. A common example is a filament lamp.",
+        "The 'constant temperature' condition is vital. For most metals, as current increases, temperature rises due to heating, causing resistance to increase. So, strictly speaking, Ohm's Law only holds for a constant temperature."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "I-V Characteristics"
+    },
+    {
+      "type": "text",
+      "content": "I-V graphs plot current (I) against potential difference (V) and reveal how the resistance of a component behaves. Remember that resistance is 1 / gradient if V is on the x-axis and I on the y-axis, or simply gradient if V is on the y-axis and I on the x-axis, provided the graph passes through the origin."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**For an ohmic conductor (e.g., a resistor at constant temperature):** The I-V graph is a straight line passing through the origin. Its constant gradient (or 1/gradient, depending on axes) shows that resistance is constant.",
+        "**For a filament lamp:** The I-V graph is a curve that starts linear but then bends towards the V-axis. This indicates that as the current and temperature increase, the resistance of the filament also increases. The filament gets hotter, causing the metal ions to vibrate more vigorously, hindering electron flow."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A resistor has a current of 250 mA flowing through it when a potential difference of 5.0 V is applied across its ends. Calculate the resistance of the resistor.",
+      "solution": "1.  **Identify given values:**\n    Current, I = 250 mA = 0.250 A (convert to Amperes)\n    Potential difference, V = 5.0 V\n\n2.  **Recall the formula for resistance:**\n    R = V / I\n\n3.  **Substitute values and calculate:**\n    R = 5.0 V / 0.250 A\n    R = 20 Ω\n\n    The resistance of the resistor is 20 Ω."
+    },
+    {
+      "type": "heading",
+      "content": "Introducing Resistivity (ρ)"
+    },
+    {
+      "type": "text",
+      "content": "While resistance is a property of a specific component, **resistivity** is an intrinsic property of the *material* itself. Think of it as how strongly a material resists the flow of electrons, regardless of its shape or size. The resistance of a wire depends on four factors:\n\n1.  **Material:** Different materials have different inherent resistivities.\n2.  **Length (L):** A longer wire means more material for electrons to travel through, so resistance is directly proportional to length (R ∝ L).\n3.  **Cross-sectional Area (A):** A wider wire provides more 'paths' for electrons, reducing resistance. Resistance is inversely proportional to cross-sectional area (R ∝ 1/A).\n4.  **Temperature:** As discussed, temperature affects the resistance of most materials."
+    },
+    {
+      "type": "text",
+      "content": "Combining the length and area dependencies, we can define resistivity (ρ) with the following formula:"
+    },
+    {
+      "type": "formula",
+      "content": "ρ = RA/L   (which can also be written as R = ρL/A)"
+    },
+    {
+      "type": "text",
+      "content": "The SI unit for resistivity is the **ohm-metre (Ωm)**. Materials with low resistivity (e.g., copper, silver) are good conductors, while those with high resistivity (e.g., glass, rubber) are good insulators."
+    },
+    {
+      "type": "workedExample",
+      "question": "A copper wire of length 2.0 m and cross-sectional area 1.5 x 10⁻⁷ m² has a resistance of 0.023 Ω. Calculate the resistivity of copper.",
+      "solution": "1.  **Identify given values:**\n    Length, L = 2.0 m\n    Cross-sectional area, A = 1.5 x 10⁻⁷ m²\n    Resistance, R = 0.023 Ω\n\n2.  **Recall the formula for resistivity:**\n    ρ = RA / L\n\n3.  **Substitute values and calculate:**\n    ρ = (0.023 Ω * 1.5 x 10⁻⁷ m²) / 2.0 m\n    ρ = 1.725 x 10⁻⁹ Ωm\n\n    The resistivity of copper is 1.7 x 10⁻⁹ Ωm (to 2 significant figures, matching the input data precision)."
+    },
+    {
+      "type": "heading",
+      "content": "Temperature and Resistance"
+    },
+    {
+      "type": "text",
+      "content": "The resistivity, and hence the resistance, of most materials is temperature-dependent:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Metals:** For metallic conductors, resistance **increases** with increasing temperature. As temperature rises, the positive ions in the metal lattice vibrate more vigorously, increasing the frequency of collisions with free electrons, thus impeding their flow.",
+        "**Semiconductors:** For semiconductor materials (like thermistors, often covered in section 9.4), resistance generally **decreases** with increasing temperature. This is because higher temperatures provide more energy for electrons to break free from atomic bonds, increasing the number of charge carriers available to conduct current."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always pay close attention to units! Resistance is in ohms (Ω), while resistivity is in ohm-metres (Ωm). When using the formula ρ = RA/L, ensure all dimensions (A, L) are in SI units (m², m) to get resistivity in Ωm. Common mistakes include forgetting to convert mm² to m² or cm to m!"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=9.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between resistance and resistivity in A-Level Physics 9702?",
+      "a": "Resistance (R) is a measure of how much a specific component opposes current flow, depending on its material, shape, and temperature. Resistivity (ρ) is an intrinsic property of the *material* itself, indicating its inherent ability to resist current flow, regardless of its dimensions. To ace your 9702 exams, explore our free premium lessons and practice with topical past papers on Resistance and Resistivity!"
+    },
+    {
+      "q": "How does temperature affect the resistance of materials?",
+      "a": "For most metals, resistance increases with temperature because increased thermal vibrations of ions hinder electron flow. For semiconductors, resistance generally decreases with temperature as more charge carriers become available for conduction. This is a key concept for both Paper 1 and Paper 2 questions."
+    },
+    {
+      "q": "What are ohmic and non-ohmic conductors?",
+      "a": "Ohmic conductors, like a resistor at constant temperature, obey Ohm's Law (V ∝ I), meaning their resistance is constant. Their I-V graph is a straight line through the origin. Non-ohmic conductors, such as a filament lamp, do not obey Ohm's Law; their resistance changes with applied voltage or current, resulting in a curved I-V characteristic."
+    }
+  ],
+  "updated": "2026-06-05"
+}

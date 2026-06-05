@@ -1,0 +1,130 @@
+{
+  "slug": "1-1-physical-quantities",
+  "topicCode": "1.1",
+  "title": "Physical quantities",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master SI units, base quantities, and homogeneity checks for Cambridge 9702 AS Physics — with worked examples and exam tips.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Recall the seven SI base quantities and their units, and express any derived unit in terms of base units",
+    "Use the principle of homogeneity to check the validity of physical equations",
+    "Apply correct use of prefixes (pico to tera) and standard form when handling very large or very small quantities"
+  ],
+  "simpleExplanation": {
+    "title": "Units — the language of Physics",
+    "summary": "Every measurement in Physics needs a number AND a unit. The SI system gives us a consistent set of base units from which every other unit in Physics can be built. Mastering this topic is the foundation for every calculation you will ever do at A Level.",
+    "analogy": "Think of base units like LEGO bricks. You can snap them together in different combinations to build any shape you like — just as you snap together kilograms, metres, and seconds to build more complex units like Newtons or Joules.",
+    "steps": [
+      "Memorise the 7 SI base quantities and their units (kg, m, s, A, K, mol, cd)",
+      "Practice expressing derived units — like the Newton or Pascal — purely in terms of base units",
+      "Check equations for homogeneity: every term on both sides must have identical base-unit dimensions",
+      "Learn the standard prefixes from pico (10⁻¹²) through to tera (10¹²) and practise converting between them"
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Physics is a quantitative science — everything we measure must be expressed clearly and consistently. That's where **physical quantities** come in. A physical quantity always has two parts: a **numerical value** and a **unit**. The international standard we use is called the **SI system** (Système International d'Unités), and it underpins every equation, every experiment, and every mark scheme in Cambridge 9702."
+    },
+    {
+      "type": "heading",
+      "content": "The Seven SI Base Quantities"
+    },
+    {
+      "type": "text",
+      "content": "All physical quantities can be expressed in terms of just seven **base quantities**. These are the irreducible building blocks of measurement. You must know all seven for your exam:\n\n| Base Quantity | SI Base Unit | Symbol |\n|---|---|---|\n| Mass | kilogram | kg |\n| Length | metre | m |\n| Time | second | s |\n| Electric current | ampere | A |\n| Thermodynamic temperature | kelvin | K |\n| Amount of substance | mole | mol |\n| Luminous intensity | candela | cd |\n\nFor AS Level, the candela and mole appear rarely in calculations, but you are still expected to recall them. The big five — kg, m, s, A, K — appear constantly."
+    },
+    {
+      "type": "heading",
+      "content": "Derived Units and Base-Unit Analysis"
+    },
+    {
+      "type": "text",
+      "content": "A **derived unit** is any unit that can be expressed as a combination of base units. For example, the unit of force — the Newton (N) — is derived from Newton's second law: F = ma. Since force = mass × acceleration, and acceleration has units m s⁻², we get:\n\n1 N = 1 kg m s⁻²\n\nExpressing units in base-unit form is an essential skill. Examiners regularly ask you to 'show that the unit of [quantity] is [base-unit expression]' — it is a reliable source of marks if you have a method."
+    },
+    {
+      "type": "formula",
+      "content": "Pressure: P = F/A → units = kg m s⁻² / m² = kg m⁻¹ s⁻²"
+    },
+    {
+      "type": "heading",
+      "content": "Homogeneity of Equations"
+    },
+    {
+      "type": "text",
+      "content": "An equation is said to be **homogeneous** if every term in the equation has the same base-unit dimensions. This gives us a powerful checking tool: if you derive or are given an equation, you can test whether it is physically plausible by checking its homogeneity.\n\nImportant caveat: a homogeneous equation is not necessarily correct — it may still have a missing dimensionless constant (like 2 or π) — but a non-homogeneous equation is definitely wrong. Examiners use this distinction, so be precise in your wording."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "There are exactly 7 SI base quantities — learn all of them; the examiner will not accept 'units' written without correct symbols (e.g., 'kg' not 'Kg').",
+        "When finding base units of a derived quantity, always start from a defining equation — never guess.",
+        "Homogeneity checks: show the units of every individual term, then state whether they are all identical.",
+        "A homogeneous equation is not guaranteed to be correct — it could still be missing a numerical constant.",
+        "Prefixes must be converted before substituting into equations: 5 mA = 5 × 10⁻³ A, not 5 A.",
+        "Standard form is expected in answers: write 3.2 × 10⁴ N, not 32000 N, unless the question specifies otherwise."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The equation for the kinetic energy of an object is given as E = ½mv², where m is mass and v is speed. Show that this equation is homogeneous and find the base units of energy.",
+      "solution": "Step 1 — Identify the units of each quantity:\n  • E is energy (unknown base units — we will find these)\n  • m has units: kg\n  • v has units: m s⁻¹\n  • ½ is a dimensionless constant — it has no units\n\nStep 2 — Find the base units of the right-hand side:\n  units of ½mv² = kg × (m s⁻¹)² = kg × m² s⁻² = kg m² s⁻²\n\nStep 3 — State the base units of energy:\n  [E] = kg m² s⁻²\n  (This is consistent with the Joule: 1 J = 1 kg m² s⁻²)\n\nStep 4 — Check homogeneity:\n  The left-hand side has units kg m² s⁻².\n  The right-hand side has units kg m² s⁻².\n  Both sides have identical base units, so the equation IS homogeneous. ✓"
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to 'show' base units in Paper 2, always write out your working in full — one clear line per step. A bare answer of 'kg m² s⁻²' with no working will often score zero, even if it is correct. The mark is awarded for the method, not just the final unit."
+    },
+    {
+      "type": "heading",
+      "content": "Prefixes and Orders of Magnitude"
+    },
+    {
+      "type": "text",
+      "content": "The SI system uses standard prefixes to handle very large and very small quantities without writing out long strings of zeros. You must be confident converting between prefixed units and standard SI units before substituting into any equation.\n\n| Prefix | Symbol | Power of 10 |\n|---|---|---|\n| tera | T | 10¹² |\n| giga | G | 10⁹ |\n| mega | M | 10⁶ |\n| kilo | k | 10³ |\n| centi | c | 10⁻² |\n| milli | m | 10⁻³ |\n| micro | μ | 10⁻⁶ |\n| nano | n | 10⁻⁹ |\n| pico | p | 10⁻¹² |\n\nA common error is confusing the symbol for mega (M, uppercase) with milli (m, lowercase). Case matters in Physics — always check."
+    },
+    {
+      "type": "workedExample",
+      "question": "A capacitor stores a charge of 470 μC. Express this value in coulombs, giving your answer in standard form.",
+      "solution": "Step 1 — Identify the prefix:\n  μ = micro = 10⁻⁶\n\nStep 2 — Convert:\n  470 μC = 470 × 10⁻⁶ C\n\nStep 3 — Write in standard form (one digit before the decimal point):\n  = 4.70 × 10⁻⁴ C\n\nAnswer: 4.70 × 10⁻⁴ C"
+    },
+    {
+      "type": "examTip",
+      "content": "In Multiple Choice (Paper 1), homogeneity questions often test whether you can spot the one option that gives consistent units. Work out the base units of every term systematically — do not try to 'see' the answer. Students who rush these questions are the ones who lose marks."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What are the 7 SI base units for Cambridge 9702 Physics?",
+      "a": "The seven SI base units you need for Cambridge 9702 are: kilogram (kg) for mass, metre (m) for length, second (s) for time, ampere (A) for electric current, kelvin (K) for thermodynamic temperature, mole (mol) for amount of substance, and candela (cd) for luminous intensity. Our free revision course covers all of these with worked examples and past-paper practice so you can secure these marks confidently."
+    },
+    {
+      "q": "How do I check if an equation is homogeneous in Cambridge AS Physics?",
+      "a": "To check homogeneity, express every term in the equation in terms of SI base units (kg, m, s, A, K). If every term has exactly the same combination of base units, the equation is homogeneous. Remember: homogeneity is a necessary but not sufficient condition for an equation to be correct — a missing numerical constant won't be detected. Our premium lessons walk you through this step-by-step with past-paper style examples."
+    },
+    {
+      "q": "How important is Topic 1.1 for Cambridge 9702 Paper 1 and Paper 2?",
+      "a": "Topic 1.1 is examined directly in both Paper 1 (as standalone multiple-choice questions on units or homogeneity) and Paper 2 (as 'show that' or 'find the base units of' structured questions). It also underpins every other topic — if your units are wrong, you lose method marks throughout the paper. Spending 20 minutes solidifying this topic now pays dividends across the whole syllabus. Use our free 9702 past paper guide to practise real questions."
+    }
+  ],
+  "updated": "2026-06-05"
+}

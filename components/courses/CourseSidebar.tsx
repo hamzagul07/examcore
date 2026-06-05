@@ -16,7 +16,7 @@ export function CourseSidebar({
   const { done } = useCourseProgress(subjectCode)
 
   return (
-    <aside className="space-y-6 lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
+    <aside className="space-y-6 xl:sticky xl:top-24 xl:max-h-[calc(100vh-8rem)] xl:overflow-y-auto">
       <CourseProgressBar subjectCode={subjectCode} total={lessons.length} />
       <CourseTopicList
         subjectCode={subjectCode}

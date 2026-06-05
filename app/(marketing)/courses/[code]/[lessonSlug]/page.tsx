@@ -15,6 +15,7 @@ import { CourseSidebar } from '@/components/courses/CourseSidebar'
 import { MarkLessonCompleteButton } from '@/components/courses/CourseProgressClient'
 import { CourseLearningObjectives } from '@/components/courses/CourseLearningObjectives'
 import { CourseLessonExperience } from '@/components/courses/CourseLessonExperience'
+import { TopicDiagram } from '@/components/courses/visuals/TopicDiagram'
 import { CourseLessonFaq } from '@/components/courses/CourseLessonFaq'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
@@ -73,7 +74,7 @@ export default async function CourseLessonPage({ params }: Props) {
   const enriched = enrichLessonVisual(code, lesson)
 
   return (
-    <MarketingPageShell narrow>
+    <MarketingPageShell wide>
       <CourseLessonJsonLd
         subjectCode={code}
         subjectName={course.name}
@@ -90,9 +91,9 @@ export default async function CourseLessonPage({ params }: Props) {
           Back to {course.name} course
         </Link>
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px]">
+        <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_300px] xl:gap-12">
           <div className="min-w-0">
-            <header className="course-premium-hero relative mb-8">
+            <header className="course-premium-hero relative mb-8 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(220px,280px)] lg:items-center lg:gap-8">
               <div className="relative">
                 <div className="mb-4 flex flex-wrap items-center gap-2">
                   <span className="course-premium-badge">
@@ -120,6 +121,12 @@ export default async function CourseLessonPage({ params }: Props) {
                   </span>
                   <span>Syllabus {lesson.topicCode}</span>
                 </div>
+              </div>
+              <div className="course-premium-hero-diagram-wrap mt-6 hidden lg:mt-0 lg:block">
+                <p className="mb-2 text-center text-[10px] font-bold uppercase tracking-wide text-[var(--ec-brand)]">
+                  Topic at a glance
+                </p>
+                <TopicDiagram template={enriched.template} className="max-h-[180px]" />
               </div>
             </header>
 

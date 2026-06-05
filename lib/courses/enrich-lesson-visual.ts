@@ -78,6 +78,55 @@ function stepsFromLesson(lesson: CourseLesson): VisualStep[] {
   return [{ label: 'Start', detail: lesson.summary }]
 }
 
+function extractBoldTerms(sections: LessonSection[]): string[] {
+  const terms: string[] = []
+  for (const s of sections) {
+    if (s.type !== 'intro' && s.type !== 'text') continue
+    const matches = s.content.matchAll(/\*\*([^*]+)\*\*/g)
+    for (const m of matches) {
+      if (m[1] && !terms.includes(m[1])) terms.push(m[1])
+    }
+  }
+  return terms.slice(0, 8)
+}
+
+function keyTermsFromLesson(lesson: CourseLesson): { term: string; definition: string }[] {
+  const bold = extractBoldTerms(lesson.sections)
+  const keyPoints = lesson.sections.find((x) => x.type === 'keyPoints')
+  const items = keyPoints?.type === 'keyPoints' ? keyPoints.items : []
+
+  if (bold.length) {
+    return bold.map((term, i) => ({
+      term,
+      definition: items[i] ?? lesson.summary,
+    }))
+  }
+  return items.slice(0, 6).map((item) => {
+    const words = item.split(/\s+/).slice(0, 3).join(' ')
+    return { term: words, definition: item }
+  })
+}
+
+function quickChecksFromLesson(lesson: CourseLesson): { prompt: string; answer: string }[] {
+  const keyPoints = lesson.sections.find((x) => x.type === 'keyPoints')
+  if (keyPoints?.type === 'keyPoints') {
+    return keyPoints.items.slice(0, 6).map((answer, i) => ({
+      prompt: `Point ${i + 1}: Can you explain this without looking?`,
+      answer,
+    }))
+  }
+  return (lesson.learningObjectives ?? []).slice(0, 4).map((answer) => ({
+    prompt: 'What should you be able to do after this topic?',
+    answer,
+  }))
+}
+
+function conceptNodesFromLesson(lesson: CourseLesson): string[] {
+  const keyPoints = lesson.sections.find((x) => x.type === 'keyPoints')
+  if (keyPoints?.type === 'keyPoints') return keyPoints.items.slice(0, 6)
+  return lesson.learningObjectives?.slice(0, 5) ?? [lesson.summary]
+}
+
 function snapshotsFromSections(sections: LessonSection[]): { title: string; body: string }[] {
   const cards: { title: string; body: string }[] = []
   let heading = 'Key idea'
@@ -106,11 +155,33 @@ export function enrichLessonVisual(
     caption: lesson.summary,
   })
 
+  const steps = stepsFromLesson(lesson)
+
+  blocks.push({
+    type: 'learning-path',
+    title: 'Your revision journey',
+    steps,
+  })
+
   blocks.push({
     type: 'step-carousel',
-    title: 'Learn in steps',
-    steps: stepsFromLesson(lesson),
+    title: 'Go step by step',
+    steps,
   })
+
+  const terms = keyTermsFromLesson(lesson)
+  if (terms.length >= 2) {
+    blocks.push({ type: 'key-terms', title: 'Important words to know', terms })
+  }
+
+  const nodes = conceptNodesFromLesson(lesson)
+  if (nodes.length >= 3) {
+    blocks.push({
+      type: 'concept-map',
+      center: lesson.title,
+      nodes,
+    })
+  }
 
   const diagramFile = path.join(
     process.cwd(),
@@ -145,9 +216,14 @@ export function enrichLessonVisual(
     }
   }
 
+  const checks = quickChecksFromLesson(lesson)
+  if (checks.length) {
+    blocks.push({ type: 'quick-check', title: 'Quick check — can you answer these?', items: checks })
+  }
+
   const snapshots = snapshotsFromSections(lesson.sections)
   if (snapshots.length) {
-    blocks.push({ type: 'snapshots', title: 'Quick snapshots', cards: snapshots })
+    blocks.push({ type: 'snapshots', title: 'Bite-sized ideas', cards: snapshots })
   }
 
   if (lesson.simpleExplanation) {
@@ -158,9 +234,9 @@ export function enrichLessonVisual(
         : ['Use mark-scheme vocabulary', 'Show working', 'State units']
     blocks.push({
       type: 'compare',
-      title: 'Two ways to understand it',
+      title: 'Simple vs exam-ready',
       simple: {
-        title: 'Explain like I\'m 15',
+        title: 'Explain it simply',
         points: [
           lesson.simpleExplanation.summary,
           ...(lesson.simpleExplanation.analogy ? [lesson.simpleExplanation.analogy] : []),

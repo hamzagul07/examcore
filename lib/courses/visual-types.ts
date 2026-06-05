@@ -24,6 +24,11 @@ export type SnapshotCard = {
   body: string
 }
 
+export type QuickCheckItem = {
+  prompt: string
+  answer: string
+}
+
 export type VisualBlock =
   | {
       type: 'hero-visual'
@@ -32,9 +37,29 @@ export type VisualBlock =
       caption: string
     }
   | {
+      type: 'learning-path'
+      title: string
+      steps: VisualStep[]
+    }
+  | {
       type: 'step-carousel'
       title: string
       steps: VisualStep[]
+    }
+  | {
+      type: 'concept-map'
+      center: string
+      nodes: string[]
+    }
+  | {
+      type: 'key-terms'
+      title: string
+      terms: { term: string; definition: string }[]
+    }
+  | {
+      type: 'quick-check'
+      title: string
+      items: QuickCheckItem[]
     }
   | {
       type: 'formula-visual'

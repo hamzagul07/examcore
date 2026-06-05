@@ -69,6 +69,7 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^cambridge-mcq-past-papers/,
       /^cambridge-command-words/,
       /^cambridge-grade-boundaries/,
+      /^cambridge-pum-/,
       /^cambridge-data-response/,
     ],
   },
@@ -91,6 +92,10 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^cambridge-as-level-vs-a2/,
       /^fixing-silly-mistakes/,
       /^exam-stress-and-past-paper/,
+      /^most-repeated-cambridge/,
+      /^cambridge-igcse-most-tested/,
+      /^cambridge-results-day/,
+      /^cambridge-enquiry-about-results/,
     ],
   },
   {
@@ -140,6 +145,7 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^best-a-level-subject-combinations/,
       /^science-vs-humanities-a-level/,
       /^switching-a-level-subjects/,
+      /^cambridge-business-0450/,
     ],
     explicitSlugs: ['cambridge-grade-inflation-myths-and-mark-schemes'],
   },
@@ -159,6 +165,7 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^chatgpt-and-ai-cambridge-exams/,
       /^cambridge-may-june-2026/,
       /^revision-tiktok-and-social-media/,
+      /^cambridge-digital-exams/,
     ],
   },
   {
@@ -172,7 +179,7 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
     format: 'comparison',
     pillarBlogSlug: 'best-cambridge-past-paper-revision-resources-2026',
     moneyPath: '/mark',
-    slugPatterns: [/^best-cambridge-past-paper/],
+    slugPatterns: [/^best-cambridge-past-paper/, /^free-cambridge-a-level-courses/],
   },
 ]
 

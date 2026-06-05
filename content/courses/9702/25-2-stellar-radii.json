@@ -1,0 +1,108 @@
+{
+  "slug": "25-2-stellar-radii",
+  "topicCode": "25.2",
+  "title": "Stellar radii",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master calculating stellar radii using the Stefan-Boltzmann law, luminosity, and surface temperature for Cambridge A Level Physics 9702 P4.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Recall and apply the Stefan-Boltzmann law (P = σAT⁴).",
+    "Relate the luminosity of a star to its radius and surface temperature.",
+    "Perform calculations to determine the radius of a star given appropriate data."
+  ],
+  "simpleExplanation": {
+    "title": "How Big is That Star?",
+    "summary": "Imagine looking up at the night sky. How do scientists know the actual size of those distant twinkling lights? We use a powerful physics principle called the Stefan-Boltzmann Law, which links a star's total energy output (luminosity) to its surface temperature and, crucially, its surface area. By rearranging this law, we can figure out its radius.",
+    "analogy": "Think of it like trying to work out the size of a light bulb hidden inside a frosted glass shade. If you know how bright the bulb truly is (total power output) and how hot its surface gets, you can infer the size of its glowing filament. The hotter and brighter it is for its size, the smaller it must be; if it's very bright but relatively cool, it must be massive!",
+    "steps": [
+      "Understand stellar luminosity (total power radiated by a star).",
+      "Recall the Stefan-Boltzmann Law: P = σAT⁴, where A = 4πR².",
+      "Identify how to determine a star's surface temperature (often from Wien's Law).",
+      "Rearrange the Stefan-Boltzmann Law to solve for the star's radius, R."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "One of the most awe-inspiring aspects of astronomy is the sheer scale of the universe, and central to this is understanding the sizes of stars. While they appear as mere pinpricks of light, stars vary enormously in actual physical size. In Cambridge International A Level Physics Paper 4, you'll learn how to calculate these colossal dimensions using fundamental principles. The key to unlocking a star's true size lies in its **luminosity** (total power output) and its **surface temperature**, governed by the powerful **Stefan-Boltzmann Law**."
+    },
+    {
+      "type": "heading",
+      "content": "The Stefan-Boltzmann Law: Connecting Brightness, Temperature, and Size"
+    },
+    {
+      "type": "text",
+      "content": "The Stefan-Boltzmann Law describes the total energy radiated per unit surface area per unit time from a black body in terms of the fourth power of its absolute temperature. For a star, which can be approximated as a perfect black body radiator, this means its **luminosity (P)**, or total power radiated, is directly related to its surface area and temperature. The law is given by:"
+    },
+    {
+      "type": "formula",
+      "content": "P = σAT⁴"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n*   **P** is the luminosity of the star (total power output) in Watts (W).\n*   **σ** (sigma) is the Stefan-Boltzmann constant, a fundamental physical constant (5.67 × 10⁻⁸ W m⁻² K⁻⁴).\n*   **A** is the total surface area of the star in square metres (m²). Since stars are roughly spherical, A = 4πR².\n*   **T** is the absolute surface temperature of the star in Kelvin (K).\n\nSubstituting the expression for surface area, the law becomes particularly useful for stellar calculations:"
+    },
+    {
+      "type": "formula",
+      "content": "P = 4πR²σT⁴"
+    },
+    {
+      "type": "text",
+      "content": "This equation is the cornerstone for determining a star's **radius (R)**. If we know the star's luminosity (P) and its surface temperature (T), we can rearrange the equation to solve for R:\n\n**R = √(P / (4πσT⁴))**\n\nBut how do we find P and T for a distant star?\n\n*   **Determining Luminosity (P):** A star's luminosity can be determined if its **apparent brightness (b)** (the intensity of its light observed at Earth) and its **distance (d)** from Earth are known. The relationship is P = b × 4πd².\n*   **Determining Surface Temperature (T):** The surface temperature of a star is often estimated from its peak emission wavelength (λ_max) using **Wien's Displacement Law**: λ_max T = b_Wien, where b_Wien is Wien's displacement constant (2.898 × 10⁻³ m K). Analysing a star's spectrum to find λ_max then allows for the calculation of T."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always use **Kelvin (K)** for temperature in the Stefan-Boltzmann Law.",
+        "Remember the full surface area of a sphere: **A = 4πR²**. It's a common error to forget the 4π.",
+        "The Stefan-Boltzmann constant (σ) and Wien's displacement constant (b_Wien) are usually provided in exams or data booklets.",
+        "Be careful with units: ensure luminosity is in Watts, radius in metres, and distance in metres (convert parsecs or light-years if necessary).",
+        "Calculations often involve multiple steps: first finding T (using Wien's Law) or P (using apparent brightness and distance), then calculating R."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A star has an apparent brightness of 1.2 × 10⁻⁸ W m⁻² as observed from Earth. Its distance from Earth is 4.5 × 10¹⁷ m, and the peak wavelength in its emission spectrum is 480 nm. Calculate the radius of the star.\n\n(Stefan-Boltzmann constant σ = 5.67 × 10⁻⁸ W m⁻² K⁻⁴; Wien's displacement constant b = 2.898 × 10⁻³ m K)",
+      "solution": "**Step 1: Determine the surface temperature (T) using Wien's Displacement Law.**\nλ_max T = b\nT = b / λ_max\nConvert λ_max to metres: 480 nm = 480 × 10⁻⁹ m\nT = (2.898 × 10⁻³ m K) / (480 × 10⁻⁹ m)\nT ≈ 6037.5 K\n\n**Step 2: Determine the luminosity (P) using apparent brightness and distance.**\nP = b_apparent × 4πd²\nP = (1.2 × 10⁻⁸ W m⁻²) × 4π × (4.5 × 10¹⁷ m)²\nP = (1.2 × 10⁻⁸) × 4π × (2.025 × 10³⁵)\nP ≈ 3.054 × 10²⁸ W\n\n**Step 3: Calculate the radius (R) using the Stefan-Boltzmann Law.**\nP = 4πR²σT⁴\nR² = P / (4πσT⁴)\nR = √(P / (4πσT⁴))\nR = √[ (3.054 × 10²⁸ W) / (4π × 5.67 × 10⁻⁸ W m⁻² K⁻⁴ × (6037.5 K)⁴) ]\nR = √[ (3.054 × 10²⁸) / (7.123 × 10⁻⁷ × 1.332 × 10¹⁵) ]\nR = √[ (3.054 × 10²⁸) / (9.49 × 10⁸) ]\nR = √[ 3.218 × 10¹⁹ ]\nR ≈ 5.67 × 10⁹ m\n\n**Final Answer:** The radius of the star is approximately **5.7 × 10⁹ m** (2 significant figures)."
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to units! Missing a conversion from nanometres to metres for wavelength, or forgetting to square the distance in the luminosity calculation, or not using Kelvin for temperature are common ways to lose marks. Always write out your steps clearly and show the formula used."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=25.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do you calculate the radius of a star in A Level Physics 9702?",
+      "a": "To calculate a star's radius in Cambridge 9702 Physics, you primarily use the Stefan-Boltzmann Law: P = 4πR²σT⁴. You'll need the star's luminosity (P) and its surface temperature (T). Luminosity can be found from apparent brightness and distance (P = b × 4πd²), and temperature from Wien's Displacement Law (λ_max T = b). Our free course and past papers offer detailed examples and practice to master this topic."
+    },
+    {
+      "q": "What is the Stefan-Boltzmann Law used for in stellar physics?",
+      "a": "The Stefan-Boltzmann Law in stellar physics relates a star's total power output (luminosity, P) to its surface area (4πR²) and the fourth power of its absolute surface temperature (T). It is crucial for determining fundamental stellar properties like radius (R) when luminosity and temperature are known, or for comparing the energy output of different stars."
+    },
+    {
+      "q": "What data do I need to find a star's radius?",
+      "a": "To find a star's radius, you typically need its luminosity (P) and its surface temperature (T). If these aren't directly given, you might need its apparent brightness (b) and distance (d) to calculate P, and its peak emission wavelength (λ_max) to calculate T using Wien's Displacement Law. Ensure all values are in consistent SI units (metres, Watts, Kelvin)."
+    }
+  ],
+  "updated": "2026-06-05"
+}

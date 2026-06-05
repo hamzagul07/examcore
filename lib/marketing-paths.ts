@@ -11,6 +11,7 @@ const MARKETING_PREFIXES = [
   '/insights',
   '/compare',
   '/research',
+  '/courses',
   '/privacy',
   '/terms',
 ] as const
@@ -57,6 +58,7 @@ export const MARKETING_ROUTES = [
   '/insights',
   '/compare',
   '/research',
+  '/courses',
   '/privacy',
   '/terms',
 ] as const

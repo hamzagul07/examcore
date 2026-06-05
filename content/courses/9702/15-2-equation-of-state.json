@@ -1,0 +1,108 @@
+{
+  "slug": "15-2-equation-of-state",
+  "topicCode": "15.2",
+  "title": "Equation of state",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master the ideal gas equation, pV = nRT, and understand how it links pressure, volume, and temperature for ideal gases. Learn when real gases act ideally.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Understand the ideal gas equation pV = nRT and the meaning of its terms, including the number of moles.",
+    "Apply the ideal gas equation to solve problems involving ideal gases.",
+    "Explain the conditions under which a real gas behaves like an ideal gas."
+  ],
+  "simpleExplanation": {
+    "title": "What makes a gas 'ideal'?",
+    "summary": "The 'equation of state' for an ideal gas, pV=nRT, links its pressure, volume, and temperature. It helps us predict how gases behave under different conditions, assuming they follow a few simple rules.",
+    "analogy": "Imagine a perfectly bouncy, frictionless playground where kids (gas molecules) never get tired and never bump into each other, only the walls. The equation describes how many kids, the size of the playground, and their energy level relate to how hard they push on the walls.",
+    "steps": [
+      "Memorise pV = nRT and the meaning of each symbol with its SI unit.",
+      "Always convert temperature to Kelvin (K) before using the equation.",
+      "Practise rearranging the formula for different unknowns and using derived forms.",
+      "Understand and recall the conditions under which real gases approximate ideal behaviour."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the heart of **gas laws**! Topic 15.2 dives into the **equation of state**, a powerful mathematical tool that describes how gases behave. Specifically, we'll focus on the **ideal gas equation**, a cornerstone of thermal physics for Cambridge 9702 Paper 4. Mastering this equation and its conditions is key to unlocking marks in your exam!"
+    },
+    {
+      "type": "heading",
+      "content": "The Ideal Gas Model"
+    },
+    {
+      "type": "text",
+      "content": "To simplify the complex behaviour of real gases, physicists developed the **ideal gas model**. An ideal gas is a theoretical gas composed of randomly moving point particles that do not interact with each other except through perfectly elastic collisions with the walls of the container. Key assumptions include:\n1.  The volume of the gas molecules themselves is negligible compared to the total volume of the gas.\n2.  There are no intermolecular forces of attraction or repulsion between molecules.\n3.  The collisions between molecules and with the container walls are perfectly elastic.\nWhile no real gas is perfectly ideal, many gases behave very much like ideal gases under specific conditions."
+    },
+    {
+      "type": "heading",
+      "content": "The Ideal Gas Equation"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between the pressure (p), volume (V), and absolute temperature (T) of a fixed amount of an ideal gas is given by the ideal gas equation. This single equation combines Boyle's Law, Charles' Law, and Avogadro's Law into one comprehensive statement."
+    },
+    {
+      "type": "formula",
+      "content": "pV = nRT"
+    },
+    {
+      "type": "text",
+      "content": "Let's break down each term and its essential SI units:\n*   `p` = **Pressure** of the gas in Pascals (Pa). Remember 1 Pa = 1 N m⁻².\n*   `V` = **Volume** occupied by the gas in cubic metres (m³). Ensure you convert cm³ or dm³ appropriately (1 m³ = 10⁶ cm³ = 10³ dm³).\n*   `n` = **Number of moles** of gas. A mole (mol) is a unit of amount of substance. If the number of molecules (N) is given, remember `n = N / N_A`, where `N_A` is the Avogadro constant (6.02 × 10²³ mol⁻¹).\n*   `R` = **Molar gas constant**, a fundamental constant with a value of 8.31 J mol⁻¹ K⁻¹. This value is provided in your data booklet.\n*   `T` = **Absolute temperature** of the gas in Kelvin (K). This is crucial – *never* use degrees Celsius in this equation! To convert, use T(K) = T(°C) + 273.15 (often rounded to 273 for quick calculations, but 273.15 is more precise)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always use SI units: pressure in Pa, volume in m³, temperature in K. Unit conversion is a common pitfall.",
+        "The molar gas constant, R, is provided in the data booklet (8.31 J mol⁻¹ K⁻¹), so you don't need to memorise it.",
+        "Real gases approximate ideal behaviour most closely at **low pressures** and **high temperatures**. This minimises intermolecular forces and ensures molecular volume is negligible.",
+        "If the amount of gas (`n`) is constant, then `(p₁V₁)/T₁ = (p₂V₂)/T₂` is a very useful derived relationship for problems involving changes in the gas's state.",
+        "The ideal gas equation can also be written as `pV = NkT`, where `N` is the number of molecules and `k` is the Boltzmann constant (`R/N_A`). While less common in 9702, it's good to recognise."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A cylinder contains 0.50 moles of an ideal gas at a pressure of 2.0 × 10⁵ Pa and a temperature of 27 °C. Calculate the volume occupied by the gas.",
+      "solution": "1.  **Identify knowns and unknowns**:\n    `n = 0.50 mol`\n    `p = 2.0 × 10⁵ Pa`\n    `T = 27 °C`\n    `R = 8.31 J mol⁻¹ K⁻¹` (from data booklet)\n    `V = ?`\n\n2.  **Convert temperature to Kelvin**:\n    `T(K) = T(°C) + 273.15 = 27 + 273.15 = 300.15 K` (Using 300K is often acceptable, but 300.15K is more accurate here).\n\n3.  **State the ideal gas equation**:\n    `pV = nRT`\n\n4.  **Rearrange for V**:\n    `V = nRT / p`\n\n5.  **Substitute values and calculate**:\n    `V = (0.50 × 8.31 × 300.15) / (2.0 × 10⁵)`\n    `V = 1247.4765 / (2.0 × 10⁵)`\n    `V = 0.0062373825 m³`\n\n6.  **Give answer to appropriate significant figures** (2 significant figures based on input values):\n    `V ≈ 0.0062 m³` (or `6.2 × 10⁻³ m³`)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always double-check your units before substituting into the ideal gas equation! Forgetting to convert temperature to Kelvin is one of the most common mistakes, leading to zero marks for numerical answers. Be meticulous with volume conversions, e.g., from cm³ to m³ (divide by 10⁶)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=15.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the ideal gas equation for A Level Physics 9702?",
+      "a": "The ideal gas equation for A Level Physics 9702 is pV = nRT, where p is pressure, V is volume, n is the number of moles, R is the molar gas constant, and T is the absolute temperature in Kelvin. You'll use this fundamental equation to solve problems on our free course and in past papers."
+    },
+    {
+      "q": "When does a real gas behave like an ideal gas?",
+      "a": "A real gas behaves most like an ideal gas under conditions of low pressure and high temperature. This minimises intermolecular forces and ensures the gas molecules themselves occupy negligible volume compared to the container, fulfilling the assumptions of the ideal gas model."
+    },
+    {
+      "q": "Why must temperature be in Kelvin for the ideal gas equation?",
+      "a": "Temperature must be in Kelvin (absolute temperature) because the ideal gas equation is derived from laws that are based on the absolute zero point of temperature. Using Celsius would lead to incorrect relationships (e.g., zero Celsius would imply zero volume or pressure for a gas, which is physically impossible) and non-proportional values when working with ratios of temperature or direct calculations."
+    }
+  ],
+  "updated": "2026-06-05"
+}

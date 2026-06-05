@@ -1,0 +1,147 @@
+{
+  "slug": "18-5-electric-potential",
+  "topicCode": "18.5",
+  "title": "Electric potential",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master electric potential for 9702 Physics. Learn definitions, calculations for point charges, potential energy, and equipotentials.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define electric potential at a point as the work done per unit positive charge in bringing a small test charge from infinity to that point.",
+    "Use V = Q / (4πε₀r) to calculate the electric potential due to a point charge or an isolated sphere of charge.",
+    "Understand and apply the relationship between electric field strength and electric potential, E = -dV/dr, and sketch equipotential lines."
+  ],
+  "simpleExplanation": {
+    "title": "Energy Landscape for Charges",
+    "summary": "Electric potential is like an invisible energy landscape that tells you how much energy a unit of positive charge would have at any point in an electric field. It's a scalar quantity, meaning it only has magnitude and a sign, not a direction. Higher potential means more energy for a positive charge.",
+    "analogy": "Imagine a hilly landscape. The 'height' of a point on the hill is like the electric potential. If you place a ball (a positive charge) on a high point, it has high gravitational potential energy. Similarly, a positive charge at a high electric potential has high electric potential energy.",
+    "steps": [
+      "Understand the definition: Work done per unit charge from infinity.",
+      "Memorise and apply the formulae for potential and potential energy.",
+      "Grasp the difference between electric potential (scalar) and electric field strength (vector).",
+      "Practise interpreting and sketching equipotential lines and relating them to electric field lines."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to **Electric Potential**, a fundamental concept in A-Level Physics that helps us understand how electric fields affect charges. Unlike electric field strength, which is a vector, electric potential is a **scalar quantity**, simplifying calculations and providing a different perspective on the 'energy landscape' of an electric field. Get ready to master work done, potential energy, and those all-important equipotential lines!"
+    },
+    {
+      "type": "heading",
+      "content": "Defining Electric Potential (V)"
+    },
+    {
+      "type": "text",
+      "content": "The **electric potential** (V) at a point in an electric field is defined as the work done per unit positive charge in bringing a small test charge from infinity to that point. The unit for electric potential is the **volt (V)**, which is equivalent to joules per coulomb (J C⁻¹). Infinity is chosen as the reference point where electric potential is zero."
+    },
+    {
+      "type": "formula",
+      "content": "V = W / Q"
+    },
+    {
+      "type": "heading",
+      "content": "Electric Potential due to a Point Charge"
+    },
+    {
+      "type": "text",
+      "content": "For an isolated point charge Q, or an isolated sphere of charge Q, the electric potential at a distance r from its centre is given by this crucial formula. Remember that ε₀ is the permittivity of free space."
+    },
+    {
+      "type": "formula",
+      "content": "V = Q / (4πε₀r)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Electric potential is a scalar quantity: It only has magnitude and sign, making it easier to sum potentials from multiple charges.",
+        "Sign matters: A positive charge creates a positive potential, and a negative charge creates a negative potential.",
+        "Reference point: Potential is zero at infinity. Therefore, potentials are always negative for negative charges (you gain energy bringing a positive test charge towards it, so work is done *by* the field).",
+        "Units: The unit for electric potential is Volts (V), which is equivalent to Joules per Coulomb (J C⁻¹)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Electric Potential Energy (Ep)"
+    },
+    {
+      "type": "text",
+      "content": "The **electric potential energy** of a point charge Q₂ at a point where the electric potential is V (due to another charge Q₁) is the work done in bringing Q₂ from infinity to that point. For two point charges, Q₁ and Q₂, separated by a distance r, their mutual electric potential energy is:"
+    },
+    {
+      "type": "formula",
+      "content": "Ep = Q₁Q₂ / (4πε₀r)"
+    },
+    {
+      "type": "text",
+      "content": "This formula also represents the work done to assemble this configuration of charges from infinity. If the charges have the same sign, Ep is positive (repulsive interaction). If they have opposite signs, Ep is negative (attractive interaction)."
+    },
+    {
+      "type": "heading",
+      "content": "Equipotentials and Electric Field Lines"
+    },
+    {
+      "type": "text",
+      "content": "**Equipotential lines** (or surfaces) are lines connecting points of equal electric potential. They are incredibly useful for visualising electric fields:\n*   **Perpendicularity**: Equipotential lines are always perpendicular to electric field lines. This is because no work is done moving a charge along an equipotential line, meaning there's no component of the electric force along the line.\n*   **Spacing**: The closer the equipotential lines are, the stronger the electric field (the greater the potential gradient). Conversely, widely spaced lines indicate a weaker field.\n*   **Direction**: Electric field lines always point from higher potential to lower potential."
+    },
+    {
+      "type": "heading",
+      "content": "Electric Field Strength as Potential Gradient"
+    },
+    {
+      "type": "text",
+      "content": "There's a direct relationship between electric field strength (E) and electric potential (V). The electric field strength is equal to the negative of the potential gradient. This means the field points in the direction where the potential decreases most rapidly."
+    },
+    {
+      "type": "formula",
+      "content": "E = -dV/dr"
+    },
+    {
+      "type": "text",
+      "content": "Here, dV/dr represents the rate of change of potential with distance. The negative sign signifies that the electric field points in the direction of *decreasing* potential. For a uniform field, this simplifies to E = -ΔV/Δd."
+    },
+    {
+      "type": "workedExample",
+      "question": "A point charge Q₁ = +4.0 nC is placed at the origin. Another point charge Q₂ = -2.0 nC is placed at x = 0.20 m.\n(a) Calculate the electric potential at point P located at x = 0.50 m.\n(b) Calculate the work done by an external force to bring a third charge Q₃ = +1.0 nC from infinity to point P.",
+      "solution": "(a) Electric potential is a scalar quantity, so we simply sum the potentials due to each charge.\nPotential due to Q₁ at P:\nV₁ = Q₁ / (4πε₀r₁) = (4.0 × 10⁻⁹) / (4π × 8.85 × 10⁻¹² × 0.50)\nV₁ = 71.91 V\n\nPotential due to Q₂ at P:\nr₂ = 0.50 m - 0.20 m = 0.30 m\nV₂ = Q₂ / (4πε₀r₂) = (-2.0 × 10⁻⁹) / (4π × 8.85 × 10⁻¹² × 0.30)\nV₂ = -59.92 V\n\nTotal potential at P:\nV_P = V₁ + V₂ = 71.91 V - 59.92 V = 11.99 V ≈ 12.0 V\n\n(b) The work done by an external force to bring a charge Q₃ from infinity to point P is given by W = Q₃V_P.\nW = (1.0 × 10⁻⁹ C) × (11.99 V)\nW = 1.199 × 10⁻⁸ J ≈ 1.2 × 10⁻⁸ J"
+    },
+    {
+      "type": "examTip",
+      "content": "Always pay close attention to the **sign** of charges when calculating electric potential and potential energy. Since potential is a scalar, correct sign usage is critical for summing contributions from multiple charges. Also, remember that work done *by* the field is negative of work done *on* the field (or by an external force)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=18.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the key difference between electric potential and electric field strength in 9702 Physics?",
+      "a": "The key difference is that electric potential (V) is a scalar quantity, meaning it only has magnitude and a sign. Electric field strength (E) is a vector quantity, possessing both magnitude and direction. This makes calculating total potential easier (scalar addition) than total field strength (vector addition). For more depth, explore our free 9702 course and practice with past papers!"
+    },
+    {
+      "q": "Why is the reference point for electric potential taken at infinity?",
+      "a": "Infinity is chosen as the reference point because the electric force due to a point charge becomes zero at infinite distance. This provides a consistent and universal 'zero potential' reference against which all other potentials can be measured, simplifying calculations and theoretical understanding for the 9702 syllabus."
+    },
+    {
+      "q": "How do equipotential lines relate to electric field lines?",
+      "a": "Equipotential lines are always perpendicular to electric field lines. This is because no work is done when a charge moves along an equipotential line, meaning there's no component of the electric force along that path. The spacing of equipotential lines also indicates field strength: closer lines mean a stronger field. Master this concept with our free 9702 resources and practice questions!"
+    }
+  ],
+  "updated": "2026-06-05"
+}

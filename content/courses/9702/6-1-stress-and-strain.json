@@ -1,0 +1,129 @@
+{
+  "slug": "6-1-stress-and-strain",
+  "topicCode": "6.1",
+  "title": "Stress and strain",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master stress, strain and the Young modulus for Cambridge 9702. Clear explanations, worked examples and exam tips for P1 and P2.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define tensile stress and tensile strain, and calculate each from given data including cross-sectional area, force and extension",
+    "Define the Young modulus and use the relationship E = stress/strain to solve problems involving wires and rods",
+    "Describe and interpret a stress–strain graph, identifying the limit of proportionality, elastic limit, yield point and ultimate tensile stress"
+  ],
+  "simpleExplanation": {
+    "title": "Stress & strain in 60 seconds",
+    "summary": "Stress tells you how hard a material is being pulled per unit area, while strain tells you how much it has stretched relative to its original length. The Young modulus connects the two and is a fixed property of the material itself — not the size or shape of the sample.",
+    "analogy": "Think of stretching a rubber band. Stress is like how hard you're pulling divided by how thick the band is; strain is how much longer it's got compared with its original length. A thicker band of the same rubber needs more force to reach the same strain — that's why we use stress instead of force alone.",
+    "steps": [
+      "Learn the three definitions: stress = F/A, strain = x/L, Young modulus E = stress/strain",
+      "Practise converting units — stress is in Pa (N m⁻²), strain is dimensionless, E is in Pa",
+      "Sketch a stress–strain graph from memory and label the limit of proportionality, elastic limit, yield point and UTS",
+      "Work through at least two numerical problems calculating E from wire data, checking your significant figures and units"
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "When a material is stretched or compressed, two questions matter: how large is the internal force per unit area, and by how much has the material deformed relative to its original size? These are answered by **tensile stress** and **tensile strain** respectively. Together they define the **Young modulus** — one of the most tested quantities in Cambridge 9702 Paper 2. Get these three definitions sharp and the rest of the topic falls into place."
+    },
+    {
+      "type": "heading",
+      "content": "Tensile stress"
+    },
+    {
+      "type": "text",
+      "content": "Tensile stress (symbol σ, pronounced 'sigma') is defined as the force applied perpendicular to a cross-section divided by the area of that cross-section. It measures how intensely the material is being loaded internally. The SI unit is the pascal (Pa), where 1 Pa = 1 N m⁻². For a wire or rod of uniform circular cross-section, the area A = π r², where r is the radius — be careful not to use the diameter directly. Stress is a scalar quantity in this context; sign conventions (tensile positive, compressive negative) are not required at AS level but are good practice."
+    },
+    {
+      "type": "formula",
+      "content": "σ = F / A     [Pa or N m⁻²]"
+    },
+    {
+      "type": "heading",
+      "content": "Tensile strain"
+    },
+    {
+      "type": "text",
+      "content": "Tensile strain (symbol ε, pronounced 'epsilon') is the extension of the material divided by its original, unloaded length. Because it is a ratio of two lengths, strain has no units — it is dimensionless. Examiners sometimes award a mark specifically for stating that strain has no units, so it is worth remembering. Strain is often a very small number (e.g. 2 × 10⁻³ for a metal wire), so do not be alarmed by tiny values."
+    },
+    {
+      "type": "formula",
+      "content": "ε = x / L₀     [dimensionless — no units]"
+    },
+    {
+      "type": "heading",
+      "content": "The Young modulus"
+    },
+    {
+      "type": "text",
+      "content": "The **Young modulus** (symbol E) is defined as the ratio of tensile stress to tensile strain, provided the material obeys Hooke's law (i.e. we are within the limit of proportionality). It is a material property — it does not depend on the dimensions of the sample. Steel always has a Young modulus of approximately 200 GPa regardless of whether the wire is thick or thin, long or short. A higher Young modulus means a stiffer material that requires greater stress to produce the same strain. The unit of E is the pascal (Pa), since strain is dimensionless."
+    },
+    {
+      "type": "formula",
+      "content": "E = σ / ε = (F × L₀) / (A × x)     [Pa or N m⁻²]"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Stress = force ÷ cross-sectional area (σ = F/A); always use the area perpendicular to the applied force, calculated as πr² for a wire — never πd².",
+        "Strain = extension ÷ original length (ε = x/L₀); it is dimensionless and typically a value much less than 1 for metals.",
+        "Young modulus E = stress/strain; it is a property of the material, not the sample, and its unit is Pa (same as stress, because strain has no unit).",
+        "The limit of proportionality is the point beyond which stress is no longer directly proportional to strain — the graph curves. The elastic limit is where permanent deformation first occurs; these are distinct points.",
+        "On a stress–strain graph, the gradient of the linear region equals the Young modulus; the area under the entire curve to fracture represents the energy absorbed per unit volume (toughness).",
+        "For Paper 1, watch for distractors that confuse force with stress, or extension with strain — always check whether area and original length have been divided through."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The stress–strain graph"
+    },
+    {
+      "type": "text",
+      "content": "A typical stress–strain graph for a ductile metal such as mild steel passes through several distinct regions. In the **linear (Hooke's law) region**, stress and strain are directly proportional; the gradient equals E. At the **limit of proportionality (P)**, the graph begins to curve but the material is still elastic. At the **elastic limit (E)**, permanent (plastic) deformation begins — if the load is removed, the material does not return to its original length. The **yield point** (sometimes split into upper and lower yield points for steel) is where a large increase in strain occurs with little or no increase in stress; dislocations in the crystal structure are moving rapidly. The **ultimate tensile stress (UTS)** is the maximum stress the material can withstand. Beyond this, **necking** occurs and the material fractures. Brittle materials (e.g. glass, ceramic) show a short linear region and fracture at or near the limit of proportionality with very little plastic deformation."
+    },
+    {
+      "type": "workedExample",
+      "question": "A steel wire of diameter 0.80 mm and original length 2.5 m is stretched by a tensile force of 35 N. The Young modulus of steel is 2.0 × 10¹¹ Pa. Calculate (a) the tensile stress in the wire, (b) the tensile strain, and (c) the extension produced.",
+      "solution": "Step 1 — Find the cross-sectional area.\nDiameter = 0.80 mm = 0.80 × 10⁻³ m, so radius r = 0.40 × 10⁻³ m.\nA = π r² = π × (0.40 × 10⁻³)² = π × 1.6 × 10⁻⁷ = 5.027 × 10⁻⁷ m²\n\nStep 2 — Calculate tensile stress (part a).\nσ = F / A = 35 / (5.027 × 10⁻⁷) = 6.96 × 10⁷ Pa ≈ 7.0 × 10⁷ Pa\n\nStep 3 — Calculate tensile strain (part b).\nε = σ / E = (6.96 × 10⁷) / (2.0 × 10¹¹) = 3.48 × 10⁻⁴ ≈ 3.5 × 10⁻⁴ (no units)\n\nStep 4 — Calculate the extension (part c).\nε = x / L₀  →  x = ε × L₀ = 3.48 × 10⁻⁴ × 2.5 = 8.7 × 10⁻⁴ m (= 0.87 mm)\n\nFinal answers: σ ≈ 7.0 × 10⁷ Pa; ε ≈ 3.5 × 10⁻⁴; x ≈ 8.7 × 10⁻⁴ m"
+    },
+    {
+      "type": "examTip",
+      "content": "The single most common error in Paper 2 stress/strain calculations is using the diameter instead of the radius when finding cross-sectional area. Always halve the diameter first, then apply A = πr². If you use d in the formula directly you will be out by a factor of 4 — a whole mark gone. Also, if a question asks you to 'define' the Young modulus, write it as a ratio (stress divided by strain) AND state it applies only within the limit of proportionality. One-line definitions that omit the proportionality condition often lose a mark."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=6.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between stress and strain in Cambridge 9702 Physics?",
+      "a": "Stress (σ = F/A) measures the internal force per unit cross-sectional area in pascals, while strain (ε = x/L₀) measures the fractional change in length and has no units. They are related through the Young modulus E = σ/ε. Our free 9702 course covers both definitions with worked examples and past-paper practice questions so you can master the distinction quickly."
+    },
+    {
+      "q": "How do I calculate the Young modulus from a stress–strain graph in A Level Physics?",
+      "a": "The Young modulus equals the gradient of the straight-line (linear) portion of the stress–strain graph — the region before the limit of proportionality. Choose two well-separated points on the straight section, calculate rise/run (Δσ/Δε), and the result is E in pascals. If you have a force–extension graph instead, you need to multiply the gradient by L₀/A to convert it to E. Our premium lessons walk through this step-by-step with real past-paper data."
+    },
+    {
+      "q": "What are the key points on a stress–strain graph I need to know for 9702 Paper 2?",
+      "a": "You need to identify and describe four key features: (1) the limit of proportionality, where the linear relationship between stress and strain ends; (2) the elastic limit, beyond which permanent deformation occurs; (3) the yield point, where large plastic strain occurs at roughly constant stress; and (4) the ultimate tensile stress (UTS), the maximum stress before necking and fracture. Examiners regularly ask you to mark these on a sketch graph, so practise drawing and labelling it from memory. Find specimen and past-paper questions on all of these in our free 9702 revision resources."
+    }
+  ],
+  "updated": "2026-06-05"
+}

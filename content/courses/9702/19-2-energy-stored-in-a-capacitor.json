@@ -1,0 +1,128 @@
+{
+  "slug": "19-2-energy-stored-in-a-capacitor",
+  "topicCode": "19.2",
+  "title": "Energy stored in a capacitor",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master energy storage in capacitors for Cambridge 9702 Paper 4. Learn derivations, formulae (W = ½ QV, ½ CV², ½ Q²/C) and calculations.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Derive the energy stored in a capacitor from the area under a charge-potential difference graph.",
+    "Recall and use the formulae W = ½ QV, W = ½ CV², and W = ½ Q²/C for energy stored.",
+    "Solve problems involving energy storage in various capacitor configurations and during charge redistribution."
+  ],
+  "simpleExplanation": {
+    "title": "Capacitors: Tiny Power Banks",
+    "summary": "A capacitor acts like a tiny rechargeable battery, storing electrical energy by accumulating charge on its plates. This energy is stored within the electric field between the plates, ready to be quickly released when needed for applications like camera flashes or defibrillators.",
+    "analogy": "Imagine pushing a spring. The harder you push (more charge moved onto the capacitor plates), the more energy is stored in the compressed spring (the electric field), ready to spring back and do work.",
+    "steps": [
+      "Understand that work must be done to move charge against electrostatic forces.",
+      "Visualise the energy stored as the area under the potential difference-charge (V-Q) graph.",
+      "Memorise all three forms of the energy formula (W = ½ QV, W = ½ CV², W = ½ Q²/C).",
+      "Practise selecting the correct formula based on the information provided in the problem."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever wondered how your phone's camera flash bursts with light, or how a defibrillator delivers a life-saving jolt? The secret lies in a component called a **capacitor**, which stores electrical energy in an **electric field** and releases it incredibly quickly. For Cambridge 9702 Paper 4, a deep understanding of how energy is stored and calculated in capacitors is absolutely crucial."
+    },
+    {
+      "type": "heading",
+      "content": "The Mechanism of Energy Storage"
+    },
+    {
+      "type": "text",
+      "content": "When you connect a capacitor to a power supply, charge begins to accumulate on its plates. As positive charge builds on one plate and negative on the other, an **electric field** is established between them. To move subsequent charges onto these already charged plates, work must be done against the electrostatic repulsion (from like charges) or attraction (from opposite charges). This work done to separate and accumulate charges is the **energy stored** in the capacitor."
+    },
+    {
+      "type": "heading",
+      "content": "Deriving the Energy Formulae"
+    },
+    {
+      "type": "text",
+      "content": "Consider the process of charging a capacitor. Initially, with no charge, the potential difference (V) across it is zero. As charge (Q) is transferred, V increases linearly with Q (since Q = CV, meaning V = Q/C). If we plot potential difference (V) against charge (Q) during charging, we get a straight line passing through the origin. The **work done** to charge the capacitor, and thus the energy stored (W), is represented by the **area under this V-Q graph**."
+    },
+    {
+      "type": "text",
+      "content": "For a capacitor charged to a final charge Q and final potential difference V, the graph forms a triangle. The area of this triangle is ½ × base × height, which gives us the first fundamental formula:"
+    },
+    {
+      "type": "formula",
+      "content": "W = ½ Q V"
+    },
+    {
+      "type": "text",
+      "content": "This is the primary formula for energy stored. However, depending on the information given in a problem, it's often more convenient to use alternative forms. We know the definition of capacitance is C = Q/V. We can substitute Q = CV or V = Q/C into our main formula:"
+    },
+    {
+      "type": "text",
+      "content": "Substituting Q = CV into W = ½ QV gives:"
+    },
+    {
+      "type": "formula",
+      "content": "W = ½ C V²"
+    },
+    {
+      "type": "text",
+      "content": "And substituting V = Q/C into W = ½ QV gives:"
+    },
+    {
+      "type": "formula",
+      "content": "W = ½ Q² / C"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always remember that energy stored is a **scalar quantity**, so direction doesn't matter. Ensure you use **SI units**: Farads (F) for capacitance, Coulombs (C) for charge, Volts (V) for potential difference, and Joules (J) for energy.",
+        "Understand the derivation from the V-Q graph. It often appears in Paper 4 questions, sometimes asking you to sketch the graph and explain how energy is found.",
+        "Select the most appropriate formula (½ QV, ½ CV², or ½ Q²/C) based on the quantities given in the question to minimise calculation steps and potential errors.",
+        "Be mindful when dealing with series and parallel capacitor arrangements. Calculate the total equivalent capacitance first, or determine individual charges/voltages as required, before applying the energy formulae.",
+        "Don't confuse energy stored with charge stored. Energy stored depends on both charge and voltage, while charge stored is simply Q = CV."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A 2200 µF capacitor is initially uncharged. It is then connected across a 12 V power supply until fully charged.\n(a) Calculate the charge stored by the capacitor.\n(b) Calculate the energy stored in the capacitor.\n(c) If this capacitor is then disconnected from the power supply and reconnected in parallel with an uncharged 1100 µF capacitor, calculate the total energy stored in the new arrangement after charge redistribution.",
+      "solution": "(a) To find the charge stored, we use Q = CV.\nC = 2200 µF = 2200 × 10⁻⁶ F\nV = 12 V\nQ = (2200 × 10⁻⁶ F) × (12 V) = 0.0264 C\n\n(b) To find the energy stored, we can use W = ½ CV².\nW = ½ × (2200 × 10⁻⁶ F) × (12 V)²\nW = ½ × 2200 × 10⁻⁶ × 144\nW = 0.1584 J\n\n(c) When the 2200 µF capacitor (C₁) is connected in parallel with the 1100 µF capacitor (C₂), the total capacitance (C_total) is the sum of individual capacitances:\nC_total = C₁ + C₂ = 2200 µF + 1100 µF = 3300 µF = 3300 × 10⁻⁶ F\n\nThe initial total charge on C₁ is Q₁ = 0.0264 C. Since C₂ was uncharged, the total charge in the system remains conserved: Q_total = Q₁ = 0.0264 C. This charge redistributes across the parallel combination until the potential difference across both is the same.\nThe new potential difference (V_new) across the parallel combination will be:\nV_new = Q_total / C_total = 0.0264 C / (3300 × 10⁻⁶ F) = 8 V\n\nNow, calculate the total energy stored in the new arrangement using W = ½ C_total V_new².\nW_total = ½ × (3300 × 10⁻⁶ F) × (8 V)²\nW_total = ½ × 3300 × 10⁻⁶ × 64\nW_total = 0.1056 J\n\nNote: Energy is lost during charge redistribution, primarily as heat in the connecting wires and electromagnetic radiation. Hence, the final energy is less than the initial energy."
+    },
+    {
+      "type": "examTip",
+      "content": "Often, questions involve calculations with very large or very small values (e.g., microfarads, picofarads). Always convert all values to **SI base units** (Farads, Volts, Coulombs) before performing calculations to avoid errors and secure full marks. Double-check your calculator input, especially powers of ten!"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=19.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the formula for energy stored in a capacitor in Cambridge 9702 Physics?",
+      "a": "For Cambridge 9702 Physics, the primary formulae for energy stored in a capacitor (W) are W = ½ QV, W = ½ CV², and W = ½ Q²/C. You'll need to understand their derivation from the V-Q graph and know when to apply each formula for various scenarios. For more free lessons and past paper practice, check out our comprehensive 9702 physics course!"
+    },
+    {
+      "q": "Why is energy lost when capacitors are connected in parallel and charge redistributes?",
+      "a": "When a charged capacitor is connected in parallel with an uncharged one, charge redistributes until the potential difference across both is equal. During this redistribution, charge flows through connecting wires, and some energy is dissipated as heat due to the resistance of the wires and through electromagnetic radiation. Although the total charge is conserved, the total stored electrical energy decreases."
+    },
+    {
+      "q": "How does the energy stored in a capacitor relate to its capacitance and voltage?",
+      "a": "The energy stored in a capacitor is directly proportional to its capacitance (C) and the square of the potential difference (V) across it (W = ½ CV²). This relationship means that doubling the voltage across a capacitor quadruples the stored energy, highlighting how effectively capacitors can store significant amounts of energy at higher voltages."
+    }
+  ],
+  "updated": "2026-06-05"
+}

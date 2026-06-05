@@ -1,0 +1,134 @@
+{
+  "slug": "9-2-potential-difference-and-power",
+  "topicCode": "9.2",
+  "title": "Potential difference and power",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master potential difference and power in circuits for Cambridge 9702. Learn definitions, formulas, and how to apply them to solve exam questions.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define potential difference and the Volt.",
+    "Recall and use the formulas P = VI, P = I²R, and P = V²/R.",
+    "Solve problems involving energy, power, and potential difference in electrical circuits."
+  ],
+  "simpleExplanation": {
+    "title": "Voltage, Power & Energy",
+    "summary": "Potential difference (often called voltage) is the energy transferred per unit charge between two points in a circuit. Power is the rate at which this electrical energy is transferred or dissipated. Together, these concepts explain how electrical components consume or provide energy.",
+    "analogy": "Think of a water slide: Potential difference is like the height difference of the slide, providing the 'push' for water (charge). Power is how much water goes down the slide per second, determining the energy output from the slide.",
+    "steps": [
+      "Understand the precise definition of potential difference (p.d.) and its units.",
+      "Memorise the three core formulas for electrical power: P=VI, P=I²R, and P=V²/R.",
+      "Practise rearranging and applying these formulas to calculate unknown values in various circuit scenarios.",
+      "Link power to energy transferred over time using the relationship E=Pt."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever wondered why some electrical appliances heat up more than others, or why different batteries have different 'strengths'? It all boils down to **potential difference** and **power**. These fundamental concepts are crucial for understanding how circuits work and how energy is transferred within them."
+    },
+    {
+      "type": "heading",
+      "content": "Potential Difference (p.d.)"
+    },
+    {
+      "type": "text",
+      "content": "Potential difference, often simply called voltage, is a measure of the energy transferred per unit charge between two points in a circuit. It's the 'push' or 'energy drop' that drives the current through a component. When 1 Joule of energy is transferred by 1 Coulomb of charge, the potential difference is defined as 1 Volt."
+    },
+    {
+      "type": "formula",
+      "content": "V = W/Q"
+    },
+    {
+      "type": "text",
+      "content": "Here, V is the potential difference in Volts (V), W is the energy transferred in Joules (J), and Q is the charge in Coulombs (C). Importantly, potential difference is measured *across* a component, not through it. A voltmeter is always connected in parallel with the component to measure the potential difference across its terminals."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Potential difference (p.d.) is defined as the energy transferred per unit charge (J C⁻¹).",
+        "The unit of potential difference, the Volt (V), is equivalent to Joules per Coulomb.",
+        "It represents the energy 'lost' by charge carriers as they pass through a component (e.g., converted to heat, light, or mechanical energy).",
+        "P.d. is always measured in parallel across a component using a voltmeter.",
+        "Do not confuse p.d. with electromotive force (e.m.f.) – e.m.f. is the energy supplied *to* charges by a source, whereas p.d. is energy transferred *from* charges by a component."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Power in Electrical Circuits"
+    },
+    {
+      "type": "text",
+      "content": "Power is the rate at which energy is transferred or dissipated. In electrical circuits, components like resistors dissipate electrical energy as heat, while sources like batteries supply it. Understanding the power formulas is absolutely essential for circuit analysis and problem-solving. The fundamental definition of power (rate of energy transfer) means that electrical energy (E) transferred over a time (t) can be found using E = Pt."
+    },
+    {
+      "type": "formula",
+      "content": "P = VI"
+    },
+    {
+      "type": "text",
+      "content": "This primary formula for power directly links potential difference (V) across a component and the current (I) flowing through it. By using Ohm's Law (V=IR), we can derive two other incredibly useful forms that often simplify calculations in exam questions:"
+    },
+    {
+      "type": "formula",
+      "content": "P = I²R"
+    },
+    {
+      "type": "formula",
+      "content": "P = V²/R"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Power (P) is the rate of energy transfer or dissipation, measured in Watts (W) or Joules per second (J s⁻¹).",
+        "The fundamental electrical power formula is P = VI, relating power to potential difference and current.",
+        "Derived formulas P = I²R and P = V²/R are equally important, especially when resistance (R) is involved.",
+        "Always choose the most appropriate formula based on the quantities given in an exam question to minimise steps and potential for error.",
+        "Electrical energy transferred (E) over a time (t) is given by E = Pt."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A 12V car battery powers a single headlamp with a resistance of 3.0 Ω. Calculate the current flowing through the headlamp and the power dissipated by it.",
+      "solution": "**1. Identify given values:**\n   Potential difference, V = 12 V\n   Resistance, R = 3.0 Ω\n\n**2. Calculate the current (I) using Ohm's Law:**\n   V = IR\n   Rearrange to find I: I = V/R\n   I = 12 V / 3.0 Ω\n   I = 4.0 A\n\n**3. Calculate the power (P) dissipated:**\n   You can use any of the power formulas. Let's demonstrate with P = VI:\n   P = (12 V) × (4.0 A)\n   P = 48 W\n\n   Alternatively, using P = I²R:\n   P = (4.0 A)² × (3.0 Ω)\n   P = 16 A² × 3.0 Ω\n   P = 48 W\n\n   Or, using P = V²/R:\n   P = (12 V)² / (3.0 Ω)\n   P = 144 V² / 3.0 Ω\n   P = 48 W\n\n   All methods yield the same result, confirming our calculation. Always remember to include the correct units in your final answers."
+    },
+    {
+      "type": "examTip",
+      "content": "When tackling power questions, always scan the question for the given quantities. If you have V and I, use P=VI. If you have I and R, P=I²R is often the most direct path. If V and R are provided, P=V²/R saves you an extra calculation step. Choosing the most efficient formula can save time and reduce the chances of rounding errors."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=9.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between potential difference and electromotive force (e.m.f.) for 9702 Physics?",
+      "a": "While both are measured in Volts, **potential difference (p.d.)** refers to the energy transferred per unit charge by components *within* a circuit (e.g., across a resistor), representing energy converted from electrical to other forms. **Electromotive force (e.m.f.)** is the energy transferred per unit charge *to* the charge carriers by a source (like a battery or generator), representing energy converted from non-electrical to electrical. Master these concepts and more with our free AS Physics course and extensive past papers."
+    },
+    {
+      "q": "How do I choose the correct power formula (P=VI, P=I²R, P=V²/R) in an exam?",
+      "a": "The best formula depends on what values you are given or can easily calculate. If you know current (I) and voltage (V), use P=VI. If resistance (R) is involved, use P=I²R when you know I and R, or P=V²/R when you know V and R. Sometimes, deriving one value (like I from V=IR) can allow you to use a different formula, but choosing the most direct one saves time and reduces potential for error."
+    },
+    {
+      "q": "Can power be negative in a circuit?",
+      "a": "Yes, conceptually. In most common AS-level problems, power calculated using P=VI, P=I²R, or P=V²/R refers to power *dissipated* by a component (e.g., a resistor heating up), which is generally considered positive. However, if you're analysing power supplied versus consumed, a component could be absorbing power (positive) or supplying it (which could be represented as negative absorption). For Cambridge 9702, typically positive power refers to dissipation or supply without explicit sign convention unless specifically asked for in advanced contexts."
+    }
+  ],
+  "updated": "2026-06-05"
+}

@@ -1,0 +1,149 @@
+{
+  "slug": "17-2-energy-in-simple-harmonic-motion",
+  "topicCode": "17.2",
+  "title": "Energy in simple harmonic motion",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master the energy transformations in SHM: kinetic, potential, and total energy. Understand their variations with displacement and velocity for Cambridge 9702 Paper 4.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Derive and apply expressions for kinetic, potential, and total energy in SHM.",
+    "Explain the energy conversions between kinetic and potential energy during an SHM cycle.",
+    "Interpret energy-displacement graphs for an oscillating system, recognising energy conservation."
+  ],
+  "simpleExplanation": {
+    "title": "SHM Energy Unpacked",
+    "summary": "In Simple Harmonic Motion (SHM), objects constantly convert energy between kinetic (motion) and potential (stored). While the forms change, the total energy of the system always stays the same, like a balanced energy budget, ensuring the oscillation continues.",
+    "analogy": "Think of a playground swing: at the highest points, it momentarily stops (maximum potential energy, zero kinetic), and at the lowest point, it's fastest (maximum kinetic energy, zero potential). The total 'swinging energy' stays constant, just changing forms.",
+    "steps": [
+      "Recall definitions of kinetic (KE) and potential energy (PE).",
+      "Relate SHM velocity and displacement to KE and PE.",
+      "Understand how energy transforms throughout one oscillation.",
+      "Apply energy conservation principles to solve SHM problems."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to this essential revision lesson on **Energy in Simple Harmonic Motion (SHM)**! Understanding how energy transforms during an oscillation is absolutely crucial for Cambridge 9702 Paper 4. We'll explore the interplay between **kinetic energy**, **potential energy**, and the **conservation of total energy** in systems undergoing SHM, ensuring you can tackle even the trickiest exam questions with confidence."
+    },
+    {
+      "type": "heading",
+      "content": "The Energy Landscape of SHM"
+    },
+    {
+      "type": "text",
+      "content": "An object performing Simple Harmonic Motion (SHM) continuously oscillates back and forth. Throughout this motion, its speed and position change, which means its kinetic energy (energy due to motion) and potential energy (stored energy due to position) are constantly varying. However, in an ideal SHM system (without damping), the *total* mechanical energy remains constant. This is a direct consequence of the principle of **conservation of energy**."
+    },
+    {
+      "type": "heading",
+      "content": "Kinetic Energy in SHM"
+    },
+    {
+      "type": "text",
+      "content": "The kinetic energy (KE) of an oscillating mass depends on its speed. We know from earlier topics that KE = ½mv². For an object in SHM, its speed `v` varies with its displacement `x` from the equilibrium position. Recall that `v = ±ω√(A² - x²)`, where `A` is the amplitude and `ω` is the angular frequency. Substituting this into the KE formula gives us an expression for kinetic energy in terms of displacement."
+    },
+    {
+      "type": "formula",
+      "content": "KE = ½mω²(A² - x²)"
+    },
+    {
+      "type": "text",
+      "content": "At the equilibrium position (`x = 0`), the object has maximum speed and therefore maximum kinetic energy: KE_max = ½mω²A². At the extreme positions (`x = ±A`), the object momentarily stops, so its kinetic energy is zero."
+    },
+    {
+      "type": "heading",
+      "content": "Potential Energy in SHM"
+    },
+    {
+      "type": "text",
+      "content": "The potential energy (PE) stored in an SHM system is typically elastic potential energy, for example, in a spring. This energy is maximum at the extreme displacements where the object momentarily stops and is zero at the equilibrium position (if we define PE = 0 at `x = 0`). The restoring force in SHM is proportional to displacement, `F = -kx`, where `k` is the spring constant or a similar constant of proportionality for the system (`k = mω²`). The potential energy stored can be derived from the work done against this force."
+    },
+    {
+      "type": "formula",
+      "content": "PE = ½kx² = ½mω²x²"
+    },
+    {
+      "type": "text",
+      "content": "At the equilibrium position (`x = 0`), PE is zero. At the extreme positions (`x = ±A`), the potential energy is maximum: PE_max = ½kA² = ½mω²A²."
+    },
+    {
+      "type": "heading",
+      "content": "Total Energy in SHM"
+    },
+    {
+      "type": "text",
+      "content": "The total mechanical energy (E_total) of the oscillating system is the sum of its kinetic and potential energies at any given instant. In an ideal, undamped SHM, this total energy remains constant throughout the motion."
+    },
+    {
+      "type": "formula",
+      "content": "E_total = KE + PE = ½mω²(A² - x²) + ½mω²x²"
+    },
+    {
+      "type": "text",
+      "content": "Simplifying this expression reveals a crucial result:"
+    },
+    {
+      "type": "formula",
+      "content": "E_total = ½mω²A²"
+    },
+    {
+      "type": "text",
+      "content": "This equation clearly shows that the total energy is constant and depends only on the mass `m`, angular frequency `ω`, and amplitude `A`. Notice that this value is equal to the maximum kinetic energy (at `x=0`) and also the maximum potential energy (at `x=±A`). This demonstrates the continuous conversion between KE and PE while the total energy stays fixed."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Total energy in undamped SHM is constant: E_total = KE + PE.",
+        "KE is maximum at equilibrium (x=0) and zero at extremes (x=±A).",
+        "PE is zero at equilibrium (x=0) and maximum at extremes (x=±A).",
+        "The total energy is numerically equal to the maximum KE or maximum PE: E_total = ½mω²A².",
+        "Energy-displacement graphs for KE and PE are parabolic, summing to a constant horizontal line for E_total.",
+        "Remember that `ω² = k/m` for a spring-mass system, so E_total can also be written as ½kA²."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A mass of 0.25 kg oscillates with SHM on a frictionless horizontal surface. The spring constant is 40 N m⁻¹ and the amplitude of oscillation is 5.0 cm. Calculate: (a) the total energy of the system, and (b) the speed of the mass when its displacement is 3.0 cm.",
+      "solution": "(a) To find the total energy, we can use E_total = ½kA².\nFirst, convert amplitude to metres: A = 5.0 cm = 0.05 m.\nE_total = ½ × 40 N m⁻¹ × (0.05 m)²\nE_total = ½ × 40 × 0.0025\nE_total = 0.05 J\n\n(b) To find the speed when displacement x = 3.0 cm (0.03 m), we use E_total = KE + PE.\nE_total = ½mv² + ½kx²\n0.05 J = ½ × 0.25 kg × v² + ½ × 40 N m⁻¹ × (0.03 m)²\n0.05 = 0.125v² + 20 × 0.0009\n0.05 = 0.125v² + 0.018\n0.125v² = 0.05 - 0.018\n0.125v² = 0.032\nv² = 0.032 / 0.125\nv² = 0.256\nv = √0.256\nv ≈ 0.506 m s⁻¹"
+    },
+    {
+      "type": "examTip",
+      "content": "Be careful with units! Amplitude and displacement must be in metres when using the energy formulas involving spring constant (N m⁻¹) or mass (kg). Also, when calculating `ω`, ensure it's in rad s⁻¹."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=17.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How does total energy change in simple harmonic motion (SHM)?",
+      "a": "In ideal, undamped Simple Harmonic Motion, the total mechanical energy of the system remains **constant**. It continuously converts between kinetic energy (energy of motion) and potential energy (stored energy due to position). For comprehensive revision and practice, check out our free A Level Physics course and extensive past paper collection."
+    },
+    {
+      "q": "What is the relationship between kinetic energy and potential energy in SHM?",
+      "a": "Kinetic energy is maximum when potential energy is minimum (at equilibrium), and potential energy is maximum when kinetic energy is minimum (at extreme displacements). Their sum always equals the constant total energy."
+    },
+    {
+      "q": "Why is `ω²A²` in the total energy formula?",
+      "a": "The term `ω²A²` arises because the maximum speed in SHM is `v_max = ωA`. Since the maximum kinetic energy (which equals the total energy) is `½mv_max²`, substituting `v_max` gives `½m(ωA)² = ½mω²A²`. This represents the maximum energy capacity of the oscillation."
+    }
+  ],
+  "updated": "2026-06-05"
+}

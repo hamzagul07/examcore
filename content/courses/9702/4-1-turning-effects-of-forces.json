@@ -1,0 +1,130 @@
+{
+  "slug": "4-1-turning-effects-of-forces",
+  "topicCode": "4.1",
+  "title": "Turning effects of forces",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master moments, couples and torque for Cambridge 9702. Clear explanations, worked examples and exam tips for P1 and P2.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define the moment of a force and calculate it using moment = Fd, identifying the correct perpendicular distance from the pivot",
+    "State and apply the principle of moments to solve equilibrium problems involving multiple forces and unknown distances or magnitudes",
+    "Define a couple and calculate the torque of a couple, distinguishing it clearly from a single moment about a pivot"
+  ],
+  "simpleExplanation": {
+    "title": "Turning effects in a nutshell",
+    "summary": "A moment is simply how much a force tends to rotate an object about a fixed point. The bigger the force and the further it acts from the pivot, the larger the turning effect. When all the clockwise moments equal all the anticlockwise moments, the object is in rotational equilibrium.",
+    "analogy": "Think of opening a door: pushing near the hinge barely moves it, but pushing at the far edge swings it open easily — the same force produces a bigger moment because the perpendicular distance to the hinge is greater.",
+    "steps": [
+      "Identify the pivot (fulcrum) and every force acting on the object.",
+      "For each force, find the perpendicular distance from its line of action to the pivot — this is d in moment = Fd.",
+      "Label each moment as clockwise (CW) or anticlockwise (ACW) and calculate its magnitude.",
+      "Apply the principle of moments: total CW moment = total ACW moment for a body in equilibrium."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every time you use a spanner, push open a door, or balance on a seesaw, you are dealing with **turning effects of forces**. In Cambridge 9702, this topic tests your ability to calculate **moments**, apply the **principle of moments**, and handle the special case of a **couple**. These ideas appear in Paper 1 multiple-choice questions and as structured calculation or explanation questions in Paper 2 — so getting them right is absolutely worth your time."
+    },
+    {
+      "type": "heading",
+      "content": "The Moment of a Force"
+    },
+    {
+      "type": "text",
+      "content": "The **moment of a force** (also called torque in some contexts) is a measure of the turning effect produced by that force about a specific point called the **pivot** or **fulcrum**. It depends on two things: the magnitude of the force and how far its line of action is from the pivot — but only the **perpendicular** distance counts. If the force is not acting at right angles to the line joining it to the pivot, you must resolve it or identify the true perpendicular distance. The SI unit of moment is the **newton-metre (N m)**."
+    },
+    {
+      "type": "formula",
+      "content": "Moment (N m) = Force F (N) × Perpendicular distance d (m) from the pivot to the line of action of the force"
+    },
+    {
+      "type": "text",
+      "content": "A common mistake is using the straight-line distance to the point of application rather than the **perpendicular distance from the pivot to the line of action**. These are only the same when the force is already perpendicular to the lever arm. When a force F acts at an angle θ to a rod of length l, the moment about the end of the rod is F × l × sin θ — the sin θ factor gives you the perpendicular component of the distance (or equivalently the perpendicular component of the force)."
+    },
+    {
+      "type": "heading",
+      "content": "The Principle of Moments"
+    },
+    {
+      "type": "text",
+      "content": "The **principle of moments** states that for a body in **rotational equilibrium**, the sum of all clockwise moments about any point equals the sum of all anticlockwise moments about the same point. This principle applies regardless of which point you choose as your reference — a powerful feature you can exploit in exam questions to eliminate unknown forces by taking moments about the point where an unknown force acts (its moment about that point is zero, so it drops out of your equation)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Moment = F × d, where d is the **perpendicular** distance from the pivot to the **line of action** of the force — not the distance to where the force is applied if those differ.",
+        "Clockwise and anticlockwise moments must balance for rotational equilibrium; the net force must also be zero for full (translational + rotational) equilibrium.",
+        "Always state the pivot you are taking moments about — examiners expect this explicitly in structured answers.",
+        "A **couple** consists of two equal, parallel, opposite forces whose lines of action do not coincide; it produces a turning effect with no resultant force.",
+        "The **torque of a couple** = F × d, where F is the magnitude of one force and d is the perpendicular distance **between** the two lines of action (not from a pivot).",
+        "A couple cannot be reduced to a single resultant force — it causes pure rotation, which is why it is tested separately from single moments."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Couples and Torque"
+    },
+    {
+      "type": "text",
+      "content": "A **couple** is a pair of forces that are equal in magnitude, parallel but opposite in direction, and separated by a perpendicular distance d. Because the two forces are equal and opposite, the resultant force on the body is zero — there is no linear acceleration. However, the two moments do **not** cancel; they both act in the same rotational sense, so they add together. The total **torque of the couple** is F × d. Notice that unlike a single moment, the torque of a couple is the same about **any point**, which is why no pivot needs to be specified."
+    },
+    {
+      "type": "formula",
+      "content": "Torque of a couple (N m) = F (N) × d (m), where F is the magnitude of one force and d is the perpendicular distance between the two parallel lines of action"
+    },
+    {
+      "type": "workedExample",
+      "question": "A uniform beam AB of length 2.4 m and weight 60 N is supported by a pivot at its centre. A load of 80 N is placed 0.60 m to the left of the pivot. At what distance to the right of the pivot must a force of 120 N be applied vertically downwards to keep the beam horizontal?",
+      "solution": "Step 1 — Identify the pivot: the centre of the beam, 1.2 m from each end.\n\nStep 2 — Anticlockwise moments (about the pivot):\n  • 80 N load, 0.60 m to the left → moment = 80 × 0.60 = 48 N m (ACW)\n  • Weight of beam (60 N) acts at the centre of the uniform beam, which coincides with the pivot → moment = 60 × 0 = 0 N m\n\nStep 3 — Clockwise moments (about the pivot):\n  • 120 N force, distance x to the right → moment = 120 × x (CW)\n\nStep 4 — Apply the principle of moments:\n  Total CW = Total ACW\n  120x = 48\n  x = 48 ÷ 120 = 0.40 m\n\nStep 5 — Check x ≤ 1.2 m (must be on the beam): 0.40 m ✓\n\nAnswer: The 120 N force must be applied 0.40 m to the right of the pivot."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, always write 'Taking moments about [named point]' before your calculation — Cambridge mark schemes award a method mark for this. If a question asks you to 'explain why a couple cannot be replaced by a single force', your answer must state that the resultant force of a couple is zero so no single force (which would have a non-zero resultant) can replicate it; pure rotational effect with no translation is the key idea."
+    },
+    {
+      "type": "workedExample",
+      "question": "A mechanic applies equal and opposite forces of 25 N to the two ends of a wrench handle. The perpendicular distance between the lines of action of the two forces is 0.28 m. Calculate the torque of the couple and state whether a pivot position is needed for your answer.",
+      "solution": "Step 1 — Identify it as a couple: two equal (25 N), opposite, parallel forces.\n\nStep 2 — Apply the torque formula:\n  Torque = F × d = 25 × 0.28 = 7.0 N m\n\nStep 3 — Comment on the pivot:\n  The torque of a couple is independent of the choice of pivot point. No pivot position needs to be specified — the torque is 7.0 N m about any point.\n\nAnswer: Torque = 7.0 N m; no pivot position is required because the torque of a couple is the same about any point."
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, watch for distractor answers that give the distance from the force to the wrong reference point. Always re-read whether the question specifies the perpendicular distance to the line of action or the direct distance to the point of application — they differ whenever the force is at an angle to the lever arm."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do you calculate the moment of a force in Cambridge 9702 Physics?",
+      "a": "The moment of a force equals the force multiplied by the perpendicular distance from the pivot to the line of action of the force (moment = F × d). The key word is 'perpendicular' — if the force acts at an angle, you must find the component of the distance (or the force) that is at 90° to the other. Our free 9702 course includes worked examples and past-paper practice questions so you can master this efficiently."
+    },
+    {
+      "q": "What is the difference between a moment and a couple in A Level Physics?",
+      "a": "A moment is the turning effect of a single force about a specific pivot point. A couple is two equal, opposite, parallel forces separated by a distance — it produces a pure turning effect (torque) with zero resultant force. The torque of a couple (F × d, where d is the separation of the lines of action) is the same about any point, so no pivot needs to be stated. Cambridge 9702 past papers regularly ask students to distinguish these in Paper 2 explanation questions."
+    },
+    {
+      "q": "How do I apply the principle of moments in an equilibrium question for 9702 Paper 2?",
+      "a": "First, choose a convenient pivot — usually the point where an unknown force acts, so it contributes zero moment and simplifies your equation. Then list all clockwise and anticlockwise moments, set their sums equal, and solve for the unknown. Always write 'Taking moments about [point]' in your working; Cambridge mark schemes award a method mark for naming your pivot. Our free course at this site includes structured step-by-step solutions and mark-scheme walkthroughs for exactly these question types."
+    }
+  ],
+  "updated": "2026-06-05"
+}

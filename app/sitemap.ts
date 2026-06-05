@@ -4,6 +4,7 @@ import { getAllBlogSlugs, getBlogPostLastModified } from '@/lib/blog'
 import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
+import { getAllCourseLessonPaths, getCourseSubjectCodes } from '@/lib/courses'
 
 const STATIC_ROUTES = [
   { path: '', priority: 1, changeFrequency: 'weekly' as const },
@@ -19,6 +20,7 @@ const STATIC_ROUTES = [
   { path: '/compare', priority: 0.82, changeFrequency: 'monthly' as const },
   { path: '/research', priority: 0.75, changeFrequency: 'monthly' as const },
   { path: '/insights', priority: 0.87, changeFrequency: 'weekly' as const },
+  { path: '/courses', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/join', priority: 0.5, changeFrequency: 'monthly' as const },
   { path: '/auth/signin', priority: 0.45, changeFrequency: 'monthly' as const },
   { path: '/auth/signup', priority: 0.45, changeFrequency: 'monthly' as const },
@@ -60,5 +62,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
-  return [...staticEntries, ...guideEntries, ...subjectEntries, ...blogEntries]
+  const courseSubjectEntries: MetadataRoute.Sitemap = getCourseSubjectCodes().map(
+    (code) => ({
+      url: `${base}/courses/${code}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.88,
+    })
+  )
+
+  const courseLessonEntries: MetadataRoute.Sitemap = getAllCourseLessonPaths().map(
+    ({ code, slug }) => ({
+      url: `${base}/courses/${code}/${slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.82,
+    })
+  )
+
+  return [
+    ...staticEntries,
+    ...guideEntries,
+    ...subjectEntries,
+    ...courseSubjectEntries,
+    ...courseLessonEntries,
+    ...blogEntries,
+  ]
 }

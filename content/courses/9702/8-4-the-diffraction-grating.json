@@ -1,0 +1,117 @@
+{
+  "slug": "8-4-the-diffraction-grating",
+  "topicCode": "8.4",
+  "title": "The diffraction grating",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master the diffraction grating for Cambridge 9702 Physics. Understand how gratings produce spectra, apply nλ = d sinθ, and ace P1/P2 questions.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Explain the action of a diffraction grating on monochromatic light.",
+    "Apply the diffraction grating formula, nλ = d sinθ, to solve problems.",
+    "Describe the appearance of white light diffraction spectra and explain how grating parameters affect them."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Light's Secrets",
+    "summary": "A diffraction grating is a special component with many tiny, parallel slits. When light passes through it, the light waves interfere, creating a beautiful pattern of bright lines (spectra) at specific angles. This allows us to precisely measure light's wavelength and explore its components.",
+    "analogy": "Imagine a stadium full of people all singing the same song. If they all clap at slightly different times, it sounds messy. But if they all clap at perfectly synchronised intervals, the sound waves reinforce each other, creating a powerful, clear sound that's loudest in certain directions, just like light waves forming bright spots.",
+    "steps": [
+      "Recall single and double-slit diffraction principles to understand basic wave interference.",
+      "Understand how multiple slits in a grating enhance and sharpen interference patterns.",
+      "Memorise and confidently apply the diffraction grating formula: nλ = d sinθ.",
+      "Explain how a diffraction grating produces a continuous spectrum when white light is used."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ready to precisely measure the wavelength of light? The **diffraction grating** is a powerful optical tool that takes the principles of diffraction and interference to the next level. While Young's double-slit experiment demonstrates wave behaviour, a diffraction grating with its thousands of slits provides much sharper, brighter, and more distinct interference patterns, making it indispensable in spectroscopy."
+    },
+    {
+      "type": "heading",
+      "content": "What is a Diffraction Grating?"
+    },
+    {
+      "type": "text",
+      "content": "A diffraction grating is a device consisting of a large number of equally spaced parallel slits or lines, typically etched onto a transparent material or reflected from a mirrored surface. These slits are incredibly narrow and very close together, often thousands per millimetre. When light passes through (transmission grating) or reflects off (reflection grating) these slits, it undergoes diffraction at each slit, and the diffracted waves then interfere with each other."
+    },
+    {
+      "type": "heading",
+      "content": "How Does it Work?"
+    },
+    {
+      "type": "text",
+      "content": "Each slit in the grating acts as a coherent source of light waves. For **constructive interference** to occur (producing bright fringes or maxima), the path difference between light waves originating from adjacent slits must be an integer multiple of the wavelength (λ). At these specific angles, the waves reinforce each other strongly. At other angles, they largely cancel out due to destructive interference, leading to very sharp, dark regions between the bright maxima."
+    },
+    {
+      "type": "formula",
+      "content": "nλ = d sinθ"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n*   **n** is the order of the maximum (an integer: 0 for the central maximum, 1 for the first order, 2 for the second order, etc.)\n*   **λ** (lambda) is the wavelength of the monochromatic light\n*   **d** is the grating spacing (the distance between the centres of adjacent slits)\n*   **θ** (theta) is the angle of the maximum from the central undiffracted maximum (the normal to the grating)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Grating Spacing (d):** This is often given as 'lines per mm' or 'lines per cm'. You must convert this to metres. If there are 'N' lines per metre, then the grating spacing d = 1/N metres.",
+        "**Central Maximum (n=0):** Always appears directly in front of the grating (θ=0°). It is always bright and represents undiffracted light.",
+        "**Higher Order Maxima (n=1, 2, ...):** These appear symmetrically on either side of the central maximum. The higher the order, the further away from the central maximum the fringe will be.",
+        "**Sharper and Brighter:** Diffraction gratings produce much sharper and brighter maxima than double slits because there are many more sources contributing to the constructive interference, leading to more complete cancellation elsewhere.",
+        "**Maximum Order:** The maximum possible order (n_max) occurs when sinθ = 1 (i.e., θ = 90°). Therefore, n_max = d/λ. Any calculated n value must be rounded *down* to the nearest whole number, as orders must be integers.",
+        "**Effect of 'd' and 'λ':** A larger grating spacing `d` (fewer lines per unit length) results in smaller diffraction angles `θ` for a given order. A longer wavelength `λ` (e.g., red light) results in larger diffraction angles `θ` for a given order."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Diffraction Grating with White Light"
+    },
+    {
+      "type": "text",
+      "content": "When white light (which is a continuous spectrum of wavelengths) passes through a diffraction grating, the pattern observed is different:\n*   **Central Maximum (n=0):** This remains white. All wavelengths have a path difference of zero at θ=0°, so they all constructively interfere at this point.\n*   **Higher Order Spectra (n=1, 2,...):** For any order n > 0, the equation nλ = d sinθ shows that the angle of diffraction θ depends on the wavelength λ. Since red light has a longer wavelength than violet light, it is diffracted through a larger angle for the same order n. This causes the white light to separate into a continuous spectrum for each order, with violet light being diffracted least and red light being diffracted most.\n\nEach order forms a full spectrum. The spectra become broader and fainter at higher orders and can eventually overlap. The clarity of the spectra makes gratings essential for analysing the composition of light sources."
+    },
+    {
+      "type": "workedExample",
+      "question": "A diffraction grating has 600 lines per mm. When monochromatic light is incident normally on the grating, the first-order maximum is observed at an angle of 21.0° to the normal. Calculate the wavelength of the light, giving your answer in nanometres (nm).",
+      "solution": "1.  **Calculate the grating spacing (d):**\n    The grating has 600 lines per mm. First, convert this to lines per metre:\n    600 lines/mm = 600 × 1000 lines/m = 6.0 × 10⁵ lines/m\n    Now, calculate d:\n    d = 1 / (number of lines per metre)\n    d = 1 / (6.0 × 10⁵ m⁻¹) = 1.666... × 10⁻⁶ m\n\n2.  **Identify known values:**\n    Order, n = 1 (for the first-order maximum)\n    Angle, θ = 21.0°\n\n3.  **Apply the diffraction grating formula (nλ = d sinθ):**\n    1 × λ = (1.666... × 10⁻⁶ m) × sin(21.0°)\n\n4.  **Calculate sin(21.0°):**\n    sin(21.0°) ≈ 0.3584\n\n5.  **Solve for λ:**\n    λ = (1.666... × 10⁻⁶ m) × 0.3584\n    λ ≈ 5.973 × 10⁻⁷ m\n\n6.  **Convert to nanometres:**\n    Since 1 m = 10⁹ nm, multiply by 10⁹:\n    λ = 5.973 × 10⁻⁷ × 10⁹ nm\n    λ ≈ 597.3 nm\n\n    The wavelength of the light is approximately **597 nm** (to 3 significant figures)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always pay close attention to units! Ensure your grating spacing 'd' is in metres and your wavelength 'λ' is also in metres before applying the formula. Remember to convert lines per millimetre or centimetre to metres correctly. Also, always double-check your calculator is in degree mode for the sinθ function!"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=8.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the key difference between double-slit and diffraction grating patterns in Cambridge 9702 Physics?",
+      "a": "Diffraction gratings produce much sharper, brighter, and more distinct interference maxima compared to double slits. This is because constructive interference occurs over many more slits, leading to stronger reinforcement and more complete cancellation elsewhere. This makes gratings ideal for precise measurements. For more detailed explanations and examples, check out our free 9702 Physics course and past papers!"
+    },
+    {
+      "q": "How do I calculate the maximum number of orders visible from a diffraction grating?",
+      "a": "The maximum order occurs when the angle of diffraction, θ, approaches 90°, where sinθ = 1. Using the formula nλ = d sinθ, the maximum possible integer value for n is found by n_max = d/λ (when sinθ = 1). Remember to round your result *down* to the nearest whole number, as 'n' must be an integer. Our free lessons and past papers can help you practice such calculations!"
+    },
+    {
+      "q": "Why does white light separate into a spectrum when passed through a diffraction grating?",
+      "a": "White light is a combination of different wavelengths (colours). The diffraction grating formula, nλ = d sinθ, shows that the angle of diffraction θ depends on the wavelength λ for any given order (n > 0). Since red light has a longer wavelength than violet light, it is diffracted through a larger angle. This causes the white light to spread out into a continuous spectrum for each order, with violet light closest to the central maximum and red light furthest. Explore more with our premium resources and mark schemes."
+    }
+  ],
+  "updated": "2026-06-05"
+}

@@ -1,0 +1,142 @@
+{
+  "slug": "10-2-kirchhoffs-laws",
+  "topicCode": "10.2",
+  "title": "Kirchhoff's laws",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master Kirchhoff's current and voltage laws for Cambridge 9702 Physics. Unpack complex circuits with confidence and ace Paper 1 & 2 questions.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "State and apply Kirchhoff's first law to current at a junction.",
+    "State and apply Kirchhoff's second law to potential differences in a closed loop.",
+    "Solve multi-loop circuit problems by applying Kirchhoff's laws correctly."
+  ],
+  "simpleExplanation": {
+    "title": "Untangling Complex Circuits",
+    "summary": "Kirchhoff's laws are two fundamental rules that allow us to analyse current and voltage distribution in any electrical circuit, especially those too complex for simple series/parallel rules. They are based on the conservation of charge and energy, offering a systematic approach to circuit analysis.",
+    "analogy": "Imagine a water pipe system. Kirchhoff's First Law is like saying the total water flowing into a junction must equal the total water flowing out – no water is created or destroyed. Kirchhoff's Second Law is like saying if you walk around a closed loop of pipes, the total pressure gained from pumps must equal the total pressure lost due to friction in the pipes, bringing you back to the same pressure level you started.",
+    "steps": [
+      "Identify junctions and apply Kirchhoff's First Law (Current Law).",
+      "Identify independent closed loops and apply Kirchhoff's Second Law (Voltage Law).",
+      "Assign consistent directions for currents and loop traversals for accurate sign conventions.",
+      "Solve the resulting simultaneous equations to find unknown currents or potential differences."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Analysing simple series and parallel circuits with Ohm's Law is straightforward, but what happens when circuits become more intricate, featuring multiple power sources or complex interconnections? That's where **Kirchhoff's laws** become indispensable. These two fundamental principles provide a robust framework to systematically determine currents and potential differences in any electrical network, no matter how complex. They are cornerstones of circuit analysis and frequently tested in both Paper 1 and Paper 2 for 9702 Physics."
+    },
+    {
+      "type": "heading",
+      "content": "Kirchhoff's First Law: The Current Law (KCL)"
+    },
+    {
+      "type": "text",
+      "content": "Kirchhoff's First Law is a direct consequence of the **conservation of charge**. It states that the total electric current entering any junction in a circuit must be equal to the total current leaving that junction. Electric charge carriers (electrons) cannot accumulate at a junction, nor can they spontaneously appear or disappear. Therefore, the rate at which charge flows into a point must equal the rate at which it flows out."
+    },
+    {
+      "type": "formula",
+      "content": "ΣI_in = ΣI_out"
+    },
+    {
+      "type": "text",
+      "content": "Where `ΣI_in` represents the sum of currents entering the junction and `ΣI_out` represents the sum of currents leaving the junction. Alternatively, you can state that the algebraic sum of currents at any junction is zero, considering currents entering as positive and leaving as negative (or vice-versa)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Applies to any **junction** (or node) in a circuit where three or more wires meet.",
+        "Based on the **conservation of charge**.",
+        "Crucial for relating different branch currents within a circuit.",
+        "Consistent assignment of current directions (entering/leaving) is vital for accurate application."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Kirchhoff's Second Law: The Voltage Law (KVL)"
+    },
+    {
+      "type": "text",
+      "content": "Kirchhoff's Second Law is a manifestation of the **conservation of energy**. It states that for any closed loop in a circuit, the algebraic sum of the electromotive forces (EMFs) must be equal to the algebraic sum of the potential differences (p.d.s) across the resistors (or other components) in that loop. In simpler terms, if you travel around a complete loop, the total energy gained by the charge carriers from sources (EMFs) must be equal to the total energy lost by them as they pass through resistive components."
+    },
+    {
+      "type": "formula",
+      "content": "ΣEMF = ΣIR (or ΣΔV = 0)"
+    },
+    {
+      "type": "text",
+      "content": "Where `ΣEMF` is the algebraic sum of EMFs and `ΣIR` is the algebraic sum of potential drops (I × R) across resistors in the closed loop. The alternative form, `ΣΔV = 0`, means the sum of all changes in potential around any closed loop is zero."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Applies to any **closed loop** in a circuit.",
+        "Based on the **conservation of energy**.",
+        "**Sign conventions** are critical: When traversing a loop, an EMF is positive if traversed from negative to positive terminal; negative if from positive to negative. A potential drop (IR) is positive if traversed in the direction of the current; negative if against the current.",
+        "Choosing a consistent direction for traversing each loop (clockwise or anti-clockwise) helps maintain accuracy.",
+        "Allows you to relate potential differences and EMFs within different parts of a loop."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Applying Kirchhoff's Laws to Circuit Problems"
+    },
+    {
+      "type": "text",
+      "content": "Solving complex circuits using Kirchhoff's laws typically involves a systematic approach:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Step 1: Draw and Label.** Draw the circuit clearly. Label all known EMFs and resistances. Assign arbitrary directions to unknown currents in each branch. Don't worry if you guess wrong; the final numerical answer will simply be negative, indicating the current flows in the opposite direction.",
+        "**Step 2: Apply KCL.** Identify all junctions. For each independent junction, write an equation using Kirchhoff's First Law (ΣI_in = ΣI_out). If there are 'n' junctions, you'll typically need 'n-1' independent KCL equations.",
+        "**Step 3: Apply KVL.** Identify independent closed loops. For each independent loop, choose a direction of traversal (e.g., clockwise). Write an equation using Kirchhoff's Second Law (ΣEMF = ΣIR), carefully applying the sign conventions based on your chosen loop direction and current directions.",
+        "**Step 4: Solve Simultaneous Equations.** You will now have a system of simultaneous equations (from KCL and KVL). Solve these equations to find the unknown currents or potential differences. Substitution or elimination methods are common."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the circuit below with two cells and three resistors. Determine the current flowing through each resistor.",
+      "solution": "Let's assume:\nE1 = 12 V, R1 = 4 Ω\nE2 = 6 V, R2 = 2 Ω, R3 = 6 Ω\n\n[Imagine a circuit diagram here with E1, R1 in the left branch, E2, R3 in the right branch, and R2 in the middle branch connecting the tops of R1 and R3. The junction is above R2.]\n\n**Step 1: Assign Currents and Loop Directions**\nLet I1 be the current through R1 (downwards).\nLet I2 be the current through R2 (rightwards).\nLet I3 be the current through R3 (downwards).\n\nLoop 1 (left loop): Clockwise traversal.\nLoop 2 (right loop): Clockwise traversal.\n\n**Step 2: Apply Kirchhoff's First Law (KCL)**\nAt the top junction (where I1, I2, I3 meet): I1 enters, I2 leaves, I3 leaves.\nEquation (1): I1 = I2 + I3\n\n**Step 3: Apply Kirchhoff's Second Law (KVL)**\n\n**Loop 1 (Left Loop):** Starting from the bottom-left corner and going clockwise.\n- Traversing E1 from - to +: +E1\n- Traversing R1 in direction of I1: -I1R1\n- Traversing R2 against direction of I2: +I2R2\nEquation (2): E1 = I1R1 - I2R2  => 12 = 4I1 - 2I2\n\n**Loop 2 (Right Loop):** Starting from the bottom-right corner and going clockwise.\n- Traversing E2 from - to +: +E2\n- Traversing R3 in direction of I3: -I3R3\n- Traversing R2 in direction of I2: -I2R2\nEquation (3): E2 = I2R2 + I3R3  => 6 = 2I2 + 6I3\n\n**Step 4: Solve Simultaneous Equations**\nWe have three equations with three unknowns:\n(1) I1 = I2 + I3\n(2) 12 = 4I1 - 2I2\n(3) 6 = 2I2 + 6I3\n\nSubstitute (1) into (2):\n12 = 4(I2 + I3) - 2I2\n12 = 4I2 + 4I3 - 2I2\n12 = 2I2 + 4I3  (Equation 4)\n\nNow we have a system with (3) and (4):\n(3) 6 = 2I2 + 6I3\n(4) 12 = 2I2 + 4I3\n\nSubtract (3) from (4):\n(12 - 6) = (2I2 - 2I2) + (4I3 - 6I3)\n6 = -2I3\nI3 = -3 A\n\nThe negative sign for I3 indicates that the actual current flows upwards through R3, opposite to our initial assumed direction.\n\nSubstitute I3 = -3 A into (3):\n6 = 2I2 + 6(-3)\n6 = 2I2 - 18\n2I2 = 24\nI2 = 12 A\n\nSubstitute I2 = 12 A and I3 = -3 A into (1):\nI1 = 12 + (-3)\nI1 = 9 A\n\n**Final Answer:**\nCurrent through R1 (I1) = 9 A (downwards)\nCurrent through R2 (I2) = 12 A (rightwards)\nCurrent through R3 (I3) = 3 A (upwards, as the calculated value was -3 A downwards)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw clear diagrams and label your chosen current directions and loop traversals. Be meticulous with sign conventions in KVL; a single sign error can lead to completely wrong answers. If an unknown current comes out negative, it simply means your initial assumed direction was opposite to the actual flow. Don't panic – just state the magnitude and correct direction in your answer."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=10.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do Kirchhoff's laws simplify complex circuits in 9702 Physics?",
+      "a": "Kirchhoff's laws provide a systematic, universally applicable method for analysing complex circuits that cannot be solved with simple series and parallel rules. By applying the conservation of charge (KCL) and conservation of energy (KVL), you can establish a set of simultaneous equations to determine all unknown currents and potential differences. This systematic approach is key to acing circuit questions in Cambridge 9702 Physics, and our free revision course and past papers offer further guided practice."
+    },
+    {
+      "q": "What is the key difference between Kirchhoff's First and Second Laws?",
+      "a": "Kirchhoff's First Law (Current Law) deals with the conservation of charge at a junction, stating that the total current entering equals the total current leaving. Kirchhoff's Second Law (Voltage Law) deals with the conservation of energy in a closed loop, stating that the algebraic sum of EMFs equals the algebraic sum of potential drops. KCL applies to points, while KVL applies to loops."
+    },
+    {
+      "q": "How do I choose the correct direction for currents and loops when applying Kirchhoff's Laws?",
+      "a": "You can assign arbitrary directions for currents in each branch. If your calculated current value turns out negative, it simply means the actual current flows in the opposite direction to your initial assumption. Similarly, loop traversal directions (clockwise or anti-clockwise) are arbitrary, but it's crucial to be consistent with your chosen direction when applying the sign conventions for EMFs and IR drops within that specific loop."
+    }
+  ],
+  "updated": "2026-06-05"
+}

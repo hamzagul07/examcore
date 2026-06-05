@@ -1,0 +1,140 @@
+{
+  "slug": "23-1-mass-defect-and-nuclear-binding-energy",
+  "topicCode": "23.1",
+  "title": "Mass defect and nuclear binding energy",
+  "paper": "P4",
+  "paperName": "Paper 4: A Level Structured Questions",
+  "status": "premium",
+  "summary": "Master mass defect, binding energy, and Einstein's E=mc² in nuclear reactions. Understand nuclear stability and calculate energy release for Cambridge Physics 9702.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Recall and apply Einstein's mass-energy equivalence (E=mc²) to nuclear processes.",
+    "Define and calculate the mass defect for a given nucleus using constituent nucleon masses.",
+    "Define nuclear binding energy and binding energy per nucleon, relating them to nuclear stability and calculating their values."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Nuclear Energy: Mass & Stability",
+    "summary": "In nuclear physics, the total mass of a stable nucleus is always slightly less than the sum of the masses of its individual protons and neutrons (mass defect). This 'missing' mass has been converted into immense energy, known as binding energy, which holds the nucleus together. The more binding energy per particle, the more stable the nucleus.",
+    "analogy": "Imagine building an incredibly strong, self-sustaining structure from individual components. Once perfectly assembled, the structure itself might *weigh slightly less* than the sum of its separate parts. This 'missing' mass has been converted into the immense energy that binds and holds the structure together, making it incredibly stable and resistant to being broken apart. This 'binding energy' is the energy you'd need to put *back in* to separate all the components again.",
+    "steps": [
+      "Understand why the mass of a nucleus is less than its parts (mass defect).",
+      "Apply Einstein's E=mc² to calculate the energy equivalent of this 'missing' mass.",
+      "Relate binding energy and binding energy per nucleon to the stability of different nuclei.",
+      "Practise calculations involving mass defect, binding energy, and unit conversions (u, kg, J, MeV)."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to a crucial topic in nuclear physics! We're diving into the fundamental concept that explains why nuclei hold together and how tremendous amounts of energy can be released in nuclear reactions. You'll explore the ideas of **mass defect** and **nuclear binding energy**, which are direct consequences of Einstein's famous mass-energy equivalence, **E=mc²**. Understanding these concepts is key to grasping nuclear stability, fusion, and fission."
+    },
+    {
+      "type": "heading",
+      "content": "The Nucleus: More Than Just Parts"
+    },
+    {
+      "type": "text",
+      "content": "A nucleus is composed of protons and neutrons, collectively called **nucleons**. You might intuitively expect the mass of a nucleus to simply be the sum of the masses of its individual constituent protons and neutrons. However, this is not the case in reality. When nucleons combine to form a stable nucleus, some mass is 'lost'."
+    },
+    {
+      "type": "heading",
+      "content": "Mass Defect (Δm)"
+    },
+    {
+      "type": "text",
+      "content": "The **mass defect (Δm)** is defined as the difference between the total mass of the individual, separated nucleons (protons and neutrons) and the actual measured mass of the nucleus. Crucially, the mass of a nucleus is *always less* than the sum of the masses of its constituent nucleons."
+    },
+    {
+      "type": "formula",
+      "content": "Δm = (Z * m_p + N * m_n) - m_nucleus"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n*   `Z` is the atomic number (number of protons)\n*   `N` is the number of neutrons (N = A - Z, where A is the mass number)\n*   `m_p` is the mass of a single proton\n*   `m_n` is the mass of a single neutron\n*   `m_nucleus` is the measured mass of the nucleus"
+    },
+    {
+      "type": "heading",
+      "content": "Nuclear Binding Energy (E_B)"
+    },
+    {
+      "type": "text",
+      "content": "So, where does this 'missing' mass go? It's converted directly into energy, according to Einstein's mass-energy equivalence principle. This energy is known as the **nuclear binding energy (E_B)**. It represents the energy required to completely separate a nucleus into its individual, unbound protons and neutrons. Conversely, it's also the energy released when these individual nucleons combine to form a nucleus."
+    },
+    {
+      "type": "formula",
+      "content": "E_B = Δm * c²"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n*   `E_B` is the nuclear binding energy (in Joules or MeV)\n*   `Δm` is the mass defect (in kg or u)\n*   `c` is the speed of light in vacuum (2.998 × 10⁸ m s⁻¹)"
+    },
+    {
+      "type": "heading",
+      "content": "Binding Energy per Nucleon"
+    },
+    {
+      "type": "text",
+      "content": "While total binding energy tells us how much energy holds a nucleus together, it doesn't directly tell us about its stability. A larger nucleus will naturally have a larger total binding energy simply because it has more nucleons. To compare the stability of different nuclei, we use **binding energy per nucleon**."
+    },
+    {
+      "type": "formula",
+      "content": "Binding Energy per Nucleon = E_B / A"
+    },
+    {
+      "type": "text",
+      "content": "Where `A` is the mass number (total number of nucleons). A higher binding energy per nucleon indicates a more stable nucleus. The binding energy per nucleon curve peaks around a mass number of A=56 (e.g., Iron-56), indicating that these nuclei are the most stable."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always ensure you use the *mass of the nucleus*, not the atomic mass. If atomic masses are provided, remember to subtract the mass of the electrons (Z * m_e) to obtain the nuclear mass.",
+        "Be meticulous with unit conversions. Mass defect is often calculated in atomic mass units (u). To use E=mc² for energy in Joules, convert Δm from u to kg (1 u ≈ 1.6605 × 10⁻²⁷ kg). Alternatively, you can directly convert 'u' to 'MeV' using the conversion factor 1 u = 931.5 MeV/c².",
+        "A higher value of **binding energy per nucleon** signifies a more stable nucleus, meaning more energy is required to break it apart.",
+        "Binding energy is the energy *released* when a nucleus forms from its constituent nucleons, or the energy *required* to separate them completely.",
+        "The peak of the binding energy per nucleon curve (around Iron-56) represents the most stable nuclei. Nuclei lighter than this can release energy via fusion, and heavier nuclei via fission."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the mass defect and the binding energy (in MeV) for a Helium-4 nucleus (⁴₂He).\n\nGiven:\nMass of proton (m_p) = 1.007276 u\nMass of neutron (m_n) = 1.008665 u\nMass of Helium-4 nucleus (m_He) = 4.001506 u\nSpeed of light (c) = 3.00 × 10⁸ m s⁻¹\n1 u = 1.6605 × 10⁻²⁷ kg\n1 eV = 1.60 × 10⁻¹⁹ J",
+      "solution": "**Step 1: Determine the number of protons and neutrons.**\nFor ⁴₂He:\nNumber of protons (Z) = 2\nNumber of neutrons (N) = Mass number (A) - Z = 4 - 2 = 2\n\n**Step 2: Calculate the total mass of the individual nucleons.**\nTotal mass of nucleons = (Z * m_p) + (N * m_n)\nTotal mass of nucleons = (2 * 1.007276 u) + (2 * 1.008665 u)\nTotal mass of nucleons = 2.014552 u + 2.017330 u\nTotal mass of nucleons = 4.031882 u\n\n**Step 3: Calculate the mass defect (Δm).**\nΔm = Total mass of nucleons - Mass of Helium-4 nucleus\nΔm = 4.031882 u - 4.001506 u\nΔm = 0.030376 u\n\n**Step 4: Convert the mass defect from atomic mass units (u) to kilograms (kg).**\nΔm (kg) = 0.030376 u * (1.6605 × 10⁻²⁷ kg / 1 u)\nΔm (kg) = 5.0435 × 10⁻²⁹ kg\n\n**Step 5: Calculate the binding energy (E_B) in Joules using E=mc².**\nE_B = Δm * c²\nE_B = (5.0435 × 10⁻²⁹ kg) * (3.00 × 10⁸ m s⁻¹)²\nE_B = (5.0435 × 10⁻²⁹ kg) * (9.00 × 10¹⁶ m² s⁻²)\nE_B = 4.53915 × 10⁻¹² J\n\n**Step 6: Convert the binding energy from Joules (J) to mega-electronvolts (MeV).**\nE_B (eV) = E_B (J) / (1.60 × 10⁻¹⁹ J/eV)\nE_B (eV) = (4.53915 × 10⁻¹² J) / (1.60 × 10⁻¹⁹ J/eV)\nE_B (eV) = 2.83697 × 10⁷ eV\n\nE_B (MeV) = E_B (eV) / 10⁶\nE_B (MeV) = 28.3697 MeV\n\n**Therefore, the mass defect is 0.030376 u, and the binding energy is approximately 28.4 MeV.**"
+    },
+    {
+      "type": "examTip",
+      "content": "Cambridge examiners often test your ability to handle units and subtle differences. Always check if you're given *nuclear mass* or *atomic mass*. If atomic mass is given, remember to subtract the total electron mass (Z × m_e) to get the nuclear mass before calculating mass defect. A common exam trick is to provide atomic masses, and students forget this crucial adjustment. Write down all steps and unit conversions clearly to avoid calculation errors and to gain method marks."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=23.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is mass defect in nuclear physics for Cambridge 9702?",
+      "a": "Mass defect is the difference between the total mass of the individual, separated protons and neutrons that make up a nucleus, and the actual measured mass of that nucleus. It's always a positive value, indicating that some mass is 'lost' when a nucleus forms. For comprehensive revision, explore our free Cambridge Physics 9702 course and practice with past papers."
+    },
+    {
+      "q": "How is nuclear binding energy related to stability?",
+      "a": "Nuclear binding energy is the energy equivalent of the mass defect, calculated using E=mc². It represents the energy that holds a nucleus together. To compare stability across different nuclei, we use 'binding energy per nucleon'. A higher binding energy per nucleon signifies a more stable nucleus, with the peak stability found around nuclei with mass numbers near 56 (like Iron-56)."
+    },
+    {
+      "q": "Why is E=mc² so important in nuclear physics?",
+      "a": "Einstein's E=mc² is fundamental because it establishes the equivalence of mass and energy. In nuclear physics, it explains how the 'missing' mass (mass defect) in a nucleus is converted into the immense binding energy that holds the nucleus together. This principle also governs the vast energy released in nuclear reactions like fission and fusion, where changes in mass are directly converted into energy."
+    }
+  ],
+  "updated": "2026-06-05"
+}

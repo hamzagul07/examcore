@@ -1,0 +1,141 @@
+{
+  "slug": "1-3-errors-and-uncertainties",
+  "topicCode": "1.3",
+  "title": "Errors and uncertainties",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master errors and uncertainties for Cambridge 9702. Learn systematic vs random errors, percentage uncertainty, and combining uncertainties with worked examples.",
+  "durationMin": 22,
+  "learningObjectives": [
+    "Distinguish between systematic and random errors, and explain how each affects measurements and how they can be reduced",
+    "Calculate absolute, fractional and percentage uncertainties, and combine them correctly for sums, differences, products and powers",
+    "Express a final result to an appropriate number of significant figures with its associated uncertainty in standard form"
+  ],
+  "simpleExplanation": {
+    "title": "Uncertainties made simple",
+    "summary": "Every measurement you take has some doubt attached to it — that doubt is the uncertainty. Systematic errors shift all your readings in the same direction, while random errors scatter them around the true value. Once you know the type of error, you can combine uncertainties using straightforward rules to give a reliable final answer.",
+    "analogy": "Imagine throwing darts at a board. Systematic error is like a wonky sight that makes every dart land consistently to the left — all darts are wrong in the same way. Random error is like an unsteady hand — darts land scattered around the target. A good experiment has neither: darts cluster tightly on the bullseye.",
+    "steps": [
+      "Identify whether an error is systematic (consistent offset) or random (scatter) and state how you would reduce it",
+      "Calculate the absolute uncertainty for a single reading (usually half the smallest scale division, or the stated instrument precision)",
+      "Apply the correct combining rule: add absolute uncertainties for sums/differences; add percentage uncertainties for products/quotients; multiply percentage uncertainty by the power for powers and roots",
+      "Round your final answer so it has the same number of decimal places as its absolute uncertainty, and check significant figures are consistent throughout"
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In every real experiment, your measured value will never be perfectly exact. Cambridge 9702 expects you to understand *why* this happens and *how* to quantify it. Topic 1.3 covers two distinct concepts: **errors** (the cause of inaccuracy) and **uncertainties** (the numerical range around your result). Examiners frequently award marks here that students throw away simply by not knowing the combining rules — this lesson makes sure that does not happen to you."
+    },
+    {
+      "type": "heading",
+      "content": "Systematic vs Random Errors"
+    },
+    {
+      "type": "text",
+      "content": "A **systematic error** causes every reading to deviate from the true value by the same amount and in the same direction. Common sources include a zero error on a digital balance, a micrometer that is not zeroed, or heat loss that is consistently ignored in a calorimetry experiment. Systematic errors affect the **accuracy** of a result — the closeness to the true value — but they do *not* show up when you repeat the experiment, because the same offset appears every time. You reduce them by careful instrument calibration and improved experimental design.\n\nA **random error** causes readings to scatter unpredictably above and below the true value. Sources include reading a scale at a slightly different angle each time (parallax), fluctuations in a power supply, or human reaction time when using a stopwatch. Random errors affect **precision** — the consistency of repeated readings. You reduce them by taking multiple repeats and calculating a mean; the scatter decreases as the number of readings increases.\n\nKey distinction for the exam: **accuracy** relates to systematic error; **precision** relates to random error. A set of readings can be precise but inaccurate (all close together but all wrong), or accurate but imprecise (average is correct but individual values scatter widely)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Systematic errors shift the mean away from the true value; they cannot be reduced by repeating the experiment.",
+        "Random errors cause scatter around the mean; averaging repeated readings reduces their effect.",
+        "Accuracy describes how close a result is to the true value (linked to systematic error); precision describes the spread of repeated results (linked to random error).",
+        "A zero error is a classic systematic error — always check and record the zero reading before taking measurements.",
+        "Repeating readings and calculating a mean reduces the random uncertainty by a factor of √n, where n is the number of repeats.",
+        "On Paper 2, if asked to 'suggest one source of random error', name a specific physical cause (e.g. parallax when reading a ruler), not just 'human error'."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Expressing Uncertainties"
+    },
+    {
+      "type": "text",
+      "content": "The **absolute uncertainty** Δx is expressed in the same unit as the measurement x. For a single reading from an analogue instrument, it is conventionally taken as half the smallest scale division. For a digital instrument, it is ±1 in the last displayed digit. When you take repeated readings, the absolute uncertainty is typically taken as half the range (i.e. half the difference between the largest and smallest values).\n\nThe **fractional uncertainty** is the ratio Δx/x (dimensionless). Multiply by 100 to obtain the **percentage uncertainty**: (Δx/x) × 100 %.\n\nA result is quoted as: **x ± Δx** with both values given to the same number of decimal places, e.g. (4.52 ± 0.03) cm."
+    },
+    {
+      "type": "formula",
+      "content": "Percentage uncertainty = (Δx / x) × 100 %\n\nCombining rules:\n• Addition / Subtraction:   Δz = Δa + Δb   (add absolute uncertainties)\n• Multiplication / Division: Δz/z = Δa/a + Δb/b   (add fractional uncertainties)\n• Power / Root:   Δz/z = |n| × (Δa/a)   where z = aⁿ"
+    },
+    {
+      "type": "heading",
+      "content": "Combining Uncertainties — the Rules in Detail"
+    },
+    {
+      "type": "text",
+      "content": "**Sums and differences:** When two quantities are added or subtracted, *absolute* uncertainties always add. This means subtracting two nearly equal quantities is particularly dangerous — even though the numbers are close, the absolute uncertainty remains the same size and therefore the *percentage* uncertainty can become very large.\n\n**Products and quotients:** When quantities are multiplied or divided, *fractional* (or equivalently percentage) uncertainties add. So if you calculate density = mass / volume, the percentage uncertainty in density equals the percentage uncertainty in mass plus the percentage uncertainty in volume.\n\n**Powers and roots:** When a quantity is raised to a power n (including fractional powers for roots), multiply its fractional uncertainty by |n|. For example, if you square a length, the percentage uncertainty in the area is twice the percentage uncertainty in the length. A square root halves the percentage uncertainty.\n\n**Mixed expressions:** Break the expression into steps, applying the correct rule at each stage. Never mix absolute and percentage uncertainties in the same calculation step."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student measures the diameter of a sphere using a micrometer screw gauge. Five readings give: 12.40, 12.38, 12.42, 12.39, 12.41 mm. She then calculates the volume of the sphere using V = (4/3)π(d/2)³. Determine (a) the mean diameter and its absolute uncertainty, (b) the percentage uncertainty in the diameter, and (c) the percentage uncertainty in the calculated volume.",
+      "solution": "Step 1 — Find the mean diameter:\nMean d = (12.40 + 12.38 + 12.42 + 12.39 + 12.41) / 5\n       = 62.00 / 5 = 12.40 mm\n\nStep 2 — Absolute uncertainty from the range:\nRange = 12.42 − 12.38 = 0.04 mm\nAbsolute uncertainty Δd = range / 2 = 0.02 mm\nSo d = (12.40 ± 0.02) mm\n\nStep 3 — Percentage uncertainty in d:\n% unc(d) = (0.02 / 12.40) × 100 % = 0.16 %\n\nStep 4 — Percentage uncertainty in volume:\nV = (4/3)π(d/2)³ = (π/6) d³\nThe volume is proportional to d³, so apply the power rule with n = 3:\n% unc(V) = 3 × % unc(d) = 3 × 0.16 % = 0.48 %\n\nFinal answer: The percentage uncertainty in the volume is 0.48 % (≈ 0.5 %).\nNote: the constant (π/6) contributes zero uncertainty — constants are exact."
+    },
+    {
+      "type": "examTip",
+      "content": "Watch out for the subtraction trap on Paper 2: if a question asks you to find the uncertainty in a *difference* (e.g. final temperature minus initial temperature), you must *add* the absolute uncertainties of both readings — not subtract them. Students who subtract end up with a tiny (or even zero) uncertainty, which is physically meaningless and scores no marks. Always add absolute uncertainties for sums and differences."
+    },
+    {
+      "type": "heading",
+      "content": "Significant Figures and Final Presentation"
+    },
+    {
+      "type": "text",
+      "content": "Cambridge mark schemes penalise inconsistent significant figures. Follow these rules every time:\n\n1. The uncertainty should almost always be stated to **1 significant figure** (occasionally 2 if the leading digit is 1).\n2. The measured value must be rounded so its last digit aligns with the uncertainty — i.e. it is quoted to the same number of decimal places as the uncertainty.\n3. Include units on both the value and the uncertainty, or write the unit once outside the bracket: e.g. (3.46 ± 0.02) × 10⁻³ kg.\n4. Do not quote more significant figures in your answer than are justified by the uncertainty.\n\nExample: If your calculation gives 0.03847 m and the uncertainty is 0.004 m, the correct presentation is (0.038 ± 0.004) m — not 0.03847 m or 0.04 m."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always state uncertainty to 1 significant figure (2 s.f. only if the first digit is 1 and context demands it).",
+        "The final answer must be rounded to match the decimal places of the uncertainty — never quote more precision than your uncertainty allows.",
+        "Constants such as π, g (if given), and conversion factors carry no uncertainty and are ignored when combining.",
+        "For a power rule, use the magnitude |n|: e.g. for z = a⁻², the percentage uncertainty in z is 2 × percentage uncertainty in a.",
+        "When a quantity appears more than once in a formula (e.g. d³ = d × d × d), treat it as a power — do not add the percentage uncertainty of d three times as if they were independent.",
+        "On Paper 1 (MCQ), percentage uncertainty questions almost always require you to identify which term dominates — focus on the term with the largest individual percentage uncertainty."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In a Paper 1 style question: A student measures resistance using R = V/I. The voltmeter reads V = (6.0 ± 0.2) V and the ammeter reads I = (0.30 ± 0.01) A. Which of the following is the percentage uncertainty in R?\nA  3.3 %     B  6.7 %     C  3.0 %     D  10 %",
+      "solution": "Step 1 — Find the percentage uncertainty in V:\n% unc(V) = (0.2 / 6.0) × 100 % = 3.3 %\n\nStep 2 — Find the percentage uncertainty in I:\n% unc(I) = (0.01 / 0.30) × 100 % = 3.3 %\n\nStep 3 — R = V/I is a quotient, so add percentage uncertainties:\n% unc(R) = 3.3 % + 3.3 % = 6.7 %\n\nCorrect answer: B  6.7 %\n\nCommon mistake: Students sometimes add the absolute uncertainties (0.2 + 0.01 = 0.21) or choose the larger percentage uncertainty alone (3.3 %). Neither is correct for a quotient."
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 2, if a question asks you to 'show that the percentage uncertainty in [quantity] is approximately X %', work through the full combining calculation and confirm your answer matches X to within rounding. Examiners expect to see every percentage uncertainty written out explicitly before addition — do not skip steps, even if the arithmetic feels obvious."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do you calculate percentage uncertainty in Cambridge 9702 Physics?",
+      "a": "To calculate percentage uncertainty in 9702, divide the absolute uncertainty by the measured value and multiply by 100: (Δx / x) × 100 %. When combining quantities, add percentage uncertainties for products and quotients, and multiply by the power for quantities raised to a power. Our free course walks through every combining rule with Cambridge-style worked examples and past paper practice questions."
+    },
+    {
+      "q": "What is the difference between systematic error and random error in A Level Physics?",
+      "a": "A systematic error causes all readings to be consistently too high or too low by the same amount — it affects accuracy and cannot be reduced by repeating measurements. A random error causes readings to scatter unpredictably around the true value — it affects precision and can be reduced by taking multiple readings and averaging. Cambridge 9702 examiners expect you to name a specific physical cause for each type, not just write 'human error'. Our premium lesson on Topic 1.3 covers this distinction in full with exam-focused key points."
+    },
+    {
+      "q": "How should I write uncertainties in my Cambridge Physics exam answers?",
+      "a": "Cambridge mark schemes expect uncertainties to be stated to 1 significant figure, with the measured value rounded to the same number of decimal places. For example, write (4.52 ± 0.03) cm, not 4.522 ± 0.025 cm. Always include units and, for very large or small values, use standard form with the uncertainty in the same bracket. Our 9702 free revision course includes examiner tips and mark scheme commentary to help you present answers exactly as required."
+    }
+  ],
+  "updated": "2026-06-05"
+}

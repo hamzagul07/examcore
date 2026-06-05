@@ -1,0 +1,132 @@
+{
+  "slug": "1-4-scalars-and-vectors",
+  "topicCode": "1.4",
+  "title": "Scalars and vectors",
+  "paper": "P1/P2",
+  "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "status": "premium",
+  "summary": "Master scalars and vectors for Cambridge 9702 Physics. Learn addition, resolution, and worked examples aligned to the AS Level syllabus.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Distinguish between scalar and vector quantities and classify common physical quantities correctly",
+    "Add and subtract vectors using scale drawings and the parallelogram or triangle of forces method",
+    "Resolve a vector into two perpendicular components and use trigonometry to find their magnitudes"
+  ],
+  "simpleExplanation": {
+    "title": "Scalars vs Vectors — the quick version",
+    "summary": "A scalar quantity has only a size (magnitude), while a vector has both a size and a direction. When you add vectors, direction matters — you cannot simply add the numbers together like you would with scalars. Resolving vectors into components is the key skill that unlocks almost every mechanics problem at A Level.",
+    "analogy": "Think of scalars like a price tag — £5 is £5, no direction needed. Vectors are like giving someone directions: '5 km north' is completely different from '5 km east', even though the distance is the same.",
+    "steps": [
+      "Learn the classic examples: scalars include mass, speed, temperature and energy; vectors include force, velocity, acceleration and displacement.",
+      "To add two vectors, draw them tip-to-tail (or use the parallelogram rule) and find the resultant with a scale drawing or trigonometry.",
+      "To resolve a vector F at angle θ to the horizontal, the horizontal component is F cos θ and the vertical component is F sin θ.",
+      "Always state the direction of a resultant vector — Cambridge mark schemes regularly award a separate mark for the direction alongside the magnitude."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every quantity you meet in physics belongs to one of two families: **scalars** or **vectors**. Getting this distinction right is not just bookwork — it determines whether your calculations are correct or completely wrong. A surprising number of AS marks are lost each year because students add velocities like speeds, or forget to state a direction. This lesson gives you the full toolkit: classification, addition, subtraction, and the all-important skill of **resolving vectors into perpendicular components**."
+    },
+    {
+      "type": "heading",
+      "content": "Scalars and vectors — the core definitions"
+    },
+    {
+      "type": "text",
+      "content": "A **scalar** quantity is fully described by its magnitude (size) alone. Examples you must know: mass (kg), speed (m s⁻¹), distance (m), time (s), temperature (K or °C), energy (J), power (W), pressure (Pa), and electric charge (C).\n\nA **vector** quantity requires both a magnitude and a direction to describe it completely. Examples: displacement (m), velocity (m s⁻¹), acceleration (m s⁻²), force (N), momentum (kg m s⁻¹), electric field strength (N C⁻¹), and gravitational field strength (N kg⁻¹).\n\nA useful mental check: if reversing the direction of a quantity would change its physical meaning (e.g. a force pushing left vs. pushing right), it is a vector."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Speed is a scalar; velocity is the vector equivalent — they share the same SI unit (m s⁻¹) but velocity requires a stated direction.",
+        "Distance is a scalar; displacement is the vector equivalent — displacement is the straight-line distance from start to finish, with direction.",
+        "When adding vectors, only add components that act along the same direction; never add magnitudes from different directions directly.",
+        "The **resultant** of two or more vectors is the single vector that has the same effect as all the original vectors acting together.",
+        "The **equilibrant** is equal in magnitude but opposite in direction to the resultant — it is the force needed to keep a system in equilibrium.",
+        "On Paper 1, classifying a quantity as scalar or vector is a guaranteed question type — learn all syllabus examples without exception."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Adding vectors: triangle and parallelogram methods"
+    },
+    {
+      "type": "text",
+      "content": "**Triangle of vectors method:** Draw the first vector to scale. From the tip of that vector, draw the second vector to the same scale. The resultant is the vector drawn from the tail of the first to the tip of the second. Use a ruler and protractor for scale drawing questions, and always state the scale used.\n\n**Parallelogram rule:** Place both vectors tail-to-tail. Complete the parallelogram. The diagonal from the shared tail gives the resultant in both magnitude and direction.\n\nFor two vectors at right angles to each other, use Pythagoras' theorem for the magnitude and the inverse tangent (arctan) for the angle:\n\n  |R| = √(A² + B²)   and   θ = arctan(B / A)\n\nFor vectors at any other angle, use the cosine rule or a careful scale drawing."
+    },
+    {
+      "type": "formula",
+      "content": "Resultant magnitude (perpendicular vectors): R = √(Fₓ² + Fᵧ²)\nDirection: θ = arctan(Fᵧ / Fₓ)\nResolution: Fₓ = F cos θ,  Fᵧ = F sin θ"
+    },
+    {
+      "type": "heading",
+      "content": "Resolving vectors into components"
+    },
+    {
+      "type": "text",
+      "content": "Any vector can be split into two **perpendicular components**. This is the reverse of addition. For a vector of magnitude F at an angle θ measured from the horizontal:\n\n• **Horizontal component:** Fₓ = F cos θ\n• **Vertical component:** Fᵧ = F sin θ\n\nThe choice of angle matters enormously. If θ is measured from the vertical instead, the components swap (cos and sin exchange roles). Always draw a clear diagram and label θ explicitly before writing any equation.\n\nThis technique is essential for inclined planes, equilibrium problems, and projectile motion — so practise it until it is completely automatic."
+    },
+    {
+      "type": "workedExample",
+      "question": "A ship's engine exerts a force of 12 kN due north. A current exerts a force of 5.0 kN due east on the same ship. Calculate the magnitude and direction of the resultant force on the ship.",
+      "solution": "Step 1 — Identify the two vectors and confirm they are perpendicular.\n  Force A = 12 kN north (vertical on diagram)\n  Force B = 5.0 kN east (horizontal on diagram)\n  The angle between them is 90°, so use Pythagoras.\n\nStep 2 — Calculate the magnitude of the resultant.\n  R = √(12² + 5.0²)\n  R = √(144 + 25)\n  R = √169\n  R = 13 kN\n\nStep 3 — Calculate the direction using arctan.\n  tan θ = opposite / adjacent = 5.0 / 12\n  θ = arctan(5.0 / 12)\n  θ = 22.6° ≈ 23°\n\nStep 4 — State the full answer with direction.\n  The resultant force is 13 kN at 23° east of north (i.e. on a bearing of 023°).\n\nExaminer note: The mark for direction is separate from the mark for magnitude. Always give both."
+    },
+    {
+      "type": "examTip",
+      "content": "Cambridge examiners consistently award a dedicated mark for the direction of a resultant. Writing '13 kN' without a direction will cost you a mark every single time. Make it a habit: magnitude first, direction second, always. Also, in scale drawing questions, explicitly state your scale (e.g. '1 cm represents 2 N') and measure your resultant from the diagram — do not try to calculate it instead."
+    },
+    {
+      "type": "workedExample",
+      "question": "A force of 40 N acts on an object at an angle of 30° above the horizontal. Find the horizontal and vertical components of this force.",
+      "solution": "Step 1 — Draw a right-angled triangle with the 40 N force as the hypotenuse, at 30° to the horizontal.\n\nStep 2 — Horizontal component (adjacent side):\n  Fₓ = F cos θ = 40 × cos 30°\n  Fₓ = 40 × 0.866\n  Fₓ = 34.6 N ≈ 35 N (horizontal)\n\nStep 3 — Vertical component (opposite side):\n  Fᵧ = F sin θ = 40 × sin 30°\n  Fᵧ = 40 × 0.500\n  Fᵧ = 20 N (vertical, upwards)\n\nStep 4 — Check: Fₓ² + Fᵧ² = 34.6² + 20² = 1197 + 400 = 1597 ≈ 40² = 1600 ✓ (small rounding difference is acceptable)."
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, a common trap is listing 'weight' as a scalar. Weight is a force — it acts downward and is therefore a vector. Similarly, 'velocity' and 'speed' look interchangeable but are not: an object travelling in a circle at constant speed has a continuously changing velocity because direction changes. These distinctions appear in MCQs almost every year."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For scale drawing questions in P2, use a sharp pencil, a ruler, and a protractor — and always write down your scale clearly.",
+        "When resolving, the two components must be perpendicular to each other; horizontal and vertical is the most common choice, but along and perpendicular to a slope is often more efficient on inclined plane problems.",
+        "To subtract vector B from vector A, reverse the direction of B (to get −B) and then add: A + (−B).",
+        "A vector quantity must include a unit, a magnitude, and a direction — missing any one of these means the answer is incomplete.",
+        "The resultant of two equal and opposite vectors is zero — this is the condition for translational equilibrium."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What are the most commonly tested scalar and vector quantities in Cambridge 9702 Physics?",
+      "a": "Cambridge 9702 regularly tests whether students can correctly classify quantities such as speed vs velocity, distance vs displacement, and mass vs weight. Scalars to know include mass, speed, energy, temperature, pressure, and power. Vectors to know include force, velocity, acceleration, displacement, momentum, and gravitational field strength. Our free revision course covers all of these with past-paper examples so you can practise classification questions instantly."
+    },
+    {
+      "q": "How do I add two vectors that are not at right angles in Cambridge A Level Physics?",
+      "a": "If the two vectors are not perpendicular, you have two reliable options. First, use a scale drawing: draw the vectors tip-to-tail to a clearly stated scale, then measure the resultant with a ruler and protractor. Second, use the cosine rule: R² = A² + B² − 2AB cos θ, where θ is the angle between the vectors when placed tail-to-tail. For Paper 2 questions, a neat scale drawing is often the quickest route and Cambridge rewards it fully if your scale and measurement are accurate."
+    },
+    {
+      "q": "Why is resolving vectors into components so important for AS Level Physics 9702?",
+      "a": "Resolving vectors is arguably the single most useful technique in AS Level mechanics. It lets you break any angled force or velocity into horizontal and vertical parts, which you can then treat independently using Newton's laws or equations of motion. Topics like equilibrium, inclined planes, and projectile motion all rely on this skill. Our premium lessons walk you through each application step by step, with worked examples drawn from real Cambridge past papers."
+    }
+  ],
+  "updated": "2026-06-05"
+}

@@ -125,6 +125,14 @@ export const PAGE_KEYWORDS: Record<string, readonly string[]> = {
     'self marking accuracy',
     'past paper marking data',
   ],
+  '/courses': [
+    'free Cambridge courses',
+    'A Level notes free',
+    '9702 9700 9709 course',
+    'ZNotes alternative free',
+    'Cambridge syllabus topics',
+    'topic by topic revision',
+  ],
   '/blog': [
     'Cambridge exam tips',
     'past paper revision blog',

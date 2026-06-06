@@ -138,7 +138,7 @@ function snapshotsFromSections(sections: LessonSection[]): { title: string; body
       }
     }
   }
-  return cards.slice(0, 6)
+  return cards.slice(0, 4)
 }
 
 export function enrichLessonVisual(

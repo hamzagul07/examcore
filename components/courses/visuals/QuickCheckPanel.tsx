@@ -16,7 +16,7 @@ export function QuickCheckPanel({ title, items }: { title: string; items: QuickC
       accent="success"
       className="course-quick-check"
     >
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
         {items.map((item, i) => {
           const show = revealed[i]
           return (

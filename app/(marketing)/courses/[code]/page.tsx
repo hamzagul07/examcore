@@ -2,15 +2,15 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
-import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
 import {
   getCourseLessons,
   getCourseSubject,
   getCourseSubjectCodes,
 } from '@/lib/courses'
+import { buildCourseSubjectSeo } from '@/lib/courses/seo'
 import { CourseSidebar } from '@/components/courses/CourseSidebar'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
-import { PageJsonLd } from '@/components/seo/PageJsonLd'
+import { CourseSubjectJsonLd } from '@/components/seo/CourseSubjectJsonLd'
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -22,20 +22,12 @@ export async function generateMetadata({ params }: Props) {
   const { code } = await params
   const course = getCourseSubject(code)
   if (!course) return {}
-  const title = formatSerpTitle(`Free ${course.name} (${code}) course — Cambridge ${course.level}`, true)
-  const description = formatMetaDescription(
-    `Free ${course.level} ${course.name} course for syllabus ${code}. ${course.lessonCount} topics, step-by-step notes, exam tips, and past-paper marking — 100% free.`
-  )
+  const seo = buildCourseSubjectSeo(course, course.lessonCount)
   return createPageMetadata({
-    title,
-    description,
+    title: seo.title,
+    description: seo.description,
     path: course.path,
-    keywords: [
-      `free ${code} course`,
-      `${course.name} notes free`,
-      `Cambridge ${code} revision`,
-      `A Level ${course.name} topics`,
-    ],
+    keywords: seo.keywords,
   })
 }
 
@@ -46,18 +38,16 @@ export default async function CourseSubjectPage({ params }: Props) {
 
   const lessons = getCourseLessons(code)
   const firstPublished = lessons.find((l) => l.status === 'published') ?? lessons[0]
+  const seo = buildCourseSubjectSeo(course, course.lessonCount)
 
   return (
     <MarketingPageShell>
-      <PageJsonLd
-        path={course.path}
-        title={`Free ${course.name} ${code} course`}
-        description={`Syllabus-aligned ${course.level} course with ${course.lessonCount} topics.`}
-        breadcrumbs={[
-          { name: 'Home', path: '/' },
-          { name: 'Courses', path: '/courses' },
-          { name: `${course.name} ${code}`, path: course.path },
-        ]}
+      <CourseSubjectJsonLd
+        subjectCode={code}
+        subjectName={course.name}
+        level={course.level}
+        description={seo.description}
+        lessons={lessons}
       />
 
       <MarketingHero
@@ -87,8 +77,13 @@ export default async function CourseSubjectPage({ params }: Props) {
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
           <div className="min-w-0">
             <h2 className="mb-4 text-xl font-semibold text-[var(--ec-text-primary)]">
-              How this course works
+              Free Cambridge {course.code} topics — how this course works
             </h2>
+            <p className="mb-6 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+              Every topic below is a separate page optimised for searches like &ldquo;{code}{' '}
+              {course.name.toLowerCase()} revision&rdquo; and &ldquo;free {code} notes&rdquo;. Pick
+              your syllabus point, learn visually, then mark a past paper.
+            </p>
             <ol className="mb-8 list-decimal space-y-3 pl-5 text-[var(--ec-text-secondary)]">
               <li>Pick a topic from the syllabus list — grouped by exam paper.</li>
               <li>Read the lesson (full notes where published, outline + tips everywhere else).</li>

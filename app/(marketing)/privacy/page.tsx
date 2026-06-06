@@ -67,8 +67,7 @@ export default function PrivacyPage() {
             <p>We rely on trusted providers to run MarkScheme:</p>
             <ul className="list-disc space-y-2 pl-5">
               <li><strong className="text-[var(--ec-text-primary)]">Supabase</strong> — authentication, database, and file storage.</li>
-              <li><strong className="text-[var(--ec-text-primary)]">Anthropic</strong> — AI marking and MarkScheme study chat.</li>
-              <li><strong className="text-[var(--ec-text-primary)]">Google (Gemini)</strong> — document extraction and OCR for uploaded scripts.</li>
+              <li><strong className="text-[var(--ec-text-primary)]">Google (Gemini)</strong> — AI marking, study chat, document extraction, and OCR for uploaded scripts.</li>
               <li><strong className="text-[var(--ec-text-primary)]">Vercel</strong> — website hosting and infrastructure.</li>
             </ul>
             <p className="mt-4">

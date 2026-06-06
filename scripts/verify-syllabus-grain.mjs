@@ -4,6 +4,7 @@
  */
 
 import { GoogleGenAI } from '@google/genai'
+import { GEMINI_TEXT_MODEL } from '../lib/ai/gemini-models.mjs'
 import { readFileSync, writeFileSync, existsSync } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
@@ -88,7 +89,7 @@ Return ONLY JSON:
 Count bullets at the finest level Cambridge uses for teaching/assessment — not chapter titles alone.`
 
     const response = await genAI.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: GEMINI_TEXT_MODEL,
       contents: [
         {
           role: 'user',

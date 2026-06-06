@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import Anthropic from '@anthropic-ai/sdk'
+import { generateGeminiText } from '@/lib/ai/gemini-text'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { buildLineReferences, type OcrLine } from '@/lib/examiner-ink-positioning'
 import { extractJSON } from '@/lib/marking/json'
@@ -14,14 +14,12 @@ import {
   uploadAnswerPhoto,
   ocrImage,
   questionPhotoOcrPrompt,
-  anthropic,
 } from '@/lib/marking/mark-runner'
 import { buildDetectionPrompt } from '@/lib/marking/prompts'
 import { reconcileDetectionWithQuestion } from '@/lib/marking/subject-inference'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
-import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
 import type { MarkIntent, MarkingMode, MarkSchemeRow } from '@/lib/marking/types'
 
@@ -65,24 +63,10 @@ async function runPaperDetection(
   questionText: string,
   subjectHint?: string
 ): Promise<Record<string, unknown>> {
-  const detectionResponse = await withAnthropicRetry(
-    () =>
-      anthropic.messages.create({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 500,
-        messages: [
-          {
-            role: 'user',
-            content: buildDetectionPrompt(ocrSnippet, questionText, subjectHint),
-          },
-        ],
-      }),
-    { label: 'claude-detection' }
+  const detectionText = await generateGeminiText(
+    buildDetectionPrompt(ocrSnippet, questionText, subjectHint),
+    { maxOutputTokens: 500 }
   )
-  const detectionText =
-    detectionResponse.content[0].type === 'text'
-      ? detectionResponse.content[0].text
-      : ''
   try {
     return extractJSON(detectionText) as Record<string, unknown>
   } catch {

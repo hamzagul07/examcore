@@ -9,6 +9,7 @@
 
 import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
+import { GEMINI_TEXT_MODEL } from '../lib/ai/gemini-models.mjs'
 import { writeFileSync, readFileSync, existsSync } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
@@ -109,7 +110,7 @@ async function classifyPdf(msPath, retries = 3) {
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
       const response = await genAI.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: GEMINI_TEXT_MODEL,
         contents: [
           {
             role: 'user',

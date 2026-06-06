@@ -1,8 +1,7 @@
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { extractJSON } from '@/lib/marking/json'
 import { buildPracticeQuestionExtractPrompt } from '@/lib/marking/prompts'
-import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
-import { anthropic } from '@/lib/marking/mark-runner'
+import { generateGeminiText } from '@/lib/ai/gemini-text'
 
 export type PracticeQuestionExtract = {
   question_found: boolean
@@ -37,26 +36,10 @@ export async function extractPracticeQuestionFromScript(
   subjectCode: string
 ): Promise<PracticeQuestionExtract> {
   const subjectName = SUBJECT_CODE_MAP[subjectCode] || 'A-Level'
-  const response = await withAnthropicRetry(
-    () =>
-      anthropic.messages.create({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 2000,
-        messages: [
-          {
-            role: 'user',
-            content: buildPracticeQuestionExtractPrompt(
-              ocrText,
-              subjectName,
-              subjectCode
-            ),
-          },
-        ],
-      }),
-    { label: 'claude-practice-question-extract' }
+  const text = await generateGeminiText(
+    buildPracticeQuestionExtractPrompt(ocrText, subjectName, subjectCode),
+    { maxOutputTokens: 2000 }
   )
-  const text =
-    response.content[0].type === 'text' ? response.content[0].text : ''
   const parsed = parsePracticeQuestionExtract(text)
   if (!parsed) {
     return { question_found: false, question_text: '', answer_text: ocrText }

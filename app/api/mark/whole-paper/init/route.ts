@@ -5,16 +5,15 @@ import {
   parseWholePaperSegment,
 } from '@/lib/marking/whole-paper'
 import {
-  anthropic,
   ocrAnswerBufferWithBoxes,
   supabaseAdmin,
   uploadAnswerPhoto,
 } from '@/lib/marking/mark-runner'
+import { generateGeminiText } from '@/lib/ai/gemini-text'
 import {
   enrichSegmentsWithPages,
   type StoredPageOcr,
 } from '@/lib/marking/whole-paper-pages'
-import { withAnthropicRetry } from '@/lib/marking/gemini-retry'
 import {
   checkMarkAllowance,
   allowanceForResponse,
@@ -178,22 +177,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const segResponse = await withAnthropicRetry(
-      () =>
-        anthropic.messages.create({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 4000,
-          messages: [
-            {
-              role: 'user',
-              content: buildWholePaperSegmentPrompt(combinedOcr),
-            },
-          ],
-        }),
-      { label: 'claude-whole-paper-segment' }
+    const segText = await generateGeminiText(
+      buildWholePaperSegmentPrompt(combinedOcr),
+      { maxOutputTokens: 4000 }
     )
-    const segText =
-      segResponse.content[0].type === 'text' ? segResponse.content[0].text : ''
     const segments = parseWholePaperSegment(segText)
 
     if (!segments || segments.questions.length === 0) {

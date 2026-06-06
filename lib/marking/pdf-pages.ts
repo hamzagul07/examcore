@@ -1,4 +1,5 @@
 import { GoogleGenAI } from '@google/genai'
+import { GEMINI_TEXT_MODEL } from '@/lib/ai/gemini-text'
 import { withGeminiRetry } from './gemini-retry'
 import { parseOcrAnswer } from './ocr'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
@@ -33,7 +34,7 @@ export async function ocrPdfToPages(
   const response = await withGeminiRetry(
     () =>
       genAI.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: GEMINI_TEXT_MODEL,
         contents: [
           {
             role: 'user',

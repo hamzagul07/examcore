@@ -1,5 +1,11 @@
 import { NextRequest } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
+import type { Content } from '@google/genai'
+import {
+  generateGeminiWithContents,
+  isGeminiConfigured,
+  streamGeminiWithContents,
+  toGeminiContents,
+} from '@/lib/ai/gemini-text'
 import { createClient, createServiceClient } from '@/lib/supabase-server'
 import { buildSystemPrompt } from '@/lib/omni-ai/system-prompts'
 import {
@@ -26,9 +32,6 @@ import { hourlyRateLimitHeaders } from '@/lib/http/rate-limit-response'
 
 export const maxDuration = 60
 
-const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY
-const anthropic = ANTHROPIC_KEY ? new Anthropic({ apiKey: ANTHROPIC_KEY }) : null
-
 const OMNI_WINDOW_MS = 60 * 60 * 1000
 const OMNI_MAX_PER_WINDOW = 40
 const ipBuckets = new Map<string, number[]>()
@@ -49,8 +52,6 @@ function checkRateLimit(ip: string): boolean {
 function sse(data: unknown): string {
   return `data: ${JSON.stringify(data)}\n\n`
 }
-
-type AnthropicMessage = Anthropic.MessageParam
 
 export async function POST(req: NextRequest) {
   const ip =
@@ -164,13 +165,13 @@ export async function POST(req: NextRequest) {
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        if (!anthropic) {
+        if (!isGeminiConfigured()) {
           controller.enqueue(
             new TextEncoder().encode(
               sse({
                 type: 'done',
                 cleanText:
-                  'Omni-AI is not configured (missing API key). Add ANTHROPIC_API_KEY to enable streaming responses.',
+                  'Omni-AI is not configured (missing API key). Add GEMINI_API_KEY to enable streaming responses.',
                 action: { type: 'render_upload' },
               })
             )
@@ -179,48 +180,39 @@ export async function POST(req: NextRequest) {
           return
         }
 
-        const anthropicMessages: AnthropicMessage[] = [
-          ...history.map((m) => ({
-            role: m.role as 'user' | 'assistant',
-            content: m.content,
-          })),
-          { role: 'user', content: query },
+        const contents: Content[] = [
+          ...toGeminiContents(
+            history.map((m) => ({
+              role: m.role as 'user' | 'assistant',
+              content: m.content,
+            }))
+          ),
+          { role: 'user', parts: [{ text: query }] },
         ]
 
         const toolsEnabled = markingAwareness
-        let messagesForStream = anthropicMessages
 
         if (toolsEnabled) {
           for (let round = 0; round < 3; round++) {
-            const toolResponse = await anthropic.messages.create({
-              model: 'claude-sonnet-4-6',
-              max_tokens: 1500,
+            const toolResponse = await generateGeminiWithContents(contents, {
               system: systemPrompt,
-              messages: messagesForStream,
+              maxOutputTokens: 1500,
               tools: OMNI_MARKING_TOOLS,
             })
 
-            const toolUses = toolResponse.content.filter(
-              (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use'
-            )
+            const toolUses = toolResponse.functionCalls ?? []
+            if (toolUses.length === 0) break
+            if (!user) break
 
-            if (toolUses.length === 0) {
-              break
+            const modelParts = toolResponse.candidates?.[0]?.content?.parts
+            if (modelParts?.length) {
+              contents.push({ role: 'model', parts: modelParts })
             }
 
-            if (!user) {
-              break
-            }
-
-            messagesForStream = [
-              ...messagesForStream,
-              { role: 'assistant', content: toolResponse.content },
-            ]
-
-            const toolResults: Anthropic.ToolResultBlockParam[] = []
-            for (const tu of toolUses) {
-              if (tu.name === 'fetch_recent_attempts') {
-                const input = (tu.input || {}) as {
+            const functionResponseParts = []
+            for (const call of toolUses) {
+              if (call.name === 'fetch_recent_attempts') {
+                const input = (call.args || {}) as {
                   subject_code?: string
                   topic_code?: string
                   limit?: number
@@ -230,55 +222,44 @@ export async function POST(req: NextRequest) {
                   user.id,
                   input
                 )
-                toolResults.push({
-                  type: 'tool_result',
-                  tool_use_id: tu.id,
-                  content: JSON.stringify(
-                    error ? { error, attempts: [] } : { attempts }
-                  ),
+                functionResponseParts.push({
+                  functionResponse: {
+                    name: call.name,
+                    response: error
+                      ? { error, attempts: [] }
+                      : { attempts },
+                  },
                 })
               } else {
-                toolResults.push({
-                  type: 'tool_result',
-                  tool_use_id: tu.id,
-                  content: JSON.stringify({ error: 'Unknown tool' }),
-                  is_error: true,
+                functionResponseParts.push({
+                  functionResponse: {
+                    name: call.name ?? 'unknown',
+                    response: { error: 'Unknown tool' },
+                  },
                 })
               }
             }
 
-            messagesForStream = [
-              ...messagesForStream,
-              { role: 'user', content: toolResults },
-            ]
+            contents.push({ role: 'user', parts: functionResponseParts })
           }
         }
-
-        const messageStream = anthropic.messages.stream({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 1500,
-          system: systemPrompt,
-          messages: messagesForStream,
-        })
 
         let fullText = ''
         let sentLength = 0
 
-        for await (const chunk of messageStream) {
-          if (
-            chunk.type === 'content_block_delta' &&
-            chunk.delta.type === 'text_delta'
-          ) {
-            fullText += chunk.delta.text
+        for await (const chunk of streamGeminiWithContents(contents, {
+          system: systemPrompt,
+          maxOutputTokens: 1500,
+        })) {
+          fullText += chunk
 
-            const displayText = stripPartialActionTail(fullText)
-            const delta = displayText.slice(sentLength)
-            if (delta) {
-              controller.enqueue(
-                new TextEncoder().encode(sse({ type: 'chunk', content: delta }))
-              )
-              sentLength = displayText.length
-            }
+          const displayText = stripPartialActionTail(fullText)
+          const delta = displayText.slice(sentLength)
+          if (delta) {
+            controller.enqueue(
+              new TextEncoder().encode(sse({ type: 'chunk', content: delta }))
+            )
+            sentLength = displayText.length
           }
         }
 

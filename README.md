@@ -6,7 +6,7 @@ AI marking for Cambridge International A-Level and O-Level past papers. Students
 
 - **Next.js** (App Router) + TypeScript
 - **Supabase** — auth, Postgres, storage (`paper-pdfs`, `answer-photos`)
-- **Anthropic + Gemini** — OCR and marking pipelines
+- **Google Gemini** — OCR, marking, study chat, and course generation
 - **Stripe** — subscriptions and credits
 - **Sentry** (optional) — errors and performance in production
 
@@ -31,8 +31,7 @@ Copy `.env.example` to `.env.local` and fill in:
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Client-side Supabase key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server/admin operations |
-| `ANTHROPIC_API_KEY` | Marking + segmentation |
-| `GEMINI_API_KEY` | OCR |
+| `GEMINI_API_KEY` | Marking, OCR, study chat (`gemini-2.5-flash`) |
 | `STRIPE_SECRET_KEY` | Billing (optional locally) |
 | `STRIPE_WEBHOOK_SECRET` | Webhook verification |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Checkout |

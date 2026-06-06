@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 /**
- * Generate a full published course lesson with Claude (text) + optional Gemini (diagram).
+ * Generate a full published course lesson with Gemini (text) + optional Gemini (diagram).
  *
  * Usage:
  *   node scripts/generate-course-lesson.mjs --code 9709 --topic 1.7
  *   node scripts/generate-course-lesson.mjs --code 9702 --topic 9.1 --diagram
  *
  * Env:
- *   ANTHROPIC_API_KEY — lesson content (Claude)
- *   GEMINI_API_KEY — optional diagram image (Imagen / Gemini image API)
+ *   GEMINI_API_KEY — lesson content (gemini-2.5-flash) + optional diagram image
  *
  * IMPORTANT: Generates ORIGINAL content from the official syllabus structure.
  * Do NOT scrape ZNotes, Save My Exams notes, or other copyrighted sites.
@@ -73,17 +72,17 @@ const slug = topicToSlug(leaf.code, leaf.name)
 const outDir = path.join(process.cwd(), 'content', 'courses', code)
 const outPath = path.join(outDir, `${slug}.json`)
 
-if (!process.env.ANTHROPIC_API_KEY) {
+if (!process.env.GEMINI_API_KEY) {
   console.log(`
-No ANTHROPIC_API_KEY set. Lesson stub only:
+No GEMINI_API_KEY set. Lesson stub only:
 
   Subject: ${subjectName} (${code})
   Topic:   ${leaf.code} ${leaf.name}
   Slug:    ${slug}
   Output:  ${outPath}
 
-Set ANTHROPIC_API_KEY and re-run to generate full lesson JSON with Claude.
-For diagrams, set GEMINI_API_KEY and pass --diagram.
+Set GEMINI_API_KEY and re-run to generate full lesson JSON with gemini-2.5-flash.
+For diagrams, pass --diagram (uses gemini-2.5-flash-image).
 
 Content policy: write ORIGINAL lessons aligned to Cambridge syllabus ${code}.
 Do not copy ZNotes or other note sites.
@@ -92,7 +91,7 @@ Do not copy ZNotes or other note sites.
 }
 
 console.log(`Generating lesson for ${code} ${leaf.code} ${leaf.name}…`)
-console.log('Wire your Claude API call in CI or run this script after adding fetch to anthropic.messages.create.')
+console.log('Use pnpm course:generate for batch generation, or wire generateContent here.')
 console.log(`Target: ${outPath}`)
 if (withDiagram) {
   console.log('Diagram: use Gemini to generate educational diagram, save to public/courses/diagrams/')

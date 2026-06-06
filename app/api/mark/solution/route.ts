@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import Anthropic from '@anthropic-ai/sdk'
+import { generateGeminiText } from '@/lib/ai/gemini-text'
 import { createClient as createServerClient } from '@/lib/supabase-server'
 
 export const maxDuration = 60
@@ -9,8 +9,6 @@ const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
-
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 
 type AttemptRow = {
   id: string
@@ -77,7 +75,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ solution: attempt.full_solution, cached: true })
     }
 
-    // Compose the question + scheme context for Claude.
+    // Compose the question + scheme context for Gemini.
     const questionText =
       attempt.question_text || attempt.mark_schemes?.question_text || ''
     if (!questionText || questionText.trim().length < 5) {
@@ -132,16 +130,7 @@ Generate a clear, educational worked solution that a student can learn from. Req
 OUTPUT FORMAT:
 Return ONLY the worked solution as plain markdown text. Do NOT wrap in JSON. Do NOT include any preamble like "Here is the solution:". Start directly with the overview sentence.`
 
-    const claudeResponse = await anthropic.messages.create({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 4000,
-      messages: [{ role: 'user', content: prompt }],
-    })
-
-    const solution =
-      claudeResponse.content[0]?.type === 'text'
-        ? claudeResponse.content[0].text.trim()
-        : ''
+    const solution = await generateGeminiText(prompt, { maxOutputTokens: 4000 })
 
     if (!solution) {
       return NextResponse.json(

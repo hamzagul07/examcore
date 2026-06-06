@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
-import Anthropic from '@anthropic-ai/sdk'
+import { GEMINI_TEXT_MODEL, generateGeminiText } from '@/lib/ai/gemini-text'
 import { createClient as createServerClient } from '@/lib/supabase-server'
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
@@ -27,7 +27,6 @@ import type {
 } from '@/lib/marking/types'
 import {
   withGeminiRetry,
-  withAnthropicRetry,
   isTransientOverloadError,
 } from '@/lib/marking/gemini-retry'
 import {
@@ -57,7 +56,6 @@ const supabaseAdmin = createClient(
 )
 
 const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! })
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 
 async function ocrImage(file: File, prompt: string): Promise<string> {
   const bytes = await file.arrayBuffer()
@@ -65,7 +63,7 @@ async function ocrImage(file: File, prompt: string): Promise<string> {
   const response = await withGeminiRetry(
     () =>
       genAI.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: GEMINI_TEXT_MODEL,
         contents: [
           {
             role: 'user',
@@ -334,24 +332,10 @@ export async function POST(request: NextRequest) {
       let paperCode = manualPaperCode || undefined
       let paperSession = manualPaperSession || undefined
 
-      const segResponse = await withAnthropicRetry(
-        () =>
-          anthropic.messages.create({
-            model: 'claude-sonnet-4-6',
-            max_tokens: 4000,
-            messages: [
-              {
-                role: 'user',
-                content: buildWholePaperSegmentPrompt(ocrText),
-              },
-            ],
-          }),
-        { label: 'claude-whole-paper-segment' }
+      const segText = await generateGeminiText(
+        buildWholePaperSegmentPrompt(ocrText),
+        { maxOutputTokens: 4000 }
       )
-      const segText =
-        segResponse.content[0].type === 'text'
-          ? segResponse.content[0].text
-          : ''
       const segments = parseWholePaperSegment(segText)
 
       if (!segments || segments.questions.length === 0) {

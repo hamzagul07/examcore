@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
-import Anthropic from '@anthropic-ai/sdk'
+import { GEMINI_TEXT_MODEL, generateGeminiText } from '@/lib/ai/gemini-text'
 import { normalizeSyllabusTagsForSubject, type SyllabusCode } from '@/lib/syllabi'
 import {
   buildLineReferences,
@@ -36,10 +36,7 @@ import type {
   UploadMode,
   QuestionMarkResult,
 } from '@/lib/marking/types'
-import {
-  withGeminiRetry,
-  withAnthropicRetry,
-} from '@/lib/marking/gemini-retry'
+import { withGeminiRetry } from '@/lib/marking/gemini-retry'
 import { buildExtractionPrompt } from '@/lib/marking/extraction-prompts'
 import type { ExtractionMode } from '@/lib/marking/storage-extract'
 
@@ -49,7 +46,6 @@ export const supabaseAdmin = createClient(
 )
 
 export const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! })
-export const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 
 export async function ocrImage(file: File, prompt: string): Promise<string> {
   const bytes = await file.arrayBuffer()
@@ -57,7 +53,7 @@ export async function ocrImage(file: File, prompt: string): Promise<string> {
   const response = await withGeminiRetry(
     () =>
       genAI.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: GEMINI_TEXT_MODEL,
         contents: [
           {
             role: 'user',
@@ -110,7 +106,7 @@ export async function ocrTextFromBuffer(
   const response = await withGeminiRetry(
     () =>
       genAI.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: GEMINI_TEXT_MODEL,
         contents: [
           {
             role: 'user',
@@ -150,7 +146,7 @@ const storageDeps = {
     const extractionResponse = await withGeminiRetry(
       () =>
         genAI.models.generateContent({
-          model: 'gemini-2.5-flash',
+          model: GEMINI_TEXT_MODEL,
           contents: [
             {
               role: 'user',
@@ -232,23 +228,13 @@ export async function lookupMarkScheme(
   return { scheme: null, mode: 'general_criteria_paper_not_in_db', wasCached: false }
 }
 
-async function runClaudeMarking(
+async function runGeminiMarking(
   prompt: string,
   maxTokens: number
 ): Promise<Record<string, unknown>> {
-  const claudeResponse = await withAnthropicRetry(
-    () =>
-      anthropic.messages.create({
-        model: 'claude-sonnet-4-6',
-        max_tokens: maxTokens,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    { label: 'claude-marking' }
-  )
-  const markingText =
-    claudeResponse.content[0].type === 'text'
-      ? claudeResponse.content[0].text
-      : ''
+  const markingText = await generateGeminiText(prompt, {
+    maxOutputTokens: maxTokens,
+  })
   return extractJSON(markingText) as Record<string, unknown>
 }
 
@@ -321,7 +307,7 @@ export async function markSingleQuestion(params: {
   })
 
   const markingResult = normalizeMarkingResult(
-    await runClaudeMarking(markingPrompt, maxTokensForStyle(markingStyle))
+    await runGeminiMarking(markingPrompt, maxTokensForStyle(markingStyle))
   )
 
   const lineReferences = buildLineReferences(
@@ -355,7 +341,7 @@ export async function markSingleQuestion(params: {
     : []
 
   const taggingSubject = subjectCode ?? inferredSubject
-  const claudeTags: SyllabusCode[] = normalizeSyllabusTagsForSubject(
+  const modelTags: SyllabusCode[] = normalizeSyllabusTagsForSubject(
     taggingSubject,
     markingResult?.syllabus_tags
   )
@@ -368,7 +354,7 @@ export async function markSingleQuestion(params: {
     if (cachedTags.length > 0) {
       resolvedTags = cachedTags
     } else {
-      resolvedTags = claudeTags
+      resolvedTags = modelTags
       if (resolvedTags.length > 0 && markScheme.id) {
         await supabaseAdmin
           .from('mark_schemes')
@@ -377,7 +363,7 @@ export async function markSingleQuestion(params: {
       }
     }
   } else {
-    resolvedTags = claudeTags
+    resolvedTags = modelTags
   }
 
   return {

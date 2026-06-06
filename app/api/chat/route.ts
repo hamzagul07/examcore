@@ -3,7 +3,10 @@
  * the Command Bar has been superseded by Omni-AI (Sprint 23).
  */
 import { NextRequest, NextResponse } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
+import {
+  generateGeminiText,
+  isGeminiConfigured,
+} from '@/lib/ai/gemini-text'
 import { createClient } from '@supabase/supabase-js'
 import { jsonrepair } from 'jsonrepair'
 import {
@@ -25,11 +28,6 @@ import { getSyllabusTopicByCode } from '@/lib/syllabus'
 
 export const maxDuration = 30
 
-const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY
-const anthropic = ANTHROPIC_KEY
-  ? new Anthropic({ apiKey: ANTHROPIC_KEY })
-  : null
-
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
 const supabaseAdmin =
@@ -44,7 +42,7 @@ const supabaseAdmin =
 // chat is much higher-frequency and we don't want to write to Postgres on
 // every keystroke. In-memory is fine here: chat abuse from a single IP only
 // needs to be blocked on a single Node instance, and the worst-case impact of
-// resetting on deploy is a few extra Claude calls.
+// resetting on deploy is a few extra Gemini calls.
 // =============================================================================
 const CHAT_WINDOW_MS = 60 * 60 * 1000 // 1 hour
 const CHAT_MAX_PER_WINDOW = 30
@@ -430,7 +428,7 @@ export async function POST(req: NextRequest) {
   const fallback = getMockResponse(query)
 
   let chatResponse: ChatResponse
-  if (!anthropic) {
+  if (!isGeminiConfigured()) {
     // No API key — serve mocks. Hydrate from DB if available.
     chatResponse = fallback
   } else {
@@ -440,18 +438,14 @@ export async function POST(req: NextRequest) {
     const userPrompt = `Previous conversation:\n${historyBlock}\n\nCurrent user query:\n"${query}"\n\nRespond with the JSON.`
 
     try {
-      const completion = await anthropic.messages.create({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 600,
+      const text = await generateGeminiText(userPrompt, {
         system: SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: userPrompt }],
+        maxOutputTokens: 600,
       })
-      const text =
-        completion.content[0]?.type === 'text' ? completion.content[0].text : ''
       const parsed = extractJSON(text)
       chatResponse = normalizeChatResponse(parsed, fallback)
     } catch (err) {
-      console.error('Chat: Claude error', err)
+      console.error('Chat: Gemini error', err)
       chatResponse = fallback
     }
   }

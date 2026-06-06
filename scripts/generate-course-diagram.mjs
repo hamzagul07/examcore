@@ -11,6 +11,7 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { GEMINI_IMAGE_MODELS } from '../lib/ai/gemini-models.mjs'
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url))
 const PROJECT = path.join(ROOT, '..')
@@ -93,9 +94,7 @@ Aspect ratio 16:9. Suitable for a free revision website.`
 async function generateDiagram(prompt) {
   const { GoogleGenAI } = await import('@google/genai')
   const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
-  const models = ['gemini-2.5-flash-image', 'gemini-2.0-flash-preview-image-generation']
-
-  for (const model of models) {
+  for (const model of GEMINI_IMAGE_MODELS) {
     try {
       const res = await genAI.models.generateContent({
         model,

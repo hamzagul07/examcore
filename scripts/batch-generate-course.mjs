@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 /**
- * Batch-generate premium course lessons with Claude (original content only).
+ * Batch-generate premium course lessons with Gemini (original content only).
  *
  *   node scripts/batch-generate-course.mjs --code 9702
  *   node scripts/batch-generate-course.mjs --code 9702 --topic 9.1
  *   node scripts/batch-generate-course.mjs --code 9702 --limit 5 --dry-run
  *
- * Requires ANTHROPIC_API_KEY or GEMINI_API_KEY in .env.local.
- * Use --gemini to prefer Gemini; auto-falls back to Gemini when Anthropic credits are exhausted.
+ * Requires GEMINI_API_KEY in .env.local (model: gemini-2.5-flash).
  */
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { GEMINI_TEXT_MODEL } from '../lib/ai/gemini-models.mjs'
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url))
 const PROJECT = path.join(ROOT, '..')
@@ -46,7 +46,6 @@ const singleTopic = getArg('topic')
 const limit = getArg('limit') ? parseInt(getArg('limit'), 10) : null
 const dryRun = args.includes('--dry-run')
 const force = args.includes('--force')
-const preferGemini = args.includes('--gemini')
 
 if (!subjectCode) {
   console.error('Usage: node scripts/batch-generate-course.mjs --code 9702 [--topic 9.1] [--limit 5]')
@@ -148,28 +147,11 @@ Return ONLY valid JSON (no markdown outside the JSON) matching this schema:
 Tone: confident, student-friendly, premium — like a top tutor wrote it. Use British English.`
 }
 
-function isCreditError(err) {
-  const msg = String(err?.message || err)
-  return msg.includes('credit balance') || msg.includes('insufficient_quota')
-}
-
-async function generateWithClaude(prompt) {
-  const { default: Anthropic } = await import('@anthropic-ai/sdk')
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
-  const res = await client.messages.create({
-    model: 'claude-sonnet-4-6',
-    max_tokens: 4096,
-    messages: [{ role: 'user', content: prompt }],
-  })
-  const text = res.content.find((c) => c.type === 'text')?.text ?? ''
-  return extractJSON(text)
-}
-
 async function generateWithGemini(prompt) {
   const { GoogleGenAI } = await import('@google/genai')
   const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
   const res = await genAI.models.generateContent({
-    model: 'gemini-2.5-flash',
+    model: GEMINI_TEXT_MODEL,
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
   })
   const text = res.text || ''
@@ -189,19 +171,13 @@ if (limit) queue = queue.slice(0, limit)
 const outDir = path.join(PROJECT, 'content', 'courses', subjectCode)
 fs.mkdirSync(outDir, { recursive: true })
 
-if (!process.env.ANTHROPIC_API_KEY && !process.env.GEMINI_API_KEY) {
-  console.error('Set ANTHROPIC_API_KEY and/or GEMINI_API_KEY in .env.local')
+if (!process.env.GEMINI_API_KEY) {
+  console.error('Set GEMINI_API_KEY in .env.local')
   process.exit(1)
 }
 
-let provider = preferGemini
-  ? 'gemini'
-  : process.env.ANTHROPIC_API_KEY
-    ? 'claude'
-    : 'gemini'
-
 console.log(
-  `Generating ${queue.length} premium lessons for ${subjectName} (${subjectCode}) via ${provider}…`
+  `Generating ${queue.length} premium lessons for ${subjectName} (${subjectCode}) via ${GEMINI_TEXT_MODEL}…`
 )
 
 let ok = 0
@@ -223,19 +199,13 @@ for (const topic of queue) {
 
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
-      const lesson = await generateLesson(prompt, provider)
+      const lesson = await generateLesson(prompt)
       fs.writeFileSync(outPath, JSON.stringify(lesson, null, 2) + '\n')
       ok++
       written = true
       await new Promise((r) => setTimeout(r, 500))
       break
     } catch (err) {
-      if (isCreditError(err) && provider === 'claude' && process.env.GEMINI_API_KEY) {
-        console.warn('    Anthropic credits low — switching to Gemini')
-        provider = 'gemini'
-        attempt = 0
-        continue
-      }
       if (attempt === 3) {
         console.error(`    FAILED ${topic.code}:`, err.message?.slice?.(0, 120) || err)
         fail++

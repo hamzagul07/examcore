@@ -1,5 +1,4 @@
 const GEMINI_RETRYABLE_STATUS = [429, 500, 503]
-const ANTHROPIC_RETRYABLE_STATUS = [429, 500, 502, 503, 529]
 
 const OVERLOAD_PATTERN =
   /UNAVAILABLE|high demand|RESOURCE_EXHAUSTED|overloaded|rate.?limit/i
@@ -72,16 +71,6 @@ export async function withGeminiRetry<T>(
 ): Promise<T> {
   return withApiRetry(fn, GEMINI_RETRYABLE_STATUS, {
     label: 'gemini',
-    ...opts,
-  })
-}
-
-export async function withAnthropicRetry<T>(
-  fn: () => Promise<T>,
-  opts: RetryOpts = {}
-): Promise<T> {
-  return withApiRetry(fn, ANTHROPIC_RETRYABLE_STATUS, {
-    label: 'anthropic',
     ...opts,
   })
 }

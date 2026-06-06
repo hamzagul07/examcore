@@ -2,10 +2,10 @@
  * Fallback responses for the Instant-Action Agent.
  *
  * Two roles:
- *   1. When `ANTHROPIC_API_KEY` is unset (local dev without secrets) or the
- *      Claude call throws, the chat API returns the best matching mock so the
+ *   1. When `GEMINI_API_KEY` is unset (local dev without secrets) or the
+ *      Gemini call throws, the chat API returns the best matching mock so the
  *      widget keeps working end-to-end.
- *   2. When Claude returns an action that needs DB-backed content (a past
+ *   2. When Gemini returns an action that needs DB-backed content (a past
  *      paper, a diagnostic question) but the DB lookup misses, we splice the
  *      mock payload into the action so the UI still has something to render.
  *

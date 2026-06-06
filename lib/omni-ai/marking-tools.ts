@@ -1,11 +1,11 @@
-import type Anthropic from '@anthropic-ai/sdk'
+import type { FunctionDeclaration } from '@google/genai'
 
-export const FETCH_RECENT_ATTEMPTS_TOOL: Anthropic.Tool = {
+export const FETCH_RECENT_ATTEMPTS_TOOL: FunctionDeclaration = {
   name: 'fetch_recent_attempts',
   description:
     "Fetch the current user's recent marked attempts. Use when the student asks about a past question, why they lost marks, their progress on a topic, or wants to compare attempts. Returns up to 10 most recent attempts with full marking details.",
-  input_schema: {
-    type: 'object' as const,
+  parametersJsonSchema: {
+    type: 'object',
     properties: {
       subject_code: {
         type: 'string',
@@ -23,4 +23,6 @@ export const FETCH_RECENT_ATTEMPTS_TOOL: Anthropic.Tool = {
   },
 }
 
-export const OMNI_MARKING_TOOLS: Anthropic.Tool[] = [FETCH_RECENT_ATTEMPTS_TOOL]
+export const OMNI_MARKING_TOOLS: FunctionDeclaration[] = [
+  FETCH_RECENT_ATTEMPTS_TOOL,
+]

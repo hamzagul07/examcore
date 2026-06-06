@@ -7,7 +7,6 @@ export const REQUIRED_ENV = [
 
 /** Recommended before production launch — app may degrade without these. */
 export const RECOMMENDED_PRODUCTION_ENV = [
-  'ANTHROPIC_API_KEY',
   'GEMINI_API_KEY',
   'STRIPE_SECRET_KEY',
   'STRIPE_WEBHOOK_SECRET',

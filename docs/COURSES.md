@@ -40,7 +40,7 @@ ZNotes, Save My Exams notes, Physics & Maths Tutor sheets, etc. are **copyrighte
 ## Adding a full lesson
 
 1. Pick syllabus code + topic, e.g. `9709` + `1.7`.  
-2. Run `node scripts/generate-course-lesson.mjs --code 9709 --topic 1.7` (with `ANTHROPIC_API_KEY`).  
+2. Run `node scripts/generate-course-lesson.mjs --code 9709 --topic 1.7` (with `GEMINI_API_KEY`).  
 3. Review JSON → save to `content/courses/9709/1-7-differentiation.json`.  
 4. Deploy. Lesson page updates automatically.
 
@@ -75,7 +75,7 @@ Save as `public/courses/diagrams/{code}-{slug}.png` and add to lesson JSON:
 | Progress bar | Sidebar (localStorage) |
 | Course schema | `CourseLessonJsonLd` |
 
-## Batch generate (Claude)
+## Batch generate (Gemini)
 
 ```bash
 pnpm course:generate -- --code 9702
@@ -83,7 +83,7 @@ pnpm course:generate -- --code 9702 --topic 9.1
 pnpm course:generate -- --code 9702 --limit 10 --force
 ```
 
-Requires `ANTHROPIC_API_KEY` in `.env.local`.
+Requires `GEMINI_API_KEY` in `.env.local` (model: `gemini-2.5-flash`).
 
 ## Roadmap
 

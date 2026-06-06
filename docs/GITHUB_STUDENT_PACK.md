@@ -1,6 +1,6 @@
 # GitHub Student Developer Pack — MarkScheme stack
 
-MarkScheme runs on **Vercel**, **Supabase**, **Stripe**, **Anthropic**, and **Google Gemini**. The [GitHub Student Developer Pack](https://education.github.com/pack) does not cover AI inference, but it can materially reduce hosting, observability, and tooling costs while you grow.
+MarkScheme runs on **Vercel**, **Supabase**, **Stripe**, and **Google Gemini**. The [GitHub Student Developer Pack](https://education.github.com/pack) does not cover AI inference, but it can materially reduce hosting, observability, and tooling costs while you grow.
 
 ## Claim checklist
 
@@ -25,8 +25,7 @@ MarkScheme runs on **Vercel**, **Supabase**, **Stripe**, **Anthropic**, and **Go
 
 | Service | Role | Notes |
 |---------|------|--------|
-| **Anthropic** | Marking, segmentation | Primary variable cost per mark |
-| **Google Gemini** | OCR | Scales with uploads |
+| **Google Gemini** | Marking, study chat, OCR, segmentation | Primary variable cost per mark and upload |
 | **Supabase** | Auth, DB, storage | Free tier → paid; also see [Supabase for Startups](https://supabase.com/docs/guides/platform/startups) |
 | **Cambridge / Best Exam Help** | Paper PDFs | Licensing and sync scripts — not a pack item |
 
@@ -52,7 +51,7 @@ Enable **branch protection** on `main`: require the **CI** check to pass before 
 ## Cost mental model
 
 - **Fixed-ish:** Vercel, Supabase base, domain, Sentry (within free/pack limits).
-- **Variable:** Anthropic + Gemini tokens per mark and OCR page; Stripe per successful charge (fees may be waived under pack).
+- **Variable:** Gemini tokens per mark, chat message, and OCR page; Stripe per successful charge (fees may be waived under pack).
 - **Best lever early:** Stripe pack + Sentry pack + strict guest/account quotas (already in app) + monitor Sentry for OCR/mark API failures.
 
 ## Related docs

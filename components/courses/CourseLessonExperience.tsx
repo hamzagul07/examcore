@@ -101,7 +101,7 @@ function VisualBlockRenderer({
       return <ConceptCompare title={block.title} simple={block.simple} exam={block.exam} />
     case 'worked-visual':
       return (
-        <div className="course-worked-box lg:col-span-2">
+        <div className="course-worked-box w-full">
           <div className="course-worked-header px-4 py-3 lg:px-6 lg:py-4">
             <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-[var(--ec-accent)]">
               <Target className="h-4 w-4" aria-hidden />
@@ -139,17 +139,6 @@ function VisualBlockRenderer({
     default:
       return null
   }
-}
-
-function isWideBlock(block: VisualBlock): boolean {
-  return (
-    block.type === 'concept-map' ||
-    block.type === 'compare' ||
-    block.type === 'worked-visual' ||
-    block.type === 'diagram-image' ||
-    block.type === 'learning-path' ||
-    block.type === 'hero-visual'
-  )
 }
 
 export function CourseLessonExperience({
@@ -213,23 +202,19 @@ export function CourseLessonExperience({
               are ready. You do not need to read everything at once — go at your own pace.
             </p>
           </div>
-          <div className="course-visual-canvas space-y-8 lg:space-y-10">
-          {enriched.blocks.map((block, i) => {
-            if (block.type === 'step-carousel') return null
-            const wide = isWideBlock(block)
-            return (
-              <div
-                key={`${block.type}-${i}`}
-                className={wide ? 'course-visual-block-wide' : 'course-visual-block'}
-              >
-                <VisualBlockRenderer
-                  block={block}
-                  template={enriched.template}
-                  stageSteps={stageSteps}
-                />
-              </div>
-            )
-          })}
+          <div className="course-visual-canvas w-full min-w-0 space-y-8">
+            {enriched.blocks.map((block, i) => {
+              if (block.type === 'step-carousel') return null
+              return (
+                <div key={`${block.type}-${i}`} className="course-visual-block w-full min-w-0">
+                  <VisualBlockRenderer
+                    block={block}
+                    template={enriched.template}
+                    stageSteps={stageSteps}
+                  />
+                </div>
+              )
+            })}
           </div>
         </div>
       ) : null}

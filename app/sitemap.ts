@@ -4,7 +4,8 @@ import { getAllBlogSlugs, getBlogPostLastModified } from '@/lib/blog'
 import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
-import { getAllCourseLessonPaths, getCourseSubjectCodes } from '@/lib/courses'
+import { getAllCourseLessonPaths, getCourseLesson, getCourseSubjectCodes } from '@/lib/courses'
+import { lessonLastModified } from '@/lib/courses/seo'
 
 const STATIC_ROUTES = [
   { path: '', priority: 1, changeFrequency: 'weekly' as const },
@@ -67,17 +68,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${base}/courses/${code}`,
       lastModified: now,
       changeFrequency: 'weekly' as const,
-      priority: 0.88,
+      priority: 0.9,
     })
   )
 
   const courseLessonEntries: MetadataRoute.Sitemap = getAllCourseLessonPaths().map(
-    ({ code, slug }) => ({
-      url: `${base}/courses/${code}/${slug}`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.82,
-    })
+    ({ code, slug }) => {
+      const lesson = getCourseLesson(code, slug)
+      const isPremium =
+        lesson?.status === 'premium' || lesson?.status === 'published'
+      return {
+        url: `${base}/courses/${code}/${slug}`,
+        lastModified: lesson ? (lessonLastModified(lesson) ?? now) : now,
+        changeFrequency: 'weekly' as const,
+        priority: isPremium ? 0.86 : 0.78,
+      }
+    }
   )
 
   return [

@@ -11,7 +11,7 @@ export function SnapshotGrid({ title, cards }: { title: string; cards: SnapshotC
       accent="cool"
       className="course-snapshot-section"
     >
-      <div className="course-snapshot-grid grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="course-snapshot-grid grid gap-4 sm:grid-cols-1 md:grid-cols-2">
         {cards.map((card, i) => (
           <article key={`${card.title}-${i}`} className="course-snapshot-card p-4">
             <div className="mb-2 flex items-center gap-2">

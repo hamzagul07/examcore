@@ -2,19 +2,22 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Clock, Crown, Sparkles } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
-import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
 import {
   getAllCourseLessonPaths,
   getCourseLesson,
   getCourseLessons,
   getCourseSubject,
 } from '@/lib/courses'
+import { buildCourseLessonSeo } from '@/lib/courses/seo'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
+import { CourseBreadcrumbs } from '@/components/courses/CourseBreadcrumbs'
 import { CourseSidebar } from '@/components/courses/CourseSidebar'
 import { MarkLessonCompleteButton } from '@/components/courses/CourseProgressClient'
 import { CourseLearningObjectives } from '@/components/courses/CourseLearningObjectives'
 import { CourseLessonExperience } from '@/components/courses/CourseLessonExperience'
+import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
+import { CourseRelatedTopics } from '@/components/courses/CourseRelatedTopics'
 import { TopicDiagram } from '@/components/courses/visuals/TopicDiagram'
 import { CourseLessonFaq } from '@/components/courses/CourseLessonFaq'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
@@ -35,22 +38,13 @@ export async function generateMetadata({ params }: Props) {
   const lesson = getCourseLesson(code, lessonSlug)
   if (!course || !lesson) return {}
 
-  const title = formatSerpTitle(
-    `Free ${course.name} course: ${lesson.title} (${lesson.topicCode})`,
-    true
-  )
-  const description = formatMetaDescription(lesson.summary)
+  const seo = buildCourseLessonSeo(course, lesson)
   return createPageMetadata({
-    title,
-    description,
+    title: seo.title,
+    description: seo.description,
     path: `/courses/${code}/${lessonSlug}`,
-    keywords: [
-      `free ${code} ${lesson.title} notes`,
-      `${course.name} ${lesson.title} revision`,
-      `Cambridge ${lesson.topicCode} lesson`,
-      `${course.level} ${course.name} course free`,
-      `ZNotes alternative ${course.name}`,
-    ],
+    keywords: seo.keywords,
+    modifiedTime: lesson.updated ? `${lesson.updated}T12:00:00.000Z` : undefined,
   })
 }
 
@@ -72,6 +66,7 @@ export default async function CourseLessonPage({ params }: Props) {
 
   const isFullLesson = lesson.status === 'published' || lesson.status === 'premium'
   const enriched = enrichLessonVisual(code, lesson)
+  const seo = buildCourseLessonSeo(course, lesson)
 
   return (
     <MarketingPageShell wide>
@@ -80,9 +75,12 @@ export default async function CourseLessonPage({ params }: Props) {
         subjectName={course.name}
         level={course.level}
         lesson={lesson}
+        seoTitle={seo.title}
+        seoDescription={seo.description}
       />
 
       <article className="py-12 sm:py-16">
+        <CourseBreadcrumbs items={seo.breadcrumbs} />
         <Link
           href={`/courses/${code}`}
           className="mb-8 inline-flex items-center gap-2 text-sm text-[var(--ec-text-tertiary)] no-underline hover:text-[var(--ec-accent)]"
@@ -130,6 +128,14 @@ export default async function CourseLessonPage({ params }: Props) {
               </div>
             </header>
 
+            <CourseLessonSeoIntro
+              heading={seo.introHeading}
+              paragraph={seo.introParagraph}
+              subjectCode={code}
+              subjectName={course.name}
+              markPath={seo.markPath}
+            />
+
             {lesson.learningObjectives?.length ? (
               <div className="mb-8">
                 <CourseLearningObjectives items={lesson.learningObjectives} />
@@ -143,7 +149,14 @@ export default async function CourseLessonPage({ params }: Props) {
               topicTitle={lesson.title}
             />
 
-            {lesson.faq?.length ? <CourseLessonFaq items={lesson.faq} /> : null}
+            <CourseLessonFaq items={seo.faqs} />
+
+            <CourseRelatedTopics
+              subjectCode={code}
+              subjectName={course.name}
+              lessons={lessons}
+              currentSlug={lessonSlug}
+            />
 
             <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-[var(--ec-border-subtle)] pt-8">
               <MarkLessonCompleteButton subjectCode={code} lessonSlug={lessonSlug} />

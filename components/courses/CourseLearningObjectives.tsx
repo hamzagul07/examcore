@@ -12,7 +12,7 @@ export function CourseLearningObjectives({ items }: { items: string[] }) {
           <p className="text-xs text-[var(--ec-text-tertiary)]">Tick these off as you work through the lesson</p>
         </div>
       </div>
-      <ul className="grid gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
+      <ul className="grid gap-2.5 sm:grid-cols-1 md:grid-cols-2">
         {items.map((item, i) => (
           <li
             key={item}

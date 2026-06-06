@@ -519,24 +519,15 @@
   }
 
   .course-visual-canvas {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem 2rem;
-    align-items: start;
-  }
-
-  .course-visual-block-wide,
-  .course-visual-stage,
-  .course-concept-map,
-  .course-quick-check,
-  .course-key-terms,
-  .course-visual-carousel,
-  .course-visual-section {
-    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
   }
 
   .course-notes-panel {
-    column-count: 1;
+    width: 100%;
+    min-width: 0;
   }
 
   .course-visual-section-body {
@@ -555,4 +546,37 @@
 .course-visual-nav-btn:focus-visible {
   outline: 2px solid var(--ec-brand);
   outline-offset: 2px;
+}
+
+/* Full-width lesson prose — fixes slim columns & tables on desktop */
+.course-lesson-body,
+.course-lesson-prose,
+.course-notes-panel {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+}
+
+.course-lesson-prose table {
+  width: 100%;
+  min-width: 480px;
+}
+
+.course-lesson-prose .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+.course-lesson-formula .katex {
+  font-size: 1.15em;
+}
+
+.course-snapshot-card {
+  min-width: 0;
+}
+
+.course-snapshot-card p {
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }

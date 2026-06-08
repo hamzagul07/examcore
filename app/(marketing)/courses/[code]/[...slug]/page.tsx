@@ -28,7 +28,7 @@ import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 
 type Props = {
   params: Promise<{ code: string; slug: string[] }>
-  searchParams: Promise<{ pilot?: string }>
+  searchParams: Promise<{ pilot?: string; paper?: string }>
 }
 
 const PAPER_PILOT_PARAMS = [

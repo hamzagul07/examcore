@@ -5,88 +5,167 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Free premium 9702 lesson on electric current — charge flow, I = Q/t, conventional current, and how Cambridge examiners award marks on circuit questions.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "summary": "Master electric current: definition, formulas (I=ΔQ/Δt, I=Anvq), charge carriers, drift velocity, and conventional current for Cambridge Physics.",
+  "durationMin": 20,
   "learningObjectives": [
-    "Define electric current and relate it to charge flow per unit time",
-    "Distinguish conventional current direction from electron flow",
-    "Apply I = Q/t in structured and MCQ questions",
-    "Read ammeter placement and units correctly under exam conditions"
+    "Define electric current and state its SI unit.",
+    "Apply the formulas I = ΔQ/Δt and I = Anvq to solve problems.",
+    "Distinguish between conventional current and electron flow in conductors."
   ],
   "simpleExplanation": {
-    "title": "Electric current — like water in a pipe",
-    "summary": "Current is how much charge passes a point each second. Imagine coulombs of charge as drops of water — current tells you the flow rate.",
-    "analogy": "A wider pipe (more charge per second) means higher current, just as a wider hose carries more litres per minute.",
+    "title": "Current: The Flow of Charge",
+    "summary": "Electric current measures how quickly electric charge moves through a point. It's the movement of tiny charged particles, usually electrons, in a specific direction. Understanding this flow is fundamental to all circuits.",
+    "analogy": "Imagine water flowing through a pipe. Electric current is like the volume of water passing a point per second. The narrower the pipe, or the slower the water, the less current flows.",
     "steps": [
-      "Remember: current = charge ÷ time (I = Q/t)",
-      "Conventional current flows from + to − (opposite to electrons)",
-      "Always state units: A (ampere), Q (coulomb), t (second)",
-      "Practise one past-paper circuit question and mark it"
+      "**Charge Movement**: Electric current happens when charged particles move.",
+      "**Rate of Flow**: It's defined by how much charge passes a point over time.",
+      "**Key Players**: Electrons are often the 'movers' in metals.",
+      "**Measurement**: We use an ammeter to find out how much current is flowing."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the SI unit for electric charge?",
+      "back": "Coulomb (C)"
+    },
+    {
+      "front": "How is electric current defined in terms of charge and time?",
+      "back": "The rate of flow of electric charge, I = ΔQ/Δt."
+    },
+    {
+      "front": "What is the numerical value of the elementary charge?",
+      "back": "e = 1.60 × 10⁻¹⁹ C"
+    },
+    {
+      "front": "State the mean drift velocity equation for current.",
+      "back": "I = Anvq"
+    },
+    {
+      "front": "What is the ideal characteristic of an ammeter for measuring current?",
+      "back": "Zero internal resistance, connected in series."
+    },
+    {
+      "front": "What are the primary charge carriers in metallic conductors?",
+      "back": "Free electrons."
+    },
+    {
+      "front": "What is conventional current?",
+      "back": "The direction of flow of positive charge (positive to negative terminal)."
+    },
+    {
+      "front": "What is the SI unit for electric current?",
+      "back": "Ampere (A), equivalent to C/s."
+    },
+    {
+      "front": "What does 'quantized' mean in relation to electric charge?",
+      "back": "Charge exists in discrete integer multiples of the elementary charge."
+    },
+    {
+      "front": "How does increasing the number density (n) affect current?",
+      "back": "A higher number density leads to a larger current, assuming other factors are constant."
+    },
+    {
+      "front": "Why are ammeters connected in series?",
+      "back": "To measure the total current flowing *through* that part of the circuit."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Electric current** is the rate of flow of charge. Almost every **9702** electricity question assumes you are fluent with **I = Q/t**, units, and the direction convention examiners use in mark schemes."
+      "content": "Welcome to the fundamental concept of **Electric current**! In physics, current isn't just a flow of something; it's the directed movement of **electric charge**. Understanding how charge moves and how we quantify its flow is essential for building a strong foundation in electricity. Let's dive into the core principles."
     },
     {
       "type": "heading",
-      "content": "Definition and equation"
-    },
-    {
-      "type": "formula",
-      "content": "I = Q / t   where I is current (A), Q is charge (C), t is time (s)"
+      "content": "What is Electric Current?"
     },
     {
       "type": "text",
-      "content": "One ampere equals one coulomb per second. In exams, quote the definition before substituting numbers — definition marks are easy if you write them cleanly."
+      "content": "Electric current measures the rate at which electric charge passes a specific point in a circuit. Think of it as how much \"electrical stuff\" moves through a wire every second. Without current, our devices wouldn't work! It's a fundamental quantity in all electrical systems."
+    },
+    {
+      "type": "formula",
+      "content": "$I = \\frac{\\Delta Q}{\\Delta t}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Conventional current: positive terminal → negative terminal",
-        "Electrons flow the opposite way — say so if asked about particle flow",
-        "Ammeters measure current; connect in series",
-        "Charge may be given in mC — convert to C before substituting",
-        "Constant current ⇒ Q–t graph is a straight line through origin"
+        "Current (I) is the rate of charge (ΔQ) flow over time (Δt).",
+        "The SI unit for current is the Ampere (A), equal to 1 Coulomb per second (C/s).",
+        "Charge (Q) is measured in Coulombs (C) and is quantized.",
+        "The elementary charge (e) is 1.60 × 10⁻¹⁹ C."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Charge Carriers and Drift Velocity"
+    },
+    {
+      "type": "text",
+      "content": "In most metal wires, tiny particles called **free electrons** are the charge carriers. They move randomly, but when a voltage is applied, they gain a net directional movement. This average speed is called the **mean drift velocity**. Different materials have different numbers of these carriers."
+    },
+    {
+      "type": "formula",
+      "content": "I = Anvq"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A = cross-sectional area of the conductor.",
+        "n = number density of charge carriers (per unit volume).",
+        "v = mean drift velocity of the charge carriers.",
+        "q = charge of a single carrier (e.g., elementary charge 'e').",
+        "Higher A, n, or v lead to a larger current."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A current of 2.5 A flows in a wire for 4.0 minutes. Calculate the charge that passes a point in the wire.",
-      "solution": "t = 4.0 min = 240 s\nQ = I × t = 2.5 × 240 = 600 C"
+      "question": "A wire has a cross-sectional area of 2.0 × 10⁻⁶ m² and carries a current of 4.0 A. If the number density of free electrons is 8.5 × 10²⁸ m⁻³, calculate the mean drift velocity of the electrons. (Elementary charge e = 1.60 × 10⁻¹⁹ C)",
+      "solution": "1.  Identify the given values:\n    A = 2.0 × 10⁻⁶ m²\n    I = 4.0 A\n    n = 8.5 × 10²⁸ m⁻³\n    q = e = 1.60 × 10⁻¹⁹ C\n2.  Recall the formula for current in terms of drift velocity: I = Anvq.\n3.  Rearrange the formula to solve for drift velocity (v): v = I / (Anq).\n4.  Substitute the values into the rearranged formula:\n    v = 4.0 / ((2.0 × 10⁻⁶) × (8.5 × 10²⁸) × (1.60 × 10⁻¹⁹))\n5.  Calculate the result:\n    v = 4.0 / (2.72 × 10⁴) ≈ 1.47 × 10⁻⁴ m/s (to 3 s.f.)\n6.  State the answer: The mean drift velocity of the electrons is approximately 1.47 × 10⁻⁴ m/s."
+    },
+    {
+      "type": "heading",
+      "content": "Conventional Current vs. Electron Flow"
+    },
+    {
+      "type": "text",
+      "content": "Historically, before the discovery of electrons, current was imagined as the flow of positive charge. This is called **conventional current** and moves from the positive terminal to the negative. However, in metals, it's actually negatively charged electrons that move, flowing from negative to positive. Remember, these are opposite directions!"
     },
     {
       "type": "examTip",
-      "content": "Paper 2 often combines current with resistance and potential difference in one circuit. Master I = Q/t first so you do not lose early marks before reaching V = IR."
+      "content": "Always remember that conventional current is defined as the direction positive charges would flow, even though in most metallic conductors, it's the negatively charged electrons that are actually moving in the opposite direction. Be careful with this distinction in exam questions!"
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on electric current",
+      "label": "Mark a past-paper question on this topic",
       "href": "/mark?subject=9702&topic=9.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9702 Physics past paper guide", "href": "/blog/cambridge-9702-a-level-physics-past-papers-guide" },
-        { "label": "Full free 9702 course", "href": "/courses/9702" },
-        { "label": "Most repeated physics topics", "href": "/blog/most-repeated-cambridge-science-past-paper-topics-2026" }
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
       ]
     }
   ],
   "faq": [
     {
-      "q": "Is this 9702 electric current lesson free?",
-      "a": "Yes — the full Cambridge 9702 course on MarkScheme is free, including premium lessons with past-paper questions and mark-scheme marking."
+      "q": "What is the main difference between charge and current?",
+      "a": "**Charge** is a fundamental property of matter, like mass, existing as positive or negative. It's measured in Coulombs. **Current** is the *rate* at which this charge moves or flows past a point, measured in Amperes (Coulombs per second)."
     },
     {
-      "q": "What past papers test electric current (9.1)?",
-      "a": "Current appears on almost every electricity MCQ and structured paper. Use the past-paper section on this page for real Cambridge questions from our library."
+      "q": "Why is the drift velocity of electrons in a conductor so slow, even with a high current?",
+      "a": "Although the individual electrons have a high random speed, their net forward movement (drift velocity) is slow because they frequently collide with the lattice ions. However, there are *so many* free electrons (high number density, 'n') that even a slow net drift results in a substantial current."
     },
     {
-      "q": "How is this different from ZNotes?",
-      "a": "We teach syllabus point 9.1 with worked examples, a simpler explanation mode, and real past-paper practice with AI marking against official schemes — not static PDF notes alone."
+      "q": "How does an ammeter measure current, and how should it be connected?",
+      "a": "An ammeter measures current by detecting the flow of charge *through* itself. To ensure it measures the total current flowing in a specific part of a circuit, it must always be connected **in series** with the component. Ideally, an ammeter has zero internal resistance to avoid affecting the circuit's current."
     }
-  ]
+  ],
+  "updated": "2026-06-06"
 }

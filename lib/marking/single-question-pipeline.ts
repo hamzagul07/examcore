@@ -65,7 +65,7 @@ async function runPaperDetection(
 ): Promise<Record<string, unknown>> {
   const detectionText = await generateGeminiText(
     buildDetectionPrompt(ocrSnippet, questionText, subjectHint),
-    { maxOutputTokens: 500 }
+    { task: 'structured-extraction', maxOutputTokens: 500 }
   )
   try {
     return extractJSON(detectionText) as Record<string, unknown>

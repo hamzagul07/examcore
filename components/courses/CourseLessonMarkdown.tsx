@@ -1,14 +1,7 @@
 'use client'
 
-import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 
 export function CourseLessonMarkdown({ content }: { content: string }) {
-  return (
-    <RichTextRenderer
-      text={content}
-      variant="light"
-      contentKind="question"
-      className="course-lesson-prose"
-    />
-  )
+  return <CourseRichText content={content} variant="prose" className="course-lesson-prose" />
 }

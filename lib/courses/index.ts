@@ -1,13 +1,15 @@
 import fs from 'fs'
-import path from 'path'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
 import { getMarkingSubjectPages } from '@/lib/seo/programmatic-subjects'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
 import { buildOutlineLesson } from '@/lib/courses/outline'
+import {
+  paperScopedLessonPath,
+  pilotLessonPath,
+  publishedLessonPath,
+} from '@/lib/courses/paths'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import type { CourseLesson, CourseSubject } from '@/lib/courses/types'
-
-const COURSES_DIR = path.join(process.cwd(), 'content', 'courses')
 
 /** Subjects with syllabus trees eligible for free courses. */
 export function getCourseSubjectCodes(): string[] {
@@ -15,10 +17,6 @@ export function getCourseSubjectCodes(): string[] {
     .map((s) => s.code)
     .filter((code) => hasSyllabusTree(code))
   return [...new Set(fromMarking)].sort()
-}
-
-function publishedLessonPath(subjectCode: string, slug: string): string {
-  return path.join(COURSES_DIR, subjectCode, `${slug}.json`)
 }
 
 function loadPublishedLesson(
@@ -102,6 +100,58 @@ export function getCourseLesson(
   lessonSlug: string
 ): CourseLesson | null {
   return getCourseLessons(subjectCode).find((l) => l.slug === lessonSlug) ?? null
+}
+
+function readLessonFile(filePath: string, status: CourseLesson['status']): CourseLesson | null {
+  if (!fs.existsSync(filePath)) return null
+  try {
+    const raw = JSON.parse(fs.readFileSync(filePath, 'utf8')) as CourseLesson
+    if (!raw.slug || !raw.topicCode) return null
+    return { ...raw, status }
+  } catch {
+    return null
+  }
+}
+
+/** Load a paper-scoped pilot lesson JSON (does not replace published lesson). */
+export function loadPilotLesson(
+  subjectCode: string,
+  paperNumber: string,
+  lessonSlug: string
+): CourseLesson | null {
+  return readLessonFile(
+    pilotLessonPath(subjectCode, paperNumber, lessonSlug),
+    'pilot'
+  )
+}
+
+export type LoadPaperLessonOptions = {
+  /** When true, load {slug}.pilot.json */
+  pilot?: boolean
+}
+
+/**
+ * Load paper-scoped lesson JSON.
+ * pilot=1 → .pilot.json; otherwise paper-{n}/{slug}.json, then flat published fallback.
+ */
+export function loadPaperScopedLesson(
+  subjectCode: string,
+  paperNumber: string,
+  lessonSlug: string,
+  opts: LoadPaperLessonOptions = {}
+): CourseLesson | null {
+  if (opts.pilot) {
+    const pilot = loadPilotLesson(subjectCode, paperNumber, lessonSlug)
+    if (pilot) return pilot
+  }
+
+  const scoped = readLessonFile(
+    paperScopedLessonPath(subjectCode, paperNumber, lessonSlug),
+    'published'
+  )
+  if (scoped) return scoped
+
+  return loadPublishedLesson(subjectCode, lessonSlug)
 }
 
 export function getAllCourseLessonPaths(): { code: string; slug: string }[] {

@@ -130,7 +130,10 @@ Generate a clear, educational worked solution that a student can learn from. Req
 OUTPUT FORMAT:
 Return ONLY the worked solution as plain markdown text. Do NOT wrap in JSON. Do NOT include any preamble like "Here is the solution:". Start directly with the overview sentence.`
 
-    const solution = await generateGeminiText(prompt, { maxOutputTokens: 4000 })
+    const solution = await generateGeminiText(prompt, {
+      task: 'solution',
+      maxOutputTokens: 4000,
+    })
 
     if (!solution) {
       return NextResponse.json(

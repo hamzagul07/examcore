@@ -1,58 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 import type { CourseLesson, LessonSection } from '@/lib/courses/types'
-import type {
-  EnrichedVisualLesson,
-  FormulaPart,
-  VisualBlock,
-  VisualStep,
-} from '@/lib/courses/visual-types'
+import type { EnrichedVisualLesson, VisualBlock, VisualStep } from '@/lib/courses/visual-types'
 import { detectVisualTemplate, diagramPath } from '@/lib/courses/visual-profile'
-
-function chunkText(text: string, maxWords = 45): string[] {
-  const sentences = text.split(/(?<=[.!?])\s+/).filter(Boolean)
-  const chunks: string[] = []
-  let buf = ''
-  for (const s of sentences) {
-    const next = buf ? `${buf} ${s}` : s
-    if (next.split(/\s+/).length > maxWords && buf) {
-      chunks.push(buf.trim())
-      buf = s
-    } else {
-      buf = next
-    }
-  }
-  if (buf.trim()) chunks.push(buf.trim())
-  return chunks.length ? chunks : [text]
-}
-
-function parseFormulaParts(expr: string): { expression: string; parts: FormulaPart[] } {
-  const clean = expr.replace(/\s+/g, ' ').trim()
-  if (/I\s*=\s*Q\s*\/\s*t/i.test(clean)) {
-    return {
-      expression: 'I = Q / t',
-      parts: [
-        { symbol: 'I', meaning: 'Current (amperes)', color: 'var(--ec-brand)' },
-        { symbol: 'Q', meaning: 'Charge (coulombs)', color: '#22c55e' },
-        { symbol: 't', meaning: 'Time (seconds)', color: '#f59e0b' },
-      ],
-    }
-  }
-  if (/F\s*=\s*ma/i.test(clean)) {
-    return {
-      expression: 'F = ma',
-      parts: [
-        { symbol: 'F', meaning: 'Resultant force (N)', color: 'var(--ec-brand)' },
-        { symbol: 'm', meaning: 'Mass (kg)', color: '#22c55e' },
-        { symbol: 'a', meaning: 'Acceleration (m s⁻²)', color: '#f59e0b' },
-      ],
-    }
-  }
-  return {
-    expression: clean.slice(0, 80),
-    parts: [{ symbol: '∑', meaning: 'Key relationship for this topic', color: 'var(--ec-brand)' }],
-  }
-}
+import { parseFormulaParts } from '@/lib/courses/formula-parts'
+import {
+  ensureFullQuickCheckPrompt,
+  glossaryLabelFromFlashcard,
+  quickCheckPromptFromKeyPoint,
+} from '@/lib/courses/glossary-label'
 
 function stepsFromLesson(lesson: CourseLesson): VisualStep[] {
   if (lesson.simpleExplanation?.steps?.length) {
@@ -91,30 +47,73 @@ function extractBoldTerms(sections: LessonSection[]): string[] {
 }
 
 function keyTermsFromLesson(lesson: CourseLesson): { term: string; definition: string }[] {
+  const seen = new Set<string>()
+  const terms: { term: string; definition: string }[] = []
+
+  function add(term: string, definition: string) {
+    const key = term.trim().toLowerCase()
+    if (!key || key.length < 2 || seen.has(key)) return
+    seen.add(key)
+    terms.push({ term: term.trim(), definition: definition.trim() })
+  }
+
+  for (const fc of lesson.flashcards ?? []) {
+    add(
+      glossaryLabelFromFlashcard(fc.front, fc.back, fc.pillLabel),
+      fc.back
+    )
+  }
+
   const bold = extractBoldTerms(lesson.sections)
   const keyPoints = lesson.sections.find((x) => x.type === 'keyPoints')
   const items = keyPoints?.type === 'keyPoints' ? keyPoints.items : []
 
-  if (bold.length) {
-    return bold.map((term, i) => ({
-      term,
-      definition: items[i] ?? lesson.summary,
-    }))
-  }
-  return items.slice(0, 6).map((item) => {
-    const words = item.split(/\s+/).slice(0, 3).join(' ')
-    return { term: words, definition: item }
+  bold.forEach((term, i) => {
+    add(term, items[i] ?? lesson.summary)
   })
+
+  for (const s of lesson.sections) {
+    if (s.type !== 'formula') continue
+    const lines = s.content.split('\n').filter(Boolean)
+    for (const line of lines) {
+      const m = line.match(/\*\*([^*]+)\*\*/)
+      if (m) add(m[1], line.replace(/\*\*/g, ''))
+    }
+  }
+
+  if (!terms.length) {
+    items.slice(0, 8).forEach((item) => {
+      const words = item.split(/\s+/).slice(0, 3).join(' ')
+      add(words, item)
+    })
+  }
+
+  return terms.slice(0, 20)
 }
 
 function quickChecksFromLesson(lesson: CourseLesson): { prompt: string; answer: string }[] {
+  if (lesson.quickCheck?.length) {
+    return lesson.quickCheck.slice(0, 6).map((item) => ({
+      prompt: ensureFullQuickCheckPrompt(item.prompt),
+      answer: item.answer,
+    }))
+  }
+
+  if (lesson.flashcards?.length) {
+    return lesson.flashcards.slice(0, 6).map((fc) => ({
+      prompt: ensureFullQuickCheckPrompt(fc.front),
+      answer: fc.back,
+    }))
+  }
+
   const keyPoints = lesson.sections.find((x) => x.type === 'keyPoints')
   if (keyPoints?.type === 'keyPoints') {
     return keyPoints.items.slice(0, 6).map((answer, i) => ({
-      prompt: `Point ${i + 1}: Can you explain this without looking?`,
+      prompt: ensureFullQuickCheckPrompt(quickCheckPromptFromKeyPoint(answer, i)),
       answer,
     }))
   }
+
   return (lesson.learningObjectives ?? []).slice(0, 4).map((answer) => ({
     prompt: 'What should you be able to do after this topic?',
     answer,
@@ -127,26 +126,13 @@ function conceptNodesFromLesson(lesson: CourseLesson): string[] {
   return lesson.learningObjectives?.slice(0, 5) ?? [lesson.summary]
 }
 
-function snapshotsFromSections(sections: LessonSection[]): { title: string; body: string }[] {
-  const cards: { title: string; body: string }[] = []
-  let heading = 'Key idea'
-  for (const s of sections) {
-    if (s.type === 'heading') heading = s.content
-    if (s.type === 'intro' || s.type === 'text') {
-      for (const chunk of chunkText(s.content.replace(/\*\*/g, ''))) {
-        cards.push({ title: heading, body: chunk })
-      }
-    }
-  }
-  return cards.slice(0, 4)
-}
-
 export function enrichLessonVisual(
   subjectCode: string,
   lesson: CourseLesson
 ): EnrichedVisualLesson {
   const template = detectVisualTemplate(subjectCode, lesson)
   const blocks: VisualBlock[] = []
+  const steps = stepsFromLesson(lesson)
 
   blocks.push({
     type: 'hero-visual',
@@ -155,23 +141,34 @@ export function enrichLessonVisual(
     caption: lesson.summary,
   })
 
-  const steps = stepsFromLesson(lesson)
-
-  blocks.push({
-    type: 'learning-path',
-    title: 'Your revision journey',
-    steps,
-  })
-
   blocks.push({
     type: 'step-carousel',
     title: 'Go step by step',
     steps,
   })
 
-  const terms = keyTermsFromLesson(lesson)
-  if (terms.length >= 2) {
-    blocks.push({ type: 'key-terms', title: 'Important words to know', terms })
+  for (const s of lesson.sections) {
+    if (s.type === 'formula') {
+      const parsed = parseFormulaParts(s.content, lesson)
+      blocks.push({
+        type: 'formula-visual',
+        description: parsed.description,
+        expressions: parsed.expressions,
+        expression: parsed.expression,
+        parts: parsed.parts,
+      })
+    }
+  }
+
+  if (lesson.comparisonTable?.rows?.length) {
+    const t = lesson.comparisonTable
+    blocks.push({
+      type: 'comparison-table',
+      title: 'At a glance — side by side',
+      caption: t.caption,
+      columns: t.columns,
+      rows: t.rows,
+    })
   }
 
   const nodes = conceptNodesFromLesson(lesson)
@@ -180,6 +177,24 @@ export function enrichLessonVisual(
       type: 'concept-map',
       center: lesson.title,
       nodes,
+    })
+  }
+
+  const terms = keyTermsFromLesson(lesson)
+  if (terms.length >= 1) {
+    blocks.push({ type: 'key-terms', title: 'Glossary — every term explained', terms })
+  }
+
+  const checks = quickChecksFromLesson(lesson)
+  if (checks.length) {
+    blocks.push({ type: 'quick-check', title: 'Quick check — can you answer these?', items: checks })
+  }
+
+  if (lesson.flashcards?.length) {
+    blocks.push({
+      type: 'flashcards',
+      title: 'Revision flashcards',
+      cards: lesson.flashcards.slice(0, 16),
     })
   }
 
@@ -203,66 +218,6 @@ export function enrichLessonVisual(
       src: lesson.diagram.src,
       alt: lesson.diagram.alt,
     })
-  }
-
-  for (const s of lesson.sections) {
-    if (s.type === 'formula') {
-      const parsed = parseFormulaParts(s.content)
-      blocks.push({
-        type: 'formula-visual',
-        expression: parsed.expression,
-        parts: parsed.parts,
-      })
-    }
-  }
-
-  const checks = quickChecksFromLesson(lesson)
-  if (checks.length) {
-    blocks.push({ type: 'quick-check', title: 'Quick check — can you answer these?', items: checks })
-  }
-
-  const snapshots = snapshotsFromSections(lesson.sections)
-  if (snapshots.length) {
-    blocks.push({ type: 'snapshots', title: 'Bite-sized ideas', cards: snapshots })
-  }
-
-  if (lesson.simpleExplanation) {
-    const keyPoints = lesson.sections.find((x) => x.type === 'keyPoints')
-    const examPoints =
-      keyPoints?.type === 'keyPoints'
-        ? keyPoints.items.slice(0, 3)
-        : ['Use mark-scheme vocabulary', 'Show working', 'State units']
-    blocks.push({
-      type: 'compare',
-      title: 'Simple vs exam-ready',
-      simple: {
-        title: 'Explain it simply',
-        points: [
-          lesson.simpleExplanation.summary,
-          ...(lesson.simpleExplanation.analogy ? [lesson.simpleExplanation.analogy] : []),
-        ],
-      },
-      exam: {
-        title: 'What examiners want',
-        points: examPoints,
-      },
-    })
-  }
-
-  for (const s of lesson.sections) {
-    if (s.type === 'workedExample') {
-      blocks.push({
-        type: 'worked-visual',
-        question: s.question,
-        solution: s.solution,
-      })
-    }
-    if (s.type === 'examTip') {
-      blocks.push({ type: 'exam-tip', content: s.content })
-    }
-    if (s.type === 'practice') {
-      blocks.push({ type: 'practice-cta', label: s.label, href: s.href })
-    }
   }
 
   return { template, blocks }

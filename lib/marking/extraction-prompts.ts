@@ -1,6 +1,6 @@
 import type { MarkingStyle } from './types'
 
-const MATH_NOTATION_BLOCK = `MATH NOTATION IN EXTRACTED TEXT:
+export const MATH_NOTATION_BLOCK = `MATH NOTATION IN EXTRACTED TEXT:
 For question_text, mark scheme descriptions, and any extracted math, wrap every mathematical expression in LaTeX delimiters so it renders as math (the text is displayed with KaTeX, which requires $ delimiters), NOT as plain text:
 - Inline math: $x^2$, $\\frac{1}{2}$, $(1-4x)^6$, $\\binom{6}{2}$, $\\sin\\theta$
 - Display math (standalone equations on their own line): $$y = mx + c$$

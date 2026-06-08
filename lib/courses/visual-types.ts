@@ -3,6 +3,7 @@ export type VisualTemplate =
   | 'waves'
   | 'forces'
   | 'energy'
+  | 'thermal'
   | 'cell'
   | 'molecule'
   | 'genetics'
@@ -27,6 +28,11 @@ export type SnapshotCard = {
 export type QuickCheckItem = {
   prompt: string
   answer: string
+}
+
+export type FlashcardItem = {
+  front: string
+  back: string
 }
 
 export type VisualBlock =
@@ -62,9 +68,23 @@ export type VisualBlock =
       items: QuickCheckItem[]
     }
   | {
+      type: 'flashcards'
+      title: string
+      cards: FlashcardItem[]
+    }
+  | {
       type: 'formula-visual'
+      description: string
+      expressions: string[]
       expression: string
       parts: FormulaPart[]
+    }
+  | {
+      type: 'comparison-table'
+      title: string
+      caption?: string
+      columns: string[]
+      rows: { property: string; cells: string[] }[]
     }
   | {
       type: 'snapshots'

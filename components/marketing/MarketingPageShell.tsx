@@ -6,18 +6,23 @@ type MarketingPageShellProps = {
   narrow?: boolean
   /** Wide layout for course lessons and visual learning */
   wide?: boolean
+  /** Full-bleed course studio (left nav + reading column) */
+  studio?: boolean
 }
 
 export function MarketingPageShell({
   children,
   narrow = false,
   wide = false,
+  studio = false,
 }: MarketingPageShellProps) {
-  const mainClass = wide
-    ? 'mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8'
-    : narrow
-      ? 'mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20'
-      : 'app-padding'
+  const mainClass = studio
+    ? 'course-studio-page'
+    : wide
+      ? 'mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8'
+      : narrow
+        ? 'mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20'
+        : 'app-padding'
 
   return (
     <div className="relative min-h-screen">

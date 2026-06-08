@@ -16,6 +16,10 @@ const RULES: { template: VisualTemplate; pattern: RegExp }[] = [
     pattern: /force|momentum|motion|equilibrium|vector|newton|kinematic|circular|projectile|density|pressure/i,
   },
   {
+    template: 'thermal',
+    pattern: /temperature|kelvin|celsius|absolute zero|specific heat|latent heat|thermal physics/i,
+  },
+  {
     template: 'energy',
     pattern: /energy|power|work|thermal|heat|thermodynamic|gas|entropy|internal energy/i,
   },

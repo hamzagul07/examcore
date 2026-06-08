@@ -7,11 +7,13 @@ export function CourseRelatedTopics({
   subjectName,
   lessons,
   currentSlug,
+  nextLesson,
 }: {
   subjectCode: string
   subjectName: string
   lessons: CourseLesson[]
   currentSlug: string
+  nextLesson?: CourseLesson | null
 }) {
   const idx = lessons.findIndex((l) => l.slug === currentSlug)
   if (idx < 0) return null
@@ -25,16 +27,22 @@ export function CourseRelatedTopics({
 
   return (
     <section
-      className="mt-10 rounded-2xl border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] p-5"
+      className="course-keep-going mt-10"
       aria-labelledby="related-topics"
     >
-      <h2 id="related-topics" className="mb-1 text-lg font-semibold text-[var(--ec-text-primary)]">
-        More {subjectName} topics
+      <div className="course-keep-going-divider" aria-hidden />
+      {nextLesson ? (
+        <p className="course-keep-going-next">
+          Next: <strong>{nextLesson.topicCode}</strong> {nextLesson.title}
+        </p>
+      ) : null}
+      <h2 id="related-topics" className="course-keep-going-title">
+        Keep going
       </h2>
       <p className="mb-4 text-sm text-[var(--ec-text-tertiary)]">
-        Students revising this topic also study these syllabus points on {subjectCode}.
+        More {subjectName} topics students revise alongside this syllabus point ({subjectCode}).
       </p>
-      <ul className="divide-y divide-[var(--ec-border-subtle)] rounded-xl border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)]">
+      <ul className="divide-y divide-[var(--ec-border-subtle)] rounded-xl border border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)]">
         {related.map((lesson) => (
           <li key={lesson.slug}>
             <Link
@@ -42,7 +50,7 @@ export function CourseRelatedTopics({
               className="flex items-center justify-between gap-3 px-4 py-3 text-sm no-underline transition-colors hover:bg-[var(--ec-surface-muted)]"
             >
               <span>
-                <span className="font-mono text-xs text-[var(--ec-text-tertiary)]">
+                <span className="font-mono text-xs font-semibold text-[var(--course-subject-accent,var(--ec-brand))]">
                   {lesson.topicCode}
                 </span>
                 <span className="ml-2 font-medium text-[var(--ec-text-primary)]">

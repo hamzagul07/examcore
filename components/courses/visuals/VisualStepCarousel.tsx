@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, ListOrdered } from 'lucide-react'
 import type { VisualStep } from '@/lib/courses/visual-types'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
 export function VisualStepCarousel({ title, steps }: { title: string; steps: VisualStep[] }) {
@@ -39,7 +40,9 @@ export function VisualStepCarousel({ title, steps }: { title: string; steps: Vis
             <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--ec-brand)]">
               {step.label}
             </p>
-            <p className="text-base leading-relaxed text-[var(--ec-text-secondary)]">{step.detail}</p>
+            <div className="text-base leading-relaxed text-[var(--ec-text-secondary)]">
+              <CourseRichText content={step.detail} variant="prose" />
+            </div>
           </motion.div>
         </AnimatePresence>
 

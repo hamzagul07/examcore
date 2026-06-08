@@ -2,172 +2,74 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowRight, BookOpen, Eye, Heart, Lightbulb, Target } from 'lucide-react'
+import { ArrowRight, BookOpen, Target } from 'lucide-react'
 import type { CourseLesson, PastPaperQuestionRef } from '@/lib/courses/types'
-import type { EnrichedVisualLesson, VisualBlock, VisualTemplate } from '@/lib/courses/visual-types'
+import type { EnrichedVisualLesson } from '@/lib/courses/visual-types'
 import { CourseLessonContent } from '@/components/courses/CourseLessonContent'
 import { CoursePastPaperSection } from '@/components/courses/CoursePastPaperSection'
-import { TopicDiagram } from '@/components/courses/visuals/TopicDiagram'
-import { VisualStepCarousel } from '@/components/courses/visuals/VisualStepCarousel'
-import { VisualStepTimeline } from '@/components/courses/visuals/VisualStepTimeline'
-import { LearningPathBar } from '@/components/courses/visuals/LearningPathBar'
 import { FormulaVisual } from '@/components/courses/visuals/FormulaVisual'
-import { SnapshotGrid } from '@/components/courses/visuals/SnapshotGrid'
-import { ConceptCompare } from '@/components/courses/visuals/ConceptCompare'
 import { ConceptMapVisual } from '@/components/courses/visuals/ConceptMapVisual'
 import { QuickCheckPanel } from '@/components/courses/visuals/QuickCheckPanel'
 import { KeyTermsPanel } from '@/components/courses/visuals/KeyTermsPanel'
+import { FlashcardDeck } from '@/components/courses/visuals/FlashcardDeck'
+import { ComparisonTableVisual } from '@/components/courses/visuals/ComparisonTableVisual'
+import { CourseReadingProgress } from '@/components/courses/CourseReadingProgress'
+import { CourseLessonToc } from '@/components/courses/CourseLessonToc'
+import { CourseKeyTakeaways } from '@/components/courses/CourseKeyTakeaways'
+import { CourseSimpleExplanation } from '@/components/courses/CourseSimpleExplanation'
+import { CourseWorkedExamples } from '@/components/courses/CourseWorkedExamples'
+import { CoursePastPaperPractice } from '@/components/courses/CoursePastPaperPractice'
+import { CourseVisualLearning } from '@/components/courses/CourseVisualLearning'
+import { CourseLegacyAnchor } from '@/components/courses/CourseLegacyAnchor'
+import {
+  buildNotesLesson,
+  extractWorkedExamples,
+  hasRenderableNotes,
+  partitionEnrichedBlocks,
+} from '@/lib/courses/lesson-layout'
+import { buildLessonToc, extractKeyTakeaways } from '@/lib/courses/lesson-toc'
 
-type Tab = 'visual' | 'notes' | 'practice'
-
-function HeroVisual({
-  template,
-  caption,
-}: {
-  template: VisualTemplate
-  caption: string
-}) {
-  return (
-    <div className="course-visual-hero">
-      <div className="course-visual-hero-diagram px-5 pt-5 lg:px-8 lg:pt-8">
-        <div className="rounded-xl border-2 border-dashed border-[color-mix(in_srgb,var(--ec-brand)_30%,var(--ec-border-subtle))] bg-[var(--ec-surface-raised)] p-3">
-          <TopicDiagram template={template} />
-        </div>
-        <p className="mt-3 text-center text-[10px] font-bold uppercase tracking-wide text-[var(--ec-text-tertiary)]">
-          Visual overview
-        </p>
-      </div>
-      <p className="course-visual-hero-caption lg:text-base">{caption}</p>
-    </div>
-  )
-}
-
-function VisualBlockRenderer({
-  block,
-  template,
-  stageSteps,
-}: {
-  block: VisualBlock
-  template: VisualTemplate
-  stageSteps?: Extract<VisualBlock, { type: 'step-carousel' }> | null
-}) {
-  if (block.type === 'hero-visual' && stageSteps) {
-    return (
-      <div className="course-visual-stage grid gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-[1.15fr_0.85fr]">
-        <HeroVisual template={block.template} caption={block.caption} />
-        <div>
-          <VisualStepTimeline title={stageSteps.title} steps={stageSteps.steps} />
-          <VisualStepCarousel title={stageSteps.title} steps={stageSteps.steps} />
-        </div>
-      </div>
-    )
-  }
-
-  switch (block.type) {
-    case 'step-carousel':
-      return <VisualStepCarousel title={block.title} steps={block.steps} />
-    case 'hero-visual':
-      return <HeroVisual template={block.template} caption={block.caption} />
-    case 'learning-path':
-      return <LearningPathBar title={block.title} steps={block.steps} />
-    case 'diagram-image':
-      return (
-        <figure className="overflow-hidden rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_30%,var(--ec-border-subtle))] bg-[var(--ec-surface-muted)] p-2 shadow-lg lg:rounded-3xl">
-          <Image
-            src={block.src}
-            alt={block.alt}
-            width={1280}
-            height={720}
-            className="h-auto w-full rounded-xl border border-[var(--ec-border-subtle)]"
-            unoptimized
-          />
-          <figcaption className="px-2 py-2 text-center text-xs text-[var(--ec-text-tertiary)]">
-            Syllabus diagram — use labels to link ideas to past papers
-          </figcaption>
-        </figure>
-      )
-    case 'key-terms':
-      return <KeyTermsPanel title={block.title} terms={block.terms} />
-    case 'concept-map':
-      return <ConceptMapVisual center={block.center} nodes={block.nodes} template={template} />
-    case 'quick-check':
-      return <QuickCheckPanel title={block.title} items={block.items} />
-    case 'formula-visual':
-      return <FormulaVisual expression={block.expression} parts={block.parts} />
-    case 'snapshots':
-      return <SnapshotGrid title={block.title} cards={block.cards} />
-    case 'compare':
-      return <ConceptCompare title={block.title} simple={block.simple} exam={block.exam} />
-    case 'worked-visual':
-      return (
-        <div className="course-worked-box w-full">
-          <div className="course-worked-header px-4 py-3 lg:px-6 lg:py-4">
-            <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-[var(--ec-accent)]">
-              <Target className="h-4 w-4" aria-hidden />
-              Worked example — follow each line
-            </p>
-            <p className="mt-2 font-medium text-[var(--ec-text-primary)] lg:text-lg">
-              {block.question}
-            </p>
-          </div>
-          <pre className="whitespace-pre-wrap border-t-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] px-4 py-4 font-mono text-sm leading-relaxed text-[var(--ec-text-secondary)] lg:px-6 lg:py-5 lg:text-base">
-            {block.solution}
-          </pre>
-        </div>
-      )
-    case 'exam-tip':
-      return (
-        <div className="course-exam-tip-box flex gap-3 px-4 py-4 text-sm leading-relaxed text-[var(--ec-text-secondary)] lg:px-6 lg:py-5 lg:text-base">
-          <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" aria-hidden />
-          <div>
-            <p className="mb-1 font-bold text-[var(--ec-text-primary)]">Examiner tip</p>
-            <p>{block.content}</p>
-          </div>
-        </div>
-      )
-    case 'practice-cta':
-      return (
-        <Link
-          href={block.href}
-          className="ec-btn-primary inline-flex items-center gap-2 rounded-2xl px-6 py-3.5 text-base font-semibold no-underline"
-        >
-          {block.label}
-          <ArrowRight className="h-4 w-4" aria-hidden />
-        </Link>
-      )
-    default:
-      return null
-  }
-}
+type Tab = 'learn' | 'practice'
 
 export function CourseLessonExperience({
   lesson,
   enriched,
   pastPaperQuestions,
   topicTitle,
+  subjectCode,
 }: {
   lesson: CourseLesson
   enriched: EnrichedVisualLesson
   pastPaperQuestions: PastPaperQuestionRef[]
   topicTitle: string
+  subjectCode: string
 }) {
-  const [tab, setTab] = useState<Tab>('visual')
+  const [tab, setTab] = useState<Tab>('learn')
 
-  const tabs: { id: Tab; label: string; hint: string; icon: typeof Eye }[] = [
-    { id: 'visual', label: 'Learn visually', hint: 'Diagrams & steps', icon: Eye },
-    { id: 'notes', label: 'Read notes', hint: 'Full write-up', icon: BookOpen },
+  const tabs: { id: Tab; label: string; hint: string; icon: typeof BookOpen }[] = [
+    { id: 'learn', label: 'Learn', hint: 'Visuals + full notes', icon: BookOpen },
     { id: 'practice', label: 'Past papers', hint: 'Try questions', icon: Target },
   ]
 
-  const stageSteps = enriched.blocks.find(
-    (b): b is Extract<VisualBlock, { type: 'step-carousel' }> => b.type === 'step-carousel'
-  )
+  const partitioned = partitionEnrichedBlocks(enriched.blocks)
+  const workedExamples = extractWorkedExamples(lesson)
+  const notesLesson = buildNotesLesson(lesson, enriched, { omitWorkedExamples: true })
+  const hasNotes = hasRenderableNotes(lesson, enriched)
+  const takeaways = extractKeyTakeaways(lesson)
+  const practiceSection = lesson.sections.find((s) => s.type === 'practice')
+  const pastPaperPractice = lesson.sections.find((s) => s.type === 'pastPaperPractice')
+  const tocEntries = buildLessonToc(lesson, enriched, partitioned)
+
+  const hasVisual =
+    partitioned.heroVisual !== null ||
+    partitioned.stepCarousel !== null ||
+    partitioned.diagramImage !== null
 
   return (
     <div className="course-lesson-experience">
+      <CourseReadingProgress />
       <div
-        className="course-visual-tabs mb-8 inline-flex w-full flex-wrap gap-1 rounded-2xl border border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] p-1.5 sm:w-auto"
+        className="course-visual-tabs course-studio-tabs mb-8 inline-flex w-full flex-wrap gap-1 sm:w-auto"
         role="tablist"
         aria-label="Lesson view"
       >
@@ -193,49 +95,166 @@ export function CourseLessonExperience({
         ))}
       </div>
 
-      {tab === 'visual' ? (
-        <div role="tabpanel">
-          <div className="course-student-banner" role="note">
-            <Heart className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden />
-            <p>
-              <strong>Learn your way.</strong> Tap symbols, swipe steps, and reveal answers when you
-              are ready. You do not need to read everything at once — go at your own pace.
-            </p>
-          </div>
-          <div className="course-visual-canvas w-full min-w-0 space-y-8">
-            {enriched.blocks.map((block, i) => {
-              if (block.type === 'step-carousel') return null
-              return (
-                <div key={`${block.type}-${i}`} className="course-visual-block w-full min-w-0">
-                  <VisualBlockRenderer
-                    block={block}
+      {tab === 'learn' ? (
+        <div role="tabpanel" className="course-learn-page">
+          <div className="course-learn-layout">
+            <div className="course-learn-main min-w-0 space-y-8">
+              <div className="course-learn-toc-mobile mb-6 xl:hidden">
+                <CourseLessonToc entries={tocEntries} />
+              </div>
+
+              {lesson.simpleExplanation ? (
+                <CourseSimpleExplanation data={lesson.simpleExplanation} />
+              ) : null}
+
+              {hasVisual ? (
+                <>
+                  <CourseLegacyAnchor id="learn-steps" />
+                  <CourseVisualLearning
+                    partitioned={partitioned}
                     template={enriched.template}
-                    stageSteps={stageSteps}
+                    lessonSlug={lesson.slug}
+                  />
+                </>
+              ) : null}
+
+              {partitioned.formulaVisuals.length ? (
+                <div id="key-formulas" className="course-key-formulas space-y-6 scroll-mt-28">
+                  {partitioned.formulaVisuals.map((block, i) => (
+                    <FormulaVisual
+                      key={`formula-${i}`}
+                      description={block.description}
+                      expressions={block.expressions}
+                      expression={block.expression}
+                      parts={block.parts}
+                    />
+                  ))}
+                </div>
+              ) : null}
+
+              {hasNotes ? (
+                <section id="full-notes" className="course-full-notes scroll-mt-28">
+                  <CourseLegacyAnchor id="learn-notes" />
+                  <header className="course-notes-transition">
+                    <h2 className="course-notes-transition-title">Full topic notes</h2>
+                    <p className="course-notes-transition-hint">
+                      Formal explanation with the rigor you need for the exam.
+                    </p>
+                  </header>
+                  <div className="course-notes-panel max-w-none rounded-2xl border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)] p-5 sm:p-6 lg:p-8">
+                    <CourseLessonContent lesson={notesLesson} />
+                  </div>
+                </section>
+              ) : null}
+
+              {workedExamples.length ? (
+                <CourseWorkedExamples
+                  examples={workedExamples}
+                  isMcqPaper={lesson.paperType === 'mcq' || lesson.paperNumber === '1'}
+                />
+              ) : null}
+
+              {pastPaperPractice?.type === 'pastPaperPractice' ? (
+                <CoursePastPaperPractice
+                  subjectCode={subjectCode}
+                  questions={pastPaperPractice.questions}
+                />
+              ) : null}
+
+              {partitioned.comparisonTable ? (
+                <>
+                  <CourseLegacyAnchor id="learn-compare" />
+                  <div id="comparison" className="scroll-mt-28">
+                    <ComparisonTableVisual
+                      title={partitioned.comparisonTable.title}
+                      caption={partitioned.comparisonTable.caption}
+                      columns={partitioned.comparisonTable.columns}
+                      rows={partitioned.comparisonTable.rows}
+                    />
+                  </div>
+                </>
+              ) : null}
+
+              {partitioned.conceptMap ? (
+                <div id="concept-map" className="scroll-mt-28">
+                  <ConceptMapVisual
+                    center={partitioned.conceptMap.center}
+                    nodes={partitioned.conceptMap.nodes}
+                    template={enriched.template}
                   />
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      ) : null}
+              ) : null}
 
-      {tab === 'notes' ? (
-        <div
-          className="course-notes-panel max-w-none rounded-2xl border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)] p-5 sm:p-6"
-          role="tabpanel"
-        >
-          <CourseLessonContent lesson={lesson} />
+              {partitioned.keyTerms ? (
+                <>
+                  <CourseLegacyAnchor id="learn-glossary" />
+                  <div id="glossary" className="scroll-mt-28">
+                    <KeyTermsPanel
+                      title={partitioned.keyTerms.title}
+                      terms={partitioned.keyTerms.terms}
+                    />
+                  </div>
+                </>
+              ) : null}
+
+              {partitioned.quickCheck ? (
+                <div id="quick-check" className="scroll-mt-28">
+                  <QuickCheckPanel
+                    title={partitioned.quickCheck.title}
+                    items={partitioned.quickCheck.items}
+                  />
+                </div>
+              ) : null}
+
+              {partitioned.flashcards ? (
+                <div id="flashcards" className="scroll-mt-28">
+                  <FlashcardDeck
+                    title={partitioned.flashcards.title}
+                    cards={partitioned.flashcards.cards}
+                  />
+                </div>
+              ) : null}
+
+              {takeaways.length ? (
+                <div id="key-takeaways" className="scroll-mt-28">
+                  <CourseLegacyAnchor id="learn-takeaways" />
+                  <CourseKeyTakeaways items={takeaways} />
+                </div>
+              ) : null}
+
+              {practiceSection?.type === 'practice' ? (
+                <div id="practice" className="scroll-mt-28">
+                  <CourseLegacyAnchor id="learn-practice" />
+                  <Link
+                    href={practiceSection.href}
+                    className="ec-btn-primary inline-flex items-center gap-2 rounded-2xl px-6 py-3.5 text-base font-semibold no-underline"
+                  >
+                    {practiceSection.label}
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
+              ) : null}
+            </div>
+
+            <aside className="course-learn-aside hidden xl:block">
+              <CourseLessonToc entries={tocEntries} />
+            </aside>
+          </div>
         </div>
       ) : null}
 
       {tab === 'practice' ? (
         <div className="space-y-6" role="tabpanel">
           <CoursePastPaperSection questions={pastPaperQuestions} topicTitle={topicTitle} />
-          {enriched.blocks
-            .filter((b): b is Extract<VisualBlock, { type: 'practice-cta' }> => b.type === 'practice-cta')
-            .map((b) => (
-              <VisualBlockRenderer key={b.href} block={b} template={enriched.template} />
-            ))}
+          {practiceSection?.type === 'practice' ? (
+            <Link
+              href={practiceSection.href}
+              className="ec-btn-primary inline-flex items-center gap-2 rounded-2xl px-6 py-3.5 text-base font-semibold no-underline"
+            >
+              {practiceSection.label}
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          ) : null}
         </div>
       ) : null}
     </div>

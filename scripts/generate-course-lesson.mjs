@@ -7,7 +7,7 @@
  *   node scripts/generate-course-lesson.mjs --code 9702 --topic 9.1 --diagram
  *
  * Env:
- *   GEMINI_API_KEY — lesson content (gemini-2.5-flash) + optional diagram image
+ *   GEMINI_API_KEY — lesson content (gemini-2.5-pro) + optional diagram image
  *
  * IMPORTANT: Generates ORIGINAL content from the official syllabus structure.
  * Do NOT scrape ZNotes, Save My Exams notes, or other copyrighted sites.
@@ -81,7 +81,7 @@ No GEMINI_API_KEY set. Lesson stub only:
   Slug:    ${slug}
   Output:  ${outPath}
 
-Set GEMINI_API_KEY and re-run to generate full lesson JSON with gemini-2.5-flash.
+Set GEMINI_API_KEY and re-run to generate full lesson JSON with gemini-2.5-pro.
 For diagrams, pass --diagram (uses gemini-2.5-flash-image).
 
 Content policy: write ORIGINAL lessons aligned to Cambridge syllabus ${code}.

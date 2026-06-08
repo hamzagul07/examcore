@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CheckCircle2, Circle, Sparkles } from 'lucide-react'
+import { CheckCircle2, Sparkles } from 'lucide-react'
 import type { CourseLesson } from '@/lib/courses/types'
 
 type Props = {
@@ -25,11 +25,11 @@ export function CourseTopicList({
   const doneSet = new Set(completedSlugs)
 
   return (
-    <nav aria-label="Course topics" className="space-y-6">
+    <nav aria-label="Course topics" className="course-studio-topic-nav">
       {Object.entries(byPaper).map(([paperName, paperLessons]) => (
-        <div key={paperName}>
-          <p className="ec-label-tech mb-2 px-1">{paperName}</p>
-          <ul className="space-y-1">
+        <div key={paperName} className="course-studio-paper-group">
+          <p className="course-studio-paper-label">{paperName}</p>
+          <ul className="course-studio-topic-list">
             {paperLessons.map((lesson) => {
               const isActive = lesson.slug === activeSlug
               const isDone = doneSet.has(lesson.slug)
@@ -40,33 +40,28 @@ export function CourseTopicList({
                 <li key={lesson.slug}>
                   <Link
                     href={`/courses/${subjectCode}/${lesson.slug}`}
-                    className={`flex items-start gap-2 rounded-xl px-3 py-2.5 text-sm transition-colors ${
-                      isActive
-                        ? 'bg-[var(--ec-accent)]/12 font-medium text-[var(--ec-text-primary)]'
-                        : 'text-[var(--ec-text-secondary)] hover:bg-[var(--ec-surface-raised)]'
-                    }`}
+                    className={`course-studio-topic-link${isActive ? ' is-active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    {isDone ? (
-                      <CheckCircle2
-                        className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500"
-                        aria-label="Completed"
-                      />
-                    ) : (
-                      <Circle className="mt-0.5 h-4 w-4 shrink-0 opacity-35" aria-hidden />
-                    )}
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate">{lesson.title}</span>
-                      <span className="text-xs text-[var(--ec-text-tertiary)]">
+                    <span className="course-studio-topic-indicator" aria-hidden />
+                    <span className="course-studio-topic-text min-w-0 flex-1">
+                      <span className="course-studio-topic-title">{lesson.title}</span>
+                      <span className="course-studio-topic-meta">
                         {lesson.topicCode}
                         {isPublished ? (
-                          <span className="ml-2 inline-flex items-center gap-0.5 text-[var(--ec-accent)]">
+                          <span className="course-studio-topic-premium">
                             <Sparkles className="h-3 w-3" aria-hidden />
-                            Premium lesson
+                            Premium
                           </span>
                         ) : null}
                       </span>
                     </span>
+                    {isDone ? (
+                      <CheckCircle2
+                        className="course-studio-topic-done h-4 w-4 shrink-0"
+                        aria-label="Completed"
+                      />
+                    ) : null}
                   </Link>
                 </li>
               )

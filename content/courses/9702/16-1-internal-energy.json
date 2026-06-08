@@ -5,85 +5,124 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Master internal energy for Cambridge Physics 9702. Understand its components, how it changes, and ace Paper 4 questions with our premium revision lesson.",
+  "summary": "Explore internal energy, its link to temperature, and the First Law of Thermodynamics (\\Delta U = Q + W) with clear sign conventions for heat and work.",
   "durationMin": 20,
   "learningObjectives": [
-    "Define internal energy as the sum of random kinetic and potential energies of molecules.",
-    "Explain how internal energy relates to the temperature of a system.",
-    "Describe the changes in internal energy during phase transitions."
+    "Define internal energy as the sum of random kinetic and potential energies of particles.",
+    "Explain the relationship between internal energy, temperature, and phase changes.",
+    "Apply the First Law of Thermodynamics (\\Delta U = Q + W) with correct sign conventions."
   ],
   "simpleExplanation": {
     "title": "What is Internal Energy?",
-    "summary": "Imagine all the tiny particles inside an object. Internal energy is the total energy these particles possess, both from their movement (kinetic) and their positions relative to each other (potential). It's a measure of the total microscopic energy of a system.",
-    "analogy": "Think of a busy beehive: the bees flying around represent kinetic energy, and their positions within the hive, interacting with each other, represent potential energy. The hive's total buzz and structure is like its internal energy.",
+    "summary": "Imagine all the tiny particles inside a substance jigging about and pulling on each other. Internal energy is the grand total of all that motion and interaction energy. It's what makes things hot or cold, and it dictates how substances behave when you add heat or do work.",
+    "analogy": "Think of a busy beehive. Each bee (particle) is flying around (kinetic energy) and also interacting with other bees (potential energy due to forces between them). The total energy of all the bees flying and interacting within the hive is like its internal energy. If the bees fly faster (hotter), or rearrange their positions, the hive's total energy changes.",
     "steps": [
-      "Recall the definitions of kinetic and potential energy at a molecular level.",
-      "Understand how internal energy is the sum of these microscopic energies.",
-      "Connect temperature changes to changes in molecular kinetic energy.",
-      "Relate phase changes to changes in molecular potential energy (and thus internal energy)."
+      "**Particle Power**: Every atom and molecule has kinetic (movement) and potential (interaction) energy.",
+      "**Total Sum**: Internal energy is the sum of ALL these microscopic energies for ALL particles.",
+      "**Temperature Link**: Higher temperature means particles move faster, increasing internal energy.",
+      "**Energy Exchange**: You can change internal energy by heating it up or doing work on it."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What makes up a system's internal energy?",
+      "back": "The total random kinetic and potential energies of all its constituent particles."
+    },
+    {
+      "front": "How does temperature affect a system's internal energy?",
+      "back": "Higher temperature means higher average kinetic energy of particles, thereby increasing internal energy."
+    },
+    {
+      "front": "State the First Law of Thermodynamics.",
+      "back": "\\Delta U = Q + W (Change in internal energy = Heat added to system + Work done on system)."
+    },
+    {
+      "front": "What does a negative 'Q' value mean in \\Delta U = Q + W?",
+      "back": "Heat energy is transferred *out of* the system (e.g., the system cools down)."
+    },
+    {
+      "front": "When is 'W' (work done) negative in the First Law?",
+      "back": "When work is done *by* the system (e.g., an expanding gas pushes a piston)."
+    },
+    {
+      "front": "Is internal energy considered a 'state function'?",
+      "back": "Yes, it depends only on the system's current physical state (e.g., temperature, pressure, volume), not how it got there."
+    },
+    {
+      "front": "Name two ways to increase a system's internal energy.",
+      "back": "By doing work *on* the system or by transferring energy *to* it via heating."
+    },
+    {
+      "front": "What does a positive \\Delta U signify?",
+      "back": "An increase in the system's total internal energy."
+    },
+    {
+      "front": "Why is internal energy considered to involve 'random' energies?",
+      "back": "Because the motion and positions of individual particles are unpredictable, disordered, and chaotic."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Ever wondered what makes a hot cup of tea 'hot' or an ice cube 'cold'? It all boils down to **internal energy**. This fundamental concept in thermodynamics is the total energy stored within a system due to the **random motion** and **intermolecular forces** of its constituent particles. Understanding internal energy is your first crucial step to mastering thermodynamics for Paper 4!"
+      "content": "Ever wondered why a hot cup of tea feels warm, or why pumping up a bicycle tyre makes the pump warm? These everyday events are all linked to **internal energy**, a fundamental concept in physics. It's the hidden energy within a system, dictating how matter responds to heat and work. Get ready to uncover the microscopic world of particles and the powerful First Law of Thermodynamics!"
     },
     {
       "type": "heading",
-      "content": "Defining Internal Energy"
+      "content": "Understanding Internal Energy"
     },
     {
       "type": "text",
-      "content": "Internal energy, symbolised by *U*, is the **total energy** contained within a thermodynamic system due to the random, microscopic motion and positions of its molecules. It's the sum of two main components:"
+      "content": "At its core, a substance's **internal energy (U)** is the grand total of all the chaotic kinetic and potential energies possessed by its individual particles (atoms or molecules). Imagine countless tiny particles jiggling, vibrating, and colliding randomly. Their movement contributes to **kinetic energy**, while the forces between them contribute to **potential energy**. It’s the sum of *all* these microscopic energies throughout the entire system."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Kinetic energy (K.E.)**: Arises from the random translational, rotational, and vibrational motion of the molecules. Higher temperature means higher average molecular kinetic energy.",
-        "**Potential energy (P.E.)**: Arises from the forces between molecules (intermolecular forces). This energy depends on the average separation of the molecules. Changes in phase (e.g., solid to liquid) involve significant changes in molecular potential energy."
+        "Internal energy is a 'state function' – it depends only on the current physical condition of the system.",
+        "The average kinetic energy of particles is directly proportional to the system's absolute temperature.",
+        "Increasing temperature boosts particle motion, directly raising the system's internal energy.",
+        "Internal energy can change even if temperature is constant, e.g., during phase changes (latent heat)."
       ]
     },
     {
-      "type": "examTip",
-      "content": "For an **ideal gas**, there are no intermolecular forces, so the potential energy component is negligible. Therefore, the internal energy of an ideal gas is *solely* dependent on the total random kinetic energy of its molecules, which directly relates to its absolute temperature."
-    },
-    {
       "type": "heading",
-      "content": "Temperature and Internal Energy"
+      "content": "The First Law of Thermodynamics"
     },
     {
       "type": "text",
-      "content": "One of the most direct relationships to grasp is how **temperature** affects internal energy. Temperature is a measure of the **average random kinetic energy** of the molecules in a substance. When you heat a substance, you increase the average speed of its molecules, thus increasing their kinetic energy. This, in turn, increases the overall internal energy of the system."
+      "content": "The **First Law of Thermodynamics** is a cornerstone of physics, essentially a statement of the conservation of energy applied to thermodynamic systems. It explains how energy can be transferred into or out of a system, changing its internal energy, through two primary mechanisms: heating or doing work."
     },
     {
-      "type": "examTip",
-      "content": "Remember, for an ideal gas, internal energy is *directly proportional* to its absolute temperature. So, if the temperature of an ideal gas increases, its internal energy *must* increase, and vice versa. No temperature change means no change in internal energy for an ideal gas."
-    },
-    {
-      "type": "heading",
-      "content": "Phase Changes and Internal Energy"
-    },
-    {
-      "type": "text",
-      "content": "Consider what happens when a substance changes its state, for example, from solid to liquid (melting) or liquid to gas (boiling). During these **phase transitions**, heat is supplied, but the temperature often remains constant. So, if the average kinetic energy isn't changing (as temperature is constant), where is the energy going?"
+      "type": "formula",
+      "content": "$\\Delta U = Q + W$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "During melting or boiling, the supplied energy is used to overcome the intermolecular forces of attraction, increasing the **average separation** between molecules.",
-        "This increase in molecular separation means an increase in the **potential energy** component of the internal energy.",
-        "Therefore, even though temperature may be constant during a phase change, the internal energy of the substance *still increases* (e.g., liquid water at 0°C has higher internal energy than ice at 0°C).",
-        "Conversely, during condensation or freezing, potential energy decreases as molecules get closer, and internal energy decreases."
+        "**\\Delta U**: Change in internal energy. A positive value means an increase, a negative value means a decrease.",
+        "**Q**: Energy transferred as heat. Positive when heat *enters* the system. Negative when heat *leaves* the system.",
+        "**W**: Work done. Positive when work is done *on* the system (e.g., compressing a gas). Negative when work is done *by* the system (e.g., an expanding gas pushes a piston)."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A fixed mass of ideal gas is heated slowly from 300 K to 350 K at constant volume. Explain the change in its internal energy.",
-      "solution": "For an ideal gas, internal energy *U* is solely dependent on its absolute temperature. As the gas is heated from 300 K to 350 K, its temperature increases. This means the average kinetic energy of its molecules increases. Since internal energy is the sum of the random kinetic and potential energies, and potential energy is negligible for an ideal gas, the **internal energy of the gas increases** due to the increase in molecular kinetic energy."
+      "question": "A gas in a cylinder absorbs 300 J of heat from its surroundings. At the same time, the gas expands, doing 120 J of work on the piston. Calculate the change in the internal energy of the gas.",
+      "solution": [
+        "1.  **Identify given values with correct signs:**",
+        "    *   Heat absorbed by the gas (enters system), so Q is positive: Q = +300 J.",
+        "    *   Work done *by* the gas (expansion), so W is negative: W = -120 J.",
+        "2.  **Apply the First Law of Thermodynamics:**",
+        "    *   \\Delta U = Q + W",
+        "3.  **Substitute the values:**",
+        "    *   \\Delta U = (+300 J) + (-120 J)",
+        "    *   \\Delta U = 300 J - 120 J",
+        "    *   \\Delta U = +180 J",
+        "4.  **State the conclusion:**",
+        "    *   The internal energy of the gas increases by 180 J."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Don't confuse internal energy with heat or temperature alone. Heat is energy *transfer* due to temperature difference. Temperature is a measure of average molecular kinetic energy. Internal energy is the *total* stored energy within the system."
+      "content": "Pay meticulous attention to the **sign conventions** for Q and W! A common mistake is getting the signs wrong, especially for work done *by* versus *on* the system. Always ask: Is energy *entering* (positive) or *leaving* (negative) the system? Is work being done *on* (positive) or *by* (negative) the system?"
     },
     {
       "type": "practice",
@@ -106,17 +145,17 @@
   ],
   "faq": [
     {
-      "q": "What is internal energy in A Level Physics 9702?",
-      "a": "In A Level Physics 9702, internal energy is defined as the sum of the randomly distributed kinetic and potential energies of the molecules within a system. It's a key concept in thermodynamics, covered extensively in our free revision course and past papers."
+      "q": "What is the primary difference between heat and internal energy?",
+      "a": "Heat is the transfer of thermal energy between systems due to a temperature difference, while internal energy is the total energy stored *within* a system's particles. Internal energy is a property *of* the system, whereas heat is a *process* of energy transfer."
     },
     {
-      "q": "How does temperature affect internal energy in 9702?",
-      "a": "For any substance, an increase in temperature signifies an increase in the average random kinetic energy of its molecules, which leads to an increase in the substance's internal energy. For an ideal gas, internal energy is directly proportional to its absolute temperature, so an increase in temperature always means an increase in internal energy."
+      "q": "Can a system's internal energy change if its temperature remains constant?",
+      "a": "Yes, this occurs during phase changes (e.g., melting ice or boiling water). Energy added as latent heat increases the potential energy between particles (breaking bonds), even though the average kinetic energy and thus temperature remain constant."
     },
     {
-      "q": "Does internal energy change during a phase transition?",
-      "a": "Yes, internal energy absolutely changes during a phase transition, even if the temperature remains constant. During melting or boiling, for example, the energy supplied goes into increasing the average separation between molecules, thus increasing their potential energy and, consequently, the overall internal energy of the substance."
+      "q": "Why are 'random' kinetic and potential energies important in the definition of internal energy?",
+      "a": "'Random' emphasises that we're considering the microscopic, disordered motion and interactions of individual particles, not the macroscopic kinetic energy of the system as a whole (e.g., a moving car) or its overall gravitational potential energy."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

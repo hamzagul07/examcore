@@ -5,93 +5,160 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master SI units for Cambridge 9702: base units, derived units, prefixes and homogeneity checks — everything you need for P1 and P2.",
+  "summary": "Master SI units for Cambridge Physics (9702). Learn base units, derived units, prefixes, and key energy conversions for P1/P2.",
   "durationMin": 20,
   "learningObjectives": [
-    "Recall and use the seven SI base units and express any derived unit in terms of them",
-    "Use standard prefixes (pico to tera) to convert between multiples and sub-multiples confidently",
-    "Check the homogeneity of physical equations by comparing units on both sides"
+    "Identify the seven SI base quantities and their corresponding units.",
+    "Explain how derived units are formed from base units and perform dimensional analysis.",
+    "Utilise SI prefixes to convert between multiples and submultiples of units, and apply key energy conversions (eV to J, kWh to J)."
   ],
   "simpleExplanation": {
-    "title": "SI Units in a Nutshell",
-    "summary": "Every physical quantity in physics is built from just seven base units — things like the kilogram and the metre. All other units (speed, force, energy) are combinations of these, called derived units. Mastering this system lets you check equations and convert quantities without error.",
-    "analogy": "Think of the seven base units like the letters of the alphabet. Just as every word in English is built from those 26 letters, every unit in physics is built from those seven base units — you just combine them in different ways.",
+    "title": "The Universal Language of Physics",
+    "summary": "Imagine building a house without a standard ruler or measuring tape! In physics, **SI units** provide a universal 'ruler' so scientists worldwide can understand each other's measurements. They ensure consistency, making calculations and experiments reliable, from tiny atoms to distant galaxies.",
+    "analogy": "Think of SI units as the 'currency' of physics. Just as money allows you to exchange goods and services anywhere, SI units allow physicists to exchange data and ideas universally, ensuring everyone is speaking the same measurement 'language'.",
     "steps": [
-      "Memorise the 7 SI base quantities and their units: mass (kg), length (m), time (s), electric current (A), temperature (K), amount of substance (mol), luminous intensity (cd).",
-      "Practise deriving units for common quantities — write out the defining equation, substitute base units, and simplify.",
-      "Learn the prefix multipliers from pico (10⁻¹²) to tera (10¹²) and practise converting, e.g. 3.2 nm = 3.2 × 10⁻⁹ m.",
-      "For homogeneity questions, replace every symbol in an equation with its base units and check that both sides match exactly."
+      "**Understand Physical Quantities**: Recognise that every measurement needs a number AND a unit.",
+      "**Master the Base Units**: Memorise the seven fundamental building blocks of all other units.",
+      "**Decode Derived Units**: Learn how base units combine to form complex units for quantities like force or energy.",
+      "**Navigate Prefixes & Conversions**: Practice using prefixes (kilo, milli, micro) and essential energy unit swaps (eV, kWh)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are the two essential components of a physical quantity?",
+      "back": "A numerical value (magnitude) and an associated unit."
+    },
+    {
+      "front": "List three of the SI base quantities and their corresponding units.",
+      "back": "Mass (kilogram, kg), Length (metre, m), Time (second, s)."
+    },
+    {
+      "front": "Explain what a derived unit is and provide an example.",
+      "back": "A derived unit is formed by combining SI base units. For example, the Newton (N) for force is equivalent to kg m s$^{-2}$."
+    },
+    {
+      "front": "What is the multiplier for the SI prefix 'nano' (n)?",
+      "back": "10$^{-9}$."
+    },
+    {
+      "front": "What is the conversion factor for 1 electronvolt (eV) to Joules (J)?",
+      "back": "1 eV = 1.6 \\times 10$^{-19}$ J."
+    },
+    {
+      "front": "What is the SI base unit for electric current?",
+      "back": "Ampere (A)."
+    },
+    {
+      "front": "What does it mean for an equation to be 'dimensionally homogeneous'?",
+      "back": "The units on both sides of the equation must be consistent (the same)."
+    },
+    {
+      "front": "Convert 1 kilowatt-hour (kWh) to Joules (J).",
+      "back": "1 kWh = 3.6 \\times 10$^6$ J."
+    },
+    {
+      "front": "What is the SI prefix and multiplier for $10^9$?",
+      "back": "Giga (G)."
+    },
+    {
+      "front": "If speed is measured in m/s, what would be the derived unit for acceleration?",
+      "back": "m/s$^2$ (or m s$^{-2}$)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Whether you are tackling a multiple-choice question on Paper 1 or a 'show that' derivation on Paper 2, **SI units** underpin almost every topic in Cambridge A Level Physics 9702. Get them right and you earn easy marks; get them wrong and errors cascade through your entire calculation. This lesson covers the **seven base units**, how to build **derived units** from scratch, the **prefix system**, and the powerful technique of **checking homogeneity** — exactly what Cambridge examiners test."
+      "content": "In physics, precise measurement is everything! When you describe something like distance or time, you need a numerical value, but that's not enough. You also need a **unit** to give that number meaning. The **International System of Units (SI)** provides a standardised set of units, creating a common language for scientists and engineers globally. Let's dive into how these essential units work!"
     },
     {
       "type": "heading",
-      "content": "The Seven SI Base Units"
+      "content": "The Language of Measurement: Physical Quantities"
     },
     {
       "type": "text",
-      "content": "The International System of Units (SI) defines seven independent base quantities. Every other unit in physics is derived from these seven. You must know all of them for 9702:\n\n• **Mass** — kilogram (kg)\n• **Length** — metre (m)\n• **Time** — second (s)\n• **Electric current** — ampere (A)\n• **Thermodynamic temperature** — kelvin (K)\n• **Amount of substance** — mole (mol)\n• **Luminous intensity** — candela (cd)\n\nNote: the candela rarely appears in 9702 calculations, but Cambridge can still ask you to list it. Do not confuse **kelvin** (thermodynamic temperature) with degrees Celsius — kelvin is the SI base unit."
+      "content": "A **physical quantity** is any characteristic of matter or energy that can be measured. Whenever you measure something, whether it's the length of a table or the temperature of a liquid, your answer must always include two parts: a **numerical value** (how much) and a **unit** (what kind of measurement). For example, saying '5' isn't helpful, but '5 metres' (5 m) tells you exactly what has been measured and its magnitude."
     },
     {
       "type": "heading",
-      "content": "Derived Units — Building from Base Units"
+      "content": "SI Base Units: The Foundation"
     },
     {
       "type": "text",
-      "content": "A **derived unit** is formed by multiplying or dividing base units according to the defining equation of the quantity. The method is always the same: write the defining equation, substitute SI base units for every quantity, then simplify.\n\n**Example — the newton (N):**\nForce = mass × acceleration\nF = m × (Δv/Δt) = m × (m s⁻¹ / s)\nSo 1 N = 1 kg m s⁻²\n\n**Example — the pascal (Pa):**\nPressure = force / area\nP = N / m² = kg m s⁻² / m² = kg m⁻¹ s⁻²\n\n**Example — the joule (J):**\nWork = force × distance\nW = N × m = kg m s⁻² × m = kg m² s⁻²\n\nAlways work systematically — start with the defining equation and never guess."
-    },
-    {
-      "type": "formula",
-      "content": "Derived unit = (base units of quantity A)^p × (base units of quantity B)^q × …\nExample: [energy] = kg m² s⁻²"
-    },
-    {
-      "type": "heading",
-      "content": "SI Prefixes"
-    },
-    {
-      "type": "text",
-      "content": "Cambridge 9702 regularly tests your ability to handle prefixes in calculations and unit conversions. The prefixes you must know are:\n\n| Prefix | Symbol | Multiplier |\n|--------|--------|------------|\n| tera   | T      | 10¹²       |\n| giga   | G      | 10⁹        |\n| mega   | M      | 10⁶        |\n| kilo   | k      | 10³        |\n| centi  | c      | 10⁻²       |\n| milli  | m      | 10⁻³       |\n| micro  | μ      | 10⁻⁶       |\n| nano   | n      | 10⁻⁹       |\n| pico   | p      | 10⁻¹²      |\n\n**Conversion tip:** When squaring or cubing a prefixed unit, apply the multiplier to the power as well. For example, 1 cm² = (10⁻² m)² = 10⁻⁴ m² — a very common source of errors in exam scripts."
-    },
-    {
-      "type": "heading",
-      "content": "Homogeneity of Equations"
-    },
-    {
-      "type": "text",
-      "content": "An equation is **homogeneous** (dimensionally consistent) if the units on the left-hand side are identical to the units on the right-hand side. This is a powerful checking tool — and Cambridge examiners set dedicated marks for it.\n\n**The method:**\n1. Write the equation.\n2. Replace each physical quantity with its SI base units.\n3. Simplify both sides independently.\n4. State whether the units are the same, and therefore whether the equation is or is not homogeneous.\n\n**Important limitation:** Homogeneity can confirm that an equation is *possibly* correct, but it cannot prove it is correct. A dimensionally consistent equation could still have the wrong numerical constant (e.g. a missing factor of 2 or π). Always mention this in exam answers when asked."
+      "content": "The SI system is built upon a foundation of seven fundamental **Base Quantities**, each with its own independent **Base Unit**. These units cannot be broken down further into simpler units and form the core from which all other units are derived. You'll need to know all of them for your exams!"
     },
     {
       "type": "keyPoints",
       "items": [
-        "There are exactly **7 SI base units** — memorise all seven including the candela, even though it rarely appears in calculations.",
-        "To find a derived unit, always **start from the defining equation** and substitute base units — never try to remember derived units in isolation.",
-        "When converting prefixed units that are **squared or cubed**, remember to apply the power to the prefix multiplier too (e.g. 1 mm³ = 10⁻⁹ m³, not 10⁻³ m³).",
-        "To check homogeneity, **replace every symbol** in the equation with its base units, simplify each side separately, and compare.",
-        "Homogeneity is a **necessary but not sufficient** condition for an equation to be correct — a missing dimensionless constant would not be detected.",
-        "Cambridge mark schemes award a specific mark for **stating the units of an answer** — always include them, even when the question does not explicitly ask."
+        "**Mass**: kilogram (kg)",
+        "**Length**: metre (m)",
+        "**Time**: second (s)",
+        "**Electric Current**: ampere (A)",
+        "**Thermodynamic Temperature**: kelvin (K)",
+        "**Amount of Substance**: mole (mol)"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Building Blocks: Derived Units"
+    },
+    {
+      "type": "text",
+      "content": "While base units are fundamental, most quantities we encounter in physics use **derived units**. These are units created by combining two or more base units through multiplication or division. For example, to find speed, you divide distance (length) by time, so its derived unit is metres per second (m/s)."
+    },
+    {
+      "type": "formula",
+      "content": "For example, Force (Newton, N) $= Mass \\times Acceleration$. $N = kg \\times (m/s^2)$. $N = kg m s^{-2}$"
+    },
+    {
+      "type": "text",
+      "content": "Understanding derived units is crucial for checking the consistency of equations. An equation is said to be **dimensionally homogeneous** if the units on both sides of the equation are identical. This is a powerful tool to spot potential errors in your calculations!"
+    },
+    {
+      "type": "examTip",
+      "content": "Always check for dimensional homogeneity! If the units on both sides of your equation don't match, you've made a mistake in your formula or calculation. This is a common check in Paper 2 questions."
+    },
+    {
+      "type": "heading",
+      "content": "Scaling Up and Down: SI Prefixes"
+    },
+    {
+      "type": "text",
+      "content": "Physical quantities can range from incredibly tiny to astronomically huge. To make these numbers easier to write and understand, we use **SI prefixes**. These prefixes attach to the start of a unit and indicate a specific power of 10 multiplier."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Tera (T): $10^{12}$",
+        "Giga (G): $10^9$",
+        "Mega (M): $10^6$",
+        "Kilo (k): $10^3$",
+        "Centi (c): $10^{-2}$",
+        "Milli (m): $10^{-3}$",
+        "Micro (\\textmu): $10^{-6}$",
+        "Nano (n): $10^{-9}$",
+        "Pico (p): $10^{-12}$"
       ]
     },
     {
       "type": "workedExample",
-      "question": "The period T of a simple pendulum is given by the equation T = 2π√(L/g), where L is the length of the pendulum and g is the gravitational field strength. Show that this equation is homogeneous with respect to its units.",
-      "solution": "Step 1 — Identify the units of each quantity:\n• T is a time: units = s\n• L is a length: units = m\n• g is gravitational field strength (acceleration): units = m s⁻²\n• 2π is a dimensionless constant: no units\n\nStep 2 — Write the right-hand side in base units:\n√(L/g) = √(m / m s⁻²)\n= √(m × s² × m⁻¹)\n= √(s²)\n= s\n\nStep 3 — Compare both sides:\nLeft-hand side: s\nRight-hand side: s\n\nStep 4 — Conclusion:\nBoth sides have units of seconds, so the equation IS homogeneous. ✓\n\nNote: The factor 2π is dimensionless and does not affect homogeneity."
+      "question": "Convert 2.5 \\textmu s to seconds (s) and 0.045 km to metres (m).",
+      "solution": "1. **For 2.5 \\textmu s to s:**\\n    The prefix 'micro' (\\textmu) means $10^{-6}$.\\n    So, 2.5 \\textmu s = 2.5 \\times 10^{-6} s.\\n\\n2. **For 0.045 km to m:**\\n    The prefix 'kilo' (k) means $10^3$ (or 1000).\\n    So, 0.045 km = 0.045 \\times 1000 m = 45 m."
+    },
+    {
+      "type": "heading",
+      "content": "Energy: Key Conversions"
+    },
+    {
+      "type": "text",
+      "content": "While the Joule (J) is the SI derived unit for energy, you'll often encounter other energy units, especially in specific contexts like atomic physics or domestic electricity. Knowing how to convert them to Joules is essential for consistency in calculations."
+    },
+    {
+      "type": "formula",
+      "content": "$1\\text{ electronvolt (eV)} = 1.6 \\times 10^{-19}\\text{ J}$. $1\\text{ kilowatt-hour (kWh)} = 3.6 \\times 10^6\\text{ J}$"
     },
     {
       "type": "examTip",
-      "content": "On Paper 2, when asked to 'show that an equation is homogeneous', Cambridge examiners expect you to show every step of working — substituting base units, simplifying, and writing a concluding statement. Simply writing 'both sides equal seconds' without showing the substitution will not earn full marks. Also, if the question then asks whether homogeneity proves the equation is correct, always say no — a dimensionless constant could be wrong."
-    },
-    {
-      "type": "workedExample",
-      "question": "Express the unit of electrical resistance, the ohm (Ω), in terms of SI base units.",
-      "solution": "Step 1 — Recall the defining equation for resistance:\nV = IR, so R = V / I\n\nStep 2 — Express voltage V in base units:\nVoltage = energy / charge = J / C\nJ = kg m² s⁻²\nC = A s\nSo V = kg m² s⁻² / (A s) = kg m² s⁻³ A⁻¹\n\nStep 3 — Divide by current I (units: A):\nR = V / I = kg m² s⁻³ A⁻¹ / A = kg m² s⁻³ A⁻²\n\nAnswer: 1 Ω = kg m² s⁻³ A⁻²"
-    },
-    {
-      "type": "examTip",
-      "content": "A quick way to remember that resistance involves A⁻²: Ohm's law gives R = V/I, and since V itself contains A⁻¹ (from the energy-per-charge route), dividing by another A brings the total to A⁻². Build derived units from first principles every time rather than trying to memorise them — it's faster and more reliable under exam pressure."
+      "content": "Be careful with case sensitivity for prefixes! 'm' for milli ($10^{-3}$) is very different from 'M' for Mega ($10^6$). Pay close attention to these details in exams."
     },
     {
       "type": "practice",
@@ -114,17 +181,17 @@
   ],
   "faq": [
     {
-      "q": "What SI base units do I need to know for Cambridge 9702 Physics?",
-      "a": "You need to know all seven SI base units: kilogram (kg) for mass, metre (m) for length, second (s) for time, ampere (A) for electric current, kelvin (K) for thermodynamic temperature, mole (mol) for amount of substance, and candela (cd) for luminous intensity. Our free 9702 course covers every topic tested in P1 and P2, with past-paper practice included."
+      "q": "What are SI units and why are they important in physics?",
+      "a": "SI units (International System of Units) are a globally recognised standard set of units for physical quantities. They are crucial because they ensure consistency and clarity in scientific communication and calculations, allowing scientists worldwide to understand and replicate each other's experimental results without confusion over measurement scales."
     },
     {
-      "q": "How do I check if an equation is homogeneous in Cambridge A Level Physics?",
-      "a": "To check homogeneity, replace every physical symbol in the equation with its SI base units, simplify both sides independently, and check whether they match. If they do, the equation is dimensionally consistent (homogeneous). Remember to state in your answer that homogeneity does not prove the equation is correct — a wrong dimensionless constant would not be detected. Our 9702 lesson and past-paper questions walk you through this technique step by step."
+      "q": "How do you convert between SI prefixes like kilo, milli, and micro?",
+      "a": "To convert using SI prefixes, you multiply the numerical value by the prefix's corresponding power of 10. For instance, to convert 1 kilometre (kilo = $10^3$) to metres, you multiply by $10^3$ (1 km = $1 \\times 10^3$ m). To convert 1 millimetre (milli = $10^{-3}$) to metres, you multiply by $10^{-3}$ (1 mm = $1 \\times 10^{-3}$ m)."
     },
     {
-      "q": "Why do students lose marks on SI unit questions in Cambridge 9702 exams?",
-      "a": "The three most common mistakes are: forgetting to square or cube prefix multipliers when converting units (e.g. thinking 1 cm² = 10⁻² m² instead of 10⁻⁴ m²), not showing full working when deriving a unit, and omitting the concluding statement in homogeneity proofs. Our premium lesson highlights all of these examiner traps, and you can practise with real past-paper mark schemes directly on our platform."
+      "q": "What is the key difference between SI base units and derived units?",
+      "a": "SI base units are fundamental, independent units (like metre for length or kilogram for mass) that cannot be expressed in terms of other units. Derived units, on the other hand, are formed by mathematically combining two or more base units through multiplication or division, such as the Newton (force = mass \\times acceleration = kg m s$^{-2}$) or the Joule (energy)."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

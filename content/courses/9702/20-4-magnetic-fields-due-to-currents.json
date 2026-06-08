@@ -5,131 +5,144 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Master magnetic fields from current-carrying wires, coils, and solenoids for Cambridge Physics 9702. Learn field patterns, direction, and calculations.",
+  "summary": "Explore how electric currents generate magnetic fields, including straight wires, parallel forces, and solenoids. Master direction rules and key formulae.",
   "durationMin": 20,
   "learningObjectives": [
-    "Describe the pattern of magnetic field lines produced by currents in a long straight wire, a flat circular coil, and a long solenoid.",
-    "Apply the right-hand grip rule (Maxwell's screw rule) to determine the direction of the magnetic field.",
-    "Recall and use the formulae for magnetic flux density (B) in a long straight wire and a long solenoid."
+    "Describe the magnetic field patterns produced by currents in straight wires and solenoids.",
+    "Apply the Right-Hand Grip Rule to determine magnetic field direction.",
+    "Calculate magnetic field strengths and forces between parallel wires using relevant formulae."
   ],
   "simpleExplanation": {
-    "title": "Currents Create Magnetic Fields",
-    "summary": "Did you know that electricity isn't just about lights and circuits? Wherever electric current flows, it mysteriously conjures up a magnetic field around it! This lesson reveals how different current shapes – from simple wires to intricate coils – create unique magnetic patterns, allowing us to understand and predict their behaviour.",
-    "analogy": "Imagine a river (electric current) flowing. Even if you can't see it, you know it affects its surroundings – perhaps eroding banks or powering a mill. Similarly, a current carries invisible magnetic 'influence' (the magnetic field) all around it.",
+    "title": "Currents: Magnets on the Move",
+    "summary": "It might seem surprising, but any moving electric charge, like an electric current flowing through a wire, naturally creates a magnetic field around it. This lesson explores how these magnetic fields look, how strong they are, and how they can even exert forces on other current-carrying wires.",
+    "analogy": "Imagine a fast-flowing river. The main current is like the electric current in a wire. The ripples and eddies that spread outwards and influence everything near the riverbanks are like the magnetic field created by the current, invisibly affecting its surroundings.",
     "steps": [
-      "Visualise and sketch the magnetic field patterns for straight wires, circular coils, and solenoids.",
-      "Master the 'right-hand grip rule' to accurately determine the direction of these magnetic fields.",
-      "Understand the factors influencing magnetic field strength (magnetic flux density) for different current configurations.",
-      "Practise applying the formulas to calculate magnetic flux density in various scenarios."
+      "Visualise electric current as the fundamental source of a magnetic field.",
+      "Use the Right-Hand Grip Rule to determine the direction of the magnetic field around a straight current-carrying wire.",
+      "Understand how the direction of current affects the attractive or repulsive forces between parallel wires.",
+      "Recognise the characteristics of the strong, uniform magnetic field found inside a current-carrying solenoid."
     ]
   },
+  "flashcards": [
+    {
+      "front": "How do electric currents create magnetic fields?",
+      "back": "Electric currents, which are moving electric charges, inherently generate magnetic fields around them."
+    },
+    {
+      "front": "What rule determines the direction of the magnetic field around a straight current-carrying wire?",
+      "back": "The Right-Hand Grip Rule (or Right-Hand Rule)."
+    },
+    {
+      "front": "What is the formula for the force per unit length between two parallel wires carrying currents $I_1$ and $I_2$ separated by distance $r$?",
+      "back": "$$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}$$"
+    },
+    {
+      "front": "How does inserting an iron core affect a solenoid's magnetic field?",
+      "back": "The magnetic field strength inside the solenoid significantly increases."
+    },
+    {
+      "front": "Describe the magnetic field inside a current-carrying solenoid.",
+      "back": "It is strong, uniform, and its pattern closely resembles that of a bar magnet."
+    },
+    {
+      "front": "What does $\\mu_0$ represent in magnetic field formulae?",
+      "back": "It's the permeability of free space, a constant that quantifies how easily a magnetic field can pass through a vacuum."
+    },
+    {
+      "front": "What is the magnetic field pattern around a straight current-carrying wire?",
+      "back": "It consists of concentric circles centred on the wire, with the field strength decreasing with distance."
+    },
+    {
+      "front": "Under what condition do two parallel current-carrying wires attract each other?",
+      "back": "When they carry electric currents flowing in the same direction."
+    },
+    {
+      "front": "How do you determine the North pole of a solenoid?",
+      "back": "If, when viewed from an end, the current appears to flow anti-clockwise, that end is the North pole."
+    },
+    {
+      "front": "What is the formula for the magnetic field strength $B$ at distance $r$ from a long straight wire?",
+      "back": "$$B = \\frac{\\mu_0 I}{2\\pi r}$$"
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to a fascinating corner of electromagnetism! You've likely encountered permanent magnets, but what if we told you that **electric currents** – simply moving charges – are also powerful sources of magnetic fields? This incredible discovery, first made by Hans Christian Ørsted, forms the bedrock of motors, generators, and countless technologies. In this lesson, we'll uncover how current-carrying conductors create **magnetic fields**, how to visualise their patterns, determine their direction, and even calculate their strength – crucial skills for Paper 4."
+      "content": "Prepare to unlock one of physics' most fascinating secrets: the connection between **electricity** and **magnetism**. You'll discover how electric currents aren't just flows of charge, but also powerful sources that generate their own **magnetic fields**. This lesson will equip you with the tools to predict these fields' directions and strengths, from simple wires to complex coils, fundamental knowledge for your Cambridge Physics exams."
     },
     {
       "type": "heading",
-      "content": "Magnetic Field Patterns due to Currents"
+      "content": "Magnetic Fields from Straight Wires"
     },
     {
       "type": "text",
-      "content": "The shape of the conductor dictates the pattern of the magnetic field it produces. For each, we describe the **magnetic field lines** – imaginary lines representing the direction a free north pole would move."
-    },
-    {
-      "type": "heading",
-      "content": "1. Long Straight Wire"
-    },
-    {
-      "type": "text",
-      "content": "A long straight wire carrying current produces concentric circles of magnetic field lines around it, centred on the wire. The field is strongest closest to the wire and weakens with increasing distance. Imagine dropping pebbles into a pond – the ripples are like the field lines."
-    },
-    {
-      "type": "heading",
-      "content": "2. Flat Circular Coil"
-    },
-    {
-      "type": "text",
-      "content": "When a current flows through a flat circular coil, the magnetic field lines form loops that pass through the centre of the coil. Inside the coil, the field lines are generally straight and parallel, indicating a relatively uniform field. Outside, they spread out, resembling the field of a short bar magnet."
-    },
-    {
-      "type": "heading",
-      "content": "3. Long Solenoid"
-    },
-    {
-      "type": "text",
-      "content": "A **solenoid** is essentially a long coil of wire. When current passes through it, it creates a remarkably uniform and strong magnetic field inside the coil, running parallel to the solenoid's axis. Outside the solenoid, the field is much weaker and spreads out, creating a pattern very similar to that of a bar magnet. This makes solenoids incredibly useful as electromagnets."
-    },
-    {
-      "type": "heading",
-      "content": "Determining Field Direction: The Right-Hand Grip Rule"
-    },
-    {
-      "type": "text",
-      "content": "To determine the direction of the magnetic field lines around a current-carrying conductor, we use the **right-hand grip rule** (sometimes called Maxwell's screw rule):"
+      "content": "When an electric current flows through a straight conductor, it generates a magnetic field in the space around it. This field isn't random; its pattern forms distinct concentric circles that encircle the wire. The field strength is strongest closest to the wire and diminishes as you move further away. The specific direction of these circular magnetic field lines is crucial and can be found using a simple hand rule."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**For a straight wire:** Point the thumb of your right hand in the direction of the conventional current. Your curled fingers then indicate the direction of the magnetic field lines.",
-        "**For a coil or solenoid:** Curl the fingers of your right hand in the direction of the current flow around the coil. Your thumb will then point to the direction of the magnetic field *inside* the coil (i.e., the North pole of the electromagnet)."
+        "Current-carrying wires generate magnetic fields.",
+        "Field lines are concentric circles around a straight wire.",
+        "Field strength decreases with increasing distance from the wire.",
+        "The Right-Hand Grip Rule determines field direction."
       ]
     },
     {
-      "type": "examTip",
-      "content": "Always remember that current is conventionally taken as the flow of positive charge. If you're dealing with electron flow, you'll need to reverse the direction for the right-hand grip rule."
-    },
-    {
-      "type": "heading",
-      "content": "Quantifying Magnetic Field Strength (Magnetic Flux Density, B)"
-    },
-    {
       "type": "text",
-      "content": "The strength of a magnetic field is quantified by its **magnetic flux density (B)**, measured in Tesla (T). The formulae for calculating B depend on the conductor's geometry. Both formulae involve **permeability of free space (μ₀)**, which is a fundamental constant (μ₀ = 4π × 10⁻⁷ H m⁻¹ or N A⁻²), provided in your exam data sheet."
-    },
-    {
-      "type": "heading",
-      "content": "1. Magnetic Flux Density for a Long Straight Wire"
+      "content": "The **Right-Hand Grip Rule** is your key to understanding field direction. Imagine grasping the wire with your right hand: if your thumb points in the direction of the **conventional current** (positive to negative), then your curled fingers will indicate the direction of the **magnetic field lines** around the wire. This rule is essential for correctly interpreting magnetic phenomena."
     },
     {
       "type": "formula",
-      "content": "B = μ₀I / 2πr"
-    },
-    {
-      "type": "text",
-      "content": "Where:\n- `B` is the magnetic flux density (T)\n- `μ₀` is the permeability of free space (4π × 10⁻⁷ H m⁻¹)\n- `I` is the current in the wire (A)\n- `r` is the perpendicular distance from the wire to the point where B is being measured (m)"
-    },
-    {
-      "type": "examTip",
-      "content": "Notice the `2πr` in the denominator. This signifies that the magnetic field strength decreases proportionally with distance from the wire – a key characteristic of its circular field pattern."
+      "content": "The strength of this magnetic field (B) at a distance 'r' from a long straight wire is given by: $$B = \\frac{\\mu_0 I}{2\\pi r}$$ Here, I is the current, and $\\mu_0$ is the **permeability of free space** ($4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$), a constant describing how magnetic fields interact with a vacuum."
     },
     {
       "type": "heading",
-      "content": "2. Magnetic Flux Density for a Long Solenoid"
-    },
-    {
-      "type": "formula",
-      "content": "B = μ₀nI"
+      "content": "Forces Between Parallel Current-Carrying Wires"
     },
     {
       "type": "text",
-      "content": "Where:\n- `B` is the magnetic flux density inside the solenoid (T)\n- `μ₀` is the permeability of free space (4π × 10⁻⁷ H m⁻¹)\n- `n` is the number of turns per unit length (turns m⁻¹)\n- `I` is the current in the solenoid (A)\n\nCrucially, `n` can be calculated as `N/L`, where `N` is the total number of turns and `L` is the length of the solenoid (in metres)."
+      "content": "Because each current-carrying wire produces its own magnetic field, two parallel wires carrying currents will exert magnetic forces on each other. This interaction is a direct consequence of one wire's current experiencing a force from the other wire's magnetic field. The direction of this force depends entirely on the relative directions of the currents."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Magnetic field lines never cross each other.",
-        "The density of field lines indicates the strength of the magnetic field.",
-        "The right-hand grip rule is fundamental for determining field direction; practice it until it's second nature.",
-        "Ensure all units are consistent (SI units: metres, amperes) before calculations.",
-        "For a solenoid, `n` refers to turns per *metre*, so convert lengths to metres if given in cm or mm.",
-        "The formula for a solenoid gives the field *inside* the solenoid, where it is approximately uniform."
+        "Two parallel current-carrying wires exert forces on each other.",
+        "If currents are in the same direction, the wires attract.",
+        "If currents are in opposite directions, the wires repel."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "The force per unit length ($\\frac{F}{L}$) between two long, parallel current-carrying wires separated by a distance 'r' is: $$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}$$ Where $I_1$ and $I_2$ are the currents in the two wires."
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic Fields from Coils and Solenoids"
+    },
+    {
+      "type": "text",
+      "content": "A single loop of current-carrying wire also generates a magnetic field, most intense at its centre. However, for a powerful and controlled magnetic field, we turn to **solenoids**. A solenoid is essentially a long coil of wire, tightly wound, which produces a remarkably strong and uniform magnetic field within its interior when current flows through it."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A single current loop creates a field strongest at its centre.",
+        "A solenoid produces a strong, uniform magnetic field inside.",
+        "The solenoid's field pattern resembles a bar magnet's.",
+        "Solenoid polarity (N/S) depends on current direction view.",
+        "Clockwise current (from an end) means that end is a South pole.",
+        "Anti-clockwise current (from an end) means that end is a North pole.",
+        "Adding a soft iron core greatly increases a solenoid's field strength."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A long straight wire carries a current of 2.5 A. Calculate the magnetic flux density at a point 15 mm away from the wire. A long solenoid, 20 cm in length, has 400 turns and carries the same current of 2.5 A. Determine the magnetic flux density inside the solenoid. (Permeability of free space μ₀ = 4π × 10⁻⁷ H m⁻¹)",
-      "solution": "**Part 1: Long Straight Wire**\n1.  **Identify given values and formula:**\n    `I = 2.5 A`\n    `r = 15 mm = 0.015 m` (convert mm to m)\n    `μ₀ = 4π × 10⁻⁷ H m⁻¹`\n    Formula: `B = μ₀I / 2πr`\n2.  **Substitute values into the formula:**\n    `B = (4π × 10⁻⁷ H m⁻¹) × (2.5 A) / (2π × 0.015 m)`\n3.  **Calculate:**\n    `B = (10π × 10⁻⁷) / (0.03π)`\n    `B = 10 / 0.03 × 10⁻⁷ = 333.33 × 10⁻⁷`\n    `B ≈ 3.3 × 10⁻⁵ T` (to 2 significant figures)\n\n**Part 2: Long Solenoid**\n1.  **Identify given values and formula:**\n    `L = 20 cm = 0.20 m` (convert cm to m)\n    `N = 400 turns`\n    `I = 2.5 A`\n    `μ₀ = 4π × 10⁻⁷ H m⁻¹`\n    Formula: `B = μ₀nI`, where `n = N/L`\n2.  **Calculate turns per unit length (n):**\n    `n = N/L = 400 turns / 0.20 m = 2000 turns m⁻¹`\n3.  **Substitute values into the formula for B:**\n    `B = (4π × 10⁻⁷ H m⁻¹) × (2000 turns m⁻¹) × (2.5 A)`\n4.  **Calculate:**\n    `B = 4π × 10⁻⁷ × 5000`\n    `B = 20000π × 10⁻⁷ = 2π × 10⁻³ T`\n    `B ≈ 6.3 × 10⁻³ T` (to 2 significant figures)"
+      "question": "Two long, parallel wires are separated by a distance of 0.15 m. Wire 1 carries a current of 3.0 A, and Wire 2 carries a current of 5.0 A in the same direction. Calculate the force per unit length between the wires. ($\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$)",
+      "solution": "1.  **Identify known values:**\n    Current $I_1 = 3.0 \\text{ A}$\n    Current $I_2 = 5.0 \\text{ A}$\n    Separation $r = 0.15 \\text{ m}$\n    Permeability of free space $\\mu_0 = 4\\pi \\times 10^{-7} \\text{ T m A}^{-1}$\n2.  **Choose the correct formula:**\n    The formula for force per unit length between parallel wires is: $$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi r}$$ \n3.  **Substitute the values into the formula:**\n    $$\\frac{F}{L} = \\frac{(4\\pi \\times 10^{-7}) \\times (3.0) \\times (5.0)}{2\\pi \\times (0.15)}$$\n4.  **Perform the calculation:**\n    $$\\frac{F}{L} = \\frac{60\\pi \\times 10^{-7}}{0.3\\pi} = \\frac{60 \\times 10^{-7}}{0.3} = 200 \\times 10^{-7} = 2.0 \\times 10^{-5} \\text{ N m}^{-1}$$\n5.  **State the direction of the force:**\n    Since the currents are in the same direction, the force between the wires is **attractive**.\n\n    **Answer:** The force per unit length between the wires is $2.0 \\times 10^{-5} \\text{ N m}^{-1}$ (attractive)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always remember to apply the **Right-Hand Grip Rule** consistently for both straight wires and solenoids (to determine polarity). Double-check the direction of current for parallel wires; 'same direction' means attraction, 'opposite direction' means repulsion – this is a common point for losing marks if confused!"
     },
     {
       "type": "practice",
@@ -152,17 +165,17 @@
   ],
   "faq": [
     {
-      "q": "How do electric currents create magnetic fields in Physics 9702?",
-      "a": "Electric currents are essentially moving electric charges. According to electromagnetism, any moving charge generates a magnetic field in the space around it. The specific pattern and strength of this field depend on the shape of the conductor carrying the current, which you'll explore further in our free Cambridge 9702 Physics course and past papers."
+      "q": "How does a current-carrying wire produce a magnetic field?",
+      "a": "A current-carrying wire produces a magnetic field because electric current is a flow of charged particles (electrons). These moving charges inherently generate a magnetic field in the space surrounding their path, as described by the fundamental principles of electromagnetism."
     },
     {
-      "q": "What is the purpose of the right-hand grip rule for magnetic fields?",
-      "a": "The right-hand grip rule is a crucial mnemonic used in Cambridge 9702 Physics to determine the direction of the magnetic field lines around a current-carrying conductor (like a straight wire) or the direction of the magnetic field inside a coil or solenoid. It helps visualise the three-dimensional relationship between current direction and magnetic field direction."
+      "q": "Why is a solenoid's magnetic field uniform inside?",
+      "a": "Inside a long solenoid, the magnetic fields from each individual turn of the coil add up, effectively cancelling out any transverse components and reinforcing the longitudinal components. This results in nearly parallel, equally spaced magnetic field lines, indicating a strong and remarkably uniform magnetic field within its core."
     },
     {
-      "q": "What factors influence the strength of a magnetic field produced by a current-carrying conductor?",
-      "a": "The strength, or magnetic flux density (B), of a magnetic field produced by a current depends primarily on three factors: the magnitude of the current (I), the distance from the conductor (r for straight wires, or the number of turns per unit length 'n' for solenoids), and the permeability of the medium (represented by μ₀ for free space). Practising with past papers will help you apply these concepts effectively."
+      "q": "What is the significance of the permeability of free space ($\\mu_0$)?",
+      "a": "The permeability of free space ($\\mu_0$) is a fundamental physical constant that quantifies the ability of a vacuum to permit the formation of a magnetic field within it. It acts as a proportionality constant in equations relating magnetic fields to electric currents, indicating how readily a magnetic field can 'pass through' or be established in empty space."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

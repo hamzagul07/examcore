@@ -439,6 +439,7 @@ export async function POST(req: NextRequest) {
 
     try {
       const text = await generateGeminiText(userPrompt, {
+        task: 'chat',
         system: SYSTEM_PROMPT,
         maxOutputTokens: 600,
       })

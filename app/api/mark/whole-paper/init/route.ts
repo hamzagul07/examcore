@@ -29,7 +29,7 @@ import { createServiceClient } from '@/lib/supabase/service'
 import { wholePaperQuestionLimit } from '@/lib/billing/features'
 import type { SubscriptionTier } from '@/lib/database.types'
 import { ocrPdfToPages } from '@/lib/marking/pdf-pages'
-import { genAI } from '@/lib/marking/mark-runner'
+import { getMarkingGenAI } from '@/lib/marking/mark-runner'
 import { detectQuestionFromPageText } from '@/lib/marking/page-detection'
 import type { WholePaperJobState } from '@/lib/marking/whole-paper-shared'
 import {
@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
 
     if (pdfFile?.size) {
       const pdfBytes = await pdfFile.arrayBuffer()
-      const pages = await ocrPdfToPages(pdfBytes, genAI)
+      const pages = await ocrPdfToPages(pdfBytes, getMarkingGenAI())
       for (const p of pages) {
         const label = detectQuestionFromPageText(p.full_text)
         detectedLabels.push(label)
@@ -179,7 +179,7 @@ export async function POST(request: NextRequest) {
 
     const segText = await generateGeminiText(
       buildWholePaperSegmentPrompt(combinedOcr),
-      { maxOutputTokens: 4000 }
+      { task: 'structured-extraction', maxOutputTokens: 4000 }
     )
     const segments = parseWholePaperSegment(segText)
 

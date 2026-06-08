@@ -3,17 +3,23 @@
 import { useState } from 'react'
 import { Sigma } from 'lucide-react'
 import type { FormulaPart } from '@/lib/courses/visual-types'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
 export function FormulaVisual({
+  description,
+  expressions,
   expression,
   parts,
 }: {
+  description?: string
+  expressions?: string[]
   expression: string
   parts: FormulaPart[]
 }) {
   const [active, setActive] = useState(0)
   const part = parts[active] ?? parts[0]
+  const lines = expressions?.length ? expressions : [expression]
 
   return (
     <VisualSectionFrame
@@ -22,34 +28,48 @@ export function FormulaVisual({
       icon={Sigma}
       accent="warm"
       className="course-formula-visual"
+      bodyClassName="course-formula-visual-body"
     >
-      <div className="course-formula-box">
-        <p className="mb-4 text-center font-mono text-3xl font-semibold tracking-wide text-[var(--ec-text-primary)]">
-          {expression}
-        </p>
-        <div className="mb-4 flex flex-wrap justify-center gap-2">
-          {parts.map((p, i) => (
-            <button
-              key={p.symbol}
-              type="button"
-              onClick={() => setActive(i)}
-              className={`course-formula-chip rounded-full px-4 py-1.5 font-mono text-sm font-semibold transition-colors ${
-                active === i
-                  ? 'is-active bg-[var(--ec-brand)] text-white'
-                  : 'bg-[var(--ec-surface-raised)] text-[var(--ec-text-primary)]'
-              }`}
-            >
-              {p.symbol}
-            </button>
-          ))}
+      <div className="course-formula-stage">
+        <div className="course-formula-card">
+          {description ? (
+            <div className="course-formula-description">
+              <CourseRichText content={description} variant="inline" />
+            </div>
+          ) : null}
+          <div className="course-formula-scroll">
+            <div className="course-formula-equations">
+              {lines.map((expr) => (
+                <div key={expr} className="course-formula-equation">
+                  <CourseRichText content={expr} variant="formula" />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="course-formula-chips" role="tablist" aria-label="Formula symbols">
+            {parts.map((p, i) => (
+              <button
+                key={`${p.symbol}-${i}`}
+                type="button"
+                role="tab"
+                aria-selected={active === i}
+                onClick={() => setActive(i)}
+                className={`course-formula-chip${active === i ? ' is-active' : ''}`}
+                style={{ ['--chip-color' as string]: p.color }}
+              >
+                <span className="course-formula-chip-symbol">{p.symbol}</span>
+              </button>
+            ))}
+          </div>
         </div>
         <div
-          className="course-formula-meaning px-4 py-3 text-center text-sm leading-relaxed text-[var(--ec-text-secondary)]"
-          style={{ borderLeftColor: part?.color ?? 'var(--ec-brand)' }}
+          className="course-formula-meaning"
+          style={{ ['--chip-color' as string]: part?.color ?? 'var(--course-formula-green)' }}
         >
-          <span className="font-semibold text-[var(--ec-text-primary)]">{part?.symbol}</span>
-          {' = '}
-          {part?.meaning}
+          <CourseRichText
+            content={`**${part?.symbol}** = ${part?.meaning ?? ''}`}
+            variant="inline"
+          />
         </div>
       </div>
     </VisualSectionFrame>

@@ -5,68 +5,195 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master non-uniform motion for Cambridge 9702: variable acceleration, drag forces, terminal velocity and graph interpretation explained clearly.",
+  "summary": "Explore non-uniform motion where velocity changes. Understand Newton's Laws, momentum, and terminal velocity concepts for AS Physics.",
   "durationMin": 20,
   "learningObjectives": [
-    "Explain how and why acceleration varies when a resultant force changes with velocity, including the effect of drag forces on a falling object",
-    "Sketch and interpret displacement–time, velocity–time and acceleration–time graphs for non-uniform motion, identifying key features such as terminal velocity",
-    "Apply Newton's second law to objects experiencing non-constant resultant forces, showing how net force and acceleration decrease as drag increases"
+    "Apply Newton's Laws to explain changes in motion and calculate resultant forces.",
+    "Define and calculate momentum, relating it to the concept of force.",
+    "Describe the factors affecting and the conditions for achieving terminal velocity."
   ],
   "simpleExplanation": {
-    "title": "What is non-uniform motion?",
-    "summary": "Non-uniform motion simply means the acceleration of an object is not constant — it changes over time. This happens whenever the resultant force acting on the object is changing, for example because air resistance (drag) increases as an object speeds up. The most common exam example is an object falling through a fluid and eventually reaching terminal velocity.",
-    "analogy": "Think about opening a car door on a motorway — the harder you push, the faster it opens, but the air resistance pushing back gets stronger the wider it opens, making it harder and harder to push. Eventually the door moves at a steady speed where your push exactly balances the air resistance. That steady speed is terminal velocity.",
+    "title": "Understanding Changing Motion",
+    "summary": "Non-uniform motion simply means an object's velocity is changing over time – it's speeding up, slowing down, or changing direction. This change always happens because there's a net force acting on the object, pushing or pulling it.",
+    "analogy": "Imagine you're in a car. When the driver presses the accelerator or brake, or turns the steering wheel, you feel a push or pull. That's non-uniform motion in action! Your velocity isn't steady; it's constantly adjusting due to forces from the engine, brakes, or steering.",
     "steps": [
-      "Recall that non-uniform motion means changing acceleration, caused by a changing resultant force",
-      "Learn the sequence for a falling object: large acceleration at first → drag increases → acceleration decreases → terminal velocity when drag = weight",
-      "Practise sketching the v–t graph for terminal velocity: a curve with decreasing gradient that flattens to a horizontal line",
-      "Check you can link each graph type (s–t, v–t, a–t) to the physical situation — examiners love asking you to describe what a specific graph shape tells you"
+      "A **resultant force** is the cause of any change in an object's velocity.",
+      "**Newton's Second Law** (F=ma) quantifies this: more force means more acceleration (for a given mass).",
+      "**Momentum** describes an object's 'quantity of motion' – how much oomph it has.",
+      "**Terminal velocity** occurs when forces are balanced, leading to constant speed despite changing prior acceleration."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the primary characteristic that defines non-uniform motion?",
+      "back": "A changing velocity (i.e., acceleration or deceleration) of an object."
+    },
+    {
+      "front": "How does Newton's Second Law quantitatively relate resultant force, mass, and acceleration?",
+      "back": "It states that resultant force equals mass times acceleration ($F = ma$). The acceleration's direction matches the resultant force."
+    },
+    {
+      "front": "How can force be alternatively defined in terms of momentum?",
+      "back": "Force is the rate of change of an object's momentum over time ($F = \\frac{\\Delta p}{\\Delta t}$). "
+    },
+    {
+      "front": "Explain the conditions under which an object falling through a fluid reaches terminal velocity.",
+      "back": "Terminal velocity is reached when the downward driving force (weight) is balanced by the total upward resistive forces (air resistance, upthrust), resulting in zero net force and constant velocity."
+    },
+    {
+      "front": "How does air resistance typically impact the trajectory of a projectile?",
+      "back": "Air resistance reduces both the maximum height attained and the horizontal range covered by the projectile."
+    },
+    {
+      "front": "State Newton's First Law of Motion.",
+      "back": "An object will remain at rest or continue at a constant velocity unless acted upon by a resultant force."
+    },
+    {
+      "front": "What is momentum and how is it calculated?",
+      "back": "Momentum ($p$) is a vector quantity defined as an object's mass ($m$) multiplied by its velocity ($v$), so $p = mv$."
+    },
+    {
+      "front": "What is the key difference between Newton's Second Law and Third Law?",
+      "back": "Newton's Second Law relates force, mass, and acceleration for a single object, while Newton's Third Law describes action-reaction force pairs acting on *different* objects."
+    },
+    {
+      "front": "Define weight and state its formula.",
+      "back": "Weight ($W$) is the gravitational force on an object, calculated as its mass ($m$) multiplied by the acceleration due to gravity ($g$), so $W = mg$."
+    },
+    {
+      "front": "What factors increase air resistance on a falling object?",
+      "back": "Increased speed, larger cross-sectional area, and specific shape of the object, as well as the fluid's density/viscosity."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "In Topic 3.1 you studied uniform acceleration — nice straight lines on v–t graphs. Real life is messier. Whenever the **resultant force** on an object changes as it moves, the **acceleration is non-uniform**: it varies with time. The classic Cambridge example is an object falling through air or another fluid, where **drag** grows as speed increases. Understanding this topic means you can explain terminal velocity, sketch the correct graph shapes, and apply Newton's second law confidently — skills tested on both Paper 1 MCQs and Paper 2 extended questions."
+      "content": "In Cambridge Physics, **uniform motion** means steady speed in a straight line, but **non-uniform motion** is far more common and interesting! It describes any movement where an object's **velocity** changes over time. This change, whether speeding up, slowing down, or turning, is fundamentally caused by **forces** acting upon the object. Let's delve into the principles governing these dynamic motions."
     },
     {
       "type": "heading",
-      "content": "Why does acceleration change? — The role of drag"
+      "content": "What is Non-Uniform Motion?"
     },
     {
       "type": "text",
-      "content": "For an object moving through a fluid (liquid or gas), the **drag force** (sometimes called air resistance or viscous drag) opposes the motion and increases with speed. At low speeds drag is small; at high speeds it can be very large. This means the **resultant force** — and therefore the acceleration — is not constant.\n\nFor a falling object of mass m:\n• Resultant downward force = Weight − Drag = mg − F_drag\n• By Newton's second law: a = (mg − F_drag) / m\n\nAs the object accelerates, F_drag increases, so the resultant force decreases, and the acceleration decreases. This continues until F_drag = mg, at which point the resultant force is zero and the object moves at a constant velocity — this is called **terminal velocity**."
+      "content": "Non-uniform motion occurs whenever an object experiences a change in its velocity. This means it is either accelerating (speeding up), decelerating (slowing down), or changing its direction of travel. Crucially, a **resultant (net) force** must be acting on the object to cause this change; without it, velocity remains constant."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's Laws of Motion"
+    },
+    {
+      "type": "text",
+      "content": "Sir Isaac Newton's three laws form the bedrock of understanding how forces cause motion. His **First Law** states that an object will maintain its state of rest or constant velocity unless acted upon by a resultant force. This perfectly explains why non-uniform motion requires a net force."
+    },
+    {
+      "type": "text",
+      "content": "Newton's **Second Law** provides a quantitative link between force, mass, and acceleration. It tells us that the acceleration an object experiences is directly proportional to the resultant force applied to it, and inversely proportional to its mass. The direction of acceleration always matches the direction of the resultant force."
     },
     {
       "type": "formula",
-      "content": "Resultant force: F_net = mg − F_drag    →    Acceleration: a = (mg − F_drag) / m\n\nAt terminal velocity: F_drag = mg    →    a = 0    →    v = v_terminal (constant)"
-    },
-    {
-      "type": "heading",
-      "content": "Graphs for non-uniform motion — what they look like and why"
-    },
-    {
-      "type": "text",
-      "content": "Cambridge examiners frequently ask you to sketch or describe graphs. Here is what each graph looks like for an object falling and reaching terminal velocity:\n\n**Velocity–time (v–t) graph:**\nThe curve starts at v = 0 with a steep (nearly straight) gradient equal to g. The gradient (= acceleration) progressively decreases as drag increases. The curve bends and eventually becomes horizontal at v = v_terminal. The gradient is always positive but decreasing — it is never negative in this scenario.\n\n**Acceleration–time (a–t) graph:**\nStarts at a = g (≈ 9.81 m s⁻²) at t = 0. Decreases in a curve (not a straight line) towards zero. Never goes negative. Reaches zero asymptotically at terminal velocity.\n\n**Displacement–time (s–t) graph:**\nCurves upward with an increasing but decelerating rate of change. The gradient (= velocity) increases but at a decreasing rate. Eventually the gradient becomes constant (straight line) at terminal velocity.\n\n**Key examiner trap:** The gradient of the v–t graph decreasing does NOT mean the object is slowing down — it is still speeding up, just at a smaller rate. Only when the gradient is zero is the velocity constant."
+      "content": "$F_{resultant} = ma$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Non-uniform motion occurs when the resultant force — and therefore acceleration — changes over time; this is always caused by a force that depends on velocity (such as drag) or position (such as gravity over large distances)",
-        "For a body falling through a fluid: acceleration starts at g, decreases continuously, and reaches zero at terminal velocity; the body never decelerates in free fall through a uniform fluid",
-        "Terminal velocity is reached when the drag force exactly equals the weight of the object; at this point resultant force = 0 and velocity is constant",
-        "On a v–t graph, non-uniform acceleration shows as a curve; the gradient at any point gives the instantaneous acceleration — a decreasing positive gradient means speeding up but with reducing acceleration",
-        "A heavier object of the same shape reaches a higher terminal velocity because it requires a greater drag force to balance its weight; drag increases with speed until the balance is achieved",
-        "When sketching graphs in Paper 2, always label axes with quantity and unit, mark any key values (e.g. v_terminal, g), and ensure curves start and end with the correct gradient"
+        "A resultant force is essential for non-uniform motion to occur.",
+        "The direction of acceleration is always the same as the resultant force's direction.",
+        "A larger resultant force causes greater acceleration for a given mass.",
+        "A more massive object experiences less acceleration for the same resultant force."
       ]
     },
     {
+      "type": "heading",
+      "content": "Momentum: The Quantity of Motion"
+    },
+    {
+      "type": "text",
+      "content": "Beyond just `F=ma`, force can also be understood in terms of **momentum**. Momentum ($p$) is a fundamental vector quantity that measures an object's 'quantity of motion'. It depends on both an object's mass and its velocity. The more massive or faster an object is, the greater its momentum."
+    },
+    {
+      "type": "formula",
+      "content": "$p = mv$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Momentum is a vector quantity, meaning it has both magnitude and direction.",
+        "Mass is a measure of an object's inertia – its resistance to changes in motion.",
+        "Newton's Second Law can be rephrased: resultant force equals the rate of change of momentum ($F = \\frac{\\Delta p}{\\Delta t}$).",
+        "This definition is particularly useful when mass isn't constant or in impulse calculations."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Action-Reaction Pairs: Newton's Third Law"
+    },
+    {
+      "type": "text",
+      "content": "Newton's **Third Law** describes how forces always occur in pairs: 'For every action, there is an equal and opposite reaction.' When object A exerts a force on object B, object B simultaneously exerts an equal in magnitude and opposite in direction force on object A. These forces are critical for understanding interactions, but remember, they *always* act on different objects."
+    },
+    {
+      "type": "heading",
+      "content": "Weight and Falling Objects"
+    },
+    {
+      "type": "text",
+      "content": "**Weight** ($W$) is the force of gravity acting on an object, pulling it towards the centre of the Earth. It's distinct from mass, which is a measure of matter. For objects near Earth's surface, we calculate weight using the object's mass and the acceleration due to gravity."
+    },
+    {
+      "type": "formula",
+      "content": "$W = mg$"
+    },
+    {
+      "type": "text",
+      "content": "When an object falls through a fluid like air, its motion is non-uniform. Initially, its weight is the dominant force, causing it to accelerate rapidly. However, as its velocity increases, resistive forces such as air resistance (drag) and upthrust begin to grow significantly."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Air resistance opposes motion through a fluid and increases with speed.",
+        "Upthrust is an upward force exerted by a fluid, acting against an object's weight.",
+        "The magnitude of air resistance depends on speed, shape, and fluid properties.",
+        "Both air resistance and upthrust work to reduce the net downward force on a falling object."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Terminal Velocity Explained"
+    },
+    {
+      "type": "text",
+      "content": "As resistive forces increase, the resultant downward force on the falling object decreases. This, in turn, reduces its acceleration. Eventually, the upward resistive forces perfectly balance the downward driving forces (like weight). At this point, the resultant force becomes zero."
+    },
+    {
+      "type": "text",
+      "content": "**Terminal velocity** is the constant, maximum velocity an object achieves when the resultant force acting on it is zero. With no net force, there is no further acceleration, and the object continues to fall at a steady speed."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Resistive forces increase with speed, reducing the net force and acceleration.",
+        "Terminal velocity occurs when resistive forces exactly balance driving forces (e.g., weight).",
+        "At terminal velocity, the resultant force is zero, meaning acceleration is zero.",
+        "The object then moves at its maximum possible constant speed through the fluid."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Projectile Motion with Air Resistance"
+    },
+    {
+      "type": "text",
+      "content": "For objects undergoing **projectile motion**, like a ball thrown through the air, air resistance plays a crucial role. Without air resistance, a projectile follows a perfect parabolic path. However, in reality, air resistance acts against the motion, constantly draining energy. This significantly reduces both the maximum height the projectile can reach and its overall horizontal range compared to an ideal vacuum trajectory."
+    },
+    {
       "type": "workedExample",
-      "question": "A skydiver of total mass 80 kg jumps from a stationary helicopter. The drag force F_drag on the skydiver varies with velocity v according to F_drag = kv², where k = 0.32 kg m⁻¹.\n\n(a) Show that the terminal velocity is approximately 50 m s⁻¹.\n(b) Calculate the resultant force and acceleration when the skydiver's speed is 20 m s⁻¹.\n(c) Describe the shape of the velocity–time graph from the moment of jumping until terminal velocity is reached. (g = 9.81 m s⁻²)",
-      "solution": "**Part (a) — Terminal velocity:**\nAt terminal velocity, drag = weight\nkv² = mg\n0.32 × v² = 80 × 9.81\nv² = 784 / 0.32 = 2452.5\nv = √2452.5 ≈ 49.5 m s⁻¹ ≈ 50 m s⁻¹ ✓\n\n**Part (b) — At v = 20 m s⁻¹:**\nDrag force = kv² = 0.32 × (20)² = 0.32 × 400 = 128 N\nWeight = mg = 80 × 9.81 = 784.8 N ≈ 785 N\nResultant force = 785 − 128 = 657 N (downward)\nAcceleration = F / m = 657 / 80 = 8.2 m s⁻² (downward)\n\nNote: this is less than g (9.81 m s⁻²) because drag is already significant at 20 m s⁻¹.\n\n**Part (c) — Description of v–t graph:**\n• At t = 0, v = 0; the gradient equals g (≈ 9.81 m s⁻²) because drag is zero initially\n• As speed increases, drag increases, reducing the resultant force and therefore the acceleration\n• The gradient of the graph decreases continuously — the curve bends away from a straight line\n• The curve approaches the terminal velocity (≈ 50 m s⁻¹) asymptotically — the gradient approaches zero\n• The graph is always concave downward (gradient always positive but decreasing)"
+      "question": "A 2.5 kg object accelerates uniformly from rest to 15 m/s in 3.0 seconds due to a constant resultant force. Calculate the magnitude of this resultant force.",
+      "solution": "1. **Identify knowns and unknowns:**\n   Mass ($m$) = 2.5 kg\n   Initial velocity ($u$) = 0 m/s (from rest)\n   Final velocity ($v$) = 15 m/s\n   Time ($t$) = 3.0 s\n   Resultant force ($F_{resultant}$) = ?\n\n2. **Calculate the acceleration ($a$):**\n   Using the kinematic equation: $a = \\frac{v - u}{t}$\n   $a = \\frac{15 \\text{ m/s} - 0 \\text{ m/s}}{3.0 \\text{ s}}$\n   $a = 5.0 \\text{ m/s}^2$\n\n3. **Apply Newton's Second Law ($F_{resultant} = ma$):**\n   $F_{resultant} = 2.5 \\text{ kg} \\times 5.0 \\text{ m/s}^2$\n   $F_{resultant} = 12.5 \\text{ N}$\n\n   The magnitude of the resultant force is 12.5 N."
     },
     {
       "type": "examTip",
-      "content": "In Paper 2, when asked to 'describe the motion' from a graph, always comment on THREE things: the value or direction of the velocity, whether it is increasing or decreasing, and what is happening to the acceleration (i.e. comment on the gradient and how it changes). Writing 'the object accelerates' alone will not score full marks — you must say something like 'the object accelerates at a decreasing rate until it reaches a constant terminal velocity'. Also watch out for MCQs that show an a–t graph starting below g — this would mean there is an initial drag force, which is physically impossible if the object starts from rest. The acceleration must start at g when v = 0."
+      "content": "Always draw a free-body diagram when analysing forces on an object. Clearly label all forces and their directions. Remember that Newton's Third Law forces act on *different* objects, so don't include them in the free-body diagram for a *single* object to calculate its resultant force."
     },
     {
       "type": "practice",
@@ -89,17 +216,17 @@
   ],
   "faq": [
     {
-      "q": "What is non-uniform motion in Cambridge 9702 Physics and how is it examined?",
-      "a": "Non-uniform motion in Cambridge 9702 refers to situations where an object's acceleration changes over time because the resultant force acting on it is not constant. The most common exam context is a body falling through a fluid where drag increases with speed, eventually leading to terminal velocity. It is examined in Paper 1 as multiple-choice questions on graph interpretation and in Paper 2 as structured questions requiring sketch graphs, calculations of resultant force, and written descriptions of motion. Our free course includes worked examples and past-paper marking practice specifically for this topic."
+      "q": "What causes an object to experience non-uniform motion?",
+      "a": "Non-uniform motion is always caused by a **resultant (net) force** acting on an object. This unbalanced force leads to a change in the object's velocity, either in magnitude (speed) or direction, or both."
     },
     {
-      "q": "How do you explain terminal velocity for Cambridge A Level Physics?",
-      "a": "Terminal velocity occurs when the drag force on a moving object exactly equals the driving force (for a falling object, this is its weight). At this point, the resultant force is zero, so by Newton's second law the acceleration is also zero, and the object moves at a constant, maximum velocity. The key point examiners look for is that terminal velocity is not reached instantly — the object accelerates (at a decreasing rate) until the forces balance. Our premium lesson on non-uniform motion walks through this step by step with graph sketches and a full worked example."
+      "q": "How do Newton's Laws of Motion explain non-uniform motion?",
+      "a": "Newton's First Law states that a resultant force is necessary for any change in motion. His Second Law, $F_{resultant} = ma$, quantifies this, showing that the resultant force directly determines the object's acceleration (change in velocity) inversely with its mass. Newton's Third Law describes the interactive forces that create these resultant forces on objects."
     },
     {
-      "q": "Why does the acceleration decrease as an object falls through air in 9702 Physics?",
-      "a": "As the object falls and speeds up, the drag force (which depends on velocity) increases. This means the resultant downward force — weight minus drag — gets smaller over time. Since acceleration = resultant force / mass (Newton's second law), a smaller resultant force means a smaller acceleration. The acceleration does not become negative; it simply decreases from its initial value of g towards zero. This is a very common source of confusion in Paper 2 answers, and our free revision lesson covers it with clear graph descriptions and examiner tips."
+      "q": "Why is terminal velocity important in the study of non-uniform motion?",
+      "a": "Terminal velocity represents a crucial transition in non-uniform motion. While an object initially accelerates due to a resultant force, the increasing resistive forces eventually balance the driving forces. This results in zero net force, zero acceleration, and the object transitioning from non-uniform to uniform motion at its maximum constant speed."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

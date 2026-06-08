@@ -29,35 +29,41 @@ export function TopicDiagram({ template, className = '' }: Props) {
       )
     case 'waves':
       return (
-        <svg viewBox="0 0 400 220" className={common} aria-hidden>
+        <svg viewBox="0 0 400 240" className={common} aria-hidden>
           <path
-            d="M20 110 Q60 60 100 110 T180 110 T260 110 T340 110"
-            fill="none"
-            stroke={stroke}
-            strokeWidth="2.5"
-          />
-          <path
-            d="M20 130 Q60 80 100 130 T180 130 T260 130 T340 130"
+            d="M30 120 Q70 70 110 120 T190 120 T270 120 T350 120"
             fill="none"
             stroke="var(--ec-brand)"
-            strokeWidth="2"
-            opacity="0.6"
+            strokeWidth="3"
           />
-          <line x1="100" y1="40" x2="100" y2="180" stroke={stroke} strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
-          <text x="100" y="35" textAnchor="middle" fontSize="10" fill={stroke} opacity="0.7">λ</text>
-          <line x1="60" y1="170" x2="140" y2="170" stroke={stroke} strokeWidth="1.5" />
-          <text x="100" y="200" textAnchor="middle" fontSize="11" fill={stroke} opacity="0.7">wavelength & amplitude</text>
+          <line x1="110" y1="120" x2="190" y2="120" stroke={stroke} strokeWidth="1.5" markerEnd="url(#warrow)" markerStart="url(#warrow-start)" />
+          <text x="150" y="108" textAnchor="middle" fontSize="11" fill={stroke} fontWeight="600">λ</text>
+          <line x1="70" y1="120" x2="70" y2="75" stroke={stroke} strokeWidth="1.5" markerEnd="url(#warrow)" />
+          <text x="58" y="68" fontSize="10" fill={stroke}>A</text>
+          <path d="M20 185 H380" stroke={stroke} strokeWidth="1.5" markerEnd="url(#warrow)" opacity="0.55" />
+          <text x="385" y="189" fontSize="10" fill={stroke} opacity="0.75">energy →</text>
+          <text x="200" y="215" textAnchor="middle" fontSize="11" fill={stroke} opacity="0.7">
+            transverse wave — λ, amplitude, energy flow
+          </text>
+          <defs>
+            <marker id="warrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6" fill={stroke} />
+            </marker>
+            <marker id="warrow-start" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto">
+              <path d="M6,0 L0,3 L6,6" fill={stroke} />
+            </marker>
+          </defs>
         </svg>
       )
     case 'forces':
       return (
-        <svg viewBox="0 0 400 220" className={common} aria-hidden>
-          <rect x="120" y="90" width="80" height="50" rx="6" fill={fillMuted} stroke={stroke} strokeWidth="2" />
-          <text x="160" y="120" textAnchor="middle" fontSize="12" fill={stroke}>m</text>
-          <line x1="160" y1="90" x2="160" y2="40" stroke="var(--ec-brand)" strokeWidth="3" markerEnd="url(#farrow)" />
-          <text x="175" y="55" fontSize="11" fill="var(--ec-brand)">F</text>
-          <line x1="200" y1="115" x2="280" y2="115" stroke={stroke} strokeWidth="2" markerEnd="url(#farrow2)" />
-          <text x="290" y="119" fontSize="11" fill={stroke}>a →</text>
+        <svg viewBox="0 0 400 240" className={common} aria-hidden>
+          <rect x="130" y="105" width="100" height="58" rx="8" fill={fillMuted} stroke={stroke} strokeWidth="2" />
+          <text x="180" y="138" textAnchor="middle" fontSize="14" fontWeight="600" fill={stroke}>m</text>
+          <line x1="180" y1="105" x2="180" y2="48" stroke="var(--ec-brand)" strokeWidth="3.5" markerEnd="url(#farrow)" />
+          <text x="196" y="62" fontSize="13" fontWeight="600" fill="var(--ec-brand)">F</text>
+          <line x1="240" y1="134" x2="330" y2="134" stroke={stroke} strokeWidth="2.5" markerEnd="url(#farrow2)" />
+          <text x="342" y="138" fontSize="12" fontWeight="600" fill={stroke}>a →</text>
           <defs>
             <marker id="farrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L6,3 L0,6" fill="var(--ec-brand)" />
@@ -68,20 +74,78 @@ export function TopicDiagram({ template, className = '' }: Props) {
           </defs>
         </svg>
       )
+    case 'thermal':
+      return (
+        <svg viewBox="0 0 400 240" className={common} aria-hidden>
+          <g>
+            <rect x="72" y="48" width="36" height="132" rx="10" fill="none" stroke={stroke} strokeWidth="2" />
+            <rect x="78" y="118" width="24" height="56" rx="4" fill="color-mix(in srgb, var(--ec-brand) 22%, transparent)" />
+            <circle cx="90" cy="188" r="16" fill="color-mix(in srgb, var(--ec-brand) 30%, transparent)" stroke={stroke} strokeWidth="2" />
+            <text x="90" y="28" textAnchor="middle" className="course-diagram-label" fontWeight="600" fill={stroke}>
+              °C
+            </text>
+            <text x="90" y="72" textAnchor="middle" className="course-diagram-label-sm" fill={stroke}>
+              100
+            </text>
+            <text x="90" y="168" textAnchor="middle" className="course-diagram-label-sm" fill={stroke}>
+              0
+            </text>
+          </g>
+          <g>
+            <rect x="252" y="48" width="36" height="132" rx="10" fill="none" stroke="var(--ec-brand)" strokeWidth="2" />
+            <rect x="258" y="118" width="24" height="56" rx="4" fill="color-mix(in srgb, var(--ec-brand) 28%, transparent)" />
+            <circle cx="270" cy="188" r="16" fill="color-mix(in srgb, var(--ec-brand) 35%, transparent)" stroke="var(--ec-brand)" strokeWidth="2" />
+            <text x="270" y="28" textAnchor="middle" className="course-diagram-label" fontWeight="600" fill="var(--ec-brand)">
+              K
+            </text>
+            <text x="270" y="72" textAnchor="middle" className="course-diagram-label-sm" fill={stroke}>
+              373
+            </text>
+            <text x="270" y="168" textAnchor="middle" className="course-diagram-label-sm" fill={stroke}>
+              273
+            </text>
+          </g>
+          <path d="M128 120 H232" stroke={stroke} strokeWidth="1.5" strokeDasharray="4 4" opacity="0.5" markerEnd="url(#tarrow)" />
+          <text x="200" y="112" textAnchor="middle" className="course-diagram-label-sm" fill={stroke} opacity="0.85">
+            K = C + 273.15
+          </text>
+          <text x="200" y="222" textAnchor="middle" className="course-diagram-caption" fill={stroke} opacity="0.75">
+            0°C = 273 K · 100°C = 373 K
+          </text>
+          <defs>
+            <marker id="tarrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6" fill={stroke} />
+            </marker>
+          </defs>
+        </svg>
+      )
     case 'energy':
       return (
         <svg viewBox="0 0 400 220" className={common} aria-hidden>
-          <rect x="40" y="80" width="90" height="60" rx="8" fill={fillMuted} stroke={stroke} strokeWidth="2" />
-          <text x="85" y="115" textAnchor="middle" fontSize="11" fill={stroke}>stored</text>
-          <path d="M140 110 H180" stroke={stroke} strokeWidth="2" markerEnd="url(#earrow)" />
-          <rect x="190" y="80" width="90" height="60" rx="8" fill="color-mix(in srgb, var(--ec-brand) 25%, transparent)" stroke="var(--ec-brand)" strokeWidth="2" />
-          <text x="235" y="115" textAnchor="middle" fontSize="11" fill={stroke}>transfer</text>
-          <path d="M290 110 H330" stroke={stroke} strokeWidth="2" markerEnd="url(#earrow)" />
-          <rect x="340" y="80" width="40" height="60" rx="8" fill={fillMuted} stroke={stroke} strokeWidth="2" />
-          <text x="200" y="185" textAnchor="middle" fontSize="11" fill={stroke} opacity="0.7">energy flow</text>
+          <rect x="55" y="95" width="70" height="85" rx="6" fill="none" stroke={stroke} strokeWidth="2" />
+          <rect x="60" y="130" width="60" height="45" rx="2" fill={fillMuted} stroke={stroke} strokeWidth="1.5" />
+          <text x="90" y="122" textAnchor="middle" fontSize="10" fill={stroke}>substance</text>
+          <text x="90" y="155" textAnchor="middle" fontSize="9" fill={stroke} opacity="0.75">mass m</text>
+          <path d="M90 55 V88" stroke="var(--ec-brand)" strokeWidth="2.5" markerEnd="url(#heat-in)" />
+          <text x="102" y="68" fontSize="10" fill="var(--ec-brand)">Q in</text>
+          <line x1="155" y1="170" x2="155" y2="50" stroke={stroke} strokeWidth="1" strokeDasharray="3 3" opacity="0.35" />
+          <text x="155" y="42" textAnchor="middle" fontSize="9" fill={stroke} opacity="0.7">T</text>
+          <path
+            d="M175 165 L195 155 L215 140 L235 125 L255 95 L275 95 L295 95"
+            fill="none"
+            stroke="var(--ec-brand)"
+            strokeWidth="2"
+          />
+          <circle cx="255" cy="95" r="4" fill="var(--ec-brand)" />
+          <circle cx="275" cy="95" r="4" fill="var(--ec-brand)" />
+          <text x="265" y="82" textAnchor="middle" fontSize="8" fill={stroke} opacity="0.65">phase change</text>
+          <text x="310" y="100" fontSize="9" fill={stroke}>ΔT</text>
+          <text x="200" y="200" textAnchor="middle" fontSize="10" fill={stroke} opacity="0.7">
+            heating curve — Q = mcΔT and Q = mL
+          </text>
           <defs>
-            <marker id="earrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L6,3 L0,6" fill={stroke} />
+            <marker id="heat-in" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6" fill="var(--ec-brand)" />
             </marker>
           </defs>
         </svg>

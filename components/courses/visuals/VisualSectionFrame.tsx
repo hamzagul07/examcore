@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 export type VisualSectionAccent = 'brand' | 'success' | 'warm' | 'cool' | 'exam' | 'violet'
 
 export function VisualSectionFrame({
+  id,
   title,
   hint,
   icon: Icon,
@@ -12,6 +13,7 @@ export function VisualSectionFrame({
   className = '',
   bodyClassName = '',
 }: {
+  id?: string
   title: string
   hint?: string
   icon: LucideIcon
@@ -22,7 +24,8 @@ export function VisualSectionFrame({
 }) {
   return (
     <section
-      className={`course-visual-section course-visual-section--${accent} ${className}`.trim()}
+      id={id}
+      className={`course-visual-section course-visual-section--${accent} scroll-mt-28 ${className}`.trim()}
     >
       <header className="course-visual-section-header">
         <span className="course-visual-section-icon" aria-hidden>

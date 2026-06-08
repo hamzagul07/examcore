@@ -5,97 +5,169 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master potential difference and power in circuits for Cambridge 9702. Learn definitions, formulas, and how to apply them to solve exam questions.",
+  "summary": "Master potential difference and power in AS Physics. Learn definitions, formulas ($V=W/Q, P=VI, P=I^2R, P=V^2/R, E=VIt$), and units.",
   "durationMin": 20,
   "learningObjectives": [
-    "Define potential difference and the Volt.",
-    "Recall and use the formulas P = VI, P = I²R, and P = V²/R.",
-    "Solve problems involving energy, power, and potential difference in electrical circuits."
+    "Define potential difference (p.d.) and state its SI unit (Volt).",
+    "Define electrical power and state its SI unit (Watt).",
+    "Apply relevant formulas to calculate potential difference, power, and electrical energy in circuits."
   ],
   "simpleExplanation": {
-    "title": "Voltage, Power & Energy",
-    "summary": "Potential difference (often called voltage) is the energy transferred per unit charge between two points in a circuit. Power is the rate at which this electrical energy is transferred or dissipated. Together, these concepts explain how electrical components consume or provide energy.",
-    "analogy": "Think of a water slide: Potential difference is like the height difference of the slide, providing the 'push' for water (charge). Power is how much water goes down the slide per second, determining the energy output from the slide.",
+    "title": "The 'Push' and 'Speed' of Electricity",
+    "summary": "Potential difference (voltage) is like the 'push' given to each unit of charge, telling us how much energy it gains or loses. Power then describes how quickly this electrical energy is being moved or converted into other forms.",
+    "analogy": "Imagine a water slide. Potential difference is like the height difference the water gets at the top, giving each litre of water a certain amount of potential energy. Power is how many litres per second rush down the slide, indicating how quickly that energy is being converted into kinetic energy and heat.",
     "steps": [
-      "Understand the precise definition of potential difference (p.d.) and its units.",
-      "Memorise the three core formulas for electrical power: P=VI, P=I²R, and P=V²/R.",
-      "Practise rearranging and applying these formulas to calculate unknown values in various circuit scenarios.",
-      "Link power to energy transferred over time using the relationship E=Pt."
+      "**Define the 'Push':** Potential Difference (V) measures the energy transferred per unit charge.",
+      "**Define the 'Speed':** Power (P) measures the rate at which energy is transferred or dissipated.",
+      "**Connect Them:** Electrical power is the product of potential difference and current ($P = VI$).",
+      "**Calculate Total Energy:** Total electrical energy is power multiplied by the time it's transferred ($E = Pt$)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is potential difference (p.d.)?",
+      "back": "The energy transferred or work done per unit charge as it moves between two points in a circuit."
+    },
+    {
+      "front": "What is the SI unit for potential difference?",
+      "back": "The Volt (V), defined as one Joule per Coulomb (1 J/C)."
+    },
+    {
+      "front": "What does electrical power measure?",
+      "back": "The rate at which electrical energy is transferred or converted into other forms within a circuit."
+    },
+    {
+      "front": "What is the SI unit for power?",
+      "back": "The Watt (W), which is equivalent to one Joule per second (1 J/s)."
+    },
+    {
+      "front": "What is the fundamental formula for power in terms of energy and time?",
+      "back": "$P = \\frac{\\Delta E}{\\Delta t}$ (Power equals change in energy divided by change in time)."
+    },
+    {
+      "front": "What is the primary formula for electrical power, using potential difference and current?",
+      "back": "$P = VI$ (Power equals potential difference multiplied by current)."
+    },
+    {
+      "front": "How can electrical power be calculated using potential difference (V) and resistance (R)?",
+      "back": "$P = \\frac{V^2}{R}$."
+    },
+    {
+      "front": "How can electrical power be calculated using current (I) and resistance (R)?",
+      "back": "$P = I^2R$."
+    },
+    {
+      "front": "How do you calculate the total electrical energy transferred over a duration?",
+      "back": "$E = VIt$ (Energy equals potential difference × current × time)."
+    },
+    {
+      "front": "What does 1 Volt signify?",
+      "back": "It means 1 Joule of energy is transferred for every 1 Coulomb of charge that passes between the two points."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Ever wondered why some electrical appliances heat up more than others, or why different batteries have different 'strengths'? It all boils down to **potential difference** and **power**. These fundamental concepts are crucial for understanding how circuits work and how energy is transferred within them."
+      "content": "Welcome to **Potential Difference and Power**! These fundamental concepts help us understand how electrical energy moves and changes form in circuits. Think of potential difference as the 'push' given to charges, and power as how quickly that energy is used up or delivered. Let's master how they're measured and calculated!"
     },
     {
       "type": "heading",
-      "content": "Potential Difference (p.d.)"
+      "content": "What is Potential Difference (p.d.)?"
     },
     {
       "type": "text",
-      "content": "Potential difference, often simply called voltage, is a measure of the energy transferred per unit charge between two points in a circuit. It's the 'push' or 'energy drop' that drives the current through a component. When 1 Joule of energy is transferred by 1 Coulomb of charge, the potential difference is defined as 1 Volt."
+      "content": "Potential difference, often shortened to p.d. or simply voltage, tells us how much energy is transferred when a unit of charge moves between two points in a circuit. Essentially, it quantifies the \"energy push\" that charges receive (e.g., from a battery) or the \"energy drop\" as they pass through a component (e.g., a resistor)."
     },
     {
       "type": "formula",
-      "content": "V = W/Q"
-    },
-    {
-      "type": "text",
-      "content": "Here, V is the potential difference in Volts (V), W is the energy transferred in Joules (J), and Q is the charge in Coulombs (C). Importantly, potential difference is measured *across* a component, not through it. A voltmeter is always connected in parallel with the component to measure the potential difference across its terminals."
+      "content": "$V = \\frac{\\Delta W}{\\Delta Q}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Potential difference (p.d.) is defined as the energy transferred per unit charge (J C⁻¹).",
-        "The unit of potential difference, the Volt (V), is equivalent to Joules per Coulomb.",
-        "It represents the energy 'lost' by charge carriers as they pass through a component (e.g., converted to heat, light, or mechanical energy).",
-        "P.d. is always measured in parallel across a component using a voltmeter.",
-        "Do not confuse p.d. with electromotive force (e.m.f.) – e.m.f. is the energy supplied *to* charges by a source, whereas p.d. is energy transferred *from* charges by a component."
+        "Measures energy transferred or work done per unit charge.",
+        "The SI unit is the Volt (V).",
+        "1 Volt is equivalent to 1 Joule of energy transferred per Coulomb of charge (1 J/C).",
+        "A positive p.d. indicates energy supplied; a negative p.d. indicates energy converted/dissipated."
       ]
     },
     {
       "type": "heading",
-      "content": "Power in Electrical Circuits"
+      "content": "What is Electrical Power?"
     },
     {
       "type": "text",
-      "content": "Power is the rate at which energy is transferred or dissipated. In electrical circuits, components like resistors dissipate electrical energy as heat, while sources like batteries supply it. Understanding the power formulas is absolutely essential for circuit analysis and problem-solving. The fundamental definition of power (rate of energy transfer) means that electrical energy (E) transferred over a time (t) can be found using E = Pt."
+      "content": "Electrical power is all about speed – specifically, the rate at which electrical energy is transferred, supplied, or dissipated within a circuit. It measures how quickly electrical energy transforms into other forms, such as heat, light, or mechanical energy in devices like motors."
     },
     {
       "type": "formula",
-      "content": "P = VI"
-    },
-    {
-      "type": "text",
-      "content": "This primary formula for power directly links potential difference (V) across a component and the current (I) flowing through it. By using Ohm's Law (V=IR), we can derive two other incredibly useful forms that often simplify calculations in exam questions:"
-    },
-    {
-      "type": "formula",
-      "content": "P = I²R"
-    },
-    {
-      "type": "formula",
-      "content": "P = V²/R"
+      "content": "$P = \\frac{\\Delta E}{\\Delta t}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Power (P) is the rate of energy transfer or dissipation, measured in Watts (W) or Joules per second (J s⁻¹).",
-        "The fundamental electrical power formula is P = VI, relating power to potential difference and current.",
-        "Derived formulas P = I²R and P = V²/R are equally important, especially when resistance (R) is involved.",
-        "Always choose the most appropriate formula based on the quantities given in an exam question to minimise steps and potential for error.",
-        "Electrical energy transferred (E) over a time (t) is given by E = Pt."
+        "Represents the rate of energy transfer or conversion.",
+        "The SI unit is the Watt (W).",
+        "1 Watt is equivalent to 1 Joule of energy transferred every second (1 J/s).",
+        "A higher power rating means a faster rate of energy conversion or delivery."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Electrical Power Formulas"
+    },
+    {
+      "type": "text",
+      "content": "We can combine the definitions of potential difference, current, and Ohm's Law to derive several crucial formulas for electrical power. These equations are fundamental for analysing circuits and calculating power dissipation or supply based on the known quantities."
+    },
+    {
+      "type": "formula",
+      "content": "$P = VI$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This is the most fundamental formula for electrical power.",
+        "It directly shows power is proportional to both voltage (potential difference) and current.",
+        "Can be derived by substituting $\\Delta E = V \\Delta Q$ and $\\Delta Q = I \\Delta t$ into $P = \\Delta E / \\Delta t$."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "$P = I^2R$"
+    },
+    {
+      "type": "formula",
+      "content": "$P = \\frac{V^2}{R}$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always choose the power formula ($P=VI$, $P=I^2R$, or $P=V^2/R$) that uses the known quantities in your problem. This simplifies calculations and reduces the chance of errors by avoiding intermediate steps."
+    },
+    {
+      "type": "heading",
+      "content": "Total Electrical Energy Transferred"
+    },
+    {
+      "type": "text",
+      "content": "While power describes the rate of energy transfer, sometimes you need to know the total amount of energy transferred over a specific period. This is simply the power multiplied by the duration for which the component or circuit was operating."
+    },
+    {
+      "type": "formula",
+      "content": "$E = VIt$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Total energy transferred is the product of power and time, $E = Pt$.",
+        "The formula $E = VIt$ is derived by substituting $P = VI$ into $E = Pt$.",
+        "The SI unit for total energy is the Joule (J)."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A 12V car battery powers a single headlamp with a resistance of 3.0 Ω. Calculate the current flowing through the headlamp and the power dissipated by it.",
-      "solution": "**1. Identify given values:**\n   Potential difference, V = 12 V\n   Resistance, R = 3.0 Ω\n\n**2. Calculate the current (I) using Ohm's Law:**\n   V = IR\n   Rearrange to find I: I = V/R\n   I = 12 V / 3.0 Ω\n   I = 4.0 A\n\n**3. Calculate the power (P) dissipated:**\n   You can use any of the power formulas. Let's demonstrate with P = VI:\n   P = (12 V) × (4.0 A)\n   P = 48 W\n\n   Alternatively, using P = I²R:\n   P = (4.0 A)² × (3.0 Ω)\n   P = 16 A² × 3.0 Ω\n   P = 48 W\n\n   Or, using P = V²/R:\n   P = (12 V)² / (3.0 Ω)\n   P = 144 V² / 3.0 Ω\n   P = 48 W\n\n   All methods yield the same result, confirming our calculation. Always remember to include the correct units in your final answers."
-    },
-    {
-      "type": "examTip",
-      "content": "When tackling power questions, always scan the question for the given quantities. If you have V and I, use P=VI. If you have I and R, P=I²R is often the most direct path. If V and R are provided, P=V²/R saves you an extra calculation step. Choosing the most efficient formula can save time and reduce the chances of rounding errors."
+      "question": "A light bulb is connected across a 12 V power supply, drawing a current of 0.5 A for 10 minutes.\n1.  Calculate the electrical power dissipated by the bulb.\n2.  Calculate the total electrical energy converted by the bulb in this time.",
+      "solution": "1.  To find the power (P), we use the formula $P = VI$:\n    Given: $V = 12 \\text{ V}$, $I = 0.5 \\text{ A}$\n    $P = 12 \\text{ V} \\times 0.5 \\text{ A} = 6 \\text{ W}$\n    The electrical power dissipated by the bulb is **6 Watts**.\n2.  To find the total energy (E), we use the formula $E = VIt$. First, convert the time to seconds:\n    $t = 10 \\text{ minutes} \\times 60 \\text{ seconds/minute} = 600 \\text{ s}$\n    Now, substitute the values into the energy formula:\n    $E = 12 \\text{ V} \\times 0.5 \\text{ A} \\times 600 \\text{ s}$\n    $E = 6 \\text{ W} \\times 600 \\text{ s} = 3600 \\text{ J}$\n    The total electrical energy converted by the bulb is **3600 Joules**."
     },
     {
       "type": "practice",
@@ -118,17 +190,17 @@
   ],
   "faq": [
     {
-      "q": "What is the difference between potential difference and electromotive force (e.m.f.) for 9702 Physics?",
-      "a": "While both are measured in Volts, **potential difference (p.d.)** refers to the energy transferred per unit charge by components *within* a circuit (e.g., across a resistor), representing energy converted from electrical to other forms. **Electromotive force (e.m.f.)** is the energy transferred per unit charge *to* the charge carriers by a source (like a battery or generator), representing energy converted from non-electrical to electrical. Master these concepts and more with our free AS Physics course and extensive past papers."
+      "q": "How are potential difference and power related in an electrical circuit?",
+      "a": "Potential difference (V) provides the energy 'push' per unit charge, while power (P) is the rate at which this energy is delivered or consumed. They are directly related by the formula $P = VI$, meaning higher voltage or current, or both, result in greater power."
     },
     {
-      "q": "How do I choose the correct power formula (P=VI, P=I²R, P=V²/R) in an exam?",
-      "a": "The best formula depends on what values you are given or can easily calculate. If you know current (I) and voltage (V), use P=VI. If resistance (R) is involved, use P=I²R when you know I and R, or P=V²/R when you know V and R. Sometimes, deriving one value (like I from V=IR) can allow you to use a different formula, but choosing the most direct one saves time and reduces potential for error."
+      "q": "Why are there different formulas for calculating electrical power?",
+      "a": "The different formulas ($P=VI$, $P=I^2R$, $P=V^2/R$) are derived using Ohm's Law ($V=IR$). They exist to allow you to calculate power using whichever two quantities (voltage, current, or resistance) you already know, making problem-solving more efficient and direct."
     },
     {
-      "q": "Can power be negative in a circuit?",
-      "a": "Yes, conceptually. In most common AS-level problems, power calculated using P=VI, P=I²R, or P=V²/R refers to power *dissipated* by a component (e.g., a resistor heating up), which is generally considered positive. However, if you're analysing power supplied versus consumed, a component could be absorbing power (positive) or supplying it (which could be represented as negative absorption). For Cambridge 9702, typically positive power refers to dissipation or supply without explicit sign convention unless specifically asked for in advanced contexts."
+      "q": "What's the fundamental difference between potential difference and current?",
+      "a": "Potential difference (voltage) is the energy transferred per unit charge, acting as the 'driving force' that makes charges move. Current, on the other hand, is the rate of flow of charge itself – how many charges pass a specific point in the circuit per second. Voltage pushes the charges, and current measures their flow."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

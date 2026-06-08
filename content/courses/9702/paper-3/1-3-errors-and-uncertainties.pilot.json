@@ -1,0 +1,349 @@
+{
+  "slug": "1-3-errors-and-uncertainties",
+  "topicCode": "1.3",
+  "title": "Errors and Uncertainties in Practical Physics",
+  "paper": "P3",
+  "paperName": "Paper 3 Advanced Practical Skills",
+  "status": "pilot",
+  "summary": "Master the essential Paper 3 skills of identifying errors, understanding accuracy and precision, and calculating uncertainties. This lesson provides a practical guide to handling experimental data, with worked examples from past papers to prepare you for your A-Level Physics practical exam.",
+  "durationMin": 30,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the cornerstone of practical physics: understanding and managing errors and uncertainties. In Paper 3, it's not enough to just take measurements; you must also be able to evaluate the quality of your data. This lesson will equip you with the skills to identify different types of errors, distinguish between precision and accuracy, and correctly calculate uncertainties in your results. These skills are assessed in almost every practical exam, so mastering them is key to success."
+    },
+    {
+      "type": "heading",
+      "content": "1. Systematic and Random Errors"
+    },
+    {
+      "type": "text",
+      "content": "Every measurement you take in an experiment is subject to error. These are not 'mistakes' but inherent variations in the measurement process. They fall into two main categories: systematic and random."
+    },
+    {
+      "type": "text",
+      "content": "**Systematic Errors**\n\nA systematic error is a consistent, repeatable error that affects all measurements in the same way. It causes your results to be consistently too high or too low. A common example is a **zero error**, where an instrument does not read zero when the true value is zero (e.g., a top-pan balance reads 0.2 g with nothing on it, or an ammeter shows a reading when no current is flowing).\n\n*   **Effect:** Systematic errors affect the **accuracy** of your results. They shift the entire set of measurements away from the true value.\n*   **Detection:** They can be difficult to spot just by looking at your data. You often find them by checking your instruments against a known standard or by plotting a graph which should pass through the origin but instead has a y-intercept."
+    },
+    {
+      "type": "text",
+      "content": "**Random Errors**\n\nRandom errors are unpredictable fluctuations in measurements. They can be caused by limitations of the observer (e.g., reaction time when using a stopwatch) or the instrument (e.g., fluctuations in a digital meter reading). These errors cause your measurements to be scattered around a mean value.\n\n*   **Effect:** Random errors affect the **precision** of your results. They introduce scatter in your data points on a graph.\n*   **Reduction:** You cannot eliminate random errors, but you can reduce their effect by taking multiple readings and calculating an average. This is why you are often asked to repeat measurements."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 3, when asked to identify limitations or sources of uncertainty, be specific. Don't just say 'human error'. Instead, say 'difficult to judge the exact moment the pendulum reaches its maximum displacement due to its high speed at the equilibrium position', or 'parallax error when reading the voltmeter scale from an angle'."
+    },
+    {
+      "type": "workedExample",
+      "question": "In an experiment to investigate the oscillation of a mass on a spring, a student measures the period $T$ and the length of the spring $L$. Describe two potential sources of uncertainty or limitations in this procedure, one systematic and one random.",
+      "solution": "**Systematic Error:**\n\n*   **Source:** A possible systematic error is a zero error on the ruler used to measure the length $L$. If the end of the ruler is worn, or the scale does not start exactly at the end, every length measurement will be consistently incorrect (e.g., always 1 mm too long).\n*   **Effect:** This would cause the calculated value of the spring constant, which depends on $L$, to be systematically inaccurate.\n\n**Random Error:**\n\n*   **Source:** A significant random error comes from measuring the period $T$ with a stopwatch. The student's reaction time when starting and stopping the watch will vary for each measurement. It is also difficult to judge the exact moment an oscillation is complete.\n*   **Effect:** This will cause the measured values of the time for multiple oscillations to be scattered around a mean value. To minimise this, the student should measure the time for a large number of oscillations (e.g., 20) and repeat the measurement several times to find an average period.",
+      "sourceQuestionId": "291caedc-1748-435d-9d6c-3b779ad319ea"
+    },
+    {
+      "type": "heading",
+      "content": "2. Accuracy vs Precision"
+    },
+    {
+      "type": "text",
+      "content": "These two terms are often used interchangeably in everyday language, but in physics, they have distinct meanings.\n\n*   **Accuracy:** How close a measured value is to the true or accepted value. Accuracy is affected by systematic errors.\n*   **Precision:** How close repeated measurements are to each other. Precision is affected by random errors. It is also related to the resolution of the measuring instrument. A measurement of 2.45 cm is more precise than a measurement of 2.5 cm.\n\nImagine a target. An accurate shooter hits the bullseye. A precise shooter gets all their shots in a tight cluster, but that cluster might not be on the bullseye. The ideal experiment is both accurate and precise."
+    },
+    {
+      "type": "examTip",
+      "content": "The number of significant figures you record for a measurement should reflect its precision. For an instrument with an analogue scale (like a ruler or protractor), you should record to the nearest smallest division, or half a division. For a digital instrument, record all the digits shown. When you calculate a quantity, the number of significant figures in your answer should generally be the same as the least number of significant figures in the data you used."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student measures the period of oscillation $T$ of a 0.800 kg mass on a spring. They time 20 oscillations and get a time of 15.4 s. They repeat this and get 15.6 s. They calculate the spring constant $k$ using the formula $k = \\frac{4\\pi^2m}{T^2}$, where $m=0.800$ kg.\n\n(a) Calculate the mean period $T$.\n(b) Calculate the value of $k$.\n(c) Justify the number of significant figures you have given for your value of $k$.",
+      "solution": "(a) First, calculate the mean time for 20 oscillations:\n$t_{avg} = \\frac{15.4 + 15.6}{2} = 15.5$ s\n\nNow, find the period $T$ for one oscillation:\n$T = \\frac{t_{avg}}{20} = \\frac{15.5}{20} = 0.775$ s\n\n(b) Now, calculate $k$:\n$$ k = \\frac{4\\pi^2(0.800)}{(0.775)^2} = \\frac{31.5827...}{0.600625} = 52.582... \\text{ N m}^{-1} $$\n\n(c) Let's look at the significant figures of the input values:\n*   $m = 0.800$ kg (3 s.f.)\n*   $t_{avg} = 15.5$ s (3 s.f.)\n*   $T = 0.775$ s (3 s.f.)\n\nThe raw time measurements (15.4 s, 15.6 s) are given to 3 significant figures. The mass is also given to 3 significant figures. The number of oscillations (20) is an exact number. Therefore, the result of the calculation should be given to the lowest number of significant figures from the measured data, which is 3.\n\nSo, $k = 52.6$ N m$^{-1}$.\n\n**Justification:** The value for $k$ is given to 3 significant figures because the raw measurement with the fewest significant figures used in the calculation (the time measurements) was given to 3 significant figures. The precision of the final result cannot be greater than the precision of the least precise measurement used to calculate it.",
+      "sourceQuestionId": "abd4e5c2-d257-49b1-9884-9a9f0b5764b2"
+    },
+    {
+      "type": "heading",
+      "content": "3. Calculating with Uncertainties"
+    },
+    {
+      "type": "text",
+      "content": "Every measurement has an uncertainty. We need to be able to estimate this uncertainty and combine uncertainties when we use measured values in calculations.\n\n**Absolute Uncertainty ($\\Delta x$)**: The range of values in which the true value is likely to lie. For a single reading from an analogue scale, it's often taken as half the smallest division. For a digital scale, it's the smallest increment (e.g., $\\pm 0.01$ V for a voltmeter reading 2.54 V). If you repeat a reading, the absolute uncertainty is often taken as half the range of your readings.\n\n**Percentage Uncertainty**: This expresses the absolute uncertainty as a percentage of the measured value. It's very useful for comparing the significance of uncertainties in different measurements."
+    },
+    {
+      "type": "formula",
+      "content": "$$ \\text{Percentage Uncertainty} = \\frac{\\text{Absolute Uncertainty}}{\\text{Measured Value}} \\times 100\\% $$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Addition/Subtraction:** If $y = a + b$ or $y = a - b$, then the absolute uncertainty is $\\Delta y = \\Delta a + \\Delta b$. You add the absolute uncertainties.",
+        "**Multiplication/Division:** If $y = ab$ or $y = a/b$, then the percentage uncertainty in $y$ is the sum of the percentage uncertainties in $a$ and $b$. You add the percentage uncertainties.",
+        "**Powers:** If $y = a^n$, then the percentage uncertainty in $y$ is $n$ times the percentage uncertainty in $a$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In an experiment, a student measures an angle $\\theta$ between a spring and the vertical using a protractor. The measured value is $\\theta = 22^\\circ$. Estimate the percentage uncertainty in this value of $\\theta$.",
+      "solution": "1.  **Estimate the absolute uncertainty, $\\Delta\\theta$.**\n    A standard school protractor has markings every $1^\\circ$. However, measuring an angle in a physical setup is often difficult. You have to align the protractor's zero line, place its centre at the pivot point, and read the scale, all while dealing with parallax error and the fact that the 'lines' (like the spring) have thickness. A reasonable estimate for the absolute uncertainty, accounting for these difficulties, would be larger than the smallest division. A typical estimate accepted by examiners is between $2^\\circ$ and $5^\\circ$. Let's choose $\\Delta\\theta = 2^\\circ$.\n\n    *Examiner's note: You must state your estimated absolute uncertainty. Simply writing down the smallest division ($1^\\circ$) might not be enough if the measurement is clearly difficult to make accurately.*\n\n2.  **Calculate the percentage uncertainty.**\n    Using the formula:\n    $$ \\text{Percentage Uncertainty} = \\frac{\\Delta\\theta}{\\theta} \\times 100\\% $$\n    $$ \\text{Percentage Uncertainty} = \\frac{2^\\circ}{22^\\circ} \\times 100\\% = 9.0909...\\% $$\n\n3.  **State the final answer to an appropriate number of significant figures.**\n    Since the uncertainty itself is an estimate, 1 or 2 significant figures are appropriate.\n\n    **Percentage uncertainty = 9.1%** (to 2 s.f.)",
+      "sourceQuestionId": "e8a7b931-31e1-4201-bbb6-5d963bf6fad1"
+    },
+    {
+      "type": "pastPaperPractice",
+      "questions": [
+        {
+          "questionId": "ee65ad0c-b36e-4ec7-9611-17f768b94b46",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "33",
+          "questionNumber": "1(a)(i)",
+          "marks": 1,
+          "questionTextPreview": "Assemble the apparatus as shown in Fig. 1.1 and Fig. 1.2.\n*   Push the nail through the central hole in the pendulum and then into the plastic tube.\n*   Secure the tube and nail in the boss, as shown in Fig. 1.1.\n…",
+          "markPoints": [
+            {
+              "text": "Value of $x$ with consistent unit.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F33&session=m24&question=1%28a%29%28i%29"
+        },
+        {
+          "questionId": "3f058023-9ad4-4b4f-acbf-7ccb48ee9250",
+          "year": 2024,
+          "session": "May/June",
+          "paperVariant": "32",
+          "questionNumber": "1(a)",
+          "marks": 2,
+          "questionTextPreview": "*   Connect the circuit shown in Fig. 1.1.\n*Fig. 1.1*\n*   Ensure that the polarities of the power supply, component C and the voltmeter are as shown in Fig. 1.1.\n…",
+          "markPoints": [
+            {
+              "text": "Value of $T$ in range 5.00–8.00 s with unit.",
+              "marks": 1
+            },
+            {
+              "text": "Evidence of repeat measurements of $T$.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F32&session=s24&question=1%28a%29"
+        },
+        {
+          "questionId": "232de6b8-b947-4bee-afe6-611d8f0ab668",
+          "year": 2023,
+          "session": "February/March",
+          "paperVariant": "33",
+          "questionNumber": "1(a)(i)",
+          "marks": 1,
+          "questionTextPreview": "• Assemble the apparatus as shown in Fig. 1.1 with the nail held securely in the cork. Check that the rod can swing freely.\n• The height of the nail above the bench is $H$. Measure and record $H$.\nThis height must be kept constant throughout the experiment.\n…",
+          "markPoints": [],
+          "markHref": "/mark?subject=9702&paper=9702%2F33&session=m23&question=1%28a%29%28i%29"
+        },
+        {
+          "questionId": "7dbc9bc7-f9a3-44d5-8f2e-de71fb5e530a",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "33",
+          "questionNumber": "1(a)(ii)",
+          "marks": 2,
+          "questionTextPreview": "Push the bottom of the pendulum a short distance to one side and then release it.\nTake measurements to determine the period $T$ of the oscillations.",
+          "markPoints": [
+            {
+              "text": "Value of $T$ in range 0.80 s to 2.00 s, with unit.",
+              "marks": 1
+            },
+            {
+              "text": "Evidence of repeat measurements of $T$ (at least two measurements of 5$T$).",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F33&session=m24&question=1%28a%29%28ii%29"
+        },
+        {
+          "questionId": "d5b02701-623d-40dc-85dc-5e29fced0b3b",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "33",
+          "questionNumber": "1(b)",
+          "marks": 9,
+          "questionTextPreview": "Vary $x$ by using different holes and measure $T$.\nRepeat until you have six sets of values of $x$ and $T$.\nRecord your results in a table. Include values of $\\sqrt{x^3}$ in your table.\n…",
+          "markPoints": [
+            {
+              "text": "Six sets of readings of $x$ and $T$ with correct trend and without help scores 4 marks, five sets scores 3 marks etc.",
+              "marks": 4
+            },
+            {
+              "text": "Range: $x_{min} \\le 7$ cm and $x_{max} \\ge 19$ cm.",
+              "marks": 1
+            },
+            {
+              "text": "Column headings: Each column heading must contain a quantity and a unit where appropriate. The presentation of quantity and unit must conform to accepted scientific convention e.g. $\\sqrt{x^3}$ / cm$^{1.5}$.",
+              "marks": 1
+            },
+            {
+              "text": "Consistency: All raw values of $x$ must be given to the nearest mm.",
+              "marks": 1
+            },
+            {
+              "text": "Significant figures: All values of $\\sqrt{x^3}$ given to same s.f. as $x$ (or one more than s.f of $x$).",
+              "marks": 1
+            },
+            {
+              "text": "Calculation: Values of $\\sqrt{x^3}$ calculated correctly.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F33&session=m24&question=1%28b%29"
+        },
+        {
+          "questionId": "028b734d-79e2-47ca-b02e-3907c7ff6ce4",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "33",
+          "questionNumber": "1(c)(i)",
+          "marks": 3,
+          "questionTextPreview": "Plot a graph of $T$ on the $y$-axis against $\\sqrt{x^3}$ on the $x$-axis.",
+          "markPoints": [
+            {
+              "text": "Axes: Axes must be labelled with the correct quantities. Scales must be chosen so that the plotted points occupy at least half the graph grid in both the $x$ and $y$ directions. Scale markings are no more than 2 cm (one large square) apart. Sensible scales must be used, no awkward scales (e.g. 3:10 or fractions).",
+              "marks": 1
+            },
+            {
+              "text": "Plotting of points: All observations in the table must be plotted on the grid. Diameter of plotted points must be $\\le$ half a small square. Points must be plotted to an accuracy of half a small square in both $x$ and $y$ directions.",
+              "marks": 1
+            },
+            {
+              "text": "Quality: All points in the table must be plotted (at least 5) for this mark to be awarded. It must be possible to draw a straight line that is within $\\pm 5$ cm$^{1.5}$ in the $x$ direction from all plotted points.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F33&session=m24&question=1%28c%29%28i%29"
+        },
+        {
+          "questionId": "778e6eda-a850-4fee-8b7d-e76206b9a651",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "33",
+          "questionNumber": "1(c)(ii)",
+          "marks": 1,
+          "questionTextPreview": "Draw the straight line of best fit.",
+          "markPoints": [
+            {
+              "text": "Line of best fit: 'Best fit' is judged by the balance of all points on the grid (at least 5 points) about the candidate's line. There must be an even distribution of points either side of the line along the full length. Lines must not be kinked or thicker than half a square. Some candidates may choose to identify an anomalous point. If they identify one point as anomalous (e.g. by circling or labelling) then this point is to be disregarded when judging the line of best fit. There must be at least 4 points left after the anomalous point is disregarded.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F33&session=m24&question=1%28c%29%28ii%29"
+        },
+        {
+          "questionId": "1cff4027-74ff-4bc0-9e17-b1b5b7d1a17c",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "33",
+          "questionNumber": "2(a)(i)",
+          "marks": 2,
+          "questionTextPreview": "You have been provided with two wooden strips. Select the **thicker** strip.\nMeasure and record its length $L$.\nAttach the slotted mass to one of the wider faces of the strip approximately 10 cm from one end using a small piece of adhesive putty, as shown in Fig. 2.1.\n…",
+          "markPoints": [
+            {
+              "text": "Value for $L$ and in range 42.0 to 46.0 cm.",
+              "marks": 1
+            },
+            {
+              "text": "Raw Value for $d_A$ to nearest mm and $< 50.0$ cm.",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F33&session=m24&question=2%28a%29%28i%29"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Quick Practice",
+      "href": "#"
+    }
+  ],
+  "learningObjectives": [
+    "Distinguish between systematic and random errors and explain their effects on experimental results.",
+    "Understand the difference between accuracy and precision in measurements.",
+    "Calculate the uncertainty in a derived quantity by combining absolute or percentage uncertainties."
+  ],
+  "faq": [
+    {
+      "q": "How do I decide what absolute uncertainty to use for a measurement?",
+      "a": "If it's a single reading from an analogue instrument (like a ruler), a safe bet is half the smallest division (e.g., $\\pm 0.5$ mm for a millimetre ruler). For a digital instrument, use the smallest increment (e.g., $\\pm 0.01$ A). If you've taken repeat readings, a good method is to use half the range (maximum value - minimum value) / 2. Always justify your choice if it's not obvious."
+    },
+    {
+      "q": "What's the difference between a 'limitation' and a 'source of uncertainty'?",
+      "a": "They are very similar and often overlap. A 'source of uncertainty' usually refers to a specific measurement (e.g., 'difficulty in measuring the diameter of the wire due to its small size leads to a large percentage uncertainty'). A 'limitation' can be broader, referring to the overall procedure (e.g., 'taking only two readings is not enough to draw a valid conclusion' or 'the model assumes no air resistance, which may not be valid')."
+    },
+    {
+      "q": "Why do we add absolute uncertainties for addition/subtraction but percentage uncertainties for multiplication/division?",
+      "a": "This is a result of the mathematical rules of error propagation. For addition/subtraction, the absolute errors add up. For multiplication/division, it's the fractional (or percentage) errors that combine. A full derivation involves calculus, but for A-Level, you just need to know and apply these rules."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "What is a systematic error?",
+      "back": "A consistent error that affects all measurements in the same way, causing results to be consistently too high or too low. It affects accuracy. An example is a zero error on a balance.",
+      "pillLabel": "a systematic error"
+    },
+    {
+      "front": "What is a random error?",
+      "back": "Unpredictable fluctuations in measurements that cause results to be scattered around a mean value. It affects precision. An example is variation in reaction time when using a stopwatch.",
+      "pillLabel": "a random error"
+    },
+    {
+      "front": "How can you reduce the effect of random errors?",
+      "back": "By taking multiple readings and calculating an average.",
+      "pillLabel": "How can you reduce the"
+    },
+    {
+      "front": "What is the difference between accuracy and precision?",
+      "back": "Accuracy is how close a measurement is to the true value. Precision is how close repeated measurements are to each other.",
+      "pillLabel": "difference between"
+    },
+    {
+      "front": "How do you combine uncertainties for a quantity $y = a \\times b$?",
+      "back": "You add the percentage uncertainties: % uncertainty in $y$ = (% uncertainty in $a$) + (% uncertainty in $b$).",
+      "pillLabel": "How do you combine"
+    },
+    {
+      "front": "How do you combine uncertainties for a quantity $y = a^3$?",
+      "back": "You multiply the percentage uncertainty by the power: % uncertainty in $y$ = 3 x (% uncertainty in $a$).",
+      "pillLabel": "How do you combine"
+    }
+  ],
+  "paperNumber": "3",
+  "paperType": "practical",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "1.3.1",
+    "1.3.2",
+    "1.3.3"
+  ],
+  "pastPaperReferences": [
+    {
+      "paperCode": "9702/32",
+      "paperSession": "2024-May/June",
+      "sessionLabel": "May/June 2024",
+      "questionNumber": "2(e)(i)",
+      "questionText": "Describe four sources of uncertainty or limitations of the procedure for this experiment.\n\nFor any uncertainties in measurement that you describe, you should state the quantity being measured and a reason for the uncertainty.\n\n1 .................................................................................................................................................\n\n............................................................................................................................",
+      "totalMarks": 4,
+      "markHref": "/marking/9702/32/2024-May/June/2(e)(i)"
+    },
+    {
+      "paperCode": "9702/32",
+      "paperSession": "2024-May/June",
+      "sessionLabel": "May/June 2024",
+      "questionNumber": "2(a)(iii)",
+      "questionText": "*   Calculate the value of the spring constant $k$ using\n    $$k = \\frac{\\alpha\\pi^2}{T^2}$$\n    where $\\alpha = 0.800$ kg.\n\n    $k$ = ................................................................... Nm$^{-1}$\n\n*   Justify the number of significant figures that you have given for your value of $k$.\n\n    ...................................................................................................................................................\n\n    .......................................",
+      "totalMarks": 1,
+      "markHref": "/marking/9702/32/2024-May/June/2(a)(iii)"
+    },
+    {
+      "paperCode": "9702/32",
+      "paperSession": "2024-May/June",
+      "sessionLabel": "May/June 2024",
+      "questionNumber": "2(b)(ii)",
+      "questionText": "Estimate the percentage uncertainty in your value of $\\theta$. Show your working.\n\npercentage uncertainty = ................................................................... %",
+      "totalMarks": 1,
+      "markHref": "/marking/9702/32/2024-May/June/2(b)(ii)"
+    }
+  ],
+  "generatedAt": "2026-06-07T11:20:14.587Z",
+  "generatorVersion": "b-v3-pilot-2"
+}

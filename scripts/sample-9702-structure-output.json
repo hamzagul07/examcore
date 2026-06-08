@@ -1,0 +1,63 @@
+﻿node : Inspecting cambridge/9702/s24/qp_12.pdf...
+At C:\Users\Mg\AppData\Local\Temp\ps-script-bfd6c527-63a7-41fc-9a9d-64519ebdaff6.ps1:82 char:57
++ ... ts\examcore"; node scripts/sample-9702-pdf-structure.mjs 2>&1 | Out-F ...
++                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Inspecting camb...24/qp_12.pdf...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Inspecting cambridge/9702/s24/qp_42.pdf...
+Inspecting cambridge/9702/s24/qp_32.pdf...
+{
+  "generatedAt": "2026-06-06T15:05:18.253Z",
+  "samples": [
+    {
+      "id": "paper1-mcq",
+      "path": "cambridge/9702/s24/qp_12.pdf",
+      "label": "Paper 1 MCQ (qp_12)",
+      "paperType": "multiple-choice",
+      "bytes": 395895,
+      "inspection": {
+        "page_count_estimate": 16,
+        "question_numbering_style": "Arabic numerals (1, 2, 3...)",
+        "sample_question_numbers": [
+          "1",
+          "2",
+          "3",
+          "40"
+        ],
+        "max_nesting_depth": 1,
+        "mark_annotation_style": "No marks annotated per question, total mark stated on page 1.",
+        "diagram_density": "high",
+        "diagram_count_estimate": 19,
+        "math_notation_density": "high",
+        "has_tables": true,
+        "has_mcq_options": true,
+        "mcq_option_style": "A B C D columns",
+        "figure_reference_style": "e.g. 'The diagram shows...', 'The graph shows...'",
+        "notable_layout_challenges": [
+          "MCQ options sometimes presented in tables (e.g., Q3, Q37, Q39).",
+          "Formulae page (page 2) contains many mathematical expressions and symbols.",
+          "Small diagrams, such as CRO traces and force diagrams, are interspersed with text."
+        ],
+        "sample_question_excerpt": "14 The force resisting the motion of a car is proportional to the square of the car's speed. The magnitude of the force at a speed of 20.0 m s┬»┬╣ is 800 N.\nWhat useful output power is required from the car's engine to maintain a steady speed of 40.0 m s┬»┬╣?",
+        "extraction_notes": "Pay close attention to parsing tables that contain MCQ options. Ensure correct extraction of all options (A, B, C, D) regardless of whether they are on a single line, stacked, or within a table structure. Handle mathematical notation and units carefully. The 'Data' and 'Formulae' sections on page 2 also require structured extraction."
+      }
+    },
+    {
+      "id": "paper4-structured",
+      "path": "cambridge/9702/s24/qp_42.pdf",
+      "label": "Paper 4 Structured (qp_42)",
+      "paperType": "structured A-Level",
+      "bytes": 257542,
+      "error": "{\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}"
+    },
+    {
+      "id": "paper3-practical",
+      "path": "cambridge/9702/s24/qp_32.pdf",
+      "label": "Paper 3 Practical (qp_32)",
+      "paperType": "practical",
+      "bytes": 1997344,
+      "error": "{\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}"
+    }
+  ]
+}

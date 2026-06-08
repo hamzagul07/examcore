@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { CircleHelp, Eye, EyeOff } from 'lucide-react'
 import type { QuickCheckItem } from '@/lib/courses/visual-types'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
 export function QuickCheckPanel({ title, items }: { title: string; items: QuickCheckItem[] }) {
@@ -16,7 +17,7 @@ export function QuickCheckPanel({ title, items }: { title: string; items: QuickC
       accent="success"
       className="course-quick-check"
     >
-      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+      <div className="course-quick-check-grid grid gap-4 sm:grid-cols-1 md:grid-cols-2">
         {items.map((item, i) => {
           const show = revealed[i]
           return (
@@ -24,21 +25,21 @@ export function QuickCheckPanel({ title, items }: { title: string; items: QuickC
               <p className="mb-1 text-[10px] font-bold uppercase tracking-wide text-[var(--ec-text-tertiary)]">
                 Question {i + 1}
               </p>
-              <p className="mb-3 flex-1 text-sm font-medium text-[var(--ec-text-primary)]">
-                {item.prompt}
-              </p>
+              <div className="mb-3 flex-1 text-sm font-medium text-[var(--ec-text-primary)]">
+                <CourseRichText content={item.prompt} variant="inline" />
+              </div>
               <div
-                className={`course-quick-check-answer mb-3 px-3 py-2.5 text-sm leading-relaxed transition-all ${
+                className={`course-quick-check-answer mb-3 w-full max-w-none px-3 py-2.5 text-sm leading-relaxed transition-all ${
                   show ? 'is-revealed text-[var(--ec-text-secondary)]' : 'text-transparent blur-sm select-none'
                 }`}
                 aria-hidden={!show}
               >
-                {item.answer}
+                <CourseRichText content={item.answer} variant="inline" />
               </div>
               <button
                 type="button"
                 onClick={() => setRevealed((r) => ({ ...r, [i]: !show }))}
-                className="inline-flex items-center gap-2 self-start rounded-lg border border-[var(--ec-border-subtle)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-brand)] hover:bg-[var(--ec-surface-muted)]"
+                className="course-quick-check-reveal inline-flex min-h-[44px] items-center gap-2 self-start rounded-lg border border-[color-mix(in_srgb,var(--course-subject-accent,var(--ec-brand))_35%,var(--ec-border-subtle))] px-3 py-2 text-xs font-semibold text-[var(--course-subject-accent,var(--ec-brand))] hover:bg-[color-mix(in_srgb,var(--course-subject-accent,var(--ec-brand))_8%,var(--ec-surface-muted))]"
               >
                 {show ? (
                   <>

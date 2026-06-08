@@ -1,4 +1,5 @@
 import { GraduationCap, Sparkles } from 'lucide-react'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
 type Side = { title: string; points: string[] }
@@ -19,8 +20,8 @@ export function ConceptCompare({
       icon={Sparkles}
       accent="violet"
     >
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="course-compare-card course-compare-simple rounded-2xl border border-dashed border-[var(--ec-brand)]/45 bg-[color-mix(in_srgb,var(--ec-brand)_7%,var(--ec-surface-muted))] p-5">
+      <div className="course-compare-grid grid gap-4 md:grid-cols-2">
+        <div className="course-compare-card course-compare-simple rounded-2xl border border-[color-mix(in_srgb,var(--ec-brand)_35%,var(--ec-border-subtle))] bg-[color-mix(in_srgb,var(--ec-brand)_7%,var(--ec-surface-muted))] p-5">
           <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-[var(--ec-text-primary)]">
             <Sparkles className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden />
             {simple.title}
@@ -32,7 +33,7 @@ export function ConceptCompare({
                 className="flex gap-2 rounded-lg border border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)] px-3 py-2"
               >
                 <span className="text-[var(--ec-brand)]">•</span>
-                <span>{p}</span>
+                <CourseRichText content={p} variant="inline" />
               </li>
             ))}
           </ul>
@@ -49,7 +50,7 @@ export function ConceptCompare({
                 className="flex gap-2 rounded-lg border border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)] px-3 py-2"
               >
                 <span className="text-[var(--ec-accent)]">✓</span>
-                <span>{p}</span>
+                <CourseRichText content={p} variant="inline" />
               </li>
             ))}
           </ul>

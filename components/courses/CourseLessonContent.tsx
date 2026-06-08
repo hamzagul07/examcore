@@ -1,76 +1,59 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Lightbulb, Target } from 'lucide-react'
-import { MathText } from '@/components/MathText'
-import { CourseLessonMarkdown } from '@/components/courses/CourseLessonMarkdown'
+import { ArrowRight, BookOpen } from 'lucide-react'
+import { CourseRichText } from '@/components/courses/CourseRichText'
+import { CourseCallout } from '@/components/courses/CourseCallout'
+import { CourseWorkedExampleReveal } from '@/components/courses/CourseWorkedExampleReveal'
 import { prepareCourseMathMarkdown } from '@/lib/courses/math-format'
+import { headingToId } from '@/lib/courses/lesson-toc'
 import type { CourseLesson, LessonSection } from '@/lib/courses/types'
 
-function SectionBlock({ section }: { section: LessonSection }) {
+function SectionBlock({ section, index }: { section: LessonSection; index: number }) {
   switch (section.type) {
     case 'intro':
       return (
-        <div className="course-lesson-intro rounded-2xl border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] px-5 py-4">
-          <CourseLessonMarkdown content={section.content} />
-        </div>
+        <CourseCallout variant="note">
+          <CourseRichText content={section.content} variant="prose" />
+        </CourseCallout>
       )
     case 'heading':
       return (
-        <h2 className="course-lesson-h2 mt-10 text-xl font-semibold tracking-tight text-[var(--ec-text-primary)] first:mt-0">
+        <h2
+          id={headingToId(section.content, index)}
+          className="course-lesson-h2 scroll-mt-28"
+        >
           {section.content}
         </h2>
       )
     case 'text':
-      return <CourseLessonMarkdown content={section.content} />
+      return (
+        <div className="course-reading-prose">
+          <CourseRichText content={section.content} variant="prose" />
+        </div>
+      )
     case 'formula':
       return (
-        <div
-          className="course-lesson-formula rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_30%,var(--ec-border-subtle))] bg-[var(--ec-surface-muted)] px-5 py-5"
-          role="math"
-        >
-          <CourseLessonMarkdown content={prepareCourseMathMarkdown(section.content)} />
-        </div>
+        <CourseCallout variant="formula">
+          <div className="course-formula-display" role="math">
+            <CourseRichText
+              content={prepareCourseMathMarkdown(section.content)}
+              variant="formula"
+            />
+          </div>
+        </CourseCallout>
       )
     case 'keyPoints':
-      return (
-        <ul className="course-key-points space-y-2">
-          {section.items.map((item) => (
-            <li
-              key={item}
-              className="flex gap-3 rounded-xl border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]"
-            >
-              <Target className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ec-accent)]" aria-hidden />
-              <MathText text={item} />
-            </li>
-          ))}
-        </ul>
-      )
+      return null
     case 'examTip':
       return (
-        <div className="flex gap-3 rounded-2xl border-2 border-amber-500/35 bg-amber-500/8 px-4 py-4 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-          <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" aria-hidden />
-          <div>
-            <p className="mb-1 font-semibold text-[var(--ec-text-primary)]">Exam tip</p>
-            <MathText text={section.content} />
-          </div>
-        </div>
+        <CourseCallout variant="exam-tip">
+          <CourseRichText content={section.content} variant="prose" />
+        </CourseCallout>
       )
     case 'workedExample':
       return (
-        <div className="course-worked-box overflow-hidden">
-          <div className="course-worked-header px-4 py-3 sm:px-5">
-            <p className="text-xs font-bold uppercase tracking-wide text-[var(--ec-accent)]">
-              Worked example
-            </p>
-            <div className="mt-2 font-medium text-[var(--ec-text-primary)]">
-              <MathText text={section.question} />
-            </div>
-          </div>
-          <div className="border-t-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] px-4 py-4 sm:px-5">
-            <CourseLessonMarkdown content={section.solution.replace(/\n/g, '\n\n')} />
-          </div>
-        </div>
+        <CourseWorkedExampleReveal question={section.question} solution={section.solution} />
       )
     case 'practice':
       return (
@@ -84,24 +67,18 @@ function SectionBlock({ section }: { section: LessonSection }) {
       )
     case 'resources':
       return (
-        <div className="rounded-2xl border-2 border-[var(--ec-border-subtle)] p-4">
-          <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-[var(--ec-text-primary)]">
-            <BookOpen className="h-4 w-4" aria-hidden />
-            Go deeper
-          </p>
-          <ul className="space-y-2">
+        <CourseCallout variant="reading" title="Go deeper">
+          <ul className="course-reading-links">
             {section.items.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="text-sm text-[var(--ec-accent)] underline-offset-2 hover:underline"
-                >
+                <Link href={item.href}>
+                  <BookOpen className="h-3.5 w-3.5" aria-hidden />
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </CourseCallout>
       )
     default:
       return null
@@ -110,10 +87,10 @@ function SectionBlock({ section }: { section: LessonSection }) {
 
 export function CourseLessonContent({ lesson }: { lesson: CourseLesson }) {
   return (
-    <div className="course-lesson-body w-full min-w-0 max-w-none space-y-5">
+    <article className="course-lesson-body course-reading-column">
       {lesson.sections.map((section, i) => (
-        <SectionBlock key={i} section={section} />
+        <SectionBlock key={i} section={section} index={i} />
       ))}
-    </div>
+    </article>
   )
 }

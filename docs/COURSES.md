@@ -14,21 +14,43 @@ Students search **“free A Level course”**, **“ZNotes alternative”**, and
 | Progress | `localStorage` on device (cloud sync later) |
 | Monetisation | Free courses → free marking tier → paid mastery |
 
+## Your notes → original lessons (recommended)
+
+1. **Upload** your notes to `content/source-notes/{code}/` (see `content/source-notes/README.md`).  
+   Example: `content/source-notes/9702/12.2.md` for topic 12.2.  
+   This folder is **gitignored** — your files stay local.
+
+2. **Generate** original premium lessons with Gemini (rewrites your notes; does not copy them):
+
+```bash
+pnpm course:from-notes -- --code 9702 --topic 12.2
+pnpm course:from-notes -- --code 9702 --diagrams   # + Gemini diagram images
+```
+
+3. Output lands in `content/courses/{code}/{slug}.json` with **flashcards**, visual sections, FAQs.
+
+4. Deploy — lesson pages update automatically.
+
+### School PMT ingest (licensed use)
+
+If your school may use PMT materials internally, download PDFs to a private folder and generate **original** lessons (not verbatim PMT text):
+
+```bash
+pnpm course:from-pmt -- --code 9702 --parent 12
+pnpm course:from-pmt -- --code 9702 --topic 12.2 --generate --diagrams
+```
+
+See `content/source-notes/README.md`. Public attribution links only: `pnpm course:pmt-links -- --code 9702 --apply`.
+
 ## Do NOT scrape ZNotes
 
-ZNotes, Save My Exams notes, Physics & Maths Tutor sheets, etc. are **copyrighted**. Scraping and republishing risks:
+ZNotes, Save My Exams, etc. are **copyrighted**. Do not upload or scrape them.
 
-- DMCA / takedowns  
-- Google “scraped content” demotion  
-- Brand damage  
+**Instead:** your own summaries in `content/source-notes/`, or syllabus-only generation:
 
-**Instead:**
-
-1. Use **official Cambridge syllabus trees** already in the repo.  
-2. Generate **original** lessons with Claude (`scripts/generate-course-lesson.mjs`).  
-3. Generate **diagrams** with Gemini → `public/courses/diagrams/`.  
-4. Link to **official** Cambridge past papers + your blog guides.  
-5. Optional: link *out* to ZNotes as “external resource” without copying body text.
+```bash
+pnpm course:generate -- --code 9702 --gemini
+```
 
 ## Content tiers
 
@@ -73,7 +95,9 @@ Save as `public/courses/diagrams/{code}-{slug}.png` and add to lesson JSON:
 | Real past-paper questions | Fetched from `mark_schemes` by `syllabus_tags` |
 | FAQ accordion + JSON-LD | Bottom of lesson (SEO) |
 | Progress bar | Sidebar (localStorage) |
+| Revision flashcards | Flip-card deck in visual tab |
 | Course schema | `CourseLessonJsonLd` |
+| Zen theme | Course studio adapts to light “Zen” theme |
 
 ## Batch generate (Gemini)
 
@@ -83,7 +107,7 @@ pnpm course:generate -- --code 9702 --topic 9.1
 pnpm course:generate -- --code 9702 --limit 10 --force
 ```
 
-Requires `GEMINI_API_KEY` in `.env.local` (model: `gemini-2.5-flash`).
+Requires `GEMINI_API_KEY` in `.env.local` (content generation: `gemini-2.5-pro`).
 
 ## Roadmap
 

@@ -1,5 +1,6 @@
 import { LayoutGrid } from 'lucide-react'
 import type { SnapshotCard } from '@/lib/courses/visual-types'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
 export function SnapshotGrid({ title, cards }: { title: string; cards: SnapshotCard[] }) {
@@ -20,7 +21,9 @@ export function SnapshotGrid({ title, cards }: { title: string; cards: SnapshotC
                 {card.title}
               </p>
             </div>
-            <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">{card.body}</p>
+            <div className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+              <CourseRichText content={card.body} variant="prose" />
+            </div>
           </article>
         ))}
       </div>

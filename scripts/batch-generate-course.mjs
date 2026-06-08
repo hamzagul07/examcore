@@ -6,12 +6,12 @@
  *   node scripts/batch-generate-course.mjs --code 9702 --topic 9.1
  *   node scripts/batch-generate-course.mjs --code 9702 --limit 5 --dry-run
  *
- * Requires GEMINI_API_KEY in .env.local (model: gemini-2.5-flash).
+ * Requires GEMINI_API_KEY in .env.local (model: gemini-2.5-pro).
  */
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { GEMINI_TEXT_MODEL } from '../lib/ai/gemini-models.mjs'
+import { GEMINI_PRO_MODEL } from '../lib/ai/gemini-models.mjs'
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url))
 const PROJECT = path.join(ROOT, '..')
@@ -151,16 +151,15 @@ async function generateWithGemini(prompt) {
   const { GoogleGenAI } = await import('@google/genai')
   const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
   const res = await genAI.models.generateContent({
-    model: GEMINI_TEXT_MODEL,
+    model: GEMINI_PRO_MODEL,
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
   })
   const text = res.text || ''
   return extractJSON(text)
 }
 
-async function generateLesson(prompt, provider) {
-  if (provider === 'gemini') return generateWithGemini(prompt)
-  return generateWithClaude(prompt)
+async function generateLesson(prompt) {
+  return generateWithGemini(prompt)
 }
 
 const { subjectName, topics } = loadSyllabus(subjectCode)
@@ -177,7 +176,7 @@ if (!process.env.GEMINI_API_KEY) {
 }
 
 console.log(
-  `Generating ${queue.length} premium lessons for ${subjectName} (${subjectCode}) via ${GEMINI_TEXT_MODEL}…`
+  `Generating ${queue.length} premium lessons for ${subjectName} (${subjectCode}) via ${GEMINI_PRO_MODEL}…`
 )
 
 let ok = 0

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ListOrdered } from 'lucide-react'
 import type { VisualStep } from '@/lib/courses/visual-types'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
 export function VisualStepTimeline({ title, steps }: { title: string; steps: VisualStep[] }) {
@@ -25,7 +26,7 @@ export function VisualStepTimeline({ title, steps }: { title: string; steps: Vis
             <li key={step.label} className="relative flex gap-4">
               {!isLast ? (
                 <span
-                  className="absolute left-[17px] top-9 h-[calc(100%-12px)] w-0.5 border-l-2 border-dashed border-[var(--ec-border-subtle)]"
+                  className="absolute left-[17px] top-9 h-[calc(100%-12px)] w-0.5 border-l-2 border-[var(--ec-border-subtle)]"
                   aria-hidden
                 />
               ) : null}
@@ -49,7 +50,9 @@ export function VisualStepTimeline({ title, steps }: { title: string; steps: Vis
                 <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-[var(--ec-brand)]">
                   {step.label}
                 </p>
-                <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">{step.detail}</p>
+                <div className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                  <CourseRichText content={step.detail} variant="prose" />
+                </div>
               </div>
             </li>
           )

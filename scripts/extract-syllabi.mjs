@@ -9,7 +9,7 @@
  */
 
 import { GoogleGenAI } from '@google/genai'
-import { GEMINI_TEXT_MODEL } from '../lib/ai/gemini-models.mjs'
+import { GEMINI_PRO_MODEL } from '../lib/ai/gemini-models.mjs'
 import {
   writeFileSync,
   readFileSync,
@@ -460,7 +460,7 @@ async function extractSubject(
   const response = await withGeminiRetry(
     () =>
       genAI.models.generateContent({
-        model: GEMINI_TEXT_MODEL,
+        model: GEMINI_PRO_MODEL,
         contents: [
           {
             role: 'user',

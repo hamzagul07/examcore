@@ -60,7 +60,7 @@ export function CourseProgressBar({
   const pct = total > 0 ? Math.round((count / total) * 100) : 0
 
   return (
-    <div className="rounded-2xl border border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] p-4">
+    <div className="course-studio-progress rounded-xl border border-[var(--course-border,var(--ec-border-subtle))] bg-[var(--course-surface-card,var(--ec-surface-muted))] p-3.5">
       <div className="mb-2 flex items-center justify-between text-sm">
         <span className="font-medium text-[var(--ec-text-primary)]">Your progress</span>
         <span className="text-[var(--ec-text-tertiary)]">

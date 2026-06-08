@@ -8,7 +8,7 @@
 
 import { createClient } from '@supabase/supabase-js'
 import { GoogleGenAI } from '@google/genai'
-import { GEMINI_TEXT_MODEL } from '../lib/ai/gemini-models.mjs'
+import { GEMINI_FLASH_MODEL } from '../lib/ai/gemini-models.mjs'
 import { jsonrepair } from 'jsonrepair'
 import {
   readFileSync,
@@ -290,7 +290,7 @@ async function extractFullPaper(paper) {
   const extractionText = await withGeminiRetry(
     async () => {
       const res = await genAI.models.generateContent({
-        model: GEMINI_TEXT_MODEL,
+        model: GEMINI_FLASH_MODEL,
         contents: [
           {
             role: 'user',

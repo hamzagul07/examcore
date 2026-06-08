@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { GoogleGenAI } from '@google/genai'
-import { GEMINI_TEXT_MODEL, generateGeminiText } from '@/lib/ai/gemini-text'
+import { GEMINI_FLASH_MODEL, generateGeminiText, getGeminiClient } from '@/lib/ai/gemini-text'
 import { createClient as createServerClient } from '@/lib/supabase-server'
 import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
@@ -55,15 +54,13 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! })
-
 async function ocrImage(file: File, prompt: string): Promise<string> {
   const bytes = await file.arrayBuffer()
   const base64 = Buffer.from(bytes).toString('base64')
   const response = await withGeminiRetry(
     () =>
-      genAI.models.generateContent({
-        model: GEMINI_TEXT_MODEL,
+      getGeminiClient().models.generateContent({
+        model: GEMINI_FLASH_MODEL,
         contents: [
           {
             role: 'user',
@@ -334,7 +331,7 @@ export async function POST(request: NextRequest) {
 
       const segText = await generateGeminiText(
         buildWholePaperSegmentPrompt(ocrText),
-        { maxOutputTokens: 4000 }
+        { task: 'structured-extraction', maxOutputTokens: 4000 }
       )
       const segments = parseWholePaperSegment(segText)
 

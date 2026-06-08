@@ -171,7 +171,7 @@ export async function POST(req: NextRequest) {
               sse({
                 type: 'done',
                 cleanText:
-                  'Omni-AI is not configured (missing API key). Add GEMINI_API_KEY to enable streaming responses.',
+                  'Omni-AI is not configured. Set USE_VERTEX_AI + GOOGLE_CLOUD_PROJECT, or GEMINI_API_KEY. See docs/vertex-ai-migration.md',
                 action: { type: 'render_upload' },
               })
             )
@@ -195,6 +195,7 @@ export async function POST(req: NextRequest) {
         if (toolsEnabled) {
           for (let round = 0; round < 3; round++) {
             const toolResponse = await generateGeminiWithContents(contents, {
+              task: 'chat',
               system: systemPrompt,
               maxOutputTokens: 1500,
               tools: OMNI_MARKING_TOOLS,
@@ -248,6 +249,7 @@ export async function POST(req: NextRequest) {
         let sentLength = 0
 
         for await (const chunk of streamGeminiWithContents(contents, {
+          task: 'chat',
           system: systemPrompt,
           maxOutputTokens: 1500,
         })) {

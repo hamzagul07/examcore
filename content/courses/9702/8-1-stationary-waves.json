@@ -5,180 +5,137 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master stationary waves: understand formation, nodes, antinodes, fundamental frequency, and harmonics for Cambridge 9702 Physics P1/P2 success.",
+  "summary": "Explore how stationary waves form from interfering progressive waves, their unique energy properties, and the characteristics of nodes and antinodes.",
   "durationMin": 20,
   "learningObjectives": [
-    "Describe the formation of a stationary wave by the superposition of two progressive waves.",
-    "Identify and explain the characteristics of nodes and antinodes.",
-    "Explain the concepts of fundamental frequency and harmonics in vibrating strings and air columns."
+    "Describe the formation and key characteristics of stationary waves.",
+    "Identify nodes and antinodes, relating their positions to wavelength and phase.",
+    "Apply the string vibration formula to calculate frequency and analyse influencing factors."
   ],
   "simpleExplanation": {
-    "title": "Unpacking Stationary Waves",
-    "summary": "Stationary waves, also known as standing waves, appear to hold still and don't transfer net energy. They form when two identical progressive waves travelling in opposite directions superpose, creating fixed points of zero and maximum displacement.",
-    "analogy": "Imagine two people shaking opposite ends of a long skipping rope at the exact same rhythm. At certain frequencies, sections of the rope seem to blur as they swing widely, while other points barely move at all. These 'fixed' patterns are like a stationary wave.",
+    "title": "Understanding Fixed Waves",
+    "summary": "Imagine two identical waves crashing head-on and 'freezing' in place. That's a stationary wave! Unlike ocean waves that travel, these waves stay put, creating fixed points of no movement (nodes) and maximum movement (antinodes).",
+    "analogy": "Think of a skipping rope being shaken at both ends. When you find the right rhythm, the rope forms stable loops that don't travel along its length, just vibrate up and down in place.",
     "steps": [
-      "Understand the principle of superposition that leads to stationary wave formation.",
-      "Learn the definitions and properties of nodes (zero displacement) and antinodes (maximum displacement).",
-      "Grasp how stationary waves form in different media, specifically stretched strings and air columns.",
-      "Practise applying formulae to calculate wavelengths and frequencies of harmonics for various setups."
+      "Two identical progressive waves (same frequency, wavelength, amplitude) travel towards each other.",
+      "They meet and combine (superpose) within the medium.",
+      "At specific points, they continuously cancel each other out, forming nodes (minimum displacement).",
+      "At other points, they continuously reinforce each other, forming antinodes (maximum displacement)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "How are stationary waves typically formed?",
+      "back": "By the superposition of two identical progressive waves travelling in opposite directions."
+    },
+    {
+      "front": "What distinguishes the energy transfer in a stationary wave?",
+      "back": "There is no net transfer of energy along the wave."
+    },
+    {
+      "front": "Define a 'node' in a stationary wave.",
+      "back": "A node is a point where the particles consistently have minimum (often zero) displacement due to continuous destructive interference."
+    },
+    {
+      "front": "Define an 'antinode' in a stationary wave.",
+      "back": "An antinode is a point where the particles experience maximum displacement from their equilibrium position due to continuous constructive interference."
+    },
+    {
+      "front": "What is the distance between two adjacent nodes in terms of wavelength (λ)?",
+      "back": "λ/2."
+    },
+    {
+      "front": "What is the distance between an adjacent node and an antinode?",
+      "back": "λ/4."
+    },
+    {
+      "front": "What is the phase relationship between particles located between two adjacent nodes?",
+      "back": "They vibrate in phase with each other."
+    },
+    {
+      "front": "What is the phase relationship between particles on opposite sides of a node?",
+      "back": "They are in antiphase (180° out of phase)."
+    },
+    {
+      "front": "State the formula for the frequency of vibration of a stretched string.",
+      "back": "$f = \\frac{1}{2L} \\sqrt{\\frac{T}{\\mu}}$ (L=length, T=tension, $\\mu$=mass per unit length)."
+    },
+    {
+      "front": "What is the 'fundamental frequency' (first harmonic) of a vibrating string?",
+      "back": "The lowest frequency at which a stationary wave can form, typically with one antinode between fixed ends."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Most waves you encounter, like ripples on water or light from a lamp, are **progressive waves**; they continuously travel and transfer energy. But what happens when two identical progressive waves collide, travelling in opposite directions? They create a fascinating phenomenon known as a **stationary wave**, or standing wave. This topic is fundamental to understanding musical instruments and many other wave applications in Physics."
+      "content": "Ever wondered why some musical instruments produce specific notes? It's often due to **stationary waves**, also known as standing waves. Unlike **progressive waves** that transfer energy, stationary waves appear fixed in space, creating predictable patterns of vibration. They are a direct result of **superposition**."
     },
     {
       "type": "heading",
-      "content": "What are Stationary Waves?"
+      "content": "The Genesis of a Stationary Wave"
     },
     {
       "type": "text",
-      "content": "A stationary wave is formed when two **progressive waves** of the same type, amplitude, frequency, and wavelength, travelling in opposite directions, meet and superpose. Unlike progressive waves, stationary waves do not transfer net energy. Instead, they appear to oscillate in place, with certain points always at rest and others oscillating with maximum amplitude."
-    },
-    {
-      "type": "heading",
-      "content": "Nodes and Antinodes: The Defining Features"
-    },
-    {
-      "type": "text",
-      "content": "The fixed positions of zero and maximum displacement are the hallmarks of a stationary wave:"
+      "content": "A stationary wave forms when two progressive waves, possessing the exact same frequency, wavelength, and amplitude, travel through the same medium in opposite directions. They combine or 'superpose' at every point. This often happens when a wave reflects off a boundary and interferes with the incident wave."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Nodes**: These are points along the stationary wave where the displacement is always zero. Particles at nodes remain permanently at rest. They are formed by continuous destructive interference.",
-        "**Antinodes**: These are points along the stationary wave where the displacement is maximum. Particles at antinodes oscillate with the largest amplitude. They are formed by continuous constructive interference.",
-        "The distance between two consecutive nodes (or two consecutive antinodes) is always half a wavelength (λ/2).",
-        "The distance between a node and an adjacent antinode is always a quarter of a wavelength (λ/4)."
+        "No net energy is transferred along the medium by a stationary wave.",
+        "Particles at certain points remain stationary (nodes).",
+        "Particles at other points oscillate with maximum amplitude (antinodes).",
+        "All particles between adjacent nodes vibrate in phase.",
+        "Particles on opposite sides of a node are in antiphase (180° out of phase)."
       ]
     },
     {
       "type": "heading",
-      "content": "Formation of Stationary Waves"
+      "content": "Nodes and Antinodes: The Fixed Points"
     },
     {
       "type": "text",
-      "content": "Stationary waves typically form when a progressive wave reflects off a boundary and the reflected wave superposes with the incident wave. For example, when you pluck a guitar string, the wave travels along the string, reflects off the fixed ends, and the incident and reflected waves combine to form a stationary wave pattern."
-    },
-    {
-      "type": "heading",
-      "content": "Stationary Waves in Stretched Strings"
-    },
-    {
-      "type": "text",
-      "content": "For a string fixed at both ends, the boundary conditions dictate that the ends must always be **nodes**. This constrains the possible wavelengths and, therefore, the possible frequencies at which the string can vibrate. These allowed frequencies are called **harmonics**."
+      "content": "At a **node**, the two progressive waves always interfere destructively, resulting in zero or minimum displacement. Particles at nodes never move from their equilibrium position. Conversely, at an **antinode**, the waves always interfere constructively, leading to maximum displacement. Particles here oscillate with the largest amplitude."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Fundamental Frequency (First Harmonic, n=1)**: The simplest mode of vibration, with one antinode in the middle and nodes at both ends. The string length (L) is equal to half a wavelength (L = λ/2), so λ = 2L.",
-        "**Second Harmonic (First Overtone, n=2)**: Has two antinodes and three nodes. The string length is equal to one full wavelength (L = λ), so λ = L.",
-        "**Third Harmonic (Second Overtone, n=3)**: Has three antinodes and four nodes. The string length is equal to one and a half wavelengths (L = 3λ/2), so λ = 2L/3."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "In general, for the n-th harmonic of a stretched string:"
-    },
-    {
-      "type": "formula",
-      "content": "λ_n = 2L/n"
-    },
-    {
-      "type": "text",
-      "content": "Using the wave speed formula (v = fλ), the frequency of the n-th harmonic is:"
-    },
-    {
-      "type": "formula",
-      "content": "f_n = v/λ_n = nv/(2L)"
-    },
-    {
-      "type": "text",
-      "content": "Where f_1 = v/(2L) is the fundamental frequency. Thus, f_n = n * f_1. Stretched strings can produce all harmonics."
-    },
-    {
-      "type": "heading",
-      "content": "Stationary Waves in Air Columns (Pipes)"
-    },
-    {
-      "type": "text",
-      "content": "Stationary sound waves can also form in air columns, like those in organ pipes or flutes. The boundary conditions for air columns are:"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "An **open end** of a pipe is always an **antinode** (where air particles can freely oscillate).",
-        "A **closed end** of a pipe is always a **node** (where air particles cannot oscillate)."
+        "The distance between an adjacent node and antinode is a quarter of a wavelength (λ/4).",
+        "The distance between two adjacent nodes is half a wavelength (λ/2).",
+        "The distance between two adjacent antinodes is also half a wavelength (λ/2)."
       ]
     },
     {
       "type": "heading",
-      "content": "Open Pipes (Open at both ends)"
+      "content": "Harmonics on a String"
     },
     {
       "type": "text",
-      "content": "With antinodes at both ends, the possible harmonics are similar to stretched strings:"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Fundamental (n=1)**: Has an antinode at each end and one node in the middle. L = λ/2, so λ = 2L.",
-        "**Second Harmonic (n=2)**: Two nodes and three antinodes. L = λ, so λ = L."
-      ]
+      "content": "When a string or air column vibrates, it can form various stationary wave patterns called **harmonics**. Each harmonic corresponds to a specific resonant frequency, which is an integer multiple of the lowest possible frequency, known as the **fundamental frequency** (or first harmonic)."
     },
     {
       "type": "text",
-      "content": "The general formulae are the same as for stretched strings:"
-    },
-    {
-      "type": "formula",
-      "content": "λ_n = 2L/n  and  f_n = nv/(2L)"
-    },
-    {
-      "type": "text",
-      "content": "Open pipes produce all harmonics."
+      "content": "The fundamental frequency produces a stationary wave with just one antinode between the fixed ends (e.g., a string). The *n*-th harmonic will feature 'n' antinodes within the vibrating section of the medium."
     },
     {
       "type": "heading",
-      "content": "Closed Pipes (Closed at one end, open at the other)"
-    },
-    {
-      "type": "text",
-      "content": "With a node at the closed end and an antinode at the open end, the allowed patterns are different. Only **odd harmonics** are produced."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Fundamental (First Harmonic, n=1)**: One node at the closed end, one antinode at the open end. L = λ/4, so λ = 4L.",
-        "**First Overtone (Third Harmonic, n=3)**: Two nodes and two antinodes. L = 3λ/4, so λ = 4L/3.",
-        "**Second Overtone (Fifth Harmonic, n=5)**: Three nodes and three antinodes. L = 5λ/4, so λ = 4L/5."
-      ]
-    },
-    {
-      "type": "text",
-      "content": "In general, for the n-th harmonic (where n is an odd integer: 1, 3, 5...):"
+      "content": "Formula: Frequency of a Vibrating String"
     },
     {
       "type": "formula",
-      "content": "λ_n = 4L/n"
+      "content": "$f = \\frac{1}{2L} \\sqrt{\\frac{T}{\\mu}}$"
     },
     {
       "type": "text",
-      "content": "The frequency of the n-th odd harmonic is:"
-    },
-    {
-      "type": "formula",
-      "content": "f_n = v/λ_n = nv/(4L)"
+      "content": "Where:\n*   $f$ is the frequency of vibration (Hz)\n*   $L$ is the length of the vibrating string (m)\n*   $T$ is the tension in the string (N)\n*   $\\mu$ (mu) is the mass per unit length of the string (kg m⁻¹)"
     },
     {
       "type": "workedExample",
-      "question": "A string of length 0.80 m is stretched between two fixed points. When it vibrates at its fundamental frequency of 250 Hz, what is the speed of the wave in the string? What is the frequency of its third harmonic?",
-      "solution": "1.  **Identify boundary conditions and fundamental mode**: For a string fixed at both ends, the fundamental frequency (first harmonic, n=1) has a length L equal to half a wavelength. So, L = λ/2.\n2.  **Calculate the wavelength**: λ = 2L = 2 × 0.80 m = 1.60 m.\n3.  **Calculate the wave speed (v)**: Using the wave equation v = fλ, where f is the fundamental frequency: v = 250 Hz × 1.60 m = 400 m/s.\n4.  **Calculate the third harmonic frequency**: For stretched strings, the frequency of the n-th harmonic is n times the fundamental frequency (f_n = n × f_1). The third harmonic means n=3.\n    So, f_3 = 3 × f_1 = 3 × 250 Hz = 750 Hz."
+      "question": "A string of length 0.80 m has a mass of 4.0 g. When stretched with a tension of 20 N, calculate the fundamental frequency of vibration.",
+      "solution": "1.  First, calculate the mass per unit length, $\\mu$. Remember to convert mass to kilograms.\n    $\\mu = \\text{mass} / \\text{length} = 0.004 \\text{ kg} / 0.80 \\text{ m} = 0.005 \\text{ kg m}^{-1}$.\n2.  Now, apply the formula for the fundamental frequency ($f$).\n    $f = \\frac{1}{2L} \\sqrt{\\frac{T}{\\mu}}$\n3.  Substitute the given values into the formula:\n    $f = \\frac{1}{2 \\times 0.80} \\sqrt{\\frac{20}{0.005}}$\n4.  Calculate the result:\n    $f = \\frac{1}{1.6} \\sqrt{4000}$\n    $f \\approx 0.625 \\times 63.2455...\n    f \\approx 39.5 \\text{ Hz}$"
     },
     {
       "type": "examTip",
-      "content": "Pay close attention to the boundary conditions! A fixed end (string, closed pipe) means a node, while an open end (pipe) means an antinode. This distinction is crucial for determining the correct relationship between pipe length and wavelength, and thus which harmonics are possible."
+      "content": "A common mistake is confusing stationary waves with progressive waves. Remember, stationary waves do NOT transfer net energy, and their nodes and antinodes are fixed in position, unlike the constantly moving crests and troughs of progressive waves. Also, be precise with $\\lambda/4$ and $\\lambda/2$ distances."
     },
     {
       "type": "practice",
@@ -201,17 +158,17 @@
   ],
   "faq": [
     {
-      "q": "What's the main difference between stationary and progressive waves?",
-      "a": "Progressive waves transfer energy, and all particles oscillate with the same amplitude as the wave propagates. Stationary waves, however, do not transfer net energy and feature fixed points of zero displacement (nodes) and maximum displacement (antinodes), with particles oscillating at different amplitudes depending on their position. Master this and other key concepts with our free revision lessons and extensive past paper questions for 9702 Physics!"
+      "q": "How do stationary waves differ from progressive waves?",
+      "a": "Stationary waves do not transfer net energy along the medium and have fixed positions of maximum (antinodes) and minimum (nodes) displacement. Progressive waves, however, transfer energy as their wave profile moves through the medium."
     },
     {
-      "q": "How do I remember if a pipe produces odd or even harmonics?",
-      "a": "Think of it like this: a 'closed' pipe has one end restricted (a node) and the other open (an antinode). This imbalance means it can only form patterns with an odd number of quarter-wavelengths, leading to only odd harmonics (1st, 3rd, 5th, etc.). An 'open' pipe (antinodes at both ends) has a symmetrical setup, allowing for all harmonics (1st, 2nd, 3rd, etc.). Practise with our free past papers to solidify these concepts!"
+      "q": "Can stationary waves transfer energy?",
+      "a": "While individual particles in a stationary wave oscillate and thus possess kinetic and potential energy, there is no net transfer of energy from one point to another along the wave. Energy is localised and exchanged between kinetic and potential forms within segments of the wave."
     },
     {
-      "q": "Where are stationary waves commonly seen in real life?",
-      "a": "Stationary waves are fundamental to how many musical instruments work! The vibrating strings of a guitar or piano, the air columns in flutes, clarinets, and organ pipes all rely on stationary wave patterns to produce specific musical notes. Even microwave ovens use stationary electromagnetic waves to heat food unevenly. Understanding these principles is crucial for your 9702 exam; explore more in our comprehensive free revision course!"
+      "q": "What is the significance of harmonics in music?",
+      "a": "Harmonics are crucial in music because they determine the specific notes and timbre (quality) of sound produced by instruments like strings or wind pipes. When an instrument vibrates, it can resonate at its fundamental frequency and various harmonics, creating a rich sound."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

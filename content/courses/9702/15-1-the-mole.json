@@ -5,79 +5,151 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Master the mole and Avogadro constant for Cambridge A-Level Physics (9702 P4). Understand its role in linking mass to number of particles.",
+  "summary": "Explore the mole as the SI unit for amount of substance, Avogadro constant, and its application in the Ideal Gas Equation (PV=nRT, PV=NkT).",
   "durationMin": 20,
   "learningObjectives": [
-    "Define the mole as the amount of substance containing the Avogadro constant number of particles.",
-    "State the value of the Avogadro constant and understand its significance in linking macroscopic and microscopic quantities.",
-    "Apply the mole concept and Avogadro constant to calculate the number of particles, amount of substance, or mass in various physical contexts."
+    "Define the mole as the SI base unit for amount of substance and state the Avogadro constant.",
+    "Relate the number of particles to the amount of substance using the Avogadro constant.",
+    "Apply the Ideal Gas Equation ($PV=nRT$ or $PV=NkT$) and understand its variables."
   ],
   "simpleExplanation": {
-    "title": "The Mole: Your Particle Counter",
-    "summary": "The mole is a special unit in physics (and chemistry!) that helps us count incredibly tiny particles like atoms and molecules. It provides a bridge between the large, measurable quantities in our world (like a block of copper) and the microscopic world of individual particles that make it up.",
-    "analogy": "Think of a 'dozen' eggs – it always means 12. Similarly, a 'mole' of anything always means 6.02 × 10²³ of those things. It's just a very, very large 'dozen' for counting atoms!",
+    "title": "Understanding the Mole",
+    "summary": "Imagine trying to count every grain of sugar in a large bowl – it's practically impossible! Scientists face the same challenge with tiny atoms and molecules. The 'mole' is our special 'counting unit' for these vast numbers of particles, making it manageable to discuss and calculate quantities in physics.",
+    "analogy": "Think of a 'dozen' for eggs, but instead of 12, a 'mole' represents an enormous, fixed number of tiny particles. It allows us to refer to a specific 'amount' of a substance without having to list trillions of individual atoms or molecules.",
     "steps": [
-      "Define 'mole' and 'Avogadro constant' (N_A).",
-      "Understand the relationship: Number of particles (N) = Moles (n) × Avogadro constant (N_A).",
-      "Practise calculating the number of atoms/molecules from a given mass.",
-      "Pay attention to units (g mol⁻¹, mol, number of particles)."
+      "The 'amount of substance' is a fundamental quantity, measured in moles.",
+      "One mole always contains the same fixed number of particles: Avogadro's constant.",
+      "This constant links the macroscopic world (moles) to the microscopic (individual particles).",
+      "Moles are crucial for describing gases using the Ideal Gas Equation."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the SI base unit for \"amount of substance\"?",
+      "back": "The mole (mol)."
+    },
+    {
+      "front": "How is one mole precisely defined?",
+      "back": "The quantity of substance containing the same number of elementary entities as there are atoms in exactly 12 grams of Carbon-12."
+    },
+    {
+      "front": "What is the value and unit of the Avogadro constant ($N_A$)?",
+      "back": "$N_A = 6.02 \times 10^{23} \\text{ mol}^{-1}$."
+    },
+    {
+      "front": "How do you calculate the total number of particles ($N$) from the number of moles ($n$)?",
+      "back": "$N = n N_A$."
+    },
+    {
+      "front": "State the Ideal Gas Equation in terms of the number of moles.",
+      "back": "$PV = nRT$."
+    },
+    {
+      "front": "What do P, V, n, R, and T represent in $PV = nRT$?",
+      "back": "P=pressure, V=volume, n=number of moles, R=molar gas constant, T=absolute temperature."
+    },
+    {
+      "front": "What is the value and unit of the molar gas constant ($R$)?",
+      "back": "$R = 8.31 \\text{ J mol}^{-1} \\text{ K}^{-1}$."
+    },
+    {
+      "front": "How do you convert Celsius temperature to absolute temperature (Kelvin)?",
+      "back": "$T_K = T_C + 273$."
+    },
+    {
+      "front": "State the Ideal Gas Equation in terms of the number of individual molecules.",
+      "back": "$PV = NkT$."
+    },
+    {
+      "front": "How is the Boltzmann constant ($k$) related to the molar gas constant ($R$) and Avogadro constant ($N_A$)?",
+      "back": "$k = R / N_A$."
+    },
+    {
+      "front": "What does the Boltzmann constant ($k$) represent?",
+      "back": "It relates energy to temperature at the molecular level, or the gas constant per individual particle."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to **The Mole**, a fundamental concept in Cambridge International Physics (9702) that links the visible, macroscopic world to the invisible, microscopic world of atoms and molecules. While often associated with chemistry, understanding the mole is crucial for many physics applications, especially in Paper 4 calculations involving **amount of substance** and the **number of particles**. Let's unravel this vital concept!"
+      "content": "In physics, we often deal with incredibly vast numbers of tiny particles like atoms and molecules. To make these quantities manageable, we use the **mole** as a fundamental unit for the **amount of substance**. Understanding the mole is key to unlocking concepts like the **Ideal Gas Equation** and relating macroscopic properties to microscopic behaviour."
     },
     {
       "type": "heading",
-      "content": "What is The Mole?"
+      "content": "What is 'The Mole'?"
     },
     {
       "type": "text",
-      "content": "In physics, we often deal with quantities that are too large to count individually, like the number of atoms in a metal wire or molecules in a gas. The **mole (symbol: mol)** provides a convenient way to express these vast numbers. Officially, one mole of any substance is defined as the amount of that substance which contains the same number of elementary entities (atoms, molecules, ions, electrons, etc.) as there are atoms in exactly 12 grams of carbon-12."
+      "content": "The 'amount of substance' is a base quantity in physics, and its SI unit is the **mole**, symbol 'mol' (or sometimes 'n' in equations). One mole is precisely defined as the quantity of substance that contains the same number of elementary entities (like atoms, molecules, or ions) as there are atoms in exactly 12 grams of the Carbon-12 isotope."
     },
     {
       "type": "heading",
-      "content": "The Avogadro Constant"
+      "content": "The Avogadro Constant: Counting Particles"
     },
     {
       "type": "text",
-      "content": "This 'number of elementary entities' is a specific value known as the **Avogadro constant**, denoted by N_A. Its value is approximately:"
+      "content": "This specific number of particles within one mole of any substance is known as the **Avogadro constant**, symbol $N_A$. Its accepted value is approximately $6.02 \\times 10^{23} \\text{ mol}^{-1}$. This means whether you have one mole of hydrogen atoms or one mole of water molecules, you'll always have $6.02 \\times 10^{23}$ of those respective particles."
     },
     {
       "type": "formula",
-      "content": "N_A = 6.02 × 10²³ mol⁻¹"
-    },
-    {
-      "type": "text",
-      "content": "This means that one mole of any substance contains 6.02 × 10²³ particles of that substance. Whether it's a mole of hydrogen atoms, a mole of water molecules, or a mole of electrons, the *number* of particles is always the same. The Avogadro constant is crucial for converting between the number of moles (n) and the actual number of individual particles (N)."
-    },
-    {
-      "type": "formula",
-      "content": "N = n × N_A"
-    },
-    {
-      "type": "text",
-      "content": "Where:\n*   **N** is the total number of particles.\n*   **n** is the amount of substance in moles (mol).\n*   **N_A** is the Avogadro constant (6.02 × 10²³ mol⁻¹).\n\nAdditionally, in situations where molar mass (M) is given (often in g mol⁻¹), you can relate mass (m) to moles (n):\n\n`n = m / M`\n\nBy combining these relationships, you can calculate the number of particles in a given mass, or vice versa, which is a common application in Paper 4 problems."
+      "content": "$N = n N_A$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The mole is a unit for 'amount of substance', not mass. It's about *counting* particles.",
-        "The Avogadro constant (N_A) is provided in the data booklet, but it's good practice to remember its value (6.02 × 10²³ mol⁻¹).",
-        "Always check units: mass in grams (g), molar mass in grams per mole (g mol⁻¹), and moles (mol).",
-        "In physics, mole concepts often appear in questions involving ideal gases, specific heat capacity, or particle density, where knowing the number of constituent particles is a necessary step.",
-        "Be careful not to confuse 'molar mass' (mass of one mole) with the mass of a single atom/molecule."
+        "The mole (mol) is the SI base unit for amount of substance.",
+        "One mole contains $N_A$ particles, defined by Carbon-12.",
+        "The Avogadro constant ($N_A$) is $6.02 \\times 10^{23} \\text{ mol}^{-1}$.",
+        "Total particles ($N$) = moles ($n$) $\\times$ Avogadro constant ($N_A$).",
+        "It provides a link between the macroscopic world and the atomic scale."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "A pure sample of silicon has a mass of 2.81 g. The molar mass of silicon is 28.1 g mol⁻¹. Calculate the number of silicon atoms in the sample. (Avogadro constant, N_A = 6.02 × 10²³ mol⁻¹)",
-      "solution": "1.  **Calculate the number of moles (n) of silicon:**\n    `n = mass / molar mass`\n    `n = 2.81 g / 28.1 g mol⁻¹`\n    `n = 0.100 mol`\n\n2.  **Calculate the number of silicon atoms (N):**\n    `N = n × N_A`\n    `N = 0.100 mol × 6.02 × 10²³ mol⁻¹`\n    `N = 6.02 × 10²² atoms`\n\nTherefore, there are 6.02 × 10²² silicon atoms in the 2.81 g sample."
+      "type": "heading",
+      "content": "Gases and Moles: The Ideal Gas Equation"
+    },
+    {
+      "type": "text",
+      "content": "The concept of moles is vital when studying gases, particularly with the **Ideal Gas Equation**. This equation describes the behaviour of an ideal gas and uses 'n' to represent the number of moles of the gas. Remember that temperature ($T$) must always be in **Kelvin** for gas law calculations ($T_K = T_C + 273$)."
+    },
+    {
+      "type": "formula",
+      "content": "$PV = nRT$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "P = Gas Pressure (Pa)",
+        "V = Gas Volume (m³)",
+        "n = Number of Moles (mol)",
+        "R = Molar Gas Constant ($8.31 \\text{ J mol}^{-1} \\text{ K}^{-1}$)",
+        "T = Absolute Temperature (K)"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Boltzmann and Individual Particles"
+    },
+    {
+      "type": "text",
+      "content": "The Ideal Gas Equation can also be expressed using the total number of individual molecules, $N$, instead of moles. This form involves the **Boltzmann constant**, $k$, which links energy to temperature at the molecular level. It's essentially the gas constant per individual particle."
+    },
+    {
+      "type": "formula",
+      "content": "$PV = NkT$"
+    },
+    {
+      "type": "formula",
+      "content": "$k = R / N_A$"
     },
     {
       "type": "examTip",
-      "content": "In Paper 4, mole calculations are often a *step* within a larger problem. For instance, you might first calculate the number of particles using the mole, then use that number to determine total charge, energy, or another physical quantity. Always read the full question to understand how the mole concept fits into the overall solution."
+      "content": "Always ensure your units are consistent! Pressure in Pascals (Pa), volume in cubic metres (m³), and crucially, temperature in Kelvin (K). Mistakes with units, especially temperature conversion, are common pitfalls in exams."
+    },
+    {
+      "type": "workedExample",
+      "question": "A container holds $0.50 \\text{ mol}$ of an ideal gas at a pressure of $1.5 \\times 10^5 \\text{ Pa}$ and a temperature of $27^\\circ\\text{C}$. Calculate the volume occupied by the gas. (Use $R = 8.31 \\text{ J mol}^{-1} \\text{ K}^{-1}$)",
+      "solution": "1. Convert temperature to Kelvin: $T_K = 27 + 273 = 300 \\text{ K}$.\n2. Identify known values: $n = 0.50 \\text{ mol}$, $P = 1.5 \\times 10^5 \\text{ Pa}$, $R = 8.31 \\text{ J mol}^{-1} \\text{ K}^{-1}$, $T = 300 \\text{ K}$.\n3. Rearrange the Ideal Gas Equation ($PV = nRT$) to solve for V: $V = nRT / P$.\n4. Substitute the values: $V = (0.50 \\times 8.31 \\times 300) / (1.5 \\times 10^5)$.\n5. Calculate the volume: $V = 1246.5 / 150000 = 0.00831 \\text{ m}^3$."
     },
     {
       "type": "practice",
@@ -100,17 +172,17 @@
   ],
   "faq": [
     {
-      "q": "What is the mole in A-Level Physics 9702?",
-      "a": "In A-Level Physics (9702), the mole is a standard unit for the 'amount of substance'. It helps us quantify extremely large numbers of particles, like atoms or molecules, by relating them to a measurable mass. Mastering this concept is key for Paper 4 calculations. Check out our free course and practice past papers to ace it!"
+      "q": "Why is the mole used instead of just counting individual particles?",
+      "a": "Individual atoms and molecules are incredibly tiny, meaning even a small sample of substance contains trillions upon trillions of particles. The mole provides a practical unit to group these vast numbers, making calculations and comparisons manageable in chemistry and physics."
     },
     {
-      "q": "Why is the Avogadro constant important in Physics?",
-      "a": "The Avogadro constant (N_A = 6.02 × 10²³ mol⁻¹) acts as a conversion factor, allowing physicists to connect the macroscopic properties of matter (like mass) to its microscopic composition (number of individual particles). This is crucial for understanding phenomena at the atomic scale and appears frequently in Paper 4 problems."
+      "q": "What's the difference between 'n' and 'N' in gas equations?",
+      "a": "'n' represents the number of moles of the gas (e.g., 0.5 mol), used with the molar gas constant (R). 'N' represents the total number of individual particles (atoms or molecules) in the gas, used with the Boltzmann constant (k). They both quantify the 'amount' but at different scales."
     },
     {
-      "q": "How do I apply the mole concept in 9702 Paper 4 calculations?",
-      "a": "To apply the mole concept in Paper 4, you typically use the formula N = n × N_A (where N is the number of particles, n is moles, and N_A is the Avogadro constant). You might first calculate 'n' from a given mass using 'n = m/M' (mass/molar mass). These calculations often form a part of a larger problem, so ensure you understand the full context of the question. Practice with our revision lessons and past papers to build your confidence!"
+      "q": "Why must temperature be in Kelvin for gas law calculations?",
+      "a": "Gas laws describe how gas properties relate to absolute temperature, where zero Kelvin (-273.15°C) signifies the theoretical point of zero molecular motion. The Celsius scale is arbitrary and would lead to incorrect results (e.g., zero Celsius would imply zero volume or pressure in a simple gas law, which is not physical)."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

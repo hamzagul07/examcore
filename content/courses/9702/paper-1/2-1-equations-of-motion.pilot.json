@@ -1,0 +1,353 @@
+{
+  "slug": "2-1-equations-of-motion",
+  "topicCode": "2.1",
+  "title": "Equations of Motion",
+  "paper": "P1",
+  "paperName": "Paper 1 Multiple Choice",
+  "status": "pilot",
+  "summary": "Master the equations of motion for Cambridge A-Level Physics. This lesson covers suvat equations, motion graphs, and free fall, with worked examples and tips tailored for Paper 1 Multiple Choice questions.",
+  "durationMin": 30,
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of motion! Kinematics is the branch of mechanics that describes the motion of objects without considering the forces that cause the motion. In this lesson, we'll focus on the fundamental definitions, graphical representations, and the key equations you'll need to ace Paper 1 questions on this topic."
+    },
+    {
+      "type": "heading",
+      "content": "1. Core Definitions: Scalars and Vectors"
+    },
+    {
+      "type": "text",
+      "content": "It's crucial to distinguish between scalar and vector quantities in motion.\n\n*   **Distance (scalar):** The total path length covered by an object. It has magnitude only.\n*   **Displacement (vector):** The change in an object's position. It is the straight-line distance from the start point to the end point, in a specific direction.\n*   **Speed (scalar):** The rate of change of distance. $speed = \\frac{\\text{distance}}{\\text{time}}$\n*   **Velocity (vector):** The rate of change of displacement. $velocity = \\frac{\\text{change in displacement}}{\\text{time}} = \\frac{\\Delta s}{\\Delta t}$\n*   **Acceleration (vector):** The rate of change of velocity. $acceleration = \\frac{\\text{change in velocity}}{\\text{time}} = \\frac{\\Delta v}{\\Delta t}$"
+    },
+    {
+      "type": "examTip",
+      "content": "In multiple-choice questions, watch out for the distinction between distance/displacement and speed/velocity. If a question involves direction, it's about a vector quantity. A change in direction means a change in velocity, even if the speed is constant!"
+    },
+    {
+      "type": "workedExample",
+      "question": "Which statement is **not** correct?\n\nA. Acceleration can be determined from the gradient of a velocity–time graph.\nB. Acceleration is the rate of change of velocity.\nC. Displacement can be determined from the area under a velocity–time graph.\nD. Velocity is the rate of change of distance.",
+      "solution": "Let's analyse each option:\n\n*   **A:** The gradient of a velocity–time graph is $\\frac{\\Delta v}{\\Delta t}$, which is the definition of acceleration. This statement is correct.\n*   **B:** 'Rate of change of velocity' is the precise definition of acceleration. This statement is correct.\n*   **C:** The area under a velocity–time graph is calculated by multiplying velocity (y-axis) by time (x-axis), which gives displacement. This statement is correct.\n*   **D:** Velocity is the rate of change of **displacement** (a vector). Speed is the rate of change of distance (a scalar). This statement is incorrect.\n\nThe question asks for the statement that is not correct.\n\nTherefore, the correct option is **D**.",
+      "sourceQuestionId": "ceba2e6e-2d41-42fa-8b96-39cefdc638e6"
+    },
+    {
+      "type": "heading",
+      "content": "2. Motion Graphs"
+    },
+    {
+      "type": "text",
+      "content": "Graphs are a powerful way to visualise motion. For Paper 1, you need to be able to interpret them quickly."
+    },
+    {
+      "type": "heading",
+      "content": "Displacement-Time (s-t) Graphs"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Gradient = Velocity**",
+        "A straight line indicates constant velocity.",
+        "A horizontal line means the object is stationary (zero velocity).",
+        "A curved line indicates a change in velocity (i.e., acceleration)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Velocity-Time (v-t) Graphs"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Gradient = Acceleration**",
+        "**Area under the graph = Displacement**",
+        "A straight line indicates constant acceleration.",
+        "A horizontal line means the object is moving at a constant velocity (zero acceleration)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A car travels along a straight horizontal road. The graph shows the variation of the velocity $v$ of the car with time $t$ for $6.0\\,s$ of its journey.\n\n[Figure: Velocity-time graph for a car]\n\nThe brakes of the car are applied from $t = 1.0\\,s$ to $t = 4.0\\,s$.\n\nHow far does the car travel while the brakes are applied?\n\nA. $21\\,m$\nB. $45\\,m$\nC. $67\\,m$\nD. $83\\,m$",
+      "solution": "1.  **Identify the goal:** We need to find the distance travelled between $t = 1.0\\,s$ and $t = 4.0\\,s$.\n2.  **Recall the principle:** On a velocity-time graph, the distance travelled (or displacement) is equal to the area under the graph.\n3.  **Identify the shape:** The area between $t=1.0\\,s$ and $t=4.0\\,s$ is a trapezium.\n4.  **Read values from the graph:**\n    *   At $t_1 = 1.0\\,s$, the velocity is $v_1 = 20\\,m\\,s^{-1}$.\n    *   At $t_2 = 4.0\\,s$, the velocity is $v_2 = 10\\,m\\,s^{-1}$.\n    *   The time interval (the 'height' of the trapezium) is $\\Delta t = 4.0 - 1.0 = 3.0\\,s$.\n5.  **Calculate the area:** The area of a trapezium is given by the formula $Area = \\frac{1}{2}(a+b)h$, where $a$ and $b$ are the parallel sides.\n    *   Displacement $s = \\frac{1}{2}(v_1 + v_2) \\times \\Delta t$\n    *   $s = \\frac{1}{2}(20 + 10) \\times 3.0$\n    *   $s = \\frac{1}{2}(30) \\times 3.0 = 15 \\times 3.0 = 45\\,m$.\n\nTherefore, the correct option is **B**.",
+      "sourceQuestionId": "bbe13dc1-c9fc-4f6f-8d53-b5200e298c88"
+    },
+    {
+      "type": "heading",
+      "content": "3. Equations of Uniformly Accelerated Motion (suvat)"
+    },
+    {
+      "type": "text",
+      "content": "When an object moves with constant acceleration in a straight line, we can use a set of five equations, often called the 'suvat' equations. These are derived from the definitions of velocity and acceleration."
+    },
+    {
+      "type": "examTip",
+      "content": "For any suvat problem, write down the values you know for s, u, v, a, and t. Identify what you need to find. Then, select the equation that connects your knowns and your unknown. You will always have three known quantities to find a fourth."
+    },
+    {
+      "type": "heading",
+      "content": "Motion under Gravity (Free Fall)"
+    },
+    {
+      "type": "text",
+      "content": "An object in free fall (assuming negligible air resistance) near the Earth's surface experiences a constant downward acceleration, the acceleration of free fall, $g$. The value of $g$ is approximately $9.81\\,m\\,s^{-2}$. We can use the suvat equations for free fall problems by setting $a = g$. Remember to be consistent with your sign convention (e.g., upwards is positive, so acceleration is $a = -9.81\\,m\\,s^{-2}$)."
+    },
+    {
+      "type": "workedExample",
+      "question": "The diagram shows a laboratory experiment in which a feather falls from rest in a long evacuated vertical tube of length $L$.\n\n[Figure: Diagram of a feather falling in an evacuated tube]\n\nThe feather takes time $T$ to fall from the top to the bottom of the tube.\n\nHow far does the feather fall from the top of the tube in time $0.50T$?\n\nA. $0.13L$\nB. $0.25L$\nC. $0.38L$\nD. $0.50L$",
+      "solution": "1.  **Identify the motion:** The feather is in an evacuated tube, so it is in free fall with constant acceleration $a=g$. It starts from rest, so its initial velocity is $u=0$.\n2.  **Choose the right suvat equation:** We are relating displacement ($s$), initial velocity ($u$), acceleration ($a$), and time ($t$). The best equation is $s = ut + \\frac{1}{2}at^2$.\n3.  **Simplify the equation:** Since $u=0$, the equation becomes $s = \\frac{1}{2}at^2$. This shows that for an object starting from rest, the displacement is proportional to the square of the time ($s \\propto t^2$).\n4.  **Apply to the full journey:** The feather falls a distance $L$ in time $T$. So, $L = \\frac{1}{2}gT^2$.\n5.  **Apply to the partial journey:** We want to find the distance, let's call it $s'$, fallen in time $t' = 0.50T$.\n    *   $s' = \\frac{1}{2}g(t')^2 = \\frac{1}{2}g(0.50T)^2$\n    *   $s' = \\frac{1}{2}g(0.25T^2)$\n    *   $s' = 0.25 \\times (\\frac{1}{2}gT^2)$\n6.  **Substitute:** We know from step 4 that $L = \\frac{1}{2}gT^2$. Substituting this into our expression for $s'$ gives:\n    *   $s' = 0.25L$\n\nTherefore, the correct option is **B**.",
+      "sourceQuestionId": "6f0c4248-294d-4f2a-87fb-266119bd261e"
+    },
+    {
+      "type": "pastPaperPractice",
+      "questions": [
+        {
+          "questionId": "20f03193-205b-4ea0-b43e-25f288cb0bcd",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "12",
+          "questionNumber": "6",
+          "marks": 1,
+          "questionTextPreview": "A ball is released from rest at position X at time zero. At $1.0\\, \\text{s}$, it bounces inelastically from a horizontal surface and rebounds, reaching the top of its first bounce at $1.5\\, \\text{s}$.\n[Figure: Velocity-time graph for a bouncing ball.]\nWhat is the total displacement of the ball from its original position X at $1.5\\, \\text{s}$?\n…",
+          "markPoints": [
+            {
+              "text": "B",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F12&session=m24&question=6"
+        },
+        {
+          "questionId": "ceba2e6e-2d41-42fa-8b96-39cefdc638e6",
+          "year": 2024,
+          "session": "May/June",
+          "paperVariant": "12",
+          "questionNumber": "4",
+          "marks": 1,
+          "questionTextPreview": "Which statement is **not** correct?\nA Acceleration can be determined from the gradient of a velocity–time graph.\nB Acceleration is the rate of change of velocity.\n…",
+          "markPoints": [
+            {
+              "text": "D",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F12&session=s24&question=4"
+        },
+        {
+          "questionId": "e321283a-9125-4e93-9c39-bab7de4000e5",
+          "year": 2023,
+          "session": "February/March",
+          "paperVariant": "12",
+          "questionNumber": "5",
+          "marks": 1,
+          "questionTextPreview": "A ball is kicked upwards at an angle of $45^{\\circ}$ to horizontal ground. After a short flight, the ball returns to the ground.\nIt may be assumed that air resistance is negligible.\nWhat is **never** zero during the flight of the ball?\n…",
+          "markPoints": [],
+          "markHref": "/mark?subject=9702&paper=9702%2F12&session=m23&question=5"
+        },
+        {
+          "questionId": "6846bf1a-9cbb-4201-a607-e7b391fee60a",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "12",
+          "questionNumber": "7",
+          "marks": 1,
+          "questionTextPreview": "What is the definition of acceleration?\n| Option | Text |\n|--------|------|\n…",
+          "markPoints": [
+            {
+              "text": "A",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F12&session=m24&question=7"
+        },
+        {
+          "questionId": "1fe21e07-b7fa-41b2-9e3d-3abfbc29af64",
+          "year": 2024,
+          "session": "February/March",
+          "paperVariant": "12",
+          "questionNumber": "9",
+          "marks": 1,
+          "questionTextPreview": "A basketball player hits a ball vertically downwards with a speed of $2.4\\, \\text{ms}^{-1}$ from a height of $0.90\\, \\text{m}$.\nAir resistance is negligible.\nWhat is the speed of the ball as it hits the ground?\n…",
+          "markPoints": [
+            {
+              "text": "B",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F12&session=m24&question=9"
+        },
+        {
+          "questionId": "6f0c4248-294d-4f2a-87fb-266119bd261e",
+          "year": 2024,
+          "session": "May/June",
+          "paperVariant": "12",
+          "questionNumber": "5",
+          "marks": 1,
+          "questionTextPreview": "The diagram shows a laboratory experiment in which a feather falls from rest in a long evacuated vertical tube of length $L$.\n[Figure: Diagram of a feather falling in an evacuated tube]\nThe feather takes time $T$ to fall from the top to the bottom of the tube.\n…",
+          "markPoints": [
+            {
+              "text": "B",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F12&session=s24&question=5"
+        },
+        {
+          "questionId": "bbe13dc1-c9fc-4f6f-8d53-b5200e298c88",
+          "year": 2024,
+          "session": "May/June",
+          "paperVariant": "12",
+          "questionNumber": "6",
+          "marks": 1,
+          "questionTextPreview": "A car travels along a straight horizontal road. The graph shows the variation of the velocity $v$ of the car with time $t$ for $6.0\\,s$ of its journey.\n[Figure: Velocity-time graph for a car]\nThe brakes of the car are applied from $t = 1.0\\,s$ to $t = 4.0\\,s$.\n…",
+          "markPoints": [
+            {
+              "text": "B",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F12&session=s24&question=6"
+        },
+        {
+          "questionId": "786daf83-169a-460d-b0d8-e449dfd1a418",
+          "year": 2024,
+          "session": "May/June",
+          "paperVariant": "12",
+          "questionNumber": "9",
+          "marks": 1,
+          "questionTextPreview": "A ball collides with a wall. Before the collision, the ball moves with velocity $8\\,\\text{m}\\,\\text{s}^{-1}$ to the right. After the collision, it moves with velocity $3\\,\\text{m}\\,\\text{s}^{-1}$ to the left.\nWhat is the change in velocity of the ball during the collision?\nA $5\\,\\text{m}\\,\\text{s}^{-1}$ to the left\n…",
+          "markPoints": [
+            {
+              "text": "C",
+              "marks": 1
+            }
+          ],
+          "markHref": "/mark?subject=9702&paper=9702%2F12&session=s24&question=9"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "4. Projectile Motion"
+    },
+    {
+      "type": "text",
+      "content": "Projectile motion involves an object moving in two dimensions under the influence of gravity (e.g., a ball thrown through the air). The key principle is to treat the horizontal and vertical components of the motion independently."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Horizontal Motion:** No horizontal force (ignoring air resistance), so acceleration is zero. The horizontal velocity is constant. Use: $s_x = v_x t$.",
+        "**Vertical Motion:** The only force is gravity, so there is a constant downward acceleration, $g$. Use the suvat equations with $a_y = g$.",
+        "**Time of flight (t):** This is the crucial quantity that links the horizontal and vertical motions."
+      ]
+    }
+  ],
+  "learningObjectives": [
+    "Define and correctly use the terms distance, displacement, speed, velocity, and acceleration.",
+    "Interpret and draw displacement-time and velocity-time graphs.",
+    "Calculate displacement from the area under a velocity-time graph.",
+    "Calculate velocity from the gradient of a displacement-time graph.",
+    "Calculate acceleration from the gradient of a velocity-time graph.",
+    "Recall and apply the equations of uniformly accelerated motion (suvat equations).",
+    "Solve problems involving free fall motion under gravity.",
+    "Describe a method to determine the acceleration of free fall, g.",
+    "Explain projectile motion by considering horizontal and vertical motion independently."
+  ],
+  "simpleExplanation": {
+    "title": "Simple explanation",
+    "summary": "This topic, also known as kinematics, is about describing how objects move. We use graphs and a set of special equations (the 'suvat' equations) to analyse motion with constant acceleration, like an object falling under gravity or a car speeding up. For Paper 1, you need to be quick at interpreting graphs and choosing the right equation to solve for an unknown quantity.",
+    "steps": [
+      "This topic, also known as kinematics, is about describing how objects move. We use graphs and a set of special equations (the 'suvat' equations) to analyse motion with constant acceleration, like an object falling under gravity or a car speeding up. For Paper 1, you need to be quick at interpreting graphs and choosing the right equation to solve for an unknown quantity."
+    ]
+  },
+  "faq": [
+    {
+      "q": "What's the difference between speed and velocity?",
+      "a": "Speed is a scalar quantity that tells you 'how fast' an object is moving. Velocity is a vector quantity that tells you 'how fast' and 'in which direction' an object is moving. For example, a car driving around a circular track at a constant 50 km/h has a constant speed, but its velocity is constantly changing because its direction is changing."
+    },
+    {
+      "q": "When can I use the suvat equations?",
+      "a": "You can only use the suvat equations when the acceleration is constant and the motion is in a straight line. They are not suitable for situations with variable acceleration, such as motion with significant air resistance that changes with speed."
+    },
+    {
+      "q": "Is acceleration always in the same direction as motion?",
+      "a": "No. If an object is speeding up, its acceleration is in the same direction as its velocity. If an object is slowing down (decelerating), its acceleration is in the opposite direction to its velocity. For example, a ball thrown upwards has a positive velocity but a negative (downward) acceleration due to gravity."
+    }
+  ],
+  "flashcards": [
+    {
+      "front": "Displacement",
+      "back": "The shortest distance from the initial to the final position of a point. It is a vector quantity.",
+      "pillLabel": "Displacement"
+    },
+    {
+      "front": "Velocity",
+      "back": "The rate of change of displacement. It is a vector quantity.",
+      "pillLabel": "Velocity"
+    },
+    {
+      "front": "Acceleration",
+      "back": "The rate of change of velocity. It is a vector quantity.",
+      "pillLabel": "Acceleration"
+    },
+    {
+      "front": "Free Fall",
+      "back": "The motion of an object under the influence of gravity alone, with no other forces such as air resistance acting on it.",
+      "pillLabel": "Free Fall"
+    },
+    {
+      "front": "What does the gradient of a displacement-time graph represent?",
+      "back": "Velocity.",
+      "pillLabel": "s–t gradient"
+    },
+    {
+      "front": "What does the area under a velocity-time graph represent?",
+      "back": "Displacement.",
+      "pillLabel": "v–t area"
+    }
+  ],
+  "paperNumber": "1",
+  "paperType": "mcq",
+  "level": "A-Level",
+  "syllabusObjectivesCovered": [
+    "2.1.1",
+    "2.1.2",
+    "2.1.3",
+    "2.1.4",
+    "2.1.5",
+    "2.1.6",
+    "2.1.7",
+    "2.1.8",
+    "2.1.9"
+  ],
+  "pastPaperReferences": [
+    {
+      "paperCode": "9702/12",
+      "paperSession": "2024-May/June",
+      "sessionLabel": "May/June 2024",
+      "questionNumber": "4",
+      "questionText": "Which statement is **not** correct?\n\nA Acceleration can be determined from the gradient of a velocity–time graph.\nB Acceleration is the rate of change of velocity.\nC Displacement can be determined from the area under a velocity–time graph.\nD Velocity is the rate of change of distance.\n\n| Option | Text |\n|--------|------|\n| A | Acceleration can be determined from the gradient of a velocity–time graph. |\n| B | Acceleration is the rate of change of velocity. |\n| C | Displacement can be determined f",
+      "totalMarks": 1,
+      "markHref": "/marking/9702/12/2024-May/June/4"
+    },
+    {
+      "paperCode": "9702/12",
+      "paperSession": "2024-May/June",
+      "sessionLabel": "May/June 2024",
+      "questionNumber": "6",
+      "questionText": "A car travels along a straight horizontal road. The graph shows the variation of the velocity $v$ of the car with time $t$ for $6.0\\,s$ of its journey.\n\n<img src=\"9702_12_MJ_24_Q6.png\" alt=\"Velocity-time graph for a car\">\n\nThe brakes of the car are applied from $t = 1.0\\,s$ to $t = 4.0\\,s$.\n\nHow far does the car travel while the brakes are applied?\n\nA $21\\,m$\nB $45\\,m$\nC $67\\,m$\nD $83\\,m$\n\n| Option | Text |\n|--------|------|\n| A | $21\\,m$ |\n| B | $45\\,m$ |\n| C | $67\\,m$ |\n| D | $83\\,m$ |",
+      "totalMarks": 1,
+      "markHref": "/marking/9702/12/2024-May/June/6"
+    },
+    {
+      "paperCode": "9702/12",
+      "paperSession": "2024-May/June",
+      "sessionLabel": "May/June 2024",
+      "questionNumber": "5",
+      "questionText": "The diagram shows a laboratory experiment in which a feather falls from rest in a long evacuated vertical tube of length $L$.\n\n<img src=\"9702_12_MJ_24_Q5.png\" alt=\"Diagram of a feather falling in an evacuated tube\">\n\nThe feather takes time $T$ to fall from the top to the bottom of the tube.\n\nHow far does the feather fall from the top of the tube in time $0.50T$?\n\nA $0.13L$\nB $0.25L$\nC $0.38L$\nD $0.50L$\n\n| Option | Text |\n|--------|------|\n| A | $0.13L$ |\n| B | $0.25L$ |\n| C | $0.38L$ |\n| D | $0.",
+      "totalMarks": 1,
+      "markHref": "/marking/9702/12/2024-May/June/5"
+    }
+  ],
+  "generatedAt": "2026-06-07T11:20:11.531Z",
+  "generatorVersion": "b-v3-pilot-2"
+}

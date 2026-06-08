@@ -5,68 +5,138 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Master the First Law of Thermodynamics for A-Level Physics 9702. Learn internal energy, heat, and work relationships with expert explanations and worked examples. Ace your P4 exam!",
+  "summary": "Master the First Law of Thermodynamics (ΔU = Q + W) for Cambridge Physics 9702, covering internal energy, heat transfer, and work done.",
   "durationMin": 20,
   "learningObjectives": [
-    "State and explain the First Law of Thermodynamics: ΔU = Q - W.",
-    "Apply the principle of energy conservation to analyse thermodynamic processes.",
-    "Solve quantitative problems involving changes in internal energy, heat transfer, and work done, correctly applying sign conventions."
+    "Define internal energy and explain how it relates to temperature.",
+    "State and apply the First Law of Thermodynamics (ΔU = Q + W).",
+    "Interpret the signs of Q, W, and ΔU correctly in thermodynamic processes."
   ],
   "simpleExplanation": {
-    "title": "Energy's Balance Sheet",
-    "summary": "The First Law of Thermodynamics is all about energy conservation in a system. It tells us how the internal energy of a gas changes when you add or remove heat and when the gas does work or has work done on it. Think of it as a strict accounting rule for energy.",
-    "analogy": "Imagine your bank account. Your internal energy (ΔU) is like the change in your account balance. Deposits (Q > 0) are like money paid into your account (heat added), and withdrawals (Q < 0) are like money taken out (heat removed). If you spend money (W > 0, work done *by* the system), your balance goes down. If someone pays money *into* your account for you (W < 0, work done *on* the system), your balance goes up.",
+    "title": "Energy Balance in Systems",
+    "summary": "The First Law of Thermodynamics is simply a statement that energy is conserved within a system. It tells us how the total energy stored inside a system changes when you add heat to it or do work on it.",
+    "analogy": "Imagine your bank account is a 'system'. Your internal energy (U) is the money you have. You can increase your money (ΔU positive) in two main ways: someone gives you money (Q positive – like heating) or you do work to earn it (W positive – like work done on you). If you spend money (Q negative – like cooling) or buy something (W negative – like you doing work), your money decreases.",
     "steps": [
-      "Understand what internal energy (U), heat (Q), and work (W) represent.",
-      "Memorise the fundamental formula: ΔU = Q - W.",
-      "Master the crucial sign conventions for Q and W to avoid common errors.",
-      "Practise applying the law to various thermodynamic scenarios, focusing on problem-solving."
+      "**Identify the System:** Clearly define what you're studying (e.g., a gas in a cylinder).",
+      "**Energy In (Q):** Think about heat flowing *into* (+) or *out of* (-) the system.",
+      "**Work Done (W):** Consider if work is done *on* (+) the system (e.g., compression) or *by* (-) the system (e.g., expansion).",
+      "**Calculate Change:** Use \\(\\Delta U = Q + W\\) to find how the system's internal energy changes."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is internal energy (U)?",
+      "back": "The total sum of the kinetic and potential energies of all the particles within a body or system."
+    },
+    {
+      "front": "How is the average kinetic energy of particles related to temperature?",
+      "back": "It is directly proportional to the system's absolute temperature (in Kelvin)."
+    },
+    {
+      "front": "State the First Law of Thermodynamics.",
+      "back": "It states that the change in a system's internal energy (\\(\\Delta U\\)) equals the heat transferred to it (\\(Q\\)) plus the work done on it (\\(W\\))."
+    },
+    {
+      "front": "Write the formula for the First Law of Thermodynamics.",
+      "back": "\\(\\Delta U = Q + W\\)"
+    },
+    {
+      "front": "What does a positive \\(Q\\) mean in the First Law equation?",
+      "back": "Energy is transferred *into* the system via heating."
+    },
+    {
+      "front": "If a gas expands and does work, what is the sign of \\(W\\)?",
+      "back": "\\(W\\) is negative, as work is done *by* the system."
+    },
+    {
+      "front": "What does a negative \\(\\Delta U\\) indicate?",
+      "back": "The internal energy of the system has decreased."
+    },
+    {
+      "front": "Name two ways to increase a system's internal energy.",
+      "back": "By transferring heat *into* it (positive \\(Q\\)) or by doing work *on* it (positive \\(W\\))."
+    },
+    {
+      "front": "Is internal energy a state function?",
+      "back": "Yes, its value depends only on the current physical state of the system, not on how it got there."
+    },
+    {
+      "front": "When is \\(W\\) positive in \\(\\Delta U = Q + W\\)?",
+      "back": "When work is done *on* the system, for example, when a gas is compressed."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to this premium revision lesson on **The First Law of Thermodynamics**, a cornerstone of thermal physics in Cambridge 9702. This law is essentially a statement of **energy conservation** applied to thermodynamic systems, linking **internal energy**, **heat transfer**, and **work done**. Mastering it is absolutely crucial for success in Paper 4."
+      "content": "Welcome to **Thermodynamics**, the fascinating study of heat and energy! Our first stop is understanding how a system's total energy content, called **internal energy**, can change. This is all captured by the foundational **First Law of Thermodynamics**, a universal principle of energy conservation."
     },
     {
       "type": "heading",
-      "content": "Understanding the First Law"
+      "content": "What is Internal Energy (U)?"
     },
     {
       "type": "text",
-      "content": "The First Law of Thermodynamics dictates that the change in the internal energy (ΔU) of a system is equal to the heat (Q) added to the system minus the work (W) done *by* the system on its surroundings. In simpler terms, any energy entering or leaving a system must be accounted for by a change in its internal energy or by work done. This powerful principle underpins how engines operate, how refrigerators cool, and even how our own bodies regulate temperature."
-    },
-    {
-      "type": "formula",
-      "content": "ΔU = Q - W\n\nWhere:\n*   **ΔU** is the change in internal energy of the system (in Joules, J).\n*   **Q** is the heat energy supplied *to* the system (in Joules, J).\n*   **W** is the work done *by* the system on its surroundings (in Joules, J)."
-    },
-    {
-      "type": "heading",
-      "content": "Sign Conventions: Critical for Success"
-    },
-    {
-      "type": "text",
-      "content": "Correctly applying the sign conventions for Q and W is where many students trip up. Pay close attention to these rules, as they are fundamental to solving problems accurately:\n\n*   **For Q (Heat):**\n    *   **Q is positive (+)** if heat is supplied *to* the system (e.g., heating a gas).\n    *   **Q is negative (-)** if heat is removed *from* the system (e.g., gas cools down, losing heat to surroundings).\n*   **For W (Work):**\n    *   **W is positive (+)** if work is done *by* the system on its surroundings (e.g., an expanding gas pushes a piston). This means the system expends energy.\n    *   **W is negative (-)** if work is done *on* the system by its surroundings (e.g., a piston compresses a gas). This means energy is added to the system via work."
+      "content": "Every substance is made up of countless particles (atoms or molecules) that are constantly moving and interacting. The **internal energy (U)** of a body is the total sum of all the random kinetic energies (due to particle motion) and potential energies (due to forces between particles) of these particles. It’s a 'state function', meaning its value depends only on the current condition of the system, not how it arrived at that state."
     },
     {
       "type": "keyPoints",
       "items": [
-        "The First Law (ΔU = Q - W) is a direct application of the principle of conservation of energy.",
-        "Internal energy (U) is a state function; its change (ΔU) depends only on the initial and final states, not the path taken.",
-        "Heat (Q) and work (W) are path-dependent; their values depend on the specific process involved.",
-        "Always pay meticulous attention to the sign conventions for Q and W – this is a common source of error in exams.",
-        "For an ideal gas, internal energy depends only on its absolute temperature. If ΔU = 0, then the temperature is constant (isothermal process).",
-        "If no heat exchange occurs (Q = 0), the process is adiabatic, and the change in internal energy is due entirely to work done (ΔU = -W)."
+        "Internal energy is the sum of microscopic KE and PE.",
+        "It reflects the total energy stored within the system's particles.",
+        "Individual particle energies are distributed randomly.",
+        "Internal energy depends solely on the system's current physical state."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Temperature and Internal Energy"
+    },
+    {
+      "type": "text",
+      "content": "The **absolute temperature** of a system is a direct measure of the average kinetic energy of its constituent particles. If you increase a system's temperature, you increase the average kinetic energy of its particles, and consequently, its overall internal energy rises. This is one crucial way to change U."
+    },
+    {
+      "type": "heading",
+      "content": "Introducing the First Law of Thermodynamics"
+    },
+    {
+      "type": "text",
+      "content": "The First Law of Thermodynamics is a powerful restatement of the principle of **conservation of energy**. It tells us that energy cannot be created or destroyed, only transferred or transformed. For a thermodynamic system, energy can move in or out through two primary mechanisms: **heating (Q)** or **work done (W)**. The law quantifies how these transfers affect the system's internal energy."
+    },
+    {
+      "type": "formula",
+      "content": "$\\Delta U = Q + W$"
+    },
+    {
+      "type": "text",
+      "content": "This formula links the change in a system's internal energy (\\(\\Delta U\\)) to the heat energy transferred (\\(Q\\)) and the work done (\\(W\\)). Understanding the signs of each term is absolutely critical for solving problems correctly."
+    },
+    {
+      "type": "heading",
+      "content": "Deciphering the Signs: Q, W, and \\(\\Delta U\\)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**\\(\\Delta U\\) (Change in Internal Energy):**",
+        "**+**\\(\\Delta U\\): System's internal energy *increases* (e.g., temperature rises).",
+        "**-**\\(\\Delta U\\): System's internal energy *decreases* (e.g., temperature falls).",
+        "**\\(Q\\) (Energy Transferred via Heating):**",
+        "**+**\\(Q\\): Heat energy is transferred *into* the system (system gets hotter).",
+        "**-**\\(Q\\): Heat energy is transferred *away from* the system (system cools down).",
+        "**\\(W\\) (Work Done):**",
+        "**+**\\(W\\): Work is done *on* the system (e.g., a gas is compressed, energy input).",
+        "**-**\\(W\\): Work is done *by* the system (e.g., a gas expands, energy output)."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A gas in a cylinder is supplied with 450 J of heat energy. The gas expands, doing 180 J of work on its surroundings. Calculate the change in the internal energy of the gas.",
-      "solution": "1.  **Identify the given values with correct signs:**\n    *   Heat supplied *to* the system, so Q = +450 J.\n    *   Work done *by* the system, so W = +180 J.\n\n2.  **State the First Law of Thermodynamics:**\n    *   ΔU = Q - W\n\n3.  **Substitute the values into the equation:**\n    *   ΔU = (+450 J) - (+180 J)\n    *   ΔU = 450 J - 180 J\n    *   ΔU = 270 J\n\n4.  **State the final answer with units:**\n    *   The change in the internal energy of the gas is +270 J. This positive value indicates an increase in the internal energy of the gas."
+      "question": "A gas in a cylinder absorbs 200 J of heat from its surroundings. Simultaneously, the gas expands, performing 70 J of work on the piston. Calculate the change in the internal energy of the gas.",
+      "solution": "1.  **Identify the system and processes:** The system is the gas. It absorbs heat and expands.\n2.  **Determine the sign of Q:** Since the gas *absorbs* heat, \\(Q\\) is positive. \\(Q = +200\\text{ J}\\).\n3.  **Determine the sign of W:** Since the gas *performs* work (expands and pushes the piston), work is done *by* the system, so \\(W\\) is negative. \\(W = -70\\text{ J}\\).\n4.  **Apply the First Law of Thermodynamics:**\n    \\(\\Delta U = Q + W\\)\n    \\(\\Delta U = (+200\\text{ J}) + (-70\\text{ J})\\)\n    \\(\\Delta U = 200\\text{ J} - 70\\text{ J}\\)\n    \\(\\Delta U = +130\\text{ J}\\)\n5.  **State the conclusion:** The internal energy of the gas increases by 130 J."
     },
     {
       "type": "examTip",
-      "content": "Before attempting any problem, mentally (or physically!) draw a quick sketch of the system and note down all given values, paying *special attention* to the direction of heat flow and work done, assigning the correct positive or negative signs immediately. This proactive step prevents common sign errors and ensures accuracy."
+      "content": "Always pay very close attention to the wording of the question to correctly determine the signs for \\(Q\\) and \\(W\\). A common error is mixing up 'work done *on* the system' with 'work done *by* the system'. If the system does work, \\(W\\) is negative!"
     },
     {
       "type": "practice",
@@ -89,17 +159,17 @@
   ],
   "faq": [
     {
-      "q": "Why is the First Law of Thermodynamics important for 9702 Physics?",
-      "a": "The First Law of Thermodynamics is crucial because it's a direct application of the principle of energy conservation, a fundamental concept in Physics. it provides the framework for understanding energy transformations in all thermal systems, from heat engines to refrigerators. Mastering it is essential for Cambridge 9702 Paper 4, where it frequently appears in problem-solving questions. Our free courses and past papers can help you solidify this understanding."
+      "q": "Why is internal energy called a state function?",
+      "a": "Internal energy is a state function because its value depends only on the current thermodynamic state of the system (e.g., its temperature, pressure, and volume), not on the path taken to reach that state. This means if a system returns to its initial state, its internal energy returns to its initial value, regardless of the processes it underwent."
     },
     {
-      "q": "What is the difference between heat and internal energy in thermodynamics?",
-      "a": "Internal energy (U) refers to the total kinetic and potential energy of the particles within a system – it's a property *of* the system. Heat (Q), on the other hand, is the transfer of thermal energy *between* a system and its surroundings due to a temperature difference. While internal energy is a state function, heat is a process quantity. The First Law, ΔU = Q - W, shows precisely how heat transfer and work done affect a system's internal energy."
+      "q": "What is the difference between heat and internal energy?",
+      "a": "Internal energy is the energy *stored within* a system due to the random motion and interaction of its particles. Heat (Q), on the other hand, is the *transfer of thermal energy* between systems or between a system and its surroundings due to a temperature difference. Heat is energy *in transit*, while internal energy is energy *contained*."
     },
     {
-      "q": "How do I avoid sign convention mistakes with ΔU = Q - W?",
-      "a": "Sign convention mistakes are common, but easily avoided with practice! Remember: Q is positive when heat is *supplied to* the system, and negative when *removed from* it. W is positive when work is done *by* the system (it expands), and negative when work is done *on* the system (it's compressed). Always visualise the energy flow relative to the system. Consistent practice with past paper questions, available on our platform, will make these conventions second nature."
+      "q": "Does the First Law of Thermodynamics apply to all types of systems?",
+      "a": "Yes, the First Law of Thermodynamics is a fundamental principle of energy conservation that applies to all thermodynamic systems, whether open, closed, or isolated, and to all types of processes, provided energy transfers are accounted for correctly as heat or work."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

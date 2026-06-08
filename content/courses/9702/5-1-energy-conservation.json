@@ -5,91 +5,172 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master energy conservation for Cambridge 9702 AS Physics — kinetic, potential, work done and efficiency explained with worked examples.",
+  "summary": "Explore energy conservation, transformations (KE, GPE), work, power, and efficiency for AS Physics 9702. Master key formulas and calculations.",
   "durationMin": 20,
   "learningObjectives": [
-    "Apply the principle of conservation of energy to solve problems involving transfers between kinetic energy, gravitational potential energy and work done against resistive forces",
-    "Calculate efficiency of energy transfers and express it as a percentage or decimal, identifying where energy is dissipated",
-    "Use the equations for kinetic energy (½mv²) and gravitational potential energy (mgh) correctly, including in multi-step problems"
+    "Apply the principle of energy conservation to solve problems.",
+    "Calculate kinetic and gravitational potential energy changes using relevant formulas.",
+    "Understand and calculate work done, power, and efficiency in various physical systems."
   ],
   "simpleExplanation": {
-    "title": "Energy never disappears — it just changes form",
-    "summary": "The total energy of a closed system always stays the same. When a ball falls, its gravitational potential energy converts into kinetic energy. When friction is involved, some energy is transferred as heat — but none is ever created or destroyed.",
-    "analogy": "Think of energy like money in a bank account: you can move it between accounts (savings, current, investments), but the total balance never changes unless you're charged a fee — which is like friction stealing some energy as heat.",
+    "title": "Energy: The Ultimate Shape-Shifter!",
+    "summary": "Energy is never truly gone; it just changes its form. Imagine your phone battery losing charge – that energy doesn't disappear; it powers the screen, creates sound, and generates some heat, all different forms of energy.",
+    "analogy": "Think of a playground slide. When you're at the top, you have lots of 'slide potential energy'. As you slide down, that potential energy turns into 'sliding motion energy' (kinetic energy). Even if your bottom gets a bit warm due to friction, the total energy involved in your slide is conserved, just transformed.",
     "steps": [
-      "Identify every energy store present at the start and at the end of the situation",
-      "Write an energy equation: total energy before = total energy after (+ any energy lost to heat/sound)",
-      "Substitute the correct formula for each energy type (½mv² for KE, mgh for GPE) and solve",
-      "If efficiency is asked, divide useful output energy by total input energy and multiply by 100%"
+      "Identify all forms of energy present at the start and end (e.g., kinetic, potential, internal).",
+      "Account for energy transformations between these forms (e.g., GPE converting to KE).",
+      "Consider any energy 'losses' to unwanted forms, like heat from friction or air resistance.",
+      "Apply the fundamental principle: total energy before = total energy after, in a closed system."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the fundamental principle of energy conservation in a closed system?",
+      "back": "Energy cannot be created or destroyed, only transformed, so the total energy remains constant."
+    },
+    {
+      "front": "How is kinetic energy dependent on an object's mass and velocity?",
+      "back": "It is directly proportional to mass and the square of velocity ($KE = \\frac{1}{2}mv^2$)."
+    },
+    {
+      "front": "Under what condition is work done on an object?",
+      "back": "Work is done only if a force causes displacement in the direction of the applied force."
+    },
+    {
+      "front": "What does an efficiency less than 1 (or 100%) imply for a real system?",
+      "back": "It implies some input energy is inevitably lost, typically as heat or sound, rather than being converted into useful output."
+    },
+    {
+      "front": "Can the reference point for calculating gravitational potential energy be changed?",
+      "back": "Yes, the reference point can be chosen arbitrarily, as only the change in vertical height ($\\Delta h$) is significant."
+    },
+    {
+      "front": "What is the formula for work done when force and displacement are in the same direction?",
+      "back": "$W = F \\times d$"
+    },
+    {
+      "front": "Define power in terms of energy and time.",
+      "back": "Power is the rate at which energy is transferred or work is performed ($P = \\frac{\\Delta E}{\\Delta t}$)."
+    },
+    {
+      "front": "How can power be calculated if you know the force and velocity?",
+      "back": "$P = Fv$"
+    },
+    {
+      "front": "What is meant by a 'closed system' in the context of energy conservation?",
+      "back": "A system where no matter or energy can enter or leave from its surroundings."
+    },
+    {
+      "front": "What happens to energy 'lost' due to air resistance?",
+      "back": "It is converted into internal energy (heat and sound) of the object and the surroundings."
+    },
+    {
+      "front": "What is the formula for Gravitational Potential Energy (GPE)?",
+      "back": "$GPE = mgh$"
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Energy is one of the most fundamental ideas in all of physics — and the good news is that the **principle of conservation of energy** makes every problem solvable. Whether you are dealing with a skier descending a slope, a motor lifting a load, or a ball bouncing off a surface, the rule is always the same: **energy cannot be created or destroyed, only transferred between stores or dissipated**. Cambridge 9702 tests this idea repeatedly across Paper 1 MCQs and Paper 2 calculations, so a solid grasp of the core equations and how to apply them systematically will earn you marks every single time."
+      "content": "Ever wondered why a bouncing ball eventually stops? Or how a rollercoaster gains incredible speed? It all comes down to **energy conservation** – a fundamental principle in Physics that explains how energy transforms from one form to another without ever being lost or created."
     },
     {
       "type": "heading",
-      "content": "The Principle of Conservation of Energy"
+      "content": "The Unbreakable Rule: Conservation of Energy"
     },
     {
       "type": "text",
-      "content": "The principle states that the **total energy of an isolated system remains constant**. In practice, Cambridge problems always involve some transfer from a 'useful' store (kinetic or gravitational potential energy) into a 'wasted' store (thermal energy due to friction, or sound). Your job is to account for every joule. A complete energy equation looks like this: Initial KE + Initial GPE = Final KE + Final GPE + Work done against resistive forces. Setting up this equation correctly before reaching for a calculator is the single most important exam habit you can build."
+      "content": "At its core, the **Principle of Conservation of Energy** states that energy can neither be created nor destroyed. Instead, it continuously changes from one form to another. In a **closed system**, where no energy can enter or leave, the total amount of energy always stays constant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Total energy in a closed system remains constant.",
+        "Energy only transforms; it is never created or destroyed.",
+        "Common transformations include kinetic to potential energy.",
+        "Work against resistance (like friction) converts mechanical energy into heat."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Energy's Many Forms: Kinetic and Gravitational Potential"
+    },
+    {
+      "type": "text",
+      "content": "Two crucial forms of energy we frequently encounter are **Kinetic Energy (KE)** and **Gravitational Potential Energy (GPE)**. KE is the energy an object possesses due to its motion, while GPE is the energy stored due to its position in a gravitational field."
     },
     {
       "type": "formula",
-      "content": "Ek = ½mv²   |   Ep = mgh   |   W = Fs cosθ   |   Efficiency = (useful output energy / total input energy) × 100%"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Gravitational potential energy (GPE) uses the equation Ep = mgh, where h is measured from a clearly defined reference level — always state your reference level in written answers.",
-        "Kinetic energy (KE) uses Ek = ½mv²; note the v² term means doubling speed quadruples KE — a favourite trap in Paper 1 MCQs.",
-        "Work done by a force equals the energy transferred: W = Fs cosθ. When the force is parallel to displacement, cosθ = 1 and W = Fs.",
-        "When friction or air resistance acts, mechanical energy is not conserved — but total energy (including thermal) still is. Distinguish between 'mechanical energy conservation' and 'total energy conservation' in your wording.",
-        "Efficiency is always less than 1 (or 100%) for real devices. A question asking you to 'explain why efficiency cannot equal 100%' expects you to state that some energy is always dissipated as thermal energy or sound.",
-        "Power is the rate of energy transfer: P = E/t = Fv. This links topic 5.1 directly to topic 5.2 — examiners often combine them in a single Paper 2 question."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Worked Example 1 — Roller-coaster speed at the bottom of a slope"
-    },
-    {
-      "type": "workedExample",
-      "question": "A roller-coaster carriage of mass 800 kg starts from rest at the top of a slope of vertical height 45 m. The track exerts a constant resistive force of 1200 N on the carriage over its 60 m path down the slope. Calculate the speed of the carriage at the bottom of the slope. (g = 9.81 m s⁻²)",
-      "solution": "Step 1 — Identify energy stores.\n  • Initial state: carriage at rest at the top → all energy is GPE.\n  • Final state: carriage moving at the bottom → KE, with some energy lost to friction.\n\nStep 2 — Write the conservation equation.\n  GPE lost = KE gained + Work done against friction\n  mgh = ½mv² + Fs\n\nStep 3 — Calculate each term.\n  GPE = mgh = 800 × 9.81 × 45 = 353 160 J\n  Work done against friction = Fs = 1200 × 60 = 72 000 J\n\nStep 4 — Solve for v.\n  ½mv² = 353 160 − 72 000 = 281 160 J\n  v² = (2 × 281 160) / 800 = 702.9 m² s⁻²\n  v = √702.9 ≈ 26.5 m s⁻¹\n\nStep 5 — State the answer with units.\n  Speed at the bottom = 26.5 m s⁻¹ (3 s.f.)"
-    },
-    {
-      "type": "heading",
-      "content": "Worked Example 2 — Efficiency of an electric motor"
-    },
-    {
-      "type": "workedExample",
-      "question": "An electric motor is supplied with 600 J of electrical energy. It raises a 12 kg mass through a vertical height of 4.0 m. Calculate the efficiency of the motor. (g = 9.81 m s⁻²)",
-      "solution": "Step 1 — Identify useful output energy.\n  Useful output = GPE gained by the mass\n  Ep = mgh = 12 × 9.81 × 4.0 = 470.9 J\n\nStep 2 — Apply the efficiency formula.\n  Efficiency = useful output energy / total input energy\n  Efficiency = 470.9 / 600 = 0.785\n\nStep 3 — Convert to percentage.\n  Efficiency = 0.785 × 100% = 78.5%\n\nNote: The remaining 21.5% (≈ 129 J) has been dissipated, primarily as thermal energy in the motor windings and as sound. Always comment on where the 'lost' energy goes if the question asks you to explain."
-    },
-    {
-      "type": "examTip",
-      "content": "In Paper 2, examiners award a mark specifically for the conservation of energy equation written out symbolically before any numbers are substituted. Even if your arithmetic goes wrong, that method mark is yours for free — so always write the equation first. Similarly, when a question says 'show that' or 'verify', work from known values toward the given answer rather than the other way around, and always write more than the minimum steps so the examiner can see your reasoning."
-    },
-    {
-      "type": "heading",
-      "content": "Common Misconceptions & Examiner Traps"
+      "content": "$KE = \\frac{1}{2}mv^2$"
     },
     {
       "type": "text",
-      "content": "**Misconception 1 — 'Energy is lost when friction acts.'** Energy is never lost; it is transferred to the surroundings as thermal energy. Use the phrase 'dissipated as thermal energy' rather than 'lost'. Examiners penalise vague language like 'energy disappears'.\n\n**Misconception 2 — Confusing height with distance along slope.** GPE uses the vertical height h, not the length of the slope. In a diagram, look carefully at what is labelled — if you are given the slope length and the angle, calculate h = L sinθ first.\n\n**Misconception 3 — Forgetting initial KE.** If an object starts with a non-zero velocity, its initial KE must appear on the left-hand side of your energy equation. This is a very common source of dropped marks in Paper 1."
+      "content": "Kinetic energy depends on an object's mass ($m$) and the square of its velocity ($v$). The faster or more massive an object, the more kinetic energy it has."
+    },
+    {
+      "type": "formula",
+      "content": "$GPE = mgh \\text{ or } \\Delta GPE = mg\\Delta h$"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational potential energy depends on mass ($m$), gravitational acceleration ($g$), and vertical height ($h$). You can choose any convenient reference point for 'h', as only the *change* in height matters for $\\Delta GPE$."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Always define your reference level for GPE (usually the lowest point in the problem) and state it explicitly.",
-        "Check units at every step: energy in joules (J), mass in kg, speed in m s⁻¹, height in m.",
-        "For MCQs involving efficiency, eliminate answers above 100% immediately — they are always wrong.",
-        "If a question mentions 'smooth' or 'frictionless', set the work-done-against-friction term to zero to simplify the equation.",
-        "Percentage efficiency and decimal efficiency are both acceptable unless the question specifies — but make it clear which you are quoting."
+        "Kinetic energy is related to an object's movement.",
+        "GPE is energy stored by an object's height in a gravitational field.",
+        "KE is proportional to mass and the square of velocity.",
+        "GPE depends on mass, gravity, and vertical height change.",
+        "The GPE reference height can be set arbitrarily."
       ]
+    },
+    {
+      "type": "heading",
+      "content": "Work, Power, and Efficiency: Energy in Action"
+    },
+    {
+      "type": "text",
+      "content": "When energy is transferred, we call it **work done**. Work is done when a force causes an object to move a certain distance in the direction of that force. Think of pushing a box across a floor – you're doing work on it."
+    },
+    {
+      "type": "formula",
+      "content": "$W = Fd$ (where force $F$ and displacement $d$ are in the same direction)"
+    },
+    {
+      "type": "text",
+      "content": "**Power** is how quickly this energy transfer or work happens. A powerful engine can do a lot of work in a short amount of time, indicating a high rate of energy transfer."
+    },
+    {
+      "type": "formula",
+      "content": "$P = \\frac{\\Delta E}{\\Delta t} \\text{ and } P = Fv$"
+    },
+    {
+      "type": "text",
+      "content": "Finally, **efficiency** tells us how effectively a system converts input energy into useful output energy. No real system is 100% efficient because some energy is always 'lost' to unwanted forms, typically heat or sound."
+    },
+    {
+      "type": "formula",
+      "content": "$Efficiency = \\frac{\\text{Useful Energy Output}}{\\text{Total Energy Input}}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Work done is energy transferred by a force causing displacement.",
+        "Work requires displacement *in the direction of* the force.",
+        "Power measures the rate of energy transfer or work done.",
+        "Efficiency compares useful output energy to total input energy.",
+        "Real systems always have efficiency less than 100% due to energy losses."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A 2.0 kg ball is dropped from a height of 5.0 m.\n(a) Calculate its gravitational potential energy at the start.\n(b) Assuming no air resistance, calculate its speed just before hitting the ground.\n(c) If, due to air resistance, its actual speed just before hitting the ground is 8.5 m/s, calculate the work done against air resistance. (Take $g = 9.81 \\text{ m/s}^2$).",
+      "solution": "1.  (a) Initial GPE: $GPE = mgh = 2.0 \\text{ kg} \\times 9.81 \\text{ m/s}^2 \\times 5.0 \\text{ m} = 98.1 \\text{ J}$.\n2.  (b) By conservation of energy (no air resistance): Initial GPE = Final KE.\n    $98.1 \\text{ J} = \\frac{1}{2}mv^2 = \\frac{1}{2}(2.0 \\text{ kg})v^2$\n    $98.1 = v^2$\n    $v = \\sqrt{98.1} \\approx 9.90 \\text{ m/s}$.\n3.  (c) With air resistance: Initial GPE = Final KE + Work done against air resistance.\n    Initial GPE = $98.1 \\text{ J}$.\n    Actual Final KE = $\\frac{1}{2}mv_{actual}^2 = \\frac{1}{2}(2.0 \\text{ kg})(8.5 \\text{ m/s})^2 = 1.0 \\times 72.25 = 72.25 \\text{ J}$.\n    Work done against air resistance = Initial GPE - Actual Final KE\n    Work done against air resistance = $98.1 \\text{ J} - 72.25 \\text{ J} = 25.85 \\text{ J}$."
+    },
+    {
+      "type": "examTip",
+      "content": "Always state the principle of energy conservation clearly in problem-solving. Remember to account for all forms of energy, especially energy losses due to resistive forces like air resistance or friction, as these are common pitfalls that examiners look for."
     },
     {
       "type": "practice",
@@ -112,17 +193,17 @@
   ],
   "faq": [
     {
-      "q": "What equations do I need to know for energy conservation in Cambridge 9702 AS Physics?",
-      "a": "For Cambridge 9702 topic 5.1, you need three core equations: kinetic energy Ek = ½mv², gravitational potential energy Ep = mgh, and work done W = Fs cosθ. You also need efficiency = useful output energy ÷ total input energy (× 100% for a percentage). Our free premium lesson above covers all of these with worked examples and past-paper style practice so you can apply them confidently under exam conditions."
+      "q": "Why is it impossible for a machine to be 100% efficient?",
+      "a": "In any real-world energy conversion, some energy is always dissipated or 'lost' to the surroundings in non-useful forms, most commonly as heat due to friction or air resistance, and sometimes as sound. This means useful output energy will always be less than total input energy."
     },
     {
-      "q": "Why do Cambridge mark schemes say 'energy is dissipated' rather than 'energy is lost'?",
-      "a": "Cambridge examiners follow the principle of conservation of energy strictly — energy is never truly lost, it is simply transferred to a less useful store, most commonly thermal energy in the surroundings due to friction or air resistance. Using the word 'lost' can imply energy is destroyed, which contradicts the principle and can cost you marks. Always write 'dissipated as thermal energy' or 'transferred to the surroundings'. Our free 9702 course reinforces this language throughout, along with mark-scheme practice at /mark?subject=9702&topic=5.1."
+      "q": "When should I use $W = Fd$ versus $W = Fd \\cos \\theta$ for work done?",
+      "a": "You use $W = Fd$ when the force applied is exactly in the same direction as the displacement. You use $W = Fd \\cos \\theta$ when the force and displacement are at an angle $\\theta$ to each other, as it correctly accounts for only the component of the force acting along the direction of motion. For Cambridge AS Physics, $W=Fd$ is usually sufficient if the context implies collinear force and displacement."
     },
     {
-      "q": "How do Paper 1 MCQs on energy conservation differ from Paper 2 questions in 9702?",
-      "a": "Paper 1 MCQs tend to test conceptual understanding and quick calculation — for example, identifying which graph shows KE vs height correctly, or spotting a numerical error in an efficiency calculation. Paper 2 structured questions demand full working, correct units, and often ask you to explain energy transfers in words as well as calculate them. The premium lesson above includes tips specific to both paper styles, and you can practise marking real past-paper responses on our platform to see exactly what examiners reward."
+      "q": "Can gravitational potential energy ever be negative?",
+      "a": "Yes, GPE can be negative if your chosen reference point for zero potential energy is *above* the object's current position. Since only the *change* in GPE is physically significant, the absolute value doesn't matter as long as your reference point is consistent throughout the problem."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

@@ -5,100 +5,148 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master the concept of polarisation for 9702 Physics. Understand transverse waves, polarisers, and apply Malus's Law. Essential for Paper 1 & 2 success.",
+  "summary": "Understand polarisation: the restriction of wave oscillations to a single plane, proving waves are transverse. Learn Malus' Law and its applications.",
   "durationMin": 20,
   "learningObjectives": [
-    "Recall that polarisation is a phenomenon associated with transverse waves.",
-    "Describe and explain the effect of a polariser on the intensity of light.",
-    "State and use Malus's Law to calculate light intensity after passing through a polariser."
+    "Define polarisation and identify which types of waves can be polarised.",
+    "Explain the function of a polarising filter and its effect on wave intensity.",
+    "Apply Malus' Law to calculate the intensity of plane-polarised waves after passing through a filter."
   ],
   "simpleExplanation": {
-    "title": "What is Polarisation?",
-    "summary": "Polarisation is about controlling the direction in which a wave vibrates. While unpolarised light vibrates in all directions perpendicular to its travel, a polariser filters it, allowing vibrations in only one specific direction to pass through. This makes the light 'plane-polarised'.",
-    "analogy": "Imagine shaking a rope tied to a fence. If the fence has only vertical slats, you can only shake the rope vertically for the wave to pass through. If you try to shake it horizontally, the fence blocks it. A polariser acts like that fence, selecting only one direction of light vibration to pass.",
+    "title": "Wave Vibrations in a Single Direction",
+    "summary": "Polarisation is when a wave's vibrations are restricted to just one plane. This fascinating phenomenon only occurs with transverse waves, like light, and confirms their fundamental nature.",
+    "analogy": "Imagine wiggling a rope through a picket fence. If you wiggle the rope horizontally, it passes. If you wiggle it vertically, it's blocked. The fence acts like a polarising filter, only letting specific orientations of your rope 'wave' pass through.",
     "steps": [
-      "Understand what a transverse wave is and why polarisation only applies to them.",
-      "Distinguish between unpolarised and plane-polarised light.",
-      "Learn how a polariser works to create plane-polarised light.",
-      "Master Malus's Law to calculate light intensity changes through polarisers."
+      "Start with an unpolarised transverse wave vibrating in many directions.",
+      "Pass this wave through a special 'polariser' filter, which has a specific 'transmission axis'.",
+      "The filter acts like a vertical slit, allowing only wave components oscillating parallel to its axis to pass.",
+      "The result is a plane-polarised wave, vibrating in only one specific direction, while all other components are absorbed or blocked."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What fundamental characteristic must a wave possess to be polarisable?",
+      "back": "It must be a transverse wave."
+    },
+    {
+      "front": "How does the phenomenon of polarisation provide evidence about the nature of a wave?",
+      "back": "It confirms that the wave is transverse, as only transverse waves can be polarised."
+    },
+    {
+      "front": "State Malus' Law for calculating the intensity of a polarised wave after passing through a filter.",
+      "back": "$I = I₀\\cos²θ$"
+    },
+    {
+      "front": "In Malus' Law ($I = I₀\\cos²θ$), what does the variable $θ$ represent?",
+      "back": "The angle between the plane of oscillation of the incident polarised wave and the transmission axis of the polarising filter."
+    },
+    {
+      "front": "What general effect does a polarising filter have on the intensity of any wave passing through it?",
+      "back": "It reduces the wave's intensity."
+    },
+    {
+      "front": "Define polarisation.",
+      "back": "The restriction of a wave's oscillations to a single plane."
+    },
+    {
+      "front": "Why can't longitudinal waves be polarised?",
+      "back": "Their oscillations are inherently parallel to their direction of energy transfer, so they already vibrate in only one plane."
+    },
+    {
+      "front": "What is an unpolarised transverse wave?",
+      "back": "A transverse wave oscillating in various planes perpendicular to its direction of energy transfer."
+    },
+    {
+      "front": "What is the 'transmission axis' of a polarising filter?",
+      "back": "The specific direction/plane that the filter allows wave oscillations to pass through."
+    },
+    {
+      "front": "In Malus' Law, what happens to intensity when $θ = 90°$?",
+      "back": "Intensity $I = 0$, meaning no light passes through (perfectly blocked)."
+    },
+    {
+      "front": "In Malus' Law, what happens to intensity when $θ = 0°$?",
+      "back": "Intensity $I = I₀$, meaning maximum light passes through (fully transmitted)."
+    },
+    {
+      "front": "Are electromagnetic waves (like light) polarisable? Why?",
+      "back": "Yes, because they are transverse waves."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Ever wondered why some sunglasses cut out glare so effectively? Or how 3D cinema creates its stunning visual effects? The answer lies in **polarisation**—a fascinating property of light waves. In this lesson, we'll unravel the mystery of polarisation, discover how it's created and measured, and equip you with the knowledge to ace your Cambridge 9702 Physics exams."
+      "content": "Imagine light as a wiggling rope. Usually, it wiggles in all directions at once. But sometimes, we can make it wiggle in just one specific direction! This fascinating phenomenon is called **polarisation**, and it's absolutely key to understanding the true nature of waves, especially light. It's how your sunglasses reduce annoying glare and even how some 3D movies create their effects!"
     },
     {
       "type": "heading",
-      "content": "Transverse Waves and Polarisation"
+      "content": "Unveiling Wave Vibrations"
     },
     {
       "type": "text",
-      "content": "First things first: polarisation is a phenomenon exclusively associated with **transverse waves**. This means electromagnetic waves like light, radio waves, and microwaves can be polarised, but longitudinal waves like sound waves cannot. Why? Because in a transverse wave, the oscillations (vibrations) are perpendicular to the direction of wave propagation."
-    },
-    {
-      "type": "text",
-      "content": "**Unpolarised light** consists of waves whose electric field vectors (and magnetic field vectors) vibrate randomly in all possible planes perpendicular to the direction of propagation. Think of it as light vibrating in every direction at once. When light interacts with certain materials or reflects off surfaces, it can become **partially polarised**, where some planes of vibration are more dominant than others."
-    },
-    {
-      "type": "text",
-      "content": "**Plane-polarised light** (or linearly polarised light) is light whose electric field vectors oscillate in a single, fixed plane perpendicular to the direction of propagation. It's like our rope analogy where the vibration is constrained to only vertical movement."
+      "content": "Waves transfer energy through oscillations. For **transverse waves**, these oscillations are perpendicular to the direction the energy travels. Think of ripples on water or a wave on a string. In contrast, for **longitudinal waves**, like sound, the oscillations are parallel to the energy transfer, compressing and expanding the medium. This fundamental difference is what makes polarisation possible for some waves, but not others."
     },
     {
       "type": "heading",
-      "content": "The Polarisers"
+      "content": "The Transverse Test: Only Transverse Waves Can Be Polarised"
     },
     {
       "type": "text",
-      "content": "A **polariser** is a special filter that produces plane-polarised light from unpolarised light. It achieves this by absorbing light waves that vibrate in certain planes and transmitting only those that vibrate in a specific plane, known as its **transmission axis**. Think of the transmission axis as the 'slot' in our fence analogy."
-    },
-    {
-      "type": "text",
-      "content": "When unpolarised light passes through an ideal polariser, its intensity is reduced by half. This is because, on average, half of the randomly vibrating light components align with the transmission axis and half are perpendicular to it (and thus absorbed). The light emerging from the first polariser is now plane-polarised."
-    },
-    {
-      "type": "text",
-      "content": "If this plane-polarised light then passes through a second polariser (often called an **analyser**), the intensity of the transmitted light depends on the angle between the transmission axes of the two polarisers."
-    },
-    {
-      "type": "heading",
-      "content": "Malus's Law: Quantifying Polarisation"
-    },
-    {
-      "type": "text",
-      "content": "Malus's Law describes how the intensity of plane-polarised light changes as it passes through an analyser. It's a key formula you'll need for calculations in your exams."
-    },
-    {
-      "type": "formula",
-      "content": "I = I₀ cos²θ"
-    },
-    {
-      "type": "text",
-      "content": "Where:\n- `I` is the intensity of the light transmitted through the analyser.\n- `I₀` is the intensity of the plane-polarised light incident on the analyser.\n- `θ` is the angle between the plane of polarisation of the incident light (which is aligned with the transmission axis of the *first* polariser) and the transmission axis of the *analyser* (the second polariser)."
-    },
-    {
-      "type": "text",
-      "content": "If `θ = 0°`, the transmission axes are aligned, and `cos²(0°) = 1`, so `I = I₀` (maximum intensity).\nIf `θ = 90°`, the transmission axes are perpendicular, and `cos²(90°) = 0`, so `I = 0` (zero intensity, often called 'crossed polarisers')."
+      "content": "Polarisation is the ultimate experimental test for distinguishing between transverse and longitudinal waves. Only transverse waves can be polarised because their oscillations occur across many possible planes perpendicular to their travel direction. Longitudinal waves, however, naturally oscillate only back and forth along their path of travel, meaning their vibrations are already restricted to a single direction and cannot be further 'polarised'."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Polarisation is a defining characteristic of transverse waves, not longitudinal waves.",
-        "Unpolarised light has oscillations in all planes perpendicular to propagation; plane-polarised light has oscillations in only one plane.",
-        "An ideal polariser reduces the intensity of unpolarised light by half.",
-        "The angle `θ` in Malus's Law is between the *initial plane of polarisation* (set by the first polariser) and the *transmission axis of the second polariser* (analyser).",
-        "If two polarisers are crossed (transmission axes at 90°), no light is transmitted, demonstrating complete extinction.",
-        "Reflection from non-metallic surfaces often produces partially polarised light, used in anti-glare filters."
+        "Polarisation is the restriction of wave oscillations to a single plane.",
+        "Only transverse waves (e.g., light, EM waves) can be polarised.",
+        "Longitudinal waves (e.g., sound) cannot be polarised.",
+        "The ability to polarise a wave confirms its transverse nature.",
+        "An unpolarised transverse wave oscillates in various planes simultaneously."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "How Polarising Filters Work"
+    },
+    {
+      "type": "text",
+      "content": "To take an unpolarised transverse wave (which oscillates in many planes) and make it vibrate in just one, we use a special device called a **polarising filter** (or simply a polariser). This filter has a specific **transmission axis**. It acts like a very fine grid or slit, only allowing wave components that oscillate parallel to its axis to pass through. All other oscillation components are either absorbed or reflected."
+    },
+    {
+      "type": "text",
+      "content": "When an unpolarised wave first passes through an ideal polarising filter, its intensity is always reduced by half, because on average, half of its oscillation components are blocked. If a *polarised* wave then passes through a *second* filter (often called an analyser), the final intensity depends on the precise angle between the incoming wave's plane of oscillation and the analyser's transmission axis."
+    },
+    {
+      "type": "heading",
+      "content": "Malus' Law: Calculating Intensity"
+    },
+    {
+      "type": "formula",
+      "content": "$I = I₀\\cos²θ$"
+    },
+    {
+      "type": "text",
+      "content": "Malus' Law is a critical formula used to calculate the intensity ($I$) of a plane-polarised wave after it passes through a polarising filter (or analyser). In this formula, $I₀$ represents the initial intensity of the plane-polarised wave *incident on the filter*. The angle $θ$ (theta) is the angle between the original plane of oscillation of the incident polarised wave and the transmission axis of the polarising filter."
+    },
+    {
+      "type": "text",
+      "content": "Understanding the extreme cases of Malus' Law is vital:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If $θ = 0°$: The wave's oscillation plane is perfectly aligned with the filter's transmission axis. Since $\\cos(0°) = 1$, then $\\cos²(0°) = 1$. So, $I = I₀$, meaning maximum transmission.",
+        "If $θ = 90°$: The wave's oscillation plane is perpendicular to the filter's transmission axis. Since $\\cos(90°) = 0$, then $\\cos²(90°) = 0$. So, $I = 0$, meaning zero transmission (the wave is completely blocked)."
       ]
     },
     {
       "type": "workedExample",
-      "question": "Unpolarised light of intensity 200 W m⁻² is incident on a polariser. The light then passes through a second polariser, whose transmission axis is oriented at 30° to the transmission axis of the first polariser.\nCalculate the final intensity of the light transmitted through the second polariser.",
-      "solution": "Step 1: Intensity after the first polariser.\nWhen unpolarised light passes through the first ideal polariser, its intensity is halved.\nI₁ = I_unpolarised / 2\nI₁ = 200 W m⁻² / 2 = 100 W m⁻²\nThis light (I₁) is now plane-polarised, with its plane of polarisation aligned with the transmission axis of the first polariser.\n\nStep 2: Intensity after the second polariser (analyser).\nNow, we apply Malus's Law, where I₀ is the intensity of the plane-polarised light incident on the analyser (I₁).\nThe angle θ is given as 30°.\nI₂ = I₁ cos²θ\nI₂ = 100 W m⁻² × cos²(30°)\nI₂ = 100 W m⁻² × (√3/2)²\nI₂ = 100 W m⁻² × (3/4)\nI₂ = 75 W m⁻²\n\nFinal answer: The final intensity of the light transmitted through the second polariser is 75 W m⁻²."
+      "question": "A plane-polarised light wave with an initial intensity of $200 \\text{ W m}^{-2}$ passes through a polarising filter. If the angle between the light's plane of oscillation and the filter's transmission axis is $30°$, what is the intensity of the light after passing through the filter?",
+      "solution": "1.  **Identify knowns:**\n    Initial intensity, $I₀ = 200 \\text{ W m}^{-2}$\n    Angle, $θ = 30°$\n\n2.  **Recall Malus' Law:**\n    $I = I₀\\cos²θ$\n\n3.  **Substitute the values:**\n    $I = 200 \\times \\cos²(30°)$\n\n4.  **Calculate $\\cos(30°)$:**\n    $\\cos(30°) \\approx 0.866$\n\n5.  **Calculate $\\cos²(30°)$:**\n    $(0.866)² \\approx 0.75$\n\n6.  **Calculate the final intensity:**\n    $I = 200 \\times 0.75 = 150 \\text{ W m}^{-2}$\n\n    Therefore, the intensity of the light after passing through the filter is $150 \\text{ W m}^{-2}$."
     },
     {
       "type": "examTip",
-      "content": "Always be careful with the angle `θ` in Malus's Law. It's *not* the angle from the unpolarised source, but the angle between the *initial plane of polarisation* (usually set by the first polariser) and the *transmission axis of the analyser*. Draw diagrams if it helps you visualise the alignment!"
+      "content": "Be careful when applying Malus' Law! It specifically applies to *plane-polarised* light passing through a filter. If the initial light source is *unpolarised* and passes through the *first* polarising filter, its intensity is typically halved before Malus' Law is used for any subsequent filters."
     },
     {
       "type": "practice",
@@ -121,17 +169,17 @@
   ],
   "faq": [
     {
-      "q": "What is polarisation in Cambridge 9702 Physics?",
-      "a": "Polarisation in 9702 Physics refers to the phenomenon where the oscillations of a transverse wave, such as light, are restricted to a single plane. Unpolarised light vibrates in all directions, but after passing through a polariser, it becomes plane-polarised, vibrating in only one specific direction. You can master this and other topics with our free 9702 Physics course and past paper practice."
+      "q": "How do polarised sunglasses reduce glare?",
+      "a": "Polarised sunglasses have vertically aligned transmission axes. This orientation blocks horizontally polarised light, which is a major component of glare caused by reflections off horizontal surfaces like water, snow, or roads, effectively reducing eye strain."
     },
     {
-      "q": "How do polarisers affect light intensity?",
-      "a": "When unpolarised light passes through a polariser, its intensity is typically reduced by half, as the polariser absorbs vibrations not aligned with its transmission axis. If plane-polarised light then passes through a second polariser (analyser), the final intensity is determined by Malus's Law, `I = I₀ cos²θ`, where `θ` is the angle between the polarisation plane and the analyser's axis. This can reduce intensity further, even to zero if the polarisers are 'crossed'."
+      "q": "What is the key difference between an unpolarised wave and a plane-polarised wave?",
+      "a": "An unpolarised wave oscillates in all possible planes perpendicular to its direction of travel simultaneously. In contrast, a plane-polarised wave has its oscillations restricted to only one specific plane, usually after passing through a polarising filter."
     },
     {
-      "q": "When should I use Malus's Law for 9702 polarisation calculations?",
-      "a": "You should use Malus's Law (`I = I₀ cos²θ`) when calculating the intensity of plane-polarised light after it passes through a second polariser (an analyser). `I₀` is the intensity of the plane-polarised light *incident* on the analyser, and `θ` is the angle between the plane of polarisation of that incident light and the transmission axis of the analyser. It's crucial for Paper 1 multiple-choice questions and Paper 2 structured problems, available for practice in our past papers."
+      "q": "Can sound waves be polarised? Why or why not?",
+      "a": "No, sound waves cannot be polarised. This is because sound waves are longitudinal waves, meaning their oscillations are inherently parallel to their direction of energy transfer. There is no 'plane' of oscillation perpendicular to their travel to restrict, unlike transverse waves."
     }
   ],
-  "updated": "2026-06-05"
+  "updated": "2026-06-06"
 }

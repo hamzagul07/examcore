@@ -1,12 +1,53 @@
 const GEMINI_RETRYABLE_STATUS = [429, 500, 503]
 
+/** Thrown when a Gemini/Vertex HTTP call exceeds the per-request timeout. */
+export class GeminiTimeoutError extends Error {
+  readonly name = 'GeminiTimeoutError'
+  readonly timeoutMs: number
+
+  constructor(timeoutMs: number) {
+    super(`Gemini request timed out after ${timeoutMs}ms`)
+    this.timeoutMs = timeoutMs
+  }
+}
+
+export function isGeminiTimeoutError(err: unknown): boolean {
+  return err instanceof GeminiTimeoutError
+}
+
 const OVERLOAD_PATTERN =
   /UNAVAILABLE|high demand|RESOURCE_EXHAUSTED|overloaded|rate.?limit/i
+
+const TRANSIENT_NETWORK_PATTERN =
+  /fetch failed|Headers Timeout|UND_ERR_HEADERS_TIMEOUT|ECONNRESET|ETIMEDOUT|socket hang up|network|timeout/i
 
 type RetryOpts = {
   maxRetries?: number
   baseDelayMs?: number
   label?: string
+}
+
+let _totalRetries = 0
+let _rateLimitRetries = 0
+let _lastRetryLabel: string | null = null
+
+/** Reset before each extraction job; read after for extraction_jobs.error_message. */
+export function resetGeminiRetryStats(): void {
+  _totalRetries = 0
+  _rateLimitRetries = 0
+  _lastRetryLabel = null
+}
+
+export function getGeminiRetryStats(): {
+  totalRetries: number
+  rateLimitRetries: number
+  lastLabel: string | null
+} {
+  return {
+    totalRetries: _totalRetries,
+    rateLimitRetries: _rateLimitRetries,
+    lastLabel: _lastRetryLabel,
+  }
 }
 
 function extractStatus(err: unknown): number | undefined {
@@ -20,8 +61,44 @@ function extractStatus(err: unknown): number | undefined {
   return undefined
 }
 
+function errorMessage(err: unknown): string {
+  if (err instanceof Error) return err.message
+  if (
+    typeof err === 'object' &&
+    err !== null &&
+    'message' in err &&
+    typeof (err as { message: unknown }).message === 'string'
+  ) {
+    return (err as { message: string }).message
+  }
+  return ''
+}
+
+function errorCode(err: unknown): string | undefined {
+  if (!err || typeof err !== 'object') return undefined
+  const cause = (err as { cause?: unknown }).cause
+  if (cause && typeof cause === 'object' && 'code' in cause) {
+    const code = (cause as { code: unknown }).code
+    return typeof code === 'string' ? code : undefined
+  }
+  if ('code' in err) {
+    const code = (err as { code: unknown }).code
+    return typeof code === 'string' ? code : undefined
+  }
+  return undefined
+}
+
 function isRetryableMessage(message: string): boolean {
-  return OVERLOAD_PATTERN.test(message)
+  return OVERLOAD_PATTERN.test(message) || TRANSIENT_NETWORK_PATTERN.test(message)
+}
+
+function isTransientNetworkError(err: unknown): boolean {
+  const message = errorMessage(err)
+  const code = errorCode(err)
+  if (code === 'UND_ERR_HEADERS_TIMEOUT' || code === 'ECONNRESET' || code === 'ETIMEDOUT') {
+    return true
+  }
+  return TRANSIENT_NETWORK_PATTERN.test(message)
 }
 
 async function withApiRetry<T>(
@@ -29,7 +106,7 @@ async function withApiRetry<T>(
   retryableStatus: number[],
   opts: RetryOpts = {}
 ): Promise<T> {
-  const { maxRetries = 4, baseDelayMs = 1000, label = 'api' } = opts
+  const { maxRetries = 6, baseDelayMs = 1000, label = 'api' } = opts
   let lastErr: unknown
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -38,25 +115,24 @@ async function withApiRetry<T>(
     } catch (err: unknown) {
       lastErr = err
       const status = extractStatus(err)
-      const message =
-        err instanceof Error
-          ? err.message
-          : typeof err === 'object' &&
-              err !== null &&
-              'message' in err &&
-              typeof (err as { message: unknown }).message === 'string'
-            ? (err as { message: string }).message
-            : ''
+      const message = errorMessage(err)
       const isRetryable =
+        isGeminiTimeoutError(err) ||
         (status !== undefined && retryableStatus.includes(status)) ||
-        isRetryableMessage(message)
+        isRetryableMessage(message) ||
+        isTransientNetworkError(err)
 
       if (!isRetryable || attempt === maxRetries) break
 
+      _totalRetries++
+      if (status === 429) _rateLimitRetries++
+      _lastRetryLabel = label
+
+      // Exponential backoff: 1s → 2s → 4s → 8s (capped) + jitter
       const delay =
-        Math.min(baseDelayMs * 2 ** attempt, 15000) + Math.random() * 500
+        Math.min(baseDelayMs * 2 ** attempt, 8000) + Math.random() * 500
       console.warn(
-        `[${label}] retryable error (status ${status ?? 'unknown'}), attempt ${attempt + 1}/${maxRetries}, waiting ${Math.round(delay)}ms`
+        `[${label}] retryable error (status ${status ?? errorCode(err) ?? 'unknown'}), attempt ${attempt + 1}/${maxRetries}, waiting ${Math.round(delay)}ms`
       )
       await new Promise((r) => setTimeout(r, delay))
     }
@@ -75,6 +151,42 @@ export async function withGeminiRetry<T>(
   })
 }
 
+const DAILY_QUOTA_PATTERN =
+  /generate_requests_per_model_per_day|GenerateRequestsPerDayPerProjectPerModel|quota exceeded for metric/i
+
+/** True when Gemini daily quota is exhausted (not a transient rate limit). */
+export function isGeminiQuotaExhausted(err: unknown): boolean {
+  const message = errorMessage(err)
+  if (!/RESOURCE_EXHAUSTED|quota exceeded/i.test(message)) return false
+  if (DAILY_QUOTA_PATTERN.test(message)) return true
+  if (/Please retry in \d+h\d+m/i.test(message)) return true
+  try {
+    const parsed = JSON.parse(message) as { error?: { status?: string; code?: number } }
+    if (parsed.error?.status === 'RESOURCE_EXHAUSTED' && parsed.error?.code === 429) {
+      return DAILY_QUOTA_PATTERN.test(message) || /Please retry in \d+h/i.test(message)
+    }
+  } catch {
+    /* not JSON */
+  }
+  return false
+}
+
+/** Parse retry delay from Gemini quota error (ms). Defaults to 12h if unknown. */
+export function parseQuotaRetryDelayMs(err: unknown): number {
+  const message = errorMessage(err)
+  const hours = message.match(/Please retry in (\d+)h(\d+)m/)
+  if (hours) {
+    return (
+      Number(hours[1]) * 3_600_000 +
+      Number(hours[2]) * 60_000 +
+      5 * 60_000
+    )
+  }
+  const retryDelay = message.match(/"retryDelay"\s*:\s*"(\d+)s"/)
+  if (retryDelay) return Number(retryDelay[1]) * 1000 + 5 * 60_000
+  return 12 * 3_600_000
+}
+
 export function isTransientOverloadError(err: unknown): boolean {
   const status = extractStatus(err)
   if (
@@ -83,14 +195,5 @@ export function isTransientOverloadError(err: unknown): boolean {
   ) {
     return true
   }
-  const message =
-    err instanceof Error
-      ? err.message
-      : typeof err === 'object' &&
-          err !== null &&
-          'message' in err &&
-          typeof (err as { message: unknown }).message === 'string'
-        ? (err as { message: string }).message
-        : ''
-  return isRetryableMessage(message)
+  return isRetryableMessage(errorMessage(err)) || isTransientNetworkError(err)
 }

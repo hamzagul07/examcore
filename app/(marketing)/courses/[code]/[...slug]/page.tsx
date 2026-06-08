@@ -10,6 +10,7 @@ import {
   loadPaperScopedLesson,
 } from '@/lib/courses'
 import type { CourseLesson } from '@/lib/courses/types'
+import { findPaperTrack } from '@/lib/courses/paper-tracks'
 import { paperNumberFromDir } from '@/lib/courses/paths'
 import { buildCourseLessonSeo } from '@/lib/courses/seo'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
@@ -131,7 +132,7 @@ export async function generateMetadata({ params, searchParams }: Props) {
 
 export default async function CourseLessonCatchAllPage({ params, searchParams }: Props) {
   const { code, slug } = await params
-  const { pilot } = await searchParams
+  const { pilot, paper } = await searchParams
   const isPilotPreview = pilot === '1'
 
   const resolved = resolveLesson(code, slug, isPilotPreview)
@@ -142,6 +143,13 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
 
   const { lesson, lessonSlug } = resolved
   const lessons = getCourseLessons(code)
+  const activeTrack = findPaperTrack(code, lessons, paper)
+  const paperLabel = activeTrack
+    ? `${activeTrack.shortName} · ${activeTrack.subtitle}`
+    : lesson.paperName
+  const overviewHref = activeTrack
+    ? `/courses/${code}?paper=${encodeURIComponent(activeTrack.number)}`
+    : `/courses/${code}`
   const idx = lessons.findIndex((l) => l.slug === lessonSlug)
   const prev = idx > 0 ? lessons[idx - 1] : null
   const next = idx < lessons.length - 1 ? lessons[idx + 1] : null
@@ -178,9 +186,9 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         markHref={seo.markPath}
       >
         <div className="course-studio-mobile-nav">
-          <Link href={`/courses/${code}`}>
+          <Link href={overviewHref}>
             <List className="h-4 w-4" aria-hidden />
-            All {course.code} topics
+            {activeTrack ? activeTrack.shortName : `All ${course.code} topics`}
           </Link>
         </div>
 
@@ -201,7 +209,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
           <div>
             <div className="mb-3 flex flex-wrap items-center gap-2">
               <span className="course-studio-label">
-                {course.level} · {lesson.paperName}
+                {course.level} · {paperLabel}
               </span>
               {isPilotLesson ? (
                 <span className="course-premium-badge">

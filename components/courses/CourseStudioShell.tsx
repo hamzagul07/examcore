@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { PenLine } from 'lucide-react'
 import { CourseFocusMode } from '@/components/courses/CourseFocusMode'
@@ -50,13 +51,19 @@ export function CourseStudioShell({
         }
       >
         <div className="course-studio-grid">
-          <CourseSidebar
-            subjectCode={subjectCode}
-            subjectName={subjectName}
-            level={level}
-            lessons={lessons}
-            activeSlug={activeSlug}
-          />
+          <Suspense
+            fallback={
+              <aside className="course-studio-nav" aria-label="Course navigation" />
+            }
+          >
+            <CourseSidebar
+              subjectCode={subjectCode}
+              subjectName={subjectName}
+              level={level}
+              lessons={lessons}
+              activeSlug={activeSlug}
+            />
+          </Suspense>
 
           <div className="course-studio-main min-w-0">
             {breadcrumbs?.length ? (

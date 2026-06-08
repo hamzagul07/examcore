@@ -7,6 +7,20 @@ type Props = {
   lessons: CourseLesson[]
   activeSlug?: string
   completedSlugs?: string[]
+  /** When set, topic links keep the active paper filter. */
+  paperQuery?: string | null
+  /** Short label for the active paper group (hides long combined paper names). */
+  paperGroupLabel?: string | null
+}
+
+function topicHref(
+  subjectCode: string,
+  slug: string,
+  paperQuery?: string | null
+): string {
+  const base = `/courses/${subjectCode}/${slug}`
+  if (!paperQuery) return base
+  return `${base}?paper=${encodeURIComponent(paperQuery)}`
 }
 
 export function CourseTopicList({
@@ -14,9 +28,11 @@ export function CourseTopicList({
   lessons,
   activeSlug,
   completedSlugs = [],
+  paperQuery,
+  paperGroupLabel,
 }: Props) {
   const byPaper = lessons.reduce<Record<string, CourseLesson[]>>((acc, lesson) => {
-    const key = lesson.paperName
+    const key = paperGroupLabel ?? lesson.paperName
     if (!acc[key]) acc[key] = []
     acc[key].push(lesson)
     return acc
@@ -39,7 +55,7 @@ export function CourseTopicList({
               return (
                 <li key={lesson.slug}>
                   <Link
-                    href={`/courses/${subjectCode}/${lesson.slug}`}
+                    href={topicHref(subjectCode, lesson.slug, paperQuery)}
                     className={`course-studio-topic-link${isActive ? ' is-active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
                   >

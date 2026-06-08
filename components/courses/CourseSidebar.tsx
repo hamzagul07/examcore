@@ -3,7 +3,9 @@
 import Link from 'next/link'
 import { BookOpen, GraduationCap } from 'lucide-react'
 import { CourseProgressBar, useCourseProgress } from '@/components/courses/CourseProgressClient'
+import { CoursePaperPicker } from '@/components/courses/CoursePaperPicker'
 import { CourseTopicList } from '@/components/courses/CourseTopicList'
+import { useCoursePaperSelection } from '@/components/courses/useCoursePaperSelection'
 import type { CourseLesson } from '@/lib/courses/types'
 
 export function CourseSidebar({
@@ -20,9 +22,16 @@ export function CourseSidebar({
   activeSlug?: string
 }) {
   const { done } = useCourseProgress(subjectCode)
-  const premiumCount = lessons.filter(
+  const { tracks, activeTrack, selectedNumber, filteredLessons, hasPaperChoice } =
+    useCoursePaperSelection(subjectCode, lessons)
+  const displayLessons = hasPaperChoice ? filteredLessons : lessons
+  const premiumCount = displayLessons.filter(
     (l) => l.status === 'published' || l.status === 'premium'
   ).length
+
+  const overviewHref = selectedNumber
+    ? `/courses/${subjectCode}?paper=${encodeURIComponent(selectedNumber)}`
+    : `/courses/${subjectCode}`
 
   return (
     <aside className="course-studio-nav" aria-label="Course navigation">
@@ -42,18 +51,29 @@ export function CourseSidebar({
         </div>
       </div>
 
-      <Link href={`/courses/${subjectCode}`} className="course-studio-dashboard-btn">
+      <Link href={overviewHref} className="course-studio-dashboard-btn">
         <BookOpen className="h-4 w-4" aria-hidden />
         Course overview
       </Link>
 
-      <CourseProgressBar subjectCode={subjectCode} total={lessons.length} />
+      {hasPaperChoice ? (
+        <CoursePaperPicker
+          subjectCode={subjectCode}
+          tracks={tracks}
+          selectedNumber={selectedNumber}
+          compact
+        />
+      ) : null}
+
+      <CourseProgressBar subjectCode={subjectCode} total={displayLessons.length} />
 
       <CourseTopicList
         subjectCode={subjectCode}
-        lessons={lessons}
+        lessons={displayLessons}
         activeSlug={activeSlug}
         completedSlugs={[...done]}
+        paperQuery={selectedNumber}
+        paperGroupLabel={activeTrack?.shortName ?? null}
       />
     </aside>
   )

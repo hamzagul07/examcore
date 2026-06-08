@@ -51,7 +51,7 @@ export async function openPdfDocument(pdfBytes: ArrayBuffer): Promise<OpenPdfDoc
   })
   const doc = await task.promise
   return {
-    doc,
+    doc: doc as OpenPdfDocument['doc'],
     destroy: () => task.destroy(),
   }
 }

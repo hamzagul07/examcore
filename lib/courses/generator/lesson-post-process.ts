@@ -15,6 +15,11 @@ import type {
 import { stripImgTags } from '@/lib/courses/worked-example-text'
 import type { GeneratedLesson } from './lesson-schema'
 
+type PastPaperPracticeSection = Extract<
+  GeneratedLesson['sections'][number],
+  { type: 'pastPaperPractice' }
+>
+
 function pickDiverseQuestions<T extends { year: number; session: string }>(
   items: T[],
   max: number
@@ -51,7 +56,7 @@ export function buildPastPaperPracticeSection(
   evidence: LessonEvidence,
   subjectCode: string,
   max = 8
-): Extract<LessonSection, { type: 'pastPaperPractice' }> | null {
+): PastPaperPracticeSection | null {
   if (!evidence.questions.length) return null
 
   const marksByQuestion = new Map<string, { text: string; marks: number }[]>()
@@ -134,7 +139,7 @@ export function normalizeQuickCheckPrompts(lesson: GeneratedLesson): GeneratedLe
 
 export function insertPastPaperPracticeSection(
   lesson: GeneratedLesson,
-  practice: Extract<LessonSection, { type: 'pastPaperPractice' }> | null
+  practice: PastPaperPracticeSection | null
 ): GeneratedLesson {
   if (!practice) return lesson
 
@@ -142,8 +147,11 @@ export function insertPastPaperPracticeSection(
   const lastWorked = without.findLastIndex((s) => s.type === 'workedExample')
   const insertAt = lastWorked >= 0 ? lastWorked + 1 : without.length
 
-  const sections = [...without]
-  sections.splice(insertAt, 0, practice)
+  const sections: GeneratedLesson['sections'] = [
+    ...without.slice(0, insertAt),
+    practice,
+    ...without.slice(insertAt),
+  ]
   return { ...lesson, sections }
 }
 

@@ -1161,7 +1161,6 @@ export async function runAuditOnly(
 
   const saved = JSON.parse(readFileSync(tagPath, 'utf8')) as {
     results: TagQuestionResult[]
-    summary: BulkTaggingResult['summary'] extends infer S ? Record<string, unknown> : never
   }
 
   let questions: TaggingQuestion[] = []
@@ -1235,7 +1234,12 @@ export type RunTopicTaggingOptions = {
 
 export async function runTopicTagging(
   opts: RunTopicTaggingOptions
-): Promise<{ bulk: BulkTaggingResult; audit?: TagAuditResult; outPath: string }> {
+): Promise<{
+  bulk: BulkTaggingResult
+  audit?: TagAuditResult
+  calibration?: ConfidenceCalibrationResult
+  outPath: string
+}> {
   const subjectCode = opts.subjectCode ?? '9702'
   const leavesOnly = true
 

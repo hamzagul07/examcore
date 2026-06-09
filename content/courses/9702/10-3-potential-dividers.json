@@ -1,11 +1,11 @@
 {
   "slug": "10-3-potential-dividers",
   "topicCode": "10.3",
-  "title": "Potential Dividers",
+  "title": "Potential dividers",
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master how potential dividers obtain specific voltages, use variable resistors, and integrate sensors like LDRs and thermistors in circuits.",
+  "summary": "Papers 1 & 2 — Potential dividers (10.3). Premium notes with Senpai Corner diagrams and live animations.",
   "durationMin": 20,
   "learningObjectives": [
     "Describe the function and principles of a potential divider circuit.",
@@ -68,7 +68,7 @@
   "sections": [
     {
       "type": "intro",
-      "content": "Ever wondered how a single power source can supply different voltages to various parts of a circuit? Enter **potential dividers**! These fundamental circuits allow you to **split** an input voltage into smaller, desired output voltages. They are crucial for powering sensitive components and for creating sensor-based systems, demonstrating a clever application of Ohm's Law and series circuits."
+      "content": "Ever wondered how a single power source can supply different voltages to various parts of a circuit? Enter **potential dividers**! These fundamental circuits allow you to **split** an input voltage into smaller, desired output voltages. They are crucial for powering sensitive components and for creating sensor-based systems, demonstrating a clever application of Ohm's Law and series circuits. This lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **10.3**."
     },
     {
       "type": "heading",
@@ -93,11 +93,12 @@
     {
       "type": "keyPoints",
       "items": [
-        "Series resistors share the input voltage proportionally to their resistance.",
-        "The current is uniform throughout all components in a series divider.",
-        "Output voltage is a fraction of input, determined by resistance ratios.",
-        "Potential dividers are useful for obtaining smaller, precise voltages.",
-        "Adjusting resistor values directly changes the output voltage fraction."
+        "10.3 Potential dividers.",
+        "According to Kirchhoff’s Second Law, the potential difference across a power source is divided when two resistors are connected in series.",
+        "The larger the resistance the larger the voltage share (the big eater gets more pie!).",
+        "A potential meter is similar to a variable resistor.",
+        "In the diagram above, the total resistance of the potentiometer is R.",
+        "When the slider is moved it divides R into R 1 and R 2."
       ]
     },
     {
@@ -138,6 +139,10 @@
       "type": "resources",
       "items": [
         {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
           "label": "9702 past paper guide",
           "href": "/subjects/9702"
         },
@@ -162,5 +167,13 @@
       "a": "A fixed potential divider produces a constant output voltage determined by fixed resistor values. In contrast, one using a potentiometer allows for a continuously adjustable output voltage by mechanically varying the resistance ratio."
     }
   ],
-  "updated": "2026-06-06"
+  "updated": "2026-06-09",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/10-3-potential-dividers.png",
+    "alt": "Senpai Corner reference diagram for 10.3 Potential dividers"
+  }
 }

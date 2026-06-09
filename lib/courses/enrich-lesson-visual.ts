@@ -198,18 +198,26 @@ export function enrichLessonVisual(
     })
   }
 
-  const diagramFile = path.join(
-    process.cwd(),
-    'public',
-    'courses',
-    'diagrams',
-    subjectCode,
-    `${lesson.slug}.png`
-  )
-  if (fs.existsSync(diagramFile)) {
+  const diagramCandidates = [
+    path.join(process.cwd(), 'public', 'courses', 'diagrams', subjectCode, `${lesson.slug}.png`),
+    path.join(
+      process.cwd(),
+      'public',
+      'courses',
+      'diagrams',
+      subjectCode,
+      'senpai',
+      `${lesson.slug}.png`
+    ),
+  ]
+  const diagramFile = diagramCandidates.find((p) => fs.existsSync(p))
+  if (diagramFile) {
+    const src = diagramFile.includes(`${path.sep}senpai${path.sep}`)
+      ? `/courses/diagrams/${subjectCode}/senpai/${lesson.slug}.png`
+      : diagramPath(subjectCode, lesson.slug)
     blocks.push({
       type: 'diagram-image',
-      src: diagramPath(subjectCode, lesson.slug),
+      src,
       alt: `${lesson.title} diagram for Cambridge ${subjectCode}`,
     })
   } else if (lesson.diagram?.src) {

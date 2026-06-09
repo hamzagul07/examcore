@@ -16,6 +16,7 @@ import {
 } from '@/lib/courses/paper-tracks'
 import { buildCourseSubjectSeo } from '@/lib/courses/seo'
 import { CoursePaperPicker } from '@/components/courses/CoursePaperPicker'
+import { CoursePracticalPaperGuide } from '@/components/courses/CoursePracticalPaperGuide'
 import { CourseStudioShell } from '@/components/courses/CourseStudioShell'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { CourseSubjectJsonLd } from '@/components/seo/CourseSubjectJsonLd'
@@ -139,6 +140,10 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
               selectedNumber={activeTrack?.number ?? null}
             />
           </Suspense>
+        ) : null}
+
+        {code === '9702' && activeTrack && (activeTrack.number === '3' || activeTrack.number === '5') ? (
+          <CoursePracticalPaperGuide subjectCode={code} track={activeTrack} />
         ) : null}
 
         <section className="space-y-6">

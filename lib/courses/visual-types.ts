@@ -101,6 +101,7 @@ export type VisualBlock =
       type: 'diagram-image'
       src: string
       alt: string
+      caption?: string
     }
   | {
       type: 'worked-visual'

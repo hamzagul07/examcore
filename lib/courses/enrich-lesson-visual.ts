@@ -199,7 +199,17 @@ export function enrichLessonVisual(
     })
   }
 
+  const alnotesFile = path.join(
+    process.cwd(),
+    'public',
+    'courses',
+    'diagrams',
+    subjectCode,
+    'alnotes',
+    `${lesson.slug}.png`
+  )
   const diagramCandidates = [
+    alnotesFile,
     path.join(process.cwd(), 'public', 'courses', 'diagrams', subjectCode, `${lesson.slug}.png`),
     path.join(
       process.cwd(),
@@ -211,22 +221,34 @@ export function enrichLessonVisual(
       `${lesson.slug}.png`
     ),
   ]
-  if (!hasLessonLiveDiagram(lesson.slug)) {
-    const diagramFile = diagramCandidates.find((p) => fs.existsSync(p))
+
+  const diagramFile = diagramCandidates.find((p) => fs.existsSync(p))
+  const isAlnotes = diagramFile === alnotesFile && fs.existsSync(alnotesFile)
+  const suppressGeneric = hasLessonLiveDiagram(lesson.slug) && !isAlnotes
+
+  if (!suppressGeneric) {
     if (diagramFile) {
-      const src = diagramFile.includes(`${path.sep}senpai${path.sep}`)
-        ? `/courses/diagrams/${subjectCode}/senpai/${lesson.slug}.png`
-        : diagramPath(subjectCode, lesson.slug)
+      const src = diagramFile.includes(`${path.sep}alnotes${path.sep}`)
+        ? `/courses/diagrams/${subjectCode}/alnotes/${lesson.slug}.png`
+        : diagramFile.includes(`${path.sep}senpai${path.sep}`)
+          ? `/courses/diagrams/${subjectCode}/senpai/${lesson.slug}.png`
+          : diagramPath(subjectCode, lesson.slug)
       blocks.push({
         type: 'diagram-image',
         src,
-        alt: `${lesson.title} diagram for Cambridge ${subjectCode}`,
+        alt: isAlnotes
+          ? `A-Level Notes reference diagram for ${lesson.title}`
+          : `${lesson.title} diagram for Cambridge ${subjectCode}`,
+        caption: isAlnotes ? 'Reference diagram from A-Level Notes' : undefined,
       })
     } else if (lesson.diagram?.src) {
       blocks.push({
         type: 'diagram-image',
         src: lesson.diagram.src,
         alt: lesson.diagram.alt,
+        caption: lesson.diagram.src.includes('/alnotes/')
+          ? 'Reference diagram from A-Level Notes'
+          : undefined,
       })
     }
   }

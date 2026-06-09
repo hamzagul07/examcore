@@ -9,6 +9,7 @@ import {
   publishedLessonPath,
 } from '@/lib/courses/paths'
 import { topicToLessonSlug } from '@/lib/courses/slug'
+import { loadSupplementaryLessons } from '@/lib/courses/supplementary-lessons'
 import type { CourseLesson, CourseSubject } from '@/lib/courses/types'
 
 /** Subjects with syllabus trees eligible for free courses. */
@@ -75,7 +76,7 @@ export function getCourseLessons(subjectCode: string): CourseLesson[] {
 
   const guideSlug = getSubjectGuideSlugForCode(subjectCode)
 
-  return topics.map((topic) => {
+  const topicLessons = topics.map((topic) => {
     const slug = topicToLessonSlug(topic.code, topic.name)
     const published = loadPublishedLesson(subjectCode, slug)
     if (published) {
@@ -93,6 +94,8 @@ export function getCourseLessons(subjectCode: string): CourseLesson[] {
     }
     return outline
   })
+
+  return [...loadSupplementaryLessons(subjectCode), ...topicLessons]
 }
 
 export function getCourseLesson(
@@ -162,7 +165,10 @@ export function loadPaperScopedLesson(
 export function getAllCourseLessonPaths(): { code: string; slug: string }[] {
   const paths: { code: string; slug: string }[] = []
   for (const code of getCourseSubjectCodes()) {
+    const seen = new Set<string>()
     for (const lesson of getCourseLessons(code)) {
+      if (seen.has(lesson.slug)) continue
+      seen.add(lesson.slug)
       paths.push({ code, slug: lesson.slug })
     }
   }

@@ -9,6 +9,7 @@ import {
   glossaryLabelFromFlashcard,
   quickCheckPromptFromKeyPoint,
 } from '@/lib/courses/glossary-label'
+import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
 
 function stepsFromLesson(lesson: CourseLesson): VisualStep[] {
   if (lesson.simpleExplanation?.steps?.length) {
@@ -210,22 +211,24 @@ export function enrichLessonVisual(
       `${lesson.slug}.png`
     ),
   ]
-  const diagramFile = diagramCandidates.find((p) => fs.existsSync(p))
-  if (diagramFile) {
-    const src = diagramFile.includes(`${path.sep}senpai${path.sep}`)
-      ? `/courses/diagrams/${subjectCode}/senpai/${lesson.slug}.png`
-      : diagramPath(subjectCode, lesson.slug)
-    blocks.push({
-      type: 'diagram-image',
-      src,
-      alt: `${lesson.title} diagram for Cambridge ${subjectCode}`,
-    })
-  } else if (lesson.diagram?.src) {
-    blocks.push({
-      type: 'diagram-image',
-      src: lesson.diagram.src,
-      alt: lesson.diagram.alt,
-    })
+  if (!hasLessonLiveDiagram(lesson.slug)) {
+    const diagramFile = diagramCandidates.find((p) => fs.existsSync(p))
+    if (diagramFile) {
+      const src = diagramFile.includes(`${path.sep}senpai${path.sep}`)
+        ? `/courses/diagrams/${subjectCode}/senpai/${lesson.slug}.png`
+        : diagramPath(subjectCode, lesson.slug)
+      blocks.push({
+        type: 'diagram-image',
+        src,
+        alt: `${lesson.title} diagram for Cambridge ${subjectCode}`,
+      })
+    } else if (lesson.diagram?.src) {
+      blocks.push({
+        type: 'diagram-image',
+        src: lesson.diagram.src,
+        alt: lesson.diagram.alt,
+      })
+    }
   }
 
   return { template, blocks }

@@ -19,6 +19,7 @@ import { WalErrorBarDiagram } from '@/components/diagrams/WalErrorBarDiagram'
 import { WavesComparison } from '@/components/diagrams/WavesComparison'
 import { TwoThermometers } from '@/components/diagrams/TwoThermometers'
 import { HeatingCurve } from '@/components/diagrams/HeatingCurve'
+import { resolveFamilyDiagram } from '@/lib/courses/diagram-families'
 
 export type LessonDiagramMeta = {
   caption: string
@@ -248,7 +249,11 @@ const PILOT_DIAGRAMS: Record<
 }
 
 export function getLessonDiagram(slug: string) {
-  return PILOT_DIAGRAMS[slug] ?? null
+  return PILOT_DIAGRAMS[slug] ?? resolveFamilyDiagram(slug) ?? null
+}
+
+export function hasLessonLiveDiagram(slug: string): boolean {
+  return getLessonDiagram(slug) !== null
 }
 
 export const PILOT_DIAGRAM_SLUGS = Object.keys(PILOT_DIAGRAMS)

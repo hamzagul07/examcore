@@ -20,9 +20,10 @@ export function CourseVisualLearning({
   const { heroVisual, stepCarousel, diagramImage } = partitioned
   const hasStage = heroVisual !== null || stepCarousel !== null
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
-  const showSenpaiImage = diagramImage !== null && !liveDiagram
+  const isAlnotesDiagram = diagramImage?.src.includes('/alnotes/') ?? false
+  const showReferenceImage = diagramImage !== null && (!liveDiagram || isAlnotesDiagram)
 
-  if (!hasStage && !showSenpaiImage) return null
+  if (!hasStage && !showReferenceImage) return null
 
   return (
     <VisualSectionFrame
@@ -52,7 +53,7 @@ export function CourseVisualLearning({
         </div>
       ) : null}
 
-      {showSenpaiImage && diagramImage ? (
+      {showReferenceImage && diagramImage ? (
         <figure className="course-lesson-diagram overflow-hidden rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_30%,var(--ec-border-subtle))] bg-[var(--ec-surface-muted)] p-2 shadow-lg lg:rounded-3xl">
           <Image
             src={diagramImage.src}
@@ -64,7 +65,7 @@ export function CourseVisualLearning({
             unoptimized
           />
           <figcaption className="px-2 py-2 text-center text-xs text-[var(--ec-text-tertiary)]">
-            Reference diagram from syllabus notes
+            {diagramImage.caption ?? 'Reference diagram from syllabus notes'}
           </figcaption>
         </figure>
       ) : null}

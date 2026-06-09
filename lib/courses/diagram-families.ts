@@ -1,4 +1,20 @@
 import type { ComponentType } from 'react'
+import { BiologicalMoleculeDiagram } from '@/components/diagrams/BiologicalMoleculeDiagram'
+import { BiotechDiagram } from '@/components/diagrams/BiotechDiagram'
+import { CellStructureDiagram } from '@/components/diagrams/CellStructureDiagram'
+import { CirculatoryDiagram } from '@/components/diagrams/CirculatoryDiagram'
+import { DnaReplicationDiagram } from '@/components/diagrams/DnaReplicationDiagram'
+import { EcologyDiagram } from '@/components/diagrams/EcologyDiagram'
+import { EnzymeActionDiagram } from '@/components/diagrams/EnzymeActionDiagram'
+import { GasExchangeDiagram } from '@/components/diagrams/GasExchangeDiagram'
+import { GeneticsInheritanceDiagram } from '@/components/diagrams/GeneticsInheritanceDiagram'
+import { HomeostasisDiagram } from '@/components/diagrams/HomeostasisDiagram'
+import { ImmuneResponseDiagram } from '@/components/diagrams/ImmuneResponseDiagram'
+import { MembraneTransportDiagram } from '@/components/diagrams/MembraneTransportDiagram'
+import { MitosisDiagram } from '@/components/diagrams/MitosisDiagram'
+import { NervousSystemDiagram } from '@/components/diagrams/NervousSystemDiagram'
+import { PhotosynthesisDiagram } from '@/components/diagrams/PhotosynthesisDiagram'
+import { PlantTransportDiagram } from '@/components/diagrams/PlantTransportDiagram'
 import { AcWaveformDiagram } from '@/components/diagrams/AcWaveformDiagram'
 import { CapacitorDischargeDiagram } from '@/components/diagrams/CapacitorDischargeDiagram'
 import { CentripetalMotionDiagram } from '@/components/diagrams/CentripetalMotionDiagram'
@@ -165,10 +181,74 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: CentripetalMotionDiagram,
     caption: 'Centripetal acceleration points toward the centre of the circle.',
   },
+  'bio-cell': {
+    Component: CellStructureDiagram,
+    caption: 'Cells are the basic unit of life — membrane, nucleus, and organelles.',
+  },
+  'bio-molecule': {
+    Component: BiologicalMoleculeDiagram,
+    caption: 'Monomers join by condensation; polymers break by hydrolysis.',
+  },
+  'bio-enzyme': {
+    Component: EnzymeActionDiagram,
+    caption: 'Substrate fits the active site; products leave so the enzyme can repeat.',
+  },
+  'bio-membrane': {
+    Component: MembraneTransportDiagram,
+    caption: 'Fluid mosaic membrane controls movement by diffusion, osmosis, and transport proteins.',
+  },
+  'bio-mitosis': {
+    Component: MitosisDiagram,
+    caption: 'Mitosis produces two genetically identical daughter cells.',
+  },
+  'bio-dna': {
+    Component: DnaReplicationDiagram,
+    caption: 'Semi-conservative replication — each new DNA has one old and one new strand.',
+  },
+  'bio-plant-transport': {
+    Component: PlantTransportDiagram,
+    caption: 'Xylem carries water up; phloem translocates assimilates.',
+  },
+  'bio-circulatory': {
+    Component: CirculatoryDiagram,
+    caption: 'Double circulation: heart → lungs → heart → body tissues.',
+  },
+  'bio-gas-exchange': {
+    Component: GasExchangeDiagram,
+    caption: 'Gas exchange at alveoli by diffusion down concentration gradients.',
+  },
+  'bio-immune': {
+    Component: ImmuneResponseDiagram,
+    caption: 'Antibodies bind specific antigens to mark pathogens for destruction.',
+  },
+  'bio-photosynthesis': {
+    Component: PhotosynthesisDiagram,
+    caption: 'Light energy drives conversion of CO₂ and H₂O into glucose and O₂.',
+  },
+  'bio-homeostasis': {
+    Component: HomeostasisDiagram,
+    caption: 'Negative feedback detects change and restores the set point.',
+  },
+  'bio-nervous': {
+    Component: NervousSystemDiagram,
+    caption: 'Neurones transmit impulses from receptor to effector via the CNS.',
+  },
+  'bio-genetics': {
+    Component: GeneticsInheritanceDiagram,
+    caption: 'Allele combinations in a Punnett square predict genotype ratios.',
+  },
+  'bio-ecology': {
+    Component: EcologyDiagram,
+    caption: 'Energy passes between trophic levels — only ~10% transferred each step.',
+  },
+  'bio-biotech': {
+    Component: BiotechDiagram,
+    caption: 'Recombinant DNA: insert a gene into a vector and clone in host cells.',
+  },
 }
 
 /** 9702 slug → diagram family (custom slug-specific diagrams take priority). */
-const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
+const SLUG_FAMILY_9702: Record<string, keyof typeof FAMILIES> = {
   '1-1-physical-quantities': 'vectors',
   '1-2-si-units': 'vectors',
   '1-3-errors-and-uncertainties': 'error-bars',
@@ -228,13 +308,77 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   '25-3-hubbles-law-and-the-big-bang-theory': 'kinematics',
 }
 
+/** 9700 Biology slug → diagram family. */
+const SLUG_FAMILY_9700: Record<string, keyof typeof FAMILIES> = {
+  '1-1-the-microscope-in-cell-studies': 'bio-cell',
+  '1-2-cells-as-the-basic-units-of-living-organisms': 'bio-cell',
+  '2-1-testing-for-biological-molecules': 'bio-molecule',
+  '2-2-carbohydrates-and-lipids': 'bio-molecule',
+  '2-3-proteins': 'bio-molecule',
+  '2-4-water': 'bio-molecule',
+  '3-1-mode-of-action-of-enzymes': 'bio-enzyme',
+  '3-2-factors-that-affect-enzyme-action': 'bio-enzyme',
+  '4-1-fluid-mosaic-membranes': 'bio-membrane',
+  '4-2-movement-into-and-out-of-cells': 'bio-membrane',
+  '5-1-replication-and-division-of-nuclei-and-cells': 'bio-mitosis',
+  '5-2-chromosome-behaviour-in-mitosis': 'bio-mitosis',
+  '6-1-structure-of-nucleic-acids-and-replication-of-dna': 'bio-dna',
+  '6-2-protein-synthesis': 'bio-dna',
+  '7-1-structure-of-transport-tissues': 'bio-plant-transport',
+  '7-2-transport-mechanisms': 'bio-plant-transport',
+  '8-1-the-circulatory-system': 'bio-circulatory',
+  '8-2-transport-of-oxygen-and-carbon-dioxide': 'bio-circulatory',
+  '8-3-the-heart': 'bio-circulatory',
+  '9-1-the-gas-exchange-system': 'bio-gas-exchange',
+  '10-1-infectious-diseases': 'bio-immune',
+  '10-2-antibiotics': 'bio-immune',
+  '11-1-the-immune-system': 'bio-immune',
+  '11-2-antibodies-and-vaccination': 'bio-immune',
+  '12-1-energy': 'bio-homeostasis',
+  '12-2-respiration': 'bio-homeostasis',
+  '13-1-photosynthesis-as-an-energy-transfer-process': 'bio-photosynthesis',
+  '13-2-investigation-of-limiting-factors': 'bio-photosynthesis',
+  '14-1-homeostasis-in-mammals': 'bio-homeostasis',
+  '14-2-homeostasis-in-plants': 'bio-homeostasis',
+  '15-1-control-and-coordination-in-mammals': 'bio-nervous',
+  '15-2-control-and-coordination-in-plants': 'bio-nervous',
+  '16-1-passage-of-information-from-parents-to-offspring': 'bio-genetics',
+  '16-2-the-roles-of-genes-in-determining-the-phenotype': 'bio-genetics',
+  '16-3-gene-control': 'bio-genetics',
+  '17-1-variation': 'bio-genetics',
+  '17-2-natural-and-artificial-selection': 'bio-ecology',
+  '17-3-evolution': 'bio-ecology',
+  '18-1-classification': 'bio-ecology',
+  '18-2-biodiversity': 'bio-ecology',
+  '18-3-conservation': 'bio-ecology',
+  '19-1-principles-of-genetic-technology': 'bio-biotech',
+  '19-2-genetic-technology-applied-to-medicine': 'bio-biotech',
+  '19-3-genetically-modified-organisms-in-agriculture': 'bio-biotech',
+}
+
+const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
+  ...SLUG_FAMILY_9702,
+  ...SLUG_FAMILY_9700,
+}
+
+const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
+
 function familyAttribution(slug: string): DiagramAttribution {
+  if (BIOLOGY_SLUGS.has(slug)) {
+    return { source: 'MarkScheme biology diagram family', license: 'Proprietary' }
+  }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)
   return {
     source: 'MarkScheme diagram family',
     license: 'Proprietary',
     sourceUrl: isAl ? SENPAI_AL : SENPAI_AS,
   }
+}
+
+export function getSubjectForSlug(slug: string): string | null {
+  if (BIOLOGY_SLUGS.has(slug)) return '9700'
+  if (slug in SLUG_FAMILY_9702 || slug.startsWith('paper-5')) return '9702'
+  return null
 }
 
 export function resolveFamilyDiagram(slug: string): {

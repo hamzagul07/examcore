@@ -15,6 +15,7 @@ import { PotentialDividerDiagram } from '@/components/diagrams/PotentialDividerD
 import { SeriesCircuitDiagram } from '@/components/diagrams/SeriesCircuitDiagram'
 import { SimpleHarmonicMotionDiagram } from '@/components/diagrams/SimpleHarmonicMotionDiagram'
 import { StationaryWaveDiagram } from '@/components/diagrams/StationaryWaveDiagram'
+import { WalErrorBarDiagram } from '@/components/diagrams/WalErrorBarDiagram'
 import { WavesComparison } from '@/components/diagrams/WavesComparison'
 import { TwoThermometers } from '@/components/diagrams/TwoThermometers'
 import { HeatingCurve } from '@/components/diagrams/HeatingCurve'
@@ -230,6 +231,18 @@ const PILOT_DIAGRAMS: Record<
       caption:
         'Temperature stays constant during phase changes — that hidden energy is specific latent heat.',
       attribution: { source: 'Original', license: 'Proprietary' },
+    },
+  },
+  'paper-5-planning-and-analysis': {
+    Component: WalErrorBarDiagram,
+    meta: {
+      caption:
+        'Plot error bars, draw LOBF and WAL, then Δgradient = |m_LOBF − m_WAL| (Senpai Corner Paper 5 method).',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes',
+      },
     },
   },
 }

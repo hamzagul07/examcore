@@ -1,0 +1,254 @@
+{
+  "slug": "17-1-simple-harmonic-oscillations",
+  "topicCode": "17.1",
+  "title": "Simple harmonic oscillations",
+  "paper": "P4",
+  "paperName": "Paper 4 A Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 4 — Simple harmonic oscillations (17.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define and apply the conditions for Simple Harmonic Motion (SHM).",
+    "Calculate displacement, velocity, and acceleration using SHM equations.",
+    "Explain energy transformations and the effects of damping on oscillating systems."
+  ],
+  "simpleExplanation": {
+    "title": "Understanding SHM: The Rhythm of Physics",
+    "summary": "Simple Harmonic Motion (SHM) describes a special type of back-and-forth movement where an object's acceleration is always trying to pull it back to a central point. Think of a pendulum swinging or a spring bobbing up and down – it's all about rhythmic, predictable oscillation.",
+    "analogy": "Imagine a super bouncy trampoline. When you jump, the force trying to pull you back to the flat surface is strongest when you're highest, making you accelerate downwards. As you get closer, this force reduces, but you overshoot and go below the surface, where the force then pushes you back up. This constant 'restoring' force, getting stronger the further you move, is the heart of SHM.",
+    "steps": [
+      "**1. The Defining Rule:** Acceleration is proportional to displacement from equilibrium and acts oppositely.",
+      "**2. Key Players:** Understand terms like amplitude, period, frequency, and angular frequency.",
+      "**3. Motion Equations:** Use formulas for displacement, velocity, and acceleration as functions of time or position.",
+      "**4. Energy & Damping:** See how kinetic and potential energy swap, and how damping reduces oscillations."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the defining relationship for Simple Harmonic Motion (SHM)?",
+      "back": "Acceleration is directly proportional to displacement from equilibrium and acts in the opposite direction ($a \\propto -x$).}"
+    },
+    {
+      "front": "How is angular frequency (\\omega) related to the period (T) of an oscillation?",
+      "back": "\\omega = 2\\pi/T."
+    },
+    {
+      "front": "At which point in an SHM cycle is potential energy at its maximum?",
+      "back": "Potential energy is maximum at the amplitude (maximum displacement) positions, $x = \\pm x_0$.}"
+    },
+    {
+      "front": "What is the phase difference between velocity and displacement in SHM?",
+      "back": "Velocity is $90^\\circ$ (or $\\pi/2$ radians) out of phase with displacement."
+    },
+    {
+      "front": "Describe the characteristic behaviour of a critically damped system.",
+      "back": "A critically damped system returns to its equilibrium position in the quickest possible time without undergoing any oscillations."
+    },
+    {
+      "front": "What does the amplitude of an oscillation represent?",
+      "back": "The amplitude is the maximum displacement achieved by the oscillating object from its equilibrium position."
+    },
+    {
+      "front": "Where does maximum kinetic energy occur during SHM?",
+      "back": "Maximum kinetic energy occurs when the object passes through its equilibrium position ($x=0$).}"
+    },
+    {
+      "front": "State the defining equation for Simple Harmonic Motion.",
+      "back": "$a = -\\omega^2 x$, where $a$ is acceleration, $x$ is displacement, and $\\omega$ is angular frequency."
+    },
+    {
+      "front": "What defines 'free oscillations'?",
+      "back": "Free oscillations occur when an oscillating system is not subjected to any external driving force, moving at its natural frequency."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the fascinating world of **Simple Harmonic Motion (SHM)**! This core concept describes a specific, predictable type of oscillatory movement found everywhere, from vibrating guitar strings to the precise ticks of an old clock. You'll learn the defining characteristics of SHM, master its mathematical descriptions, and understand how energy flows within these elegant systems. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **17.1**."
+    },
+    {
+      "type": "heading",
+      "content": "The Defining Principle: What is SHM?"
+    },
+    {
+      "type": "text",
+      "content": "Simple Harmonic Motion isn't just any wobble or swing. It's a very specific oscillation where the force trying to restore the object to its central, balanced position gets stronger the further it moves away. This means its acceleration is always directed towards the equilibrium and directly proportional to how far it's been displaced."
+    },
+    {
+      "type": "formula",
+      "content": "$a = -\\omega^2 x$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "17.1 Simple harmonic oscillations.",
+        "An oscillation is defined as repeated back and forth movements on either side of any equilibrium position.",
+        "When the object stops oscillating it returns to its equilibrium position.",
+        "An oscillation is a more specific term for a vibration.",
+        "An oscillator is a device that works on the principles of oscillations.",
+        "Oscillating systems can be represented by displacement-time graphics."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Essential Vocabulary for Oscillations"
+    },
+    {
+      "type": "text",
+      "content": "Before diving into complex equations, it's crucial to grasp the fundamental terms that describe any oscillation, especially SHM. These terms provide the language to quantify and understand the rhythmic dance of an object."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displacement (x):** Instantaneous distance from equilibrium.",
+        "**Amplitude ($x_0$ or A):** Maximum displacement from equilibrium.",
+        "**Period (T):** Time for one complete oscillation cycle (in seconds).",
+        "**Frequency (f):** Number of cycles per second ($f = 1/T$, in Hertz).",
+        "**Angular Frequency (\\omega):** Rate of change of phase angle ($\\omega = 2\\pi f = 2\\pi/T$, in rad/s)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Describing Motion: Displacement, Velocity, and Acceleration"
+    },
+    {
+      "type": "text",
+      "content": "Since SHM is so predictable, we can use mathematical models to perfectly describe an object's position, speed, and how fast it's speeding up or slowing down at any moment. These equations are fundamental for solving SHM problems."
+    },
+    {
+      "type": "formula",
+      "content": "$x = x_0 \\sin(\\omega t)$ or $x = x_0 \\cos(\\omega t)$"
+    },
+    {
+      "type": "text",
+      "content": "The displacement equation describes the object's position at time 't'. Remember, sine and cosine functions are periodic, reflecting the oscillating nature. From this, we can derive velocity and acceleration:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Velocity (v):** Rate of change of displacement.",
+        "Maximum velocity ($v_0 = \\omega x_0$) occurs at equilibrium ($x=0$).",
+        "Velocity can be found using $v = \\pm \\omega \\sqrt{x_0^2 - x^2}$.",
+        "**Acceleration (a):** Rate of change of velocity, $a = -\\omega^2 x$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Phase Differences: Timing the Motion"
+    },
+    {
+      "type": "text",
+      "content": "In SHM, displacement, velocity, and acceleration are all linked, but they don't peak or trough at the exact same time. Their 'phase difference' describes how much one quantity lags or leads another in the oscillation cycle."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displacement and Acceleration:** $180^\\circ$ ($\\pi$ radians) out of phase. When x is max positive, a is max negative.",
+        "**Displacement and Velocity:** $90^\\circ$ ($\\pi/2$ radians) out of phase. When x is max, v is zero; when x is zero, v is max.",
+        "**In Phase:** Two oscillations move together, peaking and troughing at the same time (phase difference = $2\\pi n$).",
+        "**Completely Out of Phase:** Two oscillations move exactly opposite (phase difference = $(2n+1)\\pi$)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A mass oscillating with SHM has an amplitude of 5.0 cm and a period of 1.2 s. Calculate its angular frequency, maximum velocity, and acceleration when its displacement is 3.0 cm.",
+      "solution": [
+        "**Step 1: Calculate angular frequency (\\omega).**",
+        "The formula is $\\omega = 2\\pi / T$.",
+        "$\\omega = 2\\pi / 1.2 \\text{ s} \\approx 5.236 \\text{ rad/s}$.",
+        "**Step 2: Calculate maximum velocity ($v_0$).**",
+        "The formula is $v_0 = \\omega x_0$. Remember to convert amplitude to metres!",
+        "$x_0 = 5.0 \\text{ cm} = 0.050 \\text{ m}$.",
+        "$v_0 = 5.236 \\text{ rad/s} \\times 0.050 \\text{ m} \\approx 0.2618 \\text{ m/s}$.",
+        "**Step 3: Calculate acceleration (a) at $x = 3.0 \\text{ cm}$.**",
+        "The formula is $a = -\\omega^2 x$. Convert displacement to metres.",
+        "$x = 3.0 \\text{ cm} = 0.030 \\text{ m}$.",
+        "$a = -(5.236 \\text{ rad/s})^2 \\times 0.030 \\text{ m} \\approx -0.822 \\text{ m/s}^2$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Energy Transformations in SHM"
+    },
+    {
+      "type": "text",
+      "content": "In an ideal SHM system, energy is constantly swapping between kinetic (due to motion) and potential (due to position). The total mechanical energy, however, remains perfectly conserved, assuming no external losses."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Kinetic Energy (KE):** Maximal at the equilibrium position ($x=0$, where speed is maximum).",
+        "**Potential Energy (PE):** Maximal at the amplitude positions ($x=\\pm x_0$, where displacement is maximum).",
+        "As KE decreases, PE increases, and vice-versa, ensuring total energy is constant.",
+        "Total mechanical energy $E = \\frac{1}{2} m \\omega^2 x_0^2$ for any point in the cycle."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Damping: When Oscillations Fade"
+    },
+    {
+      "type": "text",
+      "content": "In reality, no system oscillates forever. **Damping** is the process where energy is gradually lost from an oscillating system, usually converted into heat or sound, causing the amplitude of the oscillations to decrease over time until the motion stops."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Free Oscillations:** Oscillations without any external driving force, at a system's natural frequency.",
+        "**Underdamping (Light Damping):** Amplitude slowly decays over many cycles, like a swinging pendulum.",
+        "**Critical Damping:** System returns to equilibrium in the shortest time possible without oscillating. Ideal for car suspensions.",
+        "**Overdamping (Heavy Damping):** Damping is too strong, causing a slow return to equilibrium than critical damping, also without oscillating."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to units in SHM calculations! Angular frequency should be in rad/s, time in seconds, displacement/amplitude in metres. A common error is mixing up degrees and radians for phase calculations."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=17.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What makes an oscillation 'simple harmonic'?",
+      "a": "An oscillation is simple harmonic if its acceleration is always directly proportional to its displacement from the equilibrium position and acts in the opposite direction. This specific relationship creates a smooth, sinusoidal motion."
+    },
+    {
+      "q": "How does energy change during Simple Harmonic Motion?",
+      "a": "During SHM, energy continuously transforms between kinetic energy (due to motion) and potential energy (due to position). Kinetic energy is maximum at equilibrium, while potential energy is maximum at the amplitude points. For an ideal system, the total mechanical energy remains constant."
+    },
+    {
+      "q": "What is the difference between underdamping, critical damping, and overdamping?",
+      "a": "These terms describe how quickly oscillations die out due to energy loss. Underdamping allows oscillations to decay gradually over many cycles. Critical damping brings the system back to equilibrium in the shortest time without any oscillation. Overdamping is when damping is too strong, causing a slower return to equilibrium than critical damping, also without oscillation."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-2",
+  "generatedAt": "2026-06-09T10:46:04.859Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/17-1-simple-harmonic-oscillations.png",
+    "alt": "Senpai Corner reference diagram for 17.1 Simple harmonic oscillations"
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "slug": "20-3-force-on-a-moving-charge",
+  "topicCode": "20.3",
+  "title": "Force on a moving charge",
+  "paper": "P4",
+  "paperName": "Paper 4 A Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 4 — Force on a moving charge (20.3). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Describe the magnetic force on a moving charge and apply F = BQvsinθ.",
+    "Explain the function of a velocity selector and how it utilises electric and magnetic fields.",
+    "Outline the principles of the Hall effect and its application in Hall probes."
+  ],
+  "simpleExplanation": {
+    "title": "Understanding Magnetic Forces on Moving Charges",
+    "summary": "When a charged particle moves through a magnetic field, it can experience a magnetic force. This force depends on the charge, its speed, and the strength and direction of the magnetic field, influencing its path.",
+    "analogy": "Imagine steering a boat in a river. If you point it directly with or against the current, it just speeds up or slows down. But point it across the current, and you'll be pushed sideways. That sideways push is like the magnetic force, bending the path of a moving charge when its velocity isn't parallel to the magnetic field.",
+    "steps": [
+      "Identify the charge, its velocity, and the magnetic field direction.",
+      "Determine the angle ($\theta$) between the velocity and the magnetic field.",
+      "Calculate the force magnitude using the formula F = BQvsinθ.",
+      "Apply Fleming's Left-Hand Rule (adjusting for negative charges) to find the force direction."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What causes a charged particle to experience a magnetic force?",
+      "back": "It experiences a magnetic force when it moves through a magnetic field, provided its velocity has a component perpendicular to the field."
+    },
+    {
+      "front": "State the formula for the magnetic force on a single charged particle in a magnetic field.",
+      "back": "$F = BQv\\sin\\theta$, where $\\theta$ is the angle between velocity (v) and magnetic field (B)."
+    },
+    {
+      "front": "When is the magnetic force on a moving charge zero?",
+      "back": "When the particle moves parallel ($\\theta=0^\\circ$) or anti-parallel ($\\theta=180^\\circ$) to the magnetic field lines."
+    },
+    {
+      "front": "How do you determine the direction of the magnetic force on a *positive* charge?",
+      "back": "Using Fleming's Left-Hand Rule: Thumb = Force, Forefinger = Magnetic Field, Middle Finger = Velocity/Motion."
+    },
+    {
+      "front": "How does Fleming's Left-Hand Rule apply to *negative* charges?",
+      "back": "The predicted force direction is opposite to that for a positive charge, or the middle finger points opposite to the actual velocity."
+    },
+    {
+      "front": "What type of path does a charged particle take if it moves perpendicular to a uniform magnetic field?",
+      "back": "It follows a circular path, as the magnetic force provides the necessary centripetal force."
+    },
+    {
+      "front": "What is the purpose of a velocity selector?",
+      "back": "To allow only charged particles moving at a specific velocity to pass through undeflected by balancing electric and magnetic forces."
+    },
+    {
+      "front": "State the formula for the selected velocity in a velocity selector.",
+      "back": "$v = E/B$, where E is the electric field strength and B is the magnetic flux density."
+    },
+    {
+      "front": "Define the Hall effect.",
+      "back": "The generation of a potential difference (Hall voltage) across a current-carrying conductor placed in a perpendicular magnetic field, due to charge carrier accumulation."
+    },
+    {
+      "front": "What is a Hall probe used for?",
+      "back": "To measure the magnetic flux density (B) by exploiting the Hall effect and measuring the Hall voltage produced."
+    },
+    {
+      "front": "What factors influence the magnitude of the Hall voltage ($V_H$)?",
+      "back": "Magnetic flux density (B), current (I), charge carrier number density (n), charge of one carrier (Q), and thickness of the conductor (t)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Imagine tiny charged particles speeding through space, only to be suddenly pushed sideways by an invisible force! This is the **magnetic force** on a moving charge, a fundamental concept in electromagnetism. We'll explore how this force arises, how to predict its direction using **Fleming's Left-Hand Rule**, and its fascinating applications in **velocity selectors** and the **Hall effect**. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **20.3**."
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic Force on Individual Charges"
+    },
+    {
+      "type": "text",
+      "content": "When a charged particle travels through a magnetic field, it can experience a force that's completely different from an electric force. Crucially, this magnetic force only appears if the particle's velocity has a component perpendicular to the magnetic field lines. If it moves perfectly parallel or anti-parallel to the field, no magnetic force acts on it."
+    },
+    {
+      "type": "formula",
+      "content": "$F = BQv\\sin\\theta$\nWhere:\n*   $F$ = magnetic force (N)\n*   $B$ = magnetic flux density (T)\n*   $Q$ = magnitude of the charge (C)\n*   $v$ = speed of the particle (m s⁻¹)\n*   $\\theta$ = angle between the velocity vector ($\\vec{v}$) and the magnetic field vector ($\\vec{B}$)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "20.3 Force on a moving charge.",
+        "Again, Fleming’s Left -Hand rule can be used to determine the directions of the force on the charge, magnetic field and motion of the charge.",
+        "When an external magnetic field is applied perpendicular to the direction of current through a conductor, the electrons experience a magnetic force.",
+        "This causes the electrons to drift to one side of the conductor.",
+        "That side becomes negatively charged.",
+        "The other side becomes positively charged."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Circular Motion and Velocity Selectors"
+    },
+    {
+      "type": "text",
+      "content": "If a charged particle enters a uniform magnetic field *perpendicularly*, the magnetic force always acts at right angles to its velocity. This constant perpendicular force acts as a centripetal force, compelling the particle to move in a circular path. This principle is key to devices like mass spectrometers."
+    },
+    {
+      "type": "text",
+      "content": "A **velocity selector** is a clever arrangement of perpendicular electric and magnetic fields. Only particles moving at a specific velocity will pass through undeflected, because the magnetic force ($F_B$) will exactly cancel out the electric force ($F_E$). Particles too fast or too slow will be deflected."
+    },
+    {
+      "type": "formula",
+      "content": "For undeflected particles: $F_B = F_E$\n$BQv = EQ$\n$v = \\frac{E}{B}$\nWhere:\n*   $v$ = selected velocity (m s⁻¹)\n*   $E$ = electric field strength (V m⁻¹ or N C⁻¹)\n*   $B$ = magnetic flux density (T)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A uniform magnetic force acting perpendicular to velocity provides the centripetal force ($F = \\frac{mv^2}{r}$), leading to circular motion.",
+        "Velocity selectors filter particles based on speed, useful in experimental physics.",
+        "The balance $BQv = EQ$ means the charge $Q$ cancels out, so the selection is independent of the particle's charge magnitude."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Hall Effect: Measuring Magnetic Fields"
+    },
+    {
+      "type": "text",
+      "content": "The **Hall effect** is a fascinating phenomenon observed when a current-carrying conductor is placed in a magnetic field perpendicular to the current. The magnetic force pushes the charge carriers (e.g., electrons) to one side of the conductor, creating a build-up of charge. This charge separation generates an electric field and, consequently, a measurable potential difference across the conductor, known as the **Hall voltage** ($V_H$)."
+    },
+    {
+      "type": "formula",
+      "content": "$V_H = \\frac{BI}{nQt}$\nWhere:\n*   $V_H$ = Hall voltage (V)\n*   $B$ = magnetic flux density (T)\n*   $I$ = current (A)\n*   $n$ = charge carrier number density (m⁻³)\n*   $Q$ = charge of one carrier (C)\n*   $t$ = thickness of the conductor perpendicular to B and I (m)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The Hall voltage is directly proportional to the magnetic flux density ($B$).",
+        "Hall probes are compact devices that use the Hall effect to precisely measure magnetic field strengths.",
+        "The sign of the Hall voltage can reveal the sign of the charge carriers (e.g., electrons or holes).",
+        "The thickness 't' is perpendicular to both current and magnetic field, affecting the path for charge accumulation."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A proton enters a velocity selector with an electric field strength of $2.0 \\times 10^4 \\, \\text{V m}^{-1}$ and a magnetic flux density of $0.50 \\, \\text{T}$. Calculate the speed at which the proton will pass through undeflected.",
+      "solution": "1.  Identify the given values: $E = 2.0 \\times 10^4 \\, \\text{V m}^{-1}$, $B = 0.50 \\, \\text{T}$.\n2.  Recall the formula for selected velocity in a velocity selector: $v = \\frac{E}{B}$.\n3.  Substitute the values into the formula: $v = \\frac{2.0 \\times 10^4 \\, \\text{V m}^{-1}}{0.50 \\, \\text{T}}$.\n4.  Calculate the speed: $v = 4.0 \\times 10^4 \\, \\text{m s}^{-1}$.\n5.  State the answer with units: The proton will pass through undeflected at a speed of $4.0 \\times 10^4 \\, \\text{m s}^{-1}$."
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the **direction of charge** (positive or negative) when applying Fleming's Left-Hand Rule. For negative charges, remember to reverse the direction of the force you find, or use the middle finger for current/motion in the *opposite* direction of actual electron flow."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=20.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How does the magnetic force differ from the electric force on a charged particle?",
+      "a": "The magnetic force only acts if the charge is *moving* and has a velocity component perpendicular to the magnetic field. An electric force acts on *any* charge (moving or stationary) in an electric field."
+    },
+    {
+      "q": "Why does a charged particle move in a circle in a uniform magnetic field?",
+      "a": "When a charged particle moves perpendicularly to a uniform magnetic field, the magnetic force acts perpendicular to its velocity at all times. This continuously changing force direction provides the centripetal force required for circular motion."
+    },
+    {
+      "q": "Can the Hall effect be used to determine the type of charge carriers in a material?",
+      "a": "Yes, the polarity of the Hall voltage (which side becomes positive or negative) directly indicates whether the charge carriers are positive (holes) or negative (electrons)."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-2",
+  "generatedAt": "2026-06-09T10:46:04.913Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/20-3-force-on-a-moving-charge.png",
+    "alt": "Senpai Corner reference diagram for 20.3 Force on a moving charge"
+  }
+}

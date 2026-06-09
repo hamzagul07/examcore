@@ -1,0 +1,243 @@
+{
+  "slug": "20-5-electromagnetic-induction",
+  "topicCode": "20.5",
+  "title": "Electromagnetic induction",
+  "paper": "P4",
+  "paperName": "Paper 4 A Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 4 — Electromagnetic induction (20.5). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define and apply concepts of magnetic flux and flux linkage.",
+    "Explain and use Faraday's and Lenz's Laws to determine induced EMF and current direction.",
+    "Describe the Hall Effect and its application in measuring magnetic fields."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Induced Currents",
+    "summary": "Electromagnetic induction is all about generating electricity by moving magnets or conductors. It's how power generators work! When a magnetic field changes around a conductor, it pushes electrons to create a voltage and current.",
+    "analogy": "Imagine pushing a swing. You have to keep pushing (changing the magnetic field) to keep it moving (generating current). If you just hold it still, nothing happens.",
+    "steps": [
+      "Relative motion between a magnet and a conductor.",
+      "This causes a change in magnetic flux through the conductor.",
+      "An electromotive force (EMF) is then induced across the conductor.",
+      "If the conductor is part of a closed circuit, an induced current will flow."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is electromagnetic induction?",
+      "back": "The process of generating an electromotive force (EMF) in a conductor due to a changing magnetic field or relative motion."
+    },
+    {
+      "front": "Define magnetic flux ($\\Phi$) and its SI unit.",
+      "back": "Magnetic flux is the measure of the total magnetic field lines passing perpendicularly through a given area. Its SI unit is the Weber (Wb)."
+    },
+    {
+      "front": "How is magnetic flux calculated?",
+      "back": "$\\Phi = BA$, where B is magnetic flux density and A is the area perpendicular to the field."
+    },
+    {
+      "front": "What is magnetic flux linkage ($\\lambda$)?",
+      "back": "The total magnetic flux interacting with all turns of a coil. For N turns, $\\lambda = N\\Phi$."
+    },
+    {
+      "front": "State Faraday's Law of Electromagnetic Induction.",
+      "back": "The magnitude of the induced EMF is directly proportional to the rate of change of magnetic flux linkage."
+    },
+    {
+      "front": "What is the formula for the magnitude of induced EMF?",
+      "back": "$\\mathcal{E} = |\\frac{\\Delta (N\\Phi)}{\\Delta t}|$ or $\\mathcal{E} = |\\frac{\\Delta \\lambda}{\\Delta t}|$."
+    },
+    {
+      "front": "What is the main idea behind Lenz's Law?",
+      "back": "The induced current's magnetic field always opposes the change in magnetic flux that caused it."
+    },
+    {
+      "front": "What does the negative sign in $\\mathcal{E} = -\\frac{\\Delta (N\\Phi)}{\\Delta t}$ represent?",
+      "back": "It explicitly indicates the opposing nature of the induced EMF, as described by Lenz's Law."
+    },
+    {
+      "front": "Briefly explain the Hall Effect.",
+      "back": "A potential difference (Hall Voltage) is induced across a current-carrying conductor when placed in a perpendicular magnetic field, due to charge carrier separation."
+    },
+    {
+      "front": "What is a Hall Probe used for?",
+      "back": "It's a device that uses the Hall Effect to accurately measure magnetic flux density."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever wondered how electricity is generated in power plants? It's largely thanks to **electromagnetic induction**! This fundamental principle describes how a changing magnetic field can create an electric current. We'll explore the concepts of **magnetic flux**, **Faraday's Law**, **Lenz's Law**, and the fascinating **Hall Effect**, all crucial for understanding how generators and sensors work. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **20.5**."
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic Flux ($\\Phi$)"
+    },
+    {
+      "type": "text",
+      "content": "Magnetic flux quantifies the total amount of magnetic field lines passing perpendicularly through a specific area. Think of it as how much 'magnetic field' is piercing through a surface. The greater the flux, the stronger the magnetic interaction with that area."
+    },
+    {
+      "type": "formula",
+      "content": "$\\Phi = BA \\quad \\text{ (for B perpendicular to A)}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "20.5 Electromagnetic induction.",
+        "Electromagnetic induction is when an emf is induced in a closed-circuit conductor due to it cutting through a magnetic field.",
+        "Magnetic flux ( Φ) is defined as the product of the magnetic flux density (B) and the cross-sectional area (A) perpendicular to the direction of the magnetic flux density .",
+        "In simpler terms, magnetic flux is the number of magnetic field lines through a given area.",
+        "Φ = BA cos θ.",
+        "The units for Φ are in Webers (Wb)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic Flux Linkage ($\\lambda$)"
+    },
+    {
+      "type": "text",
+      "content": "When a coil has multiple turns, the magnetic flux interacts with each turn. Magnetic flux linkage is the total magnetic flux interacting with the entire coil. It's simply the magnetic flux through one turn multiplied by the number of turns."
+    },
+    {
+      "type": "formula",
+      "content": "$\\lambda = N\\Phi$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "N is the number of turns in the coil.",
+        "$\\Phi$ is the magnetic flux through a single turn.",
+        "The unit for magnetic flux linkage is also Weber (Wb)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Faraday's Law of Electromagnetic Induction"
+    },
+    {
+      "type": "text",
+      "content": "Faraday's Law provides the quantitative relationship for induced EMF. It states that the magnitude of an induced electromotive force (EMF) is directly proportional to the rate at which the magnetic flux linkage changes through a conductor or coil."
+    },
+    {
+      "type": "formula",
+      "content": "$\\mathcal{E} = |\\frac{\\Delta \\lambda}{\\Delta t}| \\quad \\text{ or } \\quad \\mathcal{E} = |\\frac{\\Delta (N\\Phi)}{\\Delta t}|$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\mathcal{E}$ is the induced EMF (in Volts, V).",
+        "$\\Delta \\lambda$ is the change in magnetic flux linkage (in Wb).",
+        "$\\Delta t$ is the time taken for the change (in seconds, s).",
+        "A faster change in flux linkage results in a larger induced EMF."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Lenz's Law"
+    },
+    {
+      "type": "text",
+      "content": "While Faraday's Law tells us *how much* EMF is induced, Lenz's Law tells us its *direction*. It states that the induced current will flow in a direction that creates a magnetic field which opposes the original change in magnetic flux that caused it. This is a consequence of the conservation of energy."
+    },
+    {
+      "type": "formula",
+      "content": "$\\mathcal{E} = -\\frac{\\Delta (N\\Phi)}{\\Delta t}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The negative sign mathematically incorporates Lenz's Law.",
+        "It signifies that the induced EMF *opposes* the change in flux.",
+        "If flux is increasing, the induced field tries to decrease it. If flux is decreasing, the induced field tries to increase it."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Hall Effect"
+    },
+    {
+      "type": "text",
+      "content": "The Hall Effect describes the induction of a potential difference (called Hall Voltage, $V_H$) across a conductor when it carries a current and is placed in a perpendicular magnetic field. This occurs because the magnetic force separates the charge carriers to opposite sides of the conductor."
+    },
+    {
+      "type": "formula",
+      "content": "$V_H = \\frac{BI}{nQt}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "B is the magnetic flux density.",
+        "I is the current flowing through the conductor.",
+        "n is the charge carrier number density.",
+        "Q is the charge of a single carrier (e.g., electron charge).",
+        "t is the thickness of the conductor perpendicular to B and I."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Hall Probe"
+    },
+    {
+      "type": "text",
+      "content": "A Hall probe is a practical application of the Hall Effect. It's a small, flat device that can be used to accurately measure magnetic field strength (magnetic flux density). By measuring the Hall Voltage for a known current and material, the magnetic field can be determined."
+    },
+    {
+      "type": "workedExample",
+      "question": "A coil with 500 turns has a magnetic flux of 2.0 mWb passing through it. If this flux is uniformly reduced to 0.5 mWb in 0.25 seconds, calculate the magnitude of the induced EMF.",
+      "solution": "1.  Calculate the initial magnetic flux linkage:\n    $\\lambda_1 = N\\Phi_1 = 500 \\times (2.0 \\times 10^{-3} \\text{ Wb}) = 1.0 \\text{ Wb}$.\n2.  Calculate the final magnetic flux linkage:\n    $\\lambda_2 = N\\Phi_2 = 500 \\times (0.5 \\times 10^{-3} \\text{ Wb}) = 0.25 \\text{ Wb}$.\n3.  Determine the change in magnetic flux linkage:\n    $\\Delta \\lambda = \\lambda_2 - \\lambda_1 = 0.25 \\text{ Wb} - 1.0 \\text{ Wb} = -0.75 \\text{ Wb}$.\n4.  Identify the time taken for the change:\n    $\\Delta t = 0.25 \\text{ s}$.\n5.  Calculate the magnitude of the induced EMF using Faraday's Law:\n    $\\mathcal{E} = |\\frac{\\Delta \\lambda}{\\Delta t}| = |\\frac{-0.75 \\text{ Wb}}{0.25 \\text{ s}}| = 3.0 \\text{ V}$.\n    The magnitude of the induced EMF is 3.0 V."
+    },
+    {
+      "type": "examTip",
+      "content": "Always pay close attention to the direction when applying Lenz's Law. Remember that the induced effect *opposes* the change that caused it, not necessarily the original field itself. Ensure you use the correct units and distinguish between magnetic flux ($\\Phi$) and magnetic flux linkage ($\\lambda$). Sometimes questions might provide flux density and area, requiring you to calculate flux first."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=20.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is electromagnetic induction so important in daily life?",
+      "a": "It's the fundamental principle behind electricity generation in power stations, transformers for changing voltage levels, induction cookers, and many electric motors and generators, powering our modern world."
+    },
+    {
+      "q": "How do Faraday's Law and Lenz's Law work together?",
+      "a": "Faraday's Law tells us the *magnitude* of the induced EMF, based on the rate of flux change. Lenz's Law provides the *direction* of the induced EMF or current, stating it always opposes the change in magnetic flux that caused it."
+    },
+    {
+      "q": "What is the difference between magnetic flux and magnetic flux linkage?",
+      "a": "Magnetic flux ($\\Phi$) refers to the magnetic field passing through a *single* loop or area. Magnetic flux linkage ($\\lambda$) is the total flux through *all turns* of a coil, so $\\lambda = N\\Phi$ for a coil with N turns, where N is the number of turns."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-2",
+  "generatedAt": "2026-06-09T10:46:04.922Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/20-5-electromagnetic-induction.png",
+    "alt": "Senpai Corner reference diagram for 20.5 Electromagnetic induction"
+  }
+}

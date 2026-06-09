@@ -1,0 +1,255 @@
+{
+  "slug": "18-4-electric-field-of-a-point-charge",
+  "topicCode": "18.4",
+  "title": "Electric field of a point charge",
+  "paper": "P4",
+  "paperName": "Paper 4 A Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 4 — Electric field of a point charge (18.4). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Describe and interpret electric field patterns around point charges.",
+    "Calculate electric field strength and electric potential due to point charges using relevant formulas.",
+    "Explain the relationship between electric field strength, electric potential, and equipotential lines."
+  ],
+  "simpleExplanation": {
+    "title": "Invisible Forces & Energy Fields",
+    "summary": "Imagine a tiny, charged particle sitting in space. It doesn't just sit there; it creates an invisible 'aura' around itself – an electric field. This field is how it pushes or pulls other charges without touching them. We'll learn how strong this push/pull is and the energy associated with it.",
+    "analogy": "Think of a speaker playing music. The sound waves (electric field) spread out from the speaker (point charge), getting weaker the further away you get. You don't see the sound, but you feel its effect (force) if you're close enough.",
+    "steps": [
+      "**Identify the Source Charge**: Is it positive or negative? This determines the field's direction.",
+      "**Calculate Field Strength (E)**: Use the inverse square law to find the 'push/pull' power at a distance.",
+      "**Determine Electric Potential (V)**: Calculate the 'energy landscape' around the charge.",
+      "**Visualise Field Lines & Equipotentials**: Understand how these diagrams show direction and strength."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What defines an electric field?",
+      "back": "A region surrounding a charged object where another charge would experience an electrostatic (non-contact) force."
+    },
+    {
+      "front": "How do electric field lines show the direction of force for a positive test charge?",
+      "back": "The field lines point in the exact direction a positive test charge would be pushed or pulled."
+    },
+    {
+      "front": "What does the density of electric field lines visually represent?",
+      "back": "The strength of the electric field; denser (closer) lines indicate a stronger field."
+    },
+    {
+      "front": "State the formula for Coulomb's Law.",
+      "back": "$F = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q_1Q_2}{r^2}$, where $F$ is force, $Q_1, Q_2$ are charges, $r$ is separation, and $\\epsilon_0$ is permittivity of free space."
+    },
+    {
+      "front": "Define electric field strength, E, for a point charge.",
+      "back": "The force experienced per unit positive test charge ($E = F/q$). For a point charge $Q$, it's $E = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r^2}$."
+    },
+    {
+      "front": "How does electric field strength change if the distance from a point charge is tripled?",
+      "back": "It becomes one-ninth (1/9) of its original value, due to the inverse square relationship ($E \\propto 1/r^2$)."
+    },
+    {
+      "front": "What is electric potential (V) at a point due to a point charge?",
+      "back": "The work done per unit positive test charge to bring it from infinity to that point within the field."
+    },
+    {
+      "front": "Write the formula for electric potential due to a point charge Q at distance r.",
+      "back": "$V = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r}$."
+    },
+    {
+      "front": "What is an equipotential line?",
+      "back": "A line (or surface) connecting all points in an electric field that have the same electric potential."
+    },
+    {
+      "front": "What is the key geometric relationship between electric field lines and equipotential lines?",
+      "back": "They are always perpendicular to each other."
+    },
+    {
+      "front": "How can electric field strength be found from a potential-distance graph?",
+      "back": "It is the magnitude of the negative gradient of the potential-distance graph: $E = |\\frac{\\Delta V}{\\Delta r}|$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of **electric fields**! This topic explores the invisible forces and energy landscapes created by tiny charged particles. Understanding how **point charges** generate these fields is fundamental to electromagnetism. We'll delve into how these fields exert forces, store energy, and how their strength changes with distance. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **18.4**."
+    },
+    {
+      "type": "heading",
+      "content": "What is an Electric Field?"
+    },
+    {
+      "type": "text",
+      "content": "An **electric field** is a region in space around a charged object where another charged particle would experience a non-contact electrostatic force. We often use the concept of a 'point charge' – an idealised, infinitesimally small charge – to simplify calculations and understand fundamental principles. These fields are radial, meaning they spread outwards from positive charges and converge inwards towards negative charges."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "18.4 or before 18.1).",
+        "Coulomb’s Law states that the electrostatic force (F) between two point charges is proportional to the product of the charges and inversely proportional to the square of their separation .",
+        "If there is a positive and negative charge, then the electrostatic force is negative ( attractive ).",
+        "If the charges are the same , they are positive ( repulsive ).",
+        "The equation above is analogous to Newton’s Law of Gravitation Force (F = Gm 1 m/r 2 ) .",
+        "18.4 Electric field of a point charge (this should be right after 18.2!)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Coulomb's Law: Force Between Point Charges"
+    },
+    {
+      "type": "text",
+      "content": "Before we look at field strength, let's remember **Coulomb's Law**, which describes the electrostatic force between two point charges. This law is crucial because the electric field itself is defined by the force it exerts. The force is proportional to the product of the charges and inversely proportional to the square of their separation."
+    },
+    {
+      "type": "formula",
+      "content": "$F = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q_1Q_2}{r^2}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$F$ is the electrostatic force (N).",
+        "$Q_1, Q_2$ are the magnitudes of the point charges (C).",
+        "$r$ is the distance between the charges (m).",
+        "$\\epsilon_0$ is the permittivity of free space (8.85 \\times 10^{-12} F m^{-1}).",
+        "Like charges repel, opposite charges attract."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Electric Field Strength (E)"
+    },
+    {
+      "type": "text",
+      "content": "The **electric field strength (E)** at a point is defined as the force experienced per unit positive test charge placed at that point. It's a vector quantity, with its direction being the same as the force on a positive test charge. For a single point charge, E decreases rapidly with distance."
+    },
+    {
+      "type": "formula",
+      "content": "$E = \\frac{F}{q} \\quad \\text{or} \\quad E = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r^2}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$E$ is electric field strength (N C^{-1} or V m^{-1}).",
+        "$Q$ is the magnitude of the source point charge (C).",
+        "$r$ is the distance from the point charge (m).",
+        "E follows an inverse square law: $E \\propto 1/r^2$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Electric Potential (V)"
+    },
+    {
+      "type": "text",
+      "content": "While electric field strength describes the force, **electric potential (V)** describes the energy 'landscape'. It's defined as the work done per unit positive test charge to bring it from infinity to a specific point within the field. Potential is a scalar quantity, meaning it has magnitude but no direction, and its sign matches the source charge."
+    },
+    {
+      "type": "formula",
+      "content": "$V = \\frac{W}{q} \\quad \\text{or} \\quad V = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$V$ is electric potential (V or J C^{-1}).",
+        "$Q$ is the source point charge (C).",
+        "$r$ is the distance from the point charge (m).",
+        "Positive charges create positive potentials; negative charges create negative potentials.",
+        "V decreases with distance, $V \\propto 1/r$, approaching zero at infinity."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Equipotential Lines and Surfaces"
+    },
+    {
+      "type": "text",
+      "content": "Just as contour lines on a map show points of equal height, **equipotential lines** (or surfaces in 3D) show points of equal electric potential. For a point charge, these are concentric circles. A key property is that no work is done by the electric field when a charge moves along an equipotential line."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Connect points of identical electric potential.",
+        "Always perpendicular to electric field lines.",
+        "No work done moving a charge along them.",
+        "Closer spacing indicates a stronger field (steeper potential gradient)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Connecting E and V: The Potential Gradient"
+    },
+    {
+      "type": "text",
+      "content": "There's a fundamental relationship between electric field strength and electric potential. The electric field strength is essentially the rate at which the potential changes with distance – known as the potential gradient. The field points in the direction of decreasing potential."
+    },
+    {
+      "type": "formula",
+      "content": "$E = |\\frac{\\Delta V}{\\Delta r}|$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Electric field strength is the magnitude of the potential gradient.",
+        "This means $E$ is the magnitude of the slope of a $V$ against $r$ graph.",
+        "Units: $V m^{-1}$ (which is equivalent to $N C^{-1}$).",
+        "The negative sign (often omitted for magnitude) indicates E points from high to low potential."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A point charge of +5.0 nC is placed in a vacuum. Calculate the electric field strength and the electric potential at a point 15 cm away from the charge. (Take $\\frac{1}{4\\pi\\epsilon_0} = 9.0 \\times 10^9 \\text{ N m}^2 \\text{ C}^{-2}$)",
+      "solution": "1. Convert units:\n   $Q = +5.0 \\text{ nC} = +5.0 \\times 10^{-9} \\text{ C}$\n   $r = 15 \\text{ cm} = 0.15 \\text{ m}$\n\n2. Calculate Electric Field Strength (E):\n   $E = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r^2}$\n   $E = (9.0 \\times 10^9) \\frac{5.0 \\times 10^{-9}}{(0.15)^2}$\n   $E = 2000 \\text{ N C}^{-1}$ (or $2.0 \\text{ kN C}^{-1}$)\n   The direction is radially outwards from the positive charge.\n\n3. Calculate Electric Potential (V):\n   $V = \\frac{1}{4\\pi\\epsilon_0} \\frac{Q}{r}$\n   $V = (9.0 \\times 10^9) \\frac{5.0 \\times 10^{-9}}{0.15}$\n   $V = 300 \\text{ V}$"
+    },
+    {
+      "type": "examTip",
+      "content": "Be careful with signs! Electric field strength (E) is a vector, so its direction is important. Electric potential (V) is a scalar, but its sign (+ or -) matches the source charge and is crucial for calculating potential differences or total potential from multiple charges. Remember the inverse square for E and inverse for V."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=18.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between electric field strength and electric potential?",
+      "a": "Electric field strength (E) is a vector quantity, representing the force per unit charge. Electric potential (V) is a scalar quantity, representing the work done per unit charge (energy per charge). E tells you the force a charge experiences, while V tells you the potential energy a charge would have at that point."
+    },
+    {
+      "q": "Why does electric field strength follow an inverse square law, but electric potential follows an inverse law?",
+      "a": "Electric field strength is derived from Coulomb's Law, which states force is inversely proportional to $r^2$. Since $E = F/q$, E also follows $1/r^2$. Electric potential (V) is derived from the work done, which involves integrating the force over distance. This integration reduces the power of $r$ by one, resulting in V being inversely proportional to $r$ ($V \\propto 1/r$). "
+    },
+    {
+      "q": "Can electric potential be negative?",
+      "a": "Yes! Electric potential can be negative if the source charge creating the field is negative. A negative potential means that positive work would be done *by* the field (or negative work *against* the field) to bring a positive test charge from infinity to that point."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-2",
+  "generatedAt": "2026-06-09T10:46:04.883Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/18-4-electric-field-of-a-point-charge.png",
+    "alt": "Senpai Corner reference diagram for 18.4 Electric field of a point charge"
+  }
+}

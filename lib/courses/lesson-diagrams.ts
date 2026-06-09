@@ -1,7 +1,10 @@
 import type { ComponentType } from 'react'
+import { CentripetalMotionDiagram } from '@/components/diagrams/CentripetalMotionDiagram'
 import { EquilibriumForcesDiagram } from '@/components/diagrams/EquilibriumForcesDiagram'
 import { FreeBodyDiagram } from '@/components/diagrams/FreeBodyDiagram'
 import { CollisionBeforeAfter } from '@/components/diagrams/CollisionBeforeAfter'
+import { KinematicsGraphDiagram } from '@/components/diagrams/KinematicsGraphDiagram'
+import { SeriesCircuitDiagram } from '@/components/diagrams/SeriesCircuitDiagram'
 import { WavesComparison } from '@/components/diagrams/WavesComparison'
 import { TwoThermometers } from '@/components/diagrams/TwoThermometers'
 import { HeatingCurve } from '@/components/diagrams/HeatingCurve'
@@ -32,11 +35,48 @@ const PILOT_DIAGRAMS: Record<
       },
     },
   },
+  '2-1-equations-of-motion': {
+    Component: KinematicsGraphDiagram,
+    meta: {
+      caption: 'On an s–t graph, the gradient at any point gives the instantaneous velocity.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
   '3-1-momentum-and-newtons-laws-of-motion': {
     Component: FreeBodyDiagram,
     meta: {
       caption: 'Net force on a mass produces acceleration — Newton’s second law in one picture.',
-      attribution: { source: 'Original', license: 'Proprietary' },
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
+  '10-1-practical-circuits': {
+    Component: SeriesCircuitDiagram,
+    meta: {
+      caption: 'In a series circuit the same current passes through every component.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
+  '12-1-kinematics-of-uniform-circular-motion': {
+    Component: CentripetalMotionDiagram,
+    meta: {
+      caption: 'Velocity is tangential; centripetal acceleration points toward the centre.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes',
+      },
     },
   },
   '3-3-linear-momentum-and-its-conservation': {

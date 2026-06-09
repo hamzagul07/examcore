@@ -1,0 +1,241 @@
+{
+  "slug": "12-1-kinematics-of-uniform-circular-motion",
+  "topicCode": "12.1",
+  "title": "Kinematics of uniform circular motion",
+  "paper": "P4",
+  "paperName": "Paper 4 A Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 4 — Kinematics of uniform circular motion (12.1). Senpai Corner diagram-backed pilot with premium structure and live visuals.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define and use angular displacement, angular velocity, period, and frequency.",
+    "Explain and calculate centripetal acceleration and centripetal force.",
+    "Solve problems involving uniform circular motion using relevant formulas."
+  ],
+  "simpleExplanation": {
+    "title": "Circular Motion: Why Even Constant Speed Means Acceleration!",
+    "summary": "Imagine spinning a ball on a string. Even if you keep it moving at the same speed, its direction is constantly changing. This continuous change in direction means the ball is always accelerating and requires a force to keep it moving in that circular path.",
+    "analogy": "Think of a car going around a roundabout at a steady speed. The speedometer doesn't change, but your body feels pushed outwards, and the steering wheel is held to turn the car inwards. That continuous turning is an acceleration, even if your speed is constant.",
+    "steps": [
+      "Understand angular displacement and how to measure it in radians.",
+      "Connect angular velocity to linear speed and the period of motion.",
+      "Grasp that a change in velocity's direction means acceleration, even with constant speed.",
+      "Identify and calculate the centripetal acceleration and force directed towards the centre."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Define uniform circular motion.",
+      "back": "Movement in a circular path at a constant speed, but with continuously changing velocity due to direction change."
+    },
+    {
+      "front": "What is angular displacement and its standard unit?",
+      "back": "The angle swept out by an object from the center of its circular path, measured in radians (rad)."
+    },
+    {
+      "front": "How many radians are equivalent to one complete revolution?",
+      "back": "$2\\pi$ radians ($360^\\circ$)."
+    },
+    {
+      "front": "How are period ($T$) and frequency ($f$) related?",
+      "back": "Frequency is the reciprocal of the period: $f = \\frac{1}{T}$."
+    },
+    {
+      "front": "Define angular velocity ($\\omega$) and state its SI unit.",
+      "back": "The rate of change of angular displacement. Its SI unit is radians per second (rad s⁻¹)."
+    },
+    {
+      "front": "State the relationship between linear speed ($v$), angular velocity ($\\omega$), and radius ($r$).",
+      "back": "$v = \\omega r$."
+    },
+    {
+      "front": "Explain why an object moving at a constant speed in a circle is still accelerating.",
+      "back": "Its velocity direction is continuously changing, and since velocity is a vector, a change in direction means a change in velocity, thus an acceleration."
+    },
+    {
+      "front": "What is the direction of centripetal acceleration?",
+      "back": "Always towards the center of the circular path."
+    },
+    {
+      "front": "Provide two formulas for calculating centripetal acceleration ($a_c$).",
+      "back": "$a_c = \\frac{v^2}{r}$ or $a_c = \\omega^2 r$."
+    },
+    {
+      "front": "What is centripetal force and its direction?",
+      "back": "The resultant force required to keep an object moving in a circular path, always directed towards the center of the circle."
+    },
+    {
+      "front": "State two formulas for centripetal force ($F_c$).",
+      "back": "$F_c = \\frac{mv^2}{r}$ or $F_c = m\\omega^2 r$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the exciting world of **uniform circular motion**! Ever wondered how roller coasters loop-the-loop or satellites stay in orbit? It all comes down to the physics of objects moving in circles. We'll explore key concepts like **angular displacement**, **angular velocity**, **centripetal acceleration**, and **centripetal force** that govern this fundamental type of movement. This pilot aligns with **Senpai Corner** A Level notes (2025–2027) for topic **12.1**."
+    },
+    {
+      "type": "heading",
+      "content": "What is Uniform Circular Motion?"
+    },
+    {
+      "type": "text",
+      "content": "Uniform circular motion describes an object tracing a circular path while maintaining a constant speed. Crucially, even though its speed doesn't change, its direction is continuously changing. Because velocity is a vector (it has both magnitude and direction), a change in direction means the object's velocity is constantly changing. This continuous change in velocity implies that the object must be accelerating."
+    },
+    {
+      "type": "heading",
+      "content": "Angular Displacement ($\\theta$) and the Radian"
+    },
+    {
+      "type": "text",
+      "content": "When an object moves in a circle, we can describe its position using the angle it has swept out from the center. This is called **angular displacement** ($\\theta$). Instead of degrees, physicists often use a unit called the **radian (rad)** for angular measurements in circular motion."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "12.1 Kinematics of uniform circular motion.",
+        "The angular displacement of a body is the change in angle (radians, degree or revolutions) through which the body rotates around a circle.",
+        "Angular displacement is the ratio of: 𝛥𝜃 = 𝛥𝑠 𝑟.",
+        "A radian (rad) is defined as the angle subtended at the centre of a circle by an arc equal in length to the radius of the circle.",
+        "Radians is usually written in term of π.",
+        "For a rotation for a complete circle (360 0 ), the radians is 2 π ( 𝛥𝜃 = 2πr/r)."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "$1\\text{ rad} = \\frac{180^\\circ}{\\pi} \\approx 57.3^\\circ$"
+    },
+    {
+      "type": "heading",
+      "content": "Period ($T$) and Frequency ($f$)"
+    },
+    {
+      "type": "text",
+      "content": "These terms help us describe how fast an object completes its circular path. The **period ($T$)** is simply the time taken for one complete revolution around the circle, measured in seconds. The **frequency ($f$)** is the number of revolutions completed per unit time, usually per second. They are intimately linked."
+    },
+    {
+      "type": "formula",
+      "content": "$f = \\frac{1}{T}$"
+    },
+    {
+      "type": "heading",
+      "content": "Angular Velocity ($\\omega$)"
+    },
+    {
+      "type": "text",
+      "content": "Just as linear velocity measures the rate of change of linear displacement, **angular velocity ($\\omega$)** measures the rate of change of angular displacement. Its standard unit is radians per second (rad s⁻¹). Its direction is typically described as clockwise or anticlockwise."
+    },
+    {
+      "type": "formula",
+      "content": "$\\omega = \\frac{\\Delta\\theta}{\\Delta t} = \\frac{2\\pi}{T} = 2\\pi f$"
+    },
+    {
+      "type": "heading",
+      "content": "Linking Linear and Angular Speed"
+    },
+    {
+      "type": "text",
+      "content": "The linear speed ($v$) of an object moving in a circle, which is tangent to the path, is directly related to its angular velocity ($\\omega$) and the radius ($r$) of the circular path. A larger radius or faster angular spin results in a greater linear speed."
+    },
+    {
+      "type": "formula",
+      "content": "$v = \\omega r$"
+    },
+    {
+      "type": "heading",
+      "content": "Acceleration in Circular Motion"
+    },
+    {
+      "type": "text",
+      "content": "This is a key concept! Even if an object is moving at a constant *speed* in a circle, its *velocity* is continuously changing because its direction is constantly turning. Since acceleration is defined as the rate of change of velocity, an object in uniform circular motion is always accelerating."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Velocity is a vector quantity (magnitude and direction).",
+        "Constant speed means constant magnitude of velocity.",
+        "Changing direction means changing vector velocity.",
+        "A changing velocity means there is an acceleration."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Centripetal Acceleration ($a_c$)"
+    },
+    {
+      "type": "text",
+      "content": "The acceleration an object experiences in uniform circular motion is called **centripetal acceleration ($a_c$)**. The word 'centripetal' means 'centre-seeking'. This acceleration is always directed towards the exact center of the circular path, acting perpendicular to the object's instantaneous linear velocity."
+    },
+    {
+      "type": "formula",
+      "content": "$a_c = \\frac{v^2}{r} = \\omega^2 r$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A satellite orbits Earth in a circular path with a radius of $7.0 \\times 10^6$ m and a period of $90$ minutes. Calculate its linear speed and centripetal acceleration.",
+      "solution": "1. Convert period to seconds: $T = 90 \\text{ min} \\times 60 \\text{ s/min} = 5400 \\text{ s}$.\n2. Calculate angular velocity: $\\omega = \\frac{2\\pi}{T} = \\frac{2\\pi}{5400} \\approx 0.00116 \\text{ rad s}^{-1}$.\n3. Calculate linear speed: $v = \\omega r = (0.00116)(7.0 \\times 10^6) \\approx 8120 \\text{ m s}^{-1}$.\n4. Calculate centripetal acceleration: $a_c = \\frac{v^2}{r} = \\frac{(8120)^2}{7.0 \\times 10^6} \\approx 9.43 \\text{ m s}^{-2}$.\nAlternatively, $a_c = \\omega^2 r = (0.00116)^2 (7.0 \\times 10^6) \\approx 9.41 \\text{ m s}^{-2}$ (slight difference due to rounding)."
+    },
+    {
+      "type": "heading",
+      "content": "Centripetal Force ($F_c$)"
+    },
+    {
+      "type": "text",
+      "content": "According to Newton's Second Law, if an object is accelerating, there must be a resultant force acting on it. This force, which is necessary to maintain circular motion, is called **centripetal force ($F_c$)**. Like centripetal acceleration, it is always directed towards the center of the circle, perpendicular to the linear velocity."
+    },
+    {
+      "type": "formula",
+      "content": "$F_c = ma_c = \\frac{mv^2}{r} = m\\omega^2 r$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always remember that centripetal force is a *resultant* force – it isn't a new type of force! It's provided by existing forces like tension, gravity, or friction. Also, ensure your angles are in radians when using angular velocity formulas."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=12.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What are the key differences between linear and angular velocity?",
+      "a": "Linear velocity ($v$) describes how fast an object is moving along its path, tangent to the circle, and its unit is m s⁻¹. Angular velocity ($\\omega$) describes how fast the angle is changing from the centre, measured in radians per second (rad s⁻¹), and it applies to the rotation itself."
+    },
+    {
+      "q": "Can an object in uniform circular motion have zero acceleration?",
+      "a": "No, an object in uniform circular motion is always accelerating. Even though its speed is constant, its direction of motion is continuously changing. Since velocity is a vector quantity (magnitude and direction), a change in direction means a change in velocity, which by definition is acceleration."
+    },
+    {
+      "q": "What provides the centripetal force in real-world examples?",
+      "a": "The centripetal force is often provided by other familiar forces. For instance, gravity provides the centripetal force for satellites orbiting Earth, tension provides it for a ball swung on a string, and friction provides it for a car turning a corner."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-2",
+  "generatedAt": "2026-06-09T10:46:04.805Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/12-1-kinematics-of-uniform-circular-motion.png",
+    "alt": "Senpai Corner reference diagram for 12.1 Kinematics of uniform circular motion"
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "slug": "6-1-stress-and-strain",
+  "topicCode": "6.1",
+  "title": "Stress and strain",
+  "paper": "P1/P2",
+  "paperName": "Paper 2 AS Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 2 — Stress and strain (6.1). Senpai Corner diagram-backed pilot with premium lesson structure and live visual learning.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define and calculate stress, strain, and Young Modulus, including their units.",
+    "Explain Hooke's Law, interpret force-extension graphs, and distinguish between elastic and plastic deformation.",
+    "Differentiate between ductile and brittle materials based on their mechanical properties and stress-strain curves."
+  ],
+  "simpleExplanation": {
+    "title": "Stretching & Squashing: The Forces Within Materials",
+    "summary": "When you pull or push on an object, it changes shape. Physics helps us quantify this change using concepts like stress (how much force is spread over an area) and strain (how much it stretches relative to its original size).",
+    "analogy": "Imagine pulling a rubber band. The harder you pull, the longer it gets. Stress is like how hard you're pulling per unit width of the band, and strain is how much it's stretched compared to its original length.",
+    "steps": [
+      "Identify the **Force** applied to an object.",
+      "Measure the **Area** the force acts on and the **Original Length** of the object.",
+      "Observe the **Change in Length** (extension) due to the applied force.",
+      "Calculate **Stress** (Force/Area) and **Strain** (Extension/Original Length) to understand the material's response."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is **deformation**?",
+      "back": "Any change in an object's shape or size caused by applied forces."
+    },
+    {
+      "front": "Define **tensile** and **compressive** forces.",
+      "back": "Tensile forces stretch an object, while compressive forces push it inwards, reducing its length."
+    },
+    {
+      "front": "What is **stress ($\\\\sigma$)**?",
+      "back": "Force applied per unit cross-sectional area (\\\\sigma = F/A), measured in Pascals (Pa)."
+    },
+    {
+      "front": "What is **strain ($\\\\epsilon$)**?",
+      "back": "The ratio of extension to original length (\\\\epsilon = \\\\Delta L / L_0), a dimensionless quantity."
+    },
+    {
+      "front": "State **Hooke's Law**.",
+      "back": "The extension of an elastic object is directly proportional to the applied force, up to the limit of proportionality, provided temperature is constant."
+    },
+    {
+      "front": "What is the **spring constant ($k$)**?",
+      "back": "A measure of an object's stiffness, representing the force needed per unit extension. Its unit is N m$^{-1}$."
+    },
+    {
+      "front": "How is **elastic potential energy (EPE)** calculated for linear deformation?",
+      "back": "It's the area under a force-extension graph, or EPE = \\\\frac{1}{2}F\\\\Delta L or EPE = \\\\frac{1}{2}k(\\\\Delta L)^2."
+    },
+    {
+      "front": "Define **Young Modulus (E)**.",
+      "back": "The ratio of stress to strain (E = \\\\sigma / \\\\epsilon), a material's inherent stiffness, measured in Pascals (Pa)."
+    },
+    {
+      "front": "What is the key difference between **elastic** and **plastic deformation**?",
+      "back": "Elastic deformation is reversible (object returns to original shape), while plastic deformation is permanent (object does not fully return)."
+    },
+    {
+      "front": "Describe **ductile materials**.",
+      "back": "Materials that undergo significant plastic deformation before fracturing, e.g., copper."
+    },
+    {
+      "front": "What is the **limit of proportionality**?",
+      "back": "The point on a force-extension or stress-strain graph where Hooke's Law no longer applies."
+    },
+    {
+      "front": "What does the gradient of a **stress-strain graph** represent in its linear region?",
+      "back": "The Young Modulus (E) of the material."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every material responds differently when pushed or pulled. Understanding **stress** and **strain** allows us to predict how objects will deform and ultimately how strong they are. This lesson will explore the fundamental concepts of material deformation, from simple stretching to the complex behaviour that leads to breaking, laying the groundwork for engineering and design. This pilot lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **6.1**."
+    },
+    {
+      "type": "heading",
+      "content": "Deformation: The Basics"
+    },
+    {
+      "type": "text",
+      "content": "When a force acts on an object, its shape or size often changes – this is called **deformation**. Forces can either stretch an object, known as **tensile** forces, or squash it, called **compressive** forces. Think about pulling a spring (tensile) versus pressing down on a block (compressive)."
+    },
+    {
+      "type": "heading",
+      "content": "Extension ($\\\\Delta L$ or $x$)"
+    },
+    {
+      "type": "text",
+      "content": "**Extension**, often symbolised as $\\\\Delta L$ or $x$, is simply how much longer an object gets from its original length after a tensile force is applied. It's a direct, absolute measure of the change in length."
+    },
+    {
+      "type": "heading",
+      "content": "Stress ($\\\\sigma$)"
+    },
+    {
+      "type": "text",
+      "content": "Stress tells us how concentrated the internal forces are within a material. It's not just about the total force, but how that force is distributed over a specific cross-sectional area. Imagine pushing a pin with your finger; the force is small, but the stress on the tip is huge!"
+    },
+    {
+      "type": "formula",
+      "content": "$\\sigma = \\frac{F}{A}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "6.1 Stress and strains.",
+        "Forces can deform an object.",
+        "When an object is stretched by the force we say it is under a tensile load.",
+        "When an object is compressed it is under compressive load.",
+        "Recall when a tensile load is applied onto a spring, the spring will extend by x amount.",
+        "Below is a revision of the terminology used in IGCSE/ SPM for the force- extension graph above."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Strain ($\\\\epsilon$)"
+    },
+    {
+      "type": "text",
+      "content": "While extension tells us the absolute change in length, **strain** gives us a relative measure of deformation. It compares the amount of stretch to the object's initial size, making it a dimensionless quantity useful for comparing different objects regardless of their original dimensions."
+    },
+    {
+      "type": "formula",
+      "content": "$\\epsilon = \\frac{\\Delta L}{L_0}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\\\Delta L$ is the extension (change in length).",
+        "$L_0$ is the original length.",
+        "Strain has no units (it is dimensionless) as it's a ratio of two lengths.",
+        "A larger strain value indicates a greater relative deformation."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Hooke's Law and the Spring Constant ($k$)"
+    },
+    {
+      "type": "text",
+      "content": "For many elastic materials, especially springs, there's a simple relationship between the applied force and the resulting extension, first observed by Robert Hooke. This law is crucial for understanding how objects behave within their elastic limits, provided temperature remains constant."
+    },
+    {
+      "type": "formula",
+      "content": "$F = k\\Delta L$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Hooke's Law**: The force applied is directly proportional to the extension.",
+        "This law is valid up to the **limit of proportionality**.",
+        "The **spring constant ($k$)** indicates the stiffness of the object.",
+        "The unit for $k$ is Newtons per metre (N m$^{-1}$); a higher $k$ means greater stiffness."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Elastic and Plastic Deformation"
+    },
+    {
+      "type": "text",
+      "content": "Materials can deform in two main ways. **Elastic deformation** is like stretching a rubber band – it returns to its original shape when you let go. But if you pull too hard, it might stretch permanently, entering **plastic deformation**, where it doesn't fully recover."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Elastic deformation**: A temporary, reversible change in shape.",
+        "The **elastic limit** is the maximum force before permanent deformation occurs.",
+        "**Plastic deformation**: A permanent, irreversible change in shape.",
+        "Beyond the elastic limit, the material begins to 'yield' and deform plastically."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Elastic Potential Energy (EPE)"
+    },
+    {
+      "type": "text",
+      "content": "When you stretch or compress an elastic object, you do work on it, and this work is stored as **elastic potential energy**. This energy is released when the object returns to its original shape, for example, a stretched catapult launching a projectile."
+    },
+    {
+      "type": "formula",
+      "content": "$EPE = \\frac{1}{2}F\\Delta L = \\frac{1}{2}k(\\Delta L)^2$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "EPE is the energy stored within a deformed elastic object.",
+        "It is equivalent to the work done to deform the object.",
+        "Represented by the area under a force-extension graph for linear regions.",
+        "The SI unit for EPE is Joules (J)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Young Modulus (E): Material Stiffness"
+    },
+    {
+      "type": "text",
+      "content": "To compare the inherent stiffness of different materials, we use the **Young Modulus**. Unlike the spring constant, which depends on the object's dimensions, Young Modulus is a fundamental property of the material itself. It's a ratio that normalises for the object's size and shape."
+    },
+    {
+      "type": "formula",
+      "content": "$E = \\frac{\\sigma}{\\epsilon} = \\frac{F L_0}{A \\Delta L}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Defined as the ratio of stress to strain.",
+        "The SI unit for Young Modulus is Pascal (Pa).",
+        "Represents a material's inherent stiffness; a higher E means stiffer.",
+        "It is the gradient of the linear region on a stress-strain graph."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Ductile vs. Brittle Materials"
+    },
+    {
+      "type": "text",
+      "content": "Materials react differently when stretched to their breaking point. **Ductile materials** like copper can stretch a lot and undergo significant plastic deformation before fracturing. **Brittle materials** like glass, however, show very little plastic deformation and fracture suddenly with minimal stretching."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Ductile materials**: Experience substantial plastic deformation before breaking.",
+        "**Brittle materials**: Fracture with very little or no plastic deformation.",
+        "Their behaviour is clearly visible on stress-strain graphs.",
+        "This distinction is crucial for material selection in engineering applications."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Loading and Unloading Graphs"
+    },
+    {
+      "type": "text",
+      "content": "When a material is loaded (stretched) and then unloaded (released), its behaviour can tell us if permanent deformation occurred. If the unloading curve doesn't return to the origin and instead shows residual extension, it signifies that plastic deformation has taken place."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The loading curve shows how the material deforms as force increases.",
+        "The unloading curve shows how it recovers as force decreases.",
+        "If plastic deformation occurs, the unloading curve will be parallel to the initial linear loading curve but will not return to the origin.",
+        "The area between the loading and unloading curves represents energy dissipated as heat during permanent deformation."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A copper wire has an original length of 2.0 m and a cross-sectional area of 1.5 x 10$^{-7}$ m$^2$. It is stretched by a tensile force of 45 N. Given that the Young Modulus for copper is 1.1 x 10$^{11}$ Pa, calculate the extension of the wire.",
+      "solution": "1.  Recall the formula for Young Modulus: $E = \\\\frac{F L_0}{A \\\\Delta L}$.\n2.  Rearrange the formula to solve for extension $\\\\Delta L$: $\\\\Delta L = \\\\frac{F L_0}{A E}$.\n3.  Substitute the given values into the rearranged formula:\n    *   Force ($F$) = 45 N\n    *   Original Length ($L_0$) = 2.0 m\n    *   Cross-sectional Area ($A$) = 1.5 x 10$^{-7}$ m$^2$\n    *   Young Modulus ($E$) = 1.1 x 10$^{11}$ Pa\n4.  Perform the calculation:\n    $\\\\Delta L = \\\\frac{(45 \\text{ N})(2.0 \\text{ m})}{(1.5 \\times 10^{-7} \\text{ m}^2)(1.1 \\times 10^{11} \\text{ Pa})}$\n    $\\\\Delta L = \\\\frac{90}{16500} \\\\approx 0.00545 \\text{ m}$\n5.  The extension of the wire is approximately 5.5 x 10$^{-3}$ m (or 5.5 mm)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always ensure you are using the correct SI units for all quantities (force in N, area in m$^2$, length in m). Pay close attention to distinguishing between force-extension graphs and stress-strain graphs, as their gradients represent different physical quantities ($k$ for force-extension and $E$ for stress-strain in the linear region)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=6.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is strain a dimensionless quantity?",
+      "a": "Strain is calculated as a ratio of two lengths (extension divided by original length). Since the units of length cancel out, strain has no units, making it a pure number that represents a relative change."
+    },
+    {
+      "q": "What is the key difference between the spring constant ($k$) and the Young Modulus ($E$)?",
+      "a": "The spring constant ($k$) describes the stiffness of a specific object (like a particular spring or wire), and it depends on that object's dimensions. The Young Modulus ($E$) is an intrinsic property of the material itself, independent of its shape or size, used to compare the stiffness of different substances."
+    },
+    {
+      "q": "Can Hooke's Law be applied during plastic deformation?",
+      "a": "No, Hooke's Law states that force is directly proportional to extension and is only valid up to the limit of proportionality, which typically occurs before or at the elastic limit. Beyond this point, the material no longer behaves elastically, and the relationship between force and extension becomes non-linear."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-1",
+  "generatedAt": "2026-06-09T10:41:47.250Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/6-1-stress-and-strain.png",
+    "alt": "Senpai Corner reference diagram for 6.1 Stress and strain"
+  }
+}

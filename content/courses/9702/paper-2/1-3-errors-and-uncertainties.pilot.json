@@ -1,0 +1,225 @@
+{
+  "slug": "1-3-errors-and-uncertainties",
+  "topicCode": "1.3",
+  "title": "Errors and uncertainties",
+  "paper": "P1/P2",
+  "paperName": "Paper 2 AS Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 2 — Errors and uncertainties (1.3). Senpai Corner diagram-backed pilot with premium lesson structure and live visual learning.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Differentiate clearly between accuracy and precision, identifying their respective influences.",
+    "Categorise and describe random and systematic errors, suggesting methods for their reduction.",
+    "Calculate and combine absolute, fractional, and percentage uncertainties in various physical calculations."
+  ],
+  "simpleExplanation": {
+    "title": "Understanding Measurement Errors",
+    "summary": "Every measurement in physics comes with some uncertainty. This topic teaches you how to identify different types of errors, understand their impact, and calculate the uncertainty in your results. Mastering this helps you get more reliable experimental data.",
+    "analogy": "Imagine trying to hit a target with arrows. **Accuracy** is how close your arrows land to the bullseye (the true value). **Precision** is how close your arrows land to each other, regardless of where the bullseye is. If all your arrows land in a tight group far from the bullseye, you're precise but not accurate. If they're scattered all around the bullseye, you're accurate (on average) but not precise.",
+    "steps": [
+      "Identify if an error in a measurement is random or systematic.",
+      "Determine the inherent uncertainty for individual instrument readings.",
+      "Apply rules for combining uncertainties when performing calculations.",
+      "Report final answers, including the calculated uncertainty, correctly."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the primary difference between accuracy and precision?",
+      "back": "Accuracy is how close a measurement is to the true value; precision is how close repeated measurements are to each other."
+    },
+    {
+      "front": "Name one way to minimise random errors.",
+      "back": "Take multiple readings and calculate their mean value."
+    },
+    {
+      "front": "What type of error is a 'zero error'?",
+      "back": "A systematic error, where an instrument gives a non-zero reading when it should be zero."
+    },
+    {
+      "front": "How do you combine uncertainties when adding two measured quantities?",
+      "back": "Add their absolute uncertainties: $\\Delta R = \\Delta X + \\Delta Y$."
+    },
+    {
+      "front": "What is the standard absolute uncertainty for a single reading on an analogue scale?",
+      "back": "Typically, $\\pm$ half of the smallest division on the scale."
+    },
+    {
+      "front": "Define resolution in the context of scientific instruments.",
+      "back": "The smallest measurable interval or increment that an instrument can reliably detect."
+    },
+    {
+      "front": "When do you add percentage uncertainties?",
+      "back": "When multiplying or dividing physical quantities."
+    },
+    {
+      "front": "What is parallax error, and what kind of error is it?",
+      "back": "It's an error caused by viewing a scale from an incorrect angle, leading to a misreading. It's a systematic error."
+    },
+    {
+      "front": "How is uncertainty handled when a quantity is raised to a power?",
+      "back": "Its percentage uncertainty is multiplied by that power: If $R = X^n$, then $\\frac{\\Delta R}{R} = n \\frac{\\Delta X}{X}$."
+    },
+    {
+      "front": "Give an example of how to reduce a systematic error.",
+      "back": "Calibrating equipment before use, or ensuring measurements are taken at eye level to avoid parallax."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of **precision** and **accuracy** in physics! Every measurement you take comes with some level of **uncertainty**. This lesson will equip you with the skills to understand different types of **errors**, quantify their impact, and correctly calculate how uncertainties propagate through your calculations. Get ready to make your experimental data more reliable! This pilot lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **1.3**."
+    },
+    {
+      "type": "heading",
+      "content": "Accuracy vs. Precision: The Core Difference"
+    },
+    {
+      "type": "text",
+      "content": "**Accuracy** tells us how close a measured value is to the true, accepted value of the quantity being measured. If your experiment consistently gives results very close to what they 'should' be, your measurements are accurate. Accuracy can be affected by both random and systematic errors."
+    },
+    {
+      "type": "text",
+      "content": "**Precision**, on the other hand, describes the consistency or repeatability of your measurements. If you take multiple readings and they are all very close to each other, regardless of whether they are close to the true value, your measurements are precise. Precision is primarily affected by random errors."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Errors: Random and Systematic"
+    },
+    {
+      "type": "text",
+      "content": "**Random errors** are unpredictable variations that cause successive readings to scatter around the true value. They lead to a lack of precision. Think of slight fluctuations in environmental conditions or human reaction time when starting a stopwatch. These errors cannot be predicted and usually average out over many trials."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "1.3 Errors and uncertainties.",
+        "When measuring anything, it is usually difficult to get accurate results due to there always being a degree of uncertainty .",
+        "The cause for this uncertainty is errors .",
+        "An instrument is said to be accurate if the values measured is close to the true value.",
+        "An instrument is said to be precise if the values measured are close to each other when taking repeated measurements.",
+        "An illustration showing accuracy and precision is shown below:."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**Systematic errors** cause all measurements to consistently deviate from the true value in the same direction. They affect the accuracy of your results. Unlike random errors, repeating the measurement won't reduce a systematic error, as the error will simply be repeated each time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Consistent, predictable shift in all measurements.",
+        "Affects the accuracy of the results.",
+        "Examples: zero error (instrument doesn't read zero when it should), parallax error (reading a scale at an angle).",
+        "Addressed by calibration, correcting for background effects, or using correct techniques (e.g., eye-level reading)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Quantifying Uncertainty"
+    },
+    {
+      "type": "text",
+      "content": "**Resolution** is the smallest interval an instrument can measure. **Uncertainty** defines the range within which the true value of a measurement is expected to lie. We express uncertainty in three main ways: absolute, fractional, and percentage."
+    },
+    {
+      "type": "text",
+      "content": "An **absolute uncertainty** is the direct numerical range, like $\\pm 0.1 \\text{ cm}$. The **fractional uncertainty** is the absolute uncertainty divided by the measured value (e.g., $0.1 / 5.0$). The **percentage uncertainty** is simply the fractional uncertainty multiplied by 100%."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Single reading uncertainty: $\\pm$ half of the smallest division (e.g., a ruler reading $0.1 \\text{ cm}$ has $\\pm 0.05 \\text{ cm}$ uncertainty).",
+        "Difference/range uncertainty (e.g., measuring a length between two points): $\\pm$ one smallest division.",
+        "Measuring larger quantities helps reduce fractional/percentage uncertainty (e.g., measuring 10 oscillations instead of 1)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Combining Uncertainties in Calculations"
+    },
+    {
+      "type": "text",
+      "content": "When you combine measured quantities in calculations, their uncertainties also combine. How they combine depends on the mathematical operation. Always carry out calculations with full precision and then round the final answer along with its uncertainty at the very end."
+    },
+    {
+      "type": "text",
+      "content": "### Addition or Subtraction"
+    },
+    {
+      "type": "formula",
+      "content": "If $R = X + Y$ or $R = X - Y$, then the absolute uncertainties are summed:\n$\\Delta R = \\Delta X + \\Delta Y$"
+    },
+    {
+      "type": "text",
+      "content": "### Multiplication or Division"
+    },
+    {
+      "type": "formula",
+      "content": "If $R = X \\times Y$ or $R = X / Y$, then the percentage (or fractional) uncertainties are summed:\n$\\frac{\\Delta R}{R} = \\frac{\\Delta X}{X} + \\frac{\\Delta Y}{Y}$"
+    },
+    {
+      "type": "text",
+      "content": "### Powers"
+    },
+    {
+      "type": "formula",
+      "content": "If $R = X^n$ (where $n$ is a constant power), then the percentage uncertainty is multiplied by that power:\n$\\frac{\\Delta R}{R} = n \\frac{\\Delta X}{X}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A student measures the mass of an object as $m = 25.0 \\pm 0.1 \\text{ g}$ and its volume as $V = 10.0 \\pm 0.2 \\text{ cm}^3$. Calculate the density $\\rho = m/V$ and its absolute uncertainty.",
+      "solution": "1.  **Calculate the density:**\n    $\\rho = \\frac{m}{V} = \\frac{25.0 \\text{ g}}{10.0 \\text{ cm}^3} = 2.50 \\text{ g/cm}^3$\n2.  **Calculate the percentage uncertainty for mass ($m$):**\n    Percentage Uncertainty$_m = \\left(\\frac{\\Delta m}{m}\\right) \\times 100\\% = \\left(\\frac{0.1}{25.0}\\right) \\times 100\\% = 0.4\\%$\n3.  **Calculate the percentage uncertainty for volume ($V$):**\n    Percentage Uncertainty$_V = \\left(\\frac{\\Delta V}{V}\\right) \\times 100\\% = \\left(\\frac{0.2}{10.0}\\right) \\times 100\\% = 2.0\\%$\n4.  **Combine percentage uncertainties for division:**\n    For multiplication or division, we add the percentage uncertainties:\n    Total Percentage Uncertainty$_{\\rho} = \\text{Percentage Uncertainty}_m + \\text{Percentage Uncertainty}_V = 0.4\\% + 2.0\\% = 2.4\\%$\n5.  **Calculate the absolute uncertainty for density ($\\Delta \\rho$):**\n    $\\Delta \\rho = \\left(\\frac{\\text{Total Percentage Uncertainty}}{100}\\right) \\times \\rho = \\left(\\frac{2.4}{100}\\right) \\times 2.50 = 0.06 \\text{ g/cm}^3$\n6.  **Report the final answer:**\n    Round the absolute uncertainty to one significant figure, and then round the measured value to the same decimal place.\n    $\\rho = 2.50 \\pm 0.06 \\text{ g/cm}^3$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always show your working for uncertainty calculations! Examiners award marks for clearly demonstrating your understanding of how uncertainties combine, not just for the final answer. Remember to use appropriate significant figures for uncertainties (usually one significant figure for absolute uncertainty) and match your measured value to its decimal place."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is it important to understand errors and uncertainties in physics?",
+      "a": "Understanding errors helps you critically evaluate the reliability of your experimental results and identify areas for improvement in your experimental design. It's crucial for drawing valid and scientifically sound conclusions from any data you collect."
+    },
+    {
+      "q": "Can systematic errors be completely eliminated in an experiment?",
+      "a": "While it's challenging to completely eliminate all systematic errors, they can be significantly reduced. This involves careful calibration of equipment, using correct measurement techniques, and applying appropriate corrections based on known biases or environmental factors."
+    },
+    {
+      "q": "How many significant figures should I use when reporting uncertainty with a measured value?",
+      "a": "Typically, the absolute uncertainty should be reported to one significant figure. The measured value should then be rounded so that its last significant digit is in the same decimal place as the absolute uncertainty. For instance, if a length is $5.234 \\text{ cm}$ with an uncertainty of $\\pm 0.01 \\text{ cm}$, you would report it as $5.23 \\pm 0.01 \\text{ cm}$."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-1",
+  "generatedAt": "2026-06-09T10:41:47.216Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/1-3-errors-and-uncertainties.png",
+    "alt": "Senpai Corner reference diagram for 1.3 Errors and uncertainties"
+  }
+}

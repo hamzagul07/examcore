@@ -1,0 +1,284 @@
+{
+  "slug": "1-1-physical-quantities",
+  "topicCode": "1.1",
+  "title": "Physical quantities",
+  "paper": "P1/P2",
+  "paperName": "Paper 2 AS Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 2 — Physical quantities (1.1). Senpai Corner diagram-backed pilot with premium lesson structure and live visual learning.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Distinguish between base and derived units, and confidently apply SI prefixes to measurements.",
+    "Explain and differentiate between scalar and vector quantities, including vector addition and resolution.",
+    "Analyse measurement errors (random, systematic) and apply rules for combining uncertainties."
+  ],
+  "simpleExplanation": {
+    "title": "Measuring the Universe: Your Physics Toolkit",
+    "summary": "Physical quantities are how we describe the world around us, always needing a number and a unit. We use special units, understand directions, and account for tiny errors in our measurements.",
+    "analogy": "Imagine baking a cake. The recipe lists quantities like '200 grams of flour' or 'bake for 30 minutes'. 'Grams' and 'minutes' are like our physics units. If the recipe says 'mix vigorously in a clockwise direction', that's like a vector – it tells you magnitude (vigorously) and direction (clockwise). Getting the measurements right is like ensuring accuracy and precision in physics!",
+    "steps": [
+      "Identify the type of quantity: Is it a **scalar** (magnitude only) or a **vector** (magnitude and direction)?",
+      "Master the SI units: Learn base units, understand derived units, and use **prefixes** for scale.",
+      "Check equation validity: Ensure units match on both sides of an equation (this is **dimensional homogeneity**).",
+      "Minimise measurement errors: Understand **accuracy**, **precision**, and how to reduce **random** and **systematic errors**."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What defines a physical quantity?",
+      "back": "A numerical value and an associated unit."
+    },
+    {
+      "front": "List three SI base quantities and their units.",
+      "back": "Mass (kilogram, kg), Length (meter, m), Time (second, s)."
+    },
+    {
+      "front": "What is a derived unit? Give an example.",
+      "back": "A unit formed by combining base units, e.g., the Newton (N) for force (kg m s⁻²)."
+    },
+    {
+      "front": "What does 'dimensional homogeneity' mean for an equation?",
+      "back": "The units on both sides of the equation must be consistent (the same)."
+    },
+    {
+      "front": "What is the key difference between a scalar and a vector quantity?",
+      "back": "A scalar has only magnitude (e.g., mass, speed), while a vector has both magnitude and direction (e.g., force, velocity)."
+    },
+    {
+      "front": "How do you resolve a vector V into its component adjacent to angle $\\theta$?",
+      "back": "V_x = V \\cos \\theta"
+    },
+    {
+      "front": "What is the difference between accuracy and precision in measurements?",
+      "back": "Accuracy is how close a measurement is to the true value; precision is how close repeated measurements are to each other."
+    },
+    {
+      "front": "How can random errors be reduced?",
+      "back": "By taking multiple readings and calculating an average, or using more precise equipment."
+    },
+    {
+      "front": "What is a systematic error, and how might it be reduced?",
+      "back": "A consistent deviation from the true value (e.g., zero error); reduce it by calibrating instruments or correcting for background."
+    },
+    {
+      "front": "How do you calculate the absolute uncertainty for a single reading on an instrument?",
+      "back": "It's typically \\pm half of the smallest division on the instrument scale."
+    },
+    {
+      "front": "When adding or subtracting quantities, how are their uncertainties combined?",
+      "back": "You add their absolute uncertainties."
+    },
+    {
+      "front": "When multiplying or dividing quantities, how are their uncertainties combined?",
+      "back": "You add their percentage uncertainties."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the fundamental building blocks of Physics! Every concept we explore, from tiny atoms to distant galaxies, relies on **physical quantities**. These are the properties of objects and systems that we can measure. Understanding how to define, measure, and handle these quantities – along with their associated **units** and potential **errors** – is crucial for any aspiring physicist. This pilot lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **1.1**."
+    },
+    {
+      "type": "heading",
+      "content": "Quantities, Units, and Prefixes"
+    },
+    {
+      "type": "text",
+      "content": "A **physical quantity** isn't just a number; it's a number paired with a specific unit. For instance, '5 metres' means a length of five units, where each unit is a metre. This standardised approach ensures everyone understands the same measurement, no matter where they are in the world."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "1.1 Physical quantities.",
+        "Physical quantities consist of a numerical magnitude and a unit.",
+        "Eg. When you are driving, the speedometer shows the speed as 120 km/h. The physical unit here is speed, with 120 being the numerical magnitude and km/h being the unit."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**Derived units**, on the other hand, are formed by combining these base units. They allow us to express more complex quantities like speed, force, or energy using the fundamental building blocks."
+    },
+    {
+      "type": "formula",
+      "content": "For example, the unit for force, the Newton (N), is equivalent to kg m s⁻²."
+    },
+    {
+      "type": "text",
+      "content": "To handle very large or very small measurements, we use **SI prefixes**. These are multipliers that simplify writing numbers. Instead of writing 1,000,000 metres, we can simply say 1 Megametre."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Tera (T)**: 10¹²",
+        "**Giga (G)**: 10⁹",
+        "**Mega (M)**: 10⁶",
+        "**Kilo (k)**: 10³",
+        "**Milli (m)**: 10⁻³",
+        "**Micro (μ)**: 10⁻⁶",
+        "**Nano (n)**: 10⁻⁹",
+        "**Pico (p)**: 10⁻¹²"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "A crucial concept for equation validity is **dimensional homogeneity**. This means that the units on both sides of any correct physical equation must match. It's a powerful tool to check your calculations!"
+    },
+    {
+      "type": "workedExample",
+      "question": "Show that the equation for kinetic energy, E_k = \\frac{1}{2}mv², is dimensionally homogeneous.",
+      "solution": "1.  Identify units for each term:\n    *   Energy (E_k): Joules (J), which is kg m² s⁻²\n    *   Mass (m): kilograms (kg)\n    *   Velocity (v): meters per second (m s⁻¹)\n2.  Substitute units into the right-hand side (RHS) of the equation:\n    *   RHS units = [kg] \\times [m s⁻¹]²\n    *   RHS units = [kg] \\times [m² s⁻²]\n    *   RHS units = kg m² s⁻²\n3.  Compare RHS units with Left-hand side (LHS) units:\n    *   LHS units (kg m² s⁻²) = RHS units (kg m² s⁻²)\n4.  Conclusion: Since the units on both sides are consistent, the equation is dimensionally homogeneous."
+    },
+    {
+      "type": "examTip",
+      "content": "Always check for dimensional homogeneity in your derivations and problem-solving. It's an excellent way to spot errors before you've even finished the calculation!"
+    },
+    {
+      "type": "heading",
+      "content": "Scalars and Vectors"
+    },
+    {
+      "type": "text",
+      "content": "Not all quantities are the same; some only need a value, while others also require a direction. This distinction separates **scalars** from **vectors**. Understanding this difference is fundamental to describing motion and forces accurately."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Scalar Quantity**: Defined solely by its magnitude (size).",
+        "Examples: Mass, speed, distance, time, temperature, energy.",
+        "**Vector Quantity**: Defined by both magnitude and direction.",
+        "Examples: Force, velocity, displacement, acceleration, momentum."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "When adding vectors, you must account for their directions. For two **perpendicular vectors**, like forces acting at right angles, we use Pythagoras' theorem for the resultant magnitude and trigonometry for its direction."
+    },
+    {
+      "type": "formula",
+      "content": "For perpendicular vectors $A$ and $B$, resultant magnitude $R = \\sqrt{A^2 + B^2}$. Direction $\\theta = \\text{arctan}(\\frac{B}{A})$. "
+    },
+    {
+      "type": "text",
+      "content": "For **non-perpendicular vectors**, the easiest way to add them is by **resolving** them into perpendicular components. Each vector is broken down into its 'x' and 'y' parts, which can then be added independently."
+    },
+    {
+      "type": "formula",
+      "content": "A vector $V$ making an angle $\\theta$ with the x-axis can be resolved into components: $V_x = V \\cos \\theta$ and $V_y = V \\sin \\theta$."
+    },
+    {
+      "type": "heading",
+      "content": "Accuracy, Precision, Errors, and Uncertainty"
+    },
+    {
+      "type": "text",
+      "content": "In experimental physics, our measurements are never perfect. We need to understand the limitations of our instruments and methods. This involves distinguishing between **accuracy**, **precision**, and recognising different types of **errors**."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Accuracy**: How close a measurement is to the true value.",
+        "**Precision**: How close repeated measurements are to each other (consistency).",
+        "**Resolution**: The smallest increment an instrument can reliably detect."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**Random errors** are unpredictable variations that cause results to spread around the true value. They arise from factors like fluctuating conditions or human reaction times."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Random errors primarily affect precision.",
+        "Can be reduced by taking multiple readings and calculating an average.",
+        "Using more precise equipment also helps."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**Systematic errors** cause all readings to consistently deviate from the true value in the same direction. They often stem from faulty equipment or flaws in the experimental design."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Systematic errors primarily affect accuracy.",
+        "Examples: Zero errors, parallax errors.",
+        "Reduce by calibrating instruments, correcting zero errors, reading scales at eye level."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**Uncertainty** is the estimated range within which the true value of a measurement is expected to lie. It's crucial to express this range to reflect the reliability of your data. For a single reading, the absolute uncertainty is typically \\pm half the smallest division on the instrument. For a difference (e.g., length measured between two points), it's \\pm one smallest division."
+    },
+    {
+      "type": "workedExample",
+      "question": "A ruler with millimetre divisions measures a length as 25.5 cm. State the absolute uncertainty for this single reading.",
+      "solution": "1.  Smallest division of the ruler = 1 mm = 0.1 cm.\n2.  Absolute uncertainty for a single reading = \\pm half of the smallest division.\n3.  Absolute uncertainty = \\pm \\frac{1}{2} \\times 0.1 \\text{ cm} = \\pm 0.05 \\text{ cm}.\n4.  The length should be stated as 25.50 \\pm 0.05 \\text{ cm}."
+    },
+    {
+      "type": "heading",
+      "content": "Combining Uncertainties"
+    },
+    {
+      "type": "text",
+      "content": "When you use multiple measurements to calculate a final result, their individual uncertainties must be combined appropriately to determine the overall uncertainty of the final value. Different rules apply depending on the mathematical operation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Addition/Subtraction**: Add absolute uncertainties.",
+        "**Multiplication/Division**: Add percentage (or fractional) uncertainties.",
+        "**Raising to a power**: Multiply the percentage uncertainty by the power."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Remember to express uncertainties to one significant figure, and ensure your final answer's precision matches the uncertainty's decimal places."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are SI units important in physics?",
+      "a": "SI units (International System of Units) provide a globally standardised system for measurements, ensuring consistency and clarity in scientific communication and calculations across different countries and disciplines."
+    },
+    {
+      "q": "Can a vector quantity ever have zero magnitude?",
+      "a": "Yes, a vector quantity can have zero magnitude. For example, if an object has zero velocity, its velocity vector has a magnitude of zero. Similarly, if forces are balanced, the resultant force vector is zero."
+    },
+    {
+      "q": "What's the main difference between an absolute and a percentage uncertainty?",
+      "a": "Absolute uncertainty is the raw error value with its units (e.g., ±0.05 m), indicating the range of possible values. Percentage uncertainty expresses this error as a fraction of the measured value (e.g., 2%), useful for comparing precision or combining uncertainties in multiplication/division."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-1",
+  "generatedAt": "2026-06-09T10:41:47.201Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/1-1-physical-quantities.png",
+    "alt": "Senpai Corner reference diagram for 1.1 Physical quantities"
+  }
+}

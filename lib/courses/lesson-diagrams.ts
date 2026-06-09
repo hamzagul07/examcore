@@ -50,7 +50,11 @@ const PILOT_DIAGRAMS: Record<
     Component: WavesComparison,
     meta: {
       caption: 'Transverse: particle motion ⊥ energy transfer. Longitudinal: both parallel.',
-      attribution: { source: 'Original', license: 'Proprietary' },
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
     },
   },
   '14-2-temperature-scales': {

@@ -1,0 +1,217 @@
+{
+  "slug": "1-4-scalars-and-vectors",
+  "topicCode": "1.4",
+  "title": "Scalars and vectors",
+  "paper": "P1/P2",
+  "paperName": "Paper 2 AS Level Structured Questions",
+  "status": "pilot",
+  "summary": "Cambridge 9702 Paper 2 — Scalars and vectors (1.4). Senpai Corner diagram-backed pilot with premium lesson structure and live visual learning.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Distinguish between scalar and vector quantities, providing relevant examples.",
+    "Add and resolve vectors using both graphical (scale diagrams) and analytical (component) methods.",
+    "Understand the effect of multiplying a vector by a positive or negative scalar."
+  ],
+  "simpleExplanation": {
+    "title": "Scalars vs. Vectors: The Basics",
+    "summary": "Some physical quantities, like temperature, only need a size. Others, like force, need both size and direction. These are called scalars and vectors, respectively, and understanding them is key to physics.",
+    "analogy": "Imagine giving directions to a friend. Saying 'Go 5 km' is like a scalar (distance). Saying 'Go 5 km North-East' is like a vector (displacement) – it gives both magnitude and direction, so they know exactly where to go!",
+    "steps": [
+      "Identify if a quantity has direction (vector) or just size (scalar).",
+      "Represent vectors visually using arrows where length shows size and the tip shows direction.",
+      "Combine vectors using Pythagoras and trigonometry for right-angle situations.",
+      "Break down complex vectors into simpler components to add them effectively."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the primary characteristic that defines a scalar quantity?",
+      "back": "Its magnitude (size) only."
+    },
+    {
+      "front": "Name three common examples of vector quantities.",
+      "back": "Displacement, velocity, force, acceleration, momentum, electric field strength (any three)."
+    },
+    {
+      "front": "How do you determine the magnitude of the resultant vector when adding two vectors that are perpendicular to each other?",
+      "back": "Using Pythagoras' theorem: $R = \\sqrt{V_x^2 + V_y^2}$."
+    },
+    {
+      "front": "If a vector $V$ makes an angle $\\theta$ with the horizontal, what is the formula for its horizontal component?",
+      "back": "$V_x = V \\cos \\theta$."
+    },
+    {
+      "front": "How does multiplying a vector by a negative scalar affect its magnitude and direction?",
+      "back": "Its magnitude changes proportionally, and its direction is reversed."
+    },
+    {
+      "front": "Give two examples of scalar quantities.",
+      "back": "Distance, speed, mass, time, temperature, energy (any two)."
+    },
+    {
+      "front": "How can vectors be visually represented?",
+      "back": "By an arrow, where its length signifies magnitude and the arrowhead indicates direction."
+    },
+    {
+      "front": "What is vector resolution?",
+      "back": "Breaking down a single vector into two components that are at right angles to each other."
+    },
+    {
+      "front": "What is the formula for the component of vector $V$ *opposite* to an angle $\\theta$?",
+      "back": "$V_y = V \\sin \\theta$."
+    },
+    {
+      "front": "What is the 'head-to-tail' method used for?",
+      "back": "Graphically adding non-perpendicular vectors using scale diagrams."
+    },
+    {
+      "front": "How does multiplying a vector by a positive scalar affect it?",
+      "back": "Its magnitude changes proportionally, but its direction remains the same."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of **scalars** and **vectors**! In physics, understanding these two fundamental categories of physical quantities is crucial. Some quantities, like temperature, are simple, needing just a size. Others, like the velocity of a rocket, require both size and a specific direction. Let's dive into how we define, represent, and combine them. This pilot lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **1.4**."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Scalars"
+    },
+    {
+      "type": "text",
+      "content": "A **scalar quantity** is defined solely by its magnitude – essentially, its size or amount. Scalars have no associated direction. Think of how you measure your mass on a scale; it's just '70 kg', not '70 kg upwards'. These quantities simplify many everyday measurements, focusing only on 'how much'."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "1.4 Scalars and vectors.",
+        "A scalar is a quantity which only has a magnitude.",
+        "E.g. speed, mass, time and distance.",
+        "A vector is a quantity with both a magnitude and direction.",
+        "Eg. velocity, acceleration, weight, and displacement.",
+        "If you want to know if a unit is a scalar or vector try putting a negative in front of it!."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Unveiling Vectors"
+    },
+    {
+      "type": "text",
+      "content": "In contrast, a **vector quantity** requires both a magnitude *and* a specific direction to be fully described. For instance, when you talk about your displacement, it's not just '5 meters' but '5 meters North'. Vectors are often represented visually as an arrow; the arrow's length corresponds to the vector's magnitude, and the arrowhead points in its direction."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Defined by magnitude and direction.",
+        "Represented by arrows (length = magnitude, arrowhead = direction).",
+        "Examples: displacement, velocity, force.",
+        "Examples: acceleration, momentum, electric field strength."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Adding Perpendicular Vectors"
+    },
+    {
+      "type": "text",
+      "content": "When two vectors act at right angles (perpendicular) to each other, combining them to find their **resultant vector** (the single vector equivalent to their combined effect) is straightforward. Imagine two forces, one pulling right and one pulling up. The overall effect, the resultant, can be found using fundamental geometry."
+    },
+    {
+      "type": "formula",
+      "content": "**Resultant Magnitude (Pythagoras' Theorem):**\n$R = \\sqrt{V_x^2 + V_y^2}$\n\n**Resultant Direction (Trigonometry):**\n$\\tan \\theta = \\frac{\\text{opposite}}{\\text{adjacent}} = \\frac{V_y}{V_x}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A boat is travelling at 3.0 m/s due East, and simultaneously, a current pushes it 4.0 m/s due North. Calculate the magnitude and direction of the boat's resultant velocity.",
+      "solution": "1.  **Identify components:** We have a horizontal velocity component $V_x = 3.0 \\text{ m/s}$ (East) and a vertical velocity component $V_y = 4.0 \\text{ m/s}$ (North). These are perpendicular.\n2.  **Calculate resultant magnitude:** Use Pythagoras' theorem.\n    $R = \\sqrt{(3.0)^2 + (4.0)^2} = \\sqrt{9.0 + 16.0} = \\sqrt{25.0} = 5.0 \\text{ m/s}$\n3.  **Calculate resultant direction:** Use trigonometry. Let $\\theta$ be the angle North of East.\n    $\\tan \\theta = \\frac{V_y}{V_x} = \\frac{4.0}{3.0} = 1.333$\n    $\\theta = \\tan^{-1}(1.333) = 53.1\\degree$ (to 1 d.p.)\n4.  **State the resultant velocity:** The boat's resultant velocity is $5.0 \\text{ m/s}$ at $53.1\\degree$ North of East."
+    },
+    {
+      "type": "heading",
+      "content": "Resolving Vectors"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, we need to do the reverse of adding: break down a single vector into two components that are at right angles to each other. This process is called **vector resolution**. It's incredibly useful when a force or velocity acts at an angle, and you need to see its individual effects along, say, horizontal and vertical axes."
+    },
+    {
+      "type": "formula",
+      "content": "If a vector $V$ makes an angle $\\theta$ with the horizontal (x-axis):\n**Component adjacent to the angle:** $V_x = V \\cos \\theta$\n**Component opposite to the angle:** $V_y = V \\sin \\theta$"
+    },
+    {
+      "type": "heading",
+      "content": "Adding Non-Perpendicular Vectors"
+    },
+    {
+      "type": "text",
+      "content": "When vectors aren't at right angles, you can't use Pythagoras directly. One common and accurate method is to first **resolve each vector into its perpendicular components** (e.g., horizontal and vertical). Once you have all the horizontal components and all the vertical components, you can add them algebraically to get total horizontal ($R_x$) and total vertical ($R_y$) resultants. Then, combine these two total perpendicular components using Pythagoras' theorem and trigonometry to find the final resultant."
+    },
+    {
+      "type": "text",
+      "content": "Alternatively, for a more visual approach, you can use **scale diagrams** and the **head-to-tail method**. Draw the first vector to scale, then draw the second vector (also to scale) starting from the head (tip) of the first. The resultant is the vector drawn from the tail (start) of the first to the head of the last."
+    },
+    {
+      "type": "examTip",
+      "content": "For AS-Level Physics, the analytical method of resolving vectors into components is generally preferred over scale diagrams for accuracy, especially in Paper 2 calculations. Practice both, but master the component method!"
+    },
+    {
+      "type": "heading",
+      "content": "Scalar Multiplication of Vectors"
+    },
+    {
+      "type": "text",
+      "content": "Multiplying a vector by a scalar changes its magnitude. If you multiply a vector by a **positive scalar**, its magnitude changes proportionally, but its direction remains the same. For example, $2\\mathbf{v}$ is a vector twice as long as $\\mathbf{v}$ but in the identical direction."
+    },
+    {
+      "type": "text",
+      "content": "If you multiply a vector by a **negative scalar**, its magnitude also changes proportionally, but its direction is *reversed*. So, $-3\\mathbf{v}$ would be a vector three times the length of $\\mathbf{v}$ but pointing in precisely the opposite direction."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        },
+        {
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between distance and displacement in physics?",
+      "a": "Distance is a scalar quantity, measuring the total path length travelled without regard for direction (e.g., 100 metres). Displacement, conversely, is a vector quantity, representing the straight-line distance from the start to the end point, including its specific direction (e.g., 100 metres North)."
+    },
+    {
+      "q": "Why is understanding vectors so important in physics?",
+      "a": "Many fundamental concepts in physics, like force, velocity, and electric fields, are inherently directional. Vectors provide the essential mathematical framework to accurately describe, represent, and analyse these quantities, enabling precise predictions and calculations in diverse physical phenomena."
+    },
+    {
+      "q": "Can a vector have zero magnitude but still possess a direction?",
+      "a": "No, if a vector has zero magnitude, it essentially has no 'size' or extent. Therefore, a meaningful direction cannot be associated with it. A vector with zero magnitude is called the zero vector and fundamentally has no defined direction."
+    }
+  ],
+  "updated": "2026-06-06",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-pilot-1",
+  "generatedAt": "2026-06-09T10:41:47.219Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/1-4-scalars-and-vectors.png",
+    "alt": "Senpai Corner reference diagram for 1.4 Scalars and vectors"
+  }
+}

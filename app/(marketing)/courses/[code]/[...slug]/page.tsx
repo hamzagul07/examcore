@@ -11,6 +11,7 @@ import {
 } from '@/lib/courses'
 import type { CourseLesson } from '@/lib/courses/types'
 import { findPaperTrack } from '@/lib/courses/paper-tracks'
+import { getPaperPilotStaticParams } from '@/lib/courses/paper-pilot-routes'
 import { paperNumberFromDir } from '@/lib/courses/paths'
 import { buildCourseLessonSeo } from '@/lib/courses/seo'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
@@ -30,15 +31,6 @@ type Props = {
   params: Promise<{ code: string; slug: string[] }>
   searchParams: Promise<{ pilot?: string; paper?: string }>
 }
-
-const PAPER_PILOT_PARAMS = [
-  { code: '9702', slug: ['paper-1', '2-1-equations-of-motion'] },
-  { code: '9702', slug: ['paper-2', '4-2-equilibrium-of-forces'] },
-  { code: '9702', slug: ['paper-2', '7-1-progressive-waves'] },
-  { code: '9702', slug: ['paper-3', '1-3-errors-and-uncertainties'] },
-  { code: '9702', slug: ['paper-4', '25-3-hubbles-law-and-the-big-bang-theory'] },
-  { code: '9702', slug: ['paper-5', '1-3-errors-and-uncertainties'] },
-] as const
 
 type ResolvedLesson =
   | {
@@ -100,7 +92,7 @@ export async function generateStaticParams() {
     code,
     slug: [slug],
   }))
-  return [...flat, ...PAPER_PILOT_PARAMS]
+  return [...flat, ...getPaperPilotStaticParams()]
 }
 
 export async function generateMetadata({ params, searchParams }: Props) {

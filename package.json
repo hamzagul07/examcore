@@ -48,6 +48,7 @@
     "test:content-source": "tsx lib/courses/content-source.test.ts",
     "test:lesson-generator": "tsx lib/courses/generator/lesson-schema.test.ts && tsx lib/courses/generator/validate-lesson.test.ts",
     "generate:pilots": "tsx scripts/generate-pilot-lessons.mjs",
+    "senpai:as-pilots": "node scripts/generate-senpai-as-pilots.mjs",
     "bulk:extract": "tsx scripts/bulk-extract-sessions.mjs",
     "audit:tier2": "node scripts/audit-tier2-prerequisites.mjs",
     "smoke:gemini": "tsx scripts/gemini-smoke.mjs"

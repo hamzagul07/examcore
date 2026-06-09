@@ -1,354 +1,219 @@
 {
   "slug": "7-1-progressive-waves",
   "topicCode": "7.1",
-  "title": "Progressive Waves",
-  "paper": "P2",
+  "title": "Progressive waves",
+  "paper": "P1/P2",
   "paperName": "Paper 2 AS Level Structured Questions",
   "status": "pilot",
-  "summary": "Master the fundamentals of progressive waves for Cambridge A-Level Physics Paper 2. This lesson covers wave motion, key terminology, the wave equation v = fλ, CRO analysis, and wave intensity calculations, with worked examples from past papers.",
-  "durationMin": 30,
+  "summary": "Cambridge 9702 Paper 2 — Progressive waves (7.1). Senpai Corner diagram-backed pilot with premium lesson structure and live visual learning.",
+  "durationMin": 20,
+  "learningObjectives": [
+    "Define and describe progressive waves, distinguishing between transverse and longitudinal types.",
+    "Recall and apply fundamental wave equations to calculate speed, frequency, and wavelength.",
+    "Explain key wave phenomena like intensity, phase difference, polarisation, and the Doppler effect."
+  ],
+  "simpleExplanation": {
+    "title": "Unpacking Progressive Waves",
+    "summary": "Progressive waves are nature's way of moving energy without moving matter. Imagine a ripple expanding across water; the water itself doesn't travel far, but the energy of the ripple does. We'll explore how they carry energy and their fundamental properties.",
+    "analogy": "Think of a 'Mexican wave' in a stadium. People stand up and sit down (oscillate), but they don't move around the stadium. The 'wave' of standing and sitting, carrying energy and excitement, moves through the crowd. That's a progressive wave!",
+    "steps": [
+      "Energy Moves, Matter Stays: Progressive waves carry energy, not the material they travel through.",
+      "Know Your Terms: Understand amplitude, wavelength, period, frequency, and wave speed.",
+      "Two Main Types: Distinguish between transverse (perpendicular oscillations) and longitudinal (parallel oscillations) waves.",
+      "Special Behaviours: Learn about polarisation (transverse only) and the Doppler effect (frequency changes with motion)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a progressive wave's primary role?",
+      "back": "To transmit energy from one point to another without transferring matter."
+    },
+    {
+      "front": "Define Amplitude.",
+      "back": "The maximum displacement of an oscillating particle from its equilibrium position."
+    },
+    {
+      "front": "How are frequency and period related?",
+      "back": "Frequency ($f$) is the inverse of the period ($T$), so $f = 1/T$."
+    },
+    {
+      "front": "What is the fundamental wave equation?",
+      "back": "Wave speed ($v$) = frequency ($f$) \\times wavelength ($\\lambda$), or $v = f\\lambda$."
+    },
+    {
+      "front": "What distinguishes a transverse wave?",
+      "back": "Particle oscillations are perpendicular to the direction of energy transfer."
+    },
+    {
+      "front": "Give an example of a longitudinal wave.",
+      "back": "Sound waves are a common example, involving compressions and rarefactions."
+    },
+    {
+      "front": "What is phase difference?",
+      "back": "It describes the difference in oscillatory state between two points on a wave, often measured in radians."
+    },
+    {
+      "front": "How does wave intensity relate to amplitude?",
+      "back": "Wave intensity ($I$) is directly proportional to the square of its amplitude ($A$), so $I \\propto A^2$."
+    },
+    {
+      "front": "What phenomenon proves a wave is transverse?",
+      "back": "Polarisation, which restricts wave oscillations to a single plane, can only occur with transverse waves."
+    },
+    {
+      "front": "What is the Doppler effect?",
+      "back": "The perceived change in frequency of a wave due to relative motion between its source and the observer."
+    },
+    {
+      "front": "Can EM waves travel through a vacuum?",
+      "back": "Yes, all electromagnetic waves are transverse and can travel through a vacuum at the speed of light ($c = 3 \\times 10^8 \\text{ ms\\textsuperscript{-1}}$)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the topic of progressive waves! These are the waves you're most familiar with – from ripples on a pond to the light and sound that fill our world. In Paper 2, you'll be asked to define their properties, perform calculations using the wave equation, and analyse them using oscilloscopes. Let's dive in."
+      "content": "Welcome to the fascinating world of **progressive waves**! These waves are nature's silent couriers, diligently moving **energy** from one location to another without actually moving the **matter** they travel through. From ripples on a pond to the light reaching us from distant stars, understanding progressive waves is fundamental to physics. This pilot lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **7.1**."
     },
     {
       "type": "heading",
-      "content": "What is a Progressive Wave?"
+      "content": "The Essence of a Progressive Wave"
     },
     {
       "type": "text",
-      "content": "A progressive wave is a disturbance that transfers energy from one place to another without any net transfer of matter. Imagine shaking one end of a long rope. A wave travels along the rope, but each piece of the rope itself just oscillates up and down. The wave carries energy along the rope. This is the core concept of wave motion. You can see this in ripple tanks, where water moves up and down while the wave spreads outwards, or in a Slinky spring, where a compression travels along the spring."
+      "content": "A progressive wave is essentially a disturbance that travels through a medium or even a vacuum, carrying energy along with it. Crucially, while the energy progresses, the individual particles of the medium merely oscillate around their fixed equilibrium positions. They don't travel along with the wave itself."
     },
     {
       "type": "heading",
-      "content": "Key Wave Terminology"
+      "content": "Key Characteristics and Definitions"
     },
     {
       "type": "text",
-      "content": "To describe waves accurately, we need a specific vocabulary. For a particle oscillating in a wave, its **displacement ($x$ or $y$)** is its distance from its equilibrium (undisturbed) position. The **amplitude ($A$)** is the maximum displacement. \n\nOther key terms relate to the wave as a whole:\n*   **Period ($T$)**: The time taken for one complete oscillation of a point on the wave. Measured in seconds (s).\n*   **Frequency ($f$)**: The number of complete oscillations per unit time. Measured in hertz (Hz), where $1 \\text{ Hz} = 1 \\text{ s}^{-1}$. Frequency and period are related by $f = 1/T$.\n*   **Wavelength ($\\lambda$)**: The shortest distance between two points on the wave that are in phase (e.g., the distance from one crest to the next). Measured in metres (m).\n*   **Speed ($v$)**: The speed at which the wave transfers energy. Measured in metres per second (m s$^{-1}$)."
+      "content": "To describe waves precisely, we use several fundamental terms. Imagine a point on a wave moving up and down; its displacement is its distance from the rest position. The maximum displacement it achieves is called its amplitude. These concepts help us quantify the wave's characteristics."
     },
     {
-      "type": "text",
-      "content": "The **phase difference** between two points on a wave describes how far through a cycle one point is compared to another. It's measured in degrees or radians.\n*   **In phase**: The points are oscillating perfectly in step. Their phase difference is $0^\\circ$ or $360^\\circ$ (which is $2\\pi$ radians). They reach their maximum displacement at the same time. Points separated by a whole number of wavelengths ($n\\lambda$) are in phase.\n*   **In antiphase**: The points are oscillating perfectly out of step. One reaches its positive maximum displacement as the other reaches its negative maximum. Their phase difference is $180^\\circ$ ($\\pi$ radians). Points separated by an odd number of half-wavelengths ($(n+1/2)\\lambda$) are in antiphase."
-    },
-    {
-      "type": "heading",
-      "content": "Deriving the Wave Equation"
-    },
-    {
-      "type": "text",
-      "content": "The wave equation, $v = f\\lambda$, is fundamental. You need to be able to derive it for Paper 2.\n\n1.  Start with the basic definition of speed: $\\text{speed} = \\frac{\\text{distance}}{\\text{time}}$.\n2.  Consider a wave travelling a distance equal to one wavelength, $\\lambda$.\n3.  The time taken for the wave to travel this distance is one period, $T$.\n4.  Substitute these into the speed equation: $v = \\frac{\\lambda}{T}$.\n5.  Since we know that frequency $f = \\frac{1}{T}$, we can substitute this into the equation.\n6.  This gives the final wave equation: $v = f\\lambda$."
+      "type": "keyPoints",
+      "items": [
+        "7.1 Progressive waves.",
+        "Waves are created when particles oscillate or vibrate.",
+        "Energy is transferred through these moving oscillations.",
+        "You can represent waves on two types of plots: 1) Displacement-distance plot 2) Displacement-time plot.",
+        "Below are some terminology for waves:.",
+        "Amplitude , A : The maximum displacement from the original position. The SI unit for amplitude is in meters."
+      ]
     },
     {
       "type": "formula",
-      "content": "$$ v = f\\lambda $$"
+      "content": "Wave Speed: $v = f\\lambda$"
     },
     {
       "type": "heading",
-      "content": "Analysing Waves with a Cathode-Ray Oscilloscope (CRO)"
+      "content": "Wave Intensity and Power"
     },
     {
       "type": "text",
-      "content": "A CRO displays a voltage-time graph of a signal. For wave analysis (e.g., from a microphone), this allows us to measure key properties.\n*   **Y-gain (or Volts/div)**: This setting controls the vertical scale. You use it to find the amplitude of the signal (peak voltage). Amplitude (V) = (peak vertical distance from centre in divisions) $\\times$ (Y-gain setting).\n*   **Time-base (or Time/div)**: This setting controls the horizontal scale (time). You use it to find the period of the wave. Period (s) = (horizontal distance for one full cycle in divisions) $\\times$ (Time-base setting).\n\nOnce you find the period $T$ from the CRO, you can easily calculate the frequency using $f = 1/T$."
+      "content": "The intensity of a wave ($I$) tells us how much power it transfers per unit area ($P/A_{area}$). Think of how loud a sound is or how bright a light appears – that relates to its intensity. A key relationship is how intensity scales with the wave's amplitude."
+    },
+    {
+      "type": "formula",
+      "content": "Intensity: $I = P/A_{area}$ and $I \\propto A^2$"
     },
     {
       "type": "heading",
-      "content": "Wave Intensity"
+      "content": "Types of Progressive Waves: Transverse vs. Longitudinal"
     },
     {
       "type": "text",
-      "content": "As a wave propagates, it transfers energy. The **intensity ($I$)** of a wave at a surface is defined as the power ($P$) transferred per unit area ($A$) normal to the direction of energy propagation."
+      "content": "Not all waves are the same! The way the particles of a medium oscillate relative to the wave's direction of energy transfer categorises them into two main types: transverse and longitudinal waves. This distinction is crucial for understanding their unique properties."
     },
     {
-      "type": "formula",
-      "content": "$$ I = \\frac{P}{A} $$"
+      "type": "keyPoints",
+      "items": [
+        "**Transverse Waves**: Particle oscillations are perpendicular to the direction of energy transfer.",
+        "Examples: All electromagnetic (EM) waves (light, radio waves, X-rays), ripples on water.",
+        "EM waves travel through a vacuum at the speed of light, $c = 3 \\times 10^8 \\text{ ms\\textsuperscript{-1}}$.",
+        "**Longitudinal Waves**: Particle oscillations are parallel to the direction of energy transfer.",
+        "Examples: Sound waves, seismic P-waves. They consist of compressions and rarefactions.",
+        "Require a medium to propagate; they cannot travel in a vacuum."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Polarisation: A Transverse Wave Signature"
     },
     {
       "type": "text",
-      "content": "For any wave, the energy it carries is related to its amplitude. A wave with a larger amplitude carries more energy. The precise relationship is that intensity is directly proportional to the square of the amplitude."
+      "content": "Polarisation is a unique property of transverse waves. It involves restricting the oscillations of the wave to a single plane. This phenomenon provides definitive evidence that waves like light are transverse, as longitudinal waves cannot be polarised."
     },
     {
       "type": "formula",
-      "content": "$$ I \\propto A^2 $$"
+      "content": "Malus' Law (for transmitted intensity through a polariser): $I = I_0\\cos^2\\theta$"
+    },
+    {
+      "type": "workedExample",
+      "question": "An unpolarised light wave with an initial intensity of $80 \\text{ W m\\textsuperscript{-2}}$ passes through a polarising filter. If the filter's transmission axis is at an angle of $30^{\\circ}$ to the original plane of oscillation, calculate the intensity of the transmitted light.",
+      "solution": "1.  **Recall Malus' Law**: The formula is $I = I_0\\cos^2\\theta$.\n2.  **Identify Given Values**: Initial intensity $I_0 = 80 \\text{ W m\\textsuperscript{-2}}$. Angle $\\theta = 30^{\\circ}$.\n3.  **Calculate $\\cos(30^{\\circ})$**: $\\cos(30^{\\circ}) \\approx 0.866$.\n4.  **Calculate $(\\cos(30^{\\circ}))^2$**: $(0.866)^2 \\approx 0.75$.\n5.  **Substitute into Malus' Law**: $I = 80 \\text{ W m\\textsuperscript{-2}} \\times 0.75$.\n6.  **Calculate Final Intensity**: $I = 60 \\text{ W m\\textsuperscript{-2}}$.\n7.  **State the Answer**: The intensity of the transmitted light is $60 \\text{ W m\\textsuperscript{-2}}$."
+    },
+    {
+      "type": "heading",
+      "content": "The Doppler Effect: Pitch and Motion"
+    },
+    {
+      "type": "text",
+      "content": "Ever noticed how the pitch of an ambulance siren changes as it approaches and then moves away? That's the Doppler effect in action! It's the apparent shift in a wave's frequency due to the relative motion between the source of the wave and the observer."
+    },
+    {
+      "type": "formula",
+      "content": "Doppler Effect (Sound): $f_o = (f_s \\cdot v) / (v \\pm v_s)$ \n(Use '+' when source moves away, '-' when source moves towards observer)"
     },
     {
       "type": "examTip",
-      "content": "A very common mistake in Paper 2 is forgetting to convert units for area. Intensity calculations require the area to be in square metres ($m^2$). Always check for units like cm$^2$ or mm$^2$ and convert them before you substitute into the formula. Remember: $1 \\text{ cm}^2 = (10^{-2} \\text{ m})^2 = 10^{-4} \\text{ m}^2$."
+      "content": "Pay close attention to the direction of motion for Doppler Effect calculations! A source moving *towards* an observer causes a *higher* observed frequency (use '-' in the denominator), while a source moving *away* causes a *lower* observed frequency (use '+' in the denominator)."
     },
     {
-      "type": "workedExample",
-      "question": "The power of the light incident on the solar panel is 750 W.\n\nCalculate the intensity of the light.",
-      "solution": "1. $I = P / A$\n2. $= 750 / (1300 \\times 10^{-3})^2$\n3. $= 440 \\text{ W m}^{-2}$",
-      "sourceQuestionId": "9622eca6-22a7-4bd0-ab6e-55bff6e51d4b"
+      "type": "practice",
+      "label": "Mark a past-paper question on this topic",
+      "href": "/mark?subject=9702&topic=7.1"
     },
     {
-      "type": "workedExample",
-      "question": "Another square solar panel is placed so that light of the same intensity is incident normally on it. The new panel has shorter sides than the original panel. The new panel has the same power output as the original panel.\n\nState and explain whether the efficiency of the new panel is greater than, less than or the same as the efficiency of the original panel.",
-      "solution": "1. area (of the new panel) is less\n2. input power (of the new panel) is less (than the input power of the original panel) (as intensity is constant)\n3. (useful power output is unchanged so) efficiency is greater (than the original panel)",
-      "sourceQuestionId": "e6f8b6d2-300e-4d9d-ad68-bd63564a7f50"
-    },
-    {
-      "type": "workedExample",
-      "question": "A light meter is used to measure the intensity of light in a classroom. Daylight is incident normally on the sensor of the meter. The sensor has an area of $2.2\\,cm^2$. The reading on the meter is $950\\,W\\,m^{-2}$.\n\nCalculate the power of the daylight incident on the sensor.",
-      "solution": "1. power = intensity $\\times$ area\n2. = $950 \\times 2.2 \\times 10^{-4}$\n3. = $0.21$ W",
-      "sourceQuestionId": "5ab8c8f8-0d21-44c1-b304-83e9a43b12bd"
-    },
-    {
-      "type": "pastPaperPractice",
-      "questions": [
+      "type": "resources",
+      "items": [
         {
-          "questionId": "5ab8c8f8-0d21-44c1-b304-83e9a43b12bd",
-          "year": 2024,
-          "session": "February/March",
-          "paperVariant": "22",
-          "questionNumber": "1(c)",
-          "marks": 3,
-          "questionTextPreview": "A light meter is used to measure the intensity of light in a classroom. Daylight is incident normally on the sensor of the meter. The sensor has an area of $2.2\\,cm^2$. The reading on the meter is $950\\,W\\,m^{-2}$.\nCalculate the power of the daylight incident on the sensor.",
-          "markPoints": [
-            {
-              "text": "power = intensity $\\times$ area",
-              "marks": 1
-            },
-            {
-              "text": "= $950 \\times 2.2 \\times 10^{-4}$",
-              "marks": 1
-            },
-            {
-              "text": "= $0.21$ W",
-              "marks": 1
-            }
-          ],
-          "markHref": "/mark?subject=9702&paper=9702%2F22&session=m24&question=1%28c%29"
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
         },
         {
-          "questionId": "9622eca6-22a7-4bd0-ab6e-55bff6e51d4b",
-          "year": 2024,
-          "session": "May/June",
-          "paperVariant": "22",
-          "questionNumber": "1(b)(i)",
-          "marks": 3,
-          "questionTextPreview": "The power of the light incident on the solar panel is 750 W.\nCalculate the intensity of the light.",
-          "markPoints": [
-            {
-              "text": "$I = P / A$",
-              "marks": 1
-            },
-            {
-              "text": "$= 750 / (1300 \\times 10^{-3})^2$",
-              "marks": 1
-            },
-            {
-              "text": "$= 440 \\text{ W m}^{-2}$",
-              "marks": 1
-            }
-          ],
-          "markHref": "/mark?subject=9702&paper=9702%2F22&session=s24&question=1%28b%29%28i%29"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
         },
         {
-          "questionId": "f396bcbe-3111-4300-b6b4-35b02c7d1704",
-          "year": 2023,
-          "session": "February/March",
-          "paperVariant": "22",
-          "questionNumber": "5(a)(i)",
-          "marks": 2,
-          "questionTextPreview": "Determine the time-base setting, in $\\text{s cm}^{-1}$, of the CRO.",
-          "markPoints": [],
-          "markHref": "/mark?subject=9702&paper=9702%2F22&session=m23&question=5%28a%29%28i%29"
-        },
-        {
-          "questionId": "0207eadd-d744-4119-adb4-99f7b862bce9",
-          "year": 2024,
-          "session": "February/March",
-          "paperVariant": "22",
-          "questionNumber": "5(c)",
-          "marks": 3,
-          "questionTextPreview": "A detector on another space telescope detects an electromagnetic wave. The signal from the detector is transmitted to Earth and displayed on an oscilloscope as shown in Fig. 5.1. The frequency of the signal displayed on the oscilloscope is equal to the frequency of the detected electromagnetic wave.\nThe time-base setting on the oscilloscope is $5.0 \\times 10^{-15}\\,s\\,cm^{-1}$.\nCalculate the wavelength of the detected electromagnetic wave.",
-          "markPoints": [
-            {
-              "text": "$T = 6 \\times 5.0 \\times 10^{-15}$ AND $T = 3.0 \\times 10^{-14}$",
-              "marks": 1
-            },
-            {
-              "text": "$\\lambda = cT$",
-              "marks": 1
-            },
-            {
-              "text": "$\\lambda = 3.0 \\times 10^8 \\times 3.0 \\times 10^{-14}$ AND $= 9.0 \\times 10^{-6}$ m",
-              "marks": 1
-            }
-          ],
-          "markHref": "/mark?subject=9702&paper=9702%2F22&session=m24&question=5%28c%29"
-        },
-        {
-          "questionId": "bf374698-2b2f-4604-853a-3cb81ff833ee",
-          "year": 2024,
-          "session": "February/March",
-          "paperVariant": "22",
-          "questionNumber": "6(b)(ii)",
-          "marks": 1,
-          "questionTextPreview": "State the phase difference between P and Q.",
-          "markPoints": [
-            {
-              "text": "0",
-              "marks": 1
-            }
-          ],
-          "markHref": "/mark?subject=9702&paper=9702%2F22&session=m24&question=6%28b%29%28ii%29"
-        },
-        {
-          "questionId": "c22805d6-0a27-431c-b286-84ab467fb8c1",
-          "year": 2024,
-          "session": "February/March",
-          "paperVariant": "22",
-          "questionNumber": "6(b)(iii)",
-          "marks": 1,
-          "questionTextPreview": "State the phase difference between P and R.",
-          "markPoints": [
-            {
-              "text": "$180^\\circ$",
-              "marks": 1
-            }
-          ],
-          "markHref": "/mark?subject=9702&paper=9702%2F22&session=m24&question=6%28b%29%28iii%29"
-        },
-        {
-          "questionId": "e6f8b6d2-300e-4d9d-ad68-bd63564a7f50",
-          "year": 2024,
-          "session": "May/June",
-          "paperVariant": "22",
-          "questionNumber": "1(b)(iv)",
-          "marks": 3,
-          "questionTextPreview": "Another square solar panel is placed so that light of the same intensity is incident normally on it. The new panel has shorter sides than the original panel. The new panel has the same power output as the original panel.\nState and explain whether the efficiency of the new panel is greater than, less than or the same as the efficiency of the original panel.",
-          "markPoints": [
-            {
-              "text": "area (of the new panel) is less",
-              "marks": 1
-            },
-            {
-              "text": "input power (of the new panel) is less (than the input power of the original panel) (as intensity is constant)",
-              "marks": 1
-            },
-            {
-              "text": "(useful power output is unchanged so) efficiency is greater (than the original panel)",
-              "marks": 1
-            }
-          ],
-          "markHref": "/mark?subject=9702&paper=9702%2F22&session=s24&question=1%28b%29%28iv%29"
-        },
-        {
-          "questionId": "2c0437ea-153d-49e7-be17-0891333397f4",
-          "year": 2024,
-          "session": "May/June",
-          "paperVariant": "22",
-          "questionNumber": "6(b)(i)",
-          "marks": 1,
-          "questionTextPreview": "State whether the frequency of the red light is greater than, less than or the same as the frequency of the original light.",
-          "markPoints": [
-            {
-              "text": "(frequency of red light is) less (than frequency of original light)",
-              "marks": 1
-            }
-          ],
-          "markHref": "/mark?subject=9702&paper=9702%2F22&session=s24&question=6%28b%29%28i%29"
+          "label": "How to read mark schemes",
+          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
         }
       ]
     }
   ],
-  "learningObjectives": [
-    "Describe wave motion as energy transfer.",
-    "Define and use key wave parameters: amplitude, wavelength, frequency, period, speed, and phase difference.",
-    "Derive and apply the wave equation v = fλ.",
-    "Interpret CRO displays to find frequency and amplitude.",
-    "Define and use the formula for wave intensity, I=P/A, and its relationship with amplitude, I ∝ A²."
-  ],
   "faq": [
     {
-      "q": "What's the difference between displacement and amplitude?",
-      "a": "Displacement is the instantaneous distance of an oscillating particle from its equilibrium position. It can be positive or negative and changes with time. Amplitude is the maximum possible displacement from the equilibrium position; it's a fixed positive value for a given wave."
+      "q": "What makes a wave \"progressive\"?",
+      "a": "A progressive wave is characterised by its continuous transfer of energy from one location to another, without any net transfer of the medium's matter itself. The disturbance (the wave) moves, but the medium's particles simply oscillate around their equilibrium positions."
     },
     {
-      "q": "If a wave travels from a less dense to a more dense medium, what happens to its speed, frequency, and wavelength?",
-      "a": "The frequency of the wave remains constant, as it is determined by the source. When entering a denser medium, the wave typically slows down. According to the wave equation $v = f\\lambda$, if $v$ decreases and $f$ is constant, the wavelength $\\lambda$ must also decrease."
+      "q": "Can sound waves be polarised?",
+      "a": "No, sound waves are longitudinal waves, meaning their particle oscillations are parallel to the direction of energy transfer. Polarisation is a phenomenon exclusive to transverse waves, where oscillations can be restricted to a single plane."
     },
     {
-      "q": "Why is intensity proportional to amplitude squared, not just amplitude?",
-      "a": "The energy of an oscillator is proportional to the square of its amplitude (from simple harmonic motion, $E \\propto A^2$). Since intensity is the rate of energy transfer (power) per unit area, it is also proportional to the amplitude squared. A small increase in amplitude leads to a much larger increase in the energy carried by the wave."
+      "q": "How can a Cathode-Ray Oscilloscope (CRO) be used to measure wave properties?",
+      "a": "A CRO displays a voltage-time graph, allowing you to measure the period (T) of a wave directly from the screen's time-base settings. From the period, you can calculate the frequency ($f = 1/T$) and, if wave speed is known, the wavelength ($\\lambda = v/f$). The amplitude of the wave can also be determined from the voltage scale."
     }
   ],
-  "flashcards": [
-    {
-      "front": "What is a progressive wave?",
-      "back": "A wave that transfers energy from one point to another without the net transfer of matter.",
-      "pillLabel": "a progressive wave"
-    },
-    {
-      "front": "Define phase difference.",
-      "back": "The fraction of a cycle (in degrees or radians) by which one oscillation leads or lags another. Points in phase have a phase difference of 0 or 360°. Points in antiphase have a phase difference of 180°.",
-      "pillLabel": "phase difference"
-    },
-    {
-      "front": "State the wave equation.",
-      "back": "$v = f\\lambda$, where $v$ is wave speed, $f$ is frequency, and $\\lambda$ is wavelength.",
-      "pillLabel": "State the wave equation."
-    },
-    {
-      "front": "How do you find the period of a wave from a CRO trace?",
-      "back": "Measure the number of horizontal divisions for one complete cycle and multiply by the time-base setting (in s/div or s/cm).",
-      "pillLabel": "How do you find the"
-    },
-    {
-      "front": "Define wave intensity.",
-      "back": "The power transferred per unit area perpendicular to the direction of energy transfer. The formula is $I = P/A$ and the unit is W m⁻².",
-      "pillLabel": "wave intensity"
-    },
-    {
-      "front": "What is the relationship between a wave's intensity and its amplitude?",
-      "back": "Intensity is directly proportional to the square of the amplitude ($I \\propto A^2$).",
-      "pillLabel": "relationship between a"
-    }
-  ],
+  "updated": "2026-06-06",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
-  "syllabusObjectivesCovered": [
-    "7.1.1",
-    "7.1.2",
-    "7.1.3",
-    "7.1.4",
-    "7.1.5",
-    "7.1.6",
-    "7.1.7"
-  ],
-  "pastPaperReferences": [
-    {
-      "paperCode": "9702/22",
-      "paperSession": "2024-May/June",
-      "sessionLabel": "May/June 2024",
-      "questionNumber": "1(b)(i)",
-      "questionText": "The power of the light incident on the solar panel is 750 W.\n\nCalculate the intensity of the light.",
-      "totalMarks": 3,
-      "markHref": "/marking/9702/22/2024-May/June/1(b)(i)"
-    },
-    {
-      "paperCode": "9702/22",
-      "paperSession": "2024-May/June",
-      "sessionLabel": "May/June 2024",
-      "questionNumber": "1(b)(iv)",
-      "questionText": "Another square solar panel is placed so that light of the same intensity is incident normally on it. The new panel has shorter sides than the original panel. The new panel has the same power output as the original panel.\n\nState and explain whether the efficiency of the new panel is greater than, less than or the same as the efficiency of the original panel.",
-      "totalMarks": 3,
-      "markHref": "/marking/9702/22/2024-May/June/1(b)(iv)"
-    },
-    {
-      "paperCode": "9702/22",
-      "paperSession": "2024-February/March",
-      "sessionLabel": "February/March 2024",
-      "questionNumber": "1(c)",
-      "questionText": "A light meter is used to measure the intensity of light in a classroom. Daylight is incident normally on the sensor of the meter. The sensor has an area of $2.2\\,cm^2$. The reading on the meter is $950\\,W\\,m^{-2}$.\n\nCalculate the power of the daylight incident on the sensor.",
-      "totalMarks": 3,
-      "markHref": "/marking/9702/22/2024-February/March/1(c)"
-    }
-  ],
-  "generatedAt": "2026-06-07T11:20:12.989Z",
-  "generatorVersion": "b-v3-pilot-2"
+  "generatorVersion": "senpai-pilot-1",
+  "generatedAt": "2026-06-09T10:41:47.256Z",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/7-1-progressive-waves.png",
+    "alt": "Senpai Corner reference diagram for 7.1 Progressive waves"
+  }
 }

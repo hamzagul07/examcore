@@ -11,6 +11,7 @@ import path from 'path'
 import { spawnSync } from 'child_process'
 import { fileURLToPath } from 'url'
 import { createCanvas } from '@napi-rs/canvas'
+import { cleanAlnotesPage } from './lib/alnotes-page-clean.mjs'
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url))
 const PROJECT = path.join(ROOT, '..')
@@ -139,17 +140,58 @@ function parsePageTopicSegments(text, topicCodes, carryTopic) {
   return { segments, carryTopic: hits[hits.length - 1][1] }
 }
 
+function isNoiseLine(t) {
+  return (
+    /^chapter \d/i.test(t) ||
+    /^9700/i.test(t) ||
+    /candidates should/i.test(t) ||
+    /alevel-notes\.weebly/i.test(t) ||
+    /^image:\s*https?:\/\//i.test(t) ||
+    /^www\./i.test(t) ||
+    /^\d{1,3}$/.test(t)
+  )
+}
+
 function parseNoteBullets(text) {
   const bullets = []
   for (const line of text.split(/[•\n]/)) {
     const t = line.replace(/\s+/g, ' ').trim()
-    if (t.length < 12 || t.length > 240) continue
-    if (/^chapter \d/i.test(t)) continue
-    if (/^9700/i.test(t)) continue
-    if (/candidates should/i.test(t)) continue
+    if (t.length < 12 || t.length > 320) continue
+    if (isNoiseLine(t)) continue
     bullets.push(t)
   }
-  return [...new Set(bullets)].slice(0, 8)
+  return [...new Set(bullets)].slice(0, 24)
+}
+
+function parseAlnotesSections(text) {
+  const sections = []
+  const chunks = text
+    .split(/(?=\b\d+[\).]\s+[A-Za-z])/g)
+    .map((c) => c.replace(/\s+/g, ' ').trim())
+    .filter((c) => c.length > 40)
+
+  for (const chunk of chunks.slice(0, 10)) {
+    const headingMatch = chunk.match(/^(\d+[\).]\s*[^•]{8,90})/)
+    if (!headingMatch) continue
+    const heading = headingMatch[1].trim()
+    const body = chunk.slice(heading.length).trim()
+    if (isNoiseLine(heading)) continue
+    sections.push({ type: 'heading', content: heading })
+    if (body.length > 20) {
+      const lines = body
+        .split(/(?<=[.!?])\s+(?=[A-Z•])|•/)
+        .map((l) => l.trim())
+        .filter((l) => l.length > 15 && !isNoiseLine(l))
+        .slice(0, 8)
+      if (lines.length) {
+        sections.push({
+          type: 'text',
+          content: lines.map((l) => `• ${l.endsWith('.') ? l : `${l}.`}`).join('\n'),
+        })
+      }
+    }
+  }
+  return sections
 }
 
 function parseLearningObjectives(text) {
@@ -210,32 +252,46 @@ function buildPilotFromBase(base, topic, alnotes, meta) {
   pilot.paperType = meta.paperType
   pilot.level = 'A-Level'
   pilot.status = 'pilot'
-  pilot.generatorVersion = 'alnotes-pilot-1'
+  pilot.generatorVersion = 'alnotes-pilot-2'
   pilot.generatedAt = new Date().toISOString()
   pilot.sections = (pilot.sections ?? []).filter((s) => s.type !== 'pastPaperPractice')
 
   if (alnotes?.text) {
     const objectives = parseLearningObjectives(alnotes.text)
     if (objectives.length) pilot.learningObjectives = objectives
+    const noteSections = parseAlnotesSections(alnotes.text)
+    const introIdx = pilot.sections.findIndex((s) => s.type === 'intro')
+    if (noteSections.length && introIdx >= 0) {
+      pilot.sections.splice(introIdx + 1, 0, {
+        type: 'heading',
+        content: 'A-Level Notes — topic content',
+      }, ...noteSections)
+    }
+
     const bullets = parseNoteBullets(alnotes.text)
     if (bullets.length >= 2) {
       const idx = pilot.sections.findIndex((s) => s.type === 'keyPoints')
-      const items = bullets.slice(0, 6).map((b) => (b.endsWith('.') ? b : `${b}.`))
+      const items = bullets.slice(0, 16).map((b) => (b.endsWith('.') ? b : `${b}.`))
       if (idx >= 0) pilot.sections[idx] = { type: 'keyPoints', items }
       else {
-        const introIdx = pilot.sections.findIndex((s) => s.type === 'intro')
-        pilot.sections.splice(introIdx + 1, 0, { type: 'keyPoints', items })
+        const insertAt = introIdx >= 0 ? introIdx + 1 + noteSections.length + 1 : 0
+        pilot.sections.splice(insertAt, 0, { type: 'keyPoints', items })
       }
     }
     const intro = pilot.sections.find((s) => s.type === 'intro')
     if (intro?.type === 'intro') {
-      intro.content = `${intro.content} Key points align with **[A-Level Notes](${SOURCE_PAGE})** 9700 Biology chapter **${topic.parent}** (topic **${topic.code}**).`
+      intro.content = `${intro.content} Notes and diagrams from **[A-Level Notes](${SOURCE_PAGE})** chapter **${topic.parent}**, topic **${topic.code}** (${alnotes.pageCount ?? 1} pages).`
     }
   }
 
-  if (alnotes?.diagramPath) {
+  if (alnotes?.diagramPaths?.length) {
+    pilot.referenceDiagrams = alnotes.diagramPaths.map((src, i) => ({
+      src,
+      alt: `A-Level Notes page ${i + 1} for ${topic.code} ${topic.name}`,
+      order: i + 1,
+    }))
     pilot.diagram = {
-      src: alnotes.diagramPath,
+      src: alnotes.diagramPaths[0],
       alt: `A-Level Notes reference diagram for ${topic.code} ${topic.name}`,
     }
   }
@@ -254,15 +310,73 @@ function buildPilotFromBase(base, topic, alnotes, meta) {
   return pilot
 }
 
+function ensureTopicBucket(byTopic, code, chapter) {
+  if (!byTopic[code]) {
+    byTopic[code] = { text: '', chapter, pages: new Map() }
+  }
+  return byTopic[code]
+}
+
+function writeTopicDiagramPages(slug, pages) {
+  const diagramDir = path.join(PROJECT, `public/courses/diagrams/${SUBJECT}/alnotes`)
+  const topicDir = path.join(diagramDir, slug)
+  const legacyFile = path.join(diagramDir, `${slug}.png`)
+
+  if (fs.existsSync(topicDir)) {
+    for (const f of fs.readdirSync(topicDir)) {
+      if (f.endsWith('.png')) fs.unlinkSync(path.join(topicDir, f))
+    }
+  } else {
+    fs.mkdirSync(topicDir, { recursive: true })
+  }
+  if (fs.existsSync(legacyFile)) fs.unlinkSync(legacyFile)
+
+  const sorted = [...pages.entries()].sort((a, b) => a[0] - b[0])
+  const diagramPaths = []
+  let idx = 0
+  for (const [, canvas] of sorted) {
+    idx += 1
+    const name = `page-${String(idx).padStart(2, '0')}.png`
+    fs.writeFileSync(path.join(topicDir, name), canvas.toBuffer('image/png'))
+    diagramPaths.push(`/courses/diagrams/${SUBJECT}/alnotes/${slug}/${name}`)
+  }
+  return diagramPaths
+}
+
+function assignChapterRanges(chapterTopics, pageRecords) {
+  if (!chapterTopics.length || !pageRecords.length) return new Map()
+
+  const codes = chapterTopics.map((t) => t.code)
+  const ranges = new Map()
+
+  const firstHit = new Map()
+  for (const { pageNum, text } of pageRecords) {
+    for (const code of codes) {
+      if (firstHit.has(code)) continue
+      if (text.includes(code) || new RegExp(`\\b${code.replace('.', '\\.')}\\b`).test(text)) {
+        firstHit.set(code, pageNum)
+      }
+    }
+  }
+
+  for (let i = 0; i < codes.length; i++) {
+    const code = codes[i]
+    const start = firstHit.get(code) ?? pageRecords[0].pageNum
+    const nextCode = codes[i + 1]
+    const end = nextCode && firstHit.has(nextCode) ? firstHit.get(nextCode) - 1 : pageRecords.at(-1).pageNum
+    ranges.set(code, { start, end })
+  }
+
+  return ranges
+}
+
 async function extractAlnotesByTopic(pdfjs, topics, chapterFilter) {
   const topicCodes = new Set(topics.map((t) => t.code))
   const topicByCode = new Map(topics.map((t) => [t.code, t]))
   const importDir = path.join(PROJECT, `content/source-notes/${SUBJECT}/_alnotes-import`)
-  const diagramDir = path.join(PROJECT, `public/courses/diagrams/${SUBJECT}/alnotes`)
   fs.mkdirSync(importDir, { recursive: true })
-  fs.mkdirSync(diagramDir, { recursive: true })
 
-  /** @type {Record<string, { text: string, diagramPath?: string, chapter: number, diagramScore: number }>} */
+  /** @type {Record<string, { text: string, chapter: number, pages: Map<number, import('@napi-rs/canvas').Canvas> }>} */
   const byTopic = {}
 
   const chapters = chapterFilter
@@ -277,63 +391,63 @@ async function extractAlnotesByTopic(pdfjs, topics, chapterFilter) {
     await downloadPdf(url, localPath)
     const doc = await pdfjs.getDocument({ data: new Uint8Array(fs.readFileSync(localPath)), useSystemFonts: true }).promise
 
-    let carryTopic = null
-    let chapterText = ''
-    /** @type {{ page: number, canvas: import('@napi-rs/canvas').Canvas, score: number }[]} */
-    const chapterPages = []
+    const defaultTopic = chapterTopics[0]?.code ?? null
+    let carryTopic = defaultTopic
+    /** @type {{ pageNum: number, text: string, canvas: import('@napi-rs/canvas').Canvas }[]} */
+    const pageRecords = []
 
     for (let p = 1; p <= doc.numPages; p++) {
       const page = await doc.getPage(p)
       const text = (await page.getTextContent()).items.map((i) => i.str).join(' ')
-      chapterText += `\n${text}`
       const { segments, carryTopic: nextCarry } = parsePageTopicSegments(text, topicCodes, carryTopic)
-      carryTopic = nextCarry
+      if (nextCarry) carryTopic = nextCarry
 
       const viewport = page.getViewport({ scale: 2 })
       let canvas = createCanvas(viewport.width, viewport.height)
       await page.render({ canvas, canvasContext: canvas.getContext('2d'), viewport }).promise
+      canvas = cleanAlnotesPage(canvas)
       if (!noTrim) canvas = trimCanvasWhitespace(canvas)
-      chapterPages.push({ page: p, canvas, score: text.trim().length })
+      pageRecords.push({ pageNum: p, text, canvas })
 
-      if (!segments.length) continue
+      const topicsOnPage = new Set(segments.map((s) => s.code))
+      if (!topicsOnPage.size && carryTopic) topicsOnPage.add(carryTopic)
 
-      for (const seg of segments) {
-        const topicCode = seg.code
-        if (!byTopic[topicCode]) {
-          byTopic[topicCode] = { text: '', chapter: ci + 1, diagramScore: 0 }
-        }
-        byTopic[topicCode].text += `\n${seg.text}`
-
-        const score = seg.text.length
-        if (score >= byTopic[topicCode].diagramScore) {
-          const topic = topicByCode.get(topicCode)
-          const slug = topicToSlug(topicCode, topic?.name ?? topicCode)
-          const rel = `/courses/diagrams/${SUBJECT}/alnotes/${slug}.png`
-          fs.writeFileSync(path.join(PROJECT, 'public', rel.replace(/^\//, '')), canvas.toBuffer('image/png'))
-          byTopic[topicCode].diagramPath = rel
-          byTopic[topicCode].diagramScore = score
-        }
+      for (const topicCode of topicsOnPage) {
+        const bucket = ensureTopicBucket(byTopic, topicCode, chapterNum)
+        const segText = segments.find((s) => s.code === topicCode)?.text ?? text
+        bucket.text += `\n${segText}`
+        bucket.pages.set(p, canvas)
       }
     }
 
-    const bestPage = [...chapterPages].sort((a, b) => b.score - a.score)[0]
+    const ranges = assignChapterRanges(chapterTopics, pageRecords)
     for (const topic of chapterTopics) {
-      if (byTopic[topic.code]?.text) continue
-      const slug = topicToSlug(topic.code, topic.name)
-      const rel = `/courses/diagrams/${SUBJECT}/alnotes/${slug}.png`
-      if (bestPage) {
-        fs.writeFileSync(
-          path.join(PROJECT, 'public', rel.replace(/^\//, '')),
-          bestPage.canvas.toBuffer('image/png')
-        )
-      }
-      byTopic[topic.code] = {
-        text: chapterText,
-        chapter: chapterNum,
-        diagramPath: bestPage ? rel : undefined,
-        diagramScore: chapterText.length,
+      const bucket = ensureTopicBucket(byTopic, topic.code, chapterNum)
+      const range = ranges.get(topic.code)
+      if (range) {
+        for (const record of pageRecords) {
+          if (record.pageNum >= range.start && record.pageNum <= range.end) {
+            bucket.pages.set(record.pageNum, record.canvas)
+            if (!bucket.text.includes(record.text.slice(0, 80))) {
+              bucket.text += `\n${record.text}`
+            }
+          }
+        }
+      } else if (!bucket.pages.size) {
+        for (const record of pageRecords) {
+          bucket.pages.set(record.pageNum, record.canvas)
+          bucket.text += `\n${record.text}`
+        }
       }
     }
+  }
+
+  for (const [topicCode, bucket] of Object.entries(byTopic)) {
+    const topic = topicByCode.get(topicCode)
+    const slug = topicToSlug(topicCode, topic?.name ?? topicCode)
+    const diagramPaths = writeTopicDiagramPages(slug, bucket.pages)
+    bucket.diagramPaths = diagramPaths
+    bucket.pageCount = diagramPaths.length
   }
 
   return byTopic
@@ -387,14 +501,16 @@ async function main() {
     }
 
     const alnotes = alnotesByTopic[topic.code]
-    if (!alnotes?.text) {
-      console.log(`  ○ ${topic.code} — no A-Level Notes PDF match`)
+    if (!alnotes?.diagramPaths?.length) {
+      console.log(`  ○ ${topic.code} — no A-Level Notes PDF pages`)
       missing++
       continue
     }
 
     if (dryRun) {
-      console.log(`  → ${topic.code} ${topic.name} (ch ${alnotes.chapter}, diagram: ${!!alnotes.diagramPath})`)
+      console.log(
+        `  → ${topic.code} ${topic.name} (ch ${alnotes.chapter}, pages: ${alnotes.pageCount})`
+      )
       ok++
       continue
     }

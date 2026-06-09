@@ -97,6 +97,8 @@ export type CourseLesson = {
   simpleExplanation?: SimpleExplanation
   faq?: CourseFaqItem[]
   diagram?: { src: string; alt: string }
+  /** Multi-page reference sheets (e.g. A-Level Notes PDF pages) */
+  referenceDiagrams?: { src: string; alt: string; order?: number }[]
   /** Revision flashcards — shown as flip cards in the visual lesson tab */
   flashcards?: CourseFlashcard[]
   /** Side-by-side comparison for contrast topics (e.g. transverse vs longitudinal) */

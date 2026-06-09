@@ -19,7 +19,7 @@ export function buildLessonToc(
   const hasVisual =
     partitioned.heroVisual !== null ||
     partitioned.stepCarousel !== null ||
-    partitioned.diagramImage !== null
+    partitioned.diagramImage !== null || partitioned.diagramImages.length > 0
 
   if (lesson.simpleExplanation) {
     entries.push({ id: 'simple-explanation', label: 'Simple explanation', level: 2 })

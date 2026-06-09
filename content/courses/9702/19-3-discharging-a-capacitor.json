@@ -5,7 +5,7 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Explore how capacitors discharge, releasing stored energy through exponential decay of charge, voltage, and current. Learn about the time constant.",
+  "summary": "Paper 4 — Discharging a capacitor (19.3). Premium notes with Senpai Corner diagrams and live animations.",
   "durationMin": 20,
   "learningObjectives": [
     "Describe the process of a capacitor discharging through a resistor.",
@@ -68,7 +68,7 @@
   "sections": [
     {
       "type": "intro",
-      "content": "You've learnt that a capacitor can store electrical potential energy. Now, let's explore what happens when it releases this stored energy back into a circuit. This process is called **discharging**, and it's fundamental to understanding many electronic circuits, from camera flashes to smoothing power supplies."
+      "content": "You've learnt that a capacitor can store electrical potential energy. Now, let's explore what happens when it releases this stored energy back into a circuit. This process is called **discharging**, and it's fundamental to understanding many electronic circuits, from camera flashes to smoothing power supplies. This lesson aligns with **Senpai Corner** A Level notes (2025–2027) for topic **19.3**."
     },
     {
       "type": "heading",
@@ -81,10 +81,12 @@
     {
       "type": "keyPoints",
       "items": [
-        "Capacitors store energy in their electric field, given by $E = \\frac{1}{2}CV^2$.",
-        "During discharge, stored energy is released as current flows.",
-        "The current's magnitude decreases as charge on the capacitor reduces.",
-        "Discharge rate is directly proportional to the remaining charge."
+        "19.3 Discharging a capacitor.",
+        "When a capacitor is being charged, the electrons flow from the positive to negative plate.",
+        "When the capacitor is being discharged through a resistor, the electrons flow back from negative plate to the positive plate until there are equal number of electrons on each plate.",
+        "At the start of the discharge, the current is large and gradually falls to zero.",
+        "As a capacitor discharges, the I, V and Q all decrease exponentially.",
+        "This is represented by an exponential decay in the graph above."
       ]
     },
     {
@@ -138,6 +140,10 @@
       "type": "resources",
       "items": [
         {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
           "label": "9702 past paper guide",
           "href": "/subjects/9702"
         },
@@ -162,5 +168,13 @@
       "a": "The time constant dictates how fast a capacitor charges or discharges. In timing circuits (like traffic lights or blinking LEDs), engineers choose specific R and C values to achieve desired delays. For filtering or smoothing circuits, a larger time constant might be chosen to maintain a stable output voltage longer."
     }
   ],
-  "updated": "2026-06-06"
+  "updated": "2026-06-09",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/19-3-discharging-a-capacitor.png",
+    "alt": "Senpai Corner reference diagram for 19.3 Discharging a capacitor"
+  }
 }

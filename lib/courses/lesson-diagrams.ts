@@ -1,10 +1,20 @@
 import type { ComponentType } from 'react'
+import { CapacitorDischargeDiagram } from '@/components/diagrams/CapacitorDischargeDiagram'
 import { CentripetalMotionDiagram } from '@/components/diagrams/CentripetalMotionDiagram'
+import { DopplerEffectDiagram } from '@/components/diagrams/DopplerEffectDiagram'
+import { ElectricFieldRadialDiagram } from '@/components/diagrams/ElectricFieldRadialDiagram'
+import { EmInductionDiagram } from '@/components/diagrams/EmInductionDiagram'
 import { EquilibriumForcesDiagram } from '@/components/diagrams/EquilibriumForcesDiagram'
 import { FreeBodyDiagram } from '@/components/diagrams/FreeBodyDiagram'
 import { CollisionBeforeAfter } from '@/components/diagrams/CollisionBeforeAfter'
+import { InterferenceDiagram } from '@/components/diagrams/InterferenceDiagram'
 import { KinematicsGraphDiagram } from '@/components/diagrams/KinematicsGraphDiagram'
+import { MomentsDiagram } from '@/components/diagrams/MomentsDiagram'
+import { PhotoelectricDiagram } from '@/components/diagrams/PhotoelectricDiagram'
+import { PotentialDividerDiagram } from '@/components/diagrams/PotentialDividerDiagram'
 import { SeriesCircuitDiagram } from '@/components/diagrams/SeriesCircuitDiagram'
+import { SimpleHarmonicMotionDiagram } from '@/components/diagrams/SimpleHarmonicMotionDiagram'
+import { StationaryWaveDiagram } from '@/components/diagrams/StationaryWaveDiagram'
 import { WavesComparison } from '@/components/diagrams/WavesComparison'
 import { TwoThermometers } from '@/components/diagrams/TwoThermometers'
 import { HeatingCurve } from '@/components/diagrams/HeatingCurve'
@@ -23,6 +33,17 @@ const PILOT_DIAGRAMS: Record<
   string,
   { Component: ComponentType<{ className?: string }>; meta: LessonDiagramMeta }
 > = {
+  '4-1-turning-effects-of-forces': {
+    Component: MomentsDiagram,
+    meta: {
+      caption: 'Moment = force × perpendicular distance from the pivot.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
   '4-2-equilibrium-of-forces': {
     Component: EquilibriumForcesDiagram,
     meta: {
@@ -50,6 +71,17 @@ const PILOT_DIAGRAMS: Record<
     Component: FreeBodyDiagram,
     meta: {
       caption: 'Net force on a mass produces acceleration — Newton’s second law in one picture.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
+  '10-3-potential-dividers': {
+    Component: PotentialDividerDiagram,
+    meta: {
+      caption: 'Output p.d. is the fraction of supply voltage across the lower resistor.',
       attribution: {
         source: 'Senpai Corner (reference) + MarkScheme animation',
         license: 'Proprietary',
@@ -86,6 +118,17 @@ const PILOT_DIAGRAMS: Record<
       attribution: { source: 'Original', license: 'Proprietary' },
     },
   },
+  '7-3-doppler-effect-for-sound-waves': {
+    Component: DopplerEffectDiagram,
+    meta: {
+      caption: 'Approaching source: shorter wavelength and higher observed frequency.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
   '7-2-transverse-and-longitudinal-waves': {
     Component: WavesComparison,
     meta: {
@@ -94,6 +137,83 @@ const PILOT_DIAGRAMS: Record<
         source: 'Senpai Corner (reference) + MarkScheme animation',
         license: 'Proprietary',
         sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
+  '8-1-stationary-waves': {
+    Component: StationaryWaveDiagram,
+    meta: {
+      caption: 'Nodes stay at zero displacement; antinodes oscillate with maximum amplitude.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
+  '8-3-interference': {
+    Component: InterferenceDiagram,
+    meta: {
+      caption: 'Path difference between two coherent sources sets fringe spacing.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
+  '18-4-electric-field-of-a-point-charge': {
+    Component: ElectricFieldRadialDiagram,
+    meta: {
+      caption: 'Radial field lines: E ∝ 1/r² for an isolated point charge.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes',
+      },
+    },
+  },
+  '20-5-electromagnetic-induction': {
+    Component: EmInductionDiagram,
+    meta: {
+      caption: 'Changing magnetic flux through a coil induces an e.m.f. (Faraday’s law).',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes',
+      },
+    },
+  },
+  '22-2-photoelectric-effect': {
+    Component: PhotoelectricDiagram,
+    meta: {
+      caption: 'Photon energy hf must exceed work function Φ to release photoelectrons.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes',
+      },
+    },
+  },
+  '17-1-simple-harmonic-oscillations': {
+    Component: SimpleHarmonicMotionDiagram,
+    meta: {
+      caption: 'Displacement varies sinusoidally — acceleration always points toward equilibrium.',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes',
+      },
+    },
+  },
+  '19-3-discharging-a-capacitor': {
+    Component: CapacitorDischargeDiagram,
+    meta: {
+      caption: 'Capacitor p.d. decays exponentially through a resistor: V = V₀e^(−t/RC).',
+      attribution: {
+        source: 'Senpai Corner (reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes',
       },
     },
   },

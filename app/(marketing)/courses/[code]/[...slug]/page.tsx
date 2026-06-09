@@ -51,7 +51,7 @@ type ResolvedLesson =
 function resolveLesson(
   code: string,
   slug: string[],
-  pilot: boolean
+  preferPublished: boolean
 ): ResolvedLesson | null {
   if (slug.length === 1) {
     const lessonSlug = slug[0]
@@ -66,7 +66,9 @@ function resolveLesson(
     const paperNumber = paperNumberFromDir(paperDir)
     if (!paperNumber) return null
 
-    const lesson = loadPaperScopedLesson(code, paperNumber, lessonSlug, { pilot })
+    const lesson = loadPaperScopedLesson(code, paperNumber, lessonSlug, {
+      preferPublished,
+    })
     if (!lesson) return null
 
     return { mode: 'paper', lessonSlug, lesson, paperDir, paperNumber }
@@ -98,9 +100,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params, searchParams }: Props) {
   const { code, slug } = await params
   const { pilot } = await searchParams
+  const preferPublished = pilot === '0'
   const isPilotPreview = pilot === '1'
 
-  const resolved = resolveLesson(code, slug, isPilotPreview)
+  const resolved = resolveLesson(code, slug, preferPublished)
   if (!resolved) return {}
 
   const course = getCourseSubject(code)
@@ -119,16 +122,17 @@ export async function generateMetadata({ params, searchParams }: Props) {
     path,
     keywords: seo.keywords,
     modifiedTime: lesson.updated ? `${lesson.updated}T12:00:00.000Z` : undefined,
-    index: !isPilotPreview,
+    index: !isPilotPreview && lesson.status !== 'pilot',
   })
 }
 
 export default async function CourseLessonCatchAllPage({ params, searchParams }: Props) {
   const { code, slug } = await params
   const { pilot, paper } = await searchParams
+  const preferPublished = pilot === '0'
   const isPilotPreview = pilot === '1'
 
-  const resolved = resolveLesson(code, slug, isPilotPreview)
+  const resolved = resolveLesson(code, slug, preferPublished)
   if (!resolved) notFound()
 
   const course = getCourseSubject(code)

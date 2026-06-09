@@ -5,7 +5,7 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Master diffraction gratings: understand their function, the grating equation d sin θ = nλ, and their applications in spectroscopy.",
+  "summary": "Papers 1 & 2 — The diffraction grating (8.4). Premium notes with Senpai Corner diagrams and live animations.",
   "durationMin": 20,
   "learningObjectives": [
     "Describe the structure and function of a diffraction grating.",
@@ -68,7 +68,7 @@
   "sections": [
     {
       "type": "intro",
-      "content": "Delve into the fascinating world of **diffraction gratings**! These powerful optical components take advantage of both **diffraction** and **interference** to separate light into its individual wavelengths with incredible precision. Far superior to a simple double slit, gratings produce beautifully sharp and bright spectra, unlocking secrets from starlight to crystal structures."
+      "content": "Delve into the fascinating world of **diffraction gratings**! These powerful optical components take advantage of both **diffraction** and **interference** to separate light into its individual wavelengths with incredible precision. Far superior to a simple double slit, gratings produce beautifully sharp and bright spectra, unlocking secrets from starlight to crystal structures. This lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **8.4**."
     },
     {
       "type": "heading",
@@ -101,12 +101,11 @@
     {
       "type": "keyPoints",
       "items": [
-        "$d$: The spacing between adjacent slits on the grating (the grating element).",
-        "$\\theta$: The angle of the observed maximum measured from the central normal.",
-        "$n$: An integer representing the 'order' of the maximum (e.g., $n=0, 1, 2, ...$).",
-        "$\\lambda$: The wavelength of the incident coherent light.",
-        "The central maximum ($n=0$) is always directly forward ($\\theta=0$).",
-        "A larger wavelength ($\\lambda$) or a smaller slit spacing ($d$) results in a greater angular spread."
+        "8.4 The diffraction grating.",
+        "A diffraction grating is a plate on which there is a very large number of parallel, identical, close-spaced slits.",
+        "The angles at which maxima of intensity are produced, can be deduced by the diffraction grating equation ⅆ 𝒔𝒊𝒏(𝜽) = 𝒏𝝀.",
+        "The wavelength of light can be determined by rearranging the grating equation 𝜆 = ⅆ 𝑠𝑖𝑛 𝜃 𝑛.",
+        "We can find θ by using 𝑡𝑎𝑛 𝜃 = ℎ 𝐷."
       ]
     },
     {
@@ -143,6 +142,10 @@
       "type": "resources",
       "items": [
         {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
           "label": "9702 past paper guide",
           "href": "/subjects/9702"
         },
@@ -167,5 +170,13 @@
       "a": "The maximum number of orders ($n_{max}$) is limited by the physical constraint that \\sin \\theta cannot exceed 1. Therefore, for any order $n$ where the ratio $n\\lambda/d$ is greater than 1, no real angle \\theta exists for that maximum, and it will not be observed. You can find $n_{max}$ by setting \\sin \\theta = 1 in the grating equation and solving for $n$, then taking the integer part of the result."
     }
   ],
-  "updated": "2026-06-06"
+  "updated": "2026-06-09",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/8-4-the-diffraction-grating.png",
+    "alt": "Senpai Corner reference diagram for 8.4 The diffraction grating"
+  }
 }

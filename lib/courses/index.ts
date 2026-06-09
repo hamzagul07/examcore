@@ -126,13 +126,13 @@ export function loadPilotLesson(
 }
 
 export type LoadPaperLessonOptions = {
-  /** When true, load {slug}.pilot.json */
-  pilot?: boolean
+  /** When true, prefer flat/scoped published JSON over .pilot.json */
+  preferPublished?: boolean
 }
 
 /**
  * Load paper-scoped lesson JSON.
- * pilot=1 → .pilot.json; otherwise paper-{n}/{slug}.json, then flat published fallback.
+ * Prefers .pilot.json when present; falls back to paper-{n}/{slug}.json then flat published.
  */
 export function loadPaperScopedLesson(
   subjectCode: string,
@@ -140,7 +140,12 @@ export function loadPaperScopedLesson(
   lessonSlug: string,
   opts: LoadPaperLessonOptions = {}
 ): CourseLesson | null {
-  if (opts.pilot) {
+  const published = loadPublishedLesson(subjectCode, lessonSlug)
+  if (published?.generatorVersion?.startsWith('senpai-published')) {
+    return published
+  }
+
+  if (!opts.preferPublished) {
     const pilot = loadPilotLesson(subjectCode, paperNumber, lessonSlug)
     if (pilot) return pilot
   }
@@ -151,7 +156,7 @@ export function loadPaperScopedLesson(
   )
   if (scoped) return scoped
 
-  return loadPublishedLesson(subjectCode, lessonSlug)
+  return published
 }
 
 export function getAllCourseLessonPaths(): { code: string; slug: string }[] {

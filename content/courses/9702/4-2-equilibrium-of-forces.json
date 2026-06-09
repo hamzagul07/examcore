@@ -4,145 +4,124 @@
   "title": "Equilibrium of Forces",
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
   "status": "premium",
-  "summary": "Master equilibrium of forces for Cambridge A-Level Physics. Learn about translational and rotational equilibrium, moments, couples, and the Principle of Moments.",
-  "durationMin": 20,
+  "summary": "Papers 1 & 2 — Equilibrium of Forces (4.2). Premium notes with Senpai Corner diagrams and live animations.",
+  "durationMin": 22,
   "learningObjectives": [
-    "Describe and apply the two conditions for an object to be in complete equilibrium.",
-    "Calculate moments, torque of a couple, and apply the Principle of Moments to solve problems.",
-    "Define centre of gravity and explain the graphical representation of forces in equilibrium."
+    "State and apply the principle of moments for a body in rotational equilibrium.",
+    "Explain that equilibrium requires zero resultant force and zero resultant torque.",
+    "Represent three coplanar forces in equilibrium using a closed vector triangle."
   ],
   "simpleExplanation": {
-    "title": "Keeping Things Steady",
-    "summary": "Equilibrium is when an object is perfectly still, or moving at a constant velocity, without spinning or changing its motion. It means all the pushes, pulls, and twists acting on it cancel each other out, leading to a stable state.",
-    "analogy": "Imagine a perfectly balanced seesaw with a child on each end, or a skilled tightrope walker standing still mid-rope. Both are in equilibrium – no unwanted movement, no wobbling! They are balanced in every direction.",
+    "title": "Balance in every direction",
+    "summary": "Equilibrium means nothing changes: no acceleration and no spin. Every push is cancelled, and every turning effect is cancelled too.",
+    "analogy": "A level seesaw with children placed so it sits perfectly horizontal — forces up equal forces down, and clockwise turning equals anticlockwise turning.",
     "steps": [
-      "Check for **no net force** (translational equilibrium) in any direction.",
-      "Check for **no net turning effect** (rotational equilibrium) about any point.",
-      "Calculate **moments** (turning effects) using force and perpendicular distance from a pivot.",
-      "Apply the **Principle of Moments** to ensure rotational balance, where clockwise equals anticlockwise moments."
+      "Check **translational equilibrium**: add all forces as vectors → resultant must be **zero**.",
+      "Check **rotational equilibrium**: take moments about a pivot → clockwise total = anticlockwise total.",
+      "For three coplanar forces, draw vectors tip-to-tail — a **closed triangle** proves ΣF = 0.",
+      "Pick a pivot through an unknown force to simplify moment equations in exam questions."
     ]
+  },
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/4-2-equilibrium-vector-triangle.png",
+    "alt": "Senpai Corner reference: three coplanar forces forming a closed vector triangle when in equilibrium"
   },
   "flashcards": [
     {
-      "front": "What are the two necessary conditions for an object to be in complete equilibrium?",
-      "back": "The resultant force must be zero (translational equilibrium), and the resultant moment about any point must be zero (rotational equilibrium)."
+      "front": "What two conditions define complete equilibrium?",
+      "back": "Resultant force is zero and resultant moment (torque) about any point is zero.",
+      "pillLabel": "Two conditions"
     },
     {
-      "front": "How do you calculate the moment of a force about a pivot?",
-      "back": "Moment (M) is calculated by multiplying the force (F) by the perpendicular distance (d\\\\text{\\textperp}) from its line of action to the pivot: M = F \\times d\\\\text{\\textperp}."
+      "front": "State the principle of moments.",
+      "back": "For rotational equilibrium, sum of clockwise moments = sum of anticlockwise moments about the same pivot.",
+      "pillLabel": "Moments"
     },
     {
-      "front": "State the Principle of Moments.",
-      "back": "For an object in rotational equilibrium, the sum of all clockwise moments about any chosen pivot must be equal to the sum of all anticlockwise moments about that same pivot."
+      "front": "How is moment calculated?",
+      "back": "M = F × perpendicular distance from pivot to the line of action of F (unit: N m).",
+      "pillLabel": "M = Fd⊥"
     },
     {
-      "front": "Define a 'couple' and its primary effect.",
-      "back": "A couple is a pair of equal, parallel, and opposite forces acting along different lines. Its primary effect is to produce pure rotation (torque) without causing any linear translation."
+      "front": "When do three coplanar forces show equilibrium graphically?",
+      "back": "Their vector diagram drawn tip-to-tail forms a closed triangle (resultant = 0).",
+      "pillLabel": "Closed triangle"
     },
     {
-      "front": "How is the torque of a couple calculated?",
-      "back": "The torque (\\\\tau) of a couple is the magnitude of one of the forces (F) multiplied by the perpendicular distance (d\\\\text{\\text{couple}}) between their lines of action: \\\\tau = F \\times d\\\\text{\\text{couple}}."
+      "front": "What is a couple?",
+      "back": "A pair of equal, parallel, opposite forces on different lines — produces rotation only, no translation.",
+      "pillLabel": "Couple"
     },
     {
-      "front": "What is translational equilibrium?",
-      "back": "This is the state where the vector sum of all forces acting on an object is zero, meaning there is no change in its linear motion (either stationary or constant velocity)."
-    },
-    {
-      "front": "What is rotational equilibrium?",
-      "back": "This is the state where the sum of all clockwise moments equals the sum of all anticlockwise moments about any pivot, meaning there is no change in its rotational motion."
-    },
-    {
-      "front": "What is the centre of gravity (CG)?",
-      "back": "The centre of gravity is the single point through which an object's entire weight can be considered to act. For a uniform object, it's at its geometric centre."
-    },
-    {
-      "front": "If three coplanar forces are in equilibrium, how can they be represented graphically?",
-      "back": "When drawn tip-to-tail, they will form a closed triangle, demonstrating the Triangle of Forces."
-    },
-    {
-      "front": "When do the centre of mass and centre of gravity coincide?",
-      "back": "They coincide in a uniform gravitational field."
+      "front": "Torque of a couple?",
+      "back": "τ = F × perpendicular distance between the two lines of action.",
+      "pillLabel": "Couple torque"
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "When forces act on an object, they can make it move, accelerate, or spin. But sometimes, all these influences perfectly cancel out, leaving the object in **equilibrium**. This crucial concept is fundamental to understanding stability in physics and engineering. Let's break down how objects achieve this perfect balance."
+      "content": "When an object is in **equilibrium**, it has no tendency to accelerate or rotate. For Cambridge **Paper 2**, you must combine force diagrams with moment reasoning — and recognise when three coplanar forces close into a **triangle of forces**."
     },
     {
       "type": "heading",
-      "content": "What is Equilibrium?"
-    },
-    {
-      "type": "text",
-      "content": "An object is in equilibrium when it has no tendency to change its state of motion – either remaining perfectly stationary or moving with a constant velocity without any rotation. This stable condition requires two main criteria to be satisfied simultaneously."
+      "content": "Two conditions for equilibrium"
     },
     {
       "type": "keyPoints",
       "items": [
-        "The **resultant force** acting on the object must be zero.",
-        "The **resultant moment** (turning effect) about any point must be zero."
+        "**Resultant force = 0** — no net push or pull (translational equilibrium).",
+        "**Resultant moment = 0** — no net turning effect about any pivot (rotational equilibrium).",
+        "Both must hold at the same time for complete equilibrium."
       ]
     },
     {
+      "type": "formula",
+      "content": "$\\sum F = 0 \\qquad \\sum M = 0$"
+    },
+    {
       "type": "heading",
-      "content": "Translational Equilibrium: No Net Force"
+      "content": "Moments — the turning effect of a force"
     },
     {
       "type": "text",
-      "content": "For an object to be in translational equilibrium, the total push or pull acting on it in any direction must be zero. Imagine a tug-of-war where both teams pull with equal strength; the rope doesn't move because the forces perfectly balance each other out. This means the sum of forces along any axis (e.g., horizontal or vertical) is zero."
+      "content": "A **moment** is the turning effect of a force about a pivot. Only the **perpendicular distance** from the pivot to the line of action counts. On a spanner, if the force is at angle θ to the handle, use the perpendicular component: $d_\\perp = d\\cos\\theta$."
     },
     {
       "type": "formula",
-      "content": "\\\\sum F = 0"
-    },
-    {
-      "type": "heading",
-      "content": "Rotational Equilibrium: No Net Turning Effect"
+      "content": "$M = F \\times d_\\perp$"
     },
     {
       "type": "text",
-      "content": "Even if all the forces balance out, an object can still be spinning. Rotational equilibrium means there's no overall turning effect causing it to rotate, or its rotation is constant. A turning effect, also known as a **moment** or **torque**, depends on both the force applied and its perpendicular distance from a pivot point."
-    },
-    {
-      "type": "formula",
-      "content": "$M = F \\times d_{\\perp}$"
+      "content": "Reference diagram (Senpai Corner): perpendicular force on a beam gives $M = F \\times d$. Angled force on a spanner gives $M = F \\times d\\cos\\theta$. See the **moments reference** image in resources — the live animation above shows a balanced beam."
     },
     {
       "type": "heading",
-      "content": "The Principle of Moments"
+      "content": "Principle of moments"
     },
     {
       "type": "text",
-      "content": "This principle is your key rule for solving problems involving rotational equilibrium. It states that for an object to be rotationally balanced, all the moments trying to turn it one way must be perfectly counteracted by moments trying to turn it the opposite way, about the same pivot point."
+      "content": "For a body in **rotational equilibrium**, the total **clockwise moment** about any chosen pivot equals the total **anticlockwise moment** about that same pivot."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Sum of **clockwise moments** about any pivot must be equal to",
-        "Sum of **anticlockwise moments** about that same pivot."
+        "Choose a pivot through an **unknown force** to eliminate it from the moment equation.",
+        "Include the weight of uniform beams at their **centre** (half-length from either end).",
+        "Units: moment in **N m**; never confuse with energy (N m = J only when work is done)."
       ]
     },
     {
       "type": "heading",
-      "content": "Centre of Gravity & Centre of Mass"
+      "content": "Couples and torque"
     },
     {
       "type": "text",
-      "content": "The **centre of gravity (CG)** is the single point where we can imagine an object's entire weight acts. For a uniform object, this is simply its geometric centre. The **centre of mass (CM)** is the point where the total mass of an object is considered to be concentrated. In a uniform gravitational field (which we usually assume in Cambridge Physics), these two points are located at the same position."
-    },
-    {
-      "type": "formula",
-      "content": "W = mg"
-    },
-    {
-      "type": "heading",
-      "content": "Understanding Couples"
-    },
-    {
-      "type": "text",
-      "content": "A **couple** is a special pair of forces: they are equal in strength, parallel to each other, but act in opposite directions along different lines of action. The unique thing about a couple is that it *only* produces a turning effect, called **torque**, without causing any linear translational movement. Think of turning a steering wheel."
+      "content": "A **couple** is two equal, parallel, opposite forces acting along **different lines**. They produce **rotation only** — no resultant force. Examples: turning a steering wheel, using a screwdriver."
     },
     {
       "type": "formula",
@@ -150,53 +129,71 @@
     },
     {
       "type": "heading",
-      "content": "Graphical Approach: The Triangle of Forces"
+      "content": "Triangle of forces (coplanar forces)"
     },
     {
       "type": "text",
-      "content": "When three forces are acting on an object in translational equilibrium and they all lie in the same plane (coplanar), you can represent them as vectors. If you draw these force vectors one after another, tip-to-tail, they will naturally form a closed triangle. This visually confirms that their resultant sum is zero, satisfying the first condition for equilibrium."
+      "content": "When **three coplanar forces** act on an object in translational equilibrium, draw them tip-to-tail as vectors. If they form a **closed triangle**, the resultant is zero. This is the graphical test for equilibrium in one plane."
     },
     {
-      "type": "examTip",
-      "content": "When solving problems involving moments, strategically choose your pivot point. Picking a point where an unknown force acts will eliminate that force from your moment equation, simplifying calculations and reducing the number of variables!"
+      "type": "text",
+      "content": "Use the **live diagram** (Triangle of forces tab) to see vectors a, b and c closing tip-to-tail. The Senpai Corner reference below matches this layout."
+    },
+    {
+      "type": "heading",
+      "content": "Centre of gravity"
+    },
+    {
+      "type": "text",
+      "content": "The **centre of gravity** is the single point where the entire weight of an object may be considered to act. For a uniform object in a uniform gravitational field, it coincides with the geometric centre — place the weight there when modelling beams and rods."
     },
     {
       "type": "workedExample",
-      "question": "A uniform beam, 3.0 m long and weighing 60 N, is supported at its ends by two vertical forces, F\\\\text{1} and F\\\\text{2}. A 100 N weight is placed 1.0 m from end A. Calculate the magnitudes of the support forces F\\\\text{1} and F\\\\text{2}.",
-      "solution": "1.  **Draw a clear diagram:** Sketch the beam, marking its length (3.0 m), the weight of the beam (60 N acting at its centre, 1.5 m from either end), the 100 N weight (1.0 m from end A), and the unknown support forces F\\\\text{1} (at end A) and F\\\\text{2} (at end B).\n\n2.  **Apply translational equilibrium:** For vertical forces, the sum of upward forces must equal the sum of downward forces.\n    F\\\\text{1} + F\\\\text{2} = 60 N (beam) + 100 N (weight) = 160 N. (Equation 1)\n\n3.  **Apply rotational equilibrium (Principle of Moments):** Choose a pivot point. Selecting end A as the pivot will eliminate F\\\\text{1} from our moment calculations.\n\n4.  **Calculate clockwise moments about A:**\n    Moment due to 100 N weight = 100 N \\times 1.0 m = 100 Nm\n    Moment due to beam's weight = 60 N \\times 1.5 m = 90 Nm\n    Total clockwise moment = 100 Nm + 90 Nm = 190 Nm\n\n5.  **Calculate anticlockwise moments about A:**\n    Moment due to F\\\\text{2} = F\\\\text{2} \\times 3.0 m\n\n6.  **Equate moments:** According to the Principle of Moments:\n    F\\\\text{2} \\times 3.0 m = 190 Nm\n\n7.  **Solve for F\\\\text{2}:**\n    F\\\\text{2} = 190 Nm / 3.0 m = 63.33... N \\approx 63.3 N (to 3 s.f.)\n\n8.  **Substitute F\\\\text{2} back into Equation 1:**\n    F\\\\text{1} + 63.33 N = 160 N\n\n9.  **Solve for F\\\\text{1}:**\n    F\\\\text{1} = 160 N - 63.33 N = 96.67 N \\approx 96.7 N (to 3 s.f.)\n\n**Answer:** The support force F\\\\text{1} is 96.7 N and F\\\\text{2} is 63.3 N."
+      "question": "A uniform beam of length 4.0 m and weight 80 N rests on supports at each end. A 120 N load is placed 1.5 m from the left support. Find the support forces.",
+      "solution": "1. **Forces:** Let left support = $R_L$, right support = $R_R$. Up = down: $R_L + R_R = 80 + 120 = 200$ N.\n2. **Pivot at left support** (eliminates $R_L$ from moments).\n3. **Clockwise moments:** load $120 \\times 1.5 = 180$ N m; beam weight $80 \\times 2.0 = 160$ N m. Total CW = **340 N m**.\n4. **Anticlockwise moment:** $R_R \\times 4.0$.\n5. **Principle of moments:** $4.0\\,R_R = 340$ → $R_R = 85$ N.\n6. **Substitute:** $R_L = 200 - 85 = 115$ N."
+    },
+    {
+      "type": "examTip",
+      "content": "Paper 2 equilibrium questions reward a **clear diagram** first: mark distances, forces, and pivot. Then write ΣF = 0 and ΣM = 0 separately — do not mix them in one line."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Mark a past-paper question on equilibrium",
       "href": "/mark?subject=9702&topic=4.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
         },
         {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
         }
       ]
     }
   ],
   "faq": [
     {
-      "q": "Why is it important that the resultant moment is zero 'about any point'?",
-      "a": "If an object is truly in complete equilibrium (meaning the resultant force is also zero), then if the resultant moment is zero about *one* chosen point, it will automatically be zero about *any* other point you choose. This property makes choosing a convenient pivot point a powerful problem-solving technique."
+      "q": "Why must I use perpendicular distance for moments?",
+      "a": "Only the component of force perpendicular to the position vector from the pivot produces rotation. Force directed through the pivot line has zero moment."
     },
     {
-      "q": "What is the key difference between centre of mass and centre of gravity?",
-      "a": "The centre of mass is the average position of all the mass in an object and is independent of gravity. The centre of gravity is the point where the total weight of an object appears to act. They coincide in a uniform gravitational field, but in a non-uniform field (e.g., a very tall object near a planet), they might be slightly different."
+      "q": "Can an object have zero resultant force but still rotate?",
+      "a": "Yes — a couple has zero resultant force but non-zero torque, so it spins without translating."
     },
     {
-      "q": "Can an object be in translational equilibrium but not rotational equilibrium?",
-      "a": "Yes, absolutely! Imagine an object sliding across a frictionless surface at a constant velocity (translational equilibrium) but also spinning faster and faster (not rotational equilibrium). A classic example is a 'couple' which produces pure rotation without any linear acceleration."
+      "q": "When is the triangle of forces method valid?",
+      "a": "For three coplanar forces on a rigid body in translational equilibrium. It is a graphical check that the vector sum is zero."
     }
   ],
-  "updated": "2026-06-06"
+  "syllabusObjectivesCovered": [
+    "4.2.1",
+    "4.2.2",
+    "4.2.3"
+  ],
+  "generatorVersion": "senpai-published-1",
+  "updated": "2026-06-09"
 }

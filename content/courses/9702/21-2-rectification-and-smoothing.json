@@ -5,7 +5,7 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Master AC to DC conversion: Learn about half-wave, full-wave rectification, and how capacitors smooth ripple for stable power.",
+  "summary": "Paper 4 — Rectification and smoothing (21.2). Premium notes with Senpai Corner diagrams and live animations.",
   "durationMin": 20,
   "learningObjectives": [
     "Explain the principles of half-wave and full-wave rectification.",
@@ -68,7 +68,7 @@
   "sections": [
     {
       "type": "intro",
-      "content": "Ever wondered how your phone charger turns wall current into a steady flow for your battery? It's all about **rectification** and **smoothing**! In this lesson, we'll explore how alternating current (**AC**) is converted into direct current (**DC**) and then made wonderfully stable, ready for all your electronic gadgets. Get ready to understand the unsung heroes of power conversion."
+      "content": "Ever wondered how your phone charger turns wall current into a steady flow for your battery? It's all about **rectification** and **smoothing**! In this lesson, we'll explore how alternating current (**AC**) is converted into direct current (**DC**) and then made wonderfully stable, ready for all your electronic gadgets. Get ready to understand the unsung heroes of power conversion. This lesson aligns with **Senpai Corner** A Level notes (2025–2027) for topic **21.2**."
     },
     {
       "type": "heading",
@@ -89,10 +89,12 @@
     {
       "type": "keyPoints",
       "items": [
-        "Uses a single diode.",
-        "Only one half-cycle of AC passes.",
-        "Output is a pulsed DC waveform.",
-        "Inefficient; half the input power is lost."
+        "21.2 Rectification and smoothing.",
+        "Rectification is the process of converting AC into DC .",
+        "There are two types of rectification - half-wave rectification.",
+        "- full-wave rectification.",
+        "Smoothing can be done with a capacitor to reduce the variation of the output voltage and current.",
+        "A single capacitor is connected in parallel with a load resistor."
       ]
     },
     {
@@ -179,6 +181,10 @@
       "type": "resources",
       "items": [
         {
+          "label": "Senpai Corner A Level Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+        },
+        {
           "label": "9702 past paper guide",
           "href": "/subjects/9702"
         },
@@ -203,5 +209,13 @@
       "a": "Many electronic devices, especially those with sensitive digital circuits, require a very stable and constant DC supply to operate correctly. Without proper smoothing, the voltage fluctuations (ripple) could lead to erratic behaviour, overheating, data corruption, or even damage to the components. Smoothing ensures reliable and consistent performance."
     }
   ],
-  "updated": "2026-06-06"
+  "updated": "2026-06-09",
+  "paperNumber": "4",
+  "paperType": "structured",
+  "level": "A-Level",
+  "generatorVersion": "senpai-published-1",
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/21-2-rectification-and-smoothing.png",
+    "alt": "Senpai Corner reference diagram for 21.2 Rectification and smoothing"
+  }
 }

@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import { EquilibriumForcesDiagram } from '@/components/diagrams/EquilibriumForcesDiagram'
 import { FreeBodyDiagram } from '@/components/diagrams/FreeBodyDiagram'
 import { CollisionBeforeAfter } from '@/components/diagrams/CollisionBeforeAfter'
 import { WavesComparison } from '@/components/diagrams/WavesComparison'
@@ -19,6 +20,18 @@ const PILOT_DIAGRAMS: Record<
   string,
   { Component: ComponentType<{ className?: string }>; meta: LessonDiagramMeta }
 > = {
+  '4-2-equilibrium-of-forces': {
+    Component: EquilibriumForcesDiagram,
+    meta: {
+      caption:
+        'Rotational equilibrium: clockwise and anticlockwise moments balance. Translational equilibrium: coplanar forces form a closed vector triangle.',
+      attribution: {
+        source: 'Senpai Corner (diagram reference) + MarkScheme animation',
+        license: 'Proprietary',
+        sourceUrl: 'https://www.senpaicorner.com/cie-as-physics-2025-2027-notes',
+      },
+    },
+  },
   '3-1-momentum-and-newtons-laws-of-motion': {
     Component: FreeBodyDiagram,
     meta: {

@@ -1,0 +1,195 @@
+{
+  "slug": "4-2-equilibrium-of-forces",
+  "topicCode": "4.2",
+  "title": "Equilibrium of Forces",
+  "paper": "P1/P2",
+  "paperName": "Paper 2 AS Level Structured Questions",
+  "paperNumber": "2",
+  "paperType": "structured",
+  "level": "A-Level",
+  "status": "pilot",
+  "summary": "Master equilibrium for Cambridge 9702 Paper 2: zero resultant force, zero resultant torque, principle of moments, couples, and the triangle of forces — with Senpai Corner diagrams and live animations.",
+  "durationMin": 22,
+  "learningObjectives": [
+    "State and apply the principle of moments for a body in rotational equilibrium.",
+    "Explain that equilibrium requires zero resultant force and zero resultant torque.",
+    "Represent three coplanar forces in equilibrium using a closed vector triangle."
+  ],
+  "simpleExplanation": {
+    "title": "Balance in every direction",
+    "summary": "Equilibrium means nothing changes: no acceleration and no spin. Every push is cancelled, and every turning effect is cancelled too.",
+    "analogy": "A level seesaw with children placed so it sits perfectly horizontal — forces up equal forces down, and clockwise turning equals anticlockwise turning.",
+    "steps": [
+      "Check **translational equilibrium**: add all forces as vectors → resultant must be **zero**.",
+      "Check **rotational equilibrium**: take moments about a pivot → clockwise total = anticlockwise total.",
+      "For three coplanar forces, draw vectors tip-to-tail — a **closed triangle** proves ΣF = 0.",
+      "Pick a pivot through an unknown force to simplify moment equations in exam questions."
+    ]
+  },
+  "diagram": {
+    "src": "/courses/diagrams/9702/senpai/4-2-equilibrium-vector-triangle.png",
+    "alt": "Senpai Corner reference: three coplanar forces forming a closed vector triangle when in equilibrium"
+  },
+  "flashcards": [
+    {
+      "front": "What two conditions define complete equilibrium?",
+      "back": "Resultant force is zero and resultant moment (torque) about any point is zero.",
+      "pillLabel": "Two conditions"
+    },
+    {
+      "front": "State the principle of moments.",
+      "back": "For rotational equilibrium, sum of clockwise moments = sum of anticlockwise moments about the same pivot.",
+      "pillLabel": "Moments"
+    },
+    {
+      "front": "How is moment calculated?",
+      "back": "M = F × perpendicular distance from pivot to the line of action of F (unit: N m).",
+      "pillLabel": "M = Fd⊥"
+    },
+    {
+      "front": "When do three coplanar forces show equilibrium graphically?",
+      "back": "Their vector diagram drawn tip-to-tail forms a closed triangle (resultant = 0).",
+      "pillLabel": "Closed triangle"
+    },
+    {
+      "front": "What is a couple?",
+      "back": "A pair of equal, parallel, opposite forces on different lines — produces rotation only, no translation.",
+      "pillLabel": "Couple"
+    },
+    {
+      "front": "Torque of a couple?",
+      "back": "τ = F × perpendicular distance between the two lines of action.",
+      "pillLabel": "Couple torque"
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "When an object is in **equilibrium**, it has no tendency to accelerate or rotate. For Cambridge **Paper 2**, you must combine force diagrams with moment reasoning — and recognise when three coplanar forces close into a **triangle of forces**."
+    },
+    {
+      "type": "heading",
+      "content": "Two conditions for equilibrium"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Resultant force = 0** — no net push or pull (translational equilibrium).",
+        "**Resultant moment = 0** — no net turning effect about any pivot (rotational equilibrium).",
+        "Both must hold at the same time for complete equilibrium."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "$\\sum F = 0 \\qquad \\sum M = 0$"
+    },
+    {
+      "type": "heading",
+      "content": "Moments — the turning effect of a force"
+    },
+    {
+      "type": "text",
+      "content": "A **moment** is the turning effect of a force about a pivot. Only the **perpendicular distance** from the pivot to the line of action counts. On a spanner, if the force is at angle θ to the handle, use the perpendicular component: $d_\\perp = d\\cos\\theta$."
+    },
+    {
+      "type": "formula",
+      "content": "$M = F \\times d_\\perp$"
+    },
+    {
+      "type": "text",
+      "content": "Reference diagram (Senpai Corner): perpendicular force on a beam gives $M = F \\times d$. Angled force on a spanner gives $M = F \\times d\\cos\\theta$. See the **moments reference** image in resources — the live animation above shows a balanced beam."
+    },
+    {
+      "type": "heading",
+      "content": "Principle of moments"
+    },
+    {
+      "type": "text",
+      "content": "For a body in **rotational equilibrium**, the total **clockwise moment** about any chosen pivot equals the total **anticlockwise moment** about that same pivot."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Choose a pivot through an **unknown force** to eliminate it from the moment equation.",
+        "Include the weight of uniform beams at their **centre** (half-length from either end).",
+        "Units: moment in **N m**; never confuse with energy (N m = J only when work is done)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Couples and torque"
+    },
+    {
+      "type": "text",
+      "content": "A **couple** is two equal, parallel, opposite forces acting along **different lines**. They produce **rotation only** — no resultant force. Examples: turning a steering wheel, using a screwdriver."
+    },
+    {
+      "type": "formula",
+      "content": "$\\tau = F \\times d_{\\text{couple}}$"
+    },
+    {
+      "type": "heading",
+      "content": "Triangle of forces (coplanar forces)"
+    },
+    {
+      "type": "text",
+      "content": "When **three coplanar forces** act on an object in translational equilibrium, draw them tip-to-tail as vectors. If they form a **closed triangle**, the resultant is zero. This is the graphical test for equilibrium in one plane."
+    },
+    {
+      "type": "text",
+      "content": "Use the **live diagram** (Triangle of forces tab) to see vectors a, b and c closing tip-to-tail. The Senpai Corner reference below matches this layout."
+    },
+    {
+      "type": "heading",
+      "content": "Centre of gravity"
+    },
+    {
+      "type": "text",
+      "content": "The **centre of gravity** is the single point where the entire weight of an object may be considered to act. For a uniform object in a uniform gravitational field, it coincides with the geometric centre — place the weight there when modelling beams and rods."
+    },
+    {
+      "type": "workedExample",
+      "question": "A uniform beam of length 4.0 m and weight 80 N rests on supports at each end. A 120 N load is placed 1.5 m from the left support. Find the support forces.",
+      "solution": "1. **Forces:** Let left support = $R_L$, right support = $R_R$. Up = down: $R_L + R_R = 80 + 120 = 200$ N.\n2. **Pivot at left support** (eliminates $R_L$ from moments).\n3. **Clockwise moments:** load $120 \\times 1.5 = 180$ N m; beam weight $80 \\times 2.0 = 160$ N m. Total CW = **340 N m**.\n4. **Anticlockwise moment:** $R_R \\times 4.0$.\n5. **Principle of moments:** $4.0\\,R_R = 340$ → $R_R = 85$ N.\n6. **Substitute:** $R_L = 200 - 85 = 115$ N."
+    },
+    {
+      "type": "examTip",
+      "content": "Paper 2 equilibrium questions reward a **clear diagram** first: mark distances, forces, and pivot. Then write ΣF = 0 and ΣM = 0 separately — do not mix them in one line."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a past-paper question on equilibrium",
+      "href": "/mark?subject=9702&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Senpai Corner AS Physics notes (source)",
+          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+        },
+        {
+          "label": "9702 past paper guide",
+          "href": "/subjects/9702"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why must I use perpendicular distance for moments?",
+      "a": "Only the component of force perpendicular to the position vector from the pivot produces rotation. Force directed through the pivot line has zero moment."
+    },
+    {
+      "q": "Can an object have zero resultant force but still rotate?",
+      "a": "Yes — a couple has zero resultant force but non-zero torque, so it spins without translating."
+    },
+    {
+      "q": "When is the triangle of forces method valid?",
+      "a": "For three coplanar forces on a rigid body in translational equilibrium. It is a graphical check that the vector sum is zero."
+    }
+  ],
+  "syllabusObjectivesCovered": ["4.2.1", "4.2.2", "4.2.3"],
+  "generatedAt": "2026-06-07T12:00:00.000Z",
+  "generatorVersion": "senpai-pilot-1"
+}

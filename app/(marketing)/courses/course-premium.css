@@ -827,6 +827,100 @@ html[data-ec-theme='zen'] .course-studio-topbar {
   outline-offset: 2px;
 }
 
+/* ── Equilibrium of forces animated diagram ── */
+
+.equilibrium-forces-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.equilibrium-forces-diagram-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.equilibrium-forces-diagram-tabs button {
+  border: 1px solid var(--course-border, var(--ec-border-subtle));
+  border-radius: 0.55rem;
+  background: transparent;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--course-text-muted, var(--ec-text-secondary));
+  cursor: pointer;
+}
+
+.equilibrium-forces-diagram-tabs button.is-active {
+  border-color: color-mix(in srgb, var(--course-accent, var(--ec-accent)) 45%, var(--course-border));
+  background: var(--course-accent-muted);
+  color: var(--ec-text-primary);
+}
+
+.equilibrium-forces-diagram-hint {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--course-text-faint, var(--ec-text-tertiary));
+  text-align: center;
+}
+
+@keyframes eq-pulse-force {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes eq-draw-vec {
+  0% {
+    stroke-dashoffset: 180;
+    opacity: 0.35;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.eq-anim-force-cw {
+  animation: eq-pulse-force 2s ease-in-out infinite;
+}
+
+.eq-anim-force-acw {
+  animation: eq-pulse-force 2s ease-in-out 1s infinite;
+}
+
+.eq-anim-vec-a,
+.eq-anim-vec-b,
+.eq-anim-vec-c {
+  stroke-dasharray: 180;
+  animation: eq-draw-vec 2.4s ease forwards;
+}
+
+.eq-anim-vec-b {
+  animation-delay: 0.35s;
+}
+
+.eq-anim-vec-c {
+  animation-delay: 0.7s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq-anim-force-cw,
+  .eq-anim-force-acw,
+  .eq-anim-vec-a,
+  .eq-anim-vec-b,
+  .eq-anim-vec-c {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
 /* ── Visual learning sections ── */
 
 .course-student-banner {

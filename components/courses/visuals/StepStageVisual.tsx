@@ -34,7 +34,7 @@ export function StepStageVisual({
 
   return (
     <div className="course-step-stage-visual">
-      <p className="course-step-stage-label">Topic diagram</p>
+      <p className="course-step-stage-label">{custom ? 'Live diagram' : 'Topic diagram'}</p>
       <div className="course-step-stage-diagram">
         {custom ? (
           <LessonDiagram

@@ -17,13 +17,15 @@ export function CourseVisualLearning({
   template: VisualTemplate
   lessonSlug: string
 }) {
-  const { heroVisual, stepCarousel, diagramImage } = partitioned
+  const { heroVisual, stepCarousel, diagramImages } = partitioned
   const hasStage = heroVisual !== null || stepCarousel !== null
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
-  const isAlnotesDiagram = diagramImage?.src.includes('/alnotes/') ?? false
-  const showReferenceImage = diagramImage !== null && (!liveDiagram || isAlnotesDiagram)
+  const referenceDiagrams = diagramImages.filter(
+    (d) => d.src.includes('/alnotes/') || !liveDiagram
+  )
+  const showReferenceImages = referenceDiagrams.length > 0
 
-  if (!hasStage && !showReferenceImage) return null
+  if (!hasStage && !showReferenceImages) return null
 
   return (
     <VisualSectionFrame
@@ -53,21 +55,31 @@ export function CourseVisualLearning({
         </div>
       ) : null}
 
-      {showReferenceImage && diagramImage ? (
-        <figure className="course-lesson-diagram overflow-hidden rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_30%,var(--ec-border-subtle))] bg-[var(--ec-surface-muted)] p-2 shadow-lg lg:rounded-3xl">
-          <Image
-            src={diagramImage.src}
-            alt={diagramImage.alt}
-            width={1280}
-            height={720}
-            sizes="(max-width: 768px) 100vw, 720px"
-            className="h-auto w-full rounded-xl border border-[var(--ec-border-subtle)] object-contain"
-            unoptimized
-          />
-          <figcaption className="px-2 py-2 text-center text-xs text-[var(--ec-text-tertiary)]">
-            {diagramImage.caption ?? 'Reference diagram from syllabus notes'}
-          </figcaption>
-        </figure>
+      {showReferenceImages ? (
+        <div className="course-alnotes-gallery mt-6 space-y-6">
+          {referenceDiagrams.map((diagram, i) => (
+            <figure
+              key={diagram.src}
+              className="course-lesson-diagram overflow-hidden rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_30%,var(--ec-border-subtle))] bg-white p-2 shadow-lg lg:rounded-3xl"
+            >
+              <Image
+                src={diagram.src}
+                alt={diagram.alt}
+                width={1280}
+                height={720}
+                sizes="(max-width: 768px) 100vw, 720px"
+                className="h-auto w-full rounded-xl border border-[var(--ec-border-subtle)] object-contain"
+                unoptimized
+              />
+              <figcaption className="px-2 py-2 text-center text-xs text-[var(--ec-text-tertiary)]">
+                {diagram.caption ??
+                  (referenceDiagrams.length > 1
+                    ? `Reference notes — page ${i + 1} of ${referenceDiagrams.length}`
+                    : 'Reference diagram from syllabus notes')}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       ) : null}
     </VisualSectionFrame>
   )

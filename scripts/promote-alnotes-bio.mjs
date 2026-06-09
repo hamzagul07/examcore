@@ -18,7 +18,7 @@ const dryRun = args.includes('--dry-run')
 function toPublished(pilot) {
   const lesson = structuredClone(pilot)
   lesson.status = 'premium'
-  lesson.generatorVersion = 'alnotes-published-1'
+  lesson.generatorVersion = 'alnotes-published-2'
   delete lesson.generatedAt
   return lesson
 }

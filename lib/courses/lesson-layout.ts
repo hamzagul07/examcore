@@ -11,6 +11,7 @@ export type PartitionedVisualBlocks = {
   quickCheck: Extract<VisualBlock, { type: 'quick-check' }> | null
   flashcards: Extract<VisualBlock, { type: 'flashcards' }> | null
   diagramImage: Extract<VisualBlock, { type: 'diagram-image' }> | null
+  diagramImages: Extract<VisualBlock, { type: 'diagram-image' }>[]
 }
 
 export type WorkedExampleItem = {
@@ -32,6 +33,7 @@ export function partitionEnrichedBlocks(blocks: VisualBlock[]): PartitionedVisua
     quickCheck: null,
     flashcards: null,
     diagramImage: null,
+    diagramImages: [],
   }
 
   for (const block of blocks) {
@@ -61,6 +63,7 @@ export function partitionEnrichedBlocks(blocks: VisualBlock[]): PartitionedVisua
         result.flashcards = block
         break
       case 'diagram-image':
+        result.diagramImages.push(block)
         result.diagramImage = block
         break
       default:

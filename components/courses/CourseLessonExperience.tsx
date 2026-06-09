@@ -63,7 +63,7 @@ export function CourseLessonExperience({
   const hasVisual =
     partitioned.heroVisual !== null ||
     partitioned.stepCarousel !== null ||
-    partitioned.diagramImage !== null
+    partitioned.diagramImage !== null || partitioned.diagramImages.length > 0
 
   return (
     <div className="course-lesson-experience">

@@ -199,7 +199,16 @@ export function enrichLessonVisual(
     })
   }
 
-  const alnotesFile = path.join(
+  const alnotesDir = path.join(
+    process.cwd(),
+    'public',
+    'courses',
+    'diagrams',
+    subjectCode,
+    'alnotes',
+    lesson.slug
+  )
+  const alnotesLegacy = path.join(
     process.cwd(),
     'public',
     'courses',
@@ -208,48 +217,75 @@ export function enrichLessonVisual(
     'alnotes',
     `${lesson.slug}.png`
   )
-  const diagramCandidates = [
-    alnotesFile,
-    path.join(process.cwd(), 'public', 'courses', 'diagrams', subjectCode, `${lesson.slug}.png`),
-    path.join(
-      process.cwd(),
-      'public',
-      'courses',
-      'diagrams',
-      subjectCode,
-      'senpai',
-      `${lesson.slug}.png`
-    ),
-  ]
 
-  const diagramFile = diagramCandidates.find((p) => fs.existsSync(p))
-  const isAlnotes = diagramFile === alnotesFile && fs.existsSync(alnotesFile)
-  const suppressGeneric = hasLessonLiveDiagram(lesson.slug) && !isAlnotes
+  const alnotesPages: { src: string; alt: string }[] = []
+  if (fs.existsSync(alnotesDir) && fs.statSync(alnotesDir).isDirectory()) {
+    for (const file of fs.readdirSync(alnotesDir).filter((f) => /^page-\d+\.png$/i.test(f)).sort()) {
+      alnotesPages.push({
+        src: `/courses/diagrams/${subjectCode}/alnotes/${lesson.slug}/${file}`,
+        alt: `A-Level Notes notes page for ${lesson.title}`,
+      })
+    }
+  } else if (fs.existsSync(alnotesLegacy)) {
+    alnotesPages.push({
+      src: `/courses/diagrams/${subjectCode}/alnotes/${lesson.slug}.png`,
+      alt: `A-Level Notes reference diagram for ${lesson.title}`,
+    })
+  } else if (lesson.referenceDiagrams?.length) {
+    for (const d of [...lesson.referenceDiagrams].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))) {
+      alnotesPages.push({ src: d.src, alt: d.alt })
+    }
+  }
+
+  const hasAlnotes = alnotesPages.length > 0
+  const suppressGeneric = hasLessonLiveDiagram(lesson.slug) && !hasAlnotes
 
   if (!suppressGeneric) {
-    if (diagramFile) {
-      const src = diagramFile.includes(`${path.sep}alnotes${path.sep}`)
-        ? `/courses/diagrams/${subjectCode}/alnotes/${lesson.slug}.png`
-        : diagramFile.includes(`${path.sep}senpai${path.sep}`)
+    if (hasAlnotes) {
+      alnotesPages.forEach((page, i) => {
+        blocks.push({
+          type: 'diagram-image',
+          src: page.src,
+          alt: page.alt,
+          caption:
+            alnotesPages.length > 1
+              ? `A-Level Notes — page ${i + 1} of ${alnotesPages.length}`
+              : 'Reference diagram from A-Level Notes',
+        })
+      })
+    } else {
+      const diagramCandidates = [
+        path.join(process.cwd(), 'public', 'courses', 'diagrams', subjectCode, `${lesson.slug}.png`),
+        path.join(
+          process.cwd(),
+          'public',
+          'courses',
+          'diagrams',
+          subjectCode,
+          'senpai',
+          `${lesson.slug}.png`
+        ),
+      ]
+      const diagramFile = diagramCandidates.find((p) => fs.existsSync(p))
+      if (diagramFile) {
+        const src = diagramFile.includes(`${path.sep}senpai${path.sep}`)
           ? `/courses/diagrams/${subjectCode}/senpai/${lesson.slug}.png`
           : diagramPath(subjectCode, lesson.slug)
-      blocks.push({
-        type: 'diagram-image',
-        src,
-        alt: isAlnotes
-          ? `A-Level Notes reference diagram for ${lesson.title}`
-          : `${lesson.title} diagram for Cambridge ${subjectCode}`,
-        caption: isAlnotes ? 'Reference diagram from A-Level Notes' : undefined,
-      })
-    } else if (lesson.diagram?.src) {
-      blocks.push({
-        type: 'diagram-image',
-        src: lesson.diagram.src,
-        alt: lesson.diagram.alt,
-        caption: lesson.diagram.src.includes('/alnotes/')
-          ? 'Reference diagram from A-Level Notes'
-          : undefined,
-      })
+        blocks.push({
+          type: 'diagram-image',
+          src,
+          alt: `${lesson.title} diagram for Cambridge ${subjectCode}`,
+        })
+      } else if (lesson.diagram?.src) {
+        blocks.push({
+          type: 'diagram-image',
+          src: lesson.diagram.src,
+          alt: lesson.diagram.alt,
+          caption: lesson.diagram.src.includes('/alnotes/')
+            ? 'Reference diagram from A-Level Notes'
+            : undefined,
+        })
+      }
     }
   }
 

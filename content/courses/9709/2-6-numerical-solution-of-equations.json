@@ -1,0 +1,42 @@
+{
+  "slug": "2-6-numerical-solution-of-equations",
+  "topicCode": "2.6",
+  "title": "Numerical solution of equations",
+  "paper": "P2",
+  "paperName": "Pure Mathematics 2",
+  "status": "premium",
+  "summary": "9709 P2 numerical methods — sign change, iteration, and convergence with GeoGebra root finder.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Locate roots using change of sign.",
+    "Rearrange equations for iterative schemes.",
+    "Perform fixed-point iteration.",
+    "Recognise convergence and divergence."
+  ],
+  "simpleExplanation": {
+    "title": "Approximate roots on P2",
+    "summary": "When algebra fails, iterate x_{n+1} = g(x_n). Convergence requires |g′(x)| < 1 near the root.",
+    "steps": [
+      "f(a)f(b) < 0 confirms a root in [a,b].",
+      "Rearrange carefully — some forms diverge.",
+      "Tabulate x₀, x₁, x₂, … to required accuracy.",
+      "Sketch cobweb if asked to explain failure."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**P2 numerical methods** (2.6) mirror **P3** (3.6) at simpler level. Always show **at least 3 iterations**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a P2 numerical methods question",
+      "href": "/mark?subject=9709&topic=2.6"
+    },
+    {
+      "type": "resources",
+      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+    }
+  ]
+}

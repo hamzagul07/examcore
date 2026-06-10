@@ -1,21 +1,29 @@
 'use client'
 
-import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, ListOrdered } from 'lucide-react'
 import type { VisualStep } from '@/lib/courses/visual-types'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
-export function VisualStepCarousel({ title, steps }: { title: string; steps: VisualStep[] }) {
-  const [idx, setIdx] = useState(0)
-  const step = steps[idx]
+export function VisualStepCarousel({
+  title,
+  steps,
+  activeStep,
+  onStepChange,
+}: {
+  title: string
+  steps: VisualStep[]
+  activeStep: number
+  onStepChange: (index: number) => void
+}) {
+  const step = steps[activeStep]
   const total = steps.length
 
   return (
     <VisualSectionFrame
       title={title}
-      hint="Swipe through each step — use the arrows or dots below."
+      hint="Swipe through steps — the diagram follows each one."
       icon={ListOrdered}
       accent="brand"
       className="course-visual-carousel lg:hidden"
@@ -23,14 +31,14 @@ export function VisualStepCarousel({ title, steps }: { title: string; steps: Vis
     >
       <div className="mb-3 flex items-center justify-end">
         <span className="rounded-full border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] px-3 py-1 text-xs font-semibold text-[var(--ec-text-tertiary)]">
-          Step {idx + 1} of {total}
+          Step {activeStep + 1} of {total}
         </span>
       </div>
 
       <div className="course-visual-carousel-panel">
         <AnimatePresence mode="wait">
           <motion.div
-            key={idx}
+            key={activeStep}
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
@@ -49,8 +57,8 @@ export function VisualStepCarousel({ title, steps }: { title: string; steps: Vis
         <div className="flex items-center justify-between px-4 py-3">
           <button
             type="button"
-            onClick={() => setIdx((i) => Math.max(0, i - 1))}
-            disabled={idx === 0}
+            onClick={() => onStepChange(Math.max(0, activeStep - 1))}
+            disabled={activeStep === 0}
             className="course-visual-nav-btn"
             aria-label="Previous step"
           >
@@ -63,10 +71,10 @@ export function VisualStepCarousel({ title, steps }: { title: string; steps: Vis
                 key={i}
                 type="button"
                 role="tab"
-                aria-selected={i === idx}
-                onClick={() => setIdx(i)}
+                aria-selected={i === activeStep}
+                onClick={() => onStepChange(i)}
                 className={`h-2.5 rounded-full border-2 transition-all ${
-                  i === idx
+                  i === activeStep
                     ? 'w-7 border-[var(--ec-brand)] bg-[var(--ec-brand)]'
                     : 'w-2.5 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)]'
                 }`}
@@ -76,8 +84,8 @@ export function VisualStepCarousel({ title, steps }: { title: string; steps: Vis
 
           <button
             type="button"
-            onClick={() => setIdx((i) => Math.min(total - 1, i + 1))}
-            disabled={idx === total - 1}
+            onClick={() => onStepChange(Math.min(total - 1, activeStep + 1))}
+            disabled={activeStep === total - 1}
             className="course-visual-nav-btn"
             aria-label="Next step"
           >

@@ -22,7 +22,9 @@ import { CourseSimpleExplanation } from '@/components/courses/CourseSimpleExplan
 import { CourseWorkedExamples } from '@/components/courses/CourseWorkedExamples'
 import { CoursePastPaperPractice } from '@/components/courses/CoursePastPaperPractice'
 import { CourseVisualLearning } from '@/components/courses/CourseVisualLearning'
+import { CourseRevisionTools } from '@/components/courses/CourseRevisionTools'
 import { CourseLegacyAnchor } from '@/components/courses/CourseLegacyAnchor'
+import { resolveLessonInteractiveEmbed } from '@/lib/courses/interactive-embeds'
 import {
   buildNotesLesson,
   extractWorkedExamples,
@@ -56,18 +58,78 @@ export function CourseLessonExperience({
   ]
 
   const partitioned = partitionEnrichedBlocks(enriched.blocks)
+  const interactiveEmbed = resolveLessonInteractiveEmbed(lesson)
   const workedExamples = extractWorkedExamples(lesson)
   const notesLesson = buildNotesLesson(lesson, enriched, { omitWorkedExamples: true })
   const hasNotes = hasRenderableNotes(lesson, enriched)
   const takeaways = extractKeyTakeaways(lesson)
   const practiceSection = lesson.sections.find((s) => s.type === 'practice')
   const pastPaperPractice = lesson.sections.find((s) => s.type === 'pastPaperPractice')
-  const tocEntries = buildLessonToc(lesson, enriched, partitioned)
+  const tocEntries = buildLessonToc(lesson, enriched, partitioned, {
+    hasInteractiveEmbed: !!interactiveEmbed,
+  })
 
   const hasVisual =
+    !!interactiveEmbed ||
     partitioned.heroVisual !== null ||
     partitioned.stepCarousel !== null ||
-    partitioned.diagramImage !== null || partitioned.diagramImages.length > 0
+    partitioned.diagramImage !== null ||
+    partitioned.diagramImages.length > 0
+
+  const revisionSections = [
+    partitioned.conceptMap
+      ? {
+          id: 'concept-map',
+          label: 'Concept map',
+          content: (
+            <ConceptMapVisual
+              center={partitioned.conceptMap.center}
+              nodes={partitioned.conceptMap.nodes}
+              template={enriched.template}
+            />
+          ),
+        }
+      : null,
+    partitioned.keyTerms
+      ? {
+          id: 'glossary',
+          label: 'Glossary',
+          content: (
+            <KeyTermsPanel
+              title={partitioned.keyTerms.title}
+              terms={partitioned.keyTerms.terms}
+            />
+          ),
+        }
+      : null,
+    partitioned.quickCheck
+      ? {
+          id: 'quick-check',
+          label: 'Quick check',
+          content: (
+            <QuickCheckPanel
+              title={partitioned.quickCheck.title}
+              items={partitioned.quickCheck.items}
+            />
+          ),
+        }
+      : null,
+    partitioned.flashcards
+      ? {
+          id: 'flashcards',
+          label: 'Flashcards',
+          content: (
+            <FlashcardDeck
+              title={partitioned.flashcards.title}
+              cards={partitioned.flashcards.cards}
+            />
+          ),
+        }
+      : null,
+  ].filter((s): s is NonNullable<typeof s> => s !== null)
+
+  const useRevisionAccordion =
+    !!interactiveEmbed && revisionSections.length > 0
 
   return (
     <div
@@ -131,6 +193,8 @@ export function CourseLessonExperience({
                     partitioned={partitioned}
                     template={enriched.template}
                     lessonSlug={lesson.slug}
+                    diagramSpec={lesson.diagramSpec}
+                    interactiveEmbed={interactiveEmbed}
                   />
                 </>
               ) : null}
@@ -192,17 +256,24 @@ export function CourseLessonExperience({
                 </>
               ) : null}
 
-              {partitioned.conceptMap ? (
-                <div id="concept-map" className="scroll-mt-28">
-                  <ConceptMapVisual
-                    center={partitioned.conceptMap.center}
-                    nodes={partitioned.conceptMap.nodes}
-                    template={enriched.template}
-                  />
-                </div>
+              {partitioned.conceptMap && !useRevisionAccordion ? (
+                <>
+                  <CourseLegacyAnchor id="learn-concept" />
+                  <div id="concept-map" className="scroll-mt-28">
+                    <ConceptMapVisual
+                      center={partitioned.conceptMap.center}
+                      nodes={partitioned.conceptMap.nodes}
+                      template={enriched.template}
+                    />
+                  </div>
+                </>
               ) : null}
 
-              {partitioned.keyTerms ? (
+              {useRevisionAccordion ? (
+                <CourseRevisionTools sections={revisionSections} />
+              ) : null}
+
+              {!useRevisionAccordion && partitioned.keyTerms ? (
                 <>
                   <CourseLegacyAnchor id="learn-glossary" />
                   <div id="glossary" className="scroll-mt-28">
@@ -214,7 +285,7 @@ export function CourseLessonExperience({
                 </>
               ) : null}
 
-              {partitioned.quickCheck ? (
+              {!useRevisionAccordion && partitioned.quickCheck ? (
                 <div id="quick-check" className="scroll-mt-28">
                   <QuickCheckPanel
                     title={partitioned.quickCheck.title}
@@ -223,7 +294,7 @@ export function CourseLessonExperience({
                 </div>
               ) : null}
 
-              {partitioned.flashcards ? (
+              {!useRevisionAccordion && partitioned.flashcards ? (
                 <div id="flashcards" className="scroll-mt-28">
                   <FlashcardDeck
                     title={partitioned.flashcards.title}

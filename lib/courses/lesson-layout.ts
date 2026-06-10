@@ -113,6 +113,7 @@ export function buildNotesLesson(
         if (s.type === 'practice') return false
         if (s.type === 'pastPaperPractice') return false
         if (s.type === 'keyPoints') return false
+        if (s.type === 'interactive') return false
         return true
       })
       .map((s) => rewriteSectionWorkedExampleRefs(s, omitWorked && extractWorkedExamples(lesson).length > 0)),

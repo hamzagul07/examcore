@@ -1,0 +1,73 @@
+{
+  "slug": "2-2-the-mole-and-the-avogadro-constant",
+  "topicCode": "2.2",
+  "title": "The mole and the Avogadro constant",
+  "paper": "AS",
+  "paperName": "AS Level Subject Content",
+  "status": "premium",
+  "summary": "9701 AS Chemistry — the mole concept, Avogadro constant, molar mass, and solution concentration with PhET Molarity lab integration.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Define the mole and state the value of the Avogadro constant.",
+    "Convert between mass, moles, and number of particles using n = m/Mr.",
+    "Calculate solution concentration c = n/V in mol dm⁻³.",
+    "Use the molar gas volume at rtp (24 dm³ mol⁻¹) in gas stoichiometry."
+  ],
+  "simpleExplanation": {
+    "title": "Chemists count in moles",
+    "summary": "The mole is a counting unit — like a dozen, but 6.02 × 10²³ particles. It links the microscopic (atoms) to the macroscopic (grams you can weigh).",
+    "steps": [
+      "One mole of any substance contains 6.02 × 10²³ specified particles (atoms, molecules, ions).",
+      "Molar mass in g mol⁻¹ numerically equals Mr — so 1 mol of CO₂ has mass 44 g.",
+      "Concentration c = n/V links moles dissolved to solution volume in dm³.",
+      "At rtp, 1 mol of any ideal gas occupies about 24 dm³ — essential for gas equations."
+    ]
+  },
+  "flashcards": [
+    { "front": "Value of Avogadro constant L?", "back": "6.02 × 10²³ mol⁻¹ (particles per mole)." },
+    { "front": "n = m / Mr rearranged for mass?", "back": "m = n × Mr" },
+    { "front": "Concentration units?", "back": "mol dm⁻³ (molarity, M)." },
+    { "front": "Molar gas volume at rtp?", "back": "24 dm³ mol⁻¹ (Cambridge standard approximation)." }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Stoichiometry dominates **9701 AS Papers 1 and 2**. If the mole concept is shaky, every calculation that follows — titration, gas volume, limiting reagent — will cost marks. The **PhET Molarity** sim below connects moles to solutions you prepare in the lab."
+    },
+    {
+      "type": "formula",
+      "content": "n = m/Mr | n = cV (V in dm³) | n = volume of gas (dm³) / 24 at rtp | N = n × L"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the mass of NaOH needed to prepare 250 cm³ of 0.100 mol dm⁻³ solution. (Mr NaOH = 40.0)",
+      "solution": "n = cV = 0.100 × (250/1000) = 0.0250 mol\n\nm = n × Mr = 0.0250 × 40.0 = **1.00 g**"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always convert cm³ to dm³ before using c = n/V",
+        "State units in every line — examiners deduct for missing mol, g, dm³",
+        "Distinguish empirical formula mass from molecular formula mass",
+        "Significant figures: match data in the question unless told otherwise"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Write **n = m/Mr** first even when the answer seems obvious. That M1 line appears in almost every mark scheme for calculation questions."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a mole calculation",
+      "href": "/mark?subject=9701&topic=2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "PhET Molarity", "href": "https://phet.colorado.edu/en/simulations/molarity" },
+        { "label": "9701 course index", "href": "/courses/9701" }
+      ]
+    }
+  ]
+}

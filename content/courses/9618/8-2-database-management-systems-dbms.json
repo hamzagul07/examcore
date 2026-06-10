@@ -1,0 +1,42 @@
+{
+  "slug": "8-2-database-management-systems-dbms",
+  "topicCode": "8.2",
+  "title": "Database Management Systems (DBMS)",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — DBMS software layers, data dictionary, query processor, and concurrent access control.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Describe functions of a DBMS.",
+    "Explain the role of the data dictionary.",
+    "Outline concurrent access and locking strategies.",
+    "Compare file-based systems with DBMS approaches."
+  ],
+  "simpleExplanation": {
+    "title": "Software that manages databases",
+    "summary": "A DBMS provides an interface between users and stored data — handling security, integrity, backup, and efficient query execution.",
+    "steps": [
+      "DDL/DML interfaces for schema and data changes.",
+      "Query processor optimises and executes SQL.",
+      "Data dictionary stores metadata (tables, fields, constraints).",
+      "Locking prevents lost updates when two users edit concurrently."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**DBMS** (8.2) builds on **database concepts** (8.1) before **SQL** (8.3). Cambridge asks for **named DBMS functions** and **concurrency** scenarios."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a DBMS question",
+      "href": "/mark?subject=9618&topic=8.2"
+    },
+    {
+      "type": "resources",
+      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+    }
+  ]
+}

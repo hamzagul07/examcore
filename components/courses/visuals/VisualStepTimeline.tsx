@@ -1,18 +1,25 @@
 'use client'
 
-import { useState } from 'react'
 import { ListOrdered } from 'lucide-react'
 import type { VisualStep } from '@/lib/courses/visual-types'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
-export function VisualStepTimeline({ title, steps }: { title: string; steps: VisualStep[] }) {
-  const [active, setActive] = useState(0)
-
+export function VisualStepTimeline({
+  title,
+  steps,
+  activeStep,
+  onStepChange,
+}: {
+  title: string
+  steps: VisualStep[]
+  activeStep: number
+  onStepChange: (index: number) => void
+}) {
   return (
     <VisualSectionFrame
       title={title}
-      hint="Click any step to highlight it. Take your time — no rush."
+      hint="Click any step — the diagram updates to match."
       icon={ListOrdered}
       accent="brand"
       className="course-step-timeline hidden lg:block"
@@ -20,7 +27,7 @@ export function VisualStepTimeline({ title, steps }: { title: string; steps: Vis
     >
       <ol className="space-y-0">
         {steps.map((step, i) => {
-          const isActive = i === active
+          const isActive = i === activeStep
           const isLast = i === steps.length - 1
           return (
             <li key={step.label} className="relative flex gap-4">
@@ -32,7 +39,7 @@ export function VisualStepTimeline({ title, steps }: { title: string; steps: Vis
               ) : null}
               <button
                 type="button"
-                onClick={() => setActive(i)}
+                onClick={() => onStepChange(i)}
                 className={`course-step-dot relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors ${
                   isActive
                     ? 'is-active bg-[var(--ec-brand)] text-white'

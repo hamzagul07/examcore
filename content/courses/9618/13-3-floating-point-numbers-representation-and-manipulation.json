@@ -1,0 +1,32 @@
+{
+  "slug": "13-3-floating-point-numbers-representation-and-manipulation",
+  "topicCode": "13.3",
+  "title": "Floating-point numbers, representation and manipulation",
+  "paper": "P3",
+  "paperName": "Advanced Theory",
+  "status": "premium",
+  "summary": "9618 A Level — IEEE-style mantissa and exponent, normalisation, and precision limits.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Convert denary numbers to floating-point binary.",
+    "Normalise floating-point representations.",
+    "Explain precision and rounding errors.",
+    "Compare range and accuracy trade-offs."
+  ],
+  "simpleExplanation": {
+    "title": "Real numbers in binary",
+    "summary": "Floating-point stores mantissa and exponent. Normalisation maximises precision for a given bit allocation.",
+    "steps": [
+      "Value ≈ mantissa × 2^exponent.",
+      "Normalise: one non-zero digit before binary point.",
+      "Overflow/underflow at range limits.",
+      "Rounding causes small errors in calculations."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**Floating-point** (13.3) extends AS **1.1** representation. Show **binary working** — examiners award method marks." },
+    { "type": "practice", "label": "Mark a floating-point question", "href": "/mark?subject=9618&topic=13.3" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

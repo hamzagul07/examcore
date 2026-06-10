@@ -1,0 +1,53 @@
+{
+  "slug": "1-6-series",
+  "topicCode": "1.6",
+  "title": "Series",
+  "paper": "P1",
+  "paperName": "Pure Mathematics 1",
+  "status": "premium",
+  "summary": "9709 P1 series — binomial expansion, arithmetic and geometric progressions, and sums with PhET Expression Exchange.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Expand (1 + x)ⁿ for positive integer n and use the binomial coefficients.",
+    "Find nth term and sum of arithmetic and geometric series.",
+    "Apply sum to infinity for |r| < 1.",
+    "Solve problems in context (e.g. compound interest as GP)."
+  ],
+  "simpleExplanation": {
+    "title": "Patterns in sequences",
+    "summary": "Arithmetic series add a constant difference; geometric series multiply by a constant ratio. Binomial expansion gives coefficients for (a + b)ⁿ.",
+    "steps": [
+      "AP: u_n = a + (n−1)d; sum S_n = n/2(2a + (n−1)d) or n/2(a + l).",
+      "GP: u_n = ar^(n−1); sum S_n = a(1−r^n)/(1−r); S_∞ = a/(1−r) if |r| < 1.",
+      "Binomial: (1+x)ⁿ = 1 + nx + n(n−1)x²/2! + … for integer n.",
+      "Identify a and r (or a and d) before choosing the formula."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Series** questions on P1 mix **recognition** (AP vs GP) with **algebra**. Binomial expansion links to **probability** on P5 — learn nCr notation early."
+    },
+    {
+      "type": "workedExample",
+      "question": "Sum to infinity of 12 + 6 + 3 + …",
+      "solution": "GP: a = 12, r = 1/2.\n\n| r | < 1 → S_∞ = a/(1−r) = 12/(1 − 1/2) = **24**"
+    },
+    {
+      "type": "examTip",
+      "content": "For binomial expansion of (2 + 3x)⁵, factor **2⁵** first: 2⁵(1 + 3x/2)⁵, then expand the bracket — Cambridge sets this trap every year."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a series question",
+      "href": "/mark?subject=9709&topic=1.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 course index", "href": "/courses/9709" }
+      ]
+    }
+  ]
+}

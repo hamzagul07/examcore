@@ -1,0 +1,53 @@
+{
+  "slug": "5-1-operating-systems",
+  "topicCode": "5.1",
+  "title": "Operating Systems",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — OS functions, process management, scheduling, memory management, and user interfaces.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "State the main functions of an operating system.",
+    "Explain process states and scheduling algorithms.",
+    "Describe paging and segmentation for memory management.",
+    "Compare GUI and CLI interfaces."
+  ],
+  "simpleExplanation": {
+    "title": "The manager between hardware and software",
+    "summary": "The OS abstracts hardware, schedules CPU time, manages memory, handles I/O, and provides security boundaries between programs.",
+    "steps": [
+      "Process: program in execution — states: ready, running, blocked.",
+      "Round-robin: time slices; priority: higher priority runs first.",
+      "Virtual memory: pages swapped to disk when RAM full.",
+      "Multitasking: rapid context switching gives illusion of parallelism."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Operating systems** (5.1) connect to **CPU architecture** (4.1) and **resource management** questions. Know **FCFS**, **round-robin**, and **priority** scheduling with a small Gantt-style trace."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Kernel mode vs user mode — privileged instructions protected",
+        "Interrupts signal events (I/O complete, timer tick)",
+        "Deadlock: four conditions — mutual exclusion, hold-and-wait, no preemption, circular wait",
+        "Device drivers translate OS requests to hardware commands"
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark an operating systems question",
+      "href": "/mark?subject=9618&topic=5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9618 course index", "href": "/courses/9618" }
+      ]
+    }
+  ]
+}

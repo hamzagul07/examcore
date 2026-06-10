@@ -1,0 +1,32 @@
+{
+  "slug": "17-1-encryption-encryption-protocols-and-digital-certificates",
+  "topicCode": "17.1",
+  "title": "Encryption, Encryption Protocols and Digital Certificates",
+  "paper": "P3",
+  "paperName": "Advanced Theory",
+  "status": "premium",
+  "summary": "9618 — symmetric vs asymmetric encryption, SSL/TLS, and PKI certificates.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Compare symmetric and asymmetric encryption.",
+    "Explain public/private key pairs.",
+    "Describe role of digital certificates.",
+    "Outline how HTTPS secures web communication."
+  ],
+  "simpleExplanation": {
+    "title": "Keeping data confidential and trusted",
+    "summary": "Encryption scrambles data so only authorised parties read it. Certificates bind public keys to verified identities.",
+    "steps": [
+      "Symmetric: same key encrypts and decrypts.",
+      "Asymmetric: public encrypts, private decrypts.",
+      "CA issues digital certificate.",
+      "TLS handshake negotiates session keys."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**Encryption** (17.1) links **6.1 data security** to **14.1 protocols**. Draw **key exchange** steps for asymmetric encryption." },
+    { "type": "practice", "label": "Mark an encryption question", "href": "/mark?subject=9618&topic=17.1" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

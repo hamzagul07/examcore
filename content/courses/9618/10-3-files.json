@@ -1,0 +1,42 @@
+{
+  "slug": "10-3-files",
+  "topicCode": "10.3",
+  "title": "Files",
+  "paper": "P2",
+  "paperName": "Fundamental Problem-solving and Programming Skills",
+  "status": "premium",
+  "summary": "9618 AS file handling — text and binary files, file modes, and organisation for persistent data.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Distinguish text and binary file storage.",
+    "Describe sequential and random file access.",
+    "Explain file organisation for records.",
+    "Outline backup and file integrity considerations."
+  ],
+  "simpleExplanation": {
+    "title": "Data beyond RAM",
+    "summary": "Files persist data on secondary storage. Records can be read sequentially or accessed by key in organised files.",
+    "steps": [
+      "Text files: human-readable lines; binary: raw bytes.",
+      "OPEN → READ/WRITE → CLOSE lifecycle.",
+      "Hash or indexed files for direct access by key.",
+      "Validation on read prevents corrupt data use."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Files** (10.3) connect **arrays/records** (10.1–10.2) to **databases** (8.x). Know **when files vs DBMS** is appropriate."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a files question",
+      "href": "/mark?subject=9618&topic=10.3"
+    },
+    {
+      "type": "resources",
+      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+    }
+  ]
+}

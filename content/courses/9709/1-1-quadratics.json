@@ -1,0 +1,64 @@
+{
+  "slug": "1-1-quadratics",
+  "topicCode": "1.1",
+  "title": "Quadratics",
+  "paper": "P1",
+  "paperName": "Pure Mathematics 1",
+  "status": "premium",
+  "summary": "Free Cambridge 9709 P1 quadratics — factorisation, completing the square, the discriminant, and quadratic graphs with GeoGebra explorer.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Factorise and solve quadratic equations.",
+    "Complete the square to find vertex form and solve equations.",
+    "Use the discriminant to determine the nature of roots.",
+    "Sketch quadratic graphs from key features (vertex, intercepts, shape)."
+  ],
+  "simpleExplanation": {
+    "title": "Parabolas everywhere",
+    "summary": "Quadratics model projectile motion, area problems, and optimisation. Master three tools: factorise, formula, and completing the square.",
+    "steps": [
+      "Write in standard form ax² + bx + c = 0 and identify a, b, c.",
+      "Try factorisation first when the quadratic factorises cleanly over integers.",
+      "Use Δ = b² − 4ac: Δ > 0 two roots, Δ = 0 one repeated root, Δ < 0 no real roots.",
+      "Complete the square to find the vertex (h, k) and sketch the parabola."
+    ]
+  },
+  "flashcards": [
+    { "front": "Quadratic formula?", "back": "x = (−b ± √(b² − 4ac)) / 2a" },
+    { "front": "Discriminant Δ?", "back": "Δ = b² − 4ac — sign tells number of real roots." },
+    { "front": "Vertex form?", "back": "y = a(x − h)² + k — vertex at (h, k)." },
+    { "front": "If a > 0, parabola opens…?", "back": "Upwards — minimum at the vertex." }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Quadratics** open Paper 1 and reappear in disguised form throughout 9709. Cambridge expects clean algebra, **discriminant arguments**, and **sketches** showing intercepts and vertex."
+    },
+    {
+      "type": "formula",
+      "content": "ax² + bx + c = 0 → x = (−b ± √Δ)/2a | Completing the square: x² + bx = (x + b/2)² − (b/2)²"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve 2x² − 5x − 3 = 0 and state the nature of the roots.",
+      "solution": "Δ = 25 + 24 = 49 > 0 → two distinct real roots.\n\nFactorise: (2x + 1)(x − 3) = 0\n\nx = **−½** or x = **3**."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked \"show that\" an equation has no real roots, compute **Δ < 0** with working — one line of algebra earns the mark; stating the conclusion alone does not."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a quadratics question",
+      "href": "/mark?subject=9709&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
+        { "label": "9709 course index", "href": "/courses/9709" }
+      ]
+    }
+  ]
+}

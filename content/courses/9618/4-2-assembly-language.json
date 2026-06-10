@@ -1,0 +1,47 @@
+{
+  "slug": "4-2-assembly-language",
+  "topicCode": "4.2",
+  "title": "Assembly Language",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS assembly — instruction formats, registers, addressing modes, and trace tables for simple programs.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Describe the purpose of assembly language.",
+    "Interpret simple assembly instructions (LDR, STR, ADD, CMP, BNE).",
+    "Trace register and memory changes step by step.",
+    "Compare assembly with high-level languages."
+  ],
+  "simpleExplanation": {
+    "title": "One step above machine code",
+    "summary": "Assembly uses mnemonics for opcodes. Each instruction maps closely to CPU operations — load, store, arithmetic, branch.",
+    "steps": [
+      "LDR R1, [address] — load from memory to register.",
+      "STR R1, [address] — store register to memory.",
+      "CMP R1, #n then BNE label — conditional branch.",
+      "Trace table: PC, registers, flags after each line."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Assembly language** (4.2) links to **CPU architecture** (4.1). Paper 1 sets **trace tables** — work line by line, do not skip flag updates."
+    },
+    {
+      "type": "workedExample",
+      "question": "After CMP R1, #5 followed by BNE loop when R1 = 5, is branch taken?",
+      "solution": "CMP sets flags comparing R1 − 5.\n\nR1 = 5 → result zero → Z flag set.\n\nBNE branches when **not equal** — Z clear.\n\n**Branch not taken** — fall through to next instruction."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an assembly language question",
+      "href": "/mark?subject=9618&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+    }
+  ]
+}

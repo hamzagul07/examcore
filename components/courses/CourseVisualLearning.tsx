@@ -2,9 +2,9 @@ import Image from 'next/image'
 import { Eye } from 'lucide-react'
 import type { PartitionedVisualBlocks } from '@/lib/courses/lesson-layout'
 import type { VisualTemplate } from '@/lib/courses/visual-types'
-import { StepStageVisual } from '@/components/courses/visuals/StepStageVisual'
-import { VisualStepTimeline } from '@/components/courses/visuals/VisualStepTimeline'
-import { VisualStepCarousel } from '@/components/courses/visuals/VisualStepCarousel'
+import type { LessonDiagramSpec } from '@/lib/courses/diagram-specs'
+import type { LessonInteractiveEmbed } from '@/lib/courses/types'
+import { VisualStepController } from '@/components/courses/visuals/VisualStepController'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
 
@@ -12,48 +12,48 @@ export function CourseVisualLearning({
   partitioned,
   template,
   lessonSlug,
+  diagramSpec,
+  interactiveEmbed,
 }: {
   partitioned: PartitionedVisualBlocks
   template: VisualTemplate
   lessonSlug: string
+  diagramSpec?: LessonDiagramSpec | null
+  interactiveEmbed?: LessonInteractiveEmbed | null
 }) {
   const { heroVisual, stepCarousel, diagramImages } = partitioned
-  const hasStage = heroVisual !== null || stepCarousel !== null
+  const hasEmbed = !!interactiveEmbed
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
+  const showNativeDiagram = !hasEmbed && (heroVisual !== null || liveDiagram)
+  const hasStage = showNativeDiagram || stepCarousel !== null
   const referenceDiagrams = diagramImages.filter(
-    (d) => d.src.includes('/alnotes/') || !liveDiagram
+    (d) => d.src.includes('/alnotes/') || (!liveDiagram && !hasEmbed)
   )
   const showReferenceImages = referenceDiagrams.length > 0
 
-  if (!hasStage && !showReferenceImages) return null
+  if (!hasEmbed && !hasStage && !showReferenceImages) return null
 
   return (
     <VisualSectionFrame
       id="visual-learning"
-      title="Visual learning"
-      hint="Diagram plus a step-by-step walkthrough of the core ideas."
+      title={hasEmbed ? 'Explore the concept' : 'Visual learning'}
+      hint={
+        hasEmbed
+          ? 'Use the live simulation, then follow the synced steps below.'
+          : 'Diagram plus a step-by-step walkthrough of the core ideas.'
+      }
       icon={Eye}
       accent="cool"
       className="course-visual-learning"
       bodyClassName="course-visual-learning-body"
     >
-      {hasStage ? (
-        <div className="course-visual-learning-grid course-visual-stage">
-          {heroVisual ? (
-            <div className="course-visual-learning-diagram">
-              <StepStageVisual template={template} lessonSlug={lessonSlug} />
-            </div>
-          ) : null}
-          {stepCarousel ? (
-            <div className="course-visual-learning-steps min-w-0">
-              <div className="course-visual-learning-steps-list">
-                <VisualStepTimeline title={stepCarousel.title} steps={stepCarousel.steps} />
-                <VisualStepCarousel title={stepCarousel.title} steps={stepCarousel.steps} />
-              </div>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
+      <VisualStepController
+        partitioned={partitioned}
+        template={template}
+        lessonSlug={lessonSlug}
+        diagramSpec={diagramSpec}
+        interactiveEmbed={interactiveEmbed}
+      />
 
       {showReferenceImages ? (
         <div className="course-alnotes-gallery mt-6 space-y-6">

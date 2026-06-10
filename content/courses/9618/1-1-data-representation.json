@@ -1,0 +1,59 @@
+{
+  "slug": "1-1-data-representation",
+  "topicCode": "1.1",
+  "title": "Data Representation",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS Computer Science — binary, denary, hex, two's complement, BCD, and ASCII/Unicode representation.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Convert between binary, denary, and hexadecimal.",
+    "Represent signed integers using two's complement.",
+    "Explain BCD and when it is used.",
+    "Describe character encoding with ASCII and Unicode."
+  ],
+  "simpleExplanation": {
+    "title": "Numbers and text in bits",
+    "summary": "Computers store everything as binary digits. Different formats encode integers, characters, and real numbers for processing and storage.",
+    "steps": [
+      "Binary ↔ denary: place values 128, 64, 32… or repeated division for denary → binary.",
+      "Hex groups 4 bits — compact notation for memory dumps.",
+      "Two's complement: MSB = sign; negate by invert bits + 1.",
+      "ASCII 7-bit (128 chars); Unicode supports global scripts (UTF-8 variable length)."
+    ]
+  },
+  "flashcards": [
+    { "front": "Max unsigned 8-bit value?", "back": "255 (11111111₂)." },
+    { "front": "Range of 8-bit two's complement?", "back": "−128 to +127." },
+    { "front": "Hex FF in denary?", "back": "255." },
+    { "front": "Why two's complement?", "back": "Single addition circuit handles signed arithmetic." }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Data representation** is the foundation of 9618 Paper 1. Cambridge sets **multi-step conversions**, **two's complement overflow**, and **floating-point** (A Level) — master 8-bit and 16-bit first."
+    },
+    {
+      "type": "workedExample",
+      "question": "Convert −42 denary to 8-bit two's complement.",
+      "solution": "+42 = 00101010\n\nInvert: 11010101\n\nAdd 1: **11010110**"
+    },
+    {
+      "type": "examTip",
+      "content": "Show **working** for conversions — partial marks are common. Watch **overflow** when adding two large positive two's complement numbers."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a data representation question",
+      "href": "/mark?subject=9618&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9618 course index", "href": "/courses/9618" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "slug": "20-2-file-processing-and-exception-handling",
+  "topicCode": "20.2",
+  "title": "File Processing and Exception Handling",
+  "paper": "P4",
+  "paperName": "Practical",
+  "status": "premium",
+  "summary": "9618 P4 — file I/O, validation, and try/catch exception handling.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Read and write text files in pseudocode.",
+    "Validate file data before processing.",
+    "Explain exception handling with try/catch.",
+    "Design robust file-processing algorithms."
+  ],
+  "simpleExplanation": {
+    "title": "Files and graceful errors",
+    "summary": "Programs often read external files. Exception handling catches runtime errors so the program can respond instead of crashing.",
+    "steps": [
+      "OPEN → READ/WRITE → CLOSE file.",
+      "Check file exists and format valid.",
+      "TRY risky code; CATCH handle error.",
+      "Log message and recover or exit safely."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**File processing** (20.2) follows **20.1 paradigms**. Examiners test **pseudocode file loops** and **exception blocks**." },
+    { "type": "practice", "label": "Mark a file processing question", "href": "/mark?subject=9618&topic=20.2" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

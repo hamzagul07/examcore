@@ -1,0 +1,32 @@
+{
+  "slug": "16-2-translation-software",
+  "topicCode": "16.2",
+  "title": "Translation Software",
+  "paper": "P3",
+  "paperName": "Advanced Theory",
+  "status": "premium",
+  "summary": "9618 — interpreters, compilers, assemblers, and translation stages.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Distinguish interpreter and compiler.",
+    "Describe stages of compilation.",
+    "Explain role of assembler for assembly language.",
+    "Compare advantages of each translation approach."
+  ],
+  "simpleExplanation": {
+    "title": "From source code to machine code",
+    "summary": "High-level languages must be translated before execution. Compilers produce object code; interpreters execute line by line.",
+    "steps": [
+      "Lexical analysis → tokens.",
+      "Syntax analysis → parse tree.",
+      "Code generation → machine code.",
+      "Linker combines object modules."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**Translation software** (16.2) follows **16.1 OS purposes**. Know **compiler stages** and **when each translator is used**." },
+    { "type": "practice", "label": "Mark a translation software question", "href": "/mark?subject=9618&topic=16.2" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

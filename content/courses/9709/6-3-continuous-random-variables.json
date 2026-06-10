@@ -1,0 +1,32 @@
+{
+  "slug": "6-3-continuous-random-variables",
+  "topicCode": "6.3",
+  "title": "Continuous random variables",
+  "paper": "P6",
+  "paperName": "Probability & Statistics 2",
+  "status": "premium",
+  "summary": "9709 S2 — PDF, CDF, expectation, and variance for continuous distributions.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Use probability density functions correctly.",
+    "Calculate probabilities as areas.",
+    "Find E(X) and Var(X) by integration.",
+    "Work with standard continuous distributions."
+  ],
+  "simpleExplanation": {
+    "title": "Continuous X",
+    "summary": "P(X = exact value) = 0 for continuous variables. Probabilities are areas under the PDF.",
+    "steps": [
+      "∫f(x)dx = 1 over full range.",
+      "P(a ≤ X ≤ b) = area under f between a and b.",
+      "E(X) = ∫x f(x) dx.",
+      "CDF F(x) = P(X ≤ x)."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**Continuous RVs** (6.3) require careful **integration limits**. Sketch the PDF before integrating." },
+    { "type": "practice", "label": "Mark a continuous RV question", "href": "/mark?subject=9709&topic=6.3" },
+    { "type": "resources", "items": [{ "label": "9709 course index", "href": "/courses/9709" }] }
+  ]
+}

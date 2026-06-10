@@ -1,0 +1,53 @@
+{
+  "slug": "6-1-data-security",
+  "topicCode": "6.1",
+  "title": "Data Security",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — threats to data, access control, encryption, and backup strategies for confidentiality and availability.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Describe threats: hacking, malware, phishing, and social engineering.",
+    "Explain authentication, authorisation, and access levels.",
+    "Outline symmetric and asymmetric encryption at a high level.",
+    "Evaluate backup, disaster recovery, and physical security measures."
+  ],
+  "simpleExplanation": {
+    "title": "Protecting data assets",
+    "summary": "Data security combines technical controls (encryption, firewalls) with procedural ones (password policy, training). CIA triad: confidentiality, integrity, availability.",
+    "steps": [
+      "Confidentiality: only authorised users read data — encryption, access rights.",
+      "Integrity: data not altered without permission — checksums, audit logs.",
+      "Availability: systems reachable when needed — backups, redundancy.",
+      "Defence in depth: multiple layers — network, application, user education."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Data security** (6.1) pairs with **data integrity** (6.2) on Paper 1. Cambridge often asks you to **compare measures** or **justify** a policy for a given scenario."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Firewall filters traffic; antivirus detects known malware signatures",
+        "Strong passwords + 2FA reduce unauthorised access",
+        "Symmetric key shared; asymmetric uses public/private key pairs (TLS)",
+        "Regular off-site backups protect against ransomware and hardware failure"
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a data security question",
+      "href": "/mark?subject=9618&topic=6.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9618 course index", "href": "/courses/9618" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "slug": "8-3-data-definition-language-ddl-and-data-manipulation-language-dml",
+  "topicCode": "8.3",
+  "title": "Data Definition Language (DDL) and Data Manipulation Language (DML)",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS SQL — CREATE, SELECT, INSERT, UPDATE, DELETE, and relational query logic for Paper 1 and Paper 3.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Distinguish DDL and DML statements.",
+    "Write SELECT queries with WHERE, ORDER BY, and basic joins.",
+    "Use INSERT, UPDATE, and DELETE correctly.",
+    "Interpret query results from given tables."
+  ],
+  "simpleExplanation": {
+    "title": "Talking to the database",
+    "summary": "DDL defines structure (CREATE TABLE); DML changes or reads data (SELECT, INSERT, UPDATE, DELETE). SQL is set-based — one statement can affect many rows.",
+    "steps": [
+      "SELECT field FROM table WHERE condition ORDER BY field;",
+      "INSERT INTO table VALUES (...); or specify columns.",
+      "UPDATE table SET field = value WHERE condition;",
+      "JOIN links tables on matching key fields."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**SQL** (8.3) is tested on Paper 1 theory and Paper 3 practical. Practise **trace tables** for UPDATE/DELETE and **join** two normalised tables."
+    },
+    {
+      "type": "workedExample",
+      "question": "List student names enrolled on course C101, sorted A–Z.",
+      "solution": "SELECT Student.Name\nFROM Student\nINNER JOIN Enrolment ON Student.StudentID = Enrolment.StudentID\nWHERE Enrolment.CourseCode = 'C101'\nORDER BY Student.Name;"
+    },
+    {
+      "type": "practice",
+      "label": "Mark an SQL question",
+      "href": "/mark?subject=9618&topic=8.3"
+    },
+    {
+      "type": "resources",
+      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+    }
+  ]
+}

@@ -10,11 +10,7 @@ import {
 import { SolutionSection } from '@/components/SolutionSection'
 import { MarkAgainButton } from './mark-again-button'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
-import {
-  ExaminerInkOverlay,
-  type LineReference,
-} from '@/components/examiner-ink/ExaminerInkOverlay'
-import { toAnswerPhotoStoragePath } from '@/lib/storage/answer-photos'
+import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { signAnswerPhotoUrl } from '@/lib/storage/answer-photos'
 
 const supabaseAdmin = createClient(
@@ -146,6 +142,13 @@ export default async function AttemptDetailPage({
   const signedPhotoUrl = attempt.answer_photo_url
     ? await signAnswerPhotoUrl(attempt.answer_photo_url)
     : null
+  const lineRefs = Array.isArray(attempt.line_references)
+    ? (attempt.line_references as LineReference[])
+    : []
+  const inkPages =
+    signedPhotoUrl && lineRefs.length > 0
+      ? [{ photo_url: signedPhotoUrl, line_references: lineRefs }]
+      : undefined
   const sessionParts = splitSession(
     attempt.mark_schemes?.paper_code,
     attempt.mark_schemes?.paper_session
@@ -172,7 +175,7 @@ export default async function AttemptDetailPage({
 
         {/* Page header */}
         <div className="animate-entry stagger-1 mb-10">
-          <p className="ec-label-tech mb-3">ATTEMPT</p>
+          <p className="ms-overline mb-3">Attempt</p>
           <h1 className="text-hero">
             <span className="gradient-text">
               {result.marking_mode === 'official_mark_scheme' && result.detected_paper
@@ -205,40 +208,15 @@ export default async function AttemptDetailPage({
 
         {/* Marking result (re-render of the original feedback) */}
         <div className="animate-entry stagger-2">
-          <MarkingResultView result={result} attemptId={attempt.id} />
+          <MarkingResultView
+            result={result}
+            attemptId={attempt.id}
+            inkPages={inkPages}
+          />
         </div>
 
-        {/* Examiner's ink overlay — only renders when we have both a saved
-            answer image AND positioning data. Older attempts (from before
-            Sprint 21) gracefully fall through with no overlay. */}
-        {signedPhotoUrl &&
-          Array.isArray(attempt.line_references) &&
-          attempt.line_references.length > 0 && (
-            <section className="animate-entry stagger-3 ec-card mt-8 p-6 sm:p-8">
-              <p className="ec-label-tech mb-3">EXAMINER&rsquo;S MARKS</p>
-              <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-3xl">
-                Where you earned and lost marks
-              </h2>
-              <p className="mt-2 mb-6 max-w-2xl text-sm text-[var(--ec-text-secondary)]">
-                The AI examiner&rsquo;s annotations preserved from when this
-                question was marked.
-              </p>
-              <ExaminerInkOverlay
-                imageUrl={signedPhotoUrl}
-                attemptId={attempt.id}
-                photoRef={
-                  attempt.answer_photo_url
-                    ? toAnswerPhotoStoragePath(attempt.answer_photo_url)
-                    : undefined
-                }
-                lineReferences={attempt.line_references}
-                animate={false}
-              />
-            </section>
-          )}
-
         {/* Solution — collapsed by default on the detail page */}
-        <div className="animate-entry stagger-4 mt-8">
+        <div className="animate-entry stagger-3 mt-8">
           <SolutionSection
             attemptId={attempt.id}
             initialSolution={attempt.full_solution}
@@ -247,7 +225,7 @@ export default async function AttemptDetailPage({
         </div>
 
         {/* Mark-again CTA — pre-fills the /mark page if this was a past paper */}
-        <div className="animate-entry stagger-5 mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+        <div className="animate-entry stagger-4 mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
           {sessionParts ? (
             <MarkAgainButton
               subject={sessionParts.subject}

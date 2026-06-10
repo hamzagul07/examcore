@@ -53,7 +53,7 @@ export function Progress({
         aria-valuemax={100}
         aria-valuenow={v}
         aria-label={ariaLabel}
-        className={`relative w-full overflow-hidden rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] ${SIZE_CLASS[size]}`}
+        className={`relative w-full overflow-hidden rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[inset_0_1px_2px_color-mix(in_srgb,var(--ec-text-primary)_8%,transparent)] ${SIZE_CLASS[size]}`}
       >
         {/* Animated fill */}
         <motion.div
@@ -69,7 +69,7 @@ export function Progress({
           initial={{ left: '0%' }}
           animate={{ left: `${v}%` }}
           transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1] }}
-          className="pointer-events-none absolute inset-y-0 -ml-3 w-6 blur-md bg-[color-mix(in_srgb,var(--ec-brand)_50%,transparent)]"
+          className="pointer-events-none absolute inset-y-0 -ml-2 w-4 blur-sm bg-[color-mix(in_srgb,var(--ec-brand)_28%,transparent)]"
         />
       </div>
       {showLabel && (

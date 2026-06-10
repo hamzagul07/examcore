@@ -64,7 +64,7 @@ export const ERROR_LABELS: Record<
   },
   no_error: {
     label: 'Correct',
-    color: '#10b981',
+    color: '#2f6b4f',
     icon: '✓',
     description: 'You earned this mark cleanly.',
   },

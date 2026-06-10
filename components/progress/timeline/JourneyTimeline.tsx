@@ -20,7 +20,7 @@ const MAJOR_META: Record<
   attempt: { tint: 'var(--ec-brand)' },
   milestone: { tint: '#a855f7' },
   streak: { tint: '#f97316' },
-  exam_ready: { tint: '#10b981' },
+  exam_ready: { tint: 'var(--ec-chip-success-text)' },
   best: { tint: '#f59e0b' },
   latest: { tint: 'var(--ec-brand)' },
 }

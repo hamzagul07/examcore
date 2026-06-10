@@ -18,7 +18,7 @@ export function Hero({ primaryHref, embedded = false }: HeroProps) {
       className={
         embedded
           ? 'pt-4'
-          : 'bg-[var(--ec-surface)] pt-24 pb-24 md:pt-32 md:pb-36'
+          : 'pt-24 pb-24 md:pt-32 md:pb-36'
       }
     >
       <div className="mx-auto max-w-[640px] px-6 text-center md:max-w-[720px] md:px-8 lg:max-w-[860px]">

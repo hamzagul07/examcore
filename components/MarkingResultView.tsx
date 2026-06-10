@@ -1,16 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { AlertCircle, CheckCircle2, Info } from 'lucide-react'
-import { motion } from 'framer-motion'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
-import { AnimatedScore } from '@/components/effects/AnimatedScore'
-import { Progress } from '@/components/ui/Progress'
-import type { SyllabusCode } from '@/lib/syllabus'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
+import type { SyllabusCode } from '@/lib/syllabus'
 import type { LorBandResult } from '@/lib/marking/types'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 import {
@@ -18,6 +15,11 @@ import {
   normalizeErrorClassification,
 } from '@/lib/error-classifications'
 import { getSubjectByCode } from '@/lib/profile-options'
+import { predictGradeFromPercentage } from '@/lib/grade-boundaries'
+import { ExamSheet, ExamSheetLine } from '@/components/margin-notes/ExamSheet'
+import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
+import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
+import { MarkAuditPanel } from '@/components/mark/MarkAuditPanel'
 
 export type MarkAwarded = {
   mark_id: number | string
@@ -53,19 +55,61 @@ export type MarkingResultData = {
     question_number: string
   } | null
   syllabus_tags?: SyllabusCode[] | null
-  /** Cambridge subject code (9701, 9709, …) for syllabus badge lookups. */
   subject_code?: string | null
+}
+
+function sheetWork(mark: MarkAwarded): string {
+  const ref = mark.line_reference?.trim()
+  if (ref) return ref
+  const reasoning = mark.reasoning?.trim() ?? ''
+  if (reasoning.length <= 100) return reasoning
+  return `${reasoning.slice(0, 97)}…`
+}
+
+function resultSubheading(earned: number, total: number): string {
+  if (total <= 0) return 'marked.'
+  if (earned >= total) return 'full marks.'
+  const pct = (earned / total) * 100
+  if (pct >= 80) return 'strong work.'
+  if (pct >= 50) return 'one mark got away.'
+  return 'room to improve.'
+}
+
+function buildOverline(result: MarkingResultData): string | null {
+  const parts: string[] = []
+  if (result.detected_paper?.paper_code) {
+    parts.push(result.detected_paper.paper_code.replace(/_/g, '/'))
+  }
+  if (result.detected_paper?.paper_session) {
+    parts.push(result.detected_paper.paper_session)
+  }
+  if (result.detected_paper?.question_number) {
+    parts.push(`Q${result.detected_paper.question_number}`)
+  }
+  return parts.length ? parts.join(' · ') : null
+}
+
+function schemeLabel(result: MarkingResultData): string | null {
+  if (!result.detected_paper?.paper_code) return null
+  return result.detected_paper.paper_code.replace(/_/g, '/')
 }
 
 export function MarkingResultView({
   result,
   attemptId,
+  inkPages,
 }: {
   result: MarkingResultData
-  /** When set, shows "Ask MarkScheme about this mark" and enables full attempt context in study chat. */
   attemptId?: string | null
+  inkPages?: Array<{ photo_url: string; line_references: LineReference[] }>
 }) {
   const [showOCR, setShowOCR] = useState(false)
+  const marks = result.ai_marking.marks_awarded
+  const defaultSelected = useMemo(() => {
+    const lost = marks.findIndex((m) => !m.earned)
+    return lost >= 0 ? lost : 0
+  }, [marks])
+  const [selectedIndex, setSelectedIndex] = useState(defaultSelected)
 
   const badgeSubjectCode =
     resolveMarkResultSubjectCode({
@@ -74,327 +118,288 @@ export function MarkingResultView({
       syllabus_tags: result.syllabus_tags,
     }) ?? undefined
 
-  const percentage = Math.round((result.marks_earned / result.total_marks) * 100)
+  const percentage =
+    result.total_marks > 0
+      ? Math.round((result.marks_earned / result.total_marks) * 100)
+      : 0
+  const grade = predictGradeFromPercentage(percentage)
+  const overline = buildOverline(result)
+  const selectedMark = marks[selectedIndex] ?? marks[0]
+  const hasStructuredResult = marks.length > 0
 
   return (
-    <div className="space-y-6">
-      {/* Score header — massive gradient number on dark with dramatic glow */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-        className="ec-card-brand relative overflow-hidden p-6 text-center sm:p-10"
-      >
-        <div
-          className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full ec-glow-orb blur-[100px]"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full ec-glow-orb-accent blur-[100px]"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute right-1/3 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full ec-glow-orb-info blur-[90px]"
-          aria-hidden="true"
-        />
-        <div className="relative">
-          <motion.p
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.4 }}
-            className="ec-label-tech mb-6 justify-center"
-          >
-            YOUR SCORE
-          </motion.p>
-
-          <div>
-            <AnimatedScore
-              earned={result.marks_earned}
-              total={result.total_marks}
-              caption="marks earned"
-            />
-          </div>
-
-          <div className="mx-auto mt-8 max-w-sm">
-            <Progress
-              value={percentage}
-              variant={
-                percentage === 100
-                  ? 'emerald'
-                  : percentage >= 50
-                  ? 'gradient'
-                  : 'spectrum'
-              }
-              size="lg"
-              ariaLabel="Score percentage"
-            />
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.4 }}
-              className="mt-4 font-mono text-base font-semibold ec-text-brand"
-            >
-              {percentage}%
-            </motion.p>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Marking-mode banner */}
-      {result.marking_mode === 'official_mark_scheme' && result.detected_paper && (
-        <div className="ec-banner ec-banner-success">
-          <CheckCircle2 className="ec-banner__icon h-5 w-5 shrink-0" />
-          <div>
-            <p className="ec-banner__title">
-              Marked with official Cambridge mark scheme
-            </p>
-            <p className="ec-banner__meta">
-              {result.detected_paper.paper_code} •{' '}
-              {result.detected_paper.paper_session} • Question{' '}
-              {result.detected_paper.question_number}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {result.marking_mode === 'general_criteria_paper_not_in_db' && (
-        <div className="ec-banner ec-banner-warning">
-          <AlertCircle className="ec-banner__icon mt-0.5 h-5 w-5 shrink-0" />
-          <div className="flex-1">
-            <p className="ec-banner__title">
-              This past paper is not in our database yet
-            </p>
-            <p className="ec-banner__meta leading-relaxed">
-              {result.detected_paper && (
-                <>
-                  We detected: {result.detected_paper.paper_code} •{' '}
-                  {result.detected_paper.paper_session} • Question{' '}
-                  {result.detected_paper.question_number}.{' '}
-                </>
-              )}
-              We marked your answer using general A-Level criteria. Think we
-              should add this paper? Email{' '}
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="font-medium underline"
-              >
-                {CONTACT_EMAIL}
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-      )}
-
-      {result.marking_mode === 'general_criteria_practice' && (
-        <div className="ec-banner ec-banner-info">
-          <Info className="ec-banner__icon h-5 w-5 shrink-0" />
-          <div>
-            <p className="ec-banner__title">
-              Marked with Cambridge{' '}
-              {getSubjectByCode(badgeSubjectCode ?? '')?.label ??
-                'A-Level'}{' '}
-              conventions
-            </p>
-            <p className="ec-banner__meta">
-              Your own question (not a past paper) — same mark types and bands
-              examiners use, without an official mark scheme from our database.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {result.marking_mode === 'general_criteria' && (
-        <div className="ec-banner ec-banner-info">
-          <Info className="ec-banner__icon h-5 w-5 shrink-0" />
-          <div>
-            <p className="ec-banner__title">
-              Marked with general A-Level criteria
-            </p>
-            <p className="ec-banner__meta">
-              This was not detected as a Cambridge past paper question
-            </p>
-          </div>
-        </div>
-      )}
-
-      {result.syllabus_tags && result.syllabus_tags.length > 0 && (
+    <div>
+      <div className="ms-mark-result-head">
         <div>
-          <p className="ec-label-tech mb-3">TOPICS COVERED</p>
-          <div className="flex flex-wrap gap-2">
-            {result.syllabus_tags.map((code) => (
-              <SyllabusTopicBadge
-                key={code}
-                code={code}
-                subjectCode={badgeSubjectCode}
-                size="md"
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {result.question_text && (
-        <div className="ec-card-premium p-5 sm:p-7">
-          <p className="ec-label-tech mb-3">QUESTION (AS READ)</p>
-          <div className="ec-question-text min-w-0 max-w-full overflow-x-auto break-words whitespace-pre-wrap text-base">
-            <RichTextRenderer
-              text={normalizeQuestionText(result.question_text)}
-              contentKind="question"
-            />
-          </div>
-        </div>
-      )}
-
-      <div>
-        <p className="ec-label-tech mb-3">SUMMARY</p>
-        <h2 className="text-title mb-4">
-          What the examiner saw
-        </h2>
-        <div className="leading-relaxed ec-text-secondary">
-          <RichTextRenderer text={result.ai_marking.summary} />
+          {overline ? (
+            <p className="ms-overline" style={{ marginBottom: 8 }}>
+              {overline}
+            </p>
+          ) : null}
+          <h2 className="ms-h2" style={{ marginBottom: 0 }}>
+            {result.marks_earned} / {result.total_marks} —{' '}
+            <em>{resultSubheading(result.marks_earned, result.total_marks)}</em>
+          </h2>
         </div>
       </div>
 
-      {result.ai_marking.estimated_marks_explanation && (
-        <div className="ec-banner ec-banner-warning">
-          <p className="ec-banner__meta leading-relaxed">
-            <strong className="ec-banner__title">Marking note:</strong>{' '}
-            <RichTextRenderer text={result.ai_marking.estimated_marks_explanation} />
-          </p>
-        </div>
-      )}
+      {hasStructuredResult ? (
+        <div className="ms-result-grid">
+          <div>
+            {inkPages && inkPages.length > 0 ? (
+              <div className="ms-mark-ink-block">
+                <ExaminerInkPerPage
+                  pages={inkPages}
+                  attemptId={attemptId ?? undefined}
+                  animate
+                />
+              </div>
+            ) : null}
 
-      {result.ai_marking.band_result && (
-        <div className="ec-card p-5 sm:p-7">
-          <p className="ec-label-tech mb-3">BAND PLACEMENT</p>
-          <p className="font-semibold text-[var(--ec-banner-warning-title)]">
-            Band {result.ai_marking.band_result.level} —{' '}
-            {result.ai_marking.band_result.marks_awarded}/
-            {result.ai_marking.band_result.marks_available} marks
-          </p>
-          <div className="mt-3">
-            <RichTextRenderer text={result.ai_marking.band_result.justification} />
+            <ExamSheet
+              head="Your script, with Examiner's Ink"
+              headRight="tap a line"
+              tally={`${result.marks_earned} / ${result.total_marks}`}
+              cite={
+                selectedMark?.reasoning ? (
+                  <RichTextRenderer text={selectedMark.reasoning} />
+                ) : null
+              }
+            >
+              {marks.map((mark, i) => (
+                <ExamSheetLine
+                  key={String(mark.mark_id)}
+                  work={sheetWork(mark)}
+                  mark={`${mark.type} ${mark.earned ? '✓' : '✗'}`}
+                  ok={mark.earned}
+                  note={mark.margin_note ?? undefined}
+                  noteOk={mark.earned}
+                  active={selectedIndex === i}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </ExamSheet>
+            <p className="ms-micro" style={{ marginTop: 14 }}>
+              CLICK ANY LINE — THE AUDIT AND SCHEME CITATION FOLLOW IT
+            </p>
           </div>
-          {result.ai_marking.band_result.strengths &&
-            result.ai_marking.band_result.strengths.length > 0 && (
-              <ul className="mt-3 list-inside list-disc space-y-1">
+
+          <MarkAuditPanel
+            marks={marks}
+            selectedIndex={selectedIndex}
+            onSelect={setSelectedIndex}
+            marksEarned={result.marks_earned}
+            totalMarks={result.total_marks}
+            gradeLabel={grade.grade}
+            schemeLabel={schemeLabel(result)}
+            bandResult={result.ai_marking.band_result}
+          />
+        </div>
+      ) : null}
+
+      <div className={hasStructuredResult ? 'ms-mark-secondary' : 'space-y-6'}>
+        {result.marking_mode === 'official_mark_scheme' && result.detected_paper && (
+          <div className="ec-banner ec-banner-success">
+            <CheckCircle2 className="ec-banner__icon h-5 w-5 shrink-0" />
+            <div>
+              <p className="ec-banner__title">
+                Marked with official Cambridge mark scheme
+              </p>
+              <p className="ec-banner__meta">
+                {result.detected_paper.paper_code} •{' '}
+                {result.detected_paper.paper_session} • Question{' '}
+                {result.detected_paper.question_number}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {result.marking_mode === 'general_criteria_paper_not_in_db' && (
+          <div className="ec-banner ec-banner-warning">
+            <AlertCircle className="ec-banner__icon mt-0.5 h-5 w-5 shrink-0" />
+            <div className="flex-1">
+              <p className="ec-banner__title">
+                This past paper is not in our database yet
+              </p>
+              <p className="ec-banner__meta leading-relaxed">
+                {result.detected_paper && (
+                  <>
+                    We detected: {result.detected_paper.paper_code} •{' '}
+                    {result.detected_paper.paper_session} • Question{' '}
+                    {result.detected_paper.question_number}.{' '}
+                  </>
+                )}
+                We marked your answer using general A-Level criteria. Think we
+                should add this paper? Email{' '}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="font-medium underline"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        )}
+
+        {result.marking_mode === 'general_criteria_practice' && (
+          <div className="ec-banner ec-banner-info">
+            <Info className="ec-banner__icon h-5 w-5 shrink-0" />
+            <div>
+              <p className="ec-banner__title">
+                Marked with Cambridge{' '}
+                {getSubjectByCode(badgeSubjectCode ?? '')?.label ??
+                  'A-Level'}{' '}
+                conventions
+              </p>
+              <p className="ec-banner__meta">
+                Your own question (not a past paper) — same mark types and bands
+                examiners use, without an official mark scheme from our database.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {result.marking_mode === 'general_criteria' && (
+          <div className="ec-banner ec-banner-info">
+            <Info className="ec-banner__icon h-5 w-5 shrink-0" />
+            <div>
+              <p className="ec-banner__title">
+                Marked with general A-Level criteria
+              </p>
+              <p className="ec-banner__meta">
+                This was not detected as a Cambridge past paper question
+              </p>
+            </div>
+          </div>
+        )}
+
+        {result.syllabus_tags && result.syllabus_tags.length > 0 && (
+          <div>
+            <p className="ms-micro" style={{ marginBottom: 12 }}>
+              TOPICS COVERED
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {result.syllabus_tags.map((code) => (
+                <SyllabusTopicBadge
+                  key={code}
+                  code={code}
+                  subjectCode={badgeSubjectCode}
+                  size="md"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {result.question_text && (
+          <div className="ec-card-premium p-5 sm:p-7">
+            <p className="ms-micro" style={{ marginBottom: 12 }}>
+              QUESTION (AS READ)
+            </p>
+            <div className="ec-question-text min-w-0 max-w-full overflow-x-auto break-words whitespace-pre-wrap text-base">
+              <RichTextRenderer
+                text={normalizeQuestionText(result.question_text)}
+                contentKind="question"
+              />
+            </div>
+          </div>
+        )}
+
+        <div>
+          <p className="ms-micro" style={{ marginBottom: 12 }}>
+            SUMMARY
+          </p>
+          <h3 className="ms-h3">What the examiner saw</h3>
+          <div className="leading-relaxed text-[var(--ec-text-secondary)]">
+            <RichTextRenderer text={result.ai_marking.summary} />
+          </div>
+        </div>
+
+        {result.ai_marking.estimated_marks_explanation && (
+          <div className="ec-banner ec-banner-warning">
+            <p className="ec-banner__meta leading-relaxed">
+              <strong className="ec-banner__title">Marking note:</strong>{' '}
+              <RichTextRenderer text={result.ai_marking.estimated_marks_explanation} />
+            </p>
+          </div>
+        )}
+
+        {result.ai_marking.band_result &&
+          result.ai_marking.band_result.strengths &&
+          result.ai_marking.band_result.strengths.length > 0 && (
+            <div className="ec-card p-5 sm:p-7">
+              <p className="ms-micro" style={{ marginBottom: 12 }}>
+                STRENGTHS
+              </p>
+              <ul className="list-inside list-disc space-y-1 text-[var(--ec-text-secondary)]">
                 {result.ai_marking.band_result.strengths.map((s, i) => (
                   <li key={i}>
                     <RichTextRenderer text={s} />
                   </li>
                 ))}
               </ul>
-            )}
-        </div>
-      )}
+            </div>
+          )}
 
-      {result.ai_marking.marks_awarded.length > 0 && (
-      <div>
-        <p className="ec-label-tech mb-3">MARK BY MARK</p>
-        <h2 className="text-title mb-4">
-          Breakdown
-        </h2>
-        <div className="space-y-3">
-          {result.ai_marking.marks_awarded.map((mark, i) => (
-            <motion.div
-              key={mark.mark_id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                delay: 0.9 + i * 0.08,
-                duration: 0.4,
-                ease: [0.4, 0, 0.2, 1],
-              }}
-              whileHover={{ y: -2, transition: { duration: 0.2 } }}
-              className={`rounded-2xl p-5 backdrop-blur ${
-                mark.earned ? 'ec-mark-row--earned' : 'ec-mark-row--missed'
-              }`}
-            >
-              <div className="mb-3 flex flex-wrap items-center gap-2">
-                <span
-                  className={`rounded-md px-2.5 py-1 font-mono text-xs font-bold tracking-wider ${
-                    mark.earned ? 'ec-mark-badge--earned' : 'ec-mark-badge--missed'
-                  }`}
-                >
-                  {mark.type}
-                </span>
-                <span
-                  className={`font-mono text-xs font-semibold uppercase tracking-[0.18em] ${
-                    mark.earned ? 'ec-score-high' : 'ec-score-low'
-                  }`}
-                >
-                  {mark.earned ? 'Earned' : 'Not earned'}
-                </span>
-                <ErrorClassificationPill
-                  earned={mark.earned}
-                  classification={mark.error_classification}
-                />
-              </div>
-              <div className="text-sm leading-relaxed ec-text-secondary">
-                <RichTextRenderer text={mark.reasoning} />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-      )}
+        {result.ai_marking.weak_topics &&
+          result.ai_marking.weak_topics.length > 0 && (
+            <div>
+              <p className="ms-micro" style={{ marginBottom: 12 }}>
+                TOPICS TO WORK ON
+              </p>
+              <h3 className="ms-h3">Where you lost marks</h3>
+              <ul className="space-y-2">
+                {result.ai_marking.weak_topics.map((topic, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-[var(--ec-text-secondary)]"
+                  >
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--ec-chip-warning-text)]" />
+                    <span>
+                      <RichTextRenderer text={topic} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-      {result.ai_marking.weak_topics &&
-        result.ai_marking.weak_topics.length > 0 && (
-          <div>
-            <p className="ec-label-tech ec-label-tech-orange mb-3">TOPICS TO WORK ON</p>
-            <h2 className="text-title mb-4">
-              Where you lost marks
-            </h2>
-            <ul className="space-y-2">
-              {result.ai_marking.weak_topics.map((topic, i) => (
-                <li key={i} className="flex items-start gap-2 ec-text-secondary">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--ec-chip-warning-text)] shadow-[0_0_8px_color-mix(in_srgb,var(--ec-chip-warning-text)_60%,transparent)]" />
-                  <span>
-                    <RichTextRenderer text={topic} />
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-      {result.ai_marking.what_to_study_next && (
-        <div className="ec-card relative overflow-hidden p-6">
-          <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full ec-glow-orb-info blur-[80px]" />
-          <div className="pointer-events-none absolute -bottom-12 -left-12 h-48 w-48 rounded-full ec-glow-orb-accent blur-[80px]" />
-          <div className="relative">
-            <p className="ec-label-tech ec-label-tech-cyan mb-3">WHAT TO STUDY NEXT</p>
-            <div className="leading-relaxed ec-text-secondary">
+        {result.ai_marking.what_to_study_next && (
+          <div className="ec-card p-6">
+            <p className="ms-micro" style={{ marginBottom: 12 }}>
+              WHAT TO STUDY NEXT
+            </p>
+            <div className="leading-relaxed text-[var(--ec-text-secondary)]">
               <RichTextRenderer text={result.ai_marking.what_to_study_next} />
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {attemptId && (
-        <div className="flex justify-center pt-2">
-          <AskOmniAboutMark attemptId={attemptId} />
-        </div>
-      )}
+        {attemptId && (
+          <div className="flex justify-center pt-2">
+            <AskOmniAboutMark attemptId={attemptId} />
+          </div>
+        )}
 
-      {result.ocr_text && (
-        <div>
-          <button
-            type="button"
-            onClick={() => setShowOCR(!showOCR)}
-            className="font-mono text-xs font-medium text-[var(--ec-text-secondary)] underline ec-link-muted"
-          >
-            {showOCR ? 'HIDE' : 'SHOW'} WHAT THE AI READ FROM YOUR HANDWRITING
-          </button>
-          {showOCR && (
-            <pre className="mt-2 max-w-full overflow-x-auto break-words whitespace-pre-wrap rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 font-mono text-xs text-[var(--ec-text-secondary)] backdrop-blur">
-              {result.ocr_text}
-            </pre>
-          )}
-        </div>
-      )}
+        {result.ocr_text && (
+          <div>
+            <button
+              type="button"
+              onClick={() => setShowOCR(!showOCR)}
+              className="font-mono text-xs font-medium text-[var(--ec-text-secondary)] underline ec-link-muted"
+            >
+              {showOCR ? 'HIDE' : 'SHOW'} WHAT THE AI READ FROM YOUR HANDWRITING
+            </button>
+            {showOCR && (
+              <pre className="mt-2 max-w-full overflow-x-auto break-words whitespace-pre-wrap rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 font-mono text-xs text-[var(--ec-text-secondary)]">
+                {result.ocr_text}
+              </pre>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
@@ -406,8 +411,6 @@ function ErrorClassificationPill({
   earned: boolean
   classification?: string | null
 }) {
-  // Earned marks always read "no_error"; we don't need a pill for those — the
-  // green "Earned" pill already communicates it.
   if (earned) return null
   const code = normalizeErrorClassification(classification)
   if (code === 'no_error') return null
@@ -426,3 +429,5 @@ function ErrorClassificationPill({
     </span>
   )
 }
+
+export { ErrorClassificationPill }

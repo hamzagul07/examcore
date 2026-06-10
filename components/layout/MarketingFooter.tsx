@@ -1,132 +1,72 @@
 import Link from 'next/link'
-import { CONTACT_EMAIL } from '@/lib/site-config'
-import {
-  SCULPTED_FOOTER_PRODUCT,
-  SCULPTED_FOOTER_RESOURCES,
-} from '@/lib/seo/internal-sculpt'
+import { WordmarkLink } from '@/components/layout/Wordmark'
 
-const COMPANY_LINKS = [
-  { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
+const PRODUCT_LINKS = [
+  { href: '/mark', label: 'Mark a question' },
+  { href: '/courses', label: 'Free courses' },
+  { href: '/dashboard/progress', label: 'Progress' },
+  { href: '/pricing', label: 'Pricing' },
 ]
 
-const LEGAL_LINKS = [
-  { href: '/privacy', label: 'Privacy' },
-  { href: '/terms', label: 'Terms' },
+const SUBJECT_LINKS = [
+  { href: '/subjects/9709', label: '9709 Mathematics' },
+  { href: '/subjects/9702', label: '9702 Physics' },
+  { href: '/subjects/9701', label: '9701 Chemistry' },
+  { href: '/subjects', label: 'All 15 subjects' },
+]
+
+const COMPANY_LINKS = [
+  { href: '/about', label: 'The story' },
+  { href: '/how-it-works', label: 'How it works' },
+  { href: '/guides', label: 'Guides & blog' },
+  { href: '/how-it-works#honest', label: 'Honest about AI' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export function MarketingFooter() {
   return (
-    <footer className="border-t border-[var(--ec-border)]">
-      <div className="landing-section !pb-12 !pt-16">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
-          <div>
-            <Link href="/" className="text-xl font-bold ec-text-gradient">
-              MarkScheme
-            </Link>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-              Cambridge A-Level &amp; O-Level past papers — mark-by-mark feedback on
-              your handwriting, tied to real mark schemes.
-            </p>
-            <p className="mt-3 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-              Built by an A-Level student for A-Level students
-            </p>
-          </div>
-
-          <div>
-            <h3 className="ec-label-tech mb-4">Product</h3>
-            <ul className="space-y-2">
-              {SCULPTED_FOOTER_PRODUCT.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex min-h-[44px] items-center text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="ec-label-tech mb-4">Company</h3>
-            <ul className="space-y-2">
-              {COMPANY_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex min-h-[44px] items-center text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="ec-label-tech mb-4">Resources</h3>
-            <ul className="space-y-2">
-              {SCULPTED_FOOTER_RESOURCES.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex min-h-[44px] items-center text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/compare"
-                  className="inline-flex min-h-[44px] items-center text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
-                >
-                  Compare marking options
-                </Link>
-              </li>
-            </ul>
-            <Link
-              href="/feed.xml"
-              className="mt-2 inline-flex min-h-[44px] items-center text-xs text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
-            >
-              RSS feed
-            </Link>
-          </div>
-
-          <div>
-            <h3 className="ec-label-tech mb-4">Legal</h3>
-            <ul className="space-y-2">
-              {LEGAL_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex min-h-[44px] items-center text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-2 inline-flex min-h-[44px] items-center text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-        </div>
-
-        <div className="mt-12 flex flex-col gap-4 border-t border-[var(--ec-border)] pt-8 text-xs text-[var(--ec-text-secondary)] sm:flex-row sm:items-start sm:justify-between">
-          <span>© 2026 MarkScheme</span>
-          <p className="max-w-xl leading-relaxed sm:text-right">
-            Not affiliated with or endorsed by Cambridge International. Subject
-            codes and syllabus references are Cambridge property used for
-            educational purposes.
+    <footer className="ec-ms-footer">
+      <div className="ec-ms-footer__inner">
+        <div>
+          <WordmarkLink className="mb-3 inline-flex" />
+          <p className="ec-ms-footer__lead">
+            Past papers marked the way a real examiner marks — against the official Cambridge
+            scheme.
           </p>
+          <p className="ec-ms-footer__micro">IB &amp; MORE BOARDS — COMING LATER</p>
         </div>
+
+        <div className="ec-ms-footer__col">
+          <h4 className="ec-ms-footer__label">Product</h4>
+          {PRODUCT_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="ec-ms-footer__col">
+          <h4 className="ec-ms-footer__label">Subjects</h4>
+          {SUBJECT_LINKS.map((link) => (
+            <Link key={link.href + link.label} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="ec-ms-footer__col">
+          <h4 className="ec-ms-footer__label">Company</h4>
+          {COMPANY_LINKS.map((link) => (
+            <Link key={link.href + link.label} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="ec-ms-footer__legal">
+        <span>© 2026 MarkScheme — built by a student, for students.</span>
+        <span>Not endorsed by Cambridge International.</span>
       </div>
     </footer>
   )

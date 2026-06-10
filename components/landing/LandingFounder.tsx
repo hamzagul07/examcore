@@ -1,32 +1,29 @@
-'use client'
-
-import { LandingSectionReveal } from './LandingSectionReveal'
+import Link from 'next/link'
 
 export function LandingFounder() {
   return (
-    <LandingSectionReveal>
-      <div className="ec-card relative overflow-hidden p-8 sm:p-12">
-        <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full ec-glow-orb blur-[80px]" />
-        <p className="ec-label-tech ec-label-tech-violet mb-4">WHY THIS EXISTS</p>
-        <h2 className="landing-h2 mb-6">
-          <span className="gradient-text">Built by a student,</span>
-          <br />
-          <span className="ec-text-gradient">for students.</span>
-        </h2>
-        <div className="landing-lead max-w-2xl space-y-4">
-          <p>
-            MarkScheme was built by Hassan, an A-Level student who got tired of
-            waiting weeks for marked papers and guessing what examiners actually
-            wanted.
+    <section id="story" className="ms-pg ms-sec scroll-mt-20">
+      <div className="ms-founder">
+        <div className="ms-founder-avatar" aria-hidden>
+          H
+        </div>
+        <div>
+          <p className="ms-founder-quote">
+            &ldquo;I built this because I couldn&apos;t tell whether my working would actually score.
+            Past papers without the examiner&apos;s eye are half the loop — this closes it.&rdquo;
           </p>
-          <p>
-            So I built the tool I wished existed — one that marks your work the
-            way Cambridge does, with the same scheme, the same standards. Not a
-            replacement for your teacher. Just faster, honest feedback when
-            you&apos;re revising alone at midnight.
+          <p className="ms-micro">
+            BUILT BY A STUDENT · HONEST ABOUT AI LIMITS · NOT ENDORSED BY CAMBRIDGE INTERNATIONAL ·{' '}
+            <Link
+              href="/about"
+              className="ec-btn-underline"
+              style={{ fontSize: 12, fontFamily: 'var(--font-mono)' }}
+            >
+              READ THE STORY →
+            </Link>
           </p>
         </div>
       </div>
-    </LandingSectionReveal>
+    </section>
   )
 }

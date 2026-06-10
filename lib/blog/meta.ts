@@ -1,5 +1,6 @@
 import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
 import type { BlogPostMeta } from '@/lib/blog'
+import { headingSlug, isSkippedBlogHeading } from '@/lib/blog/heading-slug'
 
 export type BlogCategory =
   | 'subject-guide'
@@ -84,12 +85,8 @@ export function extractHeadings(content: string): BlogHeading[] {
     if (!m) continue
     const level = m[1].length as 2 | 3
     const text = m[2].replace(/\*\*/g, '').trim()
-    const id = text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .slice(0, 80)
-    headings.push({ id, text, level })
+    if (isSkippedBlogHeading(text)) continue
+    headings.push({ id: headingSlug(text), text, level })
   }
   return headings
 }

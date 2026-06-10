@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getCourseSubject } from '@/lib/courses'
 import {
@@ -13,8 +12,21 @@ import { getSubjectByCode } from '@/lib/profile-options'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { learningResourceNode, faqPageNode } from '@/lib/seo/structured-data'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
+import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { SITE_URL } from '@/lib/site-config'
+import { SubjectPaperBrowser } from '@/components/subjects/SubjectPaperBrowser'
+import { Chip } from '@/components/margin-notes'
+import {
+  getCatalogSubject,
+  subjectLevelChip,
+} from '@/lib/subjects-catalog'
+import { getSubjectPaperStructure } from '@/lib/subject-papers'
+import {
+  buildPaperSessionGroups,
+  getPaperBrowserYears,
+  hotTopicsForSubject,
+} from '@/lib/subjects/paper-browser'
+import type { CSSProperties } from 'react'
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -60,12 +72,21 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
   if (!subject || !isValidMarkingSubjectCode(code)) notFound()
 
   const copy = buildSubjectPageCopy(subject)
+  const catalog = getCatalogSubject(code)
   const course = getCourseSubject(code)
+  const structure = getSubjectPaperStructure(code)
   const url = `${SITE_URL}${copy.path}`
   const faq = SUBJECT_FAQ(subject.label, code, copy.level)
   const otherSubjects = getMarkingSubjectPages()
     .filter((s) => s.code !== code)
     .slice(0, 6)
+
+  const paperSessions = structure
+    ? buildPaperSessionGroups(structure, 'all')
+    : []
+  const paperYears = structure ? getPaperBrowserYears(structure) : []
+  const hotTopics = hotTopicsForSubject(structure)
+  const accent = catalog?.color ?? 'var(--ec-brand)'
 
   return (
     <MarketingPageShell>
@@ -91,69 +112,154 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
         ]}
       />
 
-      <MarketingHero
-        label={copy.level.toUpperCase()}
-        title={
-          <span className="gradient-text">
-            Mark {subject.label}{' '}
-            <span className="font-mono text-[0.85em]">({code})</span> past papers
-          </span>
-        }
-        lead={copy.description}
-      />
+      <div
+        className="ms-pg ms-subjects-page"
+        style={{ '--sc': accent, paddingTop: 48 } as CSSProperties}
+      >
+        <Link href="/subjects" className="ec-btn-underline text-[15px]">
+          ← All subjects
+        </Link>
 
-      <MarketingSection className="!pt-0">
-        <aside className="ec-blog-quick-answer mb-10 rounded-xl border border-[var(--ec-brand)]/25 bg-[var(--ec-brand)]/5 px-5 py-5">
-          <p className="ec-label-tech mb-2 text-[var(--ec-brand)]">QUICK ANSWER</p>
-          <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
-            {copy.quickAnswer}
-          </p>
-        </aside>
-
-        <div className="ec-card mb-10 p-6 sm:p-8">
-          <h2 className="landing-h3 mb-3 text-[var(--ec-text-primary)]">What we mark</h2>
-          <ul className="landing-lead list-disc space-y-2 pl-5">
-            <li>
-              <strong className="text-[var(--ec-text-primary)]">Syllabus:</strong> {code}{' '}
-              — {subject.label} ({copy.level})
-            </li>
-            <li>
-              <strong className="text-[var(--ec-text-primary)]">Components:</strong>{' '}
-              {copy.papers}
-            </li>
-            <li>
-              <strong className="text-[var(--ec-text-primary)]">Marking style:</strong>{' '}
-              {subject.markingType === 'level_of_response'
-                ? 'Essay bands & point marks'
-                : 'B1 / M1 / A1 and MCQ'}
-            </li>
-          </ul>
-          <Link href="/mark" className="ec-btn-primary mt-6 inline-flex min-h-[48px]">
-            Mark {subject.label} now <ArrowRight className="h-5 w-5" />
+        <div className="ms-sd-head">
+          <div className="ms-sd-glyph" aria-hidden>
+            {catalog?.glyph ?? subject.label.charAt(0)}
+          </div>
+          <div className="min-w-0 flex-1">
+            <h1 className="ms-h2" style={{ marginBottom: 2 }}>
+              {subject.label}{' '}
+              <em
+                style={{
+                  color: 'var(--ec-text-faint)',
+                  fontSize: '0.6em',
+                }}
+              >
+                · {code}
+              </em>
+            </h1>
+            <div className="flex flex-wrap gap-2">
+              <Chip variant="dim">
+                {catalog?.papers ?? 0} past papers
+              </Chip>
+              <Chip variant="dim">
+                CAIE · {catalog ? subjectLevelChip(catalog) : copy.level}
+              </Chip>
+              {course ? (
+                <Chip variant="ok">free course ✓</Chip>
+              ) : (
+                <Chip variant="outline">course coming soon</Chip>
+              )}
+            </div>
+          </div>
+          <Link
+            href="/mark"
+            className="ec-btn-primary ms-auto shrink-0 px-6 py-3 text-sm"
+          >
+            Mark a {code} question
           </Link>
         </div>
 
-        <div className="landing-lead mb-10 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-6">
-          {course ? (
-            <Link href={course.path} className="ec-link font-semibold">
-              Free premium {code} course ({course.lessonCount} topics) →
-            </Link>
-          ) : null}
-          {copy.guideSlug ? (
-            <Link href={`/blog/${copy.guideSlug}`} className="ec-link font-semibold">
-              {code} past papers &amp; revision guide →
-            </Link>
-          ) : null}
+        <div className="ms-sd-grid">
+          <div>
+            {structure && paperSessions.length > 0 ? (
+              <SubjectPaperBrowser
+                sessions={paperSessions}
+                years={paperYears}
+              />
+            ) : (
+              <div className="ms-sd-card ms-sd-card-pad">
+                <p className="ms-overline" style={{ marginBottom: 8 }}>
+                  Past papers
+                </p>
+                <p className="ms-body-2">{copy.papers}</p>
+                <Link href="/mark" className="ec-btn-primary mt-4 inline-flex">
+                  Mark {code} now →
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-[18px]">
+            {course ? (
+              <div className="ms-sd-card ms-sd-card-pad">
+                <p className="ms-overline" style={{ marginBottom: 8 }}>
+                  Free course
+                </p>
+                <h2 className="ms-h3" style={{ fontSize: 20 }}>
+                  {subject.label} — full syllabus
+                </h2>
+                <p className="ms-body-2" style={{ margin: '6px 0 16px' }}>
+                  Topic-by-topic lessons with a real past-paper question on every
+                  syllabus point.
+                </p>
+                <Link href={course.path} className="ec-btn-ghost text-sm">
+                  Open the course →
+                </Link>
+              </div>
+            ) : null}
+
+            <div className="ms-sd-card ms-sd-card-pad">
+              <p className="ms-overline" style={{ marginBottom: 6 }}>
+                Where students lose marks
+              </p>
+              {hotTopics.map((topic, i) => (
+                <div key={topic} className="ms-topic-row">
+                  <span>
+                    <span
+                      className="font-mono text-xs"
+                      style={{
+                        color: 'var(--ec-error-ink, var(--ec-score-low))',
+                        marginRight: 10,
+                      }}
+                    >
+                      #{i + 1}
+                    </span>
+                    {topic}
+                  </span>
+                  <Link
+                    href={course ? course.path : '/mark'}
+                    className="ec-btn-underline shrink-0 text-[13.5px]"
+                  >
+                    {course ? 'lesson →' : 'practise →'}
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+            <div
+              className="ms-sd-card ms-sd-card-pad"
+              style={{ background: 'var(--ec-bg-soft)' }}
+            >
+              <p className="ms-greennote" style={{ fontSize: 20, marginTop: 0 }}>
+                {copy.quickAnswer}
+              </p>
+              {copy.guideSlug ? (
+                <Link
+                  href={`/blog/${copy.guideSlug}`}
+                  className="ec-btn-underline mt-3 inline-block text-sm"
+                >
+                  {code} revision guide →
+                </Link>
+              ) : null}
+              <Link
+                href="/dashboard/progress"
+                className="ec-btn-underline mt-2 inline-block text-sm"
+              >
+                Your {subject.label} progress →
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <section aria-labelledby="subject-faq">
-          <h2 id="subject-faq" className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
+        <section className="ms-subject-faq" aria-labelledby="subject-faq">
+          <h2 id="subject-faq" className="ms-h3">
             Frequently asked questions
           </h2>
-          <dl className="space-y-6">
+          <dl className="mt-6 space-y-6">
             {faq.map((item) => (
               <div key={item.q} data-chunk-id={item.q.slice(0, 36)}>
-                <dt className="font-semibold text-[var(--ec-text-primary)]">{item.q}</dt>
+                <dt className="font-semibold text-[var(--ec-text-primary)]">
+                  {item.q}
+                </dt>
                 <dd className="mt-2 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
                   {item.a}
                 </dd>
@@ -162,8 +268,13 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           </dl>
         </section>
 
-        <nav className="mt-12 border-t border-[var(--ec-border)] pt-8" aria-label="Other subjects">
-          <p className="ec-label-tech mb-4">OTHER SYLLABUSES</p>
+        <nav
+          className="mt-12 border-t border-[var(--ec-border)] pt-8"
+          aria-label="Other subjects"
+        >
+          <p className="ms-micro" style={{ marginBottom: 12 }}>
+            OTHER SYLLABUSES
+          </p>
           <ul className="flex flex-wrap gap-2">
             {otherSubjects.map((s) => (
               <li key={s.code}>
@@ -176,11 +287,11 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
               </li>
             ))}
           </ul>
-          <Link href="/subjects" className="ec-link mt-4 inline-block text-sm">
+          <Link href="/subjects" className="ec-btn-underline mt-4 inline-block text-sm">
             All subjects →
           </Link>
         </nav>
-      </MarketingSection>
+      </div>
     </MarketingPageShell>
   )
 }

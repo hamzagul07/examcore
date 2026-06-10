@@ -52,7 +52,7 @@ export default async function BlogPostPage({ params }: Props) {
     <MarketingPageShell narrow>
       <BlogPostGraphJsonLd post={post} content={post.content} />
       <BlogReadingProgress />
-      <article className="py-12 sm:py-16">
+      <article className="ms-pg py-12 sm:py-16">
         <BlogArticleHero post={enriched} />
         <BlogClusterNav slug={slug} />
         <BlogQuickAnswer
@@ -70,9 +70,9 @@ export default async function BlogPostPage({ params }: Props) {
         <BlogConversationalQueries slug={slug} />
         <BlogInContentLinks slug={slug} />
 
-        <div className="ec-blog-layout mt-10">
+        <div className="ms-blog-layout ec-blog-prose ec-fanout-prose mt-10 min-w-0">
           <BlogTableOfContents headings={headings} />
-          <div className="ec-blog-prose ec-fanout-prose min-w-0">
+          <div className="min-w-0">
             <BlogChunkedArticle content={post.content} slug={slug} />
           </div>
         </div>

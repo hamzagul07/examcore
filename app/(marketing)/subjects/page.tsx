@@ -1,10 +1,13 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
-import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
-import { SubjectsGrid } from '@/components/marketing/SubjectsGrid'
+import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
+import { SubjectsCatalogClient } from '@/components/subjects/SubjectsCatalogClient'
+import {
+  getAllCatalogSubjects,
+  getCatalogStats,
+  getCatalogSubjects,
+} from '@/lib/subjects-catalog'
 import { getSubjectGuidePosts } from '@/lib/seo/subject-guides'
 
 export const metadata = getPageMetadata('/subjects', {
@@ -12,6 +15,10 @@ export const metadata = getPageMetadata('/subjects', {
 })
 
 export default function SubjectsPage() {
+  const alevelSubjects = getCatalogSubjects('alevel')
+  const olevelSubjects = getCatalogSubjects('olevel')
+  const allSubjects = getAllCatalogSubjects()
+  const stats = getCatalogStats(allSubjects)
   const guideCount = getSubjectGuidePosts().length
 
   return (
@@ -25,48 +32,34 @@ export default function SubjectsPage() {
           { name: 'Subjects', path: '/subjects' },
         ]}
       />
-      <MarketingHero
-        label="SUBJECTS"
-        title={
-          <>
-            <span className="gradient-text">Cambridge A-Levels</span>{' '}
-            <span className="ec-text-gradient">we mark</span>
-          </>
-        }
-        lead="Cambridge A-Level and O-Level subject codes, real mark schemes, adaptive marking for MCQ, point-based questions, and essays."
-      />
-      <MarketingSection className="!pt-0">
-        {guideCount > 0 && (
-          <p className="mb-8 text-center text-sm text-[var(--ec-text-secondary)]">
-            Each subject includes a{' '}
-            <Link href="/blog" className="ec-link font-semibold">
-              free past-paper &amp; marking guide
-            </Link>{' '}
-            ({guideCount} syllabuses) — paper structure, mark schemes, and revision tips.
-          </p>
-        )}
-        <SubjectsGrid detailed />
-        <div className="ec-card mt-16 p-8 text-center sm:p-12">
-          <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
-            Pick your subject and start marking
-          </h2>
-          <p className="landing-lead mx-auto mb-8 max-w-lg">
-            Start free — no card required. Founding members who complete setup
-            lock in 50% off any paid plan, forever.
-          </p>
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/mark" className="ec-btn-primary inline-flex min-h-[52px]">
-              Try marking free <ArrowRight className="h-5 w-5" />
-            </Link>
-            <Link
-              href={buildMarketingSignUpHref()}
-              className="ec-btn-secondary inline-flex min-h-[52px]"
-            >
-              Create free account
-            </Link>
-          </div>
-        </div>
-      </MarketingSection>
+      <div className="ms-pg ms-subjects-page">
+        <p className="ms-overline">
+          Subjects · {stats.syllabi} Cambridge syllabuses
+        </p>
+        <h1 className="ms-h2" style={{ fontSize: 'clamp(36px, 5vw, 56px)' }}>
+          Pick your paper. <em>We&apos;ve got the scheme.</em>
+        </h1>
+        <p className="ms-lead">
+          Every subject marks against the official Cambridge mark scheme for that
+          exact paper and session.
+          {guideCount > 0 ? (
+            <>
+              {' '}
+              Each includes a{' '}
+              <Link href="/blog" className="underline">
+                free revision guide
+              </Link>
+              .
+            </>
+          ) : null}
+        </p>
+
+        <SubjectsCatalogClient
+          alevelSubjects={alevelSubjects}
+          olevelSubjects={olevelSubjects}
+          stats={stats}
+        />
+      </div>
     </MarketingPageShell>
   )
 }

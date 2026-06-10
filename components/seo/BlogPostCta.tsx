@@ -10,14 +10,14 @@ export function BlogPostCta({ variant = 'default' }: BlogPostCtaProps) {
   const isSubject = variant === 'subject'
 
   return (
-    <aside className="ec-panel-highlight mt-12 rounded-2xl p-6 sm:p-8">
-      <p className="ec-label-tech mb-2">TRY MARKSCHEME</p>
-      <h2 className="landing-h3 text-[var(--ec-text-primary)]">
+    <aside className="ms-blog-cta-block mt-12">
+      <p className="ms-overline">Try Markscheme</p>
+      <h2 className="ms-h3" style={{ marginTop: 8 }}>
         {isSubject
           ? 'Mark this subject now'
           : 'Mark your next past paper mark-by-mark'}
       </h2>
-      <p className="mt-3 text-base leading-relaxed text-[var(--ec-text-secondary)]">
+      <p className="ms-body-2" style={{ marginTop: 12 }}>
         {isSubject ? (
           <>
             Use <strong className="text-[var(--ec-text-primary)]">Past paper</strong>{' '}

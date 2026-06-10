@@ -358,7 +358,7 @@ export default function IngestClient() {
   return (
     <div className="mx-auto min-w-0 max-w-4xl">
         <div className="mb-10">
-          <p className="ec-label-tech mb-2">ADMIN</p>
+          <p className="ec-eyebrow mb-2">Admin</p>
           <h1 className="text-headline text-[var(--ec-text-primary)]">
             Bulk PDF upload
           </h1>

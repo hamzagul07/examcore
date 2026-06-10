@@ -7,20 +7,27 @@ export type AppNavItem = {
 
 export const APP_NAV_ITEMS: AppNavItem[] = [
   {
-    href: '/dashboard',
-    label: 'Dashboard',
-    isActive: (p) => p === '/dashboard',
-  },
-  {
     href: '/mark',
     label: 'Mark',
     isActive: (p) => p === '/mark' || p.startsWith('/mark/'),
   },
   {
+    href: '/courses',
+    label: 'Courses',
+    isActive: (p) => p === '/courses' || p.startsWith('/courses/'),
+  },
+  {
+    href: '/subjects',
+    label: 'Subjects',
+    isActive: (p) => p === '/subjects' || p.startsWith('/subjects/'),
+  },
+  {
     href: '/dashboard/progress',
     label: 'Progress',
     isActive: (p) =>
-      p.startsWith('/dashboard/progress') || p.startsWith('/dashboard/attempt/'),
+      p.startsWith('/dashboard/progress') ||
+      p.startsWith('/dashboard/attempt/') ||
+      p === '/dashboard',
   },
   {
     href: '/account',

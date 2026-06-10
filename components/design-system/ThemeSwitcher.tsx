@@ -29,7 +29,7 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
     >
       <button
         type="button"
-        title="Late Night"
+        title="Dark"
         onClick={() => select('late-night')}
         className={`flex items-center gap-1.5 rounded-lg text-xs font-medium transition-all duration-300 active:scale-[0.98] ${
           compact ? 'px-2 py-1.5' : 'px-2.5 py-1.5 md:px-3'
@@ -44,11 +44,11 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
         }}
       >
         <Moon className="h-3.5 w-3.5" />
-        {!compact && <span className="hidden sm:inline">Late Night</span>}
+        {!compact && <span className="hidden sm:inline">Dark</span>}
       </button>
       <button
         type="button"
-        title="Zen"
+        title="Light"
         onClick={() => select('zen')}
         className={`flex items-center gap-1.5 rounded-lg text-xs font-medium transition-all duration-300 active:scale-[0.98] ${
           compact ? 'px-2 py-1.5' : 'px-2.5 py-1.5 md:px-3'
@@ -60,7 +60,7 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
         }}
       >
         <Sun className="h-3.5 w-3.5" />
-        {!compact && <span className="hidden sm:inline">Zen</span>}
+        {!compact && <span className="hidden sm:inline">Light</span>}
       </button>
     </div>
   )

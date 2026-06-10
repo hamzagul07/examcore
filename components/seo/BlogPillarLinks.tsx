@@ -8,42 +8,34 @@ type Props = {
 /** Internal links for crawl depth + topical authority. */
 export function BlogPillarLinks({ showSubjects = true }: Props) {
   return (
-    <aside className="mt-14 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface)]/60 p-6 sm:p-8">
-      <p className="ec-label-tech mb-2">EXPLORE MARKSCHEME</p>
-      <h2 className="landing-h3 text-[var(--ec-text-primary)]">
+    <aside className="ms-blog-aside mt-14">
+      <p className="ms-overline">Explore Markscheme</p>
+      <h2 className="ms-h3" style={{ marginTop: 8 }}>
         Popular guides &amp; tools
       </h2>
-      <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
+      <p className="ms-body-2" style={{ marginTop: 8 }}>
         Internal links to our core revision resources — built for Cambridge A-Level and
         O-Level.
       </p>
       <ul className="mt-6 grid gap-3 sm:grid-cols-2">
         {SEO_PILLAR_LINKS.map((link) => (
           <li key={link.href}>
-            <Link
-              href={link.href}
-              className="ec-card ec-card-interactive block p-4"
-            >
+            <Link href={link.href} className="ms-hub-card block p-4 transition-transform hover:-translate-y-0.5">
               <span className="text-sm font-semibold text-[var(--ec-text-primary)]">
                 {link.label}
               </span>
-              <span className="mt-1 block text-xs text-[var(--ec-text-secondary)]">
-                {link.description}
-              </span>
+              <span className="ms-micro mt-1 block">{link.description}</span>
             </Link>
           </li>
         ))}
       </ul>
       {showSubjects && (
         <>
-          <p className="ec-label-tech mb-3 mt-8">SYLLABUS GUIDES</p>
-          <ul className="flex flex-wrap gap-2">
+          <p className="ms-overline mt-8">Syllabus guides</p>
+          <ul className="ms-hub-strip mt-2">
             {SEO_SUBJECT_LINKS.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="inline-flex rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] transition-colors hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
-                >
+                <Link href={link.href} className="ec-chip-ms ec-chip-ms--outline">
                   {link.label}
                 </Link>
               </li>

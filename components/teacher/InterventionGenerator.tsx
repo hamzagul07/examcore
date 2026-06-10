@@ -120,7 +120,7 @@ export function InterventionGenerator({
 
           {result ? (
             <div className="text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ec-glow-orb-lg">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border ec-tint-brand-icon">
                 <Check className="h-8 w-8 ec-score-high" />
               </div>
               <h4 className="text-xl font-bold text-[var(--ec-text-primary)]">{result.title}</h4>

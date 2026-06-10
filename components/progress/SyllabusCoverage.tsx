@@ -34,15 +34,7 @@ export function SyllabusCoverage({
       className="relative overflow-hidden"
     >
       <div
-        className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full ec-glow-orb-lg blur-[100px]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full ec-glow-orb-accent blur-[100px]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute right-1/3 top-1/3 h-48 w-48 rounded-full ec-glow-orb-info blur-[80px]"
+        className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full ec-glow-orb blur-[80px]"
         aria-hidden="true"
       />
 
@@ -123,7 +115,7 @@ function CoverageStats({
                 {label}
               </span>
             </div>
-            <div className="mt-1 text-2xl font-extrabold tracking-tight text-[var(--ec-text-primary)]">
+            <div className="mt-1 text-2xl font-semibold tracking-tight text-[var(--ec-text-primary)]">
               {counts[key]}
             </div>
           </div>

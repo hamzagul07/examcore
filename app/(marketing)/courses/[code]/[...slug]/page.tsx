@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Clock, Crown, FlaskConical, List, Sparkles } from 'lucide-react'
+import { FlaskConical, List } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import {
   getAllCourseLessonPaths,
@@ -141,9 +141,6 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const { lesson, lessonSlug } = resolved
   const lessons = getCourseLessons(code)
   const activeTrack = findPaperTrack(code, lessons, paper)
-  const paperLabel = activeTrack
-    ? `${activeTrack.shortName} · ${activeTrack.subtitle}`
-    : lesson.paperName
   const overviewHref = activeTrack
     ? `/courses/${code}?paper=${encodeURIComponent(activeTrack.number)}`
     : `/courses/${code}`
@@ -156,8 +153,6 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
     2
   )
 
-  const isFullLesson =
-    lesson.status === 'published' || lesson.status === 'premium'
   const isPilotLesson = lesson.status === 'pilot' || isPilotPreview
   const enriched = enrichLessonVisual(code, lesson)
   const seo = buildCourseLessonSeo(course, lesson)
@@ -202,47 +197,14 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
           </div>
         ) : null}
 
-        <header className="course-studio-hero">
+        <header className="course-studio-hero mb-6">
           <div>
-            <div className="mb-3 flex flex-wrap items-center gap-2">
-              <span className="course-studio-label">
-                {course.level} · {paperLabel}
-              </span>
-              {isPilotLesson ? (
-                <span className="course-premium-badge">
-                  <FlaskConical className="h-3.5 w-3.5" aria-hidden />
-                  Pilot lesson
-                </span>
-              ) : isFullLesson ? (
-                <span className="course-premium-badge">
-                  <Crown className="h-3.5 w-3.5" aria-hidden />
-                  Premium lesson
-                </span>
-              ) : (
-                <span className="course-premium-badge">
-                  <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                  Syllabus outline
-                </span>
-              )}
-            </div>
-            <div className="mb-2 flex flex-wrap items-center gap-2">
-              <span className="course-topic-badge">Topic {lesson.topicCode}</span>
-              <span className="course-subject-chip">
-                {course.code} {course.name}
-              </span>
-            </div>
-            <h1 className="course-studio-title">
-              {lesson.title}
-              <span className="course-title-code"> — {lesson.topicCode}</span>
-            </h1>
-            <p className="course-studio-lead">{lesson.summary}</p>
-            <div className="course-studio-meta">
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="h-4 w-4" aria-hidden />
-                ~{lesson.durationMin} min
-              </span>
-              <span>{lesson.paperName}</span>
-            </div>
+            <p className="ms-overline" style={{ marginBottom: 8 }}>
+              {course.code} · {lesson.topicCode}
+              {lesson.paperName ? ` · ${lesson.paperName}` : ''}
+            </p>
+            <h1 className="ms-h2">{lesson.title}</h1>
+            <p className="course-studio-lead mt-3">{lesson.summary}</p>
           </div>
           <div className="course-studio-hero-diagram mt-5 lg:mt-0">
             <HeroVisualOverview template={enriched.template} />

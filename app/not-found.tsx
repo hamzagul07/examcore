@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <main className="app-shell flex min-h-[60vh] items-center justify-center">
       <div className="mx-auto max-w-md text-center">
-        <p className="ec-label-tech mb-4 justify-center">404</p>
+        <p className="ec-eyebrow mb-4 text-center">404</p>
         <h1 className="text-headline mb-3">Page not found</h1>
         <p className="text-body mb-8">
           That link may be broken, or the page may have moved. Head back to the

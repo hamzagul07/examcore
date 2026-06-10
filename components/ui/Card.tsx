@@ -33,7 +33,7 @@ type CardProps = {
  *   - glass:      heavy backdrop-blur, semi-transparent — the new default
  *   - frost:      heavier blur, more translucent — auth shells, hero stats
  *   - solid:      opaque white — when blur is unhelpful (long content, code)
- *   - brand-glow: hero stat / decisive surface — emerald wash + colored aura
+ *   - brand-glow: hero stat / decisive surface — paper card with soft wash
  *   - default:    alias for `glass` (legacy)
  *   - subtle:     alias for `frost` with smaller radius (legacy)
  */

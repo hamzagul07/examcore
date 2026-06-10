@@ -1,0 +1,396 @@
+/* Courses catalog + lesson shell — Margin Notes */
+
+.ms-course-hero {
+  padding-top: 56px;
+  padding-bottom: 88px;
+}
+
+.ms-course-catalog {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.ms-course-catalog .ms-scard2 .ms-tile {
+  height: 110px;
+}
+
+.ms-course-catalog .ms-sname {
+  font-size: 26px;
+}
+
+.ms-course-catalog .ms-body-2 {
+  font-size: 13.5px;
+  margin: 8px 0 0;
+}
+
+.ms-prog-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ec-bg-soft);
+  margin-top: 18px;
+  overflow: hidden;
+}
+
+.ms-prog-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--sc, var(--ec-brand));
+  transition: width 300ms ease;
+}
+
+.ms-simpler {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ms-simpler-switch {
+  width: 38px;
+  height: 22px;
+  border-radius: 99px;
+  border: none;
+  padding: 0;
+  background: var(--ec-border);
+  position: relative;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.ms-simpler-switch.on {
+  background: var(--ec-brand);
+}
+
+.ms-simpler-switch span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ec-surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: left 150ms ease;
+}
+
+.ms-simpler-switch.on span {
+  left: 19px;
+}
+
+.ms-lesson-body {
+  max-width: 760px;
+}
+
+.ms-lesson-chip-row {
+  display: flex;
+  gap: 12px;
+  margin: 14px 0 26px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Flashcards — prototype fc-row */
+.ms-fc-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.ms-fc {
+  min-height: 148px;
+  border: 1px solid var(--ec-border);
+  border-radius: 14px;
+  background: var(--ec-paper);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.ms-fc:hover {
+  border-color: var(--ec-brand);
+  transform: translateY(-2px);
+}
+
+.ms-fc.flipped {
+  background: var(--ec-brand-muted);
+  border-color: var(--ec-brand-border, var(--ec-brand));
+}
+
+.ms-fc .fc-side {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ec-text-faint);
+}
+
+.ms-fc.flipped .fc-side {
+  color: var(--ec-brand);
+}
+
+.ms-fc .fc-q {
+  font-family: var(--font-display);
+  font-size: 17.5px;
+  line-height: 1.35;
+  color: var(--ec-text-primary);
+  margin-top: 8px;
+}
+
+.ms-fc .fc-a {
+  font-family: var(--font-handwritten, 'Caveat', cursive);
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--ec-brand);
+  margin-top: 8px;
+}
+
+.ms-fc .fc-hint {
+  margin-top: auto;
+  font-size: 11.5px;
+  color: var(--ec-text-faint);
+  padding-top: 12px;
+}
+
+/* Margin Notes overrides for course studio shell */
+html[data-ec-theme='zen'] .course-studio,
+html[data-ec-theme='late-night'] .course-studio {
+  --course-accent: var(--ec-brand);
+  --course-formula-green: var(--ec-brand);
+  --course-formula-green-soft: var(--ec-brand-muted);
+  --course-accent-muted: var(--ec-brand-muted);
+  --course-surface-deep: var(--ec-bg-soft);
+  --course-surface-nav: var(--ec-surface);
+  --course-surface-main: var(--ec-canvas);
+  --course-surface-card: var(--ec-surface);
+  --course-surface-elevated: var(--ec-surface);
+  --course-border: var(--ec-border);
+  --course-border-strong: var(--ec-border-strong, var(--ec-border));
+  --course-text-muted: var(--ec-text-secondary);
+  --course-text-faint: var(--ec-text-faint);
+  --course-glow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.08));
+}
+
+.course-studio-page {
+  background: var(--ec-canvas);
+}
+
+.course-studio-grid {
+  gap: 36px;
+  padding: 40px 32px 64px;
+  max-width: var(--ec-maxw, 1200px);
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .course-studio-grid {
+    grid-template-columns: 280px minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.course-studio-nav {
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: 16px;
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  padding: 18px 0;
+  max-height: calc(100vh - 130px);
+}
+
+@media (min-width: 1024px) {
+  .course-studio-nav {
+    top: 96px;
+    border-right: none;
+  }
+}
+
+.course-studio-subject-card {
+  padding: 0 18px 10px;
+}
+
+.course-studio-subject-icon {
+  display: none;
+}
+
+.course-studio-subject-name {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.course-studio-dashboard-btn {
+  margin: 0 18px 8px;
+  border-radius: 0;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ec-brand);
+  justify-content: flex-start;
+}
+
+.course-studio-dashboard-btn:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.course-studio-paper-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+  padding: 14px 18px 6px;
+  margin: 0;
+}
+
+.course-studio-topic-link {
+  padding: 9px 18px;
+  border-radius: 0;
+  border-left: 2px solid transparent;
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+  gap: 0;
+}
+
+.course-studio-topic-link:hover {
+  color: var(--ec-brand);
+  background: transparent;
+}
+
+.course-studio-topic-link.is-active {
+  color: var(--ec-brand);
+  border-left-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  font-weight: 600;
+}
+
+.course-studio-topic-indicator {
+  display: none;
+}
+
+.course-studio-topic-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.course-studio-main {
+  background: transparent;
+}
+
+.course-studio-topbar {
+  border-bottom: 1px solid var(--ec-border);
+  background: transparent;
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+.course-studio-mark-cta {
+  border-radius: 999px;
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text, #fff);
+  border: none;
+  font-weight: 600;
+}
+
+.course-studio-hero .course-studio-title,
+.course-studio-content .course-studio-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.course-studio-label,
+.course-studio-content .ms-overline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+}
+
+.course-studio-lead,
+.course-studio-prose {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--ec-text-secondary);
+}
+
+.course-callout--exam-tip,
+.course-exam-tip-box {
+  border-left: 3px solid var(--ec-brand);
+  background: var(--ec-brand-muted);
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin: 22px 0;
+  max-width: 760px;
+}
+
+.course-callout--exam-tip .course-callout-label,
+.course-exam-tip-box .course-exam-tip-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ec-brand);
+}
+
+.course-rich-text .katex-display,
+.course-formula-stage,
+.course-lesson-formula {
+  font-family: var(--font-mono);
+  background: var(--ec-paper);
+  border: 1px solid var(--ec-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 18px 0;
+  font-size: 15px;
+}
+
+.course-lesson-experience[data-explain-simpler='false'] #simple-explanation {
+  display: none;
+}
+
+.course-lesson-experience[data-explain-simpler='true'] #full-notes,
+.course-lesson-experience[data-explain-simpler='true'] #learn-steps,
+.course-lesson-experience[data-explain-simpler='true'] #key-formulas {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .ms-course-catalog {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-fc-row {
+    grid-template-columns: 1fr;
+  }
+
+  .course-studio-grid {
+    padding: 24px 18px 48px;
+  }
+
+  .course-studio-nav {
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-prog-fill,
+  .ms-fc,
+  .ms-simpler-switch span {
+    transition: none;
+  }
+}

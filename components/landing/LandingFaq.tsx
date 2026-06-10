@@ -1,66 +1,66 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
-import { LandingSectionReveal } from './LandingSectionReveal'
-import { LANDING_FAQ_ITEMS } from '@/lib/faq-data'
+
+const FAQS = [
+  {
+    q: 'Is this just ChatGPT grading my work?',
+    a: "No. Every question is marked against the official Cambridge mark scheme for that exact paper — B1/M1/A1 codes, MCQ keys, essay band descriptors. The AI applies the scheme; it doesn't invent a grade. We're honest about its limits, too.",
+  },
+  {
+    q: 'Does it read handwriting?',
+    a: 'Yes — photos, camera captures, and PDFs of handwritten work, including multi-page scripts. Messy working is fine; if a line is genuinely illegible we tell you instead of guessing.',
+  },
+  {
+    q: 'Which subjects are covered?',
+    a: '15 Cambridge syllabuses across A-Level and O-Level: maths (9709), physics (9702), chemistry (9701), biology (9700), economics, business, computer science, English and more.',
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Single-question marking has a free tier — no card. Paid plans add whole-paper marking and deeper analytics. The courses are 100% free, forever.',
+  },
+  {
+    q: 'Is MarkScheme affiliated with Cambridge?',
+    a: "No. It's an independent study tool built by a student. Mark schemes are used for educational reference; we're not endorsed by Cambridge International.",
+  },
+]
 
 export function LandingFaq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <LandingSectionReveal>
-      <div className="mb-10 sm:mb-12">
-        <p className="ec-label-tech mb-4">FAQ</p>
-        <h2 className="landing-h2">
-          <span className="gradient-text">Questions you&apos;ll actually ask.</span>
-        </h2>
-      </div>
-
-      <div className="space-y-3">
-        {LANDING_FAQ_ITEMS.map((item, index) => {
-          const isOpen = openIndex === index
+    <section id="faq" className="ms-sec scroll-mt-20">
+      <div className="ms-pg" style={{ maxWidth: 860 }}>
+      <p className="ms-overline">Questions</p>
+      <h2 className="ms-h2">
+        Fair questions, <em>straight answers.</em>
+      </h2>
+      <div className="ms-faq-list">
+        {FAQS.map((item, i) => {
+          const open = openIndex === i
           return (
-            <div key={item.q} className="ec-card overflow-hidden">
+            <div key={item.q} className="ms-faq-item">
               <button
                 type="button"
-                id={`faq-btn-${index}`}
-                aria-expanded={isOpen}
-                aria-controls={`faq-panel-${index}`}
-                onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex min-h-[52px] w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-[var(--ec-surface-raised)] sm:px-6 sm:py-5"
+                className="ms-faq-q"
+                aria-expanded={open}
+                onClick={() => setOpenIndex(open ? -1 : i)}
               >
-                <span className="text-base font-semibold text-[var(--ec-text-primary)] sm:text-lg">
-                  {item.q}
-                </span>
-                <ChevronDown
-                  className={`h-5 w-5 shrink-0 text-[var(--ec-text-secondary)] transition-transform duration-200 ${
-                    isOpen ? 'rotate-180' : ''
-                  }`}
-                />
+                <span>{item.q}</span>
+                <span className="ms-pm">{open ? '−' : '+'}</span>
               </button>
               <div
-                id={`faq-panel-${index}`}
-                role="region"
-                aria-labelledby={`faq-btn-${index}`}
-                hidden={!isOpen}
-                className="border-t border-[var(--ec-border)] px-5 pb-5 pt-0 sm:px-6 sm:pb-6"
+                className="ms-faq-a"
+                style={{ maxHeight: open ? '200px' : '0px' }}
+                hidden={!open}
               >
-                {isOpen && (
-                  <p className="landing-lead pt-4">{item.a}</p>
-                )}
+                {open ? <p className="ms-body-2">{item.a}</p> : null}
               </div>
             </div>
           )
         })}
       </div>
-      <Link
-        href="/faq"
-        className="mt-8 inline-flex min-h-[44px] items-center text-sm ec-link"
-      >
-        See all questions →
-      </Link>
-    </LandingSectionReveal>
+      </div>
+    </section>
   )
 }

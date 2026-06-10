@@ -64,7 +64,7 @@ export function SolutionSection({
         className="ec-card p-5 sm:p-6"
       >
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <div className="ec-tint-success-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
+          <div className="ec-tint-brand-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
             <BookOpen className="h-5 w-5 ec-text-brand" />
           </div>
           <div className="flex-1">
@@ -102,11 +102,7 @@ export function SolutionSection({
         className="ec-card-brand relative overflow-hidden p-8 text-center sm:p-12"
       >
         <div
-          className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full ec-glow-orb-lg blur-[100px]"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full ec-glow-orb-accent blur-[100px]"
+          className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full ec-glow-orb blur-[80px]"
           aria-hidden="true"
         />
         <div className="relative">
@@ -120,9 +116,8 @@ export function SolutionSection({
           >
             <Sparkles className="h-8 w-8 ec-text-brand" />
           </motion.div>
-          <h3 className="text-3xl font-extrabold tracking-tight">
-            <span className="gradient-text">Want to see</span>{' '}
-            <span className="ec-text-gradient">how it&apos;s done?</span>
+          <h3 className="landing-h3">
+            Want to see <em>how it&apos;s done?</em>
           </h3>
           <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-[var(--ec-text-secondary)]">
             Get a step-by-step worked solution to learn from. Generated once,
@@ -184,7 +179,7 @@ export function SolutionSection({
       className="ec-card p-5 sm:p-7"
     >
       <div className="mb-5 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl border ec-tint-success-icon">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl border ec-tint-brand-icon">
           <BookOpen className="h-5 w-5" />
         </div>
         <div>

@@ -312,12 +312,9 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
 
         <div className="flex items-baseline gap-3">
           <span
-            className="text-7xl font-extrabold tracking-tighter sm:text-8xl"
+            className="ec-stat-figure text-7xl sm:text-8xl"
             style={{
               color: isPlaceholder ? 'var(--ec-text-secondary)' : prediction.color,
-              textShadow: isPlaceholder
-                ? undefined
-                : `0 0 32px ${prediction.color}80, 0 0 64px ${prediction.color}40`,
             }}
           >
             {prediction.predictedGrade}

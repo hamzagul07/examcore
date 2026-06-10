@@ -12,13 +12,12 @@ export function BlogFollowUpChain({ slug }: Props) {
   if (items.length === 0) return null
 
   return (
-    <section
-      className="mt-12 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)]/50 p-6 sm:p-8"
-      aria-label="Follow-up questions"
-    >
+    <section className="ms-blog-aside mt-12" aria-label="Follow-up questions">
       <div className="mb-4 flex items-center gap-2">
         <MessageCircle className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden />
-        <p className="ec-label-tech">IF YOU&apos;RE STILL WONDERING</p>
+        <p className="ms-overline" style={{ marginBottom: 0 }}>
+          If you&apos;re still wondering
+        </p>
       </div>
       <ol className="space-y-6">
         {items.map((item, i) => (

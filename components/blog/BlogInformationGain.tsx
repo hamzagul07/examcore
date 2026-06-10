@@ -24,7 +24,7 @@ export function BlogInformationGain({ slug, content, informationGain }: Props) {
     (seo.format === 'comparison' ? 'Structured comparison' : 'Practical revision guide')
 
   return (
-    <p className="mt-4 text-xs text-[var(--ec-text-secondary)]">
+    <p className="ms-micro mt-4">
       <span className="font-semibold text-[var(--ec-brand)]">Information gain:</span> {label}
       {signals.tables > 0 && ' · Tables'}
       {signals.faqSections > 0 && ' · FAQ'}

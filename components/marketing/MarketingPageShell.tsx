@@ -43,14 +43,17 @@ export function MarketingHero({
   children?: ReactNode
 }) {
   return (
-    <section className="landing-section scroll-mt-24 pb-12 pt-24 sm:pb-16 sm:pt-28">
-      <div className="landing-hero-glow" aria-hidden />
-      <div className="relative mx-auto max-w-3xl">
-        {label ? <p className="ec-label-tech mb-4">{label}</p> : null}
-        <h1 className="text-display mb-6 text-[var(--ec-text-primary)]">{title}</h1>
-        {lead ? <p className="landing-lead">{lead}</p> : null}
-        {children}
-      </div>
+    <section className="ms-pg ms-content-hero scroll-mt-24">
+      {label ? <p className="ms-overline">{label}</p> : null}
+      <h1 className="ms-h2" style={{ fontSize: 'clamp(36px, 5vw, 56px)' }}>
+        {title}
+      </h1>
+      {lead ? (
+        <p className="ms-lead" style={{ marginTop: 16, maxWidth: '56ch' }}>
+          {lead}
+        </p>
+      ) : null}
+      {children}
     </section>
   )
 }
@@ -63,7 +66,7 @@ export function MarketingSection({
   className?: string
 }) {
   return (
-    <section className={`landing-section scroll-mt-24 ${className}`}>{children}</section>
+    <section className={`ms-pg ms-sec scroll-mt-24 ${className}`}>{children}</section>
   )
 }
 

@@ -43,8 +43,8 @@ export default function TeacherDashboard() {
   return (
     <TeacherPageContainer>
       <header className="mb-12">
-        <p className="ec-label-tech mb-4">TEACHER DASHBOARD</p>
-        <h1 className="text-huge gradient-text">Your classrooms</h1>
+        <p className="ec-eyebrow mb-4">Teacher dashboard</p>
+        <h1 className="text-headline">Your classrooms</h1>
       </header>
 
       {classrooms.length === 0 && !loading && (

@@ -7,7 +7,7 @@ import {
   DEFAULT_EXTRACTION_METHOD,
   LOW_EXTRACTION_CONFIDENCE_THRESHOLD,
   MAX_EXTRACTION_RETRIES,
-  useMathpix,
+  isMathpixEnabled,
 } from './config'
 import { extractQuestionsWithGemini } from './gemini-extractor'
 import { extractDiagramsForPages } from './diagram-extractor'
@@ -93,7 +93,7 @@ async function maybeExtractWithMathpix(
   _pdfBytes: ArrayBuffer,
   _meta: ParsedPaperMeta
 ): Promise<null> {
-  if (!useMathpix()) return null
+  if (!isMathpixEnabled()) return null
   // Mathpix path preserved in mathpix-client.mjs — wire when EXTRACTION_USE_MATHPIX=true
   return null
 }

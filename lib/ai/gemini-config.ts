@@ -7,7 +7,7 @@
 
 export const VERTEX_AI_REGION = 'us-central1' as const
 
-export function useVertexAI(): boolean {
+export function isVertexAIEnabled(): boolean {
   const v = process.env.USE_VERTEX_AI?.trim().toLowerCase()
   return v === 'true' || v === '1' || v === 'yes'
 }
@@ -25,12 +25,12 @@ export function getGeminiApiKey(): string | undefined {
 }
 
 export function geminiBackendLabel(): 'vertex' | 'api-key' {
-  return useVertexAI() ? 'vertex' : 'api-key'
+  return isVertexAIEnabled() ? 'vertex' : 'api-key'
 }
 
 /** True when the active backend has the credentials it needs. */
 export function isGeminiBackendConfigured(): boolean {
-  if (useVertexAI()) {
+  if (isVertexAIEnabled()) {
     return Boolean(getGoogleCloudProject())
   }
   return Boolean(getGeminiApiKey())
@@ -38,7 +38,7 @@ export function isGeminiBackendConfigured(): boolean {
 
 export function assertGeminiConfigured(): void {
   if (isGeminiBackendConfigured()) return
-  if (useVertexAI()) {
+  if (isVertexAIEnabled()) {
     throw new Error(
       'Vertex AI not configured: set USE_VERTEX_AI=true, GOOGLE_CLOUD_PROJECT, and GOOGLE_APPLICATION_CREDENTIALS (service account JSON path)'
     )

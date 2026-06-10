@@ -45,23 +45,20 @@ export function ContactForm() {
     <MarketingPageShell narrow>
       <MarketingHero
         label="CONTACT"
-        title={<span className="gradient-text">Get in touch</span>}
+        title="Get in touch"
         lead="Questions, feedback, or something broken? We'd like to hear from you."
       />
 
-      <div className="space-y-8">
-        <div className="ec-card p-6 sm:p-8">
-          <p className="ec-label-tech mb-3">EMAIL</p>
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="text-xl ec-link"
-          >
+      <div className="ms-pg space-y-8 pb-16">
+        <div className="ms-dash-card">
+          <p className="ms-overline">Email</p>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="ec-btn-underline text-xl">
             {CONTACT_EMAIL}
           </a>
         </div>
 
-        <div className="ec-card p-6 sm:p-8">
-          <p className="ec-label-tech mb-4">SEND A MESSAGE</p>
+        <div className="ms-dash-card">
+          <p className="ms-overline">Send a message</p>
           <form onSubmit={handleSubmit} className="relative space-y-4">
             <input
               type="text"

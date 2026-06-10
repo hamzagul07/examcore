@@ -1,64 +1,92 @@
 /* ============================================================
    MARKSCHEME DESIGN SYSTEM — ec-* tokens & components
-   State A: Late Night (default) | State B: Zen (warm sand)
+   Margin Notes: zen (paper light, default) | late-night (warm dark)
    ============================================================ */
 
 :root,
 [data-ec-theme='late-night'] {
-  --ec-canvas: #0a0b0f;
-  --ec-surface: #14161c;
-  --ec-surface-raised: #1a1d26;
-  --ec-border: rgba(255, 255, 255, 0.08);
-  --ec-text-primary: #f1f5f9;
-  --ec-text-secondary: #94a3b8;
+  --ec-canvas: #14120d;
+  --ec-bg-soft: #1a1711;
+  --ec-surface: #1e1b13;
+  --ec-surface-raised: #242016;
+  --ec-surface-muted: #1a1711;
+  --ec-paper: #211e14;
+  --ec-paper-rule: #383223;
+  --ec-border: #322d1f;
+  --ec-border-soft: #322d1f;
+  --ec-border-subtle: #322d1f;
+  --ec-border-strong: #f0ead9;
+  --ec-text-primary: #f0ead9;
+  --ec-text-secondary: #c4bba1;
+  --ec-text-faint: #837b64;
   --ec-brand: #00f5a0;
-  --ec-brand-muted: rgba(0, 245, 160, 0.15);
-  --ec-brand-gradient: linear-gradient(135deg, #00f5a0 0%, #34d399 50%, #6ee7b7 100%);
-  --ec-ink-crimson: #ff4b6e;
-  --ec-ink-red: oklch(64% 0.2 24);
+  --ec-brand-deep: #00f5a0;
+  --ec-brand-muted: rgba(0, 245, 160, 0.1);
+  --ec-brand-border: rgba(0, 245, 160, 0.38);
+  --ec-accent-light: #4fd1c5;
+  --ec-brand-gradient: linear-gradient(135deg, #00f5a0 0%, #1f8a8a 100%);
+  --ec-ink-crimson: #e06c6c;
+  --ec-ink-red: #e06c6c;
+  --ec-pen: #9eb0f5;
+  --ec-on-brand-text: #07130d;
   --ec-font-handwriting: var(--font-caveat, 'Caveat', 'Caveat Fallback', cursive);
-  --ec-notebook-paper: #1a1814;
+  --ec-notebook-paper: var(--ec-paper);
   --ec-notebook-ink: var(--ec-brand);
-  --ec-notebook-pencil: color-mix(in srgb, var(--ec-text-secondary) 70%, transparent);
-  --ec-notebook-rule: color-mix(in srgb, var(--ec-brand) 8%, transparent);
+  --ec-notebook-pencil: var(--ec-pen);
+  --ec-notebook-rule: var(--ec-paper-rule);
   --ec-paper-texture: none;
-  --ec-chip-success-bg: rgba(0, 245, 160, 0.15);
+  --ec-chip-success-bg: rgba(0, 245, 160, 0.1);
   --ec-chip-success-text: #00f5a0;
-  --ec-chip-warning-bg: rgba(255, 176, 32, 0.15);
-  --ec-chip-warning-text: #ffb020;
-  --ec-chip-critical-bg: rgba(255, 75, 110, 0.15);
-  --ec-chip-critical-text: #ff4b6e;
-  --ec-chip-neutral-bg: rgba(148, 163, 184, 0.12);
-  --ec-chip-neutral-text: #94a3b8;
-  --ec-chip-info-bg: rgba(34, 211, 238, 0.12);
-  --ec-chip-info-text: #67e8f9;
-  --ec-chip-sampled-bg: rgba(56, 189, 248, 0.14);
-  --ec-chip-sampled-text: #7dd3fc;
-  --ec-chip-accent-bg: rgba(139, 92, 246, 0.12);
-  --ec-chip-accent-text: #a78bfa;
-  --ec-banner-success-bg: rgba(0, 245, 160, 0.12);
+  --ec-chip-warning-bg: rgba(217, 179, 106, 0.14);
+  --ec-chip-warning-text: #d9b36a;
+  --ec-chip-critical-bg: rgba(224, 108, 108, 0.12);
+  --ec-chip-critical-text: #e06c6c;
+  --ec-chip-neutral-bg: rgba(131, 123, 100, 0.14);
+  --ec-chip-neutral-text: #837b64;
+  --ec-chip-info-bg: rgba(143, 169, 247, 0.14);
+  --ec-chip-info-text: #8fa9f7;
+  --ec-chip-sampled-bg: rgba(79, 209, 197, 0.14);
+  --ec-chip-sampled-text: #4fd1c5;
+  --ec-chip-accent-bg: rgba(181, 163, 232, 0.14);
+  --ec-chip-accent-text: #b5a3e8;
+  --ec-acc-blue: #8fa9f7;
+  --ec-acc-violet: #b5a3e8;
+  --ec-acc-teal: #4fd1c5;
+  --ec-acc-rose: #e788ad;
+  --ec-acc-slate: #9aa5b4;
+  --ec-c-math: #d9b36a;
+  --ec-c-phys: #8fa9f7;
+  --ec-c-chem: #b5a3e8;
+  --ec-c-bio: #4fd1c5;
+  --ec-c-biz: #4fd1c5;
+  --ec-c-hum: #e788ad;
+  --ec-c-comp: #8fa9f7;
+  --ec-c-media: #e788ad;
+  --ec-banner-success-bg: rgba(0, 245, 160, 0.1);
   --ec-banner-success-border: rgba(0, 245, 160, 0.35);
-  --ec-banner-success-title: #a7f3d0;
-  --ec-banner-success-meta: #6ee7b7;
-  --ec-banner-warning-bg: rgba(255, 176, 32, 0.12);
-  --ec-banner-warning-border: rgba(255, 176, 32, 0.35);
-  --ec-banner-warning-title: #fde68a;
-  --ec-banner-warning-meta: #fbbf24;
-  --ec-banner-info-bg: rgba(34, 211, 238, 0.12);
-  --ec-banner-info-border: rgba(34, 211, 238, 0.35);
-  --ec-banner-info-title: #a5f3fc;
-  --ec-banner-info-meta: #67e8f9;
-  --ec-radius-card: 16px;
-  --ec-radius-button: 12px;
-  --ec-wireframe-opacity: 0.09;
+  --ec-banner-success-title: #00f5a0;
+  --ec-banner-success-meta: #4fd1c5;
+  --ec-banner-warning-bg: rgba(217, 179, 106, 0.14);
+  --ec-banner-warning-border: rgba(217, 179, 106, 0.35);
+  --ec-banner-warning-title: #f0d49a;
+  --ec-banner-warning-meta: #d9b36a;
+  --ec-banner-info-bg: rgba(143, 169, 247, 0.14);
+  --ec-banner-info-border: rgba(143, 169, 247, 0.35);
+  --ec-banner-info-title: #b8c9fb;
+  --ec-banner-info-meta: #8fa9f7;
+  --ec-radius-card: 14px;
+  --ec-radius-button: 10px;
+  --ec-radius-pill: 999px;
+  --ec-wireframe-opacity: 0;
   --ec-wireframe-color: 0, 245, 160;
-  --ec-btn-glow: 0 8px 24px rgba(0, 245, 160, 0.35);
-  --ec-btn-glow-hover: 0 12px 32px rgba(0, 245, 160, 0.5);
-  --ec-card-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
-  --ec-card-hover-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.6), 0 0 48px rgba(0, 245, 160, 0.12);
-  --ec-shadow-elevation-1: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  --ec-shadow-elevation-2: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  --ec-shadow-elevation-3: 0 16px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --ec-btn-glow: 0 10px 28px rgba(0, 245, 160, 0.18);
+  --ec-btn-glow-hover: 0 14px 36px rgba(0, 245, 160, 0.28);
+  --ec-card-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  --ec-card-hover-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+  --ec-shadow-hard: 6px 6px 0 rgba(0, 0, 0, 0.45);
+  --ec-shadow-elevation-1: 0 6px 18px rgba(0, 0, 0, 0.3);
+  --ec-shadow-elevation-2: 0 18px 44px rgba(0, 0, 0, 0.45);
+  --ec-shadow-elevation-3: 0 24px 56px rgba(0, 0, 0, 0.55);
   --ec-touch-min: 44px;
   --ec-z-sticky: 50;
   --ec-z-overlay: 60;
@@ -69,84 +97,108 @@
 
 [data-ec-theme='zen'] {
   color-scheme: light;
-  --ec-canvas: #f5f0e8;
-  --ec-surface: #faf7f2;
-  --ec-surface-raised: #fffdf9;
-  --ec-border: rgba(90, 80, 60, 0.12);
-  --ec-text-primary: #000000;
-  --ec-text-secondary: #333333;
-  --ec-brand: #5a9a6a;
-  --ec-brand-muted: rgba(90, 154, 106, 0.12);
-  --ec-brand-gradient: linear-gradient(135deg, #5a9a6a 0%, #7ab88a 50%, #a8c5a0 100%);
-  --ec-ink-crimson: #a85c5c;
-  --ec-ink-red: oklch(58% 0.22 24);
-  --ec-chip-success-bg: rgba(90, 154, 106, 0.15);
-  --ec-chip-success-text: #4a7a54;
+  --ec-canvas: #f6f1e7;
+  --ec-bg-soft: #f1ebdd;
+  --ec-surface: #fffcf4;
+  --ec-surface-raised: #faf5e9;
+  --ec-surface-muted: #f1ebdd;
+  --ec-paper: #fffdf6;
+  --ec-paper-rule: #e4ddca;
+  --ec-border: #e3dac6;
+  --ec-border-soft: #e4ddca;
+  --ec-border-subtle: #e4ddca;
+  --ec-border-strong: #25221b;
+  --ec-text-primary: #25221b;
+  --ec-text-secondary: #5c5546;
+  --ec-text-faint: #8d8470;
+  --ec-brand: #1e8a5e;
+  --ec-brand-deep: #17a86b;
+  --ec-brand-muted: rgba(30, 138, 94, 0.11);
+  --ec-brand-border: rgba(30, 138, 94, 0.38);
+  --ec-accent-light: rgba(30, 138, 94, 0.2);
+  --ec-brand-gradient: linear-gradient(135deg, #1e8a5e 0%, #17a86b 100%);
+  --ec-ink-crimson: #b04848;
+  --ec-ink-red: #b04848;
+  --ec-pen: #2b3a8c;
+  --ec-on-brand-text: #f6f1e7;
+  --ec-chip-success-bg: rgba(30, 138, 94, 0.11);
+  --ec-chip-success-text: #1e8a5e;
   --ec-chip-warning-bg: rgba(196, 168, 120, 0.2);
   --ec-chip-warning-text: #9a7a40;
-  --ec-chip-critical-bg: rgba(168, 92, 92, 0.15);
-  --ec-chip-critical-text: #a85c5c;
-  --ec-chip-neutral-bg: rgba(122, 114, 104, 0.12);
-  --ec-chip-neutral-text: #7a7268;
-  --ec-chip-info-bg: rgba(74, 122, 138, 0.14);
-  --ec-chip-info-text: #3d6670;
-  --ec-chip-sampled-bg: rgba(74, 144, 164, 0.16);
-  --ec-chip-sampled-text: #4a7a8a;
-  --ec-chip-accent-bg: rgba(107, 91, 138, 0.14);
+  --ec-chip-critical-bg: rgba(176, 72, 72, 0.09);
+  --ec-chip-critical-text: #b04848;
+  --ec-chip-neutral-bg: rgba(241, 235, 221, 0.85);
+  --ec-chip-neutral-text: #8d8470;
+  --ec-chip-info-bg: rgba(58, 95, 184, 0.12);
+  --ec-chip-info-text: #3a5fb8;
+  --ec-chip-sampled-bg: rgba(31, 138, 138, 0.12);
+  --ec-chip-sampled-text: #1f8a8a;
+  --ec-chip-accent-bg: rgba(107, 91, 138, 0.12);
   --ec-chip-accent-text: #6b5b8a;
-  --ec-banner-success-bg: rgba(90, 154, 106, 0.18);
-  --ec-banner-success-border: rgba(74, 122, 84, 0.45);
-  --ec-banner-success-title: #2d5a38;
-  --ec-banner-success-meta: #4a7a54;
-  --ec-banner-warning-bg: rgba(196, 168, 120, 0.22);
-  --ec-banner-warning-border: rgba(154, 122, 64, 0.45);
-  --ec-banner-warning-title: #6b4f1a;
+  --ec-acc-blue: #3a5fb8;
+  --ec-acc-violet: #6b5b8a;
+  --ec-acc-teal: #1f8a8a;
+  --ec-acc-rose: #ac5276;
+  --ec-acc-slate: #5c6470;
+  --ec-c-math: #9a7a40;
+  --ec-c-phys: #3a5fb8;
+  --ec-c-chem: #6b5b8a;
+  --ec-c-bio: #1f8a8a;
+  --ec-c-biz: #1f8a8a;
+  --ec-c-hum: #ac5276;
+  --ec-c-comp: #3a5fb8;
+  --ec-c-media: #ac5276;
+  --ec-banner-success-bg: rgba(30, 138, 94, 0.11);
+  --ec-banner-success-border: rgba(30, 138, 94, 0.35);
+  --ec-banner-success-title: #145a3d;
+  --ec-banner-success-meta: #1e8a5e;
+  --ec-banner-warning-bg: rgba(196, 168, 120, 0.2);
+  --ec-banner-warning-border: rgba(154, 122, 64, 0.35);
+  --ec-banner-warning-title: #6b4f1f;
   --ec-banner-warning-meta: #9a7a40;
-  --ec-banner-info-bg: rgba(74, 122, 138, 0.14);
-  --ec-banner-info-border: rgba(61, 102, 112, 0.4);
-  --ec-banner-info-title: #2d4a52;
-  --ec-banner-info-meta: #3d6670;
-  --ec-wireframe-opacity: 0.04;
-  --ec-wireframe-color: 90, 154, 106;
-  --ec-btn-glow: 0 4px 16px rgba(90, 154, 106, 0.2);
-  --ec-btn-glow-hover: 0 8px 24px rgba(90, 154, 106, 0.3);
-  --ec-card-shadow: 0 8px 24px rgba(61, 56, 48, 0.08);
-  --ec-card-hover-shadow: 0 16px 40px rgba(61, 56, 48, 0.12);
-  --ec-shadow-elevation-1: 0 2px 8px rgba(61, 56, 48, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  --ec-shadow-elevation-2: 0 8px 20px rgba(61, 56, 48, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  --ec-shadow-elevation-3: 0 14px 32px rgba(61, 56, 48, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  --ec-notebook-paper: #f7f2ea;
-  --ec-notebook-pencil: #8a8278;
-  --ec-notebook-rule: color-mix(in srgb, var(--ec-brand) 12%, transparent);
+  --ec-banner-info-bg: rgba(58, 95, 184, 0.12);
+  --ec-banner-info-border: rgba(58, 95, 184, 0.3);
+  --ec-banner-info-title: #1e3a7a;
+  --ec-banner-info-meta: #3a5fb8;
+  --ec-wireframe-opacity: 0;
+  --ec-wireframe-color: 30, 138, 94;
+  --ec-btn-glow: 0 10px 24px rgba(30, 138, 94, 0.25);
+  --ec-btn-glow-hover: 0 14px 36px rgba(30, 138, 94, 0.32);
+  --ec-card-shadow: 0 6px 18px rgba(80, 70, 50, 0.06);
+  --ec-card-hover-shadow: 0 14px 36px rgba(80, 70, 50, 0.12);
+  --ec-shadow-hard: 6px 6px 0 rgba(37, 34, 27, 0.1);
+  --ec-shadow-elevation-1: 0 6px 18px rgba(80, 70, 50, 0.06);
+  --ec-shadow-elevation-2: 0 14px 36px rgba(80, 70, 50, 0.12);
+  --ec-shadow-elevation-3: 0 20px 48px rgba(80, 70, 50, 0.16);
+  --ec-notebook-paper: var(--ec-paper);
+  --ec-notebook-pencil: var(--ec-pen);
+  --ec-notebook-rule: var(--ec-paper-rule);
 }
 
 html,
 body {
   background: var(--ec-canvas);
   color: var(--ec-text-primary);
-  transition:
-    background-color 500ms ease,
-    color 500ms ease;
 }
 
 /* ============ Typography scale ============ */
 :root {
-  --text-display: clamp(1.75rem, 7vw, 4rem);
-  --text-hero: clamp(1.75rem, 6vw, 4.5rem);
-  --text-headline: clamp(1.375rem, 5vw, 2.75rem);
-  --text-title: clamp(1.125rem, 3.5vw, 1.75rem);
-  --text-h3: clamp(1rem, 2.5vw, 1.25rem);
-  --text-body-large: clamp(1rem, 1.5vw, 1.125rem);
+  --text-display: clamp(2.75rem, 6vw, 4.75rem);
+  --text-hero: clamp(2.75rem, 6vw, 4.75rem);
+  --text-headline: clamp(1.875rem, 4vw, 2.75rem);
+  --text-title: clamp(1.125rem, 3.5vw, 1.4375rem);
+  --text-h3: 1.4375rem;
+  --text-body-large: 1.125rem;
   --text-body: 1rem;
   --text-caption: 0.8125rem;
 
-  --leading-display: 1.05;
-  --leading-hero: 1;
-  --leading-headline: 1.15;
-  --leading-title: 1.25;
-  --leading-h3: 1.3;
-  --leading-body: 1.5;
-  --leading-body-large: 1.55;
+  --leading-display: 1.04;
+  --leading-hero: 1.04;
+  --leading-headline: 1.1;
+  --leading-title: 1.2;
+  --leading-h3: 1.2;
+  --leading-body: 1.55;
+  --leading-body-large: 1.65;
   --leading-caption: 1.4;
 
   --space-section: clamp(3rem, 8vw, 6rem);
@@ -155,43 +207,40 @@ body {
 }
 
 .text-display {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: var(--text-display);
-  font-weight: 800;
+  font-weight: 400;
   line-height: var(--leading-display);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
 }
 
 .text-hero {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: var(--text-hero);
-  font-weight: 800;
+  font-weight: 400;
   line-height: var(--leading-hero);
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
+  color: var(--ec-text-primary);
 }
 
 @layer components {
   .landing-section {
     margin-left: auto;
     margin-right: auto;
-    max-width: 80rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-
-  @media (min-width: 640px) {
-    .landing-section {
-      padding-top: 7rem;
-      padding-bottom: 7rem;
-    }
+    max-width: var(--ec-maxw, 1180px);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: clamp(4rem, 8vw, 7rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
   }
 }
 
 .landing-h2 {
-  font-size: clamp(1.875rem, 4.5vw, 2.75rem);
-  font-weight: 800;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  font-weight: 500;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--ec-text-primary);
 }
 
@@ -200,6 +249,12 @@ body {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
+}
+
+.landing-h3 em {
+  font-style: italic;
+  font-weight: inherit;
+  color: var(--ec-brand);
 }
 
 .landing-lead {
@@ -232,18 +287,20 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
-    color-mix(in srgb, var(--ec-brand) 18%, transparent) 0%,
+    color-mix(in srgb, var(--ec-brand) 6%, transparent) 0%,
     transparent 70%
   );
-  filter: blur(40px);
+  filter: blur(48px);
+  opacity: 0.85;
 }
 
 /* ============ Semantic typography utilities ============ */
 .text-headline {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: var(--text-headline);
-  font-weight: 800;
+  font-weight: 400;
   line-height: var(--leading-headline);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--ec-text-primary);
 }
 
@@ -282,19 +339,21 @@ body {
 }
 
 .label-overline {
-  font-family: ui-monospace, var(--font-geist-mono), monospace;
-  font-size: var(--text-caption);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ec-text-secondary);
+  color: var(--ec-text-faint);
 }
 
 .ec-countdown-number {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: clamp(3.5rem, 14vw, 7.5rem);
   line-height: 1;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.03em;
+  color: var(--ec-brand);
 }
 
 .ec-notebook-stat {
@@ -425,10 +484,33 @@ body {
 }
 
 .ec-text-gradient {
-  background: var(--ec-brand-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: inherit;
+  font-style: italic;
+  font-weight: inherit;
+  color: var(--ec-brand);
+  background: none;
+  -webkit-text-fill-color: var(--ec-brand);
+}
+
+.ec-stat-figure {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--ec-brand);
+  line-height: 1;
+}
+
+.landing-h2 em,
+.ec-display em,
+.text-hero em,
+.text-headline em,
+.text-display em,
+h1 em {
+  font-style: italic;
+  background: none;
+  -webkit-text-fill-color: var(--ec-brand);
+  color: var(--ec-brand);
 }
 
 .ec-text-primary {
@@ -517,11 +599,16 @@ body {
   color: var(--ec-banner-warning-title);
 }
 
+.ec-tint-brand-icon {
+  background: var(--ec-brand-muted);
+  border-color: color-mix(in srgb, var(--ec-brand) 28%, transparent);
+  color: var(--ec-brand);
+}
+
 .ec-tint-success-icon {
   background: var(--ec-chip-success-bg);
   border-color: color-mix(in srgb, var(--ec-chip-success-text) 30%, transparent);
   color: var(--ec-chip-success-text);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-success-text) 30%, transparent);
 }
 
 .ec-tint-success-chip {
@@ -534,7 +621,6 @@ body {
   background: var(--ec-chip-warning-bg);
   border-color: color-mix(in srgb, var(--ec-chip-warning-text) 30%, transparent);
   color: var(--ec-chip-warning-text);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-warning-text) 30%, transparent);
 }
 
 .ec-tint-warning-chip {
@@ -547,7 +633,6 @@ body {
   background: var(--ec-chip-critical-bg);
   border-color: color-mix(in srgb, var(--ec-chip-critical-text) 30%, transparent);
   color: var(--ec-chip-critical-text);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-critical-text) 30%, transparent);
 }
 
 .ec-tint-critical-chip {
@@ -571,7 +656,6 @@ body {
   background: var(--ec-chip-info-bg);
   border-color: color-mix(in srgb, var(--ec-chip-info-text) 30%, transparent);
   color: var(--ec-chip-info-text);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-info-text) 30%, transparent);
 }
 
 .ec-tint-info-chip {
@@ -584,7 +668,6 @@ body {
   background: var(--ec-chip-accent-bg);
   border-color: color-mix(in srgb, var(--ec-chip-accent-text) 30%, transparent);
   color: var(--ec-chip-accent-text);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-accent-text) 30%, transparent);
 }
 
 .ec-tint-accent-chip {
@@ -603,7 +686,6 @@ body {
   background: var(--ec-chip-sampled-bg);
   border-color: color-mix(in srgb, var(--ec-chip-sampled-text) 30%, transparent);
   color: var(--ec-chip-sampled-text);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--ec-chip-sampled-text) 30%, transparent);
 }
 
 .ec-tint-sampled-chip {
@@ -629,48 +711,76 @@ body {
 }
 
 .ec-glow-orb {
-  background: color-mix(in srgb, var(--ec-brand) 15%, transparent);
+  background: color-mix(in srgb, var(--ec-brand) 8%, transparent);
+  opacity: 0.65;
 }
 
 .ec-glow-orb-info {
-  background: color-mix(in srgb, var(--ec-chip-info-text) 15%, transparent);
+  background: color-mix(in srgb, var(--ec-chip-info-text) 8%, transparent);
+  opacity: 0.65;
 }
 
 .ec-glow-orb-accent {
-  background: color-mix(in srgb, var(--ec-chip-accent-text) 15%, transparent);
+  background: color-mix(in srgb, var(--ec-chip-accent-text) 8%, transparent);
+  opacity: 0.65;
 }
 
 .ec-glow-orb-critical {
-  background: color-mix(in srgb, var(--ec-chip-critical-text) 15%, transparent);
+  background: color-mix(in srgb, var(--ec-chip-critical-text) 8%, transparent);
+  opacity: 0.65;
 }
 
 .ec-glow-orb-lg {
-  background: color-mix(in srgb, var(--ec-brand) 20%, transparent);
+  background: color-mix(in srgb, var(--ec-brand) 10%, transparent);
+  opacity: 0.65;
 }
 
 .ec-chat-user-bubble {
-  border: 1px solid color-mix(in srgb, var(--ec-brand) 30%, transparent);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--ec-brand) 20%, transparent),
-    color-mix(in srgb, var(--ec-brand) 12%, transparent)
-  );
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 22%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-brand) 6%, var(--ec-surface-raised));
+}
+
+.ec-chat-message-enter {
+  animation: ec-chat-enter 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ec-chat-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ec-streaming-caret {
+  width: 2px;
+  height: 1.05em;
+  background: var(--ec-brand);
+  border-radius: 1px;
+  animation: ec-caret-blink 1s step-end infinite;
+}
+
+@keyframes ec-caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .ec-chat-avatar {
-  background: linear-gradient(
-    135deg,
-    var(--ec-brand),
-    color-mix(in srgb, var(--ec-chip-info-text) 85%, var(--ec-brand))
-  );
+  background: var(--ec-brand);
+  color: #fff;
 }
 
 .ec-chat-avatar-soft {
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--ec-brand) 20%, transparent),
-    color-mix(in srgb, var(--ec-chip-info-text) 20%, transparent)
-  );
+  background: var(--ec-brand-muted);
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 22%, transparent);
 }
 
 .ec-chat-caret {
@@ -678,49 +788,41 @@ body {
 }
 
 .ec-btn-send {
-  background: var(--ec-brand-gradient);
-  color: #0a0b0f;
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text);
   box-shadow: var(--ec-btn-glow);
   transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ec-btn-send:hover:not(:disabled) {
+  background: var(--ec-brand-deep, #8f1f1c);
   box-shadow: var(--ec-btn-glow-hover);
 }
 
-[data-ec-theme='zen'] .ec-btn-send {
-  color: #fffdf9;
-}
-
 .ec-fab-brand {
-  background: var(--ec-brand-gradient);
-  color: #fff;
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text);
   box-shadow: 0 8px 32px color-mix(in srgb, var(--ec-brand) 40%, transparent);
   transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ec-fab-brand:hover {
+  background: var(--ec-brand-deep, #8f1f1c);
   box-shadow: 0 8px 48px color-mix(in srgb, var(--ec-brand) 60%, transparent);
 }
 
-[data-ec-theme='zen'] .ec-fab-brand {
-  color: #fffdf9;
-}
-
 .ec-progress-fill-brand {
-  background: var(--ec-brand-gradient);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  background: var(--ec-brand);
 }
 
 .ec-progress-fill-shimmer {
   background: linear-gradient(
     90deg,
     var(--ec-brand),
-    color-mix(in srgb, var(--ec-chip-info-text) 70%, var(--ec-brand)),
+    color-mix(in srgb, var(--ec-brand-deep, #8f1f1c) 75%, var(--ec-brand)),
     var(--ec-brand)
   );
   background-size: 200% 100%;
-  box-shadow: 0 0 12px color-mix(in srgb, var(--ec-brand) 40%, transparent);
 }
 
 .ec-progress-fill-spectrum {
@@ -759,7 +861,7 @@ body {
 
 .ec-hover-brand-border:hover {
   border-color: color-mix(in srgb, var(--ec-brand) 40%, transparent);
-  box-shadow: 0 0 40px color-mix(in srgb, var(--ec-brand) 20%, transparent);
+  box-shadow: 0 4px 16px -8px color-mix(in srgb, var(--ec-brand) 18%, transparent);
 }
 
 .ec-hover-brand-border-mild:hover {
@@ -780,21 +882,20 @@ body {
   background: linear-gradient(
     90deg,
     var(--ec-brand),
-    var(--ec-chip-info-text),
-    #a78bfa
+    var(--ec-c-math, #e0892b),
+    var(--ec-c-phys, #2d6bd4)
   );
+  opacity: 0.55;
 }
 
 .ec-upload-icon-wrap {
-  border: 1px solid color-mix(in srgb, var(--ec-brand) 30%, transparent);
-  background: var(--ec-chip-success-bg);
-  box-shadow: 0 0 32px color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 28%, transparent);
+  background: var(--ec-brand-muted);
 }
 
 .ec-icon-hero {
-  border: 1px solid color-mix(in srgb, var(--ec-brand) 30%, transparent);
-  background: var(--ec-chip-success-bg);
-  box-shadow: 0 0 24px color-mix(in srgb, var(--ec-brand) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 28%, transparent);
+  background: var(--ec-brand-muted);
 }
 
 .ec-icon-hero-gradient {
@@ -811,27 +912,29 @@ body {
 }
 
 .ec-prompt-chip {
+  font-family: var(--font-mono);
   display: inline-flex;
   align-items: center;
   min-height: 36px;
   padding: 8px 14px;
   border: 1px solid var(--ec-border);
-  border-radius: var(--ec-radius-button);
-  background: var(--ec-surface-raised);
-  font-size: 13px;
+  border-radius: 999px;
+  background: var(--ec-surface);
+  font-size: 12.5px;
   line-height: 1.4;
   color: var(--ec-text-secondary);
   cursor: pointer;
   transition:
-    color 150ms ease,
-    border-color 150ms ease,
-    background-color 150ms ease;
+    color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
 }
 
 .ec-prompt-chip:hover:not(:disabled) {
-  border-color: color-mix(in srgb, var(--ec-brand) 50%, transparent);
-  background: var(--ec-brand-muted);
-  color: var(--ec-text-primary);
+  border-color: var(--ec-brand);
+  background: var(--ec-surface-raised);
+  color: var(--ec-brand-deep, var(--ec-brand));
+  transform: translateY(-1px);
 }
 
 .ec-prompt-chip:disabled {
@@ -877,11 +980,7 @@ body {
 }
 
 .ec-on-brand-text {
-  color: #fff;
-}
-
-[data-ec-theme='zen'] .ec-on-brand-text {
-  color: #fffdf9;
+  color: var(--ec-on-brand-text);
 }
 
 .ec-tint-info-icon-wrap {
@@ -920,7 +1019,7 @@ body {
 }
 
 .ec-question-text {
-  font-family: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-weight: 500;
   line-height: 1.55;
   color: var(--ec-text-primary);
@@ -1018,15 +1117,10 @@ body {
   }
 
   .ec-card-brand {
-    background: linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--ec-brand) 8%, var(--ec-surface)) 0%,
-      var(--ec-surface) 50%,
-      color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface)) 100%
-    );
-    border: 1px solid color-mix(in srgb, var(--ec-brand) 25%, transparent);
+    background: var(--ec-surface);
+    border: 1px solid var(--ec-border);
     border-radius: var(--ec-radius-card);
-    box-shadow: var(--ec-card-shadow), 0 0 40px color-mix(in srgb, var(--ec-brand) 15%, transparent);
+    box-shadow: var(--ec-shadow-paper, var(--ec-card-shadow));
     position: relative;
   }
 
@@ -1036,28 +1130,27 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: var(--ec-brand-gradient);
-    color: #0a0b0f;
+    background: var(--ec-brand);
+    color: var(--ec-on-brand-text);
     padding: 14px 28px;
     min-height: 44px;
-    border-radius: var(--ec-radius-button);
+    border-radius: var(--ec-radius-pill, 999px);
     font-weight: 600;
-    font-size: 16px;
-    letter-spacing: -0.01em;
+    font-size: 15px;
+    letter-spacing: 0;
     line-height: 1.2;
-    border: none;
+    border: 1px solid transparent;
     box-shadow: var(--ec-btn-glow);
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+      transform 200ms cubic-bezier(0.2, 1.3, 0.4, 1),
+      box-shadow 180ms ease;
     cursor: pointer;
   }
 
-  [data-ec-theme='zen'] .ec-btn-primary {
-    color: #fffdf9;
-  }
-
   .ec-btn-primary:hover:not(:disabled):not([data-loading='true']) {
+    background: var(--ec-brand-deep, #8f1f1c);
     box-shadow: var(--ec-btn-glow-hover);
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.015);
   }
 
   .ec-btn-primary:active:not(:disabled):not([data-loading='true']) {
@@ -1078,12 +1171,12 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: var(--ec-surface);
+    background: transparent;
     color: var(--ec-text-primary);
-    padding: 12px 24px;
+    padding: 14px 24px;
     min-height: 44px;
-    border-radius: var(--ec-radius-button);
-    font-weight: 600;
+    border-radius: var(--ec-radius-pill, 999px);
+    font-weight: 500;
     font-size: 16px;
     line-height: 1.2;
     border: 1px solid var(--ec-border);
@@ -1092,8 +1185,8 @@ body {
   }
 
   .ec-btn-secondary:hover:not(:disabled):not([data-loading='true']) {
-    background: var(--ec-surface-raised);
-    border-color: color-mix(in srgb, var(--ec-brand) 25%, transparent);
+    border-color: var(--ec-text-primary);
+    background: color-mix(in srgb, var(--ec-text-primary) 3%, transparent);
     transform: translateY(-1px);
   }
 
@@ -1195,13 +1288,18 @@ body {
   /** Inline text links — brand colour, accessible contrast in both themes. */
   .ec-link {
     font-weight: 600;
-    color: var(--ec-brand);
-    text-underline-offset: 2px;
-    transition: opacity 0.2s ease;
+    color: var(--ec-brand-deep, var(--ec-brand));
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition:
+      color 0.2s ease,
+      text-decoration-color 0.2s ease;
   }
 
   .ec-link:hover {
-    opacity: 0.85;
+    color: var(--ec-brand);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--ec-brand) 45%, transparent);
   }
 
   .ec-link-muted {
@@ -1288,12 +1386,12 @@ body {
 
   /* ============ Labels ============ */
   .ec-label-tech {
-    font-family: ui-monospace, var(--font-geist-mono), monospace;
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ec-brand);
+    color: var(--ec-brand-deep, var(--ec-brand));
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -1303,9 +1401,14 @@ body {
     content: '';
     width: 5px;
     height: 5px;
-    background: var(--ec-brand);
+    background: var(--ec-brand-deep, var(--ec-brand));
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--ec-brand);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--ec-brand) 40%, transparent);
+  }
+
+  .ec-footer-band .ec-label-tech::before {
+    background: var(--ec-accent-light, #e9b8b3);
+    box-shadow: none;
   }
 
   .ec-label-tech-cyan {
@@ -1370,7 +1473,7 @@ body {
 
   .ec-banner__meta {
     margin-top: 2px;
-    font-family: ui-monospace, var(--font-geist-mono), monospace;
+    font-family: var(--font-mono);
     font-size: 12px;
     line-height: 1.5;
   }
@@ -1410,31 +1513,29 @@ body {
     align-items: baseline;
     justify-content: center;
     gap: 0.12em;
+    font-family: var(--font-display, 'Newsreader', Georgia, serif);
     font-size: clamp(3.25rem, 10vw, 5.5rem);
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1;
     letter-spacing: -0.03em;
   }
 
   .ec-score-display__earned {
-    background: var(--ec-brand-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--ec-brand);
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .ec-score-display--success .ec-score-display__earned {
+    color: var(--ec-chip-success-text);
   }
 
   .ec-score-display--warning .ec-score-display__earned {
-    background: linear-gradient(135deg, var(--ec-chip-warning-text) 0%, #f59e0b 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--ec-chip-warning-text);
   }
 
   .ec-score-display--critical .ec-score-display__earned {
-    background: linear-gradient(135deg, var(--ec-chip-critical-text) 0%, #f87171 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--ec-chip-critical-text);
   }
 
   .ec-score-display__slash,
@@ -1447,7 +1548,7 @@ body {
 
   .ec-score-display__caption {
     margin-top: 0.75rem;
-    font-family: ui-monospace, var(--font-geist-mono), monospace;
+    font-family: var(--font-mono);
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.06em;
@@ -1456,89 +1557,7 @@ body {
   }
 }
 
-/* ============ Marketing header — centered nav, no wrap ============ */
-.ec-marketing-header {
-  border-color: var(--ec-border);
-  background: color-mix(in srgb, var(--ec-canvas) 75%, transparent);
-  backdrop-filter: blur(10px);
-}
-
-.ec-marketing-header--scrolled {
-  background: color-mix(in srgb, var(--ec-canvas) 94%, transparent);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--ec-border) 80%, transparent);
-}
-
-.ec-marketing-header__link {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--ec-radius-button, 0.75rem);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--ec-text-secondary);
-  transition:
-    color 150ms ease,
-    background-color 150ms ease;
-}
-
-.ec-marketing-header__link:hover {
-  color: var(--ec-text-primary);
-  background: var(--ec-surface-raised);
-}
-
-.ec-marketing-header__link--active {
-  color: var(--ec-brand);
-  background: color-mix(in srgb, var(--ec-brand) 12%, transparent);
-}
-
-.ec-marketing-header__ask {
-  align-items: center;
-  gap: 0.375rem;
-  min-height: 2.25rem;
-  padding: 0 0.75rem;
-  border-radius: var(--ec-radius-button, 0.75rem);
-  border: 1px solid var(--ec-border);
-  background: var(--ec-surface);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--ec-text-secondary);
-  transition:
-    border-color 150ms ease,
-    background-color 150ms ease,
-    color 150ms ease;
-}
-
-.ec-marketing-header__ask:hover {
-  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
-  background: var(--ec-surface-raised);
-  color: var(--ec-text-primary);
-}
-
-.ec-marketing-header__signin {
-  align-items: center;
-  padding: 0.5rem 0.625rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--ec-text-secondary);
-  transition: color 150ms ease;
-}
-
-.ec-marketing-header__signin:hover {
-  color: var(--ec-brand);
-}
-
-.ec-marketing-header__cta {
-  min-height: 2.375rem;
-  padding-left: 1.125rem;
-  padding-right: 1.125rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  white-space: nowrap;
-  box-shadow: var(--ec-btn-glow);
-}
+/* Marketing header — see paper-theme.css */
 
 /* ============ Blog index & cards ============ */
 .ec-blog-stats {
@@ -1556,13 +1575,11 @@ body {
 }
 
 .ec-blog-stat__value {
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.75rem;
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: -0.03em;
-  background: var(--ec-brand-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ec-brand);
 }
 
 .ec-blog-stat__label {
@@ -1592,43 +1609,32 @@ body {
 }
 
 .ec-blog-card--editorial {
-  border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border));
-  background: linear-gradient(
-    145deg,
-    color-mix(in srgb, var(--ec-brand) 10%, var(--ec-surface)) 0%,
-    var(--ec-surface) 55%
-  );
+  border-color: color-mix(in srgb, var(--ec-brand) 30%, var(--ec-border));
+  background: var(--ec-surface);
 }
 
 .ec-blog-card--editorial .ec-blog-card__glow {
-  opacity: 0.45;
+  opacity: 0.25;
 }
 
 .ec-blog-chip--editorial,
 .ec-blog-chip--spotlight {
-  color: var(--ec-canvas);
-  background: var(--ec-brand-gradient);
-  border-color: transparent;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+  color: #fffdf7;
+  background: var(--ec-brand);
+  border-color: var(--ec-brand-deep, #8f1f1c);
 }
 
 .ec-blog-chip--spotlight {
-  box-shadow: var(--ec-btn-glow);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--ec-brand) 28%, transparent);
 }
 
 .ec-blog-hero--editorial {
-  border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
-  background: linear-gradient(
-    160deg,
-    color-mix(in srgb, var(--ec-brand) 14%, var(--ec-surface)) 0%,
-    var(--ec-surface) 50%,
-    color-mix(in srgb, var(--ec-brand) 6%, var(--ec-canvas)) 100%
-  );
+  border-color: color-mix(in srgb, var(--ec-brand) 28%, var(--ec-border));
+  background: var(--ec-surface);
 }
 
 .ec-blog-reading-progress {
-  box-shadow: 0 0 12px color-mix(in srgb, var(--ec-brand) 50%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--ec-brand) 30%, transparent);
 }
 
 .ec-blog-card__glow {
@@ -1700,11 +1706,11 @@ body {
 }
 
 .ec-blog-cta-banner {
-  background: color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface));
+  background: color-mix(in srgb, var(--ec-brand) 4%, var(--ec-surface-raised, var(--ec-surface)));
 }
 
 .ec-blog-hero {
-  background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-surface));
+  background: var(--ec-surface);
 }
 
 .ec-blog-hero__mesh {
@@ -1749,6 +1755,39 @@ body {
   padding-left: 1rem;
 }
 
+.ec-chunk-body .ec-blog-table-wrap {
+  margin: 0.5rem 0 1.25rem;
+}
+
+.ec-chunk-body table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.ec-chunk-body th,
+.ec-chunk-body td {
+  border: 1px solid var(--ec-border);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ec-chunk-body th {
+  background: var(--ec-surface-raised);
+  color: var(--ec-text-primary);
+  font-weight: 600;
+}
+
+.ec-chunk-body tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--ec-surface-raised) 40%, transparent);
+}
+
+.ec-blog-table-wrap {
+  margin: 1.25rem 0 1.5rem;
+}
+
 .ec-fanout-prose .ec-fanout-chunk h2,
 .ec-fanout-prose .ec-fanout-chunk h3 {
   border-bottom: none;
@@ -1772,8 +1811,9 @@ body {
   margin-bottom: 1rem;
   padding-bottom: 0.35rem;
   border-bottom: 1px solid var(--ec-border);
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.25;
   color: var(--ec-text-primary);
@@ -1924,9 +1964,7 @@ body {
   min-height: 44px;
   min-width: 44px;
   border-radius: 0.75rem;
-  transition:
-    background-color 150ms ease,
-    border-color 150ms ease;
+  transition: border-color 150ms ease;
 }
 
 .ec-header-menu-btn {
@@ -1963,8 +2001,10 @@ body {
 }
 
 .ec-mobile-tab-bar {
-  background: var(--ec-canvas);
-  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+  background: color-mix(in srgb, var(--ec-canvas) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 -1px 0 var(--ec-border), 0 -8px 32px color-mix(in srgb, var(--ec-ink, #211c17) 8%, transparent);
 }
 
 /* ============ Reduced motion — disable decorative motion ============ */
@@ -1974,7 +2014,82 @@ body {
   .animate-shimmer,
   .animate-shimmer-skeleton,
   .animate-entry,
+  .ec-chat-message-enter,
+  .ec-streaming-caret,
   [class*='animate-[ec-breathe'] {
     animation: none !important;
   }
+}
+
+/* ============================================================
+   GLOBAL POLISH — sitewide craft details that lift perceived
+   quality everywhere at once. All themed via ec-* tokens so
+   they track Late Night / Zen / Paper automatically.
+   ============================================================ */
+
+/* Branded text selection — a small detail people feel before they notice. */
+::selection {
+  background: color-mix(in srgb, var(--ec-brand) 24%, transparent);
+  color: var(--ec-text-primary);
+}
+
+/* Smooth in-page scrolling for anchor nav (#features, #subjects, ...).
+   Gated on motion preference; the reduced-motion block above forces auto. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Slightly crisper glyph shaping for the warm, low-contrast palettes. */
+html {
+  text-rendering: optimizeLegibility;
+}
+
+/* One consistent, on-brand keyboard focus ring across the whole site.
+   :focus-visible only, so pointer users are never given a ring; modern
+   browsers draw the outline following each element's own border-radius. */
+:where(a, button, [role='button'], input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--ec-brand) 65%, transparent);
+  outline-offset: 2px;
+}
+
+/* Refined scrollbars - slim, themed, unobtrusive. Desktop pointers only;
+   touch devices keep the native overlay bars. */
+@media (min-width: 768px) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--ec-text-faint) 42%, transparent) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--ec-text-faint) 38%, transparent);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--ec-text-faint) 62%, transparent);
+    background-clip: padding-box;
+  }
+}
+
+/* Tabular figures so large stat / score numbers don't shift width as they
+   change (counters, score reveals, blog stats). */
+.ec-score-display,
+.ec-countdown-number,
+.ec-blog-stat__value,
+.ec-text-gradient {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
 }

@@ -24,6 +24,7 @@ const eslintConfig = defineConfig([
     "_imported/**",
     "perf-baseline/**",
     "scripts/**",
+    "tmp/**",
   ]),
 ]);
 

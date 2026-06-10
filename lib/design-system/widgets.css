@@ -1,0 +1,231 @@
+/* Global widgets — command palette overlay, Ask MarkScheme (Omni) */
+
+.ms-cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: color-mix(in srgb, var(--ec-text-primary) 26%, transparent);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 14vh;
+}
+
+.ms-cmdk {
+  width: min(560px, calc(100vw - 32px));
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: 16px;
+  box-shadow: var(--ec-shadow-pop, 0 8px 24px rgba(0, 0, 0, 0.12));
+  overflow: hidden;
+}
+
+/* Omni — Ask MarkScheme */
+.ms-omni-fab {
+  position: fixed;
+  right: 26px;
+  bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text, #fff);
+  border: none;
+  border-radius: 999px;
+  padding: 14px 22px;
+  font-family: var(--ec-font-handwriting, 'Caveat', cursive);
+  font-size: 21px;
+  cursor: pointer;
+  box-shadow: var(--ec-shadow-cta, var(--ec-shadow-pop));
+  white-space: nowrap;
+  min-height: 48px;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ms-omni-fab:hover {
+  transform: translateY(-1px);
+}
+
+.ms-omni-panel {
+  position: fixed;
+  right: 26px;
+  bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  z-index: 81;
+  width: min(380px, calc(100vw - 24px));
+  max-height: min(560px, calc(100vh - 130px));
+  display: flex;
+  flex-direction: column;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: 18px;
+  box-shadow: var(--ec-shadow-pop, 0 8px 24px rgba(0, 0, 0, 0.12));
+  overflow: hidden;
+}
+
+.ms-omni-panel--drawer {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  width: 100%;
+  max-height: none;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.ms-omni-panel--landing {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  width: min(680px, calc(100vw - 32px));
+  max-height: min(800px, 85vh);
+  height: 85vh;
+  border-radius: 24px 24px 0 0;
+}
+
+@media (min-width: 768px) {
+  .ms-omni-panel--landing {
+    height: 80vh;
+    border-radius: 24px;
+  }
+}
+
+.ms-omni-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--ec-border);
+  background: var(--ec-bg-soft);
+}
+
+.ms-omni-head .ms-omni-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  margin: 0;
+}
+
+.ms-omni-head .ms-omni-title i {
+  font-style: normal;
+  color: var(--ec-brand);
+}
+
+.ms-omni-head button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--ec-text-faint);
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.ms-omni-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ms-omni-msg {
+  max-width: 85%;
+  padding: 11px 15px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.ms-omni-msg.user {
+  align-self: flex-end;
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text, #fff);
+  border-bottom-right-radius: 4px;
+}
+
+.ms-omni-msg.bot {
+  align-self: flex-start;
+  background: var(--ec-bg-soft);
+  border: 1px solid var(--ec-border);
+  border-bottom-left-radius: 4px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-omni-msg.bot .ms-omni-cite {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ec-text-faint);
+  border-top: 1px dashed var(--ec-border);
+  padding-top: 7px;
+}
+
+.ms-omni-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.ms-omni-suggest button {
+  font-size: 12.5px;
+  color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  border: 1px solid var(--ec-brand-border);
+  border-radius: 999px;
+  padding: 6px 13px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  min-height: 36px;
+}
+
+.ms-omni-input {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--ec-border);
+  background: color-mix(in srgb, var(--ec-surface) 92%, transparent);
+}
+
+.ms-omni-typing {
+  align-self: flex-start;
+  font-family: var(--ec-font-handwriting, 'Caveat', cursive);
+  font-size: 18px;
+  color: var(--ec-text-faint);
+}
+
+@media (max-width: 900px) {
+  .ms-omni-fab {
+    right: 12px;
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+    padding: 11px 18px;
+    font-size: 19px;
+  }
+
+  .ms-omni-panel {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: calc(152px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ms-omni-panel--landing {
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: none;
+    border-radius: 24px 24px 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-omni-fab {
+    transition: none;
+  }
+}

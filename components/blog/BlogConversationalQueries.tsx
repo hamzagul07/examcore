@@ -8,15 +8,12 @@ export function BlogConversationalQueries({ slug }: Props) {
   if (phrases.length === 0) return null
 
   return (
-    <aside className="mt-6 text-sm text-[var(--ec-text-secondary)]" aria-label="How people search">
-      <p className="ec-label-tech mb-2">PEOPLE ALSO PHRASE IT AS</p>
-      <ul className="flex flex-wrap gap-2">
+    <aside className="mt-6" aria-label="How people search">
+      <p className="ms-overline">People also phrase it as</p>
+      <ul className="ms-hub-strip mt-2">
         {phrases.map((p) => (
-          <li
-            key={p}
-            className="rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 py-1 text-xs italic"
-          >
-            &ldquo;{p}&rdquo;
+          <li key={p}>
+            <span className="ms-ob-chip">&ldquo;{p}&rdquo;</span>
           </li>
         ))}
       </ul>

@@ -22,8 +22,8 @@ export default function GlobalError({
         style={{
           margin: 0,
           fontFamily: 'system-ui, sans-serif',
-          background: '#0a0a0a',
-          color: '#f5f5f5',
+          background: '#16120d',
+          color: '#f3ece0',
         }}
       >
         <main
@@ -60,8 +60,8 @@ export default function GlobalError({
                   padding: '0.875rem 1.5rem',
                   borderRadius: '0.75rem',
                   border: 'none',
-                  background: '#00f5a0',
-                  color: '#0a0a0a',
+                  background: '#bb2a25',
+                  color: '#ffffff',
                   fontWeight: 600,
                   cursor: 'pointer',
                 }}

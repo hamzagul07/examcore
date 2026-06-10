@@ -22,7 +22,7 @@ export function DiagnosticPreview({ diagnostic }: DiagnosticPreviewProps) {
       transition={{ type: 'spring', stiffness: 200, damping: 20 }}
       className="ec-card relative overflow-hidden border-[color-mix(in_srgb,var(--ec-chip-accent-text)_20%,transparent)]"
     >
-      <div className="pointer-events-none absolute -left-12 -top-12 h-48 w-48 rounded-full ec-glow-orb-accent blur-3xl" />
+      <div className="pointer-events-none absolute -left-10 -top-10 h-32 w-32 rounded-full ec-glow-orb blur-3xl opacity-50" />
 
       <div className="relative p-5 sm:p-6">
         <div className="mb-3 flex items-center gap-2">

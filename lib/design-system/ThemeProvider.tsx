@@ -22,13 +22,13 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 function readStoredTheme(): EcTheme {
-  if (typeof window === 'undefined') return 'late-night'
+  if (typeof window === 'undefined') return 'zen'
   const stored = localStorage.getItem(EC_THEME_STORAGE_KEY)
-  return stored === 'zen' ? 'zen' : 'late-night'
+  return stored === 'late-night' ? 'late-night' : 'zen'
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<EcTheme>('late-night')
+  const [theme, setThemeState] = useState<EcTheme>('zen')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   if (!mounted) {
     return (
       <ThemeContext.Provider
-        value={{ theme: 'late-night', setTheme, toggleTheme }}
+        value={{ theme: 'zen', setTheme, toggleTheme }}
       >
         {children}
       </ThemeContext.Provider>

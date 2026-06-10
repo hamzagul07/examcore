@@ -66,19 +66,7 @@ function Spinner() {
 }
 
 function StreamingCaret() {
-  return (
-    <span
-      className="inline-block ml-0.5 align-middle animate-pulse"
-      style={{
-        width: 2,
-        height: '1em',
-        background: 'var(--ec-brand)',
-        borderRadius: 1,
-        verticalAlign: 'text-bottom',
-      }}
-      aria-hidden="true"
-    />
-  )
+  return <span className="ec-streaming-caret ml-0.5" aria-hidden="true" />
 }
 
 interface CTAButtonProps {
@@ -123,12 +111,32 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
     }
   }, [hasMessages, onActiveChange])
 
-  // ── Auto-scroll within conversation panel only (never the page) ─────────────
+  const stickToBottomRef = useRef(true)
+
   useEffect(() => {
     const panel = conversationRef.current
-    if (!panel || messages.length === 0) return
-    panel.scrollTo({ top: panel.scrollHeight, behavior: 'smooth' })
-  }, [messages])
+    if (!panel) return
+
+    function onScroll() {
+      const el = conversationRef.current
+      if (!el) return
+      const distance = el.scrollHeight - el.scrollTop - el.clientHeight
+      stickToBottomRef.current = distance < 96
+    }
+
+    panel.addEventListener('scroll', onScroll, { passive: true })
+    return () => panel.removeEventListener('scroll', onScroll)
+  }, [hasMessages])
+
+  // Auto-scroll within conversation panel only — never the page behind it.
+  useEffect(() => {
+    const panel = conversationRef.current
+    if (!panel || messages.length === 0 || !stickToBottomRef.current) return
+    panel.scrollTo({
+      top: panel.scrollHeight,
+      behavior: isStreaming ? 'auto' : 'smooth',
+    })
+  }, [messages, isStreaming])
 
   // ── Mobile keyboard: scroll input into view only while focused ──────────────
   useEffect(() => {
@@ -359,6 +367,7 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
             {/* Messages list */}
             <div
               ref={conversationRef}
+              className="overscroll-contain"
               style={{
                 maxHeight: 420,
                 overflowY: 'auto',
@@ -403,20 +412,26 @@ export function LandingInlineChat({ onActiveChange, className = '' }: LandingInl
                   >
                     {msg.role === 'assistant' ? (
                       <>
-                        {msg.content ? (
+                        {msg.isStreaming ? (
+                          <span className="text-sm leading-relaxed text-[var(--ec-text-primary)]">
+                            {msg.content ? (
+                              <span className="whitespace-pre-wrap break-words">
+                                {msg.content}
+                              </span>
+                            ) : (
+                              <span className="text-[var(--ec-text-secondary)]">
+                                Thinking
+                              </span>
+                            )}
+                            <StreamingCaret />
+                          </span>
+                        ) : (
                           <RichTextRenderer
                             text={msg.content}
                             variant={richTextVariant}
                           />
-                        ) : msg.isStreaming ? (
-                          <span className="text-sm ec-text-secondary">
-                            Thinking
-                            <StreamingCaret />
-                          </span>
-                        ) : null}
-                        {msg.isStreaming && msg.content && <StreamingCaret />}
+                        )}
 
-                        {/* CTA button from action */}
                         {!msg.isStreaming && msg.action && renderAction(msg.action)}
                       </>
                     ) : (

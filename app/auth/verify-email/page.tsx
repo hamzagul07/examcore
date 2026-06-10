@@ -22,8 +22,8 @@ export default function VerifyEmailPage() {
 function VerifyEmailSkeleton() {
   return (
     <AuthShell backLabel="Back to sign up" backHref="/auth/signup">
-      <p className="ec-label-tech mb-3">VERIFY EMAIL</p>
-      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
+      <p className="ec-eyebrow mb-3">Verify email</p>
+      <h1 className="text-hero mb-3">
         Check your <span className="ec-text-gradient">email</span>
       </h1>
       <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
@@ -145,7 +145,7 @@ function VerifyEmailForm() {
   if (!email) {
     return (
       <AuthShell backLabel="Back to sign up" backHref={signUpHref}>
-        <p className="ec-label-tech mb-3">VERIFY EMAIL</p>
+        <p className="ec-eyebrow mb-3">Verify email</p>
         <h1 className="mb-3 text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
           No email address found
         </h1>
@@ -165,8 +165,8 @@ function VerifyEmailForm() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero">
           <Mail className="h-8 w-8 ec-text-brand" />
         </div>
-        <p className="ec-label-tech mb-3">VERIFY EMAIL</p>
-        <h1 className="mb-3 text-3xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-4xl">
+        <p className="ec-eyebrow mb-3">Verify email</p>
+        <h1 className="text-hero mb-3">
           Check your <span className="ec-text-gradient">email</span>
         </h1>
         <p className="leading-relaxed text-[var(--ec-text-secondary)]">

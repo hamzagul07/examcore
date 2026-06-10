@@ -7,7 +7,7 @@ import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
  * Animated count-up for the big coverage number on /dashboard/progress.
  *
  * - Springs from 0 → value over ~1.4s with an ease-out.
- * - Adds a subtle "brand-breathe" emerald aura so the figure feels alive.
+ * - Subtle opacity pulse on the coverage figure.
  */
 export function AnimatedCoverageNumber({ value }: { value: number }) {
   const count = useMotionValue(0)
@@ -31,7 +31,7 @@ export function AnimatedCoverageNumber({ value }: { value: number }) {
       initial={{ scale: 0.85, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 200, damping: 18 }}
-      className="ec-text-gradient brand-breathe text-6xl font-extrabold leading-none tracking-[-0.04em] sm:text-7xl md:text-[112px]"
+      className="ec-stat-figure brand-breathe text-6xl sm:text-7xl md:text-[112px]"
     >
       {display}
     </motion.span>

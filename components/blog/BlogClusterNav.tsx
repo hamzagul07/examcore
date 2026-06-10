@@ -14,36 +14,30 @@ export function BlogClusterNav({ slug }: Props) {
 
   return (
     <nav
-      className="mt-6 flex flex-col gap-3 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)]/50 px-4 py-4 sm:flex-row sm:items-center sm:justify-between"
+      className="ms-blog-aside mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
       aria-label="Topic cluster"
     >
       <div className="flex items-start gap-2">
         <Layers className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ec-brand)]" aria-hidden />
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--ec-text-secondary)]">
+          <p className="ms-overline" style={{ marginBottom: 4 }}>
             Part of
           </p>
-          <Link href={cluster.path} className="text-sm font-semibold text-[var(--ec-text-primary)] hover:text-[var(--ec-brand)]">
+          <Link href={cluster.path} className="ms-h3 hover:text-[var(--ec-brand)]">
             {cluster.title}
           </Link>
         </div>
       </div>
       {pillar && pillar.slug !== slug ? (
-        <Link
-          href={`/blog/${pillar.slug}`}
-          className="inline-flex items-center gap-1 text-sm font-medium text-[var(--ec-brand)]"
-        >
-          Pillar guide: {pillar.title.slice(0, 42)}
+        <Link href={`/blog/${pillar.slug}`} className="ec-btn-underline text-sm">
+          Pillar: {pillar.title.slice(0, 42)}
           {pillar.title.length > 42 ? '…' : ''}
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="ml-1 inline h-4 w-4" />
         </Link>
       ) : (
-        <Link
-          href={cluster.moneyPath}
-          className="inline-flex items-center gap-1 text-sm font-medium text-[var(--ec-brand)]"
-        >
+        <Link href={cluster.moneyPath} className="ec-btn-underline text-sm">
           Try marking free
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="ml-1 inline h-4 w-4" />
         </Link>
       )}
     </nav>

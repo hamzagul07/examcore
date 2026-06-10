@@ -66,8 +66,8 @@ export default function SignUpPage() {
 function SignUpFormSkeleton() {
   return (
     <AuthShell backLabel="Back to sign in" backHref="/auth/signin">
-      <p className="ec-label-tech mb-3">GET STARTED</p>
-      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
+      <p className="ec-eyebrow mb-3">Get started</p>
+      <h1 className="text-hero mb-3">
         Create your <span className="ec-text-gradient">account</span>
       </h1>
       <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
@@ -209,8 +209,8 @@ function SignUpForm() {
     <AuthShell backLabel="Back to sign in" backHref={signInHref}>
       {!sent ? (
         <>
-          <p className="ec-label-tech mb-3">GET STARTED</p>
-          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
+          <p className="ec-eyebrow mb-3">Get started</p>
+          <h1 className="text-hero mb-3">
             Create your <span className="ec-text-gradient">account</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
@@ -336,7 +336,7 @@ function SignUpForm() {
         </>
       ) : (
         <div className="space-y-3 text-center">
-          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border ec-tint-success-icon">
+          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border ec-tint-brand-icon">
             <Mail className="h-8 w-8 ec-text-brand" />
           </div>
           <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">

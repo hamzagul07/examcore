@@ -2,6 +2,15 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "../lib/design-system/theme.css";
+@import "../lib/design-system/margin-notes-components.css";
+@import "../lib/design-system/landing-page.css";
+@import "../lib/design-system/mark-page.css";
+@import "../lib/design-system/subjects-page.css";
+@import "../lib/design-system/courses-page.css";
+@import "../lib/design-system/app-pages.css";
+@import "../lib/design-system/content-pages.css";
+@import "../lib/design-system/widgets.css";
+@import "../lib/design-system/paper-theme.css";
 @import "../lib/design-system/zen-contrast.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -10,7 +19,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-mono);
   --font-heading: var(--font-sans);
 
   --color-card: var(--card);
@@ -53,8 +62,8 @@
 
   --text-mega: var(--text-display);
   --text-mega--line-height: var(--leading-display);
-  --text-mega--letter-spacing: -0.04em;
-  --text-mega--font-weight: 800;
+  --text-mega--letter-spacing: -0.012em;
+  --text-mega--font-weight: 400;
   --text-huge: var(--text-hero);
   --text-huge--line-height: var(--leading-hero);
   --text-huge--letter-spacing: -0.035em;
@@ -62,15 +71,15 @@
   --text-xl-display: var(--text-headline);
   --text-xl-display--line-height: var(--leading-headline);
   --text-xl-display--letter-spacing: -0.03em;
-  --text-xl-display--font-weight: 800;
+  --text-xl-display--font-weight: 400;
   --text-display-xl: var(--text-hero);
   --text-display-xl--line-height: var(--leading-hero);
   --text-display-xl--letter-spacing: -0.04em;
-  --text-display-xl--font-weight: 800;
+  --text-display-xl--font-weight: 400;
   --text-display-lg: var(--text-headline);
   --text-display-lg--line-height: var(--leading-headline);
   --text-display-lg--letter-spacing: -0.035em;
-  --text-display-lg--font-weight: 800;
+  --text-display-lg--font-weight: 400;
   --text-display-md: var(--text-title);
   --text-display-md--line-height: var(--leading-title);
   --text-display-md--letter-spacing: -0.03em;
@@ -94,7 +103,7 @@
   --popover: var(--ec-surface-raised);
   --popover-foreground: var(--ec-text-primary);
   --primary: var(--ec-brand);
-  --primary-foreground: #0a0b0f;
+  --primary-foreground: var(--ec-on-brand-text);
   --secondary: var(--ec-surface);
   --secondary-foreground: var(--ec-text-primary);
   --muted: var(--ec-surface);
@@ -110,7 +119,7 @@
   --sidebar: var(--ec-surface);
   --sidebar-foreground: var(--ec-text-primary);
   --sidebar-primary: var(--ec-brand);
-  --sidebar-primary-foreground: #0a0b0f;
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: var(--ec-surface-raised);
   --sidebar-accent-foreground: var(--ec-text-primary);
   --sidebar-border: var(--ec-border);
@@ -196,7 +205,7 @@
 }
 
 .select-chevron {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%238a7f70' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.875rem center;
   background-size: 1.125rem 1.125rem;
@@ -205,17 +214,7 @@
 
 @layer components {
   .gradient-text {
-    background: linear-gradient(135deg, var(--ec-text-primary) 0%, var(--ec-text-secondary) 50%, var(--ec-text-primary) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradient-shift 8s ease infinite;
-  }
-
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50%      { background-position: 100% 50%; }
+    color: var(--ec-text-primary);
   }
 
   .bento-grid {
@@ -252,8 +251,8 @@
   .stagger-8 { animation-delay: 480ms; }
 
   @keyframes brand-breathe {
-    0%, 100% { filter: drop-shadow(0 0 12px color-mix(in srgb, var(--ec-brand) 30%, transparent)); }
-    50%      { filter: drop-shadow(0 0 24px color-mix(in srgb, var(--ec-brand) 60%, transparent)); }
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.82; }
   }
   .brand-breathe { animation: brand-breathe 3.2s ease-in-out infinite; }
 

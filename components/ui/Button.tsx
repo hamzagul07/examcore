@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { ButtonSpinner } from '@/components/ui/ButtonSpinner'
 import { triggerPrimaryHaptic } from '@/lib/hooks/useTapFeedback'
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'underline'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 /**
@@ -52,15 +52,16 @@ export interface ButtonProps {
 }
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
-  sm: 'min-h-[44px] px-3.5 py-2 text-sm',
-  md: 'min-h-[44px] px-5 py-2.5 text-sm',
-  lg: 'min-h-[48px] px-6 py-3.5 text-base',
+  sm: 'min-h-[44px] px-5 py-2 text-sm',
+  md: 'min-h-[44px] px-7 py-3.5 text-base',
+  lg: 'min-h-[48px] px-7 py-3.5 text-base',
 }
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary: 'ec-btn-primary',
   secondary: 'ec-btn-secondary',
   ghost: 'ec-btn-ghost',
+  underline: 'ec-btn-underline',
   danger: cn(
     'ec-btn-secondary border-[color-mix(in_srgb,var(--ec-chip-critical-text)_40%,transparent)] ec-score-low',
     'hover:border-[color-mix(in_srgb,var(--ec-chip-critical-text)_50%,transparent)] hover:bg-[var(--ec-chip-critical-bg)]'
@@ -135,6 +136,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           VARIANT_CLASSES[variant],
           SIZE_CLASSES[size],
+          variant === 'primary' && size === 'sm' && 'ec-btn-primary--sm',
+          variant === 'ghost' && size === 'sm' && 'ec-btn-ghost--sm',
           fullWidth && 'w-full',
           pulse && !isDisabled && variant === 'primary' && 'brand-pulse',
           className

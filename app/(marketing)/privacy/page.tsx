@@ -8,9 +8,9 @@ export const metadata = getPageMetadata('/privacy')
 export default function PrivacyPage() {
   return (
     <MarketingPageShell narrow>
-      <article className="py-16 sm:py-20">
-        <p className="ec-label-tech mb-4">LEGAL</p>
-        <h1 className="text-display mb-6 text-[var(--ec-text-primary)]">
+      <article className="ms-pg ms-content-hero py-16 sm:py-20">
+        <p className="ms-overline">Legal</p>
+        <h1 className="ms-h2" style={{ fontSize: 'clamp(36px, 5vw, 48px)' }}>
           Privacy Policy
         </h1>
         <LegalDisclaimer />
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           <p className="text-sm">Last updated: May 2026</p>
 
           <section>
-            <h2 className="landing-h3">Who we are</h2>
+            <h2 className="ms-h3">Who we are</h2>
             <p>
               MarkScheme (&quot;we&quot;, &quot;us&quot;) provides an AI-assisted marking
               tool for Cambridge A-Level students at{' '}
@@ -28,7 +28,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="landing-h3">What we collect</h2>
+            <h2 className="ms-h3">What we collect</h2>
             <ul className="list-disc space-y-2 pl-5">
               <li>
                 <strong className="text-[var(--ec-text-primary)]">Account information</strong> — email address, password (hashed by our auth provider), and profile details you provide (name, subjects, exam board).
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="landing-h3">How we use your data</h2>
+            <h2 className="ms-h3">How we use your data</h2>
             <ul className="list-disc space-y-2 pl-5">
               <li>To mark your work and show you feedback tied to Cambridge mark schemes.</li>
               <li>To maintain your account, mastery tracking, and attempt history.</li>
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="landing-h3">Third-party services</h2>
+            <h2 className="ms-h3">Third-party services</h2>
             <p>We rely on trusted providers to run MarkScheme:</p>
             <ul className="list-disc space-y-2 pl-5">
               <li><strong className="text-[var(--ec-text-primary)]">Supabase</strong> — authentication, database, and file storage.</li>
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="landing-h3">How long we keep data</h2>
+            <h2 className="ms-h3">How long we keep data</h2>
             <p>
               We keep your account and marking history while your account is
               active. If you delete your account or ask us to remove your data,
@@ -87,7 +87,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="landing-h3">Your rights</h2>
+            <h2 className="ms-h3">Your rights</h2>
             <p>Depending on where you live, you may have the right to:</p>
             <ul className="list-disc space-y-2 pl-5">
               <li>Access a copy of the personal data we hold about you.</li>
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="landing-h3">Children</h2>
+            <h2 className="ms-h3">Children</h2>
             <p>
               MarkScheme is aimed at A-Level students, who are typically 16–19.
               If you are under 16, please use MarkScheme with a parent or
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="landing-h3">Changes</h2>
+            <h2 className="ms-h3">Changes</h2>
             <p>
               We may update this policy as the product grows. Material changes
               will be posted on this page with an updated date. Continued use
@@ -123,7 +123,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="landing-h3">Contact</h2>
+            <h2 className="ms-h3">Contact</h2>
             <p>
               Questions about privacy? Email{' '}
               <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or visit

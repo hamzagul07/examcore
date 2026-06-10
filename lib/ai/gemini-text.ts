@@ -19,7 +19,7 @@ import {
   getGoogleCloudProject,
   getVertexLocation,
   isGeminiBackendConfigured,
-  useVertexAI,
+  isVertexAIEnabled,
 } from '@/lib/ai/gemini-config'
 import {
   GEMINI_FLASH_MODEL,
@@ -46,7 +46,7 @@ export {
 } from '@/lib/ai/gemini-models'
 export type { GeminiModelId, GeminiTask } from '@/lib/ai/gemini-models'
 export {
-  useVertexAI,
+  isVertexAIEnabled,
   geminiBackendLabel,
   isGeminiBackendConfigured,
   getGoogleCloudProject,
@@ -85,7 +85,7 @@ export function getGeminiClient(): GoogleGenAI {
 
   if (_client && _clientBackend === backend) return _client
 
-  if (useVertexAI()) {
+  if (isVertexAIEnabled()) {
     const project = getGoogleCloudProject()
     if (!project) {
       throw new Error('GOOGLE_CLOUD_PROJECT is required when USE_VERTEX_AI=true')

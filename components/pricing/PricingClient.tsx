@@ -138,6 +138,21 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
     return formatMoney(block.amountCents, cur)
   }
 
+  function featuresForTier(
+    tier: TierDef,
+    qCap: number | string,
+    oCap: number | string
+  ): string[] {
+    if (tier.id === 'free') {
+      return [`${qCap} questions / month`, ...FREE_FEATURES]
+    }
+    return [
+      `${qCap} questions / month`,
+      `${oCap} study chat messages / month`,
+      ...PAID_FEATURES.filter((f) => f !== 'Everything in Free'),
+    ]
+  }
+
   return (
     <div className="space-y-10 min-w-0 max-w-full overflow-x-clip">
       <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-[var(--ec-text-secondary)]">
@@ -164,24 +179,16 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
       </div>
 
       <div className="flex justify-center">
-        <div className="ec-card inline-flex gap-1 p-1">
+        <div className="ms-lvl-tabs">
           {(['monthly', 'yearly'] as Period[]).map((p) => (
             <button
               key={p}
               type="button"
               onClick={() => setPeriod(p)}
-              className={`rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
-                period === p
-                  ? 'ec-tab-active'
-                  : 'text-[var(--ec-text-secondary)] hover:text-[var(--ec-text-primary)]'
-              }`}
+              className={`ms-lvl-tab ${period === p ? 'on' : ''}`}
             >
               {p === 'monthly' ? 'Monthly' : 'Yearly'}
-              {p === 'yearly' && (
-                <span className="ml-2 rounded-full bg-[color-mix(in_srgb,var(--ec-brand)_15%,transparent)] px-2 py-0.5 text-[11px] text-[var(--ec-brand)]">
-                  Save 20%
-                </span>
-              )}
+              {p === 'yearly' ? ' · save 20%' : ''}
             </button>
           ))}
         </div>
@@ -209,150 +216,119 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
         </p>
       )}
 
-      <div className="ec-card overflow-hidden">
-        <div className="hidden border-b border-[var(--ec-border)] px-5 py-3 text-xs font-semibold uppercase tracking-wide text-[var(--ec-text-secondary)] md:grid md:grid-cols-[1.4fr_0.9fr_0.9fr_0.8fr] md:gap-4">
-          <span>Plan</span>
-          <span>Price</span>
-          <span>Allowance</span>
-          <span className="text-right"> </span>
-        </div>
+      <div className="ms-price-grid">
+        {TIERS.map((tier) => {
+          const qCap = capForTier(tier.id)
+          const oCap = omniCapForTier(tier.id)
+          const isCurrent = currentTier === tier.id
+          const periodLabel =
+            tier.id === 'free'
+              ? 'forever'
+              : period === 'yearly'
+                ? '/ year'
+                : '/ month'
+          const feats = featuresForTier(tier, qCap, oCap)
 
-        <div className="divide-y divide-[var(--ec-border)]">
-          {TIERS.map((tier) => {
-            const qCap = capForTier(tier.id)
-            const oCap = omniCapForTier(tier.id)
-            const isCurrent = currentTier === tier.id
-            const periodLabel = period === 'yearly' ? '/ year' : '/ month'
-
-            return (
-              <div
-                key={tier.id}
-                className={`min-w-0 px-5 py-5 md:grid md:grid-cols-[1.4fr_0.9fr_0.9fr_0.8fr] md:items-center md:gap-4 ${
-                  tier.popular ? 'bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)]' : ''
-                }`}
-              >
-                <div className="min-w-0">
-                  {tier.popular && (
-                    <p className="mb-1 text-xs font-semibold text-[var(--ec-brand)]">
-                      Most students choose this
-                    </p>
-                  )}
-                  <h3 className="text-title text-[var(--ec-text-primary)]">{tier.name}</h3>
-                  <p className="mt-1 text-body text-[var(--ec-text-secondary)]">{tier.tagline}</p>
-                  {tier.subtagline && (
-                    <p className="mt-0.5 text-body text-[var(--ec-text-secondary)]">{tier.subtagline}</p>
-                  )}
-                </div>
-
-                <div className="mt-3 flex items-baseline gap-1 md:mt-0">
-                  <span className="text-title font-extrabold tracking-tight text-[var(--ec-text-primary)]">
-                    {priceForTier(tier.id)}
-                  </span>
-                  {tier.id !== 'free' && (
-                    <span className="text-body text-[var(--ec-text-secondary)]">{periodLabel}</span>
-                  )}
-                </div>
-
-                <div className="mt-2 text-body text-[var(--ec-text-primary)] md:mt-0">
-                  <p>
-                    <strong>{qCap}</strong> questions
-                  </p>
-                  <p className="text-[var(--ec-text-secondary)]">
-                    <strong className="text-[var(--ec-text-primary)]">{oCap}</strong> study chat messages
-                  </p>
-                </div>
-
-                <div className="mt-4 md:mt-0 md:text-right">
-                  {tier.product === null ? (
-                    !signedIn ? (
-                      <Link
-                        href={buildSignUpHref('/pricing')}
-                        className="ec-btn-secondary inline-flex w-full justify-center md:w-auto"
-                      >
-                        Get started
-                      </Link>
-                    ) : isCurrent ? (
-                      <span className="inline-block text-sm font-semibold text-[var(--ec-text-secondary)]">
-                        Current plan
-                      </span>
-                    ) : (
-                      <Link href="/account/billing" className="ec-btn-secondary inline-flex w-full justify-center md:w-auto">
-                        Your account
-                      </Link>
-                    )
-                  ) : isCurrent ? (
-                    <button
-                      type="button"
-                      onClick={() => void openPortal()}
-                      disabled={portalState === 'loading'}
-                      aria-busy={portalState === 'loading' || undefined}
-                      data-loading={portalState === 'loading' ? 'true' : undefined}
-                      className="ec-btn-secondary inline-flex w-full justify-center md:w-auto"
-                    >
-                      {portalState === 'loading' ? (
-                        <>
-                          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-                          Opening...
-                        </>
-                      ) : (
-                        <>
-                          {stripePortalButtonLabel(portalState, 'Manage')}
-                          <ExternalLink className="h-4 w-4" aria-hidden />
-                        </>
-                      )}
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => checkout(tier.product!, period)}
-                      disabled={busy === tier.product}
-                      aria-busy={busy === tier.product || undefined}
-                      data-loading={busy === tier.product ? 'true' : undefined}
-                      className="ec-btn-primary inline-flex w-full justify-center md:w-auto"
-                    >
-                      {busy === tier.product ? (
-                        <>
-                          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-                          Opening checkout...
-                        </>
-                      ) : (
-                        `Get ${tier.name}`
-                      )}
-                    </button>
-                  )}
-                </div>
+          return (
+            <div
+              key={tier.id}
+              className={`ms-price-card${tier.popular ? ' hot' : ''}`}
+            >
+              {tier.popular ? (
+                <span className="ms-hot-badge">most students pick this</span>
+              ) : null}
+              <span className="ms-overline" style={{ marginBottom: 0 }}>
+                {tier.name}
+              </span>
+              <div className="ms-price-amount">
+                {priceForTier(tier.id)}{' '}
+                {tier.id !== 'free' ? <small>{periodLabel}</small> : null}
               </div>
-            )
-          })}
-        </div>
+              {tier.id === 'free' ? (
+                <p className="ms-body-2" style={{ marginTop: 0 }}>
+                  {tier.tagline}
+                </p>
+              ) : (
+                <p className="ms-body-2" style={{ marginTop: 0, fontSize: 13.5 }}>
+                  {tier.tagline}
+                </p>
+              )}
+              <div className="ms-price-feats">
+                {feats.map((f) => (
+                  <div key={f}>
+                    <span className="tick">✓</span>
+                    <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-auto">
+                {tier.product === null ? (
+                  !signedIn ? (
+                    <Link
+                      href={buildSignUpHref('/pricing')}
+                      className="ec-btn-primary w-full justify-center"
+                    >
+                      Start marking
+                    </Link>
+                  ) : isCurrent ? (
+                    <span className="block text-center text-sm font-semibold text-[var(--ec-text-secondary)]">
+                      Current plan
+                    </span>
+                  ) : (
+                    <Link
+                      href="/account/billing"
+                      className="ec-btn-ghost w-full justify-center"
+                    >
+                      Your account
+                    </Link>
+                  )
+                ) : isCurrent ? (
+                  <button
+                    type="button"
+                    onClick={() => void openPortal()}
+                    disabled={portalState === 'loading'}
+                    className="ec-btn-ghost w-full justify-center"
+                  >
+                    {portalState === 'loading' ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                        Opening...
+                      </>
+                    ) : (
+                      <>
+                        {stripePortalButtonLabel(portalState, 'Manage')}
+                        <ExternalLink className="h-4 w-4" aria-hidden />
+                      </>
+                    )}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => checkout(tier.product!, period)}
+                    disabled={busy === tier.product}
+                    className={
+                      tier.popular
+                        ? 'ec-btn-primary w-full justify-center'
+                        : 'ec-btn-ghost w-full justify-center'
+                    }
+                  >
+                    {busy === tier.product ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                        Opening checkout...
+                      </>
+                    ) : (
+                      `Get ${tier.name}`
+                    )}
+                  </button>
+                )}
+              </div>
+            </div>
+          )
+        })}
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="ec-card p-6">
-          <h3 className="text-title mb-3 text-[var(--ec-text-primary)]">Free includes</h3>
-          <ul className="space-y-2 text-sm text-[var(--ec-text-primary)]">
-            {FREE_FEATURES.map((f) => (
-              <li key={f} className="flex gap-2">
-                <span className="text-[var(--ec-brand)]">·</span>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="ec-card p-6">
-          <h3 className="text-title mb-3 text-[var(--ec-text-primary)]">Any paid plan adds</h3>
-          <ul className="space-y-2 text-sm text-[var(--ec-text-primary)]">
-            {PAID_FEATURES.map((f) => (
-              <li key={f} className="flex gap-2">
-                <span className="text-[var(--ec-brand)]">·</span>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div id="credits" className="scroll-mt-24 pt-2">
+      <div id="credits" className="scroll-mt-24 pt-8">
         <div className="mb-6">
           <h2 className="text-headline text-[var(--ec-text-primary)]">Credit top-ups</h2>
           <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
@@ -368,7 +344,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
             const price = display.credits[product]
             return (
             <div key={product} className="ec-card flex flex-col p-5">
-              <p className="text-2xl font-extrabold text-[var(--ec-text-primary)]">{count}</p>
+              <p className="ec-stat-figure text-2xl text-[var(--ec-text-primary)]">{count}</p>
               <p className="text-sm text-[var(--ec-text-secondary)]">credits</p>
               <p className="mt-3 text-lg font-bold text-[var(--ec-text-primary)]">
                 {formatMoney(price.amountCents, cur)}

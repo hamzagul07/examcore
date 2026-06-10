@@ -53,18 +53,13 @@ export function ExamCountdownHero({
             width: 'min(420px, 90vw)',
             height: 'min(280px, 70vw)',
             background:
-              'radial-gradient(circle, color-mix(in srgb, var(--ec-brand) 18%, transparent) 0%, transparent 70%)',
+              'radial-gradient(circle, color-mix(in srgb, var(--ec-brand) 7%, transparent) 0%, transparent 70%)',
           }}
           aria-hidden
         />
 
         <p
-          className="ec-countdown-number relative font-[family-name:var(--font-fraunces)] leading-none tracking-tight"
-          style={{
-            color: 'var(--ec-brand)',
-            textShadow:
-              '0 0 40px color-mix(in srgb, var(--ec-brand) 35%, transparent)',
-          }}
+          className="ec-countdown-number relative"
           aria-label={`${daysLeft} days until your ${session}`}
         >
           {daysLeft}

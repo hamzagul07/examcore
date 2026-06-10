@@ -12,8 +12,8 @@ import {
   type MarkingResultData,
 } from '@/components/MarkingResultView'
 import { SolutionSection } from '@/components/SolutionSection'
-import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
+import { MarkStepsBar } from '@/components/mark/MarkStepsBar'
 import {
   PageUploader,
   type UploadPage,
@@ -188,6 +188,8 @@ export default function MarkPage() {
       : false
 
   const cinematicActive = loading && !!markProgress
+  const markStage: 0 | 1 | 2 =
+    result && !result.whole_paper ? 2 : cinematicActive || loading ? 1 : 0
 
   useEffect(() => {
     if (!cinematicActive || typeof window === 'undefined') return
@@ -872,26 +874,16 @@ export default function MarkPage() {
   }
 
   return (
-    <main className="app-shell app-shell-tabbed">
-      <div className="mx-auto min-w-0 max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="mb-10 sm:mb-12"
-        >
-          <p className="ec-label-tech mb-4">MARK ANSWER</p>
-          <h1 className="text-hero">
-            <span className="gradient-text">Get marked</span>
-            <br />
-            <span className="ec-text-gradient brand-breathe">in 30 seconds.</span>
-          </h1>
-          <p className="mt-4 text-base text-[var(--ec-text-secondary)] sm:text-lg">
-            {activeSubjectMeta
-              ? `Cambridge ${profileLevel} ${activeSubjectMeta.label}, examiner-grade.`
-              : `Cambridge ${profileLevel} past papers, examiner-grade.`}
+    <main className="app-shell app-shell-tabbed ms-mark-shell">
+      <div
+        className={`ms-mark-pg min-w-0 ${result && !result.whole_paper ? '' : 'ms-mark-pg--narrow'}`}
+      >
+        {!result && (
+          <p className="ms-overline" style={{ marginBottom: 6 }}>
+            Mark a question
           </p>
-        </motion.div>
+        )}
+        <MarkStepsBar stage={markStage} />
 
         {!result && practiceContext && (
           <div
@@ -918,62 +910,53 @@ export default function MarkPage() {
         {!result && !loading && <GuestMarkNotice className="mb-5" />}
 
         {!result && !loading && (
-          <form onSubmit={handleSubmit} className="space-y-10">
-            {/* Upload mode */}
-            <section className="animate-entry">
-              <div className="ec-card flex flex-wrap gap-2 p-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setUploadMode('single_question')
-                    setMarkIntent('past_paper')
-                  }}
-                  className={`min-w-[7rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors ${
-                    uploadMode === 'single_question' && markIntent === 'past_paper'
-                      ? 'ec-tab-active'
-                      : 'border-transparent ec-text-secondary hover:text-[var(--ec-text-primary)]'
-                  }`}
-                >
-                  Past paper
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setUploadMode('single_question')
-                    setMarkIntent('practice_question')
-                    setShowManualPaper(false)
-                  }}
-                  className={`min-w-[7rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors ${
-                    isPracticeMode
-                      ? 'ec-tab-active'
-                      : 'border-transparent ec-text-secondary hover:text-[var(--ec-text-primary)]'
-                  }`}
-                >
-                  My question
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUploadMode('whole_paper')}
-                  className={`min-w-[7rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors ${
-                    uploadMode === 'whole_paper'
-                      ? 'ec-tab-active'
-                      : 'border-transparent ec-text-secondary hover:text-[var(--ec-text-primary)]'
-                  }`}
-                >
-                  Whole paper
-                </button>
-              </div>
-              {isPracticeMode && (
-                <p className="mt-3 text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-                  Homework or textbook questions — marked with the same Cambridge
-                  conventions (B1, M1, A1, bands) without needing a past paper in our
-                  database.
-                </p>
-              )}
-            </section>
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="ms-lvl-tabs" role="tablist" aria-label="Mark mode">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={uploadMode === 'single_question' && markIntent === 'past_paper'}
+                onClick={() => {
+                  setUploadMode('single_question')
+                  setMarkIntent('past_paper')
+                }}
+                className={`ms-lvl-tab ${uploadMode === 'single_question' && markIntent === 'past_paper' ? 'on' : ''}`}
+              >
+                Single question
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={isPracticeMode}
+                onClick={() => {
+                  setUploadMode('single_question')
+                  setMarkIntent('practice_question')
+                  setShowManualPaper(false)
+                }}
+                className={`ms-lvl-tab ${isPracticeMode ? 'on' : ''}`}
+              >
+                My question
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={uploadMode === 'whole_paper'}
+                onClick={() => setUploadMode('whole_paper')}
+                className={`ms-lvl-tab ${uploadMode === 'whole_paper' ? 'on' : ''}`}
+              >
+                Whole paper
+              </button>
+            </div>
+            {isPracticeMode && (
+              <p className="-mt-4 text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
+                Homework or textbook questions — marked with the same Cambridge
+                conventions (B1, M1, A1, bands) without needing a past paper in our
+                database.
+              </p>
+            )}
 
-            {/* Subject context */}
-            <section className="animate-entry">
+            {uploadMode === 'whole_paper' && (
+            <section>
               <div className="ec-card space-y-4 p-5 sm:p-6">
                 <div>
                   <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
@@ -1022,8 +1005,7 @@ export default function MarkPage() {
                 )}
               </div>
             </section>
-
-            {/* ====== STEP 1 ====== */}
+            )}
             {uploadMode === 'whole_paper' ? (
               <section className="animate-entry stagger-1 space-y-4">
                 <StepLabel number={1} label="Upload your full answer paper" />
@@ -1079,29 +1061,52 @@ export default function MarkPage() {
                 )}
               </section>
             ) : (
-            <section className="animate-entry stagger-1 space-y-4">
-              <StepLabel number={1} label="Upload your answer" />
-              <PageUploader
-                pages={answerPages}
-                onPagesChange={setAnswerPages}
-                disabled={loading}
-                emptyLabel="Click or drop your working here"
-                emptyHint="One or more pages · JPEG, PNG, or WebP"
-              />
-            </section>
-            )}
+            <div className="ms-upload-grid">
+              <div>
+                <PageUploader
+                  pages={answerPages}
+                  onPagesChange={setAnswerPages}
+                  disabled={loading}
+                  emptyLabel="Drop your working here"
+                  emptyHint="photos · camera · PDF — multi-page is fine"
+                />
+              </div>
+              <div className="ms-mark-form-card">
+                <h3>
+                  {isPracticeMode ? 'Your question' : 'Which paper is this?'}
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
+                      Subject
+                    </Label>
+                    <select
+                      id="mark-subject"
+                      value={selectedSubject}
+                      onChange={(e) => {
+                        handleSubjectChange(e.target.value)
+                        setShowManualPaper(true)
+                      }}
+                      disabled={profileLoading || papersLoading}
+                      className="ec-input select-chevron appearance-none"
+                    >
+                      <option value="">
+                        {profileLoading ? 'Loading your subjects…' : 'Select subject…'}
+                      </option>
+                      {profileSelectableSubjects.map((code) => {
+                        const meta = getSubjectByCode(code)
+                        const label = availablePapers?.[code]?.subject ?? meta?.label ?? code
+                        return (
+                          <option key={code} value={code}>
+                            {label} ({code})
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
 
-            {/* ====== STEP 2 ====== */}
-            {uploadMode === 'single_question' && (
-            <section className="animate-entry stagger-2 space-y-4">
-              <StepLabel
-                number={2}
-                label={isPracticeMode ? 'Add your question' : 'Tell us about the question'}
-                hint={isPracticeMode ? 'Required' : 'Optional'}
-              />
-
-              {isPracticeMode && (
-                <div className="ec-card space-y-4 p-5 sm:p-6">
+                  {isPracticeMode && (
+                <div className="space-y-4">
                   <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
                     Paste or photograph the question from your textbook, worksheet, or
                     notes. Add <strong className="text-[var(--ec-text-primary)]">one</strong> —
@@ -1410,7 +1415,42 @@ export default function MarkPage() {
                 )}
               </div>
               )}
-            </section>
+
+                  <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    fullWidth
+                    loading={loading}
+                    loadingText="Marking..."
+                    disabled={
+                      !answerPages.length ||
+                      hasCompressingPages(answerPages) ||
+                      questionPhotoCompressing ||
+                      submitBlocked ||
+                      (isPracticeMode &&
+                        (!selectedSubject || !hasPracticeQuestion))
+                    }
+                    pulse={
+                      answerPages.length > 0 &&
+                      !loading &&
+                      (!isPracticeMode ||
+                        (!!selectedSubject && hasPracticeQuestion))
+                    }
+                    leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
+                    className="justify-center text-base"
+                  >
+                    {isPracticeMode ? 'Mark my question' : 'Mark my answer →'}
+                  </Button>
+                  {!isPracticeMode && isManualFilled && (
+                    <p className="ms-micro text-center" style={{ marginTop: 10 }}>
+                      USES THE OFFICIAL {selectedSubject}/{selectedComponent} MARK SCHEME
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
             )}
 
             {errorMsg && (
@@ -1445,38 +1485,6 @@ export default function MarkPage() {
                 )}
               </div>
             )}
-
-            {uploadMode === 'single_question' && (
-              <>
-                <MarkUsageIndicator variant="single" summary={billingSummary} className="mb-3" />
-                <Button
-                type="submit"
-                variant="primary"
-                size="lg"
-                fullWidth
-                loading={loading}
-                loadingText="Marking..."
-                disabled={
-                  !answerPages.length ||
-                  hasCompressingPages(answerPages) ||
-                  questionPhotoCompressing ||
-                  submitBlocked ||
-                  (isPracticeMode &&
-                    (!selectedSubject || !hasPracticeQuestion))
-                }
-                pulse={
-                  answerPages.length > 0 &&
-                  !loading &&
-                  (!isPracticeMode ||
-                    (!!selectedSubject && hasPracticeQuestion))
-                }
-                leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
-                className="justify-center text-base"
-              >
-                {isPracticeMode ? 'Mark my question' : 'Mark my answer'}
-              </Button>
-              </>
-            )}
           </form>
         )}
 
@@ -1485,9 +1493,10 @@ export default function MarkPage() {
             <motion.div
               key="marking-progress"
               className="fixed inset-0 z-[55] overflow-y-auto bg-[var(--ec-canvas)] px-4 pt-4 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] lg:relative lg:inset-auto lg:z-auto lg:mt-10 lg:overflow-visible lg:bg-transparent lg:p-0 lg:pb-0"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
+              initial={{ y: 12 }}
+              animate={{ y: 0 }}
+              exit={{ y: 8 }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
             >
               <CinematicMarkingExperience
                 stage={markProgress?.stage ?? 'reading_work'}
@@ -1530,13 +1539,18 @@ export default function MarkPage() {
             <MarkingResultView
               result={result}
               attemptId={result.attempt_id ?? null}
+              inkPages={
+                result.ink_pages ??
+                (result.answer_photo_url && result.line_references?.length
+                  ? [
+                      {
+                        photo_url: result.answer_photo_url,
+                        line_references: result.line_references,
+                      },
+                    ]
+                  : undefined)
+              }
             />
-
-            {(result.ink_pages?.length ||
-              (result.answer_photo_url &&
-                result.line_references?.length)) && (
-              <ExaminerInkSection result={result} />
-            )}
 
             {result.attempt_id && (
               <SolutionSection attemptId={result.attempt_id} />
@@ -1576,65 +1590,6 @@ export default function MarkPage() {
         returnPath="/mark"
       />
     </main>
-  )
-}
-
-/**
- * Wraps the overlay behind a reveal button. Two reasons:
- *  1. The overlay reads best AFTER the student has read the mark-by-mark
- *     breakdown — without context, the red ink can feel like an attack.
- *  2. Loading the image (and the framer-motion timer chain) lazily means we
- *     don't block the initial render with a network round-trip for the photo.
- */
-function ExaminerInkSection({ result }: { result: MarkingResult }) {
-  const [open, setOpen] = useState(false)
-  const inkPages =
-    result.ink_pages ??
-    (result.answer_photo_url && result.line_references?.length
-      ? [
-          {
-            photo_url: result.answer_photo_url,
-            line_references: result.line_references,
-          },
-        ]
-      : [])
-
-  if (!inkPages.length) return null
-
-  return (
-    <section className="ec-card relative overflow-hidden p-6 sm:p-8">
-      <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full ec-glow-orb-critical blur-[80px]" />
-      <div className="relative">
-        <p className="ec-label-tech mb-3">EXAMINER&rsquo;S MARKS</p>
-        <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-3xl">
-          See exactly where you earned and lost marks
-        </h2>
-        <p className="mt-2 max-w-2xl text-sm text-[var(--ec-text-secondary)]">
-          The AI examiner&rsquo;s annotations, drawn directly on your handwritten
-          answer. Stamps go in the margin; red underlines flag where marks
-          were lost.
-        </p>
-
-        {!open ? (
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="ec-btn-primary mt-6 self-start px-6 py-3.5 text-base"
-          >
-            <Sparkles className="h-5 w-5" />
-            View examiner&rsquo;s marks
-          </button>
-        ) : (
-          <div className="mt-6">
-            <ExaminerInkPerPage
-              pages={inkPages}
-              attemptId={result.attempt_id ?? undefined}
-              animate
-            />
-          </div>
-        )}
-      </div>
-    </section>
   )
 }
 

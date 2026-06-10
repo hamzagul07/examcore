@@ -40,6 +40,7 @@ export type LessonSection =
   | { type: 'pastPaperPractice'; questions: PastPaperPracticeQuestion[] }
   | { type: 'practice'; label: string; href: string }
   | { type: 'resources'; items: { label: string; href: string }[] }
+  | { type: 'interactive'; embed: LessonInteractiveEmbed }
 
 export type CourseQuickCheckItem = {
   prompt: string
@@ -83,6 +84,24 @@ export type ComparisonTableData = {
   rows: { property: string; cells: string[] }[]
 }
 
+/** External interactive sim (PhET, GeoGebra, etc.) — one primary visual per topic. */
+export type LessonInteractiveEmbed = {
+  provider: 'phet' | 'geogebra' | 'custom'
+  title: string
+  embedUrl: string
+  /** Short instruction shown above the iframe */
+  hint?: string
+  /** Open in new tab when iframe embed fails or for full-screen PhET/GeoGebra UI */
+  launchUrl?: string
+  /** CSS aspect-ratio value, e.g. "834 / 504" */
+  aspectRatio?: string
+  attribution: {
+    source: string
+    license: string
+    sourceUrl?: string
+  }
+}
+
 export type CourseLesson = {
   slug: string
   topicCode: string
@@ -105,6 +124,10 @@ export type CourseLesson = {
   comparisonTable?: ComparisonTableData
   /** Prompt seed for Gemini diagram generation (not shown to students) */
   diagramPrompt?: string
+  /** Primary interactive sim for this topic (overrides catalog lookup by slug) */
+  interactiveEmbed?: LessonInteractiveEmbed
+  /** Step-synced diagram layers, params, and embed hints (overrides catalog by slug) */
+  diagramSpec?: import('@/lib/courses/diagram-specs').LessonDiagramSpec
   updated?: string
   /** Paper-scoped generation metadata (Prompt B v3) */
   paperNumber?: string

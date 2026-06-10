@@ -13,6 +13,7 @@ import type {
   WorkedExampleDiagram,
 } from '@/lib/courses/types'
 import { stripImgTags } from '@/lib/courses/worked-example-text'
+import { attachCatalogVisuals } from '@/lib/courses/attach-lesson-visuals'
 import type { GeneratedLesson } from './lesson-schema'
 
 type PastPaperPracticeSection = Extract<
@@ -174,5 +175,5 @@ export function postProcessGeneratedLesson(
     out,
     buildPastPaperPracticeSection(evidence, subjectCode)
   )
-  return out
+  return attachCatalogVisuals(out)
 }

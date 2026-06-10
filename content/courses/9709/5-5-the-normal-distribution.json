@@ -1,0 +1,64 @@
+{
+  "slug": "5-5-the-normal-distribution",
+  "topicCode": "5.5",
+  "title": "The normal distribution",
+  "paper": "P5",
+  "paperName": "Probability & Statistics 1",
+  "status": "premium",
+  "summary": "9709 P5 normal distribution — probability density, standardisation, inverse normal, and the 68–95–99.7 rule with GeoGebra bell curve explorer.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Recognise the normal distribution X ~ N(μ, σ²) and its symmetry.",
+    "Standardise using Z = (X − μ)/σ.",
+    "Use normal tables or calculators to find probabilities.",
+    "Solve problems involving inverse normal and given probabilities."
+  ],
+  "simpleExplanation": {
+    "title": "The bell curve",
+    "summary": "Many natural measurements are approximately normal. The curve is symmetric about μ; σ controls spread. Standardise to Z ~ N(0,1) to use tables.",
+    "steps": [
+      "Sketch the bell curve — total area = 1; symmetry about μ.",
+      "Standardise: Z = (X − μ)/σ converts any normal to standard normal.",
+      "Use tables for P(Z < z) — for P(Z > z) use 1 − Φ(z).",
+      "For P(a < X < b), standardise both ends and subtract cumulative probabilities."
+    ]
+  },
+  "flashcards": [
+    { "front": "Notation for normal distribution?", "back": "X ~ N(μ, σ²) — mean μ, variance σ²." },
+    { "front": "Standardisation formula?", "back": "Z = (X − μ) / σ ~ N(0, 1)." },
+    { "front": "68% rule?", "back": "P(μ − σ < X < μ + σ) ≈ 0.68." },
+    { "front": "When normal approx to binomial?", "back": "np > 5 and n(1−p) > 5 (both conditions)." }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The **normal distribution** dominates Statistics papers. Cambridge tests **standardisation**, **inverse normal** (finding μ or σ from probabilities), and **continuity correction** when approximating binomial."
+    },
+    {
+      "type": "formula",
+      "content": "Z = (X − μ)/σ | P(a < X < b) = Φ((b−μ)/σ) − Φ((a−μ)/σ) | Continuity: P(X = r) ≈ P(r − 0.5 < Y < r + 0.5)"
+    },
+    {
+      "type": "workedExample",
+      "question": "X ~ N(50, 16). Find P(X > 58).",
+      "solution": "σ = √16 = 4.\n\nZ = (58 − 50)/4 = 2.\n\nP(X > 58) = P(Z > 2) = 1 − Φ(2) = 1 − 0.9772 = **0.0228**."
+    },
+    {
+      "type": "examTip",
+      "content": "Draw a **sketch** with μ and the target value shaded — it prevents sign errors when finding tail probabilities or using symmetry P(Z < −a) = P(Z > a)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a normal distribution question",
+      "href": "/mark?subject=9709&topic=5.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 course index", "href": "/courses/9709" },
+        { "label": "GeoGebra normal distribution", "href": "https://www.geogebra.org/m/qumaztck" }
+      ]
+    }
+  ]
+}

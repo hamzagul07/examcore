@@ -1,0 +1,46 @@
+{
+  "slug": "9-2-algorithms",
+  "topicCode": "9.2",
+  "title": "Algorithms",
+  "paper": "P2",
+  "paperName": "Fundamental Problem-solving and Programming Skills",
+  "status": "premium",
+  "summary": "9618 AS — algorithm design, flowcharts, pseudocode, searching, sorting, and trace tables.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Express algorithms using pseudocode and flowcharts.",
+    "Describe linear and binary search.",
+    "Compare bubble, insertion, and merge sort.",
+    "Trace algorithms with given data."
+  ],
+  "simpleExplanation": {
+    "title": "Step-by-step procedures",
+    "summary": "Algorithms are finite, unambiguous steps to solve a problem. Efficiency is measured in comparisons and swaps for sorting/searching.",
+    "steps": [
+      "Linear search: check each item — O(n).",
+      "Binary search: sorted list, halve range — O(log n).",
+      "Bubble sort: adjacent swaps — O(n²) worst case.",
+      "Merge sort: divide and merge — O(n log n)."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Algorithms** (9.2) dominate Paper 2 trace questions. Practise **dry-running** loops and **writing pseudocode** with clear indentation."
+    },
+    {
+      "type": "examTip",
+      "content": "Binary search requires a **sorted** list — state this before tracing. Off-by-one errors in **mid** calculation lose marks."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an algorithms question",
+      "href": "/mark?subject=9618&topic=9.2"
+    },
+    {
+      "type": "resources",
+      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+    }
+  ]
+}

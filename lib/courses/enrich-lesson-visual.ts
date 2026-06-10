@@ -10,6 +10,12 @@ import {
   quickCheckPromptFromKeyPoint,
 } from '@/lib/courses/glossary-label'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
+import { lessonHasInteractiveEmbed } from '@/lib/courses/interactive-embeds'
+
+export type EnrichLessonVisualOptions = {
+  /** When true: cap reference images, skip auto concept-map (embed-first layout). */
+  slimVisuals?: boolean
+}
 
 function stepsFromLesson(lesson: CourseLesson): VisualStep[] {
   if (lesson.simpleExplanation?.steps?.length) {
@@ -129,8 +135,10 @@ function conceptNodesFromLesson(lesson: CourseLesson): string[] {
 
 export function enrichLessonVisual(
   subjectCode: string,
-  lesson: CourseLesson
+  lesson: CourseLesson,
+  options?: EnrichLessonVisualOptions
 ): EnrichedVisualLesson {
+  const slimVisuals = options?.slimVisuals ?? lessonHasInteractiveEmbed(lesson)
   const template = detectVisualTemplate(subjectCode, lesson)
   const blocks: VisualBlock[] = []
   const steps = stepsFromLesson(lesson)
@@ -173,7 +181,7 @@ export function enrichLessonVisual(
   }
 
   const nodes = conceptNodesFromLesson(lesson)
-  if (nodes.length >= 3) {
+  if (!slimVisuals && nodes.length >= 3) {
     blocks.push({
       type: 'concept-map',
       center: lesson.title,
@@ -239,21 +247,24 @@ export function enrichLessonVisual(
 
   const hasAlnotes = alnotesPages.length > 0
   const suppressGeneric = hasLessonLiveDiagram(lesson.slug) && !hasAlnotes
+  const pagesToShow = slimVisuals ? alnotesPages.slice(0, 1) : alnotesPages
 
   if (!suppressGeneric) {
     if (hasAlnotes) {
-      alnotesPages.forEach((page, i) => {
+      pagesToShow.forEach((page, i) => {
         blocks.push({
           type: 'diagram-image',
           src: page.src,
           alt: page.alt,
           caption:
-            alnotesPages.length > 1
-              ? `A-Level Notes — page ${i + 1} of ${alnotesPages.length}`
-              : 'Reference diagram from A-Level Notes',
+            pagesToShow.length > 1
+              ? `A-Level Notes — page ${i + 1} of ${pagesToShow.length}`
+              : slimVisuals
+                ? 'Reference diagram (one page)'
+                : 'Reference diagram from A-Level Notes',
         })
       })
-    } else {
+    } else if (!slimVisuals) {
       const diagramCandidates = [
         path.join(process.cwd(), 'public', 'courses', 'diagrams', subjectCode, `${lesson.slug}.png`),
         path.join(

@@ -1,0 +1,51 @@
+{
+  "slug": "6-2-data-integrity",
+  "topicCode": "6.2",
+  "title": "Data Integrity",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — validation, verification, parity checks, and checksums to maintain accurate data.",
+  "durationMin": 18,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Distinguish data integrity from data security.",
+    "Explain validation and verification techniques.",
+    "Describe parity bits and checksums.",
+    "Suggest integrity controls for given scenarios."
+  ],
+  "simpleExplanation": {
+    "title": "Data stays correct",
+    "summary": "Integrity ensures data is accurate and consistent. Validation checks input reasonableness; verification confirms transfer accuracy.",
+    "steps": [
+      "Validation: range, type, length, format checks on entry.",
+      "Verification: double entry, visual check after transfer.",
+      "Parity bit: even/odd bit count detects single-bit errors.",
+      "Checksum: sum/hash compared before and after transmission."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Data integrity** (6.2) pairs with **data security** (6.1). Do not confuse **validation** (reasonable input) with **verification** (correct copy)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Referential integrity in DBMS — FK matches PK",
+        "Transcription errors caught by verification, not validation alone",
+        "CRC stronger than simple checksum for error detection",
+        "Backup supports integrity recovery after corruption"
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a data integrity question",
+      "href": "/mark?subject=9618&topic=6.2"
+    },
+    {
+      "type": "resources",
+      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+    }
+  ]
+}

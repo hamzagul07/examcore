@@ -1,0 +1,32 @@
+{
+  "slug": "6-2-linear-combinations-of-random-variables",
+  "topicCode": "6.2",
+  "title": "Linear combinations of random variables",
+  "paper": "P6",
+  "paperName": "Probability & Statistics 2",
+  "status": "premium",
+  "summary": "9709 S2 — E(aX+bY), Var(aX+bY), and sums of independent normals.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Apply linearity of expectation.",
+    "Calculate variance of aX + bY for independent variables.",
+    "Find distributions of sums of normal variables.",
+    "Solve exam problems involving linear combinations."
+  ],
+  "simpleExplanation": {
+    "title": "Combining X and Y",
+    "summary": "Expectation is always linear. Variance of a sum adds only when X and Y are independent.",
+    "steps": [
+      "E(aX + bY) = aE(X) + bE(Y).",
+      "Var(aX + bY) = a²Var(X) + b²Var(Y) if independent.",
+      "X + Y normal if X, Y independent normals.",
+      "Standardise with Z = (X − μ)/σ."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**Linear combinations** (6.2) appear with **normal distribution** tables. State **independence** before adding variances." },
+    { "type": "practice", "label": "Mark a linear combinations question", "href": "/mark?subject=9709&topic=6.2" },
+    { "type": "resources", "items": [{ "label": "9709 course index", "href": "/courses/9709" }] }
+  ]
+}

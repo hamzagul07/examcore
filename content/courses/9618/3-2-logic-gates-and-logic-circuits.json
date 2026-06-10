@@ -1,0 +1,53 @@
+{
+  "slug": "3-2-logic-gates-and-logic-circuits",
+  "topicCode": "3.2",
+  "title": "Logic Gates and Logic Circuits",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — Boolean logic, truth tables, logic gates, and circuit design with GeoGebra logic gates explorer.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Draw and interpret NOT, AND, OR, NAND, NOR, XOR gates.",
+    "Construct truth tables for combinational circuits.",
+    "Apply Boolean algebra and De Morgan's laws.",
+    "Build simple circuits from a given truth table."
+  ],
+  "simpleExplanation": {
+    "title": "Digital decisions",
+    "summary": "Logic gates implement Boolean operations on binary inputs. Combining gates builds adders, multiplexers, and memory elements inside the CPU.",
+    "steps": [
+      "NOT inverts; AND outputs 1 only if all inputs 1; OR if any input 1.",
+      "NAND/NOR are universal — any logic function can be built from either alone.",
+      "De Morgan: NOT(A AND B) = NOT A OR NOT B.",
+      "From truth table: identify minterms, simplify, draw gate diagram."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Logic circuits** appear on every 9618 Paper 1. Use the **interactive gate builder** below, then practise **truth tables** and **Boolean simplification** on past papers."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "XOR: 1 when inputs differ — used in half-adders",
+        "Half-adder: Sum = A XOR B; Carry = A AND B",
+        "Full-adder combines two bits + carry-in",
+        "SR flip-flop: two cross-coupled NOR gates store 1 bit"
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a logic gates question",
+      "href": "/mark?subject=9618&topic=3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9618 course index", "href": "/courses/9618" }
+      ]
+    }
+  ]
+}

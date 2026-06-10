@@ -1,0 +1,74 @@
+{
+  "slug": "1-8-integration",
+  "topicCode": "1.8",
+  "title": "Integration",
+  "paper": "P1",
+  "paperName": "Pure Mathematics 1",
+  "status": "premium",
+  "summary": "Free Cambridge 9709 Pure Maths 1 integration — reverse power rule, definite integrals as signed area, and Cambridge mark-scheme habits.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "simpleExplanation": {
+    "title": "Area under the curve",
+    "summary": "Integration is the reverse of differentiation. On Paper 1 you find antiderivatives, evaluate definite integrals as signed area, and always show substitution of limits.",
+    "steps": [
+      "Start from a gradient function f(x) and find F(x) such that F′(x) = f(x).",
+      "A definite integral ∫ₐᵇ f(x) dx equals the signed area between the curve and the x-axis.",
+      "Evaluate F(b) − F(a) — show each limit substituted for method marks.",
+      "For indefinite integrals include + C; constants cancel when you use definite limits."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Integration on Paper 1** is the inverse of differentiation. You will reverse the power rule, interpret definite integrals as **signed area**, and evaluate limits cleanly — examiners award marks for showing **F(b) − F(a)** with substitution, not just a final number."
+    },
+    {
+      "type": "heading",
+      "content": "Reverse the power rule"
+    },
+    {
+      "type": "formula",
+      "content": "If dy/dx = x^n then y = x^(n+1)/(n+1) + C (n ≠ −1). For definite integrals: ∫ₐᵇ x^n dx = [x^(n+1)/(n+1)]ₐᵇ."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Increase the power by 1, divide by the new power",
+        "Definite integral = area above the axis minus area below",
+        "Always write square brackets before substituting limits",
+        "Include + C only for indefinite integrals"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Definite integrals & area"
+    },
+    {
+      "type": "text",
+      "content": "Sketch the region when a question asks for **area bounded by curves**. If part of the graph lies below the x-axis, that portion contributes **negative** area — Cambridge often tests this with a cubic crossing the axis."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find ∫₁³ (2x − 1) dx.",
+      "solution": "∫ (2x − 1) dx = x² − x + C.\n\nDefinite value: [x² − x]₁³ = (9 − 3) − (1 − 1) = 6."
+    },
+    {
+      "type": "examTip",
+      "content": "Differentiate your answer in one line to sanity-check. For area questions, state whether regions below the axis are subtracted — a quick sketch prevents sign errors."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an integration question",
+      "href": "/mark?subject=9709&topic=1.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
+        { "label": "B1 M1 A1 mark scheme guide", "href": "/blog/cambridge-a-level-maths-mark-scheme-b1-m1-a1" },
+        { "label": "Free full 9709 course index", "href": "/courses/9709" }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import type { LessonEvidence } from '@/lib/courses/content-source.schema'
 import type { PaperKind } from '@/lib/courses/types'
+import { buildVisualAuthoringGuide, subjectDisplayName } from '@/lib/courses/visual-catalog'
 
 export type LessonPromptContext = {
   subjectCode: string
@@ -78,7 +79,8 @@ ${markSchemes || '(none)'}`
 }
 
 export function buildLessonSystemPrompt(ctx: LessonPromptContext): string {
-  return `You are an expert Cambridge International A-Level Physics (${ctx.subjectCode}) lesson author.
+  const subject = subjectDisplayName(ctx.subjectCode)
+  return `You are an expert Cambridge International A-Level ${subject} (${ctx.subjectCode}) lesson author.
 
 Generate a single JSON object for a **paper-scoped** lesson — content tailored to ${ctx.paperDisplayName} only.
 
@@ -98,6 +100,9 @@ Hard rules:
 13. Every heading section MUST be immediately followed by at least one text, formula, or keyPoints section with ≥2 sentences. If you cannot expand a subtopic, omit the heading.
 14. quickCheck prompts must be complete questions (≥6 words, end with ?). Good: "Define displacement and state its SI unit." Bad: "Displacement?"
 15. In workedExample question text, keep MCQ options A–D on separate lines when present.
+16. simpleExplanation is strongly recommended: { title, summary, optional analogy, steps[] } with 4 exam-focused steps.
+
+${buildVisualAuthoringGuide(ctx.slug)}
 
 ${paperStyleGuide(ctx.paperKind)}
 
@@ -106,6 +111,7 @@ Lesson JSON shape (match existing CourseLesson renderer):
 - sections: intro, heading, text, formula, keyPoints, examTip, workedExample, practice, resources
 - learningObjectives, simpleExplanation, flashcards, faq (optional)
 - quickCheck (optional, Paper 1 MCQ)
+- Optional overrides only if needed: interactiveEmbed, diagramSpec (usually omit — server catalog attaches these)
 - Do NOT include pastPaperReferences in output.`
 }
 
@@ -130,6 +136,8 @@ Requirements:
 - syllabusObjectivesCovered: list of objective_number strings you taught.
 - durationMin: realistic (15–35 min).
 - summary: SEO-friendly, mentions Paper ${ctx.paperNumber}.
+
+${buildVisualAuthoringGuide(ctx.slug)}
 
 ${formatEvidenceBlock(evidence)}`
 }

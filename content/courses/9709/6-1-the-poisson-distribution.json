@@ -1,0 +1,42 @@
+{
+  "slug": "6-1-the-poisson-distribution",
+  "topicCode": "6.1",
+  "title": "The Poisson distribution",
+  "paper": "P6",
+  "paperName": "Probability & Statistics 2",
+  "status": "premium",
+  "summary": "9709 S2 — Poisson model, probabilities, mean λ, and binomial approximation with GeoGebra.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Identify situations suitable for Poisson model.",
+    "Calculate Poisson probabilities.",
+    "Use the property E(X) = Var(X) = λ.",
+    "Apply Poisson approximation to binomial."
+  ],
+  "simpleExplanation": {
+    "title": "Rare events in an interval",
+    "summary": "Poisson counts events in fixed time/space when events are rare and independent. Mean and variance both equal λ.",
+    "steps": [
+      "X ~ Po(λ): P(X = r) = e^{−λ} λ^r / r!.",
+      "E(X) = Var(X) = λ.",
+      "Binomial B(n,p) ≈ Po(np) when n large, p small.",
+      "Use cumulative tables for P(X ≤ k)."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Poisson** (6.1) opens Statistics 2. Justify **λ** from context (e.g. average calls per hour) before calculating."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a Poisson question",
+      "href": "/mark?subject=9709&topic=6.1"
+    },
+    {
+      "type": "resources",
+      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+    }
+  ]
+}

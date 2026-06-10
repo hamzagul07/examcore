@@ -45,6 +45,9 @@ import { UniformElectricFieldDiagram } from '@/components/diagrams/UniformElectr
 import { VectorAdditionDiagram } from '@/components/diagrams/VectorAdditionDiagram'
 import { WalErrorBarDiagram } from '@/components/diagrams/WalErrorBarDiagram'
 import { WavesComparison } from '@/components/diagrams/WavesComparison'
+import { DifferentiationTangentDiagram } from '@/components/diagrams/DifferentiationTangentDiagram'
+import { DefiniteIntegralDiagram } from '@/components/diagrams/DefiniteIntegralDiagram'
+import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
   license: string
@@ -53,7 +56,7 @@ type DiagramAttribution = {
 }
 
 type FamilyEntry = {
-  Component: ComponentType<{ className?: string }>
+  Component: ComponentType<LessonDiagramComponentProps>
   caption: string
 }
 
@@ -176,6 +179,14 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'radioactive-decay': {
     Component: RadioactiveDecayDiagram,
     caption: 'Activity decays exponentially: A = A₀e^(−λt).',
+  },
+  differentiation: {
+    Component: DifferentiationTangentDiagram,
+    caption: 'Gradient of the tangent at x₀ equals dy/dx — the derivative at that point.',
+  },
+  integration: {
+    Component: DefiniteIntegralDiagram,
+    caption: '∫ₐᵇ f(x) dx is the signed area under y = f(x) between x = a and x = b.',
   },
   centripetal: {
     Component: CentripetalMotionDiagram,
@@ -356,16 +367,29 @@ const SLUG_FAMILY_9700: Record<string, keyof typeof FAMILIES> = {
   '19-3-genetically-modified-organisms-in-agriculture': 'bio-biotech',
 }
 
+/** 9709 Pure Maths slug → diagram family. */
+const SLUG_FAMILY_9709: Record<string, keyof typeof FAMILIES> = {
+  '1-7-differentiation': 'differentiation',
+  '1-8-integration': 'integration',
+  '3-5-integration': 'integration',
+  '3-7-vectors': 'vectors',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
+  ...SLUG_FAMILY_9709,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
+const MATHS_SLUGS = new Set(Object.keys(SLUG_FAMILY_9709))
 
 function familyAttribution(slug: string): DiagramAttribution {
   if (BIOLOGY_SLUGS.has(slug)) {
     return { source: 'MarkScheme biology diagram family', license: 'Proprietary' }
+  }
+  if (MATHS_SLUGS.has(slug)) {
+    return { source: 'MarkScheme maths diagram family', license: 'Proprietary' }
   }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)
   return {
@@ -377,12 +401,13 @@ function familyAttribution(slug: string): DiagramAttribution {
 
 export function getSubjectForSlug(slug: string): string | null {
   if (BIOLOGY_SLUGS.has(slug)) return '9700'
+  if (MATHS_SLUGS.has(slug)) return '9709'
   if (slug in SLUG_FAMILY_9702 || slug.startsWith('paper-5')) return '9702'
   return null
 }
 
 export function resolveFamilyDiagram(slug: string): {
-  Component: ComponentType<{ className?: string }>
+  Component: ComponentType<LessonDiagramComponentProps>
   meta: { caption: string; attribution: DiagramAttribution }
 } | null {
   const familyId = SLUG_FAMILY[slug]

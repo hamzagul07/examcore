@@ -1,0 +1,32 @@
+{
+  "slug": "5-2-language-translators",
+  "topicCode": "5.2",
+  "title": "Language Translators",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 — compilers, interpreters, assemblers, and when each is used.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Distinguish compiler, interpreter, and assembler.",
+    "Compare translated vs interpreted execution.",
+    "Explain advantages of each translator type.",
+    "Relate translators to development workflow."
+  ],
+  "simpleExplanation": {
+    "title": "Making code runnable",
+    "summary": "High-level source must be translated to machine code. Compilers produce object code before running; interpreters execute line by line.",
+    "steps": [
+      "Assembler: assembly → machine code.",
+      "Compiler: whole program → object file.",
+      "Interpreter: translate and run each line.",
+      "Linker combines object modules."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**Language translators** (5.2) pairs with **16.2 A Level translation**. Compare **speed, debugging, and distribution**." },
+    { "type": "practice", "label": "Mark a language translators question", "href": "/mark?subject=9618&topic=5.2" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

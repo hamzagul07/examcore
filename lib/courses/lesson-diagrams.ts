@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 import { CapacitorDischargeDiagram } from '@/components/diagrams/CapacitorDischargeDiagram'
 import { CentripetalMotionDiagram } from '@/components/diagrams/CentripetalMotionDiagram'
 import { DopplerEffectDiagram } from '@/components/diagrams/DopplerEffectDiagram'
@@ -33,7 +34,7 @@ export type LessonDiagramMeta = {
 
 const PILOT_DIAGRAMS: Record<
   string,
-  { Component: ComponentType<{ className?: string }>; meta: LessonDiagramMeta }
+  { Component: ComponentType<LessonDiagramComponentProps>; meta: LessonDiagramMeta }
 > = {
   '4-1-turning-effects-of-forces': {
     Component: MomentsDiagram,

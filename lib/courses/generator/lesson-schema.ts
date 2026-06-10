@@ -49,6 +49,22 @@ const LessonSectionSchema = z.discriminatedUnion('type', [
     type: z.literal('resources'),
     items: z.array(z.object({ label: z.string(), href: z.string() })),
   }),
+  z.object({
+    type: z.literal('interactive'),
+    embed: z.object({
+      provider: z.enum(['phet', 'geogebra', 'custom']),
+      title: z.string().min(1),
+      embedUrl: z.string().url(),
+      hint: z.string().optional(),
+      launchUrl: z.string().url().optional(),
+      aspectRatio: z.string().optional(),
+      attribution: z.object({
+        source: z.string().min(1),
+        license: z.string().min(1),
+        sourceUrl: z.string().url().optional(),
+      }),
+    }),
+  }),
 ])
 
 const SimpleExplanationSchema = z.object({
@@ -80,6 +96,27 @@ const QuickCheckSchema = z.object({
   options: z.array(z.string().min(1)).min(2).max(5).optional(),
 })
 
+const DiagramStepStateSchema = z.object({
+  focus: z.array(z.string().min(1)).min(1),
+  caption: z.string().optional(),
+  embedHint: z.string().optional(),
+})
+
+const DiagramParamSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  min: z.number(),
+  max: z.number(),
+  step: z.number().positive(),
+  default: z.number(),
+  unit: z.string().optional(),
+})
+
+const DiagramSpecSchema = z.object({
+  params: z.array(DiagramParamSchema).optional(),
+  steps: z.array(DiagramStepStateSchema).min(1),
+})
+
 export const GeneratedLessonSchema = z.object({
   slug: z.string().min(1),
   topicCode: z.string().min(1),
@@ -104,6 +141,22 @@ export const GeneratedLessonSchema = z.object({
   generatedAt: z.string().datetime().optional(),
   generatorVersion: z.string().optional(),
   quickCheck: z.array(QuickCheckSchema).optional(),
+  interactiveEmbed: z
+    .object({
+      provider: z.enum(['phet', 'geogebra', 'custom']),
+      title: z.string().min(1),
+      embedUrl: z.string().url(),
+      hint: z.string().optional(),
+      launchUrl: z.string().url().optional(),
+      aspectRatio: z.string().optional(),
+      attribution: z.object({
+        source: z.string().min(1),
+        license: z.string().min(1),
+        sourceUrl: z.string().url().optional(),
+      }),
+    })
+    .optional(),
+  diagramSpec: DiagramSpecSchema.optional(),
 })
 
 export type GeneratedLesson = z.infer<typeof GeneratedLessonSchema>

@@ -10,6 +10,7 @@ import {
 } from '@/lib/courses/paths'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import { loadSupplementaryLessons } from '@/lib/courses/supplementary-lessons'
+import { hydrateLessonCatalogVisuals } from '@/lib/courses/attach-lesson-visuals'
 import type { CourseLesson, CourseSubject } from '@/lib/courses/types'
 
 /** Subjects with syllabus trees eligible for free courses. */
@@ -102,7 +103,9 @@ export function getCourseLesson(
   subjectCode: string,
   lessonSlug: string
 ): CourseLesson | null {
-  return getCourseLessons(subjectCode).find((l) => l.slug === lessonSlug) ?? null
+  const lesson = getCourseLessons(subjectCode).find((l) => l.slug === lessonSlug) ?? null
+  if (!lesson) return null
+  return hydrateLessonCatalogVisuals(lesson)
 }
 
 function readLessonFile(filePath: string, status: CourseLesson['status']): CourseLesson | null {
@@ -145,21 +148,21 @@ export function loadPaperScopedLesson(
 ): CourseLesson | null {
   const published = loadPublishedLesson(subjectCode, lessonSlug)
   if (published?.generatorVersion?.startsWith('senpai-published')) {
-    return published
+    return hydrateLessonCatalogVisuals(published)
   }
 
   if (!opts.preferPublished) {
     const pilot = loadPilotLesson(subjectCode, paperNumber, lessonSlug)
-    if (pilot) return pilot
+    if (pilot) return hydrateLessonCatalogVisuals(pilot)
   }
 
   const scoped = readLessonFile(
     paperScopedLessonPath(subjectCode, paperNumber, lessonSlug),
     'published'
   )
-  if (scoped) return scoped
+  if (scoped) return hydrateLessonCatalogVisuals(scoped)
 
-  return published
+  return published ? hydrateLessonCatalogVisuals(published) : null
 }
 
 export function getAllCourseLessonPaths(): { code: string; slug: string }[] {

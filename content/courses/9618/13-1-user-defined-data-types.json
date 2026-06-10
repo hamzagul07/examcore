@@ -1,0 +1,32 @@
+{
+  "slug": "13-1-user-defined-data-types",
+  "topicCode": "13.1",
+  "title": "User-defined data types",
+  "paper": "P3",
+  "paperName": "Advanced Theory",
+  "status": "premium",
+  "summary": "9618 A Level — ENUM, SET, RECORD, and POINTER types in pseudocode.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Define ENUM and SET types.",
+    "Declare records with mixed field types.",
+    "Explain pointer types and referencing.",
+    "Choose appropriate user-defined types."
+  ],
+  "simpleExplanation": {
+    "title": "Custom types",
+    "summary": "ENUM restricts values to a list. SET handles unordered collections. Pointers reference memory locations for linked structures.",
+    "steps": [
+      "TYPE Day = (Mon, Tue, Wed, …).",
+      "SET OF CHAR for character sets.",
+      "POINTER ^Node links list elements.",
+      "Records group fields — EmployeeRecord."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**User-defined types** (13.1) support **ADTs** and **linked lists** at A Level. Match type to **data structure** in the question." },
+    { "type": "practice", "label": "Mark a user-defined types question", "href": "/mark?subject=9618&topic=13.1" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

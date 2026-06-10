@@ -1,0 +1,74 @@
+{
+  "slug": "3-7-vectors",
+  "topicCode": "3.7",
+  "title": "Vectors",
+  "paper": "P3",
+  "paperName": "Pure Mathematics 3",
+  "status": "premium",
+  "summary": "Free 9709 Pure Maths 3 vectors — component form, vector addition, magnitude, direction, and the scalar (dot) product with exam-style reasoning.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "simpleExplanation": {
+    "title": "Arrows with components",
+    "summary": "Vectors have magnitude and direction. On Paper 3 you add in component form, find length and angle, and use the dot product for angles and projections.",
+    "steps": [
+      "Write each vector in component form using i and j (or a column vector).",
+      "Add component-wise: the resultant has components (a₁+b₁, a₂+b₂).",
+      "Find |R| = √(Rx² + Ry²) and direction from tan θ = Ry/Rx.",
+      "Use a·b = |a||b|cos θ for angles, perpendicularity (a·b = 0), and projections."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Vectors on Paper 3** extend the 2D work from earlier papers. You combine vectors in **component form**, find **magnitude and direction**, and use the **scalar product** for angles between lines — a favourite source of M1/A1 split marks."
+    },
+    {
+      "type": "heading",
+      "content": "Component form & addition"
+    },
+    {
+      "type": "formula",
+      "content": "a = a₁i + a₂j, b = b₁i + b₂j ⇒ a + b = (a₁+b₁)i + (a₂+b₂)j. Magnitude |a| = √(a₁² + a₂²)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use i, j unit vectors or column notation consistently",
+        "Add corresponding components — x with x, y with y",
+        "Direction angle: tan θ = a₂/a₁ (watch quadrant)",
+        "Scalar product: a·b = a₁b₁ + a₂b₂ = |a||b|cos θ"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Scalar (dot) product"
+    },
+    {
+      "type": "text",
+      "content": "When vectors are **perpendicular**, a·b = 0 — use this to find unknown components. For the angle between two vectors, cos θ = (a·b)/(|a||b|). Show **numerator and denominators** separately before rounding."
+    },
+    {
+      "type": "workedExample",
+      "question": "a = 3i + 4j, b = i − 2j. Find |a + b|.",
+      "solution": "a + b = (3+1)i + (4−2)j = 4i + 2j.\n\n|a + b| = √(4² + 2²) = √20 = 2√5."
+    },
+    {
+      "type": "examTip",
+      "content": "Draw a quick diagram for geometry questions — it clarifies which vector is **a − b** vs **b − a**. Keep surd form until the final line unless the paper specifies decimal answers."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a vectors question",
+      "href": "/mark?subject=9709&topic=3.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
+        { "label": "Error carried forward (ECF)", "href": "/blog/understanding-error-carried-forward-ecf" },
+        { "label": "Free full 9709 course index", "href": "/courses/9709" }
+      ]
+    }
+  ]
+}

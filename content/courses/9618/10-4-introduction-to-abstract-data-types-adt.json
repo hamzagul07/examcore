@@ -1,0 +1,32 @@
+{
+  "slug": "10-4-introduction-to-abstract-data-types-adt",
+  "topicCode": "10.4",
+  "title": "Introduction to Abstract Data Types (ADT)",
+  "paper": "P2",
+  "paperName": "Fundamental Problem-solving and Programming Skills",
+  "status": "premium",
+  "summary": "9618 AS — stacks, queues, linked lists, and ADT operations vs implementation.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Define abstract data type and its operations.",
+    "Describe stack, queue, and linked list ADTs.",
+    "Compare array vs linked implementations.",
+    "Choose appropriate ADT for scenarios."
+  ],
+  "simpleExplanation": {
+    "title": "What not how",
+    "summary": "An ADT defines operations (push, pop) without specifying implementation. Stacks are LIFO; queues are FIFO.",
+    "steps": [
+      "Stack: push, pop, peek — LIFO.",
+      "Queue: enqueue, dequeue — FIFO.",
+      "Linked list: dynamic nodes with pointers.",
+      "Array implementation — fixed size but fast index access."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**ADTs** (10.4) are tested with **diagrams** and **pseudocode**. Draw **pointer changes** for linked list insert/delete." },
+    { "type": "practice", "label": "Mark an ADT question", "href": "/mark?subject=9618&topic=10.4" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

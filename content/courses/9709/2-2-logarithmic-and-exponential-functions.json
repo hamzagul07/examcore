@@ -1,0 +1,53 @@
+{
+  "slug": "2-2-logarithmic-and-exponential-functions",
+  "topicCode": "2.2",
+  "title": "Logarithmic and exponential functions",
+  "paper": "P2",
+  "paperName": "Pure Mathematics 2",
+  "status": "premium",
+  "summary": "9709 P2 logs and exponentials — laws of logarithms, solving equations, and graphs of a^x and log_a(x) with PhET Function Builder.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Use laws of logarithms to simplify and solve equations.",
+    "Convert between exponential and logarithmic forms.",
+    "Sketch and interpret graphs of y = a^x and y = log_a(x).",
+    "Solve exponential growth and decay problems."
+  ],
+  "simpleExplanation": {
+    "title": "Inverse partners",
+    "summary": "Logarithms undo exponentials: if y = a^x then x = log_a(y). They turn multiplication into addition — essential for solving equations where x is in the index.",
+    "steps": [
+      "Laws: log(ab) = log a + log b; log(a^n) = n log a; log(1) = 0.",
+      "ln x is log_e x; e ≈ 2.718 — natural exponential y = e^x.",
+      "To solve a^x = b: take log of both sides → x log a = log b.",
+      "Exponential decay: y = Ae^(-kt) for half-life and cooling models."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Logarithms** on P2 feed into **P3 integration** (ln x) and **statistics**. Cambridge tests **change of base** and **linearising** exponential data (y = ab^x → log-linear plot)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve 3^(2x−1) = 5.",
+      "solution": "Take ln of both sides:\n\n(2x − 1) ln 3 = ln 5\n\n2x = 1 + ln 5/ln 3\n\nx = **(1 + ln 5/ln 3)/2** ≈ 1.14"
+    },
+    {
+      "type": "examTip",
+      "content": "When linearising y = ab^x, plot **ln y** against **x** — gradient = ln b, intercept = ln a. State this clearly for interpretation marks."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a logarithms question",
+      "href": "/mark?subject=9709&topic=2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 course index", "href": "/courses/9709" }
+      ]
+    }
+  ]
+}

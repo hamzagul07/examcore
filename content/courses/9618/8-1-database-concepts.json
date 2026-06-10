@@ -1,0 +1,53 @@
+{
+  "slug": "8-1-database-concepts",
+  "topicCode": "8.1",
+  "title": "Database Concepts",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — flat files vs databases, DBMS benefits, data integrity, and entity-relationship modelling.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Compare flat-file and relational database approaches.",
+    "Define DBMS and describe its functions.",
+    "Explain data redundancy, inconsistency, and integrity.",
+    "Interpret simple E-R diagrams and keys."
+  ],
+  "simpleExplanation": {
+    "title": "Organised data storage",
+    "summary": "Databases reduce redundancy by linking tables through keys. A DBMS manages storage, security, backup, and concurrent access.",
+    "steps": [
+      "Flat file: single table — duplication causes update anomalies.",
+      "Relational model: tables linked by primary/foreign keys.",
+      "Primary key uniquely identifies a record; foreign key links tables.",
+      "Normalisation removes redundancy (1NF, 2NF, 3NF at A Level)."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Database concepts** (8.1) lead to **SQL** (8.2) and the Paper 3 practical. Understand **keys**, **relationships**, and **normalisation** arguments before writing queries."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "DBMS provides security, backup, concurrency control, data dictionary",
+        "Entity = table; attribute = field; tuple = record",
+        "1:1, 1:N, M:N relationships in E-R diagrams",
+        "Referential integrity: FK must match existing PK or be NULL"
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a database question",
+      "href": "/mark?subject=9618&topic=8.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9618 course index", "href": "/courses/9618" }
+      ]
+    }
+  ]
+}

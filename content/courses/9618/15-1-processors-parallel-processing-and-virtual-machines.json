@@ -1,0 +1,32 @@
+{
+  "slug": "15-1-processors-parallel-processing-and-virtual-machines",
+  "topicCode": "15.1",
+  "title": "Processors, Parallel Processing and Virtual Machines",
+  "paper": "P3",
+  "paperName": "Advanced Theory",
+  "status": "premium",
+  "summary": "9618 A Level — CPU architecture extensions, parallelism, and virtualisation.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Explain pipelining in the fetch–execute cycle.",
+    "Compare multi-core and parallel architectures.",
+    "Describe virtual machines and hypervisors.",
+    "Evaluate benefits and overheads of virtualisation."
+  ],
+  "simpleExplanation": {
+    "title": "More throughput from one machine",
+    "summary": "Pipelining overlaps instruction stages. Multiple cores run threads in parallel. VMs run guest OSes on shared hardware.",
+    "steps": [
+      "Pipeline: fetch, decode, execute overlap.",
+      "Multi-core: independent ALUs share bus.",
+      "Hypervisor manages VM resources.",
+      "SIMD: same operation on many data items."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**Parallel processing** (15.1) extends **4.1 CPU architecture**. Use the **interactive logic builder** to visualise multi-stage processing." },
+    { "type": "practice", "label": "Mark a parallel processing question", "href": "/mark?subject=9618&topic=15.1" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

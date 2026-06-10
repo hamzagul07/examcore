@@ -1,0 +1,49 @@
+{
+  "slug": "1-3-compression",
+  "topicCode": "1.3",
+  "title": "Compression",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — lossless vs lossy compression, run-length encoding, and when each technique suits text, images, audio, and video.",
+  "durationMin": 18,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Distinguish lossless and lossy compression.",
+    "Explain run-length encoding (RLE) with an example.",
+    "Describe how JPEG and MP3 use lossy methods.",
+    "Evaluate trade-offs between file size and quality."
+  ],
+  "simpleExplanation": {
+    "title": "Smaller files, same (or nearly same) content",
+    "summary": "Compression reduces storage and transmission cost. Lossless allows perfect reconstruction; lossy discards imperceptible detail for higher ratios.",
+    "steps": [
+      "Lossless: Huffman, RLE, ZIP — text, executables, medical images.",
+      "RLE: store count + value for runs (e.g. AAAAB → 4A1B).",
+      "Lossy: JPEG (DCT, quantisation), MP3 (psychoacoustics) — media.",
+      "Higher compression often means longer encode/decode time."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Compression** (1.3) appears in structured questions on **encoding** and **file formats**. Show a **worked RLE** example and state **why** lossy is acceptable for photos but not for program files."
+    },
+    {
+      "type": "workedExample",
+      "question": "Apply RLE to the string AAAABBBCC.",
+      "solution": "Scan left to right:\n\nA×4, B×3, C×2\n\n**Encoded:** 4A3B2C (scheme may vary — state your convention)"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a compression question",
+      "href": "/mark?subject=9618&topic=1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9618 course index", "href": "/courses/9618" }
+      ]
+    }
+  ]
+}

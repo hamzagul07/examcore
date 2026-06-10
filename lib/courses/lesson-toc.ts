@@ -10,23 +10,30 @@ export { headingToId, extractKeyTakeaways } from '@/lib/courses/lesson-toc-helpe
 export function buildLessonToc(
   lesson: CourseLesson,
   enriched: EnrichedVisualLesson,
-  partitioned: PartitionedVisualBlocks
+  partitioned: PartitionedVisualBlocks,
+  options?: { hasInteractiveEmbed?: boolean }
 ): TocEntry[] {
   const entries: TocEntry[] = []
   const workedExamples = extractWorkedExamples(lesson)
   const takeaways = extractKeyTakeaways(lesson)
   const hasNotes = hasRenderableNotes(lesson, enriched)
   const hasVisual =
+    options?.hasInteractiveEmbed ||
     partitioned.heroVisual !== null ||
     partitioned.stepCarousel !== null ||
-    partitioned.diagramImage !== null || partitioned.diagramImages.length > 0
+    partitioned.diagramImage !== null ||
+    partitioned.diagramImages.length > 0
 
   if (lesson.simpleExplanation) {
     entries.push({ id: 'simple-explanation', label: 'Simple explanation', level: 2 })
   }
 
   if (hasVisual) {
-    entries.push({ id: 'visual-learning', label: 'Visual learning', level: 2 })
+    entries.push({
+      id: 'visual-learning',
+      label: options?.hasInteractiveEmbed ? 'Live interactive' : 'Visual learning',
+      level: 2,
+    })
   }
 
   if (partitioned.formulaVisuals.length) {
@@ -54,16 +61,20 @@ export function buildLessonToc(
     entries.push({ id: 'concept-map', label: 'Concept map', level: 2 })
   }
 
-  if (partitioned.keyTerms) {
-    entries.push({ id: 'glossary', label: 'Glossary', level: 2 })
-  }
-
-  if (partitioned.quickCheck) {
-    entries.push({ id: 'quick-check', label: 'Quick check', level: 2 })
-  }
-
-  if (partitioned.flashcards) {
-    entries.push({ id: 'flashcards', label: 'Flashcards', level: 2 })
+  if (partitioned.keyTerms || partitioned.quickCheck || partitioned.flashcards) {
+    if (options?.hasInteractiveEmbed) {
+      entries.push({ id: 'revision-tools', label: 'Revision tools', level: 2 })
+    } else {
+      if (partitioned.keyTerms) {
+        entries.push({ id: 'glossary', label: 'Glossary', level: 2 })
+      }
+      if (partitioned.quickCheck) {
+        entries.push({ id: 'quick-check', label: 'Quick check', level: 2 })
+      }
+      if (partitioned.flashcards) {
+        entries.push({ id: 'flashcards', label: 'Flashcards', level: 2 })
+      }
+    }
   }
 
   if (takeaways.length) {

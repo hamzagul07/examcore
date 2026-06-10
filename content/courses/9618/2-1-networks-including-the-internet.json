@@ -1,0 +1,53 @@
+{
+  "slug": "2-1-networks-including-the-internet",
+  "topicCode": "2.1",
+  "title": "Networks including the internet",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — LAN/WAN topologies, TCP/IP layers, routing, DNS, and client-server vs peer-to-peer models.",
+  "durationMin": 24,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Compare LAN, WAN, and WLAN with examples.",
+    "Describe star, bus, and mesh topologies.",
+    "Explain the role of IP, TCP, routers, and DNS.",
+    "Contrast client-server and peer-to-peer architectures."
+  ],
+  "simpleExplanation": {
+    "title": "Connected systems",
+    "summary": "Networks link devices to share resources. The internet is a global WAN using packet switching and layered protocols.",
+    "steps": [
+      "Star topology: central switch — one cable failure isolates one node.",
+      "Packet switching: data split into packets with headers; routed independently.",
+      "TCP: reliable delivery; IP: addressing and routing between networks.",
+      "DNS maps domain names (e.g. example.com) to IP addresses."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Networks** (2.1) underpin **security** (6.1) and **web technologies** (A Level). Draw **topology diagrams** and trace a **DNS lookup → TCP connection** sequence."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "NIC, MAC address (layer 2); IP address (layer 3)",
+        "Router forwards packets between networks using routing tables",
+        "HTTP/HTTPS run over TCP — port 80/443",
+        "Cloud services often use client-server over the internet"
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a networks question",
+      "href": "/mark?subject=9618&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9618 course index", "href": "/courses/9618" }
+      ]
+    }
+  ]
+}

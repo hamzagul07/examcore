@@ -1,0 +1,53 @@
+{
+  "slug": "4-1-central-processing-unit-cpu-architecture",
+  "topicCode": "4.1",
+  "title": "Central Processing Unit (CPU) Architecture",
+  "paper": "P1",
+  "paperName": "Theory Fundamentals",
+  "status": "premium",
+  "summary": "9618 AS — CPU components, fetch-decode-execute cycle, registers, buses, and performance factors.",
+  "durationMin": 26,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Describe CPU components: ALU, CU, registers, cache.",
+    "Explain the fetch-decode-execute cycle.",
+    "Distinguish Von Neumann and Harvard architectures.",
+    "Evaluate factors affecting CPU performance."
+  ],
+  "simpleExplanation": {
+    "title": "The brain of the computer",
+    "summary": "The CPU executes instructions stored in memory. The FDE cycle fetches each instruction, decodes it, and executes the required operation.",
+    "steps": [
+      "Fetch: PC → MAR → memory → MDR → IR; PC increments.",
+      "Decode: CU interprets opcode in IR.",
+      "Execute: ALU performs calculation or data transfer occurs.",
+      "Performance: clock speed, cores, cache size, word length, pipelining."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**CPU architecture** (4.1) is core 9618 theory. Examiners require **register-level detail** in FDE descriptions — name **PC, MAR, MDR, IR, ACC** and state what each holds at each stage."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Von Neumann: single memory for data and instructions",
+        "Harvard: separate program and data memory (parallel fetch)",
+        "Cache: L1/L2/L3 reduce average memory access time",
+        "Pipelining overlaps FDE stages of successive instructions"
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a CPU architecture question",
+      "href": "/mark?subject=9618&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9618 course index", "href": "/courses/9618" }
+      ]
+    }
+  ]
+}

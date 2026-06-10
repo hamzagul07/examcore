@@ -1,0 +1,53 @@
+{
+  "slug": "5-3-probability",
+  "topicCode": "5.3",
+  "title": "Probability",
+  "paper": "P5",
+  "paperName": "Probability & Statistics 1",
+  "status": "premium",
+  "summary": "9709 P5 probability — sample space, combined events, independence, and tree diagrams with GeoGebra probability explorer.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Calculate probabilities using addition and multiplication rules.",
+    "Determine whether events are mutually exclusive or independent.",
+    "Construct and use tree diagrams for multi-stage experiments.",
+    "Apply conditional probability P(A|B) = P(A ∩ B)/P(B)."
+  ],
+  "simpleExplanation": {
+    "title": "Counting what might happen",
+    "summary": "Probability quantifies uncertainty on a 0–1 scale. Combine rules carefully: 'or' uses addition (if exclusive), 'and' uses multiplication (if independent).",
+    "steps": [
+      "P(A) between 0 and 1; P(not A) = 1 − P(A).",
+      "Mutually exclusive: P(A or B) = P(A) + P(B).",
+      "Independent: P(A and B) = P(A) × P(B).",
+      "Tree diagrams: multiply along branches, add disjoint outcomes."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Probability** on P5 underpins **discrete distributions** (5.4) and **normal approximation** (5.5). Tree diagrams are the safest method for **conditional** exam questions."
+    },
+    {
+      "type": "workedExample",
+      "question": "P(rain) = 0.3 each day, independent. Find P(dry on Mon and Tue).",
+      "solution": "P(dry) = 0.7\n\nP(dry both days) = 0.7 × 0.7 = **0.49**"
+    },
+    {
+      "type": "examTip",
+      "content": "For conditional probability, **always define events** and quote P(A|B) = P(A∩B)/P(B). Venn diagrams help for two-event problems."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a probability question",
+      "href": "/mark?subject=9709&topic=5.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 course index", "href": "/courses/9709" }
+      ]
+    }
+  ]
+}

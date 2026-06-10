@@ -1,0 +1,58 @@
+{
+  "slug": "4-1-the-gaseous-state-ideal-and-real-gases-and-pv-nrt",
+  "topicCode": "4.1",
+  "title": "The gaseous state: ideal and real gases and pV = nRT",
+  "paper": "AS",
+  "paperName": "AS Level Subject Content",
+  "status": "premium",
+  "summary": "9701 AS gas laws and the ideal gas equation pV = nRT — with PhET Gas Properties simulation for visualising particle behaviour.",
+  "durationMin": 20,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "State the assumptions of the kinetic theory of ideal gases.",
+    "Apply pV = nRT with correct units (Pa, m³, K or kPa, dm³).",
+    "Combine gas laws: Boyle, Charles, and the ideal gas equation.",
+    "Explain deviations from ideal behaviour at high pressure and low temperature."
+  ],
+  "simpleExplanation": {
+    "title": "Particles in a box",
+    "summary": "Ideal gases have particles that move randomly, collide elastically, and occupy negligible volume. The equation pV = nRT links pressure, volume, amount, and temperature.",
+    "steps": [
+      "At constant T, pressure increases when volume decreases (Boyle's law).",
+      "At constant p, volume is proportional to absolute temperature (Charles's law).",
+      "Combine into pV = nRT — always use kelvin for T and consistent pressure/volume units.",
+      "Real gases deviate when particles are close together (intermolecular forces matter)."
+    ]
+  },
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Gas calculations appear on **every 9701 AS paper**. The most common error is **unit mismatch** — mixing kPa with cm³ without converting. Use the sim to build intuition before tackling past-paper algebra."
+    },
+    {
+      "type": "formula",
+      "content": "pV = nRT | R = 8.31 J mol⁻¹ K⁻¹ (SI) | At rtp: 1 mol gas ≈ 24 dm³ | T(K) = T(°C) + 273"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the mass of CO₂ in a 500 cm³ flask at 100 kPa and 25 °C. (Mr CO₂ = 44.0)",
+      "solution": "V = 500 cm³ = 5.00 × 10⁻⁴ m³ (or use dm³: 0.500 dm³ with R = 8.31 and p in Pa — pick one system).\n\nT = 25 + 273 = 298 K\n\nn = pV/RT = (100000 × 5.00×10⁻⁴) / (8.31 × 298) = 0.0202 mol\n\nm = 0.0202 × 44.0 = **0.889 g**"
+    },
+    {
+      "type": "examTip",
+      "content": "Show **conversion to SI** or state clearly if using p in kPa and V in dm³ with an appropriate R value. Cambridge mark schemes often award a conversion mark before the final answer."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a gas law question",
+      "href": "/mark?subject=9701&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "PhET Gas Properties", "href": "https://phet.colorado.edu/en/simulations/gas-properties" },
+        { "label": "9701 course index", "href": "/courses/9701" }
+      ]
+    }
+  ]
+}

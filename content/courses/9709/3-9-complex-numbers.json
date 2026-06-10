@@ -1,0 +1,64 @@
+{
+  "slug": "3-9-complex-numbers",
+  "topicCode": "3.9",
+  "title": "Complex numbers",
+  "paper": "P3",
+  "paperName": "Pure Mathematics 3",
+  "status": "premium",
+  "summary": "9709 P3 complex numbers — Argand diagrams, modulus, argument, polar form, and De Moivre's theorem with GeoGebra complex plane explorer.",
+  "durationMin": 26,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Perform arithmetic with complex numbers in Cartesian form.",
+    "Plot numbers on an Argand diagram and find modulus and argument.",
+    "Convert between Cartesian and polar/exponential forms.",
+    "Apply De Moivre's theorem to powers and roots of complex numbers."
+  ],
+  "simpleExplanation": {
+    "title": "Numbers with imaginary parts",
+    "summary": "Complex numbers extend the real line to a plane. z = x + iy maps to (x, y); polar form uses distance r and angle θ from the positive real axis.",
+    "steps": [
+      "Add/subtract component-wise; multiply using (a+bi)(c+di) = ac − bd + i(ad + bc).",
+      "Modulus |z| = √(x² + y²); argument arg z measured anticlockwise from positive real axis.",
+      "Polar: z = r(cos θ + i sin θ) = re^(iθ).",
+      "De Moivre: (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ — use for zⁿ and nth roots."
+    ]
+  },
+  "flashcards": [
+    { "front": "i² equals?", "back": "−1" },
+    { "front": "Modulus of 3 + 4i?", "back": "|z| = √(9 + 16) = 5" },
+    { "front": "Conjugate of a + bi?", "back": "a − bi — product with z gives |z|² (real)." },
+    { "front": "De Moivre's theorem?", "back": "(cos θ + i sin θ)ⁿ = cos nθ + i sin nθ" }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "**Complex numbers** are a core P3 topic — loci in the Argand diagram, solving polynomial equations with non-real roots, and De Moivre appear regularly on Paper 3."
+    },
+    {
+      "type": "formula",
+      "content": "|z| = √(x² + y²) | arg z = tan⁻¹(y/x) (correct quadrant) | z* = x − iy | z z* = |z|²"
+    },
+    {
+      "type": "workedExample",
+      "question": "Express (1 + i)⁶ in the form x + iy.",
+      "solution": "|1+i| = √2, arg = π/4.\n\n(1+i)⁶ = (√2)⁶ (cos(6×π/4) + i sin(6×π/4))\n= 8 (cos(3π/2) + i sin(3π/2))\n= 8(0 − i) = **−8i**."
+    },
+    {
+      "type": "examTip",
+      "content": "For loci questions, sketch first: **|z − a| = r** is a circle; **|z − a| = |z − b|** is a perpendicular bisector; **arg(z − a) = α** is a half-line."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a complex numbers question",
+      "href": "/mark?subject=9709&topic=3.9"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9709 course index", "href": "/courses/9709" },
+        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" }
+      ]
+    }
+  ]
+}

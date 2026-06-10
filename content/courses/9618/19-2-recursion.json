@@ -1,0 +1,32 @@
+{
+  "slug": "19-2-recursion",
+  "topicCode": "19.2",
+  "title": "Recursion",
+  "paper": "P4",
+  "paperName": "Practical",
+  "status": "premium",
+  "summary": "9618 P4 — recursive procedures, base cases, and stack behaviour.",
+  "durationMin": 22,
+  "updated": "2026-06-10",
+  "learningObjectives": [
+    "Define recursion and base case.",
+    "Trace recursive calls on the stack.",
+    "Write recursive pseudocode for factorial and Fibonacci.",
+    "Compare recursion with iteration."
+  ],
+  "simpleExplanation": {
+    "title": "Functions that call themselves",
+    "summary": "Recursion solves problems by reducing them to smaller instances until a base case stops the calls.",
+    "steps": [
+      "Every recursive function needs a base case.",
+      "Each call pushes a stack frame.",
+      "Unwind returns values up the chain.",
+      "Infinite recursion overflows the stack."
+    ]
+  },
+  "sections": [
+    { "type": "intro", "content": "**Recursion** (19.2) follows **19.1 algorithms**. Examiners often ask for **trace of stack** on paper." },
+    { "type": "practice", "label": "Mark a recursion question", "href": "/mark?subject=9618&topic=19.2" },
+    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
+  ]
+}

@@ -43,8 +43,8 @@ export default function ForgotPasswordPage() {
     <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
       {!sent ? (
         <>
-          <p className="ec-label-tech mb-3">PASSWORD RESET</p>
-          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
+          <p className="ec-eyebrow mb-3">Password reset</p>
+          <h1 className="text-hero mb-3">
             Reset your <span className="ec-text-gradient">password</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">

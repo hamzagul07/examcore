@@ -1,15 +1,11 @@
 import { cookies, headers } from 'next/headers'
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
-import {
-  MarketingHero,
-  MarketingPageShell,
-  MarketingSection,
-} from '@/components/marketing/MarketingPageShell'
 import { FaqAccordion } from '@/components/marketing/FaqAccordion'
 import type { FaqCategory } from '@/lib/faq-data'
 import { PricingClient } from '@/components/pricing/PricingClient'
 import { EnforcementNotice } from '@/components/marketing/EnforcementNotice'
+import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { createClient } from '@/lib/supabase-server'
 import { resolveRegion, REGION_COOKIE } from '@/lib/billing/region-cookie'
 import { getPricingDisplay } from '@/lib/billing/display-prices'
@@ -91,35 +87,37 @@ export default async function PricingPage() {
           { name: 'Pricing', path: '/pricing' },
         ]}
       />
-      <MarketingHero
-        label="PRICING"
-        title={
-          <>
-            Pick a plan that fits <span className="ec-text-gradient">your study</span>
-          </>
-        }
-        lead="Cancel anytime. No card required for Free. Founding members get permanent early-access pricing."
-      />
 
-      <EnforcementNotice />
+      <div className="ms-pg ms-price-page">
+        <p className="ms-overline">Pricing</p>
+        <h1 className="ms-h2">
+          The courses are free. <em>The marking scales.</em>
+        </h1>
+        <p className="ms-lead">
+          Start free, no card. Founding members get 50% off forever.
+        </p>
 
-      <MarketingSection className="!pt-0">
-        <div className="mx-auto max-w-6xl">
-          <PricingClient
-            display={display}
-            signedIn={Boolean(user)}
-            currentTier={currentTier}
-            founding={founding}
-            region={{ currency: region.currency, country: region.country, override: region.override }}
-          />
-        </div>
-      </MarketingSection>
+        <EnforcementNotice />
 
-      <MarketingSection>
+        <PricingClient
+          display={display}
+          signedIn={Boolean(user)}
+          currentTier={currentTier}
+          founding={founding}
+          region={{ currency: region.currency, country: region.country, override: region.override }}
+        />
+
+        <p className="ms-micro" style={{ textAlign: 'center', marginTop: 30 }}>
+          NOT ENDORSED BY CAMBRIDGE INTERNATIONAL · CANCEL ANYTIME · STUDENT-BUILT,
+          STUDENT-PRICED
+        </p>
+      </div>
+
+      <section className="ms-pg ms-sec" style={{ paddingTop: 48 }}>
         <div className="mx-auto max-w-3xl">
           <FaqAccordion categories={PRICING_FAQ} />
         </div>
-      </MarketingSection>
+      </section>
     </MarketingPageShell>
   )
 }

@@ -91,11 +91,11 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
       >
         <header className="course-studio-hero mb-8">
           <div>
-            <p className="course-studio-label mb-2">
+            <p className="ms-overline" style={{ marginBottom: 8 }}>
               {course.level} · {code} · Free premium course
             </p>
-            <h1 className="course-studio-title">{course.name}</h1>
-            <p className="course-studio-lead">
+            <h1 className="ms-h2">{course.name}</h1>
+            <p className="course-studio-lead mt-3">
               {hasPaperChoice && activeTrack ? (
                 <>
                   <strong className="text-[var(--ec-text-primary)]">{activeTrack.shortName}</strong>

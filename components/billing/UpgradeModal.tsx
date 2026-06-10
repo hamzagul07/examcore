@@ -60,7 +60,7 @@ export function UpgradeModal({
 
   return (
     <Sheet open={open} onClose={onClose} title={title}>
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border ec-tint-success-icon">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border ec-tint-brand-icon">
         <Sparkles className="h-6 w-6 ec-text-brand" />
       </div>
 

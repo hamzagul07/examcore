@@ -1,6 +1,7 @@
 import { SITE_NAME } from '@/lib/site-config'
 import { getClusterForSlug } from '@/lib/seo/clusters'
 import { extractSyllabusCode } from '@/lib/blog/meta'
+import { headingSlug, isSkippedBlogHeading } from '@/lib/blog/heading-slug'
 
 export type FanOutChunk = {
   id: string
@@ -11,9 +12,6 @@ export type FanOutChunk = {
   bodyMarkdown: string
   subIntent: string
 }
-
-const SKIP_SECTIONS =
-  /^(what to read|bottom line|sources|references|table of contents)/i
 
 /** Cambridge entity tokens to strengthen passage retrieval. */
 const ENTITY_TOKENS = [
@@ -26,11 +24,7 @@ const ENTITY_TOKENS = [
 ]
 
 function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .slice(0, 72)
+  return headingSlug(text)
 }
 
 function inferSubIntent(heading: string, slug: string): string {
@@ -45,7 +39,10 @@ function inferSubIntent(heading: string, slug: string): string {
 }
 
 function ensureEntityLead(heading: string, firstPara: string, slug: string): string {
-  const trimmed = firstPara.replace(/\*\*/g, '').trim()
+  let trimmed = firstPara.replace(/\*\*/g, '').trim()
+  if (!trimmed || isTableBlock(trimmed) || /\|.*\|/.test(trimmed)) {
+    trimmed = `This section covers ${heading} — ranked by what Cambridge examiners return to most often in past papers.`
+  }
   const hasEntity = ENTITY_TOKENS.some((t) =>
     trimmed.toLowerCase().includes(t.toLowerCase())
   )
@@ -58,6 +55,105 @@ function ensureEntityLead(heading: string, firstPara: string, slug: string): str
     : `For Cambridge ${cluster.headTerm}, `
   const core = trimmed || heading
   return `${prefix}${core.charAt(0).toLowerCase()}${core.slice(1)}`
+}
+
+function isTableBlock(block: string): boolean {
+  const lines = block.trim().split('\n').filter((l) => l.trim())
+  if (lines.length < 2) return false
+  return lines.every((l) => /^\|/.test(l.trim()))
+}
+
+function isCodeFenceBlock(block: string): boolean {
+  return block.trim().startsWith('```')
+}
+
+function isListBlock(block: string): boolean {
+  const lines = block.trim().split('\n').filter((l) => l.trim())
+  if (lines.length === 0) return false
+  return lines.every((l) => /^(\d+\.|[-*+])\s/.test(l.trim()))
+}
+
+function isProseParagraph(block: string): boolean {
+  const t = block.trim()
+  if (!t || t.startsWith('#')) return false
+  if (isTableBlock(t)) return false
+  if (isCodeFenceBlock(t)) return false
+  if (isListBlock(t)) return false
+  return true
+}
+
+/** Split markdown into blocks without breaking GFM tables or fenced code. */
+export function splitMarkdownBlocks(markdown: string): string[] {
+  const blocks: string[] = []
+  let buf: string[] = []
+  let inFence = false
+
+  const flush = () => {
+    const joined = buf.join('\n').trim()
+    if (joined) blocks.push(joined)
+    buf = []
+  }
+
+  for (const line of markdown.split('\n')) {
+    if (line.startsWith('```')) {
+      buf.push(line)
+      inFence = !inFence
+      if (!inFence) flush()
+      continue
+    }
+    if (inFence) {
+      buf.push(line)
+      continue
+    }
+
+    if (/^\|/.test(line.trim())) {
+      if (buf.length && !/^\|/.test(buf[buf.length - 1]?.trim() ?? '')) {
+        flush()
+      }
+      buf.push(line)
+      continue
+    }
+
+    if (line.trim() === '') {
+      flush()
+      continue
+    }
+
+    if (buf.length && /^\|/.test(buf[0]?.trim() ?? '')) {
+      flush()
+    }
+    buf.push(line)
+  }
+  flush()
+  return blocks
+}
+
+function extractLeadAndBody(
+  bodyMd: string,
+  heading: string,
+  slug: string
+): { lead: string; bodyMarkdown: string } {
+  const trimmed = bodyMd.trim()
+  if (!trimmed) {
+    return { lead: ensureEntityLead(heading, '', slug), bodyMarkdown: '' }
+  }
+
+  const blocks = splitMarkdownBlocks(trimmed)
+  const proseIdx = blocks.findIndex(isProseParagraph)
+
+  if (proseIdx === -1) {
+    return {
+      lead: ensureEntityLead(heading, '', slug),
+      bodyMarkdown: trimmed,
+    }
+  }
+
+  const leadPara = blocks[proseIdx]
+  const bodyBlocks = blocks.filter((_, i) => i !== proseIdx)
+  return {
+    lead: ensureEntityLead(heading, leadPara, slug),
+    bodyMarkdown: bodyBlocks.join('\n\n').trim(),
+  }
 }
 
 /**
@@ -73,22 +169,19 @@ export function parseFanOutChunks(content: string, slug: string): FanOutChunk[] 
   let preamble: string[] = []
 
   const flush = () => {
-    if (!heading || SKIP_SECTIONS.test(heading)) {
+    if (!heading || isSkippedBlogHeading(heading)) {
       heading = ''
       body = []
       return
     }
     const bodyMd = body.join('\n').trim()
-    const paras = bodyMd.split('\n\n').filter((p) => p.trim() && !p.startsWith('#'))
-    const firstPara = paras[0] ?? ''
-    const restBody = paras.slice(1).join('\n\n').trim()
-    const lead = ensureEntityLead(heading, firstPara, slug)
+    const { lead, bodyMarkdown } = extractLeadAndBody(bodyMd, heading, slug)
     chunks.push({
       id: slugify(heading),
       heading,
       level,
       lead,
-      bodyMarkdown: restBody,
+      bodyMarkdown,
       subIntent: inferSubIntent(heading, slug),
     })
     heading = ''
@@ -101,14 +194,13 @@ export function parseFanOutChunks(content: string, slug: string): FanOutChunk[] 
     if (h2) {
       if (!heading && preamble.length) {
         const pre = preamble.join('\n').trim()
-        const paras = pre.split('\n\n').filter((p) => p.trim())
-        const firstPara = paras[0] ?? ''
+        const { lead, bodyMarkdown } = extractLeadAndBody(pre, 'Overview', slug)
         chunks.push({
           id: 'overview',
           heading: 'Overview',
           level: 2,
-          lead: ensureEntityLead('Overview', firstPara, slug),
-          bodyMarkdown: paras.slice(1).join('\n\n').trim(),
+          lead,
+          bodyMarkdown,
           subIntent: 'overview',
         })
         preamble = []
@@ -130,12 +222,13 @@ export function parseFanOutChunks(content: string, slug: string): FanOutChunk[] 
   flush()
   if (preamble.length && chunks.length === 0) {
     const pre = preamble.join('\n').trim()
+    const { lead, bodyMarkdown } = extractLeadAndBody(pre, 'Overview', slug)
     chunks.push({
       id: 'overview',
       heading: 'Overview',
       level: 2,
-      lead: ensureEntityLead('Overview', pre.split('\n\n')[0] ?? '', slug),
-      bodyMarkdown: pre,
+      lead,
+      bodyMarkdown,
       subIntent: 'overview',
     })
   }

@@ -1,6 +1,6 @@
 import { MarketingHeader } from '@/components/layout/MarketingHeader'
 import { MarketingFooter } from '@/components/layout/MarketingFooter'
-import { WireframeBackgroundGate } from '@/components/design-system/WireframeBackgroundGate'
+import { ScrollProgressBar } from '@/components/design-system/ScrollProgressBar'
 
 export default function MarketingLayout({
   children,
@@ -9,7 +9,7 @@ export default function MarketingLayout({
 }) {
   return (
     <>
-      <WireframeBackgroundGate />
+      <ScrollProgressBar />
       <MarketingHeader />
       {children}
       <MarketingFooter />

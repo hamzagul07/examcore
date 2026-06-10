@@ -18,9 +18,9 @@ export function BlogAuthorByline({ authorId }: Props) {
         {author.name.charAt(0)}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+        <p className="ms-body-2 font-semibold text-[var(--ec-text-primary)]">
           Written by{' '}
-          <Link href={author.url} className="ec-link">
+          <Link href={author.url} className="ec-btn-underline">
             {author.name}
           </Link>
           <span className="font-normal text-[var(--ec-text-secondary)]">
@@ -28,16 +28,11 @@ export function BlogAuthorByline({ authorId }: Props) {
             · {author.role}
           </span>
         </p>
-        <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-          {author.bio}
-        </p>
-        <ul className="mt-2 flex flex-wrap gap-2">
+        <p className="ms-body-2 mt-1">{author.bio}</p>
+        <ul className="ms-hub-strip mt-2">
           {author.credentials.map((c) => (
-            <li
-              key={c}
-              className="rounded-full border border-[var(--ec-border)] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[var(--ec-text-secondary)]"
-            >
-              {c}
+            <li key={c}>
+              <span className="ec-chip-ms ec-chip-ms--outline">{c}</span>
             </li>
           ))}
         </ul>

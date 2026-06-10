@@ -42,5 +42,11 @@ html[data-ec-theme='zen'] .bg-dark-900\/60 {
 html[data-ec-theme='zen'] .ec-on-brand-text,
 html[data-ec-theme='zen'] .ec-btn-send,
 html[data-ec-theme='zen'] .ec-fab-brand {
-  color: #fffdf9 !important;
+  color: var(--ec-on-brand-text) !important;
+}
+
+html[data-ec-theme='late-night'] .ec-on-brand-text,
+html[data-ec-theme='late-night'] .ec-btn-send,
+html[data-ec-theme='late-night'] .ec-fab-brand {
+  color: var(--ec-on-brand-text) !important;
 }

@@ -94,7 +94,7 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
               </div>
               <div className="flex shrink-0 items-center gap-3">
                 <div className="text-right">
-                  <div className={`text-3xl font-extrabold tracking-tight ${scoreColor}`}>
+                  <div className={`ec-stat-figure text-3xl ${scoreColor}`}>
                     {attempt.marks_earned}
                     <span className="text-[var(--ec-text-secondary)]">/{attempt.total_marks}</span>
                   </div>

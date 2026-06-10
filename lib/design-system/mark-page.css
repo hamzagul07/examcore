@@ -1,0 +1,425 @@
+/* /mark flow — Margin Notes (maps prototype pages.css mark section) */
+
+.ms-mark-shell {
+  padding-top: 48px;
+}
+
+.ms-mark-pg {
+  max-width: var(--ec-maxw, 1200px);
+  margin: 0 auto;
+  padding: 0 32px;
+  min-width: 0;
+}
+
+.ms-mark-pg--narrow {
+  max-width: 48rem;
+}
+
+.ms-mark-steps-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 18px 0 40px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ec-text-faint);
+  flex-wrap: wrap;
+}
+
+.ms-mstep {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ms-mstep .dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ec-border);
+  display: grid;
+  place-items: center;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.ms-mstep.on {
+  color: var(--ec-text-primary);
+}
+
+.ms-mstep.on .dot {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+}
+
+.ms-mstep.done .dot {
+  background: var(--ec-brand);
+  border-color: var(--ec-brand);
+  color: var(--ec-on-brand-text, #fff);
+}
+
+.ms-mstep-sep {
+  width: 36px;
+  height: 1px;
+  background: var(--ec-border);
+}
+
+.ms-lvl-tabs {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--ec-bg-soft);
+  border: 1px solid var(--ec-border);
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 26px;
+}
+
+.ms-lvl-tab {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ec-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 22px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 150ms ease, box-shadow 150ms ease;
+}
+
+.ms-lvl-tab.on {
+  background: var(--ec-surface);
+  color: var(--ec-brand);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.08));
+}
+
+.ms-upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.ms-mark-form-card {
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  padding: 24px 26px;
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-mark-form-card h3 {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 500;
+  margin: 0 0 18px;
+  color: var(--ec-text-primary);
+}
+
+.ms-result-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.ms-audit {
+  position: sticky;
+  top: 96px;
+}
+
+.ms-audit-card {
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  overflow: hidden;
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-audit-head {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--ec-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.ms-audit-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 40px;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ec-border);
+  font-size: 14px;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  font-family: inherit;
+  color: inherit;
+  transition: background 120ms ease;
+}
+
+.ms-audit-row:hover {
+  background: var(--ec-bg-soft);
+}
+
+.ms-audit-row.sel {
+  background: var(--ec-brand-muted);
+}
+
+.ms-audit-row .code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.ms-audit-row.earn .code,
+.ms-audit-row.earn .pts {
+  color: var(--ec-brand);
+}
+
+.ms-audit-row.lost .code,
+.ms-audit-row.lost .pts {
+  color: var(--ec-error-ink, var(--ec-score-low, #b04848));
+}
+
+.ms-audit-row .pts {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.ms-audit-row .desc {
+  color: var(--ec-text-secondary);
+  line-height: 1.4;
+}
+
+.ms-audit-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  background: var(--ec-brand-muted);
+  border-radius: 0 0 13px 13px;
+  flex-wrap: wrap;
+}
+
+.ms-grade-pill {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ec-brand);
+  white-space: nowrap;
+}
+
+.ms-examiner-note-card {
+  margin-top: 16px;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  padding: 20px 22px;
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-greennote {
+  font-family: var(--font-handwritten, 'Caveat', cursive);
+  font-size: 21px;
+  color: var(--ec-brand);
+  display: block;
+  margin-top: 4px;
+  transform: rotate(-1deg);
+  line-height: 1.25;
+}
+
+.ms-greennote--lost {
+  color: var(--ec-error-ink, var(--ec-score-low, #b04848));
+}
+
+.ms-mark-result-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 38px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ms-band-meter {
+  display: flex;
+  gap: 6px;
+  margin: 16px 0 6px;
+}
+
+.ms-band-meter span {
+  flex: 1;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--ec-bg-soft);
+  border: 1px solid var(--ec-border);
+}
+
+.ms-band-meter span.on {
+  background: var(--ec-brand);
+  border-color: var(--ec-brand);
+}
+
+.ms-crit {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--ec-border);
+  font-size: 14px;
+}
+
+.ms-crit:last-child {
+  border-bottom: none;
+}
+
+.ms-crit .m {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  flex-shrink: 0;
+  width: 52px;
+}
+
+.ms-mark-ink-block {
+  margin-bottom: 20px;
+}
+
+.ms-mark-secondary {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+@media (max-width: 900px) {
+  .ms-mark-pg {
+    padding: 0 18px;
+  }
+
+  .ms-upload-grid,
+  .ms-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-audit {
+    position: static;
+  }
+
+  .ms-mstep-sep {
+    width: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-lvl-tab,
+  .ms-audit-row {
+    transition: none;
+  }
+}
+
+/* whole-paper result */
+.ms-wp-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.ms-wp-grade-card {
+  text-align: center;
+  padding: 36px 30px 30px;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-wp-qrow {
+  display: grid;
+  grid-template-columns: 56px 1fr minmax(90px, 120px) 64px;
+  gap: 14px;
+  align-items: center;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--ec-border);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  font-family: inherit;
+  color: inherit;
+  transition: background 120ms ease;
+}
+
+.ms-wp-qrow:hover:not(:disabled) {
+  background: var(--ec-bg-soft);
+}
+
+.ms-wp-qrow:disabled {
+  cursor: default;
+}
+
+.ms-wp-qrow .qn {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.ms-wp-qrow .qt {
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+  line-height: 1.35;
+}
+
+.ms-wp-qrow .qs {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.ms-wp-qbar {
+  height: 7px;
+  border-radius: 4px;
+  background: var(--ec-bg-soft);
+  overflow: hidden;
+  width: 100%;
+  min-width: 90px;
+}
+
+.ms-wp-qbar i {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.ms-wp-skipped {
+  opacity: 0.55;
+}
+
+@media (max-width: 900px) {
+  .ms-wp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-wp-qrow {
+    grid-template-columns: 48px 1fr 64px;
+  }
+
+  .ms-wp-qbar {
+    display: none;
+  }
+}

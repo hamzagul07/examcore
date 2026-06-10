@@ -1,8 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 
+/** Section reveal — transform-only (content visible if animation fails). */
 export function LandingSectionReveal({
   children,
   className = '',
@@ -14,10 +15,10 @@ export function LandingSectionReveal({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ y: 10 }}
+      whileInView={{ y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.55, delay, ease: [0.4, 0, 0.2, 1] }}
+      transition={{ duration: 0.4, delay, ease: [0.4, 0, 0.2, 1] }}
       className={className}
     >
       {children}

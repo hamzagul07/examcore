@@ -8,10 +8,24 @@ interface HeroHeadlineProps {
 }
 
 const headlineTypography =
-  'text-[40px] [font-weight:500] leading-[1.08] tracking-[-0.02em] text-[var(--ec-text-primary)] md:text-[56px] md:leading-[1.06] md:tracking-[-0.022em] lg:text-[72px] lg:leading-[1.05] lg:tracking-[-0.025em]'
+  'ec-display text-[clamp(2.25rem,5.4vw,4.5rem)] leading-[1.08] text-[var(--ec-text-primary)]'
+
+function renderHeadlineText(text: string) {
+  const emphasis = 'In minutes.'
+  if (text.endsWith(emphasis)) {
+    const lead = text.slice(0, -emphasis.length).trimEnd()
+    return (
+      <>
+        {lead} <em>{emphasis}</em>
+      </>
+    )
+  }
+  return text
+}
 
 export function HeroHeadline({ text }: HeroHeadlineProps) {
   const prefersReducedMotion = useReducedMotion()
+  const content = renderHeadlineText(text)
 
   if (prefersReducedMotion) {
     return (
@@ -22,7 +36,7 @@ export function HeroHeadline({ text }: HeroHeadlineProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
       >
-        {text}
+        {content}
       </motion.h1>
     )
   }
@@ -37,18 +51,21 @@ export function HeroHeadline({ text }: HeroHeadlineProps) {
       animate="visible"
       className={`flex flex-wrap justify-center gap-y-[0.1em] ${headlineTypography}`}
     >
-      {words.map((word, i) => (
-        <motion.span
-          key={`${word}-${i}`}
-          aria-hidden
-          custom={i}
-          variants={headlineWord}
-          className="inline-block"
-          style={{ marginRight: i === words.length - 1 ? 0 : '0.28em' }}
-        >
-          {word}
-        </motion.span>
-      ))}
+      {words.map((word, i) => {
+        const isEmphasis = i >= words.length - 2
+        return (
+          <motion.span
+            key={`${word}-${i}`}
+            aria-hidden
+            custom={i}
+            variants={headlineWord}
+            className={`inline-block ${isEmphasis ? 'italic text-[var(--ec-brand)]' : ''}`}
+            style={{ marginRight: i === words.length - 1 ? 0 : '0.28em' }}
+          >
+            {word}
+          </motion.span>
+        )
+      })}
     </motion.h1>
   )
 }

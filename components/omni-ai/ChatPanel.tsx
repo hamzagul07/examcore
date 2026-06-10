@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { Send, Sparkles, RotateCcw } from 'lucide-react'
+import { Send, RotateCcw, X } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
 import { StreamingMessage } from './StreamingMessage'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
@@ -10,7 +10,6 @@ import { omniCapForTier } from '@/lib/billing/caps'
 import type { SubscriptionTier } from '@/lib/database.types'
 import type { OmniAIMessage } from '@/lib/omni-ai/types'
 import {
-  getContextLabel,
   getEmptyStateMessage,
   getProactiveOpener,
 } from '@/lib/omni-ai/system-prompts'
@@ -22,6 +21,8 @@ interface ChatPanelProps {
   proactiveOpener?: boolean
   splitPaper?: boolean
   className?: string
+  showClose?: boolean
+  onClose?: () => void
 }
 
 type OmniQuotaModalState = {
@@ -70,6 +71,8 @@ export function ChatPanel({
   proactiveOpener = false,
   splitPaper = false,
   className = '',
+  showClose = false,
+  onClose,
 }: ChatPanelProps) {
   const {
     context,
@@ -83,7 +86,8 @@ export function ChatPanel({
   const [omniQuotaModal, setOmniQuotaModal] = useState<OmniQuotaModalState | null>(
     null
   )
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
+  const stickToBottomRef = useRef(true)
   const inputRef = useRef<HTMLInputElement>(null)
   const openerInjectedRef = useRef(false)
 
@@ -127,7 +131,28 @@ export function ChatPanel({
   }, [messages.length])
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const panel = messagesContainerRef.current
+    if (!panel) return
+
+    function onScroll() {
+      const el = messagesContainerRef.current
+      if (!el) return
+      const distance = el.scrollHeight - el.scrollTop - el.clientHeight
+      stickToBottomRef.current = distance < 96
+    }
+
+    panel.addEventListener('scroll', onScroll, { passive: true })
+    return () => panel.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const panel = messagesContainerRef.current
+    if (!panel || !stickToBottomRef.current) return
+
+    panel.scrollTo({
+      top: panel.scrollHeight,
+      behavior: isStreaming ? 'auto' : 'smooth',
+    })
   }, [messages, isStreaming])
 
   async function sendMessage(text: string) {
@@ -293,62 +318,37 @@ export function ChatPanel({
     <>
       <div className={`flex h-full flex-col ${className}`}>
         {showHeader && (
-          <div
-            className="flex items-center justify-between border-b px-5 py-4"
-            style={{ borderColor: 'var(--ec-border)' }}
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full ec-chat-avatar">
-                <Sparkles className="h-5 w-5 ec-on-brand-text" />
-              </div>
-              <div>
-                <h3 className="font-semibold leading-tight text-[var(--ec-text-primary)]">
-                  MarkScheme
-                </h3>
-                <p className="flex items-center gap-1.5 text-xs text-[var(--ec-brand)]">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--ec-brand)]" />
-                  {getContextLabel(context.type)}
-                </p>
-              </div>
+          <div className="ms-omni-head">
+            <h3 className="ms-omni-title">
+              Ask MarkScheme<i>.</i>
+            </h3>
+            <div className="flex items-center gap-1">
+              {messages.length > 0 && (
+                <button
+                  type="button"
+                  onClick={clearChat}
+                  className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)]"
+                  title="Clear chat"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                </button>
+              )}
+              {showClose ? (
+                <button type="button" onClick={onClose} aria-label="Close chat">
+                  <X className="h-5 w-5" />
+                </button>
+              ) : null}
             </div>
-            {messages.length > 0 && (
-              <button
-                type="button"
-                onClick={clearChat}
-                className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)]"
-                title="Clear chat"
-              >
-                <RotateCcw className="h-4 w-4" />
-              </button>
-            )}
           </div>
         )}
 
-        <div className="flex-1 space-y-4 overflow-y-auto px-5 py-4">
+        <div ref={messagesContainerRef} className="ms-omni-body">
           {messages.length === 0 && showSuggestions && (
-            <div className="py-12 text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-chat-avatar-soft">
-                <Sparkles className="h-8 w-8 ec-text-brand" />
-              </div>
-              <h4 className="mb-2 text-lg font-semibold text-[var(--ec-text-primary)]">
-                How can I help?
-              </h4>
-              <p className="mb-6 text-sm text-[var(--ec-text-secondary)]">
-                {getEmptyStateMessage(context.type)}
-              </p>
-              <div className="flex flex-wrap justify-center gap-2">
+            <div className="py-6 text-center">
+              <p className="ms-body-2 mb-4">{getEmptyStateMessage(context.type)}</p>
+              <div className="ms-omni-suggest justify-center">
                 {starterSuggestions.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => sendMessage(s)}
-                    className="min-h-[44px] rounded-full border px-4 py-2.5 text-sm transition-all ec-hover-brand-border-mild hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-brand)]"
-                    style={{
-                      borderColor: 'var(--ec-border)',
-                      background: 'var(--ec-surface-raised)',
-                      color: 'var(--ec-text-secondary)',
-                    }}
-                  >
+                  <button key={s} type="button" onClick={() => sendMessage(s)}>
                     {s}
                   </button>
                 ))}
@@ -359,38 +359,28 @@ export function ChatPanel({
           {messages.map((msg) => (
             <StreamingMessage key={msg.id} message={msg} splitPaper={splitPaper} />
           ))}
-
-          <div ref={messagesEndRef} />
         </div>
 
         <OmniUsageStrip />
-        <form
-          onSubmit={handleSubmit}
-          className="border-t px-5 py-4 backdrop-blur-xl"
-          style={{
-            borderColor: 'var(--ec-border)',
-            background: 'color-mix(in srgb, var(--ec-surface) 92%, transparent)',
-          }}
-        >
-          <div className="flex items-center gap-2">
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about your paper, mark scheme, or revision…"
-              maxLength={2000}
-              disabled={isStreaming || (isMetered && omniSubmitBlocked)}
-              className="ec-input flex-1 disabled:opacity-50"
-            />
-            <button
-              type="submit"
-              disabled={!input.trim() || isStreaming || (isMetered && omniSubmitBlocked)}
-              className="rounded-xl ec-btn-send ec-on-brand-text p-3 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              <Send className="h-5 w-5" />
-            </button>
-          </div>
+        <form onSubmit={handleSubmit} className="ms-omni-input">
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Ask about your paper or scheme…"
+            maxLength={2000}
+            disabled={isStreaming || (isMetered && omniSubmitBlocked)}
+            className="ec-input flex-1 disabled:opacity-50"
+          />
+          <button
+            type="submit"
+            disabled={!input.trim() || isStreaming || (isMetered && omniSubmitBlocked)}
+            className="ec-btn-primary ec-btn-primary--sm min-h-[44px] px-4"
+          >
+            <Send className="h-4 w-4" />
+            <span className="sr-only">Send</span>
+          </button>
         </form>
       </div>
 

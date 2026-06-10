@@ -571,7 +571,7 @@ export async function tagQuestionBatch(
     objectives
   )
 
-  let raw_response = await generateGeminiText(prompt, {
+  const raw_response = await generateGeminiText(prompt, {
     task: 'topic-tagging',
     temperature: 0.1,
     maxOutputTokens: 4096,

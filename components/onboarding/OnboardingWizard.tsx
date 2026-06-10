@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, BookOpen, LineChart, Loader2, PenLine } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
@@ -31,25 +31,21 @@ const GOAL_OPTIONS: {
   id: PrimaryGoal
   title: string
   subtitle: string
-  icon: typeof BookOpen
 }[] = [
   {
     id: 'mark_papers',
     title: 'Mark practice papers',
     subtitle: 'Most students start here',
-    icon: BookOpen,
   },
   {
     id: 'track_progress',
     title: 'Track my progress per topic',
     subtitle: 'Mastery matrix & grade trajectory',
-    icon: LineChart,
   },
   {
     id: 'essay_feedback',
     title: 'Get feedback on essays',
     subtitle: 'History, Law, Sociology & more',
-    icon: PenLine,
   },
 ]
 
@@ -170,15 +166,20 @@ export function OnboardingWizard({
 
   return (
     <>
-      <AuthShell showBetaBadge={false} backLabel={backLabel} backHref={backHref}>
+      <AuthShell
+        layout="onboarding"
+        showBetaBadge={false}
+        backLabel={backLabel}
+        backHref={backHref}
+      >
         <ProgressSteps current={step} total={TOTAL_STEPS} />
 
         <AnimatePresence mode="wait">
           <motion.div
             key={step}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            initial={{ y: 12 }}
+            animate={{ y: 0 }}
+            exit={{ y: -8 }}
             transition={{ duration: 0.2 }}
           >
             {step === 1 && (
@@ -244,24 +245,10 @@ export function OnboardingWizard({
 
 function ProgressSteps({ current, total }: { current: number; total: number }) {
   return (
-    <div className="mb-8">
-      <p className="ec-label-tech mb-3">
-        Step {current} of {total}
-      </p>
-      <div className="flex gap-2">
-        {Array.from({ length: total }, (_, i) => (
-          <div
-            key={i}
-            className="h-1.5 flex-1 rounded-full transition-colors duration-300"
-            style={{
-              background:
-                i + 1 <= current
-                  ? 'var(--ec-brand)'
-                  : 'color-mix(in srgb, var(--ec-border) 80%, transparent)',
-            }}
-          />
-        ))}
-      </div>
+    <div className="ms-ob-dots" aria-label={`Step ${current} of ${total}`}>
+      {Array.from({ length: total }, (_, i) => (
+        <span key={i} className={i + 1 <= current ? 'on' : undefined} />
+      ))}
     </div>
   )
 }
@@ -296,20 +283,18 @@ function StepWelcome({ onContinue }: { onContinue: () => void }) {
           </div>
         </div>
       </div>
-      <h1 className="text-headline text-[var(--ec-text-primary)]">
-        Welcome to <span className="ec-text-gradient">MarkScheme</span>
+      <h1 className="ms-h2">
+        Welcome to <em>MarkScheme</em>
       </h1>
-      <p className="text-body mt-4 text-[var(--ec-text-secondary)]">
+      <p className="ms-lead" style={{ marginTop: 16 }}>
         Let&apos;s set up your account so we can mark your work the way you need
         — real Cambridge schemes, honest feedback, about a minute per question.
       </p>
-      <button
-        type="button"
-        onClick={onContinue}
-        className="ec-btn-primary mt-8 w-full justify-center"
-      >
-        Let&apos;s go <ArrowRight className="h-4 w-4" />
-      </button>
+      <div className="ms-ob-nav">
+        <button type="button" onClick={onContinue} className="ec-btn-primary">
+          Let&apos;s go <ArrowRight className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   )
 }
@@ -342,34 +327,28 @@ function StepSubjects({
 
   return (
     <div>
-      <h1 className="text-headline text-[var(--ec-text-primary)]">
-        What level are you studying?
-      </h1>
-      <p className="text-body mt-3 text-[var(--ec-text-secondary)]">
+      <h1 className="ms-h2">What level are you studying?</h1>
+      <p className="ms-lead" style={{ marginTop: 12 }}>
         Pick your Cambridge level, then choose up to four subjects.
       </p>
 
-      <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
+      <div className="ms-ob-choices">
         {LEVELS.filter((l) => l.enabled).map((opt) => (
           <button
             key={opt.id}
             type="button"
             onClick={() => onLevelChange(opt.id)}
-            className={`min-h-[44px] rounded-xl border px-4 py-3 text-left text-sm font-semibold transition-all ${
-              level === opt.id
-                ? 'ec-select-active text-[var(--ec-text-primary)]'
-                : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] ec-hover-brand-border-mild'
-            }`}
+            className={`ms-ob-choice${level === opt.id ? ' on' : ''}`}
           >
-            {opt.label}
+            <b>{opt.label}</b>
           </button>
         ))}
       </div>
 
-      <h2 className="text-title mt-8 text-[var(--ec-text-primary)]">
+      <h2 className="ms-h2" style={{ marginTop: 40, fontSize: 'clamp(1.35rem, 3vw, 1.75rem)' }}>
         Which Cambridge {levelHeading} are you taking?
       </h2>
-      <p className="text-body mt-2 text-[var(--ec-text-secondary)]">
+      <p className="ms-lead" style={{ marginTop: 10, fontSize: 15 }}>
         We&apos;ll tailor papers and progress to these subjects.
       </p>
       <div className="mt-6 space-y-6 sm:max-h-[min(40vh,360px)] sm:space-y-6 sm:overflow-y-auto sm:pr-1">
@@ -378,8 +357,8 @@ function StepSubjects({
           if (!items.length) return null
           return (
             <div key={group}>
-              <p className="ec-label-tech mb-2">{group}</p>
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <p className="ms-overline mb-3">{group}</p>
+              <div className="ms-ob-subjects" style={{ justifyContent: 'flex-start' }}>
                 {items.map((subject) => {
                   const active = selected.includes(subject.id)
                   return (
@@ -387,16 +366,9 @@ function StepSubjects({
                       key={subject.code}
                       type="button"
                       onClick={() => onToggle(subject.id)}
-                      className={`min-h-[48px] rounded-xl border px-4 py-3 text-left text-sm font-semibold transition-all ${
-                        active
-                          ? 'ec-select-active text-[var(--ec-text-primary)]'
-                          : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] ec-hover-brand-border-mild'
-                      }`}
+                      className={`ms-ob-chip${active ? ' on' : ''}`}
                     >
-                      {subject.label}
-                      <span className="ml-2 font-mono text-xs opacity-60">
-                        {subject.code}
-                      </span>
+                      {subject.label} · {subject.code}
                     </button>
                   )
                 })}
@@ -438,46 +410,40 @@ function StepStage({
 
   return (
     <div>
-      <h1 className="text-headline text-[var(--ec-text-primary)]">
-        Where are you in your studies?
-      </h1>
-      <p className="text-body mt-3 text-[var(--ec-text-secondary)]">
+      <h1 className="ms-h2">Where are you in your studies?</h1>
+      <p className="ms-lead" style={{ marginTop: 12 }}>
         {level === 'O-Level'
           ? 'This helps us tailor papers and feedback for your O-Level year.'
           : 'This helps us pitch feedback at the right level.'}
       </p>
-      <div className="mt-6 space-y-3">
+      <div className="ms-ob-choices" style={{ gridTemplateColumns: '1fr' }}>
         {stageOptions.map((opt) => (
           <button
             key={opt.id}
             type="button"
             onClick={() => onSelect(opt.id)}
-            className={`ec-card w-full p-5 text-left transition-all min-h-[44px] ${
-              selected === opt.id ? 'ec-select-ring' : ''
-            }`}
+            className={`ms-ob-choice${selected === opt.id ? ' on' : ''}`}
           >
-            <p className="font-bold text-[var(--ec-text-primary)]">{opt.title}</p>
-            <p className="text-caption mt-1 text-[var(--ec-text-secondary)]">
-              {opt.subtitle}
-            </p>
+            <b>{opt.title}</b>
+            <span>{opt.subtitle}</span>
           </button>
         ))}
       </div>
 
-      <div className="mt-8 border-t border-[var(--ec-border)] pt-6">
-        <h2 className="text-title">When&apos;s your exam?</h2>
-        <p className="text-caption mt-1">Optional — we&apos;ll show a countdown on your home page.</p>
-        <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-8 border-t border-[var(--ec-border)] pt-6 text-left">
+        <h2 className="ms-h2" style={{ fontSize: 'clamp(1.25rem, 2.5vw, 1.5rem)' }}>
+          When&apos;s your exam?
+        </h2>
+        <p className="ms-micro" style={{ marginTop: 6 }}>
+          Optional — we&apos;ll show a countdown on your home page.
+        </p>
+        <div className="ms-ob-subjects" style={{ justifyContent: 'flex-start', marginTop: 16 }}>
           {suggestions.map((s) => (
             <button
               key={s.value}
               type="button"
               onClick={() => onExamDateChange(s.value)}
-              className={`min-h-[44px] rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all ${
-                examDate === s.value
-                  ? 'ec-select-active text-[var(--ec-text-primary)]'
-                  : 'border-[var(--ec-border)] text-[var(--ec-text-secondary)] ec-hover-brand-border-mild'
-              }`}
+              className={`ms-ob-chip${examDate === s.value ? ' on' : ''}`}
             >
               {s.label}
             </button>
@@ -522,36 +488,22 @@ function StepGoal({
 }) {
   return (
     <div>
-      <h1 className="text-headline text-[var(--ec-text-primary)]">
-        What&apos;s your main goal?
-      </h1>
-      <p className="text-body mt-3 text-[var(--ec-text-secondary)]">
+      <h1 className="ms-h2">What&apos;s your main goal?</h1>
+      <p className="ms-lead" style={{ marginTop: 12 }}>
         We&apos;ll prioritize the right parts of your dashboard.
       </p>
-      <div className="mt-6 space-y-3">
-        {GOAL_OPTIONS.map((opt) => {
-          const Icon = opt.icon
-          return (
-            <button
-              key={opt.id}
-              type="button"
-              onClick={() => onSelect(opt.id)}
-              className={`ec-card flex w-full items-start gap-4 p-5 text-left transition-all ${
-                selected === opt.id ? 'ec-select-ring' : ''
-              }`}
-            >
-              <div className="ec-tint-success-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
-                <Icon className="h-5 w-5 ec-text-brand" />
-              </div>
-              <div>
-                <p className="font-bold text-[var(--ec-text-primary)]">{opt.title}</p>
-                <p className="text-caption mt-1 text-[var(--ec-text-secondary)]">
-                  {opt.subtitle}
-                </p>
-              </div>
-            </button>
-          )
-        })}
+      <div className="ms-ob-choices" style={{ gridTemplateColumns: '1fr' }}>
+        {GOAL_OPTIONS.map((opt) => (
+          <button
+            key={opt.id}
+            type="button"
+            onClick={() => onSelect(opt.id)}
+            className={`ms-ob-choice${selected === opt.id ? ' on' : ''}`}
+          >
+            <b>{opt.title}</b>
+            <span>{opt.subtitle}</span>
+          </button>
+        ))}
       </div>
       {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
       <StepNav onBack={onBack} onContinue={onContinue} continueLabel="Continue" />
@@ -576,25 +528,29 @@ function StepFirstMark({
 }) {
   return (
     <div>
-      <h1 className="text-headline text-[var(--ec-text-primary)]">
-        {rerun
-          ? 'Save your updated profile'
-          : "You're all set. Let's mark your first question."}
+      <h1 className="ms-h2">
+        {rerun ? (
+          'Save your updated profile'
+        ) : (
+          <>
+            You&apos;re all set. <em>Mark your first question.</em>
+          </>
+        )}
       </h1>
-      <p className="text-body mt-4 text-[var(--ec-text-secondary)]">
+      <p className="ms-lead" style={{ marginTop: 16 }}>
         {rerun
           ? 'Review your choices, then save to update your dashboard and paper recommendations.'
           : "Upload something you've already done. We'll mark it and show you what an examiner-style review looks like — usually under a minute."}
       </p>
       {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
-      <div className="mt-8 space-y-3">
+      <div className="ms-ob-nav" style={{ flexDirection: 'column' }}>
         <button
           type="button"
           disabled={loading}
           aria-busy={loading || undefined}
           data-loading={loading ? 'true' : undefined}
           onClick={onMark}
-          className="ec-btn-primary w-full justify-center"
+          className="ec-btn-primary w-full max-w-sm justify-center"
         >
           {loading ? (
             <>
@@ -612,20 +568,20 @@ function StepFirstMark({
             type="button"
             disabled={loading}
             onClick={onDashboard}
-            className="ec-btn-secondary w-full justify-center"
+            className="ec-btn-ghost w-full max-w-sm justify-center"
           >
             Explore the dashboard first
           </button>
         )}
+        <button
+          type="button"
+          onClick={onBack}
+          disabled={loading}
+          className="ec-btn-underline"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={onBack}
-        disabled={loading}
-        className="ec-btn-ghost mt-4 w-full justify-center"
-      >
-        <ArrowLeft className="h-4 w-4" /> Back
-      </button>
     </div>
   )
 }
@@ -640,11 +596,11 @@ function StepNav({
   continueLabel: string
 }) {
   return (
-    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-      <button type="button" onClick={onBack} className="ec-btn-ghost flex-1 justify-center">
+    <div className="ms-ob-nav">
+      <button type="button" onClick={onBack} className="ec-btn-underline">
         <ArrowLeft className="h-4 w-4" /> Back
       </button>
-      <button type="button" onClick={onContinue} className="ec-btn-primary flex-1 justify-center">
+      <button type="button" onClick={onContinue} className="ec-btn-primary">
         {continueLabel} <ArrowRight className="h-4 w-4" />
       </button>
     </div>

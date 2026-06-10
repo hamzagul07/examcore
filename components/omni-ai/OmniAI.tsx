@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X } from 'lucide-react'
 import { useOmniAI } from '@/lib/omni-ai/context'
 import { ChatPanel } from './ChatPanel'
 
@@ -39,7 +38,7 @@ const CONTEXT_SUGGESTIONS: Record<string, string[]> = {
 }
 
 /**
- * Global Omni-AI shell — opens from SiteHeader "Ask MarkScheme" or ⌘K.
+ * Global Omni-AI shell — opens from nav search (⌘K) or the Ask MarkScheme FAB.
  */
 export function OmniAI() {
   const { isOpen, setIsOpen, context } = useOmniAI()
@@ -59,65 +58,58 @@ export function OmniAI() {
 
   return (
     <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className={`fixed inset-0 z-[60] flex ${
-            isLanding
-              ? 'items-end justify-center p-0 md:items-center md:p-6'
-              : 'justify-end'
-          }`}
-        >
+      {isOpen ? (
+        isLanding ? (
           <div
-            className="absolute inset-0 ec-modal-backdrop"
+            key="landing"
+            className="ms-cmdk-overlay"
             onClick={() => setIsOpen(false)}
-          />
-
-          <motion.div
-            initial={
-              isLanding
-                ? { opacity: 0, y: 40, scale: 0.95 }
-                : { x: '100%' }
-            }
-            animate={isLanding ? { opacity: 1, y: 0, scale: 1 } : { x: 0 }}
-            exit={
-              isLanding
-                ? { opacity: 0, y: 40, scale: 0.95 }
-                : { x: '100%' }
-            }
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className={`relative overflow-hidden border shadow-2xl ec-card ${
-              isLanding
-                ? 'h-[85vh] max-h-[800px] w-full rounded-t-3xl md:h-[80vh] md:w-[680px] md:rounded-3xl'
-                : 'h-full w-full border-[var(--ec-border)] md:w-[440px] rounded-none border-l'
-            }`}
-            style={{
-              background: 'var(--ec-surface)',
-              paddingBottom: isLanding
-                ? undefined
-                : 'env(safe-area-inset-bottom, 0px)',
-            }}
+            role="presentation"
           >
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="absolute right-4 top-4 z-10 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[var(--ec-text-secondary)] transition-colors hover:bg-[var(--ec-surface-raised)] hover:text-[var(--ec-text-primary)]"
-              aria-label="Close chat"
+            <motion.div
+              initial={{ y: 16 }}
+              animate={{ y: 0 }}
+              exit={{ y: 16 }}
+              className="ms-omni-panel ms-omni-panel--landing"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="h-5 w-5" />
-            </button>
-
-            <ChatPanel
-              starterSuggestions={suggestions}
-              showSuggestions
-              proactiveOpener={!isLanding}
-              splitPaper
+              <ChatPanel
+                starterSuggestions={suggestions}
+                showSuggestions
+                splitPaper
+                showClose
+                onClose={() => setIsOpen(false)}
+              />
+            </motion.div>
+          </div>
+        ) : (
+          <motion.div key="drawer" className="contents">
+            <div
+              className="fixed inset-0 z-[60] ec-modal-backdrop md:hidden"
+              onClick={() => setIsOpen(false)}
+              aria-hidden
             />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="fixed inset-y-0 right-0 z-[61] w-full md:w-[440px]"
+            >
+              <div className="ms-omni-panel ms-omni-panel--drawer h-full">
+                <ChatPanel
+                  starterSuggestions={suggestions}
+                  showSuggestions
+                  proactiveOpener
+                  splitPaper
+                  showClose
+                  onClose={() => setIsOpen(false)}
+                />
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )
+      ) : null}
     </AnimatePresence>
   )
 }

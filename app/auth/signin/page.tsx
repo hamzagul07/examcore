@@ -39,8 +39,8 @@ export default function SignInPage() {
 function SignInSkeleton() {
   return (
     <AuthShell>
-      <p className="ec-label-tech mb-3">WELCOME BACK</p>
-      <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
+      <p className="ec-eyebrow mb-3">Welcome back</p>
+      <h1 className="text-hero mb-3">
         Sign in to <span className="ec-text-gradient">MarkScheme</span>
       </h1>
       <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
@@ -137,8 +137,8 @@ function SignInForm() {
     <AuthShell>
       {!sent ? (
         <>
-          <p className="ec-label-tech mb-3">WELCOME BACK</p>
-          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
+          <p className="ec-eyebrow mb-3">Welcome back</p>
+          <h1 className="text-hero mb-3">
             Sign in to <span className="ec-text-gradient">MarkScheme</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">

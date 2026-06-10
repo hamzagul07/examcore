@@ -16,7 +16,7 @@ export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
 
   return (
     <section className="mb-8 lg:mb-10">
-      <p className="ec-label-tech mb-3">HOME</p>
+      <p className="ec-eyebrow mb-3">Home</p>
 
       {countdown.kind === 'future' && examDate ? (
         <ExamCountdownHero

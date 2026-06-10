@@ -25,26 +25,24 @@ export default function ResearchPage() {
       />
       <MarketingHero
         label="FOR PRESS & EDUCATORS"
-        title={<span className="gradient-text">Marking methodology</span>}
+        title="Marking methodology"
         lead="Cite this page when referencing how MarkScheme works. We mark against real Cambridge mark schemes — not generic rubrics."
       />
       <MarketingSection className="!pt-0">
         <div className="mx-auto max-w-3xl space-y-10">
-          <ul className="grid gap-4 sm:grid-cols-3">
+          <ul className="ms-blog-stats">
             {STATS.map((s) => (
-              <li key={s.label} className="ec-card p-5 text-center">
-                <p className="text-2xl font-bold text-[var(--ec-brand)]">{s.value}</p>
-                <p className="mt-1 text-sm font-semibold text-[var(--ec-text-primary)]">
-                  {s.label}
-                </p>
-                <p className="mt-1 text-xs text-[var(--ec-text-secondary)]">{s.detail}</p>
+              <li key={s.label} className="ms-blog-stat">
+                <span className="ms-blog-stat__value">{s.value}</span>
+                <span className="ms-blog-stat__label">{s.label}</span>
+                <span className="ms-micro mt-1 block">{s.detail}</span>
               </li>
             ))}
           </ul>
 
           <section data-chunk-id="methodology-summary">
-            <h2 className="landing-h3 mb-3 text-[var(--ec-text-primary)]">Summary</h2>
-            <p className="landing-lead">
+            <h2 className="ms-h3">Summary</h2>
+            <p className="ms-lead" style={{ marginTop: 12 }}>
               Students photograph handwritten answers. MarkScheme maps responses to the
               official mark scheme for that syllabus and question type — awarding B1/M1/A1
               where appropriate, essay bands for LoR subjects, and MCQ keys for objective
@@ -54,8 +52,8 @@ export default function ResearchPage() {
           </section>
 
           <section data-chunk-id="citation">
-            <h2 className="landing-h3 mb-3 text-[var(--ec-text-primary)]">How to cite</h2>
-            <p className="landing-lead font-mono text-sm">
+            <h2 className="ms-h3">How to cite</h2>
+            <p className="ms-body-2 mt-3 font-mono">
               MarkScheme. (2026). Cambridge past paper marking methodology. markscheme.app/research
             </p>
           </section>

@@ -43,18 +43,18 @@ export function SettingsShell({ children }: { children: React.ReactNode }) {
         )}
 
         <header className="animate-entry mb-8 lg:mb-10">
-          <p className="ec-label-tech mb-3">SETTINGS</p>
-          <h1 className="text-headline">
+          <p className="ms-overline">Settings</p>
+          <h1 className="ms-h2" style={{ marginTop: 12 }}>
             {isIndex ? (
               <>
-                <span className="gradient-text">Settings</span>
+                Your <em>account</em>
               </>
             ) : (
-              <span className="text-[var(--ec-text-primary)]">{active?.label ?? 'Settings'}</span>
+              active?.label ?? 'Settings'
             )}
           </h1>
           {(isIndex || active?.description) && (
-            <p className="text-body mt-2">
+            <p className="ms-lead" style={{ marginTop: 10, maxWidth: 520 }}>
               {isIndex
                 ? 'Manage your profile, exam setup, billing, and preferences.'
                 : active?.description}
@@ -103,14 +103,14 @@ export function SettingsShell({ children }: { children: React.ReactNode }) {
 
 export function SettingsMobileIndex() {
   return (
-    <div className="space-y-2 lg:hidden">
+    <div className="ms-acct-grid lg:hidden">
       {SETTINGS_NAV.map((item) => {
         const Icon = item.icon
         return (
           <Link
             key={item.href}
             href={item.href}
-            className="ec-card flex min-h-[56px] items-center gap-3 px-4 py-3 transition-colors hover:bg-[var(--ec-surface-raised)]"
+            className="ms-acct-card flex min-h-[56px] items-center gap-3 transition-colors hover:border-[var(--ec-brand)]/40"
           >
             <span
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
@@ -118,18 +118,22 @@ export function SettingsMobileIndex() {
             >
               <Icon className="h-5 w-5" aria-hidden />
             </span>
-            <span className="min-w-0 flex-1">
-              <span className="text-body-large block font-semibold text-[var(--ec-text-primary)]">
+            <span className="min-w-0 flex-1 text-left">
+              <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
                 {item.label}
               </span>
-              <span className="text-caption block truncate">{item.description}</span>
+              <span className="block truncate text-xs text-[var(--ec-text-secondary)]">
+                {item.description}
+              </span>
             </span>
             <ChevronRight className="h-5 w-5 shrink-0 text-[var(--ec-text-secondary)]" aria-hidden />
           </Link>
         )
       })}
 
-      <SignOutButton />
+      <div className="ms-acct-card lg:hidden">
+        <SignOutButton />
+      </div>
     </div>
   )
 }

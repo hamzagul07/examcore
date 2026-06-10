@@ -1,48 +1,68 @@
 import Link from 'next/link'
-import { ArrowRight, Layers } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 
-/** Homepage topical authority — ≤3 clicks to every cluster hub. */
+const GUIDE_LABELS: Record<string, { eyebrow: string; title: string }> = {
+  'past-paper-marking': {
+    eyebrow: 'Mark Cambridge past papers',
+    title: 'Past paper marking',
+  },
+  'mark-schemes': {
+    eyebrow: 'Cambridge mark scheme',
+    title: 'Mark schemes & examiner language',
+  },
+  'subject-guides': {
+    eyebrow: 'Cambridge subject past papers',
+    title: 'Syllabus past paper guides',
+  },
+  'exam-integrity': {
+    eyebrow: 'Cambridge exams 2026',
+    title: 'Exam integrity & 2026 series',
+  },
+}
+
+/** Homepage topical authority — guide cards from paper design. */
 export function LandingTopicHub() {
   const featured = CONTENT_CLUSTERS.filter((c) =>
     ['past-paper-marking', 'mark-schemes', 'subject-guides', 'exam-integrity'].includes(c.id)
   )
 
   return (
-    <section className="landing-section scroll-mt-20" aria-labelledby="topic-hub-heading">
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="ec-label-tech mb-3">TOPICAL GUIDES</p>
-        <h2 id="topic-hub-heading" className="landing-h2 text-[var(--ec-text-primary)]">
-          Every revision topic, one hub
+    <section className="landing-section scroll-mt-20 bg-[var(--ec-surface-raised)]" aria-labelledby="topic-hub-heading">
+      <div className="mx-auto max-w-[42rem]">
+        <span className="ec-eyebrow mb-4 block">Topical guides</span>
+        <h2 id="topic-hub-heading" className="landing-h2">
+          Every revision topic, <em>one hub</em>.
         </h2>
         <p className="landing-lead mt-4">
-          Pillar pages plus supporting articles — built for how students actually search
-          (how-tos, comparisons, syllabus codes).
+          Pillar pages plus supporting articles — built for how students actually search.
         </p>
       </div>
-      <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {featured.map((c) => (
-          <li key={c.id}>
-            <Link
-              href={c.path}
-              className="ec-card ec-card-interactive flex h-full flex-col p-5"
-            >
-              <Layers className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden />
-              <span className="mt-3 font-semibold text-[var(--ec-text-primary)]">
-                {c.title}
-              </span>
-              <span className="mt-2 flex-1 text-sm text-[var(--ec-text-secondary)]">
-                {c.headTerm}
-              </span>
-              <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[var(--ec-brand)]">
-                Open hub <ArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </Link>
-          </li>
-        ))}
+      <ul className="mt-12 grid list-none gap-4 p-0 sm:grid-cols-2">
+        {featured.map((c) => {
+          const labels = GUIDE_LABELS[c.id] ?? { eyebrow: c.headTerm, title: c.title }
+          return (
+            <li key={c.id}>
+              <Link
+                href={c.path}
+                className="flex items-center justify-between gap-5 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)] p-6 transition-[border-color,transform,box-shadow] duration-180 hover:-translate-y-0.5 hover:border-[var(--ec-brand)] hover:shadow-[var(--ec-shadow-paper)]"
+              >
+                <div>
+                  <div className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--ec-text-faint,#8a7f70)]">
+                    {labels.eyebrow}
+                  </div>
+                  <h3 className="mt-1 text-[21px] font-bold tracking-[-0.01em] text-[var(--ec-text-primary)]">
+                    {labels.title}
+                  </h3>
+                </div>
+                <span className="shrink-0 font-mono text-[var(--ec-brand)]">→</span>
+              </Link>
+            </li>
+          )
+        })}
       </ul>
       <p className="mt-8 text-center">
-        <Link href="/guides" className="ec-btn-secondary inline-flex min-h-[48px]">
+        <Link href="/guides" className="ec-btn-secondary inline-flex">
           All topic guides <ArrowRight className="h-5 w-5" />
         </Link>
       </p>

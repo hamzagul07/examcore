@@ -9,6 +9,7 @@ import {
   type ContentClusterId,
 } from '@/lib/seo/clusters'
 import { getBlogPost, getBlogPosts } from '@/lib/blog'
+import { ContentHubNav } from '@/components/content/ContentHubNav'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { collectionPageNode, itemListNode } from '@/lib/seo/structured-data'
@@ -91,15 +92,19 @@ export default async function ClusterGuidePage({ params }: Props) {
       />
 
       <MarketingHero
-        label="TOPIC HUB"
-        title={<span className="gradient-text">{cluster.title}</span>}
+        label="Guides & blog"
+        title={cluster.title}
         lead={cluster.description}
-      />
+      >
+        <ContentHubNav />
+      </MarketingHero>
 
       <MarketingSection className="!pt-0">
-        <aside className="ec-blog-quick-answer mb-10 rounded-xl border border-[var(--ec-brand)]/25 bg-[var(--ec-brand)]/5 px-5 py-5">
-          <p className="ec-label-tech mb-2 text-[var(--ec-brand)]">QUICK ANSWER</p>
-          <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
+        <aside className="ms-quick-answer">
+          <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
+            Quick answer
+          </p>
+          <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
             {isComparison
               ? `For "${cluster.headTerm}", use our comparison-style pillar below, then supporting guides — start with official Cambridge PDFs before any paid tool.`
               : `For "${cluster.headTerm}", read the pillar guide first, then the supporting articles in this hub. Mark handwritten work on MarkScheme when you need a second pass.`}
@@ -108,17 +113,17 @@ export default async function ClusterGuidePage({ params }: Props) {
 
         {pillar && (
           <div className="mb-12">
-            <p className="ec-label-tech mb-4">PILLAR GUIDE</p>
+            <p className="ms-overline">Pillar guide</p>
             <BlogPostCard post={enrichPostMeta(pillar, pillar.content)} variant="editorial" />
           </div>
         )}
 
         {spokes.length > 0 && (
           <div>
-            <p className="ec-label-tech mb-4">
-              {isComparison ? 'COMPARISON & SUPPORTING GUIDES' : 'SUPPORTING ARTICLES'}
+            <p className="ms-overline">
+              {isComparison ? 'Comparison & supporting guides' : 'Supporting articles'}
             </p>
-            <ul className="grid gap-4 sm:grid-cols-2">
+            <ul className="ms-guide-grid sm:grid-cols-2">
               {spokes.map((post) => (
                 <li key={post.slug}>
                   <BlogPostCard post={post} />
@@ -128,11 +133,9 @@ export default async function ClusterGuidePage({ params }: Props) {
           </div>
         )}
 
-        <div className="ec-card mt-12 p-8 text-center">
-          <h2 className="landing-h3 mb-3 text-[var(--ec-text-primary)]">
-            Ready to mark a paper?
-          </h2>
-          <p className="landing-lead mb-6 mx-auto max-w-lg">
+        <div className="ms-hub-card mt-12 text-center">
+          <h2 className="ms-h3">Ready to mark a paper?</h2>
+          <p className="ms-lead mx-auto" style={{ marginTop: 10, maxWidth: 480 }}>
             Put what you learned into practice — upload handwriting and get mark-by-mark
             feedback from real Cambridge mark schemes.
           </p>

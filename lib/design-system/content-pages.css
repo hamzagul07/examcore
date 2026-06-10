@@ -1,0 +1,415 @@
+/* Content pages — blog, guides, how-it-works, about/story */
+
+.ms-content-hero {
+  padding-top: 56px;
+  padding-bottom: 40px;
+}
+
+.ms-sec-tight {
+  padding-top: 48px;
+}
+
+/* guides hub */
+.ms-guide-feature {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+  padding: 40px 44px;
+  margin-top: 40px;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.ms-guide-card {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ms-guide-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ec-shadow-pop, 0 8px 24px rgba(0, 0, 0, 0.12));
+}
+
+.ms-guide-card .ms-gt {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--ec-text-primary);
+}
+
+.ms-guide-card .ms-gmeta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: auto;
+}
+
+.ms-hub-card {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  height: 100%;
+}
+
+/* blog index */
+.ms-blog-stats {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 40px;
+  list-style: none;
+  padding: 0;
+}
+
+.ms-blog-stat {
+  padding: 20px 22px;
+  text-align: center;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+}
+
+.ms-blog-stat__value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--ec-brand);
+  line-height: 1;
+}
+
+.ms-blog-stat__label {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-blog-cta {
+  margin-top: 40px;
+  padding: 32px 28px;
+  text-align: center;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+}
+
+.ms-greennote {
+  font-family: var(--ec-font-handwriting, 'Caveat', cursive);
+  font-size: 21px;
+  color: var(--ec-brand);
+  line-height: 1.35;
+}
+
+/* how it works */
+.ms-hiw-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 56px;
+}
+
+.ms-hiw-step.flip > :first-child {
+  order: 2;
+}
+
+.ms-hiw-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 42px;
+  color: var(--ec-brand);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.ms-canct {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.ms-canct-item {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding: 10px 0;
+  font-size: 14.5px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-canct-item .m {
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* about / story */
+.ms-story-founder {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 36px;
+  align-items: start;
+  margin-top: 36px;
+}
+
+.ms-story-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--ec-brand-muted);
+  border: 1.5px dashed var(--ec-brand-border);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 14px;
+}
+
+.ms-founder-quote {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 26px);
+  line-height: 1.35;
+  color: var(--ec-text-primary);
+  margin: 0 0 16px;
+}
+
+.ms-founder-quote em {
+  font-style: italic;
+}
+
+.ms-story-timeline {
+  overflow: hidden;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+}
+
+.ms-story-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 20px;
+  align-items: baseline;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--ec-border);
+}
+
+.ms-story-row:last-child {
+  border-bottom: none;
+}
+
+.ms-quick-answer {
+  margin-bottom: 40px;
+  padding: 20px 22px;
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  border-radius: var(--ec-radius-lg, 16px);
+  background: var(--ec-brand-muted);
+}
+
+.ms-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.ms-hub-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-bg-soft);
+}
+
+.ms-hub-tab {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: var(--ec-text-secondary);
+  text-decoration: none;
+  transition:
+    color 150ms ease,
+    background 150ms ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ms-hub-tab.on {
+  background: var(--ec-surface);
+  color: var(--ec-brand);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.08));
+  font-weight: 600;
+}
+
+.ms-hub-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-items: center;
+  margin-top: 8px;
+  list-style: none;
+  padding: 0;
+}
+
+.ms-hub-strip-more {
+  font-size: 15px;
+  margin-left: 4px;
+}
+
+.ms-guide-feature {
+  margin-top: 0;
+}
+
+.ms-content-hero .ms-hub-tabs {
+  margin-top: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-hub-tab {
+    transition: none;
+  }
+}
+
+.ms-hub-cta {
+  margin-top: 40px;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* blog article */
+.ms-blog-layout {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .ms-blog-layout {
+    grid-template-columns: 200px minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.ms-blog-toc {
+  position: sticky;
+  top: 6rem;
+}
+
+.ms-blog-toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ms-blog-toc a {
+  display: block;
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.ms-blog-toc a:hover {
+  color: var(--ec-brand);
+}
+
+.ms-blog-aside {
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  padding: 20px 22px;
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-blog-cta-block {
+  background: var(--ec-brand-muted);
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  border-radius: var(--ec-radius-lg, 16px);
+  padding: 24px 26px;
+}
+
+/* richer index cards (2-col editorial / general grids) */
+.ms-blog-card {
+  gap: 12px;
+}
+
+.ms-blog-card--editorial .ms-gt {
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+}
+
+.ms-blog-card--compact {
+  padding: 18px 20px;
+}
+
+.ms-blog-card--compact .ms-gt {
+  font-size: 17px;
+}
+
+.ms-blog-card__title--featured {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+}
+
+@media (max-width: 900px) {
+  .ms-hub-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-guide-feature,
+  .ms-hiw-step,
+  .ms-canct,
+  .ms-story-founder {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-hiw-step.flip > :first-child {
+    order: 0;
+  }
+
+  .ms-guide-grid,
+  .ms-blog-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-guide-feature {
+    padding: 28px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-guide-card {
+    transition: none;
+  }
+}

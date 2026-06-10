@@ -1,0 +1,352 @@
+/* App pages — dashboard, pricing, onboarding, account (Margin Notes) */
+
+.ms-dash-page {
+  padding-top: 56px;
+  padding-bottom: 64px;
+}
+
+.ms-dash-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.ms-dash-card {
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  padding: 22px 24px;
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-big-grade {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(64px, 12vw, 84px);
+  line-height: 1;
+  color: var(--ec-brand);
+}
+
+.ms-bar-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 44px;
+  gap: 12px;
+  align-items: center;
+  padding: 7px 0;
+  font-size: 13.5px;
+}
+
+.ms-bar-track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ec-bg-soft);
+  overflow: hidden;
+}
+
+.ms-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.ms-fix-item {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ec-border);
+  font-size: 14.5px;
+}
+
+.ms-fix-item:last-child {
+  border-bottom: none;
+}
+
+.ms-heat {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  margin-top: 14px;
+}
+
+.ms-heat div {
+  aspect-ratio: 1;
+  border-radius: 4px;
+}
+
+/* onboarding */
+.ms-ob-shell {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.ms-ob-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 34px;
+}
+
+.ms-ob-dots span {
+  width: 34px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ec-border);
+}
+
+.ms-ob-dots span.on {
+  background: var(--ec-brand);
+}
+
+.ms-ob-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 36px 0 0;
+  text-align: left;
+}
+
+.ms-ob-choice {
+  padding: 20px 22px;
+  cursor: pointer;
+  border: 1.5px solid var(--ec-border);
+  border-radius: 14px;
+  background: var(--ec-surface);
+  font-family: var(--font-sans);
+  text-align: left;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ms-ob-choice:hover:not(:disabled) {
+  border-color: var(--ec-brand-border, var(--ec-brand));
+}
+
+.ms-ob-choice.on {
+  border-color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.08));
+}
+
+.ms-ob-choice:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.ms-ob-choice b {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ec-text-primary);
+}
+
+.ms-ob-choice span {
+  font-size: 13.5px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-ob-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.ms-ob-chip {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 10px 17px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ec-border);
+  background: var(--ec-surface);
+  cursor: pointer;
+  color: var(--ec-text-secondary);
+  transition:
+    border-color 150ms ease,
+    color 150ms ease,
+    background 150ms ease;
+}
+
+.ms-ob-chip.on {
+  border-color: var(--ec-brand);
+  color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+  font-weight: 600;
+}
+
+.ms-ob-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 44px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* pricing */
+.ms-price-page {
+  padding-top: 56px;
+  padding-bottom: 88px;
+  max-width: 1080px;
+}
+
+.ms-price-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+  align-items: stretch;
+}
+
+.ms-price-card {
+  padding: 32px 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-price-card.hot {
+  border: 2px solid var(--ec-brand);
+  box-shadow: var(--ec-card-hover-shadow, var(--ec-shadow-pop, 0 8px 24px rgba(0, 0, 0, 0.12)));
+}
+
+.ms-hot-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  background: var(--ec-brand);
+  color: var(--ec-on-brand-text, #fff);
+  font-family: var(--font-handwritten, 'Caveat', cursive);
+  font-size: 18px;
+  padding: 3px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.ms-price-amount {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 14px 0 2px;
+  color: var(--ec-text-primary);
+}
+
+.ms-price-amount small {
+  font-size: 17px;
+  color: var(--ec-text-faint);
+  font-family: var(--font-sans);
+}
+
+.ms-price-feats {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin: 24px 0 30px;
+  flex: 1;
+}
+
+.ms-price-feats div {
+  display: flex;
+  gap: 10px;
+  font-size: 14.5px;
+  color: var(--ec-text-secondary);
+  align-items: baseline;
+}
+
+.ms-price-feats .tick {
+  color: var(--ec-brand);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* account */
+.ms-acct-page {
+  padding-top: 56px;
+  padding-bottom: 64px;
+  max-width: 980px;
+}
+
+.ms-acct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.ms-acct-card {
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  padding: 22px 24px;
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.ms-acct-chiprow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.ms-acct-chiprow .ms-ob-chip {
+  font-size: 12px;
+  padding: 7px 13px;
+}
+
+.ms-usage-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+}
+
+@media (max-width: 900px) {
+  .ms-dash-grid > div {
+    grid-column: span 12 !important;
+  }
+
+  .ms-price-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-acct-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-ob-choices {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-bar-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  .ms-price-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-ob-choice,
+  .ms-ob-chip {
+    transition: none;
+  }
+}

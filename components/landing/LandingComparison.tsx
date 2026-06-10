@@ -1,80 +1,78 @@
-'use client'
+﻿const ROWS: { label: string; ms: string; chat: string; tutor: string }[] = [
+  {
+    label: 'Uses the official scheme for your exact paper',
+    ms: 'y:✓ always',
+    chat: 'n:✗ guesses',
+    tutor: 'mid:~ sometimes',
+  },
+  {
+    label: 'Mark-by-mark B1/M1/A1 with citations',
+    ms: 'y:✓',
+    chat: 'n:✗',
+    tutor: 'y:✓',
+  },
+  {
+    label: 'Feedback written on your actual script',
+    ms: "y:✓ Examiner's Ink",
+    chat: 'n:✗ wall of text',
+    tutor: 'y:✓',
+  },
+  {
+    label: 'Available at 1am before the mock',
+    ms: 'y:✓ ~60 sec',
+    chat: 'y:✓',
+    tutor: 'n:✗',
+  },
+  {
+    label: 'Tracks error patterns across attempts',
+    ms: 'y:✓',
+    chat: 'n:✗',
+    tutor: 'mid:~ in their head',
+  },
+  {
+    label: 'Cost per marked paper',
+    ms: 'y:from free',
+    chat: 'y:free-ish',
+    tutor: 'n:£30–60/hr',
+  },
+]
 
-import { LandingSectionReveal } from './LandingSectionReveal'
-import { X, Check } from 'lucide-react'
-
-const ROWS = [
-  {
-    without: 'Wait weeks for marked papers',
-    with: 'Mark a question in about a minute',
-  },
-  {
-    without: 'Guess what the examiner wanted',
-    with: 'See the exact scheme they used',
-  },
-  {
-    without: 'Mark yourself with the scheme alone',
-    with: 'Get feedback like an examiner wrote it',
-  },
-  {
-    without: 'No idea which topics are weak',
-    with: 'Live mastery map down to spec points',
-  },
-] as const
+function parseCell(raw: string, us = false) {
+  const [kind, ...rest] = raw.split(':')
+  const text = rest.join(':')
+  const cls =
+    kind === 'y' ? 'ms-cmp-cell--y' : kind === 'n' ? 'ms-cmp-cell--n' : 'ms-cmp-cell--mid'
+  return (
+    <div className={`ms-cmp-cell ${cls}${us ? ' ms-us-col' : ''}`}>{text}</div>
+  )
+}
 
 export function LandingComparison() {
   return (
-    <LandingSectionReveal>
-      <div className="mb-10 text-center sm:mb-12">
-        <p className="ec-label-tech mb-4 justify-center">
-          THE OLD WAY VS THIS
-        </p>
-        <h2 className="landing-h2">
-          <span className="gradient-text">Revision without the wait.</span>
-        </h2>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="ec-card p-6 sm:p-8">
-          <p className="mb-6 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ec-text-secondary)]">
-            Without MarkScheme
-          </p>
-          <ul className="space-y-4">
-            {ROWS.map((row) => (
-              <li
-                key={row.without}
-                className="flex gap-3 text-base leading-relaxed text-[var(--ec-text-secondary)]"
-              >
-                <X
-                  className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-chip-critical-text)]"
-                  strokeWidth={2}
-                />
-                <span>{row.without}</span>
-              </li>
-            ))}
-          </ul>
+    <section className="ms-pg ms-sec">
+      <p className="ms-overline">Why not just ask a chatbot?</p>
+      <h2 className="ms-h2">
+        Generic AI guesses. <em>This one cites.</em>
+      </h2>
+      <div className="ms-cmp">
+        <div className="ms-cmp-row ms-cmp-head">
+          <div />
+          <div className="ms-us-head">MarkScheme</div>
+          <div style={{ textAlign: 'center' }}>Generic AI chat</div>
+          <div style={{ textAlign: 'center' }}>Private tutor</div>
         </div>
-
-        <div className="ec-card ec-card-interactive border-[color-mix(in_srgb,var(--ec-brand)_20%,transparent)] p-6 sm:p-8">
-          <p className="mb-6 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--ec-chip-success-text)]">
-            With MarkScheme
-          </p>
-          <ul className="space-y-4">
-            {ROWS.map((row) => (
-              <li
-                key={row.with}
-                className="flex gap-3 text-base leading-relaxed text-[var(--ec-text-primary)]"
-              >
-                <Check
-                  className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-chip-success-text)]"
-                  strokeWidth={2}
-                />
-                <span>{row.with}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {ROWS.map((row) => (
+          <div key={row.label} className="ms-cmp-row">
+            <div className="ms-lab">{row.label}</div>
+            {parseCell(row.ms, true)}
+            {parseCell(row.chat)}
+            {parseCell(row.tutor)}
+          </div>
+        ))}
       </div>
-    </LandingSectionReveal>
+      <p className="ms-micro" style={{ marginTop: 18 }}>
+        HONEST FOOTNOTE: A GOOD TUTOR ALSO TEACHES — WE JUST MARK LIKE ONE, AT 1AM, FOR FREE
+      </p>
+    </section>
   )
 }

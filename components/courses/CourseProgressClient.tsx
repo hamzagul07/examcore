@@ -102,7 +102,7 @@ export function MarkLessonCompleteButton({
       onClick={() => toggle(lessonSlug, !isDone)}
       className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium transition-colors ${
         isDone
-          ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
+          ? 'ec-tint-success-chip border'
           : 'border-[var(--ec-border-subtle)] bg-[var(--ec-surface-raised)] text-[var(--ec-text-secondary)] hover:border-[var(--ec-accent)]'
       }`}
     >

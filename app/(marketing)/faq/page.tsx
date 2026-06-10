@@ -25,9 +25,7 @@ export default function FaqPage() {
       />
       <MarketingHero
         label="FAQ"
-        title={
-          <span className="gradient-text">Questions you&apos;ll actually ask</span>
-        }
+        title="Questions you'll actually ask"
         lead="Honest answers about marking, data, pricing, and getting started."
       />
       <MarketingSection className="!pt-0">

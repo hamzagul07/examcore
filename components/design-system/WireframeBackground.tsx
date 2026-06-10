@@ -41,8 +41,8 @@ export function WireframeBackground() {
     const group = new THREE.Group()
     const isZen = theme === 'zen'
     const lineColor = isZen
-      ? new THREE.Color(0.35, 0.6, 0.42)
-      : new THREE.Color(0, 0.96, 0.63)
+      ? new THREE.Color(0.73, 0.16, 0.15)
+      : new THREE.Color(0.89, 0.28, 0.25)
 
     const icoGeo = new THREE.IcosahedronGeometry(2.4, 1)
     const icoMat = new THREE.MeshBasicMaterial({

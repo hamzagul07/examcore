@@ -30,8 +30,8 @@ export interface GradeBoundary {
 }
 
 export const GRADE_BOUNDARIES: GradeBoundary[] = [
-  { grade: 'A*', percentage: 80, color: 'var(--ec-brand, #00f5a0)' },
-  { grade: 'A', percentage: 70, color: 'var(--ec-score-high, #22c55e)' },
+  { grade: 'A*', percentage: 80, color: 'var(--ec-brand, #bb2a25)' },
+  { grade: 'A', percentage: 70, color: 'var(--ec-score-high, #2f6b4f)' },
   { grade: 'B', percentage: 60, color: 'var(--ec-score-mid, #84cc16)' },
   { grade: 'C', percentage: 50, color: '#eab308' },
   { grade: 'D', percentage: 40, color: '#f97316' },

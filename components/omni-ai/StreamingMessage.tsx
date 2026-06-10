@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import type { OmniAIMessage, OmniAIAction } from '@/lib/omni-ai/types'
@@ -9,6 +8,7 @@ import { DiagnosticPreview } from '@/components/command-bar/DiagnosticPreview'
 import { InlineUpload } from '@/components/command-bar/InlineUpload'
 import { InlineCTA } from '@/components/command-bar/InlineCTA'
 import { SplitScreenPreview } from './SplitScreenPreview'
+import { StreamingCaret } from './StreamingCaret'
 
 interface StreamingMessageProps {
   message: OmniAIMessage
@@ -18,15 +18,7 @@ interface StreamingMessageProps {
 export function StreamingMessage({ message, splitPaper = false }: StreamingMessageProps) {
   if (message.role === 'user') {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex justify-end"
-      >
-        <div className="max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 ec-chat-user-bubble text-[var(--ec-text-primary)]">
-          {message.content}
-        </div>
-      </motion.div>
+      <div className="ms-omni-msg user ec-chat-message-enter">{message.content}</div>
     )
   }
 
@@ -37,31 +29,33 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
     message.action.paper
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="flex gap-3"
-    >
+    <div className="flex gap-3 ec-chat-message-enter">
       <div className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ec-chat-avatar">
         <Sparkles className="h-4 w-4 ec-on-brand-text" />
       </div>
 
       <div className="min-w-0 flex-1 space-y-3">
         {!showSplitPaper && (
-          <div className="prose prose-sm max-w-none ec-card rounded-2xl rounded-bl-md border ec-border-color px-4 py-3 text-[var(--ec-text-primary)]">
-            <RichTextRenderer text={message.content} />
-            {message.isStreaming && (
-              <span className="ec-chat-caret ml-0.5 inline-block h-4 w-2 animate-pulse" />
+          <div className="rounded-2xl rounded-bl-md border ec-border-color bg-[var(--ec-surface-raised)] px-4 py-3 text-[var(--ec-text-primary)]">
+            {message.isStreaming ? (
+              <div className="text-sm leading-relaxed">
+                {message.content ? (
+                  <span className="whitespace-pre-wrap break-words">{message.content}</span>
+                ) : (
+                  <span className="text-[var(--ec-text-secondary)]">Thinking</span>
+                )}
+                <StreamingCaret />
+              </div>
+            ) : (
+              <RichTextRenderer text={message.content} variant="light" />
             )}
           </div>
         )}
 
         {showSplitPaper && message.action?.paper && (
           <>
-            <div
-              className="prose prose-sm max-w-none ec-card hidden rounded-2xl rounded-bl-md border ec-border-color px-4 py-3 text-[var(--ec-text-primary)] lg:block"
-            >
-              <RichTextRenderer text={message.content} />
+            <div className="ec-card hidden rounded-2xl rounded-bl-md border ec-border-color px-4 py-3 text-[var(--ec-text-primary)] lg:block">
+              <RichTextRenderer text={message.content} variant="light" />
             </div>
             <SplitScreenPreview
               paper={message.action.paper}
@@ -74,7 +68,7 @@ export function StreamingMessage({ message, splitPaper = false }: StreamingMessa
           <ActionRenderer action={message.action} />
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════════════
    Course Studio — study layout inspired by premium note apps
-   Typography: Fraunces (titles) · Inter (UI + prose) · Mono (math)
+   Typography: Newsreader (titles) · Instrument Sans (UI + prose) · Mono (math)
    ══════════════════════════════════════════════════════════════ */
 
 .course-studio-page {
@@ -11,20 +11,20 @@
 
 /* Zen (warm sand) — course studio light theme */
 html[data-ec-theme='zen'] .course-studio {
-  --course-accent: #3b6fd9;
-  --course-formula-green: #4a7c59;
-  --course-formula-green-soft: color-mix(in srgb, var(--course-formula-green) 14%, #fffdf9);
+  --course-accent: #bb2a25;
+  --course-formula-green: #2f6b4f;
+  --course-formula-green-soft: color-mix(in srgb, var(--course-formula-green) 14%, #fffdf7);
   --course-accent-muted: color-mix(in srgb, var(--course-accent) 12%, transparent);
-  --course-surface-deep: #ebe6dc;
-  --course-surface-nav: #f0ebe2;
-  --course-surface-main: #f5f0e8;
-  --course-surface-card: #fffdf9;
-  --course-surface-elevated: #ffffff;
-  --course-border: rgba(90, 80, 60, 0.14);
-  --course-border-strong: rgba(90, 80, 60, 0.22);
-  --course-text-muted: #4a4540;
-  --course-text-faint: #7a7268;
-  --course-glow: 0 1px 2px rgba(60, 50, 40, 0.06), 0 8px 28px rgba(60, 50, 40, 0.08);
+  --course-surface-deep: #f2ead9;
+  --course-surface-nav: #f7f2e7;
+  --course-surface-main: #f7f2e7;
+  --course-surface-card: #fffdf7;
+  --course-surface-elevated: #fffdf7;
+  --course-border: #ddd2bd;
+  --course-border-strong: #c8baa4;
+  --course-text-muted: #4a4239;
+  --course-text-faint: #8a7f70;
+  --course-glow: 0 2px 8px -4px rgba(33, 28, 23, 0.1), 0 12px 32px -12px rgba(33, 28, 23, 0.14);
 }
 
 html[data-ec-theme='zen'] .course-studio-topbar {
@@ -114,7 +114,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 
 .course-studio-subject-name {
   margin: 0;
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -422,7 +422,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 }
 
 .course-studio-title {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: clamp(1.65rem, 3.5vw, 2.35rem);
   font-weight: 600;
   line-height: 1.15;
@@ -458,7 +458,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 }
 
 .course-studio-section-title {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -536,14 +536,14 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 
 .course-lesson-prose h2,
 .course-lesson-prose h3 {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--ec-text-primary);
 }
 
 .course-lesson-h2 {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -587,7 +587,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 }
 
 .course-studio .course-visual-section-title {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.15rem;
   font-weight: 600;
 }
@@ -964,7 +964,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 }
 
 .course-visual-section--success {
-  border-color: color-mix(in srgb, #22c55e 35%, var(--ec-border-subtle));
+  border-color: color-mix(in srgb, var(--ec-chip-success-text) 35%, var(--ec-border-subtle));
 }
 
 .course-visual-section--warm {
@@ -993,7 +993,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 }
 
 .course-visual-section--success .course-visual-section-header {
-  background: color-mix(in srgb, #22c55e 6%, var(--ec-surface-muted));
+  background: color-mix(in srgb, var(--ec-chip-success-text) 6%, var(--ec-surface-muted));
 }
 
 .course-visual-section--warm .course-visual-section-header {
@@ -1026,7 +1026,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 }
 
 .course-visual-section--success .course-visual-section-icon {
-  border-color: color-mix(in srgb, #22c55e 40%, transparent);
+  border-color: color-mix(in srgb, var(--ec-chip-success-text) 40%, transparent);
   color: #16a34a;
 }
 
@@ -1369,7 +1369,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
   border: 2px solid color-mix(in srgb, var(--ec-brand) 40%, transparent);
   background: color-mix(in srgb, var(--ec-brand) 12%, var(--ec-surface-muted));
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--ec-brand);
 }
 
@@ -1381,7 +1381,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 }
 
 .course-quick-check-card:hover {
-  border-color: color-mix(in srgb, #22c55e 35%, var(--ec-border-subtle));
+  border-color: color-mix(in srgb, var(--ec-chip-success-text) 35%, var(--ec-border-subtle));
 }
 
 .course-quick-check-answer {
@@ -1393,8 +1393,8 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 
 .course-quick-check-answer.is-revealed {
   border-style: solid;
-  border-color: color-mix(in srgb, #22c55e 40%, var(--ec-border-subtle));
-  background: color-mix(in srgb, #22c55e 8%, var(--ec-surface-muted));
+  border-color: color-mix(in srgb, var(--ec-chip-success-text) 40%, var(--ec-border-subtle));
+  background: color-mix(in srgb, var(--ec-chip-success-text) 8%, var(--ec-surface-muted));
 }
 
 .course-compare-card {
@@ -1621,7 +1621,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
   align-items: center;
   gap: 1rem;
   margin: 2.5rem 0 1.75rem;
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -3092,7 +3092,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 
 .lesson-simple-explanation-title {
   margin: 0;
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -3139,7 +3139,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 
 .course-notes-transition-title {
   margin: 0;
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -3164,7 +3164,7 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 
 .lesson-worked-examples-title {
   margin: 0;
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: -0.02em;

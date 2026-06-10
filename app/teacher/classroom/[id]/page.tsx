@@ -86,10 +86,8 @@ export default function ClassroomPage() {
     <TeacherPageContainer>
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="ec-label-tech mb-3">CLASSROOM ANALYTICS</p>
-          <h1 className="text-huge gradient-text">
-            {data.analytics.classroomName}
-          </h1>
+          <p className="ec-eyebrow mb-3">Classroom analytics</p>
+          <h1 className="text-headline">{data.analytics.classroomName}</h1>
           <ClassroomSummary
             studentCount={data.analytics.studentCount}
             totalAttempts={data.analytics.totalAttempts}

@@ -273,31 +273,27 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const attemptsNode = <AttemptsList attempts={filteredRaw} />
 
   return (
-    <main className="app-shell app-shell-tabbed">
+    <main className="app-shell app-shell-tabbed ms-dash-page">
       <div className="mx-auto min-w-0 max-w-7xl">
         <div className="mb-10 flex min-w-0 flex-col gap-4 sm:flex-row sm:items-start sm:justify-between animate-entry">
           <div className="min-w-0">
             <Link
               href="/dashboard"
-              className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-secondary)] backdrop-blur transition-colors hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+              className="mb-5 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
             >
-              <ArrowLeft className="h-3 w-3" />
+              <ArrowLeft className="h-3.5 w-3.5" />
               Back to dashboard
             </Link>
-            <p className="ec-label-tech mb-4">PROGRESS</p>
-            <h1 className="text-hero">
-              <span className="gradient-text">
-                {firstName ? `${firstName}'s` : 'Your'}
-              </span>
-              <br />
-              <span className="ec-text-gradient">progress.</span>
+            <p className="ms-overline">Progress</p>
+            <h1 className="ms-h2" style={{ marginTop: 12 }}>
+              {firstName ? `${firstName}'s` : 'Your'} <em>progress.</em>
             </h1>
-            <p className="mt-4 max-w-xl text-base text-[var(--ec-text-secondary)] sm:text-lg">
+            <p className="ms-lead" style={{ marginTop: 14, maxWidth: 520 }}>
               Your diagnosis, your next move, and the map of how far you&rsquo;ve
               come — built from your marked {subjectLabel} attempts.
             </p>
           </div>
-          <div className="inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 py-1.5 font-mono text-xs font-medium text-[var(--ec-text-secondary)] backdrop-blur">
+          <div className="ms-micro inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 py-2 font-mono">
             <RefreshCw className="h-3 w-3" aria-hidden="true" />
             Updated {lastUpdated}
           </div>

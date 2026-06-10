@@ -46,7 +46,7 @@ export default function InsightsPage() {
 
       <MarketingHero
         label="PROPRIETARY DATA"
-        title={<span className="gradient-text">Cambridge self-marking gaps</span>}
+        title="Cambridge self-marking gaps"
         lead={insights.description}
       />
 

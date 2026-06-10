@@ -43,7 +43,7 @@ export function ClassBlindspotRadar({ classroomId, blindspots }: Props) {
       animate={{ opacity: 1, y: 0 }}
       className="ec-card relative overflow-hidden p-8"
     >
-      <div className="absolute -right-12 -top-12 h-64 w-64 animate-pulse rounded-full ec-glow-orb-critical blur-3xl" />
+      <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full ec-glow-orb-critical blur-3xl opacity-50" />
 
       <div className="relative">
         <div className="mb-4 flex items-center gap-2">

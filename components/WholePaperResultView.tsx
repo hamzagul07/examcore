@@ -1,54 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ChevronDown, ChevronRight, AlertCircle, RotateCcw } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { AnimatedScore } from '@/components/effects/AnimatedScore'
-import { Progress } from '@/components/ui/Progress'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import type { QuestionMarkResult, WholePaperResult } from '@/lib/marking/types'
 
-function ScoreCard({
-  title,
-  subtitle,
-  block,
-}: {
-  title: string
-  subtitle: string
-  block: {
-    marks_earned: number
-    total_marks: number
-    percentage: number
-    estimated_grade?: string
-    grade_note?: string
-  }
-}) {
-  return (
-    <div className="ec-card flex-1 p-6 text-center sm:p-8">
-      <p className="ec-label-tech mb-2">{title}</p>
-      <p className="mb-4 text-xs text-[var(--ec-text-secondary)]">{subtitle}</p>
-      <AnimatedScore
-        earned={block.marks_earned}
-        total={block.total_marks}
-        caption="marks"
-      />
-      <div className="mx-auto mt-4 max-w-xs">
-        <Progress
-          value={block.percentage}
-          variant={block.percentage >= 70 ? 'emerald' : 'spectrum'}
-        />
-        <p className="mt-1 font-mono text-sm text-[var(--ec-text-secondary)]">{block.percentage}%</p>
-      </div>
-      {block.estimated_grade && (
-        <p className="mt-3 text-sm font-semibold ec-score-high">
-          ~{block.estimated_grade}
-        </p>
-      )}
-    </div>
-  )
+function plainSnippet(text: string, max = 88): string {
+  const stripped = text.replace(/[#*_`[\]()$]/g, '').replace(/\s+/g, ' ').trim()
+  return stripped.length <= max ? stripped : `${stripped.slice(0, max - 1)}…`
+}
+
+function scoreBarColor(pct: number, skipped: boolean): string {
+  if (skipped) return 'var(--ec-text-faint)'
+  if (pct >= 80) return 'var(--ec-brand)'
+  if (pct >= 55) return 'var(--ec-banner-warning-title, #b8860b)'
+  return 'var(--ec-error-ink, var(--ec-score-low, #b04848))'
 }
 
 function QuestionInkSection({
@@ -64,7 +34,7 @@ function QuestionInkSection({
   if (inkPages && inkPages.length > 0) {
     return (
       <div className="mt-4">
-        <p className="ec-label-tech mb-3">EXAMINER&apos;S INK</p>
+        <p className="ms-overline">Examiner&apos;s ink</p>
         <ExaminerInkPerPage
           pages={inkPages.map((p) => ({
             photo_url: p.photo_url,
@@ -83,7 +53,7 @@ function QuestionInkSection({
 
   return (
     <div className="mt-4">
-      <p className="ec-label-tech mb-3">EXAMINER&apos;S INK</p>
+      <p className="ms-overline">Examiner&apos;s ink</p>
       <ExaminerInkPerPage
         pages={[{ photo_url: photoUrl, line_references: lineRefs }]}
         attemptId={attemptId ?? undefined}
@@ -175,6 +145,38 @@ function QuestionDetail({
   )
 }
 
+function GradeCard({
+  label,
+  block,
+}: {
+  label: string
+  block: {
+    marks_earned: number
+    total_marks: number
+    percentage: number
+    estimated_grade?: string
+    grade_note?: string
+  }
+}) {
+  return (
+    <div className="ms-wp-grade-card">
+      <p className="ms-overline">{label}</p>
+      {block.estimated_grade ? (
+        <div className="ms-big-grade">{block.estimated_grade.replace(/^~/, '')}</div>
+      ) : (
+        <div className="ms-big-grade">
+          {block.marks_earned}
+          <span style={{ fontSize: '0.45em', opacity: 0.65 }}>/{block.total_marks}</span>
+        </div>
+      )}
+      <p className="ms-body-2" style={{ marginTop: 10 }}>
+        {block.marks_earned}/{block.total_marks} marks ({block.percentage}%)
+        {block.grade_note ? ` — ${block.grade_note}` : null}
+      </p>
+    </div>
+  )
+}
+
 export function WholePaperResultView({
   result,
   attemptId,
@@ -189,6 +191,26 @@ export function WholePaperResultView({
   const [retrying, setRetrying] = useState<string | null>(null)
 
   const showDual = result.show_dual_scores && result.attempted_score
+  const primaryScore = showDual ? result.attempted_score! : result
+  const overlineParts = [result.paper_code, result.paper_session, 'whole paper'].filter(Boolean)
+
+  const fixNext = useMemo(
+    () =>
+      result.questions
+        .filter(
+          (q) =>
+            q.status !== 'unattempted' &&
+            q.status !== 'marking_failed' &&
+            q.marks_earned < q.total_marks
+        )
+        .map((q) => ({
+          lost: q.total_marks - q.marks_earned,
+          question: q,
+        }))
+        .sort((a, b) => b.lost - a.lost)
+        .slice(0, 2),
+    [result.questions]
+  )
 
   return (
     <div className="space-y-6">
@@ -203,156 +225,153 @@ export function WholePaperResultView({
         </div>
       ) : null}
 
-      {showDual ? (
-        <>
-          <p className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-            If you only completed some questions, here&apos;s what each score means:{' '}
-            <strong className="text-[var(--ec-text-secondary)]">On what you attempted</strong> is
-            your performance on questions you wrote;{' '}
-            <strong className="text-[var(--ec-text-secondary)]">Full paper score</strong> treats
-            skipped questions as zero.
-          </p>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <ScoreCard
-              title="ON WHAT YOU ATTEMPTED"
-              subtitle="Performance on questions you wrote"
-              block={result.attempted_score!}
-            />
-            <ScoreCard
-              title="FULL PAPER SCORE"
-              subtitle="Unattempted questions count as zero"
-              block={result.full_paper_score!}
-            />
-          </div>
-        </>
-      ) : (
-        <div className="ec-card-brand relative overflow-hidden p-8 text-center sm:p-14">
-          <p className="ec-label-tech mb-6">WHOLE PAPER SCORE</p>
-          <AnimatedScore
-            earned={result.marks_earned}
-            total={result.total_marks}
-            caption="marks earned"
-          />
-          <div className="mx-auto mt-8 max-w-sm">
-            <Progress
-              value={result.percentage}
-              variant={result.percentage >= 70 ? 'emerald' : 'spectrum'}
-            />
-            <p className="mt-2 font-mono text-sm text-[var(--ec-text-secondary)]">
-              {result.percentage}%
+      <div className="ms-mark-result-head">
+        <div>
+          {overlineParts.length ? (
+            <p className="ms-overline" style={{ marginBottom: 8 }}>
+              {overlineParts.join(' · ')}
             </p>
-          </div>
-          {result.estimated_grade && (
-            <p className="mt-4 text-lg font-semibold ec-score-high">
-              Estimated grade: {result.estimated_grade}
-              <span className="mt-1 block text-xs font-normal text-[var(--ec-text-secondary)]">
-                {result.grade_note}
-              </span>
-            </p>
-          )}
+          ) : null}
+          <h2 className="ms-h2" style={{ marginBottom: 0 }}>
+            {primaryScore.marks_earned} / {primaryScore.total_marks}
+            {primaryScore.estimated_grade ? (
+              <>
+                {' '}
+                — <em>projected grade {primaryScore.estimated_grade.replace(/^~/, '')}.</em>
+              </>
+            ) : (
+              <> — <em>whole paper marked.</em></>
+            )}
+          </h2>
         </div>
-      )}
-
-      {result.paper_code && (
-        <p className="text-center font-mono text-xs text-[var(--ec-text-secondary)]">
-          {result.paper_code} · {result.paper_session}
-        </p>
-      )}
-
-      <div className="ec-card p-6">
-        <p className="ec-label-tech mb-3">SUMMARY</p>
-        <RichTextRenderer text={result.summary} className="text-[var(--ec-text-secondary)]" />
       </div>
 
-      {attemptId && (
-        <div className="flex justify-center">
-          <AskOmniAboutMark attemptId={attemptId} />
-        </div>
-      )}
+      {showDual ? (
+        <p className="ms-body-2">
+          <strong className="text-[var(--ec-text-primary)]">On what you attempted</strong>{' '}
+          is your performance on questions you wrote;{' '}
+          <strong className="text-[var(--ec-text-primary)]">full paper score</strong> treats
+          skipped questions as zero.
+        </p>
+      ) : null}
 
-      <div className="ec-card p-6">
-        <p className="ec-label-tech mb-4">ALL QUESTIONS</p>
-        <div className="space-y-2">
+      <div className="ms-wp-grid">
+        <div className="space-y-4">
+          {showDual && result.attempted_score && result.full_paper_score ? (
+            <>
+              <GradeCard label="On what you attempted" block={result.attempted_score} />
+              <GradeCard label="Full paper score" block={result.full_paper_score} />
+            </>
+          ) : (
+            <GradeCard
+              label="Projected grade"
+              block={{
+                marks_earned: result.marks_earned,
+                total_marks: result.total_marks,
+                percentage: result.percentage,
+                estimated_grade: result.estimated_grade,
+                grade_note: result.grade_note,
+              }}
+            />
+          )}
+
+          {fixNext.length > 0 ? (
+            <div className="ms-mark-form-card">
+              <p className="ms-overline">Fix next</p>
+              {fixNext.map(({ lost, question }) => (
+                <div key={question.question_number} className="ms-fix-item">
+                  <span className="ec-chip-ms ec-chip-ms--no">−{lost}</span>
+                  <span>
+                    <b>Q{question.question_number}</b>
+                    {' — '}
+                    {plainSnippet(question.summary)}
+                  </span>
+                  <button
+                    type="button"
+                    className="ec-btn-underline ml-auto shrink-0 text-sm"
+                    onClick={() => setExpanded(question.question_number)}
+                  >
+                    review →
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          <div className="ms-mark-form-card">
+            <p className="ms-overline">Summary</p>
+            <div className="ms-body-2" style={{ marginTop: 10 }}>
+              <RichTextRenderer text={result.summary} />
+            </div>
+          </div>
+
+          {attemptId ? (
+            <div className="flex justify-center">
+              <AskOmniAboutMark attemptId={attemptId} />
+            </div>
+          ) : null}
+        </div>
+
+        <div className="ms-audit-card">
+          <div className="ms-audit-head">
+            <span className="ms-micro">QUESTION BY QUESTION</span>
+            <span className="ms-micro">TAP FOR EXAMINER&apos;S INK</span>
+          </div>
           {result.questions.map((q) => {
             const isUnattempted = q.status === 'unattempted'
             const isFailed = q.status === 'marking_failed'
             const isOpen = expanded === q.question_number
+            const pct =
+              isUnattempted || q.total_marks <= 0
+                ? 0
+                : (q.marks_earned / q.total_marks) * 100
+            const col = scoreBarColor(pct, isUnattempted)
 
             return (
-              <div
-                key={q.question_number}
-                className={`rounded-xl border p-4 transition-colors ${
-                  isUnattempted
-                    ? 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] opacity-60'
-                    : isFailed
-                      ? 'ec-tint-critical-panel'
-                      : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)]'
-                }`}
-              >
+              <div key={q.question_number}>
                 <button
                   type="button"
-                  className="flex w-full items-start justify-between gap-3 text-left"
+                  className={`ms-wp-qrow ${isUnattempted ? 'ms-wp-skipped' : ''}`}
                   onClick={() =>
+                    !isUnattempted &&
                     setExpanded(isOpen ? null : q.question_number)
                   }
                   disabled={isUnattempted}
                 >
-                  <div className="flex items-center gap-2">
-                    {isOpen ? (
-                      <ChevronDown className="h-4 w-4 text-[var(--ec-text-secondary)]" />
-                    ) : (
-                      <ChevronRight className="h-4 w-4 text-[var(--ec-text-secondary)]" />
-                    )}
-                    <span
-                      className={`font-semibold ${isUnattempted ? 'text-[var(--ec-text-secondary)]' : 'text-[var(--ec-text-primary)]'}`}
-                    >
-                      Q{q.question_number}
-                    </span>
-                    {!isUnattempted && (
-                      <span className="rounded-full border border-[var(--ec-border)] px-2 py-0.5 font-mono text-[10px] uppercase text-[var(--ec-text-secondary)]">
-                        {q.marking_style.replace(/_/g, ' ')}
-                      </span>
-                    )}
-                  </div>
-                  <span
-                    className={`font-mono text-lg font-bold ${
-                      isUnattempted
-                        ? 'text-[var(--ec-text-secondary)]'
-                        : isFailed
-                          ? 'ec-score-low'
-                          : 'ec-score-high'
-                    }`}
-                  >
+                  <span className="qn" style={{ color: col }}>
+                    Q{q.question_number}
+                  </span>
+                  <span className="qt line-clamp-2">
+                    {isFailed ? 'Marking failed' : q.summary}
+                  </span>
+                  <span className="ms-wp-qbar" aria-hidden>
+                    <i style={{ width: `${pct}%`, background: col }} />
+                  </span>
+                  <span className="qs" style={{ color: col }}>
                     {isUnattempted
-                      ? `Not attempted — 0/${q.total_marks}`
+                      ? 'skipped'
                       : isFailed
-                        ? 'Marking failed'
+                        ? 'failed'
                         : `${q.marks_earned}/${q.total_marks}`}
                   </span>
                 </button>
 
-                {!isUnattempted && !isOpen && (
-                  <div className="mt-2 pl-6 text-sm text-[var(--ec-text-secondary)]">
-                    <RichTextRenderer text={q.summary} />
-                  </div>
-                )}
-
                 {isFailed && onRetryQuestion && attemptId && (
-                  <button
-                    type="button"
-                    disabled={retrying === q.question_number}
-                    onClick={async () => {
-                      setRetrying(q.question_number)
-                      await onRetryQuestion(q.question_number)
-                      setRetrying(null)
-                    }}
-                    className="ec-btn-secondary mt-3 ml-6 text-sm"
-                  >
-                    <RotateCcw className="h-4 w-4" />
-                    {retrying === q.question_number
-                      ? 'Retrying…'
-                      : 'Retry this question'}
-                  </button>
+                  <div className="border-b border-[var(--ec-border)] px-[18px] pb-3">
+                    <button
+                      type="button"
+                      disabled={retrying === q.question_number}
+                      onClick={async () => {
+                        setRetrying(q.question_number)
+                        await onRetryQuestion(q.question_number)
+                        setRetrying(null)
+                      }}
+                      className="ec-btn-secondary text-sm"
+                    >
+                      <RotateCcw className="h-4 w-4" />
+                      {retrying === q.question_number ? 'Retrying…' : 'Retry this question'}
+                    </button>
+                  </div>
                 )}
 
                 <AnimatePresence>
@@ -361,15 +380,38 @@ export function WholePaperResultView({
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
+                      className="overflow-hidden border-b border-[var(--ec-border)]"
                     >
-                      <QuestionDetail question={q} attemptId={attemptId} />
+                      <div className="px-[18px] py-4">
+                        <div className="mb-2 flex items-center gap-2">
+                          {isOpen ? (
+                            <ChevronDown className="h-4 w-4 text-[var(--ec-text-secondary)]" />
+                          ) : (
+                            <ChevronRight className="h-4 w-4 text-[var(--ec-text-secondary)]" />
+                          )}
+                          <span className="rounded-full border border-[var(--ec-border)] px-2 py-0.5 font-mono text-[10px] uppercase text-[var(--ec-text-secondary)]">
+                            {q.marking_style.replace(/_/g, ' ')}
+                          </span>
+                        </div>
+                        <QuestionDetail question={q} attemptId={attemptId} />
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
             )
           })}
+          <div className="ms-audit-total">
+            <span className="font-mono text-sm font-bold text-[var(--ec-brand)]">
+              TOTAL {primaryScore.marks_earned} / {primaryScore.total_marks}
+              {showDual ? ' ATTEMPTED' : ''}
+            </span>
+            {primaryScore.estimated_grade ? (
+              <span className="ms-grade-pill">
+                projected: {primaryScore.estimated_grade.replace(/^~/, '')}
+              </span>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

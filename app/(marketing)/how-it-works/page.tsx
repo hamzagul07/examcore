@@ -30,14 +30,13 @@ export default async function HowItWorksPage() {
         ]}
       />
       <MarketingHero
-        label="HOW IT WORKS"
+        label="How it works"
         title={
           <>
-            <span className="gradient-text">Upload.</span>{' '}
-            <span className="ec-text-gradient">Mark. Fix.</span>
+            From photo to marked script, <em>in four honest steps.</em>
           </>
         }
-        lead="The same flow for one integration question or a full paper — here's what you actually see, step by step."
+        lead="No magic claimed. Here's exactly what happens to your work — and where the limits are."
       />
 
       <MarketingSection className="!pt-0">
@@ -71,29 +70,53 @@ export default async function HowItWorksPage() {
       </MarketingSection>
 
       <MarketingSection>
-        <div className="ec-card p-8 sm:p-10">
-          <p className="ec-label-tech mb-4">HONEST ABOUT AI</p>
-          <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">
-            A study companion that works like an examiner
-          </h2>
-          <div className="landing-lead max-w-3xl space-y-4">
-            <p>
-              MarkScheme uses AI trained on real Cambridge mark schemes — not a
-              replacement for examiners, and not a magic grade guarantee. Final
-              grades are decided by Cambridge International, not us.
-            </p>
-            <p>
-              What you get is fast, detailed feedback when you&apos;re revising
-              alone: the same criteria an examiner would apply, explained clearly
-              enough that you can disagree and still learn.
-            </p>
+        <p className="ms-overline">Honest about the AI</p>
+        <h2 className="ms-h2" style={{ marginTop: 0 }}>
+          What it does well — and where it&apos;s <em>limited</em>
+        </h2>
+        <div className="ms-canct">
+          <div className="ms-dash-card">
+            <h3 className="ms-h3" style={{ color: 'var(--ec-brand)' }}>
+              What it does well
+            </h3>
+            <div className="ms-canct-item">
+              <span className="m" style={{ color: 'var(--ec-brand)' }}>✓</span>
+              Applies the official scheme criteria, mark by mark, with citations
+            </div>
+            <div className="ms-canct-item">
+              <span className="m" style={{ color: 'var(--ec-brand)' }}>✓</span>
+              Reads most handwriting, including multi-page working
+            </div>
+            <div className="ms-canct-item">
+              <span className="m" style={{ color: 'var(--ec-brand)' }}>✓</span>
+              Spots recurring error patterns across your attempts
+            </div>
           </div>
-          <Link
-            href={buildMarketingSignUpHref()}
-            className="ec-btn-primary mt-8 inline-flex min-h-[48px]"
-          >
-            Try it free
+          <div className="ms-dash-card">
+            <h3 className="ms-h3" style={{ color: 'var(--ec-ink-crimson)' }}>
+              Where it&apos;s limited
+            </h3>
+            <div className="ms-canct-item">
+              <span className="m" style={{ color: 'var(--ec-ink-crimson)' }}>✗</span>
+              Genuinely illegible lines are flagged, not guessed
+            </div>
+            <div className="ms-canct-item">
+              <span className="m" style={{ color: 'var(--ec-ink-crimson)' }}>✗</span>
+              Essay band judgements are approximate — a human examiner may differ
+            </div>
+            <div className="ms-canct-item">
+              <span className="m" style={{ color: 'var(--ec-ink-crimson)' }}>✗</span>
+              Grade estimates are boundary-pattern approximations, not predictions
+            </div>
+          </div>
+        </div>
+        <div className="mt-10 text-center">
+          <Link href={markHref} className="ec-btn-primary inline-flex min-h-[48px]">
+            Try it on one question
           </Link>
+          <p className="ms-micro" style={{ marginTop: 18 }}>
+            FREE TIER · ABOUT A MINUTE · NOT ENDORSED BY CAMBRIDGE INTERNATIONAL
+          </p>
         </div>
       </MarketingSection>
     </MarketingPageShell>
@@ -110,12 +133,12 @@ function FeatureBlock({
   body: string
 }) {
   return (
-    <div className="ec-card p-6 sm:p-8">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border ec-tint-success-icon">
+    <div className="ms-dash-card p-6 sm:p-8">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border ec-tint-brand-icon">
         <Icon className="h-6 w-6" strokeWidth={1.75} />
       </div>
-      <h3 className="landing-h3 mb-3 text-[var(--ec-text-primary)]">{title}</h3>
-      <p className="text-base leading-relaxed text-[var(--ec-text-secondary)]">{body}</p>
+      <h3 className="ms-h3 mb-3">{title}</h3>
+      <p className="ms-body-2">{body}</p>
     </div>
   )
 }

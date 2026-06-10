@@ -9,8 +9,7 @@ interface SuggestionChipsProps {
 
 /**
  * Pill-shaped starter prompts shown both below the closed CommandBar and on
- * the empty-state of the open chat. Hover state tints toward brand emerald so
- * they read as the primary affordance.
+ * the empty-state of the open chat. Paper prompt pills with red hover accent.
  */
 export function SuggestionChips({ suggestions, onSelect }: SuggestionChipsProps) {
   return (
@@ -23,7 +22,7 @@ export function SuggestionChips({ suggestions, onSelect }: SuggestionChipsProps)
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.05 }}
           onClick={() => onSelect(s)}
-          className="rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] px-4 py-2 text-sm text-[var(--ec-text-secondary)] transition-all ec-hover-brand-border-mild hover:bg-[var(--ec-brand-muted)] hover:text-[var(--ec-brand)]"
+          className="ec-prompt"
         >
           {s}
         </motion.button>

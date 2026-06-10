@@ -61,7 +61,7 @@ export default function ResetPasswordPage() {
       {!done ? (
         <>
           <p className="ec-label-tech mb-3">NEW PASSWORD</p>
-          <h1 className="mb-3 text-4xl font-extrabold tracking-tight text-[var(--ec-text-primary)] sm:text-5xl">
+          <h1 className="text-hero mb-3">
             Set a <span className="ec-text-gradient">new password</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">

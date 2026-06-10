@@ -13,6 +13,8 @@ import { QuickCheckPanel } from '@/components/courses/visuals/QuickCheckPanel'
 import { KeyTermsPanel } from '@/components/courses/visuals/KeyTermsPanel'
 import { FlashcardDeck } from '@/components/courses/visuals/FlashcardDeck'
 import { ComparisonTableVisual } from '@/components/courses/visuals/ComparisonTableVisual'
+import { CourseExplainSimplerToggle } from '@/components/courses/CourseExplainSimplerToggle'
+import { Chip } from '@/components/margin-notes'
 import { CourseReadingProgress } from '@/components/courses/CourseReadingProgress'
 import { CourseLessonToc } from '@/components/courses/CourseLessonToc'
 import { CourseKeyTakeaways } from '@/components/courses/CourseKeyTakeaways'
@@ -45,6 +47,8 @@ export function CourseLessonExperience({
   subjectCode: string
 }) {
   const [tab, setTab] = useState<Tab>('learn')
+  const [explainSimpler, setExplainSimpler] = useState(false)
+  const hasSimpleExplanation = !!lesson.simpleExplanation
 
   const tabs: { id: Tab; label: string; hint: string; icon: typeof BookOpen }[] = [
     { id: 'learn', label: 'Learn', hint: 'Visuals + full notes', icon: BookOpen },
@@ -66,7 +70,10 @@ export function CourseLessonExperience({
     partitioned.diagramImage !== null || partitioned.diagramImages.length > 0
 
   return (
-    <div className="course-lesson-experience">
+    <div
+      className="course-lesson-experience ms-lesson-body"
+      data-explain-simpler={explainSimpler ? 'true' : 'false'}
+    >
       <CourseReadingProgress />
       <div
         className="course-visual-tabs course-studio-tabs mb-8 inline-flex w-full flex-wrap gap-1 sm:w-auto"
@@ -97,6 +104,16 @@ export function CourseLessonExperience({
 
       {tab === 'learn' ? (
         <div role="tabpanel" className="course-learn-page">
+          {hasSimpleExplanation ? (
+            <div className="ms-lesson-chip-row">
+              <Chip variant="ok">core concept</Chip>
+              <Chip variant="dim">≈ {lesson.durationMin} min</Chip>
+              <CourseExplainSimplerToggle
+                checked={explainSimpler}
+                onChange={setExplainSimpler}
+              />
+            </div>
+          ) : null}
           <div className="course-learn-layout">
             <div className="course-learn-main min-w-0 space-y-8">
               <div className="course-learn-toc-mobile mb-6 xl:hidden">

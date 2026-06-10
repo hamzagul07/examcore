@@ -45,7 +45,7 @@ export function TeacherPageHeader({
 }) {
   return (
     <header className="mb-8 sm:mb-10">
-      {label && <p className="ec-label-tech mb-3">{label}</p>}
+      {label && <p className="ec-eyebrow mb-3">{label}</p>}
       <h1 className="text-headline">{title}</h1>
       {lead && <p className="text-body mt-2">{lead}</p>}
     </header>

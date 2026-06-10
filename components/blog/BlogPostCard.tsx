@@ -16,58 +16,41 @@ export function BlogPostCard({ post, variant = 'default' }: Props) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className={`ec-blog-card group block ${isFeatured ? 'ec-blog-card--featured' : ''} ${isEditorial ? 'ec-blog-card--editorial' : ''} ${isCompact ? 'ec-blog-card--compact' : ''}`}
+      className={`ms-guide-card ms-blog-card group ${isEditorial || isFeatured ? 'ms-blog-card--editorial' : ''} ${isCompact ? 'ms-blog-card--compact' : ''}`}
     >
-      <div className="ec-blog-card__glow" aria-hidden />
-      <div className="ec-blog-card__inner">
-        <div className="flex flex-wrap items-center gap-2">
-          {post.spotlight ? (
-            <span className="ec-blog-chip ec-blog-chip--spotlight">Spotlight</span>
-          ) : null}
-          <span
-            className={`ec-blog-chip ${isEditorial ? 'ec-blog-chip--editorial' : ''}`}
-          >
-            {post.categoryLabel}
-          </span>
-          {post.syllabusCode ? (
-            <span className="ec-blog-chip ec-blog-chip--code">{post.syllabusCode}</span>
-          ) : null}
-          {post.date ? (
-            <time dateTime={post.date} className="ec-blog-meta">
-              {formatBlogDate(post.date)}
-            </time>
-          ) : null}
-          <span className="ec-blog-meta inline-flex items-center gap-1">
-            <Clock className="h-3 w-3" aria-hidden />
-            {post.readingMinutes} min read
-          </span>
-        </div>
-
-        <h2
-          className={
-            isFeatured
-              ? 'mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--ec-text-primary)] sm:text-3xl'
-              : isCompact
-                ? 'mt-3 text-base font-semibold leading-snug text-[var(--ec-text-primary)]'
-                : 'landing-h3 mt-4 text-[var(--ec-text-primary)]'
-          }
-        >
-          {post.title}
-        </h2>
-
-        {!isCompact && post.description ? (
-          <p className="mt-3 line-clamp-3 text-base leading-relaxed text-[var(--ec-text-secondary)]">
-            {post.description}
-          </p>
+      <div className="flex flex-wrap items-center gap-2">
+        {post.spotlight ? (
+          <span className="ec-chip-ms ec-chip-ms--ok">Spotlight</span>
         ) : null}
-
-        {post.keywords[0] && !isCompact ? (
-          <p className="ec-blog-keyword mt-4 font-mono text-[11px] uppercase tracking-wider text-[var(--ec-text-secondary)]">
-            {post.keywords[0]}
-          </p>
+        <span className="ec-chip-ms ec-chip-ms--outline">{post.categoryLabel}</span>
+        {post.syllabusCode ? (
+          <span className="ec-chip-ms ec-chip-ms--outline">{post.syllabusCode}</span>
         ) : null}
+        {post.date ? (
+          <time dateTime={post.date} className="ms-micro">
+            {formatBlogDate(post.date)}
+          </time>
+        ) : null}
+        <span className="ms-micro inline-flex items-center gap-1">
+          <Clock className="h-3 w-3" aria-hidden />
+          {post.readingMinutes} min
+        </span>
+      </div>
 
-        <span className="ec-blog-card__cta mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
+      <h2 className={`ms-gt ${isFeatured ? 'ms-blog-card__title--featured' : ''}`}>
+        {post.title}
+      </h2>
+
+      {!isCompact && post.description ? (
+        <p className="ms-body-2 line-clamp-3">{post.description}</p>
+      ) : null}
+
+      {post.keywords[0] && !isCompact ? (
+        <p className="ms-micro font-mono uppercase tracking-wider">{post.keywords[0]}</p>
+      ) : null}
+
+      <div className="ms-gmeta">
+        <span className="ec-btn-underline inline-flex items-center gap-1.5 text-sm">
           {isCompact ? (
             <>
               <BookOpen className="h-4 w-4" aria-hidden />

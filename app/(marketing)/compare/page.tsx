@@ -51,7 +51,7 @@ export default function ComparePage() {
       />
       <MarketingHero
         label="COMPARISON"
-        title={<span className="gradient-text">Which marking path fits you?</span>}
+        title="Which marking path fits you?"
         lead="Not affiliate fluff — a practical table for students revising with Cambridge past papers."
       />
       <MarketingSection className="!pt-0">

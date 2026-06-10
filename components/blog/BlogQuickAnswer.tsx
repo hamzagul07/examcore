@@ -13,16 +13,15 @@ export function BlogQuickAnswer({ title, description, content, date }: Props) {
   if (!answer) return null
 
   return (
-    <aside
-      className="ec-blog-quick-answer mt-8 rounded-xl border border-[var(--ec-brand)]/25 bg-[var(--ec-brand)]/5 px-5 py-5 sm:px-6"
-      aria-label="Quick answer"
-    >
-      <p className="ec-label-tech mb-2 text-[var(--ec-brand)]">QUICK ANSWER</p>
-      <p className="text-base font-medium leading-relaxed text-[var(--ec-text-primary)]">
+    <aside className="ms-quick-answer mt-8" aria-label="Quick answer">
+      <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
+        Quick answer
+      </p>
+      <p className="ms-body-2" style={{ fontSize: 16, color: 'var(--ec-text-primary)' }}>
         {answer}
       </p>
       {date ? (
-        <p className="mt-3 text-xs text-[var(--ec-text-secondary)]">
+        <p className="ms-micro" style={{ marginTop: 12 }}>
           <time dateTime={date}>
             Updated {new Date(date).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
           </time>

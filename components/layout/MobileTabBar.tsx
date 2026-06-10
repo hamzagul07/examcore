@@ -2,38 +2,47 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, PenLine, LineChart, User } from 'lucide-react'
-import { cn } from '@/lib/utils'
 
 type TabItem = {
   href: string
   label: string
-  icon: typeof Home
+  glyph: string
   match: (p: string) => boolean
-  primary?: boolean
 }
 
 const TABS: TabItem[] = [
-  { href: '/dashboard', label: 'Home', icon: Home, match: (p: string) => p === '/dashboard' },
   {
     href: '/mark',
     label: 'Mark',
-    icon: PenLine,
-    primary: true,
-    match: (p: string) => p === '/mark' || p.startsWith('/mark/'),
+    glyph: '✎',
+    match: (p) => p === '/mark' || p.startsWith('/mark/'),
+  },
+  {
+    href: '/courses',
+    label: 'Learn',
+    glyph: '∫',
+    match: (p) => p === '/courses' || p.startsWith('/courses/'),
+  },
+  {
+    href: '/subjects',
+    label: 'Subjects',
+    glyph: '§',
+    match: (p) => p === '/subjects' || p.startsWith('/subjects/'),
   },
   {
     href: '/dashboard/progress',
     label: 'Progress',
-    icon: LineChart,
-    match: (p: string) =>
-      p.startsWith('/dashboard/progress') || p.startsWith('/dashboard/attempt/'),
+    glyph: 'A',
+    match: (p) =>
+      p.startsWith('/dashboard/progress') ||
+      p.startsWith('/dashboard/attempt/') ||
+      p === '/dashboard',
   },
   {
     href: '/account',
-    label: 'Account',
-    icon: User,
-    match: (p: string) => p.startsWith('/account'),
+    label: 'You',
+    glyph: 'H',
+    match: (p) => p.startsWith('/account'),
   },
 ]
 
@@ -41,47 +50,22 @@ export function MobileTabBar() {
   const pathname = usePathname()
 
   return (
-    <nav
-      aria-label="Main navigation"
-      className="ec-mobile-tab-bar fixed inset-x-0 bottom-0 z-40 border-t lg:hidden"
-      style={{
-        borderColor: 'var(--ec-border)',
-        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-      }}
-    >
-      <div className="mx-auto flex h-16 max-w-lg items-stretch justify-around px-2">
-        {TABS.map(({ href, label, icon: Icon, match, primary }) => {
-          const active = match(pathname)
-          return (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                'relative flex min-h-[44px] min-w-[44px] flex-1 flex-col items-center justify-center gap-0.5 rounded-xl transition-colors',
-                active ? 'text-[var(--ec-brand)]' : 'text-[var(--ec-text-secondary)]'
-              )}
-              aria-current={active ? 'page' : undefined}
-            >
-              {primary && active && (
-                <span
-                  className="absolute bottom-1 h-0.5 w-5 rounded-full"
-                  style={{ background: 'var(--ec-brand)' }}
-                  aria-hidden
-                />
-              )}
-              <Icon
-                className={cn(
-                  'shrink-0 transition-transform',
-                  primary ? 'h-6 w-6' : 'h-5 w-5',
-                  active && primary && 'scale-110'
-                )}
-                strokeWidth={active ? 2.25 : 1.75}
-              />
-              <span className="text-[12px] font-medium leading-none">{label}</span>
-            </Link>
-          )
-        })}
-      </div>
+    <nav aria-label="Main navigation" className="ec-tabbar lg:hidden">
+      {TABS.map(({ href, label, glyph, match }) => {
+        const active = match(pathname)
+        return (
+          <Link
+            key={href}
+            href={href}
+            aria-current={active ? 'page' : undefined}
+          >
+            <span className="ec-tabbar__glyph" aria-hidden>
+              {glyph}
+            </span>
+            <span className="ec-tabbar__label">{label}</span>
+          </Link>
+        )
+      })}
     </nav>
   )
 }

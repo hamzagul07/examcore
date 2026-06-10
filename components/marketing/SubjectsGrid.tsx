@@ -18,12 +18,14 @@ import {
   Tv,
   type LucideIcon,
 } from 'lucide-react'
+import type React from 'react'
 import {
   SUBJECTS,
   SUBJECT_GROUPS,
   type MarkingType,
   type SubjectOption,
 } from '@/lib/profile-options'
+import { getSubjectColor } from '@/lib/design-system/subject-colors'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
 
@@ -95,7 +97,7 @@ export function SubjectsGrid({ detailed = false }: { detailed?: boolean }) {
               className={
                 detailed
                   ? 'grid grid-cols-1 gap-4 md:grid-cols-2'
-                  : 'grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+                  : 'grid grid-cols-[repeat(auto-fill,minmax(234px,1fr))] gap-3.5'
               }
             >
               {subjects.map((subject) => (
@@ -118,29 +120,24 @@ function SubjectCard({
 }) {
   const Icon = ICON_BY_CODE[subject.code] ?? Calculator
 
+  const color = getSubjectColor(subject.code)
+
   if (!detailed) {
     return (
       <Link
         href={`/subjects/${subject.code}`}
-        className="ec-card ec-card-interactive relative block overflow-hidden p-4 text-center sm:p-5"
+        className="ec-subj-card no-underline"
+        style={{ '--subj-color': color } as React.CSSProperties}
       >
-        <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[color-mix(in_srgb,var(--ec-brand)_10%,transparent)] blur-[50px]" />
-        <div className="relative">
-          <div className="ec-tint-success-icon mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl border sm:h-12 sm:w-12">
-            <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.75} />
-          </div>
-          <p className="text-sm font-bold leading-tight text-[var(--ec-text-primary)] sm:text-base">
+        <span className="ec-subj-code">{subject.code}</span>
+        <span className="flex min-w-0 flex-1 flex-col gap-px">
+          <span className="truncate text-base font-bold tracking-[-0.01em] text-[var(--ec-text-primary)]">
             {subject.label}
-          </p>
-          <p className="mt-0.5 font-mono text-[10px] text-[var(--ec-text-secondary)] sm:text-xs">
-            {subject.code}
-            {levelLabel(subject.levels) && (
-              <span className="ml-1.5 text-[9px] uppercase tracking-wider text-[color-mix(in_srgb,var(--ec-brand)_80%,transparent)]">
-                · {levelLabel(subject.levels)}
-              </span>
-            )}
-          </p>
-        </div>
+          </span>
+          <span className="font-mono text-[11px] tracking-[0.05em] text-[var(--ec-text-faint,#8a7f70)]">
+            {levelLabel(subject.levels)}
+          </span>
+        </span>
       </Link>
     )
   }
@@ -149,7 +146,14 @@ function SubjectCard({
 
   return (
     <div className="ec-card ec-card-interactive flex gap-4 p-5 sm:p-6">
-      <div className="ec-tint-success-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border">
+      <div
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border"
+        style={{
+          color,
+          borderColor: `color-mix(in srgb, ${color} 30%, transparent)`,
+          background: `color-mix(in srgb, ${color} 14%, transparent)`,
+        }}
+      >
         <Icon className="h-6 w-6" strokeWidth={1.75} />
       </div>
       <div className="min-w-0 flex-1">

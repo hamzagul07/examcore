@@ -3,6 +3,7 @@
 import type { MarkAwarded } from '@/components/MarkingResultView'
 import type { LorBandResult } from '@/lib/marking/types'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 
 type MarkAuditPanelProps = {
   marks: MarkAwarded[]
@@ -64,7 +65,9 @@ export function MarkAuditPanel({
             aria-pressed={selectedIndex === i}
           >
             <span className="code">{mark.type}</span>
-            <span className="desc">{auditDescription(mark)}</span>
+            <span className="desc">
+              <MarkSnippet text={auditDescription(mark)} />
+            </span>
             <span className="pts">{mark.earned ? '+1' : '0'}</span>
           </button>
         ))}

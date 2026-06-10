@@ -10,10 +10,12 @@ type Props = {
 
 export function PatternsPanel({ state, patterns, speedProfile }: Props) {
   return (
-    <section className="ec-card min-w-0 p-5 sm:p-6">
+    <section className="ms-dash-card min-w-0">
       <div className="mb-5 flex items-center gap-2">
         <ScanSearch className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
-        <p className="ec-label-tech">PATTERNS</p>
+        <p className="ms-overline" style={{ marginBottom: 0 }}>
+          Patterns
+        </p>
       </div>
 
       {state !== 'active' ? (
@@ -58,7 +60,7 @@ export function PatternsPanel({ state, patterns, speedProfile }: Props) {
       )}
 
       <div className="mt-4 flex items-start gap-2.5 rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface)] p-4">
-        <Gauge className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" aria-hidden="true" />
+        <Gauge className="mt-0.5 h-4 w-4 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
         <div className="min-w-0 flex-1">
           <p className="ec-break-anywhere text-sm font-semibold text-[var(--ec-text-primary)]">
             {speedProfile.label}
@@ -78,9 +80,5 @@ export function PatternsPanel({ state, patterns, speedProfile }: Props) {
 }
 
 function Hint({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="ec-break-anywhere rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface)] p-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-      {children}
-    </div>
-  )
+  return <div className="ms-progress-hint ec-break-anywhere">{children}</div>
 }

@@ -88,7 +88,7 @@ export function MasteryMatrix({
 
   if (parentMasteries.length === 0) {
     return (
-      <section className="ec-card-premium p-5 sm:p-7">
+      <section className="ms-dash-card">
         <EmptyState
           icon={Grid3X3}
           title="Mastery matrix"
@@ -101,7 +101,7 @@ export function MasteryMatrix({
 
   return (
     <>
-      <section id="mastery-matrix" className="ec-card-premium p-5 sm:p-7">
+      <section id="mastery-matrix" className="ms-dash-card">
         {emptyBanner && (
           <div className="ec-banner-info-inline mb-5 rounded-xl px-4 py-3 text-sm">
             Mark questions in{' '}
@@ -110,11 +110,11 @@ export function MasteryMatrix({
           </div>
         )}
         <div className="mb-5 flex items-center gap-2">
-          <Grid3X3 className="h-4 w-4 ec-text-brand" />
-          <p className="ec-label-tech">MASTERY MATRIX</p>
+          <Grid3X3 className="h-4 w-4 text-[var(--ec-brand)]" />
+          <p className="ms-overline" style={{ marginBottom: 0 }}>Mastery matrix</p>
         </div>
-        <h2 className="text-2xl font-bold tracking-tight">Topic-by-topic strength</h2>
-        <p className="mt-1 text-sm ec-text-secondary">
+        <h2 className="ms-h3">Topic-by-topic strength</h2>
+        <p className="ms-body-2 mt-1">
           {isMathFlat
             ? 'Each topic is scored independently. Tap for attempt history.'
             : 'Expand a section to see leaf-level mastery. One tagged question affects only that leaf.'}

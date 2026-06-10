@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction } from 'react'
 import { flushSync } from 'react-dom'
 import Link from 'next/link'
 import { UploadCloud, ChevronRight, Sparkles } from 'lucide-react'
@@ -102,6 +102,83 @@ function refreshBillingSummary() {
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new Event('ec:billing-refresh'))
   }
+}
+
+type MarkStreamEvent = {
+  type: string
+  stage?: MarkProgressStage
+  percent?: number
+  paper_code?: string | null
+  paper_session?: string | null
+  question_number?: string | null
+  subject_code?: string | null
+  syllabus_tags?: string[] | null
+  payload?: MarkingResultData
+  error?: string
+  retryable?: boolean
+}
+
+function parseMarkStreamPart(part: string): MarkStreamEvent | null {
+  const line = part.trim()
+  if (!line.startsWith('data:')) return null
+  const payload = line.replace(/^data:\s?/, '')
+  if (!payload) return null
+  try {
+    return JSON.parse(payload) as MarkStreamEvent
+  } catch {
+    return null
+  }
+}
+
+function handleMarkStreamEvent(
+  event: MarkStreamEvent,
+  ctx: {
+    setMarkProgress: Dispatch<
+      SetStateAction<{
+        percent: number
+        stage: MarkProgressStage
+        questionNumber?: string
+      } | null>
+    >
+    setMarkContext: Dispatch<SetStateAction<MarkContextPayload | null>>
+    setMarkStreamError: Dispatch<SetStateAction<string | null>>
+    setErrorMsg: Dispatch<SetStateAction<string>>
+    setErrorRetryable: Dispatch<SetStateAction<boolean>>
+    setLoading: Dispatch<SetStateAction<boolean>>
+    questionNumber: string
+  }
+): 'continue' | 'error' | 'result' {
+  if (event.type === 'progress' && event.stage && event.percent != null) {
+    ctx.setMarkProgress({
+      percent: event.percent,
+      stage: event.stage,
+      questionNumber: ctx.questionNumber.trim() || undefined,
+    })
+  }
+  if (event.type === 'context') {
+    ctx.setMarkContext((prev) => ({
+      ...prev,
+      paper_code: event.paper_code ?? prev?.paper_code,
+      paper_session: event.paper_session ?? prev?.paper_session,
+      question_number: event.question_number ?? prev?.question_number,
+      subject_code: event.subject_code ?? prev?.subject_code,
+      syllabus_tags: event.syllabus_tags ?? prev?.syllabus_tags,
+    }))
+  }
+  if (event.type === 'result' && event.payload) {
+    return 'result'
+  }
+  if (event.type === 'error') {
+    const msg = event.error || 'Marking failed.'
+    ctx.setMarkStreamError(msg)
+    ctx.setErrorMsg(msg)
+    ctx.setErrorRetryable(!!event.retryable)
+    ctx.setLoading(false)
+    ctx.setMarkProgress(null)
+    ctx.setMarkContext(null)
+    return 'error'
+  }
+  return 'continue'
 }
 
 export default function MarkPage() {
@@ -725,6 +802,26 @@ export default function MarkPage() {
       const decoder = new TextDecoder()
       let buffer = ''
       let finalPayload: MarkingResult | null = null
+      const streamCtx = {
+        setMarkProgress,
+        setMarkContext,
+        setMarkStreamError,
+        setErrorMsg,
+        setErrorRetryable,
+        setLoading,
+        questionNumber,
+      }
+
+      const consumeStreamPart = (part: string): boolean => {
+        const event = parseMarkStreamPart(part)
+        if (!event) return false
+        const outcome = handleMarkStreamEvent(event, streamCtx)
+        if (outcome === 'error') return true
+        if (outcome === 'result' && event.payload) {
+          finalPayload = event.payload as MarkingResult
+        }
+        return false
+      }
 
       while (true) {
         const { done, value } = await reader.read()
@@ -733,53 +830,11 @@ export default function MarkPage() {
         const parts = buffer.split('\n\n')
         buffer = parts.pop() ?? ''
         for (const part of parts) {
-          const line = part.trim()
-          if (!line.startsWith('data: ')) continue
-          const event = JSON.parse(line.slice(6)) as {
-            type: string
-            stage?: MarkProgressStage
-            percent?: number
-            paper_code?: string | null
-            paper_session?: string | null
-            question_number?: string | null
-            subject_code?: string | null
-            syllabus_tags?: string[] | null
-            payload?: MarkingResult
-            error?: string
-            retryable?: boolean
-          }
-          if (event.type === 'progress' && event.stage && event.percent != null) {
-            setMarkProgress({
-              percent: event.percent,
-              stage: event.stage,
-              questionNumber: questionNumber.trim() || undefined,
-            })
-          }
-          if (event.type === 'context') {
-            setMarkContext((prev) => ({
-              ...prev,
-              paper_code: event.paper_code ?? prev?.paper_code,
-              paper_session: event.paper_session ?? prev?.paper_session,
-              question_number: event.question_number ?? prev?.question_number,
-              subject_code: event.subject_code ?? prev?.subject_code,
-              syllabus_tags: event.syllabus_tags ?? prev?.syllabus_tags,
-            }))
-          }
-          if (event.type === 'result' && event.payload) {
-            finalPayload = event.payload as MarkingResult
-          }
-          if (event.type === 'error') {
-            const msg = event.error || 'Marking failed.'
-            setMarkStreamError(msg)
-            setErrorMsg(msg)
-            setErrorRetryable(!!event.retryable)
-            setLoading(false)
-            setMarkProgress(null)
-            setMarkContext(null)
-            return
-          }
+          if (consumeStreamPart(part)) return
         }
       }
+
+      if (buffer.trim() && consumeStreamPart(buffer)) return
 
       if (finalPayload) {
         // Buffer the payload and let the cinematic wait choreograph the reveal.
@@ -797,7 +852,14 @@ export default function MarkPage() {
     } catch (err) {
       setLoading(false)
       setMarkProgress(null)
-      setErrorMsg(err instanceof Error ? err.message : 'Network error')
+      const msg =
+        err instanceof SyntaxError
+          ? 'Lost connection while marking. Please try again.'
+          : err instanceof Error
+            ? err.message
+            : 'Network error'
+      setMarkStreamError(msg)
+      setErrorMsg(msg)
     }
   }
 

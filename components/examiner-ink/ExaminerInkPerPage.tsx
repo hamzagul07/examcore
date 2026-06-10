@@ -10,10 +10,14 @@ export function ExaminerInkPerPage({
   pages,
   animate = false,
   attemptId,
+  activeMarkId = null,
+  onActiveMarkChange,
 }: {
   pages: Array<{ photo_url: string; line_references: LineReference[] }>
   animate?: boolean
   attemptId?: string
+  activeMarkId?: string | null
+  onActiveMarkChange?: (markId: string) => void
 }) {
   if (!pages.length) return null
 
@@ -30,6 +34,8 @@ export function ExaminerInkPerPage({
             attemptId={attemptId}
             photoRef={toAnswerPhotoStoragePath(page.photo_url)}
             animate={animate}
+            activeMarkId={activeMarkId}
+            onActiveMarkChange={onActiveMarkChange}
           />
         </div>
       ))}

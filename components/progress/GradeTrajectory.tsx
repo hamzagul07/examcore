@@ -36,16 +36,16 @@ export function GradeTrajectory({ attempts, prediction }: Props) {
         glow={false}
         className="rounded-3xl lg:col-span-3"
       >
-        <div className="ec-card h-full p-5 sm:p-7">
+        <div className="ms-dash-card h-full">
           <div className="mb-5 flex items-center gap-2">
-            <LineChart className="h-4 w-4 ec-text-brand" aria-hidden="true" />
-            <p className="ec-label-tech">GRADE TRAJECTORY</p>
+            <LineChart className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+            <p className="ms-overline" style={{ marginBottom: 0 }}>Grade trajectory</p>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)]">
+          <h2 className="ms-h3">
             Your last {Math.max(series.length, 1)} attempt
             {series.length === 1 ? '' : 's'}
           </h2>
-          <p className="mt-1 text-sm text-[var(--ec-text-secondary)] sm:text-base">
+          <p className="ms-body-2 mt-1">
             Percentages charted against Cambridge 9709 grade boundaries.
           </p>
 
@@ -272,7 +272,7 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
 
   return (
     <div
-      className="ec-card relative h-full overflow-hidden p-5 sm:p-7"
+      className="ms-dash-card relative h-full overflow-hidden"
       style={{
         borderColor: isPlaceholder ? undefined : `${prediction.color}55`,
         background: isPlaceholder
@@ -297,24 +297,23 @@ function PredictiveGradeCard({ prediction }: { prediction: GradePrediction }) {
         <div className="mb-3 flex items-center gap-2">
           <TrendingUp className="h-4 w-4" style={{ color: prediction.color }} aria-hidden="true" />
           <p
-            className="font-mono text-[11px] font-medium uppercase tracking-[0.18em]"
-            style={{ color: prediction.color }}
+            className="ms-overline"
+            style={{ marginBottom: 0, color: prediction.color }}
           >
-            Predicted Grade
+            Grade estimate
           </p>
         </div>
 
         {!isPlaceholder && (
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--ec-text-secondary)]">
-            Current trajectory
-          </p>
+          <p className="ms-micro mb-2">Current trajectory</p>
         )}
 
         <div className="flex items-baseline gap-3">
           <span
-            className="ec-stat-figure text-7xl sm:text-8xl"
+            className="ms-big-grade"
             style={{
               color: isPlaceholder ? 'var(--ec-text-secondary)' : prediction.color,
+              fontSize: 'clamp(64px, 12vw, 84px)',
             }}
           >
             {prediction.predictedGrade}

@@ -182,3 +182,24 @@ export function normalizeMarkdownTables(text: string): string {
 
   return out.join('\n')
 }
+
+/** Wrap bare OCR/math snippets (e.g. "= 240x^2") for KaTeX when no $ delimiters. */
+export function prepareMarkingSnippet(text: string): string {
+  const trimmed = text.trim()
+  if (!trimmed) return ''
+
+  if (/(?<!\\)\$/.test(trimmed) || trimmed.includes('\\(') || trimmed.includes('$$')) {
+    return normalizeMarkingText(trimmed)
+  }
+
+  const looksLikeMath =
+    isRealMath(trimmed) ||
+    (/^=/.test(trimmed) && /[a-zA-Z0-9^]/.test(trimmed)) ||
+    (/[a-zA-Z]/.test(trimmed) && /[\^_=]/.test(trimmed))
+
+  if (looksLikeMath) {
+    return normalizeMarkingText(`$${trimmed}$`)
+  }
+
+  return normalizeMarkingText(trimmed)
+}

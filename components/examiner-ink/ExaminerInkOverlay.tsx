@@ -29,6 +29,10 @@ interface ExaminerInkOverlayProps {
   photoRef?: string
   /** When true, marks reveal sequentially as if being drawn live. */
   animate?: boolean
+  /** Stamp code (B1, M1…) synced with mark audit selection. */
+  activeMarkId?: string | null
+  /** Fired when the student taps a stamp on the script. */
+  onActiveMarkChange?: (markId: string) => void
 }
 
 /**
@@ -51,6 +55,8 @@ export function ExaminerInkOverlay({
   attemptId,
   photoRef,
   animate = true,
+  activeMarkId = null,
+  onActiveMarkChange,
 }: ExaminerInkOverlayProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const refreshedUrlRef = useRef(false)
@@ -113,6 +119,16 @@ export function ExaminerInkOverlay({
     return () => clearInterval(timer)
   }, [animate, imageLoaded, positioned.length])
 
+  useEffect(() => {
+    if (!activeMarkId) return
+    const idx = positioned.findIndex(
+      (line) => line.mark_id.toUpperCase() === activeMarkId.toUpperCase()
+    )
+    if (idx >= 0) {
+      setRevealedCount((prev) => Math.max(prev, idx + 1))
+    }
+  }, [activeMarkId, positioned])
+
   const isMarking = animate && revealedCount < positioned.length
 
   return (
@@ -133,7 +149,24 @@ export function ExaminerInkOverlay({
         <div className="pointer-events-none absolute inset-0">
           <AnimatePresence>
             {positioned.slice(0, revealedCount).map((line, idx) => (
-              <ExaminerMark key={`${line.mark_id}-${idx}`} line={line} />
+              <ExaminerMark
+                key={`${line.mark_id}-${idx}`}
+                line={line}
+                active={
+                  activeMarkId
+                    ? line.mark_id.toUpperCase() === activeMarkId.toUpperCase()
+                    : false
+                }
+                dimmed={
+                  !!activeMarkId &&
+                  line.mark_id.toUpperCase() !== activeMarkId.toUpperCase()
+                }
+                onSelect={
+                  onActiveMarkChange
+                    ? () => onActiveMarkChange(line.mark_id)
+                    : undefined
+                }
+              />
             ))}
           </AnimatePresence>
         </div>
@@ -174,7 +207,17 @@ export function ExaminerInkOverlay({
   )
 }
 
-function ExaminerMark({ line }: { line: LineReference }) {
+function ExaminerMark({
+  line,
+  active = false,
+  dimmed = false,
+  onSelect,
+}: {
+  line: LineReference
+  active?: boolean
+  dimmed?: boolean
+  onSelect?: () => void
+}) {
   const { bbox, mark_id, earned, margin_note } = line
   if (!bbox) return null
 
@@ -196,24 +239,52 @@ function ExaminerMark({ line }: { line: LineReference }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: dimmed ? 0.35 : 1 }}
       transition={{ duration: 0.2 }}
-      className="pointer-events-auto"
+      className={onSelect ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none'}
+      onClick={
+        onSelect
+          ? (e) => {
+              e.stopPropagation()
+              onSelect()
+            }
+          : undefined
+      }
+      onKeyDown={
+        onSelect
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onSelect()
+              }
+            }
+          : undefined
+      }
+      role={onSelect ? 'button' : undefined}
+      tabIndex={onSelect ? 0 : undefined}
+      aria-label={onSelect ? `Highlight ${mark_id} on script` : undefined}
     >
       <div
-        className="absolute"
+        className="absolute transition-[filter] duration-200"
         style={{
           top: `${safeBox.top}%`,
           left: `${safeBox.left}%`,
           width: `${safeBox.width}%`,
           height: `${safeBox.height}%`,
+          filter: active ? 'drop-shadow(0 0 6px color-mix(in srgb, var(--ec-brand) 55%, transparent))' : undefined,
         }}
       >
         <UnderlineMark earned={earned} />
         {!earned && margin_note && <MarginNote note={margin_note} flip={flipToLeft} />}
       </div>
 
-      <div className="absolute" style={stampStyle}>
+      <div
+        className="absolute transition-transform duration-200"
+        style={{
+          ...stampStyle,
+          transform: `${stampStyle.transform ?? ''}${active ? ' scale(1.12)' : ''}`,
+        }}
+      >
         <MarkStamp markId={mark_id} earned={earned} />
       </div>
     </motion.div>

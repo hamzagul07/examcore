@@ -102,6 +102,73 @@
   align-items: start;
 }
 
+.ms-upload-preview-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height: min(55vh, 520px);
+  min-height: 140px;
+  padding: 12px;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  overflow: hidden;
+}
+
+.ms-upload-preview {
+  display: block;
+  max-width: 100%;
+  max-height: min(52vh, 496px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.ms-upload-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.ms-upload-thumb {
+  position: relative;
+  width: 76px;
+  height: 102px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 2px solid var(--ec-border);
+  overflow: hidden;
+  background: var(--ec-bg-soft);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ms-upload-thumb.on {
+  border-color: var(--ec-brand);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ec-brand) 35%, transparent);
+}
+
+.ms-upload-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.ms-upload-page-thumb {
+  background: var(--ec-bg-soft);
+}
+
+.ms-upload-page-thumb img {
+  object-fit: contain;
+  object-position: center;
+}
+
 .ms-mark-form-card {
   background: var(--ec-surface);
   border: 1px solid var(--ec-border);
@@ -199,6 +266,34 @@
 .ms-audit-row .desc {
   color: var(--ec-text-secondary);
   line-height: 1.4;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.ms-mark-snippet.prose {
+  display: inline;
+  max-width: 100%;
+}
+
+.ms-mark-snippet.prose p {
+  margin: 0;
+  display: inline;
+  color: inherit;
+  line-height: inherit;
+}
+
+.ms-mark-snippet .katex {
+  font-size: 0.95em;
+}
+
+.ms-mark-snippet--inline.prose {
+  display: contents;
+}
+
+.ms-mark-ink-block img {
+  max-height: min(55vh, 520px);
+  width: 100%;
+  object-fit: contain;
 }
 
 .ms-audit-total {

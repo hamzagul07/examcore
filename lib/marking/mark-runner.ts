@@ -11,7 +11,7 @@ import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { parsePaperCode } from '@/lib/marking/component-types'
 import { buildMarkingPrompt, maxTokensForStyle } from '@/lib/marking/build-marking-prompt'
 import { extractJSON } from '@/lib/marking/json'
-import { normalizeMarkingResult } from '@/lib/marking/normalize-math'
+import { normalizeMarkingResult, coerceMarkingResult, isUsableMarkingResult } from '@/lib/marking/normalize-math'
 import {
   tryExtractFromStorage,
   resolveQuestionMarkingStyle,
@@ -237,7 +237,24 @@ async function runGeminiMarking(
     task: 'marking',
     maxOutputTokens: maxTokens,
   })
-  return extractJSON(markingText) as Record<string, unknown>
+  try {
+    const parsed = coerceMarkingResult(
+      extractJSON(markingText) as Record<string, unknown>
+    )
+    if (!isUsableMarkingResult(parsed)) {
+      throw new SyntaxError('Marking payload missing required fields')
+    }
+    return parsed
+  } catch (err) {
+    console.error(
+      'marking JSON parse failed:',
+      markingText.slice(0, 400),
+      err
+    )
+    throw new Error(
+      'We could not read the marking result. Please try again.'
+    )
+  }
 }
 
 export async function markSingleQuestion(params: {

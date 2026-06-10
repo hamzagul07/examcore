@@ -62,14 +62,14 @@ export function JourneyTimeline({ stations, subjectLabel }: Props) {
 
   if (stations.length === 0) {
     return (
-      <section className="ec-card p-6 sm:p-8">
+      <section className="ms-dash-card">
         <Header subjectLabel={subjectLabel} view={view} setView={setView} disabled />
-        <div className="rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface)] p-10 text-center">
+        <div className="ms-progress-hint p-10 text-center">
           <Route className="mx-auto mb-3 h-8 w-8 text-[var(--ec-text-secondary)]" aria-hidden="true" />
-          <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+          <p className="ms-h3" style={{ fontSize: 20 }}>
             Your journey starts with your first question
           </p>
-          <p className="mx-auto mt-1.5 max-w-sm text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+          <p className="ms-body-2 mx-auto mt-1.5 max-w-sm">
             Every question you mark becomes a stop on this line. Mark one and watch the map grow.
           </p>
         </div>
@@ -78,7 +78,7 @@ export function JourneyTimeline({ stations, subjectLabel }: Props) {
   }
 
   return (
-    <section className="ec-card min-w-0 p-5 sm:p-8">
+    <section className="ms-dash-card min-w-0">
       <Header subjectLabel={subjectLabel} view={view} setView={setView} />
       {vertical ? (
         <VerticalMetro stations={shown} reduce={!!reduce} />
@@ -105,9 +105,9 @@ function Header({
       <div>
         <div className="mb-2 flex items-center gap-2">
           <Route className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
-          <p className="ec-label-tech">YOUR JOURNEY</p>
+          <p className="ms-overline" style={{ marginBottom: 0 }}>Your journey</p>
         </div>
-        <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-3xl">
+        <h2 className="ms-h3">
           The map of your {subjectLabel} progress
         </h2>
       </div>

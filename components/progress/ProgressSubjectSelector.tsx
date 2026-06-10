@@ -28,12 +28,15 @@ export function ProgressSubjectSelector({ subjects, selectedCode }: Props) {
 
   return (
     <div className="mb-6 animate-entry">
-      <label className="ec-label-tech mb-2 block">SUBJECT</label>
+      <label className="ms-overline mb-2 block" htmlFor="progress-subject">
+        Subject
+      </label>
       <div className="relative inline-block w-full max-w-xs">
         <select
+          id="progress-subject"
           value={selectedCode}
           onChange={(e) => onChange(e.target.value)}
-          className="ec-input w-full appearance-none py-2.5 pr-10 text-sm font-medium transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)]"
+          className="ec-input w-full appearance-none rounded-xl py-2.5 pr-10 text-sm font-medium transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)]"
         >
           {subjects.map((s) => (
             <option key={s.code} value={s.code}>

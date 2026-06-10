@@ -1164,22 +1164,12 @@ export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> =
     'Build a molecule',
     'Substitution, addition, and elimination patterns (9701 13.2).'
   ),
-  '13-3-shapes-of-organic-molecules-and-bonds': phetEntry(
-    'build-a-molecule',
-    'Build a molecule',
-    'Tetrahedral carbon, σ and π bonds (9701 13.3).'
-  ),
 
   // ── 9701 AS completion batch 14 ────────────────────────────────────────
   '2-1-relative-masses-of-atoms-and-molecules': phetEntry(
     'balancing-chemical-equations',
     'Balancing Chemical Equations',
     'Relative atomic mass and formula mass (9701 2.1).'
-  ),
-  '2-3-formulas': phetEntry(
-    'build-a-molecule',
-    'Build a molecule',
-    'Empirical and molecular formulas (9701 2.3).'
   ),
   '2-4-reacting-masses-and-volumes-of-solutions-and-gases': phetEntry(
     'reactants-products-and-leftovers',

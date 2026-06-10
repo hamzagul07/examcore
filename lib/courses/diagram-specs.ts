@@ -1869,12 +1869,6 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Nucleophilic substitution: halogenoalkanes.', embedHint: 'SN1 vs SN2 depends on structure.' },
     { caption: 'Oxidation: alcohols → carbonyls/acids.', embedHint: 'Reagent and conditions matter.' },
   ]),
-  '13-3-shapes-of-organic-molecules-and-bonds': embedSpec([
-    { caption: 'Carbon usually tetrahedral, ~109.5°.', embedHint: 'sp³ hybridisation.' },
-    { caption: 'Double bond: one σ + one π; planar ~120°.', embedHint: 'sp² at alkene carbon.' },
-    { caption: 'Triple bond: one σ + two π; linear 180°.', embedHint: 'sp at alkyne carbon.' },
-    { caption: 'σ bond head-on overlap; π side-on.', embedHint: 'π bond restricts rotation.' },
-  ]),
 
   // ── 9701 batch 14 (100% completion) ─────────────────────────────────────
   '2-1-relative-masses-of-atoms-and-molecules': embedSpec([
@@ -1882,12 +1876,6 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Mr of molecule = sum of atomic masses.', embedHint: 'H₂O Mr = 18.' },
     { caption: 'Define relative isotopic mass vs Ar.', embedHint: 'Carbon-12 standard.' },
     { caption: 'Use Mr in mole calculations.', embedHint: 'Link to 2.2 mole.' },
-  ]),
-  '2-3-formulas': embedSpec([
-    { caption: 'Empirical: simplest whole-number ratio.', embedHint: 'From combustion analysis.' },
-    { caption: 'Molecular: actual number of atoms.', embedHint: 'Mr ÷ empirical mass = n.' },
-    { caption: 'Ionic formulas from charge balance.', embedHint: 'Cross-over method.' },
-    { caption: 'Hydrated salts: dot xH₂O.', embedHint: 'Water of crystallisation.' },
   ]),
   '2-4-reacting-masses-and-volumes-of-solutions-and-gases': embedSpec([
     { caption: 'n = m / Mr for each species.', embedHint: 'Use balanced equation ratios.' },

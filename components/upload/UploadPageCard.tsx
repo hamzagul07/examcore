@@ -35,6 +35,8 @@ export function UploadPageCard({
   onRetake,
   onMoveUp,
   onMoveDown,
+  onSelect,
+  selected = false,
   onDragStart,
   onDragOver,
   onDrop,
@@ -49,6 +51,8 @@ export function UploadPageCard({
   onRetake: () => void
   onMoveUp?: () => void
   onMoveDown?: () => void
+  onSelect?: () => void
+  selected?: boolean
   onDragStart: () => void
   onDragOver: (e: React.DragEvent) => void
   onDrop: () => void
@@ -82,7 +86,7 @@ export function UploadPageCard({
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDrop={onDrop}
-      className="ec-card flex gap-3 p-3 sm:p-4"
+      className={`ec-card flex gap-3 p-3 sm:p-4${selected ? ' ring-2 ring-[var(--ec-brand)] ring-offset-2 ring-offset-[var(--ec-bg)]' : ''}`}
     >
       <div className="flex shrink-0 flex-col items-center gap-1">
         <button
@@ -117,14 +121,19 @@ export function UploadPageCard({
         )}
       </div>
 
-      <div className="relative h-20 w-16 shrink-0 overflow-hidden rounded-xl border border-[var(--ec-border)] sm:h-24 sm:w-20">
+      <button
+        type="button"
+        onClick={onSelect}
+        className="relative h-24 w-[4.5rem] shrink-0 overflow-hidden rounded-xl border border-[var(--ec-border)] bg-[var(--ec-bg-soft)] sm:h-28 sm:w-20 ms-upload-page-thumb"
+        aria-label={`Preview page ${index + 1}`}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={page.previewUrl}
-          alt={`Page ${index + 1}`}
-          className="h-full w-full object-cover"
+          alt=""
+          className="h-full w-full"
         />
-      </div>
+      </button>
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">

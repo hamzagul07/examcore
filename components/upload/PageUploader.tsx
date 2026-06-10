@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useRef, useState, type Dispatch, type SetStateAction } from 'react'
+import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react'
 import { UploadCloud, Plus, Camera } from 'lucide-react'
 import { compressImage } from '@/lib/upload/compress-image'
 import { formatFileSize, getPdfSizeError } from '@/lib/upload/upload-limits'
@@ -88,6 +88,7 @@ export function PageUploader({
 }: PageUploaderProps) {
   const [dragIndex, setDragIndex] = useState<number | null>(null)
   const [pdfError, setPdfError] = useState<string | null>(null)
+  const [selectedPageId, setSelectedPageId] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const pdfInputRef = useRef<HTMLInputElement>(null)
   const cameraInputRef = useRef<HTMLInputElement>(null)
@@ -195,6 +196,18 @@ export function PageUploader({
   }
 
   const hasContent = pages.length > 0 || !!pdfFile
+  const selectedPage =
+    pages.find((p) => p.id === selectedPageId) ?? pages[pages.length - 1] ?? null
+
+  useEffect(() => {
+    if (pages.length === 0) {
+      setSelectedPageId(null)
+      return
+    }
+    if (!selectedPageId || !pages.some((p) => p.id === selectedPageId)) {
+      setSelectedPageId(pages[pages.length - 1].id)
+    }
+  }, [pages, selectedPageId])
 
   return (
     <div className="space-y-4">
@@ -211,7 +224,9 @@ export function PageUploader({
           }`}
         />
         <div
-          className="relative ec-card border-2 border-dashed p-8 text-center transition-all duration-300 hover:-translate-y-1 sm:p-10"
+          className={`relative ec-card border-2 border-dashed text-center transition-all duration-300 hover:-translate-y-1 ${
+            hasContent ? 'p-5 sm:p-6' : 'p-8 sm:p-10'
+          }`}
           style={{ borderColor: 'var(--ec-border)' }}
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => {
@@ -219,14 +234,20 @@ export function PageUploader({
             if (e.dataTransfer.files.length) addFiles(e.dataTransfer.files)
           }}
         >
-          <div
-            className="ec-upload-icon-wrap relative mx-auto mb-5 flex items-center justify-center rounded-2xl"
-            style={{ width: 72, height: 72 }}
-          >
-            <UploadCloud className="h-9 w-9 ec-text-brand" />
-          </div>
-          <p className="text-lg font-bold text-[var(--ec-text-primary)]">{emptyLabel}</p>
-          <p className="mt-2 font-mono text-xs text-[var(--ec-text-secondary)]">{emptyHint}</p>
+          {!hasContent && (
+            <div
+              className="ec-upload-icon-wrap relative mx-auto mb-5 flex items-center justify-center rounded-2xl"
+              style={{ width: 72, height: 72 }}
+            >
+              <UploadCloud className="h-9 w-9 ec-text-brand" />
+            </div>
+          )}
+          <p className={`font-bold text-[var(--ec-text-primary)] ${hasContent ? 'text-base' : 'text-lg'}`}>
+            {hasContent ? 'Add another page' : emptyLabel}
+          </p>
+          {!hasContent && (
+            <p className="mt-2 font-mono text-xs text-[var(--ec-text-secondary)]">{emptyHint}</p>
+          )}
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               type="button"
@@ -326,6 +347,37 @@ export function PageUploader({
         </div>
       )}
 
+      {pages.length > 0 && selectedPage && (
+        <div>
+          <div className="ms-upload-preview-wrap">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={selectedPage.previewUrl}
+              alt={`Preview page ${pages.findIndex((p) => p.id === selectedPage.id) + 1}`}
+              className="ms-upload-preview"
+            />
+          </div>
+          {pages.length > 1 && (
+            <div className="ms-upload-thumbs" role="tablist" aria-label="Uploaded pages">
+              {pages.map((page, index) => (
+                <button
+                  key={page.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={page.id === selectedPage.id}
+                  aria-label={`Page ${index + 1}`}
+                  className={`ms-upload-thumb${page.id === selectedPage.id ? ' on' : ''}`}
+                  onClick={() => setSelectedPageId(page.id)}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={page.previewUrl} alt="" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {pages.length > 0 && (
         <div className="space-y-3">
           <p className="ec-label-tech">YOUR PAGES — REORDER</p>
@@ -337,9 +389,9 @@ export function PageUploader({
               total={pages.length}
               showQuestionAssign={showQuestionAssign}
               questionOptions={questionOptions}
-              onRemove={() =>
+              onRemove={() => {
                 onPagesChange((prev) => prev.filter((p) => p.id !== page.id))
-              }
+              }}
               onQuestionChange={(q) =>
                 onPagesChange((prev) =>
                   prev.map((p) =>
@@ -353,6 +405,8 @@ export function PageUploader({
               }}
               onMoveUp={() => reorder(index, index - 1)}
               onMoveDown={() => reorder(index, index + 1)}
+              onSelect={() => setSelectedPageId(page.id)}
+              selected={page.id === selectedPage?.id}
               onDragStart={() => setDragIndex(index)}
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => {

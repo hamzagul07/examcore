@@ -28,7 +28,7 @@ export function InsightHero({ insight }: { insight: HeroInsight }) {
 
   return (
     <TiltCard intensity={4} className="min-w-0 rounded-3xl">
-      <div className="ec-card-brand relative h-full min-w-0 overflow-hidden p-6 sm:p-8">
+      <div className="ms-dash-card relative h-full min-w-0 overflow-hidden border-[color-mix(in_srgb,var(--ec-brand)_28%,transparent)]">
         <div
           className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full blur-[90px]"
           style={{ background: 'var(--ec-brand-muted)' }}
@@ -39,13 +39,13 @@ export function InsightHero({ insight }: { insight: HeroInsight }) {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--ec-brand)]/30 bg-[var(--ec-brand-muted)]">
               <Icon className="h-5 w-5 text-[var(--ec-brand)]" aria-hidden="true" />
             </div>
-            <p className="ec-label-tech">{insight.eyebrow}</p>
+            <p className="ms-overline" style={{ marginBottom: 0 }}>{insight.eyebrow}</p>
           </div>
 
-          <h2 className="ec-break-anywhere max-w-2xl text-title sm:text-3xl">
+          <h2 className="ms-h3 ec-break-anywhere max-w-2xl" style={{ fontSize: 'clamp(26px, 4vw, 34px)' }}>
             {insight.headline}
           </h2>
-          <p className="ec-break-anywhere mt-4 max-w-2xl text-base leading-relaxed text-[var(--ec-text-secondary)]">
+          <p className="ms-body-2 ec-break-anywhere mt-4 max-w-2xl">
             {insight.body}
           </p>
 

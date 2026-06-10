@@ -31,7 +31,7 @@ export function SyllabusCoverage({
     <Card
       variant="brand-glow"
       padding="lg"
-      className="relative overflow-hidden"
+      className="ms-dash-card relative overflow-hidden !border-[color-mix(in_srgb,var(--ec-brand)_22%,transparent)] !shadow-[var(--ec-shadow-card)]"
     >
       <div
         className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full ec-glow-orb blur-[80px]"
@@ -41,7 +41,7 @@ export function SyllabusCoverage({
       <div className="relative">
         <div className="mb-6 flex items-center gap-2">
           <Target className="h-4 w-4 ec-text-brand" aria-hidden="true" />
-          <p className="ec-label-tech">SYLLABUS COVERAGE</p>
+          <p className="ms-overline" style={{ marginBottom: 0 }}>Syllabus coverage</p>
         </div>
 
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -50,7 +50,7 @@ export function SyllabusCoverage({
               <AnimatedCoverageNumber value={pct} />
               <span className="text-3xl font-bold text-[var(--ec-text-secondary)] sm:text-4xl">%</span>
             </div>
-            <p className="mt-3 max-w-md text-base font-medium text-[var(--ec-text-primary)] sm:text-lg">
+            <p className="mt-3 max-w-md ms-body-2 font-medium text-[var(--ec-text-primary)]">
               {subjectLabel} syllabus mastered
             </p>
             <p className="mt-1 text-sm text-[var(--ec-text-secondary)]">

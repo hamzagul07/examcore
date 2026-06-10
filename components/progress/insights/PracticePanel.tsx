@@ -1,23 +1,22 @@
-import Link from 'next/link'
-import { ArrowRight, Dumbbell, ChevronRight } from 'lucide-react'
+import { ArrowRight, Dumbbell } from 'lucide-react'
 import type { Recommendation, DashboardState } from '@/lib/insights/types'
-import type { ActionPlanItem } from '@/lib/action-plan'
 import { drillHref } from '@/lib/insights/drill-link'
 import { LoadingLink } from '@/components/ui/LoadingLink'
 
 type Props = {
   state: DashboardState
   recommendations: Recommendation[]
-  actionItems: ActionPlanItem[]
   generic: boolean
 }
 
-export function PracticePanel({ state, recommendations, actionItems, generic }: Props) {
+export function PracticePanel({ state, recommendations, generic }: Props) {
   return (
-    <section className="ec-card min-w-0 p-5 sm:p-6">
+    <section className="ms-dash-card min-w-0">
       <div className="mb-5 flex items-center gap-2">
         <Dumbbell className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
-        <p className="ec-label-tech">PRACTICE</p>
+        <p className="ms-overline" style={{ marginBottom: 0 }}>
+          Practice
+        </p>
       </div>
 
       {state === 'zero' ? (
@@ -65,28 +64,6 @@ export function PracticePanel({ state, recommendations, actionItems, generic }: 
               covered. Keep marking to widen your coverage.
             </Hint>
           )}
-
-          {actionItems.length > 0 && (
-            <div className="mt-4 space-y-2">
-              {actionItems.slice(0, 2).map((item, i) => (
-                <Link
-                  key={`${item.type}-${i}`}
-                  href={item.ctaHref}
-                  className="group flex items-center justify-between gap-3 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)] px-4 py-3 transition-colors hover:border-[var(--ec-brand)]/30"
-                >
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-[var(--ec-text-primary)]">
-                      {item.title}
-                    </p>
-                    <p className="truncate text-xs text-[var(--ec-text-secondary)]">
-                      {item.body}
-                    </p>
-                  </div>
-                  <ChevronRight className="h-4 w-4 shrink-0 text-[var(--ec-text-secondary)] transition-transform group-hover:translate-x-0.5" />
-                </Link>
-              ))}
-            </div>
-          )}
         </>
       )}
     </section>
@@ -94,9 +71,5 @@ export function PracticePanel({ state, recommendations, actionItems, generic }: 
 }
 
 function Hint({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="ec-break-anywhere rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface)] p-5 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-      {children}
-    </div>
-  )
+  return <div className="ms-progress-hint ec-break-anywhere">{children}</div>
 }

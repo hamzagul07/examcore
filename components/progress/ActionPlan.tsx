@@ -117,16 +117,16 @@ const TYPE_LABELS: Record<ActionPlanType, string> = {
 
 export function ActionPlan({ items }: Props) {
   return (
-    <section className="ec-card-premium p-5 sm:p-7">
+    <section className="ms-dash-card">
       <div className="mb-6">
         <div className="mb-2 flex items-center gap-2">
-          <Target className="h-4 w-4 ec-text-brand" aria-hidden="true" />
-          <p className="ec-label-tech">ACTION PLAN</p>
+          <Target className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
+          <p className="ms-overline" style={{ marginBottom: 0 }}>
+            Fix next
+          </p>
         </div>
-        <h2 className="text-2xl font-bold tracking-tight text-[var(--ec-text-primary)] sm:text-3xl">
-          Your next three moves
-        </h2>
-        <p className="mt-2 text-sm text-[var(--ec-text-secondary)] sm:text-base">
+        <h2 className="ms-h3">Your next three moves</h2>
+        <p className="ms-body-2 mt-2">
           Personalized from your attempts, mastery levels, and recent activity.
         </p>
       </div>
@@ -151,7 +151,7 @@ function ActionCard({
   const tint = TINTS[item.type]
   return (
     <TiltCard intensity={5} className="h-full rounded-3xl">
-      <div className="ec-card ec-card-interactive group relative flex h-full flex-col p-5">
+      <div className="ms-dash-card group relative flex h-full flex-col transition-transform hover:-translate-y-0.5">
       <div className="mb-4 flex items-center justify-between gap-2">
         <div
           className={`flex h-10 w-10 items-center justify-center rounded-xl border ${tint.iconBg} ${tint.iconRing}`}

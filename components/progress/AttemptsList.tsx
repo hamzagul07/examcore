@@ -31,7 +31,7 @@ function scheme(row: AttemptListRow) {
 export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
   if (attempts.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-[var(--ec-border)] bg-[var(--ec-surface)] p-8 text-center text-sm text-[var(--ec-text-secondary)]">
+      <div className="ms-progress-hint p-8 text-center">
         No attempts for this subject yet. Mark a question and it will show up here.
       </div>
     )
@@ -68,7 +68,7 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
           <Link
             key={attempt.id}
             href={`/dashboard/attempt/${attempt.id}`}
-            className="ec-card ec-card-interactive group block p-5"
+            className="ms-progress-row group block"
           >
             <div className="flex items-center justify-between gap-4">
               <div className="flex min-w-0 flex-1 items-center gap-4">

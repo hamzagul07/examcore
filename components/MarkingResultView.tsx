@@ -20,6 +20,7 @@ import { ExamSheet, ExamSheetLine } from '@/components/margin-notes/ExamSheet'
 import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { MarkAuditPanel } from '@/components/mark/MarkAuditPanel'
+import { MarkSnippet } from '@/components/mark/MarkSnippet'
 
 export type MarkAwarded = {
   mark_id: number | string
@@ -104,8 +105,9 @@ export function MarkingResultView({
   inkPages?: Array<{ photo_url: string; line_references: LineReference[] }>
 }) {
   const [showOCR, setShowOCR] = useState(false)
-  const marks = result.ai_marking.marks_awarded
+  const marks = result.ai_marking?.marks_awarded ?? []
   const defaultSelected = useMemo(() => {
+    if (!marks.length) return 0
     const lost = marks.findIndex((m) => !m.earned)
     return lost >= 0 ? lost : 0
   }, [marks])
@@ -126,6 +128,14 @@ export function MarkingResultView({
   const overline = buildOverline(result)
   const selectedMark = marks[selectedIndex] ?? marks[0]
   const hasStructuredResult = marks.length > 0
+  const activeMarkId = selectedMark?.type?.trim().toUpperCase() ?? null
+
+  const handleInkMarkSelect = (markId: string) => {
+    const idx = marks.findIndex(
+      (m) => m.type.trim().toUpperCase() === markId.toUpperCase()
+    )
+    if (idx >= 0) setSelectedIndex(idx)
+  }
 
   return (
     <div>
@@ -152,6 +162,8 @@ export function MarkingResultView({
                   pages={inkPages}
                   attemptId={attemptId ?? undefined}
                   animate
+                  activeMarkId={activeMarkId}
+                  onActiveMarkChange={handleInkMarkSelect}
                 />
               </div>
             ) : null}
@@ -169,10 +181,14 @@ export function MarkingResultView({
               {marks.map((mark, i) => (
                 <ExamSheetLine
                   key={String(mark.mark_id)}
-                  work={sheetWork(mark)}
+                  work={<MarkSnippet text={sheetWork(mark)} />}
                   mark={`${mark.type} ${mark.earned ? '✓' : '✗'}`}
                   ok={mark.earned}
-                  note={mark.margin_note ?? undefined}
+                  note={
+                    mark.margin_note ? (
+                      <MarkSnippet text={mark.margin_note} className="ms-mark-snippet--inline" />
+                    ) : undefined
+                  }
                   noteOk={mark.earned}
                   active={selectedIndex === i}
                   onClick={() => setSelectedIndex(i)}
@@ -313,7 +329,7 @@ export function MarkingResultView({
           </p>
           <h3 className="ms-h3">What the examiner saw</h3>
           <div className="leading-relaxed text-[var(--ec-text-secondary)]">
-            <RichTextRenderer text={result.ai_marking.summary} />
+            <RichTextRenderer text={result.ai_marking?.summary ?? ''} />
           </div>
         </div>
 

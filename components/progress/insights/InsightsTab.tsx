@@ -9,6 +9,7 @@ import type {
 } from '@/lib/insights/types'
 import type { SpeedProfile } from '@/lib/insights/patterns'
 import type { ActionPlanItem } from '@/lib/action-plan'
+import { ActionPlan } from '@/components/progress/ActionPlan'
 import { InsightHero } from './InsightHero'
 import { PatternsPanel } from './PatternsPanel'
 import { PracticePanel } from './PracticePanel'
@@ -38,32 +39,47 @@ export function InsightsTab({
   return (
     <div className="min-w-0 space-y-5">
       {state === 'zero' && (
-        <Link
-          href="/mark"
-          className="ec-card group flex flex-col gap-3 border-[var(--ec-brand)]/30 px-5 py-4 transition-colors hover:border-[var(--ec-brand)]/50 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
-        >
-          <span className="min-w-0 text-sm font-semibold text-[var(--ec-text-primary)]">
-            Mark your first question to unlock your insights
-          </span>
-          <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
-            Mark now
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-          </span>
-        </Link>
+        <div className="ms-dash-card ms-progress-empty">
+          <div className="mx-auto max-w-md">
+            <div className="ms-progress-empty-icon" aria-hidden="true">
+              ✎
+            </div>
+            <h3 className="ms-h3" style={{ fontSize: 'clamp(22px, 4vw, 26px)' }}>
+              Your dashboard starts with one question.
+            </h3>
+            <p className="ms-body-2" style={{ margin: '10px 0 26px' }}>
+              Mark anything you&apos;ve already written — syllabus coverage, mastery
+              map, and grade estimate build themselves from there.
+            </p>
+            <Link href="/mark" className="ec-btn-primary inline-flex text-sm">
+              Mark your first question
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <p
+              className="font-[family-name:var(--font-handwritten,'Caveat',cursive)] text-[var(--ec-brand)]"
+              style={{ fontSize: 20, marginTop: 22 }}
+            >
+              takes about a minute — free, no card ↑
+            </p>
+          </div>
+        </div>
       )}
 
-      <InsightHero insight={heroInsight} />
+      {state !== 'zero' && <InsightHero insight={heroInsight} />}
 
       <div className="grid min-w-0 gap-5 lg:grid-cols-3">
         <PatternsPanel state={state} patterns={patterns} speedProfile={speedProfile} />
         <PracticePanel
           state={state}
           recommendations={recommendations}
-          actionItems={actionItems}
           generic={genericRecommendations}
         />
         <WinsPanel state={state} wins={wins} />
       </div>
+
+      {state === 'active' && actionItems.length > 0 && (
+        <ActionPlan items={actionItems} />
+      )}
     </div>
   )
 }

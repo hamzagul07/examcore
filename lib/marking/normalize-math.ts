@@ -258,3 +258,52 @@ export function normalizeMarkingResult<T extends MarkingResultLike>(result: T): 
 
   return result
 }
+
+export function coerceMarkingResult(
+  raw: Record<string, unknown>
+): Record<string, unknown> {
+  const result = { ...raw }
+
+  if (!Array.isArray(result.marks_awarded)) {
+    result.marks_awarded = []
+  }
+  if (typeof result.summary !== 'string') {
+    result.summary = ''
+  }
+  if (!Array.isArray(result.weak_topics)) {
+    result.weak_topics = []
+  }
+  if (typeof result.what_to_study_next !== 'string') {
+    result.what_to_study_next = ''
+  }
+
+  const marks = result.marks_awarded as Array<{ earned?: boolean }>
+  if (typeof result.marks_earned !== 'number') {
+    result.marks_earned = marks.filter((m) => m?.earned).length
+  }
+  if (typeof result.total_marks !== 'number') {
+    result.total_marks = marks.length
+  }
+
+  return result
+}
+
+export function isUsableMarkingResult(raw: Record<string, unknown>): boolean {
+  if (Array.isArray(raw.marks_awarded) && raw.marks_awarded.length > 0) {
+    return true
+  }
+  if (typeof raw.summary === 'string' && raw.summary.trim().length > 10) {
+    return true
+  }
+  if (raw.band_result && typeof raw.band_result === 'object') {
+    return true
+  }
+  if (
+    typeof raw.marks_earned === 'number' &&
+    typeof raw.total_marks === 'number' &&
+    raw.total_marks > 0
+  ) {
+    return true
+  }
+  return false
+}

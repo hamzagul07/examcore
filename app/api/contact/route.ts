@@ -7,7 +7,7 @@ import {
   clientIp,
   incrementContactRateLimit,
 } from '@/lib/rate-limit'
-import { notifyAdminContactMessage } from '@/lib/email/admin-notify'
+import { notifyAdminContactMessage, sendContactConfirmationEmail } from '@/lib/email/notifications'
 import { HONEYPOT_FIELD, isHoneypotTripped } from '@/lib/honeypot'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 
@@ -86,6 +86,8 @@ export async function POST(request: Request) {
     message,
     userId: user?.id ?? null,
   })
+
+  void sendContactConfirmationEmail({ name, email })
 
   return NextResponse.json({ ok: true })
 }

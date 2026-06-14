@@ -1,4 +1,5 @@
 import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { renderBrandedEmailHtml, textToHtmlParagraphs } from '@/lib/email/templates'
 
 export type SendEmailParams = {
   to: string | string[]
@@ -6,17 +7,25 @@ export type SendEmailParams = {
   text: string
   html?: string
   replyTo?: string
+  preheader?: string
+  cta?: { label: string; href: string }
 }
 
 export function isEmailConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY?.trim())
 }
 
+/** Verified sender in Resend — must use @markscheme.app after domain verification. */
 export function emailFromAddress(): string {
   return (
     process.env.RESEND_FROM?.trim() ||
-    `${SITE_NAME} <notifications@${CONTACT_EMAIL.split('@')[1] || 'markscheme.app'}>`
+    `${SITE_NAME} <hello@${CONTACT_EMAIL.split('@')[1] || 'markscheme.app'}>`
   )
+}
+
+/** Replies land in your hello@ inbox (Google Workspace or forwarding). */
+export function emailReplyToAddress(): string {
+  return process.env.RESEND_REPLY_TO?.trim() || CONTACT_EMAIL
 }
 
 export function adminNotifyAddress(): string {
@@ -30,9 +39,21 @@ export function sendEmailAsync(params: SendEmailParams): void {
 
 export async function sendEmail(params: SendEmailParams): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY?.trim()
-  if (!apiKey) return false
+  if (!apiKey) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('[email] RESEND_API_KEY not set — skipped:', params.subject)
+    }
+    return false
+  }
 
   const to = Array.isArray(params.to) ? params.to : [params.to]
+  const html =
+    params.html ??
+    renderBrandedEmailHtml({
+      preheader: params.preheader,
+      bodyHtml: textToHtmlParagraphs(params.text),
+      cta: params.cta,
+    })
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -46,8 +67,8 @@ export async function sendEmail(params: SendEmailParams): Promise<boolean> {
         to,
         subject: params.subject,
         text: params.text,
-        html: params.html ?? textToSimpleHtml(params.text),
-        reply_to: params.replyTo,
+        html,
+        reply_to: params.replyTo ?? emailReplyToAddress(),
       }),
     })
 
@@ -63,14 +84,7 @@ export async function sendEmail(params: SendEmailParams): Promise<boolean> {
   }
 }
 
-function textToSimpleHtml(text: string): string {
-  const escaped = text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-  const body = escaped
-    .split('\n')
-    .map((line) => (line.trim() === '' ? '<br><br>' : `<p style="margin:0 0 8px">${line}</p>`))
-    .join('')
-  return `<div style="font-family:system-ui,sans-serif;line-height:1.5;color:#111">${body}<p style="margin-top:24px;font-size:12px;color:#666"><a href="${SITE_URL}">${SITE_URL}</a></p></div>`
+/** Legacy helper — prefer renderBrandedEmailHtml via sendEmail. */
+export function textToSimpleHtml(text: string): string {
+  return renderBrandedEmailHtml({ bodyHtml: textToHtmlParagraphs(text) })
 }

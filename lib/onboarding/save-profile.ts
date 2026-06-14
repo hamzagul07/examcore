@@ -6,6 +6,8 @@ import {
   isSubjectValidForLevel,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserRole, UserStage } from '@/lib/database.types'
+import { isOnboardingComplete } from '@/lib/onboarding'
+import { handleOnboardingCompleteEmails } from '@/lib/email/notifications'
 
 export type OnboardingInput = {
   full_name?: string | null
@@ -88,6 +90,14 @@ export async function saveOnboardingProfile(
       examDate = body.exam_date
     }
 
+    const service = createServiceClient()
+    const { data: existingProfile } = await service
+      .from('user_profiles')
+      .select('onboarded, onboarding_completed')
+      .eq('id', userId)
+      .maybeSingle()
+    const wasAlreadyOnboarded = isOnboardingComplete(existingProfile)
+
     const { error } = await userClient.from('user_profiles').upsert(
       {
         id: userId,
@@ -113,7 +123,6 @@ export async function saveOnboardingProfile(
       // server-action / cookie edge cases). Service role is safe here because
       // we already verified the authenticated user id server-side.
       try {
-        const service = createServiceClient()
         const { error: serviceError } = await service.from('user_profiles').upsert(
           {
             id: userId,
@@ -151,7 +160,6 @@ export async function saveOnboardingProfile(
     }
 
     try {
-      const service = createServiceClient()
       await service.from('user_subscriptions').upsert(
         {
           user_id: userId,
@@ -185,6 +193,15 @@ export async function saveOnboardingProfile(
           status: 500,
         }
       }
+    }
+
+    if (!wasAlreadyOnboarded) {
+      void handleOnboardingCompleteEmails(service, userId, {
+        full_name: fullName,
+        level,
+        subjects,
+        primary_goal: primaryGoal,
+      })
     }
 
     return { ok: true, role }

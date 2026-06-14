@@ -13,14 +13,16 @@ All app email goes through **Resend**. Auth emails (magic link, confirm signup) 
 
 ```env
 RESEND_API_KEY=re_...
-RESEND_FROM=MarkScheme <notifications@markscheme.app>
+RESEND_FROM=MarkScheme <hello@markscheme.app>
+RESEND_REPLY_TO=hello@markscheme.app
 CONTACT_NOTIFY_TO=hello@markscheme.app
 ```
 
 | Variable | Purpose |
 |----------|---------|
 | `RESEND_API_KEY` | Sends all mail |
-| `RESEND_FROM` | From address (must use verified domain) |
+| `RESEND_FROM` | From address (must use verified `@markscheme.app` domain) |
+| `RESEND_REPLY_TO` | Where student replies land (your Google Workspace inbox) |
 | `CONTACT_NOTIFY_TO` | Your inbox for admin alerts |
 
 Redeploy after adding.
@@ -29,8 +31,9 @@ Redeploy after adding.
 
 | Event | To student | To you (admin) |
 |-------|------------|----------------|
-| New account (first sign-in within ~10 min) | Welcome email | New account alert |
-| Contact form | — | Contact alert |
+| First sign-in (account created within ~30 min) | — | “Signup started” alert |
+| Onboarding completed (first time) | Welcome email | “User ready” alert (subjects, level, goal) |
+| Contact form | Auto-reply confirmation | Contact alert (reply-to set to sender) |
 | Waitlist signup (`/api/signup`) | — | Waitlist alert |
 | Stripe credit purchase (test or live) | Receipt | Purchase alert |
 | New subscription (checkout completed) | Plan confirmation | Purchase alert |
@@ -43,9 +46,28 @@ These are sent by **Supabase Auth**, not the Next.js app.
 
 **Option A — Resend SMTP (recommended)**
 
+Run the setup script (fastest):
+
+```bash
+# 1. Create token: https://supabase.com/dashboard/account/tokens
+# 2. Add to .env.local:
+#    SUPABASE_ACCESS_TOKEN=sbp_...
+#    RESEND_API_KEY=re_...   (same as Vercel)
+# 3. Run:
+node scripts/configure-supabase-smtp.mjs
+```
+
+This sets Resend SMTP (`hello@markscheme.app`), sender name **MarkScheme**, and branded templates:
+
+- **Magic link sign-in** → button/link in email
+- **Password sign-up confirmation** → 6-digit code (matches `/auth/verify-email`)
+- **Password reset** → button/link in email
+
+**Manual (dashboard)**
+
 1. Resend → **SMTP** → copy host, user, password.
 2. Supabase → **Authentication** → **SMTP Settings** → enable custom SMTP.
-3. Sender: `notifications@markscheme.app` (or `hello@markscheme.app`).
+3. Sender: `hello@markscheme.app` (matches transactional mail from the app).
 4. Customize templates under **Authentication** → **Email Templates** (optional branding).
 
 **Option B — Supabase default mail**
@@ -80,5 +102,6 @@ Exam reminders (`email_exam_reminders`) are stored for a future cron; not wired 
 | No emails at all | Check `RESEND_API_KEY` on Vercel; domain verified |
 | Admin gets mail, users don’t | Check `RESEND_FROM` uses `@markscheme.app` |
 | Purchase mail missing | Stripe webhook + `STRIPE_WEBHOOK_SECRET`; check Vercel logs |
-| Welcome twice | Rare; only sends if account created &lt; 10 minutes ago |
+| Welcome never arrives | Welcome sends after **onboarding complete**, not at sign-in; check Resend logs |
+| Welcome twice | Should not happen — only first onboarding save triggers welcome |
 | Auth mail missing | Configure Supabase SMTP, not only Resend API key |

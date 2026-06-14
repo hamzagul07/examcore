@@ -1,8 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
-import { buildSignInHref } from '@/lib/auth-redirect'
+import { useSearchParams } from 'next/navigation'
+import {
+  buildResetPasswordCallbackUrl,
+  buildSignInHref,
+  readPostAuthNextParam,
+} from '@/lib/auth-redirect'
 import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
@@ -10,6 +15,26 @@ import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox, SubmitButton } from '@/components/AuthFormBits'
 
 export default function ForgotPasswordPage() {
+  return (
+    <Suspense fallback={<ForgotPasswordSkeleton />}>
+      <ForgotPasswordForm />
+    </Suspense>
+  )
+}
+
+function ForgotPasswordSkeleton() {
+  return (
+    <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
+      <p className="leading-relaxed text-[var(--ec-text-secondary)]">Loading...</p>
+    </AuthShell>
+  )
+}
+
+function ForgotPasswordForm() {
+  const searchParams = useSearchParams()
+  const returnTo = readPostAuthNextParam(searchParams.get('next'), null)
+  const signInHref = buildSignInHref(returnTo)
+
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
@@ -25,10 +50,13 @@ export default function ForgotPasswordPage() {
     setErrorMsg('')
 
     const supabase = createClient()
-    // Reset email lands on /auth/callback with a recovery code, which exchanges
-    // for a short-lived session and then forwards to /auth/reset-password.
+    const redirectTo = buildResetPasswordCallbackUrl(
+      window.location.origin,
+      returnTo
+    )
+
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/callback?next=/auth/reset-password`,
+      redirectTo,
     })
 
     setLoading(false)
@@ -40,7 +68,7 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
+    <AuthShell backLabel="Back to sign in" backHref={signInHref}>
       {!sent ? (
         <>
           <p className="ec-eyebrow mb-3">Password reset</p>
@@ -80,7 +108,7 @@ export default function ForgotPasswordPage() {
 
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Remembered it?{' '}
-            <Link href={buildSignInHref()} className="ec-link">
+            <Link href={signInHref} className="ec-link ec-auth-footer-link">
               Sign in
             </Link>
           </p>

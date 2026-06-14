@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 import { AuthShell } from '@/components/AuthShell'
@@ -116,7 +117,9 @@ export function OnboardingWizard({
 
       if (!result.ok) {
         if (result.status === 401) {
-          setErrorMsg('Your session expired. Please sign in again to save your profile.')
+          setErrorMsg(
+            'Your session expired. Sign in again to save your profile.'
+          )
           return
         }
         setErrorMsg(result.error || 'Could not save your profile. Try again.')
@@ -549,6 +552,16 @@ function StepFirstMark({
           : "Upload something you've already done. We'll mark it and show you what an examiner-style review looks like — usually under a minute."}
       </p>
       {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
+      {errorMsg.includes('session expired') && (
+        <p className="mt-3 text-center text-sm">
+          <Link
+            href={`/auth/signin?next=${encodeURIComponent('/onboarding')}`}
+            className="ec-link ec-auth-footer-link"
+          >
+            Sign in again
+          </Link>
+        </p>
+      )}
       <div className="ms-ob-nav ms-ob-nav--stack">
         <button
           type="button"

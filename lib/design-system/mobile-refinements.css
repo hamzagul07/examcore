@@ -7,13 +7,17 @@
     line-height: 1.12;
   }
 
-  /* Tappable inline auth links (forgot password, sign up) */
+  /* Tappable inline auth links (forgot password, resend) */
   .ec-auth-link,
-  .ec-card .ec-link {
+  .ec-auth-footer-link {
     display: inline-flex;
     align-items: center;
     min-height: var(--ec-touch-min, 44px);
     padding-block: 8px;
+  }
+
+  .ec-auth-footer-link {
+    justify-content: center;
   }
 
   .ec-auth-shell {
@@ -999,6 +1003,23 @@
 @media (max-width: 520px) {
   .ec-auth-shell .ec-card {
     padding: 1.25rem 1.125rem;
+  }
+
+  .ec-auth-shell .text-hero {
+    font-size: clamp(1.5rem, 6.5vw, 2rem);
+  }
+
+  .ec-auth-shell .ec-input {
+    font-size: 16px;
+  }
+
+  .ms-verify-digits input {
+    width: 2.5rem;
+    min-width: 2.5rem;
+  }
+
+  .ec-password-toggle {
+    right: 0;
   }
 
   .ms-mastery-matrix .truncate {

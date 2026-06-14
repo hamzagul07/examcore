@@ -15,7 +15,7 @@ import {
   SubmitButton,
 } from '@/components/AuthFormBits'
 
-import { buildSignInHref, isSafeNextPath } from '@/lib/auth-redirect'
+import { buildSignInHref, isSafeNextPath, readPostAuthNextParam } from '@/lib/auth-redirect'
 import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
 import {
   GoogleAuthSection,
@@ -84,7 +84,10 @@ function SignUpForm() {
   const intent = searchParams.get('intent')
   const topic = searchParams.get('topic')
   const paper = searchParams.get('paper')
-  const redirect = searchParams.get('redirect')
+  const redirect = readPostAuthNextParam(
+    searchParams.get('next'),
+    searchParams.get('redirect')
+  )
 
   // Cached so we don't recompute on every render. `intent`/`topic`/`paper` are
   // stable for the page lifetime.
@@ -219,7 +222,9 @@ function SignUpForm() {
 
           <GoogleAuthSection
             label="Sign up with Google"
-            redirectPath={null}
+            redirectPath={
+              intentDestination !== '/onboarding' ? intentDestination : null
+            }
             disabled={loading}
             onError={setErrorMsg}
             hint="School or personal Google — we’ll set up your subjects next."
@@ -329,7 +334,7 @@ function SignUpForm() {
 
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Already have an account?{' '}
-            <Link href={signInHref} className="ec-link">
+            <Link href={signInHref} className="ec-link ec-auth-footer-link">
               Sign in
             </Link>
           </p>
@@ -346,6 +351,20 @@ function SignUpForm() {
             We sent a confirmation link to{' '}
             <strong className="text-[var(--ec-text-primary)]">{email}</strong>. Click it to finish
             setting up your account.
+          </p>
+          <p className="pt-4 text-xs leading-relaxed text-[var(--ec-text-secondary)]">
+            Did not get it? Check your spam folder, or{' '}
+            <button
+              type="button"
+              onClick={() => {
+                setSent(false)
+                setEmail('')
+              }}
+              className="ec-link ec-auth-link underline"
+            >
+              try again
+            </button>
+            .
           </p>
         </div>
       )}

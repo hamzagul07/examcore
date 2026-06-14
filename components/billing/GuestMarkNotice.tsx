@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
+import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { ANON_DAILY_MARK_LIMIT } from '@/lib/rate-limit'
 
 type Props = {
@@ -11,24 +11,9 @@ type Props = {
 
 /** Shown to guests on the mark page — explains the IP daily cap before they hit it. */
 export function GuestMarkNotice({ className = '' }: Props) {
-  const [isGuest, setIsGuest] = useState<boolean | null>(null)
+  const { user, loading } = useAuthCheck()
 
-  useEffect(() => {
-    let cancelled = false
-    void fetch('/api/auth/check', { cache: 'no-store' })
-      .then((res) => (res.ok ? res.json() : { user: null }))
-      .then((data: { user?: unknown }) => {
-        if (!cancelled) setIsGuest(!data.user)
-      })
-      .catch(() => {
-        if (!cancelled) setIsGuest(null)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  if (!isGuest) return null
+  if (loading || user) return null
 
   return (
     <p

@@ -17,6 +17,7 @@ import { HomeHero } from '@/components/dashboard/HomeHero'
 import { StudyNotebook } from '@/components/dashboard/StudyNotebook'
 import { ContinueWork } from '@/components/dashboard/ContinueWork'
 import { ActiveSubjects } from '@/components/dashboard/ActiveSubjects'
+import { NewUserHome } from '@/components/dashboard/NewUserHome'
 import { computeStreak } from '@/lib/dashboard/streak'
 import { attemptsThisMonth, attemptsThisWeek, bestSubjectThisWeek } from '@/lib/dashboard/home-stats'
 import { displaySubjectName } from '@/lib/dashboard/subject-display'
@@ -117,6 +118,11 @@ export default async function DashboardPage() {
       code: getSubjectById(name, profileLevel)?.code ?? null,
     }))
 
+  const profileSubjectChips = profileSubjects.map((name) => ({
+    name,
+    code: getSubjectById(name, profileLevel)?.code ?? null,
+  }))
+
   let recommendations: Recommendation[] = []
   let continueSubjectLabel: string | null = null
 
@@ -156,6 +162,15 @@ export default async function DashboardPage() {
         )
       }
     }
+  } else if (primaryCode && attemptsList.length === 0) {
+    continueSubjectLabel =
+      getSyllabusSubjectName(primaryCode) || primarySubject || null
+    recommendations = await fetchGenericRecommendations(
+      supabaseAdmin,
+      primaryCode,
+      continueSubjectLabel ?? 'Mathematics',
+      3
+    )
   }
 
   const isEmpty = attemptsList.length === 0
@@ -168,36 +183,45 @@ export default async function DashboardPage() {
             firstName={greetingName}
             examDate={examDate}
             weeklyAttempts={weeklyCount}
+            hideMarkCta={isEmpty}
           />
 
           <BillingLimitBanner className="mb-6" />
 
-          <StudyNotebook
-            monthlyAttempts={monthlyCount}
-            streak={streak}
-            bestSubjectLabel={bestSubjectLabel}
-            recentAttempts={notebookRecent}
-            recommendations={recommendations}
-            isEmpty={isEmpty}
-          />
+          {!isEmpty ? (
+            <StudyNotebook
+              monthlyAttempts={monthlyCount}
+              streak={streak}
+              bestSubjectLabel={bestSubjectLabel}
+              recentAttempts={notebookRecent}
+              recommendations={recommendations}
+              isEmpty={false}
+            />
+          ) : null}
 
-          {!isEmpty && (
-            <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
-              <ContinueWork
-                recommendations={recommendations}
-                subjectLabel={continueSubjectLabel}
-              />
-              <ActiveSubjects subjects={activeSubjects} />
-            </div>
-          )}
+          {isEmpty ? (
+            <NewUserHome
+              subjects={profileSubjectChips}
+              subjectLabel={continueSubjectLabel}
+              recommendations={recommendations}
+            />
+          ) : (
+            <>
+              <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+                <ContinueWork
+                  recommendations={recommendations}
+                  subjectLabel={continueSubjectLabel}
+                />
+                <ActiveSubjects subjects={activeSubjects} />
+              </div>
 
-          {!isEmpty && (
-            <p className="text-caption text-center lg:text-left">
-              Want mastery matrix, journey timeline, and grade trajectory?{' '}
-              <Link href="/dashboard/progress" className="font-semibold text-[var(--ec-brand)]">
-                View detailed progress →
-              </Link>
-            </p>
+              <p className="text-caption text-center lg:text-left">
+                Want mastery matrix, journey timeline, and grade trajectory?{' '}
+                <Link href="/dashboard/progress" className="font-semibold text-[var(--ec-brand)]">
+                  View detailed progress →
+                </Link>
+              </p>
+            </>
           )}
         </DashboardEntry>
       </div>

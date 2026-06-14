@@ -188,6 +188,23 @@
     text-decoration: none;
   }
 
+  .ec-avatar-btn--loading {
+    animation: ec-pulse 1.2s ease-in-out infinite;
+    background: var(--ec-surface-raised);
+    border-color: var(--ec-border);
+    color: transparent;
+  }
+
+  @keyframes ec-pulse {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
   @media (min-width: 901px) {
     .ec-nav-links {
       display: flex;

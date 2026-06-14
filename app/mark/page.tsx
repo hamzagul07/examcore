@@ -1564,6 +1564,32 @@ export default function MarkPage() {
                 lineReferences={pendingResult?.line_references ?? null}
                 onReveal={handleReveal}
                 error={markStreamError}
+                onRetry={
+                  errorRetryable
+                    ? () => {
+                        setMarkStreamError(null)
+                        setErrorMsg('')
+                        setErrorRetryable(false)
+                        void handleSubmit({
+                          preventDefault: () => {},
+                        } as React.FormEvent)
+                      }
+                    : undefined
+                }
+                onBackToUpload={() => {
+                  setLoading(false)
+                  setMarkStreamError(null)
+                  setMarkProgress(null)
+                  setMarkContext(null)
+                  setErrorMsg('')
+                  setErrorRetryable(false)
+                }}
+                retryDisabled={
+                  loading ||
+                  !answerPages.length ||
+                  hasCompressingPages(answerPages) ||
+                  questionPhotoCompressing
+                }
               />
             </motion.div>
           )}

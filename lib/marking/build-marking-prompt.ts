@@ -94,7 +94,7 @@ export function buildMarkingPrompt(params: {
 }
 
 export function maxTokensForStyle(style: MarkingStyle): number {
-  if (style === 'level_of_response') return 4000
-  if (style === 'mcq') return 4000
-  return 3000
+  if (style === 'level_of_response') return 8192
+  if (style === 'mcq') return 4096
+  return 6144
 }

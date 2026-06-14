@@ -262,13 +262,21 @@ export function normalizeMarkingResult<T extends MarkingResultLike>(result: T): 
 export function coerceMarkingResult(
   raw: Record<string, unknown>
 ): Record<string, unknown> {
-  const result = { ...raw }
+  const unwrapped = unwrapMarkingPayload(raw)
+  const result = { ...unwrapped }
 
-  if (!Array.isArray(result.marks_awarded)) {
-    result.marks_awarded = []
-  }
+  const rawMarks = result.marks_awarded ?? result.marks
+  let marksAwarded: unknown[] = Array.isArray(rawMarks) ? rawMarks : []
+  marksAwarded = marksAwarded.map((entry) => normalizeMarkAwardedEntry(entry))
+  result.marks_awarded = marksAwarded
+
   if (typeof result.summary !== 'string') {
-    result.summary = ''
+    result.summary =
+      typeof result.feedback === 'string'
+        ? result.feedback
+        : typeof result.overall_feedback === 'string'
+          ? result.overall_feedback
+          : ''
   }
   if (!Array.isArray(result.weak_topics)) {
     result.weak_topics = []
@@ -281,11 +289,44 @@ export function coerceMarkingResult(
   if (typeof result.marks_earned !== 'number') {
     result.marks_earned = marks.filter((m) => m?.earned).length
   }
-  if (typeof result.total_marks !== 'number') {
-    result.total_marks = marks.length
+  if (typeof result.total_marks !== 'number' || result.total_marks <= 0) {
+    const fromScheme =
+      typeof result.max_marks === 'number' && result.max_marks > 0
+        ? result.max_marks
+        : null
+    result.total_marks = fromScheme ?? Math.max(marks.length, result.marks_earned as number)
   }
 
   return result
+}
+
+function unwrapMarkingPayload(
+  raw: Record<string, unknown>
+): Record<string, unknown> {
+  if (Array.isArray(raw.marks_awarded) || raw.band_result) return raw
+  for (const key of ['result', 'marking', 'marking_result', 'data'] as const) {
+    const nested = raw[key]
+    if (nested && typeof nested === 'object' && !Array.isArray(nested)) {
+      return nested as Record<string, unknown>
+    }
+  }
+  return raw
+}
+
+function normalizeMarkAwardedEntry(entry: unknown): unknown {
+  if (!entry || typeof entry !== 'object' || Array.isArray(entry)) return entry
+  const mark = { ...(entry as Record<string, unknown>) }
+  if (mark.earned === undefined) {
+    if (typeof mark.awarded === 'boolean') {
+      mark.earned = mark.awarded
+    } else if (typeof mark.correct === 'boolean') {
+      mark.earned = mark.correct
+    }
+  }
+  if (typeof mark.type !== 'string' && typeof mark.mark_id === 'string') {
+    mark.type = mark.mark_id
+  }
+  return mark
 }
 
 export function isUsableMarkingResult(raw: Record<string, unknown>): boolean {

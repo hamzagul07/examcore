@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   friendlyStageLabel,
+  markingTimeEstimateSubline,
   showAnticipationZone,
   stageSegmentPercent,
   type MarkContextPayload,
@@ -241,6 +242,9 @@ function SingleQuestionWait({
       className="ec-card overflow-hidden p-6 sm:p-8"
     >
       <StageProgressBar percent={segment} />
+      <p className="mt-3 text-center text-xs text-[var(--ec-text-secondary)]">
+        {markingTimeEstimateSubline()}
+      </p>
 
       <div className="mt-8 space-y-6">
         <div>
@@ -290,7 +294,7 @@ function SingleQuestionWait({
               className="flex flex-col gap-3 border-t border-[var(--ec-border)] pt-6 sm:flex-row sm:items-center sm:justify-between"
             >
               <p className="text-sm text-[var(--ec-text-secondary)]">
-                Placing examiner&apos;s marks on your answer…
+                Almost there — finishing your marks…
               </p>
               <AnticipationDots />
             </motion.div>

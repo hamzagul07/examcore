@@ -19,8 +19,8 @@ import type {
 } from '@/lib/marking/types'
 import {
   withGeminiRetry,
-  isTransientOverloadError,
 } from '@/lib/marking/gemini-retry'
+import { classifyMarkingError } from '@/lib/marking/classify-marking-error'
 import {
   ocrAnswerBufferWithBoxes,
   uploadAnswerPhoto as uploadAnswerPhotoBuffer,
@@ -184,24 +184,12 @@ export async function POST(request: NextRequest) {
               })
               controller.close()
             } catch (err: unknown) {
-              const isOverload = isTransientOverloadError(err)
-              const message =
-                err instanceof Error
-                  ? err.message
-                  : 'Something went wrong while marking. Please try again.'
-              const isClient =
-                message.includes('handwriting') ||
-                message.includes('past paper question') ||
-                message.includes('select a subject') ||
-                message.includes('Add your question') ||
-                message.includes('Add the question')
+              const classified = classifyMarkingError(err)
               send({
                 type: 'error',
-                error: isOverload
-                  ? 'Marking is busy right now — please try again in a moment.'
-                  : message,
-                retryable: isOverload,
-                status: isClient ? 400 : isOverload ? 503 : 500,
+                error: classified.message,
+                retryable: classified.retryable,
+                status: classified.status,
               })
               controller.close()
             }
@@ -227,28 +215,17 @@ export async function POST(request: NextRequest) {
           })
         )
       } catch (err: unknown) {
-        const isOverload = isTransientOverloadError(err)
-        const message =
-          err instanceof Error
-            ? err.message
-            : 'Something went wrong while marking. Please try again.'
-        if (
-          message.includes('handwriting') ||
-          message.includes('past paper question') ||
-          message.includes('select a subject') ||
-          message.includes('Add the question') ||
-          message.includes('Add your question')
-        ) {
-          return clientError(message)
+        const classified = classifyMarkingError(err)
+        if (classified.code === 'client' || classified.code === 'ocr_empty') {
+          return clientError(classified.message)
         }
         return NextResponse.json(
           {
-            error: isOverload
-              ? 'Marking is busy right now — please try again in a moment.'
-              : message,
-            retryable: isOverload,
+            error: classified.message,
+            retryable: classified.retryable,
+            code: classified.code,
           },
-          { status: isOverload ? 503 : 500 }
+          { status: classified.status }
         )
       }
     }
@@ -428,16 +405,15 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     )
   } catch (err: unknown) {
-    const isOverload = isTransientOverloadError(err)
     console.error('Marking error:', err)
+    const classified = classifyMarkingError(err)
     return NextResponse.json(
       {
-        error: isOverload
-          ? 'Marking is busy right now — please try again in a moment.'
-          : 'Something went wrong while marking. Please try again.',
-        retryable: isOverload,
+        error: classified.message,
+        retryable: classified.retryable,
+        code: classified.code,
       },
-      { status: isOverload ? 503 : 500 }
+      { status: classified.status }
     )
   }
 }

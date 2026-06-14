@@ -54,9 +54,14 @@ export function resolvePostAuthPath(
   next: string | null | undefined
 ): string {
   if (next && isSafeNextPath(next)) {
-    const authOnly = next.startsWith('/auth/')
-    if (onboarded || authOnly) return next.trim()
-    return `/onboarding?next=${encodeURIComponent(next.trim())}`
+    const trimmed = next.trim()
+    // Avoid /onboarding?next=/onboarding redirect loops after sign-in.
+    if (trimmed === '/onboarding' || trimmed.startsWith('/onboarding?')) {
+      return onboarded ? '/dashboard' : '/onboarding'
+    }
+    const authOnly = trimmed.startsWith('/auth/')
+    if (onboarded || authOnly) return trimmed
+    return `/onboarding?next=${encodeURIComponent(trimmed)}`
   }
   return onboarded ? '/dashboard' : '/onboarding'
 }

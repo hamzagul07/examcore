@@ -1,21 +1,39 @@
+import { createClient } from '@/lib/supabase'
 import type { OnboardingInput, SaveOnboardingResult } from '@/lib/onboarding/save-profile'
 
 type ApiSuccess = { ok: true; role: 'student' | 'teacher' }
 type ApiFailure = { error: string }
 
 /**
- * Save onboarding via the API route so auth cookies are refreshed through
- * `jsonWithAuthCookies` — more reliable than server actions on mobile Safari.
+ * Save onboarding via the API route. Sends the browser access token in
+ * Authorization because cookie-only auth can fail on client fetch() even when
+ * the page render saw a valid session (Supabase refresh race / HttpOnly cookies).
  */
 export async function completeOnboardingRequest(
   input: OnboardingInput
 ): Promise<SaveOnboardingResult> {
+  const supabase = createClient()
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session?.access_token) {
+    return {
+      ok: false,
+      error: 'Not signed in',
+      status: 401,
+    }
+  }
+
   let res: Response
   try {
     res = await fetch('/api/onboarding', {
       method: 'POST',
       credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session.access_token}`,
+      },
       body: JSON.stringify(input),
     })
   } catch (err) {

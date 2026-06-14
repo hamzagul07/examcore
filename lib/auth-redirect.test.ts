@@ -86,6 +86,10 @@ const resetCallback = buildResetPasswordCallbackUrl(
   '/mark'
 )
 check(
+  'onboarding next does not loop',
+  resolvePostAuthPath(false, '/onboarding') === '/onboarding'
+)
+check(
   'reset callback nests return next on reset page',
   resetCallback.includes(
     encodeURIComponent('/auth/reset-password?next=%2Fmark')

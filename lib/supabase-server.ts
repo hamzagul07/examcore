@@ -1,7 +1,9 @@
 import { createServerClient } from '@supabase/ssr'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
+import type { SupabaseClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
+import { readBearerAccessToken } from '@/lib/auth-bearer'
 
 type ResponseCookie = Parameters<NextResponse['cookies']['set']>[2]
 
@@ -42,20 +44,17 @@ export function applyAuthCookies(
   return response
 }
 
-/** Authenticated Supabase client for route handlers. */
-export async function authenticateRouteRequest(request: NextRequest) {
-  const pendingCookies: SupabaseAuthCookie[] = []
-  const cookieStore = await cookies()
-
-  const supabase = createServerClient(
+function createCookieAuthClient(
+  request: NextRequest,
+  cookieStore: Awaited<ReturnType<typeof cookies>>,
+  onCookies: (cookiesToSet: SupabaseAuthCookie[]) => void
+) {
+  return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         getAll() {
-          // Route handlers must read the incoming request cookies. The mutable
-          // cookie store alone can be empty/stale here even when the page render
-          // (Server Component) saw a valid session moments earlier.
           const merged = new Map<string, { name: string; value: string }>()
           for (const cookie of cookieStore.getAll()) {
             merged.set(cookie.name, cookie)
@@ -66,7 +65,7 @@ export async function authenticateRouteRequest(request: NextRequest) {
           return Array.from(merged.values())
         },
         setAll(cookiesToSet) {
-          pendingCookies.push(...cookiesToSet)
+          onCookies(cookiesToSet)
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
@@ -78,12 +77,61 @@ export async function authenticateRouteRequest(request: NextRequest) {
       },
     }
   )
+}
+
+/** Supabase client scoped to a verified access token (PostgREST RLS). */
+export function createUserClientWithAccessToken(
+  accessToken: string
+): SupabaseClient {
+  return createSupabaseClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      global: {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    }
+  )
+}
+
+/** Authenticated Supabase client for route handlers. */
+export async function authenticateRouteRequest(request: NextRequest) {
+  const pendingCookies: SupabaseAuthCookie[] = []
+  const cookieStore = await cookies()
+  const cookieSupabase = createCookieAuthClient(request, cookieStore, (cookiesToSet) => {
+    pendingCookies.push(...cookiesToSet)
+  })
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    data: { user: cookieUser },
+  } = await cookieSupabase.auth.getUser()
 
-  return { supabase, user, pendingCookies }
+  if (cookieUser) {
+    return { supabase: cookieSupabase, user: cookieUser, pendingCookies }
+  }
+
+  const accessToken = readBearerAccessToken(request)
+  if (accessToken) {
+    const {
+      data: { user: tokenUser },
+    } = await cookieSupabase.auth.getUser(accessToken)
+
+    if (tokenUser) {
+      return {
+        supabase: createUserClientWithAccessToken(accessToken),
+        user: tokenUser,
+        pendingCookies,
+      }
+    }
+  }
+
+  return { supabase: cookieSupabase, user: null, pendingCookies }
 }
 
 export function jsonWithAuthCookies<T>(

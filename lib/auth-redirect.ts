@@ -81,6 +81,23 @@ export function readPostAuthNextParam(
   return null
 }
 
+/** Where to send the user after onboarding completes. Never loops back to onboarding or auth pages. */
+export function postOnboardingHref(
+  nextParam: string | null | undefined,
+  fallback: string
+): string {
+  if (!nextParam) return fallback
+  const trimmed = nextParam.trim()
+  if (
+    trimmed === '/onboarding' ||
+    trimmed.startsWith('/onboarding?') ||
+    trimmed.startsWith('/auth/')
+  ) {
+    return fallback
+  }
+  return sanitizeNextPath(nextParam, fallback)
+}
+
 /** `/auth/forgot-password` preserving post-reset destination. */
 export function buildForgotPasswordHref(nextPath?: string | null): string {
   if (isSafeNextPath(nextPath)) {

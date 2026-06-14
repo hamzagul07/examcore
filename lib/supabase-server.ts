@@ -44,6 +44,13 @@ export function applyAuthCookies(
   return response
 }
 
+export function redirectWithAuthCookies(
+  url: URL | string,
+  cookiesToSet: SupabaseAuthCookie[]
+) {
+  return applyAuthCookies(NextResponse.redirect(url), cookiesToSet)
+}
+
 function createCookieAuthClient(
   request: NextRequest,
   cookieStore: Awaited<ReturnType<typeof cookies>>,

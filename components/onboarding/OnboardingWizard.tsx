@@ -20,6 +20,8 @@ import {
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
+import { createClient } from '@/lib/supabase'
+import type { OnboardingInput } from '@/lib/onboarding/save-profile'
 
 const TOTAL_STEPS = 5
 
@@ -104,33 +106,31 @@ export function OnboardingWizard({
     setLoading(true)
     setErrorMsg('')
 
+    const payload: OnboardingInput = {
+      board: DEFAULT_BOARD,
+      level,
+      subjects,
+      stage,
+      primary_goal: primaryGoal,
+      exam_date: examDate,
+      role: 'student',
+    }
+
     try {
-      const sessionCheck = await fetch('/api/auth/check', {
-        credentials: 'same-origin',
-      }).catch(() => null)
+      let result = await completeOnboardingRequest(payload)
 
-      if (sessionCheck?.ok) {
-        const sessionData = (await sessionCheck.json()) as {
-          user: { id: string } | null
+      if (!result.ok && result.status === 401) {
+        const supabase = createClient()
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+
+        if (user) {
+          router.refresh()
+          await new Promise((resolve) => setTimeout(resolve, 400))
+          result = await completeOnboardingRequest(payload)
         }
-        if (!sessionData.user) {
-          setErrorMsg('Your session expired. Sign in again to save your profile.')
-          return
-        }
-      } else if (sessionCheck && !sessionCheck.ok) {
-        setErrorMsg('Your session expired. Sign in again to save your profile.')
-        return
       }
-
-      const result = await completeOnboardingRequest({
-        board: DEFAULT_BOARD,
-        level,
-        subjects,
-        stage,
-        primary_goal: primaryGoal,
-        exam_date: examDate,
-        role: 'student',
-      })
 
       if (!result.ok) {
         if (result.status === 401) {

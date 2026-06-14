@@ -42,18 +42,28 @@ export function applyAuthCookies(
   return response
 }
 
-/** Authenticated Supabase client for route handlers (reads cookie store, not raw request cookies). */
+/** Authenticated Supabase client for route handlers. */
 export async function authenticateRouteRequest(request: NextRequest) {
-  void request
-  const cookieStore = await cookies()
   const pendingCookies: SupabaseAuthCookie[] = []
+  const cookieStore = await cookies()
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         getAll() {
-          return cookieStore.getAll()
+          // Route handlers must read the incoming request cookies. The mutable
+          // cookie store alone can be empty/stale here even when the page render
+          // (Server Component) saw a valid session moments earlier.
+          const merged = new Map<string, { name: string; value: string }>()
+          for (const cookie of cookieStore.getAll()) {
+            merged.set(cookie.name, cookie)
+          }
+          for (const cookie of request.cookies.getAll()) {
+            merged.set(cookie.name, cookie)
+          }
+          return Array.from(merged.values())
         },
         setAll(cookiesToSet) {
           pendingCookies.push(...cookiesToSet)
@@ -62,12 +72,13 @@ export async function authenticateRouteRequest(request: NextRequest) {
               cookieStore.set(name, value, options)
             )
           } catch {
-            // Ignored when called from a Server Component.
+            // Route handlers cannot always mutate the cookie store.
           }
         },
       },
     }
   )
+
   const {
     data: { user },
   } = await supabase.auth.getUser()

@@ -9,6 +9,12 @@ import type { WorkedExampleDiagram } from '@/lib/courses/types'
 import { parseMcqOptions, stripImgTags } from '@/lib/courses/worked-example-text'
 
 function splitSolutionSteps(solution: string): string[] {
+  const markdownChunks = solution
+    .split(/\n(?=\*\*(?:Step|\([a-z]\)|\*\*[A-Z]))/i)
+    .map((chunk) => chunk.trim())
+    .filter(Boolean)
+  if (markdownChunks.length > 1) return markdownChunks
+
   const lines = solution.split('\n').map((l) => l.trim()).filter(Boolean)
   const steps: string[] = []
   let buf = ''

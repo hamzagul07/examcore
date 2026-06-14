@@ -1,9 +1,30 @@
+/** Count `$` delimiters not escaped by backslash. */
+export function countUnescapedDollars(text: string): number {
+  let count = 0
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === '$' && text[i - 1] !== '\\') count++
+  }
+  return count
+}
+
+/** Close odd `$` delimiters line-by-line (LLM-generated content). */
+export function repairMathDelimiters(text: string): string {
+  if (!text?.trim()) return text
+  return text
+    .split('\n')
+    .map((line) => {
+      const count = countUnescapedDollars(line)
+      return count % 2 === 1 ? `${line}$` : line
+    })
+    .join('\n')
+}
+
 /** Prepare course text for KaTeX / remark-math rendering. */
 export function prepareCourseMath(text: string): string {
   let s = text.trim()
 
   // Already has math delimiters
-  if (/\$[^$]+\$/.test(s)) return s
+  if (/\$[^$]+\$/.test(s)) return repairMathDelimiters(s)
 
   // Common symbols
   s = s.replace(/Δ/g, '\\Delta ')
@@ -45,25 +66,23 @@ export function prepareCourseMath(text: string): string {
 
 /** Multi-line formula / rules blocks for markdown + KaTeX. */
 export function prepareCourseMathMarkdown(text: string): string {
-  return text
-    .split('\n')
-    .map((line) => {
-      const t = line.trim()
-      if (!t) return ''
-      if (t.startsWith('•') || t.startsWith('-')) return t
-      if (t.includes('$')) {
-        // Close unclosed delimiters from generated content
-        let count = 0
-        for (let i = 0; i < t.length; i++) {
-          if (t[i] === '$' && t[i - 1] !== '\\') count++
-        }
-        return count % 2 === 1 ? `${t}$` : t
-      }
-      if (/=/.test(t) || /\\Delta/.test(t)) return prepareCourseMath(t)
-      return t
-        .replace(/Δ/g, '$\\Delta$')
-        .replace(/±/g, '$\\pm$')
-        .replace(/×/g, '$\\times$')
-    })
-    .join('\n\n')
+  return repairMathDelimiters(
+    text
+      .split('\n')
+      .map((line) => {
+        const t = line.trim()
+        if (!t) return ''
+        if (t.startsWith('•') || t.startsWith('-')) return t
+        if (t.includes('$')) return t
+        if (/=/.test(t) || /\\Delta/.test(t)) return prepareCourseMath(t)
+        return t
+          .replace(/Δ/g, '$\\Delta$')
+          .replace(/±/g, '$\\pm$')
+          .replace(/×/g, '$\\times$')
+      })
+      .join('\n\n')
+  )
 }
+
+/** @deprecated Use repairMathDelimiters */
+export const repairFormulaDelimiters = repairMathDelimiters

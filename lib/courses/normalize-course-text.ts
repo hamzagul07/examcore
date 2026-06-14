@@ -1,9 +1,11 @@
 import { normalizeMarkdownTables } from '@/lib/rich-text/normalize-marking-text'
+import { repairMathDelimiters } from '@/lib/courses/math-format'
 
 const STASH = '\x00C'
 
 /** Detect raw LaTeX commands not yet inside $...$ */
-const HAS_RAW_LATEX = /\\(?:frac|times|text|phi|sqrt|Delta|pm|div|cdot|theta|omega|alpha|beta|gamma|mu|pi|sigma|infty|left|right|vec|hat|bar|mathrm|mathbf)\b/
+const HAS_RAW_LATEX =
+  /\\(?:frac|times|text|phi|sqrt|Delta|pm|div|cdot|theta|omega|alpha|beta|gamma|mu|pi|sigma|infty|left|right|vec|hat|bar|mathrm|mathbf|partial|limits|int|sum|log|ln|sin|cos|tan|Rightarrow|Leftrightarrow|rightarrow)\b/
 
 /**
  * Course lessons often store math as raw LaTeX (\times, \frac) without $ delimiters.
@@ -12,7 +14,7 @@ const HAS_RAW_LATEX = /\\(?:frac|times|text|phi|sqrt|Delta|pm|div|cdot|theta|ome
 export function normalizeCourseText(text: string): string {
   if (!text) return text
 
-  let s = normalizeMarkdownTables(text)
+  let s = repairMathDelimiters(normalizeMarkdownTables(text))
   s = s.replace(/\\_/g, '_')
 
   const stashed: string[] = []
@@ -28,7 +30,7 @@ export function normalizeCourseText(text: string): string {
   // Keep numbered steps in one <ol> (avoid blank lines resetting to "1.")
   s = s.replace(/\n\n+(?=\d+\.\s)/g, '\n')
 
-  return s
+  return repairMathDelimiters(s)
 }
 
 function splitTrailingPunctuation(s: string): { expr: string; suffix: string } {

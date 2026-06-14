@@ -2653,6 +2653,32 @@ html[data-ec-theme='zen'] .course-studio-topbar {
   border-top: 1px solid var(--course-border, var(--ec-border-subtle));
 }
 
+.course-formula-equation {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.course-formula-equation .katex-display {
+  margin: 0;
+}
+
+.course-formula-chip-symbol .katex {
+  font-size: 0.95em;
+}
+
+.course-flashcard-text .katex-display {
+  margin: 0.35em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.course-worked-reveal-step .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .course-concept-node-text,
 .course-concept-node-text.course-rich-text-wrap {
   min-width: 0;

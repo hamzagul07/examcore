@@ -40,8 +40,8 @@ export function FormulaVisual({
           ) : null}
           <div className="course-formula-scroll">
             <div className="course-formula-equations">
-              {lines.map((expr) => (
-                <div key={expr} className="course-formula-equation">
+              {lines.map((expr, i) => (
+                <div key={`expr-${i}`} className="course-formula-equation">
                   <CourseRichText content={expr} variant="formula" />
                 </div>
               ))}

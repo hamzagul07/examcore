@@ -182,6 +182,7 @@ export function OnboardingWizard({
         <AnimatePresence mode="wait">
           <motion.div
             key={step}
+            className="ms-ob-step"
             initial={{ y: 12 }}
             animate={{ y: 0 }}
             exit={{ y: -8 }}
@@ -356,7 +357,7 @@ function StepSubjects({
       <p className="ms-lead" style={{ marginTop: 10, fontSize: 15 }}>
         We&apos;ll tailor papers and progress to these subjects.
       </p>
-      <div className="mt-6 space-y-6 sm:max-h-[min(40vh,360px)] sm:space-y-6 sm:overflow-y-auto sm:pr-1">
+      <div className="ms-ob-subjects-scroll space-y-6">
         {SUBJECT_GROUPS.map((group) => {
           const items = subjectsInGroup(group, level)
           if (!items.length) return null
@@ -548,14 +549,14 @@ function StepFirstMark({
           : "Upload something you've already done. We'll mark it and show you what an examiner-style review looks like — usually under a minute."}
       </p>
       {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
-      <div className="ms-ob-nav" style={{ flexDirection: 'column' }}>
+      <div className="ms-ob-nav ms-ob-nav--stack">
         <button
           type="button"
           disabled={loading}
           aria-busy={loading || undefined}
           data-loading={loading ? 'true' : undefined}
           onClick={onMark}
-          className="ec-btn-primary w-full max-w-sm justify-center"
+          className="ec-btn-primary w-full justify-center"
         >
           {loading ? (
             <>
@@ -573,7 +574,7 @@ function StepFirstMark({
             type="button"
             disabled={loading}
             onClick={onDashboard}
-            className="ec-btn-ghost w-full max-w-sm justify-center"
+            className="ec-btn-ghost w-full justify-center"
           >
             Explore the dashboard first
           </button>

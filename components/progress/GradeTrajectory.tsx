@@ -30,7 +30,7 @@ export function GradeTrajectory({ attempts, prediction }: Props) {
   }, [attempts])
 
   return (
-    <section className="grid grid-cols-1 gap-4 lg:grid-cols-5">
+    <section className="ms-grade-trajectory grid grid-cols-1 gap-4 lg:grid-cols-5">
       <TiltCard
         intensity={3}
         glow={false}

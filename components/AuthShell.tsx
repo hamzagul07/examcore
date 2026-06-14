@@ -25,7 +25,7 @@ export function AuthShell({
   if (layout === 'onboarding') {
     return (
       <main className="ms-ob-shell">
-        <div className="mb-10 flex justify-center">
+        <div className="mb-8 flex justify-center sm:mb-10">
           <WordmarkLink />
         </div>
         {children}
@@ -39,7 +39,7 @@ export function AuthShell({
   }
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center px-4 py-12 sm:px-6">
+    <main className="ec-auth-shell relative flex min-h-screen min-h-dvh items-center justify-center px-4 sm:px-6">
       <div className="w-full max-w-md">
         <motion.div
           initial={{ y: -8 }}
@@ -59,7 +59,7 @@ export function AuthShell({
           initial={{ y: 14 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-          className="ec-card relative overflow-hidden p-7 sm:p-10"
+          className="ec-card relative overflow-hidden p-6 sm:p-10"
         >
           <div
             className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full ec-glow-orb blur-[80px] opacity-60"
@@ -71,7 +71,7 @@ export function AuthShell({
         <div className="mt-6 text-center">
           <Link
             href={backHref}
-            className="inline-flex items-center gap-1.5 text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
+            className="inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-text-primary)]"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             {backLabel}

@@ -91,9 +91,9 @@ export default function JoinClassroomPage() {
 
   if (error && !classroom) {
     return (
-      <div className="ec-card p-8 text-center">
+      <div className="ms-join-card ec-card p-6 text-center sm:p-8">
         <AlertCircle className="mx-auto mb-4 h-16 w-16 ec-score-low" />
-        <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)]">
+        <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
           Can&apos;t join
         </h2>
         <p className="text-[var(--ec-text-secondary)]">{error}</p>
@@ -109,9 +109,9 @@ export default function JoinClassroomPage() {
 
   if (joined && classroom) {
     return (
-      <div className="ec-card p-8 text-center">
+      <div className="ms-join-card ec-card p-6 text-center sm:p-8">
         <Check className="mx-auto mb-4 h-16 w-16 ec-score-high" />
-        <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)]">
+        <h2 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
           You&apos;re in!
         </h2>
         <p className="text-[var(--ec-text-secondary)]">
@@ -130,10 +130,10 @@ export default function JoinClassroomPage() {
   const signInHref = buildSignInHref(joinPath)
 
   return (
-    <div className="ec-card p-8 text-center">
+    <div className="ms-join-card ec-card p-6 text-center sm:p-8">
       <BookOpen className="mx-auto mb-4 h-16 w-16 ec-text-brand" />
       <div className="ec-label-tech mb-3">CLASSROOM INVITATION</div>
-      <h1 className="mb-2 text-3xl font-bold text-[var(--ec-text-primary)]">
+      <h1 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
         {classroom.name}
       </h1>
       {classroom.description && (

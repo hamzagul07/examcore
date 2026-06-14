@@ -40,11 +40,11 @@ export default function NewClassroomPage() {
   }
 
   return (
-    <TeacherPageContainer className="max-w-lg">
+    <TeacherPageContainer className="ms-teacher-form max-w-lg">
       <TeacherBackLink href="/teacher/dashboard">← Back to dashboard</TeacherBackLink>
       <TeacherPageHeader label="NEW CLASSROOM" title="Create a classroom" />
 
-      <form onSubmit={handleSubmit} className="ec-card space-y-4 p-8">
+      <form onSubmit={handleSubmit} className="ec-card space-y-4 p-6 sm:p-8">
         <div>
           <label className="ec-label-tech mb-2 block">Name</label>
           <input
@@ -66,7 +66,7 @@ export default function NewClassroomPage() {
           />
         </div>
         {error && <p className="text-sm ec-score-low">{error}</p>}
-        <button type="submit" disabled={loading} className="ec-btn-primary w-full">
+        <button type="submit" disabled={loading} className="ec-btn-primary min-h-[48px] w-full">
           {loading ? 'Creating...' : 'Create classroom'}
         </button>
       </form>

@@ -55,8 +55,8 @@ export default function ComparePage() {
         lead="Not affiliate fluff — a practical table for students revising with Cambridge past papers."
       />
       <MarketingSection className="!pt-0">
-        <div className="overflow-x-auto">
-          <table className="ec-blog-prose w-full min-w-[520px] text-left text-sm">
+        <div className="ms-compare-scroll overflow-x-auto">
+          <table className="ec-blog-prose w-full min-w-[480px] text-left text-sm">
             <thead>
               <tr>
                 <th className="pb-3 pr-4">Option</th>

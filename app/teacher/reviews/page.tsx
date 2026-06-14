@@ -44,10 +44,10 @@ export default function ReviewsPage() {
   })
 
   return (
-    <TeacherPageContainer className="max-w-4xl">
+    <TeacherPageContainer className="ms-teacher-inbox max-w-4xl">
       <TeacherPageHeader label="EXAMINER INK" title="Submission inbox" />
 
-      <div className="mb-6 flex flex-wrap gap-2">
+      <div className="ms-teacher-inbox-filters mb-6 flex flex-wrap gap-2">
         {(['all', 'pending', 'overridden'] as Filter[]).map((f) => (
           <button
             key={f}
@@ -77,7 +77,7 @@ export default function ReviewsPage() {
           <Link
             key={r.id}
             href={`/teacher/reviews/${r.id}`}
-            className="ec-card ec-card-interactive block p-5"
+            className="ec-card ec-card-interactive block min-h-[72px] p-5"
           >
             <div className="flex items-center justify-between gap-4">
               <div className="min-w-0">

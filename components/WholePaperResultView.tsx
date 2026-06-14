@@ -213,7 +213,7 @@ export function WholePaperResultView({
   )
 
   return (
-    <div className="space-y-6">
+    <div className="ms-whole-paper-result space-y-6">
       {result.questions_excluded_count ? (
         <div className="ec-banner ec-banner-warning">
           <AlertCircle className="ec-banner__icon h-5 w-5 shrink-0" />

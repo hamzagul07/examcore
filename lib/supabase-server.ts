@@ -42,8 +42,9 @@ export function applyAuthCookies(
   return response
 }
 
-/** Authenticated Supabase client for route handlers (reads request cookies). */
-export async function authenticateRouteRequest(_request: NextRequest) {
+/** Authenticated Supabase client for route handlers (reads cookie store, not raw request cookies). */
+export async function authenticateRouteRequest(request: NextRequest) {
+  void request
   const cookieStore = await cookies()
   const pendingCookies: SupabaseAuthCookie[] = []
   const supabase = createServerClient(

@@ -36,7 +36,7 @@ export default function ClassroomStudentsPage() {
   }, [id])
 
   return (
-    <TeacherPageContainer>
+    <TeacherPageContainer className="ms-teacher-roster">
       <TeacherBackLink href={`/teacher/classroom/${id}`}>
         ← Back to analytics
       </TeacherBackLink>

@@ -25,3 +25,19 @@ export function CommandKTrigger({ className }: CommandKTriggerProps) {
     </button>
   )
 }
+
+/** Full-width mobile menu entry — opens Ask MarkScheme / search. */
+export function MobileSearchMenuButton() {
+  const { setIsOpen } = useOmniAI()
+
+  return (
+    <button
+      type="button"
+      className="ec-nav-mobile-search"
+      onClick={() => setIsOpen(true)}
+    >
+      <Search className="h-4 w-4 shrink-0" aria-hidden />
+      Search / Ask MarkScheme
+    </button>
+  )
+}

@@ -18,7 +18,7 @@ export function ActiveSubjects({ subjects }: Props) {
   if (subjects.length === 0) return null
 
   return (
-    <section className="mb-8">
+    <section className="ms-active-subjects mb-8">
       <h2 className="text-title mb-4">Subjects active</h2>
       <div className="relative">
         <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex-wrap lg:overflow-visible [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,black_90%,transparent)] lg:[mask-image:none]">

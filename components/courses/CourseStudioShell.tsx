@@ -39,7 +39,7 @@ export function CourseStudioShell({
   return (
     <CourseFocusMode>
       <div
-        className="course-studio"
+        className="course-studio ms-course-studio"
         data-subject={subjectCode}
         style={
           {
@@ -75,7 +75,8 @@ export function CourseStudioShell({
                     <Link href={markHref} className="course-studio-mark-cta">
                       <span className="course-studio-mark-dot" aria-hidden />
                       <PenLine className="h-4 w-4" aria-hidden />
-                      Mark this topic
+                      <span className="hidden min-[480px]:inline">Mark this topic</span>
+                      <span className="min-[480px]:hidden">Mark topic</span>
                     </Link>
                   ) : null}
                   <CourseStudioShareButton />

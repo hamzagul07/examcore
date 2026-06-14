@@ -49,7 +49,7 @@ export function PreferencesSection({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="ms-prefs-section space-y-6">
       <SettingsSectionCard
         title="Appearance"
         description="Choose how MarkScheme looks on your device."
@@ -74,7 +74,7 @@ export function PreferencesSection({
         description="Optional — we only email when you opt in."
       >
         <div className="space-y-4">
-          <label className="flex cursor-pointer items-start justify-between gap-4">
+          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
             <span>
               <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
                 Exam countdown reminders
@@ -123,7 +123,7 @@ export function PreferencesSection({
             </span>
           </label>
 
-          <label className="flex cursor-pointer items-start justify-between gap-4">
+          <label className="ms-pref-toggle flex min-h-[56px] cursor-pointer items-start justify-between gap-4">
             <span>
               <span className="block text-sm font-semibold text-[var(--ec-text-primary)]">
                 Product updates

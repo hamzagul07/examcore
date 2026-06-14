@@ -52,7 +52,7 @@ function TabButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-xl px-3 py-2 text-sm font-semibold tracking-tight transition-all duration-200 active:scale-[0.98] ${
+      className={`flex min-h-[44px] items-center justify-center rounded-xl px-3 py-2.5 text-sm font-semibold tracking-tight transition-all duration-200 active:scale-[0.98] ${
         active
           ? 'ec-tab-active'
           : 'text-[var(--ec-text-secondary)] hover:text-[var(--ec-text-primary)]'

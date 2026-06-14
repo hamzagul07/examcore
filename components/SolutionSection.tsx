@@ -61,7 +61,7 @@ export function SolutionSection({
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="ec-card p-5 sm:p-6"
+        className="ms-solution-section ec-card p-5 sm:p-6"
       >
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <div className="ec-tint-brand-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
@@ -99,7 +99,7 @@ export function SolutionSection({
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45 }}
-        className="ec-card-brand relative overflow-hidden p-8 text-center sm:p-12"
+        className="ms-solution-section ec-card-brand relative overflow-hidden p-6 text-center sm:p-12"
       >
         <div
           className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full ec-glow-orb blur-[80px]"
@@ -176,7 +176,7 @@ export function SolutionSection({
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="ec-card p-5 sm:p-7"
+      className="ms-solution-section ec-card p-5 sm:p-7"
     >
       <div className="mb-5 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl border ec-tint-brand-icon">

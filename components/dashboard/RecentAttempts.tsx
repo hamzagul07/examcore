@@ -25,7 +25,7 @@ export function RecentAttempts({ attempts }: Props) {
   if (attempts.length === 0) return null
 
   return (
-    <section className="mb-8">
+    <section className="ms-recent-attempts mb-8">
       <div className="mb-4 flex items-center justify-between gap-3">
         <h2 className="text-title">Recent activity</h2>
         <Link
@@ -53,7 +53,7 @@ export function RecentAttempts({ attempts }: Props) {
               <LoadingLink
                 href={`/dashboard/attempt/${attempt.id}`}
                 variant="card"
-                className="ec-card ec-card-interactive relative block p-4 sm:p-5"
+                className="ec-card ec-card-interactive relative block min-h-[88px] p-4 sm:p-5"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 flex-1 items-start gap-3">

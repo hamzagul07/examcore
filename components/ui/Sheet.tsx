@@ -65,7 +65,7 @@ export function Sheet({
             aria-modal="true"
             aria-labelledby={title ? titleId : undefined}
             className={cn(
-              'ec-card relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl p-6 sm:max-w-md sm:rounded-2xl sm:p-8',
+              'ec-card relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl p-6 pt-[calc(1.5rem+env(safe-area-inset-top,0px))] sm:max-w-md sm:rounded-2xl sm:p-8 sm:pt-8',
               className
             )}
             style={{

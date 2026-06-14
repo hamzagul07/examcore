@@ -240,7 +240,7 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           </p>
         )}
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <div className="ms-billing-actions mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Button
             variant="primary"
             size="md"
@@ -262,8 +262,8 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
           >
             View invoices in billing portal →
           </Button>
-          <Link href="/pricing" className="inline-flex sm:ml-auto">
-            <Button variant="ghost" size="md" type="button">
+          <Link href="/pricing" className="inline-flex w-full sm:ml-auto sm:w-auto">
+            <Button variant="ghost" size="md" type="button" fullWidth className="sm:w-auto">
               View pricing
             </Button>
           </Link>

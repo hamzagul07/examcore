@@ -19,7 +19,7 @@ export function ThemeSwitcher({ compact = false }: ThemeSwitcherProps) {
 
   return (
     <div
-      className="flex items-center gap-1 rounded-xl p-1"
+      className="ms-theme-switcher flex items-center gap-1 rounded-xl p-1"
       style={{
         background: 'var(--ec-surface)',
         border: '1px solid var(--ec-border)',

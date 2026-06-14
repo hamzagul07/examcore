@@ -37,15 +37,15 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
   }, [classroomId, limit])
 
   return (
-    <div className="ec-card p-8">
-      <div className="mb-6 flex items-center justify-between">
+    <div className="ms-teacher-review ec-card p-6 sm:p-8">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="ec-label-tech mb-2">REVIEW QUEUE</div>
-          <h2 className="text-2xl font-bold text-[var(--ec-text-primary)]">Recent submissions</h2>
+          <h2 className="text-xl font-bold text-[var(--ec-text-primary)] sm:text-2xl">Recent submissions</h2>
         </div>
         <Link
           href="/teacher/reviews"
-          className="text-sm ec-link"
+          className="inline-flex min-h-[44px] items-center text-sm ec-link"
         >
           View all →
         </Link>
@@ -67,7 +67,7 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
           <Link
             key={r.id}
             href={`/teacher/reviews/${r.id}`}
-            className="flex items-center justify-between rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 transition-colors ec-hover-brand-border-mild hover:bg-[var(--ec-surface-raised)]"
+            className="flex min-h-[56px] items-center justify-between rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] p-4 transition-colors ec-hover-brand-border-mild hover:bg-[var(--ec-surface-raised)]"
           >
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">

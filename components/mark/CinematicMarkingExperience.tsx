@@ -154,8 +154,7 @@ export function CinematicMarkingExperience(
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, transition: { duration: 0.4 } }}
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-      className="ec-card relative overflow-hidden p-6 sm:p-8"
-      style={{ minHeight: 420 }}
+      className="ec-card ec-cinematic-card relative overflow-hidden p-4 sm:p-6 md:p-8"
     >
       {/* A — kinetic field, full bleed behind everything */}
       <motion.div

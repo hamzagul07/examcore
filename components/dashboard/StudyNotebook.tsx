@@ -44,7 +44,7 @@ export function StudyNotebook({
 
   if (isEmpty) {
     return (
-      <section className="ec-notebook mx-auto mb-8 min-w-0 max-w-2xl p-5 sm:p-8">
+      <section className="ms-study-notebook ec-notebook mx-auto mb-8 min-w-0 max-w-2xl p-5 sm:p-8">
         <header className="mb-4">
           <h2 className={`${handwriting} text-2xl text-[var(--ec-notebook-ink)] sm:text-3xl`}>
             <span aria-hidden className="mr-1.5">
@@ -74,7 +74,7 @@ export function StudyNotebook({
   const previewRecs = recommendations.slice(0, 3)
 
   return (
-    <section className="ec-notebook mx-auto mb-8 min-w-0 max-w-2xl p-5 sm:p-8">
+    <section className="ms-study-notebook ec-notebook mx-auto mb-8 min-w-0 max-w-2xl p-5 sm:p-8">
       <header className="mb-6">
         <h2 className={`${handwriting} text-2xl text-[var(--ec-notebook-ink)] sm:text-3xl`}>
           <span aria-hidden className="mr-1.5">

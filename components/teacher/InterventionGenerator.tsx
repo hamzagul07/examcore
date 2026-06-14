@@ -89,20 +89,20 @@ export function InterventionGenerator({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center ec-modal-backdrop p-4"
+        className="fixed inset-0 z-50 flex items-end justify-center ec-modal-backdrop p-0 sm:items-center sm:p-4"
         onClick={onClose}
       >
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          className="ec-card max-h-[85vh] w-full max-w-2xl overflow-y-auto p-8"
+          className="ms-teacher-intervention ec-card max-h-[90dvh] w-full max-w-2xl overflow-y-auto rounded-t-3xl p-4 sm:max-h-[85vh] sm:rounded-2xl sm:p-8"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="mb-6 flex items-start justify-between">
             <div>
               <div className="ec-label-tech mb-2">INTERVENTION GENERATOR</div>
-              <h3 className="text-2xl font-bold text-[var(--ec-text-primary)]">
+              <h3 className="text-xl font-bold text-[var(--ec-text-primary)] sm:text-2xl">
                 Target failing topics
               </h3>
               <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
@@ -151,7 +151,7 @@ export function InterventionGenerator({
                     key={q.id}
                     type="button"
                     onClick={() => toggle(q.id)}
-                    className={`w-full rounded-xl border p-4 text-left transition-all ${
+                    className={`min-h-[56px] w-full rounded-xl border p-4 text-left transition-all ${
                       selected.has(q.id)
                         ? 'border-[color-mix(in_srgb,var(--ec-brand)_40%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_5%,transparent)]'
                         : 'border-[var(--ec-border)] bg-[var(--ec-surface-raised)] ec-hover-brand-border-mild hover:bg-[var(--ec-brand-muted)]'
@@ -172,7 +172,7 @@ export function InterventionGenerator({
                 type="button"
                 onClick={generate}
                 disabled={selected.size < 3 || generating}
-                className="ec-btn-primary w-full"
+                className="ec-btn-primary min-h-[48px] w-full"
               >
                 {generating
                   ? 'Generating...'

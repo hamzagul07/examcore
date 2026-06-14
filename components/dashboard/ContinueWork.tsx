@@ -16,7 +16,7 @@ export function ContinueWork({ recommendations, subjectLabel }: Props) {
   if (recommendations.length === 0) return null
 
   return (
-    <section className="mb-8">
+    <section className="ms-continue-work mb-8">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
         <div>
           <h2 className="text-title">Continue your work</h2>
@@ -28,7 +28,7 @@ export function ContinueWork({ recommendations, subjectLabel }: Props) {
         </div>
         <Link
           href="/dashboard/progress"
-          className="text-sm font-semibold text-[var(--ec-brand)]"
+          className="inline-flex min-h-[44px] shrink-0 items-center text-sm font-semibold text-[var(--ec-brand)]"
         >
           Deeper insights →
         </Link>
@@ -40,7 +40,7 @@ export function ContinueWork({ recommendations, subjectLabel }: Props) {
               <LoadingLink
                 href={drillHref(rec)}
                 variant="card"
-                className="ec-card ec-card-interactive relative flex items-center justify-between gap-4 p-4"
+                className="ec-card ec-card-interactive relative flex min-h-[72px] flex-col items-stretch gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
               >
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-[var(--ec-text-primary)]">
@@ -48,7 +48,7 @@ export function ContinueWork({ recommendations, subjectLabel }: Props) {
                   </p>
                   <p className="text-caption mt-1 line-clamp-2">{rec.reason}</p>
                 </div>
-                <span className="ec-btn-secondary shrink-0 text-sm">
+                <span className="ec-btn-secondary ms-continue-drill w-full justify-center text-sm sm:w-auto">
                   Drill
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>

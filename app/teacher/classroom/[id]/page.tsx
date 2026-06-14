@@ -83,7 +83,7 @@ export default function ClassroomPage() {
   }
 
   return (
-    <TeacherPageContainer>
+    <TeacherPageContainer className="ms-teacher-classroom">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="ec-eyebrow mb-3">Classroom analytics</p>

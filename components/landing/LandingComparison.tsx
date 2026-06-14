@@ -54,7 +54,8 @@ export function LandingComparison() {
       <h2 className="ms-h2">
         Generic AI guesses. <em>This one cites.</em>
       </h2>
-      <div className="ms-cmp">
+      <div className="ms-cmp-scroll">
+        <div className="ms-cmp">
         <div className="ms-cmp-row ms-cmp-head">
           <div />
           <div className="ms-us-head">MarkScheme</div>
@@ -69,6 +70,7 @@ export function LandingComparison() {
             {parseCell(row.tutor)}
           </div>
         ))}
+        </div>
       </div>
       <p className="ms-micro" style={{ marginTop: 18 }}>
         HONEST FOOTNOTE: A GOOD TUTOR ALSO TEACHES — WE JUST MARK LIKE ONE, AT 1AM, FOR FREE

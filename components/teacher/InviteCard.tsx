@@ -31,7 +31,7 @@ export function InviteCard({ classroom }: InviteCardProps) {
   }
 
   return (
-    <div className="ec-card mb-8 p-6">
+    <div className="ms-teacher-invite ec-card mb-8 p-6">
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div>
           <div className="ec-label-tech mb-3">INVITE STUDENTS</div>
@@ -42,7 +42,7 @@ export function InviteCard({ classroom }: InviteCardProps) {
             <button
               type="button"
               onClick={copyCode}
-              className="rounded-xl bg-[var(--ec-surface-raised)] p-2.5 transition-colors hover:bg-[var(--ec-brand-muted)]"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl bg-[var(--ec-surface-raised)] p-2.5 transition-colors hover:bg-[var(--ec-brand-muted)]"
               title="Copy code"
             >
               {copiedCode ? (
@@ -62,7 +62,7 @@ export function InviteCard({ classroom }: InviteCardProps) {
         <button
           type="button"
           onClick={copyLink}
-          className="ec-btn-primary inline-flex items-center gap-2 self-stretch md:self-auto"
+          className="ec-btn-primary inline-flex min-h-[44px] w-full items-center justify-center gap-2 md:w-auto md:self-auto"
         >
           {copiedLink ? (
             <Check className="h-5 w-5" />

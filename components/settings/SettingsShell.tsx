@@ -28,7 +28,7 @@ export function SettingsShell({ children }: { children: React.ReactNode }) {
   }, [isIndex, router])
 
   return (
-    <main className="app-shell app-shell-tabbed md:py-10 lg:py-14">
+    <main className="app-shell app-shell-tabbed ms-settings-shell md:py-10 lg:py-14">
       <div className="mx-auto min-w-0 w-full max-w-5xl">
         {!isIndex && (
           <div className="mb-6 lg:hidden">
@@ -42,7 +42,7 @@ export function SettingsShell({ children }: { children: React.ReactNode }) {
           </div>
         )}
 
-        <header className="animate-entry mb-8 lg:mb-10">
+        <header className="ms-settings-header animate-entry mb-8 lg:mb-10">
           <p className="ms-overline">Settings</p>
           <h1 className="ms-h2" style={{ marginTop: 12 }}>
             {isIndex ? (

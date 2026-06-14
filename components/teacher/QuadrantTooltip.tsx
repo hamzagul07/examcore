@@ -2,7 +2,7 @@ import type { StudentQuadrantMetric } from '@/lib/teacher-analytics'
 
 export function QuadrantTooltip({ student }: { student: StudentQuadrantMetric }) {
   return (
-    <div className="absolute right-2 top-2 z-20 min-w-[240px] rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)]/95 p-4 shadow-2xl backdrop-blur-xl">
+    <div className="absolute right-2 top-2 z-20 max-w-[calc(100%-1rem)] min-w-0 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface)]/95 p-3 shadow-2xl backdrop-blur-xl sm:min-w-[220px] sm:p-4">
       <h4 className="mb-1 font-bold text-[var(--ec-text-primary)]">{student.name}</h4>
       <div className="mb-3 text-xs text-[var(--ec-text-secondary)]">
         Accuracy {student.accuracy.toFixed(0)}% ·{' '}

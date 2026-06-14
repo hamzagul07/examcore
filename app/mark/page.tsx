@@ -967,6 +967,7 @@ export default function MarkPage() {
 
         {!result && !loading && (
           <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="ms-lvl-tabs-scroll">
             <div className="ms-lvl-tabs" role="tablist" aria-label="Mark mode">
               <button
                 type="button"
@@ -1002,6 +1003,7 @@ export default function MarkPage() {
               >
                 Whole paper
               </button>
+            </div>
             </div>
             {isPracticeMode && (
               <p className="-mt-4 text-center text-xs leading-relaxed text-[var(--ec-text-secondary)]">
@@ -1548,7 +1550,7 @@ export default function MarkPage() {
           {((cinematicActive) || markStreamError) && (
             <motion.div
               key="marking-progress"
-              className="fixed inset-0 z-[55] overflow-y-auto bg-[var(--ec-canvas)] px-4 pt-4 pb-[calc(5rem+env(safe-area-inset-bottom,0px))] lg:relative lg:inset-auto lg:z-auto lg:mt-10 lg:overflow-visible lg:bg-transparent lg:p-0 lg:pb-0"
+              className="fixed inset-0 z-[55] overflow-y-auto overscroll-contain bg-[var(--ec-canvas)] px-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] sm:px-4 sm:pt-[calc(1rem+env(safe-area-inset-top,0px))] lg:relative lg:inset-auto lg:z-auto lg:mt-10 lg:overflow-visible lg:bg-transparent lg:p-0 lg:pb-0 lg:pt-0"
               initial={{ y: 12 }}
               animate={{ y: 0 }}
               exit={{ y: 8 }}

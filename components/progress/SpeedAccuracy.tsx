@@ -61,7 +61,7 @@ export function SpeedAccuracy({ attempts }: Props) {
   const hasTimedData = timed.length > 0
 
   return (
-    <section className="ec-card-premium p-5 sm:p-7">
+    <section className="ms-speed-accuracy ec-card-premium p-5 sm:p-7">
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
           <div className="mb-2 flex items-center gap-2">

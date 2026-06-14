@@ -20,7 +20,7 @@ export function PostMarkNextSteps({
   const studyNext = result.ai_marking?.what_to_study_next?.trim()
 
   return (
-    <div className="space-y-4 pt-2">
+    <div className="ms-post-mark-next space-y-4 pt-2">
       {(weakTopics.length > 0 || studyNext) && (
         <div className="ec-card group flex flex-col gap-4 border-[var(--ec-brand)]/25 p-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
@@ -43,7 +43,7 @@ export function PostMarkNextSteps({
           </div>
           <Link
             href="/dashboard/progress"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]"
+            className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 self-start text-sm font-semibold text-[var(--ec-brand)] sm:self-auto"
           >
             <BarChart3 className="h-4 w-4" aria-hidden="true" />
             View progress
@@ -59,18 +59,18 @@ export function PostMarkNextSteps({
         <button
           type="button"
           onClick={onMarkAnother}
-          className="ec-btn-secondary w-full justify-center text-base"
-          style={{ padding: '16px 24px' }}
+          className="ec-btn-secondary min-h-[48px] w-full justify-center text-base"
         >
-          Mark another attempt at this question
+          <span className="sm:hidden">Same question again</span>
+          <span className="hidden sm:inline">Mark another attempt at this question</span>
         </button>
         <button
           type="button"
           onClick={onMarkNewQuestion}
-          className="ec-btn-primary w-full justify-center text-base"
-          style={{ padding: '16px 24px' }}
+          className="ec-btn-primary min-h-[48px] w-full justify-center text-base"
         >
-          Mark a new question
+          <span className="sm:hidden">New question</span>
+          <span className="hidden sm:inline">Mark a new question</span>
         </button>
       </div>
     </div>

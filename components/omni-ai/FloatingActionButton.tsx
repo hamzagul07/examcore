@@ -18,7 +18,8 @@ export function FloatingActionButton({ onClick, isOpen }: FABProps) {
       className="ms-omni-fab"
     >
       <PenLine className="h-5 w-5 shrink-0" aria-hidden />
-      ask MarkScheme
+      <span className="hidden min-[420px]:inline">ask MarkScheme</span>
+      <span className="min-[420px]:hidden">Ask</span>
     </button>
   )
 }

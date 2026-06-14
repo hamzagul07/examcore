@@ -38,7 +38,7 @@ export function AttemptsList({ attempts }: { attempts: AttemptListRow[] }) {
   }
 
   return (
-    <div className="space-y-3">
+    <div className="ms-attempts-list space-y-3">
       {attempts.map((attempt) => {
         const percentage =
           attempt.total_marks > 0

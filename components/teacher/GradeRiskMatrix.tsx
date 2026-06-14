@@ -31,9 +31,9 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
 
   if (students.length === 0) {
     return (
-      <div className="ec-card p-8">
+      <div className="ms-teacher-risk-matrix ec-card p-6 sm:p-8">
         <div className="ec-label-tech mb-2">RISK MATRIX</div>
-        <h2 className="text-3xl font-bold text-[var(--ec-text-primary)]">Grade Boundary Risk</h2>
+        <h2 className="text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">Grade Boundary Risk</h2>
         <p className="mt-4 text-[var(--ec-text-secondary)]">
           Add students to this classroom to see the risk matrix.
         </p>
@@ -42,16 +42,16 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
   }
 
   return (
-    <div className="ec-card p-8">
+    <div className="ec-card p-6 ms-teacher-risk-matrix sm:p-8">
       <div className="mb-6">
         <div className="ec-label-tech mb-2">RISK MATRIX</div>
-        <h2 className="text-3xl font-bold text-[var(--ec-text-primary)]">Grade Boundary Risk</h2>
+        <h2 className="text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">Grade Boundary Risk</h2>
         <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
           Each dot is a student. Hover for predicted grade and biggest deficit.
         </p>
       </div>
 
-      <div className="relative h-96 overflow-hidden rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)]">
+      <div className="ms-teacher-risk-plot relative h-64 overflow-hidden rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] sm:h-80 md:h-96">
         <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
           <QuadrantBg label={QUADRANT_CONFIG.careless_risk.label} />
           <QuadrantBg label={QUADRANT_CONFIG.safe.label} />
@@ -101,7 +101,7 @@ export function GradeRiskMatrix({ students }: { students: StudentQuadrantMetric[
         {hoveredStudent && <QuadrantTooltip student={hoveredStudent} />}
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+      <div className="ms-teacher-risk-legend mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
         {(
           Object.entries(QUADRANT_CONFIG) as Array<
             [keyof typeof QUADRANT_CONFIG, (typeof QUADRANT_CONFIG)[keyof typeof QUADRANT_CONFIG]]

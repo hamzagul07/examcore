@@ -56,7 +56,7 @@ export function ApproachingLimitBanner({
 
   return (
     <div
-      className="mb-5 flex items-center gap-3 rounded-2xl border ec-highlight-warning-panel px-4 py-3"
+      className="ms-billing-approaching mb-5 flex items-center gap-3 rounded-2xl border ec-highlight-warning-panel px-4 py-3"
       role="status"
     >
       <AlertTriangle className="h-5 w-5 shrink-0 ec-score-mid" />

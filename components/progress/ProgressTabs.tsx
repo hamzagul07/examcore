@@ -75,8 +75,15 @@ export function ProgressTabs({ insights, journey, topics, attempts }: Props) {
                 onClick={() => setActive(tab.key)}
                 className={`ms-progress-tab${selected ? ' on' : ''}`}
               >
-                <Icon className="h-4 w-4" aria-hidden="true" />
-                {tab.label}
+                <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="sm:hidden">
+                  {tab.key === 'topics'
+                    ? 'Topics'
+                    : tab.key === 'attempts'
+                      ? 'Attempts'
+                      : tab.label}
+                </span>
+                <span className="hidden sm:inline">{tab.label}</span>
               </button>
             )
           })}

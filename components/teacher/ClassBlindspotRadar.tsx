@@ -41,7 +41,7 @@ export function ClassBlindspotRadar({ classroomId, blindspots }: Props) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="ec-card relative overflow-hidden p-8"
+      className="ms-teacher-blindspot ec-card relative overflow-hidden p-6 sm:p-8"
     >
       <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full ec-glow-orb-critical blur-3xl opacity-50" />
 
@@ -51,7 +51,7 @@ export function ClassBlindspotRadar({ classroomId, blindspots }: Props) {
           <span className="ec-label-tech ec-score-low">CLASS BLINDSPOT DETECTED</span>
         </div>
 
-        <h2 className="mb-3 text-4xl font-bold text-[var(--ec-text-primary)]">
+        <h2 className="mb-3 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-4xl">
           {topBlindspot.name}
         </h2>
         <p className="mb-6 text-[var(--ec-text-secondary)]">
@@ -96,7 +96,7 @@ export function ClassBlindspotRadar({ classroomId, blindspots }: Props) {
         <button
           type="button"
           onClick={() => setShowIntervention(true)}
-          className="ec-btn-primary inline-flex items-center gap-2"
+          className="ec-btn-primary inline-flex min-h-[48px] w-full items-center justify-center gap-2 sm:w-auto"
         >
           <Zap className="h-5 w-5" />
           Generate Targeted Intervention Test

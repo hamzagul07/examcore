@@ -212,7 +212,7 @@ function SignInForm() {
                 <div className="mt-2 text-right">
                   <Link
                     href="/auth/forgot-password"
-                    className="text-xs ec-link"
+                    className="ec-auth-link text-xs ec-link"
                   >
                     Forgot password?
                   </Link>

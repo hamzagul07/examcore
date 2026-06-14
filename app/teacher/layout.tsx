@@ -11,7 +11,9 @@ export default function TeacherLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen min-w-0 overflow-x-clip">
       <TeacherNav />
-      <main className="app-shell min-h-[calc(100vh-4rem)] min-w-0">{children}</main>
+      <main className="app-shell ms-teacher-layout min-h-[calc(100vh-4rem)] min-w-0">
+        {children}
+      </main>
     </div>
   )
 }

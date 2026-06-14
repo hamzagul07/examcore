@@ -162,7 +162,7 @@ export default async function AttemptDetailPage({
   })
 
   return (
-    <main className="app-shell app-shell-tabbed">
+    <main className="app-shell app-shell-tabbed ms-attempt-page">
       <div className="mx-auto min-w-0 max-w-3xl">
         {/* Back link */}
         <Link

@@ -16,7 +16,7 @@ export function FaqAccordion({
   )
 
   return (
-    <div className="space-y-12">
+    <div className="ms-faq-accordion space-y-12">
       {categories.map((category) => (
         <div key={category.id} id={category.id}>
           <h2 className="landing-h3 mb-4 text-[var(--ec-text-primary)]">

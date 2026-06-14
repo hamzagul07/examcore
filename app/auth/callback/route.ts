@@ -1,10 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import {
-  applyAuthCookies,
-  createClientFromRequest,
-  type SupabaseAuthCookie,
+  authenticateRouteRequest,
+  createServiceClient,
+  redirectWithAuthCookies,
 } from '@/lib/supabase-server'
-import { createServiceClient } from '@/lib/supabase/service'
 import { resolvePostAuthPath } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { handlePostAuthEmails } from '@/lib/email/notifications'
@@ -26,8 +25,9 @@ export async function GET(request: NextRequest) {
     if (oauthDescription) {
       params.set('detail', oauthDescription.slice(0, 200))
     }
-    return NextResponse.redirect(
-      `${requestUrl.origin}/auth/signin?${params.toString()}`
+    return redirectWithAuthCookies(
+      `${requestUrl.origin}/auth/signin?${params.toString()}`,
+      []
     )
   }
 
@@ -35,21 +35,21 @@ export async function GET(request: NextRequest) {
   const nextParam = requestUrl.searchParams.get('next')
 
   if (!code) {
-    return NextResponse.redirect(
-      `${requestUrl.origin}/auth/signin?error=missing_code`
+    return redirectWithAuthCookies(
+      `${requestUrl.origin}/auth/signin?error=missing_code`,
+      []
     )
   }
 
-  const pendingCookies: SupabaseAuthCookie[] = []
-  const supabase = createClientFromRequest(request, (cookiesToSet) => {
-    pendingCookies.push(...cookiesToSet)
-  })
+  const { supabase, pendingCookies } = await authenticateRouteRequest(request)
 
   const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
 
   if (exchangeError) {
-    return NextResponse.redirect(
-      `${requestUrl.origin}/auth/signin?error=auth_failed`
+    console.error('[auth/callback] exchangeCodeForSession failed:', exchangeError)
+    return redirectWithAuthCookies(
+      `${requestUrl.origin}/auth/signin?error=auth_failed`,
+      pendingCookies
     )
   }
 
@@ -58,8 +58,9 @@ export async function GET(request: NextRequest) {
   } = await supabase.auth.getUser()
 
   if (!user) {
-    return NextResponse.redirect(
-      `${requestUrl.origin}/auth/signin?error=session_lost`
+    return redirectWithAuthCookies(
+      `${requestUrl.origin}/auth/signin?error=session_lost`,
+      pendingCookies
     )
   }
 
@@ -74,9 +75,9 @@ export async function GET(request: NextRequest) {
 
   const onboarded = isOnboardingComplete(profile)
   const destination = resolvePostAuthPath(onboarded, nextParam)
-  const redirectResponse = NextResponse.redirect(
-    `${requestUrl.origin}${destination}`
-  )
 
-  return applyAuthCookies(redirectResponse, pendingCookies)
+  return redirectWithAuthCookies(
+    `${requestUrl.origin}${destination}`,
+    pendingCookies
+  )
 }

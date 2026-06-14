@@ -156,6 +156,12 @@ export const GeneratedLessonSchema = z.object({
       }),
     })
     .optional(),
+  diagram: z
+    .object({
+      src: z.string().min(1),
+      alt: z.string(),
+    })
+    .optional(),
   diagramSpec: DiagramSpecSchema.optional(),
 })
 

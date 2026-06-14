@@ -122,7 +122,9 @@ export function deepSpecToLesson(
     paper: topic.paper,
     paperName: topic.paperName,
     status: 'pilot',
-    summary: spec.summary,
+    summary:
+      spec.summary?.trim() ||
+      `Cambridge ${subjectCode} pilot lesson: ${topic.name} (${topic.code}) for ${topic.paperName}.`,
     durationMin: spec.durationMin ?? 22,
     updated: new Date().toISOString().slice(0, 10),
     learningObjectives: spec.learningObjectives,

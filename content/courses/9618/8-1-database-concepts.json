@@ -4,50 +4,175 @@
   "title": "Database Concepts",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 AS — flat files vs databases, DBMS benefits, data integrity, and entity-relationship modelling.",
+  "status": "pilot",
+  "summary": "An introduction to fundamental database concepts, covering the structure of relational databases, including tables, records, fields, keys, and relationships. It also distinguishes between a database and a Database Management System (DBMS).",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Compare flat-file and relational database approaches.",
-    "Define DBMS and describe its functions.",
-    "Explain data redundancy, inconsistency, and integrity.",
-    "Interpret simple E-R diagrams and keys."
+    "Define and understand the terms table, record, field, primary key, and foreign key.",
+    "Describe the different types of relationships between tables: one-to-one, one-to-many, and many-to-many.",
+    "Explain the concept of a relational database and the role of a Database Management System (DBMS).",
+    "Understand the basic principles of database design, including entity and attribute identification."
   ],
   "simpleExplanation": {
-    "title": "Organised data storage",
-    "summary": "Databases reduce redundancy by linking tables through keys. A DBMS manages storage, security, backup, and concurrent access.",
+    "title": "From Filing Cabinet to Database",
+    "summary": "A database is a structured way to store and manage large amounts of related information electronically. It's far more powerful and efficient than a simple spreadsheet or a physical filing system.",
+    "analogy": "Think of a library. A database is the entire library system. Each bookshelf is a 'table' (e.g., 'Books', 'Members'). Each book on the shelf is a 'record'. The details on the book's spine like 'Title' and 'Author' are the 'fields'. The unique library card number for each member is a 'primary key' that ensures no two members are confused.",
     "steps": [
-      "Flat file: single table — duplication causes update anomalies.",
-      "Relational model: tables linked by primary/foreign keys.",
-      "Primary key uniquely identifies a record; foreign key links tables.",
-      "Normalisation removes redundancy (1NF, 2NF, 3NF at A Level)."
+      "Identify the main 'things' (Entities) you need to store data about, like 'Student' or 'Course'. Each entity becomes a table.",
+      "For each entity, list the specific pieces of information (Attributes) you need to store, such as 'StudentID' or 'CourseName'. These become the fields in your table.",
+      "Establish how the tables are connected (Relationships). For example, a 'Student' enrols in many 'Courses'.",
+      "Assign a Primary Key to each table to uniquely identify every record, like a 'StudentID', and use Foreign Keys to link the tables together."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a database?",
+      "back": "A persistent, organised collection of structured data, typically stored and accessed electronically from a computer system."
+    },
+    {
+      "front": "What is a Table in a relational database?",
+      "back": "A set of data elements organised into vertical columns (fields) and horizontal rows (records). A table represents a single entity, like 'Students' or 'Products'."
+    },
+    {
+      "front": "What is a Record?",
+      "back": "A single row in a table, representing one complete set of information for an item in that entity. Also known as a tuple."
+    },
+    {
+      "front": "What is a Field?",
+      "back": "A single column in a table that contains a specific piece of information for all records. It defines an attribute of the entity, like 'FirstName' or 'Price'."
+    },
+    {
+      "front": "What is a Primary Key?",
+      "back": "A field (or set of fields) in a table that uniquely identifies each record. It must contain a unique value for each row and cannot be null."
+    },
+    {
+      "front": "What is a Foreign Key?",
+      "back": "A field in one table that is the primary key in another table. It is used to create a link (relationship) between the two tables."
+    },
+    {
+      "front": "Describe a One-to-Many relationship.",
+      "back": "A relationship where one record in Table A can be associated with many records in Table B, but one record in Table B is associated with only one record in Table A. Example: One Tutor has Many Students."
+    },
+    {
+      "front": "Why are Many-to-Many relationships a problem in relational databases?",
+      "back": "They cannot be directly implemented. They would create data redundancy and update anomalies. They must be resolved by creating a third 'linking' or 'junction' table."
+    },
+    {
+      "front": "What is a DBMS?",
+      "back": "Database Management System: The software that interacts with users, applications, and the database itself to capture and analyse the data. Examples: MySQL, Microsoft SQL Server, Oracle."
+    },
+    {
+      "front": "Common Trap: Is a Primary Key always a single field?",
+      "back": "No. A primary key can be a 'composite key', which is made up of two or more fields combined to create a unique identifier for a record."
+    },
+    {
+      "front": "What is the difference between a database and a DBMS?",
+      "back": "The database is the data itself, organised in tables. The DBMS is the software used to create, manage, and query that database. You use the DBMS to interact with the database."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the real difference between a database and a spreadsheet?",
+      "a": "A spreadsheet (like Excel) is primarily a calculation tool that stores data in a single flat file. A database is designed for storing, managing, and querying large amounts of related data across multiple tables. Databases offer far greater data integrity, security, scalability, and control over relationships between data."
+    },
+    {
+      "q": "Why can't I just implement a many-to-many relationship directly?",
+      "a": "If you tried, you'd have to put multiple values in a single field (e.g., a list of CourseIDs in the Student table), which violates the principles of relational database design (first normal form). This makes querying and maintaining data extremely difficult and inefficient. A linking table provides a clean, structured way to represent each individual student-course connection as a unique record."
+    },
+    {
+      "q": "Is a DBMS the same as a database?",
+      "a": "No, this is a common misconception. The database is the collection of data itself (the files on the disk). The DBMS is the software you use to manage and interact with that data (e.g., MySQL, Microsoft Access, Oracle). Think of it like this: your MP3 files are the 'database' of music, and Spotify or iTunes is the 'DBMS' you use to play and organise them."
+    },
+    {
+      "q": "What is a 'candidate key'?",
+      "a": "A candidate key is any field (or combination of fields) that could potentially be used as the primary key for a table because it uniquely identifies each record. A table might have several candidate keys. The database designer then chooses one of these candidate keys to be the official primary key."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Database concepts** (8.1) lead to **SQL** (8.2) and the Paper 3 practical. Understand **keys**, **relationships**, and **normalisation** arguments before writing queries."
+      "content": "Imagine a large school with thousands of students, hundreds of teachers, and countless courses. How would you efficiently manage all this information? A simple spreadsheet would quickly become chaotic and prone to errors. This is where databases come in. They provide a robust and structured way to handle large volumes of interconnected data, forming the backbone of almost every modern application, from social media to online shopping."
+    },
+    {
+      "type": "heading",
+      "content": "The Relational Database Model"
+    },
+    {
+      "type": "text",
+      "content": "The most common type of database you'll encounter is the relational database. It organises data into one or more tables of columns and rows, with a unique key identifying each row. The 'relational' part comes from the ability to link these tables together, allowing you to see the relationships between different pieces of data."
     },
     {
       "type": "keyPoints",
       "items": [
-        "DBMS provides security, backup, concurrency control, data dictionary",
-        "Entity = table; attribute = field; tuple = record",
-        "1:1, 1:N, M:N relationships in E-R diagrams",
-        "Referential integrity: FK must match existing PK or be NULL"
+        "A table represents an **entity** (a 'thing' we store data about, e.g., 'Car').",
+        "A row represents a **record** (a specific instance of that entity, e.g., a specific Ford Focus).",
+        "A column represents a **field** or **attribute** (a characteristic of the entity, e.g., 'Colour' or 'EngineSize')."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A vet clinic needs a simple database to keep track of pets. \n(a) Identify the main entity. \n(b) Suggest four suitable attributes for this entity, and state an appropriate data type for each. \n(c) Draw a table structure and provide one example record.",
+      "solution": "*(a) The main entity is 'Pet'.* [1 mark]\n\n*(b) Suitable attributes could be:*\n*   `PetID` (e.g., Text or Autonumber) - To uniquely identify the pet.\n*   `PetName` (e.g., Text) - The pet's name.\n*   `DateOfBirth` (e.g., Date/Time) - The pet's date of birth.\n*   `Species` (e.g., Text) - The type of animal, e.g., 'Dog', 'Cat'.\n[1 mark for each of two suitable attributes with data types]\n\n*(c) Example table structure and record:*\n\n**Table: Pet**\n| PetID | PetName | DateOfBirth | Species |\n|---|---|---|---|\n| P001 | Fido | 15/06/2021 | Dog |\n\n[1 mark for table structure with correct headings, 1 mark for a valid example record]"
+    },
+    {
+      "type": "heading",
+      "content": "Creating Links: Keys and Relationships"
+    },
+    {
+      "type": "text",
+      "content": "The real power of relational databases is not just storing data, but connecting it. This is achieved using keys. A **Primary Key** is a field that uniquely identifies every record in a table. Think of it as a National Insurance number or a student ID; no two people have the same one. A **Foreign Key** is a primary key from one table that is placed into another table to create a link. For example, if we have a `Tutor` table and a `Student` table, we can place `TutorID` into the `Student` table to show which tutor is assigned to which student."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**One-to-One (1:1):** Each record in Table A relates to exactly one record in Table B. E.g., one `Country` has one `CapitalCity`. This is rare.",
+        "**One-to-Many (1:M):** One record in Table A can relate to many records in Table B. E.g., one `Author` can write many `Books`.",
+        "**Many-to-Many (M:M):** Many records in Table A can relate to many records in Table B. E.g., many `Students` can enrol in many `Courses`. This requires a special 'linking table' to implement."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently ask about resolving a many-to-many relationship. Remember the rule: you must create a new 'linking' table in between the two original tables. This linking table will contain foreign keys from both original tables, which together will often form a composite primary key."
+    },
+    {
+      "type": "workedExample",
+      "question": "A college database has a `TblStudent` and a `TblCourse`. A student can enrol on many courses, and a course can have many students. \n(a) What type of relationship exists between `TblStudent` and `TblCourse`? \n(b) How would this relationship be implemented in a relational database? Name the table(s) and key fields required.",
+      "solution": "*(a) This is a many-to-many relationship.* [1 mark]\n\n*(b) This must be implemented using a linking table.* [1 mark]\n\n*A new table, for example `TblEnrolment`, would be created.* [1 mark]\n\n*This table would contain two foreign keys:* \n*   `StudentID` (from `TblStudent`)\n*   `CourseID` (from `TblCourse`)\n[1 mark for identifying both foreign keys]\n\n*The primary key for `TblEnrolment` would be a composite key made up of (`StudentID`, `CourseID`).* [1 mark for concept of composite key]"
+    },
+    {
+      "type": "heading",
+      "content": "The Database Management System (DBMS)"
+    },
+    {
+      "type": "text",
+      "content": "It's important not to confuse the database with the Database Management System (DBMS). The database is the data itself, stored in files. The DBMS is the complex software that acts as an intermediary, allowing users and applications to interact with the database without needing to know the low-level details of how the data is physically stored. It manages everything from security and access rights to ensuring data integrity and handling simultaneous user requests."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Data Definition:** The DBMS provides a Data Definition Language (DDL) to define the database schema (tables, fields, keys).",
+        "**Data Manipulation:** It provides a Data Manipulation Language (DML), like SQL, to insert, update, delete, and query data.",
+        "**Security:** Manages user accounts and access permissions.",
+        "**Data Integrity:** Enforces rules to maintain the accuracy and consistency of data.",
+        "**Concurrency Control:** Manages simultaneous access by multiple users to prevent conflicts.",
+        "**Backup and Recovery:** Provides tools to back up data and recover from system failures."
       ]
     },
     {
       "type": "practice",
-      "label": "Mark a database question",
+      "label": "Test Your Knowledge on Database Concepts",
       "href": "/mark?subject=9618&topic=8.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9618 course index", "href": "/courses/9618" }
+        {
+          "label": "Cambridge International AS & A Level Computer Science 9618 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

@@ -4,50 +4,187 @@
   "title": "Infrared spectroscopy",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS IR spectroscopy — fingerprint region, functional group absorptions, and interpreting spectra for structure elucidation.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces infrared (IR) spectroscopy as a powerful analytical technique used to identify functional groups in organic molecules. You will learn how covalent bonds absorb IR radiation, how to interpret an IR spectrum, and how to use characteristic absorption frequencies to deduce the structure of a compound.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Explain bond vibration and IR absorption.",
-    "Identify key peaks: O–H, C=O, C=C, N–H, C–H.",
-    "Use the fingerprint region (below 1500 cm⁻¹) for comparison.",
-    "Combine IR data with other analytical techniques."
+    "State that infrared radiation causes covalent bonds to vibrate at specific frequencies.",
+    "Understand how an IR spectrum is obtained and the significance of wavenumber and transmittance.",
+    "Identify characteristic absorption frequencies for key functional groups, including C=O, O-H, and C-H.",
+    "Use an IR spectrum, in conjunction with a data booklet, to identify the functional groups present in an organic molecule."
   ],
   "simpleExplanation": {
-    "title": "Bond vibrations as fingerprints",
-    "summary": "Molecules absorb IR when bond vibration frequency matches radiation energy. Different bonds give characteristic wavenumber ranges.",
+    "title": "The Molecular Vibe Check",
+    "summary": "Infrared spectroscopy is like playing different notes to make molecular bonds 'dance'. By seeing which 'notes' (frequencies) the bonds respond to, we can figure out what types of bonds are in the molecule.",
+    "analogy": "Imagine you have a collection of different tuning forks. If you play a specific sound frequency, only the tuning fork designed for that exact frequency will start to vibrate. In a molecule, the covalent bonds are like different tuning forks. When we shine a range of infrared frequencies on them, each type of bond (like C=O or O-H) absorbs the specific frequency it needs to vibrate, telling us it's there.",
     "steps": [
-      "Broad 3200–3600 cm⁻¹: O–H (alcohol/carboxylic acid).",
-      "Sharp ~1710 cm⁻¹: C=O (carbonyl — aldehyde, ketone, acid, ester).",
-      "3300 cm⁻¹ (sharp): N–H (amine or amide).",
-      "Below 1500 cm⁻¹: fingerprint — unique pattern for comparison."
+      "A sample of the organic compound is placed in an infrared spectrometer.",
+      "A beam of infrared radiation, containing a wide range of frequencies, is passed through the sample.",
+      "Different covalent bonds within the molecules absorb radiation at their own specific resonant frequencies, causing them to stretch or bend.",
+      "A detector measures the amount of radiation transmitted at each frequency, producing a spectrum that shows which frequencies were absorbed."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the primary use of infrared (IR) spectroscopy in organic chemistry?",
+      "back": "To identify the functional groups present in a molecule."
+    },
+    {
+      "front": "What happens to a covalent bond when it absorbs infrared radiation?",
+      "back": "It vibrates with increased amplitude. This can be a stretching or a bending motion."
+    },
+    {
+      "front": "What is 'wavenumber' and what are its units in IR spectroscopy?",
+      "back": "Wavenumber is the reciprocal of wavelength ($1/\\lambda$). It is directly proportional to frequency and energy. The unit is reciprocal centimetres (cm⁻¹)."
+    },
+    {
+      "front": "On an IR spectrum, what does a downward 'peak' (a trough) signify?",
+      "back": "It signifies that radiation of a specific wavenumber has been absorbed by the sample. A low percentage transmittance means high absorbance."
+    },
+    {
+      "front": "What is the 'fingerprint region' of an IR spectrum?",
+      "back": "The complex region of the spectrum below 1500 cm⁻¹. It is unique to a particular molecule and is used for identification by comparison with known spectra."
+    },
+    {
+      "front": "What is the characteristic absorption for a carbonyl group (C=O)?",
+      "back": "A strong, sharp absorption peak in the range of 1680–1750 cm⁻¹."
+    },
+    {
+      "front": "What is the characteristic absorption for the hydroxyl group (O-H) in an alcohol?",
+      "back": "A broad absorption peak in the range of 3200–3600 cm⁻¹."
+    },
+    {
+      "front": "Why is the O-H absorption peak in an IR spectrum typically broad?",
+      "back": "Due to hydrogen bonding between molecules. This creates a variety of bond environments, causing absorption over a wide range of frequencies."
+    },
+    {
+      "front": "How does the O-H absorption in a carboxylic acid differ from that in an alcohol?",
+      "back": "The O-H peak in a carboxylic acid is very broad, appearing in the range 2500–3300 cm⁻¹. It is much wider than the alcohol O-H peak and often overlaps with C-H absorptions."
+    },
+    {
+      "front": "An IR spectrum has no significant absorption above 3000 cm⁻¹ and no strong peak around 1700 cm⁻¹. What can you deduce?",
+      "back": "The molecule likely does not contain O-H (alcohol/acid) or N-H groups, nor does it contain a C=O (carbonyl) group. It is likely an alkane, haloalkane, or ether."
+    },
+    {
+      "front": "What two absorptions would you look for to identify an aldehyde?",
+      "back": "1. A strong, sharp C=O peak at ~1720-1740 cm⁻¹. 2. Two C-H stretches of the aldehyde group at ~2720-2820 cm⁻¹ and ~2820-2920 cm⁻¹."
+    },
+    {
+      "front": "Why is the x-axis of an IR spectrum plotted with wavenumber decreasing from left to right?",
+      "back": "This is a historical convention. It places the higher energy, higher frequency absorptions (like O-H and C-H stretches) on the left."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the O-H absorption peak in an IR spectrum so broad?",
+      "a": "The broadness of the O-H peak is caused by hydrogen bonding. In a bulk sample of an alcohol or carboxylic acid, molecules are hydrogen-bonded to varying degrees. This creates a wide range of O-H bond environments, each with a slightly different vibrational frequency, smearing the absorption over a broad range of wavenumbers."
+    },
+    {
+      "q": "Can IR spectroscopy distinguish between isomers?",
+      "a": "Yes, it is excellent for distinguishing between functional group isomers (e.g., propanal and propanone vs. prop-2-en-1-ol) because they have different functional groups that absorb at different frequencies. However, it is generally not used to distinguish between positional isomers (e.g., propan-1-ol and propan-2-ol) or stereoisomers, as their key functional groups are the same and their spectra are often very similar in the functional group region."
+    },
+    {
+      "q": "What is the difference between the C=O peak in an aldehyde and a ketone?",
+      "a": "The C=O absorption for both aldehydes and ketones falls in a similar range (~1700-1740 cm⁻¹) and they cannot be reliably distinguished by this peak alone. However, an aldehyde also has characteristic C-H stretches for the aldehyde proton at ~2720 cm⁻¹ and ~2820 cm⁻¹. The presence of these weak but distinct peaks, in addition to the C=O peak, confirms an aldehyde."
+    },
+    {
+      "q": "Do I need to memorise all the wavenumber values?",
+      "a": "No. You will be provided with a Data Booklet in the exam that contains a table of characteristic infrared absorption values for common bonds. Your task is to learn how to use that data to interpret a given spectrum, not to memorise the numbers themselves. You should, however, be familiar with the general regions and shapes (e.g., 'broad O-H', 'strong, sharp C=O')."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Infrared spectroscopy** (22.1) is paired with **mass spectrometry** (22.2) in analysis questions. Learn a **table of key peaks** — examiners provide spectra but expect you to assign bonds."
+      "content": "How can chemists tell what a molecule is without seeing it? One of the most important tools in their toolkit is infrared spectroscopy. It allows us to 'see' the functional groups within a molecule, a bit like a detective using a special lens to find clues at a crime scene. This technique is vital in everything from drug development to forensic science and quality control of perfumes."
+    },
+    {
+      "type": "heading",
+      "content": "The Principles of IR Spectroscopy"
+    },
+    {
+      "type": "text",
+      "content": "Covalent bonds are not rigid sticks; they are more like springs that are constantly vibrating. These vibrations can be a 'stretch' (along the bond axis) or a 'bend' (changing the bond angle). Each type of bond, such as C-H, O-H, or C=O, has a natural frequency at which it vibrates. When infrared radiation with that exact same frequency is shone on the molecule, the bond absorbs the energy, causing it to vibrate with a greater amplitude. The specific frequencies absorbed depend on the strength of the bond (stronger bonds like double bonds vibrate at higher frequencies) and the masses of the atoms involved (bonds with lighter atoms vibrate at higher frequencies)."
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting an IR Spectrum"
+    },
+    {
+      "type": "text",
+      "content": "An IR spectrum is a graph that plots the amount of infrared radiation that passes through a sample against the wavenumber of the radiation. The vertical axis is Percentage Transmittance (%T), which is the percentage of radiation that gets through the sample without being absorbed. The horizontal axis is Wavenumber in cm⁻¹, which is proportional to frequency. By convention, the wavenumber scale runs from high to low, from left to right (e.g., 4000 cm⁻¹ to 400 cm⁻¹)."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Wavenumber units: cm⁻¹ (not wavelength in nm on data sheets)",
-        "Broad O–H in acids often overlaps with C–H",
-        "C=O shifts: acid ~1710, ester ~1740, amide ~1680 cm⁻¹",
-        "Absence of a peak is as informative as presence"
+        "A dip or trough in the graph is called an 'absorption' or a 'peak'.",
+        "A low transmittance value (e.g., 10%) means a high amount of absorption has occurred at that wavenumber.",
+        "The position of the peak (wavenumber) tells you what type of bond is present.",
+        "The intensity (how far down the peak goes) can be described as strong (s), medium (m), or weak (w).",
+        "The shape of the peak can be described as sharp or broad."
       ]
     },
     {
+      "type": "heading",
+      "content": "Characteristic Absorption Frequencies"
+    },
+    {
+      "type": "text",
+      "content": "The region of the spectrum above 1500 cm⁻¹ is known as the functional group region. Absorptions here are typically due to simple stretching vibrations and can be clearly correlated with specific functional groups. You must be able to recognise the following key absorptions, using the values provided in your Data Booklet."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**O-H bond in alcohols:** A broad peak at 3200–3600 cm⁻¹. The broadness is due to hydrogen bonding.",
+        "**O-H bond in carboxylic acids:** A very broad peak at 2500–3300 cm⁻¹. This is even broader than in alcohols and often overlaps the C-H region.",
+        "**C=O bond in carbonyl compounds:** A strong, sharp peak at 1680–1750 cm⁻¹. This is often the most obvious peak in the spectrum.",
+        "**C-H bond:** Peaks are found around 2850–3100 cm⁻¹. While almost all organic molecules have these, they confirm the presence of an alkyl skeleton. The C-H stretch in an aldehyde (~2720-2820 cm⁻¹) is a useful diagnostic peak."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A liquid compound, Y, is analysed by IR spectroscopy. The spectrum shows a very broad absorption centred at approximately 3000 cm⁻¹ and a strong, sharp absorption at 1710 cm⁻¹. There are also peaks around 2900 cm⁻¹. Deduce the functional groups present and identify the class of organic compound to which Y belongs.",
+      "solution": "1. **Analyse the peaks:**\n   - A strong, sharp absorption at 1710 cm⁻¹ is characteristic of a $C=O$ carbonyl group. (Data booklet range: 1680–1750 cm⁻¹).\n   - A very broad absorption from 2500-3300 cm⁻¹ (centred at 3000 cm⁻¹) is characteristic of the $O-H$ group within a carboxylic acid. The broadness is due to extensive hydrogen bonding.\n   - The peaks around 2900 cm⁻¹ are due to $C-H$ bonds.\n\n2. **Combine the evidence:** The compound contains both a $C=O$ group and an $O-H$ group characteristic of an acid.\n\n3. **Conclusion:** The presence of both functional groups on the same molecule means that compound Y is a **carboxylic acid**."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners often test your ability to distinguish between an alcohol and a carboxylic acid. The key is the C=O peak. An alcohol has a broad O-H peak but NO C=O peak. A carboxylic acid has BOTH a very broad O-H peak AND a strong, sharp C=O peak."
+    },
+    {
+      "type": "heading",
+      "content": "The Fingerprint Region"
+    },
+    {
+      "type": "text",
+      "content": "The region of the spectrum below 1500 cm⁻¹ is called the fingerprint region. It contains a large number of complex absorptions caused by bending vibrations and other motions involving the entire molecule. While it is difficult to assign individual peaks in this region, the overall pattern is unique to a specific compound. Therefore, by comparing the fingerprint region of an unknown compound to a database of spectra from known compounds, a positive identification can be made."
+    },
+    {
+      "type": "workedExample",
+      "question": "Two isomers, A and B, have the molecular formula $C_3H_8O$. The IR spectrum of isomer A shows a broad absorption at 3350 cm⁻¹ but no absorption between 1600-1800 cm⁻¹. The IR spectrum of isomer B shows no broad absorption above 3100 cm⁻¹. Identify the functional groups in A and B and suggest their structures.",
+      "solution": "1. **Analyse Isomer A:**\n   - A broad absorption at 3350 cm⁻¹ is characteristic of an $O-H$ group in an alcohol.\n   - The absence of a strong peak at 1600-1800 cm⁻¹ means there is no $C=O$ group.\n   - Therefore, Isomer A is an alcohol. Possible structures for $C_3H_8O$ are propan-1-ol ($CH_3CH_2CH_2OH$) or propan-2-ol ($CH_3CH(OH)CH_3$).\n\n2. **Analyse Isomer B:**\n   - The absence of a broad absorption above 3100 cm⁻¹ indicates there is no $O-H$ group.\n   - The molecular formula $C_3H_8O$ suggests the oxygen must be in an ether linkage.\n   - Therefore, Isomer B is an ether. The only possible structure is methoxyethane ($CH_3OCH_2CH_3$).\n\n3. **Conclusion:** Isomer A is an alcohol (propan-1-ol or propan-2-ol) and Isomer B is an ether (methoxyethane)."
+    },
+    {
+      "type": "examTip",
+      "content": "Pay as much attention to the *absence* of peaks as their presence. If you are trying to decide between a ketone and an alcohol, the lack of a broad O-H peak is definitive evidence against the alcohol structure."
+    },
+    {
       "type": "practice",
-      "label": "Mark an IR spectroscopy question",
+      "label": "Test your knowledge on IR Spectroscopy",
       "href": "/mark?subject=9701&topic=22.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Cambridge A-Level Chemistry Data Booklet",
+          "href": "https://www.cambridgeinternational.org/Images/353397-chemistry-data-booklet.pdf"
+        },
+        {
+          "label": "Interactive IR Spectrum Analyser",
+          "href": "https://www.orgchemboulder.com/spectroscopy/irtutor/ir.shtml"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

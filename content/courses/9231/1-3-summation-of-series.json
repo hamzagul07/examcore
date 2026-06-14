@@ -1,0 +1,183 @@
+{
+  "slug": "1-3-summation-of-series",
+  "topicCode": "1.3",
+  "title": "Summation of series",
+  "paper": "P1",
+  "paperName": "Paper 1: Further Pure Mathematics 1",
+  "status": "pilot",
+  "summary": "This lesson covers two primary techniques for summing finite series: using standard formulae for powers of integers and the method of differences for telescoping series. It also explores finding the sum to infinity for convergent series.",
+  "durationMin": 25,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Recall and use the standard results for the sums of the first n integers, squares, and cubes.",
+    "Apply the method of differences to find the sum of a finite series.",
+    "Determine if a series converges and, if so, find its sum to infinity.",
+    "Solve problems involving the summation of series in various contexts."
+  ],
+  "simpleExplanation": {
+    "title": "The Domino Demolition",
+    "summary": "The method of differences is a clever way to sum a complicated series by making most of its terms cancel out. This leaves only a few terms at the beginning and end, making the final calculation simple.",
+    "analogy": "Imagine setting up a very long line of dominoes. When you topple the first one, it knocks over the next, which knocks over the next, and so on. If you want to know the overall result, you don't need to watch every single domino fall. You just need to see the first one get pushed and the last one hit the table. The intermediate dominoes are just part of the chain reaction that cancels itself out. The method of differences works the same way: the middle terms of the sum cancel each other out, leaving only the 'first push' and the 'final fall'.",
+    "steps": [
+      "Express the general term of the series, $u_r$, in the form $f(r) - f(r+1)$. This is often done using partial fractions.",
+      "Write out the first few terms of the sum (e.g., for r=1, r=2, r=3) and the last few terms (e.g., for r=n-1, r=n).",
+      "Observe the 'telescoping' cancellation. The $+f(r+1)$ part of one term cancels with the $-f(r)$ part of the next.",
+      "Add together the remaining terms that did not cancel. This will give you the formula for the sum to n terms, $S_n$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the formula for $\\sum_{r=1}^{n} r$?",
+      "back": "$\\sum_{r=1}^{n} r = \\frac{1}{2}n(n+1)$"
+    },
+    {
+      "front": "What is the formula for $\\sum_{r=1}^{n} r^2$?",
+      "back": "$\\sum_{r=1}^{n} r^2 = \\frac{1}{6}n(n+1)(2n+1)$"
+    },
+    {
+      "front": "What is the formula for $\\sum_{r=1}^{n} r^3$?",
+      "back": "$\\sum_{r=1}^{n} r^3 = \\frac{1}{4}n^2(n+1)^2 = \\left( \\sum_{r=1}^{n} r \\right)^2$"
+    },
+    {
+      "front": "What is the core principle of the 'method of differences'?",
+      "back": "To express the general term $u_r$ of a series as a difference of two consecutive terms of another sequence, i.e., $u_r = f(r) - f(r+1)$. This leads to a 'telescoping sum' where intermediate terms cancel."
+    },
+    {
+      "front": "How do you find $\\sum_{r=5}^{n} u_r$ if you know the formula for $\\sum_{r=1}^{n} u_r$?",
+      "back": "You calculate $\\sum_{r=1}^{n} u_r - \\sum_{r=1}^{4} u_r$. Be careful with the upper limit of the subtracted sum; it's one less than the starting limit of the main sum."
+    },
+    {
+      "front": "When using the method of differences, what form should you aim for?",
+      "back": "$f(r) - f(r+1)$. Sometimes it might be $f(r) - f(r-1)$ or even $f(r) - f(r+2)$. The key is to find a form that creates cancellation."
+    },
+    {
+      "front": "How do you find the sum to infinity, $S_{\\infty}$?",
+      "back": "First, find the sum to $n$ terms, $S_n$. Then, find the limit of $S_n$ as $n \\to \\infty$. This is only possible if the series converges."
+    },
+    {
+      "front": "A common trap: You are asked to find $\\sum_{r=1}^{n} (r+1)(r-2)$. What's the first step?",
+      "back": "Expand the brackets first to get a polynomial in $r$: $r^2 - r - 2$. Then you can apply the standard summation formulae to $\\sum r^2$, $\\sum r$, and $\\sum 2$."
+    },
+    {
+      "front": "For a series summed by the method of differences, how can you tell if it converges?",
+      "back": "After finding $S_n$, examine its terms as $n \\to \\infty$. If any term involving $n$ tends to a finite limit (often zero), the series converges. For example, if $S_n = 1 - \\frac{1}{n+1}$, as $n \\to \\infty$, $\\frac{1}{n+1} \\to 0$, so $S_{\\infty} = 1$."
+    },
+    {
+      "front": "What is the sum of a constant, $\\sum_{r=1}^{n} c$?",
+      "back": "$nc$. You are adding the constant $c$ to itself $n$ times."
+    },
+    {
+      "front": "In a 'Show that' question for method of differences, you're given $\\frac{1}{r(r+1)} \\equiv \\frac{1}{r} - \\frac{1}{r+1}$. What should you do?",
+      "back": "Even if it seems obvious, you must provide the working to prove the identity, usually by combining the RHS over a common denominator. Don't just assume it's true and proceed."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between summing a series using standard formulae and using the method of differences?",
+      "a": "Standard formulae are used when the general term is a polynomial in $r$ (e.g., $r^3 + 2r$). The method of differences is used for terms that can be written as a difference, like $f(r) - f(r+1)$, which is common for rational functions (fractions with polynomials)."
+    },
+    {
+      "q": "How do I handle a sum that doesn't start at r=1, for example, $\\sum_{r=5}^{10} u_r$?",
+      "a": "You use the principle of inclusion-exclusion. Calculate the sum from 1 to the upper limit and subtract the sum from 1 to the term before the lower limit. So, $\\sum_{r=5}^{10} u_r = \\sum_{r=1}^{10} u_r - \\sum_{r=1}^{4} u_r$. This applies to both standard formulae and the method of differences."
+    },
+    {
+      "q": "What if I'm given a term for the method of differences but it's not in the form $f(r) - f(r+1)$?",
+      "a": "The question will usually guide you. Often, you'll first be asked to 'Show that' the term can be expressed using partial fractions, which naturally creates the difference form. If you have to find it yourself, look for patterns. For example, $r(r+1)!$ can be written as $(r+1-1)(r+1)! = (r+2)! - (r+1)!$."
+    },
+    {
+      "q": "Can I just put the formulae for $\\sum r, \\sum r^2, \\sum r^3$ into my calculator to find the sum?",
+      "a": "While a calculator can compute a numerical sum for a given $n$, exam questions almost always require you to find an algebraic expression for $S_n$ in terms of $n$. You must show the substitution of the standard formulae and the subsequent algebraic simplification and factorisation to earn the marks."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of summing series. While you're familiar with arithmetic and geometric progressions, many other series exist. In this topic, we'll learn powerful, systematic methods to find the sum of series whose general term is a polynomial, and a clever technique called the 'method of differences' for other types of series."
+    },
+    {
+      "type": "heading",
+      "content": "Standard Summation Formulae"
+    },
+    {
+      "type": "text",
+      "content": "For series where the general term is a polynomial in $r$, we can find the sum by using a set of standard results. These formulae, provided in the formula book, allow us to sum the first $n$ integers, their squares, and their cubes. By combining these, we can sum any polynomial."
+    },
+    {
+      "type": "formula",
+      "content": "$\\sum_{r=1}^{n} r = \\frac{1}{2}n(n+1) \\\\ \\\\ \\sum_{r=1}^{n} r^2 = \\frac{1}{6}n(n+1)(2n+1) \\\\ \\\\ \\sum_{r=1}^{n} r^3 = \\frac{1}{4}n^2(n+1)^2$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To sum a polynomial like $\\sum (ar^3 + br^2 + cr + d)$, split it up: $a\\sum r^3 + b\\sum r^2 + c\\sum r + \\sum d$.",
+        "Remember that $\\sum_{r=1}^{n} d = nd$.",
+        "If a sum does not start at $r=1$, for example $\\sum_{r=a}^{n} u_r$, calculate it as $\\sum_{r=1}^{n} u_r - \\sum_{r=1}^{a-1} u_r$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the sum of the series $\\sum_{r=1}^{n} (r^2 - 3r + 2)$. Express your answer in fully factorised form.",
+      "solution": "First, we split the summation into parts based on the standard formulae:\n\n$S_n = \\sum_{r=1}^{n} (r^2 - 3r + 2) = \\sum_{r=1}^{n} r^2 - 3\\sum_{r=1}^{n} r + \\sum_{r=1}^{n} 2$\n\nNow, substitute the standard formulae for each part:\n\n$S_n = \\frac{1}{6}n(n+1)(2n+1) - 3 \\left( \\frac{1}{2}n(n+1) \\right) + 2n$\n\nTo combine these, we take out a common factor of $n$. It is also helpful to put everything over a common denominator of 6.\n\n$S_n = \\frac{n}{6} [ (n+1)(2n+1) - 9(n+1) + 12 ]$\n\nExpand the brackets inside the square brackets:\n\n$S_n = \\frac{n}{6} [ (2n^2 + 3n + 1) - (9n + 9) + 12 ]$\n\nSimplify the expression inside the square brackets:\n\n$S_n = \\frac{n}{6} [ 2n^2 + 3n + 1 - 9n - 9 + 12 ] = \\frac{n}{6} [ 2n^2 - 6n + 4 ]$\n\nWe can factor out a 2 from the bracket:\n\n$S_n = \\frac{2n}{6} [ n^2 - 3n + 2 ] = \\frac{n}{3} [ n^2 - 3n + 2 ]$\n\nFinally, factorise the quadratic expression:\n\n$S_n = \\frac{1}{3}n(n-1)(n-2)$"
+    },
+    {
+      "type": "heading",
+      "content": "The Method of Differences"
+    },
+    {
+      "type": "text",
+      "content": "This powerful technique is used when the general term of a series, $u_r$, can be expressed as the difference between two consecutive terms of another sequence, $f(r)$. When we write out the terms of the sum, most of them cancel out in a chain reaction, leaving just a few terms at the beginning and end. This is also known as a telescoping series."
+    },
+    {
+      "type": "formula",
+      "content": "If $u_r = f(r) - f(r+1)$, then $\\sum_{r=1}^{n} u_r = [f(1)-f(2)] + [f(2)-f(3)] + \\dots + [f(n)-f(n+1)] = f(1) - f(n+1)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The first step is usually to express $u_r$ in the required form. For rational functions, this often involves partial fractions.",
+        "Always write out the first two or three terms and the last two terms to be certain which terms cancel and which remain.",
+        "The form might not always be $f(r) - f(r+1)$. It could be $f(r+1) - f(r)$, or even $f(r) - f(r+2)$, which would leave more terms at the start and end."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "i) Express $\\frac{2}{(2r-1)(2r+1)}$ in partial fractions.\n\nii) Hence, find an expression for $S_n = \\sum_{r=1}^{n} \\frac{2}{(2r-1)(2r+1)}$.\n\niii) Find the sum to infinity of the series.",
+      "solution": "i) Let $\\frac{2}{(2r-1)(2r+1)} \\equiv \\frac{A}{2r-1} + \\frac{B}{2r+1}$.\n\nMultiplying by the denominator gives $2 \\equiv A(2r+1) + B(2r-1)$.\n\nLet $r = \\frac{1}{2}$: $2 = A(1+1) + B(0) \\implies 2 = 2A \\implies A=1$.\n\nLet $r = -\\frac{1}{2}$: $2 = A(0) + B(-1-1) \\implies 2 = -2B \\implies B=-1$.\n\nSo, $\\frac{2}{(2r-1)(2r+1)} = \\frac{1}{2r-1} - \\frac{1}{2r+1}$.\n\nii) We have found that the general term $u_r$ is in the form $f(r) - f(r+1)$ where $f(r) = \\frac{1}{2r-1}$.\n\nLet's write out the terms of the sum $S_n = \\sum_{r=1}^{n} \\left( \\frac{1}{2r-1} - \\frac{1}{2r+1} \\right)$:\n\n$r=1: \\quad (\\frac{1}{1} - \\frac{1}{3})$\n\n$r=2: \\quad + (\\frac{1}{3} - \\frac{1}{5})$\n\n$r=3: \\quad + (\\frac{1}{5} - \\frac{1}{7})$\n\n$\\dots$\n\n$r=n: \\quad + (\\frac{1}{2n-1} - \\frac{1}{2n+1})$\n\nBy inspection, the $-\\frac{1}{3}$ from the first term cancels with the $+\\frac{1}{3}$ from the second, and so on. This is a telescoping sum.\nThe only terms that do not cancel are the first term, $\\frac{1}{1}$, and the last term, $-\\frac{1}{2n+1}$.\n\nTherefore, $S_n = 1 - \\frac{1}{2n+1}$.\n\niii) The sum to infinity, $S_{\\infty}$, is the limit of $S_n$ as $n \\to \\infty$.\n\n$S_{\\infty} = \\lim_{n \\to \\infty} \\left( 1 - \\frac{1}{2n+1} \\right)$\n\nAs $n \\to \\infty$, the denominator $2n+1 \\to \\infty$, so the fraction $\\frac{1}{2n+1} \\to 0$.\n\n$S_{\\infty} = 1 - 0 = 1$."
+    },
+    {
+      "type": "examTip",
+      "content": "In method of differences questions, it is essential to show your working for the cancellation. Write out at least the first two and the last term explicitly. A common mistake is incorrect cancellation, especially if the difference is of the form $f(r) - f(r+2)$. Writing the terms out clearly prevents this."
+    },
+    {
+      "type": "heading",
+      "content": "Sum to Infinity"
+    },
+    {
+      "type": "text",
+      "content": "For some series, as we add more and more terms, the sum approaches a specific finite value. This value is called the 'sum to infinity', denoted $S_{\\infty}$. We can find this by evaluating the limit of the expression for the sum of the first $n$ terms, $S_n$, as $n$ tends to infinity. If the limit is a finite number, the series is said to converge. If the sum grows without bound, the series diverges."
+    },
+    {
+      "type": "formula",
+      "content": "$S_{\\infty} = \\lim_{n \\to \\infty} S_n$"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9231&topic=1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Summation of Series - ExamSolutions",
+          "href": "https://www.examsolutions.net/a-level-maths/further-maths/series/summation-of-series/"
+        },
+        {
+          "label": "Cambridge International Formulae and Tables (MF19)",
+          "href": "https://www.cambridgeinternational.org/Images/466606-cambridge-international-as-a-level-further-mathematics-formulae-and-statistical-tables-mf19.pdf"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

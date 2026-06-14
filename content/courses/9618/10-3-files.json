@@ -4,39 +4,184 @@
   "title": "Files",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS file handling — text and binary files, file modes, and organisation for persistent data.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson covers the fundamental principles of file handling in procedural programming. It details how to open, read from, write to, and append to text files, which are essential skills for creating programs that can store and retrieve data persistently.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Distinguish text and binary file storage.",
-    "Describe sequential and random file access.",
-    "Explain file organisation for records.",
-    "Outline backup and file integrity considerations."
+    "Understand the concept of a text file as a sequence of characters.",
+    "Use pseudocode for opening and closing a text file.",
+    "Use pseudocode for reading from and writing data to a text file.",
+    "Differentiate between and use the file modes: READ, WRITE, and APPEND."
   ],
   "simpleExplanation": {
-    "title": "Data beyond RAM",
-    "summary": "Files persist data on secondary storage. Records can be read sequentially or accessed by key in organised files.",
+    "title": "Your Programme's Long-Term Memory",
+    "summary": "Variables store data while a programme is running, but what happens when it closes? Files act as a permanent storage, like a digital filing cabinet, allowing your programme to save its work and retrieve it later.",
+    "analogy": "Imagine you're working in an office. Your desk is like your computer's RAM – you can work with papers (data) on it, but at the end of the day, it gets cleared. To save your work, you put the papers into a specific folder in a filing cabinet. This is like writing to a file. The next day, you retrieve that folder to continue. This is like reading from a file. You must open the cabinet drawer first (open file) and close it when you're done (close file).",
     "steps": [
-      "Text files: human-readable lines; binary: raw bytes.",
-      "OPEN → READ/WRITE → CLOSE lifecycle.",
-      "Hash or indexed files for direct access by key.",
-      "Validation on read prevents corrupt data use."
+      "Choose your action: Decide if you need to read existing data, create a new file, or add to an existing one. This determines the 'mode' (READ, WRITE, APPEND).",
+      "Open the file: Use the OPENFILE command with the filename and your chosen mode. This gives your program access.",
+      "Process the data: Use a loop with READFILE to get data from the file, or use WRITEFILE to save data to it.",
+      "Close the file: Use the CLOSEFILE command. This is crucial to save changes and release the file for other programs to use."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a text file?",
+      "back": "A type of file that stores data as a sequence of characters, organised into lines. It can be opened and read by a human using a simple text editor."
+    },
+    {
+      "front": "What is a 'record' in the context of a file?",
+      "back": "A collection of related data items, often stored on a single line in a text file. For example, a student's ID, name, and grade could form one record."
+    },
+    {
+      "front": "What is a 'field' in the context of a file?",
+      "back": "A single data item within a record. For example, in the record '123,John Smith,A', the name 'John Smith' is a field."
+    },
+    {
+      "front": "What is a 'file handle'?",
+      "back": "A reference or pointer to a file that is returned when you open it. In Cambridge pseudocode, the filename itself is used as the handle (e.g., `READFILE \"MyData.txt\", ...`)."
+    },
+    {
+      "front": "What does opening a file in `READ` mode do?",
+      "back": "It opens an existing file and allows the program to read data from it, starting from the beginning. You cannot write to a file in READ mode."
+    },
+    {
+      "front": "What does opening a file in `WRITE` mode do?",
+      "back": "It creates a new, empty file with the given name. If a file with that name already exists, its contents are permanently deleted and overwritten."
+    },
+    {
+      "front": "What does opening a file in `APPEND` mode do?",
+      "back": "It opens an existing file and allows the program to add new data to the very end of it. If the file does not exist, it is created."
+    },
+    {
+      "front": "What is the `EOF()` function used for?",
+      "back": "`EOF(<filename>)` stands for End-Of-File. It is a boolean function that returns TRUE when the program has attempted to read past the last piece of data in a file. It's used to control loops for reading files."
+    },
+    {
+      "front": "What is a common mistake when using `WRITE` mode?",
+      "back": "Accidentally using `WRITE` mode when you meant to use `APPEND`. This will erase all existing data in the file without warning."
+    },
+    {
+      "front": "Why is `CLOSEFILE` essential, especially after writing?",
+      "back": "Data written to a file may be held in a temporary buffer in memory. `CLOSEFILE` ensures this buffer is flushed (written) to the disk, saving the changes permanently and releasing the file."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What happens if I try to open a non-existent file in READ mode?",
+      "a": "This will cause a run-time error. Your program will likely crash unless it has error handling routines (which are beyond the scope of the P2 syllabus but good to know about). In an exam, you can assume the file exists unless told otherwise."
+    },
+    {
+      "q": "What is the difference between `WRITEFILE` and `APPEND`?",
+      "a": "This is a common point of confusion. `WRITE` and `APPEND` are file *modes* set when you `OPENFILE`. `WRITEFILE` is the *command* used to write data. You use the `WRITEFILE` command whether the file was opened in `WRITE` mode or `APPEND` mode. The mode determines *where* the data is written (start of file vs. end of file)."
+    },
+    {
+      "q": "Can I read from and write to a file at the same time?",
+      "a": "In Cambridge pseudocode, a file is opened in only one mode at a time (`READ`, `WRITE`, or `APPEND`). To read from a file and then write to it, you would need to open it, read it, close it, and then re-open it in a different mode to write."
+    },
+    {
+      "q": "Do I need to include the file extension like `.txt` in the filename?",
+      "a": "Yes. In pseudocode, the filename is a string literal and should exactly match the name of the file you are targeting, including its extension (e.g., `OPENFILE \"MyData.txt\" FOR READ`)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Files** (10.3) connect **arrays/records** (10.1–10.2) to **databases** (8.x). Know **when files vs DBMS** is appropriate."
+      "content": "So far, the data your programs have worked with has been transient – it disappears the moment the program stops. To create truly useful applications, we need a way to store data persistently. File handling provides this mechanism, allowing programs to save their state, store user data, and retrieve information across multiple sessions."
+    },
+    {
+      "type": "heading",
+      "content": "File Organisation: Records and Fields"
+    },
+    {
+      "type": "text",
+      "content": "In A-Level Computer Science, we primarily deal with text files. These are simple files containing lines of text. To structure the data within them, we often think in terms of records and fields. A **record** is a complete set of information about a single entity, like a person or an item. Each line in a file often represents one record. A **field** is a single piece of information within that record. Fields within a record are typically separated by a delimiter, such as a comma."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**File:** A named collection of data stored on secondary storage.",
+        "**Record:** A line or structured block of data representing one item (e.g., '101,Bob,17').",
+        "**Field:** A single data item within a record (e.g., 'Bob')."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Core File Handling Commands"
+    },
+    {
+      "type": "text",
+      "content": "Cambridge International exam pseudocode provides four fundamental commands for file I/O (Input/Output). Your first step is always to open the file, specifying how you intend to use it. This 'how' is called the mode."
+    },
+    {
+      "type": "formula",
+      "content": "OPENFILE <filename> FOR <mode> // Modes are READ, WRITE, APPEND\nREADFILE <filename>, <VariableName> // Reads one line into a variable\nWRITEFILE <filename>, <Data> // Writes data (e.g., a variable's content) as a new line\nCLOSEFILE <filename> // Saves changes and releases the file"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**READ:** For input only. The file must already exist.",
+        "**WRITE:** For output only. Creates a new file, deleting any existing file with the same name.",
+        "**APPEND:** For output only. Adds data to the end of an existing file or creates a new one if it doesn't exist."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, you will almost always get a mark for opening a file in the correct mode and for closing it at the end. Don't forget `CLOSEFILE` – it's an easy mark to lose! Forgetting to close a file after writing might mean the data is never actually saved."
+    },
+    {
+      "type": "heading",
+      "content": "Reading Data from a File"
+    },
+    {
+      "type": "text",
+      "content": "To read the contents of a file, you must first open it in `READ` mode. The most common pattern is to use a `WHILE` loop that continues as long as you have not reached the end of the file. The `EOF()` function is perfect for this; it returns `FALSE` as long as there is more data to read, and `TRUE` once the end is reached."
+    },
+    {
+      "type": "formula",
+      "content": "OPENFILE \"Students.txt\" FOR READ\nWHILE NOT EOF(\"Students.txt\")\n    READFILE \"Students.txt\", StudentName\n    // Process the StudentName variable here\nENDWHILE\nCLOSEFILE \"Students.txt\""
+    },
+    {
+      "type": "workedExample",
+      "question": "A text file, `Scores.txt`, contains a list of scores, one per line. Write pseudocode to read all the scores from the file, calculate their total, and output the final total. \n\n**File Content (`Scores.txt`):**\n```\n150\n230\n95\n```",
+      "solution": "```pseudocode\n// 1. Initialise variables\nDECLARE TotalScore : INTEGER\nDECLARE CurrentScore : INTEGER\nTotalScore <- 0\n\n// 2. Open file for reading\nOPENFILE \"Scores.txt\" FOR READ\n\n// 3. Loop until the end of the file\nWHILE NOT EOF(\"Scores.txt\")\n    // 4. Read a line and add to total\n    READFILE \"Scores.txt\", CurrentScore\n    TotalScore <- TotalScore + CurrentScore\nENDWHILE\n\n// 5. Close the file\nCLOSEFILE \"Scores.txt\"\n\n// 6. Output the result\nOUTPUT \"Total score is: \", TotalScore\n```\n\n**Mark Scheme:**\n- 1 mark for initialising `TotalScore`.\n- 1 mark for opening the file in `READ` mode.\n- 1 mark for a correct loop condition (`WHILE NOT EOF`).\n- 1 mark for correctly reading from the file inside the loop.\n- 1 mark for correctly accumulating the total inside the loop.\n- 1 mark for closing the file.\n\n**Expected Output:**\n`Total score is: 475`"
+    },
+    {
+      "type": "heading",
+      "content": "Writing and Appending Data"
+    },
+    {
+      "type": "text",
+      "content": "To save data, you open a file in either `WRITE` or `APPEND` mode. The choice is critical. Use `WRITE` when you want to create a brand new file or completely replace an old one. This is destructive. Use `APPEND` when you want to add new information to the end of an existing file without deleting what's already there. This is non-destructive."
+    },
+    {
+      "type": "workedExample",
+      "question": "A programme needs to save a new user's username to a file called `Users.txt`. The username is stored in a variable `NewUser`. The programme should add this new user to the end of the list without deleting existing users. Write the pseudocode to accomplish this.\n\n**Initial File Content (`Users.txt`):**\n```\nAlice\nBob\n```\n**Variable Value:** `NewUser = \"Charlie\"`",
+      "solution": "```pseudocode\nDECLARE NewUser : STRING\nNewUser <- \"Charlie\"\n\n// 1. Open file in APPEND mode to add to the end\nOPENFILE \"Users.txt\" FOR APPEND\n\n// 2. Write the new data to the file\nWRITEFILE \"Users.txt\", NewUser\n\n// 3. Close the file to save the changes\nCLOSEFILE \"Users.txt\"\n```\n\n**Mark Scheme:**\n- 1 mark for opening the file in `APPEND` mode (using `WRITE` would be incorrect and lose the mark).\n- 1 mark for writing the correct variable (`NewUser`) to the file.\n- 1 mark for closing the file.\n\n**Final File Content (`Users.txt`):**\n```\nAlice\nBob\nCharlie\n```"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the question's wording. If it says 'add a new score' or 'log an event', you almost certainly need `APPEND` mode. If it says 'save the final results' or 'create a report', `WRITE` mode is often more appropriate."
     },
     {
       "type": "practice",
-      "label": "Mark a files question",
+      "label": "Test Your File Handling Skills",
       "href": "/mark?subject=9618&topic=10.3"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "Cambridge Syllabus (9618)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        },
+        {
+          "label": "Pseudocode Guide",
+          "href": "https://www.cambridgeinternational.org/Images/414128-pseudocode-guide-for-teachers.pdf"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

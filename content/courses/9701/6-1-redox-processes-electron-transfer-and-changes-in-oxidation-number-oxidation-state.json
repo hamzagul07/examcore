@@ -1,59 +1,241 @@
 {
   "slug": "6-1-redox-processes-electron-transfer-and-changes-in-oxidation-number-oxidation-state",
   "topicCode": "6.1",
-  "title": "Redox processes",
+  "title": "Redox processes: electron transfer and changes in oxidation number (oxidation state)",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS redox — oxidation numbers, half-equations, and balancing redox with PhET Balancing Chemical Equations.",
+  "status": "pilot",
+  "summary": "This lesson introduces redox reactions, focusing on electron transfer and the concept of oxidation numbers (states). You will learn the rules for assigning oxidation numbers and use them to identify oxidised and reduced species, as well as oxidising and reducing agents. The lesson culminates in constructing and balancing complex redox equations using the half-equation method, and introduces the special case of disproportionation.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Assign oxidation numbers using standard rules.",
-    "Identify oxidation and reduction in redox reactions (OIL RIG).",
-    "Construct and combine half-equations.",
-    "Balance redox equations including ion-electron method where required."
+    "Define redox, oxidation, reduction, oxidising agent, and reducing agent in terms of electron transfer and changes in oxidation number.",
+    "State and apply the rules for assigning oxidation numbers to atoms in elements, compounds, and ions.",
+    "Construct and balance redox equations using half-equations and changes in oxidation numbers.",
+    "Identify and describe disproportionation reactions."
   ],
   "simpleExplanation": {
-    "title": "Electron bookkeeping",
-    "summary": "Redox tracks electron transfer. Oxidation numbers help you see whether a species loses or gains electrons even when no free electrons appear in the equation.",
+    "title": "The Electron Exchange",
+    "summary": "Redox reactions are all about the transfer of electrons from one chemical species to another. We use a system called oxidation numbers to keep track of this electron movement.",
+    "analogy": "Imagine a seesaw on a playground. For one person to go up (oxidation, losing the 'weight' of electrons), another person must go down (reduction, gaining the 'weight' of electrons). The two movements are linked and happen at the same time. Oxidation numbers are like measuring the height of each person on the seesaw to see who went up and who went down.",
     "steps": [
-      "Assign oxidation numbers: free element = 0, monatomic ion = charge, O usually −2, H usually +1.",
-      "Increase in oxidation number → oxidation (electron loss). Decrease → reduction.",
-      "Write half-equations balancing atoms and charge with electrons.",
-      "Combine half-equations so electrons lost = electrons gained."
+      "Oxidation is electron loss; reduction is electron gain (OIL RIG).",
+      "Oxidation number rules: element = 0; ion = charge; O usually −2, H usually +1.",
+      "Redox reactions involve simultaneous oxidation and reduction.",
+      "Half-equations balance atoms and charge; combine for full ionic equation."
     ]
   },
   "flashcards": [
-    { "front": "OIL RIG means?", "back": "Oxidation Is Loss; Reduction Is Gain (of electrons)." },
-    { "front": "Oxidation number of O in most compounds?", "back": "−2 (except peroxides −1, OF₂ +2)." },
-    { "front": "Oxidising agent does what?", "back": "Accepts electrons — itself is reduced." }
+    {
+      "front": "What is a redox reaction?",
+      "back": "A reaction involving both reduction and oxidation, characterised by the transfer of electrons and changes in oxidation numbers."
+    },
+    {
+      "front": "Define oxidation using the acronym OIL.",
+      "back": "Oxidation Is Loss of electrons. This corresponds to an increase in oxidation number."
+    },
+    {
+      "front": "Define reduction using the acronym RIG.",
+      "back": "Reduction Is Gain of electrons. This corresponds to a decrease in oxidation number."
+    },
+    {
+      "front": "What is an oxidising agent (or oxidant)?",
+      "back": "A species that accepts electrons and gets reduced in a redox reaction. It causes another species to be oxidised."
+    },
+    {
+      "front": "What is a reducing agent (or reductant)?",
+      "back": "A species that donates electrons and gets oxidised in a redox reaction. It causes another species to be reduced."
+    },
+    {
+      "front": "What is the oxidation number of an atom in an uncombined element?",
+      "back": "Zero. For example, in $\\text{Na(s)}$, $\\text{O}_2\\text{(g)}$, and $\\text{P}_4\\text{(s)}$, the oxidation number of each atom is 0."
+    },
+    {
+      "front": "What is the oxidation number of a simple monatomic ion?",
+      "back": "The charge on the ion. For example, $\\text{Na}^+$ has an oxidation number of +1, and $\\text{S}^{2-}$ has an oxidation number of -2."
+    },
+    {
+      "front": "What is the usual oxidation number of oxygen in a compound? Name one exception.",
+      "back": "Usually -2. An exception is in peroxides (e.g., $\\text{H}_2\\text{O}_2$), where it is -1. Another is in compounds with fluorine (e.g., $\\text{OF}_2$), where it is +2."
+    },
+    {
+      "front": "What is a disproportionation reaction?",
+      "back": "A redox reaction where an element in a single species is simultaneously oxidised and reduced to form two different products."
+    },
+    {
+      "front": "What is the sum of oxidation numbers in a neutral compound?",
+      "back": "Zero. For example, in $\\text{H}_2\\text{SO}_4$, the sum of all oxidation numbers is 0."
+    },
+    {
+      "front": "What is the sum of oxidation numbers in a polyatomic ion?",
+      "back": "The overall charge of the ion. For example, in the sulfate ion, $\\text{SO}_4^{2-}$, the sum of oxidation numbers is -2."
+    },
+    {
+      "front": "What is the oxidation number of hydrogen in most compounds? Name the exception.",
+      "back": "Usually +1. The exception is in metal hydrides (e.g., $\\text{NaH}$, $\\text{CaH}_2$), where it is -1 as it is more electronegative than the metal."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is there a difference between 'oxidation state' and 'oxidation number'?",
+      "a": "For the purposes of A-Level Chemistry, the terms are used interchangeably. 'Oxidation number' refers to the specific value (e.g., +2), while 'oxidation state' can be seen as the condition of the atom having that number. You can use either term in an exam."
+    },
+    {
+      "q": "Why does oxygen have a +2 oxidation state in $\\text{OF}_2$?",
+      "a": "The rules for assigning oxidation numbers have a hierarchy. Fluorine is the most electronegative element, so it is always assigned an oxidation number of -1 in its compounds. For the neutral molecule $\\text{OF}_2$ to have an overall oxidation number of 0, the single oxygen atom must have an oxidation number of +2 to balance the two -1 charges from the fluorine atoms."
+    },
+    {
+      "q": "Can a reaction be just oxidation or just reduction?",
+      "a": "No. Electrons are fundamental particles; they cannot be created or destroyed in a chemical reaction. If one species loses electrons (oxidation), another species must gain them (reduction). The two processes are inextricably linked and always occur together."
+    }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Redox** underpins electrochemistry, Group 17 halogen reactions, and transition metal chemistry. Cambridge frequently combines **oxidation number** assignment with **half-equation** construction."
+      "content": "From the rusting of a steel bridge to the energy powering your phone, redox reactions are fundamental to chemistry and our world. The term 'redox' is a portmanteau of 'reduction' and 'oxidation'. These two processes are inseparable partners in a chemical dance involving the transfer of electrons. Understanding how to track this electron movement is a key skill for any chemist."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Redox: Electron Transfer"
+    },
+    {
+      "type": "text",
+      "content": "At its heart, a redox reaction is all about electrons moving from one substance to another. We use the mnemonic **OIL RIG** to remember the definitions:\n\n*   **O**xidation **I**s **L**oss of electrons.\n*   **R**eduction **I**s **G**ain of electrons.\n\nBecause electrons cannot be created or destroyed in a chemical reaction, if one species loses electrons, another must gain them. Therefore, oxidation and reduction always occur simultaneously."
+    },
+    {
+      "type": "heading",
+      "content": "Oxidation Numbers: A System for Electron Accounting"
+    },
+    {
+      "type": "text",
+      "content": "While we can think about direct electron transfer, it's often more practical to use a bookkeeping tool called oxidation numbers (or oxidation states). An oxidation number is the hypothetical charge an atom would have if all its bonds to different elements were 100% ionic. We assign these numbers using a clear set of rules."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Elements:** The oxidation number of an atom in an uncombined element is 0 (e.g., $\\text{Fe}$, $\\text{Cl}_2$, $\\text{S}_8$).",
+        "**Simple Ions:** The oxidation number of an atom in a monatomic ion is equal to the charge on the ion (e.g., $\\text{Na}^+$ is +1, $\\text{O}^{2-}$ is -2).",
+        "**Compounds & Ions:** The sum of oxidation numbers in a neutral compound is 0. The sum in a polyatomic ion equals the ion's charge.",
+        "**Specific Elements (Hierarchy):**",
+        "1. Group 1 metals are +1, Group 2 metals are +2 in their compounds.",
+        "2. Fluorine is always -1 in its compounds.",
+        "3. Hydrogen is usually +1 (except in metal hydrides like $\\text{NaH}$, where it is -1).",
+        "4. Oxygen is usually -2 (except in peroxides like $\\text{H}_2\\text{O}_2$ where it's -1, and with fluorine like $\\text{OF}_2$ where it's +2)."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Balance: MnO₄⁻ + Fe²⁺ + H⁺ → Mn²⁺ + Fe³⁺ + H₂O",
-      "solution": "Reduction: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O\n\nOxidation: Fe²⁺ → Fe³⁺ + e⁻\n\nCombine (×5 for Fe): **MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O**"
+      "question": "Determine the oxidation number of chromium in the dichromate(VI) ion, $\\text{Cr}_2\\text{O}_7^{2-}$.",
+      "solution": "1. The overall charge of the ion is -2, so the sum of oxidation numbers must be -2.\n2. Assign the known oxidation number: Oxygen is -2 (as it's not a peroxide or bonded to fluorine).\n3. Let the oxidation number of Cr be $x$. There are two Cr atoms and seven O atoms.\n4. Set up the equation: $(2 \\times x) + (7 \\times -2) = -2$.\n5. Solve for $x$: $2x - 14 = -2 \\implies 2x = +12 \\implies x = +6$.\n6. The oxidation number of chromium in $\\text{Cr}_2\\text{O}_7^{2-}$ is +6."
+    },
+    {
+      "type": "heading",
+      "content": "Identifying Oxidising and Reducing Agents"
+    },
+    {
+      "type": "text",
+      "content": "Once we can assign oxidation numbers, we can easily identify what is being oxidised and reduced. An increase in oxidation number signifies oxidation. A decrease in oxidation number signifies reduction. This leads to the definitions of oxidising and reducing agents. A reducing agent is the species that donates electrons and gets oxidised itself. An oxidising agent is the species that accepts electrons and gets reduced itself."
     },
     {
       "type": "examTip",
-      "content": "In acidic conditions use **H⁺** and **H₂O** to balance O and H; in alkaline use **OH⁻** and **H₂O**. State which medium you assume if the question is silent."
+      "content": "A very common mistake is to confuse the species being oxidised/reduced with the agent. Remember: the **oxidising agent** gets **reduced**, and the **reducing agent** gets **oxidised**. Write it down in the exam to be sure!"
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the reaction: $2\\text{FeCl}_3(\\text{aq}) + \\text{SnCl}_2(\\text{aq}) \\rightarrow 2\\text{FeCl}_2(\\text{aq}) + \\text{SnCl}_4(\\text{aq})$. Identify the oxidising agent and the reducing agent, justifying your answer with oxidation numbers.",
+      "solution": "1. **Assign oxidation numbers to Fe:**\n   - In $\\text{FeCl}_3$, Cl is -1, so Fe must be +3.\n   - In $\\text{FeCl}_2$, Cl is -1, so Fe must be +2.\n   - The oxidation number of Fe decreases from +3 to +2. This is reduction.\n\n2. **Assign oxidation numbers to Sn:**\n   - In $\\text{SnCl}_2$, Cl is -1, so Sn must be +2.\n   - In $\\text{SnCl}_4$, Cl is -1, so Sn must be +4.\n   - The oxidation number of Sn increases from +2 to +4. This is oxidation.\n\n3. **Identify Agents:**\n   - $\\text{FeCl}_3$ contains the Fe that is reduced, so $\\text{FeCl}_3$ is the **oxidising agent**.\n   - $\\text{SnCl}_2$ contains the Sn that is oxidised, so $\\text{SnCl}_2$ is the **reducing agent**."
+    },
+    {
+      "type": "heading",
+      "content": "Constructing Redox Equations"
+    },
+    {
+      "type": "text",
+      "content": "For complex redox reactions, it is easiest to split the overall reaction into two **half-equations**: one for the oxidation process and one for the reduction process. We balance each half-equation for atoms and charge separately, then combine them to give the overall balanced ionic equation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Step 1:** Write the unbalanced equation for the species being oxidised/reduced.",
+        "**Step 2:** Balance all atoms except for O and H.",
+        "**Step 3:** Balance oxygen atoms by adding $\\text{H}_2\\text{O}$ molecules.",
+        "**Step 4:** Balance hydrogen atoms by adding $\\text{H}^+$ ions (for acidic/neutral solutions).",
+        "**Step 5:** Balance the charges by adding electrons ($e^-$) to the more positive side.",
+        "**Step 6:** Multiply the half-equations by integers so the number of electrons lost in oxidation equals the number of electrons gained in reduction.",
+        "**Step 7:** Add the balanced half-equations and cancel out any species that appear on both sides."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Disproportionation: One Element, Two Fates"
+    },
+    {
+      "type": "text",
+      "content": "Disproportionation is a specific type of redox reaction where an element in a single reactant is simultaneously oxidised and reduced. A classic example is the reaction of chlorine gas with cold, dilute sodium hydroxide solution:\n\n$\\text{Cl}_2(\\text{g}) + 2\\text{NaOH}(\\text{aq}) \\rightarrow \\text{NaCl}(\\text{aq}) + \\text{NaClO}(\\text{aq}) + \\text{H}_2\\text{O}(\\text{l})$\n\nHere, the chlorine atom (oxidation number 0 in $\\text{Cl}_2$) is reduced to -1 in $\\text{NaCl}$ and oxidised to +1 in $\\text{NaClO}$."
     },
     {
       "type": "practice",
-      "label": "Mark a redox question",
+      "label": "Test your knowledge on redox processes",
       "href": "/mark?subject=9701&topic=6.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Balancing Chemical Equations", "href": "https://phet.colorado.edu/en/simulations/balancing-chemical-equations" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Chemguide page on Redox Reactions",
+          "href": "https://www.chemguide.co.uk/inorganic/redox/definitions.html"
+        },
+        {
+          "label": "A-Level Chemistry notes on Redox",
+          "href": "https://www.a-levelchemistry.co.uk/ocr-a-level-chemistry-module-2-foundations-in-chemistry/2.1-atoms-and-reactions/2.1.4-redox/"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Balancing chemical equations",
+    "embedUrl": "https://phet.colorado.edu/sims/html/balancing-chemical-equations/latest/balancing-chemical-equations_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/balancing-chemical-equations",
+    "hint": "Balance redox equations — atom counts confirm conservation of mass and charge (6.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Oxidation is electron loss; reduction is electron gain (OIL RIG).",
+        "embedHint": "Balance an equation — atom counts must match both sides."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Oxidation number rules: element = 0; ion = charge; O usually −2, H usually +1.",
+        "embedHint": "Assign oxidation numbers before identifying redox pairs."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Redox reactions involve simultaneous oxidation and reduction.",
+        "embedHint": "Identify which species is oxidised and which is reduced."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Half-equations balance atoms and charge; combine for full ionic equation.",
+        "embedHint": "Use balanced equations to confirm electron transfer counts."
+      }
+    ]
+  }
 }

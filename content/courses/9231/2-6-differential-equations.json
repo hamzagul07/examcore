@@ -1,0 +1,167 @@
+{
+  "slug": "2-6-differential-equations",
+  "topicCode": "2.6",
+  "title": "Differential equations",
+  "paper": "P2",
+  "paperName": "Paper 2: Further Pure Mathematics 2",
+  "status": "pilot",
+  "summary": "This lesson covers the methods for solving first-order linear differential equations using an integrating factor, and second-order linear differential equations with constant coefficients. We will explore homogeneous and non-homogeneous cases, determining the complementary function and particular integral to find general and particular solutions. The application of these equations to model systems like simple harmonic motion and damped oscillations is also discussed, along with techniques involving substitutions to simplify equations.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Solve first-order linear differential equations of the form dy/dx + P(x)y = Q(x).",
+    "Solve second-order linear homogeneous and non-homogeneous differential equations with constant coefficients.",
+    "Find the general solution by combining the complementary function and a particular integral.",
+    "Use a given substitution to transform a differential equation into a solvable form."
+  ],
+  "simpleExplanation": {
+    "title": "Decoding the Rules of Change",
+    "summary": "Differential equations are mathematical rules that describe how a quantity changes. Solving them means working backwards from the rate of change to find the original function that follows these rules.",
+    "analogy": "Imagine you're a detective arriving at a scene. You don't know what happened, but you find clues about the *speed* and *direction* things were moving (the derivatives). Your job is to use these clues to reconstruct the entire event from a specific starting time (the initial conditions). Solving a differential equation is like piecing together this full story from the rules of how it changed over time.",
+    "steps": [
+      "Find the Complementary Function (CF) by solving the associated homogeneous equation (setting the right-hand side to zero).",
+      "Choose the correct form for the Particular Integral (PI) based on the function on the right-hand side of the original equation.",
+      "Substitute the PI into the full differential equation to find the values of its unknown coefficients.",
+      "Combine the CF and PI to get the General Solution, then use any given initial conditions to find the specific constants."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the general form of a first-order linear differential equation?",
+      "back": "$\\frac{dy}{dx} + P(x)y = Q(x)$, where $P(x)$ and $Q(x)$ are functions of $x$."
+    },
+    {
+      "front": "What is an Integrating Factor (IF)?",
+      "back": "A function, $I(x)$, which is multiplied through a first-order linear DE to make the left-hand side the exact derivative of a product. It is calculated as $I(x) = e^{\\int P(x) dx}$."
+    },
+    {
+      "front": "After multiplying by the IF, $I(x)$, what does the LHS of $\\frac{dy}{dx} + P(x)y = Q(x)$ become?",
+      "back": "The derivative of the product of the integrating factor and $y$. That is, $\\frac{d}{dx}(I(x)y)$."
+    },
+    {
+      "front": "What is the Auxiliary Equation for $a\\frac{d^2y}{dx^2} + b\\frac{dy}{dx} + cy = 0$?",
+      "back": "A quadratic equation $am^2 + bm + c = 0$, whose roots determine the form of the complementary function."
+    },
+    {
+      "front": "What is the Complementary Function (CF) if the auxiliary equation has two distinct real roots, $m_1$ and $m_2$?",
+      "back": "$y_{CF} = Ae^{m_1x} + Be^{m_2x}$"
+    },
+    {
+      "front": "What is the CF if the auxiliary equation has one repeated real root, $m$?",
+      "back": "$y_{CF} = (Ax+B)e^{mx}$"
+    },
+    {
+      "front": "What is the CF if the auxiliary equation has complex conjugate roots, $p \\pm iq$?",
+      "back": "$y_{CF} = e^{px}(A\\cos(qx) + B\\sin(qx))$"
+    },
+    {
+      "front": "What is the General Solution of a non-homogeneous DE?",
+      "back": "General Solution = Complementary Function (CF) + Particular Integral (PI).  $y = y_{CF} + y_{PI}$."
+    },
+    {
+      "front": "What is the trial form for the Particular Integral (PI) if the right-hand side is $ke^{ax}$?",
+      "back": "Try $y_{PI} = Ce^{ax}$. A common trap is if $e^{ax}$ is already a term in the CF. In that case, you must try $y_{PI} = Cxe^{ax}$ (or $Cx^2e^{ax}$ if the CF root was repeated)."
+    },
+    {
+      "front": "What is the trial form for the PI if the right-hand side is a polynomial of degree $n$, e.g., $3x^2+5$?",
+      "back": "A general polynomial of the same degree. For $3x^2+5$, try $y_{PI} = Cx^2 + Dx + E$."
+    },
+    {
+      "front": "What is the trial form for the PI if the right-hand side is $k\\sin(ax)$ or $k\\cos(ax)$?",
+      "back": "A combination of both sine and cosine: $y_{PI} = C\\cos(ax) + D\\sin(ax)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a 'general solution' and a 'particular solution'?",
+      "a": "A 'general solution' includes arbitrary constants (like A and B) and represents a whole family of functions that satisfy the differential equation. A 'particular solution' is found by using given initial or boundary conditions (e.g., $y=1$ when $x=0$) to determine the specific values of these constants. The particular solution is a single, unique function that satisfies both the equation and the given conditions."
+    },
+    {
+      "q": "Why do we need both sine and cosine for the Particular Integral when the right-hand side is just sine or just cosine?",
+      "a": "Because the derivatives of sine and cosine are linked. The derivative of $\\sin(ax)$ is $a\\cos(ax)$, and the derivative of $\\cos(ax)$ is $-a\\sin(ax)$. When you substitute a trial PI into the left-hand side of the DE, which contains derivatives, you will generate both sine and cosine terms. To be able to match coefficients with the right-hand side, your trial PI must contain both terms from the outset, even if the RHS only has one of them."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of differential equations in Further Mathematics. This topic is a cornerstone of applied mathematics, physics, and engineering, allowing us to model everything from the cooling of a cup of tea to the complex oscillations of a bridge. We will build upon your existing knowledge to tackle more advanced equation types, providing you with powerful tools for analysing dynamic systems."
+    },
+    {
+      "type": "heading",
+      "content": "1. First-Order Linear Differential Equations"
+    },
+    {
+      "type": "text",
+      "content": "A first-order linear differential equation can be written in the standard form $\\frac{dy}{dx} + P(x)y = Q(x)$. To solve these, we use a clever technique involving an 'integrating factor'. This factor is specifically constructed to turn the left-hand side of the equation into the result of the product rule for differentiation, which can then be easily integrated."
+    },
+    {
+      "type": "formula",
+      "content": "Integrating Factor, $I(x) = e^{\\int P(x) dx}$"
+    },
+    {
+      "type": "text",
+      "content": "Once you've calculated the integrating factor, $I(x)$, you multiply every term in the standard form equation by it. The equation then simplifies to $\\frac{d}{dx}(I(x)y) = I(x)Q(x)$. From here, you can integrate both sides with respect to $x$ to find an expression for $y$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the general solution of the differential equation $\\frac{dy}{dx} - \\frac{2}{x}y = x^2$.",
+      "solution": "Step 1: Identify $P(x)$ and $Q(x)$.\nThe equation is in the form $\\frac{dy}{dx} + P(x)y = Q(x)$.\nHere, $P(x) = -\\frac{2}{x}$ and $Q(x) = x^2$.\n\nStep 2: Calculate the Integrating Factor (IF).\n$I(x) = e^{\\int P(x) dx} = e^{\\int -\\frac{2}{x} dx} = e^{-2\\ln|x|} = e^{\\ln|x^{-2}|} = x^{-2} = \\frac{1}{x^2}$.\n\nStep 3: Multiply the DE by the IF.\n$\\frac{1}{x^2}\\frac{dy}{dx} - \\frac{2}{x^3}y = \\frac{x^2}{x^2}$\nThe left side becomes $\\frac{d}{dx}(\\frac{1}{x^2}y)$.\nSo, $\\frac{d}{dx}(\\frac{y}{x^2}) = 1$.\n\nStep 4: Integrate both sides with respect to $x$.\n$\\int \\frac{d}{dx}(\\frac{y}{x^2}) dx = \\int 1 dx$\n$\\frac{y}{x^2} = x + C$, where C is the constant of integration.\n\nStep 5: Rearrange to find the general solution.\n$y = x^2(x+C) = x^3 + Cx^2$."
+    },
+    {
+      "type": "heading",
+      "content": "2. Second-Order Linear Homogeneous Equations with Constant Coefficients"
+    },
+    {
+      "type": "text",
+      "content": "These equations have the form $a\\frac{d^2y}{dx^2} + b\\frac{dy}{dx} + cy = 0$, where $a, b,$ and $c$ are constants. The key to solving them is the auxiliary equation, $am^2 + bm + c = 0$. The nature of the roots of this quadratic equation dictates the form of the general solution, which is called the Complementary Function (CF)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Case 1: Two distinct real roots, $m_1, m_2$** The solution is $y = Ae^{m_1x} + Be^{m_2x}$.",
+        "**Case 2: One repeated real root, $m$** The solution is $y = (Ax+B)e^{mx}$.",
+        "**Case 3: Complex conjugate roots, $p \\pm iq$** The solution is $y = e^{px}(A\\cos(qx) + B\\sin(qx))$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "3. Second-Order Non-Homogeneous Equations"
+    },
+    {
+      "type": "text",
+      "content": "When the right-hand side is not zero, i.e., $a\\frac{d^2y}{dx^2} + b\\frac{dy}{dx} + cy = f(x)$, the equation is non-homogeneous. The general solution is the sum of two parts: the Complementary Function (CF) from the homogeneous version, and a Particular Integral (PI), which is a specific solution that depends on the form of $f(x)$."
+    },
+    {
+      "type": "text",
+      "content": "To find the PI, we try a function of a similar form to $f(x)$. For example, if $f(x)$ is a quadratic, we try a generic quadratic for the PI. If $f(x)$ is an exponential, we try a generic exponential. We then substitute this trial function into the original differential equation to determine the specific coefficients."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is forgetting to check if your chosen form for the Particular Integral is already part of the Complementary Function. If $f(x) = 3e^{2x}$ and your CF is $y_{CF} = Ae^{2x} + Be^{x}$, you cannot use $Ce^{2x}$ for the PI. You must multiply by $x$ and try $y_{PI} = Cxe^{2x}$. If the root in the CF was repeated, you would multiply by $x^2$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the particular solution of the differential equation $\\frac{d^2y}{dx^2} + 5\\frac{dy}{dx} + 6y = 12e^{-x}$ given that $y=1$ and $\\frac{dy}{dx}=0$ when $x=0$.",
+      "solution": "Step 1: Find the Complementary Function (CF).\nThe auxiliary equation is $m^2 + 5m + 6 = 0$.\nFactoring gives $(m+2)(m+3)=0$, so the roots are $m_1 = -2$ and $m_2 = -3$.\nThe CF is $y_{CF} = Ae^{-2x} + Be^{-3x}$.\n\nStep 2: Find the Particular Integral (PI).\nThe right-hand side is $12e^{-x}$. This form is not in the CF.\nTry a PI of the form $y_{PI} = Ce^{-x}$.\nThen $\\frac{dy_{PI}}{dx} = -Ce^{-x}$ and $\\frac{d^2y_{PI}}{dx^2} = Ce^{-x}$.\nSubstitute into the original DE:\n$(Ce^{-x}) + 5(-Ce^{-x}) + 6(Ce^{-x}) = 12e^{-x}$\n$Ce^{-x} - 5Ce^{-x} + 6Ce^{-x} = 12e^{-x}$\n$2Ce^{-x} = 12e^{-x}$\n$2C = 12 \\implies C = 6$.\nSo, the PI is $y_{PI} = 6e^{-x}$.\n\nStep 3: Form the General Solution.\n$y = y_{CF} + y_{PI} = Ae^{-2x} + Be^{-3x} + 6e^{-x}$.\n\nStep 4: Use initial conditions to find A and B.\nWe have $y(0)=1$ and $y'(0)=0$.\nFirst, find $\\frac{dy}{dx} = -2Ae^{-2x} - 3Be^{-3x} - 6e^{-x}$.\nUsing $y(0)=1$: $1 = Ae^0 + Be^0 + 6e^0 \\implies 1 = A + B + 6 \\implies A+B = -5$ (Eq 1).\nUsing $y'(0)=0$: $0 = -2Ae^0 - 3Be^0 - 6e^0 \\implies 0 = -2A - 3B - 6 \\implies 2A+3B = -6$ (Eq 2).\n\nSolving simultaneously: Multiply (Eq 1) by 2: $2A+2B = -10$.\nSubtract this from (Eq 2): $(2A+3B) - (2A+2B) = -6 - (-10) \\implies B = 4$.\nSubstitute $B=4$ into $A+B=-5$ to get $A+4=-5 \\implies A=-9$.\n\nStep 5: Write the particular solution.\n$y = -9e^{-2x} + 4e^{-3x} + 6e^{-x}$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Solving Differential Equations",
+      "href": "/mark?subject=9231&topic=2.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9231)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        },
+        {
+          "label": "Paul's Online Math Notes on Differential Equations",
+          "href": "https://tutorial.math.lamar.edu/Classes/DE/DE.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

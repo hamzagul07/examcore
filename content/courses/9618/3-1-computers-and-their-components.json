@@ -4,29 +4,242 @@
   "title": "Computers and their components",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 — hardware components, buses, and system architecture overview.",
+  "status": "pilot",
+  "summary": "This lesson explores the fundamental components of a computer system, based on the Von Neumann architecture. We will dissect the roles of the Central Processing Unit (CPU), differentiate between primary memory (RAM, ROM) and secondary storage (HDD, SSD), and classify various input, output, and backing storage devices.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Identify main hardware components.",
-    "Describe roles of CPU, RAM, and storage.",
-    "Explain input and output devices.",
-    "Outline data flow between components."
+    "Describe the Von Neumann architecture and the roles of its components.",
+    "Explain the function of the CPU, including the Control Unit, ALU, and special-purpose registers.",
+    "Differentiate between various types of memory (RAM, ROM, cache) and storage (SSD, HDD).",
+    "Classify and describe the purpose of input, output, and backing storage devices."
   ],
   "simpleExplanation": {
-    "title": "Inside the computer",
-    "summary": "A computer combines processor, memory, storage, and I/O connected by buses to execute programs.",
+    "title": "Inside the Digital Brain",
+    "summary": "A computer is a system of interconnected components that work together to process data. This process is governed by the Von Neumann architecture, where both instructions and data are stored in the same memory.",
+    "analogy": "Imagine a chef (the CPU) in a kitchen. The countertop is the RAM – a temporary workspace for ingredients (data) you're currently using. The pantry and fridge are your secondary storage (HDD/SSD) – where you keep all your ingredients for the long term. The recipe book contains the instructions, and just like the ingredients, it's brought to the countertop when needed.",
     "steps": [
-      "CPU executes instructions.",
-      "RAM holds running programs and data.",
-      "Secondary storage is persistent.",
-      "I/O connects user and peripherals."
+      "CPU: ALU + control unit + registers. | Sim hint: Fetch–decode–execute.",
+      "RAM volatile; ROM non-volatile. | Sim hint: Primary vs secondary storage.",
+      "SSD vs HDD: speed vs capacity/cost. | Sim hint: Secondary storage trade-offs.",
+      "Input, output, and backing storage devices. | Sim hint: Match device to role."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the Von Neumann architecture?",
+      "back": "A computer architecture model where program instructions and data are stored in the same memory and share the same data bus. It consists of a CPU, memory, and I/O devices."
+    },
+    {
+      "front": "What are the two main components of the CPU?",
+      "back": "The Arithmetic Logic Unit (ALU) which performs calculations and logical operations, and the Control Unit (CU) which directs the flow of data and executes instructions."
+    },
+    {
+      "front": "What is the function of the Program Counter (PC) register?",
+      "back": "The PC holds the memory address of the next instruction to be fetched from primary memory."
+    },
+    {
+      "front": "What is the function of the Memory Address Register (MAR)?",
+      "back": "The MAR holds the address of the memory location that is to be read from or written to."
+    },
+    {
+      "front": "What is the function of the Memory Data Register (MDR)?",
+      "back": "The MDR temporarily stores data that has been read from memory or is about to be written to memory. It acts as a buffer."
+    },
+    {
+      "front": "What is the difference between RAM and ROM?",
+      "back": "RAM (Random Access Memory) is volatile, read/write memory for current programs and data. ROM (Read-Only Memory) is non-volatile and stores permanent instructions, like the bootstrap loader."
+    },
+    {
+      "front": "Define 'volatile memory'.",
+      "back": "Memory that requires a constant power supply to retain its data. If power is lost, the contents are erased. Example: RAM."
+    },
+    {
+      "front": "Compare the key features of SSDs and HDDs.",
+      "back": "SSDs (Solid State Drives) are faster, more durable, and quieter but have a higher cost per gigabyte and lower capacity. HDDs (Hard Disk Drives) offer higher capacity at a lower cost but are slower and more susceptible to physical damage due to moving parts."
+    },
+    {
+      "front": "What is cache memory?",
+      "back": "A small, extremely fast type of volatile memory located on or very close to the CPU. It stores frequently accessed data and instructions to reduce the time the CPU has to wait for data from RAM."
+    },
+    {
+      "front": "Distinguish between an input and an output device.",
+      "back": "An input device sends data to the computer system for processing (e.g., keyboard, mouse). An output device receives data from the computer to present to the user (e.g., monitor, printer)."
+    },
+    {
+      "front": "What is the purpose of backing storage?",
+      "back": "Also known as secondary storage, it is non-volatile storage used to store programs and data for the long term, even when the computer is powered off. Examples include HDDs, SSDs, and USB drives."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real difference between RAM and secondary storage like an SSD?",
+      "a": "Think of it as your desk versus your filing cabinet. RAM is your desk: it's your working area where you keep things you're actively using. It's fast to access but limited in space, and when you're done for the day (power off), you clear it off (it's volatile). The SSD is your filing cabinet: it stores everything you own, whether you're using it or not. It's slower to access than your desk, but it has a huge capacity and keeps your files safe even when the power is off (it's non-volatile)."
+    },
+    {
+      "q": "Why is cache memory so important if we already have fast RAM?",
+      "a": "Even the fastest RAM is significantly slower than the CPU. If the CPU had to wait for RAM every single time it needed data, it would spend most of its time idle, creating a bottleneck. Cache is a smaller, much faster (and more expensive) type of memory that acts as a buffer between the CPU and RAM. It stores copies of the most frequently used data, so the CPU can access it almost instantly, leading to a massive performance increase."
+    },
+    {
+      "q": "Can a computer run without a hard drive or SSD?",
+      "a": "Yes, but in a limited way. A computer needs an operating system to run, which is typically stored on an HDD or SSD. However, some systems can be booted from a network (known as a 'thin client') or a live USB/CD. In these cases, the OS is loaded into RAM from the external source. The computer would have no long-term storage once powered off, but it would be functional."
+    },
+    {
+      "q": "Is a GPU a necessary component of a computer?",
+      "a": "Almost all computers need a way to produce a visual output, but they don't all need a separate, dedicated GPU card. Many CPUs come with integrated graphics (an 'iGPU') built-in, which is sufficient for everyday tasks like web browsing and video playback. A dedicated GPU is a powerful, separate processor that is essential for demanding tasks like 3D gaming, video editing, and scientific computation."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Computer components** (3.1) precedes **4.1 CPU architecture** in depth. Draw a **labelled block diagram**." },
-    { "type": "practice", "label": "Mark a components question", "href": "/mark?subject=9618&topic=3.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to the fundamental building blocks of modern computing. Every digital device, from a supercomputer to your smartphone, is built upon a core set of components that work in harmony. In this lesson, we will explore this internal architecture, starting with the foundational model that underpins almost all computers today: the Von Neumann architecture."
+    },
+    {
+      "type": "heading",
+      "content": "The Von Neumann Architecture"
+    },
+    {
+      "type": "text",
+      "content": "Proposed by the mathematician and physicist John von Neumann in the 1940s, this architecture describes a computer design based on the 'stored-program concept'. This revolutionary idea meant that not only data but also the program instructions for processing that data are stored together in the same primary memory. This allows for programs to be changed easily, simply by loading new instructions into memory."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Single Main Memory:** Both data and instructions are stored in the same memory space.",
+        "**Addressability:** Each location in memory is uniquely addressable, allowing the CPU to access any location directly.",
+        "**Components:** The system is comprised of a Central Processing Unit (CPU), a main memory unit, and input/output (I/O) devices.",
+        "**Sequential Execution:** Instructions are typically fetched and executed in a sequential order, unless a control instruction (like a jump or branch) changes the flow."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Central Processing Unit (CPU)"
+    },
+    {
+      "type": "text",
+      "content": "Often called the 'brain' of the computer, the CPU is responsible for executing program instructions. It performs the fetch-decode-execute cycle continuously. The CPU itself is composed of several key parts."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Control Unit (CU):** This component directs and coordinates most of the operations within the computer. It fetches instructions from memory, decodes them, and generates control signals to other components like the ALU and memory.",
+        "**Arithmetic Logic Unit (ALU):** This is the calculating part of the CPU. It performs all arithmetic operations (addition, subtraction, etc.) and logical operations (AND, OR, NOT, comparisons).",
+        "**Registers:** These are small, extremely fast memory locations within the CPU used to temporarily hold data and instructions during processing. Key registers include the Program Counter (PC), Memory Address Register (MAR), Memory Data Register (MDR), and Accumulator (ACC)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A student is playing a 3D computer game. Explain the role of the CPU, RAM, and the GPU (a specialised processor for graphics) in rendering a single frame of the game.",
+      "solution": "1. **CPU:** The CPU processes the game's logic, such as AI behaviour, physics calculations, and user input from the keyboard/mouse. It sends instructions and data about the game state (e.g., character positions) to the RAM and GPU. [1 mark]\n2. **RAM:** The RAM holds the current game level, character models, textures, and sound files that are needed for immediate access. The CPU fetches data from RAM, and the GPU also accesses textures and model data from RAM. [1 mark]\n3. **GPU (Graphics Processing Unit):** The CPU offloads the intensive task of rendering the 3D scene to the GPU. The GPU takes the scene data (vertices, textures) and performs millions of calculations to create the final 2D image (the frame) that is sent to the monitor. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Memory and Storage Hierarchy"
+    },
+    {
+      "type": "text",
+      "content": "A computer uses a hierarchy of memory and storage types, each with different characteristics regarding speed, cost, and capacity. We can broadly categorise them into primary memory (which the CPU accesses directly) and secondary storage (for long-term, non-volatile storage)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Primary Memory:** This is volatile memory used for active programs and data. It includes Registers (fastest), Cache Memory (stores frequently used data from RAM), RAM (main working memory), and ROM (non-volatile, for boot instructions).",
+        "**Secondary Storage:** This is non-volatile storage for files and applications when the power is off. It is slower than primary memory but offers much larger capacity for a lower cost. The two main types are Hard Disk Drives (HDDs) and Solid State Drives (SSDs).",
+        "**HDD vs SSD:** HDDs use spinning magnetic platters and a read/write head, making them mechanical. SSDs use flash memory chips with no moving parts, resulting in much faster access times, better durability, and silent operation, but at a higher cost per gigabyte."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Exam questions frequently ask you to compare and contrast two technologies, such as SSD and HDD. When answering, always structure your points around specific characteristics like speed, cost, capacity, durability, and power consumption. Use comparative words like 'faster', 'cheaper', 'higher', and 'more reliable'."
+    },
+    {
+      "type": "workedExample",
+      "question": "A media production company needs to purchase a new server for storing and editing large 4K video files. The budget is a key consideration. Justify a suitable storage solution, considering both SSD and HDD technologies.",
+      "solution": "1. **Analysis of Need:** The company requires both high capacity (for storing large 4K files) and high speed (for editing without lag). [1 mark]\n2. **Proposed Solution:** A hybrid storage solution is most suitable. A large-capacity HDD (e.g., 16TB) should be used for long-term archival of completed projects and raw footage, as it offers the lowest cost per terabyte. [1 mark]\n3. **Justification:** For active projects, a smaller but much faster NVMe SSD (e.g., 2TB) should be used as a 'working drive'. This allows editors to access and scrub through the 4K footage instantly, drastically improving workflow efficiency. The speed of the SSD is critical for performance, while the capacity of the HDD is critical for cost-effective storage. [1 mark]\n4. **Conclusion:** This hybrid approach balances the performance needs for editing (SSD) with the high-capacity, low-cost needs for archiving (HDD), providing the best overall solution within a reasonable budget. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Input, Output, and Backing Storage Devices"
+    },
+    {
+      "type": "text",
+      "content": "These peripheral devices are the way a computer system interacts with the outside world. They are not part of the core CPU-memory complex but are essential for any useful computation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Input Devices:** These devices feed data into the computer system for processing. Examples include a keyboard, mouse, scanner, microphone, and webcam.",
+        "**Output Devices:** These devices present the results of processing to the user. Examples include a monitor, printer, speakers, and projector.",
+        "**Backing Storage Devices:** These are the physical devices used for secondary storage. They are technically both input and output devices, as data can be read from them (input) and written to them (output). Examples include internal/external HDDs, SSDs, USB flash drives, and optical drives (CD/DVD/Blu-ray)."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Computer Components",
+      "href": "/mark?subject=9618&topic=3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Von Neumann vs Harvard - Computerphile",
+          "href": "https://www.youtube.com/watch?v=_3a7-E6hYJc"
+        },
+        {
+          "label": "How a CPU Works - Techquickie",
+          "href": "https://www.youtube.com/watch?v=cNN_tTXz-9o"
+        },
+        {
+          "label": "SSD vs. HDD - As Fast As Possible",
+          "href": "https://www.youtube.com/watch?v=YQEjGKYXroI"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Computer components",
+    "embedUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "launchUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "hint": "CPU, memory, storage, and I/O devices (9618 3.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "CPU: ALU + control unit + registers.",
+        "embedHint": "Fetch–decode–execute."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "RAM volatile; ROM non-volatile.",
+        "embedHint": "Primary vs secondary storage."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "SSD vs HDD: speed vs capacity/cost.",
+        "embedHint": "Secondary storage trade-offs."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Input, output, and backing storage devices.",
+        "embedHint": "Match device to role."
+      }
+    ]
+  }
 }

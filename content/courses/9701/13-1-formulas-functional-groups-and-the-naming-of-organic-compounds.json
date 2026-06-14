@@ -4,29 +4,239 @@
   "title": "Formulas, functional groups and the naming of organic compounds",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — homologous series, functional groups, and IUPAC naming.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental principles of organic chemistry, covering the various ways to represent molecules, the classification of compounds into homologous series based on functional groups, and the systematic IUPAC rules for naming them.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Identify functional groups in structures.",
-    "Name alkanes, alkenes, halogenoalkanes, alcohols.",
-    "Draw displayed and skeletal formulas.",
-    "State general formulas of homologous series."
+    "Interpret and use the general, structural, displayed, and skeletal formulae of organic compounds.",
+    "Define and identify key functional groups including alcohols, aldehydes, ketones, and carboxylic acids.",
+    "Apply IUPAC rules for nomenclature to name organic compounds containing up to six carbon atoms.",
+    "Describe the concept of a homologous series and its general characteristics."
   ],
   "simpleExplanation": {
-    "title": "Organic naming toolkit",
-    "summary": "Organic chemistry organises compounds into series sharing a functional group. IUPAC names encode chain length and substituents.",
+    "title": "The Language of Organic Molecules",
+    "summary": "Organic chemistry uses a systematic language (IUPAC) to name and classify the vast number of carbon-based compounds. This system is based on identifying the main carbon chain, functional groups, and their positions.",
+    "analogy": "Think of naming an organic molecule like giving a street address. The longest carbon chain is the 'street name' (e.g., Pentane Street), functional groups are 'house numbers' (e.g., No. 2), and any side branches are 'landmarks' (e.g., opposite the Oak tree). The IUPAC rules ensure everyone can find the exact same 'house' (molecule) from its 'address' (name).",
     "steps": [
-      "Longest carbon chain = parent name.",
-      "Number to give substituents lowest locants.",
-      "Suffix from highest priority group.",
-      "Homologues differ by CH₂."
+      "A homologous series is a family of compounds with the same functional group and general formula, where successive members differ by a –CH₂ group.",
+      "Functional groups are specific atoms or groups of atoms, like –OH or –COOH, that determine a molecule's characteristic chemical reactions.",
+      "Apply IUPAC rules by first finding the longest continuous carbon chain, then numbering it to give the lowest possible numbers (locants) to functional groups and substituents.",
+      "A displayed formula shows every single atom and every single bond, whereas a skeletal formula simplifies this by representing carbon chains as zig-zag lines."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a homologous series?",
+      "back": "A series of organic compounds with the same functional group and similar chemical properties, in which successive members differ by a $CH_2$ group."
+    },
+    {
+      "front": "Define 'functional group'.",
+      "back": "An atom or group of atoms in a molecule that is responsible for its characteristic chemical reactions."
+    },
+    {
+      "front": "What is the difference between a molecular formula and an empirical formula?",
+      "back": "A molecular formula shows the actual number of atoms of each element in a molecule (e.g., $C_2H_6$ for ethane). An empirical formula shows the simplest whole-number ratio of atoms (e.g., $CH_3$ for ethane)."
+    },
+    {
+      "front": "What is the key difference between a structural formula and a displayed formula?",
+      "back": "A structural formula shows the arrangement of atoms in a molecule without showing all the bonds (e.g., $CH_3CH_2OH$). A displayed formula shows every atom and every bond explicitly drawn out."
+    },
+    {
+      "front": "What does a skeletal formula show?",
+      "back": "A simplified representation where carbon chains are drawn as zig-zag lines. Vertices and line ends represent carbon atoms, and hydrogen atoms attached to carbons are not shown."
+    },
+    {
+      "front": "What is the first step in naming an organic compound using IUPAC rules?",
+      "back": "Identify the longest continuous carbon chain containing the principal functional group. This determines the 'stem' of the name."
+    },
+    {
+      "front": "What is the 'lowest locant rule' in IUPAC nomenclature?",
+      "back": "When numbering the carbon chain, start from the end that gives the functional groups and substituents the lowest possible numbers."
+    },
+    {
+      "front": "What suffix is used for an alcohol (containing an -OH group)?",
+      "back": "'-ol', for example, propan-1-ol."
+    },
+    {
+      "front": "What suffix is used for a carboxylic acid (containing a -COOH group)?",
+      "back": "'-oic acid', for example, ethanoic acid. The carbon in the COOH group is always C1."
+    },
+    {
+      "front": "What suffix is used for an aldehyde (containing a -CHO group)?",
+      "back": "'-al', for example, propanal. The carbon in the CHO group is always C1."
+    },
+    {
+      "front": "What suffix is used for a ketone (containing a C=O group not at the end of a chain)?",
+      "back": "'-one', for example, propanone. A number is needed for chains of 5 carbons or more to indicate the position of the C=O group (e.g., pentan-2-one)."
+    },
+    {
+      "front": "What is a common mistake when naming compounds with multiple identical substituents?",
+      "back": "Forgetting to use prefixes like 'di-', 'tri-', or 'tetra-' (e.g., 2,2-dimethylpropane, not 2-methyl-2-methylpropane). A number is required for each substituent, even if they are on the same carbon."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the IUPAC system so important in organic chemistry?",
+      "a": "With millions of organic compounds, a common or trivial name for each would be impossible to remember and would not describe the structure. The IUPAC system provides a logical, unambiguous set of rules so that any chemist worldwide can draw the exact structure of a compound from its name, and vice versa."
+    },
+    {
+      "q": "What is the real difference between a structural formula and a displayed formula?",
+      "a": "A structural formula shows the connectivity of atoms in a condensed way, for example, $CH_3CH_2COOH$. It tells you the structure without drawing it. A displayed formula is a full 2D drawing showing every single atom and every single bond connecting them. It is explicit and leaves no ambiguity about the bonding."
+    },
+    {
+      "q": "How do I decide which end of a carbon chain to start numbering from?",
+      "a": "You apply a priority system. The principal functional group (e.g., -OH, -COOH) must be given the lowest possible number. If there's a choice after that, or if there is no principal functional group, you then number to give any other substituents (like alkyl groups or halogens) the lowest possible numbers."
+    },
+    {
+      "q": "Do I need to memorise the order of priority for functional groups?",
+      "a": "For AS Level, you will typically encounter molecules with only one main functional group, which automatically becomes the principal group and determines the suffix. The full priority list (Carboxylic Acid > Aldehyde > Ketone > Alcohol > Alkene > Halogenoalkane) becomes more important in the A2 syllabus when dealing with polyfunctional compounds."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Organic naming** (13.1) is foundation for **Topic 14+**. Practise **name ↔ structure** both directions." },
-    { "type": "practice", "label": "Mark an organic naming question", "href": "/mark?subject=9701&topic=13.1" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to the world of organic chemistry! This branch of chemistry deals with carbon compounds, which form the basis of all known life. With millions of known organic compounds, we need a clear and logical system to describe and name them. This lesson will equip you with the fundamental tools to represent, classify, and name simple organic molecules according to the internationally agreed IUPAC system."
+    },
+    {
+      "type": "heading",
+      "content": "Representing Organic Molecules: Types of Formulae"
+    },
+    {
+      "type": "text",
+      "content": "A single organic compound can be represented in several ways, each providing a different level of detail. It is crucial to be able to interpret and draw each type."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Empirical Formula:** The simplest whole-number ratio of atoms of each element in a compound. (e.g., $CH_2O$ for glucose).",
+        "**Molecular Formula:** The actual number of atoms of each element in one molecule of the compound. (e.g., $C_6H_{12}O_6$ for glucose).",
+        "**Structural Formula:** Shows the arrangement of atoms in a molecule, indicating which atoms are bonded to which, but in a condensed format. (e.g., $CH_3CH_2OH$ for ethanol).",
+        "**Displayed Formula:** Shows every atom and every bond in the molecule. It gives a 2D representation of the connectivity. (e.g., drawing out all C-H, C-C, and C-O bonds for ethanol).",
+        "**Skeletal Formula:** A simplified representation where carbon chains are lines, and carbon/hydrogen atoms are implied. Vertices and ends of lines are carbons. Functional groups are explicitly drawn."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Homologous Series and Functional Groups"
+    },
+    {
+      "type": "text",
+      "content": "To manage the vast number of organic compounds, we group them into 'families' called homologous series. Each series is defined by a specific functional group, which is the reactive part of the molecule. All members of a homologous series share similar chemical properties and can be represented by a general formula."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Homologous Series Characteristics:** Same functional group, successive members differ by a $CH_2$ unit, can be represented by a general formula (e.g., Alkanes: $C_nH_{2n+2}$), show a gradual change in physical properties, and have similar chemical properties.",
+        "**Key AS-Level Functional Groups:**",
+        "Alkane (C-C single bonds)",
+        "Alkene (C=C double bond)",
+        "Alcohol (-OH)",
+        "Halogenoalkane (-F, -Cl, -Br, -I)",
+        "Aldehyde (-CHO)",
+        "Ketone (C=O within a chain)",
+        "Carboxylic Acid (-COOH)"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The IUPAC System of Nomenclature"
+    },
+    {
+      "type": "text",
+      "content": "The International Union of Pure and Applied Chemistry (IUPAC) provides a systematic method for naming organic compounds. The name of any compound is built from three parts: a prefix (substituents), a stem (number of carbons in the main chain), and a suffix (principal functional group)."
+    },
+    {
+      "type": "formula",
+      "content": "Name = (Prefixes) + (Stem) + (Suffix)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Step 1: Find the Stem.** Identify the longest continuous carbon chain that contains the principal functional group. This gives the stem name (meth-, eth-, prop-, but-, pent-, hex-).",
+        "**Step 2: Find the Suffix.** Identify the principal functional group to determine the suffix (e.g., '-ol' for alcohol, '-oic acid' for a carboxylic acid).",
+        "**Step 3: Find the Prefixes.** Identify any side chains (alkyl groups) or less important functional groups (e.g., halogens).",
+        "**Step 4: Number the Chain.** Number the longest chain from the end that gives the principal functional group the lowest possible number. If there's no functional group, give the substituents the lowest possible numbers.",
+        "**Step 5: Assemble the Name.** Write the full name by putting substituents in alphabetical order (ignoring di-, tri-), preceded by their position numbers. The stem and suffix follow. For example, 3-chloro-2-methylpentane."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An organic compound has the structural formula $CH_3CH(CH_3)CH_2CH_2OH$. Give its IUPAC name.",
+      "solution": "1. **Identify the principal functional group:** The -OH group indicates it is an alcohol, so the suffix will be '-ol'.\n2. **Find the longest carbon chain containing the functional group:** The longest chain has 4 carbon atoms. The stem is 'but-'. So, it is a butanol.\n3. **Number the chain:** We must give the -OH group the lowest possible number. Numbering from right to left gives the -OH group position 1. $CH_3-CH(CH_3)-CH_2-CH_2OH$ becomes $C_4-C_3(CH_3)-C_2-C_1OH$. \n4. **Identify substituents:** There is a methyl group ($CH_3$) on carbon 3.\n5. **Assemble the name:** The substituent is '3-methyl'. The parent alcohol is 'butan-1-ol'. Combining these gives the full IUPAC name: **3-methylbutan-1-ol**."
+    },
+    {
+      "type": "workedExample",
+      "question": "Draw the skeletal formula for 2,2-dichloro-3-methylbutane and state its molecular formula.",
+      "solution": "1. **Analyse the name:**\n   - 'butane' means a 4-carbon main chain.\n   - '3-methyl' means a $CH_3$ group on carbon 3.\n   - '2,2-dichloro' means two chlorine atoms, both on carbon 2.\n2. **Draw the chain and number it:** Draw a 4-carbon zig-zag chain. Let's number from left to right for convenience.\n3. **Add substituents:**\n   - At position 2, add two bonds to 'Cl'.\n   - At position 3, add a single line to represent the methyl group.\n4. **Final Skeletal Formula:** A 3-segment zig-zag line. The second vertex has two lines pointing to 'Cl'. The third vertex has one extra line (the methyl group).\n5. **Determine Molecular Formula:**\n   - Main chain: 4 carbons.\n   - Methyl group: 1 carbon.\n   - Total Carbons = 5 ($C_5$).\n   - Hydrogens: C1 has 3 H's. C2 has 0 H's (bonded to 2xCl, C1, C3). C3 has 1 H (bonded to C2, C4, and methyl C). C4 has 3 H's. The methyl group has 3 H's. Total H = 3+0+1+3+3 = 10 ($H_{10}$). \n   - Halogens: 2 chlorine atoms ($Cl_2$).\n   - Molecular Formula: **$C_5H_{10}Cl_2$**."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently test the difference between formula types. Be precise! A 'structural formula' like $CH_3CH(Cl)CH_3$ is not a 'displayed formula'. For displayed formulae, you must draw out every single bond, including all the C-H bonds. Forgetting one is a common way to lose a mark."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9701&topic=13.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IUPAC Nomenclature Guide",
+          "href": "https://www.qmul.ac.uk/sbcs/iupac/bonds/"
+        },
+        {
+          "label": "Chem LibreTexts: Organic Nomenclature",
+          "href": "https://chem.libretexts.org/Bookshelves/Organic_Chemistry/Map%3A_Organic_Chemistry_(McMurry)/03%3A_Alkanes_and_Their_Stereochemistry/3.04%3A_Naming_Alkanes"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "IUPAC naming and functional group recognition (9701 13.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Homologous series: same functional group, +CH₂.",
+        "embedHint": "General formula e.g. CₙH₂ₙ₊₂."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Functional groups: –OH, –COOH, –CHO, etc.",
+        "embedHint": "Priority for suffix naming."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "IUPAC: longest chain, lowest locants.",
+        "embedHint": "Number from end nearer substituent."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Displayed formula shows every bond.",
+        "embedHint": "Skeletal for rings/chains."
+      }
+    ]
+  }
 }

@@ -4,29 +4,229 @@
   "title": "Phenylamine and azo compounds",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level phenylamine — preparation, diazonium chemistry, and azo dyes.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "Explore the preparation and properties of phenylamine, its conversion into unstable diazonium salts, and the subsequent coupling reaction to form colourful azo dyes used in industry and as indicators.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Prepare phenylamine from nitrobenzene.",
-    "Explain reduced basicity of aryl amines.",
-    "Form and use diazonium salts.",
-    "Describe azo coupling to make dyes."
+    "Describe the preparation of phenylamine from the reduction of nitrobenzene.",
+    "Explain the relative basicity of phenylamine compared to ammonia and alkylamines, referencing lone pair delocalisation.",
+    "Describe the diazotisation of phenylamine and the coupling reaction of the resulting diazonium salt with phenol to form an azo dye.",
+    "Recall the structures of key compounds and understand the role of the azo group as a chromophore in coloured molecules."
   ],
   "simpleExplanation": {
-    "title": "From nitrobenzene to coloured dyes",
-    "summary": "Phenylamine is made by reduction. Diazonium salts formed at low temperature couple with phenols to give vivid azo compounds.",
+    "title": "From Benzene to Bright Dyes",
+    "summary": "We'll see how phenylamine is made and why it's a weak base due to its structure. Then, we'll turn it into a reactive diazonium salt, which couples with phenol to create a vibrant orange azo dye.",
+    "analogy": "Imagine a friend (the nitrogen atom in phenylamine) who has a spare ticket (the lone pair) to a concert. Instead of offering it to a newcomer (a proton), they are already sharing it with their large group of friends in the benzene ring. This makes them less available and thus a 'weak base'. To make a dye, we give this friend a very reactive, unstable 'high-five' hand (the diazonium group). This hand is desperate to connect with another molecule like phenol, forming a permanent, colourful link.",
     "steps": [
-      "C₆H₅NO₂ → C₆H₅NH₂ via Sn/HCl.",
-      "NaNO₂ + HCl below 10°C → diazonium salt.",
-      "Couple with phenol → orange azo dye.",
-      "–N=N– chromophore absorbs visible light."
+      "C₆H₅NH₂: lone pair delocalised — weaker base than alkyl amines. | Sim hint: Needs Sn/HCl to reduce nitrobenzene.",
+      "Diazonium salt at 0–5°C: C₆H₅N₂⁺Cl⁻. | Sim hint: Decomposes above 10°C.",
+      "Coupling with phenol gives orange azo dye. | Sim hint: Electrophilic substitution on activated ring.",
+      "Azo compounds: –N=N– chromophore coloured. | Sim hint: Used in dyes and indicators."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are the reagents and conditions for the preparation of phenylamine from nitrobenzene?",
+      "back": "Reagents: Tin (Sn) and concentrated hydrochloric acid (HCl). Conditions: Heat under reflux. An alkali like NaOH is then added to liberate the free amine."
+    },
+    {
+      "front": "Why is phenylamine a weaker base than ammonia ($NH_3$)?",
+      "back": "The lone pair of electrons on the nitrogen atom in phenylamine is delocalised into the pi-electron system of the benzene ring, making it less available to accept a proton ($H^+$)."
+    },
+    {
+      "front": "Why is ethylamine ($CH_3CH_2NH_2$) a stronger base than ammonia?",
+      "back": "The ethyl group is an electron-donating alkyl group (positive inductive effect), which increases the electron density on the nitrogen atom, making the lone pair more available to accept a proton."
+    },
+    {
+      "front": "Place ammonia, ethylamine, and phenylamine in order of increasing basicity.",
+      "back": "Phenylamine < Ammonia < Ethylamine"
+    },
+    {
+      "front": "What is diazotisation?",
+      "back": "The reaction of a primary aromatic amine (like phenylamine) with nitrous acid ($HNO_2$) at a low temperature (below 10°C) to form a diazonium salt."
+    },
+    {
+      "front": "What are the reagents used to make the nitrous acid for diazotisation?",
+      "back": "Sodium nitrite ($NaNO_2$) and a strong acid, typically dilute hydrochloric acid (HCl). The nitrous acid is generated in situ (in the reaction mixture)."
+    },
+    {
+      "front": "Why must the temperature be kept below 10°C during diazotisation?",
+      "back": "The diazonium salt formed is unstable and will decompose at higher temperatures, typically forming phenol, nitrogen gas, and HCl."
+    },
+    {
+      "front": "What is a coupling reaction in this context?",
+      "back": "The reaction where a diazonium salt acts as an electrophile and substitutes into another activated aromatic ring (like phenol or another amine) to form an azo compound."
+    },
+    {
+      "front": "What is a chromophore? Give an example.",
+      "back": "A part of a molecule responsible for its colour. The azo group, $-N=N-$, is the chromophore in azo dyes."
+    },
+    {
+      "front": "What conditions are required for the coupling of benzenediazonium chloride with phenol?",
+      "back": "Cold conditions (below 10°C) and alkaline conditions (e.g., by dissolving the phenol in NaOH solution)."
+    },
+    {
+      "front": "What is the observation when aqueous bromine is added to phenylamine?",
+      "back": "A white precipitate of 2,4,6-tribromophenylamine is formed, and the bromine water is decolourised. This shows the high reactivity of the phenylamine ring."
+    },
+    {
+      "front": "What is the structure of the benzenediazonium ion?",
+      "back": "$C_6H_5-N^+\\equiv N$"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why exactly must the diazotisation reaction be kept cold?",
+      "a": "The diazonium salt ($C_6H_5N_2^+$) is thermally unstable. The C-N bond is relatively weak, and at temperatures above 10°C, the molecule readily decomposes. Water in the aqueous solution acts as a nucleophile, displacing the excellent leaving group, nitrogen gas ($N_2$), to form phenol ($C_6H_5OH$)."
+    },
+    {
+      "q": "Why are alkaline conditions needed for the coupling reaction with phenol?",
+      "a": "The benzenediazonium ion is a weak electrophile. Phenol itself is not reactive enough to be attacked. In alkaline conditions (e.g., NaOH solution), phenol is deprotonated to form the phenoxide ion ($C_6H_5O^-$). The negative charge on the oxygen atom is delocalised into the ring, making the ring much more electron-rich and thus highly activated towards electrophilic attack."
+    },
+    {
+      "q": "Is phenylamine soluble in water?",
+      "a": "Phenylamine is only slightly soluble in water. Although the $-NH_2$ group can form hydrogen bonds with water, the large, non-polar benzene ring disrupts the hydrogen bonding network of water, making it largely insoluble. However, it will dissolve in acidic solutions because it acts as a base, forming the soluble phenylammonium salt, $C_6H_5NH_3^+$."
+    },
+    {
+      "q": "How can you distinguish between phenylamine and phenol in the lab?",
+      "a": "Several tests can be used. A simple one is to test the pH of their aqueous solutions; phenylamine is weakly basic, while phenol is weakly acidic. Alternatively, adding neutral iron(III) chloride solution will give a violet/purple colour with phenol but no change with phenylamine. Adding aqueous bromine will produce a white precipitate with both, so this is not a distinguishing test."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Phenylamine and azo compounds** (34.2) combine **aromatic chemistry** with **kinetic control** of diazonium stability." },
-    { "type": "practice", "label": "Mark a phenylamine question", "href": "/mark?subject=9701&topic=34.2" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Phenylamine, also known as aniline, is a vital starting material in the chemical industry, particularly for the synthesis of a vast range of brightly coloured dyes. This lesson explores the chemistry of phenylamine, from its synthesis and basic properties to its transformation into highly reactive diazonium salts, which are the key intermediates for producing azo dyes."
+    },
+    {
+      "type": "heading",
+      "content": "Preparation and Basicity of Phenylamine"
+    },
+    {
+      "type": "text",
+      "content": "Phenylamine ($C_6H_5NH_2$) is prepared by the reduction of nitrobenzene ($C_6H_5NO_2$). This is a common synthetic route in organic chemistry. The reaction is typically carried out using a reducing agent mixture of tin metal and concentrated hydrochloric acid, heated under reflux. The acidic conditions initially produce the phenylammonium ion, $C_6H_5NH_3^+$. A strong alkali, such as sodium hydroxide, must be added afterwards to deprotonate this ion and liberate the free phenylamine base."
+    },
+    {
+      "type": "formula",
+      "content": "$C_6H_5NO_2 + 6[H] \\xrightarrow{Sn/conc. HCl, heat} C_6H_5NH_2 + 2H_2O$"
+    },
+    {
+      "type": "text",
+      "content": "Phenylamine is an aromatic amine and its basicity is significantly different from aliphatic amines like ethylamine. It is a much weaker base than both ammonia and ethylamine. This is because the lone pair of electrons on the nitrogen atom is partially delocalised into the delocalised $\\pi$-system of the benzene ring. This overlap reduces the electron density on the nitrogen, making the lone pair less available to accept a proton. In contrast, the alkyl group in ethylamine has a positive inductive effect, pushing electron density onto the nitrogen and making it a stronger base than ammonia."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Order of Basicity:** Ethylamine > Ammonia > Phenylamine",
+        "**Phenylamine's weak basicity:** Due to delocalisation of the N lone pair into the benzene ring.",
+        "**Ethylamine's strong basicity:** Due to the electron-donating effect of the ethyl group."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Diazotisation of Phenylamine"
+    },
+    {
+      "type": "text",
+      "content": "One of the most important reactions of phenylamine is its conversion to a diazonium salt. This process is called diazotisation. Phenylamine is reacted with nitrous acid ($HNO_2$) at a temperature kept strictly below 10°C (ideally 0–5°C). Since nitrous acid is unstable, it is generated in situ by reacting sodium nitrite ($NaNO_2$) with a cold, dilute strong acid like HCl. The product is benzenediazonium chloride, $C_6H_5N_2^+Cl^-$. The diazonium ion is highly reactive and serves as a versatile intermediate in synthesis."
+    },
+    {
+      "type": "formula",
+      "content": "$C_6H_5NH_2 + NaNO_2 + 2HCl \\xrightarrow{0-5^\\circ C} C_6H_5N_2^+Cl^- + NaCl + 2H_2O$"
+    },
+    {
+      "type": "examTip",
+      "content": "The temperature condition for diazotisation is critical and frequently tested. If the temperature rises above 10°C, the unstable diazonium salt decomposes to form phenol ($C_6H_5OH$), nitrogen gas ($N_2$), and HCl. You would observe effervescence as nitrogen gas is evolved."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student prepares phenylamine by reducing 12.30 g of nitrobenzene ($M_r = 123.0$). After purification, 7.44 g of phenylamine ($M_r = 93.0$) is obtained. Calculate the percentage yield of the reaction.",
+      "solution": "1.  **Calculate moles of nitrobenzene (reactant):**\nMoles = Mass / $M_r$ = 12.30 g / 123.0 g mol⁻¹ = 0.100 mol\n\n2.  **Determine theoretical moles of phenylamine (product):**\nThe reaction is $C_6H_5NO_2 \\rightarrow C_6H_5NH_2$. The molar ratio is 1:1.\nTherefore, theoretical moles of phenylamine = 0.100 mol.\n\n3.  **Calculate theoretical mass of phenylamine:**\nMass = Moles × $M_r$ = 0.100 mol × 93.0 g mol⁻¹ = 9.30 g\n\n4.  **Calculate percentage yield:**\n% Yield = (Actual Mass / Theoretical Mass) × 100\n% Yield = (7.44 g / 9.30 g) × 100 = 80.0%\n\n**Answer:** The percentage yield is 80.0%."
+    },
+    {
+      "type": "heading",
+      "content": "Coupling Reactions and Azo Dyes"
+    },
+    {
+      "type": "text",
+      "content": "The benzenediazonium ion is a weak electrophile. It can react with highly activated aromatic rings, such as phenols or other aromatic amines, in an electrophilic substitution reaction known as a coupling reaction. For coupling with phenol, the reaction is carried out in cold, alkaline conditions. The alkaline conditions are necessary to deprotonate the phenol to form the more reactive phenoxide ion ($C_6H_5O^-$), which is a better nucleophile. The diazonium ion then attacks the benzene ring of the phenoxide ion, usually at the 4-position, to form a stable azo compound."
+    },
+    {
+      "type": "formula",
+      "content": "$C_6H_5N_2^+Cl^- + C_6H_5OH \\xrightarrow{NaOH(aq), <10^\\circ C} C_6H_5-N=N-C_6H_4OH + HCl$"
+    },
+    {
+      "type": "text",
+      "content": "The product, 4-hydroxyphenylazobenzene, is an example of an azo dye. Azo compounds contain the $-N=N-$ functional group, known as the azo group. This group acts as a chromophore, the part of the molecule that absorbs light. When the azo group links two benzene rings, it creates a large, stable, conjugated system of delocalised electrons. This extended delocalisation lowers the energy gap between the highest occupied molecular orbital (HOMO) and the lowest unoccupied molecular orbital (LUMO). As a result, the molecule absorbs light in the visible region of the electromagnetic spectrum, and we perceive the complementary colour. In this case, the product is an orange solid."
+    },
+    {
+      "type": "workedExample",
+      "question": "Outline the four main steps required to synthesise the orange dye, 4-hydroxyphenylazobenzene, starting from benzene. For each step, state the necessary reagents and conditions.",
+      "solution": "**Step 1: Nitration of Benzene**\n*   **Reagents:** Concentrated nitric acid ($HNO_3$) and concentrated sulfuric acid ($H_2SO_4$) (as catalyst).\n*   **Conditions:** Heat at 55°C.\n*   **Product:** Nitrobenzene ($C_6H_5NO_2$).\n\n**Step 2: Reduction of Nitrobenzene**\n*   **Reagents:** Tin (Sn) and concentrated hydrochloric acid (HCl), followed by addition of excess NaOH(aq).\n*   **Conditions:** Heat under reflux.\n*   **Product:** Phenylamine ($C_6H_5NH_2$).\n\n**Step 3: Diazotisation of Phenylamine**\n*   **Reagents:** Sodium nitrite ($NaNO_2$) and dilute hydrochloric acid (HCl).\n*   **Conditions:** Maintain temperature below 10°C (e.g., in an ice bath).\n*   **Product:** Benzenediazonium chloride ($C_6H_5N_2^+Cl^-$).\n\n**Step 4: Coupling Reaction**\n*   **Reagents:** Phenol ($C_6H_5OH$) dissolved in aqueous sodium hydroxide (alkaline conditions).\n*   **Conditions:** Maintain temperature below 10°C.\n*   **Product:** 4-hydroxyphenylazobenzene (orange precipitate)."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Phenylamine and Azo Dyes",
+      "href": "/mark?subject=9701&topic=34.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide: Phenylamine and Dyes",
+          "href": "https://www.chemguide.co.uk/organicprops/aniline/making.html"
+        },
+        {
+          "label": "Video tutorial on Azo Dye Synthesis",
+          "href": "https://www.youtube.com/watch?v=35a_wXG66-k"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Diazonium salts and azo dye coupling (34.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "C₆H₅NH₂: lone pair delocalised — weaker base than alkyl amines.",
+        "embedHint": "Needs Sn/HCl to reduce nitrobenzene."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Diazonium salt at 0–5°C: C₆H₅N₂⁺Cl⁻.",
+        "embedHint": "Decomposes above 10°C."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Coupling with phenol gives orange azo dye.",
+        "embedHint": "Electrophilic substitution on activated ring."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Azo compounds: –N=N– chromophore coloured.",
+        "embedHint": "Used in dyes and indicators."
+      }
+    ]
+  }
 }

@@ -4,29 +4,209 @@
   "title": "Linear combinations of random variables",
   "paper": "P6",
   "paperName": "Probability & Statistics 2",
-  "status": "premium",
-  "summary": "9709 S2 — E(aX+bY), Var(aX+bY), and sums of independent normals.",
+  "status": "pilot",
+  "summary": "This lesson covers the rules for finding the mean and variance of linear combinations of random variables, such as aX + bY. We explore the crucial condition of independence for the variance formula and apply these concepts to problems involving the Normal distribution.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Apply linearity of expectation.",
-    "Calculate variance of aX + bY for independent variables.",
-    "Find distributions of sums of normal variables.",
-    "Solve exam problems involving linear combinations."
+    "Calculate the expectation (mean) of a linear combination of random variables, E(aX + bY).",
+    "Calculate the variance of a linear combination of independent random variables, Var(aX + bY).",
+    "Understand and apply the property that a linear combination of independent Normal distributions is also a Normal distribution.",
+    "Solve probability problems involving linear combinations of random variables, often requiring standardisation."
   ],
   "simpleExplanation": {
-    "title": "Combining X and Y",
-    "summary": "Expectation is always linear. Variance of a sum adds only when X and Y are independent.",
+    "title": "Mixing & Matching Variables",
+    "summary": "This topic gives us the rules for combining the means and variances of different random variables. It's like creating a new recipe by mixing ingredients, and we need to predict the properties of the final dish.",
+    "analogy": "Imagine you're making a fruit salad. Let X be the weight of a random apple and Y be the weight of a random orange. The total weight is X + Y. The expected total weight is simply the expected weight of the apple plus the expected weight of the orange. The total uncertainty (variance) in the weight also combines the individual uncertainties of the apple and the orange. Even if you were finding the difference in weight, X - Y, the total uncertainty still comes from both fruits, so their variances still add up.",
     "steps": [
-      "E(aX + bY) = aE(X) + bE(Y).",
-      "Var(aX + bY) = a²Var(X) + b²Var(Y) if independent.",
-      "X + Y normal if X, Y independent normals.",
-      "Standardise with Z = (X − μ)/σ."
+      "E(aX + bY) = aE(X) + bE(Y) always (X, Y independent or not).",
+      "Var(aX + bY) = a²Var(X) + b²Var(Y) if X, Y independent.",
+      "Sum of independent normals is normal.",
+      "Standardise: Z = (X − μ)/σ for normal problems."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the formula for the expectation of a linear combination, E(aX + bY)?",
+      "back": "E(aX + bY) = aE(X) + bE(Y). This holds true whether X and Y are independent or not."
+    },
+    {
+      "front": "What is the formula for the variance of a linear combination, Var(aX + bY)?",
+      "back": "Var(aX + bY) = a²Var(X) + b²Var(Y). This formula requires X and Y to be independent random variables."
+    },
+    {
+      "front": "Why are the coefficients squared (a² and b²) in the variance formula?",
+      "back": "Because variance is measured in squared units. When a variable X is scaled by a factor 'a', its variance, which is related to the average squared deviation, is scaled by a²."
+    },
+    {
+      "front": "What is the formula for Var(X - Y) for independent variables X and Y?",
+      "back": "Var(X - Y) = Var(X) + Var(Y). This is a common trap! Variances always add because uncertainty increases regardless of whether you are adding or subtracting the variables."
+    },
+    {
+      "front": "If X ~ N(μ₁, σ₁²) and Y ~ N(μ₂, σ₂²) are independent, what is the distribution of X + Y?",
+      "back": "X + Y ~ N(μ₁ + μ₂, σ₁² + σ₂²). A linear combination of independent normal variables is also a normal variable."
+    },
+    {
+      "front": "What is the distribution of aX for X ~ N(μ, σ²)?",
+      "back": "aX ~ N(aμ, a²σ²). The mean is multiplied by 'a' and the variance by 'a²'."
+    },
+    {
+      "front": "What is the distribution of X + c for X ~ N(μ, σ²), where c is a constant?",
+      "back": "X + c ~ N(μ + c, σ²). Adding a constant shifts the mean but does not change the variance (spread)."
+    },
+    {
+      "front": "What is the key condition required to use the formula Var(aX + bY) = a²Var(X) + b²Var(Y)?",
+      "back": "The random variables X and Y must be independent."
+    },
+    {
+      "front": "Let X₁, X₂, ..., Xₙ be a random sample of size n from a distribution with mean μ and variance σ². What are E(∑Xᵢ) and Var(∑Xᵢ)?",
+      "back": "E(∑Xᵢ) = nμ and Var(∑Xᵢ) = nσ². This is a special case of a linear combination where all coefficients are 1."
+    },
+    {
+      "front": "What is the difference between 2X and X₁ + X₂?",
+      "back": "2X represents taking one observation and doubling it. Var(2X) = 4Var(X). X₁ + X₂ represents taking two independent observations and adding them. Var(X₁ + X₂) = Var(X₁) + Var(X₂) = 2Var(X)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why does variance add for X - Y? It feels like it should subtract.",
+      "a": "Variance measures uncertainty or spread. If you have two uncertain quantities, X and Y, their difference, X - Y, is also uncertain. The total uncertainty comes from the variability in *both* X and Y. Imagine two people trying to guess a length; the difference between their guesses is likely to be more variable than a single person's guess, not less. Mathematically, $\\text{Var}(X - Y) = \\text{Var}(X + (-1)Y) = \\text{Var}(X) + (-1)^2\\text{Var}(Y) = \\text{Var}(X) + \\text{Var}(Y)$."
+    },
+    {
+      "q": "Do the variables have to be Normally distributed for the E(...) and Var(...) formulas to work?",
+      "a": "No. The formulas $E(aX + bY) = aE(X) + bE(Y)$ and (for independent variables) $\\text{Var}(aX + bY) = a^2\\text{Var}(X) + b^2\\text{Var}(Y)$ work for *any* type of random variable, discrete or continuous. However, the property that the resulting distribution is *also* Normal only applies if the original variables X and Y were Normal."
+    },
+    {
+      "q": "What is the difference between finding the variance of 2X and the variance of X₁ + X₂?",
+      "a": "This is a crucial distinction. '2X' means you take one observation of X and double its value. The variance is $\\text{Var}(2X) = 2^2\\text{Var}(X) = 4\\text{Var}(X)$. 'X₁ + X₂' means you take two independent observations from the same distribution and add their values. The variance is $\\text{Var}(X_1 + X_2) = \\text{Var}(X_1) + \\text{Var}(X_2) = \\text{Var}(X) + \\text{Var}(X) = 2\\text{Var}(X)$. The variance is smaller when you combine two independent observations."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Linear combinations** (6.2) appear with **normal distribution** tables. State **independence** before adding variances." },
-    { "type": "practice", "label": "Mark a linear combinations question", "href": "/mark?subject=9709&topic=6.2" },
-    { "type": "resources", "items": [{ "label": "9709 course index", "href": "/courses/9709" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In many real-world scenarios, we are interested in quantities that are formed by combining two or more random variables. For example, the total profit from two different products, the difference in height between two groups, or the total weight of items being loaded onto a vehicle. This topic provides the mathematical framework to handle these situations, allowing us to find the mean and variance of these combined variables."
+    },
+    {
+      "type": "heading",
+      "content": "Expectation of Linear Combinations"
+    },
+    {
+      "type": "text",
+      "content": "The rule for finding the expectation (or mean) of a linear combination is wonderfully straightforward. It's known as the 'linearity of expectation'. It works for any random variables, whether they are independent or not. You simply apply the expectation operator to each part of the expression."
+    },
+    {
+      "type": "formula",
+      "content": "For any random variables X and Y, and constants a and b:\n\n$E(aX + bY) = aE(X) + bE(Y)$\n\nThis extends to subtraction and simple sums/differences:\n\n$E(X + Y) = E(X) + E(Y)$\n$E(X - Y) = E(X) - E(Y)$"
+    },
+    {
+      "type": "heading",
+      "content": "Variance of Linear Combinations"
+    },
+    {
+      "type": "text",
+      "content": "Calculating the variance of a linear combination is more subtle and requires a crucial condition: the random variables must be independent. Independence means that the outcome of one variable has no effect on the outcome of the other. When this condition is met, the variances of the individual variables add up. Notice how the constants are squared."
+    },
+    {
+      "type": "formula",
+      "content": "For **independent** random variables X and Y, and constants a and b:\n\n$\\text{Var}(aX + bY) = a^2\\text{Var}(X) + b^2\\text{Var}(Y)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Independence is essential:** This variance formula is only valid if X and Y are independent.",
+        "**Constants are squared:** Remember to square the coefficients 'a' and 'b'. This is because variance is a measure of spread in squared units.",
+        "**Variances always add:** For a difference, $\\text{Var}(X - Y) = \\text{Var}(X) + (-1)^2\\text{Var}(Y) = \\text{Var}(X) + \\text{Var}(Y)$. The uncertainty in a difference is the sum of the individual uncertainties. This is a very common exam trap."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The independent random variables X and Y have the following properties:\n$E(X) = 12$, $\\text{Var}(X) = 9$\n$E(Y) = 20$, $\\text{Var}(Y) = 7$\nFind the mean and variance of the random variable $W = 2X - 3Y$.",
+      "solution": "To find the mean of W, we use the linearity of expectation:\n$E(W) = E(2X - 3Y)$\n$E(W) = 2E(X) - 3E(Y)$\n$E(W) = 2(12) - 3(20) = 24 - 60 = -36$\n\nTo find the variance of W, we use the variance formula for independent variables:\n$\\text{Var}(W) = \\text{Var}(2X - 3Y)$\n$\\text{Var}(W) = 2^2\\text{Var}(X) + (-3)^2\\text{Var}(Y)$\n$\\text{Var}(W) = 4\\text{Var}(X) + 9\\text{Var}(Y)$\n$\\text{Var}(W) = 4(9) + 9(7) = 36 + 63 = 99$\n\nSo, the mean of W is -36 and the variance is 99."
+    },
+    {
+      "type": "heading",
+      "content": "Combinations of Normal Random Variables"
+    },
+    {
+      "type": "text",
+      "content": "A particularly powerful result occurs when we combine independent Normal random variables. Any linear combination of independent Normal variables is itself a Normal variable. This allows us to combine our rules for expectation and variance to define a new Normal distribution, which we can then use to find probabilities."
+    },
+    {
+      "type": "formula",
+      "content": "If $X \\sim N(\\mu_X, \\sigma_X^2)$ and $Y \\sim N(\\mu_Y, \\sigma_Y^2)$ are independent, then:\n\n$aX + bY \\sim N(a\\mu_X + b\\mu_Y, a^2\\sigma_X^2 + b^2\\sigma_Y^2)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The weights of adult male Labradors, M, are normally distributed with mean 30 kg and standard deviation 2 kg. The weights of adult female Labradors, F, are normally distributed with mean 25 kg and standard deviation 1.5 kg. The weights are independent.\n(i) Find the probability that a randomly chosen male Labrador is more than 6 kg heavier than a randomly chosen female Labrador.\n(ii) Find the probability that the total weight of two randomly chosen female Labradors is less than 48 kg.",
+      "solution": "(i) We are interested in the distribution of $D = M - F$.\nFirst, find the mean and variance of D.\n$E(D) = E(M - F) = E(M) - E(F) = 30 - 25 = 5$ kg.\n\nWe are given standard deviations, so we find the variances: $\\text{Var}(M) = 2^2 = 4$ and $\\text{Var}(F) = 1.5^2 = 2.25$.\n$\\text{Var}(D) = \\text{Var}(M - F) = \\text{Var}(M) + \\text{Var}(F) = 4 + 2.25 = 6.25$.\n\nSince M and F are Normal, D is also Normal. So, $D \\sim N(5, 6.25)$.\nWe need to find $P(D > 6)$.\nStandardise: $Z = \\frac{D - \\mu_D}{\\sigma_D} = \\frac{6 - 5}{\\sqrt{6.25}} = \\frac{1}{2.5} = 0.4$.\n$P(D > 6) = P(Z > 0.4) = 1 - P(Z < 0.4) = 1 - \\Phi(0.4)$.\nFrom tables, $\\Phi(0.4) = 0.6554$.\n$P(D > 6) = 1 - 0.6554 = 0.3446$.\n\n(ii) We are interested in the distribution of $T = F_1 + F_2$, where $F_1$ and $F_2$ are independent observations from the distribution of F.\n$E(T) = E(F_1) + E(F_2) = 25 + 25 = 50$ kg.\n$\\text{Var}(T) = \\text{Var}(F_1) + \\text{Var}(F_2) = 2.25 + 2.25 = 4.5$.\n\nSo, $T \\sim N(50, 4.5)$.\nWe need to find $P(T < 48)$.\nStandardise: $Z = \\frac{48 - 50}{\\sqrt{4.5}} = \\frac{-2}{2.1213...} = -0.9428...$\n$P(T < 48) = P(Z < -0.9428) = 1 - \\Phi(0.9428)$.\nFrom tables, $\\Phi(0.9428) \\approx 0.8271$.\n$P(T < 48) = 1 - 0.8271 = 0.1729$ (to 4 s.f.)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always be careful with variance vs standard deviation. The formulas use variance. If the question gives you standard deviation, square it first. When you standardise a Normal distribution, you divide by the standard deviation, so you'll need to take the square root of your calculated variance. Also, clearly define your new variable (e.g., 'Let W = 2X + Y') and state its distribution, including its mean and variance, before calculating any probabilities."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Exam Questions",
+      "href": "/mark?subject=9709&topic=6.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International syllabus (9709)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Khan Academy: Combining random variables",
+          "href": "https://www.khanacademy.org/math/ap-statistics/random-variables-ap/combining-random-variables/v/introduction-to-combining-random-variables"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Linear combinations",
+    "embedUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "launchUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "hint": "E(aX + bY) and Var(aX + bY) — independent X, Y (9709 6.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "E(aX + bY) = aE(X) + bE(Y) always (X, Y independent or not).",
+        "embedHint": "Linearity of expectation."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Var(aX + bY) = a²Var(X) + b²Var(Y) if X, Y independent.",
+        "embedHint": "Add variances — no cross term."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Sum of independent normals is normal.",
+        "embedHint": "Use to combine distributions."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Standardise: Z = (X − μ)/σ for normal problems.",
+        "embedHint": "Use tables for probabilities."
+      }
+    ]
+  }
 }

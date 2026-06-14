@@ -4,29 +4,205 @@
   "title": "Relative masses of atoms and molecules",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — Ar, Mr, isotopes, and the carbon-12 standard.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental concepts of relative masses used in chemistry. It covers relative atomic mass (Ar), relative isotopic mass, relative molecular mass (Mr), and relative formula mass (Mr), all defined against the carbon-12 standard. You will learn how to calculate these values using data from the periodic table, a crucial skill for quantitative chemistry.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define relative atomic and molecular mass.",
-    "Calculate Mr from formulas.",
-    "Explain isotopic abundance and Ar values.",
-    "Use masses in stoichiometry."
+    "Define relative atomic mass (Ar) and relative molecular/formula mass (Mr) based on the carbon-12 scale.",
+    "Explain the distinction between relative isotopic mass and relative atomic mass.",
+    "Calculate relative molecular mass (Mr) and relative formula mass (Mr) from given relative atomic masses.",
+    "Understand why relative masses are unitless quantities."
   ],
   "simpleExplanation": {
-    "title": "Comparing atom and molecule masses",
-    "summary": "Chemists compare masses on a scale where carbon-12 equals 12. Formula mass sums atomic masses in a compound.",
+    "title": "Weighing the Unweighable",
+    "summary": "Atoms are far too small to weigh on a normal scale, so chemists use a relative scale to compare their masses. Everything is compared to a standard atom: carbon-12.",
+    "analogy": "Imagine you need to find the mass of different fruits, but your scales are broken. You decide to use a standard blueberry as your reference, which you define as having a mass of '1 unit'. You find a strawberry has a mass of '5 units' and a plum has a mass of '25 units'. In chemistry, our 'blueberry' is 1/12th of a carbon-12 atom, and we use it to find the relative masses of all other atoms and molecules.",
     "steps": [
-      "Ar from periodic table.",
-      "Mr = sum of Ar in formula.",
-      "Isotopes affect weighted average Ar.",
-      "Units are dimensionless ratios."
+      "The relative atomic mass (Ar) of an element is the weighted average mass of its isotopes, found on the periodic table. For example, chlorine's Ar is 35.5 because it's a mix of different isotopes.",
+      "The relative molecular mass (Mr) of a molecule is the sum of the relative atomic masses of all its atoms. For H₂O, it's (2 x 1.0) + 16.0 = 18.0.",
+      "Relative isotopic mass is the mass of a single isotope (e.g., carbon-13), while relative atomic mass (Ar) is the average for the element. The standard for all relative masses is the carbon-12 atom, defined as exactly 12.",
+      "Relative mass (Mr) is essential for mole calculations, which connect the microscopic world of atoms to the macroscopic world of grams that we can measure in the lab. This is a key link to Topic 2.2."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is relative atomic mass, $A_r$?",
+      "back": "The weighted average mass of an atom of an element, compared to 1/12th of the mass of a single carbon-12 atom. It has no units."
+    },
+    {
+      "front": "What is relative isotopic mass?",
+      "back": "The mass of a single atom of a specific isotope, compared to 1/12th of the mass of a single carbon-12 atom. It is a number very close to the mass number."
+    },
+    {
+      "front": "What is relative molecular mass, $M_r$?",
+      "back": "The sum of the relative atomic masses of all the atoms in a simple molecule. It is used for covalently bonded substances and has no units."
+    },
+    {
+      "front": "What is relative formula mass, $M_r$?",
+      "back": "The sum of the relative atomic masses of the atoms in the formula unit of a compound. It is used for ionic compounds (e.g., NaCl) and giant covalent structures (e.g., SiO₂) and has no units."
+    },
+    {
+      "front": "Why is the $A_r$ of chlorine 35.5 and not a whole number?",
+      "back": "Because it is a weighted average of its naturally occurring isotopes, primarily chlorine-35 (abundance ~75%) and chlorine-37 (abundance ~25%)."
+    },
+    {
+      "front": "What is the standard used for all relative mass measurements?",
+      "back": "An atom of the carbon-12 isotope ($^{12}$C), which is assigned a mass of exactly 12."
+    },
+    {
+      "front": "What is the difference in usage between relative molecular mass and relative formula mass?",
+      "back": "Strictly, 'molecular mass' applies to simple molecules (like H₂O), while 'formula mass' applies to the formula unit of giant structures (like the ionic lattice NaCl). However, the symbol $M_r$ is commonly used for both."
+    },
+    {
+      "front": "Why do relative masses have no units?",
+      "back": "They are ratios. The mass of the substance is divided by the mass of the standard (1/12th of a $^{12}$C atom), so any mass units (like kg or g) cancel out."
+    },
+    {
+      "front": "Calculate the $M_r$ of ethanol, C₂H₅OH.",
+      "back": "$A_r$ values: C=12.0, H=1.0, O=16.0. $M_r = (2 \\times 12.0) + (6 \\times 1.0) + (1 \\times 16.0) = 24.0 + 6.0 + 16.0 = 46.0$."
+    },
+    {
+      "front": "Calculate the $M_r$ of ammonium sulfate, (NH₄)₂SO₄.",
+      "back": "$A_r$ values: N=14.0, H=1.0, S=32.1, O=16.0. $M_r = 2 \\times (14.0 + 4 \\times 1.0) + 32.1 + 4 \\times 16.0 = 2 \\times 18.0 + 32.1 + 64.0 = 36.0 + 32.1 + 64.0 = 132.1$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is relative atomic mass the same as mass number?",
+      "a": "No. Mass number (A) is the total count of protons and neutrons in a single atom's nucleus (an isotope) and is always an integer. Relative atomic mass ($A_r$) is the weighted average mass of all naturally occurring isotopes of an element compared to the carbon-12 standard, and is often a decimal value."
+    },
+    {
+      "q": "Why do we use 1/12th of a carbon-12 atom as the standard?",
+      "a": "Carbon-12 was chosen as a stable, common, and solid reference. Defining its mass as exactly 12 conveniently makes the relative masses of most other elements and isotopes very close to whole numbers, simplifying calculations. It replaced earlier standards based on hydrogen and oxygen to create a single, unified scale for both physicists and chemists."
+    },
+    {
+      "q": "Do I need to memorise the relative atomic masses for the exam?",
+      "a": "No, you will always be provided with a Periodic Table in your exam which contains all the necessary relative atomic masses. However, with practice, you will become familiar with the values for common elements (like C=12.0, H=1.0, O=16.0, N=14.0), which will help you work faster."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Relative masses** (2.1) feeds **2.2–2.4 mole calculations**. Always show **working with Ar/Mr values**." },
-    { "type": "practice", "label": "Mark a relative masses question", "href": "/mark?subject=9701&topic=2.1" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to the world of chemical measurement. Atoms and molecules are incredibly tiny, with masses far too small to be measured on a laboratory balance. To solve this, chemists developed a system of relative masses, allowing us to compare the mass of one atom to another. This concept is the foundation of stoichiometry and allows us to scale up from the atomic level to the measurable quantities we use in experiments."
+    },
+    {
+      "type": "heading",
+      "content": "The Carbon-12 Standard"
+    },
+    {
+      "type": "text",
+      "content": "Every measurement needs a reference point. For length, we have the metre; for time, the second. In chemistry, the standard for mass is the carbon-12 isotope, $^{12}$C. By international agreement, one atom of carbon-12 is assigned a mass of exactly 12 units. All other atomic and molecular masses are measured relative to this standard."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The standard for relative atomic mass is one atom of carbon-12.",
+        "It is defined as having a mass of exactly 12.",
+        "One 'atomic mass unit' (amu) is defined as 1/12th of the mass of a carbon-12 atom."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Relative Atomic Mass ($A_r$)"
+    },
+    {
+      "type": "text",
+      "content": "The relative atomic mass, $A_r$, of an element is the weighted average mass of its atoms compared to 1/12th the mass of a carbon-12 atom. The 'weighted average' part is crucial because most elements exist as a mixture of isotopes (atoms with the same number of protons but different numbers of neutrons). This is why the $A_r$ values on the periodic table are rarely whole numbers. For example, any sample of chlorine contains about 75.7% chlorine-35 and 24.3% chlorine-37, leading to an average mass of 35.5."
+    },
+    {
+      "type": "formula",
+      "content": "A_r = \\frac{\\text{weighted average mass of one atom of the element}}{\\frac{1}{12} \\times \\text{mass of one atom of carbon-12}}"
+    },
+    {
+      "type": "workedExample",
+      "question": "Naturally occurring boron is a mixture of two isotopes: boron-10 (relative isotopic mass 10.01) and boron-11 (relative isotopic mass 11.01). The relative abundance of boron-10 is 19.9% and boron-11 is 80.1%. Calculate the relative atomic mass of boron to one decimal place.",
+      "solution": "To find the weighted average mass, we multiply the mass of each isotope by its fractional abundance and sum the results.\n\nStep 1: Convert percentages to fractional abundances.\nAbundance of $^{10}$B = 19.9 / 100 = 0.199\nAbundance of $^{11}$B = 80.1 / 100 = 0.801\n\nStep 2: Calculate the weighted average.\n$A_r = (\\text{abundance of } ^{10}\\text{B} \\times \\text{mass of } ^{10}\\text{B}) + (\\text{abundance of } ^{11}\\text{B} \\times \\text{mass of } ^{11}\\text{B})$\n$A_r = (0.199 \\times 10.01) + (0.801 \\times 11.01)$\n$A_r = 1.99199 + 8.81901$\n$A_r = 10.811$\n\nStep 3: Round to the required number of decimal places.\n$A_r = 10.8$ (to 1 d.p.)"
+    },
+    {
+      "type": "heading",
+      "content": "Relative Molecular and Formula Mass ($M_r$)"
+    },
+    {
+      "type": "text",
+      "content": "Once we know the relative atomic masses of elements, we can calculate the relative mass of a compound. For simple covalent molecules, this is called the relative molecular mass. For ionic compounds, which exist as giant lattices rather than discrete molecules, we use the term relative formula mass. In both cases, the calculation is the same: you sum the relative atomic masses of all the atoms shown in the chemical formula. The symbol $M_r$ is commonly used for both."
+    },
+    {
+      "type": "formula",
+      "content": "M_r = \\sum (\\text{number of atoms of an element in the formula} \\times A_r \\text{ of that element})"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the relative formula mass of hydrated copper(II) sulfate, CuSO₄·5H₂O. Use the following $A_r$ values: Cu = 63.5, S = 32.1, O = 16.0, H = 1.0.",
+      "solution": "The formula shows one unit of copper(II) sulfate is associated with five molecules of water. The dot (·) means we add the masses together.\n\nStep 1: Calculate the $M_r$ of the anhydrous part (CuSO₄).\n$M_r(\\text{CuSO}_4) = A_r(\\text{Cu}) + A_r(\\text{S}) + 4 \\times A_r(\\text{O})$\n$M_r(\\text{CuSO}_4) = 63.5 + 32.1 + (4 \\times 16.0)$\n$M_r(\\text{CuSO}_4) = 63.5 + 32.1 + 64.0 = 159.6$\n\nStep 2: Calculate the mass of the water of crystallisation (5H₂O).\n$M_r(\\text{H}_2\\text{O}) = (2 \\times A_r(\\text{H})) + A_r(\\text{O}) = (2 \\times 1.0) + 16.0 = 18.0$\nMass of 5H₂O = $5 \\times 18.0 = 90.0$\n\nStep 3: Add the two parts together.\n$M_r(\\text{CuSO}_4 \\cdot 5\\text{H}_2\\text{O}) = 159.6 + 90.0 = 249.6$\n\nThe relative formula mass is 249.6."
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, always use the relative atomic mass values given in the question or the periodic table provided. Do not round them prematurely. When calculating $M_r$, pay close attention to brackets, e.g., in Ca(NO₃)₂, the '2' multiplies everything inside the bracket: one Ca, two N, and six O atoms. For hydrated salts, the dot means ADD the mass of the water molecules."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=9701&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International A-Level Chemistry Periodic Table",
+          "href": "https://www.cambridgeinternational.org/Images/414446-2020-2021-syllabus.pdf"
+        },
+        {
+          "label": "Interactive simulation on building molecules",
+          "href": "https://phet.colorado.edu/en/simulations/build-a-molecule"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Balancing Chemical Equations",
+    "embedUrl": "https://phet.colorado.edu/sims/html/balancing-chemical-equations/latest/balancing-chemical-equations_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/balancing-chemical-equations",
+    "hint": "Relative atomic mass and formula mass (9701 2.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Ar from periodic table; Cl = 35.5 average.",
+        "embedHint": "Sum Ar for formula mass."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Mr of molecule = sum of atomic masses.",
+        "embedHint": "H₂O Mr = 18."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Define relative isotopic mass vs Ar.",
+        "embedHint": "Carbon-12 standard."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Use Mr in mole calculations.",
+        "embedHint": "Link to 2.2 mole."
+      }
+    ]
+  }
 }

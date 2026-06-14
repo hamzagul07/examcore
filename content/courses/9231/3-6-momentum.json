@@ -1,0 +1,195 @@
+{
+  "slug": "3-6-momentum",
+  "topicCode": "3.6",
+  "title": "Momentum",
+  "paper": "P3",
+  "paperName": "Paper 3: Further Mechanics",
+  "status": "pilot",
+  "summary": "This lesson introduces linear momentum, the principle of its conservation, and the concept of impulse. It further explores collisions by applying Newton's Law of Restitution and the coefficient of restitution, enabling the analysis of both elastic and inelastic interactions.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand and use the definition of linear momentum and the impulse-momentum principle.",
+    "Apply the principle of conservation of linear momentum to solve problems involving collisions and explosions.",
+    "Understand and apply Newton's Law of Restitution in direct collisions.",
+    "Calculate changes in energy and determine the nature of a collision using the coefficient of restitution, e."
+  ],
+  "simpleExplanation": {
+    "title": "The Physics of Bumps and Bounces",
+    "summary": "Momentum is the 'quantity of motion' an object has, and it's conserved in collisions unless an outside force acts. We use this principle, along with how 'bouncy' a collision is, to predict what happens when objects hit each other.",
+    "analogy": "Imagine a game of pool. Before the break, the total 'motion' of all the balls is zero. When the cue ball strikes the pack, it transfers its motion. The total momentum is redistributed among the balls, but the overall sum remains constant (ignoring friction). The 'bounciness' of the cushions and balls determines how much energy is kept in each collision, which we measure with a special coefficient.",
+    "steps": [
+      "Draw 'before' and 'after' diagrams, clearly labelling velocities and defining a positive direction.",
+      "Apply the Principle of Conservation of Momentum to form your first equation.",
+      "Apply Newton's Law of Restitution, using the coefficient 'e', to form your second equation.",
+      "Solve the two simultaneous equations to find the unknown final velocities or other quantities."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is linear momentum?",
+      "back": "A vector quantity defined as the product of an object's mass and its velocity. Formula: $\\vec{p} = m\\vec{v}$. The standard unit is kg m s⁻¹."
+    },
+    {
+      "front": "State the Principle of Conservation of Linear Momentum.",
+      "back": "For a system of interacting bodies, the total linear momentum in any direction is constant, provided no external force acts on the system in that direction."
+    },
+    {
+      "front": "What is impulse?",
+      "back": "The change in momentum of an object. It is a vector quantity. Formula: $\\vec{I} = \\Delta \\vec{p} = m\\vec{v} - m\\vec{u}$. Its unit is the newton-second (Ns), which is equivalent to kg m s⁻¹."
+    },
+    {
+      "front": "How is impulse related to force?",
+      "back": "Impulse is the product of a constant force and the time it acts for ($I = F \\Delta t$). For a variable force, impulse is the integral of force with respect to time, which is the area under a force-time graph."
+    },
+    {
+      "front": "State Newton's Law of Restitution for direct collisions.",
+      "back": "The speed of separation of two colliding bodies is directly proportional to their speed of approach. Formula: Speed of Separation = $e \\times$ Speed of Approach."
+    },
+    {
+      "front": "What does the coefficient of restitution, $e$, represent?",
+      "back": "A dimensionless scalar value ($0 \\le e \\le 1$) that measures the elasticity of a collision. It quantifies the ratio of relative speed after to relative speed before impact."
+    },
+    {
+      "front": "What is a perfectly elastic collision?",
+      "back": "A collision in which total kinetic energy is conserved. The coefficient of restitution for such a collision is $e=1$."
+    },
+    {
+      "front": "What is a perfectly inelastic collision?",
+      "back": "A collision in which the particles coalesce (stick together) and move with a common velocity after impact. This corresponds to the maximum possible loss of kinetic energy. The coefficient of restitution is $e=0$."
+    },
+    {
+      "front": "What is a common trap when applying momentum and restitution formulae?",
+      "back": "Incorrectly handling signs and directions. Always define a positive direction at the start of the problem and apply it consistently to all velocities. A negative velocity simply means motion in the opposite direction."
+    },
+    {
+      "front": "When is momentum conserved but kinetic energy is not?",
+      "back": "In any inelastic collision ($0 \\le e < 1$). Momentum is conserved as long as the system is closed (no external forces), but kinetic energy is converted into other forms like heat, sound, or deformation."
+    },
+    {
+      "front": "How do you apply Newton's Law of Restitution for a collision with a fixed surface (e.g., a wall)?",
+      "back": "Treat the fixed surface as a particle of infinite mass with zero velocity before and after the collision. The law simplifies to: Speed of rebound = $e \\times$ Speed of approach."
+    },
+    {
+      "front": "What is the formula for 'Speed of Approach' for two particles A and B?",
+      "back": "If particles A and B are moving towards each other with speeds $u_A$ and $u_B$, the speed of approach is $u_A + u_B$. If they are moving in the same direction with $u_A > u_B$, it is $u_A - u_B$. A general formula is $|u_A - u_B|$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between momentum and kinetic energy?",
+      "a": "Momentum ($p=mv$) is a vector quantity that is always conserved in a closed system (no external forces). Kinetic energy ($KE = \\frac{1}{2}mv^2$) is a scalar quantity that is only conserved in perfectly elastic collisions ($e=1$). In most collisions, some kinetic energy is lost to heat, sound, or deformation."
+    },
+    {
+      "q": "Can momentum be negative?",
+      "a": "Yes. Because momentum is a vector, its sign depends on the direction of motion relative to a chosen positive axis. A negative momentum simply means the object is moving in the opposite direction to the one you've defined as positive."
+    },
+    {
+      "q": "Why do we use two different equations (Conservation of Momentum and Law of Restitution) for collisions?",
+      "a": "In a collision between two particles, there are typically two unknowns (the two final velocities). To solve for two unknowns, you need two independent equations. The Conservation of Momentum provides the first equation, based on Newton's laws. The Law of Restitution provides the second, which accounts for the energy loss or 'bounciness' of the specific materials involved in the collision."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In mechanics, we often need to analyse situations where objects collide or explode. While forces can be complex and act for very short periods, the concepts of momentum and impulse provide a powerful toolkit. This lesson will build on your existing knowledge of Newton's laws to develop principles that allow us to predict the outcome of such interactions, from billiard balls on a table to particles in an accelerator."
+    },
+    {
+      "type": "heading",
+      "content": "1. Linear Momentum and its Conservation"
+    },
+    {
+      "type": "text",
+      "content": "Linear momentum is a fundamental concept, often described as the 'quantity of motion' an object possesses. It is a vector quantity, meaning it has both magnitude and direction. The direction of the momentum is the same as the direction of the object's velocity."
+    },
+    {
+      "type": "formula",
+      "content": "Momentum ($\\vec{p}$) = Mass ($m$) $\\times$ Velocity ($\\vec{v}$)"
+    },
+    {
+      "type": "text",
+      "content": "The cornerstone of this topic is the Principle of Conservation of Linear Momentum. It states that for any system of colliding objects, the total momentum before the collision is equal to the total momentum after the collision, provided that no external forces (like friction or air resistance) act on the system. This is a direct consequence of Newton's Third Law."
+    },
+    {
+      "type": "formula",
+      "content": "For two particles in a direct collision: $m_1 u_1 + m_2 u_2 = m_1 v_1 + m_2 v_2$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Momentum is a vector. Always define a positive direction and be consistent with signs.",
+        "The principle applies to any closed system, including explosions where the initial momentum is often zero.",
+        "Remember to sum the momenta of all particles in the system before and after the event."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "2. Impulse and the Impulse-Momentum Principle"
+    },
+    {
+      "type": "text",
+      "content": "When a force acts on an object, it changes its momentum. The impulse of a force is defined as the product of the force and the time interval over which it acts. Crucially, impulse is equal to the change in momentum it produces. This is particularly useful for situations involving large forces acting over very short times, such as a cricket bat hitting a ball, where the exact force profile is unknown."
+    },
+    {
+      "type": "formula",
+      "content": "Impulse ($\\vec{I}$) = Change in Momentum ($\\Delta \\vec{p}$) \\\\ \\vec{I} = m\\vec{v} - m\\vec{u} = \\int F(t) \\, dt"
+    },
+    {
+      "type": "text",
+      "content": "For a constant force $F$ acting over a time $\\Delta t$, this simplifies to $I = F \\Delta t$. Graphically, the impulse is the area under a force-time graph. Since impulse is a vector, a positive impulse indicates a force acting in the positive direction, and a negative impulse indicates a force in the negative direction."
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle P of mass 2 kg and a particle Q of mass 3 kg are moving towards each other along the same straight line on a smooth horizontal plane. P has speed 5 m s⁻¹ and Q has speed 4 m s⁻¹. The particles collide. The coefficient of restitution between P and Q is 0.6. Find the speeds and directions of P and Q after the collision.",
+      "solution": "First, let's set up the problem. Let the direction of P's initial motion be the positive direction.\n\n**Diagram and Initial Values:**\nBefore collision:\nParticle P: $m_P = 2$ kg, $u_P = +5$ m s⁻¹\nParticle Q: $m_Q = 3$ kg, $u_Q = -4$ m s⁻¹\n\nAfter collision, let their velocities be $v_P$ and $v_Q$.\n\n**1. Conservation of Momentum (CoM):**\nTotal momentum before = Total momentum after\n$m_P u_P + m_Q u_Q = m_P v_P + m_Q v_Q$\n$(2)(5) + (3)(-4) = 2v_P + 3v_Q$\n$10 - 12 = 2v_P + 3v_Q$\n$-2 = 2v_P + 3v_Q$  (Equation 1)\n\n**2. Newton's Law of Restitution (NLR):**\nSpeed of Separation = $e \\times$ Speed of Approach\n$v_Q - v_P = e(u_P - u_Q)$\n$v_Q - v_P = 0.6(5 - (-4))$\n$v_Q - v_P = 0.6(9)$\n$v_Q - v_P = 5.4$  (Equation 2)\n\n**3. Solve Simultaneous Equations:**\nFrom Equation 2, $v_Q = v_P + 5.4$. Substitute this into Equation 1:\n$-2 = 2v_P + 3(v_P + 5.4)$\n$-2 = 2v_P + 3v_P + 16.2$\n$-18.2 = 5v_P$\n$v_P = -3.64$ m s⁻¹\n\nNow find $v_Q$ using the expression from Equation 2:\n$v_Q = -3.64 + 5.4$\n$v_Q = 1.76$ m s⁻¹\n\n**Conclusion:**\nAfter the collision:\n- Particle P has a speed of 3.64 m s⁻¹ and its direction of motion is reversed.\n- Particle Q has a speed of 1.76 m s⁻¹ and its direction of motion is also reversed."
+    },
+    {
+      "type": "heading",
+      "content": "3. Newton's Law of Restitution and Energy"
+    },
+    {
+      "type": "text",
+      "content": "While momentum is conserved in a closed system, kinetic energy is usually not. Most real-world collisions are 'inelastic', meaning some kinetic energy is converted into heat, sound, or work done in deforming the objects. The coefficient of restitution, $e$, is a number that tells us how 'bouncy' a collision is. It's defined as the ratio of the relative speed of separation to the relative speed of approach."
+    },
+    {
+      "type": "formula",
+      "content": "e = \\frac{\\text{Speed of Separation}}{\\text{Speed of Approach}} = \\frac{|v_2 - v_1|}{|u_1 - u_2|}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Perfectly elastic collision:** $e=1$. Kinetic energy is conserved.",
+        "**Inelastic collision:** $0 \\le e < 1$. Kinetic energy is lost.",
+        "**Perfectly inelastic collision:** $e=0$. The particles stick together (coalesce) and move with a common velocity. This is the maximum possible loss of KE."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw clear 'before' and 'after' diagrams. Define a positive direction and stick to it. When applying Newton's Law of Restitution, remember it relates the *relative* speeds. A common mistake is to forget the coefficient $e$ or to mix up the velocities. Writing 'CoM' and 'NLR' next to your equations is good practice to show the examiner your method."
+    },
+    {
+      "type": "workedExample",
+      "question": "A ball of mass 0.5 kg is dropped from a height of 5 m onto a smooth horizontal floor. It rebounds to a height of 3.2 m. Find:\n(a) the coefficient of restitution between the ball and the floor.\n(b) the loss in kinetic energy during the impact.",
+      "solution": "We need to find the ball's speed just before and just after it hits the floor. We can use kinematics, with $g = 9.8$ m s⁻².\n\n**Part (a): Find the coefficient of restitution, e**\n\n**1. Speed before impact ($u$):**\nThe ball is dropped from rest ($u_{initial}=0$) from a height $h_1 = 5$ m.\nUsing $v^2 = u^2 + 2as$:\n$u^2 = 0^2 + 2(9.8)(5)$\n$u^2 = 98$\n$u = \\sqrt{98} = 7\\sqrt{2}$ m s⁻¹ (This is the speed of approach)\n\n**2. Speed after impact ($v$):**\nThe ball rebounds to a height $h_2 = 3.2$ m. At its peak, its final velocity is 0.\nUsing $v^2 = u^2 + 2as$ (taking upwards as positive, so $a = -9.8$):\n$0^2 = v^2 + 2(-9.8)(3.2)$\n$0 = v^2 - 62.72$\n$v^2 = 62.72$\n$v = \\sqrt{62.72} \\approx 7.92$ m s⁻¹ (This is the speed of separation)\nNote: The exact value is $v = \\sqrt{62.72} = \\sqrt{3136/50} = 56/\\sqrt{50} = 56/(5\\sqrt{2}) = (28\\sqrt{2})/5$.\n\n**3. Apply Newton's Law of Restitution:**\nThe floor is stationary, so its speed is 0 before and after.\n$e = \\frac{\\text{Speed of Separation}}{\\text{Speed of Approach}} = \\frac{v}{u}$\n$e = \\frac{\\sqrt{62.72}}{\\sqrt{98}} = \\sqrt{\\frac{62.72}{98}} = \\sqrt{0.64}$\n$e = 0.8$\n\n**Part (b): Find the loss in kinetic energy**\n\nKE before impact = $\\frac{1}{2} m u^2 = \\frac{1}{2} (0.5) (98) = 24.5$ J\nKE after impact = $\\frac{1}{2} m v^2 = \\frac{1}{2} (0.5) (62.72) = 15.68$ J\n\nLoss in KE = KE before - KE after\nLoss in KE = $24.5 - 15.68 = 8.82$ J"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding of Momentum",
+      "href": "/mark?subject=9231&topic=3.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Physics & Maths Tutor: F.M. Momentum Notes",
+          "href": "https://www.physicsandmathstutor.com/maths-revision/a-level-further-maths/mechanics/momentum-collisions/"
+        },
+        {
+          "label": "Khan Academy: Momentum and Impulse",
+          "href": "https://www.khanacademy.org/science/physics/linear-momentum"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

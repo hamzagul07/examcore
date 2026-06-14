@@ -1,0 +1,166 @@
+{
+  "slug": "4-1-continuous-random-variables",
+  "topicCode": "4.1",
+  "title": "Continuous random variables",
+  "paper": "P4",
+  "paperName": "Paper 4: Further Probability & Statistics",
+  "status": "pilot",
+  "summary": "This lesson introduces continuous random variables (CRVs), focusing on the probability density function (PDF) and the cumulative distribution function (CDF). You will learn how to verify a valid PDF, calculate probabilities, and find the expectation and variance for a CRV.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand the properties of a probability density function (PDF) and a cumulative distribution function (CDF).",
+    "Calculate probabilities by integrating a PDF over a specified interval.",
+    "Find the expectation E(X) and variance Var(X) of a continuous random variable.",
+    "Use the CDF to find probabilities and understand its relationship with the PDF."
+  ],
+  "simpleExplanation": {
+    "title": "From Histograms to Curves",
+    "summary": "A continuous random variable can take any value in a given range, like height or time. We use a function called a Probability Density Function (PDF) to describe the likelihood of the variable falling within a particular interval, where probability is found by calculating the area under the curve.",
+    "analogy": "Imagine you have a very fine, smooth pile of sand representing all possible outcomes. The height of the sand pile at any point is the PDF – it tells you where values are more likely to occur. To find the probability of a value falling in a certain range, you don't pick a single grain of sand (which has zero width and zero probability); instead, you scoop up a section of sand and measure its volume (the area under the curve). The total volume of sand is always 1.",
+    "steps": [
+      "Define the Probability Density Function (PDF), $f(x)$, and verify its two key properties: $f(x) \\ge 0$ and the total area $\\int_{-\\infty}^{\\infty} f(x) \\, dx = 1$.",
+      "To find the probability $P(a < X < b)$, calculate the definite integral of the PDF between the limits $a$ and $b$: $\\int_{a}^{b} f(x) \\, dx$.",
+      "Calculate the expectation (mean) using $E(X) = \\int_{-\\infty}^{\\infty} x f(x) \\, dx$.",
+      "Calculate the variance using $Var(X) = E(X^2) - [E(X)]^2$, where $E(X^2) = \\int_{-\\infty}^{\\infty} x^2 f(x) \\, dx$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a continuous random variable (CRV)?",
+      "back": "A random variable that can take any value within a given range or interval. Examples include height, weight, and time."
+    },
+    {
+      "front": "What is a Probability Density Function (PDF), denoted $f(x)$?",
+      "back": "A function that describes the relative likelihood for a continuous random variable to take on a given value. The area under the graph of the PDF over an interval gives the probability of the variable falling in that interval."
+    },
+    {
+      "front": "What are the two essential properties of any PDF, $f(x)$?",
+      "back": "1. Non-negativity: $f(x) \\ge 0$ for all $x$. 2. Total probability is 1: $\\int_{-\\infty}^{\\infty} f(x) \\, dx = 1$."
+    },
+    {
+      "front": "For a CRV $X$, what is the value of $P(X=a)$?",
+      "back": "Zero. The probability of a CRV taking a single, exact value is zero. Probability is only defined over an interval, as the area under a single point is zero."
+    },
+    {
+      "front": "How do you calculate $P(a < X < b)$ for a CRV?",
+      "back": "By integrating the PDF from $a$ to $b$: $P(a < X < b) = \\int_{a}^{b} f(x) \\, dx$."
+    },
+    {
+      "front": "What is the Cumulative Distribution Function (CDF), denoted $F(x)$?",
+      "back": "$F(x)$ gives the cumulative probability that the variable $X$ is less than or equal to a value $x$. It is defined as $F(x) = P(X \\le x) = \\int_{-\\infty}^{x} f(t) \\, dt$."
+    },
+    {
+      "front": "How can you find the PDF, $f(x)$, if you are given the CDF, $F(x)$?",
+      "back": "By differentiating the CDF: $f(x) = F'(x) = \\frac{d}{dx}F(x)$."
+    },
+    {
+      "front": "What is the formula for the expectation (mean) of a CRV, $E(X)$?",
+      "back": "$E(X) = \\mu = \\int_{-\\infty}^{\\infty} x f(x) \\, dx$. This integral is taken over the entire range where $f(x)$ is non-zero."
+    },
+    {
+      "front": "What is the formula for the variance of a CRV, $Var(X)$?",
+      "back": "$Var(X) = \\sigma^2 = \\int_{-\\infty}^{\\infty} (x - \\mu)^2 f(x) \\, dx$, or more commonly, $Var(X) = E(X^2) - [E(X)]^2$, where $E(X^2) = \\int_{-\\infty}^{\\infty} x^2 f(x) \\, dx$."
+    },
+    {
+      "front": "For a CRV, is $P(a \\le X \\le b)$ different from $P(a < X < b)$?",
+      "back": "No, they are the same. Since $P(X=a)=0$ and $P(X=b)=0$, including the endpoints does not change the value of the integral."
+    },
+    {
+      "front": "What is a common trap when dealing with piecewise PDFs?",
+      "back": "Forgetting to consider all parts of the function's domain. When finding a constant like 'k' or calculating E(X), you may need to sum integrals over different intervals."
+    },
+    {
+      "front": "How do you use the CDF, $F(x)$, to find $P(a < X < b)$?",
+      "back": "$P(a < X < b) = F(b) - F(a)$. This is often quicker than integrating the PDF if the CDF is already known."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of continuous random variables. Unlike discrete variables which you've met before (like the score on a die), continuous variables can take any value in a range. Think of the exact time it takes for a bus to arrive or the precise height of a student. In this topic, we move from summing probabilities to integrating functions, opening up a powerful way to model real-world phenomena."
+    },
+    {
+      "type": "heading",
+      "content": "The Probability Density Function (PDF)"
+    },
+    {
+      "type": "text",
+      "content": "For a continuous random variable $X$, we can't assign a probability to a specific outcome. Instead, we use a Probability Density Function, $f(x)$, to describe the distribution of probabilities. The function $f(x)$ itself is not a probability, but the area under its curve between two points gives the probability that $X$ lies in that interval. For $f(x)$ to be a valid PDF, it must satisfy two crucial conditions."
+    },
+    {
+      "type": "formula",
+      "content": "A function $f(x)$ is a valid PDF if and only if:\n1. $f(x) \\ge 0$ for all $x$ in the domain.\n2. $\\int_{-\\infty}^{\\infty} f(x) \\, dx = 1$ (The total area under the curve is 1)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The probability of $X$ lying in the interval $[a, b]$ is given by $P(a \\le X \\le b) = \\int_{a}^{b} f(x) \\, dx$.",
+        "For any single point $c$, $P(X=c) = \\int_{c}^{c} f(x) \\, dx = 0$.",
+        "This means $P(a \\le X \\le b) = P(a < X < b) = P(a \\le X < b) = P(a < X \\le b)$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A continuous random variable $X$ has the probability density function given by\n$f(x) = \\begin{cases} kx(4-x) & 0 \\le x \\le 4 \\\\ 0 & \\text{otherwise} \\end{cases}$\n(a) Show that $k = \\frac{3}{32}$.\n(b) Find $P(1 < X < 3)$.",
+      "solution": "(a) For $f(x)$ to be a valid PDF, the total area under the curve must be 1.\n$\\int_{-\\infty}^{\\infty} f(x) \\, dx = \\int_{0}^{4} kx(4-x) \\, dx = 1$\n$k \\int_{0}^{4} (4x - x^2) \\, dx = 1$\n$k \\left[ 2x^2 - \\frac{x^3}{3} \\right]_{0}^{4} = 1$\n$k \\left( (2(4^2) - \\frac{4^3}{3}) - (0) \\right) = 1$\n$k \\left( 32 - \\frac{64}{3} \\right) = 1$\n$k \\left( \\frac{96-64}{3} \\right) = 1$\n$k \\left( \\frac{32}{3} \\right) = 1$\n$k = \\frac{3}{32}$ [M1 for integration, A1 for correct value]\n\n(b) Now we find the probability by integrating the PDF with $k=\\frac{3}{32}$ over the interval $(1, 3)$.\n$P(1 < X < 3) = \\int_{1}^{3} \\frac{3}{32}x(4-x) \\, dx$\n$= \\frac{3}{32} \\int_{1}^{3} (4x - x^2) \\, dx$\n$= \\frac{3}{32} \\left[ 2x^2 - \\frac{x^3}{3} \\right]_{1}^{3}$ [M1 for setting up correct integral]\n$= \\frac{3}{32} \\left( (2(3^2) - \\frac{3^3}{3}) - (2(1^2) - \\frac{1^3}{3}) \\right)$\n$= \\frac{3}{32} \\left( (18 - 9) - (2 - \\frac{1}{3}) \\right)$\n$= \\frac{3}{32} \\left( 9 - \\frac{5}{3} \\right)$\n$= \\frac{3}{32} \\left( \\frac{27-5}{3} \\right) = \\frac{3}{32} \\left( \\frac{22}{3} \\right)$\n$= \\frac{22}{32} = \\frac{11}{16}$ [A1 for correct final answer]"
+    },
+    {
+      "type": "heading",
+      "content": "Cumulative Distribution Function (CDF)"
+    },
+    {
+      "type": "text",
+      "content": "The Cumulative Distribution Function, $F(x)$, gives the probability that the random variable $X$ is less than or equal to a particular value $x$. It is the 'running total' of the probability. The CDF is found by integrating the PDF from the lower bound of its domain up to $x$. This is particularly useful for finding probabilities, as $P(a < X < b) = F(b) - F(a)$."
+    },
+    {
+      "type": "formula",
+      "content": "CDF: $F(x) = P(X \\le x) = \\int_{-\\infty}^{x} f(t) \\, dt$\nRelationship to PDF: $f(x) = F'(x)$"
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to find the CDF, remember it's a piecewise function. For the example $f(x) = \\frac{3}{32}x(4-x)$ on $[0, 4]$, the CDF is $F(x)=0$ for $x<0$, $F(x)=1$ for $x>4$, and $F(x) = \\int_0^x \\frac{3}{32}t(4-t) \\, dt$ for $0 \\le x \\le 4$. Don't forget to define the function for all real numbers."
+    },
+    {
+      "type": "heading",
+      "content": "Expectation and Variance"
+    },
+    {
+      "type": "text",
+      "content": "Just as with discrete variables, we can calculate the mean (or expectation) and variance of a continuous random variable. The expectation, $E(X)$, is the long-run average value of $X$, and the variance, $Var(X)$, measures the spread or dispersion of the distribution. The calculations involve integrating $x f(x)$ and $x^2 f(x)$ over the domain of the variable."
+    },
+    {
+      "type": "formula",
+      "content": "Expectation: $E(X) = \\int_{-\\infty}^{\\infty} x f(x) \\, dx$\nVariance: $Var(X) = E(X^2) - [E(X)]^2$, where $E(X^2) = \\int_{-\\infty}^{\\infty} x^2 f(x) \\, dx$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The lifetime, $T$ years, of a particular electronic component has PDF given by\n$f(t) = \\begin{cases} \\frac{1}{4}e^{-\\frac{t}{4}} & t \\ge 0 \\\\ 0 & \\text{otherwise} \\end{cases}$\nFind the mean lifetime, $E(T)$, and the variance of the lifetime, $Var(T)$.",
+      "solution": "First, we find the expectation, $E(T)$.\n$E(T) = \\int_{0}^{\\infty} t f(t) \\, dt = \\int_{0}^{\\infty} t \\cdot \\frac{1}{4}e^{-\\frac{t}{4}} \\, dt$\nThis requires integration by parts: $\\int u \\frac{dv}{dt} dt = uv - \\int v \\frac{du}{dt} dt$.\nLet $u=t \\implies \\frac{du}{dt}=1$. Let $\\frac{dv}{dt}=\\frac{1}{4}e^{-\\frac{t}{4}} \\implies v = -e^{-\\frac{t}{4}}$. [M1 for setting up correct integral and identifying integration by parts]\n$E(T) = \\left[ -t e^{-\\frac{t}{4}} \\right]_{0}^{\\infty} - \\int_{0}^{\\infty} (-e^{-\\frac{t}{4}}) \\, dt$\n$= \\left[ -t e^{-\\frac{t}{4}} \\right]_{0}^{\\infty} + \\int_{0}^{\\infty} e^{-\\frac{t}{4}} \\, dt$\nAs $t \\to \\infty$, $t e^{-\\frac{t}{4}} \\to 0$. At $t=0$, the term is 0. So the first part is 0.\n$E(T) = \\left[ -4e^{-\\frac{t}{4}} \\right]_{0}^{\\infty} = (0) - (-4e^0) = 4$. The mean lifetime is 4 years. [A1 for E(T)]\n\nNext, we find $E(T^2)$ to calculate the variance.\n$E(T^2) = \\int_{0}^{\\infty} t^2 f(t) \\, dt = \\int_{0}^{\\infty} \\frac{1}{4}t^2 e^{-\\frac{t}{4}} \\, dt$\nAgain, use integration by parts. Let $u=t^2 \\implies \\frac{du}{dt}=2t$. Let $\\frac{dv}{dt}=\\frac{1}{4}e^{-\\frac{t}{4}} \\implies v = -e^{-\\frac{t}{4}}$. [M1 for setting up E(T^2) integral]\n$E(T^2) = \\left[ -t^2 e^{-\\frac{t}{4}} \\right]_{0}^{\\infty} - \\int_{0}^{\\infty} (-e^{-\\frac{t}{4}})(2t) \\, dt$\nThe first term is 0. \n$E(T^2) = 2 \\int_{0}^{\\infty} t e^{-\\frac{t}{4}} \\, dt = 8 \\int_{0}^{\\infty} \\frac{1}{4} t e^{-\\frac{t}{4}} \\, dt$\nWe recognise the integral as $E(T)$, which we found to be 4.\n$E(T^2) = 8 \\times E(T) = 8 \\times 4 = 32$. [A1 for E(T^2)]\n\nFinally, calculate the variance.\n$Var(T) = E(T^2) - [E(T)]^2 = 32 - 4^2 = 32 - 16 = 16$. [M1 A1 for Var(T)]\nThe variance of the lifetime is 16 years$^2$."
+    },
+    {
+      "type": "faq",
+      "q": "Why is the probability of a continuous random variable taking an exact value zero?",
+      "a": "Think of probability as the area under the PDF curve. An exact value, like $X=3$, corresponds to a line segment on the x-axis. This line has a width of zero. The area of a rectangle with zero width is zero. Therefore, the integral from a point 'a' to 'a' is always zero, meaning $P(X=a)=0$. We can only talk about the probability of a variable falling within a range of values, which corresponds to an area with a non-zero width."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions on Continuous Random Variables",
+      "href": "/mark?subject=9231&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International syllabus (9231)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        },
+        {
+          "label": "Khan Academy: Continuous Probability Distributions",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/continuous-random-variables/v/continuous-probability-distribution"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

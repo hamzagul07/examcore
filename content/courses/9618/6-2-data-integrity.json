@@ -4,48 +4,184 @@
   "title": "Data Integrity",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 AS — validation, verification, parity checks, and checksums to maintain accurate data.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores data integrity, a fundamental concept in computing that ensures data remains accurate and consistent throughout its lifecycle. We will differentiate integrity from security and examine the key methods used to maintain it: data validation and data verification, including specific checks like range checks and check digits.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Distinguish data integrity from data security.",
-    "Explain validation and verification techniques.",
-    "Describe parity bits and checksums.",
-    "Suggest integrity controls for given scenarios."
+    "Understand the concept of data integrity and its importance.",
+    "Distinguish clearly between data integrity and data security.",
+    "Describe and apply various data validation techniques (e.g., range, format, length, presence checks).",
+    "Describe and apply data verification techniques (e.g., double entry, visual check)."
   ],
   "simpleExplanation": {
-    "title": "Data stays correct",
-    "summary": "Integrity ensures data is accurate and consistent. Validation checks input reasonableness; verification confirms transfer accuracy.",
+    "title": "Keeping Data Correct",
+    "summary": "Data integrity is all about making sure that the data stored in a computer system is accurate, consistent, and trustworthy. It's not about keeping data secret, but about ensuring it hasn't been accidentally corrupted or entered incorrectly.",
+    "analogy": "Imagine a library. The librarian's job is to ensure every book is on the correct shelf, has the right label, and all its pages are intact. This is data integrity – maintaining the correctness and order of the information. Data security, on the other hand, is like locking the library doors at night to prevent unauthorised people from getting in. Both are important, but they solve different problems.",
     "steps": [
-      "Validation: range, type, length, format checks on entry.",
-      "Verification: double entry, visual check after transfer.",
-      "Parity bit: even/odd bit count detects single-bit errors.",
-      "Checksum: sum/hash compared before and after transmission."
+      "Data integrity means ensuring data is accurate and consistent. For example, a student's age must be a sensible positive number.",
+      "Integrity is different from security. Integrity is about data quality (is it correct?), while security is about protection (is it safe from unauthorised access?).",
+      "Validation is an automated check to see if data is reasonable before it's accepted. For instance, a system can validate that a postcode entry matches the UK format 'LLN NLL'.",
+      "Verification is a check to ensure data has been copied correctly from one place to another. A common method is double entry, where you are asked to type your new password twice."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Data Integrity?",
+      "back": "The maintenance of, and the assurance of the accuracy and consistency of, data over its entire life-cycle. It ensures data is correct, complete, and reliable."
+    },
+    {
+      "front": "What is Data Security?",
+      "back": "The protection of data from unauthorised access, use, disclosure, alteration, or destruction. It focuses on confidentiality and preventing malicious actions."
+    },
+    {
+      "front": "What is Data Validation?",
+      "back": "An automatic check performed by a computer program to ensure that the data entered is sensible, reasonable, and within acceptable limits before it is processed."
+    },
+    {
+      "front": "What is Data Verification?",
+      "back": "A check to ensure that data has been accurately transcribed from a source document or medium to another. It detects human errors made during data entry."
+    },
+    {
+      "front": "Give an example of a Range Check.",
+      "back": "Checking that a number entered for a student's exam mark is between 0 and 100 inclusive."
+    },
+    {
+      "front": "Give an example of a Format Check.",
+      "back": "Checking that a car registration number is entered in the pattern 'LLNN LLL', where L is a letter and N is a number."
+    },
+    {
+      "front": "What is a Presence Check?",
+      "back": "A validation check that ensures a field has not been left blank and that some data has been entered."
+    },
+    {
+      "front": "What is a Length Check?",
+      "back": "A validation check that ensures the entered data has the correct number of characters, or is within a minimum and maximum length."
+    },
+    {
+      "front": "What is a Check Digit?",
+      "back": "A form of redundancy check used for error detection on identification numbers. It's an extra digit calculated from the other digits, which is a type of validation."
+    },
+    {
+      "front": "What is Double Entry?",
+      "back": "A verification method where data is entered twice, and the two entries are compared by the computer. If they differ, an error is flagged."
+    },
+    {
+      "front": "What is a Visual Check?",
+      "back": "A verification method where the user compares the data entered on the screen with the original source document to check for transcription errors. Also known as proofreading."
+    },
+    {
+      "front": "Can data pass validation but still be incorrect? Explain with an example.",
+      "back": "Yes. If a user's correct age is 25 but they accidentally type 26, a range check for ages 18-65 would pass. The data is valid (reasonable) but not correct."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can a piece of data pass validation but still be incorrect?",
+      "a": "Absolutely. Validation only checks if data is reasonable, not if it's factually correct. For example, if you are entering a customer's age and their true age is 34, but you accidentally type 43, a range check (e.g., 18-99) would pass. The data is valid, but it is not correct."
+    },
+    {
+      "q": "Is a check digit a validation or a verification method?",
+      "a": "A check digit is a type of validation. It's an automated, mathematical check performed by the system on a single piece of data (the number) to see if it's internally consistent and likely to be valid. It doesn't involve comparing the data to an original source, which is the hallmark of verification."
+    },
+    {
+      "q": "What's the difference between a format check and a type check?",
+      "a": "A type check ensures the data is of the correct data type (e.g., INTEGER, STRING, BOOLEAN). A format check is more specific; it checks that a string follows a particular pattern (e.g., a postcode like 'SW1A 0AA' follows the pattern LLNA NAA). A postcode passes a string type check, but might fail a more specific format check."
+    },
+    {
+      "q": "Why is double entry verification better than a visual check?",
+      "a": "Double entry is generally more reliable because the comparison is done automatically by the computer, which doesn't make mistakes or lose concentration. A visual check relies on human proofreading, which is prone to error, especially when dealing with large amounts of data or long strings of numbers."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Data integrity** (6.2) pairs with **data security** (6.1). Do not confuse **validation** (reasonable input) with **verification** (correct copy)."
+      "content": "Imagine checking your bank balance and finding it's £1,000,000 instead of £100. While exciting, this is a catastrophic failure of data integrity. Data integrity is the bedrock of reliable information systems, ensuring that the data we depend on—from bank accounts to medical records—is accurate and trustworthy. This lesson will explore how we maintain this correctness through two key processes: validation and verification."
+    },
+    {
+      "type": "heading",
+      "content": "Data Integrity vs. Data Security"
+    },
+    {
+      "type": "text",
+      "content": "It is crucial to distinguish between data integrity and data security, as they address different concerns. Data integrity is about the quality and reliability of the data itself. It aims to prevent accidental changes to data. Data security, in contrast, is about protecting data from unauthorised access and malicious intent. It aims to prevent deliberate, unauthorised changes or theft of data."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Referential integrity in DBMS — FK matches PK",
-        "Transcription errors caught by verification, not validation alone",
-        "CRC stronger than simple checksum for error detection",
-        "Backup supports integrity recovery after corruption"
+        "**Integrity Focus:** Accuracy, consistency, and completeness of data.",
+        "**Security Focus:** Confidentiality, availability, and protection against unauthorised access.",
+        "**Example of Integrity Failure:** A power outage corrupts a customer database file, making records unreadable.",
+        "**Example of Security Breach:** A hacker bypasses a firewall to steal the customer database file.",
+        "An employee accidentally typing the wrong price for a product is an integrity issue. An ex-employee logging in to deliberately change prices is a security issue."
       ]
     },
     {
+      "type": "heading",
+      "content": "Ensuring Integrity Part 1: Validation"
+    },
+    {
+      "type": "text",
+      "content": "Data validation is the process of using automatic checks, performed by the computer system, to ensure that data is sensible, reasonable, and plausible before it is accepted into the system. Validation can't confirm that the data is 100% correct, but it can reject many obvious errors at the point of entry."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Range Check:** Ensures a number is within a specified lower and upper bound. E.g., an exam percentage must be between 0 and 100.",
+        "**Format Check:** Ensures data conforms to a predefined pattern. E.g., a date must be in `DD/MM/YYYY` format.",
+        "**Length Check:** Ensures data is a specific number of characters long, or within a min/max length. E.g., a mobile number must be 11 digits.",
+        "**Presence Check:** Ensures a field is not left empty. E.g., an email address field cannot be blank.",
+        "**Type Check:** Ensures data is of a specific data type. E.g., the 'Age' field must contain a number, not text.",
+        "**Check Digit:** An extra digit added to a number, calculated from the other digits. The computer can recalculate the check digit to validate the number's integrity. Commonly used in ISBNs for books and EAN/UPC barcodes."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An ordering system uses 6-digit product codes. The 7th digit is a check digit calculated using the modulus-11 method with weights 7, 6, 5, 4, 3, 2. Calculate the check digit for the product code `830154`.",
+      "solution": "1.  **Multiply each digit by its corresponding weight:**\n    (8 × 7) + (3 × 6) + (0 × 5) + (1 × 4) + (5 × 3) + (4 × 2)\n    = 56 + 18 + 0 + 4 + 15 + 8\n\n2.  **Sum the results:**\n    Sum = 101\n\n3.  **Find the remainder when the sum is divided by 11:**\n    101 ÷ 11 = 9 remainder 2\n    Remainder = 2\n\n4.  **Subtract the remainder from 11:**\n    Check value = 11 - 2 = 9\n\n5.  **Determine the final check digit:**\n    If the result is 11, the check digit is 0. If the result is 10, the check digit is 'X'. Otherwise, the result is the check digit.\n    Here, the result is 9.\n\n    **The check digit is 9.** The full product code would be `8301549`."
+    },
+    {
+      "type": "heading",
+      "content": "Ensuring Integrity Part 2: Verification"
+    },
+    {
+      "type": "text",
+      "content": "Data verification is a process used to check that data has been accurately transcribed from a source medium to a computer system. Its sole purpose is to detect errors made during the manual process of typing data in. Unlike validation, verification often involves a human or a comparison of two data sets."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Double Entry:** The data is entered twice, often by two different people or by the same person at different times. The computer system compares the two entries. If they do not match, an error is reported, and the user is prompted to correct it. This is common for password creation.",
+        "**Visual Check (Proofreading):** The user manually compares the data displayed on the screen with the original source document (e.g., a paper form). This relies on the user's concentration to spot any differences."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently ask for the difference between validation and verification. Remember: **Validation** is an *automated* check for *sensible* data (e.g., is the age between 0-120?). **Verification** is a check for *transcription errors* (e.g., did you type what you meant to type?). Be specific in your answers; 'a check' is too vague. Name the type of check, e.g., 'a range check' or 'double entry verification'."
+    },
+    {
+      "type": "workedExample",
+      "question": "A hospital clerk is entering a patient's National Health Service (NHS) number, `123 456 7890`, from a paper form into a new database. The system rejects the entry.\n\n(a) The NHS number is always 10 digits long. State the validation check that would have failed.\n(b) Describe a verification method the clerk could use to ensure they enter the number correctly on the second attempt.",
+      "solution": "(a) **Validation Check:** A **length check**. The number entered, `1234567890`, has 10 digits. However, the spaces mean the input string `123 456 7890` has a length of 12 characters. A strict length check expecting exactly 10 characters would fail. Alternatively, a format check expecting 10 numeric digits (`NNNNNNNNNN`) would also fail due to the spaces.\n\n(b) **Verification Method:** The clerk could use a **visual check**. After typing the number `1234567890` without spaces, they would carefully compare the digits on the screen with the digits on the original paper form to ensure they match perfectly before submitting. Alternatively, the system could be designed for **double entry**, where it prompts the clerk to type the 10-digit number a second time and compares the two entries."
+    },
+    {
       "type": "practice",
-      "label": "Mark a data integrity question",
+      "label": "Test Your Knowledge on Data Integrity",
       "href": "/mark?subject=9618&topic=6.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9618)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        },
+        {
+          "label": "BBC Bitesize on Validation and Verification",
+          "href": "https://www.bbc.co.uk/bitesize/guides/z9p9j6f/revision/1"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

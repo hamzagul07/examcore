@@ -4,39 +4,231 @@
   "title": "Numerical solution of equations",
   "paper": "P3",
   "paperName": "Pure Mathematics 3",
-  "status": "premium",
-  "summary": "9709 P3 — change of sign, iteration, and Newton–Raphson with GeoGebra root-finding graph.",
+  "status": "pilot",
+  "summary": "This lesson introduces numerical methods for finding approximate solutions to equations that cannot be solved analytically. It covers the change-of-sign rule for locating roots, the iterative method $x_{n+1} = g(x_n)$ including convergence conditions, and the Newton-Raphson method.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Locate roots using sign change in an interval.",
-    "Rearrange equations for fixed-point iteration.",
-    "Apply Newton–Raphson formula.",
-    "Interpret convergence and divergence."
+    "Use the change-of-sign rule to show the existence of a root in a given interval.",
+    "Apply the iterative formula $x_{n+1} = g(x_n)$ to find a root to a specified degree of accuracy.",
+    "Understand the condition for convergence, $|g'(x)| < 1$, and interpret the process graphically using cobweb and staircase diagrams.",
+    "Use the Newton-Raphson method to find a root of an equation."
   ],
   "simpleExplanation": {
-    "title": "When algebra fails",
-    "summary": "Numerical methods approximate roots. Iteration x_{n+1} = g(x_n) converges if |g′(x)| < 1 near the root.",
+    "title": "Zeroing In on Solutions",
+    "summary": "Some equations are impossible to solve perfectly, so we use clever guessing to get very close. These methods start with a rough idea of where the answer is and then refine it step-by-step until we're accurate enough.",
+    "analogy": "Imagine you've lost your keys in a long, dark corridor. First, you check one end and find you're too far left, then the other end and find you're too far right. You know they must be somewhere in between. Numerical methods are like taking systematic steps from one end, getting closer with each step, until you're standing right on top of your keys.",
     "steps": [
-      "f(a)f(b) < 0 → root in (a, b).",
-      "Choose g(x) so iteration moves toward root.",
-      "Newton: x_{n+1} = x_n − f(x_n)/f′(x_n).",
-      "Show at least 3 iterations for full marks."
+      "Change of sign indicates root in interval [a, b].",
+      "Iteration x_{n+1} = g(x_n) — converges if |g′(x)| < 1 near root.",
+      "Newton–Raphson: x_{n+1} = x_n − f(x_n)/f′(x_n).",
+      "Show convergence failure when gradient small or wrong start."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are the two conditions for the change-of-sign rule to confirm a root of $f(x)=0$ in the interval $[a, b]$?",
+      "back": "1. The function $f(x)$ must be continuous on the interval $[a, b]$. 2. $f(a)$ and $f(b)$ must have opposite signs, i.e., $f(a) \\times f(b) < 0$."
+    },
+    {
+      "front": "What is an iterative formula?",
+      "back": "A formula of the form $x_{n+1} = g(x_n)$ that generates a sequence of approximations to a root, where the next term is calculated using the previous term."
+    },
+    {
+      "front": "How do you show that a root lies between two values, say $x=1$ and $x=2$?",
+      "back": "Define $f(x)$ such that the equation is $f(x)=0$. Calculate $f(1)$ and $f(2)$. If one is positive and the other is negative, and $f(x)$ is continuous, a root exists between 1 and 2."
+    },
+    {
+      "front": "What is the condition for an iterative process $x_{n+1} = g(x_n)$ to converge to a root $\\alpha$?",
+      "back": "The condition for convergence is that $|g'(\\alpha)| < 1$. In practice, we check that $|g'(x)| < 1$ for all $x$ in an interval containing the root."
+    },
+    {
+      "front": "What does a 'cobweb' diagram indicate about convergence?",
+      "back": "A cobweb diagram, which spirals inwards, occurs when $-1 < g'(x) < 0$ near the root. The sequence of approximations oscillates about the root as it converges."
+    },
+    {
+      "front": "What does a 'staircase' diagram indicate about convergence?",
+      "back": "A staircase diagram, which steps towards the root from one side, occurs when $0 < g'(x) < 1$ near the root. The sequence of approximations approaches the root without oscillating."
+    },
+    {
+      "front": "What is the Newton-Raphson formula?",
+      "back": "The formula is $x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$. It uses the tangent to the curve at $x_n$ to find the next approximation."
+    },
+    {
+      "front": "When might the Newton-Raphson method fail?",
+      "back": "It can fail if the starting value $x_0$ is near a turning point (where $f'(x_n) \\approx 0$), or if the starting value is too far from the actual root, potentially leading to a different root or diverging."
+    },
+    {
+      "front": "How do you determine the value of a root to '3 decimal places'?",
+      "back": "Find an interval $[a, b]$ of width $0.001$ (e.g., $[1.234, 1.235]$) that contains the root. Then, state the root is $1.234$ or $1.235$ by checking which value it is closer to, or more simply, find two values like $1.2345$ and $1.2355$ that round to the same 3 d.p. value and show a sign change between them."
+    },
+    {
+      "front": "Common Exam Trap: What must you do when a question involves trigonometric functions?",
+      "back": "ALWAYS ensure your calculator is in RADIANS mode, unless the question explicitly specifies degrees. Numerical methods in calculus are based on radian measure."
+    },
+    {
+      "front": "How do you show your working for an iterative process in an exam?",
+      "back": "Write down the iterative formula, the starting value $x_0$, and then at least two subsequent values ($x_1, x_2, ...$) to at least 2 more decimal places than the final required accuracy. Then state the final answer."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I choose a starting value $x_0$ if it's not given?",
+      "a": "First, use the change-of-sign rule to find a small interval $[a, b]$ that contains the root. A good choice for $x_0$ is the midpoint of this interval, $(a+b)/2$. Alternatively, sketch the graph to see which end of the interval looks closer to the root."
+    },
+    {
+      "q": "Why do we need to rearrange $f(x)=0$ to $x=g(x)$? Can't we just use $f(x)$?",
+      "a": "The iterative method $x_{n+1} = g(x_n)$ works by finding a fixed point, where the input equals the output ($x = g(x)$). This is graphically where the curve $y=g(x)$ intersects the line $y=x$. This intersection point is also a root of the original equation $f(x)=0$. Simply iterating with $f(x)$ (e.g., $x_{n+1} = f(x_n)$) doesn't have this property and won't converge to a root of $f(x)=0$."
+    },
+    {
+      "q": "What's the difference between a cobweb and a staircase diagram?",
+      "a": "Both show how an iteration converges. A staircase diagram happens when $0 < g'(x) < 1$, and the approximations approach the root from one side. A cobweb diagram happens when $-1 < g'(x) < 0$, and the approximations oscillate around the root, spiralling inwards."
+    },
+    {
+      "q": "Is the Newton-Raphson method always better than the standard iterative method?",
+      "a": "Not always. Newton-Raphson usually converges much faster (it has 'quadratic convergence'), but it is more sensitive to the starting value and can fail spectacularly if you start near a turning point. The standard $x=g(x)$ iteration is often more robust, even if it's slower."
+    },
+    {
+      "q": "My calculator gives an answer straight away. Why do I need to show all the steps?",
+      "a": "Examiners are testing your understanding of the numerical process, not just your ability to use a calculator's 'solve' function. Marks are awarded for showing the correct method: stating the formula, showing the values of the first few iterations to sufficient precision, and performing a final sign-change check to justify your rounded answer."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Numerical methods** (3.6) require **clear iteration tables**. State **failure** if divergence — do not hide bad iterates."
+      "content": "Welcome to the world of numerical methods. While you've spent years learning to solve equations like $x^2 - 4 = 0$ exactly, many equations in science and engineering, such as $e^x = 4x$, have no 'neat' solution. This is where numerical methods come in. They provide powerful techniques to find highly accurate approximate solutions, which are often all we need in the real world."
+    },
+    {
+      "type": "heading",
+      "content": "Locating Roots: The Change-of-Sign Rule"
+    },
+    {
+      "type": "text",
+      "content": "Before we can find a root, we need to know roughly where it is. The change-of-sign rule is a simple but fundamental concept for this. If a continuous function $f(x)$ is positive at one point, $x=a$, and negative at another, $x=b$, it must have crossed the x-axis somewhere between $a$ and $b$. This crossing point is a root of the equation $f(x)=0$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To show a root of $f(x)=0$ exists in the interval $[a, b]$:",
+        "1. Ensure $f(x)$ is a continuous function in that interval (polynomials, exponentials, and trig functions usually are).",
+        "2. Calculate $f(a)$ and $f(b)$.",
+        "3. State that there is a change of sign (one is positive, one is negative).",
+        "4. Conclude that a root must lie between $a$ and $b$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Iterative Method: $x_{n+1} = g(x_n)$"
+    },
+    {
+      "type": "text",
+      "content": "Once we have an interval containing a root, we can use an iterative method to home in on it. This involves rearranging the original equation $f(x)=0$ into the form $x = g(x)$. We then pick a starting value $x_0$ inside our interval and use it to generate a sequence of values: $x_1 = g(x_0)$, $x_2 = g(x_1)$, and so on. If the iteration converges, this sequence will get closer and closer to the actual root."
+    },
+    {
+      "type": "formula",
+      "content": "x_{n+1} = g(x_n)"
+    },
+    {
+      "type": "workedExample",
+      "question": "The equation $x^3 + 2x - 1 = 0$ has a single real root. \n(i) Show that the root lies between $x=0.4$ and $x=0.5$. \n(ii) Use the iterative formula $x_{n+1} = \\frac{1}{x_n^2 + 2}$ with a starting value of $x_0 = 0.45$ to find the root correct to 3 decimal places. Give the result of each iteration to 5 decimal places.",
+      "solution": "(i) Let $f(x) = x^3 + 2x - 1$.\n$f(0.4) = (0.4)^3 + 2(0.4) - 1 = 0.064 + 0.8 - 1 = -0.136$\n$f(0.5) = (0.5)^3 + 2(0.5) - 1 = 0.125 + 1 - 1 = 0.125$\nSince $f(x)$ is a continuous function and there is a change of sign between $x=0.4$ and $x=0.5$, a root must lie in the interval $(0.4, 0.5)$. [M1 for both evaluations, A1 for conclusion]\n\n(ii) We are given the iterative formula $x_{n+1} = \\frac{1}{x_n^2 + 2}$ and $x_0 = 0.45$.\n$x_1 = \\frac{1}{(0.45)^2 + 2} = \\frac{1}{2.2025} = 0.45403...$\n$x_2 = \\frac{1}{(0.45403...)^2 + 2} = 0.45340...$\n$x_3 = \\frac{1}{(0.45340...)^2 + 2} = 0.45352...$\n$x_4 = \\frac{1}{(0.45352...)^2 + 2} = 0.45350...$\n$x_5 = \\frac{1}{(0.45350...)^2 + 2} = 0.45350...$ [M1 for using the formula correctly at least once]\n\nThe values are converging. To show the root is $0.454$ to 3 d.p., we check the interval $[0.4535, 0.4545]$.\n$f(0.4535) = (0.4535)^3 + 2(0.4535) - 1 = -0.00018... < 0$\n$f(0.4545) = (0.4545)^3 + 2(0.4545) - 1 = +0.0020... > 0$\nThere is a sign change in the interval $[0.4535, 0.4545]$, so the root is $0.454$ correct to 3 decimal places. [A1 for showing iterations converge, A1 for correct check and final answer]"
+    },
+    {
+      "type": "heading",
+      "content": "Convergence and Graphical Interpretation"
+    },
+    {
+      "type": "text",
+      "content": "Not all rearrangements of $f(x)=0$ lead to a convergent iteration. For the sequence to converge to a root $\\alpha$, the condition $|g'(\\alpha)| < 1$ must be met. This means the gradient of the curve $y=g(x)$ must be less steep than the line $y=x$ near the root. We can visualise this with staircase diagrams (for $0 < g'(x) < 1$) and cobweb diagrams (for $-1 < g'(x) < 0$). If $|g'(x)| > 1$, the iteration will diverge, moving away from the root."
+    },
+    {
+      "type": "examTip",
+      "content": "To show a root is correct to $n$ decimal places, you must show a change of sign in an interval of width $10^{-n}$ that contains your answer. For example, to show $\\alpha = 2.153$ (3 d.p.), you must test the interval $[2.1525, 2.1535]$. Simply showing that your iterations are constant to $n$ d.p. is not sufficient proof for the final marks."
+    },
+    {
+      "type": "heading",
+      "content": "The Newton-Raphson Method"
+    },
+    {
+      "type": "text",
+      "content": "The Newton-Raphson method is another, often much faster, iterative method. It works by using the tangent to the curve $y=f(x)$ at an approximation $x_n$ to find the next, better approximation $x_{n+1}$. The next approximation is where the tangent line intersects the x-axis. This process is repeated until the desired accuracy is achieved."
+    },
+    {
+      "type": "formula",
+      "content": "x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}"
+    },
+    {
+      "type": "workedExample",
+      "question": "The equation $e^x - 5x = 0$ has a root near $x=2$. Use the Newton-Raphson method with a starting value of $x_0=2$ to find this root correct to 4 decimal places.",
+      "solution": "Let $f(x) = e^x - 5x$. Then $f'(x) = e^x - 5$.\nThe Newton-Raphson formula is $x_{n+1} = x_n - \\frac{e^{x_n} - 5x_n}{e^{x_n} - 5}$. [M1 for correct $f'(x)$ and formula]\n\nWe start with $x_0 = 2$.\n$x_1 = 2 - \\frac{e^2 - 5(2)}{e^2 - 5} = 2 - \\frac{7.389056 - 10}{7.389056 - 5} = 2 - \\frac{-2.610944}{2.389056} = 2 - (-1.09288) = 3.09288$\n[M1 for first correct application of formula]\n\n$x_2 = 3.09288 - \\frac{e^{3.09288} - 5(3.09288)}{e^{3.09288} - 5} = 3.09288 - \\frac{22.0295 - 15.4644}{22.0295 - 5} = 3.09288 - \\frac{6.5651}{17.0295} = 3.09288 - 0.38551 = 2.70737$\n\n$x_3 = 2.70737 - \\frac{e^{2.70737} - 5(2.70737)}{e^{2.70737} - 5} = 2.70737 - \\frac{14.9888 - 13.53685}{14.9888 - 5} = 2.70737 - \\frac{1.45195}{9.9888} = 2.70737 - 0.14535 = 2.56202$\n\nContinuing this process (often done on a calculator):\n$x_4 = 2.54303$\n$x_5 = 2.54264$\n$x_6 = 2.54264$\n\nThe values have converged. To check for 4 d.p., we test the interval $[2.542635, 2.542645]$.\n$f(2.542635) = e^{2.542635} - 5(2.542635) = -0.000003... < 0$\n$f(2.542645) = e^{2.542645} - 5(2.542645) = +0.000009... > 0$\nSince there is a sign change, the root is $2.5426$ correct to 4 decimal places. [A1 for showing convergence, A1 for correct answer to 4 d.p. after a valid check]"
+    },
+    {
+      "type": "examTip",
+      "content": "The Newton-Raphson method can converge very quickly, but it's sensitive to the starting value. If $f'(x_n)$ is close to zero (i.e., you are near a turning point), the fraction becomes very large and can send your next approximation far away. Always be mindful of the graph's shape."
     },
     {
       "type": "practice",
-      "label": "Mark a numerical methods question",
+      "label": "Practice Questions on Numerical Solutions",
       "href": "/mark?subject=9709&topic=3.6"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "GeoGebra: Visualising Numerical Methods",
+          "href": "https://www.geogebra.org/m/c2p7v4a4"
+        },
+        {
+          "label": "ExamSolutions: Iteration Playlist",
+          "href": "https://www.youtube.com/playlist?list=PL-I-gObVi9-A6wD2s2PRmB02qXjZtI1p_"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Root-finding graph",
+    "embedUrl": "https://www.geogebra.org/classic?material=dw8UVau8",
+    "launchUrl": "https://www.geogebra.org/classic?material=dw8UVau8",
+    "hint": "Sign change and iteration — locate roots of f(x) = 0 (9709 3.6).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Change of sign indicates root in interval [a, b].",
+        "embedHint": "f(a)f(b) < 0 — locate root graphically."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Iteration x_{n+1} = g(x_n) — converges if |g′(x)| < 1 near root.",
+        "embedHint": "Rearrange f(x) = 0 to suitable g(x)."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Newton–Raphson: x_{n+1} = x_n − f(x_n)/f′(x_n).",
+        "embedHint": "Fast convergence if good starting value."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Show convergence failure when gradient small or wrong start.",
+        "embedHint": "Sketch cobweb or staircase diagram."
+      }
+    ]
+  }
 }

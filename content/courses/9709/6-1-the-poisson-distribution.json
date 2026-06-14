@@ -4,39 +4,233 @@
   "title": "The Poisson distribution",
   "paper": "P6",
   "paperName": "Probability & Statistics 2",
-  "status": "premium",
-  "summary": "9709 S2 — Poisson model, probabilities, mean λ, and binomial approximation with GeoGebra.",
+  "status": "pilot",
+  "summary": "The Poisson distribution is a discrete probability distribution that models the number of times an event occurs in a fixed interval of time or space. This lesson covers its properties, the formula for calculating probabilities, its mean and variance, and its use as an approximation to the binomial distribution under specific conditions.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Identify situations suitable for Poisson model.",
-    "Calculate Poisson probabilities.",
-    "Use the property E(X) = Var(X) = λ.",
-    "Apply Poisson approximation to binomial."
+    "Understand the conditions under which a Poisson distribution can be used as a model.",
+    "Calculate probabilities for a Poisson distribution using the formula, calculators, and statistical tables.",
+    "Recall and use the mean and variance of the Poisson distribution.",
+    "Understand and apply the Poisson distribution as an approximation to the binomial distribution."
   ],
   "simpleExplanation": {
-    "title": "Rare events in an interval",
-    "summary": "Poisson counts events in fixed time/space when events are rare and independent. Mean and variance both equal λ.",
+    "title": "Counting Rare Events",
+    "summary": "The Poisson distribution helps us predict the chances of a certain number of rare, random events happening in a set interval. Its unique property is that its average (mean) and its spread (variance) are the same.",
+    "analogy": "Imagine you're watching for shooting stars on a clear night. You know on average you see about two per hour, but they appear randomly. The Poisson distribution could tell you the probability of seeing exactly five shooting stars in the next hour, or the probability of seeing none at all. It's a tool for counting things that happen at a known average rate but at unpredictable moments.",
     "steps": [
-      "X ~ Po(λ): P(X = r) = e^{−λ} λ^r / r!.",
-      "E(X) = Var(X) = λ.",
-      "Binomial B(n,p) ≈ Po(np) when n large, p small.",
-      "Use cumulative tables for P(X ≤ k)."
+      "Poisson models events in a fixed interval, like time or space, where the average number of events, λ, is known. The events must be rare and independent.",
+      "The probability of observing exactly 'r' events is given by the formula P(X = r) = e^{−λ} λ^r / r!. You'll typically use your calculator's function or statistical tables for this.",
+      "A unique and crucial property is that the mean (expected value) and the variance are both equal to λ. So, E(X) = Var(X) = λ.",
+      "When n is large and p is small, the Poisson distribution can approximate the binomial distribution. We set the Poisson mean λ equal to the binomial mean, np."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a Poisson distribution used to model?",
+      "back": "The number of occurrences of a random, independent event within a fixed interval of time or space."
+    },
+    {
+      "front": "What are the three main conditions for a Poisson distribution?",
+      "back": "Events occur singly (one at a time), independently of each other, and at a constant average rate (λ)."
+    },
+    {
+      "front": "What is the parameter of a Poisson distribution and what does it represent?",
+      "back": "The parameter is λ (lambda). It represents the mean (or average) number of occurrences in the given interval."
+    },
+    {
+      "front": "What is the formula for the probability of 'r' occurrences in a Poisson distribution?",
+      "back": "$P(X=r) = \\frac{e^{-\\lambda} \\lambda^r}{r!}$"
+    },
+    {
+      "front": "What is the mean (Expected Value) of a variable $X \\sim Po(\\lambda)$?",
+      "back": "$E(X) = \\lambda$"
+    },
+    {
+      "front": "What is the variance of a variable $X \\sim Po(\\lambda)$?",
+      "back": "$Var(X) = \\lambda$"
+    },
+    {
+      "front": "What is the unique relationship between the mean and variance of a Poisson distribution?",
+      "back": "They are equal. $E(X) = Var(X) = \\lambda$. This is a key identifying feature."
+    },
+    {
+      "front": "Under what conditions can a Binomial distribution $B(n, p)$ be approximated by a Poisson distribution?",
+      "back": "When $n$ is large (e.g., $n > 50$) and $p$ is small (e.g., $p < 0.1$)."
+    },
+    {
+      "front": "When approximating $B(n, p)$ with $Po(\\lambda)$, what value does $\\lambda$ take?",
+      "back": "$\\\"lambda$ is set to the mean of the binomial distribution: $\\lambda = np$."
+    },
+    {
+      "front": "A question gives an average rate of 12 events per hour. What is $\\lambda$ for a 15-minute period?",
+      "back": "The interval is 15/60 = 1/4 of an hour. So, the new $\\lambda = 12 \\times \\frac{1}{4} = 3$."
+    },
+    {
+      "front": "How do you calculate $P(X > 4)$ using cumulative tables or a calculator's CDF?",
+      "back": "$P(X > 4) = 1 - P(X \\le 4)$. Remember 'greater than' is '1 minus less than or equal to'."
+    },
+    {
+      "front": "How can you calculate $P(X=5)$ using only a cumulative Poisson function?",
+      "back": "$P(X=5) = P(X \\le 5) - P(X \\le 4)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between the Binomial and Poisson distributions?",
+      "a": "The Binomial distribution counts the number of 'successes' in a fixed number of trials, $n$. For example, the number of heads in 10 coin flips. The Poisson distribution counts the number of events in a fixed interval of time or space, where there is no theoretical upper limit to the number of events that can occur."
+    },
+    {
+      "q": "My calculator only has a Poisson CD (cumulative) function. How can I find P(X=r)?",
+      "a": "You can find an exact probability by subtracting two cumulative probabilities: $P(X=r) = P(X \\le r) - P(X \\le r-1)$. For example, $P(X=3) = P(X \\le 3) - P(X \\le 2)$."
+    },
+    {
+      "q": "How large does n have to be for the Poisson approximation to the Binomial to be valid?",
+      "a": "There isn't a single definitive number, but a common rule of thumb used in A-Level Mathematics is $n > 50$ and $p < 0.1$. The quality of the approximation improves as $n$ gets larger and $p$ gets smaller. It's also generally best when the mean, $\\lambda = np$, is not too large (e.g., $\\lambda < 15$)."
+    },
+    {
+      "q": "Can lambda (λ) be a decimal?",
+      "a": "Yes, absolutely. $\\lambda$ represents the average number of events in an interval, and averages can certainly be non-integers. For example, if a call centre receives 5 calls every 2 hours on average, the rate is $\\lambda = 2.5$ calls per hour."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Poisson** (6.1) opens Statistics 2. Justify **λ** from context (e.g. average calls per hour) before calculating."
+      "content": "Welcome to the Poisson distribution, a cornerstone of modelling random events. Named after French mathematician Siméon Denis Poisson, this distribution allows us to handle situations where events occur at a known average rate but their exact timing is unpredictable. From traffic flow and radioactive decay to typing errors on a page, the Poisson distribution provides a powerful mathematical framework for understanding and predicting the frequency of such occurrences."
+    },
+    {
+      "type": "heading",
+      "content": "Conditions for a Poisson Model"
+    },
+    {
+      "type": "text",
+      "content": "For a random variable to be modelled by a Poisson distribution, certain conditions must be met. These are crucial for justifying its use in an exam context. The events must be occurring in a fixed, continuous interval of time or space."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Events must occur **singly** in time or space. This means two events cannot happen at the exact same instant.",
+        "Events must occur **independently**. The occurrence of one event does not affect the probability of another event occurring.",
+        "Events must occur at a **constant average rate**. The mean number of events in an interval is proportional to the size of the interval. For example, if the average is 2 events per hour, it's 1 event per 30 minutes."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Poisson Formula and Calculations"
+    },
+    {
+      "type": "text",
+      "content": "If a random variable $X$ follows a Poisson distribution with a mean of $\\lambda$, we write this as $X \\sim Po(\\lambda)$. The probability of observing exactly $r$ events in the interval is given by a specific formula. While the formula is important, in practice you will often use the statistical functions on your calculator or tables provided in the exam."
+    },
+    {
+      "type": "formula",
+      "content": "If $X \\sim Po(\\lambda)$, then the probability of $r$ occurrences is: \\n$P(X=r) = \\frac{e^{-\\lambda} \\lambda^r}{r!}$ \\quad for $r = 0, 1, 2, ...$"
+    },
+    {
+      "type": "text",
+      "content": "Your calculator's distribution mode will have a 'Poisson PD' (Probability Density) for calculating $P(X=r)$ and a 'Poisson CD' (Cumulative Distribution) for calculating $P(X \\le r)$. Mastering the cumulative function is key to solving questions involving inequalities like 'at least' or 'more than'."
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of emails arriving in an office inbox follows a Poisson distribution with a mean rate of 2.5 emails per 10-minute period. Find the probability that:\n(a) Exactly 4 emails arrive in a 10-minute period.\n(b) At least 2 emails arrive in a 20-minute period.",
+      "solution": "(a) The interval is 10 minutes, so we use $\\lambda = 2.5$. Let $X$ be the number of emails in 10 minutes. $X \\sim Po(2.5)$.\nWe need $P(X=4)$.\n$P(X=4) = \\frac{e^{-2.5} \\times 2.5^4}{4!} = \\frac{0.08208... \\times 39.0625}{24} = 0.13360...$\n$P(X=4) \\approx 0.134$ (3 s.f.)\n\n(b) The interval has changed to 20 minutes, which is double the original. We must adjust $\\lambda$.\nNew mean, $\\lambda' = 2.5 \\times 2 = 5$. Let $Y$ be the number of emails in 20 minutes. $Y \\sim Po(5)$.\nWe need the probability of 'at least 2 emails', which is $P(Y \\ge 2)$.\nIt's easier to calculate the complement: $P(Y \\ge 2) = 1 - P(Y < 2) = 1 - P(Y \\le 1)$.\n$P(Y \\le 1) = P(Y=0) + P(Y=1)$.\n$P(Y=0) = \\frac{e^{-5} 5^0}{0!} = e^{-5} \\approx 0.006738$\n$P(Y=1) = \\frac{e^{-5} 5^1}{1!} = 5e^{-5} \\approx 0.033690$\n$P(Y \\le 1) \\approx 0.006738 + 0.033690 = 0.040428$\n$P(Y \\ge 2) = 1 - 0.040428 = 0.959572...$\n$P(Y \\ge 2) \\approx 0.960$ (3 s.f.)\n(Using a calculator's Poisson CD function for $P(Y \\le 1)$ with $\\lambda=5$ is more direct)."
+    },
+    {
+      "type": "heading",
+      "content": "Mean, Variance and the Poisson Approximation to the Binomial"
+    },
+    {
+      "type": "text",
+      "content": "A remarkable and unique feature of the Poisson distribution is that its mean and variance are the same, both equal to the parameter $\\lambda$. This property is often tested and can be used to justify whether a Poisson model is appropriate for a given set of data. If the sample mean and sample variance are not close, the model may be unsuitable."
+    },
+    {
+      "type": "formula",
+      "content": "If $X \\sim Po(\\lambda)$, then: \\nMean: $E(X) = \\lambda$ \\nVariance: $Var(X) = \\lambda$"
+    },
+    {
+      "type": "text",
+      "content": "This distribution also serves as a useful approximation for the Binomial distribution, $X \\sim B(n, p)$, when certain conditions are met. This is particularly helpful when $n$ is very large, as calculating binomial probabilities directly can be computationally intensive."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Approximation Conditions:** Use Poisson to approximate Binomial when $n$ is large (e.g., $n > 50$) and $p$ is small (e.g., $p < 0.1$).",
+        "**Setting the Parameter:** The mean of the Binomial distribution, $np$, becomes the mean of the approximating Poisson distribution. So, we use $\\lambda = np$.",
+        "**Justification:** Always state the conditions ($n$ large, $p$ small) to justify using the approximation in an exam answer."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A manufacturer produces light bulbs, and 0.5% of them are faulty. The bulbs are packed in boxes of 400. Use a suitable approximation to find the probability that a randomly chosen box contains exactly 3 faulty bulbs.",
+      "solution": "Let $X$ be the number of faulty bulbs in a box. The exact distribution is Binomial.\n$X \\sim B(400, 0.005)$.\nHere, $n=400$ is large and $p=0.005$ is small. This justifies using a Poisson approximation.\nWe set the Poisson parameter $\\lambda$ equal to the binomial mean $np$.\n$\\lambda = np = 400 \\times 0.005 = 2$.\nSo we can approximate with $Y \\sim Po(2)$.\nWe need to find the probability of exactly 3 faulty bulbs, which is $P(Y=3)$.\n$P(Y=3) = \\frac{e^{-2} \\times 2^3}{3!} = \\frac{e^{-2} \\times 8}{6}$\n$P(Y=3) = \\frac{0.1353... \\times 8}{6} = 0.18044...$\nProbability $\\approx 0.180$ (3 s.f.)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always be vigilant about the interval specified in the question. If the rate is given per hour and the question asks about a 5-minute interval, you MUST adjust $\\lambda$ accordingly. A common mistake is to use the given rate without scaling it to the correct interval."
     },
     {
       "type": "practice",
-      "label": "Mark a Poisson question",
+      "label": "Test your understanding with exam-style questions on the Poisson distribution.",
       "href": "/mark?subject=9709&topic=6.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Poisson Distribution Explained (Khan Academy)",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/poisson-distribution/v/poisson-distribution-introduction"
+        },
+        {
+          "label": "Online Poisson Probability Calculator",
+          "href": "https://stattrek.com/online-calculator/poisson"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Poisson probabilities",
+    "embedUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "launchUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "hint": "Rare events — P(X = r) with mean λ (9709 6.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Poisson models events in fixed interval — mean λ.",
+        "embedHint": "Rare, independent events (e.g. defects per metre)."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "P(X = r) = e^{−λ} λ^r / r!.",
+        "embedHint": "Use tables or calculator for cumulative probs."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "E(X) = Var(X) = λ — unique property.",
+        "embedHint": "If mean ≠ variance, reconsider model."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Poisson approx to binomial when n large, p small, np = λ.",
+        "embedHint": "np < 10 rule of thumb."
+      }
+    ]
+  }
 }

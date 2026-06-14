@@ -4,41 +4,234 @@
   "title": "Lattice energy and Born-Haber cycles",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level thermochemistry — lattice energy, Born–Haber cycles, and Fajan's rules with PhET energy simulation.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores the concept of lattice energy as a measure of ionic bond strength. It introduces the Born-Haber cycle as an application of Hess's Law to calculate lattice energy indirectly, and examines the factors influencing its magnitude, including ionic charge, radius, and the concept of covalent character.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define lattice energy and state its sign.",
-    "Construct and use Born–Haber cycles.",
-    "Explain factors affecting lattice energy magnitude.",
-    "Relate discrepancies to covalent character in ionic compounds."
+    "Define lattice energy, enthalpy of atomisation, electron affinity, and other key enthalpy changes.",
+    "Construct and use Born-Haber cycles to calculate lattice energy or an unknown enthalpy change.",
+    "Explain how ionic charge and ionic radii affect the magnitude of lattice energy.",
+    "Understand that a discrepancy between theoretical and experimental lattice energies indicates covalent character in an ionic bond."
   ],
   "simpleExplanation": {
-    "title": "Energy of ionic lattice formation",
-    "summary": "Lattice energy is the exothermic energy change when gaseous ions form a solid ionic lattice. Born–Haber cycles apply Hess's law to find it indirectly.",
+    "title": "Building Ionic Crystals, Step by Step",
+    "summary": "A Born-Haber cycle is a clever energy diagram that breaks down the formation of an ionic solid into a series of simpler, measurable steps. By applying Hess's Law, we can calculate the lattice energy, which is too difficult to measure directly.",
+    "analogy": "Imagine building a complex LEGO model. The total energy you use is the same whether you build it in one go (direct formation) or follow a multi-step instruction manual: opening the bags, sorting the pieces, and assembling them bit by bit (the Born-Haber cycle). The cycle simply shows that the energy change for the direct route must equal the sum of the energy changes for the indirect route.",
     "steps": [
-      "ΔH_latt: M⁺(g) + X⁻(g) → MX(s) — always exothermic.",
-      "Cycle: ΔH_f° = Σ(atomisation + IE + EA + sublimation) + ΔH_latt.",
-      "Higher charge and smaller ions → more exothermic ΔH_latt.",
-      "Experimental vs theoretical gap → partial covalency (Fajan’s rules)."
+      "Lattice energy (ΔH°_latt) is the exothermic enthalpy change when one mole of a solid ionic lattice is formed from its gaseous ions. It's more exothermic for smaller ions with higher charges.",
+      "A Born-Haber cycle applies Hess's law, stating the total enthalpy change is independent of the route taken. It equates the standard enthalpy of formation (ΔH°_f) with the sum of all steps in an alternative pathway.",
+      "The magnitude of lattice energy is determined by the strength of electrostatic attraction. It becomes more exothermic (stronger) as ionic charges increase and ionic radii decrease.",
+      "Comparing the experimental ΔH°_latt (from a Born-Haber cycle) with a theoretical value (from a pure ionic model) reveals covalent character. A large discrepancy suggests significant orbital overlap, often due to a highly polarising cation and a polarisable anion."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Standard Lattice Energy (ΔH°_latt)?",
+      "back": "The standard enthalpy change when one mole of an ionic solid is formed from its constituent gaseous ions under standard conditions (298 K, 100 kPa). It is always an exothermic process."
+    },
+    {
+      "front": "What is Standard Enthalpy of Formation (ΔH°_f)?",
+      "back": "The enthalpy change when one mole of a compound is formed from its elements in their standard states under standard conditions."
+    },
+    {
+      "front": "What is Standard Enthalpy of Atomisation (ΔH°_at)?",
+      "back": "The enthalpy change when one mole of gaseous atoms is formed from an element in its standard state. It is always an endothermic process."
+    },
+    {
+      "front": "What is First Ionisation Energy (IE₁)?",
+      "back": "The energy required to remove one mole of electrons from one mole of gaseous atoms to form one mole of gaseous 1+ ions. It is always endothermic."
+    },
+    {
+      "front": "What is First Electron Affinity (EA₁)?",
+      "back": "The enthalpy change when one mole of electrons is added to one mole of gaseous atoms to form one mole of gaseous 1- ions. It is usually exothermic for non-metals."
+    },
+    {
+      "front": "Why is the Second Electron Affinity (e.g., for O⁻ → O²⁻) always endothermic?",
+      "back": "Because you are adding a negative electron to an already negative ion (O⁻). Energy is required to overcome the electrostatic repulsion between the like charges."
+    },
+    {
+      "front": "What is the fundamental principle behind a Born-Haber cycle?",
+      "back": "Hess's Law, which states that the total enthalpy change for a reaction is independent of the pathway taken. The cycle equates the direct route (ΔH°_f) with the indirect route (sum of all other steps)."
+    },
+    {
+      "front": "How does ionic charge affect lattice energy?",
+      "back": "Lattice energy becomes significantly more exothermic as the magnitude of the ionic charges increases. For example, MgO (Mg²⁺, O²⁻) has a much more exothermic lattice energy than NaCl (Na⁺, Cl⁻)."
+    },
+    {
+      "front": "How does ionic radius affect lattice energy?",
+      "back": "Lattice energy becomes less exothermic as the ionic radius increases. Larger ions have a greater separation between their centres of charge, leading to weaker electrostatic attraction."
+    },
+    {
+      "front": "What does a large difference between the experimental (Born-Haber) and theoretical lattice energy values indicate?",
+      "back": "It indicates a significant degree of covalent character in the bonding. The theoretical value assumes a perfectly ionic model, so any deviation suggests the electron clouds are distorted and shared."
+    },
+    {
+      "front": "Exam Trap: What is the enthalpy of atomisation of Chlorine, Cl₂(g)?",
+      "back": "It is the enthalpy change for the reaction ½Cl₂(g) → Cl(g). It is equal to half the bond energy of the Cl-Cl bond. Be careful not to use the full bond energy unless you are forming 2 moles of Cl(g)."
+    },
+    {
+      "front": "In a Born-Haber cycle for MgCl₂, which enthalpy terms need to be doubled?",
+      "back": "The enthalpy of atomisation of chlorine (to form 2Cl(g)), the electron affinity of chlorine (to form 2Cl⁻(g)), and the ionic radius of Cl⁻ is used. Note that for magnesium, you use both the first AND second ionisation energies (IE₁ + IE₂)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between lattice energy and lattice dissociation enthalpy?",
+      "a": "They are the reverse of each other. Lattice energy (as defined by Cambridge International) is the enthalpy change when 1 mole of solid is *formed* from its gaseous ions (exothermic, negative value). Lattice dissociation enthalpy is the enthalpy change to *break* 1 mole of solid into its gaseous ions (endothermic, positive value). They have the same magnitude but opposite signs."
+    },
+    {
+      "q": "Why is the second electron affinity (e.g., for oxygen) an endothermic process?",
+      "a": "The first electron affinity (O(g) + e⁻ → O⁻(g)) is exothermic. However, to form the O²⁻ ion, you must add a second electron to the already negative O⁻ ion (O⁻(g) + e⁻ → O²⁻(g)). There is strong electrostatic repulsion between the negative electron and the negative ion, so energy must be supplied to force the electron on. This makes the process endothermic."
+    },
+    {
+      "q": "Can you use a Born-Haber cycle for a covalent compound like methane, CH₄?",
+      "a": "No, you cannot. The concept of a Born-Haber cycle is fundamentally based on the formation of an ionic lattice from gaseous ions. Covalent compounds like methane consist of discrete molecules held together by weak intermolecular forces in the solid state, not a lattice of ions. The energy terms, such as lattice energy and electron affinity, are not applicable in the same way."
+    },
+    {
+      "q": "Why do we have to use an indirect route like the Born-Haber cycle to find lattice energy?",
+      "a": "It is practically impossible to perform an experiment that directly measures the process of gaseous ions coming together to form a solid lattice. We cannot easily create a gas of just cations and anions and measure the heat released as they combine. The Born-Haber cycle is a clever application of Hess's Law that allows us to calculate this value using other enthalpy changes that *can* be measured experimentally."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Born–Haber cycles** (23.1) are high-mark A Level questions — every arrow must be **labelled** with the correct enthalpy change. Link back to **Hess's law** (5.2)."
+      "content": "We know that ionic compounds like sodium chloride form stable, crystalline structures. But what makes them so stable? The answer lies in the powerful electrostatic forces of attraction between oppositely charged ions in the giant ionic lattice. This lesson introduces lattice energy as the definitive measure of this stability and the Born-Haber cycle as the tool we use to quantify it."
+    },
+    {
+      "type": "heading",
+      "content": "Defining the Key Enthalpy Changes"
+    },
+    {
+      "type": "text",
+      "content": "To construct a Born-Haber cycle, we need to be precise about several key enthalpy definitions. Each step in the cycle corresponds to a specific, defined process. Remember that 'standard conditions' refers to 100 kPa pressure and a specified temperature, usually 298 K."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Standard Lattice Energy (ΔH°_latt)**: Formation of 1 mole of solid ionic lattice from its gaseous ions. E.g., Na⁺(g) + Cl⁻(g) → NaCl(s). This is always **exothermic**.",
+        "**Standard Enthalpy of Formation (ΔH°_f)**: Formation of 1 mole of a compound from its elements in their standard states. E.g., Na(s) + ½Cl₂(g) → NaCl(s). Can be exothermic or endothermic.",
+        "**Standard Enthalpy of Atomisation (ΔH°_at)**: Formation of 1 mole of gaseous atoms from an element in its standard state. E.g., Na(s) → Na(g). This is always **endothermic**.",
+        "**First Ionisation Energy (IE₁)**: Removal of 1 mole of electrons from 1 mole of gaseous atoms. E.g., Na(g) → Na⁺(g) + e⁻. This is always **endothermic**.",
+        "**First Electron Affinity (EA₁)**: Addition of 1 mole of electrons to 1 mole of gaseous atoms. E.g., Cl(g) + e⁻ → Cl⁻(g). This is usually **exothermic** for non-metals."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Born-Haber Cycle: An Application of Hess's Law"
+    },
+    {
+      "type": "text",
+      "content": "A Born-Haber cycle is an energy level diagram that illustrates the formation of an ionic compound. It connects the standard enthalpy of formation (the 'direct route') with a series of steps that form the gaseous ions from the elements and then combine them to form the lattice (the 'indirect route'). According to Hess's Law, the total enthalpy change for the direct route must equal the sum of the enthalpy changes for the indirect route. This allows us to calculate one unknown value, which is typically the lattice energy, as it cannot be measured directly."
+    },
+    {
+      "type": "formula",
+      "content": "For a simple MX compound like NaCl:\n\n$\\Delta H_f^\\circ = \\Delta H_{at(M)}^\\circ + IE_1(M) + \\Delta H_{at(X)}^\\circ + EA_1(X) + \\Delta H_{latt}^\\circ$"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the direction of arrows in a Born-Haber cycle diagram. Upward arrows represent endothermic processes (energy input), while downward arrows represent exothermic processes (energy release). The sum of clockwise energy changes must equal the sum of anticlockwise energy changes."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard lattice energy of sodium chloride, NaCl, using the data provided below.\n\n| Enthalpy Change | Value / kJ mol⁻¹ |\n| :--- | :--- |\n| Standard enthalpy of formation of NaCl(s) | -411 |\n| Standard enthalpy of atomisation of Na(s) | +107 |\n| First ionisation energy of Na(g) | +496 |\n| Standard enthalpy of atomisation of Cl₂(g) | +122 |\n| First electron affinity of Cl(g) | -349 |",
+      "solution": "1.  **State the Born-Haber cycle equation based on Hess's Law:**\n    $\\Delta H_f^\\circ = \\Delta H_{at(Na)}^\\circ + IE_1(Na) + \\Delta H_{at(Cl)}^\\circ + EA_1(Cl) + \\Delta H_{latt}^\\circ$\n\n2.  **Rearrange the equation to make lattice energy the subject:**\n    $\\Delta H_{latt}^\\circ = \\Delta H_f^\\circ - (\\Delta H_{at(Na)}^\\circ + IE_1(Na) + \\Delta H_{at(Cl)}^\\circ + EA_1(Cl))$\n\n3.  **Substitute the given values into the rearranged equation:**\n    $\\Delta H_{latt}^\\circ = (-411) - ((+107) + (+496) + (+122) + (-349))$\n\n4.  **Calculate the value of the bracket:**\n    $(107 + 496 + 122 - 349) = +376$ kJ mol⁻¹\n\n5.  **Complete the final calculation:**\n    $\\Delta H_{latt}^\\circ = -411 - 376 = -787$ kJ mol⁻¹\n\n**Answer:** The lattice energy of sodium chloride is **-787 kJ mol⁻¹**."
+    },
+    {
+      "type": "heading",
+      "content": "Factors Affecting Lattice Energy"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude of lattice energy is a direct measure of the strength of the electrostatic forces within the ionic lattice. These forces are described by Coulomb's Law, which states that the force is proportional to the product of the charges and inversely proportional to the square of the distance between them. In chemistry, this translates to two key factors: ionic charge and ionic radius."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Ionic Charge:** A greater charge on the ions leads to a much stronger electrostatic attraction. Therefore, lattice energy becomes significantly more exothermic. For example, the lattice energy of MgO (Mg²⁺O²⁻) is about -3795 kJ mol⁻¹, far more exothermic than NaCl's (Na⁺Cl⁻) -787 kJ mol⁻¹.",
+        "**Ionic Radius:** Smaller ions can get closer together, decreasing the distance between their centres of charge. This results in stronger attraction and a more exothermic lattice energy. For example, LiF has a more exothermic lattice energy than KCl because Li⁺ is smaller than K⁺ and F⁻ is smaller than Cl⁻."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain why the lattice energy of magnesium oxide, MgO, is significantly more exothermic than that of sodium fluoride, NaF, given the following data.\n\n| Ion | Ionic Radius / nm |\n| :-- | :-- |\n| Na⁺ | 0.102 |\n| Mg²⁺| 0.072 |\n| F⁻  | 0.133 |\n| O²⁻ | 0.140 |",
+      "solution": "There are two main factors contributing to the difference in lattice energy:\n\n1.  **Ionic Charge:** The primary reason is the magnitude of the ionic charges. MgO is formed from Mg²⁺ and O²⁻ ions. NaF is formed from Na⁺ and F⁻ ions. The product of the charges in MgO is (2+) × (2-) = 4, whereas in NaF it is (1+) × (1-) = 1. The much larger product of charges in MgO leads to far stronger electrostatic forces of attraction between the ions.\n\n2.  **Ionic Radii:** The sum of ionic radii for MgO (0.072 + 0.140 = 0.212 nm) is slightly smaller than for NaF (0.102 + 0.133 = 0.235 nm). This smaller internuclear distance in MgO also contributes to a stronger attraction.\n\n**Conclusion:** While the smaller ionic radii in MgO play a role, the dominant factor is the doubling of charge on both the cation and anion, which dramatically increases the electrostatic attraction and results in a significantly more exothermic lattice energy for MgO compared to NaF."
+    },
+    {
+      "type": "heading",
+      "content": "Covalent Character and Polarisation"
+    },
+    {
+      "type": "text",
+      "content": "The Born-Haber cycle provides an experimental value for lattice energy. We can also calculate a theoretical value based on a perfect ionic model, assuming ions are perfect, hard spheres with evenly distributed charge. Often, there is a good agreement between the two. However, if there is a significant discrepancy, with the experimental value being more exothermic than the theoretical one, it suggests the bonding is not purely ionic. This difference is attributed to **covalent character**, which arises from the polarisation of the anion's electron cloud by the cation. A small, highly charged cation is highly polarising, and a large anion is easily polarisable. This distortion and sharing of electrons adds a covalent nature to the bond, making it stronger than the purely ionic model predicts."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to compare lattice energies, always discuss both ionic charge and ionic radius. Charge is almost always the more significant factor. A perfect answer will state which factor is dominant."
     },
     {
       "type": "practice",
-      "label": "Mark a lattice energy question",
+      "label": "Test your understanding of Born-Haber cycles",
       "href": "/mark?subject=9701&topic=23.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "In-depth video on Born-Haber Cycles",
+          "href": "https://www.youtube.com/watch?v=5g2nK2T3_oM"
+        },
+        {
+          "label": "Chemguide: Lattice Enthalpy",
+          "href": "https://www.chemguide.co.uk/physical/energetics/lattice.html"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Energy forms and changes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes",
+    "hint": "Trace exothermic formation steps — Born–Haber cycle energy accounting (23.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Lattice energy ΔH_latt: gaseous ions → solid ionic lattice (exothermic).",
+        "embedHint": "More exothermic for smaller, higher-charge ions."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Born–Haber cycle: Hess law links ΔH_f° to atomisation, IE, EA, ΔH_latt.",
+        "embedHint": "Trace each step — all paths to formation enthalpy must balance."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Born–Lande / Kapustinskii: magnitude increases with charge, decreases with radius.",
+        "embedHint": "Compare NaCl vs MgO lattice energy magnitudes."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Discrepancy with experimental ΔH_latt suggests covalent character (Fajan’s rules).",
+        "embedHint": "Polarising cation + polarisable anion → partial covalency."
+      }
+    ]
+  }
 }

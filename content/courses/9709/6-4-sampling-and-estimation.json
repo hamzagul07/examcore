@@ -4,29 +4,241 @@
   "title": "Sampling and estimation",
   "paper": "P6",
   "paperName": "Probability & Statistics 2",
-  "status": "premium",
-  "summary": "9709 S2 — sampling distribution of the mean, CLT, and confidence intervals.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the core concepts of statistical inference, focusing on how to use a sample to estimate properties of a larger population. It covers unbiased estimates for the population mean and variance, the Central Limit Theorem, and the calculation and interpretation of confidence intervals for the population mean.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe the sampling distribution of X̄.",
-    "Apply the Central Limit Theorem.",
-    "Construct confidence intervals for a mean.",
-    "Interpret confidence intervals correctly."
+    "Calculate unbiased estimates of the population mean and variance from a sample.",
+    "Understand and apply the Central Limit Theorem to the distribution of sample means.",
+    "Calculate and interpret a confidence interval for a population mean, in cases where the population variance is known.",
+    "Relate the width of a confidence interval to the confidence level and the sample size."
   ],
   "simpleExplanation": {
-    "title": "From sample to population",
-    "summary": "The sample mean estimates μ. Its distribution has mean μ and variance σ²/n.",
+    "title": "Estimating the Whole from a Part",
+    "summary": "Sampling and estimation allow us to make educated guesses about a whole population by studying just a small piece of it. We use sample data to calculate estimates and then build a 'confidence interval' to show how precise our guess is.",
+    "analogy": "Imagine trying to find the average height of every 18-year-old in the UK. Measuring everyone is impossible. Instead, you take a random sample of 100 people, calculate their average height, and use that to estimate the national average. A confidence interval is like saying, 'We're 95% confident the true national average height is between 175cm and 179cm', based on our sample.",
     "steps": [
-      "X̄ has E = μ, Var = σ²/n.",
-      "CLT: X̄ ≈ N(μ, σ²/n) for large n.",
-      "95% CI: x̄ ± 1.96 σ/√n.",
-      "Wider CI = more confidence, less precision."
+      "The sample mean, $\\bar{X}$, is our best guess (an unbiased estimator) for the unknown population mean, $\\mu$.",
+      "The Central Limit Theorem states that for a large sample size ($n$), the distribution of sample means, $\\bar{X}$, is approximately Normal, even if the original population isn't.",
+      "A confidence interval for the mean $\\mu$ is calculated using the formula $\\bar{x} \\pm z \\times \\frac{\\sigma}{\\sqrt{n}}$, where $\\sigma$ is known.",
+      "Interpretation is key: a 95% confidence interval means that if we repeated the sampling process many times, 95% of the calculated intervals would contain the true population mean $\\mu$."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a population?",
+      "back": "The entire set of items or individuals from which a sample is drawn. For example, all the light bulbs produced by a factory."
+    },
+    {
+      "front": "What is a sample?",
+      "back": "A subset of the population selected for observation and analysis. It should ideally be random to be representative."
+    },
+    {
+      "front": "What is an unbiased estimator?",
+      "back": "A statistic whose expected value (the average of its values from all possible samples) is equal to the population parameter it is estimating. E.g., $E(\\bar{X}) = \\mu$."
+    },
+    {
+      "front": "What is the formula for an unbiased estimate of the population mean, $\\mu$?",
+      "back": "The sample mean, $\\bar{x} = \\frac{\\sum x}{n}$."
+    },
+    {
+      "front": "What is the formula for an unbiased estimate of the population variance, $\\sigma^2$?",
+      "back": "Denoted $s^2$, it is calculated as $s^2 = \\frac{1}{n-1} \\left( \\sum x^2 - \\frac{(\\sum x)^2}{n} \\right)$. Note the $\\frac{1}{n-1}$ factor."
+    },
+    {
+      "front": "Why do we divide by $n-1$ for the unbiased estimate of variance?",
+      "back": "Dividing by $n$ tends to underestimate the true population variance. Dividing by $n-1$ (Bessel's correction) corrects for this bias, making the estimate more accurate on average."
+    },
+    {
+      "front": "State the Central Limit Theorem (CLT).",
+      "back": "If a random sample of size $n$ (where $n$ is large, typically $n > 30$) is taken from any population with mean $\\mu$ and variance $\\sigma^2$, then the sample mean $\\bar{X}$ is approximately normally distributed with mean $\\mu$ and variance $\\frac{\\sigma^2}{n}$. So, $\\bar{X} \\sim N(\\mu, \\frac{\\sigma^2}{n})$ approximately."
+    },
+    {
+      "front": "What is a confidence interval?",
+      "back": "A range of values, calculated from sample data, that is likely to contain an unknown population parameter. The confidence level gives the probability that the method produces an interval containing the parameter."
+    },
+    {
+      "front": "What is the formula for a confidence interval for the mean $\\mu$ when $\\sigma^2$ is known?",
+      "back": "$\\bar{x} \\pm z \\times \\frac{\\sigma}{\\sqrt{n}}$, where $z$ is the critical value from the standard normal distribution corresponding to the desired confidence level."
+    },
+    {
+      "front": "What are the z-values for 90%, 95%, and 99% confidence intervals?",
+      "back": "90% CI: $z = 1.645$ \n95% CI: $z = 1.960$ \n99% CI: $z = 2.576$"
+    },
+    {
+      "front": "True or False: A 95% confidence interval means there is a 95% probability that the true population mean $\\mu$ lies within my calculated interval.",
+      "back": "False. This is a common misconception. The correct interpretation is that if we were to take many samples and construct an interval for each, 95% of those intervals would contain the true mean $\\mu$. The mean $\\mu$ is a fixed value, not a random variable."
+    },
+    {
+      "front": "How does increasing the sample size, $n$, affect the width of a confidence interval?",
+      "back": "Increasing the sample size $n$ decreases the width of the confidence interval, as $\\frac{\\sigma}{\\sqrt{n}}$ gets smaller. This means our estimate becomes more precise."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between population variance $\\sigma^2$ and the unbiased estimate $s^2$?",
+      "a": "$\\sigma^2$ is a fixed, usually unknown, parameter of the entire population. $s^2$ is a statistic calculated from a sample, used to estimate $\\sigma^2$. We use $s^2 = \\frac{1}{n-1} \\sum (x_i - \\bar{x})^2$ because it provides a more accurate (unbiased) estimate of $\\sigma^2$ than if we were to divide by $n$."
+    },
+    {
+      "q": "When can I use the Central Limit Theorem?",
+      "a": "You can apply the CLT when you are dealing with the distribution of the sample mean, $\\bar{X}$, and the sample size, $n$, is large (typically $n > 30$). It's essential when the original population distribution is unknown or not normal."
+    },
+    {
+      "q": "What's the difference between standard deviation and standard error?",
+      "a": "Standard deviation ($\\sigma$) measures the spread of data in a population. Standard error (specifically, the standard error of the mean, $\\frac{\\sigma}{\\sqrt{n}}$) measures the typical distance between a sample mean and the population mean. It quantifies the uncertainty in your estimate of the mean."
+    },
+    {
+      "q": "How do I know whether to use $\\sigma$ or $s$ in the confidence interval formula?",
+      "a": "If the population standard deviation, $\\sigma$, is given in the question, use it. If it is not known, you must first calculate an unbiased estimate, $s$, from the sample data. In P6, you will typically be given $\\sigma$ or be working with a large enough sample that $s$ is a reliable substitute."
+    },
+    {
+      "q": "If I calculate a 99% confidence interval instead of a 95% one, will it be wider or narrower?",
+      "a": "It will be wider. To be more confident (99% vs 95%) that your interval contains the true mean, you need to allow for a larger range of possibilities. This is reflected in the larger z-value for 99% confidence (2.576) compared to 95% (1.96)."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Confidence intervals** (6.4) are high mark S2. Distinguish **population parameter** from **sample statistic** in wording." },
-    { "type": "practice", "label": "Mark a sampling question", "href": "/mark?subject=9709&topic=6.4" },
-    { "type": "resources", "items": [{ "label": "9709 course index", "href": "/courses/9709" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In Statistics 1, we often worked with data from an entire population. However, in real-world scenarios, accessing a whole population is usually impractical or impossible. This is where statistical inference comes in. We take a sample from the population and use it to deduce, or infer, properties of the population as a whole. This topic explores the fundamental techniques for making these estimations and quantifying our confidence in them."
+    },
+    {
+      "type": "heading",
+      "content": "Unbiased Estimates of Population Parameters"
+    },
+    {
+      "type": "text",
+      "content": "When we take a sample, we can calculate statistics like the sample mean and sample variance. Our goal is to use these sample statistics to estimate the corresponding population parameters (the population mean $\\mu$ and population variance $\\sigma^2$). For our estimate to be useful, it should be 'unbiased', meaning that on average, it gives the correct value. The sample mean $\\bar{x}$ is an unbiased estimator for the population mean $\\mu$."
+    },
+    {
+      "type": "formula",
+      "content": "Unbiased estimate of population mean $\\mu$: \n$\\hat{\\mu} = \\bar{x} = \\frac{\\sum x}{n}$"
+    },
+    {
+      "type": "text",
+      "content": "Slightly more complex is the estimate for population variance. If we simply calculated the variance of our sample, it would tend to underestimate the true population variance. To correct this, we use a slightly different formula with a denominator of $n-1$ instead of $n$. This is known as Bessel's correction."
+    },
+    {
+      "type": "formula",
+      "content": "Unbiased estimate of population variance $\\sigma^2$: \n$s^2 = \\frac{n}{n-1} \\times (\\text{sample variance}) = \\frac{1}{n-1} \\sum (x - \\bar{x})^2 = \\frac{1}{n-1} \\left( \\sum x^2 - \\frac{(\\sum x)^2}{n} \\right)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The sample mean $\\bar{x}$ is always an unbiased estimate of the population mean $\\mu$.",
+        "The value $s^2$ is an unbiased estimate of the population variance $\\sigma^2$.",
+        "Pay close attention to whether a question gives you the population variance ($\"\\sigma^2\"$) or asks you to estimate it from a sample ($s^2$). The formula for $s^2$ uses $n-1$ in the denominator."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A random sample of 8 apples is taken from an orchard and their masses, $x$ grams, are measured. The results are summarised as $\\sum x = 1240$ and $\\sum x^2 = 192600$. Calculate unbiased estimates of the population mean and variance of the masses of apples from this orchard.",
+      "solution": "We are given $n=8$, $\\sum x = 1240$, and $\\sum x^2 = 192600$.\n\n**1. Unbiased estimate of the population mean ($\\mu$):**\nThe unbiased estimate for $\\mu$ is the sample mean, $\\bar{x}$.\n$\\bar{x} = \\frac{\\sum x}{n} = \\frac{1240}{8} = 155$\nSo, the unbiased estimate of the population mean mass is 155 g.\n\n**2. Unbiased estimate of the population variance ($\\sigma^2$):**\nThe unbiased estimate for $\\sigma^2$ is $s^2$.\n$s^2 = \\frac{1}{n-1} \\left( \\sum x^2 - \\frac{(\\sum x)^2}{n} \\right)$\n$s^2 = \\frac{1}{8-1} \\left( 192600 - \\frac{(1240)^2}{8} \\right)$\n$s^2 = \\frac{1}{7} \\left( 192600 - \\frac{1537600}{8} \\right)$\n$s^2 = \\frac{1}{7} (192600 - 192200)$\n$s^2 = \\frac{1}{7} (400) \\approx 57.1428...$\nSo, the unbiased estimate of the population variance is 57.1 (to 3 s.f.)."
+    },
+    {
+      "type": "heading",
+      "content": "The Central Limit Theorem (CLT)"
+    },
+    {
+      "type": "text",
+      "content": "The Central Limit Theorem is a cornerstone of statistics. It tells us something remarkable about the distribution of sample means. Even if the original population is not normally distributed (e.g., it could be skewed or bimodal), the distribution of the means of samples taken from that population will be approximately normal, provided the sample size is large enough (usually $n > 30$ is a good rule of thumb). This allows us to use the normal distribution for calculations involving sample means, which is incredibly powerful."
+    },
+    {
+      "type": "formula",
+      "content": "If $X$ is any distribution with mean $\\mu$ and variance $\\sigma^2$, and $n$ is large, then the sample mean $\\bar{X}$ has the approximate distribution:\n$\\bar{X} \\sim N \\left( \\mu, \\frac{\\sigma^2}{n} \\right)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The CLT applies regardless of the original population's distribution, as long as $n$ is large.",
+        "If the original population *is* normal, then $\\bar{X}$ is *exactly* normally distributed for any sample size $n$, not just approximately.",
+        "The variance of the sample mean is the population variance divided by the sample size: $Var(\\bar{X}) = \\frac{\\sigma^2}{n}$. This means larger samples lead to less variability in the sample mean."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Confidence Intervals for the Population Mean"
+    },
+    {
+      "type": "text",
+      "content": "An unbiased estimate like $\\bar{x}$ gives us a single point value for $\\mu$. A confidence interval provides a range of plausible values for $\\mu$. A 95% confidence interval, for example, is a range constructed by a method that, in the long run, will capture the true population mean 95% of the time. For this part of the syllabus, we focus on the case where the population variance $\\sigma^2$ is known, or where the sample size is large enough to use the unbiased estimate $s^2$ as a good approximation for $\\sigma^2$."
+    },
+    {
+      "type": "formula",
+      "content": "A $C\\%$ confidence interval for the population mean $\\mu$ is given by:\n$\\bar{x} \\pm z \\times \\frac{\\sigma}{\\sqrt{n}}$\nwhere $\\bar{x}$ is the sample mean, $\\sigma$ is the known population standard deviation, $n$ is the sample size, and $z$ is the critical value from the standard normal distribution for the given confidence level."
+    },
+    {
+      "type": "examTip",
+      "content": "Memorise the key z-values: 1.645 for 90%, 1.96 for 95%, and 2.576 for 99%. Questions will often ask for a 95% interval. Also, be very careful with the wording: a confidence interval is a range for the *population mean* $\\mu$, not for individual data points or the sample mean $\\bar{x}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The time taken, in minutes, for a particular model of electric car to charge is known to be normally distributed. The standard deviation of the charging time is known to be 12 minutes. A random sample of 50 charging sessions had a mean time of 245 minutes. Calculate a 95% confidence interval for the mean charging time, $\\mu$.",
+      "solution": "We are given:\nSample size, $n = 50$\nSample mean, $\\bar{x} = 245$ minutes\nPopulation standard deviation, $\\sigma = 12$ minutes\nConfidence level = 95%\n\n**1. Find the z-value:**\nFor a 95% confidence interval, the z-value is 1.96. This corresponds to the value that leaves 2.5% in each tail of the standard normal distribution.\n\n**2. Apply the confidence interval formula:**\nThe formula is $\\bar{x} \\pm z \\times \\frac{\\sigma}{\\sqrt{n}}$.\nCI = $245 \\pm 1.96 \\times \\frac{12}{\\sqrt{50}}$\n\n**3. Calculate the margin of error:**\nMargin of error = $1.96 \\times \\frac{12}{\\sqrt{50}} \\approx 1.96 \\times \\frac{12}{7.071} \\approx 1.96 \\times 1.697 \\approx 3.326$\n\n**4. Calculate the interval:**\nLower bound = $245 - 3.326 = 241.674$\nUpper bound = $245 + 3.326 = 248.326$\n\n**5. State the final answer:**\nThe 95% confidence interval for the mean charging time is (241.7, 248.3) minutes, to 1 decimal place.\nThis means we are 95% confident that the true mean charging time for all cars of this model lies between 241.7 and 248.3 minutes."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions on Sampling and Estimation",
+      "href": "/mark?subject=9709&topic=6.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International A-Level Mathematics 9709 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Khan Academy: Sampling distributions",
+          "href": "https://www.khanacademy.org/math/statistics-probability/sampling-distributions-library"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Sampling distribution",
+    "embedUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "launchUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "hint": "Sample mean distribution and confidence intervals (9709 6.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Sample mean X̄ estimator of population μ.",
+        "embedHint": "E(X̄) = μ; Var(X̄) = σ²/n."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Central Limit Theorem — X̄ approx normal for large n.",
+        "embedHint": "Use when population not normal."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Confidence interval: x̄ ± z × σ/√n (known σ).",
+        "embedHint": "95% → z = 1.96."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Interpret CI — not probability that μ lies in interval.",
+        "embedHint": "Repeated samples — 95% contain μ."
+      }
+    ]
+  }
 }

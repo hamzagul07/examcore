@@ -4,55 +4,233 @@
   "title": "Enthalpy change, ΔH",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS energetics — exothermic and endothermic reactions, calorimetry, and ΔH notation with PhET Energy Forms and Changes.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental concept of enthalpy change (ΔH) in chemical reactions. It covers the distinction between exothermic and endothermic processes, the importance of standard conditions, and the experimental determination of enthalpy changes using calorimetry and the equation q = mcΔT.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define enthalpy change ΔH and distinguish exothermic from endothermic reactions.",
-    "Use q = mcΔT in calorimetry calculations.",
-    "Interpret energy profile diagrams and balanced thermochemical equations.",
-    "Apply standard conditions and correct sign conventions for ΔH."
+    "Define and explain the term enthalpy change (ΔH) as the heat energy change at constant pressure.",
+    "Distinguish between exothermic (negative ΔH) and endothermic (positive ΔH) reactions using enthalpy profile diagrams.",
+    "Define standard enthalpy change (ΔH⦵) and state the standard conditions of temperature and pressure.",
+    "Describe how to measure enthalpy changes experimentally (calorimetry) and perform calculations using q = mcΔT."
   ],
   "simpleExplanation": {
-    "title": "Heat in, heat out",
-    "summary": "Enthalpy change measures heat transferred at constant pressure. Exothermic reactions release energy (ΔH negative); endothermic reactions absorb energy (ΔH positive).",
+    "title": "Tracking Heat in Reactions",
+    "summary": "Enthalpy change, ΔH, is the measure of heat energy given out or taken in during a chemical reaction. This allows us to quantify whether a reaction heats up or cools down its surroundings.",
+    "analogy": "Think of a system's enthalpy like a bank account for energy. An exothermic reaction is like making a payment: the account balance (enthalpy) decreases, and the money (heat) is transferred out to the surroundings. An endothermic reaction is like receiving a deposit: the account balance increases as money is transferred in from the surroundings.",
     "steps": [
-      "Exothermic: products have less energy than reactants — heat released to surroundings.",
-      "Endothermic: products have more energy — heat absorbed from surroundings.",
-      "Calorimetry: measure temperature change, use q = mcΔT, scale to per mole using equation.",
-      "Always include state symbols and balance equations in thermochemical work."
+      "Enthalpy change ΔH is heat energy transferred at constant pressure. | Sim hint: Heat the system — watch energy flow and temperature rise.",
+      "Exothermic: ΔH negative (system loses energy). Endothermic: ΔH positive. | Sim hint: Compare heating vs cooling — direction of energy transfer.",
+      "Standard conditions: ΔH⦵ refers to 298 K, 100 kPa, 1 mol substance. | Sim hint: Relate energy bar charts to balanced equation coefficients.",
+      "Calorimetry: q = mcΔT links temperature change to energy transferred. | Sim hint: Use the sim’s energy accounting to explain calorimeter logic."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is enthalpy change (ΔH)?",
+      "back": "The heat energy transferred in a chemical reaction at constant pressure. Its units are typically kilojoules per mole (kJ mol⁻¹)."
+    },
+    {
+      "front": "What is an exothermic reaction?",
+      "back": "A reaction that releases heat energy into the surroundings, causing the temperature of the surroundings to increase. ΔH for an exothermic reaction is negative."
+    },
+    {
+      "front": "What is an endothermic reaction?",
+      "back": "A reaction that absorbs heat energy from the surroundings, causing the temperature of the surroundings to decrease. ΔH for an endothermic reaction is positive."
+    },
+    {
+      "front": "On an enthalpy profile diagram for an endothermic reaction, are the products higher or lower than the reactants?",
+      "back": "Higher. The system has absorbed energy from the surroundings, so the products have a higher enthalpy than the reactants."
+    },
+    {
+      "front": "What are 'standard conditions' for enthalpy changes?",
+      "back": "A pressure of 100 kPa and a specified temperature, usually 298 K (25 °C). For solutions, the concentration is 1 mol dm⁻³."
+    },
+    {
+      "front": "What does the symbol ΔH⦵ represent?",
+      "back": "Standard enthalpy change. The '⦵' (plimsoll) symbol signifies that the measurement was made under standard conditions."
+    },
+    {
+      "front": "State the equation used in calorimetry to calculate heat energy transferred.",
+      "back": "q = mcΔT, where q is heat energy (J), m is the mass of the substance being heated/cooled (g), c is the specific heat capacity (J g⁻¹ K⁻¹), and ΔT is the change in temperature (K or °C)."
+    },
+    {
+      "front": "What is the value of the specific heat capacity (c) of water?",
+      "back": "4.18 J g⁻¹ K⁻¹. This value is provided in the exam data booklet but is very useful to know."
+    },
+    {
+      "front": "A calorimetry experiment gives a ΔH value that is less exothermic than the data booklet value. Give two reasons why.",
+      "back": "1. Heat loss to the surroundings (the most common reason). 2. Incomplete combustion or reaction. 3. Evaporation of fuel from the wick (for combustion experiments)."
+    },
+    {
+      "front": "How do you convert the calculated heat energy, q (in Joules), to the molar enthalpy change, ΔH (in kJ mol⁻¹)?",
+      "back": "1. Divide q by 1000 to get kJ. 2. Divide by the number of moles (n) of the limiting reactant. 3. Add the correct sign (+ for endothermic, - for exothermic)."
+    },
+    {
+      "front": "Why is a polystyrene cup used as a calorimeter for reactions in solution?",
+      "back": "Polystyrene is a good thermal insulator. It minimises heat exchange (loss or gain) with the surroundings, making the measured temperature change more accurate."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is enthalpy change (ΔH) defined at constant pressure?",
+      "a": "Most chemical reactions, especially in a school laboratory, are carried out in open containers, exposed to the atmosphere. This means they occur at a constant atmospheric pressure. At constant pressure, the heat transferred is exactly equal to the change in enthalpy (ΔH). If the pressure wasn't constant, we would also have to account for energy used to do work (expanding or contracting against the changing external pressure), which is more complex."
+    },
+    {
+      "q": "What is the difference between heat and temperature?",
+      "a": "They are related but distinct. Temperature is a measure of the average kinetic energy of the particles in a substance; it tells us how 'hot' or 'cold' something is. Heat is the energy that is transferred from a hotter object to a colder one. A large swimming pool at 25°C contains far more heat energy than a cup of coffee at 90°C, even though the coffee has a higher temperature, simply because there is so much more of it."
+    },
+    {
+      "q": "In a calorimetry calculation, why do we use the specific heat capacity and mass of water, even when a solid is dissolved in it?",
+      "a": "This is a key simplifying assumption. For dilute aqueous solutions, we assume that the solution has the same density (1 g cm⁻³) and specific heat capacity (4.18 J g⁻¹ K⁻¹) as pure water. This is a reasonable approximation because the solution is mostly water. In reality, the dissolved substance does slightly alter these properties, which is one source of inaccuracy in simple calorimetry experiments."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Enthalpy** is central to 9701 Topics 5–6. Cambridge tests **sign conventions**, **calorimeter calculations**, and **energy cycle** reasoning that builds into Hess's law (5.2)."
+      "content": "Welcome to the study of chemical energy, or thermodynamics. So far, you've learned to describe and predict chemical reactions. Now, we will begin to answer a crucial question: how much energy is involved? This topic introduces enthalpy change, the key to quantifying the heat released or absorbed in chemical processes, from the combustion of a fuel to the dissolving of a salt."
+    },
+    {
+      "type": "heading",
+      "content": "Enthalpy and Enthalpy Change (ΔH)"
+    },
+    {
+      "type": "text",
+      "content": "Every substance contains a certain amount of chemical energy stored in its bonds, known as its **enthalpy** (symbol H). We cannot measure the absolute enthalpy of a substance directly. However, we can measure the **enthalpy change** (symbol ΔH) that occurs during a chemical reaction. Enthalpy change is defined as the heat energy transferred at constant pressure. The units of ΔH are kilojoules per mole (kJ mol⁻¹)."
     },
     {
       "type": "formula",
-      "content": "q = mcΔT | ΔH = −q (system perspective, exothermic ΔH < 0) | kJ mol⁻¹ per equation as written"
+      "content": "ΔH = H_{products} - H_{reactants}"
     },
     {
-      "type": "workedExample",
-      "question": "When 0.500 g of propane burns, temperature of 200 g water rises by 12.5 °C. Calculate heat absorbed by water. (c = 4.18 J g⁻¹ K⁻¹)",
-      "solution": "q = mcΔT = 200 × 4.18 × 12.5 = **10 450 J** = 10.45 kJ\n\n(Combustion is exothermic — this energy is transferred to the water.)"
+      "type": "heading",
+      "content": "Exothermic and Endothermic Reactions"
+    },
+    {
+      "type": "text",
+      "content": "Chemical reactions involve the breaking of old bonds and the forming of new ones. The overall energy balance determines whether a reaction is exothermic or endothermic. In an **exothermic** reaction, more energy is released when forming new bonds in the products than is required to break the bonds in the reactants. This excess energy is released as heat into the surroundings, which get hotter. In an **endothermic** reaction, more energy is required to break the bonds in the reactants than is released when forming bonds in the products. This energy deficit is absorbed from the surroundings, which get colder."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Exothermic**: Releases heat. ΔH is negative. Temperature of surroundings increases. Products have lower enthalpy than reactants. Example: Combustion, neutralisation.",
+        "**Endothermic**: Absorbs heat. ΔH is positive. Temperature of surroundings decreases. Products have higher enthalpy than reactants. Example: Thermal decomposition, dissolving ammonium nitrate in water."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Standard Enthalpy Change (ΔH⦵) and Standard Conditions"
+    },
+    {
+      "type": "text",
+      "content": "The amount of heat transferred during a reaction can depend on the temperature, pressure, and concentrations of substances involved. To allow for fair comparisons between different reactions, chemists have agreed upon a set of **standard conditions**. The enthalpy change measured under these conditions is called the **standard enthalpy change**, given the symbol ΔH⦵ (pronounced 'delta H standard')."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Pressure**: 100 kPa (kilopascals). Note: this is equivalent to 1 bar, and has replaced the older standard of 1 atmosphere (101.325 kPa).",
+        "**Temperature**: A specified temperature, usually 298 K (25 °C). Any other temperature must be stated.",
+        "**Concentration**: For substances in solution, the standard concentration is 1.00 mol dm⁻³.",
+        "**Standard State**: The physical state of a substance under standard conditions (e.g., H₂O is a liquid, O₂ is a gas at 298 K, 100 kPa)."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Show **sign of ΔH** explicitly. Exothermic combustion has **ΔH negative** even though the surroundings (water) gain heat."
+      "content": "When a question asks for the definition of a *standard* enthalpy change (e.g., standard enthalpy of combustion), you must mention standard conditions (100 kPa, 298 K) to get full marks. The plimsoll symbol '⦵' is your cue that standard conditions are in play."
+    },
+    {
+      "type": "heading",
+      "content": "Measuring Enthalpy Changes: Calorimetry"
+    },
+    {
+      "type": "text",
+      "content": "Calorimetry is the experimental technique used to measure the heat energy transferred in a chemical or physical process. A simple calorimeter can be made from a polystyrene cup with a lid, which insulates the system to minimise heat loss. By measuring the temperature change of a known mass of a substance (usually water), we can calculate the heat energy change, q."
+    },
+    {
+      "type": "formula",
+      "content": "q = mcΔT"
+    },
+    {
+      "type": "text",
+      "content": "Here, 'q' is the heat energy change in Joules (J), 'm' is the mass of the substance whose temperature changes (in grams, g), 'c' is the specific heat capacity of that substance (in J g⁻¹ K⁻¹ or J g⁻¹ °C⁻¹), and 'ΔT' is the temperature change (in K or °C). For water, c is 4.18 J g⁻¹ K⁻¹. To find the molar enthalpy change, ΔH, you must then divide q by the number of moles of the limiting reactant and apply the correct sign."
+    },
+    {
+      "type": "workedExample",
+      "question": "In an experiment, 50.0 cm³ of 1.00 mol dm⁻³ hydrochloric acid was added to 50.0 cm³ of 1.00 mol dm⁻³ sodium hydroxide solution in a polystyrene cup. The initial temperature of both solutions was 19.5 °C. The maximum temperature reached was 26.3 °C. Calculate the standard enthalpy change of neutralisation, in kJ mol⁻¹.\n(Assume the density of the solution is 1.00 g cm⁻³ and the specific heat capacity of the solution is 4.18 J g⁻¹ K⁻¹).",
+      "solution": "1.  **Calculate the heat energy evolved (q):**\n    Total volume of solution = 50.0 + 50.0 = 100.0 cm³.\n    Mass of solution (m) = volume × density = 100.0 cm³ × 1.00 g cm⁻³ = 100.0 g.\n    Temperature change (ΔT) = T_{final} - T_{initial} = 26.3 - 19.5 = 6.8 °C (or 6.8 K).\n    q = mcΔT = 100.0 g × 4.18 J g⁻¹ K⁻¹ × 6.8 K = 2842.4 J.\n\n2.  **Calculate the moles of water formed (n):**\n    Moles of HCl = concentration × volume = 1.00 mol dm⁻³ × (50.0/1000) dm³ = 0.0500 mol.\n    Moles of NaOH = 1.00 mol dm⁻³ × (50.0/1000) dm³ = 0.0500 mol.\n    The reaction is HCl + NaOH → NaCl + H₂O. The stoichiometry is 1:1, so 0.0500 mol of H₂O is formed.\n\n3.  **Calculate the molar enthalpy change (ΔH):**\n    The temperature increased, so the reaction is exothermic and ΔH is negative.\n    ΔH = -q / n = -2842.4 J / 0.0500 mol = -56848 J mol⁻¹.\n\n4.  **Convert to kJ mol⁻¹ and give to 3 significant figures:**\n    ΔH = -56848 / 1000 = -56.848 kJ mol⁻¹.\n    **ΔH = -56.8 kJ mol⁻¹** (to 3 s.f.)"
+    },
+    {
+      "type": "workedExample",
+      "question": "A spirit burner containing propan-1-ol (CH₃CH₂CH₂OH) was used to heat 200.0 g of water in a copper calorimeter. The initial mass of the burner was 85.42 g and the final mass was 84.78 g. The temperature of the water rose from 20.5 °C to 55.8 °C. Calculate the enthalpy of combustion of propan-1-ol.",
+      "solution": "1.  **Calculate the heat energy absorbed by the water (q):**\n    Mass of water (m) = 200.0 g.\n    Specific heat capacity of water (c) = 4.18 J g⁻¹ K⁻¹.\n    Temperature change (ΔT) = 55.8 - 20.5 = 35.3 °C (or 35.3 K).\n    q = mcΔT = 200.0 g × 4.18 J g⁻¹ K⁻¹ × 35.3 K = 29510.8 J.\n\n2.  **Calculate the moles of propan-1-ol burned (n):**\n    Mass of propan-1-ol burned = 85.42 g - 84.78 g = 0.64 g.\n    Molar mass (Mᵣ) of CH₃CH₂CH₂OH = (3 × 12.0) + (8 × 1.0) + 16.0 = 60.0 g mol⁻¹.\n    Moles (n) = mass / Mᵣ = 0.64 g / 60.0 g mol⁻¹ = 0.01067 mol.\n\n3.  **Calculate the molar enthalpy change (ΔH):**\n    Combustion is always exothermic, so ΔH is negative.\n    We assume all heat from combustion is absorbed by the water, so heat released by reaction = -q.\n    ΔH = -q / n = -29510.8 J / 0.01067 mol = -2765773 J mol⁻¹.\n\n4.  **Convert to kJ mol⁻¹ and give to appropriate significant figures:**\n    ΔH = -2765773 / 1000 = -2765.8 kJ mol⁻¹.\n    The mass burned (0.64 g) is given to 2 s.f., so the answer should be too.\n    **ΔH = -2800 kJ mol⁻¹** (to 2 s.f.)"
+    },
+    {
+      "type": "examTip",
+      "content": "In calorimetry calculations, always show your working clearly in steps: calculate q, calculate n, then calculate ΔH. Pay close attention to signs (is it exothermic or endothermic?), units (J vs kJ), and significant figures. A common error is forgetting to use the mass of the *solution* (m) for q, not just the mass of the solid dissolved."
     },
     {
       "type": "practice",
-      "label": "Mark an enthalpy question",
+      "label": "Enthalpy Change",
       "href": "/mark?subject=9701&topic=5.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Energy Forms and Changes", "href": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Energy Forms and Changes (PhET Simulation)",
+          "href": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes"
+        },
+        {
+          "label": "Introduction to Enthalpy - Chem LibreTexts",
+          "href": "https://chem.libretexts.org/Bookshelves/General_Chemistry/Map%3A_Chemistry_-_The_Central_Science_(Brown_et_al.)/05%3A_Thermochemistry/5.2%3A_Enthalpy"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Energy forms and changes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes",
+    "hint": "Heat or cool the system — track energy transfer and temperature change (5.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Enthalpy change ΔH is heat energy transferred at constant pressure.",
+        "embedHint": "Heat the system — watch energy flow and temperature rise."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Exothermic: ΔH negative (system loses energy). Endothermic: ΔH positive.",
+        "embedHint": "Compare heating vs cooling — direction of energy transfer."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Standard conditions: ΔH⦵ refers to 298 K, 100 kPa, 1 mol substance.",
+        "embedHint": "Relate energy bar charts to balanced equation coefficients."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Calorimetry: q = mcΔT links temperature change to energy transferred.",
+        "embedHint": "Use the sim’s energy accounting to explain calorimeter logic."
+      }
+    ]
+  }
 }

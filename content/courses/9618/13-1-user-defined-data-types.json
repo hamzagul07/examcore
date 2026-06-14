@@ -4,29 +4,173 @@
   "title": "User-defined data types",
   "paper": "P3",
   "paperName": "Advanced Theory",
-  "status": "premium",
-  "summary": "9618 A Level — ENUM, SET, RECORD, and POINTER types in pseudocode.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces user-defined data types, focusing on how to define and use composite types (records) in pseudocode. It covers the syntax for creating new data structures, declaring variables of these types, and accessing their individual fields, which is a fundamental skill for modelling real-world data in Paper 3.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define ENUM and SET types.",
-    "Declare records with mixed field types.",
-    "Explain pointer types and referencing.",
-    "Choose appropriate user-defined types."
+    "Understand the need for user-defined data types beyond built-in types.",
+    "Define a composite data type (record) using pseudocode.",
+    "Declare variables of a user-defined type and manipulate their fields.",
+    "Distinguish between composite, enumerated, and pointer types."
   ],
   "simpleExplanation": {
-    "title": "Custom types",
-    "summary": "ENUM restricts values to a list. SET handles unordered collections. Pointers reference memory locations for linked structures.",
+    "title": "Build Your Own Data Blueprints",
+    "summary": "Instead of just using basic data types like INTEGER or STRING, we can create our own custom data types to group related information together. This makes our code much cleaner, more logical, and easier to understand, just like organising files into a specific folder.",
+    "analogy": "Think of a library card. The card itself is a single object, but it holds different pieces of information: a person's name (a string), a member ID (an integer), and an expiry date (a date). A user-defined data type lets us create a 'LibraryCard' blueprint in our code, specifying that it must contain these three distinct fields. We can then create many individual cards from this single blueprint.",
     "steps": [
-      "TYPE Day = (Mon, Tue, Wed, …).",
-      "SET OF CHAR for character sets.",
-      "POINTER ^Node links list elements.",
-      "Records group fields — EmployeeRecord."
+      "Identify related data items you want to group, like a student's name, ID, and date of birth.",
+      "Define a new composite data type using the `TYPE` and `ENDTYPE` keywords, listing each field and its base data type.",
+      "Declare a variable of your new custom type, just as you would declare an integer or string variable.",
+      "Access and manipulate the individual fields within the variable using dot notation, for example `MyStudent.Name`."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a user-defined data type?",
+      "back": "A data type that is defined by the programmer, rather than being a built-in (primitive) type. It is derived from existing data types."
+    },
+    {
+      "front": "What is a composite data type?",
+      "back": "A data type that is constructed from a collection of other data types, which can be different from each other. A record is a key example."
+    },
+    {
+      "front": "What is the pseudocode keyword to begin defining a new data type?",
+      "back": "`TYPE`. For example, `TYPE TStudent`."
+    },
+    {
+      "front": "What is the pseudocode keyword to end a data type definition?",
+      "back": "`ENDTYPE`."
+    },
+    {
+      "front": "What is a 'field' in the context of a record?",
+      "back": "A single data item within a record structure. It has a name (identifier) and a specific data type. Also known as a member."
+    },
+    {
+      "front": "How do you declare a variable of a user-defined type named `TPerson`?",
+      "back": "`DECLARE MyPerson : TPerson`. The type name follows the colon."
+    },
+    {
+      "front": "What is dot notation used for?",
+      "back": "To access a specific field within a variable of a record type. Syntax: `VariableName.FieldName`."
+    },
+    {
+      "front": "What is an enumerated data type?",
+      "back": "A user-defined type that consists of a set of named integer constants. For example, `TYPE TDay = (Monday, Tuesday, Wednesday, ...)`."
+    },
+    {
+      "front": "Can a record contain an array?",
+      "back": "Yes. A field within a record can be an array. For example, `TestScores : ARRAY[1:5] OF INTEGER` could be a field inside a student record."
+    },
+    {
+      "front": "What is a common mistake when defining a record type?",
+      "back": "Forgetting to declare the data type for each field inside the `TYPE` definition, or forgetting the `ENDTYPE` keyword."
+    },
+    {
+      "front": "What is a pointer type?",
+      "back": "A user-defined type that holds a memory address. The address points to a location where a piece of data is stored. It's defined using the `^` symbol, e.g., `TYPE NodePointer = ^ListNode`."
+    },
+    {
+      "front": "Why are user-defined types better than using parallel arrays?",
+      "back": "They group logically related data together, improving code readability and maintainability. It ensures that data for a single entity (like a person) is treated as a single unit, reducing the risk of data mismatch errors."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why should I use a record instead of just using parallel arrays?",
+      "a": "While you could store data in parallel arrays (e.g., an array for names, an array for IDs), a record is far superior. It encapsulates all data for a single entity, making your code more readable, maintainable, and less prone to errors. With parallel arrays, it's easy to mix up indices and mismatch data; with an array of records, all data for `Student[5]` is guaranteed to belong to the same student."
+    },
+    {
+      "q": "What is the difference between `TYPE` and `DECLARE`?",
+      "a": "`TYPE` is used to define a blueprint for a new data type. It doesn't create any variables or allocate any memory. `DECLARE` is used to create an actual variable (an instance) based on a data type (either built-in or user-defined) and allocates memory for it."
+    },
+    {
+      "q": "Can a field in a record be another record?",
+      "a": "Yes, absolutely. This is called a nested record. For example, a `TStudent` record could have a field `DateOfBirth` which is itself a record of type `TDate` (containing Day, Month, and Year fields). This is a powerful technique for modelling complex hierarchical data."
+    },
+    {
+      "q": "Is a `STRING` a composite type?",
+      "a": "This is a subtle point. In many languages, a string is treated as a composite type because it's a collection of characters. In the context of Cambridge pseudocode, it's generally treated as a basic type for declaration purposes, but it's good to be aware that it's fundamentally an array or sequence of `CHAR`s."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**User-defined types** (13.1) support **ADTs** and **linked lists** at A Level. Match type to **data structure** in the question." },
-    { "type": "practice", "label": "Mark a user-defined types question", "href": "/mark?subject=9618&topic=13.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In programming, we frequently use built-in data types like `INTEGER`, `REAL`, `CHAR`, and `STRING`. While useful, they are often insufficient for modelling complex, real-world entities. For instance, how would you represent a 'patient' in a hospital system using only basic types? You'd need their name, date of birth, patient ID, and medical history. User-defined data types allow us to create our own data structures to represent such complex entities logically and efficiently."
+    },
+    {
+      "type": "heading",
+      "content": "Composite Data Types: The Record"
+    },
+    {
+      "type": "text",
+      "content": "The most common user-defined type you will encounter in the A-Level syllabus is the **composite data type**, specifically the **record**. A record is a collection of related data items, called **fields**, which are grouped together under a single name. A key feature of a record is that its fields can be of different data types."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A record is a composite data type.",
+        "It groups multiple variables (fields) into a single unit.",
+        "Fields can have different data types (e.g., a mix of `STRING`, `INTEGER`, `DATE`).",
+        "This allows us to model real-world objects like a student, a car, or a product."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Defining a Record in Pseudocode"
+    },
+    {
+      "type": "text",
+      "content": "To create a record, we must first define its structure, or 'blueprint'. We use the `TYPE` and `ENDTYPE` keywords for this. Inside the definition, we list each field's identifier and its corresponding data type."
+    },
+    {
+      "type": "formula",
+      "content": "TYPE <TypeName>\n    DECLARE <FieldName1> : <DataType1>\n    DECLARE <FieldName2> : <DataType2>\n    ...\nENDTYPE"
+    },
+    {
+      "type": "workedExample",
+      "question": "A bookshop needs to store information about each book: its ISBN (13-digit string), title, author, and price. Define a suitable user-defined data type called `TBook`.",
+      "solution": "Here is the pseudocode definition for the `TBook` type:\n\n```pseudocode\nTYPE TBook\n    DECLARE ISBN : STRING\n    DECLARE Title : STRING\n    DECLARE Author : STRING\n    DECLARE Price : REAL\nENDTYPE\n```\n\n**Marking points:**\n- `TYPE TBook` and `ENDTYPE` present. (1 mark)\n- At least two correct fields with data types declared. (1 mark)\n- All four fields correctly declared with appropriate data types (`STRING` for ISBN/Title/Author, `REAL` for Price). (1 mark)"
+    },
+    {
+      "type": "heading",
+      "content": "Declaring and Using Record Variables"
+    },
+    {
+      "type": "text",
+      "content": "Once a type has been defined, it acts like any other data type. We can `DECLARE` variables of this new type. To access the individual fields within a record variable, we use **dot notation**. The syntax is `VariableName.FieldName`."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the `TBook` type defined previously:\n1. Declare a variable `newBook` of type `TBook`.\n2. Write pseudocode to assign the value \"978-0-241-98276-1\" to its ISBN field and 9.99 to its Price field.\n3. Write a statement to output the price of `newBook`.",
+      "solution": "1. **Declaration:**\n```pseudocode\nDECLARE newBook : TBook\n```\n\n2. **Assignment:**\n```pseudocode\nnewBook.ISBN <- \"978-0-241-98276-1\"\nnewBook.Price <- 9.99\n```\n\n3. **Output:**\n```pseudocode\nOUTPUT newBook.Price\n```\n\n**Marking points:**\n- Correct declaration of `newBook` with type `TBook`. (1 mark)\n- Correct use of dot notation and assignment operator (`<-` or `=`) for both fields. (1 mark for each correct assignment, total 2 marks)\n- Correct use of dot notation in the `OUTPUT` statement. (1 mark)"
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners are very particular about syntax. Always remember to include `TYPE` and `ENDTYPE`. When declaring fields, use `DECLARE <Identifier> : <DataType>`. When accessing fields, the dot `.` is crucial. It's also a common convention (though not mandatory) to prefix type names with a 'T', like `TStudent` or `TBook`, to make your code more readable."
+    },
+    {
+      "type": "heading",
+      "content": "Other User-Defined Types"
+    },
+    {
+      "type": "text",
+      "content": "While records are the most common, the syllabus also includes other user-defined types. An **enumerated type** defines a new type and a list of all possible values (named constants) it can hold. For example, `TYPE TColour = (Red, Green, Blue)`. A **pointer type** is a type that stores a memory address. This is fundamental for creating dynamic data structures like linked lists and binary trees, which you will study in more detail later. For example, `TYPE TNodePointer = ^TNode` defines a pointer to a record of type `TNode`."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: User-Defined Data Types",
+      "href": "/mark?subject=9618&topic=13.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge Syllabus (9618)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

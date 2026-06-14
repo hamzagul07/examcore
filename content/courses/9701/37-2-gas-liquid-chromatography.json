@@ -4,29 +4,253 @@
   "title": "Gas/liquid chromatography",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level GLC — retention time, separation, and quantitative analysis.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores Gas/Liquid Chromatography (GLC), a powerful analytical technique for separating and quantifying volatile components in a mixture. You will learn how GLC works, how to interpret chromatograms by analysing retention times and peak areas, and the factors that influence separation efficiency.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Explain mobile and stationary phases in GLC.",
-    "Interpret retention times from chromatograms.",
-    "Compare GLC with TLC.",
-    "Describe quantitative use of peak areas."
+    "Describe the principles of gas/liquid chromatography (GLC), including the roles of the mobile and stationary phases.",
+    "Interpret GLC chromatograms to identify components by their retention times.",
+    "Use data from GLC chromatograms to perform quantitative analysis by relating peak areas to concentration.",
+    "Explain how factors such as column temperature and stationary phase polarity affect the separation of components."
   ],
   "simpleExplanation": {
-    "title": "Volatile mixtures separated by gas",
-    "summary": "A carrier gas sweeps volatile sample through a column coated with liquid stationary phase. Components elute at different times.",
+    "title": "The Great Molecular Race",
+    "summary": "Gas/Liquid Chromatography separates volatile compounds by passing them through a long, coated tube. How fast each compound travels depends on its boiling point and how much it interacts with the tube's liquid lining versus the moving gas.",
+    "analogy": "Imagine a group of friends racing through a street lined with tempting food stalls. The friends who are easily distracted and stop often at the stalls (interacting with the 'stationary phase') will finish the race much later. The friends who ignore the stalls and just keep running with the crowd (the 'mobile phase') will finish quickly. In GLC, less volatile molecules are like the easily distracted friends, taking longer to get through the column.",
     "steps": [
-      "Sample must be volatile or derivatised.",
-      "Retention time identifies component.",
-      "More polar interacts longer — later peak.",
-      "Peak area proportional to amount."
+      "Volatile sample in carrier gas (mobile phase). | Sim hint: Liquid stationary phase on column.",
+      "Retention time identifies components. | Sim hint: Compare with standards.",
+      "More volatile → shorter retention time. | Sim hint: Temperature affects separation.",
+      "Area under peak ∝ amount. | Sim hint: Quantitative GLC."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the principle of separation in Gas/Liquid Chromatography (GLC)?",
+      "back": "Partition. Components partition (distribute) themselves between the mobile gas phase and the stationary liquid phase based on their relative volatility and solubility in the stationary phase."
+    },
+    {
+      "front": "What is the mobile phase in GLC?",
+      "back": "An inert carrier gas, such as nitrogen ($N_2$), helium (He), or argon (Ar). It must be unreactive."
+    },
+    {
+      "front": "What is the stationary phase in GLC?",
+      "back": "A high boiling point, non-volatile liquid coated onto a solid support or the inner wall of a long, thin capillary column."
+    },
+    {
+      "front": "Define retention time ($t_R$).",
+      "back": "The time taken for a component to travel from the point of injection to the detector in a chromatography column."
+    },
+    {
+      "front": "How is a substance identified using its GLC chromatogram?",
+      "back": "By comparing its retention time to that of a known standard, run under identical conditions (same column, temperature, flow rate)."
+    },
+    {
+      "front": "What does the area under a peak on a chromatogram represent?",
+      "back": "The relative amount or concentration of that specific component in the mixture. It is directly proportional to the quantity of the substance."
+    },
+    {
+      "front": "How does a compound's volatility affect its retention time?",
+      "back": "A more volatile compound (lower boiling point) spends more time in the mobile gas phase and has a shorter retention time. A less volatile compound (higher boiling point) spends more time dissolved in the stationary liquid phase and has a longer retention time."
+    },
+    {
+      "front": "What is the effect of increasing the column temperature in GLC?",
+      "back": "It increases the vapour pressure of all components, causing them to move faster through the column. This decreases all retention times but may reduce the resolution (quality of separation) between peaks."
+    },
+    {
+      "front": "How is quantitative analysis performed using GLC?",
+      "back": "A calibration curve is created by running standard solutions of known concentrations and plotting their peak areas against concentration. The peak area of the unknown sample is then used to find its concentration from this graph."
+    },
+    {
+      "front": "Why must the sample be volatile for GLC analysis?",
+      "back": "The sample is injected into a hot port to vaporise it instantly. Only gaseous components can be carried through the column by the mobile gas phase. Non-volatile substances will not elute."
+    },
+    {
+      "front": "What is a common pitfall when identifying compounds by retention time?",
+      "back": "Assuming a single retention time is definitive proof of identity. Different compounds can have identical retention times under one set of conditions. Coupling GLC with mass spectrometry (GC-MS) provides much more certain identification."
+    },
+    {
+      "front": "How does the polarity of the stationary phase affect separation?",
+      "back": "Like dissolves like. A polar stationary phase will retain polar components for longer (longer $t_R$), while a non-polar stationary phase will retain non-polar components for longer."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between Gas-Liquid Chromatography (GLC) and High-Performance Liquid Chromatography (HPLC)?",
+      "a": "The main difference is the mobile phase. In GLC, the mobile phase is an inert gas, and the sample must be volatile. In HPLC, the mobile phase is a liquid solvent under high pressure, which allows it to separate non-volatile compounds that cannot be analysed by GLC."
+    },
+    {
+      "q": "Why is the column in GLC placed inside an oven?",
+      "a": "The oven maintains a precise and uniform temperature for the column. This is crucial because temperature directly affects the volatility of the components and their retention times. Controlling the temperature ensures that results are reproducible and allows for temperature programming (gradually increasing the temperature) to improve separation of complex mixtures."
+    },
+    {
+      "q": "What does GC-MS stand for and why is it so powerful?",
+      "a": "GC-MS stands for Gas Chromatography-Mass Spectrometry. It's a hybrid technique where the outlet of a gas chromatograph is fed directly into the inlet of a mass spectrometer. The GC separates the mixture into its individual components, and then the MS analyses each component as it elutes, providing a mass spectrum. This gives a 'molecular fingerprint' that allows for much more definitive identification than retention time alone."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**GLC** (37.2) complements **37.1 TLC** for **volatile organic mixtures**. Know **retention time** vs **Rf**." },
-    { "type": "practice", "label": "Mark a GLC question", "href": "/mark?subject=9701&topic=37.2" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Gas/Liquid Chromatography, or GLC, is a cornerstone of modern analytical chemistry. It is a type of chromatography used to separate and analyse compounds that can be vaporised without decomposition. From detecting pollutants in the air to analysing the composition of perfumes and even testing athletes for banned substances, GLC provides a fast, sensitive, and quantitative method for unravelling complex mixtures."
+    },
+    {
+      "type": "heading",
+      "content": "The Principles of Gas/Liquid Chromatography (GLC)"
+    },
+    {
+      "type": "text",
+      "content": "In GLC, the mixture to be separated is first vaporised and then carried by an inert gas (the mobile phase) through a very long, thin tube called a column. This column contains the stationary phase: a non-volatile liquid coated onto either a solid packing material or the inside wall of the column. The entire column is housed within a temperature-controlled oven."
+    },
+    {
+      "type": "text",
+      "content": "As the components of the mixture travel through the column, they continuously partition between the mobile gas phase and the stationary liquid phase. The extent to which a component dissolves in the stationary liquid depends on its volatility and its intermolecular forces with the liquid. Components that are less volatile or more soluble in the stationary phase spend more time 'stuck' and move through the column more slowly. Components that are more volatile or less soluble move quickly with the gas. This difference in speed results in the separation of the mixture."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mobile Phase:** An inert gas (e.g., $N_2$, He) that carries the sample.",
+        "**Stationary Phase:** A non-volatile liquid on a solid support inside the column.",
+        "**Principle:** Separation by partition based on relative volatility and solubility.",
+        "**Requirement:** The sample must be volatile or be made volatile (derivatised)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting a Chromatogram"
+    },
+    {
+      "type": "text",
+      "content": "As each separated component leaves the column, it passes through a detector which generates an electrical signal. A computer plots this signal against time to produce a graph called a chromatogram. Each peak on the chromatogram represents a different component from the original mixture."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Retention Time ($t_R$):** The time from injection to detection for a specific component. It is found on the x-axis and is used for qualitative identification by comparing with known standards.",
+        "**Peak Area:** The area under a peak is directly proportional to the amount (concentration) of that component. This is used for quantitative analysis.",
+        "**Number of Peaks:** Indicates the minimum number of separable components in the mixture."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A mixture containing several straight-chain alkanes is analysed by GLC. The chromatogram shows three major peaks with retention times of 2.8 min, 4.5 min, and 6.9 min. Separate analyses of pure hexane, heptane, and octane under identical conditions gave retention times of 4.5 min, 6.9 min, and 9.8 min, respectively. Identify the components present in the mixture.",
+      "solution": "1. **Compare retention times:** The retention time of a compound is a characteristic property under specific GLC conditions.\n2. **Identify Peak 1 (2.8 min):** This retention time does not match any of the provided standards (hexane, heptane, octane). It is an unknown component, likely an alkane with fewer than 6 carbon atoms (e.g., pentane), as it has a shorter retention time.\n3. **Identify Peak 2 (4.5 min):** This retention time matches that of the pure hexane standard (4.5 min). Therefore, the mixture contains hexane.\n4. **Identify Peak 3 (6.9 min):** This retention time matches that of the pure heptane standard (6.9 min). Therefore, the mixture contains heptane.\n5. **Conclusion:** The mixture contains hexane, heptane, and at least one other unknown, more volatile component. Octane is not present in the mixture as there is no peak at 9.8 min."
+    },
+    {
+      "type": "heading",
+      "content": "Factors Affecting Separation"
+    },
+    {
+      "type": "text",
+      "content": "The quality of separation in GLC can be fine-tuned by adjusting several parameters. The goal is usually to achieve good resolution (sharp, well-separated peaks) in a reasonable amount of time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Column Temperature:** Higher temperatures decrease retention times for all components as they spend more time in the vapour phase. This can be useful for eluting high-boiling point compounds faster, but may cause peaks that are close together to merge, reducing resolution.",
+        "**Polarity of Stationary Phase:** A non-polar stationary phase (like a long-chain hydrocarbon) will retain non-polar analytes longer via van der Waals forces. A polar stationary phase (like one with -OH or -CN groups) will retain polar analytes longer via dipole-dipole interactions or hydrogen bonding.",
+        "**Column Length:** A longer column provides more opportunity for separation to occur, generally leading to better resolution but longer analysis times.",
+        "**Carrier Gas Flow Rate:** Increasing the flow rate will decrease retention times, but there is an optimal flow rate for maximum separation efficiency. Too fast or too slow will broaden the peaks."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to predict the order of elution (the order components leave the column), first look at boiling points. The compound with the lowest boiling point is the most volatile and will have the shortest retention time. If boiling points are similar, consider polarity. The compound that is most 'like' the stationary phase in terms of polarity will be retained for longer."
+    },
+    {
+      "type": "heading",
+      "content": "Quantitative Analysis"
+    },
+    {
+      "type": "text",
+      "content": "GLC is not just for identifying substances; it's also a precise quantitative tool. The area under a peak on the chromatogram is directly proportional to the concentration of the component that produced it. To find the absolute concentration of a substance, a calibration curve must be constructed."
+    },
+    {
+      "type": "formula",
+      "content": "Concentration of component ∝ Peak area of component"
+    },
+    {
+      "type": "text",
+      "content": "This involves preparing a series of standard solutions with known concentrations of the analyte. Each standard is run through the GLC, and its peak area is measured. A graph of peak area versus concentration is plotted, which should yield a straight line passing through the origin. The unknown sample is then analysed under the same conditions, and its peak area is used to determine its concentration from the calibration graph."
+    },
+    {
+      "type": "workedExample",
+      "question": "The concentration of caffeine in a soft drink was determined using GLC with an internal standard. A series of standard caffeine solutions were prepared, each containing a constant concentration of an internal standard. The ratio of the caffeine peak area to the internal standard peak area was calculated. The results were:\n\n- 10 mg dm⁻³ caffeine: Peak Area Ratio = 0.52\n- 20 mg dm⁻³ caffeine: Peak Area Ratio = 1.05\n- 30 mg dm⁻³ caffeine: Peak Area Ratio = 1.56\n- 40 mg dm⁻³ caffeine: Peak Area Ratio = 2.10\n\nThe soft drink sample, with the same amount of internal standard added, gave a Peak Area Ratio of 1.35. Determine the concentration of caffeine in the drink.",
+      "solution": "1. **Plot a calibration curve:** Plot Peak Area Ratio (y-axis) against Caffeine Concentration (mg dm⁻³) (x-axis).\n2. **Draw the line of best fit:** The points should form a straight line that passes through the origin (as a concentration of 0 should give a ratio of 0).\n3. **Determine the concentration of the unknown:** Locate the Peak Area Ratio of 1.35 on the y-axis of the graph. Draw a horizontal line to the calibration line, and then a vertical line down to the x-axis to read the concentration.\n4. **Calculation (optional, for checking):** The gradient of the line is approximately (2.10 - 0.52) / (40 - 10) = 1.58 / 30 ≈ 0.0526 (mg dm⁻³)⁻¹.\n   Concentration = Peak Area Ratio / Gradient = 1.35 / 0.0526 ≈ 25.66 mg dm⁻³.\n5. **Final Answer:** From the graph or calculation, the concentration of caffeine in the soft drink is approximately **26 mg dm⁻³** (to 2 significant figures)."
+    },
+    {
+      "type": "faq",
+      "q": "What is an 'internal standard' and why is it used in the worked example?",
+      "a": "An internal standard is a known amount of a compound, different from the analyte, added to both the standard solutions and the unknown sample. It helps to correct for variations in injection volume or detector response. By using the ratio of the analyte peak area to the internal standard peak area, the analysis becomes much more precise and reproducible."
+    },
+    {
+      "type": "faq",
+      "q": "Can GLC be used to separate inorganic substances?",
+      "a": "Generally, no. Most inorganic substances are ionic salts with extremely high boiling points and are not volatile. GLC is primarily a technique for volatile or semi-volatile organic compounds. Some specific volatile inorganic compounds, like certain metal chlorides or organometallic compounds, can be analysed by GLC."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Gas/Liquid Chromatography",
+      "href": "/mark?subject=9701&topic=37.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide: Gas-Liquid Chromatography",
+          "href": "https://www.chemguide.co.uk/analysis/chromatography/glc.html"
+        },
+        {
+          "label": "Khan Academy: Gas Chromatography",
+          "href": "https://www.khanacademy.org/science/class-11-chemistry-india/xfbb6cb8de2059492:in-in-organic-chemistry-some-basic-principles-and-techniques/xfbb6cb8de2059492:in-in-methods-of-purification-of-organic-compounds/a/gas-chromatography"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Retention time and stationary/mobile phases (37.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Volatile sample in carrier gas (mobile phase).",
+        "embedHint": "Liquid stationary phase on column."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Retention time identifies components.",
+        "embedHint": "Compare with standards."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "More volatile → shorter retention time.",
+        "embedHint": "Temperature affects separation."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Area under peak ∝ amount.",
+        "embedHint": "Quantitative GLC."
+      }
+    ]
+  }
 }

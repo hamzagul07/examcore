@@ -4,39 +4,232 @@
   "title": "Kinematics of motion in a straight line",
   "paper": "P4",
   "paperName": "Mechanics",
-  "status": "premium",
-  "summary": "9709 Mechanics — SUVAT, v–t and s–t graphs, and calculus links with PhET motion sim.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental principles of kinematics for motion in a straight line. It covers the 'SUVAT' equations for constant acceleration, the interpretation of displacement-time and velocity-time graphs, and the application of differentiation and integration for variable acceleration.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Apply SUVAT equations for constant acceleration.",
-    "Interpret and sketch v–t and s–t graphs.",
-    "Use calculus for variable acceleration problems.",
-    "Solve problems involving free fall."
+    "Apply the five constant acceleration (SUVAT) equations to solve problems.",
+    "Interpret displacement-time and velocity-time graphs to find displacement, velocity, and acceleration.",
+    "Use differentiation and integration to model motion with variable acceleration.",
+    "Understand and apply the concept of acceleration due to gravity for objects in free fall."
   ],
   "simpleExplanation": {
-    "title": "Motion in one dimension",
-    "summary": "Constant acceleration links displacement, velocity, and time through SUVAT. Graph gradients and areas give kinematic quantities.",
+    "title": "The Language of Motion",
+    "summary": "Kinematics provides the tools to describe and predict how things move. We use equations, graphs, and calculus to understand an object's position, speed, and acceleration.",
+    "analogy": "Imagine you're driving a car. Pressing the accelerator gives you a constant acceleration, and we can use 'SUVAT' equations to predict your speed and distance travelled after a certain time. The car's journey can also be drawn as a graph, where a steepening line shows you're speeding up, and a flat line shows you're cruising. Calculus is like having a super-powered speedometer that works even when your acceleration isn't constant.",
     "steps": [
-      "v = u + at; s = ut + ½at²; v² = u² + 2as.",
-      "Area under v–t = displacement.",
-      "Gradient of s–t = velocity.",
-      "Sign convention: choose positive direction and stick to it."
+      "SUVAT for constant acceleration — pick the equation that doesn't involve the variable you don't need.",
+      "The gradient of a displacement-time graph is velocity. The gradient of a velocity-time graph is acceleration.",
+      "For objects in free fall, acceleration 'a' is the acceleration due to gravity, 'g' (approx 9.8 m s⁻²). Remember to define a positive direction and stick to it.",
+      "When acceleration changes, use calculus: differentiate displacement to get velocity (v = ds/dt), and differentiate velocity to get acceleration (a = dv/dt)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What do the letters in SUVAT stand for?",
+      "back": "s: displacement, u: initial velocity, v: final velocity, a: acceleration, t: time."
+    },
+    {
+      "front": "What is the crucial condition for using the SUVAT equations?",
+      "back": "Acceleration must be constant. If acceleration is given as a function of time (e.g., a = 2t), you must use calculus."
+    },
+    {
+      "front": "What does the gradient of a displacement-time (s-t) graph represent?",
+      "back": "Velocity. A straight line means constant velocity; a curve means changing velocity (acceleration)."
+    },
+    {
+      "front": "What does the gradient of a velocity-time (v-t) graph represent?",
+      "back": "Acceleration. A horizontal line means zero acceleration (constant velocity)."
+    },
+    {
+      "front": "What does the area under a velocity-time (v-t) graph represent?",
+      "back": "Displacement. To find total distance travelled, you must add the areas, treating any area below the t-axis as positive."
+    },
+    {
+      "front": "What is the difference between displacement and distance?",
+      "back": "Displacement is a vector quantity (how far from the start point, including direction). Distance is a scalar quantity (how far you've travelled in total)."
+    },
+    {
+      "front": "What is the equation linking v, u, a, and t?",
+      "back": "$v = u + at$"
+    },
+    {
+      "front": "What is the SUVAT equation that does not involve time, t?",
+      "back": "$v^2 = u^2 + 2as$"
+    },
+    {
+      "front": "How are velocity (v) and displacement (s) related using calculus?",
+      "back": "Velocity is the rate of change of displacement: $v = \\frac{ds}{dt}$. To find displacement from velocity, you integrate: $s = \\int v \\, dt$."
+    },
+    {
+      "front": "How are acceleration (a) and velocity (v) related using calculus?",
+      "back": "Acceleration is the rate of change of velocity: $a = \\frac{dv}{dt}$. To find velocity from acceleration, you integrate: $v = \\int a \\, dt$."
+    },
+    {
+      "front": "What value is used for acceleration 'a' in vertical motion problems (free fall)?",
+      "back": "$a = g \\approx 9.8 \\text{ m s}^{-2}$ (or sometimes 10). Its sign depends on your chosen positive direction (e.g., if up is positive, $a = -9.8$)."
+    },
+    {
+      "front": "A particle starts from rest. What does this imply?",
+      "back": "The initial velocity, $u$, is 0."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between speed and velocity?",
+      "a": "Speed is a scalar quantity—it only has magnitude (e.g., 20 m s⁻¹). Velocity is a vector quantity—it has both magnitude and direction (e.g., 20 m s⁻¹ due north). In straight-line motion, we often use positive and negative signs to indicate direction."
+    },
+    {
+      "q": "When should I use g = 9.8 m s⁻² and when should I use g = 10 m s⁻²?",
+      "a": "The Cambridge International exam papers will always specify the value of 'g' to use on the front cover of the question paper. For P4 Mechanics, this is typically g = 10 m s⁻². However, always check the instructions in your specific exam. If you are doing practice problems from other sources, they may use g = 9.8 or 9.81."
+    },
+    {
+      "q": "How do I choose the right SUVAT equation?",
+      "a": "First, write down the values you know for s, u, v, a, and t. Identify the variable you want to find. Then, look for the equation that contains the four variables you are working with (the knowns and the one unknown). Each of the five equations omits exactly one of the five variables."
+    },
+    {
+      "q": "What does it mean if I calculate a negative displacement or velocity?",
+      "a": "A negative sign simply indicates direction. In a straight-line motion problem, you must first define a positive direction (e.g., upwards, or to the right). A negative displacement then means the object is on the opposite side of the origin from the positive direction. A negative velocity means the object is moving in the negative direction."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Kinematics** (4.2) precedes **Newton's laws** (4.4). List **knowns/unknowns** before picking a SUVAT equation — avoids wrong formula."
+      "content": "Welcome to the study of kinematics, the branch of mechanics that describes the motion of objects without considering the forces that cause the motion. In this lesson, we will develop the mathematical tools needed to analyse motion in a straight line, a fundamental skill for all further mechanics topics."
+    },
+    {
+      "type": "heading",
+      "content": "Motion with Constant Acceleration: The SUVAT Equations"
+    },
+    {
+      "type": "text",
+      "content": "When an object moves with constant, uniform acceleration, its motion can be described by a set of five equations. These are known as the SUVAT equations, named after the variables they relate: displacement (s), initial velocity (u), final velocity (v), acceleration (a), and time (t). Mastering these is essential for solving a wide range of mechanics problems."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$v = u + at$",
+        "$s = ut + \\frac{1}{2}at^2$",
+        "$s = vt - \\frac{1}{2}at^2$",
+        "$s = \\frac{1}{2}(u+v)t$",
+        "$v^2 = u^2 + 2as$"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Before applying a SUVAT equation, always list the variables you know and the one you need to find. This helps you select the correct equation. Remember, these equations are only valid if acceleration is constant."
+    },
+    {
+      "type": "workedExample",
+      "question": "A car is travelling along a straight road at 12 m s⁻¹. It accelerates uniformly at 1.5 m s⁻² for 8 seconds. Find the car's final velocity and the distance it travels during this time.",
+      "solution": "First, list the known SUVAT variables. We are given:\n$u = 12 \\text{ m s}^{-1}$\n$a = 1.5 \\text{ m s}^{-2}$\n$t = 8 \\text{ s}$\n\nWe need to find the final velocity, $v$, and the displacement, $s$.\n\n**To find v:**\nChoose the equation that links u, a, t, and v: $v = u + at$.\n$v = 12 + (1.5)(8)$\n$v = 12 + 12$\n$v = 24 \\text{ m s}^{-1}$\n\n**To find s:**\nWe can use an equation linking u, a, t, and s: $s = ut + \\frac{1}{2}at^2$.\n$s = (12)(8) + \\frac{1}{2}(1.5)(8^2)$\n$s = 96 + \\frac{1}{2}(1.5)(64)$\n$s = 96 + 48$\n$s = 144 \\text{ m}$\n\nThe final velocity is 24 m s⁻¹ and the distance travelled is 144 m."
+    },
+    {
+      "type": "heading",
+      "content": "Graphical Representation of Motion"
+    },
+    {
+      "type": "text",
+      "content": "Graphs are a powerful visual tool in kinematics. A displacement-time graph plots the object's displacement from a starting point against time. A velocity-time graph plots the object's velocity against time. The features of these graphs have important physical meanings."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displacement-Time Graph (s-t):** The gradient at any point gives the instantaneous velocity.",
+        "**Velocity-Time Graph (v-t):** The gradient at any point gives the instantaneous acceleration.",
+        "**Velocity-Time Graph (v-t):** The area between the graph line and the time axis gives the displacement."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The velocity-time graph for a cyclist's journey is a straight line from (0, 4) to (10, 12), where time is in seconds and velocity is in m s⁻¹. Calculate the acceleration of the cyclist and the total distance travelled in the 10 seconds.",
+      "solution": "The graph is a straight line, which means the acceleration is constant.\n\n**To find acceleration, a:**\nAcceleration is the gradient of the v-t graph.\n$a = \\frac{\\text{change in velocity}}{\\text{change in time}} = \\frac{v_2 - v_1}{t_2 - t_1}$\n$a = \\frac{12 - 4}{10 - 0} = \\frac{8}{10}$\n$a = 0.8 \\text{ m s}^{-2}$\n\n**To find distance travelled, s:**\nDistance travelled is the area under the v-t graph. The shape is a trapezium.\nArea = $\\frac{1}{2}(a+b)h$, where a and b are the parallel sides (the initial and final velocities) and h is the height (the time interval).\n$s = \\frac{1}{2}(4 + 12) \\times 10$\n$s = \\frac{1}{2}(16) \\times 10$\n$s = 8 \\times 10 = 80 \\text{ m}$\n\nThe cyclist's acceleration is 0.8 m s⁻² and the total distance travelled is 80 m."
+    },
+    {
+      "type": "heading",
+      "content": "Motion with Variable Acceleration"
+    },
+    {
+      "type": "text",
+      "content": "When acceleration is not constant (for example, it might depend on time), the SUVAT equations cannot be used. In these cases, we must use calculus. The fundamental relationships are based on the idea that velocity is the rate of change of displacement, and acceleration is the rate of change of velocity."
+    },
+    {
+      "type": "formula",
+      "content": "Velocity: $v = \\frac{ds}{dt} \\quad \\implies \\quad s = \\int v \\, dt$\n\nAcceleration: $a = \\frac{dv}{dt} = \\frac{d^2s}{dt^2} \\quad \\implies \\quad v = \\int a \\, dt$"
+    },
+    {
+      "type": "examTip",
+      "content": "When integrating to find velocity or displacement, do not forget the constant of integration, '+ C'. Use the initial conditions given in the problem (e.g., 'starts from rest at the origin' means v=0 and s=0 when t=0) to find the value of C."
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle moves in a straight line. Its acceleration at time $t$ seconds is given by $a = (6t - 2)$ m s⁻². When $t=0$, the particle is at the origin and has a velocity of 3 m s⁻¹. Find expressions for its velocity and displacement in terms of $t$.",
+      "solution": "We are given $a = 6t - 2$.\n\n**To find velocity, v:**\nIntegrate acceleration with respect to time.\n$v = \\int a \\, dt = \\int (6t - 2) \\, dt$\n$v = 3t^2 - 2t + C$\nWe are given that when $t=0$, $v=3$. Substitute these values to find C:\n$3 = 3(0)^2 - 2(0) + C \\implies C = 3$\nSo, the expression for velocity is $v = 3t^2 - 2t + 3$ m s⁻¹.\n\n**To find displacement, s:**\nIntegrate velocity with respect to time.\n$s = \\int v \\, dt = \\int (3t^2 - 2t + 3) \\, dt$\n$s = t^3 - t^2 + 3t + D$\nWe are given that when $t=0$, the particle is at the origin, so $s=0$. Substitute these values to find D:\n$0 = (0)^3 - (0)^2 + 3(0) + D \\implies D = 0$\nSo, the expression for displacement is $s = t^3 - t^2 + 3t$ m."
     },
     {
       "type": "practice",
-      "label": "Mark a kinematics question",
+      "label": "Practice Kinematics Problems",
       "href": "/mark?subject=9709&topic=4.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Cambridge International A-Level Mathematics 9709 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Kinematics on Khan Academy",
+          "href": "https://www.khanacademy.org/science/physics/one-dimensional-motion"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Forces and motion",
+    "embedUrl": "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/forces-and-motion-basics",
+    "hint": "v–t and s–t graphs — SUVAT links from gradient and area (9709 4.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "SUVAT for constant acceleration — pick equation without unknown.",
+        "embedHint": "v² = u² + 2as when t unknown."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Gradient of s–t graph = velocity; gradient of v–t = acceleration.",
+        "embedHint": "Area under v–t = displacement."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Free fall: a = g (≈ 9.8 m s⁻²) unless air resistance ignored.",
+        "embedHint": "Sign convention: choose positive direction."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Calculus link: v = ds/dt, a = dv/dt.",
+        "embedHint": "Integrate a to find v, then s."
+      }
+    ]
+  }
 }

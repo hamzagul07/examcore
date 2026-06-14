@@ -1,0 +1,212 @@
+{
+  "slug": "2-2-matrices",
+  "topicCode": "2.2",
+  "title": "Matrices",
+  "paper": "P2",
+  "paperName": "Paper 2: Further Pure Mathematics 2",
+  "status": "pilot",
+  "summary": "This lesson introduces the core concepts of eigenvalues and eigenvectors. You will learn how to find them using the characteristic equation, and how to apply the powerful Cayley-Hamilton theorem to find matrix powers and inverses. We will also explore key properties that provide useful checks and deeper insights into matrix behaviour.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Calculate the characteristic equation, eigenvalues, and corresponding eigenvectors of a square matrix up to 3x3.",
+    "Apply the Cayley-Hamilton theorem to a square matrix to find powers of the matrix or its inverse.",
+    "Recall and use the properties of eigenvalues and eigenvectors, including the relationship between eigenvalues and the trace and determinant.",
+    "Understand the geometric interpretation of eigenvectors as invariant lines under the transformation represented by the matrix."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking a Matrix's DNA",
+    "summary": "Eigenvalues and eigenvectors reveal the fundamental 'stretching' behaviour of a matrix transformation. They show us which directions remain unchanged, and by how much they are scaled.",
+    "analogy": "Imagine drawing lines on a sheet of rubber and then stretching it. Most lines will change direction, but some special lines will only get longer or shorter while pointing the same way. These special lines are like eigenvectors, and the amount they stretch by is the eigenvalue.",
+    "steps": [
+      "Form the characteristic equation $\\det(\\mathbf{A} - \\lambda\\mathbf{I}) = 0$ to create a polynomial in $\\lambda$.",
+      "Solve the characteristic equation to find the roots, which are the eigenvalues $\\lambda$ of the matrix.",
+      "For each eigenvalue, solve the system of equations $(\\mathbf{A} - \\lambda\\mathbf{I})\\mathbf{x} = \\mathbf{0}$ to find the corresponding non-zero eigenvectors $\\mathbf{x}$.",
+      "Apply the Cayley-Hamilton theorem by substituting the matrix $\\mathbf{A}$ into its characteristic equation to find matrix powers or the inverse."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an eigenvalue of a matrix $\\mathbf{A}$?",
+      "back": "A scalar $\\lambda$ such that for a non-zero vector $\\mathbf{x}$, the equation $\\mathbf{A}\\mathbf{x} = \\lambda\\mathbf{x}$ holds. It represents a scaling factor."
+    },
+    {
+      "front": "What is an eigenvector of a matrix $\\mathbf{A}$?",
+      "back": "A non-zero vector $\\mathbf{x}$ that, when multiplied by $\\mathbf{A}$, is simply scaled by a factor $\\lambda$ (the eigenvalue), without changing its direction. So, $\\mathbf{A}\\mathbf{x} = \\lambda\\mathbf{x}$."
+    },
+    {
+      "front": "What is the characteristic equation of a square matrix $\\mathbf{A}$?",
+      "back": "The polynomial equation in $\\lambda$ given by $\\det(\\mathbf{A} - \\lambda\\mathbf{I}) = 0$. Its roots are the eigenvalues of $\\mathbf{A}$."
+    },
+    {
+      "front": "State the Cayley-Hamilton theorem.",
+      "back": "Every square matrix satisfies its own characteristic equation. If $p(\\lambda) = 0$ is the characteristic equation, then $p(\\mathbf{A}) = \\mathbf{0}$ (the zero matrix)."
+    },
+    {
+      "front": "Common Trap: What can an eigenvector NEVER be?",
+      "back": "The zero vector, $\\mathbf{x} = \\mathbf{0}$. The definition requires a non-zero vector, as $\\mathbf{A}\\mathbf{0} = \\lambda\\mathbf{0}$ is trivially true for any $\\lambda$ and gives no useful information."
+    },
+    {
+      "front": "What is the relationship between the eigenvalues and the trace of a matrix?",
+      "back": "The sum of the eigenvalues is equal to the trace of the matrix (the sum of the elements on the main diagonal). $\\sum \\lambda_i = \\text{tr}(\\mathbf{A})$."
+    },
+    {
+      "front": "What is the relationship between the eigenvalues and the determinant of a matrix?",
+      "back": "The product of the eigenvalues is equal to the determinant of the matrix. $\\prod \\lambda_i = \\det(\\mathbf{A})$."
+    },
+    {
+      "front": "How do you find the inverse of a matrix $\\mathbf{A}$ using the Cayley-Hamilton theorem?",
+      "back": "Substitute $\\mathbf{A}$ into its characteristic equation, e.g., $\\mathbf{A}^3 + c_2\\mathbf{A}^2 + c_1\\mathbf{A} + c_0\\mathbf{I} = \\mathbf{0}$. Multiply by $\\mathbf{A}^{-1}$ and rearrange to make $\\mathbf{A}^{-1}$ the subject: $\\mathbf{A}^{-1} = -\\frac{1}{c_0}(\\mathbf{A}^2 + c_2\\mathbf{A} + c_1\\mathbf{I})$."
+    },
+    {
+      "front": "What is a key property of the eigenvalues of a real symmetric matrix?",
+      "back": "All its eigenvalues are real numbers."
+    },
+    {
+      "front": "What is a key property of the eigenvectors of a real symmetric matrix?",
+      "back": "Eigenvectors corresponding to distinct eigenvalues are orthogonal (their dot product is zero)."
+    },
+    {
+      "front": "If $\\lambda$ is an eigenvalue of $\\mathbf{A}$, what is an eigenvalue of $\\mathbf{A}^3$?",
+      "back": "$\\lambda^3$. In general, if $\\lambda$ is an eigenvalue of $\\mathbf{A}$, then $\\lambda^k$ is an eigenvalue of $\\mathbf{A}^k$ for any positive integer $k$."
+    },
+    {
+      "front": "What does an eigenvalue of $\\lambda=0$ tell you about the matrix $\\mathbf{A}$?",
+      "back": "It means the determinant of $\\mathbf{A}$ is zero ($\\det(\\mathbf{A}) = \\prod \\lambda_i = 0$). Therefore, the matrix $\\mathbf{A}$ is singular and does not have an inverse."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the geometric meaning of an eigenvector?",
+      "a": "An eigenvector represents a direction that is unchanged by the linear transformation represented by the matrix. The vector itself is stretched or shrunk by a factor equal to its corresponding eigenvalue, but it still points along the same line through the origin. This line is called an invariant line."
+    },
+    {
+      "q": "Can an eigenvalue be zero?",
+      "a": "Yes. An eigenvalue of zero means that there is a non-zero vector $\\mathbf{x}$ such that $\\mathbf{A}\\mathbf{x} = 0\\mathbf{x} = \\mathbf{0}$. This means that the matrix maps a non-zero vector to the zero vector. This is only possible if the matrix is singular, i.e., its determinant is zero. The product of eigenvalues equals the determinant, so if one eigenvalue is zero, the determinant must be zero."
+    },
+    {
+      "q": "What happens if I get repeated eigenvalues for a 3x3 matrix?",
+      "a": "If an eigenvalue $\\lambda$ is a repeated root of the characteristic equation (e.g., has algebraic multiplicity 2), you might find one or two linearly independent eigenvectors for it. If you can find two linearly independent eigenvectors, they will form an 'invariant plane'. If you can only find one, it corresponds to an invariant line. The number of linearly independent eigenvectors for a given eigenvalue is its 'geometric multiplicity'."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In Further Pure 1, you saw matrices as tools for representing linear transformations like rotations, reflections, and stretches. A key question arises: for a given transformation, are there any lines that are mapped onto themselves? That is, are there vectors whose direction is unchanged by the transformation, even if their magnitude is scaled? The answer is yes, and these special vectors and their associated scaling factors are called eigenvectors and eigenvalues. They are fundamental to understanding the properties of a matrix and have wide applications in fields like physics, engineering, and data science."
+    },
+    {
+      "type": "heading",
+      "content": "Eigenvalues and Eigenvectors: The Fundamentals"
+    },
+    {
+      "type": "text",
+      "content": "For a square matrix $\\mathbf{A}$ of order $n$, an eigenvector is a non-zero column vector $\\mathbf{x}$ of size $n \\times 1$ which, when transformed by $\\mathbf{A}$, results in a vector that is a scalar multiple of itself. The scalar, denoted by $\\lambda$, is the eigenvalue corresponding to that eigenvector. This relationship is captured by the fundamental eigenvalue equation:"
+    },
+    {
+      "type": "formula",
+      "content": "$\\mathbf{A}\\mathbf{x} = \\lambda\\mathbf{x}$"
+    },
+    {
+      "type": "text",
+      "content": "It is crucial that the eigenvector $\\mathbf{x}$ is non-zero. If we allowed $\\mathbf{x} = \\mathbf{0}$, the equation would hold for any matrix $\\mathbf{A}$ and any scalar $\\lambda$, which is not useful. The geometric interpretation is that the vector $\\mathbf{x}$ lies on an 'invariant line' passing through the origin. Any vector on this line is simply stretched or shrunk by a factor of $\\lambda$ when the transformation $\\mathbf{A}$ is applied."
+    },
+    {
+      "type": "heading",
+      "content": "Finding Eigenvalues: The Characteristic Equation"
+    },
+    {
+      "type": "text",
+      "content": "To find the eigenvalues, we rearrange the fundamental equation.\n$\\mathbf{A}\\mathbf{x} = \\lambda\\mathbf{x}$\n$\\mathbf{A}\\mathbf{x} - \\lambda\\mathbf{x} = \\mathbf{0}$\n$\\mathbf{A}\\mathbf{x} - \\lambda\\mathbf{I}\\mathbf{x} = \\mathbf{0}$ (where $\\mathbf{I}$ is the identity matrix)\n$(\\mathbf{A} - \\lambda\\mathbf{I})\\mathbf{x} = \\mathbf{0}$\nThis is a system of homogeneous linear equations. We are looking for a non-trivial (non-zero) solution for $\\mathbf{x}$. This only exists if the matrix $(\\mathbf{A} - \\lambda\\mathbf{I})$ is singular, which means its determinant must be zero."
+    },
+    {
+      "type": "formula",
+      "content": "$\\det(\\mathbf{A} - \\lambda\\mathbf{I}) = 0$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This equation is called the characteristic equation of matrix $\\mathbf{A}$.",
+        "For an $n \\times n$ matrix, the characteristic equation will be a polynomial of degree $n$ in $\\lambda$.",
+        "The roots of this polynomial are the eigenvalues of the matrix $\\mathbf{A}$.",
+        "An $n \\times n$ matrix will have $n$ eigenvalues, though they may not all be distinct (repeated roots) and may be complex numbers (for non-symmetric real matrices)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the eigenvalues of the matrix $\\mathbf{A} = \\begin{pmatrix} 4 & -2 \\\\ 1 & 1 \\end{pmatrix}$.",
+      "solution": "1. First, we set up the matrix $(\\mathbf{A} - \\lambda\\mathbf{I})$.\n$(\\mathbf{A} - \\lambda\\mathbf{I}) = \\begin{pmatrix} 4 & -2 \\\\ 1 & 1 \\end{pmatrix} - \\lambda\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 4-\\lambda & -2 \\\\ 1 & 1-\\lambda \\end{pmatrix}$.\n\n2. Now, we find the determinant and set it to zero to form the characteristic equation.\n$\\det(\\mathbf{A} - \\lambda\\mathbf{I}) = (4-\\lambda)(1-\\lambda) - (-2)(1) = 0$\n$4 - 4\\lambda - \\lambda + \\lambda^2 + 2 = 0$\n$\\lambda^2 - 5\\lambda + 6 = 0$.\n\n3. We solve this quadratic equation for $\\lambda$.\n$(\\lambda - 2)(\\lambda - 3) = 0$.\nThe eigenvalues are $\\lambda_1 = 2$ and $\\lambda_2 = 3$."
+    },
+    {
+      "type": "heading",
+      "content": "Finding Eigenvectors"
+    },
+    {
+      "type": "text",
+      "content": "Once we have found the eigenvalues, we can find the corresponding eigenvectors. For each distinct eigenvalue $\\lambda$, we substitute it back into the equation $(\\mathbf{A} - \\lambda\\mathbf{I})\\mathbf{x} = \\mathbf{0}$ and solve for the vector $\\mathbf{x} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$. Since the determinant is zero, the system of equations will be consistent and have infinitely many solutions. These solutions lie on a line (or a plane for 3x3 matrices with repeated eigenvalues), and we can choose any simple non-zero vector from this set as our eigenvector."
+    },
+    {
+      "type": "workedExample",
+      "question": "For the matrix $\\mathbf{A} = \\begin{pmatrix} 4 & -2 \\\\ 1 & 1 \\end{pmatrix}$, find the eigenvectors corresponding to the eigenvalues $\\lambda_1 = 2$ and $\\lambda_2 = 3$.",
+      "solution": "We solve $(\\mathbf{A} - \\lambda\\mathbf{I})\\mathbf{x} = \\mathbf{0}$ for each eigenvalue. Let $\\mathbf{x} = \\begin{pmatrix} x \\\\ y \\end{pmatrix}$.\n\n**Case 1: $\\lambda_1 = 2$**\n$(\\mathbf{A} - 2\\mathbf{I})\\mathbf{x} = \\mathbf{0}$\n$\\begin{pmatrix} 4-2 & -2 \\\\ 1 & 1-2 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$\n$\\begin{pmatrix} 2 & -2 \\\\ 1 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$\nThis gives two identical equations: $2x - 2y = 0$ (which simplifies to $x - y = 0$) and $x - y = 0$.\nSo, $x = y$. We can choose any non-zero value. Let $y=1$, then $x=1$.\nAn eigenvector corresponding to $\\lambda_1 = 2$ is $\\mathbf{e}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$.\n\n**Case 2: $\\lambda_2 = 3$**\n$(\\mathbf{A} - 3\\mathbf{I})\\mathbf{x} = \\mathbf{0}$\n$\\begin{pmatrix} 4-3 & -2 \\\\ 1 & 1-3 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$\n$\\begin{pmatrix} 1 & -2 \\\\ 1 & -2 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$\nThis gives the equation $x - 2y = 0$, so $x = 2y$. Let $y=1$, then $x=2$.\nAn eigenvector corresponding to $\\lambda_2 = 3$ is $\\mathbf{e}_2 = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$."
+    },
+    {
+      "type": "examTip",
+      "content": "An eigenvector is not unique; any non-zero scalar multiple is also a valid eigenvector. For example, for $\\lambda_1=2$, $\\begin{pmatrix} 2 \\\\ 2 \\end{pmatrix}$ or $\\begin{pmatrix} -5 \\\\ -5 \\end{pmatrix}$ are also correct. Always choose the simplest integer values. A great check: Sum of eigenvalues = $2+3=5$. Trace of $\\mathbf{A}$ = $4+1=5$. Product of eigenvalues = $2 \\times 3 = 6$. Determinant of $\\mathbf{A}$ = $(4)(1) - (-2)(1) = 6$. They match!"
+    },
+    {
+      "type": "heading",
+      "content": "The Cayley-Hamilton Theorem"
+    },
+    {
+      "type": "text",
+      "content": "This is a remarkable and powerful theorem in linear algebra. It states that any square matrix satisfies its own characteristic equation. For example, if the characteristic equation of a matrix $\\mathbf{A}$ is $\\lambda^2 - 5\\lambda + 6 = 0$, then the Cayley-Hamilton theorem states that $\\mathbf{A}^2 - 5\\mathbf{A} + 6\\mathbf{I} = \\mathbf{0}$. Note that the constant term 6 becomes $6\\mathbf{I}$ and the result is the zero matrix $\\mathbf{0}$. This theorem is incredibly useful for finding high powers of a matrix without direct multiplication, and for finding the inverse of a matrix."
+    },
+    {
+      "type": "formula",
+      "content": "If $p(\\lambda) = c_n\\lambda^n + \\dots + c_1\\lambda + c_0 = 0$ is the characteristic equation for $\\mathbf{A}$, then $p(\\mathbf{A}) = c_n\\mathbf{A}^n + \\dots + c_1\\mathbf{A} + c_0\\mathbf{I} = \\mathbf{0}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The characteristic equation of a 3x3 matrix $\\mathbf{M}$ is given by $\\lambda^3 - 2\\lambda^2 - 5\\lambda + 6 = 0$.\n(a) Find an expression for $\\mathbf{M}^{-1}$ in terms of $\\mathbf{M}^2$, $\\mathbf{M}$ and $\\mathbf{I}$.\n(b) Find an expression for $\\mathbf{M}^4$ in terms of $\\mathbf{M}^2$, $\\mathbf{M}$ and $\\mathbf{I}$.",
+      "solution": "By the Cayley-Hamilton theorem, the matrix $\\mathbf{M}$ satisfies its own characteristic equation:\n$\\mathbf{M}^3 - 2\\mathbf{M}^2 - 5\\mathbf{M} + 6\\mathbf{I} = \\mathbf{0}$.\n\n(a) To find $\\mathbf{M}^{-1}$, we multiply the entire equation by $\\mathbf{M}^{-1}$:\n$\\mathbf{M}^{-1}(\\mathbf{M}^3 - 2\\mathbf{M}^2 - 5\\mathbf{M} + 6\\mathbf{I}) = \\mathbf{M}^{-1}\\mathbf{0}$\n$\\mathbf{M}^2 - 2\\mathbf{M} - 5\\mathbf{I} + 6\\mathbf{M}^{-1} = \\mathbf{0}$\nNow, we rearrange to make $\\mathbf{M}^{-1}$ the subject:\n$6\\mathbf{M}^{-1} = -\\mathbf{M}^2 + 2\\mathbf{M} + 5\\mathbf{I}$\n$\\mathbf{M}^{-1} = \\frac{1}{6}(-\\mathbf{M}^2 + 2\\mathbf{M} + 5\\mathbf{I})$.\n\n(b) To find $\\mathbf{M}^4$, we first rearrange the characteristic equation to express $\\mathbf{M}^3$:\n$\\mathbf{M}^3 = 2\\mathbf{M}^2 + 5\\mathbf{M} - 6\\mathbf{I}$.\nNow, multiply by $\\mathbf{M}$ to get $\\mathbf{M}^4$:\n$\\mathbf{M}^4 = \\mathbf{M}(\\mathbf{M}^3) = \\mathbf{M}(2\\mathbf{M}^2 + 5\\mathbf{M} - 6\\mathbf{I})$\n$\\mathbf{M}^4 = 2\\mathbf{M}^3 + 5\\mathbf{M}^2 - 6\\mathbf{M}$.\nWe can substitute the expression for $\\mathbf{M}^3$ back into this equation:\n$\\mathbf{M}^4 = 2(2\\mathbf{M}^2 + 5\\mathbf{M} - 6\\mathbf{I}) + 5\\mathbf{M}^2 - 6\\mathbf{M}$\n$\\mathbf{M}^4 = 4\\mathbf{M}^2 + 10\\mathbf{M} - 12\\mathbf{I} + 5\\mathbf{M}^2 - 6\\mathbf{M}$\n$\\mathbf{M}^4 = 9\\mathbf{M}^2 + 4\\mathbf{M} - 12\\mathbf{I}$."
+    },
+    {
+      "type": "examTip",
+      "content": "When finding the inverse using the Cayley-Hamilton theorem, a common mistake is to forget the identity matrix $\\mathbf{I}$ on the constant term. The equation must be an equation of matrices, so a scalar constant $c_0$ becomes $c_0\\mathbf{I}$. Also, check if the constant term is zero. If $c_0 = \\det(\\mathbf{A}) = 0$, the matrix is singular and has no inverse."
+    },
+    {
+      "type": "heading",
+      "content": "Properties of Eigenvalues and Eigenvectors"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The sum of the eigenvalues of a matrix equals its trace: $\\sum_{i=1}^{n} \\lambda_i = \\text{tr}(\\mathbf{A})$. This is a very useful check.",
+        "The product of the eigenvalues of a matrix equals its determinant: $\\prod_{i=1}^{n} \\lambda_i = \\det(\\mathbf{A})$. This tells you that a matrix is singular if and only if it has at least one eigenvalue equal to zero.",
+        "For a real symmetric matrix (where $\\mathbf{A} = \\mathbf{A}^T$), all eigenvalues are real numbers.",
+        "For a real symmetric matrix, eigenvectors corresponding to distinct eigenvalues are orthogonal. This means their dot product is zero: $\\mathbf{e}_i \\cdot \\mathbf{e}_j = 0$ for $\\lambda_i \\neq \\lambda_j$.",
+        "If $\\lambda$ is an eigenvalue of $\\mathbf{A}$ with eigenvector $\\mathbf{x}$, then $\\lambda^k$ is an eigenvalue of $\\mathbf{A}^k$ for any positive integer $k$, with the same eigenvector $\\mathbf{x}$.",
+        "If $\\mathbf{A}$ is invertible and has eigenvalue $\\lambda$, then $\\mathbf{A}^{-1}$ has eigenvalue $1/\\lambda$."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions on Eigenvalues, Eigenvectors, and Cayley-Hamilton Theorem",
+      "href": "/mark?subject=9231&topic=2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "3Blue1Brown: Eigenvectors and eigenvalues",
+          "href": "https://www.youtube.com/watch?v=PFDu9oVAE-g"
+        },
+        {
+          "label": "Paul's Online Math Notes: Eigenvalues and Eigenvectors",
+          "href": "https://tutorial.math.lamar.edu/Classes/DE/Eigenvalues.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

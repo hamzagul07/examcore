@@ -4,39 +4,169 @@
   "title": "Constructs",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS programming constructs — sequence, selection (IF), and iteration (FOR, WHILE, REPEAT).",
+  "status": "pilot",
+  "summary": "This lesson introduces the three fundamental programming constructs: sequence, selection, and iteration. You will learn how to use these building blocks in pseudocode to control the flow of execution in an algorithm, forming the basis of all procedural programming.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Use IF, THEN, ELSE for selection.",
-    "Write FOR, WHILE, and REPEAT loops.",
-    "Choose appropriate construct for a problem.",
-    "Trace programs with nested constructs."
+    "Understand and use the three basic programming constructs: sequence, selection, and iteration.",
+    "Differentiate between and apply various types of selection (IF, CASE) and iteration (FOR, WHILE, REPEAT).",
+    "Write and interpret pseudocode algorithms that correctly implement these constructs to solve problems.",
+    "Trace algorithms involving nested constructs to determine their output or final state."
   ],
   "simpleExplanation": {
-    "title": "Control flow",
-    "summary": "Sequence runs line by line. Selection chooses paths. Iteration repeats until a condition is met.",
+    "title": "The Algorithm's Recipe Book",
+    "summary": "Programming constructs are the fundamental instructions that tell a computer what to do and in what order. They are the basic building blocks for creating any algorithm, just like a recipe is built from simple steps.",
+    "analogy": "Imagine you're following a recipe. **Sequence** is following the steps in order (e.g., chop vegetables, then heat the pan). **Selection** is making a choice based on a condition (e.g., *if* the sauce is too thick, *then* add water, *else* continue simmering). **Iteration** is repeating an action (e.g., *repeat* stirring *until* the sauce is smooth). All complex recipes, and all complex programs, are just combinations of these three ideas.",
     "steps": [
-      "IF condition THEN … ELSE … ENDIF.",
-      "FOR i ← 1 TO n — count-controlled loop.",
-      "WHILE condition — pre-condition loop.",
-      "REPEAT … UNTIL — post-condition loop."
+      "**Sequence:** Code runs line by line, in the order it's written, like following a simple list of instructions.",
+      "**Selection (IF/CASE):** The program makes a decision. It checks a condition and chooses which block of code to run next.",
+      "**Iteration (Loops):** A block of code is repeated. This can be a set number of times (`FOR`), while a condition is true (`WHILE`), or until a condition becomes true (`REPEAT`).",
+      "**Nesting:** Constructs can be placed inside one another. For example, a loop (`FOR`) might contain a decision (`IF`) to handle different cases on each repetition."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Sequence in programming?",
+      "back": "The execution of statements one after another in the order they are written in the source code. It is the default control structure."
+    },
+    {
+      "front": "What is Selection in programming?",
+      "back": "A control structure that allows a program to make a choice and execute a specific block of code based on whether a condition is true or false."
+    },
+    {
+      "front": "What is Iteration in programming?",
+      "back": "A control structure that allows a block of code to be executed repeatedly. Also known as repetition or looping."
+    },
+    {
+      "front": "What is the structure of a count-controlled loop in Cambridge pseudocode?",
+      "back": "`FOR <identifier> <- <value1> TO <value2> ... NEXT <identifier>`. It repeats a set number of times."
+    },
+    {
+      "front": "What is a pre-condition loop?",
+      "back": "A loop where the condition is tested *before* each iteration. If the condition is initially false, the loop body will not execute at all. Example: `WHILE...DO...ENDWHILE`."
+    },
+    {
+      "front": "What is a post-condition loop?",
+      "back": "A loop where the condition is tested *after* each iteration. The loop body is guaranteed to execute at least once. Example: `REPEAT...UNTIL`."
+    },
+    {
+      "front": "When is a `CASE` statement preferable to an `IF...THEN...ELSEIF` structure?",
+      "back": "When checking a single variable or expression against multiple constant values. It can be more readable and efficient than a long chain of `IF` statements."
+    },
+    {
+      "front": "What is the purpose of the `OTHERWISE` clause in a `CASE` statement?",
+      "back": "It acts as a default case, executing a block of code if the variable being tested does not match any of the preceding `OF` values. It is good practice for handling unexpected values."
+    },
+    {
+      "front": "What is a key difference between `WHILE...DO` and `REPEAT...UNTIL` loops?",
+      "back": "`WHILE` checks the condition at the start (may not run), while `REPEAT` checks at the end (always runs at least once)."
+    },
+    {
+      "front": "What is meant by 'nesting' constructs?",
+      "back": "Placing one control structure inside another. For example, an `IF` statement inside a `FOR` loop, or a `WHILE` loop inside another `WHILE` loop."
+    },
+    {
+      "front": "What is a common trap with `REPEAT...UNTIL` loops?",
+      "back": "The loop terminates when the condition is TRUE. This is the opposite of a `WHILE` loop, which continues as long as its condition is TRUE."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When should I use a `WHILE` loop versus a `REPEAT` loop?",
+      "a": "Use a `WHILE...DO` loop when the loop body might not need to execute at all. The condition is checked at the start, so if it's initially false, the program skips the loop entirely. Use a `REPEAT...UNTIL` loop when the loop body must execute at least once. The condition is checked at the end. This makes it perfect for tasks like input validation, where you need to get input at least once before you can check if it's valid."
+    },
+    {
+      "q": "Can I always use `IF` statements instead of a `CASE` statement?",
+      "a": "Yes, any `CASE` statement can be logically rewritten as a series of `IF...THEN...ELSEIF` statements. However, a `CASE` statement is often preferred for clarity and readability when you are checking a single variable against a list of discrete, constant values. It makes the code's intent clearer at a glance."
+    },
+    {
+      "q": "What's the difference in the condition between `WHILE` and `REPEAT` loops?",
+      "a": "A `WHILE` loop continues *while* its condition is TRUE and stops when it becomes FALSE. A `REPEAT` loop continues executing and only stops *until* its condition becomes TRUE. This is a crucial difference to remember when formulating your loop termination conditions."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Constructs** (11.2) with **structured programming** (11.3) are core Paper 2. Trace **nested IF inside WHILE** carefully — indentation helps."
+      "content": "In programming, controlling the 'flow' of execution is everything. You don't always want the computer to execute instructions from top to bottom. Sometimes you need it to make decisions or repeat actions. The three fundamental constructs—sequence, selection, and iteration—provide the complete toolkit needed to build any algorithm, no matter how complex."
+    },
+    {
+      "type": "heading",
+      "content": "1. Sequence"
+    },
+    {
+      "type": "text",
+      "content": "Sequence is the most basic construct. It dictates that instructions are executed one after another, in the same order that they appear in the program. Unless you use a selection or iteration statement to change the flow, a program will always follow a sequential path."
+    },
+    {
+      "type": "formula",
+      "content": "INPUT Name\nOUTPUT \"Hello, \", Name\nTotal <- Price * Quantity"
+    },
+    {
+      "type": "heading",
+      "content": "2. Selection"
+    },
+    {
+      "type": "text",
+      "content": "Selection constructs allow a program to make decisions. Based on a Boolean condition (something that evaluates to TRUE or FALSE), the program chooses between two or more different paths of execution. The main selection constructs are `IF...THEN...ELSE` and `CASE...OF...OTHERWISE`."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "`IF...THEN...ELSE...ENDIF`: Used for single or binary choices. The `ELSE` part is optional. You can chain them using `ELSEIF` for multiple conditions.",
+        "`CASE...OF...OTHERWISE...ENDCASE`: Ideal for selecting one path from many, based on the value of a single variable or expression. It's often cleaner than multiple `ELSEIF`s.",
+        "Nested Selection: An `IF` or `CASE` statement can be placed inside another one to handle more complex, multi-level conditions.",
+        "Conditions use relational operators (`=`, `<>`, `<`, `>`, `<=`, `>=`) and logical operators (`AND`, `OR`, `NOT`)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A cinema charges for tickets based on age. Ages 12 and under pay £6. Ages 13 to 17 pay £8. Ages 18 to 64 pay £12. Seniors (65+) pay £7. Write a pseudocode algorithm that takes an age as input and outputs the correct ticket price.",
+      "solution": "This problem requires checking an age against several ranges, making it a perfect candidate for a chained `IF...THEN...ELSEIF` structure.\n\n```pseudocode\nDECLARE Age : INTEGER\nDECLARE Price : REAL\n\nOUTPUT \"Please enter your age: \"\nINPUT Age\n\nIF Age <= 12 THEN\n  Price <- 6.00\nELSEIF Age >= 13 AND Age <= 17 THEN\n  Price <- 8.00\nELSEIF Age >= 18 AND Age <= 64 THEN\n  Price <- 12.00\nELSE  // This covers ages 65 and over\n  Price <- 7.00\nENDIF\n\nOUTPUT \"The ticket price is: £\", Price\n```\n**Marking Points:**\n1.  Correctly declaring variables (`Age`, `Price`).\n2.  Prompting for and inputting the age.\n3.  Correct use of `IF...ELSEIF...ELSE...ENDIF` structure.\n4.  Correct conditions for each age bracket.\n5.  Assigning the correct price for each case.\n6.  Outputting the final calculated price."
+    },
+    {
+      "type": "heading",
+      "content": "3. Iteration (Repetition)"
+    },
+    {
+      "type": "text",
+      "content": "Iteration allows a block of code to be executed multiple times. This is essential for processing collections of data, validation, and many other common programming tasks. There are three types of loops, each suited to different scenarios."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Count-Controlled Loop (`FOR...TO...NEXT`):** Use when you know exactly how many times you need to repeat. A counter variable is automatically incremented (or decremented using `STEP -1`).",
+        "**Pre-Condition Loop (`WHILE...DO...ENDWHILE`):** Use when the number of repetitions is unknown. The loop continues *while* a condition is TRUE. The condition is checked at the start, so the loop may not run at all.",
+        "**Post-Condition Loop (`REPEAT...UNTIL`):** Also used when the number of repetitions is unknown. The loop repeats *until* a condition becomes TRUE. The condition is checked at the end, so the loop always executes at least once. This is very useful for input validation."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always ensure your constructs are properly closed: `IF` needs `ENDIF`, `WHILE` needs `ENDWHILE`, `CASE` needs `ENDCASE`, and `FOR` needs `NEXT`. Forgetting these is a common way to lose marks. Also, use indentation in your exam answers. While not always required for marks, it makes your code vastly more readable for the examiner and helps you spot errors in your own logic, especially with nested constructs."
+    },
+    {
+      "type": "workedExample",
+      "question": "Write a pseudocode algorithm that calculates the average of a set of positive scores entered by a user. The user will enter `-1` to signify they have finished entering scores. The program should not include the `-1` in the calculation.",
+      "solution": "Since we don't know how many scores the user will enter, a condition-controlled loop is needed. A `WHILE` loop is a good choice because we need to check the input value before processing it.\n\n```pseudocode\nDECLARE Score, Total, Count : INTEGER\nDECLARE Average : REAL\n\nTotal <- 0\nCount <- 0\n\nOUTPUT \"Enter a score (or -1 to finish): \"\nINPUT Score\n\nWHILE Score <> -1 DO\n  Total <- Total + Score\n  Count <- Count + 1\n  OUTPUT \"Enter next score (or -1 to finish): \"\n  INPUT Score\nENDWHILE\n\nIF Count > 0 THEN\n  Average <- Total / Count\n  OUTPUT \"The average score is: \", Average\nELSE\n  OUTPUT \"No scores were entered.\"\nENDIF\n```\n**Marking Points:**\n1.  Initialisation of `Total` and `Count` to 0.\n2.  Priming read: Inputting the first score *before* the loop.\n3.  Correct `WHILE` loop condition (`Score <> -1`).\n4.  Correctly updating `Total` and `Count` inside the loop.\n5.  Inputting the next score at the end of the loop body.\n6.  Correctly closing the loop with `ENDWHILE`.\n7.  Checking for division by zero (`IF Count > 0`) before calculating the average."
     },
     {
       "type": "practice",
-      "label": "Mark a constructs question",
+      "label": "Practice Pseudocode Constructs",
       "href": "/mark?subject=9618&topic=11.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "Cambridge Syllabus Pseudocode Guide",
+          "href": "https://www.cambridgeinternational.org/Images/414128-2021-2023-syllabus.pdf"
+        },
+        {
+          "label": "BBC Bitesize on Programming Constructs",
+          "href": "https://www.bbc.co.uk/bitesize/guides/z2p9kqt/revision/1"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

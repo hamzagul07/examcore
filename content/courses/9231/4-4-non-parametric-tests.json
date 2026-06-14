@@ -1,0 +1,196 @@
+{
+  "slug": "4-4-non-parametric-tests",
+  "topicCode": "4.4",
+  "title": "Non-parametric tests",
+  "paper": "P4",
+  "paperName": "Paper 4: Further Probability & Statistics",
+  "status": "pilot",
+  "summary": "This lesson introduces non-parametric hypothesis tests, which are used when assumptions about the population's distribution (e.g., normality) cannot be made. We will cover the Sign Test, the Wilcoxon signed-rank test for a single sample, and the Wilcoxon rank-sum test for two independent samples. These tests rely on ranking data rather than using its raw values, making them robust to outliers and suitable for smaller sample sizes or ordinal data.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand the circumstances under which a non-parametric test is appropriate.",
+    "Apply the Sign Test and Wilcoxon signed-rank test to investigate a population median.",
+    "Apply the Wilcoxon rank-sum test to compare the medians of two populations.",
+    "Use normal approximations for Wilcoxon tests with large samples, including continuity corrections."
+  ],
+  "simpleExplanation": {
+    "title": "Testing Without Assumptions",
+    "summary": "Non-parametric tests are statistical methods for testing hypotheses that don't require your data to fit a specific pattern, like the bell curve of a normal distribution. They work by comparing the ranks of data points, not their exact values.",
+    "analogy": "Imagine judging a baking competition. A parametric test would be like scoring each cake out of 100, where one disastrous cake could heavily skew the average score for a team. A non-parametric test is like simply ranking the cakes from best to worst. This ranking isn't affected by how badly the worst cake failed; it's just last, giving a more robust comparison of the teams' overall baking ability.",
+    "steps": [
+      "State the null and alternative hypotheses regarding the population median(s).",
+      "Calculate the test statistic by ranking the data or counting signs, discarding any zero differences.",
+      "Find the critical value from the statistical tables for your chosen significance level.",
+      "Compare your test statistic with the critical value to decide whether to reject the null hypothesis."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a non-parametric test?",
+      "back": "A hypothesis test that does not assume the data is drawn from a population with a specific distribution (e.g., normal). It often uses ranks or signs instead of the original data values."
+    },
+    {
+      "front": "When should you use a non-parametric test?",
+      "back": "When the population distribution is unknown (or known to be not normal), the sample size is small, or the data is ordinal (can be ranked but not measured precisely)."
+    },
+    {
+      "front": "What does the Sign Test investigate?",
+      "back": "It tests the null hypothesis that the population median is equal to a specified value. It only considers the sign (+ or -) of data points relative to this median."
+    },
+    {
+      "front": "What is the test statistic for a Sign Test?",
+      "back": "The number of positive or negative signs, whichever is smaller. Under $H_0$, this statistic follows a binomial distribution $B(n, 0.5)$, where $n$ is the sample size after discarding zeros."
+    },
+    {
+      "front": "What does the Wilcoxon signed-rank test investigate?",
+      "back": "It tests the null hypothesis about a single population's median. It's more powerful than the sign test as it considers both the sign and magnitude (via ranks) of the differences from the median."
+    },
+    {
+      "front": "How do you handle zero differences in a Wilcoxon signed-rank test?",
+      "back": "Data points equal to the hypothesised median result in a zero difference. These are discarded, and the sample size, $n$, is reduced accordingly."
+    },
+    {
+      "front": "How do you handle tied ranks in Wilcoxon tests?",
+      "back": "If two or more data points have the same absolute difference (signed-rank) or value (rank-sum), they are assigned the average of the ranks they would have occupied."
+    },
+    {
+      "front": "What does the Wilcoxon rank-sum test investigate?",
+      "back": "It tests whether two independent samples come from populations with the same median. It is the non-parametric alternative to the independent two-sample t-test."
+    },
+    {
+      "front": "What is the test statistic for the Wilcoxon signed-rank test?",
+      "back": "$W = \\min(W_+, W_-)$, where $W_+$ is the sum of ranks of positive differences and $W_-$ is the sum of ranks of negative differences."
+    },
+    {
+      "front": "What is the test statistic for the Wilcoxon rank-sum test?",
+      "back": "The sum of the ranks for one of the samples, typically the one with the smaller sample size. This sum is then compared to a critical range from the tables."
+    },
+    {
+      "front": "When is a continuity correction needed?",
+      "back": "When using a continuous distribution (the normal distribution) to approximate a discrete distribution (the distribution of the Wilcoxon test statistics). You add or subtract 0.5 from the value before calculating the z-score."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the main difference between the Wilcoxon signed-rank test and the Wilcoxon rank-sum test?",
+      "a": "The signed-rank test is for a single sample (or paired data, where you test the median of the differences). It tests if the population median is a specific value. The rank-sum test is for two independent samples, and it tests whether the two populations they come from have the same median."
+    },
+    {
+      "q": "Why do we use the median in these tests instead of the mean?",
+      "a": "The median is a more 'robust' measure of central tendency than the mean. This means it is less affected by extreme values (outliers) or skewed data. Since non-parametric tests are designed for situations where the data might not be normally distributed, using the median is a more reliable approach."
+    },
+    {
+      "q": "What happens if there are ties in the data for a rank-sum test?",
+      "a": "If two or more observations are identical, they are each assigned the average of the ranks they would have occupied. For example, if two values are tied for the 5th and 6th positions, they both receive a rank of (5+6)/2 = 5.5. The next value then receives rank 7. The formulae for the variance in the large sample approximations should be adjusted for ties, but this is not typically required in the 9231 syllabus unless the formula is given."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In previous statistics modules, you likely used tests like the t-test or z-test. These are known as 'parametric' tests because they assume the data comes from a population that follows a specific distribution, usually the normal distribution, which is defined by parameters like the mean ($\\mu$) and standard deviation ($\\sigma$). But what if we can't make that assumption? What if our data is heavily skewed, contains significant outliers, or is only ranked? This is where non-parametric tests become essential. They provide a robust alternative by making fewer assumptions about the underlying population distribution."
+    },
+    {
+      "type": "heading",
+      "content": "The Sign Test"
+    },
+    {
+      "type": "text",
+      "content": "The Sign Test is the simplest non-parametric test. It is used to test a hypothesis about the median of a single population. The core idea is to count how many data points are above (+) and below (-) the hypothesised median. If the null hypothesis is true, we would expect a roughly equal number of pluses and minuses. Any significant deviation from this suggests the true median is different."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Hypotheses:** $H_0: m = m_0$ vs $H_1: m \\neq m_0$ (or $m > m_0$, or $m < m_0$), where $m$ is the population median.",
+        "**Procedure:** For each data point $x_i$, record a '+' if $x_i > m_0$ and a '−' if $x_i < m_0$. Ignore any data points where $x_i = m_0$ and reduce the sample size $n$ accordingly.",
+        "**Test Statistic:** Let $N_+$ be the number of '+' signs and $N_-$ be the number of '−' signs. The test statistic $S$ is the smaller of $N_+$ and $N_-$.",
+        "**Distribution:** Under $H_0$, the number of pluses (or minuses) follows a binomial distribution, $X \\sim B(n, 0.5)$. We can use this to find a p-value, $P(X \\le S)$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A local authority claims the median response time for an ambulance is 8 minutes. A random sample of 10 emergency calls had the following response times (in minutes): 7.5, 9.1, 8.2, 10.5, 7.9, 8.0, 9.5, 11.2, 7.1, 8.9. Test the authority's claim at the 5% significance level.",
+      "solution": "Let $m$ be the median response time.\n**1. Hypotheses:**\n$H_0: m = 8$\n$H_1: m \\neq 8$ (two-tailed test)\n\n**2. Calculate Signs:**\nWe compare each value to the hypothesised median of 8.\n7.5 (-), 9.1 (+), 8.2 (+), 10.5 (+), 7.9 (-), 8.0 (0), 9.5 (+), 11.2 (+), 7.1 (-), 8.9 (+)\nWe discard the one value of 8.0, so our effective sample size is $n=9$.\nNumber of '+': $N_+ = 6$\nNumber of '−': $N_- = 3$\n\n**3. Test Statistic:**\nThe test statistic is $S = \\min(N_+, N_-) = 3$.\n\n**4. P-value Calculation:**\nLet $X$ be the number of '−' signs. Under $H_0$, $X \\sim B(9, 0.5)$.\nWe are conducting a two-tailed test, so we find the probability of a result as or more extreme than $S=3$. The p-value is $2 \\times P(X \\le 3)$.\n$P(X \\le 3) = P(X=0) + P(X=1) + P(X=2) + P(X=3)$\n$P(X=k) = \\binom{9}{k}(0.5)^9$\n$P(X \\le 3) = [\\binom{9}{0} + \\binom{9}{1} + \\binom{9}{2} + \\binom{9}{3}](0.5)^9 = [1+9+36+84](0.5)^9 = 130 \\times 0.001953... = 0.2539$\np-value = $2 \\times 0.2539 = 0.5078$\n\n**5. Conclusion:**\nSince the p-value (0.5078) is greater than the significance level (0.05), we do not reject $H_0$. There is insufficient evidence to suggest that the median response time is different from 8 minutes."
+    },
+    {
+      "type": "heading",
+      "content": "The Wilcoxon Signed-Rank Test"
+    },
+    {
+      "type": "text",
+      "content": "The Wilcoxon signed-rank test is also used to test the median of a single population. It is generally more powerful than the sign test because it uses more information from the data. Instead of just noting whether a value is above or below the median, it considers the magnitude of these differences by ranking them. This makes it more sensitive to changes in the data."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Procedure:** Calculate the difference $d_i = x_i - m_0$ for each data point. Discard any zero differences.",
+        "**Ranking:** Rank the absolute values of the differences, $|d_i|$, from smallest to largest. Average ranks for any ties.",
+        "**Summing Ranks:** Calculate $W_+$, the sum of ranks corresponding to positive differences, and $W_-$, the sum of ranks corresponding to negative differences.",
+        "**Test Statistic:** The test statistic is $W = \\min(W_+, W_-)$.",
+        "**Critical Value:** Compare $W$ to the critical value from the MF19 tables for the given $n$ and significance level. Reject $H_0$ if $W$ is less than or equal to the critical value."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The manufacturer of a battery claims its median lifespan is 250 hours. A random sample of 8 batteries is tested and their lifespans are: 241, 262, 255, 238, 245, 271, 231, 258. Use a Wilcoxon signed-rank test at the 5% level to test if the median lifespan is different from 250 hours.",
+      "solution": "Let $m$ be the median lifespan.\n**1. Hypotheses:**\n$H_0: m = 250$\n$H_1: m \\neq 250$ (two-tailed test)\n\n**2. Calculate Differences and Ranks:**\nSample size $n=8$. No values are equal to 250.\n| Lifespan (x) | Difference (x-250) | |Difference| | Rank |\n|---|---|---|---|---|\n| 241 | -9 | 9 | 4 |\n| 262 | +12 | 12 | 6 |\n| 255 | +5 | 5 | 2 |\n| 238 | -12 | 12 | 6 |  *(Tie with 262)*\n| 245 | -5 | 5 | 2 |  *(Tie with 255)*\n| 271 | +21 | 21 | 8 |\n| 231 | -19 | 19 | 7 |\n| 258 | +8 | 8 | 3 |\n\n*Handling ties:* The absolute differences 5 and 5 would be ranks 1 and 2. Average is $(1+2)/2 = 1.5$. Oh wait, I made a mistake in my scratchpad. Let's re-rank properly.\n\n**Corrected Ranking:**\nAbsolute differences in order: 5, 5, 8, 9, 12, 12, 19, 21.\nRanks to be assigned: 1, 2, 3, 4, 5, 6, 7, 8.\n- The two '5's occupy ranks 1 and 2. Their rank is $(1+2)/2 = 1.5$.\n- The '8' gets rank 3.\n- The '9' gets rank 4.\n- The two '12's occupy ranks 5 and 6. Their rank is $(5+6)/2 = 5.5$.\n- The '19' gets rank 7.\n- The '21' gets rank 8.\n\n| Lifespan (x) | Difference (x-250) | |Difference| | Rank |\n|---|---|---|---|---|\n| 241 | -9 | 9 | 4 |\n| 262 | +12 | 12 | 5.5 |\n| 255 | +5 | 5 | 1.5 |\n| 238 | -12 | 12 | 5.5 |\n| 245 | -5 | 5 | 1.5 |\n| 271 | +21 | 21 | 8 |\n| 231 | -19 | 19 | 7 |\n| 258 | +8 | 8 | 3 |\n\n**3. Sum Ranks and find Test Statistic:**\n$W_+$ (sum of ranks for positive differences): $5.5 + 1.5 + 8 + 3 = 18$\n$W_-$ (sum of ranks for negative differences): $4 + 5.5 + 1.5 + 7 = 18$\nCheck: $W_+ + W_- = 18 + 18 = 36$. Also $\\frac{1}{2}n(n+1) = \\frac{1}{2}(8)(9) = 36$. Correct.\nTest statistic $W = \\min(W_+, W_-) = 18$.\n\n**4. Critical Value:**\nFrom MF19 tables for Wilcoxon signed-rank test, for a two-tailed test at 5% significance with $n=8$, the critical value is 3.\n\n**5. Conclusion:**\nWe reject $H_0$ if $W \\le$ critical value. Here, $18 > 3$. So we do not reject $H_0$. There is insufficient evidence at the 5% level to suggest the median battery lifespan is different from 250 hours."
+    },
+    {
+      "type": "heading",
+      "content": "The Wilcoxon Rank-Sum Test"
+    },
+    {
+      "type": "text",
+      "content": "This test is the non-parametric equivalent of the independent two-sample t-test. It is used to determine if two independent samples have been drawn from populations with the same median. The method involves combining both samples, ranking all the data points, and then summing the ranks for one of the samples."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Hypotheses:** $H_0$: The two populations have the same median. $H_1$: The two populations do not have the same median (or one is greater than the other).",
+        "**Procedure:** Let the sample sizes be $n_1$ and $n_2$. Combine all $N=n_1+n_2$ observations into a single set.",
+        "**Ranking:** Rank the combined data from smallest to largest. Average ranks for any ties.",
+        "**Test Statistic:** Calculate the sum of the ranks for the smaller sample. Let this be $R_s$. If $n_1=n_2$, either can be used.",
+        "**Critical Region:** Compare $R_s$ to the critical region from the MF19 tables for $n_1$, $n_2$ and the significance level. Reject $H_0$ if $R_s$ falls inside the critical region (e.g., is less than or equal to the lower value, or greater than or equal to the upper value)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For the Wilcoxon rank-sum test, the tables in MF19 give the critical region for the rank sum of the *smaller* sample. Always calculate the rank sum for the smaller sample to use the tables directly. If you accidentally sum the ranks for the larger sample ($R_L$), you can find the sum for the smaller sample ($R_S$) using the formula $R_S + R_L = \\frac{1}{2}N(N+1)$, where $N$ is the total sample size."
+    },
+    {
+      "type": "heading",
+      "content": "Large Sample Approximations"
+    },
+    {
+      "type": "text",
+      "content": "The tables for Wilcoxon tests only go up to a certain sample size (e.g., $n=20$ for signed-rank). For larger samples, the distribution of the test statistic can be approximated by a normal distribution. This allows us to calculate a z-score and use standard normal tables to find a p-value."
+    },
+    {
+      "type": "formula",
+      "content": "**Wilcoxon Signed-Rank Test:** For large $n$, the test statistic $W$ is approximately normal with:\nMean: $E(W) = \\frac{1}{4}n(n+1)$\nVariance: $Var(W) = \\frac{1}{24}n(n+1)(2n+1)$\n\n**Wilcoxon Rank-Sum Test:** For large $n_1$ and $n_2$, the rank sum $R$ of the sample of size $n_1$ is approximately normal with:\nMean: $E(R) = \\frac{1}{2}n_1(n_1+n_2+1)$\nVariance: $Var(R) = \\frac{1}{12}n_1 n_2 (n_1+n_2+1)$"
+    },
+    {
+      "type": "examTip",
+      "content": "When using a normal approximation for a discrete test statistic like $W$ or $R$, you must apply a **continuity correction**. If you are calculating $P(W \\le k)$, you use $k+0.5$. If you are calculating $P(W \\ge k)$, you use $k-0.5$. This adjustment accounts for approximating a discrete distribution with a continuous one."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Non-Parametric Tests",
+      "href": "/mark?subject=9231&topic=4.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International AS & A Level Further Mathematics (9231) Formulae and Statistical Tables (MF19)",
+          "href": "https://www.cambridgeinternational.org/Images/415361-2020-2022-syllabus-further-mathematics-9231.pdf"
+        },
+        {
+          "label": "Introduction to Nonparametric Statistics",
+          "href": "https://www.statisticssolutions.com/free-resources/directory-of-statistical-analyses/introduction-to-nonparametric-statistics/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -4,39 +4,234 @@
   "title": "Momentum",
   "paper": "P4",
   "paperName": "Mechanics",
-  "status": "premium",
-  "summary": "9709 Mechanics — momentum, impulse, conservation in collisions with PhET collision lab.",
+  "status": "pilot",
+  "summary": "This lesson introduces the concept of linear momentum as a vector quantity (mass in motion), its conservation in closed systems, and its relationship to force through impulse. We will explore applications in collisions and explosions, a cornerstone of A-Level Mechanics.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define momentum and impulse.",
-    "Apply conservation of momentum in one dimension.",
-    "Distinguish elastic and inelastic collisions.",
-    "Solve explosion and impact problems."
+    "Define linear momentum and impulse, and use the formula p = mv.",
+    "Apply the principle of conservation of linear momentum to problems involving collisions and explosions.",
+    "Calculate the change in momentum (impulse) using I = FΔt = Δp.",
+    "Distinguish between elastic and inelastic collisions in terms of kinetic energy conservation."
   ],
   "simpleExplanation": {
-    "title": "p = mv",
-    "summary": "Momentum is conserved when no external impulse acts. Impulse equals change in momentum and equals force × time.",
+    "title": "The Rules of Crashing",
+    "summary": "Momentum is simply 'mass in motion' and has a direction. In any interaction like a collision, the total amount of this 'mass in motion' before and after is the same, provided no external forces interfere.",
+    "analogy": "Imagine two roller-skaters on a smooth, flat rink. One is heavy and moving slowly, the other is light and moving fast. Before they collide, they have a certain combined 'push'. If they grab onto each other after colliding, this combined 'push' is conserved—they will move off together with a new velocity that keeps the total 'push' the same as it was initially. The total momentum of the skater system is conserved.",
     "steps": [
-      "Total p before = total p after (closed system).",
-      "Impulse FΔt = Δp — vector quantity.",
-      "Elastic: KE conserved; inelastic: objects may coalesce.",
-      "Explosion from rest: momenta equal and opposite."
+      "Momentum, $p = mv$, is a vector quantity. In a closed system with no external forces, total momentum is always conserved.",
+      "Impulse is the change in momentum, $I = \\Delta p = F \\Delta t$. It's also the area under a force-time graph.",
+      "In elastic collisions, both momentum and kinetic energy are conserved. In inelastic collisions, only momentum is conserved; some KE is lost.",
+      "In explosions from rest, the system's initial momentum is zero. By conservation, the total momentum of all fragments must also be zero."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the definition of linear momentum?",
+      "back": "Linear momentum is the product of an object's mass and its velocity. It is a vector quantity."
+    },
+    {
+      "front": "What is the formula for momentum?",
+      "back": "$p = mv$, where $p$ is momentum, $m$ is mass, and $v$ is velocity."
+    },
+    {
+      "front": "What are the SI units for momentum?",
+      "back": "Kilogram metres per second (kg m s⁻¹) or Newton seconds (N s)."
+    },
+    {
+      "front": "State the Principle of Conservation of Linear Momentum.",
+      "back": "For a system of interacting objects, the total momentum remains constant, provided that no external resultant force acts on the system."
+    },
+    {
+      "front": "What is a 'closed system' in the context of momentum?",
+      "back": "A system on which no external forces are acting. For example, two particles colliding on a smooth horizontal plane where gravity and normal reaction cancel out."
+    },
+    {
+      "front": "What is impulse?",
+      "back": "Impulse is the change in momentum of an object. It is also equal to the product of the force acting on the object and the time interval for which it acts."
+    },
+    {
+      "front": "What are the two key formulas for impulse?",
+      "back": "$I = \\Delta p = mv - mu$ (change in momentum) and $I = F \\Delta t$ (force multiplied by time)."
+    },
+    {
+      "front": "What is the difference between an elastic and an inelastic collision?",
+      "back": "In an elastic collision, both momentum and kinetic energy are conserved. In an inelastic collision, momentum is conserved but kinetic energy is not (it is usually converted to heat, sound, etc.)."
+    },
+    {
+      "front": "What happens when two particles coalesce?",
+      "back": "They stick together and move with a common final velocity. This is a perfectly inelastic collision, where the maximum possible kinetic energy is lost."
+    },
+    {
+      "front": "A common mistake is to forget that momentum is a vector. What does this mean for calculations?",
+      "back": "You must define a positive direction. Any velocity in the opposite direction must be given a negative sign in your equations."
+    },
+    {
+      "front": "How do you handle an explosion problem where an object starts from rest?",
+      "back": "The initial momentum is zero. By conservation, the total momentum of all the fragments after the explosion must also be zero. The sum of the vector momenta of the fragments is zero."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is momentum always conserved?",
+      "a": "No. Momentum is only conserved in a closed system, which means there are no external resultant forces acting on the objects involved. For example, if friction is present and not negligible, it is an external force, and the total momentum of the colliding objects will not be conserved (it will decrease)."
+    },
+    {
+      "q": "Can kinetic energy increase in a collision?",
+      "a": "In a standard collision between passive objects, kinetic energy can only be conserved (elastic) or decrease (inelastic). However, if the collision triggers an internal release of energy (like a small explosion on impact), then the total kinetic energy of the system could increase. This is rare in A-Level problems unless it's explicitly described as an 'explosion'."
+    },
+    {
+      "q": "What's the difference between the units kg m s⁻¹ and N s?",
+      "a": "They are equivalent. From Newton's Second Law, $F=ma$, so a Newton (N) is a kg m s⁻². Therefore, a Newton second (N s) is (kg m s⁻²) × s = kg m s⁻¹. Both are accepted units for momentum and impulse."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Momentum** (4.3) links to **Newton's laws** (4.4). Take **direction** into account — use signed velocities on a line."
+      "content": "In mechanics, we often want to analyse what happens when objects collide or fly apart. While forces can be complex and act for very short times, momentum provides a powerful tool for solving these problems. By focusing on the state of the system 'before' and 'after' an interaction, we can often bypass the tricky details of the interaction itself. This topic is fundamental to understanding everything from car crashes to rocket propulsion."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Linear Momentum"
+    },
+    {
+      "type": "text",
+      "content": "Momentum is a measure of an object's motion, often described as 'mass in motion'. It's not just about speed; a slow-moving lorry has a lot more momentum than a fast-moving tennis ball. Because it depends on velocity, momentum is a vector quantity, meaning it has both magnitude and direction. This is a critical detail in all calculations."
+    },
+    {
+      "type": "formula",
+      "content": "Momentum ($p$) = mass ($m$) × velocity ($v$) \\\\ $p = mv$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Units: kg m s⁻¹.",
+        "Vector Quantity: Direction is crucial. Always define a positive direction for one-dimensional problems.",
+        "A stationary object ($v=0$) has zero momentum."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Principle of Conservation of Momentum"
+    },
+    {
+      "type": "text",
+      "content": "This is one of the most important principles in mechanics. It states that in a closed system (one with no external resultant forces), the total momentum before an interaction is equal to the total momentum after the interaction. The momentum of individual objects may change, but the total for the system remains constant."
+    },
+    {
+      "type": "formula",
+      "content": "Total Initial Momentum = Total Final Momentum \\\\ $\\sum m_i u_i = \\sum m_f v_f$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle A of mass 0.5 kg moving at 4 m s⁻¹ on a smooth horizontal surface collides directly with a particle B of mass 0.3 kg which is moving at 2 m s⁻¹ in the opposite direction. After the collision, the particles coalesce to form a single particle C. Find the velocity of C after the collision.",
+      "solution": "First, define a positive direction. Let's take the initial direction of particle A as positive. \\\\ \\\\ **1. State initial velocities with correct signs:** \\\\ Velocity of A, $u_A = +4$ m s⁻¹ \\\\ Velocity of B, $u_B = -2$ m s⁻¹ \\\\ \\\\ **2. Apply the Principle of Conservation of Momentum:** \\\\ Total momentum before = Total momentum after \\\\ $(m_A u_A) + (m_B u_B) = (m_A + m_B) v_C$ \\\\ \\\\ **3. Substitute values and solve for $v_C$:** \\\\ $(0.5 \\times 4) + (0.3 \\times -2) = (0.5 + 0.3) v_C$ \\\\ $2 - 0.6 = 0.8 v_C$ \\\\ $1.4 = 0.8 v_C$ \\\\ $v_C = \\frac{1.4}{0.8} = 1.75$ m s⁻¹ \\\\ \\\\ Since the result is positive, the combined particle C moves at 1.75 m s⁻¹ in the original direction of particle A."
+    },
+    {
+      "type": "heading",
+      "content": "Impulse"
+    },
+    {
+      "type": "text",
+      "content": "When a force acts on an object for a period of time, it causes a change in the object's momentum. This 'change in momentum' is called impulse. Newton's Second Law can be expressed as Force = rate of change of momentum, which leads directly to the impulse-momentum relationship. Impulse is also a vector quantity, acting in the same direction as the force that causes it."
+    },
+    {
+      "type": "formula",
+      "content": "Impulse ($I$) = Change in Momentum ($\\Delta p$) \\\\ $I = F \\Delta t = mv - mu$"
+    },
+    {
+      "type": "examTip",
+      "content": "In questions involving a force that varies with time, the impulse is the area under the force-time graph. Be careful with signs when calculating the change in momentum, especially if an object rebounds. If a ball hits a wall at velocity $u$ and rebounds with velocity $v$, the change in momentum is $m(-v) - mu = -m(v+u)$ (assuming initial direction is positive)."
+    },
+    {
+      "type": "heading",
+      "content": "Collisions and Explosions"
+    },
+    {
+      "type": "text",
+      "content": "Collisions are classified based on what happens to the kinetic energy of the system. In a perfectly elastic collision, kinetic energy is conserved. In an inelastic collision, some kinetic energy is lost, usually as heat or sound. Explosions can be thought of as 'reverse collisions', where internal energy (e.g., chemical) is converted into kinetic energy, but momentum is still conserved."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**All Collisions/Explosions:** Linear momentum is conserved.",
+        "**Elastic Collisions:** Kinetic energy is also conserved. $(\\frac{1}{2}m_1u_1^2 + ... = \\frac{1}{2}m_1v_1^2 + ...)$",
+        "**Inelastic Collisions:** Kinetic energy is lost. The total KE after is less than the total KE before.",
+        "**Explosions from rest:** Initial momentum is zero, so the vector sum of the final momenta is also zero."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A shell of mass 3 kg is at rest on a smooth horizontal floor. It explodes into two fragments, P and Q. Fragment P has a mass of 1 kg and moves with a speed of 6 m s⁻¹. Fragment Q has a mass of 2 kg. Find the speed of fragment Q and the total kinetic energy generated in the explosion.",
+      "solution": "The shell is initially at rest, so the total initial momentum is 0. \\\\ \\\\ **1. Apply Conservation of Momentum:** \\\\ Total initial momentum = Total final momentum \\\\ $0 = m_P v_P + m_Q v_Q$ \\\\ \\\\ **2. Substitute values and solve for $v_Q$:** \\\\ Let the direction of P be positive, so $v_P = +6$ m s⁻¹. \\\\ $0 = (1 \\times 6) + (2 \\times v_Q)$ \\\\ $0 = 6 + 2v_Q$ \\\\ $2v_Q = -6$ \\\\ $v_Q = -3$ m s⁻¹ \\\\ The speed of Q is the magnitude of its velocity, which is 3 m s⁻¹. The negative sign indicates it moves in the opposite direction to P. \\\\ \\\\ **3. Calculate Kinetic Energy Generated:** \\\\ The KE generated is the total final KE, since the initial KE was zero. \\\\ $KE_{total} = KE_P + KE_Q$ \\\\ $KE_{total} = \\frac{1}{2}m_P v_P^2 + \\frac{1}{2}m_Q v_Q^2$ \\\\ $KE_{total} = \\frac{1}{2}(1)(6)^2 + \\frac{1}{2}(2)(-3)^2$ \\\\ $KE_{total} = \\frac{1}{2}(36) + 1(9)$ \\\\ $KE_{total} = 18 + 9 = 27$ J \\\\ The explosion generated 27 Joules of kinetic energy."
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a 'before' and 'after' diagram. Clearly label masses, velocities, and your chosen positive direction. This simple step prevents the most common errors related to signs."
     },
     {
       "type": "practice",
-      "label": "Mark a momentum question",
+      "label": "Test Your Understanding with Exam-Style Questions",
       "href": "/mark?subject=9709&topic=4.3"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "PhET Collision Lab Simulation",
+          "href": "https://phet.colorado.edu/en/simulations/collision-lab"
+        },
+        {
+          "label": "Khan Academy: Momentum and Impulse",
+          "href": "https://www.khanacademy.org/science/physics/linear-momentum"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Collision lab",
+    "embedUrl": "https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/collision-lab",
+    "hint": "Conservation of momentum — elastic and inelastic collisions (9709 4.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Momentum p = mv — vector quantity conserved in closed system.",
+        "embedHint": "Total p before = total p after collision."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Impulse = change in momentum = FΔt.",
+        "embedHint": "Area under force–time graph."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Elastic: KE conserved; inelastic: KE not conserved.",
+        "embedHint": "Coefficient of restitution e = relative speed after/before."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Explosion problems: internal forces — total p still zero if start at rest.",
+        "embedHint": "m₁v₁ + m₂v₂ = 0 for two fragments."
+      }
+    ]
+  }
 }

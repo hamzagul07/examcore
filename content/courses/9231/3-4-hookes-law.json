@@ -1,0 +1,164 @@
+{
+  "slug": "3-4-hookes-law",
+  "topicCode": "3.4",
+  "title": "Hooke's law",
+  "paper": "P3",
+  "paperName": "Paper 3: Further Mechanics",
+  "status": "pilot",
+  "summary": "This lesson introduces Hooke's law for elastic strings and springs. You will learn to calculate tension and thrust using the modulus of elasticity and apply this knowledge to solve problems in static equilibrium and dynamics.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand and apply Hooke's law in the form $T = \\frac{\\lambda x}{l_0}$.",
+    "Distinguish between tension in an elastic string and tension/thrust in an elastic spring.",
+    "Solve problems involving particles attached to elastic strings or springs in static equilibrium.",
+    "Incorporate Hooke's law into Newton's second law to solve dynamics problems."
+  ],
+  "simpleExplanation": {
+    "title": "The Stretch and Squeeze Law",
+    "summary": "Hooke's Law describes how much force is needed to stretch or compress a springy object. The force is directly proportional to how much you change its length.",
+    "analogy": "Imagine a bungee cord. When you just hold it, there's no force. As a person jumps and the cord stretches, it pulls back up. The more it stretches, the stronger the upward pull. Hooke's Law is the rule that calculates the exact strength of that pull.",
+    "steps": [
+      "Identify the key properties: natural length ($l_0$) and modulus of elasticity ($\\lambda$).",
+      "Determine the extension ($x$) or compression from the given lengths. Remember $x$ is the *change* in length.",
+      "Substitute these values into Hooke's Law, $T = \\frac{\\lambda x}{l_0}$, to find the tension (or thrust).",
+      "Use the calculated force in equations of motion ($F_{net}=ma$) or equilibrium conditions ($\\Sigma F = 0$)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Hooke's Law for an elastic string/spring?",
+      "back": "The tension $T$ is proportional to the extension $x$. The formula is $T = \\frac{\\lambda x}{l_0}$, where $\\lambda$ is the modulus of elasticity and $l_0$ is the natural length."
+    },
+    {
+      "front": "What is the modulus of elasticity, $\\lambda$?",
+      "back": "A measure of the stiffness of an elastic object. It is the tension required to double the natural length of the string/spring, assuming it remains elastic. Its unit is Newtons (N)."
+    },
+    {
+      "front": "What is the 'natural length', $l_0$?",
+      "back": "The length of an elastic string or spring when no forces are acting on it."
+    },
+    {
+      "front": "How is 'extension', $x$, calculated?",
+      "back": "Extension is the difference between the current (stretched) length and the natural length. $x = L - l_0$. It must be positive."
+    },
+    {
+      "front": "What is the difference between tension and thrust?",
+      "back": "Tension is the pulling force in a stretched string/spring. Thrust is the pushing force in a compressed spring. Elastic strings cannot experience thrust."
+    },
+    {
+      "front": "What are the units of the modulus of elasticity, $\\lambda$?",
+      "back": "Newtons (N). This can be seen from the formula $T = \\frac{\\lambda x}{l_0}$, as $\\lambda = \\frac{T l_0}{x}$, giving units of $\\frac{\\text{N} \\cdot \\text{m}}{\\text{m}} = \\text{N}$."
+    },
+    {
+      "front": "Common Trap: What value is often used incorrectly for $x$?",
+      "back": "Using the total stretched length instead of the extension. Always calculate the extension $x = L - l_0$ first."
+    },
+    {
+      "front": "What does it mean if an elastic string 'goes slack'?",
+      "back": "The string's length has returned to or is less than its natural length. The tension in it immediately becomes zero."
+    },
+    {
+      "front": "How does the modulus of elasticity $\\lambda$ relate to the spring constant $k$?",
+      "back": "The spring constant $k$ is the force per unit extension ($F=kx$). By comparing $T = kx$ with $T = \\frac{\\lambda x}{l_0}$, we see that $k = \\frac{\\lambda}{l_0}$."
+    },
+    {
+      "front": "When does Hooke's Law not apply?",
+      "back": "When the material is stretched beyond its 'elastic limit'. At this point, it deforms permanently and the linear relationship between force and extension breaks down."
+    },
+    {
+      "front": "What is compression in a spring?",
+      "back": "The reduction in length from its natural length. If a spring is compressed by an amount $x$, it exerts an outward thrust $T = \\frac{\\lambda x}{l_0}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the modulus of elasticity ($\\lambda$) and the spring constant ($k$)?",
+      "a": "They both measure stiffness, but in different ways. The spring constant $k$ (from $F=kx$) is the force required per unit of extension. Its units are N/m. The modulus of elasticity $\\lambda$ is a property of the material and its cross-section, independent of its length. The two are related by $k = \\frac{\\lambda}{l_0}$, where $l_0$ is the natural length. So, a longer spring made of the same material will have a smaller spring constant $k$, but the same modulus $\\lambda$."
+    },
+    {
+      "q": "What does 'light' mean in 'a light elastic string'?",
+      "a": "In mechanics, 'light' is a modelling assumption that means the object has zero mass. For a light elastic string, we can ignore its weight. This simplifies calculations as we only need to consider the masses of any attached particles."
+    },
+    {
+      "q": "What happens if the string is stretched beyond its elastic limit?",
+      "a": "Hooke's Law, $T = \\frac{\\lambda x}{l_0}$, only applies within the elastic limit. Beyond this limit, the material undergoes plastic deformation, meaning it will not return to its original length when the force is removed. The relationship between tension and extension is no longer linear, and Hooke's Law is not valid."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In mechanics, we often deal with idealised objects like inextensible strings. However, many real-world objects, like rubber bands, bungee cords, and suspension springs, stretch or compress when a force is applied. This lesson explores the physics of these 'elastic' objects, governed by a fundamental principle known as Hooke's Law."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Hooke's Law"
+    },
+    {
+      "type": "text",
+      "content": "Hooke's Law provides a mathematical model for the behaviour of elastic materials. It states that the force required to extend or compress a spring by some distance is directly proportional to that distance. For A-Level Further Mathematics, we use a specific form of this law that involves the material's properties."
+    },
+    {
+      "type": "formula",
+      "content": "T = \\frac{\\lambda x}{l_0}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$T$: Tension (or Thrust) in the string/spring, measured in Newtons (N). This is the restoring force exerted by the material.",
+        "$\\lambda$: Modulus of Elasticity, a constant specific to the string/spring, measured in Newtons (N). It represents the stiffness.",
+        "$l_0$: Natural Length, the original length of the string/spring before any force is applied, measured in metres (m).",
+        "$x$: Extension (or compression), the change in length from the natural length, measured in metres (m). $x = \\text{stretched length} - l_0$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Strings vs. Springs"
+    },
+    {
+      "type": "text",
+      "content": "It's crucial to distinguish between elastic strings and elastic springs. An elastic string, like a rubber band, can only be in tension. If you try to compress it, it goes 'slack', and the tension instantly drops to zero. An elastic spring, like a coil spring, can be both stretched (in tension) and compressed (in thrust). The same formula applies for thrust, where $x$ represents the compression distance."
+    },
+    {
+      "type": "workedExample",
+      "question": "An elastic string has a natural length of 0.8 m and a modulus of elasticity of 40 N. A particle of mass 2 kg is attached to one end of the string. The other end is fixed to a point O on a ceiling. The particle hangs in equilibrium. Find the extension of the string and its final length. (Take $g = 9.8$ m s$^{-2}$)",
+      "solution": "Let the extension be $x$ metres. The particle is in equilibrium, so the forces acting on it are balanced. The upward force is the tension $T$ in the string, and the downward force is the weight of the particle, $mg$.\n\n1.  **Identify forces**:\n    Upward force: Tension, $T$.\n    Downward force: Weight, $W = mg = 2 \\times 9.8 = 19.6$ N.\n\n2.  **Apply equilibrium condition**:\n    For equilibrium, the net force is zero. So, $T = W$.\n    $T = 19.6$ N.\n\n3.  **Apply Hooke's Law**:\n    We know $T = \\frac{\\lambda x}{l_0}$.\n    The given values are $\\lambda = 40$ N and $l_0 = 0.8$ m.\n    So, $19.6 = \\frac{40 \\times x}{0.8}$.\n\n4.  **Solve for extension $x$**:\n    $19.6 = \\frac{40}{0.8} x$\n    $19.6 = 50x$\n    $x = \\frac{19.6}{50} = 0.392$ m.\n\n5.  **Calculate final length**:\n    Final length $L = l_0 + x = 0.8 + 0.392 = 1.192$ m.\n\n**Answer**: The extension is 0.392 m and the final length is 1.192 m."
+    },
+    {
+      "type": "heading",
+      "content": "Hooke's Law in Dynamics"
+    },
+    {
+      "type": "text",
+      "content": "When a particle attached to an elastic string or spring is moving, we can no longer assume forces are balanced. Instead, we use Newton's Second Law, $F_{net} = ma$. The tension $T$ (or thrust) from Hooke's Law becomes one of the forces contributing to the net force. Remember that the tension is not constant; it changes as the extension $x$ changes."
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle of mass 0.5 kg is attached to one end of a light elastic string of natural length 1.2 m and modulus of elasticity 30 N. The other end of the string is attached to a fixed point A on a smooth horizontal surface. The particle is held at a point B on the surface, where AB = 1.8 m, and then released from rest. Find the initial acceleration of the particle.",
+      "solution": "The particle is on a smooth horizontal surface, so we only need to consider horizontal forces.\n\n1.  **Calculate the initial extension**:\n    The particle is at B, so the stretched length is $L = 1.8$ m.\n    The natural length is $l_0 = 1.2$ m.\n    Initial extension, $x = L - l_0 = 1.8 - 1.2 = 0.6$ m.\n\n2.  **Calculate the initial tension**:\n    Using Hooke's Law, $T = \\frac{\\lambda x}{l_0}$.\n    Given $\\lambda = 30$ N and $l_0 = 1.2$ m.\n    $T = \\frac{30 \\times 0.6}{1.2} = \\frac{18}{1.2} = 15$ N.\n    This tension acts towards the fixed point A.\n\n3.  **Apply Newton's Second Law**:\n    The only horizontal force acting on the particle at the moment of release is the tension $T$. The net force is therefore $T$.\n    Let the acceleration be $a$. The direction of acceleration is towards A.\n    $F_{net} = ma$\n    $T = ma$\n\n4.  **Solve for acceleration $a$**:\n    We have $T = 15$ N and $m = 0.5$ kg.\n    $15 = 0.5 \\times a$\n    $a = \\frac{15}{0.5} = 30$ m s$^{-2}$.\n\n**Answer**: The initial acceleration of the particle is 30 m s$^{-2}$ towards A."
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a clear diagram for any mechanics problem. For Hooke's Law questions, label the natural length, the stretched/compressed length, and the extension/compression. This helps avoid confusing the total length with the extension $x$ in the formula $T = \\frac{\\lambda x}{l_0}$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Hooke's Law Problems",
+      "href": "/mark?subject=9231&topic=3.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Syllabus 9231",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        },
+        {
+          "label": "Physics Classroom: Hooke's Law",
+          "href": "https://www.physicsclassroom.com/class/hooks/Lesson-0/Hookes-Law"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

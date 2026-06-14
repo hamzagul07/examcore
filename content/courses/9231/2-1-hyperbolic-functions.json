@@ -1,0 +1,195 @@
+{
+  "slug": "2-1-hyperbolic-functions",
+  "topicCode": "2.1",
+  "title": "Hyperbolic functions",
+  "paper": "P2",
+  "paperName": "Paper 2: Further Pure Mathematics 2",
+  "status": "pilot",
+  "summary": "This lesson introduces hyperbolic functions, which are analogues of trigonometric functions defined using the exponential function. We will explore their definitions, fundamental identities, graphical properties, and methods for solving equations involving them.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Define the six hyperbolic functions in terms of the exponential function.",
+    "Understand, prove, and use fundamental hyperbolic identities.",
+    "Sketch the graphs of sinh(x), cosh(x), and tanh(x), stating their key features.",
+    "Solve equations involving hyperbolic functions."
+  ],
+  "simpleExplanation": {
+    "title": "The Exponential Cousins of Trigonometry",
+    "summary": "Hyperbolic functions are special combinations of the exponential function e^x. They behave in ways very similar to trigonometric functions, but are based on a hyperbola instead of a circle.",
+    "analogy": "Imagine a heavy chain or rope hanging between two posts of equal height. The curve it forms is not a parabola, but a 'catenary', which is precisely the graph of the hyperbolic cosine function, y = cosh(x). Just as sine and cosine describe points on a circle, hyperbolic sine and cosine describe points on a hyperbola.",
+    "steps": [
+      "Learn the definitions of sinh(x) and cosh(x) using e^x and e^-x.",
+      "Derive the definitions for tanh(x) and the reciprocal functions (sech, cosech, coth).",
+      "Master the core identity cosh²(x) - sinh²(x) = 1 and its variations.",
+      "Sketch the graphs, paying close attention to key points, symmetry, and asymptotes."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the definition of sinh(x)?",
+      "back": "sinh(x) = (e^x - e^-x) / 2"
+    },
+    {
+      "front": "What is the definition of cosh(x)?",
+      "back": "cosh(x) = (e^x + e^-x) / 2"
+    },
+    {
+      "front": "What is the definition of tanh(x)?",
+      "back": "tanh(x) = sinh(x) / cosh(x) = (e^x - e^-x) / (e^x + e^-x)"
+    },
+    {
+      "front": "What is the fundamental hyperbolic identity, analogous to sin²(x) + cos²(x) = 1?",
+      "back": "cosh²(x) - sinh²(x) = 1. Note the minus sign!"
+    },
+    {
+      "front": "What is the derivative of sinh(x)?",
+      "back": "d/dx (sinh(x)) = cosh(x). (No sign change, unlike trigonometry!)"
+    },
+    {
+      "front": "What is the derivative of cosh(x)?",
+      "back": "d/dx (cosh(x)) = sinh(x). (No sign change!)"
+    },
+    {
+      "front": "What is the derivative of tanh(x)?",
+      "back": "d/dx (tanh(x)) = sech²(x)"
+    },
+    {
+      "front": "Describe the graph of y = cosh(x).",
+      "back": "A 'catenary' curve, symmetric about the y-axis, with a minimum point at (0, 1). Its range is y ≥ 1."
+    },
+    {
+      "front": "What is the range of y = tanh(x)?",
+      "back": "The range is -1 < y < 1. The graph has horizontal asymptotes at y = 1 and y = -1."
+    },
+    {
+      "front": "Common Trap: What is a frequent mistake when solving an equation like `cosh(x) = k`?",
+      "back": "After forming a quadratic in u = e^x and finding two solutions for u, remember that e^x must be positive. Any negative solutions for u must be rejected."
+    },
+    {
+      "front": "How is the identity involving tanh(x) and sech(x) derived?",
+      "back": "Start with cosh²(x) - sinh²(x) = 1 and divide every term by cosh²(x)."
+    },
+    {
+      "front": "Is sinh(x) an odd or even function?",
+      "back": "sinh(x) is an odd function because sinh(-x) = -sinh(x). Its graph has rotational symmetry about the origin."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are they called 'hyperbolic' functions?",
+      "a": "They are called hyperbolic because they parametrise the unit hyperbola $x^2 - y^2 = 1$ with the point $(\\cosh(t), \\sinh(t))$, in the same way that trigonometric functions parametrise the unit circle $x^2 + y^2 = 1$ with the point $(\\cos(t), \\sin(t))$."
+    },
+    {
+      "q": "What is the difference between the graph of y = cosh(x) and a parabola like y = x² + 1?",
+      "a": "Although they look similar near the origin, they are different curves. The catenary, $y = \\cosh(x)$, grows exponentially, so it becomes much steeper than the parabola $y = x^2 + 1$ as $x$ moves away from zero. A parabola is a quadratic function, while a catenary is based on exponential functions."
+    },
+    {
+      "q": "Do I need to memorise the proofs of the identities?",
+      "a": "Yes, it is highly recommended. Exam questions can explicitly ask you to prove an identity from the definitions, as shown in the worked example. Understanding the proofs also deepens your grasp of the relationship between hyperbolic and exponential functions."
+    },
+    {
+      "q": "When solving an equation, how do I choose between using definitions and using identities?",
+      "a": "If the equation contains a mix of different hyperbolic functions (e.g., $\\sinh(x)$ and $\\cosh(x)$), using the exponential definitions is often the most direct route. If the equation involves powers of a single function (e.g., $\\cosh^2(x)$) and another function, try using an identity like $\\sinh^2(x) = \\cosh^2(x) - 1$ to create a polynomial in one hyperbolic function."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of hyperbolic functions. While their names sound like their trigonometric cousins (sine, cosine, etc.), they are fundamentally defined using the exponential function. They appear in a variety of physical situations, from the shape of a hanging cable to the study of special relativity. In this lesson, we'll build them from the ground up, explore their properties, and learn how to solve equations with them."
+    },
+    {
+      "type": "heading",
+      "content": "1. Definitions of Hyperbolic Functions"
+    },
+    {
+      "type": "text",
+      "content": "The two primary hyperbolic functions are the hyperbolic sine (sinh, pronounced 'shine') and the hyperbolic cosine (cosh). They are defined as specific combinations of the exponential functions $e^x$ and $e^{-x}$."
+    },
+    {
+      "type": "formula",
+      "content": "sinh(x) = \\frac{e^x - e^{-x}}{2} \\\\ \\\\ cosh(x) = \\frac{e^x + e^{-x}}{2}"
+    },
+    {
+      "type": "text",
+      "content": "From these two, we can define the other four hyperbolic functions in a way that directly mirrors trigonometry. The hyperbolic tangent (tanh) is sinh divided by cosh, and the reciprocal functions are sech (hyperbolic secant), cosech (hyperbolic cosecant), and coth (hyperbolic cotangent)."
+    },
+    {
+      "type": "formula",
+      "content": "tanh(x) = \\frac{\\sinh(x)}{\\cosh(x)} \\\\ \\\\ sech(x) = \\frac{1}{\\cosh(x)} \\\\ \\\\ cosech(x) = \\frac{1}{\\sinh(x)} \\\\ \\\\ coth(x) = \\frac{1}{\\tanh(x)} = \\frac{\\cosh(x)}{\\sinh(x)}"
+    },
+    {
+      "type": "heading",
+      "content": "2. Fundamental Hyperbolic Identities"
+    },
+    {
+      "type": "text",
+      "content": "Just as trigonometric functions are linked by identities like $\\sin^2(\\theta) + \\cos^2(\\theta) = 1$, hyperbolic functions have their own set of identities. These can all be proven by substituting the exponential definitions. The most important one is the hyperbolic equivalent of the Pythagorean identity."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\cosh^2(x) - \\sinh^2(x) = 1$",
+        "$1 - \\tanh^2(x) = \\text{sech}^2(x)$ (Divide the first identity by $\\cosh^2(x)$)",
+        "$\\coth^2(x) - 1 = \\text{cosech}^2(x)$ (Divide the first identity by $\\sinh^2(x)$)"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Prove the identity $\\cosh^2(x) - \\sinh^2(x) = 1$ from the exponential definitions of $\\sinh(x)$ and $\\cosh(x)$.",
+      "solution": "We start with the left-hand side (LHS) and substitute the definitions.\n\nLHS = $\\cosh^2(x) - \\sinh^2(x)$\n\n$= \\left( \\frac{e^x + e^{-x}}{2} \\right)^2 - \\left( \\frac{e^x - e^{-x}}{2} \\right)^2$\n\nExpand the numerators:\n$= \\frac{(e^x)^2 + 2(e^x)(e^{-x}) + (e^{-x})^2}{4} - \\frac{(e^x)^2 - 2(e^x)(e^{-x}) + (e^{-x})^2}{4}$\n\n$= \\frac{e^{2x} + 2e^0 + e^{-2x}}{4} - \\frac{e^{2x} - 2e^0 + e^{-2x}}{4}$\n\nSince $e^0 = 1$:\n$= \\frac{e^{2x} + 2 + e^{-2x} - (e^{2x} - 2 + e^{-2x})}{4}$\n\nCombine the fractions:\n$= \\frac{e^{2x} + 2 + e^{-2x} - e^{2x} + 2 - e^{-2x}}{4}$\n\nCancel terms in the numerator:\n$= \\frac{4}{4} = 1$\n\nLHS = 1 = RHS. The identity is proven."
+    },
+    {
+      "type": "heading",
+      "content": "3. Graphs of Hyperbolic Functions"
+    },
+    {
+      "type": "text",
+      "content": "The graphs of hyperbolic functions have distinct shapes that you must be able to recognise and sketch. They can be understood by considering them as the sum or ratio of exponential graphs."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**y = sinh(x):** An odd function, passing through the origin (0,0). It is strictly increasing. Domain: $x \\in \\mathbb{R}$. Range: $y \\in \\mathbb{R}$.",
+        "**y = cosh(x):** An even function, symmetric about the y-axis. It has a minimum value of 1 at the point (0,1). The shape is a catenary. Domain: $x \\in \\mathbb{R}$. Range: $y \\ge 1$.",
+        "**y = tanh(x):** An odd function, passing through the origin (0,0). It has two horizontal asymptotes at $y=1$ (as $x \\to \\infty$) and $y=-1$ (as $x \\to -\\infty$). Domain: $x \\in \\mathbb{R}$. Range: $-1 < y < 1$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be very careful with the identities. The minus sign in $\\cosh^2(x) - \\sinh^2(x) = 1$ is a common source of errors. Always double-check if you are using a hyperbolic or a trigonometric identity. When sketching $y=\\cosh(x)$, ensure your minimum is at (0,1) and the curve is U-shaped, but distinct from a parabola (it's steeper)."
+    },
+    {
+      "type": "heading",
+      "content": "4. Solving Hyperbolic Equations"
+    },
+    {
+      "type": "text",
+      "content": "Equations involving hyperbolic functions can typically be solved using one of two main strategies. The first is to use the exponential definitions to transform the equation into one involving $e^x$, which often leads to a hidden quadratic. The second is to use hyperbolic identities to simplify the equation into a polynomial in terms of one hyperbolic function, such as a quadratic in $\\cosh(x)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $3\\cosh(x) + 2\\sinh(x) = 4$, giving your answer in an exact logarithmic form.",
+      "solution": "We will use the exponential definitions for $\\cosh(x)$ and $\\sinh(x)$.\n\n$3\\left(\\frac{e^x + e^{-x}}{2}\\right) + 2\\left(\\frac{e^x - e^{-x}}{2}\\right) = 4$\n\nMultiply the entire equation by 2 to clear the denominators:\n$3(e^x + e^{-x}) + 2(e^x - e^{-x}) = 8$\n\nExpand the brackets:\n$3e^x + 3e^{-x} + 2e^x - 2e^{-x} = 8$\n\nCollect like terms:\n$5e^x + e^{-x} = 8$\n\nTo form a quadratic, multiply by $e^x$ and recall that $e^{-x} \\times e^x = e^0 = 1$:\n$5(e^x)^2 + 1 = 8e^x$\n\nRearrange into a standard quadratic form:\n$5(e^x)^2 - 8e^x + 1 = 0$\n\nLet $u = e^x$. The equation becomes:\n$5u^2 - 8u + 1 = 0$\n\nThis does not factorise easily, so we use the quadratic formula: $u = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$.\n$u = \\frac{8 \\pm \\sqrt{(-8)^2 - 4(5)(1)}}{2(5)}$\n$u = \\frac{8 \\pm \\sqrt{64 - 20}}{10}$\n$u = \\frac{8 \\pm \\sqrt{44}}{10} = \\frac{8 \\pm 2\\sqrt{11}}{10} = \\frac{4 \\pm \\sqrt{11}}{5}$\n\nNow, substitute back $u = e^x$. We have two potential solutions:\n$e^x = \\frac{4 + \\sqrt{11}}{5}$ or $e^x = \\frac{4 - \\sqrt{11}}{5}$\n\nSince $\\sqrt{11}$ is between 3 and 4 (as $3^2=9, 4^2=16$), both numerators are positive. Therefore, both values of $u$ are positive and valid solutions for $e^x$.\n\nTaking the natural logarithm of both sides for each solution:\n$x = \\ln\\left(\\frac{4 + \\sqrt{11}}{5}\\right)$ or $x = \\ln\\left(\\frac{4 - \\sqrt{11}}{5}\\right)$\n\nThese are the two exact solutions."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Hyperbolic Functions",
+      "href": "/mark?subject=9231&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9231)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        },
+        {
+          "label": "Desmos Graphing Calculator",
+          "href": "https://www.desmos.com/calculator"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -4,39 +4,234 @@
   "title": "Electrolysis",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level electrolysis — electrode reactions, Faraday's laws, and predicting products in molten and aqueous cells.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the principles of electrolysis, the process of using electrical energy to drive non-spontaneous chemical reactions. It covers the components of an electrolytic cell, the prediction of products for both molten and aqueous electrolytes, the writing of half-equations, and the quantitative calculations governed by Faraday's Laws.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "State what happens at anode and cathode during electrolysis.",
-    "Predict products for molten and aqueous electrolytes.",
-    "Apply Faraday's laws to calculate mass or volume of products.",
-    "Relate electrolysis to extraction and electroplating."
+    "Define electrolysis and identify the anode, cathode, and electrolyte in a given cell.",
+    "Predict the products of electrolysis for molten salts and concentrated or dilute aqueous solutions.",
+    "Construct balanced half-equations for the oxidation and reduction reactions occurring at the electrodes.",
+    "Apply Faraday's laws and the Faraday constant to perform quantitative calculations involving current, time, and the amount of substance produced."
   ],
   "simpleExplanation": {
-    "title": "Forced redox with DC",
-    "summary": "Electrolysis uses external voltage to drive non-spontaneous redox. Cations are reduced at the cathode; anions oxidised at the anode.",
+    "title": "Forcing Reactions with Electricity",
+    "summary": "Electrolysis uses a direct current power supply to force a non-spontaneous redox reaction to occur. This process is fundamental to splitting compounds and producing elements like chlorine and aluminium.",
+    "analogy": "Imagine you have a ball at the bottom of a hill. It won't roll up on its own – that's a non-spontaneous process. Electrolysis is like using a conveyor belt (the power supply) to provide the energy needed to carry the ball (the reactants) to the top of the hill (to form the products).",
     "steps": [
-      "Cathode (−): reduction — metal ions or H⁺ discharged.",
-      "Anode (+): oxidation — halides or OH⁻/H₂O to O₂ or halogen.",
-      "n = Q/F = It/F — moles of electrons → moles of product.",
-      "Molten: simple ion discharge; aqueous: compete with H⁺/OH⁻."
+      "Electrolysis uses a direct current (DC) power supply to drive a non-spontaneous redox reaction at electrodes within an electrolyte.",
+      "Positive cations move to the negative cathode for reduction (gain of electrons), while negative anions move to the positive anode for oxidation (loss of electrons).",
+      "In molten electrolytes, only the compound's ions react. In aqueous solutions, water can also be oxidised (to O₂) or reduced (to H₂), so H⁺ and OH⁻ ions compete with the solute ions at the electrodes.",
+      "Faraday's laws state that the mass of product is proportional to the total electric charge passed. We use Q = It and n = Q/F to calculate the moles of product formed."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is electrolysis?",
+      "back": "The decomposition of a chemical compound (the electrolyte) by passing a direct electric current through it. It forces a non-spontaneous redox reaction to occur."
+    },
+    {
+      "front": "What is an electrolyte?",
+      "back": "A substance that contains mobile ions and can conduct electricity. It can be a molten ionic compound or an aqueous solution of an ionic compound."
+    },
+    {
+      "front": "What is the cathode in an electrolytic cell?",
+      "back": "The negative electrode. Cations are attracted to it, and reduction occurs here. (Remember 'Red Cat' - REDuction at the CAThode)."
+    },
+    {
+      "front": "What is the anode in an electrolytic cell?",
+      "back": "The positive electrode. Anions are attracted to it, and oxidation occurs here. (Remember 'An Ox' - ANode for OXidation)."
+    },
+    {
+      "front": "Mnemonic for electrode polarity in electrolysis?",
+      "back": "PANIC: Positive Anode, Negative Is Cathode. This is for electrolytic cells only, not voltaic cells."
+    },
+    {
+      "front": "Why must the electrolyte be molten or in solution for electrolysis?",
+      "back": "The ions must be mobile (free to move) to travel to the electrodes and carry the charge. In a solid ionic lattice, ions are in fixed positions."
+    },
+    {
+      "front": "What is the key difference between electrolysing a molten salt and an aqueous solution?",
+      "back": "In an aqueous solution, water molecules can also be oxidised or reduced, creating H⁺ and OH⁻ ions which compete with the solute ions for discharge at the electrodes."
+    },
+    {
+      "front": "Rule for cation discharge in aqueous solution?",
+      "back": "The cation of the less reactive metal (higher reduction potential) is preferentially discharged. For metals more reactive than hydrogen, H⁺ ions (from water) are reduced to H₂ gas instead."
+    },
+    {
+      "front": "Rule for anion discharge in aqueous solution?",
+      "back": "For simple anions, halide ions (Cl⁻, Br⁻, I⁻) are preferentially discharged over OH⁻ (from water), which is discharged over complex anions like SO₄²⁻ or NO₃⁻. Fluoride (F⁻) is an exception; OH⁻ is discharged instead."
+    },
+    {
+      "front": "What is the Faraday constant (F)?",
+      "back": "The charge carried by one mole of electrons. Its value is approximately 96500 Coulombs per mole (C mol⁻¹)."
+    },
+    {
+      "front": "What is the formula relating charge, current, and time?",
+      "back": "Q = I × t, where Q is charge in Coulombs (C), I is current in Amperes (A), and t is time in seconds (s)."
+    },
+    {
+      "front": "What is an 'inert' electrode?",
+      "back": "An electrode, typically made of platinum or graphite, that does not take part in the chemical reaction. It serves only as a surface for electron transfer."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are inert electrodes like graphite or platinum often used?",
+      "a": "Inert electrodes are used because they do not react with the electrolyte or the products of electrolysis. This ensures that the only reactions occurring are the ones we want to study or use, preventing contamination of the products. If an active electrode (like copper) were used as the anode in CuSO₄ electrolysis, the electrode itself would oxidise instead of the water or sulfate ions."
+    },
+    {
+      "q": "What is the difference in electrode polarity between an electrolytic cell and a voltaic (galvanic) cell?",
+      "a": "The sign convention is reversed. In an electrolytic cell, the external power supply makes the anode positive and the cathode negative. In a voltaic cell, which generates electricity from a spontaneous reaction, the anode (site of oxidation) is the source of electrons and is therefore the negative terminal, while the cathode (site of reduction) is the positive terminal. Crucially, in both cell types, oxidation *always* occurs at the anode and reduction *always* occurs at the cathode."
+    },
+    {
+      "q": "Why isn't sodium metal produced when electrolysing aqueous NaCl?",
+      "a": "Sodium is a very reactive metal. In an aqueous solution, water is present and can also be reduced at the cathode. The reduction of H⁺ ions from water (2H₂O + 2e⁻ → H₂ + 2OH⁻) requires less energy (has a less negative E^⦵ value) than the reduction of Na⁺ ions (Na⁺ + e⁻ → Na). Therefore, hydrogen gas is produced at the cathode instead of sodium metal."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Electrolysis** (24.1) leads to **electrode potentials** (24.2). Practise **half-equations** and **Faraday** calculations — often combined in one question."
+      "content": "Electrolysis is a cornerstone of industrial chemistry, enabling the production of essential elements and compounds that cannot be easily made by other means. From extracting reactive metals like aluminium from their ores to producing chlorine for water treatment, this process harnesses electrical energy to command chemical change. In this topic, we will dissect the principles of electrolysis, learn to predict its outcomes, and quantify the results."
+    },
+    {
+      "type": "heading",
+      "content": "The Fundamentals of an Electrolytic Cell"
+    },
+    {
+      "type": "text",
+      "content": "An electrolytic cell consists of three main components. First, the **electrolyte**, which is an ionic compound in either a molten state or dissolved in a suitable solvent (usually water), providing mobile ions. Second, two **electrodes**, which are electrical conductors providing a surface for the reaction to occur. Finally, an external **DC power supply** (like a battery) which acts as an 'electron pump', driving electrons to one electrode and removing them from the other."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Cathode:** The negative electrode. It is connected to the negative terminal of the power supply. Positive ions (cations) migrate here and are reduced (gain electrons).",
+        "**Anode:** The positive electrode. It is connected to the positive terminal of the power supply. Negative ions (anions) migrate here and are oxidised (lose electrons).",
+        "**Electron Flow:** Electrons flow from the anode, through the external circuit to the power supply, and from the power supply to the cathode. The ions carry the charge within the electrolyte itself."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Electrolysis of Molten Salts"
+    },
+    {
+      "type": "text",
+      "content": "The electrolysis of a molten binary ionic compound is the simplest case. Only two types of ions are present: the metal cation and the non-metal anion. There is no competition, so the products are predictable: the metal is formed at the cathode, and the non-metal is formed at the anode. For this to work, a high temperature is required to melt the ionic compound and overcome the strong electrostatic forces of the crystal lattice."
+    },
+    {
+      "type": "workedExample",
+      "question": "Predict the products and write the half-equations for the electrolysis of molten lead(II) bromide (PbBr₂) using inert graphite electrodes.",
+      "solution": "1. **Identify ions present:** In molten PbBr₂, the ions are Pb²⁺(l) and Br⁻(l).\n2. **Identify electrode processes:**\n   - Cations (Pb²⁺) move to the negative cathode and are reduced.\n   - Anions (Br⁻) move to the positive anode and are oxidised.\n3. **Write half-equations:**\n   - **At the Cathode (Reduction):** Pb²⁺(l) + 2e⁻ → Pb(l)\n   - **At the Anode (Oxidation):** 2Br⁻(l) → Br₂(g) + 2e⁻\n4. **State the products:** Liquid lead metal is produced at the cathode, and bromine gas is produced at the anode."
+    },
+    {
+      "type": "heading",
+      "content": "Electrolysis of Aqueous Solutions"
+    },
+    {
+      "type": "text",
+      "content": "When an ionic salt is dissolved in water, the situation becomes more complex. Water itself can be weakly ionised ($H₂O \\rightleftharpoons H⁺ + OH⁻$) and can also be oxidised or reduced. This means there is a competition at each electrode to determine which species is discharged.\n\n- **At the cathode:** The metal cation competes with H⁺ ions (from water).\n- **At the anode:** The non-metal anion competes with OH⁻ ions (from water)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Cation Discharge Rule:** The cation with the more positive (less negative) standard electrode potential ($E^⦵$) is preferentially reduced. In practice: Cations of reactive metals (e.g., Na⁺, K⁺, Mg²⁺) are not discharged; H⁺ is reduced instead, producing H₂(g). Cations of less reactive metals (e.g., Cu²⁺, Ag⁺) are discharged in preference to H⁺.",
+        "**Anion Discharge Rule:** For concentrated solutions, halide ions (Cl⁻, Br⁻, I⁻) are discharged in preference to OH⁻. For dilute solutions or solutions containing complex ions (SO₄²⁻, NO₃⁻), OH⁻ is discharged, producing O₂(g) and H₂O.",
+        "**Half-equation for water reduction (at cathode):** 2H₂O(l) + 2e⁻ → H₂(g) + 2OH⁻(aq)",
+        "**Half-equation for water oxidation (at anode):** 2H₂O(l) → O₂(g) + 4H⁺(aq) + 4e⁻  OR  4OH⁻(aq) → O₂(g) + 2H₂O(l) + 4e⁻"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always include state symbols in your half-equations. They are crucial and often worth a mark. Pay special attention to (l) for molten substances, (aq) for aqueous species, and (g) or (s) for products. Forgetting them is a common way to lose easy marks."
+    },
+    {
+      "type": "heading",
+      "content": "Quantitative Electrolysis: Faraday's Laws"
+    },
+    {
+      "type": "text",
+      "content": "Faraday's laws allow us to calculate the amount of substance produced or consumed during electrolysis. The key principle is that the amount of chemical change is directly proportional to the quantity of electricity that passes through the electrolyte. This quantity of electricity, or charge, depends on the current and the time for which it flows."
+    },
+    {
+      "type": "formula",
+      "content": "Charge (C) = Current (A) × Time (s) \\\\ Q = I \\times t"
+    },
+    {
+      "type": "text",
+      "content": "The link between charge and the amount of substance in moles is the Faraday constant, F. One Faraday is the charge of one mole of electrons."
+    },
+    {
+      "type": "formula",
+      "content": "Amount of electrons (mol) = \\frac{\\text{Charge (Q)}}{\\text{Faraday constant (F)}} \\\\ n(e⁻) = \\frac{Q}{F} \\quad \\text{where F} \\approx 96500 \\text{ C mol⁻¹}"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the mass of copper deposited at the cathode during the electrolysis of aqueous copper(II) sulfate, when a current of 1.50 A is passed for 40.0 minutes. (Ar of Cu = 63.5)",
+      "solution": "1. **Convert time to seconds:**\n   t = 40.0 min × 60 s/min = 2400 s\n\n2. **Calculate the total charge passed (Q):**\n   Q = I × t = 1.50 A × 2400 s = 3600 C\n\n3. **Calculate the moles of electrons transferred:**\n   n(e⁻) = Q / F = 3600 C / 96500 C mol⁻¹ = 0.0373 mol\n\n4. **Use the half-equation to find the mole ratio:**\n   The reduction of copper is: Cu²⁺(aq) + 2e⁻ → Cu(s)\n   The mole ratio of electrons to copper is 2:1.\n\n5. **Calculate the moles of copper deposited:**\n   n(Cu) = n(e⁻) / 2 = 0.0373 mol / 2 = 0.01865 mol\n\n6. **Calculate the mass of copper:**\n   Mass = moles × Ar = 0.01865 mol × 63.5 g mol⁻¹ = 1.18 g (to 3 s.f.)"
     },
     {
       "type": "practice",
-      "label": "Mark an electrolysis question",
+      "label": "Test Your Knowledge on Electrolysis",
       "href": "/mark?subject=9701&topic=24.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "Chemguide page on Electrolysis",
+          "href": "https://www.chemguide.co.uk/physical/electrolysis/introduction.html"
+        },
+        {
+          "label": "Royal Society of Chemistry - Electrolysis",
+          "href": "https://edu.rsc.org/resources/electrolysis/225.article"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Battery voltage",
+    "embedUrl": "https://phet.colorado.edu/sims/cheerpj/battery-voltage/latest/battery-voltage.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/battery-voltage",
+    "hint": "Electron flow at electrodes — link to electrolysis and ion discharge (24.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Electrolysis: DC drives non-spontaneous redox at electrodes.",
+        "embedHint": "Trace electron flow from battery to ions."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Cations → cathode (reduction); anions → anode (oxidation).",
+        "embedHint": "Remember OIL RIG at each electrode."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Molten vs aqueous — H⁺/OH⁻ may compete at electrodes.",
+        "embedHint": "Predict products for CuSO₄(aq) vs molten NaCl."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Faraday: mass ∝ charge ∝ current × time.",
+        "embedHint": "Use n = Q/F to find moles of product."
+      }
+    ]
+  }
 }

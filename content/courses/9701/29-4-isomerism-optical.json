@@ -4,29 +4,221 @@
   "title": "Isomerism: optical",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level optical isomerism — chirality, enantiomers, and racemic mixtures with PhET molecule builder.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores optical isomerism, a type of stereoisomerism found in chiral molecules. We will define chiral centres, understand the properties of enantiomers (non-superimposable mirror images), and investigate how they interact with plane-polarised light. The formation and properties of racemic mixtures, along with the biological significance of chirality, will also be covered.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Identify chiral centres in molecules.",
-    "Explain enantiomers and optical activity.",
-    "Describe racemic mixtures.",
-    "Relate stereochemistry to biological activity."
+    "Describe optical isomerism in terms of chirality and the presence of a chiral centre.",
+    "Identify chiral centres in a molecule of given structural formula.",
+    "Explain that enantiomers are non-superimposable mirror images that rotate plane-polarised light in opposite directions.",
+    "Describe a racemic mixture as an equimolar mixture of two enantiomers and explain why it is optically inactive."
   ],
   "simpleExplanation": {
-    "title": "Mirror-image molecules",
-    "summary": "A chiral carbon has four different groups. Enantiomers rotate plane-polarised light in opposite directions.",
+    "title": "Mirror Image Molecules",
+    "summary": "Some molecules exist as a pair of 'left-handed' and 'right-handed' versions, known as enantiomers. They are mirror images of each other but cannot be perfectly overlapped, just like your hands.",
+    "analogy": "Think about your hands. Your left hand is a mirror image of your right, but you can't wear a left-handed glove on your right hand. Chiral molecules are the same; they have a 'handedness' and their mirror images are distinct.",
     "steps": [
-      "Chiral centre — no plane of symmetry.",
-      "Enantiomers non-superimposable mirror images.",
-      "Racemic 50:50 mix — no net optical rotation.",
-      "Enzymes often bind one enantiomer only."
+      "Chiral centre: carbon with four different groups. | Sim hint: Asymmetric carbon — no plane of symmetry.",
+      "Enantiomers are non-superimposable mirror images. | Sim hint: Rotate molecule — cannot align all groups.",
+      "Optical activity — rotate plane-polarised light. | Sim hint: Racemic mixture: equal enantiomers — no net rotation.",
+      "Biological significance — enzyme stereospecificity. | Sim hint: One enantiomer active, other inert/harmful."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a chiral centre?",
+      "back": "A carbon atom that is bonded to four different atoms or groups of atoms. It is also known as an asymmetric carbon."
+    },
+    {
+      "front": "What are enantiomers?",
+      "back": "A pair of optical isomers that are non-superimposable mirror images of each other."
+    },
+    {
+      "front": "What property defines optical isomers?",
+      "back": "Their ability to rotate the plane of plane-polarised light. One enantiomer rotates it clockwise (+), the other rotates it anti-clockwise (-) by the same magnitude."
+    },
+    {
+      "front": "What is a racemic mixture (or racemate)?",
+      "back": "An equimolar (50:50) mixture of two enantiomers. It is optically inactive."
+    },
+    {
+      "front": "Why is a racemic mixture optically inactive?",
+      "back": "The equal and opposite rotations of the plane of polarised light by the two enantiomers cancel each other out, resulting in no net rotation."
+    },
+    {
+      "front": "What is plane-polarised light?",
+      "back": "Light in which the oscillations of the electric field are restricted to a single plane."
+    },
+    {
+      "front": "What does 'non-superimposable' mean?",
+      "back": "It means that no matter how you rotate or move one object, you cannot make it identical to its mirror image."
+    },
+    {
+      "front": "Identify the chiral centre in 2-chlorobutane.",
+      "back": "The carbon at position 2 (C2). It is bonded to H, Cl, CH₃, and CH₂CH₃."
+    },
+    {
+      "front": "Why is propan-2-ol achiral (not chiral)?",
+      "back": "The central carbon (C2) is bonded to two identical methyl (CH₃) groups, so it does not have four different groups attached."
+    },
+    {
+      "front": "How is a racemic mixture often formed in a lab reaction?",
+      "back": "Through nucleophilic addition to a planar carbonyl group (C=O) in an unsymmetrical aldehyde or ketone. The nucleophile can attack from above or below the plane with equal probability."
+    },
+    {
+      "front": "What is the biological significance of chirality?",
+      "back": "Enzymes and receptors in biological systems are themselves chiral. They often interact with only one enantiomer of a substrate or drug, leading to different biological effects. For example, one enantiomer of limonene smells of oranges, the other of lemons."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can a molecule have more than one chiral centre?",
+      "a": "Yes, many complex molecules, especially in biology like sugars, can have multiple chiral centres. The maximum number of possible stereoisomers is 2ⁿ, where n is the number of chiral centres (though this can be complicated by molecules with internal symmetry, known as meso compounds)."
+    },
+    {
+      "q": "Why is chirality so important in medicine?",
+      "a": "Biological systems, like enzymes and cell receptors, are themselves chiral. They can distinguish between enantiomers of a drug. For example, the drug thalidomide was sold as a racemate; one enantiomer was an effective sedative, while the other tragically caused birth defects. This highlights the need for stereospecific synthesis in pharmaceuticals."
+    },
+    {
+      "q": "How do you know if an enantiomer is (+) or (-) just by looking at its structure?",
+      "a": "You can't. The direction of rotation ((+) or (-)) is an experimentally determined property and cannot be predicted simply from the 3D structure drawing. A separate convention (R/S system) is used to label the absolute configuration at a chiral centre, but this does not directly correlate to the direction of light rotation."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Optical isomerism** (29.4) follows **structural/stereoisomerism** (13.4). Mark * on chiral carbons and draw **3D wedges** when asked." },
-    { "type": "practice", "label": "Mark an optical isomerism question", "href": "/mark?subject=9701&topic=29.4" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Stereoisomerism is a fascinating area of chemistry where molecules have the same molecular and structural formula but a different spatial arrangement of atoms. Optical isomerism is a specific type of stereoisomerism that arises from 'handedness' at a molecular level, a property known as chirality."
+    },
+    {
+      "type": "heading",
+      "content": "Chirality and the Chiral Centre"
+    },
+    {
+      "type": "text",
+      "content": "A molecule is described as chiral if it is non-superimposable on its mirror image. The most common cause of chirality in organic molecules is the presence of a chiral centre. A chiral centre is a carbon atom that is attached to four different atoms or groups. This carbon is also referred to as an asymmetric carbon atom. The presence of a single chiral centre in a molecule guarantees that the molecule will be chiral and will exhibit optical isomerism."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Chirality: The property of a molecule being non-superimposable on its mirror image.",
+        "Chiral Centre: A carbon atom bonded to four distinct groups.",
+        "Achiral: A molecule that *is* superimposable on its mirror image. It will have a plane of symmetry."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Identify the chiral centre(s), if any, in the molecule 3-methylpentan-2-ol. Draw the structural formula to justify your answer.",
+      "solution": "First, draw the structure of 3-methylpentan-2-ol: CH₃CH(OH)CH(CH₃)CH₂CH₃. \n\nLet's examine each carbon atom:\n*   C1 (in the end CH₃): Bonded to 3 H atoms. Not chiral.\n*   C2 (with the OH group): Bonded to H, OH, CH₃, and CH(CH₃)CH₂CH₃. These are four different groups. **Therefore, C2 is a chiral centre.**\n*   C3 (with the methyl group): Bonded to H, CH₃, CH(OH)CH₃, and CH₂CH₃. These are four different groups. **Therefore, C3 is a chiral centre.**\n*   C4 (in the ethyl group): Bonded to 2 H atoms. Not chiral.\n*   C5 (in the ethyl group): Bonded to 3 H atoms. Not chiral.\n*   The C in the methyl group at C3: Bonded to 3 H atoms. Not chiral.\n\nThis molecule has two chiral centres."
+    },
+    {
+      "type": "heading",
+      "content": "Enantiomers and Optical Activity"
+    },
+    {
+      "type": "text",
+      "content": "Molecules that are non-superimposable mirror images of each other are called enantiomers. They are a pair of optical isomers. To represent them, we use 3D drawings with wedges (bond coming out of the page) and dashed lines (bond going into the page). The two enantiomers have identical physical properties like melting point, boiling point, and solubility. Their chemical properties are also identical, except when reacting with other chiral substances."
+    },
+    {
+      "type": "text",
+      "content": "The defining difference between enantiomers is their effect on plane-polarised light. Normal light vibrates in all planes, but when passed through a polarising filter, it emerges vibrating in only one plane. A solution of a single enantiomer will rotate this plane of light. This is called optical activity, and it is measured using a polarimeter. One enantiomer rotates the light clockwise (dextrorotatory, (+)) and the other rotates it by the exact same angle but anti-clockwise (laevorotatory, (-))."
+    },
+    {
+      "type": "examTip",
+      "content": "When drawing a pair of enantiomers, draw the first molecule and then imagine a mirror next to it. Draw the reflection exactly as it would appear. The group on a wedge in the first molecule will be on a wedge in the mirror image, and the same for dashed lines. Do not swap the wedges and dashes in the mirror image."
+    },
+    {
+      "type": "heading",
+      "content": "Racemic Mixtures (Racemates)"
+    },
+    {
+      "type": "text",
+      "content": "A racemic mixture, or racemate, is a mixture containing equal amounts (an equimolar mixture) of both the (+) and (-) enantiomers of a chiral compound. Because it contains equal quantities of the two enantiomers, a racemic mixture is optically inactive. The clockwise rotation caused by one enantiomer is perfectly cancelled out by the anti-clockwise rotation caused by the other."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Racemic Mixture: 50% (+)-enantiomer and 50% (-)-enantiomer.",
+        "Optical Activity: None. The mixture is optically inactive due to external compensation.",
+        "Formation: Often occurs when a planar, achiral reactant is converted into a chiral product."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "A classic example of racemate formation is the nucleophilic addition of hydrogen cyanide to an unsymmetrical aldehyde or ketone. Consider the reaction of propanal (CH₃CH₂CHO) with KCN followed by dilute acid. The carbonyl group is planar. The cyanide nucleophile, CN⁻, can attack the partially positive carbon atom from above the plane or from below the plane with equal probability. This leads to the formation of equal amounts of the two enantiomers of 2-hydroxybutanenitrile, resulting in a racemic mixture."
+    },
+    {
+      "type": "workedExample",
+      "question": "Butanone (CH₃COCH₂CH₃) reacts with HCN in the presence of a catalytic amount of KCN. (i) Name and outline the mechanism for this reaction. (ii) Explain why the product is formed as a racemic mixture and is therefore optically inactive.",
+      "solution": "(i) The reaction is **nucleophilic addition**. \n**Mechanism:**\nStep 1: The cyanide ion (CN⁻) acts as a nucleophile and attacks the δ+ carbon of the planar carbonyl group. The π-bond in the C=O breaks.\nCH₃C(O)CH₂CH₃ + CN⁻ → CH₃C(O⁻)(CN)CH₂CH₃\nStep 2: The intermediate anion is protonated by an HCN molecule (or H₂O) to form the product, 2-hydroxy-2-methylbutanenitrile.\nCH₃C(O⁻)(CN)CH₂CH₃ + HCN → CH₃C(OH)(CN)CH₂CH₃ + CN⁻\n\n(ii) The carbonyl group in butanone is **planar**. The nucleophile (CN⁻) can attack the carbonyl carbon from **above the plane or below the plane with equal probability**. This leads to the formation of **equal amounts** of the two enantiomers of 2-hydroxy-2-methylbutanenitrile. This equimolar mixture is a **racemic mixture**. The optical rotations of the two enantiomers are equal in magnitude but opposite in direction, so they **cancel each other out**, resulting in the product mixture being optically inactive."
+    },
+    {
+      "type": "examTip",
+      "content": "Remember that any reaction mechanism that involves a planar intermediate (like a trigonal planar carbonyl group or a trigonal planar carbocation from an SN1 reaction) and creates a new chiral centre from an achiral starting material will typically produce a racemic mixture."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge on optical isomerism",
+      "href": "/mark?subject=9701&topic=29.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide on Optical Isomerism",
+          "href": "https://www.chemguide.co.uk/basicorg/isomerism/optical.html"
+        },
+        {
+          "label": "Khan Academy: Chiral drugs",
+          "href": "https://www.khanacademy.org/science/organic-chemistry/stereochemistry-topic/chirality-r-s-system/v/chiral-drugs"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Chiral centre — non-superimposable mirror images (29.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Chiral centre: carbon with four different groups.",
+        "embedHint": "Asymmetric carbon — no plane of symmetry."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Enantiomers are non-superimposable mirror images.",
+        "embedHint": "Rotate molecule — cannot align all groups."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Optical activity — rotate plane-polarised light.",
+        "embedHint": "Racemic mixture: equal enantiomers — no net rotation."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Biological significance — enzyme stereospecificity.",
+        "embedHint": "One enantiomer active, other inert/harmful."
+      }
+    ]
+  }
 }

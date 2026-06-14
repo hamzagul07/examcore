@@ -4,41 +4,232 @@
   "title": "Algebra",
   "paper": "P2",
   "paperName": "Pure Mathematics 2",
-  "status": "premium",
-  "summary": "9709 P2 algebra — polynomial division, factor theorem, partial fractions, and binomial expansion with PhET expression exchange.",
+  "status": "pilot",
+  "summary": "This lesson covers the essential algebraic techniques for A-Level Pure Mathematics 2. It includes solving modulus equations and inequalities, factorising polynomials using the factor and remainder theorems, decomposing rational expressions into partial fractions, and applying the binomial expansion for rational indices.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Divide polynomials and apply the factor theorem.",
+    "Solve equations and inequalities involving the modulus function.",
+    "Apply the factor and remainder theorems to factorise polynomials and solve equations.",
     "Decompose rational functions into partial fractions.",
-    "Expand (1 + x)ⁿ for non-integer n when |x| < 1.",
-    "Solve equations involving modulus functions."
+    "Use the binomial theorem to expand expressions with rational exponents and determine the validity range."
   ],
   "simpleExplanation": {
-    "title": "Polynomial tools for P2",
-    "summary": "Algebra skills from P2 feed integration in P3. Factor theorem links roots to factors; partial fractions simplify rational integrands.",
+    "title": "The P2 Algebra Toolkit",
+    "summary": "This topic gives you four powerful tools to break down and solve complex expressions. Each tool has a specific job, from finding roots of polynomials to approximating tricky functions.",
+    "analogy": "Imagine you have a complex machine you need to understand or repair. You can't just hit it with a hammer. Instead, you use a specific set of tools: a voltmeter (modulus function) to measure absolute values, a key (factor theorem) to unlock its structure, a set of adapters (partial fractions) to connect it to other systems, and a magnifying glass (binomial expansion) to examine its behaviour up close.",
     "steps": [
-      "Factor theorem: (x − a) is a factor iff f(a) = 0.",
-      "Partial fractions: proper fraction → simpler terms.",
-      "Binomial: (1 + x)ⁿ = 1 + nx + n(n−1)x²/2! + … for |x| < 1.",
-      "Modulus: |x| = x if x ≥ 0, −x if x < 0 — split cases."
+      "Polynomial division — factor theorem links roots to (x − a) factors.",
+      "Partial fractions: proper rational functions decompose for integration.",
+      "Binomial expansion (1 + x)ⁿ for |x| < 1 when n not integer.",
+      "Modulus |x|: piecewise definition; solve |f(x)| = k by cases."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the piecewise definition of the modulus function, $|x|$?",
+      "back": "$|x| = \\begin{cases} x & \\text{if } x \\ge 0 \\\\ -x & \\text{if } x < 0 \\end{cases}$. It gives the non-negative value of a number."
+    },
+    {
+      "front": "What are the two main algebraic methods for solving an equation of the form $|ax+b| = c$ (where $c>0$)?",
+      "back": "1. Square both sides: $(ax+b)^2 = c^2$. 2. Use the definition: $ax+b = c$ or $ax+b = -c$. Method 2 is usually faster."
+    },
+    {
+      "front": "How do you solve an inequality like $|ax+b| < c$ (where $c>0$)?",
+      "back": "Convert it to the double inequality $-c < ax+b < c$ and solve for $x$. For $|ax+b| > c$, you solve $ax+b > c$ or $ax+b < -c$."
+    },
+    {
+      "front": "State the Factor Theorem.",
+      "back": "If $P(x)$ is a polynomial and $P(a) = 0$, then $(x-a)$ is a factor of $P(x)$."
+    },
+    {
+      "front": "State the Remainder Theorem.",
+      "back": "When a polynomial $P(x)$ is divided by $(x-a)$, the remainder is $P(a)$."
+    },
+    {
+      "front": "What is a 'proper' rational function?",
+      "back": "A rational function $\\frac{P(x)}{Q(x)}$ where the degree of the numerator polynomial $P(x)$ is less than the degree of the denominator polynomial $Q(x)$."
+    },
+    {
+      "front": "What must you do first if you are asked to express an 'improper' rational function in partial fractions?",
+      "back": "Perform polynomial long division to get a quotient polynomial and a proper rational function remainder, which can then be split into partial fractions."
+    },
+    {
+      "front": "What is the general form of the binomial expansion for $(1+x)^n$ where $n$ is a rational number?",
+      "back": "$1 + nx + \\frac{n(n-1)}{2!}x^2 + \\frac{n(n-1)(n-2)}{3!}x^3 + \\dots$"
+    },
+    {
+      "front": "What is the crucial condition for the binomial expansion of $(1+ax)^n$ to be valid?",
+      "back": "The modulus of the term being expanded with '1' must be less than 1. For $(1+ax)^n$, the condition is $|ax| < 1$, which simplifies to $|x| < \\frac{1}{|a|}$."
+    },
+    {
+      "front": "What is the partial fraction form for $\\frac{x+1}{(x-2)(x+3)^2}$?",
+      "back": "$\\frac{A}{x-2} + \\frac{B}{x+3} + \\frac{C}{(x+3)^2}$. A common mistake is to forget the $\\frac{B}{x+3}$ term for the repeated root."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When solving $|f(x)| = |g(x)|$, is squaring both sides always the best method?",
+      "a": "Squaring is a very reliable method because it correctly removes the modulus signs. However, it can lead to a more complicated polynomial to solve. The alternative method, setting $f(x) = g(x)$ and $f(x) = -g(x)$, can be quicker but requires careful management of signs and brackets. Both methods are valid; choose the one you are most comfortable and accurate with."
+    },
+    {
+      "q": "What's the difference between the Remainder Theorem and the Factor Theorem?",
+      "a": "The Factor Theorem is simply a special case of the Remainder Theorem. The Remainder Theorem tells you the remainder when you divide a polynomial $P(x)$ by $(x-a)$ is $P(a)$. The Factor Theorem states that if this remainder $P(a)$ happens to be 0, then $(x-a)$ must be a factor."
+    },
+    {
+      "q": "Why do we learn partial fractions? What are they used for?",
+      "a": "The primary application of partial fractions in A-Level Mathematics is in integration (which you will study in depth). It is much easier to integrate a sum of simple fractions (like $\\frac{2}{x-1} + \\frac{3}{x+2}$) than it is to integrate the single complex fraction they came from. We also use them in binomial expansions."
+    },
+    {
+      "q": "For the binomial expansion, what if the power is a positive integer?",
+      "a": "If the power $n$ is a positive integer, the expansion formula still works, but it will terminate. The term with $(n-n)$ in the numerator will become zero, so all subsequent terms are zero. This gives a finite series, the same as the one you learned in P1 using combinations (nCr)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Algebra** (2.1) on P2 is procedural but easy to lose marks on **partial fraction setup**. Show **equating coefficients** clearly."
+      "content": "Welcome to the foundational algebraic techniques for Pure Mathematics 2. This topic equips you with a versatile toolkit for manipulating and solving complex functions. Mastery of these skills is not just essential for the Algebra questions themselves, but also for success in other areas of the syllabus, particularly Calculus."
+    },
+    {
+      "type": "heading",
+      "content": "The Modulus Function"
+    },
+    {
+      "type": "text",
+      "content": "The modulus of a number is its 'absolute value' or magnitude, irrespective of its sign. For a real number $x$, its modulus is denoted by $|x|$. For example, $|5| = 5$ and $|-5| = 5$. This simple concept leads to interesting graphs, equations, and inequalities."
+    },
+    {
+      "type": "formula",
+      "content": "|x| = \\begin{cases} x & \\text{if } x \\ge 0 \\\\ -x & \\text{if } x < 0 \\end{cases}"
+    },
+    {
+      "type": "text",
+      "content": "When solving equations involving modulus, such as $|f(x)| = |g(x)|$, a reliable method is to square both sides. Since the square of a number and the square of its negative are identical, squaring removes the modulus signs. For example, $(|A|)^2 = A^2$. However, be cautious as this can sometimes introduce extraneous solutions, so it's good practice to check your answers in the original equation. An alternative is to consider the two cases: $f(x) = g(x)$ and $f(x) = -g(x)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $|3x - 1| = |x + 4|$.",
+      "solution": "We are asked to solve $|3x - 1| = |x + 4|$. A robust method is to square both sides of the equation.\n\n$(3x - 1)^2 = (x + 4)^2$\n\nExpand both sides:\n$(3x - 1)(3x - 1) = (x + 4)(x + 4)$\n$9x^2 - 6x + 1 = x^2 + 8x + 16$\n\nNow, rearrange to form a quadratic equation equal to zero:\n$9x^2 - x^2 - 6x - 8x + 1 - 16 = 0$\n$8x^2 - 14x - 15 = 0$\n\nWe can solve this quadratic equation. We look for two numbers that multiply to $8 \\times (-15) = -120$ and add to $-14$. These numbers are $-20$ and $6$.\n$8x^2 - 20x + 6x - 15 = 0$\n$4x(2x - 5) + 3(2x - 5) = 0$\n$(4x + 3)(2x - 5) = 0$\n\nThis gives two possible solutions:\n$4x + 3 = 0 \\implies x = -\\frac{3}{4}$\n$2x - 5 = 0 \\implies x = \\frac{5}{2}$\n\nThe solutions are $x = -\\frac{3}{4}$ and $x = \\frac{5}{2}$."
+    },
+    {
+      "type": "heading",
+      "content": "Polynomials: The Factor and Remainder Theorems"
+    },
+    {
+      "type": "text",
+      "content": "Polynomials are expressions involving variables raised to positive integer powers, such as $3x^3 - 2x^2 + 5x - 7$. The Factor and Remainder Theorems are powerful shortcuts for investigating their properties without resorting to full polynomial division every time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Remainder Theorem**: If a polynomial $P(x)$ is divided by $(x-a)$, the remainder is $R = P(a)$.",
+        "**Factor Theorem**: A special case of the above. $(x-a)$ is a factor of $P(x)$ if and only if $P(a) = 0$ (i.e., the remainder is zero)."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "In exams, a common task is to find the roots of a cubic polynomial. You'll typically use the Factor Theorem to find the first root by testing simple integer values for $x$ (like 1, -1, 2, -2) that are factors of the constant term. Once you find a value 'a' for which $P(a)=0$, you know $(x-a)$ is a factor. You can then use polynomial long division or synthetic division to divide $P(x)$ by $(x-a)$ to find the remaining quadratic factor, which can then be factorised or solved."
+    },
+    {
+      "type": "workedExample",
+      "question": "The polynomial $p(x) = 2x^3 + 3x^2 - 18x + 8$ has a factor of $(x-2)$.\n(i) Show that $p(2)=0$.\n(ii) Hence, factorise $p(x)$ completely.",
+      "solution": "(i) To show $(x-2)$ is a factor, we use the Factor Theorem and evaluate $p(2)$:\n$p(2) = 2(2)^3 + 3(2)^2 - 18(2) + 8$\n$= 2(8) + 3(4) - 36 + 8$\n$= 16 + 12 - 36 + 8$\n$= 28 - 36 + 8 = -8 + 8 = 0$\nSince $p(2)=0$, $(x-2)$ is a factor of $p(x)$.\n\n(ii) Since $(x-2)$ is a factor, we can write $p(x)$ in the form $(x-2)(Ax^2 + Bx + C)$.\nBy comparing the coefficient of $x^3$, we see $A=2$.\nBy comparing the constant term, we see $-2C = 8$, so $C=-4$.\nSo, $p(x) = (x-2)(2x^2 + Bx - 4)$.\nTo find $B$, we can compare the $x^2$ coefficient. The $x^2$ term is formed by $x(Bx) + (-2)(2x^2) = (B-4)x^2$. We know the coefficient of $x^2$ in $p(x)$ is 3.\nSo, $B-4 = 3 \\implies B=7$.\n\nThus, $p(x) = (x-2)(2x^2 + 7x - 4)$.\nNow we factorise the quadratic $2x^2 + 7x - 4$.\nWe look for two numbers that multiply to $2 \\times (-4) = -8$ and add to $7$. These are $8$ and $-1$.\n$2x^2 + 8x - x - 4 = 2x(x+4) - 1(x+4) = (2x-1)(x+4)$.\n\nTherefore, the complete factorisation is $p(x) = (x-2)(x+4)(2x-1)$."
+    },
+    {
+      "type": "heading",
+      "content": "Partial Fractions"
+    },
+    {
+      "type": "text",
+      "content": "Partial fractions provide a way to decompose a complicated algebraic fraction into a sum of simpler fractions. This is an essential skill for integration in P3, but in P2 we focus on the algebraic decomposition itself. The process depends on the form of the factors in the denominator."
+    },
+    {
+      "type": "formula",
+      "content": "For distinct linear factors: $\\frac{px+q}{(x-a)(x-b)} \\equiv \\frac{A}{x-a} + \\frac{B}{x-b}$ \n\nFor repeated linear factors: $\\frac{px^2+qx+r}{(x-a)^2(x-b)} \\equiv \\frac{A}{x-a} + \\frac{B}{(x-a)^2} + \\frac{C}{x-b}$"
+    },
+    {
+      "type": "examTip",
+      "content": "When finding the constants (A, B, C...), substituting strategic values of $x$ is often much faster than equating coefficients. For a term $\\frac{A}{x-a}$, substituting $x=a$ into the cross-multiplied equation will quickly isolate $A$. Also, always check if the fraction is improper (degree of numerator $\\ge$ degree of denominator) before you start. If it is, you must perform polynomial division first."
+    },
+    {
+      "type": "heading",
+      "content": "Binomial Expansion for Rational Indices"
+    },
+    {
+      "type": "text",
+      "content": "You will be familiar with the binomial expansion for positive integer powers from P1. Here, we extend the principle to cases where the power, $n$, is a rational number (e.g., a fraction or a negative number). This results in an infinite series expansion, which is only valid for a specific range of $x$ values."
+    },
+    {
+      "type": "formula",
+      "content": "For any rational number $n$, if $|x| < 1$, then:\n$(1+x)^n = 1 + nx + \\frac{n(n-1)}{2!}x^2 + \\frac{n(n-1)(n-2)}{3!}x^3 + \\dots$"
+    },
+    {
+      "type": "text",
+      "content": "If the expression is not in the form $(1+x)^n$, you must manipulate it first. For an expression like $(a+bx)^n$, you must factor out the 'a' term: $(a+bx)^n = a^n(1 + \\frac{b}{a}x)^n$. You can then apply the formula to the bracket, remembering to multiply the entire resulting series by $a^n$. The validity condition will be $|\\frac{b}{a}x| < 1$."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common question asks for the expansion and the range of values for which it is valid. Do not forget to state the validity range, e.g., $|x| < \\frac{1}{2}$. This is an easy mark to gain and an easy one to lose. Be careful with signs, especially when $n$ is negative."
     },
     {
       "type": "practice",
-      "label": "Mark an algebra question",
+      "label": "Practice P2 Algebra",
       "href": "/mark?subject=9709&topic=2.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "Cambridge International P2/P3 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Expression exchange",
+    "embedUrl": "https://phet.colorado.edu/sims/html/expression-exchange/latest/expression-exchange_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/expression-exchange",
+    "hint": "Equivalent forms — partial fractions and polynomial factorisation (9709 2.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Polynomial division — factor theorem links roots to (x − a) factors.",
+        "embedHint": "Substitute x = a — zero remainder confirms factor."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Partial fractions: proper rational functions decompose for integration.",
+        "embedHint": "Set up A/(x−a) + B/(x−b) — equate coefficients."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Binomial expansion (1 + x)ⁿ for |x| < 1 when n not integer.",
+        "embedHint": "First terms: 1 + nx + n(n−1)x²/2! + …"
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Modulus |x|: piecewise definition; solve |f(x)| = k by cases.",
+        "embedHint": "Split at points where argument changes sign."
+      }
+    ]
+  }
 }

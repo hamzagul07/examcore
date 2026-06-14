@@ -4,29 +4,200 @@
   "title": "Ethics and Ownership",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 — software ethics, IP, licensing, and professional conduct.",
+  "status": "pilot",
+  "summary": "This lesson explores the crucial role of ethics and ownership in computer science. It covers the moral responsibilities of computing professionals, the purpose of codes of conduct, and the legal frameworks that protect digital creations, such as copyright and software licensing. Understanding these principles is essential for responsible and legal software development and data handling.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Discuss ethical issues in computing.",
-    "Explain copyright and software licensing.",
-    "Outline open source vs proprietary software.",
-    "Describe data privacy responsibilities."
+    "Understand the need for and purpose of ethics in the context of computing.",
+    "Understand the need to act ethically and the impact of acting ethically or unethically.",
+    "Show understanding of intellectual property, copyright, and plagiarism issues.",
+    "Understand the purpose of different software licensing models, such as freeware, shareware, and open source."
   ],
   "simpleExplanation": {
-    "title": "Rights, responsibilities, and code",
-    "summary": "Computing professionals must respect intellectual property, user privacy, and societal impact of systems they build.",
+    "title": "Digital Rules: Who Owns What?",
+    "summary": "Just like the real world has rules about right and wrong, the digital world has principles called ethics to guide our actions. These rules also determine who owns digital creations like software or art, which is known as intellectual property.",
+    "analogy": "Imagine you write a brilliant song. Ethics is the sense of fairness that tells you not to steal lyrics from another artist. Ownership, through copyright, is the legal power that stops someone else from recording your song and selling it as their own. In computing, code, images, and data are the 'songs' that need protecting and respectful use.",
     "steps": [
-      "Copyright protects source code.",
-      "Licences define permitted use.",
-      "Open source: share and modify freely.",
-      "Privacy laws govern personal data."
+      "First, recognise that digital creations like code, images, or articles are valuable assets, just like physical objects.",
+      "Next, determine who created the asset. This person or company holds the Intellectual Property (IP) rights, giving them control over its use.",
+      "Then, understand the specific rules that apply. This could be copyright law, a software license (like Freeware or Open Source), or academic rules against plagiarism.",
+      "Finally, act ethically and legally. This means giving credit, asking for permission, or paying for a license, while following professional codes of conduct."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Ethics (in Computing)",
+      "back": "A set of moral principles that govern the behaviour of individuals or groups in the use of computers and information systems. It addresses issues like data privacy, algorithmic bias, and professional responsibility."
+    },
+    {
+      "front": "Code of Conduct",
+      "back": "A formal set of rules and guidelines that professionals in a field (like computing) are expected to follow. It outlines ethical standards and best practices. Examples include those from the BCS and ACM."
+    },
+    {
+      "front": "Intellectual Property (IP)",
+      "back": "Intangible creations of the human mind that are protected by law. In computing, this includes source code, algorithms, user interface designs, and databases."
+    },
+    {
+      "front": "Copyright",
+      "back": "A legal right that automatically grants the creator of an original work (like software, a photo, or text) exclusive rights for its use, distribution, and modification."
+    },
+    {
+      "front": "Plagiarism",
+      "back": "The act of presenting someone else's work or ideas as your own, without giving proper credit to the original source. It is an ethical and academic offence."
+    },
+    {
+      "front": "Freeware",
+      "back": "Software that is available to use at no cost. However, it is still protected by copyright, and you cannot view or modify the source code. The creator retains all rights."
+    },
+    {
+      "front": "Shareware",
+      "back": "Copyrighted software that is distributed for free on a trial basis. After the trial period, the user is expected to pay to continue using it. Often has limited functionality until purchased."
+    },
+    {
+      "front": "Open Source Software",
+      "back": "Software with source code that is made available to the public, allowing anyone to view, modify, and distribute it. It is governed by specific licenses, like MIT or GPL, that define the terms of use."
+    },
+    {
+      "front": "Free Software",
+      "back": "Software that gives users the freedom to run, copy, distribute, study, change, and improve it. The 'free' refers to freedom, not necessarily price. It is a subset of open-source software with a strong philosophical emphasis on user liberty."
+    },
+    {
+      "front": "Trap: Plagiarism vs Copyright Infringement",
+      "back": "Plagiarism is an ethical issue of not giving credit. Copyright infringement is a legal issue of violating a creator's exclusive rights. You can commit both at once, but copying a public domain work without credit is plagiarism, not copyright infringement."
+    },
+    {
+      "front": "Trap: 'Royalty-Free' Images",
+      "back": "This does not mean the image is free of cost. It means you pay a one-time fee to use the image multiple times without paying additional royalties for each use. You are buying a license, not the copyright."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between Freeware and Free Software?",
+      "a": "This is a common point of confusion. 'Freeware' means the software is free of charge, but it is proprietary and you cannot see or modify the source code. 'Free Software' (as defined by the Free Software Foundation) is about liberty, not price. It means you have the freedom to run, study, modify, and share the software and its source code. Free Software might be free of charge, or you might pay for it (e.g., for support or a compiled version)."
+    },
+    {
+      "q": "Is it plagiarism if I copy code from a site like Stack Overflow?",
+      "a": "It can be. Most content on Stack Overflow is licensed under a Creative Commons license (CC BY-SA). This license requires attribution, meaning you must state where you got the code from. Simply copying and pasting it into your project without giving credit is plagiarism and also violates the license terms. The best practice is to understand the code and adapt it, always crediting the source in your comments."
+    },
+    {
+      "q": "If an idea is not protected by copyright, can I just use it?",
+      "a": "Copyright protects the specific *expression* of an idea (e.g., the exact lines of code), not the underlying idea or algorithm itself. While you can't copy the code directly, you can implement the same algorithm in your own way using your own code. However, some novel algorithms can be protected by a *patent*, which is a different form of IP that does protect the idea/process itself. Always check if a patent applies to a specific algorithm you are using."
+    },
+    {
+      "q": "Does copyright last forever?",
+      "a": "No. Copyright has a limited term, though it is very long. In the UK and many other countries, it typically lasts for 70 years after the death of the creator. Once the copyright term expires, the work enters the 'public domain', meaning it is free for anyone to use for any purpose without permission."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Ethics and ownership** (7.1) links **6.1 data security** to **18.1 AI ethics**. Use **real scenarios** in evaluation." },
-    { "type": "practice", "label": "Mark an ethics question", "href": "/mark?subject=9618&topic=7.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In our digital world, information and software can be copied and distributed globally in an instant. This ease of duplication creates complex challenges. How do we ensure people are treated fairly? How do we protect the hard work of creators? This is where computer ethics and the concept of ownership become fundamentally important for every computer scientist."
+    },
+    {
+      "type": "heading",
+      "content": "The Foundation: Computer Ethics"
+    },
+    {
+      "type": "text",
+      "content": "Ethics provides the moral compass for computer professionals. It's a branch of philosophy that deals with what is morally right and wrong. In computing, this applies to a wide range of dilemmas, from ensuring an algorithm doesn't perpetuate societal biases, to deciding how to handle a user's private data, to being honest about the limitations of a system you have built. Acting ethically builds public trust and ensures technology serves humanity positively."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Ethics guides decision-making where the law may not yet provide a clear answer.",
+        "Ethical considerations include privacy, accuracy, property, and access (PAPA framework).",
+        "Unethical behaviour, like creating malware or ignoring data breaches, can cause significant harm to individuals and society.",
+        "An ethical approach is crucial for maintaining a good reputation for both the individual and the profession."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Guiding Principles: Professional Codes of Conduct"
+    },
+    {
+      "type": "text",
+      "content": "To help professionals navigate complex ethical situations, organisations like the British Computer Society (BCS) and the Association for Computing Machinery (ACM) have established codes of conduct. These are not laws, but formal guidelines that set a standard for professional behaviour. Adherence to these codes is a hallmark of a responsible computing professional."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A typical code of conduct requires professionals to act in the public interest.",
+        "It mandates maintaining professional competence and integrity, meaning you should be skilled and honest.",
+        "It imposes a duty to the relevant authority (your employer or client), requiring you to be loyal and diligent.",
+        "It also includes a duty to the profession, encouraging you to uphold its reputation and support fellow members."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A programmer working for a social media company is asked to implement a new feature that tracks users' locations even when the app is not actively in use. The data will be sold to advertisers. The programmer feels this is a violation of user privacy. Using the principles of a professional code of conduct, explain the ethical dilemma and the appropriate course of action.",
+      "solution": "1. **Identify the Ethical Conflict:** The core conflict is between the duty to the employer (to implement the feature as requested) and the duty to act in the public interest (to protect user privacy).\n\n2. **Apply Code of Conduct Principles:**\n   - **Public Interest:** Tracking users without their explicit, informed consent and selling that data is a significant privacy intrusion, which is against the public interest. This principle suggests the feature is unethical.\n   - **Professional Competence and Integrity:** Integrity requires the programmer to be honest and forthright about the potential harm. Implementing a feature they know to be harmful could be seen as a breach of professional integrity.\n   - **Duty to Relevant Authority:** While the programmer has a duty to their employer, this duty is not absolute and is usually superseded by the duty to the public and the law.\n\n3. **Course of Action:** The ethical course of action is not to blindly implement the feature. The programmer should first raise their concerns with their direct manager, clearly explaining the ethical issues based on the code of conduct. If the manager insists, the programmer should consider escalating the issue to a higher authority within the company, such as the legal or ethics department. Resigning may be a final resort if the company decides to proceed with the unethical practice."
+    },
+    {
+      "type": "heading",
+      "content": "Ownership in the Digital Realm"
+    },
+    {
+      "type": "text",
+      "content": "Intellectual Property (IP) refers to creations of the mind. Unlike a physical object like a chair, IP is intangible. In computing, the most important form of IP is **copyright**, which automatically protects original creative works the moment they are created and fixed in a tangible medium. This includes source code, executable programs, graphical user interfaces, and documentation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Copyright:** Protects the expression of an idea (the code itself), not the idea or algorithm behind it. It is automatic and does not require registration.",
+        "**Plagiarism:** An ethical offence of not crediting a source. It is about academic or professional honesty. While it often involves copyright infringement, they are distinct concepts.",
+        "**Software Licensing:** A copyright holder grants licenses to define how others can use their software. This is the legal mechanism for distributing freeware, shareware, and commercial software."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be precise with your terminology. Do not use 'copyright' and 'plagiarism' interchangeably. An exam question might ask you to distinguish between them. Remember: copyright is a legal right, while plagiarism is an ethical breach of failing to attribute."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student is creating a game for their A-Level project. They download a music track from a website offering 'royalty-free' music after a one-time payment of £10. They also copy a character sprite from an online art gallery where the artist has written 'All Rights Reserved'.\n\n(a) Explain whether the student is permitted to use the music track in their game. [2]\n(b) Explain the ethical and legal problems with using the character sprite. [3]",
+      "solution": "(a) Yes, the student is permitted to use the music track. [1] By paying the £10 for a 'royalty-free' license, they have legally acquired the right to use the music in their project without paying further royalties. They have adhered to the terms set by the copyright holder. [1]\n\n(b) **Legal Problem:** The phrase 'All Rights Reserved' is a formal declaration that the artist retains full copyright. Using the sprite without explicit permission is copyright infringement, which is illegal. [1]\n**Ethical Problem:** Using the artist's work without permission and passing it off as part of their own project is a form of plagiarism, as it fails to credit the original creator. It is dishonest. [1]\n**Action:** The student should not use the sprite. They should either create their own, find one with a suitable license (like Creative Commons), or contact the artist to request permission to use it. [1]"
+    },
+    {
+      "type": "heading",
+      "content": "Software Licence Types"
+    },
+    {
+      "type": "text",
+      "content": "Understanding software licenses is crucial as it dictates what you can and cannot do with a piece of software. These licenses are legal agreements between the creator and the user."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Commercial:** Requires payment for a license to use. Source code is not available. E.g., Microsoft Windows, Adobe Photoshop.",
+        "**Shareware:** Try before you buy. Often has limitations (time or features) until a license is purchased. Source code is not available.",
+        "**Freeware:** Free to use, but not to modify or inspect the source code. The author retains full copyright. E.g., Skype, Adobe Acrobat Reader.",
+        "**Open Source:** Source code is available to all. Can be freely used, modified, and redistributed under specific license terms (e.g., MIT, Apache). E.g., Linux, Firefox, Android.",
+        "**Public Domain:** Not copyrighted. The creator has relinquished all rights. Anyone can use it for any purpose without restriction. This is very rare for software."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Ethics & Ownership",
+      "href": "/mark?subject=9618&topic=7.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "BCS Code of Conduct",
+          "href": "https://www.bcs.org/ethics/bcs-code-of-conduct/"
+        },
+        {
+          "label": "Creative Commons Licenses Explained",
+          "href": "https://creativecommons.org/about/cclicenses/"
+        },
+        {
+          "label": "UK Government: Intellectual Property and Your Work",
+          "href": "https://www.gov.uk/intellectual-property-an-overview"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

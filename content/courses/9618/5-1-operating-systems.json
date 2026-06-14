@@ -4,50 +4,193 @@
   "title": "Operating Systems",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 AS — OS functions, process management, scheduling, memory management, and user interfaces.",
+  "status": "pilot",
+  "summary": "An exploration of the operating system's fundamental role as the manager of all computer hardware and software resources. This lesson covers memory, process, file, and I/O management, interrupt handling, and the core services an OS provides to both users and applications.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "State the main functions of an operating system.",
-    "Explain process states and scheduling algorithms.",
-    "Describe paging and segmentation for memory management.",
-    "Compare GUI and CLI interfaces."
+    "Understand the purpose of an operating system (OS).",
+    "Describe the key management tasks performed by an OS: memory, process, file, and input/output (I/O) management.",
+    "Explain how the OS handles interrupts and manages peripherals.",
+    "Compare and contrast different types of user interface (CLI vs GUI)."
   ],
   "simpleExplanation": {
-    "title": "The manager between hardware and software",
-    "summary": "The OS abstracts hardware, schedules CPU time, manages memory, handles I/O, and provides security boundaries between programs.",
+    "title": "The Computer's Conductor",
+    "summary": "The Operating System (OS) is the master software that manages your computer's hardware and software. It acts as the essential intermediary, allowing you and your applications to use the computer's resources without needing to know the complex details of how the hardware works.",
+    "analogy": "Imagine a busy restaurant. The OS is the restaurant manager. The manager doesn't cook the food (that's the CPU) or take the orders (that's you), but they ensure the chefs have ingredients (memory), decide which table's order is cooked next (process scheduling), and direct the waiting staff (I/O devices). Without the manager, it would be chaos.",
     "steps": [
-      "Process: program in execution — states: ready, running, blocked.",
-      "Round-robin: time slices; priority: higher priority runs first.",
-      "Virtual memory: pages swapped to disk when RAM full.",
-      "Multitasking: rapid context switching gives illusion of parallelism."
+      "Provides a User Interface: The OS presents a way for you to interact with the computer, either through a Command-Line Interface (CLI) or a Graphical User Interface (GUI).",
+      "Manages Resources: It allocates and de-allocates essential resources like memory (RAM) and CPU time, ensuring fair and efficient use among all running programs.",
+      "Manages Processes & Tasks: The OS controls which programs (processes) are running, when they run, and for how long. It handles multitasking by rapidly switching between processes.",
+      "Handles Peripherals & Files: It manages communication with all input/output devices (like keyboards and printers) using drivers, and organises your data into a logical file system on storage drives."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Operating System (OS)",
+      "back": "System software that acts as an interface between the user/applications and the computer hardware, managing all resources."
+    },
+    {
+      "front": "Memory Management",
+      "back": "The OS function of managing the computer's primary memory (RAM). It allocates memory to processes, keeps track of which parts are in use, and de-allocates it when no longer needed."
+    },
+    {
+      "front": "Paging",
+      "back": "A memory management technique where memory is divided into fixed-size blocks called pages (for logical memory) and frames (for physical memory). It allows for non-contiguous memory allocation."
+    },
+    {
+      "front": "Segmentation",
+      "back": "A memory management technique where a program is divided into variable-size logical blocks called segments, based on its structure (e.g., code segment, data segment). This is from the programmer's perspective."
+    },
+    {
+      "front": "Virtual Memory",
+      "back": "A memory management technique that uses secondary storage (like a hard disk) to simulate extra main memory. It allows a computer to run larger programs or more programs at once than its physical RAM would allow."
+    },
+    {
+      "front": "Process Management",
+      "back": "The OS function of managing the lifecycle of processes. This includes creating, deleting, suspending, and resuming processes, as well as scheduling which process gets CPU time."
+    },
+    {
+      "front": "Scheduling",
+      "back": "The process of deciding which 'Ready' process should be moved to the 'Running' state to be executed by the CPU. Examples include Round Robin, FCFS, and Shortest Job First."
+    },
+    {
+      "front": "Interrupt",
+      "back": "A signal sent to the CPU from a hardware device or software program, indicating an event that needs immediate attention. It causes the CPU to suspend its current task and handle the interrupt."
+    },
+    {
+      "front": "Interrupt Service Routine (ISR)",
+      "back": "A specific software routine that the OS executes in response to an interrupt. It determines the cause of the interrupt and takes the necessary action before returning control to the suspended process."
+    },
+    {
+      "front": "Device Driver",
+      "back": "A specific type of software program that allows the operating system to communicate with a particular hardware device (e.g., a printer driver or a graphics card driver)."
+    },
+    {
+      "front": "Buffering",
+      "back": "A technique where data is temporarily stored in a memory area called a buffer while it is being transferred between two devices or between a device and an application. It helps to compensate for differences in speed."
+    },
+    {
+      "front": "Spooling",
+      "back": "Stands for 'Simultaneous Peripheral Operations On-Line'. It's a process where data for a slow device (like a printer) is placed in a queue on a fast device (like a hard disk) so that other processes can continue without waiting."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between an Operating System and utility software?",
+      "a": "An Operating System is essential system software that manages the entire computer system. Utility software, on the other hand, is designed to perform a specific maintenance task to help manage, analyse, configure, or optimise the computer. Examples include antivirus software, disk defragmenters, and file compression tools. Utilities often work alongside the OS but are not part of its core functionality."
+    },
+    {
+      "q": "Is the BIOS part of the Operating System?",
+      "a": "No, the BIOS (Basic Input/Output System) is not part of the OS. The BIOS is firmware stored on a chip on the motherboard. Its primary job is to initialise the hardware during the booting process (the 'power-on self-test' or POST) and to load the operating system from the storage drive into RAM. The OS takes over control from the BIOS once it has loaded."
+    },
+    {
+      "q": "Why are there so many different CPU scheduling algorithms?",
+      "a": "Different scheduling algorithms are designed to optimise for different system goals. For example, First-Come, First-Served (FCFS) is simple and fair but can be inefficient if a long process makes short ones wait. Round Robin (RR) is designed for time-sharing systems to ensure responsiveness for all users. Shortest Job First (SJF) is optimal for minimising average waiting time but is difficult to implement in practice. The choice of algorithm depends on the type of system (e.g., batch, interactive, real-time) and its performance objectives."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Operating systems** (5.1) connect to **CPU architecture** (4.1) and **resource management** questions. Know **FCFS**, **round-robin**, and **priority** scheduling with a small Gantt-style trace."
+      "content": "Every interaction you have with a computer, from clicking an icon to saving a file, is managed by a complex piece of software working silently in the background: the Operating System (OS). The OS is the fundamental system software that brings a computer to life, acting as the bridge between the user's intentions and the hardware's actions. Without an OS, a computer is just a collection of electronic components with no way to coordinate them."
+    },
+    {
+      "type": "heading",
+      "content": "The Core Purpose of an Operating System"
+    },
+    {
+      "type": "text",
+      "content": "The primary purpose of an operating system is to provide a platform on which users can run application programs in a convenient and efficient manner. It acts as an abstraction layer, hiding the intricate details of the hardware from both the user and the application software. For example, when you save a document, you don't need to know the specific track and sector on the hard disk where the data is stored; the OS's file management system handles that for you. It essentially has two main goals: managing the computer's resources and providing a user interface."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Kernel mode vs user mode — privileged instructions protected",
-        "Interrupts signal events (I/O complete, timer tick)",
-        "Deadlock: four conditions — mutual exclusion, hold-and-wait, no preemption, circular wait",
-        "Device drivers translate OS requests to hardware commands"
+        "Abstraction: Hides hardware complexity from users and applications.",
+        "Resource Management: Manages CPU, memory, storage, and peripheral devices to ensure fair and efficient use.",
+        "User Interface: Provides a way for humans to interact with the machine (e.g., GUI, CLI).",
+        "Security: Controls access to system resources and protects data from unauthorised access."
       ]
     },
     {
+      "type": "heading",
+      "content": "Memory Management"
+    },
+    {
+      "type": "text",
+      "content": "Memory management is one of the OS's most critical tasks. It involves allocating portions of main memory (RAM) to programs and data, and ensuring that one program does not interfere with the memory space of another. The OS keeps track of every memory location, regardless of whether it is allocated or free. Two common techniques for managing memory are paging and segmentation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Paging: Divides logical memory into fixed-size blocks called 'pages' and physical memory into 'frames'. A page table maps logical addresses to physical addresses. This allows a process's memory to be non-contiguous, reducing external fragmentation.",
+        "Segmentation: Divides logical memory into variable-size blocks called 'segments', which correspond to logical parts of a program (e.g., code, data, stack). This is more intuitive from a programmer's perspective but can lead to external fragmentation.",
+        "Virtual Memory: When RAM is full, the OS can move inactive pages or segments to a dedicated space on the hard disk (the 'paging file' or 'swap space'). This creates the illusion of having more RAM than is physically present, but accessing data from the disk is much slower."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A computer system uses paging for memory management. The page size is 4 KB (4096 bytes). A program requires a logical address of 18000. Calculate: (i) The page number. (ii) The offset within the page. (iii) If this page is mapped to physical frame 7, what is the physical address?",
+      "solution": "(i) **Page Number:** To find the page number, we perform integer division of the logical address by the page size.\nPage Number = `FLOOR(Logical Address / Page Size)`\nPage Number = `FLOOR(18000 / 4096)` = `FLOOR(4.3945...)` = 4.\nSo, the logical address is in page **4**. [1 mark]\n\n(ii) **Offset:** The offset is the remainder of the division, or can be calculated using the modulo operator.\nOffset = `Logical Address MOD Page Size`\nOffset = `18000 MOD 4096` = 1616.\nAlternatively: `18000 - (4 * 4096) = 18000 - 16384 = 1616`.\nThe offset is **1616**. [1 mark]\n\n(iii) **Physical Address:** The physical address is calculated by multiplying the frame number by the page size and adding the offset.\nPhysical Address = `(Frame Number * Page Size) + Offset`\nPhysical Address = `(7 * 4096) + 1616`\nPhysical Address = `28672 + 1616` = **30288**. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Process and I/O Management"
+    },
+    {
+      "type": "text",
+      "content": "A process is a program in execution. The OS is responsible for managing all running processes. This includes creating and deleting processes, and providing mechanisms for synchronisation and communication between them. A key part of process management is scheduling: deciding which process gets to use the CPU next. For input/output (I/O) management, the OS manages communication with peripheral devices like keyboards, mice, monitors, and printers. It uses device drivers, which are specific pieces of software that understand how to control a particular device."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Process States: A process can be in one of several states: New, Ready (waiting for CPU), Running (being executed), Blocked (waiting for an event, e.g., I/O), or Terminated.",
+        "Scheduling: The scheduler is the OS module that selects the next job to be admitted into the system and the next process to run. Algorithms include First-Come, First-Served (FCFS), Round Robin (RR), Shortest Job First (SJF), and priority-based scheduling.",
+        "Device Drivers: The OS uses drivers to translate generic commands (e.g., 'read data') into specific instructions that the hardware controller for a device can understand.",
+        "Buffering & Spooling: Buffering uses a temporary memory area to handle data transfers between devices of different speeds. Spooling is a more advanced form of buffering, typically used for printers, where jobs are queued on the disk, freeing up the CPU to perform other tasks."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Four processes arrive in the ready queue in the order P1, P2, P3, P4. Their CPU burst times are 6ms, 4ms, 8ms, and 2ms respectively. The system uses the Round Robin scheduling algorithm with a time quantum of 3ms. Draw a Gantt chart to show the execution of these processes and state the order in which they complete.",
+      "solution": "The time quantum is 3ms. Processes are executed in a circular queue (P1, P2, P3, P4).\n\n**Gantt Chart:**\nThe chart shows which process is running at each time interval.\n\n| P1  | P2  | P3  | P4  | P1  | P2  | P3  | P3  |\n|-----|-----|-----|-----|-----|-----|-----|-----|\n0     3     6     9     11    14    15    18    20 (ms)\n\n**Execution Trace:**\n*   **0-3ms:** P1 runs for 3ms. Remaining time for P1 = 6 - 3 = 3ms. Queue: P2, P3, P4, P1.\n*   **3-6ms:** P2 runs for 3ms. Remaining time for P2 = 4 - 3 = 1ms. Queue: P3, P4, P1, P2.\n*   **6-9ms:** P3 runs for 3ms. Remaining time for P3 = 8 - 3 = 5ms. Queue: P4, P1, P2, P3.\n*   **9-11ms:** P4 runs for 2ms. It completes. Remaining time = 0. Queue: P1, P2, P3. **P4 completes.** [1 mark]\n*   **11-14ms:** P1 runs for its remaining 3ms. It completes. Remaining time = 0. Queue: P2, P3. **P1 completes.** [1 mark]\n*   **14-15ms:** P2 runs for its remaining 1ms. It completes. Remaining time = 0. Queue: P3. **P2 completes.** [1 mark]\n*   **15-18ms:** P3 runs for 3ms. Remaining time = 5 - 3 = 2ms. Queue: P3.\n*   **18-20ms:** P3 runs for its remaining 2ms. It completes. **P3 completes.** [1 mark]\n\n**Order of completion:** P4, P1, P2, P3. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Interrupt Handling"
+    },
+    {
+      "type": "text",
+      "content": "An interrupt is a signal to the processor indicating that an event of higher priority needs immediate attention. When an interrupt occurs, the processor suspends its current task, saves its state, and executes a special routine called an Interrupt Service Routine (ISR) to handle the event. Once the ISR is complete, the processor restores the state of the original task and resumes execution. Interrupts are essential for multitasking and for handling I/O operations efficiently, as they allow the CPU to perform other work while waiting for slow devices."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Sources: Interrupts can be generated by hardware (e.g., key press, disk controller finished reading data), software (a program executing an illegal instruction), or a timer (for scheduling).",
+        "Process: 1. Interrupt signal is sent to the CPU. 2. The current instruction is completed. 3. The contents of the Program Counter (PC) and other key registers are pushed onto the system stack. 4. The PC is loaded with the starting address of the relevant Interrupt Service Routine (ISR). 5. The ISR is executed to handle the interrupt. 6. After the ISR finishes, the saved register values are popped from the stack back into the registers. 7. The original process resumes from where it left off."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions about memory management, be precise with your terminology. Distinguish clearly between 'paging' (fixed-size, non-contiguous, OS-level) and 'segmentation' (variable-size, logical units, programmer's view). For scheduling, always show your working clearly, for example by using a Gantt chart or a step-by-step trace of the ready queue."
+    },
+    {
       "type": "practice",
-      "label": "Mark an operating systems question",
+      "label": "Test Your Knowledge on Operating Systems",
       "href": "/mark?subject=9618&topic=5.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9618 course index", "href": "/courses/9618" }
+        {
+          "label": "BBC Bitesize - Operating Systems",
+          "href": "https://www.bbc.co.uk/bitesize/guides/z8p9j6f/revision/1"
+        },
+        {
+          "label": "GeeksforGeeks - Functions of Operating System",
+          "href": "https://www.geeksforgeeks.org/functions-of-operating-system/"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

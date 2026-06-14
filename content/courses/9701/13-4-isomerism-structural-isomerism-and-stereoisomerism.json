@@ -1,48 +1,238 @@
 {
   "slug": "13-4-isomerism-structural-isomerism-and-stereoisomerism",
   "topicCode": "13.4",
-  "title": "Isomerism",
+  "title": "Isomerism: structural isomerism and stereoisomerism",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS isomerism — structural, E/Z, and optical isomerism with chiral centres.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces isomerism, the phenomenon where molecules share the same molecular formula but have different arrangements of atoms. We will explore the two main categories: structural isomerism (different connectivity) and stereoisomerism (different spatial arrangement), covering chain, positional, functional group, E/Z, and optical isomerism.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define structural isomerism and draw chain, position, and functional group isomers.",
-    "Explain E/Z isomerism for restricted rotation about C=C.",
-    "Identify chiral centres and optical isomerism.",
-    "State why enantiomers rotate plane-polarised light in opposite directions."
+    "Define structural isomerism and stereoisomerism.",
+    "Describe and identify chain, positional, and functional group isomerism.",
+    "Explain E/Z (geometric) isomerism in alkenes in terms of restricted rotation about the C=C bond and the nature of the substituents.",
+    "Explain optical isomerism in terms of chirality, identifying chiral centres in molecules."
   ],
   "simpleExplanation": {
-    "title": "Same formula, different arrangement",
-    "summary": "Isomers share molecular formula but differ in structure or spatial arrangement. Stereoisomers need identical connectivity but different 3D arrangement.",
+    "title": "Molecular Mix-Ups",
+    "summary": "Isomers are compounds with the same molecular formula but different structures. This difference can be in how the atoms are connected (structural) or how they are arranged in 3D space (stereo).",
+    "analogy": "Think of isomers like anagrams. The words 'listen' and 'silent' use the exact same letters (atoms) and the same number of each letter (molecular formula), but they are arranged differently to create two distinct words (molecules) with different meanings (properties).",
     "steps": [
-      "Structural: different connectivity (chain, position, functional group).",
-      "E/Z: different groups on each end of C=C — need Cahn-Ingold-Prelog priority rules.",
-      "Chiral centre: carbon with four different groups → non-superimposable mirror images.",
-      "Racemic mixture: equal enantiomers → no net optical activity."
+      "Structural isomers have the same molecular formula but a different structural formula (connectivity). Use the simulator to build butan-1-ol and 2-methylpropan-2-ol from C₄H₁₀O.",
+      "Functional group isomers are structural isomers with different functional groups. For example, an alcohol (R-OH) and an ether (R-O-R') can both have the formula C₂H₆O.",
+      "E/Z isomerism occurs in alkenes due to restricted rotation around the C=C double bond. For this to happen, each carbon in the double bond must be attached to two different groups.",
+      "Optical isomerism occurs when a molecule has a chiral centre: a carbon atom bonded to four different groups. This results in two non-superimposable mirror image molecules called enantiomers."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are isomers?",
+      "back": "Molecules that have the same molecular formula but a different arrangement of atoms in space."
+    },
+    {
+      "front": "What is structural isomerism?",
+      "back": "When molecules have the same molecular formula but a different structural formula (i.e., the atoms are connected in a different order)."
+    },
+    {
+      "front": "What is stereoisomerism?",
+      "back": "When molecules have the same molecular and structural formula but a different spatial arrangement of atoms."
+    },
+    {
+      "front": "Define chain isomerism with an example.",
+      "back": "A type of structural isomerism where the carbon skeleton is arranged differently. Example: Butane and 2-methylpropane (both C₄H₁₀)."
+    },
+    {
+      "front": "Define positional isomerism with an example.",
+      "back": "A type of structural isomerism where the functional group is attached to a different position on the same carbon skeleton. Example: Propan-1-ol and propan-2-ol."
+    },
+    {
+      "front": "Define functional group isomerism with an example.",
+      "back": "A type of structural isomerism where the molecules have different functional groups. Example: Propanal (an aldehyde) and propanone (a ketone), both C₃H₆O."
+    },
+    {
+      "front": "What are the two conditions required for E/Z isomerism?",
+      "back": "1. Restricted rotation around a bond (usually a C=C double bond). 2. Each carbon atom in the double bond must be attached to two different groups."
+    },
+    {
+      "front": "What is a chiral centre (or asymmetric carbon)?",
+      "back": "A carbon atom that is bonded to four different atoms or groups of atoms."
+    },
+    {
+      "front": "What are enantiomers?",
+      "back": "A pair of optical isomers that are non-superimposable mirror images of each other."
+    },
+    {
+      "front": "What is the key physical property that distinguishes between a pair of enantiomers?",
+      "back": "They rotate the plane of plane-polarised light by equal amounts but in opposite directions."
+    },
+    {
+      "front": "What is a racemic mixture (or racemate)?",
+      "back": "An equimolar mixture of two enantiomers. It is optically inactive because the rotations of the two enantiomers cancel each other out."
+    },
+    {
+      "front": "Why does a C=C double bond have restricted rotation?",
+      "back": "A C=C double bond consists of a σ-bond and a π-bond. The π-bond is formed by the sideways overlap of p-orbitals. Rotation would break this π-bond, which requires a large input of energy."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between E/Z and cis/trans notation?",
+      "a": "Cis/trans is an older, simpler system used when there is a common atom or group (e.g., hydrogen) on each carbon of the C=C bond. 'Cis' means the common groups are on the same side, and 'trans' means they are on opposite sides. E/Z notation is a more rigorous and universal system based on Cahn-Ingold-Prelog (CIP) priority rules. It can be used in all cases, even when there are four different groups attached to the double bond. 'Z' (zusammen) means the highest priority groups are on the same side, and 'E' (entgegen) means they are on opposite sides. For A-Level, you should be familiar with and able to use the E/Z system."
+    },
+    {
+      "q": "Why is free rotation not possible around a C=C double bond?",
+      "a": "A carbon-carbon double bond consists of one sigma (σ) bond and one pi (π) bond. The σ-bond is formed by the head-on overlap of orbitals and lies along the axis between the two carbon nuclei. The π-bond is formed by the sideways overlap of p-orbitals, creating regions of electron density above and below the plane of the σ-bond. To rotate the bond, this π-bond would have to be broken, which requires a significant amount of energy (approx. 270 kJ mol⁻¹). This energy is not available at room temperature, so rotation is restricted."
+    },
+    {
+      "q": "Can a molecule have more than one chiral centre?",
+      "a": "Yes, larger molecules, especially those found in biology like sugars and amino acids, can have multiple chiral centres. The number of possible stereoisomers increases with the number of chiral centres. A molecule with 'n' chiral centres can have a maximum of 2ⁿ stereoisomers. This is explored in more detail in the A2 part of the course."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Isomerism** (13.4) appears in almost every organic exam — draw **all structural isomers** of C₄H₁₀O or identify **chiral centres** in a given structure."
+      "content": "In organic chemistry, the molecular formula alone doesn't tell the whole story. For example, C₄H₁₀O can represent several different stable compounds, each with unique physical and chemical properties. This phenomenon is called isomerism. Understanding the different types of isomers is fundamental to predicting properties, explaining reactions, and designing molecules for specific purposes, from pharmaceuticals to polymers."
+    },
+    {
+      "type": "heading",
+      "content": "1. Structural Isomerism"
+    },
+    {
+      "type": "text",
+      "content": "Structural isomers share the same molecular formula but differ in their structural formula, meaning the atoms are bonded together in a different sequence. This is like having the same set of building blocks but connecting them in different ways. There are three main types of structural isomerism you need to know."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Chain Isomerism:** The carbon chain is arranged differently. For example, pentane (a straight chain of 5 carbons) and 2-methylbutane (a branched chain) are chain isomers with the formula C₅H₁₂.",
+        "**Positional Isomerism:** The carbon skeleton is the same, but a functional group or substituent is in a different position. For example, butan-1-ol and butan-2-ol are positional isomers.",
+        "**Functional Group Isomerism:** The isomers contain different functional groups. For example, ethanol (an alcohol, CH₃CH₂OH) and methoxymethane (an ether, CH₃OCH₃) are functional group isomers with the formula C₂H₆O."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Draw and name the structural isomers of the alkane with the molecular formula C₄H₁₀.",
+      "solution": "The molecular formula C₄H₁₀ corresponds to an alkane ($C_nH_{2n+2}$, where n=4).\n\n**Step 1: Draw the straight-chain isomer.**\nFirst, arrange the four carbon atoms in a continuous chain and add hydrogen atoms to satisfy the valency of each carbon.\nCH₃-CH₂-CH₂-CH₃\nThis is **butane**.\n\n**Step 2: Draw branched-chain isomers.**\nTry arranging the carbons in a different way. We can have a main chain of three carbons with one carbon as a branch.\nCH₃-CH(CH₃)-CH₃\nPlace the branch on the central carbon (placing it on an end carbon would just result in butane again).\nThis is **2-methylpropane**.\n\n**Step 3: Check for other possibilities.**\nThere are no other ways to arrange 4 carbon atoms. Therefore, there are two structural isomers of C₄H₁₀: butane and 2-methylpropane. These are examples of chain isomerism."
+    },
+    {
+      "type": "heading",
+      "content": "2. Stereoisomerism"
+    },
+    {
+      "type": "text",
+      "content": "Stereoisomers have the same molecular formula and the same structural formula (the atoms are connected in the same sequence), but they have a different arrangement of atoms in three-dimensional space. We will look at two types: E/Z isomerism and optical isomerism."
+    },
+    {
+      "type": "heading",
+      "content": "2a. E/Z (Geometric) Isomerism"
+    },
+    {
+      "type": "text",
+      "content": "This type of isomerism occurs in compounds with a C=C double bond. The pi (π) bond prevents free rotation around the C=C axis. For E/Z isomerism to exist, two conditions must be met: there must be restricted rotation about a bond, and each carbon atom of the C=C double bond must be bonded to two different groups. The labels E (entgegen - opposite) and Z (zusammen - together) are assigned based on priority of the groups attached to each carbon, determined by the Cahn-Ingold-Prelog (CIP) rules (higher atomic number = higher priority)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Condition 1:** Restricted rotation, typically due to a C=C double bond.",
+        "**Condition 2:** Each carbon in the C=C bond must have two different groups attached.",
+        "**Z-isomer:** The highest priority groups on each carbon are on the *same* side of the double bond.",
+        "**E-isomer:** The highest priority groups on each carbon are on *opposite* sides of the double bond."
+      ]
     },
     {
       "type": "examTip",
-      "content": "For E/Z naming: assign priority by atomic number at first point of difference. If higher priority groups are on **same side** → Z (zusammen); **opposite** → E (entgegen)."
+      "content": "A common mistake is to assume any molecule with a C=C bond will show E/Z isomerism. Always check the second condition! For example, propene (CH₃CH=CH₂) does not show E/Z isomerism because one of the double-bonded carbons is attached to two identical hydrogen atoms."
+    },
+    {
+      "type": "workedExample",
+      "question": "But-2-ene exists as E/Z isomers. Draw the skeletal formula for both E-but-2-ene and Z-but-2-ene.",
+      "solution": "The structure is CH₃CH=CHCH₃. Let's analyse the groups on the C=C double bond.\n\n**Step 1: Identify the groups on each carbon of the C=C bond.**\n- The left carbon is bonded to an H atom and a CH₃ group.\n- The right carbon is also bonded to an H atom and a CH₃ group.\nSince each carbon has two different groups, E/Z isomerism is possible.\n\n**Step 2: Assign priorities using CIP rules.**\nOn each carbon, the CH₃ group has a higher priority than the H atom because carbon (atomic number 6) has a higher atomic number than hydrogen (atomic number 1).\n\n**Step 3: Draw the Z-isomer.**\nThe Z-isomer has the high-priority groups (CH₃) on the same side of the double bond.\nSkeletal formula for **Z-but-2-ene**:\n```\n  /\\ \n /  \\ \nC====C\n```\n(Imagine the two methyl groups pointing 'up' from the double bond).\n\n**Step 4: Draw the E-isomer.**\nThe E-isomer has the high-priority groups (CH₃) on opposite sides of the double bond.\nSkeletal formula for **E-but-2-ene**:\n```\n  / \n /   \\\nC====C\n     /\n    / \n```\n(Imagine one methyl group pointing 'up' and the other 'down' from the double bond)."
+    },
+    {
+      "type": "heading",
+      "content": "2b. Optical Isomerism"
+    },
+    {
+      "type": "text",
+      "content": "Optical isomerism arises when a molecule is 'chiral'. A chiral molecule is one that is non-superimposable on its mirror image, much like your left and right hands. The most common cause of chirality in organic molecules is the presence of a chiral centre, which is a carbon atom bonded to four different atoms or groups. These non-superimposable mirror images are called enantiomers."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Chiral Centre:** A carbon atom bonded to four different groups. Also called an asymmetric carbon.",
+        "**Enantiomers:** A pair of molecules that are non-superimposable mirror images of each other. They are a type of optical isomer.",
+        "**Optical Activity:** Enantiomers are optically active. They rotate the plane of plane-polarised light. One enantiomer rotates it clockwise (+), and the other rotates it by the same angle anti-clockwise (-).",
+        "**Racemic Mixture:** A mixture containing equal amounts (50/50) of both enantiomers. It is optically inactive as the two rotations cancel each other out."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "To quickly identify a chiral centre, scan the molecule for carbon atoms with four single bonds. Then, for each of these carbons, carefully list the four groups attached. Remember that a 'group' can be a single atom (like -H or -Br) or an entire chain (like -CH₂CH₃). If all four are different, you've found a chiral centre. Star (*) the chiral carbon in your diagrams to make it clear."
     },
     {
       "type": "practice",
-      "label": "Mark an isomerism question",
+      "label": "Test Your Knowledge on Isomerism",
       "href": "/mark?subject=9701&topic=13.4"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Chemguide: Introduction to Isomerism",
+          "href": "https://www.chemguide.co.uk/basicorg/isomerism/index.html"
+        },
+        {
+          "label": "Khan Academy: Chiral drugs",
+          "href": "https://www.khanacademy.org/science/organic-chemistry/stereochemistry-topic/chirality-stereoisomers/v/chiral-drugs"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Molecule shapes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/molecule-shapes",
+    "hint": "Compare shapes of isomers — optical isomerism needs chiral centres (13.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Structural isomers: same molecular formula, different connectivity.",
+        "embedHint": "Build chain vs position isomers with the same atom count."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Functional group isomers: e.g. alcohol vs ether.",
+        "embedHint": "Compare different functional groups with formula CₙH₂ₙ₊₂O."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "E/Z (cis/trans) isomerism: restricted rotation about C=C.",
+        "embedHint": "Identify different groups on each C of the double bond."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Optical isomerism: chiral centre (four different groups on C).",
+        "embedHint": "Find a carbon with four distinct substituents — enantiomers exist."
+      }
+    ]
+  }
 }

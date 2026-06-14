@@ -4,41 +4,231 @@
   "title": "Differential equations",
   "paper": "P3",
   "paperName": "Pure Mathematics 3",
-  "status": "premium",
-  "summary": "9709 P3 differential equations — separable and linear first-order equations, slope fields, and modelling with GeoGebra.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces first-order differential equations, a cornerstone of Pure Mathematics 3. It covers the method of separating variables and the use of an integrating factor for linear equations. Emphasis is placed on finding both general and particular solutions, and applying these techniques to model real-world scenarios like population growth and cooling.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Solve separable differential equations.",
-    "Use integrating factors for linear first-order equations.",
-    "Interpret slope fields and particular solutions.",
-    "Apply DEs to growth and decay models."
+    "Solve first-order differential equations where variables are separable.",
+    "Solve first-order linear differential equations of the form dy/dx + P(x)y = Q(x) using an integrating factor.",
+    "Formulate simple differential equations from problems in context.",
+    "Find a particular solution by using a given boundary condition."
   ],
   "simpleExplanation": {
-    "title": "Equations with derivatives",
-    "summary": "A differential equation links a function with its derivatives. Initial conditions pick one solution curve from the family.",
+    "title": "Equations of Change",
+    "summary": "Differential equations describe how a quantity changes. We learn techniques to 'solve' these equations, which means finding the original function that the rate of change describes.",
+    "analogy": "Imagine you have a GPS tracker that only tells you your speed and direction at every single moment (the derivative). Solving a differential equation is like using that continuous stream of data to reconstruct the exact path you travelled (the original function). An initial condition, like knowing your starting point, helps you pinpoint the one specific path you took.",
     "steps": [
+      "First order: dy/dx = f(x,y) — slope field shows direction at each point.",
       "Separable: ∫(1/g(y)) dy = ∫f(x) dx + c.",
-      "Linear: dy/dx + Py = Q → multiply by e^∫P dx.",
-      "Slope field: short segments show dy/dx at grid points.",
-      "Model: dN/dt = kN → N = N₀e^{kt}."
+      "Linear integrating factor e^∫P dx for dy/dx + Py = Q.",
+      "Modelling: exponential growth/decay, Newton cooling, logistic."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a differential equation?",
+      "back": "An equation that contains a derivative, such as `dy/dx`, linking a function with one or more of its derivatives."
+    },
+    {
+      "front": "What is the 'order' of a differential equation?",
+      "back": "The order of the highest derivative present in the equation. A-Level Maths P3 focuses on first-order equations, which involve `dy/dx`."
+    },
+    {
+      "front": "What is a 'general solution' to a differential equation?",
+      "back": "A solution that includes an arbitrary constant of integration, usually denoted by `c`. It represents a family of curves."
+    },
+    {
+      "front": "What is a 'particular solution'?",
+      "back": "A unique solution obtained by using a given boundary condition (e.g., `y=2` when `x=1`) to find the specific value of the constant of integration `c`."
+    },
+    {
+      "front": "When can you use the 'separation of variables' method?",
+      "back": "When the differential equation can be written in the form `dy/dx = f(x)g(y)`. You can then rearrange it to have all `y` terms on one side and all `x` terms on the other."
+    },
+    {
+      "front": "What is the most common mistake when separating variables?",
+      "back": "Forgetting to add the constant of integration, `+ c`, immediately after performing the integration on one side (usually the x-side)."
+    },
+    {
+      "front": "What is the standard form for using an integrating factor?",
+      "back": "The linear first-order form: `dy/dx + P(x)y = Q(x)`. The coefficient of `dy/dx` must be 1."
+    },
+    {
+      "front": "What is the formula for the integrating factor (I.F.)?",
+      "back": "The integrating factor is `I.F. = e^{\\int P(x) dx}`. Note that you don't need a constant of integration when finding the I.F."
+    },
+    {
+      "front": "After multiplying by the I.F., what does the left side of `dy/dx + P(x)y = Q(x)` become?",
+      "back": "It becomes the derivative of the product of `y` and the integrating factor: `d/dx (y \\cdot I.F.)`."
+    },
+    {
+      "front": "What form does a statement like \"the rate of increase of N is proportional to N\" take?",
+      "back": "This translates to the differential equation `dN/dt = kN`, where `k` is a positive constant of proportionality."
+    },
+    {
+      "front": "Why is `ln|y|` important when integrating `1/y`?",
+      "back": "The integral of `1/y` is `ln|y|`. The modulus is crucial because the argument of a logarithm must be positive. You often resolve the modulus using the initial conditions."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need a constant of integration `+c` when finding the integrating factor?",
+      "a": "No. While technically `\\int P(x) dx` has a constant, `e^{P(x)dx + c} = e^{\\int P(x)dx} \\cdot e^c`. This `e^c` is just another constant multiplier that would apply to the whole equation and eventually get absorbed into the final constant of integration anyway. So, for simplicity, we omit it when calculating the I.F."
+    },
+    {
+      "q": "What's the difference between a general and a particular solution?",
+      "a": "A general solution has the constant `+c` and represents an entire family of functions that satisfy the differential equation. A particular solution is a single, unique function from that family, found by using a specific point (a boundary condition) to determine the exact value of `c`."
+    },
+    {
+      "q": "How do I deal with `ln|f(y)|` when solving for `y`?",
+      "a": "After integrating to get `ln|f(y)| = g(x) + c`, you exponentiate both sides: `|f(y)| = e^{g(x)+c} = e^{g(x)}e^c`. We replace the constant `e^c` with a new constant, say `A`, so `|f(y)| = Ae^{g(x)}`. This means `f(y) = \\pm Ae^{g(x)}`. You can absorb the `\\pm` into the constant `A`. The sign of `A` is determined by the initial conditions."
+    },
+    {
+      "q": "My answer for a modelling question is `y = 5e^{kt}` but the mark scheme has `y = Ae^{kt}`. Why?",
+      "a": "This often happens when the initial value is used at different stages. If you solve for the constant of integration `c` early, you might get `ln(y) = kt + ln(5)`, which gives `y = e^{kt + ln(5)} = e^{kt}e^{ln(5)} = 5e^{kt}`. If you write the general solution as `y = Ae^{kt}` and then substitute `t=0, y=5`, you get `5 = Ae^0`, so `A=5`. Both methods are correct and lead to the same result."
+    },
+    {
+      "q": "Can I always use separation of variables?",
+      "a": "No, it only works if the equation can be written in the form `dy/dx = f(x)g(y)`. For linear equations like `dy/dx + 2y = x`, you cannot separate the `2y` term from the `x` term, so you must use the integrating factor method."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Differential equations** (3.8) often carry **6–8 marks** on P3. State the **general solution** then apply the **initial condition** for the particular solution."
+      "content": "Welcome to the world of differential equations! These are not your typical algebraic equations. Instead of solving for a number, we are solving for a function. Differential equations are fundamental to science and engineering, describing everything from population growth to the cooling of a cup of tea. In this chapter, we'll master the two key techniques required for your P3 exam: separation of variables and the integrating factor method."
+    },
+    {
+      "type": "heading",
+      "content": "1. Separable First-Order Differential Equations"
+    },
+    {
+      "type": "text",
+      "content": "The simplest type of differential equation we'll solve is one where the variables can be separated. If you can rearrange an equation so that all the `y` and `dy` terms are on one side, and all the `x` and `dx` terms are on the other, it's separable. The goal is to get it into a form that can be integrated."
+    },
+    {
+      "type": "formula",
+      "content": "If `\\frac{dy}{dx} = f(x)g(y)`, we can separate it to `\\frac{1}{g(y)} dy = f(x) dx`. Then we integrate both sides: `\\int \\frac{1}{g(y)} dy = \\int f(x) dx + c`."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always group `dy` with `y` terms and `dx` with `x` terms.",
+        "Add the constant of integration, `+ c`, immediately after integrating. It's best practice to add it to the side with the independent variable (usually `x`).",
+        "If given boundary conditions, substitute them in to find the value of `c` for the particular solution.",
+        "Remember that `\\int \\frac{1}{y} dy = \\ln|y| + c`. The modulus sign is important."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A differential equation is given by `\\frac{dy}{dx} = \\frac{y+1}{x^2}` for `x > 0`. Given that `y=1` when `x=1`, find the particular solution for `y` in terms of `x`.",
+      "solution": "This equation is in the form `\\frac{dy}{dx} = f(x)g(y)`, so we can separate the variables.\n\n**Step 1: Separate the variables.**\n`\\frac{1}{y+1} dy = \\frac{1}{x^2} dx`\n\n**Step 2: Integrate both sides.**\n`\\int \\frac{1}{y+1} dy = \\int x^{-2} dx`\n`\\ln|y+1| = -x^{-1} + c`\n`\\ln|y+1| = -\\frac{1}{x} + c`\nThis is the general solution.\n\n**Step 3: Use the boundary condition to find c.**\nWe are given `y=1` when `x=1`.\n`\\ln|1+1| = -\\frac{1}{1} + c`\n`\\ln(2) = -1 + c`\n`c = \\ln(2) + 1`\n\n**Step 4: Substitute c back and solve for y.**\n`\\ln|y+1| = -\\frac{1}{x} + 1 + \\ln(2)`\nTo make `y` the subject, we exponentiate both sides.\n`|y+1| = e^{-\\frac{1}{x} + 1 + \\ln(2)}`\n`|y+1| = e^{-\\frac{1}{x} + 1} \\cdot e^{\\ln(2)}`\n`|y+1| = 2e^{1 - \\frac{1}{x}}`\nSince `y=1` when `x=1`, `y+1` is positive near this point, so we can drop the modulus sign.\n`y+1 = 2e^{1 - \\frac{1}{x}}`\n`y = 2e^{1 - \\frac{1}{x}} - 1`"
+    },
+    {
+      "type": "heading",
+      "content": "2. Linear First-Order Differential Equations"
+    },
+    {
+      "type": "text",
+      "content": "Not all differential equations are separable. A powerful method for another class of equations involves an 'integrating factor'. This method applies to linear first-order equations, which must first be arranged into a standard form. The magic of the integrating factor is that it transforms one side of the equation into the result of the product rule for differentiation, making it easy to integrate."
+    },
+    {
+      "type": "formula",
+      "content": "Standard Form: `\\frac{dy}{dx} + P(x)y = Q(x)`\nIntegrating Factor (I.F.): `I(x) = e^{\\int P(x) dx}`\nResulting Equation: `\\frac{d}{dx}(y \\cdot I(x)) = Q(x) \\cdot I(x)`"
+    },
+    {
+      "type": "examTip",
+      "content": "Before finding the integrating factor, always ensure your equation is in the standard form `dy/dx + P(x)y = Q(x)`. If you have, for example, `x \\frac{dy}{dx} + 2y = x^2`, you must first divide the entire equation by `x` to make the coefficient of `dy/dx` equal to 1."
+    },
+    {
+      "type": "workedExample",
+      "question": "A biologist is modelling the number of fish, `N`, in a lake. The rate of increase of the number of fish is modelled by the differential equation `\\frac{dN}{dt} + 0.2N = 100e^{-0.1t}`, where `t` is the time in years. Initially (`t=0`), there are 500 fish. Find an expression for `N` in terms of `t`.",
+      "solution": "The equation is in the linear form `dN/dt + P(t)N = Q(t)` with `P(t) = 0.2` and `Q(t) = 100e^{-0.1t}`.\n\n**Step 1: Find the integrating factor (I.F.).**\n`P(t) = 0.2`, so `\\int P(t) dt = \\int 0.2 dt = 0.2t`.\n`I.F. = e^{0.2t}`\n\n**Step 2: Multiply the entire DE by the I.F.**\n`e^{0.2t} \\frac{dN}{dt} + 0.2e^{0.2t}N = 100e^{-0.1t}e^{0.2t}`\n\n**Step 3: The left side becomes `d/dt (N \\cdot I.F.)`.**\n`\\frac{d}{dt}(N e^{0.2t}) = 100e^{0.1t}`\n\n**Step 4: Integrate both sides with respect to t.**\n`\\int \\frac{d}{dt}(N e^{0.2t}) dt = \\int 100e^{0.1t} dt`\n`N e^{0.2t} = \\frac{100}{0.1}e^{0.1t} + c`\n`N e^{0.2t} = 1000e^{0.1t} + c`\n\n**Step 5: Use the initial condition to find c.**\nGiven `N=500` when `t=0`.\n`500 e^{0.2(0)} = 1000e^{0.1(0)} + c`\n`500 \\cdot 1 = 1000 \\cdot 1 + c`\n`500 = 1000 + c \\implies c = -500`\n\n**Step 6: Substitute c and solve for N.**\n`N e^{0.2t} = 1000e^{0.1t} - 500`\n`N = \\frac{1000e^{0.1t} - 500}{e^{0.2t}}`\n`N = 1000e^{-0.1t} - 500e^{-0.2t}`"
+    },
+    {
+      "type": "heading",
+      "content": "3. Modelling with Differential Equations"
+    },
+    {
+      "type": "text",
+      "content": "The true power of differential equations lies in their ability to model real-world phenomena. You will often be asked to translate a written description of a rate of change into a mathematical equation. For example, a statement like \"the rate of cooling of a body is proportional to the excess temperature over the surroundings\" is a classic setup for a differential equation. The key is to correctly identify the variables and the relationship between the rate and the quantities themselves."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Direct Proportionality:** \"Rate of change of `y` is proportional to `y`\" means `dy/dt = ky`.",
+        "**Inverse Proportionality:** \"Rate of change of `y` is inversely proportional to `y`\" means `dy/dt = k/y`.",
+        "**Newton's Law of Cooling:** If `\\theta` is temperature and `\\theta_S` is surrounding temperature, `d\\theta/dt = -k(\\theta - \\theta_S)`. The negative sign indicates cooling.",
+        "Pay close attention to whether a rate is an 'increase' (positive constant) or 'decrease' (negative constant)."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark a differential equations question",
+      "label": "Practice Differential Equations",
       "href": "/mark?subject=9709&topic=3.8"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "ExamSolutions - Separating Variables",
+          "href": "https://www.examsolutions.net/tutorials/separable-variables/"
+        },
+        {
+          "label": "ExamSolutions - Integrating Factor",
+          "href": "https://www.examsolutions.net/tutorials/integrating-factor/"
+        },
+        {
+          "label": "GeoGebra Slope Field Plotter",
+          "href": "https://www.geogebra.org/m/W7dAdgqc"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Slope fields",
+    "embedUrl": "https://www.geogebra.org/classic?material=v4kEjJ2R",
+    "launchUrl": "https://www.geogebra.org/classic?material=v4kEjJ2R",
+    "hint": "dy/dx as slope — sketch solution curves through points (9709 3.8).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "First order: dy/dx = f(x,y) — slope field shows direction at each point.",
+        "embedHint": "Read slope at (x,y) — sketch solution through initial condition."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Separable: ∫(1/g(y)) dy = ∫f(x) dx + c.",
+        "embedHint": "Separate variables — integrate both sides."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Linear integrating factor e^∫P dx for dy/dx + Py = Q.",
+        "embedHint": "Multiply through by IF — left side becomes d/dx(y·IF)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Modelling: exponential growth/decay, Newton cooling, logistic.",
+        "embedHint": "Match dN/dt = kN to exponential solution N = N₀e^{kt}."
+      }
+    ]
+  }
 }

@@ -4,45 +4,176 @@
   "title": "Mass spectrometry",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS mass spectrometry — molecular ion peak, fragmentation patterns, and determining relative molecular mass.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores mass spectrometry, a powerful analytical technique used to determine the relative atomic and molecular masses of substances. We will cover the fundamental principles of how a mass spectrometer works and focus on interpreting the data from mass spectra for both elements and simple molecules, including identifying isotopes and molecular fragments.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe ionisation, acceleration, deflection, and detection.",
-    "Identify the molecular ion peak [M]⁺ and its m/z value.",
-    "Predict common fragment ions for organic molecules.",
-    "Use isotope patterns (e.g. Cl, Br) to support assignment."
+    "Outline the principles of mass spectrometry, including ionisation, acceleration, deflection, and detection.",
+    "Interpret mass spectra of elements to determine isotopic abundances and calculate relative atomic mass.",
+    "Analyse the mass spectra of simple molecules to identify the molecular ion peak and determine relative molecular mass.",
+    "Explain the formation of fragmentation patterns and characteristic isotopic clusters for molecules containing Cl and Br."
   ],
   "simpleExplanation": {
-    "title": "Mass of fragments",
-    "summary": "Mass spectrometry measures m/z of ions. The highest significant peak often gives Mr; smaller peaks reveal fragmentation.",
+    "title": "The Molecular Weighing Scales",
+    "summary": "Mass spectrometry is a technique that sorts ions based on their mass. It allows us to find the precise mass of individual atoms and molecules, revealing the different isotopes of an element or the structure of a compound.",
+    "analogy": "Imagine you're at a bowling alley, but instead of one type of ball, you have bowling balls of different weights. You roll them all with the same initial force towards a giant fan blowing from the side. The lightest balls will be pushed far off course, while the heaviest ones will barely deviate. A mass spectrometer does this with ions: it fires them through a magnetic field (the 'fan'), and how much their path bends tells us their mass.",
     "steps": [
-      "Electron impact: M → M⁺ + e⁻ — molecular ion [M]⁺ at far right.",
-      "Fragmentation: loss of CH₃ (15), OH (17), CO (28) common.",
-      "Chlorine: M and M+2 peaks 3:1 ratio (³⁵Cl : ³⁷Cl).",
-      "Bromine: M and M+2 peaks ~1:1 (⁷⁹Br : ⁸¹Br)."
+      "First, the sample is vaporised and bombarded with high-energy electrons. This knocks an electron off each atom or molecule, creating a positive ion.",
+      "Next, these positive ions are accelerated by an electric field, ensuring they all have the same kinetic energy before the next stage.",
+      "The fast-moving ions then enter a magnetic field, which deflects them. Lighter ions are deflected more than heavier ions.",
+      "Finally, a detector counts the ions at each deflection angle. This data is used to generate a mass spectrum, plotting abundance against mass-to-charge ratio ($m/z$)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a mass spectrometer?",
+      "back": "An instrument that measures the mass-to-charge ratio ($m/z$) of ions, allowing for the determination of atomic and molecular masses and isotopic abundances."
+    },
+    {
+      "front": "What does the mass-to-charge ratio ($m/z$) represent?",
+      "back": "The ratio of an ion's mass (in atomic mass units) to its formal charge. In A-Level Chemistry, the charge is almost always +1, so the $m/z$ value is numerically equal to the relative mass of the ion."
+    },
+    {
+      "front": "What is the molecular ion peak ($M^+$)?",
+      "back": "The peak with the highest $m/z$ value in the mass spectrum of a compound. It represents the intact molecule that has lost one electron. Its $m/z$ value gives the relative molecular mass ($M_r$) of the compound."
+    },
+    {
+      "front": "What is the base peak?",
+      "back": "The peak with the greatest relative abundance in a mass spectrum (the tallest peak). It is assigned a relative intensity of 100% and corresponds to the most stable positive ion formed in the spectrometer."
+    },
+    {
+      "front": "What is fragmentation in mass spectrometry?",
+      "back": "The process where the high-energy molecular ion breaks apart into smaller, positively charged fragments and neutral species (like radicals). Only the charged fragments are detected."
+    },
+    {
+      "front": "Describe the process of electron impact ionisation.",
+      "back": "A vaporised sample is bombarded by a beam of high-energy electrons. These electrons knock one or more electrons off the sample particles, forming positive ions (cations). Example: $CH_4 + e^- \\rightarrow [CH_4]^+ \\cdot + 2e^-$."
+    },
+    {
+      "front": "Why must a mass spectrometer operate under a high vacuum?",
+      "back": "To prevent the ions from colliding with air molecules. Such collisions would interfere with their flight path from the ion source to the detector, invalidating the results."
+    },
+    {
+      "front": "What does the M+1 peak signify?",
+      "back": "A small peak located one mass unit above the molecular ion peak ($M^+$). It arises from the presence of the naturally occurring carbon-13 isotope ($^{13}C$) in an organic molecule."
+    },
+    {
+      "front": "How can you identify a compound containing one bromine atom from its mass spectrum?",
+      "back": "Look for two peaks of almost equal height (a 1:1 abundance ratio) for the molecular ion, separated by 2 mass units. This is due to the two isotopes, $^{79}Br$ and $^{81}Br$, which have nearly equal natural abundance."
+    },
+    {
+      "front": "How can you identify a compound containing one chlorine atom from its mass spectrum?",
+      "back": "Look for two peaks for the molecular ion, separated by 2 mass units, with a relative abundance ratio of approximately 3:1. This is due to the isotopes $^{35}Cl$ (c. 75%) and $^{37}Cl$ (c. 25%)."
+    },
+    {
+      "front": "What two factors determine the degree of deflection of an ion in a magnetic field?",
+      "back": "1. The mass of the ion (lighter ions are deflected more). 2. The charge of the ion (more highly charged ions are deflected more). The overall deflection depends on the mass-to-charge ratio, $m/z$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the charge on the ions usually +1?",
+      "a": "During electron impact ionisation, it requires a certain amount of energy to remove one electron. Removing a second electron from an already positive ion requires significantly more energy. While it is possible to form +2 or +3 ions, it is far less likely. Therefore, the vast majority of ions detected have a +1 charge."
+    },
+    {
+      "q": "Can a mass spectrometer distinguish between structural isomers?",
+      "a": "Yes, often it can. Structural isomers have the same molecular formula and therefore the same relative molecular mass, so they will have the same molecular ion peak ($M^+$). However, they have different structures and bond arrangements, so they tend to break apart (fragment) in different ways. This leads to different fragmentation patterns, with different peaks and/or different relative abundances, allowing them to be distinguished."
+    },
+    {
+      "q": "What is electrospray ionisation (ESI) and how does it differ from electron impact (EI)?",
+      "a": "Electrospray ionisation is a 'softer' ionisation technique. The sample is dissolved in a volatile solvent and sprayed through a fine, high-voltage needle. This creates charged droplets, and as the solvent evaporates, ions are formed (typically $[M+H]^+$). ESI is much less energetic than EI and causes little to no fragmentation. It is useful for finding the $M_r$ of large, fragile molecules like proteins that would be destroyed by electron impact."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Mass spectrometry** (22.2) complements **IR** (22.1). Practice reading **m/z** axes and calculating **Mr** from the molecular ion — then propose a structure consistent with both spectra."
+      "content": "Mass spectrometry is one of the most versatile and powerful analytical tools available to chemists. It functions like a highly sensitive set of scales for atoms and molecules. By turning a sample into ions and measuring their mass, we can determine the precise atomic mass of an element, identify unknown compounds, and even gain clues about a molecule's structure. This technique is fundamental to many areas of science, from drug discovery to environmental monitoring."
+    },
+    {
+      "type": "heading",
+      "content": "The Four Stages of Mass Spectrometry"
+    },
+    {
+      "type": "text",
+      "content": "A conventional mass spectrometer operates through four key stages. The sample is first introduced and converted into positive ions, which are then accelerated, separated according to their mass-to-charge ratio, and finally detected."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**1. Ionisation:** The sample is first vaporised and then injected into the ionisation chamber. Here, it is bombarded with a stream of high-energy electrons from an 'electron gun'. These electrons knock off electrons from the atoms or molecules of the sample, creating positive ions. For a molecule M, this is represented as $M + e^- \\rightarrow M^+ + 2e^-$.",
+        "**2. Acceleration:** The newly formed positive ions are accelerated by a series of negatively charged plates, creating a fine beam of ions all having the same kinetic energy.",
+        "**3. Deflection:** The beam of ions passes into a strong magnetic field, which is perpendicular to their direction of travel. The magnetic field deflects the ions into a curved path. The degree of deflection depends on the mass-to-charge ratio ($m/z$). Lighter ions are deflected more than heavier ions, and more highly charged ions are deflected more than singly charged ions.",
+        "**4. Detection:** By varying the strength of the magnetic field, ions of different $m/z$ ratios can be directed towards a detector. When an ion hits the detector, it accepts an electron, generating a tiny electrical current. The size of the current is proportional to the number of ions arriving, giving the relative abundance of that ion."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting Mass Spectra of Elements"
+    },
+    {
+      "type": "text",
+      "content": "When an element is analysed, the mass spectrum shows the different isotopes present. The x-axis represents the mass-to-charge ratio ($m/z$), which for singly charged ions is simply the isotopic mass. The y-axis shows the relative abundance of each isotope. From this data, we can calculate the relative atomic mass ($A_r$) of the element."
+    },
+    {
+      "type": "formula",
+      "content": "A_r = \\frac{\\sum (\\text{isotopic mass} \\times \\text{relative abundance})}{\\sum (\\text{relative abundance})}"
+    },
+    {
+      "type": "workedExample",
+      "question": "The mass spectrum of a sample of zirconium shows five peaks with the following $m/z$ values and relative abundances:\n\n| $m/z$ | Relative Abundance |\n|---|---|\n| 90 | 51.5 |\n| 91 | 11.2 |\n| 92 | 17.1 |\n| 94 | 17.4 |\n| 96 | 2.8 |\n\nCalculate the relative atomic mass of zirconium to one decimal place.",
+      "solution": "To calculate the relative atomic mass, we use the formula:\n$A_r = \\frac{\\sum (m/z \\times \\text{abundance})}{\\text{total abundance}}$\n\n1.  **Calculate the sum of (mass × abundance) for each isotope:**\n    - $(90 \\times 51.5) = 4635$\n    - $(91 \\times 11.2) = 1019.2$\n    - $(92 \\times 17.1) = 1573.2$\n    - $(94 \\times 17.4) = 1635.6$\n    - $(96 \\times 2.8) = 268.8$\n\n2.  **Sum these products:**\n    $4635 + 1019.2 + 1573.2 + 1635.6 + 268.8 = 9131.8$\n\n3.  **Calculate the total abundance:**\n    $51.5 + 11.2 + 17.1 + 17.4 + 2.8 = 100.0$\n\n4.  **Divide the sum of products by the total abundance:**\n    $A_r = \\frac{9131.8}{100.0} = 91.318$\n\n5.  **Round to one decimal place as requested:**\n    $A_r = 91.3$"
+    },
+    {
+      "type": "heading",
+      "content": "Mass Spectrometry of Molecules and Fragmentation"
+    },
+    {
+      "type": "text",
+      "content": "When a molecule is passed through a mass spectrometer, the peak with the highest $m/z$ value is called the **molecular ion peak ($M^+$)**. This is formed when the molecule loses one electron but remains intact. The $m/z$ value of this peak gives the relative molecular mass ($M_r$) of the compound. The high energy of the ionisation process often causes the molecular ion to break apart into smaller pieces, a process called **fragmentation**. This gives rise to other peaks at lower $m/z$ values, creating a unique fragmentation pattern that can be used like a 'fingerprint' to help identify the molecule's structure."
     },
     {
       "type": "examTip",
-      "content": "The molecular ion is not always the **base peak** (tallest). Look for the **rightmost** significant peak and check **isotope clusters** before assigning a formula."
+      "content": "Do not confuse the molecular ion peak with the base peak. The molecular ion peak is the one with the highest $m/z$ value. The base peak is the tallest peak in the spectrum, representing the most abundant (and often most stable) fragment. They can be the same, but often are not."
+    },
+    {
+      "type": "workedExample",
+      "question": "The mass spectrum of propan-1-ol, $CH_3CH_2CH_2OH$, is shown. The molecular ion peak is at $m/z = 60$. Suggest the chemical formula for the fragments responsible for the peaks at $m/z = 59$, $m/z = 45$, and $m/z = 31$.",
+      "solution": "First, confirm the $M_r$ of propan-1-ol: $(3 \\times 12.0) + (8 \\times 1.0) + (1 \\times 16.0) = 36.0 + 8.0 + 16.0 = 60.0$. This matches the molecular ion peak.\n\n- **Peak at $m/z = 59$:**\n  This corresponds to a mass loss of 1 from the molecular ion ($60 - 59 = 1$). This is characteristic of the loss of a single hydrogen atom (a hydrogen radical, $H\\cdot$). The fragment is $[CH_3CH_2CHOH]^+$.\n\n- **Peak at $m/z = 45$:**\n  This corresponds to a mass loss of 15 from the molecular ion ($60 - 45 = 15$). A mass of 15 corresponds to a methyl group ($CH_3$). The bond between the first and second carbon has broken, losing a $CH_3\\cdot$ radical. The fragment is $[CH_2CH_2OH]^+$.\n\n- **Peak at $m/z = 31$:**\n  This corresponds to a mass loss of 29 from the molecular ion ($60 - 31 = 29$). A mass of 29 corresponds to an ethyl group ($CH_2CH_3$). The bond between the first carbon and the oxygen has broken, losing a $CH_3CH_2\\cdot$ radical. The fragment is $[CH_2OH]^+$. This is a very common and stable fragment for primary alcohols."
+    },
+    {
+      "type": "heading",
+      "content": "Characteristic Isotopic Patterns"
+    },
+    {
+      "type": "text",
+      "content": "Some elements have very distinctive isotopic abundances, which lead to characteristic patterns in the mass spectra of molecules containing them. The most important examples for A-Level are chlorine and bromine."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Chlorine ($Cl$):** Has two main isotopes, $^{35}Cl$ (~75%) and $^{37}Cl$ (~25%). This gives a 3:1 abundance ratio. A molecule containing one chlorine atom will show an M peak and an M+2 peak in a 3:1 ratio. A molecule of chlorine, $Cl_2$, will have three possible molecular ions: $(^{35}Cl-^{35}Cl)^+$ at $m/z=70$, $(^{35}Cl-^{37}Cl)^+$ at $m/z=72$, and $(^{37}Cl-^{37}Cl)^+$ at $m/z=74$. The relative abundance ratio of these peaks is approximately 9:6:1.",
+        "**Bromine ($Br$):** Has two main isotopes, $^{79}Br$ (~50%) and $^{81}Br$ (~50%). This gives a 1:1 abundance ratio. A molecule containing one bromine atom will show an M peak and an M+2 peak in a 1:1 ratio. A molecule of bromine, $Br_2$, will have three possible molecular ions: $(^{79}Br-^{79}Br)^+$ at $m/z=158$, $(^{79}Br-^{81}Br)^+$ at $m/z=160$, and $(^{81}Br-^{81}Br)^+$ at $m/z=162$. The relative abundance ratio of these peaks is approximately 1:2:1."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark a mass spectrometry question",
+      "label": "Test your knowledge on mass spectrometry",
       "href": "/mark?subject=9701&topic=22.2"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "In-depth guide to interpreting mass spectra",
+          "href": "https://www.chemguide.co.uk/analysis/masspec/interpret.html"
+        },
+        {
+          "label": "Video tutorial on mass spectrometry",
+          "href": "https://www.youtube.com/watch?v=mBT73_G2-50"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

@@ -4,29 +4,229 @@
   "title": "Ionisation energy",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — first ionisation energy trends and explanations.",
+  "status": "pilot",
+  "summary": "An exploration of ionisation energy, covering its definition, the factors that influence it, and the trends observed across the periodic table, including successive ionisation energies and anomalies.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define first ionisation energy.",
-    "Describe trends across Period 3 and Group 2.",
-    "Explain anomalies using sub-shell structure.",
-    "Relate IE to reactivity."
+    "Define first and successive ionisation energies and write equations for these processes.",
+    "Explain the factors affecting ionisation energy: nuclear charge, atomic radius, and electron shielding.",
+    "Describe and explain the trends in first ionisation energy across a period and down a group of the Periodic Table.",
+    "Interpret successive ionisation energy data to deduce the group of an element and provide evidence for electron shells."
   ],
   "simpleExplanation": {
-    "title": "Energy to remove an electron",
-    "summary": "Ionisation energy measures how tightly the nucleus holds outer electrons. Trends reveal periodic patterns.",
+    "title": "The Cost of Removing an Electron",
+    "summary": "Ionisation energy is the energy needed to pull an electron away from an atom. This 'cost' changes predictably, telling us a lot about an atom's structure.",
+    "analogy": "Imagine trying to pull a small magnet off a large magnetic block. It's harder to pull it off if the main block is stronger (higher nuclear charge), and easier if the small magnet is further away (larger atomic radius) or has other magnets in between blocking the pull (shielding).",
     "steps": [
-      "IE increases across period.",
-      "IE decreases down group.",
-      "Drop Mg→Al: p electron easier.",
-      "Drop P→S: paired p repulsion."
+      "First IE is the energy needed to remove 1 mole of the outermost electrons from 1 mole of gaseous atoms, forming 1+ ions.",
+      "Across a period, IE generally increases. The nuclear charge gets stronger, pulling the outer shell in closer, making electrons harder to remove.",
+      "Down a group, IE decreases. The atom gets bigger with more shells, so the outer electron is further away and better shielded from the nucleus.",
+      "Small dips occur from Group 2 to 3 (a new, higher-energy p-subshell) and Group 5 to 6 (repulsion from paired electrons in a p-orbital)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Define First Ionisation Energy.",
+      "back": "The energy required to remove one mole of electrons from one mole of gaseous atoms to form one mole of gaseous 1+ ions. Units: kJ mol⁻¹."
+    },
+    {
+      "front": "What are the three main factors affecting ionisation energy?",
+      "back": "1. Nuclear charge (number of protons). 2. Atomic radius (distance of outer electron from nucleus). 3. Electron shielding (repulsion from inner shell electrons)."
+    },
+    {
+      "front": "Why does first IE generally increase across a period?",
+      "back": "Nuclear charge increases, while atomic radius decreases and shielding remains relatively constant. This leads to a stronger electrostatic attraction between the nucleus and the outer electron, requiring more energy to remove it."
+    },
+    {
+      "front": "Why does first IE decrease down a group?",
+      "back": "The number of electron shells increases, leading to a larger atomic radius and increased shielding. These factors outweigh the increased nuclear charge, weakening the attraction for the outer electron."
+    },
+    {
+      "front": "Write the general equation for the first ionisation energy of an element X.",
+      "back": "X(g) → X⁺(g) + e⁻"
+    },
+    {
+      "front": "Explain the drop in first IE from Group 2 to Group 3.",
+      "back": "The electron removed from a Group 3 element is in a p-subshell, which is at a higher energy level and further from the nucleus than the s-subshell of the Group 2 element. This makes it easier to remove."
+    },
+    {
+      "front": "Explain the drop in first IE from Group 5 to Group 6.",
+      "back": "In a Group 6 element, the electron is removed from a p-orbital containing a pair of electrons. The repulsion between these paired electrons (spin-pair repulsion) makes it easier to remove one of them compared to the singly-occupied orbitals in a Group 5 element."
+    },
+    {
+      "front": "What are successive ionisation energies?",
+      "back": "The energies required to remove electrons one after another from an atom or ion. For example, the second IE is the energy to remove an electron from a 1+ ion."
+    },
+    {
+      "front": "Why are successive ionisation energies always larger than the previous one?",
+      "back": "Each subsequent electron is being removed from an increasingly positive ion. The greater net positive charge results in a stronger electrostatic attraction to the remaining electrons, requiring more energy for removal."
+    },
+    {
+      "front": "How can successive IE data identify an element's group?",
+      "back": "A large jump in successive ionisation energies indicates the removal of an electron from a new, inner principal quantum shell. The number of electrons removed before this jump corresponds to the number of valence electrons, and thus the group number."
+    },
+    {
+      "front": "What state symbols are essential in ionisation energy equations?",
+      "back": "The gaseous state symbol (g) is required for both the atom and the resulting ion, as ionisation energies are measured for isolated particles in the gas phase."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is shielding the same as effective nuclear charge?",
+      "a": "No, they are related but distinct concepts. Shielding refers to the repulsion from inner-shell electrons that 'screens' or 'shields' the outer electrons from the full pull of the nucleus. Effective nuclear charge is the net positive charge experienced by an outer electron after accounting for shielding. You can think of it as: Effective Nuclear Charge ≈ Nuclear Charge - Shielding Effect."
+    },
+    {
+      "q": "Why do we use gaseous atoms to measure ionisation energy?",
+      "a": "Ionisation energy is a measure of the energy needed to overcome the attraction between the nucleus and an electron within a single, isolated atom. Using the gaseous state ensures that the atoms are far apart and we are not also measuring the energy required to break intermolecular forces (like in a solid or liquid), which would give an inaccurate value for the ionisation energy itself."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Ionisation energy** (1.4) is core **periodicity** evidence. Always explain with **nuclear charge, radius, and shielding**." },
-    { "type": "practice", "label": "Mark an ionisation energy question", "href": "/mark?subject=9701&topic=1.4" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Ionisation energy is a fundamental concept in chemistry that quantifies the energy required to remove an electron from an atom. By studying its trends and variations, we can gain profound insights into atomic structure, electron configurations, and the nature of the periodic table itself. It is a cornerstone for understanding chemical reactivity and bonding."
+    },
+    {
+      "type": "heading",
+      "content": "Defining First Ionisation Energy"
+    },
+    {
+      "type": "text",
+      "content": "The first ionisation energy (often abbreviated as 1st IE or $I_1$) is defined with precision. It is the minimum energy required to remove one mole of electrons from one mole of gaseous atoms to produce one mole of gaseous ions with a +1 charge. The state symbols are crucial; the process must occur in the gas phase to eliminate intermolecular forces."
+    },
+    {
+      "type": "formula",
+      "content": "For a generic element M, the equation is: \\\\ M(g) → M⁺(g) + e⁻     ΔH = 1st IE"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Energy is always required, so ionisation is an endothermic process (ΔH is positive).",
+        "Measured in kilojoules per mole (kJ mol⁻¹).",
+        "The lower the ionisation energy, the more easily an atom forms a positive ion."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Factors Influencing Ionisation Energy"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude of the ionisation energy is determined by the strength of the electrostatic attraction between the positive nucleus and the outermost electron. Three key factors govern this attraction:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Nuclear Charge:** The number of protons in the nucleus. A higher nuclear charge results in a stronger attraction for electrons, increasing the ionisation energy.",
+        "**Atomic Radius:** The distance from the nucleus to the outermost electron. A larger atomic radius means the electron is further away, the attraction is weaker, and the ionisation energy is lower.",
+        "**Electron Shielding:** The repulsion experienced by an outer electron from electrons in inner shells. More inner shells lead to greater shielding, which reduces the effective nuclear charge felt by the outer electron, lowering the ionisation energy."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Trends in First Ionisation Energy"
+    },
+    {
+      "type": "text",
+      "content": "**Across a Period (e.g., Na to Ar):** There is a general increase in first ionisation energy. As you move across a period, the number of protons (nuclear charge) increases, pulling the electrons in the same principal shell closer to the nucleus. Although the number of electrons also increases, they are added to the same shell, so shielding does not change significantly. The dominant effect is the increased nuclear charge, leading to a stronger attraction that requires more energy to overcome. \n\n**Down a Group (e.g., Li to Cs):** The first ionisation energy decreases. Moving down a group, the nuclear charge increases, but this is outweighed by two other factors. Firstly, the number of electron shells increases, so the atomic radius becomes larger. Secondly, the increased number of inner shells provides more shielding. Both effects weaken the attraction between the nucleus and the outermost electron, making it easier to remove."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain why the first ionisation energy of magnesium (12Mg) is greater than that of sodium (11Na).",
+      "solution": "1. **Identify electron configurations:** Na is [Ne] 3s¹ and Mg is [Ne] 3s². Both elements are in Period 3.\n2. **Compare factors:** Magnesium has a greater nuclear charge (+12) than sodium (+11).\n3. **Shielding and Radius:** Both elements have their outermost electron in the n=3 shell, so shielding from inner shells is similar. The increased nuclear charge in Mg pulls the 3s subshell slightly closer, resulting in a smaller atomic radius than Na.\n4. **Conclusion:** The outer electron in magnesium experiences a stronger effective nuclear charge due to more protons in the nucleus and a smaller atomic radius. This results in a stronger electrostatic attraction to the nucleus, requiring more energy to remove the electron. Therefore, Mg has a higher first ionisation energy than Na."
+    },
+    {
+      "type": "heading",
+      "content": "Anomalies in the Trend Across a Period"
+    },
+    {
+      "type": "text",
+      "content": "The general increase across a period is not perfectly smooth. There are two characteristic 'dips' or anomalies. \n\n**Drop from Group 2 to Group 13 (e.g., Be to B):** Beryllium (1s²2s²) has a higher 1st IE than Boron (1s²2s²2p¹). This is because the outermost electron in Boron is in a 2p orbital, which is at a slightly higher energy level and further from the nucleus than the 2s orbital. The 2s electrons also provide some shielding for the 2p electron. Both factors make the 2p electron easier to remove. \n\n**Drop from Group 15 to Group 16 (e.g., N to O):** Nitrogen (1s²2s²2p³) has a higher 1st IE than Oxygen (1s²2s²2p⁴). In Nitrogen, the three 2p electrons are in separate orbitals (Hund's rule). In Oxygen, the fourth 2p electron must pair up in one of the orbitals. This pairing causes electron-electron repulsion (spin-pair repulsion), making it energetically easier to remove one of these paired electrons compared to removing an electron from a half-filled orbital in nitrogen."
+    },
+    {
+      "type": "heading",
+      "content": "Successive Ionisation Energies"
+    },
+    {
+      "type": "text",
+      "content": "Successive ionisation energies refer to the energy required to remove each subsequent electron. The second ionisation energy is the energy to remove an electron from a 1+ ion, the third from a 2+ ion, and so on. These values always increase for a given element because each electron is being removed from an increasingly positive particle, which exerts a stronger electrostatic pull. Large jumps in the values of successive ionisation energies provide powerful evidence for the existence of electron shells. A jump occurs when an electron is removed from an inner shell, which is closer to the nucleus and experiences less shielding."
+    },
+    {
+      "type": "formula",
+      "content": "2nd IE: M⁺(g) → M²⁺(g) + e⁻ \\\\ 3rd IE: M²⁺(g) → M³⁺(g) + e⁻"
+    },
+    {
+      "type": "workedExample",
+      "question": "The first five successive ionisation energies of an element X are 738, 1451, 7733, 10543, and 13630 kJ mol⁻¹. To which group of the periodic table does element X belong? Explain your answer.",
+      "solution": "1. **Analyse the data:** Look for large jumps between consecutive values.\n   - From 1st to 2nd IE: 1451 - 738 = 713 kJ mol⁻¹\n   - From 2nd to 3rd IE: 7733 - 1451 = 6282 kJ mol⁻¹\n   - From 3rd to 4th IE: 10543 - 7733 = 2810 kJ mol⁻¹\n2. **Identify the large jump:** There is a very large increase in energy required between the 2nd and 3rd ionisation energies (from 1451 to 7733 kJ mol⁻¹).\n3. **Interpret the jump:** This large jump indicates that the third electron is being removed from a principal quantum shell that is closer to the nucleus and experiences less shielding. This means the first two electrons were in the outermost (valence) shell.\n4. **Conclusion:** Since there are two valence electrons, the element X belongs to Group 2 of the periodic table."
+    },
+    {
+      "type": "examTip",
+      "content": "When explaining trends in ionisation energy, always refer to the three key factors: nuclear charge, atomic radius, and shielding. For anomalies, you must be specific about subshells (e.g., 'p-subshell is higher in energy than the s-subshell') or electron repulsion (e.g., 'spin-pair repulsion in a doubly-occupied p-orbital'). Avoid vague statements like 'it is more stable'."
+    },
+    {
+      "type": "practice",
+      "label": "Ionisation Energy",
+      "href": "/mark?subject=9701&topic=1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Video: Trends in First Ionisation Energy",
+          "href": "https://www.youtube.com/watch?v=YV5nQj9Y6dE"
+        },
+        {
+          "label": "In-depth Notes on Ionisation Energy",
+          "href": "https://www.chemguide.co.uk/atoms/properties/ies.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build an Atom",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-an-atom",
+    "hint": "First IE trends across periods and groups (9701 1.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "First IE: energy to remove 1 mol outer electrons.",
+        "embedHint": "Gas phase, 1+ ions formed."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "IE increases across period — nuclear charge.",
+        "embedHint": "Same shell, more protons."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "IE decreases down group — larger radius.",
+        "embedHint": "Outer electron farther from nucleus."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Small drops at Group 2→3 and 5→6.",
+        "embedHint": "Subshell repulsion / new shell."
+      }
+    ]
+  }
 }

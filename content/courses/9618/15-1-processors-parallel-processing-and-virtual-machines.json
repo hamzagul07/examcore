@@ -4,29 +4,220 @@
   "title": "Processors, Parallel Processing and Virtual Machines",
   "paper": "P3",
   "paperName": "Advanced Theory",
-  "status": "premium",
-  "summary": "9618 A Level — CPU architecture extensions, parallelism, and virtualisation.",
+  "status": "pilot",
+  "summary": "This lesson explores advanced processor concepts, moving beyond the simple single-core model. We investigate how pipelining and multi-core architectures enable parallel processing, comparing SIMD and MIMD systems. Finally, we delve into virtual machines, understanding how hypervisors create isolated environments on a single physical machine.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Explain pipelining in the fetch–execute cycle.",
-    "Compare multi-core and parallel architectures.",
-    "Describe virtual machines and hypervisors.",
-    "Evaluate benefits and overheads of virtualisation."
+    "Explain the concept of pipelining and its impact on instruction throughput.",
+    "Compare and contrast parallel processing architectures, including SIMD and MIMD.",
+    "Describe the purpose and function of a virtual machine and its hypervisor.",
+    "Analyse the advantages and disadvantages of using virtual machines in various scenarios."
   ],
   "simpleExplanation": {
-    "title": "More throughput from one machine",
-    "summary": "Pipelining overlaps instruction stages. Multiple cores run threads in parallel. VMs run guest OSes on shared hardware.",
+    "title": "Beyond the Single Core",
+    "summary": "Modern computing demands more speed than a single processor core can offer. We achieve this through parallelism, like an assembly line (pipelining) or a team of workers (multi-core), and through virtualization, which creates multiple 'pretend' computers on one physical machine.",
+    "analogy": "Imagine a single chef trying to prepare a three-course meal alone; this is a basic processor. Pipelining is like the chef starting to chop vegetables for the main course while the starter is already in the oven. A multi-core processor is like having multiple chefs in the kitchen, each working on a different dish simultaneously. A virtual machine is like the head chef renting out sections of the kitchen to other 'pop-up' restaurants, each with their own menu and staff, all using the same physical space and equipment but kept separate.",
     "steps": [
-      "Pipeline: fetch, decode, execute overlap.",
-      "Multi-core: independent ALUs share bus.",
-      "Hypervisor manages VM resources.",
-      "SIMD: same operation on many data items."
+      "The Fetch-Decode-Execute cycle is the fundamental operation of a CPU core. Pipelining improves efficiency by overlapping these stages for different instructions, like an assembly line.",
+      "A multi-core processor contains multiple independent CPUs (cores) on one chip. This allows for true parallel processing, where multiple instruction streams (threads) are executed simultaneously.",
+      "A virtual machine (VM) is a software emulation of a computer, running a 'guest' OS. It is managed by a hypervisor, which sits between the VM and the 'host' hardware, allocating and isolating resources.",
+      "Parallel processing architectures are classified by their instruction and data streams. SIMD (Single Instruction, Multiple Data) is used in GPUs for graphics, while MIMD (Multiple Instruction, Multiple Data) is used in multi-core CPUs for general tasks."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is pipelining?",
+      "back": "A technique used in processor design where instruction processing is broken down into stages (e.g., Fetch, Decode, Execute). Multiple instructions can be in different stages of completion simultaneously, increasing instruction throughput."
+    },
+    {
+      "front": "What is a structural hazard in pipelining?",
+      "back": "A conflict that occurs when two or more instructions in the pipeline require the same hardware resource at the same time. For example, two instructions trying to access memory simultaneously."
+    },
+    {
+      "front": "What is a data hazard in pipelining?",
+      "back": "A conflict that occurs when an instruction depends on the result of a previous instruction that is not yet complete. For example, `ADD R1, R2, R3` followed by `SUB R4, R1, R5`."
+    },
+    {
+      "front": "What is a control hazard (or branch hazard)?",
+      "back": "A conflict that occurs when the pipeline fetches and starts executing the next sequential instruction, but a branch instruction (like a jump or conditional loop) changes the program counter to a different location."
+    },
+    {
+      "front": "Define a multi-core processor.",
+      "back": "A single integrated circuit (chip) that contains two or more independent processing units, called 'cores'. Each core can execute its own instructions, enabling true parallel processing."
+    },
+    {
+      "front": "Distinguish between SIMD and MIMD.",
+      "back": "SIMD (Single Instruction, Multiple Data) applies one operation to many data items at once (e.g., GPU). MIMD (Multiple Instruction, Multiple Data) allows different cores to execute different instructions on different data simultaneously (e.g., multi-core CPU)."
+    },
+    {
+      "front": "What is a massively parallel computer?",
+      "back": "A computer with a very large number of processors (often hundreds or thousands) that work together in parallel. They are typically MIMD or SIMD and are used for high-performance computing tasks like scientific simulations."
+    },
+    {
+      "front": "What is a Virtual Machine (VM)?",
+      "back": "A software-based emulation of a physical computer system. It runs on a host machine, has its own guest operating system, and is managed by a hypervisor."
+    },
+    {
+      "front": "What is a hypervisor?",
+      "back": "Software, firmware, or hardware that creates and manages virtual machines. It allocates and manages physical hardware resources (CPU, RAM, storage) among the various guest VMs."
+    },
+    {
+      "front": "What is the difference between a Type 1 and Type 2 hypervisor?",
+      "back": "A Type 1 (bare-metal) hypervisor runs directly on the host's hardware. A Type 2 (hosted) hypervisor runs as a software application on top of a conventional host operating system."
+    },
+    {
+      "front": "What is a key advantage of using a VM for software development?",
+      "back": "Sandboxing. A VM provides an isolated environment, so developers can test software, including potentially unstable or malicious code, without affecting the host system or other VMs."
+    },
+    {
+      "front": "What is a primary disadvantage of virtualization?",
+      "back": "Performance overhead. The hypervisor itself consumes resources (CPU, RAM), and the translation layer between the guest OS and physical hardware can introduce latency, making a VM slightly slower than a native system."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between multi-threading and multi-core processing?",
+      "a": "Multi-core processing uses hardware (multiple physical cores) to run multiple threads truly simultaneously. Multi-threading is a software concept where a process is broken into smaller threads that can be managed by the OS. On a single-core processor, these threads are not truly parallel; the CPU just switches between them very quickly (concurrent execution). On a multi-core processor, these threads can be assigned to different cores to run in true parallel."
+    },
+    {
+      "q": "Is a virtual machine always slower than a physical machine?",
+      "a": "Generally, yes, but the difference can be very small. There is always some performance overhead because the hypervisor needs CPU and RAM to run, and it has to translate requests from the guest OS to the physical hardware. For modern Type 1 hypervisors with hardware-assisted virtualization, this overhead can be minimal (e.g., 1-5%) for many workloads, making VMs a very practical solution."
+    },
+    {
+      "q": "Why would anyone use SIMD if MIMD is more flexible?",
+      "a": "Because for certain tasks, SIMD is vastly more efficient and powerful. Think of graphics rendering or scientific calculations on large datasets. These tasks involve performing the exact same operation on millions of data points. A SIMD architecture, like a GPU with thousands of simple cores, can do this in parallel far faster and more power-efficiently than a general-purpose MIMD CPU with a few complex cores."
+    },
+    {
+      "q": "Can you have pipelining inside each core of a multi-core processor?",
+      "a": "Yes, absolutely. In fact, this is standard practice in all modern processors. Each individual core in a multi-core CPU has its own sophisticated pipeline to maximise its own instruction throughput. Multi-core architecture then provides another layer of parallelism on top of this."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Parallel processing** (15.1) extends **4.1 CPU architecture**. Use the **interactive logic builder** to visualise multi-stage processing." },
-    { "type": "practice", "label": "Mark a parallel processing question", "href": "/mark?subject=9618&topic=15.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "For decades, the primary way to increase computer speed was to increase the clock speed of a single processor. However, we've reached physical limits due to heat and power consumption. This lesson explores the clever techniques computer architects use to achieve greater performance: doing more things at once. We'll look at how processors use an 'assembly line' approach called pipelining, how multiple 'brains' (cores) work together, and how we can create entire virtual computers within a single physical machine."
+    },
+    {
+      "type": "heading",
+      "content": "Pipelining: The Processor's Assembly Line"
+    },
+    {
+      "type": "text",
+      "content": "Pipelining is a form of instruction-level parallelism. Instead of waiting for one instruction to complete all its stages (Fetch, Decode, Execute, Memory Access, Write Back) before starting the next, pipelining overlaps these stages. While one instruction is being executed, the next one is being decoded, and the one after that is being fetched. This dramatically increases the instruction throughput – the number of instructions completed per unit of time – even though the time to complete a single instruction (latency) might slightly increase due to pipeline management overhead."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Benefit: Increases instruction throughput, leading to faster program execution for most code.",
+        "Drawback: Does not decrease the latency of a single instruction.",
+        "Challenge: Pipeline 'hazards' (structural, data, control) can disrupt the flow and require the pipeline to stall or be flushed, reducing efficiency."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A non-pipelined processor takes 8 ns to execute one instruction. A functionally equivalent 4-stage pipelined processor is designed. Due to latch overhead, the clock cycle time for the pipelined processor is 2.5 ns. Calculate the time saved by using the pipelined processor to execute 200 instructions.",
+      "solution": "To solve this, we calculate the total time for each processor and then find the difference.\n\n**1. Non-Pipelined Processor Time:**\nTotal Time = Number of instructions × Time per instruction\nTotal Time = 200 × 8 ns = 1600 ns\n\n**2. Pipelined Processor Time:**\nThe formula for a pipelined processor is: Time = (k + n - 1) × T_cycle\nWhere k = number of stages, n = number of instructions, T_cycle = clock cycle time.\nTime = (4 + 200 - 1) × 2.5 ns\nTime = 203 × 2.5 ns = 507.5 ns\n\n**3. Time Saved:**\nTime Saved = Time_non-pipelined - Time_pipelined\nTime Saved = 1600 ns - 507.5 ns = 1092.5 ns\n\n**Answer:** The time saved is 1092.5 ns."
+    },
+    {
+      "type": "heading",
+      "content": "Multi-Core and Parallel Processing Architectures"
+    },
+    {
+      "type": "text",
+      "content": "While pipelining speeds up a single stream of instructions, a multi-core processor enables true parallel execution of multiple instruction streams (threads). It integrates two or more independent cores onto a single chip. To categorise how these parallel systems work, we use Flynn's Taxonomy, which leads to two key architectures you need to know: SIMD and MIMD."
+    },
+    {
+      "type": "text",
+      "content": "**SIMD (Single Instruction, Multiple Data):** This architecture executes a single instruction on multiple different data items simultaneously. It's highly efficient for tasks that are 'data-parallel', such as vector processing or graphics rendering. For example, increasing the brightness of every pixel in an image involves applying the same 'add brightness' instruction to millions of different pixel values. Graphics Processing Units (GPUs) are a classic example of SIMD architecture.\n\n**MIMD (Multiple Instruction, Multiple Data):** This is a more general and flexible form of parallelism. Each processor or core can execute a different instruction on different data. Modern multi-core CPUs in laptops and servers are MIMD systems. They can run the operating system on one core, a web browser on another, and a game on the remaining cores, all at the same time."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to compare parallel systems, always use the terms SIMD and MIMD. Be ready to give a concrete example for each: SIMD is exemplified by GPUs for graphics, while MIMD is exemplified by multi-core CPUs for general-purpose computing. Remember that SIMD offers massive parallelism for specific tasks, whereas MIMD provides flexibility for diverse tasks."
+    },
+    {
+      "type": "heading",
+      "content": "Virtual Machines: A Computer within a Computer"
+    },
+    {
+      "type": "text",
+      "content": "A Virtual Machine (VM) is a complete, isolated software emulation of a computer system. It runs on a physical 'host' machine but behaves like an independent 'guest' computer with its own operating system (Guest OS) and applications. The magic behind this is the **hypervisor**, or Virtual Machine Monitor (VMM). The hypervisor is a layer of software that sits between the physical hardware and the VMs, managing the allocation of resources like CPU time, RAM, and storage to each VM, ensuring they remain isolated from one another."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantages:** Server consolidation (running many servers on one physical box), sandboxing (testing code in a safe, isolated environment), running legacy or different operating systems, and easy migration/backup of entire systems.",
+        "**Disadvantages:** Performance overhead from the hypervisor, potential for resource contention if VMs are over-allocated, and increased complexity in system management."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A cloud server has 128 GB of RAM, 16 CPU cores, and 4 TB of disk space. A client wishes to provision two types of VMs:\n- **Type A (Web Server):** 2 vCPUs, 8 GB RAM, 50 GB disk\n- **Type B (Database):** 4 vCPUs, 32 GB RAM, 200 GB disk\n\nWhat is the maximum number of Type A VMs that can be run if four Type B VMs are already running? Assume resources cannot be over-provisioned.",
+      "solution": "First, calculate the resources consumed by the existing Type B VMs.\n\n**1. Resources used by 4 × Type B VMs:**\n- CPU Cores: 4 VMs × 4 vCPUs/VM = 16 cores\n- RAM: 4 VMs × 32 GB/VM = 128 GB\n- Disk: 4 VMs × 200 GB/VM = 800 GB\n\n**2. Calculate remaining resources on the host server:**\n- Remaining CPU Cores: 16 (host) - 16 (used) = 0 cores\n- Remaining RAM: 128 GB (host) - 128 GB (used) = 0 GB\n- Remaining Disk: 4 TB (4000 GB) - 800 GB = 3200 GB\n\n**3. Determine how many Type A VMs can be provisioned:**\nWe need to check the constraints for each resource for one Type A VM (2 vCPUs, 8 GB RAM, 50 GB disk).\n- Based on CPU: There are 0 cores left, so we cannot add any VMs that require CPU cores.\n- Based on RAM: There is 0 GB RAM left, so we cannot add any VMs that require RAM.\n\n**Answer:** Since both CPU and RAM resources are fully consumed by the four Type B VMs, the maximum number of additional Type A VMs that can be run is **0**."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Exam Questions",
+      "href": "/mark?subject=9618&topic=15.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IBM Article: What is a Virtual Machine?",
+          "href": "https://www.ibm.com/cloud/learn/virtual-machine"
+        },
+        {
+          "label": "Intel Article: Multi-Core Processor Architecture",
+          "href": "https://www.intel.com/content/www/us/en/gaming/resources/multi-core-processor-architecture.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Parallel processing",
+    "embedUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "launchUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "hint": "Pipelining, multi-core, and virtual machines (9618 15.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Fetch–decode–execute cycle per core.",
+        "embedHint": "Pipelining overlaps stages."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Multi-core: true parallel threads.",
+        "embedHint": "Shared memory vs distributed."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Virtual machine: guest OS on hypervisor.",
+        "embedHint": "Resource isolation and portability."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Parallel processing: SIMD vs MIMD.",
+        "embedHint": "GPU vs multi-core CPU."
+      }
+    ]
+  }
 }

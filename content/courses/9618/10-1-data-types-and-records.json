@@ -4,39 +4,182 @@
   "title": "Data Types and Records",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS — INTEGER, REAL, STRING, BOOLEAN, DATE, and RECORD types in pseudocode and exam questions.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces fundamental data types and explains how to combine them into custom composite types called records. It covers the declaration, creation, and manipulation of records using pseudocode, a core skill for Paper 2.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "List standard data types and their uses.",
-    "Declare and access record fields.",
-    "Choose appropriate types for given data.",
-    "Explain type checking and validation links."
+    "Select and use appropriate data types for a given problem.",
+    "Define and use a record structure (composite data type).",
+    "Declare variables of a record type and access their fields.",
+    "Understand the use of arrays of records to store structured data."
   ],
   "simpleExplanation": {
-    "title": "Types and structured data",
-    "summary": "Data types define what values a variable can hold. Records group related fields under one identifier.",
+    "title": "Building with Data Blocks",
+    "summary": "Data types are the basic building blocks of programming, like different kinds of Lego bricks. A record is a custom structure you build by combining these different bricks to represent a more complex object.",
+    "analogy": "Think of a person's contact details on your phone. The entire contact is a single 'record'. This record is made up of smaller, different pieces of information: a name (text), a phone number (which we'd store as text), an age (a number), and perhaps a 'favourite' status (a true/false toggle). Each piece has its own specific 'type', and the record groups them all together under one name.",
     "steps": [
-      "INTEGER whole numbers; REAL decimals; STRING text.",
-      "BOOLEAN TRUE/FALSE; DATE for calendar dates.",
-      "RECORD Student: ID, Name, DOB — dot notation Student.Name.",
-      "Type choice affects memory and validation rules."
+      "Identify the individual pieces of data needed to represent a real-world object, like a 'Book'.",
+      "For each piece, choose the most suitable basic data type (e.g., String for the title, Integer for the year).",
+      "Define a new 'record' type that groups these fields and their chosen data types together under a single name, like 'TBook'.",
+      "Declare variables of this new record type to create and manage specific instances, such as 'ThisBook' or an array of books."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a data type?",
+      "back": "A classification that specifies which type of value a variable can hold and what type of operations can be applied to it without causing an error. For example, INTEGER, REAL, STRING."
+    },
+    {
+      "front": "What is a primitive data type?",
+      "back": "A basic data type provided by the programming language as a fundamental building block. Examples include INTEGER, REAL, CHAR, BOOLEAN."
+    },
+    {
+      "front": "What is a composite data type?",
+      "back": "A data type constructed from primitive data types and other composite types. A Record is a key example."
+    },
+    {
+      "front": "Define the INTEGER data type.",
+      "back": "Represents positive or negative whole numbers, including zero. Example: -5, 0, 42."
+    },
+    {
+      "front": "Define the REAL (or FLOAT) data type.",
+      "back": "Represents numbers with a fractional part, using a decimal point. Example: 3.14, -0.001, 99.0."
+    },
+    {
+      "front": "Define the CHAR data type.",
+      "back": "Represents a single character, such as a letter, a digit, or a symbol. Example: 'A', '7', '$'."
+    },
+    {
+      "front": "Define the STRING data type.",
+      "back": "Represents a sequence of zero or more characters. Example: \"Hello World\", \"Cambridge\", \"9618\"."
+    },
+    {
+      "front": "Define the BOOLEAN data type.",
+      "back": "Represents one of two values, typically TRUE or FALSE. Used for logical operations."
+    },
+    {
+      "front": "What is a Record?",
+      "back": "A composite data type that groups together a collection of related data items (fields), which can be of different data types, under a single name."
+    },
+    {
+      "front": "What is the pseudocode keyword for defining a new record structure?",
+      "back": "TYPE. The structure is defined using `TYPE <Identifier> = RECORD ... ENDRECORD`."
+    },
+    {
+      "front": "How do you access a field within a record variable?",
+      "back": "Using dot notation. For a variable `MyCar` of type `TCar`, you would access the `Model` field with `MyCar.Model`."
+    },
+    {
+      "front": "Common Trap: Why is it often better to store a phone number as a STRING rather than an INTEGER?",
+      "back": "Phone numbers can start with '0', which would be lost if stored as an integer. They may also contain symbols like '+' or spaces. You also don't perform mathematical calculations on them."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why use a record instead of just using separate variables?",
+      "a": "While you could use separate variables (e.g., `Name1`, `Name2`, `ID1`, `ID2`), records provide much better organisation. A record groups all related data for a single entity, making the code cleaner and easier to understand. It also allows you to do things like pass an entire 'student' object to a procedure with a single parameter, or create an array of 'students'."
+    },
+    {
+      "q": "What is the difference between a record and an array?",
+      "a": "An array is a collection of elements of the *same* data type, accessed by a numerical index. A record is a collection of fields of *different* data types, accessed by name using dot notation. They solve different problems but are often used together, for example, an array of records."
+    },
+    {
+      "q": "Is `TYPE` the same as `DECLARE`?",
+      "a": "No, they have distinct purposes. `TYPE` is used to define a blueprint or a template for a new data type (like a record). It doesn't create any variables or allocate memory. `DECLARE` is used to create an actual variable of a specific type (either a primitive type or a custom type you defined) and allocates memory for it."
+    },
+    {
+      "q": "Can a record contain another record?",
+      "a": "Yes, absolutely. This is called a nested record and is a powerful way to model complex data. For example, a `TStudent` record could contain a field `Address` which is itself a record of type `TAddress` (containing Street, City, Postcode)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Data types and records** (10.1) feed into **arrays** (10.2) and **files** (10.3). Use **Cambridge pseudocode** syntax from the syllabus booklet."
+      "content": "Welcome to the world of data! In programming, everything revolves around data. To write effective and efficient programs, we must first understand how to represent information accurately. This lesson explores the fundamental building blocks—data types—and teaches you how to construct more complex, custom structures called records. Mastering this is essential for organising data in any significant programming task."
+    },
+    {
+      "type": "heading",
+      "content": "Primitive Data Types: The Basics"
+    },
+    {
+      "type": "text",
+      "content": "Think of primitive data types as the atoms of information in your program. They are the simplest, most fundamental units provided by a programming language. Every piece of data, from a user's age to the price of an item, must be assigned a type so the computer knows how to store it and what operations are permissible."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**INTEGER**: Whole numbers, e.g., `10`, `-5`, `2024`.",
+        "**REAL**: Numbers with a decimal part, e.g., `19.99`, `3.14159`, `-0.5`.",
+        "**CHAR**: A single character, e.g., `'A'`, `'%'`, `'5'`. Note the single quotes.",
+        "**STRING**: A sequence of characters, e.g., `\"Cambridge\"`, `\"Computer Science 9618\"`. Note the double quotes.",
+        "**BOOLEAN**: Logical values, can only be `TRUE` or `FALSE`."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners will often test your ability to choose the *most appropriate* data type. Ask yourself: Will I perform calculations on this number? Does it need to store a leading zero? For example, a student ID like '00123' should be a STRING, not an INTEGER, to preserve the leading zeros."
+    },
+    {
+      "type": "heading",
+      "content": "Composite Data Types: Introducing the Record"
+    },
+    {
+      "type": "text",
+      "content": "Often, we need to handle data that is more complex than a single number or string. A 'student', for example, has a name, an ID number, and several grades. Instead of juggling many separate variables (`StudentName`, `StudentID`, `StudentGrade`), we can group them into a single, logical unit called a record. A record is a composite data type you define yourself."
+    },
+    {
+      "type": "formula",
+      "content": "TYPE TStudent = RECORD\n    Name : STRING\n    StudentID : INTEGER\n    DateOfBirth : DATE\n    IsFeePaid : BOOLEAN\nENDRECORD"
+    },
+    {
+      "type": "text",
+      "content": "In this Cambridge-style pseudocode, we use the `TYPE` keyword to define a new data type called `TStudent`. This new type acts as a template, containing fields like `Name` and `StudentID`, each with its own primitive data type. The `T` prefix is a common convention to denote a 'Type', which improves code readability."
+    },
+    {
+      "type": "workedExample",
+      "question": "A library system needs to store details for each book. A book has a title, author, ISBN (International Standard Book Number), price, and publication year. Define a suitable record type in pseudocode to represent a book.",
+      "solution": "First, we identify the fields and their most appropriate data types:\n- Title: Sequence of characters -> STRING\n- Author: Sequence of characters -> STRING\n- ISBN: Contains digits and sometimes hyphens, no calculations -> STRING\n- Price: Number with a decimal part -> REAL\n- PublicationYear: Whole number -> INTEGER\n\n**Pseudocode:**\n```pseudocode\nTYPE TBook = RECORD\n    Title : STRING\n    Author : STRING\n    ISBN : STRING\n    Price : REAL\n    PublicationYear : INTEGER\nENDRECORD\n```\n**Marking points:**\n- Correct use of `TYPE...ENDRECORD` syntax. (1 mark)\n- At least three correctly named fields with appropriate data types. (1 mark)\n- All five fields correctly named with appropriate data types (e.g. ISBN as STRING). (1 mark)"
+    },
+    {
+      "type": "heading",
+      "content": "Declaring and Using Record Variables"
+    },
+    {
+      "type": "text",
+      "content": "Defining a record type with `TYPE` is like creating a blueprint. To actually store data, you need to build an object from that blueprint. This is done by declaring a variable of your new record type using the `DECLARE` keyword. Once you have a record variable, you can access its individual fields using dot notation (`.`)."
+    },
+    {
+      "type": "formula",
+      "content": "// To declare a single record variable\nDECLARE MyBook : TBook\n\n// To assign a value to a field\nMyBook.Title <- \"The Pragmatic Programmer\"\nMyBook.Price <- 25.50\n\n// To access and output a field's value\nOUTPUT MyBook.Author"
+    },
+    {
+      "type": "workedExample",
+      "question": "A car dealership uses a system to manage its stock. A `TCar` record type has been defined as follows:\n```pseudocode\nTYPE TCar = RECORD\n    Make : STRING\n    Model : STRING\n    Registration : STRING\n    Year : INTEGER\n    Price : REAL\nENDRECORD\n```\n1. Declare an array named `CarStock` that can hold 50 cars.\n2. Write the pseudocode to set the price of the 10th car in the array to 15000.00.",
+      "solution": "1. To declare an array of records, we specify the array bounds and the record type.\n```pseudocode\nDECLARE CarStock : ARRAY[1:50] OF TCar\n```\n**Marking points:** Correct identifier `CarStock`, correct use of `ARRAY` with bounds `[1:50]`, and correct use of `OF TCar`. (1 mark)\n\n2. To access an element in the array, we use its index. To access a field within that element, we use dot notation.\n```pseudocode\nCarStock[10].Price <- 15000.00\n```\n**Marking points:** Correctly identifies the 10th car with `CarStock[10]` (1 mark). Correctly accesses the `Price` field using dot notation and assigns the value (1 mark)."
+    },
+    {
+      "type": "examTip",
+      "content": "Arrays of records are extremely common in exams. Be very comfortable with the syntax `ArrayName[index].FieldName`. A common mistake is to write `ArrayName.FieldName[index]`, which is incorrect. Always access the specific record in the array first, then access its field."
     },
     {
       "type": "practice",
-      "label": "Mark a data types question",
+      "label": "Practice Data Types & Records",
       "href": "/mark?subject=9618&topic=10.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "Syllabus Section 10.1",
+          "href": "https://www.cambridgeinternational.org/Images/556347-2022-2024-syllabus.pdf"
+        },
+        {
+          "label": "Pseudocode Guide",
+          "href": "https://www.cambridgeinternational.org/Images/414105-pseudocode-guide-for-teachers.pdf"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

@@ -4,29 +4,186 @@
   "title": "Multimedia - Graphics",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 — bitmap vs vector graphics, resolution, and colour depth.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "An introduction to digital graphics, covering the fundamental differences between bitmap and vector images. This lesson details how bitmap images are stored using pixels, resolution, and colour depth, and provides the methods to calculate image file sizes.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Distinguish bitmap and vector graphics.",
-    "Explain resolution and colour depth.",
-    "Calculate file size for bitmap images.",
-    "Select appropriate graphic type for use cases."
+    "Differentiate between bitmap and vector graphics, including their respective use cases.",
+    "Explain the concepts of pixel, resolution, and colour depth for bitmap images.",
+    "Calculate the file size of a bitmap image in bits, bytes, and larger units.",
+    "Understand the role of metadata in an image file."
   ],
   "simpleExplanation": {
-    "title": "Pixels vs paths",
-    "summary": "Bitmap images store pixel colour data; vector images store mathematical descriptions of shapes that scale cleanly.",
+    "title": "Pixels vs. Paths",
+    "summary": "Digital images are created in two main ways: as a grid of coloured dots (bitmap) or as a set of mathematical instructions (vector). Understanding this difference is key to knowing why some images get blurry when enlarged and others don't.",
+    "analogy": "Imagine creating a picture. You could use mosaic tiles, where each tile is a single colour. To make the picture bigger, you'd need more tiles, and if you just stretched the original, it would look blocky. This is a bitmap image. Alternatively, you could write down instructions like 'draw a red circle here, a blue square there'. To make this picture bigger, you just change the instructions to 'draw a LARGER red circle', and it remains perfectly sharp. This is a vector image.",
     "steps": [
-      "Bitmap: JPG, PNG — photos.",
-      "Vector: SVG — logos, diagrams.",
-      "File size ∝ width × height × colour depth.",
-      "Metadata describes image properties."
+      "A bitmap image is a grid of tiny squares called pixels.",
+      "Each pixel is assigned a specific colour, determined by the image's colour depth (number of bits per pixel).",
+      "The image file size is calculated by multiplying the number of pixels (width x height) by the colour depth.",
+      "Vector graphics, in contrast, store images as mathematical equations for shapes, lines, and curves, not pixels."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a bitmap image?",
+      "back": "An image stored as a grid of individual picture elements (pixels), where each pixel has a specific colour value. Also known as a raster image."
+    },
+    {
+      "front": "What is a vector image?",
+      "back": "An image stored as a set of mathematical objects (lines, curves, shapes) and their properties (e.g., colour, fill). It is defined by equations rather than pixels."
+    },
+    {
+      "front": "Define 'pixel'.",
+      "back": "Short for 'picture element', it is the smallest addressable element in a bitmap image. It is a single coloured dot in the image grid."
+    },
+    {
+      "front": "What is 'image resolution'?",
+      "back": "The dimensions of a bitmap image, expressed as the number of pixels in width and height (e.g., 1920 x 1080 pixels)."
+    },
+    {
+      "front": "What is 'colour depth' (or bit depth)?",
+      "back": "The number of bits used to represent the colour of a single pixel. A higher colour depth allows for a greater number of distinct colours."
+    },
+    {
+      "front": "How many colours can be represented by a colour depth of 8 bits?",
+      "back": "$2^8 = 256$ colours."
+    },
+    {
+      "front": "What is the main advantage of vector graphics over bitmap graphics?",
+      "back": "Scalability. Vector graphics can be resized to any dimension without any loss of quality or sharpness, as they are recalculated from mathematical formulae."
+    },
+    {
+      "front": "What is a major disadvantage of bitmap graphics?",
+      "back": "They suffer from pixelation (appearing blocky or jagged) when scaled up beyond their original resolution."
+    },
+    {
+      "front": "What is 'metadata' in an image file?",
+      "back": "Data about the data. It includes information like image dimensions, colour depth, creation date, camera settings (for photos), and compression type, but not the pixel data itself."
+    },
+    {
+      "front": "When would you use a bitmap image instead of a vector image?",
+      "back": "For complex, photorealistic images with continuous tones and subtle colour variations, such as photographs. Editing individual pixels is also straightforward."
+    },
+    {
+      "front": "When would you use a vector image instead of a bitmap image?",
+      "back": "For logos, icons, illustrations, and diagrams that need to be scaled to various sizes (e.g., for websites, print, and billboards) while maintaining crisp edges."
+    },
+    {
+      "front": "How do you calculate the file size of an uncompressed bitmap image in bits?",
+      "back": "File Size (bits) = Image Width (pixels) × Image Height (pixels) × Colour Depth (bits)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is screen resolution the same as image resolution?",
+      "a": "Not necessarily. Image resolution is the number of pixels in the image file itself (e.g., 4000x3000). Screen resolution is the number of pixels your monitor can display (e.g., 1920x1080). If you view a high-resolution image on a low-resolution screen, the computer must scale it down to fit."
+    },
+    {
+      "q": "Why do my calculations sometimes give a slightly different file size than the actual file on my computer?",
+      "a": "The formula calculates the size of the raw, uncompressed pixel data. Most image file formats (like JPEG, PNG, GIF) use compression algorithms to reduce the file size. They also contain metadata (data about the image), which adds a small amount to the total size."
+    },
+    {
+      "q": "What's the difference between KB and KiB?",
+      "a": "Technically, a kilobyte (KB) is 1000 bytes, and a kibibyte (KiB) is 1024 bytes. Historically, 'KB' was used for 1024 bytes in computing. For the 9618 syllabus, using the 1024 convention for KB, MB, GB is standard practice and generally accepted unless the question specifies using powers of 10."
+    },
+    {
+      "q": "Can you convert a bitmap to a vector?",
+      "a": "Yes, through a process called 'tracing' or 'vectorisation'. Software attempts to identify edges and shapes in the bitmap and convert them into mathematical paths. The success of this process varies greatly depending on the complexity of the original image. Converting a vector to a bitmap (rasterisation) is much simpler."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Multimedia graphics** (1.2.1) links **1.1 data representation** to **1.3 compression**. Practise **file size calculations**." },
-    { "type": "practice", "label": "Mark a graphics question", "href": "/mark?subject=9618&topic=1.2.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "From the icons on your phone to high-resolution photographs, digital graphics are everywhere. In computer science, we primarily deal with two types of graphics: bitmap and vector. This lesson explores the structure of these image types, how they are stored, and the trade-offs between them, with a focus on the calculations required for your exam."
+    },
+    {
+      "type": "heading",
+      "content": "Bitmap (Raster) Graphics: Painting with Pixels"
+    },
+    {
+      "type": "text",
+      "content": "Imagine a vast grid. Each square in this grid is a pixel, and we can colour it in. This is the fundamental principle of a bitmap image. These images are composed of a fixed number of pixels, and the quality of the image is directly tied to the density of these pixels (resolution) and the variety of colours available for each one (colour depth)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Pixel:** The smallest unit of a bitmap image. Think of it as a single dot of colour.",
+        "**Resolution:** The total number of pixels, usually expressed as width × height (e.g., 1920 × 1080). Higher resolution means more detail.",
+        "**Colour Depth:** The number of bits used to store the colour of each pixel. More bits mean more possible colours, leading to a more realistic image but a larger file size.",
+        "**Common Colour Depths:** 1-bit (monochrome), 8-bit (256 colours), 16-bit (65,536 colours), and 24-bit 'True Colour' (approx. 16.7 million colours)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Bitmap Image File Size"
+    },
+    {
+      "type": "text",
+      "content": "For your exam, you must be able to calculate the storage requirement for an uncompressed bitmap image. This calculation depends directly on the image's dimensions and its colour depth. The base unit for this calculation is bits, which can then be converted into bytes, kilobytes, megabytes, etc."
+    },
+    {
+      "type": "formula",
+      "content": "File Size (in bits) = Image Width (pixels) \\times Image Height (pixels) \\times Colour Depth (bits)"
+    },
+    {
+      "type": "text",
+      "content": "Remember the standard conversions for file storage units: 8 bits = 1 byte, 1024 bytes = 1 kilobyte (KB), 1024 KB = 1 megabyte (MB). While some contexts use 1000, for Cambridge A-Level, using powers of 2 (1024) is the standard convention unless specified otherwise."
+    },
+    {
+      "type": "workedExample",
+      "question": "An uncompressed bitmap image has dimensions of 1024 x 768 pixels and a colour depth of 16 bits. Calculate the file size in megabytes (MB). Show your working.",
+      "solution": "1. **Calculate total pixels:**\n   $1024 \\times 768 = 786,432$ pixels\n\n2. **Calculate total bits:**\n   Total pixels $\\times$ Colour Depth\n   $786,432 \\times 16 = 12,582,912$ bits\n\n3. **Convert bits to bytes:**\n   Divide by 8\n   $12,582,912 \\div 8 = 1,572,864$ bytes\n\n4. **Convert bytes to kilobytes (KB):**\n   Divide by 1024\n   $1,572,864 \\div 1024 = 1,536$ KB\n\n5. **Convert kilobytes to megabytes (MB):**\n   Divide by 1024\n   $1,536 \\div 1024 = 1.5$ MB\n\n**Answer:** 1.5 MB"
+    },
+    {
+      "type": "examTip",
+      "content": "In calculation questions, always show your working step-by-step, as marks are often awarded for intermediate steps even if the final answer is incorrect. State the formula you are using. Pay close attention to the units required in the answer (e.g., bits, bytes, KB, MiB) and show your conversions clearly."
+    },
+    {
+      "type": "heading",
+      "content": "Vector Graphics: The Power of Mathematics"
+    },
+    {
+      "type": "text",
+      "content": "Instead of storing a grid of pixels, vector graphics store a list of instructions. These instructions define objects like lines, curves, circles, and polygons, along with their attributes such as line colour, fill colour, and thickness. When you view a vector image, your computer reads these instructions and renders the image on the screen. This is why they are perfectly scalable."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Scalability:** The key advantage. Can be scaled infinitely without loss of quality.",
+        "**File Size:** Generally smaller than bitmaps for simple images like logos, as only the mathematical definitions are stored.",
+        "**Use Cases:** Ideal for logos, typography, diagrams, and illustrations where crisp lines are essential.",
+        "**Limitations:** Not suitable for photorealistic images due to the complexity of representing continuous tones and textures with mathematical objects."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An image is stored with a colour depth that allows for 4096 different colours. What is the colour depth in bits?",
+      "solution": "1. **Understand the relationship:** The number of colours is determined by $2^{\\text{colour depth}}$. We need to find the colour depth (let's call it $d$).\n\n2. **Set up the equation:**\n   $2^d = 4096$\n\n3. **Solve for d:** We need to find the power to which 2 must be raised to get 4096. This is the logarithm base 2.\n   $d = \\log_2(4096)$\n\n4. **Calculation:** You can solve this by recognising powers of 2:\n   $2^{10} = 1024$\n   $2^{11} = 2048$\n   $2^{12} = 4096$\n\n**Answer:** The colour depth is 12 bits."
+    },
+    {
+      "type": "examTip",
+      "content": "Be prepared to compare and contrast bitmap and vector graphics. A common exam question asks you to recommend a graphic type for a given scenario (e.g., a company logo vs. a holiday photograph) and justify your choice based on properties like scalability, file size, and editability."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Graphics Questions",
+      "href": "/mark?subject=9618&topic=1.2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Visual explanation of bitmap vs vector",
+          "href": "https://www.youtube.com/watch?v=10E2FSow3so"
+        },
+        {
+          "label": "Interactive colour depth demonstrator",
+          "href": "https://pinetools.com/change-color-depth-image"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

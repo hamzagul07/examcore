@@ -4,39 +4,233 @@
   "title": "Discrete random variables",
   "paper": "P5",
   "paperName": "Probability & Statistics 1",
-  "status": "premium",
-  "summary": "9709 S1 — probability distributions, E(X), Var(X), and linear transforms with GeoGebra.",
+  "status": "pilot",
+  "summary": "This lesson introduces discrete random variables, which take on countable numerical values based on chance. We will learn how to define their probability distributions and calculate two key measures: the expectation (mean) E(X) and the variance Var(X), which describe the variable's central tendency and spread. We will also explore how these measures change under linear transformations.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Construct probability distribution tables.",
-    "Calculate expectation and variance.",
-    "Apply rules for E(aX + b) and Var(aX + b).",
-    "Solve problems involving discrete distributions."
+    "Understand and define a discrete random variable and its probability distribution.",
+    "Calculate and interpret the expectation E(X) of a discrete random variable.",
+    "Calculate the variance Var(X) and standard deviation of a discrete random variable.",
+    "Apply the rules for expectation and variance to a linear transformation of a random variable, aX + b."
   ],
   "simpleExplanation": {
-    "title": "Random X with a table",
-    "summary": "List all values of X with probabilities summing to 1. Expectation is the probability-weighted mean.",
+    "title": "The Blueprint of Chance",
+    "summary": "A discrete random variable is just a number that changes by chance, like the score on a die. We can map out its probabilities and calculate its average outcome (expectation) and how spread out the results are (variance).",
+    "analogy": "Imagine a game where you're paid based on a die roll. A discrete random variable is the 'score' you get. The probability distribution is the 'rulebook' telling you how likely each score is. The expectation is the average amount of money you'd expect to win per game if you played thousands of times.",
     "steps": [
-      "ΣP(X = x) = 1 — check totals.",
-      "E(X) = Σx·P(X = x).",
-      "Var(X) = E(X²) − [E(X)]².",
-      "E(aX+b) = aE(X)+b; Var(aX+b) = a²Var(X)."
+      "A discrete variable X has specific values 'x'. Each value has a probability P(X=x), and all probabilities must sum to 1.",
+      "The expectation E(X) is the weighted average. Multiply each value 'x' by its probability and sum them up: E(X) = Σx P(X=x).",
+      "The variance Var(X) measures spread. First find E(X²), the average of the squared values, then use Var(X) = E(X²) − [E(X)]².",
+      "If you transform X into a new variable Y = aX + b, the new expectation is E(Y) = aE(X) + b, but the new variance is Var(Y) = a²Var(X)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a discrete random variable?",
+      "back": "A variable whose value is a numerical outcome of a random phenomenon, which can only take a countable number of values."
+    },
+    {
+      "front": "What are the two conditions for a valid probability distribution of a discrete random variable X?",
+      "back": "1. $0 \\le P(X=x) \\le 1$ for all values of x. \n2. $\\sum P(X=x) = 1$."
+    },
+    {
+      "front": "What is the formula for the expectation, E(X)?",
+      "back": "$E(X) = \\sum x P(X=x)$. It represents the mean or long-run average value of X."
+    },
+    {
+      "front": "What is the main formula for the variance, Var(X)?",
+      "back": "$Var(X) = E(X^2) - [E(X)]^2$."
+    },
+    {
+      "front": "How do you calculate $E(X^2)$?",
+      "back": "$E(X^2) = \\sum x^2 P(X=x)$. You square each value of x *before* multiplying by its probability."
+    },
+    {
+      "front": "What is the rule for $E(aX + b)$?",
+      "back": "$E(aX + b) = aE(X) + b$. Expectation is affected by both scaling (a) and shifting (b)."
+    },
+    {
+      "front": "What is the rule for $Var(aX + b)$?",
+      "back": "$Var(aX + b) = a^2 Var(X)$. Variance is only affected by scaling (a), not shifting (b)."
+    },
+    {
+      "front": "Why is the 'b' term ignored in $Var(aX + b)$?",
+      "back": "Adding a constant 'b' shifts the entire distribution but does not change its spread or variability."
+    },
+    {
+      "front": "Common mistake: What is the difference between $[E(X)]^2$ and $E(X^2)$?",
+      "back": "$[E(X)]^2$ is the square of the mean. $E(X^2)$ is the mean of the squares of the values. They are not the same unless Var(X)=0."
+    },
+    {
+      "front": "What does the standard deviation of a random variable represent?",
+      "back": "The standard deviation, $\\sigma = \\sqrt{Var(X)}$, is a measure of the typical amount that the values of the random variable deviate from the mean, E(X). It is in the same units as X."
+    },
+    {
+      "front": "If E(X) = 3.5 for a die roll, but you can't roll a 3.5, what does it mean?",
+      "back": "E(X) is a long-run average. If you rolled the die many times and averaged the scores, the average would get very close to 3.5. It's not necessarily a possible outcome itself."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a discrete and a continuous random variable?",
+      "a": "A discrete random variable can only take specific, separate values (like integers 1, 2, 3...). You can count them. A continuous random variable can take any value within a given range (like a person's height, which could be 1.75m, 1.751m, 1.7512m...)."
+    },
+    {
+      "q": "Why is the expectation E(X) sometimes a value that X can't actually take?",
+      "a": "Expectation is the long-run average, not a guaranteed outcome. For a fair die, E(X) = 3.5. This means if you roll it thousands of times, the average of all your scores will be very close to 3.5. It's a theoretical central point of the distribution."
+    },
+    {
+      "q": "Is there an easy way to remember the variance formula?",
+      "a": "Think of it as 'Mean of the squares minus the square of the mean'. In symbols, that's $E(X^2) - [E(X)]^2$. This verbal cue helps many students remember the order and the squaring."
+    },
+    {
+      "q": "Can a probability in the distribution table be negative or greater than 1?",
+      "a": "Absolutely not. A core rule of probability is that for any event A, $0 \\le P(A) \\le 1$. If you calculate a probability and it's outside this range, you have made a mistake. Similarly, the sum of all probabilities in your distribution must be exactly 1."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Discrete random variables** (5.4) lead to **binomial** and **normal** work. Always define **X** before writing the distribution table."
+      "content": "In probability, we often deal with outcomes that are not just 'win' or 'lose', but have numerical values. For example, the score on a spinner, the number of defective items in a batch, or the number of goals in a football match. This lesson explores how to mathematically model these situations using discrete random variables, allowing us to predict average outcomes and understand the variability involved."
+    },
+    {
+      "type": "heading",
+      "content": "Defining a Discrete Random Variable"
+    },
+    {
+      "type": "text",
+      "content": "A random variable is a variable whose value is a numerical outcome of a random phenomenon. We use a capital letter, like $X$, to denote a random variable. A **discrete** random variable is one that can only take on a finite or countably infinite number of distinct values. For example, the score when rolling a standard six-sided die can only be {1, 2, 3, 4, 5, 6}. You cannot roll a 2.5. In contrast, a continuous random variable, which we will see later, can take any value in a given range (e.g., height or weight)."
+    },
+    {
+      "type": "heading",
+      "content": "Probability Distributions"
+    },
+    {
+      "type": "text",
+      "content": "A probability distribution for a discrete random variable is a list, table, or formula that specifies all possible values of the variable and their corresponding probabilities. It's a complete picture of the random variable's behaviour. We denote the probability that the random variable $X$ takes a specific value $x$ as $P(X=x)$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For any valid probability distribution, two conditions must be met:",
+        "1. The probability of each outcome must be between 0 and 1 inclusive: $0 \\le P(X=x) \\le 1$.",
+        "2. The sum of all probabilities must be exactly 1: $\\sum P(X=x) = 1$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A biased four-sided die has scores 1, 2, 3, and 4. The probability distribution of the score, $X$, is given in the table. The probability of scoring a 2 is twice the probability of scoring a 1. \n\n| x | 1 | 2 | 3 | 4 | \n|---|---|---|---|---| \n| P(X=x) | p | 2p | 0.4 | 0.1 | \n\n(i) Find the value of $p$. \n(ii) Find $E(X)$.",
+      "solution": "(i) The sum of probabilities must be 1. \n$\\sum P(X=x) = 1$ \n$p + 2p + 0.4 + 0.1 = 1$ \n$3p + 0.5 = 1$ \n$3p = 0.5$ \n$p = \\frac{0.5}{3} = \\frac{1}{6}$ \n\nSo, the probabilities are $P(X=1) = \\frac{1}{6}$ and $P(X=2) = 2 \\times \\frac{1}{6} = \\frac{1}{3}$. \n\n(ii) To find the expectation, $E(X)$, we use the formula $E(X) = \\sum x P(X=x)$. \n$E(X) = (1 \\times P(X=1)) + (2 \\times P(X=2)) + (3 \\times P(X=3)) + (4 \\times P(X=4))$ \n$E(X) = (1 \\times \\frac{1}{6}) + (2 \\times \\frac{1}{3}) + (3 \\times 0.4) + (4 \\times 0.1)$ \n$E(X) = \\frac{1}{6} + \\frac{2}{3} + 1.2 + 0.4$ \n$E(X) = \\frac{1}{6} + \\frac{4}{6} + 1.6 = \\frac{5}{6} + 1.6$ \n$E(X) = 0.8333... + 1.6 = 2.4333...$ \nAs an exact fraction: $E(X) = \\frac{5}{6} + \\frac{16}{10} = \\frac{5}{6} + \\frac{8}{5} = \\frac{25+48}{30} = \\frac{73}{30}$. \nSo, $E(X) = \\frac{73}{30}$ (or 2.43 to 3 s.f.)."
+    },
+    {
+      "type": "heading",
+      "content": "Expectation and Variance"
+    },
+    {
+      "type": "text",
+      "content": "The **expectation** of a random variable, denoted $E(X)$ or $\\mu$, is its theoretical mean value. It's what you'd expect the average outcome to be if you repeated the random experiment an infinite number of times. The **variance**, denoted $Var(X)$ or $\\sigma^2$, measures the spread of the distribution. It tells us, on average, how far the values are from the mean. A small variance means the outcomes are clustered tightly around the expectation, while a large variance means they are more spread out."
+    },
+    {
+      "type": "formula",
+      "content": "$E(X) = \\mu = \\sum x P(X=x) \\\\ \\\\ Var(X) = \\sigma^2 = E[(X - \\mu)^2] = \\sum (x-\\mu)^2 P(X=x) \\\\ \\\\ \\text{A more useful formula for calculation is:} \\\\ Var(X) = E(X^2) - [E(X)]^2 \\\\ \\text{where } E(X^2) = \\sum x^2 P(X=x)$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always show your working for $E(X)$ and $Var(X)$. While you can use your calculator's statistics mode to verify your final answer, you won't get method marks in an exam without showing the '$\\sum x p$' and '$\\sum x^2 p$' calculations."
+    },
+    {
+      "type": "workedExample",
+      "question": "A discrete random variable $Y$ has the following probability distribution: \n\n| y | 0 | 1 | 2 | 3 | \n|---|---|---|---|---| \n| P(Y=y) | 0.1 | 0.3 | 0.4 | 0.2 | \n\n(i) Find $E(Y)$ and $Var(Y)$. \n(ii) A new random variable $Z$ is defined as $Z = 5Y - 2$. Find $E(Z)$ and $Var(Z)$.",
+      "solution": "(i) First, calculate $E(Y)$. \n$E(Y) = \\sum y P(Y=y)$ \n$E(Y) = (0 \\times 0.1) + (1 \\times 0.3) + (2 \\times 0.4) + (3 \\times 0.2)$ \n$E(Y) = 0 + 0.3 + 0.8 + 0.6 = 1.7$ \n\nNext, to find $Var(Y)$, we first need $E(Y^2)$. \n$E(Y^2) = \\sum y^2 P(Y=y)$ \n$E(Y^2) = (0^2 \\times 0.1) + (1^2 \\times 0.3) + (2^2 \\times 0.4) + (3^2 \\times 0.2)$ \n$E(Y^2) = (0 \\times 0.1) + (1 \\times 0.3) + (4 \\times 0.4) + (9 \\times 0.2)$ \n$E(Y^2) = 0 + 0.3 + 1.6 + 1.8 = 3.7$ \n\nNow use the variance formula: $Var(Y) = E(Y^2) - [E(Y)]^2$. \n$Var(Y) = 3.7 - (1.7)^2$ \n$Var(Y) = 3.7 - 2.89 = 0.81$ \n\n(ii) We use the rules for linear transformations. \nGiven $Z = 5Y - 2$, we have $a=5$ and $b=-2$. \n\nFor expectation: $E(Z) = E(5Y - 2) = 5E(Y) - 2$. \n$E(Z) = 5(1.7) - 2 = 8.5 - 2 = 6.5$ \n\nFor variance: $Var(Z) = Var(5Y - 2) = 5^2 Var(Y)$. \n$Var(Z) = 25 \\times Var(Y) = 25 \\times 0.81$ \n$Var(Z) = 20.25$"
+    },
+    {
+      "type": "heading",
+      "content": "Linear Transformations: E(aX + b) and Var(aX + b)"
+    },
+    {
+      "type": "text",
+      "content": "Often in real-world problems, we need to adjust a random variable. For instance, if $X$ is a score in a game, $2X$ might be the prize money in pounds. If there is a £5 entry fee, the profit would be $2X - 5$. This is a linear transformation of the form $aX+b$. Fortunately, there are simple rules to find the new expectation and variance without having to recalculate from the probability distribution."
+    },
+    {
+      "type": "formula",
+      "content": "$E(aX + b) = aE(X) + b \\\\ \\\\ Var(aX + b) = a^2 Var(X)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Expectation is linear. Both scaling by 'a' and shifting by 'b' affect the mean in a straightforward way.",
+        "Variance is only affected by scaling. Shifting the data by 'b' moves the entire distribution but doesn't change its spread, so 'b' has no effect on variance.",
+        "The scaling factor 'a' is squared for variance ($a^2$) because variance is calculated using squared differences. The standard deviation is therefore scaled by $|a|$: $SD(aX+b) = |a|SD(X)$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common error is forgetting to square the 'a' term when calculating $Var(aX+b)$. Always write $a^2Var(X)$ to remind yourself. Another trap is when 'a' is negative, for example $Var(3-2X)$. Here $a=-2$, so $a^2 = (-2)^2 = 4$. The variance will be $4Var(X)$."
     },
     {
       "type": "practice",
-      "label": "Mark a discrete RV question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9709&topic=5.4"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Khan Academy: Discrete random variables",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/random-variables-discrete/v/discrete-random-variables"
+        },
+        {
+          "label": "Maths is Fun: Random Variables",
+          "href": "https://www.mathsisfun.com/data/random-variables.html"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Discrete distribution",
+    "embedUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "launchUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "hint": "Probability distribution table — E(X) and Var(X) (9709 5.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Discrete X: list x with P(X = x) — probabilities sum to 1.",
+        "embedHint": "Table format for distribution."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "E(X) = Σx P(X = x) — weighted mean.",
+        "embedHint": "Fair die: E = 3.5."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Var(X) = E(X²) − [E(X)]².",
+        "embedHint": "Standard deviation = √Var(X)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Linear transform: E(aX + b) = aE(X) + b.",
+        "embedHint": "Var(aX + b) = a²Var(X) only."
+      }
+    ]
+  }
 }

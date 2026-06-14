@@ -4,66 +4,218 @@
   "title": "Shapes of molecules",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS VSEPR theory — molecular shapes, bond angles, and lone pair effects. PhET Molecule Shapes simulation with step-synced guidance.",
-  "durationMin": 17,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the Valence Shell Electron Pair Repulsion (VSEPR) theory, a model used to predict the three-dimensional shapes of simple molecules and polyatomic ions. It covers how to determine molecular geometry and bond angles based on the number of bonding and lone electron pairs around a central atom.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Apply VSEPR to predict shapes from electron pair repulsion.",
-    "State bond angles for linear, trigonal planar, tetrahedral, and bent geometries.",
-    "Explain how lone pairs reduce bond angles below ideal values.",
-    "Relate shape to polarity and intermolecular forces."
+    "Explain the principles of Valence Shell Electron Pair Repulsion (VSEPR) theory.",
+    "Predict the shapes and bond angles in molecules and ions with up to six electron pairs around the central atom.",
+    "Explain the effect of lone pairs on bond angles, using methane, ammonia, and water as examples.",
+    "Apply VSEPR theory to deduce the shapes of unfamiliar molecules in exam-style questions."
   ],
   "simpleExplanation": {
-    "title": "Electron pairs repel",
-    "summary": "VSEPR says valence electron pairs arrange to minimise repulsion. Count bonding pairs and lone pairs to name the shape and estimate bond angles.",
+    "title": "Electron Repulsion Rules",
+    "summary": "The shape of a molecule is determined by the repulsion between electron pairs in the central atom's valence shell. These pairs arrange themselves to be as far apart as possible, with lone pairs repelling more strongly than bonding pairs.",
+    "analogy": "Imagine you are holding several inflated balloons tied together at a central point. The balloons (electron pairs) will automatically push each other away to take up positions that are as far apart as possible. If you have two balloons, they'll point in opposite directions (linear); if you have four, they'll form a tetrahedron. Now, if one balloon is much larger (a lone pair), it will squash the others (bonding pairs) closer together, changing the angles between them.",
     "steps": [
-      "Count bonding pairs (shared pairs) and lone pairs on the central atom.",
-      "Arrange electron pairs to maximise separation — lone pairs repel more than bonding pairs.",
-      "Name the shape from the positions of atoms only (lone pairs are invisible in the name).",
-      "Use bond angle data as evidence — e.g. H₂O is bent (~104.5°) not linear because of 2 lone pairs."
+      "VSEPR: electron pairs repel — arrange to minimise repulsion.",
+      "Lone pairs occupy more space than bonding pairs — compress bond angles.",
+      "Common shapes: linear (2 bp), trigonal planar (3 bp), tetrahedral (4 bp).",
+      "Bond angle evidence distinguishes shapes in Paper 2 structured questions."
     ]
   },
   "flashcards": [
-    { "front": "Shape with 2 bonding pairs, 0 lone pairs?", "back": "Linear — 180° (e.g. CO₂)." },
-    { "front": "Shape with 4 bonding pairs, 0 lone pairs?", "back": "Tetrahedral — 109.5° (e.g. CH₄)." },
-    { "front": "Shape of NH₃?", "back": "Pyramidal — 3 bonding pairs, 1 lone pair; angle ≈ 107°." },
-    { "front": "Shape of H₂O?", "back": "Non-linear (bent) — 2 bonding, 2 lone pairs; angle ≈ 104.5°." }
+    {
+      "front": "What is the fundamental principle of VSEPR theory?",
+      "back": "Electron pairs in the valence shell of a central atom repel each other and arrange themselves in space to be as far apart as possible, minimising repulsion."
+    },
+    {
+      "front": "What is a 'bonding pair' of electrons?",
+      "back": "A region of electron density located between the nuclei of two bonded atoms, forming a covalent bond."
+    },
+    {
+      "front": "What is a 'lone pair' of electrons?",
+      "back": "A pair of valence electrons that is not involved in bonding and belongs exclusively to one atom."
+    },
+    {
+      "front": "Why do lone pairs repel more strongly than bonding pairs?",
+      "back": "Lone pairs are only attracted to one nucleus, so their electron cloud is more diffuse and occupies more space. Bonding pairs are localised between two nuclei and are less repulsive."
+    },
+    {
+      "front": "State the order of repulsion strength between electron pairs.",
+      "back": "Lone Pair - Lone Pair (LP-LP) > Lone Pair - Bonding Pair (LP-BP) > Bonding Pair - Bonding Pair (BP-BP)."
+    },
+    {
+      "front": "What is the shape and bond angle of a methane molecule, CH₄?",
+      "back": "Shape: Tetrahedral. Bond angle: 109.5°. It has 4 bonding pairs and 0 lone pairs."
+    },
+    {
+      "front": "What is the shape and bond angle of an ammonia molecule, NH₃?",
+      "back": "Shape: Trigonal pyramidal. Bond angle: approx. 107°. It has 3 bonding pairs and 1 lone pair."
+    },
+    {
+      "front": "What is the shape and bond angle of a water molecule, H₂O?",
+      "back": "Shape: Bent or V-shaped. Bond angle: approx. 104.5°. It has 2 bonding pairs and 2 lone pairs."
+    },
+    {
+      "front": "What is the shape and bond angle of a boron trifluoride molecule, BF₃?",
+      "back": "Shape: Trigonal planar. Bond angle: 120°. It has 3 bonding pairs and 0 lone pairs."
+    },
+    {
+      "front": "How do you treat a double or triple bond when using VSEPR theory?",
+      "back": "A double or triple bond is treated as a single region of electron density (or a single 'electron domain'). For example, in CO₂, the two double bonds are treated as two domains, leading to a linear shape."
+    },
+    {
+      "front": "What is the difference between 'electron pair geometry' and 'molecular shape'?",
+      "back": "Electron pair geometry describes the arrangement of all electron pairs (bonding and lone). Molecular shape describes only the arrangement of the atoms, ignoring the lone pairs in the final name."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How does VSEPR theory handle molecules with double or triple bonds, like carbon dioxide (CO₂)?",
+      "a": "For the purpose of determining molecular shape, a double or triple bond is treated as a single region of electron density, sometimes called an 'electron domain'. In CO₂, the central carbon atom has two double bonds (O=C=O). We count this as two electron domains. Two domains will arrange themselves linearly to be as far apart as possible, resulting in a 180° bond angle and a linear molecule."
+    },
+    {
+      "q": "Why do we focus only on the valence electrons of the central atom?",
+      "a": "The valence electrons are the outermost electrons and are the ones involved in bonding and forming lone pairs. The inner-shell (core) electrons are held tightly to the nucleus and do not influence the molecular geometry, so they can be ignored when applying VSEPR theory."
+    },
+    {
+      "q": "Is VSEPR theory always accurate?",
+      "a": "VSEPR is a simple model that is remarkably effective for predicting the shapes of a vast number of molecules. However, it is a model, not a perfect law. For some very large or complex molecules, or those with heavy central atoms, other factors can come into play, and the predictions may be less accurate. For A-Level Chemistry, VSEPR theory is the primary tool and is considered accurate for the molecules you will encounter."
+    }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "**VSEPR** is a high-frequency 9701 topic — often 4–6 marks on Paper 2. Examiners want **named shapes**, **estimated bond angles**, and an explanation referencing **lone pair repulsion**."
+      "content": "While Lewis structures are excellent for showing how atoms are connected in two dimensions, they don't tell us about the actual three-dimensional arrangement of atoms in space. The shape of a molecule is crucial as it influences its physical and chemical properties, such as polarity, boiling point, and reactivity. In this lesson, we will explore the Valence Shell Electron Pair Repulsion (VSEPR) theory, a powerful model for predicting molecular geometry."
+    },
+    {
+      "type": "heading",
+      "content": "The Core Principles of VSEPR Theory"
+    },
+    {
+      "type": "text",
+      "content": "The VSEPR theory is based on a simple but powerful idea: negatively charged electron pairs in the outer shell of a central atom will repel each other. To achieve the most stable arrangement, these electron pairs will position themselves as far apart as possible, which in turn dictates the molecule's shape. This applies to both bonding pairs (involved in covalent bonds) and lone pairs (non-bonding electrons)."
     },
     {
       "type": "keyPoints",
       "items": [
-        "2 bp → linear (180°); 3 bp → trigonal planar (120°)",
-        "4 bp → tetrahedral (109.5°); 3 bp + 1 lp → pyramidal (~107°)",
-        "2 bp + 2 lp → bent (~104.5°); 5 bp → trigonal bipyramidal",
-        "Double bonds count as one electron pair domain in VSEPR"
+        "The shape of a molecule is determined by the number of electron pairs in the valence shell of the central atom.",
+        "Electron pairs arrange themselves to minimise electrostatic repulsion.",
+        "The final shape of the molecule is described by the positions of the atomic nuclei, not the electron pairs."
       ]
     },
     {
+      "type": "heading",
+      "content": "Predicting Shapes: A Step-by-Step Guide"
+    },
+    {
+      "type": "text",
+      "content": "To predict the shape of a molecule or ion, we can follow a logical sequence. First, draw the Lewis structure to identify the central atom and the atoms bonded to it. Then, count the total number of electron pairs around the central atom, being careful to distinguish between bonding pairs and lone pairs. This total number determines the basic geometry of the electron pairs. Finally, the presence of lone pairs modifies this basic geometry to give the final molecular shape."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Step 1: Determine the central atom and count its valence electrons.",
+        "Step 2: Add the electrons from the bonded atoms (and adjust for any charge on an ion).",
+        "Step 3: Divide the total by two to find the number of electron pairs.",
+        "Step 4: Determine the number of bonding pairs and lone pairs to predict the shape and bond angles."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Influence of Lone Pairs on Bond Angles"
+    },
+    {
+      "type": "text",
+      "content": "Not all electron pairs are equal in their repulsive force. A lone pair is held by only one nucleus, so its electron cloud is more spread out and occupies more volume than a bonding pair, which is tightly held between two positive nuclei. Consequently, lone pairs exert a stronger repulsive force than bonding pairs. This leads to a specific hierarchy of repulsion."
+    },
+    {
+      "type": "formula",
+      "content": "Repulsion strength: LP-LP > LP-BP > BP-BP"
+    },
+    {
+      "type": "text",
+      "content": "This means that the presence of a lone pair will compress the bond angles between the bonding pairs. For example, methane (CH₄), ammonia (NH₃), and water (H₂O) all have four electron pairs around the central atom, giving a basic tetrahedral arrangement. However, the increasing number of lone pairs (0 in CH₄, 1 in NH₃, 2 in H₂O) causes the bond angles to decrease progressively from the ideal 109.5°."
+    },
+    {
       "type": "workedExample",
-      "question": "Predict the shape and bond angle of SF₄ (S has 6 valence electrons; forms 4 S–F bonds).",
-      "solution": "4 bonding pairs + 1 lone pair on S → **see-saw** (based on trigonal bipyramidal).\n\nLone pair compresses equatorial F–S–F angles below 120° / 90° ideal values."
+      "question": "Predict the shape and bond angle of a phosphorus trichloride (PCl₃) molecule. Explain your reasoning.",
+      "solution": "1.  **Identify central atom and valence electrons:** The central atom is Phosphorus (P), which is in Group 15. It has 5 valence electrons.\n2.  **Count bonding pairs:** P forms three single covalent bonds with three Chlorine (Cl) atoms. This means there are 3 bonding pairs.\n3.  **Count lone pairs:** P uses 3 of its 5 valence electrons for bonding. The remaining $5 - 3 = 2$ electrons form 1 lone pair.\n4.  **Total electron pairs:** There are 3 bonding pairs + 1 lone pair = 4 electron pairs in total around the central P atom.\n5.  **Determine geometry:** The arrangement of 4 electron pairs is tetrahedral.\n6.  **Determine shape and bond angle:** With 3 bonding pairs and 1 lone pair, the molecular shape is **trigonal pyramidal**. The ideal tetrahedral angle is 109.5°. However, the lone pair-bonding pair (LP-BP) repulsion is greater than the bonding pair-bonding pair (BP-BP) repulsion. This extra repulsion from the lone pair pushes the P-Cl bonds closer together, reducing the Cl-P-Cl bond angle to approximately **107°**."
+    },
+    {
+      "type": "workedExample",
+      "question": "The hexafluorosilicate(IV) ion, SiF₆²⁻, has an octahedral shape. Predict the F-Si-F bond angle. Explain why the shape of sulfur hexafluoride, SF₆, is also octahedral with the same bond angle.",
+      "solution": "1.  **Analyse SiF₆²⁻:** The central atom is Silicon (Si), in Group 14, with 4 valence electrons. It is bonded to 6 Fluorine (F) atoms. The ion has a 2- charge, meaning 2 extra electrons are present.\n    Total valence electrons = 4 (from Si) + 6×7 (from F) + 2 (from charge) = 4 + 42 + 2 = 48. This is complex. A simpler method:\n    Central atom Si has 4 valence electrons. Add 2 for the charge = 6 electrons. It forms 6 bonds with F. This means there are 6 bonding pairs and (6-6)/2 = 0 lone pairs.\n2.  **Geometry of SiF₆²⁻:** With 6 bonding pairs and 0 lone pairs, the electron pairs arrange themselves in an **octahedral** geometry to minimise repulsion. The F-Si-F bond angle in an octahedral structure is **90°**.\n3.  **Analyse SF₆:** The central atom is Sulfur (S), in Group 16, with 6 valence electrons. It forms 6 single bonds with 6 Fluorine (F) atoms.\n4.  **Electron pairs in SF₆:** There are 6 bonding pairs and (6-6)/2 = 0 lone pairs around the central S atom.\n5.  **Conclusion:** Since both SiF₆²⁻ and SF₆ have 6 bonding pairs and 0 lone pairs on the central atom, they both adopt a perfect **octahedral** shape with bond angles of **90°**."
     },
     {
       "type": "examTip",
-      "content": "Draw a **dot-and-cross** or **electron pair count** before naming the shape. Cambridge frequently tests **ClF₃**, **SF₆**, and **PF₅** — practise counting lone pairs on the central atom."
+      "content": "When asked to explain a shape or bond angle, marks are awarded for specific points. Always state: (1) the number of bonding pairs on the central atom, (2) the number of lone pairs on the central atom, (3) the resulting molecular shape (e.g., trigonal pyramidal), and (4) if explaining a reduced bond angle, explicitly state that 'lone pair-bonding pair repulsion is greater than bonding pair-bonding pair repulsion'."
     },
     {
       "type": "practice",
-      "label": "Mark a shapes of molecules question",
+      "label": "Test your knowledge on molecular shapes",
       "href": "/mark?subject=9701&topic=3.5"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Molecule Shapes", "href": "https://phet.colorado.edu/en/simulations/molecule-shapes" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "PhET Interactive Simulation: Molecule Shapes",
+          "href": "https://phet.colorado.edu/en/simulations/molecule-shapes"
+        },
+        {
+          "label": "Detailed notes and examples on Chemguide",
+          "href": "https://www.chemguide.co.uk/atoms/bonding/shapes.html"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Molecule shapes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/molecule-shapes",
+    "hint": "Add bonding pairs and lone pairs — read the predicted VSEPR geometry (3.5).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "VSEPR: electron pairs repel — arrange to minimise repulsion.",
+        "embedHint": "Add bonding pairs only — read the predicted shape (e.g. linear, tetrahedral)."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Lone pairs occupy more space than bonding pairs — compress bond angles.",
+        "embedHint": "Add a lone pair — watch the bond angle decrease (e.g. 109.5° → 104.5° in H₂O)."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Common shapes: linear (2 bp), trigonal planar (3 bp), tetrahedral (4 bp).",
+        "embedHint": "Cycle through 2, 3, and 4 bonding pairs — name each geometry."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Bond angle evidence distinguishes shapes in Paper 2 structured questions.",
+        "embedHint": "Predict whether a molecule is polar from shape and bond dipoles."
+      }
+    ]
+  }
 }

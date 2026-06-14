@@ -4,50 +4,221 @@
   "title": "Logic Gates and Logic Circuits",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 AS — Boolean logic, truth tables, logic gates, and circuit design with GeoGebra logic gates explorer.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores the fundamental building blocks of digital electronics: logic gates. We will cover the functions of NOT, AND, OR, NAND, NOR, and XOR gates, learn how to represent them in logic circuits, and use Boolean algebra to analyse and simplify these circuits.",
+  "durationMin": 25,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Draw and interpret NOT, AND, OR, NAND, NOR, XOR gates.",
-    "Construct truth tables for combinational circuits.",
-    "Apply Boolean algebra and De Morgan's laws.",
-    "Build simple circuits from a given truth table."
+    "Understand and define the function of the six main logic gates: NOT, AND, OR, NAND, NOR, and XOR.",
+    "Construct truth tables for individual gates and for complex logic circuits with multiple inputs.",
+    "Draw, interpret, and produce logic circuits using the standard IEC 60617-12 symbols.",
+    "Simplify logic circuits using Boolean algebra, including De Morgan's laws, to create more efficient designs."
   ],
   "simpleExplanation": {
-    "title": "Digital decisions",
-    "summary": "Logic gates implement Boolean operations on binary inputs. Combining gates builds adders, multiplexers, and memory elements inside the CPU.",
+    "title": "The Building Blocks of Logic",
+    "summary": "Logic gates are simple electronic circuits that take one or more binary inputs and produce a single binary output. By combining these gates, we can build complex systems that perform everything from simple arithmetic to running a full operating system.",
+    "analogy": "Imagine you have two light switches controlling one bulb. If they must both be ON for the bulb to light up, that's an AND gate (switches in series). If either one being ON is enough to light the bulb, that's an OR gate (switches in parallel). A NOT gate is like a switch that turns the bulb ON when the switch is OFF, and vice-versa.",
     "steps": [
-      "NOT inverts; AND outputs 1 only if all inputs 1; OR if any input 1.",
-      "NAND/NOR are universal — any logic function can be built from either alone.",
-      "De Morgan: NOT(A AND B) = NOT A OR NOT B.",
-      "From truth table: identify minterms, simplify, draw gate diagram."
+      "Basic gates like NOT, AND, and OR have defined behaviours. Their output for every possible combination of inputs is captured in a truth table.",
+      "NAND and NOR gates are 'universal'. This means you can construct any other logic gate, and therefore any logic circuit, using only NAND gates or only NOR gates.",
+      "Boolean algebra is the mathematics used to analyse and simplify logic circuits. Key rules, like De Morgan's laws, allow us to find equivalent circuits with fewer gates, saving cost and power.",
+      "Logic circuits are combinations of gates designed to perform specific tasks. These range from simple adders in a CPU to complex control logic in memory systems."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a logic gate?",
+      "back": "An electronic component that performs a basic logical function, taking one or more binary inputs (0 or 1) to produce a single binary output."
+    },
+    {
+      "front": "What is the function of a NOT gate?",
+      "back": "It inverts its single input. A 1 becomes a 0, and a 0 becomes a 1. It is also known as an inverter. Boolean expression: $X = \\neg{A}$."
+    },
+    {
+      "front": "What is the function of an AND gate?",
+      "back": "It produces a 1 output only if ALL of its inputs are 1. Otherwise, the output is 0. Boolean expression: $X = A \\cdot B$."
+    },
+    {
+      "front": "What is the function of an OR gate?",
+      "back": "It produces a 1 output if AT LEAST ONE of its inputs is 1. The output is 0 only if all inputs are 0. Boolean expression: $X = A + B$."
+    },
+    {
+      "front": "What is the function of an XOR gate?",
+      "back": "The 'exclusive OR' gate. It produces a 1 output if its inputs are different (e.g., one is 1, the other is 0). Boolean expression: $X = A \\oplus B$."
+    },
+    {
+      "front": "What is the function of a NAND gate?",
+      "back": "A 'NOT AND' gate. It is an AND gate followed by a NOT gate. The output is 0 only when all inputs are 1. Boolean expression: $X = \\neg{(A \\cdot B)}$."
+    },
+    {
+      "front": "What is the function of a NOR gate?",
+      "back": "A 'NOT OR' gate. It is an OR gate followed by a NOT gate. The output is 1 only when all inputs are 0. Boolean expression: $X = \\neg{(A + B)}$."
+    },
+    {
+      "front": "What does it mean for a gate to be 'universal'?",
+      "back": "A universal gate (like NAND or NOR) can be used to construct any other type of logic gate. This is efficient for manufacturing, as only one type of gate needs to be produced."
+    },
+    {
+      "front": "State De Morgan's Law for an AND expression.",
+      "back": "The negation of a conjunction is the disjunction of the negations. In Boolean algebra: $\\neg{(A \\cdot B)} = \\neg{A} + \\neg{B}$."
+    },
+    {
+      "front": "State De Morgan's Law for an OR expression.",
+      "back": "The negation of a disjunction is the conjunction of the negations. In Boolean algebra: $\\neg{(A + B)} = \\neg{A} \\cdot \\neg{B}$."
+    },
+    {
+      "front": "What is a truth table?",
+      "back": "A table that shows all possible input combinations and the corresponding output for a logic gate or circuit."
+    },
+    {
+      "front": "What is the Boolean expression for an XOR gate using AND, OR and NOT?",
+      "back": "$X = (A \\cdot \\neg{B}) + (\\neg{A} \\cdot B)$. This shows how more complex gates can be built from simpler ones."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are NAND and NOR gates called 'universal'?",
+      "a": "They are called universal because any other logic gate (AND, OR, NOT, XOR) can be created by combining only NAND gates, or only NOR gates. For example, a NOT gate can be made by connecting both inputs of a NAND gate together. This is very efficient for manufacturing, as factories only need to produce one type of gate."
+    },
+    {
+      "q": "What is the main difference between an OR gate and an XOR gate?",
+      "a": "An OR gate gives a TRUE (1) output if one OR both inputs are TRUE. An XOR (Exclusive OR) gate gives a TRUE output only if the inputs are different (one is TRUE and the other is FALSE). If both inputs are TRUE, an XOR gate gives a FALSE (0) output, whereas an OR gate would give a TRUE (1) output."
+    },
+    {
+      "q": "How do I know which Boolean algebra rule to apply when simplifying?",
+      "a": "This comes with practice. A good strategy is to first look for opportunities to apply De Morgan's laws to break up negated brackets. Then, expand any remaining brackets using the distributive law. After that, look for common patterns like $A + \\neg{A} = 1$, $A \\cdot A = A$, or opportunities to factor out common variables. Always aim to reduce the number of terms or variables."
+    },
+    {
+      "q": "Do I need to memorise the IEC symbols for the exam?",
+      "a": "Yes, you must be able to recognise and draw the standard IEC 60617-12 symbols for all the gates (the rectangular shapes). While older, distinctively shaped symbols (like the D-shape for AND) are sometimes seen, the IEC standard is what Cambridge International specifies and expects in exam answers."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Logic circuits** appear on every 9618 Paper 1. Use the **interactive gate builder** below, then practise **truth tables** and **Boolean simplification** on past papers."
+      "content": "Welcome to the world of digital logic, the foundation upon which all modern computing is built. At the most fundamental level, a computer processes information using simple electronic switches. In this lesson, we will explore how these switches are organised into logic gates, and how these gates are combined to form logic circuits capable of performing complex calculations and decisions. Understanding this topic is key to grasping how computer hardware functions."
+    },
+    {
+      "type": "heading",
+      "content": "The Fundamental Logic Gates"
+    },
+    {
+      "type": "text",
+      "content": "There are several fundamental logic gates, each performing a simple operation. They operate on binary values: 0 (False, Off) and 1 (True, On). For your exam, you must know the name, symbol, and function of each. The three most basic gates are NOT, AND, and OR."
     },
     {
       "type": "keyPoints",
       "items": [
-        "XOR: 1 when inputs differ — used in half-adders",
-        "Half-adder: Sum = A XOR B; Carry = A AND B",
-        "Full-adder combines two bits + carry-in",
-        "SR flip-flop: two cross-coupled NOR gates store 1 bit"
+        "**NOT Gate:** Has one input and one output. It inverts the input. If input A is 1, output X is 0. If A is 0, X is 1. Boolean expression: $X = \\neg{A}$.",
+        "**AND Gate:** Has two or more inputs and one output. The output is 1 only if *all* inputs are 1. Boolean expression: $X = A \\cdot B$.",
+        "**OR Gate:** Has two or more inputs and one output. The output is 1 if *any* input is 1. Boolean expression: $X = A + B$."
       ]
     },
     {
+      "type": "heading",
+      "content": "Compound and Universal Gates"
+    },
+    {
+      "type": "text",
+      "content": "By combining the basic gates, we can create more complex ones. The NAND (NOT-AND) and NOR (NOT-OR) gates are crucial because they are 'universal gates'. This means any logic circuit can be constructed using only NAND gates, or only NOR gates. The XOR (Exclusive-OR) gate is also very common, particularly in arithmetic circuits."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**NAND Gate:** The output is the opposite of an AND gate. It is 0 only when all inputs are 1. Boolean expression: $X = \\neg{(A \\cdot B)}$.",
+        "**NOR Gate:** The output is the opposite of an OR gate. It is 1 only when all inputs are 0. Boolean expression: $X = \\neg{(A + B)}$.",
+        "**XOR Gate:** The output is 1 only if the inputs are different. If inputs A and B are both 0 or both 1, the output is 0. Boolean expression: $X = A \\oplus B$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "From Gates to Circuits: Boolean Algebra"
+    },
+    {
+      "type": "text",
+      "content": "Boolean algebra is the mathematical system used to analyse and simplify logic circuits. Using a set of laws and identities, we can manipulate Boolean expressions to create circuits that are simpler, cheaper, and faster. This is a vital skill for hardware design and a common exam topic. The most powerful rules for simplification are De Morgan's Laws."
+    },
+    {
+      "type": "formula",
+      "content": "Key Boolean Identities:\\n**Identity:** $A + 0 = A$, $A \\cdot 1 = A$\\n**Annulment:** $A + 1 = 1$, $A \\cdot 0 = 0$\\n**Idempotent:** $A + A = A$, $A \\cdot A = A$\\n**Complement:** $A + \\neg{A} = 1$, $A \\cdot \\neg{A} = 0$\\n**Commutative:** $A + B = B + A$, $A \\cdot B = B \\cdot A$\\n**Associative:** $(A+B)+C = A+(B+C)$, $(A \\cdot B) \\cdot C = A \\cdot (B \\cdot C)$\\n**Distributive:** $A \\cdot (B+C) = A \\cdot B + A \\cdot C$, $A + (B \\cdot C) = (A+B) \\cdot (A+C)$\\n**Absorption:** $A + (A \\cdot B) = A$, $A \\cdot (A+B) = A$\\n**De Morgan's Laws:** $\\neg{(A \\cdot B)} = \\neg{A} + \\neg{B}$, $\\neg{(A + B)} = \\neg{A} \\cdot \\neg{B}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A logic circuit is represented by the Boolean expression $X = (A \\cdot B) + (\\neg{B} \\cdot C)$.\n\n(i) Draw the logic circuit for this expression. [3 marks]\n(ii) Complete the truth table for this circuit. [4 marks]",
+      "solution": "(i) To draw the circuit, we identify the gates needed: two AND gates, one NOT gate, and one OR gate. \n- The first AND gate takes inputs A and B.\n- The NOT gate takes input B to produce $\\neg{B}$.\n- The second AND gate takes inputs $\\neg{B}$ and C.\n- The OR gate takes the outputs of the two AND gates to produce the final output X.\n\n*(A diagram would be drawn here showing A and B into an AND gate; B into a NOT gate, then its output and C into a second AND gate; the outputs of both AND gates into an OR gate, which gives X.)*\n\n(ii) The truth table requires columns for all inputs (A, B, C), any intermediate steps ($\neg{B}$, $A \\cdot B$, $\\neg{B} \\cdot C$), and the final output (X). There are $2^3 = 8$ possible input combinations.\n\n| A | B | C | $\\neg{B}$ | $A \\cdot B$ | $\\neg{B} \\cdot C$ | $X = (A \\cdot B) + (\\neg{B} \\cdot C)$ |\n|---|---|---|---|---|---|---|\n| 0 | 0 | 0 | 1 | 0 | 0 | 0 |\n| 0 | 0 | 1 | 1 | 0 | 1 | 1 |\n| 0 | 1 | 0 | 0 | 0 | 0 | 0 |\n| 0 | 1 | 1 | 0 | 0 | 0 | 0 |\n| 1 | 0 | 0 | 1 | 0 | 0 | 0 |\n| 1 | 0 | 1 | 1 | 0 | 1 | 1 |\n| 1 | 1 | 0 | 0 | 1 | 0 | 1 |\n| 1 | 1 | 1 | 0 | 1 | 0 | 1 |\n\n**Marking:** [1] for correct AND/OR structure. [1] for correct NOT gate placement. [1] for correct labelling. [1] for correct column headings in truth table. [1] for correct $\\neg{B}$ column. [1] for correct intermediate columns. [1] for correct final X column."
+    },
+    {
+      "type": "examTip",
+      "content": "When simplifying Boolean expressions, write down which law you are using at each step. This makes your working clear to the examiner and helps you avoid mistakes. For example: `$A + A \\cdot B = A \\cdot 1 + A \\cdot B = A \\cdot (1+B) = A \\cdot 1 = A$` (using Identity, Distributive, Annulment laws)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Simplify the following Boolean expression using algebraic laws. Draw the logic circuit for the original expression and the simplified expression.\n\n$X = (A + B) \\cdot (A + \\neg{B})$",
+      "solution": "We can simplify the expression using Boolean algebra, specifically the distributive law.\n\n1. **Original Expression:** $X = (A + B) \\cdot (A + \\neg{B})$\n2. **Apply Distributive Law** ($P \\cdot Q$ where $P=(A+B)$ and $Q=(A+\\neg{B})$ is not the easiest way. Instead, let's expand the brackets like in normal algebra):\n   $X = A \\cdot A + A \\cdot \\neg{B} + B \\cdot A + B \\cdot \\neg{B}$  [Distributive Law]\n3. **Apply Idempotent Law** ($A \\cdot A = A$) and **Complement Law** ($B \\cdot \\neg{B} = 0$):\n   $X = A + A \\cdot \\neg{B} + A \\cdot B + 0$ \n4. **Apply Annulment Law** ($A+0 = A$):\n   $X = A + A \\cdot \\neg{B} + A \\cdot B$\n5. **Factor out A** (Distributive Law in reverse):\n   $X = A \\cdot (1 + \\neg{B} + B)$\n6. **Apply Complement Law** ($B + \\neg{B} = 1$) and then **Annulment Law** ($1+1=1$):\n   $X = A \\cdot (1 + 1) = A \\cdot 1$\n7. **Apply Identity Law** ($A \\cdot 1 = A$):\n   $X = A$\n\n**Simplified Expression:** $X = A$\n\n**Circuit Diagrams:**\n*   **Original Circuit:** Input A and B go into an OR gate. Input A and a NOT of B go into a second OR gate. The outputs of these two OR gates go into an AND gate to produce X. This requires two OR gates, one NOT gate, and one AND gate.\n*   **Simplified Circuit:** The output X is simply connected directly to the input A. This requires no gates at all.\n\nThis demonstrates how simplification can dramatically reduce the complexity and cost of a circuit."
+    },
+    {
       "type": "practice",
-      "label": "Mark a logic gates question",
+      "label": "Test Your Knowledge on Logic Gates",
       "href": "/mark?subject=9618&topic=3.2"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9618 course index", "href": "/courses/9618" }
+        {
+          "label": "Logic.ly - Online Logic Gate Simulator",
+          "href": "https://logic.ly/demo/"
+        },
+        {
+          "label": "All About Circuits - Boolean Algebra",
+          "href": "https://www.allaboutcircuits.com/textbook/digital/chpt-7/boolean-algebra/"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Logic gates explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "launchUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "hint": "Combine AND, OR, NOT gates — build truth tables for circuits (9618 3.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Basic gates: NOT, AND, OR — truth tables define outputs.",
+        "embedHint": "Toggle inputs — read AND/OR output truth table."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "NAND and NOR are universal — build any logic from them.",
+        "embedHint": "Combine gates to form a half-adder or SR latch pattern."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Boolean algebra simplifies circuits: De Morgan’s laws.",
+        "embedHint": "Compare equivalent circuits with fewer gates."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Logic circuits combine gates for arithmetic, memory, control.",
+        "embedHint": "Trace inputs through multiple gates to final output."
+      }
+    ]
+  }
 }

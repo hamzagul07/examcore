@@ -4,61 +4,233 @@
   "title": "Differentiation",
   "paper": "P1",
   "paperName": "Pure Mathematics 1",
-  "status": "premium",
-  "summary": "Free Cambridge 9709 Pure Maths 1 lesson on differentiation — power rule, tangents, stationary points, and how examiners award marks.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces differentiation as the process of finding the gradient function of a curve. You will learn the fundamental 'power rule' to differentiate polynomial functions and use it to find the gradient at any point, determine the equations of tangents and normals, and locate stationary points.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand the concept of the derivative, denoted as dy/dx or f'(x), as the gradient of the tangent to a curve.",
+    "Apply the power rule for differentiation to functions of the form xⁿ, including cases where n is a negative or fractional integer.",
+    "Use differentiation to find the gradient of a curve at a specific point, and hence find the equations of the tangent and the normal at that point.",
+    "Find the coordinates of stationary points on a curve by setting the derivative equal to zero."
+  ],
+  "simpleExplanation": {
+    "title": "The Gradient Machine",
+    "summary": "Differentiation is a tool that gives you a new function, called the derivative, which tells you the steepness (gradient) of your original function at any given point. It's like having a 'gradient-o-meter' for any curve.",
+    "analogy": "Imagine you're on a rollercoaster. The track is a curve, y = f(x). At any moment, your steepness is changing. Differentiation is like building a device that, given your position 'x' along the track, instantly tells you how steep the track is right at that point. A steep climb has a large positive gradient, a sharp drop has a large negative gradient, and the very top of a hill, just for an instant, is perfectly flat – its gradient is zero.",
+    "steps": [
+      "A function y = f(x) has a gradient that varies along the curve.",
+      "The tangent line at a point shows the instantaneous gradient dy/dx.",
+      "Where the curve is steep, |dy/dx| is large; at a turning point, dy/dx = 0.",
+      "Power rule: if y = xⁿ then dy/dx = nxⁿ⁻¹."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is differentiation?",
+      "back": "It is the process of finding the derivative, or gradient function, of a function. This new function tells you the instantaneous rate of change or the gradient of the original function at any point."
+    },
+    {
+      "front": "What are the two main notations for the derivative of $y = f(x)$?",
+      "back": "Leibniz's notation: $\\frac{dy}{dx}$ (read as 'dee-why by dee-ex'). Lagrange's notation: $f'(x)$ (read as 'f-dashed-x' or 'f-prime-x')."
+    },
+    {
+      "front": "What is the Power Rule for differentiation?",
+      "back": "For a function of the form $y = ax^n$, the derivative is $\\frac{dy}{dx} = anx^{n-1}$. You multiply by the power and then reduce the power by one."
+    },
+    {
+      "front": "What is the derivative of a constant term, e.g., $y = 7$?",
+      "back": "The derivative of any constant is zero. A line $y=c$ is horizontal, so its gradient is always 0."
+    },
+    {
+      "front": "How do you differentiate a function with multiple terms, like $y = x^3 + 4x^2$?",
+      "back": "Differentiate each term separately and add or subtract them as in the original function. For $y = x^3 + 4x^2$, $\\frac{dy}{dx} = 3x^2 + 8x$."
+    },
+    {
+      "front": "What is a tangent to a curve?",
+      "back": "A straight line that 'just touches' the curve at a single point. The gradient of the tangent is equal to the gradient of the curve at that point."
+    },
+    {
+      "front": "What is a normal to a curve?",
+      "back": "A straight line that is perpendicular to the tangent at the point of contact. Its gradient is the negative reciprocal of the tangent's gradient: $m_{\\text{normal}} = -\\frac{1}{m_{\\text{tangent}}}$."
+    },
+    {
+      "front": "What is a stationary point (or turning point)?",
+      "back": "A point on the curve where the gradient is zero. At this point, the tangent is horizontal. This occurs at local maxima, local minima, and points of inflection."
+    },
+    {
+      "front": "How do you find the coordinates of a stationary point?",
+      "back": "1. Differentiate the function to find $\\frac{dy}{dx}$. \n2. Set $\\frac{dy}{dx} = 0$ and solve for $x$. \n3. Substitute the $x$-value(s) back into the original equation for the curve to find the corresponding $y$-coordinate(s)."
+    },
+    {
+      "front": "How do you prepare an expression like $y = \\frac{3}{x^2}$ for differentiation?",
+      "back": "Rewrite it using negative indices before applying the power rule. $y = 3x^{-2}$. Then differentiate to get $\\frac{dy}{dx} = 3(-2)x^{-2-1} = -6x^{-3} = -\\frac{6}{x^3}$."
+    },
+    {
+      "front": "How do you prepare an expression like $y = 5\\sqrt{x}$ for differentiation?",
+      "back": "Rewrite it using fractional indices before applying the power rule. $y = 5x^{1/2}$. Then differentiate to get $\\frac{dy}{dx} = 5(\\frac{1}{2})x^{1/2-1} = \\frac{5}{2}x^{-1/2} = \\frac{5}{2\\sqrt{x}}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between $\\frac{dy}{dx}$ and $\\frac{\\delta y}{\\delta x}$?",
+      "a": "$\\frac{\\delta y}{\\delta x}$ (using the Greek letter delta) represents a finite change in y divided by a finite change in x, like the gradient of a chord between two points. $\\frac{dy}{dx}$ represents the limit of this ratio as the change in x becomes infinitesimally small. It is the true gradient of the curve at a single point, not an approximation between two points."
+    },
+    {
+      "q": "Can I use the Product Rule or Quotient Rule in Paper 1?",
+      "a": "No. The Product Rule, Quotient Rule, and Chain Rule are part of the P3 (Pure Mathematics 3) syllabus. For P1, you are only expected to differentiate sums of terms of the form $ax^n$. If you see a product or quotient, you must first expand or divide it to get a sum of terms before differentiating."
+    },
+    {
+      "q": "What does it mean if the gradient $\\frac{dy}{dx}$ is negative?",
+      "a": "A negative gradient means that the function is decreasing at that point. As you move from left to right along the x-axis, the y-value of the curve is going down. This corresponds to a tangent line that slopes downwards."
+    },
+    {
+      "q": "How do I find where a curve has a specific gradient, for example, a gradient of 5?",
+      "a": "First, find the gradient function by differentiating to get $\\frac{dy}{dx}$. Then, set your gradient function equal to the desired gradient. For example, solve the equation $\\frac{dy}{dx} = 5$. The solution(s) for $x$ will give you the x-coordinate(s) where the curve has that gradient."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Differentiation is the engine of **9709 Pure Paper 1**. You will differentiate polynomials, find gradients of tangents, and classify stationary points. Examiners often bundle two skills in one question — differentiate correctly **and** interpret what the derivative means."
+      "content": "Welcome to differentiation. While you're familiar with the gradient of a straight line being constant, most functions in mathematics are curves with a gradient that changes continuously. Differentiation is the calculus tool that allows us to find the exact gradient of a curve at any given point. This has profound applications, from optimising business profits to modelling the motion of planets."
     },
     {
       "type": "heading",
-      "content": "Core rules you must know"
+      "content": "The Gradient Function"
+    },
+    {
+      "type": "text",
+      "content": "For a curve given by an equation $y = f(x)$, its steepness changes as $x$ changes. We can define a new function, called the derivative or the gradient function, which gives us the gradient for any value of $x$. This function is denoted by $\\frac{dy}{dx}$ or $f'(x)$. For example, if we find that the derivative of a curve is $f'(x) = 2x$, this means that at $x=1$, the gradient is $2(1)=2$, and at $x=-3$, the gradient is $2(-3)=-6$. The process of finding this gradient function is called differentiation."
+    },
+    {
+      "type": "heading",
+      "content": "The Power Rule: Your Main Tool for P1"
+    },
+    {
+      "type": "text",
+      "content": "The most fundamental rule for differentiation in this course is the power rule. It provides a simple algorithm for differentiating any term that can be expressed as a power of $x$. You must be fluent in applying this rule to polynomials, as well as terms involving roots and reciprocals, which must first be converted to index form."
     },
     {
       "type": "formula",
-      "content": "If y = x^n then dy/dx = n x^(n-1). Constant multiples and sums differentiate term by term."
+      "content": "If $y = ax^n$, then its derivative is $\\frac{dy}{dx} = anx^{n-1}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Bring the power down, reduce the power by 1",
-        "dy/dx at a point = gradient of the tangent to the curve",
-        "Stationary points: set dy/dx = 0 and solve",
-        "Second derivative (or sign table) tells you max vs min"
+        "**Multiply by the power:** Bring the old power down and multiply it by the coefficient.",
+        "**Reduce the power by one:** Subtract 1 from the old power to get the new power.",
+        "**Constants:** A constant term (e.g., +5) differentiates to 0.",
+        "**Sums/Differences:** Differentiate the function term by term.",
+        "**Preparation is key:** Always rewrite terms like $\\sqrt[b]{x^a}$ as $x^{a/b}$ and $\\frac{a}{x^b}$ as $ax^{-b}$ before you differentiate."
       ]
     },
     {
+      "type": "workedExample",
+      "question": "Given the curve $f(x) = 2x^3 - 5x^2 + x + 9$. \n(a) Find $f'(x)$. \n(b) Find the gradient of the curve at the point where $x=2$.",
+      "solution": "**(a) Find the derivative $f'(x)$**\nWe differentiate the function term by term using the power rule.\n$f(x) = 2x^3 - 5x^2 + 1x^1 + 9x^0$\n$f'(x) = (3 \\times 2)x^{3-1} - (2 \\times 5)x^{2-1} + (1 \\times 1)x^{1-1} + 0$\n$f'(x) = 6x^2 - 10x + 1x^0$\nSince $x^0 = 1$, we have:\n$f'(x) = 6x^2 - 10x + 1$\n\n**(b) Find the gradient at $x=2$**\nThe gradient function $f'(x)$ tells us the gradient for any value of $x$. To find the gradient at $x=2$, we substitute $x=2$ into $f'(x)$.\nGradient = $f'(2) = 6(2)^2 - 10(2) + 1$\n$= 6(4) - 20 + 1$\n$= 24 - 20 + 1$\n$= 5$\nSo, the gradient of the curve at $x=2$ is 5."
+    },
+    {
       "type": "heading",
-      "content": "Stationary points — exam favourite"
+      "content": "Finding Equations of Tangents and Normals"
     },
     {
       "type": "text",
-      "content": "When dy/dx = 0 you get turning points. Cambridge expects you to **find coordinates** (substitute x back into y) and **state the nature** (maximum, minimum, or point of inflection). A sign table of dy/dx around the point is acceptable if second derivative is messy."
+      "content": "A common exam question is to find the equation of a tangent or a normal to a curve at a specific point. The tangent is a line that touches the curve at that point and has the same gradient. The normal is a line perpendicular to the tangent at that same point. The process involves finding the gradient via differentiation and then using the standard formula for the equation of a straight line, $y - y_1 = m(x - x_1)$."
     },
     {
-      "type": "workedExample",
-      "question": "y = x³ − 3x² + 2. Find stationary points and their nature.",
-      "solution": "dy/dx = 3x² − 6x = 3x(x − 2). Stationary when x = 0 or x = 2.\n\nWhen x = 0, y = 2 → (0, 2). When x = 2, y = 8 − 12 + 2 = −2 → (2, −2).\n\nd²y/dx² = 6x − 6. At x = 0: −6 (max). At x = 2: +6 (min)."
+      "type": "formula",
+      "content": "Gradient of Normal: $m_{\\text{normal}} = -\\frac{1}{m_{\\text{tangent}}}"
     },
     {
       "type": "examTip",
-      "content": "Show **dy/dx** clearly before solving = 0. Method marks (M1) are lost when candidates jump to coordinates with no derivative shown. Use exact fractions unless the paper says otherwise."
+      "content": "A very common mistake is to use the tangent gradient when asked for the normal's equation. After you find $\\frac{dy}{dx}$ at the point, immediately write down $m_{\\text{tangent}} = ...$ and $m_{\\text{normal}} = ...$ on your script. This simple step prevents you from mixing them up under pressure."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the equation of the normal to the curve $y = x^2 + \\frac{8}{x}$ at the point where $x=2$. Give your answer in the form $ax+by+c=0$, where $a, b$ and $c$ are integers.",
+      "solution": "The solution requires several steps:\n\n**1. Find the coordinates of the point.**\nWe are given $x=2$. Substitute this into the original equation to find $y$.\n$y = (2)^2 + \\frac{8}{2} = 4 + 4 = 8$.\nThe point of contact is P(2, 8).\n\n**2. Prepare the function for differentiation.**\nRewrite the equation using indices: $y = x^2 + 8x^{-1}$.\n\n**3. Differentiate to find the gradient function.**\n$\\frac{dy}{dx} = 2x + (-1) \\times 8x^{-1-1}$\n$\\frac{dy}{dx} = 2x - 8x^{-2} = 2x - \\frac{8}{x^2}$.\n\n**4. Find the gradient of the tangent at $x=2$.**\nSubstitute $x=2$ into $\\frac{dy}{dx}$.\n$m_{\\text{tangent}} = 2(2) - \\frac{8}{2^2} = 4 - \\frac{8}{4} = 4 - 2 = 2$.\n\n**5. Find the gradient of the normal.**\nThe normal is perpendicular to the tangent.\n$m_{\\text{normal}} = -\\frac{1}{m_{\\text{tangent}}} = -\\frac{1}{2}$.\n\n**6. Find the equation of the normal.**\nUsing the point P(2, 8) and $m = -\\frac{1}{2}$ with the formula $y - y_1 = m(x - x_1)$.\n$y - 8 = -\\frac{1}{2}(x - 2)$\nTo eliminate the fraction, multiply the entire equation by 2:\n$2(y - 8) = -1(x - 2)$\n$2y - 16 = -x + 2$\nRearrange into the form $ax+by+c=0$.\n$x + 2y - 16 - 2 = 0$\n$x + 2y - 18 = 0$"
     },
     {
       "type": "practice",
-      "label": "Mark a differentiation question on MarkScheme",
+      "label": "Practice Differentiation Problems",
       "href": "/mark?subject=9709&topic=1.7"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9709 maths past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
-        { "label": "B1 M1 A1 mark scheme guide", "href": "/blog/cambridge-a-level-maths-mark-scheme-b1-m1-a1" },
-        { "label": "Top 9709 topics to practise", "href": "/blog/top-9709-past-paper-topics-to-practise" }
+        {
+          "label": "Cambridge International A-Level Mathematics (9709) Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Interactive Graphing with GeoGebra",
+          "href": "https://www.geogebra.org/graphing"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Tangent and gradient explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=mNMJ2R85",
+    "launchUrl": "https://www.geogebra.org/classic?material=mNMJ2R85",
+    "hint": "Move the point along the curve — read the gradient and see the tangent line update (9709 1.7).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "n",
+        "label": "Power n",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "default": 2
+      },
+      {
+        "id": "x0",
+        "label": "Point x₀",
+        "min": 1,
+        "max": 4,
+        "step": 0.5,
+        "default": 2
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "curve"
+        ],
+        "caption": "A function y = f(x) has a gradient that varies along the curve.",
+        "embedHint": "Move the point along the curve — watch the x-coordinate change."
+      },
+      {
+        "focus": [
+          "tangent"
+        ],
+        "caption": "The tangent line at a point shows the instantaneous gradient dy/dx.",
+        "embedHint": "Enable the tangent — its slope equals the derivative at that point."
+      },
+      {
+        "focus": [
+          "gradient"
+        ],
+        "caption": "Where the curve is steep, |dy/dx| is large; at a turning point, dy/dx = 0.",
+        "embedHint": "Pause at a maximum — tangent becomes horizontal (gradient zero)."
+      },
+      {
+        "focus": [
+          "rule"
+        ],
+        "caption": "Power rule: if y = xⁿ then dy/dx = nxⁿ⁻¹ (9709 1.7).",
+        "embedHint": "Compare the numeric gradient with nxⁿ⁻¹ for a power function."
+      }
+    ]
+  }
 }

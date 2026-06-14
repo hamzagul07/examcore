@@ -4,29 +4,213 @@
   "title": "Predicting the type of polymerisation",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level — choosing addition vs condensation from monomer structure.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson details how to predict the type of polymerisation a monomer will undergo by analysing its functional groups. It distinguishes between addition polymerisation, initiated by a C=C double bond, and condensation polymerisation, which requires two reactive functional groups and results in the elimination of a small molecule.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Identify monomers for addition polymerisation.",
-    "Identify monomers for condensation polymerisation.",
-    "Draw repeat units with correct linkages.",
-    "Deduce monomers from a polymer section."
+    "Deduce the type of polymerisation (addition or condensation) from the structure of a given monomer or monomers.",
+    "Identify the key functional groups responsible for addition (C=C) and condensation (-OH, -COOH, -NH₂, -COCl) polymerisation.",
+    "Predict and draw the repeating unit of a polymer, including any linkage groups (ester, amide).",
+    "Identify the small molecule (e.g., H₂O, HCl) eliminated during condensation polymerisation."
   ],
   "simpleExplanation": {
-    "title": "Which polymerisation?",
-    "summary": "C=C gives addition; two complementary functional groups give condensation with small molecule loss.",
+    "title": "Monomer Clues: Addition or Condensation?",
+    "summary": "To predict how a polymer forms, you just need to inspect the monomer's structure. A carbon-carbon double bond signals addition, while two reactive functional groups signal condensation.",
+    "analogy": "Imagine building a train. Addition polymerisation is like linking carriages that have magnetic couplers; they just click together and the train gets longer, with nothing lost. Condensation polymerisation is like linking older carriages that use a pin and hitch system; to join two carriages, you have to use the pin, and you're left with a spare hitch cover from each, which you discard. The train grows, but you also create a small pile of leftover parts.",
     "steps": [
-      "Alkene monomer → polyalkene.",
-      "Diacid + diol → polyester + H₂O.",
-      "Diacid + diamine → polyamide + H₂O.",
-      "Repeat unit includes atoms from both monomers."
+      "C=C monomer → addition polymerisation.",
+      "Two functional groups → condensation.",
+      "Diene + diene cross-link possible.",
+      "Draw repeat unit with linkage atoms shown."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is addition polymerisation?",
+      "back": "A process where unsaturated monomer molecules add to a growing polymer chain one at a time, without the loss of any atoms. The empirical formula of the polymer is the same as the monomer."
+    },
+    {
+      "front": "What is condensation polymerisation?",
+      "back": "A process where monomers with two functional groups join together with the loss of a small molecule, such as water ($H_2O$) or hydrogen chloride ($HCl$), for each bond formed."
+    },
+    {
+      "front": "What structural feature is required for a monomer to undergo addition polymerisation?",
+      "back": "A carbon-carbon double bond ($C=C$)."
+    },
+    {
+      "front": "What structural feature is required for monomers to undergo condensation polymerisation?",
+      "back": "Two reactive functional groups per monomer. These can be on the same molecule or on two different types of monomer."
+    },
+    {
+      "front": "What is a repeating unit?",
+      "back": "The smallest structural unit of a polymer chain which, when repeated, generates the complete polymer structure."
+    },
+    {
+      "front": "What is the linkage formed in a polyester?",
+      "back": "An ester linkage ($-COO-$)."
+    },
+    {
+      "front": "What is the linkage formed in a polyamide?",
+      "back": "An amide linkage ($-CONH-$), also known as a peptide link in proteins."
+    },
+    {
+      "front": "When forming a polyester from a diol and a dicarboxylic acid, what small molecule is eliminated?",
+      "back": "Water ($H_2O$)."
+    },
+    {
+      "front": "When forming a polyamide from a diamine and a diacyl chloride, what small molecule is eliminated?",
+      "back": "Hydrogen chloride ($HCl$)."
+    },
+    {
+      "front": "Does the empirical formula of a condensation polymer match that of its monomers?",
+      "back": "No. Because a small molecule is eliminated for every link formed, the polymer's empirical formula will be different from the combined formula of the monomers."
+    },
+    {
+      "front": "What type of polymer is Kevlar?",
+      "back": "A polyamide, formed by the condensation polymerisation of benzene-1,4-diamine and benzene-1,4-dicarboxylic acid (or its diacyl chloride)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can a single type of monomer undergo condensation polymerisation?",
+      "a": "Yes, provided the monomer molecule contains two different functional groups that can react with each other. A classic example is an amino acid (containing $-NH_2$ and $-COOH$ groups) or a hydroxycarboxylic acid (containing $-OH$ and $-COOH$ groups)."
+    },
+    {
+      "q": "What is the difference between a synthetic polyamide like Nylon and a natural polypeptide like a protein?",
+      "a": "Both contain amide linkages. The key difference is their origin and monomer composition. Polypeptides are natural polymers made in biological systems from the 20 common $\\alpha$-amino acids. Synthetic polyamides, like Nylon, are man-made from monomers such as diamines and dicarboxylic acids, which are not typically amino acids."
+    },
+    {
+      "q": "Why is addition polymerisation sometimes called 'chain-growth' and condensation 'step-growth'?",
+      "a": "This describes how the polymer chains grow. In 'chain-growth' (addition), an active site (e.g., a radical) adds monomers one by one very rapidly, so long chains form quickly while much monomer is still unreacted. In 'step-growth' (condensation), any two molecules can react (monomer + monomer, dimer + monomer, dimer + dimer, etc.), so the average molecular mass of all molecules in the pot increases slowly and in steps."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Predicting polymerisation type** (35.2) follows **35.1 condensation**. Examiners often give **one repeat unit** and ask for **monomers**." },
-    { "type": "practice", "label": "Mark a polymerisation type question", "href": "/mark?subject=9701&topic=35.2" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Polymers are giant molecules that form the basis of plastics, fibres, and even biological materials like proteins and DNA. Understanding how they are made is fundamental to chemistry. The key to this understanding lies in the small molecules they are built from: monomers. In this lesson, we will learn how to look at a monomer's chemical structure and predict with confidence whether it will form a polymer by addition or condensation."
+    },
+    {
+      "type": "heading",
+      "content": "Addition Polymerisation: The Unbroken Chain"
+    },
+    {
+      "type": "text",
+      "content": "Addition polymerisation is characterised by the joining of monomers without the loss of any atoms. The only requirement for a monomer to undergo this process is the presence of a carbon-carbon double bond ($C=C$). During the reaction, the pi ($pi$) bond within the double bond breaks, and the electrons are used to form new single bonds with adjacent monomer molecules. This creates a long, saturated carbon chain which forms the backbone of the polymer."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Monomer requirement:** Must contain a $C=C$ double bond (i.e., be an alkene or substituted alkene).",
+        "**Mechanism:** The $\\pi$-bond breaks, and monomers add on, forming a long saturated chain.",
+        "**Atom economy:** 100%. No other product is formed.",
+        "**Empirical formula:** The empirical formula of the polymer is identical to that of the monomer.",
+        "**Example:** Ethene ($CH_2=CH_2$) polymerises to form poly(ethene) ($- [CH_2-CH_2]_n-$)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The monomer chloroethene, $CH_2=CHCl$, is used to make the polymer PVC. Predict the type of polymerisation it undergoes and draw two repeating units of the resulting polymer.",
+      "solution": "1. **Analyse the monomer:** Chloroethene contains a $C=C$ double bond. \n2. **Predict the polymerisation type:** The presence of the $C=C$ bond indicates it will undergo **addition polymerisation**. \n3. **Draw the polymer structure:** The double bond breaks to form the chain. The H and Cl atoms are attached to the carbon backbone. The repeating unit is $-[CH_2-CHCl]-$. Two repeating units would be $-[CH_2-CHCl-CH_2-CHCl]-$."
+    },
+    {
+      "type": "heading",
+      "content": "Condensation Polymerisation: Building with a By-product"
+    },
+    {
+      "type": "text",
+      "content": "Condensation polymerisation involves a reaction between two functional groups. In this process, a covalent bond is formed between monomer units, and a small, stable molecule (like water, ammonia, or hydrogen chloride) is eliminated. For a chain to form, each monomer must be bifunctional, meaning it has two reactive functional groups. These can be two identical groups on one monomer that reacts with another bifunctional monomer (e.g., a diol with a dicarboxylic acid), or two different functional groups on a single monomer type (e.g., an amino acid)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Monomer requirement:** Each monomer must have at least two reactive functional groups.",
+        "**Common functional groups:** Carboxyl ($-COOH$), hydroxyl ($-OH$), amine ($-NH_2$), and acyl chloride ($-COCl$).",
+        "**Mechanism:** Functional groups react, forming a linkage (e.g., ester, amide) and eliminating a small molecule.",
+        "**Polymer types:** Leads to polyesters (from diols and dicarboxylic acids) and polyamides (from diamines and dicarboxylic acids).",
+        "**Example:** Ethane-1,2-diol and terephthalic acid react to form the polyester Terylene, eliminating water."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A polymer is formed from the monomers hexane-1,6-diamine, $H_2N(CH_2)_6NH_2$, and decanedioyl dichloride, $ClOC(CH_2)_8COCl$. \n(i) Predict the type of polymerisation. \n(ii) Name the type of polymer formed and the linkage within it. \n(iii) Identify the small molecule eliminated. \n(iv) Draw the repeating unit of the polymer.",
+      "solution": "(i) **Prediction:** The monomers are bifunctional (a diamine and a diacyl chloride). Their functional groups will react. This is **condensation polymerisation**. \n(ii) **Polymer type and linkage:** An amine reacts with an acyl chloride to form an amide linkage ($-CONH-$). The polymer is a **polyamide**. \n(iii) **Small molecule:** The H from the amine group ($-NH_2$) and the Cl from the acyl chloride group ($-COCl$) are eliminated as **hydrogen chloride ($HCl$)**. \n(iv) **Repeating unit:** The repeating unit consists of one of each monomer, joined by the amide link. \n$-[NH-(CH_2)_6-NH-CO-(CH_2)_8-CO]-$"
+    },
+    {
+      "type": "heading",
+      "content": "A Simple Predictive Strategy"
+    },
+    {
+      "type": "text",
+      "content": "To determine the polymerisation route, follow a simple two-step check of the monomer(s). First, look for a $C=C$ double bond. If present, addition polymerisation is the most likely pathway. If there is no $C=C$ bond, or if the reaction conditions favour it, look for two reactive functional groups. If a monomer has two such groups (or you have two different monomers that are both bifunctional), condensation polymerisation will occur. A special case is a diene (a monomer with two $C=C$ bonds, e.g. buta-1,3-diene). This undergoes addition polymerisation, but the presence of a second double bond in each monomer unit allows for potential cross-linking between chains, as seen in the vulcanisation of rubber."
+    },
+    {
+      "type": "examTip",
+      "content": "A common exam question gives you the structure of a polymer and asks you to identify the monomer(s). For an addition polymer, locate the repeating carbon backbone and mentally 're-form' the double bond between the two central carbons of the unit. For a condensation polymer, identify the ester or amide linkage and 'break' it by hydrolysis (adding $H_2O$), adding -OH to the carbonyl carbon and -H to the oxygen or nitrogen atom to regenerate the original functional groups."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Predictive Skills",
+      "href": "/mark?subject=9701&topic=35.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge A-Level Chemistry Textbook (Hodder Education)",
+          "href": "https://www.hoddereducation.co.uk/subjects/science/products/16-18/cambridge-international-as-a-level-chemistry-cour"
+        },
+        {
+          "label": "Chemguide: Polymerisation",
+          "href": "https://www.chemguide.co.uk/orgprops/polymers/mechanisms.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Addition vs condensation from monomer functional groups (35.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "C=C monomer → addition polymerisation.",
+        "embedHint": "Same empirical formula as monomer."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Two functional groups → condensation.",
+        "embedHint": "Small molecule eliminated each step."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Diene + diene cross-link possible.",
+        "embedHint": "Check for two reactive sites."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Draw repeat unit with linkage atoms shown.",
+        "embedHint": "Bracket across one full repeat."
+      }
+    ]
+  }
 }

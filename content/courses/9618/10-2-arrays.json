@@ -4,39 +4,173 @@
   "title": "Arrays",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS arrays — 1D and 2D, index bounds, iteration, and searching in pseudocode.",
+  "status": "pilot",
+  "summary": "This lesson introduces one-dimensional arrays, a fundamental composite data structure. You will learn how to declare, initialise, and process arrays using loops, which is a core skill for solving problems that involve lists of data.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Declare 1D and 2D arrays with appropriate bounds.",
-    "Access elements using indices.",
-    "Write loops to process array data.",
-    "Implement linear search on an array."
+    "Define and declare a one-dimensional (1D) array in pseudocode.",
+    "Understand the concepts of index, upper bound, and lower bound.",
+    "Use loops to iterate through an array to populate, read, and process its elements.",
+    "Apply array processing techniques to solve problems like finding totals, averages, and searching for values."
   ],
   "simpleExplanation": {
-    "title": "Indexed collections",
-    "summary": "Arrays store multiple values of the same type under one name. Index usually starts at 0 or 1 — check the question convention.",
+    "title": "Digital Pigeonholes",
+    "summary": "An array is a data structure that stores a collection of items, all of the same type, in a single, named block of memory. You can access any item directly by using its numerical position, called an index.",
+    "analogy": "Imagine a row of numbered mail pigeonholes in a post office sorting room. Each pigeonhole is for a specific address (the index) and can hold one parcel (the data). If you need the parcel for address number 15, you don't check every box; you go straight to pigeonhole 15. Arrays allow a program to do the same thing: store and retrieve data from a specific location in a collection instantly.",
     "steps": [
-      "DECLARE Scores[1:10] OF INTEGER — bounds inclusive.",
-      "FOR i ← 1 TO 10 — process each element.",
-      "2D: Grid[row, col] — nested loops for matrix work.",
-      "Linear search: compare each element until found."
+      "Define the array's structure: its name, size (lower and upper bounds), and the data type it will hold, e.g., `DECLARE Scores : ARRAY[1:50] OF INTEGER`.",
+      "Populate the array with data. This is often done using a loop to read values from a user or a file into each position.",
+      "Access a specific element using its index. For example, `Scores[3]` refers to the third element in the `Scores` array.",
+      "Process the entire array by using a `FOR` loop to iterate from the lower bound to the upper bound, performing an operation on each element in turn."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an array?",
+      "back": "A static, finite, ordered set of elements of the same data type, stored in contiguous memory locations under a single identifier."
+    },
+    {
+      "front": "What is an 'element' in an array?",
+      "back": "A single data item stored within an array."
+    },
+    {
+      "front": "What is an 'index' or 'subscript'?",
+      "back": "A numerical value used to identify the position of a specific element within an array. For example, in `Scores[5]`, the index is 5."
+    },
+    {
+      "front": "What is the 'lower bound' of an array?",
+      "back": "The smallest index value in an array. In `DECLARE A : ARRAY[1:10]`, the lower bound is 1."
+    },
+    {
+      "front": "What is the 'upper bound' of an array?",
+      "back": "The largest index value in an array. In `DECLARE A : ARRAY[1:10]`, the upper bound is 10."
+    },
+    {
+      "front": "How do you declare a 1D array in Cambridge pseudocode?",
+      "back": "`DECLARE <identifier> : ARRAY[<lower_bound>:<upper_bound>] OF <data_type>`"
+    },
+    {
+      "front": "What does it mean to 'traverse' an array?",
+      "back": "To access and process every element in the array, usually in order from the lower bound to the upper bound, typically using a `FOR` loop."
+    },
+    {
+      "front": "What is an 'index out of bounds' error?",
+      "back": "A run-time error that occurs when a program tries to access an array element with an index that is outside the valid range of its lower and upper bounds."
+    },
+    {
+      "front": "Why is an array described as a 'static' data structure?",
+      "back": "Because its size is fixed when it is declared and cannot be changed during program execution. The number of elements is determined at compile-time."
+    },
+    {
+      "front": "Give an example of a problem where an array is the ideal data structure.",
+      "back": "Storing the test scores for 30 students in a class, storing the daily temperature for a month, or holding the names of players on a team."
+    },
+    {
+      "front": "How do you calculate the number of elements in an array declared as `ARRAY[L:U]`?",
+      "back": "The number of elements is `U - L + 1`. For `ARRAY[1:10]`, it's `10 - 1 + 1 = 10` elements."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do some programming languages start array indices at 0, but Cambridge pseudocode often uses 1?",
+      "a": "0-based indexing (starting at 0) is common in languages like Python, Java, and C++ because the index represents an 'offset' from the starting memory address of the array. The first element is at offset 0. However, 1-based indexing (starting at 1) is often more intuitive for humans ('the first item', 'the second item'). Cambridge pseudocode allows either but typically uses 1-based indexing in exam questions. It's crucial to be consistent and follow the bounds given in the question."
+    },
+    {
+      "q": "What's the difference between an array and a list?",
+      "a": "In the context of A-Level Computer Science, the key difference is that an array is a **static** data structure, meaning its size is fixed upon creation. A list is typically a **dynamic** data structure, meaning it can grow or shrink as needed. For your exams, especially in Paper 2 pseudocode, you will almost always be working with static arrays."
+    },
+    {
+      "q": "What happens if I try to access an index that doesn't exist?",
+      "a": "This causes a run-time error called an 'index out of bounds' error. For an array declared as `MyData : ARRAY[1:10] OF INTEGER`, trying to access `MyData[0]` or `MyData[11]` would trigger this error. Your program would likely halt. It's a common logical error that you must guard against in your code, for example by ensuring loop bounds are correct."
+    },
+    {
+      "q": "Can I store different data types in the same array?",
+      "a": "No. An array is a homogeneous data structure, which means all its elements must be of the same data type specified in the declaration (e.g., all `INTEGER` or all `STRING`)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Arrays** (10.2) appear in almost every Paper 2 algorithm question. Watch **index bounds** — off-by-one errors fail trace tables."
+      "content": "So far, you've used simple variables that can only hold a single piece of data at a time, like one score or one name. But what if you need to manage a list of data, such as the scores of every student in a class? Creating 30 separate variables (`Score1`, `Score2`, etc.) would be incredibly inefficient. This is where arrays come in. They are one of the most fundamental data structures in programming, allowing you to store and manage collections of related data efficiently."
+    },
+    {
+      "type": "heading",
+      "content": "The Structure of a One-Dimensional Array"
+    },
+    {
+      "type": "text",
+      "content": "A one-dimensional (1D) array is a composite data structure that stores a fixed-size, sequential collection of elements of the same data type. Think of it as a numbered list. All elements are stored under a single variable name, and individual elements are accessed by their position in the list, known as an index or subscript."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Homogeneous Data:** All elements in an array must be of the same data type (e.g., all `INTEGER`, all `STRING`).",
+        "**Single Identifier:** The entire collection of data is referred to by one name.",
+        "**Indexed Access:** Elements are accessed using an integer index, typically enclosed in square brackets, e.g., `MyArray[3]`.",
+        "**Static Size:** In the context of the 9618 syllabus, arrays have a fixed size that is defined when they are declared and cannot change while the program is running."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Declaring and Initialising Arrays in Pseudocode"
+    },
+    {
+      "type": "text",
+      "content": "Before you can use an array, you must declare it. This tells the computer the array's name, its size (by specifying the lower and upper index bounds), and what type of data it will hold. The Cambridge exam board has a specific format for this."
+    },
+    {
+      "type": "formula",
+      "content": "DECLARE <identifier> : ARRAY[<lower>:<upper>] OF <data_type>"
+    },
+    {
+      "type": "text",
+      "content": "For example, to declare an array to hold the names of 10 players, you would write: `DECLARE PlayerNames : ARRAY[1:10] OF STRING`. This creates 10 slots, indexed 1 through 10, each capable of holding a string. After declaration, arrays often need to be populated with initial values. This is typically done using a `FOR` loop to iterate through each index and assign a value."
+    },
+    {
+      "type": "workedExample",
+      "question": "A programmer is creating a game and needs to store the high scores of the top 5 players. The scores are whole numbers. Declare a suitable array to store these scores.",
+      "solution": "```pseudocode\n// 1 mark for correct identifier, ARRAY keyword, and data type.\n// 1 mark for correct bounds [1:5].\n\nDECLARE HighScores : ARRAY[1:5] OF INTEGER\n```\n**Explanation:**\n- `DECLARE HighScores`: We give the array a meaningful name.\n- `ARRAY[1:5]`: We specify it's an array with 5 elements, indexed from 1 to 5. The lower bound is 1 and the upper bound is 5.\n- `OF INTEGER`: We specify that each element will be a whole number."
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the syntax. A single mistake like using parentheses `()` instead of square brackets `[]`, forgetting the `OF <data_type>` part, or missing the `DECLARE` keyword can cost you marks. Always use 1-based indexing (`[1:N]`) in exams unless the question explicitly states otherwise."
+    },
+    {
+      "type": "heading",
+      "content": "Processing Arrays with Loops"
+    },
+    {
+      "type": "text",
+      "content": "The true utility of arrays is realised when they are processed using loops. A `FOR` loop is perfectly suited for array traversal because the number of elements is fixed and known. You can loop from the lower bound to the upper bound, using the loop counter variable as the index to access each element in sequence. This allows for efficient operations like calculating totals, finding averages, or searching for a specific value."
+    },
+    {
+      "type": "workedExample",
+      "question": "An array, `TestScores`, has been declared as `ARRAY[1:30] OF INTEGER` and is filled with student scores. Write pseudocode to find and output the highest score in the array.",
+      "solution": "```pseudocode\n// Declare a variable to hold the highest score found so far\nDECLARE HighestScore : INTEGER\n\n// Initialise HighestScore with the first element of the array (1 mark)\nHighestScore <- TestScores[1]\n\n// Loop from the second element to the end of the array (1 mark for correct loop)\nFOR Index <- 2 TO 30\n  // Check if the current element is greater than the highest score found so far (1 mark for comparison)\n  IF TestScores[Index] > HighestScore THEN\n    // If it is, update HighestScore (1 mark for correct assignment)\n    HighestScore <- TestScores[Index]\n  ENDIF\nNEXT Index\n\n// Output the final result (1 mark)\nOUTPUT \"The highest score is: \", HighestScore\n```"
+    },
+    {
+      "type": "examTip",
+      "content": "When finding a maximum or minimum, a common technique is to initialise your tracking variable (`HighestScore` in the example) with the value of the *first* element in the array. Then, loop from the *second* element to the end. This avoids issues with choosing an arbitrary initial value (like 0) that might be incorrect if all array values are negative, for instance."
     },
     {
       "type": "practice",
-      "label": "Mark an arrays question",
+      "label": "Practice Array Problems",
       "href": "/mark?subject=9618&topic=10.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "CS-Guide.com - Arrays",
+          "href": "https://www.cs-guide.com/data-structures/arrays"
+        },
+        {
+          "label": "BBC Bitesize - Arrays",
+          "href": "https://www.bbc.co.uk/bitesize/guides/z4j6wmn/revision/1"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

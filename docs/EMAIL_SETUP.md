@@ -105,3 +105,4 @@ Exam reminders (`email_exam_reminders`) are stored for a future cron; not wired 
 | Welcome never arrives | Welcome sends after **onboarding complete**, not at sign-in; check Resend logs |
 | Welcome twice | Should not happen — only first onboarding save triggers welcome |
 | Auth mail missing | Configure Supabase SMTP, not only Resend API key |
+| Email rate limit exceeded | Supabase default is 30/hr — run `node scripts/configure-supabase-rate-limits.mjs` or raise limits in Auth → Rate Limits |

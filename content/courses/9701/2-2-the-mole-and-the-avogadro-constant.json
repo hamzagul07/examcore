@@ -4,70 +4,230 @@
   "title": "The mole and the Avogadro constant",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS Chemistry — the mole concept, Avogadro constant, molar mass, and solution concentration with PhET Molarity lab integration.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the mole as the fundamental unit for amount of substance in chemistry. It covers the Avogadro constant, molar mass, and the key formulae used to relate moles to mass, solution concentration, and gas volumes at room temperature and pressure (r.t.p.).",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define the mole and state the value of the Avogadro constant.",
-    "Convert between mass, moles, and number of particles using n = m/Mr.",
-    "Calculate solution concentration c = n/V in mol dm⁻³.",
-    "Use the molar gas volume at rtp (24 dm³ mol⁻¹) in gas stoichiometry."
+    "Define the mole in terms of the Avogadro constant and the carbon-12 isotope.",
+    "Use the formula relating amount of substance (moles), mass, and molar mass.",
+    "Calculate concentration of solutions using the formula relating moles, volume, and concentration.",
+    "Use the molar volume of a gas at room temperature and pressure (r.t.p.) in calculations."
   ],
   "simpleExplanation": {
-    "title": "Chemists count in moles",
-    "summary": "The mole is a counting unit — like a dozen, but 6.02 × 10²³ particles. It links the microscopic (atoms) to the macroscopic (grams you can weigh).",
+    "title": "The Chemist's Counting Unit",
+    "summary": "The mole is a unit for counting a huge number of particles, like atoms or molecules. It allows us to connect the microscopic world of particles to the macroscopic world of mass and volume we can measure in the lab.",
+    "analogy": "A baker doesn't count individual flour grains; they use a standard measure like a 'cup' or weigh it in grams. Similarly, chemists use the 'mole' as a standard amount to 'count' atoms, which are too small to see, simply by weighing them.",
     "steps": [
-      "One mole of any substance contains 6.02 × 10²³ specified particles (atoms, molecules, ions).",
-      "Molar mass in g mol⁻¹ numerically equals Mr — so 1 mol of CO₂ has mass 44 g.",
-      "Concentration c = n/V links moles dissolved to solution volume in dm³.",
-      "At rtp, 1 mol of any ideal gas occupies about 24 dm³ — essential for gas equations."
+      "One mole contains Avogadro constant (6.02 × 10²³) particles.",
+      "n = m / Mr links mass to amount of substance.",
+      "Concentration c = n / V (mol dm⁻³) for solutions.",
+      "Gas volume at rtp: 1 mol ≈ 24 dm³ (ideal exam approximation)."
     ]
   },
   "flashcards": [
-    { "front": "Value of Avogadro constant L?", "back": "6.02 × 10²³ mol⁻¹ (particles per mole)." },
-    { "front": "n = m / Mr rearranged for mass?", "back": "m = n × Mr" },
-    { "front": "Concentration units?", "back": "mol dm⁻³ (molarity, M)." },
-    { "front": "Molar gas volume at rtp?", "back": "24 dm³ mol⁻¹ (Cambridge standard approximation)." }
+    {
+      "front": "What is the definition of a mole?",
+      "back": "The amount of substance that contains the same number of specified elementary entities as there are atoms in exactly 12 g of the carbon-12 isotope. This number is the Avogadro constant."
+    },
+    {
+      "front": "What is the value and symbol for the Avogadro constant?",
+      "back": "The Avogadro constant ($L$ or $N_A$) is $6.02 \\times 10^{23}$ mol⁻¹."
+    },
+    {
+      "front": "What is molar mass ($M_r$)?",
+      "back": "The mass of one mole of a substance, expressed in grams per mole (g mol⁻¹). Its numerical value is the same as the relative molecular/formula mass."
+    },
+    {
+      "front": "What is the formula linking moles ($n$), mass ($m$), and molar mass ($M_r$)?",
+      "back": "$n = \\frac{m}{M_r}$"
+    },
+    {
+      "front": "What is the formula linking concentration ($c$), moles ($n$), and volume ($V$)?",
+      "back": "$c = \\frac{n}{V}$"
+    },
+    {
+      "front": "What are the standard units for concentration in A-Level Chemistry?",
+      "back": "moles per decimetre cubed (mol dm⁻³)"
+    },
+    {
+      "front": "How do you convert a volume from cm³ to dm³?",
+      "back": "Divide by 1000. For example, 250 cm³ is equal to 0.250 dm³."
+    },
+    {
+      "front": "What is the molar volume of an ideal gas at room temperature and pressure (r.t.p.)?",
+      "back": "24 dm³ mol⁻¹ (or 24,000 cm³ mol⁻¹). This means one mole of any ideal gas occupies 24 dm³ at r.t.p."
+    },
+    {
+      "front": "What does r.t.p. stand for?",
+      "back": "Room Temperature and Pressure. This is defined as approximately 298 K (25 °C) and 1 atm (101 kPa) pressure."
+    },
+    {
+      "front": "What is a common mistake when calculating the number of atoms in a compound?",
+      "back": "Forgetting to multiply the moles of the compound by the number of atoms of that element within one formula unit. E.g., 1 mole of H₂O contains 2 moles of H atoms."
+    },
+    {
+      "front": "Why is it important to use the correct significant figures in mole calculations?",
+      "back": "Exam answers must be given to an appropriate number of significant figures, usually determined by the least precise data value given in the question (typically 2 or 3 s.f.)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the mole defined using carbon-12?",
+      "a": "Carbon-12 was chosen as the standard because it is a common, stable, and easily purified solid. Using a specific isotope (carbon-12) provides a precise and reproducible standard for defining the atomic mass unit and, by extension, the mole."
+    },
+    {
+      "q": "What is the difference between relative molecular mass ($M_r$) and molar mass ($M$)?",
+      "a": "Relative molecular mass ($M_r$) is a ratio and has no units. It's the mass of a molecule compared to 1/12th the mass of a carbon-12 atom. Molar mass ($M$) is the mass of one mole of a substance and has units of g mol⁻¹. Numerically, they are the same value."
+    },
+    {
+      "q": "Do I always have to convert cm³ to dm³ for concentration calculations?",
+      "a": "Yes, if you want the final concentration to be in the standard units of mol dm⁻³. The formula $c = n/V$ requires volume ($V$) to be in dm³ to give concentration ($c$) in mol dm⁻³. It's a critical step that is often tested."
+    },
+    {
+      "q": "Can I use the molar gas volume (24 dm³ mol⁻¹) for liquids like water?",
+      "a": "No, absolutely not. The molar volume of 24 dm³ mol⁻¹ applies only to gases at room temperature and pressure. The volume of one mole of a liquid or solid is much smaller and depends on its density. For example, one mole of water (18 g) has a volume of only about 18 cm³."
+    }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Stoichiometry dominates **9701 AS Papers 1 and 2**. If the mole concept is shaky, every calculation that follows — titration, gas volume, limiting reagent — will cost marks. The **PhET Molarity** sim below connects moles to solutions you prepare in the lab."
+      "content": "Atoms and molecules are incredibly small and numerous, making it impossible to count them individually. To work with substances in the lab, we need a way to relate the macroscopic properties we can measure, like mass and volume, to the number of particles involved in a reaction. The mole is the concept that bridges this gap, providing a convenient unit for the 'amount of substance'."
     },
     {
-      "type": "formula",
-      "content": "n = m/Mr | n = cV (V in dm³) | n = volume of gas (dm³) / 24 at rtp | N = n × L"
+      "type": "heading",
+      "content": "The Mole and the Avogadro Constant"
     },
     {
-      "type": "workedExample",
-      "question": "Calculate the mass of NaOH needed to prepare 250 cm³ of 0.100 mol dm⁻³ solution. (Mr NaOH = 40.0)",
-      "solution": "n = cV = 0.100 × (250/1000) = 0.0250 mol\n\nm = n × Mr = 0.0250 × 40.0 = **1.00 g**"
+      "type": "text",
+      "content": "The mole (symbol: mol) is the SI unit for the amount of substance. It is formally defined based on a standard: one mole is the amount of substance containing as many elementary entities (e.g., atoms, molecules, ions, electrons) as there are atoms in exactly 12 grams of the carbon-12 isotope. This specific number of entities is known as the Avogadro constant."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Always convert cm³ to dm³ before using c = n/V",
-        "State units in every line — examiners deduct for missing mol, g, dm³",
-        "Distinguish empirical formula mass from molecular formula mass",
-        "Significant figures: match data in the question unless told otherwise"
+        "1 mole contains $6.02 \\times 10^{23}$ particles.",
+        "This number, $6.02 \\times 10^{23}$ mol⁻¹, is the Avogadro constant ($L$).",
+        "The particles can be atoms, molecules, formula units, or ions.",
+        "Number of particles = amount in moles ($n$) × Avogadro constant ($L$)"
       ]
     },
     {
+      "type": "heading",
+      "content": "Molar Mass: Linking Moles and Mass"
+    },
+    {
+      "type": "text",
+      "content": "The molar mass ($M$) of a substance is the mass of one mole of that substance. It is expressed in units of grams per mole (g mol⁻¹). Conveniently, the numerical value of the molar mass is the same as the relative atomic mass ($A_r$) for an element, or the relative molecular/formula mass ($M_r$) for a compound, which you can calculate using values from the Periodic Table."
+    },
+    {
+      "type": "formula",
+      "content": "Amount of substance ($n$) = $\\frac{\\text{mass } (m)}{\\text{molar mass } (M_r)}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the amount of substance (in moles) and the number of formula units in 25.0 g of calcium carbonate, CaCO₃. (Relative atomic masses: Ca = 40.1, C = 12.0, O = 16.0)",
+      "solution": "1.  **Calculate the molar mass ($M_r$) of CaCO₃:**\n    $M_r = 40.1 + 12.0 + (3 \\times 16.0) = 100.1$ g mol⁻¹\n\n2.  **Calculate the amount in moles ($n$):**\n    $n = \\frac{m}{M_r} = \\frac{25.0 \\text{ g}}{100.1 \\text{ g mol⁻¹}} = 0.24975...$ mol\n    To 3 significant figures, $n = 0.250$ mol.\n\n3.  **Calculate the number of formula units:**\n    Number of units = $n \\times L$\n    Number of units = $0.250 \\text{ mol} \\times (6.02 \\times 10^{23} \\text{ mol⁻¹}) = 1.505 \\times 10^{23}$\n    To 3 significant figures, this is $1.51 \\times 10^{23}$ formula units."
+    },
+    {
+      "type": "heading",
+      "content": "Concentration of Solutions"
+    },
+    {
+      "type": "text",
+      "content": "For reactions in solution, we use concentration to describe the amount of a solute dissolved in a certain volume of solvent. Concentration is defined as the amount of substance (in moles) per unit volume. The standard unit for volume in these calculations is the decimetre cubed (dm³), which is equivalent to 1 litre."
+    },
+    {
       "type": "examTip",
-      "content": "Write **n = m/Mr** first even when the answer seems obvious. That M1 line appears in almost every mark scheme for calculation questions."
+      "content": "A very common mistake is forgetting to convert volumes given in cm³ to dm³. Remember that $1 \\text{ dm³} = 1000 \\text{ cm³}$. To convert from cm³ to dm³, you must divide by 1000. Always check your units before calculating!"
+    },
+    {
+      "type": "formula",
+      "content": "Concentration ($c$) = $\\frac{\\text{amount of substance } (n)}{\\text{volume } (V)}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A student dissolves 4.38 g of anhydrous sodium carbonate, Na₂CO₃, in water and makes the solution up to 250 cm³ in a volumetric flask. Calculate the concentration of the solution in mol dm⁻³. (Relative atomic masses: Na = 23.0, C = 12.0, O = 16.0)",
+      "solution": "1.  **Calculate the molar mass ($M_r$) of Na₂CO₃:**\n    $M_r = (2 \\times 23.0) + 12.0 + (3 \\times 16.0) = 106.0$ g mol⁻¹\n\n2.  **Calculate the amount in moles ($n$) of Na₂CO₃:**\n    $n = \\frac{m}{M_r} = \\frac{4.38 \\text{ g}}{106.0 \\text{ g mol⁻¹}} = 0.04132...$ mol\n\n3.  **Convert the volume to dm³:**\n    $V = \\frac{250 \\text{ cm³}}{1000} = 0.250$ dm³\n\n4.  **Calculate the concentration ($c$):**\n    $c = \\frac{n}{V} = \\frac{0.04132... \\text{ mol}}{0.250 \\text{ dm³}} = 0.16528...$ mol dm⁻³\n    To 3 significant figures, the concentration is $0.165$ mol dm⁻³."
+    },
+    {
+      "type": "heading",
+      "content": "The Molar Volume of Gases"
+    },
+    {
+      "type": "text",
+      "content": "Avogadro's Law states that equal volumes of different gases, at the same temperature and pressure, contain the same number of molecules (and therefore the same number of moles). This leads to the concept of molar volume. For A-Level Chemistry, you need to know that at room temperature and pressure (r.t.p. – approx. 25°C and 1 atm), one mole of any ideal gas has a volume of 24 dm³ (or 24,000 cm³)."
+    },
+    {
+      "type": "formula",
+      "content": "Amount of gas ($n$) = $\\frac{\\text{Volume of gas}}{\\text{Molar volume}}$\n\nAt r.t.p., this becomes: $n = \\frac{\\text{Volume in dm³}}{24}$ or $n = \\frac{\\text{Volume in cm³}}{24000}$"
+    },
+    {
+      "type": "examTip",
+      "content": "The molar volume of 24 dm³ mol⁻¹ is an approximation used in exams and is only valid for gases at r.t.p. Do not use it for solids, liquids, or gases at other temperatures and pressures unless you are given a different value for the molar volume."
     },
     {
       "type": "practice",
-      "label": "Mark a mole calculation",
+      "label": "Test your understanding",
       "href": "/mark?subject=9701&topic=2.2"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Molarity", "href": "https://phet.colorado.edu/en/simulations/molarity" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Chemguide: The Mole",
+          "href": "https://www.chemguide.co.uk/basicorg/conventions/moles.html"
+        },
+        {
+          "label": "Royal Society of Chemistry: The Mole",
+          "href": "https://edu.rsc.org/resources/the-mole/749.article"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Molarity lab",
+    "embedUrl": "https://phet.colorado.edu/sims/html/molarity/latest/molarity_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/molarity",
+    "hint": "Prepare solutions of known concentration — link moles, volume, and mol dm⁻³ (2.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "One mole contains Avogadro constant (6.02 × 10²³) particles.",
+        "embedHint": "Prepare 1 mol dm⁻³ solution — link moles, Mr, and volume."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "n = m / Mr links mass to amount of substance.",
+        "embedHint": "Weigh out a known mass — calculate moles using Mr."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Concentration c = n / V (mol dm⁻³) for solutions.",
+        "embedHint": "Dilute the solution — moles stay constant, concentration falls."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Gas volume at rtp: 1 mol ≈ 24 dm³ (ideal exam approximation).",
+        "embedHint": "Connect solution prep to reacting volumes in stoichiometry questions."
+      }
+    ]
+  }
 }

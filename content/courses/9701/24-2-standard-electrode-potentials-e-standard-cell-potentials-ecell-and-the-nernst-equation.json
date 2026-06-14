@@ -4,39 +4,248 @@
   "title": "Standard electrode potentials E°, standard cell potentials Ecell and the Nernst equation",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level electrochemistry — E° tables, cell emf, ΔG, and the Nernst equation with PhET circuit kit.",
-  "durationMin": 26,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores standard electrode potentials (E°) as a measure of a half-cell's tendency to be reduced. You will learn to calculate the standard cell potential (E°cell) for an electrochemical cell, predict the spontaneity of a reaction, and understand its link to Gibbs free energy (ΔG°). Finally, the Nernst equation is introduced to calculate cell potentials under non-standard conditions.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Use standard electrode potential data to predict cell reactions.",
-    "Calculate E°cell and link to ΔG°.",
-    "Apply the Nernst equation at non-standard concentrations.",
-    "Construct electrochemical cell diagrams."
+    "Define standard electrode potential (E°) and describe the standard hydrogen electrode (SHE) as a reference.",
+    "Calculate standard cell potential (E°cell) using the formula E°cell = E°(cathode) − E°(anode) and predict the direction of spontaneous change.",
+    "Understand and use the relationship between E°cell, Gibbs free energy, and spontaneity, applying the formula ΔG° = −nFE°cell.",
+    "Use the Nernst equation to understand how cell potential (E) is affected by changes in concentration from standard conditions."
   ],
   "simpleExplanation": {
-    "title": "Measuring reducing power",
-    "summary": "E° measures tendency to be reduced. The more positive E° is reduced at the cathode; the cell emf is E°(cathode) − E°(anode).",
+    "title": "Electrochemical Tug-of-War",
+    "summary": "Electrode potentials measure how strongly different species pull on electrons. By comparing these values, we can predict which way electrons will flow, determining the direction of a spontaneous chemical reaction.",
+    "analogy": "Imagine two people of different strengths pulling on a rope. The stronger person represents the half-cell with the more positive electrode potential, and they will 'win' the rope (the electrons). The difference in their strengths is like the cell potential (E°cell), which drives the flow of electrons from the weaker person (anode) to the stronger one (cathode).",
     "steps": [
-      "SHE defined as E° = 0.00 V — all E° relative to H⁺/H₂.",
-      "E°cell > 0 → spontaneous cell reaction.",
-      "ΔG° = −nFE°cell (F = 96500 C mol⁻¹).",
-      "Nernst at 298 K: E = E° − (0.059/n) log Q."
+      "E° measures tendency to reduce — higher E° = stronger oxidising agent.",
+      "E°cell = E°(cathode) − E°(anode) for a spontaneous cell.",
+      "ΔG° = −nFE°cell — link thermodynamics to electrochemistry.",
+      "Nernst: E = E° − (RT/nF) ln Q — non-standard concentrations."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the standard electrode potential, E°?",
+      "back": "The potential difference of a half-cell measured against the standard hydrogen electrode (SHE) under standard conditions (298 K, 1 atm pressure for gases, 1.00 mol dm⁻³ concentration for aqueous ions)."
+    },
+    {
+      "front": "What is the role of the Standard Hydrogen Electrode (SHE)?",
+      "back": "It is the universal reference electrode. Its standard electrode potential is defined as exactly 0.00 V, allowing the potentials of all other half-cells to be measured relative to it."
+    },
+    {
+      "front": "What does a more positive E° value indicate?",
+      "back": "A greater tendency for the species on the left of the half-equation to be reduced. This means it is a stronger oxidising agent."
+    },
+    {
+      "front": "What does a more negative E° value indicate?",
+      "back": "A lesser tendency for the species on the left to be reduced. This means the species on the right is a stronger reducing agent and is more likely to be oxidised."
+    },
+    {
+      "front": "How do you calculate the standard cell potential, E°cell?",
+      "back": "E°cell = E°(cathode) - E°(anode). This is equivalent to E°(more positive value) - E°(more negative value). The result must be positive for a spontaneous reaction."
+    },
+    {
+      "front": "What occurs at the cathode and anode in an electrochemical cell?",
+      "back": "Reduction occurs at the cathode (positive electrode in a voltaic cell). Oxidation occurs at the anode (negative electrode in a voltaic cell). Remember: Red Cat, An Ox."
+    },
+    {
+      "front": "What does a positive E°cell value signify?",
+      "back": "The reaction is spontaneous (feasible) in the forward direction under standard conditions. The Gibbs free energy change, ΔG°, will be negative."
+    },
+    {
+      "front": "What is the relationship between ΔG° and E°cell?",
+      "back": "ΔG° = −nFE°cell, where n is the number of moles of electrons transferred in the balanced equation, and F is the Faraday constant (96500 C mol⁻¹)."
+    },
+    {
+      "front": "What is the purpose of the Nernst equation?",
+      "back": "To calculate the electrode potential (E) or cell potential (E_cell) under non-standard conditions (i.e., when concentrations are not 1.00 mol dm⁻³ or pressures are not 1 atm)."
+    },
+    {
+      "front": "Trap: When calculating E°cell, do I flip the sign for the anode?",
+      "back": "No. If you use the formula E°cell = E°(cathode) - E°(anode), you use the standard reduction potential values directly from the data booklet for both half-cells. The subtraction automatically accounts for the oxidation."
+    },
+    {
+      "front": "What is the function of the salt bridge in an electrochemical cell?",
+      "back": "To complete the electrical circuit by allowing the migration of ions between the two half-cells, maintaining charge neutrality in each beaker. It is typically filled with an inert electrolyte like KNO₃(aq)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the Standard Hydrogen Electrode's potential exactly 0.00 V?",
+      "a": "It is not a measured value but a value defined by international agreement. By setting a universal reference point to zero, we can create a consistent scale to measure and compare the potentials of all other half-cells."
+    },
+    {
+      "q": "Do I need to memorise all the E° values?",
+      "a": "No, you do not need to memorise them. A table of standard electrode potentials is provided in the Data Booklet for your examination."
+    },
+    {
+      "q": "What happens if the calculated E°cell is zero?",
+      "a": "An E°cell of zero means the system is at equilibrium under standard conditions, and ΔG° is also zero. There is no net tendency for the reaction to proceed in either the forward or reverse direction."
+    },
+    {
+      "q": "Can an electrode potential E° be used to predict the rate of a reaction?",
+      "a": "No. Electrode potentials and Gibbs free energy only indicate the thermodynamic feasibility or spontaneity of a reaction. They give no information about the kinetics or rate of reaction, which may be very slow due to a high activation energy."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Electrode potentials** (24.2) follow **electrolysis** (24.1). Practise **cell diagrams** (single line, phases) and **Nernst** with concentration changes."
+      "content": "Electrochemistry is the study of the relationship between chemical energy and electrical energy. At its heart is the concept of redox reactions, where electrons are transferred. In this lesson, we will quantify the 'electron-pulling power' of different chemical species using electrode potentials, allowing us to predict reaction outcomes and harness chemical reactions to generate electricity."
+    },
+    {
+      "type": "heading",
+      "content": "Standard Electrode Potential (E°)"
+    },
+    {
+      "type": "text",
+      "content": "It's impossible to measure the absolute potential of a single half-cell. Instead, we measure its potential *relative* to a standard reference. This reference is the **Standard Hydrogen Electrode (SHE)**, which consists of hydrogen gas at 1 atm bubbling over a platinum electrode in a 1.00 mol dm⁻³ solution of H⁺(aq) ions at 298 K. By definition, its potential is set to 0.00 V. The standard electrode potential, E°, of a half-cell is the electromotive force (e.m.f.) of a cell where the left-hand electrode is the SHE and the right-hand electrode is the half-cell in question, measured under standard conditions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Standard Conditions:** 298 K (25 °C), 1.00 mol dm⁻³ concentration of all aqueous ions, and 1 atm pressure for all gases.",
+        "**Reference:** The Standard Hydrogen Electrode (SHE): 2H⁺(aq) + 2e⁻ ⇌ H₂(g), E° = 0.00 V.",
+        "**Interpretation:** A more positive E° means the species on the left of the half-equation is a strong oxidising agent. A more negative E° means the species on the right is a strong reducing agent."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Standard Cell Potential (E°cell)"
+    },
+    {
+      "type": "text",
+      "content": "An electrochemical cell is created by connecting two different half-cells. The overall potential difference, or e.m.f., of this cell is the standard cell potential, E°cell. To get a spontaneous reaction (one that generates electricity), we must combine the half-cells correctly. The half-cell with the more positive E° value will undergo reduction (it's the cathode), and the half-cell with the more negative E° value will undergo oxidation (it's the anode). The E°cell can be calculated using the reduction potentials directly from the data booklet."
+    },
+    {
+      "type": "formula",
+      "content": "E°_{cell} = E°_{cathode} - E°_{anode}"
+    },
+    {
+      "type": "examTip",
+      "content": "A simple way to remember is E°cell = E°(more positive) - E°(more negative). This always gives a positive E°cell for a spontaneous reaction. The half-reaction with the more positive E° is the one that proceeds as a reduction (as written), and the one with the more negative E° is forced to reverse and proceed as an oxidation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard cell potential for a cell constructed from zinc and copper half-cells. Predict the spontaneous direction of the reaction and write the overall cell equation.\n\nGiven:\nZn²⁺(aq) + 2e⁻ ⇌ Zn(s)   E° = -0.76 V\nCu²⁺(aq) + 2e⁻ ⇌ Cu(s)   E° = +0.34 V",
+      "solution": "1. **Identify cathode and anode:** The Cu²⁺/Cu half-cell has a more positive E° (+0.34 V) than the Zn²⁺/Zn half-cell (-0.76 V). Therefore, the copper half-cell is the cathode (reduction) and the zinc half-cell is the anode (oxidation).\n\n2. **Calculate E°cell:**\nE°cell = E°(cathode) - E°(anode)\nE°cell = (+0.34 V) - (-0.76 V)\nE°cell = +1.10 V\n\n3. **Determine reaction direction:** Since E°cell is positive, the reaction is spontaneous as described. Reduction occurs at the copper electrode, and oxidation occurs at the zinc electrode.\n\n4. **Write half-equations and overall equation:**\nCathode (Reduction): Cu²⁺(aq) + 2e⁻ → Cu(s)\nAnode (Oxidation): Zn(s) → Zn²⁺(aq) + 2e⁻\nOverall: Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)"
+    },
+    {
+      "type": "heading",
+      "content": "Feasibility, Spontaneity, and Gibbs Free Energy"
+    },
+    {
+      "type": "text",
+      "content": "The sign of E°cell is a direct indicator of thermodynamic spontaneity. A positive E°cell corresponds to a negative Gibbs free energy change (ΔG°), which is the condition for a spontaneous process. The magnitude of E°cell is proportional to the magnitude of ΔG°. This provides a powerful link between electrochemistry and thermodynamics."
+    },
+    {
+      "type": "formula",
+      "content": "ΔG° = -nFE°_{cell}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**ΔG°:** Standard Gibbs free energy change (J mol⁻¹).",
+        "**n:** Number of moles of electrons transferred in the balanced redox equation.",
+        "**F:** The Faraday constant, 96500 C mol⁻¹ (the charge of one mole of electrons).",
+        "**Spontaneity:** If E°cell > 0, then ΔG° < 0 (spontaneous). If E°cell < 0, then ΔG° > 0 (non-spontaneous)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the reaction between acidified permanganate(VII) ions and iron(II) ions. Calculate the standard cell potential and the standard Gibbs free energy change at 298 K.\n\nGiven:\nMnO₄⁻(aq) + 8H⁺(aq) + 5e⁻ ⇌ Mn²⁺(aq) + 4H₂O(l)   E° = +1.51 V\nFe³⁺(aq) + e⁻ ⇌ Fe²⁺(aq)   E° = +0.77 V",
+      "solution": "1. **Identify cathode and anode:** The MnO₄⁻/Mn²⁺ half-cell has the more positive E° (+1.51 V), so it is the cathode. The Fe³⁺/Fe²⁺ half-cell is the anode, and its reaction will be reversed (Fe²⁺ → Fe³⁺ + e⁻).\n\n2. **Calculate E°cell:**\nE°cell = E°(cathode) - E°(anode)\nE°cell = (+1.51 V) - (+0.77 V)\nE°cell = +0.74 V\n\n3. **Balance electrons and find 'n':** To combine the half-equations, the iron reaction must be multiplied by 5 to balance the 5 electrons in the permanganate reaction.\n5Fe²⁺(aq) → 5Fe³⁺(aq) + 5e⁻\nThis means n = 5 moles of electrons are transferred.\n\n4. **Calculate ΔG°:**\nΔG° = -nFE°cell\nΔG° = -(5) * (96500 C mol⁻¹) * (+0.74 V)\nΔG° = -357100 J mol⁻¹\nΔG° = -357 kJ mol⁻¹ (to 3 s.f.)\nSince E°cell is positive and ΔG° is negative, the reaction is spontaneous under standard conditions."
+    },
+    {
+      "type": "heading",
+      "content": "The Nernst Equation: Non-Standard Conditions"
+    },
+    {
+      "type": "text",
+      "content": "Standard potentials are useful but are strictly valid only at standard conditions. In reality, concentrations change as a reaction proceeds. The Nernst equation allows us to calculate the potential of a half-cell or a full cell under any conditions of concentration and temperature. It shows how the potential deviates from the standard potential based on the ratio of products to reactants."
+    },
+    {
+      "type": "formula",
+      "content": "E = E° - \\frac{RT}{nF} \\ln Q"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**E:** Potential under non-standard conditions.",
+        "**R:** Gas constant (8.314 J K⁻¹ mol⁻¹).",
+        "**T:** Temperature in Kelvin.",
+        "**Q:** Reaction quotient, [products]/[reactants]. For a half-reaction aA + ne⁻ → bB, Q = [B]ᵇ / [A]ᵃ.",
+        "**Qualitative use:** If the concentration of reactants increases, Q decreases, ln(Q) becomes more negative, and E becomes more positive (reaction is more favourable). If the concentration of products increases, Q increases, and E becomes less positive."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For A-Level, you are more likely to be asked to predict the effect of changing concentration on E than to perform a full Nernst calculation. For example, increasing [Cu²⁺] in the Cu²⁺/Cu half-cell makes its potential E more positive than its standard E° value."
     },
     {
       "type": "practice",
-      "label": "Mark an electrode potentials question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9701&topic=24.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "Data Booklet (Cambridge International)",
+          "href": "https://www.cambridgeinternational.org/Images/482101-chemistry-data-booklet-2022.pdf"
+        },
+        {
+          "label": "Chemguide: Electrode Potentials",
+          "href": "https://www.chemguide.co.uk/physical/redoxeqia/eletrodepots.html"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Circuit construction kit DC",
+    "embedUrl": "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc",
+    "hint": "Cell emf and electron flow — link E°cell to feasible direction (24.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "E° measures tendency to reduce — higher E° = stronger oxidising agent.",
+        "embedHint": "Read standard hydrogen electrode as 0.00 V reference."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "E°cell = E°(cathode) − E°(anode) for spontaneous cell.",
+        "embedHint": "Cathode has higher (less negative) E°."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "ΔG° = −nFE°cell — link thermodynamics to electrochemistry.",
+        "embedHint": "F = 96500 C mol⁻¹."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Nernst: E = E° − (RT/nF) ln Q — non-standard concentrations.",
+        "embedHint": "At 298 K use 0.059/n log Q form."
+      }
+    ]
+  }
 }

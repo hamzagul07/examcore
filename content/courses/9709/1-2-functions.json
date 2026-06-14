@@ -4,41 +4,231 @@
   "title": "Functions",
   "paper": "P1",
   "paperName": "Pure Mathematics 1",
-  "status": "premium",
-  "summary": "9709 P1 functions — domain, range, composite and inverse functions with PhET function builder.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental concept of functions, a core building block in mathematics. We will explore how to define functions, identify their domain and range, create composite functions by combining two functions, and find the inverse of a function. Mastery of these skills is essential for success in Pure Mathematics 1.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define function, domain, and range.",
-    "Form composite functions f(g(x)).",
-    "Find inverse functions where they exist.",
-    "Apply the vertical line test and one-to-one condition."
+    "Understand and identify the domain and range of a function.",
+    "Form and evaluate composite functions, such as fg(x).",
+    "Determine if a function is one-to-one and find its inverse, f⁻¹(x).",
+    "Understand the graphical relationship between a function and its inverse."
   ],
   "simpleExplanation": {
-    "title": "Input–output rules",
-    "summary": "A function maps each input to exactly one output. Composites nest functions; inverses undo the mapping when one-to-one.",
+    "title": "The Function Machine",
+    "summary": "A function is like a mathematical machine that takes an input and produces exactly one specific output. We study how to define the allowed inputs (domain), what outputs are possible (range), and how to chain or reverse these machines.",
+    "analogy": "Think of a coffee machine. You press the 'Espresso' button (the input, x) and it gives you an espresso (the output, f(x)). Every time you press that same button, you get the same result. The 'domain' is all the buttons on the machine, and the 'range' is all the drinks it can possibly make. An 'inverse function' would be like a machine that takes the espresso and tells you which button was pressed.",
     "steps": [
-      "Domain: all valid x; range: all outputs f(x) achieved.",
-      "f∘g: substitute g(x) into f.",
-      "Inverse: swap x and y, rearrange — domain of f⁻¹ = range of f.",
-      "Restrictions: √(·) needs x ≥ 0; 1/x excludes x = 0."
+      "Function: each input x maps to exactly one output f(x).",
+      "Domain (inputs) and range (outputs) — restrictions from √(·), ln(·), ÷0.",
+      "Composite f∘g: apply g first, then f.",
+      "Inverse f⁻¹ exists only for one-to-one functions; reflection in y = x."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a function?",
+      "back": "A rule that maps each element in the domain (input set) to exactly one element in the range (output set)."
+    },
+    {
+      "front": "What is the 'domain' of a function?",
+      "back": "The set of all possible input values (often $x$-values) for which the function is defined."
+    },
+    {
+      "front": "What is the 'range' of a function?",
+      "back": "The set of all possible output values (often $y$-values or $f(x)$-values) that the function can produce."
+    },
+    {
+      "front": "How do you test if a graph represents a function?",
+      "back": "Use the vertical line test. If any vertical line intersects the graph more than once, it is not a function."
+    },
+    {
+      "front": "What does $fg(x)$ mean?",
+      "back": "This is a composite function, also written as $f(g(x))$. You apply the function $g$ first, then apply the function $f$ to the result of $g(x)$."
+    },
+    {
+      "front": "What is a one-to-one function?",
+      "back": "A function where each output value in the range corresponds to exactly one unique input value in the domain. It passes both the vertical and horizontal line tests."
+    },
+    {
+      "front": "When does a function have an inverse, $f^{-1}(x)$?",
+      "back": "A function has an inverse if and only if it is a one-to-one function."
+    },
+    {
+      "front": "How do you find the inverse of a function $y = f(x)$ algebraically?",
+      "back": "1. Swap $x$ and $y$ in the equation. 2. Make the new $y$ the subject of the formula. This new expression for $y$ is $f^{-1}(x)$."
+    },
+    {
+      "front": "What is the relationship between the domain of $f(x)$ and the range of $f^{-1}(x)$?",
+      "back": "They are identical. The domain of $f(x)$ is the range of $f^{-1}(x)$."
+    },
+    {
+      "front": "What is the relationship between the range of $f(x)$ and the domain of $f^{-1}(x)$?",
+      "back": "They are identical. The range of $f(x)$ is the domain of $f^{-1}(x)$. This is a crucial and frequently examined point."
+    },
+    {
+      "front": "Geometrically, how are the graphs of $y=f(x)$ and $y=f^{-1}(x)$ related?",
+      "back": "The graph of $y=f^{-1}(x)$ is a reflection of the graph of $y=f(x)$ in the line $y=x$."
+    },
+    {
+      "front": "A common trap: What is the domain of $f(x) = \\sqrt{x-5}$?",
+      "back": "The expression inside the square root must be non-negative. So, $x-5 \\ge 0$, which means the domain is $x \\ge 5$."
+    },
+    {
+      "front": "For $f(x) = (x-1)^2 + 3$ with domain $x \\ge 1$, what is the range?",
+      "back": "The vertex is at $(1, 3)$. Since the domain is $x \\ge 1$, the function is on the increasing part of the parabola. The minimum value is $f(1)=3$. The range is $f(x) \\ge 3$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between $f(g(x))$ and $g(f(x))$?",
+      "a": "The order of operations is different, which usually leads to a different final function. For $f(g(x))$, you apply the function $g$ first, then apply $f$ to that result. For $g(f(x))$, you apply $f$ first, then apply $g$. Think of it as putting on socks then shoes ($f(g(x))$) versus shoes then socks ($g(f(x))$) – the order matters!"
+    },
+    {
+      "q": "Why do we need to restrict the domain of $y=x^2$ to find its inverse?",
+      "a": "The function $f(x)=x^2$ is not one-to-one because different inputs can give the same output (e.g., $f(2)=4$ and $f(-2)=4$). An inverse must map an output back to a *single* unique input. By restricting the domain to, for example, $x \\ge 0$, we ensure that every output comes from only one input, which allows an inverse function, $f^{-1}(x) = \\sqrt{x}$, to exist."
+    },
+    {
+      "q": "How do I find the range of a quadratic function quickly?",
+      "a": "The best method is to complete the square to write the quadratic $ax^2+bx+c$ in the form $a(x-h)^2+k$. The vertex is at $(h, k)$. If the parabola opens upwards (i.e., $a>0$), the range is $y \\ge k$. If it opens downwards (i.e., $a<0$), the range is $y \\le k$. Always remember to check if the domain is restricted, as this might alter the range."
+    },
+    {
+      "q": "Is $f^{-1}(x)$ the same as $\\frac{1}{f(x)}$?",
+      "a": "No, this is a very important distinction. $f^{-1}(x)$ denotes the inverse function, which reverses the mapping. $\\frac{1}{f(x)}$ is the reciprocal of the function's value, sometimes written as $[f(x)]^{-1}$. They are completely different concepts."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Functions** (1.2) underpin almost every 9709 paper. Examiners combine **composite** and **inverse** in one question — define domains explicitly."
+      "content": "Welcome to the study of functions. Functions are the fundamental building blocks of calculus and many other areas of mathematics. They describe relationships between variables. In this topic, we'll learn the formal language to describe these relationships, how to combine them, and how to 'undo' them."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Functions, Domain, and Range"
+    },
+    {
+      "type": "text",
+      "content": "A function is a rule that assigns to each input value exactly one output value. We often write $y = f(x)$, where $x$ is the input and $y$ is the output. The set of all permissible input values is called the **domain**. The set of all resulting output values is called the **range**."
+    },
+    {
+      "type": "text",
+      "content": "When determining the domain, we must be careful about two common restrictions: we cannot divide by zero, and we cannot take the square root of a negative number in the real number system. For example, for $f(x) = \\frac{1}{x-2}$, the domain is all real numbers except $x=2$, written as $x \\in \\mathbb{R}, x \\ne 2$. For $g(x) = \\sqrt{x}$, the domain is $x \\ge 0$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Domain**: The set of all possible $x$-values.",
+        "**Range**: The set of all possible $f(x)$ or $y$-values.",
+        "**Vertical Line Test**: A graph represents a function if and only if no vertical line intersects the graph at more than one point.",
+        "**Finding Range**: For quadratics, complete the square to find the vertex. This gives the minimum or maximum value, which defines the range (if the domain is unrestricted)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A function $f$ is defined by $f(x) = x^2 - 6x + 5$ for $x \\in \\mathbb{R}$.\n\n(a) Express $f(x)$ in the form $(x-a)^2+b$.\n\n(b) Hence, find the range of $f$.\n\n(c) A function $g$ is defined by $g(x) = x^2 - 6x + 5$ for $x \\ge k$. State the smallest value of $k$ for which $g$ has an inverse.\n\n(d) For this value of $k$, find an expression for $g^{-1}(x)$ and state its domain.",
+      "solution": "(a) To complete the square: $f(x) = (x^2 - 6x) + 5$. We halve the coefficient of $x$, which is -3. So, $f(x) = (x-3)^2 - (-3)^2 + 5 = (x-3)^2 - 9 + 5$. \nTherefore, $f(x) = (x-3)^2 - 4$. [1 mark]\n\n(b) The vertex of the parabola $y=f(x)$ is at $(3, -4)$. Since the coefficient of $x^2$ is positive, the parabola opens upwards. The minimum value of $f(x)$ is -4. The range is $f(x) \\ge -4$. [1 mark]\n\n(c) A function has an inverse only if it is one-to-one. The function $f(x)$ is a many-to-one function. To make it one-to-one, we must restrict its domain to one side of the line of symmetry, $x=3$. The smallest value for $k$ that achieves this is $k=3$. [1 mark]\n\n(d) Let $y = g(x)$, so $y = (x-3)^2 - 4$ for $x \\ge 3$. To find the inverse, we swap $x$ and $y$: $x = (y-3)^2 - 4$. Now, we make $y$ the subject: \n$x+4 = (y-3)^2$ \n$\\sqrt{x+4} = y-3$ \n$y = 3 + \\sqrt{x+4}$. \nWe take the positive square root because the domain of $g(x)$ was $x \\ge 3$, which means the range of $g^{-1}(x)$ must be $y \\ge 3$. \nSo, $g^{-1}(x) = 3 + \\sqrt{x+4}$. [2 marks]\nThe domain of $g^{-1}(x)$ is the range of $g(x)$. From part (b), the minimum value is -4. So, the range of $g(x)$ is $y \\ge -4$. Therefore, the domain of $g^{-1}(x)$ is $x \\ge -4$. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Composite Functions"
+    },
+    {
+      "type": "text",
+      "content": "A composite function is created when one function is applied to the result of another. The notation $fg(x)$ means we first apply the function $g$ to $x$, and then apply the function $f$ to the output, $g(x)$. It's important to work from the inside out. Note that in general, $fg(x)$ is not the same as $gf(x)$."
+    },
+    {
+      "type": "formula",
+      "content": "fg(x) = f(g(x))"
+    },
+    {
+      "type": "workedExample",
+      "question": "The functions $f$ and $g$ are defined by $f(x) = 2x+1$ for $x \\in \\mathbb{R}$ and $g(x) = \\frac{12}{x+2}$ for $x \\ne -2$.\n\n(a) Find an expression for $fg(x)$ and simplify your answer.\n\n(b) Find the range of $fg$.\n\n(c) Solve the equation $fg(x) = 5$.",
+      "solution": "(a) $fg(x) = f(g(x))$. We substitute the expression for $g(x)$ into $f(x)$.\n$fg(x) = 2(g(x)) + 1 = 2\\left(\\frac{12}{x+2}\\right) + 1$ [1 mark]\n$fg(x) = \\frac{24}{x+2} + 1$. To simplify, we find a common denominator:\n$fg(x) = \\frac{24}{x+2} + \\frac{x+2}{x+2} = \\frac{24 + x + 2}{x+2} = \\frac{x+26}{x+2}$. [1 mark]\n\n(b) To find the range of $y = \\frac{x+26}{x+2}$, we can consider the horizontal asymptote. As $x \\to \\infty$, $y \\to \\frac{x}{x} = 1$. Alternatively, let's make $x$ the subject:\n$y(x+2) = x+26$\n$yx + 2y = x+26$\n$yx - x = 26 - 2y$\n$x(y-1) = 26 - 2y$\n$x = \\frac{26-2y}{y-1}$.\nThe expression for $x$ is undefined when the denominator is zero, i.e., when $y-1=0$ or $y=1$. Thus, $y$ can be any real number except 1. The range is $fg(x) \\in \\mathbb{R}, fg(x) \\ne 1$. [2 marks]\n\n(c) We set our expression for $fg(x)$ equal to 5:\n$\\frac{x+26}{x+2} = 5$ [1 mark]\n$x+26 = 5(x+2)$\n$x+26 = 5x+10$\n$16 = 4x$\n$x=4$. [1 mark]\nWe check that this solution is valid. The domain of $fg(x)$ is $x \\ne -2$. Since $4 \\ne -2$, the solution is valid."
+    },
+    {
+      "type": "heading",
+      "content": "Inverse Functions"
+    },
+    {
+      "type": "text",
+      "content": "An inverse function, denoted $f^{-1}(x)$, 'reverses' the action of the original function $f(x)$. If $f(a) = b$, then $f^{-1}(b) = a$. A function can only have an inverse if it is **one-to-one**, meaning every output corresponds to a unique input. We can test for this graphically using the **horizontal line test**: if any horizontal line cuts the graph more than once, the function is not one-to-one and does not have an inverse over that domain."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Existence**: An inverse $f^{-1}$ exists if and only if $f$ is one-to-one.",
+        "**Algebraic Method**: To find $f^{-1}(x)$, let $y=f(x)$, swap $x$ and $y$, then solve for the new $y$.",
+        "**Domain and Range Swap**: The domain of $f^{-1}$ is the range of $f$. The range of $f^{-1}$ is the domain of $f$.",
+        "**Graphical Property**: The graph of $y=f^{-1}(x)$ is a reflection of the graph of $y=f(x)$ in the line $y=x$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is to correctly find the algebraic expression for $f^{-1}(x)$ but forget to state its domain. The domain of the inverse function is always required unless stated otherwise. Remember: Domain of $f^{-1}$ = Range of $f$. Always find the range of the original function first!"
     },
     {
       "type": "practice",
-      "label": "Mark a functions question",
+      "label": "Practice Questions on Functions",
       "href": "/mark?subject=9709&topic=1.2"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "PhET Function Builder Simulation",
+          "href": "https://phet.colorado.edu/en/sims/function-builder"
+        },
+        {
+          "label": "Khan Academy: Functions",
+          "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:functions"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Function builder",
+    "embedUrl": "https://phet.colorado.edu/sims/html/function-builder/latest/function-builder_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/function-builder",
+    "hint": "Compose f(g(x)) — domain, range, and inverse ideas (9709 1.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Function: each input x maps to exactly one output f(x).",
+        "embedHint": "Vertical line test — one y per x on graph."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Domain (inputs) and range (outputs) — restrictions from √(·), ln(·), ÷0.",
+        "embedHint": "Adjust x — note where f(x) is undefined."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Composite f∘g: apply g first, then f.",
+        "embedHint": "Build f(g(x)) — track inner then outer rule."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Inverse f⁻¹ exists only for one-to-one functions; reflection in y = x.",
+        "embedHint": "Swap x and y — domain of f⁻¹ = range of f."
+      }
+    ]
+  }
 }

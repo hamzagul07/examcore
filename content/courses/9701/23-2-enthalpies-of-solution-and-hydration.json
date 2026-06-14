@@ -4,39 +4,219 @@
   "title": "Enthalpies of solution and hydration",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level — ΔH_sol, ΔH_hyd cycles linking lattice energy to solubility with PhET energy sim.",
+  "status": "pilot",
+  "summary": "This lesson explores the energy changes that occur when an ionic solid dissolves in water. It defines and relates the enthalpy changes of solution, hydration, and lattice energy using Hess's Law cycles, and examines the factors influencing the magnitude of these values.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define enthalpy change of solution and hydration.",
-    "Construct energy cycles relating lattice and hydration enthalpies.",
-    "Predict relative solubility from enthalpy data.",
-    "Explain the role of entropy where relevant."
+    "Define and write equations for the enthalpy change of solution (ΔH_sol) and enthalpy change of hydration (ΔH_hyd).",
+    "Construct and use an energy cycle to calculate an enthalpy change of solution from lattice energy and enthalpy changes of hydration.",
+    "Explain the effect of ionic charge and ionic radius on the magnitude of the enthalpy change of hydration.",
+    "Use enthalpy cycle calculations to explain trends in the solubility of ionic compounds."
   ],
   "simpleExplanation": {
-    "title": "Dissolving ionic solids",
-    "summary": "Dissolution requires breaking the lattice (endothermic) and hydrating ions (exothermic). The balance determines ΔH_sol and influences solubility.",
+    "title": "Dissolving: An Energetic Tug-of-War",
+    "summary": "Dissolving an ionic salt is an energy battle between breaking apart the crystal lattice and forming new bonds with water. The overall energy change, the enthalpy of solution, tells us whether the process releases or absorbs heat.",
+    "analogy": "Imagine a tightly-knit group of friends holding hands at a party (the ionic lattice). To get them to mingle with the wider crowd (water molecules), you first need to spend energy pulling their hands apart. Once separated, energy is released as each individual is happily surrounded by new acquaintances. Whether the overall party atmosphere gets 'hotter' (exothermic) or 'colder' (endothermic) depends on whether more energy was released by mingling than was spent breaking them up.",
     "steps": [
-      "ΔH_sol = ΔH_latt + ΣΔH_hyd (Hess cycle).",
-      "Hydration ∝ charge²/ionic radius — small 2+ ions very exothermic.",
-      "Negative ΔH_sol favours dissolution enthalpically.",
-      "Some insoluble salts have endothermic ΔH_sol but entropy-driven solubility."
+      "The overall energy change of dissolving (ΔH_sol) is found using a Hess cycle, linking the energy to break the lattice (+ΔH_latt) and the energy released when ions hydrate (ΣΔH_hyd).",
+      "Dissolving is favoured if the energy released by hydration is greater than the energy needed to break the lattice, making the overall process exothermic.",
+      "Hydration enthalpy (ΔH_hyd) is more exothermic for ions with a higher charge and smaller radius, as this creates a stronger attraction to water molecules.",
+      "By combining Born-Haber cycles (for lattice energy) and hydration cycles, we can construct a full thermodynamic picture to predict and explain solubility."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the standard enthalpy change of solution, $\\Delta H_{\\text{sol}}^{\\ominus}$?",
+      "back": "The enthalpy change when one mole of an ionic solid dissolves in a sufficient amount of solvent to form an infinitely dilute solution, under standard conditions (298 K and 100 kPa)."
+    },
+    {
+      "front": "What is the standard enthalpy change of hydration, $\\Delta H_{\\text{hyd}}^{\\ominus}$?",
+      "back": "The enthalpy change when one mole of gaseous ions is completely hydrated by a sufficient amount of water, under standard conditions."
+    },
+    {
+      "front": "Is the enthalpy of hydration, $\\Delta H_{\\text{hyd}}^{\\ominus}$, endothermic or exothermic?",
+      "back": "Always exothermic (negative value). Energy is released when ion-dipole attractions form between the gaseous ions and water molecules."
+    },
+    {
+      "front": "What process does the standard lattice enthalpy, $\\Delta H_{\\text{latt}}^{\\ominus}$, represent?",
+      "back": "The enthalpy change when one mole of an ionic solid is formed from its gaseous ions under standard conditions. It is always exothermic."
+    },
+    {
+      "front": "What is the key equation linking $\\Delta H_{\\text{sol}}^{\\ominus}$, $\\Delta H_{\\text{latt}}^{\\ominus}$, and $\\Delta H_{\\text{hyd}}^{\\ominus}$?",
+      "back": "$\\Delta H_{\\text{sol}}^{\\ominus} = -\\Delta H_{\\text{latt}}^{\\ominus} + \\sum \\Delta H_{\\text{hyd}}^{\\ominus}$. Note the negative sign for lattice enthalpy, as we are breaking the lattice (endothermic process)."
+    },
+    {
+      "front": "Why is the process of breaking the lattice, represented by $-\\Delta H_{\\text{latt}}^{\\ominus}$, always endothermic?",
+      "back": "Energy must be supplied to overcome the strong electrostatic forces of attraction between the oppositely charged ions in the crystal lattice."
+    },
+    {
+      "front": "How does ionic charge affect the enthalpy of hydration?",
+      "back": "A greater ionic charge leads to a stronger electrostatic attraction to water dipoles, resulting in a more exothermic (more negative) enthalpy of hydration. E.g., Mg²⁺ has a much more negative $\\Delta H_{\\text{hyd}}^{\\ominus}$ than Na⁺."
+    },
+    {
+      "front": "How does ionic radius affect the enthalpy of hydration?",
+      "back": "A smaller ionic radius leads to a higher charge density, resulting in a stronger attraction to water dipoles and a more exothermic (more negative) enthalpy of hydration. E.g., F⁻ has a more negative $\\Delta H_{\\text{hyd}}^{\\ominus}$ than Cl⁻."
+    },
+    {
+      "front": "If $\\Delta H_{\\text{sol}}^{\\ominus}$ is positive (endothermic), does this mean the salt will not dissolve?",
+      "back": "Not necessarily. Spontaneity of dissolving also depends on the entropy change. A large positive entropy change can overcome a small positive enthalpy change, making the process feasible."
+    },
+    {
+      "front": "What is a common mistake when using lattice enthalpy in a dissolution cycle?",
+      "back": "Forgetting to reverse the sign. Standard lattice enthalpy ($ΔH_{\\text{latt}}^{\\ominus}$) is for the formation of the lattice (exothermic). The cycle for solution involves breaking the lattice, which is an endothermic process with a value of $-ΔH_{\\text{latt}}^{\\ominus}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is lattice enthalpy (formation) exothermic, but hydration enthalpy is also exothermic?",
+      "a": "Both processes involve the formation of attractive forces, which releases energy and is therefore exothermic. Lattice enthalpy involves forming strong electrostatic attractions between oppositely charged gaseous ions to make a solid lattice. Hydration enthalpy involves forming ion-dipole attractions between gaseous ions and polar water molecules."
+    },
+    {
+      "q": "Can a salt with an endothermic enthalpy of solution still dissolve in water?",
+      "a": "Yes. The spontaneity of a process is determined by the Gibbs free energy change, $\\Delta G = \\Delta H - T\\Delta S$. When an ionic solid dissolves, there is a large increase in disorder, so the entropy change ($\\Delta S$) is large and positive. If this positive entropy term is large enough, it can make $\\Delta G$ negative even if $\\Delta H$ is positive (endothermic), allowing the salt to dissolve spontaneously."
+    },
+    {
+      "q": "How does this relate to the Born-Haber cycle?",
+      "a": "The Born-Haber cycle is used to determine the lattice enthalpy ($ΔH_{\\text{latt}}^{\\ominus}$) from other experimental values (like ionisation energy and electron affinity). The enthalpy cycle for solution *uses* the lattice enthalpy value, which may have been found via a Born-Haber cycle, to calculate the enthalpy of solution. They are two different, but related, applications of Hess's Law."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Enthalpies of solution** (23.2) extend **Born–Haber** (23.1). Draw **complete cycles** with **gaseous ions** — a common source of lost marks."
+      "content": "Have you ever wondered why table salt dissolves readily in water, making the solution feel slightly cool, while a similar-looking compound like calcium carbonate (chalk) is almost completely insoluble? The answer lies in the balance of energy changes that occur during the dissolving process. In this lesson, we will dissect these energy changes to understand and predict the solubility of ionic compounds."
+    },
+    {
+      "type": "heading",
+      "content": "1. Defining the Key Enthalpy Changes"
+    },
+    {
+      "type": "text",
+      "content": "To understand the energetics of dissolving, we must first define two crucial enthalpy changes: the enthalpy change of solution and the enthalpy change of hydration. Both are defined under standard conditions of 298 K and 100 kPa."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Standard Enthalpy Change of Solution ($\\Delta H_{\\text{sol}}^{\\ominus}$):** This is the enthalpy change when one mole of a substance dissolves in a large excess of solvent to form a solution that is 'infinitely dilute'. For sodium chloride, the equation is: $\\text{NaCl(s)} + \\text{aq} \\rightarrow \\text{Na}^{+}(\\text{aq}) + \\text{Cl}^{-}(\\text{aq})$. This value can be exothermic (negative) or endothermic (positive).",
+        "**Standard Enthalpy Change of Hydration ($\\Delta H_{\\text{hyd}}^{\\ominus}$):** This is the enthalpy change when one mole of isolated gaseous ions is dissolved in water to form hydrated aqueous ions. For a sodium ion, the equation is: $\\text{Na}^{+}(\\text{g}) + \\text{aq} \\rightarrow \\text{Na}^{+}(\\text{aq})$. This process is always exothermic because new, stable ion-dipole forces are formed between the ion and polar water molecules."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "2. The Dissolving Process: An Enthalpy Cycle"
+    },
+    {
+      "type": "text",
+      "content": "We can't directly measure the energy change of breaking a lattice and then hydrating the ions separately. However, using Hess's Law, we can construct an energy cycle that connects these processes. The overall process of dissolving an ionic solid can be thought of as a two-step hypothetical route: \n1. Overcoming the lattice enthalpy to break the solid into gaseous ions. \n2. Hydrating these gaseous ions to form aqueous ions."
+    },
+    {
+      "type": "formula",
+      "content": "\\Delta H_{\\text{sol}}^{\\ominus} = (-\\Delta H_{\\text{latt}}^{\\ominus}) + \\sum \\Delta H_{\\text{hyd}}^{\\ominus}"
+    },
+    {
+      "type": "text",
+      "content": "In this cycle, the direct route is the enthalpy of solution. The indirect route involves breaking the lattice (an endothermic process, hence the negative sign in front of the exothermic $\\Delta H_{\\text{latt}}^{\\ominus}$) and then hydrating the resulting gaseous ions (an exothermic process). The sum of the enthalpy changes in the indirect route must equal the enthalpy change of the direct route."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners love to test the sign of the lattice enthalpy in this cycle. Standard lattice enthalpy ($ΔH_{\\text{latt}}^{\\ominus}$) is defined for the *formation* of 1 mole of the lattice from gaseous ions, which is exothermic. The cycle for solution involves *breaking* the lattice, which is the reverse process and therefore endothermic. Always use the value $-ΔH_{\\text{latt}}^{\\ominus}$ in your calculation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard enthalpy change of solution for magnesium chloride, MgCl₂, using the data below.\n\n$\\Delta H_{\\text{latt}}^{\\ominus}(\\text{MgCl}_2) = -2526 \\text{ kJ mol}^{-1}$\n$\\Delta H_{\\text{hyd}}^{\\ominus}(\\text{Mg}^{2+}) = -1920 \\text{ kJ mol}^{-1}$\n$\\Delta H_{\\text{hyd}}^{\\ominus}(\\text{Cl}^{-}) = -364 \\text{ kJ mol}^{-1}$",
+      "solution": "**Step 1: Identify the components of the Hess's Law cycle.**\nThe equation is $\\Delta H_{\\text{sol}}^{\\ominus} = -\\Delta H_{\\text{latt}}^{\\ominus} + \\sum \\Delta H_{\\text{hyd}}^{\\ominus}$.\n\n**Step 2: Calculate the total enthalpy of hydration.**\nWe have one Mg²⁺ ion and two Cl⁻ ions.\n$\\sum \\Delta H_{\\text{hyd}}^{\\ominus} = \\Delta H_{\\text{hyd}}^{\\ominus}(\\text{Mg}^{2+}) + 2 \\times \\Delta H_{\\text{hyd}}^{\\ominus}(\\text{Cl}^{-})$\n$\\sum \\Delta H_{\\text{hyd}}^{\\ominus} = (-1920) + 2 \\times (-364) = -1920 - 728 = -2648 \\text{ kJ mol}^{-1}$.\n\n**Step 3: Substitute the values into the main equation.**\nRemember to reverse the sign of the lattice enthalpy.\n$\\Delta H_{\\text{sol}}^{\\ominus}(\\text{MgCl}_2) = -(-2526) + (-2648)$\n$\\Delta H_{\\text{sol}}^{\\ominus}(\\text{MgCl}_2) = +2526 - 2648$\n\n**Step 4: Calculate the final answer.**\n$\\Delta H_{\\text{sol}}^{\\ominus}(\\text{MgCl}_2) = -152 \\text{ kJ mol}^{-1}$.\n\nThis exothermic value suggests that magnesium chloride dissolves readily in water, releasing heat."
+    },
+    {
+      "type": "heading",
+      "content": "3. Factors Affecting Enthalpy of Hydration"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude of the enthalpy of hydration is determined by the strength of the electrostatic attraction between the ion and the polar water molecules. This strength is governed by the ion's charge density."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Ionic Charge:** The greater the charge on an ion, the stronger its attraction to the partial charges on water molecules ($\\delta-$ on oxygen, $\\delta+$ on hydrogen). Therefore, $\\Delta H_{\\text{hyd}}^{\\ominus}$ becomes more exothermic (more negative). For example, $\\Delta H_{\\text{hyd}}^{\\ominus}$ for Mg²⁺(g) is significantly more exothermic than for Na⁺(g).",
+        "**Ionic Radius:** For ions with the same charge, a smaller ionic radius means the charge is concentrated in a smaller volume. This higher charge density leads to a stronger electric field and a more powerful attraction to water molecules, making $\\Delta H_{\\text{hyd}}^{\\ominus}$ more exothermic. For example, $\\Delta H_{\\text{hyd}}^{\\ominus}$ for Li⁺(g) is more exothermic than for K⁺(g)."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Charge Density} \\propto \\frac{\\text{Ionic Charge}}{\\text{Ionic Radius}} \\quad \\implies \\quad |\\Delta H_{\\text{hyd}}^{\\ominus}| \\text{ increases as charge density increases.}"
+    },
+    {
+      "type": "workedExample",
+      "question": "The lattice enthalpy of silver chloride, AgCl, is $-905 \\text{ kJ mol}^{-1}$. The sum of the hydration enthalpies of its ions, $\\sum \\Delta H_{\\text{hyd}}^{\\ominus}$, is $-851 \\text{ kJ mol}^{-1}$.\n\n(a) Calculate the enthalpy of solution for AgCl.\n(b) Use your answer and the data for NaCl ($\\Delta H_{\\text{sol}}^{\\ominus} = +3 \\text{ kJ mol}^{-1}$) to comment on the relative solubility of the two salts.",
+      "solution": "**(a) Calculation of $\\Delta H_{\\text{sol}}^{\\ominus}(\\text{AgCl})$**\n\nUsing the formula: $\\Delta H_{\\text{sol}}^{\\ominus} = -\\Delta H_{\\text{latt}}^{\\ominus} + \\sum \\Delta H_{\\text{hyd}}^{\\ominus}$\n\nSubstitute the given values:\n$\\Delta H_{\\text{sol}}^{\\ominus}(\\text{AgCl}) = -(-905) + (-851)$\n$\\Delta H_{\\text{sol}}^{\\ominus}(\\text{AgCl}) = +905 - 851$\n$\\Delta H_{\\text{sol}}^{\\ominus}(\\text{AgCl}) = +54 \\text{ kJ mol}^{-1}$.\n\n**(b) Comparison of Solubility**\n\nThe enthalpy of solution for AgCl is highly endothermic ($+54 \\text{ kJ mol}^{-1}$), while for NaCl it is only slightly endothermic ($+3 \\text{ kJ mol}^{-1}$). A highly endothermic enthalpy of solution means a large amount of energy is required from the surroundings for the dissolving process to occur. This makes the process energetically unfavourable.\n\nTherefore, the large positive $\\Delta H_{\\text{sol}}^{\\ominus}$ for AgCl explains why it is considered insoluble in water, whereas the small $\\Delta H_{\\text{sol}}^{\\ominus}$ for NaCl allows it to dissolve readily (driven by the favourable entropy change)."
+    },
+    {
+      "type": "examTip",
+      "content": "When comparing solubilities, always link the calculated $\\Delta H_{\\text{sol}}^{\\ominus}$ values back to the physical reality. A large positive value is a significant energy barrier to dissolving, making the substance less soluble. A negative or small positive value means the energy barrier is small or non-existent, favouring dissolution."
     },
     {
       "type": "practice",
-      "label": "Mark an enthalpy of solution question",
+      "label": "Practice Questions: Enthalpies of Solution and Hydration",
       "href": "/mark?subject=9701&topic=23.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "ChemGuide: Enthalpy of Solution and Hydration",
+          "href": "https://www.chemguide.co.uk/physical/energetics/solution.html"
+        },
+        {
+          "label": "Video Tutorial on Enthalpy Cycles for Dissolving",
+          "href": "https://www.youtube.com/watch?v=R22S3uA_S5o"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Energy forms and changes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes",
+    "hint": "Enthalpy cycles linking lattice energy, hydration, and solution (23.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "ΔH_sol = ΔH_latt + ΣΔH_hyd (Hess cycle for ionic solute).",
+        "embedHint": "Lattice endothermic; hydration exothermic."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "More exothermic hydration favours dissolution if |hydration| > |lattice|.",
+        "embedHint": "Compare NaCl vs AgCl solubility energetics."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "ΔH_hyd ∝ charge²/r — small highly charged ions hydrate strongly.",
+        "embedHint": "Mg²⁺ vs Na⁺ hydration enthalpy magnitude."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Born–Haber + hydration cycles predict solubility trends.",
+        "embedHint": "Draw full cycle with gaseous ions and aqueous products."
+      }
+    ]
+  }
 }

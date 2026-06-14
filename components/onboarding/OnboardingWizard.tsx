@@ -7,7 +7,6 @@ import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
-import { completeOnboardingAction } from '@/app/onboarding/actions'
 import {
   SUBJECT_GROUPS,
   DEFAULT_BOARD,
@@ -103,33 +102,47 @@ export function OnboardingWizard({
     setLoading(true)
     setErrorMsg('')
 
-    const result = await completeOnboardingAction({
-      board: DEFAULT_BOARD,
-      level,
-      subjects,
-      stage,
-      primary_goal: primaryGoal,
-      exam_date: examDate,
-      role: 'student',
-    })
+    try {
+      const res = await fetch('/api/onboarding', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          board: DEFAULT_BOARD,
+          level,
+          subjects,
+          stage,
+          primary_goal: primaryGoal,
+          exam_date: examDate,
+          role: 'student',
+        }),
+      })
 
-    setLoading(false)
-    if (!result.ok) {
-      if (result.status === 401) {
-        setErrorMsg('Your session expired. Please sign in again to save your profile.')
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string
+      }
+
+      if (!res.ok) {
+        if (res.status === 401) {
+          setErrorMsg('Your session expired. Please sign in again to save your profile.')
+          return
+        }
+        setErrorMsg(data.error || 'Could not save your profile. Try again.')
         return
       }
-      setErrorMsg(result.error || 'Could not save your profile. Try again.')
-      return
-    }
 
-    setPendingHref(redirectHref)
-    if (rerun) {
-      router.push(redirectHref)
-      router.refresh()
-      return
+      setPendingHref(redirectHref)
+      if (rerun) {
+        router.push(redirectHref)
+        router.refresh()
+        return
+      }
+      setShowCelebration(true)
+    } catch {
+      setErrorMsg('Could not reach the server. Check your connection and try again.')
+    } finally {
+      setLoading(false)
     }
-    setShowCelebration(true)
   }
 
   function finishCelebration() {

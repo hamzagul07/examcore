@@ -51,7 +51,14 @@ export function prepareCourseMathMarkdown(text: string): string {
       const t = line.trim()
       if (!t) return ''
       if (t.startsWith('•') || t.startsWith('-')) return t
-      if (t.includes('$')) return t
+      if (t.includes('$')) {
+        // Close unclosed delimiters from generated content
+        let count = 0
+        for (let i = 0; i < t.length; i++) {
+          if (t[i] === '$' && t[i - 1] !== '\\') count++
+        }
+        return count % 2 === 1 ? `${t}$` : t
+      }
       if (/=/.test(t) || /\\Delta/.test(t)) return prepareCourseMath(t)
       return t
         .replace(/Δ/g, '$\\Delta$')

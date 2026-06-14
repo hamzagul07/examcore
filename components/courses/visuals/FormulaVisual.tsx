@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Sigma } from 'lucide-react'
 import type { FormulaPart } from '@/lib/courses/visual-types'
 import { CourseRichText } from '@/components/courses/CourseRichText'
+import { formatSymbolForMath } from '@/lib/courses/formula-parts'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 
 export function FormulaVisual({
@@ -57,7 +58,9 @@ export function FormulaVisual({
                 className={`course-formula-chip${active === i ? ' is-active' : ''}`}
                 style={{ ['--chip-color' as string]: p.color }}
               >
-                <span className="course-formula-chip-symbol">{p.symbol}</span>
+                <span className="course-formula-chip-symbol">
+                  <CourseRichText content={formatSymbolForMath(p.symbol)} variant="inline" />
+                </span>
               </button>
             ))}
           </div>
@@ -67,7 +70,7 @@ export function FormulaVisual({
           style={{ ['--chip-color' as string]: part?.color ?? 'var(--course-formula-green)' }}
         >
           <CourseRichText
-            content={`**${part?.symbol}** = ${part?.meaning ?? ''}`}
+            content={`${formatSymbolForMath(part?.symbol ?? '')} = ${part?.meaning ?? ''}`}
             variant="inline"
           />
         </div>

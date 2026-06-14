@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
@@ -18,7 +18,7 @@ import {
   subjectsInGroup,
 } from '@/lib/profile-options'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
-import { sanitizeNextPath } from '@/lib/auth-redirect'
+import { postOnboardingHref, sanitizeNextPath } from '@/lib/auth-redirect'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
 import type { OnboardingInput } from '@/lib/onboarding/save-profile'
 
@@ -66,7 +66,6 @@ export function OnboardingWizard({
   } | null
   saveToken: string
 }) {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const nextParam = searchParams.get('next')
 
@@ -131,8 +130,7 @@ export function OnboardingWizard({
 
       setPendingHref(redirectHref)
       if (rerun) {
-        router.push(redirectHref)
-        router.refresh()
+        navigateAfterOnboarding(redirectHref)
         return
       }
       setShowCelebration(true)
@@ -144,10 +142,17 @@ export function OnboardingWizard({
     }
   }
 
+  function navigateAfterOnboarding(target: string) {
+    const destination = postOnboardingHref(
+      target === markHref ? nextParam : target,
+      target
+    )
+    window.location.href = `/onboarding/complete?next=${encodeURIComponent(destination)}`
+  }
+
   function finishCelebration() {
     setShowCelebration(false)
-    router.push(pendingHref)
-    router.refresh()
+    navigateAfterOnboarding(pendingHref)
   }
 
   function goNext() {
@@ -172,7 +177,7 @@ export function OnboardingWizard({
     setStep((s) => Math.max(s - 1, 1))
   }
 
-  const markHref = sanitizeNextPath(nextParam, rerun ? '/account/study' : '/mark')
+  const markHref = postOnboardingHref(nextParam, rerun ? '/account/study' : '/mark')
   const signInAgainHref = `/auth/signin?next=${encodeURIComponent(
     nextParam && nextParam !== '/onboarding' ? nextParam : '/onboarding'
   )}`

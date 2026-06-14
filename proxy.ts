@@ -87,6 +87,11 @@ export async function proxy(request: NextRequest) {
   }
 
   if (!user) {
+    // Let the route handler refresh cookies and send a clean sign-in next=.
+    if (pathname === '/onboarding/complete') {
+      return supabaseResponse
+    }
+
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = '/auth/signin'
     redirectUrl.search = ''
@@ -113,7 +118,7 @@ export async function proxy(request: NextRequest) {
     .maybeSingle()
 
   const onboarded = isOnboardingComplete(profile)
-  const onOnboardingPage = matchesPrefix(pathname, ['/onboarding'])
+  const onOnboardingPage = pathname === '/onboarding'
 
   if (onOnboardingPage && onboarded) {
     const rerun = request.nextUrl.searchParams.get('rerun') === '1'

@@ -4,6 +4,7 @@ import {
   buildSignInHref,
   buildSignUpHref,
   isSafeNextPath,
+  postOnboardingHref,
   readPostAuthNextParam,
   resolvePostAuthPath,
   sanitizeNextPath,
@@ -81,13 +82,22 @@ check(
   buildForgotPasswordHref('/mark') === '/auth/forgot-password?next=%2Fmark'
 )
 
+check(
+  'onboarding next does not loop',
+  resolvePostAuthPath(false, '/onboarding') === '/onboarding'
+)
+
 const resetCallback = buildResetPasswordCallbackUrl(
   'https://markscheme.app',
   '/mark'
 )
 check(
-  'onboarding next does not loop',
-  resolvePostAuthPath(false, '/onboarding') === '/onboarding'
+  'post-onboarding href skips onboarding loop',
+  postOnboardingHref('/onboarding', '/mark') === '/mark'
+)
+check(
+  'post-onboarding href keeps mark',
+  postOnboardingHref('/mark', '/dashboard') === '/mark'
 )
 check(
   'reset callback nests return next on reset page',

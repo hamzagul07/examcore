@@ -20,7 +20,6 @@ import {
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
 import { suggestedExamDates } from '@/lib/dashboard/exam-date'
-import { createClient } from '@/lib/supabase'
 import type { OnboardingInput } from '@/lib/onboarding/save-profile'
 
 const TOTAL_STEPS = 5
@@ -117,20 +116,7 @@ export function OnboardingWizard({
     }
 
     try {
-      let result = await completeOnboardingRequest(payload)
-
-      if (!result.ok && result.status === 401) {
-        const supabase = createClient()
-        const {
-          data: { user },
-        } = await supabase.auth.getUser()
-
-        if (user) {
-          router.refresh()
-          await new Promise((resolve) => setTimeout(resolve, 400))
-          result = await completeOnboardingRequest(payload)
-        }
-      }
+      const result = await completeOnboardingRequest(payload)
 
       if (!result.ok) {
         if (result.status === 401) {
@@ -187,6 +173,9 @@ export function OnboardingWizard({
   }
 
   const markHref = sanitizeNextPath(nextParam, rerun ? '/account/study' : '/mark')
+  const signInAgainHref = `/auth/signin?next=${encodeURIComponent(
+    nextParam && nextParam !== '/onboarding' ? nextParam : '/onboarding'
+  )}`
   const backHref = rerun ? sanitizeNextPath(nextParam, '/account/study') : '/auth/signout'
   const backLabel = rerun ? 'Back to settings' : 'Sign out'
 
@@ -248,6 +237,7 @@ export function OnboardingWizard({
               <StepFirstMark
                 loading={loading}
                 errorMsg={errorMsg}
+                signInAgainHref={signInAgainHref}
                 onBack={goBack}
                 onMark={() => completeOnboarding(rerun ? markHref : markHref)}
                 onDashboard={() =>
@@ -541,6 +531,7 @@ function StepGoal({
 function StepFirstMark({
   loading,
   errorMsg,
+  signInAgainHref,
   onBack,
   onMark,
   onDashboard,
@@ -548,6 +539,7 @@ function StepFirstMark({
 }: {
   loading: boolean
   errorMsg: string
+  signInAgainHref: string
   onBack: () => void
   onMark: () => void
   onDashboard: () => void
@@ -570,10 +562,10 @@ function StepFirstMark({
           : "Upload something you've already done. We'll mark it and show you what an examiner-style review looks like — usually under a minute."}
       </p>
       {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
-      {errorMsg.includes('session expired') && (
+      {errorMsg.toLowerCase().includes('session expired') && (
         <p className="mt-3 text-center text-sm">
           <Link
-            href={`/auth/signin?next=${encodeURIComponent('/onboarding')}`}
+            href={signInAgainHref}
             className="ec-link ec-auth-footer-link"
           >
             Sign in again

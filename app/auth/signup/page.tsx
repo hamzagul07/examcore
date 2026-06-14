@@ -222,9 +222,7 @@ function SignUpForm() {
 
           <GoogleAuthSection
             label="Sign up with Google"
-            redirectPath={
-              intentDestination !== '/onboarding' ? intentDestination : null
-            }
+            redirectPath={intentDestination}
             disabled={loading}
             onError={setErrorMsg}
             hint="School or personal Google — we’ll set up your subjects next."

@@ -6,6 +6,7 @@ import { requireTeacher } from '@/lib/teacher-auth'
 import {
   readPostAuthNextParam,
   resolvePostAuthPath,
+  postOnboardingHref,
 } from '@/lib/auth-redirect'
 
 const PROTECTED_PREFIXES = ['/dashboard', '/account', '/onboarding', '/teacher', '/admin']
@@ -96,7 +97,11 @@ export async function proxy(request: NextRequest) {
     redirectUrl.pathname = '/auth/signin'
     redirectUrl.search = ''
     const intended = request.nextUrl.pathname + request.nextUrl.search
-    redirectUrl.searchParams.set('next', intended)
+    const cleanNext = postOnboardingHref(
+      new URL(intended, request.url).searchParams.get('next'),
+      pathname.startsWith('/onboarding') ? '/onboarding' : '/dashboard'
+    )
+    redirectUrl.searchParams.set('next', cleanNext)
     return redirectWithCookies(redirectUrl, supabaseResponse)
   }
 

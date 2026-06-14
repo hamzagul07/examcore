@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
+import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
@@ -130,7 +131,7 @@ export function OnboardingWizard({
 
       setPendingHref(redirectHref)
       if (rerun) {
-        navigateAfterOnboarding(redirectHref)
+        void navigateAfterOnboarding(redirectHref)
         return
       }
       setShowCelebration(true)
@@ -142,17 +143,28 @@ export function OnboardingWizard({
     }
   }
 
-  function navigateAfterOnboarding(target: string) {
+  async function navigateAfterOnboarding(target: string) {
     const destination = postOnboardingHref(
       target === markHref ? nextParam : target,
       target
     )
-    window.location.href = `/onboarding/complete?next=${encodeURIComponent(destination)}`
+
+    try {
+      const supabase = createClient()
+      await supabase.auth.refreshSession()
+    } catch {
+      // Session may already be stale — completion route restores via save token.
+    }
+
+    const params = new URLSearchParams()
+    params.set('next', destination)
+    params.set('token', saveToken)
+    window.location.href = `/onboarding/complete?${params.toString()}`
   }
 
   function finishCelebration() {
     setShowCelebration(false)
-    navigateAfterOnboarding(pendingHref)
+    void navigateAfterOnboarding(pendingHref)
   }
 
   function goNext() {

@@ -56,6 +56,7 @@ function SignInForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const nextParam = searchParams.get('next')
+  const profileSaved = searchParams.get('completed') === '1'
 
   const [method, setMethod] = useState<AuthMethod>('magic')
   const [email, setEmail] = useState('')
@@ -145,7 +146,9 @@ function SignInForm() {
             Sign in to <span className="ec-text-gradient">MarkScheme</span>
           </h1>
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
-            Pick up where you left off — mark papers and track progress.
+            {profileSaved
+              ? 'Your profile is saved — sign in once more to continue marking.'
+              : 'Pick up where you left off — mark papers and track progress.'}
           </p>
 
           <GoogleAuthSection

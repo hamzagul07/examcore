@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
-import { createClient } from '@/lib/supabase'
-import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
+import { isSafeNextPath } from '@/lib/auth-redirect'
 
 type Props = {
   /** Shown on the button — sign-in vs sign-up is the same OAuth flow. */
@@ -39,6 +38,7 @@ function GoogleIcon() {
 
 /**
  * Google Identity–style button (light fill on dark auth card for recognition).
+ * OAuth starts on the server at /auth/google for reliable PKCE + cookie handling.
  */
 export function GoogleAuthButton({
   label,
@@ -48,28 +48,19 @@ export function GoogleAuthButton({
 }: Props) {
   const [loading, setLoading] = useState(false)
 
-  async function handleGoogle() {
+  function handleGoogle() {
     if (typeof window === 'undefined') return
     setLoading(true)
     onError?.('')
 
-    const supabase = createClient()
-    const redirectTo = buildAuthCallbackUrl(window.location.origin, redirectPath)
-
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo,
-        queryParams: {
-          prompt: 'select_account',
-        },
-      },
-    })
-
-    if (error) {
-      setLoading(false)
-      onError?.(error.message)
+    const params = new URLSearchParams()
+    if (redirectPath && isSafeNextPath(redirectPath)) {
+      params.set('next', redirectPath.trim())
     }
+
+    window.location.href = `/auth/google${
+      params.size ? `?${params.toString()}` : ''
+    }`
   }
 
   return (
@@ -78,7 +69,7 @@ export function GoogleAuthButton({
       disabled={disabled || loading}
       aria-busy={loading || undefined}
       aria-label={loading ? 'Connecting to Google' : label}
-      onClick={() => void handleGoogle()}
+      onClick={handleGoogle}
       className="group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-[#747775] bg-white px-4 py-3.5 text-[15px] font-medium text-[#1f1f1f] shadow-[0_1px_2px_rgba(0,0,0,0.12)] transition-[box-shadow,transform,background-color] duration-200 hover:bg-[#f8f9fa] hover:shadow-[0_2px_6px_rgba(0,0,0,0.18)] active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ec-brand)] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100"
     >
       {loading ? (

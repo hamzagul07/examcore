@@ -7,7 +7,8 @@ import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox, SubmitButton, SuccessBox } from '@/components/AuthFormBits'
-import { buildSignUpHref, sanitizeNextPath } from '@/lib/auth-redirect'
+import { buildSignUpHref } from '@/lib/auth-redirect'
+import { fetchPostAuthDestination } from '@/lib/auth-post-login'
 
 const CODE_LENGTH = 6
 
@@ -114,7 +115,7 @@ function VerifyEmailForm() {
     // verified. Fire-and-forget — never block the redirect on billing setup.
     void fetch('/api/billing/sync-customer', { method: 'POST' }).catch(() => {})
 
-    const destination = sanitizeNextPath(nextRaw, '/dashboard')
+    const destination = await fetchPostAuthDestination(nextRaw)
     router.push(destination)
     router.refresh()
   }
@@ -231,7 +232,7 @@ function VerifyEmailForm() {
         </p>
         <p className="text-[var(--ec-text-secondary)]">
           Wrong email?{' '}
-          <Link href={signUpHref} className="ec-link">
+          <Link href={signUpHref} className="ec-link ec-auth-footer-link">
             Sign up again
           </Link>
         </p>

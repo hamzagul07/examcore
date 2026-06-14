@@ -1,25 +1,75 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { Suspense, useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { buildSignInHref } from '@/lib/auth-redirect'
+import {
+  buildForgotPasswordHref,
+  buildSignInHref,
+  readPostAuthNextParam,
+} from '@/lib/auth-redirect'
 import { CheckCircle2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { Label } from '@/components/ui/label'
 import { AuthShell } from '@/components/AuthShell'
 import { PasswordInput } from '@/components/PasswordInput'
 import { ErrorBox, SubmitButton } from '@/components/AuthFormBits'
+import { fetchPostAuthDestination } from '@/lib/auth-post-login'
 
 export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<ResetPasswordSkeleton />}>
+      <ResetPasswordForm />
+    </Suspense>
+  )
+}
+
+function ResetPasswordSkeleton() {
+  return (
+    <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
+      <p className="leading-relaxed text-[var(--ec-text-secondary)]">
+        Checking your reset link…
+      </p>
+    </AuthShell>
+  )
+}
+
+function ResetPasswordForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const returnTo = readPostAuthNextParam(searchParams.get('next'), null)
+  const signInHref = buildSignInHref(returnTo)
+  const forgotHref = buildForgotPasswordHref(returnTo)
+
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [checkingSession, setCheckingSession] = useState(true)
+  const [hasSession, setHasSession] = useState(false)
   const [done, setDone] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
 
   const valid = password.length >= 8 && password === confirmPassword
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function checkSession() {
+      const supabase = createClient()
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+
+      if (cancelled) return
+      setHasSession(Boolean(user))
+      setCheckingSession(false)
+    }
+
+    void checkSession()
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -40,8 +90,6 @@ export default function ResetPasswordPage() {
     setLoading(false)
     if (error) {
       setErrorMsg(
-        // Surface a friendlier hint for the most common case: the recovery
-        // session has expired before the user finished resetting.
         error.message.toLowerCase().includes('session')
           ? 'Your reset link expired. Request a new one from the sign-in page.'
           : error.message
@@ -50,14 +98,40 @@ export default function ResetPasswordPage() {
     }
 
     setDone(true)
+    const destination = await fetchPostAuthDestination(returnTo)
     setTimeout(() => {
-      router.push('/dashboard')
+      router.push(destination)
       router.refresh()
     }, 1500)
   }
 
+  if (checkingSession) {
+    return <ResetPasswordSkeleton />
+  }
+
+  if (!hasSession) {
+    return (
+      <AuthShell backLabel="Back to sign in" backHref={signInHref}>
+        <p className="ec-eyebrow mb-3">Password reset</p>
+        <h1 className="text-hero mb-3">
+          Link <span className="ec-text-gradient">expired</span>
+        </h1>
+        <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
+          Open the reset link from your email in this browser, or request a fresh
+          one below.
+        </p>
+        <Link
+          href={forgotHref}
+          className="ec-btn-primary inline-flex w-full justify-center"
+        >
+          Request a new link
+        </Link>
+      </AuthShell>
+    )
+  }
+
   return (
-    <AuthShell backLabel="Back to sign in" backHref={buildSignInHref()}>
+    <AuthShell backLabel="Back to sign in" backHref={signInHref}>
       {!done ? (
         <>
           <p className="ec-label-tech mb-3">NEW PASSWORD</p>
@@ -106,10 +180,7 @@ export default function ResetPasswordPage() {
 
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Need a fresh link?{' '}
-            <Link
-              href="/auth/forgot-password"
-              className="ec-link"
-            >
+            <Link href={forgotHref} className="ec-link ec-auth-footer-link">
               Request another
             </Link>
           </p>
@@ -123,7 +194,7 @@ export default function ResetPasswordPage() {
             Password updated
           </h2>
           <p className="leading-relaxed text-[var(--ec-text-secondary)]">
-            Taking you to your dashboard...
+            Taking you to your dashboard…
           </p>
         </div>
       )}

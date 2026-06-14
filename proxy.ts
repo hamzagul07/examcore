@@ -3,8 +3,13 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { isAdminEmail } from '@/lib/admin-auth'
 import { requireTeacher } from '@/lib/teacher-auth'
+import {
+  readPostAuthNextParam,
+  resolvePostAuthPath,
+} from '@/lib/auth-redirect'
 
 const PROTECTED_PREFIXES = ['/dashboard', '/account', '/onboarding', '/teacher', '/admin']
+const AUTH_ENTRY_PREFIXES = ['/auth/signin', '/auth/signup']
 
 const ONBOARDING_REQUIRED_PREFIXES = ['/dashboard', '/account', '/mark']
 
@@ -15,6 +20,15 @@ function matchesPrefix(pathname: string, prefixes: string[]) {
   return prefixes.some(
     (prefix) => pathname === prefix || pathname.startsWith(prefix + '/')
   )
+}
+
+/** Preserve Supabase session cookies when issuing redirects. */
+function redirectWithCookies(url: URL | string, supabaseResponse: NextResponse) {
+  const response = NextResponse.redirect(url)
+  supabaseResponse.cookies.getAll().forEach((cookie) => {
+    response.cookies.set(cookie)
+  })
+  return response
 }
 
 export async function proxy(request: NextRequest) {
@@ -47,6 +61,27 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  if (matchesPrefix(pathname, AUTH_ENTRY_PREFIXES)) {
+    if (user) {
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('onboarded, onboarding_completed')
+        .eq('id', user.id)
+        .maybeSingle()
+
+      const nextParam = readPostAuthNextParam(
+        request.nextUrl.searchParams.get('next'),
+        request.nextUrl.searchParams.get('redirect')
+      )
+      const destination = resolvePostAuthPath(
+        isOnboardingComplete(profile),
+        nextParam
+      )
+      return redirectWithCookies(new URL(destination, request.url), supabaseResponse)
+    }
+    return supabaseResponse
+  }
+
   if (!matchesPrefix(pathname, PROTECTED_PREFIXES)) {
     return supabaseResponse
   }
@@ -57,18 +92,18 @@ export async function proxy(request: NextRequest) {
     redirectUrl.search = ''
     const intended = request.nextUrl.pathname + request.nextUrl.search
     redirectUrl.searchParams.set('next', intended)
-    return NextResponse.redirect(redirectUrl)
+    return redirectWithCookies(redirectUrl, supabaseResponse)
   }
 
   if (matchesPrefix(pathname, TEACHER_PREFIXES)) {
     const teacherCheck = await requireTeacher(supabase, user.id)
     if (!teacherCheck.ok) {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
+      return redirectWithCookies(new URL('/dashboard', request.url), supabaseResponse)
     }
   }
 
   if (matchesPrefix(pathname, ADMIN_PREFIXES) && !isAdminEmail(user.email)) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+    return redirectWithCookies(new URL('/dashboard', request.url), supabaseResponse)
   }
 
   const { data: profile } = await supabase
@@ -93,7 +128,7 @@ export async function proxy(request: NextRequest) {
         ? next
         : '/dashboard'
     redirectUrl.search = ''
-    return NextResponse.redirect(redirectUrl)
+    return redirectWithCookies(redirectUrl, supabaseResponse)
   }
 
   if (
@@ -106,7 +141,7 @@ export async function proxy(request: NextRequest) {
     redirectUrl.search = ''
     const intended = request.nextUrl.pathname + request.nextUrl.search
     redirectUrl.searchParams.set('next', intended)
-    return NextResponse.redirect(redirectUrl)
+    return redirectWithCookies(redirectUrl, supabaseResponse)
   }
 
   return supabaseResponse

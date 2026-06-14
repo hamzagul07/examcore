@@ -14,7 +14,8 @@ import {
   ErrorBox,
   SubmitButton,
 } from '@/components/AuthFormBits'
-import { buildSignUpHref, sanitizeNextPath } from '@/lib/auth-redirect'
+import { buildSignUpHref, buildForgotPasswordHref } from '@/lib/auth-redirect'
+import { fetchPostAuthDestination } from '@/lib/auth-post-login'
 import { buildAuthCallbackUrl } from '@/lib/auth-oauth'
 import {
   GoogleAuthSection,
@@ -121,17 +122,19 @@ function SignInForm() {
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
 
-    setLoading(false)
     if (error) {
+      setLoading(false)
       setErrorMsg(error.message)
       return
     }
 
-    router.push(sanitizeNextPath(nextParam, '/dashboard'))
+    const destination = await fetchPostAuthDestination(nextParam)
+    router.push(destination)
     router.refresh()
   }
 
   const signupHref = buildSignUpHref(nextParam)
+  const forgotHref = buildForgotPasswordHref(nextParam)
 
   return (
     <AuthShell>
@@ -211,7 +214,7 @@ function SignInForm() {
                 />
                 <div className="mt-2 text-right">
                   <Link
-                    href="/auth/forgot-password"
+                    href={forgotHref}
                     className="ec-auth-link text-xs ec-link"
                   >
                     Forgot password?
@@ -231,10 +234,7 @@ function SignInForm() {
 
           <p className="mt-6 text-center text-sm text-[var(--ec-text-secondary)]">
             Don&apos;t have an account?{' '}
-            <Link
-              href={signupHref}
-              className="ec-link"
-            >
+            <Link href={signupHref} className="ec-link ec-auth-footer-link">
               Sign up
             </Link>
           </p>

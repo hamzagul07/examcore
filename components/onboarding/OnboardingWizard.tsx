@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
-import { completeOnboardingAction } from '@/app/onboarding/actions'
+import { completeOnboardingRequest } from '@/lib/onboarding/complete-onboarding-client'
 import {
   SUBJECT_GROUPS,
   DEFAULT_BOARD,
@@ -105,7 +105,24 @@ export function OnboardingWizard({
     setErrorMsg('')
 
     try {
-      const result = await completeOnboardingAction({
+      const sessionCheck = await fetch('/api/auth/check', {
+        credentials: 'same-origin',
+      }).catch(() => null)
+
+      if (sessionCheck?.ok) {
+        const sessionData = (await sessionCheck.json()) as {
+          user: { id: string } | null
+        }
+        if (!sessionData.user) {
+          setErrorMsg('Your session expired. Sign in again to save your profile.')
+          return
+        }
+      } else if (sessionCheck && !sessionCheck.ok) {
+        setErrorMsg('Your session expired. Sign in again to save your profile.')
+        return
+      }
+
+      const result = await completeOnboardingRequest({
         board: DEFAULT_BOARD,
         level,
         subjects,
@@ -133,7 +150,8 @@ export function OnboardingWizard({
         return
       }
       setShowCelebration(true)
-    } catch {
+    } catch (err) {
+      console.error('[onboarding wizard] save failed:', err)
       setErrorMsg('Could not save your profile. Check your connection and try again.')
     } finally {
       setLoading(false)

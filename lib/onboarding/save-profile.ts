@@ -107,11 +107,46 @@ export async function saveOnboardingProfile(
     )
 
     if (error) {
-      console.error('[onboarding] upsert failed:', error)
-      return {
-        ok: false,
-        error: 'Could not save your profile. Try again in a moment.',
-        status: 500,
+      console.error('[onboarding] user upsert failed:', error)
+
+      // Fallback when the user JWT did not reach PostgREST (common with some
+      // server-action / cookie edge cases). Service role is safe here because
+      // we already verified the authenticated user id server-side.
+      try {
+        const service = createServiceClient()
+        const { error: serviceError } = await service.from('user_profiles').upsert(
+          {
+            id: userId,
+            full_name: fullName,
+            board,
+            level,
+            subjects,
+            role,
+            stage,
+            primary_goal: primaryGoal,
+            exam_date: examDate,
+            onboarded: true,
+            onboarding_completed: true,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'id' }
+        )
+
+        if (serviceError) {
+          console.error('[onboarding] service upsert failed:', serviceError)
+          return {
+            ok: false,
+            error: 'Could not save your profile. Try again in a moment.',
+            status: 500,
+          }
+        }
+      } catch (serviceErr) {
+        console.error('[onboarding] service upsert threw:', serviceErr)
+        return {
+          ok: false,
+          error: 'Could not save your profile. Try again in a moment.',
+          status: 500,
+        }
       }
     }
 

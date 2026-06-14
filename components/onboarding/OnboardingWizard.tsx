@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
+import { completeOnboardingAction } from '@/app/onboarding/actions'
 import {
   SUBJECT_GROUPS,
   DEFAULT_BOARD,
@@ -103,31 +104,22 @@ export function OnboardingWizard({
     setErrorMsg('')
 
     try {
-      const res = await fetch('/api/onboarding', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          board: DEFAULT_BOARD,
-          level,
-          subjects,
-          stage,
-          primary_goal: primaryGoal,
-          exam_date: examDate,
-          role: 'student',
-        }),
+      const result = await completeOnboardingAction({
+        board: DEFAULT_BOARD,
+        level,
+        subjects,
+        stage,
+        primary_goal: primaryGoal,
+        exam_date: examDate,
+        role: 'student',
       })
 
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string
-      }
-
-      if (!res.ok) {
-        if (res.status === 401) {
+      if (!result.ok) {
+        if (result.status === 401) {
           setErrorMsg('Your session expired. Please sign in again to save your profile.')
           return
         }
-        setErrorMsg(data.error || 'Could not save your profile. Try again.')
+        setErrorMsg(result.error || 'Could not save your profile. Try again.')
         return
       }
 
@@ -139,7 +131,7 @@ export function OnboardingWizard({
       }
       setShowCelebration(true)
     } catch {
-      setErrorMsg('Could not reach the server. Check your connection and try again.')
+      setErrorMsg('Could not save your profile. Check your connection and try again.')
     } finally {
       setLoading(false)
     }

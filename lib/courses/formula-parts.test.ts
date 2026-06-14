@@ -78,6 +78,26 @@ assert.equal(
   'C uses thermal area definition'
 )
 
+const unclosed = parseFormulaParts(
+  'Gradient of Normal: $m_{\\text{normal}} = -\\frac{1}{m_{\\text{tangent}}}'
+)
+assert.equal(unclosed.description, 'Gradient of Normal', 'label prose separated from math')
+assert.equal(unclosed.expressions.length, 1, 'one equation from unclosed delimiter')
+assert.ok(
+  unclosed.expressions[0].includes('m_{\\text{normal}}'),
+  'expression is valid inline math'
+)
+assert.ok(
+  unclosed.parts.some((p) => p.symbol === 'm_normal'),
+  'text subscript parsed as m_normal'
+)
+
+const proseFormula = parseFormulaParts(
+  'If $y = ax^n$, then its derivative is $\\frac{dy}{dx} = anx^{n-1}$'
+)
+assert.equal(proseFormula.expressions.length, 2, 'two inline equations from prose line')
+assert.ok(!proseFormula.expressions[0].includes('If '), 'no prose inside math wrap')
+
 if (failed > 0) {
   console.error(`\n${failed} extract test(s) failed`)
   process.exit(1)

@@ -27,6 +27,8 @@ const DEFAULT_DEFINITIONS: Record<string, string> = {
   'I\u2080': 'initial intensity',
   '\u03b8': 'angle, in degrees or radians',
   a: 'acceleration, in m s⁻²',
+  m_tangent: 'gradient of the tangent to the curve',
+  m_normal: 'gradient of the normal to the curve (perpendicular to the tangent)',
   R: 'resistance, in ohms (Ω)',
   V: 'potential difference, in volts (V)',
   P: 'power, in watts (W)',

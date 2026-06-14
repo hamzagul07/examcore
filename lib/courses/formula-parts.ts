@@ -65,13 +65,49 @@ function displaySymbol(sym: string): string {
   return DISPLAY_SYMBOLS[sym] ?? sym
 }
 
+/** Close odd $ delimiters from LLM-generated formula sections. */
+export function repairFormulaDelimiters(content: string): string {
+  let s = content.trim()
+  if (!s) return s
+
+  let count = 0
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '$' && s[i - 1] !== '\\') count++
+  }
+  if (count % 2 === 1) s += '$'
+
+  return s
+}
+
+/** Wrap a symbol for KaTeX when it contains LaTeX markers. */
+export function formatSymbolForMath(symbol: string): string {
+  const s = symbol.trim()
+  if (!s || s.includes('$')) return s
+
+  if (/\\|[_{^]/.test(s)) {
+    const fixed = s.replace(/([A-Za-z])_\\text\{([^}]+)\}/g, '$1_{\\text{$2}}')
+    return `$${fixed}$`
+  }
+
+  return s
+}
+
+/** Wrap bare LaTeX as a single inline math expression for CourseRichText. */
+export function wrapFormulaExpression(latex: string): string {
+  const inner = latex.trim().replace(/^\$+|\$+$/g, '')
+  if (!inner) return ''
+  return `$${inner}$`
+}
+
 /** Strip HTML tags and normalize breaks to newlines. */
 export function sanitizeFormulaInput(content: string): string {
-  return content
-    .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\r\n/g, '\n')
-    .trim()
+  return repairFormulaDelimiters(
+    content
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\r\n/g, '\n')
+      .trim()
+  )
 }
 
 /** Extract one or more LaTeX equations from mashed content. */
@@ -87,6 +123,16 @@ export function extractLatexEquations(content: string): string[] {
   for (const segment of s.split(/\n+/)) {
     const t = segment.trim()
     if (!t) continue
+
+    const labelMatch = t.match(/^([^:$\n]+):\s*(.+)$/)
+    if (labelMatch && /[=\\]|\\frac|\\text|[_^]/.test(labelMatch[2]!)) {
+      const labelled = extractLatexEquations(labelMatch[2]!)
+      if (labelled.length) {
+        equations.push(...labelled)
+        continue
+      }
+    }
+
     const inlines = [...t.matchAll(/\$([^$]+)\$/g)]
     if (inlines.length) {
       for (const m of inlines) equations.push(m[1].trim())
@@ -109,6 +155,11 @@ export function splitFormulaContent(content: string): { description: string; lat
   const s = sanitizeFormulaInput(content)
   const lines = extractLatexEquations(content)
   const latex = lines[0] ?? ''
+
+  const labelMatch = s.match(/^([^:$\n]+):\s*/)
+  if (labelMatch && lines.length) {
+    return { description: labelMatch[1].trim(), latex }
+  }
 
   const stripped = s
     .replace(/\$\$[^$]+\$\$/g, ' ')
@@ -195,6 +246,11 @@ export function extractLatexSymbols(latex: string): string[] {
     c = stripLatexSymbols(c)
     c = splitImplicitMul(c)
 
+    for (const m of [...c.matchAll(/([A-Za-z])_\{\\text\{([^}]+)\}\}/g)]) {
+      add(`${m[1]}_${m[2]}`)
+      c = c.replace(m[0], ' ')
+    }
+
     for (const m of [...c.matchAll(/([A-Za-z])_\{([^}]+)\}/g)]) {
       add(`${m[1]}_${m[2]}`)
       c = c.replace(m[0], ' ')
@@ -255,7 +311,7 @@ export function parseFormulaParts(content: string, _lesson?: CourseLesson): Pars
   for (const known of KNOWN) {
     if (known.test.test(hay)) {
       const lines = Array.isArray(known.latex) ? known.latex : [known.latex]
-      const expressions = lines.map((l) => `$${l}$`)
+      const expressions = lines.map((l) => wrapFormulaExpression(l))
       return {
         description,
         latex: lines.join('\n'),
@@ -281,7 +337,7 @@ export function parseFormulaParts(content: string, _lesson?: CourseLesson): Pars
     latexLines.length > 0
       ? latexLines
       : [content.replace(/\*\*/g, '').trim()].filter(Boolean)
-  const expressions = displayLines.map((l) => `$${l}$`)
+  const expressions = displayLines.map((l) => wrapFormulaExpression(l))
 
   return {
     description,

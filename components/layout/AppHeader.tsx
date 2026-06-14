@@ -8,39 +8,23 @@ import { CreditChip } from '@/components/billing/CreditChip'
 import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
 import { CommandKTrigger, MobileSearchMenuButton, ThemeFlip } from '@/components/margin-notes'
 import { useAuthenticatedAppChrome } from '@/lib/hooks/useAuthenticatedAppChrome'
+import { avatarInitial, useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { APP_NAV_ITEMS } from '@/lib/app-nav'
 import {
   buildSignInHref,
   buildSignUpHref,
   isSafeNextPath,
 } from '@/lib/auth-redirect'
+import { cn } from '@/lib/utils'
 
 /** App chrome for /mark, /dashboard, and other authenticated routes. */
 export function AppHeader() {
   const pathname = usePathname()
   const showTabBar = useAuthenticatedAppChrome()
+  const { user, loading } = useAuthCheck()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [isGuest, setIsGuest] = useState(false)
-  const [initial, setInitial] = useState<string | null>(null)
-
-  useEffect(() => {
-    let cancelled = false
-    void fetch('/api/auth/check', { cache: 'no-store' })
-      .then((res) => (res.ok ? res.json() : { user: null }))
-      .then((data: { user?: { email?: string; name?: string } | null }) => {
-        if (cancelled) return
-        const user = data.user
-        setIsGuest(!user)
-        const name = user?.name?.trim() || user?.email?.trim()
-        setInitial(name ? name.charAt(0).toUpperCase() : null)
-      })
-      .catch(() => {
-        if (!cancelled) setIsGuest(false)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
+  const initial = avatarInitial(user)
+  const isGuest = !loading && !user
 
   useEffect(() => {
     setMobileOpen(false)
@@ -75,8 +59,20 @@ export function AppHeader() {
           <CreditChip />
           <CommandKTrigger />
           <ThemeFlip />
-          {!isGuest && initial ? (
-            <Link href="/account" className="ec-avatar-btn min-[901px]:grid" title="Account">
+          {loading ? (
+            <span
+              className="ec-avatar-btn ec-avatar-btn--loading hidden min-[901px]:grid"
+              aria-hidden
+            />
+          ) : user ? (
+            <Link
+              href="/account"
+              title="Account"
+              className={cn(
+                'ec-avatar-btn',
+                showTabBar ? 'hidden min-[901px]:grid' : 'grid'
+              )}
+            >
               {initial}
             </Link>
           ) : (

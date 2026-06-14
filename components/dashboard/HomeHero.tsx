@@ -8,9 +8,16 @@ type Props = {
   firstName: string
   examDate: string | null
   weeklyAttempts: number
+  /** Hide the mark CTA when a dedicated new-user panel handles the primary action. */
+  hideMarkCta?: boolean
 }
 
-export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
+export function HomeHero({
+  firstName,
+  examDate,
+  weeklyAttempts,
+  hideMarkCta = false,
+}: Props) {
   const countdown = examCountdown(examDate)
   const greeting = timeGreeting(firstName)
 
@@ -54,10 +61,15 @@ export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
               </Link>
             </p>
           )}
+          {hideMarkCta && (
+            <p className="text-body mt-3 text-[var(--ec-text-secondary)]">
+              Start below — your progress dashboard fills in after your first mark.
+            </p>
+          )}
         </div>
       )}
 
-      {countdown.kind !== 'future' && (
+      {countdown.kind !== 'future' && !hideMarkCta && (
         <>
           <MarkQuestionCta />
 

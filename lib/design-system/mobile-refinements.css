@@ -114,6 +114,14 @@
     padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
   }
 
+  .ms-new-user-home .ms-new-user-hero .text-title {
+    font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+  }
+
+  .ms-new-user-home .grid.sm\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+
   .ms-price-page {
     padding-top: 40px;
     padding-bottom: 56px;

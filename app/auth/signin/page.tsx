@@ -145,9 +145,19 @@ function SignInForm() {
           <h1 className="text-hero mb-3">
             Sign in to <span className="ec-text-gradient">MarkScheme</span>
           </h1>
+          {profileSaved ? (
+            <div className="ec-banner ec-banner-info mb-6">
+              <p className="ec-banner__title">Profile saved — one more sign-in</p>
+              <p className="ec-banner__meta mt-1">
+                Your subjects and settings are ready. Sign in below to continue to{' '}
+                {nextParam === '/mark' ? 'marking' : 'your destination'}.
+              </p>
+            </div>
+          ) : null}
+
           <p className="mb-6 leading-relaxed text-[var(--ec-text-secondary)]">
             {profileSaved
-              ? 'Your profile is saved — sign in once more to continue marking.'
+              ? 'Use the same method you signed up with.'
               : 'Pick up where you left off — mark papers and track progress.'}
           </p>
 

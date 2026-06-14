@@ -10,6 +10,7 @@ import type { SyllabusTopic } from '@/lib/syllabi'
 import { assertDeepLesson } from '@/lib/courses/stem-deep-quality'
 import { syncLessonStepsToCatalog } from '@/lib/courses/sync-steps-to-catalog'
 import type { StemDeepSpec } from '@/lib/courses/stem-deep-spec'
+import { sanitizeLessonMath } from '@/lib/courses/sanitize-lesson-math'
 
 export type GenerateStemDeepParams = {
   subjectCode: string
@@ -155,6 +156,7 @@ export async function generateStemDeepLesson(
       const parsed = extractJSON(rawText) as Record<string, unknown>
       const spec = parseDeepSpec(parsed)
       let lesson = deepSpecToLesson(params, spec)
+      lesson = sanitizeLessonMath(lesson)
       lesson = syncLessonStepsToCatalog(lesson)
       lesson = hydrateLessonCatalogVisuals(lesson)
       const issues = assertDeepLesson(lesson)

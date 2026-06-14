@@ -1,6 +1,7 @@
 import type { CourseLesson } from '@/lib/courses/types'
 import type { FormulaPart } from '@/lib/courses/visual-types'
 import { lookupVariableDefinitionForLesson } from '@/lib/courses/variable-definitions'
+import { repairMathDelimiters } from '@/lib/courses/math-format'
 
 const PALETTE = [
   'var(--course-formula-green)',
@@ -67,16 +68,7 @@ function displaySymbol(sym: string): string {
 
 /** Close odd $ delimiters from LLM-generated formula sections. */
 export function repairFormulaDelimiters(content: string): string {
-  let s = content.trim()
-  if (!s) return s
-
-  let count = 0
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === '$' && s[i - 1] !== '\\') count++
-  }
-  if (count % 2 === 1) s += '$'
-
-  return s
+  return repairMathDelimiters(content)
 }
 
 /** Wrap a symbol for KaTeX when it contains LaTeX markers. */
@@ -180,7 +172,8 @@ export function extractLatexSymbols(latex: string): string[] {
 
   function add(sym: string) {
     const key = sym.trim()
-    if (!key || seen.has(key) || /^br$/i.test(key)) return
+    if (!key || seen.has(key) || /^br$/i.test(key) || /^text$/i.test(key)) return
+    if (/^(normal|tangent)$/i.test(key)) return
     seen.add(key)
     found.push(key)
   }

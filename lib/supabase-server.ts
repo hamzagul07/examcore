@@ -1,6 +1,67 @@
 import { createServerClient } from '@supabase/ssr'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
+import { type NextRequest, NextResponse } from 'next/server'
+
+type ResponseCookie = Parameters<NextResponse['cookies']['set']>[2]
+
+export type SupabaseAuthCookie = {
+  name: string
+  value: string
+  options?: ResponseCookie
+}
+
+/** Collect auth cookies while talking to Supabase in a route handler. */
+export function createClientFromRequest(
+  request: NextRequest,
+  onCookies?: (cookiesToSet: SupabaseAuthCookie[]) => void
+) {
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          onCookies?.(cookiesToSet)
+        },
+      },
+    }
+  )
+}
+
+export function applyAuthCookies(
+  response: NextResponse,
+  cookiesToSet: SupabaseAuthCookie[]
+) {
+  cookiesToSet.forEach(({ name, value, options }) => {
+    response.cookies.set(name, value, options)
+  })
+  return response
+}
+
+/** Authenticated Supabase client for route handlers (reads request cookies). */
+export async function authenticateRouteRequest(request: NextRequest) {
+  const pendingCookies: SupabaseAuthCookie[] = []
+  const supabase = createClientFromRequest(request, (cookiesToSet) => {
+    pendingCookies.push(...cookiesToSet)
+  })
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  return { supabase, user, pendingCookies }
+}
+
+export function jsonWithAuthCookies<T>(
+  body: T,
+  pendingCookies: SupabaseAuthCookie[],
+  init?: ResponseInit
+) {
+  return applyAuthCookies(NextResponse.json(body, init), pendingCookies)
+}
 
 export function createServiceClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!

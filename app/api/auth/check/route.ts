@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
+import { NextRequest } from 'next/server'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 
-export async function GET() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  return NextResponse.json({ user: user ? { id: user.id } : null })
+export async function GET(request: NextRequest) {
+  const { user, pendingCookies } = await authenticateRouteRequest(request)
+  return jsonWithAuthCookies(
+    { user: user ? { id: user.id } : null },
+    pendingCookies
+  )
 }

@@ -36,7 +36,7 @@ export async function GET(
   }
 
   const { studentIds, attempts } = await getClassroomAttempts(supabase, id)
-  const topicAnalytics = computeTopicAnalytics(attempts, studentIds.length)
+  const topicAnalytics = computeTopicAnalytics(attempts)
   const blindspots = computeBlindspots(topicAnalytics, studentIds.length)
 
   const admin = createAdminClient()

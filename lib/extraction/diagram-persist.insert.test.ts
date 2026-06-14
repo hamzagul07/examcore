@@ -35,12 +35,16 @@ function question(
 }
 
 const meta: ParsedPaperMeta = {
+  storagePrefix: '9702/2024/s24',
   subjectCode: '9702',
   sessionCode: 's24',
   session: 'May/June',
   year: 2024,
+  component: '42',
   paperNumber: '4',
   variant: '2',
+  paperKind: 'structured',
+  sourcePdfPath: '9702/2024/s24/qp_42.pdf',
 }
 
 const diagram: DetectedDiagram = {

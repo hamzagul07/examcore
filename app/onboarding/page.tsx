@@ -20,6 +20,15 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
   const params = await searchParams
   const rerun = params.rerun === '1'
 
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  if (!user) {
+    const next = rerun ? '/onboarding?rerun=1' : '/onboarding'
+    redirect(`/auth/signin?next=${encodeURIComponent(next)}`)
+  }
+
   let initialProfile: {
     subjects: string[]
     stage: UserStage | null
@@ -28,12 +37,6 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
   } | null = null
 
   if (rerun) {
-    const supabase = await createClient()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-    if (!user) redirect('/auth/signin')
-
     const { data: profile } = await supabase
       .from('user_profiles')
       .select('subjects, stage, primary_goal, exam_date')

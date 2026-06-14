@@ -103,7 +103,8 @@ export async function markJobCompleted(
     .eq('source_pdf_path', sourcePdfPath)
 
   if (error && update.metadata && /metadata/i.test(error.message)) {
-    const { metadata: _meta, ...withoutMeta } = update
+    const withoutMeta = { ...update }
+    delete withoutMeta.metadata
     ;({ error } = await supabase
       .from('extraction_jobs')
       .update(withoutMeta)

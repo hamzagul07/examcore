@@ -6,7 +6,7 @@ export const REQUIRED_ENV = [
 ] as const
 
 /** Recommended before production launch — app may degrade without these. */
-function geminiEnvSatisfied(): boolean {
+export function geminiEnvSatisfied(): boolean {
   const useVertex = ['true', '1', 'yes'].includes(
     (process.env.USE_VERTEX_AI ?? '').trim().toLowerCase()
   )

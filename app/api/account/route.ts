@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
+import { NextRequest, NextResponse } from 'next/server'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import {
   ENABLED_BOARD_IDS,
   ENABLED_LEVEL_IDS,
@@ -14,14 +14,13 @@ type Body = {
   exam_date?: string | null
 }
 
-export async function POST(request: Request) {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+export async function POST(request: NextRequest) {
+  const { supabase, user, pendingCookies } = await authenticateRouteRequest(request)
 
   if (!user) {
-    return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+    return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, {
+      status: 401,
+    })
   }
 
   let body: Body
@@ -102,5 +101,5 @@ export async function POST(request: Request) {
     )
   }
 
-  return NextResponse.json({ ok: true })
+  return jsonWithAuthCookies({ ok: true }, pendingCookies)
 }

@@ -8,7 +8,7 @@ import {
 import { pagesForQuestion } from '@/lib/marking/whole-paper-pages'
 import type { StoredPageOcr } from '@/lib/marking/whole-paper-pages'
 import type { QuestionMarkResult, WholePaperResult } from '@/lib/marking/types'
-import { createClient } from '@/lib/supabase-server'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { requireTeacher } from '@/lib/teacher-auth'
 import { checkAnonymousMarkRateLimit, clientIp } from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
@@ -28,10 +28,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const supabaseAuth = await createClient()
-    const {
-      data: { user },
-    } = await supabaseAuth.auth.getUser()
+    const { supabase: supabaseAuth, user, pendingCookies } =
+      await authenticateRouteRequest(request)
 
     const { data: attempt, error } = await supabaseAdmin
       .from('attempts')
@@ -45,7 +43,9 @@ export async function POST(request: NextRequest) {
 
     if (attempt.user_id) {
       if (!user) {
-        return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+        return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, {
+          status: 401,
+        })
       }
       if (attempt.user_id !== user.id) {
         const teacherCheck = await requireTeacher(supabaseAuth, user.id)

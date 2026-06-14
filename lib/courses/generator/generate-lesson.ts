@@ -1,5 +1,4 @@
 import fs from 'fs'
-import path from 'path'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { generateGeminiText } from '@/lib/ai/gemini-text'
 import { extractJSON } from '@/lib/marking/json'

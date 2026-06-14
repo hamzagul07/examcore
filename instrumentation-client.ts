@@ -7,3 +7,5 @@ Sentry.init({
   replaysSessionSampleRate: 0,
   replaysOnErrorSampleRate: process.env.NODE_ENV === 'production' ? 0.25 : 0,
 })
+
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart

@@ -27,14 +27,13 @@ export function logoMarkSvgMarkup(): string {
 </svg>`
 }
 
-/** App icon / favicon with warm paper canvas. */
+/** App icon / favicon — M + crimson dot from the MarkScheme. wordmark. */
 export function faviconSvgMarkup(): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="MarkScheme">
   <rect width="48" height="48" rx="11" fill="${LOGO_COLORS.bg}"/>
   <rect x="1" y="1" width="46" height="46" rx="10" stroke="${LOGO_COLORS.brand}" stroke-width="0.75" opacity="0.18"/>
-  <g transform="rotate(-4 24 24)">
-    ${logoMarkSvgInner()}
-  </g>
+  <text x="11.5" y="33.5" font-family="Newsreader, Georgia, 'Times New Roman', serif" font-size="28" font-weight="600" fill="${LOGO_COLORS.ink}" letter-spacing="-0.02em">M</text>
+  <text x="33.5" y="33.5" font-family="Newsreader, Georgia, 'Times New Roman', serif" font-size="28" font-weight="600" fill="${LOGO_COLORS.brand}">.</text>
 </svg>`
 }
 

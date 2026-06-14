@@ -39,7 +39,6 @@ function chipClass(level: LeafMastery['level']): string {
 export function MasteryMatrix({
   parentMasteries,
   attempts,
-  hasAnyData,
   subjectCode,
   subjectLabel,
   emptyBanner = false,

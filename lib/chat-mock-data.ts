@@ -12,7 +12,7 @@
  * All entries are real Cambridge 9709 phrasing so the demo feels authentic.
  */
 
-import type { ChatIntent, ChatResponse } from './chat-intents'
+import type { ChatResponse } from './chat-intents'
 
 export const MOCK_PAPER = {
   subject_code: '9709',

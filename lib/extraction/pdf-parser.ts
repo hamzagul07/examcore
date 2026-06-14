@@ -89,10 +89,7 @@ export type ParseQuestionPaperResult = {
   stats: ParseQuestionPaperStats
 }
 
-async function maybeExtractWithMathpix(
-  _pdfBytes: ArrayBuffer,
-  _meta: ParsedPaperMeta
-): Promise<null> {
+async function maybeExtractWithMathpix(): Promise<null> {
   if (!isMathpixEnabled()) return null
   // Mathpix path preserved in mathpix-client.mjs — wire when EXTRACTION_USE_MATHPIX=true
   return null
@@ -248,7 +245,7 @@ export async function parseQuestionPaper(
   const pdfBytes = opts.pdfBytes.slice(0)
   const diagramPdfBytes = pdfBytes.slice(0)
 
-  const mathpixResult = await maybeExtractWithMathpix(pdfBytes, meta)
+  const mathpixResult = await maybeExtractWithMathpix()
   if (mathpixResult) {
     // Future: map Mathpix output through same splitter/validation pipeline
   }

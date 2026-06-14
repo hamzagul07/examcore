@@ -105,7 +105,8 @@ export function MarkingResultView({
   inkPages?: Array<{ photo_url: string; line_references: LineReference[] }>
 }) {
   const [showOCR, setShowOCR] = useState(false)
-  const marks = result.ai_marking?.marks_awarded ?? []
+  const marksAwarded = result.ai_marking?.marks_awarded
+  const marks = useMemo(() => marksAwarded ?? [], [marksAwarded])
   const defaultSelected = useMemo(() => {
     if (!marks.length) return 0
     const lost = marks.findIndex((m) => !m.earned)

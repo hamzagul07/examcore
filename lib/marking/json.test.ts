@@ -1,4 +1,3 @@
-import assert from 'node:assert/strict'
 import { extractJSON } from './json'
 
 let failed = 0

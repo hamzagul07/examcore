@@ -154,7 +154,6 @@ export function normalizeMarkdownTables(text: string): string {
       continue
     }
 
-    const blockStart = i
     const block: string[] = []
     while (
       i < lines.length &&

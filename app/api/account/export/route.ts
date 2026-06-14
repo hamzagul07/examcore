@@ -1,15 +1,15 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
+import { NextRequest, NextResponse } from 'next/server'
+import { applyAuthCookies, authenticateRouteRequest } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
 
-export async function GET() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+export async function GET(request: NextRequest) {
+  const { user, pendingCookies } = await authenticateRouteRequest(request)
 
   if (!user) {
-    return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+    return applyAuthCookies(
+      NextResponse.json({ error: 'Not signed in' }, { status: 401 }),
+      pendingCookies
+    )
   }
 
   const admin = createServiceClient()
@@ -60,11 +60,14 @@ export async function GET() {
 
   const filename = `markscheme-export-${user.id.slice(0, 8)}-${new Date().toISOString().slice(0, 10)}.json`
 
-  return new NextResponse(JSON.stringify(exportPayload, null, 2), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Content-Disposition': `attachment; filename="${filename}"`,
-    },
-  })
+  return applyAuthCookies(
+    new NextResponse(JSON.stringify(exportPayload, null, 2), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+      },
+    }),
+    pendingCookies
+  )
 }

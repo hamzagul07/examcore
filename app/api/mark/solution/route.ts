@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { generateGeminiText } from '@/lib/ai/gemini-text'
-import { createClient as createServerClient } from '@/lib/supabase-server'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 
 export const maxDuration = 60
 
@@ -42,12 +42,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Auth: only the owner can generate/read a solution for their attempt.
-    const supabaseAuth = await createServerClient()
-    const {
-      data: { user },
-    } = await supabaseAuth.auth.getUser()
+    const { user, pendingCookies } = await authenticateRouteRequest(request)
     if (!user) {
-      return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+      return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, {
+        status: 401,
+      })
     }
 
     // Fetch the attempt + joined mark scheme via service role.

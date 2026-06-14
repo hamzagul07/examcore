@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
+import { NextRequest, NextResponse } from 'next/server'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import type { CelebrationKey } from '@/lib/onboarding'
 
 const VALID_KEYS = new Set<CelebrationKey>([
@@ -8,14 +8,13 @@ const VALID_KEYS = new Set<CelebrationKey>([
   'first_exam_ready',
 ])
 
-export async function POST(request: Request) {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+export async function POST(request: NextRequest) {
+  const { supabase, user, pendingCookies } = await authenticateRouteRequest(request)
 
   if (!user) {
-    return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+    return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, {
+      status: 401,
+    })
   }
 
   let body: { key?: string }
@@ -38,7 +37,7 @@ export async function POST(request: Request) {
 
   const seen = profile?.celebrations_seen ?? []
   if (seen.includes(key)) {
-    return NextResponse.json({ show: false })
+    return jsonWithAuthCookies({ show: false }, pendingCookies)
   }
 
   const { error } = await supabase
@@ -54,5 +53,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Could not record celebration' }, { status: 500 })
   }
 
-  return NextResponse.json({ show: true })
+  return jsonWithAuthCookies({ show: true }, pendingCookies)
 }

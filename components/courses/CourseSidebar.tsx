@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { CheckCircle2, Sparkles } from 'lucide-react'
 import { CourseProgressBar, useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { CoursePaperPicker } from '@/components/courses/CoursePaperPicker'
 import { CourseTopicList } from '@/components/courses/CourseTopicList'
@@ -11,7 +10,6 @@ import type { CourseLesson } from '@/lib/courses/types'
 export function CourseSidebar({
   subjectCode,
   subjectName,
-  level,
   lessons,
   activeSlug,
 }: {

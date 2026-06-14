@@ -55,6 +55,7 @@ const GOAL_OPTIONS: {
 export function OnboardingWizard({
   rerun = false,
   initialProfile = null,
+  saveToken,
 }: {
   rerun?: boolean
   initialProfile?: {
@@ -63,6 +64,7 @@ export function OnboardingWizard({
     primary_goal: PrimaryGoal | null
     exam_date: string | null
   } | null
+  saveToken: string
 }) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -116,13 +118,11 @@ export function OnboardingWizard({
     }
 
     try {
-      const result = await completeOnboardingRequest(payload)
+      const result = await completeOnboardingRequest(saveToken, payload)
 
       if (!result.ok) {
         if (result.status === 401) {
-          setErrorMsg(
-            'Your session expired. Sign in again to save your profile.'
-          )
+          setErrorMsg(result.error || 'This page expired. Refresh and try again.')
           return
         }
         setErrorMsg(result.error || 'Could not save your profile. Try again.')
@@ -562,12 +562,17 @@ function StepFirstMark({
           : "Upload something you've already done. We'll mark it and show you what an examiner-style review looks like — usually under a minute."}
       </p>
       {errorMsg && <div className="mt-4"><ErrorBox message={errorMsg} /></div>}
-      {errorMsg.toLowerCase().includes('session expired') && (
+      {errorMsg.toLowerCase().includes('expired') && (
         <p className="mt-3 text-center text-sm">
-          <Link
-            href={signInAgainHref}
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
             className="ec-link ec-auth-footer-link"
           >
+            Refresh page
+          </button>
+          {' · '}
+          <Link href={signInAgainHref} className="ec-link ec-auth-footer-link">
             Sign in again
           </Link>
         </p>

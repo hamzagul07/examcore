@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase-server'
 import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard'
+import { createOnboardingSaveToken } from '@/lib/onboarding/save-token'
 import type { PrimaryGoal, UserStage } from '@/lib/database.types'
 
 export const dynamic = 'force-dynamic'
@@ -53,10 +54,13 @@ async function OnboardingContent({ searchParams }: { searchParams: SearchParams 
     }
   }
 
+  const saveToken = createOnboardingSaveToken(user.id)
+
   return (
     <OnboardingWizard
       rerun={rerun}
       initialProfile={initialProfile}
+      saveToken={saveToken}
     />
   )
 }

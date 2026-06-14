@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { SITE_URL } from '@/lib/site-config'
 import type { BlogPost } from '@/lib/blog'
 import { getAuthor } from '@/lib/seo/authors'
 import { getClusterForSlug } from '@/lib/seo/clusters'

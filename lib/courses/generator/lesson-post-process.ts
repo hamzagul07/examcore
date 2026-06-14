@@ -7,7 +7,6 @@ import {
 import type { LessonEvidence } from '@/lib/courses/content-source.schema'
 import type {
   CourseFlashcard,
-  CourseLesson,
   LessonSection,
   PastPaperPracticeQuestion,
   WorkedExampleDiagram,

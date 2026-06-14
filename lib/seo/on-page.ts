@@ -40,6 +40,6 @@ export function formatMetaDescription(description: string): string {
 }
 
 /** One H1 per page — blog uses post.title; marketing passes explicit string. */
-export function assertSingleH1(_pageLabel: string) {
+export function assertSingleH1() {
   return true
 }

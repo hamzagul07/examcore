@@ -44,8 +44,7 @@ const ACCURACY_THRESHOLD = 70
 const TIME_PER_MARK_THRESHOLD = 1.5 // minutes
 
 export function computeTopicAnalytics(
-  attempts: ClassroomAttempt[],
-  studentCount: number
+  attempts: ClassroomAttempt[]
 ): TopicAnalytics[] {
   return CAMBRIDGE_9709_SYLLABUS.map((topic) => {
     const taggedAttempts = attempts.filter((a) =>
@@ -219,7 +218,7 @@ export function summarizeClassAnalytics(
     studentCount,
     totalAttempts,
     avgScore,
-    topicAnalytics: computeTopicAnalytics(attempts, studentCount),
+    topicAnalytics: computeTopicAnalytics(attempts),
   }
 }
 

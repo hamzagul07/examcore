@@ -19,7 +19,7 @@ export default function Icon() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={faviconDataUrl()} width={28} height={28} alt="" />
+        <img src={faviconDataUrl()} width={30} height={30} alt="" />
       </div>
     ),
     { ...size }

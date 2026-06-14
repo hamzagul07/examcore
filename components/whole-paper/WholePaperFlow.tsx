@@ -116,7 +116,7 @@ export function WholePaperFlow({
         }
       }, 2000)
     },
-    [onError, stopPolling]
+    [stopPolling]
   )
 
   const runWholePaperMarking = useCallback(

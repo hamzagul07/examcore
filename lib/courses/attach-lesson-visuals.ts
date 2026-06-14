@@ -59,7 +59,7 @@ export function ensureSimpleExplanationForVisuals(
  * generator (or hand-authored JSON) did not set them explicitly.
  */
 export function attachCatalogVisuals(lesson: GeneratedLesson): GeneratedLesson {
-  let out = ensureSimpleExplanationForVisuals(lesson)
+  const out = ensureSimpleExplanationForVisuals(lesson)
 
   const hasInlineInteractive = out.sections.some((s) => s.type === 'interactive')
   let interactiveEmbed = out.interactiveEmbed

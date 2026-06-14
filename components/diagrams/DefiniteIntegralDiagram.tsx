@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import { DIAGRAM_FILL, DIAGRAM_STROKE, DIAGRAM_TEXT } from '@/components/diagrams/diagram-styles'
+import { DIAGRAM_STROKE, DIAGRAM_TEXT } from '@/components/diagrams/diagram-styles'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 import { getLessonDiagramSpec, layerOpacity } from '@/lib/courses/diagram-specs'
 

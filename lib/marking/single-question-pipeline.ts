@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { generateGeminiText } from '@/lib/ai/gemini-text'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
-import { buildLineReferences, type OcrLine } from '@/lib/examiner-ink-positioning'
+import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { extractJSON } from '@/lib/marking/json'
 import type {
   MarkContextPayload,

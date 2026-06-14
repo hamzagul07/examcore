@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient, createServiceClient } from '@/lib/supabase-server'
+import { authenticateRouteRequest, createServiceClient, jsonWithAuthCookies } from '@/lib/supabase-server'
 
 export async function POST(req: NextRequest) {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user, pendingCookies } = await authenticateRouteRequest(req)
 
   if (!user) {
-    return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+    return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, {
+      status: 401,
+    })
   }
 
   let body: { invite_code?: string }
@@ -40,10 +39,10 @@ export async function POST(req: NextRequest) {
 
   if (error) {
     if (error.code === '23505') {
-      return NextResponse.json({ success: true, message: 'Already enrolled' })
+      return jsonWithAuthCookies({ success: true, message: 'Already enrolled' }, pendingCookies)
     }
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  return NextResponse.json({ success: true })
+  return jsonWithAuthCookies({ success: true }, pendingCookies)
 }

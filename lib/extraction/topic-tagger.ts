@@ -4,7 +4,6 @@ import { join } from 'path'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { extractJSON } from '@/lib/marking/json'
 import { generateGeminiText } from '@/lib/ai/gemini-text'
-import { GEMINI_FLASH_MODEL } from '@/lib/ai/gemini-models'
 import { sessionCodeToName } from '@/lib/marking/session'
 import {
   needsHumanReviewForConfidence,

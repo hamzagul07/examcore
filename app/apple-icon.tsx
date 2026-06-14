@@ -19,7 +19,7 @@ export default function AppleIcon() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={faviconDataUrl()} width={152} height={152} alt="" />
+        <img src={faviconDataUrl()} width={156} height={156} alt="" />
       </div>
     ),
     { ...size }

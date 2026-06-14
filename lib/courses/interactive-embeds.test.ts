@@ -1,4 +1,3 @@
-import assert from 'node:assert/strict'
 import {
   INTERACTIVE_EMBED_CATALOG,
   isCheerpjEmbedUrl,

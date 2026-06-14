@@ -22,7 +22,6 @@ import {
 import {
   checkAnonymousMarkRateLimit,
   clientIp,
-  incrementAnonymousMarkRateLimit,
 } from '@/lib/rate-limit'
 import { rateLimitJson } from '@/lib/http/rate-limit-response'
 import { createServiceClient } from '@/lib/supabase/service'

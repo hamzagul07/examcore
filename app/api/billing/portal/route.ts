@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase-server'
+import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase/service'
 import { stripe } from '@/lib/stripe/server'
 import { getOrCreateStripeCustomer } from '@/lib/billing/customer'
@@ -16,12 +16,11 @@ function appOrigin(req: NextRequest): string {
 }
 
 export async function POST(req: NextRequest) {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user, pendingCookies } = await authenticateRouteRequest(req)
   if (!user) {
-    return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
+    return jsonWithAuthCookies({ error: 'Not signed in' }, pendingCookies, {
+      status: 401,
+    })
   }
 
   let body: Body = {}
@@ -55,7 +54,7 @@ export async function POST(req: NextRequest) {
       customer: customerId,
       return_url: `${origin}${returnPath}`,
     })
-    return NextResponse.json({ url: session.url })
+    return jsonWithAuthCookies({ url: session.url }, pendingCookies)
   } catch (err) {
     console.error('[billing/portal] session creation failed:', err)
     return NextResponse.json(

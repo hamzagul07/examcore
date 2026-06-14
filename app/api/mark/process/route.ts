@@ -2,18 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { GEMINI_FLASH_MODEL, generateGeminiText, getGeminiClient } from '@/lib/ai/gemini-text'
 import { createClient as createServerClient } from '@/lib/supabase-server'
-import { isMathSubjectCode } from '@/lib/marking/math-subjects'
 import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import type { OcrLine } from '@/lib/examiner-ink-positioning'
 import { runSingleQuestionMark } from '@/lib/marking/single-question-pipeline'
 import { formatSseEvent, SSE_HEADERS } from '@/lib/marking/sse'
-import {
-  ANSWER_OCR_PROMPT_MATH,
-  ANSWER_OCR_PROMPT_GENERAL,
-  WHOLE_PAPER_OCR_PROMPT,
-  parseOcrAnswer,
-  questionPhotoOcrPrompt,
-} from '@/lib/marking/ocr'
+import { questionPhotoOcrPrompt } from '@/lib/marking/ocr'
 import {
   aggregateWholePaperResults,
   buildWholePaperSegmentPrompt,
@@ -74,22 +67,6 @@ async function ocrImage(file: File, prompt: string): Promise<string> {
     { label: 'ocr' }
   )
   return response.text || ''
-}
-
-async function ocrAnswerWithBoxes(
-  file: File,
-  uploadMode: UploadMode,
-  subjectCode?: string
-): Promise<{ full_text: string; lines: OcrLine[] }> {
-  const isMath = isMathSubjectCode(subjectCode)
-  const prompt =
-    uploadMode === 'whole_paper'
-      ? WHOLE_PAPER_OCR_PROMPT
-      : isMath
-        ? ANSWER_OCR_PROMPT_MATH
-        : ANSWER_OCR_PROMPT_GENERAL
-  const raw = await ocrImage(file, prompt)
-  return parseOcrAnswer(raw)
 }
 
 export async function POST(request: NextRequest) {
@@ -299,11 +276,7 @@ export async function POST(request: NextRequest) {
     const ocrText = pageOcrResults
       .map((p, i) => `[Page ${i + 1}]\n${p.full_text}`)
       .join('\n\n')
-    const ocrLines = pageOcrResults.flatMap((p) => p.lines)
     const answerPhotoUrl = pageOcrResults[0]?.photo_url ?? null
-    const pagePhotoUrls = pageOcrResults
-      .map((p) => p.photo_url)
-      .filter((u): u is string => !!u)
 
     if (!ocrText || ocrText.trim().length < 5) {
       return NextResponse.json(

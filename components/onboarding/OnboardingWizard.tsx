@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 import { AuthShell } from '@/components/AuthShell'
 import { ErrorBox } from '@/components/AuthFormBits'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
+import { createClient } from '@/lib/supabase'
 import {
   SUBJECT_GROUPS,
   DEFAULT_BOARD,
@@ -102,8 +103,26 @@ export function OnboardingWizard({
     setLoading(true)
     setErrorMsg('')
 
+    const supabase = createClient()
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
+
+    if (!user || authError) {
+      setLoading(false)
+      setErrorMsg('Your session expired. Redirecting you to sign in…')
+      router.push(
+        `/auth/signin?next=${encodeURIComponent(
+          rerun ? '/onboarding?rerun=1' : '/onboarding'
+        )}`
+      )
+      return
+    }
+
     const res = await fetch('/api/onboarding', {
       method: 'POST',
+      credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         board: DEFAULT_BOARD,
@@ -119,6 +138,15 @@ export function OnboardingWizard({
     setLoading(false)
     if (!res.ok) {
       const data = await res.json().catch(() => ({}))
+      if (res.status === 401) {
+        setErrorMsg('Your session expired. Redirecting you to sign in…')
+        router.push(
+          `/auth/signin?next=${encodeURIComponent(
+            rerun ? '/onboarding?rerun=1' : '/onboarding'
+          )}`
+        )
+        return
+      }
       setErrorMsg(data?.error || 'Could not save your profile. Try again.')
       return
     }

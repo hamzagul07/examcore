@@ -236,7 +236,7 @@ export default function MarkPage() {
   const [paperQuestionOptions, setPaperQuestionOptions] = useState<string[]>([])
   const [wholePaperKey, setWholePaperKey] = useState(0)
   const [profileSubjectCodes, setProfileSubjectCodes] = useState<string[]>([])
-  const [profileLevel, setProfileLevel] = useState('A-Level')
+  const [, setProfileLevel] = useState('A-Level')
   const [profileLoading, setProfileLoading] = useState(true)
 
   useEffect(() => {
@@ -541,11 +541,6 @@ export default function MarkPage() {
       (code) => availablePapers?.[code] || getSubjectPaperStructure(code)
     )
   }, [profileSubjectCodes, availablePapers])
-
-  const activeSubjectMeta = useMemo(
-    () => (selectedSubject ? getSubjectByCode(selectedSubject) : undefined),
-    [selectedSubject]
-  )
 
   const componentLabel = useMemo(() => {
     const labels = new Map<string, string>()
@@ -887,7 +882,6 @@ export default function MarkPage() {
         if (data.show) setFirstMarkCelebration(true)
       })
       .catch(() => {})
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function resetForm() {

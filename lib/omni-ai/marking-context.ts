@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
-import type { LorBandResult, MarkingAIResult, WholePaperResult } from '@/lib/marking/types'
+import type { MarkingAIResult, WholePaperResult } from '@/lib/marking/types'
 
 export type AttemptRowForOmni = {
   id: string

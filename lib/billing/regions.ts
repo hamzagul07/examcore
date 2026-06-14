@@ -23,7 +23,8 @@ export function getRegionTier(countryCode: string | undefined | null): RegionTie
   const cc = countryCode.toUpperCase()
   if (TIER_C.includes(cc)) return 'C'
   if (TIER_B.includes(cc)) return 'B'
-  return 'A' // anything else, including Tier A and unlisted
+  if (TIER_A.includes(cc)) return 'A'
+  return 'A'
 }
 
 export function getPreferredCurrency(countryCode: string | undefined | null): string {

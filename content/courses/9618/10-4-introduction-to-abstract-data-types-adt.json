@@ -4,29 +4,152 @@
   "title": "Introduction to Abstract Data Types (ADT)",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS — stacks, queues, linked lists, and ADT operations vs implementation.",
+  "status": "pilot",
+  "summary": "This lesson introduces the concept of Abstract Data Types (ADTs) as a fundamental principle in computer science. It distinguishes ADTs from concrete data structures, explores key features like encapsulation and information hiding, and provides examples of common ADTs such as stacks, queues, and linked lists.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define abstract data type and its operations.",
-    "Describe stack, queue, and linked list ADTs.",
-    "Compare array vs linked implementations.",
-    "Choose appropriate ADT for scenarios."
+    "Define an Abstract Data Type (ADT) and explain its importance.",
+    "Distinguish between an ADT and a data structure.",
+    "Describe the key characteristics of an ADT, including encapsulation and information hiding.",
+    "Identify common examples of ADTs and the operations associated with them."
   ],
   "simpleExplanation": {
-    "title": "What not how",
-    "summary": "An ADT defines operations (push, pop) without specifying implementation. Stacks are LIFO; queues are FIFO.",
+    "title": "The Vending Machine of Data",
+    "summary": "An Abstract Data Type is like a blueprint for a data container, focusing on what it does, not how it does it. This separation makes code more organised, reusable, and easier to manage.",
+    "analogy": "Think of a vending machine. You know its interface: you insert coins, press a button, and it dispenses a snack. You don't need to know about the internal motors, spirals, or payment processing systems to use it. The ADT is the vending machine's public interface (the buttons and slots), while the internal mechanics are the underlying data structure.",
     "steps": [
-      "Stack: push, pop, peek — LIFO.",
-      "Queue: enqueue, dequeue — FIFO.",
-      "Linked list: dynamic nodes with pointers.",
-      "Array implementation — fixed size but fast index access."
+      "Define the 'What': Specify the type of data to be stored and the set of operations that can be performed on it. For example, a 'list' that can have items added and removed.",
+      "Hide the 'How': The internal implementation details are concealed from the user. This principle is called information hiding.",
+      "Provide an Interface: A clear set of public functions or procedures is created for the user to interact with the data, such as `AddItem()` or `RemoveItem()`.",
+      "Use the ADT: The main program interacts with the data exclusively through this defined interface, making the code independent of the specific implementation."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an Abstract Data Type (ADT)?",
+      "back": "A logical description of how data is viewed and the operations that can be performed on it, without regard to how it will be implemented. It's a model or a blueprint."
+    },
+    {
+      "front": "What is a Data Structure?",
+      "back": "A concrete, physical implementation of an ADT. It's the 'how' - for example, using an array or pointers to organise data in memory."
+    },
+    {
+      "front": "What is the key difference between an ADT and a Data Structure?",
+      "back": "An ADT is a theoretical concept (the 'what'), while a data structure is a concrete implementation (the 'how'). E.g., a Queue (ADT) can be implemented using an array (data structure)."
+    },
+    {
+      "front": "What is Encapsulation in the context of ADTs?",
+      "back": "The bundling of data with the methods or operations that act on that data. The data is typically kept private and is only accessible via the public interface."
+    },
+    {
+      "front": "What is Information Hiding?",
+      "back": "The principle of concealing the implementation details of an ADT from the user. The user interacts with the ADT through its interface, without needing to know its internal workings."
+    },
+    {
+      "front": "What is an ADT's 'interface'?",
+      "back": "The set of public procedures and functions that a programmer can use to interact with the ADT. For a Stack, this would include `Push()`, `Pop()`, and `isEmpty()`."
+    },
+    {
+      "front": "Is an array an ADT or a data structure?",
+      "back": "An array is a data structure. It's a concrete way of storing a collection of elements in contiguous memory locations. It can be used to *implement* an ADT like a stack or queue."
+    },
+    {
+      "front": "Name the two main operations for a Stack ADT.",
+      "back": "PUSH (add an item to the top) and POP (remove an item from the top)."
+    },
+    {
+      "front": "Name the two main operations for a Queue ADT.",
+      "back": "ENQUEUE (add an item to the rear) and DEQUEUE (remove an item from the front)."
+    },
+    {
+      "front": "What is a benefit of using ADTs in a large software project?",
+      "back": "It allows the implementation of the data structure to be changed without affecting the rest of the program, as long as the interface remains the same. This improves maintainability."
+    },
+    {
+      "front": "What does it mean for an ADT to be 'dynamic'?",
+      "back": "It means the data structure used to implement it can grow or shrink in size at runtime, like a linked list. This contrasts with a 'static' implementation using a fixed-size array."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why not just always use the data structure directly? Why add the 'abstract' layer?",
+      "a": "Using an ADT decouples the logic of your main program from the specific implementation of the data storage. This has huge benefits. If you find that your array-based queue is too slow, you can swap it out for a more efficient linked-list implementation without changing a single line of code in your main program, as long as the interface (`ENQUEUE`, `DEQUEUE`, etc.) remains the same. This makes your code more modular, maintainable, and reusable."
+    },
+    {
+      "q": "Are ADTs only used in Object-Oriented Programming (OOP)?",
+      "a": "No, while OOP languages like Java or C# have features like classes, private members, and public methods that map very naturally to the concepts of encapsulation and information hiding, the principles of ADTs can be applied in any programming paradigm. In a procedural language like C or Pascal, you can implement an ADT by grouping related data in a `struct` or `record` and providing a set of functions that operate on a pointer to that structure, effectively creating a public interface."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**ADTs** (10.4) are tested with **diagrams** and **pseudocode**. Draw **pointer changes** for linked list insert/delete." },
-    { "type": "practice", "label": "Mark an ADT question", "href": "/mark?subject=9618&topic=10.4" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In programming, we often deal with complex problems. Abstraction is a key technique for managing this complexity by hiding unnecessary details and focusing on the essential features. An Abstract Data Type, or ADT, is a powerful form of abstraction that revolutionises how we think about and organise data in our programs."
+    },
+    {
+      "type": "heading",
+      "content": "Defining the Abstract Data Type (ADT)"
+    },
+    {
+      "type": "text",
+      "content": "An Abstract Data Type is a theoretical model that defines a set of data values and a set of operations on those values. It specifies *what* the data represents and *what* operations can be performed, but completely ignores *how* this will be achieved in code. Think of it as a contract or a blueprint for a data object. For example, we can define an ADT called `List` which holds a sequence of items and has operations like `addItem`, `removeItem`, and `searchItem`."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An ADT is a logical description, not a physical one.",
+        "It focuses on the interface (operations) and behaviour.",
+        "It hides the implementation details from the user/client code."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "ADTs vs. Data Structures: The 'What' vs. The 'How'"
+    },
+    {
+      "type": "text",
+      "content": "This is a crucial distinction that often causes confusion. An ADT is the abstract concept, while a data structure is the concrete implementation. For example, the `Queue` ADT follows a First-In, First-Out (FIFO) principle. To actually build a queue in a program, you need to choose a data structure, such as a static array, a dynamic array, or a linked list. The choice of data structure affects performance and memory usage, but it doesn't change the fundamental behaviour of the queue ADT."
+    },
+    {
+      "type": "workedExample",
+      "question": "A music streaming service uses a playlist feature. Users can add a song to the end of the playlist, remove the currently playing song from the start, and see which song is next. Describe this playlist feature as an Abstract Data Type, specifying the data and the necessary operations.",
+      "solution": "The playlist can be described as a **Queue** ADT.\n\n**Data:** A collection of songs, where each song has a title and artist. The collection is ordered based on insertion time. [1 mark]\n\n**Operations:**\n*   `ENQUEUE(song)`: Adds a new song to the rear (end) of the queue/playlist. [1 mark]\n*   `DEQUEUE()`: Removes the song from the front of the queue/playlist (the one that has been there the longest). [1 mark]\n*   `PEEK()` or `FRONT()`: Returns the song at the front of the queue without removing it. [1 mark]\n*   `isEmpty()`: Returns TRUE if the queue/playlist contains no songs, otherwise FALSE. [1 mark]\n\n(Note: The description correctly identifies the ADT and its operations without mentioning arrays or linked lists)."
+    },
+    {
+      "type": "heading",
+      "content": "Key Features: Encapsulation and Information Hiding"
+    },
+    {
+      "type": "text",
+      "content": "ADTs are realised in programming languages through features that support encapsulation and information hiding. **Encapsulation** is the bundling of the data and the operations that work on that data into a single unit, like a class in an object-oriented language. **Information Hiding** is the practice of restricting access to the internal implementation details of that unit. The data itself is often declared as `PRIVATE`, and can only be modified or accessed through the `PUBLIC` interface (the defined procedures and functions). This prevents other parts of the program from accidentally corrupting the data or becoming dependent on a specific implementation."
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, when asked to describe an ADT like a stack or queue, focus purely on the abstract properties. Define the data it holds and list the names and purposes of its operations (e.g., PUSH, POP, ENQUEUE, DEQUEUE). Do not mention arrays, pointers, or any specific programming code unless the question explicitly asks for an implementation."
+    },
+    {
+      "type": "workedExample",
+      "question": "A programmer has implemented a data type using a fixed-size array and a top pointer. The interface provides three procedures: `Push(item)`, `Pop()`, and `IsEmpty()`. Identify the ADT being implemented and explain how the choice of data structure imposes a limitation.",
+      "solution": "**Identification:**\nThe ADT being implemented is a **Stack**. [1 mark]\nThe operations `Push` (adding to the top) and `Pop` (removing from the top) are characteristic of a Last-In, First-Out (LIFO) structure, which is the definition of a stack. [1 mark]\n\n**Limitation:**\nThe implementation uses a **fixed-size array**, which is a **static data structure**. [1 mark]\nThis imposes a limitation on the stack's capacity. If the number of items pushed onto the stack exceeds the size of the array, a **stack overflow** error will occur. The stack cannot grow dynamically to accommodate more data than was initially allocated. [1 mark]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on ADTs",
+      "href": "/mark?subject=9618&topic=10.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "CS-Guide: ADTs",
+          "href": "https://www.cs-guide.com/9618/adt"
+        },
+        {
+          "label": "Video: ADTs vs Data Structures",
+          "href": "https://www.youtube.com/watch?v=example_adt_video"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

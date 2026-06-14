@@ -4,29 +4,229 @@
   "title": "Bit manipulation",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 — binary shifts, masks, and logical bitwise operations.",
+  "status": "pilot",
+  "summary": "This lesson explores bit manipulation, a fundamental technique for low-level data control. It covers bitwise shifts (logical and arithmetic) for efficient multiplication and division, and the use of logical operations (AND, OR, XOR) with masks to selectively check, set, clear, and toggle individual bits within a byte.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Perform logical binary shifts.",
-    "Apply AND, OR, XOR masks.",
-    "Use bit manipulation in flag checking.",
-    "Relate to two's complement representation."
+    "Understand and perform logical shifts (LSL, LSR) and arithmetic shifts (ASR).",
+    "Explain the effect of shifts on binary numbers, including multiplication and division by powers of 2.",
+    "Use bit masks with logical operators (AND, OR, XOR) to manipulate individual bits.",
+    "Apply bit manipulation techniques to solve problems involving flags, permissions, and low-level data representation."
   ],
   "simpleExplanation": {
-    "title": "Working at bit level",
-    "summary": "Programs manipulate individual bits for efficiency, permissions, and low-level hardware control.",
+    "title": "Controlling the Code's DNA",
+    "summary": "Bit manipulation is the art of directly altering the individual 1s and 0s that make up data in a computer. This gives programmers fine-grained control for maximum efficiency and is crucial for tasks like graphics, networking, and systems programming.",
+    "analogy": "Imagine a long panel of light switches, where each switch represents a bit. Bit manipulation is like being able to perform specific actions on these switches without looking at the whole panel. A 'shift' is like telling a friend to move every switch's state one position to the left. Using an 'AND mask' is like putting a cardboard cutout over the panel with holes only for the switches you want to check are 'ON'. Using an 'OR mask' is like using a tool that can reach through specific holes to flick switches 'ON', and an 'XOR mask' uses a tool to flip the current state of selected switches.",
     "steps": [
-      "Shift left ×2; shift right ÷2.",
-      "AND with mask to test a bit.",
-      "OR to set bits; XOR to toggle.",
-      "Flags register uses bit fields."
+      "Logical shifts move all bits left or right, filling vacant spots with zeros. This is a fast way to multiply or perform integer division by powers of 2.",
+      "An AND mask is used to clear bits or check if a bit is set. By ANDing a value with a mask, only the bits that are '1' in both the value and the mask remain '1'.",
+      "An OR mask is used to set bits to '1', while an XOR mask is used to toggle (flip) bits. These are essential for managing status flags or setting permissions.",
+      "For signed integers in two's complement, an Arithmetic Shift Right (ASR) is used. It preserves the sign bit to maintain the number's positivity or negativity during division."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a Logical Shift Left (LSL)?",
+      "back": "An operation that shifts all bits in a binary number one or more positions to the left. The most significant bit(s) are discarded, and the least significant bit position(s) are filled with 0s."
+    },
+    {
+      "front": "What is the mathematical effect of an LSL by n places?",
+      "back": "Multiplication by $2^n$. For example, LSL 1 multiplies by 2, LSL 3 multiplies by 8."
+    },
+    {
+      "front": "What is a Logical Shift Right (LSR)?",
+      "back": "An operation that shifts all bits in a binary number one or more positions to the right. The least significant bit(s) are discarded, and the most significant bit position(s) are filled with 0s."
+    },
+    {
+      "front": "What is the mathematical effect of an LSR by n places on an unsigned integer?",
+      "back": "Integer division by $2^n$. For example, LSR 1 divides by 2, discarding any remainder."
+    },
+    {
+      "front": "What is an Arithmetic Shift Right (ASR)?",
+      "back": "A shift operation for signed (two's complement) numbers. It shifts bits to the right, but the most significant bit (the sign bit) is copied into the newly vacant position, preserving the number's sign."
+    },
+    {
+      "front": "What is the key difference between LSR and ASR?",
+      "back": "LSR always fills the vacant MSB position with a 0. ASR fills it by copying the original sign bit (which can be 0 or 1). ASR is for signed numbers, LSR for unsigned."
+    },
+    {
+      "front": "Is there an Arithmetic Shift Left (ASL)?",
+      "back": "Yes, but its behaviour is identical to Logical Shift Left (LSL). The vacant LSB is always filled with a 0. For exam purposes, ASL and LSL are the same."
+    },
+    {
+      "front": "What is a 'mask' in bit manipulation?",
+      "back": "A binary value (a bit pattern) used with a logical operator (AND, OR, XOR) to modify another binary value. The mask determines which bits are affected."
+    },
+    {
+      "front": "How do you use a mask with AND to check if bit 3 (from the right, starting at 0) is set in a byte `B`?",
+      "back": "Perform `B AND 00001000`. If the result is non-zero (`00001000`), the bit was set. If the result is zero, the bit was not set."
+    },
+    {
+      "front": "How do you use a mask with OR to set bit 5 of a byte `B` to 1?",
+      "back": "Perform `B OR 00100000`. This forces bit 5 to be 1, leaving all other bits in `B` unchanged."
+    },
+    {
+      "front": "How do you use a mask with XOR to toggle (flip) the lower four bits of a byte `B`?",
+      "back": "Perform `B XOR 00001111`. This will flip the state of bits 0, 1, 2, and 3, while leaving the upper four bits unchanged."
+    },
+    {
+      "front": "Common Trap: What happens if a logical shift left causes an important bit to be lost?",
+      "back": "This is called an overflow. For example, shifting the signed 8-bit number for 65 (`01000001`) left by one place results in `10000010`, which is -126 in two's complement, not 130. The result is incorrect."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is bit manipulation considered faster than normal arithmetic?",
+      "a": "Bitwise operations like shifting and logical AND/OR/XOR often map directly to single, extremely fast instructions on the CPU. A multiplication like `x * 4` might involve several steps, whereas a bit shift `x << 2` is a single CPU cycle on most architectures, making it significantly more efficient."
+    },
+    {
+      "q": "What is the point of an Arithmetic Shift Left if it's the same as a Logical Shift Left?",
+      "a": "It's mainly for conceptual consistency and completeness in instruction set design. While the *result* is identical (vacant LSB is filled with 0), having an ASL instruction allows a programmer or compiler to signify that they are performing a multiplication on a signed number, even if the underlying mechanism is the same as for an unsigned one. For your exams, you must know they are functionally identical."
+    },
+    {
+      "q": "In an exam, how do I know which bit is bit 0?",
+      "a": "By convention, bit 0 is the rightmost bit (the least significant bit, LSB). Bit 1 is the next one to the left, and so on. For an 8-bit byte, the bits are numbered 7, 6, 5, 4, 3, 2, 1, 0 from left to right. If an exam question deviates from this, it will be explicitly stated."
+    },
+    {
+      "q": "Can I use bit manipulation to divide by a non-power-of-2 number, like 3?",
+      "a": "Not directly with a simple shift. Bit shifts only work for multiplication and division by powers of 2 (2, 4, 8, 16...). Dividing by other numbers requires more complex algorithms, though some can be optimised using a combination of shifts, additions, and subtractions."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Bit manipulation** (4.3) builds on **1.1 binary** and **3.2 logic gates**. Trace **8-bit examples** on paper." },
-    { "type": "practice", "label": "Mark a bit manipulation question", "href": "/mark?subject=9618&topic=4.3" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "At the most fundamental level, all data in a computer is stored as sequences of bits—1s and 0s. Bit manipulation is the process of algorithmically modifying these sequences at the bit level. While high-level languages often abstract this away, direct bit manipulation is a powerful tool for performance optimisation, low-level system control, and implementing certain algorithms. It's the digital equivalent of being a watchmaker, carefully adjusting the smallest cogs and gears to control the entire machine."
+    },
+    {
+      "type": "heading",
+      "content": "Bitwise Shifts"
+    },
+    {
+      "type": "text",
+      "content": "A bitwise shift moves every bit in a register (a storage location, like a byte) to the left or right by a specified number of positions. Bits that are shifted off one end are discarded, and the empty spaces at the other end are filled in according to specific rules. These operations are extremely fast for a processor to execute and provide a highly efficient way to perform multiplication and division by powers of two."
+    },
+    {
+      "type": "heading",
+      "content": "Logical Shifts (LSL and LSR)"
+    },
+    {
+      "type": "text",
+      "content": "Logical shifts are the simplest type of shift. They treat the number as a simple sequence of bits, regardless of whether it represents a signed or unsigned number. When shifting, the empty positions are always filled with zeros."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Logical Shift Left (LSL):** All bits shift left. The most significant bit (MSB) is discarded. The least significant bit (LSB) position is filled with a 0. Effect: multiplication by $2^n$ for $n$ shifts.",
+        "**Logical Shift Right (LSR):** All bits shift right. The least significant bit (LSB) is discarded. The most significant bit (MSB) position is filled with a 0. Effect: integer division by $2^n$ for $n$ shifts."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An 8-bit register contains the binary value `00110101`. What is the result, in binary and denary, after applying: a) LSL 2, b) LSR 3?",
+      "solution": "The original value `00110101` is $32 + 16 + 4 + 1 = 53$ in denary.\n\n**a) LSL 2 (Logical Shift Left by 2):**\n- Original: `00110101`\n- Shift 1: `01101010` (The leading `0` is discarded, a `0` is added at the end)\n- Shift 2: `11010100` (The leading `0` is discarded, a `0` is added at the end)\n- **Result (Binary):** `11010100`\n- **Result (Denary):** $128 + 64 + 16 + 4 = 212$. \n- Check: $53 \\times 2^2 = 53 \\times 4 = 212$. The calculation is correct.\n\n**b) LSR 3 (Logical Shift Right by 3):**\n- Original: `00110101`\n- Shift 1: `00011010` (The trailing `1` is discarded, a `0` is added at the start)\n- Shift 2: `00001101` (The trailing `0` is discarded, a `0` is added at the start)\n- Shift 3: `00000110` (The trailing `1` is discarded, a `0` is added at the start)\n- **Result (Binary):** `00000110`\n- **Result (Denary):** $4 + 2 = 6$.\n- Check: $53 \\div 2^3 = 53 \\div 8 = 6$ with a remainder of 5. This is correct for integer division."
+    },
+    {
+      "type": "heading",
+      "content": "Arithmetic Shifts (ASR)"
+    },
+    {
+      "type": "text",
+      "content": "When working with signed numbers stored in two's complement format, a logical shift right can produce incorrect results for negative numbers. For example, shifting a negative number right with LSR would introduce a 0 at the MSB, making the number positive. To solve this, we use an **Arithmetic Shift Right (ASR)**. This shift preserves the sign of the number by copying the original sign bit into the vacant positions. Note that an Arithmetic Shift Left is identical in operation to a Logical Shift Left."
+    },
+    {
+      "type": "workedExample",
+      "question": "An 8-bit register stores a signed integer in two's complement. It holds the value `11101100`. What is the result of applying an ASR 2? Give your answer in binary and state the denary equivalent before and after.",
+      "solution": "The original value is `11101100`.\n- As it's a negative number (MSB is 1), we find its magnitude by flipping the bits and adding 1: `00010011 + 1 = 00010100`. This is $16 + 4 = 20$. So the original value is -20.\n\n**Applying ASR 2 (Arithmetic Shift Right by 2):**\n- The sign bit is `1`.\n- Original: `11101100`\n- Shift 1: The LSB (`0`) is discarded. The sign bit (`1`) is copied into the MSB position. Result: `11110110`.\n- Shift 2: The new LSB (`0`) is discarded. The sign bit (`1`) is copied again. Result: `11111011`.\n- **Result (Binary):** `11111011`\n\n**Denary value of the result:**\n- The result `11111011` is negative. To find its magnitude, flip the bits and add 1: `00000100 + 1 = 00000101`. This is 5.\n- So the final denary value is -5.\n- Check: $-20 \\div 2^2 = -20 \\div 4 = -5$. The arithmetic shift has correctly preserved the sign during division."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently test the difference between Logical and Arithmetic shifts. Always check if the question specifies a signed (two's complement) or unsigned number. If signed, use ASR for right shifts. If unsigned, use LSR. If the question doesn't specify, state your assumption, but LSR is the default for 'logical shift'."
+    },
+    {
+      "type": "heading",
+      "content": "Masking and Logical Operations"
+    },
+    {
+      "type": "text",
+      "content": "Masking is a technique used to access or modify specific bits within a larger binary value, like a byte. It works by combining the value with a special bit pattern, called a mask, using a bitwise logical operator. The three key operators are AND, OR, and XOR."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**AND (&):** Used to *clear* bits or *check* if a bit is set. `bit AND 0 = 0` (clears the bit). `bit AND 1 = bit` (leaves the bit unchanged).",
+        "**OR (|):** Used to *set* bits. `bit OR 1 = 1` (sets the bit). `bit OR 0 = bit` (leaves the bit unchanged).",
+        "**XOR (^):** Used to *toggle* (flip) bits. `bit XOR 1 = NOT bit` (flips the bit). `bit XOR 0 = bit` (leaves the bit unchanged)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A byte variable, `STATUS`, holds the value `10010110`. Bits represent flags (from right, bit 0): Bit 1: `READ_ONLY`, Bit 4: `ERROR`, Bit 7: `ENABLED`. Perform the following operations, showing the mask and the result in binary.\na) Clear the `ERROR` flag (set bit 4 to 0).\nb) Set the `ENABLED` flag (set bit 7 to 1).\nc) Toggle the `READ_ONLY` flag (flip bit 1).",
+      "solution": "Original `STATUS` byte: `10010110`\n\n**a) Clear the ERROR flag (bit 4):**\n- We need to AND the byte with a mask that has a 0 at bit 4 and 1s everywhere else.\n- Mask: `11101111`\n- Operation: `10010110 AND 11101111`\n```\n  10010110 (STATUS)\n& 11101111 (Mask)\n----------\n  10000110 (Result)\n```\n- **Result:** `10000110`\n\n**b) Set the ENABLED flag (bit 7):**\n- We need to OR the byte with a mask that has a 1 at bit 7 and 0s everywhere else.\n- Mask: `10000000`\n- Operation: `10010110 OR 10000000`\n```\n  10010110 (STATUS)\n| 10000000 (Mask)\n----------\n  10010110 (Result)\n```\n- Note: Bit 7 was already 1, so the OR operation leaves it as 1. If it had been 0, it would have been set to 1.\n- **Result:** `10010110`\n\n**c) Toggle the READ_ONLY flag (bit 1):**\n- We need to XOR the byte with a mask that has a 1 at bit 1 and 0s everywhere else.\n- Mask: `00000010`\n- Operation: `10010110 XOR 00000010`\n```\n  10010110 (STATUS)\n^ 00000010 (Mask)\n----------\n  10010100 (Result)\n```\n- Bit 1 was `1`, and `1 XOR 1 = 0`, so it has been flipped to 0.\n- **Result:** `10010100`"
+    },
+    {
+      "type": "practice",
+      "label": "Bit Manipulation",
+      "href": "/mark?subject=9618&topic=4.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Bitwise operations calculator",
+          "href": "https://www.rapidtables.com/convert/number/binary-calculator.html"
+        },
+        {
+          "label": "Visual explanation of bitwise operations",
+          "href": "https://www.youtube.com/watch?v=mesu3L_Ah-o"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Bit manipulation",
+    "embedUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "launchUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "hint": "Binary shifts, masks, and logical operations (9618 4.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Logical shift left/right — multiply/divide by 2.",
+        "embedHint": "Vacant bit filled 0."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "AND mask: clear selected bits.",
+        "embedHint": "Check if bit set."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "OR set bits; XOR toggle.",
+        "embedHint": "Used in flags and permissions."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Two's complement for signed integers.",
+        "embedHint": "Link to 1.1 data representation."
+      }
+    ]
+  }
 }

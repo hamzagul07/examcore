@@ -4,29 +4,241 @@
   "title": "Algorithms",
   "paper": "P4",
   "paperName": "Practical",
-  "status": "premium",
-  "summary": "9618 P4 — searching, sorting, and algorithm efficiency.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces fundamental algorithms for searching and sorting data, a core component of the A-Level Practical paper. We explore Linear Search, Binary Search, and Bubble Sort, analysing their mechanics, efficiency, and practical application. You will also learn the crucial skill of tracing algorithm execution using trace tables.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Trace linear and binary search.",
-    "Describe bubble, insertion, and merge sort at syllabus level.",
-    "Compare algorithm efficiency using Big-O ideas.",
-    "Write pseudocode for standard algorithms."
+    "Describe and trace the execution of linear and binary search algorithms.",
+    "Describe and trace the execution of a bubble sort algorithm.",
+    "Understand the pre-conditions required for certain algorithms, such as binary search.",
+    "Analyse and compare the efficiency of searching and sorting algorithms."
   ],
   "simpleExplanation": {
-    "title": "Step-by-step problem solving",
-    "summary": "Algorithms are finite sequences of steps. Choice of algorithm affects speed as data size grows.",
+    "title": "Computer Recipes: Searching and Sorting",
+    "summary": "Algorithms are just step-by-step instructions for solving a problem, like a recipe for a computer. We'll look at common recipes for finding items in a list (searching) and putting a list in order (sorting).",
+    "analogy": "Imagine finding a specific book in a library. You could start at the first shelf and check every single book until you find it (Linear Search). A much faster way is to use the library's catalogue to find the correct section, then go to the middle of that section and decide whether to look in the first or second half, repeating this until you find the book (Binary Search). Before you can do that, someone had to put all the books in order (Sorting), perhaps by repeatedly swapping pairs of out-of-order books on a cart (Bubble Sort).",
     "steps": [
-      "Linear search: O(n).",
-      "Binary search: O(log n), sorted data.",
-      "Bubble sort: O(n²) simple swaps.",
-      "Trace tables prove correctness."
+      "Linear search: check each item in order.",
+      "Binary search: halve sorted list each step.",
+      "Bubble sort: compare adjacent pairs.",
+      "Trace table for given algorithm input."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an algorithm?",
+      "back": "A finite, well-defined sequence of steps or rules to solve a specific problem or perform a computation. It must be unambiguous and guaranteed to terminate."
+    },
+    {
+      "front": "Describe a Linear Search.",
+      "back": "An algorithm that sequentially checks each element of a list until a match is found or the whole list has been searched. It does not require the list to be sorted."
+    },
+    {
+      "front": "What is the worst-case time complexity of a Linear Search?",
+      "back": "O(n), where 'n' is the number of elements in the list. This occurs when the item is the last element or not in the list at all."
+    },
+    {
+      "front": "Describe a Binary Search.",
+      "back": "A fast search algorithm that repeatedly divides the search interval in half. It compares the target value to the middle element of the array; if they are not equal, the half in which the target cannot lie is eliminated."
+    },
+    {
+      "front": "What is the essential pre-condition for a Binary Search?",
+      "back": "The list or array must be sorted. If it is not sorted, the algorithm will not work correctly and may return an incorrect result or fail to find an existing item."
+    },
+    {
+      "front": "What is the worst-case time complexity of a Binary Search?",
+      "back": "$O(\\log n)$. This logarithmic complexity makes it extremely efficient for large datasets compared to linear search."
+    },
+    {
+      "front": "Describe a Bubble Sort.",
+      "back": "A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. Passes through the list are repeated until the list is sorted."
+    },
+    {
+      "front": "What is the worst-case time complexity of a Bubble Sort?",
+      "back": "$O(n^2)$. This occurs when the list is in reverse order. It is considered an inefficient sort for large datasets."
+    },
+    {
+      "front": "What is a 'pass' in the context of a Bubble Sort?",
+      "back": "A single traversal through the list (or the unsorted part of it), comparing and swapping adjacent elements. In each pass, the next largest element 'bubbles' up to its correct position."
+    },
+    {
+      "front": "What is a trace table used for?",
+      "back": "To test an algorithm by hand, tracking the values of variables at each step or iteration. It is used for debugging and verifying that an algorithm works as intended."
+    },
+    {
+      "front": "What is an 'in-place' sorting algorithm?",
+      "back": "An algorithm that sorts the data within the original array, using only a small, constant amount of extra storage space. Bubble Sort is an example of an in-place algorithm."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If Binary Search is so much faster, why would anyone use Linear Search?",
+      "a": "Linear Search has two main advantages in certain situations. Firstly, it does not require the data to be sorted, which is a significant pre-requisite for Binary Search. Sorting a list takes time, and if you only need to search the list once, it might be faster overall to just do a linear search. Secondly, it is very simple to implement."
+    },
+    {
+      "q": "Are there better sorting algorithms than Bubble Sort?",
+      "a": "Yes, many. Bubble Sort is taught because it is simple to understand, but its $O(n^2)$ time complexity makes it very inefficient for large lists. More advanced algorithms like Merge Sort and Quick Sort have an average time complexity of $O(n \\log n)$, making them vastly superior for practical use."
+    },
+    {
+      "q": "How do I write algorithms in the exam? Do I need to use a specific programming language?",
+      "a": "No, you should not use a specific programming language like Python or Java unless explicitly asked. The standard ways to express an algorithm are through structured English, flowcharts, or, most commonly, pseudocode. The Cambridge syllabus provides a standard for pseudocode that you should learn and use."
+    },
+    {
+      "q": "What's the difference between worst-case and average-case complexity?",
+      "a": "Worst-case complexity ($O$) describes the maximum number of steps an algorithm might take for a given input size 'n'. For a linear search, this is finding the item at the very end. Average-case describes the expected performance across all possible inputs. While both are important, A-Level focuses primarily on understanding and comparing worst-case complexities."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Algorithms** (19.1) is core **P4 practical** theory. Use the **interactive logic builder** while tracing search steps." },
-    { "type": "practice", "label": "Mark an algorithms question", "href": "/mark?subject=9618&topic=19.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to the study of algorithms. In computer science, an algorithm is the blueprint for how a program will solve a problem. For the Paper 4 practical exam, you need to not only write code but also understand, analyse, and trace the fundamental algorithms that underpin so much of computing. This lesson focuses on the essential searching and sorting algorithms you must know."
+    },
+    {
+      "type": "heading",
+      "content": "Searching Algorithms"
+    },
+    {
+      "type": "text",
+      "content": "Searching is the process of finding a specific item, or 'key', within a collection of items, such as an array or a list. The success of a search is determined by whether the key is found. The efficiency of a search is measured by how many comparisons it needs to make in the worst case."
+    },
+    {
+      "type": "heading",
+      "content": "1. Linear Search"
+    },
+    {
+      "type": "text",
+      "content": "The Linear Search is the most straightforward search algorithm. It begins at the first element of a data structure and checks each element in sequence until the desired element is found or the end of the structure is reached. It's simple to implement but can be very slow on large datasets."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage:** Works on any list, sorted or unsorted.",
+        "**Advantage:** Simple to understand and implement.",
+        "**Disadvantage:** Inefficient for large lists. The time taken grows linearly with the number of items ($O(n)$)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "2. Binary Search"
+    },
+    {
+      "type": "text",
+      "content": "The Binary Search is a much more efficient 'divide and conquer' algorithm. It requires the list to be sorted. The algorithm compares the search key with the middle element of the list. If the key is smaller, it repeats the search on the lower half of the list; if larger, it searches the upper half. This process is repeated, halving the search space with each comparison."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Pre-condition:** The list MUST be sorted.",
+        "**Advantage:** Extremely fast for large, sorted lists, with a time complexity of $O(\\log n)$.",
+        "**Disadvantage:** Requires a sorted list. The overhead of sorting an unsorted list first might make it slower than a linear search for a single search operation."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An integer array `Data` is sorted in ascending order: `[3, 5, 8, 11, 15, 22, 29, 31]`. Trace the execution of a binary search to find the value `22`. The array has indices 0 to 7. Use `Low`, `High`, and `Mid = (Low + High) // 2` (integer division).",
+      "solution": "Target Value: `22`\nInitial state: `Low = 0`, `High = 7`\n\n**Pass 1:**\n- `Mid = (0 + 7) // 2 = 3`\n- `Data[Mid]` is `Data[3]`, which is `11`.\n- `11 < 22`, so the target is in the upper half.\n- New state: `Low = Mid + 1 = 4`, `High = 7`\n\n**Pass 2:**\n- `Mid = (4 + 7) // 2 = 5`\n- `Data[Mid]` is `Data[5]`, which is `22`.\n- `22 == 22`. The value is found at index 5.\n\n**Result:** Value `22` found at index `5`."
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, if a question asks you to choose a search algorithm, always check if the data is described as sorted. If it is, Binary Search is likely the intended answer due to its efficiency. If not, you must mention that the data would need to be sorted first, or choose Linear Search."
+    },
+    {
+      "type": "heading",
+      "content": "Sorting Algorithms"
+    },
+    {
+      "type": "text",
+      "content": "Sorting arranges items in a list into a specific order, typically numerical or alphabetical. While many sophisticated sorting algorithms exist, Bubble Sort is a fundamental one you need to know for its simplicity, even though it's not very efficient."
+    },
+    {
+      "type": "heading",
+      "content": "1. Bubble Sort"
+    },
+    {
+      "type": "text",
+      "content": "Bubble Sort works by repeatedly stepping through the list to be sorted, comparing each pair of adjacent items and swapping them if they are in the wrong order. This process is repeated until no swaps are needed, which indicates that the list is sorted. In each pass, the largest unsorted element 'bubbles' up to its correct final position."
+    },
+    {
+      "type": "workedExample",
+      "question": "Trace the Bubble Sort algorithm on the array `[7, 2, 8, 5]`. Show the state of the array after each complete pass.",
+      "solution": "Initial Array: `[7, 2, 8, 5]`\n\n**Pass 1:**\n- Compare 7 and 2: Swap. Array: `[2, 7, 8, 5]`\n- Compare 7 and 8: No swap. Array: `[2, 7, 8, 5]`\n- Compare 8 and 5: Swap. Array: `[2, 7, 5, 8]`\n- **End of Pass 1:** `[2, 7, 5, 8]` (The largest element, 8, is now in its final position).\n\n**Pass 2:**\n- Compare 2 and 7: No swap. Array: `[2, 7, 5, 8]`\n- Compare 7 and 5: Swap. Array: `[2, 5, 7, 8]`\n- (No need to compare with 8 as it's already sorted).\n- **End of Pass 2:** `[2, 5, 7, 8]` (The second largest element, 7, is now in position).\n\n**Pass 3:**\n- Compare 2 and 5: No swap. Array: `[2, 5, 7, 8]`\n- (No need to compare with 7 and 8).\n- **End of Pass 3:** `[2, 5, 7, 8]`\n\nSince no swaps occurred in Pass 3 (if using an optimised version with a flag), the algorithm would terminate. The final sorted array is `[2, 5, 7, 8]`."
+    },
+    {
+      "type": "heading",
+      "content": "Tracing Algorithms"
+    },
+    {
+      "type": "text",
+      "content": "A trace table is a crucial tool for understanding and debugging algorithms. In Paper 4, you will frequently be asked to 'dry run' a piece of pseudocode and complete a trace table for a given set of input data. This involves meticulously tracking the value of each variable line by line or after each loop iteration."
+    },
+    {
+      "type": "examTip",
+      "content": "When completing a trace table in an exam, be methodical. Use a pencil and ruler to keep your columns aligned. Write down the value of a variable in a new row *every time* it changes. If a variable doesn't change during a step, you may be required to copy its previous value into the new row – read the question carefully!"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Algorithm Problems",
+      "href": "/mark?subject=9618&topic=19.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "VisuAlgo - Algorithm Visualisation",
+          "href": "https://visualgo.net/en"
+        },
+        {
+          "label": "Cambridge International A-Level Computer Science 9618 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Algorithm design",
+    "embedUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "launchUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "hint": "Searching, sorting, and stepwise logic (9618 19.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Linear search: check each item in order.",
+        "embedHint": "O(n) worst case."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Binary search: halve sorted list each step.",
+        "embedHint": "O(log n) — must be sorted."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Bubble sort: compare adjacent pairs.",
+        "embedHint": "Simple but slow for large n."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Trace table for given algorithm input.",
+        "embedHint": "Show variable values each pass."
+      }
+    ]
+  }
 }

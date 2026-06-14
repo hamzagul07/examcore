@@ -144,7 +144,10 @@ const authPatch = {
   smtp_port: '587',
   smtp_user: 'resend',
   smtp_pass: resendKey,
+  /** Minimum seconds between auth emails to the same user (not hourly cap). */
   smtp_max_frequency: 60,
+  rate_limit_email_sent: 200,
+  rate_limit_otp: 500,
   mailer_otp_length: 6,
   mailer_subjects_magic_link: `Sign in to ${SITE_NAME}`,
   mailer_subjects_confirmation: `Your ${SITE_NAME} verification code`,

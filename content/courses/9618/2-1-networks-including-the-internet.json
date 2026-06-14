@@ -4,50 +4,182 @@
   "title": "Networks including the internet",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 AS — LAN/WAN topologies, TCP/IP layers, routing, DNS, and client-server vs peer-to-peer models.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces computer networks, covering their types (LAN, WAN, PAN), operational models (client-server, peer-to-peer), and the fundamental structure of the internet. It provides a foundational understanding of how devices connect and communicate.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Compare LAN, WAN, and WLAN with examples.",
-    "Describe star, bus, and mesh topologies.",
-    "Explain the role of IP, TCP, routers, and DNS.",
-    "Contrast client-server and peer-to-peer architectures."
+    "Understand the characteristics of different network types: LAN, WAN, and PAN.",
+    "Explain and differentiate between the client-server and peer-to-peer models of network communication.",
+    "Describe the structure of the internet as a global 'network of networks' and the role of packet switching.",
+    "Distinguish between the internet, an intranet, and an extranet."
   ],
   "simpleExplanation": {
-    "title": "Connected systems",
-    "summary": "Networks link devices to share resources. The internet is a global WAN using packet switching and layered protocols.",
+    "title": "From One Device to the World",
+    "summary": "A computer network is simply two or more computers linked together to share resources, like files or an internet connection. The internet is the ultimate example, connecting billions of devices globally.",
+    "analogy": "Think of a network like a postal service. A Personal Area Network (PAN) is like passing a note to the person next to you. A Local Area Network (LAN) is like the internal mail system in an office building. A Wide Area Network (WAN) is the entire national and international postal system that connects all the buildings.",
     "steps": [
-      "Star topology: central switch — one cable failure isolates one node.",
-      "Packet switching: data split into packets with headers; routed independently.",
-      "TCP: reliable delivery; IP: addressing and routing between networks.",
-      "DNS maps domain names (e.g. example.com) to IP addresses."
+      "A single computer is a standalone 'node'. It can store data but cannot share it electronically.",
+      "Connect two or more devices in a small area, like a home. This forms a Local Area Network (LAN) for sharing files or a printer.",
+      "Introduce a central, powerful computer (a server) to manage resources for other computers (clients). This is the client-server model, common in schools and businesses.",
+      "Connect millions of these individual networks across the globe using specialised hardware like routers. This vast, interconnected system is the internet."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a LAN (Local Area Network)?",
+      "back": "A network confined to a small geographical area, such as a single building or a university campus. It typically has high data transfer rates and is owned by an individual or organisation."
+    },
+    {
+      "front": "What is a WAN (Wide Area Network)?",
+      "back": "A network that spans a large geographical area, often a country or continent. The internet is the largest WAN. It uses third-party communication links like fibre optic cables or satellite."
+    },
+    {
+      "front": "What is a PAN (Personal Area Network)?",
+      "back": "A very short-range network for connecting devices centred around an individual's workspace, like a wireless mouse, keyboard, and smartphone connected to a laptop via Bluetooth."
+    },
+    {
+      "front": "Describe the Client-Server model.",
+      "back": "A network architecture where clients (user devices) request services from a central, powerful server. The server processes requests and returns data. Example: A web browser (client) requesting a webpage from a web server."
+    },
+    {
+      "front": "Describe the Peer-to-Peer (P2P) model.",
+      "back": "A network architecture where all devices (peers) are equal and can both provide and request services from each other directly, without a central server. Example: BitTorrent file sharing."
+    },
+    {
+      "front": "What is the key advantage of the Client-Server model?",
+      "back": "Centralised management. Backups, security, and administration are easier to manage from a single server."
+    },
+    {
+      "front": "What is a key disadvantage of the Client-Server model?",
+      "back": "It has a single point of failure. If the central server goes down, the entire network service can be disrupted. It can also be expensive to set up and maintain."
+    },
+    {
+      "front": "What is packet switching?",
+      "back": "A method of data transmission where a message is broken down into smaller units called packets. Each packet is sent independently across the network and reassembled at the destination. This is the fundamental communication method on the internet."
+    },
+    {
+      "front": "What is the difference between the 'Internet' and an 'intranet'?",
+      "back": "The Internet is a global, public network. An intranet is a private network, belonging to an organisation, which uses internet protocols and technologies. It is only accessible by the organisation's members."
+    },
+    {
+      "front": "What is an 'extranet'?",
+      "back": "An extranet is a controlled private network that allows access to parts of an organisation's intranet to external stakeholders, such as business partners, suppliers, or customers."
+    },
+    {
+      "front": "Exam Trap: What's the difference between bandwidth and latency?",
+      "back": "Bandwidth is the maximum data transfer rate of a network (e.g., in Mbps). Latency is the delay in data communication (e.g., in ms). A network can have high bandwidth but also high latency, making it feel slow for real-time tasks."
+    },
+    {
+      "front": "What is a router's primary function on the internet?",
+      "back": "A router is a networking device that forwards data packets between computer networks. Routers perform the traffic directing functions on the Internet, choosing the best path for a packet to travel to its destination."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is Wi-Fi a network type like LAN or WAN?",
+      "a": "Not exactly. Wi-Fi is a technology, a set of protocols for wireless communication. You use Wi-Fi to create a **WLAN** (Wireless Local Area Network). So, Wi-Fi is the method, while WLAN is the resulting network type, which is a form of LAN."
+    },
+    {
+      "q": "If P2P is so resilient, why isn't the whole internet P2P?",
+      "a": "While P2P has advantages for specific tasks like file sharing, the client-server model is essential for services that require authority, consistency, and trust. For example, you need a central, authoritative server for your bank account details or for a search engine like Google to index the web. A P2P model would be chaotic and insecure for these applications."
+    },
+    {
+      "q": "What is the difference between a router and a switch?",
+      "a": "A switch operates at the LAN level to connect devices *within* the same network (e.g., connecting your PC, printer, and games console at home). A router is a 'smarter' device that connects different networks together and routes traffic *between* them (e.g., connecting your home LAN to the internet WAN). Your home 'router' is often a combination device that includes a router, a switch, and a wireless access point."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Networks** (2.1) underpin **security** (6.1) and **web technologies** (A Level). Draw **topology diagrams** and trace a **DNS lookup → TCP connection** sequence."
+      "content": "In our modern world, we are constantly connected. But how do our phones, laptops, and servers actually communicate? This lesson delves into the fundamental concepts of computer networks, from the small-scale connections in your room to the global infrastructure of the internet."
+    },
+    {
+      "type": "heading",
+      "content": "Classifying Networks by Scale"
+    },
+    {
+      "type": "text",
+      "content": "Networks are primarily categorised by their geographical size. Understanding these classifications is crucial for describing different network scenarios. The hardware, technology, and ownership of a network are often dictated by its scale."
     },
     {
       "type": "keyPoints",
       "items": [
-        "NIC, MAC address (layer 2); IP address (layer 3)",
-        "Router forwards packets between networks using routing tables",
-        "HTTP/HTTPS run over TCP — port 80/443",
-        "Cloud services often use client-server over the internet"
+        "**PAN (Personal Area Network):** The smallest type of network, spanning just a few metres. It's used for connecting personal devices, often using wireless technologies like Bluetooth. For example, connecting a wireless headset to a smartphone.",
+        "**LAN (Local Area Network):** Covers a limited area like a home, office, or school. Devices are connected via switches and cables (Ethernet) or wirelessly (WLAN - Wireless LAN). The organisation that owns the LAN also owns the networking equipment.",
+        "**WAN (Wide Area Network):** Spans a large geographical area, connecting LANs together. The internet is the ultimate example of a WAN. WANs rely on infrastructure provided by telecommunications companies, such as fibre optic cables, satellite links, or microwave relays."
       ]
     },
     {
+      "type": "heading",
+      "content": "Network Architecture: Client-Server vs. Peer-to-Peer"
+    },
+    {
+      "type": "text",
+      "content": "Beyond size, networks are defined by how their members interact. There are two main models: the centrally-managed client-server model and the decentralised peer-to-peer model."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Client-Server Model:** In this model, a powerful central computer called a **server** provides resources and services (like file storage, web pages, or authentication). Other devices, called **clients**, connect to the server to request these services. This is the dominant model for the World Wide Web and most business networks.",
+        "**Advantages:** Centralised security, backups, and administration. Scalable by adding more clients or upgrading the server.",
+        "**Disadvantages:** Server failure can disable the network. Can be expensive to purchase and maintain a dedicated server. Server can become a bottleneck if overloaded.",
+        "**Peer-to-Peer (P2P) Model:** All computers on the network have equal status and are called 'peers'. Each peer can act as both a client and a server, sharing its files and resources directly with other peers. There is no central server.",
+        "**Advantages:** Easy to set up and low cost. More resilient, as the failure of one peer doesn't bring down the whole network.",
+        "**Disadvantages:** Security is decentralised and harder to manage. Backups must be performed on each individual peer. Locating resources can be less efficient than with a central server."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to compare Client-Server and P2P, always discuss specific aspects like security, cost, setup, scalability, and what happens if a device fails. Use examples to support your points."
+    },
+    {
+      "type": "workedExample",
+      "question": "A school with 500 computers needs a network for students to save their work to a central location and access shared software. Which network model, Client-Server or Peer-to-Peer, would be more suitable? Justify your choice with two reasons.",
+      "solution": "The **Client-Server model** would be more suitable.\n\n**Justification 1: Centralised Management & Security.** In a school environment, it's essential to manage user access and secure student data. A server allows an administrator to set permissions, ensuring students can only access their own work. It also provides a single point for implementing security policies and antivirus software.\n\n**Justification 2: Centralised Backup & Resource Sharing.** Storing all student work on a central server makes it easy to perform regular, reliable backups. If a student's computer fails, their work is not lost. Furthermore, shared software can be installed on the server and deployed to clients, which is far more efficient than installing it on 500 individual machines."
+    },
+    {
+      "type": "heading",
+      "content": "The Internet and its Core Technology"
+    },
+    {
+      "type": "text",
+      "content": "The internet is not a single entity but a massive, global WAN—a 'network of networks'. It connects private, public, academic, business, and government networks using a standardised suite of communication protocols (TCP/IP). Its operation relies on two key concepts: routers and packet switching."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Packet Switching:** When you send data (e.g., an email), it's not sent as one continuous stream. It is broken into small, numbered chunks called **packets**. Each packet contains a portion of the data, the destination address, and its sequence number. Packets are sent independently, possibly taking different routes, and are reassembled in the correct order at the destination. This is efficient and robust; if one route is congested, packets can be sent via another.",
+        "**Routers:** These are the 'traffic police' of the internet. They are specialised computers that connect different networks together. When a router receives a packet, it reads the destination address and forwards the packet on to the next network on the best path towards its final destination."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A video file is 240 Megabytes (MB). Calculate the theoretical minimum time it would take to transfer this file over a network connection with a bandwidth of 80 Megabits per second (Mbps).",
+      "solution": "1. **Understand the units:** The file size is in Mega**bytes** (MB) and the speed is in Mega**bits** per second (Mbps). We need to use the same unit. The key is that 1 Byte = 8 bits.\n\n2. **Convert file size to Megabits (Mb):**\n   Size in Mb = Size in MB $\\times$ 8\n   Size in Mb = $240 \\times 8 = 1920$ Mb\n\n3. **Calculate the transfer time:**\n   Time (seconds) = Total Size (Mb) / Speed (Mbps)\n   Time = $1920 \\text{ Mb} / 80 \\text{ Mbps}$\n\n4. **Final Answer:**\n   Time = 24 seconds.\n\n**Mark Scheme:**\n- [1] Correct conversion from Bytes to bits (multiplying by 8).\n- [1] Correct calculation and final answer."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners love to test the difference between bits and Bytes. Always check the units carefully in any calculation question involving file size and network speed. Remember 'B' (capital) is for Bytes, 'b' (lowercase) is for bits. There are 8 bits in 1 Byte."
+    },
+    {
       "type": "practice",
-      "label": "Mark a networks question",
+      "label": "Test Your Knowledge on Networks",
       "href": "/mark?subject=9618&topic=2.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9618 course index", "href": "/courses/9618" }
+        {
+          "label": "Visualising Packet Switching",
+          "href": "https://www.youtube.com/watch?v=2Q85flB1s6w"
+        },
+        {
+          "label": "In-depth article on LAN vs WAN",
+          "href": "https://www.geeksforgeeks.org/difference-between-lan-man-and-wan/"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

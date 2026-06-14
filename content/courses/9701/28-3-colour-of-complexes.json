@@ -4,29 +4,245 @@
   "title": "Colour of complexes",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level — d–d transitions, ligand field splitting, and complementary colour in transition metal complexes.",
+  "status": "pilot",
+  "summary": "This lesson explores the origin of colour in transition metal complexes, linking it to the splitting of d-orbitals by ligands. We will examine how an electron absorbing a photon of visible light causes a d-d transition, and how factors like the metal ion, its oxidation state, and the type of ligand influence the observed colour.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Explain why transition metal complexes are coloured.",
-    "Describe d orbital splitting in an octahedral field.",
-    "Relate ligand identity to colour changes.",
-    "Identify colourless d⁰ and d¹⁰ ions."
+    "Explain the origin of colour in transition metal complexes in terms of the splitting of d-orbitals.",
+    "Describe d-d transitions and the absorption of light, relating the energy gap to frequency using ΔE = hf.",
+    "Explain how the identity of the metal ion, its oxidation state, and the nature of the ligand affect the magnitude of ΔE and thus the colour.",
+    "State why complexes of d⁰ and d¹⁰ ions (e.g., Sc³⁺, Zn²⁺) are colourless."
   ],
   "simpleExplanation": {
-    "title": "Why complexes are coloured",
-    "summary": "Ligands split d orbitals. d–d electron transitions absorb visible light; the complementary colour is observed.",
+    "title": "The Rainbow of the d-block",
+    "summary": "Transition metal complexes are colourful because their d-orbitals are split into different energy levels by ligands. Electrons absorb specific colours (energies) of light to jump this energy gap, and we see the remaining colours that are transmitted.",
+    "analogy": "Imagine a set of five identical bells. On their own, they all ring with the same note. Now, imagine you surround them with cushions. The cushions muffle some bells more than others, making them ring at different pitches. Similarly, ligands 'muffle' the d-orbitals, splitting their energy levels. An electron can then absorb a specific energy (a colour of light) to 'jump' from a lower-energy orbital to a higher-energy one. The colours not absorbed are what we see.",
     "steps": [
-      "Partially filled d subshell required.",
-      "Different ligands → different ΔE → different colour.",
-      "Sc³⁺, Zn²⁺ colourless — d⁰ or d¹⁰.",
-      "Cu²⁺ aqua blue; with Cl⁻ ligands colour changes."
+      "Split 3d subshell in ligand field — d–d transitions absorb light. | Sim hint: Complementary colour observed.",
+      "Different ligands → different ΔE → different colours. | Sim hint: Compare [Cu(H₂O)₆]²⁺ blue vs [CuCl₄]²⁻ yellow-green.",
+      "Degenerate d orbitals split into t₂g and e_g (octahedral). | Sim hint: Electron jumps between split levels.",
+      "Colourless: d⁰ or d¹⁰ — no d–d transitions (Sc³⁺, Zn²⁺). | Sim hint: Check d electron count."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are degenerate orbitals?",
+      "back": "Orbitals that have the same energy level. In an isolated gaseous transition metal ion, all five d-orbitals are degenerate."
+    },
+    {
+      "front": "What is Crystal Field Splitting?",
+      "back": "The splitting of degenerate d-orbitals of a central metal ion into two or more energy levels by the electrostatic field of the surrounding ligands."
+    },
+    {
+      "front": "What is a d-d transition?",
+      "back": "The promotion of an electron from a lower energy d-orbital to a higher energy d-orbital by absorbing a photon of light with energy equal to the splitting energy (ΔE)."
+    },
+    {
+      "front": "What is the relationship between the colour absorbed and the colour observed?",
+      "back": "The colour observed is the complementary colour to the colour absorbed. For example, if a complex absorbs orange light, it will appear blue."
+    },
+    {
+      "front": "Why is the [Cu(H₂O)₆]²⁺ complex blue?",
+      "back": "It absorbs light in the orange region of the visible spectrum (around 600 nm). The remaining light transmitted appears blue, which is the complementary colour to orange."
+    },
+    {
+      "front": "Why are complexes of Zn²⁺ ions colourless?",
+      "back": "Zn²⁺ has a d¹⁰ electron configuration (a full d-subshell). There are no empty d-orbitals for an electron to be promoted into, so d-d transitions cannot occur."
+    },
+    {
+      "front": "Why are complexes of Sc³⁺ ions colourless?",
+      "back": "Sc³⁺ has a d⁰ electron configuration (an empty d-subshell). There are no d-electrons to be promoted, so d-d transitions cannot occur."
+    },
+    {
+      "front": "What is the crystal field splitting energy, ΔE?",
+      "back": "The energy difference between the split d-orbitals. Its magnitude determines the frequency (and thus colour) of light absorbed."
+    },
+    {
+      "front": "What is the spectrochemical series?",
+      "back": "A list of ligands ordered by their ability to cause d-orbital splitting. Strong-field ligands (e.g., CN⁻) cause a large ΔE, while weak-field ligands (e.g., Cl⁻) cause a small ΔE."
+    },
+    {
+      "front": "How does the oxidation state of the central metal ion affect the colour of a complex?",
+      "back": "A higher oxidation state on the metal ion attracts the ligands more strongly, increasing the d-orbital splitting (ΔE). This causes absorption of higher energy (shorter wavelength) light, changing the observed colour."
+    },
+    {
+      "front": "Name the two sets of split d-orbitals in an octahedral complex.",
+      "back": "The lower energy t₂g set (d_xy, d_xz, d_yz) and the higher energy e_g set (d_x²-y², d_z²)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the d-orbital splitting pattern the same for all complex geometries?",
+      "a": "No. The pattern described (t₂g lower, e_g higher) is for octahedral complexes. For tetrahedral complexes, the splitting pattern is inverted: the e_g set is lower in energy and the t₂g set is higher. This is because the ligands approach 'between' the axes, repelling the d_xy, d_xz, and d_yz orbitals more. The splitting energy (ΔE_tet) is also significantly smaller than for an equivalent octahedral complex."
+    },
+    {
+      "q": "Why exactly do we see the 'complementary' colour?",
+      "a": "White light is a mixture of all colours (like a rainbow). When it passes through the complex solution, certain colours (wavelengths) are absorbed by the electrons for d-d transitions. The colours that are not absorbed pass through the solution and reach our eyes. Our brain processes this combination of remaining colours and perceives it as a single colour, which is the complement of what was removed. For example, removing orange from white light leaves behind all the other colours, which combine to look blue."
+    },
+    {
+      "q": "Can a complex be coloured for a reason other than d-d transitions?",
+      "a": "Yes. A well-known example is the permanganate ion, MnO₄⁻, which is intensely purple. Here, the manganese is in a +7 oxidation state (d⁰), so d-d transitions are impossible. The colour arises from a different mechanism called a 'charge-transfer transition', where an electron moves from an orbital that is primarily on the ligand (oxygen) to an empty orbital on the metal ion. This is beyond the scope of the A-level syllabus but explains why some d⁰ complexes are still coloured."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Colour of complexes** (28.3) links **electronic structure** to **observation**. Explain **absorption** and **complementary colour**." },
-    { "type": "practice", "label": "Mark a complex colour question", "href": "/mark?subject=9701&topic=28.3" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "One of the most striking features of transition metals is the vibrant array of colours their compounds exhibit. From the deep blue of hydrated copper(II) sulfate to the purple of potassium manganate(VII), these colours are not accidental. They arise from a fascinating interaction between the metal's electrons and the surrounding ligands, a phenomenon we will explore in detail."
+    },
+    {
+      "type": "heading",
+      "content": "The Origin of Colour: d-orbital Splitting"
+    },
+    {
+      "type": "text",
+      "content": "In an isolated, gaseous transition metal ion, the five d-orbitals are described as **degenerate**, meaning they all have exactly the same energy. However, in a complex, the central metal ion is surrounded by ligands. The lone pairs of electrons on the ligands repel the electrons in the d-orbitals of the metal ion. This repulsion is not uniform across all five d-orbitals because they have different spatial orientations. As a result, the d-orbitals split into two or more distinct energy levels. This phenomenon is known as **crystal field splitting**."
+    },
+    {
+      "type": "heading",
+      "content": "Splitting in Octahedral Complexes"
+    },
+    {
+      "type": "text",
+      "content": "In an octahedral complex, six ligands are positioned along the x, y, and z axes. The d-orbitals that point directly along these axes ($d_{x^2-y^2}$ and $d_{z^2}$) experience the greatest repulsion from the ligand lone pairs and are raised to a higher energy level. This higher energy pair is called the **e_g** set. The three d-orbitals that point between the axes ($d_{xy}$, $d_{xz}$, and $d_{yz}$) experience less repulsion and are stabilised at a lower energy level. This lower energy trio is called the **t₂g** set."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Degenerate d-orbitals:** All five have the same energy in a free ion.",
+        "**Octahedral field:** Ligands approach along the axes.",
+        "**e_g orbitals:** $d_{x^2-y^2}$ and $d_{z^2}$ point at ligands, become higher energy.",
+        "**t₂g orbitals:** $d_{xy}$, $d_{xz}$, and $d_{yz}$ point between ligands, become lower energy."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "d-d Transitions and Absorption of Light"
+    },
+    {
+      "type": "text",
+      "content": "The energy difference between the t₂g and e_g sets is called the **crystal field splitting energy**, denoted as **ΔE**. When white light (which contains all wavelengths of the visible spectrum) passes through a solution of a transition metal complex, the complex can absorb a photon of light. If the energy of this photon exactly matches ΔE, it will be absorbed, and an electron will be promoted from a lower-energy t₂g orbital to a higher-energy e_g orbital. This process is called a **d-d transition**."
+    },
+    {
+      "type": "formula",
+      "content": "\\Delta E = hf = \\frac{hc}{\\lambda}"
+    },
+    {
+      "type": "text",
+      "content": "Here, $h$ is Planck's constant ($6.63 \\times 10^{-34}$ J s), $c$ is the speed of light ($3.00 \\times 10^8$ m s⁻¹), $f$ is the frequency of light absorbed, and $\\lambda$ is its wavelength. The light that is not absorbed is transmitted through the solution and detected by our eyes. The colour we perceive is therefore the **complementary colour** to the one that was absorbed."
+    },
+    {
+      "type": "workedExample",
+      "question": "The aqueous hexaaquacopper(II) ion, [Cu(H₂O)₆]²⁺, appears blue. It absorbs light with a maximum absorbance at a wavelength (λ) of 600 nm. Calculate the crystal field splitting energy, ΔE, in kJ mol⁻¹ for one mole of these ions. (Avogadro constant, $L = 6.02 \\times 10^{23}$ mol⁻¹).",
+      "solution": "1.  **Calculate ΔE for one ion:**\n    First, convert wavelength to metres: $600 \\text{ nm} = 600 \\times 10^{-9} \\text{ m}$.\n    Use the formula $\\Delta E = hc/\\lambda$.\n    $\\Delta E = \\frac{(6.63 \\times 10^{-34} \\text{ J s}) \\times (3.00 \\times 10^8 \\text{ m s}^{-1})}{600 \\times 10^{-9} \\text{ m}}$\n    $\\Delta E = 3.315 \\times 10^{-19} \\text{ J}$ per ion.\n\n2.  **Calculate ΔE for one mole of ions:**\n    Multiply the energy per ion by the Avogadro constant, $L$.\n    $\\Delta E_{mol} = (3.315 \\times 10^{-19} \\text{ J}) \\times (6.02 \\times 10^{23} \\text{ mol}^{-1})$\n    $\\Delta E_{mol} = 199563 \\text{ J mol}^{-1}$\n\n3.  **Convert to kJ mol⁻¹:**\n    Divide by 1000.\n    $\\Delta E_{mol} = \\frac{199563}{1000} = 199.6 \\text{ kJ mol}^{-1}$\n    **Answer:** **199.6 kJ mol⁻¹** (to 4 s.f.) or **200 kJ mol⁻¹** (to 3 s.f.)"
+    },
+    {
+      "type": "heading",
+      "content": "Factors Affecting ΔE and Colour"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude of ΔE, and therefore the colour of the complex, is influenced by three main factors:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Identity of the Metal Ion:** Different metals have different nuclear charges and d-electron counts, which alters the repulsion and thus ΔE.",
+        "**Oxidation State of the Metal:** A higher oxidation state increases the attraction for ligands, pulling them closer. This increases the repulsion between ligands and d-orbitals, leading to a larger ΔE. For example, [Fe(H₂O)₆]²⁺ (pale green) has a smaller ΔE than [Fe(H₂O)₆]³⁺ (yellow/brown).",
+        "**Identity of the Ligand:** Ligands vary in their ability to split the d-orbitals. The **spectrochemical series** ranks ligands from weak-field (small ΔE) to strong-field (large ΔE). A small part of the series is: Cl⁻ < H₂O < NH₃ < CN⁻. A larger ΔE means higher frequency (shorter wavelength) light is absorbed."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Remember the key relationship: Stronger field ligand → Larger ΔE → Higher frequency (shorter wavelength) light absorbed. This is a common source of exam questions, especially when explaining colour changes during ligand substitution reactions."
+    },
+    {
+      "type": "workedExample",
+      "question": "An aqueous solution of copper(II) sulfate is blue due to the [Cu(H₂O)₆]²⁺ ion. When concentrated hydrochloric acid is added, the solution turns a yellow-green colour as the [CuCl₄]²⁻ ion is formed. Explain this colour change with reference to the spectrochemical series and d-orbital splitting.",
+      "solution": "1.  **Identify ligands and complexes:** The initial complex is [Cu(H₂O)₆]²⁺ with H₂O ligands. The final complex is [CuCl₄]²⁻ with Cl⁻ ligands.\n\n2.  **Compare ligand strength:** According to the spectrochemical series, Cl⁻ is a weaker field ligand than H₂O.\n\n3.  **Relate ligand strength to ΔE:** A weaker field ligand causes a smaller crystal field splitting energy (ΔE). Therefore, ΔE for [CuCl₄]²⁻ is smaller than ΔE for [Cu(H₂O)₆]²⁺.\n\n4.  **Relate ΔE to absorbed light:** Since $\\Delta E = hc/\\lambda$, a smaller ΔE corresponds to the absorption of light with a longer wavelength (lower energy).\n\n5.  **Explain the colour change:** [Cu(H₂O)₆]²⁺ absorbs orange light (shorter λ) and appears blue. [CuCl₄]²⁻ absorbs lower energy, longer wavelength light (e.g., blue/violet light) and so the transmitted light appears yellow-green."
+    },
+    {
+      "type": "heading",
+      "content": "When are Complexes Colourless?"
+    },
+    {
+      "type": "text",
+      "content": "For a complex to be coloured, a d-d transition must be possible. This requires a partially filled d-subshell. If the d-subshell is completely full or completely empty, no d-d transition can occur, and the complex will be colourless."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**d⁰ configuration:** The metal ion has no d-electrons to be promoted. Examples include Sc³⁺ ([Ar] 3d⁰) and Ti⁴⁺ ([Ar] 3d⁰). Their complexes are colourless.",
+        "**d¹⁰ configuration:** The d-subshell is completely full. There are no vacant d-orbitals for an electron to be promoted into. Examples include Zn²⁺ ([Ar] 3d¹⁰) and Cu⁺ ([Ar] 3d¹⁰). Their complexes are colourless."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A common trap involves copper. Copper(II) compounds (Cu²⁺, d⁹) are almost always coloured (usually blue or green). However, copper(I) compounds (Cu⁺, d¹⁰) are colourless. Pay close attention to the oxidation state."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Colour of Complexes",
+      "href": "/mark?subject=9701&topic=28.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chem LibreTexts: The Colors of Coordination Complexes",
+          "href": "https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Inorganic_Chemistry_(Tidwell)/20%3A_Coordination_Chemistry_II_-_Bonding_Spectra_and_Magnetism/20.04%3A_The_Colors_of_Coordination_Complexes"
+        },
+        {
+          "label": "Video Explanation of Crystal Field Theory",
+          "href": "https://www.youtube.com/watch?v=s4gvL_t3a1s"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build an atom",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-an-atom",
+    "hint": "d–d transitions — split d orbitals and complementary colour (28.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Split 3d subshell in ligand field — d–d transitions absorb light.",
+        "embedHint": "Complementary colour observed."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Different ligands → different ΔE → different colours.",
+        "embedHint": "Compare [Cu(H₂O)₆]²⁺ blue vs [CuCl₄]²⁻ yellow-green."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Degenerate d orbitals split into t₂g and e_g (octahedral).",
+        "embedHint": "Electron jumps between split levels."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Colourless: d⁰ or d¹⁰ — no d–d transitions (Sc³⁺, Zn²⁺).",
+        "embedHint": "Check d electron count."
+      }
+    ]
+  }
 }

@@ -1,32 +1,234 @@
 {
   "slug": "15-2-boolean-algebra-and-logic-circuits",
   "topicCode": "15.2",
-  "title": "Boolean algebra and logic circuits",
-  "paper": "AL",
-  "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9618 A Level Boolean algebra — simplification, Karnaugh maps, and combinational circuits.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "title": "Boolean Algebra and Logic Circuits",
+  "paper": "P3",
+  "paperName": "Advanced Theory",
+  "status": "pilot",
+  "summary": "This lesson delves into advanced Boolean algebra, introducing simplification techniques like De Morgan's laws and Karnaugh maps. It then explores the construction of fundamental combinational circuits, such as half and full adders, and concludes with an introduction to sequential circuits, including SR and D-type flip-flops, the building blocks of computer memory.",
+  "durationMin": 50,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Apply Boolean laws to simplify expressions.",
-    "Use Karnaugh maps for minimal SOP.",
-    "Design half and full adder circuits.",
-    "Distinguish combinational and sequential logic."
+    "Apply De Morgan's laws, and the distributive, associative, commutative, and absorption laws to simplify Boolean expressions.",
+    "Use Karnaugh maps (K-maps) for up to four variables to find minimal sum-of-products expressions.",
+    "Describe the function of half and full adders and derive their Boolean expressions.",
+    "Explain the operation of SR and D-type flip-flops as basic memory units, distinguishing between combinational and sequential logic."
   ],
   "simpleExplanation": {
-    "title": "Logic as algebra",
-    "summary": "Boolean variables are 0 or 1. Gates implement operators; Karnaugh maps group terms for minimal circuits.",
+    "title": "From Laws to Logic Memory",
+    "summary": "Boolean algebra provides the rules to simplify complex digital circuits, making them faster and cheaper to build. These simplified circuits can then be combined to perform calculations or, with the addition of feedback, to store information.",
+    "analogy": "Imagine you have a very long and complicated recipe for baking a cake. Boolean algebra is like a set of chef's techniques that let you simplify the recipe—perhaps by combining dry ingredients in one step instead of three, or realising two steps cancel each other out. The final, simplified recipe (the simplified circuit) produces the exact same delicious cake (the correct output) but is much quicker and uses fewer bowls (components).",
     "steps": [
-      "AND, OR, NOT, NAND, NOR, XOR gates.",
-      "De Morgan: NOT(A AND B) = NOT A OR NOT B.",
-      "K-map groups adjacent 1s (powers of two).",
-      "Full adder: sum and carry from two bits."
+      "Master Boolean laws like De Morgan's to algebraically simplify logic expressions, reducing the number of gates needed in a circuit.",
+      "Use Karnaugh maps as a visual tool to group '1's from a truth table, quickly finding the simplest Sum-of-Products (SOP) form for a function.",
+      "Combine basic gates (XOR, AND, OR) to build combinational circuits like half and full adders, which perform binary addition.",
+      "Introduce feedback to create sequential circuits like flip-flops, which can 'remember' a state and store a single bit of data."
     ]
   },
+  "flashcards": [
+    {
+      "front": "De Morgan's Law (First Law)",
+      "back": "The negation of a conjunction is the disjunction of the negations. Algebraically: $\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$. In logic gates, a NAND gate is equivalent to an OR gate with inverted inputs."
+    },
+    {
+      "front": "De Morgan's Law (Second Law)",
+      "back": "The negation of a disjunction is the conjunction of the negations. Algebraically: $\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$. In logic gates, a NOR gate is equivalent to an AND gate with inverted inputs."
+    },
+    {
+      "front": "Distributive Law",
+      "back": "AND distributes over OR: $A \\cdot (B + C) = A \\cdot B + A \\cdot C$. OR distributes over AND: $A + (B \\cdot C) = (A + B) \\cdot (A + C)$."
+    },
+    {
+      "front": "Absorption Law",
+      "back": "A set of laws that simplify expressions where a variable is combined with a term containing that same variable. Key forms: $A + (A \\cdot B) = A$ and $A \\cdot (A + B) = A$."
+    },
+    {
+      "front": "Karnaugh Map (K-map)",
+      "back": "A graphical method used to simplify Boolean algebra expressions. It's a grid where cells represent minterms, and adjacent cells differ by only one variable, allowing for visual grouping to find a minimal sum-of-products form."
+    },
+    {
+      "front": "Sum-of-Products (SOP)",
+      "back": "A standard form for a Boolean expression where several product terms (AND operations) are summed together (OR operation). For example: $A\\overline{B} + \\overline{A}C$."
+    },
+    {
+      "front": "Combinational Logic Circuit",
+      "back": "A type of digital circuit whose output is solely determined by its current input values. It has no memory. Examples include adders, decoders, and multiplexers."
+    },
+    {
+      "front": "Sequential Logic Circuit",
+      "back": "A type of digital circuit whose output depends not only on the current inputs but also on the previous sequence of inputs, due to internal memory elements. Examples include flip-flops and counters."
+    },
+    {
+      "front": "Half Adder",
+      "back": "A combinational circuit that adds two single binary digits (A and B) and produces two outputs: Sum (S) and Carry (C). S = A XOR B, C = A AND B."
+    },
+    {
+      "front": "Full Adder",
+      "back": "A combinational circuit that adds three binary digits (A, B, and a Carry-in, Cin) and produces two outputs: Sum (S) and Carry-out (Cout). It can be built from two half adders and an OR gate."
+    },
+    {
+      "front": "SR Flip-Flop",
+      "back": "A basic sequential circuit with two inputs, Set (S) and Reset (R). S=1 sets the output Q to 1, R=1 resets Q to 0. S=1 and R=1 simultaneously is an invalid state."
+    },
+    {
+      "front": "D-type Flip-Flop",
+      "back": "A clocked sequential circuit that transfers the value of its data input (D) to its output (Q) on the triggering edge of a clock signal. It's used to store one bit of data and prevents the invalid state of an SR flip-flop."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why use a Karnaugh map when I can just use Boolean algebra?",
+      "a": "For expressions with 2 or 3 variables, algebra is often just as fast. However, for 4 variables, it becomes very difficult to be certain you have found the absolute simplest form using algebra alone. A K-map provides a systematic, visual method that guarantees the most simplified sum-of-products expression if you follow the rules correctly."
+    },
+    {
+      "q": "What is the practical difference between a half adder and a full adder?",
+      "a": "A half adder can only add two single bits, like the two bits in the least significant column (the 'ones' column) of a binary addition. A full adder can add three bits: two input bits plus a carry-in from the previous column. This makes it possible to chain full adders together to create a multi-bit adder (e.g., an 8-bit adder is made of one half adder and seven full adders)."
+    },
+    {
+      "q": "Why is the S=1, R=1 state in an SR flip-flop considered 'invalid' or 'forbidden'?",
+      "a": "In an SR flip-flop made from NOR gates, setting S=1 and R=1 forces both the output Q and its complement $\\overline{Q}$ to be 0. This violates the fundamental rule that Q and $\\overline{Q}$ must be opposites. The state is also unstable; if S and R return to 0 simultaneously, the final state of the flip-flop is unpredictable (a 'race condition')."
+    },
+    {
+      "q": "What is the purpose of the clock signal in a D-type flip-flop?",
+      "a": "The clock signal provides synchronisation. The D-type flip-flop only pays attention to its data (D) input at a very specific moment—the instant the clock signal transitions from low to high (a rising edge) or high to low (a falling edge). At all other times, the D input can change without affecting the stored output Q. This allows many flip-flops in a larger circuit (like a processor register) to change state simultaneously and in an orderly fashion."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Boolean algebra** (15.2) is heavily examined. Use the **interactive logic builder** to test gate combinations." },
-    { "type": "practice", "label": "Mark a Boolean algebra question", "href": "/mark?subject=9618&topic=15.2" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In your AS-level studies, you learned the fundamentals of Boolean algebra and logic gates. Now, we build upon that foundation to tackle more complex problems in digital circuit design. This topic is at the heart of how a CPU performs calculations and how memory stores data. We will explore powerful simplification techniques and then use them to construct essential components like arithmetic circuits and memory elements."
+    },
+    {
+      "type": "heading",
+      "content": "Advanced Boolean Algebra for Simplification"
+    },
+    {
+      "type": "text",
+      "content": "While basic laws like identity, complement, and associative laws are useful, more complex expressions require more powerful tools. Simplifying a Boolean expression is crucial in hardware design as it directly translates to a circuit with fewer logic gates. This reduces cost, power consumption, and signal propagation delay, leading to a faster and more efficient circuit."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**De Morgan's Laws:** Essential for converting between AND/OR forms and simplifying negated expressions. $\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$ and $\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$. A useful mnemonic is 'break the line, change the sign'.",
+        "**Distributive Law:** Allows for the expansion or factorisation of expressions. The key form for simplification is often $A + (B \\cdot C) = (A + B) \\cdot (A + C)$.",
+        "**Absorption Law:** Excellent for removing redundant terms. The most common forms are $X + (X \\cdot Y) = X$ and $X \\cdot (X + Y) = X$. This is because if X is true, the whole expression is true regardless of Y."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Using Boolean algebra, simplify the expression $F = \\overline{(\\overline{A} + B)} + (A \\cdot \\overline{B} \\cdot C)$.",
+      "solution": "Here is a step-by-step simplification with the law used at each stage:\n1. Start with the given expression: $F = \\overline{(\\overline{A} + B)} + (A \\cdot \\overline{B} \\cdot C)$\n2. Apply De Morgan's Law to the first term $\\overline{(\\overline{A} + B)}$:\n   $F = (\\overline{\\overline{A}} \\cdot \\overline{B}) + (A \\cdot \\overline{B} \\cdot C)$\n3. Apply the Double Negation Law ($\\overline{\\overline{X}} = X$):\n   $F = (A \\cdot \\overline{B}) + (A \\cdot \\overline{B} \\cdot C)$\n4. Factor out the common term $(A \\cdot \\overline{B})$ using the Distributive Law:\n   $F = (A \\cdot \\overline{B}) \\cdot (1 + C)$\n5. Apply the Annulment Law ($1 + X = 1$):\n   $F = (A \\cdot \\overline{B}) \\cdot 1$\n6. Apply the Identity Law ($X \\cdot 1 = X$):\n   $F = A \\cdot \\overline{B}$\n\n**Final simplified expression: $F = A \\cdot \\overline{B}$** (3 marks: 1 for De Morgan's, 1 for factoring, 1 for final simplification)."
+    },
+    {
+      "type": "heading",
+      "content": "Karnaugh Maps (K-maps)"
+    },
+    {
+      "type": "text",
+      "content": "For expressions with three or four variables, algebraic simplification can be tedious and error-prone. A Karnaugh map, or K-map, provides a visual, systematic method for simplification. It's a 2D grid representing a truth table, but with a special ordering (Gray code) that places logically adjacent terms next to each other. By grouping adjacent '1's in the map, we can easily identify and eliminate redundant variables to arrive at a minimal sum-of-products (SOP) expression."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Structure:** A 4-variable K-map is a 4x4 grid. The rows and columns are labelled with Gray code (00, 01, 11, 10) to ensure only one bit changes between adjacent cells.",
+        "**Grouping:** Group adjacent '1's in rectangles of size $2^n$ (i.e., 1, 2, 4, 8, 16). The groups must be rectangular.",
+        "**Wrap-around:** The map is considered to wrap around from top to bottom and from left to right. This allows grouping of '1's on opposite edges.",
+        "**Strategy:** Always make the largest possible groups first. Each '1' must be included in at least one group. It's acceptable to overlap groups if it leads to a simpler overall expression."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A logic circuit is defined by the Boolean function $F(A, B, C, D) = \\sum(0, 1, 2, 4, 5, 6, 8, 9, 12, 13, 14)$. Use a Karnaugh map to find the minimal sum-of-products expression for F.",
+      "solution": "1. **Draw and populate the K-map:** We create a 4x4 grid for variables A, B, C, D and place '1's in the cells for the given minterms.\n\n   *K-map populated with 1s at positions 0, 1, 2, 4, 5, 6, 8, 9, 12, 13, 14.*\n\n2. **Identify Essential Prime Implicants:** We look for '1's that can only be covered by one largest possible group.\n   - The '1' at minterm 14 (1110) can be part of a quad group with cells 4, 6, and 12. This group (4, 6, 12, 14) simplifies to **$B \\cdot \\overline{D}$** (since B=1 and D=0 are constant within the group).\n   - The '1' at minterm 2 (0010) can be part of a quad group with cells 0, 4, and 6. This group (0, 2, 4, 6) simplifies to **$\\overline{A} \\cdot \\overline{D}$** (since A=0 and D=0 are constant).\n\n3. **Cover Remaining '1's:** After making these two groups, the '1's at 1, 5, 8, 9, 13 are still uncovered. We can cover all of them with a single large group.\n   - The octet (group of 8) covering cells (0, 1, 4, 5, 8, 9, 12, 13) simplifies to **$\\overline{C}$** (since C=0 is the only constant variable across all cells in this group). Note that we re-use some '1's already covered, which is allowed to form a larger group.\n\n4. **Combine the terms:** The final simplified expression is the sum (OR) of the terms from each group.\n\n**Final simplified expression: $F = \\overline{C} + B \\cdot \\overline{D} + \\overline{A} \\cdot \\overline{D}$** (4 marks: 1 for correctly drawn map, 1 for each correct group term)."
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, always draw your loops clearly on the K-map. When deriving the term for a group, methodically go through each variable (A, B, C, D). If a variable's value is constant within the group (e.g., always 1 or always 0), include it in the term. If it changes, it gets eliminated."
+    },
+    {
+      "type": "heading",
+      "content": "Combinational and Sequential Circuits"
+    },
+    {
+      "type": "text",
+      "content": "Digital logic circuits are broadly classified into two types. **Combinational circuits**, like the adders we will see next, produce an output that is purely a function of their current inputs. They have no memory. In contrast, **sequential circuits** have memory. Their output depends on both the current inputs and the previous state of the circuit, which is stored in memory elements like flip-flops. This ability to store information is fundamental to building computer memory and registers."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Half Adder:** Adds two bits (A, B). Produces a Sum ($S = A \\oplus B$) and a Carry ($C = A \\cdot B$). It cannot handle a carry-in from a previous stage.",
+        "**Full Adder:** Adds three bits (A, B, $C_{in}$). Produces a Sum ($S = A \\oplus B \\oplus C_{in}$) and a Carry-out ($C_{out} = (A \\cdot B) + (C_{in} \\cdot (A \\oplus B))$). Full adders can be chained together to add multi-bit numbers.",
+        "**SR Flip-Flop:** A simple 1-bit memory latch built with cross-coupled NOR or NAND gates. It has a 'Set' input to make the output 1, a 'Reset' input to make it 0, and an invalid state when both are active.",
+        "**D-type Flip-Flop:** An improvement on the SR flip-flop that eliminates the invalid state. It has a Data input (D) and a Clock input. On a specific edge of the clock pulse (e.g., rising edge), the value at D is copied to the output Q and stored until the next clock edge."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be ready to draw the logic circuit for a half adder and a full adder. For sequential logic, you are expected to understand the function of SR and D-type flip-flops from their truth tables and explain their role in data storage, but you are not typically required to draw their internal gate structure."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Boolean Algebra & Logic Circuits",
+      "href": "/mark?subject=9618&topic=15.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Logic.ly Online Simulator",
+          "href": "https://logic.ly/demo/"
+        },
+        {
+          "label": "All About Circuits - Boolean Algebra",
+          "href": "https://www.allaboutcircuits.com/textbook/digital/chpt-7/boolean-algebra/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Boolean logic circuits",
+    "embedUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "launchUrl": "https://www.geogebra.org/classic?material=kQBWnCFC",
+    "hint": "Karnaugh maps and logic simplification (9618 15.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Boolean laws: De Morgan, distributive, absorption.",
+        "embedHint": "Simplify expressions before building circuits."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Karnaugh maps group 1s for minimal SOP.",
+        "embedHint": "Wrap edges on K-map."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Half and full adder from XOR, AND, OR gates.",
+        "embedHint": "Chain full adders for multi-bit sum."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Flip-flops store bits — SR, D type at A Level.",
+        "embedHint": "Sequential logic vs combinational."
+      }
+    ]
+  }
 }

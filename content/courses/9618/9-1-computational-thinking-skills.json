@@ -4,39 +4,192 @@
   "title": "Computational Thinking Skills",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS — decomposition, abstraction, pattern recognition, and algorithm design before coding.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the four pillars of computational thinking: decomposition, pattern recognition, abstraction, and algorithm design. It explains how these fundamental problem-solving skills are essential for tackling programming challenges in the Cambridge A-Level Computer Science Paper 2 exam.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define decomposition, abstraction, and pattern recognition.",
-    "Apply computational thinking to problem breakdown.",
-    "Design algorithms before writing code.",
-    "Evaluate solutions for efficiency and correctness."
+    "Define and explain decomposition, pattern recognition, abstraction, and algorithm design.",
+    "Apply computational thinking skills to analyse and break down complex problems.",
+    "Develop algorithms to solve problems based on computational thinking principles.",
+    "Understand how computational thinking is assessed in programming and problem-solving scenarios."
   ],
   "simpleExplanation": {
-    "title": "Thinking like a computer scientist",
-    "summary": "Computational thinking breaks problems into manageable parts, hides unnecessary detail, and finds reusable patterns.",
+    "title": "Think Like a Computer Scientist",
+    "summary": "Computational thinking is a set of problem-solving methods that involve breaking down complex problems into smaller, more manageable parts. It's not about thinking like a computer, but rather thinking about the steps needed to solve a problem so that a computer could solve it.",
+    "analogy": "Imagine you're asked to build a large, complex LEGO model without instructions. You wouldn't just start sticking bricks together randomly. First, you'd break the task down (decomposition): build the base, then the walls, then the roof. You'd spot repeating sections, like four identical towers (pattern recognition). You'd ignore the specific colour of a hidden internal brick, focusing only on its size and position (abstraction). Finally, you'd create a mental or written plan of the steps to build it (algorithm design).",
     "steps": [
-      "Decomposition: split problem into sub-problems.",
-      "Abstraction: focus on essential features only.",
-      "Pattern recognition: reuse known solutions.",
-      "Algorithm design: ordered steps before syntax."
+      "Decompose the problem: Break the large, complex problem into smaller, simpler sub-problems.",
+      "Recognise patterns: Identify similarities or repeated processes among the sub-problems.",
+      "Use abstraction: Ignore irrelevant details and focus on the essential information needed to solve each sub-problem.",
+      "Design an algorithm: Create a step-by-step plan or set of rules to solve the problem, which can then be translated into code."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Computational Thinking?",
+      "back": "A problem-solving process that involves formulating a problem and its solution in a way that a computer (human or machine) can effectively carry out. It consists of four key skills."
+    },
+    {
+      "front": "What is Decomposition?",
+      "back": "The process of breaking down a large, complex problem into smaller, more manageable, and understandable sub-problems. Each sub-problem can be solved independently."
+    },
+    {
+      "front": "What is Pattern Recognition?",
+      "back": "The process of identifying trends, similarities, or regularities within a problem or among sub-problems. This helps in creating more efficient solutions."
+    },
+    {
+      "front": "What is Abstraction?",
+      "back": "The process of filtering out and ignoring irrelevant details, focusing only on the essential information required to solve the problem. It simplifies complexity."
+    },
+    {
+      "front": "What is Algorithm Design?",
+      "back": "The process of developing a step-by-step set of instructions or rules to solve a problem. This is the final plan that can be implemented in a programming language."
+    },
+    {
+      "front": "How does decomposition help in programming?",
+      "back": "It leads to the creation of modules, functions, or procedures. Each sub-problem can be coded as a separate unit, making the code easier to write, test, and maintain."
+    },
+    {
+      "front": "What is the outcome of pattern recognition?",
+      "back": "It often leads to the use of loops (iteration) for repeated processes or the creation of a single function that can be called multiple times with different parameters."
+    },
+    {
+      "front": "Distinguish between Abstraction and Decomposition.",
+      "back": "Decomposition breaks a problem *down* into smaller parts. Abstraction removes *details* to simplify the problem's representation. You decompose a car into engine, wheels, etc. You abstract a car to its speed and direction, ignoring its colour or make."
+    },
+    {
+      "front": "What is generalisation in the context of computational thinking?",
+      "back": "A part of abstraction where we create a solution that can solve a whole category of problems, not just one specific instance. For example, writing a function to find the average of *any* list of numbers, not just a specific list."
+    },
+    {
+      "front": "Why is computational thinking crucial for Paper 2?",
+      "back": "Paper 2 requires you to solve problems by writing code or pseudocode. A structured approach using computational thinking helps you design correct and efficient solutions under exam pressure, and allows you to show your thought process for partial marks."
+    },
+    {
+      "front": "What is a 'sub-problem'?",
+      "back": "A smaller, self-contained part of a larger problem, created through decomposition. Solving all the sub-problems leads to the solution of the main problem."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to explicitly label 'Decomposition', 'Abstraction', etc., in my exam answers?",
+      "a": "No, you don't need to write these words in your final code or pseudocode. However, using them as a mental checklist to structure your thoughts is extremely valuable. For longer, written questions that ask you to describe a solution, explaining your approach using these terms can be a good way to structure your answer and ensure you cover all necessary steps."
+    },
+    {
+      "q": "Is computational thinking the same as programming?",
+      "a": "No, they are related but distinct. Computational thinking is the process of designing a solution. Programming is the process of implementing that solution in a specific language. You do computational thinking *before* you start programming. A good plan (from CT) makes programming much easier."
+    },
+    {
+      "q": "What's the difference between an algorithm and a program?",
+      "a": "An algorithm is a logical, step-by-step plan to solve a problem, which is independent of any programming language (often written in pseudocode or as a flowchart). A program is the implementation of an algorithm in a specific programming language (like Python, Java, or VB.NET) that a computer can execute."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Computational thinking** (9.1) precedes **algorithms** (9.2) and **programming** (11.x). Paper 2 rewards **structured problem breakdown** in prose answers."
+      "content": "Welcome to the cornerstone of all problem-solving in computer science. Computational thinking is not a programming language or a specific piece of hardware; it's a structured way of thinking that allows you to take a complex problem and arrive at a solution that can be implemented by a computer. For Paper 2, mastering these skills is non-negotiable. It's the framework you'll use to analyse every question, design every algorithm, and write every line of code."
+    },
+    {
+      "type": "heading",
+      "content": "1. Decomposition: Breaking It Down"
+    },
+    {
+      "type": "text",
+      "content": "Decomposition is the art of taking a dauntingly large problem and breaking it into smaller, more manageable sub-problems. Think of it as creating a 'to-do' list for solving a problem. Instead of one big task, you have several small tasks that are easier to understand and tackle. In programming, these sub-problems often become separate functions or procedures, making your code modular and easier to debug."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Simplifies complex problems.",
+        "Allows for parallel development on different sub-problems.",
+        "Leads to modular program design (functions and procedures).",
+        "Makes testing and debugging more straightforward."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "2. Pattern Recognition: Finding the Similarities"
+    },
+    {
+      "type": "text",
+      "content": "Once a problem is decomposed, you'll often notice that some of the sub-problems are very similar. Pattern recognition is the skill of identifying these similarities or repeated processes. Recognising a pattern allows you to design a single, reusable solution instead of creating multiple different ones. In programming, this is the principle behind using loops (for repeating actions) and functions (for repeating tasks with different inputs)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Identifies repeated structures or processes.",
+        "Leads to more efficient solutions.",
+        "Justifies the use of iteration (loops).",
+        "Enables the creation of general-purpose functions that can be reused."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "3. Abstraction: Hiding the Detail"
+    },
+    {
+      "type": "text",
+      "content": "Abstraction is about simplifying things by ignoring the details that don't matter for the task at hand. It's the process of filtering out specific information and focusing on the general concepts. When you drive a car, you use the steering wheel, accelerator, and brake (the abstraction). You don't need to know the intricate details of the internal combustion engine. In programming, abstraction allows us to use variables to represent data, and functions to hide complex logic behind a simple name."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Removes unnecessary complexity.",
+        "Focuses on the 'what' rather than the 'how'.",
+        "Generalises problems to create solutions that work for many inputs.",
+        "Examples in programming include using variable names, data types, and function/procedure headers."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "4. Algorithm Design: Creating the Plan"
+    },
+    {
+      "type": "text",
+      "content": "This is the culmination of the other three skills. Algorithm design involves developing the step-by-step instructions that will solve the problem. After decomposing the problem, recognising patterns, and abstracting away details, you are left with a clear set of requirements. Your algorithm is the precise plan that a computer can follow to turn the inputs into the desired outputs. This plan is typically written in pseudocode or a flowchart before being translated into a programming language."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Produces a step-by-step solution.",
+        "Is the logical plan for a program.",
+        "Should be unambiguous and precise.",
+        "Forms the basis for writing actual code."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A teacher needs a program to calculate the average test score for a class of 30 students. The scores are integers out of 100. Describe how computational thinking could be used to solve this problem.",
+      "solution": "Here is a breakdown of the solution using computational thinking skills:\n\n1.  **Decomposition:** The problem can be broken down into smaller parts:\n    *   Get the score for each of the 30 students.\n    *   Add all the scores together to get a total.\n    *   Divide the total by the number of students (30) to get the average.\n    *   Display the final average score.\n\n2.  **Pattern Recognition:** The process of 'getting a score and adding it to a running total' is repeated for every student. This pattern is identical for all 30 students.\n    *   This suggests that a loop (iteration) would be an efficient way to implement this part of the solution.\n\n3.  **Abstraction:** We can abstract away unnecessary details. We don't need to know the students' names or the specific date of the test. The essential information is:\n    *   A list or sequence of 30 integer scores.\n    *   A variable to hold the running total (e.g., `TotalScore`).\n    *   A constant for the number of students (e.g., `ClassSize = 30`).\n    *   A variable to hold the final result (e.g., `AverageScore`).\n\n4.  **Algorithm Design (in Pseudocode):**\n    ```pseudocode\n    DECLARE TotalScore : INTEGER\n    DECLARE Counter : INTEGER\n    DECLARE StudentScore : INTEGER\n    DECLARE AverageScore : REAL\n\n    TotalScore <- 0\n    FOR Counter <- 1 TO 30\n        OUTPUT \"Enter score for student \", Counter\n        INPUT StudentScore\n        TotalScore <- TotalScore + StudentScore\n    NEXT Counter\n\n    AverageScore <- TotalScore / 30\n    OUTPUT \"The average score is: \", AverageScore\n    ```"
+    },
+    {
+      "type": "workedExample",
+      "question": "A program needs to find the highest temperature and the day it occurred from a week's worth of daily temperature readings. The readings are: Mon 22°C, Tue 25°C, Wed 24°C, Thu 28°C, Fri 27°C, Sat 23°C, Sun 26°C. Apply computational thinking to find the solution.",
+      "solution": "Let's apply the four stages:\n\n1.  **Decomposition:** The problem can be split into:\n    *   Store the seven daily temperatures and their corresponding days.\n    *   Iterate through the stored data.\n    *   Compare each day's temperature with the highest temperature found so far.\n    *   If a new highest temperature is found, update both the highest temperature and the corresponding day.\n    *   After checking all days, output the stored highest temperature and its day.\n\n2.  **Pattern Recognition:** The core process is 'compare the current day's temperature to the running maximum'. This is repeated for each day of the week. This pattern indicates a loop is needed to go through the data.\n\n3.  **Abstraction:** We can represent the data in a simplified way, for example, using two parallel arrays or a 2D array. We don't need to know *why* the temperature was a certain value, just what the value is.\n    *   Essential variables: `HighestTemp`, `DayOfHighestTemp`, an array for temperatures `Temps = [22, 25, 24, 28, 27, 23, 26]`, and an array for days `Days = [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"]`.\n\n4.  **Algorithm Design (in Pseudocode):**\n    ```pseudocode\n    DECLARE Temps : ARRAY[0:6] OF INTEGER\n    DECLARE Days : ARRAY[0:6] OF STRING\n    DECLARE HighestTemp : INTEGER\n    DECLARE DayOfHighestTemp : STRING\n    DECLARE Counter : INTEGER\n\n    // Initialise data (in a real exam, this might be read from a file or input)\n    Temps <- [22, 25, 24, 28, 27, 23, 26]\n    Days <- [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"]\n\n    // Assume the first day is the highest to start\n    HighestTemp <- Temps[0]\n    DayOfHighestTemp <- Days[0]\n\n    // Loop from the second day onwards\n    FOR Counter <- 1 TO 6\n        IF Temps[Counter] > HighestTemp THEN\n            HighestTemp <- Temps[Counter]\n            DayOfHighestTemp <- Days[Counter]\n        ENDIF\n    NEXT Counter\n\n    OUTPUT \"The highest temperature was \", HighestTemp, \" on \", DayOfHighestTemp\n    ```"
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, even if you can't figure out the complete solution, you can earn marks by demonstrating your computational thinking skills. Start by decomposing the problem in your comments or planning area. Write pseudocode for the parts you *can* solve. This shows the examiner your thought process and can earn you partial credit, especially for algorithm design and structure."
     },
     {
       "type": "practice",
-      "label": "Mark a computational thinking question",
+      "label": "Test Your Skills on Computational Thinking",
       "href": "/mark?subject=9618&topic=9.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "BBC Bitesize on Computational Thinking",
+          "href": "https://www.bbc.co.uk/bitesize/guides/zp92mp3/revision/1"
+        },
+        {
+          "label": "CS Unplugged - Computational Thinking",
+          "href": "https://csunplugged.org/en/computational-thinking/"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

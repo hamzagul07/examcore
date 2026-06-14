@@ -4,39 +4,241 @@
   "title": "Permutations and combinations",
   "paper": "P5",
   "paperName": "Probability & Statistics 1",
-  "status": "premium",
-  "summary": "9709 S1 — nPr, nCr, counting problems, and links to binomial probability with GeoGebra.",
+  "status": "pilot",
+  "summary": "This lesson introduces permutations and combinations, fundamental concepts for counting outcomes in probability. We will explore the crucial difference between arranging items (permutations, where order matters) and selecting items (combinations, where order does not matter), and apply these principles to solve complex problems involving restrictions and repetitions.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Calculate permutations and combinations.",
-    "Solve counting problems with restrictions.",
-    "Distinguish when order matters.",
-    "Link nCr to binomial coefficients."
+    "Understand and calculate permutations for arrangements where order is significant.",
+    "Understand and calculate combinations for selections where order is irrelevant.",
+    "Solve problems involving arrangements and selections, including cases with restrictions or repetitions.",
+    "Apply counting principles to solve probability problems."
   ],
   "simpleExplanation": {
-    "title": "Counting arrangements",
-    "summary": "Permutations count ordered arrangements; combinations count selections. Factorial notation compactly expresses both.",
+    "title": "Arranging vs. Choosing",
+    "summary": "Permutations are for arrangements where order is important, like a race for 1st, 2nd, and 3rd place. Combinations are for selections where order is irrelevant, like choosing three people for a committee.",
+    "analogy": "Imagine you have five different coloured balls. A permutation is like arranging three of them in a specific sequence for a code (e.g., Red-Blue-Green is different from Blue-Red-Green). A combination is like just picking three balls to put in a bag; the collection {Red, Blue, Green} is the same regardless of the order you picked them in.",
     "steps": [
-      "nPr = n!/(n−r)! — arrange r from n.",
-      "nCr = n!/((n−r)!r!) — choose r from n.",
-      "With repetition: adjust formula (e.g. n^r).",
-      "Binomial: C(n,r) appears in (a+b)^n expansion."
+      "nPr = n!/(n−r)! — order matters (arrangements).",
+      "nCr = n!/((n−r)!r!) — order does not matter (selections).",
+      "With repetition or restriction — multiply/adjust factorials.",
+      "Binomial probability links to nCr coefficients."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a permutation?",
+      "back": "An arrangement of a set of objects in a specific order. Use when the order of selection is important."
+    },
+    {
+      "front": "What is the formula for permutations?",
+      "back": "$^n P_r = \\frac{n!}{(n-r)!}$, where $n$ is the total number of items and $r$ is the number of items to arrange."
+    },
+    {
+      "front": "What is a combination?",
+      "back": "A selection of a set of objects where the order of selection does not matter. Use when forming groups or committees."
+    },
+    {
+      "front": "What is the formula for combinations?",
+      "back": "$^n C_r = \\binom{n}{r} = \\frac{n!}{(n-r)!r!}$, where $n$ is the total number of items and $r$ is the number of items to choose."
+    },
+    {
+      "front": "What is the value of $0!$?",
+      "back": "$0! = 1$. This is a mathematical convention that ensures formulas like $^n P_n = n!$ remain consistent."
+    },
+    {
+      "front": "How do you arrange $n$ distinct objects?",
+      "back": "There are $n!$ ways to arrange $n$ distinct objects. For example, the letters in 'ABCDE' can be arranged in $5! = 120$ ways."
+    },
+    {
+      "front": "How do you arrange items with repetitions, like in the word 'STATISTICS'?",
+      "back": "Use the formula $\\frac{n!}{p!q!...}$. For 'STATISTICS', there are 10 letters total, with 3 'S', 3 'T', and 2 'I'. The number of arrangements is $\\frac{10!}{3!3!2!}$."
+    },
+    {
+      "front": "What is the relationship between $^n P_r$ and $^n C_r$?",
+      "back": "$^n P_r = ^n C_r \\times r!$. An arrangement ($P$) is a selection ($C$) followed by arranging the selected items ($r!$ ways)."
+    },
+    {
+      "front": "How do you handle a condition where certain items must be kept together?",
+      "back": "Treat the items that must be together as a single 'block'. Arrange the blocks and the other items. Then, multiply by the number of ways to arrange the items within the block."
+    },
+    {
+      "front": "What is a common strategy for 'at least one' problems?",
+      "back": "Calculate the total number of possibilities without any restrictions, and subtract the number of ways the unwanted scenario can happen. For example, 'at least one man' = (Total selections) - (selections with zero men)."
+    },
+    {
+      "front": "When do you add possibilities and when do you multiply?",
+      "back": "Add when you have mutually exclusive cases (e.g., choosing a committee of 3 men OR 3 women). Multiply when events happen in sequence or together (e.g., choosing 2 men AND 2 women)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between permutations and combinations?",
+      "a": "The key difference is order. In permutations, the order of the items is important (e.g., ABC is different from BCA). In combinations, the order does not matter (e.g., the group {A, B, C} is the same as {B, C, A})."
+    },
+    {
+      "q": "How do I know whether to use nPr or nCr in an exam question?",
+      "a": "Look for keywords. 'Arrange', 'order', 'sequence', 'line up', or specific named positions (like President, Treasurer) suggest a permutation (nPr). 'Choose', 'select', 'pick', 'group', or 'committee' suggest a combination (nCr)."
+    },
+    {
+      "q": "What if items need to be separated, not together?",
+      "a": "This is often best handled with the 'slot' or 'gap' method. First, place the items that do not have restrictions. This creates 'gaps' (including at the ends) where the restricted items can be placed. For example, to separate A and B in CDE, first arrange CDE (3! ways). This creates 4 gaps (_ C _ D _ E _). Then choose 2 of these 4 gaps for A and B ($^4P_2$ ways)."
+    },
+    {
+      "q": "Can I just use the formulas on my calculator?",
+      "a": "Yes, your calculator has functions for nPr and nCr, which are essential for saving time. However, you must show your method in the exam, for example by writing '$^8C_3$' or '$\\frac{8!}{3!5!}$' before writing the final answer. For complex problems involving multiple steps (like choosing men AND women for a committee), you need to show how you are combining these calculations (e.g., $^6C_2 \\times ^5C_2$)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Permutations and combinations** (5.2) feed **probability** (5.3) and **binomial** work. Ask: **does order matter?** before choosing nPr vs nCr."
+      "content": "In probability and statistics, we often need to count the number of possible outcomes of an experiment. This might be the number of ways a hand of cards can be dealt, or the number of ways a password can be formed. Permutations and combinations are the mathematical tools that provide a systematic way to do this counting, based on the crucial question: does the order of the items matter?"
+    },
+    {
+      "type": "heading",
+      "content": "Factorials: The Foundation of Counting"
+    },
+    {
+      "type": "text",
+      "content": "Before diving into permutations and combinations, we must understand factorials. The factorial of a non-negative integer $n$, denoted by $n!$, is the product of all positive integers less than or equal to $n$. It represents the number of ways to arrange $n$ distinct items in a line."
+    },
+    {
+      "type": "formula",
+      "content": "n! = n \\times (n-1) \\times (n-2) \\times \\dots \\times 3 \\times 2 \\times 1"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For example, $4! = 4 \\times 3 \\times 2 \\times 1 = 24$.",
+        "By definition, $0! = 1$. This is a crucial convention that makes many counting formulas work correctly.",
+        "Most scientific calculators have a dedicated factorial button (often $x!$ or $n!$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Permutations: When Order Matters"
+    },
+    {
+      "type": "text",
+      "content": "A permutation is an arrangement of objects in a specific order. Think about situations where the sequence is important, such as creating a password, assigning roles like President and Vice-President, or determining the finishing order in a race. The notation $^n P_r$ represents the number of ways to arrange $r$ objects chosen from a set of $n$ distinct objects."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Number of permutations of } r \\text{ objects from } n \\text{ is } ^n P_r = \\frac{n!}{(n-r)!}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A school is electing a student council consisting of a President, a Vice-President, and a Treasurer. There are 8 candidates. How many different ways can the three positions be filled?",
+      "solution": "Here, the order matters; being President is different from being Vice-President. We are arranging 3 people from a group of 8.\n\nThis is a permutation problem with $n=8$ and $r=3$.\n\nNumber of ways = $^8 P_3$\n\n$^8 P_3 = \\frac{8!}{(8-3)!} = \\frac{8!}{5!}$\n\n$= \\frac{8 \\times 7 \\times 6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1}{5 \\times 4 \\times 3 \\times 2 \\times 1}$\n\n$= 8 \\times 7 \\times 6$\n\n$= 336$\n\nThere are 336 different ways to fill the three positions."
+    },
+    {
+      "type": "examTip",
+      "content": "Look for keywords like 'arrange', 'order', 'line up', 'sequence', or specific roles (President, 1st place) to identify a permutation problem. Remember that $^n P_n = n!$."
+    },
+    {
+      "type": "heading",
+      "content": "Combinations: When Order Doesn't Matter"
+    },
+    {
+      "type": "text",
+      "content": "A combination is a selection of objects where the order of selection is irrelevant. Think about choosing a group of friends to go to the cinema, picking ingredients for a salad, or selecting a committee. The group {Alice, Bob, Charlie} is the same committee as {Charlie, Alice, Bob}. The notation $^n C_r$ (or $\\binom{n}{r}$) represents the number of ways to choose $r$ objects from a set of $n$ distinct objects."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Number of combinations of } r \\text{ objects from } n \\text{ is } ^n C_r = \\binom{n}{r} = \\frac{n!}{(n-r)!r!}"
+    },
+    {
+      "type": "text",
+      "content": "Notice that the combination formula is just the permutation formula divided by $r!$. This is because for any group of $r$ items, there are $r!$ ways to arrange them. Since order doesn't matter in combinations, we divide by $r!$ to eliminate these duplicate arrangements."
+    },
+    {
+      "type": "workedExample",
+      "question": "A team of 5 players is to be chosen from a squad of 12. \n(a) How many different teams can be chosen?\n(b) The squad consists of 5 defenders and 7 attackers. How many teams can be chosen that have exactly 2 defenders?",
+      "solution": "(a) Order does not matter when choosing a team. This is a combination with $n=12$ and $r=5$.\n\nNumber of teams = $^{12} C_5 = \\frac{12!}{5!(12-5)!} = \\frac{12!}{5!7!}$\n\n$= \\frac{12 \\times 11 \\times 10 \\times 9 \\times 8}{5 \\times 4 \\times 3 \\times 2 \\times 1} = 792$ teams.\n\n(b) This is a multi-stage problem. We must choose 2 defenders AND 3 attackers (to make a team of 5).\n\nStep 1: Choose 2 defenders from 5. \nWays = $^5 C_2 = \\frac{5!}{2!3!} = 10$.\n\nStep 2: Choose 3 attackers from 7.\nWays = $^7 C_3 = \\frac{7!}{3!4!} = 35$.\n\nStep 3: Since we need both events to happen, we multiply the results.\nTotal teams = (Ways to choose defenders) $\\times$ (Ways to choose attackers)\n$= 10 \\times 35 = 350$ teams."
+    },
+    {
+      "type": "heading",
+      "content": "Dealing with Complex Scenarios"
+    },
+    {
+      "type": "text",
+      "content": "Many exam questions add layers of complexity, such as restrictions or repeated items. A common scenario involves arranging the letters of a word with repeated letters, like 'MISSISSIPPI'."
+    },
+    {
+      "type": "formula",
+      "content": "Arrangements of $n$ objects with repetitions: $\\frac{n!}{p!q!r!...}$ \nwhere $p, q, r, ...$ are the frequencies of each repeated object."
+    },
+    {
+      "type": "text",
+      "content": "For 'MISSISSIPPI', there are 11 letters total: one M, four I's, four S's, and two P's. The number of distinct arrangements is $\\frac{11!}{1!4!4!2!}$. Another common problem involves items that must be together. For this, treat the grouped items as a single 'block' and arrange the blocks, then multiply by the internal arrangements of the block."
+    },
+    {
+      "type": "examTip",
+      "content": "Always read the question carefully to identify all constraints. If a problem seems too complex, break it down into smaller, manageable parts. For example, 'at least 2 men' might mean 'exactly 2 men' OR 'exactly 3 men' OR... Add the results of these separate cases."
     },
     {
       "type": "practice",
-      "label": "Mark a permutations question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9709&topic=5.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Cambridge International A Level Mathematics 9709 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Permutations and Combinations on Khan Academy",
+          "href": "https://www.khanacademy.org/math/statistics-probability/counting-permutations-and-combinations"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Counting outcomes",
+    "embedUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "launchUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "hint": "Sample space size — permutations vs combinations logic (9709 5.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "nPr = n!/(n−r)! — order matters (arrangements).",
+        "embedHint": "Line up r people from n — first slot n choices."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "nCr = n!/((n−r)!r!) — order does not matter (selections).",
+        "embedHint": "Choose committee of r from n."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "With repetition or restriction — multiply/adjust factorials.",
+        "embedHint": "Letters in WORD vs MISSISSIPPI."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Binomial probability links to nCr coefficients.",
+        "embedHint": "C(n,r) p^r (1−p)^{n−r} for r successes."
+      }
+    ]
+  }
 }

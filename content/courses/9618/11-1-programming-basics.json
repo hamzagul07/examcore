@@ -4,39 +4,182 @@
   "title": "Programming Basics",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS programming — variables, assignment, input/output, and expressions in pseudocode.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental building blocks of programming as required for Paper 2. It covers identifiers, variables, constants, the primary data types (INTEGER, REAL, CHAR, STRING, BOOLEAN), and the core concepts of declaration and assignment using Cambridge International-standard pseudocode.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Use assignment and arithmetic operators correctly.",
-    "Write INPUT and OUTPUT statements.",
-    "Apply MOD, DIV, and integer division rules.",
-    "Trace simple sequential programs."
+    "Understand and use identifiers, variables, and constants appropriately.",
+    "Select and use the five fundamental data types: INTEGER, REAL, CHAR, STRING, and BOOLEAN.",
+    "Understand and apply the concepts of sequence, assignment, and declaration.",
+    "Write pseudocode for basic variable and constant manipulation."
   ],
   "simpleExplanation": {
-    "title": "First programs",
-    "summary": "Programs store data in variables, compute expressions, and communicate via input and output. Assignment replaces the old value.",
+    "title": "Programming's Building Blocks",
+    "summary": "Learn how to create the fundamental elements of any program: variables and constants. We'll see how to give data a name and a type, and how to store and change values as your program runs.",
+    "analogy": "Imagine you're organising a kitchen. You get different types of containers for different ingredients. An open jar you can refill is a 'variable' (like for sugar). A sealed, printed spice jar with a fixed ingredient is a 'constant' (like 'Salt'). The type of ingredient (granules, liquid, leaf) is the 'data type'. Programming is just organising data in named containers so you can work with it.",
     "steps": [
-      "← assignment: x ← 5 + 3.",
-      "MOD remainder; DIV integer division.",
-      "INPUT Name; OUTPUT \"Hello\", Name.",
-      "Trace top to bottom — update trace table each line."
+      "First, identify the pieces of information your program needs to store, like a player's score or a fixed tax rate.",
+      "For each piece of data, choose the most appropriate data type, such as INTEGER for a whole number or STRING for text.",
+      "Declare a named container (a variable or constant) in your code, specifying its name and data type.",
+      "Use the assignment operator to place an initial value into your declared variable or constant."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an identifier?",
+      "back": "A name given by a programmer to a variable, constant, procedure, or function. It must be unique and follow specific naming rules (e.g., no spaces, cannot start with a number)."
+    },
+    {
+      "front": "What is a variable?",
+      "back": "A named memory location that stores a value which can be changed during the program's execution."
+    },
+    {
+      "front": "What is a constant?",
+      "back": "A named memory location that stores a value which is assigned once and cannot be changed during the program's execution."
+    },
+    {
+      "front": "What is the purpose of a data type?",
+      "back": "It defines the kind of data that can be stored in a variable/constant, the range of possible values, and the set of operations that can be performed on it."
+    },
+    {
+      "front": "Define the `INTEGER` data type.",
+      "back": "Used to store positive or negative whole numbers, including zero. Example: -5, 0, 42."
+    },
+    {
+      "front": "Define the `REAL` data type.",
+      "back": "Used to store numbers that have a fractional part (decimal places). Also known as a floating-point number. Example: 9.81, -0.005."
+    },
+    {
+      "front": "Define the `CHAR` data type.",
+      "back": "Used to store a single character, which can be a letter, a digit, or a symbol. Usually enclosed in single quotes. Example: 'A', '7', '$'."
+    },
+    {
+      "front": "Define the `STRING` data type.",
+      "back": "Used to store a sequence of zero or more characters. Usually enclosed in double quotes. Example: \"Hello World\", \"1234\"."
+    },
+    {
+      "front": "Define the `BOOLEAN` data type.",
+      "back": "Used to store one of two logical values: `TRUE` or `FALSE`."
+    },
+    {
+      "front": "What is declaration in pseudocode?",
+      "back": "The process of creating a variable or constant, specifying its identifier and data type. Example: `DECLARE Score : INTEGER`."
+    },
+    {
+      "front": "What is assignment in Cambridge pseudocode?",
+      "back": "The process of giving a value to a variable or constant using the assignment operator `<-`. Example: `Score <- 100`."
+    },
+    {
+      "front": "Common trap: What is the difference between `=` and `<-` in Cambridge pseudocode?",
+      "back": "The arrow `<-` is used for assignment (placing a value into a variable). The equals sign `=` is used for comparison (checking if two values are equal), typically within an `IF` statement or a `WHILE` loop."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why should I use a constant if I can just use a variable?",
+      "a": "Using a constant for a value that should not change makes your code safer and more readable. It prevents accidental changes to the value elsewhere in the program. It also makes maintenance easier; if a value like a tax rate changes, you only need to update it in one place (the constant declaration) rather than searching for it throughout your code."
+    },
+    {
+      "q": "What is the difference between a `CHAR` and a `STRING` of length 1?",
+      "a": "Conceptually, a `CHAR` is for a single character, like 'A', while a `STRING` is for a sequence of characters, like \"Hello\". A `STRING` can have a length of 1, e.g., \"A\". In many programming languages and in exam pseudocode, they are treated differently. A `CHAR` variable cannot hold a `STRING` value, and vice-versa. Always choose the type that best represents the data's purpose."
+    },
+    {
+      "q": "Do I have to declare variables at the very top of my program?",
+      "a": "In Cambridge pseudocode, it is standard practice and highly recommended to declare all variables and constants at the beginning of the program or sub-program. This improves readability and helps you plan your program structure before you start writing the logic. Sticking to this convention will earn you marks for clarity and good programming practice."
+    },
+    {
+      "q": "Can I store a number like '123' in a STRING variable?",
+      "a": "Yes, you can. `MyString <- \"123\"` is a valid assignment. However, the value is stored as text, not as a number. You cannot perform mathematical calculations on it directly (e.g., `\"123\" + 1` is an error). You would need to convert the string to an integer first. This is why choosing the correct data type is so important."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Programming basics** (11.1) with **constructs** (11.2) form Paper 2 core. Practise **dry runs** without a computer — exam conditions."
+      "content": "Welcome to the absolute fundamentals of programming. Every complex application, from a mobile game to a banking system, is built upon the simple concepts we'll cover here. Mastering how to store, name, and manage data is the first and most crucial step in becoming a proficient programmer. In this lesson, we will focus on the specific pseudocode standards used by Cambridge International."
+    },
+    {
+      "type": "heading",
+      "content": "Identifiers, Variables, and Constants"
+    },
+    {
+      "type": "text",
+      "content": "At its core, a computer program manipulates data. To do this effectively, we need to give our data meaningful names. These names are called **identifiers**. Think of them as labels for storage boxes in the computer's memory."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Variable**: A named memory location whose value can change while the program is running. Use a variable for things like a user's score, their current input, or a counter in a loop.",
+        "**Constant**: A named memory location whose value is set once and cannot be changed. Use a constant for values that must remain fixed, such as the rate of VAT, the value of Pi, or a game's maximum number of lives.",
+        "**Identifier Rules**: Good practice, and often a requirement, is to use meaningful names (e.g., `PlayerScore` instead of `x`). Identifiers cannot contain spaces and usually cannot start with a number."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Declaration and Assignment"
+    },
+    {
+      "type": "text",
+      "content": "Before you can use a variable or constant, you must first create it. This process is called **declaration**. Declaration tells the program the identifier (name) and the **data type** of the item you are creating. Once declared, you can give it a value using **assignment**."
+    },
+    {
+      "type": "formula",
+      "content": "// Declaration Syntax\nDECLARE <Identifier> : <DataType>\nCONSTANT <Identifier> = <Value> // Note: Constants are assigned at declaration\n\n// Assignment Syntax\n<Identifier> <- <Value>"
+    },
+    {
+      "type": "examTip",
+      "content": "In your Paper 2 exam, you MUST declare all variables you use. A common mistake is to forget declarations, which will lose you marks. Also, be very careful to use `<-` for assignment and `=` for comparison. Mixing these up is a frequent error."
+    },
+    {
+      "type": "workedExample",
+      "question": "A program needs to store a student's name, their score in a test out of 100, and whether they have passed. The pass mark is fixed at 50. Write pseudocode to declare appropriate variables and a constant, and then assign the following example values: Name is 'Ben', score is 78, and they have passed.",
+      "solution": "// 1. Declare the constant for the pass mark\nCONSTANT PassMark : INTEGER = 50\n\n// 2. Declare the variables needed\nDECLARE StudentName : STRING\nDECLARE TestScore : INTEGER\nDECLARE HasPassed : BOOLEAN\n\n// 3. Assign the given values\nStudentName <- \"Ben\"\nTestScore <- 78\n\n// 4. Determine the value for HasPassed based on the score\n// (This uses a comparison, which will be covered in more detail later)\nIF TestScore >= PassMark THEN\n  HasPassed <- TRUE\nELSE\n  HasPassed <- FALSE\nENDIF\n\n// For this specific question, we can directly assign TRUE as 78 >= 50\nHasPassed <- TRUE"
+    },
+    {
+      "type": "heading",
+      "content": "The Five Fundamental Data Types"
+    },
+    {
+      "type": "text",
+      "content": "Choosing the correct data type is crucial for efficiency and preventing errors. Cambridge specifies five main types you must know."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**INTEGER**: Whole numbers (e.g., `-10`, `0`, `150`). Used for counting, scores, etc.",
+        "**REAL**: Numbers with a decimal point (e.g., `9.81`, `0.20`, `-12.5`). Used for measurements, prices, percentages.",
+        "**CHAR**: A single character (e.g., `'A'`, `'%'`, `'5'`). Used for initials, grades (A, B, C), or single-character commands.",
+        "**STRING**: A sequence of characters (e.g., `\"Cambridge\"`, `\"user123\"`). Used for names, addresses, passwords.",
+        "**BOOLEAN**: Represents logical values. Can only be `TRUE` or `FALSE`. Used for flags, status checks (e.g., `IsLoggedIn`, `GameOver`)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A program for a small shop needs to calculate the final price of an item. It must store the item's name, its price before tax, the VAT rate (fixed at 20%), and the final calculated price. Write pseudocode to declare these, and then calculate the final price for an item named \"USB Cable\" that costs £5.50 before tax.",
+      "solution": "// 1. Declare the constant for the VAT rate\nCONSTANT VAT_RATE : REAL = 0.20\n\n// 2. Declare the variables for the item details\nDECLARE ItemName : STRING\nDECLARE PriceExVAT : REAL\nDECLARE FinalPrice : REAL\n\n// 3. Assign the initial known values\nItemName <- \"USB Cable\"\nPriceExVAT <- 5.50\n\n// 4. Perform the calculation and assign the result\n// The VAT amount is PriceExVAT * VAT_RATE\n// The final price is the original price plus the VAT amount\n// This can be simplified to PriceExVAT * (1 + VAT_RATE)\nFinalPrice <- PriceExVAT * (1 + VAT_RATE)\n\n// After this line, FinalPrice would hold the value 5.50 * 1.20 = 6.60"
+    },
+    {
+      "type": "examTip",
+      "content": "When a question gives you a scenario, read it carefully to identify all the data that needs to be stored. For each piece of data, ask yourself: 'Can this value change?' (Variable vs Constant) and 'What kind of data is it?' (INTEGER, REAL, STRING etc.). This will help you structure your declarations correctly."
     },
     {
       "type": "practice",
-      "label": "Mark a programming basics question",
+      "label": "Test Your Knowledge on Programming Basics",
       "href": "/mark?subject=9618&topic=11.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "Cambridge Syllabus (9618)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        },
+        {
+          "label": "Pseudocode Guide",
+          "href": "https://www.cambridgeinternational.org/Images/414126-pseudocode-guide-for-teachers.pdf"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

@@ -4,39 +4,224 @@
   "title": "Trigonometry",
   "paper": "P3",
   "paperName": "Pure Mathematics 3",
-  "status": "premium",
-  "summary": "9709 P3 trigonometry — radians, identities, equations, and inverse functions with GeoGebra unit circle.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson covers the advanced trigonometry required for Pure Mathematics 3 (P3), including the reciprocal trigonometric functions (sec, csc, cot), compound and double angle formulae, and the harmonic form R sin(x + α). These tools are essential for solving complex trigonometric equations and modelling periodic phenomena.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Use radian measure in all P3 trig.",
-    "Apply advanced identities and solve equations.",
-    "Work with inverse trig functions and their domains.",
-    "Prove identities using compound angle formulae."
+    "Understand and use the definitions and identities of secant, cosecant, and cotangent.",
+    "Apply compound and double angle formulae to prove identities and solve equations.",
+    "Express a sin(x) + b cos(x) in harmonic form to find maximum/minimum values and solve equations.",
+    "Solve trigonometric equations within a given range, paying attention to principal values for inverse functions."
   ],
   "simpleExplanation": {
-    "title": "P3 trig in radians",
-    "summary": "P3 extends P2 with inverse functions, general solutions, and tighter links to calculus.",
+    "title": "Unlocking Trig Equations",
+    "summary": "P3 trigonometry gives you a powerful toolkit of identities to simplify and solve equations that mix different trig functions. By converting expressions into simpler forms, we can find solutions or determine maximum and minimum values.",
+    "analogy": "Think of trigonometric identities as a set of universal adaptors. You might have a sine-shaped plug and a cosine-shaped socket. You can't connect them directly. But by using a 'compound angle' or 'harmonic form' adaptor, you can transform one into a shape that fits the other, allowing you to solve the circuit (the equation).",
     "steps": [
-      "All angles in radians unless stated.",
-      "arcsin, arccos, arctan — restricted domains for inverses.",
-      "General solution: add 2nπ to principal value.",
-      "Differentiate sin x, cos x with x in radians."
+      "Master the core identities, including the Pythagorean set (sin²θ + cos²θ ≡ 1, etc.) and the compound angle formulae. These are your fundamental tools for rewriting expressions.",
+      "Learn to combine a sin(x) + b cos(x) into a single sine or cosine wave, R sin(x + α). This simplifies finding the amplitude (R) and phase shift (α) of the combined wave.",
+      "When solving for an angle, like x = arcsin(k), remember that your calculator gives only one answer (the principal value). You must use the unit circle or graphs to find all other solutions in the required range.",
+      "Always work in radians unless a question specifies degrees. Radians are the natural unit for angles in calculus, which is deeply connected with trigonometry at this level."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the definition of sec(x)?",
+      "back": "sec(x) is the secant of x, defined as 1/cos(x). It is undefined when cos(x) = 0."
+    },
+    {
+      "front": "What is the definition of csc(x) (or cosec(x))?",
+      "back": "csc(x) is the cosecant of x, defined as 1/sin(x). It is undefined when sin(x) = 0."
+    },
+    {
+      "front": "What is the definition of cot(x)?",
+      "back": "cot(x) is the cotangent of x, defined as 1/tan(x), which is equivalent to cos(x)/sin(x). It is undefined when sin(x) = 0."
+    },
+    {
+      "front": "State the Pythagorean identity involving sec(x).",
+      "back": "1 + tan²(x) ≡ sec²(x). This is derived by dividing sin²(x) + cos²(x) ≡ 1 by cos²(x)."
+    },
+    {
+      "front": "State the Pythagorean identity involving cot(x).",
+      "back": "1 + cot²(x) ≡ csc²(x). This is derived by dividing sin²(x) + cos²(x) ≡ 1 by sin²(x)."
+    },
+    {
+      "front": "What are the three forms of the double angle formula for cos(2A)?",
+      "back": "1. cos²(A) - sin²(A)\\n2. 2cos²(A) - 1\\n3. 1 - 2sin²(A)"
+    },
+    {
+      "front": "When expressing a sin(θ) + b cos(θ) as R sin(θ + α), what are the formulae for R and α?",
+      "back": "R = √(a² + b²)\\ntan(α) = b/a"
+    },
+    {
+      "front": "What is the principal value range for y = arcsin(x)?",
+      "back": "-π/2 ≤ y ≤ π/2 (or -90° ≤ y ≤ 90°). The output is in quadrants 1 and 4."
+    },
+    {
+      "front": "What is the principal value range for y = arccos(x)?",
+      "back": "0 ≤ y ≤ π (or 0° ≤ y ≤ 180°). The output is in quadrants 1 and 2."
+    },
+    {
+      "front": "What is the principal value range for y = arctan(x)?",
+      "back": "-π/2 < y < π/2 (or -90° < y < 90°). The output is in quadrants 1 and 4."
+    },
+    {
+      "front": "Common mistake: When solving tan²(x) = 3, what is a frequently missed step?",
+      "back": "Forgetting the ± sign when taking the square root. tan(x) = ±√3, leading to solutions in all four quadrants."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Should I work in degrees or radians?",
+      "a": "The question will specify. If it gives a range in degrees, use degrees. If the range is in terms of π, use radians. If no range is given (e.g., in a pure identity proof), it doesn't matter, but radians are standard practice at this level. If the question involves calculus, you MUST use radians."
+    },
+    {
+      "q": "How do I know which version of the cos(2A) formula to use?",
+      "a": "Look at the other terms in the equation. If the equation also contains a 'cos A' term, use the `2cos²A - 1` form to create a quadratic in `cos A`. If it contains a 'sin A' term, use the `1 - 2sin²A` form. If it contains both, you might need a different approach!"
+    },
+    {
+      "q": "What's the point of the harmonic form? Can't I just solve equations without it?",
+      "a": "You cannot easily solve an equation like `3sin(x) + 4cos(x) = 2` without the harmonic form. It allows you to reduce two trigonometric terms into one, which is solvable. It's also the only straightforward way to find the maximum or minimum value of such a combination."
+    },
+    {
+      "q": "I solved for my angle, but my answer was wrong. What did I miss?",
+      "a": "There are two common errors. First, your calculator only gives the 'principal value'. You must use this first answer to find all other possible solutions within the given range (e.g., using CAST diagrams or graph sketches). Second, if you squared both sides of an equation at any point, you may have introduced extra solutions that don't work in the original equation, so you must check them."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**P3 Trigonometry** (3.3) assumes **P2** (2.3) fluency. Inverse trig domain/range errors are very common — state them explicitly."
+      "content": "Welcome to the next level of trigonometry. In P1, you mastered the basics of sine, cosine, and tangent. Now, in P3, we expand our toolkit to handle more complex trigonometric expressions and equations. We will introduce three new functions, powerful identities, and a method for combining sine and cosine waves. These skills are not just for passing exams; they are fundamental in fields like physics, engineering, and signal processing."
+    },
+    {
+      "type": "heading",
+      "content": "The Reciprocal Functions: Secant, Cosecant, and Cotangent"
+    },
+    {
+      "type": "text",
+      "content": "We define three new trigonometric functions as the reciprocals of the three you already know. These are secant (sec), cosecant (csc or cosec), and cotangent (cot). Their main purpose is to simplify certain trigonometric expressions and equations, particularly when dealing with fractions."
+    },
+    {
+      "type": "formula",
+      "content": "$\\sec x \\equiv \\frac{1}{\\cos x}$ \n\n$\\csc x \\equiv \\frac{1}{\\sin x}$ \n\n$\\cot x \\equiv \\frac{1}{\\tan x} \\equiv \\frac{\\cos x}{\\sin x}$"
+    },
+    {
+      "type": "text",
+      "content": "Just as $\\sin^2 x + \\cos^2 x \\equiv 1$ is a fundamental identity, we can derive two more 'Pythagorean' identities by dividing this one by $\\cos^2 x$ and $\\sin^2 x$ respectively. These are essential for solving equations involving the reciprocal functions."
+    },
+    {
+      "type": "formula",
+      "content": "$1 + \\tan^2 x \\equiv \\sec^2 x$ \n\n$1 + \\cot^2 x \\equiv \\csc^2 x$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $2\\tan^2\\theta = 3 + \\sec\\theta$ for $0^\\circ \\le \\theta \\le 360^\\circ$.",
+      "solution": "The equation contains both $\\tan^2\\theta$ and $\\sec\\theta$. We need to express it in terms of a single trigonometric function. We use the identity $1 + \\tan^2\\theta \\equiv \\sec^2\\theta$, which means $\\tan^2\\theta \\equiv \\sec^2\\theta - 1$.\n\nSubstitute this into the equation:\n$2(\\sec^2\\theta - 1) = 3 + \\sec\\theta$\n$2\\sec^2\\theta - 2 = 3 + \\sec\\theta$\n\nThis is a quadratic equation in $\\sec\\theta$. Let's rearrange it into standard form:\n$2\\sec^2\\theta - \\sec\\theta - 5 = 0$\n\nThis doesn't factorise easily, so we use the quadratic formula for $y = \\sec\\theta$, where $a=2, b=-1, c=-5$:\n$\\sec\\theta = \\frac{-(-1) \\pm \\sqrt{(-1)^2 - 4(2)(-5)}}{2(2)}$\n$\\sec\\theta = \\frac{1 \\pm \\sqrt{1 + 40}}{4} = \\frac{1 \\pm \\sqrt{41}}{4}$\n\nThis gives two possible values for $\\sec\\theta$:\n$\\sec\\theta \\approx 1.8508$ or $\\sec\\theta \\approx -1.3508$\n\nNow we convert back to $\\cos\\theta$ using $\\cos\\theta = 1/\\sec\\theta$:\n$\\cos\\theta \\approx 1/1.8508 \\approx 0.5403$ or $\\cos\\theta \\approx 1/(-1.3508) \\approx -0.7403$\n\nFor $\\cos\\theta \\approx 0.5403$:\nPrincipal value $\\theta = \\arccos(0.5403) \\approx 57.3^\\circ$.\nCosine is positive in the 1st and 4th quadrants. The second solution is $360^\\circ - 57.3^\\circ = 302.7^\\circ$.\n\nFor $\\cos\\theta \\approx -0.7403$:\nPrincipal value $\\theta = \\arccos(-0.7403) \\approx 137.7^\\circ$.\nCosine is negative in the 2nd and 3rd quadrants. The second solution is $360^\\circ - 137.7^\\circ = 222.3^\\circ$.\n\nSo, the solutions in the range $0^\\circ \\le \\theta \\le 360^\\circ$ are approximately $57.3^\\circ, 137.7^\\circ, 222.3^\\circ, 302.7^\\circ$ (to 1 d.p.)."
+    },
+    {
+      "type": "heading",
+      "content": "Compound and Double Angle Formulae"
+    },
+    {
+      "type": "text",
+      "content": "These formulae allow us to expand trigonometric functions of sums or differences of angles, like $\\sin(A+B)$. They are provided in the formula book, but you must be fluent in applying them. A particularly important application is deriving the double angle formulae (e.g., for $\\sin(2A)$) by setting $B=A$ in the compound angle formulae."
+    },
+    {
+      "type": "formula",
+      "content": "$\\sin(A \\pm B) \\equiv \\sin A \\cos B \\pm \\cos A \\sin B$\n\n$\\cos(A \\pm B) \\equiv \\cos A \\cos B \\mp \\sin A \\sin B$\n\n$\\sin(2A) \\equiv 2\\sin A \\cos A$\n\n$\\cos(2A) \\equiv \\cos^2 A - \\sin^2 A \\equiv 2\\cos^2 A - 1 \\equiv 1 - 2\\sin^2 A$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Pay close attention to the signs in the compound angle formulae. For $\\cos(A+B)$, the sign on the right-hand side is negative.",
+        "The three different forms for $\\cos(2A)$ are crucial. Choose the form that best simplifies your equation. For example, if your equation also contains $\\cos A$, use the $2\\cos^2 A - 1$ form to create a quadratic in $\\cos A$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Harmonic Form: Combining Sine and Cosine"
+    },
+    {
+      "type": "text",
+      "content": "An expression of the form $a\\sin x + b\\cos x$ can be difficult to work with. The harmonic form transforms it into a single trigonometric function, $R\\sin(x+\\alpha)$ or $R\\cos(x-\\alpha)$. This makes it easy to solve equations of the form $a\\sin x + b\\cos x = c$ and to find the maximum and minimum values of the expression and the angles at which they occur."
+    },
+    {
+      "type": "formula",
+      "content": "To express $a\\sin\\theta + b\\cos\\theta$ in the form $R\\sin(\\theta+\\alpha)$:\n\n$R = \\sqrt{a^2+b^2}$\n\n$\\tan\\alpha = \\frac{b}{a}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "a) Express $5\\sin x - 12\\cos x$ in the form $R\\sin(x - \\alpha)$, where $R>0$ and $0^\\circ < \\alpha < 90^\\circ$. State the values of $R$ and $\\alpha$.\nb) Hence, find the maximum value of the expression and the smallest positive value of $x$ for which it occurs.",
+      "solution": "a) We want to match $5\\sin x - 12\\cos x$ with $R\\sin(x - \\alpha) \\equiv R(\\sin x \\cos \\alpha - \\cos x \\sin \\alpha)$.\nBy comparing coefficients of $\\sin x$ and $\\cos x$:\n$R\\cos\\alpha = 5$  (1)\n$R\\sin\\alpha = 12$ (2)\n\nTo find R, we square and add the two equations:\n$(R\\cos\\alpha)^2 + (R\\sin\\alpha)^2 = 5^2 + 12^2$\n$R^2(\\cos^2\\alpha + \\sin^2\\alpha) = 25 + 144$\n$R^2(1) = 169$\n$R = 13$ (since $R>0$)\n\nTo find $\\alpha$, we divide equation (2) by (1):\n$\\frac{R\\sin\\alpha}{R\\cos\\alpha} = \\frac{12}{5}$\n$\\tan\\alpha = 2.4$\n$\\alpha = \\arctan(2.4) \\approx 67.38^\\circ$\n\nSo, $5\\sin x - 12\\cos x \\equiv 13\\sin(x - 67.38^\\circ)$.\n\nb) The expression is $13\\sin(x - 67.38^\\circ)$.\nThe maximum value of the sine function is 1. Therefore, the maximum value of the expression is $13 \\times 1 = 13$.\n\nThis occurs when $\\sin(x - 67.38^\\circ) = 1$.\nLet $Y = x - 67.38^\\circ$. We need $\\sin Y = 1$.\nThe principal value is $Y = 90^\\circ$.\nSo, $x - 67.38^\\circ = 90^\\circ$.\n$x = 90^\\circ + 67.38^\\circ = 157.38^\\circ$.\nThis is the smallest positive value of $x$. The next would be at $90^\\circ + 360^\\circ$, which gives a larger $x$.\n\nMaximum value: 13.\nSmallest positive $x$: $157.4^\\circ$ (to 1 d.p.)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always check the required range for your solutions (e.g., $0 \\le x \\le 2\\pi$ or $-180^\\circ \\le x \\le 180^\\circ$) and whether the answer should be in radians or degrees. Forgetting to find all solutions within the range is a very common way to lose marks. Also, when proving an identity, you must start from one side and manipulate it algebraically until it looks identical to the other side. Do not 'solve' it like an equation."
     },
     {
       "type": "practice",
-      "label": "Mark a P3 trigonometry question",
+      "label": "Practice P3 Trigonometry Questions",
       "href": "/mark?subject=9709&topic=3.3"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Cambridge International Formulae List (MF19)",
+          "href": "https://www.cambridgeinternational.org/Images/415361-2020-2022-syllabus-further-mathematics-9231.pdf"
+        },
+        {
+          "label": "Graphs of sec, csc, cot",
+          "href": "https://www.desmos.com/calculator/sdj09aflnx"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Unit circle trigonometry",
+    "embedUrl": "https://www.geogebra.org/classic?material=Ccgmq82f",
+    "launchUrl": "https://www.geogebra.org/classic?material=Ccgmq82f",
+    "hint": "Use radians on the circle — link to P3 identities and equations (9709 3.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "P3 trig: identities like sin²θ + cos²θ ≡ 1 and compound-angle formulae.",
+        "embedHint": "Use the unit circle to verify identity values at key angles."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Solve equations like a sin x + b cos x = R sin(x + α).",
+        "embedHint": "Read amplitude R from the circle projection."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Inverse trig functions require careful domain restrictions.",
+        "embedHint": "Check principal values when solving sin x = k."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Radians are mandatory for calculus: d/dx(sin x) = cos x.",
+        "embedHint": "Link circle angle to calculus graphs on the same applet."
+      }
+    ]
+  }
 }

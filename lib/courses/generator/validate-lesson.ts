@@ -149,6 +149,90 @@ function validateKatex(lesson: GeneratedLesson): ValidationIssue[] {
   }))
 }
 
+const ABSTRACT_STEM_SUBJECTS = new Set(['9701', '9702', '9700', '9709', '9231', '9618'])
+
+function countHeadingTextPairs(lesson: GeneratedLesson): number {
+  const sections = lesson.sections
+  let pairs = 0
+  for (let i = 0; i < sections.length; i++) {
+    if (sections[i].type !== 'heading') continue
+    const next = sections[i + 1]
+    if (!next) continue
+    if (next.type === 'text' || next.type === 'formula' || next.type === 'keyPoints') {
+      const body =
+        next.type === 'keyPoints'
+          ? next.items.join(' ')
+          : 'content' in next
+            ? next.content
+            : ''
+      const sentences = body.split(/[.!?]+/).filter((s) => s.trim().length > 8)
+      if (sentences.length >= 2) pairs += 1
+    }
+  }
+  return pairs
+}
+
+function validateTeachingDepth(lesson: GeneratedLesson, subjectCode: string): ValidationIssue[] {
+  const issues: ValidationIssue[] = []
+  const worked = lesson.sections.filter((s) => s.type === 'workedExample')
+
+  if (worked.length < 2) {
+    issues.push({
+      code: 'min_worked_examples',
+      message: `Need ≥2 workedExample sections (found ${worked.length})`,
+      severity: 'error',
+    })
+  }
+
+  const flashcardCount = lesson.flashcards?.length ?? 0
+  if (flashcardCount < 8) {
+    issues.push({
+      code: 'min_flashcards',
+      message: `Need ≥8 flashcards (found ${flashcardCount})`,
+      severity: 'error',
+    })
+  }
+
+  if (ABSTRACT_STEM_SUBJECTS.has(subjectCode)) {
+    if (!lesson.simpleExplanation?.analogy?.trim()) {
+      issues.push({
+        code: 'missing_analogy',
+        message: 'STEM abstract topics require simpleExplanation.analogy',
+        severity: 'error',
+      })
+    }
+  }
+
+  const headingPairs = countHeadingTextPairs(lesson)
+  if (headingPairs < 3) {
+    issues.push({
+      code: 'min_heading_groups',
+      message: `Need ≥3 heading groups with substantive body text (found ${headingPairs})`,
+      severity: 'error',
+    })
+  }
+
+  return issues
+}
+
+function validateSingleVisual(lesson: GeneratedLesson): ValidationIssue[] {
+  const visualCount =
+    (lesson.interactiveEmbed ? 1 : 0) +
+    (lesson.diagramSpec ? 1 : 0) +
+    (lesson.diagram ? 1 : 0)
+
+  if (visualCount > 1) {
+    return [
+      {
+        code: 'multiple_visuals',
+        message: `At most one primary visual allowed (found ${visualCount})`,
+        severity: 'error',
+      },
+    ]
+  }
+  return []
+}
+
 function validatePaperStyle(lesson: GeneratedLesson): ValidationIssue[] {
   const issues: ValidationIssue[] = []
 
@@ -257,6 +341,8 @@ export async function validateGeneratedLesson(
   const issues: ValidationIssue[] = [
     ...validatePaperScope(lesson, evidence.paperNumber, evidence.topicCode),
     ...validateWorkedExampleTraceability(lesson, evidence),
+    ...validateTeachingDepth(lesson, evidence.subjectCode),
+    ...validateSingleVisual(lesson),
     ...validateKatex(lesson),
     ...validatePaperStyle(lesson),
   ]
@@ -266,6 +352,14 @@ export async function validateGeneratedLesson(
     evidence
   )
   issues.push(...coverageIssues)
+
+  if (coverageScore < 0.8 && evidence.objectives.length > 0) {
+    issues.push({
+      code: 'low_coverage',
+      message: `Coverage score ${coverageScore.toFixed(2)} below 0.8`,
+      severity: 'error',
+    })
+  }
 
   const hasStructuralErrors = issues.some(
     (i) =>

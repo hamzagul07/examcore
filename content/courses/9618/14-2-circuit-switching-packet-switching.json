@@ -4,29 +4,162 @@
   "title": "Circuit switching, packet switching",
   "paper": "P3",
   "paperName": "Advanced Theory",
-  "status": "premium",
-  "summary": "9618 A Level — circuit vs packet switching, routing, and internet data transmission.",
+  "status": "pilot",
+  "summary": "This lesson explores the two fundamental methods for routing data across a network: circuit switching and packet switching. It details their mechanisms, compares their advantages and disadvantages, and analyses their suitability for different communication scenarios, such as traditional phone calls versus modern internet traffic.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Compare circuit and packet switching.",
-    "Explain how packets are routed.",
-    "Describe advantages of packet switching for internet.",
-    "Analyse congestion and QoS issues."
+    "Describe the principles of circuit switching and packet switching.",
+    "Compare the benefits and drawbacks of each switching method.",
+    "Explain the structure of a data packet, including the header, payload, and trailer.",
+    "Analyse the suitability of each switching method for different types of data transmission."
   ],
   "simpleExplanation": {
-    "title": "Two switching methods",
-    "summary": "Circuit switching dedicates a path for the whole call. Packet switching splits data into routed packets sharing links.",
+    "title": "Dedicated Lines vs Digital Parcels",
+    "summary": "Circuit switching creates a dedicated, private line for a conversation, like an old-school telephone call. Packet switching breaks a message into small digital parcels, each finding its own way through the network, like the modern internet.",
+    "analogy": "Imagine you need to send a multi-page report from London to Manchester. With circuit switching, you book an entire, exclusive train carriage. The carriage is reserved for you for the whole journey, whether it's full or empty. With packet switching, you separate each page of the report, put each in a numbered envelope, and drop them into the postal system. Each envelope might take a different route, but they are all reassembled in the correct order upon arrival in Manchester. This is far more efficient for the postal service as they can fill up their vans with mail from many different people.",
     "steps": [
-      "Circuit: telephone network — fixed bandwidth.",
-      "Packet: data split with headers — internet model.",
-      "Packets may take different routes.",
-      "Congestion if routers overloaded."
+      "In circuit switching, a dedicated, end-to-end physical connection (a circuit) is established before any data is sent.",
+      "In packet switching, the message is broken down into smaller, manageable blocks called packets.",
+      "Each packet is individually addressed and routed through the network, potentially taking different paths to the destination.",
+      "At the destination, the packets are reassembled into the original message using sequence numbers contained in their headers."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is circuit switching?",
+      "back": "A switching method where a dedicated communication path is established between two devices for the duration of the communication session. The path is exclusive and resources are reserved."
+    },
+    {
+      "front": "What are the three phases of circuit switching?",
+      "back": "1. Circuit Establishment: A dedicated path is created. 2. Data Transfer: Data is transmitted along the path. 3. Circuit Disconnect: The connection is terminated and resources are released."
+    },
+    {
+      "front": "What is a major disadvantage of circuit switching?",
+      "back": "It is inefficient. The dedicated channel is reserved for the entire session, even when no data is being sent, leading to wasted bandwidth."
+    },
+    {
+      "front": "What is packet switching?",
+      "back": "A switching method where data is broken into small packets, each sent independently through the network. Packets are reassembled at the destination. This is the basis for the internet."
+    },
+    {
+      "front": "What is a data packet?",
+      "back": "A small unit of data transmitted over a packet-switched network. It consists of a header, payload, and sometimes a trailer."
+    },
+    {
+      "front": "What information is contained in a packet header?",
+      "back": "Control information such as the source and destination IP addresses, packet sequence number, protocol, and time-to-live (TTL)."
+    },
+    {
+      "front": "What is the 'payload' of a packet?",
+      "back": "The actual data being transmitted, which is part of the original message."
+    },
+    {
+      "front": "What is a key advantage of packet switching?",
+      "back": "Efficient use of network bandwidth. The communication lines are shared among many users, and data is only sent when needed, maximising resource utilisation."
+    },
+    {
+      "front": "What is 'jitter' in the context of packet switching?",
+      "back": "The variation in the delay of received packets. Since packets can take different routes, they may arrive at different times and out of order, causing uneven playback in real-time applications like video calls."
+    },
+    {
+      "front": "Why is packet switching considered more robust than circuit switching?",
+      "back": "If a particular network path or node fails, packets can be dynamically rerouted around the problem area. In circuit switching, a failure in the dedicated path terminates the entire connection."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is one switching method objectively better than the other?",
+      "a": "No, they are suited for different purposes. Circuit switching is excellent for applications needing a constant, reliable connection with no jitter, like traditional telephone calls. Packet switching is far more efficient and robust for the varied, 'bursty' nature of internet traffic, where many users share the same infrastructure."
+    },
+    {
+      "q": "How do packets get reassembled in the correct order if they arrive out of sequence?",
+      "a": "The header of each packet contains a sequence number. The receiving device's transport layer protocol (like TCP) uses these numbers to place the data from the payloads back into the correct order before passing the complete message to the application."
+    },
+    {
+      "q": "What happens if a packet gets lost or corrupted?",
+      "a": "Reliable protocols like TCP (Transmission Control Protocol) handle this. The receiver sends acknowledgements (ACKs) for packets it receives correctly. If the sender doesn't receive an ACK for a particular packet within a certain time, it assumes the packet was lost and retransmits it."
+    },
+    {
+      "q": "Does circuit switching still exist?",
+      "a": "While the underlying core networks of most telephone providers have transitioned to packet switching (using technologies like VoIP), the concept of a dedicated circuit still exists in specialised high-end services like leased lines, which guarantee a certain bandwidth between two points for a high price."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Switching** (14.2) explains **why the internet uses packets**. List **two advantages** of packet over circuit switching." },
-    { "type": "practice", "label": "Mark a packet switching question", "href": "/mark?subject=9618&topic=14.2" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In any large network, from the global internet to a corporate wide area network (WAN), data needs to be sent from a source to a destination. This journey often involves passing through multiple intermediate devices like routers and switches. The methods these devices use to handle and forward the data are known as switching techniques. The two fundamental approaches you need to understand are circuit switching and packet switching, which form the basis of almost all modern telecommunications."
+    },
+    {
+      "type": "heading",
+      "content": "Circuit Switching: The Dedicated Path"
+    },
+    {
+      "type": "text",
+      "content": "Circuit switching is the older of the two methods, originating from the public telephone network. Its operation is defined by three distinct phases. First, a dedicated, end-to-end physical connection (a 'circuit') is established between the sender and receiver before any data can be transferred. During this setup phase, resources like bandwidth and switch capacity are reserved along the entire path. Once the circuit is established, data is transferred at a fixed, guaranteed rate. Finally, when the communication is complete, the circuit is disconnected, and the reserved resources are released for other users. This method ensures a constant, predictable quality of service with minimal delay (latency) once the connection is made."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Guaranteed Bandwidth:** The entire bandwidth of the circuit is available exclusively to the connection.",
+        "**Low Latency & No Jitter:** Once the circuit is established, data flows continuously with a constant delay, making it ideal for real-time voice calls.",
+        "**Inefficient Resource Use:** Bandwidth is wasted during silent periods in a conversation, as the channel remains reserved.",
+        "**Connection Setup Delay:** There is a noticeable delay before communication can begin while the end-to-end path is being established."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Packet Switching: The Digital Postal Service"
+    },
+    {
+      "type": "text",
+      "content": "Packet switching is the dominant technology used for data communication on the internet. Instead of a dedicated path, a message is broken down into small, fixed or variable-sized blocks called packets. Each packet is treated independently. A header is added to each packet containing crucial information, such as the destination address and a sequence number. These packets are then sent into the network one by one. Routers along the way examine the header of each packet and decide the best next hop towards its destination. This means packets from the same message can travel along different paths and may arrive out of order. The destination device uses the sequence numbers to reassemble the packets into the original message."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Efficient Bandwidth Usage:** Network links are shared (multiplexed) by many users. Bandwidth is used only when there are packets to send.",
+        "**Robustness:** If a network link fails, routers can dynamically find an alternative path for subsequent packets.",
+        "**Variable Latency & Jitter:** Packets can experience delays in routers (queuing delay) and take different paths, leading to variable arrival times (jitter). This can be problematic for real-time applications.",
+        "**Overhead:** Each packet requires a header, which adds extra data that isn't part of the original message, consuming some bandwidth."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A real-time voice-over-IP (VoIP) call is being made over a busy corporate network. The network uses packet switching. Explain two potential problems that could degrade the quality of the call, linking them to the principles of packet switching.",
+      "solution": "1. **Jitter:** Because the network uses packet switching, each voice data packet is routed independently. Due to varying levels of congestion at different routers, packets may take different paths or experience different queuing delays. This results in variable arrival times at the destination, a phenomenon known as jitter. For a voice call, this can cause the audio to sound choppy or distorted as the receiving device struggles to play the audio smoothly. [1 mark for identifying jitter, 1 mark for explanation linked to packet switching principles].\n\n2. **Packet Loss:** During periods of high network congestion, routers may become overwhelmed with more packets than they can process. When a router's internal buffer (queue) is full, it may be forced to drop incoming packets. If voice packets are lost, there will be gaps in the audio stream, leading to words or syllables being missed by the listener, severely degrading call quality. [1 mark for identifying packet loss, 1 mark for explanation linked to congestion]."
+    },
+    {
+      "type": "heading",
+      "content": "Comparing Circuit and Packet Switching"
+    },
+    {
+      "type": "text",
+      "content": "The choice between circuit and packet switching depends entirely on the application's requirements. Circuit switching provides order and reliability at the cost of efficiency, making it suitable for legacy voice communication. Packet switching provides efficiency and robustness at the cost of potential delays and jitter, making it the foundation for the flexible and scalable internet we use today for everything from email and web browsing to video streaming and online gaming."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, you will often be asked to compare these two methods. Use comparative words like 'whereas', 'on the other hand', and 'in contrast'. Structure your answer around key criteria: connection setup (dedicated vs. connectionless), resource allocation (reserved vs. on-demand), robustness, and suitability for different data types (e.g., real-time voice vs. bursty web traffic)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 1.2 MB file is transmitted over a packet-switched network. The file is divided into packets where each packet has a maximum payload size of 1500 bytes. Each packet header is 40 bytes. Calculate:\n(i) The number of packets required.\n(ii) The total size of all transmitted headers.\n(iii) The total amount of data transmitted across the network.\n(iv) The efficiency of the transmission.\n(Assume 1 MB = 1,000,000 bytes)",
+      "solution": "First, convert the file size to bytes: 1.2 MB = 1.2 * 1,000,000 = 1,200,000 bytes.\n\n(i) **Number of packets:**\nNumber of packets = Total file size / Payload size per packet\n= 1,200,000 / 1500\n= 800 packets. [1 mark]\n\n(ii) **Total size of headers:**\nTotal header size = Number of packets * Header size per packet\n= 800 * 40 bytes\n= 32,000 bytes (or 32 KB). [1 mark]\n\n(iii) **Total data transmitted:**\nTotal data = Original file size + Total header size\n= 1,200,000 bytes + 32,000 bytes\n= 1,232,000 bytes (or 1.232 MB). [1 mark]\n\n(iv) **Transmission efficiency:**\nEfficiency = (Useful data / Total data transmitted) * 100\n= (1,200,000 / 1,232,000) * 100\n= 0.9740 * 100\n≈ 97.4%. [1 mark for correct calculation and answer]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Switching Methods",
+      "href": "/mark?subject=9618&topic=14.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International AS and A Level Computer Science 9618 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

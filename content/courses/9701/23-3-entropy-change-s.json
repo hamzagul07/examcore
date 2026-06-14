@@ -4,39 +4,225 @@
   "title": "Entropy change, ΔS",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level entropy — disorder, ΔS signs, and combining with enthalpy for feasibility with PhET gas properties.",
+  "status": "pilot",
+  "summary": "This lesson introduces entropy (ΔS) as a measure of disorder or energy dispersal. You will learn to predict the sign of entropy changes, calculate them using standard values, and understand their crucial role in determining the feasibility of chemical reactions.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define entropy and explain it as a measure of disorder.",
-    "Predict the sign of ΔS for physical and chemical changes.",
-    "Calculate ΔS from standard entropy values.",
-    "Relate entropy to feasibility via Gibbs free energy."
+    "Define entropy (S) as a measure of the dispersal of energy and matter (disorder).",
+    "Predict the sign of the entropy change (ΔS) for physical and chemical processes.",
+    "Calculate the standard entropy change for a reaction (ΔS°_reaction) using standard entropy values (S°).",
+    "Understand the role of the entropy term (TΔS) in the Gibbs free energy equation."
   ],
   "simpleExplanation": {
-    "title": "Disorder and spontaneity",
-    "summary": "Entropy increases when particles spread out or disorder increases. Gases have much higher S than solids.",
+    "title": "The Rule of Randomness",
+    "summary": "Entropy is simply a scientific measure of messiness or disorder. The universe naturally tends towards more disorder, and this tendency helps drive chemical reactions.",
+    "analogy": "Imagine your bedroom. It takes effort (energy) to keep it tidy and organised (low entropy). If you stop tidying, it naturally becomes messy over time, with clothes and books spread around (high entropy). This natural drift towards disorder is like a positive entropy change.",
     "steps": [
-      "ΔS > 0: more moles of gas, melting, boiling.",
-      "ΔS < 0: gas → liquid, polymerisation.",
-      "ΔS = ΣS(products) − ΣS(reactants).",
-      "High T makes TΔS term dominate in ΔG = ΔH − TΔS."
+      "Entropy (S) measures disorder. More possible arrangements of particles (microstates) mean higher entropy. Gases have much higher entropy than solids.",
+      "A positive entropy change (ΔS > 0) means disorder has increased. This happens in melting, boiling, or when a reaction produces more gas molecules.",
+      "We calculate the standard entropy change for a reaction using data tables: ΔS° = ΣS°(products) − ΣS°(reactants). A key factor is the change in moles of gas.",
+      "Entropy's true power is revealed in the Gibbs free energy equation, ΔG = ΔH − TΔS. A large positive ΔS can make a reaction feasible, even if it's endothermic (ΔH > 0)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is entropy (S)?",
+      "back": "A measure of the degree of disorder or randomness in a system. More formally, it's a measure of the dispersal of energy and matter among the available microstates."
+    },
+    {
+      "front": "What are the standard units for entropy (S°) and entropy change (ΔS°)?",
+      "back": "Joules per Kelvin per mole (J K⁻¹ mol⁻¹). This is a common trap in calculations!"
+    },
+    {
+      "front": "What does a positive ΔS value signify?",
+      "back": "The system has become more disordered. The products are more random than the reactants."
+    },
+    {
+      "front": "What does a negative ΔS value signify?",
+      "back": "The system has become more ordered. The products are less random than the reactants."
+    },
+    {
+      "front": "Predict the sign of ΔS for H₂O(l) → H₂O(g).",
+      "back": "Positive (ΔS > 0). A gas is significantly more disordered than a liquid."
+    },
+    {
+      "front": "Predict the sign of ΔS for N₂(g) + 3H₂(g) → 2NH₃(g).",
+      "back": "Negative (ΔS < 0). The reaction goes from 4 moles of gas to 2 moles of gas, a significant decrease in disorder."
+    },
+    {
+      "front": "What is the formula for calculating the standard entropy change of a reaction?",
+      "back": "ΔS°_reaction = ΣS°(products) - ΣS°(reactants). (The sum of the standard entropies of the products minus the sum of the standard entropies of the reactants)."
+    },
+    {
+      "front": "Why is the standard entropy of an element in its standard state NOT zero?",
+      "back": "Unlike standard enthalpy of formation, standard entropy (S°) is an absolute value based on the Third Law of Thermodynamics. Only a perfect crystal at 0 K has zero entropy."
+    },
+    {
+      "front": "What is the most common calculation error when using the Gibbs free energy equation, ΔG = ΔH - TΔS?",
+      "back": "A units mismatch. ΔH is usually given in kJ mol⁻¹, while ΔS is in J K⁻¹ mol⁻¹. You must convert one to match the other, typically by multiplying ΔH by 1000."
+    },
+    {
+      "front": "What must be done to the temperature in °C before using it in TΔS?",
+      "back": "It must be converted to Kelvin (K) by adding 273. T(K) = T(°C) + 273."
+    },
+    {
+      "front": "How does dissolving an ionic solid, like NaCl, in water affect entropy?",
+      "back": "It generally leads to a positive entropy change (ΔS > 0). The highly ordered crystal lattice is broken down, and the ions become free to move in the solution, which is a large increase in disorder."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can the absolute entropy (S) of a substance be negative?",
+      "a": "No. The absolute entropy (S°) of a substance is always a positive value. This is based on the Third Law of Thermodynamics, which states that the entropy of a perfect crystal at absolute zero (0 K) is zero. As temperature increases or the substance becomes less ordered, entropy can only increase from this zero point."
+    },
+    {
+      "q": "Can the entropy change (ΔS) for a reaction be negative?",
+      "a": "Yes, absolutely. A negative ΔS means the system has become more ordered. For example, in the reaction 2H₂(g) + O₂(g) → 2H₂O(l), three moles of gas turn into two moles of liquid. This is a significant decrease in disorder, so ΔS is negative."
+    },
+    {
+      "q": "If the universe tends towards disorder (positive entropy), how can ordered structures like living organisms exist?",
+      "a": "This is a classic question! Living organisms are highly ordered systems (low entropy). They maintain this order by taking in energy from their surroundings (e.g., food or sunlight) and, in the process of using that energy, they release heat and waste products, causing a much larger increase in the entropy of their surroundings. The total entropy of the universe (organism + surroundings) still increases, satisfying the Second Law of Thermodynamics."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Entropy** (23.3) pairs with **Gibbs free energy** (23.4). Examiners ask for **sign of ΔS** with a **one-line reason** — count gas moles and state changes."
+      "content": "So far, you've learned that exothermic reactions (negative ΔH) are often spontaneous. But what about endothermic reactions that happen anyway, like an ice pack getting cold? There must be another factor at play. This second driving force for chemical change is entropy, a measure of the universe's relentless march towards disorder."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Entropy"
+    },
+    {
+      "type": "text",
+      "content": "Entropy, symbolised by $S$, is a thermodynamic quantity that measures the degree of randomness or disorder in a system. A system with high entropy has its particles and energy spread out in many different ways (many microstates), whereas a system with low entropy is highly ordered and has few possible arrangements. The standard entropy of a substance, $S^\\circ$, is its entropy content per mole under standard conditions (298 K and 100 kPa). Its units are joules per Kelvin per mole ($J K^{-1} mol^{-1}$)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**State of Matter:** Entropy increases significantly from solid to liquid to gas. $S(gas) \\gg S(liquid) > S(solid)$.",
+        "**Number of Moles:** For reactions involving gases, an increase in the number of moles of gas leads to a large increase in entropy.",
+        "**Complexity:** More complex molecules with more atoms and bonds tend to have higher entropy than simpler ones because there are more ways for them to vibrate and rotate.",
+        "**Temperature:** Increasing the temperature of a substance increases its entropy as particles have more kinetic energy and move more randomly."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Predicting the Sign of Entropy Change (ΔS)"
+    },
+    {
+      "type": "text",
+      "content": "The entropy change, $ΔS$, is the difference between the entropy of the final state and the initial state. We can often predict its sign without calculation. A process that increases disorder has a positive $ΔS$, while a process that increases order has a negative $ΔS$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Positive ΔS (Increase in disorder):** Melting (solid → liquid), boiling (liquid → gas), sublimation (solid → gas), dissolving a solid, and reactions that produce more moles of gas.",
+        "**Negative ΔS (Decrease in disorder):** Freezing (liquid → solid), condensation (gas → liquid), and reactions that consume gas or reduce the number of moles of gas."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Standard Entropy Change, ΔS°"
+    },
+    {
+      "type": "text",
+      "content": "For any chemical reaction, the standard entropy change ($ΔS^\\circ_{reaction}$) can be calculated quantitatively using the standard molar entropies ($S^\\circ$) of the reactants and products, which are found in data booklets. Remember that unlike standard enthalpies of formation, the standard entropies of elements are not zero."
+    },
+    {
+      "type": "formula",
+      "content": "$\\Delta S^\\circ_{reaction} = \\Sigma S^\\circ(\\text{products}) - \\Sigma S^\\circ(\\text{reactants})$"
+    },
+    {
+      "type": "text",
+      "content": "Where Σ (sigma) means 'the sum of'. You must multiply the $S^\\circ$ value for each substance by its stoichiometric coefficient in the balanced equation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard entropy change for the synthesis of ammonia (the Haber process) at 298 K. <br> N₂(g) + 3H₂(g) ⇌ 2NH₃(g) <br> Standard molar entropies ($S^\\circ$) in J K⁻¹ mol⁻¹: <br> N₂(g) = 191.6 <br> H₂(g) = 130.7 <br> NH₃(g) = 192.8",
+      "solution": "1. **Identify products and reactants:**\n   Products: 2NH₃(g)\n   Reactants: N₂(g), 3H₂(g)\n\n2. **Write the formula:**\n   $ΔS^\\circ_{reaction} = ΣS^\\circ(products) - ΣS^\\circ(reactants)$\n\n3. **Substitute values, including stoichiometry:**\n   $ΔS^\\circ = [2 \\times S^\\circ(\\text{NH}_3)] - [ (1 \\times S^\\circ(\\text{N}_2)) + (3 \\times S^\\circ(\\text{H}_2)) ]$\n   $ΔS^\\circ = [2 \\times 192.8] - [191.6 + (3 \\times 130.7)]$\n\n4. **Calculate the sums for products and reactants:**\n   $ΣS^\\circ(products) = 385.6 \\text{ J K}^{-1}$\n   $ΣS^\\circ(reactants) = 191.6 + 392.1 = 583.7 \\text{ J K}^{-1}$\n\n5. **Calculate the final ΔS°:**\n   $ΔS^\\circ = 385.6 - 583.7 = -198.1 \\text{ J K}^{-1} \\text{mol}^{-1}$\n\n**Comment:** The entropy change is negative, which is expected as 4 moles of gas react to form only 2 moles of gas, representing a significant increase in order."
+    },
+    {
+      "type": "examTip",
+      "content": "The number one mistake students make is with units. Enthalpy changes ($ΔH$) are almost always in **kJ mol⁻¹**, but entropy changes ($ΔS$) are in **J K⁻¹ mol⁻¹**. When you use these together in the Gibbs free energy equation ($ΔG = ΔH - TΔS$), you MUST convert them to the same energy unit. The easiest way is to multiply the $ΔH$ value by 1000 to convert it to J mol⁻¹."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the standard entropy change for the thermal decomposition of calcium carbonate at 298 K. <br> CaCO₃(s) → CaO(s) + CO₂(g) <br> Standard molar entropies ($S^\\circ$) in J K⁻¹ mol⁻¹: <br> CaCO₃(s) = 92.9 <br> CaO(s) = 38.1 <br> CO₂(g) = 213.8",
+      "solution": "1. **Identify products and reactants:**\n   Products: CaO(s), CO₂(g)\n   Reactants: CaCO₃(s)\n\n2. **Write the formula:**\n   $ΔS^\\circ_{reaction} = ΣS^\\circ(products) - ΣS^\\circ(reactants)$\n\n3. **Substitute values:**\n   $ΔS^\\circ = [ (1 \\times S^\\circ(\\text{CaO})) + (1 \\times S^\\circ(\\text{CO}_2)) ] - [1 \\times S^\\circ(\\text{CaCO}_3)]$\n   $ΔS^\\circ = [38.1 + 213.8] - [92.9]$\n\n4. **Calculate the sums:**\n   $ΣS^\\circ(products) = 251.9 \\text{ J K}^{-1}$\n   $ΣS^\\circ(reactants) = 92.9 \\text{ J K}^{-1}$\n\n5. **Calculate the final ΔS°:**\n   $ΔS^\\circ = 251.9 - 92.9 = +159.0 \\text{ J K}^{-1} \\text{mol}^{-1}$\n\n**Comment:** The entropy change is large and positive. This is dominated by the production of one mole of gas from solid reactants, leading to a massive increase in disorder."
+    },
+    {
+      "type": "heading",
+      "content": "Entropy and Spontaneity"
+    },
+    {
+      "type": "text",
+      "content": "Entropy change is a key component in determining whether a reaction is spontaneous (or 'feasible'). The Second Law of Thermodynamics states that for a process to be spontaneous, the total entropy of the universe (system + surroundings) must increase. This is combined with enthalpy into a single, powerful equation for Gibbs Free Energy, $ΔG = ΔH - TΔS$, which we will explore in the next topic. A large, positive $ΔS$ can make a reaction feasible even if it is endothermic ($ΔH > 0$), especially at high temperatures where the '$TΔS$' term becomes dominant."
     },
     {
       "type": "practice",
-      "label": "Mark an entropy question",
+      "label": "Practice Questions: Entropy Change",
       "href": "/mark?subject=9701&topic=23.3"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "ChemGuide page on Entropy",
+          "href": "https://www.chemguide.co.uk/physical/energetics/entropy.html"
+        },
+        {
+          "label": "Khan Academy: Introduction to Entropy",
+          "href": "https://www.khanacademy.org/science/chemistry/thermodynamics-chemistry/entropy-chemistry/v/introduction-to-entropy"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Gas properties",
+    "embedUrl": "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/gas-properties",
+    "hint": "Disorder and particle spread — link microstates to ΔS sign (23.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Entropy S: measure of disorder — more microstates = higher S.",
+        "embedHint": "Gas > liquid > solid for same substance."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "ΔS positive when disorder increases (e.g. solid → gas).",
+        "embedHint": "Melting and boiling have positive ΔS."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "ΔS = S(products) − S(reactants) from tables.",
+        "embedHint": "More moles of gas usually increases ΔS."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Combine with ΔH in ΔG = ΔH − TΔS for feasibility.",
+        "embedHint": "Endothermic reactions feasible if ΔS large and T high."
+      }
+    ]
+  }
 }

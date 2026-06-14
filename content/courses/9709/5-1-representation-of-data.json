@@ -4,39 +4,230 @@
   "title": "Representation of data",
   "paper": "P5",
   "paperName": "Probability & Statistics 1",
-  "status": "premium",
-  "summary": "9709 S1 — histograms, cumulative frequency, mean, median, and spread for grouped data with GeoGebra.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson covers the fundamental techniques for representing and summarising data as required for Cambridge A-Level Probability & Statistics 1. It focuses on constructing and interpreting stem-and-leaf diagrams, histograms, and cumulative frequency graphs. Key skills include calculating estimates for the mean and standard deviation from grouped data, and determining the median and interquartile range to compare distributions effectively.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Construct and interpret histograms with unequal class widths.",
-    "Calculate mean and estimate median from grouped data.",
-    "Draw and use cumulative frequency curves.",
-    "Compare distributions using centre and spread measures."
+    "Represent numerical data using stem-and-leaf diagrams, histograms, and cumulative frequency graphs.",
+    "Calculate estimates for the mean and standard deviation from grouped data.",
+    "Estimate the median, quartiles, and interquartile range from a cumulative frequency graph.",
+    "Compare and contrast data sets using appropriate measures of central tendency and spread."
   ],
   "simpleExplanation": {
-    "title": "Describing data sets",
-    "summary": "Grouped data uses class midpoints for estimates. Frequency density = frequency ÷ class width for histograms.",
+    "title": "Decoding Data Displays",
+    "summary": "We turn long lists of numbers into clear pictures like histograms and box plots. These visuals help us quickly grasp the data's story by showing its centre, spread, and shape.",
+    "analogy": "Imagine you've just bought a massive box of assorted chocolates. To understand what you have, you wouldn't just stare at the pile. You'd group them by type (caramel, nut, dark, milk), count how many of each you have, and maybe find the 'average' chocolate. Representing data is the same: we group, count, and summarise numbers to make sense of them, finding the average value (mean) or the middle value (median).",
     "steps": [
-      "Histogram: area ∝ frequency — use frequency density on y-axis.",
-      "Mean ≈ Σfx / Σf with x = class midpoint.",
-      "Median: n/2 on cumulative frequency graph.",
-      "IQR = Q₃ − Q₁ from quartile positions."
+      "First, group raw data into classes. For a histogram, calculate frequency density (frequency divided by class width) to determine the bar height, ensuring area represents frequency.",
+      "To estimate the mean from grouped data, use the midpoint of each class as a representative value. The formula is the sum of (midpoint × frequency) divided by the total frequency.",
+      "Plot a cumulative frequency curve (ogive) to find the median. Locate the position of the median at n/2 on the vertical axis, then read across to the curve and down to the horizontal axis.",
+      "Finally, measure the data's spread. Calculate the interquartile range (IQR) from the ogive or use your calculator for standard deviation to compare how consistent or varied different datasets are."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a key difference between a histogram and a bar chart?",
+      "back": "A histogram is for continuous data with no gaps between bars, and the area of each bar is proportional to frequency. A bar chart is for discrete or categorical data and has gaps between bars."
+    },
+    {
+      "front": "What is the formula for Frequency Density?",
+      "back": "Frequency Density = Frequency / Class Width. This is used as the vertical axis for a histogram with unequal class widths."
+    },
+    {
+      "front": "What are class boundaries?",
+      "back": "The exact values that separate one class from the next in grouped continuous data. For example, for classes 10-14 and 15-19, the boundary is 14.5."
+    },
+    {
+      "front": "How do you find the mid-point of a class interval?",
+      "back": "Add the upper and lower class boundaries and divide by 2. For a class 10 ≤ x < 20, the midpoint is (10 + 20) / 2 = 15."
+    },
+    {
+      "front": "What is the formula for the estimated mean of grouped data?",
+      "back": "$\\bar{x} \\approx \\frac{\\sum fx}{\\sum f}$, where $x$ is the mid-point of each class and $f$ is the frequency of that class."
+    },
+    {
+      "front": "What is a cumulative frequency graph also known as?",
+      "back": "An ogive."
+    },
+    {
+      "front": "How do you plot a cumulative frequency graph?",
+      "back": "Plot the cumulative frequency on the y-axis against the upper class boundary of each class on the x-axis. The first point is (lower boundary of first class, 0)."
+    },
+    {
+      "front": "How do you estimate the median from a cumulative frequency graph?",
+      "back": "Find the position of the (n/2)th value on the cumulative frequency axis, read across to the curve, and then read down to the horizontal axis."
+    },
+    {
+      "front": "How do you find the Interquartile Range (IQR) from a cumulative frequency graph?",
+      "back": "Find the values for the upper quartile (Q3 at 3n/4) and lower quartile (Q1 at n/4) from the graph. The IQR is Q3 - Q1."
+    },
+    {
+      "front": "What are the five key values summarised in a box-and-whisker plot?",
+      "back": "Minimum value, Lower Quartile (Q1), Median (Q2), Upper Quartile (Q3), and Maximum value."
+    },
+    {
+      "front": "Common Trap: When calculating the mean from a grouped frequency table, what value must you use for 'x' in Σfx?",
+      "back": "You must use the class mid-point. Using the lower/upper boundary or the class width is a common error."
+    },
+    {
+      "front": "When comparing two datasets, what two features must you always comment on?",
+      "back": "You must compare a measure of central tendency (e.g., median or mean) and a measure of spread (e.g., IQR or standard deviation)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between a histogram and a bar chart?",
+      "a": "A histogram is used for continuous data grouped into intervals, and the bars must touch. The area of each bar represents frequency. A bar chart is for discrete or categorical data, and the bars have gaps between them. The height of each bar represents frequency."
+    },
+    {
+      "q": "Why do we use midpoints to estimate the mean of grouped data?",
+      "a": "When data is grouped, we lose the original individual values. The midpoint of a class is our best estimate for the average value of all the data points within that class. By using it, we can calculate a weighted average that provides a good approximation of the true mean."
+    },
+    {
+      "q": "When should I use the median/IQR versus the mean/standard deviation to compare data?",
+      "a": "Use the median and IQR when the data is skewed or contains significant outliers. The median is a 'resistant' measure, meaning it's not heavily influenced by extreme values. Use the mean and standard deviation when the data is roughly symmetrical and free from major outliers, as they use all data points in their calculation and are often more powerful."
+    },
+    {
+      "q": "On a cumulative frequency graph, why do we plot points at the upper class boundary?",
+      "a": "The cumulative frequency for a given class represents the total count of all data points up to and including that class. Therefore, this total is reached at the very end of the class interval, which is the upper class boundary. The graph starts at the lower boundary of the first class with a cumulative frequency of zero."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Representation of data** (5.1) opens Statistics 1. Watch **class boundaries** vs **widths** — histogram errors are common."
+      "content": "In statistics, we are often confronted with large sets of raw data. Simply looking at a list of numbers makes it difficult to spot patterns, trends, or significant features. This topic introduces the essential methods for organising, summarising, and visually representing data. Mastering these techniques will allow you to extract meaningful information and make valid comparisons between different datasets, a core skill in statistics."
+    },
+    {
+      "type": "heading",
+      "content": "Stem-and-Leaf Diagrams"
+    },
+    {
+      "type": "text",
+      "content": "A stem-and-leaf diagram is a simple but effective way to display quantitative data while retaining the original data values. It separates each data point into a 'stem' (the leading digit or digits) and a 'leaf' (the final digit). The stems are listed vertically, and the leaves are listed horizontally next to their corresponding stem. It's crucial to include a key to explain how to read the diagram. For comparing two datasets, a back-to-back stem-and-leaf diagram can be used, with a central stem and leaves for each dataset branching out on either side."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Shows the shape of the distribution (e.g., symmetry, skewness).",
+        "Retains all original data values.",
+        "Data is ordered, which makes finding the median and quartiles straightforward.",
+        "Always include a key (e.g., 5 | 2 represents 52)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Histograms for Grouped Continuous Data"
+    },
+    {
+      "type": "text",
+      "content": "When data is continuous and has been grouped into class intervals, a histogram is the appropriate diagram. Unlike a bar chart, there are no gaps between the bars. A crucial feature of a histogram is that the area of each bar is proportional to the frequency of that class. If the class widths are all equal, the heights of the bars are proportional to the frequencies. However, if the class widths are unequal, you must calculate and plot frequency density on the vertical axis."
+    },
+    {
+      "type": "formula",
+      "content": "Frequency Density = \\frac{\\text{Frequency}}{\\text{Class Width}}"
+    },
+    {
+      "type": "text",
+      "content": "To estimate the mean from a grouped frequency table, we assume that all the data values within a class are evenly distributed and can be represented by the mid-point of that class. We then calculate a weighted average."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Estimated Mean } (\\bar{x}) \\approx \\frac{\\sum fx}{\\sum f}"
+    },
+    {
+      "type": "workedExample",
+      "question": "The times, $t$ minutes, taken by 80 people to complete a crossword puzzle are summarised in the table below. \n\n| Time (t mins) | Frequency | \n|---|---|\n| 10 ≤ t < 15 | 10 |\n| 15 ≤ t < 25 | 30 |\n| 25 ≤ t < 35 | 25 |\n| 35 ≤ t < 50 | 15 |\n\n(i) Draw a histogram to represent this information. \n(ii) Calculate an estimate for the mean time taken.",
+      "solution": "(i) First, we need to calculate the class widths and frequency densities for the unequal class intervals.\n\n| Time (t mins) | Class Width | Frequency | Frequency Density (f/cw) |\n|---|---|---|---|\n| 10 ≤ t < 15 | 5 | 10 | 10/5 = 2.0 |\n| 15 ≤ t < 25 | 10 | 30 | 30/10 = 3.0 |\n| 25 ≤ t < 35 | 10 | 25 | 25/10 = 2.5 |\n| 35 ≤ t < 50 | 15 | 15 | 15/15 = 1.0 |\n\nThe histogram is drawn with 'Time (t mins)' on the horizontal axis and 'Frequency Density' on the vertical axis. The bars have widths 5, 10, 10, 15 and heights 2.0, 3.0, 2.5, 1.0 respectively. There are no gaps between the bars.\n\n(ii) To estimate the mean, we need the mid-point ($x$) of each class.\n\n| Time (t mins) | Mid-point (x) | Frequency (f) | fx |\n|---|---|---|---|\n| 10 ≤ t < 15 | 12.5 | 10 | 125 |\n| 15 ≤ t < 25 | 20 | 30 | 600 |\n| 25 ≤ t < 35 | 30 | 25 | 750 |\n| 35 ≤ t < 50 | 42.5 | 15 | 637.5 |\n\nTotal frequency, $\\sum f = 10+30+25+15 = 80$.\nTotal $fx$, $\\sum fx = 125 + 600 + 750 + 637.5 = 2112.5$.\n\nEstimated Mean, $\\bar{x} = \\frac{\\sum fx}{\\sum f} = \\frac{2112.5}{80} = 26.40625$.\n\nSo, the estimated mean time is **26.4 minutes** (to 3 s.f.)."
+    },
+    {
+      "type": "heading",
+      "content": "Cumulative Frequency, Quartiles, and Box Plots"
+    },
+    {
+      "type": "text",
+      "content": "A cumulative frequency graph, or ogive, is a running total of the frequencies. It is plotted using the upper class boundary of each interval against the cumulative frequency. These graphs are extremely useful for estimating values that relate to position in the dataset, most notably the median ($Q_2$), the lower quartile ($Q_1$), and the upper quartile ($Q_3$). The median is the value of the middle data point, while the quartiles divide the data into four equal parts."
+    },
+    {
+      "type": "text",
+      "content": "The difference between the upper and lower quartiles is the Interquartile Range (IQR), a robust measure of spread that is not affected by extreme outliers. A box-and-whisker plot provides a concise visual summary of the data using five key values: the minimum value, $Q_1$, the median, $Q_3$, and the maximum value. They are excellent for comparing the distributions of two or more datasets side-by-side."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Interquartile Range (IQR)} = Q_3 - Q_1"
+    },
+    {
+      "type": "workedExample",
+      "question": "The cumulative frequency graph shows the heights, in cm, of 120 plants.\n\n(A cumulative frequency graph is shown, starting at (0,0), passing through (10, 20), (20, 70), (30, 105), (40, 120). The x-axis is 'Height (cm)' and the y-axis is 'Cumulative Frequency'.)\n\n(i) Use the graph to estimate the median height.\n(ii) Estimate the interquartile range of the heights.\n(iii) It was found that the shortest plant was 5 cm and the tallest was 38 cm. Draw a box-and-whisker plot to represent the data.",
+      "solution": "(i) The total number of plants is $n=120$. The median is the value of the $(n/2)$th plant, which is the 60th plant.\nReading from 60 on the cumulative frequency axis across to the curve and down to the height axis gives an estimated median.\nMedian ($Q_2$) ≈ **18 cm**.\n\n(ii) The lower quartile ($Q_1$) is at the $(n/4)$th position = 120/4 = 30th plant.\nReading from 30 on the y-axis gives $Q_1 \\approx$ **12 cm**.\nThe upper quartile ($Q_3$) is at the $(3n/4)$th position = 3*120/4 = 90th plant.\nReading from 90 on the y-axis gives $Q_3 \\approx$ **25 cm**.\n\nInterquartile Range (IQR) = $Q_3 - Q_1 \\approx 25 - 12 = 13$ cm.\nSo, the estimated IQR is **13 cm**.\n\n(iii) We have the five-number summary:\nMinimum = 5 cm\nLower Quartile ($Q_1$) = 12 cm\nMedian ($Q_2$) = 18 cm\nUpper Quartile ($Q_3$) = 25 cm\nMaximum = 38 cm\n\nA box-and-whisker plot is drawn with a horizontal scale from 0 to 40. \nA box is drawn from $Q_1=12$ to $Q_3=25$. \nA vertical line is drawn inside the box at the median, $M=18$. \nWhiskers are drawn from the box to the minimum value (5) and the maximum value (38)."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to compare two distributions, you must give two distinct points of comparison. One must be a measure of central tendency (e.g., 'The median time for Group A was higher than for Group B, suggesting they were slower on average'). The second must be a measure of spread (e.g., 'The IQR for Group A was smaller, suggesting their times were more consistent'). Simply stating the values is not enough; you must interpret what they mean in the context of the question."
     },
     {
       "type": "practice",
-      "label": "Mark a data representation question",
+      "label": "Practice Questions: Representation of Data",
       "href": "/mark?subject=9709&topic=5.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Cambridge International AS & A Level Mathematics 9709",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Data Representation on Khan Academy",
+          "href": "https://www.khanacademy.org/math/statistics-probability/displaying-describing-data"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Data distribution explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "launchUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "hint": "Histograms, mean, median, and spread — interpret grouped data (9709 5.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Grouped data: class boundaries, midpoints, frequency density.",
+        "embedHint": "Histogram height = frequency / class width."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Mean of grouped data: Σfx / Σf with midpoints.",
+        "embedHint": "Estimate using class centres."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Median class from cumulative frequency curve.",
+        "embedHint": "n/2 position on ogive."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Measure spread: range, IQR, standard deviation (calculator).",
+        "embedHint": "Compare two distributions by centre and spread."
+      }
+    ]
+  }
 }

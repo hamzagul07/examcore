@@ -4,29 +4,186 @@
   "title": "Multimedia - Sound",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 — sampling, bit depth, sample rate, and sound file size.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "Explore how continuous analogue sound waves are converted into discrete digital data. This lesson covers sampling, sampling rate, sampling resolution, and how to calculate the file size of a digital audio file.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Explain analogue to digital conversion of sound.",
-    "Define sample rate and bit depth.",
-    "Calculate uncompressed audio file size.",
-    "Describe effects of sampling parameters on quality."
+    "Describe the process of converting analogue sound into a digital format using sampling.",
+    "Explain the impact of sampling rate and sampling resolution on sound quality and file size.",
+    "Calculate the file size of an uncompressed sound file based on its properties.",
+    "Understand the principles of Nyquist's Theorem in relation to sampling."
   ],
   "simpleExplanation": {
-    "title": "Digitising sound waves",
-    "summary": "Sound is sampled at intervals. Each sample stores amplitude as a binary value. Higher rate and depth improve quality but increase file size.",
+    "title": "From Wave to Bits",
+    "summary": "Computers can't store smooth sound waves directly, so they take quick snapshots of the wave's height and record them as numbers. The more snapshots you take, and the more precise the numbers are, the better the digital sound quality.",
+    "analogy": "Imagine trying to copy a curvy line onto a piece of graph paper. You can't draw the smooth curve, but you can put dots on the grid where the curve passes. To play the sound back, you just connect the dots. The more dots you plot (sampling rate) and the finer the grid lines (sampling resolution), the closer your dot-to-dot drawing will be to the original smooth curve.",
     "steps": [
-      "Sample rate: samples per second (Hz).",
-      "Bit depth: bits per sample.",
-      "Size = rate × depth × channels × duration.",
-      "Nyquist: sample at ≥ 2× highest frequency."
+      "Start with the original analogue sound wave, which is continuous.",
+      "At regular, tiny time intervals, measure the amplitude (height) of the wave. This is called sampling.",
+      "Each measurement is approximated to the nearest available level, a process called quantisation.",
+      "This level is then stored as a binary number. The number of bits used determines the precision."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is sampling in the context of sound?",
+      "back": "The process of taking measurements of the amplitude of an analogue sound wave at regular time intervals. These measurements are then converted into digital values."
+    },
+    {
+      "front": "What is Sampling Rate?",
+      "back": "The number of samples taken per second. It is measured in Hertz (Hz) or Kilohertz (kHz). A higher sampling rate results in a more accurate representation of the sound wave, higher quality, and a larger file size."
+    },
+    {
+      "front": "What is Sampling Resolution (or Bit Depth)?",
+      "back": "The number of bits used to store the value of each sample's amplitude. A higher resolution allows for more distinct amplitude levels, resulting in better dynamic range, lower noise, and a larger file size."
+    },
+    {
+      "front": "What is an Analogue-to-Digital Converter (ADC)?",
+      "back": "An electronic device that converts a continuous analogue signal (like sound from a microphone) into a discrete digital signal through the process of sampling and quantisation."
+    },
+    {
+      "front": "What is a Digital-to-Analogue Converter (DAC)?",
+      "back": "An electronic device that converts a digital signal back into an analogue signal, which can then be output through speakers or headphones."
+    },
+    {
+      "front": "What is quantisation?",
+      "back": "The process of mapping the infinite possible values of a sample's amplitude to a finite set of discrete values, determined by the sampling resolution. It's essentially 'rounding' the measurement to the nearest available level."
+    },
+    {
+      "front": "What is quantisation error?",
+      "back": "The difference between the actual amplitude of the analogue sample and the value it is rounded to during quantisation. This can be perceived as a hissing or background noise, especially at low bit depths."
+    },
+    {
+      "front": "State Nyquist's Theorem.",
+      "back": "The sampling rate must be at least twice the highest frequency present in the original analogue signal to be able to accurately reconstruct it. For example, to capture a 20,000 Hz sound, you must sample at least 40,000 Hz."
+    },
+    {
+      "front": "What is the formula for calculating the file size of an uncompressed audio file?",
+      "back": "File Size (bits) = Sampling Rate (Hz) × Sampling Resolution (bits) × Time (seconds) × Number of Channels (e.g., 1 for mono, 2 for stereo)."
+    },
+    {
+      "front": "If you double the sampling rate of an audio file, what happens to its file size?",
+      "back": "The file size will also double, assuming all other factors (resolution, duration, channels) remain the same."
+    },
+    {
+      "front": "What is the difference between Sampling Rate and Bit Rate?",
+      "back": "Sampling Rate (Hz) is how often a sample is taken. Bit Rate (bits per second) is the total amount of data used to represent one second of audio. Bit Rate = Sampling Rate × Sampling Resolution × Channels."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why not just use the highest possible sampling rate and resolution all the time?",
+      "a": "It's a trade-off between quality and file size. While higher rates and resolutions produce better quality audio, they also create significantly larger files. This has major implications for storage space and transmission bandwidth, especially for streaming services or portable devices. The chosen settings are often a compromise to achieve 'good enough' quality for the intended purpose with a manageable file size."
+    },
+    {
+      "q": "What is the difference between bit depth and bit rate?",
+      "a": "They are related but distinct. **Bit depth** (or sampling resolution) is the number of bits per sample (e.g., 16-bit). **Bit rate** is the total number of bits processed per second (measured in bps or kbps). You can calculate the bit rate for uncompressed audio using: Bit Rate = Sampling Rate × Bit Depth × Number of Channels. So, bit depth is a component used to calculate the overall bit rate."
+    },
+    {
+      "q": "Does this apply to MP3 files?",
+      "a": "The principles of sampling and quantisation are the foundation for all digital audio, including MP3s. However, the file size calculation formula only works for uncompressed audio like WAV or AIFF. MP3 is a compressed format that uses clever algorithms to remove data that humans are unlikely to hear, resulting in a much smaller file size than the formula would suggest."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Multimedia sound** (1.2.2) mirrors **graphics file sizing**. Show **formula with units** in calculations." },
-    { "type": "practice", "label": "Mark a sound question", "href": "/mark?subject=9618&topic=1.2.2" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Sound in the real world, from a spoken word to a musical instrument, is analogue. It's a continuous wave of pressure travelling through a medium like air. Computers, however, are digital machines that only understand discrete values—specifically, 0s and 1s. This lesson explores the fundamental process of converting rich, analogue sound into a digital format that a computer can store, process, and play back."
+    },
+    {
+      "type": "heading",
+      "content": "From Analogue Waves to Digital Data"
+    },
+    {
+      "type": "text",
+      "content": "To digitise sound, we must convert the continuous analogue wave into a series of discrete numerical values. This crucial task is performed by an **Analogue-to-Digital Converter (ADC)**. The microphone captures the sound wave and converts it into an analogue electrical signal. The ADC then takes this signal and transforms it into a stream of binary data that the computer can understand. To play the sound, the process is reversed by a **Digital-to-Analogue Converter (DAC)**, which turns the binary data back into an analogue signal sent to your speakers."
+    },
+    {
+      "type": "heading",
+      "content": "The Process of Sampling"
+    },
+    {
+      "type": "text",
+      "content": "The core of digitisation is **sampling**. This involves measuring the amplitude (height) of the sound wave at very regular time intervals. The frequency at which these samples are taken is called the **sampling rate**, measured in Hertz (Hz). For example, a sampling rate of 44,100 Hz (or 44.1 kHz), the standard for CD audio, means that the sound wave's amplitude is measured 44,100 times every second."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Higher Sampling Rate:** More samples are taken per second, creating a more accurate representation of the original wave. This leads to higher fidelity sound but also a larger file size.",
+        "**Lower Sampling Rate:** Fewer samples are taken, potentially missing details of the wave. This results in lower quality sound but a smaller file size."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Quantisation and Sampling Resolution"
+    },
+    {
+      "type": "text",
+      "content": "Once a sample is taken, its amplitude must be recorded as a number. This is where **sampling resolution** (also known as **bit depth**) comes in. The resolution determines how many bits are used to store the value for each sample. This process of assigning a discrete numerical value to each sample's amplitude is called **quantisation**. A higher bit depth provides a greater number of possible values to represent the amplitude, allowing for a more precise measurement."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An n-bit resolution provides $2^n$ possible levels. For example, 8-bit audio has $2^8 = 256$ levels, while 16-bit audio has $2^{16} = 65,536$ levels.",
+        "**Higher Resolution (Bit Depth):** Results in a greater dynamic range (the difference between the quietest and loudest sounds) and less quantisation error (noise). The file size increases.",
+        "**Lower Resolution (Bit Depth):** Fewer levels are available, which can lead to quantisation error being audible as a hiss or distortion. The file size is smaller."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Sound File Size"
+    },
+    {
+      "type": "text",
+      "content": "For uncompressed audio formats like WAV, the file size can be calculated directly from its properties. It's a product of how often you sample, how much data each sample holds, the duration of the audio, and the number of audio channels."
+    },
+    {
+      "type": "formula",
+      "content": "File Size (bits) = Sampling Rate (Hz) $\\times$ Sampling Resolution (bits) $\\times$ Time (s) $\\times$ Channels"
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners love file size calculations. Always show your full working, including the formula. Pay close attention to units: convert kHz to Hz, minutes to seconds, and be careful when asked for the final answer in bytes, KB, MB, or GiB. Remember that 1 KB = 1024 bytes, not 1000, unless the question specifies otherwise."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the file size in kilobytes (KB) for a 25-second mono audio clip sampled at 22,050 Hz with a 16-bit sampling resolution. Give your answer to one decimal place. (Assume 1 KB = 1024 bytes).",
+      "solution": "1. **Identify the formula:**<br>File Size (bits) = Sampling Rate $\\times$ Resolution $\\times$ Time $\\times$ Channels<br><br>2. **Substitute the values:**<br>File Size (bits) = 22,050 Hz $\\times$ 16 bits $\\times$ 25 s $\\times$ 1 (mono)<br><br>3. **Calculate the total bits:**<br>File Size = 8,820,000 bits<br><br>4. **Convert bits to bytes:**<br>File Size (bytes) = 8,820,000 / 8 = 1,102,500 bytes<br><br>5. **Convert bytes to kilobytes (KB):**<br>File Size (KB) = 1,102,500 / 1024 = 1076.66... KB<br><br>6. **Round to one decimal place:**<br>Final Answer: **1076.7 KB**"
+    },
+    {
+      "type": "workedExample",
+      "question": "A 4-minute stereo music track is recorded with a sampling rate of 48 kHz and a bit depth of 24 bits. Calculate the file size in megabytes (MB). Give your answer to two decimal places. (Assume 1 MB = 1024 KB, 1 KB = 1024 bytes).",
+      "solution": "1. **Convert all units to base units:**<br>Time: 4 minutes $\\times$ 60 seconds/minute = 240 s<br>Sampling Rate: 48 kHz $\\times$ 1000 = 48,000 Hz<br>Channels: 2 (stereo)<br>Resolution: 24 bits<br><br>2. **Use the formula:**<br>File Size (bits) = 48,000 $\\times$ 24 $\\times$ 240 $\\times$ 2<br><br>3. **Calculate total bits:**<br>File Size = 552,960,000 bits<br><br>4. **Convert bits to bytes:**<br>File Size (bytes) = 552,960,000 / 8 = 69,120,000 bytes<br><br>5. **Convert bytes to kilobytes (KB):**<br>File Size (KB) = 69,120,000 / 1024 = 67,500 KB<br><br>6. **Convert kilobytes to megabytes (MB):**<br>File Size (MB) = 67,500 / 1024 = 65.9179... MB<br><br>7. **Round to two decimal places:**<br>Final Answer: **65.92 MB**"
+    },
+    {
+      "type": "heading",
+      "content": "Ensuring Quality: Nyquist's Theorem"
+    },
+    {
+      "type": "text",
+      "content": "How do we choose an appropriate sampling rate? The answer lies in **Nyquist's Theorem**. It states that to accurately reconstruct an analogue signal, the sampling rate must be at least twice the highest frequency of the signal. Since the range of human hearing is approximately 20 Hz to 20,000 Hz (20 kHz), the sampling rate for high-fidelity audio must be at least 40,000 Hz. This is why the CD audio standard is 44.1 kHz, providing a small margin above this theoretical minimum."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Nyquist's Rule:** Sampling Rate $\\ge$ 2 $\\times$ Highest Frequency.",
+        "Sampling below this rate (undersampling) leads to a phenomenon called aliasing, where the reconstructed audio contains frequencies that were not in the original, causing distortion."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practice Sound Calculations",
+      "href": "/mark?subject=9618&topic=1.2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Sound Wave Visualiser",
+          "href": "https://musiclab.chromeexperiments.com/Spectrogram/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

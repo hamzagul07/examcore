@@ -4,50 +4,223 @@
   "title": "Central Processing Unit (CPU) Architecture",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 AS — CPU components, fetch-decode-execute cycle, registers, buses, and performance factors.",
-  "durationMin": 26,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores the fundamental architecture of the Central Processing Unit (CPU). It details the Von Neumann model, the roles of the Arithmetic and Logic Unit (ALU), Control Unit (CU), and key registers. You will learn the mechanics of the Fetch-Decode-Execute cycle and analyse the factors that determine a CPU's performance.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe CPU components: ALU, CU, registers, cache.",
-    "Explain the fetch-decode-execute cycle.",
-    "Distinguish Von Neumann and Harvard architectures.",
-    "Evaluate factors affecting CPU performance."
+    "Describe the Von Neumann architecture and the stored program concept.",
+    "Explain the function of the CPU's main components and special-purpose registers (PC, MAR, MDR, CIR, ACC).",
+    "Detail the steps of the Fetch-Decode-Execute cycle, showing how registers and buses are used.",
+    "Analyse the factors affecting CPU performance, including clock speed, number of cores, and cache memory."
   ],
   "simpleExplanation": {
-    "title": "The brain of the computer",
-    "summary": "The CPU executes instructions stored in memory. The FDE cycle fetches each instruction, decodes it, and executes the required operation.",
+    "title": "The CPU's Grand Plan",
+    "summary": "The CPU is the 'brain' of the computer, constantly running a simple, three-step dance to process instructions. It fetches an instruction from memory, decodes it to understand what to do, and then executes it.",
+    "analogy": "Imagine a master chef (the CPU) working in a kitchen. The recipe book is main memory (RAM), containing both the cooking steps (instructions) and the list of ingredients (data). The chef fetches one step from the book, reads it, gathers the required ingredients from a small, super-fast spice rack on the counter (the registers), performs the action (like chopping or mixing), and then moves on to the next step in the recipe. This fetch-decode-execute process repeats until the dish is complete.",
     "steps": [
-      "Fetch: PC → MAR → memory → MDR → IR; PC increments.",
-      "Decode: CU interprets opcode in IR.",
-      "Execute: ALU performs calculation or data transfer occurs.",
-      "Performance: clock speed, cores, cache size, word length, pipelining."
+      "First, the CPU 'fetches' the next instruction from main memory, using a special pointer called the Program Counter to know where to look.",
+      "Next, the Control Unit 'decodes' the instruction, breaking it down to understand the operation required and what data is needed.",
+      "Then, the CPU 'executes' the command. This could be a calculation by the Arithmetic Logic Unit or moving data between memory and registers.",
+      "Finally, the result is stored, and the Program Counter is updated to point to the next instruction, starting the cycle all over again."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the Von Neumann architecture?",
+      "back": "A computer architecture where program instructions and data are stored in the same memory and share the same data bus for transfer."
+    },
+    {
+      "front": "What is the 'stored program concept'?",
+      "back": "The principle that program instructions can be stored in main memory, just like data. This allows programs to be loaded, run, and even modified by the computer itself."
+    },
+    {
+      "front": "What is the role of the Arithmetic and Logic Unit (ALU)?",
+      "back": "The part of the CPU that performs all arithmetic calculations (e.g., addition, subtraction) and logical operations (e.g., AND, OR, NOT)."
+    },
+    {
+      "front": "What is the role of the Control Unit (CU)?",
+      "back": "The CU manages and coordinates the activities of the CPU. It decodes instructions and sends control signals to other components to execute them."
+    },
+    {
+      "front": "What is a register?",
+      "back": "A small, extremely fast, temporary storage location located directly within the CPU."
+    },
+    {
+      "front": "What does the Program Counter (PC) hold?",
+      "back": "The memory address of the *next* instruction to be fetched from main memory. It is automatically incremented after each fetch."
+    },
+    {
+      "front": "What is the purpose of the Memory Address Register (MAR)?",
+      "back": "To hold the address in main memory that is currently being read from or written to. It receives an address from the PC or the instruction itself."
+    },
+    {
+      "front": "What is the purpose of the Memory Data Register (MDR)?",
+      "back": "A bidirectional register that temporarily holds data or instructions being transferred between the CPU and main memory."
+    },
+    {
+      "front": "What does the Current Instruction Register (CIR) hold?",
+      "back": "The instruction that has just been fetched from memory and is currently being decoded and executed."
+    },
+    {
+      "front": "What is the Accumulator (ACC)?",
+      "back": "A general-purpose register used to temporarily store the results of calculations from the ALU."
+    },
+    {
+      "front": "What are the three buses in the system bus?",
+      "back": "1. Address Bus (carries memory addresses from CPU to memory). 2. Data Bus (carries data/instructions between CPU and memory). 3. Control Bus (carries control signals and clock pulses)."
+    },
+    {
+      "front": "How does clock speed affect CPU performance?",
+      "back": "Clock speed determines the rate at which a CPU can execute instructions (cycles per second). A higher clock speed means more Fetch-Decode-Execute cycles can be completed per second, leading to faster processing."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between Von Neumann and Harvard architecture?",
+      "a": "The key difference is how they handle data and instructions. Von Neumann architecture uses a single, shared memory and bus for both. Harvard architecture uses separate memories and buses for data and instructions. This allows simultaneous fetching, which can be faster, but it's more complex. Modern CPUs often use a hybrid model, with a Von Neumann main memory architecture but separate L1 caches for data and instructions (a Harvard feature)."
+    },
+    {
+      "q": "If I have a quad-core 3 GHz CPU, is it the same as a single-core 12 GHz CPU?",
+      "a": "No, they are very different. A quad-core 3 GHz CPU has four processing units, each running at 3 billion cycles per second. This is excellent for multitasking or running software specifically designed for parallel processing. However, a single task that cannot be split across cores will only run on one core at 3 GHz. A hypothetical 12 GHz single-core CPU would run that same single task four times faster, but would be less efficient at multitasking."
+    },
+    {
+      "q": "Why is the MDR bidirectional but the MAR is not?",
+      "a": "The MAR's job is to specify a location in memory. The CPU only ever sends an address *to* the memory system; it never needs to read an address *from* memory. Therefore, the MAR and the address bus are unidirectional. The MDR, however, handles the actual data. It needs to receive data *from* memory (a read operation) and send data *to* memory (a write operation), so it must be bidirectional, as must the data bus."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**CPU architecture** (4.1) is core 9618 theory. Examiners require **register-level detail** in FDE descriptions — name **PC, MAR, MDR, IR, ACC** and state what each holds at each stage."
+      "content": "The Central Processing Unit, or CPU, is often called the 'brain' of the computer. It is the fundamental component responsible for executing the instructions that make up a computer program. Understanding its internal structure and operation is key to comprehending how software translates into tangible actions. This topic delves into the core architecture of a typical CPU, the process it follows to execute commands, and the factors that govern its performance."
+    },
+    {
+      "type": "heading",
+      "content": "The Von Neumann Architecture"
+    },
+    {
+      "type": "text",
+      "content": "Most modern general-purpose computers are based on the Von Neumann architecture. This design is defined by the **stored program concept**, which is the idea that not only data but also the program instructions are stored together in the same main memory. This was a revolutionary concept, as early computers had programs hard-wired into their circuitry. With the stored program concept, a computer could be reprogrammed simply by loading a new program into its memory."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Von Neumann: single memory for data and instructions",
-        "Harvard: separate program and data memory (parallel fetch)",
-        "Cache: L1/L2/L3 reduce average memory access time",
-        "Pipelining overlaps FDE stages of successive instructions"
+        "Instructions and data are stored in the same memory unit.",
+        "Instructions and data use the same bus to travel between the memory and the CPU.",
+        "Instructions are fetched and executed sequentially, one after another.",
+        "This design allows a program to be treated as data, meaning it can be read, modified, and written just like any other data."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Core Components of the CPU"
+    },
+    {
+      "type": "text",
+      "content": "A CPU contains several key components that work together to process instructions. The three main parts are the Control Unit (CU), the Arithmetic and Logic Unit (ALU), and the Registers."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Control Unit (CU):** This is the director of operations. It fetches instructions from memory, decodes them, and sends out control signals to coordinate the other parts of the CPU and computer to execute the instruction.",
+        "**Arithmetic and Logic Unit (ALU):** This is the calculator of the CPU. It performs all arithmetic operations (like addition and subtraction) and logical comparisons (like AND, OR, and NOT).",
+        "**Registers:** These are small, high-speed storage locations within the CPU. They hold data, instructions, and addresses that are needed for immediate processing, providing much faster access than main memory (RAM)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Special-Purpose Registers"
+    },
+    {
+      "type": "text",
+      "content": "While a CPU has several general-purpose registers, some are dedicated to specific, crucial roles in the Fetch-Decode-Execute cycle. You must know the name and function of each."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Program Counter (PC):** Holds the memory address of the *next* instruction to be fetched.",
+        "**Memory Address Register (MAR):** Holds the memory address of the instruction or data that is about to be fetched or stored.",
+        "**Memory Data Register (MDR):** Temporarily holds the data or instruction that has just been fetched from memory or is about to be written to memory. It's the gateway between the CPU and the data bus.",
+        "**Current Instruction Register (CIR):** Holds the current instruction being decoded and executed.",
+        "**Accumulator (ACC):** A register used to store the results of calculations performed by the ALU."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Fetch-Decode-Execute Cycle"
+    },
+    {
+      "type": "text",
+      "content": "The primary job of the CPU is to continuously perform the Fetch-Decode-Execute (FDE) cycle. This is the sequence of steps taken to process a single machine code instruction. The cycle is managed by the Control Unit and synchronised by the system clock."
+    },
+    {
+      "type": "formula",
+      "content": "1. **Fetch**: Get the instruction from memory.\n2. **Decode**: Understand what the instruction means.\n3. **Execute**: Carry out the instruction."
+    },
+    {
+      "type": "workedExample",
+      "question": "An instruction `ADD #5` is stored at memory location 102. The Program Counter (PC) currently holds `102` and the Accumulator (ACC) holds the value `12`. Describe the steps of the Fetch-Decode-Execute cycle for this instruction, showing the state of the PC, MAR, MDR, CIR, and ACC.",
+      "solution": "The instruction means 'add the immediate value 5 to the contents of the Accumulator'.\n\n**1. Fetch Phase:**\n*   The contents of the PC (`102`) are copied to the MAR. `MAR ← [PC]`\n*   The address `102` is sent along the address bus to main memory. A 'read' signal is sent on the control bus.\n*   The instruction at location `102` (`ADD #5`) is copied from memory to the MDR via the data bus. `MDR ← [Memory]`\n*   The PC is incremented to point to the next instruction. `PC ← [PC] + 1`, so PC is now `103`.\n\n**2. Decode Phase:**\n*   The contents of the MDR (`ADD #5`) are copied to the CIR. `CIR ← [MDR]`\n*   The Control Unit decodes the instruction in the CIR. It identifies the operation (`ADD`) and the operand (the immediate value `5`).\n\n**3. Execute Phase:**\n*   The operand (`5`) is sent to the ALU.\n*   The contents of the ACC (`12`) are also sent to the ALU.\n*   The ALU performs the addition: `12 + 5`.\n*   The result (`17`) is stored back into the Accumulator. `ACC ← 17`.\n\n*The cycle is now complete for this instruction and would begin again by fetching the instruction at address 103.*"
+    },
+    {
+      "type": "heading",
+      "content": "The System Bus"
+    },
+    {
+      "type": "text",
+      "content": "The CPU, main memory, and other components are connected by a set of parallel wires called the system bus. It is comprised of three separate buses, each with a specific function. The width of these buses (the number of parallel wires) can impact system performance."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Address Bus:** A unidirectional bus that carries memory addresses from the CPU to main memory and other I/O devices. The width of the address bus determines the maximum amount of memory the CPU can address (e.g., a 32-bit address bus can address $2^{32}$ unique locations).",
+        "**Data Bus:** A bidirectional bus that carries the actual data and instructions between the CPU, memory, and I/O devices. Its width affects how much data can be transferred in a single cycle.",
+        "**Control Bus:** A bidirectional bus that transmits command, timing, and status signals between system components. For example, it carries the 'memory read' and 'memory write' signals, clock pulses, and interrupt requests."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An instruction `LDA 250` is being executed. This instruction means 'load the data from memory address 250 into the Accumulator'. The data at address 250 is the value `99`. Describe the 'Execute' phase of the FDE cycle for this instruction, focusing on the use of registers and buses.",
+      "solution": "After the instruction `LDA 250` has been fetched and decoded, the Execute phase begins:\n\n**1. Address Transfer:**\n*   The address part of the instruction in the CIR (`250`) is copied to the MAR. `MAR ← 250`\n\n**2. Memory Read Operation:**\n*   The address `250` is placed onto the Address Bus.\n*   The Control Unit sends a 'memory read' signal along the Control Bus.\n\n**3. Data Transfer:**\n*   Main memory responds by placing the data from location `250` (the value `99`) onto the Data Bus.\n*   This data travels along the Data Bus and is copied into the MDR. `MDR ← 99`\n\n**4. Load into Accumulator:**\n*   The contents of the MDR (`99`) are copied to the Accumulator. `ACC ← 99`\n\n*The execution is now complete. The Accumulator holds the value that was at memory location 250.*"
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to describe the Fetch-Decode-Execute cycle, be precise. Use the full names of the registers (e.g., 'Program Counter', not just 'PC'). State which bus is being used (address, data, control) and the direction of data flow. A common mistake is mixing up the roles of the MAR and MDR. Remember: MAR holds the **address**, MDR holds the **data**."
+    },
+    {
+      "type": "heading",
+      "content": "Factors Affecting CPU Performance"
+    },
+    {
+      "type": "text",
+      "content": "The speed of a CPU is not determined by a single factor. Several characteristics of its design and the surrounding system architecture contribute to its overall performance."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Clock Speed:** Measured in Gigahertz (GHz), this is the number of FDE cycles the CPU can theoretically perform per second. A 3 GHz CPU performs 3 billion cycles per second. While a higher clock speed generally means faster performance, some instructions may take more than one clock cycle to complete.",
+        "**Number of Cores:** A core is an independent processing unit within the CPU. A multi-core CPU (e.g., dual-core, quad-core) can execute multiple instructions simultaneously, provided the software is designed for parallel processing. This is highly effective for multitasking or running complex applications like video editing.",
+        "**Cache Memory:** A small amount of very fast, expensive static RAM (SRAM) built into the CPU or placed very close to it. It stores frequently accessed data and instructions, saving the CPU from having to fetch them from the much slower main memory (DRAM). More cache (and faster cache, e.g. L1 vs L2) significantly reduces processing bottlenecks."
       ]
     },
     {
       "type": "practice",
-      "label": "Mark a CPU architecture question",
+      "label": "Test Your Knowledge on CPU Architecture",
       "href": "/mark?subject=9618&topic=4.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9618 course index", "href": "/courses/9618" }
+        {
+          "label": "Visualising the Fetch-Decode-Execute Cycle",
+          "href": "https://www.youtube.com/watch?v=Z5JC9_f7_8g"
+        },
+        {
+          "label": "Cambridge Notes: CPU Architecture",
+          "href": "https://www.cambridgeinternational.org/Images/414349-2021-syllabus.pdf"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

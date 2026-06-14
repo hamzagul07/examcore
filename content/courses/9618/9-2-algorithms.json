@@ -4,43 +4,162 @@
   "title": "Algorithms",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS — algorithm design, flowcharts, pseudocode, searching, sorting, and trace tables.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental concept of an algorithm as a step-by-step procedure for solving a computational problem. It covers the essential properties of a good algorithm and the standard methods for representing them, namely pseudocode and flowcharts, which are core skills for Paper 2.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Express algorithms using pseudocode and flowcharts.",
-    "Describe linear and binary search.",
-    "Compare bubble, insertion, and merge sort.",
-    "Trace algorithms with given data."
+    "Understand the definition and key properties of an algorithm.",
+    "Represent an algorithm using both pseudocode and flowcharts.",
+    "Decompose a problem into logical steps to construct an algorithm.",
+    "Appreciate the importance of clarity, finiteness, and effectiveness in algorithmic design."
   ],
   "simpleExplanation": {
-    "title": "Step-by-step procedures",
-    "summary": "Algorithms are finite, unambiguous steps to solve a problem. Efficiency is measured in comparisons and swaps for sorting/searching.",
+    "title": "The Recipe for Solving Problems",
+    "summary": "An algorithm is simply a precise, step-by-step set of instructions designed to perform a task or solve a problem. Think of it as the logical blueprint that tells a computer exactly what to do, from start to finish.",
+    "analogy": "Imagine you're baking a cake. The recipe you follow is an algorithm. It lists the ingredients (inputs), provides a sequence of clear instructions to mix them (the process), and describes the final delicious cake (the output). If any step is vague or missing, you might not get the cake you expected; the same is true for computer algorithms.",
     "steps": [
-      "Linear search: check each item — O(n).",
-      "Binary search: sorted list, halve range — O(log n).",
-      "Bubble sort: adjacent swaps — O(n²) worst case.",
-      "Merge sort: divide and merge — O(n log n)."
+      "Define the Problem: Clearly identify the inputs, the required processing, and the expected outputs.",
+      "Decompose into Steps: Break the overall problem down into smaller, more manageable sub-tasks.",
+      "Sequence and Structure: Arrange the steps logically using sequence, selection (IFs), and iteration (loops).",
+      "Refine and Test: Review the algorithm for clarity and correctness. Trace it with sample data to find any errors."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an algorithm?",
+      "back": "A finite, ordered set of unambiguous, step-by-step instructions designed to solve a specific problem or perform a computation."
+    },
+    {
+      "front": "What is the 'Finiteness' property of an algorithm?",
+      "back": "An algorithm must always terminate after a finite number of steps. It cannot go on forever."
+    },
+    {
+      "front": "What is the 'Definiteness' property of an algorithm?",
+      "back": "Each step of an algorithm must be precisely and unambiguously defined. There should be no uncertainty in any instruction."
+    },
+    {
+      "front": "What is the 'Input' property of an algorithm?",
+      "back": "An algorithm has zero or more quantities that are externally supplied. These are the initial values needed to start the process."
+    },
+    {
+      "front": "What is the 'Output' property of an algorithm?",
+      "back": "An algorithm must produce at least one quantity as a result. This is the solution to the problem."
+    },
+    {
+      "front": "What is the 'Effectiveness' property of an algorithm?",
+      "back": "Every instruction must be basic enough to be carried out, in principle, by a person using only pencil and paper. It must be feasible."
+    },
+    {
+      "front": "What is pseudocode?",
+      "back": "A high-level, informal description of the operating principle of a computer program or other algorithm. It uses natural language with programming-like structures but is not tied to a specific language's syntax."
+    },
+    {
+      "front": "What is a flowchart?",
+      "back": "A graphical representation of an algorithm, using standard symbols connected by arrows to show the sequence of operations and flow of control."
+    },
+    {
+      "front": "What is decomposition in algorithm design?",
+      "back": "The process of breaking down a complex problem into smaller, more manageable, and self-contained sub-problems. This simplifies the design process."
+    },
+    {
+      "front": "Algorithm Trap: Forgetting edge cases",
+      "back": "A common mistake is designing an algorithm that only works for typical data. Always consider edge cases like empty inputs, zero, negative numbers, or the first/last item in a list."
+    },
+    {
+      "front": "What is the difference between an algorithm and a program?",
+      "back": "An algorithm is the logical concept or plan. A program is the concrete implementation of that algorithm in a specific programming language."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is my pseudocode marked on being exactly the same as the mark scheme?",
+      "a": "No. Your pseudocode is marked on its clarity, logic, and whether it correctly solves the problem. There are often multiple valid ways to write the pseudocode. As long as it follows standard conventions and is unambiguous, you will be credited."
+    },
+    {
+      "q": "What is the difference between an algorithm and a program?",
+      "a": "An algorithm is the abstract, logical plan for solving a problem, independent of any programming language. A program is the concrete implementation of that algorithm, written in a specific language (like Python, Java, or VB.NET) that a computer can execute."
+    },
+    {
+      "q": "Do I have to use flowcharts in the exam?",
+      "a": "You are more likely to be asked to write pseudocode. However, questions may require you to read, understand, or trace a given flowchart. You must be familiar with the standard flowchart symbols and be able to follow the logic they represent."
+    },
+    {
+      "q": "What does the arrow `<-` or `←` mean in pseudocode?",
+      "a": "This is the assignment operator. It means 'is assigned the value of' or 'gets'. For example, `Counter <- Counter + 1` means the new value of the `Counter` variable is set to its old value plus one. It is used to distinguish from the `=` operator, which is often used for comparison in conditions (e.g., `IF X = 10 THEN...`)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Algorithms** (9.2) dominate Paper 2 trace questions. Practise **dry-running** loops and **writing pseudocode** with clear indentation."
+      "content": "Welcome to the world of algorithms! In computer science, an algorithm is the most fundamental concept. Before you can write a single line of code, you need a plan. That plan is your algorithm. It's the logic, the strategy, and the sequence of steps that will take you from a problem to a solution. Mastering algorithmic thinking is the key to becoming a proficient programmer and problem-solver."
+    },
+    {
+      "type": "heading",
+      "content": "The Five Essential Properties of an Algorithm"
+    },
+    {
+      "type": "text",
+      "content": "For a set of instructions to be formally considered an algorithm, it must possess five key properties. When you're designing a solution for an exam question, mentally checking against these properties can help ensure your logic is sound."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Finiteness:** The algorithm must eventually stop after a finite number of steps. An infinite loop, for example, violates this property.",
+        "**Definiteness:** Every step must be precisely and unambiguously defined. For example, 'Add 5 or 6' is ambiguous; 'Add 5' is definite.",
+        "**Input:** An algorithm takes zero or more inputs. These are the values on which the algorithm will operate.",
+        "**Output:** An algorithm produces at least one output. This is the result of the computation, the solution to the problem.",
+        "**Effectiveness:** Each instruction must be simple enough that it can be carried out in a finite amount of time. It must be practically possible to execute the step."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Representing Algorithms"
+    },
+    {
+      "type": "text",
+      "content": "In your A-Level course, you'll use two primary methods to describe and communicate algorithms: pseudocode and flowcharts. Pseudocode is a text-based description that uses English-like statements and programming conventions. Flowcharts are diagrammatic, using standard shapes to represent actions, decisions, and the flow of control. While you must be able to read and interpret both, exam questions will most often ask you to write your solutions in pseudocode."
+    },
+    {
+      "type": "workedExample",
+      "question": "An algorithm is required to calculate the area of a rectangle. It should take the length and width as inputs, calculate the area, and display the result. Write the algorithm in pseudocode.",
+      "solution": "Here is a step-by-step solution following standard pseudocode conventions.\n\n1.  **Identify inputs, processes, and outputs:**\n    *   Inputs: `Length`, `Width`\n    *   Process: `Area = Length * Width`\n    *   Output: `Area`\n\n2.  **Write the pseudocode:**\n\n```pseudocode\nDECLARE Length : REAL\nDECLARE Width : REAL\nDECLARE Area : REAL\n\nOUTPUT \"Enter the length of the rectangle: \"\nINPUT Length\n\nOUTPUT \"Enter the width of the rectangle: \"\nINPUT Width\n\nArea <-- Length * Width\n\nOUTPUT \"The area of the rectangle is: \", Area\n```\n\n**Marks:** 1 mark for declaring variables, 1 mark for inputting both values, 1 mark for the correct calculation, 1 mark for outputting the result."
     },
     {
       "type": "examTip",
-      "content": "Binary search requires a **sorted** list — state this before tracing. Off-by-one errors in **mid** calculation lose marks."
+      "content": "Examiners are not testing your knowledge of a specific programming language like Python or Java. Your pseudocode should be clear, logical, and follow the standard conventions (e.g., `DECLARE`, `INPUT`, `OUTPUT`, `IF...THEN...ELSE`, `←` or `<-` for assignment). As long as another programmer can understand your logic, you will get the marks."
+    },
+    {
+      "type": "heading",
+      "content": "Algorithm Design with Selection"
+    },
+    {
+      "type": "text",
+      "content": "Most algorithms are not just a simple sequence of steps. They need to make decisions based on the data they are processing. This is achieved using 'selection'. The most common selection structure is the `IF...THEN...ELSE` statement, which allows the algorithm to follow different paths depending on whether a condition is true or false."
+    },
+    {
+      "type": "workedExample",
+      "question": "A cinema offers discounted tickets to customers who are 15 years old or younger, or 65 years old or older. Write an algorithm in pseudocode that inputs a customer's age and outputs either 'Discount applies' or 'Full price payable'.",
+      "solution": "1.  **Identify inputs, processes, and outputs:**\n    *   Input: `Age`\n    *   Process: Check if `Age <= 15` OR `Age >= 65`\n    *   Outputs: 'Discount applies' or 'Full price payable'\n\n2.  **Write the pseudocode:**\n\n```pseudocode\nDECLARE Age : INTEGER\n\nOUTPUT \"Please enter your age: \"\nINPUT Age\n\nIF Age <= 15 OR Age >= 65 THEN\n  OUTPUT \"Discount applies\"\nELSE\n  OUTPUT \"Full price payable\"\nENDIF\n```\n\n**Marks:** 1 mark for inputting age, 1 mark for the `IF` condition with the correct logic (`<= 15`), 1 mark for including the `OR Age >= 65` condition, 1 mark for the correct outputs in the `THEN` and `ELSE` branches."
+    },
+    {
+      "type": "examTip",
+      "content": "Before finalising your algorithm, perform a quick 'dry run' or 'trace' with test data. For the cinema example, test with age 10 (discount), age 30 (full price), and age 70 (discount). Also test the boundary values: 15, 16, 64, and 65. This helps catch logical errors."
     },
     {
       "type": "practice",
-      "label": "Mark an algorithms question",
+      "label": "Practice Algorithm Questions",
       "href": "/mark?subject=9618&topic=9.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "Cambridge Syllabus (9618)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

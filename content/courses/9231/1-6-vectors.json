@@ -1,0 +1,181 @@
+{
+  "slug": "1-6-vectors",
+  "topicCode": "1.6",
+  "title": "Vectors",
+  "paper": "P1",
+  "paperName": "Paper 1: Further Pure Mathematics 1",
+  "status": "pilot",
+  "summary": "This lesson delves into 3D vector geometry, focusing on the vector (cross) product and the scalar triple product. You will learn to calculate these products and apply them to solve geometric problems, such as finding areas of parallelograms, volumes of tetrahedrons, and determining the shortest distance between skew lines.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Calculate the vector product of two vectors and understand its geometric interpretation.",
+    "Use the vector product to find the area of a triangle or a parallelogram.",
+    "Evaluate the scalar triple product and use it to find the volume of a parallelepiped or tetrahedron.",
+    "Apply vector methods to find the shortest distance between two skew lines, between a point and a line, and between a point and a plane."
+  ],
+  "simpleExplanation": {
+    "title": "Building with Vectors",
+    "summary": "Vectors aren't just arrows; they're powerful tools for building and measuring in 3D. We'll learn how to combine them to find areas, volumes, and distances in space.",
+    "analogy": "Imagine you have two pencils lying on a table, representing two vectors. The 'cross product' gives you a third pencil that stands straight up, perpendicular to the table. The length of this new pencil tells you the area of the flat diamond shape (parallelogram) formed by the first two pencils.",
+    "steps": [
+      "Define the vectors involved: direction vectors for lines, position vectors for points.",
+      "Calculate the vector (cross) product of the direction vectors to find a common perpendicular vector, $\\mathbf{n}$.",
+      "Find a vector connecting a point on the first object (e.g., line 1) to a point on the second (e.g., line 2).",
+      "Use the dot product to project the connecting vector onto the perpendicular vector $\\mathbf{n}$ to find the required shortest distance."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the vector product $\\mathbf{a} \\times \\mathbf{b}$?",
+      "back": "A vector that is perpendicular to both $\\mathbf{a}$ and $\\mathbf{b}$. Its direction is given by the right-hand rule and its magnitude is $|\\mathbf{a}||\\mathbf{b}|\\sin\\theta$."
+    },
+    {
+      "front": "How do you calculate $\\mathbf{a} \\times \\mathbf{b}$ using components?",
+      "back": "As the determinant of a matrix: $\\mathbf{a} \\times \\mathbf{b} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\end{vmatrix}$."
+    },
+    {
+      "front": "What is the geometric meaning of the magnitude $|\\mathbf{a} \\times \\mathbf{b}|$?",
+      "back": "It is the area of the parallelogram defined by the vectors $\\mathbf{a}$ and $\\mathbf{b}$."
+    },
+    {
+      "front": "How are $\\mathbf{a} \\times \\mathbf{b}$ and $\\mathbf{b} \\times \\mathbf{a}$ related?",
+      "back": "They are anti-commutative: $\\mathbf{a} \\times \\mathbf{b} = -(\\mathbf{b} \\times \\mathbf{a})$. The order of multiplication matters."
+    },
+    {
+      "front": "What is the scalar triple product of vectors $\\mathbf{a}$, $\\mathbf{b}$, and $\\mathbf{c}$?",
+      "back": "It is the scalar value given by $\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c})$."
+    },
+    {
+      "front": "How do you calculate the scalar triple product using components?",
+      "back": "As the determinant of the matrix formed by the component of the vectors: $[\\mathbf{a}, \\mathbf{b}, \\mathbf{c}] = \\begin{vmatrix} a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\\\ c_1 & c_2 & c_3 \\end{vmatrix}$."
+    },
+    {
+      "front": "What is the geometric meaning of the absolute value of the scalar triple product, $|\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c})|$?",
+      "back": "It is the volume of the parallelepiped defined by the vectors $\\mathbf{a}$, $\\mathbf{b}$, and $\\mathbf{c}$."
+    },
+    {
+      "front": "What does it mean if the scalar triple product $\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c}) = 0$?",
+      "back": "The three vectors are coplanar (they lie in the same plane), and the volume of the parallelepiped they form is zero."
+    },
+    {
+      "front": "How do you find the area of a triangle with vertices A, B, and C?",
+      "back": "Find two vectors representing sides, e.g., $\\vec{AB}$ and $\\vec{AC}$. The area is $\\frac{1}{2}|\\vec{AB} \\times \\vec{AC}|$. Don't forget the factor of $\\frac{1}{2}$."
+    },
+    {
+      "front": "How do you find the volume of a tetrahedron with one vertex at the origin and others at positions $\\mathbf{a}$, $\\mathbf{b}$, $\\mathbf{c}$?",
+      "back": "The volume is $\\frac{1}{6}|\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c})|$. It's one-sixth of the parallelepiped's volume."
+    },
+    {
+      "front": "What is a common mistake when finding the shortest distance between skew lines?",
+      "back": "Incorrectly identifying the vector that connects the two lines. It must be a vector from a specific point on line 1 to a specific point on line 2, e.g., $\\mathbf{p}_2 - \\mathbf{p}_1$."
+    },
+    {
+      "front": "What is the vector product of a vector with itself, $\\mathbf{a} \\times \\mathbf{a}$?",
+      "back": "The zero vector, $\\mathbf{0}$. This is because the angle $\\theta$ between the vectors is 0, and $\\sin(0) = 0$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the scalar (dot) product and the vector (cross) product?",
+      "a": "The scalar product, $\\mathbf{a} \\cdot \\mathbf{b}$, results in a scalar (a number). It's calculated as $|\\mathbf{a}||\\mathbf{b}|\\cos\\theta$ and is useful for finding angles and projections. The vector product, $\\mathbf{a} \\times \\mathbf{b}$, results in a new vector that is perpendicular to both $\\mathbf{a}$ and $\\mathbf{b}$. Its magnitude is $|\\mathbf{a}||\\mathbf{b}|\\sin\\theta$ and is used to find areas and turning effects (moments)."
+    },
+    {
+      "q": "Why is the volume of a tetrahedron $\\frac{1}{6}$ of the scalar triple product, not $\\frac{1}{3}$ like a pyramid?",
+      "a": "The volume of a pyramid is $\\frac{1}{3} \\times (\\text{base area}) \\times (\\text{height})$. For a tetrahedron with edges $\\mathbf{a}, \\mathbf{b}, \\mathbf{c}$ from one vertex, the base can be the triangle formed by $\\mathbf{b}$ and $\\mathbf{c}$, which has area $\\frac{1}{2}|\\mathbf{b} \\times \\mathbf{c}|$. The height is the projection of $\\mathbf{a}$ onto the normal of this base. Combining these gives $V = \\frac{1}{3} \\times (\\frac{1}{2}|\\mathbf{b} \\times \\mathbf{c}|) \\times (\\text{height}) = \\frac{1}{6}|\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c})|$. The total factor is $\\frac{1}{3} \\times \\frac{1}{2} = \\frac{1}{6}$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to our lesson on 3D Vectors. This topic is a cornerstone of Further Mathematics, beautifully merging algebra with three-dimensional geometry. We will move beyond the GCSE and A-Level Mathematics concepts of vectors to explore powerful tools like the vector product and scalar triple product, which allow us to solve complex geometric problems involving areas, volumes, and distances in space."
+    },
+    {
+      "type": "heading",
+      "content": "The Vector Product (Cross Product)"
+    },
+    {
+      "type": "text",
+      "content": "The vector product, or cross product, of two vectors $\\mathbf{a}$ and $\\mathbf{b}$ is a new vector, denoted $\\mathbf{a} \\times \\mathbf{b}$. Unlike the scalar (dot) product which results in a number, the vector product gives us a vector. This resulting vector has a remarkable property: it is perpendicular to both of the original vectors, $\\mathbf{a}$ and $\\mathbf{b}$. Its direction is determined by the 'right-hand rule': if you curl the fingers of your right hand from $\\mathbf{a}$ to $\\mathbf{b}$, your thumb points in the direction of $\\mathbf{a} \\times \\mathbf{b}$."
+    },
+    {
+      "type": "formula",
+      "content": "For $\\mathbf{a} = a_1\\mathbf{i} + a_2\\mathbf{j} + a_3\\mathbf{k}$ and $\\mathbf{b} = b_1\\mathbf{i} + b_2\\mathbf{j} + b_3\\mathbf{k}$, the vector product is calculated using a determinant:\n\n$\\mathbf{a} \\times \\mathbf{b} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\end{vmatrix} = (a_2b_3 - a_3b_2)\\mathbf{i} - (a_1b_3 - a_3b_1)\\mathbf{j} + (a_1b_2 - a_2b_1)\\mathbf{k}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The magnitude of the vector product is given by $|\\mathbf{a} \\times \\mathbf{b}| = |\\mathbf{a}| |\\mathbf{b}| \\sin\\theta$, where $\\theta$ is the angle between the vectors. This value represents the area of the parallelogram formed by $\\mathbf{a}$ and $\\mathbf{b}$.",
+        "The vector product is anti-commutative: $\\mathbf{a} \\times \\mathbf{b} = -(\\mathbf{b} \\times \\mathbf{a})$. The order matters!",
+        "If $\\mathbf{a}$ and $\\mathbf{b}$ are parallel, then $\\mathbf{a} \\times \\mathbf{b} = \\mathbf{0}$ (the zero vector), since $\\sin(0) = \\sin(\\pi) = 0$.",
+        "The area of a triangle with adjacent sides represented by vectors $\\mathbf{a}$ and $\\mathbf{b}$ is $\\frac{1}{2}|\\mathbf{a} \\times \\mathbf{b}|$. "
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Let vectors $\\mathbf{p} = 2\\mathbf{i} - \\mathbf{j} + 3\\mathbf{k}$ and $\\mathbf{q} = \\mathbf{i} + 4\\mathbf{j} - 2\\mathbf{k}$.\n(a) Find the vector $\\mathbf{p} \\times \\mathbf{q}$.\n(b) Hence, find the exact area of the parallelogram with adjacent sides represented by $\\mathbf{p}$ and $\\mathbf{q}$.",
+      "solution": "(a) We set up the determinant to calculate the cross product:\n$\\mathbf{p} \\times \\mathbf{q} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ 2 & -1 & 3 \\\\ 1 & 4 & -2 \\end{vmatrix}$\n$= \\mathbf{i}((-1)(-2) - (3)(4)) - \\mathbf{j}((2)(-2) - (3)(1)) + \\mathbf{k}((2)(4) - (-1)(1))$\n$= \\mathbf{i}(2 - 12) - \\mathbf{j}(-4 - 3) + \\mathbf{k}(8 + 1)$\n$= -10\\mathbf{i} + 7\\mathbf{j} + 9\\mathbf{k}$\n\n(b) The area of the parallelogram is the magnitude of the vector product.\nArea $= |\\mathbf{p} \\times \\mathbf{q}| = |-10\\mathbf{i} + 7\\mathbf{j} + 9\\mathbf{k}|$\n$= \\sqrt{(-10)^2 + 7^2 + 9^2}$\n$= \\sqrt{100 + 49 + 81}$\n$= \\sqrt{230}$\nThe exact area is $\\sqrt{230}$ square units."
+    },
+    {
+      "type": "heading",
+      "content": "The Scalar Triple Product"
+    },
+    {
+      "type": "text",
+      "content": "The scalar triple product combines both the dot and cross products. For three vectors $\\mathbf{a}$, $\\mathbf{b}$, and $\\mathbf{c}$, it is written as $\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c})$. Since $\\mathbf{b} \\times \\mathbf{c}$ is a vector, and the dot product of this with $\\mathbf{a}$ is a scalar, the final result is a number. This number has a profound geometric meaning: its absolute value represents the volume of the parallelepiped formed by the three vectors."
+    },
+    {
+      "type": "formula",
+      "content": "The scalar triple product can be calculated efficiently as a $3 \\times 3$ determinant:\n\n$\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c}) = [\\mathbf{a}, \\mathbf{b}, \\mathbf{c}] = \\begin{vmatrix} a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\\\ c_1 & c_2 & c_3 \\end{vmatrix}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The volume of the parallelepiped with adjacent edges $\\mathbf{a}, \\mathbf{b}, \\mathbf{c}$ is $V = |\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c})|$.",
+        "The volume of the tetrahedron with vertices at the origin and points A, B, C (with position vectors $\\mathbf{a}, \\mathbf{b}, \\mathbf{c}$) is $V = \\frac{1}{6}|\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c})|$.",
+        "If $\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c}) = 0$, the vectors are coplanar. This is a key test for whether three vectors lie in the same plane.",
+        "The product is cyclic: $\\mathbf{a} \\cdot (\\mathbf{b} \\times \\mathbf{c}) = \\mathbf{b} \\cdot (\\mathbf{c} \\times \\mathbf{a}) = \\mathbf{c} \\cdot (\\mathbf{a} \\times \\mathbf{b})$. Swapping any two vectors negates the result."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A tetrahedron has vertices at A(1, 2, 1), B(3, 3, 0), C(2, 6, 4), and D(5, 5, 5). Find the volume of the tetrahedron ABCD.",
+      "solution": "First, we find three vectors originating from a common vertex, say A.\n$\\vec{AB} = \\mathbf{b} - \\mathbf{a} = (3-1)\\mathbf{i} + (3-2)\\mathbf{j} + (0-1)\\mathbf{k} = 2\\mathbf{i} + \\mathbf{j} - \\mathbf{k}$\n$\\vec{AC} = \\mathbf{c} - \\mathbf{a} = (2-1)\\mathbf{i} + (6-2)\\mathbf{j} + (4-1)\\mathbf{k} = \\mathbf{i} + 4\\mathbf{j} + 3\\mathbf{k}$\n$\\vec{AD} = \\mathbf{d} - \\mathbf{a} = (5-1)\\mathbf{i} + (5-2)\\mathbf{j} + (5-1)\\mathbf{k} = 4\\mathbf{i} + 3\\mathbf{j} + 4\\mathbf{k}$\n\nThe volume of the tetrahedron is $\\frac{1}{6}|\\vec{AB} \\cdot (\\vec{AC} \\times \\vec{AD})|$. We calculate the scalar triple product using a determinant:\n$\\vec{AB} \\cdot (\\vec{AC} \\times \\vec{AD}) = \\begin{vmatrix} 2 & 1 & -1 \\\\ 1 & 4 & 3 \\\\ 4 & 3 & 4 \\end{vmatrix}$\n$= 2((4)(4) - (3)(3)) - 1((1)(4) - (3)(4)) + (-1)((1)(3) - (4)(4))$\n$= 2(16 - 9) - 1(4 - 12) - 1(3 - 16)$\n$= 2(7) - 1(-8) - 1(-13)$\n$= 14 + 8 + 13 = 35$\n\nVolume $= \\frac{1}{6} |35| = \\frac{35}{6}$ cubic units."
+    },
+    {
+      "type": "heading",
+      "content": "Applications: Distances in 3D Space"
+    },
+    {
+      "type": "text",
+      "content": "One of the most powerful applications of vector products is in calculating shortest distances. For two skew lines (lines that are not parallel and do not intersect), the shortest distance between them lies along their common perpendicular. The vector product of their direction vectors gives the direction of this common perpendicular."
+    },
+    {
+      "type": "formula",
+      "content": "The shortest distance $d$ between two skew lines $\\mathbf{r} = \\mathbf{p}_1 + \\lambda\\mathbf{d}_1$ and $\\mathbf{r} = \\mathbf{p}_2 + \\mu\\mathbf{d}_2$ is given by:\n\n$d = \\frac{|(\\mathbf{p}_2 - \\mathbf{p}_1) \\cdot (\\mathbf{d}_1 \\times \\mathbf{d}_2)|}{|\\mathbf{d}_1 \\times \\mathbf{d}_2|}$\n\nThis formula calculates the projection of the vector connecting the lines onto the common normal vector."
+    },
+    {
+      "type": "examTip",
+      "content": "For shortest distance problems, always clearly define your vectors: $\\mathbf{p}_1$ and $\\mathbf{p}_2$ (points on each line), and $\\mathbf{d}_1$ and $\\mathbf{d}_2$ (direction vectors). A common error is to mix up these vectors or use an incorrect connecting vector. Drawing a quick sketch can help you visualise the setup and avoid mistakes."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Vector Problems",
+      "href": "/mark?subject=9231&topic=1.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "3D Vector Visualiser",
+          "href": "https://www.geogebra.org/3d"
+        },
+        {
+          "label": "Cambridge International Syllabus (9231)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

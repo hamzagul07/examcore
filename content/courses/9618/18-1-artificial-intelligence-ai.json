@@ -4,29 +4,193 @@
   "title": "Artificial Intelligence (AI)",
   "paper": "P3",
   "paperName": "Advanced Theory",
-  "status": "premium",
-  "summary": "9618 — AI types, machine learning basics, and ethical implications.",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental concepts of Artificial Intelligence (AI), covering the distinction between AI, machine learning, and deep learning. It details the architecture and function of expert systems, explores the different types of machine learning (supervised, unsupervised, and reinforcement), and provides a conceptual overview of neural networks.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define AI and distinguish narrow vs general AI.",
-    "Outline machine learning and training data.",
-    "Describe expert systems and neural networks at syllabus level.",
-    "Evaluate benefits and risks of AI deployment."
+    "Show an understanding of the basic concepts of Artificial Intelligence (AI).",
+    "Define an 'expert system' and describe its main components (knowledge base, inference engine, user interface).",
+    "Explain the three main types of machine learning: supervised, unsupervised, and reinforcement learning.",
+    "Understand the concept of a deep learning neural network and its basic structure."
   ],
   "simpleExplanation": {
-    "title": "Machines that learn patterns",
-    "summary": "AI systems perform tasks requiring human-like intelligence. Machine learning improves performance from data without explicit programming of every rule.",
+    "title": "Teaching a Computer to Think",
+    "summary": "Artificial Intelligence is about making computers perform tasks that normally require human intelligence, like learning from experience or understanding language. We achieve this through methods like rule-based expert systems and data-driven machine learning.",
+    "analogy": "Think of AI like training a pet. You can give it very specific, direct commands like 'sit' or 'stay', which is similar to how a rule-based expert system works. Alternatively, you can show it lots of examples of good and bad behaviour over time, letting it figure out the patterns for itself, which is how machine learning works. The goal in both cases is for it to make the right decision on its own.",
     "steps": [
-      "Narrow AI: specific task (e.g. image recognition).",
-      "Training data teaches model weights.",
-      "Expert system: rules + inference engine.",
-      "Ethics: bias, privacy, job displacement."
+      "Define AI as the simulation of human intelligence in machines, enabling them to learn, reason, and problem-solve.",
+      "Explore expert systems, which are rule-based programs that mimic a human expert's decision-making in a specific, narrow domain.",
+      "Differentiate between the main types of machine learning: supervised (using labelled data), unsupervised (finding patterns in unlabelled data), and reinforcement (learning via rewards and penalties).",
+      "Grasp the basics of deep learning, where layered neural networks, inspired by the human brain, learn complex patterns from vast amounts of data."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Artificial Intelligence (AI)",
+      "back": "The theory and development of computer systems able to perform tasks that normally require human intelligence, such as visual perception, speech recognition, decision-making, and translation between languages."
+    },
+    {
+      "front": "Expert System",
+      "back": "A computer system that emulates the decision-making ability of a human expert in a narrow, specific domain. It uses a knowledge base of facts and rules."
+    },
+    {
+      "front": "Knowledge Base",
+      "back": "A component of an expert system containing the facts and the rule base (IF-THEN rules) for a specific knowledge domain."
+    },
+    {
+      "front": "Inference Engine",
+      "back": "The 'brain' of an expert system. It applies logical rules from the knowledge base to the facts of a case to deduce new information and arrive at a conclusion."
+    },
+    {
+      "front": "Machine Learning (ML)",
+      "back": "A subset of AI where algorithms are trained on data to learn patterns and make predictions or decisions, without being explicitly programmed for the task."
+    },
+    {
+      "front": "Supervised Learning",
+      "back": "A type of machine learning where the algorithm learns from a dataset that has been manually labelled with the correct outputs. It learns a mapping from input to output."
+    },
+    {
+      "front": "Unsupervised Learning",
+      "back": "A type of machine learning where the algorithm learns from an unlabelled dataset, identifying hidden patterns or structures within the data on its own (e.g., clustering)."
+    },
+    {
+      "front": "Reinforcement Learning",
+      "back": "A type of machine learning where an 'agent' learns to behave in an environment by performing actions and seeing the results (rewards or penalties)."
+    },
+    {
+      "front": "Artificial Neural Network (ANN)",
+      "back": "A computational model inspired by the structure and function of biological neural networks in the brain. It consists of interconnected nodes (neurons) in layers."
+    },
+    {
+      "front": "Deep Learning",
+      "back": "A subfield of machine learning based on artificial neural networks with many layers (deep neural networks). It is particularly effective for learning complex patterns from large datasets."
+    },
+    {
+      "front": "Turing Test",
+      "back": "A test of a machine's ability to exhibit intelligent behaviour equivalent to, or indistinguishable from, that of a human. A human evaluator judges natural language conversations between a human and a machine."
+    },
+    {
+      "front": "Forward Chaining",
+      "back": "An inference engine strategy that starts with the available data (facts) and uses inference rules to extract more data until a goal is reached."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between an expert system and a machine learning model?",
+      "a": "An expert system operates on a set of explicit, human-programmed IF-THEN rules stored in a knowledge base. A machine learning model is not explicitly programmed with rules; instead, it learns its own internal rules and patterns by processing large amounts of data."
+    },
+    {
+      "q": "Is Artificial Intelligence the same as Machine Learning?",
+      "a": "No. Machine Learning is a specific approach to achieving AI. AI is the broader, overall concept of creating machines that can simulate human intelligence. ML is a subset of AI, and Deep Learning is a further subset of ML."
+    },
+    {
+      "q": "Do I need to know how to code a neural network for the 9618 exam?",
+      "a": "No, you are not required to write code for a neural network. You need to understand the conceptual model: the layered structure (input, hidden, output), the role of neurons and weights, the concept of training by adjusting weights, and its applications."
+    },
+    {
+      "q": "What is the difference between supervised and unsupervised learning?",
+      "a": "The key difference is the data used for training. Supervised learning uses a labelled dataset, where the correct answer or output is provided for every input example. Unsupervised learning uses an unlabelled dataset, and the algorithm must find patterns or groupings within the data on its own."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Artificial Intelligence** (18.1) is contemporary **9618 P3** content. Balance **technical outline** with **ethical evaluation**." },
-    { "type": "practice", "label": "Mark an AI question", "href": "/mark?subject=9618&topic=18.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "From your smartphone's assistant to the intelligent enemies in a video game, Artificial Intelligence is one of the most transformative fields in modern computer science. But what exactly is it? This lesson demystifies the core concepts you need for your exam, breaking down how machines can be made to 'think', learn, and make decisions."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Artificial Intelligence"
+    },
+    {
+      "type": "text",
+      "content": "Artificial Intelligence (AI) is a broad branch of computer science concerned with building smart machines capable of performing tasks that typically require human intelligence. The goal is to simulate cognitive functions like learning, problem-solving, and reasoning. A classic, though now somewhat dated, concept is the Turing Test, which proposes that a machine can be considered 'intelligent' if its conversational responses cannot be distinguished from a human's. For the 9618 syllabus, we focus on 'Narrow AI' (or 'Weak AI'), which is designed to perform a specific task, such as playing chess or recognising faces, rather than possessing general human-like consciousness ('Strong AI')."
+    },
+    {
+      "type": "heading",
+      "content": "Expert Systems: The Digital Specialist"
+    },
+    {
+      "type": "text",
+      "content": "An expert system is a classic example of AI. It's a computer program designed to act as a consultant or expert in a very specific and limited domain, like diagnosing a fault in a car engine or identifying a rare plant. Unlike a human, it can't reason outside its programmed domain, but within it, it can provide consistent and logical advice based on the information it's given."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Knowledge Base:** This is a database containing facts and a rule base. The rule base consists of IF-THEN rules provided by human experts (e.g., 'IF the engine will not crank AND the lights are dim THEN the battery is likely flat').",
+        "**Inference Engine:** This is the processing component. It takes a user's query and the facts from the knowledge base, then applies the rules to infer new facts and reach a conclusion. It often uses methods like forward chaining (starting from facts to reach a goal) or backward chaining (starting from a hypothesis and working backwards).",
+        "**User Interface:** This allows a non-expert user to query the system and receive its recommendations. It might ask the user a series of questions to gather the necessary facts.",
+        "**Explanation System:** A crucial component that can explain the reasoning behind its conclusion, showing the user which rules were triggered to build trust and allow for verification."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A simple medical expert system has the following rules:\nR1: IF has_fever AND has_rash THEN has_measles\nR2: IF has_fever AND has_sore_throat THEN has_tonsillitis\nR3: IF has_tonsillitis THEN treatment_is_antibiotics\n\nA user provides the facts: `has_fever` and `has_sore_throat`. Using forward chaining, show how the inference engine determines the treatment.",
+      "solution": "1. **Initial Facts:** The system starts with two known facts: `has_fever` is TRUE and `has_sore_throat` is TRUE. [1 mark]\n2. **Rule Matching:** The inference engine scans the rule base. Rule R1 requires `has_rash`, which is not known, so it is ignored. Rule R2's conditions (`has_fever` AND `has_sore_throat`) are both met. [1 mark]\n3. **Inference:** By applying Rule R2, the inference engine deduces a new fact: `has_tonsillitis` is TRUE. This new fact is added to the system's working memory. [1 mark]\n4. **Second Iteration:** The engine scans the rules again with the new fact. Rule R3's condition (`has_tonsillitis`) is now met. [1 mark]\n5. **Conclusion:** By applying Rule R3, the engine concludes that `treatment_is_antibiotics`. The system would then present this as the recommended course of action. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Machine Learning: Learning from Data"
+    },
+    {
+      "type": "text",
+      "content": "Machine Learning (ML) is a powerful subset of AI where, instead of being explicitly programmed with rules, a system 'learns' from data. An ML model is trained on a large dataset to find patterns or make predictions. This approach is highly effective for problems where the rules are too complex or numerous for a human to define, such as in image recognition or stock market prediction."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Supervised Learning:** The algorithm is trained on a 'labelled' dataset, where each piece of input data is tagged with the correct output. The goal is to learn a function that maps inputs to outputs. For example, training a model with thousands of emails labelled as 'spam' or 'not spam' to create a spam filter.",
+        "**Unsupervised Learning:** The algorithm is given 'unlabelled' data and must find its own structure. This is often used for clustering or grouping data. For example, a retail company might use it to segment customers into different groups based on purchasing behaviour, without any predefined group labels.",
+        "**Reinforcement Learning:** An 'agent' learns by interacting with an environment. It receives positive rewards for desired actions and negative penalties for undesired ones. Over many trials, the agent learns a 'policy' (a strategy) to maximise its cumulative reward. This is the method used to train AIs to play complex games like Go or chess."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For your exam, you must be able to clearly distinguish between expert systems and machine learning. The key difference is the source of the 'knowledge': expert systems use explicitly programmed rules from humans, while machine learning models derive their own rules or patterns from data."
+    },
+    {
+      "type": "workedExample",
+      "question": "A bank wants to create a system to automatically approve or deny loan applications. They have historical data from 100,000 previous applications, including each applicant's income, credit score, loan amount, and whether the loan was successfully repaid or defaulted.\n\n(a) Which type of machine learning is most suitable for this task? Justify your answer. [2 marks]\n(b) Describe one input feature and the corresponding output label for a single record in the training data. [2 marks]",
+      "solution": "(a) **Type:** Supervised Learning. [1 mark]\n**Justification:** The historical data is 'labelled' because the outcome (repaid or defaulted) for each application is known. The system can be trained to learn the relationship between the input features (income, credit score) and the binary output (approve/deny, based on predicted risk of default). [1 mark]\n\n(b) **Input Feature:** An example input feature would be `credit_score = 750`. [1 mark]\n**Output Label:** The corresponding output label for that record would be a category, such as `'Default' = False` or `'Risk' = Low`, indicating that this applicant successfully repaid their loan. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Deep Learning and Neural Networks"
+    },
+    {
+      "type": "text",
+      "content": "Deep Learning is a specialised subfield of machine learning that uses Artificial Neural Networks (ANNs) with many layers. These networks are inspired by the interconnected structure of neurons in the human brain. A 'deep' neural network has multiple hidden layers between its input and output layers, allowing it to learn hierarchical patterns of increasing complexity. For example, in image recognition, the first layer might learn to recognise edges, the next to recognise shapes like eyes and noses, and a deeper layer to recognise a complete face."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Structure:** A neural network consists of an Input Layer (receives the raw data), one or more Hidden Layers (perform computations), and an Output Layer (produces the final result).",
+        "**Neurons and Weights:** Each node, or 'neuron', receives inputs from the previous layer. Each input connection has a 'weight' which determines its importance. The neuron sums these weighted inputs and applies an 'activation function' to produce its output.",
+        "**Training:** The network learns by adjusting these weights. During training, it makes a prediction, compares it to the correct output, calculates the error, and then propagates this error backwards through the network to slightly adjust the weights in a way that reduces the error on the next attempt. This process is called backpropagation."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on AI Concepts",
+      "href": "/mark?subject=9618&topic=18.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IBM: What is an Expert System?",
+          "href": "https://www.ibm.com/topics/expert-systems"
+        },
+        {
+          "label": "Visual Introduction to Machine Learning",
+          "href": "http://www.r2d3.us/visual-intro-to-machine-learning-part-1/"
+        },
+        {
+          "label": "3Blue1Brown: What is a neural network?",
+          "href": "https://www.youtube.com/watch?v=aircAruvnKk"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

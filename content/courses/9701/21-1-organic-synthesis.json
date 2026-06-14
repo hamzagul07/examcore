@@ -4,43 +4,212 @@
   "title": "Organic synthesis",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS organic synthesis — multi-step routes, reagent choice, and functional group interconversions.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the principles of organic synthesis at the AS Level. It focuses on devising multi-step reaction pathways to convert simple starting materials into more complex target molecules, utilising a toolkit of known organic reactions. The core skill developed is retrosynthesis, a powerful problem-solving strategy for planning these routes.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Plan two- and three-step syntheses from given starting materials.",
-    "Select appropriate reagents and conditions.",
-    "Use test-tube reactions to identify intermediates.",
-    "Apply knowledge of all AS functional group chemistry."
+    "Identify the functional groups present in organic molecules.",
+    "Recall the reagents and conditions required for the interconversion of functional groups.",
+    "Devise two-step and multi-step synthetic routes for target organic molecules from a given starting material.",
+    "Apply the principles of retrosynthesis to logically plan a synthetic pathway."
   ],
   "simpleExplanation": {
-    "title": "Designing a route",
-    "summary": "Work backwards from the target molecule. Each step must change one functional group with known reagents.",
+    "title": "Building Molecules: Your Organic Roadmap",
+    "summary": "Organic synthesis is like following a recipe to build complex molecules from simpler ones. You'll learn to choose the right ingredients (reagents) and steps (reactions) to create a target product.",
+    "analogy": "Imagine you want to bake a complex, multi-layered cake (the target molecule). You can't just mix everything at once. You start with basic ingredients like flour and eggs (starting materials), bake individual layers (intermediates), and then assemble them, adding frosting and decorations (further reactions) to get the final product. Planning this process backwards from the finished cake is like retrosynthesis.",
     "steps": [
-      "Alkene → alcohol: H₂O/H⁺ or cold dilute MnO₄⁻.",
-      "Alcohol → carbonyl: PCC or Cr₂O₇²⁻/H⁺.",
-      "Carbonyl → acid: Fehling's/Tollens or further oxidation.",
-      "Identify with 2,4-DNPH, Tollens, iodoform test."
+      "Multi-step routes: identify reagents for each functional group change.",
+      "Protecting groups and selectivity at A Level extension.",
+      "Test-tube reactions confirm intermediate functional groups.",
+      "Two-step synthesis from given start material — plan backwards."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is retrosynthesis?",
+      "back": "A strategy for planning organic syntheses. You start with the target molecule and work backwards one step at a time to identify suitable starting materials. The special arrow used is ⇒."
+    },
+    {
+      "front": "Reagent and conditions to convert an alkene to an alkane?",
+      "back": "Reagent: Hydrogen ($H_2$). Conditions: Nickel (Ni) catalyst, high temperature (e.g., 150°C) and pressure. Reaction type: Hydrogenation (or electrophilic addition)."
+    },
+    {
+      "front": "How do you convert a primary alcohol to a carboxylic acid?",
+      "back": "Reagent: Acidified potassium dichromate(VI) ($K_2Cr_2O_7 / H_2SO_4$). Conditions: Heat under reflux. This ensures complete oxidation by preventing volatile intermediates from escaping."
+    },
+    {
+      "front": "How do you stop the oxidation of a primary alcohol at the aldehyde stage?",
+      "back": "Reagent: Acidified potassium dichromate(VI) ($K_2Cr_2O_7 / H_2SO_4$). Conditions: Gently heat and distil the product as it forms. The aldehyde has a lower boiling point than the alcohol, allowing its removal before it can be further oxidised."
+    },
+    {
+      "front": "What is the key feature of a nucleophilic substitution reaction?",
+      "back": "A reaction where a nucleophile (an electron-pair donor) attacks an electron-deficient carbon atom (δ+), replacing a leaving group. Example: $CH_3CH_2Br + OH^- \\rightarrow CH_3CH_2OH + Br^-$."
+    },
+    {
+      "front": "How do you convert a halogenoalkane to a nitrile?",
+      "back": "Reagent: Ethanolic potassium cyanide (KCN in ethanol). Conditions: Heat under reflux. This is a nucleophilic substitution that increases the carbon chain length by one."
+    },
+    {
+      "front": "How do you convert a nitrile to a carboxylic acid?",
+      "back": "Reaction: Acid hydrolysis. Reagent: Dilute acid (e.g., $HCl(aq)$). Conditions: Heat under reflux. The overall reaction is $R-CN + 2H_2O + H^+ \\rightarrow R-COOH + NH_4^+$."
+    },
+    {
+      "front": "What is the product when an aldehyde reacts with $NaBH_4$?",
+      "back": "A primary alcohol is formed. $NaBH_4$ (sodium borohydride) is a reducing agent that reduces aldehydes to primary alcohols and ketones to secondary alcohols."
+    },
+    {
+      "front": "What is a 'protecting group'?",
+      "back": "A chemical group temporarily added to a reactive functional group to 'mask' it and prevent it from reacting, while another part of the molecule is modified. It is removed in a later step."
+    },
+    {
+      "front": "Why is planning a synthesis backwards (retrosynthesis) often more effective than forwards?",
+      "back": "It simplifies the problem by focusing on the final bond formation or functional group change. This helps identify the immediate precursor molecule, making the choice of reactions more logical and reducing the number of possible but unproductive pathways."
+    },
+    {
+      "front": "What reagent is used to convert an acyl chloride to a primary amide?",
+      "back": "Concentrated aqueous ammonia ($NH_3(aq)$). The reaction is a vigorous nucleophilic addition-elimination, producing dense white fumes of ammonium chloride if the acyl chloride is volatile."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know which reaction to use when planning a synthesis?",
+      "a": "It comes down to practice and pattern recognition. A great strategy is to create your own reaction map or flowchart connecting all the functional groups. For each arrow between groups, write down the exact reagents and conditions. Using this visual aid during revision will build your fluency."
+    },
+    {
+      "q": "What's the difference between reflux and distillation in synthesis?",
+      "a": "Reflux involves heating a reaction mixture with a condenser placed vertically above the flask. This allows the reaction to be heated for a long period without losing volatile substances, as they condense and drip back down. It's used to ensure a reaction goes to completion. Distillation is a separation technique. It's used either to purify a final liquid product or, crucially in synthesis, to remove a product as it forms if it's more volatile than the reactants (e.g., making an aldehyde from a primary alcohol)."
+    },
+    {
+      "q": "Do I need to memorise all the specific conditions for every reaction?",
+      "a": "Yes, for the most part. Reagents and conditions are intrinsically linked and are often worth separate marks in an exam. For example, stating 'acidified potassium dichromate(VI)' and 'heat under reflux' are two distinct pieces of information required to describe the full oxidation of a primary alcohol. Simply writing the reagent is not enough."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Organic synthesis** (21.1) is a capstone AS topic — examiners combine **mechanisms**, **tests**, and **reagent choice** in one flow chart question."
+      "content": "Welcome to the world of organic synthesis, the art and science of building organic molecules. This field is the cornerstone of modern medicine, materials science, and industry, allowing us to create everything from life-saving drugs to advanced polymers. In this topic, you will learn to think like an organic chemist, using your knowledge of reactions as a toolkit to solve molecular puzzles and construct complex molecules from simpler ones."
+    },
+    {
+      "type": "heading",
+      "content": "The Organic Chemist's Toolkit: Key Reactions"
+    },
+    {
+      "type": "text",
+      "content": "At AS Level, you have learned a variety of reactions that transform one functional group into another. Success in synthesis problems relies on your fluent recall of these transformations. The main reaction types include substitution (nucleophilic), addition (electrophilic and nucleophilic), elimination, oxidation, reduction, and hydrolysis. Each reaction has specific reagents and conditions that you must know."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Alkene → Alkane / Halogenoalkane / Alcohol / Diol",
+        "Halogenoalkane → Alcohol / Nitrile / Amine",
+        "Alcohol → Aldehyde / Ketone / Carboxylic Acid / Alkene / Ester",
+        "Carbonyl (Aldehyde/Ketone) → Alcohol / Hydroxynitrile",
+        "Nitrile → Carboxylic Acid / Amine (A2)",
+        "Carboxylic Acid → Ester / Acyl Chloride"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Planning a Multi-Step Synthesis: Retrosynthesis"
+    },
+    {
+      "type": "text",
+      "content": "For any synthesis involving more than one step, a plan is essential. While you can try to work forwards from the starting material, this can lead to dead ends. A more powerful and professional approach is retrosynthesis – working backwards from the target molecule. You ask the question: 'What reaction could I do to make this target molecule?' This identifies a precursor molecule. You then repeat the process for the precursor until you arrive at the given starting material."
+    },
+    {
+      "type": "formula",
+      "content": "Target Molecule \\Rightarrow Precursor\\ Molecule"
+    },
+    {
+      "type": "text",
+      "content": "This special arrow (a retrosynthetic arrow) means 'is made from'. Once you have a complete backwards plan, you can write the synthesis in the forward direction, specifying all reagents and conditions for each step. This method provides a logical and structured way to solve complex synthesis problems."
+    },
+    {
+      "type": "workedExample",
+      "question": "Devise a two-step synthesis for 2-hydroxypropanoic acid ($CH_3CH(OH)COOH$) starting from ethanal ($CH_3CHO$). State all reagents and conditions.",
+      "solution": "1. **Retrosynthetic Analysis**:\n- **Target**: 2-hydroxypropanoic acid, $CH_3CH(OH)COOH$. It contains both an alcohol and a carboxylic acid group.\n- **Step Back 1**: The carboxylic acid group ($-COOH$) can be formed by the acid hydrolysis of a nitrile group ($-CN$). This suggests the immediate precursor is 2-hydroxypropanenitrile. $CH_3CH(OH)COOH \\Rightarrow CH_3CH(OH)CN$.\n- **Step Back 2**: The precursor, 2-hydroxypropanenitrile, can be formed by the nucleophilic addition of hydrogen cyanide to a carbonyl compound. The structure $CH_3CH(OH)CN$ points to the starting carbonyl being ethanal, $CH_3CHO$. This matches our given starting material. The plan is complete.\n\n2. **Forward Synthesis**:\n- **Step 1: Ethanal to 2-hydroxypropanenitrile**\n  - Reagents: Potassium cyanide ($KCN(aq)$) and dilute sulfuric acid ($H_2SO_4(aq)$). (This generates $HCN$ in situ).\n  - Conditions: Room temperature.\n  - Equation: $CH_3CHO + HCN \\rightarrow CH_3CH(OH)CN$\n- **Step 2: 2-hydroxypropanenitrile to 2-hydroxypropanoic acid**\n  - Reagents: Dilute hydrochloric acid ($HCl(aq)$).\n  - Conditions: Heat under reflux.\n  - Equation: $CH_3CH(OH)CN + 2H_2O + H^+ \\rightarrow CH_3CH(OH)COOH + NH_4^+$"
     },
     {
       "type": "examTip",
-      "content": "State **conditions** (heat, reflux, catalyst) alongside reagents — missing conditions often loses a mark per step."
+      "content": "In multi-step synthesis questions, always check the number of carbon atoms in the starting material and the final product. If the number of carbons increases by one, the nitrile route ($R-X \\rightarrow R-CN \\rightarrow R-COOH$) is a very common and important pathway to know at AS Level."
+    },
+    {
+      "type": "heading",
+      "content": "Choosing the Right Pathway: Selectivity and Control"
+    },
+    {
+      "type": "text",
+      "content": "Often, there can be more than one possible reaction pathway. The best route is usually the one with the fewest steps and the highest yield. A key aspect of control is manipulating reaction conditions. For example, the oxidation of a primary alcohol like propan-1-ol can yield either propanal (an aldehyde) or propanoic acid (a carboxylic acid). To obtain the aldehyde, we use distillation to remove it as it forms, preventing further oxidation. To obtain the carboxylic acid, we use reflux to ensure the reaction goes to completion. This demonstrates how conditions are just as important as the reagents themselves."
+    },
+    {
+      "type": "workedExample",
+      "question": "Devise a synthetic route to convert propan-1-ol ($CH_3CH_2CH_2OH$) into ethyl propanoate ($CH_3CH_2COOCH_2CH_3$). You may use any other organic or inorganic reagents. Identify all intermediates.",
+      "solution": "1. **Analysis**:\n- The target molecule is an ester, ethyl propanoate. Esters are formed from a carboxylic acid and an alcohol via esterification.\n- The 'propanoate' part of the name indicates it is derived from propanoic acid ($CH_3CH_2COOH$).\n- The 'ethyl' part of the name indicates it is derived from ethanol ($CH_3CH_2OH$).\n- Our starting material is propan-1-ol. We can use this to make the propanoic acid component.\n\n2. **Route Plan**:\n- **Part A**: Synthesise propanoic acid from propan-1-ol.\n- **Part B**: React the synthesised propanoic acid with ethanol (which the question allows us to use) to form the final ester product.\n\n3. **Forward Synthesis**:\n- **Step 1: Synthesis of Propanoic Acid**\n  - Reaction: Oxidation of a primary alcohol to a carboxylic acid.\n  - Reagents: Acidified potassium dichromate(VI), $K_2Cr_2O_7(aq) / H_2SO_4(aq)$.\n  - Conditions: Heat under reflux.\n  - Intermediate: Propanoic acid, $CH_3CH_2COOH$.\n  - Equation: $CH_3CH_2CH_2OH + 2[O] \\rightarrow CH_3CH_2COOH + H_2O$\n- **Step 2: Synthesis of Ethyl Propanoate**\n  - Reaction: Esterification.\n  - Reagents: Ethanol ($CH_3CH_2OH$) and a few drops of concentrated sulfuric acid catalyst.\n  - Conditions: Heat (often under reflux).\n  - Final Product: Ethyl propanoate, $CH_3CH_2COOCH_2CH_3$.\n  - Equation: $CH_3CH_2COOH + CH_3CH_2OH \\rightleftharpoons CH_3CH_2COOCH_2CH_3 + H_2O$"
     },
     {
       "type": "practice",
-      "label": "Mark an organic synthesis question",
+      "label": "Test your synthesis skills",
       "href": "/mark?subject=9701&topic=21.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "Interactive Molecule Builder (PhET)",
+          "href": "https://phet.colorado.edu/en/simulations/build-a-molecule"
+        },
+        {
+          "label": "Organic Chemistry Reaction Map",
+          "href": "https://www.chem.ucla.edu/~harding/IGOC/roadmap.pdf"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Multi-step routes — identify functional groups at each conversion (21.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Multi-step routes: identify reagents for each functional group change.",
+        "embedHint": "Alkene → diol → aldehyde → acid pathway."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Protecting groups and selectivity at A Level extension.",
+        "embedHint": "Primary alcohol oxidised before tertiary if conditions chosen."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Test-tube reactions confirm intermediate functional groups.",
+        "embedHint": "Tollens, Fehling, 2,4-DNPH sequence."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Two-step synthesis from given start material — plan backwards.",
+        "embedHint": "Target molecule → penultimate → … → starting material."
+      }
+    ]
+  }
 }

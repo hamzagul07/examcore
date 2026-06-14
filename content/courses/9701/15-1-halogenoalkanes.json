@@ -4,50 +4,269 @@
   "title": "Halogenoalkanes",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS halogenoalkanes — SN1 and SN2 mechanisms, elimination, and environmental issues (CFCs/HCFCs).",
+  "status": "pilot",
+  "summary": "This lesson explores halogenoalkanes, a class of organic compounds containing a halogen atom bonded to a carbon. We will investigate their structure, the polarity of the carbon-halogen bond, and their key reactions: nucleophilic substitution (SN1 and SN2 mechanisms) and elimination. Understanding these reactions is fundamental to organic synthesis.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Classify halogenoalkanes as primary, secondary, or tertiary.",
-    "Compare SN1 and SN2 mechanisms and conditions favouring each.",
-    "Describe elimination reactions competing with substitution.",
-    "Discuss ozone depletion linked to halogenoalkanes."
+    "Describe the nucleophilic substitution reactions of halogenoalkanes with aqueous alkali, ethanolic cyanide, and ethanolic ammonia.",
+    "Explain the SN1 and SN2 mechanisms of nucleophilic substitution, including the role of the halogenoalkane's structure (primary, secondary, tertiary).",
+    "Explain the factors affecting the rate of nucleophilic substitution, including the identity of the halogen.",
+    "Describe the elimination reaction of halogenoalkanes and the conditions required, and explain the competition between substitution and elimination."
   ],
   "simpleExplanation": {
-    "title": "Substitution or elimination",
-    "summary": "The C–X bond polarises so C carries partial positive charge. Nucleophiles attack in substitution; hot base can eliminate HX instead.",
+    "title": "The Halogenoalkane Reaction Maze",
+    "summary": "Halogenoalkanes have a polar carbon-halogen bond, making the carbon atom an easy target for attack. Depending on the conditions and the molecule's shape, this leads to either substitution (swapping the halogen) or elimination (forming a double bond).",
+    "analogy": "Imagine a VIP at a party (the carbon atom) with a security guard (the halogen). In an SN2 reaction, a new guest (the nucleophile) smoothly swaps places with the guard in one go. In an SN1 reaction, the guard leaves first, creating a vacant space (a carbocation), and then a new guest can join from any direction. Elimination is different: a commotion starts nearby, and both the VIP's neighbour and the security guard are ejected, forcing the VIP to bond with their other neighbour, forming a new group (a double bond).",
     "steps": [
-      "Primary → SN2 favoured (backside attack, inversion).",
-      "Tertiary → SN1 favoured (carbocation intermediate, racemisation).",
-      "Hot ethanolic OH⁻ promotes elimination → alkene.",
-      "CFCs catalyse ozone destruction in stratosphere — now largely banned."
+      "Halogenoalkanes: C–X polar bond — C δ+, X δ−. | Sim hint: View tetrahedral shape around the C–X bond.",
+      "SN2: one step, backside attack, inverted configuration. | Sim hint: Primary halogenoalkanes favour SN2 (good leaving group I⁻ > Br⁻ > Cl⁻).",
+      "SN1: two steps via carbocation — racemisation possible. | Sim hint: Tertiary halogenoalkanes favour SN1 (stable carbocation).",
+      "Elimination competes with substitution — especially with hot ethanolic OH⁻. | Sim hint: Compare substitution vs elimination conditions in exam answers."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a nucleophile?",
+      "back": "An electron-pair donor. It is a species (an ion or a molecule) that is attracted to an electron-deficient centre, where it donates a pair of electrons to form a new covalent bond. Examples: OH⁻, CN⁻, NH₃."
+    },
+    {
+      "front": "What is a halogenoalkane?",
+      "back": "An alkane in which one or more hydrogen atoms have been replaced by a halogen atom (F, Cl, Br, I). General formula CₙH₂ₙ₊₁X."
+    },
+    {
+      "front": "Why is the carbon-halogen (C-X) bond polar?",
+      "back": "Because halogen atoms are more electronegative than carbon atoms. This pulls the electron density in the bond towards the halogen, creating a partial negative charge (δ−) on the halogen and a partial positive charge (δ+) on the carbon."
+    },
+    {
+      "front": "What are the key features of an SN2 mechanism?",
+      "back": "Stands for Substitution, Nucleophilic, Bimolecular. It is a one-step mechanism with a single transition state. It involves a 'backside' attack and results in inversion of configuration. Favoured by primary halogenoalkanes."
+    },
+    {
+      "front": "What are the key features of an SN1 mechanism?",
+      "back": "Stands for Substitution, Nucleophilic, Unimolecular. It is a two-step mechanism involving a carbocation intermediate. The first step (formation of the carbocation) is rate-determining. It can result in a racemic mixture. Favoured by tertiary halogenoalkanes."
+    },
+    {
+      "front": "What conditions favour nucleophilic substitution over elimination?",
+      "back": "Using a warm, aqueous solution of the nucleophile (e.g., NaOH(aq)). Water is a polar solvent that stabilises the ions involved."
+    },
+    {
+      "front": "What conditions favour elimination over nucleophilic substitution?",
+      "back": "Using a hot, concentrated solution of a strong base in an ethanol solvent (e.g., KOH in ethanol). The hydroxide ion acts as a base rather than a nucleophile."
+    },
+    {
+      "front": "Why do iodoalkanes react faster than chloroalkanes in substitution reactions?",
+      "back": "The C-I bond is weaker and has a lower bond enthalpy than the C-Cl bond. Therefore, less energy is required to break the C-I bond, leading to a faster rate of reaction."
+    },
+    {
+      "front": "Why do tertiary halogenoalkanes favour the SN1 mechanism?",
+      "back": "They form a stable tertiary carbocation intermediate. The stability is due to the positive inductive effect of the three alkyl groups, which donate electron density to the positive carbon, spreading out the charge."
+    },
+    {
+      "front": "What is meant by 'inversion of configuration' in an SN2 reaction?",
+      "back": "The stereochemistry at the carbon centre is inverted, similar to an umbrella flipping inside out. The nucleophile attacks from the opposite side of the leaving group, causing the other three groups to 'flip' over."
+    },
+    {
+      "front": "What is a racemic mixture and why does an SN1 reaction produce one?",
+      "back": "A racemic mixture is a 50:50 mixture of two enantiomers (chiral molecules that are mirror images). The SN1 mechanism proceeds via a planar carbocation, which the nucleophile can attack from either side with equal probability, forming both enantiomers in equal amounts."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why does an SN1 reaction produce a racemic mixture?",
+      "a": "The SN1 mechanism proceeds via a planar carbocation intermediate. This flat structure can be attacked by the incoming nucleophile from either the top face or the bottom face with equal probability. If the carbon atom is a chiral centre, this leads to the formation of both enantiomers in equal amounts, resulting in a 50:50 mixture called a racemic mixture."
+    },
+    {
+      "q": "What is the role of ethanol as a solvent in elimination reactions?",
+      "a": "Ethanol is a less polar solvent than water. It prevents the hydroxide ions from being heavily solvated (surrounded by solvent molecules), which makes them act as a stronger base. A stronger base is more effective at removing a proton, favouring the elimination pathway over the substitution pathway."
+    },
+    {
+      "q": "Why are fluoroalkanes so unreactive in nucleophilic substitution?",
+      "a": "The C-F bond is the strongest of all the carbon-halogen bonds due to the small size and high electronegativity of fluorine, leading to significant orbital overlap. A large amount of energy is required to break this bond (high bond enthalpy), so the activation energy for substitution is very high, making the reaction extremely slow."
+    },
+    {
+      "q": "Can secondary halogenoalkanes undergo both SN1 and SN2?",
+      "a": "Yes, secondary halogenoalkanes are intermediate. They can undergo both SN1 and SN2 mechanisms, often simultaneously. The exact pathway and product distribution depend on the specific conditions: the strength of the nucleophile, the solvent, and the temperature."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Halogenoalkanes** combine **mechanistic organic chemistry** with **environmental chemistry**. Examiners test **SN1 vs SN2** with **primary/secondary/tertiary** classification every year."
+      "content": "Halogenoalkanes, also known as alkyl halides, are a cornerstone of organic chemistry. They are derived from alkanes by substituting one or more hydrogen atoms with halogens. Their unique reactivity, stemming from the polar carbon-halogen bond, makes them invaluable starting materials for synthesising a vast array of other organic compounds, from alcohols and amines to nitriles and alkenes."
+    },
+    {
+      "type": "heading",
+      "content": "Structure and Reactivity"
+    },
+    {
+      "type": "text",
+      "content": "The key to understanding the chemistry of halogenoalkanes is the carbon-halogen bond (C-X). As halogens are more electronegative than carbon, the electron pair in the covalent bond is drawn closer to the halogen. This creates a polar bond, with the carbon atom being electron-deficient (δ+) and the halogen atom being electron-rich (δ−). This δ+ carbon is an electrophilic centre, making it susceptible to attack by nucleophiles (electron-pair donors)."
+    },
+    {
+      "type": "heading",
+      "content": "Nucleophilic Substitution Reactions"
+    },
+    {
+      "type": "text",
+      "content": "This is the characteristic reaction of halogenoalkanes. A nucleophile attacks the partially positive carbon atom, and the halogen is displaced as a halide ion ($X^−$), which is known as a leaving group. The overall process is the substitution of the halogen by the nucleophile."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Nucleophile strength: CN⁻ > OH⁻ > NH₃ > H₂O",
-        "Leaving group ability: I⁻ > Br⁻ > Cl⁻ > F⁻",
-        "SN2: one step, rate = k[R-X][Nu]",
-        "SN1: two steps, rate = k[R-X] only"
+        "**With aqueous alkali (e.g., NaOH(aq))**: Forms an alcohol. Reagent: NaOH(aq). Conditions: Warm. Nucleophile: $OH^−$. Example: $CH_3CH_2Br + OH^− \\rightarrow CH_3CH_2OH + Br^−$.",
+        "**With ethanolic cyanide (e.g., KCN)**: Forms a nitrile, extending the carbon chain by one carbon. Reagent: KCN in ethanol. Conditions: Reflux. Nucleophile: $CN^−$. Example: $CH_3CH_2Br + CN^− \\rightarrow CH_3CH_2CN + Br^−$.",
+        "**With ethanolic ammonia (NH₃)**: Forms a primary amine. Reagent: Excess concentrated NH₃ in ethanol. Conditions: Heat in a sealed tube. Nucleophile: $NH_3$. Example: $CH_3CH_2Br + NH_3 \\rightarrow CH_3CH_2NH_2 + HBr$. (The HBr then reacts with more ammonia: $HBr + NH_3 \\rightarrow NH_4Br$)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Mechanisms of Nucleophilic Substitution: SN1 vs SN2"
+    },
+    {
+      "type": "text",
+      "content": "The way a substitution reaction happens is called its mechanism. There are two main pathways: SN1 and SN2. The path taken depends primarily on the structure of the halogenoalkane: primary (1°), secondary (2°), or tertiary (3°)."
+    },
+    {
+      "type": "heading",
+      "content": "The SN2 Mechanism (Primary Halogenoalkanes)"
+    },
+    {
+      "type": "text",
+      "content": "SN2 stands for **S**ubstitution **N**ucleophilic **Bimolecular**. The '2' (bimolecular) indicates that the rate of reaction depends on the concentrations of two species: the halogenoalkane and the nucleophile. It is a single-step process. The nucleophile attacks the δ+ carbon atom from the side opposite to the leaving group (the halogen). This is called 'backside attack'. As the nucleophile bonds, the carbon-halogen bond breaks simultaneously. This occurs via a high-energy transition state where the carbon is momentarily bonded to five groups. This mechanism results in an 'inversion of configuration' at the carbon centre. Primary halogenoalkanes favour this mechanism because there is little steric hindrance to prevent the nucleophile from attacking."
+    },
+    {
+      "type": "workedExample",
+      "question": "Draw the mechanism for the reaction between bromoethane ($CH_3CH_2Br$) and a hydroxide ion ($OH^−$). Include all relevant dipoles, charges, and curly arrows.",
+      "solution": "This is an SN2 mechanism as bromoethane is a primary halogenoalkane.\n\n**Step 1:** Show the polarity of the C-Br bond. The nucleophile, $OH^−$, is attracted to the δ+ carbon atom.\n\n**Step 2:** Draw a curly arrow from the lone pair on the oxygen of the $OH^−$ ion to the δ+ carbon atom of bromoethane. This represents the formation of a new C-O bond.\n\n**Step 3:** Simultaneously, draw a curly arrow from the C-Br bond to the Br atom. This represents the breaking of the C-Br bond, with the bromine leaving as a bromide ion ($Br^−$).\n\n**Mechanism Diagram:**\n$OH^− + CH_3CH_2^{\\delta+}-Br^{\\delta−} \\rightarrow [HO^{\\delta−} \\cdot\\cdot\\cdot CH_2(CH_3) \\cdot\\cdot\\cdot Br^{\\delta−}]^− \\rightarrow HOCH_2CH_3 + Br^−$\n\n*   The curly arrow from the O in $OH^−$ points to the C of the $CH_2$ group.\n*   A second curly arrow goes from the C-Br bond onto the Br atom.\n*   The product, ethanol, shows an inverted configuration compared to the reactant (though not easily visible without stereochemistry).\n*   The species in square brackets is the transition state."
+    },
+    {
+      "type": "heading",
+      "content": "The SN1 Mechanism (Tertiary Halogenoalkanes)"
+    },
+    {
+      "type": "text",
+      "content": "SN1 stands for **S**ubstitution **N**ucleophilic **Unimolecular**. The '1' (unimolecular) indicates that the rate of reaction depends only on the concentration of one species: the halogenoalkane. This is a two-step mechanism. \n\n**Step 1 (slow, rate-determining):** The C-X bond breaks by heterolytic fission to form a planar carbocation intermediate and a halide ion. This is the slow step because it requires energy to break the bond.\n\n**Step 2 (fast):** The nucleophile rapidly attacks the flat carbocation. Since the carbocation is planar, the nucleophile can attack from either the top or the bottom face with equal probability. If the original carbon was a chiral centre, this results in a 50:50 mixture of two enantiomers, known as a racemic mixture.\n\nTertiary halogenoalkanes favour this mechanism because the resulting tertiary carbocation is relatively stable, stabilised by the positive inductive effect of the three electron-donating alkyl groups."
+    },
+    {
+      "type": "workedExample",
+      "question": "Draw the mechanism for the reaction of 2-bromo-2-methylpropane, $(CH_3)_3CBr$, with water. Explain why this is an SN1 mechanism.",
+      "solution": "This reaction proceeds via an SN1 mechanism because 2-bromo-2-methylpropane is a tertiary halogenoalkane, which forms a stable tertiary carbocation.\n\n**Step 1 (slow):** The C-Br bond breaks heterolytically to form a tertiary carbocation and a bromide ion.\n$(CH_3)_3C-Br \\rightarrow (CH_3)_3C^+ + Br^−$\n*   Draw a curly arrow from the C-Br bond to the Br atom.\n\n**Step 2 (fast):** A water molecule (the nucleophile) attacks the planar carbocation. A lone pair on the oxygen atom forms a bond with the positive carbon.\n$(CH_3)_3C^+ + H_2O \\rightarrow (CH_3)_3C-OH_2^+$\n*   Draw a curly arrow from the lone pair on the oxygen of $H_2O$ to the $C^+$ atom.\n\n**Step 3 (fast):** The intermediate loses a proton ($H^+$) to another water molecule to form the final product, 2-methylpropan-2-ol.\n$(CH_3)_3C-OH_2^+ + H_2O \\rightarrow (CH_3)_3C-OH + H_3O^+$\n*   Draw a curly arrow from the O-H bond in the intermediate onto the oxygen atom.\n\nThis mechanism is favoured because the intermediate $(CH_3)_3C^+$ is a tertiary carbocation, stabilised by the electron-donating effect of the three methyl groups."
+    },
+    {
+      "type": "examTip",
+      "content": "When drawing mechanisms, curly arrows must be precise. They must start from a source of electrons (a lone pair or a bond) and point to the destination (an atom or a space where a bond will form). Always include all partial charges (δ+, δ−) and full ionic charges where appropriate. Marks are frequently lost for inaccurate arrows."
+    },
+    {
+      "type": "heading",
+      "content": "Rate of Substitution and the Leaving Group"
+    },
+    {
+      "type": "text",
+      "content": "The rate of nucleophilic substitution is also influenced by the identity of the halogen. The reaction involves breaking the carbon-halogen bond. The weaker the bond, the faster the reaction. Bond strength decreases down Group 17."
+    },
+    {
+      "type": "formula",
+      "content": "Bond Enthalpy: C-F > C-Cl > C-Br > C-I\nRate of Reaction: R-I > R-Br > R-Cl > R-F"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Iodoalkanes are the most reactive as the C-I bond is the weakest and requires the least energy to break.",
+        "Fluoroalkanes are the least reactive as the C-F bond is very strong."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Elimination Reactions"
+    },
+    {
+      "type": "text",
+      "content": "In an elimination reaction, a small molecule (usually H-X) is removed from the halogenoalkane to form an alkene. This reaction is favoured by using a strong base in a non-polar solvent. The typical conditions are heating the halogenoalkane with a hot, concentrated solution of sodium or potassium hydroxide in ethanol. Here, the hydroxide ion acts as a base, removing a proton ($H^+$) from a carbon atom adjacent to the one bonded to the halogen. Simultaneously, the halogen leaves as a halide ion and a C=C double bond is formed."
+    },
+    {
+      "type": "formula",
+      "content": "CH_3CH_2Br + KOH \\xrightarrow{\\text{ethanol, heat}} CH_2=CH_2 + KBr + H_2O"
+    },
+    {
+      "type": "examTip",
+      "content": "Be extremely precise with reaction conditions in your exam answers. 'Warm, aqueous NaOH' leads to substitution to form an alcohol. 'Hot, ethanolic KOH' leads to elimination to form an alkene. Mixing these up is a common mistake that will lose you marks."
+    },
+    {
+      "type": "heading",
+      "content": "Competition: Substitution vs. Elimination"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Reagent Role**: The hydroxide ion, $OH^−$, can act as both a nucleophile (in substitution) and a base (in elimination).",
+        "**Solvent**: In water (aqueous), $OH^−$ is solvated, making it a better nucleophile. In ethanol, it is less solvated and acts as a stronger base.",
+        "**Temperature**: Higher temperatures favour elimination, as it has a higher activation energy.",
+        "**Structure**: Tertiary halogenoalkanes are more prone to elimination than primary ones, as they can form more stable, highly substituted alkenes."
       ]
     },
     {
       "type": "practice",
-      "label": "Mark a halogenoalkanes question",
+      "label": "Practice Questions: Halogenoalkanes",
       "href": "/mark?subject=9701&topic=15.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "ChemGuide: Nucleophilic Substitution",
+          "href": "https://www.chemguide.co.uk/mechanisms/nucsub/menu.html"
+        },
+        {
+          "label": "Khan Academy: SN1 and SN2 Reactions",
+          "href": "https://www.khanacademy.org/science/organic-chemistry/substitution-elimination-reactions"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Molecule shapes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/molecule-shapes",
+    "hint": "See tetrahedral C–X geometry — relate to SN1/SN2 mechanisms (15.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Halogenoalkanes: C–X polar bond — C δ+, X δ−.",
+        "embedHint": "View tetrahedral shape around the C–X bond."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "SN2: one step, backside attack, inverted configuration.",
+        "embedHint": "Primary halogenoalkanes favour SN2 (good leaving group I⁻ > Br⁻ > Cl⁻)."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "SN1: two steps via carbocation — racemisation possible.",
+        "embedHint": "Tertiary halogenoalkanes favour SN1 (stable carbocation)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Elimination competes with substitution — especially with hot ethanolic OH⁻.",
+        "embedHint": "Compare substitution vs elimination conditions in exam answers."
+      }
+    ]
+  }
 }

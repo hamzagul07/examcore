@@ -1,32 +1,176 @@
 {
   "slug": "12-2-program-design",
   "topicCode": "12.2",
-  "title": "Program design",
-  "paper": "AL",
-  "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9618 A Level program design — structure charts, pseudocode refinement, and modular design.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "title": "Program Design",
+  "paper": "P2",
+  "paperName": "Fundamental Problem-solving and Programming Skills",
+  "status": "pilot",
+  "summary": "This lesson explores the principles of program design, focusing on top-down design, stepwise refinement, and the use of structure diagrams. It equips students with the skills to plan and structure complex programs before writing a single line of code, a crucial practice for developing robust and maintainable software.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Draw structure charts for modular programs.",
-    "Refine algorithms using stepwise refinement.",
-    "Identify modules, parameters, and return values.",
-    "Evaluate maintainability of design choices."
+    "Understand and apply the concepts of top-down design and stepwise refinement.",
+    "Create and interpret structure diagrams to represent program architecture.",
+    "Explain the benefits of a structured approach to program design, such as improved maintainability and easier debugging.",
+    "Recognise the role of modules (procedures and functions) in breaking down problems."
   ],
   "simpleExplanation": {
-    "title": "Design before code",
-    "summary": "Top-down design breaks problems into manageable modules with clear interfaces before implementation.",
+    "title": "Your Blueprint for Code",
+    "summary": "Program design is the process of creating a detailed plan or blueprint for a software solution before you start coding. It's about breaking a large, complex problem into smaller, more manageable pieces.",
+    "analogy": "Imagine building a large, intricate LEGO castle. You wouldn't just tip all the bricks onto the floor and start sticking them together randomly. Instead, you'd follow the instruction booklet, which tells you to build smaller sections first—a turret here, a wall there—and then shows you how to connect these sections to form the final castle. Program design is your instruction booklet for coding.",
     "steps": [
-      "Structure chart shows hierarchy and data flow.",
-      "Each module has one clear purpose.",
-      "Parameters pass data in; functions return results.",
-      "Refinement adds detail level by level."
+      "Define the main problem your program needs to solve at a high level.",
+      "Break this main problem down into smaller, self-contained sub-problems or modules.",
+      "Continue breaking down each sub-problem until they are simple enough to be coded directly. This is stepwise refinement.",
+      "Draw a structure diagram to visually represent this hierarchy of modules and how they connect."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Program Design?",
+      "back": "The process of planning the structure and logic of a program before writing the code. It involves breaking down a problem and defining modules and their relationships."
+    },
+    {
+      "front": "What is Top-Down Design?",
+      "back": "A problem-solving approach where you start with the overall problem and break it down into smaller, more manageable sub-problems. This process is repeated, creating a hierarchy."
+    },
+    {
+      "front": "What is Stepwise Refinement?",
+      "back": "The process of progressively adding detail to a program design. At each stage of top-down design, the sub-problems are refined into more detailed steps, until the steps are simple enough to be coded."
+    },
+    {
+      "front": "What is a Structure Diagram?",
+      "back": "A graphical representation of a program's architecture, showing the modules (sub-routines) and their hierarchical relationships. It shows how the program is broken down, not the order of execution."
+    },
+    {
+      "front": "What does a rectangle represent in a structure diagram?",
+      "back": "A module, which could be a procedure or a function. The top-level rectangle is the main program."
+    },
+    {
+      "front": "What do lines connecting rectangles in a structure diagram represent?",
+      "back": "A 'call' or invocation. A line from module A to module B means that module A calls module B to perform a task."
+    },
+    {
+      "front": "What is a key difference between a structure diagram and a flowchart?",
+      "back": "A structure diagram shows the hierarchical breakdown of tasks (decomposition), whereas a flowchart shows the sequence of operations and decisions (flow of control)."
+    },
+    {
+      "front": "What is a 'module' in program design?",
+      "back": "A self-contained block of code that performs a specific task, such as a procedure or a function. Modules are the building blocks in top-down design."
+    },
+    {
+      "front": "State one benefit of using top-down design.",
+      "back": "It helps manage complexity by breaking a large problem into smaller, understandable pieces. Other benefits include easier testing, debugging, and team collaboration."
+    },
+    {
+      "front": "Common Trap: My structure diagram has decision (diamond) symbols.",
+      "back": "This is incorrect. Structure diagrams do not show decisions, loops, or sequence. You are confusing it with a flowchart. Structure diagrams only show decomposition into modules."
+    },
+    {
+      "front": "How does program design facilitate teamwork?",
+      "back": "By breaking the problem into distinct modules, different programmers can work on different modules simultaneously, as long as the interfaces between them are clearly defined."
+    },
+    {
+      "front": "What is the relationship between Top-Down Design and Stepwise Refinement?",
+      "back": "They are linked concepts. Top-down design is the strategy of breaking a problem down. Stepwise refinement is the iterative process of adding detail at each level of the breakdown."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is a structure diagram the same as a flowchart?",
+      "a": "No, they serve different purposes. A structure diagram shows the decomposition of a problem into modules (the 'what'). A flowchart shows the sequence of execution, including steps, decisions, and loops (the 'how'). They are not interchangeable."
+    },
+    {
+      "q": "Why can't I just start coding? It feels faster.",
+      "a": "For very small, trivial programs, you might get away with it. For any problem of even moderate complexity, coding without a design leads to disorganised, hard-to-read, and difficult-to-debug code. Time spent on design is saved many times over during debugging and maintenance."
+    },
+    {
+      "q": "What is the real difference between top-down design and stepwise refinement?",
+      "a": "They are very closely related. Think of top-down design as the overall strategy: 'Start at the top and break it down'. Stepwise refinement is the process you use to execute that strategy: 'At each step, add more detail until the task is simple enough to code'."
+    },
+    {
+      "q": "Do I need to draw a structure diagram for every program in the exam?",
+      "a": "No, you only need to create one if the question explicitly asks for it. However, you should always be thinking in terms of top-down design and modules when you plan your pseudocode answers, as it will lead to better-structured solutions that are easier to write and earn more marks."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Program design** (12.2) complements **12.1 algorithms**. Examiners award marks for **clear structure charts**." },
-    { "type": "practice", "label": "Mark a program design question", "href": "/mark?subject=9618&topic=12.2" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Before an architect builds a house, they draw a blueprint. Before a chef cooks a complex meal, they consult a recipe. In computer science, we have a similar preparatory phase: Program Design. It's the disciplined approach of planning your program's structure before you dive into writing code. This foundational skill is what separates a robust, scalable application from a fragile, unmanageable one."
+    },
+    {
+      "type": "heading",
+      "content": "The Core Principles: Top-Down Design and Stepwise Refinement"
+    },
+    {
+      "type": "text",
+      "content": "At the heart of program design are two interconnected ideas: Top-Down Design and Stepwise Refinement. Top-down design is the philosophy of starting with the single, main task your program must accomplish. You then break that main task down into a small number of major sub-tasks. Each of these sub-tasks is then broken down further, and so on, creating a hierarchy of tasks."
+    },
+    {
+      "type": "text",
+      "content": "Stepwise refinement is the active process of carrying this out. As you move down the hierarchy, you 'refine' the description of each task, adding more detail. You stop breaking down a task when it is simple enough to be expressed directly in a few lines of programming code. This combined approach prevents you from getting lost in the details too early and ensures all parts of the problem are considered."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Manages Complexity:** Large problems become a series of smaller, solvable ones.",
+        "**Facilitates Teamwork:** Different developers can be assigned different modules to work on concurrently.",
+        "**Simplifies Testing & Debugging:** Each module can be tested independently (unit testing). If a bug occurs, it's easier to isolate which module is at fault.",
+        "**Promotes Reusability:** A well-defined module, like 'CalculateVAT', can be reused in other programs."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Visualising the Plan: Structure Diagrams"
+    },
+    {
+      "type": "text",
+      "content": "A structure diagram (or structure chart) is the primary tool for visualising a top-down design. It's a simple, hierarchical diagram that shows the different modules of a program and how they relate to one another. It is a tree-like structure where the root is the main program module."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Rectangles:** Each rectangle represents a module (a procedure, a function, or the main program).",
+        "**Lines:** Lines connecting the rectangles show the calls. If a line goes from module 'A' down to module 'B', it means 'A' calls 'B'.",
+        "**Hierarchy:** The diagram clearly shows which modules are sub-tasks of others. It illustrates decomposition, not sequence."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently test the difference between structure diagrams and flowcharts. Remember: a structure diagram shows **decomposition** (what the program is made of). A flowchart shows **flow of control** (the sequence of steps, decisions, and loops). Your structure diagram should NEVER contain symbols for decisions (diamonds) or loops."
+    },
+    {
+      "type": "workedExample",
+      "question": "A simple payroll program needs to get an employee's hours worked and rate of pay. It then calculates the gross pay. Finally, it displays the gross pay. Create a structure diagram for this program.",
+      "solution": "The design process would be:\n1.  **Top Level:** The main module is 'Process Payroll'.\n2.  **First Breakdown:** 'Process Payroll' can be broken into three main steps: Get Data, Calculate Pay, Display Pay.\n3.  **Second Breakdown:** The 'Get Data' module can be refined into two more specific modules: 'Get Hours Worked' and 'Get Rate of Pay'.\n\n**Structure Diagram Description:**\n- A top-level rectangle labelled 'Process Payroll'.\n- Three lines extend down from 'Process Payroll' to three rectangles on the level below.\n- These three rectangles are labelled (from left to right): 'Get Data', 'Calculate Gross Pay', and 'Display Gross Pay'.\n- Two lines extend down from the 'Get Data' rectangle.\n- These two rectangles are labelled 'Get Hours Worked' and 'Get Rate of Pay'."
+    },
+    {
+      "type": "heading",
+      "content": "A More Complex Example: Student Data Analysis"
+    },
+    {
+      "type": "workedExample",
+      "question": "A program is required to analyse a set of student exam scores. The program must:\n1. Read a list of scores from a file.\n2. Calculate the average score.\n3. Find the highest score.\n4. Find the lowest score.\n5. Display the average, highest, and lowest scores.\n\nDesign a structure diagram for this system.",
+      "solution": "Using top-down design and stepwise refinement:\n1.  **Top Level:** The main module is 'Analyse Student Scores'.\n2.  **First Breakdown:** This can be broken into three logical parts: 'Read Scores From File', 'Process Scores', and 'Display Results'.\n3.  **Second Breakdown:** The 'Process Scores' module is responsible for all the calculations. It can be broken down into 'Calculate Average', 'Find Highest Score', and 'Find Lowest Score'. The 'Display Results' module could also be broken down, but for simplicity at this level, we can group them.\n\n**Structure Diagram Description:**\n- A top-level rectangle labelled 'Analyse Student Scores'.\n- Three lines connect to the level below, with rectangles labelled 'Read Scores From File', 'Process Scores', and 'Display Results'.\n- From the 'Process Scores' rectangle, three more lines extend downwards.\n- These lines connect to three rectangles on the lowest level, labelled 'Calculate Average', 'Find Highest Score', and 'Find Lowest Score'."
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding of program design",
+      "href": "/mark?subject=9618&topic=12.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "BBC Bitesize on Modular Design",
+          "href": "https://www.bbc.co.uk/bitesize/guides/z2q3s-cw/revision/3"
+        },
+        {
+          "label": "Isaac Computer Science on Structure Diagrams",
+          "href": "https://isaaccomputerscience.org/concepts/dsa_pro_structure"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

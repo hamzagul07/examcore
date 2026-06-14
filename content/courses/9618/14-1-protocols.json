@@ -4,29 +4,161 @@
   "title": "Protocols",
   "paper": "P3",
   "paperName": "Advanced Theory",
-  "status": "premium",
-  "summary": "9618 A Level — TCP/IP, HTTP, FTP, and protocol layers for network communication.",
+  "status": "pilot",
+  "summary": "This lesson introduces communication protocols, the essential rules governing data exchange between devices. It covers the purpose of protocols, key elements like handshaking, and the distinction between bit rate and baud rate, all crucial for understanding network communication in Paper 3.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Explain purpose of network protocols.",
-    "Describe TCP vs UDP characteristics.",
-    "Outline HTTP request/response model.",
-    "Relate protocols to OSI/TCP-IP layers."
+    "Define the term 'protocol' and explain its importance in a communication system.",
+    "Describe the process of handshaking and its role in establishing a reliable connection.",
+    "Explain the key elements of a protocol, including syntax, semantics, and timing.",
+    "Differentiate between bit rate and baud rate and calculate one from the other."
   ],
   "simpleExplanation": {
-    "title": "Rules for communication",
-    "summary": "Protocols define message format and handshake rules. TCP is reliable; UDP is faster but connectionless.",
+    "title": "Protocols: The Rules of Digital Conversation",
+    "summary": "Protocols are the agreed-upon rules and conventions that let two electronic devices talk to each other. Without them, data sent from one device would be meaningless noise to another.",
+    "analogy": "Imagine two people from different countries trying to have a phone call. They first need to agree on a common language (the protocol). Then, one person says 'hello?' to start the call (initiation/handshaking). They take turns speaking and listening (data transfer rules), and finally say 'goodbye' to end the call (termination). Protocols do the exact same thing for computers.",
     "steps": [
-      "TCP: connection, acknowledgement, retransmit.",
-      "UDP: low overhead — streaming, DNS.",
-      "HTTP: client request, server response, status codes.",
-      "IP handles addressing and routing."
+      "First, two devices must agree on a set of rules, the 'protocol', before any communication can begin. This includes the data format, speed, and error-checking method.",
+      "The sending device initiates contact with the receiving device using a 'handshaking' process to confirm both are ready and using the same protocol.",
+      "Data is then broken into packets and transmitted according to the protocol's rules, such as packet size and addressing.",
+      "The receiver acknowledges receipt of the data, and once the transfer is complete, the connection is formally terminated to free up resources."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a communication protocol?",
+      "back": "A set of rules and conventions that govern the exchange of data between devices to ensure successful and meaningful communication."
+    },
+    {
+      "front": "What is 'handshaking' in the context of protocols?",
+      "back": "The process of negotiation and establishing the rules of communication between two devices before any data is transferred. It ensures both devices are ready and compatible."
+    },
+    {
+      "front": "What are the three key elements of a protocol?",
+      "back": "1. **Syntax:** The structure or format of the data (e.g., the order of bits). 2. **Semantics:** The meaning of each section of bits. 3. **Timing:** When data should be sent and how fast it can be sent."
+    },
+    {
+      "front": "What is the purpose of the TCP/IP protocol suite?",
+      "back": "To provide reliable, ordered, and error-checked delivery of a stream of data between applications running on hosts connected to an IP network. It's the foundational protocol of the internet."
+    },
+    {
+      "front": "What is the difference between bit rate and baud rate?",
+      "back": "Bit rate is the number of bits transmitted per second (bps). Baud rate is the number of signal changes (symbols) per second. One symbol can represent multiple bits."
+    },
+    {
+      "front": "If a signal uses 4 voltage levels, how many bits can each symbol represent?",
+      "back": "2 bits. With N levels, you can represent $log_2(N)$ bits. $log_2(4) = 2$."
+    },
+    {
+      "front": "Describe a simplex data transmission.",
+      "back": "Data can only be sent in one direction. For example, from a computer to a printer, or a radio broadcast."
+    },
+    {
+      "front": "Describe a half-duplex data transmission.",
+      "back": "Data can be sent in both directions, but not at the same time. For example, a walkie-talkie."
+    },
+    {
+      "front": "Describe a full-duplex data transmission.",
+      "back": "Data can be sent in both directions simultaneously. For example, a telephone conversation."
+    },
+    {
+      "front": "What is a 'packet'?",
+      "back": "A small unit of data transmitted over a network. It typically contains a header (with source/destination address, protocol info), a payload (the actual data), and a trailer (for error checking)."
+    },
+    {
+      "front": "Why is breaking data into packets necessary?",
+      "back": "It allows for efficient sharing of network resources (packet switching), easier error detection and retransmission of small parts, and routing through different paths."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are there so many different protocols? Why not just one?",
+      "a": "Different communication tasks have different requirements. For example, transferring a large file (using FTP) requires high reliability and error checking, but speed might be secondary. In contrast, streaming a live video (often using UDP) prioritises speed and continuous flow over perfect accuracy; a few lost pixels are acceptable, but a long pause for retransmission is not. The TCP/IP model uses a 'stack' of protocols, each specialised for a different layer of the communication process, from physical transmission to application-level data."
+    },
+    {
+      "q": "Is HTTP a protocol?",
+      "a": "Yes, HTTP (Hypertext Transfer Protocol) is an application-layer protocol. It defines the rules for how web browsers and web servers request and send web page data (like HTML files, images, and scripts). It sits 'on top' of other protocols like TCP/IP, which handle the reliable transport of the HTTP messages across the internet."
+    },
+    {
+      "q": "What happens if handshaking fails?",
+      "a": "If the handshaking process fails at any step, a stable connection is not established. For example, if the client sends a SYN packet but receives no SYN-ACK from the server, it will assume the server is offline, unavailable, or has rejected the connection. The client's operating system will eventually report a 'connection timeout' error to the application, and no data transfer will occur."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Protocols** (14.1) builds on AS **2.1** networks. Compare **TCP vs UDP** in a table for full marks." },
-    { "type": "practice", "label": "Mark a protocols question", "href": "/mark?subject=9618&topic=14.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In the world of computing, devices are constantly communicating. From your web browser requesting a page from a server, to your phone syncing with the cloud, none of this would be possible without a common set of rules. These rules are known as communication protocols. This lesson will explore what protocols are, why they are essential, and the fundamental concepts that underpin them."
+    },
+    {
+      "type": "heading",
+      "content": "The Role and Importance of Protocols"
+    },
+    {
+      "type": "text",
+      "content": "A protocol is a formal set of rules that defines how data is transmitted and received over a communication channel. Imagine trying to send a letter without agreeing on the address format, language, or even the postal service. The letter would never arrive correctly. Protocols solve this for digital communication, ensuring that devices from different manufacturers can interoperate seamlessly. They manage everything from initiating a connection to handling errors and terminating the link."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Interoperability:** Allows different systems (e.g., a Windows PC and an Apple server) to communicate effectively.",
+        "**Flow Control:** Manages the rate of data transmission to prevent a fast sender from overwhelming a slow receiver.",
+        "**Error Control:** Implements mechanisms like checksums and acknowledgements to detect and correct errors in transmitted data.",
+        "**Connection Management:** Defines how connections are established, maintained, and terminated (e.g., handshaking)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Handshaking: Establishing the Connection"
+    },
+    {
+      "type": "text",
+      "content": "Before any meaningful data can be exchanged, the two devices must first establish a connection and agree on the parameters for communication. This preliminary negotiation is called handshaking. It's a sequence of signals exchanged to confirm that both devices are present, ready, and agree on the protocol to be used. The most famous example is the TCP three-way handshake."
+    },
+    {
+      "type": "workedExample",
+      "question": "A client wants to establish a TCP connection with a server. Describe the three steps of the TCP three-way handshake, identifying the flags (SYN, ACK) used in each packet.",
+      "solution": "The TCP three-way handshake ensures both client and server are ready to communicate.\n\n**Step 1: SYN**\nThe client initiates the connection by sending a TCP packet to the server with the SYN (Synchronise) flag set. This packet essentially says, 'I want to start a connection.'\n\n**Step 2: SYN-ACK**\nIf the server is ready, it responds with a TCP packet that has both the SYN and ACK (Acknowledge) flags set. This means, 'I acknowledge your request and I also want to establish a connection.'\n\n**Step 3: ACK**\nFinally, the client sends a third packet back to the server with the ACK flag set. This acknowledges the server's response and completes the establishment of the connection. 'I acknowledge your readiness, the connection is now open.'\n\nAt this point, data transfer can begin."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to explain the need for protocols, don't just list protocol names like HTTP or FTP. Instead, explain the *functions* they provide, such as ensuring data integrity, managing flow control, and enabling devices from different vendors to communicate. Use terms like 'interoperability' and 'standardisation'."
+    },
+    {
+      "type": "heading",
+      "content": "Bit Rate vs. Baud Rate"
+    },
+    {
+      "type": "text",
+      "content": "While often used interchangeably in casual conversation, bit rate and baud rate are distinct concepts in data communications. The **baud rate** refers to the number of signal changes, or symbols, that occur per second on the transmission medium. The **bit rate** is the total number of bits transmitted per second. A single symbol can encode more than one bit, which allows the bit rate to be higher than the baud rate."
+    },
+    {
+      "type": "formula",
+      "content": "Bit Rate = Baud Rate × Number of bits per symbol"
+    },
+    {
+      "type": "workedExample",
+      "question": "A communication system uses a modulation technique where each signal change can represent one of eight different voltage levels. If the system has a baud rate of 4800 baud, what is the bit rate in kilobits per second (kbps)?",
+      "solution": "**Step 1: Find the number of bits per symbol.**\nThe number of bits per symbol depends on the number of possible levels (N). The formula is $log_2(N)$.\nIn this case, N = 8.\nNumber of bits per symbol = $log_2(8) = 3$ bits.\n\n**Step 2: Calculate the bit rate.**\nUsing the formula: Bit Rate = Baud Rate × Number of bits per symbol.\nBit Rate = 4800 × 3 = 14,400 bps.\n\n**Step 3: Convert to kbps.**\nTo convert from bps to kbps, divide by 1000.\nBit Rate = 14,400 / 1000 = 14.4 kbps.\n\n**Final Answer:** The bit rate is 14.4 kbps."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Protocols",
+      "href": "/mark?subject=9618&topic=14.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "TCP/IP Model Explained",
+          "href": "https://www.youtube.com/watch?v=PpsE_0_6T_U"
+        },
+        {
+          "label": "Cambridge International AS & A Level Computer Science 9618",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

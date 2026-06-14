@@ -4,39 +4,258 @@
   "title": "Integration",
   "paper": "P2",
   "paperName": "Pure Mathematics 2",
-  "status": "premium",
-  "summary": "9709 P2 integration — indefinite and definite integrals, areas, and trapezium rule with GeoGebra.",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental concepts of integration for A-Level Pure Mathematics 2. It covers indefinite and definite integration, the calculation of areas under and between curves, and numerical approximation using the trapezium rule. The focus is on reversing differentiation and applying integration techniques to solve geometric problems.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Integrate standard functions including e^x and 1/x.",
-    "Evaluate definite integrals and find areas.",
-    "Apply the trapezium rule.",
-    "Find areas between curves."
+    "Understand integration as the reverse process of differentiation and find indefinite integrals.",
+    "Evaluate definite integrals to find the exact signed area between a curve and the x-axis.",
+    "Use the trapezium rule to find an approximate value for a definite integral.",
+    "Calculate the area of a region enclosed between two curves."
   ],
   "simpleExplanation": {
-    "title": "Reverse differentiation",
-    "summary": "Integration finds the area under a curve. Definite integrals give numeric area; indefinite integrals need +c.",
+    "title": "Integration: Summing Up the Slices",
+    "summary": "Integration is the mathematical tool for finding totals when a quantity is changing, like calculating the total distance from a varying speed. It's the reverse of differentiation and is used to find the area under curves.",
+    "analogy": "Imagine you're walking and your speed is constantly changing. If you only have a graph of your speed over time, how do you find the total distance you've walked? Integration allows you to 'sum up' the tiny distances travelled in each tiny moment of time. This total distance is represented by the area under the speed-time graph.",
     "steps": [
-      "∫x^n dx = x^{n+1}/(n+1) + c.",
-      "Definite: [F(x)]_a^b = F(b) − F(a).",
-      "Area below axis counts negative — split if needed.",
-      "Trapezium rule: h/2 [y₀ + 2(y₁ + … + y_{n−1}) + y_n]."
+      "P2 integration reverses differentiation — +c for indefinite integrals. | Sim hint: ∫x^n dx = x^{n+1}/(n+1) + c, n ≠ −1.",
+      "Definite integral: F(b) − F(a) gives signed area. | Sim hint: Shade regions below axis — subtract area.",
+      "Trapezium rule estimates area from strip widths. | Sim hint: More strips → better accuracy.",
+      "Area between curves: ∫(upper − lower) dx. | Sim hint: Find intersection points as limits."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an indefinite integral?",
+      "back": "An integral without limits of integration, representing a family of functions. It always includes a constant of integration, `+c`."
+    },
+    {
+      "front": "Why is the constant of integration, `+c`, necessary for indefinite integrals?",
+      "back": "Because the derivative of a constant is zero. When reversing differentiation, we don't know what the original constant was, so we represent it with `+c`."
+    },
+    {
+      "front": "What is the power rule for integration?",
+      "back": "For $n \\neq -1$, the integral of $x^n$ is $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + c$. You increase the power by one and divide by the new power."
+    },
+    {
+      "front": "What is the integral of $\\frac{1}{x}$?",
+      "back": "$\\int \\frac{1}{x} \\, dx = \\ln|x| + c$. The modulus sign is important as the logarithm is only defined for positive inputs."
+    },
+    {
+      "front": "What is a definite integral?",
+      "back": "An integral with upper and lower limits, e.g., $\\int_a^b f(x) \\, dx$. It evaluates to a single numerical value, representing the signed area under the curve from $x=a$ to $x=b$."
+    },
+    {
+      "front": "What does 'signed area' mean in the context of definite integrals?",
+      "back": "Area above the x-axis is counted as positive, while area below the x-axis is counted as negative. The definite integral gives the net sum of these areas."
+    },
+    {
+      "front": "How do you find the total area bounded by a curve and the x-axis if part of the curve is below the axis?",
+      "back": "You must split the integral at the x-intercepts. Calculate the definite integral for each section separately and add the absolute values of the results."
+    },
+    {
+      "front": "What is the formula for the Trapezium Rule?",
+      "back": "$\\int_a^b y \\, dx \\approx \\frac{h}{2}[y_0 + y_n + 2(y_1 + y_2 + ... + y_{n-1})]$, where $h$ is the strip width and $y_i$ are the ordinates (y-values)."
+    },
+    {
+      "front": "How do you integrate functions of the form $(ax+b)^n$?",
+      "back": "$\\int (ax+b)^n \\, dx = \\frac{(ax+b)^{n+1}}{a(n+1)} + c$. Remember to divide by the coefficient of $x$, which is $a$."
+    },
+    {
+      "front": "What are the integrals of $\\sin(kx)$ and $\\cos(kx)$?",
+      "back": "$\\int \\sin(kx) \\, dx = -\\frac{1}{k}\\cos(kx) + c$ and $\\int \\cos(kx) \\, dx = \\frac{1}{k}\\sin(kx) + c$. Be careful with the sign change for the integral of sine."
+    },
+    {
+      "front": "How do you find the area between two curves, $y=f(x)$ and $y=g(x)$?",
+      "back": "First, find the points of intersection to determine the limits $a$ and $b$. Then, calculate $\\int_a^b (y_{upper} - y_{lower}) \\, dx$."
+    },
+    {
+      "front": "When is the Trapezium Rule an overestimate?",
+      "back": "When the curve is concave up (like a U-shape). The straight tops of the trapezia lie above the curve."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between an indefinite and a definite integral?",
+      "a": "An indefinite integral, $\\int f(x) \\, dx$, gives a general function (a family of curves) and always includes a constant of integration, $+c$. A definite integral, $\\int_a^b f(x) \\, dx$, has limits and evaluates to a specific number, representing the signed area under the curve between those limits."
+    },
+    {
+      "q": "I forgot to add '+c'. How many marks will I lose?",
+      "a": "In questions asking for a general solution or an indefinite integral, forgetting '+c' will typically lose you one accuracy mark. For definite integrals, the '+c' is not needed as it cancels out, so you won't lose marks there."
+    },
+    {
+      "q": "My definite integral gave a negative answer. What does this mean?",
+      "a": "A negative result means that there is more area below the x-axis than above it in the given interval. If the question asks for the 'area', which is a geometric quantity and must be positive, you need to re-evaluate. This usually involves splitting the integral at the roots and taking the absolute value of the parts that are below the axis."
+    },
+    {
+      "q": "How do I know when to use the Trapezium Rule?",
+      "a": "The question will explicitly tell you to use the trapezium rule. It's used for functions that are difficult or impossible to integrate analytically, or when you are given a table of values instead of a function."
+    },
+    {
+      "q": "How do I integrate something like $\\frac{2x+1}{x^2}$?",
+      "a": "You must first simplify the expression into terms you can integrate using the power rule. Split the fraction: $\\frac{2x}{x^2} + \\frac{1}{x^2} = \\frac{2}{x} + x^{-2}$. Now you can integrate term by term: $\\int (\\frac{2}{x} + x^{-2}) \\, dx = 2\\ln|x| + \\frac{x^{-1}}{-1} + c = 2\\ln|x| - \\frac{1}{x} + c$."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**P2 Integration** (2.5) bridges **P1** (1.8) and **P3** (3.5). Show **+c** for indefinite integrals — automatic mark loss if omitted."
+      "content": "Welcome to integration, a cornerstone of calculus. If differentiation is about finding the gradient of a curve, integration is its inverse—it's about finding the area underneath it. In this topic, we'll explore how to 'undo' differentiation to find the original function, and then use this powerful technique to calculate exact areas of complex shapes, a task that is impossible with simple geometry alone. We will also learn how to approximate these areas when an exact calculation isn't feasible."
+    },
+    {
+      "type": "heading",
+      "content": "Indefinite Integration"
+    },
+    {
+      "type": "text",
+      "content": "Integration is the reverse process of differentiation. If we differentiate a function to get its gradient function, we can integrate the gradient function to get back to the original function. However, since the derivative of any constant is zero (e.g., the derivative of $x^2+5$ and $x^2-100$ are both $2x$), when we reverse the process, we lose information about the original constant term. To account for this, we add a 'constant of integration', denoted by $+c$, to every indefinite integral."
+    },
+    {
+      "type": "formula",
+      "content": "Standard Power Rule: $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + c$ (for $n \\neq -1$)"
+    },
+    {
+      "type": "text",
+      "content": "This rule extends to other standard functions you know how to differentiate. For functions with a linear argument, like $(ax+b)$, we apply the reverse of the chain rule: integrate the outer function as normal, then divide by the derivative of the inner function, which is simply the coefficient $a$."
+    },
+    {
+      "type": "formula",
+      "content": "Key Integrals for P2:\n$\\int e^{ax+b} \\, dx = \\frac{1}{a}e^{ax+b} + c$\n$\\int \\frac{1}{ax+b} \\, dx = \\frac{1}{a}\\ln|ax+b| + c$\n$\\int \\cos(ax+b) \\, dx = \\frac{1}{a}\\sin(ax+b) + c$\n$\\int \\sin(ax+b) \\, dx = -\\frac{1}{a}\\cos(ax+b) + c$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the indefinite integral of $f(x) = 4x^3 + \\frac{6}{x} - 3e^{2x}$.",
+      "solution": "We integrate the function term by term.\n\n$\\int \\left( 4x^3 + \\frac{6}{x} - 3e^{2x} \\right) \\, dx$\n\n1.  **Integrate $4x^3$**: Using the power rule, $\\int 4x^3 \\, dx = 4 \\times \\frac{x^{3+1}}{3+1} = 4 \\frac{x^4}{4} = x^4$.\n2.  **Integrate $\\frac{6}{x}$**: This is $6 \\times \\frac{1}{x}$. The integral is $6 \\ln|x|$.\n3.  **Integrate $-3e^{2x}$**: Using the rule for exponentials, $\\int -3e^{2x} \\, dx = -3 \\times \\frac{1}{2}e^{2x} = -\\frac{3}{2}e^{2x}$.\n4.  **Combine and add the constant of integration**: Don't forget to add $+c$ at the end.\n\nSo, $\\int \\left( 4x^3 + \\frac{6}{x} - 3e^{2x} \\right) \\, dx = x^4 + 6\\ln|x| - \\frac{3}{2}e^{2x} + c$."
+    },
+    {
+      "type": "heading",
+      "content": "Definite Integration and Area"
+    },
+    {
+      "type": "text",
+      "content": "A definite integral has limits of integration, $a$ (lower) and $b$ (upper). The result of a definite integral is a number that represents the signed area between the function's graph, the x-axis, and the vertical lines $x=a$ and $x=b$. To evaluate it, we first find the indefinite integral, $F(x)$, and then calculate $F(b) - F(a)$. The constant of integration $c$ is not needed as it would cancel out: $(F(b)+c) - (F(a)+c) = F(b)-F(a)$."
+    },
+    {
+      "type": "formula",
+      "content": "The Fundamental Theorem of Calculus: $\\int_a^b f(x) \\, dx = [F(x)]_a^b = F(b) - F(a)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A definite integral gives a numerical value, not a function.",
+        "The area is 'signed': regions below the x-axis contribute a negative value to the integral.",
+        "To find the total geometric area, you may need to split the integral into parts where the function is positive and negative, and then sum the absolute values of the results."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The diagram shows the curve $y = \\sin(2x)$. Find the exact area of the shaded region enclosed by the curve, the x-axis, and the line $x=\\frac{\\pi}{2}$.",
+      "solution": "The region is bounded by $x=0$ and $x=\\frac{\\pi}{2}$. The function $y=\\sin(2x)$ is non-negative on this interval.\n\nWe need to evaluate the definite integral:\nArea $= \\int_0^{\\pi/2} \\sin(2x) \\, dx$\n\n1.  **Find the indefinite integral**: $\\int \\sin(2x) \\, dx = -\\frac{1}{2}\\cos(2x)$.\n2.  **Apply the limits**: We use square brackets to denote the evaluation.\n    Area $= \\left[ -\\frac{1}{2}\\cos(2x) \\right]_0^{\\pi/2}$\n3.  **Substitute the upper limit ($b = \\pi/2$)**: \n    $-\\frac{1}{2}\\cos(2 \\times \\frac{\\pi}{2}) = -\\frac{1}{2}\\cos(\\pi) = -\\frac{1}{2}(-1) = \\frac{1}{2}$.\n4.  **Substitute the lower limit ($a = 0$)**: \n    $-\\frac{1}{2}\\cos(2 \\times 0) = -\\frac{1}{2}\\cos(0) = -\\frac{1}{2}(1) = -\\frac{1}{2}$.\n5.  **Calculate $F(b) - F(a)$**:\n    Area $= (\\frac{1}{2}) - (-\\frac{1}{2}) = \\frac{1}{2} + \\frac{1}{2} = 1$.\n\nThe exact area is 1 square unit."
+    },
+    {
+      "type": "heading",
+      "content": "Numerical Integration: The Trapezium Rule"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes we cannot integrate a function analytically, or we only have a set of data points from an experiment. In these cases, we can approximate the definite integral using numerical methods. The Trapezium Rule is a common method which works by dividing the area under the curve into a number of vertical strips and approximating each strip as a trapezium."
+    },
+    {
+      "type": "formula",
+      "content": "$\\int_a^b y \\, dx \\approx \\frac{h}{2}[y_0 + y_n + 2(y_1 + y_2 + ... + y_{n-1})]$, where $n$ is the number of strips and $h = \\frac{b-a}{n}$ is the width of each strip."
+    },
+    {
+      "type": "examTip",
+      "content": "In trapezium rule questions, be very careful with the formula. A common mistake is to forget to multiply the sum of the 'middle' y-values by 2. Also, ensure your calculator is in radians mode if the function involves trigonometric terms with angles in radians. State the number of decimal places or significant figures required by the question."
+    },
+    {
+      "type": "workedExample",
+      "question": "Use the trapezium rule with 4 strips to find an approximation for $\\int_1^5 \\frac{x}{x+1} \\, dx$, giving your answer to 3 decimal places.",
+      "solution": "1.  **Identify parameters**: The interval is $[a, b] = [1, 5]$. The number of strips is $n=4$.\n2.  **Calculate strip width, $h$**: $h = \\frac{b-a}{n} = \\frac{5-1}{4} = 1$.\n3.  **Determine x-values**: The x-values (ordinates) will be $x_0=1, x_1=2, x_2=3, x_3=4, x_4=5$.\n4.  **Calculate corresponding y-values**: Let $y(x) = \\frac{x}{x+1}$.\n    $y_0 = y(1) = \\frac{1}{1+1} = 0.5$\n    $y_1 = y(2) = \\frac{2}{2+1} = \\frac{2}{3} \\approx 0.66667$\n    $y_2 = y(3) = \\frac{3}{3+1} = 0.75$\n    $y_3 = y(4) = \\frac{4}{4+1} = 0.8$\n    $y_4 = y(5) = \\frac{5}{5+1} = \\frac{5}{6} \\approx 0.83333$\n5.  **Apply the Trapezium Rule formula**:\n    $\\int_1^5 y \\, dx \\approx \\frac{h}{2}[y_0 + y_4 + 2(y_1 + y_2 + y_3)]$\n    $\\approx \\frac{1}{2}[0.5 + 0.83333 + 2(0.66667 + 0.75 + 0.8)]$\n    $\\approx 0.5[1.33333 + 2(2.21667)]$\n    $\\approx 0.5[1.33333 + 4.43334]$\n    $\\approx 0.5[5.76667] \\approx 2.883335$\n\nRounding to 3 decimal places, the approximation is 2.883."
+    },
+    {
+      "type": "heading",
+      "content": "Area Between Two Curves"
+    },
+    {
+      "type": "text",
+      "content": "To find the area enclosed between two curves, $y=f(x)$ and $y=g(x)$, we can think of it as the area under the upper curve minus the area under the lower curve. This simplifies to a single integral of the difference between the two functions. The first crucial step is to find the x-coordinates of the points of intersection by setting the functions equal to each other; these will become the limits of your integral."
+    },
+    {
+      "type": "formula",
+      "content": "Area $= \\int_a^b (y_{upper} - y_{lower}) \\, dx$"
+    },
+    {
+      "type": "examTip",
+      "content": "When finding the area between two curves, it's essential to correctly identify which function is 'upper' and which is 'lower' within the integration interval. If you get them the wrong way around, your answer will be negative. You can simply take the absolute value, but it's better to be sure from the start by sketching the graphs or testing a point."
     },
     {
       "type": "practice",
-      "label": "Mark a P2 integration question",
+      "label": "Practice Integration Problems",
       "href": "/mark?subject=9709&topic=2.5"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9709)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Integral Calculator",
+          "href": "https://www.integral-calculator.com/"
+        },
+        {
+          "label": "GeoGebra: The Trapezium Rule",
+          "href": "https://www.geogebra.org/m/jdz5t9v6"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Integral as area",
+    "embedUrl": "https://www.geogebra.org/classic?material=eMd42deT",
+    "launchUrl": "https://www.geogebra.org/classic?material=eMd42deT",
+    "hint": "P2 integration — signed area under curves and definite integrals (9709 2.5).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "P2 integration reverses differentiation — +c for indefinite integrals.",
+        "embedHint": "∫x^n dx = x^{n+1}/(n+1) + c, n ≠ −1."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Definite integral: F(b) − F(a) gives signed area.",
+        "embedHint": "Shade regions below axis — subtract area."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Trapezium rule estimates area from strip widths.",
+        "embedHint": "More strips → better accuracy."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Area between curves: ∫(upper − lower) dx.",
+        "embedHint": "Find intersection points as limits."
+      }
+    ]
+  }
 }

@@ -4,39 +4,229 @@
   "title": "Trigonometry",
   "paper": "P2",
   "paperName": "Pure Mathematics 2",
-  "status": "premium",
-  "summary": "9709 P2 trigonometry — identities, equations, and R sin(θ + α) form with GeoGebra unit circle.",
+  "status": "pilot",
+  "summary": "This lesson covers the core trigonometric concepts for Pure Mathematics 2. It builds upon foundational identities to introduce reciprocal functions, double angle formulae, and the harmonic form $R\\sin(\\theta \\pm \\alpha)$. The focus is on applying these tools to simplify expressions, prove identities, and solve complex trigonometric equations within a given interval.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Use compound angle and double angle formulae.",
-    "Solve trigonometric equations in a given interval.",
-    "Express a sin θ + b cos θ in the form R sin(θ + α).",
-    "Prove identities using known relationships."
+    "Recall and use trigonometric identities, including reciprocal functions ($sec$, $csc$, $cot$) and the Pythagorean identities.",
+    "Use compound and double angle formulae to manipulate and simplify trigonometric expressions.",
+    "Express expressions of the form $a\\sin\\theta + b\\cos\\theta$ in the harmonic form $R\\sin(\\theta \\pm \\alpha)$ or $R\\cos(\\theta \\pm \\alpha)$.",
+    "Solve trigonometric equations for a specified interval, finding all possible solutions."
   ],
   "simpleExplanation": {
-    "title": "P2 trig beyond P1",
-    "summary": "P2 adds compound angles and more complex equations. The R-formula compresses a sin θ + b cos θ into a single sine wave.",
+    "title": "Trigonometry Toolkit",
+    "summary": "Master trigonometry by learning how fundamental identities combine to solve complex equations. We'll build from basic rules to powerful techniques for simplifying and solving.",
+    "analogy": "Think of trigonometry as a mechanical toolkit. The basic identities like $\\sin^2\\theta + \\cos^2\\theta = 1$ are your standard spanners. The double angle and harmonic form formulae are like specialised power tools that let you transform a complex problem (a stubborn, oddly-shaped bolt) into a simple one you can solve easily.",
     "steps": [
-      "sin(A ± B), cos(A ± B) — expand carefully with signs.",
-      "Double angle: sin 2A = 2 sin A cos A.",
-      "R sin(θ + α): R = √(a² + b²), tan α = b/a (quadrant matters).",
-      "General solutions — count roots in [0, 2π) or given range."
+      "Start with the fundamental identities $\\sin^2\\theta + \\cos^2\\theta = 1$ and $\\tan\\theta = \\sin\\theta / \\cos\\theta$, which arise from the unit circle.",
+      "Combine two trigonometric terms into one using the harmonic form $a\\sin\\theta + b\\cos\\theta = R\\sin(\\theta + \\alpha)$, where $R = \\sqrt{a^2+b^2}$.",
+      "Simplify expressions involving different angles using the double angle formulae, like $\\sin(2\\theta) = 2\\sin\\theta\\cos\\theta$, derived from compound angle rules.",
+      "To solve an equation, use identities to simplify, find the principal solution, then use the graph's symmetry to find all other solutions in the required interval."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Define $\\sec\\theta$, $\\csc\\theta$, and $\\cot\\theta$.",
+      "back": "$\\sec\\theta = \\frac{1}{\\cos\\theta}$, $\\csc\\theta = \\frac{1}{\\sin\\theta}$, $\\cot\\theta = \\frac{1}{\\tan\\theta} = \\frac{\\cos\\theta}{\\sin\\theta}$."
+    },
+    {
+      "front": "State the Pythagorean identity involving $\\tan\\theta$ and $\\sec\\theta$.",
+      "back": "$1 + \\tan^2\\theta \\equiv \\sec^2\\theta$. This is derived by dividing $\\sin^2\\theta + \\cos^2\\theta \\equiv 1$ by $\\cos^2\\theta$."
+    },
+    {
+      "front": "State the Pythagorean identity involving $\\cot\\theta$ and $\\csc\\theta$.",
+      "back": "$1 + \\cot^2\\theta \\equiv \\csc^2\\theta$. This is derived by dividing $\\sin^2\\theta + \\cos^2\\theta \\equiv 1$ by $\\sin^2\\theta$."
+    },
+    {
+      "front": "What is the double angle formula for $\\sin(2A)$?",
+      "back": "$\\sin(2A) = 2\\sin A \\cos A$. It is derived from $\\sin(A+B)$ by setting $B=A$."
+    },
+    {
+      "front": "List the three double angle formulae for $\\cos(2A)$.",
+      "back": "1. $\\cos(2A) = \\cos^2 A - \\sin^2 A$ \n2. $\\cos(2A) = 2\\cos^2 A - 1$ \n3. $\\cos(2A) = 1 - 2\\sin^2 A$"
+    },
+    {
+      "front": "When expressing $a\\sin\\theta + b\\cos\\theta$ as $R\\sin(\\theta+\\alpha)$, what is the formula for $R$?",
+      "back": "$R = \\sqrt{a^2 + b^2}$. $R$ is always positive and represents the amplitude of the combined wave."
+    },
+    {
+      "front": "When expressing $a\\sin\\theta + b\\cos\\theta$ as $R\\sin(\\theta+\\alpha)$, how do you find $\\alpha$?",
+      "back": "By expanding $R\\sin(\\theta+\\alpha) = R(\\sin\\theta\\cos\\alpha + \\cos\\theta\\sin\\alpha)$ and comparing coefficients, we get $a=R\\cos\\alpha$ and $b=R\\sin\\alpha$. Therefore, $\\tan\\alpha = \\frac{b}{a}$."
+    },
+    {
+      "front": "Common Trap: After finding the principal value for a trig equation, what must you do next?",
+      "back": "You must find all other solutions within the specified interval. Use the CAST diagram or graph symmetry. For example, if $\\sin x = k$, other solutions are $180^\\circ - x$ (or $\\pi - x$ in radians), plus multiples of $360^\\circ$ (or $2\\pi$)."
+    },
+    {
+      "front": "Common Trap: When solving an equation like $\\cos(2x) = 0.5$ for $0^\\circ \\le x \\le 360^\\circ$, what is the first step?",
+      "back": "Adjust the interval for the 'new' angle. The interval for $2x$ is $0^\\circ \\le 2x \\le 720^\\circ$. Find all solutions for $2x$ in this larger interval before dividing by 2 to find $x$."
+    },
+    {
+      "front": "Common Trap: What can happen if you square both sides of a trigonometric equation?",
+      "back": "Squaring can introduce extraneous (false) solutions. For example, if $\\sin x = 0.5$, squaring gives $\\sin^2 x = 0.25$. This equation is also satisfied by $\\sin x = -0.5$, which was not a solution to the original. Always check your final answers in the original equation if you square it."
+    },
+    {
+      "front": "How do you decide which version of $\\cos(2A)$ to use?",
+      "back": "Look at the other terms in the equation. To create a quadratic in $\\cos A$, use $\\cos(2A) = 2\\cos^2 A - 1$. To create a quadratic in $\\sin A$, use $\\cos(2A) = 1 - 2\\sin^2 A$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know whether to use degrees or radians?",
+      "a": "The question will always specify the interval for the solution. If it's given in degrees (e.g., $0^\\circ \\le x \\le 360^\\circ$), your answer must be in degrees. If it's given in radians (e.g., $0 \\le x \\le 2\\pi$), your answer must be in radians. Make sure your calculator is in the correct mode!"
+    },
+    {
+      "q": "There are so many identities. How do I know which one to use?",
+      "a": "Look for clues. If an equation has different trig functions (like $\\sin\\theta$ and $\\cot\\theta$), use an identity to write everything in terms of one function. If it has different angles (like $2\\theta$ and $\\theta$), use a double angle formula. If you see a sum like $a\\sin\\theta + b\\cos\\theta$, think of the harmonic form."
+    },
+    {
+      "q": "What is the point of the harmonic form?",
+      "a": "It simplifies expressions. An expression like $3\\sin x + 4\\cos x$ is difficult to analyse. By converting it to $5\\sin(x+53.1^\\circ)$, you can immediately see its amplitude (maximum value) is 5, and you can easily solve equations like $3\\sin x + 4\\cos x = 2$."
+    },
+    {
+      "q": "I've found the principal value from my calculator. How do I find all the other solutions?",
+      "a": "Use the symmetry of the trigonometric graphs or a CAST diagram. For an angle $\\alpha$:\n- For $\\sin x = k$: the other solution is $180^\\circ - \\alpha$ (or $\\pi - \\alpha$).\n- For $\\cos x = k$: the other solution is $360^\\circ - \\alpha$ (or $2\\pi - \\alpha$, or simply $-\\alpha$).\n- For $\\tan x = k$: the other solution is $180^\\circ + \\alpha$ (or $\\pi + \\alpha$).\nThen, add or subtract multiples of $360^\\circ$ (or $2\\pi$) to find all solutions within the required range."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**P2 Trigonometry** (2.3) builds on **P1 trig** (1.5). Examiners love **identity proofs** — start from the **more complex side**."
+      "content": "Welcome to Pure Mathematics 2 Trigonometry. This topic significantly expands on your P1 knowledge, introducing a new set of identities and powerful techniques. We will explore reciprocal functions, double angle formulae, and the harmonic form, all of which are essential tools for solving more advanced trigonometric equations that frequently appear in examinations."
+    },
+    {
+      "type": "heading",
+      "content": "Reciprocal and Pythagorean Identities"
+    },
+    {
+      "type": "text",
+      "content": "Beyond sine, cosine, and tangent, there are three reciprocal trigonometric functions: secant (sec), cosecant (csc), and cotangent (cot). These are simply the reciprocals of the main three and are crucial for simplifying a wider range of expressions."
+    },
+    {
+      "type": "formula",
+      "content": "$\\sec\\theta = \\frac{1}{\\cos\\theta} \\quad \\csc\\theta = \\frac{1}{\\sin\\theta} \\quad \\cot\\theta = \\frac{1}{\\tan\\theta} = \\frac{\\cos\\theta}{\\sin\\theta}$"
+    },
+    {
+      "type": "text",
+      "content": "By dividing the fundamental identity $\\sin^2\\theta + \\cos^2\\theta \\equiv 1$ by $\\cos^2\\theta$ and $\\sin^2\\theta$ respectively, we can derive two further essential Pythagorean identities. You must be able to recall and use these fluently."
+    },
+    {
+      "type": "formula",
+      "content": "$1 + \\tan^2\\theta \\equiv \\sec^2\\theta \\\\ 1 + \\cot^2\\theta \\equiv \\csc^2\\theta$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $2\\cot^2\\theta - 5\\csc\\theta = 1$ for $0^\\circ \\le \\theta \\le 360^\\circ$.",
+      "solution": "The equation contains two different trigonometric functions, $\\cot\\theta$ and $\\csc\\theta$. We need to express one in terms of the other using an identity.\n\n1.  **Use a Pythagorean Identity**: Recall the identity $1 + \\cot^2\\theta \\equiv \\csc^2\\theta$. We can rearrange this to $\\cot^2\\theta \\equiv \\csc^2\\theta - 1$.\n\n2.  **Substitute**: Substitute this into the original equation:\n    $2(\\csc^2\\theta - 1) - 5\\csc\\theta = 1$\n    $2\\csc^2\\theta - 2 - 5\\csc\\theta = 1$\n\n3.  **Form a Quadratic**: Rearrange into a quadratic equation in terms of $\\csc\\theta$. Let $y = \\csc\\theta$.\n    $2\\csc^2\\theta - 5\\csc\\theta - 3 = 0$\n    $2y^2 - 5y - 3 = 0$\n\n4.  **Solve the Quadratic**: Factorise the quadratic equation.\n    $(2y+1)(y-3) = 0$\n    So, $y = -\\frac{1}{2}$ or $y = 3$.\n\n5.  **Solve for $\\theta$**: Substitute back $\\csc\\theta = y$ and then $\\sin\\theta = 1/y$.\n    Case 1: $\\csc\\theta = -\\frac{1}{2} \\implies \\sin\\theta = -2$. This has no solutions, as $-1 \\le \\sin\\theta \\le 1$.\n    Case 2: $\\csc\\theta = 3 \\implies \\sin\\theta = \\frac{1}{3}$.\n\n6.  **Find all solutions in the range**: \n    Principal value: $\\theta = \\arcsin(\\frac{1}{3}) \\approx 19.47^\\circ$.\n    The sine function is positive in the first and second quadrants.\n    First quadrant solution: $\\theta_1 = 19.5^\\circ$ (to 1 d.p.)\n    Second quadrant solution: $\\theta_2 = 180^\\circ - 19.47^\\circ \\approx 160.5^\\circ$ (to 1 d.p.)\n\nFinal solutions are $\\theta = 19.5^\\circ$ and $\\theta = 160.5^\\circ$."
+    },
+    {
+      "type": "heading",
+      "content": "Double Angle Formulae"
+    },
+    {
+      "type": "text",
+      "content": "The double angle formulae are a special case of the compound angle formulae (found in the MF19 formula booklet) where the two angles are equal, i.e., $A=B$. Their main purpose is to change the argument of a trigonometric function, typically from $2A$ to $A$. This is fundamental for solving equations that contain a mix of angles, like $\\cos(2\\theta)$ and $\\sin\\theta$."
+    },
+    {
+      "type": "formula",
+      "content": "$\\sin(2A) \\equiv 2\\sin A \\cos A \\\\ \\cos(2A) \\equiv \\cos^2 A - \\sin^2 A \\equiv 2\\cos^2 A - 1 \\equiv 1 - 2\\sin^2 A \\\\ \\tan(2A) \\equiv \\frac{2\\tan A}{1 - \\tan^2 A}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use $\\cos(2A) = 2\\cos^2 A - 1$ when you want to eliminate other trig functions and form a quadratic in $\\cos A$.",
+        "Use $\\cos(2A) = 1 - 2\\sin^2 A$ when you want to form a quadratic in $\\sin A$.",
+        "Use $\\sin(2A) = 2\\sin A \\cos A$ to combine or separate terms, often leading to factorisation."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common exam question involves an equation with both $\\cos(2\\theta)$ and a term in $\\cos\\theta$ or $\\sin\\theta$. This is a strong signal to immediately substitute the appropriate double angle formula for $\\cos(2\\theta)$ to create a quadratic equation."
+    },
+    {
+      "type": "heading",
+      "content": "Harmonic Form: $a\\sin\\theta + b\\cos\\theta$"
+    },
+    {
+      "type": "text",
+      "content": "Expressions of the form $a\\sin\\theta + b\\cos\\theta$ represent the superposition of two waves. The harmonic form provides a way to combine them into a single, phase-shifted wave. This makes it much easier to find the maximum and minimum values of the expression and to solve equations of the form $a\\sin\\theta + b\\cos\\theta = c$."
+    },
+    {
+      "type": "formula",
+      "content": "To express $a\\sin\\theta + b\\cos\\theta$ in the form $R\\sin(\\theta + \\alpha)$:\n$a\\sin\\theta + b\\cos\\theta \\equiv R\\sin(\\theta + \\alpha) = R(\\sin\\theta\\cos\\alpha + \\cos\\theta\\sin\\alpha)$\nComparing coefficients:\n$a = R\\cos\\alpha$ and $b = R\\sin\\alpha$\nFrom this, we derive:\n$R = \\sqrt{a^2 + b^2}$ and $\\tan\\alpha = \\frac{b}{a}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "(i) Express $5\\cos x - 2\\sin x$ in the form $R\\cos(x+\\alpha)$, where $R>0$ and $0^\\circ < \\alpha < 90^\\circ$.\n(ii) Hence, solve the equation $5\\cos x - 2\\sin x = 4$ for $0^\\circ \\le x \\le 360^\\circ$.",
+      "solution": "(i) **Express in Harmonic Form**\n\n1.  **Set up the identity**: We want $5\\cos x - 2\\sin x \\equiv R\\cos(x+\\alpha)$.\n\n2.  **Expand the right side**: Using the compound angle formula, $R\\cos(x+\\alpha) = R(\\cos x \\cos\\alpha - \\sin x \\sin\\alpha) = (R\\cos\\alpha)\\cos x - (R\\sin\\alpha)\\sin x$.\n\n3.  **Compare coefficients**:\n    Coefficient of $\\cos x$: $5 = R\\cos\\alpha$\n    Coefficient of $\\sin x$: $2 = R\\sin\\alpha$ (Note the signs match up: $-2\\sin x$ and $-(R\\sin\\alpha)\\sin x$)\n\n4.  **Find R**: Square and add the two equations:\n    $R^2\\cos^2\\alpha + R^2\\sin^2\\alpha = 5^2 + 2^2$\n    $R^2(\\cos^2\\alpha + \\sin^2\\alpha) = 25 + 4 = 29$\n    $R^2 = 29 \\implies R = \\sqrt{29}$ (since $R>0$).\n\n5.  **Find $\\alpha$**: Divide the equations:\n    $\\frac{R\\sin\\alpha}{R\\cos\\alpha} = \\tan\\alpha = \\frac{2}{5}$\n    $\\alpha = \\arctan(0.4) \\approx 21.8014^\\circ$.\n    To 1 d.p., $\\alpha = 21.8^\\circ$.\n\nSo, $5\\cos x - 2\\sin x \\equiv \\sqrt{29}\\cos(x+21.8^\\circ)$.\n\n(ii) **Solve the Equation**\n\n1.  **Substitute the harmonic form**: The equation $5\\cos x - 2\\sin x = 4$ becomes:\n    $\\sqrt{29}\\cos(x+21.8014^\\circ) = 4$\n\n2.  **Isolate the cosine term**:\n    $\\cos(x+21.8014^\\circ) = \\frac{4}{\\sqrt{29}}$\n\n3.  **Adjust the interval**: The interval for $x$ is $0^\\circ \\le x \\le 360^\\circ$. So the interval for our new angle, let's call it $u = x+21.8014^\\circ$, is $21.8014^\\circ \\le u \\le 381.8014^\\circ$.\n\n4.  **Find the principal value for u**: \n    $u = \\arccos\\left(\\frac{4}{\\sqrt{29}}\\right) \\approx 42.031^\\circ$.\n    This value is within our adjusted interval.\n\n5.  **Find other solutions for u**: Cosine is positive in the first and fourth quadrants. The other solution is found by $360^\\circ - \\text{principal value}$.\n    $u_1 = 42.031^\\circ$\n    $u_2 = 360^\\circ - 42.031^\\circ = 317.969^\\circ$.\n    Both $u_1$ and $u_2$ are within the interval $[21.8^\\circ, 381.8^\\circ]$.\n\n6.  **Solve for x**: Convert back using $x = u - 21.8014^\\circ$.\n    $x_1 = 42.031^\\circ - 21.8014^\\circ = 20.2296^\\circ \\approx 20.2^\\circ$.\n    $x_2 = 317.969^\\circ - 21.8014^\\circ = 296.1676^\\circ \\approx 296.2^\\circ$.\n\nFinal solutions are $x = 20.2^\\circ$ and $x = 296.2^\\circ$."
+    },
+    {
+      "type": "examTip",
+      "content": "When using harmonic form, be meticulous with your signs. If you are expressing $a\\sin\\theta - b\\cos\\theta$ as $R\\sin(\\theta - \\alpha)$, the expansion is $R(\\sin\\theta\\cos\\alpha - \\cos\\theta\\sin\\alpha)$. Comparing coefficients correctly is vital. Always state the values of $R$ and $\\alpha$ clearly."
     },
     {
       "type": "practice",
-      "label": "Mark a P2 trigonometry question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9709&topic=2.3"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Cambridge International MF19 Formulae Booklet",
+          "href": "https://www.cambridgeinternational.org/Images/415358-2020-2022-syllabus-further-mathematics-formulae-and-methods-booklet.pdf"
+        },
+        {
+          "label": "Trigonometry on Khan Academy",
+          "href": "https://www.khanacademy.org/math/trigonometry"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Unit circle trigonometry",
+    "embedUrl": "https://www.geogebra.org/classic?material=Ccgmq82f",
+    "launchUrl": "https://www.geogebra.org/classic?material=Ccgmq82f",
+    "hint": "P2 identities and equations — sin, cos, tan on the unit circle (9709 2.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "P2 identities: sin²θ + cos²θ = 1; tan θ = sin θ / cos θ.",
+        "embedHint": "Derive from unit circle coordinates."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Solve a sin θ + b cos θ = R sin(θ + α).",
+        "embedHint": "Use R = √(a² + b²) and phase angle."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Double angle: sin 2θ, cos 2θ formulae from compound angles.",
+        "embedHint": "Expand sin(θ + θ) to get 2 sin θ cos θ."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Equations in interval — count solutions using graph symmetry.",
+        "embedHint": "Sketch y = sin x and horizontal line."
+      }
+    ]
+  }
 }

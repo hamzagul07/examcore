@@ -1,0 +1,172 @@
+{
+  "slug": "2-3-differentiation",
+  "topicCode": "2.3",
+  "title": "Differentiation",
+  "paper": "P2",
+  "paperName": "Paper 2: Further Pure Mathematics 2",
+  "status": "pilot",
+  "summary": "This lesson covers advanced differentiation techniques required for Further Mathematics. It focuses on implicit and parametric differentiation, along with the calculation of higher-order derivatives. These methods are essential for analysing curves that are not expressed in the simple form y = f(x).",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Differentiate functions and relations defined implicitly.",
+    "Differentiate functions defined parametrically.",
+    "Find and use second and higher-order derivatives for explicit, implicit, and parametric functions.",
+    "Apply these techniques to find gradients, tangents, normals, and stationary points."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Complex Slopes",
+    "summary": "This topic gives you the tools to find the gradient of any point on a curve, even when the equation is tangled up (implicit) or described by a journey over time (parametric). It's about extending differentiation beyond simple 'y = ...' functions.",
+    "analogy": "Imagine you have a map showing a looped roller coaster track. An equation like `x² + y² = 100` might describe the track's shape, but you can't easily write `y` as a function of `x`. Implicit differentiation lets you find the steepness at any point on the loop without unravelling the equation. Similarly, if you know the coaster's `x` and `y` position at any given time `t`, parametric differentiation lets you find the gradient of its path at that instant.",
+    "steps": [
+      "For implicit functions (e.g., x² + y³ = 3), differentiate each term with respect to x, using the chain rule for y-terms (d/dx(y³) = 3y²(dy/dx)).",
+      "Rearrange the resulting equation to make dy/dx the subject.",
+      "For parametric functions (x=f(t), y=g(t)), find dy/dx using the formula: dy/dx = (dy/dt) / (dx/dt).",
+      "To find the second derivative d²y/dx², differentiate your expression for dy/dx with respect to x, using the chain rule again: d/dx(dy/dx) = [d/dt(dy/dx)] * (dt/dx)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is implicit differentiation?",
+      "back": "A technique used to differentiate relations where the dependent variable (usually y) is not explicitly isolated on one side of the equation. We differentiate term-by-term with respect to x."
+    },
+    {
+      "front": "When differentiating an expression in `y` with respect to `x`, what rule must you always apply?",
+      "back": "The chain rule. For example, `d/dx(f(y)) = f'(y) * dy/dx`."
+    },
+    {
+      "front": "What is `d/dx(y^n)`?",
+      "back": "`n * y^(n-1) * dy/dx`"
+    },
+    {
+      "front": "What is `d/dx(xy)`?",
+      "back": "You must use the product rule: `x * (dy/dx) + y * 1 = x(dy/dx) + y`."
+    },
+    {
+      "front": "What is the formula for the first derivative of a parametric function `x=f(t), y=g(t)`?",
+      "back": "`dy/dx = (dy/dt) / (dx/dt)`"
+    },
+    {
+      "front": "What is the formula for the second derivative of a parametric function?",
+      "back": "`d²y/dx² = d/dx(dy/dx) = [d/dt(dy/dx)] / (dx/dt)`. Note that `dt/dx = 1 / (dx/dt)`."
+    },
+    {
+      "front": "What is a common, incorrect formula used for the parametric second derivative?",
+      "back": "Calculating `(d²y/dt²) / (d²x/dt²)`. This is completely wrong and will score no marks."
+    },
+    {
+      "front": "How do you find the coordinates of a stationary point on a curve?",
+      "back": "Set `dy/dx = 0` and solve for the variable(s). Then substitute back into the original equation(s) to find the corresponding coordinate(s)."
+    },
+    {
+      "front": "What does it signify if `dx/dt = 0` but `dy/dt ≠ 0` for a parametric curve?",
+      "back": "The curve has a vertical tangent at that point, as the gradient `dy/dx` is undefined."
+    },
+    {
+      "front": "How do you find the equation of a normal to a curve at a point `(x₁, y₁)`?",
+      "back": "1. Find the gradient of the tangent, `m_T = dy/dx` at that point. 2. Find the gradient of the normal, `m_N = -1 / m_T`. 3. Use the formula `y - y₁ = m_N(x - x₁)`. "
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is it called 'implicit' differentiation?",
+      "a": "It's called 'implicit' because the relationship between `y` and `x` is implied by the equation, rather than being explicitly stated as `y = f(x)`. We work with this implied relationship directly."
+    },
+    {
+      "q": "What does the parameter 't' in parametric equations actually represent?",
+      "a": "The parameter `t` can represent many things. In physics, it often represents time, with the equations describing the motion of an object. In pure mathematics, it can be thought of as a variable that 'draws' the curve as it changes. For example, for the parametric equations of a circle `x = cos(t), y = sin(t)`, `t` represents the angle."
+    },
+    {
+      "q": "How do I decide whether to use implicit or parametric differentiation?",
+      "a": "The form of the equation tells you which method to use. If you have a single equation relating `x` and `y` (e.g., `x² + xy + y³ = 2`), you must use implicit differentiation. If you are given `x` and `y` separately as functions of a third variable `t` (e.g., `x = t²`, `y = 2t`), you must use parametric differentiation."
+    },
+    {
+      "q": "I'm still confused about the parametric second derivative. Can you explain it again?",
+      "a": "Certainly. The key is to remember what `d²y/dx²` means: it's the derivative *with respect to x* of `dy/dx`. Since your expression for `dy/dx` is in terms of `t`, you can't differentiate it with respect to `x` directly. You must use the chain rule: `d/dx(A) = (d/dt(A)) * (dt/dx)`. Here, `A` is your `dy/dx` expression. This gives `d/dt(dy/dx) * (dt/dx)`. Since `dt/dx = 1/(dx/dt)`, the full formula becomes `[d/dt(dy/dx)] / (dx/dt)`."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In your previous studies, you mastered differentiating functions of the form `y = f(x)`. However, many interesting and important curves in mathematics and science cannot be written so neatly. This topic introduces the powerful techniques of implicit and parametric differentiation, allowing us to find gradients and analyse the properties of a much wider class of curves."
+    },
+    {
+      "type": "heading",
+      "content": "1. Implicit Differentiation"
+    },
+    {
+      "type": "text",
+      "content": "An implicit equation is one that connects `x` and `y` without expressing `y` directly in terms of `x`. A classic example is the equation of a circle, `x² + y² = r²`. While you could solve for `y` to get `y = ±√(r² - x²)`, this is awkward and creates two separate functions. Implicit differentiation provides a more elegant way to find `dy/dx` directly from the original equation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Differentiate term by term:** Apply the `d/dx` operator to every term in the equation.",
+        "**Use the Chain Rule for y-terms:** Whenever you differentiate a term involving `y`, you must multiply by `dy/dx`. For example, `d/dx(sin(y)) = cos(y) * dy/dx`.",
+        "**Use the Product Rule where necessary:** Be careful with terms like `xy` or `x²y³`. Remember to apply the product rule: `d/dx(uv) = u(dv/dx) + v(du/dx)`.",
+        "**Solve for dy/dx:** After differentiating, rearrange the resulting equation algebraically to isolate `dy/dx`."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A curve C has the equation `x³ + y³ - 3xy = 0`. Find the equation of the tangent to C at the point `P(3/2, 3/2)`.",
+      "solution": "First, we differentiate the equation implicitly with respect to `x`.\n`d/dx(x³) + d/dx(y³) - d/dx(3xy) = d/dx(0)`\n\n`3x² + 3y²(dy/dx) - [3x(dy/dx) + 3y(1)] = 0`\nNote the use of the product rule on the `3xy` term.\n\n`3x² + 3y²(dy/dx) - 3x(dy/dx) - 3y = 0`\n\nNow, we gather the `dy/dx` terms:\n`(3y² - 3x)(dy/dx) = 3y - 3x²`\n\nSolve for `dy/dx`:\n`dy/dx = (3y - 3x²) / (3y² - 3x) = (y - x²) / (y² - x)`\n\nNext, find the gradient at the point `P(3/2, 3/2)`:\n`m = dy/dx |_(3/2, 3/2) = ((3/2) - (3/2)²) / ((3/2)² - (3/2))`\n`m = (3/2 - 9/4) / (9/4 - 3/2) = (-3/4) / (3/4) = -1`\n\nThe gradient of the tangent at P is -1.\n\nFinally, use the point-gradient formula `y - y₁ = m(x - x₁)`:\n`y - 3/2 = -1(x - 3/2)`\n`y - 3/2 = -x + 3/2`\n`y + x = 3`\n\nThe equation of the tangent is `x + y = 3`."
+    },
+    {
+      "type": "heading",
+      "content": "2. Parametric Differentiation"
+    },
+    {
+      "type": "text",
+      "content": "Some curves are best described by expressing both `x` and `y` coordinates as functions of a third variable, or parameter, often denoted by `t`. For example, `x = f(t)` and `y = g(t)`. Think of `t` as time, and the equations as describing the position of a particle at that time. To find the gradient `dy/dx` of the particle's path, we can use the chain rule in a specific way."
+    },
+    {
+      "type": "formula",
+      "content": "\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt}"
+    },
+    {
+      "type": "text",
+      "content": "This formula is derived from the chain rule, `dy/dt = dy/dx * dx/dt`, by rearranging it to make `dy/dx` the subject. It is valid provided `dx/dt ≠ 0`."
+    },
+    {
+      "type": "heading",
+      "content": "3. Higher-Order Parametric Derivatives"
+    },
+    {
+      "type": "text",
+      "content": "Finding the second derivative, `d²y/dx²`, is crucial for determining the concavity of a curve and the nature of its stationary points. For parametric equations, this is a multi-step process that is a very common source of error. You cannot simply differentiate the numerator and denominator of `dy/dx` with respect to `t`."
+    },
+    {
+      "type": "text",
+      "content": "The correct procedure is to differentiate the expression for `dy/dx` with respect to `x`, applying the chain rule again:"
+    },
+    {
+      "type": "formula",
+      "content": "\\frac{d^2y}{dx^2} = \\frac{d}{dx} \\left( \\frac{dy}{dx} \\right) = \\frac{d/dt(dy/dx)}{dx/dt}"
+    },
+    {
+      "type": "examTip",
+      "content": "Memorise the formula for the parametric second derivative. A very common mistake is to calculate `(d²y/dt²) / (d²x/dt²)`, which is incorrect. Always remember you are differentiating `dy/dx` (which is a function of `t`) with respect to `x`, so you must apply the chain rule, which introduces the `1/(dx/dt)` factor."
+    },
+    {
+      "type": "workedExample",
+      "question": "A curve is defined by the parametric equations `x = 2cos(t)` and `y = sin(2t)` for `0 < t < π`. \n(i) Find `dy/dx` in terms of `t`. \n(ii) Find the coordinates of the stationary points. \n(iii) Find `d²y/dx²`.",
+      "solution": "(i) First, find the derivatives with respect to `t`:\n`dx/dt = -2sin(t)`\n`dy/dt = 2cos(2t)`\n\nNow, apply the formula for `dy/dx`:\n`dy/dx = (dy/dt) / (dx/dt) = (2cos(2t)) / (-2sin(t)) = -cos(2t) / sin(t)`\nUsing the double angle identity `cos(2t) = 1 - 2sin²(t)`:\n`dy/dx = -(1 - 2sin²(t)) / sin(t) = (2sin²(t) - 1) / sin(t) = 2sin(t) - csc(t)`\n\n(ii) Stationary points occur when `dy/dx = 0`.\n`2sin(t) - csc(t) = 0`\n`2sin(t) = 1/sin(t)`\n`2sin²(t) = 1`\n`sin²(t) = 1/2`\n`sin(t) = ±1/√2`\n\nSince `0 < t < π`, `sin(t)` is positive. So, `sin(t) = 1/√2`.\nThis gives `t = π/4` and `t = 3π/4`.\n\nFor `t = π/4`:\n`x = 2cos(π/4) = 2(1/√2) = √2`\n`y = sin(2 * π/4) = sin(π/2) = 1`\nPoint is `(√2, 1)`.\n\nFor `t = 3π/4`:\n`x = 2cos(3π/4) = 2(-1/√2) = -√2`\n`y = sin(2 * 3π/4) = sin(3π/2) = -1`\nPoint is `(-√2, -1)`.\n\nThe stationary points are `(√2, 1)` and `(-√2, -1)`.\n\n(iii) To find `d²y/dx²`, we use the formula `[d/dt(dy/dx)] / (dx/dt)`.\nWe use the expression `dy/dx = 2sin(t) - csc(t)`.\n`d/dt(dy/dx) = 2cos(t) - (-csc(t)cot(t)) = 2cos(t) + csc(t)cot(t)`\n\nWe already know `dx/dt = -2sin(t)`.\n`d²y/dx² = (2cos(t) + csc(t)cot(t)) / (-2sin(t))`\n`d²y/dx² = - (2cos(t) + (1/sin(t))(cos(t)/sin(t))) / (2sin(t))`\n`d²y/dx² = - (2cos(t) + cos(t)/sin²(t)) / (2sin(t))`\n`d²y/dx² = - (2cos(t)sin²(t) + cos(t)) / (2sin³(t))`\n`d²y/dx² = - cos(t)(2sin²(t) + 1) / (2sin³(t))`"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Differentiation Problems",
+      "href": "/mark?subject=9231&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9231)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

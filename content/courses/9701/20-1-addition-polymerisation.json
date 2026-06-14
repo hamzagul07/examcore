@@ -4,39 +4,219 @@
   "title": "Addition polymerisation",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS addition polymers — ethene to poly(ethene), repeat units, and environmental issues with PhET molecule builder.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores addition polymerisation, the process by which alkene monomers join to form long-chain polymers. It covers the mechanism, how to deduce monomers and repeat units, and the environmental implications of these widely used materials.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define addition polymerisation and monomer requirements.",
-    "Draw repeat units from monomer structures.",
-    "Name common addition polymers.",
-    "Discuss disposal and environmental impact of polyalkenes."
+    "Describe addition polymerisation as the process where monomers with a C=C double bond join together.",
+    "Draw the structure of a polymer's repeat unit, given the monomer.",
+    "Identify the monomer required to form a given addition polymer.",
+    "Discuss the environmental concerns arising from the disposal of addition polymers."
   ],
   "simpleExplanation": {
-    "title": "From C=C to long chains",
-    "summary": "Addition polymerisation opens the double bond to link monomers with no by-product. The repeat unit is the section shown in brackets.",
+    "title": "Linking Up Alkenes",
+    "summary": "Addition polymerisation is like making a long paper chain from individual rings. Small molecules with a carbon-carbon double bond (monomers) break this bond to link up into a massive chain (polymer) with no other products formed.",
+    "analogy": "Imagine a room full of people, each with their arms crossed (representing the C=C double bond). To form a long conga line, each person must uncross their arms and hold hands with the person in front and behind. The crossed-arm 'monomers' become a single, long hand-holding 'polymer' chain, with the core structure of each person (the atoms) remaining unchanged.",
     "steps": [
-      "n CH₂=CH₂ → –[CH₂–CH₂]ₙ– poly(ethene).",
-      "Substituted monomers: propene → poly(propene).",
-      "No atoms lost — contrast condensation polymers.",
-      "Non-biodegradable — recycling and litter issues."
+      "Addition polymer: C=C opens — repeat unit loses double bond.",
+      "Monomer must contain C=C — no by-product formed.",
+      "Disposal/recycling issues — non-biodegradable polyalkenes.",
+      "Draw one repeat unit from displayed formula."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a monomer?",
+      "back": "A small molecule, such as an alkene, that can be joined together in large numbers to form a polymer."
+    },
+    {
+      "front": "What is a polymer?",
+      "back": "A long-chain macromolecule made up of many repeating monomer units."
+    },
+    {
+      "front": "Define addition polymerisation.",
+      "back": "A process in which many monomer molecules (containing a C=C double bond) join together to form a polymer, with no other product being formed."
+    },
+    {
+      "front": "What is a repeat unit?",
+      "back": "The specific arrangement of atoms in the polymer that is repeated along the chain. It is shown in square brackets with bonds extending outside."
+    },
+    {
+      "front": "What essential structural feature must a monomer have for addition polymerisation?",
+      "back": "A carbon-carbon double bond (C=C)."
+    },
+    {
+      "front": "What happens to the C=C double bond during addition polymerisation?",
+      "back": "The weaker pi (π) bond breaks, and the electrons are used to form new single sigma (σ) bonds with adjacent monomer units."
+    },
+    {
+      "front": "How do you name an addition polymer?",
+      "back": "Put the name of the monomer in brackets and prefix it with 'poly'. For example, ethene polymerises to form poly(ethene)."
+    },
+    {
+      "front": "Why are addition polymers, like poly(ethene), generally unreactive?",
+      "back": "Because their backbone consists of strong, non-polar C-C and C-H single bonds, which are not easily attacked by common reagents."
+    },
+    {
+      "front": "What is a major environmental problem with addition polymers?",
+      "back": "They are non-biodegradable, meaning they persist in the environment for hundreds of years, contributing to landfill and plastic pollution."
+    },
+    {
+      "front": "COMMON TRAP: When drawing a repeat unit, what must you NOT include inside the brackets?",
+      "back": "The C=C double bond. The double bond is broken to form the polymer chain, so the backbone of the repeat unit only contains C-C single bonds."
+    },
+    {
+      "front": "How does addition polymerisation differ from condensation polymerisation?",
+      "back": "In addition polymerisation, monomers add to each other with no loss of atoms. In condensation polymerisation, a small molecule, such as water, is eliminated for each bond formed between monomers."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is it called 'addition' polymerisation?",
+      "a": "It is called addition polymerisation because the monomer molecules add to one another in such a way that the polymer is the only product. No atoms or small molecules are lost or eliminated during the reaction."
+    },
+    {
+      "q": "What does the 'n' in the formula -[...]-n represent?",
+      "a": "The 'n' is called the degree of polymerisation. It represents the number of repeating monomer units in the polymer chain, which is typically a very large integer, often in the thousands or tens of thousands."
+    },
+    {
+      "q": "Can alkanes undergo addition polymerisation?",
+      "a": "No, alkanes cannot undergo addition polymerisation. They are saturated molecules, meaning they only have single C-C bonds. The key requirement for a monomer in addition polymerisation is the presence of a C=C double bond that can break and form new bonds to link the units together."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Addition polymerisation** (20.1) is tested with **drawing repeat units** from displayed monomers. Do not include the double bond in the repeat unit."
+      "content": "From carrier bags and water pipes to clothing and non-stick pans, plastics are everywhere. Many of these materials are polymers, and a huge class of them are made through a process called addition polymerisation. This topic will show you how simple alkene molecules are transformed into these incredibly useful, long-chain giants."
+    },
+    {
+      "type": "heading",
+      "content": "The Mechanism of Addition Polymerisation"
+    },
+    {
+      "type": "text",
+      "content": "Addition polymerisation occurs when monomers, which are unsaturated molecules containing a C=C double bond, react together. The reaction is typically initiated under conditions of high temperature, high pressure, and in the presence of a catalyst. During the reaction, the weaker pi (π) bond in each alkene monomer breaks, and the electrons are used to form new, strong sigma (σ) bonds that link the monomers into a long saturated chain."
+    },
+    {
+      "type": "formula",
+      "content": "The general equation for the polymerisation of ethene is:\n\n$n \\text{CH}_2=\\text{CH}_2 \\rightarrow -[\\text{CH}_2-\\text{CH}_2]_n-$\n\nWhere 'n' is a very large integer, representing the number of monomer units that have joined together. The product is poly(ethene)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The monomer must be an alkene or a substituted alkene.",
+        "The C=C double bond breaks, and a C-C single bond backbone forms.",
+        "No other molecule is produced; the empirical formula of the monomer and the repeat unit are identical.",
+        "The process is an 'addition' reaction on a massive scale."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Drawing Polymers and Identifying Monomers"
+    },
+    {
+      "type": "text",
+      "content": "A key skill is to be able to visualise and draw the relationship between a monomer and its polymer. To draw the repeat unit from a monomer, focus only on the two carbons in the double bond. Open the double bond and draw single bonds extending outwards from these two carbons. All other atoms or groups attached to these carbons are then drawn above or below them."
+    },
+    {
+      "type": "workedExample",
+      "question": "Propene, $CH_3CH=CH_2$, is used to make the polymer poly(propene). Draw one repeat unit of poly(propene) and state its full name.",
+      "solution": "1. **Identify the C=C bond:** In propene ($CH_3CH=CH_2$), the double bond is between the second and third carbons if numbered from the left, but it's easier to see it as being between a $CH$ group and a $CH_2$ group.\n2. **Focus on the double bond carbons:** The carbons involved are $C_1$ (with two H atoms) and $C_2$ (with one H and one $CH_3$ group).\n3. **Open the double bond:** The $C=C$ becomes a $C-C$ backbone for the polymer chain.\n4. **Draw the repeat unit:** The two carbons from the double bond form the main chain. The groups attached to them ($H$, $H$, $CH_3$, $H$) are placed on these carbons. We show the chain continuing by drawing bonds through the brackets.\n\n**Repeat Unit:**\n\n-[-CH($CH_3$)-CH$_2$-]-$_n$\n\nOr displayed as:\n\n      H   H\n      |   |\n...--[C - C]--... \n      |   |\n      CH₃ H\n\n**Name:** poly(propene)"
+    },
+    {
+      "type": "text",
+      "content": "To work in reverse and identify the monomer from a polymer chain, you must first identify the repeating section. This will always be a two-carbon unit in the main chain for simple addition polymers. Once you have the two-carbon repeat unit, simply re-form the double bond between those two carbon atoms to reveal the original monomer."
+    },
+    {
+      "type": "workedExample",
+      "question": "A section of a polymer has the following structure: ...-CF$_2$-CFCl-CF$_2$-CFCl-CF$_2$-CFCl-... Identify the monomer that formed this polymer.",
+      "solution": "1. **Identify the repeating unit:** Look for the shortest section that repeats along the chain. The pattern is [-CF$_2$-CFCl-]. This is the repeat unit.\n2. **Isolate the two-carbon backbone:** The repeat unit has a backbone of -C-C-.\n3. **Identify the attached groups:** The first carbon is attached to two fluorine atoms (-CF$_2$-). The second carbon is attached to one fluorine and one chlorine atom (-CFCl-).\n4. **Re-form the double bond:** To find the monomer, place a double bond between the two carbon atoms of the backbone and remove the bonds that link to other repeat units.\n\nRepeat unit: -[CF$_2$-CFCl]-\n\nMonomer: CF$_2$=CFCl\n\n**Name of monomer:** 1-chloro-1,2,2-trifluoroethene"
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to draw a 'repeat unit', you must use square brackets. Crucially, the single bonds forming the main polymer chain must extend through the brackets to show that the chain is continuous. Forgetting these bonds is a common way to lose a mark."
+    },
+    {
+      "type": "heading",
+      "content": "Environmental Impact of Addition Polymers"
+    },
+    {
+      "type": "text",
+      "content": "While incredibly useful, the properties that make poly(alkenes) so versatile also cause significant environmental problems. Their chemical inertness, due to the strong C-C and C-H bonds, means they are not attacked by microorganisms and are therefore non-biodegradable. They persist in the environment for centuries, filling up landfill sites and polluting oceans and landscapes."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Non-biodegradability:** Poly(alkenes) are resistant to decomposition by natural processes, leading to long-term plastic pollution.",
+        "**Landfill:** Discarded polymers take up vast amounts of space in landfill sites.",
+        "**Combustion:** Burning plastic waste can release toxic gases. For example, the combustion of poly(chloroethene) (PVC) can produce hydrogen chloride (HCl), a corrosive and acidic gas. Incomplete combustion of any polymer can release toxic carbon monoxide.",
+        "**Recycling:** While a solution, recycling is often difficult and expensive due to the need to sort different types of polymers, which often have different properties and cannot be mixed."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark an addition polymerisation question",
+      "label": "Addition Polymerisation",
       "href": "/mark?subject=9701&topic=20.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "Chemguide page on addition polymerisation",
+          "href": "https://www.chemguide.co.uk/organicprops/alkenes/polymerisation.html"
+        },
+        {
+          "label": "Royal Society of Chemistry article on plastics",
+          "href": "https://edu.rsc.org/feature/the-problem-with-plastics/2020239.article"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Repeat unit from alkene monomer — C=C opens to form poly(ethene) chain (20.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Addition polymer: C=C opens — repeat unit loses double bond.",
+        "embedHint": "Ethene → –[CH₂–CH₂]ₙ– poly(ethene)."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Monomer must contain C=C — no by-product formed.",
+        "embedHint": "Contrast with condensation polymerisation."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Disposal/recycling issues — non-biodegradable polyalkenes.",
+        "embedHint": "Environmental chemistry link."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Draw one repeat unit from displayed formula.",
+        "embedHint": "Bracket shows repeating section only once."
+      }
+    ]
+  }
 }

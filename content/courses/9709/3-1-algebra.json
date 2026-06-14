@@ -4,39 +4,247 @@
   "title": "Algebra",
   "paper": "P3",
   "paperName": "Pure Mathematics 3",
-  "status": "premium",
-  "summary": "9709 P3 algebra — modulus, partial fractions, binomial expansion, and polynomials with PhET expression exchange.",
+  "status": "pilot",
+  "summary": "This lesson covers the core algebra techniques for P3, building upon AS-level knowledge. It includes the modulus function, advanced partial fractions, binomial expansion for rational indices, and polynomial division with the factor and remainder theorems, including complex roots.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Sketch and solve equations involving modulus functions.",
-    "Decompose rational expressions into partial fractions.",
-    "Expand (1 + x)ⁿ for non-integer n.",
-    "Use factor theorem with complex roots."
+    "Solve equations and inequalities involving the modulus function.",
+    "Decompose rational expressions into partial fractions, including cases with repeated linear factors and irreducible quadratic factors.",
+    "Expand expressions of the form $(a+bx)^n$ for rational $n$ and determine the range of validity.",
+    "Use the factor theorem and polynomial division to find roots of polynomials, including complex conjugate pairs."
   ],
   "simpleExplanation": {
-    "title": "P3 algebraic tools",
-    "summary": "P3 algebra feeds integration and differential equations. Partial fractions must be proper — divide first if needed.",
+    "title": "The P3 Algebra Toolkit",
+    "summary": "This topic equips you with four powerful algebraic tools essential for calculus and complex numbers. Each tool solves a specific type of problem, from handling absolute values to approximating complex functions.",
+    "analogy": "Think of building a sophisticated machine. The modulus function is like a safety rail, ensuring all outputs are positive. Partial fractions are like disassembling a complex gear system into simpler, manageable parts. The binomial expansion is a blueprint for how a component behaves under pressure, valid only within specific tolerances. Polynomial roots are the precise anchor points where the machine is bolted to its foundation.",
     "steps": [
-      "|f(x)| graph: reflect negative parts above x-axis.",
-      "Repeated factors need Ax + B over quadratic terms.",
-      "Binomial valid for |x| < 1 when n is not a positive integer.",
-      "Complex roots of real polynomials occur in conjugate pairs."
+      "P3 modulus: |f(x)| graphs reflect negative portions of the y-values above the x-axis. For a linear function like $|ax+b|$, this creates a 'V' shape with the vertex on the x-axis.",
+      "Partial fractions break down complex fractions. For an irreducible quadratic denominator like $x^2+4$, the numerator must be a linear term, $Ax+B$. For a repeated factor like $(x-c)^2$, you need separate fractions for $(x-c)$ and $(x-c)^2$.",
+      "The binomial expansion works for rational powers 'n', like in $(1+x)^n$. The result is an infinite series that is only a valid approximation when the magnitude of the 'x' term is less than 1.",
+      "For a polynomial $P(x)$, if $P(a)=0$, then $(x-a)$ is a factor. If the polynomial has real coefficients and a complex number $z = a+bi$ is a root, its conjugate $z^* = a-bi$ must also be a root."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are the two algebraic methods for solving an equation of the form $|f(x)| = g(x)$?",
+      "back": "1. Consider two separate cases: $f(x) = g(x)$ and $f(x) = -g(x)$. 2. Square both sides to get $(f(x))^2 = (g(x))^2$. Always check for extraneous solutions."
+    },
+    {
+      "front": "How do you sketch the graph of $y = |f(x)|$ from the graph of $y = f(x)$?",
+      "back": "Reflect the part of the graph of $y=f(x)$ that is below the x-axis in the x-axis. The part of the graph already on or above the x-axis remains unchanged."
+    },
+    {
+      "front": "What is the general form for partial fractions with a repeated linear factor in the denominator, e.g., $(x-a)^2$?",
+      "back": "The expression will have terms $\\frac{A}{x-a} + \\frac{B}{(x-a)^2}$."
+    },
+    {
+      "front": "What is the general form for partial fractions with an irreducible quadratic factor in the denominator, e.g., $(x^2+b)$?",
+      "back": "The corresponding term in the partial fraction decomposition is $\\frac{Ax+B}{x^2+b}$."
+    },
+    {
+      "front": "What is the binomial expansion of $(1+x)^n$ for a rational number $n$?",
+      "back": "$1 + nx + \\frac{n(n-1)}{2!}x^2 + \\frac{n(n-1)(n-2)}{3!}x^3 + \\dots$"
+    },
+    {
+      "front": "What is the condition for the validity of the binomial expansion of $(a+bx)^n$?",
+      "back": "The expansion is valid when $|\\frac{bx}{a}| < 1$, which simplifies to $|x| < |\\frac{a}{b}|$. "
+    },
+    {
+      "front": "State the Factor Theorem.",
+      "back": "For a polynomial $P(x)$, if $P(a) = 0$, then $(x-a)$ is a factor of $P(x)$."
+    },
+    {
+      "front": "State the Remainder Theorem.",
+      "back": "When a polynomial $P(x)$ is divided by $(x-a)$, the remainder is $R = P(a)$."
+    },
+    {
+      "front": "What is the Complex Conjugate Root Theorem?",
+      "back": "If a polynomial has real coefficients, and $z = a+bi$ is a root, then its complex conjugate $z^* = a-bi$ must also be a root."
+    },
+    {
+      "front": "What real quadratic factor corresponds to the complex conjugate roots $a \\pm bi$?",
+      "back": "The factor is $(x-(a+bi))(x-(a-bi)) = x^2 - 2ax + (a^2+b^2)$."
+    },
+    {
+      "front": "Trap: When solving $|x-5| < 2$, what is a common error?",
+      "back": "A common error is to only solve $x-5 < 2$ to get $x<7$. You must also consider $-(x-5) < 2$, which gives $-x+5 < 2$, so $3 < x$. The full solution is $3 < x < 7$."
+    },
+    {
+      "front": "Trap: When expanding $(4-x)^{1/2}$, what is the first step?",
+      "back": "You must first factor out the 4 to match the $(1+y)^n$ form: $4^{1/2}(1 - \\frac{x}{4})^{1/2} = 2(1 - \\frac{x}{4})^{1/2}$. Forgetting to apply the power to the factored-out constant is a common mistake."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When solving $|f(x)| > k$, why do we get two separate regions, e.g., $x>a$ or $x<b$?",
+      "a": "Graphically, the V-shape of $|f(x)|$ intersects the horizontal line $y=k$ at two points. The inequality holds for the parts of the 'V' that are above the line, which are the two 'arms' extending outwards, leading to two separate regions."
+    },
+    {
+      "q": "What does 'irreducible quadratic factor' actually mean?",
+      "a": "It means a quadratic expression that cannot be factorised using real numbers. This occurs when its discriminant, $b^2-4ac$, is negative. For example, in $x^2+4$, the discriminant is $0^2 - 4(1)(4) = -16 < 0$. Its roots are complex."
+    },
+    {
+      "q": "Why is the binomial expansion of $(1+x)^{1/2}$ only valid for $|x|<1$?",
+      "a": "The expansion is an infinite geometric series in disguise. For an infinite series to converge to a finite sum, the common ratio must have a magnitude less than 1. In the binomial expansion, the terms behave like a geometric progression with ratio related to $x$. If $|x| \\ge 1$, the terms get larger and larger, so the sum diverges to infinity and is not a useful approximation."
+    },
+    {
+      "q": "If I find one root of a cubic, say $x=2$, how do I find the others?",
+      "a": "If $x=2$ is a root, then $(x-2)$ is a factor. You can use polynomial long division to divide the original cubic by $(x-2)$. The result will be a quadratic expression, which you can then solve using the quadratic formula or factorisation to find the remaining two roots."
+    },
+    {
+      "q": "Can a polynomial with real coefficients have an odd number of complex roots?",
+      "a": "No. The Complex Conjugate Root Theorem guarantees that complex roots always come in pairs (a root and its conjugate). Therefore, a polynomial with real coefficients must have an even number of complex roots (which could be zero)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**P3 Algebra** (3.1) overlaps **P2** (2.1) at higher difficulty. **Modulus** sketching and **partial fractions** appear every session."
+      "content": "Welcome to the first topic in Pure Mathematics 3. This unit significantly extends the algebraic manipulation skills you developed at AS Level. We will explore the modulus function in greater depth, tackle more complex partial fractions, use the binomial theorem with rational powers, and delve deeper into polynomial theory, including the role of complex numbers."
+    },
+    {
+      "type": "heading",
+      "content": "The Modulus Function: Equations and Inequalities"
+    },
+    {
+      "type": "text",
+      "content": "The modulus of a number, denoted $|x|$, is its absolute value or magnitude. For example, $|-5| = 5$ and $|5| = 5$. In P3, you'll frequently solve equations and inequalities involving modulus functions. While algebraic cases can be used, a graphical approach is often more intuitive and less prone to error. Sketching the graphs of both sides of the equation or inequality allows you to visually identify the required intersection points or regions."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the inequality $|x-3| \\ge |2x+1|$.",
+      "solution": "A reliable method is to square both sides, as the modulus is always non-negative.\\\n$(|x-3|)^2 \\ge (|2x+1|)^2$\\\n$(x-3)^2 \\ge (2x+1)^2$\\\n$x^2 - 6x + 9 \\ge 4x^2 + 4x + 1$\\\n$0 \\ge 3x^2 + 10x - 8$\\\nTo find the roots of the quadratic $3x^2 + 10x - 8 = 0$, we can factorise it.\\\n$(3x-2)(x+4) = 0$\\\nSo, the critical values are $x = \\frac{2}{3}$ and $x = -4$.\\\nThe inequality is $3x^2 + 10x - 8 \\le 0$. Since this is a positive parabola (opening upwards), the function is less than or equal to zero between its roots.\\\nTherefore, the solution is $-4 \\le x \\le \\frac{2}{3}$."
+    },
+    {
+      "type": "examTip",
+      "content": "For inequalities like $|f(x)| > |g(x)|$, squaring both sides is usually the safest method. It avoids the confusion of setting up multiple positive/negative cases. Remember that for any real number $a$, $|a|^2 = a^2$."
+    },
+    {
+      "type": "heading",
+      "content": "Advanced Partial Fractions"
+    },
+    {
+      "type": "text",
+      "content": "You will now learn to handle two more complex cases of partial fractions. The first is when the denominator has a repeated linear factor, such as $(x-2)^2$. The second is when the denominator contains an irreducible quadratic factor, meaning a quadratic that cannot be factorised into real linear factors, such as $x^2+9$. The key is to know the correct form to use for the decomposition."
+    },
+    {
+      "type": "formula",
+      "content": "Repeated Linear Factor: $\\frac{f(x)}{(x-a)^2(x-b)} \\equiv \\frac{A}{x-a} + \\frac{B}{(x-a)^2} + \\frac{C}{x-b}$\\\nIrreducible Quadratic Factor: $\\frac{f(x)}{(x^2+c)(x-a)} \\equiv \\frac{Ax+B}{x^2+c} + \\frac{C}{x-a}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "First, ensure the fraction is 'proper' (degree of numerator < degree of denominator). If not, perform polynomial division first.",
+        "Fully factorise the denominator to identify the types of factors.",
+        "Write down the partial fraction decomposition with unknown constants (A, B, C, etc.). Use $Ax+B$ for irreducible quadratic factors.",
+        "Solve for the constants by either substituting convenient values of $x$ or by equating coefficients of powers of $x$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Binomial Expansion for Rational Indices"
+    },
+    {
+      "type": "text",
+      "content": "The binomial theorem can be extended to expand expressions of the form $(1+x)^n$ where $n$ is any rational number (positive, negative, or a fraction). Unlike the expansions from P1, these are infinite series. Consequently, they are only valid (i.e., they converge to the correct value) for a specific range of $x$ values."
+    },
+    {
+      "type": "formula",
+      "content": "For any rational number $n$, the expansion of $(1+x)^n$ is:\\\n$1 + nx + \\frac{n(n-1)}{2!}x^2 + \\frac{n(n-1)(n-2)}{3!}x^3 + \\dots$\\\nThis expansion is valid for $|x| < 1$."
+    },
+    {
+      "type": "workedExample",
+      "question": "i) Find the first three terms in the expansion of $(4+x)^{1/2}$ in ascending powers of $x$. \\\nii) State the range of values of $x$ for which the expansion is valid.",
+      "solution": "i) First, we must write the expression in the form $a(1+y)^n$.\\\n$(4+x)^{1/2} = (4(1+\\frac{x}{4}))^{1/2} = 4^{1/2}(1+\\frac{x}{4})^{1/2} = 2(1+\\frac{x}{4})^{1/2}$.\\\nNow we apply the binomial formula with $n=\\frac{1}{2}$ and 'x' replaced by '$\\frac{x}{4}$'.\\\n$2(1+\\frac{x}{4})^{1/2} = 2 \\left[ 1 + (\\frac{1}{2})(\\frac{x}{4}) + \\frac{(\\frac{1}{2})(-\\frac{1}{2})}{2!}(\\frac{x}{4})^2 + \\dots \\right]$\\\n$= 2 \\left[ 1 + \\frac{x}{8} + \\frac{-\\frac{1}{4}}{2}(\\frac{x^2}{16}) + \\dots \\right]$\\\n$= 2 \\left[ 1 + \\frac{x}{8} - \\frac{x^2}{128} + \\dots \\right]$\\\n$= 2 + \\frac{x}{4} - \\frac{x^2}{64} + \\dots$\\\n\nii) The expansion is valid when $|\\frac{x}{4}| < 1$.\\\nThis means $|x| < 4$, or $-4 < x < 4$."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is forgetting to factor out the constant term before expanding, or forgetting to apply the power to that constant (like the $4^{1/2}=2$ in the example). Always rewrite $(a+bx)^n$ as $a^n(1+\\frac{b}{a}x)^n$ first."
+    },
+    {
+      "type": "heading",
+      "content": "Polynomials and Complex Roots"
+    },
+    {
+      "type": "text",
+      "content": "This section builds on the Factor and Remainder theorems. A key concept in P3 is that if a polynomial has real coefficients (which is always the case in A-Level questions unless stated otherwise), any complex roots must occur in conjugate pairs. This is a powerful tool for finding all roots of a polynomial when one complex root is known."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If a polynomial $P(x)$ is divided by $(x-a)$, the remainder is $P(a)$. If $P(a)=0$, then $(x-a)$ is a factor.",
+        "If $z = a+bi$ is a root of a polynomial with real coefficients, then its conjugate $z^* = a-bi$ is also a root.",
+        "Knowing a conjugate pair of roots $(a \\pm bi)$ means you know a real quadratic factor: $(x-(a+bi))(x-(a-bi)) = x^2 - 2ax + a^2+b^2$.",
+        "You can then use polynomial long division with this quadratic factor to find the remaining factors and roots of the polynomial."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark a P3 algebra question",
+      "label": "Test Your Knowledge on P3 Algebra",
       "href": "/mark?subject=9709&topic=3.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Video tutorial on advanced partial fractions",
+          "href": "https://www.examsolutions.net/tutorials/partial-fractions-further-maths/"
+        },
+        {
+          "label": "Interactive graph of modulus functions",
+          "href": "https://www.geogebra.org/m/w9b74ycy"
+        },
+        {
+          "label": "Notes and examples from DrFrostMaths",
+          "href": "https://www.drfrostmaths.com/resource.php?rid=290"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Expression exchange",
+    "embedUrl": "https://phet.colorado.edu/sims/html/expression-exchange/latest/expression-exchange_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/expression-exchange",
+    "hint": "P3 algebra — modulus, partial fractions, and polynomial roots (9709 3.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "P3 modulus: |f(x)| graphs — reflect negative portions.",
+        "embedHint": "Sketch y = |2x − 3| with vertex at x = 1.5."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Partial fractions with repeated or quadratic factors.",
+        "embedHint": "Ax + B for irreducible quadratic denominator."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Binomial for rational n — validity |x| < 1.",
+        "embedHint": "First three terms of (1 − 2x)^{−½}."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Polynomial roots — factor theorem and complex conjugate pairs.",
+        "embedHint": "If 2 + i is root, so is 2 − i."
+      }
+    ]
+  }
 }

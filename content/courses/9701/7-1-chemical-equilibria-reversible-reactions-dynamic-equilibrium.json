@@ -1,57 +1,224 @@
 {
   "slug": "7-1-chemical-equilibria-reversible-reactions-dynamic-equilibrium",
   "topicCode": "7.1",
-  "title": "Chemical equilibria",
+  "title": "Chemical equilibria: reversible reactions, dynamic equilibrium",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS equilibrium — dynamic equilibrium, Kc, and Le Chatelier's principle with PhET acid-base equilibrium visualisation.",
+  "status": "pilot",
+  "summary": "This lesson introduces the concept of chemical equilibrium, focusing on reversible reactions and the characteristics of a dynamic equilibrium. It explains Le Chatelier's principle and how changes in concentration, pressure, and temperature affect the position of equilibrium, using industrial examples like the Haber process.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Explain dynamic equilibrium in closed systems.",
-    "Write Kc expressions and calculate equilibrium constants.",
-    "Apply Le Chatelier's principle to predict equilibrium shifts.",
-    "Distinguish Kc from reaction quotient Q."
+    "Understand that many chemical reactions are reversible and can reach a state of dynamic equilibrium in a closed system.",
+    "Define dynamic equilibrium in terms of equal rates of forward and reverse reactions and constant macroscopic properties.",
+    "State Le Chatelier's principle and use it to predict the qualitative effects of changes in concentration, pressure, and temperature on the position of equilibrium.",
+    "Explain the role of a catalyst in reaching equilibrium faster without changing the position of equilibrium."
   ],
   "simpleExplanation": {
-    "title": "Balance at the molecular level",
-    "summary": "At equilibrium, forward and reverse rates are equal and concentrations stay constant — but reactions never stop. Changing conditions shifts the position to partially oppose the change.",
+    "title": "The Equilibrium Balancing Act",
+    "summary": "Imagine a busy shop where customers enter and leave constantly. At equilibrium, the rate of people entering equals the rate of people leaving, so the number of people inside stays constant, even though individuals are always moving.",
+    "analogy": "Think of two people, one on each side of a wall, throwing balls over it. At the start, one person has all the balls and throws them quickly. As the other person collects balls, they start throwing them back. Equilibrium is reached when they are both throwing balls back and forth at the same rate, so the number of balls on each side remains constant, even though the balls are in constant motion.",
     "steps": [
-      "Reversible reactions: ⇌ symbol; both directions occur.",
-      "Dynamic equilibrium: closed system, constant temperature, rates equal.",
-      "Le Chatelier: increase [product] → shift left; increase temperature favours endothermic direction.",
-      "Kc = products/reactants (each to power of coefficient); only T changes Kc."
+      "Reversible reactions proceed in forward and reverse directions, shown by the '⇌' symbol.",
+      "Dynamic equilibrium is reached when the forward and reverse reaction rates become equal, causing macroscopic properties like concentration and colour to remain constant.",
+      "Le Chatelier's principle states that if a change is made to a system at equilibrium, the system will shift to counteract the change.",
+      "The equilibrium constant, Kc, is a ratio of product to reactant concentrations at equilibrium. Its value only changes with temperature."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a reversible reaction?",
+      "back": "A reaction that can proceed in both the forward and reverse directions. It is represented by the '⇌' symbol."
+    },
+    {
+      "front": "Define 'dynamic equilibrium'.",
+      "back": "A state in a closed system where the rate of the forward reaction is equal to the rate of the reverse reaction, and the concentrations of reactants and products remain constant."
+    },
+    {
+      "front": "What are the two key conditions for a dynamic equilibrium to be established?",
+      "back": "1. The reaction must be reversible. 2. The system must be closed (no matter or energy can enter or leave)."
+    },
+    {
+      "front": "What does 'dynamic' mean in the context of equilibrium?",
+      "back": "It means that on the molecular level, both the forward and reverse reactions are still occurring continuously, even though there is no overall change in concentrations."
+    },
+    {
+      "front": "State Le Chatelier's principle.",
+      "back": "If a change of condition is applied to a system in equilibrium, the system will shift in a direction that opposes the change."
+    },
+    {
+      "front": "How does increasing the concentration of a reactant affect the position of equilibrium?",
+      "back": "The equilibrium shifts to the right (the product side) to use up the added reactant and counteract the change."
+    },
+    {
+      "front": "For a gaseous reaction, how does increasing the pressure affect the position of equilibrium?",
+      "back": "The equilibrium shifts to the side with the fewer moles of gas to reduce the pressure."
+    },
+    {
+      "front": "How does increasing the temperature affect an exothermic reaction (ΔH is negative) at equilibrium?",
+      "back": "The equilibrium shifts to the left (the reactant side) in the endothermic direction to absorb the added heat."
+    },
+    {
+      "front": "What is the effect of a catalyst on the position of equilibrium?",
+      "back": "A catalyst has no effect on the position of equilibrium. It increases the rate of both the forward and reverse reactions equally, so equilibrium is reached faster."
+    },
+    {
+      "front": "Common Trap: Are the concentrations of reactants and products equal at equilibrium?",
+      "back": "Not necessarily, and usually not. It is the *rates* of the forward and reverse reactions that are equal. The concentrations become *constant*, but are rarely equal."
+    },
+    {
+      "front": "What are 'macroscopic properties' in the context of equilibrium?",
+      "back": "Observable properties of the system as a whole, such as concentration, pressure, colour, and density. These properties are constant at equilibrium."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why doesn't a catalyst change the position of equilibrium?",
+      "a": "A catalyst works by providing an alternative reaction pathway with a lower activation energy. Crucially, it lowers the activation energy for both the forward and the reverse reactions by the same amount. This means it speeds up both reactions equally. Since the position of equilibrium depends on the relative rates, and both are increased by the same factor, the position of equilibrium itself remains unchanged. The only difference is that the system reaches this equilibrium state much faster."
+    },
+    {
+      "q": "What is the difference between the 'position of equilibrium' and the 'rate of reaction'?",
+      "a": "The 'rate of reaction' refers to how fast reactants are converted into products (or vice versa). The 'position of equilibrium' describes the relative amounts of reactants and products once equilibrium is reached. If the equilibrium 'lies to the right', it means there are more products than reactants at equilibrium. Le Chatelier's principle describes how the position of equilibrium shifts, not how the rate changes (except for temperature, which affects both)."
+    },
+    {
+      "q": "If I increase the pressure, does the reaction rate always increase?",
+      "a": "For gas-phase reactions, yes, increasing the pressure increases the concentration of the gas molecules. This leads to more frequent collisions, so the rate of reaction increases for both the forward and reverse reactions. This is a separate concept from the effect of pressure on the *position of equilibrium*, which is determined by the relative number of moles of gas on each side of the equation."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Equilibrium** appears on every 9701 AS paper — Kc calculations, **Le Chatelier** predictions, and **industrial conditions** (Haber, Contact process) are exam staples."
+      "content": "So far, you've likely considered most chemical reactions as one-way streets, where reactants turn into products and the reaction stops. However, many important reactions are more like a two-way street. They are reversible. This lesson explores how these reactions can reach a balanced state called dynamic equilibrium and how we can manipulate this balance to our advantage, a principle vital to large-scale industrial chemistry."
     },
     {
-      "type": "formula",
-      "content": "For aA + bB ⇌ cC + dD: Kc = [C]^c[D]^d / [A]^a[B]^b | Omit solids and pure liquids"
+      "type": "heading",
+      "content": "Reversible Reactions and Dynamic Equilibrium"
     },
     {
-      "type": "workedExample",
-      "question": "N₂O₄ ⇌ 2NO₂. At equilibrium [N₂O₄] = 0.40 mol dm⁻³, [NO₂] = 0.80 mol dm⁻³. Find Kc.",
-      "solution": "Kc = [NO₂]² / [N₂O₄] = (0.80)² / 0.40 = **1.6** (mol dm⁻³)"
+      "type": "text",
+      "content": "A reversible reaction is one where the products can react to re-form the original reactants. We use a special double arrow symbol ($⇌$) to show this. For example, the famous Haber process for making ammonia: $N_2(g) + 3H_2(g) ⇌ 2NH_3(g)$. Initially, nitrogen and hydrogen react to form ammonia (the forward reaction). As ammonia molecules form, they start to decompose back into nitrogen and hydrogen (the reverse reaction). Eventually, the rates of these two opposing reactions become equal. At this point, the system has reached dynamic equilibrium."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Dynamic:** Both forward and reverse reactions are still occurring.",
+        "**Equilibrium:** The rates are equal, so there is no net change in the concentrations of reactants or products.",
+        "**Closed System:** Equilibrium can only be established in a closed system, where no substances can be added or removed."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Le Chatelier's Principle"
+    },
+    {
+      "type": "text",
+      "content": "If we have a system at equilibrium, what happens if we change the conditions? Le Chatelier's principle provides the answer. It states that if a change (a 'stress') is applied to a system at equilibrium, the position of equilibrium will shift to counteract that change. It's like the system 'fights back' to restore a balance. We can use this principle to predict how changes in concentration, pressure, and temperature will affect the yield of products."
+    },
+    {
+      "type": "heading",
+      "content": "Factors Affecting the Position of Equilibrium"
+    },
+    {
+      "type": "text",
+      "content": "Let's apply Le Chatelier's principle to the three main factors you need to know for your exam."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Concentration:** If you increase the concentration of a reactant, the equilibrium will shift to the right to use it up, increasing the yield of products. If you remove a product, the equilibrium will shift to the right to make more of it.",
+        "**Pressure (for gases only):** Increasing the pressure favours the side of the reaction with fewer moles of gas. This is because shifting to that side reduces the total number of gas molecules, which in turn reduces the pressure, counteracting the initial change. For $N_2(g) + 3H_2(g) ⇌ 2NH_3(g)$, there are 4 moles of gas on the left and 2 on the right. Increasing the pressure shifts the equilibrium to the right.",
+        "**Temperature:** The effect of temperature depends on the enthalpy change ($ΔH$) of the reaction. Increasing the temperature favours the endothermic direction (the one that absorbs heat). Decreasing the temperature favours the exothermic direction (the one that releases heat). For the Haber process, the forward reaction is exothermic ($ΔH = -92 \\text{ kJ mol}^{-1}$). Therefore, a low temperature favours a high yield of ammonia."
+      ]
     },
     {
       "type": "examTip",
-      "content": "When predicting shifts, state **which side is favoured** and **why** (Le Chatelier). For Kp questions, use partial pressures and the same expression form as Kc."
+      "content": "When answering exam questions about Le Chatelier's principle, be precise. State the change, state how the system opposes the change, and state the direction of the shift in the position of equilibrium (e.g., 'to the right' or 'favouring the products'). For pressure, always count and state the number of moles of gas on each side of the equation."
+    },
+    {
+      "type": "workedExample",
+      "question": "The Haber process for synthesising ammonia is shown below:\n$N_2(g) + 3H_2(g) ⇌ 2NH_3(g) \\quad ΔH = -92 \\text{ kJ mol}^{-1}$\n\nPredict and explain the effect on the position of equilibrium if:\na) More nitrogen gas is added.\nb) The pressure is decreased.\nc) A catalyst is added.",
+      "solution": "**a) More nitrogen gas added:**\n- The concentration of a reactant, $N_2$, has been increased.\n- According to Le Chatelier's principle, the system will act to decrease this concentration.\n- The position of equilibrium will shift to the right, favouring the forward reaction to use up the extra $N_2$.\n\n**b) The pressure is decreased:**\n- The system will act to increase the pressure.\n- The forward reaction produces 2 moles of gas from 4 moles of gas (1 mole of $N_2$ + 3 moles of $H_2$).\n- The position of equilibrium will shift to the left, favouring the reverse reaction, as this produces more moles of gas (4 moles), thereby increasing the pressure.\n\n**c) A catalyst is added:**\n- A catalyst increases the rate of the forward and reverse reactions equally.\n- It does not change the position of equilibrium.\n- The only effect is that equilibrium is reached more quickly."
+    },
+    {
+      "type": "heading",
+      "content": "Equilibrium and Industrial Processes"
+    },
+    {
+      "type": "text",
+      "content": "The principles of equilibrium are crucial for industrial chemists who want to maximise the yield of a desired product. The Haber process is a classic example. To maximise ammonia yield, Le Chatelier's principle suggests using high pressure (shifts equilibrium right) and low temperature (forward reaction is exothermic). However, there's a compromise. Low temperatures make the reaction rate incredibly slow. Therefore, a moderately high temperature (e.g., 400–450 °C) and a catalyst are used to achieve an acceptable rate, even though this slightly reduces the maximum possible yield. This balance between yield, rate, and cost is a key consideration in all industrial processes."
+    },
+    {
+      "type": "workedExample",
+      "question": "The Contact process for making sulfuric acid involves the key step:\n$2SO_2(g) + O_2(g) ⇌ 2SO_3(g) \\quad ΔH = -197 \\text{ kJ mol}^{-1}$\n\nState and explain the conditions of temperature and pressure that would give the maximum yield of sulfur trioxide, $SO_3$.",
+      "solution": "**Temperature:**\n- The forward reaction is exothermic ($ΔH$ is negative).\n- According to Le Chatelier's principle, a decrease in temperature favours the exothermic direction to release heat and counteract the change.\n- Therefore, a low temperature would give the maximum yield of $SO_3$.\n\n**Pressure:**\n- There are 3 moles of gas on the reactant side ($2SO_2 + O_2$) and 2 moles of gas on the product side ($2SO_3$).\n- According to Le Chatelier's principle, an increase in pressure favours the side with fewer moles of gas to reduce the overall pressure.\n- Therefore, a high pressure would give the maximum yield of $SO_3$."
+    },
+    {
+      "type": "examTip",
+      "content": "Remember that industrial conditions are often a compromise. While low temperature might give the best yield for an exothermic reaction, the rate might be too slow to be economical. Examiners may ask you to explain why the actual conditions used differ from the theoretical optimum yield conditions."
     },
     {
       "type": "practice",
-      "label": "Mark an equilibrium question",
+      "label": "Practice Questions on Dynamic Equilibrium",
       "href": "/mark?subject=9701&topic=7.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Chemguide: Le Chatelier's Principle",
+          "href": "https://www.chemguide.co.uk/physical/equilibria/lechatelier.html"
+        },
+        {
+          "label": "Video tutorial on Dynamic Equilibrium",
+          "href": "https://www.youtube.com/watch?v=wlD_n93g14c"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Acid-base equilibrium",
+    "embedUrl": "https://phet.colorado.edu/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/acid-base-solutions",
+    "hint": "Weak acid equilibrium — forward and reverse rates equal at dynamic equilibrium (7.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Reversible reactions proceed in forward and reverse directions.",
+        "embedHint": "Watch the weak acid equilibrium — both directions are active."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Dynamic equilibrium: rates equal, concentrations constant (not equal).",
+        "embedHint": "At equilibrium, forward and reverse rates match — not zero motion."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Le Chatelier: system opposes imposed change (concentration, pressure, temperature).",
+        "embedHint": "Predict shift when concentration or temperature changes."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Kc expression uses equilibrium concentrations; Kc varies with temperature only.",
+        "embedHint": "Write Kc for the equilibrium shown in the simulation."
+      }
+    ]
+  }
 }

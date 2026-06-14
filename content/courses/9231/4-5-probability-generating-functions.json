@@ -1,0 +1,196 @@
+{
+  "slug": "4-5-probability-generating-functions",
+  "topicCode": "4.5",
+  "title": "Probability generating functions",
+  "paper": "P4",
+  "paperName": "Paper 4: Further Probability & Statistics",
+  "status": "pilot",
+  "summary": "This lesson introduces Probability Generating Functions (PGFs) as a powerful tool for analysing discrete random variables. You will learn how to define a PGF, use it to find probabilities, calculate the mean and variance of a distribution, and understand its application to the sum of independent random variables.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand the definition of a PGF and derive it for a given discrete distribution.",
+    "Use a PGF to find probabilities, the mean (expected value), and the variance of a random variable.",
+    "Recall and use the PGFs for standard distributions including Bernoulli, Binomial, Geometric and Poisson.",
+    "Apply the property that the PGF of a sum of independent random variables is the product of their individual PGFs."
+  ],
+  "simpleExplanation": {
+    "title": "The Probability Vending Machine",
+    "summary": "A Probability Generating Function (PGF) is a special function that encodes all the probabilities of a discrete random variable into a single polynomial. By manipulating this function, we can easily extract key information like probabilities, the mean, and the variance without needing the full probability distribution.",
+    "analogy": "Imagine a vending machine for statistics. Instead of snacks, it dispenses information about a random variable. The PGF is this machine. You don't press a button for a specific probability. Instead, you perform mathematical operations: looking at the coefficient of $t^0$ gives you $P(X=0)$, differentiating and setting $t=1$ gives you the mean, and a different formula involving derivatives gives you the variance. It's a compact, powerful tool that holds all the key information in one place.",
+    "steps": [
+      "Define the PGF for a discrete random variable $X$ as $G_X(t) = E(t^X) = \\sum P(X=x)t^x$.",
+      "Extract probabilities by finding the coefficient of $t^r$ in the expansion of $G_X(t)$, or by using the formula $P(X=r) = \\frac{G_X^{(r)}(0)}{r!}$.",
+      "Calculate the mean and variance using derivatives evaluated at $t=1$: $E(X) = G_X'(1)$ and $Var(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2$.",
+      "For a sum of independent variables, $Z = X+Y$, find the PGF of the sum by multiplying the individual PGFs: $G_Z(t) = G_X(t)G_Y(t)$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the definition of the Probability Generating Function (PGF) for a discrete random variable $X$?",
+      "back": "$G_X(t) = E(t^X) = \\sum_{x=0}^{\\infty} P(X=x)t^x$. It's a power series in a dummy variable $t$, where the coefficient of $t^x$ is the probability $P(X=x)$."
+    },
+    {
+      "front": "What is the value of $G_X(1)$ for any PGF?",
+      "back": "$G_X(1) = \\sum P(X=x) = 1$, since the sum of all probabilities in a distribution is 1."
+    },
+    {
+      "front": "How do you find the mean, $E(X)$, using a PGF?",
+      "back": "Differentiate the PGF with respect to $t$ and evaluate at $t=1$. Formula: $E(X) = G_X'(1)$."
+    },
+    {
+      "front": "How do you find the variance, $Var(X)$, using a PGF?",
+      "back": "$Var(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2$. This is a standard formula to memorise."
+    },
+    {
+      "front": "How can you find the probability $P(X=r)$ from its PGF, $G_X(t)$?",
+      "back": "Method 1: Find the coefficient of $t^r$ in the series expansion of $G_X(t)$.\nMethod 2: Use the formula $P(X=r) = \\frac{G_X^{(r)}(0)}{r!}$, where you evaluate the $r$-th derivative at $t=0$."
+    },
+    {
+      "front": "What is the PGF of a Bernoulli distribution, $X \\sim B(1, p)$?",
+      "back": "$G_X(t) = q + pt$, where $q = 1-p$. This is because $P(X=0)=q$ and $P(X=1)=p$."
+    },
+    {
+      "front": "What is the PGF of a Binomial distribution, $X \\sim B(n, p)$?",
+      "back": "$G_X(t) = (q+pt)^n$, where $q=1-p$. This comes from the fact that a Binomial RV is the sum of $n$ independent Bernoulli trials."
+    },
+    {
+      "front": "What is the PGF of a Geometric distribution, $X \\sim Geo(p)$ (number of trials)?",
+      "back": "$G_X(t) = \\frac{pt}{1-qt}$, where $q=1-p$. (Note: for number of failures before first success, it's $\\frac{p}{1-qt}$)."
+    },
+    {
+      "front": "What is the PGF of a Poisson distribution, $X \\sim Po(\\lambda)$?",
+      "back": "$G_X(t) = e^{\\lambda(t-1)}$. This is derived from the Poisson probability formula and the series for $e^x$."
+    },
+    {
+      "front": "If $X$ and $Y$ are independent random variables, what is the PGF of their sum, $Z=X+Y$?",
+      "back": "The PGF of the sum is the product of the individual PGFs: $G_Z(t) = G_{X+Y}(t) = G_X(t)G_Y(t)$."
+    },
+    {
+      "front": "Common Trap: What is the difference between $G_X'(0)$ and $G_X'(1)$?",
+      "back": "$G_X'(0) = P(X=1)$, the probability that the variable takes the value 1. In contrast, $G_X'(1) = E(X)$, the mean of the distribution. Do not mix them up."
+    },
+    {
+      "front": "Common Trap: Forgetting a term in the variance formula.",
+      "back": "The variance is $Var(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2$. A frequent error is to forget the $+G_X'(1)$ term. Remember it as $E(X(X-1)) + E(X) - [E(X)]^2$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is it called a 'generating' function?",
+      "a": "It is called a probability 'generating' function because the function, when written as a power series in $t$, 'generates' the probabilities of the random variable as the coefficients of the terms $t^0, t^1, t^2, \\dots$."
+    },
+    {
+      "q": "Can I use PGFs for continuous random variables?",
+      "a": "No, PGFs are specifically for discrete random variables that take non-negative integer values. The equivalent tool for continuous random variables is the Moment Generating Function (MGF), which is outside the scope of the A-Level Further Mathematics (9231) syllabus."
+    },
+    {
+      "q": "What's the most common mistake when using the variance formula?",
+      "a": "The formula is $Var(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2$. The most common mistake is forgetting the middle '$+ G_X'(1)$' term. A good way to remember the structure is to know that $G_X''(1) = E(X(X-1))$. So the formula is equivalent to $Var(X) = E(X(X-1)) + E(X) - [E(X)]^2$, which simplifies to the familiar $E(X^2) - [E(X)]^2$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of Probability Generating Functions, or PGFs. While we have many tools to describe probability distributions, PGFs offer a uniquely elegant and powerful approach. They package an entire discrete probability distribution into a single function, allowing us to 'generate' key properties like probabilities, mean, and variance through calculus. Their real power shines when dealing with sums of independent random variables, turning complex convolution problems into simple multiplication."
+    },
+    {
+      "type": "heading",
+      "content": "Defining the Probability Generating Function"
+    },
+    {
+      "type": "text",
+      "content": "For a discrete random variable $X$ that takes non-negative integer values $0, 1, 2, \\dots$, its Probability Generating Function, denoted $G_X(t)$, is defined as a power series where the coefficients are the probabilities. The variable $t$ is a 'dummy' variable whose exponent 'carries' the value of the random variable."
+    },
+    {
+      "type": "formula",
+      "content": "G_X(t) = E(t^X) = \\sum_{x=0}^{\\infty} P(X=x)t^x = P(X=0) + P(X=1)t + P(X=2)t^2 + \\dots"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The PGF is defined for discrete random variables taking values in ${0, 1, 2, \\dots}$.",
+        "The coefficient of $t^r$ in the expansion of $G_X(t)$ is precisely $P(X=r)$.",
+        "Substituting $t=1$ into the PGF gives $G_X(1) = \\sum P(X=x) = 1$, which is a useful check."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A discrete random variable $X$ has the probability distribution given by $P(X=1)=0.2$, $P(X=2)=0.5$, and $P(X=3)=0.3$. Find the probability generating function of $X$.",
+      "solution": "By definition, $G_X(t) = \\sum P(X=x)t^x$.\nWe sum over the possible values of $X$: 1, 2, and 3.\n$G_X(t) = P(X=1)t^1 + P(X=2)t^2 + P(X=3)t^3$\nSubstituting the given probabilities:\n$G_X(t) = 0.2t + 0.5t^2 + 0.3t^3$\nThis is the PGF for the random variable $X$. As a check, note that $G_X(1) = 0.2(1) + 0.5(1)^2 + 0.3(1)^3 = 0.2+0.5+0.3 = 1$."
+    },
+    {
+      "type": "heading",
+      "content": "Finding Probabilities, Mean and Variance from a PGF"
+    },
+    {
+      "type": "text",
+      "content": "The PGF is not just a fancy way to write down probabilities; its true utility comes from the properties we can extract using calculus. By differentiating the PGF and evaluating at specific values of $t$, we can find probabilities, the mean, and the variance."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Probabilities**: The coefficient of $t^r$ is $P(X=r)$. Alternatively, $P(X=r) = \\frac{G_X^{(r)}(0)}{r!}$, where $G_X^{(r)}(0)$ is the $r$-th derivative of $G_X(t)$ evaluated at $t=0$. For $r=0, 1, 2$, this gives $P(X=0)=G_X(0)$, $P(X=1)=G_X'(0)$, and $P(X=2)=G_X''(0)/2$.",
+        "**Mean (Expected Value)**: The mean is found by differentiating once and evaluating at $t=1$.",
+        "**Variance**: The variance requires the first and second derivatives, both evaluated at $t=1$."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "E(X) = G_X'(1)"
+    },
+    {
+      "type": "formula",
+      "content": "Var(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2"
+    },
+    {
+      "type": "examTip",
+      "content": "Remember the key difference: derivatives at $t=0$ give you probabilities, while derivatives at $t=1$ give you moments (mean and variance). A very common mistake is to mix these up. Always double-check which value of $t$ you should be substituting."
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of defects in a length of cloth is a random variable $X$ with PGF given by $G_X(t) = (0.8 + 0.2t)^5$. Find:\n(i) The probability of there being exactly 2 defects.\n(ii) The mean number of defects.\n(iii) The variance of the number of defects.",
+      "solution": "(i) To find $P(X=2)$, we need the coefficient of $t^2$ in the expansion of $G_X(t) = (0.8 + 0.2t)^5$.\nThis is a binomial expansion. The term in $t^2$ is given by $\\binom{5}{2}(0.8)^{5-2}(0.2t)^2$.\nCoefficient = $\\binom{5}{2}(0.8)^3(0.2)^2 = 10 \\times 0.512 \\times 0.04 = 0.2048$.\nSo, $P(X=2) = 0.2048$.\n\n(ii) To find the mean, we need $E(X) = G_X'(1)$.\nFirst, find the derivative: $G_X'(t) = 5(0.8 + 0.2t)^4 \\times 0.2 = (0.8 + 0.2t)^4$.\nNow, substitute $t=1$: $G_X'(1) = (0.8 + 0.2(1))^4 = (1)^4 = 1$.\nSo, the mean $E(X) = 1$.\n\n(iii) To find the variance, we use $Var(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2$. We already have $G_X'(1)=1$.\nFirst, find the second derivative: $G_X''(t) = \\frac{d}{dt}((0.8 + 0.2t)^4) = 4(0.8 + 0.2t)^3 \\times 0.2 = 0.8(0.8 + 0.2t)^3$.\nNow, substitute $t=1$: $G_X''(1) = 0.8(0.8 + 0.2(1))^3 = 0.8(1)^3 = 0.8$.\nNow, use the variance formula:\n$Var(X) = G_X''(1) + G_X'(1) - [G_X'(1)]^2 = 0.8 + 1 - (1)^2 = 0.8$.\nSo, the variance is 0.8.\n(Note: We could have recognised $G_X(t)$ as the PGF of $X \\sim B(5, 0.2)$. Then $E(X)=np=5(0.2)=1$ and $Var(X)=npq=5(0.2)(0.8)=0.8$, which confirms our results.)"
+    },
+    {
+      "type": "heading",
+      "content": "Sums of Independent Random Variables"
+    },
+    {
+      "type": "text",
+      "content": "One of the most significant advantages of PGFs is in dealing with the sum of independent random variables. If we want to find the distribution of $Z = X+Y$, where $X$ and $Y$ are independent, finding the PGF of $Z$ is remarkably simple."
+    },
+    {
+      "type": "formula",
+      "content": "If $X$ and $Y$ are independent discrete random variables, and $Z = X+Y$, then the PGF of $Z$ is the product of the PGFs of $X$ and $Y$: \\\\ G_Z(t) = G_X(t) \\times G_Y(t)"
+    },
+    {
+      "type": "text",
+      "content": "This property is extremely useful. By finding the PGF of the sum, we can often identify the resulting distribution if it matches a standard PGF. This avoids the more complex process of convolution."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $X \\sim Po(2)$ and $Y \\sim Po(3)$ be two independent random variables. Let $Z = X+Y$. Use probability generating functions to find the distribution of $Z$.",
+      "solution": "First, we recall the PGF for a Poisson distribution. If $W \\sim Po(\\lambda)$, its PGF is $G_W(t) = e^{\\lambda(t-1)}$.\n\nFor $X \\sim Po(2)$, the PGF is $G_X(t) = e^{2(t-1)}$.\nFor $Y \\sim Po(3)$, the PGF is $G_Y(t) = e^{3(t-1)}$.\n\nSince $X$ and $Y$ are independent, the PGF of their sum $Z=X+Y$ is the product of their individual PGFs:\n$G_Z(t) = G_X(t) \\times G_Y(t)$\n$G_Z(t) = e^{2(t-1)} \\times e^{3(t-1)}$\nUsing the laws of indices:\n$G_Z(t) = e^{2(t-1) + 3(t-1)}$\n$G_Z(t) = e^{(2+3)(t-1)}$\n$G_Z(t) = e^{5(t-1)}$\n\nWe recognise this resulting PGF, $e^{5(t-1)}$, as the PGF of a Poisson distribution with parameter $\\lambda = 5$.\nTherefore, the distribution of $Z$ is Poisson with a mean of 5.\n$Z \\sim Po(5)$."
+    },
+    {
+      "type": "examTip",
+      "content": "When a question involves the sum of two or more independent random variables and asks for the resulting distribution, using PGFs is almost always the intended method. Calculate the PGF of the sum and then match it to the PGF of a standard distribution (Binomial, Poisson, etc.)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9231&topic=4.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International A Level Further Mathematics 9231 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

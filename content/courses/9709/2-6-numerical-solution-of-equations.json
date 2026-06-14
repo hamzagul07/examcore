@@ -4,39 +4,215 @@
   "title": "Numerical solution of equations",
   "paper": "P2",
   "paperName": "Pure Mathematics 2",
-  "status": "premium",
-  "summary": "9709 P2 numerical methods — sign change, iteration, and convergence with GeoGebra root finder.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces numerical methods for solving equations that cannot be solved analytically. We will explore two key techniques: locating a root using a change of sign, and finding an approximation for a root using an iterative formula. We will also consider when these methods succeed (convergence) or fail (divergence).",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Locate roots using change of sign.",
-    "Rearrange equations for iterative schemes.",
-    "Perform fixed-point iteration.",
-    "Recognise convergence and divergence."
+    "Locate a root of an equation in a given interval by considering a change of sign of a function.",
+    "Understand the concept of an iterative formula of the form x_{n+1} = g(x_n) to find a root.",
+    "Perform iterations to determine a root to a specified degree of accuracy.",
+    "Recognise when an iterative process is converging or diverging."
   ],
   "simpleExplanation": {
-    "title": "Approximate roots on P2",
-    "summary": "When algebra fails, iterate x_{n+1} = g(x_n). Convergence requires |g′(x)| < 1 near the root.",
+    "title": "Zeroing In on Solutions",
+    "summary": "Some equations are too tricky to solve directly. Numerical methods provide a way to 'hunt down' the solution step-by-step, getting closer with each attempt.",
+    "analogy": "Imagine you're trying to find a specific page in a book that has a secret message, but you only know it's roughly in the middle. First, you check page 100 and find you've gone too far. Then you check page 50 and find you're not there yet. You know the page is between 50 and 100. Iteration is like this: you make a guess, see how far off you are, and use that information to make a better guess, getting progressively closer to the exact page.",
     "steps": [
-      "f(a)f(b) < 0 confirms a root in [a,b].",
-      "Rearrange carefully — some forms diverge.",
-      "Tabulate x₀, x₁, x₂, … to required accuracy.",
-      "Sketch cobweb if asked to explain failure."
+      "First, rearrange your equation from f(x) = 0 into the form x = g(x). This sets up the iterative process.",
+      "To confirm a root exists, find an interval [a, b] where f(a) and f(b) have opposite signs. This guarantees the curve crosses the x-axis at least once.",
+      "An iteration can fail if the values move further away from the root. This is called divergence and happens if the rearrangement isn't suitable.",
+      "To find a root's value, repeat the iteration until consecutive answers are the same to the required number of decimal places."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a 'root' of an equation f(x) = 0?",
+      "back": "A value 'α' such that f(α) = 0. Graphically, it is the x-coordinate where the curve y = f(x) intersects the x-axis."
+    },
+    {
+      "front": "What condition guarantees a root of f(x) = 0 lies in the interval [a, b]?",
+      "back": "If the function f(x) is continuous on [a, b] and f(a) and f(b) have opposite signs (i.e., f(a) * f(b) < 0), then there is at least one root in the interval (a, b)."
+    },
+    {
+      "front": "What is an iterative formula?",
+      "back": "A formula of the form x_{n+1} = g(x_n) which generates a sequence of approximations to a root, starting from an initial value x_0."
+    },
+    {
+      "front": "How do you show that a root is, for example, 2.43 correct to 2 decimal places?",
+      "back": "You must show that the root lies in the interval [2.425, 2.435]. Do this by evaluating f(2.425) and f(2.435) and showing they have opposite signs."
+    },
+    {
+      "front": "What is convergence in an iterative process?",
+      "back": "When the sequence of values x_1, x_2, x_3, ... gets progressively closer to a fixed value, which is the root of the equation."
+    },
+    {
+      "front": "What is divergence in an iterative process?",
+      "back": "When the sequence of values x_1, x_2, x_3, ... moves further and further away from the root. The iteration fails to find a solution."
+    },
+    {
+      "front": "What is a common cause of error when performing iterations?",
+      "back": "Using a calculator in Degrees mode when the question involves trigonometric functions that require Radians mode (e.g., solving x = cos(x)). Always check your calculator's mode."
+    },
+    {
+      "front": "How much working should I show for an iteration question?",
+      "back": "Write down the iterative formula, the starting value x_0, and each subsequent value (x_1, x_2, ...) to at least two more decimal places than the final required accuracy. This demonstrates your process."
+    },
+    {
+      "front": "How do I choose a starting value, x_0, for an iteration?",
+      "back": "The question usually provides one. If not, use the interval [a, b] where you've shown a root exists. A good choice is the midpoint of the interval, (a+b)/2."
+    },
+    {
+      "front": "What does the condition |g'(α)| < 1 mean, where α is the root?",
+      "back": "This is the mathematical condition for an iterative formula x_{n+1} = g(x_n) to converge to the root α. If the magnitude of the gradient of g(x) at the root is less than 1, the iteration will converge."
+    }
+  ],
+  "faq": [
+    {
+      "q": "My calculator can solve these equations. Why do I need to learn this method?",
+      "a": "Examinations for this syllabus require you to demonstrate your understanding of the numerical methods themselves. You will get marks for showing the sign change test and for writing down the sequence of iterates. Relying solely on a calculator's solver function will not earn you these marks."
+    },
+    {
+      "q": "How do I know which rearrangement to use for the iterative formula?",
+      "a": "The question will almost always give you the specific rearrangement to use. If you have a choice, you would ideally pick one where the derivative of $g(x)$ has a magnitude less than 1 near the root, as this guarantees convergence. However, for P2, you are typically guided to the correct formula."
+    },
+    {
+      "q": "What's the difference between 'show the root lies between 1.5 and 1.6' and 'show the root is 1.5 correct to 1 d.p.'?",
+      "a": "To 'show the root lies between 1.5 and 1.6', you test for a sign change using $f(1.5)$ and $f(1.6)$. To 'show the root is 1.5 correct to 1 d.p.', you must test for a sign change on the interval that rounds to 1.5, which is $[1.45, 1.55]$. You would test $f(1.45)$ and $f(1.55)$."
+    },
+    {
+      "q": "What happens if my iteration gives values that get bigger and bigger or jump around?",
+      "a": "This is called divergence. It means the iterative formula you are using will not lead you to the root from your chosen starting point. This can happen if the rearrangement $x=g(x)$ is not suitable. In an exam, this is unlikely unless they are specifically asking you to show that an iteration fails."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**P2 numerical methods** (2.6) mirror **P3** (3.6) at simpler level. Always show **at least 3 iterations**."
+      "content": "In your previous studies, you learned to solve equations like quadratics and some trigonometric equations using analytical methods. However, many equations, such as $e^x = 4x$ or $x = \\cos(x)$, cannot be solved exactly using algebra. In these cases, we turn to numerical methods to find approximate solutions to a desired level of accuracy. This is a fundamental concept in applied mathematics and engineering."
+    },
+    {
+      "type": "heading",
+      "content": "1. Locating Roots by Sign Change"
+    },
+    {
+      "type": "text",
+      "content": "The first step in solving an equation numerically is often to find a small interval where a root is known to exist. We can do this by looking for a change of sign. If a function $f(x)$ is continuous (it has no breaks or jumps) and you find that $f(a)$ is positive and $f(b)$ is negative (or vice versa), the graph of $y=f(x)$ must cross the x-axis somewhere between $a$ and $b$. This means there is at least one root in the interval $(a, b)$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "First, write the equation in the form $f(x) = 0$.",
+        "Find two values, $a$ and $b$, such that $f(a)$ and $f(b)$ have opposite signs.",
+        "The function $f(x)$ must be continuous over the interval $[a, b]$.",
+        "Conclude that since there is a change of sign and the function is continuous, at least one root lies between $a$ and $b$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Show that the equation $e^{2x} - 5x - 3 = 0$ has a root between $x=1$ and $x=2$.",
+      "solution": "Let $f(x) = e^{2x} - 5x - 3$.\n\nTo show a root exists between 1 and 2, we evaluate $f(1)$ and $f(2)$.\n\nFor $x=1$:\n$f(1) = e^{2(1)} - 5(1) - 3 = e^2 - 8 \\approx 7.389 - 8 = -0.611$\n\nFor $x=2$:\n$f(2) = e^{2(2)} - 5(2) - 3 = e^4 - 10 - 3 = e^4 - 13 \\approx 54.598 - 13 = 41.598$\n\nWe have $f(1) < 0$ and $f(2) > 0$. \nSince the function $f(x)$ is continuous and there is a change of sign in the interval $[1, 2]$, there must be at least one root between $x=1$ and $x=2$."
+    },
+    {
+      "type": "heading",
+      "content": "2. The Iterative Method"
+    },
+    {
+      "type": "text",
+      "content": "Once we have located a root, we can use an iterative method to find a more accurate approximation. This involves rearranging the equation $f(x)=0$ into the form $x=g(x)$. This rearrangement is then used to create an iterative formula. By substituting an initial guess ($x_0$) into the right-hand side, we generate a new, hopefully better, approximation ($x_1$). We repeat this process, feeding each new approximation back into the formula, until the values converge."
+    },
+    {
+      "type": "formula",
+      "content": "x_{n+1} = g(x_n)"
+    },
+    {
+      "type": "examTip",
+      "content": "When performing iterations, you must show your working clearly. Write down the value of each iterate ($x_1, x_2, ...$) to at least two more decimal places than required in the final answer. For example, if the answer must be to 3 d.p., write your iterates to at least 5 d.p. This provides evidence for your final rounded answer."
+    },
+    {
+      "type": "workedExample",
+      "question": "The equation $x^3 + x - 5 = 0$ has a root $\\alpha$. \n(i) Show that $\\alpha$ lies between 1 and 2.\n(ii) Show that the equation can be rearranged into the form $x = \\sqrt[3]{5-x}$.\n(iii) Use the iterative formula $x_{n+1} = \\sqrt[3]{5-x_n}$ with $x_0 = 1.5$ to find $\\alpha$ correct to 3 decimal places.",
+      "solution": "(i) Let $f(x) = x^3 + x - 5$.\n$f(1) = 1^3 + 1 - 5 = -3$\n$f(2) = 2^3 + 2 - 5 = 8 + 2 - 5 = 5$\nSince $f(x)$ is continuous and there is a change of sign between $x=1$ and $x=2$, a root lies in the interval $(1, 2)$.\n\n(ii) Start with the original equation:\n$x^3 + x - 5 = 0$\n$x^3 = 5 - x$\n$x = \\sqrt[3]{5-x}$\n\n(iii) Using the iterative formula $x_{n+1} = \\sqrt[3]{5-x_n}$ with $x_0 = 1.5$.\n$x_0 = 1.5$\n$x_1 = \\sqrt[3]{5 - 1.5} = \\sqrt[3]{3.5} \\approx 1.518294$\n$x_2 = \\sqrt[3]{5 - 1.518294} \\approx 1.515993$\n$x_3 = \\sqrt[3]{5 - 1.515993} \\approx 1.516328$\n$x_4 = \\sqrt[3]{5 - 1.516328} \\approx 1.516281$\n$x_5 = \\sqrt[3]{5 - 1.516281} \\approx 1.516288$\n\nThe values are converging. Both $x_4$ and $x_5$ round to 1.516. \nTo be certain, we can check the sign change around this value.\nLet's check the interval $[1.5155, 1.5165]$.\n$f(1.5155) = (1.5155)^3 + 1.5155 - 5 \\approx -0.0051$\n$f(1.5165) = (1.5165)^3 + 1.5165 - 5 \\approx +0.0054$\nThere is a sign change, so the root lies in this interval. Therefore, the root $\\alpha = 1.516$ correct to 3 decimal places."
+    },
+    {
+      "type": "heading",
+      "content": "3. Proving Accuracy"
+    },
+    {
+      "type": "text",
+      "content": "A common exam question asks you to find a root to a certain number of decimal places. Iterating until the value stabilises is not sufficient proof. To prove that a root $\\alpha$ is equal to a value, say $1.23$, correct to 2 decimal places, you must show that the root lies in the interval $[1.225, 1.235]$. This is done using the sign change method on the bounds of this interval."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To show a root is $k$ correct to $n$ decimal places, you must check for a sign change in the interval $[k - 0.5 \\times 10^{-n}, k + 0.5 \\times 10^{-n}]$.",
+        "For 2 d.p., the interval width is $0.01$. The check is on an interval of width $0.01$, e.g., $[k-0.005, k+0.005]$.",
+        "For 3 d.p., the interval width is $0.001$. The check is on an interval of width $0.001$, e.g., $[k-0.0005, k+0.0005]$.",
+        "You must state the values of the function at the interval boundaries, note the sign change, and write a concluding statement."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark a P2 numerical methods question",
+      "label": "Practice Numerical Solutions",
       "href": "/mark?subject=9709&topic=2.6"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "GeoGebra: Visualising Iteration",
+          "href": "https://www.geogebra.org/m/qhgztq8j"
+        },
+        {
+          "label": "ExamSolutions: Numerical Methods",
+          "href": "https://www.examsolutions.net/a-level-maths/pure-maths/numerical-methods/"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Root-finding graph",
+    "embedUrl": "https://www.geogebra.org/classic?material=dw8UVau8",
+    "launchUrl": "https://www.geogebra.org/classic?material=dw8UVau8",
+    "hint": "P2 iteration — locate roots where f(x) = 0 (9709 2.6).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "P2 iteration: rearrange f(x) = 0 to x = g(x).",
+        "embedHint": "Choose g so |g′(x)| < 1 near root."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Sign change in [a,b] locates a root.",
+        "embedHint": "Sketch y = f(x) crossing x-axis."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Failure when iteration diverges — show iterates.",
+        "embedHint": "Cobweb diagram spiralling away."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Compare accuracy after n iterations.",
+        "embedHint": "Stop when consecutive terms agree to required d.p."
+      }
+    ]
+  }
 }

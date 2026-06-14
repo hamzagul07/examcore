@@ -4,29 +4,168 @@
   "title": "Encryption, Encryption Protocols and Digital Certificates",
   "paper": "P3",
   "paperName": "Advanced Theory",
-  "status": "premium",
-  "summary": "9618 — symmetric vs asymmetric encryption, SSL/TLS, and PKI certificates.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores the fundamental concepts of digital security, covering encryption, decryption, and the distinction between symmetric and asymmetric key cryptography. It delves into the practical application of these concepts through encryption protocols like SSL/TLS and the role of Digital Certificates and Certificate Authorities in establishing trust online.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Compare symmetric and asymmetric encryption.",
-    "Explain public/private key pairs.",
-    "Describe role of digital certificates.",
-    "Outline how HTTPS secures web communication."
+    "Explain the purpose of encryption and key terminology like plaintext, ciphertext, and key.",
+    "Compare and contrast symmetric and asymmetric encryption, including the use of public and private keys.",
+    "Describe the function of SSL/TLS protocols in securing data transmission over a network.",
+    "Understand the role of Digital Certificates and Certificate Authorities (CAs) in verifying identity."
   ],
   "simpleExplanation": {
-    "title": "Keeping data confidential and trusted",
-    "summary": "Encryption scrambles data so only authorised parties read it. Certificates bind public keys to verified identities.",
+    "title": "Securing Your Digital Post",
+    "summary": "Encryption scrambles your data into an unreadable format, protecting it from unauthorised access. Protocols like TLS use this method with digital 'passports' to ensure your online activities, like shopping or banking, are private and secure.",
+    "analogy": "Imagine sending a valuable item in a box. With symmetric encryption, you and the recipient share an identical, secret key to the same lock. With asymmetric encryption, you use the recipient's public padlock (which anyone can have) to lock the box, but only they have the unique private key to open it. This way, you don't need to risk sending a key separately.",
     "steps": [
-      "Symmetric: same key encrypts and decrypts.",
-      "Asymmetric: public encrypts, private decrypts.",
-      "CA issues digital certificate.",
-      "TLS handshake negotiates session keys."
+      "Your browser requests a secure connection (HTTPS) from a website's server.",
+      "The server responds by sending its Digital Certificate, which contains its name, details, and its public key.",
+      "Your browser checks if the certificate is valid by contacting the Certificate Authority (CA) that issued it. The CA is like a trusted passport office.",
+      "Once verified, your browser and the server use the public/private keys to securely agree on a temporary, symmetric 'session key' for fast, encrypted communication."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Plaintext",
+      "back": "The original, unencrypted data or message that is readable by a human or computer."
+    },
+    {
+      "front": "Ciphertext",
+      "back": "The result of encrypting plaintext. It is unreadable without the correct key and decryption algorithm."
+    },
+    {
+      "front": "Symmetric Key Encryption",
+      "back": "An encryption method where the same key is used for both encryption and decryption. It's fast but has a key distribution problem."
+    },
+    {
+      "front": "Trap: Why isn't symmetric encryption enough on its own for the internet?",
+      "back": "The 'key distribution problem'. Securely sharing the single secret key with the recipient beforehand is a major challenge over an insecure network like the internet."
+    },
+    {
+      "front": "Asymmetric Key Encryption",
+      "back": "An encryption method that uses a pair of keys: a public key for encryption and a private key for decryption. Also known as public-key cryptography."
+    },
+    {
+      "front": "Trap: Why not use asymmetric encryption for all communication?",
+      "back": "It is computationally intensive and much slower than symmetric encryption. It's typically only used to establish an initial secure channel or for digital signatures."
+    },
+    {
+      "front": "Public Key",
+      "back": "In asymmetric encryption, this key is made available to everyone. It is used to encrypt data intended for the owner of the corresponding private key."
+    },
+    {
+      "front": "Private Key",
+      "back": "In asymmetric encryption, this key is kept secret by its owner. It is used to decrypt data that was encrypted with the corresponding public key."
+    },
+    {
+      "front": "SSL/TLS (Secure Sockets Layer / Transport Layer Security)",
+      "back": "Cryptographic protocols that provide secure communication over a computer network. TLS is the modern, more secure successor to SSL."
+    },
+    {
+      "front": "Digital Certificate",
+      "back": "An electronic document used to prove the ownership of a public key. It binds a public key to an identity (e.g., a website domain) and is issued by a Certificate Authority."
+    },
+    {
+      "front": "Certificate Authority (CA)",
+      "back": "A trusted entity that issues, manages, and revokes digital certificates. Browsers have a pre-installed list of trusted CAs."
+    },
+    {
+      "front": "Session Key",
+      "back": "A temporary, single-use symmetric key used for encrypting all messages in one communication session (e.g., during a TLS connection). It is generated after the initial asymmetric key exchange."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If asymmetric encryption is so secure, why does TLS switch to symmetric encryption after the handshake?",
+      "a": "The primary reason is performance. Asymmetric encryption involves complex mathematical operations and is significantly slower (more computationally expensive) than symmetric encryption. For a web session that involves transferring a lot of data, using asymmetric encryption for everything would be too slow and resource-intensive. Therefore, TLS uses the slower, more secure asymmetric method only at the beginning to verify identities and securely exchange a brand new, temporary symmetric key (a 'session key'). The rest of the session's data is then encrypted and decrypted quickly using this shared session key."
+    },
+    {
+      "q": "What's the difference between SSL and TLS?",
+      "a": "SSL (Secure Sockets Layer) was the original protocol for securing web traffic. TLS (Transport Layer Security) is its direct successor. Over the years, several versions of SSL were released, but significant security vulnerabilities were discovered. TLS was developed to address these flaws and provide stronger encryption. While you'll often see the terms used interchangeably (e.g., 'SSL/TLS certificate'), all modern, secure systems use TLS. For your exam, you can consider TLS as the current, more secure version of SSL."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Encryption** (17.1) links **6.1 data security** to **14.1 protocols**. Draw **key exchange** steps for asymmetric encryption." },
-    { "type": "practice", "label": "Mark an encryption question", "href": "/mark?subject=9618&topic=17.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In our increasingly digital world, we transmit vast amounts of sensitive information over the internet every second, from personal messages to financial details. How can we be sure this data is safe from prying eyes? The answer lies in encryption, the cornerstone of modern cybersecurity. This lesson will unpack the mechanisms that protect our digital lives."
+    },
+    {
+      "type": "heading",
+      "content": "The Fundamentals of Encryption"
+    },
+    {
+      "type": "text",
+      "content": "Encryption is the process of converting data from a readable format (plaintext) into an unreadable, scrambled format (ciphertext). This is achieved using a cryptographic algorithm and a 'key'. The key is a piece of information (like a password or a very large number) that determines the output of the algorithm. To retrieve the original plaintext, the ciphertext must be decrypted using the correct key."
+    },
+    {
+      "type": "formula",
+      "content": "Encryption: Plaintext + Key \\rightarrow Ciphertext \\\\ Decryption: Ciphertext + Key \\rightarrow Plaintext"
+    },
+    {
+      "type": "heading",
+      "content": "Symmetric vs. Asymmetric Encryption"
+    },
+    {
+      "type": "text",
+      "content": "There are two primary methods of encryption, distinguished by how they manage keys. Understanding the trade-offs between them is crucial for appreciating how modern security protocols work."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Symmetric Encryption:** Uses a single, shared secret key for both encryption and decryption. It's very fast and efficient, making it ideal for encrypting large amounts of data. Its main weakness is the 'key distribution problem' – how to securely share the key in the first place.",
+        "**Asymmetric Encryption:** Uses a pair of mathematically linked keys: a public key and a private key. The public key can be shared with anyone and is used for encryption. The private key is kept secret and is the only key that can decrypt the ciphertext. It solves the key distribution problem but is significantly slower than symmetric encryption."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A message `SECURE` is to be encrypted using a symmetric Caesar cipher with a key of +3. Show the encryption process and then decrypt the resulting ciphertext to retrieve the original message.",
+      "solution": "**Encryption Process:**\nEach letter in the plaintext is shifted 3 places forward in the alphabet.\n- S + 3 -> V\n- E + 3 -> H\n- C + 3 -> F\n- U + 3 -> X\n- R + 3 -> U\n- E + 3 -> H\n\n**Plaintext:** `SECURE`\n**Ciphertext:** `VHFXUH`\n\n**Decryption Process:**\nTo decrypt, we apply the reverse operation, shifting each letter 3 places backward.\n- V - 3 -> S\n- H - 3 -> E\n- F - 3 -> C\n- X - 3 -> U\n- U - 3 -> R\n- H - 3 -> E\n\n**Original Plaintext Recovered:** `SECURE`"
+    },
+    {
+      "type": "heading",
+      "content": "Establishing Trust: SSL/TLS and Digital Certificates"
+    },
+    {
+      "type": "text",
+      "content": "Asymmetric encryption solves the key distribution problem, but it introduces a new one: authenticity. How do you know that a public key you received actually belongs to the person or website you think it does? An attacker could intercept the communication and substitute their own public key (a 'man-in-the-middle' attack). This is where Digital Certificates and Certificate Authorities (CAs) come in."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A **Digital Certificate** is like a digital passport. It binds an identity (e.g., `www.cambridgeinternational.org`) to a public key.",
+        "It is issued by a trusted third party called a **Certificate Authority (CA)**, such as Let's Encrypt or GlobalSign.",
+        "Your web browser has a built-in list of trusted CAs. When you visit an HTTPS site, the site presents its certificate. Your browser checks that the certificate was signed by a trusted CA and that it hasn't expired.",
+        "**SSL/TLS** is the protocol that uses this system to create a secure connection. The process, known as the 'TLS Handshake', uses asymmetric encryption to verify identity and securely negotiate a temporary symmetric 'session key'. The rest of the communication then uses this faster symmetric key."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, be precise with your terminology. A common mistake is to confuse the roles of the public and private keys. Remember: you encrypt **with the recipient's public key**, and they decrypt **with their own private key**. Also, be aware that TLS is the modern standard, but questions may still refer to SSL/TLS."
+    },
+    {
+      "type": "workedExample",
+      "question": "Alice wants to send a confidential message to Bob's Bank using asymmetric encryption. The bank's website has a public key and a corresponding private key. Outline the steps required for Alice to send the message securely.",
+      "solution": "1. **Key Acquisition:** Alice accesses Bob's Bank's website. Her browser automatically obtains the bank's **public key**, likely from its digital certificate. [1 mark]\n\n2. **Encryption:** Alice writes her confidential message (plaintext). She then uses the bank's **public key** to encrypt the message. The result is ciphertext. [1 mark]\n\n3. **Transmission:** Alice sends the ciphertext to Bob's Bank over the internet. Even if intercepted, the message is unreadable without the corresponding private key. [1 mark]\n\n4. **Decryption:** Bob's Bank receives the ciphertext. It uses its own **private key**, which has been kept secret and secure, to decrypt the message back into the original plaintext. [1 mark]\n\n*Note: Only the bank's private key can decrypt a message encrypted with its public key, ensuring confidentiality.*"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Encryption",
+      "href": "/mark?subject=9618&topic=17.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cloudflare: What is SSL?",
+          "href": "https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/"
+        },
+        {
+          "label": "Computerphile: Public Key Cryptography",
+          "href": "https://www.youtube.com/watch?v=GSja_I8E14s"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

@@ -4,39 +4,229 @@
   "title": "Circular measure",
   "paper": "P1",
   "paperName": "Pure Mathematics 1",
-  "status": "premium",
-  "summary": "9709 P1 radians — arc length, sector area, and angular measure with GeoGebra unit circle.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces circular measure, focusing on radians as an alternative to degrees. You will learn the essential formulae for arc length and the area of sectors and segments, and apply them to solve multi-step geometrical problems typical in A-Level P1 examinations.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Convert between degrees and radians.",
-    "Calculate arc length and sector area.",
-    "Use radian measure in trigonometry and calculus.",
-    "Solve problems involving angular speed."
+    "Understand and use the definition of a radian, and convert between radians and degrees.",
+    "Use the formulae for arc length, $s = r\\theta$, and area of a sector, $A = \\frac{1}{2}r^2\\theta$.",
+    "Calculate the area of a segment by subtracting the area of a triangle from the area of a sector.",
+    "Solve complex problems involving lengths and areas within circles and composite shapes."
   ],
   "simpleExplanation": {
-    "title": "Radians instead of degrees",
-    "summary": "One radian is the angle when arc length equals radius. Calculus and P3 trig require radians.",
+    "title": "Slicing the Pizza with Pi",
+    "summary": "Instead of degrees, we can measure angles using 'radians', which are based on the circle's own radius. This makes key formulae for lengths and areas much simpler and more elegant.",
+    "analogy": "Imagine a pizza. A 'degree' is like saying 'cut this into 360 tiny, equal slices'. A 'radian' is more natural: it's the angle you get when the length of the crust on your slice is exactly the same as the length of the straight cut from the centre to the edge (the radius). All the formulae we use are like pizza recipes that work perfectly only when you measure your angles this 'radian' way.",
     "steps": [
-      "180° = π rad; multiply degrees by π/180.",
-      "Arc s = rθ; sector area = ½r²θ.",
-      "Ensure calculator in correct mode.",
-      "ω = θ/t; linear speed v = rω."
+      "Radian: angle subtended when arc length = radius (θ = s/r). | Sim hint: 360° = 2π rad — convert using π.",
+      "Arc length s = rθ; sector area = ½r²θ (θ in radians). | Sim hint: Use radians in all calculus trig.",
+      "Small angle: sin θ ≈ θ ≈ tan θ for θ in radians. | Sim hint: Check calculator mode — degrees vs radians.",
+      "Angular speed ω = θ/t; v = rω. | Sim hint: Link linear and angular motion."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the definition of one radian?",
+      "back": "One radian is the angle subtended at the centre of a circle by an arc whose length is equal to the radius of the circle."
+    },
+    {
+      "front": "How do you convert from degrees to radians?",
+      "back": "Multiply the angle in degrees by $\\frac{\\pi}{180}$."
+    },
+    {
+      "front": "How do you convert from radians to degrees?",
+      "back": "Multiply the angle in radians by $\\frac{180}{\\pi}$."
+    },
+    {
+      "front": "What is the formula for the length of an arc?",
+      "back": "$s = r\\theta$, where $r$ is the radius and $\\theta$ is the angle in radians."
+    },
+    {
+      "front": "What is the formula for the area of a sector?",
+      "back": "$A = \\frac{1}{2}r^2\\theta$, where $r$ is the radius and $\\theta$ is the angle in radians."
+    },
+    {
+      "front": "What is the most common mistake when using the arc length and sector area formulae?",
+      "back": "Forgetting to ensure the angle $\\theta$ is in radians. If the angle is given in degrees, you must convert it first."
+    },
+    {
+      "front": "How do you find the area of a segment?",
+      "back": "Area of Sector - Area of Triangle. The formula is $A = \\frac{1}{2}r^2(\\theta - \\sin\\theta)$ for $\\theta$ in radians."
+    },
+    {
+      "front": "What is the formula for the perimeter of a sector?",
+      "back": "Perimeter = Arc Length + 2 radii. So, $P = r\\theta + 2r = r(\\theta + 2)$."
+    },
+    {
+      "front": "What is the area of a triangle given two sides and the included angle?",
+      "back": "$A = \\frac{1}{2}ab\\sin C$. For a triangle within a sector, this is $A = \\frac{1}{2}r^2\\sin\\theta$."
+    },
+    {
+      "front": "Why must your calculator be in 'RAD' mode for these problems?",
+      "back": "Because the formulae for arc length, sector area, and segment area are all derived using radians. Also, when calculating $\\sin\\theta$ for the segment formula, $\\theta$ must be in radians."
+    },
+    {
+      "front": "What is the exact value of $2\\pi$ radians in degrees?",
+      "back": "$360^\\circ$. This represents a full circle."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we even need radians? Degrees seem to work fine.",
+      "a": "Degrees are arbitrary (360 is just a convenient number with many factors). Radians are intrinsic to the circle, defining an angle by the ratio of arc length to radius. This 'natural' unit makes calculus involving trigonometric functions much, much simpler. For example, the derivative of sin(x) is cos(x) only when x is in radians."
+    },
+    {
+      "q": "Can I leave my answer in terms of $\\pi$?",
+      "a": "Yes, and you often should! If a question asks for an 'exact answer', it almost always means you should leave $\\pi$ in your answer rather than using a decimal approximation like 3.14159. For example, $\\frac{16\\pi}{3}$ is an exact answer."
+    },
+    {
+      "q": "What's the difference between a sector and a segment?",
+      "a": "Think of a pizza. A 'sector' is a full slice, from the centre to the crust, bounded by two radii and an arc. A 'segment' is just the 'crust-end' of the slice, the part bounded by the straight-line chord and the curved arc."
+    },
+    {
+      "q": "My calculator was in degrees and I got the wrong answer. How can I avoid this?",
+      "a": "Make it a habit. Before starting any question involving trigonometry or circles in A-Level Maths, physically check your calculator's mode. Most P1 circular measure questions will require RAD mode. It's a simple check that saves many marks."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Circular measure** (1.4) is assumed in all later trig. Examiners penalise **degree mode** errors in calculus questions."
+      "content": "Welcome to circular measure. For centuries, you've used degrees to measure angles, dividing a circle into 360 parts. Now, we introduce a more mathematically fundamental unit: the radian. Radians are essential for A-Level Mathematics, especially in calculus, as they simplify many important formulae. In this topic, we'll master the conversion between degrees and radians and use radian-based formulae to solve problems involving arc lengths, sectors, and segments."
+    },
+    {
+      "type": "heading",
+      "content": "Defining the Radian"
+    },
+    {
+      "type": "text",
+      "content": "A radian is defined by the geometry of the circle itself. Imagine an arc on the circumference of a circle. If the length of that arc is exactly equal to the circle's radius, the angle formed at the centre is defined as 1 radian. This direct link between length and angle is what makes radians so powerful."
+    },
+    {
+      "type": "text",
+      "content": "Since the circumference of a circle is $2\\pi r$, we can fit $2\\pi$ lengths of the radius around the outside. Therefore, a full circle of $360^\\circ$ corresponds to $2\\pi$ radians. This gives us our fundamental conversion factor."
+    },
+    {
+      "type": "formula",
+      "content": "$$ 360^\\circ = 2\\pi \\text{ radians} \\quad \\implies \\quad 180^\\circ = \\pi \\text{ radians} $$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To convert degrees to radians, multiply by $\\frac{\\pi}{180}$.",
+        "To convert radians to degrees, multiply by $\\frac{180}{\\pi}$.",
+        "Unless a question specifies degrees, assume angles are in radians, especially if $\\pi$ is involved."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Arc Length and Area of a Sector"
+    },
+    {
+      "type": "text",
+      "content": "With angles measured in radians, the formulae for the length of an arc and the area of a sector become remarkably simple. An arc is a part of the circumference, and a sector is a 'slice' of the circle bounded by two radii and an arc. The formulae are direct consequences of the definition of a radian."
+    },
+    {
+      "type": "formula",
+      "content": "Arc Length: $s = r\\theta$ \\\\ Area of Sector: $A = \\frac{1}{2}r^2\\theta$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "In these formulae, $r$ is the radius of the circle.",
+        "Crucially, the angle $\\theta$ MUST be measured in radians.",
+        "The perimeter of a sector is not just the arc length; it's the arc plus two radii: $P = r\\theta + 2r$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A sector of a circle has radius 8 cm and an angle of $\\frac{2\\pi}{3}$ radians. \n(a) Find the exact length of the arc of the sector. \n(b) Find the exact area of the sector.",
+      "solution": "Let $r = 8$ cm and $\\theta = \\frac{2\\pi}{3}$ radians.\n\n(a) To find the arc length, we use the formula $s = r\\theta$.\nThe angle is already in radians, so we can substitute directly.\n$s = 8 \\times \\frac{2\\pi}{3}$\n$s = \\frac{16\\pi}{3}$ cm\n\n(b) To find the sector area, we use the formula $A = \\frac{1}{2}r^2\\theta$.\n$A = \\frac{1}{2} \\times 8^2 \\times \\frac{2\\pi}{3}$\n$A = \\frac{1}{2} \\times 64 \\times \\frac{2\\pi}{3}$\n$A = 32 \\times \\frac{2\\pi}{3}$\n$A = \\frac{64\\pi}{3}$ cm$^2$"
+    },
+    {
+      "type": "heading",
+      "content": "Area of a Segment"
+    },
+    {
+      "type": "text",
+      "content": "A segment is the region of a circle bounded by a chord and an arc. To find its area, we use a clever subtraction. We calculate the area of the entire sector and then subtract the area of the isosceles triangle formed by the two radii and the chord. This leaves us with the area of the segment."
+    },
+    {
+      "type": "formula",
+      "content": "Area of Triangle = $\\frac{1}{2}r^2\\sin\\theta$ \\\\ Area of Segment = Area of Sector - Area of Triangle \\\\ Area of Segment = $\\frac{1}{2}r^2\\theta - \\frac{1}{2}r^2\\sin\\theta = \\frac{1}{2}r^2(\\theta - \\sin\\theta)$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always check your calculator mode! For circular measure problems, it must be in Radians (RAD). A common error is calculating $\\sin\\theta$ with the calculator in Degrees (DEG) mode, which will give an incorrect answer for the area of the triangle and segment."
+    },
+    {
+      "type": "workedExample",
+      "question": "The diagram shows a circle with centre O and radius 10 cm. The points A and B lie on the circle, and the angle AOB is 1.2 radians. \n(a) Find the perimeter of the shaded segment. \n(b) Find the area of the shaded segment.",
+      "solution": "Given $r = 10$ cm and $\\theta = 1.2$ radians.\n\n(a) The perimeter of the segment is the sum of the arc length AB and the chord length AB.\n\nArc length AB = $r\\theta = 10 \\times 1.2 = 12$ cm.\n\nTo find the chord length AB, we can use the cosine rule on triangle AOB: \n$AB^2 = OA^2 + OB^2 - 2(OA)(OB)\\cos(1.2)$\n$AB^2 = 10^2 + 10^2 - 2(10)(10)\\cos(1.2)$\n$AB^2 = 200 - 200\\cos(1.2) \\approx 200 - 200(0.36236) = 127.528$\n$AB = \\sqrt{127.528} \\approx 11.293$ cm.\n\nPerimeter = Arc length + Chord length\nPerimeter = $12 + 11.293 = 23.293$ cm.\nPerimeter $\\approx 23.3$ cm (3 s.f.)\n\n(b) The area of the shaded segment is given by the formula $A = \\frac{1}{2}r^2(\\theta - \\sin\\theta)$.\nEnsure calculator is in RADIAN mode.\n$A = \\frac{1}{2}(10^2)(1.2 - \\sin(1.2))$\n$A = 50(1.2 - 0.93204...)$\n$A = 50(0.26796...)$\n$A = 13.398...$ cm$^2$\nArea $\\approx 13.4$ cm$^2$ (3 s.f.)"
     },
     {
       "type": "practice",
-      "label": "Mark a circular measure question",
+      "label": "Practice Exam Questions",
       "href": "/mark?subject=9709&topic=1.4"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "GeoGebra: Radians and Arc Length",
+          "href": "https://www.geogebra.org/m/smh4wsmg"
+        },
+        {
+          "label": "Khan Academy: Radian Measure",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:trig/x2ec2f6f830c9fb89:rad/v/introduction-to-radians"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Radians and the circle",
+    "embedUrl": "https://www.geogebra.org/classic?material=Ccgmq82f",
+    "launchUrl": "https://www.geogebra.org/classic?material=Ccgmq82f",
+    "hint": "Arc length s = rθ — switch between degrees and radians (9709 1.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Radian: angle subtended when arc length = radius (θ = s/r).",
+        "embedHint": "360° = 2π rad — convert using π."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Arc length s = rθ; sector area = ½r²θ (θ in radians).",
+        "embedHint": "Use radians in all calculus trig."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Small angle: sin θ ≈ θ ≈ tan θ for θ in radians.",
+        "embedHint": "Check calculator mode — degrees vs radians."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Angular speed ω = θ/t; v = rω.",
+        "embedHint": "Link linear and angular motion."
+      }
+    ]
+  }
 }

@@ -4,39 +4,232 @@
   "title": "Logarithmic and exponential functions",
   "paper": "P3",
   "paperName": "Pure Mathematics 3",
-  "status": "premium",
-  "summary": "9709 P3 — e^x, ln x, laws of logarithms, and modelling with PhET function builder.",
+  "status": "pilot",
+  "summary": "This lesson explores the natural exponential function, $e^x$, and its inverse, the natural logarithmic function, $\\ln x$. We will cover their graphical relationship, the laws of logarithms, techniques for differentiation involving these functions, and their application in modelling real-world phenomena such as population growth and radioactive decay.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Use laws of logarithms to simplify expressions.",
-    "Solve equations involving e^x and ln x.",
-    "Differentiate and integrate exponential and log functions.",
-    "Apply exponential models to growth and decay."
+    "Understand the relationship between $y=e^x$ and $y=\\ln x$ and sketch their graphs.",
+    "Use the laws of logarithms to solve exponential and logarithmic equations.",
+    "Differentiate expressions involving $e^{f(x)}$ and $\\ln(f(x))$.",
+    "Apply exponential functions to model real-world growth and decay scenarios."
   ],
   "simpleExplanation": {
-    "title": "Inverse exponentials",
-    "summary": "e^x and ln x are inverses. Laws of logs convert products to sums — essential for solving a^x = b.",
+    "title": "Unlocking Exponentials with Logs",
+    "summary": "Logarithms are the inverse operation of exponentiation, much like division is the inverse of multiplication. The natural logarithm, ln(x), is the specific tool used to 'undo' the natural exponential function, e^x, which is fundamental to modelling natural processes.",
+    "analogy": "Think of an exponential function like a secret code that locks a number away. For example, in $e^x = 20$, the number $x$ is 'locked' by the base $e$. The natural logarithm, $\\ln$, is the specific key that unlocks this code. Applying the key, $\\ln(e^x) = \\ln(20)$, releases the number: $x = \\ln(20)$. Every base has its own logarithmic key.",
     "steps": [
-      "ln(ab) = ln a + ln b; ln(a^n) = n ln a.",
-      "If e^x = k then x = ln k.",
-      "d/dx e^{f(x)} = f′(x)e^{f(x)}.",
-      "N = N₀e^{kt} — half-life and doubling time problems."
+      "y = e^x and y = ln x are inverse functions — reflection in y = x. | Sim hint: Domain of ln x is x > 0.",
+      "Laws of logarithms: ln(ab) = ln a + ln b; ln(a^n) = n ln a. | Sim hint: Use to solve a^x = b.",
+      "Differentiate e^{f(x)} and ln(f(x)) — chain rule. | Sim hint: d/dx e^{2x} = 2e^{2x}.",
+      "Modelling growth/decay: N = N₀e^{kt}. | Sim hint: Half-life from k = ln 2 / t_{½}."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the relationship between $y=e^x$ and $y=\\ln x$?",
+      "back": "They are inverse functions. The graph of $y=\\ln x$ is a reflection of the graph of $y=e^x$ in the line $y=x$."
+    },
+    {
+      "front": "What is the domain and range of $y = e^x$?",
+      "back": "Domain: $x \\in \\mathbb{R}$ (all real numbers). Range: $y > 0$."
+    },
+    {
+      "front": "What is the domain and range of $y = \\ln x$?",
+      "back": "Domain: $x > 0$. Range: $y \\in \\mathbb{R}$ (all real numbers)."
+    },
+    {
+      "front": "State the product rule for logarithms.",
+      "back": "$\\ln(ab) = \\ln a + \\ln b$"
+    },
+    {
+      "front": "State the power rule for logarithms.",
+      "back": "$\\ln(a^n) = n \\ln a$"
+    },
+    {
+      "front": "What is the derivative of $e^{ax}$?",
+      "back": "$\\frac{d}{dx}(e^{ax}) = ae^{ax}$"
+    },
+    {
+      "front": "What is the derivative of $\\ln(f(x))$?",
+      "back": "$\\frac{d}{dx}(\\ln(f(x))) = \\frac{f'(x)}{f(x)}$"
+    },
+    {
+      "front": "What is a common mistake when expanding $\\ln(a+b)$?",
+      "back": "A common mistake is to write $\\ln a + \\ln b$. This is incorrect. $\\ln(a+b)$ cannot be simplified."
+    },
+    {
+      "front": "How do you solve an equation of the form $e^x = c$ (where $c>0$)?",
+      "back": "Take the natural logarithm of both sides: $\\ln(e^x) = \\ln c$, which simplifies to $x = \\ln c$."
+    },
+    {
+      "front": "What are the values of $\\ln(1)$, $\\ln(e)$, and $\\ln(0)$?",
+      "back": "$\\ln(1) = 0$, $\\ln(e) = 1$. $\\ln(0)$ is undefined."
+    },
+    {
+      "front": "How do you solve an equation like $a^x = b$?",
+      "back": "Take natural logs of both sides: $\\ln(a^x) = \\ln b$. Then use the power rule: $x \\ln a = \\ln b$. Finally, solve for x: $x = \\frac{\\ln b}{\\ln a}$."
+    },
+    {
+      "front": "What does the constant $k$ represent in the model $P = P_0 e^{kt}$?",
+      "back": "$k$ is the continuous growth rate. If $k>0$, it represents exponential growth. If $k<0$, it represents exponential decay."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between 'log' and 'ln'?",
+      "a": "'ln' specifically means 'natural logarithm', which is logarithm to the base $e$ (i.e., $\\log_e$). The 'log' button on a calculator usually means logarithm to the base 10 (i.e., $\\log_{10}$). In A-Level Pure Mathematics, if you see 'log' written without a base, it often means 'ln', but the notation $\\ln$ is preferred to avoid ambiguity."
+    },
+    {
+      "q": "Why is the domain of $y = \\ln x$ restricted to $x > 0$?",
+      "a": "The function $y = \\ln x$ is the inverse of $y = e^x$. The range of $y=e^x$ is all positive real numbers ($y>0$). For an inverse function, the domain and range are swapped. Therefore, the domain of $y = \\ln x$ must be the range of $y=e^x$, which is $x>0$. You cannot take the logarithm of a zero or negative number."
+    },
+    {
+      "q": "How do I solve an equation where the unknown is in the power, like $5^x = 10$?",
+      "a": "To solve for an unknown in an exponent, you should take logarithms of both sides. It's usually easiest to use natural logarithms (ln). For $5^x = 10$, we get $\\ln(5^x) = \\ln(10)$. Using the power rule for logs, this becomes $x \\ln 5 = \\ln 10$. Finally, divide to find $x$: $x = \\frac{\\ln 10}{\\ln 5}$."
+    },
+    {
+      "q": "In modelling questions, how do I know whether to use $e$ or another base?",
+      "a": "The base $e$ is used for models involving *continuous* growth or decay, where the rate of change is proportional to the current amount. This is the standard for most P3 modelling questions involving populations, radioactivity, etc. The general form $N=N_0 e^{kt}$ is provided in many questions. If the growth happens in discrete intervals (e.g., once per year), a model like $P = P_0 (1.05)^t$ might be used, but this is less common in P3."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**P3 exponentials** (3.2) extend **P2** (2.2). Examiners combine **differentiation** with **modelling** — state domain x > 0 for ln."
+      "content": "The number $e$, approximately 2.718, is a fundamental mathematical constant that appears in many areas of science and finance. It describes processes of continuous growth. The functions based on this constant, the exponential function $e^x$ and its inverse, the natural logarithm $\\ln x$, are essential tools in A-Level Mathematics for solving equations and modelling real-world situations."
+    },
+    {
+      "type": "heading",
+      "content": "The Exponential and Natural Logarithmic Functions"
+    },
+    {
+      "type": "text",
+      "content": "The natural exponential function is $f(x) = e^x$. Its graph passes through $(0, 1)$ and increases at a rate proportional to its current value. It is always positive. The natural logarithmic function, $g(x) = \\ln x$, is defined as the inverse of $e^x$. This means that if $y = e^x$, then $x = \\ln y$. The function $\\ln x$ is only defined for positive values of $x$, and its graph passes through $(1, 0)$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Inverse relationship: $e^{\\ln x} = x$ for $x > 0$, and $\\ln(e^x) = x$ for all $x$.",
+        "Graph of $y=\\ln x$ is the reflection of $y=e^x$ in the line $y=x$.",
+        "Domain of $e^x$ is $(-\\infty, \\infty)$, Range is $(0, \\infty)$.",
+        "Domain of $\\ln x$ is $(0, \\infty)$, Range is $(-\\infty, \\infty)$.",
+        "Remember: $\\ln x$ is the same as $\\log_e x$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Laws of Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "The laws of logarithms, which you may have met for base 10, apply equally to natural logarithms. These rules are essential for manipulating and solving equations involving logs and exponentials. Mastering them is key to simplifying complex expressions before differentiation or integration."
+    },
+    {
+      "type": "formula",
+      "content": "For $x, y > 0$:\n1. Product Rule: $\\ln(xy) = \\ln x + \\ln y$\n2. Quotient Rule: $\\ln\\left(\\frac{x}{y}\\right) = \\ln x - \\ln y$\n3. Power Rule: $\\ln(x^n) = n \\ln x$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $e^{2x} - 7e^x + 10 = 0$, giving your answers in an exact form.",
+      "solution": "This equation is a quadratic in disguise. Let $y = e^x$. Then the equation becomes:\n\n$y^2 - 7y + 10 = 0$ [M1 for substitution or recognising quadratic form]\n\nFactorising the quadratic:\n$(y-5)(y-2) = 0$\n\nSo, $y=5$ or $y=2$. [A1 for correct values of y]\n\nNow substitute back $e^x$ for $y$:\nCase 1: $e^x = 5$\nTaking natural logarithms of both sides:\n$\\ln(e^x) = \\ln 5$\n$x = \\ln 5$ [A1]\n\nCase 2: $e^x = 2$\nTaking natural logarithms of both sides:\n$\\ln(e^x) = \\ln 2$\n$x = \\ln 2$ [A1]\n\nThe solutions are $x = \\ln 2$ and $x = \\ln 5$."
+    },
+    {
+      "type": "heading",
+      "content": "Differentiation of $e^x$ and $\\ln x$"
+    },
+    {
+      "type": "text",
+      "content": "One of the most remarkable properties of the function $y=e^x$ is that it is its own derivative. The derivative of $\\ln x$ is $1/x$. For more complex functions, we must apply the chain rule."
+    },
+    {
+      "type": "formula",
+      "content": "Standard derivatives:\n$\\frac{d}{dx}(e^x) = e^x$\n$\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$\n\nUsing the chain rule:\n$\\frac{d}{dx}(e^{f(x)}) = f'(x)e^{f(x)}$\n$\\frac{d}{dx}(\\ln(f(x))) = \\frac{f'(x)}{f(x)}$"
+    },
+    {
+      "type": "examTip",
+      "content": "The formula $\\frac{d}{dx}(\\ln(f(x))) = \\frac{f'(x)}{f(x)}$ is extremely useful and frequently tested. Always identify the 'inside function' $f(x)$, find its derivative $f'(x)$, and place it over the original inside function."
+    },
+    {
+      "type": "workedExample",
+      "question": "A curve has the equation $y = \\ln(x^2 + 4)$.\n(i) Find the gradient of the curve at the point where $x=2$.\n(ii) Find the exact coordinates of the stationary point.",
+      "solution": "(i) First, we need to find the derivative, $\\frac{dy}{dx}$.\nUsing the chain rule for $\\ln(f(x))$ with $f(x) = x^2+4$, we have $f'(x) = 2x$.\nSo, $\\frac{dy}{dx} = \\frac{f'(x)}{f(x)} = \\frac{2x}{x^2+4}$. [M1 for correct application of chain rule]\n\nAt $x=2$, the gradient is:\n$\\frac{dy}{dx} = \\frac{2(2)}{2^2+4} = \\frac{4}{4+4} = \\frac{4}{8} = \\frac{1}{2}$. [A1]\n\n(ii) Stationary points occur when $\\frac{dy}{dx} = 0$.\n$\\frac{2x}{x^2+4} = 0$ [M1 for setting derivative to 0]\nFor a fraction to be zero, the numerator must be zero.\n$2x = 0 \\implies x = 0$.\n\nTo find the y-coordinate, substitute $x=0$ back into the original equation:\n$y = \\ln(0^2 + 4) = \\ln 4$.\n\nThe exact coordinates of the stationary point are $(0, \\ln 4)$. [A1 for both coordinates]"
+    },
+    {
+      "type": "heading",
+      "content": "Exponential Modelling"
+    },
+    {
+      "type": "text",
+      "content": "Exponential functions are used to model many real-world phenomena where the rate of change of a quantity is proportional to the quantity itself. This includes population growth, radioactive decay, and compound interest. The general form is $N = N_0 e^{kt}$, where $N_0$ is the initial value, $t$ is time, and $k$ is a constant determining the rate of growth ($k>0$) or decay ($k<0$)."
+    },
+    {
+      "type": "workedExample",
+      "question": "The mass, $M$ grams, of a radioactive substance decreases with time $t$ years according to the model $M = 200e^{-0.05t}$.\n(i) What is the initial mass of the substance?\n(ii) Find the mass of the substance after 10 years, correct to 3 significant figures.\n(iii) Find the time taken for the mass to halve (the half-life).",
+      "solution": "(i) The initial mass occurs at $t=0$.\n$M = 200e^{-0.05(0)} = 200e^0 = 200 \\times 1 = 200$ grams. [B1]\n\n(ii) After 10 years, $t=10$.\n$M = 200e^{-0.05(10)} = 200e^{-0.5}$.\n$M \\approx 200 \\times 0.60653... \\approx 121.306...$\nThe mass is 121 grams (to 3 s.f.). [M1 for substitution, A1 for correct answer]\n\n(iii) The initial mass is 200g, so half the mass is 100g. We need to find $t$ when $M=100$.\n$100 = 200e^{-0.05t}$ [M1 for setting up the equation]\nDivide by 200: $0.5 = e^{-0.05t}$.\nTake natural logarithms of both sides:\n$\\ln(0.5) = \\ln(e^{-0.05t})$\n$\\ln(0.5) = -0.05t$ [M1 for taking logs correctly]\nNow, solve for $t$:\n$t = \\frac{\\ln(0.5)}{-0.05} = \\frac{-0.6931...}{-0.05} \\approx 13.862...$\nThe time taken is approximately 13.9 years. [A1]"
     },
     {
       "type": "practice",
-      "label": "Mark a P3 exponentials question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9709&topic=3.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Khan Academy: Intro to Logarithms",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs/x2ec2f6f830c9fb89:log-intro/v/logarithms"
+        },
+        {
+          "label": "Maths is Fun: Exponential Function",
+          "href": "https://www.mathsisfun.com/sets/function-exponential.html"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Function builder",
+    "embedUrl": "https://phet.colorado.edu/sims/html/function-builder/latest/function-builder_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/function-builder",
+    "hint": "P3 ln and e^x — inverse graphs and domain restrictions (9709 3.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "y = e^x and y = ln x are inverse functions — reflection in y = x.",
+        "embedHint": "Domain of ln x is x > 0."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Laws of logarithms: ln(ab) = ln a + ln b; ln(a^n) = n ln a.",
+        "embedHint": "Use to solve a^x = b."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Differentiate e^{f(x)} and ln(f(x)) — chain rule.",
+        "embedHint": "d/dx e^{2x} = 2e^{2x}."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Modelling growth/decay: N = N₀e^{kt}.",
+        "embedHint": "Half-life from k = ln 2 / t_{½}."
+      }
+    ]
+  }
 }

@@ -4,41 +4,246 @@
   "title": "Aldehydes and ketones",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS carbonyl chemistry — nucleophilic addition, distinguishing tests, and reduction with PhET molecule builder.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces aldehydes and ketones, focusing on the structure and polarity of the carbonyl group. It covers their key reactions: oxidation to distinguish between them, and nucleophilic addition with reagents like HCN and NaBH₄.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe the polar nature of the carbonyl group.",
-    "Explain nucleophilic addition mechanisms to C=O.",
-    "Distinguish aldehydes from ketones using Tollens' and Fehling's reagents.",
-    "Describe reduction of carbonyls to alcohols using NaBH₄ or LiAlH₄."
+    "Describe the structure of aldehydes and ketones and explain the polarity of the carbonyl group.",
+    "Describe the oxidation of aldehydes using Tollens’ reagent and Fehling’s solution.",
+    "Describe the mechanism of nucleophilic addition reactions of aldehydes and ketones with HCN.",
+    "Describe the reduction of aldehydes and ketones using NaBH₄."
   ],
   "simpleExplanation": {
-    "title": "The carbonyl group",
-    "summary": "The C=O bond is polar with δ+ on carbon — nucleophiles attack here. Aldehydes are easier to oxidise than ketones.",
+    "title": "Carbonyl Chemistry: Attack and Test",
+    "summary": "Aldehydes and ketones both contain a polar carbon-oxygen double bond (C=O), making the carbon atom a target for attack. We can tell them apart because aldehydes are easily oxidised, while ketones are not.",
+    "analogy": "Imagine a checkout counter. The cashier (the oxygen atom) is very good at pulling money (electrons) towards them, leaving the till drawer (the carbon atom) slightly open and easy for a shopper (a nucleophile) to add something to. If the counter is at the end of an aisle (an aldehyde), a manager ([O]) can easily check and change it. If it's in the middle of two aisles (a ketone), it's much harder for the manager to access and alter.",
     "steps": [
-      "Nucleophile attacks C=O → tetrahedral intermediate → protonation gives alcohol.",
-      "Aldehydes → carboxylic acids with oxidising agents; ketones resist.",
-      "Tollens' reagent (Ag⁺): aldehydes → silver mirror; ketones no reaction.",
-      "NaBH₄ reduces aldehydes to primary alcohols; ketones to secondary alcohols."
+      "Carbonyl C=O is polar — δ+ on C attracts nucleophiles.",
+      "Aldehydes oxidised to carboxylic acids; ketones resist oxidation.",
+      "Nucleophilic addition: CN⁻, HCN, NaBH₄ add to C=O.",
+      "Distinguish aldehyde vs ketone using oxidising agents in exams."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a carbonyl group?",
+      "back": "A functional group consisting of a carbon atom double-bonded to an oxygen atom (C=O)."
+    },
+    {
+      "front": "What is the general formula for an aldehyde?",
+      "back": "RCHO, where the carbonyl group is at the end of a carbon chain. R can be an alkyl group or H."
+    },
+    {
+      "front": "What is the general formula for a ketone?",
+      "back": "RCOR', where the carbonyl group is within a carbon chain. R and R' are alkyl groups."
+    },
+    {
+      "front": "Why is the carbonyl group polar?",
+      "back": "Oxygen is more electronegative than carbon, so it withdraws electron density from the C=O double bond. This creates a partial negative charge on the oxygen ($\\delta-$) and a partial positive charge on the carbon ($\\delta+$)."
+    },
+    {
+      "front": "What is Tollens' reagent and what is a positive test?",
+      "back": "A solution of aqueous silver nitrate in ammonia, [Ag(NH₃)₂]⁺. A positive test with an aldehyde produces a 'silver mirror' as Ag⁺ ions are reduced to solid silver (Ag)."
+    },
+    {
+      "front": "What is Fehling's solution and what is a positive test?",
+      "back": "An alkaline solution containing copper(II) ions complexed with tartrate ions. A positive test with an aldehyde, upon warming, produces a brick-red precipitate of copper(I) oxide (Cu₂O)."
+    },
+    {
+      "front": "Why are ketones resistant to oxidation by mild oxidising agents?",
+      "back": "Oxidation of a ketone would require breaking a strong C-C bond, which requires a large amount of energy. Aldehydes have a C-H bond on the carbonyl carbon, which is much easier to break."
+    },
+    {
+      "front": "What is the nucleophile in the reaction of a carbonyl with aqueous KCN followed by acid?",
+      "back": "The cyanide ion, :CN⁻."
+    },
+    {
+      "front": "What type of reaction mechanism occurs between a ketone and HCN?",
+      "back": "Nucleophilic addition. The nucleophile (:CN⁻) attacks the electrophilic carbonyl carbon."
+    },
+    {
+      "front": "What is the product when propanal reacts with NaBH₄?",
+      "back": "Propan-1-ol, a primary alcohol. Aldehydes are reduced to primary alcohols."
+    },
+    {
+      "front": "What is the product when propanone reacts with NaBH₄?",
+      "back": "Propan-2-ol, a secondary alcohol. Ketones are reduced to secondary alcohols."
+    },
+    {
+      "front": "What is the nucleophile provided by NaBH₄?",
+      "back": "The hydride ion, :H⁻."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is KCN used with a weak acid instead of just using HCN gas?",
+      "a": "HCN is a highly toxic, volatile liquid. Using an aqueous solution of KCN (which provides the CN⁻ nucleophile) and then adding a weak acid is much safer to handle in a lab. It also ensures a high concentration of the cyanide nucleophile, as HCN itself is a weak acid and only partially dissociates."
+    },
+    {
+      "q": "Why don't ketones get oxidised by Tollens' or Fehling's reagents?",
+      "a": "The oxidation of a ketone would require the breaking of a strong carbon-carbon (C-C) bond adjacent to the carbonyl group. This requires a significant amount of energy, so ketones are resistant to mild oxidising agents. Aldehydes have a C-H bond on the carbonyl carbon, which is much weaker and easier to break, allowing for ready oxidation."
+    },
+    {
+      "q": "What is the difference between NaBH₄ and LiAlH₄ as reducing agents?",
+      "a": "Both are sources of the hydride ion (:H⁻) and reduce aldehydes and ketones. However, LiAlH₄ (lithium aluminium hydride) is a much stronger and more reactive reducing agent. It reacts violently with water and protic solvents, so it must be used in a dry ether solvent. NaBH₄ is milder and safer, stable in aqueous or alcoholic solutions. For A-Level, you primarily need to know about NaBH₄ for reducing carbonyls."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Carbonyl chemistry** (17.1) is high mark-yield on Paper 2 — mechanisms with **CN⁻**, **HCN**, and **2,4-DNPH** identification tests appear frequently."
+      "content": "Welcome to the world of carbonyl compounds. Aldehydes and ketones are widespread in nature, responsible for many familiar fragrances and flavours, like vanilla (vanillin) and cinnamon (cinnamaldehyde). Their chemistry is dominated by the polar C=O group, which opens the door to a range of important reactions you'll need to master for your exams."
+    },
+    {
+      "type": "heading",
+      "content": "Structure, Bonding, and Nomenclature"
+    },
+    {
+      "type": "text",
+      "content": "Both aldehydes and ketones feature the carbonyl functional group, C=O. In aldehydes, the carbonyl group is bonded to at least one hydrogen atom, meaning it is always found at the end of a carbon chain. Their names end in '-al', e.g., ethanal. In ketones, the carbonyl group is bonded to two carbon atoms, so it is always found within a carbon chain. Their names end in '-one', e.g., propanone. The geometry around the carbonyl carbon is trigonal planar, with bond angles of approximately 120°. The C=O double bond consists of one sigma (σ) bond and one pi (π) bond."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Aldehyde: RCHO (carbonyl at end of chain). Suffix: -al.",
+        "Ketone: RCOR' (carbonyl within chain). Suffix: -one.",
+        "The high electronegativity of oxygen makes the C=O bond polar: C is $\\delta+$ and O is $\\delta-$.",
+        "The $\\delta+$ carbon is an electrophilic centre, vulnerable to attack by nucleophiles."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Distinguishing Tests: Oxidation"
+    },
+    {
+      "type": "text",
+      "content": "The key difference in reactivity between aldehydes and ketones is their behaviour with oxidising agents. Aldehydes are easily oxidised to carboxylic acids, while ketones are resistant to oxidation. This difference is exploited in simple chemical tests to distinguish between them. We use mild oxidising agents so that other functional groups are not affected."
+    },
+    {
+      "type": "formula",
+      "content": "General Oxidation of an Aldehyde: RCHO(aq) + [O] $\\rightarrow$ RCOOH(aq)"
+    },
+    {
+      "type": "text",
+      "content": "Two common reagents are Tollens' reagent and Fehling's solution. With Tollens' reagent, [Ag(NH₃)₂]⁺, an aldehyde is oxidised, and the Ag⁺ ions are reduced to metallic silver, forming a beautiful silver mirror on the inside of the test tube. With Fehling's solution, a deep blue solution containing Cu²⁺ ions, an aldehyde is oxidised, and the Cu²⁺ ions are reduced to Cu⁺ ions, which form a brick-red precipitate of copper(I) oxide, Cu₂O, upon warming. Ketones give no reaction with either reagent."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student has two unlabelled bottles, one containing pentan-2-one and the other containing pentanal. Describe a chemical test to distinguish between these two compounds. State the expected observations for both compounds.",
+      "solution": "Method: Add about 1 cm³ of Tollens' reagent to a clean test tube containing a few drops of each unknown liquid. Warm the mixture gently in a water bath for a few minutes. [1 mark]\n\nObservations:\n- With pentanal (the aldehyde), a silver mirror will form on the inside of the test tube. [1 mark]\n- With pentan-2-one (the ketone), there will be no visible change / the solution will remain colourless. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Nucleophilic Addition Reactions"
+    },
+    {
+      "type": "text",
+      "content": "The most characteristic reaction of carbonyl compounds is nucleophilic addition. The electron-deficient ($\\delta+$) carbonyl carbon is attacked by a nucleophile (an electron-pair donor). In this process, the weak π-bond of the C=O group breaks, and its electrons move onto the electronegative oxygen atom, forming a negatively charged intermediate. This intermediate is then protonated, usually by a water molecule or a weak acid, to form the final product."
+    },
+    {
+      "type": "heading",
+      "content": "1. Addition of HCN"
+    },
+    {
+      "type": "text",
+      "content": "Aldehydes and ketones react with hydrogen cyanide (HCN) to form hydroxynitriles (also called cyanohydrins). This reaction is important as it increases the length of the carbon chain by one carbon atom. For safety and to ensure a sufficient concentration of the nucleophile, the reaction is typically carried out using a mixture of sodium or potassium cyanide (NaCN or KCN) and a weak acid like H₂SO₄. The KCN provides the nucleophilic cyanide ion (:CN⁻), and the acid provides the H⁺ for the final protonation step."
+    },
+    {
+      "type": "formula",
+      "content": "Mechanism with propanone: CH₃COCH₃ + HCN $\\rightarrow$ (CH₃)₂C(OH)CN"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Step 1: The nucleophilic :CN⁻ ion attacks the electrophilic $\\delta+$ carbonyl carbon.",
+        "Step 2: The C=O π-bond breaks, and the electron pair moves to the oxygen, forming a negatively charged intermediate anion.",
+        "Step 3: The intermediate anion is protonated by an H⁺ ion (from HCN or H₂O) to form the hydroxynitrile product."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "If the starting aldehyde or ketone is unsymmetrical (e.g., butanone), the product hydroxynitrile will have a new chiral centre. The nucleophilic attack can occur from above or below the planar carbonyl group with equal probability, resulting in the formation of a racemic mixture (a 50:50 mix of two enantiomers)."
+    },
+    {
+      "type": "heading",
+      "content": "2. Reduction using NaBH₄"
+    },
+    {
+      "type": "text",
+      "content": "Aldehydes and ketones can be reduced to alcohols. A common reducing agent used in the lab for this purpose is sodium borohydride, NaBH₄. This reagent acts as a source of the hydride ion (:H⁻), which is a powerful nucleophile. The reaction is another example of nucleophilic addition. Aldehydes are reduced to primary alcohols, and ketones are reduced to secondary alcohols."
+    },
+    {
+      "type": "formula",
+      "content": "Aldehyde reduction: RCHO + 2[H] $\\rightarrow$ RCH₂OH (Primary Alcohol)\nKetone reduction: RCOR' + 2[H] $\\rightarrow$ RCH(OH)R' (Secondary Alcohol)"
+    },
+    {
+      "type": "workedExample",
+      "question": "2.90 g of propanal (CH₃CH₂CHO) is reduced using an excess of NaBH₄ in an aqueous solution. Calculate the maximum mass of the organic product formed. ($A_r$ values: C=12.0, H=1.0, O=16.0)",
+      "solution": "Step 1: Identify the product and write the equation.\nPropanal is an aldehyde, so it will be reduced to a primary alcohol, propan-1-ol.\nCH₃CH₂CHO + 2[H] $\\rightarrow$ CH₃CH₂CH₂OH [1 mark]\n\nStep 2: Calculate the molar mass of propanal.\n$M_r$(propanal) = (3 × 12.0) + (6 × 1.0) + 16.0 = 58.0 g mol⁻¹ [1 mark]\n\nStep 3: Calculate the moles of propanal.\nMoles = mass / $M_r$ = 2.90 g / 58.0 g mol⁻¹ = 0.0500 mol [1 mark]\n\nStep 4: Use the stoichiometry to find the moles of the product.\nThe mole ratio of propanal to propan-1-ol is 1:1.\nMoles of propan-1-ol = 0.0500 mol.\n\nStep 5: Calculate the mass of the product.\n$M_r$(propan-1-ol) = (3 × 12.0) + (8 × 1.0) + 16.0 = 60.0 g mol⁻¹\nMass = moles × $M_r$ = 0.0500 mol × 60.0 g mol⁻¹ = 3.00 g [1 mark]\n\nMaximum mass of propan-1-ol = 3.00 g."
     },
     {
       "type": "practice",
-      "label": "Mark a carbonyl question",
+      "label": "Practice Questions: Aldehydes & Ketones",
       "href": "/mark?subject=9701&topic=17.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Video: Oxidation of Aldehydes",
+          "href": "https://www.youtube.com/watch?v=b-c32fgpT3o"
+        },
+        {
+          "label": "Mechanism of Nucleophilic Addition",
+          "href": "https://www.chemguide.co.uk/mechanisms/addelim/hcn.html"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Compare carbonyl C=O in aldehydes vs ketones (17.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Carbonyl C=O is polar — δ+ on C attracts nucleophiles.",
+        "embedHint": "Identify the C=O dipole in aldehyde vs ketone."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Aldehydes oxidised to carboxylic acids; ketones resist oxidation.",
+        "embedHint": "Use Tollens/Fehling’s — aldehydes give positive test."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Nucleophilic addition: CN⁻, HCN, NaBH₄ add to C=O.",
+        "embedHint": "Track nucleophile attack on δ+ carbon of carbonyl."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Distinguish aldehyde vs ketone using oxidising agents in exams.",
+        "embedHint": "Relate carbonyl structure to reactivity differences."
+      }
+    ]
+  }
 }

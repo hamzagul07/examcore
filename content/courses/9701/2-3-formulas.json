@@ -4,29 +4,234 @@
   "title": "Formulas",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — empirical, molecular, and ionic formulas.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson distinguishes between empirical and molecular formulas, fundamental concepts in chemistry. You will learn how to calculate these formulas from experimental data, such as percentage composition or combustion analysis, and understand their application in representing both molecular compounds and ionic lattices.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Distinguish empirical and molecular formulas.",
-    "Deduce formulas from composition data.",
-    "Write ionic formulas from charges.",
-    "Interpret hydrated salt formulas."
+    "Define and differentiate between empirical formula and molecular formula.",
+    "Determine the empirical formula of a compound from mass composition data.",
+    "Determine the molecular formula of a compound using its empirical formula and relative molecular mass.",
+    "Understand that the term 'formula unit' is used for ionic compounds as they exist in a giant lattice structure."
   ],
   "simpleExplanation": {
-    "title": "Counting atoms in compounds",
-    "summary": "Formulas show atom ratios. Empirical is simplest; molecular gives actual numbers; ionic balances charges.",
+    "title": "From Atoms to Formulas",
+    "summary": "A molecular formula shows the exact number of atoms in a single molecule, like a complete shopping list. An empirical formula shows the simplest ratio of those atoms, like the basic proportions in a recipe.",
+    "analogy": "Imagine you're baking. The molecular formula is your exact shopping list: '12 eggs, 6 cups of flour, 3 cups of sugar'. The empirical formula is the simplified recipe ratio: 'For every 1 cup of sugar, use 2 cups of flour and 4 eggs'. The molecular formula tells you the exact composition of one cake; the empirical formula gives you the fundamental proportions.",
     "steps": [
-      "Empirical: CH₂O for glucose.",
-      "Molecular: C₆H₁₂O₆ for glucose.",
-      "Ions: Al³⁺ and O²⁻ → Al₂O₃.",
-      "CuSO₄·5H₂O includes water."
+      "Molecular formula gives the actual atom count in a molecule.",
+      "Empirical formula is the simplest whole-number ratio of atoms.",
+      "Coefficients in an equation balance atom counts (conservation of mass).",
+      "Ionic compounds are represented by formula units, not molecules."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Define 'Empirical Formula'.",
+      "back": "The simplest whole-number ratio of atoms of each element present in a compound."
+    },
+    {
+      "front": "Define 'Molecular Formula'.",
+      "back": "The actual number of atoms of each element in a single molecule of a compound."
+    },
+    {
+      "front": "What is the mathematical relationship between molecular and empirical formulas?",
+      "back": "Molecular Formula = (Empirical Formula)$_n$, where 'n' is a positive integer representing the ratio between the molecular and empirical formula masses."
+    },
+    {
+      "front": "How do you calculate the integer 'n' to find the molecular formula?",
+      "back": "n = (Relative Molecular Mass, $M_r$) / (Relative Empirical Formula Mass)"
+    },
+    {
+      "front": "When are the empirical and molecular formulas the same?",
+      "back": "When the integer 'n' is 1. This occurs when the simplest ratio is also the actual number of atoms, e.g., for water (H₂O) or methane (CH₄)."
+    },
+    {
+      "front": "What is a 'formula unit'?",
+      "back": "The simplest whole-number ratio of ions in an ionic compound. For ionic compounds, the empirical formula is referred to as the formula unit."
+    },
+    {
+      "front": "Why don't we use the term 'molecular formula' for sodium chloride (NaCl)?",
+      "back": "Because NaCl is an ionic compound that forms a giant ionic lattice, not discrete molecules. The formula 'NaCl' represents the 1:1 ratio of ions in this lattice."
+    },
+    {
+      "front": "What is the first step when calculating an empirical formula from percentage composition?",
+      "back": "Assume a 100 g sample of the compound. This allows you to convert the percentages directly into masses in grams for each element."
+    },
+    {
+      "front": "What is the empirical formula of glucose, C₆H₁₂O₆?",
+      "back": "CH₂O. The subscripts (6, 12, 6) are all divided by their highest common factor, which is 6."
+    },
+    {
+      "front": "A compound has an empirical formula of CH and a molar mass of 78.0 g mol⁻¹. What is its molecular formula?",
+      "back": "Empirical formula mass of CH = 12.0 + 1.0 = 13.0.  n = 78.0 / 13.0 = 6. The molecular formula is (CH)₆ = C₆H₆ (benzene)."
+    },
+    {
+      "front": "In an empirical formula calculation, the mole ratio is 1 : 1.33. How do you convert this to a whole-number ratio?",
+      "back": "Recognise that 1.33 is approximately 4/3. Multiply the entire ratio by 3 to get the whole-number ratio 3 : 4."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if my mole ratio calculation gives me numbers like 1.5 or 1.25?",
+      "a": "You cannot round these to the nearest whole number. You must find the smallest integer to multiply the entire ratio by to make all numbers whole. For 1.5 (which is 3/2), multiply by 2. For 1.25 (which is 5/4), multiply by 4. For 1.33 (which is 4/3), multiply by 3."
+    },
+    {
+      "q": "Can the empirical formula and molecular formula ever be the same?",
+      "a": "Yes, frequently. This happens when the simplest ratio of atoms is also the actual ratio in the molecule. For example, water (H₂O) and methane (CH₄) have molecular formulas that cannot be simplified further, so their empirical and molecular formulas are identical."
+    },
+    {
+      "q": "Why is the formula for an ionic compound always an empirical formula?",
+      "a": "Ionic compounds form giant lattices with a repeating pattern of ions, not individual molecules. The formula we write, called a formula unit, must represent the simplest whole-number ratio of ions in that continuous structure. This is, by definition, the empirical formula."
+    },
+    {
+      "q": "How do I find the formula of a simple ionic compound without experimental data?",
+      "a": "You use the charges of the ions. The overall charge of the formula unit must be zero. For example, to combine Al³⁺ and O²⁻, you need two Al³⁺ ions (total charge +6) and three O²⁻ ions (total charge -6) to balance the charges. This gives the formula Al₂O₃."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Formulas** (2.3) is tested in **analysis and mole questions**. Know **combustion data method** for empirical." },
-    { "type": "practice", "label": "Mark a formulas question", "href": "/mark?subject=9701&topic=2.3" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In chemistry, formulas are our universal language for describing substances. Just as a word represents an object or idea, a chemical formula represents a specific compound. This lesson explores the two main types of chemical formulas—empirical and molecular—and the rules we use to write and interpret them, which is a foundational skill for understanding chemical reactions and composition."
+    },
+    {
+      "type": "heading",
+      "content": "Empirical vs. Molecular Formulas"
+    },
+    {
+      "type": "text",
+      "content": "It's crucial to distinguish between two types of formulas. The **molecular formula** gives the actual number of atoms of each element in one molecule of the compound. It is the 'true' formula. The **empirical formula**, on the other hand, provides the simplest whole-number ratio of atoms of each element in the compound. Sometimes they are the same, but often they are different."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Molecular Formula**: Shows the total number of atoms of each element in a molecule (e.g., glucose is C₆H₁₂O₆).",
+        "**Empirical Formula**: Shows the simplest whole-number ratio of atoms (e.g., for glucose, the ratio 6:12:6 simplifies to 1:2:1, so the empirical formula is CH₂O).",
+        "The molecular formula is always a whole-number multiple of the empirical formula."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Molecular Formula = (Empirical Formula)$_n$ \\\\ \\text{where } n = \\frac{\\text{Molar Mass}}{\\text{Empirical Formula Mass}}"
+    },
+    {
+      "type": "heading",
+      "content": "Calculating the Empirical Formula"
+    },
+    {
+      "type": "text",
+      "content": "We can determine the empirical formula of a new substance from experimental data, typically percentage composition by mass or the masses of elements in a sample. The process involves converting mass to moles and then finding the simplest whole-number ratio of moles."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Step 1**: Obtain the mass (g) of each element. If given percentages, assume a 100g sample.",
+        "**Step 2**: Convert the mass of each element to moles by dividing by its relative atomic mass ($A_r$).",
+        "**Step 3**: Divide the mole value of each element by the smallest mole value calculated in Step 2.",
+        "**Step 4**: The results give the simplest mole ratio. If they are not all whole numbers, multiply all values by a small integer (e.g., 2, 3, or 4) to get a whole-number ratio. This ratio gives the subscripts for the empirical formula."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A sample of a hydrocarbon was found to contain 85.7% carbon and 14.3% hydrogen by mass. Determine its empirical formula. ($A_r$: C = 12.0, H = 1.0)",
+      "solution": "1. **Assume 100g sample & find moles:**\n   - Mass of C = 85.7 g; Mass of H = 14.3 g\n   - Moles of C = Mass / $A_r$ = 85.7 g / 12.0 g mol⁻¹ = 7.142 mol\n   - Moles of H = Mass / $A_r$ = 14.3 g / 1.0 g mol⁻¹ = 14.3 mol\n\n2. **Find the simplest ratio:**\n   - Divide by the smallest number of moles (7.142):\n   - C: 7.142 / 7.142 = 1\n   - H: 14.3 / 7.142 = 2.002 ≈ 2\n\n3. **Write the empirical formula:**\n   - The simplest whole-number ratio of C:H is 1:2.\n   - The empirical formula is **CH₂**."
+    },
+    {
+      "type": "heading",
+      "content": "From Empirical to Molecular Formula"
+    },
+    {
+      "type": "text",
+      "content": "If you know the empirical formula and the relative molecular mass ($M_r$) of a compound, you can determine its molecular formula. The $M_r$ is usually found experimentally using techniques like mass spectrometry. By comparing the $M_r$ with the mass of the empirical formula, you can find the integer 'n' which scales the empirical formula up to the molecular formula."
+    },
+    {
+      "type": "workedExample",
+      "question": "The compound from the previous example (empirical formula CH₂) has a relative molecular mass ($M_r$) of 56.0. Determine its molecular formula.",
+      "solution": "1. **Calculate the empirical formula mass:**\n   - Mass of CH₂ = 12.0 + (2 × 1.0) = 14.0\n\n2. **Find the integer multiple 'n':**\n   - n = (Relative Molecular Mass) / (Empirical Formula Mass)\n   - n = 56.0 / 14.0 = 4\n\n3. **Determine the molecular formula:**\n   - Molecular Formula = (Empirical Formula)$_n$\n   - Molecular Formula = (CH₂)₄ = **C₄H₈**"
+    },
+    {
+      "type": "examTip",
+      "content": "In calculations, do not round your intermediate values too early. Keep at least 3-4 significant figures for mole calculations. Only round at the final step when determining the whole-number ratio. If a ratio is very close to a whole number (e.g., 2.01 or 1.99), you can round it. If it's like 1.5 or 1.33, you must multiply to get a whole number."
+    },
+    {
+      "type": "heading",
+      "content": "Formula Units and Ionic Compounds"
+    },
+    {
+      "type": "text",
+      "content": "For covalent substances that exist as simple molecules (like H₂O or C₄H₈), the molecular formula is a very useful description. However, ionic compounds like sodium chloride (NaCl) or magnesium oxide (MgO) do not form discrete molecules. Instead, they form a vast, three-dimensional structure called a giant ionic lattice. For these substances, it is impossible to define a 'molecule'. Therefore, we use a **formula unit**, which represents the simplest whole-number ratio of ions in the lattice. The formula unit for an ionic compound is, by definition, its empirical formula."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Ionic compounds form giant ionic lattices, not simple molecules.",
+        "The chemical formula for an ionic compound is its formula unit.",
+        "The formula unit represents the simplest whole-number ratio of ions in the crystal lattice (e.g., for every one Mg²⁺ ion in magnesium chloride, there are two Cl⁻ ions, so the formula unit is MgCl₂)."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9701&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Video: Empirical and Molecular Formula Calculations",
+          "href": "https://www.youtube.com/watch?v=gimkKjcalqU"
+        },
+        {
+          "label": "Reading: More on Formula Units",
+          "href": "https://www.chemguide.co.uk/atoms/structures/ionic.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Assemble atoms into molecules — read molecular and empirical formulas (2.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Molecular formula gives the actual atom count in a molecule.",
+        "embedHint": "Build a known molecule — read its molecular formula."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Empirical formula is the simplest whole-number ratio of atoms.",
+        "embedHint": "Compare empirical vs molecular formula for the same compound."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Coefficients in an equation balance atom counts (conservation of mass).",
+        "embedHint": "Assemble products from given reactant atoms."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Ionic compounds are represented by formula units, not molecules.",
+        "embedHint": "Distinguish discrete molecules from giant ionic lattices in answers."
+      }
+    ]
+  }
 }

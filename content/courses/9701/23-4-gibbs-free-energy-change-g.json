@@ -4,39 +4,248 @@
   "title": "Gibbs free energy change, ΔG",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level thermodynamics — ΔG = ΔH − TΔS, spontaneity, and links to equilibrium and electrochemistry.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores Gibbs free energy change (ΔG), the ultimate predictor of reaction spontaneity. You will learn to use the Gibbs free energy equation, ΔG = ΔH - TΔS, to determine how enthalpy, entropy, and temperature collectively dictate whether a reaction is feasible. We will also connect ΔG to electrochemical cell potentials (E°) and the equilibrium constant (K).",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Calculate ΔG from ΔH and ΔS at a given temperature.",
-    "Predict feasibility of reactions using ΔG sign.",
-    "Relate ΔG° to equilibrium constant K.",
-    "Apply ΔG = −nFE° to electrochemical cells."
+    "Define and apply the Gibbs free energy equation: ΔG = ΔH - TΔS.",
+    "Predict the effect of temperature on the spontaneity of a reaction based on the signs of ΔH and ΔS.",
+    "Understand and use the equations ΔG° = -nFE° and ΔG° = -RT ln K.",
+    "Calculate the temperature at which a reaction becomes feasible."
   ],
   "simpleExplanation": {
-    "title": "Will it happen?",
-    "summary": "ΔG combines enthalpy and entropy effects. Negative ΔG means spontaneous under stated conditions; at equilibrium ΔG = 0.",
+    "title": "The Decider: Will a Reaction Go?",
+    "summary": "Gibbs free energy, ΔG, combines a reaction's heat change (ΔH) and disorder change (ΔS) into a single value that tells us if it will happen spontaneously. A negative ΔG means the reaction is feasible and can proceed without continuous energy input.",
+    "analogy": "Imagine deciding whether to tidy your room. The effort required is the enthalpy change (ΔH > 0, endothermic). The resulting order is a decrease in entropy (ΔS < 0). This is a non-spontaneous task (ΔG > 0). Conversely, a party starting spontaneously involves people gathering (exothermic, ΔH < 0) and creating more disorder (entropy increases, ΔS > 0), making it a very spontaneous event (ΔG < 0). Gibbs free energy is the overall 'willingness' of a process to occur.",
     "steps": [
-      "ΔG = ΔH − TΔS — units: kJ mol⁻¹ if ΔS in J K⁻¹ mol⁻¹ (watch ÷1000).",
-      "ΔG < 0: feasible; ΔG > 0: not feasible (reverse may be).",
-      "ΔG° = −RT ln K — large K when ΔG° very negative.",
-      "Temperature can flip feasibility if ΔH and TΔS oppose."
+      "ΔG = ΔH − TΔS — spontaneous when ΔG < 0.",
+      "ΔG° = −nFE° for electrochemical cells.",
+      "Temperature can reverse feasibility if ΔH and ΔS oppose.",
+      "ΔG and equilibrium: ΔG° = −RT ln K."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Gibbs free energy change, ΔG?",
+      "back": "The overall change in energy during a chemical reaction that is available to do useful work. It determines the spontaneity of a reaction."
+    },
+    {
+      "front": "What is the Gibbs free energy equation?",
+      "back": "ΔG = ΔH - TΔS, where ΔH is the enthalpy change, T is the absolute temperature in Kelvin, and ΔS is the entropy change."
+    },
+    {
+      "front": "What does a negative ΔG value indicate?",
+      "back": "A negative ΔG indicates that a reaction is spontaneous (feasible) under the given conditions."
+    },
+    {
+      "front": "What does a positive ΔG value indicate?",
+      "back": "A positive ΔG indicates that a reaction is non-spontaneous (not feasible) under the given conditions. The reverse reaction will be spontaneous."
+    },
+    {
+      "front": "What does it mean if ΔG = 0?",
+      "back": "The system is at equilibrium. The rates of the forward and reverse reactions are equal."
+    },
+    {
+      "front": "If ΔH is negative and ΔS is positive, is the reaction spontaneous?",
+      "back": "Yes, always. ΔG will be negative at all temperatures."
+    },
+    {
+      "front": "If ΔH is positive and ΔS is negative, is the reaction spontaneous?",
+      "back": "No, never. ΔG will be positive at all temperatures."
+    },
+    {
+      "front": "What is the most common mistake when calculating ΔG?",
+      "back": "A units mismatch. ΔH is usually in kJ mol⁻¹, while ΔS is in J K⁻¹ mol⁻¹. You must convert one to match the other, typically by dividing ΔS by 1000."
+    },
+    {
+      "front": "How is standard Gibbs free energy change (ΔG°) related to the equilibrium constant (K)?",
+      "back": "ΔG° = -RT ln K, where R is the gas constant (8.31 J K⁻¹ mol⁻¹)."
+    },
+    {
+      "front": "How is standard Gibbs free energy change (ΔG°) related to standard cell potential (E°)?",
+      "back": "ΔG° = -nFE°, where n is the number of moles of electrons transferred, and F is the Faraday constant (96500 C mol⁻¹)."
+    },
+    {
+      "front": "For a reaction with ΔH > 0 and ΔS > 0, how does temperature affect spontaneity?",
+      "back": "The reaction becomes spontaneous only at high temperatures, when the TΔS term becomes larger than the ΔH term, making ΔG negative."
+    },
+    {
+      "front": "What does the superscript '°' (plimsoll) signify in ΔG°, ΔH°, and S°?",
+      "back": "It indicates standard conditions: 100 kPa pressure, 298 K (25 °C) temperature, and 1.0 mol dm⁻³ concentration for solutions."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between ΔG and ΔG°?",
+      "a": "ΔG is the Gibbs free energy change under any set of non-standard conditions. ΔG° is the standard Gibbs free energy change, which refers specifically to a reaction carried out under standard conditions (298 K, 100 kPa pressure, 1 mol dm⁻³ concentrations). ΔG determines spontaneity under the actual conditions, while ΔG° is a fixed reference point for a given reaction."
+    },
+    {
+      "q": "Why must temperature be in Kelvin for the Gibbs equation?",
+      "a": "The Gibbs equation relates to absolute energy and disorder. The Kelvin scale is an absolute temperature scale where 0 K represents the theoretical point of zero entropy (Third Law of Thermodynamics). Using Celsius would lead to mathematical errors, such as having a zero or negative temperature term, which is physically meaningless in this context."
+    },
+    {
+      "q": "Can a reaction with a positive ΔG ever happen?",
+      "a": "A reaction with a positive ΔG is non-spontaneous, meaning it will not proceed on its own. However, it can be forced to occur by coupling it with another, highly spontaneous reaction (with a large negative ΔG) or by supplying continuous external energy, such as in electrolysis."
+    },
+    {
+      "q": "If ΔG is negative, does that mean the reaction will be fast?",
+      "a": "No. Gibbs free energy only tells us about the thermodynamic feasibility (if a reaction *can* happen), not about its kinetics (how *fast* it will happen). A spontaneous reaction can be extremely slow if it has a high activation energy (e.g., the conversion of diamond to graphite is spontaneous but takes millions of years)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Gibbs free energy** (23.4) ties **entropy** (23.3), **equilibrium** (7.1), and **electrochemistry** (24.2). Show **unit conversions** for ΔS explicitly."
+      "content": "In previous topics, we've seen that exothermic reactions (negative ΔH) and reactions that increase disorder (positive ΔS) tend to be favoured. But what happens when these two factors are in opposition? For example, an endothermic reaction that increases entropy. Which factor wins? Gibbs free energy change, ΔG, provides the definitive answer. It elegantly combines enthalpy and entropy into a single quantity that predicts whether a reaction is spontaneous, or 'feasible', under a given set of conditions."
+    },
+    {
+      "type": "heading",
+      "content": "The Gibbs Free Energy Equation"
+    },
+    {
+      "type": "text",
+      "content": "The Gibbs free energy change (ΔG) represents the portion of the total energy change of a system that is available to perform useful work. It is the ultimate criterion for the spontaneity of a process. The relationship between Gibbs free energy, enthalpy, and entropy is defined by a crucial equation."
+    },
+    {
+      "type": "formula",
+      "content": "ΔG = ΔH - TΔS"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**ΔG < 0**: The reaction is **spontaneous** (feasible) in the forward direction.",
+        "**ΔG > 0**: The reaction is **non-spontaneous**. The reverse reaction is spontaneous.",
+        "**ΔG = 0**: The system is at **equilibrium**."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Influence of Temperature on Feasibility"
+    },
+    {
+      "type": "text",
+      "content": "The temperature (T) in the Gibbs equation acts as a weighting factor for the entropy change. This means that the spontaneity of some reactions can depend on the temperature. We can analyse four possible scenarios based on the signs of ΔH and ΔS."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Case 1: ΔH < 0, ΔS > 0** (e.g., combustion). The reaction is exothermic and increases disorder. ΔG is always negative. **Spontaneous at all temperatures.**",
+        "**Case 2: ΔH > 0, ΔS < 0** (e.g., 2H₂O₂(l) → 2H₂O(l) + O₂(g) in reverse). The reaction is endothermic and increases order. ΔG is always positive. **Non-spontaneous at all temperatures.**",
+        "**Case 3: ΔH < 0, ΔS < 0** (e.g., freezing of water). The reaction is exothermic but decreases disorder. The -TΔS term is positive. The reaction is **spontaneous only at low temperatures** where the favourable ΔH term dominates.",
+        "**Case 4: ΔH > 0, ΔS > 0** (e.g., melting of ice). The reaction is endothermic but increases disorder. The -TΔS term is negative. The reaction is **spontaneous only at high temperatures** where the favourable -TΔS term overcomes the unfavourable ΔH term."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The most common error in ΔG calculations is forgetting to convert the units of ΔS from J K⁻¹ mol⁻¹ to kJ K⁻¹ mol⁻¹ (by dividing by 1000) to match the units of ΔH, which are typically in kJ mol⁻¹."
+    },
+    {
+      "type": "workedExample",
+      "question": "The decomposition of calcium carbonate, CaCO₃(s) → CaO(s) + CO₂(g), has a standard enthalpy change of reaction, ΔH°, of +178 kJ mol⁻¹ and a standard entropy change, ΔS°, of +161 J K⁻¹ mol⁻¹. Calculate the minimum temperature at which this reaction becomes spontaneous under standard pressure.",
+      "solution": "1.  **Identify the condition for spontaneity**: The reaction becomes spontaneous when ΔG° ≤ 0. The minimum temperature for spontaneity is when ΔG° = 0.\n2.  **State the Gibbs equation**: ΔG° = ΔH° - TΔS°\n3.  **Set ΔG° to zero**: 0 = ΔH° - TΔS°\n4.  **Rearrange for T**: T = ΔH° / ΔS°\n5.  **Convert units**: ΔS° is in J K⁻¹ mol⁻¹, but ΔH° is in kJ mol⁻¹. We must convert ΔS° to kJ K⁻¹ mol⁻¹.\n    ΔS° = 161 J K⁻¹ mol⁻¹ / 1000 = 0.161 kJ K⁻¹ mol⁻¹\n6.  **Substitute values and solve**: \n    T = (+178 kJ mol⁻¹) / (+0.161 kJ K⁻¹ mol⁻¹)\n    T = 1105.6 K\n7.  **Final Answer**: The reaction becomes spontaneous above 1106 K (to 4 s.f.)."
+    },
+    {
+      "type": "heading",
+      "content": "Gibbs Free Energy, Equilibrium and Electrochemistry"
+    },
+    {
+      "type": "text",
+      "content": "The standard Gibbs free energy change, ΔG°, is also directly related to two other important chemical quantities: the equilibrium constant, K, and the standard cell potential, E°cell. These relationships allow us to link thermodynamics with equilibrium and electrochemistry."
+    },
+    {
+      "type": "formula",
+      "content": "ΔG° = -RT ln K"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This equation links the spontaneity of a reaction under standard conditions (ΔG°) to the position of its equilibrium.",
+        "If **ΔG° is negative**, ln K must be positive, so **K > 1**. The equilibrium lies to the right, favouring products.",
+        "If **ΔG° is positive**, ln K must be negative, so **K < 1**. The equilibrium lies to the left, favouring reactants.",
+        "R is the gas constant, 8.31 J K⁻¹ mol⁻¹. Note the units are Joules, so ΔG° must also be in Joules for this calculation."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "ΔG° = -nFE°"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This equation connects the maximum work available from a reaction (ΔG°) to the electrical potential it can generate in an electrochemical cell (E°).",
+        "A **spontaneous reaction (ΔG° < 0)** will have a **positive E°cell**.",
+        "**n** is the number of moles of electrons transferred in the balanced redox equation.",
+        "**F** is the Faraday constant, 96500 C mol⁻¹."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The standard electrode potential, E°cell, for the reaction Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s) is +1.10 V. Calculate the standard Gibbs free energy change, ΔG°, for this reaction at 298 K. (Faraday constant, F = 96500 C mol⁻¹).",
+      "solution": "1.  **Identify the relevant equation**: ΔG° = -nFE°\n2.  **Determine 'n'**: The half-equations are Zn → Zn²⁺ + 2e⁻ and Cu²⁺ + 2e⁻ → Cu. The number of moles of electrons transferred, n, is 2.\n3.  **Substitute the values**: \n    ΔG° = -(2 mol) × (96500 C mol⁻¹) × (+1.10 V)\n    Note: 1 Volt = 1 Joule per Coulomb (J C⁻¹)\n    ΔG° = -2 × 96500 × 1.10 J\n    ΔG° = -212300 J\n4.  **Convert to standard units (kJ mol⁻¹)**:\n    ΔG° = -212300 J / 1000\n    ΔG° = -212.3 kJ mol⁻¹\n5.  **Final Answer**: The standard Gibbs free energy change is -212 kJ mol⁻¹ (to 3 s.f.). The negative value confirms the reaction is spontaneous, as expected from the positive E°cell."
     },
     {
       "type": "practice",
-      "label": "Mark a Gibbs free energy question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9701&topic=23.4"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9701)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-chemistry-9701/"
+        },
+        {
+          "label": "ChemGuide: Gibbs Free Energy",
+          "href": "https://www.chemguide.co.uk/physical/thermodyn/gibbs.html"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Energy forms and changes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes",
+    "hint": "ΔG = ΔH − TΔS — predict feasibility from enthalpy and entropy (23.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "ΔG = ΔH − TΔS — spontaneous when ΔG < 0.",
+        "embedHint": "Negative ΔH and positive ΔS both favour spontaneity."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "ΔG° = −nFE° for electrochemical cells.",
+        "embedHint": "Link thermodynamics to electrode potentials."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Temperature can reverse feasibility if ΔH and ΔS oppose.",
+        "embedHint": "Find T when ΔG = 0: T = ΔH/ΔS."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "ΔG and equilibrium: ΔG° = −RT ln K.",
+        "embedHint": "Large K when ΔG° very negative."
+      }
+    ]
+  }
 }

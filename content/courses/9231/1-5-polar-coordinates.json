@@ -1,0 +1,176 @@
+{
+  "slug": "1-5-polar-coordinates",
+  "topicCode": "1.5",
+  "title": "Polar coordinates",
+  "paper": "P1",
+  "paperName": "Paper 1: Further Pure Mathematics 1",
+  "status": "pilot",
+  "summary": "This lesson introduces polar coordinates $(r, \\theta)$ as an alternative to Cartesian coordinates $(x, y)$. It covers conversion between the two systems, sketching polar curves like cardioids and limaçons, and calculating the area enclosed by a polar curve using integration.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand and use the relationship between polar and Cartesian coordinates.",
+    "Sketch curves given by a polar equation, including identifying key features.",
+    "Calculate the area of a sector bounded by a polar curve and two lines.",
+    "Apply these techniques to solve problems in a variety of contexts."
+  ],
+  "simpleExplanation": {
+    "title": "Mapping with Distance and Direction",
+    "summary": "Instead of giving directions with 'go across' and 'go up' (like Cartesian x, y), polar coordinates tell you which direction to face and how far to walk. This system is brilliant for describing anything with rotation or circular patterns.",
+    "analogy": "Imagine you're in a large park looking for a specific oak tree. A friend could give you Cartesian directions: \"Walk 300 metres east, then 400 metres north.\" Or, they could give you polar directions: \"Face about 53 degrees from east, and walk straight for 500 metres.\" Both get you to the same tree, but the second method is more direct and natural for pointing and walking.",
+    "steps": [
+      "Analyse the polar equation $r = f(\\theta)$ to find key features, such as maximum and minimum values of $r$ and values of $\\theta$ where $r=0$.",
+      "Create a table of values for $r$ at key angles of $\\theta$ (e.g., $0, \\pi/6, \\pi/4, \\pi/3, \\pi/2$).",
+      "Plot these $(r, \\theta)$ points. Imagine a rotating line from the origin (the pole); as it sweeps through an angle $\\theta$, you move out to a distance $r$ along it.",
+      "Join the points smoothly, considering the curve's symmetry and its behaviour near the pole, to form the complete sketch."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What are the polar coordinates $(r, \\theta)$?",
+      "back": "$r$ is the radial distance from the origin (the pole). $\\theta$ is the angle measured anti-clockwise from the initial line (the positive x-axis)."
+    },
+    {
+      "front": "How do you convert from polar $(r, \\theta)$ to Cartesian $(x, y)$ coordinates?",
+      "back": "Use the formulae $x = r \\cos \\theta$ and $y = r \\sin \\theta$."
+    },
+    {
+      "front": "How do you convert from Cartesian $(x, y)$ to polar $(r, \\theta)$ coordinates?",
+      "back": "Use the formulae $r^2 = x^2 + y^2$ (so $r = \\sqrt{x^2+y^2}$) and $\\tan \\theta = \\frac{y}{x}$. Be careful to place $\\theta$ in the correct quadrant."
+    },
+    {
+      "front": "What does a negative value of $r$ mean in a polar plot?",
+      "back": "If $r$ is negative for a given $\\theta$, you plot the point at a distance of $|r|$ from the pole, but in the opposite direction (i.e., along the line $\\theta + \\pi$)."
+    },
+    {
+      "front": "What is the general polar equation for a circle of radius $a$ centred at the origin?",
+      "back": "$r = a$. The angle $\\theta$ can take any value, but the distance from the pole is always $a$."
+    },
+    {
+      "front": "What is the general polar equation for a straight line passing through the origin?",
+      "back": "$\\theta = \\alpha$, where $\\alpha$ is a constant. The angle is fixed, but the distance $r$ can be any real number."
+    },
+    {
+      "front": "What is the formula for the area of a sector enclosed by a polar curve $r=f(\\theta)$?",
+      "back": "$A = \\frac{1}{2} \\int_{\\alpha}^{\\beta} r^2 \\, d\\theta$, where the sector is bounded by the lines $\\theta=\\alpha$ and $\\theta=\\beta$."
+    },
+    {
+      "front": "How do you find the tangents at the pole?",
+      "back": "Solve the equation $r=f(\\theta)=0$. The solutions for $\\theta$ give the angles of the lines that are tangent to the curve at the origin (pole)."
+    },
+    {
+      "front": "What is a cardioid?",
+      "back": "A heart-shaped polar curve with an equation of the form $r = a(1 \\pm \\cos \\theta)$ or $r = a(1 \\pm \\sin \\theta)$. It passes through the pole."
+    },
+    {
+      "front": "What is a common trap when finding the area of a symmetrical polar curve?",
+      "back": "Calculating the area for a smaller range of $\\theta$ and then multiplying by a factor of symmetry. Forgetting to adjust the integration limits accordingly is a frequent error. For example, for a cardioid, integrate from $0$ to $\\pi$ and double the result."
+    },
+    {
+      "front": "What is the polar equation for a horizontal line $y=c$?",
+      "back": "Since $y = r \\sin \\theta$, the equation is $r \\sin \\theta = c$, or $r = c \\csc \\theta$."
+    },
+    {
+      "front": "What is the polar equation for a vertical line $x=c$?",
+      "back": "Since $x = r \\cos \\theta$, the equation is $r \\cos \\theta = c$, or $r = c \\sec \\theta$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What happens if $r$ is negative?",
+      "a": "If $r$ is negative for a certain angle $\\theta$, you plot the point at a distance of $|r|$ from the pole, but in the direction exactly opposite to $\\theta$. This means you plot it along the line defined by the angle $\\theta + \\pi$. For example, the point $(-2, \\pi/4)$ is plotted at the same location as $(2, 5\\pi/4)$."
+    },
+    {
+      "q": "How do I choose the limits of integration for an area calculation?",
+      "a": "The limits, $\\alpha$ and $\\beta$, are the starting and ending angles that trace out the boundary of the desired region. A sketch is vital. For a single closed loop that passes through the pole, the limits are often two consecutive values of $\\theta$ for which $r=0$. For symmetrical shapes, you can calculate the area of a smaller part and multiply."
+    },
+    {
+      "q": "Why is the area formula $\\frac{1}{2}\\int r^2 d\\theta$ and not something simpler?",
+      "a": "This formula comes from summing the areas of tiny sectors, not rectangles. The area of a circular sector with radius $r$ and angle $\\Delta\\theta$ (in radians) is $\\frac{1}{2}r^2 \\Delta\\theta$. When we make the angle infinitesimally small ($d\\theta$), we can integrate this expression to find the total area swept out by the radius as it rotates."
+    },
+    {
+      "q": "Can a point have multiple polar coordinates?",
+      "a": "Yes, unlike Cartesian coordinates, polar coordinates are not unique. Adding any multiple of $2\\pi$ to $\\theta$ gives the same point. For example, $(r, \\theta)$ is the same point as $(r, \\theta + 2\\pi)$ and $(r, \\theta - 2\\pi)$. Also, as mentioned, $(r, \\theta)$ is the same as $(-r, \\theta + \\pi)$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of polar coordinates! While you're familiar with the Cartesian $(x, y)$ grid system, it's not always the most efficient way to describe curves. Polar coordinates are particularly powerful for describing objects or paths that involve rotation or are centred around a point, such as planetary orbits, spiral galaxies, or the radiation pattern of a microphone. In this lesson, we'll learn how to navigate this new system and use its unique advantages to sketch complex curves and calculate areas."
+    },
+    {
+      "type": "heading",
+      "content": "From Cartesian to Polar Coordinates"
+    },
+    {
+      "type": "text",
+      "content": "A point $P$ in a plane can be uniquely identified by its Cartesian coordinates $(x, y)$. Alternatively, we can define its position using polar coordinates $(r, \\theta)$. Here, $r$ is the direct distance from a fixed point called the pole (which corresponds to the origin in the Cartesian system), and $\\theta$ is the angle this line segment makes with a fixed direction called the initial line (corresponding to the positive x-axis). The angle $\\theta$ is measured anti-clockwise and is typically given in radians."
+    },
+    {
+      "type": "formula",
+      "content": "Conversion from Polar $(r, \\theta)$ to Cartesian $(x, y)$: \n$x = r \\cos \\theta$ \n$y = r \\sin \\theta$ \n\nConversion from Cartesian $(x, y)$ to Polar $(r, \\theta)$: \n$r = \\sqrt{x^2 + y^2}$ \n$\\tan \\theta = \\frac{y}{x}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The pole is the point $(0,0)$.",
+        "The initial line is the positive x-axis.",
+        "By convention, $\\theta$ is positive for anti-clockwise rotation and negative for clockwise rotation.",
+        "When finding $\\theta$ from $\\tan \\theta = y/x$, always check which quadrant the point $(x,y)$ is in to ensure you have the correct angle. Your calculator's $\\arctan$ function will typically give a principal value in $(-\\pi/2, \\pi/2)$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Sketching Polar Curves"
+    },
+    {
+      "type": "text",
+      "content": "To sketch a polar curve $r=f(\\theta)$, we investigate how the distance $r$ from the pole changes as the angle $\\theta$ sweeps around. A good strategy is to create a table of values for $r$ at key intervals of $\\theta$, identify symmetries, find where the curve passes through the pole (by solving $r=0$), and find the maximum and minimum values of $r$. For example, if the equation only involves $\\cos \\theta$, the curve will be symmetrical about the initial line (the x-axis)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Sketch the curve given by the polar equation $r = 3(1 + \\cos\\theta)$ for $0 \\le \\theta \\le 2\\pi$.",
+      "solution": "This is a cardioid. The presence of $\\cos\\theta$ implies symmetry about the initial line ($\"x\"$-axis). We can sketch for $0 \\le \\theta \\le \\pi$ and then reflect.\n\n1.  **Table of Values:**\n| $\\theta$ | $0$ | $\\pi/3$ | $\\pi/2$ | $2\\pi/3$ | $\\pi$ |\n|---|---|---|---|---|---|\n| $\\cos\\theta$ | $1$ | $1/2$ | $0$ | $-1/2$ | $-1$ |\n| $r$ | $6$ | $4.5$ | $3$ | $1.5$ | $0$ |\n\n2.  **Key Features:**\n    *   **Maximum r:** Occurs when $\\cos\\theta = 1$, so $\\theta=0$. Max $r = 3(1+1) = 6$. The point is $(6, 0)$ in Cartesian coordinates.\n    *   **Minimum r:** Occurs when $\\cos\\theta = -1$, so $\\theta=\\pi$. Min $r = 3(1-1) = 0$. The curve passes through the pole at $\\theta=\\pi$.\n    *   **Tangent at the pole:** The tangent at the pole is the line $\\theta = \\pi$ (the negative x-axis).\n    *   When $\\theta = \\pi/2$, $r=3$. The point is $(0, 3)$ in Cartesian coordinates.\n\n3.  **Sketching:**\n    *   Start at $\\theta=0$, where the curve is at its furthest point from the pole, $(6,0)$.\n    *   As $\\theta$ increases to $\\pi/2$, $r$ decreases from $6$ to $3$. The curve moves inwards, passing through $(0,3)$.\n    *   As $\\theta$ increases from $\\pi/2$ to $\\pi$, $r$ decreases from $3$ to $0$, arriving at the pole with a tangent along the line $\\theta=\\pi$.\n    *   Use symmetry to draw the lower half of the curve for $\\pi < \\theta < 2\\pi$. The curve leaves the pole and returns to the starting point $(6,0)$. The resulting shape is a cardioid (heart-shape) on its side."
+    },
+    {
+      "type": "heading",
+      "content": "Area Enclosed by a Polar Curve"
+    },
+    {
+      "type": "text",
+      "content": "In Cartesian coordinates, we find area by summing the areas of infinitesimally thin rectangles. In polar coordinates, we sum the areas of infinitesimally thin sectors. The area of a small sector of a circle with radius $r$ and angle $d\\theta$ is approximately $\\frac{1}{2}r^2 d\\theta$. By integrating this expression between two angles, we can find the total area of a region bounded by a polar curve."
+    },
+    {
+      "type": "formula",
+      "content": "The area $A$ of the region bounded by the curve $r=f(\\theta)$ and the lines $\\theta = \\alpha$ and $\\theta = \\beta$ is given by:\n\n$A = \\frac{1}{2} \\int_{\\alpha}^{\\beta} r^2 \\, d\\theta$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the area of the region enclosed by the curve $r = 4\\sin(2\\theta)$ for $0 \\le \\theta \\le \\pi/2$.",
+      "solution": "The curve $r = 4\\sin(2\\theta)$ is a four-petalled rose. The given range $0 \\le \\theta \\le \\pi/2$ corresponds to the first petal in the first quadrant.\n\n1.  **Set up the integral:**\n    The area $A$ is given by the formula $A = \\frac{1}{2} \\int_{\\alpha}^{\\beta} r^2 \\, d\\theta$.\n    Here, $r = 4\\sin(2\\theta)$, $\\alpha=0$, and $\\beta=\\pi/2$.\n    $A = \\frac{1}{2} \\int_{0}^{\\pi/2} (4\\sin(2\\theta))^2 \\, d\\theta$\n    $A = \\frac{1}{2} \\int_{0}^{\\pi/2} 16\\sin^2(2\\theta) \\, d\\theta$\n    $A = 8 \\int_{0}^{\\pi/2} \\sin^2(2\\theta) \\, d\\theta$\n\n2.  **Use a trigonometric identity:**\n    We use the double angle identity $\\cos(2A) = 1 - 2\\sin^2(A)$, which rearranges to $\\sin^2(A) = \\frac{1}{2}(1 - \\cos(2A))$.\n    Let $A = 2\\theta$, so $\\sin^2(2\\theta) = \\frac{1}{2}(1 - \\cos(4\\theta))$.\n    $A = 8 \\int_{0}^{\\pi/2} \\frac{1}{2}(1 - \\cos(4\\theta)) \\, d\\theta$\n    $A = 4 \\int_{0}^{\\pi/2} (1 - \\cos(4\\theta)) \\, d\\theta$\n\n3.  **Integrate and evaluate:**\n    $A = 4 \\left[ \\theta - \\frac{1}{4}\\sin(4\\theta) \\right]_{0}^{\\pi/2}$\n    $A = 4 \\left( (\\frac{\\pi}{2} - \\frac{1}{4}\\sin(2\\pi)) - (0 - \\frac{1}{4}\\sin(0)) \\right)$\n    Since $\\sin(2\\pi) = 0$ and $\\sin(0) = 0$, this simplifies to:\n    $A = 4 \\left( \\frac{\\pi}{2} - 0 - 0 \\right)$\n    $A = 2\\pi$\n\nThe area of one petal is $2\\pi$ square units."
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a sketch before calculating an area. This helps you identify the correct limits of integration and any symmetries. Forgetting the $\\frac{1}{2}$ in the area formula is a very common mistake. Also, be prepared to use double angle identities like $\\cos(2\\theta) = 2\\cos^2\\theta - 1 = 1 - 2\\sin^2\\theta$ to integrate terms like $\\cos^2\\theta$ or $\\sin^2\\theta$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Polar Coordinates",
+      "href": "/mark?subject=9231&topic=1.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9231)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        },
+        {
+          "label": "Interactive Polar Grapher",
+          "href": "https://www.desmos.com/calculator"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

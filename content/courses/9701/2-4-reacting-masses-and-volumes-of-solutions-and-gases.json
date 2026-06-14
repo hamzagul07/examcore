@@ -4,29 +4,234 @@
   "title": "Reacting masses and volumes (of solutions and gases)",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — mole ratios, gas volumes, titrations, and limiting reagents.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson covers the core quantitative skills in chemistry, focusing on how to use the mole concept to relate the masses of substances, the volumes of gases, and the concentrations of solutions involved in chemical reactions. Mastery of these stoichiometric calculations is fundamental for all further chemistry topics.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Calculate reacting masses from equations.",
-    "Use molar gas volume at rtp.",
-    "Solve titration and concentration problems.",
-    "Identify limiting reagents."
+    "Calculate reacting masses, volumes of gases, and concentrations of solutions from balanced chemical equations.",
+    "Determine the stoichiometry of a reaction from experimental data.",
+    "Identify the limiting reactant in a reaction and use it to calculate the theoretical yield of a product.",
+    "Perform calculations for titrations to determine unknown concentrations."
   ],
   "simpleExplanation": {
-    "title": "From equation to numbers",
-    "summary": "Balanced equations give mole ratios. Convert between mass, moles, gas volume, and solution concentration.",
+    "title": "The Chemist's Recipe Book",
+    "summary": "Stoichiometry is like a chemical recipe. The mole is our universal unit, allowing us to convert between measurable quantities like mass (grams), gas volume (dm³), and solution concentration (mol dm⁻³).",
+    "analogy": "Imagine baking a cake. The recipe gives you ratios: 2 eggs for every 200g of flour and 100ml of milk. You can't just mix 1kg of eggs with 1kg of flour! You must convert everything to a standard unit, like 'number of cakes' (the mole). This lets you figure out how much flour you need for 8 eggs, or how much milk is left over. In chemistry, the mole is this central unit that connects mass, volume, and concentration through the balanced equation's recipe.",
     "steps": [
-      "Balance equation first.",
-      "n = m / Mr.",
-      "Gas: V = n × 24 dm³ at rtp.",
-      "c = n / V for solutions."
+      "n = m / Mr for each species. | Sim hint: Use balanced equation ratios.",
+      "Gas volume at rtp: 1 mol = 24 dm³. | Sim hint: V = n × 24.",
+      "Concentration c = n / V (mol dm⁻³). | Sim hint: Titration calculations.",
+      "Limiting reagent: runs out first. | Sim hint: Compare mole ratios needed."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the formula linking moles (n), mass (m), and molar mass (Mr)?",
+      "back": "$n = \\frac{m}{M_r}$"
+    },
+    {
+      "front": "What is the molar gas volume at room temperature and pressure (RTP)?",
+      "back": "24 dm³ mol⁻¹ (or 24,000 cm³ mol⁻¹). This is the volume occupied by one mole of any gas at RTP."
+    },
+    {
+      "front": "What are the conditions for Room Temperature and Pressure (RTP)?",
+      "back": "Approximately 20-25 °C (around 293-298 K) and 1 atmosphere (101 kPa) pressure. Cambridge exams will always provide the molar volume value to use."
+    },
+    {
+      "front": "What is the formula linking moles (n), concentration (c), and volume (V)?",
+      "back": "$n = c \\times V$. Remember that volume must be in dm³."
+    },
+    {
+      "front": "How do you convert a volume from cm³ to dm³?",
+      "back": "Divide by 1000. For example, 250 cm³ = 0.250 dm³."
+    },
+    {
+      "front": "What is a limiting reactant (or reagent)?",
+      "back": "The reactant that is completely consumed first in a chemical reaction. It determines the maximum amount of product that can be formed."
+    },
+    {
+      "front": "What is a reactant in excess?",
+      "back": "A reactant that is not completely used up when the reaction finishes. Some of it will be left over."
+    },
+    {
+      "front": "What is the first step in ANY reacting quantity calculation?",
+      "back": "Write a balanced chemical equation for the reaction."
+    },
+    {
+      "front": "In a titration, what is the 'titre'?",
+      "back": "The final volume of solution added from the burette to reach the end-point. It's calculated by subtracting the initial burette reading from the final burette reading."
+    },
+    {
+      "front": "Why is it important to use the mole ratio from the balanced equation?",
+      "back": "It links the amount of one substance to another. Forgetting this step is a very common error. For $2A + B \\rightarrow C$, the mole ratio of A to B is 2:1."
+    },
+    {
+      "front": "What is theoretical yield?",
+      "back": "The maximum amount of product that can be produced from the given amounts of reactants, calculated based on the limiting reactant."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between RTP and STP?",
+      "a": "RTP (Room Temperature and Pressure) is typically 298 K (25 °C) and 1 atm, with a molar volume of 24 dm³ mol⁻¹. STP (Standard Temperature and Pressure) is 273 K (0 °C) and 1 atm, with a molar volume of 22.4 dm³ mol⁻¹. For A-Level Chemistry (9701), you will almost always use RTP and the value of 24 dm³ mol⁻¹ will be given in the exam data."
+    },
+    {
+      "q": "How do I know which reactant is limiting if the question doesn't state it?",
+      "a": "If you are given the starting amounts (mass, volume, etc.) of more than one reactant, you MUST check for a limiting reactant. Calculate the moles of each, then compare their ratio to the ratio in the balanced equation. A systematic way is to divide the moles of each reactant by its coefficient in the equation; the smallest result identifies the limiting reactant."
+    },
+    {
+      "q": "Why do we have to convert volume to dm³ for concentration calculations?",
+      "a": "The standard unit for concentration is moles per cubic decimetre (mol dm⁻³). To ensure the units are consistent and cancel correctly in the formula $n = c \\times V$, the volume must be in dm³. Using cm³ directly with a concentration in mol dm⁻³ will give an answer that is 1000 times too small."
+    },
+    {
+      "q": "Do I lose marks for not using the correct number of significant figures?",
+      "a": "Yes. As a general rule, your final answer should be given to the same number of significant figures as the least precise piece of data used in the calculation. For example, if you are given a mass of 2.51 g (3 s.f.) and a concentration of 0.10 mol dm⁻³ (2 s.f.), your final answer should be given to 2 significant figures. It is good practice to keep extra figures during intermediate steps and only round at the very end."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Reacting quantities** (2.4) is core **AS calculation** work. Show **clear mole ratio steps** every time." },
-    { "type": "practice", "label": "Mark a reacting masses question", "href": "/mark?subject=9701&topic=2.4" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to one of the most foundational topics in chemistry. Reacting quantity calculations, or stoichiometry, allow us to predict and analyse the outcomes of chemical reactions quantitatively. By mastering the mole concept, we can move seamlessly between the mass of a solid, the volume of a gas, and the concentration of a solution, making sense of experimental results and designing efficient chemical processes."
+    },
+    {
+      "type": "heading",
+      "content": "Core Principle: The Mole"
+    },
+    {
+      "type": "text",
+      "content": "The mole is the SI unit for the amount of a substance. It's the bridge that connects all our calculations. Whether you are given a mass, a gas volume, or a solution concentration, the first step is almost always to convert this quantity into moles. Once you have moles, you can use the stoichiometry of the balanced equation to find the moles of any other substance in the reaction, and then convert back into the desired quantity (mass, volume, etc.)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Mass to Moles: Use the molar mass ($M_r$).",
+        "Gas Volume to Moles: Use the molar gas volume (24 dm³ mol⁻¹ at RTP).",
+        "Solution Volume/Concentration to Moles: Use the concentration in mol dm⁻³."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculations Involving Masses and Gas Volumes"
+    },
+    {
+      "type": "text",
+      "content": "These calculations often involve reacting a solid to produce a gas, or vice versa. The key is to use the appropriate formula for each substance. For solids, we use mass and molar mass. For gases, we use volume and the molar gas volume."
+    },
+    {
+      "type": "formula",
+      "content": "Moles from mass: $n = \\frac{\\text{mass}}{M_r}$ \\\\ Moles from gas volume (at RTP): $n = \\frac{\\text{Volume in dm}^3}{24}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calcium carbonate decomposes on heating to form calcium oxide and carbon dioxide. $CaCO_3(s) \\rightarrow CaO(s) + CO_2(g)$. Calculate the volume of carbon dioxide gas, in cm³, produced at RTP when 5.00 g of calcium carbonate is completely decomposed. ($A_r$ values: Ca=40.1, C=12.0, O=16.0)",
+      "solution": "Step 1: Calculate the molar mass of $CaCO_3$. \\\\ $M_r(CaCO_3) = 40.1 + 12.0 + (3 \\times 16.0) = 100.1 \\text{ g mol}^{-1}$ \\\\ Step 2: Calculate the moles of $CaCO_3$. \\\\ $n(CaCO_3) = \\frac{m}{M_r} = \\frac{5.00}{100.1} = 0.04995 \\text{ mol}$ \\\\ Step 3: Use the mole ratio from the balanced equation. \\\\ The ratio of $CaCO_3 : CO_2$ is 1:1. \\\\ Therefore, $n(CO_2) = n(CaCO_3) = 0.04995 \\text{ mol}$. \\\\ Step 4: Calculate the volume of $CO_2$ gas. \\\\ Volume of $CO_2$ (in dm³) = $n \\times 24 = 0.04995 \\times 24 = 1.1988 \\text{ dm}^3$. \\\\ Step 5: Convert the volume to cm³. \\\\ Volume in cm³ = $1.1988 \\times 1000 = 1198.8 \\text{ cm}^3$. \\\\ Final Answer (to 3 s.f.): $1200 \\text{ cm}^3$."
+    },
+    {
+      "type": "heading",
+      "content": "Solution Stoichiometry and Titrations"
+    },
+    {
+      "type": "text",
+      "content": "Titration is a common laboratory technique used to determine the concentration of an unknown solution (the analyte) by reacting it with a solution of known concentration (the titrant). The calculation hinges on finding the moles of the known solution, using the mole ratio to find the moles of the unknown solution, and then calculating its concentration."
+    },
+    {
+      "type": "formula",
+      "content": "Moles from solution: $n = c \\times V \\quad (\\text{where V is in dm}^3)$ \\\\ Concentration from moles: $c = \\frac{n}{V} \\quad (\\text{where V is in dm}^3)$"
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake in titration calculations is forgetting to convert volumes from cm³ to dm³. Always divide any volume given in cm³ by 1000 before using it in the $n = c \\times V$ formula. Write this conversion down as part of your working to secure marks and avoid errors."
+    },
+    {
+      "type": "workedExample",
+      "question": "In a titration, 25.0 cm³ of a solution of sodium hydroxide, NaOH, was neutralised by 22.50 cm³ of sulfuric acid, $H_2SO_4$, of concentration 0.0500 mol dm⁻³. Calculate the concentration of the sodium hydroxide solution. The equation is: $2NaOH(aq) + H_2SO_4(aq) \\rightarrow Na_2SO_4(aq) + 2H_2O(l)$.",
+      "solution": "Step 1: Calculate the moles of the known substance ($H_2SO_4$). \\\\ Volume of $H_2SO_4 = \\frac{22.50}{1000} = 0.02250 \\text{ dm}^3$. \\\\ $n(H_2SO_4) = c \\times V = 0.0500 \\text{ mol dm}^{-3} \\times 0.02250 \\text{ dm}^3 = 0.001125 \\text{ mol}$. \\\\ Step 2: Use the mole ratio to find the moles of the unknown substance (NaOH). \\\\ From the equation, the ratio $NaOH : H_2SO_4$ is 2:1. \\\\ Therefore, $n(NaOH) = 2 \\times n(H_2SO_4) = 2 \\times 0.001125 = 0.002250 \\text{ mol}$. \\\\ Step 3: Calculate the concentration of the unknown substance (NaOH). \\\\ Volume of $NaOH = \\frac{25.0}{1000} = 0.0250 \\text{ dm}^3$. \\\\ $c(NaOH) = \\frac{n}{V} = \\frac{0.002250 \\text{ mol}}{0.0250 \\text{ dm}^3} = 0.0900 \\text{ mol dm}^{-3}$. \\\\ Final Answer: $0.0900 \\text{ mol dm}^{-3}$."
+    },
+    {
+      "type": "heading",
+      "content": "Limiting and Excess Reactants"
+    },
+    {
+      "type": "text",
+      "content": "In most real reactions, reactants are not mixed in perfect stoichiometric amounts. One reactant, the limiting reactant, will be completely used up, causing the reaction to stop. The other reactants are said to be in excess. The amount of product formed is always determined by the initial amount of the limiting reactant. To identify the limiting reactant, calculate the moles of each reactant and compare this to the mole ratio required by the balanced equation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Calculate the moles of each reactant present.",
+        "Divide the moles of each reactant by its stoichiometric coefficient in the balanced equation.",
+        "The reactant with the smallest resulting value is the limiting reactant.",
+        "Use the initial moles of the limiting reactant for all further calculations of product yield."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9701&topic=2.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Simulation: Reactants, Products and Leftovers",
+          "href": "https://phet.colorado.edu/en/simulations/reactants-products-and-leftovers"
+        },
+        {
+          "label": "Khan Academy: Stoichiometry",
+          "href": "https://www.khanacademy.org/science/chemistry/chemical-reactions-stoichiome"
+        },
+        {
+          "label": "Chemguide: Stoichiometry",
+          "href": "https://www.chemguide.co.uk/physical/stoichiometry/menu.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Reactants, Products and Leftovers",
+    "embedUrl": "https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/reactants-products-and-leftovers",
+    "hint": "Mole ratios, gas volumes, and solution calculations (9701 2.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "n = m / Mr for each species.",
+        "embedHint": "Use balanced equation ratios."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Gas volume at rtp: 1 mol = 24 dm³.",
+        "embedHint": "V = n × 24."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Concentration c = n / V (mol dm⁻³).",
+        "embedHint": "Titration calculations."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Limiting reagent: runs out first.",
+        "embedHint": "Compare mole ratios needed."
+      }
+    ]
+  }
 }

@@ -4,41 +4,240 @@
   "title": "Alkanes",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS alkane chemistry — formulae, free-radical substitution, combustion, and cracking with PhET molecule builder.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces alkanes, the simplest family of saturated hydrocarbons. It covers their structure, bonding, physical properties, and key reactions including combustion, free-radical substitution, and cracking.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Write general and structural formulae for alkanes.",
-    "Describe free-radical substitution mechanism for halogenation.",
-    "Balance combustion equations and predict incomplete combustion products.",
-    "Explain catalytic and thermal cracking of long-chain alkanes."
+    "Describe the structure of alkanes as saturated hydrocarbons with sp³ hybridisation and tetrahedral geometry.",
+    "Explain the mechanism of free-radical substitution (initiation, propagation, termination) and the role of UV light.",
+    "Write balanced equations for the complete and incomplete combustion of alkanes.",
+    "Describe the cracking of alkanes to produce smaller, more useful alkanes and alkenes."
   ],
   "simpleExplanation": {
-    "title": "Saturated hydrocarbons",
-    "summary": "Alkanes contain only C–C and C–H single bonds. They undergo substitution (not addition) and burn to release energy.",
+    "title": "Alkanes: Building Blocks and Reactions",
+    "summary": "Alkanes are simple, saturated hydrocarbons that form the backbone of fuels. They react by breaking their strong bonds, either through combustion with oxygen or substitution with halogens.",
+    "analogy": "Imagine alkanes are like a basic chain of paperclips (carbon atoms) with smaller clips attached (hydrogen atoms). You can't easily add more clips to the chain without first removing one (substitution), but you can burn the whole chain (combustion) or snap it into smaller pieces (cracking).",
     "steps": [
-      "General formula CₙH₂ₙ₊₂ — homologous series: CH₄, C₂H₆, C₃H₈…",
-      "Free-radical substitution: Cl₂ + UV → Cl•; chain propagation steps.",
-      "Complete combustion: CₙH₂ₙ₊₂ + O₂ → CO₂ + H₂O.",
-      "Cracking: C₁₂H₂₆ → C₈H₁₈ + C₄H₈ (alkane + alkene)."
+      "Alkanes: CₙH₂ₙ₊₂ — only C–C and C–H σ bonds; saturated. | Sim hint: Build methane CH₄ — tetrahedral sp³ carbon.",
+      "Free-radical substitution: initiation → propagation → termination. | Sim hint: Replace one H on ethane — note single substitution product.",
+      "Combustion: complete → CO₂ + H₂O; incomplete → CO or C. | Sim hint: Count C and H in alkane for O₂ needed in balanced equation.",
+      "Cracking: long alkane → shorter alkane + alkene (C=C). | Sim hint: Compare saturated vs unsaturated product structures."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an alkane?",
+      "back": "A saturated hydrocarbon containing only single C-C and C-H bonds."
+    },
+    {
+      "front": "What is the general formula for an alkane?",
+      "back": "$C_n H_{2n+2}$, where n is an integer."
+    },
+    {
+      "front": "What does 'saturated' mean in the context of hydrocarbons?",
+      "back": "The molecule contains only single carbon-carbon bonds, meaning it has the maximum possible number of hydrogen atoms for its carbon skeleton."
+    },
+    {
+      "front": "What is a $\\sigma$ (sigma) bond?",
+      "back": "A type of covalent bond formed by the direct, head-on overlap of atomic orbitals. All bonds in an alkane are sigma bonds."
+    },
+    {
+      "front": "What is the geometry and bond angle around a carbon atom in an alkane?",
+      "back": "Tetrahedral, with a bond angle of 109.5°. This is due to sp³ hybridisation."
+    },
+    {
+      "front": "What is free-radical substitution?",
+      "back": "A reaction mechanism in which an atom in a molecule (e.g., H in an alkane) is replaced by a free radical. It involves initiation, propagation, and termination steps."
+    },
+    {
+      "front": "What is homolytic fission?",
+      "back": "The breaking of a covalent bond where each of the two atoms involved gets one of the shared electrons, forming two free radicals. This happens in the initiation step."
+    },
+    {
+      "front": "What is a free radical?",
+      "back": "A species with an unpaired electron, making it highly reactive. For example, a chlorine radical, $Cl\\cdot$."
+    },
+    {
+      "front": "What are the three stages of a free-radical chain reaction?",
+      "back": "1. Initiation: Radicals are formed (e.g., using UV light). 2. Propagation: A radical reacts to form a new molecule and another radical. 3. Termination: Two radicals combine to form a stable molecule."
+    },
+    {
+      "front": "What are the products of incomplete combustion of an alkane?",
+      "back": "Carbon monoxide (CO) and/or solid carbon (soot, C), along with water ($H_2O$). This occurs in a limited supply of oxygen."
+    },
+    {
+      "front": "What is cracking?",
+      "back": "The process of breaking down large, less useful hydrocarbon molecules into smaller, more useful ones, such as shorter-chain alkanes and alkenes."
+    },
+    {
+      "front": "Why is UV light required for the chlorination of methane?",
+      "back": "UV light provides the energy needed for the homolytic fission of the $Cl-Cl$ bond in the initiation step, creating chlorine radicals."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are alkanes relatively unreactive?",
+      "a": "Alkanes are unreactive because they contain strong C-C and C-H sigma bonds which require a large amount of energy to break. Also, these bonds are essentially non-polar, so they do not attract electrophiles or nucleophiles."
+    },
+    {
+      "q": "What is the difference between homolytic and heterolytic fission?",
+      "a": "In homolytic fission, a covalent bond breaks and each atom gets one of the bonding electrons, forming two radicals (e.g., $Cl_2 \\rightarrow 2Cl\\cdot$). In heterolytic fission, the bond breaks and one atom gets both bonding electrons, forming a positive and a negative ion (e.g., $H-Cl \\rightarrow H^+ + Cl^-$)."
+    },
+    {
+      "q": "Why does free-radical substitution produce a mixture of products?",
+      "a": "Several factors lead to a mixture. Firstly, substitution can occur at any position on the carbon chain, leading to isomers (e.g., 1-chloropropane and 2-chloropropane). Secondly, further substitution can occur, where a second hydrogen on the same molecule is replaced (e.g., forming dichloromethane from chloromethane). Finally, different termination steps produce various side-products (e.g., two alkyl radicals joining)."
+    },
+    {
+      "q": "What is the economic importance of cracking?",
+      "a": "Cracking is vital for the oil industry. It converts the surplus of long-chain hydrocarbons from fractional distillation, which have low demand, into more valuable products. These include shorter-chain alkanes for petrol (gasoline) and alkenes, which are essential starting materials for the production of polymers (plastics) and other chemicals."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Alkanes** (14.1) link to **alkenes** (14.2) and **halogenoalkanes** (15.1). Examiners test **mechanism arrows** for chlorination and **environmental** aspects of incomplete combustion."
+      "content": "Alkanes are the simplest homologous series of organic compounds, consisting solely of carbon and hydrogen atoms linked by single bonds. They are the major components of natural gas and crude oil, making them fundamental to the fuel and petrochemical industries. Their relative lack of reactivity, except under specific conditions, is a key characteristic that we will explore."
+    },
+    {
+      "type": "heading",
+      "content": "Structure and Bonding in Alkanes"
+    },
+    {
+      "type": "text",
+      "content": "Alkanes are described by the general formula $C_n H_{2n+2}$. Each carbon atom in an alkane is $sp^3$ hybridised, forming four single covalent bonds. These bonds are arranged in a tetrahedral geometry around the carbon atom, with bond angles of approximately 109.5°. This arrangement maximises the distance between electron pairs, minimising repulsion according to VSEPR theory. The bonds are all $\\sigma$ (sigma) bonds, formed by the head-on overlap of orbitals, which are strong and not easily broken."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "General Formula: $C_n H_{2n+2}$",
+        "Bonding: Only C-C and C-H single covalent bonds ($\\sigma$ bonds).",
+        "Hybridisation: All carbons are $sp^3$ hybridised.",
+        "Geometry: Tetrahedral shape around each carbon.",
+        "Bond Angle: 109.5°."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Combustion of Alkanes"
+    },
+    {
+      "type": "text",
+      "content": "Combustion is the most important reaction of alkanes, releasing large amounts of energy, which is why they are excellent fuels. The type of combustion depends on the amount of available oxygen. Complete combustion occurs in a plentiful supply of oxygen, producing only carbon dioxide and water. Incomplete combustion occurs in a limited oxygen supply and produces toxic carbon monoxide and/or solid carbon (soot), alongside water."
+    },
+    {
+      "type": "formula",
+      "content": "Complete Combustion: $C_x H_y + (x + \\frac{y}{4})O_2 \\rightarrow xCO_2 + \\frac{y}{2}H_2O$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Butane ($C_4H_{10}$) undergoes complete combustion. (a) Write a balanced chemical equation for this reaction. (b) Calculate the volume of carbon dioxide produced, measured at room temperature and pressure (RTP), when 120 cm³ of butane gas is completely combusted.",
+      "solution": "(a) First, balance the carbons, then hydrogens, then oxygens.\n$C_4H_{10}(g) + O_2(g) \\rightarrow CO_2(g) + H_2O(l)$\nBalance C: $C_4H_{10} + O_2 \\rightarrow 4CO_2 + H_2O$\nBalance H: $C_4H_{10} + O_2 \\rightarrow 4CO_2 + 5H_2O$\nBalance O: There are (4 × 2) + 5 = 13 oxygen atoms on the right. So we need 13/2 $O_2$.\n$C_4H_{10}(g) + 6.5O_2(g) \\rightarrow 4CO_2(g) + 5H_2O(l)$\nTo use whole numbers: $2C_4H_{10}(g) + 13O_2(g) \\rightarrow 8CO_2(g) + 10H_2O(l)$\n\n(b) According to Avogadro's law, the ratio of volumes of gases is equal to the ratio of their moles in the balanced equation.\nFrom the equation: 1 mole of $C_4H_{10}$ produces 4 moles of $CO_2$.\nTherefore, the volume ratio is $C_4H_{10} : CO_2 = 1 : 4$.\nVolume of $CO_2$ = 4 × Volume of $C_4H_{10}$\nVolume of $CO_2$ = 4 × 120 cm³ = 480 cm³.\n(Note: At RTP, 1 mole of any gas occupies 24 dm³ or 24000 cm³, but we can use volume ratios directly as both substances are gases)."
+    },
+    {
+      "type": "heading",
+      "content": "Free-Radical Substitution"
+    },
+    {
+      "type": "text",
+      "content": "Due to the strength and low polarity of C-C and C-H bonds, alkanes are generally unreactive. However, in the presence of ultraviolet (UV) light, they can react with halogens (like chlorine or bromine) via a free-radical substitution mechanism. This is a chain reaction that proceeds in three distinct stages: initiation, propagation, and termination."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Initiation:** UV light provides energy for homolytic fission of the halogen molecule ($X_2$) to form two highly reactive halogen radicals ($X\\cdot$). Example: $Cl_2 \\xrightarrow{UV} 2Cl\\cdot$",
+        "**Propagation:** A chain reaction occurs. A halogen radical reacts with an alkane molecule, creating an alkyl radical and a hydrogen halide. The alkyl radical then reacts with another halogen molecule, regenerating the halogen radical. Example: $Cl\\cdot + CH_4 \\rightarrow \\cdot CH_3 + HCl$; then $\\cdot CH_3 + Cl_2 \\rightarrow CH_3Cl + Cl\\cdot$",
+        "**Termination:** The reaction stops when two radicals collide and combine to form a stable molecule, removing radicals from the system. Example: $Cl\\cdot + Cl\\cdot \\rightarrow Cl_2$; or $\\cdot CH_3 + \\cdot CH_3 \\rightarrow C_2H_6$; or $\\cdot CH_3 + Cl\\cdot \\rightarrow CH_3Cl$"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, you must be precise. State that UV light is needed for *initiation*. Use dots (•) to clearly show the unpaired electron on free radicals. Remember that propagation involves one radical on each side of the equation, while termination involves two radicals reacting to form zero radicals."
+    },
+    {
+      "type": "workedExample",
+      "question": "Propane reacts with bromine in the presence of UV light. Write equations for the mechanism to form 1-bromopropane ($CH_3CH_2CH_2Br$). Include one initiation step, two propagation steps, and one possible termination step.",
+      "solution": "**Initiation:** The Br-Br bond is broken by UV light to form two bromine radicals.\n$Br_2 \\xrightarrow{UV} 2Br\\cdot$\n\n**Propagation:**\nStep 1: A bromine radical abstracts a hydrogen atom from a propane molecule to form an alkyl radical and hydrogen bromide. To form 1-bromopropane, the hydrogen must be removed from a terminal carbon.\n$Br\\cdot + CH_3CH_2CH_3 \\rightarrow \\cdot CH_2CH_2CH_3 + HBr$\nStep 2: The propyl radical reacts with a bromine molecule to form the product and a new bromine radical, which continues the chain.\n$\\cdot CH_2CH_2CH_3 + Br_2 \\rightarrow CH_3CH_2CH_2Br + Br\\cdot$\n\n**Termination:** Any two radicals can combine. For example, two propyl radicals could combine.\n$\\cdot CH_2CH_2CH_3 + \\cdot CH_2CH_2CH_3 \\rightarrow CH_3CH_2CH_2CH_2CH_2CH_3$ (hexane)"
+    },
+    {
+      "type": "heading",
+      "content": "Cracking of Alkanes"
+    },
+    {
+      "type": "text",
+      "content": "Crude oil contains a large proportion of long-chain alkanes, which are not very useful and have low economic value. Cracking is a process that breaks these large hydrocarbon molecules into smaller, more useful ones by breaking C-C bonds. The products are always a smaller alkane and at least one alkene. There are two main types: thermal cracking (high temperature and pressure) and catalytic cracking (high temperature, slight pressure, and a zeolite catalyst)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Purpose:** To convert long-chain alkanes into high-demand shorter-chain alkanes (for petrol) and alkenes (for polymers).",
+        "**Conditions (Thermal):** High temperature (e.g., 700-1200 K) and high pressure (e.g., 7000 kPa). Produces a high proportion of alkenes.",
+        "**Conditions (Catalytic):** High temperature (e.g., 900 K), low pressure, and a zeolite catalyst (aluminosilicates). Produces aromatic hydrocarbons and branched alkanes, useful for high-octane petrol.",
+        "**Example Equation:** $C_{10}H_{22} \\rightarrow C_8H_{18} + C_2H_4$ (Decane cracks to Octane and Ethene)."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark an alkanes question",
+      "label": "Test your knowledge on Alkanes",
       "href": "/mark?subject=9701&topic=14.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Video: Free-Radical Substitution",
+          "href": "https://www.youtube.com/watch?v=FEo_zQ22iE"
+        },
+        {
+          "label": "Article: The Cracking of Alkanes",
+          "href": "https://www.chemguide.co.uk/orgprops/alkanes/cracking.html"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Build methane and ethane — saturated C–C and C–H σ bonds only (14.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Alkanes: CₙH₂ₙ₊₂ — only C–C and C–H σ bonds; saturated.",
+        "embedHint": "Build methane CH₄ — tetrahedral sp³ carbon."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Free-radical substitution: initiation → propagation → termination.",
+        "embedHint": "Replace one H on ethane — note single substitution product."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Combustion: complete → CO₂ + H₂O; incomplete → CO or C.",
+        "embedHint": "Count C and H in alkane for O₂ needed in balanced equation."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Cracking: long alkane → shorter alkane + alkene (C=C).",
+        "embedHint": "Compare saturated vs unsaturated product structures."
+      }
+    ]
+  }
 }

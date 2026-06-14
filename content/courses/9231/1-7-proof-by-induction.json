@@ -1,0 +1,172 @@
+{
+  "slug": "1-7-proof-by-induction",
+  "topicCode": "1.7",
+  "title": "Proof by induction",
+  "paper": "P1",
+  "paperName": "Paper 1: Further Pure Mathematics 1",
+  "status": "pilot",
+  "summary": "Proof by induction is a fundamental technique for proving that a given statement is true for all positive integers (or all integers from a certain starting point). It involves a three-stage logical process: establishing a base case, making an inductive hypothesis, and performing the inductive step to show the 'domino effect' holds true.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand the principle of mathematical induction and its logical structure.",
+    "Apply proof by induction to statements involving series, divisibility, and matrices.",
+    "Construct a clear, rigorous, and complete proof that meets exam standards.",
+    "Identify and avoid common errors, such as a weak conclusion or failing to use the inductive hypothesis."
+  ],
+  "simpleExplanation": {
+    "title": "The Domino Effect of Proofs",
+    "summary": "Proof by induction is a method to prove a statement for an infinite sequence of numbers. It works by first proving the statement for the very first number, and then proving that if it's true for any number, it must also be true for the next one.",
+    "analogy": "Imagine an infinitely long line of dominoes. To be certain they will all fall, you don't need to knock each one over individually. You only need to verify two things: 1) you can knock over the very first domino, and 2) the dominoes are spaced correctly so that if any single domino falls, it is guaranteed to knock over the next one in the line. If both conditions are met, the whole line will fall.",
+    "steps": [
+      "Base Case: Prove the statement is true for the first value, usually n=1. This is pushing the first domino.",
+      "Inductive Hypothesis: Assume the statement is true for an arbitrary integer n=k. This is assuming a random domino, the k-th one, falls.",
+      "Inductive Step: Use the assumption for n=k to prove the statement is also true for the next value, n=k+1. This shows that if the k-th domino falls, it knocks over the (k+1)-th one.",
+      "Conclusion: Conclude that by the principle of mathematical induction, the statement is true for all specified integers. This is the final declaration that the entire line of dominoes will fall."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the principle of mathematical induction?",
+      "back": "A method to prove a statement $P(n)$ is true for all integers $n \\ge n_0$ by showing $P(n_0)$ is true (base case) and that for any $k \\ge n_0$, if $P(k)$ is true, then $P(k+1)$ is also true (inductive step)."
+    },
+    {
+      "front": "What is the 'Base Case' in a proof by induction?",
+      "back": "The first step, where you prove the statement is true for the smallest integer value specified in the question, e.g., $n=1$."
+    },
+    {
+      "front": "What is the 'Inductive Hypothesis'?",
+      "back": "The assumption that the statement is true for an arbitrary integer $k$, i.e., assuming $P(k)$ is true. This is a crucial step before proving for $k+1$."
+    },
+    {
+      "front": "What is the goal of the 'Inductive Step'?",
+      "back": "To show that if the statement is true for $n=k$, it must also be true for $n=k+1$. You must use the inductive hypothesis to achieve this."
+    },
+    {
+      "front": "Why is the concluding statement so important?",
+      "back": "It formally links the base case and the inductive step to the principle of mathematical induction, completing the logical argument. A proof without it is incomplete and will lose marks."
+    },
+    {
+      "front": "Common mistake: Proving $P(k+1)$ without using the assumption $P(k)$. Why is this wrong?",
+      "back": "The logic of induction rests on the 'if $P(k)$ then $P(k+1)$' link. If you don't use the assumption $P(k)$, you haven't shown this connection, and your proof is invalid."
+    },
+    {
+      "front": "How do you start the inductive step for a summation, e.g., $\\sum_{r=1}^{n} f(r)$?",
+      "back": "Write out the sum for $n=k+1$: $\\sum_{r=1}^{k+1} f(r) = (\\sum_{r=1}^{k} f(r)) + f(k+1)$. Then substitute the assumed formula for the sum to $k$."
+    },
+    {
+      "front": "How do you approach a divisibility proof, e.g., 'prove $f(n)$ is divisible by $d$'?",
+      "back": "Assume $f(k) = dm$ for some integer $m$. Then analyse $f(k+1)$ and manipulate it to show it is also a multiple of $d$. A common technique is to consider $f(k+1) - f(k)$."
+    },
+    {
+      "front": "What if the base case is not $n=1$?",
+      "back": "The base case is the first integer for which the statement is claimed to be true. This could be $n=0$, $n=2$, or any other integer $n_0$. The conclusion would then be 'true for all integers $n \\ge n_0$'."
+    },
+    {
+      "front": "How do you prove a statement involving matrices, like $\\mathbf{A}^n = \\mathbf{B}_n$, by induction?",
+      "back": "Base case: Show $\\mathbf{A}^1 = \\mathbf{B}_1$. Assumption: Assume $\\mathbf{A}^k = \\mathbf{B}_k$. Inductive step: Prove $\\mathbf{A}^{k+1} = \\mathbf{B}_{k+1}$ by writing $\\mathbf{A}^{k+1} = \\mathbf{A}^k \\mathbf{A}$ and substituting the assumption: $\\mathbf{B}_k \\mathbf{A}$. Then show this product equals $\\mathbf{B}_{k+1}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What happens if I can't prove the inductive step?",
+      "a": "First, double-check your algebra. It's the most common source of error. Second, ensure you have correctly used the inductive hypothesis ($P(k)$). A proof of $P(k+1)$ that doesn't rely on $P(k)$ is not a proof by induction. If you're still stuck, reconsider your approach. For divisibility, is $f(k+1)-f(k)$ helpful, or maybe $f(k+1) - c \\cdot f(k)$ for some constant $c$?"
+    },
+    {
+      "q": "Can I work backwards from the $n=k+1$ case?",
+      "a": "You must be very careful. It is not valid to assume the $n=k+1$ result is true and work backwards to the $n=k$ assumption. However, you can use the target expression for $n=k+1$ as a 'goal' on your scrap paper to guide the manipulation of your starting expression. Your final written proof must flow logically from the LHS to the RHS of the $P(k+1)$ statement."
+    },
+    {
+      "q": "Do I have to write the full concluding sentence every time?",
+      "a": "Yes, absolutely. Examiners look for it. A statement like 'Since the statement is true for $n=1$ and if it's true for $n=k$ it is also true for $n=k+1$, it is true for all positive integers $n$ by the principle of mathematical induction' is essential for full marks. It shows you understand the logical principle you are using."
+    },
+    {
+      "q": "Is proof by induction only for positive integers?",
+      "a": "No. The statement might be for all integers $n \\ge n_0$, where $n_0$ could be any integer, such as 0, 2, or even -5. Your base case would then be to prove the statement for $n=n_0$, and your assumption would be for $k \\ge n_0$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to proof by induction, one of the most powerful tools in a mathematician's arsenal. While it might seem complex at first, it's a highly structured and logical process. Think of it as a formal way of setting off a chain reaction. This topic is a cornerstone of pure mathematics and frequently appears on Paper 1, so mastering its structure is key to success."
+    },
+    {
+      "type": "heading",
+      "content": "The Principle of Mathematical Induction"
+    },
+    {
+      "type": "text",
+      "content": "Mathematical induction is a method of proof used to establish that a given statement is true for a whole set of numbers, typically all positive integers. The proof relies on a 'domino effect'. If you can show the first domino falls, and that any falling domino knocks over the next, then you can conclude that all the dominoes will fall. In mathematical terms, this translates to a rigorous, four-step structure."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Base Case:** Prove the statement holds for the first value, $n_0$ (e.g., $n=1$).",
+        "**Inductive Hypothesis:** Assume the statement is true for an arbitrary integer $n=k$, where $k \\ge n_0$.",
+        "**Inductive Step:** Show that if the statement is true for $n=k$, it must also be true for $n=k+1$. This is the core of the proof.",
+        "**Conclusion:** A formal statement that combines the base case and inductive step to conclude the proof by the principle of mathematical induction."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Type 1: Proving Summation Formulae"
+    },
+    {
+      "type": "text",
+      "content": "A very common application of induction is to prove formulae for the sum of a series. For example, you might be asked to prove that the sum of the first $n$ square numbers, $\\sum_{r=1}^{n} r^2$, is equal to a specific formula in terms of $n$. The key to the inductive step is to separate the $(k+1)$-th term from the sum and then use your assumption for the sum up to $k$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Use the method of mathematical induction to prove that for all positive integers $n$,\n\n$\\sum_{r=1}^{n} r(r+1) = \\frac{1}{3}n(n+1)(n+2)$",
+      "solution": "Let $P(n)$ be the statement $\\sum_{r=1}^{n} r(r+1) = \\frac{1}{3}n(n+1)(n+2)$.\n\n**Step 1: Base Case**\nWe need to show $P(1)$ is true. \nFor $n=1$, LHS = $\\sum_{r=1}^{1} r(r+1) = 1(1+1) = 2$.\nRHS = $\\frac{1}{3}(1)(1+1)(1+2) = \\frac{1}{3}(1)(2)(3) = 2$.\nSince LHS = RHS, $P(1)$ is true.\n\n**Step 2: Inductive Hypothesis**\nAssume that $P(k)$ is true for some positive integer $k$. \nThat is, assume $\\sum_{r=1}^{k} r(r+1) = \\frac{1}{3}k(k+1)(k+2)$.\n\n**Step 3: Inductive Step**\nWe need to show that $P(k+1)$ is true. That is, we need to prove that $\\sum_{r=1}^{k+1} r(r+1) = \\frac{1}{3}(k+1)((k+1)+1)((k+1)+2) = \\frac{1}{3}(k+1)(k+2)(k+3)$.\n\nConsider the LHS for $n=k+1$:\n$\\sum_{r=1}^{k+1} r(r+1) = \\left( \\sum_{r=1}^{k} r(r+1) \\right) + (k+1)((k+1)+1)$\n$= \\left( \\sum_{r=1}^{k} r(r+1) \\right) + (k+1)(k+2)$\n\nNow, using the inductive hypothesis for the sum up to $k$:\n$= \\frac{1}{3}k(k+1)(k+2) + (k+1)(k+2)$\n\nFactor out the common terms $(k+1)(k+2)$:\n$= (k+1)(k+2) \\left( \\frac{1}{3}k + 1 \\right)$\n$= (k+1)(k+2) \\left( \\frac{k+3}{3} \\right)$\n$= \\frac{1}{3}(k+1)(k+2)(k+3)$\n\nThis is the required RHS for $P(k+1)$. So, if $P(k)$ is true, then $P(k+1)$ is true.\n\n**Step 4: Conclusion**\nSince $P(1)$ is true, and it has been shown that if $P(k)$ is true then $P(k+1)$ is true, by the principle of mathematical induction, the statement is true for all positive integers $n$."
+    },
+    {
+      "type": "heading",
+      "content": "Type 2: Proving Divisibility"
+    },
+    {
+      "type": "text",
+      "content": "Induction is also used to prove that an expression is divisible by a certain integer for all values of $n$. The key here is in the inductive step. After assuming $f(k)$ is divisible by $d$, you must analyse $f(k+1)$. A common and effective strategy is to consider the difference $f(k+1) - f(k)$ and show that this difference is also divisible by $d$. Since $f(k)$ is assumed to be divisible by $d$, it follows that $f(k+1)$ must also be."
+    },
+    {
+      "type": "workedExample",
+      "question": "Prove by induction that $f(n) = 7^n - 1$ is divisible by 6 for all integers $n \\ge 1$.",
+      "solution": "Let $P(n)$ be the statement '$7^n - 1$ is divisible by 6'.\n\n**Step 1: Base Case**\nFor $n=1$, $f(1) = 7^1 - 1 = 6$. Since 6 is divisible by 6, $P(1)$ is true.\n\n**Step 2: Inductive Hypothesis**\nAssume that $P(k)$ is true for some integer $k \\ge 1$. \nThis means we assume $7^k - 1$ is divisible by 6. \nSo, we can write $7^k - 1 = 6m$ for some integer $m$. This implies $7^k = 6m + 1$.\n\n**Step 3: Inductive Step**\nWe want to prove that $P(k+1)$ is true, i.e., that $7^{k+1} - 1$ is divisible by 6.\nConsider $f(k+1) = 7^{k+1} - 1$.\n$f(k+1) = 7 \\cdot 7^k - 1$\n\nNow, substitute the expression for $7^k$ from our assumption ($7^k = 6m + 1$):\n$f(k+1) = 7(6m + 1) - 1$\n$f(k+1) = 42m + 7 - 1$\n$f(k+1) = 42m + 6$\n$f(k+1) = 6(7m + 1)$\n\nSince $m$ is an integer, $7m+1$ is also an integer. Therefore, $f(k+1)$ is a multiple of 6. \nSo, if $P(k)$ is true, then $P(k+1)$ is true.\n\n**Step 4: Conclusion**\nSince $P(1)$ is true, and we have shown that $P(k) \\implies P(k+1)$, by the principle of mathematical induction, the statement is true for all integers $n \\ge 1$."
+    },
+    {
+      "type": "examTip",
+      "content": "In the inductive step, you MUST explicitly use your assumption for $n=k$. A good habit is to underline or highlight where you substitute it in your own working to ensure you haven't missed it. Also, never skip the final concluding sentence; it's usually worth a specific mark and ties the whole proof together."
+    },
+    {
+      "type": "heading",
+      "content": "Type 3: Proving Statements about Matrices"
+    },
+    {
+      "type": "text",
+      "content": "The principle of induction extends to statements involving matrices, most commonly for proving a formula for the $n$-th power of a matrix. The structure of the proof remains identical. The base case involves checking for $n=1$. The inductive step involves assuming the formula for $\\mathbf{M}^k$ and using it to prove the formula for $\\mathbf{M}^{k+1}$ by considering the product $\\mathbf{M}^{k+1} = \\mathbf{M}^k \\mathbf{M}$."
+    },
+    {
+      "type": "formula",
+      "content": "Inductive Step for Matrices:\n1. Assume $\\mathbf{M}^k = \\mathbf{F}(k)$ for some matrix formula $\\mathbf{F}(k)$.\n2. Consider $\\mathbf{M}^{k+1} = \\mathbf{M}^k \\mathbf{M}$.\n3. Substitute the assumption: $\\mathbf{M}^{k+1} = \\mathbf{F}(k) \\mathbf{M}$.\n4. Perform the matrix multiplication and algebraic manipulation to show that $\\mathbf{F}(k) \\mathbf{M} = \\mathbf{F}(k+1)$."
+    },
+    {
+      "type": "practice",
+      "label": "Proof by Induction",
+      "href": "/mark?subject=9231&topic=1.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "View the Cambridge International syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-further-9231/past-papers/"
+        },
+        {
+          "label": "Proof by Induction examples on Khan Academy",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:proof-by-induction/v/proof-by-induction"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

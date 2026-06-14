@@ -4,29 +4,220 @@
   "title": "Hypothesis tests",
   "paper": "P6",
   "paperName": "Probability & Statistics 2",
-  "status": "premium",
-  "summary": "9709 S2 — null and alternative hypotheses, z-tests, p-values, and errors.",
-  "durationMin": 26,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental concepts of hypothesis testing for a population mean and proportion. It covers setting up null and alternative hypotheses, understanding significance levels, calculating test statistics, and interpreting results to draw conclusions in context, including the nature of Type I and Type II errors.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Formulate H₀ and H₁ clearly.",
-    "Carry out z-tests for means and proportions.",
-    "Interpret p-values and critical regions.",
-    "Distinguish Type I and Type II errors."
+    "Formulate null and alternative hypotheses for one-tailed and two-tailed tests.",
+    "Calculate and use a test statistic to determine whether to reject the null hypothesis.",
+    "Interpret the results of a hypothesis test in the context of the problem.",
+    "Understand and calculate the probability of Type I and Type II errors."
   ],
   "simpleExplanation": {
-    "title": "Testing a claim",
-    "summary": "Assume H₀ is true unless evidence is strong enough to reject. Significance level α controls Type I error risk.",
+    "title": "Testing Claims with Data",
+    "summary": "Hypothesis testing is a formal procedure for using sample data to evaluate a claim about a population. We test a 'default' claim (the null hypothesis) against an alternative, and decide if our data provides enough evidence to reject the default.",
+    "analogy": "Imagine a court trial. The defendant is 'innocent until proven guilty'. This 'innocence' is the null hypothesis ($H_0$). The prosecution presents evidence (our sample data) to convince the jury to reject this default position in favour of 'guilty' (the alternative hypothesis, $H_1$). The standard of 'beyond a reasonable doubt' is the significance level; we need very strong evidence to convict (reject $H_0$).",
     "steps": [
-      "State H₀ and H₁ before calculating.",
-      "Choose one- or two-tailed test.",
-      "Compare z to critical value or p to α.",
-      "Conclude in context — not just reject/fail to reject."
+      "State the null hypothesis H₀ (the default or 'no change' claim) and the alternative H₁ (one-tailed for increase/decrease, two-tailed for 'change').",
+      "A Type I error is rejecting a true H₀. A Type II error is failing to reject a false H₀. The significance level, α, is the probability of a Type I error.",
+      "Calculate the test statistic from your sample data. Compare it to the critical value from tables, or find the p-value and compare it to the significance level α.",
+      "Use a Z-test for the mean (Normal distribution or large sample) or for a proportion. If the test statistic is in the critical region (or p < α), reject H₀."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a null hypothesis, $H_0$?",
+      "back": "The default assumption or statement of 'no effect' or 'no change' about a population parameter. It always contains an equality sign (e.g., $\\mu = 10$, $p = 0.4$)."
+    },
+    {
+      "front": "What is an alternative hypothesis, $H_1$?",
+      "back": "The statement that contradicts the null hypothesis, suggesting a change, difference, or effect. It contains an inequality (e.g., $\\mu > 10$, $\\mu \\neq 10$, $p < 0.4$)."
+    },
+    {
+      "front": "What is a significance level, $\\alpha$?",
+      "back": "The probability of rejecting the null hypothesis when it is actually true (a Type I error). Common values are 10%, 5%, and 1%. It defines the threshold for 'strong evidence'."
+    },
+    {
+      "front": "What is a critical region?",
+      "back": "The set of values for the test statistic that would lead to the rejection of the null hypothesis. The size of this region is determined by the significance level, $\\alpha$."
+    },
+    {
+      "front": "What is a test statistic?",
+      "back": "A value calculated from sample data that is used to decide whether to reject the null hypothesis. It measures how many standard errors the sample statistic is from the hypothesised population parameter."
+    },
+    {
+      "front": "When do you use a one-tailed test?",
+      "back": "When the alternative hypothesis specifies a direction of change, using words like 'increase', 'decrease', 'greater than', or 'less than'. For example, $H_1: \\mu > 50$."
+    },
+    {
+      "front": "When do you use a two-tailed test?",
+      "back": "When the alternative hypothesis does not specify a direction, using words like 'changed', 'different from', or 'not equal to'. For example, $H_1: p \\neq 0.25$."
+    },
+    {
+      "front": "What is a Type I error?",
+      "back": "Rejecting a true null hypothesis. It's a 'false positive'. The probability of a Type I error is equal to the significance level, $\\alpha$."
+    },
+    {
+      "front": "What is a Type II error?",
+      "back": "Failing to reject a false null hypothesis. It's a 'false negative'. Its probability is denoted by $\\beta$."
+    },
+    {
+      "front": "What is a p-value?",
+      "back": "The probability of observing a test statistic as extreme as, or more extreme than, the one calculated from the sample data, assuming the null hypothesis is true. If $p < \\alpha$, we reject $H_0$."
+    },
+    {
+      "front": "How do you conclude a hypothesis test?",
+      "back": "First, state whether you reject or do not reject $H_0$ based on the comparison. Second, write a concluding sentence in the context of the original problem, explaining what your decision means."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a p-value and a significance level (alpha)?",
+      "a": "The significance level, $\\alpha$, is a threshold you set *before* you conduct the test. It's your standard for how strong the evidence needs to be. The p-value is calculated *from* your data. It's the probability of seeing your sample result (or something more extreme) if the null hypothesis were true. You reject $H_0$ if your p-value is smaller than your chosen $\\alpha$."
+    },
+    {
+      "q": "Why do we divide alpha by 2 for a two-tailed test?",
+      "a": "In a two-tailed test, an 'extreme' result could be either significantly higher or significantly lower than the null hypothesis value. The significance level $\\alpha$ represents the total probability of making a Type I error. We split this probability between the two possible extremes (the two tails of the distribution), so each tail has a probability of $\\alpha/2$."
+    },
+    {
+      "q": "What happens if my test statistic is exactly equal to the critical value?",
+      "a": "This is a very rare occurrence in practice. By convention, if the test statistic is in the critical region (e.g., for $Z \\le -1.645$, if $Z = -1.645$), you reject $H_0$. However, it highlights that the boundary is arbitrary. In an exam, you should state your comparison clearly (e.g., $-1.645 = -1.645$) and follow the rule to reject $H_0$."
+    },
+    {
+      "q": "Do I need to use a continuity correction for hypothesis tests on proportions?",
+      "a": "In the 9709 syllabus, continuity corrections are required when approximating a discrete distribution (like Binomial or Poisson) with a continuous one (Normal), especially for finding probabilities of specific ranges. For hypothesis testing of a proportion, where you are testing a single sample proportion $\\hat{p}$, a continuity correction is generally *not* required or expected. The Normal approximation to the sampling distribution of $\\hat{p}$ is considered adequate without it, provided $np > 5$ and $n(1-p) > 5$."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Hypothesis tests** (6.5) complete Statistics 2. Always write **conclusion in context** with the null hypothesis referenced." },
-    { "type": "practice", "label": "Mark a hypothesis test question", "href": "/mark?subject=9709&topic=6.5" },
-    { "type": "resources", "items": [{ "label": "9709 course index", "href": "/courses/9709" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Hypothesis testing is a cornerstone of statistical inference. It provides a structured framework for making decisions about a population based on sample evidence. For example, does a new fertiliser increase crop yield? Has the average response time for an emergency service changed? We will learn how to translate these questions into statistical hypotheses and use data to arrive at a reasoned conclusion."
+    },
+    {
+      "type": "heading",
+      "content": "1. Setting Up the Hypotheses"
+    },
+    {
+      "type": "text",
+      "content": "Every hypothesis test begins with two competing statements about a population parameter (like the mean, $\\mu$, or proportion, $p$). The null hypothesis, $H_0$, represents the status quo or a statement of no effect. It is the default position we assume to be true. The alternative hypothesis, $H_1$, represents the claim we are trying to find evidence for. It's what we will conclude if we find the null hypothesis is unlikely."
+    },
+    {
+      "keyPoints": [
+        "**Null Hypothesis ($H_0$)**: Always includes an equality. E.g., $H_0: \\mu = 100$.",
+        "**Alternative Hypothesis ($H_1$)**: Includes an inequality. The form depends on the question.",
+        "**One-tailed test**: Used for directional claims. Keywords: 'increase', 'decrease', 'more than', 'less than'. E.g., $H_1: \\mu > 100$ or $H_1: \\mu < 100$.",
+        "**Two-tailed test**: Used for non-directional claims. Keywords: 'change', 'different from'. E.g., $H_1: \\mu \\neq 100$. For a two-tailed test, the significance level $\\alpha$ is split equally between the two tails ($\\alpha/2$ in each)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "2. The Test Procedure and The Test Statistic"
+    },
+    {
+      "type": "text",
+      "content": "Once hypotheses are set, we choose a significance level, $\\alpha$. This is our threshold for evidence. A 5% significance level ($\\alpha = 0.05$) means we are willing to accept a 5% chance of wrongly rejecting the null hypothesis. We then collect sample data and calculate a test statistic. This standardised value tells us how far our sample result is from the value claimed in $H_0$."
+    },
+    {
+      "type": "formula",
+      "content": "For a sample mean $\\bar{x}$ from a Normal distribution with known population variance $\\sigma^2$ (or a large sample by CLT): \n\nTest Statistic: $Z = \\frac{\\bar{X} - \\mu_0}{\\sigma / \\sqrt{n}}$ \n\nwhere $\\mu_0$ is the value from $H_0$."
+    },
+    {
+      "type": "text",
+      "content": "We compare our calculated Z-value to a critical value from the Normal distribution tables, determined by $\\alpha$. If the test statistic falls into the critical region (the 'tails' of the distribution), we have significant evidence to reject $H_0$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The mass of a certain type of chocolate bar is claimed to be 50g. The masses are known to be normally distributed with a standard deviation of 1.5g. A quality control manager suspects that the machine is producing underweight bars. She takes a random sample of 10 bars and finds their mean mass is 49.2g. Test her suspicion at the 5% significance level.",
+      "solution": "1. **Hypotheses**:\nLet $\\mu$ be the population mean mass of the chocolate bars.\n$H_0: \\mu = 50$ (The mean mass is 50g).\n$H_1: \\mu < 50$ (The mean mass is less than 50g, i.e., underweight). This is a one-tailed test.\n\n2. **Significance Level**:\n$\\alpha = 0.05$ (5%).\n\n3. **Critical Value**:\nFor a one-tailed test at the 5% level, we need the Z-value that gives a lower tail probability of 0.05. From tables, this corresponds to $P(Z < -1.645) = 0.05$. So, the critical value is -1.645. The critical region is $Z \\le -1.645$.\n\n4. **Test Statistic**:\nThe population is $X \\sim N(\\mu, 1.5^2)$. We have $n=10$, $\\bar{x}=49.2$, $\\sigma=1.5$.\n$Z = \\frac{\\bar{x} - \\mu_0}{\\sigma / \\sqrt{n}} = \\frac{49.2 - 50}{1.5 / \\sqrt{10}} = \\frac{-0.8}{0.4743...} = -1.686...$\n\n5. **Comparison and Conclusion**:\nThe test statistic $Z = -1.687$ is less than the critical value of $-1.645$. Therefore, the result falls in the critical region.\nWe reject $H_0$. There is sufficient evidence at the 5% significance level to suggest that the machine is producing underweight chocolate bars."
+    },
+    {
+      "type": "heading",
+      "content": "3. Type I and Type II Errors"
+    },
+    {
+      "type": "text",
+      "content": "Since our conclusion is based on a sample, not the entire population, there's always a chance we've made a mistake. There are two types of errors we can make in hypothesis testing. It's crucial to understand them, especially when considering the consequences of a wrong decision."
+    },
+    {
+      "keyPoints": [
+        "**Type I Error**: Rejecting $H_0$ when $H_0$ is actually true. This is like convicting an innocent person. The probability of this error is controlled by the significance level: $P(\\text{Type I error}) = \\alpha$.",
+        "**Type II Error**: Failing to reject $H_0$ when $H_0$ is actually false. This is like acquitting a guilty person. The probability is denoted by $\\beta$.",
+        "**Relationship**: For a fixed sample size, decreasing $\\alpha$ (making it harder to reject $H_0$) will increase $\\beta$. There is a trade-off between the two types of errors."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always state your final conclusion in the context of the problem. Don't just write 'Reject $H_0$'. Explain what this means for the scenario. For example: 'There is evidence to suggest the new drug is more effective' or 'There is no evidence that the mean response time has changed'."
+    },
+    {
+      "type": "workedExample",
+      "question": "In the past, 30% of customers at a coffee shop ordered oat milk. After a marketing campaign, the manager wants to know if this proportion has changed. In a random sample of 150 customers, 57 ordered oat milk. Test at the 10% significance level whether the proportion has changed. Also, find the p-value of this test.",
+      "solution": "1. **Hypotheses**:\nLet $p$ be the population proportion of customers ordering oat milk.\n$H_0: p = 0.3$\n$H_1: p \\neq 0.3$ (The proportion has 'changed'). This is a two-tailed test.\n\n2. **Significance Level**:\n$\\alpha = 0.10$ (10%). For a two-tailed test, this means 5% in each tail.\n\n3. **Test Statistic**:\nSample proportion $\\hat{p} = \\frac{57}{150} = 0.38$.\nWe use a Normal approximation to the Binomial distribution. Under $H_0$, the distribution of the sample proportion is approximately $N(p, \\frac{p(1-p)}{n})$.\nMean $\\mu = p = 0.3$.\nVariance $\\sigma^2 = \\frac{p(1-p)}{n} = \\frac{0.3 \\times 0.7}{150} = 0.0014$. Standard deviation $\\sigma = \\sqrt{0.0014} \\approx 0.03742$.\n$Z = \\frac{\\hat{p} - p}{\\sqrt{p(1-p)/n}} = \\frac{0.38 - 0.3}{0.03742} = 2.138...$\n\n4. **Comparison (p-value method)**:\nThe p-value is the probability of getting a result at least as extreme as the one observed. Since this is a two-tailed test, we find the probability of $Z > 2.138$ and multiply by 2.\n$P(Z > 2.138) = 1 - \\Phi(2.138) = 1 - 0.9837 = 0.0163$.\np-value $= 2 \\times 0.0163 = 0.0326$.\n\n5. **Conclusion**:\nThe p-value (0.0326) is less than the significance level $\\alpha$ (0.10). Therefore, we reject $H_0$.\nThere is sufficient evidence at the 10% significance level to conclude that the proportion of customers ordering oat milk has changed."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=9709&topic=6.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9709)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Hypothesis Testing Explained (Khan Academy)",
+          "href": "https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Hypothesis testing",
+    "embedUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "launchUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "hint": "Null vs alternative — critical region and p-values (9709 6.5).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "H₀ null hypothesis; H₁ alternative — one- or two-tailed.",
+        "embedHint": "State both before calculating."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Type I error: reject true H₀; Type II: accept false H₀.",
+        "embedHint": "Significance level α = P(Type I)."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Test statistic compared to critical value or p-value.",
+        "embedHint": "p < α → reject H₀."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Z-test for mean with known variance; t-test if σ unknown.",
+        "embedHint": "Use correct distribution."
+      }
+    ]
+  }
 }

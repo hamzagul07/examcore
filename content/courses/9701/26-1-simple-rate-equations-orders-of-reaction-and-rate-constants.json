@@ -4,39 +4,237 @@
   "title": "Simple rate equations, orders of reaction and rate constants",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level kinetics — rate equations, orders, half-life, and Arrhenius with PhET reactions sim.",
-  "durationMin": 26,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "An introduction to chemical kinetics, covering rate equations, orders of reaction, the rate constant (k), half-life, and the effect of temperature via the Arrhenius equation.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Deduce rate equations from experimental data.",
-    "Calculate order and units of rate constant k.",
-    "Apply half-life relationships for first order.",
-    "Use Arrhenius equation qualitatively."
+    "Explain and use the terms: rate of reaction, order of reaction, rate constant, half-life, and overall order.",
+    "Deduce the order of reaction and the rate constant from experimental data, including using the initial rates method.",
+    "Understand the characteristics of a first-order reaction, including its constant half-life, and use the relationship $t_{1/2} = \\ln(2)/k$.",
+    "Describe qualitatively the effect of temperature on the rate constant and relate this to the Arrhenius equation."
   ],
   "simpleExplanation": {
-    "title": "Rate = k[A]^m[B]^n",
-    "summary": "Orders come from experiment, not stoichiometry. First-order reactions have constant half-life.",
+    "title": "The Recipe for Reaction Speed",
+    "summary": "A rate equation is like a recipe that tells you how changing the amount of each reactant (concentration) affects the speed of the reaction. The orders of reaction are exponents in this recipe, which we can only find through experiments.",
+    "analogy": "Imagine you're running a pizza delivery service. The rate you deliver pizzas depends on how many chefs you have (reactant A) and how many delivery drivers you have (reactant B). If hiring one more chef lets you make one more pizza per hour, the order with respect to chefs is 1. If hiring one more driver lets you deliver four more pizzas per hour (perhaps because they can coordinate and take more efficient routes), the order with respect to drivers might be 2. The 'rate constant', k, is like your base efficiency - how fast you operate even with a standard team, affected by factors like oven temperature.",
     "steps": [
-      "Initial rates method — compare rates when [A] doubles.",
-      "First order: t_{½} = ln 2 / k.",
-      "Units of k depend on overall order.",
-      "Arrhenius: k increases with T — Ea from ln k vs 1/T plot."
+      "Rate = k[A]^m[B]^n — orders m, n from experiment only. | Sim hint: Initial rates method or half-life method.",
+      "Overall order = m + n; units of k depend on order. | Sim hint: First order: k in s⁻¹; second order: dm³ mol⁻¹ s⁻¹.",
+      "Half-life constant for first order: t_{½} = ln 2 / k. | Sim hint: Independent of initial concentration.",
+      "Arrhenius: k = Ae^{−Ea/RT} — temperature effect on rate. | Sim hint: Plot ln k vs 1/T for Ea."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the 'rate of reaction'?",
+      "back": "The change in concentration of a reactant or product per unit time. Its units are typically mol dm⁻³ s⁻¹."
+    },
+    {
+      "front": "What is a 'rate equation'?",
+      "back": "An equation that links the rate of reaction to the concentrations of the reactants raised to certain powers. For a reaction A + B → C, it takes the form: Rate = k[A]^m[B]^n."
+    },
+    {
+      "front": "What is the 'order of reaction' with respect to a reactant?",
+      "back": "The power to which the concentration of that reactant is raised in the rate equation. It indicates how the reactant's concentration affects the rate."
+    },
+    {
+      "front": "How is the 'order of reaction' determined?",
+      "back": "Experimentally only. It cannot be determined from the stoichiometry of the balanced chemical equation."
+    },
+    {
+      "front": "What is the 'overall order' of a reaction?",
+      "back": "The sum of the individual orders of reaction for all reactants in the rate equation. For Rate = k[A]^m[B]^n, the overall order is m + n."
+    },
+    {
+      "front": "What is the 'rate constant', k?",
+      "back": "The constant of proportionality in the rate equation. It is constant for a given reaction at a specific temperature."
+    },
+    {
+      "front": "What is the only factor that significantly changes the value of the rate constant, k?",
+      "back": "Temperature. The rate constant, k, increases as temperature increases."
+    },
+    {
+      "front": "How do you determine the units for the rate constant, k?",
+      "back": "Rearrange the rate equation to make k the subject and substitute the units for rate (mol dm⁻³ s⁻¹) and concentration (mol dm⁻³). Then cancel and simplify."
+    },
+    {
+      "front": "What are the units of k for a second-order reaction?",
+      "back": "dm³ mol⁻¹ s⁻¹"
+    },
+    {
+      "front": "What is 'half-life' ($t_{1/2}$)?",
+      "back": "The time taken for the concentration of a reactant to decrease to half its initial value."
+    },
+    {
+      "front": "What is a key feature of the half-life for a first-order reaction?",
+      "back": "It is constant and independent of the initial concentration of the reactant."
+    },
+    {
+      "front": "What does it mean if a reactant is 'zero-order'?",
+      "back": "The concentration of that reactant has no effect on the rate of reaction. The rate is constant with respect to that reactant."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What does it mean if a reactant is zero-order?",
+      "a": "If a reactant has an order of zero, its concentration does not affect the rate of the reaction. This might seem strange, but it can happen for several reasons. For example, the reactant might be involved in a step of the reaction mechanism that is much faster than the rate-determining step, so its concentration is never the limiting factor. It could also mean the reactant is in such large excess (like water as a solvent) that its concentration doesn't change noticeably during the reaction."
+    },
+    {
+      "q": "Can the order of reaction be a fraction or negative?",
+      "a": "Yes, although it's less common at A-Level. Fractional orders often indicate a complex reaction mechanism involving radicals. Negative orders can occur when a substance, often a product, inhibits the reaction, meaning an increase in its concentration causes the reaction rate to decrease."
+    },
+    {
+      "q": "What is the difference between the 'rate of reaction' and the 'rate constant'?",
+      "a": "The 'rate of reaction' is the speed at which reactants are used up or products are formed (units: mol dm⁻³ s⁻¹). It changes as the reaction proceeds because reactant concentrations decrease. The 'rate constant' (k) is a constant of proportionality that links the rate to the concentrations. For a specific reaction at a constant temperature, k does not change, whereas the rate does."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Rate equations** (26.1) extend AS **8.1–8.2**. **Orders from graphs** and **units of k** are examined every year."
+      "content": "Welcome to chemical kinetics! This is the study of how fast chemical reactions occur. Some reactions, like explosions, are incredibly fast, while others, like the rusting of iron, are very slow. In this lesson, we will learn how to quantify reaction speed using rate equations, understand what determines the rate, and explore how factors like concentration and temperature play a crucial role."
+    },
+    {
+      "type": "heading",
+      "content": "The Rate Equation"
+    },
+    {
+      "type": "text",
+      "content": "To express the relationship between the rate of a reaction and the concentration of the reactants, we use a mathematical expression called the rate equation (or rate law). For a general reaction: aA + bB → products, the rate equation is not determined by the stoichiometric coefficients 'a' and 'b'. Instead, it is found experimentally."
+    },
+    {
+      "type": "formula",
+      "content": "Rate = k[A]^m[B]^n"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**[A]** and **[B]** represent the concentrations of reactants A and B in mol dm⁻³.",
+        "**k** is the rate constant, a value specific to a reaction at a particular temperature.",
+        "**m** is the order of reaction with respect to reactant A.",
+        "**n** is the order of reaction with respect to reactant B.",
+        "The **overall order** of the reaction is the sum of the individual orders, m + n.",
+        "Orders of reaction (m and n) are usually integers (0, 1, or 2) but can be fractions. They must be determined from experimental data."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Determining Reaction Orders and the Rate Constant"
+    },
+    {
+      "type": "text",
+      "content": "The most common method to find the orders of reaction is the 'initial rates method'. This involves carrying out a series of experiments where the initial concentration of one reactant is changed while the concentrations of all other reactants are kept constant. By observing the effect on the initial rate of reaction, we can deduce the order with respect to that reactant."
+    },
+    {
+      "type": "workedExample",
+      "question": "The reaction between propanone and iodine in the presence of an acid catalyst was studied. The following initial rates data were obtained at a constant temperature.\n\n| Experiment | [CH₃COCH₃] / mol dm⁻³ | [I₂] / mol dm⁻³ | [H⁺] / mol dm⁻³ | Initial Rate / mol dm⁻³ s⁻¹ |\n|------------|---------------------------|-----------------|-----------------|--------------------------------|\n| 1          | 0.40                      | 0.02            | 0.20            | 2.4 x 10⁻⁵                     |\n| 2          | 0.80                      | 0.02            | 0.20            | 4.8 x 10⁻⁵                     |\n| 3          | 0.40                      | 0.04            | 0.20            | 2.4 x 10⁻⁵                     |\n| 4          | 0.40                      | 0.02            | 0.40            | 4.8 x 10⁻⁵                     |\n\na) Deduce the order of reaction with respect to propanone, iodine and H⁺ ions.\nb) Write the rate equation for the reaction.\nc) Calculate the value of the rate constant, k, and state its units.",
+      "solution": "**a) Deducing orders:**\n\n*   **For propanone [CH₃COCH₃]:** Compare experiments 1 and 2. [CH₃COCH₃] doubles (0.40 → 0.80), while [I₂] and [H⁺] are constant. The rate also doubles (2.4 x 10⁻⁵ → 4.8 x 10⁻⁵). Since rate ∝ [CH₃COCH₃]¹, the reaction is **first order** with respect to propanone.\n\n*   **For iodine [I₂]:** Compare experiments 1 and 3. [I₂] doubles (0.02 → 0.04), while [CH₃COCH₃] and [H⁺] are constant. The rate does not change (2.4 x 10⁻⁵). Since rate is unaffected by [I₂], the reaction is **zero order** with respect to iodine.\n\n*   **For H⁺ ions:** Compare experiments 1 and 4. [H⁺] doubles (0.20 → 0.40), while [CH₃COCH₃] and [I₂] are constant. The rate doubles (2.4 x 10⁻⁵ → 4.8 x 10⁻⁵). Since rate ∝ [H⁺]¹, the reaction is **first order** with respect to H⁺ ions.\n\n**b) Rate equation:**\n\nRate = k[CH₃COCH₃]¹[I₂]⁰[H⁺]¹\nSince [I₂]⁰ = 1, the simplified rate equation is:\n**Rate = k[CH₃COCH₃][H⁺]**\n\n**c) Calculating k:**\n\nRearrange the rate equation: k = Rate / ([CH₃COCH₃][H⁺])\nUse data from any experiment, e.g., Experiment 1:\nk = (2.4 x 10⁻⁵ mol dm⁻³ s⁻¹) / (0.40 mol dm⁻³ × 0.20 mol dm⁻³)\nk = (2.4 x 10⁻⁵) / (0.08)\n**k = 3.0 x 10⁻⁴**\n\nTo find the units: units of k = (mol dm⁻³ s⁻¹) / (mol dm⁻³ × mol dm⁻³)\nunits of k = s⁻¹ / (mol dm⁻³)\n**units of k = dm³ mol⁻¹ s⁻¹**"
+    },
+    {
+      "type": "heading",
+      "content": "Units of the Rate Constant, k"
+    },
+    {
+      "type": "text",
+      "content": "The units of the rate constant, k, depend on the overall order of the reaction. It is essential that you can derive these units, as it is a frequently tested skill. The method involves rearranging the rate equation to make k the subject and then substituting the standard units for rate (mol dm⁻³ s⁻¹) and concentration (mol dm⁻³)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Overall Order 0:** Rate = k. Units of k are **mol dm⁻³ s⁻¹**.",
+        "**Overall Order 1:** Rate = k[A]. Units of k are **s⁻¹**.",
+        "**Overall Order 2:** Rate = k[A]². Units of k are **dm³ mol⁻¹ s⁻¹**.",
+        "**Overall Order 3:** Rate = k[A]³. Units of k are **dm⁶ mol⁻² s⁻¹**."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "First-Order Reactions and Half-Life"
+    },
+    {
+      "type": "text",
+      "content": "The half-life ($t_{1/2}$) of a reaction is the time it takes for the concentration of a reactant to fall to half of its initial value. For first-order reactions, the half-life is constant and does not depend on the initial concentration. This is a unique characteristic and can be used to identify a first-order reaction from concentration-time data. The half-life is mathematically related to the rate constant, k."
+    },
+    {
+      "type": "formula",
+      "content": "t_{1/2} = \\frac{\\ln(2)}{k}"
+    },
+    {
+      "type": "text",
+      "content": "Since $\\ln(2)$ is a constant (approximately 0.693), this equation shows the inverse relationship between half-life and the rate constant for a first-order reaction. A larger k means a faster reaction and therefore a shorter half-life."
+    },
+    {
+      "type": "workedExample",
+      "question": "The decomposition of hydrogen peroxide, 2H₂O₂(aq) → 2H₂O(l) + O₂(g), is a first-order reaction. In an experiment, the rate constant, k, was found to be 7.30 x 10⁻⁴ s⁻¹ at a certain temperature.\n\na) Calculate the half-life of this reaction.\nb) If the initial concentration of H₂O₂ was 1.60 mol dm⁻³, what would be its concentration after three half-lives?",
+      "solution": "**a) Calculate half-life:**\n\nFor a first-order reaction, we use the formula: $t_{1/2} = \\frac{\\ln(2)}{k}$\nSubstitute the value of k:\n$t_{1/2} = \\frac{\\ln(2)}{7.30 \\times 10^{-4} \\text{ s}^{-1}}$\n$t_{1/2} = \\frac{0.693}{7.30 \\times 10^{-4} \\text{ s}^{-1}}$\n$t_{1/2} = 949.5$ s\nTo 3 significant figures, **$t_{1/2} = 950$ s**.\n\n**b) Concentration after three half-lives:**\n\nInitial concentration = 1.60 mol dm⁻³\nAfter 1 half-life: Concentration = 1.60 / 2 = 0.80 mol dm⁻³\nAfter 2 half-lives: Concentration = 0.80 / 2 = 0.40 mol dm⁻³\nAfter 3 half-lives: Concentration = 0.40 / 2 = **0.20 mol dm⁻³**\n\nAlternatively, Concentration = Initial Concentration / $2^n$, where n is the number of half-lives.\nConcentration = 1.60 / $2^3$ = 1.60 / 8 = 0.20 mol dm⁻³."
+    },
+    {
+      "type": "examTip",
+      "content": "A common mistake is to try and deduce the order of reaction from the stoichiometry of the overall chemical equation. Remember, orders can only be found from experimental rate data. Also, be very careful with calculating the units of k. Always show your working by rearranging the rate equation and cancelling units – this can often earn you a mark even if your final calculation is incorrect."
     },
     {
       "type": "practice",
-      "label": "Mark a rate equations question",
+      "label": "Practice Questions: Rate Equations",
       "href": "/mark?subject=9701&topic=26.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "ChemGuide: Orders of Reaction and Rate Equations",
+          "href": "https://www.chemguide.co.uk/physical/basicrates/rateequations.html"
+        },
+        {
+          "label": "Video Tutorial: Initial Rates Method",
+          "href": "https://www.youtube.com/watch?v=1R0dG6L31eA"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Reactants and rate",
+    "embedUrl": "https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/reactants-products-and-leftovers",
+    "hint": "Concentration effects on rate — orders from experiment (26.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Rate = k[A]^m[B]^n — orders m, n from experiment only.",
+        "embedHint": "Initial rates method or half-life method."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Overall order = m + n; units of k depend on order.",
+        "embedHint": "First order: k in s⁻¹; second order: dm³ mol⁻¹ s⁻¹."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Half-life constant for first order: t_{½} = ln 2 / k.",
+        "embedHint": "Independent of initial concentration."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Arrhenius: k = Ae^{−Ea/RT} — temperature effect on rate.",
+        "embedHint": "Plot ln k vs 1/T for Ea."
+      }
+    ]
+  }
 }

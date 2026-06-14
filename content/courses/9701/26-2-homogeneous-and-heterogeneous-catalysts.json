@@ -4,29 +4,216 @@
   "title": "Homogeneous and heterogeneous catalysts",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level — catalyst types, mechanisms, and industrial examples with PhET sim.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson distinguishes between homogeneous and heterogeneous catalysts, exploring their mechanisms of action. We will examine how catalysts provide an alternative reaction pathway with lower activation energy, with specific industrial examples like the Haber and Contact processes, and discuss factors affecting catalyst activity such as poisoning and sintering.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Distinguish homogeneous and heterogeneous catalysis.",
-    "Explain how catalysts increase rate.",
-    "Give industrial examples of each type.",
-    "Describe catalyst poisoning and regeneration."
+    "Define homogeneous and heterogeneous catalysts and provide examples for each.",
+    "Explain the mode of action for homogeneous catalysts via intermediate formation, using the Fe²⁺/S₂O₈²⁻ reaction as an example.",
+    "Explain the mode of action for heterogeneous catalysts via adsorption, reaction, and desorption, referencing the Haber and Contact processes.",
+    "Describe the economic and environmental importance of catalysts and the problems associated with their use, such as poisoning and sintering."
   ],
   "simpleExplanation": {
-    "title": "Same phase or surface",
-    "summary": "Homogeneous catalysts are in the same phase as reactants. Heterogeneous catalysts provide a solid surface for adsorption.",
+    "title": "Catalysts: The Reaction Shortcut",
+    "summary": "Catalysts are chemical matchmakers that speed up reactions without being consumed. They do this by offering a new, easier reaction route, and are classified as either homogeneous (same phase) or heterogeneous (different phase).",
+    "analogy": "Imagine you need to hike over a tall mountain to get to a village. This is the uncatalysed reaction, requiring a lot of energy (a high activation energy). A catalyst is like discovering a secret tunnel that goes straight through the mountain. It's a different path, it's much quicker, requires far less energy, and the tunnel remains unchanged for the next person to use.",
     "steps": [
-      "Catalyst lowers Ea — regenerated unchanged.",
-      "Homogeneous: Fe²⁺/Fe³⁺ in I⁻ oxidation.",
-      "Heterogeneous: Fe in Haber, V₂O₅ in Contact.",
-      "Surface area and poisoning affect activity."
+      "A catalyst provides an alternative reaction mechanism with a lower activation energy ($E_a$), increasing the rate of reaction. It is not consumed in the overall process.",
+      "Homogeneous catalysts exist in the same physical state (phase) as the reactants, for example, aqueous Fe²⁺ ions catalysing a reaction between aqueous ions.",
+      "Heterogeneous catalysts are in a different phase to the reactants. Typically, a solid catalyst provides a surface with active sites for gaseous or liquid reactants to adsorb and react, as seen with iron in the Haber process or V₂O₅ in the Contact process.",
+      "The efficiency of heterogeneous catalysts can be reduced over time. Poisoning occurs when impurities bind irreversibly to active sites, while sintering is the loss of surface area due to particle fusion at high temperatures."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a catalyst?",
+      "back": "A substance that increases the rate of a chemical reaction by providing an alternative reaction pathway with a lower activation energy, without being used up in the overall reaction."
+    },
+    {
+      "front": "What is a homogeneous catalyst?",
+      "back": "A catalyst that is in the same physical state (phase) as the reactants. For example, an aqueous catalyst for a reaction in aqueous solution."
+    },
+    {
+      "front": "What is a heterogeneous catalyst?",
+      "back": "A catalyst that is in a different physical state (phase) from the reactants. For example, a solid catalyst for a reaction between gases."
+    },
+    {
+      "front": "Describe the general mechanism of homogeneous catalysis.",
+      "back": "The catalyst reacts with one of the reactants to form an intermediate. This intermediate then reacts with the other reactant to form the products and regenerate the catalyst."
+    },
+    {
+      "front": "Describe the mechanism of heterogeneous catalysis.",
+      "back": "1. Adsorption: Reactant molecules bind to active sites on the catalyst's surface. 2. Reaction: The reaction occurs between adsorbed reactants. 3. Desorption: Product molecules leave the surface."
+    },
+    {
+      "front": "Give an example of homogeneous catalysis with equations.",
+      "back": "The reaction between S₂O₈²⁻ and I⁻ ions, catalysed by Fe²⁺(aq).\nStep 1: S₂O₈²⁻(aq) + 2Fe²⁺(aq) → 2SO₄²⁻(aq) + 2Fe³⁺(aq)\nStep 2: 2Fe³⁺(aq) + 2I⁻(aq) → 2Fe²⁺(aq) + I₂(aq)"
+    },
+    {
+      "front": "What is an active site?",
+      "back": "A specific location on the surface of a heterogeneous catalyst where reactant molecules can bind (adsorb) and react."
+    },
+    {
+      "front": "What is catalyst poisoning?",
+      "back": "The deactivation of a catalyst by a substance (a poison) that binds strongly and irreversibly to the active sites, blocking them from reactants. Example: Sulfur poisoning the iron catalyst in the Haber process."
+    },
+    {
+      "front": "What is sintering?",
+      "back": "The process where small catalyst particles fuse into larger ones at high temperatures, causing a decrease in the total surface area and therefore a reduction in catalytic activity."
+    },
+    {
+      "front": "Why are transition metals and their compounds effective catalysts?",
+      "back": "They have variable oxidation states (allowing them to act as electron carriers in homogeneous catalysis) and can provide a surface for adsorption (in heterogeneous catalysis)."
+    },
+    {
+      "front": "What is autocatalysis?",
+      "back": "A reaction in which one of the products acts as a catalyst for the reaction. The reaction starts slowly and speeds up as the concentration of the product/catalyst increases. Example: Mn²⁺ in the oxidation of ethanedioic acid by KMnO₄."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If a catalyst is regenerated, why do industries need to replace their catalysts?",
+      "a": "Although catalysts are chemically regenerated in each cycle, they degrade physically and chemically over time. Heterogeneous catalysts can be deactivated by poisoning (where impurities block active sites) or sintering (where high temperatures cause particles to fuse, reducing surface area). This loss of activity eventually makes it more economical to replace the catalyst."
+    },
+    {
+      "q": "How exactly does a catalyst provide an 'alternative pathway'?",
+      "a": "It offers a different set of elementary steps for the reaction to proceed. For a homogeneous catalyst, this involves forming a new intermediate species. For a heterogeneous catalyst, it involves binding reactants to a surface, which weakens their internal bonds and holds them in a favourable orientation for reaction. Both these new pathways have lower activation energies than the uncatalysed route."
+    },
+    {
+      "q": "What is autocatalysis and how does it differ from regular catalysis?",
+      "a": "Autocatalysis is a specific type of catalysis where one of the reaction products acts as the catalyst for the reaction. A classic example is the reaction between manganate(VII) ions and ethanedioate ions, where the Mn²⁺(aq) product catalyses its own formation. Unlike a typical catalysed reaction which is fastest at the start, an autocatalysed reaction starts slowly and then accelerates as the concentration of the catalytic product increases."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Catalysts** (26.2) extend **rate equations** (26.1). Draw **reaction profile** with lower Ea for catalysed route." },
-    { "type": "practice", "label": "Mark a catalysts question", "href": "/mark?subject=9701&topic=26.2" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Catalysts are fundamental to both industrial chemistry and biological systems. They accelerate reactions that would otherwise be too slow to be useful, without being consumed themselves. This is achieved by providing an alternative, lower-energy pathway. By lowering the activation energy ($E_a$), a greater proportion of molecules have energy equal to or greater than $E_a$, as shown by the Maxwell-Boltzmann distribution, leading to a significant increase in the rate of successful collisions. We will explore the two main classes of catalysts: homogeneous and heterogeneous."
+    },
+    {
+      "type": "heading",
+      "content": "Homogeneous Catalysis"
+    },
+    {
+      "type": "text",
+      "content": "In homogeneous catalysis, the catalyst and the reactants are in the same physical phase. This is most commonly seen in the liquid phase, where all reactants and the catalyst are dissolved in the same solvent. The uniform distribution of the catalyst allows for effective interaction with reactant molecules throughout the bulk of the mixture."
+    },
+    {
+      "type": "text",
+      "content": "The mechanism typically involves the catalyst forming a reactive intermediate with one of the reactants. This intermediate is more susceptible to reaction with the second reactant. In the final step, the product is formed, and the catalyst is regenerated, ready to start another catalytic cycle. Transition metal ions are often excellent homogeneous catalysts because their ability to exist in variable oxidation states allows them to be easily oxidised and reduced during the catalytic cycle."
+    },
+    {
+      "type": "workedExample",
+      "question": "The reaction between peroxodisulfate(VI) ions, S₂O₈²⁻, and iodide ions, I⁻, is very slow. The reaction can be catalysed by adding a small amount of aqueous iron(II) sulfate.\nOverall reaction: S₂O₈²⁻(aq) + 2I⁻(aq) → 2SO₄²⁻(aq) + I₂(aq)\nExplain, with the aid of equations, the catalytic role of the Fe²⁺(aq) ions.",
+      "solution": "The uncatalysed reaction is slow because it involves the collision of two negatively charged ions (S₂O₈²⁻ and I⁻), which repel each other.\n\nThe Fe²⁺(aq) ion acts as a homogeneous catalyst by providing a two-step pathway where each step involves a collision between oppositely charged ions, which is more favourable.\n\n**Step 1:** The Fe²⁺ ion is oxidised to Fe³⁺ by the peroxodisulfate(VI) ion.\nS₂O₈²⁻(aq) + 2Fe²⁺(aq) → 2SO₄²⁻(aq) + 2Fe³⁺(aq)\n\n**Step 2:** The Fe³⁺ ion formed then oxidises the iodide ions to iodine, regenerating the original Fe²⁺ catalyst.\n2Fe³⁺(aq) + 2I⁻(aq) → 2Fe²⁺(aq) + I₂(aq)\n\n**Conclusion:** The Fe²⁺ ion is regenerated at the end of the reaction, fulfilling its role as a catalyst. It provides an alternative pathway with lower activation energy."
+    },
+    {
+      "type": "heading",
+      "content": "Heterogeneous Catalysis"
+    },
+    {
+      "type": "text",
+      "content": "In heterogeneous catalysis, the catalyst is in a different phase from the reactants. The most common scenario is a solid catalyst with gaseous or liquid reactants. The effectiveness of such a catalyst is highly dependent on its surface area; hence, they are often used in a finely divided form or on a porous support material to maximise the number of available active sites."
+    },
+    {
+      "type": "text",
+      "content": "The mechanism involves a three-step process on the catalyst surface:\n1.  **Adsorption:** Reactant molecules approach the surface and form weak bonds with the active sites. This process weakens the covalent bonds within the reactant molecules, lowering the activation energy.\n2.  **Reaction:** The adsorbed reactants are held in the correct orientation, allowing them to react with each other on the surface.\n3.  **Desorption:** The product molecules have weaker affinity for the active sites and are released back into the gas or liquid phase, freeing up the active site for the next cycle."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Haber Process:** Synthesis of ammonia. $N₂(g) + 3H₂(g) \\rightleftharpoons 2NH₃(g)$. Catalyst: Iron (Fe) solid.",
+        "**Contact Process:** Manufacture of sulfuric acid. $2SO₂(g) + O₂(g) \\rightleftharpoons 2SO₃(g)$. Catalyst: Vanadium(V) oxide (V₂O₅) solid.",
+        "**Catalytic Converters:** In car exhausts. $2CO(g) + 2NO(g) \\rightarrow 2CO₂(g) + N₂(g)$. Catalysts: Platinum (Pt), Palladium (Pd), and Rhodium (Rh) solids coated on a ceramic honeycomb."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In the Contact process, vanadium(V) oxide, V₂O₅, catalyses the oxidation of sulfur dioxide to sulfur trioxide. Describe the mechanism of this heterogeneous catalysis, including the relevant equations for the catalytic cycle.",
+      "solution": "Vanadium(V) oxide acts as a heterogeneous catalyst because it is a solid, while the reactants (SO₂ and O₂) are gases.\n\nThe mechanism involves the V₂O₅ being reduced and then re-oxidised.\n\n**Step 1: Adsorption and Reaction**\nSulfur dioxide gas is adsorbed onto the surface of the V₂O₅ catalyst. It reacts with the catalyst, reducing the vanadium from the +5 oxidation state to the +4 oxidation state and forming sulfur trioxide.\nSO₂(g) + V₂O₅(s) → SO₃(g) + V₂O₄(s)\nAlternatively, this is often shown with ions: 2V⁵⁺ + O²⁻ + SO₂ → 2V⁴⁺ + SO₃\n\n**Step 2: Desorption and Regeneration**\nThe sulfur trioxide product desorbs from the surface. The reduced catalyst, V₂O₄, then reacts with oxygen from the air to regenerate the V₂O₅ catalyst. The vanadium is re-oxidised to its +5 state.\nV₂O₄(s) + ½O₂(g) → V₂O₅(s)\n\n**Overall:** The V₂O₅ is not consumed. It provides a surface and an alternative pathway involving changes in its own oxidation state to facilitate the conversion of SO₂ to SO₃."
+    },
+    {
+      "type": "heading",
+      "content": "Catalyst Deactivation"
+    },
+    {
+      "type": "text",
+      "content": "While catalysts are not consumed in a reaction, their activity can decrease over time, a process known as deactivation. This is a major concern in industrial processes, as it can lead to reduced efficiency and increased costs associated with catalyst replacement or regeneration. The two main mechanisms for deactivation of heterogeneous catalysts are poisoning and sintering."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Poisoning:** This occurs when impurities in the reactant stream bind very strongly, often irreversibly, to the active sites on the catalyst surface. This blocks the sites, preventing reactant molecules from adsorbing. A classic example is sulfur compounds poisoning the iron catalyst in the Haber process.",
+        "**Sintering:** At the high temperatures often used in catalytic processes, the fine catalyst particles can gradually fuse together to form larger particles. This reduces the total surface area to volume ratio, leading to fewer available active sites and a decrease in catalytic activity."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently ask for the equations of catalysed pathways. For homogeneous catalysis (e.g., Fe²⁺), show how the catalyst is used and then regenerated in two separate steps. For heterogeneous catalysis (e.g., V₂O₅), show the oxidation/reduction of the catalyst. Also, remember that a catalyst lowers $E_a$ but has NO effect on the enthalpy change of reaction, $\\Delta H$, or the position of equilibrium, $K_c$. It only affects the rate at which equilibrium is reached."
+    },
+    {
+      "type": "practice",
+      "label": "Catalysis",
+      "href": "/mark?subject=9701&topic=26.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Video explaining catalytic converters",
+          "href": "https://www.youtube.com/watch?v=2kMjA22z-p4"
+        },
+        {
+          "label": "In-depth article on industrial catalysis",
+          "href": "https://www.essentialchemicalindustry.org/processes/catalysis-in-industry.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Catalyst and rate",
+    "embedUrl": "https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/reactants-products-and-leftovers",
+    "hint": "Same phase vs surface catalysis — alternative pathway (26.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Catalyst lowers Ea — alternative mechanism, not consumed.",
+        "embedHint": "More successful collisions."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Homogeneous: same phase as reactants (e.g. Fe²⁺ in I⁻ oxidation).",
+        "embedHint": "Uniform mixing at molecular level."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Heterogeneous: surface adsorption — Haber Fe, Contact V₂O₅.",
+        "embedHint": "Reactants bind active sites on solid."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Poisoning and sintering reduce heterogeneous activity.",
+        "embedHint": "Industrial catalyst maintenance."
+      }
+    ]
+  }
 }

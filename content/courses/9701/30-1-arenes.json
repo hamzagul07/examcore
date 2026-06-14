@@ -4,29 +4,234 @@
   "title": "Arenes",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level arene chemistry — electrophilic substitution, directing groups, and mechanisms.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces arenes, focusing on the unique structure and stability of benzene. It details the mechanism of electrophilic substitution and covers key reactions such as nitration, halogenation, and Friedel-Crafts alkylation and acylation, including the specific reagents and conditions required.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe electrophilic substitution mechanism.",
-    "Explain nitration, halogenation, and Friedel–Crafts reactions.",
-    "Predict directing effects of substituents.",
-    "Contrast arene and alkene reactivity."
+    "Describe the structure of benzene as a planar, cyclic hydrocarbon with a delocalised pi-system.",
+    "Explain the relative resistance of benzene to addition reactions compared to alkenes, in terms of delocalisation energy.",
+    "Outline the mechanism for electrophilic substitution in arenes, exemplified by nitration, halogenation, and Friedel-Crafts reactions.",
+    "Recall the reagents and conditions for the electrophilic substitution of benzene to form nitrobenzene, bromobenzene, and alkyl/acyl benzenes."
   ],
   "simpleExplanation": {
-    "title": "Substitution not addition",
-    "summary": "Benzene resists addition — electrophilic substitution preserves aromaticity. Substituents direct the next group ortho/para or meta.",
+    "title": "Benzene's Exclusive Club",
+    "summary": "Benzene has a uniquely stable ring of electrons that it doesn't like to break. Instead of adding new atoms and destroying this stability, it substitutes one of its hydrogen atoms for an electrophile.",
+    "analogy": "Imagine a perfectly round, exclusive fortress with six guards (hydrogens) and a protective energy shield (the delocalised pi-system). The fortress won't break down its walls to let someone in (addition). Instead, a special envoy (an electrophile) can persuade one guard to leave and take their place (substitution), leaving the fortress walls and its shield intact.",
     "steps": [
-      "Generate E+ — NO₂⁺, Br⁺, R⁺, RCO⁺.",
-      "Arenium ion intermediate — temporary loss of aromaticity.",
-      "Deprotonation restores aromatic ring.",
-      "Activating groups ortho/para; deactivating meta (mostly)."
+      "The general mechanism is electrophilic substitution. An electron-rich benzene ring attacks an electrophile (E+), forming a temporary, unstable intermediate called an arenium ion, which breaks the aromaticity.",
+      "For nitration, the electrophile is the nitronium ion, NO₂⁺. It's generated in situ by reacting concentrated nitric acid with a concentrated sulfuric acid catalyst.",
+      "For halogenation (e.g., bromination), a halogen carrier catalyst like FeBr₃ polarises the Br₂ molecule, helping to generate a powerful Br⁺ electrophile.",
+      "In Friedel-Crafts reactions, a catalyst like AlCl₃ is used to generate a carbocation (alkylation) or an acylium ion (acylation) electrophile from a haloalkane or acyl chloride."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an arene?",
+      "back": "A hydrocarbon based on the benzene ring, C₆H₆, which is a planar, cyclic molecule with a delocalised system of pi electrons."
+    },
+    {
+      "front": "Why does benzene undergo substitution rather than addition reactions?",
+      "back": "The delocalised pi-system gives benzene extra stability (delocalisation energy). Substitution preserves this stable system, whereas addition would destroy it."
+    },
+    {
+      "front": "What is the intermediate in the electrophilic substitution of benzene called?",
+      "back": "The arenium ion (or a carbocation intermediate). It is unstable because the delocalised pi-system is temporarily broken."
+    },
+    {
+      "front": "What are the reagents and conditions for the nitration of benzene?",
+      "back": "Reagents: Concentrated nitric acid (HNO₃) and concentrated sulfuric acid (H₂SO₄ catalyst). Conditions: Heat under reflux at 50-55°C."
+    },
+    {
+      "front": "What is the role of concentrated sulfuric acid in the nitration of benzene?",
+      "back": "It acts as a catalyst by protonating the nitric acid, which then loses a water molecule to generate the strong electrophile, the nitronium ion (NO₂⁺)."
+    },
+    {
+      "front": "What is the electrophile in the nitration of benzene?",
+      "back": "The nitronium ion, NO₂⁺."
+    },
+    {
+      "front": "What are the reagents and conditions for the bromination of benzene?",
+      "back": "Reagents: Bromine (Br₂) and a halogen carrier catalyst (e.g., FeBr₃ or AlBr₃). Conditions: Room temperature, in the absence of UV light."
+    },
+    {
+      "front": "Why is a halogen carrier needed for the halogenation of benzene?",
+      "back": "Benzene's pi-system is not electron-rich enough to polarise a non-polar Br-Br molecule. The catalyst (e.g., FeBr₃) accepts a lone pair from a bromine atom, creating a powerful Br⁺ electrophile."
+    },
+    {
+      "front": "What is Friedel-Crafts alkylation?",
+      "back": "The substitution of a hydrogen atom on the benzene ring with an alkyl group, using a haloalkane and an aluminium chloride (AlCl₃) catalyst."
+    },
+    {
+      "front": "What is a major limitation of Friedel-Crafts alkylation?",
+      "back": "Polyalkylation. The initial alkylbenzene product is more reactive than benzene itself, so it can react further to give di- and tri-substituted products."
+    },
+    {
+      "front": "What is the electrophile in the Friedel-Crafts acylation of benzene with ethanoyl chloride?",
+      "back": "The acylium ion, CH₃CO⁺."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is concentrated sulfuric acid needed for nitration if it's a catalyst?",
+      "a": "While it is regenerated, its role is more than just providing a surface. It's a chemical reactant in the formation of the electrophile. It's a stronger acid than nitric acid, so it forces nitric acid to act as a base, accept a proton, and then decompose to form the highly reactive NO₂⁺ ion, which is a much stronger electrophile than HNO₃ itself."
+    },
+    {
+      "q": "What's the difference between the halogenation of alkanes and arenes?",
+      "a": "The mechanism and conditions are completely different. Alkanes undergo free-radical substitution, which requires UV light to initiate the homolytic fission of the halogen. Arenes undergo electrophilic substitution, which requires a halogen carrier catalyst (like FeBr₃) to initiate heterolytic fission and create an electrophile. Using UV light with benzene and bromine would lead to a different, addition reaction (which is not typically studied at A-level)."
+    },
+    {
+      "q": "Can I use Friedel-Crafts alkylation to add a propyl group to benzene?",
+      "a": "You can, but it's problematic. If you use 1-chloropropane, the primary carbocation initially formed can rearrange via a hydride shift to a more stable secondary carbocation. This means you will get a mixture of products, with (propan-2-yl)benzene being the major product instead of the desired (propan-1-yl)benzene. This rearrangement is a key limitation of Friedel-Crafts alkylation."
+    },
+    {
+      "q": "Why doesn't Friedel-Crafts acylation suffer from polysubstitution like alkylation does?",
+      "a": "The product of acylation is a ketone (e.g., phenylethanone). The carbonyl group (C=O) is an electron-withdrawing group, which deactivates the benzene ring by pulling electron density out of the pi-system. This makes the acylated product less reactive than benzene itself, so it does not undergo a second substitution reaction. In contrast, alkyl groups are electron-donating, activating the ring and making it more susceptible to further substitution."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Arenes** (30.1) extend **29.3** with **directing rules**. Draw full **curly arrow mechanisms** for nitration." },
-    { "type": "practice", "label": "Mark an arenes question", "href": "/mark?subject=9701&topic=30.1" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Arenes are a fascinating class of aromatic hydrocarbons, with benzene (C₆H₆) being the parent compound. Their unique electronic structure leads to a chemistry that is distinct from both alkanes and alkenes. This lesson explores the stability of the benzene ring and its characteristic reaction: electrophilic substitution."
+    },
+    {
+      "type": "heading",
+      "content": "The Structure and Stability of Benzene"
+    },
+    {
+      "type": "text",
+      "content": "Initially, benzene was thought to have a cyclic structure with alternating single and double bonds (Kekulé's structure). However, evidence showed this was incorrect. X-ray diffraction studies revealed that all carbon-carbon bonds in benzene are of the same intermediate length (0.139 nm), between a C-C single bond (0.154 nm) and a C=C double bond (0.134 nm). Furthermore, the enthalpy change of hydrogenation of benzene is significantly less exothermic than would be expected for a structure with three double bonds. This indicates that the actual structure is more stable."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Benzene is a planar, cyclic molecule.",
+        "Each carbon atom is sp² hybridised, forming a sigma bond with two other carbons and one hydrogen.",
+        "The remaining p-orbital on each carbon atom overlaps sideways, above and below the plane of the ring, to form a continuous delocalised pi-system.",
+        "This delocalisation of electrons is responsible for the 'aromatic stability' or 'delocalisation energy' of benzene."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Electrophilic Substitution: The General Mechanism"
+    },
+    {
+      "type": "text",
+      "content": "Due to its stability, the benzene ring does not readily undergo addition reactions which would destroy the delocalised system. Instead, it undergoes substitution reactions where a hydrogen atom is replaced by an electrophile. An electrophile is an electron-pair acceptor. The high electron density of the pi-system makes benzene susceptible to attack by strong electrophiles."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Step 1: The delocalised pi-system of the benzene ring acts as a nucleophile, attacking the electrophile (E⁺). A curly arrow is drawn from the ring to the E⁺.",
+        "Step 2: An unstable intermediate, the arenium ion, is formed. In this intermediate, the delocalisation is partially broken, and the positive charge is spread over five carbon atoms. This is represented by a 'horseshoe' shape within the ring.",
+        "Step 3: A C-H bond breaks, and the pair of electrons from this bond moves back into the ring to restore the stable delocalised pi-system. H⁺ is eliminated. A curly arrow is drawn from the C-H bond to the ring."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When drawing the mechanism, ensure your curly arrows are precise. The first arrow must start from the delocalised ring (or a C=C bond if using Kekulé structure) and point to the electrophile. The final arrow must start from the C-H bond and point towards the positive charge inside the ring to reform the pi-system."
+    },
+    {
+      "type": "heading",
+      "content": "Specific Electrophilic Substitution Reactions"
+    },
+    {
+      "type": "text",
+      "content": "Several important functional groups can be introduced onto the benzene ring using this mechanism, each requiring specific reagents to generate the necessary electrophile."
+    },
+    {
+      "type": "formula",
+      "content": "1. Nitration: Formation of Nitrobenzene\nReagents: conc. HNO₃ + conc. H₂SO₄\nConditions: 50-55°C\nElectrophile: NO₂⁺ (nitronium ion)\nOverall Equation: C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O"
+    },
+    {
+      "type": "workedExample",
+      "question": "Show the equations for the generation of the electrophile in the nitration of benzene.",
+      "solution": "The sulfuric acid is a stronger acid than nitric acid. It protonates the nitric acid, which then eliminates water to form the nitronium ion.\nStep 1: H₂SO₄ + HNO₃ ⇌ H₂NO₃⁺ + HSO₄⁻\nStep 2: H₂NO₃⁺ → NO₂⁺ + H₂O\nOverall: 2H₂SO₄ + HNO₃ → NO₂⁺ + 2HSO₄⁻ + H₃O⁺ (often simplified as shown above for clarity)."
+    },
+    {
+      "type": "formula",
+      "content": "2. Halogenation: Formation of Bromobenzene\nReagents: Br₂ + FeBr₃ (or AlBr₃) catalyst\nConditions: Room temperature\nElectrophile: Br⁺ (generated in situ)\nOverall Equation: C₆H₆ + Br₂ → C₆H₅Br + HBr"
+    },
+    {
+      "type": "text",
+      "content": "The halogen carrier, a Lewis acid, polarises the halogen molecule. For example: Br₂ + FeBr₃ → Br⁺ + FeBr₄⁻. The Br⁺ then acts as the electrophile, and the FeBr₄⁻ later reacts with the H⁺ eliminated from the ring to regenerate the catalyst: FeBr₄⁻ + H⁺ → FeBr₃ + HBr."
+    },
+    {
+      "type": "formula",
+      "content": "3. Friedel-Crafts Acylation: Formation of Phenylketones\nReagents: Acyl chloride (e.g., CH₃COCl) + AlCl₃ catalyst\nConditions: Anhydrous, heat under reflux (approx. 60°C)\nElectrophile: Acylium ion (e.g., CH₃CO⁺)\nOverall Equation: C₆H₆ + CH₃COCl → C₆H₅COCH₃ + HCl"
+    },
+    {
+      "type": "workedExample",
+      "question": "Devise a two-step synthesis for phenylethanone (C₆H₅COCH₃) starting from benzene. For each step, state the reagents, conditions, and the structure of the organic product.",
+      "solution": "This synthesis can be achieved in a single step via Friedel-Crafts acylation, but the question asks for a two-step route, which is a common exam-style misdirection. The direct route is the correct answer.\n\n**Step 1: Friedel-Crafts Acylation**\n*   **Reagents:** Ethanoyl chloride (CH₃COCl) and anhydrous aluminium chloride (AlCl₃) catalyst.\n*   **Conditions:** Heat under reflux in a non-aqueous solvent (e.g., dry ether).\n*   **Equation:** C₆H₆ + CH₃COCl --(AlCl₃)--> C₆H₅COCH₃ + HCl\n*   **Product:** Phenylethanone (also known as acetophenone).\n\n(Note: If the question intended a different target, it might involve more steps, but for phenylethanone, this one-step acylation is the standard and most efficient method taught at A-level.)"
+    },
+    {
+      "type": "examTip",
+      "content": "Friedel-Crafts reactions require anhydrous conditions because the AlCl₃ catalyst reacts vigorously with water. Also, remember that alkylation can lead to poly-substitution, but acylation does not. The acyl group deactivates the ring, preventing further reaction."
+    },
+    {
+      "type": "practice",
+      "label": "Arenes",
+      "href": "/mark?subject=9701&topic=30.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Video: Electrophilic Substitution Mechanism",
+          "href": "https://www.youtube.com/watch?v=sXscy-1a-pA"
+        },
+        {
+          "label": "In-depth notes on Aromatic Chemistry",
+          "href": "https://www.chemguide.co.uk/mechanisms/eladd/benzenenit.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Electrophilic substitution on benzene — nitration and halogenation (30.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Electrophilic substitution mechanism — arenium ion intermediate.",
+        "embedHint": "E+ attack preserves aromaticity after deprotonation."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Nitration: HNO₃ + H₂SO₄ → NO₂⁺ electrophile.",
+        "embedHint": "Toluene directs ortho/para."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Halogenation: FeBr₃ catalyst — Br⁺ electrophile.",
+        "embedHint": "No UV needed (vs alkanes)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Friedel–Crafts alkylation/acylation — carbocation or acyl ion.",
+        "embedHint": "AlCl₃ catalyst; watch polyalkylation."
+      }
+    ]
+  }
 }

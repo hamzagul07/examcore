@@ -4,64 +4,217 @@
   "title": "Electronegativity and bonding",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — electronegativity trends, bond polarity, and predicting bond type. Live PhET Molecule Polarity simulation integrated.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores electronegativity, the measure of an atom's ability to attract bonding electrons. We will examine how differences in electronegativity lead to a spectrum of bonding, from pure non-polar covalent to polar covalent and ionic, and how this influences the overall polarity of a molecule.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define electronegativity and describe trends across Period 3 and down groups.",
-    "Predict bond polarity from electronegativity differences.",
-    "Distinguish non-polar covalent, polar covalent, and ionic bonding.",
-    "Relate bond polarity to molecular polarity and intermolecular forces."
+    "Define electronegativity and describe its trends in the Periodic Table.",
+    "Explain the formation of polar covalent bonds as a result of electronegativity differences.",
+    "Predict the type of bonding (covalent, polar covalent, ionic) based on electronegativity differences.",
+    "Distinguish between bond polarity and molecular polarity, considering molecular shape."
   ],
   "simpleExplanation": {
-    "title": "Tug-of-war for electrons",
-    "summary": "Electronegativity measures how strongly an atom attracts bonding electrons. Large differences create polar bonds; very large differences mean ionic character dominates.",
+    "title": "The Tug-of-War for Electrons",
+    "summary": "Electronegativity measures how strongly an atom pulls on shared electrons in a bond. This 'tug-of-war' determines if a bond is non-polar, polar, or even ionic.",
+    "analogy": "Imagine two dogs (atoms) playing with a single chew toy (the electron pair). If they are identical breeds with the same strength, they share the toy equally, and it stays in the middle. If one dog is much stronger than the other, it will pull the toy much closer to itself, making the sharing unequal. Electronegativity is the 'strength' of the atom in this chemical tug-of-war.",
     "steps": [
-      "Electronegativity increases across a period and decreases down a group (F is most electronegative).",
-      "ΔEN ≈ 0 → non-polar covalent; moderate ΔEN → polar covalent with dipole.",
-      "Very large ΔEN → ionic bonding (electron transfer, not sharing).",
-      "Molecular shape can cancel bond dipoles — CO₂ is non-polar despite polar C=O bonds."
+      "Electronegativity increases across a period and decreases down a group.",
+      "A large difference in electronegativity (ΔEN) creates a polar covalent bond; a very large ΔEN leads to ionic character.",
+      "Bond polarity contributes to intermolecular forces and affects physical properties, especially if the molecule is asymmetrical.",
+      "Metallic and ionic bonding involve different electron models, which can be predicted using electronegativity trends."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is electronegativity?",
+      "back": "The ability of a bonded atom to attract the pair of electrons in a covalent bond."
+    },
+    {
+      "front": "What is the trend in electronegativity across a period?",
+      "back": "It increases. The nuclear charge increases while the shielding effect remains relatively constant, pulling the bonding electrons more strongly."
+    },
+    {
+      "front": "What is the trend in electronegativity down a group?",
+      "back": "It decreases. The atomic radius and shielding both increase, so the nucleus has a weaker attraction for the bonding electrons."
+    },
+    {
+      "front": "What is a non-polar covalent bond?",
+      "back": "A bond where the electrons are shared equally between two atoms. This occurs when the electronegativity difference (ΔEN) is zero or very small (e.g., in diatomic elements like O₂ or Cl₂)."
+    },
+    {
+      "front": "What is a polar covalent bond?",
+      "back": "A bond where electrons are shared unequally. The more electronegative atom gains a partial negative charge (δ⁻), and the less electronegative atom gains a partial positive charge (δ⁺)."
+    },
+    {
+      "front": "What is a dipole moment?",
+      "back": "A measure of the separation of two opposite electrical charges. In chemistry, it refers to the partial charges on atoms in a polar bond or molecule, creating a positive and a negative pole."
+    },
+    {
+      "front": "What symbol is used to represent a partial charge?",
+      "back": "The lowercase Greek letter delta: δ⁺ for a partial positive charge and δ⁻ for a partial negative charge."
+    },
+    {
+      "front": "Can a molecule with polar bonds be non-polar overall?",
+      "back": "Yes. If the polar bonds are arranged symmetrically in space, their individual dipoles cancel each other out. A key example is carbon tetrachloride, CCl₄."
+    },
+    {
+      "front": "Which is the most electronegative element?",
+      "back": "Fluorine (F). It is at the top right of the periodic table (excluding noble gases)."
+    },
+    {
+      "front": "What approximate electronegativity difference (ΔEN) suggests an ionic bond?",
+      "back": "A difference greater than approximately 1.7. However, this is a guideline, not a strict rule; bonding is a continuum."
+    },
+    {
+      "front": "Why is CHCl₃ (trichloromethane) a polar molecule while CCl₄ (tetrachloromethane) is not?",
+      "back": "In CCl₄, the four identical C-Cl bond dipoles are arranged symmetrically in a tetrahedron and cancel out. In CHCl₃, the C-H bond has a different polarity to the C-Cl bonds, creating an asymmetrical arrangement of dipoles that results in a net molecular dipole."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Are the specific Pauling electronegativity values provided in the exam?",
+      "a": "Usually, you are expected to know the general trends (increasing across a period, decreasing down a group). If a question requires a specific calculation of ΔEN, the values will almost always be provided in a data table."
+    },
+    {
+      "q": "Is there a strict numerical cut-off between polar covalent and ionic bonds?",
+      "a": "No, the value of ΔEN ≈ 1.7 is just a useful guideline. Bonding is a continuum. Some compounds with a ΔEN below 1.7 show ionic characteristics, while some above it have covalent character. The key concept is that ionic character increases as ΔEN increases."
+    },
+    {
+      "q": "Why don't noble gases like Neon or Argon have electronegativity values?",
+      "a": "Electronegativity is defined for an atom attracting electrons *within a covalent bond*. Since noble gases have a full valence shell, they are very stable and do not readily form covalent bonds. Therefore, the concept of electronegativity is not typically applied to them."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Electronegativity** links the Periodic Table to bonding — Cambridge asks you to **predict bond type**, **draw dipoles** (δ+ and δ−), and explain **boiling point trends** via intermolecular forces."
+      "content": "In previous topics, we've often simplified covalent bonding to the equal sharing of electrons between atoms. However, the reality is more nuanced. Not all atoms share equally. This lesson introduces electronegativity, a fundamental concept that explains why some bonds are 'polar' and how this affects the properties of entire molecules."
     },
     {
-      "type": "formula",
-      "content": "Pauling scale: F ≈ 4.0, O ≈ 3.5, N ≈ 3.0, C ≈ 2.5, H ≈ 2.1. Large ΔEN → more ionic character."
+      "type": "heading",
+      "content": "Defining Electronegativity"
+    },
+    {
+      "type": "text",
+      "content": "Electronegativity is formally defined as the ability of an atom to attract the shared pair of electrons in a covalent bond. It is a measure of an atom's 'pulling power' on electrons within a bond. We quantify this using a numerical scale, most commonly the Pauling scale, which runs from approximately 0.7 (for Francium) to 4.0 (for Fluorine). A higher value indicates a greater attraction for electrons."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Arrow notation: dipole points from δ+ to δ−",
-        "Symmetrical molecules (e.g. CH₄, CCl₄) can be non-polar overall",
-        "Hydrogen bonding requires N–H, O–H, or F–H bonds",
-        "Permanent dipole–dipole forces are weaker than hydrogen bonds"
+        "**Across a Period (e.g., Li to F):** Electronegativity increases. The number of protons in the nucleus increases, strengthening its positive pull, while the inner electron shells provide a similar level of shielding.",
+        "**Down a Group (e.g., F to I):** Electronegativity decreases. Although nuclear charge increases, the bonding electrons are in shells further from the nucleus, and there are more inner shells causing increased shielding. These factors outweigh the increased nuclear charge.",
+        "**Noble Gases:** These elements are typically not assigned electronegativity values as they do not readily form covalent bonds."
       ]
     },
     {
+      "type": "heading",
+      "content": "The Bonding Continuum: From Covalent to Ionic"
+    },
+    {
+      "type": "text",
+      "content": "The type of chemical bond that forms between two atoms is directly related to the difference in their electronegativity values (ΔEN). Rather than being distinct categories, bonding types exist on a continuum. When two atoms with identical electronegativity bond (e.g., Cl-Cl), the electrons are shared perfectly equally, forming a **pure (non-polar) covalent bond**. When there is a small to moderate difference, the more electronegative atom pulls the electron density towards itself. This creates a **polar covalent bond**, with partial positive and negative charges."
+    },
+    {
+      "type": "formula",
+      "content": "H^{\\delta+} - Cl^{\\delta-}"
+    },
+    {
+      "type": "text",
+      "content": "In the example of hydrogen chloride above, chlorine is more electronegative than hydrogen. The bonding electrons spend more time, on average, closer to the chlorine atom. This gives chlorine a partial negative charge ($\\delta^{-}$) and hydrogen a partial positive charge ($\\delta^{+}$). If the electronegativity difference is very large (typically > 1.7), the more electronegative atom effectively 'wins' the tug-of-war completely, and an electron is transferred from one atom to the other. This results in the formation of ions and an **ionic bond**."
+    },
+    {
       "type": "workedExample",
-      "question": "Compare the C–H and O–H bond polarities in ethanol, CH₃CH₂OH.",
-      "solution": "C–H: ΔEN ≈ 2.5 − 2.1 = 0.4 → essentially **non-polar**.\n\nO–H: ΔEN ≈ 3.5 − 2.1 = 1.4 → **polar**; enables hydrogen bonding between ethanol molecules."
+      "question": "The Pauling electronegativity values for nitrogen and hydrogen are 3.04 and 2.20, respectively. Predict the type of bond in ammonia (NH₃) and assign partial charges to the atoms in one N-H bond.",
+      "solution": "1. **Calculate the electronegativity difference (ΔEN):**\nΔEN = EN(N) - EN(H) = 3.04 - 2.20 = 0.84\n\n2. **Determine the bond type:**\nA ΔEN of 0.84 is significant but not large enough for electron transfer. Therefore, the N-H bond is polar covalent.\n\n3. **Assign partial charges:**\nNitrogen is the more electronegative atom, so it will attract the electron density. It gains a partial negative charge (δ⁻), and hydrogen gains a partial positive charge (δ⁺).\nThe bond can be represented as: N$^{\\delta-}$-H$^{\\delta+}$"
+    },
+    {
+      "type": "heading",
+      "content": "Molecular Polarity: The Sum of the Parts"
+    },
+    {
+      "type": "text",
+      "content": "It is crucial to distinguish between bond polarity and molecular polarity. A molecule's overall polarity depends on two factors: the polarity of its individual bonds AND its three-dimensional shape. A molecule can contain polar bonds but be non-polar overall if its shape is symmetrical, causing the individual bond dipoles to cancel each other out."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Symmetrical shapes** like linear (e.g., CO₂), trigonal planar (e.g., BF₃), and tetrahedral (e.g., CCl₄) can lead to non-polar molecules if all surrounding atoms are identical.",
+        "**Asymmetrical shapes** like bent (e.g., H₂O) and trigonal pyramidal (e.g., NH₃) result in polar molecules because the bond dipoles do not cancel out. There is a net dipole moment.",
+        "If a symmetrical molecule contains bonds to different atoms (e.g., CH₃Cl), it will be polar because the bond dipoles are no longer equal and will not cancel."
+      ]
     },
     {
       "type": "examTip",
-      "content": "When explaining boiling points, name the **strongest intermolecular force present** and compare **surface area / branching** for molecules with the same functional group."
+      "content": "A classic exam question involves comparing CO₂ and SO₂. Both have polar bonds. However, CO₂ is linear, so its two bond dipoles are equal and opposite, cancelling to zero, making the molecule non-polar. SO₂ is bent (due to a lone pair on the sulfur atom), so its bond dipoles do not cancel, resulting in a net dipole moment and a polar molecule. Always consider the VSEPR shape!"
+    },
+    {
+      "type": "workedExample",
+      "question": "Beryllium chloride (BeCl₂) is a linear molecule. Carbon tetrachloride (CCl₄) is a tetrahedral molecule. Using electronegativity values (Be=1.57, C=2.55, Cl=3.16), explain whether each molecule is polar or non-polar.",
+      "solution": "1. **Analyse BeCl₂:**\n   - **Bond Polarity:** ΔEN(Be-Cl) = 3.16 - 1.57 = 1.59. The Be-Cl bonds are very polar.\n   - **Molecular Shape:** The molecule is linear (Cl-Be-Cl).\n   - **Overall Polarity:** The two polar Be-Cl bonds are arranged symmetrically at 180° to each other. Their dipoles are equal and opposite, so they cancel out completely. Therefore, BeCl₂ is a **non-polar molecule**.\n\n2. **Analyse CCl₄:**\n   - **Bond Polarity:** ΔEN(C-Cl) = 3.16 - 2.55 = 0.61. The C-Cl bonds are polar.\n   - **Molecular Shape:** The molecule is tetrahedral.\n   - **Overall Polarity:** The four polar C-Cl bonds are arranged symmetrically in a tetrahedral geometry. The vector sum of the four bond dipoles is zero. Therefore, CCl₄ is a **non-polar molecule**."
     },
     {
       "type": "practice",
-      "label": "Mark a bonding question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9701&topic=3.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Molecule Polarity", "href": "https://phet.colorado.edu/en/simulations/molecule-polarity" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Chemguide: Electronegativity",
+          "href": "https://www.chemguide.co.uk/atoms/bonding/electroneg.html"
+        },
+        {
+          "label": "Cambridge International Syllabus (9701)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-chemistry-9701/"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Molecule polarity",
+    "embedUrl": "https://phet.colorado.edu/sims/html/molecule-polarity/latest/molecule-polarity_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/molecule-polarity",
+    "hint": "Change electronegativity — watch bond dipoles and whether the molecule is polar (3.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Electronegativity increases across a period and decreases down a group.",
+        "embedHint": "Increase electronegativity difference — see the bond dipole grow."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Large ΔEN → polar covalent bond; very large ΔEN → ionic character.",
+        "embedHint": "Compare non-polar, polar, and highly polar bonds on the same screen."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Bond polarity affects intermolecular forces and physical properties.",
+        "embedHint": "Read the molecular dipole when atoms are arranged asymmetrically."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Metallic and ionic bonding involve different electron models (9701 3.2–3.3).",
+        "embedHint": "Relate electronegativity trends to bond type predictions in exam tables."
+      }
+    ]
+  }
 }

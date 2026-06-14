@@ -1,0 +1,179 @@
+{
+  "slug": "1-1-roots-of-polynomial-equations",
+  "topicCode": "1.1",
+  "title": "Roots of polynomial equations",
+  "paper": "P1",
+  "paperName": "Paper 1: Further Pure Mathematics 1",
+  "status": "pilot",
+  "summary": "Explore the elegant relationship between the coefficients of a polynomial and its roots. This topic, built upon Vieta's formulas, allows you to calculate symmetric sums of roots (like their sum, sum of squares, or product) without the need to find the individual roots themselves, providing a powerful shortcut in algebraic manipulation.",
+  "durationMin": 30,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Recall and use the relations between the roots and coefficients of polynomial equations up to degree 4.",
+    "Evaluate symmetric sums of the roots, such as $\\Sigma \\alpha^2$ and $\\Sigma \\frac{1}{\\alpha}$.",
+    "Form a new polynomial equation whose roots are a linear transformation of the roots of the original equation (e.g., $k\\alpha, \\alpha+k$)."
+  ],
+  "simpleExplanation": {
+    "title": "The Secret Code of Polynomials",
+    "summary": "The coefficients of a polynomial equation hold a secret code about its roots. Vieta's formulas allow us to crack this code, revealing properties like the sum and product of roots without ever having to find them individually.",
+    "analogy": "Imagine a locked safe (the polynomial) and you don't have the keys (the roots). However, you're given clues on the outside of the safe (the coefficients) that tell you the total weight of all the gold bars inside (the sum of roots) and their combined volume (the product of roots). You can learn a lot about the contents without ever opening the safe.",
+    "steps": [
+      "Identify the polynomial's coefficients, ensuring it's in the form $ax^n + bx^{n-1} + \\dots = 0$.",
+      "Apply Vieta's formulas to find the fundamental sums of roots ($\\Sigma \\alpha$, $\\Sigma \\alpha\\beta$, etc.), watching the signs.",
+      "Identify the target expression you need to find (e.g., $\\Sigma \\alpha^2$) or the transformation for a new equation.",
+      "Use algebraic identities to express your target in terms of the fundamental sums, or perform a substitution to find a new equation."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "For a general polynomial $a_n x^n + a_{n-1} x^{n-1} + \\dots + a_0 = 0$, what is the formula for the sum of the roots, $\\Sigma \\alpha$?",
+      "back": "$\\Sigma \\alpha = -\\frac{a_{n-1}}{a_n}$"
+    },
+    {
+      "front": "For a general polynomial of degree $n$, what is the formula for the product of the roots?",
+      "back": "Product $= (-1)^n \\frac{a_0}{a_n}$"
+    },
+    {
+      "front": "For a cubic equation $ax^3+bx^2+cx+d=0$, what is $\\Sigma \\alpha\\beta$?",
+      "back": "$\\Sigma \\alpha\\beta = \\alpha\\beta + \\beta\\gamma + \\gamma\\alpha = \\frac{c}{a}$"
+    },
+    {
+      "front": "For a cubic equation $ax^3+bx^2+cx+d=0$, what is the product of the roots $\\alpha\\beta\\gamma$?",
+      "back": "$\\alpha\\beta\\gamma = -\\frac{d}{a}$"
+    },
+    {
+      "front": "For a quartic equation $ax^4+bx^3+cx^2+dx+e=0$, what is $\\Sigma \\alpha\\beta\\gamma$?",
+      "back": "$\\Sigma \\alpha\\beta\\gamma = \\alpha\\beta\\gamma + \\alpha\\beta\\delta + \\alpha\\gamma\\delta + \\beta\\gamma\\delta = -\\frac{d}{a}$"
+    },
+    {
+      "front": "What is the key algebraic identity used to find the sum of the squares of the roots, $\\Sigma \\alpha^2$?",
+      "back": "$\\Sigma \\alpha^2 = (\\Sigma \\alpha)^2 - 2(\\Sigma \\alpha\\beta)$"
+    },
+    {
+      "front": "How can you express the sum of the reciprocals of the roots, $\\Sigma \\frac{1}{\\alpha}$, in terms of other symmetric sums for a cubic?",
+      "back": "By creating a common denominator: $\\Sigma \\frac{1}{\\alpha} = \\frac{\\beta\\gamma + \\alpha\\gamma + \\alpha\\beta}{\\alpha\\beta\\gamma} = \\frac{\\Sigma \\alpha\\beta}{\\alpha\\beta\\gamma}$"
+    },
+    {
+      "front": "An equation has roots $\\alpha, \\beta, \\gamma$. How do you find the equation with roots $2\\alpha, 2\\beta, 2\\gamma$?",
+      "back": "Let the new root be $y=2x$. Then $x = y/2$. Substitute $x=y/2$ into the original equation and simplify."
+    },
+    {
+      "front": "An equation has roots $\\alpha, \\beta, \\gamma$. How do you find the equation with roots $\\alpha-1, \\beta-1, \\gamma-1$?",
+      "back": "Let the new root be $y=x-1$. Then $x = y+1$. Substitute $x=y+1$ into the original equation and simplify."
+    },
+    {
+      "front": "What is a common mistake when applying Vieta's formulas to an equation like $x^3 - 5x + 4 = 0$?",
+      "back": "Forgetting that the coefficient of the $x^2$ term is zero. Here, $a=1, b=0, c=-5, d=4$. This means $\\Sigma \\alpha = -b/a = 0$."
+    },
+    {
+      "front": "What is the pattern of signs for Vieta's formulas?",
+      "back": "The signs alternate, starting with a negative for the sum of the roots: $-b/a, +c/a, -d/a, +e/a, \\dots$"
+    },
+    {
+      "front": "What must you always remember to divide by when using Vieta's formulas?",
+      "back": "The leading coefficient, $a$ (or $a_n$). If the polynomial is monic (leading coefficient is 1), you can omit this, but it's good practice to always consider it."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What happens if a term is missing, like in $x^3 + 4x - 2 = 0$?",
+      "a": "A missing term simply means its coefficient is zero. In this case, the equation is $1x^3 + 0x^2 + 4x - 2 = 0$, so $a=1, b=0, c=4, d=-2$. This would mean, for example, that the sum of the roots $\\Sigma \\alpha = -b/a = -0/1 = 0$."
+    },
+    {
+      "q": "Do Vieta's formulas work if the roots are complex numbers?",
+      "a": "Yes, absolutely. The relationships hold for all roots, whether they are real, rational, irrational or complex. This is a very powerful feature and provides a link to the topic of complex numbers."
+    },
+    {
+      "q": "How can I remember the signs for Vieta's formulas?",
+      "a": "The signs simply alternate, starting with a negative. The sum of roots ($\\Sigma \\alpha$) is $-b/a$. The sum of products in pairs ($\\Sigma \\alpha\\beta$) is $+c/a$. The sum of products in threes ($\\Sigma \\alpha\\beta\\gamma$) is $-d/a$, and so on. It's a simple, predictable pattern."
+    },
+    {
+      "q": "Is there a formula for $\\Sigma \\alpha^3$?",
+      "a": "Yes, but it's more complex and less commonly required in exams than $\\Sigma \\alpha^2$. It can be derived from the identity $(\\Sigma \\alpha)(\\Sigma \\alpha^2) = \\Sigma \\alpha^3 + \\dots$. A more direct method is to use the fact that each root satisfies the original equation. For a root $\\alpha$, we have $a\\alpha^3+b\\alpha^2+c\\alpha+d=0$. You can write this for $\\beta$ and $\\gamma$ too, and then sum the three equations: $a\\Sigma\\alpha^3 + b\\Sigma\\alpha^2 + c\\Sigma\\alpha + 3d = 0$. You can then rearrange for $\\Sigma\\alpha^3$ since you know all the other sums."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of the roots of polynomials. While you're familiar with solving quadratics, finding the roots of cubics and quartics can be incredibly complex. This topic provides a beautiful alternative: instead of finding the roots themselves, we can uncover deep relationships between them and the coefficients of the polynomial they belong to. These relationships, known as Vieta's formulas, are a cornerstone of classical algebra and a powerful tool in your Further Maths arsenal."
+    },
+    {
+      "type": "heading",
+      "content": "Vieta's Formulas: The Core Relationships"
+    },
+    {
+      "type": "text",
+      "content": "For any polynomial equation, the coefficients are intrinsically linked to the sums and products of its roots. Vieta's formulas provide the exact expressions for these links. The key is to look at the coefficients in order, divide by the leading coefficient, and apply an alternating sign pattern."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Quadratic:** For $ax^2+bx+c=0$ with roots $\\alpha, \\beta$: <br> $\\Sigma \\alpha = \\alpha+\\beta = -b/a$ <br> $\\alpha\\beta = c/a$",
+        "**Cubic:** For $ax^3+bx^2+cx+d=0$ with roots $\\alpha, \\beta, \\gamma$: <br> $\\Sigma \\alpha = \\alpha+\\beta+\\gamma = -b/a$ <br> $\\Sigma \\alpha\\beta = \\alpha\\beta+\\beta\\gamma+\\gamma\\alpha = c/a$ <br> $\\alpha\\beta\\gamma = -d/a$",
+        "**Quartic:** For $ax^4+bx^3+cx^2+dx+e=0$ with roots $\\alpha, \\beta, \\gamma, \\delta$: <br> $\\Sigma \\alpha = -b/a$ <br> $\\Sigma \\alpha\\beta = c/a$ <br> $\\Sigma \\alpha\\beta\\gamma = -d/a$ <br> $\\alpha\\beta\\gamma\\delta = e/a$"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always check for missing terms in the polynomial. For example, in $2x^4 + 3x^2 - 5 = 0$, the coefficients of $x^3$ and $x$ are both zero. So, $a=2, b=0, c=3, d=0, e=-5$. This is a very common place to lose marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "The equation $2x^3 - 7x^2 + 4x + 1 = 0$ has roots $\\alpha, \\beta, \\gamma$. Find the values of:\n(i) $\\alpha + \\beta + \\gamma$\n(ii) $\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha$\n(iii) $\\alpha\\beta\\gamma$",
+      "solution": "First, identify the coefficients of the cubic $ax^3+bx^2+cx+d=0$.\nHere, $a=2, b=-7, c=4, d=1$.\n\n(i) The sum of the roots is given by $\\Sigma \\alpha = -\\frac{b}{a}$.\n$\\alpha + \\beta + \\gamma = -\\frac{-7}{2} = \\frac{7}{2}$.\n\n(ii) The sum of the product of roots in pairs is given by $\\Sigma \\alpha\\beta = \\frac{c}{a}$.\n$\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha = \\frac{4}{2} = 2$.\n\n(iii) The product of the roots is given by $\\alpha\\beta\\gamma = -\\frac{d}{a}$.\n$\\alpha\\beta\\gamma = -\\frac{1}{2}$."
+    },
+    {
+      "type": "heading",
+      "content": "Evaluating New Symmetric Sums"
+    },
+    {
+      "type": "text",
+      "content": "The real power of Vieta's formulas is in finding the values of other symmetric expressions—expressions which remain unchanged if you swap the roots around. A classic example is finding the sum of the squares of the roots, $\\Sigma \\alpha^2$. We can't get this directly from Vieta's formulas, but we can derive it using them."
+    },
+    {
+      "type": "formula",
+      "content": "Consider the expansion of $(\\Sigma \\alpha)^2$. For a cubic with roots $\\alpha, \\beta, \\gamma$:\n$(\\alpha+\\beta+\\gamma)^2 = \\alpha^2+\\beta^2+\\gamma^2 + 2(\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha)$\nRearranging gives the crucial identity:\n$\\Sigma \\alpha^2 = (\\Sigma \\alpha)^2 - 2(\\Sigma \\alpha\\beta)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The roots of the equation $x^4 + 2x^3 - 5x^2 + x - 3 = 0$ are $\\alpha, \\beta, \\gamma, \\delta$. Find the value of $\\Sigma \\alpha^2$.",
+      "solution": "The equation is a quartic with $a=1, b=2, c=-5, d=1, e=-3$.\n\nFirst, we need the values of $\\Sigma \\alpha$ and $\\Sigma \\alpha\\beta$.\nUsing Vieta's formulas:\n$\\Sigma \\alpha = -\\frac{b}{a} = -\\frac{2}{1} = -2$.\n$\\Sigma \\alpha\\beta = \\frac{c}{a} = \\frac{-5}{1} = -5$.\n\nNow, we use the identity $\\Sigma \\alpha^2 = (\\Sigma \\alpha)^2 - 2(\\Sigma \\alpha\\beta)$. This identity holds for polynomials of any degree.\n\nSubstitute the values we found:\n$\\Sigma \\alpha^2 = (-2)^2 - 2(-5)$\n$= 4 - (-10)$\n$= 4 + 10 = 14$.\n\nSo, the sum of the squares of the roots is 14."
+    },
+    {
+      "type": "heading",
+      "content": "Transformation of Roots"
+    },
+    {
+      "type": "text",
+      "content": "Another key skill is to find a new polynomial equation whose roots are related to the roots of an original equation. For example, if the original equation has roots $\\alpha, \\beta, \\gamma$, we might want to find the equation with roots $2\\alpha, 2\\beta, 2\\gamma$ or $\\alpha+3, \\beta+3, \\gamma+3$. The method involves a clever substitution."
+    },
+    {
+      "type": "workedExample",
+      "question": "The equation $x^3 - 2x^2 + 5x - 4 = 0$ has roots $\\alpha, \\beta, \\gamma$. Find a cubic equation with integer coefficients whose roots are $\\alpha+1, \\beta+1, \\gamma+1$.",
+      "solution": "Let the original equation be $P(x) = x^3 - 2x^2 + 5x - 4 = 0$, where $x$ can be $\\alpha, \\beta,$ or $\\gamma$.\n\nWe want a new equation in a variable, let's say $y$, where the roots are $y = \\alpha+1, y = \\beta+1, y = \\gamma+1$. \nThis gives us a general relationship between the new roots ($y$) and the old roots ($x$): $y = x+1$.\n\nTo find the new equation, we rearrange this relationship to make $x$ the subject: $x = y-1$.\n\nNow, we substitute this expression for $x$ back into the original polynomial equation:\n$(y-1)^3 - 2(y-1)^2 + 5(y-1) - 4 = 0$\n\nNext, we expand the brackets:\n$(y^3 - 3y^2 + 3y - 1) - 2(y^2 - 2y + 1) + 5(y-1) - 4 = 0$\n$y^3 - 3y^2 + 3y - 1 - 2y^2 + 4y - 2 + 5y - 5 - 4 = 0$\n\nFinally, collect like terms to get the new equation in $y$:\n$y^3 + (-3-2)y^2 + (3+4+5)y + (-1-2-5-4) = 0$\n$y^3 - 5y^2 + 12y - 12 = 0$\n\nThis is the required equation. It's conventional to write the final answer using the variable $x$, so the equation is $x^3 - 5x^2 + 12x - 12 = 0$."
+    },
+    {
+      "type": "examTip",
+      "content": "When performing a substitution for a transformation of roots, be extremely careful with your algebraic expansion, particularly with negative signs. It is often the source of errors. Work systematically and double-check each term."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9231&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Further Reading on Polynomials",
+          "href": "https://mathworld.wolfram.com/Polynomial.html"
+        },
+        {
+          "label": "Vieta's Formulas on Wikipedia",
+          "href": "https://en.wikipedia.org/wiki/Vieta's_formulas"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -4,29 +4,184 @@
   "title": "Program Testing and Maintenance",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 — testing strategies, test data, and program maintenance lifecycle.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores the essential practices of program testing and maintenance. It covers different testing strategies, how to select appropriate test data, and the creation of formal test plans. Students will also learn about the four key types of software maintenance required after a program is deployed.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe types of testing: unit, integration, acceptance.",
-    "Select appropriate test data: normal, boundary, erroneous.",
-    "Explain corrective, adaptive, perfective maintenance.",
-    "Evaluate test plans for given problems."
+    "Understand and differentiate between black-box and white-box testing.",
+    "Select and justify appropriate test data, including normal, boundary, and abnormal values.",
+    "Construct a comprehensive test plan, documenting test cases, expected outcomes, and actual outcomes.",
+    "Describe the four types of program maintenance: corrective, adaptive, perfective, and preventive."
   ],
   "simpleExplanation": {
-    "title": "Make sure it works — then keep it working",
-    "summary": "Testing finds errors before release. Maintenance fixes bugs and adapts software as requirements change.",
+    "title": "Testing: Finding the Faults",
+    "summary": "Program testing is the systematic process of finding errors in software before it reaches the user. Effective testing involves using a variety of data to check that the program behaves as expected in all situations.",
+    "analogy": "Think of testing a new video game. The developers don't just play the 'perfect' path. They try to walk through walls (abnormal data), jump right at the edge of a platform (boundary data), and complete levels in the intended way (normal data). They record every crash or glitch, fix it, and then re-test to make sure the fix didn't break something else.",
     "steps": [
-      "Dry run: trace by hand.",
-      "Test data sets cover all paths.",
-      "Boundary values catch off-by-one errors.",
-      "Maintenance follows SDLC after delivery."
+      "Create a Test Plan: Decide what you need to test and what the correct outcome should be for each test.",
+      "Select Test Data: Choose a range of data, including normal, boundary, and abnormal values, to challenge your program.",
+      "Execute and Record: Run the tests and carefully document the actual results, comparing them to your expected outcomes.",
+      "Maintain and Improve: Fix any identified bugs (corrective maintenance) and re-run tests to ensure stability."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Black-box testing?",
+      "back": "Testing the functionality of a program without seeing the internal code structure. It is based on the requirements and specifications. Also known as functional testing."
+    },
+    {
+      "front": "What is White-box testing?",
+      "back": "Testing the internal structure and logic of the code. The tester has access to the source code and tests specific pathways and conditions. Also known as structural testing."
+    },
+    {
+      "front": "Define 'Normal' test data.",
+      "back": "Data that is within the expected range and of the correct type, which should be accepted by the program."
+    },
+    {
+      "front": "Define 'Boundary' test data.",
+      "back": "Data that is at the very limits of the valid range, including the first and last valid values and the values just outside the valid range."
+    },
+    {
+      "front": "Define 'Abnormal' test data.",
+      "back": "Data that is of the wrong type or well outside the expected range, which should be rejected by the program."
+    },
+    {
+      "front": "What is a Test Plan?",
+      "back": "A formal document that outlines the testing strategy, including the scope, test cases, test data, expected outcomes, and schedule."
+    },
+    {
+      "front": "What is Corrective Maintenance?",
+      "back": "Fixing bugs or errors that are discovered after the software has been delivered to the user."
+    },
+    {
+      "front": "What is Adaptive Maintenance?",
+      "back": "Modifying the software to work in a new or changed environment, such as a new operating system or hardware."
+    },
+    {
+      "front": "What is Perfective Maintenance?",
+      "back": "Improving or enhancing the software by adding new features or improving performance, based on user feedback."
+    },
+    {
+      "front": "What is Preventive Maintenance?",
+      "back": "Making changes to the software to make it more maintainable and prevent future problems, such as code refactoring or updating documentation."
+    },
+    {
+      "front": "What is Regression Testing?",
+      "back": "Re-running tests after a change (like a bug fix or new feature) to ensure that the change has not introduced new errors or broken existing functionality."
+    },
+    {
+      "front": "Common Trap: Is the value 101 boundary or abnormal data for a range of 1 to 100?",
+      "back": "It is boundary data. It's the first value just outside the upper limit. Abnormal data would be something like 'abc' or 9999."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a dry run and white-box testing?",
+      "a": "A dry run is a manual process where a programmer mentally traces the execution of code with a specific set of inputs, often using a trace table. White-box testing is a broader, formal strategy that involves creating specific test cases to execute code paths, which might be automated. A dry run can be a technique used within white-box testing."
+    },
+    {
+      "q": "Why is boundary testing so important?",
+      "a": "Many programming errors occur at the boundaries of input ranges. For example, using `<` (less than) instead of `<=` (less than or equal to) is a common mistake that only a boundary test would reliably find. Testing the edges ensures your logic is precise."
+    },
+    {
+      "q": "In an exam, do I need to fill in the 'Actual Outcome' column in a test plan?",
+      "a": "Usually, no. When you are asked to *create* a test plan before writing the code, you only fill in the 'Expected Outcome'. The 'Actual Outcome' column is for when you are actually executing the tests. Read the question carefully; if it asks you to trace code and report the result, that result would be the 'Actual Outcome'."
+    },
+    {
+      "q": "Is it possible for a piece of data to be both boundary and abnormal?",
+      "a": "No, these categories are generally mutually exclusive for clarity. Data is either valid (normal, valid boundary) or invalid. Invalid data is then categorised. Data just outside the valid range (e.g., 101 for a 1-100 range) is considered invalid boundary data. Data of the wrong type (e.g., 'hello') or far outside the range is abnormal. In exams, it's best to stick to the clearest classification."
+    },
+    {
+      "q": "Which type of maintenance is the most expensive?",
+      "a": "Studies often show that perfective maintenance consumes the largest portion of the maintenance budget over a software's lifetime, as there is a constant demand for new features and improvements. However, emergency corrective maintenance can be extremely costly in the short term due to its urgency and potential impact on business operations."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Testing and maintenance** (12.3) completes **12.1–12.2**. Examiners ask for **test data tables** with expected outputs." },
-    { "type": "practice", "label": "Mark a testing question", "href": "/mark?subject=9618&topic=12.3" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Writing code is only half the battle. A program that hasn't been rigorously tested is a program waiting to fail. This lesson covers the crucial final stages of the Software Development Life Cycle: ensuring your program is robust, reliable, and ready for the future through systematic testing and planned maintenance."
+    },
+    {
+      "type": "heading",
+      "content": "Testing Strategies: Black-Box vs. White-Box"
+    },
+    {
+      "type": "text",
+      "content": "Before you even write your first test, you need a strategy. The two main approaches are defined by how much you know about the program's inner workings. For your P2 exam, you will primarily be performing black-box testing, but you must know the difference."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Black-Box Testing:** You test the program's functionality based solely on its specification. You provide inputs and check if the outputs are correct, without any knowledge of the internal code. This is what an end-user or a dedicated tester would do.",
+        "**White-Box Testing:** You test the program's internal logic and structure. You have access to the source code and design tests to ensure that every line of code and every possible path is executed. This is typically done by the developer."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Choosing Effective Test Data"
+    },
+    {
+      "type": "text",
+      "content": "The quality of your testing depends entirely on the quality of your test data. Simply testing with one valid input is not enough. A thorough test plan uses three categories of data to check for robustness."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Normal Data:** Sensible, valid data that the program is expected to accept and process correctly. For a percentage score (0-100), normal data might be 25, 50, or 75.",
+        "**Boundary Data:** Data at the edges of the valid range. This is where errors often occur. For a percentage score, boundary data would be 0, 100 (the limits), and also -1 and 101 (just outside the limits).",
+        "**Abnormal Data:** Data that the program should reject. This includes data of the wrong type (e.g., text instead of a number) or values that are far outside any logical range. For a percentage score, this could be 'fifty' or 5000."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A program includes a function `CheckDiscount(Age)` that returns TRUE if a person is eligible for a discount and FALSE otherwise. The discount is available for ages 18 to 25 inclusive. Complete a test plan with four distinct test cases for this function.",
+      "solution": "Here is a sample test plan. Note the justification for each data choice.\n\n| Test Case | Test Data (Age) | Type of Data | Expected Outcome | Actual Outcome | Justification |\n|---|---|---|---|---|---|\n| 1 | 20 | Normal | TRUE | | A typical valid age within the range. |\n| 2 | 18 | Boundary | TRUE | | The lowest valid value in the range. |\n| 3 | 26 | Boundary | FALSE | | The first invalid value just above the upper limit. |\n| 4 | 'nineteen' | Abnormal | Error message / FALSE | | Data of the wrong type (string instead of integer). |"
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, when asked to provide test data, always choose a value from each category: normal, boundary, and abnormal. For boundary data, test both the valid limits (e.g., 18 and 25) and the values immediately outside them (e.g., 17 and 26). This demonstrates a thorough understanding."
+    },
+    {
+      "type": "heading",
+      "content": "Program Maintenance"
+    },
+    {
+      "type": "text",
+      "content": "A programmer's job doesn't end when the software is delivered. Software evolves. It needs to be fixed, updated, and improved over time. This ongoing process is called maintenance, and it falls into four categories."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Corrective Maintenance:** The most common type. This is fixing bugs discovered by users after the program is in use. For example, fixing a crash that occurs when a specific button is pressed.",
+        "**Adaptive Maintenance:** Modifying the program to keep it functional in a changing environment. This could mean updating it to run on a new version of an operating system or to interact with a new database system.",
+        "**Perfective Maintenance:** Adding new features or improving existing ones to enhance the user's experience. This is often driven by user requests. For example, adding a 'dark mode' to an application or making a search function faster.",
+        "**Preventive Maintenance:** Changing the underlying code to improve its structure and readability, making future maintenance easier. This is like 'tidying up' the code (refactoring) to prevent future bugs and simplify future updates. It doesn't add new features for the user."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A procedure `CalculateGrade(Score)` is designed to work with integer scores from 0 to 100. Create a test plan with five test cases to check its robustness.",
+      "solution": "The goal is to test the input validation and handling of edge cases.\n\n| Test Case | Test Data (Score) | Type of Data | Expected Outcome | Actual Outcome | Justification |\n|---|---|---|---|---|---|\n| 1 | 75 | Normal | Grade 'A' (or similar valid output) | | A standard, valid score in the middle of the range. |\n| 2 | 0 | Boundary | Grade 'F' (or lowest valid grade) | | The lowest possible valid score. |\n| 3 | 100 | Boundary | Grade 'A+' (or highest valid grade) | | The highest possible valid score. |\n| 4 | 101 | Boundary | Error message or rejection | | The first integer value just outside the valid upper boundary. |\n| 5 | -1 | Boundary | Error message or rejection | | The first integer value just outside the valid lower boundary. |"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Test Data Selection",
+      "href": "/mark?subject=9618&topic=12.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "BBC Bitesize on Testing",
+          "href": "https://www.bbc.co.uk/bitesize/guides/z2242p3/revision/1"
+        },
+        {
+          "label": "GeeksForGeeks on Software Maintenance",
+          "href": "https://www.geeksforgeeks.org/software-maintenance-introduction/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

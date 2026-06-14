@@ -5,7 +5,11 @@ async function main() {
 
   async function checkUrl(url: string): Promise<number | string> {
     try {
-      const res = await fetch(url, { method: 'GET', redirect: 'follow' })
+      const res = await fetch(url, {
+        method: 'GET',
+        redirect: 'follow',
+        headers: { 'User-Agent': 'MarkScheme-EmbedCheck/1.0' },
+      })
       return res.status
     } catch {
       return 'ERR'

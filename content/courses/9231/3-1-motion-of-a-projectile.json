@@ -1,0 +1,183 @@
+{
+  "slug": "3-1-motion-of-a-projectile",
+  "topicCode": "3.1",
+  "title": "Motion of a projectile",
+  "paper": "P3",
+  "paperName": "Paper 3: Further Mechanics",
+  "status": "pilot",
+  "summary": "This lesson introduces the mathematical model for the motion of a projectile, building upon AS-level mechanics. It covers the derivation and application of equations for time of flight, range, and maximum height, both on level ground and on an inclined plane. The core principle is the independent treatment of horizontal and vertical motion.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Model the motion of a projectile as a particle moving with constant acceleration.",
+    "Resolve initial velocity into horizontal and vertical components.",
+    "Calculate the time of flight, range, and greatest height of a projectile.",
+    "Solve problems involving projectiles on an inclined plane by resolving gravity."
+  ],
+  "simpleExplanation": {
+    "title": "The Parabolic Path",
+    "summary": "We analyse the curved path of a projectile by splitting its motion into two independent parts. The horizontal motion is steady, while the vertical motion is affected by gravity.",
+    "analogy": "Imagine you're on a moving travelator at an airport and you throw a ball straight up. To you, the ball just goes up and comes back down. But to a stationary observer, the ball traces a curved path, moving forward at the travelator's constant speed while also accelerating up and down due to your throw and gravity. Projectile motion works the same way: we analyse the constant horizontal 'travelator' motion and the accelerated vertical 'ball toss' motion separately.",
+    "steps": [
+      "Resolve the initial velocity into horizontal ($u_x$) and vertical ($u_y$) components using trigonometry.",
+      "Analyse the vertical motion using SUVAT equations with acceleration $a_y = -g$ to find key timings, like time to maximum height or total time of flight.",
+      "Analyse the horizontal motion using the simple formula distance = speed × time, as horizontal acceleration $a_x = 0$.",
+      "Combine the results from the horizontal and vertical analyses to find quantities like the range or the position at a given time."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the key assumption made when modelling projectile motion?",
+      "back": "Air resistance is negligible, and the acceleration due to gravity, $g$, is constant."
+    },
+    {
+      "front": "What is the acceleration of a projectile in the horizontal direction?",
+      "back": "$a_x = 0$. This means the horizontal component of velocity, $v_x$, is constant throughout the motion."
+    },
+    {
+      "front": "What is the acceleration of a projectile in the vertical direction (taking upwards as positive)?",
+      "back": "$a_y = -g$, where $g \\approx 9.8 \\, \\text{m s}^{-2}$."
+    },
+    {
+      "front": "What is the vertical component of velocity, $v_y$, at the projectile's maximum height?",
+      "back": "$v_y = 0$. The projectile is momentarily at rest in the vertical direction as it changes from moving upwards to moving downwards."
+    },
+    {
+      "front": "For a projectile launched and landing on level ground, what is its final vertical displacement, $s_y$?",
+      "back": "$s_y = 0$. It returns to its initial vertical height."
+    },
+    {
+      "front": "How do you find the time of flight for a projectile on level ground?",
+      "back": "Set the vertical displacement $s_y = 0$ in the equation $s_y = u_y t + \\frac{1}{2}a_y t^2$ and solve for $t$. The non-zero solution is the time of flight."
+    },
+    {
+      "front": "How do you find the horizontal range, $R$, of a projectile?",
+      "back": "First, find the total time of flight, $T$. Then, use the horizontal motion equation: $R = u_x T$."
+    },
+    {
+      "front": "When analysing motion on a plane inclined at an angle $\\alpha$ to the horizontal, what are the components of acceleration?",
+      "back": "Parallel to the plane (downwards): $g \\sin \\alpha$. Perpendicular to the plane (into the plane): $g \\cos \\alpha$."
+    },
+    {
+      "front": "What is a common mistake when dealing with projectiles on an inclined plane?",
+      "back": "Forgetting to resolve the acceleration due to gravity ($g$) into components parallel and perpendicular to the plane. Using $-g$ for the 'vertical' acceleration is incorrect in this rotated coordinate system."
+    },
+    {
+      "front": "How do you find the time of flight for a projectile on an inclined plane?",
+      "back": "Set the displacement *perpendicular* to the plane to zero and solve for $t$ using the appropriate SUVAT equation with acceleration $a_\\perp = -g \\cos \\alpha$."
+    },
+    {
+      "front": "What is the 'range' on an inclined plane?",
+      "back": "It is the distance from the point of projection to the point of landing, measured *along the surface of the plane*."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to memorise the formulae for range, time of flight, and the equation of the trajectory?",
+      "a": "It is not essential, and it's much safer to derive them from the basic SUVAT equations each time. Understanding the derivation (e.g., setting $v_y=0$ for max height, $s_y=0$ for time of flight) is the key skill being tested. Memorised formulae only work for level ground and can lead to errors if misapplied."
+    },
+    {
+      "q": "What happens if the projectile lands at a different height from its launch point?",
+      "a": "In this case, the final vertical displacement, $s_y$, is not zero. For example, if a particle is projected from the top of a 10m cliff and lands in the sea, its final vertical displacement is $s_y = -10 \\, \\text{m}$ (taking the launch point as the origin). You would use this value in the SUVAT equation $s_y = u_y t + \\frac{1}{2}a_y t^2$ to find the time of flight."
+    },
+    {
+      "q": "Why is the path a parabola?",
+      "a": "The equation of the trajectory, which we derived as $y = x \\tan \\theta - \\frac{gx^2}{2U^2 \\cos^2 \\theta}$, is a quadratic function of $x$ (in the form $y = Ax - Bx^2$). The graph of a quadratic function is a parabola."
+    },
+    {
+      "q": "What if air resistance is not negligible?",
+      "a": "If air resistance is considered, the problem becomes much more complex. Air resistance is a type of drag force that opposes motion. It is often modelled as being proportional to velocity or the square of velocity. This means the acceleration is no longer constant, and the SUVAT equations do not apply. You would need to use calculus (forming and solving differential equations) to analyse the motion. This is covered in more advanced topics within Mechanics."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of projectile motion in Further Mathematics. We will build on your existing knowledge of kinematics and SUVAT equations from AS-level Mechanics. The key difference at this level is the introduction of more complex scenarios, most notably projectiles moving relative to an inclined plane. The fundamental principle remains the same: we can analyse the motion by considering the horizontal and vertical components independently, assuming negligible air resistance."
+    },
+    {
+      "type": "heading",
+      "content": "1. Decomposing Motion: The Foundation of Projectiles"
+    },
+    {
+      "type": "text",
+      "content": "Any object thrown or projected into the air, subject only to the force of gravity, is a projectile. Its path is a parabola. To analyse this, we resolve the motion into two perpendicular components. Conventionally, we use horizontal ($x$) and vertical ($y$) axes. The initial velocity, $U$, at an angle $\\theta$ to the horizontal is split into components."
+    },
+    {
+      "type": "formula",
+      "content": "Initial horizontal velocity: $u_x = U \\cos \\theta$ \\\\ Initial vertical velocity: $u_y = U \\sin \\theta$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Horizontal Motion: No forces act horizontally (as air resistance is ignored), so acceleration is zero ($a_x = 0$). The horizontal velocity is constant. The only equation needed is: $s_x = u_x t$.",
+        "Vertical Motion: Gravity acts downwards, so acceleration is constant ($a_y = -g$, taking upwards as positive). The standard SUVAT equations apply to the vertical component of motion.",
+        "Time ($t$) is the scalar quantity that links the horizontal and vertical analyses. The time taken to reach a certain horizontal position is the same as the time taken to reach the corresponding vertical position."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A golf ball is struck from a point on level horizontal ground with a speed of $42 \\, \\text{m s}^{-1}$ at an angle of $30^\\circ$ above the horizontal. Find: \n(a) the greatest height reached by the ball. \n(b) the time of flight. \n(c) the range of the ball on the horizontal ground. \n(Use $g = 9.8 \\, \\text{m s}^{-2}$)",
+      "solution": "First, resolve the initial velocity into components. Let upwards and rightwards be positive.\n$u_x = 42 \\cos 30^\\circ = 42 \\times \\frac{\\sqrt{3}}{2} = 21\\sqrt{3} \\, \\text{m s}^{-1}$ \n$u_y = 42 \\sin 30^\\circ = 42 \\times \\frac{1}{2} = 21 \\, \\text{m s}^{-1}$\n\n**(a) Greatest Height**\nAt the greatest height, the vertical velocity $v_y = 0$. We analyse the vertical motion:\n$s_y = ?$, $u_y = 21$, $v_y = 0$, $a_y = -9.8$\nUsing $v^2 = u^2 + 2as$:\n$0^2 = 21^2 + 2(-9.8)s_y$\n$19.6 s_y = 441$\n$s_y = \\frac{441}{19.6} = 22.5 \\, \\text{m}$\nSo, the greatest height reached is 22.5 m. [M1 for using $v_y=0$, A1 for correct substitution, A1 for answer]\n\n**(b) Time of Flight**\nThe ball lands when its vertical displacement $s_y = 0$. We analyse the vertical motion:\n$s_y = 0$, $u_y = 21$, $a_y = -9.8$, $t = ?$\nUsing $s = ut + \\frac{1}{2}at^2$:\n$0 = 21t + \\frac{1}{2}(-9.8)t^2$\n$0 = 21t - 4.9t^2$\n$0 = t(21 - 4.9t)$\nThis gives $t=0$ (the start) or $21 - 4.9t = 0$.\n$t = \\frac{21}{4.9} \\approx 4.2857... \\, \\text{s}$\nThe time of flight is $4.29 \\, \\text{s}$ (3 s.f.). [M1 for setting $s_y=0$, A1 for correct quadratic, A1 for answer]\n\n**(c) Range**\nThe range is the horizontal distance travelled during the time of flight. We use the horizontal motion:\n$s_x = ?$, $u_x = 21\\sqrt{3}$, $t = 4.2857...$\n$s_x = u_x t$\n$s_x = (21\\sqrt{3}) \\times (4.2857...)$\n$s_x = 155.88... \\, \\text{m}$\nThe range is $156 \\, \\text{m}$ (3 s.f.). [M1 for using Range = $u_x \\times t_{flight}$, A1 for answer]"
+    },
+    {
+      "type": "heading",
+      "content": "2. Projectiles on an Inclined Plane"
+    },
+    {
+      "type": "text",
+      "content": "A common extension in Further Mathematics is to analyse a projectile launched from, and landing on, a sloped surface. For these problems, it is much more convenient to rotate our coordinate system. We define our axes to be parallel and perpendicular to the inclined plane itself. This simplifies the displacement calculations, but it means we must resolve the acceleration due to gravity, $g$, into components in our new axis system."
+    },
+    {
+      "type": "formula",
+      "content": "For a plane inclined at angle $\\alpha$ to the horizontal: \nAcceleration parallel to the plane (downslope): $a_\\parallel = g \\sin \\alpha$ \nAcceleration perpendicular to the plane (into the plane): $a_\\perp = g \\cos \\alpha$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a clear diagram for inclined plane problems. Label the angle of the plane, $\\alpha$, and the angle of projection relative to the plane. Be extremely careful when resolving both the initial velocity and the acceleration due to gravity. A common mistake is to mix up $\\sin$ and $\\cos$ for the acceleration components."
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle is projected from a point $O$ on a plane inclined at $20^\\circ$ to the horizontal. The initial velocity is $30 \\, \\text{m s}^{-1}$ at an angle of $45^\\circ$ to the plane. The particle moves up the plane. Find:\n(a) the time of flight.\n(b) the range of the particle along the plane.\n(Use $g = 9.8 \\, \\text{m s}^{-2}$)",
+      "solution": "Let's set up a coordinate system with the x-axis parallel to the plane (upwards) and the y-axis perpendicular to the plane (outwards).\n\n**Resolve initial velocity:**\n$u_x = 30 \\cos 45^\\circ = 15\\sqrt{2} \\, \\text{m s}^{-1}$\n$u_y = 30 \\sin 45^\\circ = 15\\sqrt{2} \\, \\text{m s}^{-1}$\n\n**Resolve acceleration due to gravity:**\n$a_x = -g \\sin 20^\\circ = -9.8 \\sin 20^\\circ \\approx -3.3518 \\, \\text{m s}^{-2}$\n$a_y = -g \\cos 20^\\circ = -9.8 \\cos 20^\\circ \\approx -9.2088 \\, \\text{m s}^{-2}$\n\n**(a) Time of Flight**\nThe particle lands on the plane when its displacement perpendicular to the plane is zero ($s_y = 0$).\nUsing $s_y = u_y t + \\frac{1}{2}a_y t^2$:\n$0 = (15\\sqrt{2})t + \\frac{1}{2}(-9.8 \\cos 20^\\circ)t^2$\n$0 = t(15\\sqrt{2} - 4.9 \\cos 20^\\circ \\, t)$\n$t=0$ or $t = \\frac{15\\sqrt{2}}{4.9 \\cos 20^\\circ} \\approx \\frac{21.213}{4.6044} \\approx 4.607... \\, \\text{s}$\nThe time of flight is $4.61 \\, \\text{s}$ (3 s.f.). [M1 for resolving g, M1 for setting $s_\\perp=0$, A1 for correct equation, A1 for answer]\n\n**(b) Range along the plane**\nThe range is the displacement parallel to the plane ($s_x$) at the time of flight.\nUsing $s_x = u_x t + \\frac{1}{2}a_x t^2$ with $t = 4.607... \\, \\text{s}$:\n$s_x = (15\\sqrt{2})(4.607...) + \\frac{1}{2}(-9.8 \\sin 20^\\circ)(4.607...)^2$\n$s_x = (21.213)(4.607...) + \\frac{1}{2}(-3.3518)(21.228...)$\n$s_x = 97.735... - 35.569...$\n$s_x = 62.166... \\, \\text{m}$\nThe range along the plane is $62.2 \\, \\text{m}$ (3 s.f.). [M1 for using $s_\\parallel = u_\\parallel t + \\frac{1}{2} a_\\parallel t^2$ with their time of flight, A1 for answer]"
+    },
+    {
+      "type": "heading",
+      "content": "3. Equation of the Trajectory"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, you may be asked to find the Cartesian equation of the projectile's path. This equation relates the vertical displacement, $y$, to the horizontal displacement, $x$, without involving time, $t$. To derive this, we express $t$ in terms of $x$ from the horizontal motion equation and substitute it into the vertical motion equation."
+    },
+    {
+      "type": "formula",
+      "content": "1. Horizontal motion: $x = (U \\cos \\theta) t \\implies t = \\frac{x}{U \\cos \\theta}$ \n2. Vertical motion: $y = (U \\sin \\theta) t - \\frac{1}{2}gt^2$ \n3. Substitute for $t$: $y = (U \\sin \\theta) \\left(\\frac{x}{U \\cos \\theta}\\right) - \\frac{1}{2}g\\left(\\frac{x}{U \\cos \\theta}\\right)^2$ \nThis simplifies to the parabolic form: $y = x \\tan \\theta - \\frac{gx^2}{2U^2 \\cos^2 \\theta}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The equation of the trajectory is a quadratic in $x$, which confirms the path is a parabola.",
+        "This form is useful for problems where you are given a point $(x, y)$ that the projectile passes through and need to find the angle of projection $\\theta$ or initial speed $U$.",
+        "Remember the identity $\\sec^2 \\theta = 1 + \\tan^2 \\theta$. Substituting this can transform the equation into a quadratic in $\\tan \\theta$, which is often easier to solve."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding with past paper questions",
+      "href": "/mark?subject=9231&topic=3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Syllabus (9231)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        },
+        {
+          "label": "Projectile Motion on Khan Academy",
+          "href": "https://www.khanacademy.org/science/physics/two-dimensional-motion/projectiles/v/projectile-at-an-angle"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

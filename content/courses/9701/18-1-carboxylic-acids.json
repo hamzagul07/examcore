@@ -4,41 +4,241 @@
   "title": "Carboxylic acids",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS carboxylic acid chemistry — structure, weak acidity, reactions, and hydrogen bonding with PhET molecule builder.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "An introduction to carboxylic acids, covering their structure, nomenclature, physical properties (boiling points and solubility), and characteristic reactions as weak acids, including neutralisation, esterification, and their reaction with carbonates.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe the carboxyl group and name carboxylic acids.",
-    "Explain weak acid behaviour and Ka values.",
-    "Predict reactions with bases, carbonates, and alcohols.",
-    "Account for boiling points via intermolecular hydrogen bonding."
+    "Describe the structure of carboxylic acids and name them using IUPAC nomenclature.",
+    "Explain the physical properties of carboxylic acids, including their relatively high boiling points and solubility in water, in terms of hydrogen bonding.",
+    "Describe the reactions of carboxylic acids with metals, bases, and carbonates, and write balanced chemical equations.",
+    "Describe the formation of esters from carboxylic acids and alcohols, stating the necessary reaction conditions."
   ],
   "simpleExplanation": {
-    "title": "The –COOH group",
-    "summary": "Carboxylic acids are weak acids because the carboxylate anion is stabilised by resonance. They form dimers through strong H-bonds.",
+    "title": "The Acid Test: Understanding Carboxylic Acids",
+    "summary": "Carboxylic acids contain the –COOH group, making them weak acids that can form dimers via hydrogen bonds. Their key reactions include forming salts with bases and esters with alcohols.",
+    "analogy": "Think of a carboxylic acid's proton as a library book. It can be 'lent out' to a water molecule, but the library (the carboxylate ion) always wants it back, so it's only ever partially 'checked out' at any one time. This is unlike a strong acid, which is like giving the book away permanently.",
     "steps": [
-      "R–COOH ⇌ R–COO⁻ + H⁺ — Ka typically ~ 10⁻⁵.",
-      "With NaOH → salt + water; with Na₂CO₃ → salt + CO₂ + H₂O.",
-      "With alcohol + acid catalyst → ester + water.",
-      "Oxidation of primary alcohols gives carboxylic acids."
+      "R–COOH: The carboxyl group consists of a carbonyl group (C=O) and a hydroxyl group (–OH) on the same carbon atom.",
+      "Carboxylic acids are weak acids, meaning they only partially dissociate in water to release H⁺ ions, with a typical Ka value around 10⁻⁵.",
+      "They undergo characteristic reactions, such as forming a salt and water with bases, or producing CO₂ gas with carbonates.",
+      "Strong intermolecular hydrogen bonds lead to high boiling points, often forming dimers which effectively double their molecular mass."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the functional group of a carboxylic acid?",
+      "back": "The carboxyl group, $-\\text{COOH}$, which consists of a carbonyl group ($C=O$) and a hydroxyl group ($-OH$) attached to the same carbon atom."
+    },
+    {
+      "front": "What is the general formula for a straight-chain carboxylic acid?",
+      "back": "$C_n H_{2n+1} COOH$ (for $n \\ge 0$). More generally, $R-COOH$ where R is a hydrogen atom or an alkyl group."
+    },
+    {
+      "front": "Why are carboxylic acids classified as weak acids?",
+      "back": "They only partially dissociate (ionise) in aqueous solution, establishing an equilibrium. For example: $CH_3COOH(aq) \\rightleftharpoons CH_3COO^-(aq) + H^+(aq)$."
+    },
+    {
+      "front": "Why do carboxylic acids have higher boiling points than alkanes of similar relative molecular mass?",
+      "back": "They can form strong intermolecular hydrogen bonds. They can also form stable dimers, effectively doubling their molecular size and increasing the energy needed to vaporise them."
+    },
+    {
+      "front": "What are the products when a carboxylic acid reacts with a reactive metal like magnesium?",
+      "back": "A carboxylate salt and hydrogen gas. Example: $2CH_3COOH + Mg \\rightarrow (CH_3COO)_2Mg + H_2$."
+    },
+    {
+      "front": "What are the products when a carboxylic acid reacts with a carbonate, like sodium carbonate?",
+      "back": "A carboxylate salt, water, and carbon dioxide gas. This effervescence is a characteristic test for carboxylic acids."
+    },
+    {
+      "front": "What are the conditions required for esterification?",
+      "back": "A carboxylic acid is heated under reflux with an alcohol in the presence of a strong acid catalyst, typically concentrated sulfuric acid ($H_2SO_4$)."
+    },
+    {
+      "front": "What is a dimer in the context of carboxylic acids?",
+      "back": "A pair of carboxylic acid molecules held together by two hydrogen bonds between their carboxyl groups. This occurs in the gaseous state and in non-polar solvents."
+    },
+    {
+      "front": "How does the solubility of carboxylic acids in water change as the carbon chain length increases?",
+      "back": "Solubility decreases. Short-chain acids (e.g., methanoic, ethanoic) are fully miscible as they can form hydrogen bonds with water. The long, non-polar hydrocarbon chain in larger acids disrupts this interaction."
+    },
+    {
+      "front": "What is the IUPAC name for the salt formed from the reaction of propanoic acid and potassium hydroxide?",
+      "back": "Potassium propanoate. The '-oic acid' suffix is replaced with '-oate'."
+    },
+    {
+      "front": "What is the observation when aqueous sodium hydrogencarbonate is added to ethanoic acid?",
+      "back": "Effervescence (fizzing) is observed as carbon dioxide gas is produced."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are carboxylic acids stronger acids than alcohols, given they both have an -OH group?",
+      "a": "The carboxylate anion ($RCOO^-$) formed when a carboxylic acid loses a proton is stabilised by resonance. The negative charge is delocalised over the two oxygen atoms, spreading the charge out. The alkoxide ion ($RO^-$) from an alcohol has its negative charge localised on the single oxygen atom, making it less stable and thus less likely to form. This greater stability of the conjugate base makes the carboxylic acid a stronger acid."
+    },
+    {
+      "q": "What is the difference between a carboxylic acid (-COOH) and an ester (-COOR')?",
+      "a": "A carboxylic acid has a hydroxyl group ($-OH$) attached to the carbonyl carbon. An ester has an alkoxy group ($-OR'$) attached to the carbonyl carbon, where R' is an alkyl group. Carboxylic acids are acidic and can act as hydrogen bond donors, leading to high boiling points. Esters are neutral, generally have pleasant smells, and cannot act as hydrogen bond donors (though they can be acceptors), so their boiling points are lower than corresponding acids."
+    },
+    {
+      "q": "How can I distinguish between a carboxylic acid and a phenol in the lab?",
+      "a": "Both are weakly acidic and will react with strong bases like NaOH. However, carboxylic acids are strong enough to react with weak bases like sodium carbonate ($Na_2CO_3$) or sodium hydrogencarbonate ($NaHCO_3$) to produce carbon dioxide gas (effervescence). Phenols are generally not acidic enough to do this. This reaction is a key distinguishing test."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Carboxylic acids** (18.1) feed into **esters** (18.2) and **acyl chlorides** (A Level). Show **curly arrows** for C–O bond breaking when reacting with nucleophiles."
+      "content": "Carboxylic acids are a class of organic compounds characterised by the presence of the carboxyl functional group. They are widespread in nature, found in substances like vinegar (ethanoic acid) and citrus fruits (citric acid). This topic explores their structure, physical properties, and key chemical reactions, which are fundamental to organic chemistry."
+    },
+    {
+      "type": "heading",
+      "content": "Structure and Nomenclature"
+    },
+    {
+      "type": "text",
+      "content": "The functional group of a carboxylic acid is the carboxyl group, written as $-\\text{COOH}$. It combines a carbonyl group ($>C=O$) and a hydroxyl group ($-OH$) on the same carbon atom. The carbon atom of the carboxyl group is always designated as carbon-1 when naming the compound."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Nomenclature:** To name a carboxylic acid, find the longest carbon chain containing the carboxyl group. Replace the '-e' from the corresponding alkane name with the suffix '-oic acid'.",
+        "**Examples:** Methane becomes methanoic acid ($HCOOH$), ethane becomes ethanoic acid ($CH_3COOH$), propane becomes propanoic acid ($CH_3CH_2COOH$).",
+        "**Structure:** The carboxyl group is planar due to the $sp^2$ hybridisation of the carbonyl carbon, which influences its reactivity and physical properties."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Physical Properties: Boiling Points and Solubility"
+    },
+    {
+      "type": "text",
+      "content": "Carboxylic acids have significantly higher boiling points than alcohols, aldehydes, or alkanes of comparable relative molecular mass. This is due to their ability to form strong intermolecular hydrogen bonds. In fact, they can form dimers, where two molecules are held together by two hydrogen bonds. This effectively doubles the molecule's size, increasing the van der Waals forces and requiring more energy to separate the molecules into the gaseous phase."
+    },
+    {
+      "type": "text",
+      "content": "The solubility of carboxylic acids in water depends on their chain length. Short-chain carboxylic acids (up to four carbons) are miscible with water because the polar carboxyl group can form hydrogen bonds with water molecules. As the length of the non-polar hydrocarbon chain increases, the molecule becomes less polar overall, and solubility in water decreases significantly."
+    },
+    {
+      "type": "heading",
+      "content": "Acidity of Carboxylic Acids"
+    },
+    {
+      "type": "text",
+      "content": "Carboxylic acids are weak Brønsted-Lowry acids. In aqueous solution, they partially dissociate to form a carboxylate anion and a hydrogen ion ($H^+$), which is often represented as the hydronium ion ($H_3O^+$). The position of this equilibrium lies to the left, indicating that only a small fraction of the acid molecules are ionised at any given time."
+    },
+    {
+      "type": "formula",
+      "content": "RCOOH(aq) \\rightleftharpoons RCOO^-(aq) + H^+(aq)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Weak Acid Behaviour:** Their partial dissociation is why they have a pH greater than 1 for typical concentrations, unlike strong acids like HCl.",
+        "**Stabilisation:** The carboxylate anion ($RCOO^-$) is stabilised by resonance, as the negative charge is delocalised across the two oxygen atoms. This makes the anion more stable than an alkoxide ion ($RO^-$) from an alcohol, explaining why carboxylic acids are more acidic than alcohols.",
+        "**Test for Acidity:** A key test is the reaction with carbonates, which is characteristic of acids stronger than carbonic acid."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Characteristic Reactions"
+    },
+    {
+      "type": "text",
+      "content": "The chemistry of carboxylic acids is dominated by their acidity and the reactions of the carboxyl group. They undergo several important reactions that you must know."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Reaction with Metals:** Reactive metals (e.g., Mg, Zn) react to form a metal carboxylate salt and hydrogen gas.",
+        "**Reaction with Bases:** They are neutralised by bases (e.g., NaOH) to form a salt and water.",
+        "**Reaction with Carbonates:** They react with carbonates (e.g., $Na_2CO_3$) and hydrogencarbonates (e.g., $NaHCO_3$) to produce a salt, water, and carbon dioxide gas. The effervescence observed is a definitive test for a carboxylic acid."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A 25.0 cm³ sample of a solution of ethanoic acid, $CH_3COOH$, was titrated with 0.150 mol dm⁻³ sodium hydroxide solution. 22.50 cm³ of the NaOH solution was required for complete neutralisation. Calculate the concentration of the ethanoic acid solution in mol dm⁻³.",
+      "solution": "1.  **Write the balanced equation:**\n$CH_3COOH(aq) + NaOH(aq) \\rightarrow CH_3COONa(aq) + H_2O(l)$\n\n2.  **Calculate the moles of NaOH used:**\nMoles = Concentration × Volume\nMoles of NaOH = $0.150 \\text{ mol dm}^{-3} \\times (22.50 / 1000) \\text{ dm}^3$\nMoles of NaOH = $3.375 \\times 10^{-3} \\text{ mol}$\n\n3.  **Determine the moles of CH₃COOH reacted:**\nFrom the balanced equation, the mole ratio of $CH_3COOH : NaOH$ is 1:1.\nTherefore, moles of $CH_3COOH$ = $3.375 \\times 10^{-3} \\text{ mol}$\n\n4.  **Calculate the concentration of CH₃COOH:**\nConcentration = Moles / Volume\nConcentration of $CH_3COOH$ = $(3.375 \\times 10^{-3} \\text{ mol}) / (25.0 / 1000) \\text{ dm}^3$\nConcentration of $CH_3COOH$ = **0.135 mol dm⁻³** (to 3 s.f.)"
+    },
+    {
+      "type": "text",
+      "content": "Another key reaction is esterification, where a carboxylic acid reacts with an alcohol to form an ester and water. This is a reversible condensation reaction."
+    },
+    {
+      "type": "formula",
+      "content": "R-COOH + R'-OH \\rightleftharpoons R-COOR' + H_2O \\quad \\text{(Catalyst: conc. } H_2SO_4, \\text{ Heat under reflux)}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A 1.85 g sample of a pure straight-chain carboxylic acid, Y, was reacted with excess sodium carbonate. The reaction produced 480 cm³ of carbon dioxide gas, measured at room temperature and pressure (RTP). Determine the molecular formula of the carboxylic acid Y. (Molar volume of a gas at RTP = 24.0 dm³ mol⁻¹).",
+      "solution": "1.  **Write a general balanced equation:**\nLet the carboxylic acid be $RCOOH$. The reaction is:\n$2RCOOH + Na_2CO_3 \\rightarrow 2RCOONa + H_2O + CO_2$\n\n2.  **Calculate moles of CO₂ produced:**\nVolume of $CO_2 = 480 \\text{ cm}^3 = 0.480 \\text{ dm}^3$\nMoles of $CO_2$ = Volume / Molar Volume = $0.480 / 24.0 = 0.0200 \\text{ mol}$\n\n3.  **Determine moles of carboxylic acid Y:**\nFrom the stoichiometry, the mole ratio of $RCOOH : CO_2$ is 2:1.\nMoles of Y = $2 \\times$ Moles of $CO_2 = 2 \\times 0.0200 = 0.0400 \\text{ mol}$\n\n4.  **Calculate the molar mass (Mr) of Y:**\nMr = Mass / Moles = $1.85 \\text{ g} / 0.0400 \\text{ mol} = 46.25 \\text{ g mol}^{-1}$. Let's round this to 46 as Mr must be an integer.\n\n5.  **Determine the molecular formula:**\nThe general formula is $C_n H_{2n+1} COOH$, which can be written as $C_{n+1}H_{2n+2}O_2$.\nLet's test small values of n. The simplest acid is methanoic acid ($HCOOH$, n=0).\nMr of $HCOOH = 1.0 + 12.0 + 16.0 + 16.0 + 1.0 = 46.0 \\text{ g mol}^{-1}$.\nThis matches our calculated Mr.\nTherefore, the carboxylic acid Y is **methanoic acid, HCOOH**."
+    },
+    {
+      "type": "examTip",
+      "content": "The reaction between a carboxylic acid and a carbonate/hydrogencarbonate is a crucial test. If you are asked to distinguish a carboxylic acid from an alcohol or a phenol, this is the go-to reaction. Only the carboxylic acid is acidic enough to produce effervescence ($CO_2$ gas) with a weak base like $Na_2CO_3$."
     },
     {
       "type": "practice",
-      "label": "Mark a carboxylic acids question",
+      "label": "Test your knowledge on Carboxylic Acids",
       "href": "/mark?subject=9701&topic=18.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Cambridge International Syllabus (9701)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-chemistry-9701/"
+        },
+        {
+          "label": "Royal Society of Chemistry - Carboxylic Acids",
+          "href": "https://www.rsc.org/education/teachers/resources/cfb/organiccompounds.htm"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Identify –COOH group and hydrogen bonding in ethanoic acid (18.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "R–COOH: carboxyl group — C=O and –OH on same carbon.",
+        "embedHint": "Build ethanoic acid — locate polar O atoms for H-bonding."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Weak acids: Ka ~ 10⁻⁵ — partial dissociation in water.",
+        "embedHint": "Compare H⁺ donation vs strong mineral acids."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Reactions: with bases (salt + water), alcohols (ester), carbonates (CO₂).",
+        "embedHint": "Identify –COOH before predicting salt formation."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Intermolecular H-bonds → higher b.p. than similar mass alkanes/aldehydes.",
+        "embedHint": "Draw dimer H-bonds between two acid molecules."
+      }
+    ]
+  }
 }

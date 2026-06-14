@@ -4,39 +4,211 @@
   "title": "Differentiation",
   "paper": "P2",
   "paperName": "Pure Mathematics 2",
-  "status": "premium",
-  "summary": "9709 P2 differentiation — product, quotient, chain rules, stationary points, and optimisation with GeoGebra tangent explorer.",
+  "status": "pilot",
+  "summary": "This lesson extends differentiation from Pure Mathematics 1, introducing the product and quotient rules. It then applies these techniques to find and classify stationary points, solve problems involving connected rates of change, and tackle optimisation questions.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Differentiate products and quotients of functions.",
-    "Use the chain rule for composite functions.",
-    "Locate and classify stationary points.",
-    "Solve optimisation problems in context."
+    "Apply the product rule and quotient rule to differentiate complex functions.",
+    "Locate stationary points and determine their nature using the second derivative test.",
+    "Solve problems involving connected rates of change using the chain rule.",
+    "Formulate and solve optimisation problems by finding and verifying maximum or minimum values."
   ],
   "simpleExplanation": {
-    "title": "P2 extends the power rule",
-    "summary": "P2 combines functions — product, quotient, and chain rules are essential. Second derivative distinguishes max from min.",
+    "title": "The Calculus of Change",
+    "summary": "Differentiation finds the instantaneous rate of change of a function. In P2, we learn powerful new rules to handle more complex functions and apply them to real-world problems like optimisation and related rates.",
+    "analogy": "Imagine you're filling a strangely shaped container with water. Differentiation tells you how quickly the water level is rising at any specific moment, even if the container's walls are curved. Connected rates of change is like knowing how fast you're pouring water in (volume per second) and using that to calculate how fast the water level (height per second) is rising.",
     "steps": [
-      "Product: (uv)′ = u′v + uv′.",
-      "Quotient: (u/v)′ = (u′v − uv′)/v².",
-      "Chain: dy/dx = dy/du · du/dx.",
-      "f″(x) > 0 at minimum; f″(x) < 0 at maximum."
+      "P2: product and quotient rules; chain rule for composites.",
+      "Stationary points: f′(x) = 0 — max, min, or point of inflection.",
+      "Connected rates of change — link dy/dt and dx/dt.",
+      "Optimisation problems — form equation, differentiate, verify max/min."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the Product Rule for differentiation?",
+      "back": "If $y = uv$, where $u$ and $v$ are functions of $x$, then $\\frac{dy}{dx} = u\\frac{dv}{dx} + v\\frac{du}{dx}$. In words: 'first times derivative of the second, plus second times derivative of the first'."
+    },
+    {
+      "front": "What is the Quotient Rule for differentiation?",
+      "back": "If $y = \\frac{u}{v}$, where $u$ and $v$ are functions of $x$, then $\\frac{dy}{dx} = \\frac{v\\frac{du}{dx} - u\\frac{dv}{dx}}{v^2}$. A common mnemonic is 'low d-high minus high d-low, over low-low'."
+    },
+    {
+      "front": "What is the condition for a point to be a stationary point?",
+      "back": "A point $(x, y)$ on the curve $y = f(x)$ is a stationary point if $f'(x) = 0$."
+    },
+    {
+      "front": "How is the second derivative, $f''(x)$, used to classify stationary points?",
+      "back": "If $f'(a) = 0$: If $f''(a) > 0$, it's a local minimum. If $f''(a) < 0$, it's a local maximum. If $f''(a) = 0$, the test is inconclusive."
+    },
+    {
+      "front": "What should you do if the second derivative test is inconclusive ($f''(x)=0$)?",
+      "back": "You must test the sign of the first derivative, $f'(x)$, on either side of the stationary point. This will determine if it's a point of inflection, or a max/min that the second derivative test couldn't identify."
+    },
+    {
+      "front": "How is the chain rule expressed for connected rates of change?",
+      "back": "If two variables, $y$ and $x$, both depend on time $t$, their rates of change are related by $\\frac{dy}{dt} = \\frac{dy}{dx} \\times \\frac{dx}{dt}$."
+    },
+    {
+      "front": "What is the derivative of $\\ln(kx)$?",
+      "back": "The derivative is $\\frac{1}{x}$. Using the chain rule, $\\frac{d}{dx}(\\ln(kx)) = \\frac{1}{kx} \\times k = \\frac{1}{x}$. The constant inside the logarithm does not affect the derivative."
+    },
+    {
+      "front": "What is the derivative of $e^{ax+b}$?",
+      "back": "Using the chain rule, the derivative is $a e^{ax+b}$. The derivative of the power multiplies the original function."
+    },
+    {
+      "front": "Common Trap: Differentiating $y = 3x \\sin x$.",
+      "back": "You must use the product rule. Let $u=3x$ and $v=\\sin x$. $\\frac{dy}{dx} = (3x)(\\cos x) + (\\sin x)(3) = 3x \\cos x + 3 \\sin x$. A common error is to differentiate each part separately."
+    },
+    {
+      "front": "What is the difference between an increasing function and a strictly increasing function?",
+      "back": "A function $f(x)$ is increasing on an interval if $f'(x) \\ge 0$ for all $x$ in the interval. It is strictly increasing if $f'(x) > 0$. The distinction allows for stationary points of inflection within an increasing interval."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When do I use the product rule vs. the chain rule?",
+      "a": "Use the product rule when you are differentiating a function that is one function MULTIPLIED by another, like $f(x) = x^2 e^x$. Use the chain rule when you have a function INSIDE another function (a composite function), like $f(x) = e^{(x^2)}$. Sometimes you need both, for example in $f(x) = x^2 e^{3x}$ you use the product rule overall, but need the chain rule to differentiate the $e^{3x}$ part."
+    },
+    {
+      "q": "Is there an easier way than the quotient rule?",
+      "a": "Sometimes, yes. You can often rewrite a quotient as a product and use the product rule. For example, $y = \\frac{\\ln x}{x^2}$ can be written as $y = (\\ln x)(x^{-2})$. Differentiating this with the product rule can sometimes feel simpler and lead to fewer sign errors. However, you must be comfortable with both methods."
+    },
+    {
+      "q": "What's the point of the second derivative test if it can be inconclusive?",
+      "a": "The second derivative test is usually much faster than testing points on either side of the stationary point. It's only inconclusive in specific cases (like $y=x^3$ or $y=x^4$ at $x=0$). For most exam questions, it works perfectly. You just need to remember the backup method (testing the sign of $f'(x)$) for when $f''(x)=0$."
+    },
+    {
+      "q": "In connected rates of change, how do I know which variable to eliminate?",
+      "a": "Look at the rate you are given and the rate you need to find. For example, if you are given $\\frac{dV}{dt}$ and need to find $\\frac{dh}{dt}$, your chain rule will be $\\frac{dh}{dt} = \\frac{dh}{dV} \\times \\frac{dV}{dt}$. This tells you that you need a relationship between $h$ and $V$. Therefore, you should write your volume formula $V$ in terms of $h$ only, eliminating other variables like the radius $r$."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**P2 Differentiation** (2.4) follows **P1** (1.7) but adds **combined rules**. Show **working** for quotient rule — cancelling errors cost marks."
+      "content": "Welcome to the next level of differentiation. In Pure Mathematics 1, you mastered the basics of finding gradients and locating stationary points for polynomials. Now, in Pure Mathematics 2, we equip you with more powerful tools to differentiate a wider range of functions, including products, quotients, and combinations involving exponential and logarithmic functions. These skills are essential for solving more complex and realistic problems."
+    },
+    {
+      "type": "heading",
+      "content": "The Product and Quotient Rules"
+    },
+    {
+      "type": "text",
+      "content": "When a function is formed by multiplying two other functions together (e.g., $y = x^2 \\sin x$), we cannot simply differentiate each part and multiply the results. We must use the Product Rule. Similarly, when a function is a fraction with functions in the numerator and denominator (e.g., $y = \\frac{e^x}{x+1}$), we need the Quotient Rule."
+    },
+    {
+      "type": "formula",
+      "content": "Product Rule: If $y = uv$, then $\\frac{dy}{dx} = u\\frac{dv}{dx} + v\\frac{du}{dx}$\n\nQuotient Rule: If $y = \\frac{u}{v}$, then $\\frac{dy}{dx} = \\frac{v\\frac{du}{dx} - u\\frac{dv}{dx}}{v^2}$"
+    },
+    {
+      "type": "heading",
+      "content": "Stationary Points and Their Nature"
+    },
+    {
+      "type": "text",
+      "content": "As before, stationary points occur where the gradient of the curve is zero, i.e., where $\\frac{dy}{dx} = 0$. These points can be local maxima, local minima, or points of inflection. To determine the nature of a stationary point, we use the second derivative test. This involves finding the second derivative, $\\frac{d^2y}{dx^2}$ or $f''(x)$, and evaluating its sign at the stationary point."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Find stationary points by solving $\\frac{dy}{dx} = 0$.",
+        "Calculate the second derivative, $\\frac{d^2y}{dx^2}$.",
+        "At a stationary point $x=a$: If $\\frac{d^2y}{dx^2} > 0$, it is a local minimum.",
+        "At a stationary point $x=a$: If $\\frac{d^2y}{dx^2} < 0$, it is a local maximum.",
+        "If $\\frac{d^2y}{dx^2} = 0$, the test is inconclusive. You must test the sign of $\\frac{dy}{dx}$ on either side of the point."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A curve has equation $y = \\frac{\\ln x}{x^2}$. Find the exact coordinates of its stationary point and determine its nature.",
+      "solution": "The function is a quotient, so we use the quotient rule with $u = \\ln x$ and $v = x^2$.\n$u' = \\frac{du}{dx} = \\frac{1}{x}$ and $v' = \\frac{dv}{dx} = 2x$.\n\n$\\frac{dy}{dx} = \\frac{v u' - u v'}{v^2} = \\frac{x^2(\\frac{1}{x}) - (\\ln x)(2x)}{(x^2)^2} = \\frac{x - 2x \\ln x}{x^4} = \\frac{1 - 2 \\ln x}{x^3}$. [M1 for quotient rule]\n\nFor stationary points, set $\\frac{dy}{dx} = 0$.\n$\\frac{1 - 2 \\ln x}{x^3} = 0 \\implies 1 - 2 \\ln x = 0$. [M1 for setting numerator to 0]\n$2 \\ln x = 1 \\implies \\ln x = \\frac{1}{2} \\implies x = e^{1/2} = \\sqrt{e}$. [A1 for x-coordinate]\n\nNow find the y-coordinate:\n$y = \\frac{\\ln(e^{1/2})}{(e^{1/2})^2} = \\frac{1/2}{e} = \\frac{1}{2e}$.\nThe stationary point is $(\\sqrt{e}, \\frac{1}{2e})$. [A1 for y-coordinate]\n\nTo determine the nature, we find the second derivative, $\\frac{d^2y}{dx^2}$. We differentiate $\\frac{dy}{dx} = \\frac{1 - 2 \\ln x}{x^3}$.\nLet $u = 1 - 2 \\ln x$ and $v = x^3$. Then $u' = -\\frac{2}{x}$ and $v' = 3x^2$.\n\n$\\frac{d^2y}{dx^2} = \\frac{x^3(-\\frac{2}{x}) - (1 - 2 \\ln x)(3x^2)}{(x^3)^2} = \\frac{-2x^2 - 3x^2 + 6x^2 \\ln x}{x^6} = \\frac{-5x^2 + 6x^2 \\ln x}{x^6} = \\frac{6 \\ln x - 5}{x^4}$. [M1 for second derivative]\n\nSubstitute $x = e^{1/2}$ into the second derivative:\n$\\frac{d^2y}{dx^2} = \\frac{6 \\ln(e^{1/2}) - 5}{(e^{1/2})^4} = \\frac{6(\\frac{1}{2}) - 5}{e^2} = \\frac{3 - 5}{e^2} = -\\frac{2}{e^2}$.\n\nSince $\\frac{d^2y}{dx^2} < 0$, the stationary point is a local maximum. [A1 for correct conclusion from correct working]"
+    },
+    {
+      "type": "heading",
+      "content": "Connected Rates of Change"
+    },
+    {
+      "type": "text",
+      "content": "In many real-world scenarios, several quantities change with time and are related to each other. For example, the volume, radius, and surface area of an inflating spherical balloon all change with time. Connected rates of change problems use the chain rule to find the rate of change of one quantity when the rate of change of another is known."
+    },
+    {
+      "type": "formula",
+      "content": "The Chain Rule for rates: $\\frac{dy}{dt} = \\frac{dy}{dx} \\times \\frac{dx}{dt}$"
+    },
+    {
+      "type": "examTip",
+      "content": "In connected rates of change problems, always start by writing down what you know (e.g., $\\frac{dV}{dt} = 5$) and what you want to find (e.g., $\\frac{dr}{dt}$). Then, write down the chain rule relationship that connects these rates, such as $\\frac{dr}{dt} = \\frac{dr}{dV} \\times \\frac{dV}{dt}$. This helps structure your solution."
+    },
+    {
+      "type": "workedExample",
+      "question": "A water tank is in the shape of an inverted cone with base radius 2 m and height 6 m. Water is being pumped into the tank at a constant rate of $0.1 \\text{ m}^3\\text{min}^{-1}$. Find the rate at which the water level is rising when the depth of the water is 3 m. (The volume of a cone is $V = \\frac{1}{3}\\pi r^2 h$).",
+      "solution": "Let $h$ be the depth of the water and $r$ be the radius of the water surface at time $t$. We are given $\\frac{dV}{dt} = 0.1$. We want to find $\\frac{dh}{dt}$ when $h=3$.\n\nFirst, we need a relationship between $V$ and $h$. The formula for $V$ involves both $r$ and $h$. We can use similar triangles to relate $r$ and $h$. The ratio of radius to height for the cone is constant: $\\frac{r}{h} = \\frac{2}{6} = \\frac{1}{3}$. So, $r = \\frac{h}{3}$. [M1 for relating r and h]\n\nSubstitute this into the volume formula:\n$V = \\frac{1}{3}\\pi (\\frac{h}{3})^2 h = \\frac{1}{3}\\pi (\\frac{h^2}{9}) h = \\frac{1}{27}\\pi h^3$. [M1 for V in terms of h only]\n\nNow, we can find $\\frac{dV}{dh}$ by differentiating this expression with respect to $h$:\n$\\frac{dV}{dh} = \\frac{1}{27}\\pi (3h^2) = \\frac{1}{9}\\pi h^2$. [M1 for differentiating V]\n\nWe use the chain rule for connected rates: $\\frac{dV}{dt} = \\frac{dV}{dh} \\times \\frac{dh}{dt}$.\nWe want to find $\\frac{dh}{dt}$, so we rearrange: $\\frac{dh}{dt} = \\frac{dV}{dt} \\div \\frac{dV}{dh}$.\n\nWhen $h=3$, $\\frac{dV}{dh} = \\frac{1}{9}\\pi (3^2) = \\frac{1}{9}\\pi (9) = \\pi$. [A1 for value of dV/dh]\n\nNow substitute the known values:\n$\\frac{dh}{dt} = 0.1 \\div \\pi = \\frac{0.1}{\\pi}$.\n\nThe rate at which the water level is rising is $\\frac{0.1}{\\pi} \\text{ m min}^{-1}$ (or approximately $0.0318 \\text{ m min}^{-1}$). [A1 for final answer]"
     },
     {
       "type": "practice",
-      "label": "Mark a P2 differentiation question",
+      "label": "Practice Differentiation Problems",
       "href": "/mark?subject=9709&topic=2.4"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "Cambridge International A-Level Mathematics 9709 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Khan Academy: Product and Quotient Rules",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-8/v/product-rule"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Tangent and gradient explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=mNMJ2R85",
+    "launchUrl": "https://www.geogebra.org/classic?material=mNMJ2R85",
+    "hint": "P2 differentiation — stationary points and second derivative test (9709 2.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "P2: product and quotient rules; chain rule for composites.",
+        "embedHint": "Differentiate x² sin x — product rule."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Stationary points: f′(x) = 0 — max, min, or point of inflection.",
+        "embedHint": "Second derivative test or sign chart of f′."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Connected rates of change — link dy/dt and dx/dt.",
+        "embedHint": "Differentiate constraint equation w.r.t. time."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Optimisation problems — form equation, differentiate, verify max/min.",
+        "embedHint": "State domain restrictions from context."
+      }
+    ]
+  }
 }

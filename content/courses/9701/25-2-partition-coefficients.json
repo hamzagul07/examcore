@@ -4,39 +4,210 @@
   "title": "Partition coefficients",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level partition coefficients — K_pc, solvent extraction, and like-dissolves-like with PhET molecule polarity.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores the partition coefficient ($K_{pc}$), which quantifies how a solute distributes itself between two immiscible solvents at equilibrium. We will define $K_{pc}$, perform calculations, and examine its crucial application in solvent extraction, a fundamental technique for separating and purifying compounds.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define partition coefficient K_pc.",
-    "Calculate distribution between two solvents.",
-    "Explain like-dissolves-like principle.",
-    "Apply to extraction and purification."
+    "Define the partition coefficient, $K_{pc}$, as the equilibrium ratio of a solute's concentration in two immiscible solvents.",
+    "Calculate $K_{pc}$ from experimental data and use it to find the quantity of solute extracted.",
+    "Explain the principles of solvent extraction, including the greater efficiency of multiple small extractions over a single large one.",
+    "Relate $K_{pc}$ to the relative polarities of the solute and solvents, applying the 'like dissolves like' principle."
   ],
   "simpleExplanation": {
-    "title": "Between two solvents",
-    "summary": "At equilibrium, a solute distributes between immiscible solvents according to K_pc = concentration ratio.",
+    "title": "The Solvent Tug-of-War",
+    "summary": "A partition coefficient describes how a substance 'chooses' to divide itself between two liquids that don't mix, like oil and water. This 'choice' depends on how soluble the substance is in each liquid, reaching a predictable balance.",
+    "analogy": "Imagine you're at a food court with two stalls: one selling pizza (a non-polar solvent) and one selling salad (a polar solvent). If you love pizza (you're a non-polar solute), most of your time will be spent at the pizza stall, but you might briefly visit the salad stall. The ratio of time you spend at the pizza stall versus the salad stall is your personal 'partition coefficient'. It's a stable equilibrium based on your preference.",
     "steps": [
-      "K_pc = [in solvent 1] / [in solvent 2].",
-      "Non-polar solutes prefer non-polar solvents.",
-      "Multiple extractions improve recovery.",
-      "Temperature specified — K_pc changes with T."
+      "$K_{pc}$ = [substance in solvent A] / [substance in solvent B] at equilibrium.",
+      "Non-polar solute prefers non-polar solvent (like dissolves like).",
+      "Extraction uses repeated partitioning to isolate product.",
+      "Temperature affects $K_{pc}$ — state assumptions in questions."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a partition coefficient, $K_{pc}$?",
+      "back": "The ratio of the concentrations of a solute in two immiscible solvents at equilibrium and at a constant temperature."
+    },
+    {
+      "front": "What does 'immiscible' mean?",
+      "back": "Describes liquids that do not mix to form a single phase, such as oil and water. They form separate layers."
+    },
+    {
+      "front": "Write the formula for the partition coefficient.",
+      "back": "$K_{pc} = \\frac{[\\text{solute in solvent 1}]}{[\\text{solute in solvent 2}]}$. The solvents are specified in the question, e.g., organic/aqueous."
+    },
+    {
+      "front": "What does a large value of $K_{pc}$ (e.g., > 10) indicate?",
+      "back": "The solute is significantly more soluble in the solvent in the numerator of the expression than in the solvent in the denominator."
+    },
+    {
+      "front": "What does a small value of $K_{pc}$ (e.g., < 0.1) indicate?",
+      "back": "The solute is significantly less soluble in the numerator solvent and prefers the denominator solvent."
+    },
+    {
+      "front": "What is the key principle governing the magnitude of $K_{pc}$?",
+      "back": "The principle of 'like dissolves like'. Non-polar solutes have high solubility in non-polar solvents, and polar solutes have high solubility in polar solvents."
+    },
+    {
+      "front": "Why is solvent extraction more efficient when performed with several small portions of solvent compared to one large portion?",
+      "back": "Each extraction removes a fraction of the solute according to the equilibrium established by $K_{pc}$. Multiple extractions compound this removal, extracting a greater total mass of solute than a single extraction with the same total volume of solvent."
+    },
+    {
+      "front": "What effect does temperature have on the partition coefficient?",
+      "back": "Solubility is temperature-dependent, so $K_{pc}$ is also temperature-dependent. An increase in temperature can increase or decrease $K_{pc}$ depending on how the solubilities in both solvents change. Therefore, $K_{pc}$ is always quoted at a specific temperature."
+    },
+    {
+      "front": "What are the units of $K_{pc}$?",
+      "back": "$K_{pc}$ is dimensionless (has no units) because it is a ratio of two concentrations, and the units (e.g., mol dm⁻³ or g cm⁻³) cancel out."
+    },
+    {
+      "front": "Common exam trap: When calculating concentrations for the $K_{pc}$ formula, what must you ensure?",
+      "back": "You must use the equilibrium concentrations/masses, not the initial ones. You often need to calculate the mass transferred to one solvent by subtracting the mass remaining in the other from the initial total mass."
+    },
+    {
+      "front": "In a separating funnel containing ethoxyethane (ether) and water, which layer is on top?",
+      "back": "The ethoxyethane (ether) layer is on top because it is less dense than water. The less dense liquid always forms the upper layer."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does the partition coefficient have units?",
+      "a": "No, $K_{pc}$ is a dimensionless quantity. It is a ratio of two concentrations measured in the same units (e.g., mol dm⁻³ / mol dm⁻³ or g cm⁻³ / g cm⁻³), so the units cancel out."
+    },
+    {
+      "q": "What does a very large $K_{pc}$ value (e.g., 1000) tell you about a solute's properties?",
+      "a": "A very large $K_{pc}$ means the solute is vastly more soluble in the numerator solvent than the denominator solvent. For example, if $K_{pc} = \\frac{[X_{organic}]}{[X_{aqueous}]} = 1000$, it implies that compound X is highly non-polar or has features that make it much more stable in the organic solvent than in water."
+    },
+    {
+      "q": "Why is a separating funnel the specific apparatus used for solvent extraction?",
+      "a": "A separating funnel is designed for this purpose. Its shape allows for vigorous shaking to ensure equilibrium is reached. It has a stopper to prevent leakage during shaking and a tap at the bottom that allows the denser, lower layer to be carefully drained off, achieving a clean separation of the two immiscible liquids."
+    },
+    {
+      "q": "Is partitioning related to chromatography?",
+      "a": "Yes, absolutely. Partitioning is the fundamental principle behind many forms of chromatography, such as paper chromatography and gas-liquid chromatography (GLC). In these techniques, solutes continuously partition between a stationary phase and a mobile phase. Differences in the partition coefficients for different solutes cause them to move at different rates, leading to separation."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Partition coefficients** (25.2) link **solubility** to **intermolecular forces**. Show **ratio setup** before substituting numbers."
+      "content": "Have you ever tried mixing oil and vinegar for a salad dressing? You'll notice they quickly separate into two distinct layers. These are 'immiscible' liquids. Now, imagine adding a substance like a herb or spice that can dissolve, to some extent, in both. The substance will distribute, or 'partition', itself between the two layers. This lesson is about quantifying that distribution using the partition coefficient, a concept with powerful applications in separating and purifying chemical compounds."
+    },
+    {
+      "type": "heading",
+      "content": "Defining the Partition Coefficient ($K_{pc}$)"
+    },
+    {
+      "type": "text",
+      "content": "When a solute is added to a system of two immiscible liquids, it will dissolve in both. After shaking the mixture and allowing it to settle, a dynamic equilibrium is established. At this point, the rate at which solute molecules move from solvent 1 to solvent 2 is equal to the rate at which they move from solvent 2 to solvent 1. The ratio of the solute's concentration in each solvent at this equilibrium is a constant, known as the partition coefficient, $K_{pc}$."
+    },
+    {
+      "type": "formula",
+      "content": "$K_{pc} = \\frac{[\\text{solute in solvent A}]_{eq}}{[\\text{solute in solvent B}]_{eq}}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The system must be at equilibrium.",
+        "The two solvents must be immiscible.",
+        "The temperature must be constant, as solubility changes with temperature.",
+        "The concentration units must be the same for both solvents so they cancel out, making $K_{pc}$ a dimensionless quantity."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Applications in Solvent Extraction"
+    },
+    {
+      "type": "text",
+      "content": "Solvent extraction is a common and powerful technique used in organic chemistry to separate a desired product from a reaction mixture. For instance, if an organic product is formed in an aqueous solution, we can add an immiscible organic solvent (like ether or ethyl acetate) in which the product is much more soluble. By shaking the mixture in a separating funnel, the product partitions preferentially into the organic layer, which can then be physically separated. This process isolates the product from water-soluble impurities."
+    },
+    {
+      "type": "workedExample",
+      "question": "A solution of 6.0 g of an organic compound X in 100 cm³ of water was shaken with 20 cm³ of ether. After allowing the layers to separate, the aqueous layer was found to contain 1.2 g of compound X. Calculate the partition coefficient of X between ether and water.",
+      "solution": "1. **Find the mass of X transferred to the ether layer.**\nInitial mass of X in water = 6.0 g\nEquilibrium mass of X in water = 1.2 g\nMass of X in ether = 6.0 g - 1.2 g = 4.8 g\n\n2. **Calculate the concentration in each solvent.**\nConcentration is mass/volume. We can use g cm⁻³ as the units will cancel.\n$[X_{aq}] = \\frac{1.2 \\text{ g}}{100 \\text{ cm}^3} = 0.012 \\text{ g cm}^{-3}$\n$[X_{ether}] = \\frac{4.8 \\text{ g}}{20 \\text{ cm}^3} = 0.24 \\text{ g cm}^{-3}$\n\n3. **Calculate $K_{pc}$.**\nThe question asks for $K_{pc}$ between ether and water, so ether is the numerator.\n$K_{pc} = \\frac{[X_{ether}]}{[X_{aq}]} = \\frac{0.24}{0.012} = 20$\n\n**Answer:** The partition coefficient, $K_{pc}$, is 20."
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the wording of the question. If it asks for '$K_{pc}$ of X between solvent A and solvent B', the concentration in solvent A must be the numerator. Reversing this will give you the reciprocal ($1/K_{pc}$), which is a common error."
+    },
+    {
+      "type": "heading",
+      "content": "The Efficiency of Multiple Extractions"
+    },
+    {
+      "type": "text",
+      "content": "A crucial concept in practical chemistry is that performing multiple extractions with smaller volumes of solvent is more effective than a single extraction with a large volume. Each time fresh solvent is added, a new equilibrium is established, and more solute is drawn out of the original layer. While you will never extract 100% of the solute, multiple sequential extractions can remove a very high percentage, leading to a much better yield."
+    },
+    {
+      "type": "workedExample",
+      "question": "The partition coefficient for the distribution of iodine between trichloromethane ($CHCl_3$) and water is 130. ($K_{pc} = [I_2(CHCl_3)] / [I_2(aq)]$). Calculate the mass of iodine remaining in 100 cm³ of aqueous solution, initially containing 1.00 g of iodine, after it is shaken with one 20 cm³ portion of $CHCl_3$.",
+      "solution": "1. **Define variables.**\nLet 'm' be the mass of iodine extracted into the $CHCl_3$ layer.\nThe mass of iodine remaining in the aqueous layer will be (1.00 - m) g.\n\n2. **Set up the $K_{pc}$ expression with concentrations.**\n$[I_2(CHCl_3)] = \\frac{m}{20 \\text{ cm}^3}$\n$[I_2(aq)] = \\frac{(1.00 - m)}{100 \\text{ cm}^3}$\n\n3. **Substitute into the $K_{pc}$ formula and solve for m.**\n$K_{pc} = 130 = \\frac{m/20}{(1.00 - m)/100}$\n$130 = \\frac{m}{20} \\times \\frac{100}{1.00 - m}$\n$130 = \\frac{5m}{1.00 - m}$\n$130(1.00 - m) = 5m$\n$130 - 130m = 5m$\n$130 = 135m$\n$m = \\frac{130}{135} = 0.963$ g (This is the mass extracted)\n\n4. **Calculate the mass remaining in the aqueous layer.**\nMass remaining = Initial mass - mass extracted\nMass remaining = 1.00 g - 0.963 g = 0.037 g\n\n**Answer:** The mass of iodine remaining in the aqueous layer is 0.037 g (to 2 s.f. based on volume)."
     },
     {
       "type": "practice",
-      "label": "Mark a partition coefficient question",
+      "label": "Test Your Knowledge on Partition Coefficients",
       "href": "/mark?subject=9701&topic=25.2"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9701 course index", "href": "/courses/9701" }]
+      "items": [
+        {
+          "label": "Video: Solvent Extraction using a Separating Funnel",
+          "href": "https://www.youtube.com/watch?v=1b3sWJt_1-s"
+        },
+        {
+          "label": "In-depth explanation of Partition Coefficients",
+          "href": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Physical_Properties_of_Matter/Solutions_and_Mixtures/Partition_Coefficient"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Molecule polarity",
+    "embedUrl": "https://phet.colorado.edu/sims/html/molecule-polarity/latest/molecule-polarity_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/molecule-polarity",
+    "hint": "Solvent partitioning — polar vs non-polar distribution (25.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "K_pc = [substance in solvent A] / [substance in solvent B] at equilibrium.",
+        "embedHint": "Ratio of concentrations in two immiscible layers."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Non-polar solute prefers non-polar solvent (like dissolves like).",
+        "embedHint": "I₂ more soluble in hexane than water."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Extraction uses repeated partitioning to isolate product.",
+        "embedHint": "Multiple small extractions > one large."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Temperature affects K_pc — state assumptions in questions.",
+        "embedHint": "Usually quoted at 298 K."
+      }
+    ]
+  }
 }

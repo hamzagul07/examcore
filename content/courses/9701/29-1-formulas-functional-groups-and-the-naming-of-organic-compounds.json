@@ -4,29 +4,249 @@
   "title": "Formulas, functional groups and the naming of organic compounds",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level organic — IUPAC naming, functional groups, and formula types with PhET molecule builder.",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental principles of organic chemistry, covering the various ways to represent molecules, the identification of key functional groups, and the systematic IUPAC rules for naming compounds. It also explains the classification of alcohols and amines.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Name organic compounds using IUPAC rules.",
-    "Identify major functional groups at A Level.",
-    "Convert between molecular, structural, and displayed formulae.",
-    "Classify alcohols, amines, and carbonyl compounds."
+    "Interpret and use the general, structural, displayed, and skeletal formulas of organic compounds.",
+    "Identify the functional groups present in a molecule and understand the concept of a homologous series.",
+    "Apply IUPAC rules to name organic compounds containing up to six carbon atoms.",
+    "Classify alcohols and amines as primary, secondary, or tertiary."
   ],
   "simpleExplanation": {
-    "title": "Naming and recognising groups",
-    "summary": "IUPAC names follow longest chain, lowest locant, and suffix for the highest priority group.",
+    "title": "Decoding Organic Molecules",
+    "summary": "Organic chemistry uses a universal language called IUPAC nomenclature to name the vast number of carbon-based compounds. This system relies on identifying the longest carbon chain, key functional groups, and their positions.",
+    "analogy": "Think of naming an organic molecule like giving a street address. The main street is the longest carbon chain, the house number is the position of the most important feature (the main functional group), and other landmarks (side chains) are listed with their own numbers.",
     "steps": [
-      "Alkane -ane; alkene -ene; alcohol -ol.",
-      "Aldehyde -al; ketone -one; acid -oic acid.",
-      "Ester: alkyl alkanoate.",
-      "Primary vs secondary vs tertiary — count adjacent carbons."
+      "Start with IUPAC basics: find the longest carbon chain, give the main functional group the lowest number, and add the correct suffix like -ol, -al, or -oic acid.",
+      "Represent molecules in different ways: a displayed formula shows every atom and bond, a skeletal formula shows just the carbon backbone, and a general formula describes a whole family.",
+      "Classify alcohols and amines as primary, secondary, or tertiary by counting how many carbon atoms are directly bonded to the carbon bearing the -OH or -NH₂ group.",
+      "Learn to spot more complex functional groups which are derivatives of carboxylic acids: esters (–COOR), amides (–CONH₂), acyl chlorides (–COCl), and also nitriles (–C≡N)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a functional group?",
+      "back": "An atom or group of atoms in a molecule that is responsible for its characteristic chemical reactions. It is the reactive part of the molecule."
+    },
+    {
+      "front": "What is a homologous series?",
+      "back": "A series of organic compounds with the same functional group and similar chemical properties, in which successive members differ by a –CH₂ group."
+    },
+    {
+      "front": "What is the key difference between a displayed formula and a skeletal formula?",
+      "back": "A displayed formula shows all atoms and all bonds. A skeletal formula shows only the carbon backbone and functional groups; carbon and hydrogen atoms in the chain are implied."
+    },
+    {
+      "front": "What is the primary rule for numbering the carbon chain in IUPAC nomenclature?",
+      "back": "The chain is numbered to give the principal functional group the lowest possible locant (number)."
+    },
+    {
+      "front": "What is the difference in structure between an aldehyde and a ketone?",
+      "back": "In an aldehyde, the carbonyl group (C=O) is at the end of a carbon chain (R-CHO). In a ketone, the carbonyl group is within a carbon chain (R-CO-R')."
+    },
+    {
+      "front": "How do you classify a primary (1°) alcohol?",
+      "back": "A primary alcohol has the hydroxyl (–OH) group attached to a carbon atom that is bonded to only one other carbon atom (or zero, in the case of methanol)."
+    },
+    {
+      "front": "How do you classify a tertiary (3°) amine?",
+      "back": "A tertiary amine has three alkyl or aryl groups directly bonded to the nitrogen atom (R₃N). There are no hydrogen atoms attached to the nitrogen."
+    },
+    {
+      "front": "What is the general formula for the homologous series of alkanes?",
+      "back": "CₙH₂ₙ₊₂, where n is the number of carbon atoms."
+    },
+    {
+      "front": "What functional group is represented by –COCl?",
+      "back": "An acyl chloride (or acid chloride)."
+    },
+    {
+      "front": "How is an ester named?",
+      "back": "The name has two parts. The first part comes from the alkyl group of the alcohol (e.g., 'ethyl'). The second part comes from the carboxylic acid, with the '-oic acid' ending changed to '-oate' (e.g., 'propanoate'). Example: ethyl propanoate."
+    },
+    {
+      "front": "What is structural isomerism?",
+      "back": "Compounds with the same molecular formula but different structural formulas. This includes chain, positional, and functional group isomerism."
+    },
+    {
+      "front": "What is the IUPAC suffix for a nitrile?",
+      "back": "The suffix is '-nitrile'. The carbon of the C≡N group is counted as part of the main chain. For example, CH₃CH₂CN is propanenitrile."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a structural formula and a displayed formula?",
+      "a": "A displayed formula shows every atom and every bond individually. A structural formula is a condensed version that shows how atoms are grouped, for example, CH₃CH₂OH, which is less cluttered than drawing out all the C-H and O-H bonds."
+    },
+    {
+      "q": "If a molecule has multiple functional groups, how do I decide which one gets the suffix in the name?",
+      "a": "There is a priority order for functional groups in IUPAC nomenclature. For A-Level, the general trend is: Carboxylic acids > Esters > Aldehydes > Ketones > Alcohols > Amines > Alkenes/Alkynes. The highest priority group determines the suffix, and all others are named as prefixes (e.g., 'hydroxy-' for an –OH group if a –COOH is present)."
+    },
+    {
+      "q": "Why is skeletal formula so commonly used in organic chemistry?",
+      "a": "Skeletal formulae are quick to draw and easy to read once you are familiar with them. They de-clutter the image, allowing you to focus on the carbon backbone and the functional groups, which are the most important parts for understanding the molecule's shape and reactivity."
+    },
+    {
+      "q": "What's the difference between butan-1-ol and a primary alcohol?",
+      "a": "'Butan-1-ol' is the specific name of a molecule. 'Primary alcohol' is a classification. Butan-1-ol is an example of a primary alcohol because the carbon atom attached to the -OH group is bonded to only one other carbon atom."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Organic naming** (29.1) underpins all A Level organic papers. Practise **priority rules** when multiple groups present." },
-    { "type": "practice", "label": "Mark an organic naming question", "href": "/mark?subject=9701&topic=29.1" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to the world of organic chemistry! This branch of chemistry deals with the vast array of compounds based on carbon. To navigate this world, we need a map and a language. This lesson provides just that: the tools to draw, identify, and systematically name organic molecules according to the internationally agreed IUPAC system. Mastering these foundational skills is essential for understanding the reactions and properties you'll encounter throughout your A-Level course."
+    },
+    {
+      "type": "heading",
+      "content": "Representing Organic Molecules"
+    },
+    {
+      "type": "text",
+      "content": "To study organic compounds, we must first be able to represent them clearly. There are several types of formulae used, each with its own purpose. The molecular formula (e.g., C₄H₁₀) tells you the number of atoms of each element but gives no information about the structure. For that, we need structural formulae."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Displayed Formula:** Shows every single atom and every single bond in the molecule. It is unambiguous but can be cumbersome for large molecules.",
+        "**Structural Formula:** Shows the arrangement of atoms in a molecule in a condensed, unambiguous way, often on a single line (e.g., CH₃CH(OH)CH₂CH₃ for butan-2-ol).",
+        "**Skeletal Formula:** A simplified representation where the carbon backbone is drawn as a series of lines. Carbon atoms are assumed to be at each junction and at the end of each line. Hydrogen atoms attached to carbons are not shown, as it's assumed each carbon has enough hydrogens to make a total of four bonds.",
+        "**General Formula:** Represents a whole homologous series, like CₙH₂ₙ for alkenes."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Functional Groups and Homologous Series"
+    },
+    {
+      "type": "text",
+      "content": "The chemistry of an organic molecule is largely dictated by its functional group. This is a specific atom or group of atoms that confers characteristic chemical properties. Molecules with the same functional group belong to the same homologous series. They share a general formula and exhibit similar chemical reactions, with a gradual change in physical properties as the chain length increases."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Alkene:** C=C double bond",
+        "**Alcohol:** –OH (hydroxyl)",
+        "**Aldehyde:** –CHO (carbonyl group at the end of a chain)",
+        "**Ketone:** –C(O)– (carbonyl group within a chain)",
+        "**Carboxylic Acid:** –COOH (carboxyl)",
+        "**Amine:** –NH₂ (amino)",
+        "**Ester:** –COO–",
+        "**Nitrile:** –C≡N",
+        "**Acyl Chloride:** –COCl"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Systematic Nomenclature: The IUPAC Rules"
+    },
+    {
+      "type": "text",
+      "content": "The International Union of Pure and Applied Chemistry (IUPAC) provides a logical and systematic set of rules for naming organic compounds, ensuring any chemist in the world can draw the correct structure from its name. The name is built from components that describe the parent chain, the principal functional group, and any substituents."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**1. Identify the Principal Functional Group:** This determines the suffix (ending) of the name (e.g., '-ol' for an alcohol, '-oic acid' for a carboxylic acid).",
+        "**2. Find the Longest Carbon Chain:** Identify the longest continuous chain of carbon atoms that contains the principal functional group. This gives the stem of the name (e.g., 'meth-', 'eth-', 'prop-', 'but-').",
+        "**3. Number the Chain:** Number the carbon atoms in the longest chain, starting from the end that gives the principal functional group the lowest possible number.",
+        "**4. Name and Number Substituents:** Identify any side chains (alkyl groups) or other functional groups. These are named as prefixes (e.g., 'methyl-', 'chloro-'). Use numbers to indicate their position on the main chain.",
+        "**5. Assemble the Name:** Combine the parts in the order: (substituents) - (stem) - (principal functional group suffix). Prefixes are listed in alphabetical order (e.g., ethyl before methyl)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Give the systematic IUPAC name for the following compound: CH₃CH(CH₃)CH₂COOH",
+      "solution": "1. **Principal Functional Group:** The –COOH group is a carboxylic acid, so the suffix is '-oic acid'.\n2. **Longest Chain:** The longest chain containing the –COOH group has 4 carbon atoms (but-). The carbon in the COOH group is always C1.\n3. **Numbering:** The chain is numbered starting from the carboxylic acid carbon as C1. So, C1 is the COOH carbon, C2 is CH₂, C3 is CH(CH₃), and C4 is CH₃.\n4. **Substituents:** There is a methyl group (–CH₃) on carbon 3.\n5. **Assemble Name:** The substituent is '3-methyl'. The parent chain is 'butan-'. The suffix is '-oic acid'. Combining these gives **3-methylbutanoic acid**."
+    },
+    {
+      "type": "heading",
+      "content": "Classifying Alcohols and Amines"
+    },
+    {
+      "type": "text",
+      "content": "Alcohols, halogenoalkanes, and amines can be classified as primary (1°), secondary (2°), or tertiary (3°). This classification is crucial as it often determines their reactivity and the products they form. The classification depends on the number of carbon atoms directly attached to the key carbon or nitrogen atom."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Alcohols:** Classification is based on the number of alkyl groups attached to the carbon atom bearing the –OH group. Primary (1°): one alkyl group. Secondary (2°): two alkyl groups. Tertiary (3°): three alkyl groups.",
+        "**Amines:** Classification is based on the number of alkyl groups attached directly to the nitrogen atom. Primary (1°): one alkyl group (RNH₂). Secondary (2°): two alkyl groups (R₂NH). Tertiary (3°): three alkyl groups (R₃N)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be careful with classifying amines! Unlike alcohols, the classification depends on bonds to the nitrogen atom itself, not the adjacent carbon. A common mistake is to classify CH₃CH₂NH₂ as a primary amine (correct) but then misclassify (CH₃)₂CHNH₂ as a secondary amine (it's still primary, as the N is only bonded to one carbon group)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Draw the skeletal formula for 3-methylpentan-2-ol and classify it as primary, secondary, or tertiary.",
+      "solution": "1. **Name analysis:** 'pentan-' means a 5-carbon chain. '-2-ol' means an –OH group is on carbon 2. '3-methyl' means a –CH₃ group is on carbon 3.\n2. **Structure:** The chain is C-C-C-C-C. Numbering from the right, the –OH is on C2 and the –CH₃ is on C3. The structural formula is CH₃CH₂CH(CH₃)CH(OH)CH₃.\n3. **Skeletal Formula:** Draw a zig-zag line with 5 points (for 5 carbons). From the second carbon, draw a line for the –OH group. From the third carbon, draw a line for the –CH₃ group.\n\n\\[\n\\text{Skeletal Formula}\n\\]\n\n*(A zig-zag line of 4 strokes representing the 5-carbon chain. A vertical line upwards from the 3rd carbon point. A line with 'OH' at the end coming off the 2nd carbon point.)*\n\n4. **Classification:** The carbon atom bonded to the –OH group (C2) is itself bonded to two other carbon atoms (C1 and C3). Therefore, it is a **secondary (2°) alcohol**."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9701&topic=29.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IUPAC Nomenclature Guide",
+          "href": "https://www.chem.ucla.edu/~harding/IGOC/I/iupac.html"
+        },
+        {
+          "label": "Build a Molecule Simulation (PhET)",
+          "href": "https://phet.colorado.edu/en/simulations/build-a-molecule"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Identify functional groups — IUPAC naming practice (29.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "IUPAC: longest chain, lowest numbers, suffix for functional group.",
+        "embedHint": "-ol, -al, -one, -oic acid, -amine."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Displayed vs skeletal vs general formula.",
+        "embedHint": "CₙH₂ₙ₊₂ alkanes; CₙH₂ₙ alkenes."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Primary/secondary/tertiary for alcohols and amines.",
+        "embedHint": "Count carbons on C–OH or C–NH₂."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Recognise ester, amide, acyl chloride, nitrile groups.",
+        "embedHint": "–COOR, –CONH₂, –COCl, –CN."
+      }
+    ]
+  }
 }

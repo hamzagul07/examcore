@@ -4,29 +4,258 @@
   "title": "Electrons, energy levels and atomic orbitals",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — shells, subshells, orbitals, and electron configurations.",
+  "status": "pilot",
+  "summary": "This lesson explores the quantum mechanical model of the atom, detailing how electrons are arranged in principal quantum shells, sub-shells, and atomic orbitals. You will learn the rules governing electron configurations and how to predict them for atoms and ions, including the important exceptions for chromium and copper.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe shells and subshells.",
-    "Write electron configurations using aufbau.",
-    "Relate configuration to periodic position.",
-    "Explain orbital shapes at syllabus level."
+    "Describe the number and relative energies of s, p, and d orbitals for principal quantum numbers 1, 2 and 3, and the shapes of s and p orbitals.",
+    "State the electronic configuration of atoms and ions given the proton number and charge, using the convention 1s²2s²2p⁶...",
+    "Explain that electrons occupy orbitals singly before pairing up (Hund's Rule) and that each orbital can hold a maximum of two electrons with opposite spins (Pauli Exclusion Principle).",
+    "Explain the anomalous electronic configurations of chromium and copper in terms of the stability of half-filled and fully-filled d sub-shells."
   ],
   "simpleExplanation": {
-    "title": "Where electrons live",
-    "summary": "Electrons occupy quantised energy levels split into subshells and orbitals. Configuration determines chemical behaviour.",
+    "title": "The Atom's Electron Hotel",
+    "summary": "Electrons don't just fly around the nucleus randomly; they occupy specific 'addresses' defined by energy levels and orbital shapes. We can map out every electron's location using a few simple rules, which is key to understanding chemical behaviour.",
+    "analogy": "Imagine an atom is a very exclusive apartment building for electrons. The floors are the principal energy shells (n=1, 2, 3...). On each floor, there are different types of apartments, which are the sub-shells (s, p, d). Each apartment has one or more rooms, which are the orbitals. By law, a room (orbital) can hold a maximum of two residents (electrons), and they must have opposite 'spins' to get along!",
     "steps": [
-      "n = principal quantum number (shell).",
-      "s holds 2; p holds 6; d holds 10.",
-      "Fill lowest energy first.",
-      "Valence electrons in outer shell."
+      "Shells are numbered n=1, 2, 3... and contain sub-shells (s, p, d). Electrons fill these in order of increasing energy: 1s, then 2s, then 2p, and so on.",
+      "An orbital is a region of space where an electron is most likely to be found. Each orbital can hold a maximum of two electrons, which must have opposite spins.",
+      "The Aufbau principle states we build up the electron configuration by filling the lowest energy orbitals first. This gives the ground-state configuration for an atom or ion.",
+      "The shape and orientation of orbitals dictate how atoms bond. An s orbital is spherical, while the three p orbitals are dumbbell-shaped along the x, y, and z axes."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a principal quantum shell?",
+      "back": "A main energy level in an atom, denoted by the integer 'n' (n=1, 2, 3...). Electrons in shells further from the nucleus have higher energy."
+    },
+    {
+      "front": "What is an atomic orbital?",
+      "back": "A region of space around the nucleus that can hold up to two electrons with opposite spins. It represents a 3D volume where there is a high probability (typically >90%) of finding the electron."
+    },
+    {
+      "front": "How many orbitals are in s, p, and d sub-shells?",
+      "back": "s sub-shell: 1 orbital\np sub-shell: 3 orbitals (px, py, pz)\nd sub-shell: 5 orbitals"
+    },
+    {
+      "front": "What is the maximum number of electrons that can occupy the s, p, and d sub-shells?",
+      "back": "s sub-shell: 2 electrons\np sub-shell: 6 electrons\nd sub-shell: 10 electrons"
+    },
+    {
+      "front": "What is the shape of an s orbital?",
+      "back": "Spherical. The size of the sphere increases with the principal quantum number (e.g., a 2s orbital is larger than a 1s orbital)."
+    },
+    {
+      "front": "What is the shape of a p orbital?",
+      "back": "Dumbbell-shaped. There are three p orbitals (px, py, pz) arranged at 90° to each other along the x, y, and z axes."
+    },
+    {
+      "front": "State the Aufbau Principle.",
+      "back": "Electrons fill atomic orbitals starting from the lowest energy level before occupying higher energy levels."
+    },
+    {
+      "front": "State Hund's Rule of Maximum Multiplicity.",
+      "back": "When filling a sub-shell containing degenerate (equal energy) orbitals, electrons will occupy each orbital singly before any orbital is doubly occupied."
+    },
+    {
+      "front": "State the Pauli Exclusion Principle.",
+      "back": "No two electrons in the same atom can have the same four quantum numbers. In practice, this means that if two electrons occupy the same orbital, they must have opposite spins."
+    },
+    {
+      "front": "Why is the electron configuration of Chromium (Cr, Z=24) anomalous?",
+      "back": "It is [Ar] 4s¹3d⁵, not [Ar] 4s²3d⁴. An electron is promoted from 4s to 3d to achieve a more stable half-filled d sub-shell."
+    },
+    {
+      "front": "Why is the electron configuration of Copper (Cu, Z=29) anomalous?",
+      "back": "It is [Ar] 4s¹3d¹⁰, not [Ar] 4s²3d⁹. An electron is promoted from 4s to 3d to achieve a very stable, fully-filled d sub-shell."
+    },
+    {
+      "front": "How do you determine the electron configuration of a positive ion (cation)?",
+      "back": "First, write the configuration for the neutral atom. Then, remove the required number of electrons from the highest principal quantum shell first. For transition metals, this means removing 4s electrons before 3d electrons."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why does the 4s orbital fill before the 3d orbital?",
+      "a": "Due to shielding and penetration effects, the 4s orbital is actually at a slightly lower energy level than the 3d orbitals. The Aufbau principle dictates that we fill the lowest energy orbitals first, so electrons go into 4s before starting on 3d. However, once electrons are in the 3d orbitals, the relative energy levels shift, which is why when forming ions, 4s electrons are removed first."
+    },
+    {
+      "q": "What does 'degenerate' mean in the context of orbitals?",
+      "a": "Degenerate orbitals are orbitals that have the exact same energy. For example, the three p orbitals in a given sub-shell ($p_x, p_y, p_z$) are degenerate. Hund's rule applies to the filling of degenerate orbitals."
+    },
+    {
+      "q": "Do I need to know the shapes of the d-orbitals for the A-Level exam?",
+      "a": "No. For Cambridge A-Level Chemistry (9701), you are required to know and be able to sketch the shapes of s and p orbitals, but you only need to know that d-orbitals have more complex shapes. You are not expected to draw them."
+    },
+    {
+      "q": "What is noble gas notation, e.g., [Ar]?",
+      "a": "It's a shorthand way of writing electron configurations. Instead of writing out the full configuration from 1s, you can use the symbol of the preceding noble gas in square brackets to represent the core electrons. For example, for Sodium ($1s^2 2s^2 2p^6 3s^1$), the configuration of Neon is $1s^2 2s^2 2p^6$. So, you can write Sodium's configuration as $[Ne] 3s^1$."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Atomic orbitals** (1.3) supports **1.4 ionisation energy** and **periodicity**. Use the **Build an Atom** sim to visualise filling." },
-    { "type": "practice", "label": "Mark an orbitals question", "href": "/mark?subject=9701&topic=1.3" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to the fascinating world of quantum chemistry! While the simple Bohr model of electrons orbiting the nucleus like planets is a useful starting point, it's not the full story. To truly understand chemical bonding, reactivity, and the structure of the Periodic Table, we need to explore the modern model of the atom, where electrons exist in specific energy levels and complex 3D regions called orbitals."
+    },
+    {
+      "type": "heading",
+      "content": "Principal Quantum Shells and Sub-shells"
+    },
+    {
+      "type": "text",
+      "content": "Electrons in an atom are arranged in principal quantum shells, often just called energy levels or shells. These are numbered $n=1, 2, 3, ...$ starting from the one closest to the nucleus. The higher the value of 'n', the further the shell is from the nucleus and the higher its energy. Each shell can hold a maximum of $2n^2$ electrons."
+    },
+    {
+      "type": "text",
+      "content": "Within each principal shell (from n=2 upwards), there are sub-shells, identified by the letters s, p, d, and f. These sub-shells have slightly different energies. For a given 'n', the energy of the sub-shells increases in the order s < p < d < f."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Shell 1 (n=1): Contains one sub-shell: 1s. Max electrons = 2.",
+        "Shell 2 (n=2): Contains two sub-shells: 2s, 2p. Max electrons = 8.",
+        "Shell 3 (n=3): Contains three sub-shells: 3s, 3p, 3d. Max electrons = 18.",
+        "Shell 4 (n=4): Contains four sub-shells: 4s, 4p, 4d, 4f. Max electrons = 32."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Atomic Orbitals: Shapes and Occupancy"
+    },
+    {
+      "type": "text",
+      "content": "An atomic orbital is a mathematical function that describes the wave-like behaviour of an electron. For our purposes, we can think of it as a three-dimensional region of space around the nucleus where there is a high probability (over 90%) of finding an electron. Each sub-shell is composed of one or more orbitals."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**s sub-shell:** Contains one spherical s orbital.",
+        "**p sub-shell:** Contains three dumbbell-shaped p orbitals, oriented along the x, y, and z axes ($p_x, p_y, p_z$). These three orbitals are 'degenerate', meaning they have the same energy.",
+        "**d sub-shell:** Contains five d orbitals of more complex shapes. You are not required to know their shapes for AS Level.",
+        "**Occupancy:** Any single orbital can hold a maximum of two electrons. According to the Pauli Exclusion Principle, these two electrons must have opposite spins, often represented by arrows pointing up (↑) and down (↓)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Rules for Filling Orbitals"
+    },
+    {
+      "type": "text",
+      "content": "To determine the electronic configuration of an atom, we place its electrons into orbitals following three fundamental rules. The resulting arrangement is the 'ground state' configuration, which is the most stable, lowest-energy state for that atom."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**1. Aufbau Principle:** Electrons fill orbitals in order of increasing energy. They occupy the lowest available energy level first.",
+        "**2. Hund's Rule:** For degenerate orbitals (like the three p-orbitals), electrons fill each orbital singly before any orbital gets a second electron.",
+        "**3. Pauli Exclusion Principle:** An orbital can hold a maximum of two electrons, and they must have opposite spins."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Order of Filling: 1s \\rightarrow 2s \\rightarrow 2p \\rightarrow 3s \\rightarrow 3p \\rightarrow 4s \\rightarrow 3d \\rightarrow 4p \\rightarrow ..."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is to assume the third shell (3s, 3p, 3d) fills completely before the fourth shell (4s) begins. This is incorrect! The 4s sub-shell is at a lower energy level than the 3d sub-shell, so it fills first. Remember the sequence: ...3p, then 4s, then 3d."
+    },
+    {
+      "type": "workedExample",
+      "question": "Determine the full electronic configuration for a neutral silicon atom (Si, Z=14) and represent the valence electrons using the 'electrons in boxes' notation.",
+      "solution": "1. **Identify the number of electrons:** A neutral silicon atom has a proton number (Z) of 14, so it has 14 electrons.\n\n2. **Fill orbitals according to the Aufbau principle:**\n   - The 1s orbital takes 2 electrons: $1s^2$. (12 electrons remaining)\n   - The 2s orbital takes 2 electrons: $1s^2 2s^2$. (10 electrons remaining)\n   - The 2p sub-shell takes 6 electrons: $1s^2 2s^2 2p^6$. (4 electrons remaining)\n   - The 3s orbital takes 2 electrons: $1s^2 2s^2 2p^6 3s^2$. (2 electrons remaining)\n   - The 3p sub-shell takes the final 2 electrons: $1s^2 2s^2 2p^6 3s^2 3p^2$.\n\n**Full electronic configuration:** $1s^2 2s^2 2p^6 3s^2 3p^2$.\n\n3. **'Electrons in boxes' for valence electrons (n=3):**\n   - The valence shell is the outermost shell, n=3. It contains the 3s and 3p sub-shells.\n   - The 3s orbital is filled with two electrons of opposite spin.\n   - For the 3p orbitals, Hund's rule applies. The two electrons will occupy separate p orbitals with parallel spins.\n\n   **3s**           **3p**\n   [↑↓]      [↑ ][↑ ][  ]\n"
+    },
+    {
+      "type": "heading",
+      "content": "Configurations of Ions and the Transition Metal Exceptions"
+    },
+    {
+      "type": "text",
+      "content": "Writing configurations for ions is straightforward. For anions (negative ions), you add electrons. For cations (positive ions), you remove electrons. A crucial rule for forming cations of d-block elements is that electrons are removed from the principal quantum shell with the highest 'n' value first. This means 4s electrons are removed before 3d electrons."
+    },
+    {
+      "type": "workedExample",
+      "question": "Deduce the electronic configuration of an iron(II) ion, Fe²⁺. The proton number of iron is 26.",
+      "solution": "1. **Write the configuration for the neutral Fe atom (26 electrons):**\n   Following the filling order (...3p, 4s, 3d):\n   $1s^2 2s^2 2p^6 3s^2 3p^6 4s^2 3d^6$. \n   It is often helpful to write this with shells grouped: $1s^2 2s^2 2p^6 3s^2 3p^6 3d^6 4s^2$.\n\n2. **Determine which electrons to remove for Fe²⁺:**\n   We need to remove 2 electrons. The highest principal quantum shell is n=4. Therefore, we remove the two electrons from the 4s orbital.\n\n3. **Write the final configuration for Fe²⁺:**\n   Removing the $4s^2$ electrons leaves:\n   $1s^2 2s^2 2p^6 3s^2 3p^6 3d^6$. \n   This can also be written using noble gas notation as $[Ar] 3d^6$."
+    },
+    {
+      "type": "text",
+      "content": "Finally, there are two important exceptions to the Aufbau principle you must know: chromium (Cr) and copper (Cu). This is due to the extra stability associated with having a half-filled (d⁵) or fully-filled (d¹⁰) d sub-shell. In these atoms, an electron is 'promoted' from the 4s orbital to the 3d sub-shell to achieve this more stable state."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Chromium (Cr, Z=24):** Expected configuration is $[Ar] 4s^2 3d^4$. Actual configuration is $[Ar] 4s^1 3d^5$. This gives one half-filled s sub-shell and one half-filled d sub-shell.",
+        "**Copper (Cu, Z=29):** Expected configuration is $[Ar] 4s^2 3d^9$. Actual configuration is $[Ar] 4s^1 3d^{10}$. This gives one half-filled s sub-shell and one fully-filled d sub-shell."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The anomalous configurations of Cr and Cu are very common exam questions, both in multiple choice and structured questions. Make sure you have memorised them. Remember the reason: the enhanced stability of a half-filled or fully-filled d sub-shell outweighs the energy cost of promoting a 4s electron."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=9701&topic=1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide: Atomic Orbitals",
+          "href": "https://www.chemguide.co.uk/atoms/properties/atomorbs.html"
+        },
+        {
+          "label": "Khan Academy: Electron Configurations",
+          "href": "https://www.khanacademy.org/science/chemistry/electronic-structure-of-atoms/electron-configurations-jay-sal/a/electron-configurations"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build an Atom",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-an-atom",
+    "hint": "Shells, subshells, and orbital filling (9701 1.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Shells n = 1, 2, 3…; subshells s, p, d.",
+        "embedHint": "Fill order: 1s 2s 2p 3s 3p…"
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Orbital: region where electron likely found.",
+        "embedHint": "Max 2 electrons per orbital."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Aufbau builds up electron configuration.",
+        "embedHint": "Cr/Cu exceptions at A Level."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Orbitals shape bonding capacity.",
+        "embedHint": "s spherical; p dumbbell."
+      }
+    ]
+  }
 }

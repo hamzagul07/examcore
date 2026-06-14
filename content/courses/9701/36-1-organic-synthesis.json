@@ -4,29 +4,213 @@
   "title": "Organic synthesis",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level — multi-step routes, retrosynthesis, and reagent selection.",
-  "durationMin": 26,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the strategic approach to designing multi-step organic syntheses. It focuses on retrosynthetic analysis to plan pathways and revisits the key functional group interconversions required to execute these plans, including the use of protecting groups for more complex targets.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Plan multi-step synthetic routes.",
-    "Select reagents for functional group interconversion.",
-    "Apply retrosynthetic analysis.",
-    "Justify choice of conditions and order of steps."
+    "Explain the concept of retrosynthesis and apply it to design synthetic routes.",
+    "Recall and select appropriate reagents and conditions for key functional group interconversions.",
+    "Design two-stage and multi-stage synthetic routes for preparing organic molecules.",
+    "Understand the purpose of a protecting group in multi-step synthesis."
   ],
   "simpleExplanation": {
-    "title": "Building the target molecule",
-    "summary": "A Level synthesis questions give a target and ask for a route from a stated starting material using syllabus reactions only.",
+    "title": "Organic Synthesis: Your Chemical Roadmap",
+    "summary": "Organic synthesis is like planning a journey. Instead of starting from home and seeing where you end up, you decide on your destination first and then work backwards to map out the best route to get there.",
+    "analogy": "Imagine you want to bake a complex, multi-layered cake (the 'target molecule'). You don't just throw ingredients in a bowl. You look at the final cake and think, 'The top layer is icing, so I need to make that last. Before that, I need to bake the sponge. To make the sponge, I first need to mix the batter.' This process of working backwards from the finished product to the raw ingredients is exactly what retrosynthesis is in chemistry. Each step in the recipe requires specific ingredients (reagents) and instructions (conditions).",
     "steps": [
-      "Identify functional groups in target.",
-      "Work backwards (retrosynthesis).",
-      "List reagents for each forward step.",
-      "Check no conflicting functional groups."
+      "Plan retrosynthesis from target molecule.",
+      "Interconvert alcohols, carbonyls, acids, esters.",
+      "Protecting groups if needed at A Level.",
+      "Multi-step route: one product feeds next step."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is retrosynthesis?",
+      "back": "A problem-solving technique for planning organic syntheses. It involves working backwards from the target molecule to simpler, commercially available starting materials."
+    },
+    {
+      "front": "What reagent and conditions are used to oxidise a primary alcohol to a carboxylic acid?",
+      "back": "Potassium dichromate(VI) ($K_2Cr_2O_7$) with concentrated sulfuric acid ($H_2SO_4$) under reflux. Reflux ensures the intermediate aldehyde is also oxidised."
+    },
+    {
+      "front": "What reagent and conditions are used to oxidise a primary alcohol to an aldehyde?",
+      "back": "Potassium dichromate(VI) ($K_2Cr_2O_7$) with dilute sulfuric acid ($H_2SO_4$), with immediate distillation of the product as it forms to prevent further oxidation."
+    },
+    {
+      "front": "What is the key difference between the reducing agents $NaBH_4$ and $LiAlH_4$?",
+      "back": "$NaBH_4$ (sodium borohydride) is a milder reducing agent that reduces aldehydes and ketones. $LiAlH_4$ (lithium aluminium hydride) is a powerful reducing agent that reduces aldehydes, ketones, carboxylic acids, and esters. $LiAlH_4$ requires a dry ether solvent and reacts violently with water."
+    },
+    {
+      "front": "How do you form a C-C bond starting from a haloalkane?",
+      "back": "React the haloalkane with potassium cyanide ($KCN$) in ethanol under reflux (nucleophilic substitution). This replaces the halogen with a -CN group, extending the carbon chain by one."
+    },
+    {
+      "front": "How do you convert a nitrile (-CN) to a carboxylic acid (-COOH)?",
+      "back": "Acid hydrolysis: Heat under reflux with a dilute acid (e.g., $HCl(aq)$ or $H_2SO_4(aq)$). This adds two water molecules across the triple bond."
+    },
+    {
+      "front": "How do you convert a nitrile (-CN) to a primary amine (-CH₂NH₂)?",
+      "back": "Reduction: Use a strong reducing agent like $LiAlH_4$ in dry ether, or catalytic hydrogenation ($H_2$ with a Ni catalyst)."
+    },
+    {
+      "front": "What is a 'protecting group' in organic synthesis?",
+      "back": "A temporary modification of a functional group to prevent it from reacting in a subsequent step. It is added, the desired reaction is performed elsewhere on the molecule, and then it is removed."
+    },
+    {
+      "front": "What are the reagents and conditions for esterification?",
+      "back": "React a carboxylic acid with an alcohol in the presence of a strong acid catalyst (e.g., concentrated $H_2SO_4$) and heat under reflux."
+    },
+    {
+      "front": "How can you hydrolyse an ester?",
+      "back": "Acid hydrolysis (reversible): Heat under reflux with dilute acid. Base hydrolysis (saponification, irreversible): Heat under reflux with aqueous alkali (e.g., $NaOH(aq)$), which produces a carboxylate salt."
+    },
+    {
+      "front": "How do you convert a secondary alcohol to a ketone?",
+      "back": "Oxidation using acidified potassium dichromate(VI) ($K_2Cr_2O_7 / H_2SO_4$) and heating under reflux."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Organic synthesis** (36.1) integrates **Topics 14–35**. Examiners award marks for **correct reagents and conditions** at each step." },
-    { "type": "practice", "label": "Mark an organic synthesis question", "href": "/mark?subject=9701&topic=36.1" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to the world of organic synthesis, where you become a molecular architect. This topic brings together all the reactions you've learned and challenges you to use them strategically to build target molecules from simpler starting materials. It's less about learning new reactions and more about mastering the art of planning and problem-solving."
+    },
+    {
+      "type": "heading",
+      "content": "The Strategy: Retrosynthetic Analysis"
+    },
+    {
+      "type": "text",
+      "content": "Instead of starting with simple molecules and seeing what you can make, a synthetic chemist starts with the desired product, the 'target molecule'. They then work backwards, step-by-step, breaking it down into simpler precursors. This process is called retrosynthesis. Each backward step is a 'disconnection', often at a key functional group. This continues until you reach simple, readily available starting materials."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Identify the functional group in the target molecule.",
+        "Think about the reaction that could form this functional group.",
+        "Identify the precursor molecule(s) needed for that reaction.",
+        "Repeat the process for the precursor until you reach a suitable starting material.",
+        "Once the route is planned backwards, write it out in the forward direction, including all reagents and conditions."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Toolkit: Key Functional Group Interconversions"
+    },
+    {
+      "type": "text",
+      "content": "Your ability to design a synthesis depends entirely on your knowledge of the organic reaction 'toolkit'. You must be fluent in converting one functional group to another. The map of organic reactions you have built throughout the course is your primary resource here."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Oxidation:** Primary alcohol $\\rightarrow$ Aldehyde $\\rightarrow$ Carboxylic Acid; Secondary alcohol $\\rightarrow$ Ketone.",
+        "**Reduction:** Aldehyde/Ketone $\\rightarrow$ Alcohol; Carboxylic Acid/Ester $\\rightarrow$ Primary Alcohol; Nitrile $\\rightarrow$ Primary Amine.",
+        "**Nucleophilic Substitution:** Haloalkane $\\rightarrow$ Alcohol, Nitrile, or Amine.",
+        "**Hydrolysis:** Ester $\\rightarrow$ Carboxylic Acid + Alcohol; Nitrile $\\rightarrow$ Carboxylic Acid.",
+        "**Esterification:** Carboxylic Acid + Alcohol $\\rightarrow$ Ester.",
+        "**C-C Bond Formation:** Crucial for building larger molecules, e.g., using $KCN$ followed by hydrolysis/reduction."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Design a two-step synthesis for butan-1-ol from propanal. Calculate the overall percentage yield if Step 1 has a 75% yield and Step 2 has an 88% yield.",
+      "solution": "**Retrosynthesis:**\n1. The target is butan-1-ol ($CH_3CH_2CH_2CH_2OH$), a primary alcohol. This can be formed by reducing a carboxylic acid or an aldehyde. Let's consider reducing butanal.\n2. Butanal ($CH_3CH_2CH_2CHO$) has the same number of carbons as the target. The starting material is propanal ($CH_3CH_2CHO$), which has one fewer carbon. We need a C-C bond forming reaction. However, a simpler route might be to reduce propanal to propan-1-ol, convert it to a haloalkane, then use KCN to add a carbon, then reduce the nitrile. This is more than two steps.\n3. Let's reconsider. Propanal is an aldehyde. We can't easily add one carbon and keep it as an alcohol. A more advanced method (Grignard reagent) is possible but often outside the core syllabus. Let's re-evaluate the question's constraints. A two-step synthesis from propanal to butan-1-ol is tricky with standard A-level reactions. Let's adjust the starting material to something more typical, like 1-chloropropane, to illustrate a common pattern.\n\n**Revised Example:** Design a synthesis for butanoic acid from 1-chloropropane ($CH_3CH_2CH_2Cl$).\n\n**Retrosynthesis:**\n1. Target: Butanoic acid ($CH_3CH_2CH_2COOH$). This can be made by hydrolysing a nitrile.\n2. Precursor: Butanenitrile ($CH_3CH_2CH_2CN$). This has 4 carbons.\n3. Butanenitrile can be made from a haloalkane with 3 carbons via nucleophilic substitution with $CN^-$. The precursor is 1-chloropropane, which is our starting material.\n\n**Forward Synthesis:**\n*   **Step 1: Formation of Butanenitrile**\n    React 1-chloropropane with potassium cyanide ($KCN$) in ethanol. Heat the mixture under reflux.\n    $CH_3CH_2CH_2Cl + KCN \\xrightarrow{\\text{ethanol, reflux}} CH_3CH_2CH_2CN + KCl$\n*   **Step 2: Hydrolysis of Butanenitrile**\n    Heat the butanenitrile under reflux with a dilute acid, such as $H_2SO_4(aq)$.\n    $CH_3CH_2CH_2CN + 2H_2O + H^+ \\xrightarrow{\\text{reflux}} CH_3CH_2CH_2COOH + NH_4^+$\n\n**Yield Calculation (using original question's numbers for practice):**\nOverall Yield = (Yield of Step 1) $\\times$ (Yield of Step 2)\nOverall Yield = $0.75 \\times 0.88 = 0.66$\nOverall Percentage Yield = $0.66 \\times 100\\% = 66\\%$"
+    },
+    {
+      "type": "heading",
+      "content": "Navigating Complications: Protecting Groups"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, a reagent needed for one transformation will also react with another functional group in the same molecule. For example, if you want to reduce an ester to an alcohol but the molecule also contains a ketone, a strong reducing agent like $LiAlH_4$ would reduce both. To solve this, we can temporarily 'protect' the ketone, perform the ester reduction, and then 'deprotect' the ketone to restore it. At A-level, you are not required to know the specific reactions for protection/deprotection, but you must understand the concept and why it is necessary."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners love to test the fine details. Always specify reaction conditions: heat/reflux, solvent (e.g., aqueous vs. ethanolic), and catalyst. For oxidation of primary alcohols, state 'distil' for an aldehyde and 'reflux' for a carboxylic acid. For reductions, be clear about whether you are using the milder $NaBH_4$ or the stronger $LiAlH_4$ and its required non-aqueous conditions."
+    },
+    {
+      "type": "workedExample",
+      "question": "Identify the reagents (A, B) and the intermediate (X) in the following reaction scheme to synthesise ethylamine from ethanol.\n\n$CH_3CH_2OH \\xrightarrow{\\text{Reagent A}} X \\xrightarrow{\\text{Reagent B}} CH_3CH_2NH_2$",
+      "solution": "**Analysis:**\n1.  The starting material is ethanol ($C_2H_5OH$), an alcohol with 2 carbons.\n2.  The final product is ethylamine ($CH_3CH_2NH_2$), a primary amine with 2 carbons. The carbon chain length is unchanged.\n3.  We need to convert an -OH group to an -$NH_2$ group. There is no direct single reaction for this.\n4.  A common route is via a haloalkane intermediate. We can convert the alcohol to a haloalkane, then the haloalkane to an amine.\n\n**Step-by-step identification:**\n*   **Step 1: Ethanol to Intermediate X**\n    To make a haloalkane from an alcohol, we can use several reagents. A common one is reacting with a hydrogen halide, but a better lab method is using a phosphorus halide or thionyl chloride. Let's use $PCl_5$ or $SOCl_2$. Let's choose $SOCl_2$ (thionyl chloride) as it gives gaseous by-products.\n    **Reagent A:** $SOCl_2$ (or $PCl_5$, or conc. $HCl$ with $ZnCl_2$ catalyst).\n    **Intermediate X:** Chloroethane ($CH_3CH_2Cl$).\n    Reaction: $CH_3CH_2OH + SOCl_2 \\rightarrow CH_3CH_2Cl + SO_2 + HCl$\n\n*   **Step 2: Intermediate X to Ethylamine**\n    To convert a haloalkane to a primary amine, we use nucleophilic substitution with ammonia. To avoid further substitution creating secondary/tertiary amines, excess concentrated ammonia is used.\n    **Reagent B:** Excess concentrated ammonia ($NH_3$) in ethanol, heated in a sealed tube.\n    Reaction: $CH_3CH_2Cl + 2NH_3 \\rightarrow CH_3CH_2NH_2 + NH_4Cl$\n\n**Final Answer:**\n*   **Reagent A:** $SOCl_2$ (Thionyl chloride) or $PCl_5$ (Phosphorus(V) chloride).\n*   **Intermediate X:** Chloroethane ($CH_3CH_2Cl$).\n*   **Reagent B:** Excess concentrated $NH_3$ in ethanol, under heat and pressure."
+    },
+    {
+      "type": "faq",
+      "items": [
+        {
+          "q": "There are often multiple ways to make a molecule. How do I know which one is 'correct'?",
+          "a": "In an exam, any chemically correct route that uses reagents and conditions from the syllabus will be accepted, unless the question specifies the number of steps. The 'best' route often involves the fewest steps, uses the cheapest/safest reagents, and has the highest yield. For A-level problems, focus on the most common transformations you have learned."
+        },
+        {
+          "q": "Do I need to memorise the entire organic reaction map?",
+          "a": "Yes, fluency with the key reactions is essential. Instead of rote memorisation, try to understand the types of reactions (e.g., nucleophilic substitution, oxidation). Create your own reaction map or use flashcards to test yourself regularly. The more you practice synthesis problems, the more familiar the routes will become."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Organic Synthesis",
+      "href": "/mark?subject=9701&topic=36.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Molecule Builder (PhET)",
+          "href": "https://phet.colorado.edu/en/simulations/build-a-molecule"
+        },
+        {
+          "label": "Cambridge International Syllabus (9701)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-chemistry-9701/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Multi-step routes and functional group interconversions (36.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Plan retrosynthesis from target molecule.",
+        "embedHint": "Identify key functional group changes."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Interconvert alcohols, carbonyls, acids, esters.",
+        "embedHint": "List reagents for each step."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Protecting groups if needed at A Level.",
+        "embedHint": "Avoid unwanted side reactions."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Multi-step route: one product feeds next step.",
+        "embedHint": "Purify between steps if asked."
+      }
+    ]
+  }
 }

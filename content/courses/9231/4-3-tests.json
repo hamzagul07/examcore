@@ -1,0 +1,210 @@
+{
+  "slug": "4-3-tests",
+  "topicCode": "4.3",
+  "title": "χ²-tests",
+  "paper": "P4",
+  "paperName": "Paper 4: Further Probability & Statistics",
+  "status": "pilot",
+  "summary": "This lesson introduces the Chi-squared (χ²) test, a powerful statistical tool used to determine if observed data significantly differs from what is expected. We will cover two main applications: testing the 'goodness of fit' of a theoretical model and testing for independence between two categorical variables in a contingency table.",
+  "durationMin": 25,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Formulate the null and alternative hypotheses for both goodness of fit and contingency table χ²-tests.",
+    "Calculate expected frequencies, the χ² test statistic, and the correct number of degrees of freedom.",
+    "Perform a χ² goodness of fit test to assess how well a set of observations fits a given theoretical distribution (e.g., uniform, binomial, Poisson).",
+    "Use a χ²-test for independence to determine whether an association exists between two variables presented in a contingency table."
+  ],
+  "simpleExplanation": {
+    "title": "Observed vs. Expected: The Showdown",
+    "summary": "The χ²-test is a way to measure the 'surprise' level between what you actually see (observed data) and what you thought you'd see (expected data). If the surprise is big enough, you reject your initial theory.",
+    "analogy": "Imagine a factory claims their bags of assorted chocolates contain 30% milk, 30% dark, and 40% white. You buy a bag, count the chocolates, and find a different distribution. The χ²-test is like a formal complaint process: it calculates a 'discrepancy score'. If the score is higher than a set threshold, you have statistical evidence to be sceptical of the factory's claim.",
+    "steps": [
+      "First, state your initial belief (the null hypothesis) and calculate the frequencies you'd expect to see if that belief were true.",
+      "Next, use the χ² formula, $\\chi^2 = \\sum \\frac{(O - E)^2}{E}$, to calculate a single test statistic that summarises the total difference between your observed (O) and expected (E) counts.",
+      "Then, determine the 'degrees of freedom' (a measure of how many values can vary) and look up the corresponding critical value in a table for your chosen significance level.",
+      "Finally, compare your calculated χ² statistic with the critical value. If your statistic is larger, you reject your initial belief; otherwise, you don't have enough evidence to reject it."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the purpose of a χ²-test?",
+      "back": "To compare observed categorical data with expected data to see if the difference is statistically significant. It tests the 'goodness of fit' of a model or the independence of two variables."
+    },
+    {
+      "front": "What are the two main types of χ²-test in the Further Maths syllabus?",
+      "back": "1. Goodness of fit test. 2. Test for independence in a contingency table."
+    },
+    {
+      "front": "What is the formula for the χ² test statistic?",
+      "back": "$\\chi^2 = \\sum_{i=1}^{k} \\frac{(O_i - E_i)^2}{E_i}$, where O is observed frequency, E is expected frequency, and the sum is over all k categories."
+    },
+    {
+      "front": "What is the key condition for a χ²-test to be considered valid?",
+      "back": "All expected frequencies ($E_i$) must be greater than 5. If not, adjacent categories should be combined until this condition is met."
+    },
+    {
+      "front": "How do you calculate degrees of freedom (ν) for a goodness of fit test?",
+      "back": "ν = (number of categories after any pooling) - 1 - (number of parameters estimated from the data)."
+    },
+    {
+      "front": "How do you calculate degrees of freedom (ν) for a contingency table?",
+      "back": "ν = (number of rows - 1) × (number of columns - 1)."
+    },
+    {
+      "front": "What does a large calculated χ² value suggest?",
+      "back": "A large χ² value indicates a large discrepancy between observed and expected frequencies, suggesting that the null hypothesis is unlikely to be true."
+    },
+    {
+      "front": "What are the typical null ($H_0$) and alternative ($H_1$) hypotheses for a test of independence?",
+      "back": "$H_0$: The two variables are independent (no association). $H_1$: The two variables are not independent (there is an association)."
+    },
+    {
+      "front": "How do you calculate the expected frequency for a cell in a contingency table?",
+      "back": "$E_{ij} = \\frac{(\\text{Row } i \\text{ total}) \\times (\\text{Column } j \\text{ total})}{\\text{Grand Total}}$"
+    },
+    {
+      "front": "What is a 'restriction' when calculating degrees of freedom for a goodness of fit test?",
+      "back": "A restriction is a piece of information derived from the sample data used to calculate the expected frequencies. The total frequency is always one restriction. Any estimated parameters (like λ for Poisson or μ for Normal) are additional restrictions."
+    },
+    {
+      "front": "What is a common mistake when concluding a χ²-test?",
+      "back": "Stating 'accept H₀'. We never 'accept' the null hypothesis; we state that there is 'insufficient evidence to reject H₀'. Also, forgetting to write the conclusion in the context of the original problem."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a goodness of fit test and a test for independence?",
+      "a": "A goodness of fit test compares one set of observed categorical data (from one variable) against a theoretical distribution. A test for independence uses a two-way contingency table to see if there is a relationship between two different categorical variables."
+    },
+    {
+      "q": "What do I do if an expected frequency is 5 or less?",
+      "a": "You must combine that category (or cell) with an adjacent one. For a goodness of fit test, you might combine '4 or more defects'. For a contingency table, you might combine two rows or two columns. After combining, you must use the new number of categories/rows/columns to calculate the degrees of freedom. You should always state which categories you have combined."
+    },
+    {
+      "q": "Why are the degrees of freedom calculated differently for the two tests?",
+      "a": "The degrees of freedom reflect the number of values that are 'free to vary'. In a goodness of fit test, once you've filled (k-1) categories and you know the total, the last category is fixed. So ν starts at k-1. In a contingency table with 'r' rows and 'c' columns, once you've filled in (r-1) rows and (c-1) columns, the remaining cells are all fixed by the row and column totals. This gives (r-1)(c-1) free choices."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In statistics, we often want to compare what we observe in the real world with a theoretical model. Does a die behave as if it's perfectly fair? Does the number of defects on a production line follow a Poisson distribution? Is there a relationship between a person's political affiliation and their age group? The Chi-squared (χ²) test provides a formal method for answering these types of questions, which involve categorical data."
+    },
+    {
+      "type": "heading",
+      "content": "The Chi-Squared (χ²) Distribution"
+    },
+    {
+      "type": "text",
+      "content": "The χ² distribution is a continuous probability distribution. It is a family of distributions, with each one being defined by a parameter called 'degrees of freedom' (ν). The shape of the χ² distribution is skewed to the right, especially for small values of ν. As ν increases, the distribution becomes more symmetrical and resembles a normal distribution. Since the test statistic involves squared differences, the value of χ² is always non-negative."
+    },
+    {
+      "type": "heading",
+      "content": "The χ² Goodness of Fit Test"
+    },
+    {
+      "type": "text",
+      "content": "This test is used to determine how well a sample of observed categorical data fits a specified theoretical distribution. The 'goodness of fit' is assessed by comparing the observed frequencies ($O_i$) in each category with the frequencies we would expect ($E_i$) if the data perfectly followed the theoretical model. A small total difference supports the model, while a large difference suggests the model is a poor fit."
+    },
+    {
+      "type": "formula",
+      "content": "\\chi^2_{calc} = \\sum \\frac{(O_i - E_i)^2}{E_i}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The null hypothesis, $H_0$, states that the data follows the specified distribution.",
+        "The alternative hypothesis, $H_1$, states that the data does not follow the specified distribution.",
+        "The test is always one-tailed, as we are interested in whether the difference between O and E is significantly large. We therefore always look at the upper tail of the χ² distribution."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Degrees of Freedom (ν) for Goodness of Fit"
+    },
+    {
+      "type": "text",
+      "content": "The number of degrees of freedom is crucial for finding the correct critical value from the tables. It represents the number of independent pieces of information available to calculate the test statistic. The calculation depends on the number of 'restrictions' imposed on the data when calculating the expected frequencies."
+    },
+    {
+      "type": "formula",
+      "content": "\\nu = (\\text{number of categories}) - (\\text{number of restrictions})"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "There is always at least one restriction: the total of the expected frequencies must equal the total of the observed frequencies ($sum E_i = sum O_i$).",
+        "If you need to estimate a parameter of the distribution from the sample data, each estimated parameter counts as an additional restriction. For example, if you calculate the sample mean to use as the value of λ for a Poisson distribution, that is one extra restriction."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A die was rolled 180 times with the following results:\n\n| Score | 1 | 2 | 3 | 4 | 5 | 6 |\n|---|---|---|---|---|---|---|\n| Frequency | 25 | 35 | 28 | 32 | 22 | 38 |\n\nTest, at the 5% significance level, whether the die is fair.",
+      "solution": "1.  **Hypotheses**\n    $H_0$: The die is fair. (The data follows a discrete uniform distribution).\n    $H_1$: The die is not fair.\n\n2.  **Expected Frequencies**\n    If the die is fair, the probability of each score is $1/6$. The total number of rolls is 180.\n    Expected frequency for each score, $E_i = 180 \\times \\frac{1}{6} = 30$.\n    All expected frequencies are > 5, so the test is valid.\n\n3.  **Calculate the Test Statistic**\n    We use the formula $\\chi^2 = \\sum \\frac{(O_i - E_i)^2}{E_i}$.\n    | Score | $O_i$ | $E_i$ | $O_i - E_i$ | $(O_i - E_i)^2$ | $(O_i - E_i)^2 / E_i$ |\n    |---|---|---|---|---|---|\n    | 1 | 25 | 30 | -5 | 25 | 0.8333 |\n    | 2 | 35 | 30 | 5 | 25 | 0.8333 |\n    | 3 | 28 | 30 | -2 | 4 | 0.1333 |\n    | 4 | 32 | 30 | 2 | 4 | 0.1333 |\n    | 5 | 22 | 30 | -8 | 64 | 2.1333 |\n    | 6 | 38 | 30 | 8 | 64 | 2.1333 |\n\n    $\\chi^2_{calc} = 0.8333 + 0.8333 + 0.1333 + 0.1333 + 2.1333 + 2.1333 = 6.2$\n\n4.  **Degrees of Freedom and Critical Value**\n    Number of categories = 6.\n    Number of restrictions = 1 (since we only used the total frequency). No parameters were estimated.\n    Degrees of freedom, $\\nu = 6 - 1 = 5$.\n    Significance level = 5% = 0.05.\n    From tables, the critical value is $\\chi^2_{5}(0.05) = 11.070$.\n\n5.  **Conclusion**\n    Since our calculated value $\\chi^2_{calc} = 6.2$ is less than the critical value of 11.070, we do not reject $H_0$.\n    There is insufficient evidence at the 5% significance level to suggest that the die is not fair."
+    },
+    {
+      "type": "examTip",
+      "content": "A common exam question involves a distribution where one or more expected frequencies are less than 5. You must state that you are combining (or 'pooling') adjacent categories and then recalculate the degrees of freedom based on the new, smaller number of categories. Forgetting to do this is a frequent source of lost marks."
+    },
+    {
+      "type": "heading",
+      "content": "The χ² Test for Independence (Contingency Tables)"
+    },
+    {
+      "type": "text",
+      "content": "This test is used to determine whether there is a statistically significant association between two categorical variables. The data is presented in a two-way table called a contingency table. The test compares the observed frequencies in each cell of the table with the frequencies that would be expected if the two variables were independent."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The null hypothesis, $H_0$, states that the two variables are independent (i.e., there is no association).",
+        "The alternative hypothesis, $H_1$, states that the two variables are not independent (i.e., there is an association).",
+        "The logic is the same: if the calculated χ² statistic is large, it suggests the variables are not independent."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculations for Contingency Tables"
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Expected Frequency } E_{ij} = \\frac{(\\text{Row } i \\text{ total}) \\times (\\text{Column } j \\text{ total})}{\\text{Grand Total}}"
+    },
+    {
+      "type": "text",
+      "content": "This formula is derived from the probability rule for independent events: $P(A \\cap B) = P(A) \\times P(B)$. If the variables are independent, the probability of being in a particular cell is the probability of being in that row multiplied by the probability of being in that column. We estimate these probabilities from the data as (Row Total / Grand Total) and (Column Total / Grand Total)."
+    },
+    {
+      "type": "formula",
+      "content": "\\nu = (\\text{number of rows} - 1) \\times (\\text{number of columns} - 1)"
+    },
+    {
+      "type": "workedExample",
+      "question": "A survey of 200 sixth form students recorded their year group and preferred subject choice from a selection. The results are shown in the table. Test, at the 5% significance level, whether there is an association between a student's year group and their subject preference.\n\n| | Maths | History | Art | Total |\n|---|---|---|---|---|\n| Year 12 | 45 | 25 | 20 | 90 |\n| Year 13 | 55 | 35 | 20 | 110 |\n| Total| 100 | 60 | 40 | 200 |",
+      "solution": "1.  **Hypotheses**\n    $H_0$: There is no association between year group and subject preference.\n    $H_1$: There is an association between year group and subject preference.\n\n2.  **Expected Frequencies**\n    We calculate $E_{ij} = \\frac{\\text{Row Total} \\times \\text{Column Total}}{\\text{Grand Total}}$.\n    $E_{11} = \\frac{90 \\times 100}{200} = 45$\n    $E_{12} = \\frac{90 \\times 60}{200} = 27$\n    $E_{13} = \\frac{90 \\times 40}{200} = 18$\n    $E_{21} = \\frac{110 \\times 100}{200} = 55$\n    $E_{22} = \\frac{110 \\times 60}{200} = 33$\n    $E_{23} = \\frac{110 \\times 40}{200} = 22$\n    Table of Expected Frequencies:\n    | | Maths | History | Art |\n    |---|---|---|---|\n    | Year 12 | 45 | 27 | 18 |\n    | Year 13 | 55 | 33 | 22 |\n    All expected frequencies are > 5.\n\n3.  **Calculate the Test Statistic**\n    $\\chi^2_{calc} = \\sum \\frac{(O - E)^2}{E}$\n    $= \\frac{(45-45)^2}{45} + \\frac{(25-27)^2}{27} + \\frac{(20-18)^2}{18} + \\frac{(55-55)^2}{55} + \\frac{(35-33)^2}{33} + \\frac{(20-22)^2}{22}$\n    $= 0 + \\frac{4}{27} + \\frac{4}{18} + 0 + \\frac{4}{33} + \\frac{4}{22}$\n    $= 0 + 0.1481... + 0.2222... + 0 + 0.1212... + 0.1818...$\n    $= 0.6733... \\approx 0.673$ (3 s.f.)\n\n4.  **Degrees of Freedom and Critical Value**\n    The table is 2x3. Degrees of freedom, $\\nu = (2-1) \\times (3-1) = 1 \\times 2 = 2$.\n    Significance level = 5% = 0.05.\n    From tables, the critical value is $\\chi^2_{2}(0.05) = 5.991$.\n\n5.  **Conclusion**\n    Since $\\chi^2_{calc} = 0.673$ is less than the critical value of 5.991, we do not reject $H_0$.\n    There is insufficient evidence at the 5% significance level to suggest an association between a student's year group and their subject preference."
+    },
+    {
+      "type": "examTip",
+      "content": "Always show your table of expected frequencies in your working. Marks are often awarded for this. When writing your conclusion, make sure it is stated in the full context of the problem, referring to the variables involved (e.g., 'association between age and film preference') rather than just 'reject H₀'."
+    },
+    {
+      "type": "practice",
+      "label": "Practice χ²-test Questions",
+      "href": "/mark?subject=9231&topic=4.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Formulae and Tables (MF19)",
+          "href": "https://www.cambridgeinternational.org/Images/415361-2020-2022-syllabus.pdf"
+        },
+        {
+          "label": "Online Chi-Squared Distribution Calculator",
+          "href": "https://www.statology.org/chi-square-distribution-calculator/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

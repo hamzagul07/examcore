@@ -4,29 +4,230 @@
   "title": "Carbon-13 NMR spectroscopy",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level ¹³C NMR — chemical shift, carbon environments, and structure deduction.",
+  "status": "pilot",
+  "summary": "This lesson introduces Carbon-13 Nuclear Magnetic Resonance (¹³C NMR) spectroscopy, a powerful analytical technique used to determine the carbon skeleton of an organic molecule. We will explore how to interpret ¹³C NMR spectra by analysing the number of signals, their chemical shifts (δ), and the role of the reference standard, TMS. Unlike proton NMR, standard ¹³C spectra are proton-decoupled, resulting in a simplified spectrum where each unique carbon environment produces a single peak.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Count distinct carbon environments.",
-    "Use chemical shift data tables.",
-    "Interpret ¹³C NMR spectra.",
-    "Deduce structures from peak count and δ values."
+    "Understand the principles of ¹³C NMR, including the use of TMS as a standard.",
+    "Predict the number of signals in a ¹³C NMR spectrum for a given molecule by identifying chemically equivalent carbon atoms.",
+    "Interpret ¹³C NMR spectra by correlating chemical shift values (δ) with functional groups using a data booklet.",
+    "Use ¹³C NMR data to distinguish between isomers and propose possible structures for an unknown compound."
   ],
   "simpleExplanation": {
-    "title": "One peak per carbon environment",
-    "summary": "¹³C NMR shows how many types of carbon are present and their electronic environment via chemical shift.",
+    "title": "Carbon's Chemical Fingerprint",
+    "summary": "Carbon-13 NMR spectroscopy gives us a map of the carbon atoms in a molecule. By looking at the number and position of signals, we can figure out the molecule's carbon framework.",
+    "analogy": "Imagine a company with different types of jobs: accountants, engineers, marketers, and managers. In a company photo, all accountants would stand together, all engineers together, and so on. ¹³C NMR is like that photo: each 'job' (a specific carbon environment) creates a distinct group (a peak) at a specific location on the chart (the chemical shift), telling you how many different types of carbon 'jobs' exist in your molecule.",
     "steps": [
-      "Symmetry reduces number of peaks.",
-      "δ referenced to TMS = 0 ppm.",
-      "C=O carbons ~ 160–220 ppm.",
-      "Decoupled spectrum — no splitting."
+      "Each distinct C environment gives one peak. | Sim hint: Symmetry reduces peak count.",
+      "Chemical shift δ in ppm from TMS. | Sim hint: C=O ~ 160–220 ppm.",
+      "No C–H splitting in ¹³C NMR (decoupled). | Sim hint: Simpler than proton NMR.",
+      "Count peaks → deduce carbon environments. | Sim hint: Match to proposed structure."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a 'carbon environment'?",
+      "back": "The specific bonding and neighbouring atoms for a particular carbon atom in a molecule. Carbons in identical environments due to symmetry are 'chemically equivalent' and produce a single signal."
+    },
+    {
+      "front": "Why is TMS (Tetramethylsilane) used as the reference standard in NMR?",
+      "back": "It is chemically inert, volatile (easily removed), and its four equivalent carbons produce a single, sharp signal defined as 0 ppm, which is away from the signals of most organic compounds."
+    },
+    {
+      "front": "What does 'proton-decoupled' mean in ¹³C NMR?",
+      "back": "A technique is used to irradiate the sample at proton resonant frequencies. This removes the splitting effect (coupling) of neighbouring ¹H nuclei on ¹³C signals, simplifying the spectrum to single peaks for each carbon environment."
+    },
+    {
+      "front": "What information is given by the number of signals in a ¹³C NMR spectrum?",
+      "back": "The number of signals directly corresponds to the number of different, non-equivalent carbon environments in the molecule."
+    },
+    {
+      "front": "What information is NOT reliably given by a standard ¹³C NMR spectrum?",
+      "back": "The relative number of carbons in each environment. Unlike in proton NMR, the integration (area under the peak) is generally not proportional to the number of ¹³C nuclei."
+    },
+    {
+      "front": "What causes a carbon nucleus to be 'deshielded' and have a higher chemical shift (δ)?",
+      "back": "The presence of nearby electronegative atoms (e.g., O, Cl) or π-bonds (e.g., C=C, C=O). These withdraw electron density, reducing the shielding from the external magnetic field."
+    },
+    {
+      "front": "State the approximate chemical shift (δ) range for a carbon in a C=O group of a ketone or aldehyde.",
+      "back": "Approximately 190 - 220 ppm. This is one of the most deshielded regions in a ¹³C NMR spectrum."
+    },
+    {
+      "front": "State the approximate chemical shift (δ) range for a carbon in a C=O group of a carboxylic acid or ester.",
+      "back": "Approximately 160 - 185 ppm. It is less deshielded than a ketone due to resonance with the adjacent single-bonded oxygen atom."
+    },
+    {
+      "front": "How many signals would you expect in the ¹³C NMR spectrum of propane, CH₃CH₂CH₃?",
+      "back": "Two signals. The two outer CH₃ carbons are in an identical environment due to symmetry. The central CH₂ carbon is in a different environment."
+    },
+    {
+      "front": "How many signals would you expect in the ¹³C NMR spectrum of toluene (methylbenzene)?",
+      "back": "Five signals. One for the methyl carbon, and four for the benzene ring carbons (the carbon attached to the CH₃, and the ortho, meta, and para carbons are all unique)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why don't we see splitting from adjacent ¹³C atoms?",
+      "a": "The natural abundance of ¹³C is only 1.1%. This means the statistical probability of two ¹³C atoms being next to each other in a molecule is extremely low (about 0.011 x 0.011 = 0.0121%). Therefore, ¹³C-¹³C coupling is negligible and not observed in a standard spectrum."
+    },
+    {
+      "q": "Can ¹³C NMR distinguish between enantiomers?",
+      "a": "No. Enantiomers are non-superimposable mirror images. They have identical connectivity and bond lengths/angles, so their carbon atoms exist in identical chemical environments. Therefore, enantiomers will produce identical ¹³C NMR spectra. Diastereomers, however, will have different spectra."
+    },
+    {
+      "q": "What is the difference in chemical shift between a C=O in a ketone and a C=O in an ester?",
+      "a": "A ketone C=O carbon is typically more deshielded (190-220 ppm) than an ester C=O carbon (160-185 ppm). This is because the lone pair on the single-bonded oxygen in an ester participates in resonance, donating electron density towards the carbonyl carbon and increasing its shielding relative to a ketone."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**¹³C NMR** (37.3) pairs with **37.4 proton NMR**. Start by **counting peaks** before assigning δ." },
-    { "type": "practice", "label": "Mark a ¹³C NMR question", "href": "/mark?subject=9701&topic=37.3" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to the world of Carbon-13 NMR spectroscopy. While proton (¹H) NMR tells us about the hydrogen environments in a molecule, ¹³C NMR focuses on the carbon backbone. This technique is indispensable for organic chemists as it provides a direct count of the unique carbon environments and gives strong clues about the functional groups present, allowing for detailed structure elucidation."
+    },
+    {
+      "type": "heading",
+      "content": "Principles of Carbon-13 NMR"
+    },
+    {
+      "type": "text",
+      "content": "The basis of NMR spectroscopy lies in the magnetic properties of certain atomic nuclei. The most common isotope of carbon, ¹²C, has no nuclear spin and is NMR-inactive. However, the ¹³C isotope, which has a natural abundance of about 1.1%, possesses a nuclear spin. When placed in a strong external magnetic field, these ¹³C nuclei can align with or against the field, creating two spin states with a small energy difference. The nuclei can be induced to 'flip' from the lower to the higher energy state by absorbing energy in the radio frequency range. The precise frequency required for this transition is highly sensitive to the chemical environment of the carbon atom."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Only the ¹³C isotope is NMR-active.",
+        "The low natural abundance (1.1%) of ¹³C means the technique is less sensitive than ¹H NMR.",
+        "The chemical environment (shielding/deshielding) determines the exact radio frequency absorbed.",
+        "The probability of two ¹³C atoms being adjacent is very low, so ¹³C-¹³C coupling is ignored."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting a ¹³C NMR Spectrum"
+    },
+    {
+      "type": "text",
+      "content": "A ¹³C NMR spectrum plots signal intensity against chemical shift, measured in parts per million (ppm). There are three key pieces of information we can extract:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Number of Signals:** This tells you the number of distinct carbon environments in the molecule.",
+        "**Chemical Shift (δ):** The position of a signal on the x-axis indicates the type of carbon environment (e.g., alkyl, alkene, aromatic, carbonyl).",
+        "**Absence of Splitting:** Standard spectra are 'proton-decoupled', so each carbon environment gives a single, unsplit line (a singlet)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "1. Number of Signals and Chemical Equivalence"
+    },
+    {
+      "type": "text",
+      "content": "The most powerful initial step in analysing a ¹³C NMR spectrum is to count the number of peaks. This number is equal to the number of non-equivalent carbon atoms. Carbon atoms are considered chemically equivalent if they can be interchanged by a symmetry operation, such as rotation or reflection. For example, in propane (CH₃-CH₂-CH₃), the two methyl (CH₃) carbons are equivalent due to a plane of symmetry, so it shows only two signals. In contrast, pentan-1-ol (CH₃CH₂CH₂CH₂CH₂OH) has no such symmetry and shows five distinct signals, one for each carbon."
+    },
+    {
+      "type": "workedExample",
+      "question": "Predict the number of signals in the ¹³C NMR spectrum of 2-methylbutane.",
+      "solution": "First, draw the structure of 2-methylbutane: (CH₃)₂CHCH₂CH₃.\n\n1.  Identify potential symmetry. There is no plane of symmetry that makes all carbons equivalent.\n2.  Let's label the carbons: C1 and C1' are the two methyl groups on C2. C2 is the CH group. C3 is the CH₂ group. C4 is the terminal CH₃ group.\n3.  The two methyl groups attached to the CH carbon (C1 and C1') are chemically equivalent because of free rotation around the C-C bond. They will produce one signal.\n4.  The CH carbon (C2) is in a unique environment.\n5.  The CH₂ carbon (C3) is in a unique environment.\n6.  The terminal CH₃ carbon (C4) is in a unique environment.\n\nTherefore, there are four distinct carbon environments. The spectrum will show **4 signals**."
+    },
+    {
+      "type": "heading",
+      "content": "2. Chemical Shift (δ)"
+    },
+    {
+      "type": "text",
+      "content": "The chemical shift (δ) is the position of an NMR signal relative to a standard reference compound, Tetramethylsilane (TMS, Si(CH₃)₄). TMS is assigned a value of δ = 0 ppm. The chemical shift of a carbon nucleus is determined by the extent to which it is shielded by its surrounding electrons. Electronegative atoms (like O, N, Cl) or groups (like C=O) withdraw electron density from a carbon nucleus. This is called **deshielding**, and it causes the nucleus to experience a stronger effective magnetic field, resonate at a higher frequency, and thus have a larger chemical shift value."
+    },
+    {
+      "type": "formula",
+      "content": "Chemical Shift (δ) / ppm = \\frac{\\text{Observed shift from TMS (Hz)}}{\\text{Spectrometer frequency (MHz)}}"
+    },
+    {
+      "type": "text",
+      "content": "You are not expected to memorise specific chemical shift values, but you must be proficient at using the ranges provided in the Data Booklet. Key regions to recognise are:\n- **Alkyl carbons (C-C, C-H):** 5 - 40 ppm\n- **Carbons bonded to an electronegative atom (C-O, C-N, C-X):** 40 - 90 ppm\n- **Alkene and Aromatic carbons (C=C):** 110 - 160 ppm\n- **Carbonyl carbons (C=O):** 160 - 220 ppm"
+    },
+    {
+      "type": "examTip",
+      "content": "When answering questions, always refer to your Data Booklet. A common question type involves providing a spectrum and asking you to match peaks to carbons in a given structure. Quote the chemical shift value from the spectrum and the expected range from the Data Booklet to justify your assignment."
+    },
+    {
+      "type": "heading",
+      "content": "3. Proton Decoupling"
+    },
+    {
+      "type": "text",
+      "content": "If we ran a ¹³C NMR experiment in the same way as a ¹H NMR experiment, the signals would be split by adjacent protons (¹³C-¹H coupling), creating complex multiplets that are difficult to interpret. To avoid this, standard ¹³C NMR spectra are recorded using 'proton decoupling'. This involves irradiating the sample with a second broad-band radio frequency that covers all proton resonances. This rapidly flips the proton spins, effectively averaging out their magnetic influence on the carbon nuclei. The result is a simplified spectrum where each unique carbon environment gives a single, sharp peak."
+    },
+    {
+      "type": "workedExample",
+      "question": "An unknown compound with molecular formula C₃H₆O₂ produces a ¹³C NMR spectrum with three peaks at δ = 174.5, 51.5, and 25.2 ppm. Deduce the structure of the compound.",
+      "solution": "1.  **Analyse the data:** The formula is C₃H₆O₂. The spectrum has 3 peaks, meaning there are 3 distinct carbon environments. Since there are 3 carbons in the formula, all carbons are non-equivalent.\n\n2.  **Consult the Data Booklet for chemical shifts:**\n    *   The peak at **δ = 174.5 ppm** is in the range for a carbonyl carbon of a carboxylic acid or ester (160-185 ppm). This suggests a -COO- group.\n    *   The peak at **δ = 51.5 ppm** is in the range for a carbon singly bonded to an oxygen atom (e.g., in an alcohol or ether, 50-90 ppm). This could be the C in a C-O-R or an O-CH₃ group.\n    *   The peak at **δ = 25.2 ppm** is in the alkyl region (5-40 ppm), suggesting a CH₃ or CH₂ group not directly bonded to an oxygen.\n\n3.  **Propose structures and evaluate:** Let's consider isomers of C₃H₆O₂.\n    *   **Propanoic acid (CH₃CH₂COOH):** This has 3 non-equivalent carbons. The COOH carbon would be ~175-185 ppm. The CH₂ would be ~30 ppm. The CH₃ would be ~10 ppm. This is a possibility.\n    *   **Methyl ethanoate (CH₃COOCH₃):** This has 3 non-equivalent carbons. The C=O carbon would be ~170 ppm. The O-CH₃ carbon would be ~50-60 ppm. The CH₃-C=O carbon would be ~20 ppm.\n    *   **Ethyl methanoate (HCOOCH₂CH₃):** This has 3 non-equivalent carbons. The H-C=O carbon would be ~160 ppm. The O-CH₂ carbon would be ~60 ppm. The CH₃ carbon would be ~15 ppm.\n\n4.  **Compare and conclude:** The observed shifts (174.5, 51.5, 25.2 ppm) are an excellent match for methyl ethanoate:\n    *   δ = 174.5 ppm corresponds to the ester C=O carbon.\n    *   δ = 51.5 ppm corresponds to the O-CH₃ carbon.\n    *   δ = 25.2 ppm corresponds to the CH₃-C=O carbon.\n\nThe structure is **methyl ethanoate**."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Carbon-13 NMR",
+      "href": "/mark?subject=9701&topic=37.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International Chemistry Data Booklet",
+          "href": "https://www.cambridgeinternational.org/Images/680373-2025-2027-chemistry-data-booklet.pdf"
+        },
+        {
+          "label": "Introduction to NMR Spectroscopy (Chem LibreTexts)",
+          "href": "https://chem.libretexts.org/Bookshelves/Organic_Chemistry/Organic_Chemistry_(Morsch_et_al.)/13%3A_Nuclear_Magnetic_Resonance_Spectroscopy/13.06%3A_13C_NMR_Spectroscopy"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "¹³C environments and peak splitting patterns (37.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Each distinct C environment gives one peak.",
+        "embedHint": "Symmetry reduces peak count."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Chemical shift δ in ppm from TMS.",
+        "embedHint": "C=O ~ 160–220 ppm."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "No C–H splitting in ¹³C NMR (decoupled).",
+        "embedHint": "Simpler than proton NMR."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Count peaks → deduce carbon environments.",
+        "embedHint": "Match to proposed structure."
+      }
+    ]
+  }
 }

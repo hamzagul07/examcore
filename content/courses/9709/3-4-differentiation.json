@@ -4,41 +4,238 @@
   "title": "Differentiation",
   "paper": "P3",
   "paperName": "Pure Mathematics 3",
-  "status": "premium",
-  "summary": "9709 P3 differentiation — chain, product, quotient rules, implicit and parametric differentiation with GeoGebra tangent explorer.",
+  "status": "pilot",
+  "summary": "This lesson extends differentiation techniques to cover the product and quotient rules, implicit and parametric functions, and related rates of change. It is essential for analysing more complex functions and physical phenomena as required in Pure Mathematics 3.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Differentiate combined functions using chain, product, and quotient rules.",
-    "Apply implicit differentiation.",
-    "Find dy/dx for parametric equations.",
-    "Solve related rates problems."
+    "Apply the product and quotient rules to differentiate combinations of functions.",
+    "Use implicit differentiation for equations where y is not the explicit subject.",
+    "Find the gradient of a curve defined by parametric equations.",
+    "Solve problems involving related rates of change by applying the chain rule."
   ],
   "simpleExplanation": {
-    "title": "P3 extends P1 differentiation",
-    "summary": "P3 adds layers: functions of functions, implicit curves, and parametric forms. Related rates link derivatives through a constraint.",
+    "title": "Advanced Differentiation Toolkit",
+    "summary": "P3 differentiation gives us powerful tools to find gradients for complex situations. We learn rules for functions multiplied or divided, for tangled 'implicit' equations, for curves defined by a parameter, and for situations where different quantities change over time.",
+    "analogy": "Imagine a complex machine like a car engine. You can't just measure the car's speed to understand everything. You need specific tools to measure the piston's rate, the fuel injection rate, and the crankshaft's rotation speed. P3 differentiation gives you the specialised tools (product rule, implicit differentiation, etc.) to analyse each interconnected part of a complex mathematical 'machine'.",
     "steps": [
-      "Chain: d/dx f(g(x)) = f′(g(x))·g′(x).",
-      "Product: (uv)′ = u′v + uv′; quotient: (u/v)′ = (u′v − uv′)/v².",
-      "Implicit: differentiate both sides w.r.t. x.",
-      "Parametric: dy/dx = (dy/dt)/(dx/dt)."
+      "P3 introduces rules for differentiating combined functions, like using the product, quotient, and chain rules on expressions such as e^x * sin(x).",
+      "Implicit differentiation is used when you can't easily make 'y' the subject. You differentiate the entire equation term by term with respect to x, remembering to multiply by dy/dx when differentiating a y-term.",
+      "For parametric curves defined by x(t) and y(t), the gradient dy/dx is found by calculating dy/dt and dx/dt separately, then dividing them.",
+      "Related rates problems link how different quantities change with time. You find an equation connecting the quantities (e.g., Volume and radius), differentiate it with respect to time 't', and then solve."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the Product Rule for differentiation?",
+      "back": "If $y = uv$, where $u$ and $v$ are functions of $x$, then $\\frac{dy}{dx} = u \\frac{dv}{dx} + v \\frac{du}{dx}$."
+    },
+    {
+      "front": "What is the Quotient Rule for differentiation?",
+      "back": "If $y = \\frac{u}{v}$, where $u$ and $v$ are functions of $x$, then $\\frac{dy}{dx} = \\frac{v \\frac{du}{dx} - u \\frac{dv}{dx}}{v^2}$."
+    },
+    {
+      "front": "How do you differentiate $f(y)$ with respect to $x$?",
+      "back": "Using the chain rule: $\\frac{d}{dx}(f(y)) = f'(y) \\times \\frac{dy}{dx}$. This is the core principle of implicit differentiation."
+    },
+    {
+      "front": "What is the formula for the gradient of a parametric curve?",
+      "back": "For a curve defined by $x = f(t)$ and $y = g(t)$, the gradient is $\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt}$."
+    },
+    {
+      "front": "What is the derivative of $\\ln(x)$?",
+      "back": "$\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$"
+    },
+    {
+      "front": "What is the derivative of $a^x$?",
+      "back": "$\\frac{d}{dx}(a^x) = a^x \\ln a$. A special case is $\\frac{d}{dx}(e^x) = e^x$ since $\\ln e = 1$."
+    },
+    {
+      "front": "What is the derivative of $\\tan(x)$?",
+      "back": "$\\frac{d}{dx}(\\tan x) = \\sec^2 x$"
+    },
+    {
+      "front": "What is the derivative of $\\arcsin(x)$?",
+      "back": "$\\frac{d}{dx}(\\arcsin x) = \\frac{1}{\\sqrt{1-x^2}}$"
+    },
+    {
+      "front": "What is the derivative of $\\arctan(x)$?",
+      "back": "$\\frac{d}{dx}(\\arctan x) = \\frac{1}{1+x^2}$"
+    },
+    {
+      "front": "Common trap: What is a frequent mistake in implicit differentiation?",
+      "back": "Forgetting to multiply by $\\frac{dy}{dx}$ after differentiating a term involving $y$. For example, the derivative of $y^2$ with respect to $x$ is $2y \\frac{dy}{dx}$, not just $2y$."
+    },
+    {
+      "front": "What is the first step in a related rates problem?",
+      "back": "Identify the variables involved and find a static equation that connects them, before differentiating with respect to time, $t$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When should I use implicit differentiation instead of making y the subject?",
+      "a": "Use implicit differentiation when it is difficult or impossible to rearrange the equation to get $y$ on its own. For example, in $x^2 + xy + y^3 = 5$, solving for $y$ is very hard. It's much easier to differentiate term by term."
+    },
+    {
+      "q": "What is the difference between $\\frac{dy}{dx}$ and $\\frac{dy}{dt}$?",
+      "a": "$\\frac{dy}{dx}$ represents the rate of change of $y$ with respect to $x$; it's the gradient of the tangent to the curve on a standard $y$ vs $x$ graph. $\\frac{dy}{dt}$ represents the rate of change of the variable $y$ with respect to time, $t$. It tells you how fast $y$ is changing over time, which is common in related rates problems."
+    },
+    {
+      "q": "Can I use the product rule instead of the quotient rule?",
+      "a": "Yes, you can. You can rewrite $\\frac{u}{v}$ as $u \\times v^{-1}$ and then apply the product rule along with the chain rule. However, the quotient rule is often more direct and less prone to error if you know the formula well. It's best to be proficient with both."
+    },
+    {
+      "q": "For parametric equations, why can't I just find the Cartesian equation and differentiate that?",
+      "a": "You can, but it is often much more complicated. Eliminating the parameter $t$ can lead to a very complex implicit equation. Using $\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt}$ is usually a far more efficient method and is the expected technique in exams."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Differentiation** on P3 (3.4) goes beyond P1 (1.7). Examiners nest **chain rule** inside **product rule** — work from the **inside out**."
+      "content": "Welcome to advanced differentiation. In P1, you mastered the basics of finding gradients. Now, in P3, we build on that foundation to tackle more intricate functions and real-world problems. We will learn how to differentiate products and quotients of functions, handle equations where variables are interwoven, and analyse motion along parametrically defined paths. These techniques are fundamental tools for modelling and problem-solving in science and engineering."
+    },
+    {
+      "type": "heading",
+      "content": "The Product and Quotient Rules"
+    },
+    {
+      "type": "text",
+      "content": "When we need to differentiate a function that is the product of two other functions (e.g., $x^2 \\sin x$), we cannot simply differentiate each part separately. We must use the Product Rule. Similarly, for functions that are fractions (quotients) of other functions (e.g., $\\frac{\\ln x}{x}$), we use the Quotient Rule."
+    },
+    {
+      "type": "formula",
+      "content": "Product Rule: $y = uv \\implies \\frac{dy}{dx} = u\\frac{dv}{dx} + v\\frac{du}{dx}$ \\n Quotient Rule: $y = \\frac{u}{v} \\implies \\frac{dy}{dx} = \\frac{v\\frac{du}{dx} - u\\frac{dv}{dx}}{v^2}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For the Product Rule, a helpful mnemonic is 'first times derivative of second, plus second times derivative of first'.",
+        "For the Quotient Rule, remember 'low d-high minus high d-low, square the bottom and away we go'. The order of subtraction in the numerator is crucial.",
+        "These rules are often used in combination with the chain rule and derivatives of trigonometric, exponential, and logarithmic functions."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the equation of the tangent to the curve $y = e^{2x} \\cos x$ at the point where $x=0$.",
+      "solution": "First, we need to find the gradient of the tangent, which is the value of $\\frac{dy}{dx}$ at $x=0$. The function is a product of $u = e^{2x}$ and $v = \\cos x$.\n\n1.  **Differentiate u and v:**\n    $u = e^{2x} \\implies \\frac{du}{dx} = 2e^{2x}$\n    $v = \\cos x \\implies \\frac{dv}{dx} = -\\sin x$\n\n2.  **Apply the Product Rule:**\n    $\\frac{dy}{dx} = u\\frac{dv}{dx} + v\\frac{du}{dx}$\n    $\\frac{dy}{dx} = (e^{2x})(-\\sin x) + (\\cos x)(2e^{2x})$\n    $\\frac{dy}{dx} = e^{2x}(2\\cos x - \\sin x)$\n\n3.  **Find the gradient at x=0:**\n    At $x=0$, $m = e^{2(0)}(2\\cos(0) - \\sin(0)) = e^0(2(1) - 0) = 1 \\times 2 = 2$.\n\n4.  **Find the y-coordinate at x=0:**\n    At $x=0$, $y = e^{2(0)}\\cos(0) = e^0 \\times 1 = 1$. The point is $(0, 1)$.\n\n5.  **Find the equation of the tangent:**\n    Using $y - y_1 = m(x - x_1)$:\n    $y - 1 = 2(x - 0)$\n    $y = 2x + 1$\n\n**Final Answer:** The equation of the tangent is $y = 2x + 1$."
+    },
+    {
+      "type": "heading",
+      "content": "Implicit Differentiation"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, an equation connecting $x$ and $y$ cannot be easily rearranged to make $y$ the subject. For example, $x^3 + y^3 = 6xy$. Such equations define $y$ as an implicit function of $x$. To find the gradient $\\frac{dy}{dx}$, we differentiate the entire equation term by term with respect to $x$, applying the chain rule whenever we differentiate a term involving $y$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Differentiate each term with respect to $x$.",
+        "When differentiating a function of $y$, say $f(y)$, its derivative is $f'(y) \\frac{dy}{dx}$.",
+        "For example, $\\frac{d}{dx}(y^2) = 2y\\frac{dy}{dx}$ and $\\frac{d}{dx}(\\sin y) = (\\cos y)\\frac{dy}{dx}$.",
+        "After differentiating, rearrange the resulting equation to solve for $\\frac{dy}{dx}$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In implicit differentiation questions, be extremely careful with product rules. A term like $xy^2$ is a product of $x$ and $y^2$. Its derivative is $(x)(2y \\frac{dy}{dx}) + (y^2)(1)$. Missing this is a very common source of lost marks."
+    },
+    {
+      "type": "heading",
+      "content": "Parametric Differentiation"
+    },
+    {
+      "type": "text",
+      "content": "A curve can be described by expressing both $x$ and $y$ coordinates as functions of a third variable, or parameter, often denoted by $t$. For example, $x = 2t, y = t^2$. To find the gradient $\\frac{dy}{dx}$ of such a curve, we use a version of the chain rule."
+    },
+    {
+      "type": "formula",
+      "content": "If $x=f(t)$ and $y=g(t)$, then $\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt}$"
+    },
+    {
+      "type": "text",
+      "content": "This formula allows us to find the gradient of the curve at any point by first finding the derivatives of $x$ and $y$ with respect to the parameter $t$, and then taking their ratio. This is often much simpler than trying to eliminate the parameter to get a Cartesian equation in $x$ and $y$."
+    },
+    {
+      "type": "heading",
+      "content": "Related Rates of Change"
+    },
+    {
+      "type": "text",
+      "content": "In many real-world scenarios, several quantities vary with time and are related by some underlying formula. For example, as a spherical balloon is inflated, its volume, radius, and surface area all increase with time. Related rates problems involve finding the rate of change of one quantity, given the rate of change of another. The key is to use the chain rule with respect to time, $t$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Air is being pumped into a spherical balloon. The volume of the balloon is increasing at a constant rate of $50 \\text{ cm}^3\\text{s}^{-1}$. Find the rate of increase of the radius when the radius is $10$ cm. (The volume of a sphere is $V = \\frac{4}{3}\\pi r^3$).",
+      "solution": "1.  **Identify variables and rates:**\n    Given: Rate of change of volume, $\\frac{dV}{dt} = 50 \\text{ cm}^3\\text{s}^{-1}$.\n    Required: Rate of change of radius, $\\frac{dr}{dt}$, when $r = 10$ cm.\n\n2.  **Find the connecting equation:**\n    The equation connecting volume $V$ and radius $r$ is $V = \\frac{4}{3}\\pi r^3$.\n\n3.  **Differentiate with respect to time, t:**\n    We use the chain rule: $\\frac{dV}{dt} = \\frac{dV}{dr} \\times \\frac{dr}{dt}$.\n    First, find $\\frac{dV}{dr}$ from the volume formula:\n    $\\frac{dV}{dr} = \\frac{d}{dr}(\\frac{4}{3}\\pi r^3) = 4\\pi r^2$.\n    Now substitute this into the chain rule expression:\n    $\\frac{dV}{dt} = (4\\pi r^2) \\times \\frac{dr}{dt}$.\n\n4.  **Substitute known values and solve:**\n    We are given $\\frac{dV}{dt} = 50$ and we want to find $\\frac{dr}{dt}$ when $r=10$.\n    $50 = (4\\pi (10)^2) \\times \\frac{dr}{dt}$\n    $50 = 400\\pi \\times \\frac{dr}{dt}$\n    $\\frac{dr}{dt} = \\frac{50}{400\\pi} = \\frac{1}{8\\pi}$\n\n5.  **Final Answer with units:**\n    The rate of increase of the radius is $\\frac{1}{8\\pi} \\text{ cm s}^{-1}$.\n    Numerically, this is approximately $0.0398 \\text{ cm s}^{-1}$ (3 s.f.)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always ensure your calculator is in RADIANS mode when differentiating or integrating trigonometric functions. The standard calculus formulae for trig functions are only valid for angles measured in radians."
     },
     {
       "type": "practice",
-      "label": "Mark a P3 differentiation question",
+      "label": "Practice Differentiation Problems",
       "href": "/mark?subject=9709&topic=3.4"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "P3 Differentiation Notes - Save My Exams",
+          "href": "https://www.savemyexams.com/a-level/maths/cie/22/revision-notes/3-calculus/3-1-differentiation/"
+        },
+        {
+          "label": "Khan Academy: Advanced Differentiation",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Tangent and gradient explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=mNMJ2R85",
+    "launchUrl": "https://www.geogebra.org/classic?material=mNMJ2R85",
+    "hint": "P3 differentiation — chain/product/quotient on combined functions (9709 3.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "P3: product, quotient, chain rules on combined functions.",
+        "embedHint": "Differentiate e^{sin x} — chain rule layer by layer."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Implicit differentiation: d/dx both sides when y not isolated.",
+        "embedHint": "x² + y² = r² → 2x + 2y dy/dx = 0."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Parametric: dy/dx = (dy/dt)/(dx/dt).",
+        "embedHint": "Eliminate parameter or differentiate x(t), y(t) separately."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Related rates: link derivatives via constraint equation.",
+        "embedHint": "Differentiate V = (4/3)πr³ w.r.t. time for dV/dt."
+      }
+    ]
+  }
 }

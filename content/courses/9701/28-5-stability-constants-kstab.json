@@ -4,29 +4,213 @@
   "title": "Stability constants, Kstab",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level — stability constants, ligand strength, and predicting substitution equilibria.",
+  "status": "pilot",
+  "summary": "This lesson introduces the stability constant, Kstab, which quantifies the stability of complex ions in solution. It covers the calculation of Kstab, the distinction between stepwise and overall stability constants, and how to use Kstab values to predict the outcome of ligand substitution reactions, including the chelate effect.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define stability constant Kstab.",
-    "Compare stability of complexes with different ligands.",
-    "Use Kstab data to predict reaction direction.",
-    "Relate to stepwise formation constants."
+    "Define and write the expression for the stability constant, Kstab, for a complex ion.",
+    "Calculate Kstab and determine its units from given equilibrium concentrations.",
+    "Understand the relationship between stepwise formation constants (K₁, K₂, etc.) and the overall stability constant (βn).",
+    "Use Kstab values to predict the relative stabilities of complex ions and the direction of ligand substitution reactions."
   ],
   "simpleExplanation": {
-    "title": "How stable is the complex?",
-    "summary": "Large Kstab means the complex forms readily. Stronger ligands displace weaker ones from coordination sites.",
+    "title": "The Complex Popularity Contest",
+    "summary": "The stability constant, Kstab, is a number that tells us how tightly ligands are bound to a central metal ion. A bigger number means a more stable, 'happier' complex that is less likely to break apart.",
+    "analogy": "Imagine a central metal ion is a celebrity at a party, and ligands are people wanting to be in their photo. Some 'ligands' (like close family) form a very stable group, while others (like passing fans) form a less stable one. Kstab is the measure of how stable that group photo is; a high Kstab means the group won't be broken up easily by newcomers.",
     "steps": [
-      "Kstab = [MLₙ]/([M][L]ⁿ).",
-      "NH₃ often stronger ligand than H₂O.",
-      "Excess Cl⁻ shifts Cu²⁺ from aqua to chloro complex.",
-      "Overall β = product of stepwise K values."
+      "The stability constant, Kstab, measures how readily a complex forms. Its formula is Kstab = [MLₙ] / ([M][L]ⁿ), where a large value means the complex is very stable.",
+      "Different ligands form complexes of varying stability. A ligand forming a complex with a higher Kstab is considered 'stronger' and will displace ligands that form less stable complexes.",
+      "Complexes form step-by-step, with each step having a constant (K₁, K₂, etc.). The overall stability constant, βn, is the product of all the stepwise constants (βn = K₁ × K₂ × ...).",
+      "By comparing Kstab values, you can predict which complex is more stable. The reaction will favour the formation of the complex with the much larger Kstab value."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the stability constant, Kstab?",
+      "back": "Kstab is the equilibrium constant for the formation of a complex ion in a solvent from its constituent metal ion and ligands."
+    },
+    {
+      "front": "Write the general expression for Kstab.",
+      "back": "For the equilibrium M(aq) + nL(aq) ⇌ [MLn](aq), the stability constant is Kstab = [[MLn]] / ([M][L]ⁿ)."
+    },
+    {
+      "front": "What does a large value of Kstab indicate?",
+      "back": "A large Kstab (e.g., > 10⁴) indicates that the complex ion is very stable and the equilibrium lies far to the right, favouring the products."
+    },
+    {
+      "front": "How are the units of Kstab determined?",
+      "back": "The units depend on the stoichiometry of the formation equation. They are calculated by substituting and cancelling the units of concentration (mol dm⁻³) in the Kstab expression."
+    },
+    {
+      "front": "What is a stepwise stability constant?",
+      "back": "It is the equilibrium constant for the addition of a single ligand to a metal ion or a complex ion that already contains ligands. For example, K₁ is for M + L ⇌ ML."
+    },
+    {
+      "front": "What is the relationship between the overall stability constant (βn) and stepwise constants (K₁, K₂, etc.)?",
+      "back": "The overall stability constant is the product of the individual stepwise stability constants. βn = K₁ × K₂ × K₃ × ... × Kn."
+    },
+    {
+      "front": "How can Kstab values be used to predict the outcome of a ligand substitution reaction?",
+      "back": "The ligand that forms the complex with the significantly larger Kstab value will displace the other ligand(s). The equilibrium favours the formation of the more stable complex."
+    },
+    {
+      "front": "What is the chelate effect?",
+      "back": "The observation that complexes formed by polydentate ligands (chelating agents) are significantly more stable than those formed by a comparable number of monodentate ligands. This is due to a large, favourable entropy change."
+    },
+    {
+      "front": "Why is the Kstab for [Cu(EDTA)]²⁻ much larger than for [Cu(NH₃)₄]²⁺?",
+      "back": "EDTA⁴⁻ is a hexadentate ligand, so its complex benefits from the chelate effect, resulting in a large positive entropy change and thus a much higher stability constant compared to the complex with the monodentate ligand NH₃."
+    },
+    {
+      "front": "A common exam trap: What is the difference between Kstab and Kc?",
+      "back": "Kstab is a specific type of Kc. While both are equilibrium constants, Kstab specifically refers to the equilibrium for the formation of a complex ion from its components in solution."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do Kstab values have different, and often complicated, units?",
+      "a": "The units of any equilibrium constant depend on the stoichiometry of the reaction. For Kstab = [[MLn]] / ([M][L]ⁿ), the units are (concentration) / (concentration × concentrationⁿ) = concentration¹⁻⁽¹⁺ⁿ⁾. Since 'n' (the number of ligands) can vary, the overall power on the concentration unit changes, leading to different units for each type of complex."
+    },
+    {
+      "q": "Is Kstab just another name for Kc?",
+      "a": "Essentially, yes. Kstab is a specific application of the general equilibrium constant, Kc. The subscript 'stab' is used to specify that the equilibrium in question is the formation of a stable complex ion. You treat it mathematically in exactly the same way as any other Kc."
+    },
+    {
+      "q": "Why are complexes with polydentate ligands (chelates) so much more stable?",
+      "a": "This is due to the 'chelate effect'. When one polydentate ligand replaces several monodentate ligands, the total number of independent particles (molecules/ions) in the solution increases. For example, one 'en' molecule replaces two H₂O molecules. This increase in the disorder of the system corresponds to a large positive entropy change (ΔS). According to the equation ΔG = ΔH - TΔS, a large positive ΔS makes ΔG much more negative, indicating a more spontaneous and favourable reaction, resulting in a more stable complex."
+    },
+    {
+      "q": "Do stepwise stability constants (K₁, K₂, etc.) decrease as more ligands are added?",
+      "a": "Yes, generally K₁ > K₂ > K₃ > ... . It becomes progressively harder to add another ligand as the complex becomes more crowded (steric hindrance) and as the positive charge of the central metal ion is increasingly neutralised by the electron pairs from the ligands, making it less attractive to further ligands."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Kstab** (28.5) appears in **equilibrium** calculations. Quote **Kstab values** from the data booklet when provided." },
-    { "type": "practice", "label": "Mark a stability constant question", "href": "/mark?subject=9701&topic=28.5" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In transition metal chemistry, we often see vibrant colour changes when different solutions are mixed. These changes are frequently due to ligand substitution reactions, where one set of ligands surrounding a central metal ion is replaced by another. But how can we predict which ligand 'wins' this competition? The stability constant, Kstab, provides the quantitative answer, allowing us to understand and predict the behaviour of complex ions in equilibrium."
+    },
+    {
+      "type": "heading",
+      "content": "Defining the Stability Constant (Kstab)"
+    },
+    {
+      "type": "text",
+      "content": "The formation of a complex ion from an aqueous metal ion and ligands is a reversible process that establishes an equilibrium. The stability constant, Kstab, is the equilibrium constant for this formation reaction. It provides a measure of the strength of the bonding between the metal ion and its ligands and, consequently, the stability of the resulting complex."
+    },
+    {
+      "type": "formula",
+      "content": "M^{a+}(aq) + nL^{b-}(aq) \\rightleftharpoons [ML_n]^{(a-nb)+}(aq) \\\\ \\\\ K_{stab} = \\frac{[[ML_n]^{(a-nb)+}]}{[M^{a+}][L^{b-}]^n}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A large Kstab value indicates the equilibrium position is far to the right, meaning the complex is very stable and readily forms.",
+        "A small Kstab value indicates the complex is unstable and will readily dissociate back into its constituent ions.",
+        "The units of Kstab vary depending on the value of 'n' (the number of ligands) and must be derived for each specific reaction."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A solution at equilibrium was found to contain the complex ion [Ag(NH₃)₂]⁺ at a concentration of 0.095 mol dm⁻³. The concentrations of the constituent ions were [Ag⁺] = 5.6 × 10⁻⁹ mol dm⁻³ and [NH₃] = 0.12 mol dm⁻³. Calculate the stability constant, Kstab, for [Ag(NH₃)₂]⁺ and state its units.",
+      "solution": "Step 1: Write the balanced equation for the formation of the complex ion.\nAg⁺(aq) + 2NH₃(aq) ⇌ [Ag(NH₃)₂]⁺(aq)\n\nStep 2: Write the expression for Kstab.\n$K_{stab} = \\frac{[[Ag(NH_3)_2]^+]}{[Ag^+][NH_3]^2}$\n\nStep 3: Substitute the given equilibrium concentrations into the expression.\n$K_{stab} = \\frac{(0.095)}{(5.6 \\times 10^{-9}) \\times (0.12)^2}$\n$K_{stab} = \\frac{(0.095)}{(5.6 \\times 10^{-9}) \\times (0.0144)}$\n$K_{stab} = \\frac{(0.095)}{8.064 \\times 10^{-11}}$\n$K_{stab} = 1.18 \\times 10^9$ (to 3 s.f.)\n\nStep 4: Determine the units.\nUnits = $\\frac{mol \\ dm^{-3}}{(mol \\ dm^{-3})(mol \\ dm^{-3})^2} = \\frac{1}{(mol \\ dm^{-3})^2} = mol^{-2} \\ dm^6$\n\nFinal Answer: $K_{stab} = 1.18 \\times 10^9 \\ mol^{-2} \\ dm^6$"
+    },
+    {
+      "type": "heading",
+      "content": "Stepwise Formation and Overall Stability"
+    },
+    {
+      "type": "text",
+      "content": "Ligands do not usually attach to a metal ion all at once. Instead, they are added sequentially in a series of equilibrium steps. Each step has its own stability constant, known as a stepwise stability constant, denoted K₁, K₂, etc. The overall stability constant, often given the symbol βn (beta), represents the equilibrium for the total formation from the bare metal ion and is the product of all the individual stepwise constants."
+    },
+    {
+      "type": "formula",
+      "content": "Step 1: Cu^{2+}(aq) + NH_3(aq) \\rightleftharpoons [Cu(NH_3)]^{2+}(aq) \\quad K_1 = \\frac{[[Cu(NH_3)]^{2+}]}{[Cu^{2+}][NH_3]} \\\\ \\\\ Step 2: [Cu(NH_3)]^{2+}(aq) + NH_3(aq) \\rightleftharpoons [Cu(NH_3)_2]^{2+}(aq) \\quad K_2 = \\frac{[[Cu(NH_3)_2]^{2+}]}{[[Cu(NH_3)]^{2+}][NH_3]} \\\\ \\\\ ...and so on for K₃ and K₄. \\\\ \\\\ Overall: Cu^{2+}(aq) + 4NH_3(aq) \\rightleftharpoons [Cu(NH_3)_4]^{2+}(aq) \\\\ \\beta_4 = K_{stab} = K_1 \\times K_2 \\times K_3 \\times K_4"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the symbols. K₁, K₂, etc., refer to individual steps, while Kstab or βn refer to the overall process. If you are given stepwise constants, you must multiply them together to find the overall stability constant."
+    },
+    {
+      "type": "heading",
+      "content": "Using Kstab to Predict Ligand Substitution"
+    },
+    {
+      "type": "text",
+      "content": "Ligand substitution reactions are competitive equilibria. By comparing the Kstab values for two different complexes of the same metal ion, we can predict which complex is more stable and therefore which direction the equilibrium will lie. A ligand that forms a complex with a significantly higher Kstab will displace a ligand that forms a less stable complex. This is particularly evident with polydentate ligands like EDTA or ethylenediamine (en), which exhibit the 'chelate effect' and form exceptionally stable complexes due to a large positive entropy change upon their formation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the following stability constants:\n1. For [Co(NH₃)₆]³⁺: $K_{stab} = 4.5 \\times 10^{33} \\ mol^{-6} \\ dm^{18}$\n2. For [Co(en)₃]³⁺: $K_{stab} = 4.0 \\times 10^{48} \\ mol^{-3} \\ dm^{9}$\n(en = ethylenediamine, a bidentate ligand)\n\nIf a solution of [Co(NH₃)₆]³⁺ has ethylenediamine added to it, predict the outcome of the reaction and justify your answer.",
+      "solution": "Step 1: Compare the stability constants for the two complexes.\n$K_{stab}([Co(en)_3]^{3+}) = 4.0 \\times 10^{48}$\n$K_{stab}([Co(NH_3)_6]^{3+}) = 4.5 \\times 10^{33}$\n\nStep 2: Analyse the comparison.\nThe stability constant for the [Co(en)₃]³⁺ complex is approximately 10¹⁵ times larger than that for the [Co(NH₃)₆]³⁺ complex. This indicates that the [Co(en)₃]³⁺ complex is vastly more stable.\n\nStep 3: Predict the outcome.\nWhen ethylenediamine is added to the solution of [Co(NH₃)₆]³⁺, a ligand substitution reaction will occur. The equilibrium will shift strongly to the right to favour the formation of the much more stable [Co(en)₃]³⁺ complex. The ammonia ligands will be displaced by the ethylenediamine ligands.\n\nJustification: The reaction favours the formation of the more stable product. Since $K_{stab}([Co(en)_3]^{3+}) \\gg K_{stab}([Co(NH_3)_6]^{3+})$, the complex with the bidentate ligand 'en' is thermodynamically much more stable, driven by the chelate effect (a large positive entropy change). The reaction is:\n$[Co(NH_3)_6]^{3+}(aq) + 3en(aq) \\rightarrow [Co(en)_3]^{3+}(aq) + 6NH_3(aq)$"
+    },
+    {
+      "type": "examTip",
+      "content": "When explaining the stability of chelate complexes, always mention the entropy change. The replacement of multiple monodentate ligands by one polydentate ligand leads to an increase in the number of free-moving particles in solution, causing a significant increase in entropy ($ΔS_{system} > 0$). This makes the Gibbs free energy change ($ΔG = ΔH - TΔS$) more negative, favouring complex formation."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9701&topic=28.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide page on Stability Constants",
+          "href": "https://www.chemguide.co.uk/inorganic/complexions/kstab.html"
+        },
+        {
+          "label": "Video tutorial on complex ion equilibria",
+          "href": "https://www.youtube.com/watch?v=Gz5-v9g22rY"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Complex equilibria",
+    "embedUrl": "https://phet.colorado.edu/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/acid-base-solutions",
+    "hint": "Ligand substitution and Kstab — stable complex formation (28.5).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Kstab = [MLₙ]/([M][L]ⁿ) for formation of complex.",
+        "embedHint": "Large Kstab → stable complex."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Compare ligand strength — NH₃ vs H₂O vs Cl⁻ as ligands.",
+        "embedHint": "Higher Kstab displaces weaker ligands."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Stepwise formation constants K₁, K₂… overall β.",
+        "embedHint": "Product of stepwise constants."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Predict direction of ligand substitution from Kstab values.",
+        "embedHint": "Add excess stronger ligand — shift equilibrium."
+      }
+    ]
+  }
 }

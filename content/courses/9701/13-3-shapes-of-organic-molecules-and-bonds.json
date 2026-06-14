@@ -4,29 +4,240 @@
   "title": "Shapes of organic molecules; σ and π bonds",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — bond angles, hybridisation, and σ/π bonding in organic structures.",
+  "status": "pilot",
+  "summary": "This lesson explores the three-dimensional shapes of organic molecules, focusing on the formation and properties of sigma (σ) and pi (π) bonds. We will examine how the overlap of atomic orbitals dictates molecular geometry and bond angles in alkanes, alkenes, and arenes, using VSEPR theory as our predictive tool.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Predict shapes using electron-pair repulsion.",
-    "Describe σ and π bonds.",
-    "Relate hybridisation to geometry.",
-    "Explain restricted rotation around double bonds."
+    "Describe sigma (σ) and pi (π) bonds as types of covalent bonds formed by the overlap of atomic orbitals.",
+    "Explain the shapes of and bond angles in ethane, ethene, and benzene in terms of σ and π bonds.",
+    "Predict the shapes of, and bond angles in, other related organic molecules.",
+    "Understand the concept of a delocalised π system as illustrated by benzene."
   ],
   "simpleExplanation": {
-    "title": "3D organic geometry",
-    "summary": "Carbon bonding determines molecular shape. Single bonds allow rotation; double bonds lock geometry.",
+    "title": "Sigma vs. Pi: The Bonds that Shape Molecules",
+    "summary": "Sigma (σ) bonds are strong, single connections formed by head-on orbital overlap, allowing free rotation. Pi (π) bonds are weaker, sideways overlaps that form double/triple bonds and lock the molecule's shape, preventing rotation.",
+    "analogy": "Imagine connecting two LEGO bricks with a single, central stud. You can easily twist one brick relative to the other. This is like a σ bond. Now, add a second stud connection right next to the first one. The bricks are now locked in place and cannot twist. This pair of connections represents a double bond: one σ bond and one π bond.",
     "steps": [
-      "sp³ carbon: tetrahedral 109.5°.",
-      "sp² alkene: trigonal planar 120°.",
-      "sp alkyne: linear 180°.",
-      "π bond side-on overlap between p orbitals."
+      "σ bonds: head-on overlap; free rotation about single bonds.",
+      "π bonds: sideways overlap above/below C atoms — no free rotation.",
+      "Ethene: planar, 120° H–C–H; ethane: tetrahedral, ~109.5°.",
+      "Benzene: planar hexagon, delocalised π system (A Level extension)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a σ (sigma) bond?",
+      "back": "A strong covalent bond formed by the direct, head-on overlap of atomic orbitals along the internuclear axis. All single covalent bonds are σ bonds."
+    },
+    {
+      "front": "What is a π (pi) bond?",
+      "back": "A covalent bond formed by the sideways overlap of adjacent, parallel p-orbitals, above and below the plane of the σ bond. It is weaker than a σ bond."
+    },
+    {
+      "front": "How are the electrons distributed in a σ bond?",
+      "back": "The electron density is concentrated on the line directly between the two bonded nuclei (the internuclear axis)."
+    },
+    {
+      "front": "How are the electrons distributed in a π bond?",
+      "back": "The electron density is concentrated in two regions, one above and one below the plane of the nuclei."
+    },
+    {
+      "front": "What is the composition of a C=C double bond?",
+      "back": "One σ bond and one π bond."
+    },
+    {
+      "front": "What is the composition of a C≡C triple bond?",
+      "back": "One σ bond and two π bonds."
+    },
+    {
+      "front": "Why is there free rotation around a C-C single bond?",
+      "back": "Because it is a σ bond, which is symmetrical about the internuclear axis. Rotation does not break the orbital overlap."
+    },
+    {
+      "front": "Why is there no free rotation around a C=C double bond?",
+      "back": "Because rotation would break the sideways overlap of the p-orbitals that form the π bond, which requires a significant amount of energy."
+    },
+    {
+      "front": "What is the shape and bond angle around each carbon in ethane ($C_2H_6$)?",
+      "back": "Tetrahedral, with bond angles of approximately 109.5°. Each carbon has 4 bonding pairs and 0 lone pairs."
+    },
+    {
+      "front": "What is the shape and bond angle around each carbon in ethene ($C_2H_4$)?",
+      "back": "Trigonal planar, with bond angles of approximately 120°. Each carbon has 3 regions of electron density (2x C-H, 1x C=C)."
+    },
+    {
+      "front": "Describe the geometry of a benzene ($C_6H_6$) molecule.",
+      "back": "It is a planar, regular hexagon. All C-C bond lengths are identical and all bond angles are 120°."
+    },
+    {
+      "front": "What is a delocalised π system?",
+      "back": "A system where π electrons are shared between more than two nuclei. In benzene, six p-orbitals overlap to form a continuous ring of electron density above and below the plane of the carbon atoms."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why can't a π bond exist on its own?",
+      "a": "A π bond relies on the sideways overlap of p-orbitals. For this to be effective, the atoms must be held close together at a fixed distance. This is the job of the much stronger σ bond, which forms the primary framework of the molecule."
+    },
+    {
+      "q": "Is a C=C double bond twice as strong as a C-C single bond?",
+      "a": "No. A C=C bond consists of one σ bond and one π bond. The π bond is weaker than the σ bond. Therefore, the bond enthalpy of a C=C bond (e.g., ~614 kJ mol⁻¹) is greater than a C-C bond (e.g., ~348 kJ mol⁻¹), but less than double."
+    },
+    {
+      "q": "How does this relate to sp², sp³, and sp hybridisation?",
+      "a": "Hybridisation is a more advanced model to explain these shapes. A tetrahedral carbon (like in ethane, 109.5°) is described as sp³ hybridised. A trigonal planar carbon (like in ethene, 120°) is sp² hybridised. A linear carbon (like in ethyne, 180°) is sp hybridised. You will explore this in more detail at A2 Level."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Organic shapes** (13.3) links **3.5 molecular shapes** to **13.4 isomerism**. Draw **3D wedge bonds** where helpful." },
-    { "type": "practice", "label": "Mark an organic shapes question", "href": "/mark?subject=9701&topic=13.3" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In previous topics, you learned how to predict the shapes of simple inorganic molecules using VSEPR theory. We will now apply and extend these principles to the vast world of organic chemistry. The key to understanding the 3D structure of organic molecules lies in appreciating the two fundamental types of covalent bonds: sigma ($\\sigma$) and pi ($\\pi$) bonds."
+    },
+    {
+      "type": "heading",
+      "content": "The Foundation: σ (Sigma) Bonds"
+    },
+    {
+      "type": "text",
+      "content": "A $\\sigma$ bond is formed by the **head-on overlap** of atomic orbitals. This overlap can occur between two s-orbitals, an s-orbital and a p-orbital, or two p-orbitals. The crucial feature is that the region of electron overlap, and therefore the highest electron density, lies directly on the axis connecting the two nuclei. This creates a strong, single covalent bond."
+    },
+    {
+      "type": "text",
+      "content": "Consider ethane, $C_2H_6$. It contains seven $\\sigma$ bonds in total: one C-C bond and six C-H bonds. Because the electron density is symmetrical around the internuclear axis of the C-C bond, there is **free rotation** of the methyl ($-CH_3$) groups relative to one another. This rotation does not disrupt the orbital overlap."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Formed by direct, head-on overlap of orbitals.",
+        "Electron density is concentrated between the nuclei.",
+        "All single bonds are $\\sigma$ bonds.",
+        "Allows for free rotation around the bond axis."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Adding Complexity: π (Pi) Bonds"
+    },
+    {
+      "type": "text",
+      "content": "A $\\pi$ bond is formed by the **sideways overlap** of two parallel p-orbitals. This can only happen after a $\\sigma$ bond has already formed, bringing the atoms close enough together. The p-orbitals overlap in two regions: one above and one below the plane of the $\\sigma$ bond. A $\\pi$ bond is weaker than a $\\sigma$ bond because the orbital overlap is less effective."
+    },
+    {
+      "type": "text",
+      "content": "The presence of a $\\pi$ bond **restricts rotation**. To rotate the atoms, the sideways p-orbital overlap must be broken, which requires a substantial input of energy. This restricted rotation is a key feature of alkenes and leads to the possibility of E/Z isomerism."
+    },
+    {
+      "type": "formula",
+      "content": "Single Bond = 1 $\\sigma$ bond\nDouble Bond = 1 $\\sigma$ bond + 1 $\\pi$ bond\nTriple Bond = 1 $\\sigma$ bond + 2 $\\pi$ bonds"
+    },
+    {
+      "type": "heading",
+      "content": "Predicting Molecular Shapes and Bond Angles"
+    },
+    {
+      "type": "text",
+      "content": "We use VSEPR theory, treating each bonding region (single, double, or triple bond) as one area of electron density. The shape is determined by the number of bonding regions and lone pairs around the central atom.\n\n**Ethane ($C_2H_6$)**: Each carbon atom is the centre. It forms four single bonds (four $\\sigma$ bonds) and has no lone pairs. These four regions of electron density repel each other equally, resulting in a **tetrahedral** arrangement with bond angles of **109.5°**.\n\n**Ethene ($C_2H_4$)**: Each carbon atom is the centre. It forms two single bonds and one double bond. The double bond counts as one region of electron density. With three regions of electron density and no lone pairs, the arrangement is **trigonal planar** with bond angles of approximately **120°**. The entire molecule lies in a single plane."
+    },
+    {
+      "type": "workedExample",
+      "question": "Determine the total number of sigma ($\\sigma$) and pi ($\\pi$) bonds in a molecule of but-2-ene, $CH_3CH=CHCH_3$.",
+      "solution": "1.  **Draw the displayed formula** to see all the bonds clearly:\n    H   H   H\n    |   |   |\n H--C---C===C---C--H\n    |       |\n    H       H\n\n2.  **Count the $\\sigma$ bonds**. Remember every bond (single, double, or triple) contains exactly one $\\sigma$ bond.\n    - C-H bonds: 3 + 1 + 1 + 3 = 8\n    - C-C bonds: 1 (single) + 1 (in double) + 1 (single) = 3\n    - Total $\\sigma$ bonds = 8 + 3 = **11 $\\sigma$ bonds**.\n\n3.  **Count the $\\pi$ bonds**. Only double or triple bonds contain $\\pi$ bonds.\n    - The C=C double bond contains one $\\pi$ bond.\n    - Total $\\pi$ bonds = **1 $\\pi$ bond**."
+    },
+    {
+      "type": "workedExample",
+      "question": "Predict the shape and the C-C-N bond angle in ethanenitrile, $CH_3CN$.",
+      "solution": "1.  **Identify the central atom** for the angle in question. The angle is C-C-N, so the central atom is the carbon of the nitrile group (the one bonded to nitrogen).\n\n2.  **Determine the bonding around this central carbon**. It forms a single bond with the other carbon atom and a triple bond with the nitrogen atom ($C \\equiv N$).\n\n3.  **Apply VSEPR theory**. There are two regions of electron density around this carbon (the C-C single bond and the C≡N triple bond). There are no lone pairs on this carbon.\n\n4.  **Predict the shape and angle**. Two regions of electron density arrange themselves as far apart as possible, resulting in a **linear** shape with a bond angle of **180°**."
+    },
+    {
+      "type": "examTip",
+      "content": "When counting bonds, always draw the full displayed formula first. It's easy to forget the C-H bonds in a skeletal or structural formula. A common mistake is to count a double bond as two $\\sigma$ bonds; remember it's always one $\\sigma$ and one $\\pi$."
+    },
+    {
+      "type": "heading",
+      "content": "A Special Case: Benzene and Delocalisation"
+    },
+    {
+      "type": "text",
+      "content": "Benzene, $C_6H_6$, presents a unique bonding scenario. It is a planar, hexagonal ring of six carbon atoms. Each carbon atom forms three $\\sigma$ bonds: one to a hydrogen atom and one to each of its two neighbouring carbon atoms. Since there are three bonding regions around each carbon, the geometry is trigonal planar, and all bond angles are **120°**."
+    },
+    {
+      "type": "text",
+      "content": "This leaves one p-orbital on each carbon atom, perpendicular to the plane of the ring. Instead of forming three distinct $\\pi$ bonds, these six p-orbitals overlap sideways all around the ring. This creates a continuous, delocalised $\\pi$ system – two doughnut-shaped clouds of electron density, one above and one below the plane of the ring. The electrons are shared equally among all six carbon atoms."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Benzene is a planar, regular hexagon.",
+        "All C-C-C and H-C-C bond angles are 120°.",
+        "Each carbon forms 3 $\\sigma$ bonds.",
+        "Six p-orbitals overlap to form a delocalised $\\pi$ system above and below the ring.",
+        "All C-C bond lengths are identical and intermediate between a single and a double bond."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=9701&topic=13.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide: σ and π bonds",
+          "href": "https://www.chemguide.co.uk/basicorg/bonding/sigma.html"
+        },
+        {
+          "label": "Interactive Molecule Shapes (PhET)",
+          "href": "https://phet.colorado.edu/en/simulations/molecule-shapes"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Molecule shapes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/molecule-shapes",
+    "hint": "Identify σ and π bonds — ethene vs ethane geometry (13.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "σ bonds: head-on overlap; free rotation about single bonds.",
+        "embedHint": "Identify single bonds as σ-only overlap."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "π bonds: sideways overlap above/below C atoms — no free rotation.",
+        "embedHint": "Locate the π bond in ethene above the σ framework."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Ethene: planar, 120° H–C–H; ethane: tetrahedral, ~109.5°.",
+        "embedHint": "Compare shapes of alkane vs alkene."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Benzene: planar hexagon, delocalised π system (A Level extension).",
+        "embedHint": "Relate bond length intermediate between single and double."
+      }
+    ]
+  }
 }

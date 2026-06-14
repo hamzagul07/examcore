@@ -4,29 +4,171 @@
   "title": "Translation Software",
   "paper": "P3",
   "paperName": "Advanced Theory",
-  "status": "premium",
-  "summary": "9618 — interpreters, compilers, assemblers, and translation stages.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "An exploration of the essential software that bridges the gap between human-readable source code and machine-executable binary. This lesson details the roles, processes, and characteristics of compilers, interpreters, and assemblers, including the critical stages of compilation.",
+  "durationMin": 25,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Distinguish interpreter and compiler.",
-    "Describe stages of compilation.",
-    "Explain role of assembler for assembly language.",
-    "Compare advantages of each translation approach."
+    "Understand the need for and purpose of translation software.",
+    "Describe the characteristics of compilers, interpreters, and assemblers.",
+    "Explain the stages of compilation: lexical analysis, syntax analysis, code generation, and optimisation.",
+    "Compare and contrast the use of compilers and interpreters in different development scenarios."
   ],
   "simpleExplanation": {
-    "title": "From source code to machine code",
-    "summary": "High-level languages must be translated before execution. Compilers produce object code; interpreters execute line by line.",
+    "title": "Code Translators: From Our Language to Theirs",
+    "summary": "Computers only understand binary, a language of 1s and 0s. Translation software acts like a multilingual expert, converting the high-level languages we write in (like Python or Java) into the machine code the CPU can execute.",
+    "analogy": "Imagine you've written a novel in English and need it read by people in France. A **compiler** is like a translator who takes your entire book, translates it into French, and gives you a complete French version to print and distribute. An **interpreter** is like a live translator at a UN meeting; they listen to one sentence in English, translate it into French aloud, then wait for the next sentence. An **assembler** is a highly specialised translator for a technical manual written in a very specific shorthand (assembly language), turning it into the final machine instructions.",
     "steps": [
-      "Lexical analysis → tokens.",
-      "Syntax analysis → parse tree.",
-      "Code generation → machine code.",
-      "Linker combines object modules."
+      "A programmer writes source code in a high-level language like Python or Visual Basic.",
+      "The source code is fed into a translator program: either a compiler or an interpreter.",
+      "A compiler processes the entire file, creating a separate executable file of machine code. An interpreter reads and executes the code one line at a time.",
+      "The CPU runs the resulting machine code, either from the executable file or as directed by the interpreter, to perform the program's tasks."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a compiler?",
+      "back": "A program that translates an entire high-level language source file into a standalone executable file (object code or machine code) in one go, before the program is run."
+    },
+    {
+      "front": "What is an interpreter?",
+      "back": "A program that reads a high-level language source file one statement at a time, translating and executing each statement before moving to the next. It does not produce a separate executable file."
+    },
+    {
+      "front": "What is an assembler?",
+      "back": "A program that translates low-level assembly language into machine code. The translation is typically a one-to-one or one-to-few mapping of mnemonics to binary instructions."
+    },
+    {
+      "front": "What is source code?",
+      "back": "The original program code written by a human programmer in a high-level or low-level language."
+    },
+    {
+      "front": "What is object code?",
+      "back": "The intermediate code produced by a compiler. It may not be fully executable as it might need to be linked with other object code files or libraries to resolve external references."
+    },
+    {
+      "front": "What is the main advantage of a compiler over an interpreter for a distributed application?",
+      "back": "Execution speed. The compiled program runs as native machine code, which is much faster than an interpreter translating line-by-line. Also, the source code is not revealed to the end-user."
+    },
+    {
+      "front": "What is the main advantage of an interpreter over a compiler during development?",
+      "back": "Debugging is easier. Errors are reported on a line-by-line basis as they are encountered, and there's no need for a lengthy recompilation after each small change."
+    },
+    {
+      "front": "What is Lexical Analysis?",
+      "back": "The first stage of compilation. It removes comments and whitespace, then scans the source code to group characters into tokens (e.g., keywords, identifiers, operators)."
+    },
+    {
+      "front": "What is Syntax Analysis?",
+      "back": "The second stage of compilation. It checks if the sequence of tokens from the lexical analyser follows the grammatical rules of the language, often by building a parse tree."
+    },
+    {
+      "front": "What is the purpose of optimisation in compilation?",
+      "back": "To make the generated code more efficient, either by making it run faster or use less memory. It can occur on intermediate code or the final machine code."
+    },
+    {
+      "front": "What is the role of a linker?",
+      "back": "To combine one or more object code files (produced by a compiler) with necessary library code to produce a single, final executable file."
+    },
+    {
+      "front": "Is Java compiled or interpreted?",
+      "back": "It's a hybrid. Java source code is compiled into platform-independent bytecode. This bytecode is then interpreted (or just-in-time compiled) by a Java Virtual Machine (JVM) on the target machine."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between object code and executable code?",
+      "a": "Object code is the direct output of the compiler for a single source file. It contains machine code but may have unresolved references to other files or libraries. Executable code is the final product after a 'linker' has combined one or more object files and linked them with the necessary libraries. It is a complete, runnable program."
+    },
+    {
+      "q": "If interpreters are slower, why are languages like Python so popular?",
+      "a": "For many applications (e.g., web development, data analysis, scripting), the speed of development is more important than raw execution speed. Python's ease of use and rapid feedback loop (thanks to being interpreted) make programmers highly productive. Furthermore, for CPU-intensive tasks, Python libraries often use compiled C or Fortran code in the background, giving the best of both worlds."
+    },
+    {
+      "q": "Can a program use both a compiler and an interpreter?",
+      "a": "Yes, this is common. A 'Just-In-Time' (JIT) compiler is a good example. It acts like an interpreter initially, but if it detects a piece of code being run repeatedly (like a loop), it will compile that section to native machine code on-the-fly for a speed boost. The Java Virtual Machine (JVM) and modern JavaScript engines use JIT compilation."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Translation software** (16.2) follows **16.1 OS purposes**. Know **compiler stages** and **when each translator is used**." },
-    { "type": "practice", "label": "Mark a translation software question", "href": "/mark?subject=9618&topic=16.2" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "At the heart of all software development lies a fundamental problem: we, as humans, think and write in structured, abstract languages, while the computer's Central Processing Unit (CPU) only understands raw binary instructions, known as machine code. Translation software is the essential bridge that closes this gap, enabling our ideas, written as source code, to become functional programs that a computer can execute."
+    },
+    {
+      "type": "heading",
+      "content": "The Three Main Types of Translators"
+    },
+    {
+      "type": "text",
+      "content": "There are three categories of translation software you need to know. While they all convert code from one form to another, their methods and outputs are distinct, making them suitable for different tasks.\n\n1.  **Compiler:** Translates a whole program at once into a standalone executable file.\n2.  **Interpreter:** Translates and executes a program one line at a time.\n3.  **Assembler:** A special-purpose translator for converting low-level assembly language into machine code."
+    },
+    {
+      "type": "heading",
+      "content": "In-depth: The Compiler and its Stages"
+    },
+    {
+      "type": "text",
+      "content": "A compiler takes your entire source code file (e.g., `my_program.pas`) and runs it through a multi-stage process to produce an executable file (e.g., `my_program.exe`). This executable can be run directly by the operating system without the compiler or source code present. This process makes for very fast execution but can make debugging slower, as any change requires a full recompilation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Lexical Analysis:** The source code is read, and whitespace/comments are removed. The code is broken down into a stream of 'tokens'. For example, `x = 10;` becomes `IDENTIFIER(x)`, `EQUALS_OP`, `INTEGER_LITERAL(10)`, `SEMICOLON`.",
+        "**Syntax Analysis (Parsing):** The stream of tokens is checked against the grammar rules of the language. The compiler builds a data structure, like a parse tree, to represent the program's structure. If the code breaks a rule (e.g., `x = 10 + ;`), a syntax error is reported.",
+        "**Semantic Analysis:** The meaning of the code is checked. This stage catches errors that are grammatically correct but logically nonsensical, such as trying to add a string to an integer in a strongly-typed language, or using an undeclared variable.",
+        "**Intermediate Code Generation & Optimisation:** The compiler generates a low-level, platform-independent version of the code. It then optimises this code to make it faster or smaller, for example, by removing redundant calculations.",
+        "**Code Generation:** The optimised intermediate code is translated into the final machine code for the target CPU architecture.",
+        "**Linking:** The generated object code is combined with code from libraries (e.g., for printing to the screen) to produce the final executable file."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "For the following line of Pascal code, `Score := Score + 10;`, describe the output of the Lexical Analysis stage and draw a simplified representation of the parse tree created during Syntax Analysis.",
+      "solution": "### Mark Scheme Breakdown:\n\n**1. Lexical Analysis (2 marks):**\n- The lexical analyser removes whitespace and breaks the code into a sequence of tokens. (1 mark for process)\n- The token stream would be: `IDENTIFIER('Score')`, `ASSIGN_OP(':=')`, `IDENTIFIER('Score')`, `PLUS_OP('+')`, `INTEGER_LITERAL('10')`, `SEMICOLON(';')`. (1 mark for correct token sequence)\n\n**2. Syntax Analysis (Parse Tree) (2 marks):**\n- The syntax analyser uses the token stream to build a parse tree to check grammatical structure. (1 mark for purpose)\n- The tree would represent the assignment. A simplified text representation is:\n```\n    ASSIGN (:=)\n     /       \\\nIDENTIFIER(Score)   EXPRESSION (+)\n                     /         \\\n                IDENTIFIER(Score)  INTEGER(10)\n```\n(1 mark for a correctly structured tree showing the assignment and the addition as a sub-tree)."
+    },
+    {
+      "type": "heading",
+      "content": "The Interpreter"
+    },
+    {
+      "type": "text",
+      "content": "An interpreter works differently. Instead of producing a separate executable, it reads the source code one line at a time, translates that line into machine code, and executes it immediately. It then moves to the next line. This makes the development and debugging cycle very fast, as you can run your code instantly after a change and errors are reported as they happen. However, this line-by-line translation at runtime means interpreted programs generally run much slower than compiled ones."
+    },
+    {
+      "type": "examTip",
+      "content": "A classic exam question involves comparing compilers and interpreters. Be prepared to discuss their differences in terms of: **speed of execution** (compiler wins), **speed of translation/development** (interpreter wins), **portability** (interpreted code is more portable), **error reporting** (interpreter reports errors at runtime, line-by-line; compiler reports all syntax errors at once before execution), and **distribution** (compiler produces a standalone executable)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A software company is developing a new video game for high-performance PCs. The game requires maximum graphical performance and fast processing to handle complex physics. The company also wants to protect its source code from being copied. Justify whether a compiler or an interpreter would be the more appropriate choice for distributing the final game.",
+      "solution": "### Mark Scheme Breakdown:\n\n**Choice:** A compiler is the appropriate choice. (1 mark)\n\n**Justification (Maximum 3 marks from):**\n- **Performance/Execution Speed:** A compiled program is translated into native machine code, which executes directly on the CPU. This results in the fastest possible execution speed, which is critical for a high-performance game's graphics and physics calculations. (1 mark)\n- **Code Protection/Distribution:** A compiler produces a standalone executable file. The company can distribute this file without including the original source code, thus protecting their intellectual property. An interpreter would require the source code to be present on the user's machine. (1 mark)\n- **No Runtime Overhead:** Unlike an interpreter, a compiled program does not have the overhead of translating code line-by-line while the game is running. This frees up CPU resources for the game itself. (1 mark)"
+    },
+    {
+      "type": "heading",
+      "content": "The Assembler"
+    },
+    {
+      "type": "text",
+      "content": "The assembler is the simplest type of translator. It converts assembly language, a low-level language that uses mnemonics (like `MOV`, `ADD`, `JMP`), into the binary machine code that the CPU understands. Each assembly instruction typically corresponds directly to one machine code instruction. This provides direct control over the hardware and is used for tasks where performance is absolutely critical, such as in device drivers or the boot-up code for an operating system."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Translation Software",
+      "href": "/mark?subject=9618&topic=16.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeeksforGeeks: Differences between Compiler and Interpreter",
+          "href": "https://www.geeksforgeeks.org/difference-between-compiler-and-interpreter/"
+        },
+        {
+          "label": "Video: The Stages of Compilation (Crash Course Computer Science)",
+          "href": "https://www.youtube.com/watch?v=e_w2g_B4s6k"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

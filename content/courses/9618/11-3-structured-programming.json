@@ -4,39 +4,160 @@
   "title": "Structured Programming",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS — procedures, functions, parameters, and modular program design.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores structured programming, a fundamental paradigm for writing clear, maintainable, and efficient code. It covers the three core control structures—sequence, selection, and iteration—and introduces the top-down design methodology (stepwise refinement) used to break complex problems into manageable sub-tasks.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define procedures and functions.",
-    "Use parameters and return values.",
-    "Explain benefits of modular design.",
-    "Trace calls with local and global scope."
+    "Explain the principles of structured programming and its benefits.",
+    "Describe the three fundamental control structures: sequence, selection, and iteration.",
+    "Apply top-down design and stepwise refinement to decompose problems.",
+    "Represent program structure using hierarchy charts and pseudocode."
   ],
   "simpleExplanation": {
-    "title": "Modular code",
-    "summary": "Procedures group reusable steps; functions return a value. Parameters pass data in; return sends result back.",
+    "title": "Building with Code LEGOs",
+    "summary": "Structured programming is a method of writing computer programs using a limited set of simple building blocks. This approach makes code easier to understand, test, and modify, preventing the chaotic 'spaghetti code' of the past.",
+    "analogy": "Imagine writing a recipe. An unstructured recipe would be a single, confusing paragraph, making it easy to miss a step. A structured recipe uses numbered steps (sequence), gives options like 'if you prefer it less spicy, use half a chilli' (selection), and includes repeating actions like 'stir continuously for three minutes' (iteration). This structured approach is far more reliable and easier for anyone to follow.",
     "steps": [
-      "PROCEDURE Name(param1, param2) … ENDPROCEDURE.",
-      "FUNCTION Name(x) RETURNS type — must RETURN value.",
-      "Local variables hide globals inside module.",
-      "Top-down design: main program calls sub-modules."
+      "Decompose the Problem: Start with the main task and break it down into smaller, self-contained sub-problems. This is called top-down design.",
+      "Use Standard Blocks: Write the code for each sub-problem using only three types of control structures: Sequence, Selection, and Iteration.",
+      "Construct with Modules: Combine the solutions for the sub-problems into a complete program, often using procedures and functions for each sub-task.",
+      "Test and Refine: Test each module independently before testing the entire program. This makes finding and fixing bugs (debugging) much simpler."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Structured Programming?",
+      "back": "A programming paradigm aimed at improving code clarity and maintainability by using only three control structures: sequence, selection, and iteration."
+    },
+    {
+      "front": "What is Sequence in structured programming?",
+      "back": "The execution of statements one after another in the order they are written in the code."
+    },
+    {
+      "front": "What is Selection in structured programming?",
+      "back": "A control structure that allows a choice to be made between different paths of execution, based on a condition. Examples: IF...THEN...ELSE, CASE...OF...OTHERWISE."
+    },
+    {
+      "front": "What is Iteration in structured programming?",
+      "back": "A control structure that allows a block of code to be executed repeatedly. Examples: FOR...NEXT, WHILE...ENDWHILE, REPEAT...UNTIL."
+    },
+    {
+      "front": "What is Top-Down Design?",
+      "back": "A problem-solving technique where a complex problem is broken down into smaller, more manageable sub-problems. Also known as stepwise refinement."
+    },
+    {
+      "front": "What is the purpose of a Hierarchy Chart?",
+      "back": "To visually represent the structure of a program, showing how the main problem is broken down into sub-problems (modules/procedures/functions)."
+    },
+    {
+      "front": "Why is the `GOTO` statement avoided in structured programming?",
+      "back": "It creates unconditional jumps in the code, leading to 'spaghetti code' that is difficult to read, debug, and maintain. Structured control flow makes logic easier to follow."
+    },
+    {
+      "front": "What is 'maintainability' in the context of programming?",
+      "back": "The ease with which a program can be modified to correct faults, improve performance, or adapt to a changed environment. Structured programming greatly improves maintainability."
+    },
+    {
+      "front": "What is modularity?",
+      "back": "The concept of breaking a program down into independent, interchangeable modules (like procedures or functions). It's a direct result of top-down design."
+    },
+    {
+      "front": "Is a `CASE` statement a form of iteration?",
+      "back": "No, this is a common misconception. A `CASE` statement is a form of selection, allowing the program to choose one path from several options, similar to a nested `IF...THEN...ELSEIF`."
+    },
+    {
+      "front": "What is Stepwise Refinement?",
+      "back": "Another term for Top-Down Design. It's the process of progressively breaking down a problem into smaller steps or 'refinements' until each step is simple enough to be coded."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between top-down design and stepwise refinement?",
+      "a": "In the context of the A-Level syllabus, they are treated as the same concept. Both refer to the process of breaking a large, complex problem into a hierarchy of smaller, more manageable sub-problems."
+    },
+    {
+      "q": "Why are `GOTO` statements bad practice in structured programming?",
+      "a": "`GOTO` statements create unconditional jumps in the program's execution path. This makes the code's logic incredibly difficult to follow, debug, and maintain, a problem often called 'spaghetti code'. Structured programming replaces this with clear, predictable control structures like loops and conditionals."
+    },
+    {
+      "q": "Can I nest control structures within each other?",
+      "a": "Yes, absolutely. Nesting is a key part of building complex logic from simple blocks. For example, you can have a `FOR` loop (iteration) that contains an `IF` statement (selection) to process items in a list, or even another loop inside the first one."
+    },
+    {
+      "q": "Are procedures and functions part of structured programming?",
+      "a": "Yes. Procedures and functions are the primary way to implement the modules identified during top-down design. They encapsulate a specific piece of logic, making the program modular, reusable, and easier to understand."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Structured programming** (11.3) is tested with **trace tables** across procedure calls. Track **parameter passing** and **return values** line by line."
+      "content": "Before structured programming became standard, programs were often written in a chaotic way. Programmers used `GOTO` statements that made the execution path jump all over the place, creating what was known as 'spaghetti code'. This code was incredibly difficult to understand, debug, and update. Structured programming introduced a disciplined approach, enforcing a clear, logical flow that revolutionised software development."
+    },
+    {
+      "type": "heading",
+      "content": "The Three Pillars of Structured Programming"
+    },
+    {
+      "type": "text",
+      "content": "The Structured Program Theorem states that any algorithm can be constructed using only three fundamental control structures. Mastering these is essential for writing good code."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sequence:** Instructions are executed in order, one after the other. This is the default flow of any program. `INPUT Name`, then `PRINT 'Hello ', Name`.",
+        "**Selection:** A decision is made, and the program follows a different path based on a condition. The main constructs are `IF...THEN...ELSE...ENDIF` for binary or nested choices, and `CASE...OF...OTHERWISE...ENDCASE` for selecting from multiple distinct options.",
+        "**Iteration (Repetition):** A block of code is executed repeatedly. This can be a fixed number of times (`FOR...TO...NEXT`), while a condition is true (`WHILE...DO...ENDWHILE`), or until a condition becomes true (`REPEAT...UNTIL`)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Top-Down Design and Stepwise Refinement"
+    },
+    {
+      "type": "text",
+      "content": "Instead of trying to solve a huge, complex problem in one go, we break it down. This process is called top-down design or stepwise refinement. We start with the main goal (e.g., 'Process a customer order') and break it into smaller sub-tasks ('Validate payment', 'Check stock', 'Arrange delivery'). Each of these sub-tasks can be broken down further until they are simple enough to be written as a single procedure or function. This structure can be visualised using a hierarchy chart, which shows the main module at the top and the sub-modules branching out below it."
+    },
+    {
+      "type": "workedExample",
+      "question": "A teacher needs a program to find the highest and lowest scores from a class of 25 students. Use stepwise refinement to design an algorithm and represent the first level of refinement.",
+      "solution": "The problem is 'Find highest and lowest scores for 25 students'.\n\n**Level 0:** Process class scores.\n\n**Stepwise Refinement (Level 1):**\n1.  Initialise variables (e.g., `HighestScore`, `LowestScore`).\n2.  Input and process scores for all 25 students.\n3.  Output the final `HighestScore` and `LowestScore`.\n\n**Further Refinement (Level 2) of Step 1 & 2:**\n1.1. Input the first score.\n1.2. Set `HighestScore` and `LowestScore` to this first score.\n2.1. Loop 24 times (for the remaining students).\n2.2. Inside the loop: Input the next score.\n2.3. If the new score is greater than `HighestScore`, update `HighestScore`.\n2.4. If the new score is less than `LowestScore`, update `LowestScore`.\n\n**Final Pseudocode:**\n```pseudocode\nDECLARE HighestScore, LowestScore, StudentScore : INTEGER\n\nINPUT StudentScore\nHighestScore <- StudentScore\nLowestScore <- StudentScore\n\nFOR Counter <- 1 TO 24\n  INPUT StudentScore\n  IF StudentScore > HighestScore THEN\n    HighestScore <- StudentScore\n  ENDIF\n  IF StudentScore < LowestScore THEN\n    LowestScore <- StudentScore\n  ENDIF\nNEXT Counter\n\nPRINT \"Highest score is: \", HighestScore\nPRINT \"Lowest score is: \", LowestScore\n```"
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, when asked to use stepwise refinement, clearly state the problem and then list the broken-down steps numerically. For example: '1. Initialise variables', '2. Loop through inputs', '3. Calculate result'. You can then refine each step further, e.g., '2.1. Use a FOR loop from 1 to 30', '2.2. Input score', '2.3. Add to total'. This demonstrates the process clearly."
+    },
+    {
+      "type": "heading",
+      "content": "Benefits of the Structured Approach"
+    },
+    {
+      "type": "text",
+      "content": "Adopting structured programming isn't just about following rules; it provides significant, practical advantages in software development. Programs become easier to read because the flow of control is logical and predictable. This directly improves maintainability; if a tax rate changes, a developer can easily find and update the single `CalculateTax` function instead of hunting through tangled code. Using modules (procedures/functions) promotes reusability, saving time and effort. For example, a `ValidateEmail` function can be used in many different parts of an application. This modularity also makes testing far more effective, as each component can be tested in isolation before being integrated into the main system, simplifying debugging."
+    },
+    {
+      "type": "workedExample",
+      "question": "A program needs to calculate the total cost for a number of items. A discount of 10% is applied if the total number of items is 10 or more. Each item costs £2.50. Design a structured pseudocode algorithm that takes the number of items as input and outputs the final cost.",
+      "solution": "This problem can be broken down into: get input, calculate base cost, determine if a discount applies, calculate final cost, and output the result.\n\n**Pseudocode Solution:**\n```pseudocode\nDECLARE NumItems : INTEGER\nDECLARE ItemCost, TotalCost : REAL\nCONSTANT DiscountRate = 0.10\nCONSTANT ItemPrice = 2.50\n\n// Sequence: Get input first\nINPUT NumItems\n\n// Sequence: Calculate initial cost\nTotalCost <- NumItems * ItemPrice\n\n// Selection: Check for discount condition\nIF NumItems >= 10 THEN\n  // Sequence: Calculate and apply discount\n  TotalCost <- TotalCost - (TotalCost * DiscountRate)\nENDIF\n\n// Sequence: Output the final result\nPRINT \"The final cost is: £\", TotalCost\n```\n\n**Marking Points:**\n1.  Correct declaration of variables.\n2.  Correct input of `NumItems`.\n3.  Correct initial calculation of `TotalCost`.\n4.  Correct `IF` statement (selection) with the right condition (`>= 10`).\n5.  Correct calculation of the discounted cost inside the `IF` block.\n6.  Correct output of the final `TotalCost`."
     },
     {
       "type": "practice",
-      "label": "Mark a structured programming question",
+      "label": "Practice Structured Programming",
       "href": "/mark?subject=9618&topic=11.3"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "BBC Bitesize on Algorithms",
+          "href": "https://www.bbc.co.uk/bitesize/guides/z22wwmn/revision/1"
+        },
+        {
+          "label": "Isaac Computer Science: Structured Programming",
+          "href": "https://isaaccomputerscience.org/concepts/prog_control_flow_structured"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

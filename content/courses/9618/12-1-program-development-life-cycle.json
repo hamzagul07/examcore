@@ -4,29 +4,202 @@
   "title": "Program Development Life cycle",
   "paper": "P2",
   "paperName": "Fundamental Problem-solving and Programming Skills",
-  "status": "premium",
-  "summary": "9618 AS — analysis, design, coding, testing, and maintenance in the software lifecycle.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores the Program Development Life Cycle (PDLC), a structured framework used by developers to build high-quality software. We will break down the five key stages: Analysis, Design, Coding, Testing, and Maintenance, understanding the purpose and activities of each.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe stages of the program development life cycle.",
-    "Explain analysis and design documentation.",
-    "Outline testing strategies including normal, boundary, extreme.",
-    "Discuss maintenance types: corrective, adaptive, perfective."
+    "Understand the purpose of a program development life cycle (PDLC).",
+    "Describe the different stages in the PDLC: analysis, design, coding, testing and maintenance.",
+    "Explain the activities and deliverables associated with each stage of the PDLC.",
+    "Appreciate the importance of a structured approach to software development."
   ],
   "simpleExplanation": {
-    "title": "From problem to maintained software",
-    "summary": "Development follows analysis → design → coding → testing → maintenance. Testing uses data sets to verify correctness.",
+    "title": "From Idea to Working App",
+    "summary": "The Program Development Life Cycle is a step-by-step recipe that guides programmers from a simple idea to a fully functional and reliable piece of software. Following these stages ensures nothing is missed and the final product works as intended.",
+    "analogy": "Think about building a house. You wouldn't just start laying bricks randomly. First, you'd have meetings with the future owner to understand their needs (Analysis). Then, an architect would draw up detailed blueprints (Design). Next, the construction crew would build the house based on those plans (Coding). Afterwards, inspectors would check the plumbing, electrics, and structure (Testing). Finally, for years to come, you'd perform repairs and maybe add an extension (Maintenance). The PDLC is the same logical process, but for software.",
     "steps": [
-      "Analysis: requirements from client problem.",
-      "Design: structure charts, pseudocode, data dictionaries.",
-      "Testing: normal, boundary, erroneous data.",
-      "Maintenance: fix bugs, adapt to new needs."
+      "Analyse the Problem: Understand exactly what the user needs the software to do and determine if it's possible to build.",
+      "Design the Solution: Create a detailed blueprint for the program, including algorithms, data structures, and how the user interface will look.",
+      "Code and Build: Write the program code in a suitable programming language, translating the design into a functional application.",
+      "Test and Maintain: Thoroughly check the program for errors, then release it and provide ongoing support and updates."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the Program Development Life Cycle (PDLC)?",
+      "back": "A structured, phased process that provides a framework for developing software from initial concept to final deployment and maintenance."
+    },
+    {
+      "front": "What is the main purpose of the Analysis stage?",
+      "back": "To investigate and understand the problem, gather user requirements, and establish the exact specifications for the new system."
+    },
+    {
+      "front": "What is the main purpose of the Design stage?",
+      "back": "To create a detailed plan or 'blueprint' of how the system will be built. This includes designing algorithms, data structures, user interfaces, and system architecture."
+    },
+    {
+      "front": "What is the main purpose of the Coding stage?",
+      "back": "To translate the designs from the previous stage into machine-readable instructions using a suitable programming language. This is the implementation phase."
+    },
+    {
+      "front": "What is the main purpose of the Testing stage?",
+      "back": "To systematically find and document errors (bugs) in the software to ensure it meets the requirements defined in the analysis stage and functions correctly."
+    },
+    {
+      "front": "What is the main purpose of the Maintenance stage?",
+      "back": "To make changes to the software after it has been delivered. This includes fixing bugs, adapting to new environments, and adding new features."
+    },
+    {
+      "front": "What is Corrective Maintenance?",
+      "back": "Fixing bugs or errors that were not discovered during the testing phase. For example, fixing a crash that occurs under specific, unforeseen circumstances."
+    },
+    {
+      "front": "What is Adaptive Maintenance?",
+      "back": "Updating the program to keep it functional in a changing environment. For example, updating an application to run on a new version of an operating system."
+    },
+    {
+      "front": "What is Perfective Maintenance?",
+      "back": "Improving or enhancing the software by adding new features or improving performance, based on user feedback or new requirements. For example, adding a 'dark mode' to an application."
+    },
+    {
+      "front": "What is a 'requirements specification'?",
+      "back": "A formal document produced at the end of the Analysis stage. It details precisely what the system must do, serving as a contract between the developer and the client."
+    },
+    {
+      "front": "What is the key output of the Design stage?",
+      "back": "Algorithms (often in pseudocode or as flowcharts), data structure definitions, and user interface layouts."
+    },
+    {
+      "front": "What is a common trap when describing the PDLC in an exam?",
+      "back": "Being too vague. Instead of 'test the program', specify the type of testing (e.g., black-box, white-box, integration) and what is being tested (e.g., individual modules, the whole system)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Program Development Life Cycle always a strict, linear process?",
+      "a": "The model described here, often called the 'waterfall model', is linear and sequential. It's the primary model you need to know for the 9618 syllabus. However, in the real world, many other models exist, such as Agile methodologies. Agile models are iterative, meaning developers work in small cycles, repeating the design, code, and test stages for small parts of the project at a time. This allows for more flexibility and adaptation to changing requirements."
+    },
+    {
+      "q": "What is the difference between the Analysis and Design stages?",
+      "a": "This is a common point of confusion. Think of it this way: Analysis is about the 'WHAT' and Design is about the 'HOW'. The Analysis stage focuses on WHAT the system must do, defining the user requirements and goals without considering the implementation. The Design stage takes those requirements and figures out HOW the system will be built, creating the technical blueprint with algorithms, data structures, and architecture."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Life cycle** (12.1) links Paper 2 theory to **Paper 3 practical**. Know **test data types** with examples." },
-    { "type": "practice", "label": "Mark a life cycle question", "href": "/mark?subject=9618&topic=12.1" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Have you ever used an app that constantly crashes or a website that's impossible to navigate? Often, these problems arise not from bad programming, but from a bad process. Creating robust, reliable software is complex. The Program Development Life Cycle (PDLC) provides a vital, structured roadmap that guides developers from a vague idea to a polished, working product, ensuring quality every step of the way."
+    },
+    {
+      "type": "heading",
+      "content": "The Purpose of the PDLC"
+    },
+    {
+      "type": "text",
+      "content": "The Program Development Life Cycle is a systematic approach to software development. Its primary purpose is to manage the complexity of building software by breaking the process down into a series of manageable stages. Each stage has its own specific goals, activities, and deliverables. Following a life cycle helps ensure the final product is high-quality, meets user needs, is completed on time, and stays within budget."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Provides structure to a complex process.",
+        "Ensures all requirements are considered and met.",
+        "Helps in planning, scheduling, and estimating resources.",
+        "Improves the quality and reliability of the final software.",
+        "Makes the development process easier to manage and monitor."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Five Stages of the PDLC"
+    },
+    {
+      "type": "text",
+      "content": "The syllabus focuses on a sequential model, often called the 'waterfall model', where one stage must be completed before the next begins. The five core stages are: \n1. **Analysis:** What is the problem? \n2. **Design:** How will we solve the problem? \n3. **Coding:** Let's build the solution. \n4. **Testing:** Does the solution work correctly? \n5. **Maintenance:** Let's keep the solution working and improve it."
+    },
+    {
+      "type": "heading",
+      "content": "Stage 1: Analysis"
+    },
+    {
+      "type": "text",
+      "content": "This is the crucial first step. The goal is to fully understand the problem that the software needs to solve. It involves gathering information from the client or end-users through methods like interviews, questionnaires, and observation. A feasibility study might be conducted to assess if the project is technically, economically, and operationally viable. The outcome of this stage is a detailed 'requirements specification' document, which defines the scope, constraints, and functional/non-functional requirements of the system."
+    },
+    {
+      "type": "workedExample",
+      "question": "A college wants a new system to manage student enrolment in clubs and societies. Describe three distinct activities that would occur during the **analysis** stage for this project.",
+      "solution": "Here is a possible mark-scheme answer:\n\n1.  **Requirements Gathering:** The analyst would interview student representatives and administrative staff to understand their needs. [1] They would ask questions like 'How do students currently sign up?', 'What information needs to be stored about each student and club?', and 'What reports do staff need to generate?'. [1]\n\n2.  **Feasibility Study:** The analyst would assess if the project is viable. This includes technical feasibility (does the college have the hardware/expertise?), economic feasibility (can the college afford to develop and run the system?), and operational feasibility (will staff and students be able to use the new system effectively?). [1]\n\n3.  **Producing a Requirements Specification:** The analyst would create a formal document detailing all findings. [1] This document would specify the inputs (student details, club choices), processes (enrolment validation, capacity checks), and outputs (confirmation emails, class lists for club leaders) of the system. [1]"
+    },
+    {
+      "type": "heading",
+      "content": "Stage 2: Design"
+    },
+    {
+      "type": "text",
+      "content": "In the design stage, the 'how' is answered. Developers create a detailed blueprint for the system based on the requirements specification. This involves designing the program's structure, data structures (e.g., what variables, arrays, or records are needed), algorithms for processes (using pseudocode or flowcharts), and the user interface (UI). A good design is the foundation for good code."
+    },
+    {
+      "type": "heading",
+      "content": "Stage 3: Coding"
+    },
+    {
+      "type": "text",
+      "content": "This is the implementation stage where the design is translated into actual program code using a chosen programming language (like Python, Java, or VB.NET). Programmers write the code, create the database structures, and build the user interface. It is vital that they follow the design accurately and use good programming practices, such as adding meaningful comments and using sensible variable names, to make the code understandable and maintainable."
+    },
+    {
+      "type": "heading",
+      "content": "Stage 4: Testing"
+    },
+    {
+      "type": "text",
+      "content": "Once the code is written, it must be rigorously tested to find and fix errors (bugs). Testing should be systematic and planned. It's not just about checking if the program works, but also trying to 'break' it. Key testing strategies include black-box testing (testing functionality without seeing the code) and white-box testing (testing the internal code structure). A good test plan includes a range of data: normal (valid), boundary, and erroneous (invalid) data."
+    },
+    {
+      "type": "examTip",
+      "content": "When asked about testing, be specific. Don't just say 'test the program'. Mention creating a test plan with specific test data (valid, boundary, invalid) and describe what is being checked. For example, 'Test the login module with a valid username and password, then with an invalid password, and finally with a username that is too long to check input validation.'"
+    },
+    {
+      "type": "workedExample",
+      "question": "For the student club enrolment system, describe the activities that would take place during the **testing** stage. Include an example of test data for one feature.",
+      "solution": "Here is a possible mark-scheme answer:\n\n1.  **Create a Test Plan:** A document is created outlining the features to be tested, the testing strategy, and the expected results. [1]\n\n2.  **Individual Module Testing (Unit Testing):** Each part of the program, such as the student login module or the club selection module, is tested in isolation to ensure it works correctly. [1]\n\n3.  **System Testing:** The entire system is tested as a whole to ensure all the individual modules integrate and work together correctly. For example, checking that when a student enrols in a club, the club's member count is correctly updated. [1]\n\n4.  **Test Data Example:** To test the feature that limits club capacity to 30 members, the tester would use: \n    *   **Normal data:** Attempt to enrol the 15th student. Expected outcome: success. [1]\n    *   **Boundary data:** Attempt to enrol the 30th student, and then the 31st student. Expected outcome: success for the 30th, failure/error message for the 31st. [1]\n    *   **Erroneous data:** Not applicable here, but could be used elsewhere, e.g., entering text into a numeric field."
+    },
+    {
+      "type": "heading",
+      "content": "Stage 5: Maintenance"
+    },
+    {
+      "type": "text",
+      "content": "Maintenance is the longest and often most expensive stage of the PDLC. It begins after the software is deployed and involves making changes over time. There are three main types of maintenance."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Corrective Maintenance:** Fixing bugs discovered by users after the software has been released.",
+        "**Adaptive Maintenance:** Updating the software to work with new hardware, operating systems, or other software.",
+        "**Perfective Maintenance:** Adding new features or improving existing ones to enhance the software's functionality or performance, often based on user feedback."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently ask for definitions and examples of the three types of maintenance. Memorise a clear, distinct example for each: Corrective (fixing a crash), Adaptive (making it work on Windows 11), and Perfective (adding a new report feature)."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on the PDLC",
+      "href": "/mark?subject=9618&topic=12.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "BBC Bitesize - Software development lifecycles",
+          "href": "https://www.bbc.co.uk/bitesize/guides/zptkmsg/revision/1"
+        },
+        {
+          "label": "GeeksforGeeks - Software Development Life Cycle (SDLC)",
+          "href": "https://www.geeksforgeeks.org/software-development-life-cycle-sdlc/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

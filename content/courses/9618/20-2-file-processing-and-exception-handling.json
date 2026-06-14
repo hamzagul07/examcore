@@ -4,29 +4,175 @@
   "title": "File Processing and Exception Handling",
   "paper": "P4",
   "paperName": "Practical",
-  "status": "premium",
-  "summary": "9618 P4 — file I/O, validation, and try/catch exception handling.",
+  "status": "pilot",
+  "summary": "This lesson covers the essential Paper 4 skills of reading from and writing to text files. It introduces the concept of exceptions—runtime errors that crash a program—and demonstrates how to handle them gracefully using try-except blocks, ensuring robust and reliable code.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Read and write text files in pseudocode.",
-    "Validate file data before processing.",
-    "Explain exception handling with try/catch.",
-    "Design robust file-processing algorithms."
+    "Use file handling operations (open, read, write, close) on text files.",
+    "Understand and use different file modes, including 'r', 'w', and 'a'.",
+    "Implement exception handling using 'try', 'except', and 'finally' blocks.",
+    "Handle specific, common exceptions such as FileNotFoundError and ValueError."
   ],
   "simpleExplanation": {
-    "title": "Files and graceful errors",
-    "summary": "Programs often read external files. Exception handling catches runtime errors so the program can respond instead of crashing.",
+    "title": "Files and Failsafes",
+    "summary": "File processing lets your program save and load data, making it persistent. Exception handling is your program's safety net, catching errors gracefully without crashing.",
+    "analogy": "Imagine you're a librarian. A student requests a book (opening a file). You find the book and let them read it (processing). But what if the book isn't on the shelf? Instead of shouting 'ERROR!' and closing the library (crashing), you have a procedure: you check the system (handle a 'FileNotFoundError'), perhaps telling the student it's checked out or lost. This procedure is exception handling.",
     "steps": [
-      "OPEN → READ/WRITE → CLOSE file.",
-      "Check file exists and format valid.",
-      "TRY risky code; CATCH handle error.",
-      "Log message and recover or exit safely."
+      "Open a file using a path and a specific mode (e.g., 'r' for read, 'w' for write).",
+      "Perform operations like reading lines of text or writing new data into the file.",
+      "Anticipate runtime errors by placing the file operations inside a 'try' block.",
+      "Define 'except' blocks to catch specific errors and a 'finally' block to ensure cleanup, like closing the file."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a file handle?",
+      "back": "An object returned by the `open()` function that provides a connection to a file on the disk. All read and write operations are performed through this handle."
+    },
+    {
+      "front": "What is the difference between opening a file in 'w' mode and 'a' mode?",
+      "back": "'w' (write) mode opens a file for writing. If the file exists, its contents are erased. If it doesn't exist, it's created. 'a' (append) mode opens a file to add content to its end. If the file doesn't exist, it's created."
+    },
+    {
+      "front": "What is an exception in programming?",
+      "back": "An event that occurs during the execution of a program that disrupts the normal flow of instructions. Examples include trying to divide by zero or accessing a file that doesn't exist."
+    },
+    {
+      "front": "What is the purpose of a `try...except` block?",
+      "back": "The `try` block lets you test a block of code for errors. The `except` block lets you handle the error, preventing the program from crashing."
+    },
+    {
+      "front": "What does the `FileNotFoundError` exception signify?",
+      "back": "It is raised when a program tries to open a file that does not exist at the specified path."
+    },
+    {
+      "front": "Why is it important to close a file after use?",
+      "back": "To free up system resources and ensure that any data buffered in memory is written to the disk. Failing to close a file can lead to data loss or corruption."
+    },
+    {
+      "front": "What is the advantage of using the `with open(...) as ...:` syntax?",
+      "back": "It automatically handles closing the file, even if exceptions occur within the block. This makes the code safer and cleaner."
+    },
+    {
+      "front": "What does the `finally` keyword do in a `try...except` structure?",
+      "back": "The `finally` block contains code that will be executed regardless of whether an exception occurred or not. It is ideal for cleanup actions, like closing a file."
+    },
+    {
+      "front": "What is the difference between a text file and a binary file?",
+      "back": "Text files store data as human-readable characters (e.g., ASCII, UTF-8). Binary files store data as a sequence of bytes (0s and 1s), which is not human-readable but is efficient for storing complex data like images or executables."
+    },
+    {
+      "front": "What does the `ValueError` exception typically indicate when processing files?",
+      "back": "It often occurs when you try to convert data read from a file into a different type, but the data is in an invalid format. For example, calling `int('hello')` after reading 'hello' from a file."
+    },
+    {
+      "front": "What does the file method `readlines()` return?",
+      "back": "It reads all lines from a file and returns them as a list of strings. Each string in the list represents one line and includes the trailing newline character `\\n`."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why use `with open(...)` instead of `file = open(...)` and `file.close()`?",
+      "a": "The `with` statement creates a context manager that guarantees the file will be closed automatically, even if your code raises an exception. If you manually open and close, you might forget to call `close()`, or an error might occur before `close()` is reached, leaving the file open and potentially leading to resource leaks or data corruption."
+    },
+    {
+      "q": "Should I just use a single `except:` to catch all errors?",
+      "a": "No, this is generally bad practice. A bare `except:` (or `except Exception:`) catches everything, including system-exiting errors and keyboard interrupts. This can hide bugs and make your program difficult to debug. It's much better to catch specific exceptions that you know how to handle, like `FileNotFoundError` or `ValueError`."
+    },
+    {
+      "q": "What's the difference between `read()`, `readline()`, and `readlines()`?",
+      "a": "`read()` reads the entire file content into a single string. `readline()` reads just one line from the file, including the newline character. `readlines()` reads all lines from the file and returns them as a list of strings."
+    },
+    {
+      "q": "How do I handle a file that uses a different character encoding?",
+      "a": "The `open()` function has an `encoding` parameter. For example, if you know a file is encoded in UTF-8 (a very common standard), you would use `open('myfile.txt', 'r', encoding='utf-8')`. Not specifying the encoding can lead to a `UnicodeDecodeError` if the file contains characters not supported by your system's default encoding."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**File processing** (20.2) follows **20.1 paradigms**. Examiners test **pseudocode file loops** and **exception blocks**." },
-    { "type": "practice", "label": "Mark a file processing question", "href": "/mark?subject=9618&topic=20.2" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In practical programming, it's rare for a program to be completely self-contained. Most useful applications need to interact with the outside world, primarily by reading and writing data to files. This lesson explores how to manage this interaction robustly, ensuring your programs can handle data storage and recover from predictable problems like missing files or incorrect data formats."
+    },
+    {
+      "type": "heading",
+      "content": "1. File Handling Fundamentals"
+    },
+    {
+      "type": "text",
+      "content": "File handling, or file I/O (Input/Output), is the process of creating, reading, updating, and deleting files. In Python, this begins with the `open()` built-in function. This function takes the file path as its first argument and the 'mode' as its second. The mode is a crucial string that tells Python what you intend to do with the file."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**`'r'` (Read):** Default mode. Opens a file for reading. Raises an error if the file does not exist.",
+        "**`'w'` (Write):** Opens a file for writing. Creates the file if it does not exist; overwrites it if it does.",
+        "**`'a'` (Append):** Opens a file for appending. Creates the file if it does not exist; adds new data to the end if it does.",
+        "**`'x'` (Create):** Creates a specific file. Raises an error if the file already exists.",
+        "**`'+'` (Update):** Can be added to a mode (e.g., `'r+'`, `'w+'`) to allow both reading and writing.",
+        "**`'b'` (Binary) / `'t'` (Text):** Specify binary or text mode. Text is the default."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The best practice for opening files is using the `with` statement. This ensures the file is automatically closed when you are finished, even if errors occur."
+    },
+    {
+      "type": "formula",
+      "content": "```python\n# Writing to a file\nwith open('data.txt', 'w') as f:\n    f.write('Hello, world!\\n')\n\n# Reading from a file\nwith open('data.txt', 'r') as f:\n    content = f.read()\n    print(content)\n```"
+    },
+    {
+      "type": "heading",
+      "content": "2. Understanding Exceptions"
+    },
+    {
+      "type": "text",
+      "content": "An exception is an error detected during execution. When your program encounters a situation it cannot cope with, like trying to open a non-existent file (`FileNotFoundError`) or converting an invalid string to a number (`ValueError`), Python 'raises' an exception. If unhandled, this exception will halt your program and display an error message. Exception handling is the process of catching these exceptions and executing specific code to respond, allowing the program to continue running or to terminate gracefully."
+    },
+    {
+      "type": "formula",
+      "content": "```python\ntry:\n    # Code that might raise an exception\n    <risky_operation>\nexcept <SpecificExceptionType>:\n    # Code to run if that specific exception occurs\n    <error_handler_code>\nfinally:\n    # Code that runs no matter what (e.g., cleanup)\n    <cleanup_code>\n```"
+    },
+    {
+      "type": "workedExample",
+      "question": "A text file named `results.txt` contains student scores, one per line. Some lines may be empty or contain non-numeric text. Write a Python program to read the scores, calculate the average of the valid scores, and print the result. The program must handle the case where `results.txt` does not exist and ignore invalid lines. \n\n**`results.txt` content:**\n```\n85\n92\n\n78\n---\n65\n```",
+      "solution": "```python\ndef calculate_average_score():\n    total_score = 0\n    valid_scores_count = 0\n    try:\n        with open('results.txt', 'r') as file:\n            for line in file:\n                # .strip() removes whitespace and newline characters\n                cleaned_line = line.strip()\n                if cleaned_line: # Check if line is not empty\n                    try:\n                        score = int(cleaned_line)\n                        total_score += score\n                        valid_scores_count += 1\n                    except ValueError:\n                        # This line is not a valid integer, so we ignore it.\n                        print(f\"Ignoring invalid line: '{cleaned_line}'\")\n\n        if valid_scores_count > 0:\n            average = total_score / valid_scores_count\n            print(f\"Average score: {average:.2f}\")\n        else:\n            print(\"No valid scores found.\")\n\n    except FileNotFoundError:\n        print(\"Error: results.txt not found.\")\n\n# --- Execution ---\ncalculate_average_score()\n\n# --- Expected Output ---\n# Ignoring invalid line: '-- -'\n# Average score: 80.00\n```\n**Mark Scheme:**\n- [1] `try...except FileNotFoundError` block used correctly.\n- [1] File opened for reading (`'r'`) using `with open()`.\n- [1] Iterates through lines of the file.\n- [1] Inner `try...except ValueError` to handle non-numeric data.\n- [1] Correctly calculates and accumulates total and count for valid scores.\n- [1] Correctly calculates and prints the average, handling division by zero."
+    },
+    {
+      "type": "heading",
+      "content": "3. Combining File I/O and Exception Handling"
+    },
+    {
+      "type": "text",
+      "content": "Combining these two concepts is fundamental for writing robust, real-world applications. You should always assume that a file operation could fail. The disk could be full, the file might be locked by another program, it might not exist, or you may not have permission to access it. Wrapping your file I/O code in `try...except` blocks is not optional; it is a requirement for professional-quality code."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 4, you will almost certainly be asked to read from or write to a text file. Marks are often awarded for robust solutions. This means anticipating errors! Always consider what could go wrong: What if the file isn't there? What if the data is in the wrong format? Add `try...except` blocks to handle these cases, even if the question doesn't explicitly ask for it. It demonstrates good practice and can earn you marks for robustness."
+    },
+    {
+      "type": "workedExample",
+      "question": "Write a procedure `log_event(event_description)` that takes a string and appends it, prefixed with a timestamp, to a file named `events.log`. The procedure must handle potential `IOError` exceptions that might occur if the file cannot be written to (e.g., due to permissions). If an error occurs, it should print an informative message to the console.",
+      "solution": "```python\nimport datetime\n\ndef log_event(event_description):\n    \"\"\"Appends a timestamped event to events.log.\"\"\"\n    try:\n        # Get current time in a standard format\n        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')\n        log_entry = f\"[{timestamp}] {event_description}\\n\"\n\n        # Use 'a' mode to append to the file\n        with open('events.log', 'a') as log_file:\n            log_file.write(log_entry)\n        print(\"Event logged successfully.\")\n\n    except IOError as e:\n        # Catching IOError is good for permission/disk full issues\n        print(f\"Error: Could not write to log file. {e}\")\n\n# --- Example Usage ---\n# log_event(\"User 'admin' logged in.\")\n# log_event(\"System backup started.\")\n\n# --- File content of events.log after execution ---\n# [2023-10-27 10:30:01] User 'admin' logged in.\n# [2023-10-27 10:30:05] System backup started.\n```\n**Mark Scheme:**\n- [1] Procedure defined with correct parameter.\n- [1] `try...except IOError` block used to wrap file operation.\n- [1] File opened in append (`'a'`) mode.\n- [1] Data is formatted correctly (e.g., timestamp + description).\n- [1] `write()` method used to add the formatted string to the file.\n- [1] Informative error message printed on exception."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on File & Exception Handling",
+      "href": "/mark?subject=9618&topic=20.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Python Official Docs: Reading and Writing Files",
+          "href": "https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files"
+        },
+        {
+          "label": "Python Official Docs: Errors and Exceptions",
+          "href": "https://docs.python.org/3/tutorial/errors.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

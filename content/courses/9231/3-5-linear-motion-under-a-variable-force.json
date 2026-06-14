@@ -1,0 +1,167 @@
+{
+  "slug": "3-5-linear-motion-under-a-variable-force",
+  "topicCode": "3.5",
+  "title": "Linear motion under a variable force",
+  "paper": "P3",
+  "paperName": "Paper 3: Further Mechanics",
+  "status": "pilot",
+  "summary": "This lesson explores linear motion where the force acting on a particle is not constant, but varies with time, displacement, or velocity. It focuses on setting up and solving differential equations using Newton's Second Law and calculus to describe the motion.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Formulate a differential equation for the motion of a particle under a variable force.",
+    "Use calculus to solve differential equations to find expressions for velocity and displacement.",
+    "Solve problems where force is a function of time ($F(t)$), displacement ($F(x)$), or velocity ($F(v)$).",
+    "Apply initial or boundary conditions to find constants of integration and determine specific solutions."
+  ],
+  "simpleExplanation": {
+    "title": "Motion on the Move",
+    "summary": "This topic moves beyond the simple 'suvat' equations for constant acceleration. We use calculus to handle more realistic situations where the force on an object changes, causing its acceleration to vary.",
+    "analogy": "Imagine pushing a shopping trolley that gets heavier as you add items. You have to push harder to keep it accelerating. Your force isn't constant, so the trolley's acceleration isn't constant either. The simple 'suvat' equations assume the trolley's mass and your push are unchanging, which isn't the case here. We need a more powerful mathematical tool – calculus – to describe this variable motion.",
+    "steps": [
+      "Identify the variable force $F$ and use Newton's Second Law ($F=ma$) to create an equation of motion.",
+      "Choose the correct form of acceleration: $\\frac{dv}{dt}$ if force depends on time, or $v\\frac{dv}{dx}$ if force depends on displacement.",
+      "Substitute the expression for acceleration into your equation to form a first-order differential equation.",
+      "Solve the differential equation by separating variables and integrating, using given conditions to find the constant of integration."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the fundamental equation for motion under a variable force?",
+      "back": "Newton's Second Law, $F = ma$. Since the force $F$ is variable, the acceleration $a$ must also be variable."
+    },
+    {
+      "front": "When should you express acceleration as $a = \\frac{dv}{dt}$?",
+      "back": "When the net force is given as a function of time, $F(t)$, or as a function of velocity, $F(v)$, and you want to find velocity as a function of time."
+    },
+    {
+      "front": "When should you express acceleration as $a = v\\frac{dv}{dx}$?",
+      "back": "When the net force is given as a function of displacement (position), $F(x)$, or as a function of velocity, $F(v)$, and you want to find a relationship between velocity and displacement."
+    },
+    {
+      "front": "Why can't 'suvat' equations be used for variable force problems?",
+      "back": "The 'suvat' equations ($v=u+at$, $s=ut+\\frac{1}{2}at^2$, etc.) are derived on the assumption that acceleration, $a$, is constant. If force is variable, acceleration is variable, so this assumption is violated."
+    },
+    {
+      "front": "How is the work done by a variable force $F(x)$ from $x=a$ to $x=b$ calculated?",
+      "back": "The work done is calculated by the integral: $W = \\int_{a}^{b} F(x) \\,dx$. This is also equal to the change in kinetic energy."
+    },
+    {
+      "front": "What is the equation of motion if force $F$ is a function of displacement $x$?",
+      "back": "$F(x) = m v \\frac{dv}{dx}$. This sets up a differential equation that can be solved by separating variables."
+    },
+    {
+      "front": "What is the equation of motion if force $F$ is a function of time $t$?",
+      "back": "$F(t) = m \\frac{dv}{dt}$. This can be integrated with respect to time to find velocity."
+    },
+    {
+      "front": "What is the role of initial conditions?",
+      "back": "When you integrate to solve the differential equation, you get a constant of integration (e.g., '+ C'). Initial conditions (like velocity at $t=0$ or position at $t=0$) allow you to find the specific value of this constant."
+    },
+    {
+      "front": "A common trap is forgetting the constant of integration. What's another one?",
+      "back": "Incorrectly separating variables. For example, when solving $m v \\frac{dv}{dx} = F(x)$, ensure all $v$ terms are with $dv$ and all $x$ terms are with $dx$ before integrating: $\\int mv \\,dv = \\int F(x) \\,dx$."
+    },
+    {
+      "front": "How do you derive $a = v\\frac{dv}{dx}$?",
+      "back": "Using the chain rule: $a = \\frac{dv}{dt} = \\frac{dv}{dx} \\times \\frac{dx}{dt}$. Since $v = \\frac{dx}{dt}$, this becomes $a = \\frac{dv}{dx} \\times v = v\\frac{dv}{dx}$."
+    },
+    {
+      "front": "What is the relationship between power ($P$), force ($F$) and velocity ($v$)?",
+      "back": "$P = Fv$. If power is constant, then force is inversely proportional to velocity: $F = P/v$. This is a common source of variable force problems."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know which form of acceleration to use?",
+      "a": "Look at the variable in the force function. If force is a function of time $t$, use $a = \\frac{dv}{dt}$. If force is a function of displacement $x$, use $a = v\\frac{dv}{dx}$. If force is a function of velocity $v$, you can use either, but the question will usually guide you towards finding either $v(t)$ or $v(x)$."
+    },
+    {
+      "q": "Can I ever use the suvat equations in this topic?",
+      "a": "Only if you can prove that the net force on the particle is constant. If the force is given as a function like $F(t) = 2t$ or $F(x) = 3/x^2$, then the force is variable, acceleration is variable, and the suvat equations are not valid."
+    },
+    {
+      "q": "What's the difference between work done and the work-energy principle in these problems?",
+      "a": "They are directly related. The work done by the net force on a particle equals the change in its kinetic energy. When you solve the equation $F(x) = mv\\frac{dv}{dx}$ by integrating to get $\\int F(x)\\,dx = \\int mv\\,dv$, you are actually using the work-energy principle. The left side is the work done, and the right side integrates to $\\frac{1}{2}mv^2$, representing kinetic energy."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In your previous studies, you've likely spent a lot of time with the 'suvat' equations, which perfectly describe motion under constant acceleration. However, in the real world, forces are rarely constant. The thrust of a rocket changes as it burns fuel, air resistance increases with speed, and the gravitational pull of a planet varies with distance. This topic equips you with the calculus-based tools needed to analyse these more complex and realistic scenarios."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's Second Law as a Differential Equation"
+    },
+    {
+      "type": "text",
+      "content": "The cornerstone of all dynamics problems is Newton's Second Law, $F=ma$. When the force $F$ is not constant, the acceleration $a$ is also not constant. Since acceleration is the rate of change of velocity, and velocity is the rate of change of displacement, we are inherently dealing with derivatives. This means that the equation $F=ma$ becomes a differential equation."
+    },
+    {
+      "type": "formula",
+      "content": "F_{net} = m \\times a"
+    },
+    {
+      "type": "text",
+      "content": "The key is to express the acceleration $a$ in a form that is useful for the given problem. This depends on whether the force is a function of time, displacement, or velocity."
+    },
+    {
+      "type": "heading",
+      "content": "The Three Forms of Acceleration"
+    },
+    {
+      "type": "text",
+      "content": "Choosing the correct expression for acceleration is the most critical first step in solving these problems. Your choice will determine the variables in your differential equation and how you go about solving it."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**If force depends on time, $F(t)$:** Use $a = \\frac{dv}{dt}$. The equation of motion is $F(t) = m\\frac{dv}{dt}$. You can integrate with respect to $t$ to find $v(t)$.",
+        "**If force depends on displacement, $F(x)$:** Use $a = v\\frac{dv}{dx}$. The equation of motion is $F(x) = mv\\frac{dv}{dx}$. You can solve by separating variables to find a relationship between $v$ and $x$.",
+        "**If force depends on velocity, $F(v)$:** You have a choice. Use $a = \\frac{dv}{dt}$ to find $v$ as a function of $t$, or use $a = v\\frac{dv}{dx}$ to find $v$ as a function of $x$. The question will guide you."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle P of mass 0.5 kg moves in a straight line. At time $t$ seconds, the net force acting on P is $(2t+1)$ N. When $t=0$, the particle is at rest at the origin O. Find the velocity and displacement of P from O when $t=4$ s.",
+      "solution": "The force is a function of time, $F(t) = 2t+1$. We use Newton's Second Law, $F=ma$.\n\n$2t+1 = 0.5a$\n\nSince force is a function of time, we use $a = \\frac{dv}{dt}$.\n\n$2t+1 = 0.5 \\frac{dv}{dt}$\n\n$4t+2 = \\frac{dv}{dt}$\n\nTo find $v$, we integrate with respect to $t$:\n\n$v = \\int (4t+2) \\,dt = 2t^2 + 2t + C$\n\nWe are given that P is at rest when $t=0$, so $v=0$ when $t=0$. \n$0 = 2(0)^2 + 2(0) + C \\implies C=0$.\n\nSo, the velocity at time $t$ is $v = 2t^2 + 2t$.\n\nWhen $t=4$ s:\n$v = 2(4)^2 + 2(4) = 2(16) + 8 = 32 + 8 = 40$ m/s.\n\nTo find displacement $x$, we use $v = \\frac{dx}{dt}$.\n\n$\\frac{dx}{dt} = 2t^2 + 2t$\n\nIntegrate with respect to $t$:\n\n$x = \\int (2t^2 + 2t) \\,dt = \\frac{2}{3}t^3 + t^2 + D$\n\nWe are given that P is at the origin when $t=0$, so $x=0$ when $t=0$.\n$0 = \\frac{2}{3}(0)^3 + (0)^2 + D \\implies D=0$.\n\nSo, the displacement at time $t$ is $x = \\frac{2}{3}t^3 + t^2$.\n\nWhen $t=4$ s:\n$x = \\frac{2}{3}(4)^3 + (4)^2 = \\frac{2}{3}(64) + 16 = \\frac{128}{3} + \\frac{48}{3} = \\frac{176}{3} \\approx 58.7$ m (3 s.f.).\n\n**Answer:** At $t=4$ s, velocity is 40 m/s and displacement is $\\frac{176}{3}$ m."
+    },
+    {
+      "type": "heading",
+      "content": "Force Dependent on Displacement"
+    },
+    {
+      "type": "text",
+      "content": "When the force on a particle depends on its position, such as the force exerted by a spring or gravitational attraction, we must relate force to acceleration via displacement. This is where the $a = v \\frac{dv}{dx}$ form is essential. This leads to a differential equation that can be solved by the method of separation of variables."
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle of mass 2 kg is acted on by a force of magnitude $\\frac{18}{x^2}$ N, directed away from the origin O. The particle is projected from the point $x=3$ with a velocity of 4 m/s towards O. Find its speed when it reaches the point $x=6$.",
+      "solution": "The force is a function of displacement, $F(x) = \\frac{18}{x^2}$. The force is directed away from O, so it's in the positive $x$ direction.\n\nUsing Newton's Second Law, $F=ma$:\n\n$\\frac{18}{x^2} = 2a$\n\nSince force is a function of $x$, we use $a = v\\frac{dv}{dx}$.\n\n$\\frac{18}{x^2} = 2v\\frac{dv}{dx}$\n\n$\\frac{9}{x^2} = v\\frac{dv}{dx}$\n\nNow, we separate the variables:\n\n$\\int \\frac{9}{x^2} \\,dx = \\int v \\,dv$\n\nIntegrating both sides:\n\n$-\\frac{9}{x} + C = \\frac{1}{2}v^2$\n\nWe are given the initial conditions: at $x=3$, the velocity is $4$ m/s towards O. Since the positive direction is away from O, the velocity is $v = -4$ m/s.\n\nSubstitute these values to find C:\n\n$-\\frac{9}{3} + C = \\frac{1}{2}(-4)^2$\n\n$-3 + C = \\frac{1}{2}(16) = 8$\n\n$C = 11$\n\nSo the relationship between $v$ and $x$ is: $\\frac{1}{2}v^2 = 11 - \\frac{9}{x}$.\n\nWe need to find the speed when $x=6$. Speed is the magnitude of velocity. Let's find $v^2$.\n\nAt $x=6$:\n\n$\\frac{1}{2}v^2 = 11 - \\frac{9}{6} = 11 - 1.5 = 9.5$\n\n$v^2 = 19$\n\n$v = \\pm\\sqrt{19}$\n\nThe speed is the magnitude of the velocity, which is $|v|$.\n\nSpeed = $\\sqrt{19} \\approx 4.36$ m/s (3 s.f.).\n\n**Answer:** The speed of the particle at $x=6$ is $\\sqrt{19}$ m/s."
+    },
+    {
+      "type": "examTip",
+      "content": "Always state which form of acceleration you are using ($a=\\frac{dv}{dt}$ or $a=v\\frac{dv}{dx}$). This clarifies your method and can earn you marks even if you make a later calculation error. Also, be extremely careful with signs. Define a positive direction at the start of the problem and stick to it for all vector quantities (displacement, velocity, force)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9231&topic=3.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Further Mechanics: Variable Force - Khan Academy",
+          "href": "https://www.khanacademy.org/science/physics/work-and-energy/work-and-energy-tutorial/a/work-and-the-work-energy-theorem-for-variable-forces"
+        },
+        {
+          "label": "CIE 9231 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-further-mathematics-9231/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

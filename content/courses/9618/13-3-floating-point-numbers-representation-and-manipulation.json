@@ -4,29 +4,179 @@
   "title": "Floating-point numbers, representation and manipulation",
   "paper": "P3",
   "paperName": "Advanced Theory",
-  "status": "premium",
-  "summary": "9618 A Level — IEEE-style mantissa and exponent, normalisation, and precision limits.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores floating-point number representation, a system used by computers to store real numbers with a decimal point. We will cover the roles of the mantissa and exponent, the process of converting denary numbers into this format, and the crucial concept of normalisation. The trade-offs between range and precision based on bit allocation will also be examined.",
+  "durationMin": 28,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Convert denary numbers to floating-point binary.",
-    "Normalise floating-point representations.",
-    "Explain precision and rounding errors.",
-    "Compare range and accuracy trade-offs."
+    "Describe the structure of a floating-point number, consisting of a mantissa and an exponent.",
+    "Convert a denary number into a normalised binary floating-point number and vice versa.",
+    "Understand and apply the process of normalisation to floating-point numbers.",
+    "Explain the consequences of allocating a fixed number of bits for the mantissa and exponent on the number's range and precision."
   ],
   "simpleExplanation": {
-    "title": "Real numbers in binary",
-    "summary": "Floating-point stores mantissa and exponent. Normalisation maximises precision for a given bit allocation.",
+    "title": "Scientific Notation for Computers",
+    "summary": "Floating-point is how computers handle numbers that are very large, very small, or have a fractional part. It's like scientific notation, splitting a number into a significant value (the mantissa) and a power-of-two scale factor (the exponent).",
+    "analogy": "Imagine writing down the distance to the sun. You wouldn't write 150,000,000,000 metres; you'd write it in scientific notation as $1.5 \\times 10^{11}$ metres. This separates the core digits (1.5) from the scale (the power of 11). Floating-point representation does the exact same thing for computers, but using binary (base 2) instead of denary (base 10).",
     "steps": [
-      "Value ≈ mantissa × 2^exponent.",
-      "Normalise: one non-zero digit before binary point.",
-      "Overflow/underflow at range limits.",
-      "Rounding causes small errors in calculations."
+      "Convert the denary number into a fixed-point binary number (e.g., 9.75 becomes 1001.11).",
+      "Move the binary point so it's at the beginning, creating a fractional number. This is called normalisation.",
+      "Count how many places the binary point moved. This value becomes the exponent.",
+      "Store the normalised mantissa and the exponent as two's complement binary numbers using the specified number of bits."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are the two components of a floating-point number?",
+      "back": "The mantissa and the exponent."
+    },
+    {
+      "front": "What does the mantissa represent?",
+      "back": "The significant digits of the number. It holds the value, or precision, of the number."
+    },
+    {
+      "front": "What does the exponent represent?",
+      "back": "The power to which the base (usually 2) is raised. It indicates how many places to shift the binary point, determining the number's magnitude or range."
+    },
+    {
+      "front": "What is normalisation in floating-point representation?",
+      "back": "The process of adjusting the mantissa and exponent so that the number is represented in a standardised format, maximising precision. For Cambridge A-Level, this means the mantissa must start with '0.1' for positive numbers and '1.0' for negative numbers."
+    },
+    {
+      "front": "Why is normalisation important?",
+      "back": "It ensures a unique representation for each number and maximises the number of significant bits stored in the mantissa, thereby increasing precision."
+    },
+    {
+      "front": "How is a negative floating-point number typically represented?",
+      "back": "The mantissa is stored using two's complement representation. The exponent can also be negative and is also stored using two's complement."
+    },
+    {
+      "front": "What is the effect of allocating more bits to the mantissa?",
+      "back": "It increases the precision of the number, meaning more significant digits can be stored accurately."
+    },
+    {
+      "front": "What is the effect of allocating more bits to the exponent?",
+      "back": "It increases the range of the number, meaning much larger and much smaller magnitudes can be represented."
+    },
+    {
+      "front": "What is floating-point overflow?",
+      "back": "An error that occurs when a number is too large in magnitude to be represented by the available exponent bits."
+    },
+    {
+      "front": "What is floating-point underflow?",
+      "back": "An error that occurs when a number is too small in magnitude (too close to zero) to be represented. The number is rounded to zero."
+    },
+    {
+      "front": "How do you convert a normalised positive mantissa (e.g., 01101000) to its negative equivalent?",
+      "back": "Use the two's complement method: flip all the bits (10010111) and then add 1 (10011000)."
+    },
+    {
+      "front": "What is the relationship between the mantissa, exponent, and the real number?",
+      "back": "Real Number = Mantissa × 2^Exponent"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the normalisation rule for negative numbers '1.0...'?",
+      "a": "This is a convention to ensure a unique representation. A normalised negative number in two's complement will always have its most significant bits as '10...'. The '1' indicates it's negative, and the '0' that follows is the most significant bit of the magnitude, ensuring no leading zeros are wasted after the sign bit, thus maximising precision."
+    },
+    {
+      "q": "What is the difference between floating-point overflow and underflow?",
+      "a": "Overflow occurs when a calculation results in a number whose magnitude is too large to be represented by the exponent (e.g., trying to store a number larger than the maximum possible value). Underflow occurs when a number is too small (i.e., too close to zero) to be represented, and the computer must round it down to zero."
+    },
+    {
+      "q": "How do I convert from a normalised floating-point number back to denary?",
+      "a": "First, convert the mantissa and exponent from two's complement binary to denary fractions/integers. Then, apply the formula: Denary Value = Mantissa × 2^Exponent. For example, if the mantissa is 0.11 (0.75) and the exponent is 3, the value is 0.75 × 2^3 = 0.75 × 8 = 6."
+    },
+    {
+      "q": "Can the exponent be negative?",
+      "a": "Yes. A negative exponent means the binary point should be shifted to the right in the mantissa, which results in a number smaller than the mantissa's value (i.e., a number between -1 and 1, excluding 0). The exponent is stored in two's complement, so it can represent both positive and negative values."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Floating-point** (13.3) extends AS **1.1** representation. Show **binary working** — examiners award method marks." },
-    { "type": "practice", "label": "Mark a floating-point question", "href": "/mark?subject=9618&topic=13.3" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In previous topics, we've seen how integers are stored using systems like two's complement. However, these systems cannot represent fractional numbers or extremely large/small values efficiently. To solve this, computers use floating-point representation, a method analogous to scientific notation that can handle a vast range of real numbers."
+    },
+    {
+      "type": "heading",
+      "content": "The Structure of a Floating-Point Number"
+    },
+    {
+      "type": "text",
+      "content": "A floating-point number is not stored as a single binary value. Instead, the bits allocated to it are split into two distinct parts: the mantissa and the exponent. Both parts are typically stored as signed binary numbers using the two's complement system."
+    },
+    {
+      "type": "formula",
+      "content": "Value = Mantissa \\times 2^{Exponent}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mantissa**: A fixed-point binary fraction that holds the significant digits of the number. Its sign bit (Most Significant Bit) indicates whether the number is positive (0) or negative (1). It determines the number's **precision**.",
+        "**Exponent**: A binary integer that represents the power of 2 by which the mantissa should be multiplied. It determines the position of the binary point and thus the number's **range** (magnitude)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Conversion and Normalisation"
+    },
+    {
+      "type": "text",
+      "content": "Converting a denary number to floating-point involves several steps. The most critical is normalisation, which standardises the format to maximise precision. For the Cambridge syllabus, a normalised positive number has a mantissa starting '01' (representing 0.1...), and a normalised negative number has a mantissa starting '10' (representing -0.1...). This is achieved by shifting the binary point and adjusting the exponent accordingly."
+    },
+    {
+      "type": "workedExample",
+      "question": "Represent the denary number **13.5** in normalised floating-point format using a **10-bit mantissa** and a **6-bit exponent**. Both should use two's complement.",
+      "solution": "1. **Convert to Binary:**\n   - Integer part: $13_{10} = 8 + 4 + 1 = 1101_2$\n   - Fractional part: $0.5_{10} = 1/2 = .1_2$\n   - Combined: $13.5_{10} = 1101.1_2$\n\n2. **Normalise the Binary Number:**\n   - To make the mantissa start with '0.1', we must shift the binary point 4 places to the left: $1101.1 \\rightarrow .11011$\n   - The number is positive, so the mantissa starts '0.1...'. This format is correct: $0.11011$.\n\n3. **Determine the Exponent:**\n   - We shifted the point 4 places to the left, so the exponent is $+4$.\n   - Convert 4 to 6-bit two's complement: $4_{10} = 000100_2$.\n\n4. **Format the Mantissa:**\n   - The normalised value is $0.11011$.\n   - In a 10-bit two's complement format, we pad with zeros: $0110110000_2$.\n\n**Final Answer:**\n- **Mantissa:** `0110110000`\n- **Exponent:** `000100`"
+    },
+    {
+      "type": "workedExample",
+      "question": "Represent the denary number **-5.25** in normalised floating-point format using an **8-bit mantissa** and a **4-bit exponent**. Both should use two's complement.",
+      "solution": "1. **Convert the positive equivalent to Binary:**\n   - First, consider +5.25.\n   - Integer part: $5_{10} = 4 + 1 = 101_2$\n   - Fractional part: $0.25_{10} = 1/4 = .01_2$\n   - Combined: $5.25_{10} = 101.01_2$\n\n2. **Normalise the positive binary number:**\n   - Shift the binary point 3 places to the left: $101.01 \\rightarrow .10101$\n   - The mantissa for +5.25 is $0.10101$.\n\n3. **Determine the Exponent:**\n   - We shifted the point 3 places, so the exponent is $+3$.\n   - Convert 3 to 4-bit two's complement: $3_{10} = 0011_2$.\n\n4. **Format the Mantissa for the negative number:**\n   - First, write the positive mantissa in 8-bit form: $01010100_2$.\n   - Now, convert to a negative number using two's complement:\n     - Invert the bits: `10101011`\n     - Add 1: `10101100`\n   - This mantissa starts with '10', which is the correct normalised form for a negative number.\n\n**Final Answer:**\n- **Mantissa:** `10101100`\n- **Exponent:** `0011`"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the normalisation rules: the mantissa for a positive number must start `0.1`, and for a negative number, it must start `1.0`. Always double-check the number of bits specified for both the mantissa and the exponent in the exam question, as this is a common source of error."
+    },
+    {
+      "type": "heading",
+      "content": "Impact of Bit Allocation: Range vs. Precision"
+    },
+    {
+      "type": "text",
+      "content": "The total number of bits for a floating-point number is fixed. How these bits are divided between the mantissa and the exponent creates a fundamental trade-off. Allocating more bits to one part means fewer bits are available for the other."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**More bits for Mantissa**: Increases **precision**. The number can store more significant figures, reducing rounding errors. However, this leaves fewer bits for the exponent, **decreasing the range**.",
+        "**More bits for Exponent**: Increases **range**. The system can represent much larger and smaller numbers (further from zero). However, this leaves fewer bits for the mantissa, **decreasing precision**.",
+        "This trade-off means a floating-point system is designed for either high precision or a wide range, but cannot maximise both simultaneously within a fixed bit length."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Exam questions frequently ask about the consequences of changing the bit allocation. For example, 'What would be the effect of increasing the number of bits used for the exponent?'. The answer should always mention the impact on both range (increases) and precision (decreases)."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Floating-Point Numbers",
+      "href": "/mark?subject=9618&topic=13.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge A-Level CS Syllabus (9618)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        },
+        {
+          "label": "Online Floating-Point Converter",
+          "href": "https://www.h-schmidt.net/FloatConverter/IEEE754.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

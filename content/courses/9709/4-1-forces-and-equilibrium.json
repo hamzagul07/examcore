@@ -4,39 +4,224 @@
   "title": "Forces and equilibrium",
   "paper": "P4",
   "paperName": "Mechanics",
-  "status": "premium",
-  "summary": "9709 Mechanics — resolving forces, equilibrium, friction, and free-body diagrams with PhET forces sim.",
+  "status": "pilot",
+  "summary": "This lesson introduces the fundamental principles of statics, focusing on forces and the conditions for equilibrium. It covers resolving forces into components, constructing free-body diagrams, and understanding the concept of equilibrium where the net force is zero. The topic also explores friction, including the coefficient of friction and the state of limiting equilibrium, particularly in the context of objects on inclined planes.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Represent forces as vectors and resolve components.",
-    "Apply conditions for equilibrium in 2D.",
-    "Use F ≤ μR for limiting friction.",
-    "Draw and interpret free-body diagrams."
+    "Identify all forces acting on a body in a given situation and draw a free-body diagram.",
+    "Resolve forces into components in two perpendicular directions.",
+    "Apply the conditions for equilibrium ($sum F_x = 0, sum F_y = 0$) to solve for unknown forces and angles.",
+    "Understand and use the model of friction, $F \\le \\mu R$, and solve problems involving limiting equilibrium."
   ],
   "simpleExplanation": {
-    "title": "Forces in balance",
-    "summary": "Equilibrium means no net force and no net moment. Resolve along and perpendicular to slopes — weight mg always acts vertically.",
+    "title": "The Balancing Act of Forces",
+    "summary": "Equilibrium is all about balance. For an object to stay still or move at a steady speed, all the pushes and pulls (forces) on it must cancel each other out perfectly.",
+    "analogy": "Imagine a tug-of-war. If both teams pull with exactly the same strength, the rope doesn't move – that's equilibrium. If one team pulls even slightly harder, the balance is broken and the rope accelerates. Mechanics problems are just a more advanced version of this tug-of-war, often with forces pulling in many different directions.",
     "steps": [
-      "Components: F cos θ along plane, F sin θ perpendicular.",
-      "Equilibrium: ΣF_x = 0, ΣF_y = 0.",
-      "Limiting friction F = μR when about to slip.",
-      "Normal reaction R ⊥ to surface, not always equal to mg."
+      "A force is a vector, having both magnitude and direction. We can split any force into two perpendicular 'component' forces, which is essential for analysing forces that aren't purely horizontal or vertical.",
+      "For an object to be in equilibrium (balanced), the net force must be zero. This means the sum of all force components in any direction must be zero; for example, total force up equals total force down.",
+      "Friction is a force that opposes sliding, but it has a limit. When an object is on the verge of slipping, it's in 'limiting equilibrium', and the friction force is at its maximum value, given by $F_{max} = \\mu R$.",
+      "To solve any forces problem, always start by drawing a free-body diagram. This means drawing the object by itself and adding arrows to represent every single external force acting on it, such as weight, tension, and reaction forces."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a 'force' in mechanics?",
+      "back": "A push or a pull on an object that can cause it to accelerate (change its velocity). It is a vector quantity, possessing both magnitude (in Newtons, N) and direction."
+    },
+    {
+      "front": "What does it mean for a body to be in 'equilibrium'?",
+      "back": "The body is either at rest or moving with a constant velocity. This occurs when the vector sum of all forces acting on it is zero (the resultant force is zero)."
+    },
+    {
+      "front": "What is a 'free-body diagram'?",
+      "back": "A diagram showing a single, isolated body and all the external forces acting upon it. Internal forces are not shown."
+    },
+    {
+      "front": "What is the 'Normal Reaction' force?",
+      "back": "A contact force exerted by a surface on an object. It always acts perpendicular to the surface at the point of contact."
+    },
+    {
+      "front": "A common mistake is to assume the Normal Reaction, R, is always equal to the weight, mg. When is this NOT true?",
+      "back": "R is not equal to mg if the surface is inclined, or if there are other vertical forces acting on the object (e.g., someone pushing down on it, or a rope pulling up)."
+    },
+    {
+      "front": "What is 'friction'?",
+      "back": "A force that opposes the motion or attempted motion between two surfaces in contact. It always acts parallel to the surfaces."
+    },
+    {
+      "front": "What is the 'coefficient of friction', $\\mu$?",
+      "back": "A dimensionless number that represents the 'roughness' between two surfaces. It's the ratio of the maximum frictional force to the normal reaction force: $\\mu = F_{max} / R$."
+    },
+    {
+      "front": "What is 'limiting equilibrium'?",
+      "back": "The state where an object is on the point of sliding. In this specific case, the frictional force has reached its maximum possible value, $F_{max} = \\mu R$."
+    },
+    {
+      "front": "Is the force of friction always equal to $\\mu R$?",
+      "back": "No. The force of friction $F$ satisfies the inequality $F \\le \\mu R$. It is only equal to $\\mu R$ when the object is in limiting equilibrium (on the verge of sliding)."
+    },
+    {
+      "front": "How do you resolve the weight, $mg$, of an object on a plane inclined at angle $\\theta$?",
+      "back": "The component of weight acting perpendicular to the plane is $mg \\cos\\theta$. The component of weight acting parallel to the plane is $mg \\sin\\theta$."
+    },
+    {
+      "front": "What is the difference between 'tension' and 'thrust'?",
+      "back": "Tension is a pulling force in a string, rope, or light rod. Thrust is a pushing force, usually associated with a rigid rod or an engine."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between mass and weight?",
+      "a": "Mass is a measure of the amount of matter in an object, measured in kilograms (kg). It is a scalar quantity and is the same everywhere. Weight is the force of gravity acting on an object's mass, measured in Newtons (N). It is a vector quantity ($W=mg$) and its value depends on the local gravitational field strength, $g$."
+    },
+    {
+      "q": "When resolving forces, how do I know whether to use sin or cos?",
+      "a": "It depends on which angle you are using. A good rule is SOH CAH TOA. If you have a force F at an angle $\\theta$ to the x-axis, the component adjacent to the angle $\\theta$ (the x-component) is $F \\cos\\theta$. The component opposite the angle $\\theta$ (the y-component) is $F \\sin\\theta$. Always draw a right-angled triangle with the force as the hypotenuse to be certain."
+    },
+    {
+      "q": "If a question says a surface is 'smooth', what does that mean?",
+      "a": "In mechanics, 'smooth' is a code word for 'frictionless'. It means you can assume the coefficient of friction is zero and there is no frictional force acting parallel to the surface. You still need to include the normal reaction force, which acts perpendicular to the surface."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Forces and equilibrium** (4.1) precedes **Newton's laws** (4.4) and **energy** (4.5). A clear **FBD** often earns the first 2 marks."
+      "content": "Welcome to the study of forces and equilibrium. This topic forms the bedrock of mechanics, explaining why structures stand and objects remain stationary. We will explore how to identify, represent, and calculate forces to ensure that an object is in a state of balance, a concept governed by Newton's First Law of Motion. Mastering these principles is key to solving a vast range of mechanics problems."
+    },
+    {
+      "type": "heading",
+      "content": "Representing Forces: Free-Body Diagrams"
+    },
+    {
+      "type": "text",
+      "content": "The first and most critical step in any mechanics problem is to create a clear picture of the forces involved. We do this using a free-body diagram. The process involves isolating the object of interest and drawing arrows to represent every single external force acting *on* that object. It is crucial not to include forces that the object exerts on its surroundings."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Draw the object as a simple shape or particle.",
+        "Draw the weight (W = mg) acting vertically downwards from the centre of mass.",
+        "If the object is on a surface, draw the Normal Reaction (R) acting perpendicular to the surface.",
+        "If a string or rope is attached, draw a Tension (T) force pulling away from the object along the string.",
+        "If there is friction, draw the frictional force (F) acting parallel to the surface, opposing the direction of motion or potential motion.",
+        "Include any other applied forces (pushes or pulls) given in the problem."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Conditions for Equilibrium"
+    },
+    {
+      "type": "text",
+      "content": "An object is in equilibrium if it is not accelerating. This means it is either stationary or moving at a constant velocity. For this to happen, the net force acting on the object must be zero. Since force is a vector, this means the vector sum of all forces must be the zero vector."
+    },
+    {
+      "type": "formula",
+      "content": "\\sum \\vec{F} = 0"
+    },
+    {
+      "type": "text",
+      "content": "In a 2D system, we can make this condition much more practical by 'resolving' forces. This involves choosing two perpendicular directions (like horizontal and vertical) and stating that the sum of the force components in each of these directions must be zero. This gives us two independent equations to work with."
+    },
+    {
+      "type": "formula",
+      "content": "\\sum F_x = 0 \\quad \\text{and} \\quad \\sum F_y = 0"
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle is held in equilibrium by three forces, $\\mathbf{F}_1$, $\\mathbf{F}_2$ and $\\mathbf{F}_3$. Given that $\\mathbf{F}_1 = (6\\mathbf{i} - 2\\mathbf{j})$ N and $\\mathbf{F}_2 = (-2\\mathbf{i} + 5\\mathbf{j})$ N, find the force $\\mathbf{F}_3$ and calculate its magnitude and the angle it makes with the positive x-axis.",
+      "solution": "For the particle to be in equilibrium, the vector sum of the forces must be zero.\\\n$\\mathbf{F}_1 + \\mathbf{F}_2 + \\mathbf{F}_3 = \\mathbf{0}$\\\n$(6\\mathbf{i} - 2\\mathbf{j}) + (-2\\mathbf{i} + 5\\mathbf{j}) + \\mathbf{F}_3 = \\mathbf{0}$\\\n$(4\\mathbf{i} + 3\\mathbf{j}) + \\mathbf{F}_3 = \\mathbf{0}$\\\n$\\mathbf{F}_3 = -4\\mathbf{i} - 3\\mathbf{j}$ N.\\\n\nTo find the magnitude of $\\mathbf{F}_3$:\\\n$|\\mathbf{F}_3| = \\sqrt{(-4)^2 + (-3)^2} = \\sqrt{16 + 9} = \\sqrt{25} = 5$ N.\\\n\nTo find the angle, let's first find the angle $\\alpha$ the vector makes with the negative x-axis in the third quadrant.\\\n$\\tan \\alpha = \\frac{\\text{opposite}}{\\text{adjacent}} = \\frac{3}{4}$\\\n$\\alpha = \\tan^{-1}(0.75) \\approx 36.9^\\circ$.\\\nThis angle is measured from the negative x-axis into the third quadrant. The angle measured anti-clockwise from the positive x-axis is $\\theta = 180^\\circ + 36.9^\\circ = 216.9^\\circ$.\\\nAlternatively, the angle is $- (180^\\circ - 36.9^\\circ) = -143.1^\\circ$ from the positive x-axis. Both $217^\\circ$ and $-143^\\circ$ (to 3 s.f.) are acceptable answers."
+    },
+    {
+      "type": "heading",
+      "content": "Friction and Limiting Equilibrium"
+    },
+    {
+      "type": "text",
+      "content": "When a surface is 'rough', it can exert a frictional force. This force opposes motion and acts parallel to the surface. The maximum frictional force a surface can provide is proportional to the normal reaction force. The constant of proportionality is the coefficient of friction, $\\mu$."
+    },
+    {
+      "type": "formula",
+      "content": "F \\le \\mu R"
+    },
+    {
+      "type": "text",
+      "content": "The inequality shows that the frictional force, $F$, can take any value from zero up to its maximum, $\\mu R$. The system will generate just enough friction to maintain equilibrium, if possible. If an object is on the verge of sliding, we say it is in 'limiting equilibrium', and in this specific case, the friction is at its maximum value: $F = \\mu R$."
+    },
+    {
+      "type": "examTip",
+      "content": "In questions asking for a 'range of values' for a force to maintain equilibrium on a rough slope, you must consider two separate limiting cases: 1) The object is about to slide UP the slope (so friction acts DOWN). 2) The object is about to slide DOWN the slope (so friction acts UP). This will give you the maximum and minimum values for the required force."
+    },
+    {
+      "type": "workedExample",
+      "question": "A block of mass 20 kg rests on a rough plane inclined at $25^\\circ$ to the horizontal. The coefficient of friction between the block and the plane is 0.3. A force of magnitude $P$ N acts on the block, parallel to a line of greatest slope. Find the range of possible values of $P$ for the block to remain in equilibrium. (Use $g = 9.8 \\text{ m s}^{-2}$)",
+      "solution": "First, draw a free-body diagram and resolve the weight ($20g$ N) into components parallel and perpendicular to the plane.\\\nWeight component perpendicular to plane: $W_\\perp = 20g \\cos(25^\\circ)$.\\\nWeight component parallel to plane: $W_\\parallel = 20g \\sin(25^\\circ)$.\\\n\nStep 1: Find the normal reaction, R. Resolve forces perpendicular to the plane.\\\n$\\sum F_\\perp = 0 \\implies R - 20g \\cos(25^\\circ) = 0$\\\n$R = 20(9.8) \\cos(25^\\circ) = 196 \\times 0.9063... = 177.63...$ N.\\\n\nStep 2: Find the maximum possible frictional force, $F_{max}$.\\\n$F_{max} = \\mu R = 0.3 \\times 177.63... = 53.29...$ N.\\\n\nStep 3: Find the maximum value of P ($P_{max}$). This occurs when the block is about to slide UP the plane, so friction acts DOWN the plane.\\\nResolve forces parallel to the plane: $\\sum F_\\parallel = 0$\\\n$P_{max} - W_\\parallel - F_{max} = 0$\\\n$P_{max} = 20g \\sin(25^\\circ) + F_{max}$\\\n$P_{max} = 20(9.8) \\sin(25^\\circ) + 53.29...$\\\n$P_{max} = 196 \\times 0.4226... + 53.29... = 82.83... + 53.29... = 136.12...$ N.\\\n\nStep 4: Find the minimum value of P ($P_{min}$). This occurs when the block is about to slide DOWN the plane, so friction acts UP the plane.\\\nResolve forces parallel to the plane: $\\sum F_\\parallel = 0$\\\n$P_{min} + F_{max} - W_\\parallel = 0$\\\n$P_{min} = W_\\parallel - F_{max}$\\\n$P_{min} = 82.83... - 53.29... = 29.54...$ N.\\\n\nStep 5: State the final answer.\\\nThe block remains in equilibrium if $29.5 \\le P \\le 136$. (Values given to 3 significant figures)."
     },
     {
       "type": "practice",
-      "label": "Mark a forces question",
+      "label": "Test your understanding with exam-style questions on Forces and Equilibrium.",
       "href": "/mark?subject=9709&topic=4.1"
     },
     {
       "type": "resources",
-      "items": [{ "label": "9709 course index", "href": "/courses/9709" }]
+      "items": [
+        {
+          "label": "PhET Simulation: Forces and Motion",
+          "href": "https://phet.colorado.edu/en/simulations/forces-and-motion-basics"
+        },
+        {
+          "label": "Khan Academy: Introduction to forces and Newton's laws",
+          "href": "https://www.khanacademy.org/science/physics/forces-newtons-laws"
+        }
+      ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Forces and motion",
+    "embedUrl": "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/forces-and-motion-basics",
+    "hint": "Resolve forces — equilibrium when net force is zero (9709 4.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Force as vector — resolve into perpendicular components.",
+        "embedHint": "Split weight mg into parallel/perpendicular on slope."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Equilibrium: ΣF = 0 (no translation); Στ = 0 (no rotation).",
+        "embedHint": "Set sum of horizontal and vertical components zero."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Limiting friction: F ≤ μR — object on point of sliding.",
+        "embedHint": "Compare driving force to μR on incline."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Free-body diagram — isolate object, show all external forces.",
+        "embedHint": "Normal reaction perpendicular to surface."
+      }
+    ]
+  }
 }

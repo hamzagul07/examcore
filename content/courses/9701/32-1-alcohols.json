@@ -4,29 +4,237 @@
   "title": "Alcohols",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level alcohols — classification, oxidation, dehydration, and esterification.",
+  "status": "pilot",
+  "summary": "This lesson introduces alcohols, a class of organic compounds containing the hydroxyl (-OH) functional group. It covers their classification into primary, secondary, and tertiary types, and explores their key chemical reactions including oxidation, dehydration to form alkenes, and esterification with carboxylic acids. Emphasis is placed on the reagents, conditions, and products for each reaction, which are fundamental to A-Level organic chemistry.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Classify primary, secondary, and tertiary alcohols.",
-    "Predict oxidation products under different conditions.",
-    "Describe dehydration to alkenes.",
-    "Outline esterification and test distinctions."
+    "Classify alcohols as primary, secondary, or tertiary based on their structure.",
+    "Describe and predict the products of the oxidation of primary, secondary, and tertiary alcohols, stating the necessary reagents and conditions.",
+    "Explain the mechanism and products of alcohol dehydration to form alkenes.",
+    "Describe the conditions and write equations for the esterification of alcohols with carboxylic acids."
   ],
   "simpleExplanation": {
-    "title": "A Level alcohol chemistry",
-    "summary": "A Level extends AS alcohol work with finer control of oxidation and mechanistic reasoning for elimination.",
+    "title": "Alcohols: The Versatile Functional Group",
+    "summary": "Alcohols are organic molecules containing the hydroxyl (-OH) group, which dictates their chemical behaviour. Their classification as primary, secondary, or tertiary determines how they react, particularly in oxidation.",
+    "analogy": "Think of alcohols like different types of employees in a workshop. A primary alcohol is a junior apprentice who can be promoted twice (to an aldehyde, then a carboxylic acid). A secondary alcohol is a skilled worker who can be promoted once (to a ketone). A tertiary alcohol is the workshop owner, already at the top and resistant to further promotion (oxidation).",
     "steps": [
-      "1° → aldehyde → carboxylic acid on further oxidation.",
-      "2° → ketone only.",
-      "3° resist oxidation without C–C cleavage.",
-      "Conc H₂SO₄ heat eliminates H₂O to alkene."
+      "Primary: –CH₂OH; secondary: –CHOH–; tertiary: –COH–. | Sim hint: Lucas test distinguishes 1°, 2°, 3°.",
+      "Oxidation: 1° → aldehyde → acid; 2° → ketone; 3° resistant. | Sim hint: Acidified dichromate or KMnO₄.",
+      "Dehydration with conc H₂SO₄ gives alkene. | Sim hint: Say which H is eliminated for 2° alcohol.",
+      "Esterification with carboxylic acid + acid catalyst. | Sim hint: Reversible — remove water."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a primary (1°) alcohol?",
+      "back": "An alcohol where the carbon atom bonded to the -OH group is attached to only one other alkyl group (or none, for methanol). General structure: RCH₂OH."
+    },
+    {
+      "front": "What is a secondary (2°) alcohol?",
+      "back": "An alcohol where the carbon atom bonded to the -OH group is attached to two other alkyl groups. General structure: R₂CHOH."
+    },
+    {
+      "front": "What is a tertiary (3°) alcohol?",
+      "back": "An alcohol where the carbon atom bonded to the -OH group is attached to three other alkyl groups. General structure: R₃COH."
+    },
+    {
+      "front": "Reagents and conditions for oxidation of a primary alcohol to an aldehyde?",
+      "back": "Reagent: Acidified potassium dichromate(VI) ($K_2Cr_2O_7 / H_2SO_4$). Conditions: Gentle heating and immediate distillation of the product to prevent further oxidation."
+    },
+    {
+      "front": "Reagents and conditions for oxidation of a primary alcohol to a carboxylic acid?",
+      "back": "Reagent: Acidified potassium dichromate(VI) ($K_2Cr_2O_7 / H_2SO_4$). Conditions: Strong heating under reflux to ensure the reaction goes to completion."
+    },
+    {
+      "front": "What is the product of oxidizing a secondary alcohol?",
+      "back": "A ketone. The reaction requires heating under reflux with an oxidising agent like acidified potassium dichromate(VI)."
+    },
+    {
+      "front": "What happens when you try to oxidise a tertiary alcohol with acidified $K_2Cr_2O_7$?",
+      "back": "Tertiary alcohols are resistant to oxidation under these conditions because the carbon atom attached to the -OH group has no hydrogen atoms to be removed. The orange solution remains orange."
+    },
+    {
+      "front": "What is the colour change observed when a primary or secondary alcohol is oxidised with acidified potassium dichromate(VI)?",
+      "back": "The orange solution, due to the dichromate(VI) ion ($Cr_2O_7^{2-}$), turns green as the chromium is reduced to the chromium(III) ion ($Cr^{3+}$)."
+    },
+    {
+      "front": "What are the reagents and conditions for the dehydration of an alcohol to an alkene?",
+      "back": "Either heat with a concentrated acid catalyst (e.g., conc. $H_2SO_4$ at 170°C or conc. $H_3PO_4$), or pass the alcohol vapour over a heated solid catalyst like aluminium oxide ($Al_2O_3$) at ~300°C."
+    },
+    {
+      "front": "What is esterification?",
+      "back": "The reversible reaction between an alcohol and a carboxylic acid to form an ester and water. It is an example of a condensation reaction and is catalysed by a strong acid (e.g., concentrated $H_2SO_4$)."
+    },
+    {
+      "front": "Why is reflux used to produce a carboxylic acid from a primary alcohol?",
+      "back": "Reflux involves continuous boiling, vaporisation, and condensation, returning reactants to the flask. This allows for prolonged heating at the boiling point without losing volatile substances, ensuring the intermediate aldehyde is fully oxidised to the carboxylic acid."
+    },
+    {
+      "front": "What is the Lucas test?",
+      "back": "A test to distinguish between primary, secondary, and tertiary alcohols using a reagent of anhydrous zinc chloride in concentrated HCl. Tertiary alcohols react fastest (cloudy immediately), secondary react slower (cloudy in minutes), and primary react very slowly or not at all at room temperature."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why can't tertiary alcohols be oxidised easily?",
+      "a": "Oxidation of an alcohol (with agents like dichromate) involves removing a hydrogen atom from the -OH group and another hydrogen from the carbon atom that is bonded to the -OH group. Tertiary alcohols do not have a hydrogen atom on this specific carbon, so this type of oxidation cannot occur without breaking a much stronger C-C bond, which requires very harsh conditions."
+    },
+    {
+      "q": "What's the difference between distillation and reflux for oxidation?",
+      "a": "Distillation separates substances by boiling point. When oxidising a primary alcohol, the aldehyde product has a lower boiling point than the alcohol and is distilled off as it forms, preventing its further oxidation. Reflux involves continuous boiling and condensation, returning the mixture to the reaction flask. This allows for prolonged heating at a constant temperature, ensuring the reaction goes to completion, which is necessary to fully oxidise a primary alcohol to a carboxylic acid."
+    },
+    {
+      "q": "If butan-2-ol is dehydrated, can it form two different alkenes?",
+      "a": "Yes. Dehydration of an unsymmetrical secondary alcohol like butan-2-ol can lead to a mixture of products by removing a hydrogen from an adjacent carbon. Elimination of the -OH group and a hydrogen from the adjacent methyl ($CH_3$) group gives but-1-ene. Elimination of the -OH group and a hydrogen from the adjacent methylene ($CH_2$) group gives but-2-ene. According to Saytzeff's (Zaitsev's) rule, the more substituted alkene (but-2-ene) is the major product. But-2-ene also exists as E/Z stereoisomers."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Alcohols** (32.1) at A Level builds on **16.1**. Compare **reagents, conditions, and products** for each class." },
-    { "type": "practice", "label": "Mark an alcohols question", "href": "/mark?subject=9701&topic=32.1" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Alcohols are a homologous series of organic compounds characterised by the presence of one or more hydroxyl (–OH) functional groups. Their general formula is $C_nH_{2n+1}OH$. The polarity of the O-H bond allows alcohols to form hydrogen bonds, influencing their physical properties like boiling points and solubility in water. Their chemical reactivity is largely determined by the hydroxyl group and the structure of the carbon skeleton to which it is attached."
+    },
+    {
+      "type": "heading",
+      "content": "Classification of Alcohols"
+    },
+    {
+      "type": "text",
+      "content": "Alcohols are classified as primary (1°), secondary (2°), or tertiary (3°) depending on the number of alkyl groups attached to the carbon atom that is bonded to the hydroxyl group. This classification is crucial as it dictates the products formed during oxidation reactions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Primary (1°)**: The carbon atom bonded to the –OH group is attached to one other alkyl group (or zero in methanol). Example: Ethanol, $CH_3CH_2OH$.",
+        "**Secondary (2°)**: The carbon atom bonded to the –OH group is attached to two other alkyl groups. Example: Propan-2-ol, $CH_3CH(OH)CH_3$.",
+        "**Tertiary (3°)**: The carbon atom bonded to the –OH group is attached to three other alkyl groups. Example: 2-methylpropan-2-ol, $(CH_3)_3COH$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Oxidation of Alcohols"
+    },
+    {
+      "type": "text",
+      "content": "Alcohols can be oxidised by strong oxidising agents, most commonly acidified potassium dichromate(VI), $K_2Cr_2O_7/H^+$, or acidified potassium manganate(VII), $KMnO_4/H^+$. The outcome of the reaction depends on the class of the alcohol and the reaction conditions. The oxidising agent is often represented by [O] in simplified equations."
+    },
+    {
+      "type": "text",
+      "content": "Primary alcohols can be oxidised in two stages. Partial oxidation, achieved by using a limited amount of oxidising agent and immediately distilling off the product, yields an aldehyde. Aldehydes have lower boiling points than alcohols as they cannot form hydrogen bonds. Complete oxidation, achieved by heating under reflux with an excess of the oxidising agent, yields a carboxylic acid."
+    },
+    {
+      "type": "formula",
+      "content": "Partial Oxidation: $CH_3CH_2OH + [O] \\xrightarrow{distil} CH_3CHO + H_2O$ <br> Complete Oxidation: $CH_3CH_2OH + 2[O] \\xrightarrow{reflux} CH_3COOH + H_2O$"
+    },
+    {
+      "type": "text",
+      "content": "Secondary alcohols are oxidised to ketones when heated under reflux with an oxidising agent. Further oxidation is not possible without breaking the carbon chain, which requires much harsher conditions."
+    },
+    {
+      "type": "formula",
+      "content": "$CH_3CH(OH)CH_3 + [O] \\xrightarrow{reflux} CH_3COCH_3 + H_2O$"
+    },
+    {
+      "type": "text",
+      "content": "Tertiary alcohols are resistant to oxidation. This is because the carbon atom attached to the -OH group does not have any hydrogen atoms that can be easily removed. Therefore, there is no reaction under typical oxidation conditions, and the oxidising agent (e.g., orange dichromate(VI)) remains unchanged in colour."
+    },
+    {
+      "type": "workedExample",
+      "question": "An alcohol, **A**, with the molecular formula $C_4H_{10}O$ is heated under reflux with acidified potassium dichromate(VI). The product, **B**, is a neutral compound that does not react with Fehling's solution. Identify the structures of **A** and **B**.",
+      "solution": "1.  The molecular formula $C_4H_{10}O$ corresponds to butanol isomers (butan-1-ol, butan-2-ol, 2-methylpropan-1-ol, 2-methylpropan-2-ol).\n2.  The alcohol is oxidised, so it must be a primary or secondary alcohol. This eliminates 2-methylpropan-2-ol (a tertiary alcohol).\n3.  The product **B** does not react with Fehling's solution. Fehling's solution is a test for aldehydes. This means **B** is not an aldehyde, so it must be a ketone.\n4.  Only secondary alcohols oxidise to form ketones. Therefore, alcohol **A** must be a secondary alcohol.\n5.  The only secondary alcohol with the formula $C_4H_{10}O$ is butan-2-ol, $CH_3CH(OH)CH_2CH_3$.\n6.  Oxidation of butan-2-ol gives the ketone butanone (also known as butan-2-one), $CH_3COCH_2CH_3$.\n\n**Answer**:\n**A** is butan-2-ol.\n**B** is butanone."
+    },
+    {
+      "type": "examTip",
+      "content": "Remember the key colour changes for redox reactions involving alcohols. With acidified potassium dichromate(VI), a positive test for a primary or secondary alcohol is a colour change from **orange** ($Cr_2O_7^{2-}$) to **green** ($Cr^{3+}$). With acidified potassium manganate(VII), the colour change is from **purple** ($MnO_4^−$) to **colourless** ($Mn^{2+}$). These are essential observations for practical-based questions."
+    },
+    {
+      "type": "heading",
+      "content": "Dehydration and Esterification"
+    },
+    {
+      "type": "text",
+      "content": "Dehydration is an elimination reaction where a molecule of water is removed from an alcohol to form an alkene. This is typically achieved by heating the alcohol with a concentrated acid catalyst, such as sulfuric acid or phosphoric(V) acid, or by passing the alcohol vapour over a heated solid catalyst like aluminium oxide."
+    },
+    {
+      "type": "formula",
+      "content": "$CH_3CH_2OH \\xrightarrow{conc. H_2SO_4, 170^\\circ C} CH_2=CH_2 + H_2O$"
+    },
+    {
+      "type": "text",
+      "content": "Esterification is the condensation reaction between an alcohol and a carboxylic acid to form an ester and water. The reaction is reversible and is catalysed by a strong acid, typically a few drops of concentrated sulfuric acid. To improve the yield of the ester, the water produced can be removed as it forms, shifting the equilibrium to the right according to Le Chatelier's principle."
+    },
+    {
+      "type": "formula",
+      "content": "$R-COOH + R'-OH \\rightleftharpoons R-COO-R' + H_2O \\quad (H^+ \\text{ catalyst, heat})$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Propan-1-ol is warmed with ethanoic acid in the presence of a few drops of concentrated sulfuric acid. Name and draw the displayed formula of the organic product formed.",
+      "solution": "1.  **Identify Reactants**: The reaction is between an alcohol (propan-1-ol, $CH_3CH_2CH_2OH$) and a carboxylic acid (ethanoic acid, $CH_3COOH$). This is an esterification reaction.\n2.  **Name the Ester**: The name of the ester is derived from the alcohol and the carboxylic acid. The alcohol part is named first, changing the '-ol' suffix to '-yl'. So, 'propan-1-ol' becomes 'propyl'. The acid part is named second, changing the '-oic acid' suffix to '-oate'. So, 'ethanoic acid' becomes 'ethanoate'.\n3.  **Combine Names**: The product is **propyl ethanoate**.\n4.  **Draw the Structure**: The ester functional group is -COO-. The part from the carboxylic acid ($CH_3CO-$) bonds to the oxygen from the alcohol, which is attached to its alkyl group ($-CH_2CH_2CH_3$).\n\n**Answer**:\nName: Propyl ethanoate\nDisplayed Formula: \n```\n      H   H   O    H   H   H\n      |   |  //    |   |   |\nH--C--C--C--O--C--C--C--H\n      |   |        |   |   |\n      H   H        H   H   H\n```\n(Structure is $CH_3COOCH_2CH_2CH_3$)"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Alcohols",
+      "href": "/mark?subject=9701&topic=32.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide: An Introduction to Alcohols",
+          "href": "https://www.chemguide.co.uk/organicprops/alcohols/background.html"
+        },
+        {
+          "label": "Khan Academy: Alcohol Properties and Reactions",
+          "href": "https://www.khanacademy.org/science/organic-chemistry/alcohols-ethers-epoxides-sulfides/properties-alcohols/v/introduction-to-alcohols"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Primary, secondary, tertiary alcohols and oxidation routes (32.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Primary: –CH₂OH; secondary: –CHOH–; tertiary: –COH–.",
+        "embedHint": "Lucas test distinguishes 1°, 2°, 3°."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Oxidation: 1° → aldehyde → acid; 2° → ketone; 3° resistant.",
+        "embedHint": "Acidified dichromate or KMnO₄."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Dehydration with conc H₂SO₄ gives alkene.",
+        "embedHint": "Say which H is eliminated for 2° alcohol."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Esterification with carboxylic acid + acid catalyst.",
+        "embedHint": "Reversible — remove water."
+      }
+    ]
+  }
 }

@@ -4,29 +4,261 @@
   "title": "Nitriles and hydroxynitriles",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS — nitrile formation, hydrolysis, and cyanohydrin addition.",
+  "status": "pilot",
+  "summary": "This lesson explores nitriles and hydroxynitriles, key intermediates in organic synthesis. We will cover their formation via nucleophilic substitution and addition reactions, and their subsequent conversion into carboxylic acids and primary amines, highlighting their role in extending carbon chains.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Prepare nitriles from halogenoalkanes.",
-    "Hydrolyse nitriles to carboxylic acids.",
-    "Form hydroxynitriles from aldehydes.",
-    "Use nitriles in synthetic routes."
+    "Describe the formation of nitriles from halogenoalkanes and the formation of hydroxynitriles from carbonyl compounds.",
+    "Explain the nucleophilic substitution and nucleophilic addition mechanisms involved in these formations.",
+    "Describe the hydrolysis of nitriles to form carboxylic acids.",
+    "Describe the reduction of nitriles to form primary amines."
   ],
   "simpleExplanation": {
-    "title": "Extending the carbon chain",
-    "summary": "Nitriles add one carbon. They hydrolyse to acids. Aldehydes react with HCN to give hydroxynitriles.",
+    "title": "Carbon Chain Builders",
+    "summary": "Nitriles and hydroxynitriles are your go-to tools for adding a single carbon atom to an organic molecule. These reactions typically involve a cyanide ion acting as a nucleophile to create a new carbon-carbon bond.",
+    "analogy": "Think of building a train. Your starting molecule is the main engine and carriages. To make the train longer, you need to add a new carriage. The cyanide ion (CN⁻) is that new carriage, and the reaction conditions (like reflux or an acid catalyst) are the coupling mechanism that securely attaches it, extending your molecular 'train' by one unit.",
     "steps": [
-      "RBr + KCN → RCN.",
-      "RCN + H₂O/H⁺ → RCOOH.",
-      "RCHO + HCN → RCH(OH)CN.",
-      "CN⁻ is nucleophile in both routes."
+      "A halogenoalkane reacts with potassium cyanide (KCN) in ethanol under reflux. The cyanide ion (CN⁻) acts as a nucleophile, replacing the halogen to form a nitrile.",
+      "Nitriles can be hydrolysed by heating with dilute acid (H⁺/H₂O). This breaks the C≡N triple bond and converts the group into a carboxylic acid (–COOH).",
+      "An aldehyde or ketone reacts with hydrogen cyanide (HCN). The CN⁻ nucleophile adds across the C=O double bond, forming a hydroxynitrile which has both an –OH and a –CN group.",
+      "The formation of nitriles and hydroxynitriles is a vital synthetic step. It extends the carbon chain, allowing for the subsequent creation of other functional groups like carboxylic acids or amines."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the functional group of a nitrile?",
+      "back": "The –C≡N group, where a carbon atom is triple-bonded to a nitrogen atom."
+    },
+    {
+      "front": "What are the reagents and conditions to form a nitrile from a halogenoalkane?",
+      "back": "Reagent: Potassium cyanide (KCN) dissolved in ethanol. Conditions: Heat under reflux."
+    },
+    {
+      "front": "What type of reaction is the formation of a nitrile from a halogenoalkane?",
+      "back": "Nucleophilic substitution."
+    },
+    {
+      "front": "Why is an ethanolic solvent used instead of an aqueous one when forming a nitrile from a halogenoalkane?",
+      "back": "To minimise the competing elimination reaction (where CN⁻ acts as a base) and to prevent hydrolysis of the halogenoalkane by water, which is a competing nucleophile."
+    },
+    {
+      "front": "What are the reagents to form a hydroxynitrile from an aldehyde?",
+      "back": "Potassium cyanide (KCN) or sodium cyanide (NaCN) followed by a dilute acid (e.g., H₂SO₄). This generates toxic HCN in situ."
+    },
+    {
+      "front": "What type of reaction is the formation of a hydroxynitrile from a carbonyl compound?",
+      "back": "Nucleophilic addition."
+    },
+    {
+      "front": "What are the products of the acid hydrolysis of propanenitrile?",
+      "back": "Propanoic acid (CH₃CH₂COOH) and an ammonium salt (e.g., ammonium chloride if HCl is used)."
+    },
+    {
+      "front": "What are the reagents and conditions for the acid hydrolysis of a nitrile?",
+      "back": "Reagent: Dilute aqueous acid (e.g., HCl(aq) or H₂SO₄(aq)). Conditions: Heat under reflux."
+    },
+    {
+      "front": "What is the product of the reduction of butanenitrile (CH₃CH₂CH₂CN)?",
+      "back": "Butylamine (CH₃CH₂CH₂CH₂NH₂), a primary amine."
+    },
+    {
+      "front": "What is a suitable reducing agent for converting a nitrile to a primary amine?",
+      "back": "Lithium tetrahydridoaluminate (LiAlH₄) in dry ether, followed by an aqueous workup."
+    },
+    {
+      "front": "Why does the reaction of propanal with KCN/H⁺ produce a racemic mixture?",
+      "back": "Propanal's carbonyl group is planar. The CN⁻ nucleophile can attack from above or below the plane with equal probability, forming two non-superimposable mirror images (enantiomers) in equal amounts."
+    },
+    {
+      "front": "What is the key synthetic utility of reactions forming nitriles?",
+      "back": "They increase the length of the carbon chain by exactly one carbon atom."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why must KCN be dissolved in ethanol, not water, when making a nitrile from a halogenoalkane?",
+      "a": "Using an ethanolic solvent is crucial for two reasons. Firstly, water is a nucleophile itself and would compete with the cyanide ion, leading to the formation of an alcohol (hydrolysis). Secondly, the cyanide ion can also act as a base. In the presence of water, it can cause an elimination reaction, producing an alkene instead of the desired nitrile. Ethanol is a less polar solvent and a weaker nucleophile, favouring the substitution pathway."
+    },
+    {
+      "q": "What is a racemic mixture and why is it formed when making hydroxynitriles?",
+      "a": "A racemic mixture (or racemate) is an equimolar (50:50) mixture of two enantiomers (non-superimposable mirror-image molecules). It is formed in this reaction because the starting aldehyde or unsymmetrical ketone has a planar carbonyl group. The incoming cyanide nucleophile has an equal probability of attacking from above the plane or below the plane, leading to the formation of both enantiomers in equal amounts. As a result, the product mixture is not optically active."
+    },
+    {
+      "q": "Is hydrogen cyanide (HCN) dangerous?",
+      "a": "Yes, hydrogen cyanide is an extremely toxic and volatile liquid (boiling point 26°C) that is lethal if inhaled or ingested. For safety reasons, it is almost never used directly in a laboratory setting. Instead, it is generated 'in situ' (within the reaction flask) by reacting a stable salt like potassium cyanide (KCN) or sodium cyanide (NaCN) with a dilute acid."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Nitriles and hydroxynitriles** (19.2) are key **synthesis steps** before **36.1 A Level routes**. Show **mechanism arrows** for HCN addition." },
-    { "type": "practice", "label": "Mark a nitriles question", "href": "/mark?subject=9701&topic=19.2" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Welcome to our lesson on nitriles and hydroxynitriles. These two families of compounds are incredibly important in organic synthesis. Their defining feature is the cyanide group (–C≡N), which provides a powerful method for extending the carbon skeleton of a molecule by one carbon atom. We will investigate how they are made and how they can be transformed into other useful functional groups like carboxylic acids and amines."
+    },
+    {
+      "type": "heading",
+      "content": "Formation of Nitriles from Halogenoalkanes"
+    },
+    {
+      "type": "text",
+      "content": "Nitriles can be synthesised from primary halogenoalkanes by heating them with a solution of potassium cyanide (KCN) in ethanol. This is a classic example of a nucleophilic substitution reaction. The cyanide ion, :C≡N⁻, is a potent nucleophile which attacks the electron-deficient (δ+) carbon atom of the C-Halogen bond, displacing the halide ion."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{R-X} + \\text{CN}^- \\xrightarrow{\\text{Ethanol, Reflux}} \\text{R-CN} + \\text{X}^-"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Reaction Type: Nucleophilic Substitution.",
+        "Reagent: Potassium cyanide, KCN.",
+        "Solvent: Ethanol. This is crucial as it minimises the competing elimination reaction that would be favoured in an aqueous solution where CN⁻ can also act as a base.",
+        "Conditions: Heat under reflux. This allows the reaction to be heated for a prolonged period without losing volatile reactants or solvent.",
+        "Outcome: The carbon chain is extended by one carbon atom."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Reactions of Nitriles"
+    },
+    {
+      "type": "text",
+      "content": "Once formed, the nitrile group is a versatile intermediate that can be converted into other functional groups. The two key reactions you need to know are hydrolysis and reduction."
+    },
+    {
+      "type": "heading",
+      "content": "1. Hydrolysis to Carboxylic Acids"
+    },
+    {
+      "type": "text",
+      "content": "Nitriles can be hydrolysed to form carboxylic acids by heating them under reflux with a dilute aqueous acid, such as hydrochloric acid or sulfuric acid. During this reaction, the C≡N triple bond is broken, and the carbon atom becomes part of a carboxyl group (–COOH), while the nitrogen atom forms an ammonium ion ($NH_4^+$)."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{R-CN} + 2\\text{H}_2\\text{O} + \\text{H}^+ \\xrightarrow{\\text{Reflux}} \\text{R-COOH} + \\text{NH}_4^+"
+    },
+    {
+      "type": "text",
+      "content": "Alternatively, alkaline hydrolysis can be performed by heating the nitrile with an aqueous alkali like sodium hydroxide. This initially produces a carboxylate salt (e.g., R-COO⁻Na⁺) and ammonia gas. To obtain the final carboxylic acid, the resulting solution must be acidified with a strong acid."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Step 1: } \\text{R-CN} + \\text{OH}^- + \\text{H}_2\\text{O} \\xrightarrow{\\text{Reflux}} \\text{R-COO}^- + \\text{NH}_3 \\\\ \\text{Step 2: } \\text{R-COO}^- + \\text{H}^+ \\rightarrow \\text{R-COOH}"
+    },
+    {
+      "type": "workedExample",
+      "question": "Devise a two-step synthesis for butanoic acid starting from 1-bromopropane. For each step, state the reagents, conditions, and write a balanced equation.",
+      "solution": "**Step 1: Formation of butanenitrile from 1-bromopropane.**\n\n*   **Reagents:** Potassium cyanide in ethanol (KCN in C₂H₅OH).\n*   **Conditions:** Heat under reflux.\n*   **Reaction Type:** Nucleophilic substitution.\n*   **Equation:**\n    $\\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{Br} + \\text{KCN} \\rightarrow \\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{CN} + \\text{KBr}$\n\n**Step 2: Hydrolysis of butanenitrile to butanoic acid.**\n\n*   **Reagents:** Dilute sulfuric acid (H₂SO₄(aq)) or dilute hydrochloric acid (HCl(aq)).\n*   **Conditions:** Heat under reflux.\n*   **Reaction Type:** Acid hydrolysis.\n*   **Equation:**\n    $\\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{CN} + 2\\text{H}_2\\text{O} + \\text{H}^+ \\rightarrow \\text{CH}_3\\text{CH}_2\\text{CH}_2\\text{COOH} + \\text{NH}_4^+$"
+    },
+    {
+      "type": "heading",
+      "content": "2. Reduction to Primary Amines"
+    },
+    {
+      "type": "text",
+      "content": "Nitriles can be reduced to primary amines using a strong reducing agent. The standard reagent for this at A-level is lithium tetrahydridoaluminate (LiAlH₄) in a dry ether solvent, followed by addition of water (aqueous workup). The reaction adds four hydrogen atoms across the C≡N triple bond."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{R-C} \\equiv \\text{N} + 4[\\text{H}] \\xrightarrow{\\text{1. LiAlH}_4 \\text{ in dry ether}} \\xrightarrow{\\text{2. H}_2\\text{O}} \\text{R-CH}_2\\text{NH}_2"
+    },
+    {
+      "type": "examTip",
+      "content": "For exam purposes, when asked for the reagents for the reduction of a nitrile, stating 'LiAlH₄ in dry ether' is sufficient. The '[H]' in the equation represents the hydrogen atoms supplied by the reducing agent. Remember this reaction also extends the carbon chain and produces a primary amine."
+    },
+    {
+      "type": "heading",
+      "content": "Formation of Hydroxynitriles from Carbonyls"
+    },
+    {
+      "type": "text",
+      "content": "Aldehydes and ketones undergo nucleophilic addition with hydrogen cyanide (HCN) to form hydroxynitriles (also known as cyanohydrins). These molecules contain both a hydroxyl (–OH) group and a nitrile (–CN) group on the same carbon. Due to the high toxicity of HCN gas, it is generated *in situ* by reacting sodium or potassium cyanide with a dilute acid, such as H₂SO₄."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{RCHO} + \\text{HCN} \\xrightarrow{\\text{NaCN/H}^+} \\text{RCH(OH)CN}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Reaction Type: Nucleophilic Addition.",
+        "Reagents: NaCN(aq) or KCN(aq) with dilute H₂SO₄(aq).",
+        "Mechanism: The :CN⁻ nucleophile attacks the δ+ carbonyl carbon, and the intermediate O⁻ is protonated by H⁺ from the acid or HCN.",
+        "Product: A hydroxynitrile.",
+        "Stereochemistry: The reaction with aldehydes (except methanal) and unsymmetrical ketones produces a racemic mixture of enantiomers, as the planar carbonyl group can be attacked from either side with equal probability."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Ethanal reacts with acidified potassium cyanide. Name the organic product and outline the mechanism for its formation.",
+      "solution": "**Product Name:** 2-hydroxypropanenitrile.\n\n**Mechanism:** Nucleophilic Addition\n\n**Step 1:** The nucleophilic cyanide ion attacks the electron-deficient carbonyl carbon atom of ethanal. The π-bond in the C=O group breaks, and the pair of electrons moves onto the oxygen atom.\n\n*Diagrammatic representation: Arrow from the lone pair on the carbon of :C≡N⁻ to the C of the C=O group. A second arrow from the C=O double bond to the O atom.*\n\n$\\text{CH}_3\\text{CHO} + :\\text{CN}^- \\rightarrow [\\text{CH}_3\\text{CH(CN)O}]^-$ (intermediate)\n\n**Step 2:** The negatively charged oxygen atom of the intermediate is a strong base and is protonated by a hydrogen ion (from HCN or the acid catalyst) to form the hydroxyl group.\n\n*Diagrammatic representation: Arrow from a lone pair on the O⁻ of the intermediate to an H⁺ ion.*\n\n$[\\text{CH}_3\\text{CH(CN)O}]^- + \\text{H}^+ \\rightarrow \\text{CH}_3\\text{CH(OH)CN}$"
+    },
+    {
+      "type": "examTip",
+      "content": "When naming hydroxynitriles, always count the carbon from the nitrile group as part of the main chain. For example, reacting propanal (3 carbons) with HCN adds a carbon, so the main chain has 4 carbons. The product is 2-hydroxybutanenitrile, not 2-hydroxypropanenitrile."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Nitriles and Hydroxynitriles",
+      "href": "/mark?subject=9701&topic=19.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Chemguide page on Nitriles",
+          "href": "https://www.chemguide.co.uk/organicprops/nitriles/background.html"
+        },
+        {
+          "label": "Video tutorial on Nitrile and Hydroxynitrile reactions",
+          "href": "https://www.youtube.com/watch?v=s5iADp2iS_A"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Nitrile formation and hydroxynitrile addition (9701 19.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Halogenoalkane + KCN → nitrile (CN⁻ nucleophile).",
+        "embedHint": "Ethanol solvent, reflux."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Nitrile + H⁺/H₂O → carboxylic acid.",
+        "embedHint": "Hydrolysis."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Aldehyde + HCN → hydroxynitrile.",
+        "embedHint": "CN⁻ adds to C=O; product has –OH and –CN."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Hydroxynitrile useful for chain extension.",
+        "embedHint": "Synthetic step to acid/amino acid."
+      }
+    ]
+  }
 }

@@ -1,0 +1,175 @@
+{
+  "slug": "4-2-inference-using-normal-and-t-distributions",
+  "topicCode": "4.2",
+  "title": "Inference using normal and t-distributions",
+  "paper": "P4",
+  "paperName": "Paper 4: Further Probability & Statistics",
+  "status": "pilot",
+  "summary": "This lesson covers statistical inference for a single population mean. You will learn how to conduct hypothesis tests and construct confidence intervals using both the normal distribution and the t-distribution, and crucially, when to choose between them.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Formulate hypotheses and carry out a hypothesis test for a population mean using the normal distribution.",
+    "Formulate hypotheses and carry out a hypothesis test for a population mean using the t-distribution.",
+    "Calculate and interpret a confidence interval for a population mean using both the normal and t-distributions.",
+    "Understand the conditions under which each distribution is appropriate for inference."
+  ],
+  "simpleExplanation": {
+    "title": "Guessing with Confidence",
+    "summary": "We use data from a small sample to make an educated guess, or 'inference', about an entire population. The choice between the normal and t-distribution depends on whether we know the population's true variance and how large our sample is.",
+    "analogy": "Imagine you're a food critic trying to rate a huge pot of soup. You can't eat the whole thing, so you take a spoonful (a sample). Based on that spoonful, you infer the taste of the entire pot (the population). If you know the chef's recipe perfectly (known population variance), you can be quite precise. If you don't (unknown variance), you have to be a bit more cautious with your judgement, which is what the t-distribution helps us do – it gives a slightly wider, more conservative range for our conclusions.",
+    "steps": [
+      "Identify the parameter of interest (population mean, μ) and the sample statistics (mean x̄, variance s², size n).",
+      "Choose the distribution: Use the Normal distribution if the population variance σ² is known, or if the sample size n is large. Use the t-distribution if σ² is unknown and n is small.",
+      "For a hypothesis test, state the null (H₀) and alternative (H₁) hypotheses, then calculate the test statistic (z or t).",
+      "For a confidence interval, find the appropriate critical value (z* or t*) and calculate the interval: sample mean ± (critical value) × (standard error)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is statistical inference?",
+      "back": "The process of using data from a sample to deduce properties of an underlying population."
+    },
+    {
+      "front": "When do you use the normal distribution for inference on the mean?",
+      "back": "1. When the population variance (σ²) is known, and the population is normal (or n is large, by CLT). 2. When σ² is unknown, but the sample size (n) is large (typically n > 30), using the sample variance as an estimate."
+    },
+    {
+      "front": "When do you use the t-distribution for inference on the mean?",
+      "back": "When the population variance (σ²) is unknown, the sample size (n) is small, and the parent population is assumed to be normally distributed."
+    },
+    {
+      "front": "What is a confidence interval for a mean?",
+      "back": "A range of values, calculated from sample data, that is likely to contain the true population mean with a certain level of confidence."
+    },
+    {
+      "front": "What is the formula for the unbiased estimate of population variance, $s^2$?",
+      "back": "$s^2 = \\frac{1}{n-1} \\sum (x_i - \\bar{x})^2$. This is the value you must use when the population variance is unknown."
+    },
+    {
+      "front": "What is the test statistic for a hypothesis test using the normal distribution?",
+      "back": "$Z = \\frac{\\bar{X} - \\mu_0}{\\sigma / \\sqrt{n}}$ if $\\sigma$ is known, or $Z = \\frac{\\bar{X} - \\mu_0}{s / \\sqrt{n}}$ if $n$ is large and $\\sigma$ is unknown."
+    },
+    {
+      "front": "What is the test statistic for a hypothesis test using the t-distribution?",
+      "back": "$T = \\frac{\\bar{X} - \\mu_0}{s / \\sqrt{n}}$, where $s$ is the unbiased estimate of the population standard deviation. This statistic follows a t-distribution with $n-1$ degrees of freedom."
+    },
+    {
+      "front": "What are the degrees of freedom for a single-sample t-test?",
+      "back": "The degrees of freedom (df) are $v = n - 1$, where $n$ is the sample size."
+    },
+    {
+      "front": "What is the general formula for a confidence interval?",
+      "back": "Point Estimate ± (Critical Value) × (Standard Error). For a mean, this is $\\bar{x} \\pm \\text{critical value} \\times \\frac{\\text{std dev}}{\\sqrt{n}}$."
+    },
+    {
+      "front": "What is a common trap when calculating a t-statistic?",
+      "back": "Using a biased sample variance (dividing by $n$) instead of the unbiased estimate (dividing by $n-1$). Exam questions may provide $\\sum(x-\\bar{x})^2$ or a biased variance, requiring you to calculate the correct $s^2$ yourself."
+    },
+    {
+      "front": "How does the width of a confidence interval change with the confidence level?",
+      "back": "A higher confidence level (e.g., 99% vs 95%) requires a wider interval, as you need a larger range to be more certain it contains the true mean."
+    },
+    {
+      "front": "What is a p-value?",
+      "back": "The probability of observing a test statistic as extreme as, or more extreme than, the one calculated, assuming the null hypothesis is true. If p-value < significance level (α), you reject H₀."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a one-tailed and a two-tailed test?",
+      "a": "A two-tailed test checks for a difference in either direction (e.g., $H_1: \\mu \\neq 50$). The significance level $\\alpha$ is split between the two tails. A one-tailed test checks for a difference in a specific direction (e.g., $H_1: \\mu > 50$ or $H_1: \\mu < 50$). The entire significance level $\\alpha$ is in one tail."
+    },
+    {
+      "q": "Why do we use n-1 for the degrees of freedom in a t-test?",
+      "a": "It relates to the calculation of the sample variance, $s^2$. When we calculate the sum of squared deviations from the sample mean, $\\sum(x_i - \\bar{x})^2$, only $n-1$ of these deviations are free to vary. Once the first $n-1$ values and the sample mean are known, the last value is fixed. This 'loss' of one degree of freedom is reflected in the t-distribution."
+    },
+    {
+      "q": "What if the population isn't normal and the sample size is small?",
+      "a": "If the sample size is small and you cannot assume the population is normal, neither the z-test nor the t-test is appropriate. In this situation, you would need to use non-parametric tests (e.g., a sign test or Wilcoxon signed-rank test), which are covered in other parts of the syllabus and do not assume a particular distribution for the population."
+    },
+    {
+      "q": "How do I know if a sample size is 'large' enough to use the normal distribution?",
+      "a": "A common rule of thumb in A-Level Further Mathematics is that a sample size $n > 30$ is considered large enough for the Central Limit Theorem to apply, allowing you to use the normal distribution even if the population variance is unknown. For exams, if $n$ is around this value or higher, this is the expected approach."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In the real world, we rarely have access to data for an entire population. We can't weigh every apple from an orchard or measure the battery life of every phone produced. Statistical inference provides a powerful framework for making reliable conclusions about a whole population based on just a small sample. This lesson focuses on the population mean, $\\mu$, and introduces two key tools: the normal distribution and the t-distribution. Mastering when and how to use them is fundamental to drawing valid conclusions from data."
+    },
+    {
+      "type": "heading",
+      "content": "Choosing Your Distribution: Normal vs. t-distribution"
+    },
+    {
+      "type": "text",
+      "content": "The choice between using the normal distribution and the t-distribution is a critical first step. It depends on what you know about the population and the size of your sample. The t-distribution is like a 'cautious' version of the normal distribution, with heavier tails to account for the extra uncertainty we have when the population variance is unknown and our sample is small."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Population Variance $\\sigma^2$ Known**: If you know the true variance of the population, you should always use the normal distribution for inference on the mean, provided the underlying population is normal or the sample size is large (Central Limit Theorem).",
+        "**Population Variance $\\sigma^2$ Unknown & Sample Size Large ($n > 30$)**: If you don't know $\\sigma^2$ but have a large sample, the Central Limit Theorem allows you to use the normal distribution. You use the unbiased sample variance $s^2$ as an estimate for $\\sigma^2$.",
+        "**Population Variance $\\sigma^2$ Unknown & Sample Size Small ($n \\le 30$)**: If you don't know $\\sigma^2$ and have a small sample, you must use the t-distribution. This is conditional on the assumption that the underlying population from which the sample is drawn is normally distributed."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Hypothesis Testing for a Population Mean"
+    },
+    {
+      "type": "text",
+      "content": "A hypothesis test allows us to assess the evidence for a claim about a population parameter. For the mean $\\mu$, we start with a null hypothesis ($H_0$), which is a statement of no effect (e.g., $\\mu = 50$), and an alternative hypothesis ($H_1$), which is what we are trying to find evidence for (e.g., $\\mu \\neq 50$, $\\mu > 50$, or $\\mu < 50$). We then calculate a test statistic from our sample and compare it to a critical value from the appropriate distribution to decide whether to reject $H_0$."
+    },
+    {
+      "type": "formula",
+      "content": "Test Statistic (Normal): $Z = \\frac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}}$ \\\\ Test Statistic (t-distribution): $T = \\frac{\\bar{X} - \\mu_0}{s/\\sqrt{n}}$ with $v = n-1$ degrees of freedom."
+    },
+    {
+      "type": "workedExample",
+      "question": "A coffee machine is supposed to dispense a mean volume of 200 ml. The volume dispensed is believed to be normally distributed. A sample of 8 cups is taken, and the volumes are measured. The sample mean is found to be 197 ml, and the unbiased estimate of the population variance is $s^2 = 36\\text{ ml}^2$. Test, at the 5% significance level, whether the mean volume dispensed is less than 200 ml.",
+      "solution": "Let $\\mu$ be the population mean volume of coffee dispensed.\\\n**1. State Hypotheses:**\\\n$H_0: \\mu = 200$\\\n$H_1: \\mu < 200$\\\nThis is a one-tailed test.\\\n\n**2. Choose Distribution and Significance Level:**\\\nPopulation variance $\\sigma^2$ is unknown. Sample size $n=8$ is small. The population is stated to be normal. Therefore, we use a t-distribution.\\\nSignificance level, $\\alpha = 0.05$.\\\nDegrees of freedom, $v = n - 1 = 8 - 1 = 7$.\\\n\n**3. Calculate the Test Statistic:**\\\nSample mean, $\\bar{x} = 197$.\\\nUnbiased estimate of population variance, $s^2 = 36$, so $s = \\sqrt{36} = 6$.\\\nTest statistic: $T = \\frac{\\bar{x} - \\mu_0}{s/\\sqrt{n}} = \\frac{197 - 200}{6/\\sqrt{8}}$\\\n$T = \\frac{-3}{6/2.828...} = \\frac{-3}{2.121...} = -1.414$\\\n\n**4. Find the Critical Value:**\\\nWe need the critical value for a one-tailed test at the 5% level with 7 degrees of freedom. From t-distribution tables, $t_{7}(0.05) = 1.895$. Since our test is for $\\mu < 200$, the critical region is $T < -1.895$.\\\n\n**5. Make a Decision and Conclude:**\\\nOur calculated test statistic is $T = -1.414$.\\\nSince $-1.414 > -1.895$, the test statistic does not fall in the critical region. \\\nTherefore, we do not reject $H_0$.\\\nThere is insufficient evidence at the 5% significance level to suggest that the mean volume of coffee dispensed is less than 200 ml."
+    },
+    {
+      "type": "heading",
+      "content": "Confidence Intervals for a Population Mean"
+    },
+    {
+      "type": "text",
+      "content": "A confidence interval provides a range of plausible values for the population mean, based on our sample data. A 95% confidence interval means that if we were to repeat our sampling process an infinite number of times, 95% of the intervals we construct would contain the true population mean. The width of the interval depends on the confidence level, the sample size, and the variation in the data."
+    },
+    {
+      "type": "formula",
+      "content": "Confidence Interval (Normal): $\\bar{x} \\pm z^* \\frac{\\sigma}{\\sqrt{n}}$ \\\\ Confidence Interval (t-distribution): $\\bar{x} \\pm t^* \\frac{s}{\\sqrt{n}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The reaction times of 50 randomly selected drivers are measured. The sample mean reaction time is 0.83 seconds. Assume the population standard deviation of reaction times is known to be 0.15 seconds. Calculate a 99% confidence interval for the mean reaction time of all drivers.",
+      "solution": "Let $\\mu$ be the population mean reaction time.\\\n**1. Identify Information and Choose Distribution:**\\\nSample mean, $\\bar{x} = 0.83$.\\\nPopulation standard deviation, $\\sigma = 0.15$.\\\nSample size, $n = 50$.\\\nConfidence level = 99%.\\\nSince the population standard deviation $\\sigma$ is known, we use the normal distribution.\\\n\n**2. Find the Critical Value ($z^*$):**\\\nFor a 99% confidence interval, we have $1 - \\alpha = 0.99$, so $\\alpha = 0.01$.\\\nWe need the z-value that leaves $\\alpha/2 = 0.005$ in each tail. \\\nLooking up the value for a cumulative probability of $1 - 0.005 = 0.995$ in the normal distribution table gives $z^* = 2.576$.\\\n\n**3. Calculate the Margin of Error:**\\\nStandard Error (SE) = $\\frac{\\sigma}{\\sqrt{n}} = \\frac{0.15}{\\sqrt{50}} \\approx 0.021213$.\\\nMargin of Error = $z^* \\times \\text{SE} = 2.576 \\times 0.021213 \\approx 0.05466$.\\\n\n**4. Construct the Interval:**\\\nCI = $\\bar{x} \\pm$ Margin of Error\\\nCI = $0.83 \\pm 0.05466$\\\nCI = $(0.83 - 0.05466, 0.83 + 0.05466)$\\\nCI = $(0.77534, 0.88466)$\\\n\n**5. Conclude:**\\\nA 99% confidence interval for the mean reaction time is (0.775, 0.885) seconds (to 3 d.p.). We are 99% confident that the true mean reaction time for all drivers lies within this range."
+    },
+    {
+      "type": "examTip",
+      "content": "Always state your hypotheses clearly, defining any parameters used. When using the t-distribution, you must state the assumption that the underlying population is normal. Pay close attention to whether the question gives you the sample variance or the *unbiased estimate* of the population variance. If you are given $\\sum(x-\\bar{x})^2$, you must calculate $s^2 = \\frac{1}{n-1}\\sum(x-\\bar{x})^2$ yourself. Finally, always write your conclusion in the context of the original problem."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=9231&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Normal Distribution Table",
+          "href": "https://www.cambridgeinternational.org/Images/368032-further-mathematics-formulae-and-statistical-tables.pdf"
+        },
+        {
+          "label": "t-Distribution Table",
+          "href": "https://www.cambridgeinternational.org/Images/368032-further-mathematics-formulae-and-statistical-tables.pdf"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

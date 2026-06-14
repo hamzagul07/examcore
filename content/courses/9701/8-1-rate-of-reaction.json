@@ -4,60 +4,233 @@
   "title": "Rate of reaction",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS reaction rates, collision theory, and limiting reagents — with PhET Reactants, Products, and Leftovers simulation.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces the concept of reaction rate, defined as the change in concentration of reactants or products over time. We will explore the fundamental principles of collision theory and investigate how factors such as concentration, temperature, pressure, surface area, and catalysts influence the speed of a chemical reaction. Finally, we will cover the experimental techniques used to measure and quantify reaction rates.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Define rate of reaction and describe methods of measuring it.",
-    "Explain collision theory: frequency, energy, and orientation of collisions.",
-    "Identify limiting reagents from mole ratios.",
-    "Describe how concentration, surface area, temperature, and catalysts affect rate."
+    "Define 'rate of reaction' and explain the term 'activation energy' ($E_a$).",
+    "Explain qualitatively, using collision theory, the effects of concentration, pressure, temperature, and surface area on reaction rate.",
+    "Describe and explain the role of catalysts in providing an alternative reaction pathway with a lower activation energy.",
+    "Outline different experimental methods for measuring rates of reaction by monitoring changes in mass, gas volume, or concentration."
   ],
   "simpleExplanation": {
-    "title": "How fast do products form?",
-    "summary": "Rate measures how quickly reactants are used or products formed. Collisions must be frequent enough and energetic enough (≥ activation energy) for reaction to occur.",
+    "title": "The Speed of Chemistry",
+    "summary": "Reaction rate is simply how fast reactants are converted into products. This speed is governed by how often and how energetically particles collide with each other.",
+    "analogy": "Imagine you're in a quiet library. You're unlikely to bump into anyone. Now, picture a crowded concert. People are everywhere, moving quickly and bumping into each other constantly. Chemical reactions are similar: the more particles (concentration) and the faster they move (temperature), the more 'collisions' happen, and the faster the reaction proceeds.",
     "steps": [
-      "Rate = change in concentration / time (or mass loss, gas volume, etc.).",
-      "More collisions per second → faster rate (higher concentration, smaller particles).",
-      "More collisions with E ≥ Ea → faster rate (higher temperature, catalyst lowers Ea).",
-      "Limiting reagent runs out first — maximum product from the stoichiometric ratio."
+      "Rate depends on the frequency of collisions between particles and the energy they possess when they collide.",
+      "The limiting reagent is the reactant that gets completely used up first, determining the maximum amount of product that can be formed.",
+      "Factors like surface area, concentration, temperature, and the presence of a catalyst can all be adjusted to change the rate of reaction.",
+      "We can measure reaction rates by tracking a noticeable change over time, such as the loss of mass, the volume of gas produced, or a change in colour."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the formal definition of 'rate of reaction'?",
+      "back": "The change in concentration of a reactant or product per unit time. The standard units are mol dm⁻³ s⁻¹."
+    },
+    {
+      "front": "According to collision theory, what two conditions must be met for a reaction to occur?",
+      "back": "1. Particles must collide with energy equal to or greater than the activation energy ($E_a$). 2. Particles must collide with the correct geometric orientation."
+    },
+    {
+      "front": "Define 'activation energy' ($E_a$).",
+      "back": "The minimum kinetic energy that colliding particles must possess for a successful collision to result in a chemical reaction."
+    },
+    {
+      "front": "How does increasing the concentration of an aqueous reactant affect the reaction rate?",
+      "back": "It increases the number of reactant particles per unit volume. This leads to more frequent collisions, increasing the rate of reaction."
+    },
+    {
+      "front": "For a reaction involving gases, how does increasing the pressure affect the rate?",
+      "back": "Increasing pressure forces the gas particles closer together, increasing their concentration. This results in more frequent collisions and therefore a faster reaction rate."
+    },
+    {
+      "front": "Why does increasing temperature cause a large increase in reaction rate?",
+      "back": "Two reasons: 1. Particles have more kinetic energy, move faster, and collide more frequently. 2. Crucially, a significantly larger proportion of particles now have energy greater than or equal to the activation energy ($E_a$), leading to a much higher frequency of successful collisions."
+    },
+    {
+      "front": "How does a catalyst speed up a chemical reaction?",
+      "back": "A catalyst provides an alternative reaction pathway with a lower activation energy ($E_a$). This means a greater proportion of collisions are successful, increasing the rate. The catalyst is not consumed."
+    },
+    {
+      "front": "What is the effect of increasing the surface area of a solid reactant?",
+      "back": "It exposes more particles of the solid to the other reactant(s). This increases the frequency of collisions at the surface, leading to a faster rate of reaction."
+    },
+    {
+      "front": "Suggest a method to follow the rate of the reaction: $CaCO_3(s) + 2HCl(aq) \\rightarrow CaCl_2(aq) + H_2O(l) + CO_2(g)$",
+      "back": "Monitor the volume of carbon dioxide gas produced at regular time intervals using a gas syringe, or monitor the decrease in total mass of the flask and contents as CO₂ escapes."
+    },
+    {
+      "front": "What does the gradient of a concentration vs. time graph represent?",
+      "back": "The gradient at any point on the curve represents the instantaneous rate of reaction at that time. The initial rate is the gradient at t=0."
+    },
+    {
+      "front": "Why does the rate of most reactions decrease over time?",
+      "back": "As the reaction proceeds, the concentration of reactants decreases. This leads to a lower frequency of collisions between reactant particles, causing the reaction rate to slow down."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the initial rate of a reaction the fastest?",
+      "a": "The initial rate (at time t=0) is the maximum rate for a reaction because the concentrations of the reactants are at their highest. This results in the greatest frequency of collisions, and therefore the highest rate of successful collisions."
+    },
+    {
+      "q": "Does a catalyst get used up in a reaction?",
+      "a": "No, a catalyst is chemically unchanged at the end of a reaction. While it may participate in intermediate steps of the reaction mechanism, it is always regenerated, so its overall quantity remains constant."
+    },
+    {
+      "q": "How do I accurately draw a tangent to a curve to find the rate?",
+      "a": "Place a ruler on the graph so it touches the curve at the specific time point you are interested in. Adjust the ruler's angle until it appears to 'balance' on the curve at that single point, with the gaps between the ruler and the curve looking equal on either side of the point of contact. Draw a long line to make it easier to read coordinates for the gradient calculation (Δy/Δx)."
+    },
+    {
+      "q": "Is rate of reaction always positive?",
+      "a": "Yes, the rate of reaction is always quoted as a positive value. When calculating the rate from the change in concentration of a reactant, you will get a negative value because its concentration decreases. The formula for rate with respect to a reactant is Rate = -Δ[Reactant]/Δt, which makes the final rate positive."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Rate of reaction** connects kinetics (topic 8) to stoichiometry (topic 2). Cambridge combines **collision theory explanations** with **quantitative limiting reagent** calculations."
+      "content": "Some chemical reactions, like explosions, are over in an instant. Others, like the rusting of iron, can take years. The study of reaction rates, or chemical kinetics, explores why these differences exist and what factors we can control to speed up or slow down a reaction. This is vital in industrial processes, where maximising product formation in the shortest time is key to profitability, and in biology, where enzymes control the pace of life itself."
+    },
+    {
+      "type": "heading",
+      "content": "Collision Theory: The Basis of Reaction Rates"
+    },
+    {
+      "type": "text",
+      "content": "For a reaction to occur, reactant particles must physically interact. Collision theory is a model that explains how these interactions lead to a chemical change. It states that for a collision to be 'successful' or 'effective'—that is, to result in the formation of products—two conditions must be met simultaneously."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Rate decreases as reactants are used up — graph levels off at limiting reagent exhaustion",
-        "Catalyst provides alternative route with lower Ea — not consumed overall",
-        "Only surface area of solids affects rate (not mass alone)",
-        "Measuring rate: gas syringe, balance (mass loss), colorimeter, titration of samples"
+        "**Energy Condition:** The colliding particles must have a combined kinetic energy that is equal to or greater than a minimum value called the activation energy ($E_a$). This energy is needed to break existing bonds and initiate the reaction.",
+        "**Orientation Condition:** The particles must collide in the correct spatial orientation, allowing the relevant atoms to come into contact and form new bonds."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The rate of a reaction, therefore, depends on the frequency of successful collisions. Anything that increases the frequency of total collisions or, more importantly, the proportion of collisions that are successful, will increase the reaction rate."
+    },
+    {
+      "type": "heading",
+      "content": "Factors Affecting the Rate of Reaction"
+    },
+    {
+      "type": "text",
+      "content": "We can manipulate several factors to alter the rate of a reaction. Each factor influences the rate by affecting the frequency or energy of particle collisions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Concentration (for solutions) & Pressure (for gases):** Increasing the concentration or pressure means there are more reactant particles in a given volume. This leads to more frequent collisions between particles, and thus a higher frequency of successful collisions, increasing the reaction rate.",
+        "**Temperature:** Increasing the temperature gives particles more kinetic energy. This has a dual effect: particles move faster, leading to more frequent collisions, and a significantly larger proportion of particles possess energy greater than or equal to the activation energy. This second effect is the primary reason for the substantial increase in rate with temperature.",
+        "**Surface Area:** For reactions involving a solid, breaking it into smaller pieces (e.g., from a lump to a powder) increases its surface area. This exposes more reactant particles to collisions, increasing the frequency of collisions and thus the reaction rate.",
+        "**Catalyst:** A catalyst is a substance that increases the rate of a reaction without being consumed itself. It does this by providing an alternative reaction pathway with a lower activation energy. This means that at the same temperature, a much larger fraction of collisions will be successful."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When explaining the effect of temperature on rate, a top-level answer must mention both points: increased collision frequency AND a greater proportion of particles having energy ≥ $E_a$. The second point carries more marks as it's the more significant factor."
+    },
+    {
+      "type": "heading",
+      "content": "Measuring Reaction Rates Experimentally"
+    },
+    {
+      "type": "text",
+      "content": "To determine the rate of a reaction, we must measure a change in a measurable quantity over a period of time. The choice of method depends on the specific reaction and the states of the reactants and products."
+    },
+    {
+      "type": "formula",
+      "content": "Rate of reaction = \\frac{\\text{change in quantity of reactant or product}}{\\text{time taken}}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Change in Gas Volume:** If a gas is produced, its volume can be collected and measured at regular time intervals using a gas syringe or by displacing water in an inverted measuring cylinder.",
+        "**Change in Mass:** If a gas is produced and allowed to escape from an open flask, the total mass of the flask and its contents will decrease. This mass loss can be monitored over time using a digital balance.",
+        "**Change in Concentration:** The concentration of a reactant or product can be measured at intervals. This is often done by taking small samples ('aliquots') and performing a titration ('quenching' the reaction first), or by using instrumental methods like colorimetry if a coloured substance is involved."
       ]
     },
     {
       "type": "workedExample",
-      "question": "2.0 g of Mg (Mr = 24) reacts with excess HCl. Calculate max H₂ volume at rtp. (Mg + 2HCl → MgCl₂ + H₂)",
-      "solution": "n(Mg) = 2.0/24 = 0.083 mol\n\nRatio 1:1 for Mg:H₂ → n(H₂) = 0.083 mol\n\nVolume = 0.083 × 24 = **2.0 dm³** at rtp"
+      "question": "The reaction between magnesium ribbon and excess hydrochloric acid produces hydrogen gas. The volume of hydrogen collected was recorded over time. A tangent drawn to the curve at t = 0 s had a gradient of +3.6 cm³ s⁻¹. Calculate the initial rate of reaction in mol s⁻¹. (Assume the experiment was conducted at room temperature and pressure, where the molar volume of a gas is 24,000 cm³ mol⁻¹).",
+      "solution": "1. **Identify the given rate:** The gradient of the volume-time graph gives the rate in cm³ s⁻¹. Initial rate = 3.6 cm³ s⁻¹.\n2. **Identify the conversion factor:** The molar volume of a gas at RTP is 24,000 cm³ mol⁻¹. This means 1 mole of H₂ occupies 24,000 cm³.\n3. **Set up the calculation:** To convert from a volume (cm³) to moles (mol), we divide by the molar volume.\n   Rate in mol s⁻¹ = Rate in cm³ s⁻¹ / Molar Volume\n   Rate = 3.6 cm³ s⁻¹ / 24,000 cm³ mol⁻¹\n4. **Calculate the final answer:**\n   Rate = 0.00015 mol s⁻¹\n   In standard form, this is **1.5 x 10⁻⁴ mol s⁻¹**."
+    },
+    {
+      "type": "workedExample",
+      "question": "In the decomposition of hydrogen peroxide, $2H_2O_2(aq) \\rightarrow 2H_2O(l) + O_2(g)$, the concentration of $H_2O_2$ was measured. At t = 60 s, the concentration was 0.500 mol dm⁻³. At t = 180 s, the concentration had fallen to 0.200 mol dm⁻³. Calculate the average rate of reaction over this interval.",
+      "solution": "1. **State the formula for rate:**\n   Rate = - (Change in concentration of reactant) / Time taken\n   Rate = - Δ[$H_2O_2$] / Δt\n   (The negative sign is used for a reactant because its concentration decreases. The final rate is always given as a positive value).\n2. **Calculate the change in concentration and time:**\n   Δ[$H_2O_2$] = Final concentration - Initial concentration = 0.200 - 0.500 = -0.300 mol dm⁻³\n   Δt = Final time - Initial time = 180 - 60 = 120 s\n3. **Substitute values into the formula:**\n   Rate = - (-0.300 mol dm⁻³) / 120 s\n4. **Calculate the final answer:**\n   Rate = 0.300 / 120 mol dm⁻³ s⁻¹\n   Rate = **0.0025 mol dm⁻³ s⁻¹** or **2.5 x 10⁻³ mol dm⁻³ s⁻¹**."
     },
     {
       "type": "examTip",
-      "content": "Collision theory answers need **three ideas**: more collisions per second, more collisions with E ≥ Ea, and correct **orientation** (for complex molecules). State all three for full explanation marks."
+      "content": "When calculating rate from a graph, always draw a large tangent to the curve. This minimises errors when reading the coordinates to calculate the gradient (Δy/Δx). Remember to state the units in your final answer, which are typically mol dm⁻³ s⁻¹ or cm³ s⁻¹."
     },
     {
       "type": "practice",
-      "label": "Mark a rate of reaction question",
+      "label": "Test Your Knowledge on Reaction Rates",
       "href": "/mark?subject=9701&topic=8.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Reactants, Products, and Leftovers", "href": "https://phet.colorado.edu/en/simulations/reactants-products-and-leftovers" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Chemguide: Rates of Reaction Menu",
+          "href": "https://www.chemguide.co.uk/physical/basicratesmenu.html#top"
+        },
+        {
+          "label": "Video Tutorial on Collision Theory by MaChemGuy",
+          "href": "https://www.youtube.com/watch?v=e_whs_8pT9s"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Reactants, products, and leftovers",
+    "embedUrl": "https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/reactants-products-and-leftovers",
+    "hint": "Limiting reagent scenarios — link stoichiometry to how much product forms (8.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Rate depends on collision frequency and energy of collisions.",
+        "embedHint": "Increase reactant amounts — see how product yield changes."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Limiting reagent determines maximum product (mole ratio from equation).",
+        "embedHint": "Set unequal reactant moles — identify which runs out first."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Surface area, concentration, temperature, and catalysts affect rate.",
+        "embedHint": "Compare runs with different starting amounts — link to collision theory."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Measuring rate: loss of mass, gas volume, or colour change over time.",
+        "embedHint": "Use the product table to calculate moles formed per unit time."
+      }
+    ]
+  }
 }

@@ -2,31 +2,225 @@
   "slug": "13-2-file-organisation-and-access",
   "topicCode": "13.2",
   "title": "File organisation and access",
-  "paper": "AL",
-  "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9618 A Level file organisation — sequential, random, indexed-sequential access methods.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "paper": "P3",
+  "paperName": "Advanced Theory",
+  "status": "pilot",
+  "summary": "This lesson explores the fundamental concepts of file organisation and access. We will examine how data is physically structured within a file (serial, sequential, random) and the methods used to retrieve it (sequential, direct), analysing the trade-offs for different applications.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Compare sequential and random file organisation.",
-    "Explain indexed-sequential files.",
-    "Evaluate access methods for given scenarios.",
-    "Relate file design to processing requirements."
+    "Understand and differentiate between serial, sequential, and random file organisation.",
+    "Explain the mechanisms of sequential and direct file access.",
+    "Analyse the relationship between a file's organisation and the access methods it supports.",
+    "Justify the choice of file organisation and access for specific data processing scenarios."
   ],
   "simpleExplanation": {
-    "title": "How records are stored and found",
-    "summary": "File organisation trades storage efficiency against speed of access for different processing patterns.",
+    "title": "A Library for Data",
+    "summary": "File organisation is how we arrange data records in storage, while file access is how we find and read them. The way you organise your data determines how efficiently you can access it.",
+    "analogy": "Imagine a library. The 'organisation' is how the books are arranged on the shelves—perhaps alphabetically by author (sequential) or just placed wherever there's space (serial). 'Access' is how you find a book. You can browse shelf by shelf from the start (sequential access), or use the computer catalogue to find the exact shelf number and go straight there (direct access).",
     "steps": [
-      "Sequential: records in order, batch processing.",
-      "Random/direct: hash or key maps to location.",
-      "Indexed-sequential: index speeds lookup in ordered file.",
-      "Choose method based on read/write frequency."
+      "Organisation: First, decide how to physically arrange records in the file. They can be added one after another, sorted by a key, or placed at calculated addresses.",
+      "Access Method: Next, choose how to retrieve a record. This is dictated by the organisation method used.",
+      "Sequential Access: To find a record, you must start at the beginning and read through every preceding record. This is simple but can be slow.",
+      "Direct Access: To find a record, you calculate its exact location and jump straight to it. This is very fast but requires a more complex file organisation."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is serial file organisation?",
+      "back": "Records are stored one after another in the order they are added. There is no inherent sorting or ordering of the records themselves. It's like a simple diary or log file."
+    },
+    {
+      "front": "What is sequential file organisation?",
+      "back": "Records are stored in order based on a specific key field (e.g., Customer ID, surname). The file is sorted, which is the key difference from serial organisation."
+    },
+    {
+      "front": "What is random file organisation?",
+      "back": "Records are stored at a physical address that is calculated directly from the record's key field, typically using a hashing algorithm. This allows for direct access."
+    },
+    {
+      "front": "What is sequential file access?",
+      "back": "A method of accessing records by reading the file from the beginning, one record at a time, until the desired record is found. It is the only method for serial files."
+    },
+    {
+      "front": "What is direct file access?",
+      "back": "A method of accessing a record by calculating its physical address and jumping straight to it, without reading any other records. This requires random file organisation."
+    },
+    {
+      "front": "What is a hashing algorithm in the context of file organisation?",
+      "back": "A function that takes a record's key field as input and computes a physical disk address where the record should be stored or found. Example: `Address = Key MOD N`."
+    },
+    {
+      "front": "What is a collision (or synonym) in random file organisation?",
+      "back": "When a hashing algorithm produces the same address for two or more different keys. This requires a strategy to handle the 'colliding' record, such as using an overflow area."
+    },
+    {
+      "front": "What is an overflow area?",
+      "back": "A separate part of a file or storage medium used to store records that cannot be placed at their calculated hash address due to a collision."
+    },
+    {
+      "front": "Can a sequentially organised file be accessed directly?",
+      "back": "No, not in the true sense. While you could potentially calculate a record's approximate position if records are fixed-length, true direct access requires a random organisation where the key maps to a physical address. Sequential files are designed for sequential access."
+    },
+    {
+      "front": "When is sequential organisation most suitable?",
+      "back": "For batch processing applications where a large proportion of the records need to be processed in order, such as a monthly payroll system or generating utility bills."
+    },
+    {
+      "front": "When is random organisation most suitable?",
+      "back": "For real-time or transaction processing applications where rapid access to individual records is critical, such as an airline booking system or an ATM."
+    },
+    {
+      "front": "What is the main drawback of adding a new record to a sorted sequential file?",
+      "back": "The entire file may need to be rewritten to insert the new record in the correct sorted position to maintain the file's integrity. This is very inefficient."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the actual difference between serial and sequential organisation?",
+      "a": "The key difference is sorting. In serial organisation, records are simply added to the end in the order they arrive (unsorted). In sequential organisation, records are stored in order based on a key field (sorted). This means a sequential file is always sorted, while a serial file is not."
+    },
+    {
+      "q": "Why can't I use direct access on a sequential file? I know it's the 50th record.",
+      "a": "True direct access requires a mechanism to translate a record's key directly into a physical disk address. Sequential files don't have this. Even if you know you want the 50th record and all records are the same size, the system still has to start at the beginning and skip the first 49 records to get there. This is still a form of sequential access, not a direct jump to a calculated address."
+    },
+    {
+      "q": "If random organisation is so fast for access, why isn't it always used?",
+      "a": "Random organisation has its own trade-offs. It can be complex to implement, hashing algorithms can cause collisions which slow down the system, and it often leads to wasted disk space ('sparse files'). Furthermore, it's very inefficient for tasks that require processing records in order, like generating a report for all customers. The best method always depends on the specific application."
+    },
+    {
+      "q": "Is 'Direct File Organisation' the same as 'Random File Organisation'?",
+      "a": "Yes, for the purposes of the A-Level syllabus, the terms 'Random File Organisation' and 'Direct File Organisation' are used interchangeably. They both refer to a system where a record's location can be calculated from its key, allowing for direct access."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**File organisation** (13.2) extends **13.1 file concepts**. Match **access method** to **application scenario**." },
-    { "type": "practice", "label": "Mark a file organisation question", "href": "/mark?subject=9618&topic=13.2" },
-    { "type": "resources", "items": [{ "label": "9618 course index", "href": "/courses/9618" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Every time you save a document, download a song, or interact with a database, you are using files. How the computer system organises the data within those files and how it retrieves it is a critical aspect of system performance. This topic delves into the methods of file organisation and access, which form the bedrock of efficient data storage and retrieval."
+    },
+    {
+      "type": "heading",
+      "content": "File Organisation Methods"
+    },
+    {
+      "type": "text",
+      "content": "File organisation refers to the way records are physically arranged and stored in a storage medium. The choice of organisation method has a significant impact on the speed of data access, storage efficiency, and the complexity of data processing. We will look at three primary methods: serial, sequential, and random."
+    },
+    {
+      "type": "heading",
+      "content": "1. Serial File Organisation"
+    },
+    {
+      "type": "text",
+      "content": "This is the simplest form of organisation. Records are appended to the end of the file in the chronological order they arrive. There is no sorting or ordering of the records themselves. Think of it as a logbook where you just write the next entry on the next available line."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Use Case:** Ideal for transaction logs, error logs, or streaming data where order of arrival is important.",
+        "**Adding Data:** Very fast, as new records are simply added to the end.",
+        "**Searching:** Very slow. To find a specific record, you must start at the beginning and read every record until you find it (sequential access).",
+        "**Updating/Deleting:** Inefficient. Typically, the entire file must be read into memory, modified, and then written back out."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "2. Sequential File Organisation"
+    },
+    {
+      "type": "text",
+      "content": "In a sequential file, records are stored in a specific order based on a 'key field'. This key field, such as a Student ID or Product Code, is unique to each record. The entire file is sorted by this key. This is like a phone book sorted alphabetically by surname."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Use Case:** Excellent for batch processing, like calculating monthly payroll or generating electricity bills, where most or all records are processed in order.",
+        "**Searching:** More efficient than serial if searching for a range of records, but still requires reading from the start for a single record.",
+        "**Adding/Deleting:** Very inefficient. To maintain the sorted order, inserting or deleting a record often requires creating a new copy of the entire file.",
+        "**Access:** Primarily accessed sequentially."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "3. Random (Direct) File Organisation"
+    },
+    {
+      "type": "text",
+      "content": "This method provides the fastest way to access an individual record. It uses a hashing algorithm to transform a record's key field into a physical disk address. This means the system can calculate exactly where a record is stored and go there directly, without reading any other records. The file is often structured as a large array of record slots."
+    },
+    {
+      "type": "formula",
+      "content": "Record Address = HashingAlgorithm(RecordKey)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Use Case:** Essential for real-time systems where speed is critical, such as airline reservation systems, online banking, or any large database requiring instant record retrieval.",
+        "**Hashing Collisions:** A problem occurs when the hashing algorithm produces the same address for two different keys. This is called a 'collision' and must be handled, often by placing the second record in an 'overflow area', which can slow down access.",
+        "**Storage:** Can lead to wasted storage space, as the file must have space allocated for all possible hash values, some ofwhich may not be used.",
+        "**Access:** Designed specifically for direct access."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A common exam question asks you to justify the choice of file organisation for a given scenario. Always link your choice back to the application's requirements. Does it need fast access to single records (random)? Or does it process all records in a batch (sequential)?"
+    },
+    {
+      "type": "heading",
+      "content": "File Access Methods"
+    },
+    {
+      "type": "text",
+      "content": "File access refers to the way in which records are read from or written to a file. The method of access is often determined by the underlying file organisation."
+    },
+    {
+      "type": "heading",
+      "content": "1. Sequential Access"
+    },
+    {
+      "type": "text",
+      "content": "Records are accessed in the order they are stored. To read the 100th record, you must first read the 99 records before it. This is the only possible access method for serial files and the natural method for sequential files."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sequential file on a magnetic tape stores 20,000 employee records. The system takes 0.8 ms to read a single record. Calculate the time taken, in seconds, to access the 15,000th record. State one assumption you have made.",
+      "solution": "To access the 15,000th record sequentially, the system must read all records from the beginning up to that point.\n\n**Working:**\n1.  Number of records to read = 15,000\n2.  Time per record = 0.8 ms\n3.  Total time in milliseconds = 15,000 records * 0.8 ms/record = 12,000 ms\n4.  Convert to seconds: 12,000 ms / 1000 = 12 seconds\n\n**Answer:** 12 seconds.\n\n**Assumption:** The time to read each record is constant and there are no other delays (e.g., from tape acceleration/deceleration or system interrupts)."
+    },
+    {
+      "type": "heading",
+      "content": "2. Direct Access"
+    },
+    {
+      "type": "text",
+      "content": "Also known as random access, this method allows the read/write head to jump directly to a specific record's physical location. This is only possible if the file is organised as a random file, where a record's address can be calculated from its key."
+    },
+    {
+      "type": "workedExample",
+      "question": "A random access file is used to store 1000 patient records, indexed from 0 to 999. The hashing algorithm used is `Address = PatientID MOD 1000`.\n\n(a) Calculate the storage address for a patient with ID 45821.\n(b) A new patient with ID 77821 needs to be added. Calculate their address and identify the problem that arises.",
+      "solution": "(a) **Address for Patient ID 45821:**\n1.  Apply the hashing algorithm: `Address = 45821 MOD 1000`\n2.  The result of the MOD operator is the remainder after division. The remainder of 45821 divided by 1000 is 821.\n3.  **Address = 821**\n\n(b) **Address for Patient ID 77821 and the problem:**\n1.  Apply the hashing algorithm: `Address = 77821 MOD 1000`\n2.  The remainder of 77821 divided by 1000 is also 821.\n3.  **Address = 821**\n\n**Problem:** Both Patient IDs (45821 and 77821) hash to the same storage address (821). This is known as a **collision** or a **synonym**. The system cannot store two different records in the same physical location. A collision handling technique, such as placing the second record in an overflow area and creating a pointer to it, would be required."
+    },
+    {
+      "type": "examTip",
+      "content": "Be precise with your terminology. 'Serial' refers to unsorted chronological order. 'Sequential' refers to being sorted by a key. 'Direct' access is not the same as 'random' organisation, but it is enabled by it. Use these terms correctly to gain full marks."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=9618&topic=13.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "BBC Bitesize - File Organisation",
+          "href": "https://www.bbc.co.uk/bitesize/guides/zpt3h39/revision/1"
+        },
+        {
+          "label": "Isaac Computer Science - File Organisation",
+          "href": "https://isaaccomputerscience.org/concepts/dsa_ds_file_organisation"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

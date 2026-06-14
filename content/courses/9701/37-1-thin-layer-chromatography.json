@@ -4,29 +4,221 @@
   "title": "Thin-layer chromatography",
   "paper": "AL",
   "paperName": "A Level Subject Content",
-  "status": "premium",
-  "summary": "9701 A Level TLC — Rf values, polarity, and separation technique.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces thin-layer chromatography (TLC) as a technique for separating and identifying components in a mixture. It covers the principles of stationary and mobile phases, the calculation and interpretation of retention factor ($R_f$) values, and methods for visualising colourless spots.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe TLC apparatus and procedure.",
-    "Calculate and interpret Rf values.",
-    "Relate Rf to relative polarity.",
-    "Use TLC to monitor reactions and purity."
+    "Describe the principles of thin-layer chromatography (TLC) including the roles of the stationary and mobile phases.",
+    "Calculate and interpret retention factor ($R_f$) values from a chromatogram.",
+    "Explain how TLC can be used to identify compounds and assess the purity of a sample.",
+    "Describe the use of locating agents, including UV light, iodine, and ninhydrin, to visualise colourless spots."
   ],
   "simpleExplanation": {
-    "title": "Separation on a thin plate",
-    "summary": "Components partition between stationary silica and mobile solvent. Less polar compounds travel further.",
+    "title": "The TLC Race",
+    "summary": "Thin-layer chromatography separates a mixture based on how its components 'stick' to a plate versus how well they dissolve in a moving solvent. This differential movement allows us to separate and identify the substances.",
+    "analogy": "Imagine a race up a sticky, absorbent hill (the stationary phase) during a rainstorm (the mobile phase). Runners who are 'stickier' (more strongly adsorbed) will move slowly and not get far. Runners who are less sticky and get carried by the rainwater (more soluble in the mobile phase) will travel much further up the hill. By seeing how far each runner travels, we can identify them.",
     "steps": [
-      "Spot baseline, develop in solvent.",
-      "Rf = spot distance / solvent front.",
-      "Lower Rf = more polar.",
-      "Compare with authentic samples."
+      "Stationary phase: silica; mobile: solvent. | Sim hint: Polar compounds move less (low Rf).",
+      "Rf = distance spot / distance solvent front. | Sim hint: 0 ≤ Rf ≤ 1.",
+      "Compare with known standards. | Sim hint: Same solvent and plate type.",
+      "UV or iodine visualises colourless spots. | Sim hint: Amino acids need ninhydrin."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the stationary phase in thin-layer chromatography?",
+      "back": "A solid adsorbent material, typically silica ($SiO_2$) or alumina ($Al_2O_3$), coated thinly onto a flat, inert support like a glass or plastic plate."
+    },
+    {
+      "front": "What is the mobile phase in thin-layer chromatography?",
+      "back": "A liquid solvent or mixture of solvents (the eluent) that moves up the plate by capillary action, carrying the components of the mixture with it."
+    },
+    {
+      "front": "Define the Retention Factor ($R_f$).",
+      "back": "The ratio of the distance travelled by a separated component to the distance travelled by the solvent front. It is a characteristic value for a specific compound under specific conditions."
+    },
+    {
+      "front": "Why must the baseline on a TLC plate be drawn in pencil?",
+      "back": "Ink from a pen contains a mixture of dyes which would also be separated by the chromatogram, interfering with the results. Pencil graphite is inert and will not move with the solvent."
+    },
+    {
+      "front": "Why must the solvent level in the developing tank be below the baseline?",
+      "back": "If the solvent level is above the baseline, the spotted sample will dissolve directly into the bulk solvent at the bottom of the tank instead of being separated as the solvent front moves up the plate."
+    },
+    {
+      "front": "What is a locating agent in TLC?",
+      "back": "A substance used to visualise colourless spots on a chromatogram. Examples include iodine vapour, UV light (for plates with a fluorescent indicator), and ninhydrin spray (for amino acids)."
+    },
+    {
+      "front": "How does UV light help visualise spots on a TLC plate?",
+      "back": "The TLC plate is often coated with a fluorescent substance. When viewed under UV light, the whole plate glows. The spots of the compound quench this fluorescence and appear as dark patches."
+    },
+    {
+      "front": "How are amino acids typically visualised on a TLC plate?",
+      "back": "By spraying the plate with a ninhydrin solution and then gently heating it. The amino acids react with ninhydrin to produce purple-coloured spots (except for proline, which gives a yellow spot)."
+    },
+    {
+      "front": "A compound has a high $R_f$ value. What does this suggest about its properties?",
+      "back": "It suggests the compound has a low affinity for the polar stationary phase (e.g., it is less polar) and a high solubility in the mobile phase. It has travelled further up the plate."
+    },
+    {
+      "front": "Why is it important to place a lid on the developing tank during a TLC experiment?",
+      "back": "To create a saturated atmosphere of solvent vapour inside the tank. This prevents the solvent from evaporating from the surface of the plate as it moves up, ensuring the solvent front moves evenly and the $R_f$ values are reproducible."
+    },
+    {
+      "front": "How can TLC be used to assess the purity of a sample?",
+      "back": "A pure sample should ideally produce a single spot on the chromatogram. The presence of multiple spots indicates that the sample is impure and contains several components."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do different compounds have different $R_f$ values?",
+      "a": "Different compounds have different polarities and solubilities. A compound's $R_f$ value depends on the balance between its adsorption to the polar stationary phase and its solubility in the mobile phase. A more polar compound will stick more tightly to the silica gel and have a lower $R_f$ value, while a less polar compound will travel further with the solvent and have a higher $R_f$ value (assuming a polar stationary phase and a less polar mobile phase)."
+    },
+    {
+      "q": "Can an $R_f$ value be greater than 1?",
+      "a": "No, an $R_f$ value can never be greater than 1. The $R_f$ is a ratio of the distance travelled by the spot to the distance travelled by the solvent front. A spot can never travel further than the solvent that is carrying it, so the numerator is always less than or equal to the denominator."
+    },
+    {
+      "q": "What happens if I choose the wrong solvent for the mobile phase?",
+      "a": "The choice of solvent (eluent) is critical. If the solvent is too polar, all compounds (polar and non-polar) will be highly soluble and travel with the solvent front, resulting in all spots having high $R_f$ values close to 1 and poor separation. If the solvent is too non-polar, no compounds will move from the baseline, resulting in $R_f$ values near 0. The ideal solvent provides good separation with a range of $R_f$ values across the plate."
+    },
+    {
+      "q": "Is TLC a quantitative or qualitative technique?",
+      "a": "TLC is primarily a qualitative technique, used for identifying components and checking purity. While the intensity and size of a spot can give a rough idea of its concentration, it is not a precise quantitative method. For accurate quantification, other techniques like High-Performance Liquid Chromatography (HPLC) are used."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**TLC** (37.1) is the simplest **analytical technique** in 37.x. Always quote **Rf to 2 d.p.** with solvent stated." },
-    { "type": "practice", "label": "Mark a TLC question", "href": "/mark?subject=9701&topic=37.1" },
-    { "type": "resources", "items": [{ "label": "9701 course index", "href": "/courses/9701" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "Thin-layer chromatography (TLC) is a powerful and rapid analytical technique used to separate the components of a mixture. It is a type of adsorption chromatography. In A-Level Chemistry, you will use it to identify substances by comparing their movement to known standards, and to determine the purity of a synthesised product."
+    },
+    {
+      "type": "heading",
+      "content": "The Principle of Separation in TLC"
+    },
+    {
+      "type": "text",
+      "content": "TLC operates on the principle of differential adsorption. The setup consists of two key phases. The **stationary phase** is a thin layer of a solid adsorbent, usually silica gel ($SiO_2$) or alumina ($Al_2O_3$), coated onto a plate. These adsorbents are polar due to the presence of -OH groups. The **mobile phase** is a liquid solvent (or a mixture of solvents), called the eluent, which moves up the plate via capillary action."
+    },
+    {
+      "type": "text",
+      "content": "A spot of the mixture is applied to a baseline at the bottom of the plate. As the mobile phase moves up, it passes over the spot and dissolves the mixture. Each component in the mixture will then be in a dynamic equilibrium, being adsorbed onto the stationary phase and then dissolving back into the mobile phase. The extent to which a component moves up the plate depends on two competing factors: its affinity for the stationary phase (adsorption) and its solubility in the mobile phase. A highly polar compound will adsorb strongly to the polar silica gel and move slowly (low $R_f$). A less polar compound will be more soluble in the mobile phase (which is often less polar than the silica) and will be carried further up the plate (high $R_f$)."
+    },
+    {
+      "type": "heading",
+      "content": "Calculating the Retention Factor ($R_f$)"
+    },
+    {
+      "type": "text",
+      "content": "After the chromatography run (development), the positions of the separated components are recorded. The retention factor, or $R_f$ value, is a quantitative measure of a component's movement. It is a ratio and therefore has no units. The $R_f$ value is always between 0 and 1."
+    },
+    {
+      "type": "formula",
+      "content": "R_f = \\frac{\\text{distance travelled by the spot (from the baseline)}}{\\text{distance travelled by the solvent front (from the baseline)}}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The $R_f$ value for a compound is constant under identical conditions (i.e., same stationary phase, mobile phase, temperature, and saturation of the tank).",
+        "This allows for the identification of an unknown compound by comparing its $R_f$ value with that of a known, pure standard run on the same chromatogram.",
+        "If a sample produces multiple spots, it is impure. A pure sample should give a single spot."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A TLC experiment was performed using a silica plate and hexane as the mobile phase. The solvent front moved 8.5 cm from the baseline. A single spot was observed at a distance of 5.1 cm from the baseline. Calculate the $R_f$ value for this compound.",
+      "solution": "1. **Identify the given distances:**\n   - Distance travelled by solvent front = 8.5 cm\n   - Distance travelled by the spot = 5.1 cm\n\n2. **State the formula for the $R_f$ value:**\n   $R_f = \\frac{\\text{distance travelled by the spot}}{\\text{distance travelled by the solvent front}}$\n\n3. **Substitute the values and calculate:**\n   $R_f = \\frac{5.1 \\text{ cm}}{8.5 \\text{ cm}} = 0.60$\n\n4. **Final Answer:**\n   The $R_f$ value is 0.60 (to 2 significant figures). Note that $R_f$ values are unitless and are usually quoted to two decimal places."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Colourless Compounds"
+    },
+    {
+      "type": "text",
+      "content": "Many organic compounds, such as amino acids, sugars, and pharmaceuticals, are colourless. To see their positions on the chromatogram, a locating agent must be used. There are two main types of methods: non-destructive and destructive."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**UV Light (Non-destructive):** Many TLC plates contain a fluorescent indicator. When the plate is placed under short-wave UV light, it glows. The separated compounds absorb the UV light, quenching the fluorescence and appearing as dark spots on a bright background.",
+        "**Iodine Vapour (Largely non-destructive):** The dried plate is placed in a sealed container with a few crystals of iodine. The iodine sublimes, and the vapour adsorbs onto the organic compounds, making them appear as brown or yellow-brown spots. This process is often reversible.",
+        "**Ninhydrin (Destructive):** Specifically for amino acids. The chromatogram is sprayed with a ninhydrin solution and gently heated. Ninhydrin reacts with the amino acids to form distinctively coloured products, typically purple or blue. This is a chemical reaction, so the original compound is destroyed."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, always measure distances for $R_f$ calculations from the centre of the spot to the baseline. For the solvent front, measure from the highest point the solvent reached to the baseline. Be precise and use a ruler."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student suspects a sample of aspirin is impure and contains paracetamol. They run a TLC plate with the sample (S), pure aspirin (A), and pure paracetamol (P). The mobile phase is a mixture of ethyl acetate and hexane. After development and visualisation under UV light, the solvent front had moved 9.0 cm. The chromatogram showed the following spots:\n- Aspirin (A): one spot at 7.2 cm\n- Paracetamol (P): one spot at 4.5 cm\n- Sample (S): two spots, one at 4.5 cm and another at 7.2 cm.\n\n(a) Calculate the $R_f$ value for aspirin.\n(b) What do these results indicate about the student's sample (S)?",
+      "solution": "(a) **Calculate $R_f$ for aspirin:**\n   - Distance for aspirin spot = 7.2 cm\n   - Distance for solvent front = 9.0 cm\n   - $R_f(\\text{aspirin}) = \\frac{7.2 \\text{ cm}}{9.0 \\text{ cm}} = 0.80$\n\n(b) **Analyse the sample (S):**\n   - The sample (S) shows two spots.\n   - One spot has moved 7.2 cm, which corresponds to the same height and therefore the same $R_f$ value (0.80) as pure aspirin.\n   - The second spot has moved 4.5 cm. The $R_f$ for this spot is $\\frac{4.5}{9.0} = 0.50$. This corresponds to the same height and $R_f$ value as pure paracetamol.\n   - **Conclusion:** The sample (S) is impure. It is a mixture containing both aspirin and paracetamol."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Thin-layer Chromatography",
+      "href": "/mark?subject=9701&topic=37.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Introduction to Thin-Layer Chromatography (TLC) - Khan Academy",
+          "href": "https://www.khanacademy.org/science/organic-chemistry/spectroscopy-jay/thin-layer-chromatography/v/thin-layer-chromatography"
+        },
+        {
+          "label": "Practical guide to TLC from the Royal Society of Chemistry",
+          "href": "https://edu.rsc.org/resources/thin-layer-chromatography/752.article"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Rf values and separation by polarity (37.1).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Stationary phase: silica; mobile: solvent.",
+        "embedHint": "Polar compounds move less (low Rf)."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Rf = distance spot / distance solvent front.",
+        "embedHint": "0 ≤ Rf ≤ 1."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Compare with known standards.",
+        "embedHint": "Same solvent and plate type."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "UV or iodine visualises colourless spots.",
+        "embedHint": "Amino acids need ninhydrin."
+      }
+    ]
+  }
 }

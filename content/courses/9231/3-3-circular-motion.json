@@ -1,0 +1,187 @@
+{
+  "slug": "3-3-circular-motion",
+  "topicCode": "3.3",
+  "title": "Circular motion",
+  "paper": "P3",
+  "paperName": "Paper 3: Further Mechanics",
+  "status": "pilot",
+  "summary": "This lesson explores the dynamics of circular motion, a fundamental concept in mechanics. We will analyse the kinematics, including angular velocity and acceleration components, and apply Newton's laws to solve problems involving centripetal force in contexts such as vertical circles and banked tracks.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
+  "learningObjectives": [
+    "Understand and use angular velocity (ω) and the relationships v = rω, a = rω² = v²/r.",
+    "Resolve forces and acceleration into radial (centripetal) and transverse components.",
+    "Apply Newton's second law to particles moving in a circle, including vertical circles and motion on banked surfaces.",
+    "Use the principle of conservation of energy in problems involving motion in a vertical circle."
+  ],
+  "simpleExplanation": {
+    "title": "The Physics of Whirling",
+    "summary": "Objects moving in a circle are always accelerating towards the centre, even at a constant speed, because their direction is constantly changing. This acceleration requires a net inward force, known as the centripetal force.",
+    "analogy": "Imagine you're swinging a bucket of water in a vertical circle. To keep it moving and prevent the water from spilling, you must constantly pull on the handle. This pull you provide is the centripetal force, always directed towards the centre of the circle (your hand). If you were to let go, the bucket would fly off in a straight line, demonstrating Newton's first law. The centripetal force is what continuously redirects the bucket's velocity.",
+    "steps": [
+      "Draw a large, clear force diagram for the particle at a general point in its circular path.",
+      "Establish a coordinate system, typically with one axis pointing towards the centre of the circle (radial) and the other perpendicular to it (tangential).",
+      "Resolve all forces (like weight, tension, normal reaction) into components along these radial and tangential axes.",
+      "Apply Newton's Second Law (F=ma) to the radial direction: the sum of forces towards the centre equals mv²/r or mrω²."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is angular velocity, ω?",
+      "back": "The rate of change of angular displacement, measured in radians per second (rad s⁻¹). It is given by ω = dθ/dt."
+    },
+    {
+      "front": "How are linear speed (v) and angular velocity (ω) related for a particle moving in a circle of radius r?",
+      "back": "v = rω. The linear speed is the magnitude of the velocity vector, which is always tangential to the circle."
+    },
+    {
+      "front": "What is centripetal acceleration?",
+      "back": "The acceleration directed towards the centre of a circular path, responsible for changing the direction of the velocity vector. Its magnitude is a = v²/r = rω²."
+    },
+    {
+      "front": "What is centripetal force?",
+      "back": "The net or resultant force directed towards the centre of a circular path that causes centripetal acceleration. It is given by F = mv²/r = mrω². It is NOT a fundamental force."
+    },
+    {
+      "front": "A particle moves in a horizontal circle. What forces typically provide the centripetal force?",
+      "back": "This depends on the situation. It could be the tension in a string (conical pendulum), the horizontal component of a normal reaction force (banked track), or friction."
+    },
+    {
+      "front": "In a vertical circle problem, what is the condition for a particle on a string to complete the full circle?",
+      "back": "The tension T must remain non-negative at all points. The critical point is the top of the circle, where tension is at its minimum. The condition is T_top ≥ 0, which implies the speed at the top, v_top, must satisfy v_top² ≥ gr."
+    },
+    {
+      "front": "What is the condition for a particle to lose contact with the inside of a smooth spherical bowl?",
+      "back": "The particle loses contact when the normal reaction force, R, becomes zero. You set R=0 in your radial force equation to find the angle or speed at which this occurs."
+    },
+    {
+      "front": "For a car on a banked track of angle θ, what is the ideal speed 'v' to take the corner without relying on friction?",
+      "back": "The speed at which the horizontal component of the normal reaction force provides the exact centripetal force required. The formula is tan(θ) = v² / (gr)."
+    },
+    {
+      "front": "Why is the work done by the centripetal force zero in uniform circular motion?",
+      "back": "Because the centripetal force is always directed radially inwards, while the instantaneous displacement is always tangential. The force and displacement vectors are perpendicular, so the work done (W = F⋅d = Fd cos(90°)) is zero."
+    },
+    {
+      "front": "What is transverse (or tangential) acceleration?",
+      "back": "The component of acceleration tangent to the circular path. It is responsible for changing the speed of the particle. Its magnitude is a_t = r(dω/dt) = dv/dt. It is zero for uniform circular motion."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If an object moves in a circle at a constant speed, how can it be accelerating?",
+      "a": "Acceleration is the rate of change of velocity. Velocity is a vector quantity, having both magnitude (speed) and direction. In circular motion, the direction of the velocity vector is continuously changing, even if its magnitude (speed) is constant. This change in direction constitutes an acceleration, known as centripetal acceleration."
+    },
+    {
+      "q": "Is centripetal force a fundamental force of nature?",
+      "a": "No, it is not. Centripetal force is a 'net force' or a 'resultant force'. It is the sum of all real, physical forces (like tension, gravity, normal force, friction) that act towards the centre of the circular path. You should never add a 'centripetal force' arrow to your force diagram."
+    },
+    {
+      "q": "What is the difference between centripetal and centrifugal force?",
+      "a": "Centripetal force is the real, net force directed towards the centre of a circle that is required for an object to move in a circular path. We analyse problems from an inertial (non-accelerating) frame of reference. Centrifugal force is an apparent or 'fictitious' force that seems to push an object outwards from the centre. It only appears when you analyse the motion from within the rotating (non-inertial) frame of reference. For A-Level Further Mathematics, you should always work in an inertial frame and only use centripetal force."
+    },
+    {
+      "q": "How do I decide whether to use F = mv²/r or F = mrω²?",
+      "a": "Both formulae are equivalent since v = rω. Use the one that is most convenient for the information given in the problem. If the question gives or asks for linear speed (v), use F = mv²/r. If it gives or asks for angular velocity (ω), use F = mrω²."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Circular motion is a crucial topic in mechanics that describes how objects move along a curved path. While you may have encountered basic ideas at IGCSE or AS level, Further Mathematics delves much deeper. We will analyse the forces and energy changes involved when an object's velocity is constantly changing direction, leading to a persistent state of acceleration, even when its speed is constant."
+    },
+    {
+      "type": "heading",
+      "content": "1. Kinematics: Describing the Motion"
+    },
+    {
+      "type": "text",
+      "content": "To describe motion in a circle, it's more convenient to use angles and angular velocity than Cartesian coordinates. The angular displacement, $$\\theta$$, is the angle swept out from a reference point, measured in radians. The rate of change of this angle is the angular velocity, $$\\omega$$."
+    },
+    {
+      "type": "formula",
+      "content": "\\omega = \\frac{d\\theta}{dt}"
+    },
+    {
+      "type": "text",
+      "content": "The linear speed, $$v$$, of a particle is related to its angular velocity and the radius $$r$$ of the circle. The velocity vector is always tangent to the path. Even if the speed $$v$$ is constant, the velocity is not, because its direction is changing. This change in velocity implies acceleration."
+    },
+    {
+      "type": "formula",
+      "content": "v = r\\omega"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Radial (Centripetal) Acceleration:** Directed towards the centre of the circle. It changes the direction of the velocity. Its magnitude is $$a_r = \\frac{v^2}{r} = r\\omega^2$$.",
+        "**Transverse (Tangential) Acceleration:** Directed along the tangent of the circle. It changes the magnitude of the velocity (the speed). Its magnitude is $$a_t = \\frac{dv}{dt} = r\\frac{d\\omega}{dt}$$",
+        "For **uniform circular motion**, the speed is constant, so the transverse acceleration is zero. The only acceleration is the centripetal acceleration."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "2. Dynamics: Centripetal Force"
+    },
+    {
+      "type": "text",
+      "content": "According to Newton's Second Law, an acceleration must be caused by a net force. The acceleration directed towards the centre of the circle, $$a_r$$, is caused by a net force also directed towards the centre. This net force is called the centripetal force, $$F_c$$. It's crucial to understand that this is not a new, fundamental force but the resultant of existing physical forces like tension, gravity, friction, or normal reaction."
+    },
+    {
+      "type": "formula",
+      "content": "F_c = ma_r = m\\frac{v^2}{r} = mr\\omega^2"
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is to add an extra force labelled 'centripetal force' to a force diagram. Do not do this! Instead, identify all the real forces acting on the object and find their resultant force towards the centre of the circle. This resultant force *is* the centripetal force."
+    },
+    {
+      "type": "heading",
+      "content": "3. Application: Motion in a Vertical Circle"
+    },
+    {
+      "type": "text",
+      "content": "A classic problem involves a particle moving in a vertical circle, attached to a string or a light rod, or moving on the inside/outside of a circular track. Here, both speed and the required centripetal force change throughout the motion due to the influence of gravity. The principle of conservation of energy is often essential for finding the speed at different points."
+    },
+    {
+      "type": "workedExample",
+      "question": "A small bead of mass 200 g is threaded on a smooth circular wire of radius 0.8 m, fixed in a vertical plane. The bead is projected from the lowest point of the wire with a speed of 7 m/s. Find:\n(i) the speed of the bead when it reaches the highest point of the wire.\n(ii) the reaction force on the bead from the wire at the highest point, stating its direction.",
+      "solution": "Let the lowest point be A and the highest point be B. Let the mass be $$m = 0.2$$ kg and the radius be $$r = 0.8$$ m. The initial speed at A is $$u = 7$$ m/s.\n\n**(i) Find the speed at the highest point, B.**\nWe use the principle of conservation of energy. The gain in potential energy (PE) is equal to the loss in kinetic energy (KE).\nThe vertical height gained from A to B is $$2r = 2(0.8) = 1.6$$ m.\n\nGain in PE = $$mg(2r) = 0.2 \\times 9.8 \\times 1.6 = 3.136$$ J.\nLoss in KE = $$\\frac{1}{2}mu^2 - \\frac{1}{2}mv_B^2$$, where $$v_B$$ is the speed at B.\n\n$$\\frac{1}{2}m(u^2 - v_B^2) = mg(2r)$$\n$$u^2 - v_B^2 = 2g(2r) = 4gr$$\n$$7^2 - v_B^2 = 4 \\times 9.8 \\times 0.8 = 31.36$$\n$$49 - v_B^2 = 31.36$$\n$$v_B^2 = 49 - 31.36 = 17.64$$\n$$v_B = \\sqrt{17.64} = 4.2 \\text{ m/s}$$\n\n**(ii) Find the reaction force at the highest point, B.**\nAt the highest point B, two forces act on the bead: its weight ($$mg$$) acting downwards, and the normal reaction from the wire ($$R$$), also acting downwards (as the bead is on the inside of the wire).\nThese two forces together provide the centripetal force, which is directed towards the centre (downwards).\n\nApply $$F=ma$$ towards the centre:\n$$R + mg = \\frac{mv_B^2}{r}$$\n$$R = \\frac{mv_B^2}{r} - mg$$\n$$R = \\frac{0.2 \\times 17.64}{0.8} - 0.2 \\times 9.8$$\n$$R = \\frac{3.528}{0.8} - 1.96$$\n$$R = 4.41 - 1.96 = 2.45 \\text{ N}$$\nSince R is positive, our assumed direction was correct. The reaction force is 2.45 N, acting downwards towards the centre of the circle."
+    },
+    {
+      "type": "heading",
+      "content": "4. Application: Banked Tracks"
+    },
+    {
+      "type": "text",
+      "content": "When a vehicle turns on a flat road, the centripetal force is provided by friction. To reduce reliance on friction and allow for higher speeds, tracks are often banked. By tilting the surface, a component of the normal reaction force can be directed horizontally towards the centre of the turn, providing the necessary centripetal force."
+    },
+    {
+      "type": "workedExample",
+      "question": "A car of mass 1500 kg travels around a bend of radius 120 m on a road banked at an angle of 10° to the horizontal. At what speed can the car travel so that there is no tendency to slip sideways? (i.e. no frictional force is required).",
+      "solution": "Let $$m = 1500$$ kg, $$r = 120$$ m, and $$\\theta = 10°$$. We need to find the speed $$v$$ where the friction force is zero.\n\nDraw a force diagram. The forces acting on the car are its weight, $$mg$$, acting vertically downwards, and the normal reaction, $$R$$, acting perpendicular to the banked surface.\n\nWe resolve the forces into horizontal and vertical components. The centre of the circular path is in the horizontal plane.\n\n**Vertically (no acceleration):**\nThe upward component of R must balance the weight.\n$$R \\cos \\theta = mg \\quad (*)$$\n\n**Horizontally (centripetal acceleration):**\nThe horizontal component of R provides the centripetal force.\n$$R \\sin \\theta = \\frac{mv^2}{r} \\quad (**)$$\n\nTo eliminate R and solve for v, we can divide equation (**) by equation (*):\n$$\\frac{R \\sin \\theta}{R \\cos \\theta} = \\frac{mv^2/r}{mg}$$\n$$\\tan \\theta = \\frac{v^2}{gr}$$\n\nNow, rearrange and solve for v:\n$$v^2 = gr \\tan \\theta$$\n$$v^2 = 9.8 \\times 120 \\times \\tan(10°)$$\n$$v^2 = 1176 \\times 0.1763...$$\n$$v^2 \\approx 207.35$$\n$$v \\approx \\sqrt{207.35} \\approx 14.4 \\text{ m/s}$$\n\nThe car can travel at approximately 14.4 m/s (to 3 s.f.) with no tendency to slip."
+    },
+    {
+      "type": "examTip",
+      "content": "For problems involving 'losing contact' or a string going 'slack', the key is to set the relevant contact force (Normal Reaction R or Tension T) to zero. This gives you the boundary condition for that event occurring."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding with Exam Questions",
+      "href": "/mark?subject=9231&topic=3.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Physics & Maths Tutor: Notes and Questions",
+          "href": "https://www.physicsandmathstutor.com/maths-revision/a-level-further-maths/mechanics-2/circular-motion/"
+        },
+        {
+          "label": "Isaac Physics: Circular Motion Problems",
+          "href": "https://isaacphysics.org/concepts/phys_book_cir_motion"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

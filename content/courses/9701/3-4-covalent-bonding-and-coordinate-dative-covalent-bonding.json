@@ -1,54 +1,213 @@
 {
   "slug": "3-4-covalent-bonding-and-coordinate-dative-covalent-bonding",
   "topicCode": "3.4",
-  "title": "Covalent bonding",
+  "title": "Covalent bonding and coordinate (dative covalent) bonding",
   "paper": "AS",
   "paperName": "AS Level Subject Content",
-  "status": "premium",
-  "summary": "9701 AS covalent and dative covalent bonding — dot-and-cross diagrams, bond polarity, and molecular examples with PhET Build a Molecule.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson explores covalent bonding, the fundamental force holding molecules together through the sharing of electrons. We will cover single, double, and triple bonds, and introduce coordinate (dative covalent) bonding, a special case where one atom donates both electrons to the bond. You will learn to represent these bonds using dot-and-cross diagrams, a key skill for A-Level Chemistry.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe covalent bonding as shared electron pairs.",
-    "Draw dot-and-cross diagrams for simple molecules and ions.",
-    "Explain dative covalent (coordinate) bonding with examples (NH₄⁺, Al₂Cl₆).",
-    "Relate bond polarity to electronegativity differences."
+    "Describe a covalent bond as the strong electrostatic attraction between a shared pair of electrons and the nuclei of bonded atoms.",
+    "Draw 'dot-and-cross' diagrams to represent the valence electrons in simple covalent molecules, including those with multiple bonds.",
+    "Explain and represent coordinate (dative covalent) bonding, where one atom provides both electrons to a shared pair.",
+    "Understand the relationship between the number of shared electron pairs (bond order), bond length, and bond strength."
   ],
   "simpleExplanation": {
-    "title": "Shared electrons",
-    "summary": "Covalent bonds form when atoms share electron pairs. In a dative bond, both electrons in the pair come from one atom — common in ammonium and expanded octets.",
+    "title": "The Ultimate Electron Sharing Agreement",
+    "summary": "Atoms form covalent bonds by sharing electrons to achieve a more stable arrangement, like a full outer shell. A coordinate bond is just a special type of covalent bond where one atom generously provides both electrons for the share.",
+    "analogy": "Imagine two students preparing for an exam. A normal covalent bond is like both students bringing their own textbook and sharing them to study together. A coordinate bond is like one student, who has already made comprehensive notes, lending them to another student who has no materials, so they can both pass the exam.",
     "steps": [
-      "Single bond = one shared pair; double = two pairs; triple = three pairs.",
-      "Draw dots/crosses to show which atom donated which electrons.",
-      "Dative bond: lone pair from donor atom → empty orbital on acceptor (e.g. H⁺).",
-      "Polar covalent: unequal sharing — δ+ and δ− from electronegativity difference."
+      "Covalent bonds form when atoms share electron pairs.",
+      "Each covalent bond = one shared pair (single bond) or multiple pairs (double/triple).",
+      "Dative covalent bonds: both electrons come from one atom (e.g. NH₄⁺).",
+      "Lewis structures show all valence electrons — dots or crosses per atom."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a covalent bond?",
+      "back": "The strong electrostatic attraction between a shared pair of electrons and the nuclei of the two bonded atoms."
+    },
+    {
+      "front": "What is a coordinate (dative covalent) bond?",
+      "back": "A covalent bond in which both electrons in the shared pair come from the same atom."
+    },
+    {
+      "front": "What two conditions are required for a coordinate bond to form?",
+      "back": "1. One atom must have a lone pair of electrons. 2. The other atom must have a vacant orbital to accept the lone pair."
+    },
+    {
+      "front": "What is the difference between a bonding pair and a lone pair?",
+      "back": "A bonding pair is a pair of electrons shared between two atoms in a covalent bond. A lone pair is a pair of electrons in the outer shell of an atom that is not involved in bonding."
+    },
+    {
+      "front": "How does bond order relate to bond length and bond strength?",
+      "back": "As bond order increases (single < double < triple), the bond length decreases and the bond strength (bond energy) increases."
+    },
+    {
+      "front": "Give an example of a species containing a coordinate bond.",
+      "back": "The ammonium ion, $NH_4^+$, where the lone pair on the nitrogen in ammonia ($NH_3$) is donated to a hydrogen ion ($H^+$)."
+    },
+    {
+      "front": "How are polyatomic ions represented in dot-and-cross diagrams?",
+      "back": "The entire structure is enclosed in square brackets, and the overall charge is written as a superscript outside the top-right of the bracket."
+    },
+    {
+      "front": "Are coordinate bonds physically different from 'normal' covalent bonds once formed?",
+      "back": "No. Once formed, a coordinate bond is indistinguishable from any other covalent bond. In $NH_4^+$, all four N-H bonds are identical."
+    },
+    {
+      "front": "What is a common error when drawing the dot-and-cross diagram for $NH_4^+$?",
+      "back": "Forgetting to enclose the ion in square brackets and show the overall +1 charge. Another error is not clearly showing that both electrons for the dative bond came from the Nitrogen atom."
+    },
+    {
+      "front": "What does 'electron deficient' mean in the context of coordinate bonding?",
+      "back": "An atom or ion is electron deficient if it has a vacant orbital in its outer shell and can accept a pair of electrons. For example, $H^+$ or the boron atom in $BF_3$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Once a coordinate bond is formed, is it different from a normal covalent bond?",
+      "a": "No. Once formed, a coordinate bond is indistinguishable from any other covalent bond in the molecule or ion. For example, in the ammonium ion ($NH_4^+$), all four N-H bonds are identical in length and strength. The distinction is only in the 'history' of where the electrons came from."
+    },
+    {
+      "q": "Can neutral molecules have coordinate bonds?",
+      "a": "Yes, absolutely. A common example is the adduct formed between ammonia and boron trifluoride, $F_3B-NH_3$. The nitrogen donates its lone pair to the electron-deficient boron atom. Another example is carbon monoxide, $CO$, which is best represented with a triple bond, one of which is a coordinate bond."
+    },
+    {
+      "q": "Why is boron in $BF_3$ considered electron deficient?",
+      "a": "In boron trifluoride, the central boron atom forms three single covalent bonds with three fluorine atoms. This gives the boron atom only six electrons in its outer shell (3 bonds × 2 electrons/bond = 6 electrons), not a full octet of eight. This makes it 'electron deficient' and able to accept a lone pair from a donor atom."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Covalent bonding** (3.4) connects to **shapes** (3.5) and **intermolecular forces** (3.6). Cambridge tests **NH₄⁺**, **H₃O⁺**, and **Al₂Cl₆** as dative bond examples."
+      "content": "Atoms are driven to achieve stability, which for many elements means attaining the electron configuration of a noble gas – a full outer shell. While ionic bonding involves the transfer of electrons to form ions, covalent bonding is a strategy of sharing. This sharing creates strong, directional bonds that are responsible for the existence of a vast array of molecules, from the water you drink to the complex proteins in your body."
+    },
+    {
+      "type": "heading",
+      "content": "The Nature of Covalent Bonding"
+    },
+    {
+      "type": "text",
+      "content": "A covalent bond is fundamentally an electrostatic force. The positively charged nuclei of two atoms are attracted to the negatively charged pair of electrons shared between them. This mutual attraction holds the atoms together at a specific distance known as the bond length. This creates a strong, localised bond that requires a significant amount of energy to break, which is why substances with simple molecular structures can still have very strong bonds within their molecules."
+    },
+    {
+      "type": "heading",
+      "content": "Representing Covalent Bonds: Dot-and-Cross Diagrams"
+    },
+    {
+      "type": "text",
+      "content": "To visualise the sharing of electrons, we use 'dot-and-cross' diagrams, also known as Lewis structures. In this model, we only consider the valence (outer shell) electrons. The electrons from one atom are represented by dots (•) and the electrons from the other atom by crosses (×). This convention makes it easy to see how many electrons each atom contributes to the bond and to check if each atom has achieved a stable outer shell."
     },
     {
       "type": "workedExample",
-      "question": "Draw the formation of NH₄⁺ from NH₃ and H⁺, showing the dative bond.",
-      "solution": "NH₃ has a lone pair on N.\n\nH⁺ has empty 1s orbital.\n\nN donates lone pair to H⁺ → **dative covalent bond**.\n\nAll four N–H bonds in NH₄⁺ are equivalent once formed."
+      "question": "Draw a 'dot-and-cross' diagram for a molecule of methane, $CH_4$. Show outer shell electrons only.",
+      "solution": "1. **Identify valence electrons:** Carbon is in Group 14, so it has 4 valence electrons (we'll use ×). Hydrogen is in Group 1, so it has 1 valence electron (we'll use •).\n2. **Determine bonding:** Carbon needs 4 more electrons to achieve a stable octet. Each hydrogen needs 1 more electron to complete its first shell. Therefore, the central carbon atom will form four single covalent bonds, one with each of the four hydrogen atoms.\n3. **Draw the diagram:** Place the carbon atom in the centre. Arrange the four hydrogen atoms around it. For each C-H bond, draw one cross from the carbon and one dot from the hydrogen in the overlapping region. The final diagram shows the carbon atom sharing four pairs of electrons, and each hydrogen atom sharing one pair."
+    },
+    {
+      "type": "heading",
+      "content": "Multiple Covalent Bonds"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, atoms need to share more than one pair of electrons to achieve a stable octet. Sharing two pairs of electrons results in a double bond (e.g., in oxygen, $O_2$), and sharing three pairs results in a triple bond (e.g., in nitrogen, $N_2$). As the number of shared pairs (the bond order) increases, the electrostatic attraction between the nuclei and the electron-dense region becomes stronger. This pulls the atoms closer together, resulting in a shorter and stronger bond. Therefore, a triple bond is stronger and shorter than a double bond, which is in turn stronger and shorter than a single bond."
+    },
+    {
+      "type": "workedExample",
+      "question": "A molecule of carbon dioxide, $CO_2$, contains two carbon-oxygen double bonds. Draw its 'dot-and-cross' diagram.",
+      "solution": "1. **Valence electrons:** Carbon (Group 14) has 4 valence electrons (×). Oxygen (Group 16) has 6 valence electrons (•).\n2. **Determine bonding:** The central carbon atom needs to form bonds to satisfy its octet. Each oxygen atom needs two electrons. To achieve this, the carbon atom forms a double bond with each of the two oxygen atoms.\n3. **Draw the diagram:** Place C in the centre with an O on either side. For each C=O double bond, show two electrons from carbon (2 ×) and two electrons from oxygen (2 •) being shared. This gives carbon a share in 8 electrons. Each oxygen atom also has a share in 8 electrons (4 shared + 4 non-bonding/lone pair electrons). The non-bonding electrons on each oxygen should be shown as two lone pairs."
+    },
+    {
+      "type": "heading",
+      "content": "Coordinate (Dative Covalent) Bonding"
+    },
+    {
+      "type": "text",
+      "content": "A coordinate bond is a special type of covalent bond where one atom provides both of the electrons in the shared pair. This typically occurs when an atom with a lone pair of electrons (an electron-pair donor) interacts with an atom or ion that has a vacant orbital (an electron-pair acceptor). A classic example is the formation of the ammonium ion, $NH_4^+$, when ammonia ($NH_3$) reacts with a hydrogen ion ($H^+$)."
+    },
+    {
+      "type": "formula",
+      "content": "NH_3 + H^+ \\rightarrow [NH_4]^+"
+    },
+    {
+      "type": "text",
+      "content": "The nitrogen atom in ammonia has a lone pair of electrons. The hydrogen ion, $H^+$, has lost its only electron, leaving it with an empty 1s orbital. The nitrogen atom donates its lone pair to the $H^+$ ion, forming a new N-H bond. Once formed, this coordinate bond is identical in every way to the other three N-H covalent bonds in the ion."
     },
     {
       "type": "examTip",
-      "content": "Use an **arrow** from lone pair to H⁺ when showing dative bond formation. After formation, draw all bonds as ordinary lines in the ion."
+      "content": "When drawing a dot-and-cross diagram for a species containing a coordinate bond, like $[NH_4]^+$, ensure you show both electrons for that specific bond coming from the donor atom (e.g., both as crosses if nitrogen is the 'cross' atom). Crucially, always enclose the final ion in square brackets and write the overall charge in the top right corner. Forgetting the brackets and charge is a common way to lose marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "The reaction between boron trifluoride, $BF_3$, and ammonia, $NH_3$, forms an addition compound, $F_3BNH_3$. Explain how a coordinate bond is formed and draw the dot-and-cross diagram for the product.",
+      "solution": "1. **Identify donor and acceptor:** Ammonia ($NH_3$) has a lone pair on the nitrogen atom, so it can act as an electron-pair donor. Boron trifluoride ($BF_3$) is electron deficient; the boron atom only has 6 electrons in its outer shell and has a vacant p-orbital. It can act as an electron-pair acceptor.\n2. **Bond formation:** The nitrogen atom in $NH_3$ donates its lone pair into the vacant orbital of the boron atom in $BF_3$. This forms a coordinate (dative covalent) bond between N and B.\n3. **Draw the diagram:** Draw the $NH_3$ molecule and the $BF_3$ molecule. Let's use dots (•) for N and H electrons, and crosses (×) for B and F electrons. Show the N atom with its lone pair (two dots). Show the B atom bonded to three F atoms. In the product, draw a bond between N and B, where the shared pair consists of the two dots from the nitrogen. Both N and B now have a full octet of electrons. The overall molecule is neutral, so no brackets or charge are needed."
     },
     {
       "type": "practice",
-      "label": "Mark a bonding question",
+      "label": "Test Your Knowledge on Covalent Bonding",
       "href": "/mark?subject=9701&topic=3.4"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Build a Molecule", "href": "https://phet.colorado.edu/en/simulations/build-a-molecule" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "Chemguide page on Covalent Bonding",
+          "href": "https://www.chemguide.co.uk/atoms/bonding/covalent.html"
+        },
+        {
+          "label": "Chemguide page on Dative Covalent Bonding",
+          "href": "https://www.chemguide.co.uk/atoms/bonding/dative.html"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Build a molecule",
+    "embedUrl": "https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/build-a-molecule",
+    "hint": "Form covalent bonds by sharing electrons — count bonds in the final structure (3.4).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Covalent bonds form when atoms share electron pairs.",
+        "embedHint": "Build a simple covalent molecule — count shared pairs."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Each covalent bond = one shared pair (single bond) or multiple pairs (double/triple).",
+        "embedHint": "Compare single vs double bond lengths in the model."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Dative covalent bonds: both electrons come from one atom (e.g. NH₄⁺).",
+        "embedHint": "Identify which atom donated the lone pair in a coordinate bond."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Lewis structures show all valence electrons — dots or crosses per atom.",
+        "embedHint": "Draw dot-and-cross diagrams alongside the sim for exam practice."
+      }
+    ]
+  }
 }

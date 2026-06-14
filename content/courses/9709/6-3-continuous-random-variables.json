@@ -4,29 +4,221 @@
   "title": "Continuous random variables",
   "paper": "P6",
   "paperName": "Probability & Statistics 2",
-  "status": "premium",
-  "summary": "9709 S2 — PDF, CDF, expectation, and variance for continuous distributions.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "This lesson introduces continuous random variables, focusing on the probability density function (PDF) and cumulative distribution function (CDF). You will learn how to calculate probabilities as areas under the PDF curve and find the expectation and variance using integration.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Use probability density functions correctly.",
-    "Calculate probabilities as areas.",
-    "Find E(X) and Var(X) by integration.",
-    "Work with standard continuous distributions."
+    "Understand the properties of a probability density function (PDF) and use it to calculate probabilities.",
+    "Understand the cumulative distribution function (CDF) and its relationship with the PDF.",
+    "Calculate the expectation (mean) and variance of a continuous random variable by integration.",
+    "Solve problems involving continuous random variables, including finding unknown constants in a PDF."
   ],
   "simpleExplanation": {
-    "title": "Continuous X",
-    "summary": "P(X = exact value) = 0 for continuous variables. Probabilities are areas under the PDF.",
+    "title": "From Density to Probability",
+    "summary": "Unlike discrete variables which have specific probabilities, continuous variables use a 'probability density function' (PDF) where probability is the area under the curve. We use integration to find these areas and other key measures like the mean and variance.",
+    "analogy": "Imagine pouring one litre of sand onto a narrow strip of ground. The height of the sand at any point is the 'density' (our PDF). The total amount of sand is fixed at one litre (total probability is 1). To find the amount of sand in a specific section, you'd measure the volume in that section (calculating the area under the curve), not just the height at one single point.",
     "steps": [
-      "∫f(x)dx = 1 over full range.",
-      "P(a ≤ X ≤ b) = area under f between a and b.",
-      "E(X) = ∫x f(x) dx.",
-      "CDF F(x) = P(X ≤ x)."
+      "The PDF, f(x), shows the relative likelihood of a value. It must be non-negative, and the total area under its curve over its entire range must equal 1.",
+      "The CDF, F(x), gives the total probability up to a value x, P(X ≤ x). It's the cumulative area under the PDF. The probability between two points, P(a < X ≤ b), is simply the difference F(b) − F(a).",
+      "The mean E(X) and variance Var(X) are found by integrating over the variable's range. E(X) is the integral of x⋅f(x), and Var(X) is found using the integral of x²⋅f(x).",
+      "A common example is the uniform distribution, where the PDF is a constant height over a fixed interval. Its graph is a rectangle where height times width equals 1."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a continuous random variable?",
+      "back": "A random variable that can take any value within a given range. Examples include height, weight, or time."
+    },
+    {
+      "front": "What are the two key properties of a probability density function (PDF), f(x)?",
+      "back": "1. f(x) ≥ 0 for all x. (Probability density cannot be negative). 2. The total area under the curve is 1:  $\\int_{-\\infty}^{\\infty} f(x) dx = 1$."
+    },
+    {
+      "front": "For a continuous random variable X, what is the value of P(X = c) for any constant c?",
+      "back": "P(X = c) = 0. The probability of X taking any single exact value is zero. This is because the area under the PDF at a single point is zero."
+    },
+    {
+      "front": "What is the consequence of P(X = c) = 0 for inequalities?",
+      "back": "P(a < X < b) = P(a ≤ X < b) = P(a < X ≤ b) = P(a ≤ X ≤ b). The inclusion or exclusion of endpoints does not change the probability."
+    },
+    {
+      "front": "How is the probability P(a < X < b) calculated from the PDF, f(x)?",
+      "back": "By integrating the PDF between the limits a and b: $P(a < X < b) = \\int_{a}^{b} f(x) dx$."
+    },
+    {
+      "front": "What is the Cumulative Distribution Function (CDF), F(x)?",
+      "back": "The CDF gives the cumulative probability that the variable X takes a value less than or equal to x. $F(x) = P(X \\le x) = \\int_{-\\infty}^{x} f(t) dt$."
+    },
+    {
+      "front": "How can you use the CDF, F(x), to find P(a < X < b)?",
+      "back": "$P(a < X < b) = F(b) - F(a)$. This is often quicker than integrating the PDF from scratch."
+    },
+    {
+      "front": "What is the formula for the expectation (mean) of a continuous random variable X?",
+      "back": "$E(X) = \\mu = \\int_{-\\infty}^{\\infty} x f(x) dx$. Remember to integrate over the defined range of f(x)."
+    },
+    {
+      "front": "What is the formula for the variance of a continuous random variable X?",
+      "back": "$Var(X) = \\sigma^2 = \\int_{-\\infty}^{\\infty} x^2 f(x) dx - [E(X)]^2$. This is $E(X^2) - [E(X)]^2$."
+    },
+    {
+      "front": "What is a common mistake when calculating Var(X)?",
+      "back": "Forgetting to square the value of E(X) at the end. The formula is $E(X^2) - [E(X)]^2$, not $E(X^2) - E(X)$."
+    },
+    {
+      "front": "What defines a uniform (or rectangular) distribution for a variable X over the interval [a, b]?",
+      "back": "The PDF is constant for a ≤ x ≤ b and zero elsewhere. $f(x) = \\frac{1}{b-a}$ for $x \\in [a, b]$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the probability of a continuous random variable taking a single value, P(X=c), equal to zero?",
+      "a": "Because probability is represented by the area under the PDF curve. The area of a region with zero width (at a single point 'c') is zero. Think of it as integrating from c to c: $\\int_{c}^{c} f(x) dx = 0$."
+    },
+    {
+      "q": "What is the difference between a PDF, f(x), and a CDF, F(x)?",
+      "a": "The PDF, $f(x)$, is the 'density' function; its value is not a probability, but the area under it is. The CDF, $F(x)$, is a cumulative probability function; its value at $x$ is the actual probability $P(X \\le x)$. The PDF is the derivative of the CDF."
+    },
+    {
+      "q": "My variance calculation gave a negative number. What did I do wrong?",
+      "a": "Variance can never be negative. If you get a negative answer, you have made a calculation error. The most common mistakes are: (1) an error in the integration of $x^2 f(x)$, or (2) forgetting to square $E(X)$ in the formula $Var(X) = E(X^2) - [E(X)]^2$. The worked example above shows how to spot and correct this."
+    },
+    {
+      "q": "How do I define the CDF for a piecewise PDF?",
+      "a": "You need to define $F(x)$ for all real numbers. It will be 0 for $x$ less than the lower bound of the PDF's range. It will be 1 for $x$ greater than the upper bound. In between, you integrate the PDF from the lower bound up to a variable $x$. If the PDF has multiple pieces, the CDF will also have multiple corresponding pieces."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Continuous RVs** (6.3) require careful **integration limits**. Sketch the PDF before integrating." },
-    { "type": "practice", "label": "Mark a continuous RV question", "href": "/mark?subject=9709&topic=6.3" },
-    { "type": "resources", "items": [{ "label": "9709 course index", "href": "/courses/9709" }] }
-  ]
+    {
+      "type": "intro",
+      "content": "In Probability & Statistics 1, we dealt with discrete random variables, which can only take specific, separate values (like the score on a dice). Now, we explore continuous random variables, which can take any value in a given range, such as the height of a student or the time taken to run a race. Instead of a probability mass function, we use a probability density function (PDF), where probabilities are represented by areas."
+    },
+    {
+      "type": "heading",
+      "content": "The Probability Density Function (PDF)"
+    },
+    {
+      "type": "text",
+      "content": "The probability density function, denoted $f(x)$, describes the relative likelihood for a continuous random variable to take on a given value. Unlike for discrete variables, $f(x)$ is not a probability itself. Instead, the area under the graph of $f(x)$ over an interval corresponds to the probability that the variable falls within that interval."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For $f(x)$ to be a valid PDF, it must satisfy two conditions.",
+        "Condition 1: $f(x) \\ge 0$ for all values of $x$. The graph can never be below the x-axis.",
+        "Condition 2: The total area under the curve must be 1. $\\int_{-\\infty}^{\\infty} f(x) dx = 1$. In practice, we integrate over the interval where $f(x)$ is non-zero."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A continuous random variable X has a probability density function given by $f(x) = k(4-x^2)$ for $0 \\le x \\le 2$, and $f(x) = 0$ otherwise. \n\n(i) Show that $k = \\frac{3}{16}$. \n(ii) Find $P(X > 1)$.",
+      "solution": "(i) For $f(x)$ to be a valid PDF, the total area under the curve must be 1. We integrate $f(x)$ over its defined range and set the result to 1.\n\n$\\int_{0}^{2} k(4-x^2) dx = 1$\n\n$k \\left[ 4x - \\frac{x^3}{3} \\right]_{0}^{2} = 1$\n\n$k \\left( (4(2) - \\frac{2^3}{3}) - (0) \\right) = 1$\n\n$k \\left( 8 - \\frac{8}{3} \\right) = 1$\n\n$k \\left( \\frac{24-8}{3} \\right) = 1$\n\n$k \\left( \\frac{16}{3} \\right) = 1$\n\n$k = \\frac{3}{16}$ (as required)\n\n(ii) To find $P(X > 1)$, we integrate the PDF from 1 to the upper limit of the range, which is 2.\n\n$P(X > 1) = \\int_{1}^{2} \\frac{3}{16}(4-x^2) dx$\n\n$= \\frac{3}{16} \\left[ 4x - \\frac{x^3}{3} \\right]_{1}^{2}$\n\n$= \\frac{3}{16} \\left[ (4(2) - \\frac{2^3}{3}) - (4(1) - \\frac{1^3}{3}) \\right]$\n\n$= \\frac{3}{16} \\left[ (8 - \\frac{8}{3}) - (4 - \\frac{1}{3}) \\right]$\n\n$= \\frac{3}{16} \\left[ \\frac{16}{3} - \\frac{11}{3} \\right]$\n\n$= \\frac{3}{16} \\left( \\frac{5}{3} \\right)$\n\n$= \\frac{5}{16}$"
+    },
+    {
+      "type": "heading",
+      "content": "Expectation and Variance"
+    },
+    {
+      "type": "text",
+      "content": "Just as with discrete variables, we can calculate the mean (or expectation) and variance for continuous random variables. The expectation, $E(X)$, is the long-run average value of X, and the variance, $Var(X)$, measures the spread of the distribution. Instead of using summation ($Sigma$), we now use integration."
+    },
+    {
+      "type": "formula",
+      "content": "Expectation: $E(X) = \\mu = \\int_{-\\infty}^{\\infty} x f(x) dx$\n\nVariance: $Var(X) = \\sigma^2 = \\int_{-\\infty}^{\\infty} x^2 f(x) dx - [E(X)]^2$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always use the full defined range of $x$ for the limits of integration when calculating $E(X)$ and $E(X^2)$. A common error is to use the limits from a probability calculation (e.g., $P(X>1)$) instead of the full range (e.g., 0 to 2)."
+    },
+    {
+      "type": "workedExample",
+      "question": "For the random variable X with PDF $f(x) = \\frac{3}{16}(4-x^2)$ for $0 \\le x \\le 2$, find $E(X)$ and $Var(X)$.",
+      "solution": "First, find the expectation, $E(X)$.\n\n$E(X) = \\int_{0}^{2} x f(x) dx = \\int_{0}^{2} x \\cdot \\frac{3}{16}(4-x^2) dx$\n\n$= \\frac{3}{16} \\int_{0}^{2} (4x - x^3) dx$\n\n$= \\frac{3}{16} \\left[ 2x^2 - \\frac{x^4}{4} \\right]_{0}^{2}$\n\n$= \\frac{3}{16} \\left[ (2(2^2) - \\frac{2^4}{4}) - (0) \\right]$\n\n$= \\frac{3}{16} \\left[ (8 - \\frac{16}{4}) \\right] = \\frac{3}{16} (8 - 4) = \\frac{3}{16}(4) = \\frac{3}{4}$\n\nSo, $E(X) = 0.75$.\n\nNext, find $E(X^2)$ to calculate the variance.\n\n$E(X^2) = \\int_{0}^{2} x^2 f(x) dx = \\int_{0}^{2} x^2 \\cdot \\frac{3}{16}(4-x^2) dx$\n\n$= \\frac{3}{16} \\int_{0}^{2} (4x^2 - x^4) dx$\n\n$= \\frac{3}{16} \\left[ \\frac{4x^3}{3} - \\frac{x^5}{5} \\right]_{0}^{2}$\n\n$= \\frac{3}{16} \\left[ (\\frac{4(2^3)}{3} - \\frac{2^5}{5}) - (0) \\right]$\n\n$= \\frac{3}{16} \\left[ \\frac{32}{3} - \\frac{32}{5} \\right] = \\frac{3}{16} \\cdot 32 \\left[ \\frac{1}{3} - \\frac{1}{5} \\right]$\n\n$= 2 \\left[ \\frac{5-3}{15} \\right] = 2 \\left( \\frac{2}{15} \\right) = \\frac{4}{15}$\n\nNow, use the variance formula: $Var(X) = E(X^2) - [E(X)]^2$.\n\n$Var(X) = \\frac{4}{15} - (\\frac{3}{4})^2 = \\frac{4}{15} - \\frac{9}{16}$\n\n$= \\frac{64 - 135}{240} = -\\frac{71}{240}$. Wait, variance cannot be negative! Let me recheck the calculation for $E(X^2)$.\n\nAh, $E(X^2) = \\frac{3}{16} [\\frac{32}{3} - \\frac{32}{5}] = \\frac{3}{16} [\\frac{160-96}{15}] = \\frac{3}{16} [\\frac{64}{15}] = \\frac{3 \\times 4}{15} = \\frac{12}{15} = \\frac{4}{5}$.\n\nLet's try the variance calculation again with the corrected $E(X^2)$.\n\n$Var(X) = E(X^2) - [E(X)]^2 = \\frac{4}{5} - (\\frac{3}{4})^2$\n\n$= \\frac{4}{5} - \\frac{9}{16} = \\frac{64 - 45}{80} = \\frac{19}{80}$\n\nSo, $Var(X) = 0.2375$. This is positive, which is a good sign."
+    },
+    {
+      "type": "heading",
+      "content": "The Cumulative Distribution Function (CDF)"
+    },
+    {
+      "type": "text",
+      "content": "The cumulative distribution function, $F(x)$, gives the probability that the random variable $X$ is less than or equal to a particular value $x$. It is the integral of the PDF from the lower bound of the range up to $x$. A key property is that the derivative of the CDF is the PDF: $F'(x) = f(x)$."
+    },
+    {
+      "type": "formula",
+      "content": "$F(x) = P(X \\le x) = \\int_{a}^{x} f(t) dt$ (where $a$ is the start of the range)\n\n$P(c < X < d) = F(d) - F(c)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The CDF is a non-decreasing function, starting at 0 and ending at 1.",
+        "For a piecewise PDF, the CDF will also be piecewise. You must define it for all real values of $x$.",
+        "For $x$ below the range of the PDF, $F(x)=0$. For $x$ above the range, $F(x)=1$."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practice Continuous Random Variable Problems",
+      "href": "/mark?subject=9709&topic=6.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Cambridge International A-Level Mathematics (9709) Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Khan Academy: Continuous Probability Distributions",
+          "href": "https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/continuous-probability-distributions"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Continuous distribution",
+    "embedUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "launchUrl": "https://www.geogebra.org/classic?material=m5JhJ2Rk",
+    "hint": "PDF, CDF, and probability as area (9709 6.3).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "PDF f(x): f(x) ≥ 0 and ∫f(x)dx = 1 over range.",
+        "embedHint": "Probability = area under PDF."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "CDF F(x) = P(X ≤ x) — cumulative area.",
+        "embedHint": "P(a < X ≤ b) = F(b) − F(a)."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "E(X) = ∫x f(x) dx; Var(X) = E(X²) − [E(X)]².",
+        "embedHint": "Integration over defined range only."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Uniform and other standard continuous distributions.",
+        "embedHint": "Sketch PDF — height × width = 1."
+      }
+    ]
+  }
 }

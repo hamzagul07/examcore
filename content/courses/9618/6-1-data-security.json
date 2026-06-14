@@ -4,50 +4,179 @@
   "title": "Data Security",
   "paper": "P1",
   "paperName": "Theory Fundamentals",
-  "status": "premium",
-  "summary": "9618 AS — threats to data, access control, encryption, and backup strategies for confidentiality and availability.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "status": "pilot",
+  "summary": "An exploration of data security, covering the fundamental principles of confidentiality, integrity, and availability. This lesson details common threats like malware and phishing, and examines protective measures including firewalls, encryption, and access control, aligning with Cambridge A-Level requirements.",
+  "durationMin": 22,
+  "updated": "2026-06-14",
   "learningObjectives": [
-    "Describe threats: hacking, malware, phishing, and social engineering.",
-    "Explain authentication, authorisation, and access levels.",
-    "Outline symmetric and asymmetric encryption at a high level.",
-    "Evaluate backup, disaster recovery, and physical security measures."
+    "Understand the concepts of data security, data integrity, and data privacy.",
+    "Identify and describe various threats to data, including malware, phishing, and Denial of Service attacks.",
+    "Explain the purpose and function of protective measures such as firewalls, encryption, and user access levels.",
+    "Analyse security scenarios and propose appropriate mitigation strategies."
   ],
   "simpleExplanation": {
-    "title": "Protecting data assets",
-    "summary": "Data security combines technical controls (encryption, firewalls) with procedural ones (password policy, training). CIA triad: confidentiality, integrity, availability.",
+    "title": "Your Digital Fortress",
+    "summary": "Data security is the practice of defending digital information from unauthorised access, use, or corruption. It involves setting up multiple layers of protection to keep data safe and accurate.",
+    "analogy": "Think of protecting your data like securing your home. You have a front door lock (password), a burglar alarm (firewall), and a safe for your most valuable items (encryption). No single measure is foolproof, but together they create a strong defence.",
     "steps": [
-      "Confidentiality: only authorised users read data — encryption, access rights.",
-      "Integrity: data not altered without permission — checksums, audit logs.",
-      "Availability: systems reachable when needed — backups, redundancy.",
-      "Defence in depth: multiple layers — network, application, user education."
+      "Identify Data Assets: First, determine what data is valuable and needs protection, such as personal information or financial records.",
+      "Analyse Threats: Consider potential dangers, from malicious hackers and viruses to accidental deletion by staff.",
+      "Implement Controls: Deploy security measures like firewalls to block unwanted traffic, encryption to scramble data, and access rights to limit who can see what.",
+      "Monitor and Review: Continuously check for security breaches using audit trails and regularly update security policies and software to adapt to new threats."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Data Security?",
+      "back": "The practice of protecting digital data from unauthorised access, corruption, or theft throughout its entire lifecycle. It encompasses confidentiality, integrity, and availability."
+    },
+    {
+      "front": "What is Data Integrity?",
+      "back": "The maintenance and assurance of the accuracy and consistency of data. It ensures data has not been accidentally or maliciously altered."
+    },
+    {
+      "front": "What is the difference between a Virus and a Worm?",
+      "back": "A virus requires a host file (e.g., an executable) and human action to spread. A worm is a standalone program that can replicate and spread across a network automatically without a host."
+    },
+    {
+      "front": "Define Phishing.",
+      "back": "An attack where a threat actor sends fraudulent communications, typically email, disguised as a trustworthy source to trick individuals into revealing sensitive information like passwords or credit card numbers."
+    },
+    {
+      "front": "What is the primary function of a Firewall?",
+      "back": "To act as a barrier between a trusted internal network and an untrusted external network (like the internet), monitoring and controlling incoming and outgoing traffic based on a set of security rules."
+    },
+    {
+      "front": "Explain Symmetric Encryption.",
+      "back": "A type of encryption that uses a single secret key to both encrypt the plaintext and decrypt the ciphertext. It is fast, but the secure distribution of the single key is a major challenge."
+    },
+    {
+      "front": "Explain Asymmetric Encryption.",
+      "back": "A type of encryption that uses a pair of keys: a public key (shared with everyone) for encryption, and a private key (kept secret) for decryption. It is more secure for key exchange but slower than symmetric encryption."
+    },
+    {
+      "front": "What are User Access Levels (or Access Rights)?",
+      "back": "A security measure that restricts user access to files and systems based on their role or identity. For example, a user might have 'read-only' access while an administrator has 'read/write' access."
+    },
+    {
+      "front": "What is a Denial of Service (DoS) attack?",
+      "back": "A cyber-attack in which the perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services, typically by flooding the target with superfluous requests."
+    },
+    {
+      "front": "Authentication vs. Authorisation: What's the difference?",
+      "back": "Authentication is the process of verifying who you are (e.g., with a password). Authorisation is the process of verifying what you are allowed to do (e.g., granting you permission to open a file)."
+    },
+    {
+      "front": "What is Pharming?",
+      "back": "A cyber-attack that redirects a website's traffic to a different, fraudulent site by compromising the Domain Name System (DNS). It is more insidious than phishing as it can happen even if the user types the correct URL."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real difference between a virus and a worm?",
+      "a": "The key difference is how they spread. A virus needs a host program and typically requires human action to propagate (e.g., you opening an infected email attachment). A worm is a standalone piece of malware that can replicate and spread by itself across a network, exploiting vulnerabilities without any human intervention."
+    },
+    {
+      "q": "Is a firewall enough to protect my computer?",
+      "a": "No. A firewall is an essential part of security, but it's not a complete solution. It primarily protects against network-based threats by filtering traffic. It won't protect against malware introduced via a USB drive or a user being tricked by a phishing email. A good security strategy is 'defence in depth', using multiple layers like a firewall, anti-virus software, strong passwords, and user education."
+    },
+    {
+      "q": "Why is 'human error' considered a major security risk?",
+      "a": "Because humans can be tricked or make mistakes that bypass even the most sophisticated technical defences. An employee falling for a phishing scam and giving away their password, using a weak password like '123456', or losing an unencrypted laptop can all lead to major data breaches. This is why staff training is a critical component of data security."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Data security** (6.1) pairs with **data integrity** (6.2) on Paper 1. Cambridge often asks you to **compare measures** or **justify** a policy for a given scenario."
+      "content": "In our digital world, data is one of the most valuable assets for individuals and organisations alike. From personal photos to corporate financial records and national secrets, protecting this information is paramount. This lesson introduces the fundamental concepts of data security, exploring the threats we face and the essential measures we can implement to build a robust defence."
+    },
+    {
+      "type": "heading",
+      "content": "The Three Pillars of Data Security"
+    },
+    {
+      "type": "text",
+      "content": "Effective data security isn't just about stopping hackers. It's a broader concept built on three core principles, often called the 'CIA Triad'."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Firewall filters traffic; antivirus detects known malware signatures",
-        "Strong passwords + 2FA reduce unauthorised access",
-        "Symmetric key shared; asymmetric uses public/private key pairs (TLS)",
-        "Regular off-site backups protect against ransomware and hardware failure"
+        "**Confidentiality:** Ensuring that data is accessible only to those with authorised access. This is what most people think of as security – preventing data breaches and keeping secrets safe. Encryption is a key tool for confidentiality.",
+        "**Integrity:** Maintaining the accuracy and consistency of data. It ensures that data has not been altered in an unauthorised manner, whether by malicious attack or accidental error. Hashing algorithms are often used to verify data integrity.",
+        "**Availability:** Ensuring that data and resources are available to authorised users when they need them. This principle guards against threats like Denial of Service (DoS) attacks, which aim to make systems unusable."
       ]
     },
     {
+      "type": "heading",
+      "content": "Common Threats to Data Security"
+    },
+    {
+      "type": "text",
+      "content": "Understanding the enemy is the first step in building a defence. Threats can be accidental (like an employee deleting a file) or malicious. Malicious threats are often sophisticated and constantly evolving."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Malware:** 'Malicious software' is a broad category. It includes **viruses** (which attach to clean files), **worms** (which self-replicate across networks), **Trojans** (which disguise themselves as legitimate software), **spyware** (which secretly records your actions), and **ransomware** (which encrypts your files and demands payment).",
+        "**Phishing:** Fraudulent attempts, usually via email, to trick users into revealing sensitive information such as passwords, banking details, or personal data.",
+        "**Pharming:** A more technical attack where a user is redirected to a fraudulent website, even if they typed the correct URL. This is often achieved by compromising DNS servers.",
+        "**Denial of Service (DoS) Attacks:** An attempt to overwhelm a server or network with traffic, making it unavailable to legitimate users. A Distributed Denial of Service (DDoS) attack uses multiple compromised computers to launch the attack."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A college stores sensitive student data, including addresses and grades, on its network. Identify two distinct types of security threat the college faces and, for each threat, describe a specific measure to help prevent it. [4 marks]",
+      "solution": "A good answer will identify a threat and link it to a specific, appropriate countermeasure.\n\n**Threat 1:** Phishing attack targeting staff members. [1] An attacker could send an email pretending to be from the IT department, asking staff to 'verify' their login details on a fake website, thereby stealing their credentials.\n\n**Prevention 1:** Implement regular staff training. [1] Educate staff on how to identify phishing emails (e.g., checking sender addresses, looking for poor grammar, hovering over links before clicking) and establish a clear policy for reporting suspicious emails.\n\n**Threat 2:** A student introducing a virus via a USB stick. [1] A student could unknowingly bring a virus-infected USB from home and plug it into a college computer, allowing the malware to spread across the network.\n\n**Prevention 2:** Implement a device control policy and use anti-virus software. [1] Configure college computers to automatically scan any removable media for malware upon connection. Alternatively, disable USB ports on non-essential computers and provide a secure method for file transfer."
+    },
+    {
+      "type": "heading",
+      "content": "Protective Measures and Controls"
+    },
+    {
+      "type": "text",
+      "content": "To counter the array of threats, a layered security approach is necessary. This involves combining several different types of protection."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Firewalls:** A network security device that acts as a gatekeeper, monitoring and filtering incoming and outgoing network traffic according to defined security rules. They can be hardware or software-based.",
+        "**Encryption:** The process of converting data from a readable format (plaintext) into a scrambled, unreadable format (ciphertext). Only those with the correct key can decrypt the data. This protects data both in transit (e.g., over the internet) and at rest (e.g., on a hard drive).",
+        "**Access Control:** This involves authentication and authorisation. **Authentication** confirms a user's identity (e.g., password, biometrics). **Authorisation** determines what an authenticated user is allowed to do (e.g., User Access Levels that grant 'read-only' or 'admin' rights).",
+        "**Anti-malware Software:** Programs designed to detect, prevent, and remove malicious software from computer systems. It's crucial that this software is kept up-to-date to recognise new threats.",
+        "**Physical Security:** Measures to protect hardware and physical access to servers, such as locked server rooms, CCTV, and security guards."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Plaintext \\xrightarrow{\\text{Encryption Key}} Ciphertext \\xrightarrow{\\text{Decryption Key}} Plaintext"
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, when asked to describe a security measure, be specific and explain *how* it works. Instead of just saying 'use a firewall', a better answer would be 'use a firewall to block traffic from unrecognised IP addresses on specific ports'. Similarly, for threats, clearly distinguish between different types of malware like viruses and worms. Precision earns marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "An e-commerce website needs to securely transmit a customer's credit card details from their browser to the website's server. The process uses both asymmetric and symmetric encryption. Explain why both types of encryption are used in this scenario. [6 marks]",
+      "solution": "This question tests your understanding of the practical application of different encryption types.\n\n**Asymmetric Encryption's Role:**\n1. Asymmetric encryption is used first to solve the key-sharing problem. [1] The web server has a public key (which it sends to the customer's browser) and a private key (which it keeps secret). [1]\n2. The customer's browser uses the server's public key to encrypt a newly generated symmetric key. [1] Because it's encrypted with the public key, only the server's corresponding private key can decrypt it, ensuring the symmetric key is transmitted securely.\n\n**Symmetric Encryption's Role:**\n3. Symmetric encryption is used for the actual transmission of the credit card data. [1]\n4. This is because symmetric encryption is much faster and more computationally efficient than asymmetric encryption, making it suitable for encrypting the bulk of the data in the transaction. [1]\n\n**Conclusion:**\n5. This hybrid approach combines the security of asymmetric encryption for key exchange with the speed of symmetric encryption for data transfer, providing a secure and efficient solution. [1]"
+    },
+    {
       "type": "practice",
-      "label": "Mark a data security question",
+      "label": "Data Security",
       "href": "/mark?subject=9618&topic=6.1"
     },
     {
       "type": "resources",
       "items": [
-        { "label": "9618 course index", "href": "/courses/9618" }
+        {
+          "label": "Cambridge International AS & A Level Computer Science 9618 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        },
+        {
+          "label": "National Cyber Security Centre (UK) - Explainer Guides",
+          "href": "https://www.ncsc.gov.uk/section/advice-guidance/all-topics"
+        }
       ]
     }
-  ]
+  ],
+  "generatorVersion": "stem-deep-author-1"
 }

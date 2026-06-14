@@ -117,7 +117,7 @@ const TYPE_LABELS: Record<ActionPlanType, string> = {
 
 export function ActionPlan({ items }: Props) {
   return (
-    <section className="ms-dash-card">
+    <section className="ms-action-plan ms-dash-card">
       <div className="mb-6">
         <div className="mb-2 flex items-center gap-2">
           <Target className="h-4 w-4 text-[var(--ec-brand)]" aria-hidden="true" />
@@ -180,7 +180,7 @@ function ActionCard({
       <LoadingLink
         href={item.ctaHref}
         loadingText="Opening..."
-        className="ec-btn-secondary mt-5 self-start px-3.5 py-2 text-sm"
+        className="ec-btn-secondary ms-action-cta mt-5 w-full justify-center self-stretch px-3.5 py-2 text-sm sm:w-auto sm:self-start"
       >
         {item.ctaText}
         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

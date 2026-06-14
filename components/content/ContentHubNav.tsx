@@ -20,7 +20,7 @@ export function ContentHubNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="ms-hub-tabs" aria-label="Guides and blog">
+    <nav className="ms-content-hub ms-hub-tabs" aria-label="Guides and blog">
       {TABS.map((tab) => {
         const active = isTabActive(pathname, tab.href)
         return (

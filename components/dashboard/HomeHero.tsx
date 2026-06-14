@@ -15,7 +15,7 @@ export function HomeHero({ firstName, examDate, weeklyAttempts }: Props) {
   const greeting = timeGreeting(firstName)
 
   return (
-    <section className="mb-8 lg:mb-10">
+    <section className="ms-dash-hero mb-8 lg:mb-10">
       <p className="ec-eyebrow mb-3">Home</p>
 
       {countdown.kind === 'future' && examDate ? (

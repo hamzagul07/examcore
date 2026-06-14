@@ -16,11 +16,11 @@ export default function JoinPage() {
   }
 
   return (
-    <div className="ec-card p-8 text-center">
+    <div className="ms-join-card ec-card p-6 text-center sm:p-8">
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ec-icon-hero-gradient">
         <BookOpen className="h-8 w-8 ec-text-brand" />
       </div>
-      <h1 className="mb-2 text-3xl font-bold text-[var(--ec-text-primary)]">
+      <h1 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)] sm:text-3xl">
         Join a classroom
       </h1>
       <p className="mb-8 text-[var(--ec-text-secondary)]">
@@ -36,7 +36,7 @@ export default function JoinPage() {
           }
           placeholder="e.g. A3F9B2D1"
           maxLength={8}
-          className="ec-input mb-4 text-center font-mono text-2xl tracking-widest"
+          className="ms-join-code-input ec-input mb-4 text-center font-mono text-xl tracking-widest sm:text-2xl"
           autoFocus
           autoComplete="off"
           spellCheck={false}

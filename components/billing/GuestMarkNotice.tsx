@@ -32,10 +32,10 @@ export function GuestMarkNotice({ className = '' }: Props) {
 
   return (
     <p
-      className={`rounded-2xl border ec-border-color ec-bg-surface-raised px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)] ${className}`}
+      className={`ms-guest-notice rounded-2xl border ec-border-color ec-bg-surface-raised px-4 py-3 text-sm leading-relaxed text-[var(--ec-text-secondary)] ${className}`}
     >
       Marking as a guest — up to {ANON_DAILY_MARK_LIMIT} marks per day from this network.{' '}
-      <Link href={buildMarketingSignUpHref()} className="ec-link">
+      <Link href={buildMarketingSignUpHref()} className="ec-link inline-flex min-h-[44px] items-center">
         Create a free account
       </Link>{' '}
       for your own monthly allowance.

@@ -43,7 +43,9 @@ export default function ReviewDetailPage() {
 
   if (!attempt) {
     return (
-      <div className="p-12 text-[var(--ec-text-secondary)]">Loading submission...</div>
+      <TeacherPageContainer className="ms-teacher-review-detail max-w-7xl">
+        <p className="p-6 text-[var(--ec-text-secondary)] sm:p-0">Loading submission...</p>
+      </TeacherPageContainer>
     )
   }
 
@@ -51,7 +53,7 @@ export default function ReviewDetailPage() {
     attempt.user_profiles?.full_name?.trim() || 'Student'
 
   return (
-    <TeacherPageContainer className="flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col">
+    <TeacherPageContainer className="ms-teacher-review-detail flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col">
       <TeacherBackLink href="/teacher/reviews">← Back to inbox</TeacherBackLink>
 
       <TeacherPageHeader

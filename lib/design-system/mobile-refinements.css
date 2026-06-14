@@ -1,0 +1,1250 @@
+/* Mobile refinements — safe areas, touch targets, overflow fixes */
+
+@layer components {
+  /* Auth card titles: smaller than marketing hero on narrow screens */
+  .ec-card .text-hero {
+    font-size: clamp(1.625rem, 5vw, 2.125rem);
+    line-height: 1.12;
+  }
+
+  /* Tappable inline auth links (forgot password, sign up) */
+  .ec-auth-link,
+  .ec-card .ec-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--ec-touch-min, 44px);
+    padding-block: 8px;
+  }
+
+  .ec-auth-shell {
+    padding-top: calc(2.5rem + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  @media (min-width: 640px) {
+    .ec-auth-shell {
+      padding-top: calc(3rem + env(safe-area-inset-top, 0px));
+      padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  /* Onboarding: stack CTAs at all widths when modifier present */
+  .ms-ob-nav--stack {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .ms-ob-nav--stack .ec-btn-primary,
+  .ms-ob-nav--stack .ec-btn-ghost,
+  .ms-ob-nav--stack .ec-btn-underline,
+  .ms-ob-nav--stack button {
+    width: 100%;
+    max-width: none;
+    justify-content: center;
+  }
+
+  /* Scrollable subject picker on all breakpoints */
+  .ms-ob-subjects-scroll {
+    max-height: min(42vh, 320px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 4px;
+    margin-top: 24px;
+  }
+
+  /* Mark mode tabs — horizontal scroll on narrow phones */
+  .ms-lvl-tabs-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    margin-bottom: 26px;
+    scrollbar-width: none;
+  }
+
+  .ms-lvl-tabs-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ms-lvl-tabs-scroll .ms-lvl-tabs {
+    margin-bottom: 0;
+    min-width: max-content;
+  }
+}
+
+/* Sticky nav: clear notched status bar */
+.ec-nav-wrap {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.ec-cinematic-card {
+  min-height: 420px;
+}
+
+@media (max-width: 900px) {
+  .ms-mark-shell {
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
+  }
+
+  .ms-dash-page {
+    padding-top: 24px;
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ms-mark-steps-bar {
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .ec-nav-burger,
+  .ec-theme-flip {
+    min-width: var(--ec-touch-min, 44px);
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .app-shell.app-shell-tabbed {
+    padding-top: 1.25rem;
+  }
+
+  .ms-dash-home {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ms-price-page {
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+
+  .ms-price-card {
+    padding: 24px 20px;
+  }
+
+  .ec-nav-right {
+    gap: 8px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .ec-nav {
+    gap: 10px;
+  }
+
+  .ec-nav-mobile-menu {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ec-nav-mobile-menu a,
+  .ec-nav-mobile-menu button {
+    min-height: var(--ec-touch-min, 44px);
+    display: flex;
+    align-items: center;
+  }
+
+  .ec-nav-mobile-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
+    margin-bottom: 4px;
+    border-radius: 12px;
+    background: var(--ec-brand);
+    color: var(--ec-on-brand-text, #fff);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: none !important;
+    text-align: center;
+  }
+
+  .ec-nav-mark-compact {
+    align-items: center;
+    justify-content: center;
+    min-width: var(--ec-touch-min, 44px);
+    min-height: var(--ec-touch-min, 44px);
+    border-radius: 10px;
+    border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+    background: var(--ec-brand-muted);
+    color: var(--ec-brand);
+    font-family: var(--font-display, 'Newsreader', Georgia, serif);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .ec-cinematic-card {
+    min-height: min(360px, 62dvh);
+  }
+}
+
+@media (max-width: 520px) {
+  .ms-mark-steps-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .ms-mstep-sep {
+    display: none;
+  }
+
+  .ms-lvl-tab {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .ms-cmp-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-cmp-row > div {
+    padding: 12px 14px;
+  }
+
+  .ms-cmp-row .ms-us-head,
+  .ms-cmp-row .ms-them-head {
+    text-align: left;
+  }
+
+  .ms-trust > div {
+    flex: 1 1 100%;
+  }
+
+  .ec-exam-tally {
+    position: static;
+    display: inline-block;
+    margin: 0 0 8px;
+  }
+}
+
+/* Dashboard home — scale down hero typography on phones */
+@media (max-width: 520px) {
+  .ms-dash-hero .text-hero {
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+    line-height: 1.08;
+  }
+
+  .ms-dash-countdown .ec-countdown-number {
+    font-size: clamp(2.75rem, 20vw, 4.25rem);
+  }
+
+  .ms-dash-countdown .text-title {
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+  }
+
+  .ms-settings-shell .ms-h2 {
+    font-size: clamp(26px, 7vw, 34px);
+  }
+
+  .ms-settings-shell header {
+    margin-bottom: 1.5rem;
+  }
+
+  .ms-progress-page .mb-10 {
+    margin-bottom: 1.5rem;
+  }
+
+  .ms-audit-row {
+    grid-template-columns: 44px 1fr 36px;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .ms-audit-row .desc {
+    overflow-x: visible;
+    overflow-wrap: anywhere;
+  }
+
+  .ec-exam-sheet__work {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .ec-exam-sheet__line {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .ec-mark-stamp {
+    font-size: 11px;
+    padding: 2px 7px;
+  }
+
+  .ms-wp-qrow {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .ms-progress-tab {
+    padding: 8px 12px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .ms-acct-card {
+    padding: 16px 18px;
+  }
+
+  .ms-acct-grid {
+    gap: 12px;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .ec-cmdk-btn {
+    min-width: var(--ec-touch-min, 44px);
+    min-height: var(--ec-touch-min, 44px);
+    padding: 0;
+    justify-content: center;
+    border-radius: 10px;
+    gap: 0;
+  }
+
+  .ec-cmdk-btn kbd {
+    display: none;
+  }
+
+  .ec-nav-right {
+    gap: 6px;
+  }
+}
+
+/* ---- Round 4: landing, courses, subjects, teacher ---- */
+
+.ec-app-header {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+@media (max-width: 900px) {
+  .ms-teacher-layout {
+    padding: 1.25rem 1rem calc(2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .course-studio-topbar {
+    top: calc(3.5rem + env(safe-area-inset-top, 0px));
+  }
+
+  .course-studio-topbar-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ms-course-hero {
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+
+  .ms-content-hero .ms-h2 {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+
+  .ms-zstats > div {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .ms-h-display {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .ms-hero {
+    padding-top: 28px;
+  }
+
+  .ms-hero-kicker {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    margin-bottom: 12px;
+  }
+
+  .ms-hero-lead {
+    margin: 18px 0 24px;
+    font-size: 16px;
+  }
+
+  .ms-hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .ms-hero-ctas .ec-btn-primary,
+  .ms-hero-ctas .ec-btn-underline {
+    width: 100%;
+    justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-sec {
+    padding-top: 48px;
+  }
+
+  .ms-trust b {
+    font-size: 19px;
+  }
+
+  .ms-trust > div {
+    padding: 16px 18px;
+  }
+
+  .ms-hero-sheet-wrap .ms-sheet-caption {
+    font-size: 18px;
+  }
+
+  .course-studio-grid {
+    padding: 16px 14px 40px;
+  }
+
+  .course-studio-topbar {
+    padding: 12px 14px;
+  }
+
+  .course-studio-topbar-actions {
+    width: 100%;
+  }
+
+  .course-studio-mark-cta {
+    min-height: var(--ec-touch-min, 44px);
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .ms-fc-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-fc {
+    min-height: 120px;
+  }
+
+  .ms-lesson-chip-row {
+    gap: 8px;
+    margin: 12px 0 20px;
+  }
+
+  .ms-course-hero {
+    padding-top: 28px;
+    padding-bottom: 40px;
+  }
+
+  .ms-teacher-page .text-headline {
+    font-size: clamp(1.5rem, 5.5vw, 2rem);
+  }
+
+  .ms-teacher-page .ec-card.p-12 {
+    padding: 1.5rem;
+  }
+
+  .ec-ms-footer__inner {
+    grid-template-columns: 1fr;
+    padding: 32px 18px 24px;
+  }
+
+  .ec-ms-footer__legal {
+    padding: 0 18px 20px;
+  }
+}
+
+/* ---- Round 5: join, contact, teacher classroom, mark upload, attempts ---- */
+
+@media (max-width: 900px) {
+  .ms-join-shell {
+    padding-top: calc(1rem + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ms-join-chrome {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .ms-contact-page .ms-dash-card {
+    padding: 18px 16px;
+  }
+
+  .ms-contact-page .ms-pg {
+    padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ms-teacher-classroom .ec-card.p-6,
+  .ms-teacher-classroom .ec-card.p-8 {
+    padding: 1.25rem;
+  }
+
+  .ms-mark-form-card {
+    padding: 18px 16px;
+  }
+
+  .ms-mark-form-card h3 {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .ms-upload-preview-wrap {
+    max-height: min(42vh, 360px);
+    min-height: 120px;
+    padding: 8px;
+  }
+
+  .ms-upload-preview {
+    max-height: min(40vh, 340px);
+  }
+
+  .ms-attempt-page {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ms-omni-panel {
+    max-height: min(480px, calc(100dvh - 168px - env(safe-area-inset-bottom, 0px)));
+  }
+}
+
+@media (max-width: 520px) {
+  .ms-join-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .ms-join-card h1,
+  .ms-join-card h2 {
+    font-size: clamp(1.375rem, 5.5vw, 1.75rem);
+  }
+
+  .ms-join-code-input {
+    font-size: clamp(1.125rem, 5vw, 1.5rem);
+    letter-spacing: 0.12em;
+  }
+
+  .ms-teacher-classroom header .text-headline {
+    font-size: clamp(1.375rem, 5vw, 1.875rem);
+  }
+
+  .ms-teacher-classroom .ec-card.mb-8.p-6 .flex.items-center.justify-between {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ms-teacher-invite code {
+    font-size: clamp(1.5rem, 8vw, 2.25rem);
+    letter-spacing: 0.1em;
+    word-break: break-all;
+  }
+
+  .ms-teacher-invite .ec-btn-primary {
+    width: 100%;
+    justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-teacher-risk-matrix {
+    padding: 1.25rem;
+  }
+
+  .ms-teacher-risk-matrix h2 {
+    font-size: clamp(1.375rem, 5vw, 1.75rem);
+  }
+
+  .ms-teacher-risk-plot {
+    height: min(240px, 42dvh);
+  }
+
+  .ms-teacher-risk-legend {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-attempt-page .text-hero {
+    font-size: clamp(1.625rem, 6vw, 2.125rem);
+    line-height: 1.1;
+  }
+
+  .ms-attempt-page .mb-10 {
+    margin-bottom: 1.5rem;
+  }
+
+  .ms-mark-pg .ec-card.border-dashed .ec-btn-secondary {
+    min-height: var(--ec-touch-min, 44px);
+    justify-content: center;
+  }
+
+  .ms-mark-pg .ec-card.border-dashed:not(:has(.ms-upload-preview-wrap)) {
+    padding: 1.5rem 1rem;
+  }
+
+  .ms-blog-toc-mobile ol {
+    gap: 6px;
+  }
+
+  .ms-blog-toc-mobile a {
+    padding: 8px 12px;
+    font-size: 12.5px;
+  }
+}
+
+.ms-blog-toc-mobile {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.25rem;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.ms-blog-toc-mobile::-webkit-scrollbar {
+  display: none;
+}
+
+.ms-blog-toc-mobile ol {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: max-content;
+}
+
+.ms-blog-toc-mobile a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ec-touch-min, 44px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface);
+  color: var(--ec-text-secondary);
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease,
+    background 150ms ease;
+}
+
+.ms-blog-toc-mobile a:hover {
+  border-color: color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border));
+  color: var(--ec-brand);
+  background: var(--ec-brand-muted);
+}
+
+/* ---- Round 6: settings, billing, whole paper, teacher roster, verify ---- */
+
+@media (max-width: 900px) {
+  .ms-settings-shell {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ms-settings-section {
+    padding: 1.25rem 1.125rem;
+  }
+
+  .ms-whole-paper-result .ms-wp-grade-card {
+    padding: 24px 18px 20px;
+  }
+
+  .ms-whole-paper-result .ms-mark-result-head {
+    margin-bottom: 24px;
+  }
+
+  .ms-whole-paper-result .ms-audit-head {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .ms-whole-paper-upload .ec-btn-primary,
+  .ms-whole-paper-upload .ec-btn-secondary {
+    min-height: var(--ec-touch-min, 44px);
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .ms-settings-shell .ms-lead {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .ms-settings-section h2.text-h3 {
+    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
+  }
+
+  .ms-billing-actions > *,
+  .ms-billing-actions a {
+    width: 100%;
+  }
+
+  .ms-billing-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ms-billing-actions .ec-btn-primary,
+  .ms-billing-actions .ec-btn-secondary {
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-mark-pg .ms-mark-result-head .ms-h2 {
+    font-size: clamp(1.375rem, 5.5vw, 1.875rem);
+    line-height: 1.12;
+  }
+
+  .ms-mark-pg .ms-mark-result-head {
+    margin-bottom: 24px;
+  }
+
+  .ms-whole-paper-result .ms-fix-item {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .ms-whole-paper-result .ms-fix-item .ec-btn-underline {
+    margin-left: 0;
+    min-height: var(--ec-touch-min, 44px);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .ms-whole-paper-result .ms-audit-head .ms-micro {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
+  .ms-teacher-student .text-headline {
+    font-size: clamp(1.375rem, 5vw, 1.875rem);
+  }
+
+  .ms-teacher-student .ec-card,
+  .ms-teacher-roster .ec-card {
+    padding: 1.125rem;
+  }
+
+  .ms-teacher-student header .text-body {
+    overflow-wrap: anywhere;
+  }
+
+  .ms-teacher-roster .text-headline {
+    font-size: clamp(1.375rem, 5vw, 1.875rem);
+  }
+
+  .ms-teacher-review h2 {
+    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
+  }
+
+  .ms-verify-digits input {
+    height: 48px;
+    width: 2.25rem;
+    font-size: 1rem;
+  }
+
+  .ms-exam-pills .ec-pill {
+    min-height: var(--ec-touch-min, 44px);
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* ---- Round 7: teacher reviews, pricing, search, compare ---- */
+
+.ec-nav-mobile-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--ec-touch-min, 44px);
+  text-align: left;
+  font-family: var(--font-display, 'Newsreader', Georgia, serif);
+  font-size: 19px;
+  color: var(--ec-text-primary);
+  background: none;
+  border: none;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--ec-border);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .ms-cmdk-overlay {
+    align-items: flex-end;
+    padding-top: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .ms-cmdk-overlay .ms-omni-panel--landing {
+    width: 100%;
+    max-width: none;
+    height: min(88dvh, calc(100dvh - env(safe-area-inset-top, 0px)));
+    max-height: min(88dvh, calc(100dvh - env(safe-area-inset-top, 0px)));
+    border-radius: 20px 20px 0 0;
+  }
+
+  .ms-teacher-review-detail .ec-card.overflow-hidden {
+    padding: 0.75rem;
+  }
+
+  .ms-teacher-review-detail header .text-body {
+    overflow-wrap: anywhere;
+  }
+
+  .ms-override-console {
+    max-height: none;
+  }
+
+  .ms-pricing-client .ms-price-grid {
+    margin-top: 32px;
+  }
+
+  .ms-pricing-client .ec-btn-primary,
+  .ms-pricing-client .ec-btn-secondary,
+  .ms-pricing-client .ec-btn-ghost {
+    min-height: var(--ec-touch-min, 44px);
+    justify-content: center;
+  }
+
+  .ms-compare-scroll {
+    margin-left: -4px;
+    margin-right: -4px;
+    padding-bottom: 4px;
+  }
+
+  .ms-cmp-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-left: -4px;
+    margin-right: -4px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .ms-cmp-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ms-cmp-scroll .ms-cmp {
+    margin-top: 0;
+    min-width: 520px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ms-price-page .ms-h2 {
+    font-size: clamp(28px, 7.5vw, 40px);
+  }
+
+  .ms-pricing-client .ms-price-amount {
+    font-size: clamp(2.25rem, 10vw, 3.25rem);
+  }
+
+  .ms-pricing-client .ms-hot-badge {
+    font-size: 15px;
+    top: -12px;
+    padding: 2px 12px;
+  }
+
+  .ms-pricing-client .ms-price-card {
+    padding: 22px 18px;
+  }
+
+  .ms-pricing-region select.ec-input {
+    width: 100%;
+    max-width: 160px;
+  }
+
+  .ms-teacher-inbox-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .ms-teacher-inbox-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ms-teacher-inbox-filters button {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .ms-teacher-inbox .text-headline,
+  .ms-teacher-review-detail .text-headline {
+    font-size: clamp(1.375rem, 5vw, 1.875rem);
+  }
+
+  .ms-override-console .truncate {
+    max-width: min(100%, 180px);
+  }
+
+  .ms-cmp-row > div {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .ms-cmp-cell {
+    font-size: 11.5px;
+  }
+
+  .ms-compare-scroll table {
+    font-size: 13px;
+  }
+
+  .ms-compare-scroll th,
+  .ms-compare-scroll td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+/* ---- Round 8: teacher dash, blindspot, FAQ, subjects, solutions, upgrade ---- */
+
+@media (max-width: 900px) {
+  .ms-teacher-intervention {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ms-subjects-tabs .ms-lvl-tabs {
+    margin-bottom: 0;
+  }
+
+  .ms-subjects-toolbar .ms-lvl-tabs-scroll {
+    margin-bottom: 0;
+  }
+
+  .ms-upgrade-sheet .ec-btn-primary,
+  .ms-upgrade-sheet .ec-btn-secondary {
+    min-height: var(--ec-touch-min, 44px);
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .ms-teacher-dash-actions .ec-btn-primary,
+  .ms-teacher-dash-actions .ec-btn-secondary {
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-teacher-blindspot h2 {
+    font-size: clamp(1.375rem, 5.5vw, 2rem);
+    overflow-wrap: anywhere;
+  }
+
+  .ms-teacher-blindspot .ec-chip {
+    font-size: 12px;
+  }
+
+  .ms-teacher-form .text-headline {
+    font-size: clamp(1.375rem, 5vw, 1.875rem);
+  }
+
+  .ms-faq-accordion .landing-h3 {
+    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
+  }
+
+  .ms-faq-accordion button span {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .ms-subjects-page .ms-h2 {
+    font-size: clamp(28px, 7.5vw, 40px);
+  }
+
+  .ms-subj-search input {
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-progress-page .ms-h2 {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+
+  .ms-solution-section .ec-btn-secondary,
+  .ms-solution-section .ec-btn-primary {
+    width: 100%;
+    justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-solution-section h2 {
+    font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+  }
+}
+
+/* ---- Round 9: progress, mastery, post-mark, auth, courses ---- */
+
+@media (max-width: 900px) {
+  .ms-mastery-modal .ec-card {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    max-height: min(88dvh, calc(100dvh - env(safe-area-inset-top, 0px)));
+    overflow-y: auto;
+  }
+
+  .ms-mastery-matrix .ms-h3 {
+    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
+  }
+
+  .ms-dash-card {
+    padding: 18px 16px;
+  }
+
+  .ms-courses-catalog .ms-scard2 .ms-stat-row {
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ec-auth-shell .ec-card {
+    padding: 1.25rem 1.125rem;
+  }
+
+  .ms-mastery-matrix .truncate {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .ms-mastery-matrix button .max-w-\[140px\] {
+    max-width: none;
+  }
+
+  .ms-attempts-list .ms-progress-row {
+    padding: 14px 16px;
+  }
+
+  .ms-attempts-list .ec-stat-figure {
+    font-size: 1.5rem;
+  }
+
+  .ms-attempts-list .flex.items-center.justify-between.gap-4 {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .ms-post-mark-next .ec-card {
+    padding: 14px 16px;
+  }
+
+  .ms-post-mark-next .ec-btn-primary,
+  .ms-post-mark-next .ec-btn-secondary {
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-recent-attempts .text-title {
+    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
+  }
+
+  .ms-course-hero .ms-h2 {
+    font-size: clamp(28px, 7.5vw, 40px);
+  }
+
+  .ms-courses-catalog .ms-sname {
+    font-size: clamp(1.125rem, 4.5vw, 1.35rem);
+  }
+}
+
+/* ---- Round 10: marking results, dashboard, billing, guides, course studio ---- */
+
+@media (max-width: 900px) {
+  .ms-marking-result .ms-examiner-note-card {
+    padding: 16px 14px;
+  }
+
+  .ms-marking-result .ms-audit-head {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .ms-marking-result .ec-banner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ms-course-studio .course-studio-topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ms-course-studio .course-studio-breadcrumb-list {
+    max-width: 100%;
+  }
+
+  .ms-billing-blocked,
+  .ms-billing-approaching {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 520px) {
+  .ms-marking-result .ms-grade-pill {
+    font-size: 15px;
+    white-space: normal;
+  }
+
+  .ms-marking-result .ms-greennote {
+    font-size: 18px;
+  }
+
+  .ms-marking-result .ms-micro {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  .ms-continue-work .text-title,
+  .ms-active-subjects .text-title {
+    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
+  }
+
+  .ms-continue-drill {
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-billing-blocked .ec-link,
+  .ms-billing-approaching .ec-link {
+    display: inline-flex;
+    min-height: var(--ec-touch-min, 44px);
+    align-items: center;
+  }
+
+  .ms-study-notebook {
+    padding: 1rem 1.125rem;
+  }
+
+  .ms-study-notebook a {
+    min-height: var(--ec-touch-min, 44px);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .ms-content-hub {
+    width: 100%;
+    justify-content: stretch;
+    border-radius: 16px;
+  }
+
+  .ms-content-hub .ms-hub-tab {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .ms-hub-card {
+    padding: 18px 16px;
+  }
+
+  .ms-hub-card .ec-btn-ghost,
+  .ms-hub-card .ec-btn-underline {
+    min-height: var(--ec-touch-min, 44px);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .ms-guide-card {
+    padding: 16px 14px;
+  }
+}
+
+/* ---- Round 11: progress insights, guest notice, prefs, legal ---- */
+
+@media (max-width: 900px) {
+  .ms-grade-trajectory .ms-dash-card {
+    padding: 18px 16px;
+  }
+
+  .ms-speed-accuracy {
+    padding: 18px 16px !important;
+  }
+
+  .ms-syllabus-coverage .flex.flex-col.gap-6 {
+    gap: 1.25rem;
+  }
+
+  .ms-legal-page .ms-pg {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+@media (max-width: 520px) {
+  .ms-action-plan .ms-action-cta {
+    width: 100%;
+    justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
+  }
+
+  .ms-grade-trajectory .ms-h3 {
+    font-size: clamp(1.125rem, 4.5vw, 1.375rem);
+  }
+
+  .ms-grade-trajectory svg {
+    min-height: 200px;
+  }
+
+  .ms-speed-accuracy h2 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  .ms-speed-accuracy .grid.grid-cols-1 {
+    gap: 12px;
+  }
+
+  .ms-guest-notice {
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .ms-guest-notice .ec-link {
+    display: inline-flex;
+    min-height: var(--ec-touch-min, 44px);
+    align-items: center;
+  }
+
+  .ms-prefs-section .ms-pref-toggle {
+    min-height: 56px;
+    padding: 4px 0;
+  }
+
+  .ms-prefs-section .ms-pref-toggle input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .ms-theme-switcher {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .ms-theme-switcher button {
+    flex: 1 1 50%;
+    justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .ms-syllabus-coverage .flex.items-baseline {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ms-legal-page .ms-content-hero {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .ms-legal-page .ms-h2 {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+
+  .ms-legal-page article p,
+  .ms-legal-page article li {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}

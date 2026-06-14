@@ -30,13 +30,13 @@ const TABS: TabItem[] = [
     match: (p) => p === '/subjects' || p.startsWith('/subjects/'),
   },
   {
-    href: '/dashboard/progress',
-    label: 'Progress',
-    glyph: 'A',
+    href: '/dashboard',
+    label: 'Home',
+    glyph: '⌂',
     match: (p) =>
+      p === '/dashboard' ||
       p.startsWith('/dashboard/progress') ||
-      p.startsWith('/dashboard/attempt/') ||
-      p === '/dashboard',
+      p.startsWith('/dashboard/attempt/'),
   },
   {
     href: '/account',

@@ -161,7 +161,7 @@ export default async function DashboardPage() {
   const isEmpty = attemptsList.length === 0
 
   return (
-    <main className="app-shell app-shell-tabbed">
+    <main className="app-shell app-shell-tabbed ms-dash-home">
       <div className="mx-auto min-w-0 max-w-7xl rounded-none px-0 pb-8 pt-0 sm:rounded-2xl">
         <DashboardEntry>
           <HomeHero

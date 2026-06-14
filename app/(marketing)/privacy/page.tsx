@@ -7,7 +7,7 @@ export const metadata = getPageMetadata('/privacy')
 
 export default function PrivacyPage() {
   return (
-    <MarketingPageShell narrow>
+    <MarketingPageShell narrow className="ms-legal-page">
       <article className="ms-pg ms-content-hero py-16 sm:py-20">
         <p className="ms-overline">Legal</p>
         <h1 className="ms-h2" style={{ fontSize: 'clamp(36px, 5vw, 48px)' }}>

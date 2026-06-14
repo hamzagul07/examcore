@@ -69,7 +69,7 @@ export function ExamSection({ initialProfile }: Props) {
       description="This powers your countdown on the dashboard home page."
     >
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="flex flex-wrap gap-2">
+        <div className="ms-exam-pills flex flex-wrap gap-2">
           {suggestions.map((s) => (
             <button
               key={s.value}

@@ -41,23 +41,23 @@ export default function TeacherDashboard() {
   }
 
   return (
-    <TeacherPageContainer>
-      <header className="mb-12">
+    <TeacherPageContainer className="ms-teacher-page">
+      <header className="mb-8 sm:mb-12">
         <p className="ec-eyebrow mb-4">Teacher dashboard</p>
         <h1 className="text-headline">Your classrooms</h1>
       </header>
 
       {classrooms.length === 0 && !loading && (
-        <div className="ec-card p-12 text-center">
+        <div className="ec-card p-6 text-center sm:p-12">
           <Users className="mx-auto mb-4 h-16 w-16 ec-text-brand" />
-          <h3 className="mb-2 text-2xl font-bold text-[var(--ec-text-primary)]">
+          <h3 className="mb-2 text-xl font-bold text-[var(--ec-text-primary)] sm:text-2xl">
             No classrooms yet
           </h3>
           <p className="mb-6 text-[var(--ec-text-secondary)]">
             Create one or seed a demo with simulated student data.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/teacher/classrooms/new" className="ec-btn-primary">
+          <div className="ms-teacher-dash-actions flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+            <Link href="/teacher/classrooms/new" className="ec-btn-primary w-full justify-center sm:w-auto">
               <Plus className="mr-2 inline h-5 w-5" />
               Create classroom
             </Link>
@@ -65,7 +65,7 @@ export default function TeacherDashboard() {
               type="button"
               onClick={seedDemo}
               disabled={seeding}
-              className="ec-btn-secondary disabled:opacity-50"
+              className="ec-btn-secondary w-full justify-center disabled:opacity-50 sm:w-auto"
             >
               <Sparkles className="mr-2 inline h-5 w-5" />
               {seeding ? 'Seeding...' : 'Seed demo data'}
@@ -83,7 +83,7 @@ export default function TeacherDashboard() {
           <Link
             key={c.id}
             href={`/teacher/classroom/${c.id}`}
-            className="ec-card ec-card-interactive p-6"
+            className="ec-card ec-card-interactive min-h-[88px] p-5 sm:p-6"
           >
             <BookOpen className="mb-4 h-8 w-8 ec-text-brand" />
             <h3 className="mb-2 text-xl font-bold text-[var(--ec-text-primary)]">{c.name}</h3>

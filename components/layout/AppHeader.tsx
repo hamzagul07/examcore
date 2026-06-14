@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { WordmarkLink } from '@/components/layout/Wordmark'
 import { CreditChip } from '@/components/billing/CreditChip'
 import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
-import { CommandKTrigger, ThemeFlip } from '@/components/margin-notes'
+import { CommandKTrigger, MobileSearchMenuButton, ThemeFlip } from '@/components/margin-notes'
 import { useAuthenticatedAppChrome } from '@/lib/hooks/useAuthenticatedAppChrome'
 import { APP_NAV_ITEMS } from '@/lib/app-nav'
 import {
@@ -84,9 +84,21 @@ export function AppHeader() {
               sign in
             </Link>
           )}
-          <Link href="/mark" className="ec-btn-primary ec-btn-primary--sm hidden min-[901px]:inline-flex">
+          <Link
+            href="/mark"
+            className="ec-btn-primary ec-btn-primary--sm ec-nav-mark-mobile hidden min-[901px]:inline-flex"
+          >
             Mark a question
           </Link>
+          {pathname !== '/mark' && !pathname.startsWith('/mark/') ? (
+            <Link
+              href="/mark"
+              className="ec-nav-mark-compact inline-flex min-[901px]:hidden"
+              aria-label="Mark a question"
+            >
+              ✎
+            </Link>
+          ) : null}
           {showMobileMenu ? (
             <button
               type="button"
@@ -103,6 +115,10 @@ export function AppHeader() {
 
       {showMobileMenu && mobileOpen ? (
         <nav className="ec-nav-mobile-menu ec-nav-mobile-menu--open" aria-label="Mobile">
+          <Link href="/mark" className="ec-nav-mobile-mark">
+            Mark a question
+          </Link>
+          <MobileSearchMenuButton />
           {APP_NAV_ITEMS.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}

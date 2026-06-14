@@ -38,7 +38,7 @@ export function ExamCountdownHero({
     <div className="mb-6">
       <div
         ref={heroRef}
-        className="relative mx-auto max-w-3xl text-center"
+        className="relative mx-auto max-w-3xl text-center ms-dash-countdown"
         onMouseEnter={() => setRevealed(true)}
         onMouseLeave={() => setRevealed(false)}
         onClick={() => setRevealed((v) => !v)}

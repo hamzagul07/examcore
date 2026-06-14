@@ -100,7 +100,7 @@ export function MasteryMatrix({
 
   return (
     <>
-      <section id="mastery-matrix" className="ms-dash-card">
+      <section id="mastery-matrix" className="ms-mastery-matrix ms-dash-card">
         {emptyBanner && (
           <div className="ec-banner-info-inline mb-5 rounded-xl px-4 py-3 text-sm">
             Mark questions in{' '}
@@ -148,7 +148,7 @@ export function MasteryMatrix({
                           key={parent.code}
                           type="button"
                           onClick={() => setSelected(leaf)}
-                          className={`flex w-full items-center gap-2 rounded-xl border ec-border-color px-3 py-2.5 text-left transition-all hover:-translate-y-0.5 ${chipClass(leaf.level)}`}
+                          className={`flex min-h-[48px] w-full items-center gap-2 rounded-xl border ec-border-color px-3 py-2.5 text-left transition-all hover:-translate-y-0.5 ${chipClass(leaf.level)}`}
                           title={`${leaf.name} — ${leafStyle.label}`}
                         >
                           <span
@@ -177,7 +177,7 @@ export function MasteryMatrix({
                         <button
                           type="button"
                           onClick={() => toggleParent(parent.code)}
-                          className="flex w-full items-center gap-3 px-3 py-3 text-left transition-colors hover:bg-[var(--ec-brand-muted)]"
+                          className="flex min-h-[48px] w-full items-center gap-3 px-3 py-3 text-left transition-colors hover:bg-[var(--ec-brand-muted)]"
                         >
                           {isOpen ? (
                             <ChevronDown className="h-4 w-4 shrink-0 text-[var(--ec-text-secondary)]" />
@@ -266,7 +266,7 @@ function TopicDetailModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
+      className="ms-mastery-modal fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4"
       role="dialog"
       aria-modal="true"
     >
@@ -274,7 +274,7 @@ function TopicDetailModal({
         className="absolute inset-0 ec-modal-backdrop"
         onClick={onClose}
       />
-      <div className="ec-card relative w-full max-w-lg overflow-hidden p-6">
+      <div className="ec-card relative w-full max-w-lg overflow-hidden rounded-t-3xl p-4 sm:rounded-2xl sm:p-6">
         <p className="ec-label-tech mb-2">{topic.code}</p>
         <h3 className="text-xl font-bold">{topic.name}</h3>
         <p className="mt-1 text-sm ec-text-secondary">
@@ -322,7 +322,7 @@ function TopicDetailModal({
 
         <Link
           href="/mark"
-          className="ec-btn-primary mt-5 w-full justify-center"
+          className="ec-btn-primary mt-5 min-h-[48px] w-full justify-center"
           onClick={onClose}
         >
           Practice this topic

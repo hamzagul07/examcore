@@ -11,7 +11,7 @@ export const metadata = createPageMetadata({
 
 export default function JoinLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="app-shell flex min-h-screen min-w-0 items-center justify-center overflow-x-clip px-4">
+    <main className="app-shell ms-join-shell flex min-h-screen min-w-0 items-center justify-center overflow-x-clip px-4">
       <JoinPageChrome>{children}</JoinPageChrome>
     </main>
   )

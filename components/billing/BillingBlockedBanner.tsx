@@ -39,7 +39,7 @@ export function BillingBlockedBanner({ summary, className = '' }: Props) {
 
   return (
     <div
-      className={`flex items-start gap-3 rounded-2xl border ec-tint-critical-panel px-4 py-3 ${className}`}
+      className={`ms-billing-blocked flex items-start gap-3 rounded-2xl border ec-tint-critical-panel px-4 py-3 ${className}`}
       role="alert"
     >
       <Ban className="mt-0.5 h-5 w-5 shrink-0 ec-score-low" aria-hidden="true" />

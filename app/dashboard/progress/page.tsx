@@ -273,7 +273,7 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const attemptsNode = <AttemptsList attempts={filteredRaw} />
 
   return (
-    <main className="app-shell app-shell-tabbed ms-dash-page">
+    <main className="app-shell app-shell-tabbed ms-dash-page ms-progress-page">
       <div className="mx-auto min-w-0 max-w-7xl">
         <div className="mb-10 flex min-w-0 flex-col gap-4 sm:flex-row sm:items-start sm:justify-between animate-entry">
           <div className="min-w-0">

@@ -27,13 +27,14 @@ export function logoMarkSvgMarkup(): string {
 </svg>`
 }
 
-/** App icon / favicon — M + crimson dot from the MarkScheme. wordmark. */
+/** App icon / favicon — centered M with crimson dot after the letter (wordmark lockup). */
 export function faviconSvgMarkup(): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="MarkScheme">
   <rect width="48" height="48" rx="11" fill="${LOGO_COLORS.bg}"/>
   <rect x="1" y="1" width="46" height="46" rx="10" stroke="${LOGO_COLORS.brand}" stroke-width="0.75" opacity="0.18"/>
-  <text x="11.5" y="33.5" font-family="Newsreader, Georgia, 'Times New Roman', serif" font-size="28" font-weight="600" fill="${LOGO_COLORS.ink}" letter-spacing="-0.02em">M</text>
-  <text x="33.5" y="33.5" font-family="Newsreader, Georgia, 'Times New Roman', serif" font-size="28" font-weight="600" fill="${LOGO_COLORS.brand}">.</text>
+  <text x="24" y="32" text-anchor="middle" dominant-baseline="middle" font-family="Newsreader, Georgia, 'Times New Roman', serif" font-size="25" font-weight="600" letter-spacing="-0.02em">
+    <tspan fill="${LOGO_COLORS.ink}">M</tspan><tspan fill="${LOGO_COLORS.brand}">.</tspan>
+  </text>
 </svg>`
 }
 

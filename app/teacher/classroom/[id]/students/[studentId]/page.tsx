@@ -29,7 +29,7 @@ export default function StudentDetailPage() {
 
   if (loading) {
     return (
-      <TeacherPageContainer className="max-w-4xl">
+      <TeacherPageContainer className="ms-teacher-student max-w-4xl">
         <p className="text-[var(--ec-text-secondary)]">Loading student profile...</p>
       </TeacherPageContainer>
     )
@@ -37,7 +37,7 @@ export default function StudentDetailPage() {
 
   if (!student) {
     return (
-      <TeacherPageContainer className="max-w-4xl">
+      <TeacherPageContainer className="ms-teacher-student max-w-4xl">
         <TeacherBackLink href={`/teacher/classroom/${id}/students`}>
           ← Back to roster
         </TeacherBackLink>
@@ -47,7 +47,7 @@ export default function StudentDetailPage() {
   }
 
   return (
-    <TeacherPageContainer className="max-w-4xl">
+    <TeacherPageContainer className="ms-teacher-student max-w-4xl">
       <TeacherBackLink href={`/teacher/classroom/${id}/students`}>
         ← Back to roster
       </TeacherBackLink>

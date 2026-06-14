@@ -154,8 +154,8 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
   }
 
   return (
-    <div className="space-y-10 min-w-0 max-w-full overflow-x-clip">
-      <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-[var(--ec-text-secondary)]">
+    <div className="ms-pricing-client space-y-10 min-w-0 max-w-full overflow-x-clip">
+      <div className="ms-pricing-region flex flex-col items-center justify-center gap-3 text-center text-sm text-[var(--ec-text-secondary)] sm:flex-row sm:flex-wrap sm:gap-2">
         <span>
           Showing prices in{' '}
           <strong className="text-[var(--ec-text-primary)]">{cur.toUpperCase()}</strong>
@@ -178,7 +178,7 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
         </label>
       </div>
 
-      <div className="flex justify-center">
+      <div className="ms-lvl-tabs-scroll flex justify-center">
         <div className="ms-lvl-tabs">
           {(['monthly', 'yearly'] as Period[]).map((p) => (
             <button

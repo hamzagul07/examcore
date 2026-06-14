@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { WordmarkLink } from '@/components/layout/Wordmark'
 import { buildMarketingSignUpHref } from '@/lib/auth-redirect'
 import { MARKETING_NAV_PRIMARY, MARKETING_NAV_SECONDARY, isGuidesBlogNavActive } from '@/lib/marketing-nav'
-import { CommandKTrigger, ThemeFlip } from '@/components/margin-notes'
+import { CommandKTrigger, MobileSearchMenuButton, ThemeFlip } from '@/components/margin-notes'
 
 function isNavActive(pathname: string, href: string) {
   if (href === '/guides') {
@@ -77,6 +77,10 @@ export function MarketingHeader() {
           className="ec-nav-mobile-menu ec-nav-mobile-menu--open"
           aria-label="Mobile"
         >
+          <Link href="/mark" className="ec-nav-mobile-mark">
+            Mark a question
+          </Link>
+          <MobileSearchMenuButton />
           {MARKETING_NAV_PRIMARY.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}

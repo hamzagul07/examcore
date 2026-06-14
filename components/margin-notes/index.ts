@@ -1,5 +1,5 @@
 export { Chip, type ChipVariant } from './Chip'
-export { CommandKTrigger } from './CommandKTrigger'
+export { CommandKTrigger, MobileSearchMenuButton } from './CommandKTrigger'
 export { ExamSheet, ExamSheetLine, MarkStamp } from './ExamSheet'
 export { InkCircle, InkScribble, MarginNote } from './HandAnnotations'
 export { SubjectCard } from './SubjectCard'

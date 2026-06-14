@@ -7,7 +7,7 @@ export const metadata = getPageMetadata('/terms')
 
 export default function TermsPage() {
   return (
-    <MarketingPageShell narrow>
+    <MarketingPageShell narrow className="ms-legal-page">
       <article className="ms-pg ms-content-hero py-16 sm:py-20">
         <p className="ms-overline">Legal</p>
         <h1 className="ms-h2" style={{ fontSize: 'clamp(36px, 5vw, 48px)' }}>

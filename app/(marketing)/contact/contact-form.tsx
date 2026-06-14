@@ -42,7 +42,7 @@ export function ContactForm() {
   }
 
   return (
-    <MarketingPageShell narrow>
+    <MarketingPageShell narrow className="ms-contact-page">
       <MarketingHero
         label="CONTACT"
         title="Get in touch"

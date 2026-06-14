@@ -181,7 +181,7 @@ function VerifyEmailForm() {
             Verification code
           </label>
           <div
-            className="flex justify-center gap-1.5 sm:gap-3"
+            className="ms-verify-digits flex justify-center gap-1.5 sm:gap-3"
             onPaste={handlePaste}
           >
             {digits.map((digit, index) => (
@@ -198,7 +198,7 @@ function VerifyEmailForm() {
                 onChange={(e) => handleDigitChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 aria-label={`Digit ${index + 1} of ${CODE_LENGTH}`}
-                className="ec-auth-input-focus h-12 w-9 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-center text-lg font-semibold text-[var(--ec-text-primary)] outline-none transition-all sm:h-14 sm:w-12 sm:text-xl"
+                    className="ec-auth-input-focus h-12 w-10 rounded-xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] text-center text-lg font-semibold text-[var(--ec-text-primary)] outline-none transition-all sm:h-14 sm:w-12 sm:text-xl"
               />
             ))}
           </div>
@@ -224,7 +224,7 @@ function VerifyEmailForm() {
             type="button"
             onClick={handleResend}
             disabled={resending}
-            className="ec-link disabled:opacity-50"
+            className="ec-auth-link ec-link disabled:opacity-50"
           >
             {resending ? 'Sending...' : 'Resend'}
           </button>

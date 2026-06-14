@@ -8,6 +8,7 @@ type MarketingPageShellProps = {
   wide?: boolean
   /** Full-bleed course studio (left nav + reading column) */
   studio?: boolean
+  className?: string
 }
 
 export function MarketingPageShell({
@@ -15,6 +16,7 @@ export function MarketingPageShell({
   narrow = false,
   wide = false,
   studio = false,
+  className = '',
 }: MarketingPageShellProps) {
   const mainClass = studio
     ? 'course-studio-page'
@@ -26,7 +28,7 @@ export function MarketingPageShell({
 
   return (
     <div className="relative min-h-screen">
-      <main className={mainClass}>{children}</main>
+      <main className={`${mainClass}${className ? ` ${className}` : ''}`.trim()}>{children}</main>
     </div>
   )
 }

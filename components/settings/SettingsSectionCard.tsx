@@ -12,7 +12,7 @@ export function SettingsSectionCard({
   description?: string
 }) {
   return (
-    <Card variant="glass" padding="lg" as="section">
+    <Card variant="glass" padding="lg" as="section" className="ms-settings-section">
       <div className="mb-6">
         <h2 className="text-h3 text-[var(--ec-text-primary)]">{title}</h2>
         {description && <p className="text-body mt-1">{description}</p>}

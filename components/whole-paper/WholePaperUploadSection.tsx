@@ -101,7 +101,7 @@ export function WholePaperUploadSection({
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-xl px-4 py-3 text-sm font-medium text-[var(--ec-text-secondary)] transition hover:text-[var(--ec-text-primary)]"
+            className="min-h-[44px] rounded-xl px-4 py-3 text-sm font-medium text-[var(--ec-text-secondary)] transition hover:text-[var(--ec-text-primary)]"
           >
             Cancel
           </button>
@@ -111,7 +111,7 @@ export function WholePaperUploadSection({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="ms-whole-paper-upload space-y-6">
       <PageUploader
         pages={pages}
         onPagesChange={setPages}

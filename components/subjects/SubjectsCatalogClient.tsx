@@ -39,7 +39,8 @@ export function SubjectsCatalogClient({
   return (
     <>
       <div className="ms-subjects-toolbar">
-        <div className="ms-lvl-tabs" role="tablist" aria-label="Qualification level">
+        <div className="ms-lvl-tabs-scroll ms-subjects-tabs">
+          <div className="ms-lvl-tabs" role="tablist" aria-label="Qualification level">
           <button
             type="button"
             role="tab"
@@ -61,6 +62,7 @@ export function SubjectsCatalogClient({
           <button type="button" className="ms-lvl-tab" disabled>
             IB <span className="soon">coming soon!</span>
           </button>
+        </div>
         </div>
         <label className="ms-subj-search">
           <span className="si" aria-hidden>

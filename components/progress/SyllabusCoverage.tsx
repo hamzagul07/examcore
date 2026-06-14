@@ -31,7 +31,7 @@ export function SyllabusCoverage({
     <Card
       variant="brand-glow"
       padding="lg"
-      className="ms-dash-card relative overflow-hidden !border-[color-mix(in_srgb,var(--ec-brand)_22%,transparent)] !shadow-[var(--ec-shadow-card)]"
+      className="ms-syllabus-coverage ms-dash-card relative overflow-hidden !border-[color-mix(in_srgb,var(--ec-brand)_22%,transparent)] !shadow-[var(--ec-shadow-card)]"
     >
       <div
         className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full ec-glow-orb blur-[80px]"

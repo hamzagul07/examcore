@@ -190,6 +190,19 @@ export async function generateGeminiText(
   prompt: string,
   opts: GeminiTextOptions = {}
 ): Promise<string> {
+  const { text } = await generateGeminiTextWithMeta(prompt, opts)
+  return text
+}
+
+export type GeminiTextResult = {
+  text: string
+  finishReason?: string
+}
+
+export async function generateGeminiTextWithMeta(
+  prompt: string,
+  opts: GeminiTextOptions = {}
+): Promise<GeminiTextResult> {
   const client = getGeminiClient()
   const model = resolveModel(opts)
   const timeoutMs = resolveCallTimeoutMs(opts)
@@ -205,7 +218,10 @@ export async function generateGeminiText(
       timeoutMs
     )
   )
-  return response.text?.trim() ?? ''
+  return {
+    text: response.text?.trim() ?? '',
+    finishReason: response.candidates?.[0]?.finishReason,
+  }
 }
 
 export async function generateGeminiChatText(
@@ -314,6 +330,14 @@ async function withMetrics<T extends GenerateContentResponse>(
 function buildConfig(opts: GeminiTextOptions, abortSignal: AbortSignal) {
   const timeout = resolveCallTimeoutMs(opts)
 
+  const jsonTasks: ReadonlySet<GeminiTask> = new Set([
+    'content-generation',
+    'validation-coverage',
+    'marking',
+    'structured-extraction',
+    'json-repair-retry',
+  ])
+
   return {
     systemInstruction: opts.system,
     maxOutputTokens: opts.maxOutputTokens,
@@ -322,8 +346,6 @@ function buildConfig(opts: GeminiTextOptions, abortSignal: AbortSignal) {
     abortSignal,
     httpOptions: { timeout },
     responseMimeType:
-      opts.task === 'content-generation' || opts.task === 'validation-coverage'
-        ? 'application/json'
-        : undefined,
+      opts.task && jsonTasks.has(opts.task) ? 'application/json' : undefined,
   }
 }

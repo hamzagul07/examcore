@@ -8,6 +8,7 @@ import {
 } from 'framer-motion'
 import {
   friendlyStageLabel,
+  markingTimeEstimateSubline,
   stageSegmentPercent,
   type MarkContextPayload,
   type MarkProgressStage,
@@ -138,7 +139,7 @@ export function CinematicMarkingExperience(
   const anticipating =
     phase === 'buildup' || phase === 'climax' || phase === 'reveal'
   const stageText = anticipating
-    ? "Almost done — placing examiner's marks…"
+    ? 'Almost there — finishing your marks…'
     : friendlyStageLabel(stage, {
         paperCode: context?.paper_code,
         questionNumber: context?.question_number ?? undefined,
@@ -168,6 +169,9 @@ export function CinematicMarkingExperience(
 
       <div className="relative z-10">
         <StageProgressBar percent={percent} />
+        <p className="mt-3 text-center text-xs text-[var(--ec-text-secondary)]">
+          {markingTimeEstimateSubline()}
+        </p>
 
         <div className="mt-6 space-y-1.5">
           <p className="ec-label-tech">MARKING</p>

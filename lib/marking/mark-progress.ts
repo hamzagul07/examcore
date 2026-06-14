@@ -56,10 +56,15 @@ export function friendlyStageLabel(
         ? `Loading mark scheme for Question ${q}…`
         : 'Preparing the mark scheme…'
     case 'marking':
-      return 'Marking your working against the scheme…'
+      return 'Almost there — finishing your marks…'
     default:
       return 'Marking in progress…'
   }
+}
+
+/** Calm expectation copy shown during single-question waits. */
+export function markingTimeEstimateSubline(): string {
+  return 'Usually 30–60 seconds for a single question.'
 }
 
 export function showAnticipationZone(stage: MarkProgressStage): boolean {

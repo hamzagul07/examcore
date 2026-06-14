@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { GEMINI_FLASH_MODEL, generateGeminiText, getGeminiClient } from '@/lib/ai/gemini-text'
+import { GEMINI_FLASH_MODEL, generateGeminiTextWithMeta, getGeminiClient } from '@/lib/ai/gemini-text'
 import { normalizeSyllabusTagsForSubject, type SyllabusCode } from '@/lib/syllabi'
 import {
   buildLineReferences,
@@ -229,31 +229,115 @@ export async function lookupMarkScheme(
   return { scheme: null, mode: 'general_criteria_paper_not_in_db', wasCached: false }
 }
 
+/** Thrown when Gemini output cannot be parsed into a usable marking payload. */
+export class MarkingParseError extends Error {
+  readonly name = 'MarkingParseError'
+
+  constructor(
+    message = 'We could not read the marking result. Please try again.'
+  ) {
+    super(message)
+  }
+}
+
+function parseMarkingResponse(markingText: string): Record<string, unknown> {
+  if (!markingText.trim()) {
+    throw new SyntaxError('Empty marking model response')
+  }
+  const parsed = coerceMarkingResult(
+    extractJSON(markingText) as Record<string, unknown>
+  )
+  if (!isUsableMarkingResult(parsed)) {
+    throw new SyntaxError('Marking payload missing required fields')
+  }
+  return parsed
+}
+
+function buildMarkingJsonRepairPrompt(
+  originalPrompt: string,
+  rawResponse: string
+): string {
+  return `A marking model was given this prompt:
+
+${originalPrompt.slice(0, 6000)}
+
+It replied with invalid or incomplete JSON:
+
+---
+${rawResponse.slice(0, 4000)}
+---
+
+Repair the reply into valid JSON for a Cambridge mark scheme result. Include at least one of:
+- "marks_awarded": array of mark objects (type, awarded, reasoning, etc.)
+- "marks_earned" and "total_marks" numbers
+- "band_result" object (for essay-style questions)
+- "summary" string (at least 10 characters)
+
+Return ONLY the JSON object — no markdown fences or explanation.`
+}
+
 async function runGeminiMarking(
   prompt: string,
   maxTokens: number
 ): Promise<Record<string, unknown>> {
-  const markingText = await generateGeminiText(prompt, {
-    task: 'marking',
-    maxOutputTokens: maxTokens,
-  })
-  try {
-    const parsed = coerceMarkingResult(
-      extractJSON(markingText) as Record<string, unknown>
-    )
-    if (!isUsableMarkingResult(parsed)) {
-      throw new SyntaxError('Marking payload missing required fields')
+  const tokenBudgets = [
+    maxTokens,
+    Math.min(Math.round(maxTokens * 1.5), 8192),
+  ]
+  let lastText = ''
+
+  for (let attempt = 0; attempt < tokenBudgets.length; attempt++) {
+    const { text, finishReason } = await generateGeminiTextWithMeta(prompt, {
+      task: 'marking',
+      maxOutputTokens: tokenBudgets[attempt],
+      temperature: 0,
+    })
+    lastText = text
+
+    if (!text.trim()) {
+      console.warn('[marking] empty model response', {
+        attempt: attempt + 1,
+        finishReason,
+      })
+      continue
     }
-    return parsed
-  } catch (err) {
+
+    try {
+      return parseMarkingResponse(text)
+    } catch (parseErr) {
+      console.error(
+        '[marking] JSON parse failed:',
+        {
+          attempt: attempt + 1,
+          finishReason,
+          snippet: text.slice(0, 400),
+        },
+        parseErr
+      )
+      if (finishReason === 'MAX_TOKENS' && attempt < tokenBudgets.length - 1) {
+        continue
+      }
+    }
+  }
+
+  try {
+    const repairPrompt = buildMarkingJsonRepairPrompt(prompt, lastText)
+    const { text: repairedText } = await generateGeminiTextWithMeta(
+      repairPrompt,
+      {
+        task: 'json-repair-retry',
+        temperature: 0,
+        maxOutputTokens: tokenBudgets[tokenBudgets.length - 1],
+      }
+    )
+    return parseMarkingResponse(repairedText)
+  } catch (secondErr) {
     console.error(
-      'marking JSON parse failed:',
-      markingText.slice(0, 400),
-      err
+      '[marking] JSON repair failed:',
+      lastText.slice(0, 400),
+      secondErr
     )
-    throw new Error(
-      'We could not read the marking result. Please try again.'
-    )
+    throw new MarkingParseError()
   }
 }
 

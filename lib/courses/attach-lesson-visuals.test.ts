@@ -159,5 +159,18 @@ const idealGas = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9701 ideal gas prefers native over PhET', idealGas.interactiveEmbed === undefined)
 
+const atomicStructure = attachCatalogVisuals({
+  ...base,
+  slug: '1-1-particles-in-the-atom-and-atomic-radius',
+  topicCode: '1.1',
+  title: 'Atomic structure',
+  simpleExplanation: {
+    title: 'Atoms',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('9701 atomic structure prefers native over PhET', atomicStructure.interactiveEmbed === undefined)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

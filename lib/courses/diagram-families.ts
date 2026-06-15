@@ -53,6 +53,12 @@ import { CovalentBondDiagram } from '@/components/diagrams/CovalentBondDiagram'
 import { EnthalpyProfileDiagram } from '@/components/diagrams/EnthalpyProfileDiagram'
 import { EquilibriumDiagram } from '@/components/diagrams/EquilibriumDiagram'
 import { ReactionRateDiagram } from '@/components/diagrams/ReactionRateDiagram'
+import { AtomicStructureDiagram } from '@/components/diagrams/AtomicStructureDiagram'
+import { ElectronConfigurationDiagram } from '@/components/diagrams/ElectronConfigurationDiagram'
+import { ElectronegativityDiagram } from '@/components/diagrams/ElectronegativityDiagram'
+import { IonicBondDiagram } from '@/components/diagrams/IonicBondDiagram'
+import { RedoxDiagram } from '@/components/diagrams/RedoxDiagram'
+import { PeriodicityDiagram } from '@/components/diagrams/PeriodicityDiagram'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -217,6 +223,30 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'reaction-rate': {
     Component: ReactionRateDiagram,
     caption: 'Rate depends on collision frequency and collisions with energy ≥ activation energy.',
+  },
+  'atomic-structure': {
+    Component: AtomicStructureDiagram,
+    caption: 'Atoms have a nucleus (protons, neutrons) and electrons — isotopes differ in neutron number.',
+  },
+  'electron-config': {
+    Component: ElectronConfigurationDiagram,
+    caption: 'Electrons occupy shells and orbitals — ionisation energy trends across periods and groups.',
+  },
+  electronegativity: {
+    Component: ElectronegativityDiagram,
+    caption: 'Electronegativity increases across a period — bond polarity depends on ΔEN.',
+  },
+  'ionic-bond': {
+    Component: IonicBondDiagram,
+    caption: 'Ionic bonding: electron transfer to form a giant lattice of alternating ions.',
+  },
+  redox: {
+    Component: RedoxDiagram,
+    caption: 'Redox: oxidation is electron loss, reduction is electron gain — track oxidation numbers.',
+  },
+  periodicity: {
+    Component: PeriodicityDiagram,
+    caption: 'Period 3 trends link atomic structure to physical and chemical properties.',
   },
   centripetal: {
     Component: CentripetalMotionDiagram,
@@ -412,6 +442,13 @@ const SLUG_FAMILY_9700: Record<string, keyof typeof FAMILIES> = {
 
 /** 9701 Chemistry slug → diagram family. */
 const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
+  '1-1-particles-in-the-atom-and-atomic-radius': 'atomic-structure',
+  '1-2-isotopes': 'atomic-structure',
+  '1-3-electrons-energy-levels-and-atomic-orbitals': 'electron-config',
+  '1-4-ionisation-energy': 'electron-config',
+  '3-1-electronegativity-and-bonding': 'electronegativity',
+  '3-2-ionic-bonding': 'ionic-bond',
+  '3-3-metallic-bonding': 'ionic-bond',
   '3-4-covalent-bonding-and-coordinate-dative-covalent-bonding': 'covalent-bond',
   '3-5-shapes-of-molecules': 'molecule-shape',
   '3-7-dot-and-cross-diagrams': 'covalent-bond',
@@ -421,6 +458,9 @@ const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
   '7-1-chemical-equilibria-reversible-reactions-dynamic-equilibrium': 'equilibrium',
   '8-1-rate-of-reaction': 'reaction-rate',
   '8-2-effect-of-temperature-on-reaction-rates-and-the-concept-of-activation-energy': 'reaction-rate',
+  '6-1-redox-processes-electron-transfer-and-changes-in-oxidation-number-oxidation-state': 'redox',
+  '9-1-periodicity-of-physical-properties-of-the-elements-in-period-3': 'periodicity',
+  '9-2-periodicity-of-chemical-properties-of-the-elements-in-period-3': 'periodicity',
   '13-3-shapes-of-organic-molecules-and-bonds': 'molecule-shape',
   '29-3-shapes-of-aromatic-organic-molecules-and-bonds': 'molecule-shape',
 }

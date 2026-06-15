@@ -2,7 +2,7 @@ import type { GeneratedLesson } from '@/lib/courses/generator/lesson-schema'
 import type { CourseLesson } from '@/lib/courses/types'
 import type { LessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import { getLessonDiagramSpec } from '@/lib/courses/diagram-specs'
-import { INTERACTIVE_EMBED_CATALOG } from '@/lib/courses/interactive-embeds'
+import { INTERACTIVE_EMBED_CATALOG, getCatalogInteractiveEmbed } from '@/lib/courses/interactive-embeds'
 import { slugHasVisualCatalogEntry } from '@/lib/courses/visual-catalog'
 
 export function alignDiagramSpecToSteps(
@@ -64,7 +64,7 @@ export function attachCatalogVisuals(lesson: GeneratedLesson): GeneratedLesson {
   const hasInlineInteractive = out.sections.some((s) => s.type === 'interactive')
   let interactiveEmbed = out.interactiveEmbed
   if (!interactiveEmbed && !hasInlineInteractive) {
-    interactiveEmbed = INTERACTIVE_EMBED_CATALOG[out.slug]
+    interactiveEmbed = getCatalogInteractiveEmbed(out.slug)
   }
 
   let diagramSpec = out.diagramSpec

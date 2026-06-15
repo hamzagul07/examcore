@@ -21,6 +21,7 @@ import { WavesComparison } from '@/components/diagrams/WavesComparison'
 import { TwoThermometers } from '@/components/diagrams/TwoThermometers'
 import { HeatingCurve } from '@/components/diagrams/HeatingCurve'
 import { resolveFamilyDiagram } from '@/lib/courses/diagram-families'
+import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 
 export type LessonDiagramMeta = {
   caption: string
@@ -250,7 +251,13 @@ const PILOT_DIAGRAMS: Record<
 }
 
 export function getLessonDiagram(slug: string) {
-  return PILOT_DIAGRAMS[slug] ?? resolveFamilyDiagram(slug) ?? null
+  const direct = PILOT_DIAGRAMS[slug] ?? resolveFamilyDiagram(slug)
+  if (direct) return direct
+  const alias = resolveVisualCatalogSlug(slug)
+  if (alias !== slug) {
+    return PILOT_DIAGRAMS[alias] ?? resolveFamilyDiagram(alias) ?? null
+  }
+  return null
 }
 
 export function hasLessonLiveDiagram(slug: string): boolean {

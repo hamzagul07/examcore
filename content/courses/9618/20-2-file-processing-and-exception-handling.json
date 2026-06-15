@@ -174,5 +174,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "sequential"
+        ],
+        "caption": "Sequential file: records read/written in order.",
+        "embedHint": "Efficient for batch processing and logs."
+      },
+      {
+        "focus": [
+          "random"
+        ],
+        "caption": "Random access by record number or key field.",
+        "embedHint": "Index file maps key → byte offset."
+      },
+      {
+        "focus": [
+          "lifecycle"
+        ],
+        "caption": "OPEN, READ, WRITE, CLOSE lifecycle.",
+        "embedHint": "Always close files to flush buffers."
+      },
+      {
+        "focus": [
+          "exceptions"
+        ],
+        "caption": "Exception handling for missing files or EOF.",
+        "embedHint": "Validate existence before reading."
+      }
+    ]
+  }
 }

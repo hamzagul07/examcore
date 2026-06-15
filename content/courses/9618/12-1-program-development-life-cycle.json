@@ -201,5 +201,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "analysis"
+        ],
+        "caption": "Analysis: requirements specification from client brief.",
+        "embedHint": "Identify inputs, processes, outputs, constraints."
+      },
+      {
+        "focus": [
+          "design"
+        ],
+        "caption": "Design: structure charts, pseudocode, data dictionary.",
+        "embedHint": "Top-down decomposition into modules."
+      },
+      {
+        "focus": [
+          "implementation"
+        ],
+        "caption": "Implementation: coding to design — version control.",
+        "embedHint": "Match naming to design documents."
+      },
+      {
+        "focus": [
+          "testing"
+        ],
+        "caption": "Testing then maintenance — iterative cycles.",
+        "embedHint": "Agile vs waterfall delivery models."
+      }
+    ]
+  }
 }

@@ -218,7 +218,7 @@
       "a": "Theoretically, the gravitational force only becomes exactly zero at an infinite distance from the mass. In practical terms, it becomes negligibly small at very large distances, but never truly reaches zero in a finite space."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
@@ -226,5 +226,57 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/13-3-gravitational-field-of-a-point-mass.png",
     "alt": "Senpai Corner reference diagram for 13.3 Gravitational field of a point mass"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "M",
+        "label": "Mass M",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "unit": "×10²⁴ kg"
+      },
+      {
+        "id": "r",
+        "label": "Distance r",
+        "min": 55,
+        "max": 95,
+        "step": 5,
+        "default": 75,
+        "unit": "km scale"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "mass"
+        ],
+        "caption": "A point mass M creates a gravitational field in the space around it.",
+        "embedHint": "Set one mass to zero — the other still feels a pull. Mass creates the field."
+      },
+      {
+        "focus": [
+          "field-lines"
+        ],
+        "caption": "Field lines point toward M; density shows how strong g is at each point.",
+        "embedHint": "Turn on “Field” vectors — notice they point inward and get weaker with distance."
+      },
+      {
+        "focus": [
+          "field-strength"
+        ],
+        "caption": "Field strength g = GM/r² decreases with the square of distance.",
+        "embedHint": "Halve the separation — force becomes four times larger (inverse-square law)."
+      },
+      {
+        "focus": [
+          "force"
+        ],
+        "caption": "A test mass m feels F = GmM/r² — Newton’s law of gravitation.",
+        "embedHint": "Read off the force magnitude and check F ∝ 1/r² for fixed masses."
+      }
+    ]
   }
 }

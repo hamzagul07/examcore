@@ -242,7 +242,7 @@
       "a": "Yes! Electric potential can be negative if the source charge creating the field is negative. A negative potential means that positive work would be done *by* the field (or negative work *against* the field) to bring a positive test charge from infinity to that point."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
@@ -250,5 +250,57 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/18-4-electric-field-of-a-point-charge.png",
     "alt": "Senpai Corner reference diagram for 18.4 Electric field of a point charge"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "Q",
+        "label": "Charge Q",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 2,
+        "unit": "nC scale"
+      },
+      {
+        "id": "r",
+        "label": "Distance r",
+        "min": 60,
+        "max": 110,
+        "step": 5,
+        "default": 95,
+        "unit": "mm scale"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "charge"
+        ],
+        "caption": "An isolated point charge creates a radial electric field.",
+        "embedHint": "Place a single point charge — field lines radiate from + or into −."
+      },
+      {
+        "focus": [
+          "field-lines"
+        ],
+        "caption": "Field lines show direction; density indicates field strength.",
+        "embedHint": "Toggle field vectors — notice spacing widens with distance."
+      },
+      {
+        "focus": [
+          "formula"
+        ],
+        "caption": "Coulomb and field: E = kQ/r² for a point charge.",
+        "embedHint": "Halve r — field strength should quadruple (inverse-square law)."
+      },
+      {
+        "focus": [
+          "direction"
+        ],
+        "caption": "Positive charge: lines point outward. Force on + test charge is tangent to lines.",
+        "embedHint": "Place a test charge and read the force vector direction."
+      }
+    ]
   }
 }

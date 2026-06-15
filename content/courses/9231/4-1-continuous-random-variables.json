@@ -162,5 +162,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Discrete X: list x with P(X = x) — probabilities sum to 1.",
+        "embedHint": "Table format for distribution."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "E(X) = Σx P(X = x) — weighted mean.",
+        "embedHint": "Fair die: E = 3.5."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Var(X) = E(X²) − [E(X)]².",
+        "embedHint": "Standard deviation = √Var(X)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Linear transform: E(aX + b) = aE(X) + b.",
+        "embedHint": "Var(aX + b) = a²Var(X) only."
+      }
+    ]
+  }
 }

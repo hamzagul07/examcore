@@ -204,7 +204,7 @@
       "a": "No, if a vector has zero magnitude, it essentially has no 'size' or extent. Therefore, a meaningful direction cannot be associated with it. A vector with zero magnitude is called the zero vector and fundamentally has no defined direction."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
@@ -212,5 +212,51 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/1-4-scalars-and-vectors.png",
     "alt": "Senpai Corner reference diagram for 1.4 Scalars and vectors"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "ax",
+        "label": "|a| scale",
+        "min": 80,
+        "max": 160,
+        "step": 10,
+        "default": 120
+      },
+      {
+        "id": "by",
+        "label": "b_y offset",
+        "min": -20,
+        "max": 20,
+        "step": 5,
+        "default": 0
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "vector-a"
+        ],
+        "caption": "Vectors have magnitude and direction — show both on diagrams."
+      },
+      {
+        "focus": [
+          "vector-b"
+        ],
+        "caption": "Add nose-to-tail: place the start of b at the tip of a."
+      },
+      {
+        "focus": [
+          "resultant"
+        ],
+        "caption": "The resultant R closes the triangle from start of a to tip of b."
+      },
+      {
+        "focus": [
+          "rule"
+        ],
+        "caption": "Resolve into components if direct addition is awkward (especially 2D)."
+      }
+    ]
   }
 }

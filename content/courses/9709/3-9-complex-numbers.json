@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9709 P3 complex numbers — Argand diagrams, modulus, argument, polar form, and De Moivre's theorem with GeoGebra complex plane explorer.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Perform arithmetic with complex numbers in Cartesian form.",
     "Plot numbers on an Argand diagram and find modulus and argument.",
@@ -25,10 +25,22 @@
     ]
   },
   "flashcards": [
-    { "front": "i² equals?", "back": "−1" },
-    { "front": "Modulus of 3 + 4i?", "back": "|z| = √(9 + 16) = 5" },
-    { "front": "Conjugate of a + bi?", "back": "a − bi — product with z gives |z|² (real)." },
-    { "front": "De Moivre's theorem?", "back": "(cos θ + i sin θ)ⁿ = cos nθ + i sin nθ" }
+    {
+      "front": "i² equals?",
+      "back": "−1"
+    },
+    {
+      "front": "Modulus of 3 + 4i?",
+      "back": "|z| = √(9 + 16) = 5"
+    },
+    {
+      "front": "Conjugate of a + bi?",
+      "back": "a − bi — product with z gives |z|² (real)."
+    },
+    {
+      "front": "De Moivre's theorem?",
+      "back": "(cos θ + i sin θ)ⁿ = cos nθ + i sin nθ"
+    }
   ],
   "sections": [
     {
@@ -56,9 +68,65 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" },
-        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" }
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        },
+        {
+          "label": "9709 past paper guide",
+          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "re",
+        "label": "Real part x",
+        "min": -4,
+        "max": 4,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "id": "im",
+        "label": "Imaginary part y",
+        "min": -4,
+        "max": 4,
+        "step": 1,
+        "default": 2
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "axes"
+        ],
+        "caption": "Complex number z = x + iy plotted as point (x, y) in the Argand diagram.",
+        "embedHint": "Drag z — read real and imaginary parts."
+      },
+      {
+        "focus": [
+          "point"
+        ],
+        "caption": "Modulus |z| = √(x² + y²); argument arg z = angle from positive real axis.",
+        "embedHint": "Read |z| and arg z from the display."
+      },
+      {
+        "focus": [
+          "modulus"
+        ],
+        "caption": "Polar form: z = r(cos θ + i sin θ) = re^(iθ).",
+        "embedHint": "Convert between Cartesian and polar forms on the diagram."
+      },
+      {
+        "focus": [
+          "argument"
+        ],
+        "caption": "De Moivre’s theorem: (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ.",
+        "embedHint": "Multiply z by itself — argument doubles, modulus squares."
+      }
+    ]
+  }
 }

@@ -168,7 +168,7 @@
       "a": "The time constant dictates how fast a capacitor charges or discharges. In timing circuits (like traffic lights or blinking LEDs), engineers choose specific R and C values to achieve desired delays. For filtering or smoothing circuits, a larger time constant might be chosen to maintain a stable output voltage longer."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
@@ -176,5 +176,57 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/19-3-discharging-a-capacitor.png",
     "alt": "Senpai Corner reference diagram for 19.3 Discharging a capacitor"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "R",
+        "label": "Resistance R",
+        "min": 5,
+        "max": 20,
+        "step": 1,
+        "default": 10,
+        "unit": "kΩ"
+      },
+      {
+        "id": "C",
+        "label": "Capacitance C",
+        "min": 50,
+        "max": 200,
+        "step": 10,
+        "default": 100,
+        "unit": "μF"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "capacitor"
+        ],
+        "caption": "A charged capacitor stores energy; discharge through a resistor.",
+        "embedHint": "Charge the capacitor, then connect it through a resistor."
+      },
+      {
+        "focus": [
+          "curve"
+        ],
+        "caption": "Capacitor p.d. V decays exponentially: V = V₀e^(−t/RC).",
+        "embedHint": "Plot voltage vs time — exponential decay, not linear."
+      },
+      {
+        "focus": [
+          "formula"
+        ],
+        "caption": "Time constant τ = RC — time to fall to ~37% of V₀.",
+        "embedHint": "Increase R or C — decay becomes slower (larger τ)."
+      },
+      {
+        "focus": [
+          "decay"
+        ],
+        "caption": "Energy dissipates in the resistor as the capacitor discharges.",
+        "embedHint": "Compare heat/light in resistor branch while voltage falls."
+      }
+    ]
   }
 }

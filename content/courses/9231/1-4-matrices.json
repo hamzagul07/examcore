@@ -179,5 +179,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "A 2×2 matrix maps column vectors — each row gives one output component.",
+        "embedHint": "Multiply A by column vector (x, y)ᵀ."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Matrix product AB: rows of A dot columns of B.",
+        "embedHint": "Inner dimensions must match."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Identity I and inverse A⁻¹ when det(A) ≠ 0.",
+        "embedHint": "AA⁻¹ = I — order matters for AB."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "2D transformations: rotation, reflection, stretch.",
+        "embedHint": "Compose transformations by multiplying matrices."
+      }
+    ]
+  }
 }

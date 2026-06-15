@@ -192,5 +192,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Poisson models events in fixed interval — mean λ.",
+        "embedHint": "Rare, independent events (e.g. defects per metre)."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "P(X = r) = e^{−λ} λ^r / r!.",
+        "embedHint": "Use tables or calculator for cumulative probs."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "E(X) = Var(X) = λ — unique property.",
+        "embedHint": "If mean ≠ variance, reconsider model."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Poisson approx to binomial when n large, p small, np = λ.",
+        "embedHint": "np < 10 rule of thumb."
+      }
+    ]
+  }
 }

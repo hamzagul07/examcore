@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 A Level micro — indifference curves, budget constraints, and utility maximisation with GeoGebra.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Draw and interpret indifference curves.",
     "Construct budget lines from income and prices.",
@@ -36,7 +36,44 @@
     },
     {
       "type": "resources",
-      "items": [{ "label": "9708 course index", "href": "/courses/9708" }]
+      "items": [
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
+      ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Indifference curve: combinations giving equal utility — convex to origin.",
+        "embedHint": "Higher curve = higher utility."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Budget line: income = P_x·X + P_y·Y — slope −P_x/P_y.",
+        "embedHint": "Pivot when one price changes."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Utility max at tangency: MRS = P_x/P_y.",
+        "embedHint": "Equal marginal utility per dollar."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Income/substitution effects from price change (extension).",
+        "embedHint": "Decompose movement along new budget line."
+      }
+    ]
+  }
 }

@@ -167,5 +167,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "symmetric"
+        ],
+        "caption": "Symmetric key: same secret for encrypt and decrypt.",
+        "embedHint": "Fast bulk encryption — key distribution problem."
+      },
+      {
+        "focus": [
+          "asymmetric"
+        ],
+        "caption": "Asymmetric (public/private) key pair — RSA outline.",
+        "embedHint": "Public key encrypts; private key decrypts."
+      },
+      {
+        "focus": [
+          "hash"
+        ],
+        "caption": "Hash functions — one-way, detect tampering.",
+        "embedHint": "SHA family; salt passwords before hashing."
+      },
+      {
+        "focus": [
+          "certificate"
+        ],
+        "caption": "Digital certificates bind identity to public key (CA).",
+        "embedHint": "HTTPS handshake uses TLS + certificates."
+      }
+    ]
+  }
 }

@@ -181,5 +181,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "lan-wan"
+        ],
+        "caption": "LAN vs WAN — scale and ownership.",
+        "embedHint": "Compare topology for a school vs the internet."
+      },
+      {
+        "focus": [
+          "packet-switch"
+        ],
+        "caption": "Packet switching splits data into routed packets.",
+        "embedHint": "Each packet can take a different path."
+      },
+      {
+        "focus": [
+          "circuit-switch"
+        ],
+        "caption": "Circuit switching reserves a dedicated path.",
+        "embedHint": "Contrast bandwidth use with packet switching."
+      },
+      {
+        "focus": [
+          "tcp-layers"
+        ],
+        "caption": "TCP/IP layers — application to physical.",
+        "embedHint": "Name each layer’s role in an HTTP request."
+      }
+    ]
+  }
 }

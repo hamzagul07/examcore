@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 AS balance of payments — trade balance, income flows, and links to AD with GeoGebra macro diagram.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define components of the current account.",
     "Calculate balance of trade in goods and services.",
@@ -36,7 +36,44 @@
     },
     {
       "type": "resources",
-      "items": [{ "label": "9708 course index", "href": "/courses/9708" }]
+      "items": [
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
+      ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Current account = trade in goods + services + primary + secondary income.",
+        "embedHint": "X − M on goods is balance of trade."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Deficit: spending abroad > earnings; surplus opposite.",
+        "embedHint": "Link net exports to AD component (X−M)."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Causes: exchange rate, competitiveness, growth differentials.",
+        "embedHint": "Strong currency worsens trade balance."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Sustainability: financing via capital/financial account flows.",
+        "embedHint": "CA + KA + FA balances with errors/omissions."
+      }
+    ]
+  }
 }

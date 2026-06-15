@@ -208,5 +208,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "3×3 matrices extend linear transformations in 3D.",
+        "embedHint": "Same rules as 2×2 — check dimension compatibility."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Determinant det(A) — zero means no inverse.",
+        "embedHint": "Area/volume scale factor for transformation."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Eigenvalues λ solve det(A − λI) = 0.",
+        "embedHint": "Eigenvector direction unchanged by A."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Diagonalisation when A has full set of eigenvectors.",
+        "embedHint": "A = PDP⁻¹ simplifies powers of A."
+      }
+    ]
+  }
 }

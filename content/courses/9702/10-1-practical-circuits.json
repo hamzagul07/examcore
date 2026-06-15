@@ -217,7 +217,7 @@
       "a": "LDRs and thermistors are variable resistors whose resistance changes significantly with light intensity or temperature, respectively. By incorporating them into a potential divider, their resistance changes cause a corresponding change in the output voltage, enabling the circuit to detect and respond to environmental changes, forming the basis of many automatic control systems."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
@@ -225,5 +225,57 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/10-1-practical-circuits.png",
     "alt": "Senpai Corner reference diagram for 10.1 Practical circuits"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "R1",
+        "label": "R₁",
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "default": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "label": "R₂",
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "default": 6,
+        "unit": "Ω"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "supply"
+        ],
+        "caption": "A power supply provides the e.m.f. that drives charge around the circuit.",
+        "embedHint": "Drag out a battery — this is your e.m.f. source (10.1)."
+      },
+      {
+        "focus": [
+          "series"
+        ],
+        "caption": "In series, the same current I flows through every component.",
+        "embedHint": "Build a series loop — ammeters in different positions read the same value."
+      },
+      {
+        "focus": [
+          "pd"
+        ],
+        "caption": "Potential difference (p.d.) is the energy per unit charge across a component.",
+        "embedHint": "Place voltmeters across each resistor — p.d.s add up to supply voltage."
+      },
+      {
+        "focus": [
+          "measure"
+        ],
+        "caption": "Practical work: measure I and V, then calculate R = V/I for each resistor.",
+        "embedHint": "Use the multimeter — record I and V, then verify R = V/I."
+      }
+    ]
   }
 }

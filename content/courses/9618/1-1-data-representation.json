@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9618 AS Computer Science — binary, denary, hex, two's complement, BCD, and ASCII/Unicode representation.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Convert between binary, denary, and hexadecimal.",
     "Represent signed integers using two's complement.",
@@ -25,10 +25,22 @@
     ]
   },
   "flashcards": [
-    { "front": "Max unsigned 8-bit value?", "back": "255 (11111111₂)." },
-    { "front": "Range of 8-bit two's complement?", "back": "−128 to +127." },
-    { "front": "Hex FF in denary?", "back": "255." },
-    { "front": "Why two's complement?", "back": "Single addition circuit handles signed arithmetic." }
+    {
+      "front": "Max unsigned 8-bit value?",
+      "back": "255 (11111111₂)."
+    },
+    {
+      "front": "Range of 8-bit two's complement?",
+      "back": "−128 to +127."
+    },
+    {
+      "front": "Hex FF in denary?",
+      "back": "255."
+    },
+    {
+      "front": "Why two's complement?",
+      "back": "Single addition circuit handles signed arithmetic."
+    }
   ],
   "sections": [
     {
@@ -52,8 +64,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9618 course index", "href": "/courses/9618" }
+        {
+          "label": "9618 course index",
+          "href": "/courses/9618"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "binary-denary"
+        ],
+        "caption": "Denary ↔ binary using place value (powers of 2).",
+        "embedHint": "Convert both directions — show working."
+      },
+      {
+        "focus": [
+          "hex"
+        ],
+        "caption": "Hexadecimal: one digit = 4 bits — compact notation.",
+        "embedHint": "FF₁₆ = 255₁₀ — link to colour codes and memory dumps."
+      },
+      {
+        "focus": [
+          "ascii"
+        ],
+        "caption": "Characters stored as numeric codes (ASCII / Unicode).",
+        "embedHint": "A = 65₁₀ = 01000001₂."
+      },
+      {
+        "focus": [
+          "twos-complement"
+        ],
+        "caption": "Two's complement represents signed integers.",
+        "embedHint": "MSB = sign; invert bits + 1 for negative."
+      }
+    ]
+  }
 }

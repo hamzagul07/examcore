@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 AS — simultaneous demand and supply shifts, market disequilibrium, and price mechanism with interactive GeoGebra model.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Analyse simultaneous shifts in demand and supply.",
     "Explain excess supply and excess demand.",
@@ -41,8 +41,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9708 course index", "href": "/courses/9708" }
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Increase in demand → higher equilibrium P and Q.",
+        "embedHint": "Shift demand right — trace new intersection."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Increase in supply → lower equilibrium P, higher Q.",
+        "embedHint": "Shift supply right — price falls, quantity rises."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Simultaneous shifts need careful analysis — direction depends on magnitudes.",
+        "embedHint": "Shift both curves — predict ambiguous cases for exams."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Excess supply (surplus) or excess demand (shortage) off equilibrium.",
+        "embedHint": "Move price above equilibrium — surplus appears."
+      }
+    ]
+  }
 }

@@ -183,5 +183,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "threats"
+        ],
+        "caption": "Threats: unauthorised access, malware, interception.",
+        "embedHint": "Match control to threat (firewall, antivirus, encryption)."
+      },
+      {
+        "focus": [
+          "auth"
+        ],
+        "caption": "Access levels and authentication (password, 2FA, biometrics).",
+        "embedHint": "Principle of least privilege."
+      },
+      {
+        "focus": [
+          "backup"
+        ],
+        "caption": "Backup strategies: full, incremental, off-site.",
+        "embedHint": "Recovery point vs recovery time objectives."
+      },
+      {
+        "focus": [
+          "physical"
+        ],
+        "caption": "Physical security complements logical controls.",
+        "embedHint": "Locks, CCTV, and secure disposal of storage."
+      }
+    ]
+  }
 }

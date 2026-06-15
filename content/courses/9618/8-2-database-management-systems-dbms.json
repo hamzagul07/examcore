@@ -165,5 +165,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "tables"
+        ],
+        "caption": "Relational model: tables (relations) of rows and columns.",
+        "embedHint": "Each row is a record; each column an attribute."
+      },
+      {
+        "focus": [
+          "keys"
+        ],
+        "caption": "Primary key uniquely identifies a record.",
+        "embedHint": "Foreign key links tables — referential integrity."
+      },
+      {
+        "focus": [
+          "normalisation"
+        ],
+        "caption": "Normalisation reduces redundancy (1NF → 2NF → 3NF).",
+        "embedHint": "Split repeating groups into separate tables."
+      },
+      {
+        "focus": [
+          "er-diagram"
+        ],
+        "caption": "ER diagrams show entities, attributes, relationships.",
+        "embedHint": "Cardinality: one-to-one, one-to-many, many-to-many."
+      }
+    ]
+  }
 }

@@ -222,5 +222,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "cpu"
+        ],
+        "caption": "CPU: ALU + control unit + registers.",
+        "embedHint": "Fetch–decode–execute."
+      },
+      {
+        "focus": [
+          "memory"
+        ],
+        "caption": "RAM volatile; ROM non-volatile.",
+        "embedHint": "Primary vs secondary storage."
+      },
+      {
+        "focus": [
+          "storage"
+        ],
+        "caption": "SSD vs HDD: speed vs capacity/cost.",
+        "embedHint": "Secondary storage trade-offs."
+      },
+      {
+        "focus": [
+          "io"
+        ],
+        "caption": "Input, output, and backing storage devices.",
+        "embedHint": "Match device to role."
+      }
+    ]
+  }
 }

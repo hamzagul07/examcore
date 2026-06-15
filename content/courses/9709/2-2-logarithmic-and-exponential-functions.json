@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9709 P2 logs and exponentials — laws of logarithms, solving equations, and graphs of a^x and log_a(x) with PhET Function Builder.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Use laws of logarithms to simplify and solve equations.",
     "Convert between exponential and logarithmic forms.",
@@ -46,8 +46,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "y = a^x and y = log_a(x) are inverse functions — reflection in y = x.",
+        "embedHint": "Plot both — symmetry about the line y = x."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Laws of logs: log(xy) = log x + log y; log(x^n) = n log x.",
+        "embedHint": "Compare log of a product vs sum of logs numerically."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Natural log ln x uses base e ≈ 2.718.",
+        "embedHint": "Compare e^x and ln x as inverse pair."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Exponential models growth/decay: y = Ae^(kx).",
+        "embedHint": "Change k — positive k growth, negative k decay."
+      }
+    ]
+  }
 }

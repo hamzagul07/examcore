@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 AS inflation and deflation — CPI, demand-pull vs cost-push, and AD–AS analysis with interactive GeoGebra model.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define inflation, deflation, and disinflation.",
     "Calculate inflation rate from CPI data.",
@@ -37,8 +37,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9708 course index", "href": "/courses/9708" }
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Inflation: sustained rise in general price level.",
+        "embedHint": "Move to higher P on AD–AS — identify inflationary gap."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Demand-pull: AD shifts right; cost-push: SRAS shifts left.",
+        "embedHint": "Compare two inflation sources on the diagram."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "CPI measures inflation using a basket of goods and services.",
+        "embedHint": "Link diagram P increase to CPI rise in written analysis."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Deflation: falling P — may increase real debt burden.",
+        "embedHint": "AD falls left — lower P and lower Y (deflationary spiral risk)."
+      }
+    ]
+  }
 }

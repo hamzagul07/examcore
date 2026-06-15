@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9701 AS gas laws and the ideal gas equation pV = nRT — with PhET Gas Properties simulation for visualising particle behaviour.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "State the assumptions of the kinetic theory of ideal gases.",
     "Apply pV = nRT with correct units (Pa, m³, K or kPa, dm³).",
@@ -50,9 +50,47 @@
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Gas Properties", "href": "https://phet.colorado.edu/en/simulations/gas-properties" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "PhET Gas Properties",
+          "href": "https://phet.colorado.edu/en/simulations/gas-properties"
+        },
+        {
+          "label": "9701 course index",
+          "href": "/courses/9701"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Ideal gas: particles far apart, random motion, elastic collisions.",
+        "embedHint": "Observe particle motion — relate speed to temperature (Kelvin)."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Boyle’s law: p ∝ 1/V at constant T (n fixed).",
+        "embedHint": "Compress the gas at constant temperature — pressure rises."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Charles’s law: V ∝ T at constant p; Gay-Lussac: p ∝ T at constant V.",
+        "embedHint": "Heat the sample — volume or pressure changes with T (in kelvin)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Ideal gas equation: pV = nRT (R = 8.31 J mol⁻¹ K⁻¹).",
+        "embedHint": "Read p, V, n, T values and verify pV/nT stays constant."
+      }
+    ]
+  }
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9709 P4 — work, energy, power, and conservation principles with PhET Energy Skate Park.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Calculate work done by a force and use W = Fs cos θ.",
     "Apply conservation of mechanical energy.",
@@ -42,8 +42,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Work W = Fs cos θ — force in direction of displacement.",
+        "embedHint": "Apply force on ramp — work equals energy transferred."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Kinetic energy KE = ½mv²; gravitational PE = mgh.",
+        "embedHint": "Read KE and GPE bars on the skate park track."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Power P = W/t = Fv — rate of doing work.",
+        "embedHint": "Compare time to climb two ramps — same work, different power."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Conservation of energy (no friction): KE + GPE = constant.",
+        "embedHint": "Turn friction off — total mechanical energy conserved."
+      }
+    ]
+  }
 }

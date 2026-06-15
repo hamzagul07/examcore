@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 AS — PED, YED, XED, revenue and elasticity with GeoGebra supply-demand shift model.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Calculate and interpret price elasticity of demand (PED).",
     "Explain income elasticity (YED) and cross elasticity (XED).",
@@ -50,8 +50,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9708 course index", "href": "/courses/9708" }
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "PED = (% ΔQd)/(% ΔP) — elastic if |PED| > 1.",
+        "embedHint": "Compare steep vs flat demand — steep means inelastic."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Elastic demand: quantity responds strongly to price change.",
+        "embedHint": "Large quantity change for small price move → elastic."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "YED: normal good YED > 0; inferior good YED < 0.",
+        "embedHint": "Relate income shifts to demand curve movement."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": " XED > 0 substitutes; XED < 0 complements.",
+        "embedHint": "Predict cross-price effects from curve shifts."
+      }
+    ]
+  }
 }

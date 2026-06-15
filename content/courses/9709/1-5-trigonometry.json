@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9709 P1 trigonometry — radians, the unit circle, exact values, and graphs of sin, cos, and tan with GeoGebra unit circle explorer.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Convert between degrees and radians.",
     "Use the unit circle definitions of sin θ and cos θ.",
@@ -59,9 +59,47 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" },
-        { "label": "GeoGebra unit circle", "href": "https://www.geogebra.org/m/Ccgmq82f" }
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        },
+        {
+          "label": "GeoGebra unit circle",
+          "href": "https://www.geogebra.org/m/Ccgmq82f"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "sin θ, cos θ, tan θ defined from the unit circle (r = 1).",
+        "embedHint": "Move the point — read sin θ (y) and cos θ (x)."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Radians: θ = arc length / radius; 180° = π rad.",
+        "embedHint": "Switch to radians — quarter turn = π/2."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Graphs of sin x and cos x are periodic with period 2π.",
+        "embedHint": "Relate circle position to values on the sine/cosine graphs."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Exact values at 0, π/6, π/4, π/3, π/2 are required on Paper 1.",
+        "embedHint": "Verify sin(π/6) = ½ and cos(π/3) = ½ on the diagram."
+      }
+    ]
+  }
 }

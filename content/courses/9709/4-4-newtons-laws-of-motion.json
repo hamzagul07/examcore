@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9709 P4 Mechanics — Newton's three laws, resultant forces, and F = ma with PhET Forces and Motion simulation.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "State and apply Newton's three laws of motion.",
     "Resolve forces and find resultants on inclined planes and connected particles.",
@@ -42,8 +42,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "First law: constant velocity unless unbalanced force acts.",
+        "embedHint": "Zero net force — velocity stays constant."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Second law: F = ma (resultant force in direction of acceleration).",
+        "embedHint": "Apply net force — read acceleration from the graph."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Third law: equal and opposite forces on different bodies.",
+        "embedHint": "Identify action/reaction pairs — they act on different objects."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Weight W = mg acts vertically downward near Earth’s surface.",
+        "embedHint": "Compare applied force and friction — net force determines motion."
+      }
+    ]
+  }
 }

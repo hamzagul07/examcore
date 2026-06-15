@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 AS monetary policy — interest rates, money supply, transmission mechanisms, and AD–AS analysis with GeoGebra.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define monetary policy and central bank role.",
     "Explain how interest rate changes affect C and I.",
@@ -37,8 +37,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9708 course index", "href": "/courses/9708" }
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Central bank sets interest rate target — affects C and I via cost of borrowing.",
+        "embedHint": "Rate cut — trace AD increase through consumption and investment."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Expansionary: lower r to close negative output gap.",
+        "embedHint": "Shift AD right — note possible inflation if near full capacity."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Transmission: exchange rate, asset prices, expectations.",
+        "embedHint": "Lower r → currency depreciation → ↑ net exports on AD."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Limits: liquidity trap, time lags, zero lower bound.",
+        "embedHint": "Flat LM or inelastic investment weakens policy bite."
+      }
+    ]
+  }
 }

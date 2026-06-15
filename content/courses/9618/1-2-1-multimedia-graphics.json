@@ -185,5 +185,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "bitmap"
+        ],
+        "caption": "Bitmap stores colour of each pixel — resolution = width × height.",
+        "embedHint": "Higher colour depth increases file size."
+      },
+      {
+        "focus": [
+          "vector"
+        ],
+        "caption": "Vector graphics store objects as equations/paths.",
+        "embedHint": "Scale without pixelation — logos and diagrams."
+      },
+      {
+        "focus": [
+          "compression"
+        ],
+        "caption": "Metadata and compression (lossy vs lossless).",
+        "embedHint": "JPEG vs PNG trade-offs for photos vs diagrams."
+      },
+      {
+        "focus": [
+          "filesize"
+        ],
+        "caption": "Exam: calculate file size from resolution and bit depth.",
+        "embedHint": "Size ≈ pixels × bits per pixel ÷ 8."
+      }
+    ]
+  }
 }

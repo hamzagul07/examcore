@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 A Level externalities — MPC, MSC, MPB, MSB, and welfare analysis with GeoGebra.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish private and social costs and benefits.",
     "Analyse negative and positive externalities on diagrams.",
@@ -36,7 +36,44 @@
     },
     {
       "type": "resources",
-      "items": [{ "label": "9708 course index", "href": "/courses/9708" }]
+      "items": [
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
+      ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "MPC private cost; MSC = MPC + external cost.",
+        "embedHint": "Negative externality: MSC above MPC."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "MPB private benefit; MSB = MPB + external benefit.",
+        "embedHint": "Positive externality: MSB above MPB."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Overproduction when negative externality — MSC > MSB at market Q.",
+        "embedHint": "Pollution example."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Pigouvian tax/subsidy moves Q toward social optimum.",
+        "embedHint": "Tax per unit = external cost at optimum."
+      }
+    ]
+  }
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9618 AS SQL — CREATE, SELECT, INSERT, UPDATE, DELETE, and relational query logic for Paper 1 and Paper 3.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish DDL and DML statements.",
     "Write SELECT queries with WHERE, ORDER BY, and basic joins.",
@@ -41,7 +41,44 @@
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "9618 course index",
+          "href": "/courses/9618"
+        }
+      ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "ddl"
+        ],
+        "caption": "DDL defines structure: CREATE, ALTER, DROP tables.",
+        "embedHint": "CREATE TABLE with column types and constraints."
+      },
+      {
+        "focus": [
+          "dml-select"
+        ],
+        "caption": "DML queries data: SELECT … FROM … WHERE …",
+        "embedHint": "Filter with WHERE; sort with ORDER BY."
+      },
+      {
+        "focus": [
+          "dml-insert"
+        ],
+        "caption": "DML modifies data: INSERT, UPDATE, DELETE.",
+        "embedHint": "Always use WHERE on UPDATE/DELETE to target rows."
+      },
+      {
+        "focus": [
+          "constraints"
+        ],
+        "caption": "PRIMARY KEY, FOREIGN KEY, NOT NULL enforce integrity.",
+        "embedHint": "Link tables with FK → PK referential integrity."
+      }
+    ]
+  }
 }

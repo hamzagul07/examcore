@@ -226,7 +226,7 @@
       "a": "Yes, absolutely! Sound waves are waves and exhibit all wave phenomena, including interference. If you set up two coherent sound sources, you can observe constructive interference (louder sound) where waves reinforce, and destructive interference (quieter sound or silence) where they cancel each other out."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
@@ -234,5 +234,48 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/8-3-interference.png",
     "alt": "Senpai Corner reference diagram for 8.3 Interference"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "lambda",
+        "label": "Wavelength λ",
+        "min": 400,
+        "max": 700,
+        "step": 50,
+        "default": 550,
+        "unit": "nm"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "sources"
+        ],
+        "caption": "Two coherent sources emit waves in phase.",
+        "embedHint": "Enable both sources — they must be coherent for a stable fringe pattern."
+      },
+      {
+        "focus": [
+          "path"
+        ],
+        "caption": "Path difference Δx determines whether waves arrive in phase.",
+        "embedHint": "Compare path lengths from each source to a point on the screen."
+      },
+      {
+        "focus": [
+          "bright"
+        ],
+        "caption": "Constructive: Δx = nλ → bright fringe.",
+        "embedHint": "Find points where crest meets crest — bright fringes."
+      },
+      {
+        "focus": [
+          "dark"
+        ],
+        "caption": "Destructive: Δx = (n + ½)λ → dark fringe.",
+        "embedHint": "Find points where crest meets trough — dark fringes."
+      }
+    ]
   }
 }

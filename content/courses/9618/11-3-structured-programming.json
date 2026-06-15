@@ -159,5 +159,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "if-else"
+        ],
+        "caption": "Selection: IF … THEN … ELSE … ENDIF.",
+        "embedHint": "Nested IF — watch indentation and logic."
+      },
+      {
+        "focus": [
+          "case"
+        ],
+        "caption": "CASE OF handles multiple discrete options.",
+        "embedHint": "Prefer CASE over long IF chains."
+      },
+      {
+        "focus": [
+          "for-loop"
+        ],
+        "caption": "Count-controlled FOR loop with start, end, step.",
+        "embedHint": "Pre-condition: know iteration count."
+      },
+      {
+        "focus": [
+          "while-loop"
+        ],
+        "caption": "WHILE / REPEAT UNTIL for condition-controlled loops.",
+        "embedHint": "Ensure loop variable changes to avoid infinite loops."
+      }
+    ]
+  }
 }

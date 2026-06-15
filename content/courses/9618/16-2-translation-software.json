@@ -170,5 +170,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "assembler"
+        ],
+        "caption": "Assembler: one assembly instruction → one machine opcode.",
+        "embedHint": "Low-level, hardware-specific."
+      },
+      {
+        "focus": [
+          "compiler"
+        ],
+        "caption": "Compiler: full source → object code before execution.",
+        "embedHint": "Single executable; faster runtime."
+      },
+      {
+        "focus": [
+          "interpreter"
+        ],
+        "caption": "Interpreter: translate and execute line by line.",
+        "embedHint": "Slower runtime; easier debugging."
+      },
+      {
+        "focus": [
+          "linker"
+        ],
+        "caption": "Linkers/loaders combine object files into one program.",
+        "embedHint": "Resolve external library references."
+      }
+    ]
+  }
 }

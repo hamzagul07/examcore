@@ -230,7 +230,7 @@
       "a": "Magnetic flux ($\\Phi$) refers to the magnetic field passing through a *single* loop or area. Magnetic flux linkage ($\\lambda$) is the total flux through *all turns* of a coil, so $\\lambda = N\\Phi$ for a coil with N turns, where N is the number of turns."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
@@ -238,5 +238,37 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/20-5-electromagnetic-induction.png",
     "alt": "Senpai Corner reference diagram for 20.5 Electromagnetic induction"
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Magnetic flux Φ = BA cos θ through a coil.",
+        "embedHint": "Move the magnet — flux through the coil changes."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Faraday’s law: induced e.m.f. ∝ rate of change of flux linkage.",
+        "embedHint": "Move the magnet faster — larger deflection on the meter."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Lenz’s law: induced current opposes the change causing it.",
+        "embedHint": "Reverse magnet direction — induced current reverses."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Generators and transformers apply electromagnetic induction (20.5, 21.x).",
+        "embedHint": "Relate coil turns and flux change rate to induced e.m.f. magnitude."
+      }
+    ]
   }
 }

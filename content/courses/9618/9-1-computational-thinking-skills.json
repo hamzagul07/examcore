@@ -191,5 +191,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "linear-search"
+        ],
+        "caption": "Linear search: check each item in order.",
+        "embedHint": "O(n) worst case."
+      },
+      {
+        "focus": [
+          "binary-search"
+        ],
+        "caption": "Binary search: halve sorted list each step.",
+        "embedHint": "O(log n) — must be sorted."
+      },
+      {
+        "focus": [
+          "bubble-sort"
+        ],
+        "caption": "Bubble sort: compare adjacent pairs.",
+        "embedHint": "Simple but slow for large n."
+      },
+      {
+        "focus": [
+          "trace-table"
+        ],
+        "caption": "Trace table for given algorithm input.",
+        "embedHint": "Show variable values each pass."
+      }
+    ]
+  }
 }

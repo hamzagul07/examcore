@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9618 AS — lossless vs lossy compression, run-length encoding, and when each technique suits text, images, audio, and video.",
   "durationMin": 18,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish lossless and lossy compression.",
     "Explain run-length encoding (RLE) with an example.",
@@ -42,8 +42,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9618 course index", "href": "/courses/9618" }
+        {
+          "label": "9618 course index",
+          "href": "/courses/9618"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "lossless"
+        ],
+        "caption": "Lossless compression — exact reconstruction (ZIP, PNG, FLAC).",
+        "embedHint": "Compare original and compressed sizes."
+      },
+      {
+        "focus": [
+          "lossy"
+        ],
+        "caption": "Lossy compression discards imperceptible detail (JPEG, MP3).",
+        "embedHint": "Smaller file but quality loss — irreversible."
+      },
+      {
+        "focus": [
+          "run-length"
+        ],
+        "caption": "Run-length encoding (RLE) for repeated data.",
+        "embedHint": "AAAABBB → 4A3B — good for flat colour images."
+      },
+      {
+        "focus": [
+          "exam-size"
+        ],
+        "caption": "Exam: calculate compressed vs uncompressed file sizes.",
+        "embedHint": "Apply formula for sound and image data."
+      }
+    ]
+  }
 }

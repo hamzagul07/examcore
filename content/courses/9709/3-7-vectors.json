@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "Free 9709 Pure Maths 3 vectors — component form, vector addition, magnitude, direction, and the scalar (dot) product with exam-style reasoning.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "simpleExplanation": {
     "title": "Arrows with components",
     "summary": "Vectors have magnitude and direction. On Paper 3 you add in component form, find length and angle, and use the dot product for angles and projections.",
@@ -65,10 +65,69 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
-        { "label": "Error carried forward (ECF)", "href": "/blog/understanding-error-carried-forward-ecf" },
-        { "label": "Free full 9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 past paper guide",
+          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+        },
+        {
+          "label": "Error carried forward (ECF)",
+          "href": "/blog/understanding-error-carried-forward-ecf"
+        },
+        {
+          "label": "Free full 9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "ax",
+        "label": "|a| scale",
+        "min": 80,
+        "max": 160,
+        "step": 10,
+        "default": 120
+      },
+      {
+        "id": "by",
+        "label": "b_y component",
+        "min": -30,
+        "max": 30,
+        "step": 5,
+        "default": 0
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "vector-a"
+        ],
+        "caption": "Write vectors in component form a = ai + aj or column notation.",
+        "embedHint": "Use GeoGebra to draw component vectors on i and j axes."
+      },
+      {
+        "focus": [
+          "vector-b"
+        ],
+        "caption": "Add component-wise: (a₁+b₁)i + (a₂+b₂)j.",
+        "embedHint": "Drag vector b — see how components add independently."
+      },
+      {
+        "focus": [
+          "resultant"
+        ],
+        "caption": "Resultant magnitude |R| = √(Rx² + Ry²); direction from tan θ = Ry/Rx.",
+        "embedHint": "Read length and angle of the resultant vector."
+      },
+      {
+        "focus": [
+          "rule"
+        ],
+        "caption": "Dot product a·b = |a||b|cos θ — use for angles and projections (9709 3.7).",
+        "embedHint": "Compute scalar product and compare with geometric definition."
+      }
+    ]
+  }
 }

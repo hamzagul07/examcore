@@ -172,5 +172,18 @@ const atomicStructure = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9701 atomic structure prefers native over PhET', atomicStructure.interactiveEmbed === undefined)
 
+const stoichiometry = attachCatalogVisuals({
+  ...base,
+  slug: '2-2-the-mole-and-the-avogadro-constant',
+  topicCode: '2.2',
+  title: 'The mole',
+  simpleExplanation: {
+    title: 'Mole',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('9701 stoichiometry prefers native over PhET', stoichiometry.interactiveEmbed === undefined)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

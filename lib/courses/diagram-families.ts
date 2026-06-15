@@ -59,6 +59,13 @@ import { ElectronegativityDiagram } from '@/components/diagrams/Electronegativit
 import { IonicBondDiagram } from '@/components/diagrams/IonicBondDiagram'
 import { RedoxDiagram } from '@/components/diagrams/RedoxDiagram'
 import { PeriodicityDiagram } from '@/components/diagrams/PeriodicityDiagram'
+import { StoichiometryDiagram } from '@/components/diagrams/StoichiometryDiagram'
+import { IntermolecularForcesDiagram } from '@/components/diagrams/IntermolecularForcesDiagram'
+import { BondStructureDiagram } from '@/components/diagrams/BondStructureDiagram'
+import { AcidsBasesDiagram } from '@/components/diagrams/AcidsBasesDiagram'
+import { Group2TrendsDiagram } from '@/components/diagrams/Group2TrendsDiagram'
+import { HalogenDiagram } from '@/components/diagrams/HalogenDiagram'
+import { OrganicNamingDiagram } from '@/components/diagrams/OrganicNamingDiagram'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -247,6 +254,34 @@ const FAMILIES: Record<string, FamilyEntry> = {
   periodicity: {
     Component: PeriodicityDiagram,
     caption: 'Period 3 trends link atomic structure to physical and chemical properties.',
+  },
+  stoichiometry: {
+    Component: StoichiometryDiagram,
+    caption: 'Moles link mass, Mr, and balanced equation ratios — core Paper 2 arithmetic.',
+  },
+  imf: {
+    Component: IntermolecularForcesDiagram,
+    caption: 'Van der Waals, dipole-dipole, and hydrogen bonds explain boiling points and solubility.',
+  },
+  'bond-structure': {
+    Component: BondStructureDiagram,
+    caption: 'Giant vs simple molecular structures explain melting point and conductivity.',
+  },
+  'acids-bases': {
+    Component: AcidsBasesDiagram,
+    caption: 'Brønsted-Lowry: acids donate H⁺, bases accept — conjugate pairs differ by one proton.',
+  },
+  'group-2': {
+    Component: Group2TrendsDiagram,
+    caption: 'Group 2 reactivity and solubility trends increase down the group.',
+  },
+  halogen: {
+    Component: HalogenDiagram,
+    caption: 'Halogens: colour and boiling point increase down group; oxidising power decreases.',
+  },
+  'organic-naming': {
+    Component: OrganicNamingDiagram,
+    caption: 'IUPAC naming: longest chain, functional group suffix, lowest locants.',
   },
   centripetal: {
     Component: CentripetalMotionDiagram,
@@ -446,22 +481,35 @@ const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
   '1-2-isotopes': 'atomic-structure',
   '1-3-electrons-energy-levels-and-atomic-orbitals': 'electron-config',
   '1-4-ionisation-energy': 'electron-config',
+  '2-1-relative-masses-of-atoms-and-molecules': 'stoichiometry',
+  '2-2-the-mole-and-the-avogadro-constant': 'stoichiometry',
+  '2-3-formulas': 'stoichiometry',
+  '2-4-reacting-masses-and-volumes-of-solutions-and-gases': 'stoichiometry',
   '3-1-electronegativity-and-bonding': 'electronegativity',
   '3-2-ionic-bonding': 'ionic-bond',
   '3-3-metallic-bonding': 'ionic-bond',
   '3-4-covalent-bonding-and-coordinate-dative-covalent-bonding': 'covalent-bond',
   '3-5-shapes-of-molecules': 'molecule-shape',
+  '3-6-intermolecular-forces-electronegativity-and-bond-properties': 'imf',
   '3-7-dot-and-cross-diagrams': 'covalent-bond',
   '4-1-the-gaseous-state-ideal-and-real-gases-and-pv-nrt': 'gas-kinetic',
+  '4-2-bonding-and-structure': 'bond-structure',
   '5-1-enthalpy-change-h': 'enthalpy-profile',
   '5-2-hesss-law': 'enthalpy-profile',
   '7-1-chemical-equilibria-reversible-reactions-dynamic-equilibrium': 'equilibrium',
+  '7-2-br-nsted-lowry-theory-of-acids-and-bases': 'acids-bases',
   '8-1-rate-of-reaction': 'reaction-rate',
   '8-2-effect-of-temperature-on-reaction-rates-and-the-concept-of-activation-energy': 'reaction-rate',
+  '8-3-homogeneous-and-heterogeneous-catalysts': 'reaction-rate',
   '6-1-redox-processes-electron-transfer-and-changes-in-oxidation-number-oxidation-state': 'redox',
   '9-1-periodicity-of-physical-properties-of-the-elements-in-period-3': 'periodicity',
   '9-2-periodicity-of-chemical-properties-of-the-elements-in-period-3': 'periodicity',
+  '10-1-similarities-and-trends-in-the-properties-of-the-group-2-metals-magnesium-to-barium-and-their-compounds': 'group-2',
+  '11-1-physical-properties-of-the-group-17-elements': 'halogen',
+  '11-2-the-chemical-properties-of-the-halogen-elements-and-the-hydrogen-halides': 'halogen',
+  '13-1-formulas-functional-groups-and-the-naming-of-organic-compounds': 'organic-naming',
   '13-3-shapes-of-organic-molecules-and-bonds': 'molecule-shape',
+  '27-1-similarities-and-trends-in-the-properties-of-the-group-2-metals-magnesium-to-barium-and-their-compounds': 'group-2',
   '29-3-shapes-of-aromatic-organic-molecules-and-bonds': 'molecule-shape',
 }
 

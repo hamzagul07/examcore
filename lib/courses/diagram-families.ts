@@ -48,6 +48,7 @@ import { WavesComparison } from '@/components/diagrams/WavesComparison'
 import { DifferentiationTangentDiagram } from '@/components/diagrams/DifferentiationTangentDiagram'
 import { DefiniteIntegralDiagram } from '@/components/diagrams/DefiniteIntegralDiagram'
 import { ComplexPlaneDiagram } from '@/components/diagrams/ComplexPlaneDiagram'
+import { MoleculeShapeDiagram } from '@/components/diagrams/MoleculeShapeDiagram'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -192,6 +193,10 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'complex-numbers': {
     Component: ComplexPlaneDiagram,
     caption: 'Complex numbers z = x + iy plot on the Argand diagram — |z| and arg(z) from the axes.',
+  },
+  'molecule-shape': {
+    Component: MoleculeShapeDiagram,
+    caption: 'VSEPR: electron pairs repel — lone pairs compress bond angles below ideal values.',
   },
   centripetal: {
     Component: CentripetalMotionDiagram,
@@ -385,6 +390,13 @@ const SLUG_FAMILY_9700: Record<string, keyof typeof FAMILIES> = {
   '19-3-genetically-modified-organisms-in-agriculture': 'bio-biotech',
 }
 
+/** 9701 Chemistry slug → diagram family. */
+const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
+  '3-5-shapes-of-molecules': 'molecule-shape',
+  '13-3-shapes-of-organic-molecules-and-bonds': 'molecule-shape',
+  '29-3-shapes-of-aromatic-organic-molecules-and-bonds': 'molecule-shape',
+}
+
 /** 9709 Pure Maths slug → diagram family. */
 const SLUG_FAMILY_9709: Record<string, keyof typeof FAMILIES> = {
   '1-7-differentiation': 'differentiation',
@@ -401,11 +413,13 @@ const SLUG_FAMILY_9709: Record<string, keyof typeof FAMILIES> = {
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
+  ...SLUG_FAMILY_9701,
   ...SLUG_FAMILY_9709,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
 const MATHS_SLUGS = new Set(Object.keys(SLUG_FAMILY_9709))
+const CHEMISTRY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9701))
 
 function familyAttribution(slug: string): DiagramAttribution {
   if (BIOLOGY_SLUGS.has(slug)) {
@@ -413,6 +427,9 @@ function familyAttribution(slug: string): DiagramAttribution {
   }
   if (MATHS_SLUGS.has(slug)) {
     return { source: 'MarkScheme maths diagram family', license: 'Proprietary' }
+  }
+  if (CHEMISTRY_SLUGS.has(slug)) {
+    return { source: 'MarkScheme chemistry diagram family', license: 'Proprietary' }
   }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)
   return {
@@ -425,6 +442,7 @@ function familyAttribution(slug: string): DiagramAttribution {
 export function getSubjectForSlug(slug: string): string | null {
   if (BIOLOGY_SLUGS.has(slug)) return '9700'
   if (MATHS_SLUGS.has(slug)) return '9709'
+  if (CHEMISTRY_SLUGS.has(slug)) return '9701'
   if (slug in SLUG_FAMILY_9702 || slug.startsWith('paper-5')) return '9702'
   return null
 }

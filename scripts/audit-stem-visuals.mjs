@@ -1,11 +1,15 @@
 #!/usr/bin/env node
-/** Audit STEM pilot lessons: visuals, step sync, generic content. */
+/** Audit STEM premium lessons: visuals, step sync, generic content. */
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const STEM = ['9701', '9709', '9231', '9700', '9618', '9702']
+
+function isPremiumLesson(raw) {
+  return raw.includes('"status": "premium"') || raw.includes('"status":"premium"')
+}
 
 async function main() {
   const { hydrateLessonCatalogVisuals } = await import('../lib/courses/attach-lesson-visuals.ts')
@@ -15,7 +19,7 @@ async function main() {
   )
   const { hasLessonLiveDiagram } = await import('../lib/courses/lesson-diagrams.ts')
 
-  let pilots = 0
+  let premium = 0
   let withVisual = 0
   let stepMismatch = 0
   let genericSteps = 0
@@ -29,9 +33,9 @@ async function main() {
     for (const f of fs.readdirSync(dir)) {
       if (!f.endsWith('.json') || f.endsWith('.pilot.json')) continue
       const raw = fs.readFileSync(path.join(dir, f), 'utf8')
-      if (!raw.includes('"status": "pilot"') && !raw.includes('"status":"pilot"')) continue
+      if (!isPremiumLesson(raw)) continue
 
-      pilots++
+      premium++
       const lesson = JSON.parse(raw)
       const hydrated = hydrateLessonCatalogVisuals(lesson)
       const hasCatalog = lessonHasCatalogVisual(lesson.slug)
@@ -60,9 +64,9 @@ async function main() {
     }
   }
 
-  console.log('\nSTEM Visual + Depth Audit')
+  console.log('\nSTEM Visual + Depth Audit (premium lessons)')
   console.log('='.repeat(60))
-  console.log(`Pilot lessons:        ${pilots}`)
+  console.log(`Premium lessons:      ${premium}`)
   console.log(`With live visual:     ${withVisual}`)
   console.log(`Step count mismatch:  ${stepMismatch}`)
   console.log(`Generic carousel:     ${genericSteps}`)
@@ -70,7 +74,7 @@ async function main() {
   console.log('='.repeat(60))
 
   if (shallowList.length) {
-    console.log('\nShallow pilots (first 25):')
+    console.log('\nShallow premium lessons (first 25):')
     for (const s of shallowList.slice(0, 25)) {
       console.log(
         `  ${s.code}/${s.topic} ${s.slug} | genericFc=${s.genericFc} catalog=${s.hasCatalog} visual=${s.hasVisual}`
@@ -83,7 +87,7 @@ async function main() {
   fs.mkdirSync(reportDir, { recursive: true })
   fs.writeFileSync(
     path.join(reportDir, 'stem-visual-audit.json'),
-    JSON.stringify({ pilots, withVisual, stepMismatch, genericSteps, shallow, shallowList }, null, 2)
+    JSON.stringify({ premium, withVisual, stepMismatch, genericSteps, shallow, shallowList }, null, 2)
   )
   console.log(`\nReport: docs/content-generation/stem-visual-audit.json`)
 }

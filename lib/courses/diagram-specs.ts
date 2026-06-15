@@ -2137,12 +2137,46 @@ const SPECS: Record<string, LessonDiagramSpec> = {
       { focus: ['filesize'], caption: 'Exam: calculate file size from resolution and bit depth.', embedHint: 'Size ≈ pixels × bits per pixel ÷ 8.' },
     ],
   },
-  '1-2-2-multimedia-sound': embedSpec([
-    { caption: 'Sound digitised by sampling amplitude at fixed intervals.', embedHint: 'Sampling rate in Hz — Nyquist: rate > 2× max frequency.' },
-    { caption: 'Bit depth sets amplitude resolution.', embedHint: 'Higher depth → larger files, less quantisation noise.' },
-    { caption: 'Play the sim — link frequency to pitch, amplitude to loudness.', embedHint: 'Wavelength and medium affect speed, not pitch.' },
-    { caption: 'Compression: MP3 lossy vs WAV lossless.', embedHint: 'Bitrate (kbps) trades quality for size.' },
-  ]),
+  '1-1-data-representation': {
+    steps: [
+      { focus: ['binary-denary'], caption: 'Denary ↔ binary using place value (powers of 2).', embedHint: 'Convert both directions — show working.' },
+      { focus: ['hex'], caption: 'Hexadecimal: one digit = 4 bits — compact notation.', embedHint: 'FF₁₆ = 255₁₀ — link to colour codes and memory dumps.' },
+      { focus: ['ascii'], caption: 'Characters stored as numeric codes (ASCII / Unicode).', embedHint: 'A = 65₁₀ = 01000001₂.' },
+      { focus: ['twos-complement'], caption: 'Two\'s complement represents signed integers.', embedHint: 'MSB = sign; invert bits + 1 for negative.' },
+    ],
+  },
+  '1-2-2-multimedia-sound': {
+    steps: [
+      { focus: ['waveform'], caption: 'Analogue sound: amplitude = loudness, frequency = pitch.', embedHint: 'Draw a sine wave — label amplitude and wavelength.' },
+      { focus: ['sampling'], caption: 'Sampling rate (Hz) — Nyquist: rate > 2 × max frequency.', embedHint: 'Under-sampling causes aliasing.' },
+      { focus: ['bit-depth'], caption: 'Bit depth sets amplitude resolution (quantisation levels).', embedHint: '16-bit → 65 536 levels; higher depth = larger file.' },
+      { focus: ['compression'], caption: 'MP3 lossy vs WAV lossless — bitrate trades quality for size.', embedHint: 'Calculate file size: rate × depth × duration.' },
+    ],
+  },
+  '1-3-compression': {
+    steps: [
+      { focus: ['lossless'], caption: 'Lossless compression — exact reconstruction (ZIP, PNG, FLAC).', embedHint: 'Compare original and compressed sizes.' },
+      { focus: ['lossy'], caption: 'Lossy compression discards imperceptible detail (JPEG, MP3).', embedHint: 'Smaller file but quality loss — irreversible.' },
+      { focus: ['run-length'], caption: 'Run-length encoding (RLE) for repeated data.', embedHint: 'AAAABBB → 4A3B — good for flat colour images.' },
+      { focus: ['exam-size'], caption: 'Exam: calculate compressed vs uncompressed file sizes.', embedHint: 'Apply formula for sound and image data.' },
+    ],
+  },
+  '4-2-assembly-language': {
+    steps: [
+      { focus: ['mnemonic'], caption: 'Assembly uses mnemonics readable by humans (LDR, ADD, STR).', embedHint: 'One line per instruction — address labels optional.' },
+      { focus: ['opcode'], caption: 'Assembler translates each mnemonic to a machine opcode (1:1).', embedHint: 'Contrast with compiler for high-level languages.' },
+      { focus: ['registers'], caption: 'Special registers: ACC (accumulator), IX (index), PC (program counter).', embedHint: 'PC auto-increments after fetch.' },
+      { focus: ['fde'], caption: 'Fetch–decode–execute cycle runs each instruction.', embedHint: 'Low-level, hardware-specific — direct CPU control.' },
+    ],
+  },
+  '8-3-data-definition-language-ddl-and-data-manipulation-language-dml': {
+    steps: [
+      { focus: ['ddl'], caption: 'DDL defines structure: CREATE, ALTER, DROP tables.', embedHint: 'CREATE TABLE with column types and constraints.' },
+      { focus: ['dml-select'], caption: 'DML queries data: SELECT … FROM … WHERE …', embedHint: 'Filter with WHERE; sort with ORDER BY.' },
+      { focus: ['dml-insert'], caption: 'DML modifies data: INSERT, UPDATE, DELETE.', embedHint: 'Always use WHERE on UPDATE/DELETE to target rows.' },
+      { focus: ['constraints'], caption: 'PRIMARY KEY, FOREIGN KEY, NOT NULL enforce integrity.', embedHint: 'Link tables with FK → PK referential integrity.' },
+    ],
+  },
   '6-1-data-security': {
     steps: [
       { focus: ['threats'], caption: 'Threats: unauthorised access, malware, interception.', embedHint: 'Match control to threat (firewall, antivirus, encryption).' },

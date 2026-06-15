@@ -5,226 +5,149 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Paper 4 — Capacitors and capacitance (19.1). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson introduces capacitors as devices that store electrical charge and energy. It defines capacitance as the ratio of charge stored to the potential difference across the capacitor, and introduces the unit of capacitance, the farad.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define capacitance and explain its role in electrical circuits.",
-    "Calculate total capacitance for series and parallel combinations.",
-    "Determine the energy stored in a capacitor using relevant formulas."
+    "Define capacitance and the farad.",
+    "Describe the function of a capacitor as a component that stores charge.",
+    "Recall and use the formula for capacitance, C = Q/V.",
+    "Understand the basic structure of a parallel plate capacitor."
   ],
   "simpleExplanation": {
-    "title": "Capacitors: Your Circuit's Energy Bank",
-    "summary": "Capacitors are clever electrical components that temporarily hold electric charge, much like a tiny battery but for different purposes. This stored charge creates an electric field, allowing them to store electrical potential energy. They're essential for smoothing power supplies and timing circuits.",
-    "analogy": "Imagine a capacitor like a small water tank connected to a pump (voltage source). When the pump runs, water (charge) fills the tank. The tank's capacity (capacitance) tells you how much water it can hold for a given water pressure (voltage). When you need a quick burst of water, the tank can release it instantly.",
+    "title": "Electrical Reservoirs",
+    "summary": "A capacitor is a component that stores electrical energy by separating charge onto two conductive plates. Its ability to store charge for a given voltage is called its capacitance.",
+    "analogy": "Imagine a bucket used to collect rainwater. The bucket itself is the capacitor. The size of the bucket represents its capacitance – a larger bucket can hold more water. The amount of water collected is the charge, and the height of the water level is the potential difference (voltage). A large-capacity bucket can hold a lot of water (charge) even at a low water level (voltage).",
     "steps": [
-      "Identify what a capacitor is and its function (storing charge).",
-      "Understand how capacitance is measured (Q/V) and its unit (Farad).",
-      "Master calculating total capacitance for both series and parallel circuits.",
-      "Learn how to calculate the electrical energy stored within a capacitor."
+      "A capacitor stores charge. It's made of two conductive plates separated by an insulator, called a dielectric.",
+      "When connected to a power supply, electrons are pulled from one plate and pushed onto the other, creating a potential difference across them.",
+      "Capacitance (C) is the charge stored (Q) per unit potential difference (V). The defining equation is C = Q/V.",
+      "In exams, you'll calculate C, Q, or V. Remember that Q is the magnitude of charge on *one* plate, not the total charge (which is zero)."
     ]
   },
   "flashcards": [
     {
-      "front": "Define capacitance.",
-      "back": "Capacitance is the charge stored per unit potential difference across a capacitor."
+      "front": "What is a capacitor?",
+      "back": "A capacitor is an electrical component consisting of two conducting plates separated by an insulating material (a dielectric), designed to store electrical charge."
     },
     {
-      "front": "What is the SI unit of capacitance, and how is it defined?",
-      "back": "The Farad (F), defined as 1 Coulomb of charge stored per Volt of potential difference (1 C/V)."
+      "front": "What is capacitance?",
+      "back": "Capacitance (C) is a measure of a capacitor's ability to store charge. It is defined as the ratio of the magnitude of the charge (Q) on one of its plates to the potential difference (V) across them. C = Q/V."
     },
     {
-      "front": "Write the formula for the total capacitance of capacitors connected in series.",
-      "back": "$$\\frac{1}{C_{total}} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\dots$$"
-    },
-    {
-      "front": "How does the total capacitance of capacitors connected in parallel compare to the individual capacitances?",
-      "back": "The total capacitance in parallel is always greater than the largest individual capacitance."
-    },
-    {
-      "front": "State two formulas for the energy stored in a capacitor.",
-      "back": "$$E = \\frac{1}{2}QV$$ or $$E = \\frac{1}{2}CV^2$$"
+      "front": "What is the unit of capacitance and its definition?",
+      "back": "The unit of capacitance is the farad (F). A capacitor has a capacitance of one farad if it stores one coulomb of charge for every one volt of potential difference across it (1 F = 1 C V⁻¹)."
     },
     {
       "front": "What is a dielectric?",
-      "back": "An insulating material placed between the plates of a capacitor to increase its capacitance."
+      "back": "A dielectric is an electrical insulator that is placed between the conducting plates of a capacitor. It increases the capacitance by allowing more charge to be stored for the same potential difference."
     },
     {
-      "front": "Draw the standard circuit symbol for a capacitor.",
-      "back": "Two parallel lines of equal length, perpendicular to the connecting wires."
+      "front": "What is the net charge on a charged capacitor?",
+      "back": "Zero. The plates hold equal and opposite charges (+Q and -Q), so the total net charge of the component is zero. This is a common trick question."
     },
     {
-      "front": "How does total capacitance change when capacitors are connected in series?",
-      "back": "The total capacitance decreases and is always less than the smallest individual capacitance."
+      "front": "In the equation C = Q/V, what does 'Q' represent?",
+      "back": "Q represents the magnitude of the charge on *one* of the plates (conventionally, the positive plate). It is not the total charge on the capacitor."
     },
     {
-      "front": "What physical feature defines a parallel-plate capacitor?",
-      "back": "Two conductive plates placed parallel to each other, separated by a dielectric insulator."
+      "front": "Why are microfarads (μF) and picofarads (pF) used more often than farads (F)?",
+      "back": "The farad is a very large unit of capacitance. Most capacitors used in electronic circuits have much smaller values, so prefixes for 10⁻⁶ (micro), 10⁻⁹ (nano), and 10⁻¹² (pico) are more practical."
     },
     {
-      "front": "In a series circuit of capacitors, what quantity is the same across all capacitors?",
-      "back": "The charge (Q) stored on each capacitor is the same."
+      "front": "How is charge stored in a capacitor?",
+      "back": "Charge is stored by being separated. A power supply does work to move electrons from one plate to the other, creating a charge separation and an electric field between the plates."
     },
     {
-      "front": "In a parallel circuit of capacitors, what quantity is the same across all capacitors?",
-      "back": "The potential difference (V) across each capacitor is the same."
+      "front": "Is the relationship between charge Q and potential difference V for a capacitor proportional?",
+      "back": "Yes, for a given capacitor, the charge Q stored on the plates is directly proportional to the potential difference V across it (Q ∝ V). The constant of proportionality is the capacitance C."
     },
     {
-      "front": "How is the energy stored in a capacitor represented on a Q-V graph?",
-      "back": "It is represented by the area under the charge-voltage (Q-V) graph."
+      "front": "Does a capacitor allow direct current (d.c.) to flow through it?",
+      "back": "No. A capacitor will charge up when connected to a d.c. supply, but once charged, the dielectric acts as a barrier and no steady current can flow through the circuit."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If the net charge on a capacitor is zero, how can it store charge?",
+      "a": "This is a great conceptual question. When we say a capacitor 'stores charge', we mean it stores separated charge. The power supply does work to move charge from one plate to the other, creating a positive charge on one plate and an equal negative charge on the other. While the net charge of the whole device is zero, this separation of charge creates an electric field and stores potential energy, which can be released later."
+    },
+    {
+      "q": "What happens if the voltage across a capacitor becomes too high?",
+      "a": "Every capacitor has a 'breakdown voltage' rating. If the potential difference across the plates exceeds this value, the dielectric material will break down and start to conduct electricity. This often causes a spark to jump between the plates, permanently damaging the capacitor. This is why you should always check the voltage rating of a capacitor before using it in a circuit."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the world of **capacitors**! These essential electronic components are masters of temporary **charge storage** and play a vital role in countless circuits, from simple timing mechanisms to complex power supplies. Get ready to understand their structure, how they work, and how they behave in different circuit arrangements. This lesson aligns with **Senpai Corner** A Level notes (2025–2027) for topic **19.1**."
+      "content": "Capacitors are fundamental components in almost all electronic devices, from your smartphone to a power station. Their primary role is to store electrical energy, but this simple function allows them to be used in a vast range of applications, including timing circuits, signal filtering, and providing bursts of energy for things like a camera flash. In this topic, we will explore the fundamental principles of how they work."
     },
     {
       "type": "heading",
-      "content": "What is a Capacitor?"
+      "content": "Structure and Function"
     },
     {
       "type": "text",
-      "content": "At its core, a capacitor is an electrical component designed to store electric charge and, by extension, electrical potential energy. The most common type is the parallel-plate capacitor, which consists of two conductive plates separated by an insulating material called a **dielectric**. This dielectric prevents current from flowing directly between the plates while allowing an electric field to form, storing energy."
+      "content": "At its most basic, a capacitor is constructed from two parallel conducting plates separated by a thin layer of an insulating material. This insulator is known as a dielectric. When the capacitor is connected to a power source, such as a battery, charge does not flow *through* the capacitor. Instead, the power source pumps electrons from one plate and deposits them on the other. This leaves one plate with a net positive charge ($+Q$) and the other with an equal and opposite net negative charge ($-Q$). This separation of charge creates a potential difference across the plates and establishes an electric field between them, which is where the energy is stored."
     },
     {
       "type": "heading",
-      "content": "Capacitance: Measuring Storage Ability"
+      "content": "Defining Capacitance"
     },
     {
       "type": "text",
-      "content": "The ability of a capacitor to store charge is quantified by its **capacitance (C)**. It's defined as the amount of charge (Q) it can store per unit of potential difference (V) across its plates. The higher the capacitance, the more charge it can hold for a given voltage."
+      "content": "Experiments show that for a given capacitor, the amount of charge $Q$ stored on its plates is directly proportional to the potential difference $V$ across it. We can write this relationship as $Q \\propto V$. The constant of proportionality is called the capacitance, $C$. Capacitance is a measure of how much charge a capacitor can store per unit of potential difference."
     },
     {
       "type": "formula",
-      "content": "$$C = \\frac{Q}{V}$$"
+      "content": "C = \\frac{Q}{V}"
     },
     {
       "type": "keyPoints",
       "items": [
-        "19.1 Capacitors and capacitance.",
-        "Capacitors are electrical devices used to store energy in electronic circuits.",
-        "The circuit symbol for capacitor is shown below.",
-        "They come in two forms -Isolated spherical conductor -Parallel plates.",
-        "The unit of capacitor is capacitance .",
-        "Capacitance is defined as the charge stored per unit potential difference ."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Capacitors in Series Circuits"
-    },
-    {
-      "type": "text",
-      "content": "When capacitors are connected in series, they are linked end-to-end, forming a single path. In this configuration, the charge stored on each capacitor is the same, but the total potential difference applied across the combination is distributed among them. This means the overall storage ability is reduced."
-    },
-    {
-      "type": "formula",
-      "content": "$$\\frac{1}{C_{total}} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\dots$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Total potential difference: $V_{TOT} = V_1 + V_2 + \\dots$",
-        "Charge stored: $Q_{TOT} = Q_1 = Q_2 = \\dots$ (charge is the same on each).",
-        "Total capacitance: The reciprocal rule applies.",
-        "Overall capacitance is always less than the smallest individual capacitance."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Capacitors in Parallel Circuits"
-    },
-    {
-      "type": "text",
-      "content": "In a parallel connection, capacitors are connected side-by-side across the same two points in a circuit. This means each capacitor experiences the identical potential difference. The total charge stored is the sum of the charges on each capacitor, leading to a greater overall storage ability."
-    },
-    {
-      "type": "formula",
-      "content": "$$C_{total} = C_1 + C_2 + \\dots$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Potential difference: $V_{TOT} = V_1 = V_2 = \\dots$ (voltage is the same across each).",
-        "Total charge stored: $Q_{TOT} = Q_1 + Q_2 + \\dots$",
-        "Total capacitance: Simply sum the individual capacitances.",
-        "Overall capacitance is always greater than the largest individual capacitance."
+        "Capacitance ($C$) is measured in farads (F).",
+        "Charge ($Q$) is the magnitude of charge on one plate, measured in coulombs (C).",
+        "Potential Difference ($V$) is the p.d. across the plates, measured in volts (V).",
+        "One farad is defined as one coulomb per volt (1 F = 1 C V⁻¹).",
+        "The farad is a very large unit. Practical values are usually given in microfarads ($1 \\mu\\text{F} = 10^{-6} \\text{F}$), nanofarads ($1 \\text{nF} = 10^{-9} \\text{F}$), or picofarads ($1 \\text{pF} = 10^{-12} \\text{F}$)."
       ]
     },
     {
       "type": "workedExample",
-      "question": "Two capacitors, $C_1 = 4.0 \\text{ µF}$ and $C_2 = 6.0 \\text{ µF}$, are connected to a $12 \\text{ V}$ power supply. Calculate the total capacitance and the total charge stored when they are connected:\n(a) in series\n(b) in parallel",
-      "solution": "**(a) In Series:**\n1. Use the series capacitance formula:\n   $$\\frac{1}{C_{total}} = \\frac{1}{C_1} + \\frac{1}{C_2}$$ \n   $$\\frac{1}{C_{total}} = \\frac{1}{4.0 \\times 10^{-6} \\text{ F}} + \\frac{1}{6.0 \\times 10^{-6} \\text{ F}}$$ \n   $$\\frac{1}{C_{total}} = (0.25 \\times 10^6 + 0.1666 \\times 10^6) \\text{ F}^{-1} = 0.4166 \\times 10^6 \\text{ F}^{-1}$$\n   $$C_{total} = \\frac{1}{0.4166 \\times 10^6} = 2.4 \\times 10^{-6} \\text{ F} = 2.4 \\text{ µF}$$\n2. Calculate total charge stored using $Q = C_{total}V$:\n   $$Q_{total} = (2.4 \\times 10^{-6} \\text{ F}) \\times (12 \\text{ V}) = 2.88 \\times 10^{-5} \\text{ C}$$ \n   Therefore, total capacitance is $2.4 \\text{ µF}$ and total charge is $28.8 \\text{ µC}$.\n\n**(b) In Parallel:**\n1. Use the parallel capacitance formula:\n   $$C_{total} = C_1 + C_2$$\n   $$C_{total} = 4.0 \\text{ µF} + 6.0 \\text{ µF} = 10.0 \\text{ µF}$$\n2. Calculate total charge stored using $Q = C_{total}V$:\n   $$Q_{total} = (10.0 \\times 10^{-6} \\text{ F}) \\times (12 \\text{ V}) = 1.2 \\times 10^{-4} \\text{ C}$$ \n   Therefore, total capacitance is $10.0 \\text{ µF}$ and total charge is $120 \\text{ µC}$. "
-    },
-    {
-      "type": "heading",
-      "content": "Energy Stored in a Capacitor"
-    },
-    {
-      "type": "text",
-      "content": "When a capacitor stores charge, it also stores electrical potential energy within the electric field between its plates. This energy can be released when the capacitor discharges. The amount of energy stored can be determined from the area under a charge-voltage (Q-V) graph, which for a constant capacitance, is a triangle."
-    },
-    {
-      "type": "formula",
-      "content": "$$E = \\frac{1}{2}QV$$ or $$E = \\frac{1}{2}CV^2$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Energy is stored as electrical potential energy.",
-        "The Q-V graph for a capacitor is a straight line through the origin.",
-        "The energy stored (E) is equal to the area under this Q-V graph.",
-        "Substitute $Q = CV$ into $E = \\frac{1}{2}QV$ to derive $E = \\frac{1}{2}CV^2$."
-      ]
+      "question": "A capacitor is connected to a 9.0 V battery and stores 45 μC of charge. Calculate its capacitance in microfarads.",
+      "solution": "1. **State the formula:** The relationship between capacitance, charge, and voltage is $C = \\frac{Q}{V}$.\n\n2. **Identify the given values:**\n   - Charge, $Q = 45 \\text{ } \\mu\\text{C} = 45 \\times 10^{-6} \\text{ C}$\n   - Potential difference, $V = 9.0 \\text{ V}$\n\n3. **Substitute the values into the formula:**\n   $C = \\frac{45 \\times 10^{-6} \\text{ C}}{9.0 \\text{ V}}$\n\n4. **Calculate the result:**\n   $C = 5.0 \\times 10^{-6} \\text{ F}$\n\n5. **Convert to appropriate units:**\n   Since $1 \\mu\\text{F} = 10^{-6} \\text{F}$, the capacitance is $5.0 \\text{ } \\mu\\text{F}$.\n\n**Answer:** The capacitance is 5.0 μF."
     },
     {
       "type": "examTip",
-      "content": "Be careful not to confuse the formulas for combining capacitors with those for combining resistors! They are opposites: series capacitors add reciprocally, while series resistors add directly. Parallel capacitors add directly, while parallel resistors add reciprocally."
+      "content": "Examiners often ask questions to test your understanding that the net charge on a capacitor is zero. The value 'Q' in the formula $C=Q/V$ refers to the magnitude of charge stored on *one* plate. If a question asks for the 'charge stored by the capacitor', it means the value of Q, not zero."
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Charge Carriers"
+    },
+    {
+      "type": "text",
+      "content": "Since electric charge is quantised and carried by electrons, we can use our knowledge of capacitance to determine the number of electrons that have been moved to create the stored charge. Remember that the elementary charge, $e$, is the magnitude of charge on a single electron, approximately $1.60 \\times 10^{-19}$ C."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 220 nF capacitor is charged to a potential difference of 12 V. Calculate the number of excess electrons on its negative plate. (The elementary charge $e = 1.60 \\times 10^{-19}$ C).",
+      "solution": "1. **Step 1: Calculate the total charge stored.**\n   - Rearrange the capacitance formula: $Q = CV$.\n   - Convert capacitance to farads: $C = 220 \\text{ nF} = 220 \\times 10^{-9} \\text{ F}$.\n   - Substitute values: $Q = (220 \\times 10^{-9} \\text{ F}) \\times (12 \\text{ V}) = 2.64 \\times 10^{-6} \\text{ C}$.\n\n2. **Step 2: Calculate the number of electrons.**\n   - The total charge $Q$ is the number of electrons $n$ multiplied by the charge of one electron $e$: $Q = ne$.\n   - Rearrange for $n$: $n = \\frac{Q}{e}$.\n   - Substitute values: $n = \\frac{2.64 \\times 10^{-6} \\text{ C}}{1.60 \\times 10^{-19} \\text{ C}}$.\n   - Calculate the result: $n = 1.65 \\times 10^{13}$.\n\n**Answer:** There are $1.65 \\times 10^{13}$ excess electrons on the negative plate."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Capacitance Fundamentals",
       "href": "/mark?subject=9702&topic=19.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "PhET Simulation: Capacitor Lab",
+          "href": "https://phet.colorado.edu/en/simulations/capacitor-lab-basics"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "Why do capacitors use a dielectric?",
-      "a": "A dielectric is an insulating material placed between a capacitor's plates. It increases the capacitance by allowing the plates to store more charge for the same potential difference, often by polarising and creating an opposing electric field that reduces the overall field strength, allowing more charge to accumulate."
-    },
-    {
-      "q": "How do capacitors differ from batteries in storing energy?",
-      "a": "Batteries store energy chemically and release it relatively slowly and consistently. Capacitors, however, store energy electrostatically in an electric field and can release it very rapidly, making them suitable for quick bursts of power or smoothing out voltage fluctuations rather than sustained power delivery."
-    },
-    {
-      "q": "Can capacitors be connected in both series and parallel in the same circuit?",
-      "a": "Yes, complex circuits often feature combinations of series and parallel capacitor arrangements. To find the total equivalent capacitance, you would simplify these sections step-by-step, treating the series and parallel parts individually before combining them further."
-    }
-  ],
-  "updated": "2026-06-09",
-  "paperNumber": "4",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/19-1-capacitors-and-capacitance.png",
-    "alt": "Senpai Corner reference diagram for 19.1 Capacitors and capacitance"
-  }
+  "generatorVersion": "stem-deep-author-1"
 }

@@ -5,275 +5,195 @@
   "paper": "P4",
   "paperName": "Paper 4 A Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9700 Paper 4 — Gene control (16.3). A-Level Notes diagram-backed lesson with premium structure and live visuals.",
-  "durationMin": 20,
+  "summary": "This lesson explores how organisms control which genes are expressed and when. We will focus on the lac operon in prokaryotes as a key example of an inducible system, and the role of transcription factors and hormones like gibberellin in regulating gene expression in eukaryotes.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Describe the structure and function of the lac operon as an example of gene control in prokaryotes, including the role of cAMP.",
-    "Explain the effect of histone modification (methylation and acetylation) and DNA methylation on gene expression in eukaryotes.",
-    "Explain the role of transcription factors and microRNA (miRNA) in regulating gene expression in eukaryotes."
+    "Describe the structure and function of the lac operon in E. coli as a model for gene control in prokaryotes.",
+    "Explain the role of transcription factors in controlling gene expression in eukaryotes.",
+    "Outline how gibberellin controls gene expression by stimulating the breakdown of DELLA proteins in plants.",
+    "Apply knowledge of gene control to predict the effects of mutations or environmental changes."
   ],
   "simpleExplanation": {
-    "title": "Genes: On or Off?",
-    "summary": "Gene control is all about deciding which genes in a cell are active ('on') and which are silent ('off') at any given time. This careful regulation ensures that cells only produce the proteins they need, when they need them, saving energy and allowing for specialisation. It's a fundamental process that underpins everything from bacterial adaptation to human development and disease.",
-    "analogy": "Imagine a huge recipe book (your DNA) with thousands of recipes (genes). Gene control is like a sophisticated kitchen manager who decides which specific recipes should be open and cooked right now, and which should remain closed, perhaps even marking some with a 'do not use' sticker (methylation) or highlighting others for quick access (acetylation).",
+    "title": "The Cell's On/Off Switches",
+    "summary": "Cells don't make every protein they have the genes for all the time, as it would be a huge waste of energy. Gene control mechanisms act like switches to turn genes 'on' or 'off' only when their products are needed.",
+    "analogy": "Imagine your DNA is a massive cookbook containing every recipe your cell could ever need. You don't cook every single dish at once. Instead, you use bookmarks (transcription factors) to find the specific recipe (gene) you need right now, like for a cake (a protein). Gene control is the process of deciding which recipe to cook and when, ensuring you only use ingredients and energy when necessary.",
     "steps": [
-      "Understand the basic components of the lac operon and how they interact.",
-      "Grasp the difference between negative (repressor) and positive (cAMP-CAP) control.",
-      "Memorise the specific effects of histone acetylation/methylation and DNA methylation.",
-      "Learn the roles of transcription factors and miRNA as key regulators in eukaryotes."
+      "Repressor Active: With no lactose, a repressor protein, made by the regulator gene, binds to a DNA section called the operator.",
+      "Transcription Blocked: The bound repressor physically obstructs RNA polymerase, preventing it from transcribing the structural genes (lacZ, lacY, lacA). The 'switch' is OFF.",
+      "Inducer Present: When lactose is available, it acts as an inducer, binding to the repressor protein and changing its 3D shape.",
+      "Transcription Active: The altered repressor can no longer bind to the operator. RNA polymerase is now free to transcribe the genes for lactose-digesting enzymes. The 'switch' is ON."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Gene Expression",
+      "back": "The process by which information from a gene is used in the synthesis of a functional gene product, such as a protein or functional RNA molecule. It is the 'reading' of a gene."
+    },
+    {
+      "front": "Operon",
+      "back": "A unit of genetic material found in prokaryotes, consisting of a cluster of genes under the control of a single promoter and an operator. Example: the lac operon."
+    },
+    {
+      "front": "Structural Genes",
+      "back": "Genes that code for proteins or RNA molecules that form part of a structure or have an enzymatic function. In the lac operon, these are lacZ, lacY, and lacA."
+    },
+    {
+      "front": "Promoter",
+      "back": "A specific region of DNA to which RNA polymerase binds to initiate transcription. It's the 'start' signal for transcription."
+    },
+    {
+      "front": "Operator",
+      "back": "A short region of DNA, located between the promoter and the structural genes, to which a repressor protein binds. It acts as the 'on/off' switch."
+    },
+    {
+      "front": "Regulator Gene",
+      "back": "A gene that codes for a protein, such as a repressor, that controls the expression of other genes. It is not part of the operon itself but controls it."
+    },
+    {
+      "front": "Repressor Protein",
+      "back": "A protein that binds to an operator on the DNA, preventing the transcription of adjacent genes by blocking RNA polymerase."
+    },
+    {
+      "front": "Inducer",
+      "back": "A molecule that binds to a repressor protein, causing it to change shape and detach from the operator, thereby switching on gene expression. For the lac operon, the inducer is lactose (specifically allolactose)."
+    },
+    {
+      "front": "Transcription Factor",
+      "back": "A protein that controls the rate of transcription of genetic information from DNA to messenger RNA, by binding to a specific DNA sequence. Essential for eukaryotic gene control."
+    },
+    {
+      "front": "Constitutive Gene",
+      "back": "A gene that is transcribed at a relatively constant level, regardless of the cell's environmental conditions. The regulator gene for the lac operon is an example."
+    },
+    {
+      "front": "Common Trap: Promoter vs Operator",
+      "back": "The Promoter is where RNA polymerase binds. The Operator is where the repressor protein binds. Remember: Polymerase at Promoter (P-P), Repressor at Operator (but not always!)."
+    },
+    {
+      "front": "DELLA proteins",
+      "back": "A class of repressor proteins in plants that inhibit growth and germination-related genes. Gibberellin hormone triggers their destruction, allowing gene expression to proceed."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the regulator gene (lacI) part of the lac operon?",
+      "a": "Strictly speaking, no. The operon is defined as the promoter, operator, and the structural genes that are transcribed together. The regulator gene is located elsewhere on the chromosome and has its own promoter. However, it is fundamentally linked to the operon's function."
+    },
+    {
+      "q": "Why is the lac operon considered an 'inducible' system?",
+      "a": "It is called an inducible system because the presence of a specific molecule, the inducer (lactose/allolactose), is required to switch on gene expression. The default state of the operon is 'off'."
+    },
+    {
+      "q": "What is the role of glucose in the lac operon?",
+      "a": "While not explicitly detailed in this lesson, glucose levels also regulate the lac operon through a process called catabolite repression. When glucose (the preferred energy source) is high, the lac operon is repressed even if lactose is present. This ensures the bacterium uses the most efficient energy source first. This is a more advanced level of control involving another protein, CAP, and cyclic AMP (cAMP)."
+    },
+    {
+      "q": "Are all eukaryotic genes controlled by transcription factors?",
+      "a": "Yes, the initiation of transcription for virtually all protein-coding genes in eukaryotes requires a set of 'general' transcription factors that help RNA polymerase bind to the promoter. The specific control of when, where, and how much a gene is expressed is then layered on top by 'specific' transcription factors (activators and repressors)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to **Gene Control**, a pivotal topic in A Level Biology that explains how organisms manage the expression of their genetic information. Every cell in your body, from a skin cell to a nerve cell, contains the exact same DNA, yet they look and function completely differently. How? Through intricate mechanisms of **gene regulation**. This lesson will equip you with the knowledge to ace questions on both prokaryotic and eukaryotic gene control, covering everything from the classic **lac operon** to the complexities of **epigenetics** and **microRNA**. Key points align with **[A-Level Notes](https://alevel-notes.weebly.com/biology.html)** 9700 Biology chapter **16** (topic **16.3**)."
+      "content": "Every cell in a multicellular organism contains the same set of genes, yet a muscle cell is vastly different from a nerve cell. This specialisation is achieved through differential gene expression – the process of turning some genes on and others off. Organisms must also respond to their environment, such as a bacterium encountering a new food source. Gene control is the fundamental mechanism that allows for this cellular adaptability and differentiation, ensuring energy and resources are used efficiently."
     },
     {
       "type": "heading",
-      "content": "Prokaryotic Gene Control: The Lac Operon"
+      "content": "Gene Control in Prokaryotes: The lac Operon"
     },
     {
       "type": "text",
-      "content": "In prokaryotes like bacteria, genes are often organised into **operons**, which are groups of genes with related functions that are transcribed together. The *lac* operon in *E. coli* is the classic example, controlling the metabolism of lactose. It ensures that the bacteria only produce the enzymes needed to digest lactose when lactose is available and glucose (a preferred energy source) is scarce."
-    },
-    {
-      "type": "heading",
-      "content": "Components of the Lac Operon:"
+      "content": "In prokaryotes like *Escherichia coli*, genes with related functions are often grouped together into units called operons. The lac operon is a classic example of an inducible operon, meaning its genes are only expressed in the presence of an inducer molecule. It controls the production of three enzymes required for the bacterium to absorb and metabolise lactose."
     },
     {
       "type": "keyPoints",
       "items": [
-        "**Regulatory gene (lacI)**: Located upstream of the operon, it encodes the *lac* repressor protein.",
-        "**Promoter (P)**: The binding site for RNA polymerase to initiate transcription of the structural genes.",
-        "**Operator (O)**: A segment of DNA within the promoter where the *lac* repressor binds.",
-        "**Structural genes (lacZ, lacY, lacA)**: These genes code for enzymes involved in lactose metabolism: β-galactosidase (lacZ), permease (lacY), and transacetylase (lacA)."
+        "The lac operon consists of a promoter (P), an operator (O), and three structural genes: lacZ, lacY, and lacA.",
+        "lacZ codes for β-galactosidase, which hydrolyses lactose into glucose and galactose.",
+        "lacY codes for lactose permease, a membrane protein that transports lactose into the cell.",
+        "lacA codes for transacetylase, whose role is less critical but is co-transcribed.",
+        "A separate regulator gene (lacI) with its own promoter codes for a repressor protein."
       ]
     },
     {
       "type": "heading",
-      "content": "Regulation of the Lac Operon (Negative Control):"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Absence of lactose**: The *lac* repressor protein, synthesised by the regulatory gene, is active and binds to the operator region. This physically blocks RNA polymerase from binding to the promoter and transcribing the structural genes. Result: No lactose-metabolising enzymes are produced.",
-        "**Presence of lactose**: Lactose acts as an **inducer**. It binds to the *lac* repressor protein, causing a conformational change. The repressor can no longer bind to the operator. RNA polymerase can then bind to the promoter and transcribe the structural genes. Result: Enzymes for lactose metabolism are produced."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Role of Cyclic AMP (cAMP) in Lac Operon Control (Positive Control):"
+      "content": "Mechanism 1: Lactose Absent"
     },
     {
       "type": "text",
-      "content": "Beyond just turning genes 'on' in the presence of lactose, bacteria also need to prioritise glucose when it's available. This is achieved through **positive control** involving cAMP and the Catabolite Activator Protein (CAP)."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**High glucose concentration**: Inhibits the synthesis of cAMP. Low cAMP levels mean the cAMP-CAP complex does not form.",
-        "**Low glucose concentration**: Leads to high cAMP levels. cAMP binds to CAP, forming the **cAMP-CAP complex**.",
-        "The cAMP-CAP complex binds to a specific site upstream of the *lac* promoter. This binding enhances the affinity of RNA polymerase for the promoter, significantly increasing the rate of transcription of the structural genes. This ensures that even when lactose is present, high levels of transcription only occur if glucose is scarce."
-      ]
+      "content": "When lactose is not present in the environment, the cell has no need for the enzymes to break it down. The regulator gene (lacI) is constitutively expressed, meaning it is always being transcribed and translated at a low level to produce the lac repressor protein. This active repressor protein has a specific tertiary structure that allows it to bind to the operator region of the DNA. This binding physically blocks the path of RNA polymerase, preventing it from binding to the promoter and transcribing the structural genes. The operon is switched 'off'."
     },
     {
       "type": "heading",
-      "content": "Eukaryotic Gene Control: A More Complex Picture"
+      "content": "Mechanism 2: Lactose Present"
     },
     {
       "type": "text",
-      "content": "Eukaryotic gene control is far more complex, allowing for cell specialisation and developmental stages. Regulation can occur at multiple levels: transcriptional, post-transcriptional, translational, and post-translational."
-    },
-    {
-      "type": "heading",
-      "content": "Epigenetic Control: Histone Modification and DNA Methylation"
-    },
-    {
-      "type": "text",
-      "content": "**Epigenetics** refers to heritable changes in gene expression that occur without altering the underlying DNA sequence. Key mechanisms involve modifying chromatin structure."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**Histone Acetylation**: Adding acetyl groups to the positively charged lysine residues on histone tails. This neutralises their positive charge, weakening the interaction between histones and the negatively charged DNA. The chromatin becomes less compact (**euchromatin**), making DNA more accessible to transcription factors and RNA polymerase, thus **increasing gene expression**.",
-        "**Histone Methylation**: Adding methyl groups to histones. The effect can vary; it can either activate or repress gene expression depending on the specific histone and site of methylation. Often, methylation is associated with tighter chromatin packing and **reduced gene expression** (heterochromatin).",
-        "**DNA Methylation**: Adding methyl groups (–CH₃) to cytosine bases, typically in CpG islands (regions rich in cytosine and guanine) located in promoter regions. This usually **represses gene expression** by either physically blocking the binding of transcription factors or by recruiting proteins that condense chromatin."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Transcriptional Control: Transcription Factors"
-    },
-    {
-      "type": "text",
-      "content": "**Transcription factors** are proteins that bind to specific DNA sequences, regulating the rate of gene transcription. They are crucial for orchestrating gene expression patterns."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "**General Transcription Factors**: Essential for the binding of RNA polymerase II to the promoter region of protein-coding genes. They form part of the initiation complex.",
-        "**Specific Transcription Factors (Regulatory Transcription Factors)**: Bind to **enhancer** or **silencer** sequences, which can be far from the promoter. They can be activators (increase transcription) or repressors (decrease transcription).",
-        "**Activators**: Bind to enhancers, often bending the DNA to bring the enhancer closer to the promoter. They help recruit RNA polymerase and other general transcription factors, thereby stimulating transcription.",
-        "**Repressors**: Bind to silencer sequences or directly interfere with activators or RNA polymerase, preventing or reducing transcription."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Post-Transcriptional Control: MicroRNA (miRNA)"
-    },
-    {
-      "type": "text",
-      "content": "**MicroRNAs (miRNAs)** are small, non-coding RNA molecules (typically 20-22 nucleotides long) that play a significant role in regulating gene expression after transcription has occurred."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "miRNAs are transcribed from specific genes and processed into mature, single-stranded molecules.",
-        "They bind to complementary sequences on target messenger RNA (mRNA) molecules.",
-        "This binding can lead to either **degradation of the mRNA** (if the complementarity is perfect) or **inhibition of its translation** (if the complementarity is partial).",
-        "Ultimately, miRNAs reduce the amount of protein produced from a specific gene, providing a fine-tuning mechanism for gene expression."
-      ]
+      "content": "When lactose becomes available, some of it is converted into allolactose, which acts as an inducer. The inducer molecule binds to the lac repressor protein, causing an allosteric (shape) change in the protein. This new conformation prevents the repressor from binding to the operator DNA. With the operator now free, RNA polymerase can successfully bind to the promoter and begin transcribing the three structural genes into a single molecule of messenger RNA (polycistronic mRNA). This mRNA is then translated to produce the three enzymes, allowing the cell to efficiently utilise the lactose as an energy source. Once the lactose is used up, the repressor is no longer bound by an inducer, returns to its original shape, re-binds the operator, and switches the operon 'off' again."
     },
     {
       "type": "workedExample",
-      "question": "Compare and contrast the mechanisms of gene control in prokaryotes (using the lac operon) and eukaryotes, focusing on how different cellular conditions lead to changes in gene expression.",
-      "solution": "**Comparison:**\nBoth prokaryotic and eukaryotic gene control involve turning genes 'on' or 'off' to adapt to cellular needs and environmental conditions. Both use proteins (repressors/activators in prokaryotes; transcription factors in eukaryotes) that bind to specific DNA sequences to regulate transcription. Both can lead to either increased or decreased production of specific proteins.\n\n**Contrast:**\n1.  **Organisation**: In prokaryotes (e.g., *E. coli*), genes with related functions are often grouped into operons, allowing coordinated regulation. Eukaryotic genes are typically regulated individually, though genes in a pathway can be co-regulated by common transcription factors.\n2.  **Chromatin Structure**: Prokaryotic DNA is not associated with histones; eukaryotic DNA is packaged into chromatin, providing an additional layer of control. Eukaryotic gene expression is heavily influenced by **epigenetic modifications** like histone acetylation/methylation and DNA methylation, which alter chromatin accessibility.\n    *   *Example*: High histone acetylation in eukaryotes loosens chromatin, increasing gene expression, a mechanism absent in prokaryotes.\n3.  **Regulatory Sequences**: Prokaryotes use promoter and operator regions. Eukaryotes have more complex regulatory sequences, including distant **enhancers** and **silencers**, which specific transcription factors bind to.\n4.  **Transcriptional Control**: In the *lac* operon, both negative (repressor binding) and positive (cAMP-CAP binding) control at the promoter dictate transcription. In eukaryotes, **transcription factors** (activators/repressors) play a diverse role, forming complexes to recruit RNA polymerase II and mediate enhancer-promoter interactions.\n    *   *Example*: In low glucose, high cAMP activates CAP to boost *lac* operon transcription in *E. coli*. In eukaryotes, specific transcription factors would respond to a growth factor signal to activate transcription of genes for cell division.\n5.  **Post-Transcriptional Control**: Prokaryotes primarily rely on transcriptional control. Eukaryotes have extensive post-transcriptional mechanisms, including the crucial role of **miRNAs** in mRNA degradation or translational inhibition, which is absent in prokaryotes.\n    *   *Example*: miRNAs might downregulate the production of a specific protein in a human cell by binding to its mRNA, a regulatory step not seen in bacteria.\n6.  **Nuclear Membrane**: Eukaryotes have a nuclear membrane separating transcription and translation, allowing for more complex post-transcriptional processing and regulation. Prokaryotes lack this separation."
+      "question": "A strain of *E. coli* has a mutation in the operator region (O) of its lac operon, which prevents the repressor protein from binding. Predict and explain the consequences for the expression of the lacZ gene in environments with and without lactose. [4 marks]",
+      "solution": "1. The mutation in the operator means the repressor protein cannot bind to it, regardless of whether lactose is present or absent. [1]\n2. As the repressor cannot bind, it can never block RNA polymerase from accessing the promoter. [1]\n3. Therefore, RNA polymerase will continuously transcribe the structural genes, including lacZ. This is called constitutive expression. [1]\n4. This means the enzyme β-galactosidase will be produced constantly, even when lactose is absent, leading to a waste of energy and amino acids for the cell. [1]"
     },
     {
       "type": "examTip",
-      "content": "A common mistake is confusing the *lac* repressor with the cAMP-CAP complex. Remember: the repressor is involved in *negative control* (blocking transcription in the absence of lactose), while cAMP-CAP is involved in *positive control* (enhancing transcription when glucose is low). Don't forget to mention the specific conditions (lactose present/absent, glucose high/low) that trigger these mechanisms for full marks!"
+      "content": "Be precise with your terminology. The **regulator gene** codes for the **repressor protein**. The **repressor protein** binds to the **operator**. **RNA polymerase** binds to the **promoter**. Mixing these up is a very common mistake that will lose you marks."
+    },
+    {
+      "type": "heading",
+      "content": "Gene Control in Eukaryotes"
+    },
+    {
+      "type": "text",
+      "content": "Eukaryotic gene control is significantly more complex than in prokaryotes, reflecting the complexity of multicellular organisms. Control can occur at many stages, including before transcription (chromatin remodelling), during transcription (the main focus here), after transcription (post-transcriptional modification), and during and after translation. We will focus on transcriptional control, which is primarily managed by proteins called transcription factors."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Eukaryotic genes are not typically arranged in operons.",
+        "Each gene is controlled individually by its own promoter and regulatory elements.",
+        "Transcription factors are proteins that bind to DNA and either activate or repress transcription.",
+        "Activators bind to enhancer sequences and help recruit RNA polymerase to the promoter.",
+        "Repressors bind to silencer sequences and block or inhibit the binding of RNA polymerase."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Example: Gibberellin and Seed Germination"
+    },
+    {
+      "type": "text",
+      "content": "A key example of eukaryotic gene control is the role of the plant hormone gibberellin (or gibberellic acid, GA) in seed germination. In a barley seed, the aleurone layer surrounds the starchy endosperm. For germination to occur, the embryo needs sugars from this starch. Gibberellin acts as a signal to switch on the gene for amylase, the enzyme that digests starch. It does this by causing the breakdown of DELLA proteins. DELLA proteins are repressors that bind to and inactivate transcription factors (like PIF). When gibberellin is released from the embryo, it binds to a receptor, which leads to the destruction of the DELLA proteins. This frees the transcription factor to bind to the promoter of the amylase gene, switching on transcription and leading to the production and secretion of amylase."
+    },
+    {
+      "type": "examTip",
+      "content": "A common misconception is that gibberellin is a transcription factor. It is not. Gibberellin is a signalling molecule (a hormone) that initiates a cascade leading to the destruction of a repressor protein (DELLA). This *releases* a transcription factor, allowing it to function."
+    },
+    {
+      "type": "workedExample",
+      "question": "A barley plant is genetically modified to overproduce DELLA proteins that are resistant to breakdown. Explain the likely effect of this modification on seed germination. [4 marks]",
+      "solution": "1. The DELLA proteins are repressors of the amylase gene transcription. As they are resistant to breakdown, they will remain active even in the presence of gibberellin. [1]\n2. The DELLA proteins will remain bound to the transcription factors (e.g., PIF), preventing them from binding to the promoter of the amylase gene. [1]\n3. Transcription of the amylase gene is inhibited, so little or no amylase is synthesised by the aleurone layer cells. [1]\n4. Without amylase, the starch in the endosperm cannot be hydrolysed into maltose/glucose. The embryo is deprived of a respiratory substrate and therefore cannot germinate. [1]"
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Test Your Knowledge on Gene Control",
       "href": "/mark?subject=9700&topic=16.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "A-Level Notes 9700 Biology (source)",
-          "href": "https://alevel-notes.weebly.com/biology.html"
+          "label": "In-depth animation of the lac operon",
+          "href": "https://www.youtube.com/watch?v=iPQ-6_CaFtg"
         },
         {
-          "label": "9700 past paper guide",
-          "href": "/subjects/9700"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "Overview of Eukaryotic Transcription Control",
+          "href": "https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/regulation-of-gene-expression-and-cell-specialization/a/eukaryotic-gene-regulation"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "What is the lac operon and why is it important for A Level Biology 9700?",
-      "a": "The lac operon is a critical example of gene control in prokaryotes (bacteria), demonstrating how genes for lactose metabolism are switched on or off depending on the presence of lactose and glucose. It's frequently tested in Cambridge 9700 Biology Paper 4, so understanding its structure and regulatory mechanisms (repressor, cAMP, CAP) is vital. You can find detailed explanations and practice questions in our free course, alongside relevant past papers to master this concept."
-    },
-    {
-      "q": "How do epigenetic modifications like histone acetylation and DNA methylation affect gene expression in eukaryotes?",
-      "a": "Epigenetic modifications are crucial for differential gene expression in eukaryotes, dictating cell specialisation and development. Histone acetylation generally loosens chromatin, making DNA accessible and increasing gene expression. DNA methylation, conversely, often condenses chromatin or blocks transcription factor binding, leading to gene silencing. Our premium lessons cover these complex mechanisms thoroughly, and you can test your understanding with past papers available on our site."
-    },
-    {
-      "q": "What role do transcription factors and microRNA (miRNA) play in gene control in eukaryotic cells?",
-      "a": "Transcription factors are proteins that bind to specific DNA sequences (promoters, enhancers, silencers) to activate or repress gene transcription, acting as master switches. MicroRNAs (miRNAs) are small non-coding RNAs that regulate gene expression post-transcriptionally, either by degrading target mRNA or inhibiting its translation. Both are key components of eukaryotic gene control and are frequently assessed in 9700 Biology. Explore our free course for in-depth explanations and tackle past papers to solidify your knowledge."
-    }
-  ],
-  "updated": "2026-06-05",
-  "paperNumber": "4",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "alnotes-published-2",
-  "diagram": {
-    "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-01.png",
-    "alt": "A-Level Notes reference diagram for 16.3 Gene control"
-  },
-  "referenceDiagrams": [
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-01.png",
-      "alt": "A-Level Notes page 1 for 16.3 Gene control",
-      "order": 1
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-02.png",
-      "alt": "A-Level Notes page 2 for 16.3 Gene control",
-      "order": 2
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-03.png",
-      "alt": "A-Level Notes page 3 for 16.3 Gene control",
-      "order": 3
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-04.png",
-      "alt": "A-Level Notes page 4 for 16.3 Gene control",
-      "order": 4
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-05.png",
-      "alt": "A-Level Notes page 5 for 16.3 Gene control",
-      "order": 5
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-06.png",
-      "alt": "A-Level Notes page 6 for 16.3 Gene control",
-      "order": 6
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-07.png",
-      "alt": "A-Level Notes page 7 for 16.3 Gene control",
-      "order": 7
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-08.png",
-      "alt": "A-Level Notes page 8 for 16.3 Gene control",
-      "order": 8
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-09.png",
-      "alt": "A-Level Notes page 9 for 16.3 Gene control",
-      "order": 9
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-10.png",
-      "alt": "A-Level Notes page 10 for 16.3 Gene control",
-      "order": 10
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-11.png",
-      "alt": "A-Level Notes page 11 for 16.3 Gene control",
-      "order": 11
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-12.png",
-      "alt": "A-Level Notes page 12 for 16.3 Gene control",
-      "order": 12
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-13.png",
-      "alt": "A-Level Notes page 13 for 16.3 Gene control",
-      "order": 13
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-14.png",
-      "alt": "A-Level Notes page 14 for 16.3 Gene control",
-      "order": 14
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-15.png",
-      "alt": "A-Level Notes page 15 for 16.3 Gene control",
-      "order": 15
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-16.png",
-      "alt": "A-Level Notes page 16 for 16.3 Gene control",
-      "order": 16
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/16-3-gene-control/page-17.png",
-      "alt": "A-Level Notes page 17 for 16.3 Gene control",
-      "order": 17
-    }
-  ]
+  "generatorVersion": "stem-deep-author-1"
 }

@@ -5,193 +5,150 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Paper 4 — Energy stored in a capacitor (19.2). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson explains how energy is stored in a capacitor. It covers the derivation of the energy equations from the potential-charge graph and their application in solving problems, including the key distinction between energy supplied by the source and energy stored in the capacitor.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain how and where energy is stored in a capacitor.",
-    "Calculate the energy stored using relevant formulas and Q-V graphs.",
-    "Describe and analyse the discharge of a capacitor, including the time constant."
+    "Understand that charging a capacitor requires work to be done, which is stored as electrical potential energy.",
+    "Derive the formulas for energy stored in a capacitor using the area under a potential-charge graph.",
+    "Select and apply the appropriate energy formula ($W = \\frac{1}{2}QV$, $W = \\frac{1}{2}CV^2$, $W = \\frac{Q^2}{2C}$) to solve problems.",
+    "Explain that half the energy supplied by the source is dissipated as thermal energy during the charging process."
   ],
   "simpleExplanation": {
-    "title": "Capacitor Energy: The Basics",
-    "summary": "Capacitors are like tiny rechargeable batteries, storing electrical energy in an electric field. The more charge and voltage, the more energy they hold, released gradually when discharged.",
-    "analogy": "Think of a capacitor as a stretched spring or a compressed air tank. The more you stretch the spring or compress the air, the more potential energy it stores. Releasing it makes things move (or in our case, current flow).",
+    "title": "Charging a Capacitor's Energy Bank",
+    "summary": "Charging a capacitor is like compressing a spring; you do work to store potential energy. This energy is calculated from the area under the potential-charge graph and can be released later.",
+    "analogy": "Imagine pumping water into a tall, narrow tank. The first bit of water is easy, but as the water level (potential difference) rises, you have to work harder (do more work) to pump each new litre (charge) against the increasing pressure (repulsion). The total work you've done is the potential energy stored in the tank, ready to be released by opening a tap at the bottom.",
     "steps": [
-      "**Charge Up:** A capacitor collects charge on its plates, building up a potential difference.",
-      "**Store Energy:** This charge separation creates an electric field, storing electrical potential energy.",
-      "**Calculate Power:** Energy stored is proportional to charge and voltage, representable by the area under a Q-V graph.",
-      "**Discharge:** When connected to a circuit, the stored energy is released as current, decaying exponentially."
+      "Work must be done to move electrons from one capacitor plate to the other against the growing electrostatic repulsion.",
+      "This work done is stored as electrical potential energy in the electric field between the plates.",
+      "The total energy stored is the area under the potential difference (V) versus charge (Q) graph, which is a triangle.",
+      "This leads to three key equations: $W = \\frac{1}{2}QV$, $W = \\frac{1}{2}CV^2$, and $W = \\frac{Q^2}{2C}$, used to calculate the stored energy."
     ]
   },
   "flashcards": [
     {
-      "front": "In what form is energy primarily stored in a capacitor?",
-      "back": "Electrical potential energy."
+      "front": "What does the area under a potential difference-charge (V-Q) graph for a capacitor represent?",
+      "back": "The work done in charging the capacitor, which is equal to the electrical potential energy stored in it."
     },
     {
-      "front": "How can the energy stored in a capacitor be determined graphically?",
-      "back": "By finding the area under its charge-voltage (Q-V) graph."
+      "front": "What are the three main equations for the energy (W) stored in a capacitor?",
+      "back": "$W = \\frac{1}{2}QV$, $W = \\frac{1}{2}CV^2$, and $W = \\frac{Q^2}{2C}$"
     },
     {
-      "front": "State two common formulas used to calculate the energy stored in a capacitor.",
-      "back": "$E = \\frac{1}{2}QV$ and $E = \\frac{1}{2}CV^2$."
+      "front": "Why is the work done to charge a capacitor given by $W = \\frac{1}{2}QV$ and not $W = QV$?",
+      "back": "Because the potential difference across the capacitor increases linearly from 0 to V as it charges. The average potential difference during charging is $\\frac{1}{2}V$, so the work done is (Total Charge) × (Average PD) = $Q \\times \\frac{1}{2}V$."
     },
     {
-      "front": "Describe the pattern of change for charge and voltage in a discharging capacitor.",
-      "back": "Both charge and voltage decrease exponentially over time."
+      "front": "A capacitor is charged by a battery. How does the energy supplied by the battery compare to the energy stored in the capacitor?",
+      "back": "The energy stored in the capacitor ($\frac{1}{2}QV$) is exactly half the energy supplied by the battery ($QV$). The other half is dissipated as thermal energy in the connecting wires and internal resistance of the battery."
     },
     {
-      "front": "What does the time constant ($\\tau$) of an RC circuit indicate during discharge?",
-      "back": "The time taken for the charge, voltage, or current to fall to approximately 37% (or $1/e$) of its initial value."
+      "front": "What does the gradient of a V-Q graph for a capacitor represent?",
+      "back": "The gradient is $\\frac{\\Delta V}{\\Delta Q}$. Since $C = \\frac{Q}{V}$, the gradient is equal to $\\frac{1}{C}$ (the reciprocal of the capacitance)."
     },
     {
-      "front": "What is the fundamental relationship defining capacitance (C)?",
-      "back": "$C = \\frac{Q}{V}$, where Q is charge and V is potential difference."
+      "front": "If the potential difference across a capacitor is doubled, by what factor does the stored energy change?",
+      "back": "The energy increases by a factor of four. This is because $W = \\frac{1}{2}CV^2$, so energy is proportional to $V^2$."
     },
     {
-      "front": "What is the unit of capacitance and what does it represent?",
-      "back": "Farad (F). 1 Farad = 1 Coulomb of charge stored per Volt."
+      "front": "If the charge on a capacitor is doubled, by what factor does the stored energy change?",
+      "back": "The energy increases by a factor of four. This is because $W = \\frac{Q^2}{2C}$, so energy is proportional to $Q^2$."
     },
     {
-      "front": "What is the shape of a capacitor's Q-V graph?",
-      "back": "A straight line passing through the origin."
+      "front": "When should you use the formula $W = \\frac{1}{2}CV^2$?",
+      "back": "This is the most common formula to use when the capacitance (C) and the final potential difference (V) are known. It's particularly useful for problems involving charging from a power supply of a fixed voltage."
     },
     {
-      "front": "How is the third energy formula, $E = \\frac{1}{2}\\frac{Q^2}{C}$, derived?",
-      "back": "By substituting $V = Q/C$ into $E = \\frac{1}{2}QV$."
+      "front": "When is the formula $W = \\frac{Q^2}{2C}$ most useful?",
+      "back": "This formula is ideal when you are comparing the energy of a capacitor before and after a change where the charge (Q) is conserved, for example, when an isolated charged capacitor has its plates moved or a dielectric inserted."
     },
     {
-      "front": "What is the formula for the time constant ($\\tau$) in an RC circuit?",
-      "back": "$\\tau = RC$."
-    },
-    {
-      "front": "What happens to Q, V, and I during capacitor discharge after one time constant ($\\tau$)?",
-      "back": "They decrease to about 37% of their initial value."
-    },
-    {
-      "front": "Write the exponential decay equation for charge during discharge.",
-      "back": "$Q = Q_0 e^{-t/\\tau}$."
+      "front": "What physical form does the stored energy in a capacitor take?",
+      "back": "The energy is stored in the electric field created between the two oppositely charged plates."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the exciting world of **capacitors**! These clever components are designed to store **electrical potential energy**, much like a tiny, super-fast rechargeable battery. Understanding how they store and release energy is crucial for A-Level Physics, especially when analysing circuits and time-dependent phenomena. This lesson aligns with **Senpai Corner** A Level notes (2025–2027) for topic **19.2**."
+      "content": "Capacitors are essential components in electronics, from the flash in your camera to the timing circuits in your computer. Their ability to store and rapidly release energy is their defining feature. In this lesson, we will explore precisely how much energy a capacitor can hold and the physics that governs this storage."
     },
     {
       "type": "heading",
-      "content": "Understanding Energy Storage"
+      "content": "Work Done in Charging a Capacitor"
     },
     {
       "type": "text",
-      "content": "A capacitor stores energy by accumulating electric charge on its plates, creating a potential difference across them. This separation of charge establishes an electric field between the plates, and it's within this electric field that the electrical potential energy is held. The greater the charge and potential difference, the more energy is stored."
+      "content": "To charge a capacitor, a power source like a battery does work to move charge from one plate to the other. Imagine moving the very first electron; it's easy as there is no opposing field. However, as more charge accumulates on the plates, an electric field is established, creating a potential difference. Each subsequent electron must be moved against the repulsive force of the negative plate and the attractive force of the positive plate. This requires work, and this work is stored as electrical potential energy within the capacitor's electric field."
+    },
+    {
+      "type": "heading",
+      "content": "Deriving Energy from the V-Q Graph"
+    },
+    {
+      "type": "text",
+      "content": "We can visualise the charging process by plotting a graph of the potential difference $V$ across the capacitor against the charge $Q$ stored on it. Since $Q = CV$, and $C$ is a constant for a given capacitor, the relationship $V = (1/C)Q$ shows that the graph is a straight line through the origin. The work done in moving a small amount of charge $\\delta Q$ across a potential difference $V$ is $\\delta W = V \\delta Q$. Therefore, the total work done to charge the capacitor from 0 to a final charge $Q$ is the sum of all these small amounts of work, which is represented by the area under the V-Q graph."
     },
     {
       "type": "formula",
-      "content": "$C = \\frac{Q}{V}$"
+      "content": "Area under V-Q graph = Work Done = Energy Stored ($W$)\n\nSince the graph is a triangle with base $Q$ and height $V$:\n\n$W = \\frac{1}{2} \\times \\text{base} \\times \\text{height} = \\frac{1}{2}QV$"
+    },
+    {
+      "type": "heading",
+      "content": "The Three Equations for Stored Energy"
+    },
+    {
+      "type": "text",
+      "content": "While $W = \\frac{1}{2}QV$ is the fundamental equation derived from the graph, it's often more convenient to use other forms depending on the information given in a problem. By substituting the main capacitance equation, $Q = CV$, into our first energy equation, we can derive two other useful versions."
+    },
+    {
+      "type": "formula",
+      "content": "1. Substitute $Q = CV$ into $W = \\frac{1}{2}QV$:\n$W = \\frac{1}{2}(CV)V \\implies W = \\frac{1}{2}CV^2$\n\n2. Substitute $V = Q/C$ into $W = \\frac{1}{2}QV$:\n$W = \\frac{1}{2}Q(\\frac{Q}{C}) \\implies W = \\frac{Q^2}{2C}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "19.2 Energy stored in a capacitor.",
-        "The charge (Q) on a capacitor is directly proportional to its potential difference (V).",
-        "The area under the curve of a potential-charge graph is equal to the area under a triangle .",
-        "This area is the energy stored in a capacitor.",
-        "The energy stored (W) is therefore W =1/2 QV Substituting Q = CV we get W = ½ CV 2."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Calculating Stored Energy"
-    },
-    {
-      "type": "text",
-      "content": "The energy stored in a capacitor can be visualised and calculated by looking at its **charge-voltage (Q-V) graph**. Since capacitance (C) is constant, the relationship $Q = CV$ is linear, resulting in a straight line passing through the origin. The energy stored is simply the area of the triangle formed under this graph."
-    },
-    {
-      "type": "formula",
-      "content": "$E = \\text{Area under Q-V graph} = \\frac{1}{2}QV$"
-    },
-    {
-      "type": "formula",
-      "content": "Using $Q=CV$, we can derive: $E = \\frac{1}{2}CV^2$"
-    },
-    {
-      "type": "formula",
-      "content": "Alternatively, using $V=\\frac{Q}{C}$, we get: $E = \\frac{1}{2}\\frac{Q^2}{C}$"
-    },
-    {
-      "type": "heading",
-      "content": "Discharging a Capacitor: Releasing Energy"
-    },
-    {
-      "type": "text",
-      "content": "When a charged capacitor is connected to a resistor, it begins to discharge. The stored electrical potential energy is released, driving a current through the circuit. This process isn't instant; the charge, voltage, and current all decrease gradually following an **exponential decay** pattern over time. This decay is characterised by a specific time constant."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Energy is released as current flows during discharge.",
-        "Charge (Q), voltage ($V_c$), and current (I) all decrease exponentially.",
-        "Discharge equations: $Q = Q_0 e^{-t/\\tau}$ and $V_c = V_0 e^{-t/\\tau}$.",
-        "$Q_0$ and $V_0$ are initial charge and voltage at $t=0$.",
-        "The time constant ($\\tau$) for an RC circuit is defined as $\\tau = RC$.",
-        "$\\tau$ is the time for Q, V, or I to fall to approximately 37% ($1/e$) of its initial value."
+        "Use $W = \\frac{1}{2}CV^2$ when you know capacitance and voltage (most common).",
+        "Use $W = \\frac{Q^2}{2C}$ when you know charge and capacitance (useful for isolated capacitor problems).",
+        "Use $W = \\frac{1}{2}QV$ when you know charge and voltage (often a starting point for derivations)."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A 220 \\mu F capacitor is charged to a potential difference of 12 V. Calculate the energy stored. If it discharges through a 10 k\\Omega resistor, what is the initial discharge current and the time constant of the circuit?",
-      "solution": "1.  **Energy Stored (E):**\n    Given: $C = 220 \\, \\mu F = 220 \\times 10^{-6} \\, F$, $V = 12 \\, V$\n    Formula: $E = \\frac{1}{2}CV^2$\n    $E = \\frac{1}{2} \\times (220 \\times 10^{-6}) \\times (12)^2$\n    $E = \\frac{1}{2} \\times 220 \\times 10^{-6} \\times 144$\n    $E = 15840 \\times 10^{-6} \\, J = 0.01584 \\, J$\n    $E \\approx 0.016 \\, J$ (to 2 s.f.)\n\n2.  **Initial Discharge Current (I\\textsubscript0):**\n    At the start of discharge, the capacitor voltage is $V_0 = 12 \\, V$.\n    The initial current through the resistor is $I_0 = \\frac{V_0}{R}$ (from Ohm's Law).\n    Given: $R = 10 \\, k\\Omega = 10 \\times 10^3 \\, \\Omega$\n    $I_0 = \\frac{12}{10 \\times 10^3} = 1.2 \\times 10^{-3} \\, A = 1.2 \\, mA$\n\n3.  **Time Constant ($\\tau$):**\n    Formula: $\\tau = RC$\n    $\\tau = (10 \\times 10^3 \\, \\Omega) \\times (220 \\times 10^{-6} \\, F)$\n    $\\tau = 2.2 \\, s$"
+      "question": "A 4700 µF capacitor is charged to a potential difference of 25 V. Calculate the energy stored in the capacitor.",
+      "solution": "Step 1: Identify the known variables and the required formula.\nWe are given $C = 4700\\ \\mu\\text{F}$ and $V = 25\\ \\text{V}$. We need to find the energy stored, $W$. The best formula to use is $W = \\frac{1}{2}CV^2$.\n\nStep 2: Convert units to SI.\n$C = 4700\\ \\mu\\text{F} = 4700 \\times 10^{-6}\\ \\text{F}$\n\nStep 3: Substitute the values into the formula.\n$W = \\frac{1}{2} \\times (4700 \\times 10^{-6}\\ \\text{F}) \\times (25\\ \\text{V})^2$\n$W = \\frac{1}{2} \\times (4700 \\times 10^{-6}) \\times 625$\n$W = 1.46875\\ \\text{J}$\n\nStep 4: Give the answer to an appropriate number of significant figures.\nThe given values have 2 or 3 significant figures. Let's use 3.\n$W = 1.47\\ \\text{J}$"
     },
     {
       "type": "examTip",
-      "content": "When calculating energy, always ensure your capacitance is in Farads (F) and voltage in Volts (V). Be careful with units like microfarads (\\mu F) – convert them to Farads by multiplying by $10^{-6}$."
+      "content": "A classic exam question involves the energy transfer during charging. The battery provides a total charge $Q$ at a constant voltage $V$, so the energy supplied by the battery is $E_{supplied} = QV$. However, the energy stored in the capacitor is only $W = \\frac{1}{2}QV$. Always remember that 50% of the energy supplied by the source is dissipated as heat in the resistance of the circuit. Be ready to calculate this 'lost' energy, which is also $\\frac{1}{2}QV$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A capacitor of capacitance 20 µF is charged to a p.d. of 12 V. It is then disconnected from the supply and connected in parallel with an uncharged 10 µF capacitor. Calculate:\n(a) The initial energy stored in the 20 µF capacitor.\n(b) The final potential difference across the parallel combination.\n(c) The total final energy stored in both capacitors.\n(d) The energy lost during the connection.",
+      "solution": "(a) Initial energy stored:\nUse $W = \\frac{1}{2}CV^2$.\n$W_{initial} = \\frac{1}{2} \\times (20 \\times 10^{-6}\\ \\text{F}) \\times (12\\ \\text{V})^2 = 1.44 \\times 10^{-3}\\ \\text{J} = 1.44\\ \\text{mJ}$\n\n(b) Final potential difference:\nFirst, find the initial charge: $Q = CV = (20 \\times 10^{-6}) \\times 12 = 2.4 \\times 10^{-4}\\ \\text{C}$.\nWhen connected in parallel, this charge is shared across the total capacitance. Total capacitance $C_{total} = C_1 + C_2 = 20\\ \\mu\\text{F} + 10\\ \\mu\\text{F} = 30\\ \\mu\\text{F}$.\nThe final p.d. is $V_{final} = \\frac{Q}{C_{total}} = \\frac{2.4 \\times 10^{-4}\\ \\text{C}}{30 \\times 10^{-6}\\ \\text{F}} = 8.0\\ \\text{V}$.\n\n(c) Total final energy stored:\nUse $W = \\frac{1}{2}C_{total}V_{final}^2$.\n$W_{final} = \\frac{1}{2} \\times (30 \\times 10^{-6}\\ \\text{F}) \\times (8.0\\ \\text{V})^2 = 9.6 \\times 10^{-4}\\ \\text{J} = 0.96\\ \\text{mJ}$.\n\n(d) Energy lost:\nEnergy lost = $W_{initial} - W_{final}$\nEnergy lost = $(1.44 \\times 10^{-3}) - (9.6 \\times 10^{-4}) = 4.8 \\times 10^{-4}\\ \\text{J} = 0.48\\ \\text{mJ}$.\nThis energy is dissipated as thermal energy in the wires as the charge redistributes."
+    },
+    {
+      "type": "faq",
+      "q": "Where does the 'lost' energy go when charging a capacitor or connecting two capacitors?",
+      "a": "The 'lost' energy is dissipated primarily as thermal energy (heat) in the connecting wires and any internal resistance of the components. This is due to the current flowing through these resistive elements (Joule heating, $P=I^2R$). A small amount may also be lost as electromagnetic radiation as the charges accelerate, but this is usually negligible."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Energy in Capacitors",
       "href": "/mark?subject=9702&topic=19.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+          "label": "A-Level Physics Online: Energy Stored in a Capacitor",
+          "href": "https://a-levelphysics.co.uk/notes-capacitance-energy-stored/"
         },
         {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "PhET Simulation: Capacitor Lab",
+          "href": "https://phet.colorado.edu/en/simulations/capacitor-lab-basics"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "Why is the energy stored formula $\\frac{1}{2}CV^2$ and not $CV^2$?",
-      "a": "The voltage across a capacitor isn't constant during charging. It starts from zero and increases to V. The $\\frac{1}{2}$ factor accounts for this average voltage, representing the area of a triangle under the Q-V graph, which is how we calculate the total work done to charge it."
-    },
-    {
-      "q": "What is the significance of the time constant in capacitor discharge?",
-      "a": "The time constant ($\\tau = RC$) provides a critical measure of how quickly a capacitor charges or discharges. It's the time required for the charge, voltage, or current to fall to approximately 37% of its initial value, giving insight into the circuit's transient response."
-    },
-    {
-      "q": "Can a capacitor store energy indefinitely?",
-      "a": "In an ideal scenario, yes. However, in reality, all capacitors have some internal leakage resistance, meaning the charge will slowly dissipate over time, even if disconnected from a circuit. This self-discharge can be very slow but is not truly indefinite."
-    }
-  ],
-  "updated": "2026-06-09",
-  "paperNumber": "4",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/19-2-energy-stored-in-a-capacitor.png",
-    "alt": "Senpai Corner reference diagram for 19.2 Energy stored in a capacitor"
-  }
+  "generatorVersion": "stem-deep-author-1"
 }

@@ -5,209 +5,184 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Paper 4 — Kinetic theory of gases (15.3). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson explores the kinetic theory of gases, linking the macroscopic properties of a gas (pressure, volume, temperature) to the microscopic behaviour of its constituent molecules. It covers the key assumptions, derives the relationship between pressure and molecular motion, and establishes the direct proportionality between the average kinetic energy of molecules and the absolute temperature.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "State and explain the key assumptions of the kinetic theory for an ideal gas.",
-    "Derive and apply the ideal gas pressure equation based on molecular collisions.",
-    "Relate the average translational kinetic energy of gas molecules to absolute temperature."
+    "State the basic assumptions of the kinetic theory of gases.",
+    "Explain how molecular motion causes the pressure exerted by a gas and derive the expression p = (1/3)ρ⟨c²⟩.",
+    "Relate the average translational kinetic energy of gas molecules to the absolute temperature.",
+    "Apply the ideal gas equation in calculations involving pressure, volume, temperature, and number of moles or molecules."
   ],
   "simpleExplanation": {
-    "title": "Gas Particles in Action",
-    "summary": "Imagine gases aren't just invisible substances, but billions of tiny, fast-moving particles. The kinetic theory helps us understand how these particles, by bumping into each other and their container, create pressure and have a temperature.",
-    "analogy": "Think of a swarm of highly energetic bees trapped in a transparent jar, constantly flying, colliding with each other, and hitting the jar walls. The more active they are, the harder and more frequently they hit, leading to greater 'pressure' on the jar, and an increase in their activity corresponds to a higher 'temperature'.",
+    "title": "Gas Molecules in Motion",
+    "summary": "The pressure a gas exerts comes from countless tiny collisions of its molecules with the container walls. By heating the gas, we make the molecules move faster, leading to more frequent and forceful collisions, which increases the pressure.",
+    "analogy": "Imagine a bouncy castle. It stays inflated because billions of tiny air particles are constantly whizzing around inside, hitting the inner walls. If you could heat the air inside, the particles would move faster, hit the walls harder and more often, making the castle feel even firmer (higher pressure). The kinetic theory is the physics behind this.",
     "steps": [
-      "Gas particles are tiny and are always moving randomly and rapidly.",
-      "These particles continuously crash into the container walls.",
-      "The collective force of these collisions over the wall's area creates the gas pressure.",
-      "The average speed and energy of these particles directly determine the gas's absolute temperature."
+      "Gas particles move randomly — collisions with walls create pressure.",
+      "Higher temperature means faster average particle speed.",
+      "More frequent, harder wall collisions raise pressure p.",
+      "Ideal gas law: pV = nRT links p, V, n, and absolute temperature T."
     ]
   },
   "flashcards": [
     {
-      "front": "What key assumption does the kinetic theory of gases make about intermolecular forces?",
-      "back": "It assumes there are no intermolecular forces between ideal gas molecules, except during instantaneous collisions."
+      "front": "What are the five main assumptions of the kinetic theory for an ideal gas?",
+      "back": "1. Gas contains a large number of identical molecules. 2. Molecules move randomly. 3. Volume of molecules is negligible compared to container volume. 4. All collisions (with walls/other molecules) are perfectly elastic. 5. No intermolecular forces exist except during collisions."
     },
     {
-      "front": "State the kinetic theory equation for gas pressure ($P$).",
-      "back": "$P = \\frac{1}{3}\\frac{Nm\\overline{c^2}}{V}$"
+      "front": "What is meant by an 'ideal gas'?",
+      "back": "An ideal gas is a theoretical gas that perfectly obeys the gas laws (like pV = nRT) under all conditions. Its molecules are assumed to have no volume and no intermolecular forces."
     },
     {
-      "front": "How is the average translational kinetic energy ($E_k$) of a gas molecule related to absolute temperature ($T$)?",
-      "back": "It is directly proportional to the absolute temperature: $E_k = \\frac{3}{2}kT$"
+      "front": "What is the physical origin of the pressure exerted by a gas?",
+      "back": "Pressure is the result of the continuous, random collisions of gas molecules with the walls of their container. Each collision exerts a small force; the sum of these forces over an area creates pressure (P = F/A)."
     },
     {
-      "front": "What does $\\overline{c^2}$ represent in the kinetic theory equations?",
-      "back": "$\\overline{c^2}$ is the mean square speed of the gas molecules."
+      "front": "What does the term ⟨c²⟩ represent in the kinetic theory equation?",
+      "back": "⟨c²⟩ is the mean-square speed of the gas molecules. It's the average of the squared speeds of all the molecules in the gas sample."
     },
     {
-      "front": "Name a phenomenon that provides evidence for the constant, random motion of molecules.",
-      "back": "Brownian motion."
+      "front": "What is the root-mean-square (r.m.s.) speed?",
+      "back": "The r.m.s. speed, c_rms, is the square root of the mean-square speed: c_rms = √⟨c²⟩. It's a type of average speed that accounts for the distribution of molecular speeds."
     },
     {
-      "front": "What is the change in momentum for a gas molecule of mass $m$ and speed $u$ that undergoes a perfectly elastic collision perpendicular to a container wall?",
-      "back": "$2mu$"
+      "front": "State the kinetic theory equation for pressure.",
+      "back": "p = (1/3)ρ⟨c²⟩, where p is pressure, ρ is the density of the gas, and ⟨c²⟩ is the mean-square speed of the molecules."
     },
     {
-      "front": "Why must temperature be in Kelvin for kinetic theory calculations?",
-      "back": "Kelvin is the absolute temperature scale, where 0 K represents zero average molecular kinetic energy."
+      "front": "How is the average kinetic energy of a gas molecule related to temperature?",
+      "back": "The average translational kinetic energy of a molecule is directly proportional to the absolute temperature (in Kelvin). The formula is E_k = (3/2)kT, where k is the Boltzmann constant."
     },
     {
-      "front": "How is the Boltzmann constant ($k$) related to the molar gas constant ($R$) and Avogadro constant ($N_A$)?",
-      "back": "$k = R/N_A$"
+      "front": "What is the difference between n and N in the ideal gas equations?",
+      "back": "n is the number of moles of the gas (used in pV = nRT). N is the total number of molecules (used in pV = NkT). They are related by N = n * N_A, where N_A is the Avogadro constant."
     },
     {
-      "front": "What assumption is made about the volume of the gas molecules themselves?",
-      "back": "The total volume occupied by the molecules is negligible compared to the total volume of the gas container."
+      "front": "Why must temperature be in Kelvin for gas law calculations?",
+      "back": "Gas laws like pV=nRT are based on absolute temperature, where 0 K represents zero kinetic energy. Using Celsius would imply that pressure or volume could be zero at 0°C, which is incorrect."
     },
     {
-      "front": "What is the total translational kinetic energy for $N$ molecules in an ideal gas?",
-      "back": "$N \\times \\frac{3}{2}kT$"
+      "front": "What is the internal energy of an ideal monatomic gas?",
+      "back": "For an ideal gas, there are no intermolecular potential energies. Therefore, its internal energy is solely the sum of the kinetic energies of all its molecules. For a monatomic gas, this is U = (3/2)NkT or U = (3/2)nRT."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are the collisions assumed to be perfectly elastic?",
+      "a": "If collisions were inelastic, molecules would lose kinetic energy with each collision. This would cause the gas to cool down and its pressure to drop over time, even in an isolated container. Since this doesn't happen in reality (for an isolated gas), we assume collisions are elastic to conserve the total kinetic energy of the system."
+    },
+    {
+      "q": "What is the difference between mean speed and r.m.s. speed?",
+      "a": "The mean speed is the simple arithmetic average of the speeds of all molecules. The r.m.s. speed is the square root of the average of the squared speeds. Because kinetic energy depends on speed squared ($E_k = \\frac{1}{2}mv^2$), the r.m.s. speed is more directly related to the energy of the gas. For a typical gas distribution, the r.m.s. speed is always slightly higher than the mean speed."
+    },
+    {
+      "q": "Do real gases ever behave like ideal gases?",
+      "a": "Yes, to a very good approximation. A real gas behaves most like an ideal gas at high temperatures and low pressures. High temperature ensures the kinetic energy of molecules is much greater than any intermolecular potential energy. Low pressure ensures the molecules are far apart, making their individual volume and intermolecular forces negligible."
+    },
+    {
+      "q": "If average kinetic energy depends only on temperature, do heavy and light gas molecules move at the same speed?",
+      "a": "No. At the same temperature, a heavy molecule (e.g., CO₂) and a light molecule (e.g., H₂) have the same average kinetic energy. Since kinetic energy is $\\frac{1}{2}mv^2$, for the energies to be equal, the molecule with the smaller mass ($m$) must have a much higher speed ($v$). This is why hydrogen diffuses much faster than carbon dioxide."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "The **kinetic theory of gases** is a fundamental model in physics that helps us understand the macroscopic properties of gases, like **pressure** and **temperature**, by considering the microscopic behaviour of their constituent molecules. It acts as a bridge, connecting the invisible world of tiny, moving particles to the measurable characteristics we observe daily. This theory is built upon several key assumptions about how an **ideal gas** behaves. This lesson aligns with **Senpai Corner** A Level notes (2025–2027) for topic **15.3**."
+      "content": "In previous studies, you've encountered the macroscopic gas laws, such as Boyle's Law ($p \\propto 1/V$) and Charles's Law ($V \\propto T$). These laws describe how gases behave on a large scale. The kinetic theory of gases provides the microscopic explanation for this behaviour, modelling a gas as a collection of tiny, fast-moving particles. This powerful model allows us to connect the pressure and temperature of a gas directly to the motion of its molecules."
     },
     {
       "type": "heading",
-      "content": "The Microscopic Basis of Gases"
+      "content": "Assumptions of the Kinetic Theory"
     },
     {
       "type": "text",
-      "content": "At its heart, the kinetic theory postulates that gases consist of countless tiny molecules in continuous, random motion. Evidence for this tireless dance comes from phenomena like **Brownian motion**, where larger particles suspended in a fluid are seen to jiggle erratically due to unseen molecular bombardments. This confirms the existence and constant movement of molecules, forming the bedrock of the theory."
-    },
-    {
-      "type": "heading",
-      "content": "Assumptions of an Ideal Gas"
-    },
-    {
-      "type": "text",
-      "content": "To simplify the complex interactions within a real gas, the kinetic theory uses the concept of an **ideal gas**. This model relies on several crucial assumptions, which are essential for deriving the gas laws. While no real gas is perfectly ideal, these assumptions provide an excellent approximation under many conditions, especially at high temperatures and low pressures."
+      "content": "To create a workable model, we make several simplifying assumptions about the behaviour of an 'ideal gas'. While no real gas is perfectly ideal, many gases like nitrogen and oxygen behave very much like one under normal conditions. These assumptions are frequently tested in exams."
     },
     {
       "type": "keyPoints",
       "items": [
-        "15.3 Kinetic theory of gases.",
-        "The pressure of an ideal gas equation includes the mean square speed of the particle: <c 2 > Here c = average speed of gas particles.",
-        "The unit for mean square speed is m 2 s -2.",
-        "In order to calculate the average speed of the particles in a gas, take the square root of the mean square speed: √⟨𝑐 2 ⟩ = 𝑐 𝑟𝑚𝑠.",
-        "The unit for c rms is ms -1.",
-        "The kinetic Theory of Gases equation is given by 𝑝𝑉 = 1 3 𝑁𝑚 <c 2 > Where -p = pressure (Pa) -V = volume (m 3 )."
+        "The gas consists of a very large number of identical molecules.",
+        "The molecules are in continuous, random motion.",
+        "The volume occupied by the molecules themselves is negligible compared to the volume of the container.",
+        "There are no forces of attraction or repulsion between molecules (no intermolecular forces), except during collisions.",
+        "All collisions, both between molecules and with the container walls, are perfectly elastic (kinetic energy is conserved)."
       ]
     },
     {
       "type": "heading",
-      "content": "Pressure from Particle Collisions"
+      "content": "The Origin of Pressure"
     },
     {
       "type": "text",
-      "content": "The pressure a gas exerts on its container walls is a direct result of the continuous bombardment by its molecules. Each time a molecule collides with a wall, it experiences a change in momentum. According to Newton's second law, this change in momentum implies a force exerted by the wall on the molecule, and by Newton's third law, an equal and opposite force exerted by the molecule on the wall. The sum of these forces over the area of the wall gives the pressure."
+      "content": "Imagine a single molecule in a cubic box. It moves, hits a wall, and rebounds. According to Newton's second and third laws, this change in momentum results in a force exerted on the wall. With billions of molecules doing this constantly, the result is a steady, average force over the area of the walls, which we measure as pressure. By considering the momentum change of all molecules, we can derive a fundamental equation linking pressure to molecular motion."
     },
     {
       "type": "formula",
-      "content": "For a perfectly elastic collision with a wall, a molecule of mass $m$ and speed $u$ experiences a change in momentum of:"
-    },
-    {
-      "type": "formula",
-      "content": "$ \\Delta p = 2mu $"
+      "content": "p = \\frac{1}{3} \\rho \\langle c^2 \\rangle"
     },
     {
       "type": "text",
-      "content": "By considering the rate of these collisions and the average kinetic energy, the following fundamental equation for the pressure ($P$) of an ideal gas can be derived:"
-    },
-    {
-      "type": "formula",
-      "content": "$ P = \\frac{1}{3}\\frac{Nm\\overline{c^2}}{V} $"
-    },
-    {
-      "type": "text",
-      "content": "Here, $N$ is the total number of gas molecules, $m$ is the mass of a single molecule, $V$ is the volume of the gas, and $\\overline{c^2}$ represents the **mean square speed** of the gas molecules. The mean square speed is the average of the squares of the speeds of all the individual molecules, indicating their overall kinetic energy."
-    },
-    {
-      "type": "heading",
-      "content": "Temperature and Molecular Energy"
-    },
-    {
-      "type": "text",
-      "content": "One of the most profound insights from the kinetic theory is the direct link between the **absolute temperature** of a gas and the **average translational kinetic energy** of its molecules. Simply put, a hotter gas means its molecules are, on average, moving faster and therefore possess more kinetic energy."
-    },
-    {
-      "type": "formula",
-      "content": "The average translational kinetic energy ($E_k$) of a single gas molecule is given by:"
-    },
-    {
-      "type": "formula",
-      "content": "$ E_k = \\frac{1}{2}m\\overline{c^2} $"
-    },
-    {
-      "type": "text",
-      "content": "This energy is also directly proportional to the absolute temperature ($T$) through the Boltzmann constant ($k$):"
-    },
-    {
-      "type": "formula",
-      "content": "$ E_k = \\frac{3}{2}kT $"
-    },
-    {
-      "type": "text",
-      "content": "The **Boltzmann constant** ($k$) serves as a fundamental constant relating the average kinetic energy of particles in a gas to the absolute temperature of the gas. It can also be expressed in terms of the molar gas constant ($R$) and Avogadro constant ($N_A$) as $k = R/N_A$. Remember, all temperature values used in these kinetic theory calculations MUST be in **Kelvin (K)**, not Celsius (°C)."
+      "content": "Here, $p$ is the pressure, $\\rho$ is the gas density (mass/volume), and $\\langle c^2 \\rangle$ is the mean-square speed of the molecules. This equation is a cornerstone of the kinetic theory, as it directly connects a macroscopic property (pressure) to a microscopic property (molecular speed)."
     },
     {
       "type": "workedExample",
-      "question": "An ideal gas of oxygen molecules (molar mass 32.0 g/mol) is at a temperature of 27.0 °C. Calculate the mean square speed ($\\overline{c^2}$) of the oxygen molecules. \n\nGiven:\nMolar gas constant $R = 8.31 \\text{ J mol}^{-1} \\text{ K}^{-1}$\nAvogadro constant $N_A = 6.02 \\times 10^{23} \\text{ mol}^{-1}$\nBoltzmann constant $k = 1.38 \\times 10^{-23} \\text{ J K}^{-1}$",
-      "solution": "1.  **Convert temperature to Kelvin:**\n    $T = 27.0 \\text{ °C} + 273.15 = 300.15 \\text{ K}$\n\n2.  **Calculate the mass of a single oxygen molecule ($m$):**\n    Molar mass $M = 32.0 \\text{ g/mol} = 32.0 \\times 10^{-3} \\text{ kg/mol}$\n    $m = \\frac{M}{N_A} = \\frac{32.0 \\times 10^{-3} \\text{ kg mol}^{-1}}{6.02 \\times 10^{23} \\text{ mol}^{-1}} \\approx 5.316 \\times 10^{-26} \\text{ kg}$\n\n3.  **Calculate the average translational kinetic energy ($E_k$) using the absolute temperature:**\n    $E_k = \\frac{3}{2}kT = \\frac{3}{2} \\times (1.38 \\times 10^{-23} \\text{ J K}^{-1}) \\times (300.15 \\text{ K})$\n    $E_k \\approx 6.213 \\times 10^{-21} \\text{ J}$\n\n4.  **Relate average kinetic energy to mean square speed and solve for $\\overline{c^2}$:**\n    $E_k = \\frac{1}{2}m\\overline{c^2}$\n    $\\overline{c^2} = \\frac{2E_k}{m} = \\frac{2 \\times (6.213 \\times 10^{-21} \\text{ J})}{5.316 \\times 10^{-26} \\text{ kg}}$\n    $\\overline{c^2} \\approx 2.339 \\times 10^5 \\text{ m}^2\\text{ s}^{-2}$\n\n    Therefore, the mean square speed of the oxygen molecules is approximately $2.34 \\times 10^5 \\text{ m}^2\\text{ s}^{-2}$ (to 3 s.f.)."
+      "question": "A container of volume $2.0 \\times 10^{-2} \\text{ m}^3$ contains helium gas at a pressure of $3.0 \\times 10^5 \\text{ Pa}$. The total mass of the gas is $9.8 \\text{ g}$. Calculate the root-mean-square (r.m.s.) speed of the helium atoms.",
+      "solution": "1.  **Identify the goal and relevant equation.** We need to find the r.m.s. speed, which is $\\sqrt{\\langle c^2 \\rangle}$. The kinetic theory pressure equation is $p = \\frac{1}{3} \\rho \\langle c^2 \\rangle$.\n\n2.  **Calculate the density (ρ).** Density is mass divided by volume. Remember to convert mass to kg.\n    Mass $m = 9.8 \\text{ g} = 9.8 \\times 10^{-3} \\text{ kg}$\n    Volume $V = 2.0 \\times 10^{-2} \\text{ m}^3$\n    $\\rho = \\frac{m}{V} = \\frac{9.8 \\times 10^{-3}}{2.0 \\times 10^{-2}} = 0.49 \\text{ kg m}^{-3}$\n\n3.  **Rearrange the pressure equation to find ⟨c²⟩.**\n    $p = \\frac{1}{3} \\rho \\langle c^2 \\rangle \\implies \\langle c^2 \\rangle = \\frac{3p}{\\rho}$\n\n4.  **Substitute the values to calculate ⟨c²⟩.**\n    $\\langle c^2 \\rangle = \\frac{3 \\times (3.0 \\times 10^5 \\text{ Pa})}{0.49 \\text{ kg m}^{-3}} = 1.8367 \\times 10^6 \\text{ m}^2 \\text{s}^{-2}$\n\n5.  **Calculate the r.m.s. speed.**\n    $c_{rms} = \\sqrt{\\langle c^2 \\rangle} = \\sqrt{1.8367 \\times 10^6} = 1355 \\text{ m s}^{-1}$\n\n6.  **Final answer with significant figures.** The input values have 2 s.f., so the answer should be given to 2 or 3 s.f.\n    $c_{rms} \\approx 1400 \\text{ m s}^{-1}$ (to 2 s.f.)"
+    },
+    {
+      "type": "heading",
+      "content": "Temperature and Molecular Kinetic Energy"
+    },
+    {
+      "type": "text",
+      "content": "The most profound insight from the kinetic theory is the meaning of temperature. By combining the kinetic theory pressure equation with the ideal gas law, we can show that temperature is a direct measure of the average kinetic energy of the gas molecules. This is a fundamental concept in thermodynamics."
+    },
+    {
+      "type": "text",
+      "content": "We have two expressions for $pV$:\nFrom the ideal gas law: $pV = NkT$\nFrom kinetic theory: $pV = \\frac{1}{3}Nm\\langle c^2 \\rangle$ (where $\\rho = Nm/V$)\n\nEquating these gives: $NkT = \\frac{1}{3}Nm\\langle c^2 \\rangle$\n\nSimplifying and rearranging for the average kinetic energy, $\\frac{1}{2}m\\langle c^2 \\rangle$:"
+    },
+    {
+      "type": "formula",
+      "content": "\\frac{1}{2}m\\langle c^2 \\rangle = \\frac{3}{2}kT"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The average translational kinetic energy of a molecule is directly proportional to the absolute temperature ($T$).",
+        "The constant of proportionality is $\\frac{3}{2}k$, where $k$ is the Boltzmann constant ($1.38 \\times 10^{-23} \\text{ J K}^{-1}$).",
+        "At a given temperature, molecules of all ideal gases have the same average kinetic energy, regardless of their mass.",
+        "This implies that at the same temperature, lighter molecules must have a higher r.m.s. speed than heavier molecules."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Always remember to convert temperature to Kelvin when working with kinetic theory equations! A common mistake is using Celsius, which will lead to incorrect answers. Also, be careful with units, especially when calculating the mass of a single molecule from molar mass."
+      "content": "Always convert temperatures to Kelvin ($K = °C + 273.15$) before using them in any gas law or kinetic theory equation. Forgetting this is a very common mistake that loses easy marks. Also, be careful to distinguish between the number of moles, $n$, and the number of molecules, $N$."
+    },
+    {
+      "type": "workedExample",
+      "question": "An ideal gas is held in a container at a temperature of $27°\\text{C}$. The r.m.s. speed of its molecules is $450 \\text{ m s}^{-1}$. The temperature of the gas is increased to $227°\\text{C}$. Calculate the new r.m.s. speed of the gas molecules.",
+      "solution": "1.  **Identify the relationship.** The average kinetic energy is proportional to absolute temperature: $\\frac{1}{2}m\\langle c^2 \\rangle \\propto T$. Since mass $m$ is constant, this means $\\langle c^2 \\rangle \\propto T$, and therefore the r.m.s. speed $c_{rms} \\propto \\sqrt{T}$.\n\n2.  **Convert temperatures to Kelvin (K).** This is a crucial first step.\n    $T_1 = 27°\\text{C} = 27 + 273.15 = 300.15 \\text{ K} \\approx 300 \\text{ K}$\n    $T_2 = 227°\\text{C} = 227 + 273.15 = 500.15 \\text{ K} \\approx 500 \\text{ K}$\n\n3.  **Set up a ratio.** Since $c_{rms} \\propto \\sqrt{T}$, we can write $\\frac{c_{rms,2}}{c_{rms,1}} = \\sqrt{\\frac{T_2}{T_1}}$.\n\n4.  **Rearrange and solve for the new r.m.s. speed, $c_{rms,2}$.**\n    $c_{rms,2} = c_{rms,1} \\times \\sqrt{\\frac{T_2}{T_1}}$\n\n5.  **Substitute the values.**\n    $c_{rms,2} = 450 \\text{ m s}^{-1} \\times \\sqrt{\\frac{500 \\text{ K}}{300 \\text{ K}}}$\n    $c_{rms,2} = 450 \\times \\sqrt{1.666...}$\n    $c_{rms,2} = 450 \\times 1.291$\n    $c_{rms,2} = 580.9... \\text{ m s}^{-1}$\n\n6.  **Final answer with appropriate significant figures.**\n    $c_{rms,2} \\approx 580 \\text{ m s}^{-1}$ (to 2 or 3 s.f.)"
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Test your understanding with past paper questions",
       "href": "/mark?subject=9702&topic=15.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+          "label": "Interactive Gas Properties Simulation",
+          "href": "https://phet.colorado.edu/en/simulations/gas-properties"
         },
         {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "Detailed notes on the Kinetic Theory",
+          "href": "https://www.savemyexams.com/a-level/physics/cie/22/revision-notes/15-ideal-gases/15-3-kinetic-theory-of-gases/"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "What is the main idea behind the kinetic theory of gases?",
-      "a": "The kinetic theory explains the macroscopic properties of gases (like pressure and temperature) by modelling them as collections of tiny, constantly moving particles (molecules) that collide with each other and their container walls."
-    },
-    {
-      "q": "How does temperature relate to the motion of gas molecules according to the kinetic theory?",
-      "a": "The absolute temperature of a gas is a direct measure of the average translational kinetic energy of its molecules. A higher temperature means that, on average, the gas molecules are moving faster and possess more kinetic energy."
-    },
-    {
-      "q": "Are real gases identical to ideal gases?",
-      "a": "No, real gases only approximate ideal gas behaviour. They behave most like ideal gases at high temperatures and low pressures, where intermolecular forces are weak and the volume of the molecules themselves is negligible compared to the total gas volume."
-    }
-  ],
-  "updated": "2026-06-15",
-  "paperNumber": "4",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/15-3-kinetic-theory-of-gases.png",
-    "alt": "Senpai Corner reference diagram for 15.3 Kinetic theory of gases"
-  },
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "params": [
       {

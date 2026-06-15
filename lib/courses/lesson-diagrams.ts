@@ -43,6 +43,11 @@ import { ProcessorParallelDiagram } from '@/components/diagrams/ProcessorParalle
 import { EncryptionDiagram } from '@/components/diagrams/EncryptionDiagram'
 import { ExpertSystemDiagram } from '@/components/diagrams/ExpertSystemDiagram'
 import { ParadigmDiagram } from '@/components/diagrams/ParadigmDiagram'
+import { DataRepresentationDiagram } from '@/components/diagrams/DataRepresentationDiagram'
+import { MultimediaSoundDiagram } from '@/components/diagrams/MultimediaSoundDiagram'
+import { CompressionDiagram } from '@/components/diagrams/CompressionDiagram'
+import { AssemblyLanguageDiagram } from '@/components/diagrams/AssemblyLanguageDiagram'
+import { SqlDdlDmlDiagram } from '@/components/diagrams/SqlDdlDmlDiagram'
 import { resolveFamilyDiagram } from '@/lib/courses/diagram-families'
 import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 
@@ -368,7 +373,12 @@ const PILOT_DIAGRAMS: Record<
       attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
     },
   },
+  '1-1-data-representation': { Component: DataRepresentationDiagram, meta: { caption: 'Binary, hex, ASCII, and two\'s complement encoding.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
   '1-2-1-multimedia-graphics': { Component: MultimediaGraphicsDiagram, meta: { caption: 'Bitmap vs vector graphics, compression, and file size.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '1-2-2-multimedia-sound': { Component: MultimediaSoundDiagram, meta: { caption: 'Sound digitisation: sampling rate, bit depth, and compression.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '1-3-compression': { Component: CompressionDiagram, meta: { caption: 'Lossless vs lossy compression and run-length encoding.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '4-2-assembly-language': { Component: AssemblyLanguageDiagram, meta: { caption: 'Assembly mnemonics, opcodes, registers, and FDE cycle.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '8-3-data-definition-language-ddl-and-data-manipulation-language-dml': { Component: SqlDdlDmlDiagram, meta: { caption: 'SQL DDL (CREATE) and DML (SELECT, INSERT, UPDATE).', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
   '6-1-data-security': { Component: DataSecurityDiagram, meta: { caption: 'Threats, authentication, backup, and physical security controls.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
   '7-1-ethics-and-ownership': { Component: EthicsIpDiagram, meta: { caption: 'Copyright, patents, professional conduct, and AI ethics.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
   '10-1-data-types-and-records': { Component: DataTypesRecordDiagram, meta: { caption: 'Atomic types, records, declaration, and enumerated types.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },

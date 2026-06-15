@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Report live diagram coverage per subject.
- *   node scripts/audit-diagram-coverage.mjs
- *   node scripts/audit-diagram-coverage.mjs --subject 9700
+ * Report live native diagram coverage per subject (runtime resolution incl. aliases).
+ *   npx tsx scripts/audit-diagram-coverage.mjs
+ *   npx tsx scripts/audit-diagram-coverage.mjs --subject 9618
  */
 import fs from 'fs'
 import path from 'path'
@@ -10,26 +10,14 @@ import { fileURLToPath } from 'url'
 
 const PROJECT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 
-const subjectArg = process.argv.find((a) => a.startsWith('--subject='))?.split('=')[1]
-  ?? (process.argv.includes('--subject') ? process.argv[process.argv.indexOf('--subject') + 1] : null)
-const subjects = subjectArg && subjectArg !== 'all' ? [subjectArg] : ['9702', '9700']
+const subjectArg =
+  process.argv.find((a) => a.startsWith('--subject='))?.split('=')[1] ??
+  (process.argv.includes('--subject') ? process.argv[process.argv.indexOf('--subject') + 1] : null)
 
-const registry = fs.readFileSync(path.join(PROJECT, 'lib/courses/lesson-diagrams.ts'), 'utf8')
-const customSlugs = [...registry.matchAll(/^\s+'([^']+)':\s*\{/gm)].map((m) => m[1])
+const ALL_SUBJECTS = ['9702', '9700', '9701', '9709', '9231', '9618']
+const subjects = subjectArg && subjectArg !== 'all' ? [subjectArg] : ALL_SUBJECTS
 
-const familiesSrc = fs.readFileSync(path.join(PROJECT, 'lib/courses/diagram-families.ts'), 'utf8')
-
-function parseSlugFamilyBlock(name) {
-  const re = new RegExp(`const ${name}[^=]*=\\s*\\{([\\s\\S]*?)\\n\\}`, 'm')
-  const block = familiesSrc.match(re)?.[1] ?? ''
-  return [...block.matchAll(/^\s+'([^']+)':\s*'/gm)].map((m) => m[1])
-}
-
-const familyBySubject = {
-  '9702': parseSlugFamilyBlock('SLUG_FAMILY_9702'),
-  '9700': parseSlugFamilyBlock('SLUG_FAMILY_9700'),
-  '9701': parseSlugFamilyBlock('SLUG_FAMILY_9701'),
-}
+const { hasLessonLiveDiagram } = await import('../lib/courses/lesson-diagrams.ts')
 
 let grandTotal = 0
 let grandLive = 0
@@ -47,39 +35,27 @@ for (const subject of subjects) {
     .map((f) => f.replace(/\.json$/, ''))
     .sort()
 
-  const familySlugs = familyBySubject[subject] ?? []
+  const live = slugs.filter((s) => hasLessonLiveDiagram(s))
+  const missing = slugs.filter((s) => !hasLessonLiveDiagram(s))
 
-  let custom = 0
-  let family = 0
-  let fallback = 0
-  const missing = []
-
-  for (const slug of slugs) {
-    if (customSlugs.includes(slug)) custom++
-    else if (familySlugs.includes(slug)) family++
-    else {
-      fallback++
-      missing.push(slug)
-    }
-  }
-
-  const live = custom + family
   grandTotal += slugs.length
-  grandLive += live
+  grandLive += live.length
 
+  const pct = slugs.length ? Math.round((live.length / slugs.length) * 100) : 0
   console.log(`${subject} lessons: ${slugs.length}`)
-  console.log(`  Custom live:   ${custom}`)
-  console.log(`  Family live:   ${family}`)
-  console.log(`  Template only: ${fallback}`)
-  console.log(`  Live total:    ${live} (${slugs.length ? Math.round((live / slugs.length) * 100) : 0}%)`)
+  console.log(`  Live native:   ${live.length} (${pct}%)`)
+  console.log(`  Missing:       ${missing.length}`)
 
   if (missing.length) {
-    console.log('  Template-only slugs:')
+    console.log('  Missing slugs:')
     for (const slug of missing) console.log(`    - ${slug}`)
   }
   console.log('')
 }
 
 if (subjects.length > 1) {
-  console.log(`All subjects: ${grandLive}/${grandTotal} live (${grandTotal ? Math.round((grandLive / grandTotal) * 100) : 0}%)`)
+  const pct = grandTotal ? Math.round((grandLive / grandTotal) * 100) : 0
+  console.log(`All subjects: ${grandLive}/${grandTotal} live (${pct}%)`)
 }
+
+if (grandLive < grandTotal) process.exit(1)

@@ -2321,6 +2321,20 @@ const SPECS: Record<string, LessonDiagramSpec> = {
       { focus: ['declarative'], caption: 'Declarative: state what, not how (SQL, Prolog outline).', embedHint: 'Contrast with imperative step-by-step code.' },
     ],
   },
+
+  // ── 9231 Further Maths ───────────────────────────────────────────────────
+  '1-4-matrices': embedSpec([
+    { caption: 'A 2×2 matrix maps column vectors — each row gives one output component.', embedHint: 'Multiply A by column vector (x, y)ᵀ.' },
+    { caption: 'Matrix product AB: rows of A dot columns of B.', embedHint: 'Inner dimensions must match.' },
+    { caption: 'Identity I and inverse A⁻¹ when det(A) ≠ 0.', embedHint: 'AA⁻¹ = I — order matters for AB.' },
+    { caption: '2D transformations: rotation, reflection, stretch.', embedHint: 'Compose transformations by multiplying matrices.' },
+  ]),
+  '2-2-matrices': embedSpec([
+    { caption: '3×3 matrices extend linear transformations in 3D.', embedHint: 'Same rules as 2×2 — check dimension compatibility.' },
+    { caption: 'Determinant det(A) — zero means no inverse.', embedHint: 'Area/volume scale factor for transformation.' },
+    { caption: 'Eigenvalues λ solve det(A − λI) = 0.', embedHint: 'Eigenvector direction unchanged by A.' },
+    { caption: 'Diagonalisation when A has full set of eigenvectors.', embedHint: 'A = PDP⁻¹ simplifies powers of A.' },
+  ]),
 }
 
 export const DIAGRAM_SPEC_SLUGS = Object.keys(SPECS)

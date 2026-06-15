@@ -15,18 +15,17 @@ function check(name: string, ok: boolean) {
   }
 }
 
-const pilotSlugs = [
-  '13-3-gravitational-field-of-a-point-mass',
-  '8-4-the-diffraction-grating',
-  '10-1-practical-circuits',
-  '15-3-kinetic-theory-of-gases',
-  '1-7-differentiation',
-]
+const goldStandardSlugs = ['22-2-photoelectric-effect', '3-5-shapes-of-molecules']
+const nativePrimarySlugs = ['10-1-practical-circuits', '1-7-differentiation', '1-1-quadratics']
 
-for (const slug of pilotSlugs) {
-  check(`catalog has ${slug}`, slug in INTERACTIVE_EMBED_CATALOG)
+for (const slug of goldStandardSlugs) {
+  check(`catalog retains gold-standard ${slug}`, slug in INTERACTIVE_EMBED_CATALOG)
   const entry = INTERACTIVE_EMBED_CATALOG[slug]
   check(`${slug} has embedUrl`, !!entry?.embedUrl?.startsWith('https://'))
+}
+
+for (const slug of nativePrimarySlugs) {
+  check(`catalog omits native-primary ${slug}`, !(slug in INTERACTIVE_EMBED_CATALOG))
 }
 
 const lesson = {

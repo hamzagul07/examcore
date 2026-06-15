@@ -1,5 +1,9 @@
 import type { CourseLesson, LessonInteractiveEmbed } from '@/lib/courses/types'
-import { preferNativeDiagramOverPlaceholder } from '@/lib/courses/placeholder-embeds'
+import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
+import {
+  PHET_RETAIN_WITH_NATIVE,
+  preferNativeDiagramOverPlaceholder,
+} from '@/lib/courses/placeholder-embeds'
 import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 
 export type InteractiveEmbedProvider = LessonInteractiveEmbed['provider']
@@ -84,8 +88,9 @@ function geogebraEntry(
 /**
  * Curated interactive sims for high-traffic pilot topics.
  * Lesson JSON may override via `interactiveEmbed`.
+ * Full list before native-diagram filtering (used by content audits).
  */
-export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> = {
+const INTERACTIVE_EMBED_CATALOG_RAW: Record<string, LessonInteractiveEmbed> = {
   '13-3-gravitational-field-of-a-point-mass': phetEntry(
     'gravity-force-lab-basics',
     'Gravitational force lab',
@@ -1207,6 +1212,20 @@ export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> =
     'Sampling rate, bit depth, and compression — link waveform to file size (9618 1.2.2).'
   ),
 }
+
+function retainCatalogSlug(slug: string): boolean {
+  if (!hasLessonLiveDiagram(slug)) return true
+  if (PHET_RETAIN_WITH_NATIVE.has(slug)) return true
+  const alias = resolveVisualCatalogSlug(slug)
+  return alias !== slug && PHET_RETAIN_WITH_NATIVE.has(alias)
+}
+
+/** Runtime catalog — omits embeds suppressed when a native diagram exists. */
+export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> = Object.fromEntries(
+  Object.entries(INTERACTIVE_EMBED_CATALOG_RAW).filter(([slug]) => retainCatalogSlug(slug))
+)
+
+export const INTERACTIVE_EMBED_CATALOG_ALL = INTERACTIVE_EMBED_CATALOG_RAW
 
 export function getCatalogInteractiveEmbed(slug: string): LessonInteractiveEmbed | undefined {
   const direct = INTERACTIVE_EMBED_CATALOG[slug]

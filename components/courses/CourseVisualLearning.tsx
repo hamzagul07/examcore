@@ -82,7 +82,7 @@ export function CourseVisualLearning({
           {referenceDiagrams.map((diagram, i) => (
             <figure
               key={diagram.src}
-              className="course-lesson-diagram overflow-hidden rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_30%,var(--ec-border-subtle))] bg-white p-2 shadow-lg lg:rounded-3xl"
+              className="course-lesson-diagram overflow-hidden rounded-2xl border-2 border-[color-mix(in_srgb,var(--ec-brand)_30%,var(--ec-border-subtle))] bg-[var(--ec-paper)] p-2 shadow-lg lg:rounded-3xl"
             >
               <Image
                 src={diagram.src}

@@ -5,16 +5,33 @@ import { Maximize2, Minimize2 } from 'lucide-react'
 
 const STORAGE_KEY = 'course-focus-mode'
 
+function readStoredFocus(): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    return localStorage.getItem(STORAGE_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
 export function CourseFocusMode({ children }: { children: ReactNode }) {
   const [focus, setFocus] = useState(false)
 
   useEffect(() => {
-    try {
-      setFocus(localStorage.getItem(STORAGE_KEY) === '1')
-    } catch {
-      /* ignore */
-    }
+    setFocus(readStoredFocus())
   }, [])
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+    if (focus) {
+      document.documentElement.setAttribute('data-course-focus', 'true')
+    } else {
+      document.documentElement.removeAttribute('data-course-focus')
+    }
+    return () => {
+      document.documentElement.removeAttribute('data-course-focus')
+    }
+  }, [focus])
 
   const toggle = useCallback(() => {
     setFocus((prev) => {

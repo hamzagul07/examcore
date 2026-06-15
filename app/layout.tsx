@@ -21,6 +21,8 @@ import {
   SITE_URL,
 } from "@/lib/site-config";
 
+const EC_THEME_BOOT_SCRIPT = `(function(){try{var t=localStorage.getItem('ec-theme');if(t==='late-night'){document.documentElement.setAttribute('data-ec-theme','late-night');}}catch(e){}})();`;
+
 const newsreader = Newsreader({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -99,7 +101,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB" data-ec-theme="zen" className="h-full overflow-x-clip antialiased">
+    <html lang="en-GB" data-ec-theme="zen" className="h-full overflow-x-clip antialiased" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: EC_THEME_BOOT_SCRIPT }} />
+      </head>
       <body
         className={`${newsreader.variable} ${instrumentSans.variable} ${ibmPlexMono.variable} ${caveat.variable} ${instrumentSans.className} relative flex min-h-full max-w-[100vw] flex-col overflow-x-clip text-base leading-[1.55]`}
       >

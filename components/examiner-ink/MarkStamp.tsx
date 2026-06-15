@@ -29,7 +29,7 @@ export function MarkStamp({ markId, earned }: MarkStampProps) {
     ? markId
     : markId.replace(/(\D+)(\d+)/, (_, prefix) => `${prefix}0`)
 
-  const color = earned ? '#16a34a' : '#dc2626' // green-600 / red-600
+  const color = earned ? 'var(--ec-brand)' : 'var(--ec-ink-crimson)'
 
   return (
     <motion.div
@@ -46,7 +46,7 @@ export function MarkStamp({ markId, earned }: MarkStampProps) {
         style={{
           color,
           borderColor: color,
-          background: 'rgba(255, 252, 245, 0.92)',
+          background: 'color-mix(in srgb, var(--ec-paper) 92%, transparent)',
         }}
       >
         <span>{displayId}</span>

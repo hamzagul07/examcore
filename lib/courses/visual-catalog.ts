@@ -1,5 +1,5 @@
 import { DIAGRAM_SPEC_SLUGS, getLessonDiagramSpec } from '@/lib/courses/diagram-specs'
-import { INTERACTIVE_EMBED_CATALOG } from '@/lib/courses/interactive-embeds'
+import { INTERACTIVE_EMBED_CATALOG, getCatalogInteractiveEmbed } from '@/lib/courses/interactive-embeds'
 
 export const INTERACTIVE_EMBED_SLUGS = Object.keys(INTERACTIVE_EMBED_CATALOG)
 
@@ -8,12 +8,12 @@ export function listDiagramSpecSlugs(): string[] {
 }
 
 export function slugHasVisualCatalogEntry(slug: string): boolean {
-  return slug in INTERACTIVE_EMBED_CATALOG || getLessonDiagramSpec(slug) !== null
+  return getCatalogInteractiveEmbed(slug) !== undefined || getLessonDiagramSpec(slug) !== null
 }
 
 /** Prompt block: tells the LLM how visuals attach and what to generate. */
 export function buildVisualAuthoringGuide(slug: string): string {
-  const hasEmbed = slug in INTERACTIVE_EMBED_CATALOG
+  const hasEmbed = getCatalogInteractiveEmbed(slug) !== undefined
   const hasSpec = getLessonDiagramSpec(slug) !== null
   if (!hasEmbed && !hasSpec) {
     return `Visuals: no curated interactive for slug "${slug}". Still include simpleExplanation with 3–5 clear steps — they power the step carousel.`

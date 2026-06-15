@@ -1,6 +1,6 @@
 import type { CourseLesson, SimpleExplanation } from './types'
 import { getLessonDiagramSpec } from './diagram-specs'
-import { INTERACTIVE_EMBED_CATALOG } from './interactive-embeds'
+import { getCatalogInteractiveEmbed } from './interactive-embeds'
 
 /** Build 4 student-facing steps from catalog diagram spec + embed hint. */
 export function stepsFromCatalogSpec(slug: string, topicTitle: string): string[] | null {
@@ -49,5 +49,5 @@ export function syncLessonStepsToCatalog(lesson: CourseLesson): CourseLesson {
 }
 
 export function lessonHasCatalogVisual(slug: string): boolean {
-  return slug in INTERACTIVE_EMBED_CATALOG || getLessonDiagramSpec(slug) !== null
+  return getCatalogInteractiveEmbed(slug) !== undefined || getLessonDiagramSpec(slug) !== null
 }

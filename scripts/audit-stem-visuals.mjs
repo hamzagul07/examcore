@@ -13,6 +13,7 @@ async function main() {
   const { isDeepLesson, countGenericFlashcards, isGenericStep } = await import(
     '../lib/courses/stem-deep-quality.ts'
   )
+  const { hasLessonLiveDiagram } = await import('../lib/courses/lesson-diagrams.ts')
 
   let pilots = 0
   let withVisual = 0
@@ -34,7 +35,9 @@ async function main() {
       const lesson = JSON.parse(raw)
       const hydrated = hydrateLessonCatalogVisuals(lesson)
       const hasCatalog = lessonHasCatalogVisual(lesson.slug)
-      const hasVisual = !!(hydrated.interactiveEmbed || hydrated.diagramSpec || hydrated.diagram)
+      const hasVisual =
+        !!(hydrated.interactiveEmbed || hydrated.diagramSpec || hydrated.diagram) ||
+        hasLessonLiveDiagram(lesson.slug)
       if (hasVisual) withVisual++
 
       const steps = hydrated.simpleExplanation?.steps ?? []

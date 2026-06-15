@@ -47,6 +47,7 @@ import { WalErrorBarDiagram } from '@/components/diagrams/WalErrorBarDiagram'
 import { WavesComparison } from '@/components/diagrams/WavesComparison'
 import { DifferentiationTangentDiagram } from '@/components/diagrams/DifferentiationTangentDiagram'
 import { DefiniteIntegralDiagram } from '@/components/diagrams/DefiniteIntegralDiagram'
+import { ComplexPlaneDiagram } from '@/components/diagrams/ComplexPlaneDiagram'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -187,6 +188,10 @@ const FAMILIES: Record<string, FamilyEntry> = {
   integration: {
     Component: DefiniteIntegralDiagram,
     caption: '∫ₐᵇ f(x) dx is the signed area under y = f(x) between x = a and x = b.',
+  },
+  'complex-numbers': {
+    Component: ComplexPlaneDiagram,
+    caption: 'Complex numbers z = x + iy plot on the Argand diagram — |z| and arg(z) from the axes.',
   },
   centripetal: {
     Component: CentripetalMotionDiagram,
@@ -371,8 +376,13 @@ const SLUG_FAMILY_9700: Record<string, keyof typeof FAMILIES> = {
 const SLUG_FAMILY_9709: Record<string, keyof typeof FAMILIES> = {
   '1-7-differentiation': 'differentiation',
   '1-8-integration': 'integration',
+  '2-4-differentiation': 'differentiation',
+  '2-5-integration': 'integration',
+  '3-4-differentiation': 'differentiation',
   '3-5-integration': 'integration',
   '3-7-vectors': 'vectors',
+  '3-8-differential-equations': 'integration',
+  '3-9-complex-numbers': 'complex-numbers',
 }
 
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {

@@ -86,8 +86,9 @@ export function attachCatalogVisuals(lesson: GeneratedLesson): GeneratedLesson {
 
   if (!interactiveEmbed && !diagramSpec && out === lesson) return lesson
 
+  const { interactiveEmbed: _removedEmbed, ...rest } = out
   return {
-    ...out,
+    ...rest,
     ...(interactiveEmbed ? { interactiveEmbed } : {}),
     ...(diagramSpec ? { diagramSpec } : {}),
   }

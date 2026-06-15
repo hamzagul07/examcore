@@ -1550,11 +1550,11 @@ export default function MarkPage() {
           {((cinematicActive) || markStreamError) && (
             <motion.div
               key="marking-progress"
-              className="fixed inset-0 z-[55] overflow-y-auto overscroll-contain bg-[var(--ec-canvas)] px-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] sm:px-4 sm:pt-[calc(1rem+env(safe-area-inset-top,0px))] lg:relative lg:inset-auto lg:z-auto lg:mt-10 lg:overflow-visible lg:bg-transparent lg:p-0 lg:pb-0 lg:pt-0"
-              initial={{ y: 12 }}
-              animate={{ y: 0 }}
-              exit={{ y: 8 }}
-              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              className="fixed inset-0 z-[55] overflow-x-clip overflow-y-auto overscroll-contain bg-[var(--ec-canvas)] px-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] pb-[calc(5rem+env(safe-area-inset-bottom,0px))] sm:px-4 sm:pt-[calc(1rem+env(safe-area-inset-top,0px))] lg:relative lg:inset-auto lg:z-auto lg:mt-10 lg:overflow-visible lg:bg-transparent lg:p-0 lg:pb-0 lg:pt-0"
+              initial={{ y: 0, opacity: 1 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
             >
               <CinematicMarkingExperience
                 stage={markProgress?.stage ?? 'reading_work'}

@@ -23,12 +23,16 @@ const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 function readStoredTheme(): EcTheme {
   if (typeof window === 'undefined') return 'zen'
+  const fromDom = document.documentElement.getAttribute('data-ec-theme')
+  if (fromDom === 'late-night' || fromDom === 'zen') return fromDom
   const stored = localStorage.getItem(EC_THEME_STORAGE_KEY)
   return stored === 'late-night' ? 'late-night' : 'zen'
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<EcTheme>('zen')
+  const [theme, setThemeState] = useState<EcTheme>(() =>
+    typeof window === 'undefined' ? 'zen' : readStoredTheme()
+  )
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -51,7 +55,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   if (!mounted) {
     return (
       <ThemeContext.Provider
-        value={{ theme: 'zen', setTheme, toggleTheme }}
+        value={{ theme: readStoredTheme(), setTheme, toggleTheme }}
       >
         {children}
       </ThemeContext.Provider>

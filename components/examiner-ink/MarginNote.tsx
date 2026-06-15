@@ -7,6 +7,8 @@ interface MarginNoteProps {
   /** When true, render the arrow pointing left instead of right. The overlay
    *  flips this when a line is near the right edge of the image. */
   flip?: boolean
+  /** On narrow viewports, stack the note below the line instead of beside it. */
+  layout?: 'side' | 'below'
 }
 
 /**
@@ -14,7 +16,47 @@ interface MarginNoteProps {
  * line it annotates. Path lengths animate so the arrow "draws" itself,
  * mimicking how an examiner would actually mark on paper.
  */
-export function MarginNote({ note, flip = false }: MarginNoteProps) {
+export function MarginNote({ note, flip = false, layout = 'side' }: MarginNoteProps) {
+  if (layout === 'below') {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.35 }}
+        className="absolute left-0 right-0 top-full z-10 mt-1.5 max-w-[min(220px,85%)]"
+        style={{ marginInline: flip ? 'auto 0' : '0 auto' }}
+      >
+        <div className="relative pt-3">
+          <svg
+            className="absolute -top-1 left-3 h-6 w-8"
+            viewBox="0 0 32 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <motion.path
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.45, ease: 'easeOut' }}
+              d="M 16 22 Q 16 8 16 4"
+              stroke="var(--ec-ink-crimson)"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+          <p
+            className="font-handwritten examiner-ink whitespace-normal text-base leading-tight text-left"
+            style={{
+              transform: 'rotate(-1.5deg)',
+              transformOrigin: 'left top',
+            }}
+          >
+            {note}
+          </p>
+        </div>
+      </motion.div>
+    )
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: flip ? 10 : -10 }}

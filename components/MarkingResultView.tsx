@@ -139,7 +139,7 @@ export function MarkingResultView({
   }
 
   return (
-    <div className="ms-marking-result">
+    <div className="ms-marking-result min-w-0">
       <div className="ms-mark-result-head">
         <div>
           {overline ? (

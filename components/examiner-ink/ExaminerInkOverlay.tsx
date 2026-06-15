@@ -62,6 +62,7 @@ export function ExaminerInkOverlay({
   const refreshedUrlRef = useRef(false)
   const [displayUrl, setDisplayUrl] = useState(imageUrl)
   const [imageLoaded, setImageLoaded] = useState(false)
+  const [isMobileInk, setIsMobileInk] = useState(false)
   const [revealedCount, setRevealedCount] = useState<number>(
     animate ? 0 : lineReferences.length
   )
@@ -80,6 +81,14 @@ export function ExaminerInkOverlay({
     setImageLoaded(false)
     refreshedUrlRef.current = false
   }, [imageUrl])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)')
+    const update = () => setIsMobileInk(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
 
   async function refreshSignedUrl() {
     if (!attemptId || refreshedUrlRef.current) return
@@ -135,7 +144,7 @@ export function ExaminerInkOverlay({
     <div className="space-y-5">
       <div
         ref={containerRef}
-        className="relative inline-block w-full overflow-visible rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[0_24px_64px_-16px_rgba(0,0,0,0.6)] sm:overflow-hidden"
+        className="examiner-ink-overlay relative w-full overflow-hidden rounded-2xl border border-[var(--ec-border)] bg-[var(--ec-surface-raised)] shadow-[var(--ec-shadow-elevation-2)]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- we don't know the image dimensions, and next/image's sizing breaks the percentage-based overlay math. */}
         <img
@@ -152,6 +161,7 @@ export function ExaminerInkOverlay({
               <ExaminerMark
                 key={`${line.mark_id}-${idx}`}
                 line={line}
+                mobileLayout={isMobileInk}
                 active={
                   activeMarkId
                     ? line.mark_id.toUpperCase() === activeMarkId.toUpperCase()
@@ -176,7 +186,7 @@ export function ExaminerInkOverlay({
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute right-3 top-3 flex items-center gap-2 rounded-full bg-black/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm"
+            className="absolute right-3 top-3 flex items-center gap-2 rounded-full border border-[var(--ec-border)] bg-[color-mix(in_srgb,var(--ec-surface)_92%,transparent)] px-3 py-1.5 text-xs font-semibold text-[var(--ec-text-primary)] backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--ec-chip-critical-text)] opacity-75" />
@@ -209,11 +219,13 @@ export function ExaminerInkOverlay({
 
 function ExaminerMark({
   line,
+  mobileLayout = false,
   active = false,
   dimmed = false,
   onSelect,
 }: {
   line: LineReference
+  mobileLayout?: boolean
   active?: boolean
   dimmed?: boolean
   onSelect?: () => void
@@ -224,9 +236,20 @@ function ExaminerMark({
   // When the line is close to the right edge, flip the stamp/note to the
   // left side so they don't shoot off the image.
   const flipToLeft = bbox.left + bbox.width > 75
+  const stampLeft = Math.min(bbox.left + bbox.width + 1, mobileLayout ? 82 : 88)
+  const stampRight = Math.max(100 - bbox.left + 1, mobileLayout ? 12 : 8)
+  const stampScale = active ? (mobileLayout ? 0.95 : 1.12) : mobileLayout ? 0.85 : 1
   const stampStyle: React.CSSProperties = flipToLeft
-    ? { right: `${100 - bbox.left + 1}%`, top: `${bbox.top + bbox.height / 2}%`, transform: 'translateY(-50%)' }
-    : { left: `${Math.min(bbox.left + bbox.width + 1, 92)}%`, top: `${bbox.top + bbox.height / 2}%`, transform: 'translateY(-50%)' }
+    ? {
+        right: `${stampRight}%`,
+        top: `${bbox.top + bbox.height / 2}%`,
+        transform: `translateY(-50%) scale(${stampScale})`,
+      }
+    : {
+        left: `${stampLeft}%`,
+        top: `${bbox.top + bbox.height / 2}%`,
+        transform: `translateY(-50%) scale(${stampScale})`,
+      }
 
   // Clamp bbox to keep underline inside the image when OCR overshoots.
   const safeBox = {
@@ -275,15 +298,18 @@ function ExaminerMark({
         }}
       >
         <UnderlineMark earned={earned} />
-        {!earned && margin_note && <MarginNote note={margin_note} flip={flipToLeft} />}
+        {!earned && margin_note && (
+          <MarginNote
+            note={margin_note}
+            flip={flipToLeft}
+            layout={mobileLayout ? 'below' : 'side'}
+          />
+        )}
       </div>
 
       <div
         className="absolute transition-transform duration-200"
-        style={{
-          ...stampStyle,
-          transform: `${stampStyle.transform ?? ''}${active ? ' scale(1.12)' : ''}`,
-        }}
+        style={stampStyle}
       >
         <MarkStamp markId={mark_id} earned={earned} />
       </div>

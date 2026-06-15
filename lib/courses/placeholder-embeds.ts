@@ -14,13 +14,14 @@ export function isPlaceholderInteractiveEmbed(
   return false
 }
 
-/** Prefer step-synced native SVG when catalog embed is a generic placeholder. */
+/** Prefer step-synced native SVG over weak catalog embeds when a diagram exists. */
 export function preferNativeDiagramOverPlaceholder(
   slug: string,
   embed: LessonInteractiveEmbed | undefined
 ): LessonInteractiveEmbed | undefined {
-  if (embed && isPlaceholderInteractiveEmbed(embed) && hasLessonLiveDiagram(slug)) {
-    return undefined
-  }
+  if (!embed || !hasLessonLiveDiagram(slug)) return embed
+  if (isPlaceholderInteractiveEmbed(embed)) return undefined
+  // GeoGebra embeds are secondary when we have a curated native diagram; keep PhET sims.
+  if (embed.provider === 'geogebra') return undefined
   return embed
 }

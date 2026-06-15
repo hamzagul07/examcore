@@ -93,5 +93,19 @@ const algorithms = attachCatalogVisuals({
 } as GeneratedLesson)
 check('native algorithm diagram skips placeholder', algorithms.interactiveEmbed === undefined)
 
+const differentiation = attachCatalogVisuals({
+  ...base,
+  slug: '1-7-differentiation',
+  topicCode: '1.7',
+  title: 'Differentiation',
+  simpleExplanation: {
+    title: 'Differentiation',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('9709 native diagram skips geogebra embed', differentiation.interactiveEmbed === undefined)
+check('9709 keeps diagram spec with params', (differentiation.diagramSpec?.params?.length ?? 0) >= 2)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

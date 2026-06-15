@@ -17,9 +17,10 @@ async function main() {
     .map(([slug]) => slug)
 
   const missingNative = placeholderSlugs.filter((slug) => !hasLessonLiveDiagram(slug))
-  const staleCatalog = placeholderSlugs.filter(
-    (slug) => hasLessonLiveDiagram(slug) && getCatalogInteractiveEmbed(slug)
-  )
+  const staleCatalog = Object.entries(INTERACTIVE_EMBED_CATALOG)
+    .filter(([, embed]) => embed.provider === 'geogebra')
+    .map(([slug]) => slug)
+    .filter((slug) => hasLessonLiveDiagram(slug) && getCatalogInteractiveEmbed(slug))
 
   console.log('\nNative diagram coverage audit')
   console.log('='.repeat(50))

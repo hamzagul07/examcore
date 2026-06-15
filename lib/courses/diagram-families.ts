@@ -84,6 +84,19 @@ import { OrganicSynthesisDiagram } from '@/components/diagrams/OrganicSynthesisD
 import { HalogenReactionsDiagram } from '@/components/diagrams/HalogenReactionsDiagram'
 import { NitrogenChemDiagram } from '@/components/diagrams/NitrogenChemDiagram'
 import { ALevelOrganicDiagram } from '@/components/diagrams/ALevelOrganicDiagram'
+import { QuadraticGraphDiagram } from '@/components/diagrams/QuadraticGraphDiagram'
+import { FunctionGraphDiagram } from '@/components/diagrams/FunctionGraphDiagram'
+import { CoordinateGeometryDiagram } from '@/components/diagrams/CoordinateGeometryDiagram'
+import { TrigonometryCircleDiagram } from '@/components/diagrams/TrigonometryCircleDiagram'
+import { SeriesDiagram } from '@/components/diagrams/SeriesDiagram'
+import { LogExpDiagram } from '@/components/diagrams/LogExpDiagram'
+import { NumericalMethodsDiagram } from '@/components/diagrams/NumericalMethodsDiagram'
+import { StatsDataDiagram } from '@/components/diagrams/StatsDataDiagram'
+import { ProbabilityDiagram } from '@/components/diagrams/ProbabilityDiagram'
+import { DiscreteDistributionDiagram } from '@/components/diagrams/DiscreteDistributionDiagram'
+import { NormalDistributionDiagram } from '@/components/diagrams/NormalDistributionDiagram'
+import { StatsAdvancedDiagram } from '@/components/diagrams/StatsAdvancedDiagram'
+import { MatrixDiagram } from '@/components/diagrams/MatrixDiagram'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -228,6 +241,58 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'complex-numbers': {
     Component: ComplexPlaneDiagram,
     caption: 'Complex numbers z = x + iy plot on the Argand diagram — |z| and arg(z) from the axes.',
+  },
+  quadratics: {
+    Component: QuadraticGraphDiagram,
+    caption: 'Quadratic y = ax² + bx + c — vertex form, discriminant, and roots.',
+  },
+  functions: {
+    Component: FunctionGraphDiagram,
+    caption: 'Functions: domain, range, composition f(g(x)), and inverses.',
+  },
+  'coordinate-geometry': {
+    Component: CoordinateGeometryDiagram,
+    caption: 'Lines y = mx + c, distance, midpoint, and parallel/perpendicular gradients.',
+  },
+  trigonometry: {
+    Component: TrigonometryCircleDiagram,
+    caption: 'Unit circle: sin θ, cos θ, tan θ, radians, and identities.',
+  },
+  series: {
+    Component: SeriesDiagram,
+    caption: 'Arithmetic and geometric series, binomial expansion, and Σ notation.',
+  },
+  'log-exp': {
+    Component: LogExpDiagram,
+    caption: 'Exponential aˣ and logarithm log_a(x) — inverse functions and log laws.',
+  },
+  'numerical-methods': {
+    Component: NumericalMethodsDiagram,
+    caption: 'Locate roots by sign change; refine with iteration when |g′(x)| < 1.',
+  },
+  'stats-data': {
+    Component: StatsDataDiagram,
+    caption: 'Histograms, mean, median, and measures of spread for grouped data.',
+  },
+  probability: {
+    Component: ProbabilityDiagram,
+    caption: 'Sample space, combined events, permutations (nPr) and combinations (nCr).',
+  },
+  'discrete-stats': {
+    Component: DiscreteDistributionDiagram,
+    caption: 'Discrete random variable: P(X = x), E(X), and Var(X).',
+  },
+  'normal-stats': {
+    Component: NormalDistributionDiagram,
+    caption: 'Normal distribution N(μ, σ²) — bell curve, standardisation Z = (X − μ)/σ.',
+  },
+  'stats-advanced': {
+    Component: StatsAdvancedDiagram,
+    caption: 'Poisson, linear combinations, continuous PDFs, sampling, and hypothesis tests.',
+  },
+  matrices: {
+    Component: MatrixDiagram,
+    caption: 'Matrix multiplication, identity, inverse, and 2D transformations.',
   },
   'molecule-shape': {
     Component: MoleculeShapeDiagram,
@@ -661,15 +726,50 @@ const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
 
 /** 9709 Pure Maths slug → diagram family. */
 const SLUG_FAMILY_9709: Record<string, keyof typeof FAMILIES> = {
+  '1-1-quadratics': 'quadratics',
+  '1-2-functions': 'functions',
+  '1-3-coordinate-geometry': 'coordinate-geometry',
+  '1-4-circular-measure': 'trigonometry',
+  '1-5-trigonometry': 'trigonometry',
+  '1-6-series': 'series',
   '1-7-differentiation': 'differentiation',
   '1-8-integration': 'integration',
+  '2-1-algebra': 'functions',
+  '2-2-logarithmic-and-exponential-functions': 'log-exp',
+  '2-3-trigonometry': 'trigonometry',
   '2-4-differentiation': 'differentiation',
   '2-5-integration': 'integration',
+  '2-6-numerical-solution-of-equations': 'numerical-methods',
+  '3-1-algebra': 'functions',
+  '3-2-logarithmic-and-exponential-functions': 'log-exp',
+  '3-3-trigonometry': 'trigonometry',
   '3-4-differentiation': 'differentiation',
   '3-5-integration': 'integration',
+  '3-6-numerical-solution-of-equations': 'numerical-methods',
   '3-7-vectors': 'vectors',
   '3-8-differential-equations': 'integration',
   '3-9-complex-numbers': 'complex-numbers',
+  '4-1-forces-and-equilibrium': 'free-body',
+  '4-2-kinematics-of-motion-in-a-straight-line': 'kinematics',
+  '4-3-momentum': 'collision',
+  '4-4-newtons-laws-of-motion': 'free-body',
+  '4-5-energy-work-and-power': 'energy-transfer',
+  '5-1-representation-of-data': 'stats-data',
+  '5-2-permutations-and-combinations': 'probability',
+  '5-3-probability': 'probability',
+  '5-4-discrete-random-variables': 'discrete-stats',
+  '5-5-the-normal-distribution': 'normal-stats',
+  '6-1-the-poisson-distribution': 'stats-advanced',
+  '6-2-linear-combinations-of-random-variables': 'stats-advanced',
+  '6-3-continuous-random-variables': 'stats-advanced',
+  '6-4-sampling-and-estimation': 'stats-advanced',
+  '6-5-hypothesis-tests': 'stats-advanced',
+}
+
+/** 9231 Further Maths slugs without 9709 alias target. */
+const SLUG_FAMILY_9231: Record<string, keyof typeof FAMILIES> = {
+  '1-4-matrices': 'matrices',
+  '2-2-matrices': 'matrices',
 }
 
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
@@ -677,10 +777,11 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9700,
   ...SLUG_FAMILY_9701,
   ...SLUG_FAMILY_9709,
+  ...SLUG_FAMILY_9231,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
-const MATHS_SLUGS = new Set(Object.keys(SLUG_FAMILY_9709))
+const MATHS_SLUGS = new Set([...Object.keys(SLUG_FAMILY_9709), ...Object.keys(SLUG_FAMILY_9231)])
 const CHEMISTRY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9701))
 
 function familyAttribution(slug: string): DiagramAttribution {

@@ -80,5 +80,18 @@ const logicGates = attachCatalogVisuals({
 check('prefers native diagram over placeholder embed', logicGates.interactiveEmbed === undefined)
 check('keeps diagram spec for native logic diagram', (logicGates.diagramSpec?.steps.length ?? 0) === 4)
 
+const algorithms = attachCatalogVisuals({
+  ...base,
+  slug: '19-1-algorithms',
+  topicCode: '19.1',
+  title: 'Algorithms',
+  simpleExplanation: {
+    title: 'Algorithms',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('native algorithm diagram skips placeholder', algorithms.interactiveEmbed === undefined)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

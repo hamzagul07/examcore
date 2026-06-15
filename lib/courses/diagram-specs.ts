@@ -1837,12 +1837,30 @@ const SPECS: Record<string, LessonDiagramSpec> = {
   ]),
 
   // ── 9618 batch 12 ───────────────────────────────────────────────────────
-  '19-1-algorithms': embedSpec([
-    { caption: 'Linear search: check each item in order.', embedHint: 'O(n) worst case.' },
-    { caption: 'Binary search: halve sorted list each step.', embedHint: 'O(log n) — must be sorted.' },
-    { caption: 'Bubble sort: compare adjacent pairs.', embedHint: 'Simple but slow for large n.' },
-    { caption: 'Trace table for given algorithm input.', embedHint: 'Show variable values each pass.' },
-  ]),
+  '19-1-algorithms': {
+    steps: [
+      {
+        focus: ['linear-search'],
+        caption: 'Linear search: check each item in order.',
+        embedHint: 'O(n) worst case.',
+      },
+      {
+        focus: ['binary-search'],
+        caption: 'Binary search: halve sorted list each step.',
+        embedHint: 'O(log n) — must be sorted.',
+      },
+      {
+        focus: ['bubble-sort'],
+        caption: 'Bubble sort: compare adjacent pairs.',
+        embedHint: 'Simple but slow for large n.',
+      },
+      {
+        focus: ['trace-table'],
+        caption: 'Trace table for given algorithm input.',
+        embedHint: 'Show variable values each pass.',
+      },
+    ],
+  },
 
   // ── 9708 batch 13 (100% completion) ─────────────────────────────────────
   '4-1-national-income-statistics': embedSpec([
@@ -2008,24 +2026,78 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     ],
   },
 
-  '2-1-networks-including-the-internet': embedSpec([
-    { caption: 'LAN vs WAN — scale and ownership.', embedHint: 'Compare topology for a school vs the internet.' },
-    { caption: 'Packet switching splits data into routed packets.', embedHint: 'Each packet can take a different path.' },
-    { caption: 'Circuit switching reserves a dedicated path.', embedHint: 'Contrast bandwidth use with packet switching.' },
-    { caption: 'TCP/IP layers — application to physical.', embedHint: 'Name each layer’s role in an HTTP request.' },
-  ]),
-  '16-1-purposes-of-an-operating-system-os': embedSpec([
-    { caption: 'Process management — scheduling CPU time.', embedHint: 'Multitasking and priority queues.' },
-    { caption: 'Memory management — virtual memory and paging.', embedHint: 'Isolate processes from each other.' },
-    { caption: 'Device drivers abstract hardware.', embedHint: 'Same API for different printers or disks.' },
-    { caption: 'Security — user accounts and file permissions.', embedHint: 'Protect memory and storage from unauthorised access.' },
-  ]),
-  '16-2-translation-software': embedSpec([
-    { caption: 'Assembler: one assembly instruction → one machine opcode.', embedHint: 'Low-level, hardware-specific.' },
-    { caption: 'Compiler: full source → object code before execution.', embedHint: 'Single executable; faster runtime.' },
-    { caption: 'Interpreter: translate and execute line by line.', embedHint: 'Slower runtime; easier debugging.' },
-    { caption: 'Linkers/loaders combine object files into one program.', embedHint: 'Resolve external library references.' },
-  ]),
+  '2-1-networks-including-the-internet': {
+    steps: [
+      {
+        focus: ['lan-wan'],
+        caption: 'LAN vs WAN — scale and ownership.',
+        embedHint: 'Compare topology for a school vs the internet.',
+      },
+      {
+        focus: ['packet-switch'],
+        caption: 'Packet switching splits data into routed packets.',
+        embedHint: 'Each packet can take a different path.',
+      },
+      {
+        focus: ['circuit-switch'],
+        caption: 'Circuit switching reserves a dedicated path.',
+        embedHint: 'Contrast bandwidth use with packet switching.',
+      },
+      {
+        focus: ['tcp-layers'],
+        caption: 'TCP/IP layers — application to physical.',
+        embedHint: 'Name each layer’s role in an HTTP request.',
+      },
+    ],
+  },
+  '16-1-purposes-of-an-operating-system-os': {
+    steps: [
+      {
+        focus: ['process'],
+        caption: 'Process management — scheduling CPU time.',
+        embedHint: 'Multitasking and priority queues.',
+      },
+      {
+        focus: ['memory'],
+        caption: 'Memory management — virtual memory and paging.',
+        embedHint: 'Isolate processes from each other.',
+      },
+      {
+        focus: ['drivers'],
+        caption: 'Device drivers abstract hardware.',
+        embedHint: 'Same API for different printers or disks.',
+      },
+      {
+        focus: ['security'],
+        caption: 'Security — user accounts and file permissions.',
+        embedHint: 'Protect memory and storage from unauthorised access.',
+      },
+    ],
+  },
+  '16-2-translation-software': {
+    steps: [
+      {
+        focus: ['assembler'],
+        caption: 'Assembler: one assembly instruction → one machine opcode.',
+        embedHint: 'Low-level, hardware-specific.',
+      },
+      {
+        focus: ['compiler'],
+        caption: 'Compiler: full source → object code before execution.',
+        embedHint: 'Single executable; faster runtime.',
+      },
+      {
+        focus: ['interpreter'],
+        caption: 'Interpreter: translate and execute line by line.',
+        embedHint: 'Slower runtime; easier debugging.',
+      },
+      {
+        focus: ['linker'],
+        caption: 'Linkers/loaders combine object files into one program.',
+        embedHint: 'Resolve external library references.',
+      },
+    ],
+  },
   '22-1-infrared-spectroscopy': embedSpec([
     { caption: 'Bonds absorb IR when vibration changes dipole moment.', embedHint: 'O–H, C=O, N–H give characteristic peaks.' },
     { caption: 'Fingerprint region ~1500–400 cm⁻¹ is unique.', embedHint: 'Use tables to identify functional groups.' },
@@ -2069,12 +2141,30 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Professional bodies and codes of conduct.', embedHint: 'Duty of care, confidentiality, and competence.' },
     { caption: 'AI and automation — bias, accountability, job impact.', embedHint: 'Discuss ethical frameworks for new technology.' },
   ]),
-  '8-1-database-concepts': embedSpec([
-    { caption: 'Relational model: tables (relations) of rows and columns.', embedHint: 'Each row is a record; each column an attribute.' },
-    { caption: 'Primary key uniquely identifies a record.', embedHint: 'Foreign key links tables — referential integrity.' },
-    { caption: 'Normalisation reduces redundancy (1NF → 2NF → 3NF).', embedHint: 'Split repeating groups into separate tables.' },
-    { caption: 'ER diagrams show entities, attributes, relationships.', embedHint: 'Cardinality: one-to-one, one-to-many, many-to-many.' },
-  ]),
+  '8-1-database-concepts': {
+    steps: [
+      {
+        focus: ['tables'],
+        caption: 'Relational model: tables (relations) of rows and columns.',
+        embedHint: 'Each row is a record; each column an attribute.',
+      },
+      {
+        focus: ['keys'],
+        caption: 'Primary key uniquely identifies a record.',
+        embedHint: 'Foreign key links tables — referential integrity.',
+      },
+      {
+        focus: ['normalisation'],
+        caption: 'Normalisation reduces redundancy (1NF → 2NF → 3NF).',
+        embedHint: 'Split repeating groups into separate tables.',
+      },
+      {
+        focus: ['er-diagram'],
+        caption: 'ER diagrams show entities, attributes, relationships.',
+        embedHint: 'Cardinality: one-to-one, one-to-many, many-to-many.',
+      },
+    ],
+  },
   '10-1-data-types-and-records': embedSpec([
     { caption: 'Atomic types: INTEGER, REAL, CHAR, STRING, BOOLEAN, DATE.', embedHint: 'Choose type to match domain and storage.' },
     { caption: 'RECORD / STRUCT groups fields under one identifier.', embedHint: 'Dot notation: Student.Name, Student.DOB.' },
@@ -2099,12 +2189,30 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Arithmetic and relational operators.', embedHint: 'MOD, DIV, AND, OR, NOT in Boolean expressions.' },
     { caption: 'Comments document intent — not executed.', embedHint: 'Use meaningful identifiers (CamelCase or snake_case).' },
   ]),
-  '11-2-constructs': embedSpec([
-    { caption: 'Selection: IF … THEN … ELSE … ENDIF.', embedHint: 'Nested IF — watch indentation and logic.' },
-    { caption: 'CASE OF handles multiple discrete options.', embedHint: 'Prefer CASE over long IF chains.' },
-    { caption: 'Count-controlled FOR loop with start, end, step.', embedHint: 'Pre-condition: know iteration count.' },
-    { caption: 'WHILE / REPEAT UNTIL for condition-controlled loops.', embedHint: 'Ensure loop variable changes to avoid infinite loops.' },
-  ]),
+  '11-2-constructs': {
+    steps: [
+      {
+        focus: ['if-else'],
+        caption: 'Selection: IF … THEN … ELSE … ENDIF.',
+        embedHint: 'Nested IF — watch indentation and logic.',
+      },
+      {
+        focus: ['case'],
+        caption: 'CASE OF handles multiple discrete options.',
+        embedHint: 'Prefer CASE over long IF chains.',
+      },
+      {
+        focus: ['for-loop'],
+        caption: 'Count-controlled FOR loop with start, end, step.',
+        embedHint: 'Pre-condition: know iteration count.',
+      },
+      {
+        focus: ['while-loop'],
+        caption: 'WHILE / REPEAT UNTIL for condition-controlled loops.',
+        embedHint: 'Ensure loop variable changes to avoid infinite loops.',
+      },
+    ],
+  },
   '12-1-program-development-life-cycle': embedSpec([
     { caption: 'Analysis: requirements specification from client brief.', embedHint: 'Identify inputs, processes, outputs, constraints.' },
     { caption: 'Design: structure charts, pseudocode, data dictionary.', embedHint: 'Top-down decomposition into modules.' },

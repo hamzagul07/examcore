@@ -5,50 +5,186 @@
   "paper": "P1",
   "paperName": "Theory Fundamentals",
   "status": "premium",
-  "summary": "9618 AS SQL — CREATE, SELECT, INSERT, UPDATE, DELETE, and relational query logic for Paper 1 and Paper 3.",
-  "durationMin": 24,
+  "summary": "This lesson distinguishes between Data Definition Language (DDL) for creating and managing database structure, and Data Manipulation Language (DML) for querying and modifying the data within it. It covers key SQL commands like CREATE, ALTER, SELECT, INSERT, UPDATE, and DELETE, and explains how constraints like PRIMARY KEY and FOREIGN KEY enforce data integrity.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Distinguish DDL and DML statements.",
-    "Write SELECT queries with WHERE, ORDER BY, and basic joins.",
-    "Use INSERT, UPDATE, and DELETE correctly.",
-    "Interpret query results from given tables."
+    "Understand the purpose of Data Definition Language (DDL) and its core commands.",
+    "Understand the purpose of Data Manipulation Language (DML) and its core commands.",
+    "Write simple SQL statements for both DDL and DML operations.",
+    "Explain how DDL is used to enforce data integrity through constraints."
   ],
   "simpleExplanation": {
-    "title": "Talking to the database",
-    "summary": "DDL defines structure (CREATE TABLE); DML changes or reads data (SELECT, INSERT, UPDATE, DELETE). SQL is set-based — one statement can affect many rows.",
+    "title": "Database Blueprints vs. Day-to-Day Operations",
+    "summary": "DDL is like the architect's blueprint, defining the structure of the database (tables, columns). DML is like the daily activity within the building, adding, changing, and retrieving the information stored inside.",
+    "analogy": "Imagine building a library. The DDL is the process of designing the building itself: creating rooms (tables), deciding what each room is for, and building the shelves (columns) with specific rules, like 'this shelf only holds fiction books'. The DML is what the librarians and visitors do every day: putting new books on the shelves (INSERT), moving a book to a different shelf (UPDATE), finding a specific book (SELECT), or removing a damaged book (DELETE). You need the structure first (DDL) before you can manage the contents (DML).",
     "steps": [
-      "SELECT field FROM table WHERE condition ORDER BY field;",
-      "INSERT INTO table VALUES (...); or specify columns.",
-      "UPDATE table SET field = value WHERE condition;",
-      "JOIN links tables on matching key fields."
+      "DDL defines structure: CREATE, ALTER, DROP tables.",
+      "DML queries data: SELECT … FROM … WHERE …",
+      "DML modifies data: INSERT, UPDATE, DELETE.",
+      "PRIMARY KEY, FOREIGN KEY, NOT NULL enforce integrity."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Data Definition Language (DDL)?",
+      "back": "A subset of SQL used to define and manage the database structure or schema. Its commands affect the tables themselves, not the data inside them."
+    },
+    {
+      "front": "What is Data Manipulation Language (DML)?",
+      "back": "A subset of SQL used to retrieve, insert, update, and delete data within the database tables."
+    },
+    {
+      "front": "Which SQL command creates a new table?",
+      "back": "CREATE TABLE. This is a DDL command."
+    },
+    {
+      "front": "Which SQL command modifies the structure of an existing table?",
+      "back": "ALTER TABLE. This DDL command can add, delete, or modify columns."
+    },
+    {
+      "front": "Which SQL command completely removes a table and all its data?",
+      "back": "DROP TABLE. This is a DDL command and is irreversible."
+    },
+    {
+      "front": "Which SQL command retrieves data from a database?",
+      "back": "SELECT. This is the primary DML command for querying data."
+    },
+    {
+      "front": "Which SQL command adds a new row of data to a table?",
+      "back": "INSERT INTO. This is a DML command."
+    },
+    {
+      "front": "Which SQL command modifies existing data in a table?",
+      "back": "UPDATE. This DML command must be used with a WHERE clause to specify which rows to change."
+    },
+    {
+      "front": "Which SQL command removes one or more rows from a table?",
+      "back": "DELETE FROM. This DML command should almost always be used with a WHERE clause to avoid deleting all rows."
+    },
+    {
+      "front": "What is the difference between DELETE and DROP?",
+      "back": "DELETE is a DML command that removes rows of data from a table. DROP is a DDL command that removes the entire table structure and all its data."
+    },
+    {
+      "front": "What is a PRIMARY KEY constraint?",
+      "back": "A DDL constraint that uniquely identifies each record in a table. It cannot contain NULL values and must be unique."
+    },
+    {
+      "front": "What is a FOREIGN KEY constraint?",
+      "back": "A DDL constraint used to link two tables together. It is a field in one table that refers to the PRIMARY KEY in another table, enforcing referential integrity."
+    },
+    {
+      "front": "What is the purpose of the NOT NULL constraint?",
+      "back": "A DDL constraint that ensures a column cannot have a NULL (empty) value. It forces a field to always contain a value."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can I use DDL and DML commands in the same script?",
+      "a": "Yes, absolutely. It's very common to have a script that first uses DDL to create or alter tables, and then uses DML to populate those tables with initial data."
+    },
+    {
+      "q": "Is SQL the only language with DDL and DML?",
+      "a": "While SQL is the most common and standardized language for relational databases, the concepts of DDL and DML are fundamental to most database management systems, even if the specific syntax differs."
+    },
+    {
+      "q": "What's the difference between `DELETE FROM Tutor;` and `DROP TABLE Tutor;`?",
+      "a": "`DELETE FROM Tutor;` is a DML command that removes all rows from the `Tutor` table, but the table structure itself (columns, constraints) remains. You can still insert new data into it. `DROP TABLE Tutor;` is a DDL command that permanently deletes the entire table, including its structure and all data. The table no longer exists."
+    },
+    {
+      "q": "Why are data types part of DDL?",
+      "a": "Data types (like `INT`, `VARCHAR`, `DATE`) are part of the table's definition or 'blueprint'. They define the kind of data that a column is allowed to hold, which is a structural rule. Therefore, specifying them is a DDL operation, typically within a `CREATE TABLE` or `ALTER TABLE` statement."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**SQL** (8.3) is tested on Paper 1 theory and Paper 3 practical. Practise **trace tables** for UPDATE/DELETE and **join** two normalised tables."
+      "content": "Structured Query Language (SQL) is the standard language for managing relational databases. To perform its wide range of tasks, SQL is divided into sub-languages. The two most fundamental are the Data Definition Language (DDL) and the Data Manipulation Language (DML). Understanding the distinction between defining the database's 'skeleton' and manipulating the 'flesh' within it is crucial for effective database management."
+    },
+    {
+      "type": "heading",
+      "content": "Data Definition Language (DDL)"
+    },
+    {
+      "type": "text",
+      "content": "DDL is concerned with the schema of the database. Think of it as the architectural blueprint. You use DDL commands to build, modify, and demolish the objects that hold the data, such as tables, indexes, and constraints. These commands do not interact with the individual records but rather the containers for those records."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**CREATE**: Used to build new database objects. The most common is `CREATE TABLE`.",
+        "**ALTER**: Used to modify the structure of an existing object. For example, `ALTER TABLE` can add a new column.",
+        "**DROP**: Used to permanently delete an entire database object. For example, `DROP TABLE` removes a table and all its data."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "List student names enrolled on course C101, sorted A–Z.",
-      "solution": "SELECT Student.Name\nFROM Student\nINNER JOIN Enrolment ON Student.StudentID = Enrolment.StudentID\nWHERE Enrolment.CourseCode = 'C101'\nORDER BY Student.Name;"
+      "question": "Write a DDL statement to create a table named `Tutor` to store information about school tutors. The table should include a unique ID, the tutor's first name, last name, and subject. The ID should be the primary key, and the names cannot be empty. Define appropriate data types.",
+      "solution": "```sql\nCREATE TABLE Tutor (\n    TutorID INT PRIMARY KEY,\n    FirstName VARCHAR(50) NOT NULL,\n    LastName VARCHAR(50) NOT NULL,\n    Subject VARCHAR(100)\n);\n```\n**Explanation:**\n- `CREATE TABLE Tutor (...)`: This is the DDL command to create a new table named `Tutor`.\n- `TutorID INT PRIMARY KEY`: Defines a column `TutorID` of type Integer and sets it as the `PRIMARY KEY`. This ensures every tutor has a unique, non-null ID.\n- `FirstName VARCHAR(50) NOT NULL`: Defines a column for the first name, allowing up to 50 characters. The `NOT NULL` constraint ensures this field must have a value.\n- `LastName VARCHAR(50) NOT NULL`: Same as above for the last name.\n- `Subject VARCHAR(100)`: Defines a column for the subject, allowing up to 100 characters. This can be left NULL if a tutor's subject is not yet assigned."
+    },
+    {
+      "type": "heading",
+      "content": "Data Manipulation Language (DML)"
+    },
+    {
+      "type": "text",
+      "content": "Once the database structure is defined with DDL, you need a way to manage the data within it. This is the role of DML. DML commands are used for all forms of data interaction: adding new data, retrieving existing data, modifying it, and deleting it. These are the 'day-to-day' operations of a database."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**SELECT**: Retrieves data from one or more tables. Often used with `FROM` and `WHERE` clauses.",
+        "**INSERT**: Adds new rows of data into a table. The `INSERT INTO` command is used.",
+        "**UPDATE**: Modifies existing records within a table. A `WHERE` clause is critical to specify which records to change.",
+        "**DELETE**: Removes existing records from a table. A `WHERE` clause is essential to specify which records to remove."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is forgetting the `WHERE` clause on an `UPDATE` or `DELETE` statement. Without a `WHERE` clause, `UPDATE` will change every single row in the table, and `DELETE` will remove every single row. In an exam, always include a `WHERE` clause with these commands unless you are explicitly asked to affect all records."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the `Tutor` table created previously, perform the following DML operations:\n1. Add a new tutor: Dr. Alan Turing, who teaches Computer Science and has TutorID 101.\n2. Change the subject for TutorID 101 to 'Advanced Computer Science'.\n3. Retrieve the first and last names of all tutors who teach a subject containing the word 'Computer'.",
+      "solution": "**1. Insert a new record:**\n```sql\nINSERT INTO Tutor (TutorID, FirstName, LastName, Subject)\nVALUES (101, 'Alan', 'Turing', 'Computer Science');\n```\n**Explanation:** The `INSERT INTO` command specifies the table and the columns to be populated. The `VALUES` clause provides the data for the new row, in the corresponding order.\n\n**2. Update an existing record:**\n```sql\nUPDATE Tutor\nSET Subject = 'Advanced Computer Science'\nWHERE TutorID = 101;\n```\n**Explanation:** The `UPDATE` command targets the `Tutor` table. `SET` specifies the column and its new value. The `WHERE` clause is crucial; it isolates the update to only the row where `TutorID` is 101.\n\n**3. Select specific data:**\n```sql\nSELECT FirstName, LastName\nFROM Tutor\nWHERE Subject LIKE '%Computer%';\n```\n**Explanation:** `SELECT` specifies the columns we want to see. `FROM` indicates the table to query. `WHERE Subject LIKE '%Computer%'` filters the results to include only tutors whose `Subject` field contains the substring 'Computer'. The `%` is a wildcard character."
+    },
+    {
+      "type": "heading",
+      "content": "Enforcing Data Integrity with DDL"
+    },
+    {
+      "type": "text",
+      "content": "A key function of DDL is not just to create tables, but to define rules that maintain the quality and consistency of the data. This is known as data integrity. These rules are implemented as constraints during table creation or modification."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Entity Integrity**: Enforced by the `PRIMARY KEY` constraint. It ensures that each row in a table is a unique entity and can be specifically identified.",
+        "**Referential Integrity**: Enforced by the `FOREIGN KEY` constraint. It ensures that a value in one table that refers to a record in another table is valid. For example, you cannot assign a student to a `CourseID` that doesn't exist in the `Course` table.",
+        "**Domain Integrity**: Enforced by data types, `NOT NULL`, and `CHECK` constraints. It ensures that values in a column are valid for that column's domain (e.g., a `DateOfBirth` column only contains valid dates, a `Score` column is between 0 and 100)."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark an SQL question",
+      "label": "Test Your Knowledge on DDL & DML",
       "href": "/mark?subject=9618&topic=8.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9618 course index",
-          "href": "/courses/9618"
+          "label": "W3Schools SQL Tutorial",
+          "href": "https://www.w3schools.com/sql/sql_intro.asp"
+        },
+        {
+          "label": "Cambridge International 9618 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

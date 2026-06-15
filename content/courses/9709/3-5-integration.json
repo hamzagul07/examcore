@@ -5,71 +5,169 @@
   "paper": "P3",
   "paperName": "Pure Mathematics 3",
   "status": "premium",
-  "summary": "Free 9709 Pure Maths 3 integration lesson — reverse chain rule, integration by parts, and definite integrals with Cambridge mark-scheme habits.",
+  "summary": "This lesson covers the core techniques of integration required for Pure Mathematics 3, building upon foundational concepts. It explores standard integrals, integration by substitution, integration by parts, and applications such as finding areas and volumes of revolution.",
   "durationMin": 22,
   "updated": "2026-06-15",
+  "learningObjectives": [
+    "Integrate standard functions including exponential, logarithmic, and trigonometric forms.",
+    "Apply integration by substitution and integration by parts to solve more complex integrals.",
+    "Use definite integration to calculate the exact area under a curve or between two curves.",
+    "Calculate the volume of a solid of revolution by rotating a region about the x-axis or y-axis."
+  ],
+  "simpleExplanation": {
+    "title": "Un-doing Derivatives to Find Area",
+    "summary": "Integration is the reverse process of differentiation, allowing us to find the original function from its rate of change. We use this to calculate the exact area under curves, a fundamental concept in calculus.",
+    "analogy": "Imagine you have a speedometer reading (your speed, the derivative) for your entire car journey. Integration is like using that data to calculate the total distance you've travelled (the original function). A definite integral from 1 pm to 2 pm would tell you exactly how far you travelled in that hour.",
+    "steps": [
+      "Integration reverses differentiation — find the antiderivative F(x) with F′(x) = f(x).",
+      "A definite integral ∫ₐᵇ f(x) dx equals the signed area under the curve.",
+      "Evaluate F(b) − F(a) after finding F(x); always substitute limits explicitly.",
+      "Integration by parts: ∫ u dv = uv − ∫ v du — choose u using LIATE."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an indefinite integral?",
+      "back": "The family of functions whose derivative is the integrand. It is written as $\\int f(x) dx = F(x) + C$, where $F'(x) = f(x)$ and $C$ is the constant of integration."
+    },
+    {
+      "front": "What does $\\int_a^b f(x) dx$ represent geometrically?",
+      "back": "The signed area between the curve $y=f(x)$, the x-axis, and the vertical lines $x=a$ and $x=b$. Area below the x-axis contributes a negative value to the integral."
+    },
+    {
+      "front": "What is the integral of $e^{ax+b}$?",
+      "back": "$\\int e^{ax+b} dx = \\frac{1}{a}e^{ax+b} + C$. A common mistake is forgetting the $\\frac{1}{a}$ factor."
+    },
+    {
+      "front": "What is the integral of $\\frac{1}{ax+b}$?",
+      "back": "$\\int \\frac{1}{ax+b} dx = \\frac{1}{a}\\ln|ax+b| + C$. Remember the $\\frac{1}{a}$ factor and the modulus signs for the logarithm."
+    },
+    {
+      "front": "What is the integration by parts formula?",
+      "back": "$\\int u \\frac{dv}{dx} dx = uv - \\int v \\frac{du}{dx} dx$. It is used to integrate the product of two functions."
+    },
+    {
+      "front": "What is the LIATE rule for?",
+      "back": "It's a mnemonic to help choose 'u' in integration by parts. The order of preference is: Logarithmic, Inverse Trig, Algebraic, Trigonometric, Exponential."
+    },
+    {
+      "front": "What must you do with limits in a definite integral when using substitution?",
+      "back": "You must change the limits to be in terms of the new variable, 'u'. If the original limits are $x=a$ and $x=b$, find the corresponding values for $u$ and use those for the new integral."
+    },
+    {
+      "front": "How do you integrate $\\tan x$?",
+      "back": "Rewrite it as $\\int \\frac{\\sin x}{\\cos x} dx$. This is of the form $-\\int \\frac{f'(x)}{f(x)} dx$, where $f(x)=\\cos x$. The result is $-\\ln|\\cos x| + C$, which is equivalent to $\\ln|\\sec x| + C$."
+    },
+    {
+      "front": "How do you integrate $\\cos^2 x$ or $\\sin^2 x$?",
+      "back": "Use the double angle identities. For $\\cos^2 x$, use $\\cos(2x) = 2\\cos^2 x - 1$ to get $\\cos^2 x = \\frac{1}{2}(1+\\cos(2x))$. For $\\sin^2 x$, use $\\cos(2x) = 1 - 2\\sin^2 x$ to get $\\sin^2 x = \\frac{1}{2}(1-\\cos(2x))$."
+    },
+    {
+      "front": "What is the formula for the volume of revolution about the x-axis?",
+      "back": "$V = \\pi \\int_a^b y^2 dx$. Remember to square the function $y=f(x)$ *before* you integrate."
+    },
+    {
+      "front": "What is the integral of the form $\\int \\frac{f'(x)}{f(x)} dx$?",
+      "back": "This is a standard pattern that integrates to $\\ln|f(x)| + C$. Recognising this saves you from using substitution."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between definite and indefinite integrals?",
+      "a": "An indefinite integral, $\\int f(x) dx$, gives a function (or family of functions, $F(x)+C$) representing the antiderivative. A definite integral, $\\int_a^b f(x) dx$, gives a single numerical value representing the signed area under the curve between two points."
+    },
+    {
+      "q": "I always forget '+ C'. How important is it?",
+      "a": "For indefinite integrals, it is critically important and you will lose a mark if you forget it. It represents an entire family of functions that have the same derivative. For definite integrals, the '+ C' cancels out when you evaluate $F(b) - F(a)$, so it's not needed in the final calculation, but the underlying indefinite integral technically still has it."
+    },
+    {
+      "q": "When do I use substitution versus integration by parts?",
+      "a": "Use substitution when the integrand contains a function and its derivative (or something close to it), often in a 'function-of-a-function' or composite form. Use integration by parts when the integrand is a product of two unrelated functions, like $x e^x$ or $x^2 \\sin x$."
+    },
+    {
+      "q": "Why do the limits change when using substitution?",
+      "a": "The original limits are $x$-values. When you change the entire integral to be in terms of a new variable, $u$, the limits must also be expressed in terms of $u$. This allows you to complete the calculation without ever having to substitute back to $x$, which is more efficient and less error-prone."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Paper 3 integration is harder than Paper 1: you meet **substitution**, **integration by parts**, and **partial fractions** setups. Marks are often split between choosing the correct method (M1) and executing algebra (A1)."
+      "content": "Welcome to integration in Pure Mathematics 3. While you're familiar with basic integration from P1, this topic introduces powerful new techniques essential for solving a much wider range of problems. We will master integration by substitution and by parts, and apply these methods to find areas, and a new concept: volumes of solids formed by revolution. These skills are fundamental not just for your exams, but for any further study in mathematics, physics, or engineering."
     },
     {
       "type": "heading",
-      "content": "Integration by parts"
-    },
-    {
-      "type": "formula",
-      "content": "∫ u dv/dx dx = uv − ∫ v du/dx dx. Choose u to simplify when differentiated (LIATE: Log, Inverse trig, Algebraic, Trig, Exp)."
-    },
-    {
-      "type": "workedExample",
-      "question": "Find ∫ x e^x dx.",
-      "solution": "Let u = x, dv/dx = e^x → du/dx = 1, v = e^x.\n\n∫ x e^x dx = x e^x − ∫ e^x dx = x e^x − e^x + C = e^x(x − 1) + C."
-    },
-    {
-      "type": "heading",
-      "content": "Definite integrals & areas"
+      "content": "Standard Integrals and Key Forms"
     },
     {
       "type": "text",
-      "content": "Evaluate definite integrals by finding the antiderivative, then **substitute limits**. For area between curves, ∫ (top − bottom) dx over the intersection interval. Sketching prevents sign errors."
+      "content": "In P3, we expand our library of standard integrals. The key is to recognise the function's form and apply the correct rule. Pay close attention to the effect of linear transformations of the form $(ax+b)$ inside the function."
+    },
+    {
+      "type": "formula",
+      "content": "$\\int e^{ax+b} dx = \\frac{1}{a}e^{ax+b} + C \\\\ \\int \\frac{1}{ax+b} dx = \\frac{1}{a}\\ln|ax+b| + C \\\\ \\int \\sin(ax+b) dx = -\\frac{1}{a}\\cos(ax+b) + C \\\\ \\int \\sec^2(ax+b) dx = \\frac{1}{a}\\tan(ax+b) + C$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Always include + C for indefinite integrals",
-        "Check whether the integrand needs a substitution before parts",
-        "ECF can rescue later marks if your u/v choice is stated clearly",
-        "Show boundary substitution explicitly for A marks"
+        "The factor of $\\frac{1}{a}$ appears when integrating a function of a linear argument $(ax+b)$. This comes from reversing the chain rule.",
+        "Always include the constant of integration, $+C$, for indefinite integrals.",
+        "The modulus sign in $\\ln|ax+b|$ is crucial as the logarithm is only defined for positive inputs."
       ]
     },
     {
+      "type": "heading",
+      "content": "Integration by Substitution"
+    },
+    {
+      "type": "text",
+      "content": "Integration by substitution is a technique for simplifying integrals that are not in a standard form. It is essentially the reverse of the chain rule for differentiation. The goal is to choose a substitution, typically letting 'u' equal a part of the integrand, which transforms the integral into a simpler one that we know how to solve. When dealing with definite integrals, remember that the limits of integration must also be converted to the new variable."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the exact area of the region enclosed by the curve $y = x\\sqrt{x^2+5}$, the x-axis, and the lines $x=0$ and $x=2$.",
+      "solution": "The area is given by the definite integral $A = \\int_0^2 x\\sqrt{x^2+5} \\, dx$.\n\nThis is not a standard integral, so we use substitution. The expression inside the square root is a good candidate for substitution.\n\nLet $u = x^2+5$. \nThen, differentiating with respect to $x$: $\\frac{du}{dx} = 2x$. \nRearranging gives $du = 2x \\, dx$, or $x \\, dx = \\frac{1}{2} du$.\n\nNow, we must change the limits of integration from $x$-values to $u$-values:\nWhen $x=0$, $u = 0^2+5 = 5$.\nWhen $x=2$, $u = 2^2+5 = 9$.\n\nSubstitute everything into the integral:\n$A = \\int_5^9 \\sqrt{u} \\, (\\frac{1}{2} du) = \\frac{1}{2} \\int_5^9 u^{1/2} \\, du$.\n\nNow integrate with respect to $u$:\n$A = \\frac{1}{2} \\left[ \\frac{u^{3/2}}{3/2} \\right]_5^9 = \\frac{1}{2} \\left[ \\frac{2}{3}u^{3/2} \\right]_5^9 = \\frac{1}{3} [u^{3/2}]_5^9$.\n\nFinally, substitute the new limits:\n$A = \\frac{1}{3} (9^{3/2} - 5^{3/2}) = \\frac{1}{3} ((\\sqrt{9})^3 - 5\\sqrt{5}) = \\frac{1}{3} (3^3 - 5\\sqrt{5})$.\n\nThe exact area is $\\frac{1}{3}(27 - 5\\sqrt{5})$.\n\n[M1] for choosing a suitable substitution and finding $\\frac{du}{dx}$.\n[A1] for correct substitution including converting $x \\, dx$.\n[M1] for changing the limits correctly.\n[A1] for the correct integral in terms of $u$.\n[M1] for integrating $u^{1/2}$.\n[A1] for the final exact answer."
+    },
+    {
+      "type": "heading",
+      "content": "Integration by Parts"
+    },
+    {
+      "type": "text",
+      "content": "Integration by parts is our method for integrating a product of two functions, derived from the product rule for differentiation. The key to success is choosing which function to label as 'u' (the one to be differentiated) and which to label as $\\frac{dv}{dx}$ (the one to be integrated). A useful mnemonic is LIATE (Logarithmic, Inverse Trig, Algebraic, Trig, Exponential), which suggests the order of preference for choosing 'u'."
+    },
+    {
+      "type": "formula",
+      "content": "The Integration by Parts Formula: \\\\ $\\int u \\frac{dv}{dx} dx = uv - \\int v \\frac{du}{dx} dx$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the exact value of $\\int_1^e x^2 \\ln x \\, dx$.",
+      "solution": "We have a product of an algebraic function ($x^2$) and a logarithmic function ($\\ln x$). We use integration by parts.\n\nUsing the LIATE principle, we choose the Logarithmic function as $u$.\nLet $u = \\ln x$ and $\\frac{dv}{dx} = x^2$.\n\nThen we differentiate $u$ and integrate $\\frac{dv}{dx}$:\n$\\frac{du}{dx} = \\frac{1}{x}$ and $v = \\int x^2 dx = \\frac{x^3}{3}$.\n\nApply the integration by parts formula: $\\int u \\frac{dv}{dx} dx = uv - \\int v \\frac{du}{dx} dx$.\n$\\int_1^e x^2 \\ln x \\, dx = \\left[ (\\ln x) \\left(\\frac{x^3}{3}\\right) \\right]_1^e - \\int_1^e \\left(\\frac{x^3}{3}\\right) \\left(\\frac{1}{x}\\right) dx$.\n\nSimplify the expression:\n$= \\left[ \\frac{x^3 \\ln x}{3} \\right]_1^e - \\int_1^e \\frac{x^2}{3} dx$.\n\nNow, evaluate the remaining integral:\n$= \\left[ \\frac{x^3 \\ln x}{3} \\right]_1^e - \\left[ \\frac{x^3}{9} \\right]_1^e$.\n\nSubstitute the limits. Remember $\\ln e = 1$ and $\\ln 1 = 0$.\n$= \\left( \\frac{e^3 \\ln e}{3} - \\frac{1^3 \\ln 1}{3} \\right) - \\left( \\frac{e^3}{9} - \\frac{1^3}{9} \\right)$.\n$= \\left( \\frac{e^3(1)}{3} - \\frac{1(0)}{3} \\right) - \\left( \\frac{e^3}{9} - \\frac{1}{9} \\right)$.\n$= \\frac{e^3}{3} - 0 - \\frac{e^3}{9} + \\frac{1}{9}$.\n\nCombine the terms:\n$= \\frac{3e^3}{9} - \\frac{e^3}{9} + \\frac{1}{9} = \\frac{2e^3 + 1}{9}$.\n\n[M1] for correct choice of $u$ and $\\frac{dv}{dx}$.\n[A1] for correct $\\frac{du}{dx}$ and $v$.\n[M1] for correct application of the by parts formula.\n[A1] for correct integration of the second term.\n[M1] for substituting limits correctly.\n[A1] for the final exact answer."
+    },
+    {
       "type": "examTip",
-      "content": "If integration by parts needs a second round, write each line neatly — examiners penalise missing brackets that make v du/dx ambiguous. After integrating, differentiate your answer quickly to sanity-check."
+      "content": "In exams, questions often require multiple steps. For example, you might need to use a trigonometric identity *before* you can apply integration by parts. Always be prepared to combine techniques. When finding an area, sketch the graph to check if any part is below the x-axis, as this will require separate integrals or careful use of modulus."
     },
     {
       "type": "practice",
-      "label": "Mark an integration question",
+      "label": "Practice Integration Problems",
       "href": "/mark?subject=9709&topic=3.5"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 past paper guide",
-          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+          "label": "Cambridge International Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
         },
         {
-          "label": "Error carried forward (ECF)",
-          "href": "/blog/understanding-error-carried-forward-ecf"
-        },
-        {
-          "label": "Free full 9709 course index",
-          "href": "/courses/9709"
+          "label": "P3 Integration Video by TLMaths",
+          "href": "https://www.youtube.com/playlist?list=PLg2stwQadjkys9ssj3hSA9E-gNnzoFBGo"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "params": [
       {

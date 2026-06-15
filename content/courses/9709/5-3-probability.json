@@ -5,54 +5,185 @@
   "paper": "P5",
   "paperName": "Probability & Statistics 1",
   "status": "premium",
-  "summary": "9709 P5 probability — sample space, combined events, independence, and tree diagrams with GeoGebra probability explorer.",
+  "summary": "This lesson introduces the fundamental principles of probability. We will explore the probability scale, complementary events, and the crucial distinction between mutually exclusive and independent events. You will learn to apply the addition and multiplication rules, and use tools like Venn diagrams and tree diagrams to solve complex problems involving combined and conditional probabilities.",
   "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Calculate probabilities using addition and multiplication rules.",
-    "Determine whether events are mutually exclusive or independent.",
-    "Construct and use tree diagrams for multi-stage experiments.",
-    "Apply conditional probability P(A|B) = P(A ∩ B)/P(B)."
+    "Understand and apply the basic axioms of probability, including the complement rule.",
+    "Distinguish between mutually exclusive and independent events and apply the appropriate addition or multiplication rules.",
+    "Calculate conditional probabilities and use tree diagrams to model multi-stage experiments.",
+    "Solve probability problems presented in context, using Venn diagrams, tables, or other representations."
   ],
   "simpleExplanation": {
-    "title": "Counting what might happen",
-    "summary": "Probability quantifies uncertainty on a 0–1 scale. Combine rules carefully: 'or' uses addition (if exclusive), 'and' uses multiplication (if independent).",
+    "title": "The Rules of Chance",
+    "summary": "Probability measures the likelihood of an event, from impossible (0) to certain (1). Understanding the rules for combining events is key to solving problems in statistics.",
+    "analogy": "Think of a weather forecast. The chance of rain is a probability. The chance of 'rain' and the chance of 'no rain' must add up to 100%. If we consider 'rain' and 'strong wind', they could happen together (not mutually exclusive) and one might make the other more likely (not independent).",
     "steps": [
-      "P(A) between 0 and 1; P(not A) = 1 − P(A).",
-      "Mutually exclusive: P(A or B) = P(A) + P(B).",
-      "Independent: P(A and B) = P(A) × P(B).",
-      "Tree diagrams: multiply along branches, add disjoint outcomes."
+      "P(A) is between 0 and 1; P(not A) = 1 − P(A).",
+      "Mutually exclusive: P(A ∪ B) = P(A) + P(B).",
+      "Independent: P(A ∩ B) = P(A) × P(B).",
+      "Tree diagrams organise conditional branches systematically."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the range of a probability value?",
+      "back": "A probability $P(A)$ must be between 0 and 1, inclusive. $0 \\le P(A) \\le 1$."
+    },
+    {
+      "front": "What is a 'sample space'?",
+      "back": "The set of all possible outcomes of an experiment. Denoted by $S$ or $\\Omega$."
+    },
+    {
+      "front": "What is the formula for a complementary event, $A'$?",
+      "back": "$P(A') = 1 - P(A)$. This is the probability that event A does *not* occur."
+    },
+    {
+      "front": "What are 'mutually exclusive' events?",
+      "back": "Events that cannot happen at the same time. If A and B are mutually exclusive, then $P(A \\cap B) = 0$."
+    },
+    {
+      "front": "What is the addition rule for two mutually exclusive events, A and B?",
+      "back": "$P(A \\cup B) = P(A) + P(B)$."
+    },
+    {
+      "front": "What are 'independent' events?",
+      "back": "The occurrence of one event does not affect the probability of the other. For independent events A and B, $P(A|B) = P(A)$."
+    },
+    {
+      "front": "What is the multiplication rule for two independent events, A and B?",
+      "back": "$P(A \\cap B) = P(A) \\times P(B)$."
+    },
+    {
+      "front": "What is the general addition rule for any two events, A and B?",
+      "back": "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$. This accounts for any overlap."
+    },
+    {
+      "front": "What does the notation $P(A|B)$ mean?",
+      "back": "The conditional probability of A occurring, *given that* B has already occurred."
+    },
+    {
+      "front": "What is the formula for conditional probability, $P(A|B)$?",
+      "back": "$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$."
+    },
+    {
+      "front": "Common Trap: Can two events with non-zero probabilities be both mutually exclusive and independent?",
+      "back": "No. If they are mutually exclusive, $P(A \\cap B) = 0$. If they were also independent, this would require $P(A) \\times P(B) = 0$, which means at least one event must have zero probability."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between 'mutually exclusive' and 'independent' events?",
+      "a": "Mutually exclusive events cannot happen at the same time ($P(A \\cap B) = 0$). Independent events can happen at the same time, but the occurrence of one does not change the probability of the other ($P(A \\cap B) = P(A) \\times P(B)$). Think of rolling a die: 'getting a 1' and 'getting a 6' are mutually exclusive. Tossing a coin twice: 'getting a head on the first toss' and 'getting a head on the second toss' are independent."
+    },
+    {
+      "q": "When should I use a tree diagram versus a Venn diagram?",
+      "a": "Venn diagrams are excellent for visualising the relationships (union, intersection, complement) between two or three events in a single experiment, especially for problems involving counts or the addition rule. Tree diagrams are best for multi-stage experiments where outcomes are sequential and often conditional, like drawing items without replacement. They help you systematically list all possible outcomes and calculate their probabilities by multiplying along the branches."
+    },
+    {
+      "q": "How do I know if I should add or multiply probabilities?",
+      "a": "You ADD probabilities when you are considering alternative outcomes (Event A *OR* Event B). This corresponds to the union of events, $P(A \\cup B)$. You MULTIPLY probabilities when you are considering a sequence of events (Event A *AND THEN* Event B). This corresponds to the intersection of events, $P(A \\cap B)$. Be careful to use the correct multiplication rule (for independent vs. dependent events)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Probability** on P5 underpins **discrete distributions** (5.4) and **normal approximation** (5.5). Tree diagrams are the safest method for **conditional** exam questions."
+      "content": "Welcome to the study of probability. This topic forms the bedrock of statistics, allowing us to quantify uncertainty and make predictions. From insurance risk to medical trials, the principles you learn here are applied everywhere. In this lesson, we will build from the ground up, ensuring you have a solid grasp of the rules that govern chance."
+    },
+    {
+      "type": "heading",
+      "content": "Fundamental Concepts of Probability"
+    },
+    {
+      "type": "text",
+      "content": "Probability is a numerical measure of the likelihood that an event will occur. It is always a value between 0 (impossibility) and 1 (certainty). The set of all possible outcomes of an experiment is called the sample space. An 'event' is a specific outcome or a collection of outcomes from the sample space. For any event A, its complement, denoted $A'$ or $A^c$, represents the event that A does not occur."
+    },
+    {
+      "type": "formula",
+      "content": "The Complement Rule: $P(A') = 1 - P(A)$"
+    },
+    {
+      "type": "heading",
+      "content": "Combining Events: Addition Rules"
+    },
+    {
+      "type": "text",
+      "content": "Often, we are interested in the probability of one event *or* another occurring. This is the 'union' of events, denoted $A \\cup B$. Sometimes, events cannot happen together; these are called **mutually exclusive** events. For example, when rolling a single die, the events 'roll a 6' and 'roll a 3' are mutually exclusive."
+    },
+    {
+      "type": "formula",
+      "content": "Addition Rule for Mutually Exclusive Events: $P(A \\cup B) = P(A) + P(B)$"
+    },
+    {
+      "type": "text",
+      "content": "If two events *can* happen at the same time (they are not mutually exclusive), we must use the general addition rule. This rule prevents 'double counting' the probability of their intersection, denoted $A \\cap B$, which means 'A *and* B'. For example, drawing a 'King' and drawing a 'Heart' from a deck of cards are not mutually exclusive, as you can draw the King of Hearts."
+    },
+    {
+      "type": "formula",
+      "content": "General Addition Rule: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Mutually exclusive events have no overlap: $P(A \\cap B) = 0$.",
+        "Use the simple addition rule only for mutually exclusive events.",
+        "Always use the general addition rule if events might overlap. If they are mutually exclusive, the $P(A \\cap B)$ term will be zero anyway."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "P(rain) = 0.3 each day, independent. Find P(dry on Mon and Tue).",
-      "solution": "P(dry) = 0.7\n\nP(dry both days) = 0.7 × 0.7 = **0.49**"
+      "question": "In a group of 30 students, 15 study Chemistry, 20 study Physics, and 6 study neither subject. A student is selected at random. Find the probability that the student studies both Chemistry and Physics. Let C be the event a student studies Chemistry and P be the event a student studies Physics.",
+      "solution": "We are given: $n(\\text{Total}) = 30$, $n(C) = 15$, $n(P) = 20$, and $n(C' \\cap P') = 6$. The number of students studying at least one subject is the total minus those studying neither: $n(C \\cup P) = 30 - 6 = 24$. We can now use probabilities. $P(C) = 15/30 = 0.5$, $P(P) = 20/30 = 2/3$, $P(C \\cup P) = 24/30 = 0.8$. We use the general addition rule: $P(C \\cup P) = P(C) + P(P) - P(C \\cap P)$. Rearranging to find the intersection: $P(C \\cap P) = P(C) + P(P) - P(C \\cup P)$. Substituting the values: $P(C \\cap P) = 0.5 + \\frac{2}{3} - 0.8$. $P(C \\cap P) = \\frac{1}{2} + \\frac{2}{3} - \\frac{4}{5} = \\frac{15+20-24}{30} = \\frac{11}{30}$. The probability that a student studies both subjects is $\\frac{11}{30}$."
+    },
+    {
+      "type": "heading",
+      "content": "Independent Events and Conditional Probability"
+    },
+    {
+      "type": "text",
+      "content": "Two events are **independent** if the outcome of one has no effect on the outcome of the other. For example, flipping a coin twice; the result of the first flip does not influence the second. When events A and B are independent, the probability of them both occurring is simply the product of their individual probabilities."
+    },
+    {
+      "type": "formula",
+      "content": "Multiplication Rule for Independent Events: $P(A \\cap B) = P(A) \\times P(B)$"
+    },
+    {
+      "type": "text",
+      "content": "When events are not independent, they are called **dependent**. This leads to the idea of **conditional probability**: the probability of an event A occurring, given that event B has already occurred. This is written as $P(A|B)$. For example, the probability of drawing a second King from a deck of cards is dependent on whether the first card drawn was a King."
+    },
+    {
+      "type": "formula",
+      "content": "Conditional Probability Formula: $P(A|B) = \\frac{P(A \\cap B)}{P(B)}$"
     },
     {
       "type": "examTip",
-      "content": "For conditional probability, **always define events** and quote P(A|B) = P(A∩B)/P(B). Venn diagrams help for two-event problems."
+      "content": "A common exam question asks you to determine if two events are independent. To do this, calculate $P(A)$, $P(B)$, and $P(A \\cap B)$ from the information given. Then, check if $P(A \\cap B)$ is equal to $P(A) \\times P(B)$. If they are equal, the events are independent. If not, they are dependent. Do not just assume independence unless the question explicitly states it or the context (e.g., 'with replacement') makes it obvious."
+    },
+    {
+      "type": "workedExample",
+      "question": "A bag contains 5 red balls and 4 blue balls. A ball is drawn at random and not replaced. A second ball is then drawn. Find the probability that: (i) both balls are red, (ii) the second ball is blue.",
+      "solution": "This is a 'without replacement' problem, so events are dependent. A tree diagram is a useful tool.\nLet $R_1$ be the event the first ball is red, and $B_1$ be the event the first is blue. Similarly for the second draw ($R_2, B_2$).\n$P(R_1) = 5/9$, $P(B_1) = 4/9$.\nThe second-stage probabilities are conditional:\n$P(R_2|R_1) = 4/8$ (4 red left out of 8 total)\n$P(B_2|R_1) = 4/8$ (4 blue left out of 8 total)\n$P(R_2|B_1) = 5/8$ (5 red left out of 8 total)\n$P(B_2|B_1) = 3/8$ (3 blue left out of 8 total)\n\n(i) Probability both are red is $P(R_1 \\cap R_2)$. We multiply along the branches:\n$P(R_1 \\cap R_2) = P(R_1) \\times P(R_2|R_1) = \\frac{5}{9} \\times \\frac{4}{8} = \\frac{20}{72} = \\frac{5}{18}$.\n\n(ii) The event 'the second ball is blue' can happen in two ways: Red then Blue, OR Blue then Blue. We find the probability of each path and add them (as they are mutually exclusive paths).\nPath 1: $P(R_1 \\cap B_2) = P(R_1) \\times P(B_2|R_1) = \\frac{5}{9} \\times \\frac{4}{8} = \\frac{20}{72}$.\nPath 2: $P(B_1 \\cap B_2) = P(B_1) \\times P(B_2|B_1) = \\frac{4}{9} \\times \\frac{3}{8} = \\frac{12}{72}$.\nTotal probability $P(B_2) = P(R_1 \\cap B_2) + P(B_1 \\cap B_2) = \\frac{20}{72} + \\frac{12}{72} = \\frac{32}{72} = \\frac{4}{9}$."
     },
     {
       "type": "practice",
-      "label": "Mark a probability question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9709&topic=5.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 course index",
-          "href": "/courses/9709"
+          "label": "Cambridge International A-Level Mathematics (9709) Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Khan Academy: Probability",
+          "href": "https://www.khanacademy.org/math/statistics-probability/probability-library"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

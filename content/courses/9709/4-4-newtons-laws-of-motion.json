@@ -5,50 +5,165 @@
   "paper": "P4",
   "paperName": "Mechanics",
   "status": "premium",
-  "summary": "9709 P4 Mechanics — Newton's three laws, resultant forces, and F = ma with step-synced live diagram.",
+  "summary": "This lesson introduces Newton's three fundamental laws of motion, which form the cornerstone of classical mechanics. We will explore the concepts of inertia, resultant force, acceleration, and action-reaction pairs, and apply these principles to solve problems involving particles and connected systems.",
   "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "State and apply Newton's three laws of motion.",
-    "Resolve forces and find resultants on inclined planes and connected particles.",
-    "Use F = ma for linear motion problems.",
-    "Distinguish weight and mass; apply W = mg."
+    "State and apply Newton's First Law to objects in equilibrium (zero resultant force).",
+    "Apply Newton's Second Law (F=ma) to calculate unknown forces, masses, or accelerations for single and connected particles.",
+    "State Newton's Third Law and correctly identify action-reaction pairs, understanding they act on different bodies.",
+    "Understand and use the relationship between mass and weight (W=mg) in force diagrams."
   ],
   "simpleExplanation": {
-    "title": "Forces change motion",
-    "summary": "Newton's laws connect forces to acceleration. Draw force diagrams, resolve components, and apply F_net = ma along the direction of motion.",
+    "title": "The Rules of Motion",
+    "summary": "Newton's laws are the three fundamental rules that predict how an object's motion will change when forces act on it. They are the essential toolkit for solving almost every problem in mechanics.",
+    "analogy": "Imagine pushing a shopping trolley. To get it moving (accelerate it), you need to push it (apply a resultant force). The heavier it is (more mass), the harder you need to push for the same acceleration. When you stop pushing, it eventually stops due to friction. If there were no friction, it would just keep going at a constant speed forever (First Law). As you push the trolley, the trolley pushes back on you with an equal force (Third Law).",
     "steps": [
-      "First law: no acceleration without unbalanced force.",
-      "Second law: F = ma (vector equation — use components).",
-      "Third law: action/reaction pairs on different bodies.",
-      "On slopes: resolve weight parallel and perpendicular to plane."
+      "First law: An object maintains constant velocity (including being at rest) unless a resultant force acts on it. This is the principle of equilibrium.",
+      "Second law: The resultant force on an object is the product of its mass and acceleration (F=ma). Acceleration is always in the same direction as the resultant force.",
+      "Third law: For every action, there is an equal and opposite reaction. These two forces act on different bodies and are of the same type.",
+      "Weight is the force of gravity on an object. Near the Earth's surface, it is calculated as W = mg and always acts vertically downwards."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is Newton's First Law of Motion?",
+      "back": "An object will remain at rest or continue to move with constant velocity unless acted upon by a resultant external force. This is also known as the law of inertia."
+    },
+    {
+      "front": "What is the formula for Newton's Second Law?",
+      "back": "Resultant Force = Mass × Acceleration, or $F_{net} = ma$. The force must be in Newtons (N), mass in kilograms (kg), and acceleration in metres per second squared (m s⁻²)."
+    },
+    {
+      "front": "What is Newton's Third Law of Motion?",
+      "back": "For every action, there is an equal and opposite reaction. The two forces in an action-reaction pair are of the same type, equal in magnitude, opposite in direction, and act on different bodies."
+    },
+    {
+      "front": "What is meant by 'equilibrium' in mechanics?",
+      "back": "An object is in equilibrium if the resultant force acting on it is zero. This means it is either at rest or moving with a constant velocity."
+    },
+    {
+      "front": "What is the difference between mass and weight?",
+      "back": "Mass is the amount of matter in an object (a scalar, measured in kg). Weight is the force of gravity acting on that mass (a vector, measured in N). Weight = mass × g."
+    },
+    {
+      "front": "A book rests on a table. Are its weight and the normal reaction from the table an action-reaction pair?",
+      "back": "No. They are both forces acting on the same object (the book). The reaction to the book's weight (Earth's pull on book) is the book's gravitational pull on the Earth."
+    },
+    {
+      "front": "What is a 'resultant force'?",
+      "back": "The vector sum of all the individual forces acting on a single object. It's the single force that would have the same effect as all the original forces combined."
+    },
+    {
+      "front": "What are the standard units for force, mass, and acceleration in SI units?",
+      "back": "Force: Newton (N), which is a kg m s⁻². Mass: kilogram (kg). Acceleration: metres per second squared (m s⁻²)."
+    },
+    {
+      "front": "What is 'Tension'?",
+      "back": "The pulling force transmitted through a string, rope, cable or chain. It is assumed to act equally at all points along a light, inextensible string."
+    },
+    {
+      "front": "When modelling connected particles, what is true about the tension in the connecting string?",
+      "back": "For a single light, inextensible string passing over a smooth pulley, the tension is the same on both sides of the pulley."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If an object is moving, doesn't that mean there must be a resultant force on it?",
+      "a": "Not necessarily. According to Newton's First Law, an object moving at a *constant velocity* has zero resultant force acting on it. A resultant force is only required to cause *acceleration* (a change in velocity)."
+    },
+    {
+      "q": "Why don't action-reaction forces from Newton's Third Law cancel each other out?",
+      "a": "Because they act on different objects. To determine an object's motion, you only consider the forces acting *on that object*. Since the action and reaction forces act on separate bodies, they cannot cancel each other out in the force analysis of a single body."
+    },
+    {
+      "q": "In a pulley system, why can we assume the tension is the same on both sides of the string?",
+      "a": "This is a modelling assumption. We assume the string is 'light' (has negligible mass) and the pulley is 'smooth' (has no friction). If the pulley had mass or friction, it would require a net turning force (a torque), meaning the tensions on either side would have to be different."
+    },
+    {
+      "q": "What's the difference between a 'smooth' and a 'rough' surface?",
+      "a": "In mechanics problems, 'smooth' is code for 'frictionless'. A smooth surface exerts no frictional force. A 'rough' surface can exert a frictional force that opposes motion or attempted motion, up to a maximum value of $F_{max} = \\mu R$."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Newton's laws** on 9709 P4 Mechanics are tested with **connected particles**, **lifts**, and **inclined planes**. Always draw a **force diagram** before writing equations."
+      "content": "Sir Isaac Newton's three laws of motion, first published in 1687, revolutionised our understanding of the physical world. In A-Level Mechanics, these laws are not just historical facts; they are the fundamental tools you will use to analyse how and why objects move. Mastering their application is the key to success in this part of the course."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's First Law: The Law of Inertia"
+    },
+    {
+      "type": "text",
+      "content": "Newton's First Law describes an object's tendency to resist changes in its state of motion. If an object is at rest, it wants to stay at rest. If it's moving, it wants to keep moving at a steady speed in a straight line. This only changes if a 'resultant' or 'net' force is applied. In many exam questions, this law is used to establish equilibrium, where the vector sum of all forces acting on an object is zero."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Equilibrium means the resultant force is zero: $\\sum F = 0$.",
+        "An object in equilibrium is either stationary or moving at a constant velocity.",
+        "This law is often used to solve for unknown forces by resolving forces in perpendicular directions (e.g., horizontally and vertically) and setting the sum in each direction to zero."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Newton's Second Law: The Core Equation"
+    },
+    {
+      "type": "text",
+      "content": "This is the most powerful and frequently applied of the three laws. It provides the mathematical relationship between the cause of motion (force) and the resulting change in motion (acceleration). The acceleration of an object is directly proportional to the resultant force acting on it and inversely proportional to its mass."
+    },
+    {
+      "type": "formula",
+      "content": "F_{net} = ma"
+    },
+    {
+      "type": "text",
+      "content": "Here, $F_{net}$ is the resultant force in Newtons (N), $m$ is the mass of the object in kilograms (kg), and $a$ is the acceleration in metres per second squared (m s⁻²). Remember that force and acceleration are vectors; the acceleration always takes place in the same direction as the resultant force."
     },
     {
       "type": "workedExample",
-      "question": "A 5 kg block on a smooth horizontal surface is pulled with 20 N at 30° above horizontal. Find acceleration.",
-      "solution": "Horizontal component = 20 cos 30° = 17.3 N\n\nF = ma → a = 17.3/5 = **3.46 m s⁻²**"
+      "question": "A box of mass 5 kg rests on a rough horizontal floor. The coefficient of friction between the box and the floor is 0.4. A horizontal force of 30 N is applied to the box. Find the acceleration of the box. (Take $g = 9.8$ m s⁻²).",
+      "solution": "1.  **Draw a force diagram.** Identify all forces: Weight ($W$), Normal Reaction ($R$), Applied Force (30 N), and Friction ($F_r$).\n2.  **Resolve forces vertically.** The box is not accelerating vertically, so forces are in equilibrium. $R - W = 0$. We know $W = mg = 5 \\times 9.8 = 49$ N. Therefore, $R = 49$ N.\n3.  **Calculate maximum friction.** The maximum frictional force is $F_{r,max} = \\mu R = 0.4 \\times 49 = 19.6$ N.\n4.  **Check for motion.** The applied force (30 N) is greater than the maximum friction (19.6 N), so the box will move. The frictional force opposing the motion will be 19.6 N.\n5.  **Apply Newton's Second Law horizontally.** The resultant force is in the direction of motion. $F_{net} = \\text{Applied Force} - \\text{Friction}$.\n    $F_{net} = 30 - 19.6 = 10.4$ N.\n6.  **Calculate acceleration.** Using $F_{net} = ma$: \n    $10.4 = 5 \\times a$\n    $a = \\frac{10.4}{5} = 2.08$ m s⁻²."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's Third Law: Action-Reaction Pairs"
+    },
+    {
+      "type": "text",
+      "content": "This law states that forces always occur in pairs. If object A exerts a force on object B, then object B simultaneously exerts a force on object A that is equal in magnitude and opposite in direction. The most important and often misunderstood aspect of this law is that the two forces in a pair act on *different* objects. This is why they do not cancel each other out."
+    },
+    {
+      "type": "examTip",
+      "content": "A common mistake is to identify two forces that are in equilibrium on a single object as an action-reaction pair. For example, for a book on a table, the book's weight and the table's normal reaction force are NOT a third-law pair. They are just two forces that happen to be equal and opposite, acting on the same object (the book). The true reaction to the book's weight is the gravitational force the book exerts on the Earth."
+    },
+    {
+      "type": "workedExample",
+      "question": "Two particles, A of mass 3 kg and B of mass 2 kg, are connected by a light inextensible string. Particle A is pulled along a smooth horizontal surface by a horizontal force of 40 N. Find the acceleration of the system and the tension in the string.",
+      "solution": "1.  **Consider the system as a whole.** Treat both particles as a single object with combined mass $m_{total} = 3 + 2 = 5$ kg. The only external horizontal force is 40 N (tension is an internal force).\n    Apply $F=ma$ to the whole system:\n    $40 = (3+2)a$\n    $40 = 5a$\n    $a = 8$ m s⁻².\n\n2.  **Isolate one particle to find tension.** Let's consider particle B. The only horizontal force acting on B is the tension ($T$) from the string, pulling it forward.\n    Apply $F=ma$ to particle B:\n    $T = m_B \\times a$\n    $T = 2 \\times 8$\n    $T = 16$ N.\n\n3.  **(Check) Isolate particle A.** The forces on A are the 40 N pulling force and the tension ($T$) pulling it back. The resultant force is $40 - T$.\n    Apply $F=ma$ to particle A:\n    $40 - T = m_A \\times a$\n    $40 - T = 3 \\times 8$\n    $40 - T = 24$\n    $T = 40 - 24 = 16$ N. The results match.\n\n    **Answer:** The acceleration is 8 m s⁻² and the tension is 16 N."
     },
     {
       "type": "practice",
-      "label": "Mark a mechanics question",
+      "label": "Test Your Knowledge on Newton's Laws",
       "href": "/mark?subject=9709&topic=4.4"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 course index",
-          "href": "/courses/9709"
+          "label": "Cambridge International Syllabus (9709)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Mechanics Video Tutorials by ExamSolutions",
+          "href": "https://www.examsolutions.net/a-level-maths/mechanics/"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

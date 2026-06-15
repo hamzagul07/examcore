@@ -5,50 +5,202 @@
   "paper": "P4",
   "paperName": "Mechanics",
   "status": "premium",
-  "summary": "9709 P4 — work, energy, power, and conservation principles with PhET Energy Skate Park.",
-  "durationMin": 20,
+  "summary": "This lesson introduces the fundamental concepts of energy, work, and power in mechanics. It covers the definitions and calculations of work done, kinetic energy (KE), and gravitational potential energy (GPE). You will learn to apply the work-energy principle and the principle of conservation of energy to solve problems, including those with non-conservative forces like friction. Finally, the concept of power as the rate of energy transfer is explored, along with its relationship to force and velocity.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Calculate work done by a force and use W = Fs cos θ.",
-    "Apply conservation of mechanical energy.",
-    "Use KE = ½mv² and GPE = mgh.",
-    "Define power as rate of work done: P = W/t = Fv."
+    "Understand and use the concept of work done by a force, including calculation using $W = Fd \\cos \\theta$.",
+    "Understand and use the formulae for kinetic energy ($KE = \\frac{1}{2}mv^2$) and gravitational potential energy ($GPE = mgh$).",
+    "Apply the work-energy principle and the principle of conservation of energy to solve problems involving changes in speed and height.",
+    "Understand and use the concept of power as the rate at which work is done, using both $P = W/t$ and $P = Fv$."
   ],
   "simpleExplanation": {
-    "title": "Energy swaps, work transfers",
-    "summary": "Work done transfers energy. On frictionless tracks, kinetic and potential energy interchange but total mechanical energy stays constant.",
+    "title": "From Pushing to Power",
+    "summary": "This topic connects the force you apply to an object with the energy it gains and how quickly that energy is transferred. We'll explore how pushing a box (doing work) gives it speed (kinetic energy) or height (potential energy), and how doing this quickly requires more power.",
+    "analogy": "Imagine pushing a shopping trolley. The effort you put in is 'work'. If you push it harder or for longer, it goes faster, gaining 'kinetic energy'. If you push it up a ramp, it gains height and 'potential energy'. 'Power' is how quickly you do this pushing – sprinting up the ramp with the trolley requires more power than walking, even though the trolley gains the same height.",
     "steps": [
-      "Work = force × displacement in direction of force.",
-      "Energy conservation: initial KE + GPE = final KE + GPE (no friction).",
-      "Power measures how fast work is done — same work, less time → more power.",
-      "Efficiency = useful output / total input × 100%."
+      "Work is done when a force causes displacement. It's calculated as the force component in the direction of motion multiplied by the distance moved: $W = Fs \\cos \\theta$.",
+      "Energy comes in two main forms for mechanics: kinetic energy ($KE = \\frac{1}{2}mv^2$) from motion, and gravitational potential energy ($GPE = mgh$) from height.",
+      "Power is the rate at which work is done or energy is transferred. It can be found by dividing work by time ($P = W/t$) or by multiplying force by velocity ($P = Fv$).",
+      "The principle of conservation of energy states that in a system with no external non-conservative forces like friction, the total mechanical energy (KE + GPE) remains constant."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the definition of 'work done' by a constant force?",
+      "back": "Work done is the product of the magnitude of the force and the distance moved in the direction of the force. Formula: $W = Fd \\cos \\theta$."
+    },
+    {
+      "front": "What are the SI units for work, energy, and power?",
+      "back": "Work and Energy: Joules (J). Power: Watts (W). Note that 1 J = 1 Nm and 1 W = 1 J/s."
+    },
+    {
+      "front": "When is the work done by a force equal to zero?",
+      "back": "When the force is perpendicular to the direction of motion (since $\\cos 90^\\circ = 0$), or if there is no displacement ($d=0$)."
+    },
+    {
+      "front": "State the formula for Kinetic Energy (KE).",
+      "back": "$KE = \\frac{1}{2}mv^2$, where $m$ is the mass in kg and $v$ is the speed in m/s."
+    },
+    {
+      "front": "State the formula for Gravitational Potential Energy (GPE).",
+      "back": "$GPE = mgh$, where $m$ is mass (kg), $g$ is acceleration due to gravity (m/s²), and $h$ is the vertical height gain (m)."
+    },
+    {
+      "front": "What is the Work-Energy Principle?",
+      "back": "The net work done on an object by all forces (including non-conservative ones like friction) is equal to the change in its kinetic energy. $W_{net} = \\Delta KE = KE_{final} - KE_{initial}$."
+    },
+    {
+      "front": "What is the Principle of Conservation of Mechanical Energy?",
+      "back": "In a system where only conservative forces (like gravity) do work, the total mechanical energy (KE + GPE) is constant. $KE_i + GPE_i = KE_f + GPE_f$."
+    },
+    {
+      "front": "What is the definition of 'power'?",
+      "back": "Power is the rate at which work is done or the rate at which energy is transferred. $P = \\frac{dW}{dt}$."
+    },
+    {
+      "front": "How is power related to driving force and velocity?",
+      "back": "For an object moving at an instantaneous velocity $v$ due to a driving force $F$, the instantaneous power developed by that force is $P = Fv$."
+    },
+    {
+      "front": "A common exam trap is using the wrong force in $P=Fv$. Which force must be used?",
+      "back": "$F$ must be the driving force (or tractive force) that is causing the motion at velocity $v$. It is NOT the resultant force. If velocity is constant, this driving force equals the total resistance."
+    },
+    {
+      "front": "What does it mean if the work done by a force is negative?",
+      "back": "It means the force has a component that opposes the direction of motion. For example, the work done by friction is always negative, as it removes mechanical energy from the system (usually as heat)."
+    },
+    {
+      "front": "When calculating GPE change on a slope, what is the most common mistake?",
+      "back": "Using the distance along the slope instead of the vertical height change. Remember, $h$ in $mgh$ is always the vertical displacement."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can energy be negative?",
+      "a": "Kinetic energy ($KE = \\frac{1}{2}mv^2$) can never be negative, as mass and $v^2$ are always non-negative. Gravitational potential energy ($GPE = mgh$) can be negative if the object is below the chosen zero-level (e.g., in a ditch, if ground level is $h=0$). A change in energy, $\\Delta E$, can certainly be negative, which signifies that the system has lost energy."
+    },
+    {
+      "q": "What's the difference between 'work done by friction' and 'work done against friction'?",
+      "a": "They have the same magnitude but opposite signs. 'Work done by friction' is negative because the frictional force opposes the direction of motion; it represents energy removed from the system. 'Work done against friction' is positive, representing the energy that must be supplied by another force to overcome the frictional loss. In energy balance equations, you either subtract the 'work done by friction' from the initial energy, or you add the 'work done against friction' to the final energy side of the equation. For example: $E_i = E_f + W_{against friction}$."
+    },
+    {
+      "q": "In the formula $P=Fv$, is $v$ the average speed or instantaneous speed?",
+      "a": "It is the instantaneous speed. The formula gives the power being delivered at the specific moment in time when the object has speed $v$ and is being pushed by a driving force $F$. If the driving force and velocity are constant, then the power is also constant."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Energy methods** often provide faster solutions than kinematics on P4 — look for **conservation** opportunities before writing SUVAT equations."
+      "content": "In mechanics, we often analyse motion using forces. However, an alternative and often simpler approach is to use the concepts of energy and work. Think about lifting a heavy bag. You are doing 'work' against gravity, and the bag is gaining 'potential energy'. If you then drop it, this potential energy converts into 'kinetic energy' as it speeds up. 'Power' simply describes how quickly you do the work. This topic provides a powerful toolkit for solving a wide range of mechanics problems."
+    },
+    {
+      "type": "heading",
+      "content": "Work Done by a Force"
+    },
+    {
+      "type": "text",
+      "content": "In physics, 'work' has a very specific meaning. Work is done by a force when it causes an object to move a certain distance. Crucially, only the component of the force that acts in the direction of motion contributes to the work done. If you push a box horizontally, your entire force does work. If you pull it with a rope at an angle, only the horizontal component of your tension does work."
+    },
+    {
+      "type": "formula",
+      "content": "$$ W = Fd \\cos \\theta $$ Where $W$ is the work done in Joules (J), $F$ is the magnitude of the constant force in Newtons (N), $d$ is the magnitude of the displacement in metres (m), and $\\theta$ is the angle between the force vector and the displacement vector."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The SI unit for work is the Joule (J), which is equivalent to a Newton-metre (Nm).",
+        "Work is a scalar quantity, not a vector.",
+        "Work done is positive if the force helps the motion ($0^\\circ \\le \\theta < 90^\\circ$).",
+        "Work done is negative if the force opposes the motion ($90^\\circ < \\theta \\le 180^\\circ$). For example, work done by friction.",
+        "Work done is zero if the force is perpendicular to the motion ($\\theta = 90^\\circ$). For example, the normal contact force on an object moving on a horizontal surface."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Energy: The Capacity to Do Work"
+    },
+    {
+      "type": "text",
+      "content": "Energy is the capacity to do work. In A-Level Mechanics, we are primarily concerned with two types of mechanical energy: Kinetic Energy and Gravitational Potential Energy."
+    },
+    {
+      "type": "formula",
+      "content": "Kinetic Energy (KE): The energy an object possesses due to its motion. $$ KE = \\frac{1}{2}mv^2 $$ Gravitational Potential Energy (GPE): The energy an object possesses due to its position in a gravitational field, relative to a reference level. $$ GPE = mgh $$"
+    },
+    {
+      "type": "text",
+      "content": "For GPE, $h$ is the vertical height above a chosen 'zero' level. The choice of this zero level is arbitrary, but you must be consistent throughout a problem. Often, the lowest point in the object's motion is the most convenient choice for $h=0$."
+    },
+    {
+      "type": "heading",
+      "content": "The Work-Energy Principle and Conservation of Energy"
+    },
+    {
+      "type": "text",
+      "content": "These principles connect work and energy. The most general form is the Work-Energy Principle: the total work done by all forces on an object equals the change in its kinetic energy. A special, very useful case is the Principle of Conservation of Mechanical Energy. This applies when there are no non-conservative forces doing work (like friction or air resistance) and no external driving forces. In such cases, energy simply converts between kinetic and potential forms, but the total amount (KE + GPE) remains constant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "General Principle (Work-Energy): $W_{driving} - W_{friction} = \\Delta KE + \\Delta GPE$. This can be written as: Initial Energy + Work Done by Driving Forces = Final Energy + Work Done Against Resistive Forces.",
+        "Conservation of Energy (no friction/driving force): $KE_{initial} + GPE_{initial} = KE_{final} + GPE_{final}$."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "A 2 kg object falls from rest through 5 m. Find speed just before impact (g = 9.8).",
-      "solution": "mgh = ½mv² → v² = 2gh = 2 × 9.8 × 5 = 98\n\nv = **9.9 m s⁻¹**"
+      "question": "A box of mass 10 kg is released from rest at the top of a rough slope of length 5 m, inclined at $30^\\circ$ to the horizontal. The coefficient of friction between the box and the slope is 0.2. Find the speed of the box at the bottom of the slope. (Use $g = 9.8$ m/s²).",
+      "solution": "We will use the work-energy principle. Let the initial position be at the top of the slope and the final position be at the bottom.\n\n1.  **Calculate Initial Energy:**\nThe box is at rest, so $KE_i = 0$. \nThe vertical height $h = 5 \\sin 30^\\circ = 2.5$ m. \n$GPE_i = mgh = 10 \\times 9.8 \\times 2.5 = 245$ J.\nTotal initial energy $E_i = 245$ J.\n\n2.  **Calculate Final Energy:**\nAt the bottom, we define the height as zero, so $GPE_f = 0$.\nLet the final speed be $v$. $KE_f = \\frac{1}{2}mv^2 = \\frac{1}{2}(10)v^2 = 5v^2$.\nTotal final energy $E_f = 5v^2$.\n\n3.  **Calculate Work Done Against Friction:**\nFirst, find the normal reaction force, $R$. Resolving perpendicular to the slope: $R = mg \\cos 30^\\circ = 10 \\times 9.8 \\times \\frac{\\sqrt{3}}{2} = 49\\sqrt{3}$ N.\nThe frictional force is $F_f = \\mu R = 0.2 \\times 49\\sqrt{3} \\approx 16.974$ N.\nThe work done against friction over the distance of the slope (5 m) is $W_f = F_f \\times d = 16.974 \\times 5 \\approx 84.87$ J. This is energy lost from the system.\n\n4.  **Apply the Energy Principle:**\nInitial Energy = Final Energy + Work Done Against Friction\n$E_i = E_f + W_f$\n$245 = 5v^2 + 84.87$\n$5v^2 = 245 - 84.87 = 160.13$\n$v^2 = \\frac{160.13}{5} = 32.026$\n$v = \\sqrt{32.026} \\approx 5.66$ m/s (3 s.f.)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a clear diagram and mark on all forces. When using the energy principle, clearly state your initial and final points and your chosen zero level for GPE. Be meticulous with your energy accounting: Initial Energy + Work In = Final Energy + Work Out."
+    },
+    {
+      "type": "heading",
+      "content": "Power"
+    },
+    {
+      "type": "text",
+      "content": "Power is the rate at which work is done. A powerful engine can do a lot of work in a short amount of time. The SI unit of power is the Watt (W), where 1 Watt is equal to 1 Joule per second (1 W = 1 J/s). For vehicles, power is often quoted in kilowatts (kW) or horsepower (hp)."
+    },
+    {
+      "type": "formula",
+      "content": "Average Power: $$ P_{avg} = \\frac{\\text{Work Done}}{\\text{Time Taken}} = \\frac{W}{t} $$ Instantaneous Power: $$ P = Fv $$ Where $F$ is the driving force and $v$ is the instantaneous velocity. This second formula is extremely useful for problems involving vehicles with a constant power output."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "In the formula $P=Fv$, $F$ is the tractive or driving force provided by the engine.",
+        "At maximum speed, acceleration is zero. This means the driving force equals the total resistive forces. You can use this fact with $P=Fv$ to find the maximum speed.",
+        "If a vehicle moves up an incline, the resistance includes not only friction/air resistance but also the component of the vehicle's weight acting down the slope ($mg \\sin \\theta$)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A car of mass 1200 kg travels along a straight horizontal road. The engine works at a constant rate of 30 kW. The resistance to motion is constant at 500 N.\n(a) Find the acceleration of the car when its speed is 20 m/s.\n(b) Find the maximum speed of the car.",
+      "solution": "(a) **Finding acceleration at v = 20 m/s:**\n1.  **Convert Power:** Power $P = 30 \\text{ kW} = 30000$ W.\n2.  **Find Driving Force:** Use $P = F_D v$, where $F_D$ is the driving force.\n$30000 = F_D \\times 20$\n$F_D = \\frac{30000}{20} = 1500$ N.\n3.  **Find Resultant Force:** The road is horizontal. Resultant Force = Driving Force - Resistance.\n$F_{net} = 1500 - 500 = 1000$ N.\n4.  **Apply Newton's Second Law:** $F_{net} = ma$.\n$1000 = 1200a$\n$a = \\frac{1000}{1200} = \\frac{5}{6} \\approx 0.833$ m/s² (3 s.f.).\n\n(b) **Finding maximum speed:**\n1.  **Condition for Maximum Speed:** Maximum speed ($v_{max}$) is reached when acceleration is 0. This means the resultant force is 0.\n2.  **Equate Forces:** At maximum speed, Driving Force = Resistance.\n$F_D = 500$ N.\n3.  **Use Power Formula:** Use $P = F_D v_{max}$ with the constant power output.\n$30000 = 500 \\times v_{max}$\n$v_{max} = \\frac{30000}{500} = 60$ m/s."
     },
     {
       "type": "practice",
-      "label": "Mark an energy question",
+      "label": "Test Your Understanding",
       "href": "/mark?subject=9709&topic=4.5"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 course index",
-          "href": "/courses/9709"
+          "label": "PhET Simulation: Energy Skate Park",
+          "href": "https://phet.colorado.edu/en/simulations/energy-skate-park-basics"
+        },
+        {
+          "label": "Khan Academy: Work and Energy",
+          "href": "https://www.khanacademy.org/science/physics/work-and-energy"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

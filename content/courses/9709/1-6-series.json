@@ -5,54 +5,186 @@
   "paper": "P1",
   "paperName": "Pure Mathematics 1",
   "status": "premium",
-  "summary": "9709 P1 series — binomial expansion, arithmetic and geometric progressions, and sums with PhET Expression Exchange.",
-  "durationMin": 24,
+  "summary": "This lesson covers arithmetic and geometric series, including formulae for the n-th term and the sum of n terms. It also introduces the sum to infinity for a convergent geometric series and the binomial expansion for any rational index, a crucial tool for approximations.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Expand (1 + x)ⁿ for positive integer n and use the binomial coefficients.",
-    "Find nth term and sum of arithmetic and geometric series.",
-    "Apply sum to infinity for |r| < 1.",
-    "Solve problems in context (e.g. compound interest as GP)."
+    "Understand and use the binomial expansion of (1+x)ⁿ for any rational n and |x|<1.",
+    "Recognise and work with arithmetic progressions, using formulae for the n-th term and the sum of n terms.",
+    "Recognise and work with geometric progressions, using formulae for the n-th term and the sum of n terms.",
+    "Understand convergence for a geometric series and use the formula for the sum to infinity."
   ],
   "simpleExplanation": {
-    "title": "Patterns in sequences",
-    "summary": "Arithmetic series add a constant difference; geometric series multiply by a constant ratio. Binomial expansion gives coefficients for (a + b)ⁿ.",
+    "title": "Building with Patterns",
+    "summary": "A series is simply the sum of the terms in a sequence. We'll explore two main types: arithmetic (adding a constant amount) and geometric (multiplying by a constant amount), and learn powerful shortcuts to calculate their sums.",
+    "analogy": "Imagine two savings plans. Plan A (Arithmetic) is adding a fixed £10 to your piggy bank every week. Plan B (Geometric) is a bank account where your money grows by 1% each month. The first plan grows steadily, while the second grows exponentially. Series formulae help us calculate the total saved after any number of weeks or months without adding it all up manually.",
     "steps": [
-      "AP: u_n = a + (n−1)d; sum S_n = n/2(2a + (n−1)d) or n/2(a + l).",
-      "GP: u_n = ar^(n−1); sum S_n = a(1−r^n)/(1−r); S_∞ = a/(1−r) if |r| < 1.",
-      "Binomial: (1+x)ⁿ = 1 + nx + n(n−1)x²/2! + … for integer n.",
-      "Identify a and r (or a and d) before choosing the formula."
+      "Binomial expansion: (1 + x)ⁿ for |x| < 1 when n is not a positive integer.",
+      "Arithmetic series: u_n = a + (n−1)d; sum S_n = n/2(2a + (n−1)d).",
+      "Geometric series: u_n = ar^(n−1); sum S_n = a(1−r^n)/(1−r) for r ≠ 1.",
+      "Sum to infinity exists when |r| < 1: S_∞ = a/(1−r)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the difference between a sequence and a series?",
+      "back": "A sequence is a list of numbers in a specific order (e.g., 2, 4, 6, 8). A series is the sum of the terms of a sequence (e.g., 2 + 4 + 6 + 8)."
+    },
+    {
+      "front": "What is the formula for the n-th term of an Arithmetic Progression (AP)?",
+      "back": "$u_n = a + (n-1)d$, where $a$ is the first term and $d$ is the common difference."
+    },
+    {
+      "front": "What are the two formulae for the sum of the first n terms of an AP?",
+      "back": "$S_n = \\frac{n}{2}(2a + (n-1)d)$ or $S_n = \\frac{n}{2}(a+l)$, where $l$ is the last term."
+    },
+    {
+      "front": "What is the formula for the n-th term of a Geometric Progression (GP)?",
+      "back": "$u_n = ar^{n-1}$, where $a$ is the first term and $r$ is the common ratio."
+    },
+    {
+      "front": "What is the formula for the sum of the first n terms of a GP?",
+      "back": "$S_n = \\frac{a(1-r^n)}{1-r}$ or $S_n = \\frac{a(r^n-1)}{r-1}$, where $r \\neq 1$."
+    },
+    {
+      "front": "What is the condition for a geometric series to converge (have a finite sum to infinity)?",
+      "back": "The common ratio $r$ must satisfy $|r| < 1$, which is the same as $-1 < r < 1$."
+    },
+    {
+      "front": "What is the formula for the sum to infinity of a convergent geometric series?",
+      "back": "$S_\\infty = \\frac{a}{1-r}$, valid only for $|r| < 1$."
+    },
+    {
+      "front": "What is the binomial expansion for $(1+x)^n$ where $n$ is any rational number?",
+      "back": "$(1+x)^n = 1 + nx + \\frac{n(n-1)}{2!}x^2 + \\frac{n(n-1)(n-2)}{3!}x^3 + \\dots$"
+    },
+    {
+      "front": "What is the condition on $x$ for the binomial expansion of $(1+x)^n$ to be valid when $n$ is not a positive integer?",
+      "back": "The expansion is valid for $|x| < 1$."
+    },
+    {
+      "front": "Common Trap: What must you do before expanding $(a+bx)^n$ using the standard binomial formula?",
+      "back": "You must first factor out $a$ to get it into the form $a^n(1 + \\frac{b}{a}x)^n$. The expansion is then valid for $|\\frac{b}{a}x| < 1$."
+    },
+    {
+      "front": "Common Trap: A question asks for the set of values for which a GP converges. What is the answer?",
+      "back": "You must solve the inequality $|r| < 1$ for the variable in the expression for $r$. For example, if $r = (x-1)$, then $|x-1|<1 \\implies -1 < x-1 < 1 \\implies 0 < x < 2$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a sequence and a series?",
+      "a": "A sequence is an ordered list of numbers, like $u_1, u_2, u_3, \\dots$. A series is the sum of the terms in a sequence, like $u_1 + u_2 + u_3 + \\dots$. Cambridge questions often use 'progression' and 'sequence' interchangeably."
+    },
+    {
+      "q": "When do I use $S_n = \\frac{a(1-r^n)}{1-r}$ versus $S_n = \\frac{a(r^n-1)}{r-1}$?",
+      "a": "Both formulae are correct and will give the same answer. However, to make calculations easier and avoid negative signs, it's conventional to use $S_n = \\frac{a(1-r^n)}{1-r}$ when $|r|<1$ and $S_n = \\frac{a(r^n-1)}{r-1}$ when $|r|>1$."
+    },
+    {
+      "q": "Why is the binomial expansion only valid for $|x|<1$ when n is not a positive integer?",
+      "a": "When $n$ is not a positive integer, the expansion is an infinite series. For the sum of this series to converge to a finite value (equal to $(1+x)^n$), the terms must get smaller and smaller. This only happens if $|x|<1$. If $|x| \\ge 1$, the terms get larger or stay the same size, and the sum diverges (goes to infinity)."
+    },
+    {
+      "q": "How can I tell if a problem involves an AP or a GP?",
+      "a": "Look for keywords. 'Common difference' implies an AP. 'Common ratio' implies a GP. If you're given three consecutive terms, say $x, y, z$: for an AP, $y-x = z-y$ (or $2y = x+z$); for a GP, $y/x = z/y$ (or $y^2 = xz$)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Series** questions on P1 mix **recognition** (AP vs GP) with **algebra**. Binomial expansion links to **probability** on P5 — learn nCr notation early."
+      "content": "Welcome to the study of series. This topic builds on your knowledge of sequences by exploring how to sum their terms. We will cover the two most important types of progressions, arithmetic and geometric, and learn the formulae to efficiently manage them. We will also extend our knowledge of the binomial theorem to cover non-integer powers, a powerful tool for approximation."
+    },
+    {
+      "type": "heading",
+      "content": "Binomial Expansion for any Rational Index"
+    },
+    {
+      "type": "text",
+      "content": "Previously, you learned to expand $(a+b)^n$ for a positive integer $n$. Now we extend this to cases where $n$ can be any rational number (e.g., negative integers or fractions). This new expansion is an infinite series and is only valid for a specific range of values."
+    },
+    {
+      "type": "formula",
+      "content": "For any rational $n$, and for $|x|<1$:\n\n$(1+x)^n = 1 + nx + \\frac{n(n-1)}{2!}x^2 + \\frac{n(n-1)(n-2)}{3!}x^3 + \\dots$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This formula only works when the first term in the bracket is 1.",
+        "To expand $(a+bx)^n$, you must first write it as $a^n(1+\\frac{b}{a}x)^n$.",
+        "The expansion is an infinite series, so questions will ask for the first few terms.",
+        "The validity condition is crucial: for $(1+kx)^n$, the expansion is valid when $|kx|<1$, or $|x| < \\frac{1}{|k|}$."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Sum to infinity of 12 + 6 + 3 + …",
-      "solution": "GP: a = 12, r = 1/2.\n\n| r | < 1 → S_∞ = a/(1−r) = 12/(1 − 1/2) = **24**"
+      "question": "i) Find the first three terms in the expansion of $\\sqrt{1-4x}$ in ascending powers of $x$.\n\nii) State the range of values of $x$ for which the expansion is valid.",
+      "solution": "i) First, rewrite the expression in index form:\n$\\sqrt{1-4x} = (1-4x)^{1/2}$.\nThis is in the form $(1+y)^n$ with $y = -4x$ and $n = \\frac{1}{2}$.\n\nUsing the binomial expansion formula $1 + ny + \\frac{n(n-1)}{2!}y^2 + \\dots$:\n\n$= 1 + (\\frac{1}{2})(-4x) + \\frac{(\\frac{1}{2})(\\frac{1}{2}-1)}{2!}(-4x)^2 + \\dots$\n\n$= 1 - 2x + \\frac{(\\frac{1}{2})(-\\frac{1}{2})}{2}(16x^2) + \\dots$\n\n$= 1 - 2x + \\frac{-\\frac{1}{4}}{2}(16x^2) + \\dots$\n\n$= 1 - 2x - \\frac{1}{8}(16x^2) + \\dots$\n\n$= 1 - 2x - 2x^2 + \\dots$\n\nii) The expansion is valid when $|-4x| < 1$.\n$4|x| < 1$\n$|x| < \\frac{1}{4}$.\nThis can also be written as $-\\frac{1}{4} < x < \\frac{1}{4}$."
+    },
+    {
+      "type": "heading",
+      "content": "Arithmetic Progressions (AP)"
+    },
+    {
+      "type": "text",
+      "content": "An arithmetic progression is a sequence where each term after the first is found by adding a constant, called the common difference ($d$), to the previous term. For example, 5, 8, 11, 14, ... is an AP with first term $a=5$ and common difference $d=3$."
+    },
+    {
+      "type": "formula",
+      "content": "n-th term: $u_n = a + (n-1)d$\n\nSum of first n terms: $S_n = \\frac{n}{2}(2a + (n-1)d) = \\frac{n}{2}(a+l)$"
+    },
+    {
+      "type": "heading",
+      "content": "Geometric Progressions (GP)"
+    },
+    {
+      "type": "text",
+      "content": "A geometric progression is a sequence where each term after the first is found by multiplying the previous term by a constant, called the common ratio ($r$). For example, 3, 6, 12, 24, ... is a GP with first term $a=3$ and common ratio $r=2$."
+    },
+    {
+      "type": "formula",
+      "content": "n-th term: $u_n = ar^{n-1}$\n\nSum of first n terms: $S_n = \\frac{a(1-r^n)}{1-r}$ for $r \\neq 1$"
+    },
+    {
+      "type": "text",
+      "content": "The sum formula can also be written as $S_n = \\frac{a(r^n-1)}{r-1}$. This form is often more convenient to use when $|r|>1$ as it avoids working with negative numbers in the numerator and denominator, but both forms are mathematically equivalent."
+    },
+    {
+      "type": "heading",
+      "content": "Sum to Infinity of a Geometric Progression"
+    },
+    {
+      "type": "text",
+      "content": "If the common ratio $r$ has a magnitude less than 1 (i.e., $-1 < r < 1$), the terms of the GP get progressively smaller. As you add more and more terms, the sum approaches a specific finite value. This is called the 'sum to infinity'. If $|r| \\ge 1$, the sum does not converge and the sum to infinity does not exist."
+    },
+    {
+      "type": "formula",
+      "content": "Sum to infinity: $S_\\infty = \\frac{a}{1-r}$, valid only for $|r|<1$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The second term of a geometric progression is 12 and its sum to infinity is 50. The common ratio is positive. Find the first term of the progression.",
+      "solution": "Let the first term be $a$ and the common ratio be $r$.\n\nWe are given:\nThe second term is 12: $u_2 = ar = 12$  (Equation 1)\nThe sum to infinity is 50: $S_\\infty = \\frac{a}{1-r} = 50$ (Equation 2)\n\nFrom Equation 1, we can express $a$ in terms of $r$: $a = \\frac{12}{r}$.\n\nSubstitute this expression for $a$ into Equation 2:\n$\\frac{12/r}{1-r} = 50$\n\nNow, solve for $r$:\n$12 = 50r(1-r)$\n$12 = 50r - 50r^2$\n$50r^2 - 50r + 12 = 0$\nDivide by 2 to simplify:\n$25r^2 - 25r + 6 = 0$\n\nThis is a quadratic equation in $r$. We can factorise it:\n$(5r-2)(5r-3) = 0$\nSo, $r = \\frac{2}{5}$ or $r = \\frac{3}{5}$.\n\nBoth values of $r$ are positive and satisfy the condition $|r|<1$ for the sum to infinity to exist.\n\nCase 1: $r = \\frac{2}{5}$\n$a = \\frac{12}{r} = \\frac{12}{2/5} = 12 \\times \\frac{5}{2} = 30$.\n\nCase 2: $r = \\frac{3}{5}$\n$a = \\frac{12}{r} = \\frac{12}{3/5} = 12 \\times \\frac{5}{3} = 20$.\n\nThe question asks for the first term, and we have found two possible values.\n\nThe possible values for the first term are 20 and 30."
     },
     {
       "type": "examTip",
-      "content": "For binomial expansion of (2 + 3x)⁵, factor **2⁵** first: 2⁵(1 + 3x/2)⁵, then expand the bracket — Cambridge sets this trap every year."
+      "content": "In exam questions, you'll often need to solve simultaneous equations involving the formulae for terms and sums. Be methodical. Write down the formulae you are using and substitute the given information carefully. Also, always check the validity condition for sums to infinity ($|r|<1$) and binomial expansions."
     },
     {
       "type": "practice",
-      "label": "Mark a series question",
+      "label": "Practice Questions on Series",
       "href": "/mark?subject=9709&topic=1.6"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 course index",
-          "href": "/courses/9709"
+          "label": "Cambridge International A-Level Mathematics 9709 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

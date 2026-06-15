@@ -5,50 +5,200 @@
   "paper": "P1",
   "paperName": "Theory Fundamentals",
   "status": "premium",
-  "summary": "9618 AS assembly — instruction formats, registers, addressing modes, and trace tables for simple programs.",
-  "durationMin": 24,
+  "summary": "An introduction to assembly language, a low-level programming language that provides a human-readable interface to a computer's machine code. This lesson covers its fundamental concepts, the role of the assembler, the standard instruction set, addressing modes, and how to trace assembly programs, all aligned with the Cambridge A-Level syllabus.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Describe the purpose of assembly language.",
-    "Interpret simple assembly instructions (LDR, STR, ADD, CMP, BNE).",
-    "Trace register and memory changes step by step.",
-    "Compare assembly with high-level languages."
+    "Understand the relationship between assembly language and machine code, and the role of an assembler.",
+    "Describe and use the standard Cambridge A-Level instruction set for data movement, arithmetic, and branching.",
+    "Explain and apply different addressing modes: immediate, direct, and indexed.",
+    "Trace the execution of short assembly language programs to determine their function and final state."
   ],
   "simpleExplanation": {
-    "title": "One step above machine code",
-    "summary": "Assembly uses mnemonics for opcodes. Each instruction maps closely to CPU operations — load, store, arithmetic, branch.",
+    "title": "From Human to Hardware",
+    "summary": "Assembly language acts as a bridge between human-readable instructions and the raw binary code a CPU understands. An assembler translates these simple commands, called mnemonics, directly into machine code for the processor to execute.",
+    "analogy": "Imagine you're instructing a robot chef. A high-level language is like saying, 'Bake a cake.' Assembly language is the detailed, step-by-step recipe: 'Pick up egg. Crack egg into bowl. Pick up whisk. Whisk for 30 seconds.' Each command corresponds to one specific, basic action the robot can perform.",
     "steps": [
-      "LDR R1, [address] — load from memory to register.",
-      "STR R1, [address] — store register to memory.",
-      "CMP R1, #n then BNE label — conditional branch.",
-      "Trace table: PC, registers, flags after each line."
+      "Assembly uses mnemonics readable by humans (LDR, ADD, STR).",
+      "An assembler translates each mnemonic to a machine code opcode (1:1).",
+      "Special registers like the Accumulator (ACC), Index Register (IX), and Program Counter (PC) manage data and program flow.",
+      "The Fetch-Decode-Execute cycle runs each instruction, directly controlling the CPU."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Mnemonic",
+      "back": "A short, memorable abbreviation for an assembly language instruction, representing a machine operation. For example, `LDR` for 'Load Register'."
+    },
+    {
+      "front": "Opcode (Operation Code)",
+      "back": "The portion of a machine code instruction that specifies the operation to be performed by the CPU. It's the binary equivalent of a mnemonic."
+    },
+    {
+      "front": "Operand",
+      "back": "The part of an instruction that specifies the data to be operated on or the address of that data. It follows the opcode."
+    },
+    {
+      "front": "Assembler",
+      "back": "A system software program that translates assembly language source code into machine code (object code). It maintains a one-to-one correspondence between assembly instructions and machine instructions."
+    },
+    {
+      "front": "Accumulator (ACC)",
+      "back": "A special-purpose register within the CPU where intermediate results of arithmetic and logic operations are temporarily stored."
+    },
+    {
+      "front": "Index Register (IX)",
+      "back": "A CPU register used for modifying operand addresses during the run of a program, typically for accessing elements in an array or data structure. It's key for indexed addressing."
+    },
+    {
+      "front": "Program Counter (PC)",
+      "back": "A register that holds the memory address of the next instruction to be fetched. It automatically increments after an instruction is fetched, ensuring sequential execution unless a jump instruction alters it."
+    },
+    {
+      "front": "Immediate Addressing",
+      "back": "An addressing mode where the operand is the actual value to be used in the operation. In the Cambridge syllabus, this is denoted by a '#' symbol, e.g., `ADD #5` adds the value 5 to the Accumulator."
+    },
+    {
+      "front": "Direct Addressing",
+      "back": "An addressing mode where the operand is the memory address of the data to be used. E.g., `LDR 250` loads the value *from* memory location 250 into the Accumulator."
+    },
+    {
+      "front": "Indexed Addressing",
+      "back": "An addressing mode where the effective memory address is calculated by adding the contents of the Index Register (IX) to a base address specified in the instruction. E.g., `LDR 200,X` loads from address `200 + [contents of IX]`."
+    },
+    {
+      "front": "Symbolic Addressing",
+      "back": "Using a label (a symbol like `LOOP` or `DATA_START`) to represent a memory address. The assembler resolves these labels into actual numeric addresses during the assembly process."
+    },
+    {
+      "front": "Common Exam Trap: Immediate vs Direct",
+      "back": "Do not confuse `LDM #100` (load the number 100 into the ACC) with `LDR 100` (load the contents of memory address 100 into the ACC). The '#' makes all the difference."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we learn assembly language when high-level languages are so much easier to use?",
+      "a": "Learning assembly language provides a fundamental understanding of computer architecture. It reveals how the CPU, memory, and registers work together. This knowledge is crucial for performance-critical applications like device drivers, embedded systems, and real-time computing, where direct hardware control is necessary."
+    },
+    {
+      "q": "Is assembly language the same for all computers?",
+      "a": "No, it is not. Assembly language is architecture-specific. An assembly program written for an Intel x86 processor will not run on an ARM processor (found in most smartphones) because they have different instruction sets, registers, and architectures. This is why assembly language is not considered 'portable'."
+    },
+    {
+      "q": "What is the difference between an opcode and an operand?",
+      "a": "The opcode (operation code) is the instruction itself—it tells the CPU *what* to do (e.g., ADD, LDR, JMP). The operand is the data or memory address that the instruction operates on—it tells the CPU *what to do it with* (e.g., the value #5 or the address 250)."
+    },
+    {
+      "q": "What is a 'two-pass assembler' and why is it needed?",
+      "a": "A two-pass assembler reads the assembly code twice. It's needed to handle 'forward references'—when an instruction jumps to a label that hasn't been defined yet. On the first pass, it builds a symbol table of all labels and their addresses. On the second pass, it uses this completed table to translate all instructions, including the forward jumps, into machine code."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Assembly language** (4.2) links to **CPU architecture** (4.1). Paper 1 sets **trace tables** — work line by line, do not skip flag updates."
+      "content": "Welcome to the world of low-level programming. While high-level languages like Python or Java offer abstraction and readability, assembly language takes us one step closer to the hardware. It's the most direct way for a human to write instructions for a computer's Central Processing Unit (CPU). Understanding assembly is fundamental to understanding how a computer truly operates at its core."
+    },
+    {
+      "type": "heading",
+      "content": "What is Assembly Language?"
+    },
+    {
+      "type": "text",
+      "content": "Assembly language is a low-level programming language specific to a particular computer architecture. Unlike machine code, which consists of binary or hexadecimal digits, assembly language uses human-readable abbreviations called **mnemonics** to represent fundamental CPU operations. For example, instead of remembering the binary code `01101011`, a programmer can write `ADD`.\n\nThe key characteristic of assembly language is its **one-to-one correspondence** with machine code. Each assembly instruction translates directly into a single machine code instruction. This provides direct control over the hardware, including the CPU registers and memory locations, but makes the code less portable than high-level languages."
+    },
+    {
+      "type": "heading",
+      "content": "The Assembler: From Mnemonic to Machine Code"
+    },
+    {
+      "type": "text",
+      "content": "An **assembler** is a utility program that translates assembly language source code into executable machine code, known as object code. This process is much simpler than the compilation of a high-level language because of the one-to-one mapping. The assembler's main job is to substitute mnemonics with their corresponding opcodes and resolve symbolic addresses (labels) into actual memory addresses.\n\nMany assemblers perform a 'two-pass' process. In the first pass, the assembler reads the source code to build a symbol table, which lists all the labels and their corresponding memory addresses. In the second pass, it uses this table to translate the instructions and operands into machine code, generating the final object file."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Translates mnemonic opcodes into their machine code equivalents.",
+        "Translates symbolic addresses (labels) into absolute memory addresses.",
+        "Converts data constants into their internal machine representation.",
+        "Writes the resulting object code and an assembly listing."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Cambridge A-Level Instruction Set"
+    },
+    {
+      "type": "text",
+      "content": "For your exam, you need to be familiar with a specific set of assembly instructions. These can be grouped by their function:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Data Transfer:** Move data between registers and memory. (`LDR`, `LDM`, `LDI`, `LDX`, `STO`)",
+        "**Arithmetic Operations:** Perform calculations. (`ADD`, `INC`)",
+        "**Comparison:** Compare the value in the Accumulator with an operand. (`CMP`) This sets flags for conditional jumps.",
+        "**Conditional Jumps:** Jump to a different part of the program if a condition is met. (`JPE`, `JPN`, `JMP`)",
+        "**Input/Output:** Read data from an input device or write data to an output device. (`IN`, `OUT`)"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "You are not expected to memorise the binary opcodes for instructions. The exam will always provide the necessary instruction set. Your task is to understand what each instruction does and be able to trace the execution of a program step-by-step, tracking the contents of registers (ACC, IX) and memory."
+    },
+    {
+      "type": "heading",
+      "content": "Addressing Modes: Finding the Data"
+    },
+    {
+      "type": "text",
+      "content": "An addressing mode specifies how the operand of an instruction is interpreted. The Cambridge syllabus focuses on three main types:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Immediate Addressing (`#`):** The operand is the actual value. `ADD #15` means 'add the number 15 to the Accumulator'.",
+        "**Direct Addressing:** The operand is a memory address. `ADD 15` means 'go to memory address 15, get the value stored there, and add that value to the Accumulator'.",
+        "**Indexed Addressing (`,X`):** The effective address is found by adding the contents of the Index Register (IX) to a base address. `LDR 200,X` means 'load the value from memory address (200 + value in IX)'. This is extremely useful for processing arrays."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Effective\\ Address_{Indexed} = Base\\ Address + [IX]"
     },
     {
       "type": "workedExample",
-      "question": "After CMP R1, #5 followed by BNE loop when R1 = 5, is branch taken?",
-      "solution": "CMP sets flags comparing R1 − 5.\n\nR1 = 5 → result zero → Z flag set.\n\nBNE branches when **not equal** — Z clear.\n\n**Branch not taken** — fall through to next instruction."
+      "question": "Trace the following assembly program. Assume memory is initially all zeros. What is the final value stored in memory location 502?",
+      "solution": "```\n// Program Code\nLDM #10     // Load the number 10 into the ACC\nADD #5      // Add the number 5 to the ACC\nSTO 502     // Store the ACC's content at address 502\nEND\n```\n\n**Trace Table:**\n\n| Step        | Instruction | ACC before | ACC after | Memory Changed |\n|-------------|-------------|------------|-----------|----------------|\n| 1           | LDM #10     | 0          | 10        | -              |\n| 2           | ADD #5      | 10         | 15        | -              |\n| 3           | STO 502     | 15         | 15        | M[502] = 15    |\n\n**Working:**\n1.  `LDM #10`: Immediate addressing. The value 10 is loaded directly into the Accumulator (ACC). ACC is now 10.\n2.  `ADD #5`: Immediate addressing. The value 5 is added to the current content of the ACC (10). ACC becomes 10 + 5 = 15.\n3.  `STO 502`: Direct addressing. The content of the ACC (15) is stored in the memory location with address 502.\n\n**Final Answer:** The final value stored in memory location 502 is **15**."
+    },
+    {
+      "type": "workedExample",
+      "question": "A program needs to find the largest number in a list of three numbers stored at memory addresses 200, 201, and 202. The values are: M[200]=7, M[201]=12, M[202]=5. Trace the program and state the final value in the Accumulator.",
+      "solution": "```\n// Program Code\nLDX #0        // Initialise Index Register to 0\nLDR 200,X     // Load first number into ACC\nLOOP: INC X   // Increment Index Register\n      CMP 200,X // Compare ACC with next number\n      JPE ENDLOOP // If equal, no change needed\n      JPN ENDLOOP // If ACC is greater, no change\n      LDR 200,X // If new number is greater, load it\nENDLOOP: CMP X,#2 // Have we checked all numbers?\n         JPN LOOP  // If IX < 2, loop again\nEND\n```\n\n**Initial State:** ACC=0, IX=0, M[200]=7, M[201]=12, M[202]=5\n\n**Trace Table:**\n\n| Instruction | IX before | ACC before | Comparison | IX after | ACC after | Notes |\n|-------------|-----------|------------|------------|----------|-----------|------------------------------------------------|\n| LDX #0      | 0         | 0          | -          | 0        | 0         | IX = 0 |\n| LDR 200,X   | 0         | 0          | -          | 0        | 7         | ACC = M[200+0] = 7 |\n| **LOOP 1**  |           |            |            |          |           | |\n| INC X       | 0         | 7          | -          | 1        | 7         | IX is now 1 |\n| CMP 200,X   | 1         | 7          | 7 vs 12    | 1        | 7         | Compare ACC(7) with M[201](12) |\n| JPE ENDLOOP | 1         | 7          | False      | 1        | 7         | Not equal, continue |\n| JPN ENDLOOP | 1         | 7          | False      | 1        | 7         | ACC is not greater, continue |\n| LDR 200,X   | 1         | 7          | -          | 1        | 12        | New number is larger, ACC = M[201] = 12 |\n| CMP X,#2    | 1         | 12         | 1 vs 2     | 1        | 12        | IX < 2, so loop again |\n| JPN LOOP    | 1         | 12         | True       | 1        | 12        | Jump to LOOP |\n| **LOOP 2**  |           |            |            |          |           | |\n| INC X       | 1         | 12         | -          | 2        | 12        | IX is now 2 |\n| CMP 200,X   | 2         | 12         | 12 vs 5    | 2        | 12        | Compare ACC(12) with M[202](5) |\n| JPE ENDLOOP | 2         | 12         | False      | 2        | 12        | Not equal, continue |\n| JPN ENDLOOP | 2         | 12         | True       | 2        | 12        | ACC is greater, jump to ENDLOOP |\n| CMP X,#2    | 2         | 12         | 2 vs 2     | 2        | 12        | IX is not less than 2 |\n| JPN LOOP    | 2         | 12         | False      | 2        | 12        | Do not jump, continue to END |\n\n**Final Answer:** The program terminates with the value **12** in the Accumulator."
     },
     {
       "type": "practice",
-      "label": "Mark an assembly language question",
+      "label": "Test Your Knowledge on Assembly Language",
       "href": "/mark?subject=9618&topic=4.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9618 course index",
-          "href": "/courses/9618"
+          "label": "Cambridge Syllabus (9618)",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-computer-science-9618/"
+        },
+        {
+          "label": "Peter Higginson's Little Man Computer Simulator",
+          "href": "https://peterhigginson.co.uk/LMC/"
+        },
+        {
+          "label": "Visual 6502 Assembler Simulator",
+          "href": "http://www.visual6502.org/JSSim/"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

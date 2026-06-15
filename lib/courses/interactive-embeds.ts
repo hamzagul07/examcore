@@ -455,13 +455,6 @@ export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> =
     'Track KE, GPE, and work done — power = work/time on ramps (9709 4.5).'
   ),
 
-  // ── 9618 Computer Science ──────────────────────────────────────────────
-  '3-2-logic-gates-and-logic-circuits': geogebraEntry(
-    'kQBWnCFC',
-    'Logic gates explorer',
-    'Combine AND, OR, NOT gates — build truth tables for circuits (9618 3.2).'
-  ),
-
   // ── 9701 Organic & A Level batch 4 ───────────────────────────────────
   '14-1-alkanes': phetEntry(
     'build-a-molecule',
@@ -970,11 +963,6 @@ export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> =
     'A Level exchange rates',
     'Managed floats, currency unions, and policy (9708 11.2).'
   ),
-  '15-2-boolean-algebra-and-logic-circuits': geogebraEntry(
-    'kQBWnCFC',
-    'Boolean logic circuits',
-    'Karnaugh maps and logic simplification (9618 15.2).'
-  ),
 
   // ── 9701 organic A Level batch 11 ──────────────────────────────────────
   '32-1-alcohols': phetEntry(
@@ -1040,13 +1028,6 @@ export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> =
     'Elastic vs inelastic supply — spare capacity and time (9708 2.3).'
   ),
 
-  // ── 9618 batch 11 ──────────────────────────────────────────────────────
-  '15-1-processors-parallel-processing-and-virtual-machines': geogebraEntry(
-    'kQBWnCFC',
-    'Parallel processing',
-    'Pipelining, multi-core, and virtual machines (9618 15.1).'
-  ),
-
   // ── 9701 polymers, synthesis & analytical batch 12 ─────────────────────
   '35-3-degradable-polymers': phetEntry(
     'build-a-molecule',
@@ -1104,13 +1085,6 @@ export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> =
     'VGWtkPU5',
     'Inequality',
     'Progressive tax, benefits, and minimum wage (9708 3.3).'
-  ),
-
-  // ── 9618 batch 12 ──────────────────────────────────────────────────────
-  '19-1-algorithms': geogebraEntry(
-    'kQBWnCFC',
-    'Algorithm design',
-    'Searching, sorting, and stepwise logic (9618 19.1).'
   ),
 
   // ── 9708 macro completion batch 13 ───────────────────────────────────────
@@ -1209,34 +1183,7 @@ export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> =
     'Nitrile formation and hydroxynitrile addition (9701 19.2).'
   ),
 
-  // ── 9618 completion batch 14 ─────────────────────────────────────────────
-  '3-1-computers-and-their-components': geogebraEntry(
-    'kQBWnCFC',
-    'Computer components',
-    'CPU, memory, storage, and I/O devices (9618 3.1).'
-  ),
-  '4-3-bit-manipulation': geogebraEntry(
-    'kQBWnCFC',
-    'Bit manipulation',
-    'Binary shifts, masks, and logical operations (9618 4.3).'
-  ),
-
-  // ── 9618 / 9701 / 9702 pilot completion ─────────────────────────────────
-  '2-1-networks-including-the-internet': geogebraEntry(
-    'kQBWnCFC',
-    'Networks and packet flow',
-    'Trace how packets route between nodes — compare with circuit switching (9618 2.1).'
-  ),
-  '16-1-purposes-of-an-operating-system-os': geogebraEntry(
-    'kQBWnCFC',
-    'Operating system roles',
-    'Resource management: CPU scheduling, memory, and I/O abstraction (9618 16.1).'
-  ),
-  '16-2-translation-software': geogebraEntry(
-    'kQBWnCFC',
-    'Translators and execution',
-    'Compare compiler, interpreter, and assembler pipelines (9618 16.2).'
-  ),
+  // ── 9701 / 9702 pilot completion ─────────────────────────────────────
   '22-1-infrared-spectroscopy': phetEntry(
     'molecule-polarity',
     'Molecular vibrations',
@@ -1253,94 +1200,20 @@ export const INTERACTIVE_EMBED_CATALOG: Record<string, LessonInteractiveEmbed> =
     'Spreading through a narrow slit — compare with double-slit interference (9702 8.2).'
   ),
 
-  // ── 9618 completion batch 15 ─────────────────────────────────────────────
-  '1-2-1-multimedia-graphics': geogebraEntry(
-    'kQBWnCFC',
-    'Bitmap and vector graphics',
-    'Compare resolution, colour depth, and file size for raster vs vector images (9618 1.2.1).'
-  ),
+  // ── 9618 multimedia (native diagram for 1.2.1; PhET for 1.2.2) ─────────
   '1-2-2-multimedia-sound': phetEntry(
     'sound-waves',
     'Sound waves',
     'Sampling rate, bit depth, and compression — link waveform to file size (9618 1.2.2).'
   ),
-  '6-1-data-security': geogebraEntry(
-    'kQBWnCFC',
-    'Data security controls',
-    'Access rights, authentication, and backup strategies (9618 6.1).'
-  ),
-  '7-1-ethics-and-ownership': geogebraEntry(
-    'kQBWnCFC',
-    'Ethics and IP',
-    'Copyright, licensing, and professional conduct in software (9618 7.1).'
-  ),
-  '8-1-database-concepts': geogebraEntry(
-    'kQBWnCFC',
-    'Relational database model',
-    'Tables, keys, and entity–relationship design (9618 8.1).'
-  ),
-  '10-1-data-types-and-records': geogebraEntry(
-    'kQBWnCFC',
-    'Data types and records',
-    'INTEGER, REAL, CHAR, BOOLEAN — composite record structures (9618 10.1).'
-  ),
-  '10-2-arrays': geogebraEntry(
-    'kQBWnCFC',
-    'Arrays and lists',
-    'Index, bounds, and 1D vs 2D array traversal (9618 10.2).'
-  ),
-  '10-3-files': geogebraEntry(
-    'kQBWnCFC',
-    'File handling',
-    'Sequential vs random access; read, write, and append operations (9618 10.3).'
-  ),
-  '11-1-programming-basics': geogebraEntry(
-    'kQBWnCFC',
-    'Programming fundamentals',
-    'Variables, assignment, and basic I/O in pseudocode (9618 11.1).'
-  ),
-  '11-2-constructs': geogebraEntry(
-    'kQBWnCFC',
-    'Selection and iteration',
-    'IF/CASE, FOR/WHILE/REPEAT — trace control flow (9618 11.2).'
-  ),
-  '12-1-program-development-life-cycle': geogebraEntry(
-    'kQBWnCFC',
-    'SDLC stages',
-    'Analysis → design → coding → testing → maintenance (9618 12.1).'
-  ),
-  '12-3-program-testing-and-maintenance': geogebraEntry(
-    'kQBWnCFC',
-    'Testing and maintenance',
-    'Alpha/beta testing, stub drivers, and corrective vs adaptive maintenance (9618 12.3).'
-  ),
-  '13-3-floating-point-numbers-representation-and-manipulation': geogebraEntry(
-    'kQBWnCFC',
-    'Floating-point representation',
-    'Mantissa, exponent, normalisation, and rounding errors (9618 13.3).'
-  ),
-  '17-1-encryption-encryption-protocols-and-digital-certificates': geogebraEntry(
-    'kQBWnCFC',
-    'Encryption and certificates',
-    'Symmetric vs asymmetric keys, hashing, and PKI (9618 17.1).'
-  ),
-  '18-1-artificial-intelligence-ai': geogebraEntry(
-    'kQBWnCFC',
-    'AI concepts',
-    'Expert systems, machine learning overview, and inference (9618 18.1).'
-  ),
-  '20-1-programming-paradigms': geogebraEntry(
-    'kQBWnCFC',
-    'Programming paradigms',
-    'Low-level vs high-level, procedural, OOP, and declarative styles (9618 20.1).'
-  ),
 }
 
 export function getCatalogInteractiveEmbed(slug: string): LessonInteractiveEmbed | undefined {
-  if (INTERACTIVE_EMBED_CATALOG[slug]) return INTERACTIVE_EMBED_CATALOG[slug]
+  const direct = INTERACTIVE_EMBED_CATALOG[slug]
   const alias = resolveVisualCatalogSlug(slug)
-  if (alias !== slug) return INTERACTIVE_EMBED_CATALOG[alias]
-  return undefined
+  const embed =
+    direct ?? (alias !== slug ? INTERACTIVE_EMBED_CATALOG[alias] : undefined)
+  return preferNativeDiagramOverPlaceholder(slug, embed)
 }
 
 export function resolveLessonInteractiveEmbed(

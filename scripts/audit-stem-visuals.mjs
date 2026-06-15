@@ -14,7 +14,7 @@ function isPremiumLesson(raw) {
 async function main() {
   const { hydrateLessonCatalogVisuals } = await import('../lib/courses/attach-lesson-visuals.ts')
   const { lessonHasCatalogVisual } = await import('../lib/courses/sync-steps-to-catalog.ts')
-  const { isDeepLesson, countGenericFlashcards, isGenericStep } = await import(
+  const { isDeepLesson, countGenericFlashcards, isGenericStep, assertDeepLesson } = await import(
     '../lib/courses/stem-deep-quality.ts'
   )
   const { hasLessonLiveDiagram } = await import('../lib/courses/lesson-diagrams.ts')
@@ -25,6 +25,7 @@ async function main() {
   let genericSteps = 0
   let shallow = 0
   const shallowList = []
+  const issueCounts = {}
 
   for (const code of STEM) {
     const dir = path.join(ROOT, 'content', 'courses', code)
@@ -52,6 +53,11 @@ async function main() {
 
       if (!isDeepLesson(hydrated)) {
         shallow++
+        const issues = assertDeepLesson(hydrated)
+        for (const issue of issues) {
+          const key = issue.replace(/\(\d+\)/g, '(n)')
+          issueCounts[key] = (issueCounts[key] ?? 0) + 1
+        }
         shallowList.push({
           code,
           topic: lesson.topicCode,
@@ -59,6 +65,7 @@ async function main() {
           genericFc: countGenericFlashcards(hydrated),
           hasCatalog,
           hasVisual,
+          issues,
         })
       }
     }
@@ -71,6 +78,12 @@ async function main() {
   console.log(`Step count mismatch:  ${stepMismatch}`)
   console.log(`Generic carousel:     ${genericSteps}`)
   console.log(`Not deep-quality:     ${shallow}`)
+  if (Object.keys(issueCounts).length) {
+    console.log('\nIssue breakdown:')
+    for (const [issue, count] of Object.entries(issueCounts).sort((a, b) => b[1] - a[1])) {
+      console.log(`  ${count}× ${issue}`)
+    }
+  }
   console.log('='.repeat(60))
 
   if (shallowList.length) {
@@ -87,7 +100,7 @@ async function main() {
   fs.mkdirSync(reportDir, { recursive: true })
   fs.writeFileSync(
     path.join(reportDir, 'stem-visual-audit.json'),
-    JSON.stringify({ premium, withVisual, stepMismatch, genericSteps, shallow, shallowList }, null, 2)
+    JSON.stringify({ premium, withVisual, stepMismatch, genericSteps, shallow, issueCounts, shallowList }, null, 2)
   )
   console.log(`\nReport: docs/content-generation/stem-visual-audit.json`)
 }

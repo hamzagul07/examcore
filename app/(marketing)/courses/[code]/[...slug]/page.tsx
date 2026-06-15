@@ -68,10 +68,13 @@ function HeroVisualCallout({
         : PlayCircle
 
   return (
-    <p className="course-studio-hero-embed-badge ms-micro rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)] px-4 py-3">
+    <Link
+      href="#visual-learning"
+      className="course-studio-hero-embed-badge ms-micro rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)] px-4 py-3 transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_45%,transparent)] hover:bg-[color-mix(in_srgb,var(--ec-brand)_10%,transparent)]"
+    >
       <Icon className="h-5 w-5 shrink-0" aria-hidden />
       <span>{heroVisual.label}</span>
-    </p>
+    </Link>
   )
 }
 

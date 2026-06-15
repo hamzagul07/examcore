@@ -1,17 +1,20 @@
 #!/usr/bin/env node
 /**
- * Generate deep STEM pilot lessons with Gemini.
+ * Generate deep STEM lessons with Gemini.
  *
  * Usage:
  *   npx tsx scripts/generate-stem-deep-lesson.mjs --code=9701 --topic=3.5
  *   npx tsx scripts/generate-stem-deep-lesson.mjs --code=9701 --all-pilots
  *   npx tsx scripts/generate-stem-deep-lesson.mjs --all-stem
+ *   npx tsx scripts/generate-stem-deep-lesson.mjs --shallow-premium --code=9701
+ *   npx tsx scripts/generate-stem-deep-lesson.mjs --shallow-premium --limit=10
  */
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
+const STEM = ['9701', '9709', '9231', '9700', '9618', '9702']
 
 function loadEnv() {
   const p = path.join(ROOT, '.env.local')
@@ -36,6 +39,10 @@ function getArg(name) {
 
 function hasFlag(name) {
   return process.argv.includes(`--${name}`)
+}
+
+function isPremium(raw) {
+  return raw.includes('"status": "premium"') || raw.includes('"status":"premium"')
 }
 
 async function loadTopics(subjectCode) {
@@ -63,18 +70,23 @@ async function main() {
 
   const code = getArg('code')
   const topicCode = getArg('topic')
-  const stemCodes = hasFlag('all-stem')
-    ? ['9701', '9709', '9231', '9700', '9618', '9702']
+  const limit = getArg('limit') ? Number(getArg('limit')) : undefined
+  const shallowPremium = hasFlag('shallow-premium')
+  const stemCodes = hasFlag('all-stem') || shallowPremium
+    ? STEM.filter((c) => !code || c === code)
     : code
       ? [code]
       : []
 
   if (!stemCodes.length) {
-    console.error('Usage: --code=9701 --topic=3.5 | --code=9701 --all-pilots | --all-stem')
+    console.error(
+      'Usage: --code=9701 --topic=3.5 | --all-pilots | --all-stem | --shallow-premium [--code=9701] [--limit=N]'
+    )
     process.exit(1)
   }
 
   const results = []
+  let queued = 0
 
   for (const subjectCode of stemCodes) {
     const { subjectName, topics } = await loadTopics(subjectCode)
@@ -82,6 +94,19 @@ async function main() {
 
     if (topicCode) {
       targets = topics.filter((t) => t.code === topicCode)
+    } else if (shallowPremium) {
+      const dir = path.join(ROOT, 'content', 'courses', subjectCode)
+      if (!fs.existsSync(dir)) continue
+      const shallowSlugs = new Set()
+      for (const f of fs.readdirSync(dir)) {
+        if (!f.endsWith('.json') || f.endsWith('.pilot.json')) continue
+        const filePath = path.join(dir, f)
+        const raw = fs.readFileSync(filePath, 'utf8')
+        if (!isPremium(raw)) continue
+        const lesson = JSON.parse(raw)
+        if (!isDeepLesson(lesson)) shallowSlugs.add(lesson.slug)
+      }
+      targets = topics.filter((t) => shallowSlugs.has(topicToLessonSlug(t.code, t.name)))
     } else if (hasFlag('all-pilots') || hasFlag('all-stem')) {
       const dir = path.join(ROOT, 'content', 'courses', subjectCode)
       if (!fs.existsSync(dir)) continue
@@ -114,16 +139,23 @@ async function main() {
     }
 
     for (const topic of targets) {
+      if (limit !== undefined && queued >= limit) break
+      queued++
+
       const slug = topicToLessonSlug(topic.code, topic.name)
       const outPath = path.join(ROOT, 'content', 'courses', subjectCode, `${slug}.json`)
+      const preserveStatus = shallowPremium ? 'premium' : undefined
       console.log(`\nDeep-generating ${subjectCode} ${topic.code} ${topic.name}...`)
 
       try {
-        const { lesson } = await generateStemDeepLesson({
-          subjectCode,
-          subjectName,
-          topic,
-        })
+        const { lesson } = await generateStemDeepLesson(
+          {
+            subjectCode,
+            subjectName,
+            topic,
+          },
+          { status: preserveStatus }
+        )
         fs.mkdirSync(path.dirname(outPath), { recursive: true })
         fs.writeFileSync(outPath, JSON.stringify(lesson, null, 2) + '\n')
         results.push({ subjectCode, topic: topic.code, slug, ok: true })
@@ -134,6 +166,8 @@ async function main() {
         console.error(`  ✗ ${msg}`)
       }
     }
+
+    if (limit !== undefined && queued >= limit) break
   }
 
   const reportDir = path.join(ROOT, 'docs', 'content-generation')

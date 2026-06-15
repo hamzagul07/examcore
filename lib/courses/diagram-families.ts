@@ -49,6 +49,10 @@ import { DifferentiationTangentDiagram } from '@/components/diagrams/Differentia
 import { DefiniteIntegralDiagram } from '@/components/diagrams/DefiniteIntegralDiagram'
 import { ComplexPlaneDiagram } from '@/components/diagrams/ComplexPlaneDiagram'
 import { MoleculeShapeDiagram } from '@/components/diagrams/MoleculeShapeDiagram'
+import { CovalentBondDiagram } from '@/components/diagrams/CovalentBondDiagram'
+import { EnthalpyProfileDiagram } from '@/components/diagrams/EnthalpyProfileDiagram'
+import { EquilibriumDiagram } from '@/components/diagrams/EquilibriumDiagram'
+import { ReactionRateDiagram } from '@/components/diagrams/ReactionRateDiagram'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -197,6 +201,22 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'molecule-shape': {
     Component: MoleculeShapeDiagram,
     caption: 'VSEPR: electron pairs repel — lone pairs compress bond angles below ideal values.',
+  },
+  'covalent-bond': {
+    Component: CovalentBondDiagram,
+    caption: 'Covalent bonds share electron pairs; dative bonds donate a lone pair from one atom.',
+  },
+  'enthalpy-profile': {
+    Component: EnthalpyProfileDiagram,
+    caption: 'ΔH is heat transferred at constant pressure — exothermic (ΔH < 0) or endothermic (ΔH > 0).',
+  },
+  equilibrium: {
+    Component: EquilibriumDiagram,
+    caption: 'Dynamic equilibrium: forward and reverse rates equal; concentrations stay constant.',
+  },
+  'reaction-rate': {
+    Component: ReactionRateDiagram,
+    caption: 'Rate depends on collision frequency and collisions with energy ≥ activation energy.',
   },
   centripetal: {
     Component: CentripetalMotionDiagram,
@@ -392,7 +412,15 @@ const SLUG_FAMILY_9700: Record<string, keyof typeof FAMILIES> = {
 
 /** 9701 Chemistry slug → diagram family. */
 const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
+  '3-4-covalent-bonding-and-coordinate-dative-covalent-bonding': 'covalent-bond',
   '3-5-shapes-of-molecules': 'molecule-shape',
+  '3-7-dot-and-cross-diagrams': 'covalent-bond',
+  '4-1-the-gaseous-state-ideal-and-real-gases-and-pv-nrt': 'gas-kinetic',
+  '5-1-enthalpy-change-h': 'enthalpy-profile',
+  '5-2-hesss-law': 'enthalpy-profile',
+  '7-1-chemical-equilibria-reversible-reactions-dynamic-equilibrium': 'equilibrium',
+  '8-1-rate-of-reaction': 'reaction-rate',
+  '8-2-effect-of-temperature-on-reaction-rates-and-the-concept-of-activation-energy': 'reaction-rate',
   '13-3-shapes-of-organic-molecules-and-bonds': 'molecule-shape',
   '29-3-shapes-of-aromatic-organic-molecules-and-bonds': 'molecule-shape',
 }

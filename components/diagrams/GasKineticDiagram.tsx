@@ -2,16 +2,17 @@
 
 import { DIAGRAM_STROKE, DIAGRAM_TEXT } from '@/components/diagrams/diagram-styles'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
-import { getLessonDiagramSpec, layerOpacity } from '@/lib/courses/diagram-specs'
+import { getLessonDiagramSpec, layerOpacityAny } from '@/lib/courses/diagram-specs'
 
-const SLUG = '15-3-kinetic-theory-of-gases'
+const DEFAULT_SLUG = '15-3-kinetic-theory-of-gases'
 
 export function GasKineticDiagram({
   className = '',
   stepIndex = 0,
   params,
+  lessonSlug = DEFAULT_SLUG,
 }: LessonDiagramComponentProps) {
-  const spec = getLessonDiagramSpec(SLUG)
+  const spec = getLessonDiagramSpec(lessonSlug) ?? getLessonDiagramSpec(DEFAULT_SLUG)
   const T = params?.T ?? 300
   const n = params?.n ?? 2
   const speedScale = Math.sqrt(T / 300)
@@ -26,6 +27,9 @@ export function GasKineticDiagram({
     { cx: 290, cy: 145, dx: -8, dy: 9 },
   ].slice(0, count)
 
+  const boxW = lessonSlug.includes('4-1') ? 240 - stepIndex * 12 : 280
+  const boxX = lessonSlug.includes('4-1') ? 90 + stepIndex * 6 : 70
+
   return (
     <svg
       viewBox="0 0 420 200"
@@ -34,18 +38,18 @@ export function GasKineticDiagram({
       aria-label="Kinetic theory: gas particles in random motion exert pressure on container walls"
     >
       <rect
-        x="70"
+        x={boxX}
         y="50"
-        width="280"
+        width={boxW}
         height="120"
         rx="8"
         fill="none"
         stroke={DIAGRAM_STROKE}
         strokeWidth="2.5"
-        opacity={layerOpacity(spec, stepIndex, 'pressure', 1, 0.4)}
+        opacity={layerOpacityAny(spec, stepIndex, ['pressure', 'step-2', 'step-3'], 1, 0.4)}
       />
       {particles.map((p, i) => (
-        <g key={i} opacity={layerOpacity(spec, stepIndex, 'particles')}>
+        <g key={i} opacity={layerOpacityAny(spec, stepIndex, ['particles', 'step-1'])}>
           <circle cx={p.cx} cy={p.cy} r="7" fill={DIAGRAM_STROKE} className="eq-anim-force-cw" />
           <line
             x1={p.cx}
@@ -54,7 +58,7 @@ export function GasKineticDiagram({
             y2={p.cy + p.dy * speedScale}
             stroke={DIAGRAM_STROKE}
             strokeWidth="2"
-            opacity={layerOpacity(spec, stepIndex, 'speed')}
+            opacity={layerOpacityAny(spec, stepIndex, ['speed', 'step-1', 'step-3'])}
             className={i % 2 === 0 ? 'eq-anim-vec-a' : 'eq-anim-vec-b'}
           />
         </g>
@@ -66,12 +70,21 @@ export function GasKineticDiagram({
         fontSize="13"
         fill={DIAGRAM_TEXT}
         fontWeight="700"
-        opacity={layerOpacity(spec, stepIndex, 'ideal', 1, 0.35)}
+        opacity={layerOpacityAny(spec, stepIndex, ['ideal', 'step-4'], 1, 0.35)}
       >
         pV = nRT
       </text>
-      <text x="210" y="188" textAnchor="middle" fontSize="11" fill={DIAGRAM_TEXT}>
-        T = {T} K · n = {n} mol
+      <text
+        x="210"
+        y="188"
+        textAnchor="middle"
+        fontSize="11"
+        fill={DIAGRAM_TEXT}
+        opacity={layerOpacityAny(spec, stepIndex, ['ideal', 'step-2', 'step-3', 'step-4'], 1, 0.5)}
+      >
+        {lessonSlug.includes('4-1')
+          ? `Boyle · Charles · Gay-Lussac · R = 8.31 J mol⁻¹ K⁻¹`
+          : `T = ${T} K · n = ${n} mol`}
       </text>
     </svg>
   )

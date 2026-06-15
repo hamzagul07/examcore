@@ -146,5 +146,18 @@ const moleculeShapes = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9701 VSEPR retains PhET with native diagram', moleculeShapes.interactiveEmbed?.provider === 'phet')
 
+const idealGas = attachCatalogVisuals({
+  ...base,
+  slug: '4-1-the-gaseous-state-ideal-and-real-gases-and-pv-nrt',
+  topicCode: '4.1',
+  title: 'Ideal gases',
+  simpleExplanation: {
+    title: 'Gases',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('9701 ideal gas prefers native over PhET', idealGas.interactiveEmbed === undefined)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

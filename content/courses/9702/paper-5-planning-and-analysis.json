@@ -363,8 +363,7 @@
       "Q1: Diagram → procedure → variables held constant → graph to plot → how constants come from gradient/intercept.",
       "Q2(b): Fill table columns including absolute uncertainties in derived quantities.",
       "Q2(c)(i): Plot points with vertical error bars.",
-      "Q2(c)(ii): LOBF + one WAL, both labelled.",
-      "Q2(c)(iii–iv): Large triangle for gradient; uncertainty = |best − worst|."
+      "Q2(c)(ii–iv): LOBF + one WAL (both labelled), then large triangle for gradient/intercept; uncertainty = |best − worst|."
     ]
   },
   "flashcards": [
@@ -387,6 +386,42 @@
     {
       "front": "Uncertainty in $y = \\lg x$?",
       "back": "$\\Delta y = \\lg(x + \\Delta x) - \\lg(x)$ (or equivalent range method)."
+    },
+    {
+      "front": "Systematic error vs random error?",
+      "back": "Systematic: consistent offset (accuracy). Random: scatter between repeats (precision)."
+    },
+    {
+      "front": "Accuracy vs precision?",
+      "back": "Accuracy = closeness to true value; precision = repeatability of measurements."
+    },
+    {
+      "front": "Adding absolute uncertainties?",
+      "back": "When quantities are added or subtracted, add absolute uncertainties."
+    },
+    {
+      "front": "Combining percentage uncertainties?",
+      "back": "When multiplying/dividing or raising to a power, add fractional (percentage) uncertainties."
+    },
+    {
+      "front": "Why use a large triangle on a graph?",
+      "back": "Points far apart on the LOBF reduce uncertainty in the calculated gradient."
+    },
+    {
+      "front": "What do error bars represent?",
+      "back": "The range of plausible values for each measurement due to uncertainty."
+    },
+    {
+      "front": "Paper 5 Q2 intercept uncertainty?",
+      "back": "$\\Delta c = |c_{\\text{LOBF}} - c_{\\text{WAL}}|$ using the same worst-acceptable-line method as gradient."
+    },
+    {
+      "front": "When is a log–log graph used in P5 Q1?",
+      "back": "When the suggested relationship is a power law — gradient and intercept yield constants $n$ and $E$."
+    },
+    {
+      "front": "What improves precision in an experiment?",
+      "back": "Repeat readings and average; use instruments with finer resolution."
     }
   ]
 }

@@ -5,210 +5,186 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Papers 1 & 2 — Density and pressure (4.3). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson introduces the fundamental concepts of density and pressure. You will learn how to define and calculate these quantities for solids and fluids, and explore the relationship between pressure, depth, and fluid density, a key principle in hydrostatics.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define and apply density and pressure, including their units and formulas.",
-    "Calculate hydrostatic pressure and explain its dependence on depth.",
-    "Describe upthrust and apply Archimedes' Principle to solve problems."
+    "Define density as mass per unit volume and apply the formula ρ = m/V.",
+    "Define pressure as the normal force per unit area and apply the formula p = F/A.",
+    "Derive the formula Δp = ρgh for the pressure difference in a fluid.",
+    "Apply the density and pressure equations to solve problems involving solids and fluids."
   ],
   "simpleExplanation": {
-    "title": "Fluid Mechanics Unpacked",
-    "summary": "Density tells us how much 'stuff' is packed into a space. Pressure is about force spread over an area. In fluids, these ideas explain why things float, why deep-sea divers need special gear, and how hydraulic systems work.",
-    "analogy": "Imagine a crowded bus. The **density** is how many people are squashed into it. Now imagine those people all pushing against the door – that's like **pressure**. The more people (denser), or the harder they push, the greater the pressure on the door.",
+    "title": "Packing and Pushing",
+    "summary": "Density tells us how much 'stuff' (mass) is packed into a certain space (volume). Pressure describes how concentrated a push (force) is over a certain surface (area).",
+    "analogy": "Imagine a lift. The more people that cram inside, the higher the density. Now, if someone wearing a stiletto heel steps on your foot, the high pressure is immense because their entire weight is concentrated on a tiny area. If they wore a flat shoe, the same weight spread over a larger area would create much less pressure and hurt less.",
     "steps": [
-      "Understand how mass and volume determine **density**.",
-      "See how force spread over an area creates **pressure**.",
-      "Explore how **fluid depth** affects the pressure experienced.",
-      "Grasp **upthrust** and Archimedes' Principle to explain floating."
+      "Density (ρ) is defined as the mass (m) of a substance per unit volume (V). It's a measure of how compact the substance is.",
+      "Pressure (p) is the normal force (F) acting on a surface divided by the area (A) over which that force is distributed.",
+      "In a fluid, pressure increases with depth. The extra pressure (Δp) at a depth (h) is found using Δp = ρgh, where ρ is the fluid's density and g is the acceleration of free fall.",
+      "In exams, you'll use these formulas to find unknown quantities like the mass of air in a room, the force on a dam, or the height of a mercury barometer."
     ]
   },
   "flashcards": [
     {
-      "front": "How is density defined, and what is its formula?",
-      "back": "Density ($\rho$) is the mass per unit volume of a material. $\\rho = \\frac{m}{V}$."
+      "front": "What is the definition of density?",
+      "back": "Density (ρ) is the mass per unit volume of a substance."
     },
     {
-      "front": "What is the standard SI unit for pressure?",
-      "back": "The standard SI unit for pressure is the Pascal (Pa)."
+      "front": "What is the formula for density?",
+      "back": "$\\rho = \\frac{m}{V}$, where m is mass and V is volume."
     },
     {
-      "front": "State the formula for hydrostatic pressure and identify its variables.",
-      "back": "$$\\Delta p = \\rho g \\Delta h$$ where $\\Delta p$ is pressure difference, $\\rho$ is fluid density, $g$ is acceleration of free fall, and $\\Delta h$ is vertical height difference."
+      "front": "What are the SI base units for density?",
+      "back": "kg m⁻³"
     },
     {
-      "front": "Explain the cause of upthrust in a fluid.",
-      "back": "Upthrust occurs because fluid pressure increases with depth, leading to a greater upward force on the lower surface of an object compared to the downward force on its upper surface."
+      "front": "What is the definition of pressure?",
+      "back": "Pressure (p) is the force acting normally (perpendicularly) per unit area."
     },
     {
-      "front": "What does Archimedes' Principle state about buoyant force?",
-      "back": "Archimedes' Principle states that the buoyant force (upthrust) on an object immersed in a fluid is equal to the weight of the fluid it displaces."
+      "front": "What is the formula for pressure?",
+      "back": "$p = \\frac{F}{A}$, where F is the normal force and A is the area."
     },
     {
-      "front": "What is the relationship between force, pressure, and area?",
-      "back": "Pressure is the force acting perpendicularly per unit area: $P = \\frac{F}{A}$."
+      "front": "What is the SI unit of pressure and what is it equivalent to?",
+      "back": "The Pascal (Pa). 1 Pa is equivalent to 1 N m⁻²."
     },
     {
-      "front": "How does pressure change as you go deeper into a fluid?",
-      "back": "Pressure increases proportionally with depth in a fluid."
+      "front": "What is the formula for the pressure exerted by a column of fluid?",
+      "back": "$\\Delta p = \\rho g h$, where $\\rho$ is the fluid density, g is the acceleration of free fall, and h is the height of the column."
     },
     {
-      "front": "What is the total pressure experienced by a submerged object?",
-      "back": "The total pressure is the sum of the fluid's hydrostatic pressure and the atmospheric pressure above it."
+      "front": "Is pressure a scalar or a vector quantity?",
+      "back": "Pressure is a scalar quantity. It has magnitude but no direction. At any point in a fluid, pressure acts equally in all directions."
     },
     {
-      "front": "What is the formula for calculating buoyant force?",
-      "back": "The buoyant force is $F_B = \\rho g V$, where $\\rho$ is fluid density, $g$ is gravitational acceleration, and $V$ is volume of fluid displaced."
+      "front": "What is a common mistake when calculating pressure using $p=F/A$ for an object resting on a surface?",
+      "back": "Using the mass (m) instead of the weight (W = mg) for the force (F). Pressure is caused by the force, which is weight in this case."
     },
     {
-      "front": "What does the 'g' represent in the hydrostatic pressure formula?",
-      "back": "'g' represents the acceleration due to free fall (gravitational acceleration)."
+      "front": "What is the difference between gauge pressure and absolute pressure?",
+      "back": "Gauge pressure is the pressure relative to atmospheric pressure ($\\Delta p = \\rho g h$). Absolute pressure is the total pressure, including atmospheric pressure ($p_{abs} = p_{atm} + \\rho g h$)."
+    },
+    {
+      "front": "How can you determine the volume of an irregularly shaped object to find its density?",
+      "back": "By using the displacement method. Submerge the object in a known volume of water in a measuring cylinder and measure the volume of water displaced."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is pressure a scalar quantity when force and area are vectors?",
+      "a": "While force is a vector, pressure is defined as the magnitude of the force acting perpendicular to the surface, divided by the area. At any given point within a fluid, the pressure is exerted equally in all directions, so it doesn't have a single, definable direction. This makes it a scalar quantity."
+    },
+    {
+      "q": "What is the difference between gauge pressure and absolute pressure?",
+      "a": "Gauge pressure is the pressure measured relative to the surrounding atmospheric pressure. It's the value given by $\\Delta p = \\rho g h$. Absolute pressure is the total pressure at a point, which is the sum of the gauge pressure and the atmospheric pressure ($p_{abs} = p_{atm} + \\rho g h$)."
+    },
+    {
+      "q": "In the formula $\\Delta p = \\rho g h$, does $h$ mean height or depth?",
+      "a": "In this context, $h$ represents the vertical depth below the surface of the fluid. A greater depth means a taller column of fluid above that point, hence a greater weight and greater pressure. Be careful not to use a slanted distance; it must be the vertical component."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the world of **Density and Pressure**! These fundamental concepts help us understand everything from why ships float to how hydraulic brakes work. We'll explore how **mass** and **volume** define density, how **force** and **area** create pressure, and the mysterious upward push known as **upthrust** in fluids. This lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **4.3**."
+      "content": "Have you ever wondered why a huge steel ship can float, but a tiny steel nail sinks? Or why a sharp knife cuts through a tomato with ease, while a blunt one just squashes it? The answers lie in two fundamental physical properties: density and pressure. In this lesson, we'll dissect these concepts, which are crucial for understanding everything from the structure of stars to the design of hydraulic brakes."
     },
     {
       "type": "heading",
-      "content": "Understanding Density: How Packed is it?"
+      "content": "1. Density (ρ)"
     },
     {
       "type": "text",
-      "content": "Density is a measure of how much 'stuff' (mass) is squeezed into a certain amount of space (volume). Imagine two boxes of the same size; one filled with feathers and the other with rocks. The box of rocks has a much higher density because there's more mass in the same volume."
+      "content": "Density is a measure of how much mass is contained within a given volume. It's an intrinsic property of a material, meaning a small piece of gold and a large bar of gold will have the same density. Substances like lead are very dense, packing a lot of mass into a small space, while substances like polystyrene are not dense at all. The density of water is a key reference value, approximately 1000 kg m⁻³."
     },
     {
       "type": "formula",
-      "content": "$$\\rho = \\frac{m}{V}$$"
+      "content": "$\\rho = \\frac{m}{V}$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "4.3 Density and pressure.",
-        "Density is the mass per unit volume of an object 𝜌 = 𝑚 𝑣.",
-        "The SI unit for density is kg/m 3.",
-        "Pressure is defined as force per unit area 𝑃 = 𝐹 𝐴.",
-        "The SI unit for pressure is N/m 2 or Pa.",
-        "Hydrostatic pressure is the pressure exerted by a fluid at equilibrium at a given point within the fluid, due to the force of gravity."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Pressure: Force Distributed"
-    },
-    {
-      "type": "text",
-      "content": "Pressure describes how a force is spread out over an area. If you push on a wall with your flat hand, the force is distributed over a large area, resulting in low pressure. If you push with just your fingertip, the same force concentrated on a tiny area creates much higher pressure."
-    },
-    {
-      "type": "formula",
-      "content": "$$P = \\frac{F}{A}$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Pressure ($P$) is perpendicular force ($F$) per unit area ($A$).",
-        "The SI unit for pressure is the Pascal (Pa), which is 1 N m⁻².",
-        "Greater force or smaller area leads to higher pressure.",
-        "Pressure is also a scalar quantity."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Pressure in Fluids: Diving Deeper"
-    },
-    {
-      "type": "text",
-      "content": "When you dive into a swimming pool, you feel the pressure increase as you go deeper. This is because the fluid above you is exerting a weight. The deeper you go, the more fluid is above you, and thus, the greater the pressure."
-    },
-    {
-      "type": "formula",
-      "content": "$$\\Delta p = \\rho g \\Delta h$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Fluid pressure increases directly with depth.",
-        "Hydrostatic pressure ($\\Delta p$) depends on fluid density ($\\rho$), gravitational acceleration ($g$), and vertical height difference ($\\Delta h$).",
-        "The total pressure at a depth in a fluid includes atmospheric pressure.",
-        "Pressure acts equally in all directions at a given depth within a fluid."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Upthrust and Archimedes' Principle: The Floating Secret"
-    },
-    {
-      "type": "text",
-      "content": "Have you ever tried to push a ball underwater? It feels like something is pushing it back up – that's upthrust! This buoyant force arises because the pressure at the bottom of a submerged object is greater than at its top, creating an overall upward push."
-    },
-    {
-      "type": "formula",
-      "content": "$$F_B = \\rho g V$$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Upthrust is the upward buoyant force exerted by a fluid.",
-        "It's caused by the pressure difference between the top and bottom of an object.",
-        "Archimedes' Principle: Upthrust equals the weight of fluid displaced.",
-        "An object floats if upthrust equals its weight; it sinks if its weight is greater."
+        "**Symbol:** $\\rho$ (rho)",
+        "**SI Unit:** kilograms per cubic metre (kg m⁻³)",
+        "**Calculation:** To find density, you need the object's mass (from a balance) and its volume.",
+        "**Volume of irregular objects:** Use the water displacement method. The volume of the object is equal to the volume of water it displaces when fully submerged."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A block of wood with dimensions 0.10 m x 0.10 m x 0.10 m has a mass of 0.80 kg. It is fully submerged in water (density 1000 kg m⁻³). Calculate: (a) the density of the wood, (b) the upthrust acting on the wood, and (c) the net force acting on the wood (take $g = 9.81 \\text{ m s⁻²}$).",
-      "solution": "1.  **Calculate the volume of the wood:** \n    $V = 0.10 \\text{ m} \\times 0.10 \\text{ m} \\times 0.10 \\text{ m} = 0.0010 \\text{ m}^3$.\n2.  **(a) Calculate the density of the wood:** \n    $\\rho_{wood} = \\frac{m}{V} = \\frac{0.80 \\text{ kg}}{0.0010 \\text{ m}^3} = 800 \\text{ kg m}^{-3}$.\n3.  **(b) Calculate the upthrust (buoyant force):** Using Archimedes' Principle, $F_B = \\rho_{fluid} g V_{displaced}$. Since the wood is fully submerged, $V_{displaced} = V_{wood}$. \n    $F_B = 1000 \\text{ kg m}^{-3} \\times 9.81 \\text{ m s}^{-2} \\times 0.0010 \\text{ m}^3 = 9.81 \\text{ N}$.\n4.  **(c) Calculate the weight of the wood:** \n    $W_{wood} = m g = 0.80 \\text{ kg} \\times 9.81 \\text{ m s}^{-2} = 7.848 \\text{ N}$.\n5.  **Calculate the net force:** \n    Net force = Upthrust - Weight = $9.81 \\text{ N} - 7.848 \\text{ N} = 1.962 \\text{ N}$ (upwards)."
+      "question": "A rectangular block of steel has dimensions 2.0 cm x 4.0 cm x 5.0 cm. Its mass is measured to be 312 g. Calculate the density of the steel in kg m⁻³.",
+      "solution": "1.  **Convert all units to SI units.**\n    Mass, $m = 312 \\text{ g} = 0.312 \\text{ kg}$\n    Dimensions: $0.020 \\text{ m}$, $0.040 \\text{ m}$, $0.050 \\text{ m}$\n\n2.  **Calculate the volume (V).**\n    For a rectangular block, $V = \\text{length} \\times \\text{width} \\times \\text{height}$\n    $V = 0.020 \\text{ m} \\times 0.040 \\text{ m} \\times 0.050 \\text{ m} = 4.0 \\times 10^{-5} \\text{ m}^3$\n\n3.  **Apply the density formula.**\n    $\\rho = \\frac{m}{V}$\n    $\\rho = \\frac{0.312 \\text{ kg}}{4.0 \\times 10^{-5} \\text{ m}^3}$\n    $\\rho = 7800 \\text{ kg m}^{-3}$\n\n    The density of the steel is 7800 kg m⁻³ (to 2 significant figures)."
+    },
+    {
+      "type": "heading",
+      "content": "2. Pressure (p)"
+    },
+    {
+      "type": "text",
+      "content": "Pressure is defined as the force exerted per unit area, where the force is acting perpendicular to the surface. It tells us how concentrated a force is. A large force spread over a large area can result in a small pressure (like a tractor on wide tyres not sinking into mud), while a small force on a tiny area can create immense pressure (like the point of a needle)."
+    },
+    {
+      "type": "formula",
+      "content": "$p = \\frac{F}{A}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Symbol:** p",
+        "**SI Unit:** Pascal (Pa), which is equivalent to one newton per square metre (N m⁻²).",
+        "**Normal Force:** The force $F$ must be the component perpendicular to the area $A$.",
+        "**Scalar Quantity:** Pressure has magnitude but no direction. At a point within a fluid, it acts equally in all directions."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Remember the difference between density of the object and density of the fluid when calculating upthrust. Upthrust always depends on the density of the *fluid displaced*, not the object itself!"
+      "content": "A very common question involves an object resting on a surface. Remember that the force $F$ causing the pressure is the object's weight, $W = mg$. Do not just use the mass in the pressure formula! Always calculate the weight first by multiplying the mass by $g$ (acceleration of free fall, $9.81 \\text{ m s}^{-2}$)."
+    },
+    {
+      "type": "heading",
+      "content": "3. Pressure in a Fluid"
+    },
+    {
+      "type": "text",
+      "content": "When you dive into a swimming pool, you can feel the pressure on your eardrums increasing as you go deeper. This is because the weight of the water column above you is exerting a force on you. We can derive a formula for this pressure difference. Consider a cylinder of fluid with height $h$ and cross-sectional area $A$. Its volume is $V = Ah$. Its mass is $m = \\rho V = \\rho A h$. Its weight is $W = mg = \\rho A h g$. This weight is the force exerted on the area $A$ at the bottom of the cylinder. Therefore, the pressure difference due to the fluid column is $\\Delta p = F/A = (\\rho A h g) / A$, which simplifies to the equation below."
+    },
+    {
+      "type": "formula",
+      "content": "$\\Delta p = \\rho g h$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This formula calculates the **increase in pressure** due to a depth $h$ in a fluid of constant density $\\rho$.",
+        "**$g$** is the acceleration of free fall ($9.81 \\text{ m s}^{-2}$).",
+        "**Absolute Pressure:** To find the total pressure at a depth $h$ in a fluid open to the atmosphere, you must add the atmospheric pressure: $p_{total} = p_{atmospheric} + \\rho g h$.",
+        "**Pascal's Principle:** Pressure applied to an enclosed fluid is transmitted undiminished to every portion of the fluid and the walls of the containing vessel. This is the basis for hydraulic systems."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The deepest point in the ocean is the Mariana Trench, at a depth of approximately 11 000 m. Calculate the pressure at this depth, assuming the density of seawater is 1030 kg m⁻³ and atmospheric pressure is $1.01 \\times 10^5$ Pa. Use $g = 9.81 \\text{ m s}^{-2}$.",
+      "solution": "1.  **Identify the goal:** We need to find the absolute pressure at the bottom of the trench.\n    The formula for absolute pressure is $p_{total} = p_{atm} + \\rho g h$.\n\n2.  **List the known values:**\n    $h = 11000 \\text{ m}$\n    $\\rho = 1030 \\text{ kg m}^{-3}$\n    $g = 9.81 \\text{ m s}^{-2}$\n    $p_{atm} = 1.01 \\times 10^5 \\text{ Pa}$\n\n3.  **Calculate the gauge pressure (pressure due to the water column).**\n    $\\Delta p = \\rho g h$\n    $\\Delta p = (1030 \\text{ kg m}^{-3}) \\times (9.81 \\text{ m s}^{-2}) \\times (11000 \\text{ m})$\n    $\\Delta p = 1.111 \\times 10^8 \\text{ Pa}$\n\n4.  **Calculate the absolute pressure.**\n    $p_{total} = p_{atm} + \\Delta p$\n    $p_{total} = (1.01 \\times 10^5 \\text{ Pa}) + (1.111 \\times 10^8 \\text{ Pa})$\n    $p_{total} = 111201000 \\text{ Pa} \\approx 1.1 \\times 10^8 \\text{ Pa}$\n\n    (Note: The atmospheric pressure is negligible compared to the water pressure at this depth, but it's good practice to include it unless told otherwise. The final answer is given to 2 significant figures, consistent with the depth value)."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Practice Questions: Density & Pressure",
       "href": "/mark?subject=9702&topic=4.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner AS Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+          "label": "PhET Simulation: Under Pressure",
+          "href": "https://phet.colorado.edu/en/simulations/under-pressure"
         },
         {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "PhET Simulation: Density",
+          "href": "https://phet.colorado.edu/en/simulations/density"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "Why does pressure increase with depth in a fluid?",
-      "a": "Pressure increases with depth in a fluid because the deeper you go, the greater the column of fluid above you. This increased column of fluid has more weight, and this weight is pushing down on the area below it, resulting in higher pressure."
-    },
-    {
-      "q": "What is the key difference between density and pressure?",
-      "a": "Density is a property of a material, describing how much mass is contained within a specific volume. Pressure, on the other hand, describes how a force is distributed over a surface area. An object can be dense, but if its weight is spread over a large area, it might exert low pressure."
-    },
-    {
-      "q": "How does Archimedes' Principle explain why objects float or sink?",
-      "a": "Archimedes' Principle states that an object immersed in a fluid experiences an upward buoyant force equal to the weight of the fluid it displaces. If this buoyant force is greater than or equal to the object's own weight, the object will float. If its weight is greater than the maximum possible buoyant force (when fully submerged), the object will sink."
-    }
-  ],
-  "updated": "2026-06-09",
-  "paperNumber": "2",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/4-3-density-and-pressure.png",
-    "alt": "Senpai Corner reference diagram for 4.3 Density and pressure"
-  }
+  "generatorVersion": "stem-deep-author-1"
 }

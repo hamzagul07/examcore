@@ -5,175 +5,167 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Papers 1 & 2 — Potential dividers (10.3). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson explores potential dividers, circuits that use series resistors to provide a specific fraction of a source voltage. We will derive the potential divider equation and apply it to practical scenarios, including sensing circuits with LDRs and thermistors.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Describe the function and principles of a potential divider circuit.",
-    "Apply the potential divider formula to calculate unknown voltages or resistances.",
-    "Explain how variable resistors and sensors (LDRs, thermistors) are used to create variable output voltages."
+    "Explain the principle of a potential divider circuit as a source of variable and fixed potential difference.",
+    "Derive and apply the potential divider formula in various circuit configurations.",
+    "Analyse the use of LDRs and thermistors in potential dividers to create sensing circuits.",
+    "Understand the effect of connecting an external load across the output of a potential divider."
   ],
   "simpleExplanation": {
-    "title": "Voltage Sculptors: Understanding Potential Dividers",
-    "summary": "Potential dividers are clever circuits that allow you to take a larger input voltage and \"split\" it into smaller, specific output voltages. They're essential for powering different components that need precise voltage levels from a single source.",
-    "analogy": "Imagine a main river splitting into smaller streams, each carrying a different 'amount' of water flow. A potential divider is like a network of rocks and channels that directs the 'flow' (voltage) from a main river (input voltage) into different streams (output voltages) in precise proportions.",
+    "title": "Slicing Up Voltage",
+    "summary": "A potential divider circuit splits the voltage from a power source into smaller, more useful chunks. It's like having a volume knob for voltage, allowing you to tap off just the amount you need.",
+    "analogy": "Imagine a tall waterfall representing the total voltage from a battery. A potential divider is like building platforms at different heights along the waterfall. You can access a smaller, specific 'drop' (potential difference) by measuring the height from the bottom of the fall to a particular platform, rather than having to use the whole height every time.",
     "steps": [
-      "**Series Setup:** Two or more resistors are connected end-to-end in a series circuit.",
-      "**Voltage Distribution:** The total input voltage is shared across these resistors, proportional to their resistance values.",
-      "**Output Tap:** An output voltage is taken across a specific resistor (or combination) in the series.",
-      "**Formula Application:** Use the potential divider formula to calculate this exact output voltage."
+      "A potential divider uses two or more resistors in series to share a source voltage ($V_{in}$).",
+      "The voltage is split in proportion to the resistance; a larger resistor gets a larger share of the voltage.",
+      "The output voltage ($V_{out}$) across a specific resistor ($R_2$) is calculated using the formula: $V_{out} = V_{in} \\times (R_2 / (R_1 + R_2))$.",
+      "By replacing a fixed resistor with a sensor like an LDR or thermistor, $V_{out}$ changes with light or temperature, creating a sensing circuit."
     ]
   },
   "flashcards": [
     {
-      "front": "What is the core function of a potential divider circuit?",
-      "back": "To divide a supply voltage into smaller, desired output voltages."
+      "front": "What is a potential divider?",
+      "back": "A circuit consisting of two or more resistors connected in series to a voltage source, used to provide a fraction of the source voltage as an output."
     },
     {
-      "front": "State the potential divider formula for Vₒᵤₜ across R₂ in series with R₁ and Vᵢₙ.",
-      "back": "$$V_{out} = V_{in} \\times \\frac{R_2}{R_1 + R_2}$$"
+      "front": "State the potential divider formula for $V_{out}$ across resistor $R_2$.",
+      "back": "$V_{out} = V_{in} \\left( \\frac{R_2}{R_1 + R_2} \\right)$, where $V_{in}$ is the source p.d. and $R_1$ and $R_2$ are the series resistors."
     },
     {
-      "front": "How can a potential divider provide a continuously adjustable output voltage?",
-      "back": "By using a variable resistor, such as a potentiometer or rheostat, as part of the series combination."
+      "front": "In a potential divider with resistors $R_1$ and $R_2$ in series, what is the relationship between the potential differences across them?",
+      "back": "The ratio of the potential differences is equal to the ratio of their resistances: $V_1 / V_2 = R_1 / R_2$. This follows from $V=IR$ and the current $I$ being the same for both."
     },
     {
-      "front": "Name two types of resistive sensors used in potential dividers.",
-      "back": "Thermistors and Light Dependent Resistors (LDRs)."
+      "front": "An LDR is used as $R_2$ in a potential divider. How does $V_{out}$ change as the surroundings get brighter?",
+      "back": "In bright light, the LDR's resistance decreases. As $R_2$ decreases, its share of the total voltage also decreases, so $V_{out}$ decreases."
     },
     {
-      "front": "Why are null measurements, with potentiometers, considered more accurate?",
-      "back": "They involve no current flow through the measured component, preventing alteration of its conditions or potential difference."
+      "front": "An NTC thermistor is used as $R_1$ in a potential divider. How does $V_{out}$ (measured across $R_2$) change as it gets hotter?",
+      "back": "As temperature increases, the thermistor's resistance ($R_1$) decreases. The total resistance ($R_1+R_2$) decreases. $R_2$ now has a larger proportion of the total resistance, so its share of the voltage, $V_{out}$, increases."
     },
     {
-      "front": "What is the relationship between current in series resistors within a potential divider?",
-      "back": "The current is the same through every resistor in a series potential divider circuit."
+      "front": "What is the effect of connecting a load resistor in parallel with $R_2$?",
+      "back": "The load resistor reduces the equivalent resistance of the lower part of the divider (to be less than $R_2$). This reduces the output voltage $V_{out}$."
     },
     {
-      "front": "How does an LDR's resistance change with light intensity?",
-      "back": "The resistance of an LDR decreases as light intensity increases."
+      "front": "Why is the current constant throughout a simple potential divider circuit?",
+      "back": "The resistors are connected in series. According to the principle of conservation of charge, the rate of flow of charge (current) must be the same at all points in a single loop."
     },
     {
-      "front": "Describe the typical behaviour of an NTC thermistor.",
-      "back": "Its resistance decreases as temperature increases."
+      "front": "A potential divider uses a 3 kΩ and a 6 kΩ resistor. Which resistor has the larger potential difference across it?",
+      "back": "The 6 kΩ resistor. In a series circuit, the potential difference is shared in proportion to the resistance ($V \\propto R$). The larger resistor gets the larger share of the voltage."
+    },
+    {
+      "front": "Common Trap: When calculating $V_{out}$, what does the resistor in the numerator of the fraction represent?",
+      "back": "It always represents the resistance of the component(s) that the output voltage is being measured across. Be careful to identify the correct resistor from the circuit diagram."
     },
     {
       "front": "What is a potentiometer?",
-      "back": "A three-terminal variable resistor often used as a potential divider for continuously adjustable output voltage."
+      "back": "A type of variable potential divider, typically made from a single resistive wire or track with a sliding contact. It allows for a continuously variable output voltage from 0 V to $V_{in}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a potential divider and a potentiometer?",
+      "a": "A potential divider uses two or more discrete resistors to provide one or more fixed output voltages. A potentiometer is a type of variable potential divider, usually made of a single resistive track with a sliding contact that can move along it to provide a continuously variable output voltage between 0 V and the supply voltage."
     },
     {
-      "front": "What is the purpose of a galvanometer in null measurements?",
-      "back": "It detects when there is zero current flow (the null point), signifying equal potential differences."
+      "q": "Why does adding a load resistor in parallel with R₂ decrease the output voltage?",
+      "a": "When you connect a load resistor in parallel with R₂, you create a parallel combination. The rule for parallel resistors is that the total equivalent resistance is always less than the smallest individual resistance. So, the equivalent resistance of this lower section becomes less than R₂. This means it now takes a smaller share of the total input voltage, causing V_out to drop."
+    },
+    {
+      "q": "Can the potential divider formula be used for circuits with more than two resistors?",
+      "a": "Yes, it can be generalised. The total resistance in the denominator becomes the sum of all series resistors ($R_1 + R_2 + R_3 + ...$). The resistance in the numerator becomes the sum of the resistances of the components you are measuring the output voltage across. For example, to find the voltage across $R_2$ and $R_3$ together, the numerator would be ($R_2 + R_3$)."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Ever wondered how a single power source can supply different voltages to various parts of a circuit? Enter **potential dividers**! These fundamental circuits allow you to **split** an input voltage into smaller, desired output voltages. They are crucial for powering sensitive components and for creating sensor-based systems, demonstrating a clever application of Ohm's Law and series circuits. This lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **10.3**."
+      "content": "Many electronic devices, like your smartphone or laptop, require a range of different voltages to power their various components, yet they run from a single battery. How is this possible? The answer lies in a fundamental circuit known as the potential divider. It's an elegant and efficient way to 'tap off' a specific, smaller voltage from a larger source, forming the basis of volume controls, dimmer switches, and a vast array of electronic sensors."
     },
     {
       "type": "heading",
-      "content": "The Core Concept: Voltage Division"
+      "content": "The Principle of Potential Division"
     },
     {
       "type": "text",
-      "content": "At its heart, a potential divider is a simple series circuit. When resistors are connected in series across a voltage source, the total voltage supplied is distributed amongst them. This distribution isn't random; it's directly proportional to each resistor's individual resistance. The larger the resistance, the greater the share of the total voltage it \"drops\" across itself."
-    },
-    {
-      "type": "heading",
-      "content": "The Potential Divider Formula"
-    },
-    {
-      "type": "text",
-      "content": "In a series circuit, the current ($$I$$) is the same through every component. According to Ohm's Law ($$V=IR$$), the voltage drop across a resistor is proportional to its resistance. For two resistors, $$R_1$$ and $$R_2$$, in series with an input voltage $$V_{in}$$, the output voltage ($$V_{out}$$) across $$R_2$$ is given by:"
-    },
-    {
-      "type": "formula",
-      "content": "$$V_{out} = V_{in} \\times \\frac{R_2}{R_1 + R_2}$$"
+      "content": "When resistors are connected in series, the total potential difference from the power supply is shared between them. This is a direct consequence of Kirchhoff's second law and the definition of potential difference. The 'division' of potential is not equal unless the resistors are identical; instead, it is proportional to their resistance. The resistor with the highest resistance will have the largest potential difference across it."
     },
     {
       "type": "keyPoints",
       "items": [
-        "10.3 Potential dividers.",
-        "According to Kirchhoff’s Second Law, the potential difference across a power source is divided when two resistors are connected in series.",
-        "The larger the resistance the larger the voltage share (the big eater gets more pie!).",
-        "A potential meter is similar to a variable resistor.",
-        "In the diagram above, the total resistance of the potentiometer is R.",
-        "When the slider is moved it divides R into R 1 and R 2."
+        "Components in series have the same current flowing through them.",
+        "The sum of the potential differences across all components in series equals the e.m.f. of the source.",
+        "The ratio of p.d. across two series resistors is equal to the ratio of their resistances: $V_1 / V_2 = R_1 / R_2$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Potential Divider Equation"
+    },
+    {
+      "type": "text",
+      "content": "We can derive a general formula to calculate the output voltage across one of the resistors. Consider a source of voltage $V_{in}$ connected across two series resistors, $R_1$ and $R_2$. The total resistance of the circuit is $R_T = R_1 + R_2$. Using Ohm's Law, the current $I$ flowing through the circuit is $I = V_{in} / R_T = V_{in} / (R_1 + R_2)$. The output voltage, $V_{out}$, is the potential difference across $R_2$. Applying Ohm's Law to $R_2$ gives $V_{out} = I \\times R_2$. By substituting our expression for the current $I$, we arrive at the potential divider equation."
+    },
+    {
+      "type": "formula",
+      "content": "V_{out} = V_{in} \\left( \\frac{R_2}{R_1 + R_2} \\right)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always double-check which resistor the question defines as the output. The resistor in the numerator of the formula must be the one across which $V_{out}$ is measured. If the output is across $R_1$, the numerator would be $R_1$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 12.0 V power supply is connected in series with a 4.0 kΩ resistor and a 8.0 kΩ resistor. Calculate the output voltage taken across the 8.0 kΩ resistor.",
+      "solution": "1. **Identify the given values:**\n   $V_{in} = 12.0$ V\n   $R_1 = 4.0$ kΩ = 4000 Ω\n   $R_2 = 8.0$ kΩ = 8000 Ω (This is the resistor we are measuring $V_{out}$ across)\n\n2. **State the potential divider formula:**\n   $V_{out} = V_{in} \\left( \\frac{R_2}{R_1 + R_2} \\right)$\n\n3. **Substitute the values into the formula:**\n   $V_{out} = 12.0 \\left( \\frac{8000}{4000 + 8000} \\right)$\n\n4. **Calculate the result:**\n   $V_{out} = 12.0 \\left( \\frac{8000}{12000} \\right) = 12.0 \\times \\frac{2}{3}$\n   $V_{out} = 8.0$ V\n\n   The output voltage is 8.0 V. (Note: You can leave resistances in kΩ if the units are consistent in the numerator and denominator, as they cancel out)."
+    },
+    {
+      "type": "heading",
+      "content": "Sensing Circuits using Potential Dividers"
+    },
+    {
+      "type": "text",
+      "content": "Potential dividers become truly powerful when one of the fixed resistors is replaced with a sensor whose resistance changes with environmental conditions. Common examples include Light-Dependent Resistors (LDRs) and thermistors (NTC type). This creates a circuit where the output voltage, $V_{out}$, becomes a signal that represents a physical quantity like light level or temperature."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**LDR:** Resistance is very high in the dark and very low in bright light.",
+        "**NTC Thermistor:** Resistance is high at low temperatures and low at high temperatures (NTC = Negative Temperature Coefficient).",
+        "By placing the sensor as either $R_1$ or $R_2$, you can control whether the output voltage increases or decreases in response to a stimulus."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A 12V power supply is connected across two series resistors: R1 = 200Ω and R2 = 400Ω. Calculate the output voltage taken across R2.",
-      "solution": "1.  Identify the input voltage: $$V_{in} = 12V$$.\n2.  Identify the resistances: $$R_1 = 200\\Omega$$ and $$R_2 = 400\\Omega$$.\n3.  Apply the potential divider formula: $$V_{out} = V_{in} \\times \\frac{R_2}{R_1 + R_2}$$.\n4.  Substitute the values: $$V_{out} = 12V \\times \\frac{400\\Omega}{200\\Omega + 400\\Omega}$$.\n5.  Calculate the sum of resistances: $$V_{out} = 12V \\times \\frac{400}{600}$$.\n6.  Simplify the fraction and calculate: $$V_{out} = 12V \\times \\frac{2}{3} = 8V$$.\n7.  The output voltage across R2 is 8V."
-    },
-    {
-      "type": "heading",
-      "content": "Variable Output: Potentiometers and Sensors"
-    },
-    {
-      "type": "text",
-      "content": "To create an output voltage that isn't fixed, we can incorporate a variable resistor. A **potentiometer** is a three-terminal variable resistor, often wired into a potential divider circuit. By sliding its contact (wiper), the resistance ratio changes continuously, allowing for a continuously adjustable output voltage, perfect for volume controls or brightness adjustments."
-    },
-    {
-      "type": "text",
-      "content": "**Sensors** like Light Dependent Resistors (LDRs) and thermistors can replace fixed resistors in a potential divider. An LDR's resistance decreases with more light, while an NTC thermistor's resistance drops with increasing temperature. This makes the output voltage responsive to environmental changes, forming the basis of many automatic control systems like streetlights or temperature alarms."
-    },
-    {
-      "type": "heading",
-      "content": "Null Measurements: Precision with Potentiometers"
-    },
-    {
-      "type": "text",
-      "content": "Potentiometers are also critical in highly accurate **null measurement techniques**. The key advantage is that at the null point (zero current flow), no current is drawn from the component being measured. This prevents the measurement device from altering the circuit's conditions, ensuring a more accurate determination of its actual potential difference. A galvanometer detects this precise null point."
+      "question": "A potential divider is used to create a frost warning circuit. It consists of a 6.0 V supply, a fixed 2.5 kΩ resistor, and an NTC thermistor. The output is connected to a voltmeter. At 0 °C, the thermistor's resistance is 9.8 kΩ. Calculate the voltmeter reading at 0 °C if the output is taken across the fixed resistor.",
+      "solution": "1. **Identify the components and values:**\n   $V_{in} = 6.0$ V\n   Thermistor resistance, $R_1 = 9.8$ kΩ\n   Fixed resistor, $R_2 = 2.5$ kΩ\n   The output is across the fixed resistor, so we are calculating $V_{out}$ across $R_2$.\n\n2. **State the potential divider formula:**\n   $V_{out} = V_{in} \\left( \\frac{R_2}{R_1 + R_2} \\right)$\n\n3. **Substitute the values:**\n   $V_{out} = 6.0 \\left( \\frac{2.5 \\text{ kΩ}}{9.8 \\text{ kΩ} + 2.5 \\text{ kΩ}} \\right)$\n\n4. **Calculate the result:**\n   $V_{out} = 6.0 \\left( \\frac{2.5}{12.3} \\right)$\n   $V_{out} = 6.0 \\times 0.20325...$\n   $V_{out} \\approx 1.22$ V\n\n   The voltmeter reading at 0 °C is 1.2 V (to 2 significant figures, consistent with the input data)."
     },
     {
       "type": "examTip",
-      "content": "Always clearly identify which resistor the output voltage is being taken across in the potential divider formula; a common mistake is using the wrong resistance in the numerator. Also, understand how sensors (LDRs, thermistors) change their resistance based on external conditions, and how this affects the overall resistance ratio and thus the output voltage."
+      "content": "When a load (e.g., a voltmeter or another circuit component) is connected in parallel with $R_2$, the effective resistance of that part of the circuit decreases. You must first calculate the new equivalent resistance of the parallel combination, and then use this new value in the potential divider equation. This will always result in a lower $V_{out}$ than without the load."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Test Your Knowledge on Potential Dividers",
       "href": "/mark?subject=9702&topic=10.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner AS Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+          "label": "PhET Simulation: Circuit Construction Kit (DC)",
+          "href": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
         },
         {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "In-depth video on potential dividers and sensors",
+          "href": "https://www.youtube.com/watch?v=XH6x3r_2A2E"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "How does changing the value of one resistor affect the output voltage in a potential divider?",
-      "a": "If you increase the resistance of the resistor across which the output is taken (R2 in the formula), the output voltage will increase, assuming the other resistor (R1) and input voltage remain constant. Conversely, decreasing R2 will decrease V_out."
-    },
-    {
-      "q": "Can a potential divider provide an output voltage higher than the input voltage?",
-      "a": "No, a potential divider can only provide an output voltage that is a fraction of, or at most equal to, the input voltage. It cannot step up the voltage."
-    },
-    {
-      "q": "What is the main difference between a fixed potential divider and one using a potentiometer?",
-      "a": "A fixed potential divider produces a constant output voltage determined by fixed resistor values. In contrast, one using a potentiometer allows for a continuously adjustable output voltage by mechanically varying the resistance ratio."
-    }
-  ],
-  "updated": "2026-06-09",
-  "paperNumber": "2",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/10-3-potential-dividers.png",
-    "alt": "Senpai Corner reference diagram for 10.3 Potential dividers"
-  }
+  "generatorVersion": "stem-deep-author-1"
 }

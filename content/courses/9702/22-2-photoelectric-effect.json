@@ -5,208 +5,207 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Paper 4 — Photoelectric effect (22.2). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson explores the photoelectric effect, a key phenomenon providing evidence for the quantum nature of light. It covers Einstein's photoelectric equation, the concepts of work function and threshold frequency, and the analysis of experimental data to determine Planck's constant.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain the photoelectric effect and define key terms like threshold frequency and work function.",
-    "Apply Einstein's photoelectric equation (hf = Φ + KE_max) to solve problems.",
-    "Describe how the photoelectric effect provides strong evidence for the particle nature of light."
+    "Recall and use Einstein's photoelectric equation $KE_{max} = hf - \\Phi$.",
+    "Define and apply the concepts of work function ($\\Phi$), threshold frequency ($f_0$), and photon.",
+    "Analyse graphical data of maximum kinetic energy versus frequency to determine the Planck constant and work function.",
+    "Explain why the wave theory of light fails to account for the observations of the photoelectric effect."
   ],
   "simpleExplanation": {
-    "title": "Light's Electron Kick-Start",
-    "summary": "The photoelectric effect is when light hits a metal and ejects electrons. It shows that light behaves like tiny energy packets, giving electrons a 'kick' to escape, but only if the light has enough individual energy.",
-    "analogy": "Imagine a vending machine for electrons. You need to insert a specific type of coin (a photon with enough energy) to get an electron (your snack) out. Using lots of small coins (low frequency light, high intensity) won't work if they're the wrong type; you need *one* correct coin.",
+    "title": "Light's Quantum Punch",
+    "summary": "Light acts like a stream of tiny energy packets called photons. If a single photon has enough energy to knock an electron out of a metal surface, it does so instantly, with any leftover energy becoming the electron's kinetic energy.",
+    "analogy": "Imagine trying to buy a snack from a vending machine. The price of the snack is the 'work function' of the metal. The money you have is the energy of one photon. If you have exactly enough or more money, you can buy the snack (the electron is emitted). Any change you get back is the electron's kinetic energy. If you don't have enough money, you get nothing, no matter how many of your friends (higher intensity) also try with the same insufficient amount.",
     "steps": [
-      "Light (made of photons) hits a metal surface.",
-      "A photon transfers its energy to a single electron within the metal.",
-      "If the photon's energy is sufficient to overcome the electron's binding energy (work function), the electron escapes.",
-      "Any excess energy from the photon becomes the kinetic energy of the emitted electron."
+      "Light delivers energy in discrete packets called photons, where a photon's energy is given by $E = hf$.",
+      "Electrons are bound to the metal surface with a minimum energy required for escape, known as the work function, $\\Phi$.",
+      "If a photon's energy is greater than the work function ($hf > \\Phi$), an electron is emitted. Its maximum kinetic energy is the leftover energy: $KE_{max} = hf - \\Phi$.",
+      "Increasing the light's intensity (making it brighter) increases the number of photons arriving per second, thus increasing the rate of electron emission, but does not change the maximum kinetic energy of each electron."
     ]
   },
   "flashcards": [
     {
-      "front": "What is the threshold frequency (f₀) in the photoelectric effect?",
-      "back": "The minimum frequency of incident light required to cause electron emission from a specific metal surface."
-    },
-    {
-      "front": "How does light intensity affect the maximum kinetic energy of photoelectrons?",
-      "back": "It does not affect the maximum kinetic energy; KE_max is independent of light intensity."
-    },
-    {
-      "front": "What is the formula relating photon energy, work function, and maximum kinetic energy of an emitted electron?",
-      "back": "hf = Φ + KE_max (or hf = Φ + ½ mv_max_²)"
-    },
-    {
-      "front": "Define the work function (Φ) of a metal.",
-      "back": "The minimum energy required to remove an electron from the surface of a metal."
-    },
-    {
-      "front": "How does the photoelectric effect support the particle nature of light?",
-      "back": "It demonstrates a one-to-one interaction where discrete photons transfer energy to individual electrons, and emission only occurs if the photon's energy exceeds a minimum value, regardless of intensity."
+      "front": "What is the photoelectric effect?",
+      "back": "The emission of electrons (photoelectrons) from a metal surface when electromagnetic radiation of sufficiently high frequency is incident upon it."
     },
     {
       "front": "What is a photon?",
-      "back": "A discrete packet or 'quantum' of electromagnetic energy."
+      "back": "A discrete packet or quantum of electromagnetic energy. Its energy is given by $E = hf$, where $h$ is the Planck constant and $f$ is the frequency of the radiation."
     },
     {
-      "front": "What is Planck's constant (h)?",
-      "back": "A fundamental constant in quantum mechanics that relates a photon's energy to its frequency (h = 6.63 × 10⁻³⁴ Js)."
+      "front": "Define work function, $\\Phi$.",
+      "back": "The minimum energy required to remove a single electron from the surface of a particular metal."
     },
     {
-      "front": "Define the electronvolt (eV).",
-      "back": "The kinetic energy gained by an electron when it is accelerated through a potential difference of 1 volt (1 eV = 1.6 × 10⁻¹⁹ J)."
+      "front": "Define threshold frequency, $f_0$.",
+      "back": "The minimum frequency of incident electromagnetic radiation required to cause photoelectric emission from a particular metal surface."
     },
     {
-      "front": "How does increasing light intensity affect the photocurrent, assuming frequency is above threshold?",
-      "back": "Increasing intensity increases the number of photons hitting the metal per second, leading to more electrons being emitted and thus a larger photocurrent."
+      "front": "What is the relationship between work function $\\Phi$ and threshold frequency $f_0$?",
+      "back": "The work function is the energy of a photon with the threshold frequency: $\\Phi = hf_0$."
     },
     {
-      "front": "What is the relationship between work function (Φ) and threshold frequency (f₀)?",
-      "back": "The work function is equal to Planck's constant multiplied by the threshold frequency (Φ = hf₀)."
+      "front": "State Einstein's photoelectric equation.",
+      "back": "Maximum kinetic energy of an emitted electron is $KE_{max} = hf - \\Phi$."
     },
     {
-      "front": "What happens if light frequency is below the threshold frequency (f₀)?",
-      "back": "No electrons are emitted, regardless of how intense the light is, because individual photons do not have enough energy to overcome the work function."
+      "front": "How does increasing the intensity of the incident light affect the emitted photoelectrons?",
+      "back": "It increases the rate of emission of photoelectrons (more electrons per second), but has no effect on their maximum kinetic energy."
+    },
+    {
+      "front": "How does increasing the frequency of the incident light (above $f_0$) affect the emitted photoelectrons?",
+      "back": "It increases the maximum kinetic energy of the photoelectrons. The rate of emission is unaffected if the intensity (power per unit area) is kept constant."
+    },
+    {
+      "front": "What happens if the frequency of the incident light is below the threshold frequency ($f < f_0$)?",
+      "back": "No photoelectric emission occurs, regardless of the intensity or duration of the illumination."
+    },
+    {
+      "front": "In a graph of $KE_{max}$ against frequency $f$, what does the gradient represent?",
+      "back": "The gradient is equal to the Planck constant, $h$."
+    },
+    {
+      "front": "In a graph of $KE_{max}$ against frequency $f$, what does the y-intercept represent?",
+      "back": "The y-intercept is equal to the negative of the work function, $-\\Phi$."
+    },
+    {
+      "front": "Why does the existence of a threshold frequency support the particle model of light?",
+      "back": "The wave model predicts that any frequency of light, if intense enough, should eventually provide enough energy to emit an electron. The particle model explains that one photon interacts with one electron, and if that single photon's energy ($hf$) is less than the work function ($\\Phi$), no emission can occur."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the work function and the threshold frequency?",
+      "a": "They are related concepts measuring the same property of a metal. The threshold frequency ($f_0$) is the minimum *frequency* of light needed for emission. The work function ($\\Phi$) is the minimum *energy* needed for emission. They are linked by the equation $\\Phi = hf_0$, where $h$ is the Planck constant."
+    },
+    {
+      "q": "Why is it the *maximum* kinetic energy, $KE_{max}$?",
+      "a": "The work function, $\\Phi$, is the *minimum* energy required to remove an electron. This applies to electrons on the very surface of the metal. Electrons deeper within the metal require more energy to escape because they may lose energy in collisions on their way out. Therefore, the photoelectrons have a range of kinetic energies from zero up to a maximum value, $KE_{max}$."
+    },
+    {
+      "q": "If a photon has exactly the work function energy, is an electron emitted?",
+      "a": "Yes. If $hf = \\Phi$, the electron is just liberated from the surface but has zero kinetic energy. This corresponds to the threshold frequency, $f_0$."
+    },
+    {
+      "q": "Does a more intense light beam have more energetic photons?",
+      "a": "No, this is a critical misconception. The energy of each individual photon depends only on its frequency ($E=hf$). A more intense light beam of the same frequency simply means there are *more photons* arriving per unit area per second. It's like the difference between a trickle of raindrops and a downpour; the size of each drop (photon energy) is the same, but the number of drops (number of photons) is different."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Dive into the fascinating world of the **photoelectric effect**, where light isn't just a wave, but a stream of tiny energy packets called **photons** that can actually knock electrons out of a metal surface! This phenomenon revolutionised our understanding of light and provides crucial evidence for its particle-like nature. This lesson aligns with **Senpai Corner** A Level notes (2025–2027) for topic **22.2**."
+      "content": "At the turn of the 20th century, physicists were puzzled by an experiment called the photoelectric effect. When light shines on a metal, it can knock electrons out. However, the way this happened defied the classical wave theory of light. This lesson delves into how Albert Einstein's revolutionary idea—that light consists of particles called photons—perfectly explained these observations and laid the foundation for quantum physics."
     },
     {
       "type": "heading",
-      "content": "What is the Photoelectric Effect?"
+      "content": "Evidence Against the Wave Model"
     },
     {
       "type": "text",
-      "content": "The photoelectric effect describes the emission of electrons, known as **photoelectrons**, from a metal surface when electromagnetic radiation (light) shines on it. It’s a direct interaction that reveals a lot about the quantum nature of light and matter."
-    },
-    {
-      "type": "heading",
-      "content": "Photons: Light's Energy Packets"
-    },
-    {
-      "type": "text",
-      "content": "To explain this effect, we model light not just as a wave, but as discrete bundles of energy called **photons**. Each photon carries an amount of energy directly proportional to its frequency. This fundamental relationship is given by Planck's equation."
-    },
-    {
-      "type": "formula",
-      "content": "E = hf\n\nWhere:\nE = energy of a single photon (J)\nh = Planck's constant (6.63 × 10⁻³⁴ Js)\nf = frequency of the electromagnetic radiation (Hz)"
-    },
-    {
-      "type": "heading",
-      "content": "Work Function and Threshold Frequency"
-    },
-    {
-      "type": "text",
-      "content": "For an electron to escape from a metal, it needs a minimum amount of energy to overcome the attractive forces holding it within the material. This minimum energy is called the **work function (Φ)**. Each metal has a unique work function."
-    },
-    {
-      "type": "text",
-      "content": "Because photon energy depends on frequency (E=hf), there must be a minimum frequency of light, called the **threshold frequency (f₀)**, for electrons to be emitted. If the incident light's frequency is below f₀, no electrons will be emitted, no matter how bright or intense the light is. This is because individual photons simply don't have enough energy."
-    },
-    {
-      "type": "heading",
-      "content": "Einstein's Photoelectric Equation"
-    },
-    {
-      "type": "text",
-      "content": "When a photon with sufficient energy (hf > Φ) strikes an electron, it transfers all its energy to that electron. If this energy is greater than the work function, the electron is ejected. Any energy remaining after overcoming the work function becomes the kinetic energy of the emitted photoelectron."
-    },
-    {
-      "type": "formula",
-      "content": "hf = Φ + KE_max\n\nWhere:\nhf = energy of the incident photon (J)\nΦ = work function of the metal (J)\nKE_max = maximum kinetic energy of the emitted photoelectron (J)"
-    },
-    {
-      "type": "heading",
-      "content": "Intensity vs. Frequency: Key Distinctions"
+      "content": "The classical wave theory of light predicted that the energy of a light wave was spread evenly over the wavefront and related to its intensity (brightness). This led to predictions that contradicted experimental results:"
     },
     {
       "type": "keyPoints",
       "items": [
-        "22.2 Photoelectric effect.",
-        "Photoelectric effect , is a phenomenon in which electrons are released from the metal surface when it absorbs EM radiation.",
-        "Electrons released from photoelectric effect is called photoelectrons .",
-        "Photoelectric effect is evidence that light is quantised (discrete) because each electron can only absorb a single photon and only at frequencies above a threshold frequency .",
-        "The threshold frequency is the minimum frequency of the EM radiation that is needed to remove a photoelectron from the surface of a metal .",
-        "The threshold wavelength can be determined from the wave equation c = fλ."
+        "**Prediction vs. Reality (Threshold Frequency):** Wave theory suggested any frequency of light, if intense enough, could cause emission. Experiments showed emission only occurs above a specific 'threshold frequency', unique to each metal.",
+        "**Prediction vs. Reality (Time Delay):** Wave theory predicted a time lag for low-intensity light, as energy would need to accumulate to eject an electron. Experiments showed emission is virtually instantaneous, provided the frequency is above the threshold.",
+        "**Prediction vs. Reality (Kinetic Energy):** Wave theory linked electron kinetic energy to the light's intensity. Experiments showed that maximum kinetic energy depends only on the light's frequency, not its intensity."
       ]
     },
     {
       "type": "heading",
-      "content": "Evidence for Light's Particle Nature"
+      "content": "Einstein's Photon Model and the Photoelectric Equation"
     },
     {
       "type": "text",
-      "content": "The photoelectric effect strongly supports the idea that light behaves as particles (photons). Classical wave theory struggles to explain phenomena like the instantaneous emission of electrons and the existence of a threshold frequency, irrespective of intensity. The one-to-one photon-electron interaction neatly explains these observations."
-    },
-    {
-      "type": "heading",
-      "content": "The Electronvolt (eV)"
-    },
-    {
-      "type": "text",
-      "content": "In atomic and subatomic physics, energies are often very small, so we use a more convenient unit called the **electronvolt (eV)**. One electronvolt is defined as the kinetic energy gained by an electron when it is accelerated through a potential difference of 1 volt."
+      "content": "Einstein proposed that light energy is not continuous but quantised into discrete packets called photons. The energy of a single photon is directly proportional to its frequency. This 'all-or-nothing' interaction between one photon and one electron explains the experimental observations perfectly."
     },
     {
       "type": "formula",
-      "content": "1 eV = 1.6 × 10⁻¹⁹ J"
+      "content": "Photon Energy: $E = hf = \\frac{hc}{\\lambda}$"
+    },
+    {
+      "type": "text",
+      "content": "For an electron to be liberated, the energy from one incident photon, $hf$, must be sufficient to overcome the binding energy holding the electron to the metal. This minimum energy is the work function, $\\Phi$. Any excess energy is transferred to the electron as kinetic energy. The maximum kinetic energy, $KE_{max}$, corresponds to the least tightly bound electrons on the surface."
+    },
+    {
+      "type": "formula",
+      "content": "Einstein's Photoelectric Equation: $KE_{max} = hf - \\Phi$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**$hf$**: Energy of a single incident photon.",
+        "**$\\Phi$**: Work function energy, the 'price' to free an electron from the metal surface.",
+        "**$KE_{max}$**: Maximum kinetic energy of the emitted photoelectron, the 'change' left over."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Monochromatic light of frequency 7.5 × 10¹⁴ Hz is incident on a clean sodium surface. The work function of sodium is 2.28 eV. Calculate:\n(a) The energy of an incident photon in Joules.\n(b) The maximum kinetic energy of an emitted electron in Joules.",
-      "solution": "1.  **Convert the work function to Joules:**\n    Φ = 2.28 eV × (1.6 × 10⁻¹⁹ J/eV) = 3.648 × 10⁻¹⁹ J\n\n2.  **Calculate the energy of an incident photon (hf):**\n    E = hf = (6.63 × 10⁻³⁴ Js) × (7.5 × 10¹⁴ Hz)\n    E = 4.9725 × 10⁻¹⁹ J\n\n3.  **Apply Einstein's Photoelectric Equation to find the maximum kinetic energy:**\n    KE_max = hf - Φ\n    KE_max = (4.9725 × 10⁻¹⁹ J) - (3.648 × 10⁻¹⁹ J)\n    KE_max = 1.3245 × 10⁻¹⁹ J\n\n4.  **Round to an appropriate number of significant figures (e.g., 3 s.f.):**\n    KE_max ≈ 1.32 × 10⁻¹⁹ J"
+      "question": "Light of wavelength 420 nm is incident on a clean caesium surface. The work function of caesium is $2.14$ eV. Calculate the maximum kinetic energy of the emitted photoelectrons in joules. (Planck constant $h = 6.63 \\times 10^{-34}$ J s, speed of light $c = 3.00 \\times 10^8$ m s$^{-1}$, elementary charge $e = 1.60 \\times 10^{-19}$ C).",
+      "solution": "**Step 1: Convert all quantities to SI units.**\nThe work function is given in electronvolts (eV). We must convert it to joules.\n$\\Phi = 2.14 \\text{ eV} \\times (1.60 \\times 10^{-19} \\text{ J/eV}) = 3.424 \\times 10^{-19} \\text{ J}$\n\n**Step 2: Calculate the energy of an incident photon.**\nFirst, find the frequency $f$ from the wavelength $\\lambda = 420 \\text{ nm} = 420 \\times 10^{-9} \\text{ m}$.\n$f = \\frac{c}{\\lambda} = \\frac{3.00 \\times 10^8 \\text{ m s}^{-1}}{420 \\times 10^{-9} \\text{ m}} = 7.143 \\times 10^{14} \\text{ Hz}$\nNow, calculate the photon energy, $E = hf$.\n$E = (6.63 \\times 10^{-34} \\text{ J s}) \\times (7.143 \\times 10^{14} \\text{ Hz}) = 4.736 \\times 10^{-19} \\text{ J}$\n\n**Step 3: Apply the photoelectric equation.**\n$KE_{max} = hf - \\Phi$\n$KE_{max} = (4.736 \\times 10^{-19} \\text{ J}) - (3.424 \\times 10^{-19} \\text{ J})$\n$KE_{max} = 1.312 \\times 10^{-19} \\text{ J}$\n\n**Answer:** The maximum kinetic energy is $1.31 \\times 10^{-19}$ J (to 3 s.f.)."
     },
     {
       "type": "examTip",
-      "content": "Always remember to convert units, especially electronvolts to Joules (and vice-versa) using 1 eV = 1.6 × 10⁻¹⁹ J. Questions often involve mixed units, so pay close attention to what the question is asking for!"
+      "content": "A very common mistake is failing to convert units. Work functions are often given in eV, and wavelengths in nm. Always convert to Joules and metres respectively before using them in the photoelectric equation to get an answer in Joules. Be prepared to convert your final answer back to eV if the question asks for it."
+    },
+    {
+      "type": "heading",
+      "content": "Graphical Analysis"
+    },
+    {
+      "type": "text",
+      "content": "The photoelectric equation, $KE_{max} = hf - \\Phi$, can be compared to the equation of a straight line, $y = mx + c$. By plotting a graph of maximum kinetic energy ($y$-axis) against frequency ($x$-axis), we can determine fundamental constants."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**y-axis:** Maximum Kinetic Energy, $KE_{max}$",
+        "**x-axis:** Frequency, $f$",
+        "**Gradient (m):** The Planck Constant, $h$",
+        "**y-intercept (c):** The negative of the work function, $-\\Phi$",
+        "**x-intercept:** The threshold frequency, $f_0$. This is where $KE_{max} = 0$, so $hf_0 - \\Phi = 0$, which gives $f_0 = \\Phi/h$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph shows the results of a photoelectric effect experiment for a certain metal. Use the graph to determine:\na) the threshold frequency of the metal.\nb) the work function, $\\Phi$, of the metal in joules.\nc) a value for the Planck constant, $h$.\n\n(The graph shows a straight line for $KE_{max}$ vs $f$. It intercepts the x-axis at $f = 4.5 \\times 10^{14}$ Hz. A point on the line is ($f = 8.0 \\times 10^{14}$ Hz, $KE_{max} = 2.3 \\times 10^{-19}$ J).)",
+      "solution": "**a) Determine the threshold frequency, $f_0$.**\nThe threshold frequency is the x-intercept, where the kinetic energy is zero. From the graph, this is:\n$f_0 = 4.5 \\times 10^{14} \\text{ Hz}$\n\n**b) Determine the work function, $\\Phi$.**\nThe work function is related to the threshold frequency by $\\Phi = hf_0$. We first need to find $h$. Alternatively, we can find the y-intercept which is $-\\Phi$. Let's calculate $h$ first and then find $\\Phi$.\n\n**c) Determine the Planck constant, $h$.**\nThe Planck constant is the gradient of the graph. We use two points to calculate the gradient. Let's use the x-intercept $(4.5 \\times 10^{14}, 0)$ and the given point $(8.0 \\times 10^{14}, 2.3 \\times 10^{-19})$.\nGradient $h = \\frac{\\Delta KE_{max}}{\\Delta f} = \\frac{(2.3 \\times 10^{-19} - 0) \\text{ J}}{(8.0 \\times 10^{14} - 4.5 \\times 10^{14}) \\text{ Hz}}$\n$h = \\frac{2.3 \\times 10^{-19}}{3.5 \\times 10^{14}} = 6.571 \\times 10^{-34} \\text{ J s}$\n$h \\approx 6.6 \\times 10^{-34} \\text{ J s}$ (to 2 s.f.)\n\n**Back to part b):**\nNow we can calculate the work function using $\\Phi = hf_0$.\n$\\Phi = (6.571 \\times 10^{-34} \\text{ J s}) \\times (4.5 \\times 10^{14} \\text{ Hz})$\n$\\Phi = 2.957 \\times 10^{-19} \\text{ J}$\n$\\Phi \\approx 3.0 \\times 10^{-19} \\text{ J}$ (to 2 s.f.)\n\n**Alternative for b):** We could extend the line to find the y-intercept. Using $y=mx+c$, we have $KE_{max} = hf - \\Phi$. The y-intercept is $-\\Phi$. Using the point $(8.0 \\times 10^{14}, 2.3 \\times 10^{-19})$ and our calculated $h$: $2.3 \\times 10^{-19} = (6.571 \\times 10^{-34})(8.0 \\times 10^{14}) - \\Phi$. This gives $2.3 \\times 10^{-19} = 5.257 \\times 10^{-19} - \\Phi$, so $\\Phi = 2.957 \\times 10^{-19} \\text{ J}$."
+    },
+    {
+      "type": "examTip",
+      "content": "Questions about the effect of intensity are extremely common. Remember the mantra: 'Intensity affects quantity, frequency affects quality'. Higher intensity means more photons, so more electrons are emitted per second (higher photoelectric current). Higher frequency means each photon has more energy, so each emitted electron has a higher maximum kinetic energy."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Practice Photoelectric Effect Questions",
       "href": "/mark?subject=9702&topic=22.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "PhET Interactive Simulation: Photoelectric Effect",
+          "href": "https://phet.colorado.edu/en/simulations/photoelectric"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "Why does the photoelectric effect only happen above a certain frequency?",
-      "a": "Because electrons need a minimum amount of energy (the work function, Φ) to escape the metal. Since photon energy E = hf, only photons with a frequency equal to or greater than the threshold frequency (f₀) will have enough individual energy to eject an electron. Below f₀, photons simply don't have enough energy, regardless of how many there are."
-    },
-    {
-      "q": "What is the difference between work function and threshold frequency?",
-      "a": "The work function (Φ) is the *minimum energy* an electron needs to absorb to escape the metal surface, measured in Joules or electronvolts. The threshold frequency (f₀) is the *minimum frequency* of incident light required for photons to provide this specific energy, related by the equation Φ = hf₀."
-    },
-    {
-      "q": "How does increasing light intensity affect the number of emitted electrons?",
-      "a": "Above the threshold frequency, increasing the intensity of light means more photons are striking the metal surface per second. Since each photon can potentially eject one electron, a higher intensity leads to a greater number of electrons being emitted per second, resulting in a larger photocurrent."
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Photoelectric effect",
+    "embedUrl": "https://phet.colorado.edu/sims/cheerpj/photoelectric/latest/photoelectric.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/photoelectric",
+    "hint": "Increase frequency and intensity — see threshold frequency and photoelectron energy (22.2).",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
     }
-  ],
-  "updated": "2026-06-15",
-  "paperNumber": "4",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/22-2-photoelectric-effect.png",
-    "alt": "Senpai Corner reference diagram for 22.2 Photoelectric effect"
   },
   "diagramSpec": {
     "params": [

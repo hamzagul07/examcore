@@ -5,223 +5,187 @@
   "paper": "P1_P2",
   "paperName": "Paper 1 Multiple Choice & Paper 2 AS Level Structured Questions",
   "status": "premium",
-  "summary": "Cambridge 9700 Paper 2 — Factors that affect enzyme action (3.2). A-Level Notes diagram-backed lesson with premium structure and live visuals.",
-  "durationMin": 20,
+  "summary": "This lesson explores the key environmental and chemical factors that influence the rate of enzyme-catalysed reactions. We will investigate how temperature, pH, substrate concentration, enzyme concentration, and the presence of inhibitors affect enzyme structure and function, using graphical analysis to interpret experimental data.",
+  "durationMin": 25,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain the effect of temperature on enzyme activity and reaction rate.",
-    "Describe how pH influences enzyme structure, active site shape, and catalytic efficiency.",
-    "Analyse the impact of varying substrate and enzyme concentrations on the rate of enzyme-catalysed reactions."
+    "Explain the effects of temperature and pH on the rate of enzyme action, with reference to denaturation.",
+    "Explain the effects of substrate and enzyme concentration on the initial rate of reaction, introducing the concepts of limiting factors and Vmax.",
+    "Describe and explain the effects of competitive and non-competitive inhibitors on enzyme activity.",
+    "Analyse and interpret graphical data representing the effects of these factors on reaction rates."
   ],
   "simpleExplanation": {
-    "title": "Enzymes: The Biological Catalysts Under Pressure",
-    "summary": "Enzymes are vital protein catalysts that speed up biochemical reactions in living organisms. Their efficiency isn't constant; it's hugely influenced by environmental conditions and the availability of reactants. Understanding these factors is key to explaining life processes.",
-    "analogy": "Think of enzymes as highly skilled workers on an assembly line. Each worker (enzyme) has a specific tool (active site) to transform a particular component (substrate) into a product. Factors like the temperature of the factory, the acidity of the air, or how many components arrive, or even how many workers are present, will all dictate how fast the final product rolls off the line.",
+    "title": "Enzymes: The Sensitive Specialists",
+    "summary": "Enzymes are like highly specialised workers on a biological assembly line. Their efficiency is dramatically affected by their working conditions, such as heat, acidity, and the availability of materials.",
+    "analogy": "Imagine a team of expert locksmiths (enzymes) who can only open one specific type of lock (substrate). They work fastest at a comfortable room temperature. If it gets too cold, they slow down. If it gets too hot, their tools (active sites) warp and become useless (denature). If someone puts chewing gum in the locks (a non-competitive inhibitor) or tries to use a similar-looking wrong key (a competitive inhibitor), the locksmiths' work is hindered.",
     "steps": [
-      "Identify the specific factor being changed (e.g., temperature, pH).",
-      "Recall how this factor affects protein structure, particularly the enzyme's active site.",
-      "Explain the resulting impact on the formation of enzyme-substrate complexes and reaction rate.",
-      "Use specific terminology: optimum, denaturation, collision frequency, saturation."
+      "Enzymes have an optimal temperature and pH. Deviating from these conditions alters the bonds holding their specific 3D tertiary structure, changing the active site shape and reducing activity. Extreme changes cause irreversible denaturation.",
+      "Increasing substrate concentration increases the rate of reaction until all enzyme active sites are occupied (saturated). At this point, the rate plateaus at its maximum velocity (Vmax), and enzyme concentration becomes the limiting factor.",
+      "Competitive inhibitors are structurally similar to the substrate and compete for the active site. This reduces the reaction rate, but the effect can be overcome by increasing substrate concentration.",
+      "Non-competitive inhibitors bind to an allosteric site (not the active site). This changes the overall shape of the enzyme, including the active site, preventing the substrate from binding effectively. This effect cannot be overcome by adding more substrate."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Denaturation",
+      "back": "The irreversible change in the specific three-dimensional structure of a protein (e.g., an enzyme) due to factors like extreme heat or pH. This results in the loss of biological function as the active site is no longer complementary to the substrate."
+    },
+    {
+      "front": "Optimum Temperature",
+      "back": "The temperature at which an enzyme exhibits maximum catalytic activity. Below this, kinetic energy is the limiting factor; above this, denaturation begins to occur."
+    },
+    {
+      "front": "Optimum pH",
+      "back": "The pH at which an enzyme shows maximum activity. It relates to the ionisation state of the amino acid R-groups in the active site, which is crucial for binding the substrate."
+    },
+    {
+      "front": "Limiting Factor",
+      "back": "The factor that is in shortest supply and restricts the rate of a process. In enzyme kinetics, this could be temperature, pH, substrate concentration, or enzyme concentration."
+    },
+    {
+      "front": "Vmax (Maximum Velocity)",
+      "back": "The maximum initial rate of an enzyme-catalysed reaction, achieved when the enzyme's active sites are fully saturated with substrate."
+    },
+    {
+      "front": "Competitive Inhibitor",
+      "back": "A molecule with a structure similar to the substrate that binds reversibly to the enzyme's active site, preventing the substrate from binding. It increases the apparent Km but does not change Vmax."
+    },
+    {
+      "front": "Non-competitive Inhibitor",
+      "back": "A molecule that binds to a site on the enzyme other than the active site (an allosteric site). This binding changes the tertiary structure of the enzyme, including the active site, reducing its efficiency. It lowers Vmax."
+    },
+    {
+      "front": "Allosteric Site",
+      "back": "A site on an enzyme, other than the active site, to which a molecule (an effector or non-competitive inhibitor) can bind to regulate the enzyme's activity."
+    },
+    {
+      "front": "Why is the graph for temperature effect on enzyme rate asymmetrical?",
+      "back": "The rate increases steadily as kinetic energy rises, but drops sharply after the optimum because denaturation is a rapid process that causes a catastrophic loss of function in the enzyme population."
+    },
+    {
+      "front": "What is the difference between enzyme inactivation at low temperatures and denaturation at high temperatures?",
+      "back": "Inactivation at low temperatures is reversible; enzymes regain activity when warmed as they have more kinetic energy. Denaturation is an irreversible change to the enzyme's tertiary structure caused by the breaking of bonds."
+    },
+    {
+      "front": "How can you overcome competitive inhibition?",
+      "back": "By significantly increasing the substrate concentration. This increases the probability of a substrate molecule binding to the active site rather than an inhibitor molecule."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is denaturation always irreversible?",
+      "a": "For A-Level Biology, denaturation caused by high temperatures is considered irreversible. The complex tertiary structure is permanently lost. Mild pH changes might be reversible if the optimum pH is quickly restored, but extreme pH changes also cause irreversible denaturation."
+    },
+    {
+      "q": "What is the difference between 'rate of reaction' and 'initial rate of reaction'?",
+      "a": "The 'initial rate' is the rate measured at the very beginning of the reaction (time = 0), when substrate concentration is at its highest and product concentration is zero. It provides the most reliable measure of enzyme capability under specific conditions. The 'rate of reaction' can refer to the rate at any point, which typically decreases over time as substrate is used up."
+    },
+    {
+      "q": "Why does a non-competitive inhibitor lower Vmax?",
+      "a": "A non-competitive inhibitor effectively 'removes' enzymes from the available pool by changing their shape. Even if the substrate concentration is infinitely high (saturating), there are simply fewer functional enzymes available to process it. This lowers the maximum possible rate of the overall reaction."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Ever wondered why your body maintains a **stable temperature** of 37°C? Or why stomach enzymes work best in **acidic conditions**? The answer lies in the incredible sensitivity of **enzymes** to their environment. These biological catalysts are the workhorses of every living cell, speeding up essential reactions without being used up themselves. But their efficiency isn't limitless; external factors can dramatically alter their activity. Master these concepts, and you'll ace your **9700 Biology** exams! Key points align with **[A-Level Notes](https://alevel-notes.weebly.com/biology.html)** 9700 Biology chapter **3** (topic **3.2**). Notes and diagrams from **[A-Level Notes](https://alevel-notes.weebly.com/biology.html)** chapter **3**, topic **3.2** (3 pages)."
+      "content": "Enzymes are remarkable biological catalysts, but their activity is not constant. It is finely tuned and highly dependent on the physical and chemical conditions of their environment. Understanding these factors is crucial for comprehending how metabolic pathways are controlled within cells and how enzymes are used in industrial processes."
     },
     {
       "type": "heading",
-      "content": "A-Level Notes — topic content"
-    },
-    {
-      "type": "heading",
-      "content": "4) Substrate concentration"
+      "content": "1. The Effect of Temperature"
     },
     {
       "type": "text",
-      "content": "• as substrate concentration increases, initial rate of reaction also increases.\n• the more substrate molecules there are around, the more often an enzyme’s active site can bind with one.\n• saturation point – enzymes working at max (V max ).\n• all active sites are filled up.\n• enzyme moves to find substrates as it gets less, collision forces start to decrease STARCH → MALTOSE → GLUCOSE."
-    },
-    {
-      "type": "heading",
-      "content": "5) Inhibitor concentration Decreases enzyme activity, slowing down the reaction. a) Competiti"
+      "content": "Temperature influences the rate of reaction by affecting the kinetic energy of both enzyme and substrate molecules. As temperature increases from a low value, molecules move faster, leading to more frequent and energetic collisions between substrates and active sites. This increases the rate of formation of enzyme-substrate complexes, and thus the rate of reaction increases."
     },
     {
       "type": "text",
-      "content": "• compete with the substrate for the active site.\n• molecule similar in shape to the enzyme’s substrate binds with the active site inhibiting the function.\n• if the concentration of inhibitor rises or substrate falls, it becomes less likely that the substrate will collide with an active site.\n• can be reversed by increasing the concentration of substrate b) Non-competitive inhibitor Molecule fits into the allosteric site of the enzyme rather than the active site.\n• disrupts the three-dimensional shape of enzyme preventing the substrate from fitting into the active site as its distorted.\n• increasing the substrate concentration has no change on the rate of reaction here.\n• End product inhibition – as enzyme converts substrate into product, rate is slowed down at the end as the product binds to another part of the enzyme and prevents more substrate binding Enzyme affinities.\n• affinity – enzyme willingness to bind to a substrate."
-    },
-    {
-      "type": "heading",
-      "content": "3) product isn’t contaminated with enzymes"
-    },
-    {
-      "type": "heading",
-      "content": "5) enzyme is more stable/less likely to denature"
-    },
-    {
-      "type": "heading",
-      "content": "1) Temperature"
-    },
-    {
-      "type": "text",
-      "content": "• rate of reaction is slow at lower temperatures as molecules are moving slowly which makes collisions happen less frequently.\n• as temperature rises, enzymes and substrates move faster, and collisions happen more frequently.\n• when they collide, they do so with more energy which makes it easier for bonds to be formed and broken.\n• if temperature keeps increasing, bonds holding enzyme in shape (ionic, hydrogen bonds) break and the enzyme is said to be denatured.\n• the temperature at which enzymes catalyse a reaction at maximum rate is the ‘optimum temperature’.\n• in humans, this is around 40°C."
-    },
-    {
-      "type": "heading",
-      "content": "3) Enzyme concentration"
-    },
-    {
-      "type": "text",
-      "content": "• the more enzymes present, the more active sites are available for substrates to fit in.\n• as long as there’s plenty of substrate available, initial rate of reaction increasing linearly with enzyme concentration."
-    },
-    {
-      "type": "heading",
-      "content": "Temperature"
-    },
-    {
-      "type": "text",
-      "content": "Temperature is a critical factor influencing the kinetic energy of molecules, including enzymes and substrates. As temperature increases from low levels, particles gain more kinetic energy, leading to more frequent and energetic collisions between enzyme and substrate molecules. This increases the likelihood of forming enzyme-substrate complexes and thus, the rate of reaction. This continues up to the **optimum temperature**, typically around 37°C for human enzymes. Beyond this optimum, the increasing kinetic energy causes vigorous vibrations within the enzyme molecule, particularly affecting the delicate three-dimensional structure of the active site. The weak hydrogen and ionic bonds that maintain the active site's specific shape begin to break, leading to a permanent change in its structure. This process is called **denaturation**. A denatured enzyme loses its active site's complementary shape to the substrate, rendering it unable to catalyse the reaction, causing a rapid decrease in reaction rate. Denaturation is usually irreversible."
+      "content": "Each enzyme has an optimum temperature at which it functions most efficiently. Beyond this point, the thermal energy becomes too great. The increased vibrations break the weak hydrogen and ionic bonds that maintain the enzyme's specific tertiary structure. This change in shape, particularly of the active site, is called denaturation. The substrate can no longer fit, and the rate of reaction falls rapidly."
     },
     {
       "type": "keyPoints",
       "items": [
-        "as substrate concentration increases, initial rate of reaction also increases.",
-        "the more substrate molecules there are around, the more often an enzyme’s active site can bind with one.",
-        "saturation point – enzymes working at max (V max ).",
-        "all active sites are filled up.",
-        "enzyme moves to find substrates as it gets less, collision forces start to decrease STARCH → MALTOSE → GLUCOSE 5) Inhibitor concentration Decreases enzyme activity, slowing down the reaction. a) Competitive inhibition.",
-        "compete with the substrate for the active site.",
-        "molecule similar in shape to the enzyme’s substrate binds with the active site inhibiting the function.",
-        "if the concentration of inhibitor rises or substrate falls, it becomes less likely that the substrate will collide with an active site.",
-        "can be reversed by increasing the concentration of substrate b) Non-competitive inhibitor Molecule fits into the allosteric site of the enzyme rather than the active site. Image: https://aiimsrishikesh.edu.in/.",
-        "disrupts the three-dimensional shape of enzyme preventing the substrate from fitting into the active site as its distorted.",
-        "increasing the substrate concentration has no change on the rate of reaction here.",
-        "End product inhibition – as enzyme converts substrate into product, rate is slowed down at the end as the product binds to another part of the enzyme and prevents more substrate binding Enzyme affinities.",
-        "affinity – enzyme willingness to bind to a substrate.",
-        "at V max , all enzyme molecules are bound to substrate molecules; the enzyme is saturated with substrate As substrate concentration is increased, reaction rate rises until the max rate i.e., V max Image: https://commons.wikimedia.org/wiki/File:Michaelis-Memten.JPG K m (Michaelis-Menten constant).",
-        "the substrate concentration at which enzyme works at half its maximum rate.",
-        "half the active sites of enzymes are occupied by substrate Image: https://teaching.ncl.ac.uk/bms/wiki/index.php/Non-competitive_inhibitor."
+        "**Low temperatures:** Molecules have low kinetic energy. Enzyme is inactive, not denatured. This is reversible.",
+        "**Increasing temperatures (to optimum):** Kinetic energy increases, leading to more frequent successful collisions. Rate of reaction increases.",
+        "**Optimum temperature:** The rate of reaction is at its maximum (Vmax).",
+        "**High temperatures (above optimum):** Bonds in the tertiary structure break, the active site changes shape, and the enzyme is denatured. This is irreversible."
       ]
     },
     {
       "type": "heading",
-      "content": "pH"
+      "content": "2. The Effect of pH"
     },
     {
       "type": "text",
-      "content": "The pH of the environment is a measure of hydrogen ion concentration and significantly impacts enzyme activity. Enzymes are proteins, and their three-dimensional structure, including the active site, is maintained by various bonds, particularly ionic and hydrogen bonds between the amino acid R-groups. Changes in pH alter the charges on these R-groups, which are crucial for maintaining the specific conformation of the active site. Even slight deviations from the enzyme's **optimum pH** can disrupt these charges, altering the active site's shape and reducing its ability to bind to the substrate. Extreme changes in pH (highly acidic or highly alkaline) can lead to **denaturation**, where the enzyme's structure is permanently altered, and it loses all catalytic activity. Different enzymes have different optimum pH values; for example, pepsin in the stomach works optimally at a low pH (~2), while trypsin in the small intestine functions best at a neutral to slightly alkaline pH (~8)."
+      "content": "pH is a measure of hydrogen ion concentration. Changes in pH can affect the charges on the R-groups of amino acids within the enzyme's structure. These charges are vital for forming the ionic bonds that hold the tertiary structure in place, especially the specific shape of the active site required for substrate binding."
     },
     {
-      "type": "keyPoints",
-      "items": [
-        "pH affects the charges on amino acid R-groups, impacting ionic and hydrogen bonds that stabilise the active site.",
-        "Optimum pH: Active site maintains its specific complementary shape, maximum reaction rate.",
-        "Deviation from optimum pH: Active site shape changes, enzyme-substrate complex formation reduced, lower reaction rate.",
-        "Extreme pH: Causes **denaturation** (irreversible loss of active site shape), enzyme becomes non-functional."
-      ]
+      "type": "text",
+      "content": "Each enzyme has a narrow optimum pH range. For example, pepsin in the stomach works best at pH 2, while trypsin in the small intestine has an optimum of around pH 8. Deviations from the optimum pH alter the ionisation of the active site, reducing its affinity for the substrate and slowing the reaction. Extreme pH values cause the bonds to break, leading to irreversible denaturation."
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, graphs of enzyme activity versus pH are typically symmetrical 'bell-shaped' curves. This is because deviations to either the acidic or alkaline side of the optimum disrupt the ionic bonding. This contrasts with temperature graphs, which are asymmetrical due to the sharp drop-off caused by denaturation at high temperatures."
+    },
+    {
+      "type": "workedExample",
+      "question": "An experiment measures the mass of product formed by an enzyme in 5 minutes at different temperatures. At 25°C, 15 mg of product is formed. At 35°C (the optimum temperature), 30 mg of product is formed. At 45°C, 10 mg of product is formed. Calculate the initial rate of reaction in mg min⁻¹ for each temperature.",
+      "solution": "The rate of reaction is the quantity of product formed per unit time.\n\n**Formula:** Rate = Mass of product / Time\n\n**At 25°C:**\nRate = 15 mg / 5 min\nRate = 3.0 mg min⁻¹\n\n**At 35°C (Optimum):**\nRate = 30 mg / 5 min\nRate = 6.0 mg min⁻¹\n\n**At 45°C:**\nRate = 10 mg / 5 min\nRate = 2.0 mg min⁻¹\n\n**Marking points:**\n1. Correct formula or understanding of rate calculation.\n2. Correct calculation for at least two temperatures.\n3. Correct units (mg min⁻¹) used consistently."
     },
     {
       "type": "heading",
-      "content": "Substrate Concentration"
+      "content": "3. The Effect of Substrate and Enzyme Concentration"
     },
     {
       "type": "text",
-      "content": "In a reaction with a fixed enzyme concentration, increasing the **substrate concentration** generally increases the rate of reaction. Initially, with low substrate concentration, many active sites are unoccupied. Adding more substrate molecules increases the frequency of collisions between enzyme and substrate, leading to more enzyme-substrate complexes forming per unit time, thus accelerating the reaction. However, this increase in rate is not indefinite. At a certain point, all the active sites on all available enzyme molecules will become occupied and saturated with substrate molecules. The enzymes are working at their maximum capacity. At this stage, even if more substrate is added, the rate of reaction will plateau, reaching its **maximum velocity (Vmax)**. The enzyme concentration now becomes the limiting factor."
+      "content": "When enzyme concentration is constant, increasing the substrate concentration initially increases the rate of reaction. This is because there are more substrate molecules available to collide with enzyme active sites, leading to more frequent formation of enzyme-substrate complexes. At this stage, substrate concentration is the limiting factor."
     },
     {
-      "type": "keyPoints",
-      "items": [
-        "Low substrate concentration: Many unoccupied active sites, substrate is the limiting factor.",
-        "Increasing substrate concentration: More collisions, more enzyme-substrate complexes, increased reaction rate.",
-        "High substrate concentration: All active sites are occupied/saturated, enzyme concentration becomes the limiting factor.",
-        "Rate reaches **Vmax** (maximum velocity) and plateaus."
-      ]
+      "type": "text",
+      "content": "However, the rate eventually plateaus. This occurs when all the enzyme active sites are continuously occupied, or 'saturated', with substrate. The reaction is now proceeding at its maximum velocity, Vmax. At this point, the enzyme concentration has become the limiting factor; the only way to increase the rate further is to add more enzyme."
+    },
+    {
+      "type": "formula",
+      "content": "Rate of reaction \\propto [Substrate] (at low concentrations)\nRate reaches V_{max} at high [Substrate] (saturation)"
     },
     {
       "type": "heading",
-      "content": "Enzyme Concentration"
-    },
-    {
-      "type": "text",
-      "content": "Assuming there is an excess of substrate available, increasing the **enzyme concentration** will directly increase the rate of reaction. With more enzyme molecules present, there are more available active sites. This means more substrate molecules can be bound and converted into product simultaneously, leading to a faster overall reaction. The rate of reaction is directly proportional to the enzyme concentration, provided that substrate is not limiting. If, however, the substrate concentration becomes the limiting factor (i.e., there isn't enough substrate to occupy all the active sites), then adding more enzyme will have no further effect on the reaction rate."
+      "content": "4. Enzyme Inhibition"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Assuming excess substrate: More enzyme means more active sites available.",
-        "More active sites: More enzyme-substrate complexes formed per unit time.",
-        "Reaction rate increases directly proportionally with enzyme concentration.",
-        "If substrate is limiting, increasing enzyme concentration will not increase reaction rate."
+        "**Competitive Inhibition:** An inhibitor molecule is structurally similar to the substrate. It binds reversibly to the active site, competing with the substrate. This reduces the rate of reaction. The effect can be overcome by increasing substrate concentration, as this out-competes the inhibitor. Vmax is unchanged, but a higher substrate concentration is needed to reach it.",
+        "**Non-competitive Inhibition:** An inhibitor molecule binds to the enzyme at an allosteric site, not the active site. This binding causes a conformational change in the enzyme's tertiary structure, altering the shape of the active site so the substrate can no longer bind effectively. This type of inhibition cannot be overcome by adding more substrate. It reduces the effective enzyme concentration, thus lowering Vmax."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A student investigates the effect of temperature on the activity of amylase. They record the time taken for starch to be completely hydrolysed at various temperatures. Describe and explain the expected trend in reaction rate as the temperature increases from 10°C to 70°C, and then interpret the results graphically.",
-      "solution": "**Description of Trend:**\nAs temperature increases from 10°C up to an optimum (typically around 37-40°C for amylase), the rate of starch hydrolysis will increase. Beyond the optimum, as temperature continues to rise to 70°C, the rate of reaction will rapidly decrease.\n\n**Explanation:**\n1.  **10°C to Optimum:** Increasing temperature provides substrate and enzyme molecules with more kinetic energy. This leads to more frequent and energetic collisions, increasing the chances of successful enzyme-substrate complex formation. Consequently, the rate of starch breakdown increases.\n2.  **At Optimum:** This is the temperature at which the enzyme exhibits its highest activity, as the balance between collision frequency and enzyme stability is ideal.\n3.  **Above Optimum (to 70°C):** Beyond the optimum temperature, the excessive kinetic energy causes vibrations within the amylase molecule. These vibrations break the weak hydrogen and ionic bonds maintaining the active site's specific three-dimensional shape. The active site permanently changes shape, a process known as **denaturation**. A denatured enzyme can no longer bind effectively with starch, leading to a significant and irreversible loss of catalytic activity, and thus a sharp decrease in the rate of hydrolysis.\n\n**Graphical Interpretation:**\n*   The graph plotting reaction rate against temperature would show a curve rising steeply from 10°C, peaking at the optimum temperature, and then dropping sharply and almost vertically as the temperature approaches 70°C, indicating denaturation."
+      "question": "An experiment is conducted to measure the initial rate of an enzyme-catalysed reaction at various substrate concentrations, both with and without a fixed concentration of inhibitor 'Z'. The results are shown below:\n\n- Without inhibitor, Vmax = 50 arbitrary units (a.u.).\n- With inhibitor Z, Vmax = 25 a.u.\n\nIs inhibitor Z competitive or non-competitive? Explain your reasoning.",
+      "solution": "**Conclusion:** Inhibitor Z is a non-competitive inhibitor.\n\n**Explanation:**\n1.  A non-competitive inhibitor binds to an allosteric site on the enzyme, changing the shape of the active site.\n2.  This means the substrate can no longer bind effectively, or the enzyme is less efficient at converting substrate to product. This effectively reduces the concentration of functional enzyme molecules.\n3.  As a result, the maximum rate of reaction (Vmax) is lowered. In this case, Vmax decreased from 50 a.u. to 25 a.u.\n4.  If the inhibitor were competitive, Vmax would remain unchanged (50 a.u.), although a higher substrate concentration would be required to achieve it. Since Vmax was reduced, the inhibition must be non-competitive."
     },
     {
       "type": "examTip",
-      "content": "When explaining effects, always link the factor to the **active site's specific shape** and the formation of **enzyme-substrate complexes**. For denaturation, explicitly state which bonds are affected (hydrogen/ionic) and that the change is **irreversible**."
+      "content": "When asked to distinguish between inhibitor types from a graph of Rate vs. [Substrate], look at Vmax. If the curve with the inhibitor plateaus at the same Vmax as the curve without, it's competitive. If it plateaus at a lower Vmax, it's non-competitive."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Test Your Knowledge on Factors Affecting Enzyme Action",
       "href": "/mark?subject=9700&topic=3.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "A-Level Notes 9700 Biology (source)",
-          "href": "https://alevel-notes.weebly.com/biology.html"
+          "label": "Enzyme Kinetics Simulation",
+          "href": "https://phet.colorado.edu/sims/html/reactions-and-rates/latest/reactions-and-rates_en.html"
         },
         {
-          "label": "9700 past paper guide",
-          "href": "/subjects/9700"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "Detailed video explanation of enzyme inhibition",
+          "href": "https://www.youtube.com/watch?v=PILzvT3spCQ"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "How do factors affect enzyme action 9700?",
-      "a": "Enzyme action in Cambridge 9700 Biology is primarily affected by temperature, pH, substrate concentration, and enzyme concentration. Each factor influences the enzyme's active site structure or the frequency of successful collisions, ultimately determining the rate of the catalysed reaction. Our free course delves deeper into each of these, complete with past paper examples."
-    },
-    {
-      "q": "What is enzyme denaturation and why is it important?",
-      "a": "Enzyme denaturation is the irreversible loss of an enzyme's specific three-dimensional structure, particularly its active site, often caused by extreme temperatures or pH. It's crucial because a denatured enzyme can no longer bind to its substrate and therefore loses its catalytic function, which can have severe consequences for metabolic pathways and organism survival. Learn more about enzyme stability in our comprehensive notes."
-    },
-    {
-      "q": "Why does enzyme activity plateau at high substrate concentration?",
-      "a": "At high substrate concentrations, enzyme activity plateaus because all available enzyme active sites become saturated with substrate molecules. The enzymes are working at their maximum capacity (Vmax), and even if more substrate is added, there are no free active sites to bind to, so the enzyme concentration becomes the limiting factor. Our past papers show common questions on this saturation point."
-    }
-  ],
-  "updated": "2026-06-05",
-  "paperNumber": "2",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "alnotes-published-2",
-  "diagram": {
-    "src": "/courses/diagrams/9700/alnotes/3-2-factors-that-affect-enzyme-action/page-01.png",
-    "alt": "A-Level Notes reference diagram for 3.2 Factors that affect enzyme action"
-  },
-  "referenceDiagrams": [
-    {
-      "src": "/courses/diagrams/9700/alnotes/3-2-factors-that-affect-enzyme-action/page-01.png",
-      "alt": "A-Level Notes page 1 for 3.2 Factors that affect enzyme action",
-      "order": 1
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/3-2-factors-that-affect-enzyme-action/page-02.png",
-      "alt": "A-Level Notes page 2 for 3.2 Factors that affect enzyme action",
-      "order": 2
-    },
-    {
-      "src": "/courses/diagrams/9700/alnotes/3-2-factors-that-affect-enzyme-action/page-03.png",
-      "alt": "A-Level Notes page 3 for 3.2 Factors that affect enzyme action",
-      "order": 3
-    }
-  ]
+  "generatorVersion": "stem-deep-author-1"
 }

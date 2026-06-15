@@ -5,214 +5,206 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Paper 4 — Production and use of X-rays (24.2). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson details the production of X-rays in a Coolidge tube, analysing the resulting continuous (Bremsstrahlung) and characteristic spectra. It covers the factors controlling beam intensity and hardness, the concept of X-ray attenuation, and the application of these principles in medical imaging, including Computed Tomography (CT) scanning.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain the fundamental principles of X-ray production within an X-ray tube.",
-    "Describe the medical uses of X-rays, including conventional imaging and Computed Tomography (CT) scans.",
-    "Analyse factors influencing X-ray beam intensity, attenuation, image quality, and patient radiation dose."
+    "Explain the production of X-rays by electrons striking a metal target.",
+    "Describe the main features of a typical X-ray spectrum.",
+    "Understand and use the formula I = I₀e⁻μx for X-ray attenuation.",
+    "Outline the principles of Computed Tomography (CT) scanning."
   ],
   "simpleExplanation": {
-    "title": "X-rays: A Quick Scan",
-    "summary": "X-rays are powerful, invisible waves of energy used to look inside things, especially your body. They're made when fast-moving electrons hit a metal target and suddenly stop or knock out other electrons. This process creates the X-rays we use for medical imaging.",
-    "analogy": "Imagine firing a super-fast marble at a wall. When it hits, it doesn't just stop; some tiny sparks or dust particles fly off. In an X-ray tube, electrons are like those marbles, and when they hit a metal target, the 'sparks' that fly off are X-rays!",
+    "title": "Making the Invisible Visible",
+    "summary": "X-rays are produced by firing high-speed electrons at a metal target. The resulting spectrum of high-energy photons is used in medicine to see inside the body, with different tissues absorbing the radiation by different amounts.",
+    "analogy": "Imagine throwing a stream of tennis balls at a large, solid metal wall. Most balls just slam into the wall and stop, making a range of 'thud' sounds – this is like the continuous 'Bremsstrahlung' X-ray spectrum. However, if a ball happens to strike a specific bell mounted on the wall, it produces a single, clear note – this is like the sharp, 'characteristic' X-ray peaks.",
     "steps": [
-      "Heat a filament to release electrons.",
-      "Accelerate electrons to high speeds using a huge voltage.",
-      "Electrons slam into a heavy metal target, producing X-rays.",
-      "X-rays pass through an object, creating an image on a detector."
+      "Electrons are produced by thermionic emission from a heated cathode (filament) and are accelerated by a very high potential difference towards a metal anode (target).",
+      "Upon striking the target, the high-speed electrons decelerate rapidly, converting their kinetic energy into a continuous spectrum of X-ray photons called Bremsstrahlung ('braking radiation').",
+      "The maximum photon energy (and hence minimum wavelength) is determined by the accelerating voltage: E_max = eV_acc. This corresponds to an electron converting all its kinetic energy into a single photon.",
+      "The resulting X-ray beam is attenuated as it passes through matter. The degree of attenuation depends on the material, allowing for contrast in medical images between bone (high attenuation) and soft tissue (low attenuation)."
     ]
   },
   "flashcards": [
     {
-      "front": "What are X-rays?",
-      "back": "X-rays are a type of high-energy, ionising electromagnetic radiation."
+      "front": "What is thermionic emission?",
+      "back": "The process where free electrons are emitted from the surface of a hot metal. In an X-ray tube, this occurs at the heated cathode (filament)."
     },
     {
-      "front": "What are the two primary mechanisms by which X-rays are produced in an X-ray tube?",
-      "back": "Bremsstrahlung (braking radiation) and Characteristic X-rays."
+      "front": "What is Bremsstrahlung?",
+      "back": "German for 'braking radiation'. It's the electromagnetic radiation (X-rays) produced by the rapid deceleration of a charged particle, such as an electron, when it is deflected by another charged particle, like an atomic nucleus in the target anode."
     },
     {
-      "front": "What is thermionic emission and its role in X-ray production?",
-      "back": "Thermionic emission is the release of electrons from a heated metal filament, providing the initial electron stream for X-ray generation."
+      "front": "What determines the minimum wavelength (λ_min) of an X-ray spectrum?",
+      "back": "The accelerating voltage (V_acc). The maximum energy of a photon is equal to the maximum kinetic energy of an incident electron (eV_acc), so λ_min = hc / eV_acc."
     },
     {
-      "front": "How does the accelerating voltage ($V_a$) in an X-ray tube relate to the maximum energy ($E$) of the emitted X-ray photons?",
-      "back": "The maximum photon energy is directly proportional to the accelerating voltage: E = eV_a."
+      "front": "What determines the energies (and wavelengths) of the characteristic peaks in an X-ray spectrum?",
+      "back": "The atomic structure of the target material. They correspond to the specific energy differences between electron shells in the target atoms."
     },
     {
-      "front": "Name two ways to increase the overall intensity of an X-ray beam.",
-      "back": "Increase the accelerating voltage (produces higher energy photons) or increase the filament current (produces more photons per second)."
+      "front": "What is the role of the high accelerating voltage in an X-ray tube?",
+      "back": "It gives the electrons high kinetic energy. This determines the maximum energy (and thus penetrating power or 'hardness') of the X-rays produced."
     },
     {
-      "front": "What is X-ray attenuation?",
-      "back": "Attenuation is the reduction in X-ray beam intensity as it passes through matter, due to absorption and scattering."
+      "front": "How is the 'intensity' of the X-ray beam controlled?",
+      "back": "By the filament current. A higher filament current leads to a higher temperature, more thermionic emission, a larger tube current (more electrons per second), and thus a greater number of X-ray photons produced per second (higher intensity)."
     },
     {
-      "front": "What factors contribute to a sharp X-ray image?",
-      "back": "Patient stillness, a close detector-to-patient distance, and a far source-to-patient distance."
+      "front": "How is the 'hardness' or 'quality' of the X-ray beam controlled?",
+      "back": "By the accelerating voltage. A higher voltage produces electrons with more kinetic energy, resulting in X-ray photons with higher maximum energy, a shorter minimum wavelength, and greater penetrating power."
     },
     {
-      "front": "What is the purpose of an aluminium filter in an X-ray machine?",
-      "back": "To filter out low-energy X-rays, which only contribute to patient skin dose without improving image quality."
+      "front": "Define the linear attenuation coefficient, μ.",
+      "back": "A measure of how much a specific material absorbs X-rays per unit thickness. It is the constant in the exponential attenuation equation I = I₀e⁻μx, with units of m⁻¹ or cm⁻¹."
     },
     {
-      "front": "State one key advantage and one key disadvantage of CT scans compared to conventional X-ray imaging.",
-      "back": "Advantage: Produces high-resolution, detailed cross-sectional or 3D images. Disadvantage: Involves a significantly higher dose of ionising radiation."
+      "front": "How does a CT scanner produce an image?",
+      "back": "It takes a series of X-ray images from many different angles around the patient. A computer then processes these 'slices' to build a 3D, cross-sectional image of the body."
     },
     {
-      "front": "How does a lead grid improve X-ray image quality?",
-      "back": "It absorbs scattered X-rays, preventing them from reaching the detector and thus enhancing the contrast of the final image."
+      "front": "Why is the target anode in an X-ray tube often made of tungsten?",
+      "back": "1. High melting point (3422 °C) to withstand the intense heat generated. 2. High proton number (Z=74), which makes the production of Bremsstrahlung more efficient."
+    },
+    {
+      "front": "What is the purpose of the lead shielding around an X-ray tube?",
+      "back": "To absorb stray X-ray photons, ensuring that a well-defined beam emerges only from the window and protecting patients and operators from unnecessary radiation exposure."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the X-ray tube evacuated (a vacuum)?",
+      "a": "To prevent the accelerated electrons from colliding with air molecules. Such collisions would cause the electrons to lose energy before they reach the target, resulting in less efficient production of X-rays and a less predictable spectrum."
+    },
+    {
+      "q": "What is the difference between X-ray 'intensity' and 'hardness'?",
+      "a": "Intensity refers to the *quantity* of X-ray photons, or the total energy per unit area per unit time. It is controlled by the filament current (which determines the number of electrons). Hardness refers to the *quality* or penetrating power of the X-rays. It is controlled by the accelerating voltage, which determines the maximum energy of the photons."
+    },
+    {
+      "q": "Why is over 99% of the electron energy converted to heat and not X-rays?",
+      "a": "The production of X-ray photons, especially through Bremsstrahlung, is a relatively inefficient process. Most of the kinetic energy of the incident electrons is transferred to the target anode through millions of small collisions, increasing the internal energy (and thus temperature) of the anode material. This is why the anode requires a very high melting point and cooling systems."
+    },
+    {
+      "q": "Are X-rays and gamma rays the same thing?",
+      "a": "No, although their energy ranges can overlap. The distinction is based on their origin. X-rays are produced by energy transitions of electrons outside the nucleus (e.g., in an X-ray tube or electron shell transitions). Gamma rays are produced from within the nucleus, typically during radioactive decay or other nuclear processes."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the world of **X-rays**! These invisible, high-energy electromagnetic waves are more than just a medical curiosity – they're vital tools for seeing inside objects without cutting them open. In this lesson, we'll uncover how these powerful rays are generated in an **X-ray tube** and explore their widespread applications in medical diagnosis and treatment, particularly in creating detailed images of the human body. This lesson aligns with **Senpai Corner** A Level notes (2025–2027) for topic **24.2**."
+      "content": "X-rays are a form of high-energy electromagnetic radiation, situated between ultraviolet and gamma rays in the spectrum. Their ability to penetrate soft tissues but not dense materials like bone has made them an indispensable tool in medicine since their discovery. This lesson explores how these useful rays are generated, controlled, and utilised for advanced diagnostic imaging."
     },
     {
       "type": "heading",
-      "content": "Making X-rays: Inside the Tube"
+      "content": "Production of X-rays: The Coolidge Tube"
     },
     {
       "type": "text",
-      "content": "The journey of an X-ray begins in a special vacuum tube. At one end, a heated metal **filament** (the cathode) releases a stream of electrons through a process called **thermionic emission**. Think of it like a tiny electron 'gun'. These electrons are then accelerated with immense force across a large potential difference, speeding towards a heavy metal **anode** target at the other end of the tube."
-    },
-    {
-      "type": "heading",
-      "content": "Two Types of X-ray Production"
-    },
-    {
-      "type": "text",
-      "content": "When these high-speed electrons slam into the anode target, two main types of X-rays are produced. The first is **Bremsstrahlung**, or 'braking radiation'. This happens as electrons are rapidly decelerated by the electric fields of the target nuclei, losing kinetic energy as continuous X-ray photons. It's like a car skidding to a halt, releasing heat."
-    },
-    {
-      "type": "text",
-      "content": "The second type is **Characteristic X-rays**. This occurs when an incident electron from the filament knocks out an inner-shell electron from a target atom. An outer-shell electron then drops into the vacant inner shell, releasing a photon of specific, characteristic energy. This results in a line spectrum unique to the target material."
-    },
-    {
-      "type": "formula",
-      "content": "The maximum energy ($E$) of an X-ray photon, and its corresponding minimum wavelength ($\\lambda_{min}$), are directly linked to the accelerating voltage ($V_a$) applied across the X-ray tube:\n\n$E = hc/\\lambda_{min} = eV_a$\n\nwhere `h` is Planck's constant, `c` is the speed of light, and `e` is the elementary charge."
-    },
-    {
-      "type": "heading",
-      "content": "Controlling Your X-ray Beam"
-    },
-    {
-      "type": "text",
-      "content": "The **intensity** of an X-ray beam refers to the total energy it transmits per second per unit area. You can adjust the properties of the X-ray beam. Increasing the **accelerating voltage** makes the electrons hit the target with more energy, producing higher energy (harder) X-rays and increasing overall intensity. Increasing the **filament current** produces more electrons, which means more X-ray photons per second, also increasing intensity."
+      "content": "Modern X-ray machines use a device called a Coolidge tube. This consists of several key components housed within an evacuated glass envelope to prevent electrons from colliding with air molecules. A low-voltage supply heats a tungsten filament (the cathode), causing it to release electrons via thermionic emission. A very high potential difference (tens of kilovolts) is applied between this cathode and a metal target (the anode), accelerating the electrons across the vacuum to immense speeds."
     },
     {
       "type": "keyPoints",
       "items": [
-        "24.2 Production and use of X-rays.",
-        "X-rays are created when high KE electrons bombard the surface of a metal.",
-        "Their wavelengths range from 10 -8 to 10 -13 m.",
-        "In the cathode of an x-ray tube, the electrons are released through thermionic emission.",
-        "The electrons are then accelerated at high p.d. towards the anode.",
-        "They then collide with the metal target."
+        "**Heated Cathode:** A filament that emits electrons when heated (thermionic emission).",
+        "**High Accelerating Voltage (EHT):** Accelerates electrons towards the anode, giving them high kinetic energy.",
+        "**Target Anode:** A metal block (often tungsten) that the electrons strike. Over 99% of the electron energy is converted to heat, so the anode must have a high melting point and is often rotated to dissipate heat.",
+        "**Evacuated Tube:** Prevents electrons from losing energy to air molecules."
       ]
     },
     {
       "type": "heading",
-      "content": "X-rays Interacting with Matter: Attenuation"
+      "content": "The X-ray Spectrum"
     },
     {
       "type": "text",
-      "content": "**Attenuation** is the process where the intensity of an X-ray beam is reduced as it passes through matter. This happens due to absorption (where the X-ray energy is taken up by the material) and scattering (where X-rays deflect off course). The reduction in intensity follows an exponential decay pattern, meaning the thicker or denser the material, the greater the attenuation."
-    },
-    {
-      "type": "heading",
-      "content": "Getting a Sharp X-ray Image"
+      "content": "When the high-energy electrons strike the target anode, X-rays are produced by two distinct mechanisms, leading to a characteristic spectrum. The spectrum consists of a continuous background distribution, known as Bremsstrahlung, with sharp, high-intensity peaks superimposed on it."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Position the detector plate as close as possible to the patient.",
-        "Place the X-ray source further away from the patient.",
-        "Ensure the patient remains completely still during the exposure.",
-        "Use a lead grid to absorb scattered X-rays, enhancing contrast.",
-        "Filter out low-energy X-rays to reduce skin dose and improve image quality."
+        "**Bremsstrahlung (Braking Radiation):** This continuous spectrum is produced as the incident electrons are deflected and decelerated by the strong electric fields of the nuclei in the target material. The kinetic energy lost by an electron in this process is emitted as an X-ray photon. Since electrons can lose any fraction of their energy, a continuous range of photon energies (and wavelengths) is produced.",
+        "**Characteristic X-rays:** These are discrete, sharp peaks at specific energies. An incident electron may have enough energy to knock out an electron from an inner shell (e.g., the K-shell) of a target atom. An electron from a higher energy shell (e.g., L or M-shell) then drops down to fill this vacancy, emitting an X-ray photon with an energy equal to the difference between the two shells. These energies are unique to the target material."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The maximum energy an X-ray photon can have occurs when an electron gives up all of its kinetic energy in a single interaction. This kinetic energy is gained from the accelerating voltage, $V_{acc}$. This defines the cut-off or minimum wavelength, $\\lambda_{min}$."
+    },
+    {
+      "type": "formula",
+      "content": "E_{max} = hf_{max} = \\frac{hc}{\\lambda_{min}} = eV_{acc}"
+    },
+    {
+      "type": "workedExample",
+      "question": "Electrons in an X-ray tube are accelerated from rest through a potential difference of 85 kV. Calculate the minimum wavelength of the X-rays produced. (h = 6.63 × 10⁻³⁴ J s, c = 3.00 × 10⁸ m s⁻¹, e = 1.60 × 10⁻¹⁹ C)",
+      "solution": "1.  **State the principle:** The minimum wavelength corresponds to the maximum photon energy, which occurs when all the kinetic energy of one electron is converted into one photon. \n$E_{K} = eV_{acc}$ \n$E_{photon} = \\frac{hc}{\\lambda_{min}}$\n2.  **Equate energies:** \n$eV_{acc} = \\frac{hc}{\\lambda_{min}}$\n3.  **Rearrange for λ_min:** \n$\\lambda_{min} = \\frac{hc}{eV_{acc}}$\n4.  **Substitute values:** \n$\\lambda_{min} = \\frac{(6.63 \\times 10^{-34}) \\times (3.00 \\times 10^8)}{(1.60 \\times 10^{-19}) \\times (85 \\times 10^3)}$\n5.  **Calculate the result:** \n$\\lambda_{min} = \\frac{1.989 \\times 10^{-25}}{1.36 \\times 10^{-14}}$\n$\\lambda_{min} = 1.46 \\times 10^{-11}$ m"
+    },
+    {
+      "type": "heading",
+      "content": "Attenuation of X-rays"
+    },
+    {
+      "type": "text",
+      "content": "When a parallel beam of monochromatic X-rays passes through a material, its intensity decreases. This reduction in intensity is called attenuation. The photons are either absorbed or scattered out of the beam. For a given material, the attenuation follows an exponential decay law."
+    },
+    {
+      "type": "formula",
+      "content": "I = I_0 e^{-\\mu x}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**I:** The transmitted intensity after passing through a thickness x.",
+        "**I₀:** The initial incident intensity.",
+        "**x:** The thickness of the material.",
+        "**μ:** The linear attenuation coefficient, a constant for a given material and X-ray energy. Materials with high proton numbers (like lead or bone) have a much larger μ than materials with low proton numbers (like soft tissue)."
       ]
     },
     {
       "type": "examTip",
-      "content": "Remember that a higher accelerating voltage gives *harder* (more penetrating) X-rays and also increases intensity. A higher filament current *only* increases intensity (more photons), not the energy of individual photons."
+      "content": "A common exam question involves calculating the half-value thickness ($x_{1/2}$), the thickness of material required to reduce the intensity to half its original value. By substituting $I = I_0/2$ into the attenuation equation, you can show that $x_{1/2} = \\frac{\\ln 2}{\\mu}$. This is analogous to half-life in radioactive decay."
+    },
+    {
+      "type": "workedExample",
+      "question": "A parallel beam of X-rays is incident on a 4.0 mm thick sheet of aluminium. The intensity is reduced to 35% of its initial value. Calculate the linear attenuation coefficient μ of aluminium for these X-rays.",
+      "solution": "1.  **State the attenuation equation:**\n$I = I_0 e^{-\\mu x}$\n2.  **Identify the given information:**\nThe final intensity I is 35% of the initial intensity I₀, so $I = 0.35 I_0$. The thickness $x = 4.0$ mm $= 4.0 \\times 10^{-3}$ m.\n3.  **Substitute into the equation:**\n$0.35 I_0 = I_0 e^{-\\mu (4.0 \\times 10^{-3})}$\n$0.35 = e^{-4.0 \\times 10^{-3} \\mu}$\n4.  **Solve for μ:**\nTake natural logs of both sides:\n$\\ln(0.35) = -4.0 \\times 10^{-3} \\mu$\n$-1.0498 = -4.0 \\times 10^{-3} \\mu$\n$\\mu = \\frac{-1.0498}{-4.0 \\times 10^{-3}}$\n$\\mu = 262.45...$\n$\\mu \\approx 260$ mm⁻¹ (2 s.f.) or $2.6 \\times 10^2$ mm⁻¹"
     },
     {
       "type": "heading",
-      "content": "Minimising Patient Radiation Dose"
+      "content": "Application: Computed Tomography (CT) Scanning"
     },
     {
       "type": "text",
-      "content": "Patient safety is paramount. The total radiation **dose** a patient receives depends on two factors: the X-ray beam's intensity and the duration of exposure. To keep this dose as low as reasonably achievable, it's crucial to filter out low-energy X-rays. These 'soft' X-rays mostly get absorbed by the patient's skin, contributing to dose without providing much useful information for the image. An **aluminium filter** is commonly used for this purpose."
-    },
-    {
-      "type": "heading",
-      "content": "Advanced Imaging: Computed Tomography (CT Scans)"
-    },
-    {
-      "type": "text",
-      "content": "While conventional X-rays provide a 2D shadow image, **Computed Tomography (CT) scans** offer much more detail. A CT scanner works by rotating an X-ray source and a complementary array of detectors around the patient. It takes numerous X-ray images from many different angles. A computer then processes all this data to construct detailed 2D cross-sectional slices or even full 3D images of internal body structures."
+      "content": "While a standard X-ray radiograph provides a 2D shadow image, Computed Tomography (CT) offers a far more detailed, 3D view. In a CT scanner, the X-ray tube and a ring of detectors rotate around the patient. The tube emits a thin, fan-shaped beam, and hundreds of 'slice' images are taken from different angles. A powerful computer then processes the attenuation data from all these slices to reconstruct a detailed 3D cross-sectional image. This allows for much better differentiation between soft tissues with similar densities and avoids the problem of overlapping structures seen in a 2D X-ray."
     },
     {
       "type": "keyPoints",
       "items": [
-        "CT scans provide high-resolution, detailed 2D or 3D images.",
-        "They are excellent for visualising bones and soft tissues.",
-        "A major disadvantage is the significantly higher radiation dose to the patient.",
-        "CT equipment is expensive and image contrast can be poor for similar density tissues."
+        "**Principle:** Combines multiple X-ray projections from different angles.",
+        "**Components:** Rotating X-ray source and detector array.",
+        "**Process:** Computer reconstructs a 3D image from 2D 'slices'.",
+        "**Advantages:** Provides 3D information, removes overlapping structures, better contrast between soft tissues.",
+        "**Disadvantage:** Significantly higher radiation dose to the patient compared to a single X-ray."
       ]
     },
     {
-      "type": "workedExample",
-      "question": "An X-ray tube operates with an accelerating potential difference of 80 kV. Calculate the minimum wavelength of the X-rays produced. (Given: `h = 6.63 \\times 10^{-34}` Js, `c = 3.00 \\times 10^8` m/s, `e = 1.60 \\times 10^{-19}` C)",
-      "solution": "1.  First, convert the accelerating voltage from kV to V: `V_a = 80 \\times 10^3` V.\n2.  Use the formula `E = eV_a` to find the maximum energy of the photons:\n    `E = (1.60 \\times 10^{-19} \\text{ C}) \\times (80 \\times 10^3 \\text{ V})`\n    `E = 1.28 \\times 10^{-14}` J\n3.  Now, use the relationship `E = hc/\\lambda_{min}` to find the minimum wavelength. Rearrange for `\\lambda_{min}`:\n    `\\lambda_{min} = hc/E`\n    `\\lambda_{min} = (6.63 \\times 10^{-34} \\text{ Js}) \\times (3.00 \\times 10^8 \\text{ m/s}) / (1.28 \\times 10^{-14} \\text{ J})`\n    `\\lambda_{min} = 1.55 \\times 10^{-11}` m\n\nTherefore, the minimum wavelength of the X-rays produced is `1.55 \\times 10^{-11}` m."
-    },
-    {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Practice Exam Questions",
       "href": "/mark?subject=9702&topic=24.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+          "label": "In-depth video on X-ray production and spectra",
+          "href": "https://www.youtube.com/watch?v=s562p5xM-hA"
         },
         {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "Interactive simulation of an X-ray tube",
+          "href": "https://phet.colorado.edu/en/simulations/x-ray-imaging"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "How do X-rays produce images of internal body structures?",
-      "a": "X-rays are absorbed differently by various tissues. Denser materials like bone absorb more X-rays, appearing white on an image, while less dense tissues like muscle or air absorb fewer, appearing darker. This differential absorption creates a contrast image on a detector, revealing internal structures."
-    },
-    {
-      "q": "What are the main safety considerations when using X-rays?",
-      "a": "Key safety considerations include minimising patient dose by filtering low-energy X-rays and using the shortest possible exposure time. Healthcare professionals use lead shielding and maintain distance from the source to protect themselves from ionising radiation, which can cause cell damage."
-    },
-    {
-      "q": "What is the difference between conventional X-ray imaging and CT scans?",
-      "a": "Conventional X-rays provide a 2D projection, a 'shadow' image, of structures, making it hard to distinguish overlapping features. CT scans, however, rotate an X-ray source and detectors to capture multiple angles, allowing a computer to reconstruct detailed 2D cross-sections or full 3D models, offering much greater clarity and depth."
-    }
-  ],
-  "updated": "2026-06-09",
-  "paperNumber": "4",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/24-2-production-and-use-of-x-rays.png",
-    "alt": "Senpai Corner reference diagram for 24.2 Production and use of X-rays"
-  }
+  "generatorVersion": "stem-deep-author-1"
 }

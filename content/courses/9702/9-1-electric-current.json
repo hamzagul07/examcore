@@ -5,183 +5,183 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Papers 1 & 2 — Electric current (9.1). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson introduces electric current as the fundamental concept of moving charge. We will define current, its unit (the ampere), and the equation I = ΔQ/Δt. The distinction between conventional current and electron flow is explained, along with the correct method for measuring current using an ammeter in a series circuit.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define electric current and state its SI unit.",
-    "Apply the formulas I = ΔQ/Δt and I = Anvq to solve problems.",
-    "Distinguish between conventional current and electron flow in conductors."
+    "Define electric current as the rate of flow of charge and identify charge carriers.",
+    "Recall and apply the equation for electric current, I = ΔQ/Δt.",
+    "Distinguish between the direction of conventional current and the direction of electron flow.",
+    "Describe how to measure current using an ammeter connected in series."
   ],
   "simpleExplanation": {
-    "title": "Current: The Flow of Charge",
-    "summary": "Electric current measures how quickly electric charge moves through a point. It's the movement of tiny charged particles, usually electrons, in a specific direction. Understanding this flow is fundamental to all circuits.",
-    "analogy": "Imagine water flowing through a pipe. Electric current is like the volume of water passing a point per second. The narrower the pipe, or the slower the water, the less current flows.",
+    "title": "The Flow of Charge",
+    "summary": "Electric current is simply the flow of electric charge, like water flowing through a pipe. The more charge that passes a point each second, the higher the current.",
+    "analogy": "Imagine a river. The amount of water flowing past a bridge every second is like the electric current. A wide, fast-flowing river has a high current, just as a wire with many charges moving quickly has a high electric current. The total amount of water that has passed is like the total charge.",
     "steps": [
-      "**Charge Movement**: Electric current happens when charged particles move.",
-      "**Rate of Flow**: It's defined by how much charge passes a point over time.",
-      "**Key Players**: Electrons are often the 'movers' in metals.",
-      "**Measurement**: We use an ammeter to find out how much current is flowing."
+      "Current I = ΔQ/Δt — rate of flow of charge (coulombs per second).",
+      "Conventional current flows from + to − (opposite to electron flow).",
+      "In series, current is the same through each component.",
+      "Ammeter in series; never connect an ammeter in parallel."
     ]
   },
   "flashcards": [
     {
-      "front": "What is the SI unit for electric charge?",
-      "back": "Coulomb (C)"
+      "front": "What is electric current?",
+      "back": "Electric current is the rate of flow of electric charge. It is a base SI quantity, measured in amperes (A)."
     },
     {
-      "front": "How is electric current defined in terms of charge and time?",
-      "back": "The rate of flow of electric charge, I = ΔQ/Δt."
+      "front": "State the equation linking current, charge, and time.",
+      "back": "$I = \\frac{\\Delta Q}{\\Delta t}$, where $I$ is current, $\\Delta Q$ is the charge that flows, and $\\Delta t$ is the time interval."
     },
     {
-      "front": "What is the numerical value of the elementary charge?",
-      "back": "e = 1.60 × 10⁻¹⁹ C"
+      "front": "What is the definition of the coulomb (C)?",
+      "back": "One coulomb is the amount of charge that passes a point when a steady current of one ampere flows for one second (1 C = 1 A s)."
     },
     {
-      "front": "State the mean drift velocity equation for current.",
-      "back": "I = Anvq"
+      "front": "What are the charge carriers in a metallic conductor?",
+      "back": "Free-moving (delocalised) electrons."
     },
     {
-      "front": "What is the ideal characteristic of an ammeter for measuring current?",
-      "back": "Zero internal resistance, connected in series."
+      "front": "What are the charge carriers in an electrolyte solution?",
+      "back": "Mobile ions, which can be positive (cations) and negative (anions)."
     },
     {
-      "front": "What are the primary charge carriers in metallic conductors?",
-      "back": "Free electrons."
+      "front": "What is meant by 'conventional current'?",
+      "back": "The direction that positive charge would flow. It is from a point of higher potential (positive terminal) to a point of lower potential (negative terminal)."
     },
     {
-      "front": "What is conventional current?",
-      "back": "The direction of flow of positive charge (positive to negative terminal)."
+      "front": "How does the direction of electron flow compare to conventional current in a simple circuit?",
+      "back": "Electron flow is in the opposite direction to conventional current. Electrons are negatively charged, so they flow from the negative terminal to the positive terminal."
     },
     {
-      "front": "What is the SI unit for electric current?",
-      "back": "Ampere (A), equivalent to C/s."
+      "front": "How must an ammeter be connected in a circuit to measure the current through a component?",
+      "back": "In series with the component. This means the circuit must be broken to insert the ammeter."
     },
     {
-      "front": "What does 'quantized' mean in relation to electric charge?",
-      "back": "Charge exists in discrete integer multiples of the elementary charge."
+      "front": "What is the ideal resistance of an ammeter and why?",
+      "back": "An ideal ammeter has zero resistance. This is so that it does not increase the total resistance of the circuit and therefore does not alter the current it is intended to measure."
     },
     {
-      "front": "How does increasing the number density (n) affect current?",
-      "back": "A higher number density leads to a larger current, assuming other factors are constant."
+      "front": "A charge of 240 C flows through a lamp in 2.0 minutes. What is the current?",
+      "back": "First, convert time to seconds: $t = 2.0 \\times 60 = 120$ s. Then use $I = Q/t = 240 / 120 = 2.0$ A."
     },
     {
-      "front": "Why are ammeters connected in series?",
-      "back": "To measure the total current flowing *through* that part of the circuit."
+      "front": "Why is current the same at all points in a series circuit?",
+      "back": "This is due to the principle of conservation of charge. Charge is not 'used up' by components, so the rate of flow of charge (current) must be constant everywhere in a single loop."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If electrons are what move in a wire, why do we use conventional current?",
+      "a": "The convention was established by Benjamin Franklin in the 18th century, long before the electron was discovered. He arbitrarily defined the direction of current as the flow of positive charge. While we now know it's electrons (negative charge) moving, the original convention is so deeply embedded in physics and engineering textbooks, equations, and component symbols (like diodes) that it's easier to keep using it."
+    },
+    {
+      "q": "Is charge 'used up' by a light bulb?",
+      "a": "No, charge is conserved. The charge carriers (electrons) are not consumed by the bulb. Instead, they transfer their electrical potential energy, which is converted into light and heat. The same number of electrons that enter the bulb per second also leave it, which is why the current is the same on both sides of the bulb."
+    },
+    {
+      "q": "What happens if I connect an ammeter in parallel?",
+      "a": "Connecting an ammeter in parallel with a component like a resistor provides a very low-resistance path for the current. Most of the circuit's current will bypass the resistor and flow through the ammeter. This can lead to a very large current, potentially damaging the ammeter's fuse or the power supply. It also means you are not measuring the current through the component."
+    },
+    {
+      "q": "Is current a vector or a scalar?",
+      "a": "This is a subtle point. In A-Level Physics, current is treated as a scalar quantity. It has a magnitude (e.g., 2 A) and a direction along a wire, but it doesn't add up like vectors do at a junction. For example, if two wires meet, the currents add algebraically (Kirchhoff's First Law), not using vector addition. The quantity that is a vector is current density, $\\vec{J}$, but this is beyond the scope of the A-Level syllabus."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Welcome to the fundamental concept of **Electric current**! In physics, current isn't just a flow of something; it's the directed movement of **electric charge**. Understanding how charge moves and how we quantify its flow is essential for building a strong foundation in electricity. Let's dive into the core principles. This lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **9.1**."
+      "content": "From powering your phone to lighting up entire cities, electricity is driven by one fundamental process: the movement of charge. In this lesson, we'll explore the concept of electric current, which quantifies this movement. We will learn how to define it, calculate it, and measure it accurately in a circuit."
     },
     {
       "type": "heading",
-      "content": "What is Electric Current?"
+      "content": "Defining Electric Current"
     },
     {
       "type": "text",
-      "content": "Electric current measures the rate at which electric charge passes a specific point in a circuit. Think of it as how much \"electrical stuff\" moves through a wire every second. Without current, our devices wouldn't work! It's a fundamental quantity in all electrical systems."
+      "content": "Electric current is defined as the rate of flow of electric charge. When charged particles move through a conductor, they constitute an electric current. The size of the current depends on how much charge passes a given point in a certain amount of time. A larger current means more charge is flowing per second."
     },
     {
       "type": "formula",
-      "content": "$I = \\frac{\\Delta Q}{\\Delta t}$"
+      "content": "I = \\frac{\\Delta Q}{\\Delta t}"
     },
     {
       "type": "keyPoints",
       "items": [
-        "9.1 Electric current.",
-        "Electrical charge , Q consist of either ‘+’ or ‘ - ’ charge.",
-        "The SI unit for charge is in coulomb .",
-        "Like charges repel each other while opposite charges attract.",
-        "Electrons and protons are the cause of the charge. Remember that electrons are negatively charged while protons are positively charged.",
-        "Each electron has a charge of -1.6x10 -19 C while each proton has a charge of 1.6x10 -19 C ."
-      ]
-    },
-    {
-      "type": "heading",
-      "content": "Charge Carriers and Drift Velocity"
-    },
-    {
-      "type": "text",
-      "content": "In most metal wires, tiny particles called **free electrons** are the charge carriers. They move randomly, but when a voltage is applied, they gain a net directional movement. This average speed is called the **mean drift velocity**. Different materials have different numbers of these carriers."
-    },
-    {
-      "type": "formula",
-      "content": "I = Anvq"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "A = cross-sectional area of the conductor.",
-        "n = number density of charge carriers (per unit volume).",
-        "v = mean drift velocity of the charge carriers.",
-        "q = charge of a single carrier (e.g., elementary charge 'e').",
-        "Higher A, n, or v lead to a larger current."
+        "**Current ($I$)**: The rate of flow of charge, measured in amperes (A).",
+        "**Charge ($\\Delta Q$)**: The amount of charge that has moved, measured in coulombs (C).",
+        "**Time ($\\Delta t$)**: The time interval over which the charge flows, measured in seconds (s).",
+        "The ampere is a base SI unit. One ampere is defined as one coulomb of charge passing a point per second ($1 \\text{ A} = 1 \\text{ C s}^{-1}$)."
       ]
     },
     {
       "type": "workedExample",
-      "question": "A wire has a cross-sectional area of 2.0 × 10⁻⁶ m² and carries a current of 4.0 A. If the number density of free electrons is 8.5 × 10²⁸ m⁻³, calculate the mean drift velocity of the electrons. (Elementary charge e = 1.60 × 10⁻¹⁹ C)",
-      "solution": "1.  Identify the given values:\n    A = 2.0 × 10⁻⁶ m²\n    I = 4.0 A\n    n = 8.5 × 10²⁸ m⁻³\n    q = e = 1.60 × 10⁻¹⁹ C\n2.  Recall the formula for current in terms of drift velocity: I = Anvq.\n3.  Rearrange the formula to solve for drift velocity (v): v = I / (Anq).\n4.  Substitute the values into the rearranged formula:\n    v = 4.0 / ((2.0 × 10⁻⁶) × (8.5 × 10²⁸) × (1.60 × 10⁻¹⁹))\n5.  Calculate the result:\n    v = 4.0 / (2.72 × 10⁴) ≈ 1.47 × 10⁻⁴ m/s (to 3 s.f.)\n6.  State the answer: The mean drift velocity of the electrons is approximately 1.47 × 10⁻⁴ m/s."
+      "question": "A car headlamp has a current of 3.5 A flowing through it. Calculate the total charge that passes through the filament of the lamp in 4.0 minutes.",
+      "solution": "1. **Identify the knowns and the unknown:**\n   Current, $I = 3.5$ A\n   Time, $\\Delta t = 4.0$ minutes\n   Charge, $\\Delta Q = ?$ \n\n2. **Convert units to SI:**\n   The time must be in seconds. \n   $\\Delta t = 4.0 \\text{ min} \\times 60 \\text{ s/min} = 240$ s.\n\n3. **State the relevant equation:**\n   $I = \\frac{\\Delta Q}{\\Delta t}$\n\n4. **Rearrange the equation to solve for charge:**\n   $\\Delta Q = I \\times \\Delta t$\n\n5. **Substitute the values and calculate:**\n   $\\Delta Q = 3.5 \\text{ A} \\times 240 \\text{ s}$\n   $\\Delta Q = 840$ C\n\n   **Answer:** The total charge that passes through the filament is 840 C."
     },
     {
       "type": "heading",
-      "content": "Conventional Current vs. Electron Flow"
+      "content": "Charge Carriers and Direction of Flow"
     },
     {
       "type": "text",
-      "content": "Historically, before the discovery of electrons, current was imagined as the flow of positive charge. This is called **conventional current** and moves from the positive terminal to the negative. However, in metals, it's actually negatively charged electrons that move, flowing from negative to positive. Remember, these are opposite directions!"
+      "content": "For a current to flow, there must be mobile charge carriers. In metal wires, these are the delocalised electrons, which are free to move throughout the metal lattice. In other materials, like electrolytes (e.g., salt water), the charge carriers are ions—both positive and negative. Historically, before the discovery of the electron, scientists assumed that current was the flow of positive charge. This convention persists today."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Electron Flow**: In a metal wire connected to a battery, negatively charged electrons are repelled by the negative terminal and attracted to the positive terminal. They flow from negative to positive.",
+        "**Conventional Current**: By convention, the direction of current is defined as the direction of flow of positive charge. Therefore, conventional current flows from the positive terminal to the negative terminal, opposite to the direction of electron flow.",
+        "In A-Level Physics, all circuit diagrams and calculations use conventional current unless explicitly stated otherwise."
+      ]
     },
     {
       "type": "examTip",
-      "content": "Always remember that conventional current is defined as the direction positive charges would flow, even though in most metallic conductors, it's the negatively charged electrons that are actually moving in the opposite direction. Be careful with this distinction in exam questions!"
+      "content": "Always assume that 'current' refers to conventional current (positive to negative). If a question asks about the motion of electrons, remember they move in the opposite direction to the conventional current arrow shown on a circuit diagram."
+    },
+    {
+      "type": "workedExample",
+      "question": "The current in a wire is 0.50 A. (a) How much charge passes a point in the wire in 20 s? (b) How many electrons pass this point in this time? (The elementary charge, $e$, is $1.60 \\times 10^{-19}$ C).",
+      "solution": "(a) **Calculate the total charge:**\n1. **Equation:** $\\Delta Q = I \\times \\Delta t$\n2. **Substitute values:** $\\Delta Q = 0.50 \\text{ A} \\times 20 \\text{ s}$\n3. **Result:** $\\Delta Q = 10$ C\n\n(b) **Calculate the number of electrons:**\n1. **Concept:** The total charge $\\Delta Q$ is the number of electrons, $n$, multiplied by the charge on one electron, $e$. So, $\\Delta Q = n \\times e$.\n2. **Rearrange for n:** $n = \\frac{\\Delta Q}{e}$\n3. **Substitute values:** $n = \\frac{10 \\text{ C}}{1.60 \\times 10^{-19} \\text{ C}}$\n4. **Result:** $n = 6.25 \\times 10^{19}$\n\n   **Answer:** (a) 10 C of charge passes the point. (b) $6.25 \\times 10^{19}$ electrons pass the point."
+    },
+    {
+      "type": "heading",
+      "content": "Measuring Current"
+    },
+    {
+      "type": "text",
+      "content": "To measure the electric current flowing through a component in a circuit, we use an instrument called an ammeter. Because current is the flow of charge *through* a component, the ammeter must be placed in the path of the charge. This means connecting it in series."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Connection**: An ammeter must always be connected in series with the part of the circuit where the current is to be measured.",
+        "**Ideal Resistance**: An ideal ammeter has zero resistance so that it does not hinder the flow of charge and reduce the current it is measuring.",
+        "**Real Ammeters**: Real ammeters have a very low, but non-zero, resistance.",
+        "**Conservation of Charge**: In a simple series circuit (a single loop), the current is the same at every point. This is because charge is conserved; it is not 'used up' as it flows around the circuit."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is to connect an ammeter in parallel. This creates a short circuit across the component, as the current will take the path of least resistance through the low-resistance ammeter. This can damage the ammeter or the power supply. Remember: **A**mmeters go in the circuit line (series), **V**oltmeters go across it (parallel)."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Practice Questions: Electric Current",
       "href": "/mark?subject=9702&topic=9.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner AS Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
-        },
-        {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "PhET Simulation: Circuit Construction Kit (DC)",
+          "href": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "What is the main difference between charge and current?",
-      "a": "**Charge** is a fundamental property of matter, like mass, existing as positive or negative. It's measured in Coulombs. **Current** is the *rate* at which this charge moves or flows past a point, measured in Amperes (Coulombs per second)."
-    },
-    {
-      "q": "Why is the drift velocity of electrons in a conductor so slow, even with a high current?",
-      "a": "Although the individual electrons have a high random speed, their net forward movement (drift velocity) is slow because they frequently collide with the lattice ions. However, there are *so many* free electrons (high number density, 'n') that even a slow net drift results in a substantial current."
-    },
-    {
-      "q": "How does an ammeter measure current, and how should it be connected?",
-      "a": "An ammeter measures current by detecting the flow of charge *through* itself. To ensure it measures the total current flowing in a specific part of a circuit, it must always be connected **in series** with the component. Ideally, an ammeter has zero internal resistance to avoid affecting the circuit's current."
-    }
-  ],
-  "updated": "2026-06-15",
-  "paperNumber": "2",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/9-1-electric-current.png",
-    "alt": "Senpai Corner reference diagram for 9.1 Electric current"
-  },
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

@@ -5,178 +5,182 @@
   "paper": "P4",
   "paperName": "Paper 4: A Level Structured Questions",
   "status": "premium",
-  "summary": "Paper 4 — Discharging a capacitor (19.3). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson details the process of a capacitor discharging through a resistor. It covers the exponential decay of charge, potential difference, and current, introduces the concept of the time constant (τ = RC), and explores the energy transformations involved. Essential equations and graphical methods for analysis are explained with worked examples.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Describe the process of a capacitor discharging through a resistor.",
-    "Solve problems using the exponential decay equations for charge, voltage, and current.",
-    "Explain the significance of the time constant (RC) in capacitor discharge circuits."
+    "Describe the exponential discharge of a capacitor and sketch graphs of p.d., charge, and current against time.",
+    "Define the time constant (τ = RC) and recall and use the decay equations: x = x₀e⁻ᵗ/ᴿᶜ.",
+    "Solve problems involving the discharge of a capacitor, including calculations of time, p.d., charge, and energy.",
+    "Analyse graphical data of capacitor discharge to determine the time constant."
   ],
   "simpleExplanation": {
-    "title": "Capacitor Discharge Explained",
-    "summary": "Imagine a charged capacitor like a stretched spring. When you release it, the stored energy is let go, causing a current to flow. As the spring unstretches, its force decreases, and similarly, as a capacitor discharges, its ability to push current lessens, leading to an exponential decay.",
-    "analogy": "Think of a leaky water balloon. The more water it has, the faster it leaks. As the water level drops, the leak slows down. This is similar to a capacitor discharging: the more charge it has, the faster it discharges, and as charge reduces, the discharge rate slows.",
+    "title": "The Capacitor's Slow Fade",
+    "summary": "When a charged capacitor is connected to a resistor, it doesn't empty instantly. It discharges exponentially, with its voltage, charge, and current all decreasing over time at a predictable rate.",
+    "analogy": "Imagine a full bucket of water (the charged capacitor) with a small hole at the bottom connected to a narrow pipe (the resistor). The water level (voltage) doesn't drop at a constant rate. It falls quickly at first when the pressure is high, then more and more slowly as the bucket empties. The size of the bucket (capacitance) and the narrowness of the pipe (resistance) determine how long it takes to drain.",
     "steps": [
-      "A charged capacitor has stored electrical energy.",
-      "When connected to a resistor, it releases this energy, creating a current.",
-      "The current, voltage, and charge all decrease exponentially over time.",
-      "The 'time constant' (RC) tells you how quickly this process happens."
+      "A charged capacitor stores energy; discharge through a resistor.",
+      "Capacitor p.d. V decays exponentially: V = V₀e^(−t/RC).",
+      "Time constant τ = RC — time to fall to ~37% of V₀.",
+      "Energy dissipates in the resistor as the capacitor discharges."
     ]
   },
   "flashcards": [
     {
-      "front": "What type of decay do charge, voltage, and current exhibit during capacitor discharge?",
-      "back": "Exponential decay."
+      "front": "What is the equation for the potential difference V across a discharging capacitor at time t?",
+      "back": "$V = V_0 e^{-t/RC}$, where $V_0$ is the initial p.d., R is the resistance, and C is the capacitance."
     },
     {
-      "front": "What is the formula for the time constant ($\tau$) of an RC circuit?",
-      "back": "$\tau = RC$ (Resistance × Capacitance)."
+      "front": "What is the equation for the charge Q remaining on a discharging capacitor at time t?",
+      "back": "$Q = Q_0 e^{-t/RC}$, where $Q_0$ is the initial charge."
     },
     {
-      "front": "What does $V_0$ represent in the discharge equation $V_c = V_0 e^{-t/\tau}$?",
-      "back": "The initial voltage across the capacitor at the start of discharge ($t=0$)."
+      "front": "What is the equation for the current I in the circuit during capacitor discharge at time t?",
+      "back": "$I = I_0 e^{-t/RC}$, where $I_0$ is the initial current ($I_0 = V_0/R$)."
     },
     {
-      "front": "What percentage of its initial value does the charge on a discharging capacitor fall to after one time constant?",
-      "back": "Approximately 37% (or $1/e$)."
+      "front": "Define the time constant, τ, for a capacitor-resistor circuit.",
+      "back": "The time constant, τ, is the product of resistance and capacitance (τ = RC). It is the time taken for the charge, p.d., or current to fall to $1/e$ (approximately 37%) of its initial value."
     },
     {
-      "front": "How does the rate of discharge relate to the remaining charge in a capacitor?",
-      "back": "The rate of discharge is directly proportional to the amount of charge still held by the capacitor."
+      "front": "What is the initial current $I_0$ when a capacitor with initial p.d. $V_0$ discharges through a resistor R?",
+      "back": "The initial current is $I_0 = V_0 / R$. This is the maximum current during the discharge process, occurring at t=0."
     },
     {
-      "front": "What happens to the current as a capacitor discharges?",
-      "back": "The magnitude of the current decreases progressively over time."
+      "front": "How is the half-life ($t_{1/2}$) of a capacitor discharge related to the time constant (τ)?",
+      "back": "The half-life is the time taken for the charge/p.d. to halve. $t_{1/2} = RC \\ln(2) \\approx 0.693 RC$. So, $t_{1/2} \\approx 0.693τ$."
     },
     {
-      "front": "State the formula for energy stored in a capacitor.",
-      "back": "$E = \\frac{1}{2}QV$ or $E = \\frac{1}{2}CV^2$."
+      "front": "How can you determine the time constant from a graph of p.d. against time?",
+      "back": "Find the time on the x-axis that corresponds to the p.d. dropping to $0.37 \\times V_0$. Alternatively, draw a tangent to the curve at t=0; the tangent will intersect the time axis at t = τ."
     },
     {
-      "front": "What is the approximate value of $1/e$?",
-      "back": "0.368 (or 36.8%)."
+      "front": "How can you obtain a straight-line graph from the exponential decay equation $V = V_0 e^{-t/RC}$?",
+      "back": "Take the natural logarithm of both sides: $\\ln(V) = \\ln(V_0) - t/RC$. A graph of $\\ln(V)$ against $t$ is a straight line with gradient $-1/RC$ and y-intercept $\\ln(V_0)$."
     },
     {
-      "front": "How is capacitance ($C$) defined?",
-      "back": "$C = \\frac{Q}{V}$ (Charge per unit voltage)."
+      "front": "What happens to the energy stored in the capacitor as it discharges?",
+      "back": "The electrical potential energy stored in the capacitor is transferred to thermal energy in the resistor as charge flows through it, causing it to heat up."
     },
     {
-      "front": "What does the time constant ($\tau$) measure?",
-      "back": "How quickly the capacitor discharges."
+      "front": "A common mistake is to assume the p.d. halves in a time of τ/2. Why is this wrong?",
+      "back": "Discharge is exponential, not linear. The rate of discharge is constantly decreasing. The time to halve is $t_{1/2} = τ \\ln(2) \\approx 0.693τ$, which is more than half the time constant."
+    },
+    {
+      "front": "How does the energy stored in a discharging capacitor change with time?",
+      "back": "Energy $E = E_0 e^{-2t/RC}$. The energy decays at twice the rate of voltage or charge, as it is proportional to $V^2$ or $Q^2$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the current maximum at the start of the discharge?",
+      "a": "At the very beginning (t=0), the potential difference across the resistor is equal to the full initial p.d. of the capacitor, $V_0$. According to Ohm's Law ($I=V/R$), this maximum voltage results in the maximum current, $I_0 = V_0/R$. As the capacitor discharges, V decreases, so the current I must also decrease."
+    },
+    {
+      "q": "What is the difference between the time constant (τ) and the half-life (t₁/₂)?",
+      "a": "The time constant, $τ = RC$, is the time for a quantity (V, Q, or I) to fall to $1/e$ (approx 37%) of its initial value. The half-life, $t_{1/2}$, is the time for the quantity to fall to 50% of its initial value. They are related by $t_{1/2} = τ \\ln(2) \\approx 0.693τ$. The half-life is always shorter than the time constant."
+    },
+    {
+      "q": "Does the capacitor ever fully discharge to zero?",
+      "a": "Mathematically, the exponential decay function $e^{-t/RC}$ only approaches zero as $t$ approaches infinity. It never actually reaches zero in a finite amount of time. However, for all practical purposes, a capacitor is considered fully discharged after about 5 time constants ($5τ$), as the remaining charge is less than 1% of the original charge."
+    },
+    {
+      "q": "How does the energy stored in the capacitor change during discharge?",
+      "a": "The energy stored in a capacitor is given by $E = \\frac{1}{2}CV^2$. Since $V = V_0 e^{-t/RC}$, the energy at time $t$ is $E = \\frac{1}{2}C(V_0 e^{-t/RC})^2 = (\\frac{1}{2}CV_0^2)e^{-2t/RC}$. This means the energy stored, $E$, also decays exponentially, but with a time constant of $RC/2$, i.e., twice as fast as the voltage or charge."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "You've learnt that a capacitor can store electrical potential energy. Now, let's explore what happens when it releases this stored energy back into a circuit. This process is called **discharging**, and it's fundamental to understanding many electronic circuits, from camera flashes to smoothing power supplies. This lesson aligns with **Senpai Corner** A Level notes (2025–2027) for topic **19.3**."
+      "content": "In the previous topic, we explored how to charge a capacitor, storing energy within its electric field. Now, we investigate the reverse process: what happens when we provide a path for this stored energy to be released? This lesson focuses on the discharge of a capacitor through a resistor, a fundamental process in electronics with applications ranging from camera flashes to timing circuits."
     },
     {
       "type": "heading",
-      "content": "The Discharge Process"
+      "content": "The Discharge Process: An Exponential Decay"
     },
     {
       "type": "text",
-      "content": "When a charged capacitor is connected across a resistor, the stored electrical energy is released. This release drives an electric current through the resistor. Initially, the current is at its maximum, but as the capacitor loses charge, the potential difference across it drops, causing the current to decrease over time. The rate of discharge is always proportional to the amount of charge remaining."
+      "content": "Imagine a capacitor fully charged to a potential difference $V_0$, holding a charge $Q_0$. If we connect this capacitor across a resistor $R$, a path is created for the electrons to flow from the negative plate to the positive plate. This flow of charge constitutes a current."
+    },
+    {
+      "type": "text",
+      "content": "At the very first moment ($t=0$), the p.d. across the resistor is at its maximum, $V_0$, so the initial current is also at its maximum, given by Ohm's law: $I_0 = V_0 / R$. As charge flows, $Q$ on the plates decreases. Since $V = Q/C$, the p.d. $V$ across the capacitor also decreases. This, in turn, reduces the current ($I = V/R$). Because the current is decreasing, the rate at which charge leaves the capacitor also slows down. This self-regulating slowdown results in an exponential decay, where the quantities $Q$, $V$, and $I$ decrease rapidly at first, and then more and more slowly, theoretically never reaching zero in finite time."
     },
     {
       "type": "keyPoints",
       "items": [
-        "19.3 Discharging a capacitor.",
-        "When a capacitor is being charged, the electrons flow from the positive to negative plate.",
-        "When the capacitor is being discharged through a resistor, the electrons flow back from negative plate to the positive plate until there are equal number of electrons on each plate.",
-        "At the start of the discharge, the current is large and gradually falls to zero.",
-        "As a capacitor discharges, the I, V and Q all decrease exponentially.",
-        "This is represented by an exponential decay in the graph above."
+        "Discharge occurs when a charged capacitor is connected in a closed circuit with a resistor.",
+        "Electrons flow from the negative plate to the positive plate, neutralising the stored charge.",
+        "The current, potential difference, and charge all decrease over time.",
+        "The rate of discharge is greatest at the beginning and decreases as the capacitor discharges."
       ]
     },
     {
       "type": "heading",
-      "content": "Exponential Decay"
+      "content": "Mathematical Description of Discharge"
     },
     {
       "type": "text",
-      "content": "A key characteristic of capacitor discharge is that the charge ($Q$), voltage ($V_c$), and current ($I$) all decrease following an **exponential decay** pattern. This means they don't drop linearly but rather shed a constant fraction of their remaining value over equal time intervals. This pattern is crucial for predicting circuit behaviour."
+      "content": "The exponential nature of capacitor discharge can be described by a set of precise mathematical equations. These are derived from solving the differential equation for the circuit, but for A-Level Physics, you need to know and be able to apply them. The variable $x$ can represent potential difference ($V$), charge ($Q$), or current ($I$)."
     },
     {
       "type": "formula",
-      "content": "The mathematical expressions for exponential decay are:\n*   $V_c = V_0 e^{-t/\\tau}$\n*   $Q = Q_0 e^{-t/\\tau}$\n*   $I = I_0 e^{-t/\\tau}$\n\nHere, $V_0$, $Q_0$, and $I_0$ are the initial values at $t=0$ when discharge begins. The term 'e' is Euler's number (approx. 2.718)."
-    },
-    {
-      "type": "heading",
-      "content": "The Time Constant ($\tau$)"
+      "content": "x = x_0 e^{-t/RC}"
     },
     {
       "type": "text",
-      "content": "The symbol $\\tau$ (tau) represents the **time constant** of the RC circuit. It's a critical parameter that tells us how quickly the capacitor will discharge. A larger time constant means a slower discharge, while a smaller one means a faster discharge. It's determined by the resistance and capacitance values in the circuit."
-    },
-    {
-      "type": "formula",
-      "content": "The time constant is calculated as:\n$\\tau = RC$"
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "The time constant ($\\tau$) is the product of resistance ($R$) and capacitance ($C$).",
-        "It measures the speed of discharge in an RC circuit.",
-        "After one time constant, $Q, V_c, I$ fall to $1/e$ (approx. 37%) of their initial value.",
-        "After $5\\tau$, a capacitor is considered almost fully discharged (less than 1% remaining)."
-      ]
+      "content": "Here, $x_0$ is the initial value of the quantity at $t=0$, $t$ is the time elapsed, $R$ is the resistance, $C$ is the capacitance, and $e$ is the base of the natural logarithm (approximately 2.718). Specifically:\n\n- For potential difference: $V = V_0 e^{-t/RC}$\n- For charge: $Q = Q_0 e^{-t/RC}$\n- For current: $I = I_0 e^{-t/RC}$"
     },
     {
       "type": "workedExample",
-      "question": "A 2200 µF capacitor is charged to 12 V and then discharged through a 1.5 kΩ resistor. Calculate the time constant ($\\tau$) of the circuit. Also, calculate the voltage across the capacitor after 3.0 seconds.",
-      "solution": "1. **Convert units:**\n   $C = 2200 \\mu F = 2200 \\times 10^{-6} F = 2.2 \\times 10^{-3} F$\n   $R = 1.5 k\\Omega = 1.5 \\times 10^3 \\Omega$\n\n2. **Calculate the time constant ($\\tau$):**\n   $\\tau = RC$\n   $\\tau = (1.5 \\times 10^3 \\Omega) \\times (2.2 \\times 10^{-3} F)$\n   $\\tau = 3.3 s$\n\n3. **Calculate voltage after 3.0 seconds:**\n   Use the exponential decay formula: $V_c = V_0 e^{-t/\\tau}$\n   $V_0 = 12 V$\n   $t = 3.0 s$\n   $\\tau = 3.3 s$\n   $V_c = 12 \\times e^{-3.0/3.3}$\n   $V_c = 12 \\times e^{-0.909...}$\n   $V_c = 12 \\times 0.4027...$\n   $V_c \\approx 4.83 V$\n\n   The time constant is 3.3 s. After 3.0 seconds, the voltage across the capacitor is approximately 4.83 V."
+      "question": "A 470 μF capacitor is charged to a potential difference of 12.0 V. It is then discharged through a 2.20 kΩ resistor. \n(a) Calculate the initial charge stored on the capacitor. \n(b) Calculate the potential difference across the capacitor after 2.00 s. \n(c) Calculate the time taken for the charge on the capacitor to fall to 25% of its initial value.",
+      "solution": "Part (a): Calculate initial charge $Q_0$.\n$Q_0 = C V_0$\n$Q_0 = (470 \\times 10^{-6} \\text{ F}) \\times 12.0 \\text{ V}$\n$Q_0 = 5.64 \\times 10^{-3} \\text{ C} = 5.64 \\text{ mC}$\n\nPart (b): Calculate p.d. $V$ at $t = 2.00$ s.\nFirst, calculate the time constant, $τ = RC$.\n$τ = (2.20 \\times 10^3 \\text{ Ω}) \\times (470 \\times 10^{-6} \\text{ F}) = 1.034 \\text{ s}$\nNow use the discharge equation for voltage:\n$V = V_0 e^{-t/RC}$\n$V = 12.0 \\times e^{-2.00 / 1.034}$\n$V = 12.0 \\times e^{-1.934}$\n$V = 12.0 \\times 0.1445 = 1.734 \\text{ V}$\nSo, $V \\approx 1.73 \\text{ V}$ (to 3 s.f.)\n\nPart (c): Calculate time $t$ for $Q$ to be $0.25 Q_0$.\nWe use the discharge equation for charge: $Q = Q_0 e^{-t/RC}$.\nWe are given $Q = 0.25 Q_0$.\n$0.25 Q_0 = Q_0 e^{-t/RC}$\n$0.25 = e^{-t/RC}$\nTake the natural logarithm of both sides:\n$\\ln(0.25) = -t/RC$\n$t = -RC \\ln(0.25)$\n$t = -(1.034 \\text{ s}) \\times (-1.386)$\n$t = 1.433 \\text{ s}$\nSo, $t \\approx 1.43 \\text{ s}$ (to 3 s.f.)"
+    },
+    {
+      "type": "heading",
+      "content": "The Time Constant (τ)"
+    },
+    {
+      "type": "text",
+      "content": "The product $RC$ in the exponent has units of time and is a crucial parameter of the circuit. It is called the time constant, represented by the Greek letter tau, $τ$."
+    },
+    {
+      "type": "formula",
+      "content": "τ = RC"
+    },
+    {
+      "type": "text",
+      "content": "The time constant is a measure of how quickly the capacitor discharges. A larger time constant (from a larger resistor or a larger capacitor) means a slower discharge. After one time constant has passed ($t = τ$), the charge, p.d., and current will have fallen to $e^{-1}$ (or approximately 37%) of their initial values. After five time constants ($t = 5τ$), the capacitor is considered to be almost fully discharged, as the values will have fallen to less than 1% of their initial levels ($e^{-5} \\approx 0.0067$)."
     },
     {
       "type": "examTip",
-      "content": "Pay close attention to units, especially for capacitance (Farads) and resistance (Ohms) when calculating the time constant. Milliseconds, microseconds, kilohms, and megaohms are common, so convert them to base units (seconds, Farads, Ohms) before calculations."
+      "content": "Examiners frequently ask for the definition of the time constant. State that it is the product of resistance and capacitance, AND that it is the time for the charge/p.d. to fall to $1/e$ (or 37%) of its initial value. Both parts are needed for full marks. Also, be prepared to determine the time constant from a graph of $V$ vs $t$ by finding the time at which $V = 0.37 V_0$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student plots a graph of $\\ln(V/V)$ against time $t$ for a discharging capacitor and finds the gradient of the best-fit line to be $-0.125 \\text{ s}^{-1}$. If the capacitor has a capacitance of 500 μF, what is the resistance of the resistor in the circuit?",
+      "solution": "The equation for discharge is $V = V_0 e^{-t/RC}$.\nTo get a linear graph, we take natural logs:\n$\\ln(V) = \\ln(V_0 e^{-t/RC})$\n$\\ln(V) = \\ln(V_0) + \\ln(e^{-t/RC})$\n$\\ln(V) = \\ln(V_0) - \\frac{t}{RC}$\nThis is in the form $y = c + mx$, where $y = \\ln(V)$, $x = t$, the y-intercept $c = \\ln(V_0)$, and the gradient $m = -\\frac{1}{RC}$.\n\nThe student has plotted $\\ln(V)$ against $t$. The gradient is given as $-0.125 \\text{ s}^{-1}$.\nTherefore, Gradient = $-1/RC = -0.125 \\text{ s}^{-1}$.\n$1/RC = 0.125$\n$RC = 1 / 0.125 = 8.0 \\text{ s}$. (This is the time constant, τ).\n\nWe are given $C = 500 \\text{ μF} = 500 \\times 10^{-6} \\text{ F}$.\nWe need to find R.\n$R = \\frac{RC}{C} = \\frac{8.0 \\text{ s}}{500 \\times 10^{-6} \\text{ F}}$\n$R = 16000 \\text{ Ω} = 16 \\text{ kΩ}$."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Practice Questions: Discharging a Capacitor",
       "href": "/mark?subject=9702&topic=19.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner A Level Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes"
+          "label": "PhET Simulation: Capacitor Lab Basics",
+          "href": "https://phet.colorado.edu/en/simulations/capacitor-lab-basics"
         },
         {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "Khan Academy: Discharging a capacitor",
+          "href": "https://www.khanacademy.org/science/physics/circuits-topic/circuits-with-capacitors/v/discharging-a-capacitor"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "What does 'exponential decay' mean for capacitor discharge?",
-      "a": "Exponential decay means that the charge, voltage, and current decrease by a constant *fraction* over equal time intervals, rather than by a constant *amount*. This results in a curve that drops quickly at first and then levels off."
-    },
-    {
-      "q": "Why does the discharge current decrease over time?",
-      "a": "As the capacitor discharges, the amount of charge stored on its plates decreases. This directly reduces the potential difference (voltage) across the capacitor. According to Ohm's Law ($I = V/R$), a lower voltage across the resistor leads to a smaller current."
-    },
-    {
-      "q": "How does the time constant ($\tau$) influence practical capacitor applications?",
-      "a": "The time constant dictates how fast a capacitor charges or discharges. In timing circuits (like traffic lights or blinking LEDs), engineers choose specific R and C values to achieve desired delays. For filtering or smoothing circuits, a larger time constant might be chosen to maintain a stable output voltage longer."
-    }
-  ],
-  "updated": "2026-06-15",
-  "paperNumber": "4",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/19-3-discharging-a-capacitor.png",
-    "alt": "Senpai Corner reference diagram for 19.3 Discharging a capacitor"
-  },
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "params": [
       {

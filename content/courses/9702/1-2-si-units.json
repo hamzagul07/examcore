@@ -5,205 +5,171 @@
   "paper": "P1/P2",
   "paperName": "Paper 1: Multiple Choice / Paper 2: AS Level Structured Questions",
   "status": "premium",
-  "summary": "Papers 1 & 2 — SI units (1.2). Premium notes with Senpai Corner diagrams and live animations.",
-  "durationMin": 20,
+  "summary": "This lesson introduces the fundamental language of physics: the International System of Units (SI). We will explore the seven base units and learn how to derive all other physical quantities from them. A key skill developed is using base units to check the consistency of physical equations, a technique known as homogeneity.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Identify the seven SI base quantities and their corresponding units.",
-    "Explain how derived units are formed from base units and perform dimensional analysis.",
-    "Utilise SI prefixes to convert between multiples and submultiples of units, and apply key energy conversions (eV to J, kWh to J)."
+    "Recall the seven SI base quantities and their units.",
+    "Distinguish between base and derived quantities and units.",
+    "Express derived units as products or quotients of base units.",
+    "Use base units to check the homogeneity of physical equations."
   ],
   "simpleExplanation": {
-    "title": "The Universal Language of Physics",
-    "summary": "Imagine building a house without a standard ruler or measuring tape! In physics, **SI units** provide a universal 'ruler' so scientists worldwide can understand each other's measurements. They ensure consistency, making calculations and experiments reliable, from tiny atoms to distant galaxies.",
-    "analogy": "Think of SI units as the 'currency' of physics. Just as money allows you to exchange goods and services anywhere, SI units allow physicists to exchange data and ideas universally, ensuring everyone is speaking the same measurement 'language'.",
+    "title": "Physics' Building Blocks",
+    "summary": "All physical measurements are built from just seven fundamental units, like words from letters. We can check if our physics equations are valid by ensuring the units on both sides match up.",
+    "analogy": "Think of SI base units like primary colours (red, yellow, blue). You can't make them from other colours. All other colours (like green, purple, orange) are 'derived' by mixing the primary ones in different combinations. Similarly, all physical units like speed or force are derived from a few fundamental base units.",
     "steps": [
-      "**Understand Physical Quantities**: Recognise that every measurement needs a number AND a unit.",
-      "**Master the Base Units**: Memorise the seven fundamental building blocks of all other units.",
-      "**Decode Derived Units**: Learn how base units combine to form complex units for quantities like force or energy.",
-      "**Navigate Prefixes & Conversions**: Practice using prefixes (kilo, milli, micro) and essential energy unit swaps (eV, kWh)."
+      "First, memorise the seven SI base units: metre (m), kilogram (kg), second (s), ampere (A), kelvin (K), mole (mol), and candela (cd).",
+      "Next, understand that all other units, called derived units (e.g., the newton for force), are combinations of these base units.",
+      "To find the base units of a quantity, use its defining equation. For example, for speed (distance/time), the base units are m / s, or m s⁻¹.",
+      "Finally, apply this to check equations. An equation is homogeneous if the base units on the left-hand side are identical to the base units on the right-hand side."
     ]
   },
   "flashcards": [
     {
-      "front": "What are the two essential components of a physical quantity?",
-      "back": "A numerical value (magnitude) and an associated unit."
+      "front": "What are the seven SI base quantities?",
+      "back": "Length, mass, time, electric current, thermodynamic temperature, amount of substance, and luminous intensity."
     },
     {
-      "front": "List three of the SI base quantities and their corresponding units.",
-      "back": "Mass (kilogram, kg), Length (metre, m), Time (second, s)."
+      "front": "What are the seven SI base units and their symbols?",
+      "back": "Metre (m), kilogram (kg), second (s), ampere (A), kelvin (K), mole (mol), and candela (cd)."
     },
     {
-      "front": "Explain what a derived unit is and provide an example.",
-      "back": "A derived unit is formed by combining SI base units. For example, the Newton (N) for force is equivalent to kg m s$^{-2}$."
+      "front": "What is a derived quantity?",
+      "back": "A quantity that is defined in terms of two or more base quantities through a physical equation. Examples include velocity, force, and pressure."
     },
     {
-      "front": "What is the multiplier for the SI prefix 'nano' (n)?",
-      "back": "10$^{-9}$."
+      "front": "What is the SI base unit for mass?",
+      "back": "The kilogram (kg). A common mistake is to use the gram (g)."
     },
     {
-      "front": "What is the conversion factor for 1 electronvolt (eV) to Joules (J)?",
-      "back": "1 eV = 1.6 \\times 10$^{-19}$ J."
+      "front": "What is the principle of homogeneity of equations?",
+      "back": "A physical equation is only valid if the base units on both sides of the equation are the same. It's a method for checking the consistency of an equation."
     },
     {
-      "front": "What is the SI base unit for electric current?",
-      "back": "Ampere (A)."
+      "front": "Express the joule (J), the unit of energy, in SI base units.",
+      "back": "Using $E_k = \\frac{1}{2}mv^2$, the units are kg (m s⁻¹)² = kg m² s⁻²."
     },
     {
-      "front": "What does it mean for an equation to be 'dimensionally homogeneous'?",
-      "back": "The units on both sides of the equation must be consistent (the same)."
+      "front": "Express the watt (W), the unit of power, in SI base units.",
+      "back": "Power is energy/time. So, units are Joules per second = (kg m² s⁻²) / s = kg m² s⁻³."
     },
     {
-      "front": "Convert 1 kilowatt-hour (kWh) to Joules (J).",
-      "back": "1 kWh = 3.6 \\times 10$^6$ J."
+      "front": "Do dimensionless constants, like $2\\pi$ or $\\frac{1}{2}$, affect the homogeneity of an equation?",
+      "back": "No. Dimensionless constants have no units and are ignored when checking for homogeneity."
     },
     {
-      "front": "What is the SI prefix and multiplier for $10^9$?",
-      "back": "Giga (G)."
+      "front": "A student writes that Force = Mass × Velocity. Use base units to show this is incorrect.",
+      "back": "LHS (Force) = kg m s⁻². RHS (Mass × Velocity) = kg × m s⁻¹. Since kg m s⁻² ≠ kg m s⁻¹, the equation is not homogeneous and is incorrect."
     },
     {
-      "front": "If speed is measured in m/s, what would be the derived unit for acceleration?",
-      "back": "m/s$^2$ (or m s$^{-2}$)."
+      "front": "What is the base unit for temperature in the SI system?",
+      "back": "The kelvin (K). Degrees Celsius (°C) is a common unit but not the SI base unit."
+    },
+    {
+      "front": "What is the derived unit of pressure, the pascal (Pa), in SI base units?",
+      "back": "Pressure = Force / Area. So, units are N / m² = (kg m s⁻²) / m² = kg m⁻¹ s⁻²."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the kilogram the base unit for mass, not the gram?",
+      "a": "This is a historical anomaly. The original metric system defined the gram based on water, but the physical standard, the International Prototype of the Kilogram, was made for a kilogram. The kilogram was therefore adopted as the base unit when the SI system was formalised."
+    },
+    {
+      "q": "Do constants like pi (π) or numbers like '2' have units?",
+      "a": "No, they are dimensionless numbers. They have a value but no physical units, so they are ignored when checking for the homogeneity of an equation."
+    },
+    {
+      "q": "What is the difference between a quantity and a unit?",
+      "a": "A quantity is a property of an object or phenomenon that can be measured, like length, mass, or time. A unit is a standard amount of that quantity used for measurement, like the metre, the kilogram, or the second. A measurement consists of a numerical value and a unit."
+    },
+    {
+      "q": "If an equation is homogeneous, does that guarantee it is correct?",
+      "a": "No. Homogeneity is a necessary check, but it's not sufficient. An equation can have the correct units on both sides but be missing a dimensionless constant (like the 1/2 in $E_k = \\frac{1}{2}mv^2$) or have an incorrect dimensionless constant, making the formula physically wrong."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "In physics, precise measurement is everything! When you describe something like distance or time, you need a numerical value, but that's not enough. You also need a **unit** to give that number meaning. The **International System of Units (SI)** provides a standardised set of units, creating a common language for scientists and engineers globally. Let's dive into how these essential units work! This lesson aligns with **Senpai Corner** AS notes (2025–2027) for topic **1.2**."
+      "content": "Welcome to the foundational topic of SI units. In physics, every measurement requires a number and a unit. To ensure global consistency, scientists use the 'Système International d'Unités' or SI. Mastering this system is not just about memorisation; it's about understanding the fundamental structure of physical laws and gaining a powerful tool for problem-solving and error-checking."
     },
     {
       "type": "heading",
-      "content": "The Language of Measurement: Physical Quantities"
+      "content": "The Foundation: SI Base Quantities and Units"
     },
     {
       "type": "text",
-      "content": "A **physical quantity** is any characteristic of matter or energy that can be measured. Whenever you measure something, whether it's the length of a table or the temperature of a liquid, your answer must always include two parts: a **numerical value** (how much) and a **unit** (what kind of measurement). For example, saying '5' isn't helpful, but '5 metres' (5 m) tells you exactly what has been measured and its magnitude."
-    },
-    {
-      "type": "heading",
-      "content": "SI Base Units: The Foundation"
-    },
-    {
-      "type": "text",
-      "content": "The SI system is built upon a foundation of seven fundamental **Base Quantities**, each with its own independent **Base Unit**. These units cannot be broken down further into simpler units and form the core from which all other units are derived. You'll need to know all of them for your exams!"
+      "content": "At the heart of the SI system are seven base quantities. These are the fundamental building blocks from which all other physical quantities are constructed. Each base quantity has a corresponding base unit. It is crucial to memorise these as they form the alphabet of the language of physics."
     },
     {
       "type": "keyPoints",
       "items": [
-        "1.2 SI units.",
-        "Note that the units used in the example above is not in SI . If we were to convert both the magnitude and units to SI, the speed would then be 33.3 m/s.",
-        "SI unit is a system of measurement that is used and recognized in most countries (except US…).",
-        "SI units can be categorized into two types; based and derived .",
-        "There are seven base units:.",
-        "Derived units are derived from the seven based units (think of base units as Lego TM blocks and derived units as the castle/ ship/ car/ phone holder you are trying to make)."
+        "**Length:** metre (m)",
+        "**Mass:** kilogram (kg)",
+        "**Time:** second (s)",
+        "**Electric Current:** ampere (A)",
+        "**Thermodynamic Temperature:** kelvin (K)",
+        "**Amount of Substance:** mole (mol)",
+        "**Luminous Intensity:** candela (cd) - *rarely used at A-Level but good to know.*"
       ]
-    },
-    {
-      "type": "heading",
-      "content": "Building Blocks: Derived Units"
-    },
-    {
-      "type": "text",
-      "content": "While base units are fundamental, most quantities we encounter in physics use **derived units**. These are units created by combining two or more base units through multiplication or division. For example, to find speed, you divide distance (length) by time, so its derived unit is metres per second (m/s)."
-    },
-    {
-      "type": "formula",
-      "content": "For example, Force (Newton, N) $= Mass \\times Acceleration$. $N = kg \\times (m/s^2)$. $N = kg m s^{-2}$"
-    },
-    {
-      "type": "text",
-      "content": "Understanding derived units is crucial for checking the consistency of equations. An equation is said to be **dimensionally homogeneous** if the units on both sides of the equation are identical. This is a powerful tool to spot potential errors in your calculations!"
     },
     {
       "type": "examTip",
-      "content": "Always check for dimensional homogeneity! If the units on both sides of your equation don't match, you've made a mistake in your formula or calculation. This is a common check in Paper 2 questions."
+      "content": "Notice that the base unit for mass is the **kilogram (kg)**, not the gram (g). This is a frequent source of error. Always convert mass to kg in calculations unless specified otherwise."
     },
     {
       "type": "heading",
-      "content": "Scaling Up and Down: SI Prefixes"
+      "content": "Constructing Physics: Derived Quantities and Units"
     },
     {
       "type": "text",
-      "content": "Physical quantities can range from incredibly tiny to astronomically huge. To make these numbers easier to write and understand, we use **SI prefixes**. These prefixes attach to the start of a unit and indicate a specific power of 10 multiplier."
-    },
-    {
-      "type": "keyPoints",
-      "items": [
-        "Tera (T): $10^{12}$",
-        "Giga (G): $10^9$",
-        "Mega (M): $10^6$",
-        "Kilo (k): $10^3$",
-        "Centi (c): $10^{-2}$",
-        "Milli (m): $10^{-3}$",
-        "Micro (\\textmu): $10^{-6}$",
-        "Nano (n): $10^{-9}$",
-        "Pico (p): $10^{-12}$"
-      ]
+      "content": "Most quantities in physics, such as velocity, force, energy, and pressure, are 'derived quantities'. Their units, called derived units, are formed by combining the base units through multiplication or division. For example, the unit for speed (distance/time) is metres per second (m/s or m s⁻¹). You can determine the base units for any derived quantity if you know its defining equation."
     },
     {
       "type": "workedExample",
-      "question": "Convert 2.5 \\textmu s to seconds (s) and 0.045 km to metres (m).",
-      "solution": "1. **For 2.5 \\textmu s to s:**\\n    The prefix 'micro' (\\textmu) means $10^{-6}$.\\n    So, 2.5 \\textmu s = 2.5 \\times 10^{-6} s.\\n\\n2. **For 0.045 km to m:**\\n    The prefix 'kilo' (k) means $10^3$ (or 1000).\\n    So, 0.045 km = 0.045 \\times 1000 m = 45 m."
+      "question": "The newton (N) is the SI unit of force. Given the equation $F=ma$ (Newton's Second Law), express the newton in SI base units.",
+      "solution": "1. **State the defining equation:** $F = ma$\n\n2. **Identify the units of the quantities on the right-hand side:**\n   - Mass ($m$) has the SI base unit kilogram (kg).\n   - Acceleration ($a$) is the rate of change of velocity, so its unit is metres per second squared (m s⁻²).\n\n3. **Substitute the units into the equation:**\n   Unit of Force = (unit of mass) × (unit of acceleration)\n   [N] = kg × m s⁻²\n\n4. **Combine and state the final answer:**\n   The newton (N) in SI base units is **kg m s⁻²**."
     },
     {
       "type": "heading",
-      "content": "Energy: Key Conversions"
+      "content": "Checking Your Work: The Principle of Homogeneity"
     },
     {
       "type": "text",
-      "content": "While the Joule (J) is the SI derived unit for energy, you'll often encounter other energy units, especially in specific contexts like atomic physics or domestic electricity. Knowing how to convert them to Joules is essential for consistency in calculations."
+      "content": "A powerful application of base units is to check if a physical equation is plausible. The principle of homogeneity states that for an equation to be physically correct, the base units on the left-hand side (LHS) must be identical to the base units on the right-hand side (RHS). You cannot add or equate quantities with different fundamental units, just as you cannot add '5 apples' to '3 oranges' and get a meaningful single quantity."
     },
     {
       "type": "formula",
-      "content": "$1\\text{ electronvolt (eV)} = 1.6 \\times 10^{-19}\\text{ J}$. $1\\text{ kilowatt-hour (kWh)} = 3.6 \\times 10^6\\text{ J}$"
+      "content": "For an equation to be homogeneous: \n\n**Base units of LHS = Base units of RHS**"
     },
     {
       "type": "examTip",
-      "content": "Be careful with case sensitivity for prefixes! 'm' for milli ($10^{-3}$) is very different from 'M' for Mega ($10^6$). Pay close attention to these details in exams."
+      "content": "Homogeneity is a necessary but not sufficient condition for an equation to be correct. For example, $E_k = mv^2$ is homogeneous, but it's incorrect because it's missing the dimensionless constant $\\frac{1}{2}$. Homogeneity checks the physics 'grammar' but not the numerical 'spelling'."
+    },
+    {
+      "type": "workedExample",
+      "question": "A student proposes that the pressure $p$ at a depth $h$ in a fluid of density $\\rho$ is given by the equation $p = \\rho g h^2$, where $g$ is the acceleration of free fall. Use base units to check if this equation is homogeneous.",
+      "solution": "1. **Analyse the Left-Hand Side (LHS):**\n   - Pressure ($p$) is Force/Area. The unit is the Pascal (Pa).\n   - Base units of Force are kg m s⁻². Base units of Area are m².\n   - So, [LHS] = [Pressure] = $\\frac{\\text{kg m s}^{-2}}{\\text{m}^2} = \\text{kg m}^{-1} \\text{s}^{-2}$.\n\n2. **Analyse the Right-Hand Side (RHS):**\n   - Density ($\\rho$) is Mass/Volume. Base units are kg / m³ = kg m⁻³.\n   - Acceleration of free fall ($g$) has base units of m s⁻².\n   - Depth ($h$) is a length, so its unit is m. Thus $h^2$ has units of m².\n   - [RHS] = [$\\rho$] × [$g$] × [$h^2$] = (kg m⁻³) × (m s⁻²) × (m²).\n\n3. **Simplify the RHS units:**\n   - Combine the powers of each base unit: kg¹ m⁻³⁺¹⁺² s⁻² = kg m⁰ s⁻² = kg s⁻².\n\n4. **Compare LHS and RHS:**\n   - [LHS] = kg m⁻¹ s⁻²\n   - [RHS] = kg s⁻²\n   - Since kg m⁻¹ s⁻² ≠ kg s⁻², the equation is **not homogeneous** and is therefore incorrect. (The correct equation is $p = \\rho g h$)."
     },
     {
       "type": "practice",
-      "label": "Mark a past-paper question on this topic",
+      "label": "Test your understanding of SI Units",
       "href": "/mark?subject=9702&topic=1.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "Senpai Corner AS Physics notes (source)",
-          "href": "https://www.senpaicorner.com/cie-as-physics-2025-2027-notes"
+          "label": "BIPM: The International System of Units",
+          "href": "https://www.bipm.org/en/measurement-units"
         },
         {
-          "label": "9702 past paper guide",
-          "href": "/subjects/9702"
-        },
-        {
-          "label": "How to read mark schemes",
-          "href": "/blog/how-to-read-a-cambridge-mark-scheme"
+          "label": "NPL: A beginner's guide to SI Units",
+          "href": "https://www.npl.co.uk/si-units"
         }
       ]
     }
   ],
-  "faq": [
-    {
-      "q": "What are SI units and why are they important in physics?",
-      "a": "SI units (International System of Units) are a globally recognised standard set of units for physical quantities. They are crucial because they ensure consistency and clarity in scientific communication and calculations, allowing scientists worldwide to understand and replicate each other's experimental results without confusion over measurement scales."
-    },
-    {
-      "q": "How do you convert between SI prefixes like kilo, milli, and micro?",
-      "a": "To convert using SI prefixes, you multiply the numerical value by the prefix's corresponding power of 10. For instance, to convert 1 kilometre (kilo = $10^3$) to metres, you multiply by $10^3$ (1 km = $1 \\times 10^3$ m). To convert 1 millimetre (milli = $10^{-3}$) to metres, you multiply by $10^{-3}$ (1 mm = $1 \\times 10^{-3}$ m)."
-    },
-    {
-      "q": "What is the key difference between SI base units and derived units?",
-      "a": "SI base units are fundamental, independent units (like metre for length or kilogram for mass) that cannot be expressed in terms of other units. Derived units, on the other hand, are formed by mathematically combining two or more base units through multiplication or division, such as the Newton (force = mass \\times acceleration = kg m s$^{-2}$) or the Joule (energy)."
-    }
-  ],
-  "updated": "2026-06-09",
-  "paperNumber": "2",
-  "paperType": "structured",
-  "level": "A-Level",
-  "generatorVersion": "senpai-published-1",
-  "diagram": {
-    "src": "/courses/diagrams/9702/senpai/1-2-si-units.png",
-    "alt": "Senpai Corner reference diagram for 1.2 SI units"
-  }
+  "generatorVersion": "stem-deep-author-1"
 }

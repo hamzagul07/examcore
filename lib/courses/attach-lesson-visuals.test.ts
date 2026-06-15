@@ -33,7 +33,7 @@ const base = {
 }
 
 const attached = attachCatalogVisuals(base as GeneratedLesson)
-check('attaches interactive embed', attached.interactiveEmbed?.provider === 'phet')
+check('native grav diagram suppresses PhET embed', attached.interactiveEmbed === undefined)
 check('attaches diagram spec', (attached.diagramSpec?.steps.length ?? 0) === 3)
 
 const withExisting = attachCatalogVisuals({
@@ -106,6 +106,32 @@ const differentiation = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9709 native diagram skips geogebra embed', differentiation.interactiveEmbed === undefined)
 check('9709 keeps diagram spec with params', (differentiation.diagramSpec?.params?.length ?? 0) >= 2)
+
+const shm = attachCatalogVisuals({
+  ...base,
+  slug: '17-1-simple-harmonic-oscillations',
+  topicCode: '17.1',
+  title: 'SHM',
+  simpleExplanation: {
+    title: 'SHM',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('9702 SHM prefers native over PhET', shm.interactiveEmbed === undefined)
+
+const photoelectric = attachCatalogVisuals({
+  ...base,
+  slug: '22-2-photoelectric-effect',
+  topicCode: '22.2',
+  title: 'Photoelectric effect',
+  simpleExplanation: {
+    title: 'Photoelectric',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('photoelectric retains PhET sim', photoelectric.interactiveEmbed?.provider === 'phet')
 
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

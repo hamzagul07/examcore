@@ -36,7 +36,7 @@ export function CourseVisualLearning({
   diagramSpec?: LessonDiagramSpec | null
   interactiveEmbed?: LessonInteractiveEmbed | null
 }) {
-  const { heroVisual, stepCarousel, diagramImages } = partitioned
+  const { stepCarousel, diagramImages } = partitioned
   const hasEmbed = !!interactiveEmbed
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
   const dualVisual = isDualVisualSlug(lessonSlug) && hasEmbed

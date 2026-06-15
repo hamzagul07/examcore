@@ -30,19 +30,27 @@ for (const slug of pilotSlugs) {
 }
 
 const lesson = {
-  slug: '10-1-practical-circuits',
-  topicCode: '10.1',
-  title: 'Test',
-  paper: 'P2',
-  paperName: 'Paper 2',
+  slug: '22-2-photoelectric-effect',
+  topicCode: '22.2',
+  title: 'Photoelectric effect',
+  paper: 'P5',
+  paperName: 'Paper 5',
   status: 'published',
   summary: 'x'.repeat(25),
   durationMin: 10,
   sections: [{ type: 'intro', content: 'Hello world lesson intro.' }],
 } as CourseLesson
 
-check('resolve catalog', resolveLessonInteractiveEmbed(lesson)?.provider === 'phet')
+check('resolve catalog retains gold-standard PhET', resolveLessonInteractiveEmbed(lesson)?.provider === 'phet')
 check('has embed', lessonHasInteractiveEmbed(lesson))
+
+const nativePrimary = {
+  ...lesson,
+  slug: '10-1-practical-circuits',
+  topicCode: '10.1',
+  title: 'Practical circuits',
+} as CourseLesson
+check('native diagram suppresses PhET in resolve', resolveLessonInteractiveEmbed(nativePrimary) === null)
 
 check('cheerpj detect', isCheerpjEmbedUrl('https://phet.colorado.edu/sims/cheerpj/photoelectric/latest/photoelectric.html'))
 check('html5 not cheerpj', !isCheerpjEmbedUrl('https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html'))

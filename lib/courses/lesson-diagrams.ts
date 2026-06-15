@@ -20,6 +20,9 @@ import { WalErrorBarDiagram } from '@/components/diagrams/WalErrorBarDiagram'
 import { WavesComparison } from '@/components/diagrams/WavesComparison'
 import { TwoThermometers } from '@/components/diagrams/TwoThermometers'
 import { HeatingCurve } from '@/components/diagrams/HeatingCurve'
+import { LogicGatesDiagram } from '@/components/diagrams/LogicGatesDiagram'
+import { CpuComponentsDiagram } from '@/components/diagrams/CpuComponentsDiagram'
+import { BinaryShiftDiagram } from '@/components/diagrams/BinaryShiftDiagram'
 import { resolveFamilyDiagram } from '@/lib/courses/diagram-families'
 import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 
@@ -245,6 +248,46 @@ const PILOT_DIAGRAMS: Record<
         source: 'Senpai Corner (reference) + MarkScheme animation',
         license: 'Proprietary',
         sourceUrl: 'https://www.senpaicorner.com/cie-a-levels-physics-2025-2027-notes',
+      },
+    },
+  },
+  '3-2-logic-gates-and-logic-circuits': {
+    Component: LogicGatesDiagram,
+    meta: {
+      caption: 'NOT, AND, and OR gates — truth tables define every combinational output.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '15-2-boolean-algebra-and-logic-circuits': {
+    Component: LogicGatesDiagram,
+    meta: {
+      caption: 'Boolean algebra simplifies circuits — Karnaugh maps and adder logic.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '3-1-computers-and-their-components': {
+    Component: CpuComponentsDiagram,
+    meta: {
+      caption: 'CPU, memory, storage, and I/O — fetch–decode–execute in the Von Neumann model.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '4-3-bit-manipulation': {
+    Component: BinaryShiftDiagram,
+    meta: {
+      caption: 'Logical shifts, masks, XOR toggles, and two\'s complement representation.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
       },
     },
   },

@@ -1,4 +1,5 @@
 import type { CourseLesson, LessonInteractiveEmbed } from '@/lib/courses/types'
+import { preferNativeDiagramOverPlaceholder } from '@/lib/courses/placeholder-embeds'
 import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 
 export type InteractiveEmbedProvider = LessonInteractiveEmbed['provider']
@@ -1346,13 +1347,17 @@ export function resolveLessonInteractiveEmbed(
   lesson: CourseLesson
 ): LessonInteractiveEmbed | null {
   if (lesson.interactiveEmbed?.embedUrl) {
-    return lesson.interactiveEmbed
+    return (
+      preferNativeDiagramOverPlaceholder(lesson.slug, lesson.interactiveEmbed) ?? null
+    )
   }
   const inline = lesson.sections.find((s) => s.type === 'interactive')
   if (inline?.type === 'interactive') {
-    return inline.embed
+    return preferNativeDiagramOverPlaceholder(lesson.slug, inline.embed) ?? null
   }
-  return INTERACTIVE_EMBED_CATALOG[lesson.slug] ?? getCatalogInteractiveEmbed(lesson.slug) ?? null
+  const catalog =
+    INTERACTIVE_EMBED_CATALOG[lesson.slug] ?? getCatalogInteractiveEmbed(lesson.slug)
+  return preferNativeDiagramOverPlaceholder(lesson.slug, catalog) ?? null
 }
 
 export function isCheerpjEmbedUrl(url: string): boolean {

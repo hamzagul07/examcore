@@ -23,6 +23,12 @@ import { HeatingCurve } from '@/components/diagrams/HeatingCurve'
 import { LogicGatesDiagram } from '@/components/diagrams/LogicGatesDiagram'
 import { CpuComponentsDiagram } from '@/components/diagrams/CpuComponentsDiagram'
 import { BinaryShiftDiagram } from '@/components/diagrams/BinaryShiftDiagram'
+import { AlgorithmTraceDiagram } from '@/components/diagrams/AlgorithmTraceDiagram'
+import { NetworkPacketDiagram } from '@/components/diagrams/NetworkPacketDiagram'
+import { OsResourceDiagram } from '@/components/diagrams/OsResourceDiagram'
+import { TranslationPipelineDiagram } from '@/components/diagrams/TranslationPipelineDiagram'
+import { DatabaseRelationDiagram } from '@/components/diagrams/DatabaseRelationDiagram'
+import { ControlFlowDiagram } from '@/components/diagrams/ControlFlowDiagram'
 import { resolveFamilyDiagram } from '@/lib/courses/diagram-families'
 import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 
@@ -285,6 +291,66 @@ const PILOT_DIAGRAMS: Record<
     Component: BinaryShiftDiagram,
     meta: {
       caption: 'Logical shifts, masks, XOR toggles, and two\'s complement representation.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '19-1-algorithms': {
+    Component: AlgorithmTraceDiagram,
+    meta: {
+      caption: 'Searching, sorting, and trace tables — compare algorithm efficiency.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '2-1-networks-including-the-internet': {
+    Component: NetworkPacketDiagram,
+    meta: {
+      caption: 'LAN/WAN topologies, packet vs circuit switching, and TCP/IP layers.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '16-1-purposes-of-an-operating-system-os': {
+    Component: OsResourceDiagram,
+    meta: {
+      caption: 'OS manages processes, memory, device drivers, and security.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '16-2-translation-software': {
+    Component: TranslationPipelineDiagram,
+    meta: {
+      caption: 'Assembler, compiler, interpreter, and linker roles in program translation.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '8-1-database-concepts': {
+    Component: DatabaseRelationDiagram,
+    meta: {
+      caption: 'Relational tables, primary/foreign keys, normalisation, and ER relationships.',
+      attribution: {
+        source: 'MarkScheme animation',
+        license: 'Proprietary',
+      },
+    },
+  },
+  '11-2-constructs': {
+    Component: ControlFlowDiagram,
+    meta: {
+      caption: 'IF/CASE selection and FOR/WHILE iteration in structured pseudocode.',
       attribution: {
         source: 'MarkScheme animation',
         license: 'Proprietary',

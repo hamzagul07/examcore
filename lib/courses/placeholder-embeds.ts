@@ -27,6 +27,11 @@ function retainsPhetWithNative(slug: string): boolean {
   return alias !== slug && PHET_RETAIN_WITH_NATIVE.has(alias)
 }
 
+/** Gold-standard topics: native SVG plus retained PhET sim. */
+export function isDualVisualSlug(slug: string): boolean {
+  return hasLessonLiveDiagram(slug) && retainsPhetWithNative(slug)
+}
+
 /** Prefer step-synced native SVG over weak catalog embeds when a diagram exists. */
 export function preferNativeDiagramOverPlaceholder(
   slug: string,

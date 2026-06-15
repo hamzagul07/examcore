@@ -29,8 +29,8 @@ check(
 
 const photoelectric = { ...base, slug: '22-2-photoelectric-effect', topicCode: '22.2' } as CourseLesson
 check(
-  'gold-standard PhET shows embed badge',
-  resolveLessonHeroVisual(photoelectric).kind === 'embed'
+  'gold-standard PhET shows dual-visual badge',
+  resolveLessonHeroVisual(photoelectric).kind === 'dual-visual'
 )
 
 const generic = { ...base, slug: 'no-visual-topic-xyz' } as CourseLesson

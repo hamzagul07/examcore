@@ -11,26 +11,21 @@ export function VisualStepCarousel({
   steps,
   activeStep,
   onStepChange,
+  embedded = false,
 }: {
   title: string
   steps: VisualStep[]
   activeStep: number
   onStepChange: (index: number) => void
+  embedded?: boolean
 }) {
   const step = steps[activeStep]
   const total = steps.length
 
-  return (
-    <VisualSectionFrame
-      title={title}
-      hint="Swipe through steps — the diagram follows each one."
-      icon={ListOrdered}
-      accent="brand"
-      className="course-visual-carousel lg:hidden"
-      bodyClassName="!pt-2"
-    >
+  const panel = (
+    <>
       <div className="mb-3 flex items-center justify-end">
-        <span className="rounded-full border-2 border-[var(--ec-border-subtle)] bg-[var(--ec-surface-muted)] px-3 py-1 text-xs font-semibold text-[var(--ec-text-tertiary)]">
+        <span className="course-step-counter-pill">
           Step {activeStep + 1} of {total}
         </span>
       </div>
@@ -93,6 +88,29 @@ export function VisualStepCarousel({
           </button>
         </div>
       </div>
+    </>
+  )
+
+  if (embedded) {
+    return (
+      <div className="course-visual-carousel-embedded lg:hidden">
+        <p className="course-step-panel-title">{title}</p>
+        <p className="course-step-panel-hint">Swipe through steps — the diagram follows each one.</p>
+        {panel}
+      </div>
+    )
+  }
+
+  return (
+    <VisualSectionFrame
+      title={title}
+      hint="Swipe through steps — the diagram follows each one."
+      icon={ListOrdered}
+      accent="brand"
+      className="course-visual-carousel lg:hidden"
+      bodyClassName="!pt-2"
+    >
+      {panel}
     </VisualSectionFrame>
   )
 }

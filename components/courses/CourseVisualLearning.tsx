@@ -7,6 +7,21 @@ import type { LessonInteractiveEmbed } from '@/lib/courses/types'
 import { VisualStepController } from '@/components/courses/visuals/VisualStepController'
 import { VisualSectionFrame } from '@/components/courses/visuals/VisualSectionFrame'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
+import { isDualVisualSlug } from '@/lib/courses/placeholder-embeds'
+
+function visualBadge(
+  hasEmbed: boolean,
+  liveDiagram: boolean,
+  dualVisual: boolean,
+  provider?: LessonInteractiveEmbed['provider']
+): string | undefined {
+  if (dualVisual) return 'PhET + diagram'
+  if (hasEmbed && provider === 'phet') return 'PhET simulation'
+  if (hasEmbed && provider === 'geogebra') return 'GeoGebra'
+  if (hasEmbed) return 'Interactive'
+  if (liveDiagram) return 'Live diagram'
+  return undefined
+}
 
 export function CourseVisualLearning({
   partitioned,
@@ -24,8 +39,9 @@ export function CourseVisualLearning({
   const { heroVisual, stepCarousel, diagramImages } = partitioned
   const hasEmbed = !!interactiveEmbed
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
+  const dualVisual = isDualVisualSlug(lessonSlug) && hasEmbed
   const hasExploreVisual = hasEmbed || liveDiagram
-  const showNativeDiagram = !hasEmbed && (heroVisual !== null || liveDiagram)
+  const showNativeDiagram = liveDiagram && (!hasEmbed || dualVisual)
   const hasStage = showNativeDiagram || stepCarousel !== null
   const referenceDiagrams = diagramImages.filter(
     (d) => d.src.includes('/alnotes/') || (!liveDiagram && !hasEmbed)
@@ -34,17 +50,20 @@ export function CourseVisualLearning({
 
   if (!hasEmbed && !hasStage && !showReferenceImages) return null
 
+  const hint = dualVisual
+    ? 'Run the PhET sim, then use the synced diagram and steps below.'
+    : hasExploreVisual
+      ? hasEmbed
+        ? 'Use the live simulation, then follow the synced steps below.'
+        : 'Use the live diagram and follow the synced steps below.'
+      : 'Diagram plus a step-by-step walkthrough of the core ideas.'
+
   return (
     <VisualSectionFrame
       id="visual-learning"
       title={hasExploreVisual ? 'Explore the concept' : 'Visual learning'}
-      hint={
-        hasExploreVisual
-          ? hasEmbed
-            ? 'Use the live simulation, then follow the synced steps below.'
-            : 'Use the live diagram and follow the synced steps below.'
-          : 'Diagram plus a step-by-step walkthrough of the core ideas.'
-      }
+      hint={hint}
+      badge={visualBadge(hasEmbed, liveDiagram, dualVisual, interactiveEmbed?.provider)}
       icon={Eye}
       accent="cool"
       className="course-visual-learning"

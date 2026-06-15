@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import gsap from 'gsap'
 import type { LessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import type { PartitionedVisualBlocks } from '@/lib/courses/lesson-layout'
@@ -18,6 +18,7 @@ import { VisualStepTimeline } from '@/components/courses/visuals/VisualStepTimel
 import { VisualStepCarousel } from '@/components/courses/visuals/VisualStepCarousel'
 import { DiagramParamControls } from '@/components/courses/visuals/DiagramParamControls'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
+import { isDualVisualSlug } from '@/lib/courses/placeholder-embeds'
 
 type Props = {
   partitioned: PartitionedVisualBlocks
@@ -43,11 +44,14 @@ export function VisualStepController({
   const [activeStep, setActiveStep] = useState(0)
   const [params, setParams] = useState(() => defaultParamValues(resolvedSpec))
   const diagramRef = useRef<HTMLDivElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
 
   const hasEmbed = !!interactiveEmbed
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
-  const showNativeDiagram = !hasEmbed && liveDiagram
+  const dualVisual = isDualVisualSlug(lessonSlug) && hasEmbed
+  const showNativeDiagram = liveDiagram && (!hasEmbed || dualVisual)
   const hasStage = showNativeDiagram || stepCarousel !== null
+  const stepCount = stepCarousel?.steps.length ?? resolvedSpec?.steps.length ?? 0
 
   const diagramStep = clampStepIndex(resolvedSpec, activeStep)
   const stepState = stepStateFor(resolvedSpec, diagramStep)
@@ -61,6 +65,14 @@ export function VisualStepController({
     interactiveEmbed && resolvedSpec?.steps.length
       ? `Step ${activeStep + 1} of ${resolvedSpec.steps.length}`
       : undefined
+
+  const goToStep = useCallback(
+    (index: number) => {
+      if (!stepCount) return
+      setActiveStep(Math.max(0, Math.min(stepCount - 1, index)))
+    },
+    [stepCount]
+  )
 
   useEffect(() => {
     const el = diagramRef.current
@@ -81,6 +93,17 @@ export function VisualStepController({
     gsap.fromTo(el, { scale: 0.99 }, { scale: 1, duration: 0.2, ease: 'power1.out' })
   }
 
+  const handleStageKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!stepCarousel || stepCount < 2) return
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      goToStep(activeStep - 1)
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      goToStep(activeStep + 1)
+    }
+  }
+
   if (!hasEmbed && !hasStage) return null
 
   return (
@@ -89,13 +112,24 @@ export function VisualStepController({
         <CourseInteractiveEmbed
           embed={embedForStep}
           stepLabel={embedStepLabel}
-          className="mb-6"
+          className={dualVisual ? 'mb-5' : 'mb-6'}
         />
+      ) : null}
+
+      {dualVisual ? (
+        <p className="course-dual-visual-bridge">
+          Step-synced diagram — highlights what to look for in the simulation above.
+        </p>
       ) : null}
 
       {hasStage ? (
         <div
-          className={`course-visual-learning-grid course-visual-stage ${hasEmbed ? 'course-visual-stage--after-embed' : ''}`}
+          ref={stageRef}
+          tabIndex={stepCarousel && stepCount > 1 ? 0 : undefined}
+          role={stepCarousel && stepCount > 1 ? 'group' : undefined}
+          aria-label={stepCarousel ? 'Step-synced visual walkthrough' : undefined}
+          onKeyDown={handleStageKeyDown}
+          className={`course-visual-learning-grid course-visual-stage ${hasEmbed ? 'course-visual-stage--after-embed' : ''} ${dualVisual ? 'course-visual-stage--dual' : ''}`}
         >
           {showNativeDiagram ? (
             <div ref={diagramRef} className="course-visual-learning-diagram">
@@ -123,18 +157,25 @@ export function VisualStepController({
               {!showNativeDiagram && stepState?.caption ? (
                 <p className="course-step-sync-callout mb-4">{stepState.caption}</p>
               ) : null}
+              {stepCarousel && stepCount > 1 ? (
+                <p className="course-visual-keyboard-hint hidden lg:block">
+                  Tip: use ← → arrow keys while this section is focused.
+                </p>
+              ) : null}
               <div className="course-visual-learning-steps-list">
                 <VisualStepTimeline
                   title={stepCarousel.title}
                   steps={stepCarousel.steps}
                   activeStep={activeStep}
-                  onStepChange={setActiveStep}
+                  onStepChange={goToStep}
+                  embedded
                 />
                 <VisualStepCarousel
                   title={stepCarousel.title}
                   steps={stepCarousel.steps}
                   activeStep={activeStep}
-                  onStepChange={setActiveStep}
+                  onStepChange={goToStep}
+                  embedded
                 />
               </div>
             </div>

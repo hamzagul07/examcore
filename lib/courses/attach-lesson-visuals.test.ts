@@ -198,5 +198,18 @@ const electrochemistry = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9701 electrolysis prefers native over PhET', electrochemistry.interactiveEmbed === undefined)
 
+const spectroscopy = attachCatalogVisuals({
+  ...base,
+  slug: '37-4-proton-h-nmr-spectroscopy',
+  topicCode: '37.4',
+  title: 'Proton NMR',
+  simpleExplanation: {
+    title: 'NMR',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('9701 NMR prefers native over PhET', spectroscopy.interactiveEmbed === undefined)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

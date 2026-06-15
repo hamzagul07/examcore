@@ -74,6 +74,16 @@ import { OrganicFunctionalDiagram } from '@/components/diagrams/OrganicFunctiona
 import { BornHaberDiagram } from '@/components/diagrams/BornHaberDiagram'
 import { GibbsEntropyDiagram } from '@/components/diagrams/GibbsEntropyDiagram'
 import { ElectrochemistryDiagram } from '@/components/diagrams/ElectrochemistryDiagram'
+import { TransitionMetalDiagram } from '@/components/diagrams/TransitionMetalDiagram'
+import { SpectroscopyDiagram } from '@/components/diagrams/SpectroscopyDiagram'
+import { ALevelAcidsDiagram } from '@/components/diagrams/ALevelAcidsDiagram'
+import { RateLawDiagram } from '@/components/diagrams/RateLawDiagram'
+import { AreneDiagram } from '@/components/diagrams/AreneDiagram'
+import { PolymerDiagram } from '@/components/diagrams/PolymerDiagram'
+import { OrganicSynthesisDiagram } from '@/components/diagrams/OrganicSynthesisDiagram'
+import { HalogenReactionsDiagram } from '@/components/diagrams/HalogenReactionsDiagram'
+import { NitrogenChemDiagram } from '@/components/diagrams/NitrogenChemDiagram'
+import { ALevelOrganicDiagram } from '@/components/diagrams/ALevelOrganicDiagram'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -323,6 +333,46 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: ElectrochemistryDiagram,
     caption: 'Electrolysis and E°cell — link redox, Faraday, and thermodynamics.',
   },
+  'transition-metal': {
+    Component: TransitionMetalDiagram,
+    caption: 'Transition metals: variable oxidation states, coloured complexes, and catalysis.',
+  },
+  spectroscopy: {
+    Component: SpectroscopyDiagram,
+    caption: 'IR, mass spec, chromatography, and NMR — deduce structure from data.',
+  },
+  'alevel-acids': {
+    Component: ALevelAcidsDiagram,
+    caption: 'A Level acid-base equilibria, buffers, and partition coefficients.',
+  },
+  'rate-law': {
+    Component: RateLawDiagram,
+    caption: 'Rate equations, reaction orders, and Arrhenius kinetics.',
+  },
+  arene: {
+    Component: AreneDiagram,
+    caption: 'Benzene and phenol — electrophilic substitution and ring activation.',
+  },
+  polymer: {
+    Component: PolymerDiagram,
+    caption: 'Addition and condensation polymerisation — repeat units and disposal.',
+  },
+  'organic-synthesis': {
+    Component: OrganicSynthesisDiagram,
+    caption: 'Multi-step organic synthesis — retrosynthesis and test-tube confirmation.',
+  },
+  'halogen-reactions': {
+    Component: HalogenReactionsDiagram,
+    caption: 'Halide ion tests, reducing power, and chlorine disproportionation.',
+  },
+  'nitrogen-chem': {
+    Component: NitrogenChemDiagram,
+    caption: 'Nitrogen, sulfur industrial chemistry, and nitrile synthesis.',
+  },
+  'alevel-organic': {
+    Component: ALevelOrganicDiagram,
+    caption: 'Acyl chlorides, amides, azo dyes, and amino acid chemistry.',
+  },
   centripetal: {
     Component: CentripetalMotionDiagram,
     caption: 'Centripetal acceleration points toward the centre of the circle.',
@@ -544,9 +594,13 @@ const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
   '6-1-redox-processes-electron-transfer-and-changes-in-oxidation-number-oxidation-state': 'redox',
   '9-1-periodicity-of-physical-properties-of-the-elements-in-period-3': 'periodicity',
   '9-2-periodicity-of-chemical-properties-of-the-elements-in-period-3': 'periodicity',
+  '9-3-chemical-periodicity-of-other-elements': 'periodicity',
   '10-1-similarities-and-trends-in-the-properties-of-the-group-2-metals-magnesium-to-barium-and-their-compounds': 'group-2',
   '11-1-physical-properties-of-the-group-17-elements': 'halogen',
   '11-2-the-chemical-properties-of-the-halogen-elements-and-the-hydrogen-halides': 'halogen',
+  '11-3-some-reactions-of-the-halide-ions': 'halogen-reactions',
+  '11-4-the-reactions-of-chlorine': 'halogen-reactions',
+  '12-1-nitrogen-and-sulfur': 'nitrogen-chem',
   '13-1-formulas-functional-groups-and-the-naming-of-organic-compounds': 'organic-naming',
   '13-2-characteristic-organic-reactions': 'organic-mechanism',
   '13-4-isomerism-structural-isomerism-and-stereoisomerism': 'isomerism',
@@ -558,12 +612,48 @@ const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
   '18-1-carboxylic-acids': 'organic-functional',
   '18-2-esters': 'organic-functional',
   '19-1-primary-amines': 'organic-functional',
+  '19-2-nitriles-and-hydroxynitriles': 'nitrogen-chem',
+  '20-1-addition-polymerisation': 'polymer',
+  '21-1-organic-synthesis': 'organic-synthesis',
+  '22-1-infrared-spectroscopy': 'spectroscopy',
+  '22-2-mass-spectrometry': 'spectroscopy',
   '23-1-lattice-energy-and-born-haber-cycles': 'born-haber',
   '23-2-enthalpies-of-solution-and-hydration': 'born-haber',
   '23-3-entropy-change-s': 'gibbs-entropy',
   '23-4-gibbs-free-energy-change-g': 'gibbs-entropy',
   '24-1-electrolysis': 'electrochemistry',
   '24-2-standard-electrode-potentials-e-standard-cell-potentials-ecell-and-the-nernst-equation': 'electrochemistry',
+  '25-1-acids-and-bases': 'alevel-acids',
+  '25-2-partition-coefficients': 'alevel-acids',
+  '26-1-simple-rate-equations-orders-of-reaction-and-rate-constants': 'rate-law',
+  '26-2-homogeneous-and-heterogeneous-catalysts': 'rate-law',
+  '28-1-general-physical-and-chemical-properties-of-the-first-row-of-transition-elements-titanium-to-copper': 'transition-metal',
+  '28-2-general-characteristic-chemical-properties-of-the-first-set-of-transition-elements-titanium-to-copper': 'transition-metal',
+  '28-3-colour-of-complexes': 'transition-metal',
+  '28-4-stereoisomerism-in-transition-element-complexes': 'transition-metal',
+  '28-5-stability-constants-kstab': 'transition-metal',
+  '29-1-formulas-functional-groups-and-the-naming-of-organic-compounds': 'organic-naming',
+  '29-2-characteristic-organic-reactions': 'organic-mechanism',
+  '29-4-isomerism-optical': 'isomerism',
+  '30-1-arenes': 'arene',
+  '31-1-halogen-compounds': 'halogenoalkane',
+  '32-1-alcohols': 'organic-functional',
+  '32-2-phenol': 'arene',
+  '33-1-carboxylic-acids': 'organic-functional',
+  '33-2-esters': 'organic-functional',
+  '33-3-acyl-chlorides': 'alevel-organic',
+  '34-1-primary-and-secondary-amines': 'organic-functional',
+  '34-2-phenylamine-and-azo-compounds': 'alevel-organic',
+  '34-3-amides': 'alevel-organic',
+  '34-4-amino-acids': 'alevel-organic',
+  '35-1-condensation-polymerisation': 'polymer',
+  '35-2-predicting-the-type-of-polymerisation': 'polymer',
+  '35-3-degradable-polymers': 'polymer',
+  '36-1-organic-synthesis': 'organic-synthesis',
+  '37-1-thin-layer-chromatography': 'spectroscopy',
+  '37-2-gas-liquid-chromatography': 'spectroscopy',
+  '37-3-carbon-13-nmr-spectroscopy': 'spectroscopy',
+  '37-4-proton-h-nmr-spectroscopy': 'spectroscopy',
   '13-3-shapes-of-organic-molecules-and-bonds': 'molecule-shape',
   '27-1-similarities-and-trends-in-the-properties-of-the-group-2-metals-magnesium-to-barium-and-their-compounds': 'group-2',
   '29-3-shapes-of-aromatic-organic-molecules-and-bonds': 'molecule-shape',

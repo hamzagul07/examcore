@@ -185,5 +185,18 @@ const stoichiometry = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9701 stoichiometry prefers native over PhET', stoichiometry.interactiveEmbed === undefined)
 
+const electrochemistry = attachCatalogVisuals({
+  ...base,
+  slug: '24-1-electrolysis',
+  topicCode: '24.1',
+  title: 'Electrolysis',
+  simpleExplanation: {
+    title: 'Electrolysis',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('9701 electrolysis prefers native over PhET', electrochemistry.interactiveEmbed === undefined)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

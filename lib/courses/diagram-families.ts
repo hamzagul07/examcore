@@ -66,6 +66,14 @@ import { AcidsBasesDiagram } from '@/components/diagrams/AcidsBasesDiagram'
 import { Group2TrendsDiagram } from '@/components/diagrams/Group2TrendsDiagram'
 import { HalogenDiagram } from '@/components/diagrams/HalogenDiagram'
 import { OrganicNamingDiagram } from '@/components/diagrams/OrganicNamingDiagram'
+import { OrganicMechanismDiagram } from '@/components/diagrams/OrganicMechanismDiagram'
+import { IsomerismDiagram } from '@/components/diagrams/IsomerismDiagram'
+import { AlkaneAlkeneDiagram } from '@/components/diagrams/AlkaneAlkeneDiagram'
+import { HalogenoalkaneDiagram } from '@/components/diagrams/HalogenoalkaneDiagram'
+import { OrganicFunctionalDiagram } from '@/components/diagrams/OrganicFunctionalDiagram'
+import { BornHaberDiagram } from '@/components/diagrams/BornHaberDiagram'
+import { GibbsEntropyDiagram } from '@/components/diagrams/GibbsEntropyDiagram'
+import { ElectrochemistryDiagram } from '@/components/diagrams/ElectrochemistryDiagram'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -282,6 +290,38 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'organic-naming': {
     Component: OrganicNamingDiagram,
     caption: 'IUPAC naming: longest chain, functional group suffix, lowest locants.',
+  },
+  'organic-mechanism': {
+    Component: OrganicMechanismDiagram,
+    caption: 'Free-radical substitution, electrophilic addition, and nucleophilic substitution.',
+  },
+  isomerism: {
+    Component: IsomerismDiagram,
+    caption: 'Structural, E/Z, and optical isomerism — same molecular formula, different arrangement.',
+  },
+  'alkane-alkene': {
+    Component: AlkaneAlkeneDiagram,
+    caption: 'Saturated alkanes vs unsaturated alkenes — key reactions and tests.',
+  },
+  halogenoalkane: {
+    Component: HalogenoalkaneDiagram,
+    caption: 'SN1 and SN2 mechanisms — leaving group ability and carbocation stability.',
+  },
+  'organic-functional': {
+    Component: OrganicFunctionalDiagram,
+    caption: 'Functional group interconversions — oxidation, esterification, and tests.',
+  },
+  'born-haber': {
+    Component: BornHaberDiagram,
+    caption: 'Born–Haber and hydration cycles link lattice energy to solubility.',
+  },
+  'gibbs-entropy': {
+    Component: GibbsEntropyDiagram,
+    caption: 'ΔG = ΔH − TΔS determines feasibility — entropy and equilibrium.',
+  },
+  electrochemistry: {
+    Component: ElectrochemistryDiagram,
+    caption: 'Electrolysis and E°cell — link redox, Faraday, and thermodynamics.',
   },
   centripetal: {
     Component: CentripetalMotionDiagram,
@@ -508,6 +548,22 @@ const SLUG_FAMILY_9701: Record<string, keyof typeof FAMILIES> = {
   '11-1-physical-properties-of-the-group-17-elements': 'halogen',
   '11-2-the-chemical-properties-of-the-halogen-elements-and-the-hydrogen-halides': 'halogen',
   '13-1-formulas-functional-groups-and-the-naming-of-organic-compounds': 'organic-naming',
+  '13-2-characteristic-organic-reactions': 'organic-mechanism',
+  '13-4-isomerism-structural-isomerism-and-stereoisomerism': 'isomerism',
+  '14-1-alkanes': 'alkane-alkene',
+  '14-2-alkenes': 'alkane-alkene',
+  '15-1-halogenoalkanes': 'halogenoalkane',
+  '16-1-alcohols': 'organic-functional',
+  '17-1-aldehydes-and-ketones': 'organic-functional',
+  '18-1-carboxylic-acids': 'organic-functional',
+  '18-2-esters': 'organic-functional',
+  '19-1-primary-amines': 'organic-functional',
+  '23-1-lattice-energy-and-born-haber-cycles': 'born-haber',
+  '23-2-enthalpies-of-solution-and-hydration': 'born-haber',
+  '23-3-entropy-change-s': 'gibbs-entropy',
+  '23-4-gibbs-free-energy-change-g': 'gibbs-entropy',
+  '24-1-electrolysis': 'electrochemistry',
+  '24-2-standard-electrode-potentials-e-standard-cell-potentials-ecell-and-the-nernst-equation': 'electrochemistry',
   '13-3-shapes-of-organic-molecules-and-bonds': 'molecule-shape',
   '27-1-similarities-and-trends-in-the-properties-of-the-group-2-metals-magnesium-to-barium-and-their-compounds': 'group-2',
   '29-3-shapes-of-aromatic-organic-molecules-and-bonds': 'molecule-shape',

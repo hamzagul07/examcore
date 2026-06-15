@@ -7,6 +7,7 @@ export function VisualSectionFrame({
   id,
   title,
   hint,
+  badge,
   icon: Icon,
   accent = 'brand',
   children,
@@ -16,6 +17,7 @@ export function VisualSectionFrame({
   id?: string
   title: string
   hint?: string
+  badge?: string
   icon: LucideIcon
   accent?: VisualSectionAccent
   children: ReactNode
@@ -31,8 +33,11 @@ export function VisualSectionFrame({
         <span className="course-visual-section-icon" aria-hidden>
           <Icon className="h-5 w-5" />
         </span>
-        <div className="min-w-0">
-          <h2 className="course-visual-section-title">{title}</h2>
+        <div className="min-w-0 flex-1">
+          <div className="course-visual-section-title-row">
+            <h2 className="course-visual-section-title">{title}</h2>
+            {badge ? <span className="course-visual-section-badge">{badge}</span> : null}
+          </div>
           {hint ? <p className="course-visual-section-hint">{hint}</p> : null}
         </div>
       </header>

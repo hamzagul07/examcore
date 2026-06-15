@@ -1058,6 +1058,28 @@ html[data-ec-theme='zen'] .course-studio-topbar {
   line-height: 1.3;
 }
 
+.course-visual-section-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.course-visual-section-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border-subtle));
+  background: color-mix(in srgb, var(--ec-brand) 8%, var(--ec-surface-raised));
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+  white-space: nowrap;
+}
+
 .course-visual-section-hint {
   margin-top: 0.2rem;
   font-size: 0.8rem;
@@ -1080,6 +1102,27 @@ html[data-ec-theme='zen'] .course-studio-topbar {
   padding: clamp(1.25rem, 2vw, 1.5rem);
   box-shadow: inset 0 1px 0 color-mix(in srgb, white 40%, transparent);
   align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .course-visual-learning-grid:has(.course-visual-learning-diagram):has(.course-visual-learning-steps) {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(1.25rem, 2vw, 1.75rem);
+    align-items: start;
+  }
+
+  .course-visual-learning-diagram {
+    position: sticky;
+    top: 6rem;
+    max-height: none;
+  }
+
+  .course-visual-learning-diagram .course-step-stage-diagram,
+  .course-visual-learning-diagram .course-step-stage-svg,
+  .course-visual-learning-diagram .lesson-diagram-svg {
+    max-height: min(52vh, 480px);
+  }
 }
 
 .course-visual-learning-diagram {
@@ -1128,6 +1171,10 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 
 .course-step-stage-label {
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -3487,6 +3534,75 @@ html[data-ec-theme='zen'] .course-studio-topbar {
 
 .course-visual-stage--after-embed {
   margin-top: 0.5rem;
+}
+
+.course-visual-stage--dual {
+  border-color: color-mix(in srgb, var(--ec-brand) 32%, var(--ec-border-subtle));
+}
+
+.course-dual-visual-bridge {
+  margin: 0 0 0.85rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.75rem;
+  border: 1px dashed color-mix(in srgb, var(--ec-brand) 35%, var(--ec-border-subtle));
+  background: color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface-muted));
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.course-step-panel-title {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+}
+
+.course-step-panel-hint {
+  margin: 0 0 0.85rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ec-text-tertiary);
+}
+
+.course-step-timeline-embedded,
+.course-visual-carousel-embedded {
+  min-width: 0;
+}
+
+.course-step-counter-pill {
+  border-radius: 999px;
+  border: 2px solid var(--ec-border-subtle);
+  background: var(--ec-surface-muted);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ec-text-tertiary);
+}
+
+.course-visual-keyboard-hint {
+  margin: 0 0 0.65rem;
+  font-size: 0.75rem;
+  color: var(--ec-text-tertiary);
+}
+
+.course-visual-learning-grid:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 3px;
+}
+
+.course-studio-hero-embed-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.course-studio-hero-embed-badge svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--ec-brand);
 }
 
 .course-step-sync-callout {

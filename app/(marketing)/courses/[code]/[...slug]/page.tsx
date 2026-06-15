@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { FlaskConical, List } from 'lucide-react'
+import { FlaskConical, Layers, List, PlayCircle, Sparkles } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import {
   getAllCourseLessonPaths,
@@ -16,7 +16,7 @@ import { paperNumberFromDir } from '@/lib/courses/paths'
 import { buildCourseLessonSeo } from '@/lib/courses/seo'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
-import { resolveLessonHeroVisual } from '@/lib/courses/lesson-hero-visual'
+import { resolveLessonHeroVisual, type LessonHeroVisual } from '@/lib/courses/lesson-hero-visual'
 import { CourseStudioShell } from '@/components/courses/CourseStudioShell'
 import { MarkLessonCompleteButton } from '@/components/courses/CourseProgressClient'
 import { CourseLearningObjectives } from '@/components/courses/CourseLearningObjectives'
@@ -48,6 +48,32 @@ type ResolvedLesson =
       paperDir: string
       paperNumber: string
     }
+
+function HeroVisualCallout({
+  heroVisual,
+  template,
+}: {
+  heroVisual: LessonHeroVisual
+  template: ReturnType<typeof enrichLessonVisual>['template']
+}) {
+  if (heroVisual.kind === 'template') {
+    return <HeroVisualOverview template={template} />
+  }
+
+  const Icon =
+    heroVisual.kind === 'dual-visual'
+      ? Layers
+      : heroVisual.kind === 'native-diagram'
+        ? Sparkles
+        : PlayCircle
+
+  return (
+    <p className="course-studio-hero-embed-badge ms-micro rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)] px-4 py-3">
+      <Icon className="h-5 w-5 shrink-0" aria-hidden />
+      <span>{heroVisual.label}</span>
+    </p>
+  )
+}
 
 function resolveLesson(
   code: string,
@@ -209,13 +235,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
             <p className="course-studio-lead mt-3">{lesson.summary}</p>
           </div>
           <div className="course-studio-hero-diagram mt-5 lg:mt-0">
-            {heroVisual.kind === 'template' ? (
-              <HeroVisualOverview template={enriched.template} />
-            ) : (
-              <p className="course-studio-hero-embed-badge ms-micro rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)] px-4 py-3">
-                {heroVisual.label}
-              </p>
-            )}
+            <HeroVisualCallout heroVisual={heroVisual} template={enriched.template} />
           </div>
         </header>
 

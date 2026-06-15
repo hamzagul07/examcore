@@ -326,17 +326,14 @@ export function parseFormulaParts(content: string, _lesson?: CourseLesson): Pars
     })
   }
 
-  const displayLines =
-    latexLines.length > 0
-      ? latexLines
-      : [content.replace(/\*\*/g, '').trim()].filter(Boolean)
+  const displayLines = latexLines.length > 0 ? latexLines : []
   const expressions = displayLines.map((l) => wrapFormulaExpression(l))
 
   return {
     description,
     latex: displayLines.join('\n'),
     expressions,
-    expression: expressions[0] ?? content,
+    expression: expressions[0] ?? '',
     parts,
   }
 }

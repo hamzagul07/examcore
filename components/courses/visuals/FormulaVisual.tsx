@@ -20,7 +20,8 @@ export function FormulaVisual({
 }) {
   const [active, setActive] = useState(0)
   const part = parts[active] ?? parts[0]
-  const lines = expressions?.length ? expressions : [expression]
+  const lines = expressions?.length ? expressions : expression ? [expression] : []
+  const hasEquations = lines.some((l) => l.trim().length > 0)
 
   return (
     <VisualSectionFrame
@@ -35,18 +36,20 @@ export function FormulaVisual({
         <div className="course-formula-card">
           {description ? (
             <div className="course-formula-description">
-              <CourseRichText content={description} variant="inline" />
+              <CourseRichText content={description} variant="prose" breakAnywhere={false} />
             </div>
           ) : null}
-          <div className="course-formula-scroll">
-            <div className="course-formula-equations">
-              {lines.map((expr, i) => (
-                <div key={`expr-${i}`} className="course-formula-equation">
-                  <CourseRichText content={expr} variant="formula" />
-                </div>
-              ))}
+          {hasEquations ? (
+            <div className="course-formula-scroll">
+              <div className="course-formula-equations">
+                {lines.map((expr, i) => (
+                  <div key={`expr-${i}`} className="course-formula-equation">
+                    <CourseRichText content={expr} variant="formula" />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
           <div className="course-formula-chips" role="tablist" aria-label="Formula symbols">
             {parts.map((p, i) => (
               <button

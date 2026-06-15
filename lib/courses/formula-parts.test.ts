@@ -98,6 +98,12 @@ const proseFormula = parseFormulaParts(
 assert.equal(proseFormula.expressions.length, 2, 'two inline equations from prose line')
 assert.ok(!proseFormula.expressions[0].includes('If '), 'no prose inside math wrap')
 
+const proseOnly = parseFormulaParts(
+  'For example, the unit for force, the Newton (N), is equivalent to kg m s⁻².'
+)
+assert.equal(proseOnly.expressions.length, 0, 'prose-only formula has no KaTeX expression')
+assert.ok(proseOnly.description.includes('Newton'), 'prose stays in description')
+
 if (failed > 0) {
   console.error(`\n${failed} extract test(s) failed`)
   process.exit(1)

@@ -422,11 +422,23 @@ html[data-ec-theme='late-night'] .course-studio {
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   .course-studio-content {
-    max-width: min(960px, 100%);
+    max-width: min(1280px, 100%);
     padding-left: 2.25rem;
     padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .course-studio-content {
+    max-width: min(1400px, 100%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .course-studio-grid {
+    max-width: min(1600px, calc(100% - 48px));
   }
 }
 
@@ -1579,14 +1591,15 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-formula-stage {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 1rem;
   padding: 0.25rem;
+  width: 100%;
 }
 
 .course-formula-card {
   width: 100%;
-  max-width: 640px;
+  max-width: none;
   padding: 1.75rem 1.5rem 1.25rem;
   border-radius: 1.15rem;
   border: 1px solid var(--course-border, var(--ec-border-subtle));
@@ -1642,9 +1655,9 @@ html[data-ec-theme='late-night'] .course-studio {
 
 .course-formula-meaning {
   width: 100%;
-  max-width: 640px;
+  max-width: none;
   padding: 0.85rem 1.25rem;
-  border-radius: 999px;
+  border-radius: 1rem;
   border: 1.5px solid color-mix(in srgb, var(--chip-color, var(--course-formula-green)) 45%, var(--course-border));
   background: var(--course-surface-elevated, #fff);
   text-align: center;
@@ -2682,10 +2695,15 @@ html[data-ec-theme='late-night'] .course-studio {
 .course-formula-description {
   display: block;
   margin: 0 0 1rem;
-  text-align: center;
+  text-align: left;
   font-size: 0.95rem;
   line-height: 1.55;
   color: var(--ec-text-secondary);
+}
+
+.course-formula-description .course-rich-text--prose {
+  max-width: none;
+  margin: 0;
 }
 
 .course-rich-text--inline {
@@ -2701,7 +2719,8 @@ html[data-ec-theme='late-night'] .course-studio {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  align-items: center;
+  align-items: stretch;
+  width: 100%;
 }
 
 .course-formula-equation + .course-formula-equation {
@@ -2714,10 +2733,14 @@ html[data-ec-theme='late-night'] .course-studio {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 .course-formula-equation .katex-display {
-  margin: 0;
+  margin: 0.75rem auto;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .course-formula-chip-symbol .katex {
@@ -2803,7 +2826,8 @@ html[data-ec-theme='late-night'] .course-studio {
 }
 
 html[data-course-focus='true'] .ec-nav-wrap,
-html[data-course-focus='true'] .ec-ms-footer {
+html[data-course-focus='true'] .ec-ms-footer,
+html[data-course-focus='true'] .ec-scroll-progress {
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100%);
@@ -2814,6 +2838,20 @@ html[data-course-focus='true'] .ec-ms-footer {
 
 html[data-course-focus='true'] .ec-ms-footer {
   transform: translateY(100%);
+}
+
+html[data-course-focus='true'] .course-studio-page,
+html[data-course-focus='true'] .course-focus-root,
+html[data-course-focus='true'] .course-studio {
+  width: 100%;
+  max-width: none;
+}
+
+html[data-course-focus='true'] .course-studio-grid {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: clamp(12px, 2vw, 24px) clamp(20px, 3vw, 48px) 64px;
 }
 
 @media (min-width: 1024px) {
@@ -2867,6 +2905,19 @@ html[data-course-focus='true'] .ec-ms-footer {
   .course-focus-root[data-focus-mode='true'] .course-lesson-body .course-rich-text--prose {
     max-width: 75ch;
     margin-inline: auto;
+  }
+
+  .course-focus-root[data-focus-mode='true'] .course-formula-card,
+  .course-focus-root[data-focus-mode='true'] .course-formula-meaning,
+  .course-focus-root[data-focus-mode='true'] .course-formula-stage,
+  .course-focus-root[data-focus-mode='true'] .course-visual-section,
+  .course-focus-root[data-focus-mode='true'] .course-visual-section-body {
+    width: 100%;
+    max-width: none;
+  }
+
+  .course-focus-root[data-focus-mode='true'] .course-formula-stage {
+    align-items: stretch;
   }
 
   .course-focus-root[data-focus-mode='true'] .course-visual-block,

@@ -16,7 +16,7 @@ import { paperNumberFromDir } from '@/lib/courses/paths'
 import { buildCourseLessonSeo } from '@/lib/courses/seo'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
-import { lessonHasInteractiveEmbed } from '@/lib/courses/interactive-embeds'
+import { resolveLessonHeroVisual } from '@/lib/courses/lesson-hero-visual'
 import { CourseStudioShell } from '@/components/courses/CourseStudioShell'
 import { MarkLessonCompleteButton } from '@/components/courses/CourseProgressClient'
 import { CourseLearningObjectives } from '@/components/courses/CourseLearningObjectives'
@@ -156,7 +156,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
 
   const isPilotLesson = lesson.status === 'pilot' || isPilotPreview
   const enriched = enrichLessonVisual(code, lesson)
-  const hasInteractive = lessonHasInteractiveEmbed(lesson)
+  const heroVisual = resolveLessonHeroVisual(lesson)
   const seo = buildCourseLessonSeo(course, lesson)
 
   return (
@@ -209,12 +209,12 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
             <p className="course-studio-lead mt-3">{lesson.summary}</p>
           </div>
           <div className="course-studio-hero-diagram mt-5 lg:mt-0">
-            {hasInteractive ? (
-              <p className="course-studio-hero-embed-badge ms-micro rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)] px-4 py-3">
-                Includes a live PhET / GeoGebra simulation — scroll to Explore the concept.
-              </p>
-            ) : (
+            {heroVisual.kind === 'template' ? (
               <HeroVisualOverview template={enriched.template} />
+            ) : (
+              <p className="course-studio-hero-embed-badge ms-micro rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)] px-4 py-3">
+                {heroVisual.label}
+              </p>
             )}
           </div>
         </header>

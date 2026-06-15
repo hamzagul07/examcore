@@ -107,6 +107,25 @@ const differentiation = attachCatalogVisuals({
 check('9709 native diagram skips geogebra embed', differentiation.interactiveEmbed === undefined)
 check('9709 keeps diagram spec with params', (differentiation.diagramSpec?.params?.length ?? 0) >= 2)
 
+const bakedPhEt = attachCatalogVisuals({
+  ...base,
+  slug: '10-1-practical-circuits',
+  topicCode: '10.1',
+  title: 'Practical circuits',
+  interactiveEmbed: {
+    provider: 'phet',
+    title: 'Circuits',
+    embedUrl: 'https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html',
+    attribution: { source: 'PhET', license: 'CC BY 4.0' },
+  },
+  simpleExplanation: {
+    title: 'Circuits',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('strips baked-in embed suppressed by native diagram', bakedPhEt.interactiveEmbed === undefined)
+
 const shm = attachCatalogVisuals({
   ...base,
   slug: '17-1-simple-harmonic-oscillations',

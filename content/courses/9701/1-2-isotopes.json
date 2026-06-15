@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "Cambridge 9701 AS — isotopes, relative atomic mass, and why isotopes share chemical properties but differ in mass. Includes PhET Isotopes and Atomic Mass simulation.",
   "durationMin": 16,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define isotopes as atoms with the same number of protons but different numbers of neutrons.",
     "Calculate relative atomic mass from isotopic abundances.",
@@ -25,10 +25,22 @@
     ]
   },
   "flashcards": [
-    { "front": "Definition of isotopes?", "back": "Atoms of the same element (same Z) with different numbers of neutrons (different A)." },
-    { "front": "Why identical chemical properties?", "back": "Same electron configuration — chemical behaviour depends on electrons." },
-    { "front": "Calculate Ar from 78% 35Cl and 22% 37Cl?", "back": "Ar = (78×35 + 22×37)/100 = 35.44" },
-    { "front": "Symbol for an isotope?", "back": "ᴬ_Z X — e.g. ¹⁴₆C (A = 14, Z = 6)." }
+    {
+      "front": "Definition of isotopes?",
+      "back": "Atoms of the same element (same Z) with different numbers of neutrons (different A)."
+    },
+    {
+      "front": "Why identical chemical properties?",
+      "back": "Same electron configuration — chemical behaviour depends on electrons."
+    },
+    {
+      "front": "Calculate Ar from 78% 35Cl and 22% 37Cl?",
+      "back": "Ar = (78×35 + 22×37)/100 = 35.44"
+    },
+    {
+      "front": "Symbol for an isotope?",
+      "back": "ᴬ_Z X — e.g. ¹⁴₆C (A = 14, Z = 6)."
+    }
   ],
   "sections": [
     {
@@ -60,9 +72,47 @@
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Isotopes and Atomic Mass", "href": "https://phet.colorado.edu/en/simulations/isotopes-and-atomic-mass" },
-        { "label": "9701 course index", "href": "/courses/9701" }
+        {
+          "label": "PhET Isotopes and Atomic Mass",
+          "href": "https://phet.colorado.edu/en/simulations/isotopes-and-atomic-mass"
+        },
+        {
+          "label": "9701 course index",
+          "href": "/courses/9701"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Isotopes are atoms of the same element with different neutron numbers.",
+        "embedHint": "Keep proton count fixed — change neutrons and read the mass number."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Relative atomic mass is a weighted mean of isotope masses.",
+        "embedHint": "Compare isotope abundances and their contribution to Ar."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Isotopes have identical chemical properties (same electron configuration).",
+        "embedHint": "Verify the element symbol stays the same when only neutrons change."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Some isotopes are radioactive — unstable nuclei emit radiation.",
+        "embedHint": "Relate neutron/proton ratio to stability in exam definitions."
+      }
+    ]
+  }
 }

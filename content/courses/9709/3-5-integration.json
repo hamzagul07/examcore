@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "Free 9709 Pure Maths 3 integration lesson — reverse chain rule, integration by parts, and definite integrals with Cambridge mark-scheme habits.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "sections": [
     {
       "type": "intro",
@@ -55,10 +55,69 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
-        { "label": "Error carried forward (ECF)", "href": "/blog/understanding-error-carried-forward-ecf" },
-        { "label": "Free full 9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 past paper guide",
+          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+        },
+        {
+          "label": "Error carried forward (ECF)",
+          "href": "/blog/understanding-error-carried-forward-ecf"
+        },
+        {
+          "label": "Free full 9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "a",
+        "label": "Lower limit a",
+        "min": 0.5,
+        "max": 2.5,
+        "step": 0.5,
+        "default": 1
+      },
+      {
+        "id": "b",
+        "label": "Upper limit b",
+        "min": 2.5,
+        "max": 5,
+        "step": 0.5,
+        "default": 4
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "curve"
+        ],
+        "caption": "Integration reverses differentiation — find the antiderivative F(x) with F′(x) = f(x).",
+        "embedHint": "Drag the slider — watch how area accumulates as you change the upper limit."
+      },
+      {
+        "focus": [
+          "area"
+        ],
+        "caption": "A definite integral ∫ₐᵇ f(x) dx equals the signed area under the curve.",
+        "embedHint": "Shade the region between x = a and x = b — that area is the integral value."
+      },
+      {
+        "focus": [
+          "limits"
+        ],
+        "caption": "Evaluate F(b) − F(a) after finding F(x); always substitute limits explicitly.",
+        "embedHint": "Move both limits and read how the shaded area changes."
+      },
+      {
+        "focus": [
+          "parts"
+        ],
+        "caption": "Integration by parts: ∫ u dv = uv − ∫ v du — choose u using LIATE.",
+        "embedHint": "Compare area under a product function with the parts formula result."
+      }
+    ]
+  }
 }

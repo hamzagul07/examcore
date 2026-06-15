@@ -181,5 +181,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "atomic-types"
+        ],
+        "caption": "Atomic types: INTEGER, REAL, CHAR, STRING, BOOLEAN, DATE.",
+        "embedHint": "Choose type to match domain and storage."
+      },
+      {
+        "focus": [
+          "record"
+        ],
+        "caption": "RECORD / STRUCT groups fields under one identifier.",
+        "embedHint": "Dot notation: Student.Name, Student.DOB."
+      },
+      {
+        "focus": [
+          "declare"
+        ],
+        "caption": "DECLARE and assignment in pseudocode.",
+        "embedHint": "Strong typing catches errors at compile time."
+      },
+      {
+        "focus": [
+          "enum"
+        ],
+        "caption": "Enumerated types restrict values to a fixed set.",
+        "embedHint": "e.g. DayType = (Mon, Tue, …, Sun)."
+      }
+    ]
+  }
 }

@@ -180,5 +180,55 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "re",
+        "label": "Real part x",
+        "min": -4,
+        "max": 4,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "id": "im",
+        "label": "Imaginary part y",
+        "min": -4,
+        "max": 4,
+        "step": 1,
+        "default": 2
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "axes"
+        ],
+        "caption": "Complex number z = x + iy plotted as point (x, y) in the Argand diagram.",
+        "embedHint": "Drag z — read real and imaginary parts."
+      },
+      {
+        "focus": [
+          "point"
+        ],
+        "caption": "Modulus |z| = √(x² + y²); argument arg z = angle from positive real axis.",
+        "embedHint": "Read |z| and arg z from the display."
+      },
+      {
+        "focus": [
+          "modulus"
+        ],
+        "caption": "Polar form: z = r(cos θ + i sin θ) = re^(iθ).",
+        "embedHint": "Convert between Cartesian and polar forms on the diagram."
+      },
+      {
+        "focus": [
+          "argument"
+        ],
+        "caption": "De Moivre’s theorem: (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ.",
+        "embedHint": "Multiply z by itself — argument doubles, modulus squares."
+      }
+    ]
+  }
 }

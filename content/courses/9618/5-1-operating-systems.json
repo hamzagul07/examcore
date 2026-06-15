@@ -192,5 +192,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "process"
+        ],
+        "caption": "Process management — scheduling CPU time.",
+        "embedHint": "Multitasking and priority queues."
+      },
+      {
+        "focus": [
+          "memory"
+        ],
+        "caption": "Memory management — virtual memory and paging.",
+        "embedHint": "Isolate processes from each other."
+      },
+      {
+        "focus": [
+          "drivers"
+        ],
+        "caption": "Device drivers abstract hardware.",
+        "embedHint": "Same API for different printers or disks."
+      },
+      {
+        "focus": [
+          "security"
+        ],
+        "caption": "Security — user accounts and file permissions.",
+        "embedHint": "Protect memory and storage from unauthorised access."
+      }
+    ]
+  }
 }

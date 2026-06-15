@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 AS macro — AD–AS model, equilibrium, shifts, and policy analysis with GeoGebra interactive diagram.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define aggregate demand and its components.",
     "Draw AD, SRAS, and LRAS curves.",
@@ -45,8 +45,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9708 course index", "href": "/courses/9708" }
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "AD = C + I + G + (X − M) — downward sloping in P–Y space.",
+        "embedHint": "Identify AD curve and axes (price level vs real GDP)."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "SRAS slopes upward — higher P encourages greater output in short run.",
+        "embedHint": "Locate SRAS and initial equilibrium."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "LRAS vertical at full employment output Yf.",
+        "embedHint": "Mark Yf — long-run equilibrium independent of price level."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Shift AD right → higher P and Y (demand-pull inflation risk).",
+        "embedHint": "Shift AD and read new equilibrium P and Y."
+      }
+    ]
+  }
 }

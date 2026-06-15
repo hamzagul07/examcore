@@ -199,7 +199,7 @@
       "a": "No, real gases only approximate ideal gas behaviour. They behave most like ideal gases at high temperatures and low pressures, where intermolecular forces are weak and the volume of the molecules themselves is negligible compared to the total gas volume."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
@@ -207,5 +207,57 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/15-3-kinetic-theory-of-gases.png",
     "alt": "Senpai Corner reference diagram for 15.3 Kinetic theory of gases"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "T",
+        "label": "Temperature T",
+        "min": 200,
+        "max": 600,
+        "step": 50,
+        "default": 300,
+        "unit": "K"
+      },
+      {
+        "id": "n",
+        "label": "Amount n",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 2,
+        "unit": "mol"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "particles"
+        ],
+        "caption": "Gas particles move randomly — collisions with walls create pressure.",
+        "embedHint": "Watch individual particles — random motion in all directions."
+      },
+      {
+        "focus": [
+          "speed"
+        ],
+        "caption": "Higher temperature means faster average particle speed.",
+        "embedHint": "Heat the gas — particle speed distribution shifts upward."
+      },
+      {
+        "focus": [
+          "pressure"
+        ],
+        "caption": "More frequent, harder wall collisions raise pressure p.",
+        "embedHint": "Read pressure gauge as you change temperature at fixed volume."
+      },
+      {
+        "focus": [
+          "ideal"
+        ],
+        "caption": "Ideal gas law: pV = nRT links p, V, n, and absolute temperature T.",
+        "embedHint": "Fix n and track p vs T — confirm p ∝ T (in kelvin)."
+      }
+    ]
   }
 }

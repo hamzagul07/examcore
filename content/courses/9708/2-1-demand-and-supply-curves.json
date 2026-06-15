@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 AS microeconomics — demand, supply, market equilibrium, and curve shifts with GeoGebra supply and demand simulation.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain the laws of demand and supply.",
     "Draw and interpret demand and supply curves.",
@@ -55,9 +55,47 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9708 course index", "href": "/courses/9708" },
-        { "label": "GeoGebra supply and demand", "href": "https://www.geogebra.org/m/VGWtkPU5" }
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        },
+        {
+          "label": "GeoGebra supply and demand",
+          "href": "https://www.geogebra.org/m/VGWtkPU5"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Demand slopes downward — higher price, lower quantity demanded.",
+        "embedHint": "Read the downward demand curve — price vs quantity."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Supply slopes upward — higher price, higher quantity supplied.",
+        "embedHint": "Read the upward supply curve on the same axes."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Equilibrium where Qd = Qs — market clears at equilibrium price.",
+        "embedHint": "Find the intersection — equilibrium P and Q."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Ceteris paribus: one factor changes at a time.",
+        "embedHint": "Use checkboxes — shift one curve and read the new equilibrium."
+      }
+    ]
+  }
 }

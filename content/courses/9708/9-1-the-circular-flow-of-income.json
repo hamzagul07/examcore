@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 A Level macro — circular flow, injections, withdrawals, and AD with GeoGebra.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Draw the circular flow for open economy.",
     "Define injections and withdrawals.",
@@ -36,7 +36,44 @@
     },
     {
       "type": "resources",
-      "items": [{ "label": "9708 course index", "href": "/courses/9708" }]
+      "items": [
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
+      ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Households ↔ firms: factor services for income; spending on G&S.",
+        "embedHint": "Withdrawals: S, T, M; Injections: I, G, X."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Equilibrium when S + T + M = I + G + X.",
+        "embedHint": "Leakages equal injections."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "AD = C + I + G + (X − M) from circular flow.",
+        "embedHint": "Multiplier on injections."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Open economy adds foreign sector — current account link.",
+        "embedHint": "M and X in flow diagram."
+      }
+    ]
+  }
 }

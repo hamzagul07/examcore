@@ -184,5 +184,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "level"
+        ],
+        "caption": "Low-level: machine/assembly — hardware-specific.",
+        "embedHint": "High-level: portable, readable, abstracted."
+      },
+      {
+        "focus": [
+          "procedural"
+        ],
+        "caption": "Procedural: sequences, procedures, shared state.",
+        "embedHint": "Top-down design with modules."
+      },
+      {
+        "focus": [
+          "oop"
+        ],
+        "caption": "Object-oriented: classes, encapsulation, inheritance.",
+        "embedHint": "Polymorphism — same interface, different behaviour."
+      },
+      {
+        "focus": [
+          "declarative"
+        ],
+        "caption": "Declarative: state what, not how (SQL, Prolog outline).",
+        "embedHint": "Contrast with imperative step-by-step code."
+      }
+    ]
+  }
 }

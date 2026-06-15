@@ -179,5 +179,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Binomial expansion: (1 + x)ⁿ for |x| < 1 when n is not a positive integer.",
+        "embedHint": "Build (a + b)² expansions — compare with the standard pattern."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Arithmetic series: u_n = a + (n−1)d; sum S_n = n/2(2a + (n−1)d).",
+        "embedHint": "Generate successive terms with a common difference."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Geometric series: u_n = ar^(n−1); sum S_n = a(1−r^n)/(1−r) for r ≠ 1.",
+        "embedHint": "Multiply each term by r — see the geometric pattern."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Sum to infinity exists when |r| < 1: S_∞ = a/(1−r).",
+        "embedHint": "Set |r| < 1 — partial sums approach a limiting value."
+      }
+    ]
+  }
 }

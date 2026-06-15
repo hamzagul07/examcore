@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "Free Cambridge 9701 AS Chemistry — protons, neutrons, electrons, atomic number, mass number, ions, and trends in atomic radius with a live Build an Atom PhET simulation.",
   "durationMin": 18,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Describe the relative charges and masses of protons, neutrons, and electrons.",
     "Define atomic number, mass number, and relative atomic mass.",
@@ -25,12 +25,30 @@
     ]
   },
   "flashcards": [
-    { "front": "Relative mass and charge of a proton?", "back": "Mass ≈ 1; charge +1 (same magnitude as electron, opposite sign)." },
-    { "front": "What is atomic number Z?", "back": "Number of protons in the nucleus — defines the element." },
-    { "front": "What is mass number A?", "back": "Total number of protons + neutrons in the nucleus." },
-    { "front": "How many electrons in the Fe³⁺ ion (Z = 26)?", "back": "26 − 3 = 23 electrons." },
-    { "front": "Trend in atomic radius across Period 3?", "back": "Decreases — increasing nuclear charge attracts electrons more strongly." },
-    { "front": "Trend in atomic radius down Group 1?", "back": "Increases — additional electron shells outweigh increased nuclear charge." }
+    {
+      "front": "Relative mass and charge of a proton?",
+      "back": "Mass ≈ 1; charge +1 (same magnitude as electron, opposite sign)."
+    },
+    {
+      "front": "What is atomic number Z?",
+      "back": "Number of protons in the nucleus — defines the element."
+    },
+    {
+      "front": "What is mass number A?",
+      "back": "Total number of protons + neutrons in the nucleus."
+    },
+    {
+      "front": "How many electrons in the Fe³⁺ ion (Z = 26)?",
+      "back": "26 − 3 = 23 electrons."
+    },
+    {
+      "front": "Trend in atomic radius across Period 3?",
+      "back": "Decreases — increasing nuclear charge attracts electrons more strongly."
+    },
+    {
+      "front": "Trend in atomic radius down Group 1?",
+      "back": "Increases — additional electron shells outweigh increased nuclear charge."
+    }
   ],
   "sections": [
     {
@@ -71,9 +89,47 @@
     {
       "type": "resources",
       "items": [
-        { "label": "PhET Build an Atom (source sim)", "href": "https://phet.colorado.edu/en/simulations/build-an-atom" },
-        { "label": "9701 Chemistry course index", "href": "/courses/9701" }
+        {
+          "label": "PhET Build an Atom (source sim)",
+          "href": "https://phet.colorado.edu/en/simulations/build-an-atom"
+        },
+        {
+          "label": "9701 Chemistry course index",
+          "href": "/courses/9701"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Atoms contain protons and neutrons in the nucleus, electrons in shells.",
+        "embedHint": "Add particles one at a time — read atomic number and mass number."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Atomic number Z = proton number; mass number A = protons + neutrons.",
+        "embedHint": "Build a neutral atom — electrons should equal protons."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Ions form when electrons are gained or lost — charge = protons − electrons.",
+        "embedHint": "Remove or add electrons — watch the charge indicator change."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Atomic radius decreases across a period (increasing nuclear charge).",
+        "embedHint": "Compare neutral atoms of neighbouring elements in the same period."
+      }
+    ]
+  }
 }

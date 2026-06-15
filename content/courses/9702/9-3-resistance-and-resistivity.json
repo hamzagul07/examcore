@@ -301,7 +301,7 @@
       "a": "Despite requiring very low temperatures, superconductors are crucial for applications needing powerful, stable magnetic fields without energy loss. Examples include MRI scanners for medical imaging, maglev (magnetic levitation) trains, and potentially for highly efficient power transmission grids in the future."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
@@ -309,5 +309,37 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/9-3-resistance-and-resistivity.png",
     "alt": "Senpai Corner reference diagram for 9.3 Resistance and resistivity"
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Resistance R = V/I (Ohm’s law) for ohmic conductors at constant temperature.",
+        "embedHint": "Plot V against I — gradient equals resistance."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Resistivity ρ: R = ρL/A — longer wire → higher R; thicker wire → lower R.",
+        "embedHint": "Change wire length and cross-section — predict R from ρL/A."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Metallic resistance increases with temperature (lattice vibration).",
+        "embedHint": "Heat the filament — resistance rises, current falls at fixed V."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Use ρ values and dimensions in Paper 4 multi-step calculations.",
+        "embedHint": "Calculate ρ from measured R, L, and A — check SI units (Ω m)."
+      }
+    ]
   }
 }

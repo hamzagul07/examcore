@@ -172,5 +172,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "array-1d"
+        ],
+        "caption": "1D array: indexed list of same-type elements.",
+        "embedHint": "Bounds: lower..upper or 0..n−1 depending on language."
+      },
+      {
+        "focus": [
+          "array-2d"
+        ],
+        "caption": "2D array: rows and columns — matrix storage.",
+        "embedHint": "Nested loops for row-major traversal."
+      },
+      {
+        "focus": [
+          "search"
+        ],
+        "caption": "Linear search vs binary search on sorted data.",
+        "embedHint": "Binary search O(log n) — requires ordered array."
+      },
+      {
+        "focus": [
+          "stack-queue"
+        ],
+        "caption": "Stack and queue as restricted array access patterns.",
+        "embedHint": "LIFO vs FIFO — link to ADT section."
+      }
+    ]
+  }
 }

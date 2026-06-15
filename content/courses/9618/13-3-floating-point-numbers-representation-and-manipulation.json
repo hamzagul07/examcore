@@ -178,5 +178,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "fields"
+        ],
+        "caption": "Sign, mantissa, exponent fields in binary.",
+        "embedHint": "Normalise so mantissa starts with 1.xxxx."
+      },
+      {
+        "focus": [
+          "bias"
+        ],
+        "caption": "Bias exponent storage avoids negative exponents.",
+        "embedHint": "Actual exponent = stored value − bias."
+      },
+      {
+        "focus": [
+          "precision"
+        ],
+        "caption": "Precision limited by mantissa bits — rounding errors.",
+        "embedHint": "0.1 + 0.2 ≠ 0.3 in finite precision."
+      },
+      {
+        "focus": [
+          "overflow"
+        ],
+        "caption": "Underflow/overflow and special values (0, infinity).",
+        "embedHint": "Compare range vs fixed-point integers."
+      }
+    ]
+  }
 }

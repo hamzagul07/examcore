@@ -229,7 +229,7 @@
       "a": "These terms describe how quickly oscillations die out due to energy loss. Underdamping allows oscillations to decay gradually over many cycles. Critical damping brings the system back to equilibrium in the shortest time without any oscillation. Overdamping is when damping is too strong, causing a slower return to equilibrium than critical damping, also without oscillation."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
@@ -237,5 +237,44 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/17-1-simple-harmonic-oscillations.png",
     "alt": "Senpai Corner reference diagram for 17.1 Simple harmonic oscillations"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "A",
+        "label": "Amplitude A",
+        "min": 0.2,
+        "max": 1,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "m"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "equilibrium"
+        ],
+        "caption": "SHM: acceleration always points toward the equilibrium position."
+      },
+      {
+        "focus": [
+          "displacement"
+        ],
+        "caption": "Displacement x varies sinusoidally with time."
+      },
+      {
+        "focus": [
+          "velocity"
+        ],
+        "caption": "Velocity is greatest at equilibrium; zero at extremes."
+      },
+      {
+        "focus": [
+          "period"
+        ],
+        "caption": "Period T is independent of amplitude (ideal spring)."
+      }
+    ]
   }
 }

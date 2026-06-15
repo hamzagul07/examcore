@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9709 P5 probability — sample space, combined events, independence, and tree diagrams with GeoGebra probability explorer.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Calculate probabilities using addition and multiplication rules.",
     "Determine whether events are mutually exclusive or independent.",
@@ -46,8 +46,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "P(A) is between 0 and 1; P(not A) = 1 − P(A).",
+        "embedHint": "Adjust event probability — complement updates automatically."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Mutually exclusive: P(A ∪ B) = P(A) + P(B).",
+        "embedHint": "Set overlapping vs disjoint events — compare addition rule."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Independent: P(A ∩ B) = P(A) × P(B).",
+        "embedHint": "Check whether joint probability equals the product."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Tree diagrams organise conditional branches systematically.",
+        "embedHint": "Trace two-stage branches and multiply along paths."
+      }
+    ]
+  }
 }

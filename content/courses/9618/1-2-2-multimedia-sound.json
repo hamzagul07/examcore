@@ -185,5 +185,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "waveform"
+        ],
+        "caption": "Analogue sound: amplitude = loudness, frequency = pitch.",
+        "embedHint": "Draw a sine wave — label amplitude and wavelength."
+      },
+      {
+        "focus": [
+          "sampling"
+        ],
+        "caption": "Sampling rate (Hz) — Nyquist: rate > 2 × max frequency.",
+        "embedHint": "Under-sampling causes aliasing."
+      },
+      {
+        "focus": [
+          "bit-depth"
+        ],
+        "caption": "Bit depth sets amplitude resolution (quantisation levels).",
+        "embedHint": "16-bit → 65 536 levels; higher depth = larger file."
+      },
+      {
+        "focus": [
+          "compression"
+        ],
+        "caption": "MP3 lossy vs WAV lossless — bitrate trades quality for size.",
+        "embedHint": "Calculate file size: rate × depth × duration."
+      }
+    ]
+  }
 }

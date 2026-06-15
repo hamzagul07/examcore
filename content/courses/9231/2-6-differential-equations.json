@@ -163,5 +163,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "First order: dy/dx = f(x,y) — slope field shows direction at each point.",
+        "embedHint": "Read slope at (x,y) — sketch solution through initial condition."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Separable: ∫(1/g(y)) dy = ∫f(x) dx + c.",
+        "embedHint": "Separate variables — integrate both sides."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Linear integrating factor e^∫P dx for dy/dx + Py = Q.",
+        "embedHint": "Multiply through by IF — left side becomes d/dx(y·IF)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Modelling: exponential growth/decay, Newton cooling, logistic.",
+        "embedHint": "Match dN/dt = kN to exponential solution N = N₀e^{kt}."
+      }
+    ]
+  }
 }

@@ -173,7 +173,7 @@
       "a": "An ammeter measures current by detecting the flow of charge *through* itself. To ensure it measures the total current flowing in a specific part of a circuit, it must always be connected **in series** with the component. Ideally, an ammeter has zero internal resistance to avoid affecting the circuit's current."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
@@ -181,5 +181,37 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/9-1-electric-current.png",
     "alt": "Senpai Corner reference diagram for 9.1 Electric current"
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Current I = ΔQ/Δt — rate of flow of charge (coulombs per second).",
+        "embedHint": "Increase voltage — read current through the resistor."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Conventional current flows from + to − (opposite to electron flow).",
+        "embedHint": "Observe electron drift direction vs conventional current arrow."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "In series, current is the same through each component.",
+        "embedHint": "Add a second resistor in series — current is equal everywhere."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Ammeter in series; never connect an ammeter in parallel.",
+        "embedHint": "Measure current at different points — values match in a series loop."
+      }
+    ]
   }
 }

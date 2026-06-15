@@ -160,5 +160,44 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "A",
+        "label": "Amplitude A",
+        "min": 0.2,
+        "max": 1,
+        "step": 0.1,
+        "default": 0.6,
+        "unit": "m"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "equilibrium"
+        ],
+        "caption": "SHM: acceleration always points toward the equilibrium position."
+      },
+      {
+        "focus": [
+          "displacement"
+        ],
+        "caption": "Displacement x varies sinusoidally with time."
+      },
+      {
+        "focus": [
+          "velocity"
+        ],
+        "caption": "Velocity is greatest at equilibrium; zero at extremes."
+      },
+      {
+        "focus": [
+          "period"
+        ],
+        "caption": "Period T is independent of amplitude (ideal spring)."
+      }
+    ]
+  }
 }

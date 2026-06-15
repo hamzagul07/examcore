@@ -170,7 +170,7 @@
       "a": "The maximum number of orders ($n_{max}$) is limited by the physical constraint that \\sin \\theta cannot exceed 1. Therefore, for any order $n$ where the ratio $n\\lambda/d$ is greater than 1, no real angle \\theta exists for that maximum, and it will not be observed. You can find $n_{max}$ by setting \\sin \\theta = 1 in the grating equation and solving for $n$, then taking the integer part of the result."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
@@ -178,5 +178,57 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/8-4-the-diffraction-grating.png",
     "alt": "Senpai Corner reference diagram for 8.4 The diffraction grating"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "slit",
+        "label": "Slit width a",
+        "min": 12,
+        "max": 36,
+        "step": 2,
+        "default": 20,
+        "unit": "μm"
+      },
+      {
+        "id": "lambda",
+        "label": "Wavelength λ",
+        "min": 400,
+        "max": 700,
+        "step": 50,
+        "default": 550,
+        "unit": "nm"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "slit"
+        ],
+        "caption": "A grating is many identical slits — each acts as a secondary source.",
+        "embedHint": "Open “Light” mode — each slit behaves like a point source of waves."
+      },
+      {
+        "focus": [
+          "spread"
+        ],
+        "caption": "Diffraction spreads waves after each slit; narrower slits spread more.",
+        "embedHint": "Compare one slit vs two — see how the pattern changes with slit count."
+      },
+      {
+        "focus": [
+          "interference"
+        ],
+        "caption": "Waves from all slits superpose — path difference sets maxima and minima.",
+        "embedHint": "Watch bright fringes where path difference = nλ (constructive interference)."
+      },
+      {
+        "focus": [
+          "grating"
+        ],
+        "caption": "A grating gives sharp, evenly spaced maxima: d sin θ = nλ.",
+        "embedHint": "Increase slit count — maxima become sharper (better resolution)."
+      }
+    ]
   }
 }

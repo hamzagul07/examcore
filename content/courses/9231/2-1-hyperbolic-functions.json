@@ -191,5 +191,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "y = e^x and y = ln x are inverse functions — reflection in y = x.",
+        "embedHint": "Domain of ln x is x > 0."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Laws of logarithms: ln(ab) = ln a + ln b; ln(a^n) = n ln a.",
+        "embedHint": "Use to solve a^x = b."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Differentiate e^{f(x)} and ln(f(x)) — chain rule.",
+        "embedHint": "d/dx e^{2x} = 2e^{2x}."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Modelling growth/decay: N = N₀e^{kt}.",
+        "embedHint": "Half-life from k = ln 2 / t_{½}."
+      }
+    ]
+  }
 }

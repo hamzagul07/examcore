@@ -181,5 +181,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "variables"
+        ],
+        "caption": "Variables hold values; assignment replaces contents.",
+        "embedHint": "← or = depending on pseudocode convention."
+      },
+      {
+        "focus": [
+          "io"
+        ],
+        "caption": "INPUT and OUTPUT for user interaction.",
+        "embedHint": "Validate input range before processing."
+      },
+      {
+        "focus": [
+          "operators"
+        ],
+        "caption": "Arithmetic and relational operators.",
+        "embedHint": "MOD, DIV, AND, OR, NOT in Boolean expressions."
+      },
+      {
+        "focus": [
+          "comments"
+        ],
+        "caption": "Comments document intent — not executed.",
+        "embedHint": "Use meaningful identifiers (CamelCase or snake_case)."
+      }
+    ]
+  }
 }

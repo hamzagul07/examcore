@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9709 P1 coordinate geometry — straight lines, gradients, parallel and perpendicular lines, distance and midpoint with PhET Graphing Lines.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Find gradient and equation of a straight line from two points.",
     "Apply conditions for parallel and perpendicular lines.",
@@ -46,8 +46,43 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Straight line y = mx + c: gradient m, y-intercept c.",
+        "embedHint": "Adjust slope and intercept — read values from the equation display."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Parallel lines have equal gradients; perpendicular: m₁m₂ = −1.",
+        "embedHint": "Set two lines — check product of gradients for perpendicularity."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Distance between points: √((x₂−x₁)² + (y₂−y₁)²).",
+        "embedHint": "Plot two points — measure horizontal and vertical components."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Midpoint: ((x₁+x₂)/2, (y₁+y₂)/2).",
+        "embedHint": "Find the midpoint on a segment between two plotted points."
+      }
+    ]
+  }
 }

@@ -192,7 +192,7 @@
       "a": "Yes, GPE can be negative. This happens when the object's position is *below* the chosen reference point (where $h=0$). For instance, if you define the ground as $h=0$, an object in a deep pit below ground level would have negative GPE relative to the ground."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "2",
   "paperType": "structured",
   "level": "A-Level",
@@ -200,5 +200,37 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/5-2-gravitational-potential-energy-and-kinetic-energy.png",
     "alt": "Senpai Corner reference diagram for 5.2 Gravitational potential energy and kinetic energy"
+  },
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "GPE = mgh (near Earth’s surface); KE = ½mv².",
+        "embedHint": "Place the skater high on the ramp — read GPE at the top."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Conservation of mechanical energy: GPE + KE = constant (no friction).",
+        "embedHint": "Toggle friction off — total energy bar stays level."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "With friction, mechanical energy dissipates as thermal energy.",
+        "embedHint": "Turn friction on — skater stops lower; energy lost to heat."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Work done = force × displacement in direction of force (link to energy transfer).",
+        "embedHint": "Compare speed at bottom from different starting heights (½mv² = mgh)."
+      }
+    ]
   }
 }

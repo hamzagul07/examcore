@@ -24,6 +24,7 @@ export function CourseVisualLearning({
   const { heroVisual, stepCarousel, diagramImages } = partitioned
   const hasEmbed = !!interactiveEmbed
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
+  const hasExploreVisual = hasEmbed || liveDiagram
   const showNativeDiagram = !hasEmbed && (heroVisual !== null || liveDiagram)
   const hasStage = showNativeDiagram || stepCarousel !== null
   const referenceDiagrams = diagramImages.filter(
@@ -36,10 +37,12 @@ export function CourseVisualLearning({
   return (
     <VisualSectionFrame
       id="visual-learning"
-      title={hasEmbed ? 'Explore the concept' : 'Visual learning'}
+      title={hasExploreVisual ? 'Explore the concept' : 'Visual learning'}
       hint={
-        hasEmbed
-          ? 'Use the live simulation, then follow the synced steps below.'
+        hasExploreVisual
+          ? hasEmbed
+            ? 'Use the live simulation, then follow the synced steps below.'
+            : 'Use the live diagram and follow the synced steps below.'
           : 'Diagram plus a step-by-step walkthrough of the core ideas.'
       }
       icon={Eye}

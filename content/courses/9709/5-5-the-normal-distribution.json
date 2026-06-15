@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9709 P5 normal distribution — probability density, standardisation, inverse normal, and the 68–95–99.7 rule with GeoGebra bell curve explorer.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Recognise the normal distribution X ~ N(μ, σ²) and its symmetry.",
     "Standardise using Z = (X − μ)/σ.",
@@ -25,10 +25,22 @@
     ]
   },
   "flashcards": [
-    { "front": "Notation for normal distribution?", "back": "X ~ N(μ, σ²) — mean μ, variance σ²." },
-    { "front": "Standardisation formula?", "back": "Z = (X − μ) / σ ~ N(0, 1)." },
-    { "front": "68% rule?", "back": "P(μ − σ < X < μ + σ) ≈ 0.68." },
-    { "front": "When normal approx to binomial?", "back": "np > 5 and n(1−p) > 5 (both conditions)." }
+    {
+      "front": "Notation for normal distribution?",
+      "back": "X ~ N(μ, σ²) — mean μ, variance σ²."
+    },
+    {
+      "front": "Standardisation formula?",
+      "back": "Z = (X − μ) / σ ~ N(0, 1)."
+    },
+    {
+      "front": "68% rule?",
+      "back": "P(μ − σ < X < μ + σ) ≈ 0.68."
+    },
+    {
+      "front": "When normal approx to binomial?",
+      "back": "np > 5 and n(1−p) > 5 (both conditions)."
+    }
   ],
   "sections": [
     {
@@ -56,9 +68,47 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 course index", "href": "/courses/9709" },
-        { "label": "GeoGebra normal distribution", "href": "https://www.geogebra.org/m/qumaztck" }
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        },
+        {
+          "label": "GeoGebra normal distribution",
+          "href": "https://www.geogebra.org/m/qumaztck"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "X ~ N(μ, σ²) is symmetric about the mean μ.",
+        "embedHint": "Move μ — the bell curve shifts left or right."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Standard deviation σ controls spread — larger σ → wider curve.",
+        "embedHint": "Increase σ — more probability in the tails."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Standardise: Z = (X − μ)/σ ~ N(0, 1) for table lookups.",
+        "embedHint": "Mark μ ± σ, μ ± 2σ on the curve (~68%, ~95% rules)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Normal approximation to binomial when np > 5 and n(1−p) > 5.",
+        "embedHint": "Compare bell curve area with probability statements P(X > a)."
+      }
+    ]
+  }
 }

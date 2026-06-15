@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9618 AS assembly — instruction formats, registers, addressing modes, and trace tables for simple programs.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Describe the purpose of assembly language.",
     "Interpret simple assembly instructions (LDR, STR, ADD, CMP, BNE).",
@@ -41,7 +41,44 @@
     },
     {
       "type": "resources",
-      "items": [{ "label": "9618 course index", "href": "/courses/9618" }]
+      "items": [
+        {
+          "label": "9618 course index",
+          "href": "/courses/9618"
+        }
+      ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "mnemonic"
+        ],
+        "caption": "Assembly uses mnemonics readable by humans (LDR, ADD, STR).",
+        "embedHint": "One line per instruction — address labels optional."
+      },
+      {
+        "focus": [
+          "opcode"
+        ],
+        "caption": "Assembler translates each mnemonic to a machine opcode (1:1).",
+        "embedHint": "Contrast with compiler for high-level languages."
+      },
+      {
+        "focus": [
+          "registers"
+        ],
+        "caption": "Special registers: ACC (accumulator), IX (index), PC (program counter).",
+        "embedHint": "PC auto-increments after fetch."
+      },
+      {
+        "focus": [
+          "fde"
+        ],
+        "caption": "Fetch–decode–execute cycle runs each instruction.",
+        "embedHint": "Low-level, hardware-specific — direct CPU control."
+      }
+    ]
+  }
 }

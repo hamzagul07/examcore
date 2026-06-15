@@ -183,5 +183,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "test-data"
+        ],
+        "caption": "Test data: normal, boundary, erroneous.",
+        "embedHint": "Boundary values at limits of valid range."
+      },
+      {
+        "focus": [
+          "stub"
+        ],
+        "caption": "Stub testing isolates modules with dummy code.",
+        "embedHint": "Driver program calls module under test."
+      },
+      {
+        "focus": [
+          "alpha-beta"
+        ],
+        "caption": "Alpha (dev team) vs beta (selected users) testing.",
+        "embedHint": "Acceptance testing against requirements."
+      },
+      {
+        "focus": [
+          "maintenance"
+        ],
+        "caption": "Corrective, adaptive, perfective, preventive maintenance.",
+        "embedHint": "Log changes and regression-test after fixes."
+      }
+    ]
+  }
 }

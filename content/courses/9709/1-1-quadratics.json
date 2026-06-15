@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "Free Cambridge 9709 P1 quadratics — factorisation, completing the square, the discriminant, and quadratic graphs with GeoGebra explorer.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Factorise and solve quadratic equations.",
     "Complete the square to find vertex form and solve equations.",
@@ -25,10 +25,22 @@
     ]
   },
   "flashcards": [
-    { "front": "Quadratic formula?", "back": "x = (−b ± √(b² − 4ac)) / 2a" },
-    { "front": "Discriminant Δ?", "back": "Δ = b² − 4ac — sign tells number of real roots." },
-    { "front": "Vertex form?", "back": "y = a(x − h)² + k — vertex at (h, k)." },
-    { "front": "If a > 0, parabola opens…?", "back": "Upwards — minimum at the vertex." }
+    {
+      "front": "Quadratic formula?",
+      "back": "x = (−b ± √(b² − 4ac)) / 2a"
+    },
+    {
+      "front": "Discriminant Δ?",
+      "back": "Δ = b² − 4ac — sign tells number of real roots."
+    },
+    {
+      "front": "Vertex form?",
+      "back": "y = a(x − h)² + k — vertex at (h, k)."
+    },
+    {
+      "front": "If a > 0, parabola opens…?",
+      "back": "Upwards — minimum at the vertex."
+    }
   ],
   "sections": [
     {
@@ -56,9 +68,47 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
-        { "label": "9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 past paper guide",
+          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+        },
+        {
+          "label": "9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Quadratic y = ax² + bx + c has a parabolic graph (a ≠ 0).",
+        "embedHint": "Change a — see the parabola stretch or reflect in the x-axis."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Completing the square reveals the vertex form y = a(x − h)² + k.",
+        "embedHint": "Adjust h and k — vertex moves to (h, k)."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Discriminant b² − 4ac determines the nature of roots.",
+        "embedHint": "Set the graph to touch the x-axis once — repeated root (Δ = 0)."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Factorise or use the formula to solve ax² + bx + c = 0 on Paper 1.",
+        "embedHint": "Read x-intercepts from the graph — check by substitution."
+      }
+    ]
+  }
 }

@@ -192,5 +192,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "H₀ null hypothesis; H₁ alternative — one- or two-tailed.",
+        "embedHint": "State both before calculating."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Type I error: reject true H₀; Type II: accept false H₀.",
+        "embedHint": "Significance level α = P(Type I)."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Test statistic compared to critical value or p-value.",
+        "embedHint": "p < α → reject H₀."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Z-test for mean with known variance; t-test if σ unknown.",
+        "embedHint": "Use correct distribution."
+      }
+    ]
+  }
 }

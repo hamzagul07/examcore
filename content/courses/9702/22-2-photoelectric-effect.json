@@ -199,7 +199,7 @@
       "a": "Above the threshold frequency, increasing the intensity of light means more photons are striking the metal surface per second. Since each photon can potentially eject one electron, a higher intensity leads to a greater number of electrons being emitted per second, resulting in a larger photocurrent."
     }
   ],
-  "updated": "2026-06-09",
+  "updated": "2026-06-15",
   "paperNumber": "4",
   "paperType": "structured",
   "level": "A-Level",
@@ -207,5 +207,48 @@
   "diagram": {
     "src": "/courses/diagrams/9702/senpai/22-2-photoelectric-effect.png",
     "alt": "Senpai Corner reference diagram for 22.2 Photoelectric effect"
+  },
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "f",
+        "label": "Frequency f",
+        "min": 400,
+        "max": 900,
+        "step": 50,
+        "default": 600,
+        "unit": "THz scale"
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "photon"
+        ],
+        "caption": "Light delivers energy in photons: E = hf (quantum model).",
+        "embedHint": "Increase photon energy (frequency) — each photon carries more energy."
+      },
+      {
+        "focus": [
+          "surface"
+        ],
+        "caption": "Electrons are bound by work function Φ — minimum energy to escape the metal.",
+        "embedHint": "Read the work function for each metal target."
+      },
+      {
+        "focus": [
+          "electron"
+        ],
+        "caption": "If hf > Φ, electrons are emitted with KEmax = hf − Φ.",
+        "embedHint": "Above threshold frequency, electrons appear — measure their maximum KE."
+      },
+      {
+        "focus": [
+          "formula"
+        ],
+        "caption": "Brighter light (higher intensity) increases rate, not KEmax — classic exam trap.",
+        "embedHint": "Raise intensity only — more electrons, same maximum KE."
+      }
+    ]
   }
 }

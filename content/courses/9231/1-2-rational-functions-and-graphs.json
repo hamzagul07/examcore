@@ -165,5 +165,37 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "diagramSpec": {
+    "steps": [
+      {
+        "focus": [
+          "step-1"
+        ],
+        "caption": "Function: each input x maps to exactly one output f(x).",
+        "embedHint": "Vertical line test — one y per x on graph."
+      },
+      {
+        "focus": [
+          "step-2"
+        ],
+        "caption": "Domain (inputs) and range (outputs) — restrictions from √(·), ln(·), ÷0.",
+        "embedHint": "Adjust x — note where f(x) is undefined."
+      },
+      {
+        "focus": [
+          "step-3"
+        ],
+        "caption": "Composite f∘g: apply g first, then f.",
+        "embedHint": "Build f(g(x)) — track inner then outer rule."
+      },
+      {
+        "focus": [
+          "step-4"
+        ],
+        "caption": "Inverse f⁻¹ exists only for one-to-one functions; reflection in y = x.",
+        "embedHint": "Swap x and y — domain of f⁻¹ = range of f."
+      }
+    ]
+  }
 }

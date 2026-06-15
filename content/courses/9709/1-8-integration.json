@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "Free Cambridge 9709 Pure Maths 1 integration — reverse power rule, definite integrals as signed area, and Cambridge mark-scheme habits.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "simpleExplanation": {
     "title": "Area under the curve",
     "summary": "Integration is the reverse of differentiation. On Paper 1 you find antiderivatives, evaluate definite integrals as signed area, and always show substitution of limits.",
@@ -65,10 +65,69 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9709 past paper guide", "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide" },
-        { "label": "B1 M1 A1 mark scheme guide", "href": "/blog/cambridge-a-level-maths-mark-scheme-b1-m1-a1" },
-        { "label": "Free full 9709 course index", "href": "/courses/9709" }
+        {
+          "label": "9709 past paper guide",
+          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+        },
+        {
+          "label": "B1 M1 A1 mark scheme guide",
+          "href": "/blog/cambridge-a-level-maths-mark-scheme-b1-m1-a1"
+        },
+        {
+          "label": "Free full 9709 course index",
+          "href": "/courses/9709"
+        }
       ]
     }
-  ]
+  ],
+  "diagramSpec": {
+    "params": [
+      {
+        "id": "a",
+        "label": "Lower limit a",
+        "min": 0.5,
+        "max": 2,
+        "step": 0.5,
+        "default": 1
+      },
+      {
+        "id": "b",
+        "label": "Upper limit b",
+        "min": 2,
+        "max": 4.5,
+        "step": 0.5,
+        "default": 3
+      }
+    ],
+    "steps": [
+      {
+        "focus": [
+          "curve"
+        ],
+        "caption": "Integration reverses differentiation on P1 — find F(x) such that F′(x) = f(x).",
+        "embedHint": "Watch the antiderivative curve build from the gradient function."
+      },
+      {
+        "focus": [
+          "area"
+        ],
+        "caption": "Definite integral ∫ₐᵇ f(x) dx equals area under the curve (with sign).",
+        "embedHint": "Shade the region — negative regions subtract from total area."
+      },
+      {
+        "focus": [
+          "limits"
+        ],
+        "caption": "Evaluate F(b) − F(a) — always show substitution of limits for A marks.",
+        "embedHint": "Move limits and read the accumulated area value."
+      },
+      {
+        "focus": [
+          "parts"
+        ],
+        "caption": "Include + C for indefinite integrals; constants disappear in definite limits.",
+        "embedHint": "Compare indefinite and definite integral values on the same graph."
+      }
+    ]
+  }
 }

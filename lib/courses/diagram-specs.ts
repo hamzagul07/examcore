@@ -1030,12 +1030,30 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Power P = W/t = Fv — rate of doing work.', embedHint: 'Compare time to climb two ramps — same work, different power.' },
     { caption: 'Conservation of energy (no friction): KE + GPE = constant.', embedHint: 'Turn friction off — total mechanical energy conserved.' },
   ]),
-  '3-2-logic-gates-and-logic-circuits': embedSpec([
-    { caption: 'Basic gates: NOT, AND, OR — truth tables define outputs.', embedHint: 'Toggle inputs — read AND/OR output truth table.' },
-    { caption: 'NAND and NOR are universal — build any logic from them.', embedHint: 'Combine gates to form a half-adder or SR latch pattern.' },
-    { caption: 'Boolean algebra simplifies circuits: De Morgan’s laws.', embedHint: 'Compare equivalent circuits with fewer gates.' },
-    { caption: 'Logic circuits combine gates for arithmetic, memory, control.', embedHint: 'Trace inputs through multiple gates to final output.' },
-  ]),
+  '3-2-logic-gates-and-logic-circuits': {
+    steps: [
+      {
+        focus: ['basic-gates'],
+        caption: 'Basic gates: NOT, AND, OR — truth tables define outputs.',
+        embedHint: 'Toggle inputs — read AND/OR output truth table.',
+      },
+      {
+        focus: ['universal'],
+        caption: 'NAND and NOR are universal — build any logic from them.',
+        embedHint: 'Combine gates to form a half-adder or SR latch pattern.',
+      },
+      {
+        focus: ['algebra'],
+        caption: 'Boolean algebra simplifies circuits: De Morgan’s laws.',
+        embedHint: 'Compare equivalent circuits with fewer gates.',
+      },
+      {
+        focus: ['circuit'],
+        caption: 'Logic circuits combine gates for arithmetic, memory, control.',
+        embedHint: 'Trace inputs through multiple gates to final output.',
+      },
+    ],
+  },
 
   // ── 9701 batch 4 ───────────────────────────────────────────────────────
   '14-1-alkanes': embedSpec([
@@ -1639,12 +1657,30 @@ const SPECS: Record<string, LessonDiagramSpec> = {
   ]),
 
   // ── 9618 batch 10 ───────────────────────────────────────────────────────
-  '15-2-boolean-algebra-and-logic-circuits': embedSpec([
-    { caption: 'Boolean laws: De Morgan, distributive, absorption.', embedHint: 'Simplify expressions before building circuits.' },
-    { caption: 'Karnaugh maps group 1s for minimal SOP.', embedHint: 'Wrap edges on K-map.' },
-    { caption: 'Half and full adder from XOR, AND, OR gates.', embedHint: 'Chain full adders for multi-bit sum.' },
-    { caption: 'Flip-flops store bits — SR, D type at A Level.', embedHint: 'Sequential logic vs combinational.' },
-  ]),
+  '15-2-boolean-algebra-and-logic-circuits': {
+    steps: [
+      {
+        focus: ['algebra'],
+        caption: 'Boolean laws: De Morgan, distributive, absorption.',
+        embedHint: 'Simplify expressions before building circuits.',
+      },
+      {
+        focus: ['universal'],
+        caption: 'Karnaugh maps group 1s for minimal SOP.',
+        embedHint: 'Wrap edges on K-map.',
+      },
+      {
+        focus: ['circuit'],
+        caption: 'Half and full adder from XOR, AND, OR gates.',
+        embedHint: 'Chain full adders for multi-bit sum.',
+      },
+      {
+        focus: ['basic-gates'],
+        caption: 'Flip-flops store bits — SR, D type at A Level.',
+        embedHint: 'Sequential logic vs combinational.',
+      },
+    ],
+  },
 
   // ── 9701 batch 11 ───────────────────────────────────────────────────────
   '32-1-alcohols': embedSpec([
@@ -1923,18 +1959,54 @@ const SPECS: Record<string, LessonDiagramSpec> = {
   ]),
 
   // ── 9618 batch 14 (100% completion) ─────────────────────────────────────
-  '3-1-computers-and-their-components': embedSpec([
-    { caption: 'CPU: ALU + control unit + registers.', embedHint: 'Fetch–decode–execute.' },
-    { caption: 'RAM volatile; ROM non-volatile.', embedHint: 'Primary vs secondary storage.' },
-    { caption: 'SSD vs HDD: speed vs capacity/cost.', embedHint: 'Secondary storage trade-offs.' },
-    { caption: 'Input, output, and backing storage devices.', embedHint: 'Match device to role.' },
-  ]),
-  '4-3-bit-manipulation': embedSpec([
-    { caption: 'Logical shift left/right — multiply/divide by 2.', embedHint: 'Vacant bit filled 0.' },
-    { caption: 'AND mask: clear selected bits.', embedHint: 'Check if bit set.' },
-    { caption: 'OR set bits; XOR toggle.', embedHint: 'Used in flags and permissions.' },
-    { caption: 'Two\'s complement for signed integers.', embedHint: 'Link to 1.1 data representation.' },
-  ]),
+  '3-1-computers-and-their-components': {
+    steps: [
+      {
+        focus: ['cpu'],
+        caption: 'CPU: ALU + control unit + registers.',
+        embedHint: 'Fetch–decode–execute.',
+      },
+      {
+        focus: ['memory'],
+        caption: 'RAM volatile; ROM non-volatile.',
+        embedHint: 'Primary vs secondary storage.',
+      },
+      {
+        focus: ['storage'],
+        caption: 'SSD vs HDD: speed vs capacity/cost.',
+        embedHint: 'Secondary storage trade-offs.',
+      },
+      {
+        focus: ['io'],
+        caption: 'Input, output, and backing storage devices.',
+        embedHint: 'Match device to role.',
+      },
+    ],
+  },
+  '4-3-bit-manipulation': {
+    steps: [
+      {
+        focus: ['shift'],
+        caption: 'Logical shift left/right — multiply/divide by 2.',
+        embedHint: 'Vacant bit filled 0.',
+      },
+      {
+        focus: ['mask'],
+        caption: 'AND mask: clear selected bits.',
+        embedHint: 'Check if bit set.',
+      },
+      {
+        focus: ['xor'],
+        caption: 'OR set bits; XOR toggle.',
+        embedHint: 'Used in flags and permissions.',
+      },
+      {
+        focus: ['twos-complement'],
+        caption: 'Two\'s complement for signed integers.',
+        embedHint: 'Link to 1.1 data representation.',
+      },
+    ],
+  },
 
   '2-1-networks-including-the-internet': embedSpec([
     { caption: 'LAN vs WAN — scale and ownership.', embedHint: 'Compare topology for a school vs the internet.' },

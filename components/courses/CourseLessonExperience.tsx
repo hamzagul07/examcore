@@ -25,6 +25,7 @@ import { CourseVisualLearning } from '@/components/courses/CourseVisualLearning'
 import { CourseRevisionTools } from '@/components/courses/CourseRevisionTools'
 import { CourseLegacyAnchor } from '@/components/courses/CourseLegacyAnchor'
 import { resolveLessonInteractiveEmbed } from '@/lib/courses/interactive-embeds'
+import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
 import {
   buildNotesLesson,
   extractWorkedExamples,
@@ -71,6 +72,8 @@ export function CourseLessonExperience({
 
   const hasVisual =
     !!interactiveEmbed ||
+    !!lesson.diagramSpec ||
+    hasLessonLiveDiagram(lesson.slug) ||
     partitioned.heroVisual !== null ||
     partitioned.stepCarousel !== null ||
     partitioned.diagramImage !== null ||

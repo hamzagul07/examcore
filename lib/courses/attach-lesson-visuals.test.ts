@@ -66,5 +66,19 @@ const noSteps = ensureSimpleExplanationForVisuals({
 } as GeneratedLesson)
 check('synthesises simpleExplanation', (noSteps.simpleExplanation?.steps.length ?? 0) >= 3)
 
+const logicGates = attachCatalogVisuals({
+  ...base,
+  slug: '3-2-logic-gates-and-logic-circuits',
+  topicCode: '3.2',
+  title: 'Logic gates',
+  simpleExplanation: {
+    title: 'Logic gates',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('prefers native diagram over placeholder embed', logicGates.interactiveEmbed === undefined)
+check('keeps diagram spec for native logic diagram', (logicGates.diagramSpec?.steps.length ?? 0) === 4)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

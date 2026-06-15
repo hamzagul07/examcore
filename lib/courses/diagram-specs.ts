@@ -2344,3 +2344,17 @@ export function layerOpacity(
   if (!spec?.steps.length) return active
   return isLayerFocused(spec, stepIndex, layerId) ? active : dimmed
 }
+
+/** Highlight when any of the given layer ids is in the active step focus. */
+export function layerOpacityAny(
+  spec: LessonDiagramSpec | null,
+  stepIndex: number,
+  layerIds: string[],
+  active = 1,
+  dimmed = 0.22
+): number {
+  if (!spec?.steps.length) return active
+  const state = stepStateFor(spec, stepIndex)
+  if (!state) return active
+  return state.focus.some((f) => layerIds.includes(f)) ? active : dimmed
+}

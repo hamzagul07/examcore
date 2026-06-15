@@ -28,6 +28,7 @@ function parseSlugFamilyBlock(name) {
 const familyBySubject = {
   '9702': parseSlugFamilyBlock('SLUG_FAMILY_9702'),
   '9700': parseSlugFamilyBlock('SLUG_FAMILY_9700'),
+  '9701': parseSlugFamilyBlock('SLUG_FAMILY_9701'),
 }
 
 let grandTotal = 0

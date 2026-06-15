@@ -133,5 +133,18 @@ const photoelectric = attachCatalogVisuals({
 } as GeneratedLesson)
 check('photoelectric retains PhET sim', photoelectric.interactiveEmbed?.provider === 'phet')
 
+const moleculeShapes = attachCatalogVisuals({
+  ...base,
+  slug: '3-5-shapes-of-molecules',
+  topicCode: '3.5',
+  title: 'Shapes of molecules',
+  simpleExplanation: {
+    title: 'VSEPR',
+    summary: 'Summary',
+    steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
+  },
+} as GeneratedLesson)
+check('9701 VSEPR retains PhET with native diagram', moleculeShapes.interactiveEmbed?.provider === 'phet')
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

@@ -6,7 +6,10 @@ import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 export const PLACEHOLDER_GEOGEBRA_MATERIALS = new Set(['kQBWnCFC'])
 
 /** Gold-standard topics: keep PhET sim even when a native diagram exists. */
-export const PHET_RETAIN_WITH_NATIVE = new Set(['22-2-photoelectric-effect'])
+export const PHET_RETAIN_WITH_NATIVE = new Set([
+  '22-2-photoelectric-effect',
+  '3-5-shapes-of-molecules',
+])
 
 export function isPlaceholderInteractiveEmbed(
   embed: LessonInteractiveEmbed | undefined | null

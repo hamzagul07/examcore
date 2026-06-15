@@ -5,84 +5,166 @@
   "paper": "AS",
   "paperName": "AS Level Subject Content",
   "status": "premium",
-  "summary": "Cambridge 9701 AS — isotopes, relative atomic mass, and why isotopes share chemical properties but differ in mass. Includes PhET Isotopes and Atomic Mass simulation.",
-  "durationMin": 16,
+  "summary": "This lesson introduces isotopes, which are atoms of the same element with different numbers of neutrons. We will explore how to define isotopes using subatomic particles, calculate the relative atomic mass from isotopic abundances, and understand why isotopes share chemical properties but differ in physical ones.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Define isotopes as atoms with the same number of protons but different numbers of neutrons.",
-    "Calculate relative atomic mass from isotopic abundances.",
-    "Explain why isotopes have identical chemical properties.",
-    "State uses of radioactive isotopes in medicine and industry."
+    "Define isotopes as atoms of the same element with the same number of protons but different numbers of neutrons.",
+    "Calculate the relative atomic mass of an element from the relative masses and abundances of its isotopes.",
+    "Explain that isotopes of an element have the same chemical properties because they have the same electron configuration.",
+    "Recognise that some isotopes are radioactive and understand the basis of their instability."
   ],
   "simpleExplanation": {
-    "title": "Same element, different mass",
-    "summary": "Isotopes are atoms of the same element with different neutron counts. They behave identically in chemical reactions because chemistry is about electrons, not neutrons.",
+    "title": "Atomic Siblings",
+    "summary": "Isotopes are like siblings in the same family: they share the same family name (element) but have slightly different characteristics (mass). This difference comes from having a different number of neutrons in their core.",
+    "analogy": "Imagine you have two identical models of the same car. They are both a 'Ford Focus' (the element), so they drive the same way and have the same engine performance (chemical properties). However, one model has a sunroof and the other doesn't, making one slightly heavier (different mass number). These two cars are like isotopes of each other.",
     "steps": [
-      "Keep proton number fixed — only change neutrons to make isotopes of one element.",
-      "Relative atomic mass is the weighted average of isotope masses by natural abundance.",
-      "Chemical properties match because electron configuration (and Z) are the same.",
-      "Some isotopes are unstable and decay — used in PET scans, radiotherapy, and dating."
+      "Isotopes are atoms of the same element with different neutron numbers.",
+      "Relative atomic mass is a weighted mean of isotope masses.",
+      "Isotopes have identical chemical properties (same electron configuration).",
+      "Some isotopes are radioactive — unstable nuclei emit radiation."
     ]
   },
   "flashcards": [
     {
-      "front": "Definition of isotopes?",
-      "back": "Atoms of the same element (same Z) with different numbers of neutrons (different A)."
+      "front": "What is the definition of an isotope?",
+      "back": "Atoms of the same element (same number of protons) with different numbers of neutrons (and therefore different mass numbers)."
     },
     {
-      "front": "Why identical chemical properties?",
-      "back": "Same electron configuration — chemical behaviour depends on electrons."
+      "front": "Which subatomic particles are the same in isotopes of a single element?",
+      "back": "The number of protons and, in a neutral atom, the number of electrons."
     },
     {
-      "front": "Calculate Ar from 78% 35Cl and 22% 37Cl?",
-      "back": "Ar = (78×35 + 22×37)/100 = 35.44"
+      "front": "Which subatomic particle differs between isotopes of a single element?",
+      "back": "The number of neutrons."
     },
     {
-      "front": "Symbol for an isotope?",
-      "back": "ᴬ_Z X — e.g. ¹⁴₆C (A = 14, Z = 6)."
+      "front": "Why do isotopes of an element have the same chemical properties?",
+      "back": "Because they have the same number of electrons in their outer shell (same electron configuration), which determines chemical reactivity."
+    },
+    {
+      "front": "Why might isotopes of an element have different physical properties?",
+      "back": "Because they have different masses. This can lead to slight differences in properties like density, boiling point, and rate of diffusion."
+    },
+    {
+      "front": "What is the full notation for the isotope of chlorine with a mass number of 37?",
+      "back": "$^{37}_{17}\\text{Cl}$. It has 17 protons, 17 electrons (in a neutral atom), and 37 - 17 = 20 neutrons."
+    },
+    {
+      "front": "Define relative atomic mass, $A_r$.",
+      "back": "The weighted mean mass of an atom of an element compared with one-twelfth of the mass of an atom of carbon-12."
+    },
+    {
+      "front": "What does the term 'weighted mean' signify in the calculation of $A_r$?",
+      "back": "It means the abundance (or percentage) of each isotope is taken into account. More abundant isotopes contribute more to the final average."
+    },
+    {
+      "front": "What is a mass spectrometer used for in the context of isotopes?",
+      "back": "To determine the relative isotopic masses and the relative abundances of the isotopes of an element."
+    },
+    {
+      "front": "What is a radioisotope?",
+      "back": "An isotope with an unstable nucleus that undergoes radioactive decay to become more stable, emitting radiation in the process. For example, carbon-14."
+    },
+    {
+      "front": "Exam Trap: Is the mass number on the periodic table?",
+      "back": "No. The periodic table shows the relative atomic mass ($A_r$), which is a weighted average. The mass number (A) is an integer for a single isotope nucleus and is not shown on the periodic table."
+    },
+    {
+      "front": "How do you calculate the number of neutrons in an isotope like Uranium-235 ($^{235}_{92}\\text{U}$)?",
+      "back": "Subtract the atomic number (protons) from the mass number (protons + neutrons). Neutrons = 235 - 92 = 143."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why isn't the relative atomic mass on the periodic table a whole number?",
+      "a": "Because it is a weighted average of the masses of all the naturally occurring isotopes of that element. Since most elements have more than one isotope, and their masses are not simple integers, the average is almost always a decimal value."
+    },
+    {
+      "q": "Do all elements have isotopes?",
+      "a": "Yes, all elements have isotopes. However, some elements have only one stable, naturally occurring isotope. These are called monoisotopic elements (e.g., fluorine, sodium, aluminium). Many other isotopes of these elements can be created artificially in labs."
+    },
+    {
+      "q": "How are isotopes separated from each other?",
+      "a": "Isotopes are difficult to separate because their chemical properties are identical. Separation must rely on their small mass difference. The most common method is using a mass spectrometer, which deflects ions based on their mass-to-charge ratio. Other methods, like gaseous diffusion (used for uranium enrichment), exploit the fact that lighter isotopes move slightly faster."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Isotopes** appear in almost every 9701 Paper 1 multiple-choice set and in structured Ar calculations on Paper 2. The key distinction: **same proton number, different neutron number**."
+      "content": "You've learned that atoms of a particular element are defined by their proton number. But are all atoms of, say, carbon identical? The answer is no. In this lesson, we'll explore the concept of isotopes – variations of an element that have played a crucial role in everything from determining the age of ancient artefacts to generating nuclear power."
     },
     {
       "type": "heading",
-      "content": "Relative atomic mass"
+      "content": "Defining Isotopes"
+    },
+    {
+      "type": "text",
+      "content": "All atoms of a specific element must have the same number of protons; this is their atomic number ($Z$). However, they can have different numbers of neutrons. Atoms that share the same atomic number but have different numbers of neutrons are called isotopes. Since the mass number ($A$) is the sum of protons and neutrons, isotopes of an element will have different mass numbers."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Isotopes have the same number of protons.",
+        "Isotopes have a different number of neutrons.",
+        "Isotopes have the same atomic number ($Z$) but different mass numbers ($A$).",
+        "Isotopes are represented using the notation $^{A}_{Z}\\text{X}$, where X is the element symbol."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Relative Atomic Mass ($A_r$)"
+    },
+    {
+      "type": "text",
+      "content": "The mass of an element you see on the periodic table is not the mass of a single atom. Instead, it is the relative atomic mass ($A_r$), which is a weighted average of the masses of its naturally occurring isotopes. This average takes into account the relative abundance of each isotope – the more common an isotope is, the more it influences the final $A_r$. The standard for comparison is the carbon-12 isotope, which is assigned a mass of exactly 12."
     },
     {
       "type": "formula",
-      "content": "Ar = Σ (isotope mass × fractional abundance). Abundances must sum to 100% (or 1.0 as fractions)."
+      "content": "$$A_r = \\frac{\\sum(\\text{isotopic mass} \\times \\text{% abundance})}{100}$$"
     },
     {
       "type": "workedExample",
-      "question": "Bromine has two isotopes: 79Br (50.7%) and 81Br (49.3%). Calculate Ar.",
-      "solution": "Ar = (50.7 × 79 + 49.3 × 81) / 100\n= (4005.3 + 3993.3) / 100\n= **79.9** (3 s.f.)"
+      "question": "A sample of chlorine is found to contain two isotopes: chlorine-35 with a relative abundance of 75.77% and chlorine-37 with a relative abundance of 24.23%. The relative isotopic masses are 34.97 and 36.97 respectively. Calculate the relative atomic mass of chlorine to two decimal places.",
+      "solution": "Step 1: Apply the formula for relative atomic mass.\n$A_r = \\frac{(\\text{mass}_1 \\times \\text{%}_1) + (\\text{mass}_2 \\times \\text{%}_2)}{100}$\n\nStep 2: Substitute the given values into the formula.\n$A_r = \\frac{(34.97 \\times 75.77) + (36.97 \\times 24.23)}{100}$\n\nStep 3: Calculate the contribution from each isotope.\nContribution from $^{35}\\text{Cl}$: $34.97 \\times 75.77 = 2649.5769$\nContribution from $^{37}\\text{Cl}$: $36.97 \\times 24.23 = 895.7831$\n\nStep 4: Sum the contributions and divide by 100.\n$A_r = \\frac{2649.5769 + 895.7831}{100} = \\frac{3545.36}{100}$\n\nStep 5: State the final answer to the required precision.\n$A_r = 35.4536$\nTo two decimal places, $A_r = 35.45$\n\n[1 mark for correct formula/substitution, 1 mark for the final correct answer]"
+    },
+    {
+      "type": "workedExample",
+      "question": "Boron has a relative atomic mass of 10.81. It consists of two isotopes, $^{10}\\text{B}$ (isotopic mass 10.01) and $^{11}\\text{B}$ (isotopic mass 11.01). Calculate the percentage abundance of the $^{10}\\text{B}$ isotope.",
+      "solution": "Step 1: Define variables for the unknown abundances.\nLet the percentage abundance of $^{10}\\text{B}$ be $x$.\nSince there are only two isotopes, the percentage abundance of $^{11}\\text{B}$ must be $(100 - x)$.\n\nStep 2: Set up the equation for relative atomic mass.\n$10.81 = \\frac{(10.01 \\times x) + (11.01 \\times (100 - x))}{100}$\n\nStep 3: Solve the equation for $x$. First, multiply both sides by 100.\n$1081 = 10.01x + 1101 - 11.01x$\n\nStep 4: Rearrange the equation to isolate terms with $x$.\n$1081 = 1101 - 1.00x$\n$1.00x = 1101 - 1081$\n$1.00x = 20$\n$x = 20$\n\nStep 5: State the final answer clearly.\nThe percentage abundance of $^{10}\\text{B}$ is 20%.\n(The abundance of $^{11}\\text{B}$ is therefore 80%).\n\n[1 mark for setting up the abundance as x and 100-x, 1 mark for the correct algebraic setup, 1 mark for the final correct answer]"
     },
     {
       "type": "examTip",
-      "content": "When Ar is quoted to one decimal place in the Periodic Table (e.g. Cl = 35.5), it reflects isotope mixtures — not rounding error. Show your weighted-mean working for M marks."
+      "content": "In calculations for $A_r$, always use the precise isotopic masses given in the question, not just the mass numbers. If isotopic masses are not provided, you may assume they are equal to the mass numbers (e.g., 35 and 37 for chlorine). Pay close attention to the number of decimal places or significant figures required in the final answer."
+    },
+    {
+      "type": "heading",
+      "content": "Properties and Applications of Isotopes"
+    },
+    {
+      "type": "text",
+      "content": "Since isotopes of an element have the identical electron configuration (the same number of electrons in the same orbitals), they exhibit the same chemical properties. They react in exactly the same way. However, their physical properties, which depend on mass, can differ slightly. Heavier isotopes diffuse more slowly and have slightly higher densities and boiling points. The most significant difference arises when an isotope is unstable. These 'radioisotopes' have an unstable neutron-to-proton ratio in their nucleus, causing them to undergo radioactive decay. This property is harnessed in applications like carbon-14 dating, medical imaging (e.g., PET scans using fluorine-18), and cancer therapy (e.g., cobalt-60)."
     },
     {
       "type": "practice",
-      "label": "Mark an isotopes question",
+      "label": "Isotopes",
       "href": "/mark?subject=9701&topic=1.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Isotopes and Atomic Mass",
-          "href": "https://phet.colorado.edu/en/simulations/isotopes-and-atomic-mass"
+          "label": "Detailed notes on Isotopes from ChemGuide",
+          "href": "https://www.chemguide.co.uk/atoms/atomic/isotopes.html"
         },
         {
-          "label": "9701 course index",
-          "href": "/courses/9701"
+          "label": "Mass Spectrometry explained by the Royal Society of Chemistry",
+          "href": "https://edu.rsc.org/resources/mass-spectrometry/2098.article"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

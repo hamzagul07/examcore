@@ -5,62 +5,174 @@
   "paper": "AS",
   "paperName": "AS Level Subject Content",
   "status": "premium",
-  "summary": "9701 AS gas laws and the ideal gas equation pV = nRT — with PhET Gas Properties simulation for visualising particle behaviour.",
-  "durationMin": 20,
+  "summary": "This lesson introduces the kinetic theory of gases and the ideal gas equation, pV = nRT. It covers the relationships between pressure, volume, and temperature for an 'ideal' gas and explores the conditions under which real gases deviate from this ideal behaviour.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "State the assumptions of the kinetic theory of ideal gases.",
-    "Apply pV = nRT with correct units (Pa, m³, K or kPa, dm³).",
-    "Combine gas laws: Boyle, Charles, and the ideal gas equation.",
-    "Explain deviations from ideal behaviour at high pressure and low temperature."
+    "State the basic assumptions of the kinetic theory as applied to an ideal gas.",
+    "Use the ideal gas equation, pV = nRT, in calculations, including the determination of M_r.",
+    "Explain the limitations of ideality and the conditions under which real gases deviate from the ideal gas laws.",
+    "Convert between different units of pressure (Pa, kPa), volume (m³, dm³, cm³), and temperature (°C, K)."
   ],
   "simpleExplanation": {
-    "title": "Particles in a box",
-    "summary": "Ideal gases have particles that move randomly, collide elastically, and occupy negligible volume. The equation pV = nRT links pressure, volume, amount, and temperature.",
+    "title": "The Rules of Gas Behaviour",
+    "summary": "Gases are mostly empty space with particles in constant, random motion. The ideal gas law is a simple but powerful equation that describes how a gas's pressure, volume, and temperature are all interconnected.",
+    "analogy": "Imagine a large, empty hall with a few hyperactive dancers. The dancers are the gas particles. They move in straight lines until they bounce off a wall (creating pressure) or each other. The speed of their dancing is their temperature. The ideal gas law is like the rulebook that connects the size of the hall, the number of dancers, the force of their wall collisions, and the tempo of the music.",
     "steps": [
-      "At constant T, pressure increases when volume decreases (Boyle's law).",
-      "At constant p, volume is proportional to absolute temperature (Charles's law).",
-      "Combine into pV = nRT — always use kelvin for T and consistent pressure/volume units.",
-      "Real gases deviate when particles are close together (intermolecular forces matter)."
+      "Ideal gas: particles far apart, random motion, elastic collisions.",
+      "Boyle’s law: p ∝ 1/V at constant T (n fixed).",
+      "Charles’s law: V ∝ T at constant p; Gay-Lussac: p ∝ T at constant V.",
+      "Ideal gas equation: pV = nRT (R = 8.31 J mol⁻¹ K⁻¹)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are the two main assumptions made for an ideal gas?",
+      "back": "1. The gas particles themselves have negligible volume (they are point masses). 2. There are no intermolecular forces of attraction or repulsion between the particles."
+    },
+    {
+      "front": "What is an elastic collision?",
+      "back": "A collision in which the total kinetic energy of the colliding particles is conserved. Ideal gas particles are assumed to undergo perfectly elastic collisions."
+    },
+    {
+      "front": "What is the ideal gas equation?",
+      "back": "pV = nRT"
+    },
+    {
+      "front": "What are the standard SI units for each variable in the ideal gas equation?",
+      "back": "p: Pascals (Pa)\nV: cubic metres (m³)\nn: moles (mol)\nT: Kelvin (K)"
+    },
+    {
+      "front": "What is the value and what are the units of the molar gas constant, R?",
+      "back": "R = 8.31 J mol⁻¹ K⁻¹ (Joules per mole per Kelvin)."
+    },
+    {
+      "front": "How do you convert from degrees Celsius (°C) to Kelvin (K)?",
+      "back": "K = °C + 273.15 (For A-Level, using +273 is usually sufficient)."
+    },
+    {
+      "front": "How do you convert a volume in cm³ to m³?",
+      "back": "Divide by 1,000,000 (or multiply by 10⁻⁶). \n1 m³ = 1,000,000 cm³."
+    },
+    {
+      "front": "How do you convert a volume in dm³ to m³?",
+      "back": "Divide by 1,000 (or multiply by 10⁻³). \n1 m³ = 1,000 dm³."
+    },
+    {
+      "front": "Under what two conditions do real gases deviate most from ideal behaviour?",
+      "back": "High pressure and low temperature."
+    },
+    {
+      "front": "Why do real gases deviate from ideal behaviour at high pressure?",
+      "back": "At high pressure, particles are forced close together. The volume of the particles themselves becomes significant compared to the total volume, violating an ideal gas assumption."
+    },
+    {
+      "front": "Why do real gases deviate from ideal behaviour at low temperature?",
+      "back": "At low temperature, particles have less kinetic energy. Intermolecular forces become significant and can cause particles to 'stick' together, reducing the pressure exerted on the container walls compared to an ideal gas."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why must temperature be in Kelvin for gas law calculations?",
+      "a": "The Kelvin scale is an absolute temperature scale, where 0 K represents absolute zero – the point at which particles have minimum kinetic energy. Gas laws like Charles's Law (V ∝ T) rely on this direct proportionality. Using Celsius would lead to incorrect results, as 0 °C is not an absolute zero point and the scale allows for negative values, which would imply negative volume or pressure."
+    },
+    {
+      "q": "How can I derive the units for the gas constant, R?",
+      "a": "You can rearrange the ideal gas equation to R = pV/nT. Then, substitute the SI units for each variable: R = (Pa × m³) / (mol × K). A Pascal is a Newton per square metre (N m⁻²), so Pa × m³ = (N m⁻²) × m³ = N m. A Newton-metre is a Joule (J), the unit of energy. Therefore, the units of R are J mol⁻¹ K⁻¹."
+    },
+    {
+      "q": "Which gas behaves most like an ideal gas?",
+      "a": "Gases with very weak intermolecular forces and small particle size behave most ideally. Therefore, helium (He) and hydrogen (H₂) are the most ideal of the real gases, as they are small and have only weak London dispersion forces."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "Gas calculations appear on **every 9701 AS paper**. The most common error is **unit mismatch** — mixing kPa with cm³ without converting. Use the sim to build intuition before tackling past-paper algebra."
+      "content": "Gases represent a unique state of matter, characterised by particles that are widely separated and in constant, rapid, and random motion. To simplify the complex behaviour of real gases, chemists use the model of an 'ideal gas'. This lesson explores the properties of ideal gases, the mathematical laws that govern them, and the reasons why real gases sometimes behave differently."
+    },
+    {
+      "type": "heading",
+      "content": "The Kinetic-Molecular Theory and Ideal Gases"
+    },
+    {
+      "type": "text",
+      "content": "The kinetic-molecular theory provides a model to explain the properties of gases. An 'ideal gas' is a hypothetical gas that perfectly follows all the assumptions of this theory. While no gas is truly ideal, this model is extremely useful for predicting gas behaviour under many conditions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gas particles are in continuous, random, straight-line motion.",
+        "The volume of the gas particles is negligible compared to the volume of the container.",
+        "There are no attractive or repulsive forces between gas particles.",
+        "Collisions between particles and with the container walls are perfectly elastic (no kinetic energy is lost).",
+        "The average kinetic energy of the gas particles is directly proportional to the absolute temperature (in Kelvin)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Ideal Gas Equation"
+    },
+    {
+      "type": "text",
+      "content": "The relationships between pressure (p), volume (V), number of moles (n), and temperature (T) for an ideal gas are combined into a single, powerful equation. This is known as the ideal gas equation. It builds upon the work of scientists like Boyle, Charles, and Gay-Lussac."
     },
     {
       "type": "formula",
-      "content": "pV = nRT | R = 8.31 J mol⁻¹ K⁻¹ (SI) | At rtp: 1 mol gas ≈ 24 dm³ | T(K) = T(°C) + 273"
+      "content": "pV = nRT"
     },
     {
-      "type": "workedExample",
-      "question": "Calculate the mass of CO₂ in a 500 cm³ flask at 100 kPa and 25 °C. (Mr CO₂ = 44.0)",
-      "solution": "V = 500 cm³ = 5.00 × 10⁻⁴ m³ (or use dm³: 0.500 dm³ with R = 8.31 and p in Pa — pick one system).\n\nT = 25 + 273 = 298 K\n\nn = pV/RT = (100000 × 5.00×10⁻⁴) / (8.31 × 298) = 0.0202 mol\n\nm = 0.0202 × 44.0 = **0.889 g**"
+      "type": "text",
+      "content": "In this equation, 'R' is a constant of proportionality called the molar gas constant. Its value is 8.31 J mol⁻¹ K⁻¹. It is crucial to use the correct SI units for all variables to ensure your calculation is valid. Pressure must be in Pascals (Pa), volume in cubic metres (m³), and temperature in Kelvin (K)."
     },
     {
       "type": "examTip",
-      "content": "Show **conversion to SI** or state clearly if using p in kPa and V in dm³ with an appropriate R value. Cambridge mark schemes often award a conversion mark before the final answer."
+      "content": "Memorise the key unit conversions: 1 kPa = 1000 Pa, 1 m³ = 1000 dm³, and 1 dm³ = 1000 cm³. The most common mistake is forgetting to convert volume from cm³ or dm³ into m³, or pressure from kPa into Pa. Always convert temperature to Kelvin by adding 273 to the Celsius value."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the volume occupied by 0.500 mol of nitrogen gas at a pressure of 150 kPa and a temperature of 25 °C. (R = 8.31 J mol⁻¹ K⁻¹)",
+      "solution": "Step 1: List the variables and convert units.\np = 150 kPa = 150 × 10³ Pa = 150,000 Pa\nV = ?\nn = 0.500 mol\nT = 25 °C = 25 + 273 = 298 K\nR = 8.31 J mol⁻¹ K⁻¹\n\nStep 2: Rearrange the ideal gas equation to solve for V.\npV = nRT  =>  V = nRT / p\n\nStep 3: Substitute the values and calculate.\nV = (0.500 mol × 8.31 J mol⁻¹ K⁻¹ × 298 K) / 150,000 Pa\nV = 1238.79 / 150,000\nV = 0.0082586 m³\n\nStep 4: Give the answer to an appropriate number of significant figures and in sensible units.\nThe data is given to 3 significant figures, so the answer should be too.\nV = 0.00826 m³\nAlternatively, converting to dm³: 0.00826 m³ × 1000 = 8.26 dm³."
+    },
+    {
+      "type": "heading",
+      "content": "Real Gases vs. Ideal Gases"
+    },
+    {
+      "type": "text",
+      "content": "The ideal gas model is a simplification. Real gases, like oxygen or carbon dioxide, have particles that do occupy a small but finite volume, and they do experience weak intermolecular forces (van der Waals forces). These factors cause real gases to deviate from ideal behaviour, particularly under specific conditions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Deviation is greatest at **high pressure**: The volume of particles is no longer negligible as they are forced closer together. The measured volume is larger than an ideal gas would predict.",
+        "Deviation is greatest at **low temperature**: Particles have low kinetic energy, so intermolecular forces become significant. Particles are pulled together, reducing the frequency and force of collisions with the container walls. This results in a lower pressure than an ideal gas would exert."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A cylinder contains 250 cm³ of a gas at 1.00 × 10⁵ Pa and 300 K. The gas is compressed to a volume of 100 cm³ and heated to 350 K. What is the new pressure inside the cylinder?",
+      "solution": "Step 1: Since the amount of gas (n) is constant, we can use the combined gas law, which is a rearrangement of the ideal gas equation: p₁V₁/T₁ = p₂V₂/T₂.\n\nStep 2: List the initial and final conditions. Note that for this type of 'two-state' problem, volume units can be kept consistent (e.g., both cm³) as they will cancel out. Temperature must always be in Kelvin.\nInitial state (1):\np₁ = 1.00 × 10⁵ Pa\nV₁ = 250 cm³\nT₁ = 300 K\n\nFinal state (2):\np₂ = ?\nV₂ = 100 cm³\nT₂ = 350 K\n\nStep 3: Rearrange the equation to solve for p₂.\np₂ = (p₁V₁T₂) / (T₁V₂)\n\nStep 4: Substitute the values and calculate.\np₂ = (1.00 × 10⁵ Pa × 250 cm³ × 350 K) / (300 K × 100 cm³)\np₂ = 8,750,000,000 / 30,000\np₂ = 291,666.67 Pa\n\nStep 5: Give the answer to an appropriate number of significant figures.\nThe data is given to 3 significant figures.\np₂ = 2.92 × 10⁵ Pa"
     },
     {
       "type": "practice",
-      "label": "Mark a gas law question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9701&topic=4.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Gas Properties",
-          "href": "https://phet.colorado.edu/en/simulations/gas-properties"
+          "label": "Chemguide: The Ideal Gas Equation",
+          "href": "https://www.chemguide.co.uk/physical/kt/idealgases.html"
         },
         {
-          "label": "9701 course index",
-          "href": "/courses/9701"
+          "label": "Khan Academy: Ideal Gas Equation",
+          "href": "https://www.khanacademy.org/science/chemistry/gases-and-kinetic-molecular-theory/ideal-gas-laws/a/the-ideal-gas-law"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

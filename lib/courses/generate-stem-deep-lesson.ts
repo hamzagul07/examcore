@@ -112,7 +112,8 @@ function parseDeepSpec(raw: Record<string, unknown>): StemDeepSpec {
 
 export function deepSpecToLesson(
   params: GenerateStemDeepParams,
-  spec: StemDeepSpec
+  spec: StemDeepSpec,
+  opts: { status?: CourseLesson['status'] } = {}
 ): CourseLesson {
   const { subjectCode, topic } = params
   const slug = topicToLessonSlug(topic.code, topic.name)
@@ -122,7 +123,7 @@ export function deepSpecToLesson(
     title: topic.name,
     paper: topic.paper,
     paperName: topic.paperName,
-    status: 'pilot',
+    status: opts.status ?? 'pilot',
     summary:
       spec.summary?.trim() ||
       `Cambridge ${subjectCode} pilot lesson: ${topic.name} (${topic.code}) for ${topic.paperName}.`,
@@ -139,7 +140,7 @@ export function deepSpecToLesson(
 
 export async function generateStemDeepLesson(
   params: GenerateStemDeepParams,
-  opts: { maxRetries?: number } = {}
+  opts: { maxRetries?: number; status?: CourseLesson['status'] } = {}
 ): Promise<{ lesson: CourseLesson; issues: string[] }> {
   const slug = topicToLessonSlug(params.topic.code, params.topic.name)
   const maxRetries = opts.maxRetries ?? 3
@@ -155,7 +156,7 @@ export async function generateStemDeepLesson(
       })
       const parsed = extractJSON(rawText) as Record<string, unknown>
       const spec = parseDeepSpec(parsed)
-      let lesson = deepSpecToLesson(params, spec)
+      let lesson = deepSpecToLesson(params, spec, { status: opts.status })
       lesson = sanitizeLessonMath(lesson)
       lesson = syncLessonStepsToCatalog(lesson)
       lesson = hydrateLessonCatalogVisuals(lesson)

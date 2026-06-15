@@ -5,101 +5,200 @@
   "paper": "AS",
   "paperName": "AS Level Subject Content",
   "status": "premium",
-  "summary": "Free Cambridge 9701 AS Chemistry — protons, neutrons, electrons, atomic number, mass number, ions, and trends in atomic radius with a live Build an Atom PhET simulation.",
-  "durationMin": 18,
+  "summary": "An introduction to the fundamental particles within an atom (protons, neutrons, electrons), how they define elements and isotopes, and how their arrangement influences atomic and ionic radii trends across the periodic table.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Describe the relative charges and masses of protons, neutrons, and electrons.",
-    "Define atomic number, mass number, and relative atomic mass.",
-    "Explain how ions form and deduce the number of subatomic particles in atoms and ions.",
-    "Describe the trend in atomic radius across a period and down a group."
+    "Identify and describe the properties (relative mass and charge) of protons, neutrons, and electrons.",
+    "Define and apply the terms atomic number (Z), mass number (A), and isotope.",
+    "Explain and predict the trends in atomic radius across a period and down a group of the Periodic Table.",
+    "Explain the formation of ions and compare the radii of cations and anions with their parent atoms."
   ],
   "simpleExplanation": {
-    "title": "Building blocks of matter",
-    "summary": "Every atom has a dense positive nucleus (protons + neutrons) surrounded by electrons in shells. The PhET sim lets you assemble atoms and see how particle counts determine identity, mass, and charge.",
+    "title": "The Atom's Blueprint",
+    "summary": "Atoms are built from simple rules involving protons, neutrons, and electrons. These rules determine an element's identity, mass, and size.",
+    "analogy": "Imagine a solar system. The sun is the nucleus, its mass and gravitational pull determined by the protons and neutrons inside. The planets are electrons in different orbits (shells). A stronger sun (more protons) pulls the same number of orbits in closer, making the solar system smaller.",
     "steps": [
-      "Add protons to set the element — atomic number Z equals the proton count.",
-      "Add neutrons to change mass number A without changing which element it is.",
-      "Balance electrons with protons for a neutral atom; gain or lose electrons to form ions.",
-      "Compare atoms across Period 3 — nuclear charge pulls electrons closer, so radius decreases left to right."
+      "Atoms contain protons and neutrons in the nucleus, electrons in shells.",
+      "Atomic number Z = proton number; mass number A = protons + neutrons.",
+      "Ions form when electrons are gained or lost — charge = protons − electrons.",
+      "Atomic radius decreases across a period (increasing nuclear charge)."
     ]
   },
   "flashcards": [
     {
-      "front": "Relative mass and charge of a proton?",
-      "back": "Mass ≈ 1; charge +1 (same magnitude as electron, opposite sign)."
+      "front": "What are the relative mass and relative charge of a proton?",
+      "back": "Relative mass: 1. Relative charge: +1."
     },
     {
-      "front": "What is atomic number Z?",
-      "back": "Number of protons in the nucleus — defines the element."
+      "front": "What are the relative mass and relative charge of a neutron?",
+      "back": "Relative mass: 1. Relative charge: 0."
     },
     {
-      "front": "What is mass number A?",
-      "back": "Total number of protons + neutrons in the nucleus."
+      "front": "What are the relative mass and relative charge of an electron?",
+      "back": "Relative mass: 1/1840 (often considered negligible). Relative charge: -1."
     },
     {
-      "front": "How many electrons in the Fe³⁺ ion (Z = 26)?",
-      "back": "26 − 3 = 23 electrons."
+      "front": "Define Atomic Number (Z).",
+      "back": "The number of protons in the nucleus of an atom. It defines the element."
     },
     {
-      "front": "Trend in atomic radius across Period 3?",
-      "back": "Decreases — increasing nuclear charge attracts electrons more strongly."
+      "front": "Define Mass Number (A).",
+      "back": "The total number of protons and neutrons in the nucleus of an atom."
     },
     {
-      "front": "Trend in atomic radius down Group 1?",
-      "back": "Increases — additional electron shells outweigh increased nuclear charge."
+      "front": "Define isotopes.",
+      "back": "Atoms of the same element (same number of protons) but with different numbers of neutrons (and thus different mass numbers)."
+    },
+    {
+      "front": "Why does atomic radius decrease across a period?",
+      "back": "Nuclear charge increases, but shielding remains similar as electrons are added to the same principal shell. This causes a stronger attraction on the outer electrons, pulling them closer to the nucleus."
+    },
+    {
+      "front": "Why does atomic radius increase down a group?",
+      "back": "The number of principal electron shells increases. The increased shielding from inner shells outweighs the effect of the increased nuclear charge, so the outer electrons are further from the nucleus."
+    },
+    {
+      "front": "Why is a positive ion (cation) smaller than its parent atom?",
+      "back": "The ion has lost its outer shell of electrons, and/or there is less electron-electron repulsion among the remaining electrons, which are pulled more tightly by the unchanged nuclear charge."
+    },
+    {
+      "front": "Why is a negative ion (anion) larger than its parent atom?",
+      "back": "An extra electron has been added, increasing electron-electron repulsion. The electrons are pushed further apart, and the unchanged nuclear charge cannot hold them as tightly."
+    },
+    {
+      "front": "What does the term 'isoelectronic' mean?",
+      "back": "Used to describe different species (atoms or ions) that have the same number of electrons and the same electron configuration. For example, $O^{2-}$, $F^{-}$, $Ne$, and $Na^{+}$ are all isoelectronic."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why isn't the mass number shown on the periodic table a whole number?",
+      "a": "The mass on the periodic table is the relative atomic mass ($A_r$), which is the weighted average mass of all the naturally occurring isotopes of an element, relative to 1/12th the mass of a carbon-12 atom. Since most elements exist as a mixture of isotopes, the average is not a whole number."
+    },
+    {
+      "q": "What exactly is 'electron shielding'?",
+      "a": "Electron shielding (or screening) is the effect where electrons in inner shells repel the outermost (valence) electrons. This repulsion partially cancels out the attractive force of the positive nucleus, reducing the 'effective nuclear charge' experienced by the valence electrons."
+    },
+    {
+      "q": "Is a neutron exactly the same mass as a proton?",
+      "a": "They are extremely similar in mass, and for A-Level Chemistry, their relative masses are both taken as 1. In reality, a neutron is very slightly heavier than a proton, but this difference is negligible for most chemical calculations."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "Atomic structure is the foundation of **9701 Chemistry**. Examiners expect precise definitions, correct subatomic counts in ions, and clear explanations of **periodic trends**. Use the **PhET Build an Atom** simulation below to connect particle counts to symbols and charges."
+      "content": "Welcome to the fundamental building blocks of chemistry. In this lesson, we will deconstruct the atom to understand its constituent particles. We will see how the number of these particles defines an element and its properties, such as its size, which follows predictable patterns in the Periodic Table."
     },
     {
       "type": "heading",
-      "content": "Subatomic particles"
+      "content": "The Subatomic Particles"
     },
     {
-      "type": "formula",
-      "content": "Mass number A = protons + neutrons. Atomic number Z = protons. In a neutral atom: electrons = protons. Ion charge = protons − electrons."
+      "type": "text",
+      "content": "Atoms are composed of three main types of subatomic particles: protons, neutrons, and electrons. Protons and neutrons are found together in a dense, central core called the nucleus. Electrons orbit the nucleus in specific energy levels or shells. The properties of these particles are crucial to understanding all of chemistry."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Proton number defines the element — changing it changes the element",
-        "Isotopes have the same Z but different neutron numbers (see topic 1.2)",
-        "Most mass is in the nucleus; most volume is empty space with electrons",
-        "Atomic radius is a measure of the size of the outer electron shell"
+        "Proton (p): Relative mass = 1, Relative charge = +1",
+        "Neutron (n): Relative mass = 1, Relative charge = 0",
+        "Electron (e⁻): Relative mass ≈ 1/1840 (negligible), Relative charge = -1"
       ]
     },
     {
+      "type": "heading",
+      "content": "Defining an Element: Atomic and Mass Numbers"
+    },
+    {
+      "type": "text",
+      "content": "The identity of an element is determined solely by its atomic number, Z, which is the number of protons in its nucleus. The mass number, A, represents the total number of nucleons (protons and neutrons) in the nucleus. We can represent any nuclide using the standard notation:"
+    },
+    {
+      "type": "formula",
+      "content": "$^{A}_{Z}X$"
+    },
+    {
+      "type": "text",
+      "content": "In this notation, X is the element symbol, A is the mass number, and Z is the atomic number. The number of neutrons can be calculated by $A - Z$. In a neutral atom, the number of electrons is equal to the number of protons (Z)."
+    },
+    {
       "type": "workedExample",
-      "question": "An ion contains 53 protons, 74 neutrons, and 54 electrons. Identify the ion and its mass number.",
-      "solution": "Z = 53 → iodine (I).\n\nMass number A = 53 + 74 = 127.\n\nCharge = 53 − 54 = −1 → ion is **¹²⁷₅₃I⁻**."
+      "question": "Determine the number of protons, neutrons, and electrons in a neutral atom of chlorine-35 ($^{35}_{17}Cl$) and its isotope, chlorine-37 ($^{37}_{17}Cl$).",
+      "solution": "For $^{35}_{17}Cl$:\n- Protons = Atomic Number (Z) = 17\n- Electrons = Number of protons (as it's a neutral atom) = 17\n- Neutrons = Mass Number (A) - Atomic Number (Z) = 35 - 17 = 18\n\nFor $^{37}_{17}Cl$:\n- Protons = Atomic Number (Z) = 17 (It's still chlorine)\n- Electrons = Number of protons = 17\n- Neutrons = Mass Number (A) - Atomic Number (Z) = 37 - 17 = 20\n\nNote that both are isotopes of chlorine as they have the same number of protons but a different number of neutrons."
+    },
+    {
+      "type": "heading",
+      "content": "Ions: When Atoms Gain or Lose Electrons"
+    },
+    {
+      "type": "text",
+      "content": "Atoms are electrically neutral because they have an equal number of protons (+) and electrons (-). However, atoms can gain or lose electrons to form charged particles called ions. Losing electrons results in a positive ion (cation), while gaining electrons results in a negative ion (anion)."
+    },
+    {
+      "type": "formula",
+      "content": "Charge of ion = (Number of protons) − (Number of electrons)"
+    },
+    {
+      "type": "workedExample",
+      "question": "A magnesium atom, $^{24}_{12}Mg$, loses two electrons to form a magnesium ion. State the symbol for this ion and calculate the number of protons, neutrons, and electrons it contains.",
+      "solution": "1. **Symbol:** Losing two electrons results in a 2+ charge. The symbol is $Mg^{2+}$.\n2. **Protons:** The number of protons does not change when an ion is formed. Protons = Z = 12.\n3. **Neutrons:** Neutrons = A - Z = 24 - 12 = 12.\n4. **Electrons:** The neutral atom had 12 electrons. It lost 2, so the ion has 12 - 2 = 10 electrons.\n\nSo, the $Mg^{2+}$ ion has 12 protons, 12 neutrons, and 10 electrons."
+    },
+    {
+      "type": "heading",
+      "content": "Trends in Atomic Radius"
+    },
+    {
+      "type": "text",
+      "content": "The atomic radius is a measure of the size of an atom, typically defined as half the distance between the nuclei of two identical atoms bonded together. This property shows clear trends in the Periodic Table."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Across a Period (e.g., Li to Ne):** Atomic radius decreases. As you move across, a proton is added to the nucleus and an electron is added to the same principal energy shell. The increasing nuclear charge attracts the electrons more strongly, pulling the shell closer to the nucleus. The shielding effect from inner electrons is relatively constant.",
+        "**Down a Group (e.g., Li to Cs):** Atomic radius increases. As you move down, electrons occupy successively higher principal energy shells, which are further from the nucleus. Although the nuclear charge increases, this is outweighed by the increased distance and the shielding effect of the additional inner electron shells."
+      ]
     },
     {
       "type": "examTip",
-      "content": "In subatomic counting questions, write a mini table: protons, neutrons, electrons, charge. Examiners often trap candidates who forget that **mass number applies to the nucleus only**, not the whole atom including electrons."
+      "content": "When asked to explain trends in atomic or ionic radius, you must refer to three key factors for full marks: 1. **Nuclear charge** (number of protons), 2. **Electron shielding** (repulsion from inner shells), and 3. The **number of occupied principal electron shells**."
+    },
+    {
+      "type": "heading",
+      "content": "Comparing Ionic Radii"
+    },
+    {
+      "type": "text",
+      "content": "The radius of an ion is different from its parent atom. Cations (positive ions) are always smaller than their parent atoms because they have lost their outermost electrons, leading to a decrease in repulsion and a stronger pull from the nucleus on the remaining electrons. Anions (negative ions) are always larger than their parent atoms because the addition of electrons increases electron-electron repulsion, causing the electron cloud to expand."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Cation radius < Parent atom radius (e.g., $Na^{+}$ is smaller than $Na$)",
+        "Anion radius > Parent atom radius (e.g., $Cl^{-}$ is larger than $Cl$)",
+        "For an isoelectronic series (same number of electrons), the species with the most protons will be the smallest due to the greatest nuclear attraction. E.g., $Mg^{2+}$ is smaller than $Na^{+}$, which is smaller than $Ne$."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark an atomic structure question",
+      "label": "Test your knowledge on atomic structure and radii",
       "href": "/mark?subject=9701&topic=1.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "PhET Build an Atom (source sim)",
+          "label": "Build an Atom - PhET Interactive Simulation",
           "href": "https://phet.colorado.edu/en/simulations/build-an-atom"
         },
         {
-          "label": "9701 Chemistry course index",
-          "href": "/courses/9701"
+          "label": "Chemguide - Atomic and Ionic Radius",
+          "href": "https://www.chemguide.co.uk/atoms/properties/atradius.html"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

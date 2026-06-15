@@ -1759,12 +1759,14 @@ const SPECS: Record<string, LessonDiagramSpec> = {
   ]),
 
   // ── 9618 batch 11 ───────────────────────────────────────────────────────
-  '15-1-processors-parallel-processing-and-virtual-machines': embedSpec([
-    { caption: 'Fetch–decode–execute cycle per core.', embedHint: 'Pipelining overlaps stages.' },
-    { caption: 'Multi-core: true parallel threads.', embedHint: 'Shared memory vs distributed.' },
-    { caption: 'Virtual machine: guest OS on hypervisor.', embedHint: 'Resource isolation and portability.' },
-    { caption: 'Parallel processing: SIMD vs MIMD.', embedHint: 'GPU vs multi-core CPU.' },
-  ]),
+  '15-1-processors-parallel-processing-and-virtual-machines': {
+    steps: [
+      { focus: ['fde'], caption: 'Fetch–decode–execute cycle per core.', embedHint: 'Pipelining overlaps stages.' },
+      { focus: ['multicore'], caption: 'Multi-core: true parallel threads.', embedHint: 'Shared memory vs distributed.' },
+      { focus: ['vm'], caption: 'Virtual machine: guest OS on hypervisor.', embedHint: 'Resource isolation and portability.' },
+      { focus: ['parallel'], caption: 'Parallel processing: SIMD vs MIMD.', embedHint: 'GPU vs multi-core CPU.' },
+    ],
+  },
 
   // ── 9701 batch 12 ───────────────────────────────────────────────────────
   '35-3-degradable-polymers': embedSpec([
@@ -2117,30 +2119,36 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Contrast with double-slit interference (path difference).', embedHint: 'Diffraction envelope modulates interference pattern.' },
   ]),
 
-  '1-2-1-multimedia-graphics': embedSpec([
-    { caption: 'Bitmap stores colour of each pixel — resolution = width × height.', embedHint: 'Higher colour depth increases file size.' },
-    { caption: 'Vector graphics store objects as equations/paths.', embedHint: 'Scale without pixelation — logos and diagrams.' },
-    { caption: 'Metadata and compression (lossy vs lossless).', embedHint: 'JPEG vs PNG trade-offs for photos vs diagrams.' },
-    { caption: 'Exam: calculate file size from resolution and bit depth.', embedHint: 'Size ≈ pixels × bits per pixel ÷ 8.' },
-  ]),
+  '1-2-1-multimedia-graphics': {
+    steps: [
+      { focus: ['bitmap'], caption: 'Bitmap stores colour of each pixel — resolution = width × height.', embedHint: 'Higher colour depth increases file size.' },
+      { focus: ['vector'], caption: 'Vector graphics store objects as equations/paths.', embedHint: 'Scale without pixelation — logos and diagrams.' },
+      { focus: ['compression'], caption: 'Metadata and compression (lossy vs lossless).', embedHint: 'JPEG vs PNG trade-offs for photos vs diagrams.' },
+      { focus: ['filesize'], caption: 'Exam: calculate file size from resolution and bit depth.', embedHint: 'Size ≈ pixels × bits per pixel ÷ 8.' },
+    ],
+  },
   '1-2-2-multimedia-sound': embedSpec([
     { caption: 'Sound digitised by sampling amplitude at fixed intervals.', embedHint: 'Sampling rate in Hz — Nyquist: rate > 2× max frequency.' },
     { caption: 'Bit depth sets amplitude resolution.', embedHint: 'Higher depth → larger files, less quantisation noise.' },
     { caption: 'Play the sim — link frequency to pitch, amplitude to loudness.', embedHint: 'Wavelength and medium affect speed, not pitch.' },
     { caption: 'Compression: MP3 lossy vs WAV lossless.', embedHint: 'Bitrate (kbps) trades quality for size.' },
   ]),
-  '6-1-data-security': embedSpec([
-    { caption: 'Threats: unauthorised access, malware, interception.', embedHint: 'Match control to threat (firewall, antivirus, encryption).' },
-    { caption: 'Access levels and authentication (password, 2FA, biometrics).', embedHint: 'Principle of least privilege.' },
-    { caption: 'Backup strategies: full, incremental, off-site.', embedHint: 'Recovery point vs recovery time objectives.' },
-    { caption: 'Physical security complements logical controls.', embedHint: 'Locks, CCTV, and secure disposal of storage.' },
-  ]),
-  '7-1-ethics-and-ownership': embedSpec([
-    { caption: 'Copyright protects expression; patents protect inventions.', embedHint: 'Software licences: proprietary, open source, shareware.' },
-    { caption: 'Plagiarism and citing sources in coursework.', embedHint: 'Academic integrity and referencing standards.' },
-    { caption: 'Professional bodies and codes of conduct.', embedHint: 'Duty of care, confidentiality, and competence.' },
-    { caption: 'AI and automation — bias, accountability, job impact.', embedHint: 'Discuss ethical frameworks for new technology.' },
-  ]),
+  '6-1-data-security': {
+    steps: [
+      { focus: ['threats'], caption: 'Threats: unauthorised access, malware, interception.', embedHint: 'Match control to threat (firewall, antivirus, encryption).' },
+      { focus: ['auth'], caption: 'Access levels and authentication (password, 2FA, biometrics).', embedHint: 'Principle of least privilege.' },
+      { focus: ['backup'], caption: 'Backup strategies: full, incremental, off-site.', embedHint: 'Recovery point vs recovery time objectives.' },
+      { focus: ['physical'], caption: 'Physical security complements logical controls.', embedHint: 'Locks, CCTV, and secure disposal of storage.' },
+    ],
+  },
+  '7-1-ethics-and-ownership': {
+    steps: [
+      { focus: ['copyright'], caption: 'Copyright protects expression; patents protect inventions.', embedHint: 'Software licences: proprietary, open source, shareware.' },
+      { focus: ['plagiarism'], caption: 'Plagiarism and citing sources in coursework.', embedHint: 'Academic integrity and referencing standards.' },
+      { focus: ['conduct'], caption: 'Professional bodies and codes of conduct.', embedHint: 'Duty of care, confidentiality, and competence.' },
+      { focus: ['ai-ethics'], caption: 'AI and automation — bias, accountability, job impact.', embedHint: 'Discuss ethical frameworks for new technology.' },
+    ],
+  },
   '8-1-database-concepts': {
     steps: [
       {
@@ -2165,30 +2173,38 @@ const SPECS: Record<string, LessonDiagramSpec> = {
       },
     ],
   },
-  '10-1-data-types-and-records': embedSpec([
-    { caption: 'Atomic types: INTEGER, REAL, CHAR, STRING, BOOLEAN, DATE.', embedHint: 'Choose type to match domain and storage.' },
-    { caption: 'RECORD / STRUCT groups fields under one identifier.', embedHint: 'Dot notation: Student.Name, Student.DOB.' },
-    { caption: 'DECLARE and assignment in pseudocode.', embedHint: 'Strong typing catches errors at compile time.' },
-    { caption: 'Enumerated types restrict values to a fixed set.', embedHint: 'e.g. DayType = (Mon, Tue, …, Sun).' },
-  ]),
-  '10-2-arrays': embedSpec([
-    { caption: '1D array: indexed list of same-type elements.', embedHint: 'Bounds: lower..upper or 0..n−1 depending on language.' },
-    { caption: '2D array: rows and columns — matrix storage.', embedHint: 'Nested loops for row-major traversal.' },
-    { caption: 'Linear search vs binary search on sorted data.', embedHint: 'Binary search O(log n) — requires ordered array.' },
-    { caption: 'Stack and queue as restricted array access patterns.', embedHint: 'LIFO vs FIFO — link to ADT section.' },
-  ]),
-  '10-3-files': embedSpec([
-    { caption: 'Sequential file: records read/written in order.', embedHint: 'Efficient for batch processing and logs.' },
-    { caption: 'Random access by record number or key field.', embedHint: 'Index file maps key → byte offset.' },
-    { caption: 'OPEN, READ, WRITE, CLOSE lifecycle.', embedHint: 'Always close files to flush buffers.' },
-    { caption: 'Exception handling for missing files or EOF.', embedHint: 'Validate existence before reading.' },
-  ]),
-  '11-1-programming-basics': embedSpec([
-    { caption: 'Variables hold values; assignment replaces contents.', embedHint: '← or = depending on pseudocode convention.' },
-    { caption: 'INPUT and OUTPUT for user interaction.', embedHint: 'Validate input range before processing.' },
-    { caption: 'Arithmetic and relational operators.', embedHint: 'MOD, DIV, AND, OR, NOT in Boolean expressions.' },
-    { caption: 'Comments document intent — not executed.', embedHint: 'Use meaningful identifiers (CamelCase or snake_case).' },
-  ]),
+  '10-1-data-types-and-records': {
+    steps: [
+      { focus: ['atomic-types'], caption: 'Atomic types: INTEGER, REAL, CHAR, STRING, BOOLEAN, DATE.', embedHint: 'Choose type to match domain and storage.' },
+      { focus: ['record'], caption: 'RECORD / STRUCT groups fields under one identifier.', embedHint: 'Dot notation: Student.Name, Student.DOB.' },
+      { focus: ['declare'], caption: 'DECLARE and assignment in pseudocode.', embedHint: 'Strong typing catches errors at compile time.' },
+      { focus: ['enum'], caption: 'Enumerated types restrict values to a fixed set.', embedHint: 'e.g. DayType = (Mon, Tue, …, Sun).' },
+    ],
+  },
+  '10-2-arrays': {
+    steps: [
+      { focus: ['array-1d'], caption: '1D array: indexed list of same-type elements.', embedHint: 'Bounds: lower..upper or 0..n−1 depending on language.' },
+      { focus: ['array-2d'], caption: '2D array: rows and columns — matrix storage.', embedHint: 'Nested loops for row-major traversal.' },
+      { focus: ['search'], caption: 'Linear search vs binary search on sorted data.', embedHint: 'Binary search O(log n) — requires ordered array.' },
+      { focus: ['stack-queue'], caption: 'Stack and queue as restricted array access patterns.', embedHint: 'LIFO vs FIFO — link to ADT section.' },
+    ],
+  },
+  '10-3-files': {
+    steps: [
+      { focus: ['sequential'], caption: 'Sequential file: records read/written in order.', embedHint: 'Efficient for batch processing and logs.' },
+      { focus: ['random'], caption: 'Random access by record number or key field.', embedHint: 'Index file maps key → byte offset.' },
+      { focus: ['lifecycle'], caption: 'OPEN, READ, WRITE, CLOSE lifecycle.', embedHint: 'Always close files to flush buffers.' },
+      { focus: ['exceptions'], caption: 'Exception handling for missing files or EOF.', embedHint: 'Validate existence before reading.' },
+    ],
+  },
+  '11-1-programming-basics': {
+    steps: [
+      { focus: ['variables'], caption: 'Variables hold values; assignment replaces contents.', embedHint: '← or = depending on pseudocode convention.' },
+      { focus: ['io'], caption: 'INPUT and OUTPUT for user interaction.', embedHint: 'Validate input range before processing.' },
+      { focus: ['operators'], caption: 'Arithmetic and relational operators.', embedHint: 'MOD, DIV, AND, OR, NOT in Boolean expressions.' },
+      { focus: ['comments'], caption: 'Comments document intent — not executed.', embedHint: 'Use meaningful identifiers (CamelCase or snake_case).' },
+    ],
+  },
   '11-2-constructs': {
     steps: [
       {
@@ -2213,42 +2229,54 @@ const SPECS: Record<string, LessonDiagramSpec> = {
       },
     ],
   },
-  '12-1-program-development-life-cycle': embedSpec([
-    { caption: 'Analysis: requirements specification from client brief.', embedHint: 'Identify inputs, processes, outputs, constraints.' },
-    { caption: 'Design: structure charts, pseudocode, data dictionary.', embedHint: 'Top-down decomposition into modules.' },
-    { caption: 'Implementation: coding to design — version control.', embedHint: 'Match naming to design documents.' },
-    { caption: 'Testing then maintenance — iterative cycles.', embedHint: 'Agile vs waterfall delivery models.' },
-  ]),
-  '12-3-program-testing-and-maintenance': embedSpec([
-    { caption: 'Test data: normal, boundary, erroneous.', embedHint: 'Boundary values at limits of valid range.' },
-    { caption: 'Stub testing isolates modules with dummy code.', embedHint: 'Driver program calls module under test.' },
-    { caption: 'Alpha (dev team) vs beta (selected users) testing.', embedHint: 'Acceptance testing against requirements.' },
-    { caption: 'Corrective, adaptive, perfective, preventive maintenance.', embedHint: 'Log changes and regression-test after fixes.' },
-  ]),
-  '13-3-floating-point-numbers-representation-and-manipulation': embedSpec([
-    { caption: 'Sign, mantissa, exponent fields in binary.', embedHint: 'Normalise so mantissa starts with 1.xxxx.' },
-    { caption: 'Bias exponent storage avoids negative exponents.', embedHint: 'Actual exponent = stored value − bias.' },
-    { caption: 'Precision limited by mantissa bits — rounding errors.', embedHint: '0.1 + 0.2 ≠ 0.3 in finite precision.' },
-    { caption: 'Underflow/overflow and special values (0, infinity).', embedHint: 'Compare range vs fixed-point integers.' },
-  ]),
-  '17-1-encryption-encryption-protocols-and-digital-certificates': embedSpec([
-    { caption: 'Symmetric key: same secret for encrypt and decrypt.', embedHint: 'Fast bulk encryption — key distribution problem.' },
-    { caption: 'Asymmetric (public/private) key pair — RSA outline.', embedHint: 'Public key encrypts; private key decrypts.' },
-    { caption: 'Hash functions — one-way, detect tampering.', embedHint: 'SHA family; salt passwords before hashing.' },
-    { caption: 'Digital certificates bind identity to public key (CA).', embedHint: 'HTTPS handshake uses TLS + certificates.' },
-  ]),
-  '18-1-artificial-intelligence-ai': embedSpec([
-    { caption: 'AI: systems performing tasks needing human intelligence.', embedHint: 'Narrow vs general AI — syllabus focuses on narrow.' },
-    { caption: 'Expert systems: knowledge base + inference engine.', embedHint: 'Rules and facts — forward/backward chaining.' },
-    { caption: 'Machine learning: train model on labelled data.', embedHint: 'Supervised vs unsupervised overview.' },
-    { caption: 'Ethics: bias in training data, transparency, jobs.', embedHint: 'Link to 7.1 professional responsibility.' },
-  ]),
-  '20-1-programming-paradigms': embedSpec([
-    { caption: 'Low-level: machine/assembly — hardware-specific.', embedHint: 'High-level: portable, readable, abstracted.' },
-    { caption: 'Procedural: sequences, procedures, shared state.', embedHint: 'Top-down design with modules.' },
-    { caption: 'Object-oriented: classes, encapsulation, inheritance.', embedHint: 'Polymorphism — same interface, different behaviour.' },
-    { caption: 'Declarative: state what, not how (SQL, Prolog outline).', embedHint: 'Contrast with imperative step-by-step code.' },
-  ]),
+  '12-1-program-development-life-cycle': {
+    steps: [
+      { focus: ['analysis'], caption: 'Analysis: requirements specification from client brief.', embedHint: 'Identify inputs, processes, outputs, constraints.' },
+      { focus: ['design'], caption: 'Design: structure charts, pseudocode, data dictionary.', embedHint: 'Top-down decomposition into modules.' },
+      { focus: ['implementation'], caption: 'Implementation: coding to design — version control.', embedHint: 'Match naming to design documents.' },
+      { focus: ['testing'], caption: 'Testing then maintenance — iterative cycles.', embedHint: 'Agile vs waterfall delivery models.' },
+    ],
+  },
+  '12-3-program-testing-and-maintenance': {
+    steps: [
+      { focus: ['test-data'], caption: 'Test data: normal, boundary, erroneous.', embedHint: 'Boundary values at limits of valid range.' },
+      { focus: ['stub'], caption: 'Stub testing isolates modules with dummy code.', embedHint: 'Driver program calls module under test.' },
+      { focus: ['alpha-beta'], caption: 'Alpha (dev team) vs beta (selected users) testing.', embedHint: 'Acceptance testing against requirements.' },
+      { focus: ['maintenance'], caption: 'Corrective, adaptive, perfective, preventive maintenance.', embedHint: 'Log changes and regression-test after fixes.' },
+    ],
+  },
+  '13-3-floating-point-numbers-representation-and-manipulation': {
+    steps: [
+      { focus: ['fields'], caption: 'Sign, mantissa, exponent fields in binary.', embedHint: 'Normalise so mantissa starts with 1.xxxx.' },
+      { focus: ['bias'], caption: 'Bias exponent storage avoids negative exponents.', embedHint: 'Actual exponent = stored value − bias.' },
+      { focus: ['precision'], caption: 'Precision limited by mantissa bits — rounding errors.', embedHint: '0.1 + 0.2 ≠ 0.3 in finite precision.' },
+      { focus: ['overflow'], caption: 'Underflow/overflow and special values (0, infinity).', embedHint: 'Compare range vs fixed-point integers.' },
+    ],
+  },
+  '17-1-encryption-encryption-protocols-and-digital-certificates': {
+    steps: [
+      { focus: ['symmetric'], caption: 'Symmetric key: same secret for encrypt and decrypt.', embedHint: 'Fast bulk encryption — key distribution problem.' },
+      { focus: ['asymmetric'], caption: 'Asymmetric (public/private) key pair — RSA outline.', embedHint: 'Public key encrypts; private key decrypts.' },
+      { focus: ['hash'], caption: 'Hash functions — one-way, detect tampering.', embedHint: 'SHA family; salt passwords before hashing.' },
+      { focus: ['certificate'], caption: 'Digital certificates bind identity to public key (CA).', embedHint: 'HTTPS handshake uses TLS + certificates.' },
+    ],
+  },
+  '18-1-artificial-intelligence-ai': {
+    steps: [
+      { focus: ['ai-scope'], caption: 'AI: systems performing tasks needing human intelligence.', embedHint: 'Narrow vs general AI — syllabus focuses on narrow.' },
+      { focus: ['expert-system'], caption: 'Expert systems: knowledge base + inference engine.', embedHint: 'Rules and facts — forward/backward chaining.' },
+      { focus: ['ml'], caption: 'Machine learning: train model on labelled data.', embedHint: 'Supervised vs unsupervised overview.' },
+      { focus: ['ethics'], caption: 'Ethics: bias in training data, transparency, jobs.', embedHint: 'Link to 7.1 professional responsibility.' },
+    ],
+  },
+  '20-1-programming-paradigms': {
+    steps: [
+      { focus: ['level'], caption: 'Low-level: machine/assembly — hardware-specific.', embedHint: 'High-level: portable, readable, abstracted.' },
+      { focus: ['procedural'], caption: 'Procedural: sequences, procedures, shared state.', embedHint: 'Top-down design with modules.' },
+      { focus: ['oop'], caption: 'Object-oriented: classes, encapsulation, inheritance.', embedHint: 'Polymorphism — same interface, different behaviour.' },
+      { focus: ['declarative'], caption: 'Declarative: state what, not how (SQL, Prolog outline).', embedHint: 'Contrast with imperative step-by-step code.' },
+    ],
+  },
 }
 
 export const DIAGRAM_SPEC_SLUGS = Object.keys(SPECS)

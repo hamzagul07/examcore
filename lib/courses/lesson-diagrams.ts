@@ -29,6 +29,20 @@ import { OsResourceDiagram } from '@/components/diagrams/OsResourceDiagram'
 import { TranslationPipelineDiagram } from '@/components/diagrams/TranslationPipelineDiagram'
 import { DatabaseRelationDiagram } from '@/components/diagrams/DatabaseRelationDiagram'
 import { ControlFlowDiagram } from '@/components/diagrams/ControlFlowDiagram'
+import { MultimediaGraphicsDiagram } from '@/components/diagrams/MultimediaGraphicsDiagram'
+import { DataSecurityDiagram } from '@/components/diagrams/DataSecurityDiagram'
+import { EthicsIpDiagram } from '@/components/diagrams/EthicsIpDiagram'
+import { DataTypesRecordDiagram } from '@/components/diagrams/DataTypesRecordDiagram'
+import { ArrayStructureDiagram } from '@/components/diagrams/ArrayStructureDiagram'
+import { FileAccessDiagram } from '@/components/diagrams/FileAccessDiagram'
+import { ProgrammingBasicsDiagram } from '@/components/diagrams/ProgrammingBasicsDiagram'
+import { SdlcDiagram } from '@/components/diagrams/SdlcDiagram'
+import { TestingMaintenanceDiagram } from '@/components/diagrams/TestingMaintenanceDiagram'
+import { FloatingPointDiagram } from '@/components/diagrams/FloatingPointDiagram'
+import { ProcessorParallelDiagram } from '@/components/diagrams/ProcessorParallelDiagram'
+import { EncryptionDiagram } from '@/components/diagrams/EncryptionDiagram'
+import { ExpertSystemDiagram } from '@/components/diagrams/ExpertSystemDiagram'
+import { ParadigmDiagram } from '@/components/diagrams/ParadigmDiagram'
 import { resolveFamilyDiagram } from '@/lib/courses/diagram-families'
 import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 
@@ -351,12 +365,23 @@ const PILOT_DIAGRAMS: Record<
     Component: ControlFlowDiagram,
     meta: {
       caption: 'IF/CASE selection and FOR/WHILE iteration in structured pseudocode.',
-      attribution: {
-        source: 'MarkScheme animation',
-        license: 'Proprietary',
-      },
+      attribution: { source: 'MarkScheme animation', license: 'Proprietary' },
     },
   },
+  '1-2-1-multimedia-graphics': { Component: MultimediaGraphicsDiagram, meta: { caption: 'Bitmap vs vector graphics, compression, and file size.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '6-1-data-security': { Component: DataSecurityDiagram, meta: { caption: 'Threats, authentication, backup, and physical security controls.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '7-1-ethics-and-ownership': { Component: EthicsIpDiagram, meta: { caption: 'Copyright, patents, professional conduct, and AI ethics.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '10-1-data-types-and-records': { Component: DataTypesRecordDiagram, meta: { caption: 'Atomic types, records, declaration, and enumerated types.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '10-2-arrays': { Component: ArrayStructureDiagram, meta: { caption: '1D/2D arrays, searching, stacks and queues.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '10-3-files': { Component: FileAccessDiagram, meta: { caption: 'Sequential and random file access, lifecycle, and error handling.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '11-1-programming-basics': { Component: ProgrammingBasicsDiagram, meta: { caption: 'Variables, I/O, operators, and comments in pseudocode.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '12-1-program-development-life-cycle': { Component: SdlcDiagram, meta: { caption: 'Analysis → design → implementation → testing → maintenance.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '12-3-program-testing-and-maintenance': { Component: TestingMaintenanceDiagram, meta: { caption: 'Test data, stubs, alpha/beta testing, and maintenance types.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '13-3-floating-point-numbers-representation-and-manipulation': { Component: FloatingPointDiagram, meta: { caption: 'IEEE floating-point: sign, mantissa, exponent, and rounding.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '15-1-processors-parallel-processing-and-virtual-machines': { Component: ProcessorParallelDiagram, meta: { caption: 'FDE cycle, multi-core, virtual machines, and SIMD/MIMD.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '17-1-encryption-encryption-protocols-and-digital-certificates': { Component: EncryptionDiagram, meta: { caption: 'Symmetric/asymmetric encryption, hashing, and digital certificates.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '18-1-artificial-intelligence-ai': { Component: ExpertSystemDiagram, meta: { caption: 'Expert systems, machine learning overview, and AI ethics.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
+  '20-1-programming-paradigms': { Component: ParadigmDiagram, meta: { caption: 'Procedural, object-oriented, and declarative programming styles.', attribution: { source: 'MarkScheme animation', license: 'Proprietary' } } },
 }
 
 export function getLessonDiagram(slug: string) {

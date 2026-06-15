@@ -5,54 +5,179 @@
   "paper": "P1",
   "paperName": "Pure Mathematics 1",
   "status": "premium",
-  "summary": "9709 P1 coordinate geometry — straight lines, gradients, parallel and perpendicular lines, distance and midpoint with PhET Graphing Lines.",
-  "durationMin": 20,
+  "summary": "This lesson covers the core principles of coordinate geometry for A-Level Mathematics. It includes finding the equation of a straight line, calculating gradients, understanding the relationship between parallel and perpendicular lines, and using the distance and midpoint formulas to solve geometric problems.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Find gradient and equation of a straight line from two points.",
-    "Apply conditions for parallel and perpendicular lines.",
-    "Calculate distance between two points and midpoint of a segment.",
-    "Solve problems involving intersections of lines."
+    "Calculate the gradient, length, and midpoint of a line segment given the coordinates of its endpoints.",
+    "Find the equation of a straight line in the form y = mx + c or ax + by + c = 0.",
+    "Understand and use the relationship between the gradients of parallel and perpendicular lines.",
+    "Apply coordinate geometry methods to solve problems involving points, lines, and shapes on a Cartesian plane."
   ],
   "simpleExplanation": {
-    "title": "Lines on the grid",
-    "summary": "Coordinate geometry turns algebra into pictures. Gradient is rise over run; the equation y = mx + c tells you slope and where the line crosses the y-axis.",
+    "title": "The Geometry of Grids",
+    "summary": "Coordinate geometry uses algebra to describe geometric shapes. By placing shapes on a grid, we can use equations and formulas to analyse their properties like length, slope, and position.",
+    "analogy": "Imagine you're giving directions in a city built on a perfect grid. The 'gradient' is how steep a street is. 'Parallel' streets run side-by-side and never meet, so they have the same steepness. The 'distance' is the actual length you walk between two points, and the 'midpoint' is the halfway house on your journey.",
     "steps": [
-      "Gradient m = (y₂ − y₁)/(x₂ − x₁) — watch for vertical lines (undefined m).",
-      "Parallel lines: same m. Perpendicular: m₁ × m₂ = −1.",
-      "Point-gradient form: y − y₁ = m(x − x₁).",
-      "Distance √((Δx)² + (Δy)²); midpoint average the coordinates."
+      "A straight line is defined by y = mx + c, where 'm' is the gradient (steepness) and 'c' is the y-intercept (where it crosses the vertical axis).",
+      "Parallel lines share the same gradient (m₁ = m₂). Perpendicular lines meet at a 90° angle, and their gradients multiply to give -1 (m₁m₂ = -1).",
+      "The distance between two points (x₁, y₁) and (x₂, y₂) is found using Pythagoras' theorem: √((x₂−x₁)² + (y₂−y₁)²).",
+      "The midpoint of the line segment connecting two points is the average of their coordinates: ((x₁+x₂)/2, (y₁+y₂)/2)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the formula for the gradient, $m$, of a line passing through $(x_1, y_1)$ and $(x_2, y_2)$?",
+      "back": "$m = \\frac{\\text{change in } y}{\\text{change in } x} = \\frac{y_2 - y_1}{x_2 - x_1}$"
+    },
+    {
+      "front": "What is the condition for two lines with gradients $m_1$ and $m_2$ to be parallel?",
+      "back": "They have the same gradient: $m_1 = m_2$."
+    },
+    {
+      "front": "What is the condition for two lines with gradients $m_1$ and $m_2$ to be perpendicular?",
+      "back": "The product of their gradients is -1: $m_1 m_2 = -1$. This means one gradient is the negative reciprocal of the other, e.g., $m_2 = -\\frac{1}{m_1}$."
+    },
+    {
+      "front": "What is the formula for the distance between two points $(x_1, y_1)$ and $(x_2, y_2)$?",
+      "back": "$d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$. This is an application of Pythagoras' theorem."
+    },
+    {
+      "front": "What is the formula for the midpoint of a line segment with endpoints $(x_1, y_1)$ and $(x_2, y_2)$?",
+      "back": "$M = \\left( \\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2} \\right)$. It's the average of the x-coordinates and the average of the y-coordinates."
+    },
+    {
+      "front": "What are the two main forms for the equation of a straight line?",
+      "back": "1. Gradient-intercept form: $y = mx + c$. 2. Point-gradient form: $y - y_1 = m(x - x_1)$."
+    },
+    {
+      "front": "What is a 'perpendicular bisector'?",
+      "back": "A line that passes through the midpoint of a line segment and is perpendicular to it."
+    },
+    {
+      "front": "Trap: A line has a gradient of $3$. What is the gradient of a perpendicular line?",
+      "back": "The negative reciprocal is $-\\frac{1}{3}$. A common mistake is to forget the negative sign and just write $\\frac{1}{3}$."
+    },
+    {
+      "front": "How do you find the equation of a line when you are only given two points, A and B?",
+      "back": "1. Calculate the gradient, $m$, using the two points. 2. Substitute one of the points (A or B) and the gradient $m$ into $y - y_1 = m(x - x_1)$ to find the equation."
+    },
+    {
+      "front": "Trap: When using the distance or midpoint formula, what is a common error?",
+      "back": "Mixing up the x and y coordinates, or making sign errors with negative coordinates. For distance, a common mistake is $(x_2 - x_1)^2 + (y_2 - y_1)^2$ without the square root."
+    },
+    {
+      "front": "How can you show that a triangle ABC is isosceles?",
+      "back": "Calculate the lengths of the three sides (AB, BC, AC) using the distance formula. If two of the lengths are equal, the triangle is isosceles."
+    },
+    {
+      "front": "How can you show that a triangle ABC is a right-angled triangle?",
+      "back": "Method 1: Calculate the gradients of the three sides. If two gradients multiply to give -1, those two sides are perpendicular. Method 2: Calculate the lengths of the three sides and check if they satisfy Pythagoras' theorem ($a^2 + b^2 = c^2$)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between $y=mx+c$ and $y-y_1=m(x-x_1)$?",
+      "a": "$y=mx+c$ is useful when you know the gradient and the y-intercept. $y-y_1=m(x-x_1)$ is more general and powerful; you can use it whenever you know the gradient and *any* point on the line, not just the y-intercept. Most problems are solved more quickly starting with the point-gradient form."
+    },
+    {
+      "q": "My answer for a line equation was $y = 0.5x + 2.5$ but the mark scheme said $x - 2y + 5 = 0$. Is my answer wrong?",
+      "a": "Not necessarily. Your answer is mathematically correct, but exam questions often specify the format of the final answer, typically $ax+by+c=0$ where $a, b, c$ are integers. To convert your answer, multiply everything by 2 to remove the decimals: $2y = x + 5$. Then rearrange to get everything on one side: $x - 2y + 5 = 0$. Always check the required format."
+    },
+    {
+      "q": "How do I know whether to use the distance formula or the gradient formula to prove a property of a shape?",
+      "a": "Think about the geometric property you need to prove. If it involves lengths (e.g., 'show the triangle is isosceles', 'show it is a rhombus'), use the distance formula. If it involves angles, especially right angles (e.g., 'show it is a right-angled triangle', 'show it is a rectangle'), use the gradient formula to check for perpendicular lines ($m_1m_2 = -1$)."
+    },
+    {
+      "q": "What does an 'undefined' gradient mean?",
+      "a": "An undefined gradient occurs when you try to calculate the gradient of a vertical line. For points $(x_1, y_1)$ and $(x_1, y_2)$, the formula becomes $\\frac{y_2-y_1}{x_1-x_1} = \\frac{y_2-y_1}{0}$. Since division by zero is undefined, so is the gradient. The equation of such a line is simply $x = k$, where $k$ is the constant x-coordinate."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Coordinate geometry** on P1 is fast marks if you know the formulas. Cambridge often combines **perpendicular bisectors** and **circle equations** (later topics) with basic line work."
+      "content": "Coordinate geometry is the bridge between algebra and geometry. It allows us to use algebraic equations to describe and analyse geometric figures like lines, circles, and polygons on a Cartesian plane. This topic is fundamental, providing the tools to solve a vast range of problems in pure mathematics and its applications."
     },
     {
-      "type": "workedExample",
-      "question": "Find the equation of the line through (2, 5) perpendicular to y = 3x − 1.",
-      "solution": "Original gradient = 3.\n\nPerpendicular gradient = −1/3.\n\ny − 5 = (−1/3)(x − 2)\n\n**3y = −x + 17** or **x + 3y = 17**"
+      "type": "heading",
+      "content": "The Equation of a Straight Line"
+    },
+    {
+      "type": "text",
+      "content": "Every straight line on a 2D plane can be represented by an equation. The two most useful forms you will encounter are the gradient-intercept form and the point-gradient form. Understanding how to switch between them and when to use each is a key skill."
+    },
+    {
+      "type": "formula",
+      "content": "Gradient-Intercept Form: $y = mx + c$ \n\nWhere $m$ is the gradient and $c$ is the y-intercept.\n\nPoint-Gradient Form: $y - y_1 = m(x - x_1)$\n\nWhere $m$ is the gradient and $(x_1, y_1)$ is any point on the line."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The gradient $m$ measures the steepness of the line. It is calculated as 'rise over run': $m = \\frac{y_2 - y_1}{x_2 - x_1}$.",
+        "A positive gradient means the line slopes upwards from left to right.",
+        "A negative gradient means the line slopes downwards from left to right.",
+        "A horizontal line has a gradient of 0. A vertical line has an undefined gradient.",
+        "The final equation is often required in the form $ax + by + c = 0$, where $a, b, c$ are integers."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Parallel and Perpendicular Lines"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between lines can be determined entirely by their gradients. Parallel lines travel in the same direction and thus have the same steepness. Perpendicular lines intersect at a right angle (90°), and their gradients have a special relationship."
+    },
+    {
+      "type": "formula",
+      "content": "For two lines with gradients $m_1$ and $m_2$:\n\nParallel condition: $m_1 = m_2$\n\nPerpendicular condition: $m_1 \\times m_2 = -1$"
     },
     {
       "type": "examTip",
-      "content": "Leave answers in **integer coefficient form** when the question asks for ax + by + c = 0. Avoid unnecessary decimals."
+      "content": "For perpendicular lines, remember the phrase 'negative reciprocal'. To find the perpendicular gradient, you flip the fraction and change the sign. For example, if $m_1 = \\frac{2}{5}$, the perpendicular gradient $m_2$ is $-\\frac{5}{2}$. If $m_1 = -3$, then $m_2 = -\\frac{1}{-3} = +\\frac{1}{3}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The line $L_1$ passes through the points $A(2, 5)$ and $B(8, 2)$. A second line, $L_2$, is perpendicular to $L_1$ and passes through point $A$. Find the equation of $L_2$, giving your answer in the form $ax+by+c=0$ where $a, b, c$ are integers.",
+      "solution": "Step 1: Find the gradient of line $L_1$.\nGradient of $L_1$, $m_1 = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{2 - 5}{8 - 2} = \\frac{-3}{6} = -\\frac{1}{2}$. [M1 for gradient formula]\n\nStep 2: Find the gradient of the perpendicular line $L_2$.\nSince $L_2$ is perpendicular to $L_1$, its gradient $m_2$ is the negative reciprocal of $m_1$.\n$m_2 = -\\frac{1}{m_1} = -\\frac{1}{-1/2} = 2$. [M1 for perpendicular gradient]\n\nStep 3: Use the point-gradient form to find the equation of $L_2$.\n$L_2$ has gradient $m_2 = 2$ and passes through point $A(2, 5)$.\nUsing $y - y_1 = m(x - x_1)$:\n$y - 5 = 2(x - 2)$ [M1 for using point and gradient]\n$y - 5 = 2x - 4$\n\nStep 4: Rearrange the equation into the required form $ax+by+c=0$.\n$y = 2x + 1$\n$2x - y + 1 = 0$ [A1 for correct final form]"
+    },
+    {
+      "type": "heading",
+      "content": "Distance, Midpoint and Geometric Applications"
+    },
+    {
+      "type": "text",
+      "content": "We can also calculate key properties of line segments. The distance formula, derived from Pythagoras' theorem, gives the length of a segment. The midpoint formula finds the coordinates of the point exactly halfway between two endpoints. These tools are essential for proving properties of geometric shapes, such as showing a triangle is isosceles or that the diagonals of a square bisect each other."
+    },
+    {
+      "type": "formula",
+      "content": "Distance between $(x_1, y_1)$ and $(x_2, y_2)$: $d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$\n\nMidpoint of segment between $(x_1, y_1)$ and $(x_2, y_2)$: $M = \\left( \\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2} \\right)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The points $P$, $Q$, and $R$ have coordinates $(-1, 6)$, $(3, 0)$, and $(9, 4)$ respectively. Find the equation of the perpendicular bisector of the line segment $PQ$.",
+      "solution": "Step 1: Find the midpoint of $PQ$.\nMidpoint $M = \\left( \\frac{x_P + x_Q}{2}, \\frac{y_P + y_Q}{2} \\right) = \\left( \\frac{-1 + 3}{2}, \\frac{6 + 0}{2} \\right) = \\left( \\frac{2}{2}, \\frac{6}{2} \\right) = (1, 3)$. [M1 for midpoint formula]\n\nStep 2: Find the gradient of the line segment $PQ$.\nGradient $m_{PQ} = \\frac{0 - 6}{3 - (-1)} = \\frac{-6}{4} = -\\frac{3}{2}$. [M1 for gradient formula]\n\nStep 3: Find the gradient of the perpendicular bisector.\nThe perpendicular bisector has a gradient that is the negative reciprocal of $m_{PQ}$.\nGradient of bisector, $m_{\\perp} = -\\frac{1}{-3/2} = \\frac{2}{3}$. [M1 for perpendicular gradient]\n\nStep 4: Find the equation of the perpendicular bisector.\nThe line passes through the midpoint $M(1, 3)$ and has gradient $\\frac{2}{3}$.\nUsing $y - y_1 = m(x - x_1)$:\n$y - 3 = \\frac{2}{3}(x - 1)$ [M1 for substitution]\nTo clear the fraction, multiply by 3:\n$3(y - 3) = 2(x - 1)$\n$3y - 9 = 2x - 2$\n$2x - 3y + 7 = 0$. [A1 for correct equation in any form, then A1 for integer form if required]"
     },
     {
       "type": "practice",
-      "label": "Mark a coordinate geometry question",
+      "label": "Practice Coordinate Geometry Problems",
       "href": "/mark?subject=9709&topic=1.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 course index",
-          "href": "/courses/9709"
+          "label": "Cambridge International A-Level Mathematics 9709 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "GeoGebra - Interactive Coordinate Geometry",
+          "href": "https://www.geogebra.org/classic"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

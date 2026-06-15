@@ -5,80 +5,200 @@
   "paper": "P5",
   "paperName": "Probability & Statistics 1",
   "status": "premium",
-  "summary": "9709 P5 normal distribution — probability density, standardisation, inverse normal, and the 68–95–99.7 rule with GeoGebra bell curve explorer.",
-  "durationMin": 24,
+  "summary": "This lesson introduces the normal distribution, a fundamental continuous probability distribution. It covers its key properties, the parameters for mean (μ) and variance (σ²), and the bell-shaped curve. You will learn how to standardise any normal variable to use the standard normal distribution (Z ~ N(0,1)) and its tables. The lesson also details how to use the normal distribution as an approximation to the binomial distribution, including the necessary conditions and the application of continuity corrections.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Recognise the normal distribution X ~ N(μ, σ²) and its symmetry.",
-    "Standardise using Z = (X − μ)/σ.",
-    "Use normal tables or calculators to find probabilities.",
-    "Solve problems involving inverse normal and given probabilities."
+    "Understand the properties of the normal distribution and the significance of its parameters, μ and σ².",
+    "Standardise a normal random variable to use the standard normal distribution tables to find probabilities.",
+    "Solve problems involving finding probabilities or unknown values (inverse problems) for a normal distribution.",
+    "Use the normal distribution as an approximation to the binomial distribution, applying continuity corrections where appropriate."
   ],
   "simpleExplanation": {
-    "title": "The bell curve",
-    "summary": "Many natural measurements are approximately normal. The curve is symmetric about μ; σ controls spread. Standardise to Z ~ N(0,1) to use tables.",
+    "title": "Decoding the Bell Curve",
+    "summary": "The normal distribution is a bell-shaped curve that describes how data is spread out for many real-world things, like heights or test scores. Most values cluster around the average, with fewer values being far above or below it.",
+    "analogy": "Imagine the heights of all Year 12 students in the country. Most students will have a height close to the national average, creating a large 'hump' in the middle of a graph. Very tall and very short students are rarer, so the graph tails off at both ends. This bell shape is the normal distribution in action.",
     "steps": [
-      "Sketch the bell curve — total area = 1; symmetry about μ.",
-      "Standardise: Z = (X − μ)/σ converts any normal to standard normal.",
-      "Use tables for P(Z < z) — for P(Z > z) use 1 − Φ(z).",
-      "For P(a < X < b), standardise both ends and subtract cumulative probabilities."
+      "X ~ N(μ, σ²) is symmetric about the mean μ.",
+      "Standard deviation σ controls spread — larger σ → wider curve.",
+      "Standardise: Z = (X − μ)/σ ~ N(0, 1) for table lookups.",
+      "Normal approximation to binomial when np > 5 and n(1−p) > 5."
     ]
   },
   "flashcards": [
     {
-      "front": "Notation for normal distribution?",
-      "back": "X ~ N(μ, σ²) — mean μ, variance σ²."
+      "front": "What does the notation $X \\sim N(\\mu, \\sigma^2)$ signify?",
+      "back": "It means that the random variable $X$ follows a normal distribution with a mean of $\\mu$ and a variance of $\\sigma^2$."
     },
     {
-      "front": "Standardisation formula?",
-      "back": "Z = (X − μ) / σ ~ N(0, 1)."
+      "front": "What are the key properties of a normal distribution curve?",
+      "back": "It is a bell-shaped, continuous curve, perfectly symmetric about the mean $\\mu$. The mean, median, and mode are all equal. The total area under the curve is 1."
     },
     {
-      "front": "68% rule?",
-      "back": "P(μ − σ < X < μ + σ) ≈ 0.68."
+      "front": "What is the standard normal distribution?",
+      "back": "A special case of the normal distribution with a mean of 0 and a variance of 1. It is denoted by $Z \\sim N(0, 1^2)$."
     },
     {
-      "front": "When normal approx to binomial?",
-      "back": "np > 5 and n(1−p) > 5 (both conditions)."
+      "front": "What is the formula for standardising a normal variable $X$?",
+      "back": "$Z = \\frac{X - \\mu}{\\sigma}$. This transformation converts any value $x$ from a normal distribution into a $z$-score for the standard normal distribution."
+    },
+    {
+      "front": "What does the standard normal distribution table (in MF19/MF20) typically provide?",
+      "back": "The cumulative probability from the far left up to a positive value $z$. This is written as $P(Z < z)$ or $\\Phi(z)$."
+    },
+    {
+      "front": "How do you find $P(Z > a)$ for a positive value $a$ using the standard tables?",
+      "back": "Use the fact that the total area is 1: $P(Z > a) = 1 - P(Z < a) = 1 - \\Phi(a)$."
+    },
+    {
+      "front": "How do you find $P(Z < -a)$ for a positive value $a$?",
+      "back": "By symmetry, the area in the left tail below $-a$ is equal to the area in the right tail above $+a$. So, $P(Z < -a) = P(Z > a) = 1 - \\Phi(a)$."
+    },
+    {
+      "front": "What are the conditions for approximating a binomial distribution $B(n, p)$ with a normal distribution?",
+      "back": "Both $np > 5$ and $n(1-p) > 5$. This ensures that the binomial distribution is reasonably symmetric and not too skewed."
+    },
+    {
+      "front": "What is a continuity correction and why is it needed?",
+      "back": "It's an adjustment made when approximating a discrete distribution (like binomial) with a continuous one (normal). For example, the discrete probability $P(X=10)$ is approximated by the continuous area $P(9.5 < Y < 10.5)$."
+    },
+    {
+      "front": "When approximating $B(n,p)$ with $N(\\mu, \\sigma^2)$, what are the values of $\\mu$ and $\\sigma^2$?",
+      "back": "The mean is $\\mu = np$ and the variance is $\\sigma^2 = np(1-p)$, which are the mean and variance of the original binomial distribution."
+    },
+    {
+      "front": "What is an 'inverse normal' problem?",
+      "back": "A problem where you are given a probability (or area under the curve) and asked to find the corresponding value of the variable, $x$. This involves working backwards from the probability tables."
+    },
+    {
+      "front": "What is a common mistake when using the normal distribution?",
+      "back": "Forgetting that the parameter is the variance, $\\sigma^2$. If you are given the standard deviation, $\\sigma$, you must square it for the notation $N(\\mu, \\sigma^2)$. Conversely, if given the variance, you must take the square root for the standardisation formula."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the variance $\\sigma^2$ used in the notation $N(\\mu, \\sigma^2)$ instead of the standard deviation $\\sigma$?",
+      "a": "This is a mathematical convention. Variance has useful additive properties that standard deviation does not. For example, the sum of two independent normal variables has a variance that is the sum of their variances. Using variance in the notation makes these theoretical properties clearer."
+    },
+    {
+      "q": "What do I do if my calculated z-value is not in the table?",
+      "a": "The standard normal table in the Cambridge formula book (MF19/MF20) is quite comprehensive. If a value is between two listed values, you can perform linear interpolation to get a more accurate probability. For values larger than those in the main table (e.g., z > 3.5), the probability $P(Z < z)$ is very close to 1."
+    },
+    {
+      "q": "How do I know when to use a continuity correction?",
+      "a": "You must use a continuity correction whenever you are using a continuous distribution (like the normal distribution) to approximate a discrete distribution (like the binomial or Poisson distributions). If the original problem involves a variable that can only take integer values, a continuity correction is required for the approximation."
+    },
+    {
+      "q": "Can I use the normal approximation for a Poisson distribution?",
+      "a": "Yes. A Poisson distribution $Po(\\lambda)$ can be approximated by a normal distribution $N(\\lambda, \\lambda)$ provided that $\\lambda$ is large (typically $\\lambda > 15$). Just like with the binomial approximation, you must use a continuity correction."
+    },
+    {
+      "q": "What's the difference between $P(X < 5)$ and $P(X \\le 5)$ for a normal distribution?",
+      "a": "For any continuous distribution, including the normal distribution, the probability of the variable being exactly equal to a single value is zero. i.e., $P(X=5)=0$. Therefore, for a continuous variable $X$, $P(X < 5)$ is exactly the same as $P(X \\le 5)$. This is NOT true for discrete distributions, which is why continuity corrections are so important when approximating."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "The **normal distribution** dominates Statistics papers. Cambridge tests **standardisation**, **inverse normal** (finding μ or σ from probabilities), and **continuity correction** when approximating binomial."
+      "content": "Welcome to the normal distribution, arguably the most important probability distribution in statistics. It appears in a vast range of natural and man-made phenomena, from the heights of people to measurement errors in scientific experiments. Its predictable, bell-shaped curve provides a powerful tool for modelling continuous data and making statistical inferences."
+    },
+    {
+      "type": "heading",
+      "content": "Properties of the Normal Distribution"
+    },
+    {
+      "type": "text",
+      "content": "A continuous random variable $X$ that is normally distributed is defined by two parameters: its mean, $\\mu$, and its variance, $\\sigma^2$. We write this as $X \\sim N(\\mu, \\sigma^2)$. The graph of its probability density function is a symmetric, bell-shaped curve. The mean $\\mu$ determines the location of the centre of the curve, while the standard deviation $\\sigma$ (the square root of the variance) determines its spread. A larger $\\sigma$ results in a wider, flatter curve, while a smaller $\\sigma$ gives a taller, narrower curve."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The curve is symmetric about the mean $\\mu$.",
+        "The mean, median and mode are all equal.",
+        "The total area under the curve is exactly 1.",
+        "Approximately 68% of the data lies within one standard deviation of the mean ($\\mu \\pm \\sigma$), 95% within two ($\\mu \\pm 2\\sigma$), and 99.7% within three ($\\mu \\pm 3\\sigma$)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Standard Normal Distribution"
+    },
+    {
+      "type": "text",
+      "content": "Since there are infinitely many possible normal distributions (one for each combination of $\\mu$ and $\\sigma^2$), it would be impossible to have probability tables for all of them. Instead, we standardise any normal variable to convert it to the **standard normal distribution**, denoted by $Z$, which has a mean of 0 and a variance of 1. We write this as $Z \\sim N(0, 1^2)$. The formula for this transformation is:"
     },
     {
       "type": "formula",
-      "content": "Z = (X − μ)/σ | P(a < X < b) = Φ((b−μ)/σ) − Φ((a−μ)/σ) | Continuity: P(X = r) ≈ P(r − 0.5 < Y < r + 0.5)"
+      "content": "Z = \\frac{X - \\mu}{\\sigma}"
+    },
+    {
+      "type": "text",
+      "content": "This $Z$-score tells us how many standard deviations an original value $x$ is away from its mean $\\mu$. Once we have a $Z$-score, we can use the standard normal tables (provided in the exam formula book MF19/MF20) to find the required probabilities. The tables give $\\Phi(z) = P(Z < z)$, the area to the left of $z$. For other areas, we use symmetry properties, such as $P(Z > z) = 1 - \\Phi(z)$ and $P(Z < -z) = 1 - \\Phi(z)$."
     },
     {
       "type": "workedExample",
-      "question": "X ~ N(50, 16). Find P(X > 58).",
-      "solution": "σ = √16 = 4.\n\nZ = (58 − 50)/4 = 2.\n\nP(X > 58) = P(Z > 2) = 1 − Φ(2) = 1 − 0.9772 = **0.0228**."
+      "question": "The masses of a species of bird are found to be normally distributed with a mean of 120 g and a standard deviation of 8 g. Find the probability that a randomly selected bird has a mass between 110 g and 130 g.",
+      "solution": "Let $M$ be the mass of a bird. We have $M \\sim N(120, 8^2)$.\nWe want to find $P(110 < M < 130)$.\n\nFirst, standardise the boundary values:\nFor $M=110$: $Z_1 = \\frac{110 - 120}{8} = \\frac{-10}{8} = -1.25$\nFor $M=130$: $Z_2 = \\frac{130 - 120}{8} = \\frac{10}{8} = 1.25$\n\nSo we need to find $P(-1.25 < Z < 1.25)$.\nThis can be calculated as $P(Z < 1.25) - P(Z < -1.25)$.\n\nFrom the tables, $\\Phi(1.25) = P(Z < 1.25) = 0.8944$.\n\nTo find $P(Z < -1.25)$, we use symmetry: $P(Z < -1.25) = P(Z > 1.25)$.\n$P(Z > 1.25) = 1 - P(Z < 1.25) = 1 - 0.8944 = 0.1056$.\n\nTherefore, $P(-1.25 < Z < 1.25) = 0.8944 - 0.1056 = 0.7888$.\n\nThe probability is 0.789 (to 3 s.f.).\n\nAlternatively, by symmetry, $P(-1.25 < Z < 1.25) = 2 \\times P(0 < Z < 1.25) = 2 \\times (\\Phi(1.25) - 0.5) = 2 \\times (0.8944 - 0.5) = 2 \\times 0.3944 = 0.7888$."
     },
     {
       "type": "examTip",
-      "content": "Draw a **sketch** with μ and the target value shaded — it prevents sign errors when finding tail probabilities or using symmetry P(Z < −a) = P(Z > a)."
+      "content": "Always draw a quick sketch of the bell curve and shade the area you are looking for. This helps you visualise the problem, decide whether the probability should be greater or less than 0.5, and correctly apply symmetry rules. It is a simple step that can prevent many common errors."
+    },
+    {
+      "type": "workedExample",
+      "question": "The scores in a test are normally distributed. 15% of candidates scored above 75 and 10% of candidates scored below 40. Find the mean and standard deviation of the test scores.",
+      "solution": "Let $X$ be the test score. $X \\sim N(\\mu, \\sigma^2)$.\n\nWe are given two pieces of information:\n1) $P(X > 75) = 0.15$\n2) $P(X < 40) = 0.10$\n\nStandardise both:\n1) $P\\left(Z > \\frac{75 - \\mu}{\\sigma}\\right) = 0.15$. Let $z_1 = \\frac{75 - \\mu}{\\sigma}$.\nThis means $P(Z < z_1) = 1 - 0.15 = 0.85$. From the inverse normal tables (or looking up 0.85 in the probability body), we find $z_1 \\approx 1.036$. So, $\\frac{75 - \\mu}{\\sigma} = 1.036$ (Equation A).\n\n2) $P\\left(Z < \\frac{40 - \\mu}{\\sigma}\\right) = 0.10$. Let $z_2 = \\frac{40 - \\mu}{\\sigma}$.\nSince the probability is < 0.5, $z_2$ is negative. We find the value for $P(Z < z') = 0.90$, which is $z' \\approx 1.282$. So, $z_2 = -1.282$. Thus, $\\frac{40 - \\mu}{\\sigma} = -1.282$ (Equation B).\n\nWe now have a pair of simultaneous equations:\n(A) $75 - \\mu = 1.036\\sigma$\n(B) $40 - \\mu = -1.282\\sigma$\n\nSubtract (B) from (A):\n$(75 - \\mu) - (40 - \\mu) = 1.036\\sigma - (-1.282\\sigma)$\n$35 = 2.318\\sigma$\n$\\sigma = \\frac{35}{2.318} = 15.099... \\approx 15.1$\n\nSubstitute $\\sigma$ back into (A):\n$75 - \\mu = 1.036 \\times 15.099...$\n$75 - \\mu = 15.642...$\n$\\mu = 75 - 15.642... = 59.357... \\approx 59.4$\n\nThe mean score is 59.4 and the standard deviation is 15.1 (to 3 s.f.)."
+    },
+    {
+      "type": "heading",
+      "content": "Normal Approximation to the Binomial Distribution"
+    },
+    {
+      "type": "text",
+      "content": "For a binomial distribution $X \\sim B(n, p)$, calculating probabilities can be very tedious if $n$ is large. Fortunately, if $n$ is large enough and $p$ is not too close to 0 or 1, the shape of the binomial distribution is very similar to a normal distribution. We can use a normal distribution as an approximation, provided the conditions $np > 5$ and $n(1-p) > 5$ are met."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Check Conditions:** Verify that $np > 5$ and $n(1-p) > 5$.",
+        "**Find Parameters:** Calculate the mean $\\mu = np$ and variance $\\sigma^2 = np(1-p)$.",
+        "**Apply Continuity Correction:** Adjust the discrete value to a continuous range. For example, $P(X \\le k)$ becomes $P(Y < k+0.5)$, and $P(X < k)$ becomes $P(Y < k-0.5)$, where $Y$ is the normal approximation.",
+        "**Standardise and Solve:** Use the calculated $\\mu$ and $\\sigma$ to standardise the corrected value and find the probability using the normal tables."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Continuity corrections are a common source of errors. Remember: for 'inclusive' inequalities ($le$ or $ge$), you expand the range (e.g., $X ge 10$ becomes $Y > 9.5$). For 'exclusive' inequalities ($<$ or $>$), you shrink the range (e.g., $X > 10$ becomes $Y > 10.5$). Visualising the discrete bars and the continuous curve can help."
+    },
+    {
+      "type": "workedExample",
+      "question": "A biased coin is tossed 150 times. The probability of getting a head on any toss is 0.4. Use a suitable approximation to find the probability of obtaining between 55 and 65 heads, inclusive.",
+      "solution": "Let $X$ be the number of heads. $X \\sim B(150, 0.4)$.\nWe want to find $P(55 \\le X \\le 65)$.\n\nFirst, check conditions for normal approximation:\n$n=150, p=0.4$.\n$np = 150 \\times 0.4 = 60$. Since $60 > 5$, this is fine.\n$n(1-p) = 150 \\times 0.6 = 90$. Since $90 > 5$, this is also fine.\nThe approximation is appropriate.\n\nDefine the normal approximation $Y \\sim N(\\mu, \\sigma^2)$.\nMean: $\\mu = np = 60$.\nVariance: $\\sigma^2 = np(1-p) = 150 \\times 0.4 \\times 0.6 = 36$.\nSo, $Y \\sim N(60, 36)$ or $Y \\sim N(60, 6^2)$.\n\nApply continuity correction for $P(55 \\le X \\le 65)$:\nThe range includes 55 and 65. We need to find the area from the lower boundary of 55 to the upper boundary of 65.\nThis becomes $P(54.5 < Y < 65.5)$.\n\nStandardise the boundary values:\nFor $Y=54.5$: $Z_1 = \\frac{54.5 - 60}{6} = \\frac{-5.5}{6} = -0.9167...$\nFor $Y=65.5$: $Z_2 = \\frac{65.5 - 60}{6} = \\frac{5.5}{6} = 0.9167...$\n\nWe need to find $P(-0.9167 < Z < 0.9167)$.\nThis is $P(Z < 0.9167) - P(Z < -0.9167)$.\nFrom tables, $\\Phi(0.9167)$ can be found by interpolating between $\\Phi(0.91)=0.8186$ and $\\Phi(0.92)=0.8212$. It is approximately $0.8203$.\n$P(Z < -0.9167) = 1 - P(Z < 0.9167) = 1 - 0.8203 = 0.1797$.\n\nSo, the probability is $0.8203 - 0.1797 = 0.6406$.\nThe probability is 0.641 (to 3 s.f.)."
     },
     {
       "type": "practice",
-      "label": "Mark a normal distribution question",
+      "label": "Practice Questions: The Normal Distribution",
       "href": "/mark?subject=9709&topic=5.5"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 course index",
-          "href": "/courses/9709"
+          "label": "GeoGebra: Normal Distribution Grapher",
+          "href": "https://www.geogebra.org/m/qgsekhab"
         },
         {
-          "label": "GeoGebra normal distribution",
-          "href": "https://www.geogebra.org/m/qumaztck"
+          "label": "ExamSolutions: Introduction to the Normal Distribution",
+          "href": "https://www.examsolutions.net/tutorials/the-normal-distribution-introduction/"
+        },
+        {
+          "label": "DrFrostMaths: The Normal Distribution",
+          "href": "https://www.drfrostmaths.com/videos.php?skid=288"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

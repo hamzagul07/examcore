@@ -5,80 +5,185 @@
   "paper": "P1",
   "paperName": "Pure Mathematics 1",
   "status": "premium",
-  "summary": "Free Cambridge 9709 P1 quadratics — factorisation, completing the square, the discriminant, and quadratic graphs with step-synced live diagram.",
+  "summary": "This lesson covers the core concepts of quadratic functions as required for A-Level Pure Mathematics 1. It explores solving quadratic equations, using the discriminant to determine the nature of roots, and the technique of completing the square to find the vertex and sketch the graph of a parabola.",
   "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Factorise and solve quadratic equations.",
-    "Complete the square to find vertex form and solve equations.",
-    "Use the discriminant to determine the nature of roots.",
-    "Sketch quadratic graphs from key features (vertex, intercepts, shape)."
+    "Solve quadratic equations by factorisation, completing the square, and using the quadratic formula.",
+    "Use the discriminant, b² - 4ac, to determine the number and nature of the roots of a quadratic equation.",
+    "Express a quadratic function y = ax² + bx + c in the completed square form y = a(x - h)² + k.",
+    "Use the completed square form to find the coordinates of the vertex and sketch the graph of the quadratic function."
   ],
   "simpleExplanation": {
-    "title": "Parabolas everywhere",
-    "summary": "Quadratics model projectile motion, area problems, and optimisation. Master three tools: factorise, formula, and completing the square.",
+    "title": "The Parabola's Secrets",
+    "summary": "A quadratic function creates a U-shaped curve called a parabola. By understanding its equation, we can unlock all its key features, like where it crosses the axes and its highest or lowest point.",
+    "analogy": "Think of throwing a ball. Its path through the air is a perfect parabola. The quadratic equation describes this path, telling us the maximum height the ball reaches (the vertex) and where it will land (the roots).",
     "steps": [
-      "Write in standard form ax² + bx + c = 0 and identify a, b, c.",
-      "Try factorisation first when the quadratic factorises cleanly over integers.",
-      "Use Δ = b² − 4ac: Δ > 0 two roots, Δ = 0 one repeated root, Δ < 0 no real roots.",
-      "Complete the square to find the vertex (h, k) and sketch the parabola."
+      "A quadratic equation y = ax² + bx + c has a parabolic graph (a ≠ 0).",
+      "Completing the square reveals the vertex form y = a(x − h)² + k.",
+      "The discriminant b² − 4ac determines the nature of roots.",
+      "Factorise or use the formula to solve ax² + bx + c = 0 on Paper 1."
     ]
   },
   "flashcards": [
     {
-      "front": "Quadratic formula?",
-      "back": "x = (−b ± √(b² − 4ac)) / 2a"
+      "front": "What is the general form of a quadratic equation?",
+      "back": "$ax^2 + bx + c = 0$, where $a, b, c$ are constants and $a \\neq 0$."
     },
     {
-      "front": "Discriminant Δ?",
-      "back": "Δ = b² − 4ac — sign tells number of real roots."
+      "front": "What is the quadratic formula for solving $ax^2 + bx + c = 0$?",
+      "back": "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$"
     },
     {
-      "front": "Vertex form?",
-      "back": "y = a(x − h)² + k — vertex at (h, k)."
+      "front": "What is the discriminant of a quadratic equation?",
+      "back": "The discriminant, often denoted by $\\Delta$, is the part of the quadratic formula under the square root: $\\Delta = b^2 - 4ac$."
     },
     {
-      "front": "If a > 0, parabola opens…?",
-      "back": "Upwards — minimum at the vertex."
+      "front": "What does it mean if the discriminant $b^2 - 4ac > 0$?",
+      "back": "The equation has two distinct real roots. The graph intersects the x-axis at two different points."
+    },
+    {
+      "front": "What does it mean if the discriminant $b^2 - 4ac = 0$?",
+      "back": "The equation has one repeated real root (or two equal real roots). The graph touches the x-axis at a single point (the vertex is on the x-axis)."
+    },
+    {
+      "front": "What does it mean if the discriminant $b^2 - 4ac < 0$?",
+      "back": "The equation has no real roots. The graph does not intersect the x-axis."
+    },
+    {
+      "front": "What is the completed square form of a quadratic?",
+      "back": "$a(x-h)^2 + k$. This form is also known as the vertex form."
+    },
+    {
+      "front": "How do you find the vertex from the completed square form $y = a(x-h)^2 + k$?",
+      "back": "The vertex is at the point $(h, k)$. Be careful with the sign of $h$."
+    },
+    {
+      "front": "What is a common mistake when finding the vertex from $y = a(x+p)^2 + q$?",
+      "back": "Incorrectly stating the x-coordinate of the vertex as $p$. The vertex is at $(-p, q)$ because the general form is $(x-h)^2$."
+    },
+    {
+      "front": "When is the vertex of $y = ax^2 + bx + c$ a minimum point?",
+      "back": "When the coefficient of $x^2$, which is $a$, is positive ($a > 0$). The parabola is U-shaped."
+    },
+    {
+      "front": "When is the vertex of $y = ax^2 + bx + c$ a maximum point?",
+      "back": "When the coefficient of $x^2$, which is $a$, is negative ($a < 0$). The parabola is n-shaped."
+    },
+    {
+      "front": "What are the conditions for a quadratic curve to be 'always positive' (entirely above the x-axis)?",
+      "back": "Two conditions must be met: 1. The parabola must be U-shaped ($a > 0$). 2. It must have no real roots ($b^2 - 4ac < 0$)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between 'roots', 'solutions', and 'x-intercepts'?",
+      "a": "They are closely related concepts. 'Roots' or 'solutions' refer to the algebraic values of $x$ that solve the equation $ax^2+bx+c=0$. 'x-intercepts' are the geometric points where the graph of the function $y=ax^2+bx+c$ crosses the x-axis. The x-coordinates of these intercepts are the real roots of the equation."
+    },
+    {
+      "q": "When should I use the quadratic formula instead of factorising?",
+      "a": "Always try to factorise first, as it's faster. If you can't spot the factors within about 20-30 seconds, or if the question asks for an answer to a specific number of decimal places or significant figures, it's a strong hint that you should use the quadratic formula."
+    },
+    {
+      "q": "How do I complete the square if the coefficient of x² isn't 1?",
+      "a": "If you have $ax^2+bx+c$, you must first factor out the coefficient 'a' from the first two terms, giving $a(x^2 + (b/a)x) + c$. Then, you complete the square inside the bracket as usual and multiply out at the end. See the second worked example for a step-by-step guide."
+    },
+    {
+      "q": "What does 'no real roots' mean graphically?",
+      "a": "Graphically, 'no real roots' means the parabola does not touch or cross the x-axis at all. If the coefficient 'a' is positive, the entire curve will be above the x-axis. If 'a' is negative, the entire curve will be below the x-axis."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Quadratics** open Paper 1 and reappear in disguised form throughout 9709. Cambridge expects clean algebra, **discriminant arguments**, and **sketches** showing intercepts and vertex."
+      "content": "Welcome to the world of quadratics! These second-degree polynomials are more than just abstract equations; they model real-world phenomena like the trajectory of a projectile, the shape of a satellite dish, and profit curves in economics. Mastering quadratics is a fundamental skill for A-Level Mathematics, forming the bedrock for many more advanced topics."
+    },
+    {
+      "type": "heading",
+      "content": "Solving Quadratic Equations"
+    },
+    {
+      "type": "text",
+      "content": "A key task is to find the 'roots' or 'solutions' of a quadratic equation, which are the values of $x$ that satisfy $ax^2 + bx + c = 0$. These roots correspond to the x-intercepts of the graph of $y = ax^2 + bx + c$. There are three primary methods for solving these equations."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Factorisation:** If the quadratic expression can be written as a product of two linear factors, $(px+q)(rx+s)=0$, then the solutions are $x = -q/p$ and $x = -s/r$. This is the quickest method when it's possible.",
+        "**Completing the Square:** This method rewrites the equation to isolate $x$. It's a reliable method that also helps in finding the vertex of the parabola.",
+        "**The Quadratic Formula:** This formula works for any quadratic equation and is essential when factorisation is not straightforward. It is derived from the method of completing the square."
+      ]
     },
     {
       "type": "formula",
-      "content": "ax² + bx + c = 0 → x = (−b ± √Δ)/2a | Completing the square: x² + bx = (x + b/2)² − (b/2)²"
+      "content": "The Quadratic Formula: For $ax^2 + bx + c = 0$, the solutions are given by $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$"
     },
     {
       "type": "workedExample",
-      "question": "Solve 2x² − 5x − 3 = 0 and state the nature of the roots.",
-      "solution": "Δ = 25 + 24 = 49 > 0 → two distinct real roots.\n\nFactorise: (2x + 1)(x − 3) = 0\n\nx = **−½** or x = **3**."
+      "question": "Solve the equation $3x^2 - 7x - 5 = 0$, giving your answers correct to 3 significant figures.",
+      "solution": "This quadratic does not factorise easily, so we use the quadratic formula.\nHere, $a=3$, $b=-7$, and $c=-5$.\n\nSubstitute these values into the formula:\n$x = \\frac{-(-7) \\pm \\sqrt{(-7)^2 - 4(3)(-5)}}{2(3)}$\n\n$x = \\frac{7 \\pm \\sqrt{49 - (-60)}}{6}$\n\n$x = \\frac{7 \\pm \\sqrt{49 + 60}}{6}$\n\n$x = \\frac{7 \\pm \\sqrt{109}}{6}$\n\nNow, we find the two possible values for $x$:\n$x_1 = \\frac{7 + \\sqrt{109}}{6} \\approx \\frac{7 + 10.440}{6} \\approx \\frac{17.440}{6} \\approx 2.9067...$\n\n$x_2 = \\frac{7 - \\sqrt{109}}{6} \\approx \\frac{7 - 10.440}{6} \\approx \\frac{-3.440}{6} \\approx -0.5733...$\n\nRounding to 3 significant figures, the solutions are $x = 2.91$ and $x = -0.573$."
+    },
+    {
+      "type": "heading",
+      "content": "The Discriminant: Understanding the Roots"
+    },
+    {
+      "type": "text",
+      "content": "The expression inside the square root of the quadratic formula, $b^2 - 4ac$, is called the discriminant. Its value tells us about the number and type of roots the equation has, without needing to solve the equation fully. This is a powerful tool for analysing quadratic functions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If $\\boldsymbol{b^2 - 4ac > 0}$, there are two distinct real roots. The parabola crosses the x-axis twice.",
+        "If $\\boldsymbol{b^2 - 4ac = 0}$, there is one repeated real root. The parabola touches the x-axis at its vertex.",
+        "If $\\boldsymbol{b^2 - 4ac < 0}$, there are no real roots. The parabola is entirely above or entirely below the x-axis."
+      ]
     },
     {
       "type": "examTip",
-      "content": "When asked \"show that\" an equation has no real roots, compute **Δ < 0** with working — one line of algebra earns the mark; stating the conclusion alone does not."
+      "content": "Exam questions frequently ask for the set of values of a constant, say $k$, for which a quadratic equation has 'real roots' or 'two distinct roots'. For 'real roots', use the condition $b^2 - 4ac \\ge 0$. For 'two distinct roots', use the strict inequality $b^2 - 4ac > 0$. Be careful with the wording!"
+    },
+    {
+      "type": "heading",
+      "content": "Completing the Square and Finding the Vertex"
+    },
+    {
+      "type": "text",
+      "content": "Completing the square is a technique for rewriting a quadratic of the form $ax^2 + bx + c$ into the vertex form $a(x-h)^2 + k$. This form is incredibly useful as it tells us the coordinates of the turning point (vertex) of the parabola, which is $(h, k)$, and whether it's a maximum or a minimum."
+    },
+    {
+      "type": "formula",
+      "content": "Vertex Form: $y = a(x-h)^2 + k$ \\\\ Vertex at $(h, k)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Express $f(x) = 2x^2 + 12x + 5$ in the form $a(x+p)^2 + q$. Hence, state the coordinates of the vertex and whether it is a maximum or minimum point.",
+      "solution": "First, factor out the coefficient of $x^2$ from the first two terms:\n$f(x) = 2(x^2 + 6x) + 5$\n\nNext, complete the square inside the bracket. We take half the coefficient of $x$ (which is 6), square it (giving 9), and then add and subtract it inside the bracket:\n$f(x) = 2[(x+3)^2 - 3^2] + 5$\n$f(x) = 2[(x+3)^2 - 9] + 5$\n\nNow, expand the outer bracket:\n$f(x) = 2(x+3)^2 - 2(9) + 5$\n$f(x) = 2(x+3)^2 - 18 + 5$\n\nFinally, simplify:\n$f(x) = 2(x+3)^2 - 13$\n\nThis is in the form $a(x+p)^2 + q$ with $a=2$, $p=3$ and $q=-13$.\n\nThe vertex form is $a(x-h)^2+k$, so we compare $2(x+3)^2 - 13$ with this. We have $h = -3$ and $k = -13$. \nTherefore, the coordinates of the vertex are $(-3, -13)$.\n\nSince the coefficient of $x^2$ is $a=2$, which is positive, the parabola is U-shaped. This means the vertex is a minimum point."
+    },
+    {
+      "type": "examTip",
+      "content": "When completing the square for $ax^2+bx+c$ where $a \\neq 1$, always factor out $a$ from the $x^2$ and $x$ terms first. A common error is to forget to multiply the subtracted term by $a$ when taking it out of the bracket."
     },
     {
       "type": "practice",
-      "label": "Mark a quadratics question",
+      "label": "Test Your Knowledge on Quadratics",
       "href": "/mark?subject=9709&topic=1.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 past paper guide",
-          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+          "label": "GeoGebra: Quadratic Equation Explorer",
+          "href": "https://www.geogebra.org/m/sancv2qf"
         },
         {
-          "label": "9709 course index",
-          "href": "/courses/9709"
+          "label": "Khan Academy: Quadratics",
+          "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:quadratic-functions-equations"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

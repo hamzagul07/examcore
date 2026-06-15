@@ -5,81 +5,165 @@
   "paper": "P1",
   "paperName": "Pure Mathematics 1",
   "status": "premium",
-  "summary": "Free Cambridge 9709 Pure Maths 1 integration — reverse power rule, definite integrals as signed area, and Cambridge mark-scheme habits.",
-  "durationMin": 20,
+  "summary": "This lesson introduces integration as the reverse process of differentiation. You will learn to find both indefinite and definite integrals of polynomial functions and use this knowledge to calculate the area under a curve, a fundamental application in pure mathematics.",
+  "durationMin": 22,
   "updated": "2026-06-15",
+  "learningObjectives": [
+    "Understand integration as the reverse process of differentiation and find indefinite integrals.",
+    "Use a given point on a curve to find the constant of integration, C.",
+    "Evaluate definite integrals to find the area of a region bounded by a curve and the x-axis.",
+    "Apply integration to solve problems involving rates of change."
+  ],
   "simpleExplanation": {
-    "title": "Area under the curve",
-    "summary": "Integration is the reverse of differentiation. On Paper 1 you find antiderivatives, evaluate definite integrals as signed area, and always show substitution of limits.",
+    "title": "Integration: Building Back the Curve",
+    "summary": "Integration is the opposite of differentiation, allowing us to find the original function from its gradient. We use it to calculate the exact area under a curve between two points.",
+    "analogy": "Imagine you have a video of a car's speedometer reading (its speed, or rate of change of distance). Integration is like using that video to work out the total distance the car travelled between two specific times. Differentiation would be finding the speed from the distance-time graph; integration does the reverse.",
     "steps": [
-      "Start from a gradient function f(x) and find F(x) such that F′(x) = f(x).",
-      "A definite integral ∫ₐᵇ f(x) dx equals the signed area between the curve and the x-axis.",
-      "Evaluate F(b) − F(a) — show each limit substituted for method marks.",
-      "For indefinite integrals include + C; constants cancel when you use definite limits."
+      "Integration reverses differentiation on P1 — find F(x) such that F′(x) = f(x).",
+      "Definite integral ∫ₐᵇ f(x) dx equals area under the curve (with sign).",
+      "Evaluate F(b) − F(a) — always show substitution of limits for A marks.",
+      "Include + C for indefinite integrals; constants disappear in definite limits."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is integration?",
+      "back": "The process of finding a function (the integral) whose derivative is a given function. It is the reverse process of differentiation."
+    },
+    {
+      "front": "What is the power rule for integrating $x^n$?",
+      "back": "$\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$, for any real number $n \\neq -1$. The rule is: 'add one to the power, then divide by the new power'."
+    },
+    {
+      "front": "What is an indefinite integral?",
+      "back": "An integral without limits, e.g., $\\int f(x) \\, dx$. The result is a family of functions, not a single value, represented by the constant of integration, $+C$."
+    },
+    {
+      "front": "What is a definite integral?",
+      "back": "An integral with upper and lower limits, e.g., $\\int_a^b f(x) \\, dx$. The result is a single numerical value representing the net area under the curve from $x=a$ to $x=b$."
+    },
+    {
+      "front": "Why is the '+ C' necessary for indefinite integrals?",
+      "back": "The derivative of any constant is zero. When we integrate, we don't know if there was an original constant term, so we add '+ C' to represent all possible constant values."
+    },
+    {
+      "front": "Why don't we write '+ C' for definite integrals?",
+      "back": "When evaluating $[F(x)+C]_a^b$, the calculation becomes $(F(b)+C) - (F(a)+C) = F(b) - F(a)$. The constant $C$ always cancels out."
+    },
+    {
+      "front": "How do you integrate a term like $\\frac{5}{\\sqrt{x}}$?",
+      "back": "First, rewrite it in index form: $5x^{-1/2}$. Then apply the power rule: $\\int 5x^{-1/2} \\, dx = 5 \\times \\frac{x^{1/2}}{1/2} + C = 10x^{1/2} + C = 10\\sqrt{x} + C$."
+    },
+    {
+      "front": "What happens if you integrate to find an area that is below the x-axis?",
+      "back": "The definite integral will yield a negative value. The actual area is the positive magnitude of this result. For example, if $\\int_1^3 f(x) \\, dx = -5$, the area is 5."
+    },
+    {
+      "front": "What's the first step to integrating an expression like $(x-3)(2x+1)$?",
+      "back": "Expand the brackets first. $(x-3)(2x+1) = 2x^2 + x - 6x - 3 = 2x^2 - 5x - 3$. Then integrate this polynomial term by term."
+    },
+    {
+      "front": "How do you find the equation of a curve if you only know its gradient function $\\frac{dy}{dx}$?",
+      "back": "Integrate the gradient function to get the general equation $y = F(x) + C$. You then need a point $(x,y)$ that lies on the curve to substitute in and solve for the specific value of $C$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between an indefinite and a definite integral?",
+      "a": "An indefinite integral, $\\int f(x) \\, dx$, gives a function, $F(x) + C$, representing a family of curves. A definite integral, $\\int_a^b f(x) \\, dx$, gives a single numerical value, representing the net area under the curve between $x=a$ and $x=b$."
+    },
+    {
+      "q": "What if the function is below the x-axis?",
+      "a": "If the curve $y=f(x)$ is below the x-axis between $x=a$ and $x=b$, the definite integral $\\int_a^b f(x) \\, dx$ will be negative. The geometric area is the absolute value (the positive magnitude) of this result."
+    },
+    {
+      "q": "Why can't we integrate $1/x$ using the power rule?",
+      "a": "The power rule for $x^n$ is $\\frac{x^{n+1}}{n+1} + C$. For $1/x = x^{-1}$, we have $n=-1$. Applying the rule would lead to division by $n+1 = -1+1 = 0$, which is undefined. The integral of $1/x$ is a different function, $\\ln|x|$, which is covered in the A2 syllabus (Paper 3)."
+    },
+    {
+      "q": "How do I find the area between two curves?",
+      "a": "To find the area between two curves, $y=f(x)$ and $y=g(x)$, from $x=a$ to $x=b$, where $f(x)$ is the upper curve, you calculate the integral of the difference: Area $= \\int_a^b (f(x) - g(x)) \\, dx$. The limits $a$ and $b$ are often the x-coordinates of the points where the curves intersect."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Integration on Paper 1** is the inverse of differentiation. You will reverse the power rule, interpret definite integrals as **signed area**, and evaluate limits cleanly — examiners award marks for showing **F(b) − F(a)** with substitution, not just a final number."
+      "content": "Welcome to integration, a cornerstone of calculus. While differentiation is about finding the rate of change, integration is about accumulation. It allows us to reverse the process of differentiation and, remarkably, to calculate the exact area of complex shapes defined by functions."
     },
     {
       "type": "heading",
-      "content": "Reverse the power rule"
+      "content": "The Indefinite Integral: Reversing Differentiation"
+    },
+    {
+      "type": "text",
+      "content": "If we differentiate a function $F(x)$ to get $f(x)$, then the integral of $f(x)$ is $F(x)$. Since the derivative of a constant is zero, we must add a 'constant of integration', denoted by $C$, to our result. This is because $x^2$, $x^2+5$, and $x^2-100$ all have the same derivative, $2x$. Integrating $2x$ gives the family of curves $x^2+C$."
     },
     {
       "type": "formula",
-      "content": "If dy/dx = x^n then y = x^(n+1)/(n+1) + C (n ≠ −1). For definite integrals: ∫ₐᵇ x^n dx = [x^(n+1)/(n+1)]ₐᵇ."
+      "content": "The Power Rule for Integration: \n$\\int ax^n \\, dx = \\frac{ax^{n+1}}{n+1} + C \\quad (\\text{for } n \\neq -1)$"
     },
     {
       "type": "keyPoints",
       "items": [
-        "Increase the power by 1, divide by the new power",
-        "Definite integral = area above the axis minus area below",
-        "Always write square brackets before substituting limits",
-        "Include + C only for indefinite integrals"
+        "Always rewrite expressions into the form $ax^n$ before integrating. For example, $\\frac{1}{x^3}$ becomes $x^{-3}$ and $\\sqrt{x}$ becomes $x^{1/2}$.",
+        "Integrate term by term for polynomials.",
+        "Never forget the constant of integration, $+C$, for indefinite integrals. It's worth a mark!"
       ]
     },
     {
+      "type": "workedExample",
+      "question": "The gradient of a curve is given by $\\frac{dy}{dx} = 3x^2 - 8x + 1$. The curve passes through the point $(2, -5)$. Find the equation of the curve.",
+      "solution": "To find the equation of the curve, we must integrate the gradient function.\n$y = \\int (3x^2 - 8x + 1) \\, dx$\n\nApply the power rule for integration to each term:\n$y = \\frac{3x^3}{3} - \\frac{8x^2}{2} + x + C$\n$y = x^3 - 4x^2 + x + C$\n\nThis is the general equation for the family of curves with the given gradient. To find the specific curve, we use the point $(2, -5)$. Substitute $x=2$ and $y=-5$:\n$-5 = (2)^3 - 4(2)^2 + (2) + C$\n$-5 = 8 - 4(4) + 2 + C$\n$-5 = 8 - 16 + 2 + C$\n$-5 = -6 + C$\n$C = 1$\n\nTherefore, the specific equation of the curve is:\n$y = x^3 - 4x^2 + x + 1$"
+    },
+    {
       "type": "heading",
-      "content": "Definite integrals & area"
+      "content": "The Definite Integral: Calculating Area"
     },
     {
       "type": "text",
-      "content": "Sketch the region when a question asks for **area bounded by curves**. If part of the graph lies below the x-axis, that portion contributes **negative** area — Cambridge often tests this with a cubic crossing the axis."
+      "content": "A definite integral has upper and lower bounds, or 'limits', and evaluates to a single number. This number represents the net area between the function's graph, the x-axis, and the vertical lines defined by the limits. This is one of the most powerful applications of calculus."
+    },
+    {
+      "type": "formula",
+      "content": "The Fundamental Theorem of Calculus:\nIf $\\int f(x) \\, dx = F(x)$, then the definite integral from $a$ to $b$ is:\n$\\int_a^b f(x) \\, dx = [F(x)]_a^b = F(b) - F(a)$"
     },
     {
       "type": "workedExample",
-      "question": "Find ∫₁³ (2x − 1) dx.",
-      "solution": "∫ (2x − 1) dx = x² − x + C.\n\nDefinite value: [x² − x]₁³ = (9 − 3) − (1 − 1) = 6."
+      "question": "Find the exact area of the region enclosed by the curve $y = 4 - x^2$ and the x-axis.",
+      "solution": "First, we need to find the limits of integration. The region is bounded by the x-axis, so we find the x-intercepts by setting $y=0$.\n$4 - x^2 = 0$\n$x^2 = 4$\n$x = -2$ and $x = 2$\nSo, our limits are $a=-2$ and $b=2$.\n\nThe area is given by the definite integral:\nArea $= \\int_{-2}^{2} (4 - x^2) \\, dx$\n\nFirst, integrate the function:\n$[4x - \\frac{x^3}{3}]_{-2}^{2}$\n\nNow, evaluate at the upper limit ($x=2$) and subtract the evaluation at the lower limit ($x=-2$). This step is crucial for method marks.\n$= (4(2) - \\frac{(2)^3}{3}) - (4(-2) - \\frac{(-2)^3}{3})$\n$= (8 - \\frac{8}{3}) - (-8 - \\frac{-8}{3})$\n$= (8 - \\frac{8}{3}) - (-8 + \\frac{8}{3})$\n$= (\\frac{24}{3} - \\frac{8}{3}) - (-\\frac{24}{3} + \\frac{8}{3})$\n$= (\\frac{16}{3}) - (-\\frac{16}{3})$\n$= \\frac{16}{3} + \\frac{16}{3} = \\frac{32}{3}$\n\nThe exact area is $\\frac{32}{3}$ square units."
+    },
+    {
+      "type": "heading",
+      "content": "Dealing with Complex Areas"
+    },
+    {
+      "type": "text",
+      "content": "Not all areas are simple regions above the x-axis. Sometimes you need to find the area between two curves, or an area bounded by a curve and the y-axis. For an area between two curves, $f(x)$ and $g(x)$, you integrate the difference: $\\int_a^b (\\text{upper curve} - \\text{lower curve}) \\, dx$. For areas bounded by the y-axis, you must rearrange the function to $x=g(y)$ and integrate with respect to $y$ using y-limits."
     },
     {
       "type": "examTip",
-      "content": "Differentiate your answer in one line to sanity-check. For area questions, state whether regions below the axis are subtracted — a quick sketch prevents sign errors."
+      "content": "If a question asks for the 'total area' of a region that is partly above and partly below the x-axis, you must calculate two separate definite integrals. Find the x-intercept where the curve crosses the axis, split the integral at that point, and add the absolute values of the two results. A single integral across the whole region will give the 'net area', which might be incorrect."
     },
     {
       "type": "practice",
-      "label": "Mark an integration question",
+      "label": "Practice Integration Problems",
       "href": "/mark?subject=9709&topic=1.8"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 past paper guide",
-          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+          "label": "GeoGebra: Visualizing the Integral",
+          "href": "https://www.geogebra.org/m/w9g29G9B"
         },
         {
-          "label": "B1 M1 A1 mark scheme guide",
-          "href": "/blog/cambridge-a-level-maths-mark-scheme-b1-m1-a1"
-        },
-        {
-          "label": "Free full 9709 course index",
-          "href": "/courses/9709"
+          "label": "Khan Academy: Integration Introduction",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "params": [
       {

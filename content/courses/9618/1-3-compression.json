@@ -5,50 +5,197 @@
   "paper": "P1",
   "paperName": "Theory Fundamentals",
   "status": "premium",
-  "summary": "9618 AS — lossless vs lossy compression, run-length encoding, and when each technique suits text, images, audio, and video.",
-  "durationMin": 18,
+  "summary": "This lesson explores data compression, a fundamental technique for reducing file sizes. It contrasts lossless compression, which allows for perfect data reconstruction, with lossy compression, which achieves greater size reduction by permanently discarding non-essential data. The lesson details specific algorithms like Run-Length Encoding (RLE) and provides the necessary formulae and practice for calculating file sizes and compression ratios, a key skill for the exam.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Distinguish lossless and lossy compression.",
-    "Explain run-length encoding (RLE) with an example.",
-    "Describe how JPEG and MP3 use lossy methods.",
-    "Evaluate trade-offs between file size and quality."
+    "Distinguish between lossless and lossy compression methods and their appropriate uses.",
+    "Describe the process of Run-Length Encoding (RLE) and identify data types it is suitable for.",
+    "Calculate uncompressed file sizes for bitmap images and sound files.",
+    "Calculate compression ratios and the resulting file size after compression."
   ],
   "simpleExplanation": {
-    "title": "Smaller files, same (or nearly same) content",
-    "summary": "Compression reduces storage and transmission cost. Lossless allows perfect reconstruction; lossy discards imperceptible detail for higher ratios.",
+    "title": "Shrinking Digital Files",
+    "summary": "Compression makes files smaller for faster transmission and more efficient storage. It works by finding and reducing redundancy in data, either perfectly (lossless) or by discarding imperceptible information (lossy).",
+    "analogy": "Imagine packing a suitcase. Lossless compression is like neatly folding and vacuum-packing your clothes. Everything fits into a smaller space, and when you unpack, every single item is there, exactly as it was. Lossy compression is like deciding you don't really need five pairs of shoes and leaving three pairs behind to make the suitcase much lighter. You've saved a lot of space, but you can't get those shoes back once you've arrived.",
     "steps": [
-      "Lossless: Huffman, RLE, ZIP — text, executables, medical images.",
-      "RLE: store count + value for runs (e.g. AAAAB → 4A1B).",
-      "Lossy: JPEG (DCT, quantisation), MP3 (psychoacoustics) — media.",
-      "Higher compression often means longer encode/decode time."
+      "Lossless compression — exact reconstruction (ZIP, PNG, FLAC).",
+      "Lossy compression discards imperceptible detail (JPEG, MP3).",
+      "Run-length encoding (RLE) for repeated data.",
+      "Exam: calculate compressed vs uncompressed file sizes."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is compression?",
+      "back": "The process of reducing the size of a data file by using an algorithm to encode the information using fewer bits than the original representation."
+    },
+    {
+      "front": "What is lossless compression?",
+      "back": "A type of compression where the original data can be perfectly reconstructed from the compressed data. No information is lost. Examples: ZIP, PNG, FLAC."
+    },
+    {
+      "front": "What is lossy compression?",
+      "back": "A type of compression where some data is permanently discarded to achieve a much smaller file size. The original data cannot be perfectly reconstructed. Examples: JPEG, MP3, MPEG."
+    },
+    {
+      "front": "What is Run-Length Encoding (RLE)?",
+      "back": "A simple lossless compression algorithm that stores sequences of repeating data as a single data value and a count. For example, WWWWBB becomes 4W2B."
+    },
+    {
+      "front": "When is RLE most effective?",
+      "back": "When the data contains long runs of identical values, such as in simple bitmap images with large areas of solid colour, icons, or simple graphics."
+    },
+    {
+      "front": "When is RLE ineffective or even counter-productive?",
+      "back": "When the data has few or no repeating sequences, like in complex photographs or random text. For data like 'ABCDE', RLE might produce '1A1B1C1D1E', which is larger than the original."
+    },
+    {
+      "front": "What is a common trade-off in lossy compression?",
+      "back": "The trade-off between file size and quality. Higher compression results in a smaller file but also lower quality (more data is discarded)."
+    },
+    {
+      "front": "Is the PNG file format lossless or lossy?",
+      "back": "Lossless. This is a common point of confusion as it's an image format like JPEG, but PNG is designed for perfect reconstruction, making it ideal for graphics and logos where sharp lines are important."
+    },
+    {
+      "front": "How do you calculate the compression ratio?",
+      "back": "Compression Ratio = Uncompressed file size / Compressed file size. A ratio of 5:1 means the compressed file is 5 times smaller than the original."
+    },
+    {
+      "front": "Why can't you 'uncompress' a lossy file back to its original state?",
+      "back": "Because the compression process permanently deletes data that the algorithm deemed 'unnecessary' or 'imperceptible'. This information is gone forever and cannot be recreated."
+    },
+    {
+      "front": "What is dictionary-based compression?",
+      "back": "A lossless technique (like LZW used in GIF/TIFF) that builds a dictionary of recurring data patterns and replaces them with shorter codes. For example, 'the ' could be replaced by a single byte code."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If lossy compression achieves smaller files, why would anyone use lossless?",
+      "a": "Because for certain types of data, any loss of information is unacceptable. For example, a compressed text document must be perfectly reconstructable, as changing even one character could alter the meaning. The same applies to software executables, financial data, and scientific measurements where absolute precision is required."
+    },
+    {
+      "q": "Can you compress a file that has already been compressed?",
+      "a": "Yes, but the results vary. Applying lossless compression (like ZIP) to a file that is already losslessly compressed will yield very little or no extra size reduction. Applying further lossy compression to an already lossy file (e.g., re-saving a JPEG) will reduce the file size further but will also cause additional, cumulative quality degradation."
+    },
+    {
+      "q": "Is there a limit to how much a file can be compressed?",
+      "a": "Yes. For lossless compression, the limit is determined by the amount of redundancy in the data. A file with completely random data cannot be compressed losslessly and may even increase in size. For lossy compression, you can theoretically keep compressing until the file is tiny, but it will become completely unusable as all meaningful data is destroyed."
+    },
+    {
+      "q": "How do I choose which compression to use for my project?",
+      "a": "Consider the purpose. Is it for archival? Use lossless (e.g., FLAC for audio, PNG for images). Is it for streaming or sharing online where file size is critical? Use lossy (e.g., MP3/AAC for audio, JPEG/WEBP for images, H.264/H.265 for video). The key is balancing the need for quality against the constraints of storage and bandwidth."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Compression** (1.3) appears in structured questions on **encoding** and **file formats**. Show a **worked RLE** example and state **why** lossy is acceptable for photos but not for program files."
+      "content": "In our digital world, we are constantly creating, sharing, and storing vast amounts of data—from high-resolution photos and videos to complex software applications. Uncompressed, this data would quickly overwhelm our storage devices and network bandwidth. Compression is the essential technology that makes managing this data feasible, enabling everything from streaming services to fast software downloads."
+    },
+    {
+      "type": "heading",
+      "content": "The Two Flavours of Compression: Lossless and Lossy"
+    },
+    {
+      "type": "text",
+      "content": "All compression techniques aim to reduce file size, but they achieve this in two fundamentally different ways. The choice between them depends entirely on the nature of the data and its intended use. The core distinction is whether it is acceptable to lose any information in the process."
+    },
+    {
+      "type": "heading",
+      "content": "Lossless Compression: Perfect Reconstruction"
+    },
+    {
+      "type": "text",
+      "content": "Lossless compression reduces file size without discarding a single bit of the original information. It works by identifying and eliminating statistical redundancy. When the file is decompressed, it is restored to its exact original state. This is crucial for files where any data loss would be catastrophic, such as text documents, computer programs, or scientific data. Common examples include ZIP archives, PNG images, and FLAC audio files."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage:** No loss of quality or data; the original can be perfectly restored.",
+        "**Disadvantage:** Achieves less reduction in file size (lower compression ratio) compared to lossy methods.",
+        "**Use Cases:** Archiving files (ZIP, RAR), source code, text files, and images where fidelity is key (PNG)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "A Lossless Technique: Run-Length Encoding (RLE)"
+    },
+    {
+      "type": "text",
+      "content": "Run-Length Encoding is one of the simplest forms of lossless compression. It's particularly effective on data with long sequences (or 'runs') of repeated values. Instead of storing every individual value in a run, RLE stores the value once, along with a count of how many times it repeats. For example, the text string `AAAAABBBCCCC` could be encoded as `5A3B4C`. This is very effective for simple bitmap images, like icons or logos, which often have large areas of a single colour."
     },
     {
       "type": "workedExample",
-      "question": "Apply RLE to the string AAAABBBCC.",
-      "solution": "Scan left to right:\n\nA×4, B×3, C×2\n\n**Encoded:** 4A3B2C (scheme may vary — state your convention)"
+      "question": "A simple 8x4 pixel monochrome (1-bit colour depth) image is represented by the following binary data, where 1 is black and 0 is white. The data is read row by row.\n\n`00000000`\n`01111110`\n`01111110`\n`00000000`\n\nApply Run-Length Encoding to this data. Assume the format is (count, value).",
+      "solution": "1. **Analyse the data stream:** First, we read the pixels as a single stream: `00000000011111100111111000000000`\n\n2. **Identify the runs:**\n   - The first run is nine `0`s.\n   - The next run is six `1`s.\n   - The next run is two `0`s.\n   - The next run is six `1`s.\n   - The final run is nine `0`s.\n\n3. **Apply RLE:** We represent each run with its count and value.\n   - `(9, 0)`\n   - `(6, 1)`\n   - `(2, 0)`\n   - `(6, 1)`\n   - `(9, 0)`\n\n4. **Final Encoded Data:** The RLE representation is `(9,0)(6,1)(2,0)(6,1)(9,0)`. The original data required 32 bits (8x4x1). The RLE representation uses 5 pairs of numbers. The exact size would depend on how many bits are used for the count and value, but the number of data items has been reduced from 32 to 10."
+    },
+    {
+      "type": "heading",
+      "content": "Lossy Compression: Trading Quality for Size"
+    },
+    {
+      "type": "text",
+      "content": "Lossy compression achieves much higher compression ratios by permanently deleting data. The key is that it discards information that human senses are less likely to notice. For an image (JPEG), this might mean removing subtle variations in colour that the eye won't perceive. For audio (MP3), it involves removing frequencies at the very high or low end of our hearing range, or sounds that are masked by louder sounds. Because data is permanently lost, the original file can never be perfectly recovered."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage:** Achieves very high compression ratios, resulting in very small files.",
+        "**Disadvantage:** Quality is degraded and original data is permanently lost. Repeatedly saving a lossy file can cause cumulative quality loss.",
+        "**Use Cases:** Multimedia where perfect fidelity is not essential, such as streaming video (MPEG-4), digital photos (JPEG), and music (MP3, AAC)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When an exam question asks you to recommend a compression type, justify your answer based on the data. If the data is a program, financial records, or a medical scan, you must choose lossless and explain that data integrity is paramount. If it's for streaming a movie or sharing a holiday photo on social media, lossy is more appropriate because file size and transmission speed are more important than perfect fidelity."
+    },
+    {
+      "type": "heading",
+      "content": "Calculating File Sizes and Compression"
+    },
+    {
+      "type": "text",
+      "content": "A common exam task is to calculate file sizes. You must know the standard formulae for uncompressed bitmap images and PCM sound files. Remember to be careful with your units!"
+    },
+    {
+      "type": "formula",
+      "content": "Uncompressed Image Size (bits) = Image Width (px) × Image Height (px) × Colour Depth (bits)"
+    },
+    {
+      "type": "formula",
+      "content": "Uncompressed Sound File Size (bits) = Sample Rate (Hz) × Sample Resolution (bits) × Number of Channels × Duration (s)"
+    },
+    {
+      "type": "workedExample",
+      "question": "An uncompressed digital photograph has dimensions of 4000 x 3000 pixels and uses a 24-bit colour depth.\n\n(a) Calculate the file size of the uncompressed image in mebibytes (MiB).\n(b) The image is compressed into a JPEG file of size 4 MB. Calculate the compression ratio.",
+      "solution": "**Part (a): Calculate uncompressed file size**\n\n1.  **Calculate total pixels:**\n    `Total Pixels = 4000 × 3000 = 12,000,000 pixels`\n\n2.  **Calculate size in bits:**\n    `Size (bits) = Total Pixels × Colour Depth`\n    `Size (bits) = 12,000,000 × 24 = 288,000,000 bits`\n\n3.  **Convert bits to bytes:** (1 byte = 8 bits)\n    `Size (bytes) = 288,000,000 / 8 = 36,000,000 bytes`\n\n4.  **Convert bytes to mebibytes (MiB):** (1 MiB = 1024 KiB = 1024 × 1024 bytes)\n    `Size (MiB) = 36,000,000 / (1024 × 1024)`\n    `Size (MiB) ≈ 34.33 MiB`\n\n**Part (b): Calculate compression ratio**\n\n1.  **Ensure units are consistent:** The question gives the compressed size in megabytes (MB) and we calculated in mebibytes (MiB). For exam purposes, often the distinction is ignored, but it's good practice to be consistent. Let's assume the question implies MB (1,000,000 bytes) for the compressed size and we should use the same for the uncompressed size for a fair comparison.\n    `Uncompressed size (MB) = 36,000,000 / 1,000,000 = 36 MB`\n    `Compressed size (MB) = 4 MB`\n\n2.  **Calculate the ratio:**\n    `Compression Ratio = Uncompressed Size / Compressed Size`\n    `Compression Ratio = 36 MB / 4 MB = 9`\n\n3.  **State the answer:** The compression ratio is 9:1."
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to units! Questions will specify bits, bytes, kilobytes (KB), kibibytes (KiB), megabytes (MB), or mebibytes (MiB). Remember: `1 byte = 8 bits`, `1 KiB = 1024 bytes`, `1 MiB = 1024 KiB`. Always show your conversion steps in your working."
     },
     {
       "type": "practice",
-      "label": "Mark a compression question",
+      "label": "Test Your Knowledge on Compression",
       "href": "/mark?subject=9618&topic=1.3"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9618 course index",
-          "href": "/courses/9618"
+          "label": "GeeksforGeeks: Lossy and Lossless Compression",
+          "href": "https://www.geeksforgeeks.org/lossy-and-lossless-compression/"
+        },
+        {
+          "label": "Computerphile: How Compression Works",
+          "href": "https://www.youtube.com/watch?v=Lto-Tv-1S14"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

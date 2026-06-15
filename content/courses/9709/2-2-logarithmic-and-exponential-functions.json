@@ -5,54 +5,178 @@
   "paper": "P2",
   "paperName": "Pure Mathematics 2",
   "status": "premium",
-  "summary": "9709 P2 logs and exponentials — laws of logarithms, solving equations, and graphs of a^x and log_a(x) with PhET Function Builder.",
+  "summary": "An exploration of the relationship between exponential and logarithmic functions, their properties, graphs, and their crucial role in modelling real-world phenomena like population growth and radioactive decay.",
   "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Use laws of logarithms to simplify and solve equations.",
-    "Convert between exponential and logarithmic forms.",
-    "Sketch and interpret graphs of y = a^x and y = log_a(x).",
-    "Solve exponential growth and decay problems."
+    "Understand the relationship between logarithms and indices, and use the laws of logarithms to simplify expressions and solve equations.",
+    "Understand the definition and properties of the exponential function e^x and the natural logarithm ln x.",
+    "Sketch graphs of y = a^x and y = log_a x, and recognise their relationship as inverse functions.",
+    "Use logarithms to solve equations of the form a^x = b and to linearise data for analysis."
   ],
   "simpleExplanation": {
-    "title": "Inverse partners",
-    "summary": "Logarithms undo exponentials: if y = a^x then x = log_a(y). They turn multiplication into addition — essential for solving equations where x is in the index.",
+    "title": "Logs and Exponentials: Unlocking Growth",
+    "summary": "Exponential functions describe rapid growth or decay, while logarithms are their inverse, helping us solve for unknown powers. They are two sides of the same coin, connected by a simple reflection.",
+    "analogy": "Think of exponential growth like a savings account with compound interest; it grows faster and faster over time. A logarithm is like asking the question, 'How long will it take for my money to double?' It finds the 'time' (the exponent) needed to reach a certain amount.",
     "steps": [
-      "Laws: log(ab) = log a + log b; log(a^n) = n log a; log(1) = 0.",
-      "ln x is log_e x; e ≈ 2.718 — natural exponential y = e^x.",
-      "To solve a^x = b: take log of both sides → x log a = log b.",
-      "Exponential decay: y = Ae^(-kt) for half-life and cooling models."
+      "y = a^x and y = log_a(x) are inverse functions — reflection in y = x.",
+      "Laws of logs: log(xy) = log x + log y; log(x^n) = n log x.",
+      "Natural log ln x uses base e ≈ 2.718.",
+      "Exponential models growth/decay: y = Ae^(kx)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is the relationship between $y = a^x$ and $x = \\log_a y$?",
+      "back": "They are equivalent statements. The logarithm, $\\log_a y$, gives you the exponent, $x$, that the base $a$ must be raised to in order to get $y$."
+    },
+    {
+      "front": "What is the base of the natural logarithm, $\\ln x$?",
+      "back": "The base is the mathematical constant $e$, where $e \\approx 2.71828$. So, $\\ln x$ is shorthand for $\\log_e x$."
+    },
+    {
+      "front": "What is the value of $\\log_a a$?",
+      "back": "1, because $a^1 = a$. The log of the base itself is always 1."
+    },
+    {
+      "front": "What is the value of $\\log_a 1$?",
+      "back": "0, because $a^0 = 1$. The log of 1 is always 0 for any valid base."
+    },
+    {
+      "front": "State the product rule for logarithms.",
+      "back": "$\\log_a(xy) = \\log_a x + \\log_a y$. The log of a product is the sum of the logs."
+    },
+    {
+      "front": "State the quotient rule for logarithms.",
+      "back": "$\\log_a(x/y) = \\log_a x - \\log_a y$. The log of a quotient is the difference of the logs."
+    },
+    {
+      "front": "State the power rule for logarithms.",
+      "back": "$\\log_a(x^n) = n \\log_a x$. The exponent inside the log can be brought out as a multiplier."
+    },
+    {
+      "front": "What is the change of base formula for logarithms?",
+      "back": "$\\log_a b = \\frac{\\log_c b}{\\log_c a}$. This is useful for calculators which often only have base 10 (log) or base e (ln)."
+    },
+    {
+      "front": "Common mistake: What is $\\log(x+y)$?",
+      "back": "It is NOT $\\log x + \\log y$. There is no simplification rule for the logarithm of a sum or difference."
+    },
+    {
+      "front": "How do you solve an equation like $5^x = 100$?",
+      "back": "Take logarithms of both sides: $x \\log 5 = \\log 100$, so $x = \\frac{\\log 100}{\\log 5}$. You can use any base, but `ln` or `log` on a calculator is easiest."
+    },
+    {
+      "front": "What does a negative value for $k$ in $y = Ae^{kt}$ signify?",
+      "back": "It signifies exponential decay, where the quantity decreases over time, approaching a limit. A positive $k$ signifies exponential growth."
+    },
+    {
+      "front": "What is the domain of $y = \\ln(x)$?",
+      "back": "$x > 0$. You cannot take the logarithm of zero or a negative number."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why can't I take the log of a negative number?",
+      "a": "A logarithm, $\\log_a x$, asks 'what power must I raise $a$ to, to get $x$?' If the base $a$ is positive, raising it to any real power will always result in a positive number. For example, $2^3=8$, $2^{-3}=1/8$, $2^0=1$. There is no real power you can raise 2 to that will give a negative result. Therefore, the argument of a logarithm must be positive."
+    },
+    {
+      "q": "What's the difference between `log` and `ln` on my calculator?",
+      "a": "Typically, the `log` button refers to the common logarithm, which has a base of 10 (i.e., $\\log_{10}x$). The `ln` button refers to the natural logarithm, which has a base of $e$ (i.e., $\\log_e x$). For solving equations like $a^x=b$, you can use either base, and the change of base formula guarantees you will get the same answer."
+    },
+    {
+      "q": "How do I remember the laws of logarithms?",
+      "a": "The laws of logarithms directly mirror the laws of indices. Think about the connection: \n- Multiplication of numbers becomes addition of their powers ($a^m \\times a^n = a^{m+n}$), which corresponds to the log rule $\\log(xy) = \\log x + \\log y$.\n- Division of numbers becomes subtraction of their powers ($a^m / a^n = a^{m-n}$), which corresponds to $\\log(x/y) = \\log x - \\log y$."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Logarithms** on P2 feed into **P3 integration** (ln x) and **statistics**. Cambridge tests **change of base** and **linearising** exponential data (y = ab^x → log-linear plot)."
+      "content": "Welcome to the world of exponential and logarithmic functions. These are not just abstract mathematical concepts; they are the language used to describe many real-world processes, from the growth of populations and the spread of viruses to the decay of radioactive substances and the cooling of a cup of tea. In this topic, we will explore the deep connection between these two types of functions, master their rules, and apply them to solve a variety of problems."
+    },
+    {
+      "type": "heading",
+      "content": "The Inverse Relationship: Exponentials and Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "An exponential function is of the form $y = a^x$, where the base $a$ is a positive constant. A logarithm is the inverse of this operation. The statement $y = a^x$ can be rewritten in logarithmic form as $x = \\log_a y$. In simple terms, the logarithm gives you the power you need."
+    },
+    {
+      "type": "text",
+      "content": "Because they are inverse functions, the graph of $y = \\log_a x$ is a reflection of the graph of $y = a^x$ in the line $y=x$. The domain of $y=a^x$ is all real numbers, and its range is $y>0$. For its inverse, $y=\\log_a x$, this is swapped: the domain is $x>0$ and the range is all real numbers. This is a critical point: you can only take the logarithm of a positive number."
+    },
+    {
+      "type": "heading",
+      "content": "The Laws of Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "To manipulate logarithmic expressions and solve equations, we use a set of rules known as the laws of logarithms. These laws are directly derived from the laws of indices, which you should already be familiar with. Mastering these is non-negotiable for success in this topic."
+    },
+    {
+      "type": "formula",
+      "content": "For a base $a > 0$ and $a \\neq 1$, and for $x, y > 0$:\n1. **Product Rule:** $\\log_a(xy) = \\log_a x + \\log_a y$\n2. **Quotient Rule:** $\\log_a(x/y) = \\log_a x - \\log_a y$\n3. **Power Rule:** $\\log_a(x^n) = n \\log_a x$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Adding logs corresponds to multiplying the arguments.",
+        "Subtracting logs corresponds to dividing the arguments.",
+        "A coefficient in front of a log can be moved to be a power on the argument.",
+        "A useful identity is the change of base rule: $\\log_a b = \\frac{\\log_c b}{\\log_c a}$. This lets you evaluate any log on your calculator using the `ln` or `log` button."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Solve 3^(2x−1) = 5.",
-      "solution": "Take ln of both sides:\n\n(2x − 1) ln 3 = ln 5\n\n2x = 1 + ln 5/ln 3\n\nx = **(1 + ln 5/ln 3)/2** ≈ 1.14"
+      "question": "Solve the equation $2\\log_3 x - \\log_3(x-2) = 2$.",
+      "solution": "First, we combine the logarithms on the left-hand side using the laws of logs.\n\n1. Apply the power rule to the first term:\n$2\\log_3 x = \\log_3(x^2)$\n\nThe equation becomes:\n$\\log_3(x^2) - \\log_3(x-2) = 2$\n\n2. Apply the quotient rule:\n$\\log_3\\left(\\frac{x^2}{x-2}\\right) = 2$\n\n3. Convert the logarithmic equation to its equivalent exponential form. Remember, $\\log_a b = c \\iff a^c = b$.\n$\\frac{x^2}{x-2} = 3^2$\n$\\frac{x^2}{x-2} = 9$\n\n4. Solve the resulting algebraic equation:\n$x^2 = 9(x-2)$\n$x^2 = 9x - 18$\n$x^2 - 9x + 18 = 0$\n\n5. Factorise the quadratic:\n$(x-3)(x-6) = 0$\nThis gives two potential solutions: $x=3$ or $x=6$.\n\n6. Check for validity. The argument of a logarithm must be positive.\n- For $x=3$: $\\log_3(3)$ is valid. $\\log_3(3-2) = \\log_3(1)$ is valid.\n- For $x=6$: $\\log_3(6)$ is valid. $\\log_3(6-2) = \\log_3(4)$ is valid.\n\nBoth solutions are valid. Therefore, the solutions are $x=3$ and $x=6$."
+    },
+    {
+      "type": "heading",
+      "content": "The Natural Exponential and Logarithm (e and ln)"
+    },
+    {
+      "type": "text",
+      "content": "A special base for exponential and logarithmic functions is the number $e$. It is an irrational number, approximately 2.718, and arises naturally in situations involving continuous growth or decay. The function $y=e^x$ is called the natural exponential function, and its inverse, $y=\\log_e x$, is called the natural logarithm, usually written as $y=\\ln x$. These are the most common exponential and log functions used in science, engineering, and finance."
+    },
+    {
+      "type": "formula",
+      "content": "The constant $e$: $e = \\lim_{n \\to \\infty} \\left(1 + \\frac{1}{n}\\right)^n \\approx 2.71828$\nNatural Logarithm: $\\ln x \\equiv \\log_e x$"
     },
     {
       "type": "examTip",
-      "content": "When linearising y = ab^x, plot **ln y** against **x** — gradient = ln b, intercept = ln a. State this clearly for interpretation marks."
+      "content": "Your calculator's `ln` button is for the natural logarithm ($​​\\log_e$). The `log` button is usually for base 10 ($​​\\log_{10}$). For solving equations, it's often best to use `ln` as it simplifies expressions involving $e$. Remember the key inverse properties: $\\ln(e^x) = x$ and $e^{\\ln x} = x$ (for $x>0$)."
+    },
+    {
+      "type": "workedExample",
+      "question": "The temperature $T$ (in $^{\\circ}$C) of a cooling liquid at time $t$ (in minutes) is given by the equation $T = 20 + 60e^{-0.05t}$.\n(a) What is the initial temperature of the liquid?\n(b) What is the temperature of the surroundings?\n(c) Find the time taken, to 3 significant figures, for the temperature to reach $50^{\\circ}$C.",
+      "solution": "(a) The initial temperature occurs at $t=0$.\n$T = 20 + 60e^{-0.05 \\times 0} = 20 + 60e^0 = 20 + 60(1) = 80^{\\circ}$C.\n\n(b) The temperature of the surroundings is the value that $T$ approaches as time goes to infinity ($t \\to \\infty$).\nAs $t \\to \\infty$, the term $e^{-0.05t}$ approaches 0.\nSo, $T \\to 20 + 60(0) = 20^{\\circ}$C.\nThis is the constant term in the equation.\n\n(c) We need to find $t$ when $T=50$.\n$50 = 20 + 60e^{-0.05t}$\n\nIsolate the exponential term:\n$30 = 60e^{-0.05t}$\n$0.5 = e^{-0.05t}$\n\nTake natural logarithms of both sides to solve for the exponent:\n$\\ln(0.5) = \\ln(e^{-0.05t})$\n$\\ln(0.5) = -0.05t$\n\nSolve for $t$:\n$t = \\frac{\\ln(0.5)}{-0.05}$\n$t \\approx \\frac{-0.693147}{-0.05} \\approx 13.8629...$\n\nTo 3 significant figures, the time taken is 13.9 minutes."
+    },
+    {
+      "type": "examTip",
+      "content": "When solving logarithmic equations, always check your final answers by substituting them back into the original equation. This is to ensure that you are not taking the logarithm of a negative number or zero, which is undefined. Any solution that violates this condition must be rejected."
     },
     {
       "type": "practice",
-      "label": "Mark a logarithms question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9709&topic=2.2"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 course index",
-          "href": "/courses/9709"
+          "label": "Cambridge International A-Level Mathematics 9709 Syllabus",
+          "href": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/"
+        },
+        {
+          "label": "Khan Academy: Logarithms",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

@@ -5,81 +5,181 @@
   "paper": "P3",
   "paperName": "Pure Mathematics 3",
   "status": "premium",
-  "summary": "Free 9709 Pure Maths 3 vectors — component form, vector addition, magnitude, direction, and the scalar (dot) product with exam-style reasoning.",
+  "summary": "An exploration of vectors in three dimensions, covering the scalar product to find angles, the vector equation of a line, and methods to determine the relationship between lines (intersecting, parallel, or skew).",
   "durationMin": 22,
   "updated": "2026-06-15",
+  "learningObjectives": [
+    "Understand and use the vector equation of a line in the form r = a + λd.",
+    "Calculate the scalar product of two vectors and use it to find the angle between vectors or lines.",
+    "Determine whether two lines are parallel, intersect, or are skew, and find the point of intersection if it exists.",
+    "Find the shortest distance from a point to a line."
+  ],
   "simpleExplanation": {
-    "title": "Arrows with components",
-    "summary": "Vectors have magnitude and direction. On Paper 3 you add in component form, find length and angle, and use the dot product for angles and projections.",
+    "title": "Vectors: Direction and Magnitude",
+    "summary": "Vectors are quantities with both size and direction, like a displacement from one point to another. We can combine them and analyse their geometric relationships using specific algebraic rules.",
+    "analogy": "Imagine giving directions. 'Walk 3 blocks east and 4 blocks north' is a vector. It's not just the total distance you walk, but the specific direction that gets you to your destination. Combining two sets of directions is like adding vectors.",
     "steps": [
-      "Write each vector in component form using i and j (or a column vector).",
-      "Add component-wise: the resultant has components (a₁+b₁, a₂+b₂).",
-      "Find |R| = √(Rx² + Ry²) and direction from tan θ = Ry/Rx.",
-      "Use a·b = |a||b|cos θ for angles, perpendicularity (a·b = 0), and projections."
+      "Write vectors in component form a = ai + aj or column notation.",
+      "Add component-wise: (a₁+b₁)i + (a₂+b₂)j.",
+      "Resultant magnitude |R| = √(Rx² + Ry²); direction from tan θ = Ry/Rx.",
+      "Dot product a·b = |a||b|cos θ — use for angles and projections (9709 3.7)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is a position vector?",
+      "back": "A vector from the origin O to a point P, denoted $\\vec{OP}$ or simply $\\mathbf{p}$. It defines the coordinates of point P."
+    },
+    {
+      "front": "What is the formula for the magnitude of a 3D vector $\\mathbf{v} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}$?",
+      "back": "The magnitude is its length, given by $|\\mathbf{v}| = \\sqrt{x^2 + y^2 + z^2}$."
+    },
+    {
+      "front": "How do you find a unit vector in the direction of vector $\\mathbf{a}$?",
+      "back": "Divide the vector by its magnitude: $\\hat{\\mathbf{a}} = \\frac{\\mathbf{a}}{|\\mathbf{a}|}$. A unit vector has a magnitude of 1."
+    },
+    {
+      "front": "What is the scalar product of $\\mathbf{a} = a_1\\mathbf{i} + a_2\\mathbf{j} + a_3\\mathbf{k}$ and $\\mathbf{b} = b_1\\mathbf{i} + b_2\\mathbf{j} + b_3\\mathbf{k}$?",
+      "back": "In component form, it is $\\mathbf{a} \\cdot \\mathbf{b} = a_1b_1 + a_2b_2 + a_3b_3$."
+    },
+    {
+      "front": "What is the geometric definition of the scalar product?",
+      "back": "$\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta$, where $\\theta$ is the angle between the vectors when placed tail-to-tail."
+    },
+    {
+      "front": "What is true about the scalar product of two non-zero perpendicular vectors?",
+      "back": "Their scalar product is zero. $\\mathbf{a} \\cdot \\mathbf{b} = 0$ because $\\cos(90^\\circ) = 0$."
+    },
+    {
+      "front": "What is the vector equation of a line?",
+      "back": "$\\mathbf{r} = \\mathbf{a} + \\lambda\\mathbf{d}$, where $\\mathbf{a}$ is the position vector of a point on the line and $\\mathbf{d}$ is the direction vector of the line."
+    },
+    {
+      "front": "How do you find the angle between two intersecting lines, $l_1$ and $l_2$?",
+      "back": "Find the angle $\\theta$ between their direction vectors $\\mathbf{d}_1$ and $\\mathbf{d}_2$ using the scalar product: $\\cos\\theta = \\frac{|\\mathbf{d}_1 \\cdot \\mathbf{d}_2|}{|\\mathbf{d}_1||\\mathbf{d}_2|}$. The modulus in the numerator ensures you find the acute angle."
+    },
+    {
+      "front": "Common Trap: What is the vector $\\vec{AB}$ in terms of position vectors $\\mathbf{a}$ and $\\mathbf{b}$?",
+      "back": "The vector from point A to point B is $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$. A common mistake is to calculate it as $\\mathbf{a} - \\mathbf{b}$ or $\\mathbf{a} + \\mathbf{b}$."
+    },
+    {
+      "front": "When are two lines $\\mathbf{r}_1 = \\mathbf{a}_1 + \\lambda\\mathbf{d}_1$ and $\\mathbf{r}_2 = \\mathbf{a}_2 + \\mu\\mathbf{d}_2$ parallel?",
+      "back": "When their direction vectors are scalar multiples of each other, i.e., $\\mathbf{d}_1 = k\\mathbf{d}_2$ for some scalar $k$."
+    },
+    {
+      "front": "What does it mean if two lines are 'skew'?",
+      "back": "They are not parallel and they do not intersect. This can only happen in 3D or higher dimensions."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a position vector and a direction vector?",
+      "a": "A position vector gives the coordinates of a point relative to the origin, like an address. A direction vector isn't fixed to the origin; it just describes a direction and magnitude, like '3 steps east'. In the line equation $\\mathbf{r} = \\mathbf{a} + \\lambda\\mathbf{d}$, $\\mathbf{a}$ is a position vector locating the line in space, while $\\mathbf{d}$ is a direction vector defining its orientation."
+    },
+    {
+      "q": "How do I know if lines are skew?",
+      "a": "First, check if their direction vectors are parallel (scalar multiples of each other). If they are not, try to find a point of intersection by setting their vector equations equal. This gives you three simultaneous equations for two variables ($\\lambda$ and $\\mu$). If you can't find a consistent solution for $\\lambda$ and $\\mu$ that works for all three equations, the lines do not intersect. Since they are not parallel and do not intersect, they must be skew."
+    },
+    {
+      "q": "Can I use the dot product for 2D vectors?",
+      "a": "Yes, absolutely. The formulas are just simpler. For 2D vectors $\\mathbf{a} = a_1\\mathbf{i} + a_2\\mathbf{j}$ and $\\mathbf{b} = b_1\\mathbf{i} + b_2\\mathbf{j}$, the scalar product is $\\mathbf{a} \\cdot \\mathbf{b} = a_1b_1 + a_2b_2$. The geometric definition $\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta$ and all its applications still hold."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Vectors on Paper 3** extend the 2D work from earlier papers. You combine vectors in **component form**, find **magnitude and direction**, and use the **scalar product** for angles between lines — a favourite source of M1/A1 split marks."
+      "content": "Welcome to the study of vectors in three dimensions. This topic extends your 2D vector knowledge from AS Level, introducing powerful tools like the scalar product and the vector equation of a line. These concepts are fundamental for describing geometry in space and are essential in fields like physics, engineering, and computer graphics."
     },
     {
       "type": "heading",
-      "content": "Component form & addition"
+      "content": "Vector Representation and Magnitude"
+    },
+    {
+      "type": "text",
+      "content": "In 3D space, a vector can be written in component form using the standard unit vectors $\\mathbf{i}$, $\\mathbf{j}$, and $\\mathbf{k}$, which represent movement along the x, y, and z axes respectively. For example, the vector $\\mathbf{v} = 3\\mathbf{i} - 2\\mathbf{j} + 5\\mathbf{k}$ can also be written as a column vector. A position vector is a special type of vector that starts at the origin (0, 0, 0) and ends at a specific point in space."
     },
     {
       "type": "formula",
-      "content": "a = a₁i + a₂j, b = b₁i + b₂j ⇒ a + b = (a₁+b₁)i + (a₂+b₂)j. Magnitude |a| = √(a₁² + a₂²)."
+      "content": "\\mathbf{v} = \\begin{pmatrix} 3 \\\\ -2 \\\\ 5 \\end{pmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude (or modulus) of a vector is its length. It's calculated using Pythagoras' theorem extended to three dimensions."
+    },
+    {
+      "type": "formula",
+      "content": "For a vector $\\mathbf{a} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}$, its magnitude is $|\\mathbf{a}| = \\sqrt{x^2 + y^2 + z^2}$."
+    },
+    {
+      "type": "heading",
+      "content": "The Scalar (Dot) Product"
+    },
+    {
+      "type": "text",
+      "content": "The scalar product is one way to 'multiply' two vectors. The result is a scalar (a number), not another vector, which is why it's called the scalar product. It has two definitions which we can equate to solve problems, most commonly to find the angle between two vectors."
+    },
+    {
+      "type": "formula",
+      "content": "Component form: For $\\mathbf{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} b_1 \\\\ b_2 \\\\ b_3 \\end{pmatrix}$, the scalar product is $\\mathbf{a} \\cdot \\mathbf{b} = a_1b_1 + a_2b_2 + a_3b_3$."
+    },
+    {
+      "type": "formula",
+      "content": "Geometric form: $\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta$, where $\\theta$ is the angle between the vectors when placed tail-to-tail."
     },
     {
       "type": "keyPoints",
       "items": [
-        "Use i, j unit vectors or column notation consistently",
-        "Add corresponding components — x with x, y with y",
-        "Direction angle: tan θ = a₂/a₁ (watch quadrant)",
-        "Scalar product: a·b = a₁b₁ + a₂b₂ = |a||b|cos θ"
+        "Equating the two forms gives the formula for the angle between two vectors: $\\cos\\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$.",
+        "If two vectors $\\mathbf{a}$ and $\\mathbf{b}$ are perpendicular (orthogonal), then $\\theta = 90^\\circ$, so $\\cos\\theta = 0$. This means $\\mathbf{a} \\cdot \\mathbf{b} = 0$.",
+        "The scalar product of a vector with itself gives the square of its magnitude: $\\mathbf{a} \\cdot \\mathbf{a} = |\\mathbf{a}|^2$."
       ]
     },
     {
+      "type": "workedExample",
+      "question": "The points A, B and C have position vectors $\\mathbf{a} = 2\\mathbf{i} + \\mathbf{j} - \\mathbf{k}$, $\\mathbf{b} = 3\\mathbf{i} - 2\\mathbf{j} + \\mathbf{k}$ and $\\mathbf{c} = \\mathbf{i} + 3\\mathbf{j} + 2\\mathbf{k}$ respectively. Find the angle ABC.",
+      "solution": "To find angle ABC, we need the vectors that form the angle at B, which are $\\vec{BA}$ and $\\vec{BC}$.\n\n1. Find the vectors $\\vec{BA}$ and $\\vec{BC}$.\n$\\vec{BA} = \\mathbf{a} - \\mathbf{b} = (2\\mathbf{i} + \\mathbf{j} - \\mathbf{k}) - (3\\mathbf{i} - 2\\mathbf{j} + \\mathbf{k}) = -\\mathbf{i} + 3\\mathbf{j} - 2\\mathbf{k}$\n$\\vec{BC} = \\mathbf{c} - \\mathbf{b} = (\\mathbf{i} + 3\\mathbf{j} + 2\\mathbf{k}) - (3\\mathbf{i} - 2\\mathbf{j} + \\mathbf{k}) = -2\\mathbf{i} + 5\\mathbf{j} + \\mathbf{k}$\n\n2. Calculate the scalar product $\\vec{BA} \\cdot \\vec{BC}$.\n$\\vec{BA} \\cdot \\vec{BC} = (-1)(-2) + (3)(5) + (-2)(1) = 2 + 15 - 2 = 15$\n\n3. Calculate the magnitudes of the vectors.\n$|\\vec{BA}| = \\sqrt{(-1)^2 + 3^2 + (-2)^2} = \\sqrt{1 + 9 + 4} = \\sqrt{14}$\n$|\\vec{BC}| = \\sqrt{(-2)^2 + 5^2 + 1^2} = \\sqrt{4 + 25 + 1} = \\sqrt{30}$\n\n4. Use the scalar product formula to find the angle.\n$\\cos(\\angle ABC) = \\frac{\\vec{BA} \\cdot \\vec{BC}}{|\\vec{BA}||\\vec{BC}|} = \\frac{15}{\\sqrt{14}\\sqrt{30}}$\n$\\cos(\\angle ABC) = \\frac{15}{\\sqrt{420}} \\approx 0.732$\n$\\angle ABC = \\cos^{-1}(0.732) \\approx 42.9^\\circ$ (to 1 d.p.)"
+    },
+    {
       "type": "heading",
-      "content": "Scalar (dot) product"
+      "content": "Vector Equation of a Line"
     },
     {
       "type": "text",
-      "content": "When vectors are **perpendicular**, a·b = 0 — use this to find unknown components. For the angle between two vectors, cos θ = (a·b)/(|a||b|). Show **numerator and denominators** separately before rounding."
+      "content": "A straight line in 3D space can be uniquely defined if we know one point on the line and the direction in which the line travels. The vector equation of a line combines this information. The equation $\\mathbf{r} = \\mathbf{a} + \\lambda\\mathbf{d}$ describes the position vector $\\mathbf{r}$ of any point on the line. It starts at a known point with position vector $\\mathbf{a}$ and moves along the direction vector $\\mathbf{d}$ by some scalar multiple $\\lambda$."
+    },
+    {
+      "type": "formula",
+      "content": "$\\mathbf{r} = \\mathbf{a} + \\lambda\\mathbf{d}$\\nWhere:\\n$\\mathbf{r}$ is the position vector of a general point on the line.\\n$\\mathbf{a}$ is the position vector of a specific, known point on the line.\\n$\\mathbf{d}$ is a direction vector parallel to the line.\\n$\\lambda$ is a scalar parameter."
     },
     {
       "type": "workedExample",
-      "question": "a = 3i + 4j, b = i − 2j. Find |a + b|.",
-      "solution": "a + b = (3+1)i + (4−2)j = 4i + 2j.\n\n|a + b| = √(4² + 2²) = √20 = 2√5."
+      "question": "A line $l$ passes through the points A(1, 5, -2) and B(4, -1, 4). (i) Find a vector equation for the line $l$. (ii) The point C has coordinates (p, 9, -6). Given that C lies on the line $l$, find the value of p.",
+      "solution": "(i) To find the vector equation, we need a point on the line and a direction vector.\n1. Choose a point on the line. We can use point A, so $\\mathbf{a} = \\begin{pmatrix} 1 \\\\ 5 \\\\ -2 \\end{pmatrix}$.\n2. Find the direction vector $\\mathbf{d}$ by finding the vector $\\vec{AB}$.\n$\\mathbf{d} = \\vec{AB} = \\mathbf{b} - \\mathbf{a} = \\begin{pmatrix} 4 \\\\ -1 \\\\ 4 \\end{pmatrix} - \\begin{pmatrix} 1 \\\\ 5 \\\\ -2 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ -6 \\\\ 6 \\end{pmatrix}$.\nWe can simplify this direction vector by dividing by a common factor, 3. So we can use $\\mathbf{d} = \\begin{pmatrix} 1 \\\\ -2 \\\\ 2 \\end{pmatrix}$.\n3. Write the equation of the line.\n$l: \\mathbf{r} = \\begin{pmatrix} 1 \\\\ 5 \\\\ -2 \\end{pmatrix} + \\lambda \\begin{pmatrix} 1 \\\\ -2 \\\\ 2 \\end{pmatrix}$.\n\n(ii) If C lies on the line, its position vector must satisfy the line's equation for some value of $\\lambda$.\n1. Set the general point $\\mathbf{r}$ equal to the position vector of C.\n$\\begin{pmatrix} p \\\\ 9 \\\\ -6 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 5 \\\\ -2 \\end{pmatrix} + \\lambda \\begin{pmatrix} 1 \\\\ -2 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 1+\\lambda \\\\ 5-2\\lambda \\\\ -2+2\\lambda \\end{pmatrix}$.\n2. Equate the components to find $\\lambda$. We can use the y or z component.\nUsing the y-component: $9 = 5 - 2\\lambda \\implies 4 = -2\\lambda \\implies \\lambda = -2$.\nCheck with the z-component: $-6 = -2 + 2\\lambda \\implies -4 = 2\\lambda \\implies \\lambda = -2$. The value is consistent.\n3. Use the value of $\\lambda$ to find p from the x-component.\n$p = 1 + \\lambda \\implies p = 1 + (-2) \\implies p = -1$."
     },
     {
       "type": "examTip",
-      "content": "Draw a quick diagram for geometry questions — it clarifies which vector is **a − b** vs **b − a**. Keep surd form until the final line unless the paper specifies decimal answers."
+      "content": "When finding the intersection of two lines, $\\mathbf{r}_1 = \\mathbf{a} + \\lambda\\mathbf{d}_1$ and $\\mathbf{r}_2 = \\mathbf{b} + \\mu\\mathbf{d}_2$, you will set up three simultaneous equations (for $\\mathbf{i}$, $\\mathbf{j}$, and $\\mathbf{k}$). Solve for $\\lambda$ and $\\mu$ using two of the equations. You MUST substitute these values back into the third equation. If it holds true, the lines intersect. If not, they are skew (assuming they are not parallel)."
     },
     {
       "type": "practice",
-      "label": "Mark a vectors question",
+      "label": "Practice Questions",
       "href": "/mark?subject=9709&topic=3.7"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9709 past paper guide",
-          "href": "/blog/cambridge-9709-a-level-mathematics-past-papers-guide"
+          "label": "GeoGebra: Vector Equation of a Line",
+          "href": "https://www.geogebra.org/m/C3tSUW3c"
         },
         {
-          "label": "Error carried forward (ECF)",
-          "href": "/blog/understanding-error-carried-forward-ecf"
-        },
-        {
-          "label": "Free full 9709 course index",
-          "href": "/courses/9709"
+          "label": "3D Vector Plotter",
+          "href": "https://www.geogebra.org/3d?lang=en"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "params": [
       {

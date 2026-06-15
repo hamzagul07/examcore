@@ -5,72 +5,177 @@
   "paper": "P1",
   "paperName": "Theory Fundamentals",
   "status": "premium",
-  "summary": "9618 AS Computer Science — binary, denary, hex, two's complement, BCD, and ASCII/Unicode representation.",
-  "durationMin": 24,
+  "summary": "This lesson covers the fundamental ways computers represent data. We will explore the binary, denary, and hexadecimal number systems, learn how to convert between them, understand how characters are encoded using ASCII and Unicode, and see how signed integers are represented using two's complement.",
+  "durationMin": 22,
   "updated": "2026-06-15",
   "learningObjectives": [
-    "Convert between binary, denary, and hexadecimal.",
-    "Represent signed integers using two's complement.",
-    "Explain BCD and when it is used.",
-    "Describe character encoding with ASCII and Unicode."
+    "Convert positive integers between denary, binary (up to 16 bits), and hexadecimal.",
+    "Describe and use two's complement to represent positive and negative integers in a fixed number of bits.",
+    "Explain the use of character sets, including ASCII and Unicode, for representing text.",
+    "Understand the relationship between the number of bits and the range of values that can be represented."
   ],
   "simpleExplanation": {
-    "title": "Numbers and text in bits",
-    "summary": "Computers store everything as binary digits. Different formats encode integers, characters, and real numbers for processing and storage.",
+    "title": "The Language of Computers",
+    "summary": "Computers only understand 'on' and 'off', represented by 1s and 0s (binary). We use clever systems to turn these simple signals into numbers, text, and all the complex data we use every day.",
+    "analogy": "Imagine you only have a row of light switches. To represent the number 5, you could turn on the first and third switches (representing 1 and 4). To show the letter 'A', you might use a specific, agreed-upon pattern of on/off switches. Data representation is the set of rules for these patterns.",
     "steps": [
-      "Binary ↔ denary: place values 128, 64, 32… or repeated division for denary → binary.",
-      "Hex groups 4 bits — compact notation for memory dumps.",
-      "Two's complement: MSB = sign; negate by invert bits + 1.",
-      "ASCII 7-bit (128 chars); Unicode supports global scripts (UTF-8 variable length)."
+      "Denary ↔ binary using place value (powers of 2).",
+      "Hexadecimal: one digit = 4 bits — compact notation.",
+      "Characters stored as numeric codes (ASCII / Unicode).",
+      "Two's complement represents signed integers."
     ]
   },
   "flashcards": [
     {
-      "front": "Max unsigned 8-bit value?",
-      "back": "255 (11111111₂)."
+      "front": "What is a bit?",
+      "back": "The smallest unit of data in a computer, representing a single binary value of either 0 or 1."
     },
     {
-      "front": "Range of 8-bit two's complement?",
-      "back": "−128 to +127."
+      "front": "How many bits are in a byte?",
+      "back": "8 bits. A byte can represent $2^8 = 256$ different values (0-255)."
     },
     {
-      "front": "Hex FF in denary?",
-      "back": "255."
+      "front": "What is hexadecimal used for?",
+      "back": "To provide a more human-friendly representation of binary data. It's shorter and less error-prone to read than long binary strings. Used in memory dumps, MAC addresses, and colour codes."
     },
     {
-      "front": "Why two's complement?",
-      "back": "Single addition circuit handles signed arithmetic."
+      "front": "Convert the 4-bit binary number `1101` to denary.",
+      "back": "(1 × 8) + (1 × 4) + (0 × 2) + (1 × 1) = 8 + 4 + 0 + 1 = 13."
+    },
+    {
+      "front": "What is the key difference between ASCII and Unicode?",
+      "back": "ASCII uses 7 or 8 bits and covers English characters and symbols. Unicode uses a variable number of bits (e.g., 8, 16, 32) and aims to represent every character from every language in the world."
+    },
+    {
+      "front": "What is Two's Complement?",
+      "back": "A method for representing signed integers (positive and negative) in binary. The most significant bit (MSB) indicates the sign."
+    },
+    {
+      "front": "In 8-bit two's complement, what does the Most Significant Bit (MSB) signify?",
+      "back": "It signifies the sign. If the MSB is 0, the number is positive. If the MSB is 1, the number is negative."
+    },
+    {
+      "front": "How do you find the negative equivalent of a positive binary number using two's complement?",
+      "back": "1. Invert all the bits (0s become 1s, 1s become 0s). 2. Add 1 to the result."
+    },
+    {
+      "front": "What is an overflow error?",
+      "back": "An error that occurs when the result of an arithmetic operation is too large to be stored in the number of bits allocated. For example, adding two positive 8-bit numbers and getting a result that requires 9 bits."
+    },
+    {
+      "front": "What is the denary range of an 8-bit unsigned integer?",
+      "back": "0 to 255. The formula is 0 to $2^8 - 1$."
+    },
+    {
+      "front": "What is the denary range of an 8-bit signed integer using two's complement?",
+      "back": "-128 to +127. The formula is from $-2^{7}$ to $2^{7} - 1$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we even need hexadecimal if computers only use binary?",
+      "a": "For convenience and readability. A long binary string like `1101010011101011` is difficult for a programmer to read, type, or remember. The same value in hexadecimal is `D4EB`, which is much shorter and less prone to transcription errors. It acts as a useful shorthand."
+    },
+    {
+      "q": "What is the difference between an unsigned and a signed integer?",
+      "a": "An unsigned integer uses all its bits to represent the magnitude of a positive number. An 8-bit unsigned integer can represent values from 0 to 255. A signed integer uses one of its bits (the MSB) to indicate the sign (positive or negative), so it can represent both positive and negative values, but over a different range. An 8-bit signed integer (using two's complement) represents values from -128 to +127."
+    },
+    {
+      "q": "How do I know if the binary number `10001101` is negative or just a large positive number?",
+      "a": "You must know the context! If you are told it's an 8-bit *unsigned* integer, it represents 128 + 8 + 4 + 1 = 141. If you are told it's an 8-bit *signed* integer using two's complement, the leading '1' means it's negative. To find its value, you would perform the two's complement operation on it to find its positive magnitude."
     }
   ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Data representation** is the foundation of 9618 Paper 1. Cambridge sets **multi-step conversions**, **two's complement overflow**, and **floating-point** (A Level) — master 8-bit and 16-bit first."
+      "content": "At the most fundamental level, a computer is a collection of billions of tiny electronic switches that can be either on or off. How do we get from this simple state to streaming video, complex games, and artificial intelligence? The answer lies in data representation. This topic is the bedrock of computer science, explaining the agreed-upon rules for converting numbers, text, and other data into the binary language that hardware understands."
+    },
+    {
+      "type": "heading",
+      "content": "Number Systems: Denary, Binary, and Hexadecimal"
+    },
+    {
+      "type": "text",
+      "content": "We are accustomed to the denary (base-10) number system, which uses ten digits (0-9). Computers, however, operate on the binary (base-2) system, using only two digits: 0 and 1. Each digit in a binary number is a 'bit'. To make long binary strings more manageable for humans, we often use the hexadecimal (base-16) system. Hexadecimal uses 16 symbols: the digits 0-9 and the letters A-F (representing 10-15)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Each position in a binary number represents a power of 2 (e.g., ..., 128, 64, 32, 16, 8, 4, 2, 1).",
+        "Hexadecimal is a compact notation for binary. Each hexadecimal digit corresponds to a unique 4-bit binary sequence (a nibble).",
+        "For example, the hexadecimal digit `B` is equivalent to the denary number 11, which is `1011` in binary.",
+        "A single byte (8 bits) can be represented by exactly two hexadecimal digits (e.g., `11111111`₂ = `FF`₁₆ = 255₁₀)."
+      ]
     },
     {
       "type": "workedExample",
-      "question": "Convert −42 denary to 8-bit two's complement.",
-      "solution": "+42 = 00101010\n\nInvert: 11010101\n\nAdd 1: **11010110**"
+      "question": "A computer stores a positive integer as an 8-bit binary number. Convert the denary number 173 into: (i) 8-bit binary, and (ii) hexadecimal.",
+      "solution": "(i) To convert 173 to binary, we find the largest power of 2 that fits into it and work down. \nPlace values: 128, 64, 32, 16, 8, 4, 2, 1\n\n173 - 128 = 45. So, we have a 1 in the 128s place. `1.......`\n45 is less than 64. So, a 0 in the 64s place. `10......`\n45 - 32 = 13. So, a 1 in the 32s place. `101.....`\n13 is less than 16. So, a 0 in the 16s place. `1010....`\n13 - 8 = 5. So, a 1 in the 8s place. `10101...`\n5 - 4 = 1. So, a 1 in the 4s place. `101011..`\n1 is less than 2. So, a 0 in the 2s place. `1010110.`\n1 - 1 = 0. So, a 1 in the 1s place. `10101101`\n\n**Answer (i): 10101101**\n\n(ii) To convert to hexadecimal, we split the 8-bit binary number into two 4-bit nibbles.\n`1010` | `1101`\n\nConvert each nibble to denary/hex:\n`1010`₂ = (8 + 2) = 10₁₀ = `A`₁₆\n`1101`₂ = (8 + 4 + 1) = 13₁₀ = `D`₁₆\n\nCombine the two hex digits.\n\n**Answer (ii): AD₁₆**"
+    },
+    {
+      "type": "heading",
+      "content": "Representing Negative Numbers: Two's Complement"
+    },
+    {
+      "type": "text",
+      "content": "Representing negative numbers in binary requires a special system. A simple approach might be to use one bit for the sign (e.g., 0 for positive, 1 for negative), known as sign-and-magnitude. However, this method has issues, including two different representations for zero (+0 and -0) and complex arithmetic logic. The standard method used by modern computers is Two's Complement. In this system, the most significant bit (MSB) of a number indicates its sign (0 for positive, 1 for negative), but it also carries a negative place value. This results in a single representation for zero and makes binary addition and subtraction straightforward for both positive and negative numbers."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To find the two's complement representation of a negative number (e.g., -X):",
+        "1. Write the binary representation for the positive number (+X), ensuring it fills the required number of bits (e.g., 8 bits).",
+        "2. Invert all the bits (change 0s to 1s and 1s to 0s). This is the one's complement.",
+        "3. Add 1 to the result.",
+        "The range for an n-bit two's complement integer is from $-2^{n-1}$ to $+2^{n-1}-1$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Represent the denary number -58 as an 8-bit two's complement binary number.",
+      "solution": "1. **Find the 8-bit binary for +58:**\nPlace values: 128, 64, 32, 16, 8, 4, 2, 1\n58 = 32 + 16 + 8 + 2\nSo, +58 is `00111010`₂.\n\n2. **Invert the bits (One's Complement):**\n`00111010` becomes `11000101`.\n\n3. **Add 1:**\n`11000101`\n`+        1`\n`----------`\n`11000110`\n\n**Answer: 11000110**\n\n*Verification (optional but good practice):* The MSB has a place value of -128. The other bits are positive.\n-128 + 64 + 4 + 2 = -128 + 70 = -58. The answer is correct."
     },
     {
       "type": "examTip",
-      "content": "Show **working** for conversions — partial marks are common. Watch **overflow** when adding two large positive two's complement numbers."
+      "content": "When asked to perform two's complement conversion, always state the number of bits you are working with (e.g., 'in 8-bit two's complement'). A common mistake is to forget to pad the positive binary number with leading zeros to the required bit length before inverting."
+    },
+    {
+      "type": "heading",
+      "content": "Character Representation: ASCII and Unicode"
+    },
+    {
+      "type": "text",
+      "content": "Computers must also represent text. This is achieved by assigning a unique binary code to each character. A 'character set' is the collection of characters and their corresponding codes. The earliest widespread standard was ASCII (American Standard Code for Information Interchange), which uses 7 bits to represent 128 characters, including uppercase and lowercase English letters, numbers, and punctuation. Extended ASCII uses 8 bits for 256 characters. However, ASCII is insufficient for global languages. Unicode is the modern standard, designed to represent characters from virtually all writing systems. It can use up to 32 bits per character, allowing for over a million unique codes. UTF-8 is a popular and efficient way of encoding Unicode characters, using a variable number of bytes."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "ASCII: 7-bit standard (128 characters), 8-bit extended (256 characters). Sufficient for English but not for world languages.",
+        "Unicode: A universal character set. Can represent over 1 million characters. Solves the limitations of ASCII.",
+        "Character sets map characters to unique integer values (code points). For example, in ASCII, 'A' is 65, which is `01000001` in binary.",
+        "The number of characters that can be represented is $2^n$, where $n$ is the number of bits used per character."
+      ]
     },
     {
       "type": "practice",
-      "label": "Mark a data representation question",
+      "label": "Test Your Knowledge on Data Representation",
       "href": "/mark?subject=9618&topic=1.1"
     },
     {
       "type": "resources",
       "items": [
         {
-          "label": "9618 course index",
-          "href": "/courses/9618"
+          "label": "CS Unplugged: Binary Numbers",
+          "href": "https://www.csunplugged.org/en/topics/binary-numbers/"
+        },
+        {
+          "label": "Unicode and Character Sets Explained",
+          "href": "https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/"
         }
       ]
     }
   ],
+  "generatorVersion": "stem-deep-author-1",
   "diagramSpec": {
     "steps": [
       {

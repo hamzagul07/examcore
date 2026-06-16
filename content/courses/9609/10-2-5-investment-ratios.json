@@ -5,28 +5,69 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — dividend yield, cover, P/E, and shareholder returns.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — dividend yield, dividend cover, P/E ratio, and shareholder analysis.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Calculate dividend per share and yield.",
-    "Explain price/earnings ratio.",
-    "Interpret ratios for investors.",
-    "Evaluate attractiveness to shareholders."
+    "Calculate dividend yield and dividend cover.",
+    "Calculate and interpret the price/earnings (P/E) ratio.",
+    "Analyse returns from a shareholder perspective.",
+    "Evaluate investment attractiveness using case data."
   ],
   "simpleExplanation": {
     "title": "Shareholder perspective",
-    "summary": "Investment ratios help shareholders judge returns and market valuation relative to earnings and dividends.",
+    "summary": "Investment ratios help shareholders judge income return (dividends) and how the market values the company relative to its earnings.",
     "steps": [
-      "Dividend yield = DPS / share price × 100.",
-      "Dividend cover = EPS / DPS.",
-      "P/E = share price / EPS.",
-      "High P/E may mean growth expectations."
+      "Dividend yield = DPS ÷ share price × 100.",
+      "Dividend cover = EPS ÷ DPS.",
+      "P/E = share price ÷ EPS.",
+      "High P/E may reflect growth expectations."
     ]
   },
+  "flashcards": [
+    { "front": "Dividend per share (DPS)?", "back": "Total dividend paid ÷ Number of shares in issue." },
+    { "front": "Earnings per share (EPS)?", "back": "Profit for the year attributable to ordinary shareholders ÷ Number of shares." },
+    { "front": "Dividend yield formula?", "back": "DPS ÷ Share price × 100%." },
+    { "front": "Dividend cover formula?", "back": "EPS ÷ DPS — how many times earnings cover the dividend." },
+    { "front": "P/E ratio formula?", "back": "Share price ÷ EPS." },
+    { "front": "High dividend yield?", "back": "High income return — but may signal low share price or unsustainable payout." },
+    { "front": "Low dividend cover?", "back": "Little profit retained after dividends — risky if earnings fall." },
+    { "front": "High P/E?", "back": "Market expects future growth; expensive relative to current earnings." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Investment ratios** (10.2.5) complete **10.2**. Use **case share price data** when given." },
-    { "type": "practice", "label": "Mark an investment ratios question", "href": "/mark?subject=9609&topic=10.2.5" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Investment ratios** (10.2.5) complete **Topic 10.2**. Questions often give **share price**, **DPS**, and **profit/ shares** — calculate **EPS first**, then yield, cover, and P/E."
+    },
+    {
+      "type": "formula",
+      "content": "EPS = $\\frac{\\text{Profit for ordinary shareholders}}{\\text{Number of shares}}$\n\nDividend yield = $\\frac{\\text{DPS}}{\\text{Share price}} \\times 100\\%$\n\nDividend cover = $\\frac{\\text{EPS}}{\\text{DPS}}$\n\nP/E ratio = $\\frac{\\text{Share price}}{\\text{EPS}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "2 million shares in issue. Profit for the year $5 m; 40% paid as dividend. Share price $4.00.\n\nCalculate EPS, DPS, dividend yield, dividend cover, and P/E.",
+      "solution": "**EPS** = 5 000 000 ÷ 2 000 000 = **$2.50**\n\n**Total dividend** = 40% × 5 m = $2 m\n**DPS** = 2 000 000 ÷ 2 000 000 = **$1.00**\n\n**Dividend yield** = (1.00 ÷ 4.00) × 100 = **25%**\n\n**Dividend cover** = 2.50 ÷ 1.00 = **2.5 times**\n\n**P/E** = 4.00 ÷ 2.50 = **1.6**"
+    },
+    {
+      "type": "text",
+      "content": "**Interpretation:** High yield may attract income investors but check **cover** — 2.5× means dividends are affordable. **Low P/E (1.6)** suggests the market prices the share cheaply vs earnings (or data is simplified). Compare with **competitors** and **prior year**."
+    },
+    {
+      "type": "examTip",
+      "content": "Distinguish **shareholders** (yield, P/E) from **directors** (ROCE, liquidity) — match ratio to the stakeholder in the question."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an investment ratios question",
+      "href": "/mark?subject=9609&topic=10.2.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.2.2 Profitability ratios", "href": "/courses/9609/10-2-2-profitability-ratios" },
+        { "label": "10.3.4 Investment decisions", "href": "/courses/9609/10-3-4-investment-appraisal-decisions" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

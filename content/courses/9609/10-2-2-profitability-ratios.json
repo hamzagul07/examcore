@@ -5,28 +5,70 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — gross, operating, and ROCE profitability measures.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — gross profit margin, operating profit margin, ROCE, and trend analysis.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Calculate gross profit margin.",
-    "Calculate operating profit margin.",
-    "Calculate return on capital employed.",
-    "Compare profitability over time and vs rivals."
+    "Calculate gross profit margin and operating profit margin.",
+    "Calculate return on capital employed (ROCE).",
+    "Interpret profitability trends and benchmarks.",
+    "Link ratios to business performance in case studies."
   ],
   "simpleExplanation": {
-    "title": "How profitable is the firm?",
-    "summary": "Profitability ratios relate profit to sales or capital employed, showing efficiency of generating returns.",
+    "title": "How hard is money working?",
+    "summary": "Profitability ratios show how much profit is earned relative to sales and capital invested — the core performance measures for directors and shareholders.",
     "steps": [
-      "GPM = gross profit / revenue × 100.",
-      "OPM = operating profit / revenue × 100.",
-      "ROCE = operating profit / capital employed × 100.",
-      "Trend and benchmark comparison."
+      "GPM = gross profit ÷ revenue × 100.",
+      "OPM = operating profit ÷ revenue × 100.",
+      "ROCE = operating profit ÷ capital employed × 100.",
+      "Compare trends and industry benchmarks."
     ]
   },
+  "flashcards": [
+    { "front": "Gross profit margin formula?", "back": "Gross profit ÷ Revenue × 100%." },
+    { "front": "Operating profit margin formula?", "back": "Operating profit ÷ Revenue × 100%." },
+    { "front": "ROCE formula?", "back": "Operating profit ÷ Capital employed × 100%." },
+    { "front": "Capital employed?", "back": "Equity + Non-current liabilities (or Total assets − Current liabilities)." },
+    { "front": "Falling GPM?", "back": "Rising COGS, price cuts, product mix shift, supplier cost increases." },
+    { "front": "Falling OPM but stable GPM?", "back": "Overheads rising — admin, marketing, wages not in COGS." },
+    { "front": "ROCE uses which profit?", "back": "Operating profit (before finance costs) — measures return on all long-term capital." },
+    { "front": "Why compare over time?", "back": "Single-year ratio may be distorted; trends show direction of performance." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Profitability ratios** (10.2.2) link **10.1.1** figures to **strategy evaluation**." },
-    { "type": "practice", "label": "Mark a profitability ratios question", "href": "/mark?subject=9609&topic=10.2.2" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Profitability ratios** (10.2.2) use figures from **10.1.1**. Examiners often give **two years** — calculate both years and **comment on the trend**."
+    },
+    {
+      "type": "formula",
+      "content": "Gross profit margin = $\\frac{\\text{Gross profit}}{\\text{Revenue}} \\times 100\\%$\n\nOperating profit margin = $\\frac{\\text{Operating profit}}{\\text{Revenue}} \\times 100\\%$\n\nROCE = $\\frac{\\text{Operating profit}}{\\text{Capital employed}} \\times 100\\%$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Revenue $1 000 000; gross profit $350 000; operating profit $120 000; capital employed $600 000.\n\nCalculate GPM, OPM, and ROCE.",
+      "solution": "**GPM** = (350 000 ÷ 1 000 000) × 100 = **35%**\n\n**OPM** = (120 000 ÷ 1 000 000) × 100 = **12%**\n\n**ROCE** = (120 000 ÷ 600 000) × 100 = **20%**"
+    },
+    {
+      "type": "workedExample",
+      "question": "GPM fell from 40% to 35% while OPM fell from 15% to 10%. Suggest two possible causes.",
+      "solution": "**GPM fall:** higher cost of sales (material prices, inefficiency), **price reductions** to maintain volume, or shift to **lower-margin products**.\n\n**OPM fell further than GPM:** **overheads increased** — e.g. higher admin wages, marketing spend, rent — eating into gross profit.\n\nUse **case evidence** to pick the most likely cause."
+    },
+    {
+      "type": "examTip",
+      "content": "ROCE is often compared to **interest rate** or **cost of capital** — ROCE should exceed borrowing cost for gearing to be beneficial."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a profitability ratios question",
+      "href": "/mark?subject=9609&topic=10.2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.1.1 Statement of profit or loss", "href": "/courses/9609/10-1-1-statement-of-profit-or-loss" },
+        { "label": "10.2.4 Gearing ratio", "href": "/courses/9609/10-2-4-gearing-ratio" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

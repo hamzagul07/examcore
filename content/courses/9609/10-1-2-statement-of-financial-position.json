@@ -5,28 +5,73 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — assets, liabilities, and equity at a point in time.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — assets, liabilities, equity, accounting equation, and financial position analysis.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Interpret the statement of financial position.",
-    "Classify current and non-current items.",
+    "Classify current and non-current assets and liabilities.",
     "Apply the accounting equation.",
     "Analyse financial position from case data."
   ],
   "simpleExplanation": {
     "title": "Snapshot of worth",
-    "summary": "The statement of financial position lists what the business owns and owes at year-end. Assets = liabilities + equity.",
+    "summary": "The statement of financial position (balance sheet) lists what the business owns and owes at a specific date. Assets = liabilities + equity.",
     "steps": [
-      "Non-current assets: long-term use.",
-      "Current assets: within one year.",
-      "Current liabilities due within year.",
+      "Non-current assets: long-term use (property, equipment).",
+      "Current assets: converted to cash within one year.",
+      "Current liabilities: due within one year.",
       "Equity: share capital + retained earnings."
     ]
   },
+  "flashcards": [
+    { "front": "Accounting equation?", "back": "Assets = Liabilities + Equity." },
+    { "front": "Non-current asset examples?", "back": "Property, plant, equipment, intangible assets, long-term investments." },
+    { "front": "Current asset examples?", "back": "Inventory, trade receivables, cash, prepayments." },
+    { "front": "Current liability examples?", "back": "Trade payables, overdraft, short-term loans, accruals." },
+    { "front": "Equity components?", "back": "Share capital + retained earnings (accumulated profits)." },
+    { "front": "Net assets?", "back": "Total assets − Total liabilities (= equity)." },
+    { "front": "Working capital?", "back": "Current assets − Current liabilities." },
+    { "front": "Link to liquidity ratios?", "back": "10.2.1 uses current assets and current liabilities from this statement." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Statement of financial position** (10.1.2) pairs with **10.1.1**. Link to **5.1.2 working capital**." },
-    { "type": "practice", "label": "Mark a financial position question", "href": "/mark?subject=9609&topic=10.1.2" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "The **statement of financial position** (10.1.2) pairs with **10.1.1** — profit affects **retained earnings** in equity. Examiners test **classification** (current vs non-current) and **missing figure** calculations using the accounting equation."
+    },
+    {
+      "type": "heading",
+      "content": "Layout and classification"
+    },
+    {
+      "type": "text",
+      "content": "**Assets** (ordered by liquidity within each section):\n- **Non-current assets** — held for more than one year.\n- **Current assets** — cash, inventory, receivables within one year.\n\n**Liabilities and equity:**\n- **Current liabilities** — due within one year.\n- **Non-current liabilities** — long-term borrowings.\n- **Equity** — owners' stake."
+    },
+    {
+      "type": "formula",
+      "content": "Assets = Liabilities + Equity\n\nWorking capital = Current assets − Current liabilities\n\nCapital employed ≈ Equity + Non-current liabilities"
+    },
+    {
+      "type": "workedExample",
+      "question": "Total assets $500 000; current liabilities $80 000; non-current liabilities $150 000.\n\nCalculate equity and working capital.",
+      "solution": "**Equity** = Assets − Total liabilities\n= 500 000 − (80 000 + 150 000) = **$270 000**\n\nIf current assets are $200 000:\n**Working capital** = 200 000 − 80 000 = **$120 000**"
+    },
+    {
+      "type": "examTip",
+      "content": "When a question gives **net assets**, that equals **equity**. Do not double-count liabilities."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a financial position question",
+      "href": "/mark?subject=9609&topic=10.1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.1.1 Statement of profit or loss", "href": "/courses/9609/10-1-1-statement-of-profit-or-loss" },
+        { "label": "10.2.1 Liquidity ratios", "href": "/courses/9609/10-2-1-liquidity-ratios" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

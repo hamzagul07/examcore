@@ -5,28 +5,69 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — asset turnover, inventory days, receivables and payables days.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — asset turnover, inventory days, receivables days, and working capital efficiency.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Calculate asset turnover ratio.",
-    "Calculate inventory holding period.",
-    "Calculate receivables and payables days.",
-    "Interpret efficiency of resource use."
+    "Calculate inventory holding period (days).",
+    "Calculate receivables collection period (days).",
+    "Interpret efficiency and suggest improvements."
   ],
   "simpleExplanation": {
-    "title": "Using assets well",
-    "summary": "Efficiency ratios show how quickly inventory sells and cash is collected or paid — signalling working capital management.",
+    "title": "How fast does capital turn?",
+    "summary": "Efficiency ratios show how well the business uses assets and working capital — faster turnover often means less cash tied up.",
     "steps": [
-      "Asset turnover = revenue / net assets.",
-      "Inventory days = inventory / COGS × 365.",
-      "Receivables days = debtors / credit sales × 365.",
-      "Lower days often mean faster cash cycle."
+      "Asset turnover = revenue ÷ capital employed.",
+      "Inventory days = inventory ÷ COGS × 365.",
+      "Receivables days = trade receivables ÷ credit sales × 365.",
+      "Lower days usually mean faster cash conversion."
     ]
   },
+  "flashcards": [
+    { "front": "Asset turnover formula?", "back": "Revenue ÷ Capital employed (or net assets)." },
+    { "front": "Inventory days formula?", "back": "Inventory ÷ Cost of sales × 365." },
+    { "front": "Receivables days formula?", "back": "Trade receivables ÷ Credit sales × 365." },
+    { "front": "Payables days formula?", "back": "Trade payables ÷ Credit purchases × 365." },
+    { "front": "Rising inventory days?", "back": "Stock building up — slow sales, over-ordering, obsolete stock." },
+    { "front": "Rising receivables days?", "back": "Customers paying slower — credit control weakness or customer cash problems." },
+    { "front": "High asset turnover?", "back": "Generating more sales per $ of capital — efficient (compare with industry)." },
+    { "front": "Cash operating cycle?", "back": "Inventory days + Receivables days − Payables days — time cash is tied up." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Efficiency ratios** (10.2.3) connect **operations** to **accounts**. Show **day calculations** clearly." },
-    { "type": "practice", "label": "Mark an efficiency ratios question", "href": "/mark?subject=9609&topic=10.2.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Financial efficiency ratios** (10.2.3) link **operations** to **finance**. Examiners love **days** calculations — show **÷365** clearly and state whether **higher or lower is better** for each ratio."
+    },
+    {
+      "type": "formula",
+      "content": "Asset turnover = $\\frac{\\text{Revenue}}{\\text{Capital employed}}$\n\nInventory days = $\\frac{\\text{Inventory}}{\\text{Cost of sales}} \\times 365$\n\nReceivables days = $\\frac{\\text{Trade receivables}}{\\text{Credit sales}} \\times 365$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Inventory $45 000; cost of sales $328 000; trade receivables $62 000; credit sales $492 000.\n\nCalculate inventory days and receivables days.",
+      "solution": "**Inventory days** = (45 000 ÷ 328 000) × 365 = **50 days** (approx.)\n\n**Receivables days** = (62 000 ÷ 492 000) × 365 = **46 days** (approx.)\n\nOn average, inventory is held **50 days** before sale; credit customers pay **46 days** after sale — compare to prior year or industry for interpretation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Lower inventory days** — fresher stock, less storage cost (but too low risks stock-outs).",
+        "**Lower receivables days** — faster cash collection, better credit control.",
+        "**Asset turnover** — compare with sector; capital-intensive firms have lower turnover."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Mark a financial efficiency question",
+      "href": "/mark?subject=9609&topic=10.2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.1.3 Inventory valuation", "href": "/courses/9609/10-1-3-inventory-valuation" },
+        { "label": "10.2.1 Liquidity ratios", "href": "/courses/9609/10-2-1-liquidity-ratios" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

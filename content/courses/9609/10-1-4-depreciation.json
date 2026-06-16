@@ -5,28 +5,73 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — straight-line depreciation and net book value.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — straight-line depreciation, net book value, and impact on accounts.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain purpose of depreciation.",
-    "Calculate straight-line depreciation.",
-    "Determine net book value.",
-    "Interpret effect on financial statements."
+    "Explain why non-current assets are depreciated.",
+    "Calculate annual depreciation using straight-line method.",
+    "Show depreciation in profit or loss and SOFP.",
+    "Interpret net book value."
   ],
   "simpleExplanation": {
     "title": "Spreading asset cost",
-    "summary": "Depreciation allocates the cost of non-current assets over their useful life, matching expense to revenue earned.",
+    "summary": "Depreciation allocates the cost of a non-current asset over its useful life. Each year an expense is charged and accumulated depreciation reduces net book value.",
     "steps": [
-      "Annual charge = (cost − residual) / years.",
-      "Accumulated depreciation reduces NBV.",
-      "Expense in profit or loss.",
-      "Asset shown at NBV on SOFP."
+      "Annual charge = (cost − residual value) ÷ useful life.",
+      "Accumulated depreciation reduces NBV on SOFP.",
+      "Depreciation expense in profit or loss.",
+      "Asset shown at net book value (cost − accumulated depreciation)."
     ]
   },
+  "flashcards": [
+    { "front": "Why depreciate?", "back": "Match asset cost to the periods benefiting from its use (accruals concept); reflect fall in value/usefulness." },
+    { "front": "Straight-line formula?", "back": "Annual depreciation = (Cost − Residual value) ÷ Expected useful life (years)." },
+    { "front": "Net book value (NBV)?", "back": "Cost − Accumulated depreciation." },
+    { "front": "Where does depreciation appear?", "back": "Expense in statement of profit or loss; deducted from asset on SOFP." },
+    { "front": "Residual value?", "back": "Estimated proceeds at end of useful life — not depreciated." },
+    { "front": "Accumulated depreciation?", "back": "Total depreciation charged to date (contra-asset)." },
+    { "front": "Effect on cash?", "back": "Non-cash expense — profit falls but cash may not (important for cash flow analysis)." },
+    { "front": "Link to 10.3 investment?", "back": "Capital expenditure creates assets that are then depreciated over life." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Depreciation** (10.1.4) — show **formula and double-entry effect** in answers." },
-    { "type": "practice", "label": "Mark a depreciation question", "href": "/mark?subject=9609&topic=10.1.4" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Depreciation** (10.1.4) completes **10.1 Accounts**. A Level questions use **straight-line** unless stated otherwise. Link **NBV** on SOFP to **ROCE** and **asset turnover** (10.2)."
+    },
+    {
+      "type": "heading",
+      "content": "Straight-line depreciation"
+    },
+    {
+      "type": "formula",
+      "content": "Annual depreciation = $\\frac{\\text{Cost} - \\text{Residual value}}{\\text{Useful life (years)}}$\n\nNet book value = Cost − Accumulated depreciation"
+    },
+    {
+      "type": "workedExample",
+      "question": "Machine purchased for $60 000. Residual value $6 000. Useful life 6 years.\n\nCalculate annual depreciation and NBV after 3 years.",
+      "solution": "Annual depreciation = (60 000 − 6 000) ÷ 6 = **$9 000** per year\n\nAccumulated depreciation after 3 years = 3 × 9 000 = **$27 000**\n\n**NBV** = 60 000 − 27 000 = **$33 000**"
+    },
+    {
+      "type": "text",
+      "content": "Each year: **Dr Depreciation expense** (P&L) **Cr Accumulated depreciation** (SOFP). The asset stays at **cost** with accumulated depreciation shown separately, or at **NBV** in simplified layouts."
+    },
+    {
+      "type": "examTip",
+      "content": "If asked **effect on profit** of changing useful life: longer life → lower annual charge → **higher profit** (all else equal). State this clearly in evaluate questions."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a depreciation question",
+      "href": "/mark?subject=9609&topic=10.1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.1.2 Statement of financial position", "href": "/courses/9609/10-1-2-statement-of-financial-position" },
+        { "label": "10.3.1 Investment appraisal", "href": "/courses/9609/10-3-1-the-concept-of-investment-appraisal" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

@@ -5,9 +5,9 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — capacity utilisation ratio and operational implications.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — capacity utilisation formula, under/over-utilisation effects, and improvement strategies.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define capacity and utilisation.",
     "Calculate capacity utilisation percentage.",
@@ -16,17 +16,50 @@
   ],
   "simpleExplanation": {
     "title": "Using what you have",
-    "summary": "Capacity utilisation compares actual output to maximum possible output. Low utilisation wastes fixed costs; very high may cause bottlenecks.",
+    "summary": "Capacity utilisation measures how fully a firm uses its maximum output capability. Too low wastes fixed costs; too high can hurt quality and staff.",
     "steps": [
-      "Utilisation = (actual output / max output) × 100%.",
-      "Low: spread fixed costs over fewer units.",
-      "High: efficient but may harm quality.",
-      "Match capacity to demand forecasts."
+      "Utilisation = (actual output ÷ max output) × 100%.",
+      "Low utilisation spreads fixed costs over fewer units.",
+      "High utilisation is efficient but may cause bottlenecks.",
+      "Match capacity to demand forecasts over time."
     ]
   },
+  "flashcards": [
+    { "front": "Capacity utilisation formula?", "back": "(Actual output ÷ Maximum possible output) × 100%." },
+    { "front": "Effect of low utilisation?", "back": "Higher unit fixed cost; wasted machinery/labour." },
+    { "front": "Effect of very high utilisation?", "back": "Overtime stress, maintenance skipped, quality falls." },
+    { "front": "Improve utilisation how?", "back": "Promotions, new markets, shift patterns, reduce capacity." },
+    { "front": "Link to break-even?", "back": "Low utilisation raises effective unit cost — harder to break even (5.4.4)." },
+    { "front": "Seasonal business?", "back": "Low utilisation off-season may be unavoidable — flexible staffing helps." },
+    { "front": "Max capacity?", "back": "Theoretical maximum — rarely sustained 100% long term." },
+    { "front": "Outsourcing link?", "back": "4.3.2 — use external capacity when internal utilisation low." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Capacity utilisation** (4.3.1) uses simple **percentage calculations**. Link low utilisation to **unit cost rise**." },
-    { "type": "practice", "label": "Mark a capacity utilisation question", "href": "/mark?subject=9609&topic=4.3.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Capacity utilisation** (4.3.1) — always **show the calculation** in exams. Link low utilisation to **rising unit costs** and **profit squeeze**."
+    },
+    {
+      "type": "formula",
+      "content": "**Capacity utilisation (%)** = (Actual output ÷ Maximum output) × 100"
+    },
+    {
+      "type": "workedExample",
+      "question": "Factory maximum output 50,000 units/month; actual 35,000. Fixed costs $200,000/month. Calculate utilisation and fixed cost per unit at current output vs at full capacity.",
+      "solution": "**Utilisation** = (35,000 ÷ 50,000) × 100 = **70%**\n\n**Fixed cost per unit now:** $200,000 ÷ 35,000 = **$5.71/unit**\n\n**At full capacity:** $200,000 ÷ 50,000 = **$4.00/unit**\n\n**Implication:** 30% idle capacity adds **$1.71** to each unit's fixed cost burden — may force **price cuts unsustainable** or require **demand stimulation** / **capacity reduction**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a capacity utilisation question",
+      "href": "/mark?subject=9609&topic=4.3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.3.2 Outsourcing", "href": "/courses/9609/4-3-2-outsourcing" },
+        { "label": "5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

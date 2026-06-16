@@ -5,9 +5,9 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — stock control, holding costs, and buffer inventory.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — stock types, holding costs, reorder levels, buffer stock, and stock-out risk.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain reasons for holding inventory.",
     "Identify costs of holding stock.",
@@ -16,17 +16,46 @@
   ],
   "simpleExplanation": {
     "title": "Balancing stock levels",
-    "summary": "Firms hold inventory to meet demand and avoid production stops, but storage ties up cash and risks waste.",
+    "summary": "Firms hold raw materials, work-in-progress, and finished goods to keep production flowing and meet demand — but stock ties up cash and can become obsolete.",
     "steps": [
       "Raw materials, WIP, finished goods.",
       "Holding costs: storage, insurance, obsolescence.",
-      "Reorder level triggers new order.",
-      "Too little stock risks stock-outs."
+      "Reorder level triggers a new order.",
+      "Too little stock risks stock-outs and lost sales."
     ]
   },
+  "flashcards": [
+    { "front": "Three stock types?", "back": "Raw materials, work-in-progress (WIP), finished goods." },
+    { "front": "Why hold stock?", "back": "Meet demand spikes, bulk-buy discounts, avoid production stops." },
+    { "front": "Holding costs?", "back": "Warehouse rent, insurance, security, spoilage, opportunity cost of cash." },
+    { "front": "Buffer (safety) stock?", "back": "Extra inventory above expected need — covers delivery delays." },
+    { "front": "Reorder level?", "back": "Stock level that triggers new purchase order." },
+    { "front": "Stock-out cost?", "back": "Lost sales, idle production, damaged reputation." },
+    { "front": "Link to 5.1 finance?", "back": "High inventory reduces working capital available (5.1.2)." },
+    { "front": "Alternative to high stock?", "back": "JIT (4.2.2) — minimal inventory." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Managing inventory** (4.2.1) leads to **4.2.2 JIT**. Quantify **holding cost vs stock-out risk** in evaluation." },
-    { "type": "practice", "label": "Mark an inventory question", "href": "/mark?subject=9609&topic=4.2.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Managing inventory** (4.2.1) leads to **4.2.2 JIT**. In evaluation, **quantify**: holding $X stock vs cost of one stock-out stopping a production line."
+    },
+    {
+      "type": "workedExample",
+      "question": "Component reorder level is 500 units; daily use 100; supplier lead time 4 days. Explain buffer stock logic. Weekly holding cost is $200 for average 800 units held. A stock-out stops production costing $5,000/day. Evaluate holding extra buffer stock of 200 units.",
+      "solution": "**Without buffer:** 100 × 4 days = 400 used in lead time — reorder at 500 may be **too late** if demand spikes.\n\n**Buffer 200:** Reorder triggers earlier → **lower stock-out risk**.\n\n**Cost:** Extra holding ~$50/week (proportional) vs **$5,000/day** shutdown — buffer **easily justified** for this component.\n\n**Counter:** If supplier is **very reliable** and **JIT** feasible (4.2.2), buffer may be **waste**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an inventory question",
+      "href": "/mark?subject=9609&topic=4.2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.2.2 Just in Time", "href": "/courses/9609/4-2-2-just-in-time-jit" },
+        { "label": "5.1.2 Working capital", "href": "/courses/9609/5-1-2-working-capital" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

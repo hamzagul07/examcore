@@ -26,6 +26,7 @@ import { CourseRevisionTools } from '@/components/courses/CourseRevisionTools'
 import { CourseLegacyAnchor } from '@/components/courses/CourseLegacyAnchor'
 import { resolveLessonInteractiveEmbed } from '@/lib/courses/interactive-embeds'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
+import { appendMarkReturnUrl } from '@/lib/marking/mark-return-url'
 import {
   buildNotesLesson,
   extractWorkedExamples,
@@ -65,6 +66,13 @@ export function CourseLessonExperience({
   const hasNotes = hasRenderableNotes(lesson, enriched)
   const takeaways = extractKeyTakeaways(lesson)
   const practiceSection = lesson.sections.find((s) => s.type === 'practice')
+  const practiceHref =
+    practiceSection?.type === 'practice'
+      ? appendMarkReturnUrl(
+          practiceSection.href,
+          `/courses/${subjectCode}/${lesson.slug}`
+        )
+      : null
   const pastPaperPractice = lesson.sections.find((s) => s.type === 'pastPaperPractice')
   const tocEntries = buildLessonToc(lesson, enriched, partitioned, {
     hasInteractiveEmbed: !!interactiveEmbed,
@@ -313,14 +321,14 @@ export function CourseLessonExperience({
                 </div>
               ) : null}
 
-              {practiceSection?.type === 'practice' ? (
+              {practiceHref ? (
                 <div id="practice" className="scroll-mt-28">
                   <CourseLegacyAnchor id="learn-practice" />
                   <Link
-                    href={practiceSection.href}
+                    href={practiceHref}
                     className="ec-btn-primary inline-flex items-center gap-2 rounded-2xl px-6 py-3.5 text-base font-semibold no-underline"
                   >
-                    {practiceSection.label}
+                    {practiceSection!.label}
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
                 </div>
@@ -337,12 +345,12 @@ export function CourseLessonExperience({
       {tab === 'practice' ? (
         <div className="space-y-6" role="tabpanel">
           <CoursePastPaperSection questions={pastPaperQuestions} topicTitle={topicTitle} />
-          {practiceSection?.type === 'practice' ? (
+          {practiceHref ? (
             <Link
-              href={practiceSection.href}
+              href={practiceHref}
               className="ec-btn-primary inline-flex items-center gap-2 rounded-2xl px-6 py-3.5 text-base font-semibold no-underline"
             >
-              {practiceSection.label}
+              {practiceSection!.label}
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           ) : null}

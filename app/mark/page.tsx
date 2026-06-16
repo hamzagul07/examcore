@@ -42,6 +42,8 @@ import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFiel
 import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
 import { formatClientMarkError } from '@/lib/marking/client-mark-errors'
 import { normalizeQuestionNumber } from '@/lib/marking/question-number'
+import { parseMarkReturnPath } from '@/lib/marking/mark-return-url'
+import { applyTopicQuestionToPaperSelection } from '@/lib/marking/topic-question'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
@@ -219,6 +221,13 @@ export default function MarkPage() {
     pattern: string
     reason: string
     returnTo: string | null
+  } | null>(null)
+  const [courseTopicContext, setCourseTopicContext] = useState<{
+    topicCode: string
+    topicName: string
+    returnTo: string | null
+    foundQuestion: boolean
+    paperLabel?: string
   } | null>(null)
   const [schemeInDb, setSchemeInDb] = useState<boolean | null>(null)
 
@@ -416,6 +425,79 @@ export default function MarkPage() {
       reason: sp.get('reason') || '',
       returnTo: sp.get('return'),
     })
+  }, [])
+
+  // Course lesson "Mark this topic" deep-link — /mark?subject=9609&topic=5.4.4
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const sp = new URLSearchParams(window.location.search)
+    if (sp.get('practice') === '1') return
+    const subject = sp.get('subject')?.trim()
+    const topic = sp.get('topic')?.trim()
+    if (!subject || !topic) return
+
+    setUploadMode('single_question')
+    setMarkIntent('past_paper')
+    setSelectedSubject(subject)
+    setShowManualPaper(true)
+
+    const returnTo = parseMarkReturnPath(sp.get('return'))
+
+    let cancelled = false
+    fetch(
+      `/api/mark/topic-question?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(topic)}`
+    )
+      .then((r) => r.json())
+      .then((data: {
+        found?: boolean
+        topic_name?: string
+        paper_code?: string
+        paper_session?: string
+        question_number?: string
+      }) => {
+        if (cancelled) return
+        if (data.found && data.paper_code && data.paper_session && data.question_number) {
+          const selection = applyTopicQuestionToPaperSelection({
+            paper_code: data.paper_code,
+            paper_session: data.paper_session,
+            question_number: data.question_number,
+            question_text: null,
+            total_marks: null,
+            matched_topic: topic,
+          })
+          if (selection) {
+            setSelectedSubject(selection.subject)
+            setSelectedComponent(selection.component)
+            setSelectedSession(selection.session)
+            setSelectedYear(selection.year)
+            setQuestionNumber(selection.questionNumber)
+          }
+        }
+        setCourseTopicContext({
+          topicCode: topic,
+          topicName: data.topic_name ?? topic,
+          returnTo,
+          foundQuestion: !!data.found,
+          paperLabel:
+            data.found && data.paper_code && data.question_number
+              ? `${data.paper_code} · Q${data.question_number}`
+              : undefined,
+        })
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setCourseTopicContext({
+            topicCode: topic,
+            topicName: topic,
+            returnTo,
+            foundQuestion: false,
+          })
+        }
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   // Persist manual selection (without question number) whenever it changes
@@ -997,6 +1079,34 @@ export default function MarkPage() {
           </div>
         )}
 
+        {!result && !practiceContext && courseTopicContext && (
+          <div className="ec-card mb-6 flex items-start gap-3 border-[var(--ec-brand)]/30 ec-bg-brand-muted p-4 min-w-0">
+            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+                From your course: {courseTopicContext.topicName}
+                {courseTopicContext.topicCode !== courseTopicContext.topicName
+                  ? ` (${courseTopicContext.topicCode})`
+                  : ''}
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                {courseTopicContext.foundQuestion && courseTopicContext.paperLabel
+                  ? `We picked ${courseTopicContext.paperLabel} from our mark scheme bank — upload your answer below.`
+                  : 'Select a past paper question on this topic, or upload your answer and we will detect the paper.'}
+              </p>
+              {courseTopicContext.returnTo ? (
+                <Link
+                  href={courseTopicContext.returnTo}
+                  className="ec-link mt-2 inline-flex items-center gap-1 text-sm font-medium"
+                >
+                  Back to lesson
+                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              ) : null}
+            </div>
+          </div>
+        )}
+
         {!result && (
           <BillingLimitBanner className="mb-5" />
         )}
@@ -1543,6 +1653,29 @@ export default function MarkPage() {
                 </span>
               </Link>
             )}
+
+            {courseTopicContext?.returnTo ? (
+              <Link
+                href={courseTopicContext.returnTo}
+                className="ec-card group flex items-center justify-between gap-4 border-[var(--ec-brand)]/30 p-4 transition-colors hover:border-[var(--ec-brand)]/50"
+              >
+                <div className="flex items-start gap-3">
+                  <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ec-brand)]" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--ec-text-primary)]">
+                      Back to {courseTopicContext.topicName}
+                    </p>
+                    <p className="mt-0.5 text-sm text-[var(--ec-text-secondary)]">
+                      Return to the lesson and keep studying this topic.
+                    </p>
+                  </div>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-[var(--ec-brand)]">
+                  Back to lesson
+                  <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </span>
+              </Link>
+            ) : null}
 
             <MarkingResultView
               result={result}

@@ -1,3 +1,13 @@
+/** Routes that use the Margin Notes nav/footer shell (not all marketing paths). */
+export function isMarginNotesShellPath(pathname: string): boolean {
+  return (
+    pathname === '/courses' ||
+    pathname.startsWith('/courses/') ||
+    pathname === '/subjects' ||
+    pathname === '/pricing'
+  )
+}
+
 /** Routes using MarketingHeader/Footer — must stay in sync with app/(marketing)/*. */
 const MARKETING_PREFIXES = [
   '/subjects',
@@ -18,7 +28,7 @@ const MARKETING_PREFIXES = [
 
 const AUTH_PREFIX = '/auth'
 /** Routes with their own chrome — no student app header or mobile tab bar. */
-const NO_APP_CHROME_PREFIXES = ['/onboarding', '/join', '/teacher', '/admin']
+const NO_APP_CHROME_PREFIXES = ['/onboarding', '/join', '/teacher', '/admin', '/dashboard/progress']
 
 export function isMarketingPath(pathname: string): boolean {
   if (pathname === '/') return true

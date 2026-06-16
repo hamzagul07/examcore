@@ -101,6 +101,11 @@ const INTERACTIVE_EMBED_CATALOG_RAW: Record<string, LessonInteractiveEmbed> = {
     'Molecule shapes',
     'Add bonding pairs and lone pairs — read the predicted VSEPR geometry (3.5).'
   ),
+  '4-3-density-and-pressure': phetEntry(
+    'under-pressure',
+    'Under Pressure',
+    'Change fluid density and depth — read gauge pressure and compare water, oil, and mercury (4.3).'
+  ),
   // ── 9708 Economics (GeoGebra) ──────────────────────────────────────────
   '2-1-demand-and-supply-curves': geogebraEntry(
     'VGWtkPU5',

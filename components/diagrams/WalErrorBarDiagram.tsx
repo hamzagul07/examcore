@@ -2,21 +2,36 @@
 
 import { useEffect, useState } from 'react'
 import { DIAGRAM_STROKE, DIAGRAM_TEXT } from '@/components/diagrams/diagram-styles'
+import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 
-type Stage = 'lobf' | 'wal'
+type Stage = 'points' | 'lobf' | 'wal' | 'both'
 
 const STAGE_MS = 4500
 
+function stageFromStep(stepIndex?: number): Stage | null {
+  if (stepIndex == null) return null
+  if (stepIndex <= 0) return 'points'
+  if (stepIndex === 1) return 'lobf'
+  if (stepIndex === 2) return 'wal'
+  return 'both'
+}
+
 /** Paper 5 graph: line of best fit vs worst acceptable line through error bars. */
-export function WalErrorBarDiagram({ className = '' }: { className?: string }) {
-  const [stage, setStage] = useState<Stage>('lobf')
+export function WalErrorBarDiagram({
+  className = '',
+  stepIndex,
+}: LessonDiagramComponentProps) {
+  const controlled = stepIndex != null
+  const [autoStage, setAutoStage] = useState<Stage>('lobf')
+  const stage = stageFromStep(stepIndex) ?? autoStage
 
   useEffect(() => {
+    if (controlled) return
     const id = window.setInterval(() => {
-      setStage((s) => (s === 'lobf' ? 'wal' : 'lobf'))
+      setAutoStage((s) => (s === 'lobf' ? 'wal' : 'lobf'))
     }, STAGE_MS)
     return () => window.clearInterval(id)
-  }, [])
+  }, [controlled])
 
   const points = [
     { x: 80, y: 155, err: 12 },
@@ -27,28 +42,42 @@ export function WalErrorBarDiagram({ className = '' }: { className?: string }) {
     { x: 350, y: 42, err: 10 },
   ]
 
+  const showLobf = stage === 'lobf' || stage === 'both'
+  const showWal = stage === 'wal' || stage === 'both'
+
+  const headline =
+    stage === 'points'
+      ? 'Plot points with vertical error bars'
+      : stage === 'lobf'
+        ? 'LOBF — balanced scatter above and below'
+        : stage === 'wal'
+          ? 'WAL — steepest/shallowest line through all error bars'
+          : 'Compare gradients — Δm = |m_LOBF − m_WAL|'
+
   return (
     <div className={`wal-error-bar-diagram equilibrium-forces-diagram ${className}`.trim()}>
-      <div className="equilibrium-forces-diagram-tabs" role="tablist" aria-label="Graph analysis view">
-        <button
-          type="button"
-          role="tab"
-          aria-selected={stage === 'lobf'}
-          className={stage === 'lobf' ? 'is-active' : ''}
-          onClick={() => setStage('lobf')}
-        >
-          Line of best fit
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={stage === 'wal'}
-          className={stage === 'wal' ? 'is-active' : ''}
-          onClick={() => setStage('wal')}
-        >
-          Worst acceptable line
-        </button>
-      </div>
+      {!controlled ? (
+        <div className="equilibrium-forces-diagram-tabs" role="tablist" aria-label="Graph analysis view">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={stage === 'lobf'}
+            className={stage === 'lobf' ? 'is-active' : ''}
+            onClick={() => setAutoStage('lobf')}
+          >
+            Line of best fit
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={stage === 'wal'}
+            className={stage === 'wal' ? 'is-active' : ''}
+            onClick={() => setAutoStage('wal')}
+          >
+            Worst acceptable line
+          </button>
+        </div>
+      ) : null}
 
       <svg
         viewBox="0 0 420 240"
@@ -82,7 +111,7 @@ export function WalErrorBarDiagram({ className = '' }: { className?: string }) {
           </g>
         ))}
 
-        {stage === 'lobf' ? (
+        {showLobf ? (
           <line
             x1="65"
             y1="168"
@@ -92,7 +121,9 @@ export function WalErrorBarDiagram({ className = '' }: { className?: string }) {
             strokeWidth="2.5"
             className="eq-anim-vec-a"
           />
-        ) : (
+        ) : null}
+
+        {showWal ? (
           <line
             x1="65"
             y1="148"
@@ -103,16 +134,27 @@ export function WalErrorBarDiagram({ className = '' }: { className?: string }) {
             strokeDasharray="6 4"
             className="eq-anim-vec-b"
           />
-        )}
+        ) : null}
+
+        {stage === 'both' ? (
+          <polygon
+            points="120,145 280,68 280,145"
+            fill="none"
+            stroke={DIAGRAM_TEXT}
+            strokeWidth="1.5"
+            strokeDasharray="4 3"
+            opacity="0.55"
+          />
+        ) : null}
 
         <text x="210" y="22" textAnchor="middle" fontSize="12" fill={DIAGRAM_TEXT} fontWeight="700">
-          {stage === 'lobf'
-            ? 'LOBF — balanced scatter above and below'
-            : 'WAL — steepest/shallowest line through all error bars'}
+          {headline}
         </text>
-        <text x="210" y="218" textAnchor="middle" fontSize="11" fill={DIAGRAM_TEXT}>
-          Δgradient = |m_LOBF − m_WAL|
-        </text>
+        {stage === 'both' ? (
+          <text x="210" y="218" textAnchor="middle" fontSize="11" fill={DIAGRAM_TEXT}>
+            Δgradient = |m_LOBF − m_WAL|
+          </text>
+        ) : null}
       </svg>
     </div>
   )

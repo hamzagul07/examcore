@@ -1,6 +1,4 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { FlaskConical, Layers, List, PlayCircle, Sparkles } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import {
   getAllCourseLessonPaths,
@@ -10,23 +8,13 @@ import {
   loadPaperScopedLesson,
 } from '@/lib/courses'
 import type { CourseLesson } from '@/lib/courses/types'
-import { findPaperTrack } from '@/lib/courses/paper-tracks'
 import { getPaperPilotStaticParams } from '@/lib/courses/paper-pilot-routes'
 import { paperNumberFromDir } from '@/lib/courses/paths'
 import { buildCourseLessonSeo } from '@/lib/courses/seo'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
-import { resolveLessonHeroVisual, type LessonHeroVisual } from '@/lib/courses/lesson-hero-visual'
-import { CourseStudioShell } from '@/components/courses/CourseStudioShell'
-import { MarkLessonCompleteButton } from '@/components/courses/CourseProgressClient'
-import { CourseLearningObjectives } from '@/components/courses/CourseLearningObjectives'
-import { CourseLessonExperience } from '@/components/courses/CourseLessonExperience'
-import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
-import { CourseRelatedTopics } from '@/components/courses/CourseRelatedTopics'
-import { HeroVisualOverview } from '@/components/courses/visuals/HeroVisualOverview'
-import { CourseLessonFaq } from '@/components/courses/CourseLessonFaq'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
-import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
+import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
 
 type Props = {
   params: Promise<{ code: string; slug: string[] }>
@@ -48,35 +36,6 @@ type ResolvedLesson =
       paperDir: string
       paperNumber: string
     }
-
-function HeroVisualCallout({
-  heroVisual,
-  template,
-}: {
-  heroVisual: LessonHeroVisual
-  template: ReturnType<typeof enrichLessonVisual>['template']
-}) {
-  if (heroVisual.kind === 'template') {
-    return <HeroVisualOverview template={template} />
-  }
-
-  const Icon =
-    heroVisual.kind === 'dual-visual'
-      ? Layers
-      : heroVisual.kind === 'native-diagram'
-        ? Sparkles
-        : PlayCircle
-
-  return (
-    <Link
-      href="#visual-learning"
-      className="course-studio-hero-embed-badge ms-micro rounded-xl border border-[color-mix(in_srgb,var(--ec-brand)_30%,transparent)] bg-[color-mix(in_srgb,var(--ec-brand)_6%,transparent)] px-4 py-3 transition-colors hover:border-[color-mix(in_srgb,var(--ec-brand)_45%,transparent)] hover:bg-[color-mix(in_srgb,var(--ec-brand)_10%,transparent)]"
-    >
-      <Icon className="h-5 w-5 shrink-0" aria-hidden />
-      <span>{heroVisual.label}</span>
-    </Link>
-  )
-}
 
 function resolveLesson(
   code: string,
@@ -105,18 +64,6 @@ function resolveLesson(
   }
 
   return null
-}
-
-function lessonPath(
-  code: string,
-  resolved: ResolvedLesson,
-  targetSlug: string,
-  isPilotPreview: boolean
-): string {
-  if (resolved.mode === 'paper' && resolved.paperDir) {
-    return `/courses/${code}/${resolved.paperDir}/${targetSlug}${isPilotPreview ? '?pilot=1' : ''}`
-  }
-  return `/courses/${code}/${targetSlug}`
 }
 
 export async function generateStaticParams() {
@@ -170,26 +117,14 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
 
   const { lesson, lessonSlug } = resolved
   const lessons = getCourseLessons(code)
-  const activeTrack = findPaperTrack(code, lessons, paper)
-  const overviewHref = activeTrack
-    ? `/courses/${code}?paper=${encodeURIComponent(activeTrack.number)}`
-    : `/courses/${code}`
-  const idx = lessons.findIndex((l) => l.slug === lessonSlug)
-  const prev = idx > 0 ? lessons[idx - 1] : null
-  const next = idx < lessons.length - 1 ? lessons[idx + 1] : null
-  const pastPaperQuestions = await fetchPastPaperQuestionsForTopic(
-    code,
-    lesson.topicCode,
-    2
-  )
-
-  const isPilotLesson = lesson.status === 'pilot' || isPilotPreview
+  const pastPaperQuestions = await fetchPastPaperQuestionsForTopic(code, lesson.topicCode, 2)
   const enriched = enrichLessonVisual(code, lesson)
-  const heroVisual = resolveLessonHeroVisual(lesson)
   const seo = buildCourseLessonSeo(course, lesson)
+  const isPilotLesson = lesson.status === 'pilot' || isPilotPreview
+  const paperQuery = paper ?? resolved.paperNumber ?? null
 
   return (
-    <MarketingPageShell studio>
+    <>
       <CourseLessonJsonLd
         subjectCode={code}
         subjectName={course.name}
@@ -199,103 +134,28 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         seoDescription={seo.description}
       />
 
-      <CourseStudioShell
+      {isPilotLesson ? (
+        <div className="pg pilot-banner-wrap">
+          <div className="outline-banner card">
+            <span className="outline-tag mono">PILOT PREVIEW</span>
+            <p className="body-2">
+              {resolved.paperNumber ? `Paper ${resolved.paperNumber} ` : ''}
+              generated lesson ({lesson.generatorVersion ?? 'b-v3'}). For internal review — not
+              published yet.
+            </p>
+          </div>
+        </div>
+      ) : null}
+
+      <CourseLessonClient
         subjectCode={code}
         subjectName={course.name}
-        level={course.level}
+        lesson={lesson}
+        enriched={enriched}
+        pastPaperQuestions={pastPaperQuestions}
         lessons={lessons}
-        activeSlug={lessonSlug}
-        breadcrumbs={seo.breadcrumbs}
-        markHref={seo.markPath}
-      >
-        <div className="course-studio-mobile-nav">
-          <Link href={overviewHref}>
-            <List className="h-4 w-4" aria-hidden />
-            {activeTrack ? activeTrack.shortName : `All ${course.code} topics`}
-          </Link>
-        </div>
-
-        {isPilotLesson ? (
-          <div className="mb-4 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-950 dark:text-amber-100">
-            <strong className="inline-flex items-center gap-1.5">
-              <FlaskConical className="h-4 w-4" aria-hidden />
-              Pilot preview
-            </strong>
-            {' — '}
-            {resolved.paperNumber ? `Paper ${resolved.paperNumber} ` : ''}
-            generated lesson ({lesson.generatorVersion ?? 'b-v3'}). Not published; for
-            internal review only.
-          </div>
-        ) : null}
-
-        <header className="course-studio-hero mb-6">
-          <div>
-            <p className="ms-overline" style={{ marginBottom: 8 }}>
-              {course.code} · {lesson.topicCode}
-              {lesson.paperName ? ` · ${lesson.paperName}` : ''}
-            </p>
-            <h1 className="ms-h2">{lesson.title}</h1>
-            <p className="course-studio-lead mt-3">{lesson.summary}</p>
-          </div>
-          <div className="course-studio-hero-diagram mt-5 lg:mt-0">
-            <HeroVisualCallout heroVisual={heroVisual} template={enriched.template} />
-          </div>
-        </header>
-
-        <CourseLessonSeoIntro
-          heading={seo.introHeading}
-          paragraph={seo.introParagraph}
-          subjectCode={code}
-          subjectName={course.name}
-          markPath={seo.markPath}
-        />
-
-        {lesson.learningObjectives?.length ? (
-          <div className="mb-8">
-            <CourseLearningObjectives items={lesson.learningObjectives} />
-          </div>
-        ) : null}
-
-        <CourseLessonExperience
-          lesson={lesson}
-          enriched={enriched}
-          pastPaperQuestions={pastPaperQuestions}
-          topicTitle={lesson.title}
-          subjectCode={code}
-        />
-
-        <CourseLessonFaq items={seo.faqs} />
-
-        <CourseRelatedTopics
-          subjectCode={code}
-          subjectName={course.name}
-          lessons={lessons}
-          currentSlug={lessonSlug}
-          nextLesson={next}
-        />
-
-        <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-[var(--course-border)] pt-8">
-          <MarkLessonCompleteButton subjectCode={code} lessonSlug={lessonSlug} />
-          <div className="flex flex-wrap gap-3 text-sm">
-            {prev ? (
-              <Link
-                href={lessonPath(code, resolved, prev.slug, isPilotPreview)}
-                className="text-[var(--course-accent)] no-underline hover:underline"
-              >
-                ← {prev.title}
-              </Link>
-            ) : null}
-            {next ? (
-              <Link
-                href={lessonPath(code, resolved, next.slug, isPilotPreview)}
-                className="ml-auto text-[var(--course-accent)] no-underline hover:underline"
-              >
-                {next.title} →
-              </Link>
-            ) : null}
-          </div>
-        </div>
-      </CourseStudioShell>
-    </MarketingPageShell>
+        paperQuery={paperQuery}
+      />
+    </>
   )
 }

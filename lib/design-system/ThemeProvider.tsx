@@ -21,6 +21,15 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
+function marginNotesTheme(ec: EcTheme): 'paper' | 'night' {
+  return ec === 'late-night' ? 'night' : 'paper'
+}
+
+function applyThemeAttributes(ec: EcTheme) {
+  document.documentElement.setAttribute('data-ec-theme', ec)
+  document.documentElement.setAttribute('data-theme', marginNotesTheme(ec))
+}
+
 function readStoredTheme(): EcTheme {
   if (typeof window === 'undefined') return 'zen'
   const fromDom = document.documentElement.getAttribute('data-ec-theme')
@@ -38,13 +47,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const stored = readStoredTheme()
     setThemeState(stored)
-    document.documentElement.setAttribute('data-ec-theme', stored)
+    applyThemeAttributes(stored)
     setMounted(true)
   }, [])
 
   const setTheme = useCallback((next: EcTheme) => {
     setThemeState(next)
-    document.documentElement.setAttribute('data-ec-theme', next)
+    applyThemeAttributes(next)
     localStorage.setItem(EC_THEME_STORAGE_KEY, next)
   }, [])
 

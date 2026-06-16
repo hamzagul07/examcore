@@ -49,7 +49,8 @@ export function VisualStepController({
   const hasEmbed = !!interactiveEmbed
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
   const dualVisual = isDualVisualSlug(lessonSlug) && hasEmbed
-  const showNativeDiagram = liveDiagram && (!hasEmbed || dualVisual)
+  /** Native SVG always shows when registered — embeds sit above, not instead. */
+  const showNativeDiagram = liveDiagram
   const hasStage = showNativeDiagram || stepCarousel !== null
   const stepCount = stepCarousel?.steps.length ?? resolvedSpec?.steps.length ?? 0
 
@@ -119,6 +120,10 @@ export function VisualStepController({
       {dualVisual ? (
         <p className="course-dual-visual-bridge">
           Step-synced diagram — highlights what to look for in the simulation above.
+        </p>
+      ) : hasEmbed && liveDiagram ? (
+        <p className="course-dual-visual-bridge">
+          Step-synced diagram — use the steps below to walk through each layer.
         </p>
       ) : null}
 

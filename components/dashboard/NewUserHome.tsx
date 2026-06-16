@@ -96,6 +96,23 @@ export function NewUserHome({ subjects, subjectLabel, recommendations }: Props) 
               1
             </span>
             <div>
+              <p className="font-semibold text-[var(--ec-text-primary)]">Browse free courses</p>
+              <p className="text-sm text-[var(--ec-text-secondary)]">
+                Syllabus-aligned lessons with flashcards and past-paper questions — no card required.
+              </p>
+              <Link
+                href="/courses"
+                className="ec-link mt-1 inline-flex min-h-[44px] items-center text-sm font-medium"
+              >
+                Open courses →
+              </Link>
+            </div>
+          </li>
+          <li className="flex gap-3">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--ec-brand)]/10 text-sm font-bold text-[var(--ec-brand)]">
+              2
+            </span>
+            <div>
               <p className="font-semibold text-[var(--ec-text-primary)]">Mark a practice question</p>
               <p className="text-sm text-[var(--ec-text-secondary)]">
                 Use the Mark tab — upload an answer or choose from real past papers.
@@ -104,7 +121,7 @@ export function NewUserHome({ subjects, subjectLabel, recommendations }: Props) 
           </li>
           <li className="flex gap-3">
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--ec-brand)]/10 text-sm font-bold text-[var(--ec-brand)]">
-              2
+              3
             </span>
             <div>
               <p className="font-semibold text-[var(--ec-text-primary)]">Open your progress dashboard</p>
@@ -121,7 +138,7 @@ export function NewUserHome({ subjects, subjectLabel, recommendations }: Props) 
           </li>
           <li className="flex gap-3">
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--ec-brand)]/10 text-sm font-bold text-[var(--ec-brand)]">
-              3
+              4
             </span>
             <div>
               <p className="font-semibold text-[var(--ec-text-primary)]">Drill weak topics</p>

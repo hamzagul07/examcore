@@ -5,28 +5,78 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — Boston Matrix and managing a product portfolio.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — Boston Matrix (BCG): stars, cash cows, question marks, dogs, and portfolio decisions.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain product portfolio concept.",
-    "Interpret Boston Matrix quadrants.",
-    "Suggest strategies for stars, cash cows, etc.",
+    "Explain the Boston Consulting Group (BCG) matrix.",
+    "Classify products as stars, cash cows, question marks, or dogs.",
+    "Recommend strategies for each quadrant.",
     "Evaluate limitations of portfolio analysis."
   ],
   "simpleExplanation": {
-    "title": "Balancing the product range",
-    "summary": "Firms manage multiple products at different life-cycle stages. Portfolio tools guide investment and divestment.",
+    "title": "Managing many products",
+    "summary": "The Boston Matrix plots products by market growth rate and relative market share to decide where to invest, harvest, or divest.",
     "steps": [
-      "Stars: high share, high growth.",
-      "Cash cows: high share, low growth.",
-      "Question marks: low share, high growth.",
-      "Dogs: low share, low growth."
+      "Stars: high share, high growth — invest to maintain.",
+      "Cash cows: high share, low growth — generate cash.",
+      "Question marks: low share, high growth — invest or divest?",
+      "Dogs: low share, low growth — harvest or divest."
     ]
   },
+  "flashcards": [
+    { "front": "BCG axes?", "back": "Market growth rate (vertical) vs Relative market share (horizontal)." },
+    { "front": "Star strategy?", "back": "Invest to maintain/grow leadership; may need cash support until market matures." },
+    { "front": "Cash cow strategy?", "back": "Harvest cash with minimal investment; fund stars and question marks." },
+    { "front": "Question mark strategy?", "back": "Build share (invest) or divest if unlikely to become star." },
+    { "front": "Dog strategy?", "back": "Divest, harvest, or maintain for niche/coverage — free resources elsewhere." },
+    { "front": "Relative market share?", "back": "Firm's share vs largest competitor — proxy for cost/experience advantage." },
+    { "front": "Limitation of BCG?", "back": "Oversimplifies; ignores synergies; market share ≠ profitability; subjective classification." },
+    { "front": "Link to 10.4 strategy?", "back": "Portfolio decisions align with divestment/investment at A Level." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Portfolio analysis** (3.3.3) uses the **Boston Matrix**. Place **case products** in quadrants with **justified strategy**." },
-    { "type": "practice", "label": "Mark a portfolio analysis question", "href": "/mark?subject=9609&topic=3.3.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Product portfolio analysis** (3.3.3) uses the **Boston Matrix** — a staple of **9609 AS** case questions. Plot products from case data, **name the quadrant**, then **recommend strategy**."
+    },
+    {
+      "type": "heading",
+      "content": "The four quadrants"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Stars** — leaders in growing markets; future cash cows.",
+        "**Cash cows** — leaders in mature markets; fund the portfolio.",
+        "**Question marks** — weak in growing markets; costly to turn around.",
+        "**Dogs** — weak in slow markets; usually drain resources."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Food manufacturer data:\n- Brand A: 35% market share, market growing 8% p.a.\n- Brand B: 40% share, market growing 2%.\n- Brand C: 8% share, market growing 15%.\n\nClassify each and suggest one portfolio action.",
+      "solution": "**Brand A — Star** (high share + high growth): **Invest** in promotion and capacity to defend leadership.\n\n**Brand B — Cash cow** (high share + low growth): **Harvest** cash — limit R&D/ad spend, maximise profit to fund Brand C.\n\n**Brand C — Question mark** (low share + high growth): **Invest selectively** (distribution, promotion) to build share OR **divest** if cannot compete with larger rivals — case dependent."
+    },
+    {
+      "type": "heading",
+      "content": "Limitations"
+    },
+    {
+      "type": "text",
+      "content": "The matrix **ignores market size**, **profit margins**, and **links between products**. A \"dog\" may support brand range presence. **Subjective** share and growth estimates can misclassify. Use alongside **financial data** (10.1/10.2 at A Level)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a portfolio analysis question",
+      "href": "/mark?subject=9609&topic=3.3.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.3.2 Product and PLC", "href": "/courses/9609/3-3-2-product" },
+        { "label": "6.2.1 Business strategy", "href": "/courses/9609/6-2-1-developing-business-strategy" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

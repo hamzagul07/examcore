@@ -5,28 +5,75 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — cost-based, market-based, and psychological pricing.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — cost-plus, penetration, skimming, competitive, and psychological pricing with cost floor links.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Describe common pricing methods.",
-    "Explain penetration and skimming strategies.",
-    "Analyse competitive and psychological pricing.",
-    "Select pricing for given business contexts."
+    "Explain major pricing methods and when each applies.",
+    "Link pricing to costs and contribution (5.4).",
+    "Analyse price elasticity and competitive context.",
+    "Recommend pricing strategy for case scenarios."
   ],
   "simpleExplanation": {
-    "title": "What customers pay",
-    "summary": "Price must cover costs, match competition, and reflect brand position. Method depends on objectives and market conditions.",
+    "title": "What to charge",
+    "summary": "Pricing methods balance costs, customer willingness to pay, competition, and strategic objectives — the wrong method can destroy margin or market share.",
     "steps": [
-      "Cost-plus: add mark-up to unit cost.",
-      "Penetration: low price to gain share.",
-      "Skimming: high price at launch.",
-      "Psychological: £9.99 vs £10."
+      "Cost-plus: unit cost + mark-up percentage.",
+      "Penetration: low launch price to gain share quickly.",
+      "Skimming: high launch price from early adopters.",
+      "Psychological: pricing cues that affect perception."
     ]
   },
+  "flashcards": [
+    { "front": "Cost-plus pricing?", "back": "Price = Unit cost + Mark-up (%). Simple but ignores demand and competition." },
+    { "front": "Penetration pricing?", "back": "Low initial price to rapid market share; may sacrifice short-run profit." },
+    { "front": "Price skimming?", "back": "High initial price; lowered over time as competition enters." },
+    { "front": "Competitive pricing?", "back": "Set price relative to rivals — match, undercut, or premium." },
+    { "front": "Psychological pricing?", "back": "£9.99 vs £10; prestige pricing; bundle pricing effects." },
+    { "front": "Cost floor (5.4)?", "back": "Long run: cover full cost; short run: cover variable cost/contribution minimum." },
+    { "front": "When skimming suits?", "back": "Innovative product, inelastic demand, few competitors, high R&D to recover." },
+    { "front": "When penetration suits?", "back": "Elastic demand, economies of scale, deter entrants, fast network effects." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Pricing methods** (3.3.4) links **5.4 costing** later. Match **method to objective** (growth vs profit)." },
-    { "type": "practice", "label": "Mark a pricing question", "href": "/mark?subject=9609&topic=3.3.4" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Pricing methods** (3.3.4) bridges **marketing** and **finance (5.4)**. Examiners reward answers that cite **contribution/break-even** alongside **marketing rationale**."
+    },
+    {
+      "type": "heading",
+      "content": "Main pricing methods"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Cost-plus** — ensures margin; ignores demand (common in B2B/contracts).",
+        "**Penetration** — low price, high volume; needs scale.",
+        "**Skimming** — high price first; technology and fashion examples.",
+        "**Competitive** — benchmarked to market leader.",
+        "**Psychological** — charm pricing, prestige, loss leaders."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Variable cost $12 per unit; full unit cost $18; competitors charge $22–$24. A new entrant wants rapid market share in a price-sensitive market.\n\nRecommend a pricing method and note the cost constraint.",
+      "solution": "**Recommend penetration pricing** — launch near **$20** (undercut rivals) to build volume quickly in **elastic** market.\n\n**Cost constraint:** Price must exceed **variable cost ($12)** in short run for **positive contribution**. At $20, contribution = $8 per unit toward fixed costs (**5.4.4 break-even**).\n\n**Risk:** If price stays below **full cost ($18)** long term, business unsustainable unless scale cuts unit cost. Plan to **raise price** or **cut costs** once share secured."
+    },
+    {
+      "type": "examTip",
+      "content": "In **recommend** questions: name method → link to **case objective** → state **cost floor** → note **one risk**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a pricing methods question",
+      "href": "/mark?subject=9609&topic=3.3.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
+        { "label": "8.1.1 Elasticity", "href": "/courses/9609/8-1-1-elasticity" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

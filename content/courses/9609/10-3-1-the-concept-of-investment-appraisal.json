@@ -5,28 +5,89 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — why appraise projects and types of capital investment.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — why businesses appraise capital projects, relevant cash flows, and qualitative factors.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain purpose of investment appraisal.",
-    "Identify relevant cash flows.",
-    "Distinguish capital vs revenue expenditure.",
-    "Outline qualitative factors in decisions."
+    "Explain the purpose of investment appraisal.",
+    "Identify incremental (relevant) cash flows.",
+    "Distinguish capital from revenue expenditure.",
+    "Outline qualitative factors in investment decisions."
   ],
   "simpleExplanation": {
     "title": "Should we invest?",
-    "summary": "Investment appraisal compares costs and benefits of projects to decide if they meet required returns and strategic fit.",
+    "summary": "Investment appraisal compares the costs and benefits of major projects to decide whether they earn enough return and fit the business strategy.",
+    "analogy": "Buying a factory machine is like choosing a university course — high upfront cost, long-term payoff, hard to reverse. You would not decide on gut feel alone; you compare future benefits against cost, risk, and what you give up by not choosing alternatives.",
     "steps": [
-      "Large, irreversible spending.",
-      "Focus on incremental cash flows.",
-      "Ignore sunk costs.",
-      "Qualitative: brand, CSR, risk."
+      "Capital projects involve large, long-term spending.",
+      "Use incremental cash flows — only costs and revenues that change.",
+      "Ignore sunk costs — money already spent cannot be recovered.",
+      "Weigh qualitative factors: strategy, brand, CSR, risk."
     ]
   },
+  "flashcards": [
+    { "front": "Purpose of investment appraisal?", "back": "To assess whether a capital project is financially worthwhile and supports business objectives." },
+    { "front": "What is a relevant (incremental) cash flow?", "back": "A future cash inflow or outflow that changes because the project goes ahead." },
+    { "front": "What is a sunk cost?", "back": "Past expenditure that cannot be recovered — excluded from appraisal." },
+    { "front": "Capital vs revenue expenditure?", "back": "Capital: long-term assets (machinery). Revenue: day-to-day operating costs (wages, materials)." },
+    { "front": "Why are investment decisions risky?", "back": "Large, irreversible spending; forecasts of future cash flows may be wrong." },
+    { "front": "Qualitative factor examples?", "back": "Brand image, employee morale, environmental impact, strategic fit, market entry." },
+    { "front": "Opportunity cost in appraisal?", "back": "Return forgone from the next best alternative use of capital." },
+    { "front": "Link to strategy (6.2)?", "back": "Appraisal checks whether projects support long-term direction, not just short-term profit." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Investment appraisal concept** (10.3.1) opens **10.3**. Link to **6.2 strategy** and **5.2 finance**." },
-    { "type": "practice", "label": "Mark an investment appraisal concept question", "href": "/mark?subject=9609&topic=10.3.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Investment appraisal** (10.3.1) opens **A Level Topic 10.3**. Paper 3/4 case questions often present **two projects** and ask you to appraise then **recommend**. Start by identifying **relevant cash flows** — examiners penalise including sunk costs or ignoring strategic context."
+    },
+    {
+      "type": "heading",
+      "content": "Why appraise investments?"
+    },
+    {
+      "type": "text",
+      "content": "Capital investment — new machinery, stores, IT systems, acquisitions — ties up large sums for years. Appraisal helps directors decide whether expected returns justify **risk**, **financing cost**, and **opportunity cost** (capital used here cannot be used elsewhere).\n\nMethods in 10.3.2–10.3.4 quantify returns; this topic sets **what to include** in the analysis."
+    },
+    {
+      "type": "heading",
+      "content": "Relevant cash flows"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Include:** incremental revenues, incremental costs, initial outlay, residual/scrap values, working capital changes.",
+        "**Exclude:** sunk costs, allocated overheads that do not change, non-incremental items.",
+        "**Financing costs:** usually handled via the discount rate (NPV), not as a separate cash flow."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A firm spent $50 000 last year on a feasibility study for a new warehouse. It now considers building the warehouse for $400 000 with forecast net cash inflows of $120 000 per year. Should the $50 000 study cost be included in appraisal?",
+      "solution": "**No** — the $50 000 is a **sunk cost**. It is already spent whether or not the warehouse proceeds.\n\nRelevant flows: **initial $400 000 outlay** and **incremental $120 000 annual net cash inflows** (plus any terminal value). The feasibility study is useful background but not part of the calculation."
+    },
+    {
+      "type": "heading",
+      "content": "Qualitative factors"
+    },
+    {
+      "type": "text",
+      "content": "Not all impacts appear in cash flows: **brand reputation**, **employee skills**, **CSR/environment**, **competitive pre-emption**, **government relations**. A project with borderline NPV may still be accepted for strategic reasons — or rejected despite positive NPV if reputational risk is high."
+    },
+    {
+      "type": "examTip",
+      "content": "In **discuss** questions, write a short **quantitative summary** (e.g. \"Project A NPV positive\") then a **qualitative paragraph** before your recommendation — examiners reward structure."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an investment appraisal concept question",
+      "href": "/mark?subject=9609&topic=10.3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.3.2 Payback and ARR", "href": "/courses/9609/10-3-2-basic-methods-payback-accounting-rate-of-return-arr" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

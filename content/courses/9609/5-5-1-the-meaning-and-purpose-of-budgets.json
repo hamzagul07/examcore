@@ -5,28 +5,91 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — types of budgets and their role in planning and control.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — budget types, purposes, master budget flow, and benefits/limitations of budgeting.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define a budget.",
-    "Explain purposes of budgeting.",
-    "Describe types: sales, production, cash.",
-    "Evaluate benefits and drawbacks of budgets."
+    "Define a budget and explain its purposes.",
+    "Describe types of budgets: sales, production, cash, etc.",
+    "Explain how budgets link in a master budget.",
+    "Evaluate benefits and drawbacks of budgeting."
   ],
   "simpleExplanation": {
     "title": "Financial plans for departments",
-    "summary": "Budgets set expected income and spending over a period, helping coordination, control, and motivation.",
+    "summary": "A budget is a quantitative plan for a future period — it coordinates departments, authorises spending, and provides a benchmark for control.",
+    "analogy": "A budget is like a family's monthly spending plan: you estimate income, allocate to rent, food, and savings, then check the bank statement later to see if you overspent. Businesses do the same at scale across sales, production, and cash.",
     "steps": [
-      "Forward plan in money terms.",
-      "Sales budget drives others.",
-      "Cash budget manages liquidity.",
-      "Compare actual to budget later."
+      "Budget = forward financial plan (usually 12 months).",
+      "Sales budget usually prepared first — drives production.",
+      "Cash budget ensures the firm can pay bills.",
+      "Actual results compared to budget → variances (5.5.2)."
     ]
   },
+  "flashcards": [
+    { "front": "What is a budget?", "back": "A financial plan showing expected income and expenditure over a future period." },
+    { "front": "Four purposes of budgeting?", "back": "Planning, coordination, control (monitoring), motivation/communication." },
+    { "front": "Sales budget role?", "back": "Usually the starting point — forecast units/revenue drives production and purchases." },
+    { "front": "Production budget?", "back": "Units to produce = budgeted sales + desired closing inventory − opening inventory." },
+    { "front": "Cash budget purpose?", "back": "Forecasts cash inflows and outflows to avoid liquidity problems." },
+    { "front": "Master budget?", "back": "The complete set of interlinked budgets for the whole organisation." },
+    { "front": "Benefit of budgeting?", "back": "Sets targets, allocates resources, identifies problems early." },
+    { "front": "Drawback of budgeting?", "back": "Time-consuming; may demotivate if unrealistic; rapid change makes plans outdated." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Budgets** (5.5.1) pair with **5.5.2 variances**. List **purpose + budget type** for case departments." },
-    { "type": "practice", "label": "Mark a budgets question", "href": "/mark?subject=9609&topic=5.5.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Budgets** (5.5.1) complete the **AS finance topic 5** with **5.5.2 variances**. Link back to **5.4 cost information** — budgets convert plans into money terms. Case questions ask you to **name budget types** for departments or explain **why** a cash budget matters."
+    },
+    {
+      "type": "heading",
+      "content": "Purposes of budgeting"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Planning:** Set targets for sales, costs, and profit.",
+        "**Coordination:** Align marketing, operations, and finance (e.g. sales forecast → production plan).",
+        "**Control:** Compare actual vs budget; investigate differences.",
+        "**Motivation/communication:** Clear targets for managers; authorises spending limits."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Types of budgets"
+    },
+    {
+      "type": "text",
+      "content": "**Sales budget** — forecast revenue (units × price).\n\n**Production budget** — units to manufacture to meet sales and inventory targets.\n\n**Purchases / materials budget** — raw materials needed for production.\n\n**Labour and overheads budgets** — cost centre spending.\n\n**Cash budget** — timing of receipts and payments; critical for **liquidity** (links to **5.2 finance**).\n\n**Master budget** — consolidated plan including budgeted income statement and financial position."
+    },
+    {
+      "type": "workedExample",
+      "question": "A retailer expects to sell 10 000 units next quarter. Opening inventory 1 200 units; desired closing inventory 1 800 units. Calculate budgeted production.",
+      "solution": "Production = Sales + Closing inventory − Opening inventory\n\n= 10 000 + 1 800 − 1 200 = **10 600 units**\n\nThe firm must produce **600 more** than it sells to build stock for the following period."
+    },
+    {
+      "type": "heading",
+      "content": "Benefits and limitations"
+    },
+    {
+      "type": "text",
+      "content": "**Benefits:** forward thinking, resource allocation, performance measurement, early warning of cash gaps.\n\n**Limitations:** costly to prepare; may be **ignored** if unrealistic; **rigidity** in fast-changing markets; **budget gaming** (managers sandbag targets); **inter-department conflict** over allocations."
+    },
+    {
+      "type": "examTip",
+      "content": "In **analyse** questions, give **two benefits and two drawbacks** linked to the case business (size, industry, rate of change) — not generic lists."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a budgets question",
+      "href": "/mark?subject=9609&topic=5.5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "5.5.2 Variances", "href": "/courses/9609/5-5-2-variances" },
+        { "label": "5.4.3 Uses of cost information", "href": "/courses/9609/5-4-3-uses-of-cost-information" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

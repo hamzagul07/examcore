@@ -5,28 +5,95 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — payback period and ARR calculations.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — payback period and ARR calculations with strengths, weaknesses, and exam working.",
+  "durationMin": 28,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Calculate payback period.",
-    "Calculate accounting rate of return.",
-    "Compare strengths and weaknesses of each.",
-    "Recommend using case data."
+    "Calculate payback period with and without interpolation.",
+    "Calculate accounting rate of return (ARR).",
+    "Compare strengths and weaknesses of payback and ARR.",
+    "Recommend using case data and limitations."
   ],
   "simpleExplanation": {
     "title": "Simple investment tests",
-    "summary": "Payback measures how long to recover initial outlay. ARR compares average annual profit to initial investment.",
+    "summary": "Payback measures how long until initial investment is recovered from cash flows. ARR compares average annual accounting profit to the initial investment as a percentage.",
     "steps": [
-      "Payback: cumulative cash until cost recovered.",
-      "Shorter payback = lower risk.",
-      "ARR = average annual profit / initial cost × 100.",
-      "Ignores time value of money."
+      "Payback: track cumulative net cash flow until it turns positive.",
+      "Shorter payback → lower liquidity risk (rough rule).",
+      "ARR = (average annual profit ÷ initial cost) × 100.",
+      "Both ignore time value of money — state this in evaluation."
     ]
   },
+  "flashcards": [
+    { "front": "Payback period?", "back": "Time taken for cumulative net cash inflows to equal the initial investment." },
+    { "front": "Payback decision rule?", "back": "Accept if payback ≤ target/maximum period set by the business (shorter is better)." },
+    { "front": "ARR formula?", "back": "ARR = (Average annual profit ÷ Initial investment) × 100%." },
+    { "front": "Strength of payback?", "back": "Simple, focuses on liquidity/risk, favours faster cash recovery." },
+    { "front": "Weakness of payback?", "back": "Ignores time value of money and cash flows after payback period." },
+    { "front": "Weakness of ARR?", "back": "Uses accounting profit not cash flow; ignores timing of returns; arbitrary average." },
+    { "front": "Average annual profit for ARR?", "back": "Total profit over project life ÷ number of years (or given in question)." },
+    { "front": "When might payback dominate NPV?", "back": "When business faces cash shortages and needs fast recovery of capital." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Payback and ARR** (10.3.2) — show **full working** and **state limitations** in evaluation." },
-    { "type": "practice", "label": "Mark a payback/ARR question", "href": "/mark?subject=9609&topic=10.3.2" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Payback and ARR** (10.3.2) are the **basic** appraisal methods at A Level. Examiners expect **cumulative cash tables**, **clear ARR working**, and **evaluation** of limitations before comparing with NPV (10.3.3). Use the GeoGebra sim to trace cumulative cash toward payback."
+    },
+    {
+      "type": "heading",
+      "content": "Payback period"
+    },
+    {
+      "type": "text",
+      "content": "List **net cash flows** by year and calculate **cumulative** totals. Payback occurs when cumulative flow reaches zero (investment recovered).\n\nIf recovery falls **between two years**, interpolate:\n\n**Payback = year before recovery + (unrecovered amount at start of year ÷ cash flow in recovery year)**"
+    },
+    {
+      "type": "workedExample",
+      "question": "Initial investment $200 000. Net cash flows: Year 1 $60 000, Year 2 $80 000, Year 3 $90 000, Year 4 $70 000.\n\nCalculate the payback period.",
+      "solution": "| Year | Net CF | Cumulative |\n|------|--------|------------|\n| 0 | (200 000) | (200 000) |\n| 1 | 60 000 | (140 000) |\n| 2 | 80 000 | (60 000) |\n| 3 | 90 000 | 30 000 |\n\nStill $60 000 short at end of Year 2. Year 3 inflow = $90 000.\n\nPayback = 2 + (60 000 ÷ 90 000) = 2 + 0.67 = **2 years 8 months** (or **2.67 years**).\n\nCumulative turns positive during Year 3."
+    },
+    {
+      "type": "heading",
+      "content": "Accounting rate of return (ARR)"
+    },
+    {
+      "type": "formula",
+      "content": "ARR = $\\frac{\\text{Average annual profit}}{\\text{Initial investment}} \\times 100\\%$\n\nAverage annual profit = $\\frac{\\text{Total profit over project life}}{\\text{Number of years}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Machine costs $150 000. Total profit over 5 years is $75 000. Calculate ARR.",
+      "solution": "Average annual profit = $75 000 ÷ 5 = **$15 000**\n\nARR = ($15 000 ÷ $150 000) × 100 = **10%**\n\nCompare to the firm's target return (e.g. 12%) — here **below target**, but check other methods and qualitative factors."
+    },
+    {
+      "type": "heading",
+      "content": "Evaluation"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Payback +:** Easy to understand; useful when **liquidity** is critical; reduces risk of long exposure.",
+        "**Payback −:** Ignores **time value of money**; ignores flows **after** payback.",
+        "**ARR +:** Uses familiar **accounting profit**; easy percentage comparison.",
+        "**ARR −:** Profit ≠ cash flow; **ignores timing**; average can hide volatile years."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always conclude evaluation with: \"Neither method discounts future cash flows, so **NPV** is preferred for wealth-maximising decisions unless liquidity dominates.\""
+    },
+    {
+      "type": "practice",
+      "label": "Mark a payback/ARR question",
+      "href": "/mark?subject=9609&topic=10.3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.3.1 Investment appraisal concept", "href": "/courses/9609/10-3-1-the-concept-of-investment-appraisal" },
+        { "label": "10.3.3 NPV", "href": "/courses/9609/10-3-3-discounted-cash-flow-method-net-present-value-npv" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

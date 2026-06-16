@@ -5,28 +5,101 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — favourable and adverse variances, analysis, and corrective action.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — favourable and adverse variances, calculation, causes, and management responses.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Calculate budget variances.",
-    "Distinguish favourable and adverse variances.",
-    "Suggest reasons for variances.",
-    "Recommend management responses."
+    "Calculate budget variances for costs and revenue.",
+    "Classify variances as favourable or adverse.",
+    "Suggest plausible causes from case evidence.",
+    "Recommend management responses to significant variances."
   ],
   "simpleExplanation": {
     "title": "Actual vs plan",
-    "summary": "A variance is the difference between budgeted and actual figures. Investigating variances helps managers control performance.",
+    "summary": "A variance is the difference between budgeted and actual figures. Investigating variances helps managers control performance and take corrective action.",
     "steps": [
-      "Variance = actual − budget.",
-      "Favourable: costs lower or revenue higher.",
-      "Adverse: opposite — investigate cause.",
-      "Take corrective action if persistent."
+      "Variance = Actual − Budget (Cambridge convention).",
+      "Costs: favourable if actual < budget (spent less).",
+      "Revenue: favourable if actual > budget (earned more).",
+      "Investigate large adverse variances and act."
     ]
   },
+  "flashcards": [
+    { "front": "Variance formula?", "back": "Variance = Actual − Budget (for both costs and revenue)." },
+    { "front": "Favourable cost variance?", "back": "Actual cost < Budget cost — spent less than planned (F)." },
+    { "front": "Adverse cost variance?", "back": "Actual cost > Budget cost — overspent (A)." },
+    { "front": "Favourable revenue variance?", "back": "Actual revenue > Budget revenue — sold more or higher price (F)." },
+    { "front": "Adverse revenue variance?", "back": "Actual revenue < Budget — underperformed vs plan (A)." },
+    { "front": "Cause of adverse material cost?", "back": "Higher prices, waste, inefficiency, unfavourable exchange rate." },
+    { "front": "Cause of favourable labour cost?", "back": "Higher productivity, lower wage rates, less overtime than planned." },
+    { "front": "Management response to adverse variance?", "back": "Investigate root cause; revise budget; improve processes; supplier negotiation." }
+  ],
+  "faq": [
+    {
+      "q": "Does F always mean good and A always mean bad?",
+      "a": "Usually, but context matters. Favourable revenue from deep discounting may harm long-run profit. Adverse R&D spend may be good if innovation succeeds. Link to the case."
+    },
+    {
+      "q": "Should I use absolute values for variance?",
+      "a": "Show the signed difference and label F or A. Some texts use Budget − Actual; Cambridge 9609 uses Actual − Budget — stay consistent and label clearly."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Variances** (5.5.2) completes **AS Topic 5 Finance**. Always state **F or A** and **possible cause** from the case." },
-    { "type": "practice", "label": "Mark a variances question", "href": "/mark?subject=9609&topic=5.5.2" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Variances** (5.5.2) finish **AS Topic 5 Finance**. Every calculation question expects **F or A** and **one case-linked cause**. This connects to **5.4.3 cost control** and **5.5.1 budgets**."
+    },
+    {
+      "type": "heading",
+      "content": "Calculating variances"
+    },
+    {
+      "type": "formula",
+      "content": "Variance = Actual − Budget\n\n**Costs:** F if actual < budget | A if actual > budget\n\n**Revenue:** F if actual > budget | A if actual < budget"
+    },
+    {
+      "type": "workedExample",
+      "question": "Budgeted labour cost $48 000; actual labour cost $52 500.\nBudgeted sales revenue $200 000; actual sales revenue $215 000.\n\nCalculate both variances and classify them.",
+      "solution": "**Labour cost variance**\n= $52 500 − $48 000 = **+$4 500** → **Adverse (A)** — spent more than budgeted.\n\n**Sales revenue variance**\n= $215 000 − $200 000 = **+$15 000** → **Favourable (F)** — revenue above budget.\n\nNet effect on profit: need to consider whether higher sales caused extra labour or if inefficiency drove cost overrun — use case details."
+    },
+    {
+      "type": "workedExample",
+      "question": "Budgeted material cost $30 000; actual $27 600. Case states supplier offered an unexpected bulk discount.\n\nCalculate the variance and explain a likely cause.",
+      "solution": "Variance = $27 600 − $30 000 = **−$2 400** → **Favourable (F)** — material costs below budget.\n\n**Cause (from case):** Bulk purchase **discount from supplier** reduced unit material cost below the budget assumption."
+    },
+    {
+      "type": "heading",
+      "content": "Causes and management action"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Revenue A:** lower volume, price cuts, competition, poor marketing.",
+        "**Revenue F:** strong demand, successful promotion, new market.",
+        "**Cost A:** inflation, waste, inefficiency, quality problems, overtime.",
+        "**Cost F:** productivity gains, cheaper suppliers, economies of scale."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Managers **investigate material adverse variances** — revise budgets if assumptions changed permanently, or fix operations if inefficiency is the cause. **Persistent favourable variances** may mean the budget was too easy (motivation issue)."
+    },
+    {
+      "type": "examTip",
+      "content": "Always write: \"Variance = $X **Adverse** because…\" and quote **evidence from the case** (e.g. \"as stated, machine breakdown increased overtime\"). Generic causes earn fewer marks."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a variances question",
+      "href": "/mark?subject=9609&topic=5.5.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "5.5.1 Budgets", "href": "/courses/9609/5-5-1-the-meaning-and-purpose-of-budgets" },
+        { "label": "5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

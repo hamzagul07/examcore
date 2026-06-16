@@ -5,28 +5,82 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — integrating quantitative and qualitative appraisal.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — combining NPV, payback, ARR with qualitative factors to make justified investment recommendations.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Combine results from appraisal methods.",
-    "Weigh qualitative strategic factors.",
-    "Resolve conflicts between methods.",
-    "Make justified investment recommendations."
+    "Combine results from multiple appraisal methods.",
+    "Weigh qualitative and strategic factors.",
+    "Resolve conflicts between quantitative methods.",
+    "Make and justify investment recommendations."
   ],
   "simpleExplanation": {
     "title": "More than numbers",
-    "summary": "Final investment decisions use NPV, payback, and ARR together with strategy, risk, and non-financial impacts.",
+    "summary": "Directors use NPV, payback, and ARR together with strategy, risk, and non-financial impacts — then recommend the option that best fits overall business objectives.",
     "steps": [
-      "Compare NPV of mutually exclusive projects.",
-      "Check payback for liquidity constraints.",
-      "Consider strategic fit and CSR.",
-      "Recommend with balanced judgement."
+      "Calculate all required methods from the case data.",
+      "Compare NPV for mutually exclusive projects.",
+      "Check payback if liquidity is a stated constraint.",
+      "Add qualitative factors and make a justified recommendation."
     ]
   },
+  "flashcards": [
+    { "front": "Primary financial criterion at A Level?", "back": "NPV — choose higher positive NPV for mutually exclusive projects." },
+    { "front": "When does payback override NPV?", "back": "Rarely in theory; practically when firm faces severe cash shortage and needs fast capital recovery." },
+    { "front": "Qualitative override example?", "back": "Positive NPV project rejected due to environmental damage or brand harm." },
+    { "front": "Structure of a recommend answer?", "back": "Quant summary → qualitative factors → balanced recommendation with justification." },
+    { "front": "Conflicting ARR and NPV?", "back": "Prefer NPV for shareholder wealth; explain ARR uses accounting profit and ignores timing." },
+    { "front": "Strategic fit?", "back": "Whether project supports long-term goals (market entry, diversification, technology)." },
+    { "front": "Risk in appraisal?", "back": "Forecast error, market change — sensitivity analysis or shorter payback may matter." },
+    { "front": "CSR in investment?", "back": "Environmental/social impact may require accepting lower financial return." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Investment decisions** (10.3.4) completes **10.3**. Structure **quant + qual + recommendation**." },
-    { "type": "practice", "label": "Mark an investment decision question", "href": "/mark?subject=9609&topic=10.3.4" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Investment appraisal decisions** (10.3.4) completes **Topic 10.3**. Paper 3/4 **20-mark** questions often require **all methods + evaluation + recommendation**. Use the comparison GeoGebra sim to see payback vs NPV trade-offs."
+    },
+    {
+      "type": "heading",
+      "content": "Integrating quantitative methods"
+    },
+    {
+      "type": "text",
+      "content": "Work through the case systematically:\n\n1. **NPV** at the given cost of capital — primary wealth test.\n2. **Payback** — liquidity and risk of capital tied up.\n3. **ARR** — comparison with target return (note limitations).\n\nPresent results in a **summary table** before discussing conflicts."
+    },
+    {
+      "type": "workedExample",
+      "question": "Project Alpha: NPV +$15 000, payback 3.2 years, ARR 14%.\nProject Beta: NPV +$22 000, payback 4.5 years, ARR 11%.\nTarget payback 4 years. Cost of capital used for NPV. Only one project. Recommend.",
+      "solution": "**Quantitative comparison**\n| | Alpha | Beta |\n|---|-------|------|\n| NPV | +15 000 | **+22 000** |\n| Payback | **3.2 yrs** | 4.5 yrs |\n| ARR | **14%** | 11% |\n\n**Analysis**\n- **NPV favours Beta** (+$7 000 more value).\n- **Payback favours Alpha** (3.2 < 4 target; Beta exceeds 4 years).\n- **ARR favours Alpha** but is less reliable than NPV.\n\n**Recommendation (typical)**\nAccept **Beta** if the firm prioritises **shareholder wealth** (NPV criterion) and can finance the longer capital lock-in. If the case stresses **cash shortage**, Alpha may be justified despite lower NPV — **state this explicitly** from the scenario."
+    },
+    {
+      "type": "heading",
+      "content": "Qualitative factors"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Strategic fit:** market entry, competitive threat, technology upgrade.",
+        "**Workforce:** training needs, redundancy, morale.",
+        "**Stakeholders:** suppliers, local community, regulators.",
+        "**Risk:** political instability, demand uncertainty, exchange rates."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Use **PEEL** paragraphs: Point (e.g. Beta has higher NPV), Evidence (figures), Explain (wealth maximisation), Link (to recommendation). Never recommend without **both** numbers and case context."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an investment decision question",
+      "href": "/mark?subject=9609&topic=10.3.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.3.3 NPV", "href": "/courses/9609/10-3-3-discounted-cash-flow-method-net-present-value-npv" },
+        { "label": "6.2 Developing business strategy", "href": "/courses/9609/6-2-1-developing-business-strategy" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

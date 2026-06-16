@@ -5,28 +5,65 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — debt vs equity and financial risk.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — gearing calculation, interpretation, and link to financial risk.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define gearing (leverage).",
-    "Calculate gearing ratio.",
-    "Explain high vs low gearing implications.",
-    "Evaluate appropriate gearing for cases."
+    "Calculate the gearing ratio.",
+    "Interpret high and low gearing.",
+    "Explain link to interest cover and financial risk.",
+    "Evaluate appropriate gearing for a business."
   ],
   "simpleExplanation": {
-    "title": "Borrowed vs owned capital",
-    "summary": "Gearing shows how much of the business is financed by debt. High gearing magnifies returns but increases risk.",
+    "title": "How much is borrowed?",
+    "summary": "Gearing shows the proportion of long-term finance from debt versus equity. High gearing increases potential return to shareholders but also financial risk.",
     "steps": [
-      "Gearing = non-current liabilities / capital employed × 100.",
-      "Or debt / (debt + equity).",
-      "High gearing: more interest risk.",
-      "Low gearing: safer but may limit growth."
+      "Gearing = non-current liabilities ÷ capital employed × 100.",
+      "Or: debt ÷ (debt + equity).",
+      "High gearing: more interest and repayment risk.",
+      "Low gearing: safer but may limit growth finance."
     ]
   },
+  "flashcards": [
+    { "front": "Gearing formula (Cambridge)?", "back": "Non-current liabilities ÷ Capital employed × 100% (or NCL ÷ (Equity + NCL))." },
+    { "front": "High gearing meaning?", "back": "Large proportion of finance from long-term debt — higher interest obligations and bankruptcy risk if profits fall." },
+    { "front": "Low gearing meaning?", "back": "Mostly equity-financed — lower risk but shareholders may want more leverage for growth." },
+    { "front": "When is high gearing attractive?", "back": "Stable profits, low interest rates, ROCE > cost of debt — magnifies returns to shareholders." },
+    { "front": "Interest cover?", "back": "Operating profit ÷ Finance costs — how many times interest can be paid." },
+    { "front": "Gearing and 5.2 finance?", "back": "Choice of debt vs equity affects gearing; links to sources of finance topic." },
+    { "front": "Risk in recession?", "back": "High gearing firms suffer when revenue falls but interest still due." },
+    { "front": "Compare with ROCE?", "back": "ROCE must exceed cost of debt for borrowing to boost shareholder returns." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Gearing** (10.2.4) links **5.2 sources of finance** to **risk evaluation**." },
-    { "type": "practice", "label": "Mark a gearing question", "href": "/mark?subject=9609&topic=10.2.4" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Gearing** (10.2.4) connects **10.2 analysis** to **5.2 sources of finance**. Use the **formula given in the question** — Cambridge may define capital employed differently; stay consistent."
+    },
+    {
+      "type": "formula",
+      "content": "Gearing = $\\frac{\\text{Non-current liabilities}}{\\text{Capital employed}} \\times 100\\%$\n\nCapital employed = Equity + Non-current liabilities\n\nInterest cover = $\\frac{\\text{Operating profit}}{\\text{Finance costs}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Equity $400 000; non-current liabilities $300 000; operating profit $80 000; finance costs $24 000.\n\nCalculate gearing and interest cover. Comment.",
+      "solution": "**Capital employed** = 400 000 + 300 000 = $700 000\n\n**Gearing** = (300 000 ÷ 700 000) × 100 = **42.9%**\n\n**Interest cover** = 80 000 ÷ 24 000 = **3.3 times**\n\n**Comment:** Moderate gearing — debt is significant but interest is covered **3.3×** by operating profit. If profits fall sharply, cover could become strained. Compare trend and industry."
+    },
+    {
+      "type": "examTip",
+      "content": "In **evaluate** answers, balance **growth potential** of debt against **risk** if case mentions economic uncertainty or variable interest rates."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a gearing question",
+      "href": "/mark?subject=9609&topic=10.2.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.2.2 Profitability ratios", "href": "/courses/9609/10-2-2-profitability-ratios" },
+        { "label": "5.2.2 Sources of finance", "href": "/courses/9609/5-2-2-internal-and-external-sources-of-finance" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

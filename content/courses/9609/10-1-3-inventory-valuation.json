@@ -5,28 +5,69 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — FIFO, LIFO concepts, and valuation impact on profit.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — FIFO inventory valuation, impact on profit, and stock control.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain inventory valuation methods.",
-    "Describe FIFO at syllabus level.",
-    "Analyse impact on cost of sales and profit.",
-    "Evaluate stock management implications."
+    "Explain FIFO method of inventory valuation.",
+    "Calculate cost of sales and closing inventory using FIFO.",
+    "Analyse impact on reported profit.",
+    "Evaluate stock control procedures."
   ],
   "simpleExplanation": {
-    "title": "Valuing what's in the warehouse",
-    "summary": "How inventory is valued affects cost of sales and reported profit. Methods must be applied consistently.",
+    "title": "Which units were sold?",
+    "summary": "FIFO (first in, first out) assumes the oldest inventory is sold first. Closing inventory is valued at the most recent purchase prices.",
     "steps": [
-      "FIFO: oldest stock sold first.",
-      "Closing inventory at latest costs.",
-      "Higher closing stock → higher profit.",
-      "Physical stock checks vs records."
+      "FIFO: oldest stock cost goes to cost of sales first.",
+      "Closing inventory at latest purchase costs.",
+      "Rising prices → higher closing stock → higher profit under FIFO.",
+      "Physical stock checks reconcile records with actual inventory."
     ]
   },
+  "flashcards": [
+    { "front": "What is FIFO?", "back": "First In, First Out — earliest purchases are treated as sold first." },
+    { "front": "Closing inventory under FIFO when prices rise?", "back": "Valued at newer (higher) costs → higher closing inventory value." },
+    { "front": "Effect on profit when prices rising?", "back": "Lower COGS (older cheaper units sold) → higher gross profit vs LIFO/other methods." },
+    { "front": "Cost of sales formula?", "back": "Opening inventory + Purchases − Closing inventory." },
+    { "front": "Why physical stocktake?", "back": "Detect theft, damage, errors; adjust records to actual quantities." },
+    { "front": "Inventory on SOFP?", "back": "Current asset at valuation (FIFO cost)." },
+    { "front": "Risk of obsolete inventory?", "back": "Overstated asset and profit if not written down." },
+    { "front": "Link to efficiency ratios?", "back": "Inventory days (10.2.3) uses closing inventory and COGS." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Inventory valuation** (10.1.3) links **4.2.1 managing inventory** to **accounts**." },
-    { "type": "practice", "label": "Mark an inventory valuation question", "href": "/mark?subject=9609&topic=10.1.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Inventory valuation** (10.1.3) affects **cost of sales** on the profit or loss account and **inventory** on the statement of financial position. Cambridge 9609 focuses on **FIFO** — show clear **units × cost** working."
+    },
+    {
+      "type": "heading",
+      "content": "FIFO method"
+    },
+    {
+      "type": "text",
+      "content": "When units are sold, assign **the oldest purchase costs** to cost of sales. **Closing inventory** consists of the **most recent** unsold units at their purchase cost.\n\n**Cost of sales** = Opening inventory + Purchases − Closing inventory"
+    },
+    {
+      "type": "workedExample",
+      "question": "Opening inventory: 100 units @ $4.\nPurchases: 200 units @ $5, then 100 units @ $6.\nSales: 250 units.\n\nCalculate closing inventory (units and value) and cost of sales using FIFO.",
+      "solution": "**Units remaining:** 100 + 200 + 100 − 250 = **150 units**\n\n**Cost of sales (FIFO — oldest sold first):**\n100 units @ $4 = $400\n150 units @ $5 = $750\n**Cost of sales = $1 150**\n\n**Closing inventory (newest layers left):**\n50 units @ $5 = $250\n100 units @ $6 = $600\n**Closing inventory = $850**\n\nCheck: Opening $400 + Purchases $1 600 − Closing $850 = **$1 150** ✓"
+    },
+    {
+      "type": "examTip",
+      "content": "Draw a **simple table** (Date | In | Out | Balance) in exams — avoids FIFO layer mistakes."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an inventory valuation question",
+      "href": "/mark?subject=9609&topic=10.1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.1.1 Statement of profit or loss", "href": "/courses/9609/10-1-1-statement-of-profit-or-loss" },
+        { "label": "10.2.3 Financial efficiency ratios", "href": "/courses/9609/10-2-3-financial-efficiency-ratios" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

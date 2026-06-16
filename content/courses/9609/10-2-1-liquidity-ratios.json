@@ -5,28 +5,65 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — current and acid test ratios.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — current and acid test ratios, interpretation, and liquidity improvements.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Calculate current ratio.",
-    "Calculate acid test (quick) ratio.",
-    "Interpret liquidity position.",
+    "Calculate the current ratio.",
+    "Calculate the acid test (quick) ratio.",
+    "Interpret liquidity position from results.",
     "Suggest improvements for weak liquidity."
   ],
   "simpleExplanation": {
     "title": "Can bills be paid?",
-    "summary": "Liquidity ratios measure ability to pay short-term debts from current assets.",
+    "summary": "Liquidity ratios measure whether the business can pay short-term debts from current assets without running out of cash.",
     "steps": [
-      "Current ratio = CA / CL.",
-      "Acid test = (CA − inventory) / CL.",
-      "Below 1:1 may signal danger.",
-      "Too high may mean idle assets."
+      "Current ratio = current assets ÷ current liabilities.",
+      "Acid test = (current assets − inventory) ÷ current liabilities.",
+      "Below 1:1 may signal liquidity stress.",
+      "Too high may mean idle assets or poor efficiency."
     ]
   },
+  "flashcards": [
+    { "front": "Current ratio formula?", "back": "Current assets ÷ Current liabilities." },
+    { "front": "Acid test formula?", "back": "(Current assets − Inventory) ÷ Current liabilities." },
+    { "front": "Why exclude inventory from acid test?", "back": "Inventory is least liquid — may not sell quickly at full value." },
+    { "front": "Current ratio below 1:1?", "back": "Liabilities exceed current assets — may struggle to pay short-term debts." },
+    { "front": "Very high current ratio?", "back": "May indicate excess inventory or idle cash — inefficient use of resources." },
+    { "front": "Improve liquidity?", "back": "Reduce inventory, collect receivables faster, increase overdraft/loan, improve profit." },
+    { "front": "Liquidity vs profitability?", "back": "Profitable firms can still fail if cash timing is wrong — liquidity is survival." },
+    { "front": "Link to 5.2 finance?", "back": "Weak liquidity may require short-term external finance." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Liquidity ratios** (10.2.1) start **10.2 analysis**. Always **quote formula + interpret**." },
-    { "type": "practice", "label": "Mark a liquidity ratios question", "href": "/mark?subject=9609&topic=10.2.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Liquidity ratios** (10.2.1) start **Topic 10.2 analysis**. Always write **formula → substitution → ratio → interpretation**. Quote **both** current and acid test when the syllabus allows."
+    },
+    {
+      "type": "formula",
+      "content": "Current ratio = $\\frac{\\text{Current assets}}{\\text{Current liabilities}}$\n\nAcid test = $\\frac{\\text{Current assets} - \\text{Inventory}}{\\text{Current liabilities}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Current assets $240 000 (including inventory $90 000). Current liabilities $160 000.\n\nCalculate both ratios and comment.",
+      "solution": "**Current ratio** = 240 000 ÷ 160 000 = **1.5 : 1**\n\n**Acid test** = (240 000 − 90 000) ÷ 160 000 = 150 000 ÷ 160 000 = **0.94 : 1**\n\n**Comment:** Current ratio suggests adequate cover, but acid test **below 1:1** — without selling inventory, the firm may struggle to pay short-term debts. Consider **reducing inventory** or **speeding up receivables collection**."
+    },
+    {
+      "type": "examTip",
+      "content": "Interpretation must be **in context** — a retailer's acid test is often lower than a service business with no inventory."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a liquidity ratios question",
+      "href": "/mark?subject=9609&topic=10.2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.1.2 Statement of financial position", "href": "/courses/9609/10-1-2-statement-of-financial-position" },
+        { "label": "10.2.2 Profitability ratios", "href": "/courses/9609/10-2-2-profitability-ratios" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

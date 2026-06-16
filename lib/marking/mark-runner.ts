@@ -11,6 +11,7 @@ import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
 import { parsePaperCode } from '@/lib/marking/component-types'
 import { buildMarkingPrompt, maxTokensForStyle } from '@/lib/marking/build-marking-prompt'
 import { extractJSON } from '@/lib/marking/json'
+import { normalizeQuestionNumber } from '@/lib/marking/question-number'
 import { normalizeMarkingResult, coerceMarkingResult, isUsableMarkingResult } from '@/lib/marking/normalize-math'
 import {
   tryExtractFromStorage,
@@ -43,6 +44,38 @@ export const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
+
+/** Exact DB match first, then normalized question id (e.g. "2 (a)" → "2(a)"). */
+export async function findMarkSchemeRow(
+  paperCode: string,
+  paperSession: string,
+  questionNumber: string
+): Promise<MarkSchemeRow | null> {
+  const trimmed = questionNumber.trim()
+  if (!trimmed) return null
+
+  const { data: exact } = await supabaseAdmin
+    .from('mark_schemes')
+    .select('*')
+    .eq('paper_code', paperCode)
+    .eq('paper_session', paperSession)
+    .eq('question_number', trimmed)
+    .maybeSingle()
+
+  if (exact) return exact as MarkSchemeRow
+
+  const target = normalizeQuestionNumber(trimmed)
+  const { data: rows } = await supabaseAdmin
+    .from('mark_schemes')
+    .select('*')
+    .eq('paper_code', paperCode)
+    .eq('paper_session', paperSession)
+
+  const match = (rows ?? []).find(
+    (row) => normalizeQuestionNumber(String(row.question_number ?? '')) === target
+  )
+  return (match as MarkSchemeRow | undefined) ?? null
+}
 
 export function getMarkingGenAI() {
   return getGeminiClient()
@@ -173,16 +206,7 @@ const storageDeps = {
     paperCode: string,
     paperSession: string,
     questionNumber: string
-  ) => {
-    const { data } = await supabaseAdmin
-      .from('mark_schemes')
-      .select('*')
-      .eq('paper_code', paperCode)
-      .eq('paper_session', paperSession)
-      .eq('question_number', questionNumber)
-      .maybeSingle()
-    return (data as MarkSchemeRow) ?? null
-  },
+  ) => findMarkSchemeRow(paperCode, paperSession, questionNumber),
 }
 
 export async function lookupMarkScheme(
@@ -194,13 +218,7 @@ export async function lookupMarkScheme(
     onExtracting?: () => void
   }
 ): Promise<{ scheme: MarkSchemeRow | null; mode: MarkingMode; wasCached: boolean }> {
-  const { data: foundScheme } = await supabaseAdmin
-    .from('mark_schemes')
-    .select('*')
-    .eq('paper_code', paperCode)
-    .eq('paper_session', paperSession)
-    .eq('question_number', questionNumber)
-    .maybeSingle()
+  const foundScheme = await findMarkSchemeRow(paperCode, paperSession, questionNumber)
 
   if (foundScheme) {
     return {

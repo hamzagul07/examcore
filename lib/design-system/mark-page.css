@@ -427,6 +427,305 @@
   gap: 28px;
 }
 
+/* Question preview (pre-mark) and context (post-mark) */
+.ms-question-preview {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: var(--ec-radius-lg, 16px);
+  border: 1px solid var(--ec-border);
+  background: var(--ec-bg-soft);
+  min-width: 0;
+}
+
+.ms-question-preview-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-question-preview-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ms-question-preview-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--ec-border);
+}
+
+.ms-question-preview-badge--ok {
+  color: var(--ec-brand);
+  border-color: color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  background: var(--ec-brand-muted);
+}
+
+.ms-question-preview-stat {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ec-text-secondary);
+}
+
+.ms-question-preview-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ec-text-primary);
+  max-height: 12rem;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.ms-question-preview-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.ms-question-preview-missing {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-question-context {
+  margin-bottom: 32px;
+  padding: 20px 22px;
+  min-width: 0;
+}
+
+.ms-question-context-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.ms-question-context-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ec-text-secondary);
+  white-space: nowrap;
+}
+
+.ms-question-context-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px 20px;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.ms-question-context-stats > div {
+  min-width: 0;
+}
+
+.ms-question-context-stats dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ec-text-faint);
+  margin-bottom: 4px;
+}
+
+.ms-question-context-stats dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  line-height: 1.35;
+}
+
+.ms-question-context-scheme {
+  color: var(--ec-brand);
+}
+
+.ms-question-context-body {
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ec-border);
+}
+
+.ms-question-context-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ec-border);
+}
+
+.ms-marking-mode-hint {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--ec-border);
+  background: var(--ec-bg-soft);
+}
+
+.ms-marking-mode-hint-title {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+}
+
+.ms-marking-mode-hint-body {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-scheme-rubric {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: var(--ec-radius-lg, 16px);
+  border: 1px solid var(--ec-border);
+  background: var(--ec-surface);
+  min-width: 0;
+}
+
+.ms-scheme-rubric--compact {
+  margin-top: 16px;
+}
+
+.ms-scheme-rubric-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.ms-scheme-rubric-type {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.ms-scheme-rubric-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ms-scheme-rubric-points li {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 10px;
+  align-items: start;
+  font-size: 13px;
+  line-height: 1.45;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.ms-scheme-rubric-points li.is-active {
+  border-color: color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  background: var(--ec-brand-muted);
+}
+
+.ms-scheme-rubric-points--preview li {
+  padding: 6px 0;
+  border: none;
+  border-radius: 0;
+}
+
+.ms-scheme-rubric-code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--ec-brand);
+}
+
+.ms-scheme-rubric-desc {
+  color: var(--ec-text-secondary);
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.ms-scheme-rubric-bands {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.ms-scheme-rubric-band-label {
+  margin: 0 0 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+}
+
+.ms-scheme-rubric-extra {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ec-border);
+}
+
+.ms-scheme-rubric-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-scheme-rubric-answers,
+.ms-scheme-rubric-notes {
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-question-preview-rubric {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ec-border);
+}
+
+.ms-question-preview-more {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ec-text-faint);
+}
+
+.ms-scheme-criterion {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--ec-border);
+}
+
 @media (max-width: 900px) {
   .ms-mark-pg {
     padding: 0 18px;

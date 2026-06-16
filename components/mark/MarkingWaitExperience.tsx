@@ -160,6 +160,11 @@ function MarkingStoppedCard({
       <p className="text-base leading-relaxed text-[var(--ec-text-primary)]">
         {error}
       </p>
+      {onRetry && (
+        <p className="mt-2 text-sm text-[var(--ec-text-secondary)]">
+          Your photos are still uploaded — you won&apos;t need to add them again.
+        </p>
+      )}
       {(onRetry || onBackToUpload) && (
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           {onRetry && (

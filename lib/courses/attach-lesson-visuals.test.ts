@@ -270,5 +270,46 @@ const spectroscopy = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9701 NMR prefers native over PhET', spectroscopy.interactiveEmbed === undefined)
 
+const accounting = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '1-2-1-the-accounting-system',
+  topicCode: '1.2.1',
+  title: 'The accounting system',
+  simpleExplanation: {
+    title: 'Double entry',
+    summary: 'Summary',
+    steps: ['Debit rules', 'Credit rules', 'Prime entry', 'Ledger'],
+  },
+} as GeneratedLesson)
+check('9706 accounting attaches diagram spec', (accounting.diagramSpec?.steps.length ?? 0) === 4)
+check('9706 accounting has no embed', accounting.interactiveEmbed === undefined)
+
+const marketing = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '3-3-1-the-elements-of-the-marketing-mix-the-4ps',
+  topicCode: '3.3.1',
+  title: 'Marketing mix',
+  simpleExplanation: {
+    title: '4Ps',
+    summary: 'Summary',
+    steps: ['Product', 'Price', 'Promotion', 'Place'],
+  },
+} as GeneratedLesson)
+check('9609 marketing attaches diagram spec', (marketing.diagramSpec?.steps.length ?? 0) === 4)
+
+const scarcity = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '1-1-scarcity-choice-and-opportunity-cost',
+  topicCode: '1.1',
+  title: 'Scarcity',
+  simpleExplanation: {
+    title: 'Scarcity',
+    summary: 'Summary',
+    steps: ['Scarcity', 'Opportunity cost', 'Economic questions', 'PPC link'],
+  },
+} as GeneratedLesson)
+check('9708 scarcity attaches GeoGebra embed', scarcity.interactiveEmbed?.provider === 'geogebra')
+check('9708 scarcity attaches embed spec', (scarcity.diagramSpec?.steps.length ?? 0) === 4)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

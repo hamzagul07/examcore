@@ -35,6 +35,11 @@ const RULES: { template: VisualTemplate; pattern: RegExp }[] = [
     template: 'genetics',
     pattern: /gene|allele|phenotype|genotype|inheritance|variation|evolution|selection|vaccin|immune/i,
   },
+  {
+    template: 'process',
+    pattern:
+      /account|ledger|trial balance|marketing|finance|stakeholder|motivation|leadership|contract|negligence|sociolog|psycholog|research method|diagnosis|therapy|curriculum|PESTLE|4Ps/i,
+  },
 ]
 
 export function detectVisualTemplate(

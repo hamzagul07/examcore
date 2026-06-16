@@ -97,6 +97,12 @@ import { DiscreteDistributionDiagram } from '@/components/diagrams/DiscreteDistr
 import { NormalDistributionDiagram } from '@/components/diagrams/NormalDistributionDiagram'
 import { StatsAdvancedDiagram } from '@/components/diagrams/StatsAdvancedDiagram'
 import { MatrixDiagram } from '@/components/diagrams/MatrixDiagram'
+import { AccountingDiagram } from '@/components/diagrams/AccountingDiagram'
+import { BusinessDiagram } from '@/components/diagrams/BusinessDiagram'
+import { LegalDiagram } from '@/components/diagrams/LegalDiagram'
+import { SocialScienceDiagram } from '@/components/diagrams/SocialScienceDiagram'
+import { PsychologyDiagram } from '@/components/diagrams/PsychologyDiagram'
+import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
   source: string
@@ -506,6 +512,78 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: BiotechDiagram,
     caption: 'Recombinant DNA: insert a gene into a vector and clone in host cells.',
   },
+  'commerce-accounting-ledger': {
+    Component: AccountingDiagram,
+    caption: 'Double entry flows from source documents through books of prime entry to ledgers.',
+  },
+  'commerce-accounting-cost': {
+    Component: AccountingDiagram,
+    caption: 'Cost behaviour, contribution, and break-even analysis for decision-making.',
+  },
+  'commerce-accounting-statements': {
+    Component: AccountingDiagram,
+    caption: 'Financial statements and ratios summarise performance and position.',
+  },
+  'commerce-marketing': {
+    Component: BusinessDiagram,
+    caption: 'The marketing mix balances product, price, promotion, and place.',
+  },
+  'commerce-hrm': {
+    Component: BusinessDiagram,
+    caption: 'Organisational structure links leadership, motivation, and workforce planning.',
+  },
+  'commerce-operations': {
+    Component: BusinessDiagram,
+    caption: 'Operations transform inputs into outputs — quality, capacity, and efficiency matter.',
+  },
+  'commerce-finance': {
+    Component: BusinessDiagram,
+    caption: 'Finance sources, cash flow, budgets, and investment appraisal guide decisions.',
+  },
+  'commerce-strategy': {
+    Component: BusinessDiagram,
+    caption: 'PESTLE, stakeholders, and objectives shape strategic choices.',
+  },
+  'law-system-process': {
+    Component: LegalDiagram,
+    caption: 'Sources of law, courts, and dispute resolution in the English legal system.',
+  },
+  'law-contract-elements': {
+    Component: LegalDiagram,
+    caption: 'Valid contracts require offer, acceptance, consideration, and intention.',
+  },
+  'law-criminal-elements': {
+    Component: LegalDiagram,
+    caption: 'Criminal liability requires actus reus and mens rea — plus causation and defences.',
+  },
+  'law-tort-elements': {
+    Component: LegalDiagram,
+    caption: 'Negligence: duty of care, breach, causation, and remoteness of damage.',
+  },
+  'soc-theory': {
+    Component: SocialScienceDiagram,
+    caption: 'Sociological perspectives explain structure, agency, and social change.',
+  },
+  'soc-research': {
+    Component: SocialScienceDiagram,
+    caption: 'Research design links methods to validity, reliability, and ethics.',
+  },
+  'psych-clinical': {
+    Component: PsychologyDiagram,
+    caption: 'Clinical pathway: diagnosis, explanation, treatment, and evaluation.',
+  },
+  'psych-consumer': {
+    Component: PsychologyDiagram,
+    caption: 'Consumer behaviour links perception, heuristics, and purchase decisions.',
+  },
+  'psych-health': {
+    Component: PsychologyDiagram,
+    caption: 'Health psychology models explain beliefs, adherence, and behaviour change.',
+  },
+  'psych-workplace': {
+    Component: PsychologyDiagram,
+    caption: 'Workplace psychology covers leadership, motivation, groups, and satisfaction.',
+  },
 }
 
 /** 9702 slug → diagram family (custom slug-specific diagrams take priority). */
@@ -778,11 +856,32 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9701,
   ...SLUG_FAMILY_9709,
   ...SLUG_FAMILY_9231,
+  ...SLUG_FAMILY_COMMERCE_HUMANITIES,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))
 const MATHS_SLUGS = new Set([...Object.keys(SLUG_FAMILY_9709), ...Object.keys(SLUG_FAMILY_9231)])
 const CHEMISTRY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9701))
+const COMMERCE_SLUGS = new Set([
+  ...Object.keys(SLUG_FAMILY_9706),
+  ...Object.keys(SLUG_FAMILY_9609),
+])
+const ACCOUNTING_SLUGS = new Set(Object.keys(SLUG_FAMILY_9706))
+const LAW_SLUGS = new Set(
+  Object.entries(SLUG_FAMILY_COMMERCE_HUMANITIES)
+    .filter(([, f]) => f.startsWith('law-'))
+    .map(([slug]) => slug)
+)
+const SOCIOLOGY_SLUGS = new Set(
+  Object.entries(SLUG_FAMILY_COMMERCE_HUMANITIES)
+    .filter(([, f]) => f.startsWith('soc-'))
+    .map(([slug]) => slug)
+)
+const PSYCHOLOGY_SLUGS = new Set(
+  Object.entries(SLUG_FAMILY_COMMERCE_HUMANITIES)
+    .filter(([, f]) => f.startsWith('psych-'))
+    .map(([slug]) => slug)
+)
 
 function familyAttribution(slug: string): DiagramAttribution {
   if (BIOLOGY_SLUGS.has(slug)) {
@@ -793,6 +892,21 @@ function familyAttribution(slug: string): DiagramAttribution {
   }
   if (CHEMISTRY_SLUGS.has(slug)) {
     return { source: 'MarkScheme chemistry diagram family', license: 'Proprietary' }
+  }
+  if (ACCOUNTING_SLUGS.has(slug)) {
+    return { source: 'MarkScheme accounting diagram family', license: 'Proprietary' }
+  }
+  if (COMMERCE_SLUGS.has(slug)) {
+    return { source: 'MarkScheme business diagram family', license: 'Proprietary' }
+  }
+  if (LAW_SLUGS.has(slug)) {
+    return { source: 'MarkScheme law diagram family', license: 'Proprietary' }
+  }
+  if (SOCIOLOGY_SLUGS.has(slug)) {
+    return { source: 'MarkScheme sociology diagram family', license: 'Proprietary' }
+  }
+  if (PSYCHOLOGY_SLUGS.has(slug)) {
+    return { source: 'MarkScheme psychology diagram family', license: 'Proprietary' }
   }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)
   return {
@@ -807,6 +921,10 @@ export function getSubjectForSlug(slug: string): string | null {
   if (MATHS_SLUGS.has(slug)) return '9709'
   if (CHEMISTRY_SLUGS.has(slug)) return '9701'
   if (slug in SLUG_FAMILY_9702 || slug.startsWith('paper-5')) return '9702'
+  if (COMMERCE_SLUGS.has(slug)) return ACCOUNTING_SLUGS.has(slug) ? '9706' : '9609'
+  if (LAW_SLUGS.has(slug)) return '9084'
+  if (SOCIOLOGY_SLUGS.has(slug)) return '9699'
+  if (PSYCHOLOGY_SLUGS.has(slug)) return '9990'
   return null
 }
 

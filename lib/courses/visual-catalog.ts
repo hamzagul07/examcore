@@ -45,12 +45,20 @@ export function subjectDisplayName(subjectCode: string): string {
       return 'Biology'
     case '9701':
       return 'Chemistry'
+    case '9609':
+      return 'Business'
+    case '9706':
+      return 'Accounting'
+    case '9084':
+      return 'Law'
+    case '9699':
+      return 'Sociology'
+    case '9990':
+      return 'Psychology'
     case '9708':
       return 'Economics'
     case '9618':
       return 'Computer Science'
-    case '9609':
-      return 'Business'
     default:
       return 'Physics'
   }

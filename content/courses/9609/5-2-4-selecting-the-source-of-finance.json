@@ -5,28 +5,69 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — evaluating and justifying finance choices for scenarios.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — evaluating finance options and making justified recommendations for scenarios.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Recommend appropriate finance for scenarios.",
-    "Weigh pros and cons of alternatives.",
-    "Consider timing and repayment.",
+    "Recommend appropriate finance for given scenarios.",
+    "Weigh pros and cons of realistic alternatives.",
+    "Consider timing, repayment, and cash flow capacity.",
     "Justify selection with case evidence."
   ],
   "simpleExplanation": {
     "title": "Making the finance decision",
-    "summary": "Selection weighs cost, risk, control, and suitability. The best choice aligns with business objectives and capacity to repay.",
+    "summary": "Selection weighs cost, risk, control, and suitability. The best choice aligns with objectives and the firm's ability to repay or dilute.",
     "steps": [
-      "List realistic options for case.",
-      "Compare cost and control trade-offs.",
-      "Check cash flow can service debt.",
-      "Recommend with justification."
+      "List realistic options from the case context.",
+      "Compare cost, control, and risk trade-offs.",
+      "Check projected cash flow can service debt.",
+      "Recommend with balanced justification."
     ]
   },
+  "flashcards": [
+    { "front": "Recommend answer structure?", "back": "Options → pros/cons each → recommendation → justification from case." },
+    { "front": "When prefer retained profit?", "back": "Profitable firm, sufficient reserves, owners want no debt or dilution." },
+    { "front": "When prefer debt?", "back": "Owners keep control; tax relief on interest; predictable asset purchase." },
+    { "front": "When prefer equity?", "back": "High risk, weak collateral, large sum, start-up, or already highly geared." },
+    { "front": "Cash flow test for debt?", "back": "Forecast must show ability to pay interest and principal — use 5.3.1 cash flow." },
+    { "front": "Combining sources?", "back": "Often optimal — e.g. retained profit + bank loan reduces interest and dilution." },
+    { "front": "Evaluate not just recommend?", "back": "Show why rejected options are weaker, not only why chosen option is good." },
+    { "front": "Link to 10.3 investment?", "back": "Large projects appraised with NPV then financed via selected source." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Selecting finance** (5.2.4) is classic **evaluation** material. Structure **option → advantage → disadvantage → recommendation**." },
-    { "type": "practice", "label": "Mark a finance selection question", "href": "/mark?subject=9609&topic=5.2.4" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Selecting finance** (5.2.4) is classic **12–20 mark evaluation**. Structure: **Option A / Option B → compare → recommend**. Always tie to **case constraints** (family control, loss-making, rapid growth)."
+    },
+    {
+      "type": "heading",
+      "content": "Evaluation framework"
+    },
+    {
+      "type": "text",
+      "content": "For each realistic option, comment on:\n- **Cost** (interest, dividends, fees)\n- **Control** (dilution?)\n- **Risk** (gearing, repayment pressure)\n- **Suitability** (amount, duration, purpose)\n- **Availability** (will bank/investors agree?)"
+    },
+    {
+      "type": "workedExample",
+      "question": "Growing Ltd needs $300 000 for warehouse. Retained profit $120 000 available. Owners want minimal dilution. Bank offers 8% loan over 10 years.\n\nRecommend a finance mix.",
+      "solution": "**Option 1 — Retained profit only ($120k):** Insufficient for $300k warehouse — **rejected** unless project scaled down.\n\n**Option 2 — Full bank loan ($300k):** Achieves target; **no dilution**; but **interest cost** and **gearing** rise — need cash flow to cover repayments.\n\n**Option 3 — Mix (recommended):** Use **$120k retained profit** + **$180k bank loan**. Reduces interest and debt vs full loan; avoids **share issue** and dilution. Owners' control preserved.\n\n**Justification:** Matches case preference (minimal dilution), uses available internal funds, and loan size is more likely **approved** by bank."
+    },
+    {
+      "type": "examTip",
+      "content": "A **balanced recommendation** often beats a single source — shows you understand trade-offs. One paragraph per option maximum in timed conditions."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a finance selection question",
+      "href": "/mark?subject=9609&topic=5.2.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "5.2.2 Sources of finance", "href": "/courses/9609/5-2-2-internal-and-external-sources-of-finance" },
+        { "label": "10.3.4 Investment decisions", "href": "/courses/9609/10-3-4-investment-appraisal-decisions" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

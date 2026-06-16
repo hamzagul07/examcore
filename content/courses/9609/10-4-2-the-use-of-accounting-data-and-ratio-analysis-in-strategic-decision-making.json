@@ -5,28 +5,69 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — integrated ratio analysis for strategic evaluation.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — integrated ratio analysis for strategic evaluation and board-level recommendations.",
+  "durationMin": 28,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Combine ratio groups for full picture.",
-    "Benchmark against industry and history.",
-    "Link ratios to strategic options.",
-    "Evaluate overall financial health of case firm."
+    "Combine liquidity, profitability, efficiency, gearing, and investment ratios.",
+    "Benchmark against industry and historical trends.",
+    "Link ratio synthesis to strategic options.",
+    "Evaluate overall financial health and recommend action."
   ],
   "simpleExplanation": {
     "title": "The full financial diagnosis",
-    "summary": "Strategic decisions use liquidity, profitability, efficiency, gearing, and investment ratios together — not in isolation.",
+    "summary": "Strategic decisions need all ratio groups together — liquidity for survival, profitability for sustainability, gearing for risk, and efficiency for competitiveness.",
     "steps": [
-      "Liquidity: short-term survival.",
-      "Profitability: earning power.",
-      "Gearing: risk of debt.",
-      "Synthesis → invest, divest, or restructure."
+      "Liquidity: can the firm survive short term?",
+      "Profitability: is the core business earning enough?",
+      "Gearing: how risky is the debt level?",
+      "Synthesise → invest, divest, restructure, or change finance."
     ]
   },
+  "flashcards": [
+    { "front": "Ratio synthesis order?", "back": "Liquidity first (survival), then profitability, efficiency, gearing, investment — then overall judgement." },
+    { "front": "Weak liquidity + high gearing?", "back": "Dangerous — may need equity injection, asset sale, or cost cutting urgently." },
+    { "front": "Strong profitability + weak efficiency?", "back": "Earning well but tying up cash in inventory/receivables — improve working capital." },
+    { "front": "Benchmarking?", "back": "Compare ratios with industry averages and prior years." },
+    { "front": "Strategic response to falling ROCE?", "back": "Review product mix, cut costs, divest low-return assets, or reject new low-ROCE projects." },
+    { "front": "Strategic response to high gearing?", "back": "Reduce debt, issue shares, improve profit to raise interest cover, delay expansion." },
+    { "front": "Investment ratios for PLC strategy?", "back": "Low P/E may suggest takeover target; dividend policy affects shareholder support for strategy." },
+    { "front": "Limitation of ratio-only analysis?", "back": "Window dressing, one-off items, different accounting policies — use with qualitative context." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Ratio analysis for strategy** (10.4.2) completes **9609 syllabus JSON**. Integrate **all ratio types** in final essays." },
-    { "type": "practice", "label": "Mark a strategic ratio analysis question", "href": "/mark?subject=9609&topic=10.4.2" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Ratio analysis for strategy** (10.4.2) is the **capstone** of 9609 finance. Examiners expect you to **calculate ratios from 10.2**, **interpret trends**, and **recommend strategic action** — not treat each ratio in isolation."
+    },
+    {
+      "type": "heading",
+      "content": "Integrated analysis framework"
+    },
+    {
+      "type": "text",
+      "content": "1. **Liquidity (10.2.1)** — Can bills be paid? Short-term crisis overrides long-term plans.\n2. **Profitability (10.2.2)** — Is trading fundamentally sound?\n3. **Efficiency (10.2.3)** — Is working capital used well?\n4. **Gearing (10.2.4)** — Can the firm afford its debt while pursuing strategy?\n5. **Investment (10.2.5)** — How do shareholders view returns?"
+    },
+    {
+      "type": "workedExample",
+      "question": "Year 1 → Year 2 changes:\nCurrent ratio 1.8 → 1.1; GPM 32% → 28%; Gearing 35% → 52%; Inventory days 45 → 62.\n\nSummarise financial health and suggest one strategic priority.",
+      "solution": "**Liquidity:** Current ratio **falling toward 1.1** — tightening short-term position; **investigate** before aggressive expansion.\n\n**Profitability:** **GPM down 4pp** — rising costs or price pressure; strategy must address **cost control** or **repositioning**.\n\n**Gearing:** **Sharp rise to 52%** — more debt-funded growth; **interest cover** should be checked; vulnerable if profits slip.\n\n**Efficiency:** **Inventory days up** — cash tied in stock; links to weaker liquidity.\n\n**Priority:** **Working capital improvement** (inventory reduction, receivables collection) and **halt further debt-funded expansion** until margins and liquidity stabilise. Longer term: **cost reduction** or **premium pricing** to restore GPM."
+    },
+    {
+      "type": "examTip",
+      "content": "In 20-mark questions, allocate ~40% to **calculations**, ~60% to **interpretation and strategic recommendation**. Use headings: Liquidity, Profitability, etc."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a strategic ratio analysis question",
+      "href": "/mark?subject=9609&topic=10.4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.2.1–10.2.5 Ratio lessons", "href": "/courses/9609/10-2-1-liquidity-ratios" },
+        { "label": "10.4.1 Accounting for strategy", "href": "/courses/9609/10-4-1-the-use-of-accounting-data-to-enable-strategic-decision-making" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

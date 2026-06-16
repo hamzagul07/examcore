@@ -2314,7 +2314,7 @@ export const SLUG_FAMILY_9609: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '10-2-5-investment-ratios': 'commerce-ratios',
   '10-3-1-the-concept-of-investment-appraisal': 'commerce-investment',
   '10-3-2-basic-methods-payback-accounting-rate-of-return-arr': 'commerce-investment',
-  '10-3-3-discounted-cash-flow-method-net-present-value-npv': 'commerce-investment',
+  '10-3-3-discounted-cash-flow-method-net-present-value-npv': 'commerce-investment-npv',
   '10-3-4-investment-appraisal-decisions': 'commerce-investment',
   '10-4-1-the-use-of-accounting-data-to-enable-strategic-decision-making': 'commerce-ratios',
   '10-4-2-the-use-of-accounting-data-and-ratio-analysis-in-strategic-decision-making': 'commerce-ratios',
@@ -2582,6 +2582,7 @@ export type CommerceHumanitiesFamilyId =
   | 'commerce-breakeven'
   | 'commerce-ratios'
   | 'commerce-investment'
+  | 'commerce-investment-npv'
   | 'commerce-cashflow'
   | 'commerce-bank-reconcil'
   | 'commerce-stakeholder'

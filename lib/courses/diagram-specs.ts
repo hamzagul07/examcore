@@ -996,6 +996,30 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Inelastic demand (|PED| < 1): quantity responds weakly.', embedHint: 'Price rise raises total revenue when demand is inelastic.' },
     { caption: 'Apply elasticity to pricing, promotions, and revenue strategy.', embedHint: 'Shift the curve — read new equilibrium P and Q.' },
   ]),
+  '10-3-1-the-concept-of-investment-appraisal': embedSpec([
+    { caption: 'Capital projects involve large, irreversible spending.', embedHint: 'Identify initial investment outlay in the sim.' },
+    { caption: 'Appraisal uses incremental cash flows only.', embedHint: 'Focus on future inflows minus outflows — ignore sunk costs.' },
+    { caption: 'Qualitative factors: strategy, brand, risk, CSR.', embedHint: 'Compare quantitative NPV with non-financial factors.' },
+    { caption: 'Methods: payback, ARR, NPV, IRR — see 10.3.2–10.3.4.', embedHint: 'Scroll the cash-flow timeline in the sim.' },
+  ]),
+  '10-3-2-basic-methods-payback-accounting-rate-of-return-arr': embedSpec([
+    { caption: 'Payback = time until cumulative cash flow recovers investment.', embedHint: 'Track when cumulative CF crosses zero in the sim.' },
+    { caption: 'Simple and intuitive — favours short-term liquidity.', embedHint: 'Compare projects with different payback periods.' },
+    { caption: 'ARR = average annual profit ÷ initial investment × 100%.', embedHint: 'Uses accounting profit, not cash flow — limitation.' },
+    { caption: 'Ignores time value of money — use NPV for long projects.', embedHint: 'Contrast payback/ARR with discounted methods below.' },
+  ]),
+  '10-3-3-discounted-cash-flow-method-net-present-value-npv': embedSpec([
+    { caption: 'Money today is worth more — future CFs must be discounted.', embedHint: 'Adjust discount rate in the sim — watch NPV change.' },
+    { caption: 'Discount factor = 1 / (1 + r)^n for year n.', embedHint: 'Higher r reduces present value of distant cash flows.' },
+    { caption: 'NPV = Σ PV of net cash flows − initial investment.', embedHint: 'Read NPV at your required rate of return.' },
+    { caption: 'Accept project if NPV > 0; reject if NPV < 0.', embedHint: 'Find IRR where NPV = 0 — compare to cost of capital.' },
+  ]),
+  '10-3-4-investment-appraisal-decisions': embedSpec([
+    { caption: 'Compare methods — NPV preferred for wealth maximisation.', embedHint: 'Run both projects in the sim — which NPV is higher?' },
+    { caption: 'Payback useful when liquidity is critical.', embedHint: 'Short payback may win despite lower NPV — explain trade-off.' },
+    { caption: 'Qualitative factors may override negative NPV.', embedHint: 'Government policy, market entry, competitive threat.' },
+    { caption: 'Sensitivity analysis — test assumptions on r and cash flows.', embedHint: 'Change discount rate — does the decision flip?' },
+  ]),
   '1-5-production-possibility-curves': embedSpec([
     { caption: 'PPC shows maximum output combinations with fixed resources.', embedHint: 'Points on the curve are productively efficient.' },
     { caption: 'Points inside the curve — inefficient (unemployed resources).', embedHint: 'Plot inside — economy could produce more of both goods.' },

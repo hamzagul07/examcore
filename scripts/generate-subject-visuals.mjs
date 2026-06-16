@@ -45,7 +45,8 @@ function family9706(slug) {
 function family9609(slug) {
   if (/break-even/.test(slug)) return 'commerce-breakeven'
   if (/ratio|liquidity|profitability|accounting-data/.test(slug)) return 'commerce-ratios'
-  if (/investment-appraisal|payback|arr|npv/.test(slug)) return 'commerce-investment'
+  if (/npv|discounted-cash-flow/.test(slug)) return 'commerce-investment-npv'
+  if (/investment-appraisal|payback|arr/.test(slug)) return 'commerce-investment'
   if (/working-capital|cash-flow|budget|variances/.test(slug)) return 'commerce-cashflow'
   if (/stakeholder/.test(slug)) return 'commerce-stakeholder'
   if (/elasticity/.test(slug)) return 'commerce-elasticity'
@@ -182,6 +183,7 @@ export type CommerceHumanitiesFamilyId =
   | 'commerce-breakeven'
   | 'commerce-ratios'
   | 'commerce-investment'
+  | 'commerce-investment-npv'
   | 'commerce-cashflow'
   | 'commerce-bank-reconcil'
   | 'commerce-stakeholder'

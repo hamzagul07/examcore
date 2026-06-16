@@ -363,5 +363,19 @@ const lawPrecedent = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9084 precedent attaches diagram spec', (lawPrecedent.diagramSpec?.steps.length ?? 0) === 4)
 
+const investNpv = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '10-3-3-discounted-cash-flow-method-net-present-value-npv',
+  topicCode: '10.3.3',
+  title: 'NPV',
+  simpleExplanation: {
+    title: 'NPV',
+    summary: 'Summary',
+    steps: ['Discount', 'PV', 'Sum', 'Decision'],
+  },
+} as GeneratedLesson)
+check('9609 NPV attaches GeoGebra embed', investNpv.interactiveEmbed?.provider === 'geogebra')
+check('9609 NPV attaches embed spec', (investNpv.diagramSpec?.steps.length ?? 0) === 4)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

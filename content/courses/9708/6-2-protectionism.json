@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "Restricting trade",
     "summary": "Tariffs raise the domestic price of imports, benefiting producers but costing consumers. Deadweight loss represents lost efficiency.",
+    "analogy": "A tariff is like a toll gate on imported goods — domestic producers face less competition and can charge more, but consumers pay higher prices and some mutually beneficial trades never happen.",
     "steps": [
       "Tariff = tax on imports — domestic price rises toward world price + tariff.",
       "Consumer surplus falls; producer surplus and tariff revenue may rise.",
@@ -24,10 +25,78 @@
       "WTO promotes liberalisation — quotas and subsidies also distort trade."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is protectionism?",
+      "back": "Government policies that restrict international trade to protect domestic industries — tariffs, quotas, subsidies to domestic firms, and regulations."
+    },
+    {
+      "front": "Effect of a tariff on domestic price?",
+      "back": "Domestic price rises from world price (Pw) toward Pw + tariff — imports become more expensive relative to domestic goods."
+    },
+    {
+      "front": "Who gains and loses from a tariff?",
+      "back": "Gainers: domestic producers (higher price, more sales), government (tariff revenue). Losers: consumers (higher prices, lower surplus), efficiency (deadweight loss)."
+    },
+    {
+      "front": "What is deadweight loss from a tariff?",
+      "back": "Lost economic welfare from trades that no longer occur — triangles representing foregone consumer and producer surplus not captured by anyone."
+    },
+    {
+      "front": "Infant industry argument?",
+      "back": "Temporary protection allows new industries to reach efficient scale before facing foreign competition — may fail if protection becomes permanent."
+    },
+    {
+      "front": "Trade creation vs trade diversion?",
+      "back": "Trade creation: customs union switches to lower-cost member supplier (efficient). Trade diversion: switches from efficient non-member to less efficient member (inefficient)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Protectionism** (6.2) follows **comparative advantage** (6.1). Draw **welfare triangles** — examiners reward labelled **DWL** and **transfers**."
+      "content": "**Protectionism** (6.2) follows **comparative advantage** (6.1). Draw **welfare triangles** — examiners reward labelled **DWL**, **consumer surplus**, **producer surplus**, and **tariff revenue**."
+    },
+    {
+      "type": "heading",
+      "content": "Types of trade barriers"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Tariff**: tax on imports — raises price, reduces import quantity.",
+        "**Quota**: physical limit on import volume — raises price like a tariff but no revenue (unless auctioned).",
+        "**Subsidy**: payment to domestic producers — lowers their costs, substitutes for imports.",
+        "**Non-tariff barriers**: regulations, standards, administrative delays."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Tariff analysis"
+    },
+    {
+      "type": "text",
+      "content": "Before a tariff, domestic price equals **world price (Pw)**. With a tariff of $t per unit, domestic price rises to approximately **Pw + t**.\n\n- **Consumer surplus** falls (higher price, lower quantity demanded).\n- **Producer surplus** rises (domestic firms sell more at higher price).\n- **Government revenue** = tariff × import quantity.\n- **Deadweight loss** = two triangles — lost gains from trade."
+    },
+    {
+      "type": "workedExample",
+      "question": "The world price of steel is $400/tonne. Domestic demand is Qd = 100 − 0.1P and domestic supply is Qs = 0.05P (P in $, Q in million tonnes).\n\n(a) Find equilibrium price and quantity with free trade.\n(b) A $50/tonne tariff is imposed. Find the new domestic price and import quantity.\n(c) Identify who gains and who loses.",
+      "solution": "(a) **Free trade**\nAt Pw = $400: Qd = 100 − 0.1(400) = **60m tonnes**; Qs = 0.05(400) = **20m tonnes**\nImports = Qd − Qs = 60 − 20 = **40m tonnes**\n\n(b) **With $50 tariff**\nDomestic price rises to Pw + tariff = $400 + $50 = **$450/tonne**\nQd = 100 − 0.1(450) = **55m tonnes**\nQs = 0.05(450) = **22.5m tonnes**\nImports = 55 − 22.5 = **32.5m tonnes** (imports fall by 7.5m tonnes)\n\n(c) **Winners and losers**\n**Gain**: domestic steel producers (sell 2.5m more at higher price); government (revenue = $50 × 32.5m = **$1.625bn**)\n**Lose**: consumers (pay $450 not $400; quantity falls); **DWL** from foregone efficient trades"
+    },
+    {
+      "type": "heading",
+      "content": "Arguments for and against"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**For**: infant industry, anti-dumping, national security, protect jobs short run.",
+        "**Against**: higher consumer prices, retaliation, inefficiency, reduced comparative advantage gains.",
+        "**WTO**: promotes multilateral trade liberalisation and dispute resolution."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In evaluation, distinguish **short-run** (job protection) from **long-run** (efficiency loss, retaliation). Link to **6.3 current account** — tariffs may improve trade balance but at welfare cost."
     },
     {
       "type": "practice",
@@ -37,10 +106,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "6.1 Reasons for international trade", "href": "/courses/9708/6-1-the-reasons-for-international-trade" },
+        { "label": "6.3 Current account", "href": "/courses/9708/6-3-current-account-of-the-balance-of-payments" },
+        { "label": "6.5 Policies to correct BOP imbalances", "href": "/courses/9708/6-5-policies-to-correct-imbalances-in-the-current-account-of-the-balance-of-payments" },
+        { "label": "2.5 Consumer and producer surplus", "href": "/courses/9708/2-5-consumer-and-producer-surplus" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

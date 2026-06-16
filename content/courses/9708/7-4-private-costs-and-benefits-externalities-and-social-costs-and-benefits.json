@@ -24,10 +24,73 @@
       "Pigouvian tax = external cost per unit at optimum."
     ]
   },
+  "flashcards": [
+    {
+      "front": "MPC vs MSC?",
+      "back": "MPC = private marginal cost to the producer. MSC = MPC + marginal external cost. MSC is the true cost to society."
+    },
+    {
+      "front": "MPB vs MSB?",
+      "back": "MPB = private marginal benefit to the consumer. MSB = MPB + marginal external benefit. MSB is the true benefit to society."
+    },
+    {
+      "front": "Negative externality of production?",
+      "back": "MSC > MPC — e.g. pollution. Market overproduces: Q_market > Q_social where MSB = MSC."
+    },
+    {
+      "front": "Positive externality of consumption?",
+      "back": "MSB > MPB — e.g. vaccinations. Market underproduces: Q_market < Q_social."
+    },
+    {
+      "front": "What is a Pigouvian tax?",
+      "back": "A per-unit tax equal to the marginal external cost at the social optimum — internalises the externality and moves Q_market toward Q_social."
+    },
+    {
+      "front": "What is a Pigouvian subsidy?",
+      "back": "A per-unit subsidy equal to the marginal external benefit at the social optimum — encourages more consumption/production of goods with positive externalities."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Externalities** (7.4) are core A Level diagram work. Shade **DWL** and label **Q_market** vs **Q_social** on every answer."
+      "content": "**Externalities** (7.4) are core A Level diagram work. Shade **DWL** and label **Q_market** vs **Q_social** on every answer. Distinguish **production** vs **consumption** externalities."
+    },
+    {
+      "type": "heading",
+      "content": "Private vs social costs and benefits"
+    },
+    {
+      "type": "text",
+      "content": "Markets equate **MPC = MPB** (private equilibrium). Society's optimum is where **MSC = MSB**.\n\n**MSC = MPC + marginal external cost (MEC)**\n**MSB = MPB + marginal external benefit (MEB)**\n\nWhen external costs exist, MSC lies **above** MPC. When external benefits exist, MSB lies **above** MPB."
+    },
+    {
+      "type": "formula",
+      "content": "Social optimum: $MSB = MSC$\n\nNegative externality: $Q_{market} > Q_{social}$\n\nPositive externality: $Q_{market} < Q_{social}$"
+    },
+    {
+      "type": "heading",
+      "content": "Negative externalities"
+    },
+    {
+      "type": "text",
+      "content": "Example: factory pollution. Producers consider only **MPC**, not harm to neighbours. Market produces **too much** — Q_market > Q_social.\n\n**Corrective policies:**\n- **Pigouvian tax** per unit = MEC at Q_social\n- **Regulation** (emission limits, permits)\n- **Tradable pollution permits** (cap and trade)"
+    },
+    {
+      "type": "heading",
+      "content": "Positive externalities"
+    },
+    {
+      "type": "text",
+      "content": "Example: education or vaccinations. Individual considers only **MPB**, not benefits to society (educated workforce, herd immunity). Market produces **too little** — Q_market < Q_social.\n\n**Corrective policies:**\n- **Subsidies** per unit = MEB at Q_social\n- **Direct provision** (state schools, free vaccinations)\n- **Information campaigns** to raise perceived benefits"
+    },
+    {
+      "type": "workedExample",
+      "question": "The market for pesticide use is shown below (linear curves):\n\n- MPC = 10 + 0.5Q\n- External cost = 4 per unit (constant)\n- MPB = MSB = 30 − 0.5Q\n\n(a) Find Q_market and Q_social.\n(b) Calculate the Pigouvian tax per unit.\n(c) Shade and describe the deadweight loss.",
+      "solution": "(a) **Q_market:** MPC = MPB\n10 + 0.5Q = 30 − 0.5Q\nQ = **20 units**, P = £20\n\n**Q_social:** MSC = MSB, where MSC = MPC + 4 = 14 + 0.5Q\n14 + 0.5Q = 30 − 0.5Q\nQ = **16 units**, P = £22\n\nMarket **overproduces** by 4 units (20 − 16).\n\n(b) **Pigouvian tax** = marginal external cost = **£4 per unit** (constant in this case).\n\nWith tax, effective MPC = 10 + 0.5Q + 4 = 14 + 0.5Q = MSC → Q falls to 16.\n\n(c) **DWL:** Triangle between MSC and MSB from Q_social (16) to Q_market (20).\n\nAt Q = 20: MSC = 14 + 10 = £24, MSB = £20 → gap = £4.\nAt Q = 16: MSC = MSB = £22 → gap = £0.\n\nDWL = ½ × (20 − 16) × £4 = **£8** — welfare lost from the 4 extra units."
+    },
+    {
+      "type": "examTip",
+      "content": "Label curves **MPC, MSC, MPB, MSB** — never just S and D in externality questions. Show **Q_market** at MPC = MPB and **Q_social** at MSC = MSB. State whether the good is over- or under-produced."
     },
     {
       "type": "practice",
@@ -37,10 +100,10 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "7.3 Efficiency and market failure", "href": "/courses/9708/7-3-efficiency-and-market-failure" },
+        { "label": "8.1 Government policies to correct market failure", "href": "/courses/9708/8-1-government-policies-to-achieve-efficient-resource-allocation-and-correct-market-failure" },
+        { "label": "3.2 Methods of government intervention", "href": "/courses/9708/3-2-methods-and-effects-of-government-intervention-in-markets" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

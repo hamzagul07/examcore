@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "The whole economy on one graph",
     "summary": "AD–AS combines micro supply/demand ideas at economy-wide level. Equilibrium real GDP and price level sit where AD crosses AS.",
+    "analogy": "AD is total shopping demand for everything in the economy; SRAS is how much firms will produce at each price level today; LRAS is the factory's maximum sustainable capacity.",
     "steps": [
       "AD slopes down — wealth effect, interest rate effect, exchange rate effect.",
       "SRAS slopes up — input costs rise as economy overheats in short run.",
@@ -24,14 +25,66 @@
       "Shift AD or AS — predict new P and Y; state transmission mechanism."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Components of aggregate demand?",
+      "back": "AD = C + I + G + (X − M) — consumption, investment, government spending, net exports."
+    },
+    {
+      "front": "Why does AD slope downward?",
+      "back": "Wealth effect (lower P → higher real wealth → more C), interest rate effect (lower P → lower r → more I and C), exchange rate effect (lower P → currency appreciation → fewer exports)."
+    },
+    {
+      "front": "Why does SRAS slope upward?",
+      "back": "As the price level rises, firms' output prices increase faster than input costs (sticky wages), so profit margins rise and firms supply more output."
+    },
+    {
+      "front": "What does LRAS represent?",
+      "back": "Long-run aggregate supply — vertical at full employment output (Yf), determined by factors of production and technology, independent of price level."
+    },
+    {
+      "front": "AD shifts right — effect on P and Y?",
+      "back": "Both price level (P) and real GDP (Y) rise in the short run — demand-pull pressure on prices and higher output."
+    },
+    {
+      "front": "SRAS shifts left — effect on P and Y?",
+      "back": "Price level rises but real GDP falls — stagflation (cost-push inflation with lower output)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**AD–AS** is the core 9708 macro diagram — used for **fiscal policy**, **monetary policy**, **inflation**, and **unemployment** essays. Practise drawing **three curves** with labelled axes."
+      "content": "**AD–AS** is the core 9708 macro diagram — used for **fiscal policy**, **monetary policy**, **inflation**, and **unemployment** essays. Practise drawing **three curves** with labelled axes and showing **E₁ → E₂** after every shift."
+    },
+    {
+      "type": "heading",
+      "content": "Aggregate demand"
+    },
+    {
+      "type": "text",
+      "content": "**Aggregate demand** is total planned spending on domestically produced goods and services at each price level. It slopes **downward** because of the wealth, interest rate, and exchange rate effects."
     },
     {
       "type": "formula",
-      "content": "AD = C + I + G + (X − M) | Equilibrium: AD = AS | Inflationary gap: Y > Yf | Recessionary gap: Y < Yf"
+      "content": "AD = C + I + G + (X − M)\n\nEquilibrium: AD = AS\n\nInflationary gap: Y > Yf\n\nRecessionary gap: Y < Yf"
+    },
+    {
+      "type": "heading",
+      "content": "Short-run and long-run aggregate supply"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**SRAS** slopes upward — sticky wages and prices mean firms respond to higher P by increasing output.",
+        "**LRAS** is vertical at **Yf** — in the long run, output is determined by supply-side capacity.",
+        "**Recessionary gap**: equilibrium Y below Yf — cyclical unemployment.",
+        "**Inflationary gap**: equilibrium Y above Yf — demand-pull inflation risk."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An economy is initially in long-run equilibrium at Yf = $800bn and P = 100. Consumer confidence rises and AD increases by $40bn at every price level.\n\n(a) On an AD–AS diagram, describe the shift.\n(b) Predict the new equilibrium P and Y in the short run (assume SRAS is upward sloping).\n(c) What happens in the long run if AD stays at the higher level?",
+      "solution": "(a) **Diagram**\nDraw AD₁ and AD₂ with AD₂ **to the right** of AD₁ (parallel shift right by $40bn). Mark initial equilibrium E₁ at AD₁ ∩ SRAS. New short-run equilibrium E₂ at AD₂ ∩ SRAS.\n\n(b) **Short-run effect**\nBoth **P rises** (e.g. from 100 to ~105) and **Y rises** (e.g. from $800bn to ~$830bn). The economy moves into an **inflationary gap** (Y > Yf).\n\n(c) **Long-run adjustment**\nIf AD remains high, wages and costs adjust upward. **SRAS shifts left** until Y returns to **Yf** but at a **higher price level** — demand-pull inflation without permanent output gain."
     },
     {
       "type": "examTip",
@@ -45,10 +98,12 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.2 Circular flow of income", "href": "/courses/9708/4-2-introduction-to-the-circular-flow-of-income" },
+        { "label": "4.5 Unemployment", "href": "/courses/9708/4-5-unemployment" },
+        { "label": "4.6 Price stability", "href": "/courses/9708/4-6-price-stability" },
+        { "label": "5.2 Fiscal policy", "href": "/courses/9708/5-2-fiscal-policy" },
+        { "label": "5.3 Monetary policy", "href": "/courses/9708/5-3-monetary-policy" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

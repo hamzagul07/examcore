@@ -24,10 +24,32 @@
       "QE: asset purchases when rates near zero."
     ]
   },
+  "flashcards": [
+    { "front": "Three functions of money?", "back": "Medium of exchange, store of value, unit of account (measure of value)." },
+    { "front": "How do banks create credit?", "back": "Fractional reserve banking — new loans create new deposits, expanding broad money supply (subject to reserve requirements)." },
+    { "front": "Central bank role?", "back": "Lender of last resort, sets base interest rate, controls base money, supervises banking system, inflation target." },
+    { "front": "Open market operations?", "back": "Central bank buys/sells government securities to change reserves and influence interbank interest rates." },
+    { "front": "What is quantitative easing (QE)?", "back": "Central bank creates money to buy financial assets (usually bonds) when conventional rate cuts are exhausted — lowers long-term rates, boosts asset prices." },
+    { "front": "Monetary policy transmission to AD?", "back": "Rate cut → cheaper borrowing → ↑ C and I → AD rises; also exchange rate channel (lower rates → currency depreciates → ↑ X)." }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Money and banking** (9.4) supports **monetary policy** essays. Link **interest rates** to **AD** transmission clearly."
+      "content": "**Money and banking** (9.4) supports **monetary policy** essays. Link **interest rates** to **AD** transmission clearly — consumption, investment, exchange rate channels."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Narrow vs broad money:** notes/coins vs deposits and near-money.",
+        "**Credit multiplier (simplified):** 1/reserve ratio — actual multiplier smaller due to leakages.",
+        "**Liquidity preference:** demand for money — transactions, precautionary, speculative motives.",
+        "**QE limits:** may not boost bank lending if confidence low; distributional effects on asset holders."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A central bank cuts its policy rate from 4% to 2% when inflation is 1% and unemployment is above the NAIRU. Commercial banks pass on half the cut to borrowers.\n\nAnalyse the likely transmission mechanism to AD and evaluate risks to other macroeconomic objectives. [10 marks]",
+      "solution": "**Transmission to AD:**\n1. **Effective lending rate** falls by ~1 percentage point (half pass-through) → **cheaper mortgages and business loans**.\n2. **Consumption:** lower debt service → ↑ disposable income → **C rises**.\n3. **Investment:** lower cost of capital → **I rises** (especially interest-sensitive sectors).\n4. **Exchange rate:** lower rates → capital outflows → **currency depreciates** → exports cheaper, imports dearer → **(X − M) improves**.\n5. **Combined effect:** **AD shifts right** → output and employment rise toward NAIRU.\n\n**Risks to other objectives:**\n- **Inflation:** with inflation already low at 1%, AD stimulus may be appropriate short run; if economy nears capacity, **demand-pull inflation** returns.\n- **Asset prices:** lower rates may inflate **house and stock prices** — financial stability risk, worsens wealth inequality.\n- **BOP:** depreciation helps X but **import prices rise** — cost-push pressure on inflation.\n- **Incomplete pass-through:** if banks hoard margins, **transmission weakened** — policy less effective.\n\n**Judgement:** Cut is justified given unemployment above NAIRU and low inflation, but central bank must monitor **asset bubbles** and **inflation expectations**."
     },
     {
       "type": "practice",
@@ -37,10 +59,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "5.3 Monetary policy (AS)", "href": "/courses/9708/5-3-monetary-policy" },
+        { "label": "10.3 Policy effectiveness", "href": "/courses/9708/10-3-effectiveness-of-policy-options-to-meet-all-macroeconomic-objectives" },
+        { "label": "11.2 Exchange rates", "href": "/courses/9708/11-2-exchange-rates" },
+        { "label": "9.3 Employment and unemployment", "href": "/courses/9708/9-3-employment-unemployment" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

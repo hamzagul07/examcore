@@ -24,10 +24,76 @@
       "Public goods: non-rival, non-excludable — free-rider problem."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is allocative efficiency?",
+      "back": "Resources are allocated so MSB = MSC — the socially optimal quantity is produced. No one can be made better off without making someone worse off (Pareto efficiency)."
+    },
+    {
+      "front": "What is productive efficiency?",
+      "back": "Output is produced at the lowest possible average cost — firm operates at minimum ATC (or on the PPF boundary)."
+    },
+    {
+      "front": "What is market failure?",
+      "back": "When the free market fails to allocate resources efficiently — MSB ≠ MSC at the market equilibrium quantity."
+    },
+    {
+      "front": "Main types of market failure?",
+      "back": "Externalities, public goods, information gaps (asymmetric information), merit/demerit goods, and market power (monopoly)."
+    },
+    {
+      "front": "What is deadweight loss (DWL)?",
+      "back": "The welfare loss from producing too much or too little — the triangle between MSC and MSB curves over the range between Q_market and Q_social."
+    },
+    {
+      "front": "Public goods and the free-rider problem?",
+      "back": "Non-excludable and non-rival goods — individuals can benefit without paying, so the market underprovides them."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Market failure** (7.3) links to **externalities** (7.4) and **government policy** (8.1). Use **MSC/MSB** curves — not just supply/demand labels."
+      "content": "**Market failure** (7.3) links to **externalities** (7.4) and **government policy** (8.1). Use **MSC/MSB** curves — not just supply/demand labels — and shade **deadweight loss** on every diagram."
+    },
+    {
+      "type": "heading",
+      "content": "Types of efficiency"
+    },
+    {
+      "type": "text",
+      "content": "**Productive efficiency** — producing at the **lowest average cost** (minimum ATC). On a PPF, this means operating on the frontier.\n\n**Allocative efficiency** — producing the **right quantity** for society where **MSB = MSC**. This maximises total welfare.\n\nA market can be productively efficient but allocatively inefficient (e.g. monopoly at minimum ATC but P > MC)."
+    },
+    {
+      "type": "heading",
+      "content": "Sources of market failure"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Externalities** — spillover costs/benefits not reflected in market prices (see 7.4).",
+        "**Public goods** — non-rival and non-excludable; free-rider problem → underprovision.",
+        "**Information failure** — consumers or producers lack full information (e.g. healthcare, financial products).",
+        "**Merit goods** — underconsumed because benefits not fully perceived (e.g. education, vaccinations).",
+        "**Demerit goods** — overconsumed because harms not fully perceived (e.g. tobacco, gambling).",
+        "**Market power** — monopoly sets P > MC → allocative inefficiency."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Deadweight loss"
+    },
+    {
+      "type": "text",
+      "content": "When the market produces at **Q_market ≠ Q_social**, welfare is lost. Shade the **DWL triangle** between MSC and MSB from Q_social to Q_market.\n\n- **Overproduction** (negative externality): Q_market > Q_social → DWL to the right of Q_social.\n- **Underproduction** (positive externality): Q_market < Q_social → DWL to the right of Q_market."
+    },
+    {
+      "type": "workedExample",
+      "question": "A chemical factory produces at Q_market = 100 units where MPC = MPB = £20. The external cost is £5 per unit (constant). MSC = MPC + £5.\n\n(a) Find Q_social where MSB = MSC.\n(b) Explain the deadweight loss from overproduction.",
+      "solution": "(a) At Q_social, **MSB = MSC**.\nMSB = MPB = £20 (no external benefit).\nMSC = MPC + external cost = £20 + £5 = **£25** at the market quantity.\n\nSince MSC > MSB at Q = 100, the market **overproduces**. Q_social is where MSC = MSB = £20, meaning MPC = £15 (since MSC = MPC + 5).\n\nOn a diagram, Q_social < 100 — society wants **fewer than 100 units**.\n\n(b) **Deadweight loss:** For each unit from Q_social to 100, MSC > MSB — society loses the excess of MSC over MSB.\n\nDWL = area of triangle between MSC and MSB curves from Q_social to 100.\n\nAt the margin near Q_market, welfare loss per unit ≈ £5 (external cost). Total DWL = ½ × (100 − Q_social) × £5.\n\n**Policy:** A Pigouvian tax of £5 per unit would shift supply to MSC and restore Q_social."
+    },
+    {
+      "type": "examTip",
+      "content": "In **evaluate** questions, state whether government intervention **improves** allocative efficiency, then note **government failure** risks: information problems, administrative costs, unintended consequences."
     },
     {
       "type": "practice",
@@ -37,10 +103,10 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "7.4 Externalities and social costs/benefits", "href": "/courses/9708/7-4-private-costs-and-benefits-externalities-and-social-costs-and-benefits" },
+        { "label": "8.1 Government policies to correct market failure", "href": "/courses/9708/8-1-government-policies-to-achieve-efficient-resource-allocation-and-correct-market-failure" },
+        { "label": "3.1 Reasons for government intervention", "href": "/courses/9708/3-1-reasons-for-government-intervention-in-markets" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

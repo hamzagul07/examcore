@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "When labour is unused",
     "summary": "Unemployment means willing and able workers cannot find jobs. Cyclical unemployment links to deficient AD; structural to skills mismatch.",
+    "analogy": "Frictional unemployment is like changing buses — briefly between rides. Structural is having the wrong ticket for the only route available. Cyclical is when the whole transport system shuts down in a recession.",
     "steps": [
       "Frictional: between jobs; structural: skills/location mismatch; cyclical: recession.",
       "Unemployment rate = (unemployed / labour force) × 100%.",
@@ -24,10 +25,70 @@
       "Policies: expansionary fiscal/monetary (cyclical); training, subsidies (structural)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Define unemployment.",
+      "back": "People of working age who are without work, available to start within two weeks, and actively seeking employment."
+    },
+    {
+      "front": "Four types of unemployment?",
+      "back": "Frictional (between jobs), structural (skills/location mismatch), cyclical/demand-deficient (insufficient AD), seasonal (off-season industries)."
+    },
+    {
+      "front": "Unemployment rate formula?",
+      "back": "Unemployment rate = (Number unemployed ÷ Labour force) × 100%, where labour force = employed + unemployed."
+    },
+    {
+      "front": "Claimant count vs ILO/LFS?",
+      "back": "Claimant count: those receiving unemployment benefit (understates). ILO/LFS: internationally comparable survey based on seeking work (preferred measure)."
+    },
+    {
+      "front": "Natural rate of unemployment?",
+      "back": "The rate at full employment (Yf) — includes frictional and structural unemployment but not cyclical. Also called NAIRU."
+    },
+    {
+      "front": "Policy for cyclical vs structural unemployment?",
+      "back": "Cyclical: expansionary fiscal/monetary to boost AD. Structural: education, retraining, relocation grants, supply-side reform."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Unemployment** (4.5) connects to **AD–AS** (4.3) and **macro policy** (5.x). Cambridge essays often ask you to **evaluate** policy effectiveness for different unemployment types."
+      "content": "**Unemployment** (4.5) connects to **AD–AS** (4.3) and **macro policy** (5.x). Cambridge essays often ask you to **identify the type**, **calculate the rate**, and **evaluate** policy effectiveness."
+    },
+    {
+      "type": "heading",
+      "content": "Types and measurement"
+    },
+    {
+      "type": "formula",
+      "content": "Unemployment rate = $\\frac{\\text{Unemployed}}{\\text{Labour force}} \\times 100$\n\nLabour force = Employed + Unemployed\n\nParticipation rate = $\\frac{\\text{Labour force}}{\\text{Working-age population}} \\times 100$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Frictional**: short-term, inevitable in dynamic economies.",
+        "**Structural**: mismatch — wrong skills or location; may persist.",
+        "**Cyclical**: rises in recessions when AD is deficient.",
+        "**Seasonal**: predictable, e.g. tourism, agriculture."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "AD–AS analysis"
+    },
+    {
+      "type": "text",
+      "content": "**Demand-deficient (cyclical) unemployment** occurs when AD is too low — equilibrium Y falls **below Yf**, creating a **recessionary gap**. Firms cut output and lay off workers.\n\n**Expansionary fiscal or monetary policy** shifts AD right, closing the gap and reducing cyclical unemployment."
+    },
+    {
+      "type": "workedExample",
+      "question": "In Country B:\n- Working-age population: 10 million\n- Employed: 5.4 million\n- Unemployed: 0.6 million\n- Economically inactive: 4.0 million\n\n(a) Calculate the labour force and unemployment rate.\n(b) The economy is in recession with Y = $450bn and Yf = $500bn. Explain the type of unemployment likely to dominate.\n(c) Suggest one fiscal policy to reduce this unemployment and show on AD–AS.",
+      "solution": "(a) **Labour force** = Employed + Unemployed = 5.4 + 0.6 = **6.0 million**\n\n**Unemployment rate** = (0.6 ÷ 6.0) × 100 = **10%**\n\n(b) **Type of unemployment**\nY ($450bn) < Yf ($500bn) → **negative output gap** of $50bn → **cyclical (demand-deficient) unemployment** dominates as firms reduce output.\n\n(c) **Fiscal policy**\n**Increase G** (e.g. infrastructure) or **cut taxes** → AD shifts **right** → Y rises toward Yf → firms rehire → cyclical unemployment falls.\n\nOn AD–AS: draw AD₁ left of full capacity; AD₂ after expansionary fiscal shift; new equilibrium closer to Yf."
+    },
+    {
+      "type": "examTip",
+      "content": "Always **name the unemployment type** before recommending policy. Expansionary demand policies fail against **structural** unemployment — training and supply-side measures are needed instead."
     },
     {
       "type": "practice",
@@ -37,10 +98,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.3 AD–AS analysis", "href": "/courses/9708/4-3-aggregate-demand-and-aggregate-supply-analysis" },
+        { "label": "4.4 Economic growth", "href": "/courses/9708/4-4-economic-growth" },
+        { "label": "5.2 Fiscal policy", "href": "/courses/9708/5-2-fiscal-policy" },
+        { "label": "5.4 Supply-side policy", "href": "/courses/9708/5-4-supply-side-policy" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

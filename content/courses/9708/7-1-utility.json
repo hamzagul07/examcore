@@ -24,10 +24,73 @@
       "Assumptions: rationality, more is better."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is total utility (TU)?",
+      "back": "The total satisfaction gained from consuming a given quantity of a good."
+    },
+    {
+      "front": "What is marginal utility (MU)?",
+      "back": "The additional utility gained from consuming one more unit of a good (ΔTU / ΔQ)."
+    },
+    {
+      "front": "Law of diminishing marginal utility?",
+      "back": "As more units of a good are consumed, the extra utility from each additional unit eventually falls, ceteris paribus."
+    },
+    {
+      "front": "Equi-marginal principle?",
+      "back": "Consumers maximise utility when MU_x/P_x = MU_y/P_y for all goods — equal marginal utility per pound spent."
+    },
+    {
+      "front": "Diamond-water paradox?",
+      "back": "Water has high total utility (essential) but low marginal utility (abundant); diamonds have low TU but high MU (scarce) — explains price via MU not TU."
+    },
+    {
+      "front": "Why does demand slope downward?",
+      "back": "As quantity rises, MU falls (diminishing MU). Consumers will only buy more at a lower price, so MU/P stays equal across goods."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Utility** (7.1) underpins **consumer theory** in microeconomics. Link **MU curve** to **demand**."
+      "content": "**Utility** (7.1) underpins **consumer theory** in microeconomics. Link the **MU curve** to the **demand curve** and apply the **equi-marginal principle** in calculations."
+    },
+    {
+      "type": "heading",
+      "content": "Total and marginal utility"
+    },
+    {
+      "type": "text",
+      "content": "**Total utility (TU)** measures overall satisfaction from consumption. It typically rises at a **decreasing rate** as more is consumed.\n\n**Marginal utility (MU)** is the extra satisfaction from one more unit:\n\n**MU = ΔTU / ΔQ**\n\nThe **law of diminishing marginal utility** states that MU eventually falls as consumption increases — the 10th slice of pizza adds less satisfaction than the 1st."
+    },
+    {
+      "type": "heading",
+      "content": "Utility maximisation"
+    },
+    {
+      "type": "text",
+      "content": "A rational consumer with a fixed budget allocates spending so that **marginal utility per pound** is equal across all goods:\n\n**MU_x / P_x = MU_y / P_y**\n\nIf MU_x/P_x > MU_y/P_y, the consumer should buy more X and less Y until equality is restored. This is the **equi-marginal principle**."
+    },
+    {
+      "type": "formula",
+      "content": "Utility-maximising condition: $\\frac{MU_x}{P_x} = \\frac{MU_y}{P_y}$\n\nConsumer buys more of a good until MU per pound equals that of all other goods."
+    },
+    {
+      "type": "workedExample",
+      "question": "A consumer has £12 to spend. Good X costs £2 per unit (MU: 20, 16, 12, 8) and Good Y costs £3 per unit (MU: 18, 15, 12, 9).\n\nFind the utility-maximising combination.",
+      "solution": "Calculate **MU/P** for each unit:\n\n| Unit | MU_x/P_x | MU_y/P_y |\n|------|----------|----------|\n| 1st  | 20/2 = **10** | 18/3 = **6** |\n| 2nd  | 16/2 = **8**  | 15/3 = **5** |\n| 3rd  | 12/2 = **6**  | 12/3 = **4** |\n| 4th  | 8/2 = **4**   | 9/3 = **3** |\n\n**Optimal bundle:** Buy units with highest MU/P until budget exhausted.\n\n- 1st X (MU/P = 10): spend £2, left £10\n- 2nd X (MU/P = 8): spend £2, left £8\n- 1st Y (MU/P = 6): spend £3, left £5\n- 3rd X (MU/P = 6): spend £2, left £3\n- 2nd Y (MU/P = 5): spend £3, left £0\n\n**Optimum: 3X + 2Y** — check: MU_x/P_x = 6 = MU_y/P_y ✓"
+    },
+    {
+      "type": "heading",
+      "content": "From utility to demand"
+    },
+    {
+      "type": "text",
+      "content": "As price of good X **falls**, MU_x/P_x rises relative to other goods → consumer buys **more X**. As quantity of X rises, **MU falls** (diminishing MU). The consumer only demands more X at lower prices — hence the **downward-sloping demand curve**."
+    },
+    {
+      "type": "examTip",
+      "content": "For **diamond-water paradox** questions: price reflects **marginal utility** (utility of the next unit), not total utility. Water is cheap because its MU is low when abundant; diamonds are expensive because extra units are scarce and highly valued."
     },
     {
       "type": "practice",
@@ -37,10 +100,10 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "7.2 Indifference curves and budget lines", "href": "/courses/9708/7-2-indifference-curves-and-budget-lines" },
+        { "label": "2.1 Demand and supply curves", "href": "/courses/9708/2-1-demand-and-supply-curves" },
+        { "label": "2.2 Price elasticity of demand", "href": "/courses/9708/2-2-price-elasticity-income-elasticity-and-cross-elasticity-of-demand" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

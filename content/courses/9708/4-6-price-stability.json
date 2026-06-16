@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "Rising prices economy-wide",
     "summary": "Inflation is a sustained increase in the general price level. Moderate inflation is a policy target; hyperinflation destroys money's store of value.",
+    "analogy": "Inflation is like all prices in a supermarket rising together — your shopping basket costs more even if you buy the same items. Deflation is the reverse: the same basket gets cheaper year after year.",
     "steps": [
       "CPI tracks basket of goods — inflation rate = ((CPI₁ − CPI₀)/CPI₀) × 100%.",
       "Demand-pull: AD shifts right — 'too much money chasing too few goods'.",
@@ -24,10 +25,71 @@
       "Deflation: falling P — may increase real debt burden and delay spending."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Define inflation.",
+      "back": "A sustained increase in the general price level — not a one-off rise in a single good."
+    },
+    {
+      "front": "Inflation vs deflation vs disinflation?",
+      "back": "Inflation: P rising. Deflation: P falling. Disinflation: inflation rate falling (prices still rising, but more slowly)."
+    },
+    {
+      "front": "CPI inflation rate formula?",
+      "back": "Inflation rate = ((CPI this year − CPI last year) ÷ CPI last year) × 100%"
+    },
+    {
+      "front": "Demand-pull inflation?",
+      "back": "AD increases faster than LRAS capacity — AD shifts right; 'too much money chasing too few goods'; P and Y both rise."
+    },
+    {
+      "front": "Cost-push inflation?",
+      "back": "SRAS shifts left due to higher input costs (wages, oil, imports) — P rises but Y falls (stagflation)."
+    },
+    {
+      "front": "Main costs of high inflation?",
+      "back": "Uncertainty, menu costs, shoe-leather costs, redistribution (debtors gain, savers lose), and loss of international competitiveness."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
       "content": "**Price stability** (4.6) is a key macro objective alongside low unemployment and growth. Use **separate AD–AS diagrams** for demand-pull vs cost-push — never mix both shifts on one unclear diagram."
+    },
+    {
+      "type": "heading",
+      "content": "Measuring inflation"
+    },
+    {
+      "type": "formula",
+      "content": "Inflation rate = $\\frac{\\text{CPI}_1 - \\text{CPI}_0}{\\text{CPI}_0} \\times 100$\n\nReal value of money falls as P rises\n\nPurchasing power = $\\frac{1}{P}$ (inversely related to price level)"
+    },
+    {
+      "type": "workedExample",
+      "question": "The CPI was 110 in 2023 and 116.6 in 2024.\n\n(a) Calculate the inflation rate.\n(b) A worker's nominal wage rose from $30,000 to $31,500. Calculate the real wage change.\n(c) Identify whether this is demand-pull or cost-push if AD also rose sharply while oil prices were stable.",
+      "solution": "(a) **Inflation rate**\n= ((116.6 − 110) ÷ 110) × 100 = **6.0%**\n\n(b) **Real wage change**\nNominal wage increase = ((31,500 − 30,000) ÷ 30,000) × 100 = **5.0%**\nReal wage change ≈ 5.0% − 6.0% = **−1.0%** (real wage fell — purchasing power declined)\n\n(c) **Type of inflation**\nWith **AD rising sharply** and no oil shock → **demand-pull inflation**. AD shifted right beyond productive capacity, pushing P up."
+    },
+    {
+      "type": "heading",
+      "content": "Demand-pull vs cost-push"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Demand-pull**: AD ↑ → P ↑ and Y ↑ — expansionary policy can worsen inflation near Yf.",
+        "**Cost-push**: SRAS ↓ → P ↑ and Y ↓ — contractionary policy may deepen recession.",
+        "**Policy dilemma**: cost-push creates stagflation — no easy trade-off.",
+        "**Deflation**: falling P increases real debt burden; consumers delay purchases."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An oil price shock increases production costs. On a separate AD–AS diagram:\n\n(a) Show the effect on P and Y.\n(b) Explain why contractionary monetary policy may be inappropriate.\n(c) Suggest one supply-side response.",
+      "solution": "(a) **Diagram**\n**SRAS shifts left** from SRAS₁ to SRAS₂. New equilibrium: **higher P**, **lower Y** — stagflation.\n\n(b) **Inappropriate contractionary policy**\nRaising interest rates reduces AD further, deepening the **recession** (Y falls more) while only partially offsetting cost-push inflation. The problem is **supply-side**, not excess demand.\n\n(c) **Supply-side response**\nSubsidise energy transition, invest in alternative inputs, or negotiate productivity deals — aim to **shift SRAS back right** rather than suppress AD."
+    },
+    {
+      "type": "examTip",
+      "content": "State the **transmission mechanism**: e.g. \"Higher oil prices raise firms' costs → SRAS shifts left → equilibrium P rises from P₁ to P₂.\" Marks are awarded for linked analysis, not just labels."
     },
     {
       "type": "practice",
@@ -37,10 +99,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.3 AD–AS analysis", "href": "/courses/9708/4-3-aggregate-demand-and-aggregate-supply-analysis" },
+        { "label": "4.4 Economic growth", "href": "/courses/9708/4-4-economic-growth" },
+        { "label": "5.3 Monetary policy", "href": "/courses/9708/5-3-monetary-policy" },
+        { "label": "5.1 Macro policy objectives", "href": "/courses/9708/5-1-government-macroeconomic-policy-objectives" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

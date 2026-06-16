@@ -24,10 +24,32 @@
       "AD = C + I + G + (X − M)."
     ]
   },
+  "flashcards": [
+    { "front": "Withdrawals (leakages) from circular flow?", "back": "Savings (S) + Taxation (T) + Imports (M) — income leaving the domestic flow." },
+    { "front": "Injections into circular flow?", "back": "Investment (I) + Government spending (G) + Exports (X) — spending entering the domestic flow." },
+    { "front": "Equilibrium national income condition?", "back": "Injections = Withdrawals (I + G + X = S + T + M) — no tendency for Y to change." },
+    { "front": "Link circular flow to AD?", "back": "AD = C + I + G + (X − M) — components are injections minus import leakage." },
+    { "front": "What happens if injections > withdrawals?", "back": "National income rises — multiplier process until withdrawals increase enough to match injections." },
+    { "front": "Open economy vs closed?", "back": "Open adds foreign sector — exports inject, imports withdraw; trade balance (X − M) affects equilibrium Y." }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Circular flow** (9.1) is foundation for **A Level macro**. Draw **all four sectors** for open economy questions."
+      "content": "**Circular flow** (9.1) is foundation for **A Level macro**. Draw **all four sectors** (households, firms, government, foreign) for open economy questions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Two-sector:** Y = C (no S, T, G, X, M) — simplified closed model.",
+        "**Three-sector:** add G and T — budget balance affects equilibrium.",
+        "**Four-sector open:** M and X complete the model — link to BOP current account.",
+        "**Multiplier:** initial injection multiplied as income is respent — k = 1/(1−MPC + MPT + MPM)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In an open economy, households save 20% of income, the government collects 25% in taxes, and 15% of income is spent on imports. Planned investment is $40bn, government spending $60bn, and exports $50bn.\n\n(a) Calculate the marginal propensity to withdraw (MPW).\n(b) If savings are currently $30bn below the level consistent with equilibrium, by how much must national income change to restore equilibrium? (Use multiplier = 1/MPW.) [8 marks]",
+      "solution": "(a) **MPW** = MPS + MPT + MPM = 0.20 + 0.25 + 0.15 = **0.60**\n\n(b) If S is **$30bn below** equilibrium S, then **injections exceed withdrawals by $30bn** (or equivalently, withdrawals need to rise by $30bn).\n\n**Multiplier** = 1/MPW = 1/0.60 = **1.67**\n\n**ΔY** = excess injection × multiplier = $30bn × 1.67 = **$50bn increase** in national income.\n\nAt higher Y, savings, tax, and imports all rise until I + G + X = S + T + M again.\n\n**Check logic:** Rising Y increases withdrawals via the 60% MPW until the $30bn gap in S is closed."
     },
     {
       "type": "practice",
@@ -37,10 +59,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.2 Introduction to circular flow (AS)", "href": "/courses/9708/4-2-introduction-to-the-circular-flow-of-income" },
+        { "label": "4.3 Aggregate demand and aggregate supply", "href": "/courses/9708/4-3-aggregate-demand-and-aggregate-supply-analysis" },
+        { "label": "9.2 Economic growth and sustainability", "href": "/courses/9708/9-2-economic-growth-and-sustainability" },
+        { "label": "10.1 Macroeconomic policy objectives", "href": "/courses/9708/10-1-government-macroeconomic-policy-objectives" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

@@ -24,10 +24,32 @@
       "Government failure: poor information, lobbying, bureaucracy."
     ]
   },
+  "flashcards": [
+    { "front": "What is a Pigouvian tax?", "back": "A tax set equal to the marginal external cost so that MPC shifts up to MSC — internalising the negative externality." },
+    { "front": "Subsidy for positive externality?", "back": "Shifts MPB up toward MSB (e.g. education, vaccinations) — raises output toward the socially optimal level." },
+    { "front": "Tradable pollution permits?", "back": "Cap total emissions; firms trade permits — low-cost abaters sell to high-cost abaters, achieving the cap at minimum cost." },
+    { "front": "Command-and-control vs market-based?", "back": "Regulation sets standards directly; market-based tools (taxes, permits) use price signals — often more cost-effective." },
+    { "front": "What is government failure?", "back": "Intervention that fails to improve allocation — imperfect information, bureaucracy, lobbying, or unintended side effects." },
+    { "front": "When is a tax preferred to regulation?", "back": "When marginal external cost is measurable and firms differ in abatement costs — tax preserves flexibility; regulation may force uniform costly compliance." }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Government policy** (8.1) follows **externalities** (7.4). Evaluation essays need **two policies compared** with **diagrams**."
+      "content": "**Government policy** (8.1) follows **externalities** (7.4). Evaluation essays need **two policies compared** with **diagrams** — show welfare triangles gained and any remaining deadweight loss."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Pigouvian tax:** set tax = MEC at optimal output; diagram shows MPC shifting up to MSC.",
+        "**Permits:** cap-and-trade achieves target at lower cost than uniform regulation.",
+        "**Government failure:** compare remaining market failure with cost of intervention.",
+        "**Evaluation:** effectiveness depends on information, enforcement, and political economy."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A chemical plant emits pollution with a marginal external cost of $4 per unit at the current output of 10 000 units. Private marginal cost is $12; marginal social cost is $16.\n\n(a) Using a diagram, explain how a Pigouvian tax could correct this market failure.\n(b) Evaluate whether tradable permits might be more effective than a tax in this industry. [12 marks]",
+      "solution": "(a) **Diagram:** Draw MPC at $12 and MSC at $16 (parallel, MSC above). Free market produces where MPC = MPB — **overproduction** with deadweight welfare loss.\n\n**Pigouvian tax of $4 per unit** shifts MPC up to MSC. New equilibrium is at socially optimal output where MSC = MSB. Welfare gain = triangle between old and new output on MSC–MPB diagram.\n\n(b) **Tax advantages:** Simple to administer if MEC is known; continuous incentive to cut emissions below the taxed level.\n\n**Permit advantages:** **Certainty over total emissions** (hard cap); firms with low abatement costs sell permits — **cost-effective** allocation. Better when MEC varies across firms or is hard to measure.\n\n**Judgement:** If the government prioritises a **fixed emissions target**, permits may dominate; if the goal is **price certainty** for firms, a tax may be preferred. Both beat command-and-control if abatement costs differ across plants."
     },
     {
       "type": "practice",
@@ -37,10 +59,10 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "7.4 Externalities and social costs (prerequisite)", "href": "/courses/9708/7-4-private-costs-and-benefits-externalities-and-social-costs-and-benefits" },
+        { "label": "3.2 Methods of government intervention", "href": "/courses/9708/3-2-methods-and-effects-of-government-intervention-in-markets" },
+        { "label": "8.2 Equity and redistribution", "href": "/courses/9708/8-2-equity-and-redistribution-of-income-and-wealth" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

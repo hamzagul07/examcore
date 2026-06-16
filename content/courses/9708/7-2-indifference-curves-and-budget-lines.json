@@ -24,10 +24,73 @@
       "Price fall: budget pivots outward — substitution and income effects."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an indifference curve?",
+      "back": "A curve showing all combinations of two goods that give the consumer the same level of utility — higher curves mean higher utility."
+    },
+    {
+      "front": "Why are indifference curves convex to the origin?",
+      "back": "Diminishing marginal rate of substitution — as you give up more of good Y, you need increasingly more of good X to maintain the same utility."
+    },
+    {
+      "front": "Budget line equation?",
+      "back": "Income = P_x·X + P_y·Y. Slope = −P_x/P_y (opportunity cost of good X in terms of Y)."
+    },
+    {
+      "front": "Utility-maximising condition at tangency?",
+      "back": "MRS = P_x/P_y, equivalently MU_x/P_x = MU_y/P_y — marginal rate of substitution equals the price ratio."
+    },
+    {
+      "front": "Effect of a fall in P_x?",
+      "back": "Budget line pivots outward on the X-axis. Consumer moves to a higher indifference curve — substitution effect (more X) plus income effect (real income rises)."
+    },
+    {
+      "front": "Can indifference curves cross?",
+      "back": "No — crossing would violate the assumption that higher curves represent higher utility (transitivity of preferences)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Indifference curves** (7.2) underpin **A Level micro essays**. Label axes, draw **higher ICs**, and show **tangency** — not just prose."
+      "content": "**Indifference curves** (7.2) underpin **A Level micro essays**. Label axes, draw **higher ICs**, and show **tangency** — not just prose. This topic extends **7.1 utility** into graphical consumer theory."
+    },
+    {
+      "type": "heading",
+      "content": "Indifference curves"
+    },
+    {
+      "type": "text",
+      "content": "An **indifference curve (IC)** shows combinations of goods X and Y giving **equal utility**. Key properties:\n\n1. **Downward sloping** — to keep utility constant, more X requires less Y.\n2. **Convex to origin** — diminishing **marginal rate of substitution (MRS)**.\n3. **Higher IC = higher utility** — consumer prefers bundles on higher curves.\n4. **Never cross** — each point has one utility level."
+    },
+    {
+      "type": "heading",
+      "content": "Budget lines"
+    },
+    {
+      "type": "text",
+      "content": "The **budget line** shows all affordable bundles given income (Y) and prices:\n\n**Y = P_x·X + P_y·Y**\n\n**Slope = −P_x/P_y** — the opportunity cost of one more unit of X.\n\n**X-intercept** = Y/P_x; **Y-intercept** = Y/P_y.\n\nA **fall in P_x** pivots the line outward on the X-axis (same Y-intercept). A **rise in income** shifts the entire line outward parallel."
+    },
+    {
+      "type": "formula",
+      "content": "Utility maximisation at tangency: $MRS_{xy} = \\frac{P_x}{P_y}$\n\nEquivalently: $\\frac{MU_x}{P_x} = \\frac{MU_y}{P_y}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A consumer has income of £100. Good X costs £5 and Good Y costs £10.\n\n(a) Write the budget equation and find the intercepts.\n(b) At the optimum, the consumer buys 8 units of X and 6 units of Y. Verify this is on the budget line and state the MRS at the optimum.",
+      "solution": "(a) **Budget equation:** £100 = 5X + 10Y\n\n**X-intercept:** 100/5 = **20 units of X**\n**Y-intercept:** 100/10 = **10 units of Y**\n**Slope:** −5/10 = **−0.5** (1 X costs 0.5 Y)\n\n(b) **Check bundle (8, 6):**\n5(8) + 10(6) = 40 + 60 = **£100** ✓ — on the budget line.\n\n**MRS at optimum = P_x/P_y = 5/10 = 0.5**\n\nThe consumer is willing to trade 0.5 units of Y for 1 unit of X (at the margin), which equals the market price ratio."
+    },
+    {
+      "type": "heading",
+      "content": "Price and income changes"
+    },
+    {
+      "type": "text",
+      "content": "When **P_x falls**, the budget line **pivots** outward. The consumer reaches a **higher IC** at a new tangency — buys more X.\n\nThis decomposes into:\n- **Substitution effect** — X relatively cheaper → buy more X, less Y.\n- **Income effect** — real purchasing power rises → buy more of normal goods.\n\nFor a **Giffen good** (rare), the income effect dominates and demand curve slopes upward."
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw **three elements** on one diagram: at least two ICs (label U₁, U₂), the budget line(s), and the tangency point. Use a **pivot** for price changes and a **parallel shift** for income changes."
     },
     {
       "type": "practice",
@@ -37,10 +100,10 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "7.1 Utility (AS prerequisite)", "href": "/courses/9708/7-1-utility" },
+        { "label": "2.2 Price elasticity of demand", "href": "/courses/9708/2-2-price-elasticity-income-elasticity-and-cross-elasticity-of-demand" },
+        { "label": "7.3 Efficiency and market failure", "href": "/courses/9708/7-3-efficiency-and-market-failure" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

@@ -24,10 +24,78 @@
       "Fixed rate: central bank buys/sells reserves to maintain peg."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is an exchange rate?",
+      "back": "The price of one currency expressed in terms of another (e.g. £1 = $1.25)."
+    },
+    {
+      "front": "Floating vs fixed exchange rate?",
+      "back": "Floating: market supply and demand set the rate. Fixed: government/central bank pegs the rate and intervenes to maintain it."
+    },
+    {
+      "front": "What is currency appreciation?",
+      "back": "The domestic currency rises in value — it buys more foreign currency. Exports become dearer abroad; imports cheaper at home."
+    },
+    {
+      "front": "What is currency depreciation?",
+      "back": "The domestic currency falls in value — it buys less foreign currency. Exports cheaper abroad; imports dearer at home."
+    },
+    {
+      "front": "How does depreciation affect AD?",
+      "back": "Cheaper exports and dearer imports raise net exports (X − M), increasing aggregate demand (ceteris paribus)."
+    },
+    {
+      "front": "How can a central bank support a fixed rate?",
+      "back": "Buy its own currency (sell foreign reserves) if undervalued pressure; sell its currency (buy reserves) if overvalued pressure."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Exchange rates** (6.4) feature in **J-curve** and **Marshall–Lerner** discussions at A Level. At AS, focus on **AD transmission** via (X−M)."
+      "content": "**Exchange rates** (6.4) feature in **J-curve** and **Marshall–Lerner** discussions at A Level. At AS, focus on **AD transmission** via (X−M) and distinguish **floating** from **fixed/managed** systems."
+    },
+    {
+      "type": "heading",
+      "content": "Floating exchange rates"
+    },
+    {
+      "type": "text",
+      "content": "Under a **floating** system, the exchange rate is determined by **supply and demand** in the foreign exchange (forex) market.\n\n**Demand for £** comes from foreigners buying UK exports, UK assets, or visiting the UK.\n\n**Supply of £** comes from UK residents buying imports, foreign assets, or travelling abroad.\n\nEquilibrium sets the market exchange rate without day-to-day government intervention."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Appreciation** — demand for £ rises or supply falls → £ buys more foreign currency.",
+        "**Depreciation** — supply of £ rises or demand falls → £ buys less foreign currency.",
+        "Higher UK interest rates can attract hot money → demand for £ rises → appreciation.",
+        "Higher inflation relative to trading partners can weaken competitiveness → depreciation pressure."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Effects on trade and AD"
+    },
+    {
+      "type": "text",
+      "content": "A **depreciation** makes UK exports **cheaper in foreign currency** and imports **dearer in sterling**. If demand is price elastic, net exports rise and **AD increases**.\n\nAn **appreciation** has the opposite effect: exports dearer, imports cheaper → net exports may fall → **AD decreases**.\n\nAlways trace the chain: exchange rate → price of X and M → (X − M) → AD."
+    },
+    {
+      "type": "workedExample",
+      "question": "The sterling–dollar exchange rate falls from £1 = $1.40 to £1 = $1.20. A UK car costs £20 000 to produce and is sold in the US.\n\n(a) Calculate the dollar price before and after depreciation.\n(b) Explain the likely effect on UK car exports and aggregate demand.",
+      "solution": "(a) **Before:** $1.40 × £20 000 = **$28 000**\n**After:** $1.20 × £20 000 = **$24 000**\n\nThe car is **$4 000 cheaper** for US buyers — UK exports more competitive.\n\n(b) **Exports:** Lower dollar price should increase quantity demanded of UK cars in the US (assuming demand is not perfectly inelastic).\n\n**Imports:** Sterling buys fewer dollars, so US goods cost more in £ → import spending may fall.\n\n**Net exports (X − M)** likely rise → **AD increases** (ceteris paribus).\n\n**Evaluation:** Effect depends on PED for exports/imports and whether trading partners retaliate. Short-run volume may lag (J-curve at A Level)."
+    },
+    {
+      "type": "heading",
+      "content": "Fixed and managed rates"
+    },
+    {
+      "type": "text",
+      "content": "Under a **fixed** (or **managed**) system, the central bank targets an exchange rate band. If market pressure pushes the rate away from the peg, the bank **intervenes** by buying or selling foreign currency reserves.\n\n**To prevent depreciation:** buy £ with foreign reserves (reduces supply of £).\n**To prevent appreciation:** sell £ and buy foreign currency (increases supply of £).\n\nReserves are finite — fixed rates can be difficult to sustain if fundamentals (inflation, competitiveness) diverge from the peg."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam answers, **draw a forex market** (S and D for £) when explaining appreciation/depreciation. Label axes (exchange rate, quantity of £) and show the shift. Link to **(X − M)** in a separate AD diagram for full marks."
     },
     {
       "type": "practice",
@@ -37,10 +105,10 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "6.3 Current account of the balance of payments", "href": "/courses/9708/6-3-current-account-of-the-balance-of-payments" },
+        { "label": "6.5 Policies to correct BOP imbalances", "href": "/courses/9708/6-5-policies-to-correct-imbalances-in-the-current-account-of-the-balance-of-payments" },
+        { "label": "11.2 Exchange rates (A Level extension)", "href": "/courses/9708/11-2-exchange-rates" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

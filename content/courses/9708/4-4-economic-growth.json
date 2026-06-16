@@ -5,7 +5,7 @@
   "paper": "AS",
   "paperName": "Cambridge International AS Level Economics (P1 & P2)",
   "status": "premium",
-  "summary": "9708 AS economic growth — real GDP, LRAS shifts, actual vs potential output, and sustainable growth.",
+  "summary": "9708 AS economic growth — real GDP, LRAS shifts, actual vs potential growth, and sustainable growth.",
   "durationMin": 20,
   "updated": "2026-06-15",
   "learningObjectives": [
@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "Bigger pies over time",
     "summary": "Growth means rising real GDP. Long-run growth comes from more resources, better technology, and higher productivity — shown as outward LRAS shift.",
+    "analogy": "Actual growth is how fast you are driving today; potential growth is how fast the car can safely go after engine upgrades — you can temporarily exceed the limit in a sprint but not sustainably.",
     "steps": [
       "Actual growth: Y increases year-on-year (may be cyclical).",
       "Potential growth: Yf increases — capacity expands.",
@@ -24,10 +25,70 @@
       "Sustainable growth balances environment, equity, and intergenerational fairness."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Define economic growth.",
+      "back": "A sustained increase in real GDP (or real GDP per capita) over time — an increase in the volume of goods and services produced."
+    },
+    {
+      "front": "Actual vs potential growth?",
+      "back": "Actual growth: change in current output (Y). Potential growth: increase in full employment capacity (Yf) — shown by rightward LRAS shift."
+    },
+    {
+      "front": "What causes LRAS to shift right?",
+      "back": "More labour, capital investment, improved technology, better education/training, and efficient resource allocation."
+    },
+    {
+      "front": "Real GDP growth rate formula?",
+      "back": "((Real GDP₁ − Real GDP₀) ÷ Real GDP₀) × 100%"
+    },
+    {
+      "front": "Benefits of economic growth?",
+      "back": "Higher living standards, more jobs, tax revenue for public services, and resources to reduce poverty."
+    },
+    {
+      "front": "Costs of unsustainable growth?",
+      "back": "Inflation (if AD outpaces LRAS), environmental degradation, resource depletion, and widening inequality."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Economic growth** (4.4) is a standing macro objective. Link to **PPC** (1.5) for capacity expansion and **AD–AS** for cyclical fluctuations."
+      "content": "**Economic growth** (4.4) is a standing macro objective. Link to **PPC** (1.5) for capacity expansion and **AD–AS** (4.3) for cyclical fluctuations. Distinguish **actual** from **potential** growth in every essay."
+    },
+    {
+      "type": "heading",
+      "content": "Actual and potential growth"
+    },
+    {
+      "type": "text",
+      "content": "**Actual growth** occurs when AD increases and the economy produces more this year than last — this may be **cyclical** (recovery from recession) or **unsustainable** (above Yf).\n\n**Potential growth** increases **Yf** — the economy's productive capacity expands through more resources, better technology, and higher productivity."
+    },
+    {
+      "type": "formula",
+      "content": "Real GDP growth rate = $\\frac{\\text{Real GDP}_1 - \\text{Real GDP}_0}{\\text{Real GDP}_0} \\times 100$\n\nOutput gap = Actual Y − Potential Yf\n\nPositive gap: inflationary | Negative gap: recessionary"
+    },
+    {
+      "type": "workedExample",
+      "question": "Country A's real GDP was $2.0 trillion in 2023 and $2.12 trillion in 2024. Potential output (Yf) was $2.05 trillion in 2023 and $2.15 trillion in 2024.\n\n(a) Calculate the actual growth rate.\n(b) Calculate the potential growth rate.\n(c) Describe the output gap in 2024 and its macroeconomic implication.",
+      "solution": "(a) **Actual growth rate**\n= ((2.12 − 2.0) ÷ 2.0) × 100 = **6.0%**\n\n(b) **Potential growth rate**\n= ((2.15 − 2.05) ÷ 2.05) × 100 = **4.88%** (≈ 4.9%)\n\n(c) **Output gap 2024**\nActual Y ($2.12tn) < Yf ($2.15tn) → **negative output gap** of $0.03tn\n\nImplication: economy is **below full capacity** — likely **cyclical unemployment** and scope for **expansionary policy** without much inflation."
+    },
+    {
+      "type": "heading",
+      "content": "Benefits and costs"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Benefits**: higher incomes, employment, tax revenue, poverty reduction.",
+        "**Costs**: pollution, depletion of non-renewables, inequality if gains are uneven.",
+        "**Sustainable growth**: meets present needs without compromising future generations.",
+        "**AD-only growth** near Yf causes inflation — need **supply-side** expansion for non-inflationary growth."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "On AD–AS diagrams, show **actual growth** as movement along SRAS or AD shift; show **potential growth** as **LRAS shifting right**. Examiners penalise confusing the two."
     },
     {
       "type": "practice",
@@ -37,10 +98,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.1 National income statistics", "href": "/courses/9708/4-1-national-income-statistics" },
+        { "label": "4.3 AD–AS analysis", "href": "/courses/9708/4-3-aggregate-demand-and-aggregate-supply-analysis" },
+        { "label": "5.4 Supply-side policy", "href": "/courses/9708/5-4-supply-side-policy" },
+        { "label": "1.5 Production possibility curves", "href": "/courses/9708/1-5-production-possibility-curves" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

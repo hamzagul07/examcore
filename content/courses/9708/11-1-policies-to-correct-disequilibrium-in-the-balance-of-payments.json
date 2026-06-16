@@ -24,10 +24,32 @@
       "J-curve: short-run worsening possible."
     ]
   },
+  "flashcards": [
+    { "front": "Expenditure-switching policies?", "back": "Policies that redirect spending from imports to domestic goods — e.g. devaluation/depreciation, tariffs, import quotas." },
+    { "front": "Expenditure-reducing policies?", "back": "Contractionary fiscal/monetary policy — lower AD → lower income → lower import spending." },
+    { "front": "Marshall–Lerner condition?", "back": "Devaluation improves trade balance if PEDx + PEDm > 1 — export and import volume responses outweigh price effects." },
+    { "front": "What is the J-curve?", "back": "Trade balance may worsen initially after devaluation (contracts priced in old rates) before improving as volumes adjust." },
+    { "front": "Supply-side BOP policy?", "back": "Raise productivity and quality — improves export competitiveness without reducing domestic demand." },
+    { "front": "Deflationary policy cost?", "back": "Reduces imports (helps BOP) but also lowers output, employment, and growth — internal objective conflict." }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**BOP policies** (11.1) differ from **6.5** AS tools — focus on **open economy** constraints and **exchange rate**."
+      "content": "**BOP policies** (11.1) differ from **6.5** AS tools — focus on **open economy** constraints and **exchange rate** effects. Always name policy type: switching vs reducing."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Current account deficit:** X < M (simplified) — spending exceeds export earnings.",
+        "**Devaluation:** switching policy — check Marshall–Lerner and J-curve.",
+        "**Contraction:** reducing policy — sacrifices growth for external balance.",
+        "**Protectionism:** switching but risks retaliation and inefficiency."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Country A has a persistent current account deficit of 5% of GDP. Its currency is fixed but under pressure. PEDx = 0.8 and PEDm = 0.6. Inflation is 3% and unemployment is at the NAIRU.\n\nEvaluate devaluation as a policy to correct the deficit. [12 marks]",
+      "solution": "**Marshall–Lerner check:**\nPEDx + PEDm = 0.8 + 0.6 = **1.4 > 1** → condition **satisfied** → devaluation should **eventually improve** trade balance in volume terms.\n\n**Mechanism (expenditure-switching):**\n- Devaluation → exports **cheaper** abroad, imports **dearer** domestically.\n- If volumes respond elastically enough, **X rises, M falls** → deficit narrows.\n\n**Arguments supporting devaluation:**\n- PED sum > 1 — **technically effective** medium term.\n- Unemployment at NAIRU — economy not in recession, can absorb any temporary disruption.\n- **Corrects overvaluation** that may have caused deficit.\n\n**Arguments against / limitations:**\n- **J-curve:** deficit may **worsen initially** — import prices rise immediately; export contracts fixed in foreign currency.\n- **Inflation at 3%:** devaluation adds **cost-push pressure** — imported raw materials dearer → SRAS left → inflation rises further.\n- **PEDx only 0.8:** export response may be **weak** if goods are low-value-added or face strong competition.\n- **Fixed rate:** devaluation breaks peg — **credibility loss**, may trigger speculative outflows.\n- **Retaliation:** trading partners may devalue or impose barriers.\n\n**Alternatives:**\n- **Supply-side** productivity improvements — less inflationary.\n- **Expenditure-reducing** — inappropriate with unemployment already at NAIRU (would cause recession).\n\n**Judgement:** Devaluation **can work** given Marshall–Lerner satisfied, but **inflation risk** is significant — may need **monetary tightening** to anchor expectations, creating internal trade-offs."
     },
     {
       "type": "practice",
@@ -37,10 +59,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "6.3 Current account of BOP (AS)", "href": "/courses/9708/6-3-current-account-of-the-balance-of-payments" },
+        { "label": "6.5 BOP correction policies (AS)", "href": "/courses/9708/6-5-policies-to-correct-imbalances-in-the-current-account-of-the-balance-of-payments" },
+        { "label": "11.2 Exchange rates", "href": "/courses/9708/11-2-exchange-rates" },
+        { "label": "10.1 Macroeconomic objectives", "href": "/courses/9708/10-1-government-macroeconomic-policy-objectives" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

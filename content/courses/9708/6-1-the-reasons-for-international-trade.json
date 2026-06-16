@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "Why countries trade",
     "summary": "Countries gain by specialising where opportunity cost is lowest and trading for other goods. Consumption can exceed domestic production possibilities.",
+    "analogy": "Even if you are faster at both cooking and cleaning than your housemate, you still split tasks — each focuses on what they give up least to do, and both benefit from the arrangement.",
     "steps": [
       "Comparative advantage: lower opportunity cost, not absolute cost.",
       "Trade allows consumption beyond pre-trade PPF.",
@@ -24,10 +25,69 @@
       "Barriers: tariffs, quotas — reduce gains from specialisation."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Absolute vs comparative advantage?",
+      "back": "Absolute: produce more with same resources. Comparative: lower opportunity cost — basis for trade even if one country is absolutely better at everything."
+    },
+    {
+      "front": "Opportunity cost ratio?",
+      "back": "What must be given up of Good A to produce one more unit of Good B — country with lower OC has comparative advantage in B."
+    },
+    {
+      "front": "Gains from trade?",
+      "back": "Specialisation and exchange allow consumption combinations outside the pre-trade PPF — both countries can consume more than autarky."
+    },
+    {
+      "front": "Terms of trade?",
+      "back": "Index of export prices ÷ index of import prices × 100. Improvement means export prices rise relative to import prices."
+    },
+    {
+      "front": "When does trade benefit both countries?",
+      "back": "When the terms of trade lie between the two countries' opportunity cost ratios — each gains by exporting its comparative advantage good."
+    },
+    {
+      "front": "Limitations to free trade theory?",
+      "back": "Transport costs, immobile factors, protectionism, and unequal gains (some groups lose from specialisation)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**International trade** (6.1) opens the **international economics** unit. Master **opportunity cost ratios** — examiners set numerical comparative advantage questions."
+      "content": "**International trade** (6.1) opens the **international economics** unit. Master **opportunity cost ratios** — Cambridge frequently sets numerical comparative advantage questions."
+    },
+    {
+      "type": "heading",
+      "content": "Comparative advantage"
+    },
+    {
+      "type": "text",
+      "content": "Country A has a **comparative advantage** in a good if it can produce it at a **lower opportunity cost** than Country B — even if A is less efficient in absolute terms.\n\nEach country should **specialise** in the good with comparative advantage and **trade** for the other."
+    },
+    {
+      "type": "formula",
+      "content": "Opportunity cost of 1 unit of X = $\\frac{\\text{Units of Y given up}}{\\text{Units of X gained}}$\n\nTerms of trade index = $\\frac{\\text{Export price index}}{\\text{Import price index}} \\times 100$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Country P and Country Q produce wheat and cloth. Output per worker per year:\n\n| | Wheat | Cloth |\n|---|---|---|\n| P | 30 | 20 |\n| Q | 20 | 40 |\n\n(a) Which country has absolute advantage in each good?\n(b) Calculate opportunity cost ratios.\n(c) Identify comparative advantage and recommend specialisation.",
+      "solution": "(a) **Absolute advantage**\n**P** in wheat (30 > 20). **Q** in cloth (40 > 20).\n\n(b) **Opportunity costs**\nIn **P**: 1 wheat costs 20/30 = **0.67 cloth**; 1 cloth costs 30/20 = **1.5 wheat**\nIn **Q**: 1 wheat costs 40/20 = **2 cloth**; 1 cloth costs 20/40 = **0.5 wheat**\n\n(c) **Comparative advantage and specialisation**\n**P** has lower OC in wheat (0.67 < 2) → **comparative advantage in wheat**\n**Q** has lower OC in cloth (0.5 < 1.5) → **comparative advantage in cloth**\n\n**P specialises in wheat; Q specialises in cloth** — trade at terms of trade between 0.67 and 2 cloth per wheat benefits both."
+    },
+    {
+      "type": "heading",
+      "content": "Terms of trade"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Improvement** in terms of trade: export prices rise relative to imports — country can buy more imports per export unit.",
+        "**Deterioration**: import prices rise faster — worsens trade balance if volumes unchanged.",
+        "**Primary producers** often face deteriorating terms of trade (Prebisch-Singer thesis — evaluation point)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always show **opportunity cost calculations** in comparative advantage questions — marks are awarded for working, not just stating who specialises in what."
     },
     {
       "type": "practice",
@@ -37,10 +97,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "1.1 Scarcity and opportunity cost", "href": "/courses/9708/1-1-scarcity-choice-and-opportunity-cost" },
+        { "label": "1.5 Production possibility curves", "href": "/courses/9708/1-5-production-possibility-curves" },
+        { "label": "6.2 Protectionism", "href": "/courses/9708/6-2-protectionism" },
+        { "label": "6.3 Current account", "href": "/courses/9708/6-3-current-account-of-the-balance-of-payments" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

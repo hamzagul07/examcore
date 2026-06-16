@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "Money flows round the economy",
     "summary": "Households and firms exchange factor services and goods. Government and trade add injections and leakages.",
+    "analogy": "The economy is like a swimming pool: injections (investment, government spending, exports) fill it; withdrawals (saving, tax, imports) drain it. Equilibrium is when the water level stays constant.",
     "steps": [
       "Households → labour/land → firms.",
       "Firms → wages/profit → households.",
@@ -24,10 +25,65 @@
       "Withdrawals: S, T, M."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What are injections in the circular flow?",
+      "back": "Investment (I), government spending (G), and exports (X) — spending that enters the flow from outside the household–firm loop."
+    },
+    {
+      "front": "What are withdrawals (leakages)?",
+      "back": "Saving (S), taxation (T), and imports (M) — income that leaves the circular flow without being spent on domestic output."
+    },
+    {
+      "front": "Equilibrium national income condition?",
+      "back": "Injections = Withdrawals (J = W), or equivalently planned injections equal planned withdrawals — national income is stable."
+    },
+    {
+      "front": "What is the multiplier?",
+      "back": "The ratio of the final change in national income to the initial injection: k = ΔY ÷ ΔJ. An initial rise in I causes a larger total rise in Y."
+    },
+    {
+      "front": "Multiplier formula (simple)?",
+      "back": "k = 1 ÷ (1 − MPC) where MPC is marginal propensity to consume, or k = 1 ÷ MPS if saving is the only leakage."
+    },
+    {
+      "front": "What happens if J > W?",
+      "back": "National income rises — unplanned fall in stocks encourages firms to increase output until J = W again."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Circular flow** (4.2) is AS intro to **9.1 A Level circular flow**. Label **all sectors** on diagrams."
+      "content": "The **circular flow** (4.2) is the foundation for **AD–AS** (4.3) and **fiscal policy** (5.2). Label **all four sectors** (households, firms, government, foreign) on diagrams and explain why **J = W** at equilibrium."
+    },
+    {
+      "type": "heading",
+      "content": "The basic model"
+    },
+    {
+      "type": "text",
+      "content": "In the simplest two-sector model:\n\n1. **Households** supply **factor services** (labour, land, capital) to **firms**.\n2. **Firms** pay **factor incomes** (wages, rent, interest, profit) to households.\n3. Households spend **consumption (C)** on goods and services from firms.\n\nAdding **government** introduces **G** and **T**. Adding **international trade** introduces **X** and **M**."
+    },
+    {
+      "type": "formula",
+      "content": "Equilibrium: J = W\n\nInjections: J = I + G + X\n\nWithdrawals: W = S + T + M\n\nMultiplier: k = $\\frac{1}{1 - MPC}$ = $\\frac{1}{MPS + MPT + MPM}$"
+    },
+    {
+      "type": "heading",
+      "content": "The multiplier effect"
+    },
+    {
+      "type": "text",
+      "content": "When a firm invests $10m, workers receive income and spend part of it (MPC). That spending becomes income for others, who also spend — the **initial injection** ripples through the economy.\n\nThe **higher the MPC**, the **larger the multiplier** because less leaks into saving at each round."
+    },
+    {
+      "type": "workedExample",
+      "question": "In an economy, MPC = 0.8. The government increases spending on infrastructure by $50 million.\n\n(a) Calculate the simple multiplier.\n(b) Calculate the total increase in national income.\n(c) If MPS = 0.2 and MPT = 0.1 (marginal propensity to tax), explain why the actual multiplier would be smaller.",
+      "solution": "(a) **Multiplier**\nk = 1 ÷ (1 − MPC) = 1 ÷ (1 − 0.8) = 1 ÷ 0.2 = **5**\n\n(b) **Total ΔY**\nΔY = k × ΔG = 5 × $50m = **$250 million**\n\n(c) **Smaller actual multiplier**\nWith tax leakages, each round of spending is taxed away. The full formula includes MPS + MPT + MPM (marginal propensity to import). Higher leakages → smaller k → less than $250m final increase."
+    },
+    {
+      "type": "examTip",
+      "content": "When drawing the circular flow, use **arrows** for factor flows (opposite direction to money flows). Examiners deduct marks for unlabelled sectors or confusing injections with withdrawals."
     },
     {
       "type": "practice",
@@ -37,10 +93,11 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.1 National income statistics", "href": "/courses/9708/4-1-national-income-statistics" },
+        { "label": "4.3 AD–AS analysis", "href": "/courses/9708/4-3-aggregate-demand-and-aggregate-supply-analysis" },
+        { "label": "5.2 Fiscal policy (multiplier)", "href": "/courses/9708/5-2-fiscal-policy" },
+        { "label": "9.1 A Level circular flow", "href": "/courses/9708/9-1-the-circular-flow-of-income" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

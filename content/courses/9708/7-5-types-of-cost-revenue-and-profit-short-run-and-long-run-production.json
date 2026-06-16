@@ -24,10 +24,65 @@
       "LRAC shows minimum efficient scale."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Fixed vs variable costs?",
+      "back": "Fixed costs (FC) do not change with output (e.g. rent). Variable costs (VC) change with output (e.g. raw materials). TC = TFC + TVC."
+    },
+    {
+      "front": "How to calculate AC and MC?",
+      "back": "AC = TC/Q. MC = ΔTC/ΔQ — the cost of producing one more unit."
+    },
+    {
+      "front": "Why is MC U-shaped?",
+      "back": "Initially falls due to increasing returns/diminishing MC; eventually rises due to diminishing marginal returns in the short run."
+    },
+    {
+      "front": "Profit-maximising rule?",
+      "back": "Produce where MC = MR. If MR > MC, producing more adds to profit; if MR < MC, producing less raises profit."
+    },
+    {
+      "front": "MR in perfect competition?",
+      "back": "MR = AR = P — the firm is a price taker and can sell any quantity at the market price."
+    },
+    {
+      "front": "Economies vs diseconomies of scale?",
+      "back": "Economies: LRAC falls as output rises (bulk buying, specialisation). Diseconomies: LRAC rises (management inefficiency, communication problems)."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Costs and revenue** (7.5) is core **9708 micro**. Practise **diagram labels** and **calculations** together."
+      "content": "**Costs and revenue** (7.5) is core **9708 micro**. Practise **diagram labels** and **calculations** together. This topic feeds directly into **market structures** (7.6) and **firm objectives** (7.8)."
+    },
+    {
+      "type": "heading",
+      "content": "Cost concepts"
+    },
+    {
+      "type": "text",
+      "content": "**Total cost (TC) = Total fixed cost (TFC) + Total variable cost (TVC)**\n\n**Average fixed cost (AFC) = TFC/Q** — falls continuously as output rises.\n\n**Average variable cost (AVC) = TVC/Q** — U-shaped in the short run.\n\n**Average cost (AC) = TC/Q = AFC + AVC** — U-shaped.\n\n**Marginal cost (MC) = ΔTC/ΔQ** — cuts AVC and AC at their minimum points."
+    },
+    {
+      "type": "formula",
+      "content": "$AC = \\frac{TC}{Q}$, $MC = \\frac{\\Delta TC}{\\Delta Q}$\n\nProfit-maximising output: $MC = MR$"
+    },
+    {
+      "type": "heading",
+      "content": "Short-run and long-run production"
+    },
+    {
+      "type": "text",
+      "content": "**Short run:** at least one factor is fixed (usually capital). Diminishing marginal returns cause MC and AVC to rise eventually.\n\n**Long run:** all factors variable. The **LRAC curve** is a planning curve showing the lowest AC for each output level. It is U-shaped due to **economies of scale** (falling LRAC) then **diseconomies of scale** (rising LRAC).\n\n**Minimum efficient scale (MES):** output at the bottom of the LRAC — lowest unit cost."
+    },
+    {
+      "type": "workedExample",
+      "question": "A firm in a perfectly competitive market faces P = MR = £12. Its costs are:\n\n| Q | TC (£) |\n|---|--------|\n| 0 | 20 |\n| 1 | 28 |\n| 2 | 34 |\n| 3 | 42 |\n| 4 | 54 |\n| 5 | 70 |\n\n(a) Calculate MC at each output level.\n(b) Find profit-maximising output and total profit.",
+      "solution": "(a) **MC = ΔTC/ΔQ:**\n\n| Q | TC | MC |\n|---|-----|-----|\n| 1 | 28 | 8 |\n| 2 | 34 | 6 |\n| 3 | 42 | 8 |\n| 4 | 54 | 12 |\n| 5 | 70 | 16 |\n\n(b) **Profit max where MC = MR = £12:**\nAt Q = 4, MC = **£12** = MR ✓\n\n**TR** = 12 × 4 = **£48**\n**TC** = **£54**\n\nWait — at Q = 4, TC > TR. Check Q = 3: MC = 8 < MR → should expand. At Q = 4: MC = 12 = MR → **optimal output = 4 units**.\n\n**Profit** = TR − TC = 48 − 54 = **−£6** (loss).\n\nThe firm maximises profit (minimises loss) at Q = 4. In the short run, it continues if TR ≥ TVC. TFC = £20, TVC at Q=4 = £34, TR = £48 > TVC → **covers variable costs**, so it should stay open short run."
+    },
+    {
+      "type": "examTip",
+      "content": "When drawing cost curves, show **MC cutting AVC and AC at their minimum points**. Label the **shutdown point** (P = min AVC) and **break-even point** (P = min AC) for perfect competition questions."
     },
     {
       "type": "practice",
@@ -37,10 +92,10 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "7.6 Different market structures", "href": "/courses/9708/7-6-different-market-structures" },
+        { "label": "7.8 Differing objectives and policies of firms", "href": "/courses/9708/7-8-differing-objectives-and-policies-of-firms" },
+        { "label": "7.7 Growth and survival of firms", "href": "/courses/9708/7-7-growth-and-survival-of-firms" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

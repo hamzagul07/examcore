@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "Measuring a country's output",
     "summary": "National income statistics estimate total economic activity. GDP counts production within borders; GNI includes net income from abroad.",
+    "analogy": "GDP is like measuring everything produced inside a factory building. GNI also counts profits sent home by workers and firms operating outside the building.",
     "steps": [
       "Expenditure: C + I + G + (X − M).",
       "Income: wages + profits + rent.",
@@ -24,10 +25,88 @@
       "Real GDP adjusts for inflation."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is GDP?",
+      "back": "Gross Domestic Product — total market value of all final goods and services produced within a country's borders in a given period."
+    },
+    {
+      "front": "What is GNI?",
+      "back": "Gross National Income = GDP + net property income from abroad (income earned by residents minus income paid to non-residents)."
+    },
+    {
+      "front": "Three approaches to measuring GDP?",
+      "back": "Expenditure (C + I + G + X − M), income (wages + rent + interest + profit), and output (sum of value added at each production stage)."
+    },
+    {
+      "front": "Nominal vs real GDP?",
+      "back": "Nominal GDP uses current prices; real GDP uses constant (base-year) prices to remove inflation and show actual volume of output."
+    },
+    {
+      "front": "Real GDP growth rate formula?",
+      "back": "((Real GDP₁ − Real GDP₀) ÷ Real GDP₀) × 100 — measures change in output volume, not price changes."
+    },
+    {
+      "front": "Key limitation of GDP as a welfare measure?",
+      "back": "GDP ignores distribution, non-market activity, environmental damage, and leisure — higher GDP does not always mean higher living standards."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**National income** (4.1) underpins **macro analysis**. Know **all three measurement approaches** and **GDP vs GNI**."
+      "content": "**National income** (4.1) underpins all **9708 AS macro analysis**. Examiners expect you to define **GDP and GNI**, explain **all three measurement approaches**, convert **nominal to real** figures, and evaluate **data limitations** — often in the same question."
+    },
+    {
+      "type": "heading",
+      "content": "GDP and GNI"
+    },
+    {
+      "type": "text",
+      "content": "**GDP** measures production **within** a country's geographical borders, regardless of who owns the factors of production.\n\n**GNI** measures income **accruing to residents** of a country, including net income from assets and labour abroad.\n\nFor a country with large overseas investment (e.g. many multinationals repatriating profits), GNI may differ significantly from GDP."
+    },
+    {
+      "type": "formula",
+      "content": "Expenditure approach: GDP = C + I + G + (X − M)\n\nGNI = GDP + net property income from abroad\n\nReal GDP = (Nominal GDP ÷ GDP deflator) × 100\n\nGDP per capita = GDP ÷ population"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Final goods only** — intermediate goods are excluded to avoid double counting.",
+        "**Market prices** — only transactions at market value are counted; unpaid household work is excluded.",
+        "**Geographical vs national** — GDP is territorial; GNI is who earns the income.",
+        "**Per capita** divides by population — useful for comparing living standards but ignores inequality."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Nominal and real national income"
+    },
+    {
+      "type": "text",
+      "content": "If nominal GDP rises 8% but half is due to inflation, actual output has not grown by 8%. **Real GDP** holds prices constant so changes reflect **volume** of production.\n\nThe **GDP deflator** is a broad price index: (Nominal GDP ÷ Real GDP) × 100."
+    },
+    {
+      "type": "workedExample",
+      "question": "Country Z's nominal GDP was $500 billion in 2023 and $540 billion in 2024. The GDP deflator rose from 125 to 135.\n\n(a) Calculate the nominal GDP growth rate.\n(b) Calculate real GDP in 2024 (using 2023 as the base).\n(c) Calculate the real GDP growth rate.",
+      "solution": "(a) **Nominal growth rate**\n= ((540 − 500) ÷ 500) × 100 = **8.0%**\n\n(b) **Real GDP 2024** (2023 base)\nReal GDP = (Nominal GDP ÷ Deflator) × 100\n2023 real GDP = (500 ÷ 125) × 100 = **$400 bn**\n2024 real GDP = (540 ÷ 135) × 100 = **$400 bn**\n\n(c) **Real growth rate**\n= ((400 − 400) ÷ 400) × 100 = **0%**\n\nDespite 8% nominal growth, **all** of the increase was inflation — real output was unchanged."
+    },
+    {
+      "type": "heading",
+      "content": "Limitations of national income data"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Non-market activity** — subsistence farming, unpaid care work not recorded.",
+        "**Informal/black economy** — unreported transactions understate GDP.",
+        "**Externalities** — pollution and environmental damage not deducted.",
+        "**Distribution** — GDP per capita hides inequality.",
+        "**Quality of life** — leisure, health, and happiness not captured."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In evaluation questions, do not simply list limitations — explain **why** each matters for the country in the question. E.g. \"In a low-income economy with large subsistence agriculture, GDP understates true output.\""
     },
     {
       "type": "practice",
@@ -37,10 +116,10 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.2 Circular flow of income", "href": "/courses/9708/4-2-introduction-to-the-circular-flow-of-income" },
+        { "label": "4.4 Economic growth", "href": "/courses/9708/4-4-economic-growth" },
+        { "label": "1.5 Production possibility curves", "href": "/courses/9708/1-5-production-possibility-curves" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

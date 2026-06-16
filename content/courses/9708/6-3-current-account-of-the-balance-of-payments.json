@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "Recording international flows",
     "summary": "The current account records trade in goods and services plus primary and secondary income. (X − M) is a component of AD.",
+    "analogy": "The current account is like a country's bank statement for international dealings — credits from selling abroad and income earned overseas, debits from buying imports and payments sent abroad.",
     "steps": [
       "Balance of trade = exports of goods − imports of goods.",
       "Services: tourism, shipping, financial services.",
@@ -24,10 +25,75 @@
       "Financed by capital/financial account inflows (or reserves)."
     ]
   },
+  "flashcards": [
+    {
+      "front": "Four components of the current account?",
+      "back": "Trade in goods, trade in services, primary income (investment income, wages), and secondary income (transfers e.g. remittances, aid)."
+    },
+    {
+      "front": "Balance of trade in goods?",
+      "back": "Value of exports of goods minus value of imports of goods (visible trade balance)."
+    },
+    {
+      "front": "Current account deficit?",
+      "back": "Total debits exceed total credits on the current account — country spends more abroad than it earns from abroad."
+    },
+    {
+      "front": "How does net export link to AD?",
+      "back": "AD = C + I + G + (X − M). Higher (X − M) boosts AD; a current account deficit may mean M > X, reducing AD contribution."
+    },
+    {
+      "front": "Causes of a current account deficit?",
+      "back": "Strong currency, high domestic demand (imports rise), low competitiveness, high relative inflation, and growth differentials."
+    },
+    {
+      "front": "How is a current account deficit financed?",
+      "back": "Capital and financial account inflows (foreign investment, borrowing), or drawing down foreign exchange reserves."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Current account** (6.3) connects to **exchange rates** (6.4) and **corrective policies** (6.5). Memorise the **four components** and **sign conventions**."
+      "content": "**Current account** (6.3) connects to **exchange rates** (6.4) and **corrective policies** (6.5). Memorise the **four components** and link **(X − M)** to **AD** in macro essays."
+    },
+    {
+      "type": "heading",
+      "content": "Structure of the current account"
+    },
+    {
+      "type": "formula",
+      "content": "Current account = Trade in goods + Trade in services + Primary income + Secondary income\n\nBalance of trade (goods) = X_goods − M_goods\n\nNet exports = X − M (goods and services) → component of AD"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Credits (+)**: exports, income from abroad, transfers received.",
+        "**Debits (−)**: imports, income paid abroad, transfers paid.",
+        "**Deficit** is not always harmful — may reflect strong domestic demand or investment inflows.",
+        "**Sustainability** matters more than sign alone."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Country R ($ billion):\n- Exports of goods: 80 | Imports of goods: 110\n- Exports of services: 45 | Imports of services: 30\n- Net primary income: −15\n- Net secondary income: −5\n\n(a) Calculate the balance of trade in goods.\n(b) Calculate net exports (goods and services).\n(c) Calculate the current account balance.\n(d) If GDP is $500bn, express the current account as a % of GDP.",
+      "solution": "(a) **Balance of trade in goods**\n= 80 − 110 = **−$30 billion** (goods trade deficit)\n\n(b) **Net exports (goods + services)**\nTotal X = 80 + 45 = 125; Total M = 110 + 30 = 140\n(X − M) = 125 − 140 = **−$15 billion**\n\n(c) **Current account balance**\n= (X − M) + Primary income + Secondary income\n= −15 + (−15) + (−5) = **−$35 billion** (current account deficit)\n\n(d) **% of GDP**\n= (35 ÷ 500) × 100 = **7.0% of GDP** deficit"
+    },
+    {
+      "type": "heading",
+      "content": "Link to aggregate demand"
+    },
+    {
+      "type": "text",
+      "content": "When **M > X**, net exports are **negative** — a leakage from AD. Fast domestic growth often **widens the deficit** as rising incomes boost import spending.\n\n**Depreciation** of the currency may improve competitiveness: X rise, M fall → (X − M) improves → AD effect depends on **Marshall-Lerner condition** (A Level)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Country R has a current account deficit and unemployment above NAIRU. Policymakers consider depreciation and expansionary fiscal policy.\n\n(a) Show how depreciation affects (X − M) and AD.\n(b) Show how expansionary fiscal policy affects AD and the current account.\n(c) Which policy better addresses both unemployment and the deficit?",
+      "solution": "(a) **Depreciation**\nCurrency falls → exports **cheaper** abroad, imports **dearer** at home → X↑, M↓ → **(X − M) rises** → **AD increases** (if Marshall-Lerner holds) → unemployment may fall.\n\n(b) **Expansionary fiscal policy**\n↑G or ↓T → AD shifts **right** → Y and C rise → **M increases** (marginal propensity to import) → **(X − M) may worsen** → current account deficit **widens** while unemployment falls.\n\n(c) **Evaluation**\n**Depreciation** helps both unemployment (AD↑) and deficit ((X−M)↑) if elastic — but may worsen **cost-push inflation** (import prices rise).\n**Fiscal expansion** helps unemployment but **worsens BOP** — **conflict between objectives** (5.1). Supply-side policy (5.4) may improve competitiveness without the inflation shock."
+    },
+    {
+      "type": "examTip",
+      "content": "When calculating current account components, show **each line clearly** — examiners award method marks. Always state whether a figure is a surplus (+) or deficit (−)."
     },
     {
       "type": "practice",
@@ -37,10 +103,12 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.3 AD–AS analysis", "href": "/courses/9708/4-3-aggregate-demand-and-aggregate-supply-analysis" },
+        { "label": "5.1 Macro policy objectives", "href": "/courses/9708/5-1-government-macroeconomic-policy-objectives" },
+        { "label": "6.1 International trade", "href": "/courses/9708/6-1-the-reasons-for-international-trade" },
+        { "label": "6.4 Exchange rates", "href": "/courses/9708/6-4-exchange-rates" },
+        { "label": "6.5 Policies to correct BOP imbalances", "href": "/courses/9708/6-5-policies-to-correct-imbalances-in-the-current-account-of-the-balance-of-payments" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

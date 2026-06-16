@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "Interest rates as the policy tool",
     "summary": "Central banks adjust interest rates to influence aggregate demand. Lower rates reduce borrowing costs and may depreciate the currency, boosting net exports.",
+    "analogy": "Monetary policy is like adjusting the price of borrowing — cut rates and it becomes cheaper to buy a house or expand a factory; raise rates and people save more and spend less.",
     "steps": [
       "Expansionary: cut rate when economy in recession.",
       "Rate ↓ → C and I ↑ → AD shifts right.",
@@ -24,10 +25,71 @@
       "Limits: zero lower bound, inelastic investment, lags."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is monetary policy?",
+      "back": "Central bank management of interest rates and money supply to influence AD and achieve price stability and other macro objectives."
+    },
+    {
+      "front": "Expansionary monetary policy?",
+      "back": "Cut interest rates (or increase money supply) to stimulate C, I, and net exports — AD shifts right."
+    },
+    {
+      "front": "Interest rate transmission to consumption?",
+      "back": "Lower r → cheaper borrowing and lower return on saving → households spend more (C rises) → AD increases."
+    },
+    {
+      "front": "Exchange rate channel?",
+      "back": "Lower r → capital outflows → currency depreciates → exports cheaper abroad, imports dearer → (X−M) rises → AD increases."
+    },
+    {
+      "front": "Contractionary monetary policy?",
+      "back": "Raise interest rates to reduce C and I, dampen AD, and control demand-pull inflation."
+    },
+    {
+      "front": "Key limitations of monetary policy?",
+      "back": "Time lags, zero lower bound (liquidity trap), inelastic investment in recession, and possible conflict with exchange rate stability."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Monetary policy** (5.3) is often compared with **fiscal policy** (5.2) in evaluation essays. Trace the **transmission mechanism** step by step on AD–AS."
+      "content": "**Monetary policy** (5.3) is often compared with **fiscal policy** (5.2) in evaluation essays. Trace the **transmission mechanism** step by step before showing the AD shift on the diagram."
+    },
+    {
+      "type": "heading",
+      "content": "Transmission mechanisms"
+    },
+    {
+      "type": "text",
+      "content": "When the central bank **cuts interest rates**:\n\n1. **Consumption**: cheaper mortgages and loans → C rises.\n2. **Investment**: lower cost of capital → I rises.\n3. **Exchange rate**: lower r → currency depreciates → X↑, M↓.\n4. **Asset prices**: higher asset values → wealth effect → C rises.\n\nCombined effect: **AD shifts right**."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Independent central bank** — may prioritise inflation target over government growth wishes.",
+        "**Contractionary**: rate rise when inflation exceeds target.",
+        "**Quantitative easing** (A Level extension): unconventional policy at zero lower bound.",
+        "**Conflicts**: lower r may worsen inflation or weaken currency (import prices rise)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A central bank cuts its policy rate from 5% to 3% during a recession (Y < Yf, unemployment 9%).\n\n(a) Trace the transmission mechanism to AD.\n(b) Show the effect on P and Y using AD–AS.\n(c) Give two reasons why the cut might be ineffective.",
+      "solution": "(a) **Transmission mechanism**\nRate 5% → 3% → mortgage and loan costs fall → **C rises**; firms' borrowing costs fall → **I rises**; lower r attracts less foreign capital → currency **depreciates** → **(X−M) rises** → **AD shifts right**.\n\n(b) **AD–AS effect**\nDraw AD₁ → AD₂ (rightward shift). New equilibrium: **Y rises** (toward Yf), **P rises slightly**. Recessionary gap narrows; unemployment falls.\n\n(c) **Ineffectiveness**\n1. **Liquidity trap / confidence**: firms won't invest despite low r if demand expectations are pessimistic (I inelastic).\n2. **Time lags**: 18–24 months before full impact — recession may deepen before policy bites."
+    },
+    {
+      "type": "heading",
+      "content": "Monetary vs fiscal policy"
+    },
+    {
+      "type": "workedExample",
+      "question": "Inflation is 8%, unemployment 4% (below NAIRU), and Y > Yf.\n\n(a) Recommend monetary policy action.\n(b) Calculate the approximate real interest rate if nominal rate is 6% and inflation is 8%.\n(c) Explain one conflict with the growth objective.",
+      "solution": "(a) **Policy action**\n**Contractionary monetary policy** — **raise interest rates** to reduce C and I, shift AD left, and control demand-pull inflation.\n\n(b) **Real interest rate**\nReal r ≈ Nominal r − Inflation = 6% − 8% = **−2%**\n\nEven with 6% nominal rate, real borrowing cost is negative — may still be stimulating AD; central bank may need a **larger rate rise**.\n\n(c) **Conflict with growth**\nHigher rates reduce I and C → AD falls → **growth slows** and unemployment may rise — trade-off between **price stability** and **employment/growth**."
+    },
+    {
+      "type": "examTip",
+      "content": "Always distinguish **nominal** and **real** interest rates in inflation contexts. Examiners reward explicit transmission chains: rate → C/I → AD → P and Y."
     },
     {
       "type": "practice",
@@ -37,10 +99,12 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.3 AD–AS analysis", "href": "/courses/9708/4-3-aggregate-demand-and-aggregate-supply-analysis" },
+        { "label": "4.6 Price stability", "href": "/courses/9708/4-6-price-stability" },
+        { "label": "5.2 Fiscal policy", "href": "/courses/9708/5-2-fiscal-policy" },
+        { "label": "6.4 Exchange rates", "href": "/courses/9708/6-4-exchange-rates" },
+        { "label": "9.4 Money and banking (A Level)", "href": "/courses/9708/9-4-money-and-banking" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

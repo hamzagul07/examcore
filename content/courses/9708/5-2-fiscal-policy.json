@@ -17,6 +17,7 @@
   "simpleExplanation": {
     "title": "G and T as macro levers",
     "summary": "Fiscal policy uses government spending and taxation to influence aggregate demand. The multiplier amplifies the initial change in G or T.",
+    "analogy": "Fiscal policy is like a government turning up the thermostat (G↑) or giving everyone a tax rebate — either way, more money circulates and AD heats up, with the multiplier spreading the warmth further.",
     "steps": [
       "Expansionary: ↑G or ↓T when Y < Yf (recessionary gap).",
       "Contractionary: ↓G or ↑T when Y > Yf (inflationary gap).",
@@ -24,10 +25,80 @@
       "Automatic stabilisers: progressive tax, unemployment benefits."
     ]
   },
+  "flashcards": [
+    {
+      "front": "What is fiscal policy?",
+      "back": "Use of government spending (G) and taxation (T) to influence aggregate demand and achieve macroeconomic objectives."
+    },
+    {
+      "front": "Expansionary vs contractionary fiscal policy?",
+      "back": "Expansionary: ↑G or ↓T to boost AD (recession). Contractionary: ↓G or ↑T to reduce AD (inflationary boom)."
+    },
+    {
+      "front": "Government spending multiplier?",
+      "back": "k = 1 ÷ (1 − MPC). A $1 increase in G causes a $k increase in national income."
+    },
+    {
+      "front": "Tax multiplier (simplified)?",
+      "back": "k_tax = −MPC ÷ (1 − MPC). A tax cut boosts disposable income and AD, but the effect is smaller than an equal G increase."
+    },
+    {
+      "front": "What are automatic stabilisers?",
+      "back": "Built-in fiscal mechanisms that stabilise AD without new legislation — progressive tax (revenue falls in recession) and unemployment benefits (spending rises)."
+    },
+    {
+      "front": "What is crowding out?",
+      "back": "Higher G financed by borrowing raises interest rates, reducing private investment — partially offsetting the fiscal stimulus."
+    }
+  ],
   "sections": [
     {
       "type": "intro",
-      "content": "**Fiscal policy** (5.2) builds on **AD–AS** (4.3). Use the interactive diagram to show **AD shifts** — always state the **output gap** before recommending policy."
+      "content": "**Fiscal policy** (5.2) builds on **AD–AS** (4.3) and the **multiplier** (4.2). Use the interactive diagram to show **AD shifts** — always state the **output gap** before recommending expansionary or contractionary action."
+    },
+    {
+      "type": "heading",
+      "content": "Instruments and types"
+    },
+    {
+      "type": "formula",
+      "content": "Budget balance = T − G\n\nGovernment spending multiplier: $k_g = \\frac{1}{1 - MPC}$\n\nTax multiplier: $k_t = \\frac{-MPC}{1 - MPC}$\n\nBalanced budget multiplier ≈ 1 (equal ΔG and ΔT)"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Discretionary**: deliberate changes to G or T in the budget.",
+        "**Automatic stabilisers**: work counter-cyclically without new laws.",
+        "**Expansionary** when Y < Yf — closes recessionary gap.",
+        "**Contractionary** when Y > Yf — reduces inflationary pressure."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "MPC = 0.75. The government increases spending on hospitals by $20 billion, financed by borrowing.\n\n(a) Calculate the government spending multiplier.\n(b) Calculate the total change in national income.\n(c) If crowding out reduces private investment by $5 billion, estimate the net effect on AD.",
+      "solution": "(a) **Multiplier**\nk = 1 ÷ (1 − 0.75) = 1 ÷ 0.25 = **4**\n\n(b) **Total ΔY**\nΔY = k × ΔG = 4 × $20bn = **$80 billion**\n\n(c) **Net effect with crowding out**\nGross fiscal boost = +$80bn to Y\nCrowding out: I falls by $5bn → secondary reduction ≈ 4 × $5bn = **$20bn**\nNet ΔY ≈ $80bn − $20bn = **$60 billion** (crowding out reduces but does not eliminate the stimulus)"
+    },
+    {
+      "type": "heading",
+      "content": "Evaluation"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Time lags**: recognition, decision, implementation, impact.",
+        "**Crowding out**: higher G → higher borrowing → higher r → lower I.",
+        "**Public debt**: persistent deficits may constrain future policy.",
+        "**Political constraints**: austerity or spending cuts may be unpopular."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An economy is at full capacity (Y = Yf) with inflation at 7%. The government proposes a $15bn tax cut.\n\n(a) Is this expansionary or contractionary?\n(b) Show the AD–AS effect.\n(c) Evaluate the policy.",
+      "solution": "(a) **Policy type**\nTax cut → higher disposable income → C rises → **expansionary fiscal policy**.\n\n(b) **AD–AS effect**\nAD shifts **right**. At Yf, SRAS is steep — mainly **P rises** (demand-pull inflation) with little sustainable Y gain.\n\n(c) **Evaluation**\n**Against**: inflation already 7%; stimulus worsens price stability; at Yf, output gains are limited.\n**For**: if inflation is cost-push not demand-pull, tax cut may help households — but does not fix supply side.\n**Verdict**: **contractionary** fiscal policy (↑T or ↓G) more appropriate to reduce inflation."
+    },
+    {
+      "type": "examTip",
+      "content": "When comparing G and T changes, remember **$1 of G has a larger multiplier effect than $1 of tax cut** because part of a tax cut is saved. State this in evaluation questions."
     },
     {
       "type": "practice",
@@ -37,10 +108,12 @@
     {
       "type": "resources",
       "items": [
-        {
-          "label": "9708 course index",
-          "href": "/courses/9708"
-        }
+        { "label": "4.2 Circular flow (multiplier)", "href": "/courses/9708/4-2-introduction-to-the-circular-flow-of-income" },
+        { "label": "4.3 AD–AS analysis", "href": "/courses/9708/4-3-aggregate-demand-and-aggregate-supply-analysis" },
+        { "label": "5.1 Macro policy objectives", "href": "/courses/9708/5-1-government-macroeconomic-policy-objectives" },
+        { "label": "5.3 Monetary policy", "href": "/courses/9708/5-3-monetary-policy" },
+        { "label": "10.3 Policy effectiveness", "href": "/courses/9708/10-3-effectiveness-of-policy-options-to-meet-all-macroeconomic-objectives" },
+        { "label": "9708 course index", "href": "/courses/9708" }
       ]
     }
   ],

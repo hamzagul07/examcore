@@ -5,28 +5,73 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — waste reduction, Kaizen, and lean principles.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — lean philosophy, waste (muda), JIT, pull systems, Kaizen, and 5S.",
+  "durationMin": 28,
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain lean production philosophy.",
-    "Identify types of waste (muda).",
-    "Describe Kaizen and 5S.",
-    "Compare lean with mass production."
+    "Identify the seven wastes (muda).",
+    "Describe Kaizen, 5S, and pull production.",
+    "Compare lean with traditional mass production."
   ],
   "simpleExplanation": {
     "title": "Do more with less waste",
-    "summary": "Lean production eliminates non-value activities, improves flow, and empowers workers to fix problems continuously.",
+    "summary": "Lean production eliminates activities that do not add value — using JIT supplies, pull systems driven by customer demand, Kaizen continuous improvement, and multiskilled teams.",
     "steps": [
-      "Just-in-time supplies.",
-      "Pull production from demand.",
-      "Kaizen small improvements.",
-      "Multiskilled teams."
+      "Just-in-time delivery of materials.",
+      "Pull production — make only what customer orders.",
+      "Kaizen — continuous small improvements.",
+      "Multiskilled teams flex across tasks."
     ]
   },
+  "flashcards": [
+    { "front": "Lean goal?", "back": "Maximise value, minimise waste (muda)." },
+    { "front": "Seven wastes (examples)?", "back": "Overproduction, waiting, transport, inventory, motion, over-processing, defects." },
+    { "front": "Pull vs push?", "back": "Pull = produce to order; push = produce to forecast/stock." },
+    { "front": "Kaizen?", "back": "Continuous improvement — all staff suggest changes." },
+    { "front": "5S?", "back": "Sort, set, shine, standardise, sustain — workplace organisation." },
+    { "front": "Toyota Production System?", "back": "Reference model for lean + JIT + respect for people." },
+    { "front": "Lean requirement?", "back": "Reliable suppliers, quality at source, flexible workforce." },
+    { "front": "vs mass production?", "back": "Mass = high stock, economies of scale; lean = low waste, responsiveness." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Lean production** (9.3.4) extends **4.2.2 JIT**. Toyota Production System is the **reference case**." },
-    { "type": "practice", "label": "Mark a lean production question", "href": "/mark?subject=9609&topic=9.3.4" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Lean production** (9.3.4) extends **4.2.2 JIT**. Name **specific wastes** from the case — overproduction and inventory are exam favourites."
+    },
+    {
+      "type": "heading",
+      "content": "Seven wastes (muda) — exam checklist"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Overproduction** — making before needed.",
+        "**Waiting** — idle workers or machines.",
+        "**Transport** — unnecessary movement of materials.",
+        "**Inventory** — excess stock tying up cash.",
+        "**Motion** — wasted operator movement.",
+        "**Over-processing** — doing more work than customer values.",
+        "**Defects** — rework and scrap."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Car plant holds 14 days' component stock, produces to monthly forecast not orders, and rework area busy. Identify lean wastes and suggest fixes.",
+      "solution": "**Inventory waste:** **14-day stock** — move toward **JIT** with key suppliers (4.2.2).\n\n**Overproduction waste:** **Forecast push** builds cars not yet sold — switch to **order-driven pull** where feasible.\n\n**Defect waste:** Busy **rework area** — **quality at source**, **stop the line** authority for workers (TQM 9.2.1).\n\n**Waiting waste:** Rework causes **line stoppages** — fix root cause not symptoms.\n\n**People:** **Kaizen teams** + **5S** on tool cribs — multiskill for **flexibility** (9.3.2)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a lean production question",
+      "href": "/mark?subject=9609&topic=9.3.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.2.2 Just in Time", "href": "/courses/9609/4-2-2-just-in-time-jit" },
+        { "label": "9.2.1 Quality control and assurance", "href": "/courses/9609/9-2-1-quality-control-and-quality-assurance" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

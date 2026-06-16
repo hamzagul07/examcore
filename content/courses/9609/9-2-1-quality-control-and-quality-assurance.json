@@ -5,28 +5,57 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — QC vs QA, TQM, and quality standards.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — QC vs QA, TQM, ISO standards, and zero-defect philosophy.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Distinguish quality control and assurance.",
+    "Distinguish quality control and quality assurance.",
     "Explain inspection vs prevention approaches.",
     "Outline TQM principles.",
-    "Evaluate quality systems in cases."
+    "Evaluate quality systems for case organisations."
   ],
   "simpleExplanation": {
     "title": "Getting it right",
-    "summary": "Quality control checks output after production. Quality assurance builds quality into processes to prevent defects.",
+    "summary": "Quality control inspects output after production to catch defects. Quality assurance designs processes so defects are prevented. TQM makes quality everyone's responsibility with continuous improvement.",
     "steps": [
-      "QC: testing, sampling.",
-      "QA: process standards, ISO.",
-      "TQM: everyone responsible.",
-      "Zero defects philosophy."
+      "QC: testing finished goods, sampling, rejection of faulty units.",
+      "QA: process standards, ISO certification, prevention focus.",
+      "TQM: all staff responsible, customer focus, continuous improvement.",
+      "Zero defects: aim to prevent errors, not just find them."
     ]
   },
+  "flashcards": [
+    { "front": "Quality control (QC)?", "back": "Inspection at end of process — detective approach." },
+    { "front": "Quality assurance (QA)?", "back": "Systems ensure quality built in — preventive approach." },
+    { "front": "TQM?", "back": "Total Quality Management — organisation-wide culture of quality." },
+    { "front": "ISO 9001?", "back": "International QA standard — auditable processes." },
+    { "front": "Cost of poor quality?", "back": "Rework, returns, recalls, brand damage." },
+    { "front": "QC limitation?", "back": "Does not stop defects being made — waste of resources." },
+    { "front": "Link to lean?", "back": "TQM + lean reduce waste (9.3.4)." },
+    { "front": "Link to marketing?", "back": "Quality supports brand and customer retention (3.3.2)." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**QC vs QA** (9.2.1) is a core **distinction**. Link defects to **brand damage** in evaluation." },
-    { "type": "practice", "label": "Mark a quality control question", "href": "/mark?subject=9609&topic=9.2.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**QC vs QA** (9.2.1) — core **distinction** for Paper 3/4. Link defects to **brand damage**, **recall costs**, and **legal liability** in evaluation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Toy manufacturer relies on final inspection rejecting 5% of dolls before shipping. Defects still reach customers via sampling gaps. Recommend a quality approach.",
+      "solution": "**Current QC problem:** **5% scrap cost**, **customer defects** when sample misses faults — **reactive**.\n\n**QA shift:** **Supplier quality standards**, **in-line checks** at moulding stage, **staff training** — prevent defects at source.\n\n**TQM elements:** **Team quality circles**, **customer complaint analysis**, **Kaizen** (9.3.4).\n\n**Cost–benefit:** Upfront **training/ISO** cost vs **lower scrap**, **fewer returns**, **protected brand** — usually net positive for consumer goods."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a quality control question",
+      "href": "/mark?subject=9609&topic=9.2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9.2.2 Benchmarking", "href": "/courses/9609/9-2-2-benchmarking" },
+        { "label": "9.3.4 Lean production", "href": "/courses/9609/9-3-4-lean-production" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

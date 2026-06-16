@@ -5,28 +5,57 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — short-run operational choices and trade-offs.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — capacity, outsourcing, inventory, and maintenance operational decisions.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Identify types of operational decisions.",
-    "Explain link to strategy and resources.",
-    "Analyse short-run vs long-run decisions.",
-    "Evaluate decision outcomes in cases."
+    "Identify key operational decisions managers face.",
+    "Analyse capacity scheduling choices.",
+    "Evaluate outsource vs in-house decisions.",
+    "Apply operational decision framework to cases."
   ],
   "simpleExplanation": {
     "title": "Day-to-day ops choices",
-    "summary": "Operational decisions cover scheduling, staffing, stock levels, and maintenance — balancing cost, speed, and quality.",
+    "summary": "Operations managers constantly decide how to schedule capacity, whether to outsource, what stock levels to hold, and how much preventive maintenance to fund versus risking breakdowns.",
     "steps": [
-      "Capacity scheduling.",
-      "Outsource or in-house?",
-      "Stock level adjustments.",
-      "Maintenance vs breakdown risk."
+      "Capacity scheduling — shifts, overtime, subcontracting.",
+      "Outsource or keep in-house — core vs non-core.",
+      "Stock level adjustments — buffer vs JIT.",
+      "Preventive maintenance vs breakdown repair costs."
     ]
   },
+  "flashcards": [
+    { "front": "Capacity scheduling?", "back": "Matching production to demand — shifts, temps, overtime." },
+    { "front": "Subcontract peak demand?", "back": "Use external capacity without permanent fixed cost increase." },
+    { "front": "Outsource decision?", "back": "Cost, quality, control, strategic importance (4.3.2)." },
+    { "front": "Stock decision trade-off?", "back": "Holding cost vs stock-out cost (4.2.1)." },
+    { "front": "Preventive maintenance?", "back": "Scheduled servicing to avoid costly unplanned downtime." },
+    { "front": "Breakdown cost?", "back": "Lost output, rush repairs, missed customer deadlines." },
+    { "front": "Link to utilisation?", "back": "4.3.1 — schedule to improve capacity use." },
+    { "front": "Short-term vs strategic?", "back": "Ops decisions tactical; location/ERP more strategic." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Operational decisions** (9.3.1) applies **AS Topic 4** at strategic depth." },
-    { "type": "practice", "label": "Mark an operational decisions question", "href": "/mark?subject=9609&topic=9.3.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Operational decisions** (9.3.1) opens **Topic 9.3**. Structure answers around **decision → options → criteria → recommendation** using case numbers where given."
+    },
+    {
+      "type": "workedExample",
+      "question": "Food processor faces 30% demand spike for Q4. Factory at 95% capacity utilisation. Outline operational decisions available.",
+      "solution": "**Capacity:** **Overtime shifts**, **temporary staff** (2.1.3), **subcontract** bulk blending to approved partner.\n\n**Stock:** Build **finished goods buffer** in Q3 if **perishable allows** — or **increase raw material orders** with JIT supplier agreement.\n\n**Maintenance:** **Defer non-critical maintenance** risky at 95% utilisation — **prioritise line reliability**.\n\n**Outsource:** **Non-core packaging** to free line capacity for **high-margin SKUs**.\n\n**Evaluation:** **Subcontract + overtime** likely cheapest vs **new capital** (10.3) for one-season spike."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an operational decisions question",
+      "href": "/mark?subject=9609&topic=9.3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.3.1 Capacity utilisation", "href": "/courses/9609/4-3-1-significance-and-measurement-of-capacity-utilisation" },
+        { "label": "4.2.1 Managing inventory", "href": "/courses/9609/4-2-1-managing-inventory" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

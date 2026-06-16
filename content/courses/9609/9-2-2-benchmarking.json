@@ -5,28 +5,57 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — comparing performance against best practice.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — internal and external benchmarking, KPIs, and implementing best practice.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define benchmarking.",
-    "Explain internal and external benchmarking.",
-    "Identify KPIs for comparison.",
-    "Evaluate use in continuous improvement."
+    "Define benchmarking and its purpose.",
+    "Distinguish internal and external benchmarking.",
+    "Select appropriate KPIs for comparison.",
+    "Evaluate benchmarking as an improvement tool."
   ],
   "simpleExplanation": {
     "title": "Learning from the best",
-    "summary": "Benchmarking measures processes and outcomes against industry leaders to find improvement gaps.",
+    "summary": "Benchmarking compares performance metrics against best practice — internally between branches or externally against rivals — then implements improvements to close gaps.",
     "steps": [
-      "Select KPIs to compare.",
-      "Internal: between branches.",
-      "External: rival or sector leader.",
-      "Implement best practice changes."
+      "Select KPIs: defect rate, delivery time, unit cost.",
+      "Internal benchmarking: compare branches or departments.",
+      "External benchmarking: compare with sector leaders.",
+      "Implement changes and re-measure performance."
     ]
   },
+  "flashcards": [
+    { "front": "Benchmarking?", "back": "Measuring performance against best-in-class standards." },
+    { "front": "Internal benchmarking?", "back": "Compare outlets/teams within same firm — easier data access." },
+    { "front": "External benchmarking?", "back": "Compare with competitors or industry averages." },
+    { "front": "Functional benchmarking?", "back": "Compare one function with best firm in that function anywhere." },
+    { "front": "KPI examples?", "back": "OEE, defect ppm, on-time delivery %, labour productivity." },
+    { "front": "Limitation?", "back": "Rivals hide data; copying context may not transfer." },
+    { "front": "Link to 4.1.2?", "back": "Benchmark productivity and efficiency metrics." },
+    { "front": "Ethical issue?", "back": "Industrial espionage vs legitimate public data use." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Benchmarking** (9.2.2) supports **4.1.2 productivity**. Name **metric + comparator** from cases." },
-    { "type": "practice", "label": "Mark a benchmarking question", "href": "/mark?subject=9609&topic=9.2.2" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Benchmarking** (9.2.2) — always name **specific KPIs** from the case, not vague 'performance'. Follow **measure → gap → action → review** cycle."
+    },
+    {
+      "type": "workedExample",
+      "question": "Hospital chain: Branch A average wait 45 min, Branch B 20 min, national best practice 15 min. How should HQ use benchmarking?",
+      "solution": "**Internal benchmark:** **Branch B** is internal best — study **scheduling, staffing ratios**, **triage process**.\n\n**External gap:** All branches above **15 min national best** — **external benchmark** sets target.\n\n**Actions:** **Standardise B's practices**, **staff training**, **IT booking system** rollout.\n\n**Review:** **Monthly KPI dashboard** — benchmarking is **continuous**, not one-off report.\n\n**Caution:** Patient mix may differ — **adjust for case complexity** before punishing Branch A unfairly."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a benchmarking question",
+      "href": "/mark?subject=9609&topic=9.2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9.2.1 Quality control and assurance", "href": "/courses/9609/9-2-1-quality-control-and-quality-assurance" },
+        { "label": "4.1.2 Efficiency and productivity", "href": "/courses/9609/4-1-2-efficiency-effectiveness-productivity-and-sustainability" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

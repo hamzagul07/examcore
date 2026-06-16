@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Contract — actual, anticipatory breach, and innocent party options.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define breach of contract.",
     "Explain anticipatory breach (Hochster v De La Tour).",
@@ -24,9 +24,30 @@
       "Wrongful termination — itself a breach."
     ]
   },
+  "flashcards": [
+    { "front": "Actual breach?", "back": "Failure to perform when performance is **due** — e.g. non-delivery, defective goods, late payment." },
+    { "front": "Anticipatory breach?", "back": "Clear indication party **will not perform** before due date — innocent party need not wait (*Hochster v De La Tour*)." },
+    { "front": "Innocent party's election?", "back": "**Affirm** — continue contract, claim damages at due date; or **accept repudiation** — terminate immediately." },
+    { "front": "Can election be reversed?", "back": "Generally **no** — once termination accepted, contract ended; affirming waives right to terminate for that breach." },
+    { "front": "Repudiatory breach?", "back": "Breach of **condition** or serious innominate term breach — allows termination + damages." },
+    { "front": "White & Carter v McGregor?", "back": "Innocent party may **affirm** and complete performance, claiming full contract price — if has legitimate interest." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Breach** (3.3.2) — **anticipatory breach** and **election** are core problem skills." },
+    {
+      "type": "workedExample",
+      "question": "On 1 June, D agrees to employ C as a courier from 1 July. On 15 June, D writes that C's services are no longer required. C immediately sues for breach. Can C succeed before 1 July?",
+      "solution": "**Anticipatory breach:** D's letter on 15 June is **clear refusal** to perform from 1 July — **anticipatory repudiation** (*Hochster v De La Tour*).\n\n**C's options:**\n1. **Accept repudiation** — treat contract as ended, sue immediately for **damages** (lost wages from 1 July).\n2. **Affirm** — treat contract as continuing, wait until 1 July, then claim if D still fails.\n\n**C's choice:** C sues **immediately** — has **accepted repudiation** by treating contract as terminated.\n\n**D's argument:** Performance not yet due — **rejected**. Anticipatory breach allows immediate action.\n\n**Conclusion:** C **can succeed** — D's anticipatory breach gives C right to terminate and claim **damages** without waiting for 1 July."
+    },
     { "type": "practice", "label": "Mark a breach question", "href": "/mark?subject=9084&topic=3.3.2" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.3 Status of terms", "href": "/courses/9084/3-2-3-status-of-terms" },
+        { "label": "3.3.1 Performance", "href": "/courses/9084/3-3-1-performance" },
+        { "label": "3.4.1 Common law remedies", "href": "/courses/9084/3-4-1-common-law" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

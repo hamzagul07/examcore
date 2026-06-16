@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Contract — incorporation, construction, UCTA 1977, and CRA 2015 controls.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain common law control: incorporation and contra proferentem.",
     "Outline UCTA 1977 reasonableness test.",
@@ -24,9 +24,30 @@
       "CRA 2015 — unfair terms void in consumer contracts."
     ]
   },
+  "flashcards": [
+    { "front": "Three stages of control?", "back": "**Incorporation** (is clause part of contract?) → **Construction** (what does it mean?) → **Statute** (UCTA/CRA)." },
+    { "front": "Thornton v Shoe Lane?", "back": "Clause on ticket inside car park — **too late**; notice must precede or coincide with contract formation." },
+    { "front": "Contra proferentem?", "back": "Ambiguous exemption clauses construed **against** party relying on them — especially for negligence (Houghton v Trafalgar Insurance)." },
+    { "front": "UCTA 1977 s2?", "back": "Cannot exclude liability for **death/personal injury** from negligence; other loss only if **reasonable** (s11)." },
+    { "front": "CRA 2015 unfair terms?", "back": "Terms causing **significant imbalance** to consumer's detriment are **not binding** — sch 2 grey list (s62–65)." },
+    { "front": "Interfoto v Stiletto?", "back": "Onerous clauses need **greater notice** — unusual or extreme clauses require special steps to incorporate." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Exemption clauses** (3.2.4) completes 3.2. Structure: **incorporation → construction → statute**." },
+    {
+      "type": "workedExample",
+      "question": "A customer uses a self-service car park. A ticket says 'issued subject to conditions displayed inside'. Inside, a sign excludes liability for injury. Customer injured by negligent maintenance. Can the car park rely on the clause?",
+      "solution": "**Incorporation:** Ticket reference to conditions is **insufficient** — customer had no **reasonable notice** of exclusion before entering contract (*Thornton v Shoe Lane*). Contract formed at **entry**; clause inside car park comes **too late**.\n\n**Even if incorporated — construction:** Clause excluding **negligence** must be **clear** (*Hollier v Rambler Motors*). Ambiguity → **contra proferentem** against car park.\n\n**Statute:** **UCTA 1977 s2(1)** — cannot exclude **personal injury** from negligence in any event.\n\n**CRA 2015?** If customer is **consumer**, unfair term excluding injury likely **void** under fairness test (s62).\n\n**Conclusion:** Car park **cannot rely** on clause — fails incorporation, construction, and statute."
+    },
     { "type": "practice", "label": "Mark an exemption clauses question", "href": "/mark?subject=9084&topic=3.2.4" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.1 Express terms", "href": "/courses/9084/3-2-1-express-terms" },
+        { "label": "3.2.2 Consumer Rights Act 2015", "href": "/courses/9084/3-2-2-terms-implied-into-a-consumer-contract-by-the-consumer-rights-act-2015" },
+        { "label": "3.3.2 Breach", "href": "/courses/9084/3-3-2-breach" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

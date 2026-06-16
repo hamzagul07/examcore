@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Contract — unliquidated damages, remoteness, mitigation, and expectation loss.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain purpose of contractual damages.",
     "Apply Hadley v Baxendale remoteness tests.",
@@ -24,9 +24,30 @@
       "Non-pecuniary — usually not recoverable."
     ]
   },
+  "flashcards": [
+    { "front": "Purpose of contractual damages?", "back": "**Compensate** innocent party — put in position as if contract performed (expectation loss), not punish breacher." },
+    { "front": "Hadley v Baxendale — first limb?", "back": "Loss **arising naturally** from breach in ordinary course of things." },
+    { "front": "Hadley v Baxendale — second limb?", "back": "Loss **reasonably contemplated** by both parties at contract time as **probable result** of breach (special circumstances communicated)." },
+    { "front": "Duty to mitigate?", "back": "Claimant must take **reasonable steps** to minimise loss — cannot recover avoidable loss (*Pilkington v Wood*)." },
+    { "front": "Expectation vs reliance loss?", "back": "Expectation — profit of bargain; reliance — wasted expenditure; claimant usually chooses higher measure." },
+    { "front": "Non-pecuniary loss?", "back": "Generally **not recoverable** in contract (contrast tort) — exceptions: consumer distress in limited cases (Farley v Skinner)." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Common law remedies** (3.4.1) — **Hadley v Baxendale** two limbs for remoteness." },
+    {
+      "type": "workedExample",
+      "question": "A miller sends a broken crankshaft to B for repair, telling B the mill is stopped. B delays return by a week. The mill remains idle, losing £800 profit. A spare shaft was available locally but miller did not buy it. Advise on damages.",
+      "solution": "**Case parallel *Hadley v Baxendale*:** Miller's special circumstance (mill stopped) was **communicated** to B.\n\n**Remoteness:** Lost profits from idle mill are **recoverable** under **second limb** — both parties knew delay would stop production.\n\n**Mitigation:** Miller should have bought **locally available spare shaft** — failure to mitigate reduces recoverable loss (*Pilkington v Wood*).\n\n**Calculation:** £800 lost profit **minus** cost of spare shaft miller should have bought (if cheaper than waiting).\n\n**Conclusion:** Miller recovers **avoidable loss only** — not full £800 if spare shaft would have limited downtime at lower cost."
+    },
     { "type": "practice", "label": "Mark a common law remedies question", "href": "/mark?subject=9084&topic=3.4.1" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.3.2 Breach", "href": "/courses/9084/3-3-2-breach" },
+        { "label": "3.4.2 Equitable remedies", "href": "/courses/9084/3-4-2-equitable" },
+        { "label": "3.2.3 Status of terms", "href": "/courses/9084/3-2-3-status-of-terms" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

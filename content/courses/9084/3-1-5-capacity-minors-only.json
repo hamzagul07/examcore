@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Contract — minors' contracts: valid, voidable, and necessaries.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain age of capacity and minor's status.",
     "Distinguish valid, voidable, and unenforceable contracts.",
@@ -24,9 +24,30 @@
       "Ratification — on reaching 18 if affirmed."
     ]
   },
+  "flashcards": [
+    { "front": "Age of contractual capacity?", "back": "Under **18** — special rules apply; 18+ full capacity (Family Law Reform Act 1969)." },
+    { "front": "Valid minor's contracts?", "back": "Contracts for **necessaries** (s3 SGA 1979) and **beneficial service/employment** contracts." },
+    { "front": "What are necessaries?", "back": "Goods suitable to minor's **station in life** and **actual requirements** at time of sale — Nash v Inman (11 waistcoats not necessaries)." },
+    { "front": "Voidable contracts?", "back": "Most other contracts — minor may **disaffirm** during minority or reasonable time after 18 (e.g. leases, partnership)." },
+    { "front": "Loan contracts?", "back": "Generally **void** — lender cannot recover loan or enforce repayment from minor." },
+    { "front": "Ratification?", "back": "On reaching 18, minor may **affirm** voidable contract — then fully bound; cannot ratify what was void (loan)." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Capacity (minors)** (3.1.5) completes 3.1. Classify contract type before applying rules." },
+    {
+      "type": "workedExample",
+      "question": "Tom, aged 17, a wealthy undergraduate, buys an expensive dinner jacket from a tailor for £800. He already owns several suits. The tailor sues for the price. Advise.",
+      "solution": "**Capacity:** Tom is a **minor** (under 18).\n\n**Classification:** Sale of goods — assess whether **necessaries** under **s3 Sale of Goods Act 1979**.\n\n**Necessaries test:** (1) Suitable to minor's **station in life** — wealthy student may need formal wear; (2) **Actual requirements** at time — Tom already owns several suits, so jacket may **not** be a necessary (*Nash v Inman* — excess clothing not necessaries).\n\n**If not necessaries:** Contract is **voidable** at Tom's option. Tom may **disaffirm** and return goods (if still in possession).\n\n**If necessaries:** Tom must pay **reasonable price**, not necessarily agreed £800.\n\n**Conclusion:** Tailor likely **fails** — jacket probably not a necessary given existing wardrobe; Tom can disaffirm."
+    },
     { "type": "practice", "label": "Mark a capacity question", "href": "/mark?subject=9084&topic=3.1.5" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.1.1 Nature of a contract", "href": "/courses/9084/3-1-1-nature-of-a-contract" },
+        { "label": "3.1.4 Consideration", "href": "/courses/9084/3-1-4-consideration" },
+        { "label": "3.2.2 Consumer Rights Act 2015", "href": "/courses/9084/3-2-2-terms-implied-into-a-consumer-contract-by-the-consumer-rights-act-2015" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

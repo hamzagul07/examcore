@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Tort — compensatory damages, injunctions, and assessment of tort losses.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain purpose of tort damages.",
     "Outline heads of loss: general and special damages.",
@@ -24,9 +24,38 @@
       "Injunction — prohibit continuing nuisance/trespass."
     ]
   },
+  "flashcards": [
+    { "front": "Purpose of tort damages?", "back": "Compensation (restitutio in integrum) — put claimant in position they would have been in but for the tort; not punishment." },
+    { "front": "General damages?", "back": "Non-quantifiable losses assessed by court — pain, suffering, loss of amenity (PSLA); precedent guides amount." },
+    { "front": "Special damages?", "back": "Quantifiable past/future financial loss — medical costs, loss of earnings, property repair; must be pleaded and proved." },
+    { "front": "Nominal damages?", "back": "Small sum where tort committed but no substantial loss — e.g. trespass actionable per se." },
+    { "front": "Injunction in tort?", "back": "Equitable order stopping continuing tort — common in nuisance/trespass (*Miller v Jackson*, *Coventry v Lawrence*)." },
+    { "front": "Aggravated vs exemplary damages?", "back": "Aggravated — compensate for manner of wrong; exemplary (rare) — punish/oppress D's conduct (Rookes v Barnard limits)."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Tort remedies** (4.4.2) completes **9084 at 100%**. Link **heads of damage** to **negligence problem facts**." },
-    { "type": "practice", "label": "Mark a tort remedies question", "href": "/mark?subject=9084&topic=4.4.2" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Tort remedies** (4.4.2) completes **9084 Paper 4**. Link **heads of damage** to negligence problem facts — distinguish **general** from **special** damages and know when **injunctions** apply."
+    },
+    {
+      "type": "workedExample",
+      "question": "After a negligent road accident, Kai suffers a broken leg, six months off work (£24,000 lost earnings), £3,000 medical costs, and ongoing noise from a neighbour's illegal extension (nuisance). Advise on tort remedies available. [15 marks]",
+      "solution": "**Negligence claim (driver):**\n\n**Compensatory damages** — full restitution:\n- **General damages:** Pain, suffering, loss of amenity from broken leg — assessed by court using **JSB/Ogilvy guidelines** for injury type.\n- **Special damages:** Must be **pleaded and proved**:\n  - Past medical costs: **£3,000**\n  - Lost earnings (6 months): **£24,000**\n  - Future losses if leg affects earning capacity — actuarial evidence may be needed.\n\n**Contributory negligence?** If Kai failed to wear seatbelt — reduce under **LRA 1945** (*Froom v Butcher* percentages).\n\n**Private nuisance (extension noise):**\n- **Damages** for loss of enjoyment of property.\n- **Injunction** — order to cease building/noise or modify extension (*Coventry v Lawrence* — injunction preferred where ongoing harm; *Miller v Jackson* — damages substituted where injunction disproportionate).\n\n**Nominal damages:** Not primary here — substantial losses proved.\n\n**Exemplary damages:** Rare — only if oppressive, arbitrary conduct by D (*Rookes v Barnard* categories).\n\n**Structured settlement:** Lump sum vs periodical payments for future care — policy choice for catastrophic injury (beyond basic syllabus but shows evaluation).\n\n**Conclusion:** Kai claims **general + special damages** from driver; against neighbour seeks **injunction + damages** for ongoing nuisance — remedies match tort type and harm."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a tort remedies question",
+      "href": "/mark?subject=9084&topic=4.4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.1.1 Nature of negligence", "href": "/courses/9084/4-1-1-nature-of-liability-in-negligence" },
+        { "label": "4.2.2 Private nuisance", "href": "/courses/9084/4-2-2-private-nuisance" },
+        { "label": "4.4.1 Defences", "href": "/courses/9084/4-4-1-defences" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

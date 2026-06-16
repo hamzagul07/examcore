@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Criminal — s9(1)(a) and (b): entry as trespasser with intent or having entered.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish s9(1)(a) and s9(1)(b) burglary.",
     "Explain 'entry', 'building', and 'part of a building'.",
@@ -24,9 +24,38 @@
       "s9(1)(a) — intent at entry; (b) — offence inside."
     ]
   },
+  "flashcards": [
+    { "front": "s9(1)(a) burglary?", "back": "Enters building/part as trespasser with intent to steal, inflict GBH, or do unlawful damage." },
+    { "front": "s9(1)(b) burglary?", "back": "Having entered as trespasser, steals/attempts or inflicts/attempts GBH." },
+    { "front": "Entry (Collins)?", "back": "Effective entry — part of body (or instrument attached to D) must intrude; jury decides if sufficient." },
+    { "front": "Entry (Ryan)?", "back": "Entry possible even if D stuck halfway through window and stole nothing — effective entry still possible." },
+    { "front": "Trespass?", "back": "Entry without permission or exceeding permission given — mens rea at time of entry (R v Jones and Smith)." },
+    { "front": "Part of a building (Walkington)?", "back": "Counter area of shop closed to public — D exceeded implied permission by entering that part." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Burglary s9** (2.2.3) — distinguish **(a) vs (b)** and when **mens rea** must exist." },
-    { "type": "practice", "label": "Mark a burglary question", "href": "/mark?subject=9084&topic=2.2.3" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Burglary s9** (2.2.3) — distinguish **(a) vs (b)** and when **mens rea** must exist. For (a), intent must exist **at entry**; for (b), the ulterior offence follows entry as trespasser."
+    },
+    {
+      "type": "workedExample",
+      "question": "Leo enters a shop during opening hours and walks behind the counter (staff-only area) to steal cash from the till. Analyse burglary under s9(1)(a) and (b). [10 marks]",
+      "solution": "**1. Building (s9(2)):** A shop is a **building** — includes inhabited vehicles/vessels; a fixed shop clearly qualifies.\n\n**2. Entry:** Leo **entered** the shop — *R v Collins* requires effective entry; walking through the door satisfies this. For the **counter area**, *R v Walkington* — entering a part of a building the public is not invited into can be entry as trespasser even if D lawfully entered the building overall.\n\n**3. Trespasser:** Leo had implied permission to enter as a **customer**, not to go **behind the counter** — he **exceeded** permission (*R v Jones and Smith*: permission can be withdrawn or exceeded). He is a **trespasser** when entering the restricted area.\n\n**4. s9(1)(a) — intent at entry:** When Leo entered the staff area, did he **intend to steal**? If he formed intent **before** entering that part, s9(1)(a) is satisfied — intent to steal, inflict GBH, or cause unlawful damage at time of entry.\n\n**5. s9(1)(b) — ulterior offence:** If Leo entered the counter area as trespasser and **then stole** (or attempted), s9(1)(b) applies — the theft need not have been intended at initial entry to the shop, only that he was a trespasser when the theft occurred inside.\n\n**Conclusion:** Leo is likely guilty of **s9(1)(a)** if intent existed at entry to the restricted area, and/or **s9(1)(b)** when he stole from the till. Cite *Walkington* for exceeding implied permission."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a burglary question",
+      "href": "/mark?subject=9084&topic=2.2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.2.1 Theft", "href": "/courses/9084/2-2-1-theft-as-defined-in-s1-theft-act-1968" },
+        { "label": "2.2.7 Criminal damage", "href": "/courses/9084/2-2-7-criminal-damage-as-defined-in-criminal-damage-act-1971" },
+        { "label": "2.1.2 Mens rea", "href": "/courses/9084/2-1-2-mens-rea" },
+        { "label": "1.2.3 Criminal courts and process", "href": "/courses/9084/1-2-3-criminal-courts-and-criminal-process" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Tort — total restraint of movement without lawful justification.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define false imprisonment.",
     "Explain total restraint requirement (Bird v Jones).",
@@ -24,9 +24,38 @@
       "Duration — even brief confinement suffices."
     ]
   },
+  "flashcards": [
+    { "front": "False imprisonment definition?", "back": "Total restraint of freedom of movement without lawful justification — actionable per se." },
+    { "front": "Bird v Jones?", "back": "Partial obstruction of public footpath — claimant could leave by another route; no total restraint, no false imprisonment." },
+    { "front": "Total restraint test?", "back": "C must be confined within defined area with no reasonable means of escape — locked room, unlawful arrest, or coerced stay." },
+    { "front": "Murray v CC?", "back": "Claimant need not know of imprisonment at time — can sue later if unaware during confinement (e.g. child)." },
+    { "front": "Ilich v R?", "back": "Moral pressure insufficient without physical barrier or authority — need total restraint not mere threats." },
+    { "front": "Lawful authority defence?", "back": "Valid arrest (PACE), mental health detention, or consent defeats claim — unlawful detention = tort."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**False imprisonment** (4.3.3) completes trespass to person. **Total restraint** is key." },
-    { "type": "practice", "label": "Mark a false imprisonment question", "href": "/mark?subject=9084&topic=4.3.3" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**False imprisonment** (4.3.3) completes trespass to the person. **Total restraint** is the key — partial blocking (*Bird v Jones*) is not enough."
+    },
+    {
+      "type": "workedExample",
+      "question": "Store staff lock a customer in a stockroom for 45 minutes accusing her of theft without calling police. She knew she was locked in and asked to leave repeatedly. Advise on false imprisonment. [12 marks]",
+      "solution": "**Elements:**\n\n1. **Total restraint:** Customer **locked in stockroom** — cannot leave by any reasonable route. **Total confinement** within defined area — unlike *Bird v Jones* (partial block on bridge, alternate path available).\n\n2. **Without lawful justification:**\n   - **Citizen's arrest:** Requires **reasonable grounds** and usually immediate handover to police — 45 minutes locked without authority exceeds privilege.\n   - **Consent:** No consent to detention.\n   - **Shopkeeper's power:** Detention must be reasonable and brief — locking in stockroom likely **unlawful**.\n\n3. **Awareness:** Customer **knew** she was confined and asked to leave — satisfies awareness. *Murray v CC* — even without awareness at time, claim possible if discovered later.\n\n4. **Duration:** 45 minutes sufficient — **no minimum** duration required.\n\n**Assault/battery?** Locking door may involve **assault** (apprehension) and **battery** (contact closing door) — cumulative torts.\n\n**Defences:** None if no reasonable suspicion or lawful arrest power.\n\n**Remedy:** **Damages** — nominal for wrongful detention plus psychiatric distress or loss if proved.\n\n**Conclusion:** Store staff likely **committed false imprisonment** — contrast with brief, lawful citizen's arrest on shop floor with police called."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a false imprisonment question",
+      "href": "/mark?subject=9084&topic=4.3.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.3.1 Assault", "href": "/courses/9084/4-3-1-assault" },
+        { "label": "4.3.2 Battery", "href": "/courses/9084/4-3-2-battery" },
+        { "label": "4.4.1 Defences", "href": "/courses/9084/4-4-1-defences" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Criminal — theft plus force or threat of force immediately before or at time of stealing.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define robbery under s8 TA 1968.",
     "Explain 'uses force on any person' and 'puts in fear'.",
@@ -24,9 +24,38 @@
       "Timing — force linked to appropriation."
     ]
   },
+  "flashcards": [
+    { "front": "s8 robbery definition?", "back": "A person guilty of theft who, immediately before or at the time of doing so, uses force on any person or puts or seeks to put any person in fear of being then and there subjected to force." },
+    { "front": "Must theft be complete?", "back": "Yes — all s1 theft elements must be satisfied; robbery is an aggravated form of theft." },
+    { "front": "Force on any person?", "back": "Force need not be on the victim of the theft — can be on a third party (DPP v D)." },
+    { "front": "Clouden (1987)?", "back": "Force includes wrenching a handbag from the owner's hand — minimal force on the person suffices." },
+    { "front": "Dawson and James?", "back": "Pushing the victim so an accomplice could steal the wallet = force for robbery." },
+    { "front": "Timing requirement?", "back": "Force must be immediately before or at the time of stealing — not after theft is complete." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Robbery s8** (2.2.2) — establish **theft first**, then add **force/fear** element." },
-    { "type": "practice", "label": "Mark a robbery question", "href": "/mark?subject=9084&topic=2.2.2" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Robbery s8** (2.2.2) — establish **theft first**, then add **force/fear** element. The force must be **linked in time** to the appropriation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Marc snatches a phone from Tom's hand, causing Tom to stumble. Tom chases Marc; Marc turns and punches Tom before escaping. Analyse whether Marc is guilty of robbery under s8. [10 marks]",
+      "solution": "**Step 1 — Theft (s1):** Marc **appropriates** the phone (s3), which is **property** (s4) **belonging to another** (s5). If he acted **dishonestly** (Ivey) with **intent to permanently deprive** (s6), theft is made out.\n\n**Step 2 — Force immediately before or at time of stealing (s8):** *R v Clouden* — wrenching/snatching property from the victim's hand is **force on any person**; minimal force suffices. Marc's snatch likely satisfies this **at the moment of appropriation**.\n\n**Step 3 — Punch after the chase:** The punch occurs **after** the theft is complete — force used only to **escape** does not satisfy s8's timing requirement unless it was part of the same continuing appropriation (*R v Hale* — continuing act doctrine may extend the moment of stealing in some snatch cases, but a separate punch after a chase is harder to link).\n\n**Step 4 — Fear of force:** Not required if force is used directly — s8 offers two routes: force **or** putting in fear.\n\n**Conclusion:** Marc is likely **guilty of robbery** based on the **snatch with force** (*Clouden*). The later punch may be a **separate assault** but does not need to be relied on for robbery if the snatch alone involved force at the time of stealing."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a robbery question",
+      "href": "/mark?subject=9084&topic=2.2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.2.1 Theft", "href": "/courses/9084/2-2-1-theft-as-defined-in-s1-theft-act-1968" },
+        { "label": "2.1.1 Actus reus", "href": "/courses/9084/2-1-1-actus-reus" },
+        { "label": "4.3.1 Assault", "href": "/courses/9084/4-3-1-assault" },
+        { "label": "4.3.2 Battery", "href": "/courses/9084/4-3-2-battery" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

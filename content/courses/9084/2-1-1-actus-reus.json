@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Criminal — voluntary act, omissions, causation, and concurrence.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define actus reus and voluntary act requirement.",
     "Explain when a duty to act creates liability for omissions.",
@@ -24,9 +24,37 @@
       "Legal causation — operating and substantial cause."
     ]
   },
+  "flashcards": [
+    { "front": "Actus reus?", "back": "Guilty act — conduct, circumstances, or result required by the offence definition." },
+    { "front": "Voluntary act (Hill v Baxter)?", "back": "Reflex or automatism (e.g. bee sting while driving) is not a voluntary act — no actus reus." },
+    { "front": "When is an omission criminal?", "back": "Only where a legal duty exists — statute, contract, relationship, voluntary assumption, dangerous situation created." },
+    { "front": "Factual causation?", "back": "But-for test — would the result have occurred anyway? (R v White — poisoned milk but victim died of heart attack)." },
+    { "front": "Legal causation?", "back": "D's act must be more than minimal cause — 'operating and substantial' (R v Smith); not broken by thin skull victim." },
+    { "front": "Novus actus interveniens?", "back": "New intervening act breaking chain — e.g. victim's unreasonable escape (Roberts) vs medical negligence (Jordan, rare)." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Actus reus** (2.1.1) opens Paper 2. Master **causation chain** for problem questions." },
-    { "type": "practice", "label": "Mark an actus reus question", "href": "/mark?subject=9084&topic=2.1.1" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Actus reus** (2.1.1) opens Paper 2. Master **causation chain** for problem questions. Every offence requires a **voluntary act** (*Hill v Baxter*) unless a **duty to act** makes an omission sufficient (*R v Pittwood* — contractual duty). For **result crimes**, prove **factual causation** (but-for) then **legal causation** (operating and substantial cause). Watch for **novus actus interveniens** — *R v Pagett* (victim's reasonable act) vs *R v Jordan* (palpably wrong medical treatment)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Alex stabs Ben, who is taken to hospital. Ben dies after a nurse mistakenly gives the wrong drug. Advise whether Alex is the legal cause of Ben's death. [10 marks]",
+      "solution": "**Issue:** Whether Alex's stabbing is the legal cause of death despite medical error.\n\n**Actus reus — conduct:** Stabbing is a **voluntary act** — clearly satisfies conduct element of homicide.\n\n**Factual causation (but-for):** But for Alex's stabbing, Ben would not have been in hospital. **Factual cause established** (contrast *R v White* where victim died independently).\n\n**Legal causation:** Must be **operating and substantial cause** at time of death (*R v Smith* — original wound still operating). **Thin skull rule** — take victim as found (*R v Blaue*).\n\n**Medical negligence (novus actus):** *R v Jordan* — **palpably wrong** treatment may break chain (rare). *R v Cheshire* — only if original injury becomes **merely background**; medical treatment **normal** even if negligent will not break chain.\n\n**Application:** Stabbing is **serious wound** — likely still **operating cause** when wrong drug administered. Nurse's error must be **so independent and potent** as to make stabbing insignificant (*Cheshire* test).\n\n**Conclusion:** Alex likely **legally causes** death — medical error usually insufficient to break chain unless wholly unrelated to original injury.\n\n**Exam tip:** Work through voluntary act → but-for → legal cause → intervening act in order."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an actus reus question",
+      "href": "/mark?subject=9084&topic=2.1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.1.2 Mens rea", "href": "/courses/9084/2-1-2-mens-rea" },
+        { "label": "2.2.1 Theft", "href": "/courses/9084/2-2-1-theft-as-defined-in-s1-theft-act-1968" },
+        { "label": "1.2.4 Police powers", "href": "/courses/9084/1-2-4-police-powers" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

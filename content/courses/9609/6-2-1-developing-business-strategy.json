@@ -5,28 +5,69 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — SWOT, mission, and strategic choice.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — mission, SWOT, Ansoff matrix, and strategic choice using PESTLE evidence.",
+  "durationMin": 28,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define business strategy.",
-    "Conduct SWOT from case data.",
-    "Explain mission and vision roles.",
-    "Evaluate strategic options."
+    "Define business strategy and its levels.",
+    "Conduct SWOT analysis from case evidence.",
+    "Explain mission, vision, and corporate objectives.",
+    "Apply Ansoff's matrix to evaluate strategic options."
   ],
   "simpleExplanation": {
     "title": "Choosing where to compete",
-    "summary": "Strategy is long-term direction. PESTLE and SWOT inform choices about markets, products, and capabilities.",
+    "summary": "Strategy is long-term direction — which markets, products, and capabilities to pursue. PESTLE feeds opportunities and threats; SWOT matches these to internal strengths and weaknesses.",
     "steps": [
-      "Mission states purpose.",
-      "SWOT: internal S/W, external O/T.",
-      "Ansoff: market/product penetration/development.",
-      "Strategy must fit resources."
+      "Mission states purpose; vision is the long-term ambition.",
+      "SWOT: internal strengths/weaknesses, external opportunities/threats.",
+      "Ansoff: penetration, development, product, diversification.",
+      "Chosen strategy must fit finance, skills, and risk appetite."
     ]
   },
+  "flashcards": [
+    { "front": "Business strategy?", "back": "Long-term plan showing how firm achieves objectives and competes — direction of travel." },
+    { "front": "Mission statement?", "back": "Purpose of organisation — why it exists." },
+    { "front": "SWOT S and W?", "back": "Internal — strengths and weaknesses (resources, skills, brand)." },
+    { "front": "SWOT O and T?", "back": "External — opportunities and threats (from PESTLE, competition)." },
+    { "front": "Ansoff penetration?", "back": "Existing product, existing market — increase share." },
+    { "front": "Ansoff product development?", "back": "New product, existing market." },
+    { "front": "Ansoff market development?", "back": "Existing product, new market/geography." },
+    { "front": "Ansoff diversification?", "back": "New product, new market — highest risk." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Developing strategy** (6.2.1) uses **6.1 PESTLE** inputs. Build **SWOT from case evidence only**." },
-    { "type": "practice", "label": "Mark a business strategy question", "href": "/mark?subject=9609&topic=6.2.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Developing business strategy** (6.2.1) uses **6.1 PESTLE** inputs. **Rule:** every SWOT point must cite **case evidence** — examiners reject generic lists."
+    },
+    {
+      "type": "heading",
+      "content": "SWOT and Ansoff"
+    },
+    {
+      "type": "text",
+      "content": "Build **SWOT** from the case only:\n- **Strength:** strong brand (case quote % share)\n- **Weakness:** ageing equipment (case capex data)\n- **Opportunity:** market growth in Asia (6.1.6)\n- **Threat:** new low-cost competitor (6.1.5)"
+    },
+    {
+      "type": "workedExample",
+      "question": "UK coffee chain: strong brand (S), high UK rent costs (W), growing Middle East demand (O), rising bean prices (T). Recommend one Ansoff strategy.",
+      "solution": "**Recommend market development** — enter **Middle East** with **existing product** (coffee shops).\n\n**Why not diversification?** No evidence of skills outside hospitality — high risk.\n\n**Why not penetration only?** UK **rent weakness** limits UK expansion ROI; **O** in Middle East is explicit.\n\n**Fit:** Use **brand strength**; finance via **retained profit + franchise** (5.2); **PESTLE** check local **legal/cultural** rules (6.1.1, 6.1.6)."
+    },
+    {
+      "type": "examTip",
+      "content": "Draw **Ansoff 2×2** with firm's chosen option circled and **one sentence justification** per rejected quadrant."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a business strategy question",
+      "href": "/mark?subject=9609&topic=6.2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "6.1 PESTLE lessons", "href": "/courses/9609/6-1-1-political-and-legal" },
+        { "label": "6.2.2 Corporate planning", "href": "/courses/9609/6-2-2-corporate-planning-and-implementation" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

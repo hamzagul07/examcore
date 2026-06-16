@@ -108,6 +108,11 @@ const INTERACTIVE_EMBED_CATALOG_RAW: Record<string, LessonInteractiveEmbed> = {
     'Change fluid density and depth — read gauge pressure and compare water, oil, and mercury (4.3).'
   ),
   // ── 9708 Economics (GeoGebra) ──────────────────────────────────────────
+  '1-1-scarcity-choice-and-opportunity-cost': geogebraEntry(
+    'hxJ5J2Rk',
+    'Scarcity and opportunity cost',
+    'PPC illustrates finite resources — every choice has a forgone alternative (9708 1.1).'
+  ),
   '2-1-demand-and-supply-curves': geogebraEntry(
     'VGWtkPU5',
     'Supply and demand introduction',

@@ -1,4 +1,5 @@
 import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
+import { GENERATED_SUBJECT_SPECS } from '@/lib/courses/generated/subject-visuals'
 
 export type DiagramParamSpec = {
   id: string
@@ -982,6 +983,12 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Elastic demand: quantity responds strongly to price change.', embedHint: 'Large quantity change for small price move → elastic.' },
     { caption: 'YED: normal good YED > 0; inferior good YED < 0.', embedHint: 'Relate income shifts to demand curve movement.' },
     { caption: ' XED > 0 substitutes; XED < 0 complements.', embedHint: 'Predict cross-price effects from curve shifts.' },
+  ]),
+  '1-1-scarcity-choice-and-opportunity-cost': embedSpec([
+    { caption: 'Scarcity forces choice — not all wants can be satisfied.', embedHint: 'Finite resources on the axes — unlimited wants cannot all be met.' },
+    { caption: 'Opportunity cost is the next best alternative forgone.', embedHint: 'Move along the PPC — slope shows what you give up.' },
+    { caption: 'What to produce? How? For whom? — basic economic questions.', embedHint: 'Compare points inside, on, and outside the frontier.' },
+    { caption: 'PPC links scarcity to opportunity cost (see 1.5 for full analysis).', embedHint: 'Efficient points on the curve — inside means unemployed resources.' },
   ]),
   '1-5-production-possibility-curves': embedSpec([
     { caption: 'PPC shows maximum output combinations with fixed resources.', embedHint: 'Points on the curve are productively efficient.' },
@@ -2386,7 +2393,7 @@ const SPECS: Record<string, LessonDiagramSpec> = {
   ]),
 }
 
-export const DIAGRAM_SPEC_SLUGS = Object.keys(SPECS)
+export const DIAGRAM_SPEC_SLUGS = [...Object.keys(SPECS), ...Object.keys(GENERATED_SUBJECT_SPECS)]
 
 export function resolveDiagramSpec(
   slug: string,
@@ -2398,8 +2405,10 @@ export function resolveDiagramSpec(
 
 export function getLessonDiagramSpec(slug: string): LessonDiagramSpec | null {
   if (SPECS[slug]) return SPECS[slug]
+  if (GENERATED_SUBJECT_SPECS[slug]) return GENERATED_SUBJECT_SPECS[slug]
   const alias = resolveVisualCatalogSlug(slug)
   if (alias !== slug && SPECS[alias]) return SPECS[alias]
+  if (alias !== slug && GENERATED_SUBJECT_SPECS[alias]) return GENERATED_SUBJECT_SPECS[alias]
   return null
 }
 

@@ -5,9 +5,9 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — unit, job, and batch costing for different production types.",
+  "summary": "9706 P2 — unit, job, and batch costing for different production types.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish unit, job, and batch costing.",
     "Calculate cost per unit/job/batch.",
@@ -24,9 +24,36 @@
       "Cost sheet — materials + labour + overheads."
     ]
   },
+  "flashcards": [
+    { "front": "Unit costing used when?", "back": "Mass production of identical items (e.g. chemicals, bricks)." },
+    { "front": "Job costing used when?", "back": "Custom/bespoke orders — furniture, printing." },
+    { "front": "Batch costing?", "back": "Group similar jobs; cost per batch ÷ units = unit cost." },
+    { "front": "Cost unit?", "back": "Unit of output to which cost is assigned (litre, job no., batch)." },
+    { "front": "Quotation uses?", "back": "Estimated cost + profit mark-up." },
+    { "front": "Job cost sheet?", "back": "Record of materials, labour, overheads for one job." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Costing applications** (2.2.1) — choose **method to match production type**." },
-    { "type": "practice", "label": "Mark a costing applications question", "href": "/mark?subject=9706&topic=2.2.1" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Costing applications** (2.2.1) — choose **method to match production type**. Justify choice in evaluation questions."
+    },
+    {
+      "type": "workedExample",
+      "question": "Batch 47: materials $2,400; direct labour 120 hours @ $15; overheads absorbed at $8 per labour hour. Batch size 600 units. Calculate total cost and cost per unit.",
+      "solution": "**Direct labour** = 120 × $15 = **$1,800**\n**Overheads** = 120 × $8 = **$960**\n\n**Total batch cost** = 2,400 + 1,800 + 960 = **$5,160**\n**Cost per unit** = 5,160 ÷ 600 = **$8.60**\n\n**If 25% mark-up:** Selling price ≈ 8.60 × 1.25 = **$10.75** per unit."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a costing applications question",
+      "href": "/mark?subject=9706&topic=2.2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.1.1 Materials and labour", "href": "/courses/9706/2-1-1-materials-and-labour" },
+        { "label": "2.2.2 Absorption costing", "href": "/courses/9706/2-2-2-absorption-costing" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

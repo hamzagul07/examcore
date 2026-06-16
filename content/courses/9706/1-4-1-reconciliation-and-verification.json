@@ -5,28 +5,55 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — purpose of reconciliation, error detection, and internal controls.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "summary": "9706 P2 — reconciliation, error types, internal controls, and verification.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain why reconciliations verify accounting records.",
-    "Identify types of errors reconciliations detect.",
-    "Outline internal control objectives.",
-    "Describe division of duties and authorisation."
+    "Define reconciliation and verification.",
+    "Identify types of accounting errors.",
+    "Explain role of internal controls.",
+    "Apply reconciliation to case scenarios."
   ],
   "simpleExplanation": {
-    "title": "Checking the books add up",
-    "summary": "Reconciliation compares independent records to find errors — internal controls reduce fraud and mistakes before statements are prepared.",
+    "title": "Making records agree",
+    "summary": "Reconciliation compares two independent records until they match. Internal controls prevent and detect errors; verification confirms records reflect real transactions.",
     "steps": [
-      "Reconciliation — match two independent sources.",
-      "Errors — omission, commission, reversal, principle.",
-      "Internal control — prevent and detect errors.",
-      "Verification — records agree with reality."
+      "Reconciliation — match cash book to bank statement, control to subsidiary ledgers.",
+      "Errors: omission, commission, principle, reversal, compensating.",
+      "Internal control — separation of duties, authorisation, audit trail.",
+      "Verification — physical stock count, debtor circularisation."
     ]
   },
+  "flashcards": [
+    { "front": "Error of omission?", "back": "Transaction completely left out — TB may still balance." },
+    { "front": "Error of commission?", "back": "Correct amount, wrong personal account." },
+    { "front": "Error of principle?", "back": "Wrong class of account — e.g. capital item expensed." },
+    { "front": "Error of reversal?", "back": "Debits and credits swapped — TB still balances." },
+    { "front": "Compensating errors?", "back": "Two errors cancel — TB balances incorrectly." },
+    { "front": "Internal control example?", "back": "Different staff authorise payments and record them." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Reconciliation** (1.4.1) opens 1.4. Link to **bank rec** and **control accounts**." },
-    { "type": "practice", "label": "Mark a reconciliation question", "href": "/mark?subject=9706&topic=1.4.1" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Reconciliation and verification** (1.4.1) — know **errors NOT revealed by trial balance** (omission, commission, compensating, complete reversal)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Purchase of office equipment $4,000 debited to purchases account. Name error type and effect on profit and fixed assets.",
+      "solution": "**Error of principle** — wrong **category** (expense vs asset).\n\n**Effect on profit:** **Overstated expenses** → **profit understated** by $4,000 (no depreciation yet).\n\n**Effect on SOFP:** **Non-current assets understated** $4,000; **no effect on TB balance**.\n\n**Correction:** DR **Office equipment** $4,000, CR **Purchases** $4,000 — then **depreciate** and **adjust profit**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a reconciliation question",
+      "href": "/mark?subject=9706&topic=1.4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.4.2 Trial balance", "href": "/courses/9706/1-4-2-trial-balance" },
+        { "label": "1.4.3 Bank reconciliation", "href": "/courses/9706/1-4-3-bank-reconciliation-statements" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

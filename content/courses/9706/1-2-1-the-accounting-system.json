@@ -5,28 +5,55 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — double entry, books of prime entry, ledgers, and the accounting cycle.",
+  "summary": "9706 P2 — double entry, books of prime entry, ledgers, and the accounting cycle.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain double entry bookkeeping principles.",
-    "Identify books of prime entry and ledger accounts.",
-    "Outline the accounting cycle from source to statements.",
-    "Prepare basic journal and ledger entries."
+    "Explain the double-entry system.",
+    "Describe books of prime entry and the ledger.",
+    "Record transactions using debit and credit rules.",
+    "Outline flow from source documents to trial balance."
   ],
   "simpleExplanation": {
-    "title": "Recording every transaction twice",
-    "summary": "Double entry records each transaction with equal debit and credit — source documents flow through books of prime entry to ledgers and trial balance.",
+    "title": "Every transaction has two sides",
+    "summary": "Double entry records each transaction twice — debit and credit — so the accounting equation stays balanced. Day books collect transactions; the ledger holds T-accounts.",
     "steps": [
-      "Debit = assets/expenses increase.",
-      "Credit = liabilities/income increase.",
-      "Books of prime entry — day books.",
-      "Ledger — T accounts, balances extracted."
+      "Debit increases assets and expenses; credit increases liabilities and income.",
+      "Books of prime entry — sales day book, purchases day book, cash book.",
+      "Ledger — individual T-accounts; balances extracted for trial balance.",
+      "Source document → day book → ledger → trial balance → financial statements."
     ]
   },
+  "flashcards": [
+    { "front": "DEAD CLIC?", "back": "Debit: Expenses, Assets, Drawings. Credit: Liabilities, Income, Capital." },
+    { "front": "Sales day book?", "back": "Lists credit sales — total DR debtors control, CR sales." },
+    { "front": "Purchases day book?", "back": "Lists credit purchases — DR purchases, CR creditors control." },
+    { "front": "Cash book?", "back": "Records all bank/cash receipts and payments — also a ledger account." },
+    { "front": "General ledger?", "back": "Nominal accounts — expenses, income, assets, liabilities." },
+    { "front": "Personal ledger?", "back": "Receivables and payables — individual customer/supplier accounts." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Accounting system** (1.2.1) — master **DEAD CLIC** and **books of prime entry**." },
-    { "type": "practice", "label": "Mark an accounting system question", "href": "/mark?subject=9706&topic=1.2.1" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**The accounting system** (1.2.1) — master **DEAD CLIC** and **control account** postings before Paper 2 journal questions."
+    },
+    {
+      "type": "workedExample",
+      "question": "Credit sale of goods $800 to Customer X. State the double-entry and which book of prime entry is used first.",
+      "solution": "**Book of prime entry:** **Sales day book** — record **$800** to Customer X (listed, not double-entered in day book itself).\n\n**Ledger entries (from total at period end or individually):**\n- DR **Sales ledger control** (or Customer X) **$800**\n- CR **Sales revenue** **$800**\n\n**Effect:** **Asset (receivable)** up, **income** up — accounting equation balanced."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an accounting system question",
+      "href": "/mark?subject=9706&topic=1.2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.4.4 Control accounts", "href": "/courses/9706/1-4-4-control-accounts" },
+        { "label": "9609 10.1.1 Statement of profit or loss", "href": "/courses/9609/10-1-1-statement-of-profit-or-loss" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

@@ -5,9 +5,9 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — profitability, liquidity, efficiency, and gearing ratios with interpretation.",
+  "summary": "9706 P2 — profitability, liquidity, efficiency, and gearing ratios with interpretation.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Calculate profitability ratios: GP%, NP%, ROCE.",
     "Calculate liquidity: current and acid test.",
@@ -24,9 +24,40 @@
       "Gearing — debt ÷ (debt + equity)."
     ]
   },
+  "flashcards": [
+    { "front": "Gross profit margin?", "back": "(Gross profit ÷ Revenue) × 100." },
+    { "front": "ROCE?", "back": "(PBIT ÷ Capital employed) × 100; CE = equity + long-term liabilities." },
+    { "front": "Current ratio?", "back": "Current assets ÷ Current liabilities." },
+    { "front": "Acid test?", "back": "(Current assets − Inventory) ÷ Current liabilities." },
+    { "front": "Inventory days?", "back": "(Average inventory ÷ COGS) × 365." },
+    { "front": "Gearing?", "back": "(Non-current liabilities ÷ Capital employed) × 100." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Ratios** (1.6.2) completes Section 1. Always **calculate → interpret → evaluate**." },
-    { "type": "practice", "label": "Mark a ratio analysis question", "href": "/mark?subject=9706&topic=1.6.2" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Ratios** (1.6.2) completes Section 1. Always **calculate → interpret → evaluate**. Use the interactive ratio diagram where available."
+    },
+    {
+      "type": "formula",
+      "content": "GP margin = $\\frac{\\text{Gross profit}}{\\text{Revenue}} \\times 100$\n\nROCE = $\\frac{\\text{PBIT}}{\\text{Capital employed}} \\times 100$\n\nCurrent ratio = $\\frac{\\text{Current assets}}{\\text{Current liabilities}}$\n\nAcid test = $\\frac{\\text{Current assets − Inventory}}{\\text{Current liabilities}}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Revenue $500,000; gross profit $150,000; net profit $40,000; PBIT $55,000; capital employed $400,000; current assets $90,000 (inventory $30,000); current liabilities $60,000. Calculate GP margin, ROCE, current ratio, and acid test.",
+      "solution": "**GP margin** = (150,000 ÷ 500,000) × 100 = **30%**\n\n**ROCE** = (55,000 ÷ 400,000) × 100 = **13.75%**\n\n**Current ratio** = 90,000 ÷ 60,000 = **1.5 : 1**\n\n**Acid test** = (90,000 − 30,000) ÷ 60,000 = **1.0 : 1**\n\n**Interpretation:** Healthy GP margin; ROCE acceptable if cost of capital lower; liquidity adequate but inventory-heavy (acid test at minimum benchmark)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a ratio analysis question",
+      "href": "/mark?subject=9706&topic=1.6.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.6.1 Users of information", "href": "/courses/9706/1-6-1-users-of-accounting-information" },
+        { "label": "9609 10.2.2 Profitability ratios", "href": "/courses/9609/10-2-2-profitability-ratios" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

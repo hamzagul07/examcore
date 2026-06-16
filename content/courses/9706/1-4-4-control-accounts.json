@@ -5,28 +5,55 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — sales, purchases, and trade receivables/payables control accounts.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9706 P2 — sales and purchases ledger control accounts, entries, and reconciliation.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
+    "Explain purpose of control accounts.",
     "Prepare sales and purchases ledger control accounts.",
-    "Reconcile control accounts with ledger totals.",
-    "Identify errors using control account differences.",
-    "Explain benefits for internal checking."
+    "Reconcile control accounts to subsidiary ledgers.",
+    "Use control accounts to find missing figures."
   ],
   "simpleExplanation": {
-    "title": "Checking the sub-ledgers",
-    "summary": "Control accounts summarise receivables and payables — if they don't match sub-ledger totals, an error exists somewhere in the system.",
+    "title": "One account for many customers",
+    "summary": "Control accounts summarise all receivables or payables in the general ledger. They are posted from books of prime entry and should equal the total of individual customer/supplier balances.",
     "steps": [
-      "Sales ledger control — total owed by customers.",
-      "Purchases ledger control — total owed to suppliers.",
-      "Entries from books of prime entry.",
-      "Reconciliation — control = sum of individual accounts."
+      "Sales ledger control — total owed by trade receivables.",
+      "Purchases ledger control — total owed to trade payables.",
+      "Entries from sales/purchase day books, cash book, journal.",
+      "Reconcile control balance to sum of personal ledger accounts."
     ]
   },
+  "flashcards": [
+    { "front": "Sales ledger control — debit items?", "back": "Credit sales, interest charged, dishonoured cheques." },
+    { "front": "Sales ledger control — credit items?", "back": "Cash/bank receipts, credit notes, irrecoverable debts written off." },
+    { "front": "Purchases ledger control — credit items?", "back": "Credit purchases, refunds from suppliers." },
+    { "front": "Purchases ledger control — debit items?", "back": "Payments to suppliers, purchase returns." },
+    { "front": "Why use controls?", "back": "Division of labour, fraud detection, locate errors in receivables/payables." },
+    { "front": "Contra entry?", "back": "Customer also supplier — offset balances with journal entry." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Control accounts** (1.4.4) completes 1.4. Learn **standard layout** for SLCA and PLCA." },
-    { "type": "practice", "label": "Mark a control accounts question", "href": "/mark?subject=9706&topic=1.4.4" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Control accounts** (1.4.4) — learn **standard layout** for sales and purchases control; exams often give **missing figure** problems."
+    },
+    {
+      "type": "workedExample",
+      "question": "Sales ledger control opening balance $12,000 DR. Credit sales $45,000; receipts $38,000; credit notes $2,000. Calculate closing balance.",
+      "solution": "**Sales ledger control account:**\nOpening balance b/d **12,000** DR\nCredit sales **45,000** DR\nReceipts **38,000** CR\nCredit notes **2,000** CR\n\n**Closing balance c/d** = 12,000 + 45,000 − 38,000 − 2,000 = **$17,000 DR**\n\n**Meaning:** Total **trade receivables** at year-end **$17,000** — should equal sum of individual customer balances."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a control accounts question",
+      "href": "/mark?subject=9706&topic=1.4.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.2.1 Accounting system", "href": "/courses/9706/1-2-1-the-accounting-system" },
+        { "label": "9609 10.1.3 Inventory valuation", "href": "/courses/9609/10-1-3-inventory-valuation" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

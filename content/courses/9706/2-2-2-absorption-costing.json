@@ -5,9 +5,9 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — overhead absorption rates, full unit cost, and over/under absorption.",
+  "summary": "9706 P2 — overhead absorption rates, full unit cost, and over/under absorption.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Allocate and apportion overheads to cost centres.",
     "Calculate overhead absorption rates.",
@@ -24,9 +24,36 @@
       "Under-absorbed — actual > absorbed (adjust SPL)."
     ]
   },
+  "flashcards": [
+    { "front": "OAR formula?", "back": "Budgeted production overhead ÷ Budgeted activity level." },
+    { "front": "Under-absorption?", "back": "Actual overhead > absorbed — increases expenses (reduce profit)." },
+    { "front": "Over-absorption?", "back": "Absorbed > actual — reduces expenses (increase profit)." },
+    { "front": "Activity basis examples?", "back": "Direct labour hours, machine hours, units produced." },
+    { "front": "Full unit cost?", "back": "Direct materials + direct labour + absorbed overhead." },
+    { "front": "Closing inventory valuation?", "back": "Includes absorbed production overheads." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Absorption costing** (2.2.2) — show **OAR calculation** and **adjustment for under/over**." },
-    { "type": "practice", "label": "Mark an absorption costing question", "href": "/mark?subject=9706&topic=2.2.2" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Absorption costing** (2.2.2) — show **OAR calculation** and **adjustment for under/over absorption** in SPL. State basis of absorption."
+    },
+    {
+      "type": "workedExample",
+      "question": "Budgeted overhead $96,000; budgeted machine hours 12,000. Actual overhead $99,000; actual machine hours 11,500. Calculate OAR, absorbed overhead, and under/over absorption.",
+      "solution": "**OAR** = 96,000 ÷ 12,000 = **$8 per machine hour**\n\n**Absorbed overhead** = 11,500 × $8 = **$92,000**\n\n**Actual overhead** = **$99,000**\n\n**Under-absorption** = 99,000 − 92,000 = **$7,000**\n\n**SPL adjustment:** Add **$7,000** to production costs (or cost of sales) — **reduces profit**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an absorption costing question",
+      "href": "/mark?subject=9706&topic=2.2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.2.3 Marginal costing", "href": "/courses/9706/2-2-3-marginal-costing" },
+        { "label": "2.2.4 CVP analysis", "href": "/courses/9706/2-2-4-cost-volume-profit-analysis" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

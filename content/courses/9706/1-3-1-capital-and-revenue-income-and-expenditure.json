@@ -5,28 +5,55 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — capital vs revenue distinction for correct profit measurement.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9706 P2 — capital vs revenue expenditure and income; impact on SOFP and SPL.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish capital and revenue expenditure.",
     "Distinguish capital and revenue income.",
-    "Explain effect on statement of profit or loss and SOFP.",
-    "Apply matching and accruals concepts."
+    "Explain effect on financial statements.",
+    "Classify items in case scenarios."
   ],
   "simpleExplanation": {
-    "title": "One-off vs ongoing",
-    "summary": "Capital spending buys long-term assets; revenue spending maintains day-to-day operations — only revenue items affect profit in the year.",
+    "title": "Asset or expense?",
+    "summary": "Capital expenditure creates or improves a non-current asset on the SOFP. Revenue expenditure is matched to the period in the SPL. Misclassification distorts both profit and asset values.",
     "steps": [
-      "Capital expenditure — asset on SOFP.",
-      "Revenue expenditure — expense in SPL.",
-      "Capital receipts — reduce asset cost or add liability.",
-      "Revenue income — credit in SPL."
+      "Capital expenditure — debited to non-current asset account.",
+      "Revenue expenditure — expense in SPL for the period.",
+      "Capital receipts — reduce asset cost or increase long-term liability.",
+      "Revenue income — credited to income in SPL."
     ]
   },
+  "flashcards": [
+    { "front": "Capital expenditure example?", "back": "Purchase of machinery, delivery and installation costs." },
+    { "front": "Revenue expenditure example?", "back": "Repairs, rent, wages, advertising." },
+    { "front": "Repairs vs improvement?", "back": "Improvement is capital; routine maintenance is revenue." },
+    { "front": "Capital receipt?", "back": "Proceeds from sale of non-current asset (not revenue)." },
+    { "front": "Revenue income?", "back": "Sales, commission, rent received (if trader)." },
+    { "front": "Prudence link?", "back": "Do not capitalise costs that should be expensed to inflate profit." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Capital vs revenue** (1.3.1) — wrong classification **distorts profit**." },
-    { "type": "practice", "label": "Mark a capital/revenue question", "href": "/mark?subject=9706&topic=1.3.1" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Capital vs revenue** (1.3.1) — classic **classification** marks. Ask: **does it create future benefit beyond this year?**"
+    },
+    {
+      "type": "workedExample",
+      "question": "Firm pays $15,000: $12,000 new machine, $2,000 delivery, $1,000 annual service contract. Classify each amount.",
+      "solution": "**Machine $12,000:** **Capital expenditure** — DR **Non-current assets (machinery)**.\n\n**Delivery $2,000:** **Capital** — **necessary to bring asset to working condition** — add to machine cost ($14,000 total).\n\n**Service contract $1,000:** **Revenue expenditure** — **annual maintenance** benefit only one year — DR **SPL expense**.\n\n**Depreciation** charged on **$14,000** capitalised cost (1.3.2)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a capital/revenue question",
+      "href": "/mark?subject=9706&topic=1.3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.3.2 Changing asset values", "href": "/courses/9706/1-3-2-changing-asset-values" },
+        { "label": "9609 5.1.1 Need for finance", "href": "/courses/9609/5-1-1-the-need-for-business-finance" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

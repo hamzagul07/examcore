@@ -5,9 +5,9 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — variable vs fixed costs, contribution, and marginal costing statements.",
+  "summary": "9706 P2 — variable vs fixed costs, contribution, and marginal costing statements.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish fixed and variable costs.",
     "Calculate contribution per unit.",
@@ -24,9 +24,42 @@
       "Profit = total contribution − fixed costs."
     ]
   },
+  "flashcards": [
+    { "front": "Contribution?", "back": "Sales revenue − Variable costs (per unit or total)." },
+    { "front": "Fixed costs in marginal costing?", "back": "Whole amount charged to period — not in inventory value." },
+    { "front": "Profit reconciliation?", "back": "Absorption profit ± (Opening − Closing inventory) × fixed OAR per unit." },
+    { "front": "When inventory rises?", "back": "Absorption profit > marginal (fixed OH deferred in inventory)." },
+    { "front": "Decision relevance?", "back": "Marginal costing better for short-term pricing/accept orders." },
+    { "front": "Variable production cost?", "back": "Direct materials + direct labour + variable production overhead." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Marginal costing** (2.2.3) — **contribution format** SPL is essential." },
-    { "type": "practice", "label": "Mark a marginal costing question", "href": "/mark?subject=9706&topic=2.2.3" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Marginal costing** (2.2.3) — **contribution format** SPL is essential. Know **reconciliation** with absorption profit."
+    },
+    {
+      "type": "workedExample",
+      "question": "Sales 2,000 units @ $40. Variable cost $22 per unit. Fixed costs $24,000. Prepare marginal costing profit statement.",
+      "solution": "**Sales** = 2,000 × $40 = **$80,000**\n**Variable costs** = 2,000 × $22 = **($44,000)**\n**Contribution** = **$36,000**\n**Fixed costs** = **($24,000)**\n**Profit** = **$12,000**\n\n**Check:** Contribution per unit = $18; 2,000 × 18 − 24,000 = 12,000 ✓"
+    },
+    {
+      "type": "workedExample",
+      "question": "Absorption profit $12,000. Opening inventory 100 units; closing 300 units. Fixed overhead absorption rate $6 per unit. Reconcile to marginal profit.",
+      "solution": "**Inventory increase** = 300 − 100 = **200 units**\n**Fixed overhead in inventory** = 200 × $6 = **$1,200**\n\n**Marginal profit** = Absorption profit − increase in inventory fixed OH\n= 12,000 − 1,200 = **$10,800**\n\n*(Higher closing inventory → absorption profit higher than marginal.)*"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a marginal costing question",
+      "href": "/mark?subject=9706&topic=2.2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.2.2 Absorption costing", "href": "/courses/9706/2-2-2-absorption-costing" },
+        { "label": "2.2.4 CVP analysis", "href": "/courses/9706/2-2-4-cost-volume-profit-analysis" },
+        { "label": "9609 5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

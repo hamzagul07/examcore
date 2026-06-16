@@ -5,9 +5,9 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — share capital, reserves, and basic company financial statements.",
+  "summary": "9706 P2 — share capital, reserves, and basic company financial statements.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish ordinary and preference share capital.",
     "Explain share premium and retained earnings.",
@@ -24,9 +24,37 @@
       "SOFP — equity section separates reserves."
     ]
   },
+  "flashcards": [
+    { "front": "Ordinary shares?", "back": "Variable dividend; voting rights; residual claim." },
+    { "front": "Preference shares?", "back": "Fixed dividend priority; usually non-voting." },
+    { "front": "Share premium account?", "back": "Credit balance — amount above nominal on share issue." },
+    { "front": "Proposed dividend?", "back": "Disclose in notes; not a liability until approved/paid (syllabus treatment)." },
+    { "front": "Retained earnings movement?", "back": "Opening + Profit − Dividends = Closing." },
+    { "front": "Limited liability?", "back": "Shareholders lose at most amount invested." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Limited companies** (1.5.4) completes 1.5. Know **equity section** layout." },
-    { "type": "practice", "label": "Mark a limited company accounts question", "href": "/mark?subject=9706&topic=1.5.4" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Limited companies** (1.5.4) completes Section 1.5. Know **equity section layout**: share capital, share premium, retained earnings."
+    },
+    {
+      "type": "workedExample",
+      "question": "Company issued 200,000 ordinary shares of $0.50 at $1.20 each. Retained earnings opening $40,000. Profit for year $55,000. Dividend paid $15,000. Show equity section extracts.",
+      "solution": "**Share capital** = 200,000 × $0.50 = **$100,000**\n**Share premium** = 200,000 × ($1.20 − $0.50) = **$140,000**\n\n**Retained earnings:**\nOpening **40,000**\n+ Profit **55,000**\n− Dividend **(15,000)**\nClosing **$80,000**\n\n**Total equity** = 100,000 + 140,000 + 80,000 = **$320,000**"
+    },
+    {
+      "type": "practice",
+      "label": "Mark a limited company accounts question",
+      "href": "/mark?subject=9706&topic=1.5.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.5.3 Partnerships", "href": "/courses/9706/1-5-3-partnerships" },
+        { "label": "1.6.2 Ratio analysis", "href": "/courses/9706/1-6-2-calculation-and-evaluation-of-ratios" },
+        { "label": "9609 5.1.1 Need for business finance", "href": "/courses/9609/5-1-1-the-need-for-business-finance" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

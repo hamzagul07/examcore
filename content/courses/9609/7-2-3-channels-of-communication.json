@@ -5,28 +5,57 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — one-way, two-way, and grapevine channels.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — downward, upward, horizontal channels and the informal grapevine.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define communication channels.",
-    "Compare one-way and two-way channels.",
-    "Explain informal grapevine role.",
-    "Evaluate channel choice for feedback."
+    "Define downward, upward, and horizontal communication.",
+    "Explain the grapevine and its effects.",
+    "Analyse channel fit for different messages.",
+    "Recommend channel improvements for case firms."
   ],
   "simpleExplanation": {
-    "title": "Paths messages follow",
-    "summary": "Channels may be vertical, horizontal, or diagonal. Two-way channels allow feedback; grapevine spreads unofficial news fast.",
+    "title": "Which way the message flows",
+    "summary": "Downward communication carries instructions from senior management; upward carries feedback from staff; horizontal links departments at the same level. The grapevine is the informal rumour network that fills gaps when official channels fail.",
     "steps": [
-      "Downward: instructions from top.",
-      "Upward: feedback from staff.",
-      "Horizontal: between departments.",
-      "Grapevine: informal rumour network."
+      "Downward: objectives, policies, instructions from top.",
+      "Upward: suggestions, grievances, performance data to top.",
+      "Horizontal: coordination between peers and departments.",
+      "Grapevine: informal rumours — fast but often inaccurate."
     ]
   },
+  "flashcards": [
+    { "front": "Downward channel?", "back": "Top to bottom — orders, targets, company news." },
+    { "front": "Upward channel?", "back": "Bottom to top — feedback, problems, ideas." },
+    { "front": "Horizontal channel?", "back": "Same level across departments — e.g. marketing ↔ operations." },
+    { "front": "Grapevine?", "back": "Unofficial informal network; spreads fast, may distort truth." },
+    { "front": "Why upward blocked?", "back": "Fear of blame, autocratic culture (7.2.4)." },
+    { "front": "Functional silo problem?", "back": "Weak horizontal communication between departments (7.1.2)." },
+    { "front": "Use grapevine positively?", "back": "Official news early and honestly reduces false rumours." },
+    { "front": "Matrix organisation?", "back": "Needs strong horizontal + diagonal project communication." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Channels** (7.2.3) links **structure 7.1** to **communication flow**. Diagram **chain vs wheel** if helpful." },
-    { "type": "practice", "label": "Mark a communication channels question", "href": "/mark?subject=9609&topic=7.2.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Channels of communication** (7.2.3) — draw **arrows on org charts** showing where flow breaks. **Silo cases** = horizontal failure; **surprise HQ decisions** = upward failure."
+    },
+    {
+      "type": "workedExample",
+      "question": "Marketing launches promotion without telling operations; factory cannot meet demand. Which channel failed and how to prevent recurrence?",
+      "solution": "**Failure:** **Horizontal** between marketing and operations — classic **functional silo** (7.1.2).\n\n**Downward OK within each dept** but **no cross-channel**.\n\n**Grapevine:** Warehouse staff knew promotion before ops manager — **official horizontal slower than rumour**.\n\n**Prevention:** **S&OP meetings** (sales & operations planning), **shared forecast system**, **promotion sign-off** requiring ops capacity check."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a communication channels question",
+      "href": "/mark?subject=9609&topic=7.2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "7.1.2 Types of structure", "href": "/courses/9609/7-1-2-types-of-structure-functional-hierarchical-flat-and-narrow-matrix" },
+        { "label": "4.1.1 Transformation process", "href": "/courses/9609/4-1-1-the-transformational-process" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

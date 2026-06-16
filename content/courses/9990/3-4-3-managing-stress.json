@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — coping strategies, biofeedback, relaxation, and stress inoculation training.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish problem-focused and emotion-focused coping.",
     "Explain Lazarus & Folkman's transactional model.",
@@ -24,9 +24,31 @@
       "SIT — prepare for future stressors."
     ]
   },
+  "flashcards": [
+    { "front": "Problem-focused coping?", "back": "Tackling the **source** of stress directly — e.g. time management, asking for deadline extension, leaving a toxic job." },
+    { "front": "Emotion-focused coping?", "back": "Managing **emotional response** when stressor cannot be changed — e.g. relaxation, social support, reframing." },
+    { "front": "Lazarus & Folkman transactional model?", "back": "Stress = **transaction** between person and environment; **primary appraisal** (threat/challenge/irrelevant) then **secondary appraisal** (can I cope?)." },
+    { "front": "Stress Inoculation Training (SIT)?", "back": "Meichenbaum — three phases: **conceptualisation** (understand stress response), **skills acquisition** (coping techniques), **application** (practice under simulated stress)." },
+    { "front": "Biofeedback?", "back": "Patient monitors **physiological signals** (HR, GSR, muscle tension) in real time and learns to control them — e.g. reduce muscle tension to lower stress." },
+    { "front": "Workplace stress management?", "back": "Organisational interventions — reduce demands, increase control (Karasek), provide EAP counselling, mindfulness programmes." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Managing stress** (3.4.3) completes 3.4. **Lazarus & Folkman** transactional model is central." },
+    { "type": "intro", "content": "**Managing stress** (3.4.3) completes 3.4. **Lazarus & Folkman** transactional model is central. Match coping strategy to whether the stressor is **changeable** or not." },
+    {
+      "type": "workedExample",
+      "question": "A junior doctor reports burnout from 60-hour weeks, sleep deprivation, and anxiety before night shifts.\n\n(a) Using Lazarus & Folkman's model, explain the doctor's stress response. [4 marks]\n(b) Outline Stress Inoculation Training (SIT) and one other stress management technique suitable for this case. [4 marks]\n(c) Evaluate problem-focused vs emotion-focused coping for workplace stress. [6 marks]",
+      "solution": "(a) **Transactional model applied:**\n- **Primary appraisal:** Doctor evaluates 60-hour weeks as **threat** to health, relationships, and patient safety — high perceived severity.\n- **Secondary appraisal:** Coping resources feel **insufficient** — cannot easily reduce hours (systemic constraint), lacks control (Karasek high-strain job).\n- **Stress response:** Emotional (anxiety before shifts), physiological (sleep disruption, elevated cortisol), behavioural (burnout, possible errors).\n- **Reappraisal failure:** Does not reframe night shifts as manageable challenge — fixed threat appraisal maintains distress.\n\n(b) **Interventions:**\n- **SIT (Meichenbaum):** Phase 1 — doctor learns to identify stress triggers and catastrophising thoughts. Phase 2 — acquires skills (progressive relaxation, positive self-talk). Phase 3 — practises coping during simulated high-pressure scenarios.\n- **Biofeedback:** Monitor heart rate and muscle tension during pre-shift period; learn to reduce physiological arousal through breathing techniques before anxiety escalates.\n\n(c) **Evaluation — problem vs emotion-focused coping:**\n\n**Problem-focused:**\n- **Strengths:** Addresses **root cause** — e.g. negotiating rota changes, reporting unsafe hours to BMA; most effective when stressor is **controllable**.\n- **Limitations:** NHS systemic issues (understaffing) may be **unchangeable** by individual doctor — problem-focused attempts fail, increasing helplessness.\n\n**Emotion-focused:**\n- **Strengths:** Useful when stressor cannot be changed — SIT, mindfulness, social support reduce **distress** without requiring system change; immediate relief.\n- **Limitations:** Does not fix **organisational cause** — risk of **blaming the individual** for systemic burnout; emotion-focused alone may normalise exploitative working conditions.\n\n**Judgement:** Best approach combines both — **organisational** problem-focused (workplace wellness programmes, 3.5.2) plus **individual** emotion-focused (SIT, biofeedback). Neither alone is sufficient for occupational stress."
+    },
     { "type": "practice", "label": "Mark a stress management question", "href": "/mark?subject=9990&topic=3.4.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.4.1 Sources of stress", "href": "/courses/9990/3-4-1-sources-of-stress" },
+        { "label": "3.4.2 Measures of stress", "href": "/courses/9990/3-4-2-measures-of-stress" },
+        { "label": "3.5.2 Health promotion in schools and worksites", "href": "/courses/9990/3-5-2-health-promotion-in-schools-and-worksites" },
+        { "label": "3.3.3 Managing and controlling pain", "href": "/courses/9990/3-3-3-managing-and-controlling-pain" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

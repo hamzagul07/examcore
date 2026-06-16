@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Consumer — menu layout, pricing tricks, and choice architecture in food service.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain how menu layout guides item selection.",
     "Analyse decoy pricing and anchoring on menus.",
@@ -24,9 +24,31 @@
       "Removing currency signs reduces price salience."
     ]
   },
+  "flashcards": [
+    { "front": "Golden triangle on menus?", "back": "Top-right area receives most eye fixations — prime placement for high-margin items (eye-tracking studies)." },
+    { "front": "Decoy pricing?", "back": "Expensive 'anchor' item makes mid-priced target look reasonable — exploits anchoring bias (2.3.3)." },
+    { "front": "Descriptive labelling?", "back": "Sensory adjectives ('tender', 'farm-fresh') increase item appeal and sales vs plain names (Wansink et al.)." },
+    { "front": "Price formatting trick?", "back": "Removing currency symbols (£, $) reduces 'pain of paying' — prices feel less salient." },
+    { "front": "Choice architecture?", "back": "Structuring options to nudge decisions without restricting freedom — Thaler & Sunstein concept applied to menus." },
+    { "front": "Link to 2.3.3?", "back": "Menu tricks exploit anchoring, framing, and loss aversion — cognitive biases in decision-making." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Menu design** (2.2.2) — apply **choice architecture** and **anchoring** with examples." },
+    {
+      "type": "workedExample",
+      "question": "A restaurant adds a £45 premium steak (rarely ordered) to its menu, places a £28 pasta dish in the top-right corner with the description 'Hand-rolled pappardelle with slow-braised Tuscan ragù', and lists prices as '28' without the £ symbol. Pasta sales rise 35%. Explain using menu design psychology and evaluate whether this is ethical.",
+      "solution": "**Apply — decoy/anchoring:** The **£45 steak** acts as an **anchor** — makes **£28 pasta** appear reasonable by comparison (Tversky & Kahneman anchoring, 2.3.3). Customers rarely order the decoy but it reshapes **reference price**.\n\n**Apply — golden triangle:** **Top-right placement** exploits natural **eye-scanning patterns** — pasta receives disproportionate attention.\n\n**Apply — descriptive labelling:** **Sensory language** ('hand-rolled', 'slow-braised', 'Tuscan') triggers **imagined taste** and emotional response → higher selection rate (Wansink menu labelling research).\n\n**Apply — price salience:** Omitting **£ symbol** reduces **pain of paying** (2.4.3) — price feels abstract, not like spending money.\n\n**Evaluate — effectiveness:** 35% sales rise demonstrates **real-world impact**; combines multiple evidence-based techniques.\n\n**Evaluate — ethics:** **Manipulation** — customers unaware of **choice architecture**; cannot give **informed consent**. **Autonomy** undermined — nudging toward restaurant's profit, not diner's preference. **Counter-argument** — no coercion; all items remain available; similar to **2.4.2** sales techniques. **Regulation** — some jurisdictions require transparent pricing."
+    },
     { "type": "practice", "label": "Mark a menu design question", "href": "/mark?subject=9990&topic=2.2.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.2.1 Environmental influences on consumers", "href": "/courses/9990/2-2-1-environmental-influences-on-consumers" },
+        { "label": "2.3.1 Consumer decision-making", "href": "/courses/9990/2-3-1-consumer-decision-making" },
+        { "label": "2.3.3 Mistakes in decision-making", "href": "/courses/9990/2-3-3-mistakes-in-decision-making" },
+        { "label": "2.4.3 Buying the product", "href": "/courses/9990/2-4-3-buying-the-product" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

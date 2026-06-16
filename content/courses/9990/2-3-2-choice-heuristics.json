@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Consumer — mental shortcuts: availability, representativeness, and price-quality heuristics.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define heuristics and their role in consumer choice.",
     "Explain availability and representativeness heuristics.",
@@ -24,9 +24,31 @@
       "Brand — trusted name reduces risk."
     ]
   },
+  "flashcards": [
+    { "front": "Heuristic definition?", "back": "Mental shortcut — simple rule of thumb used instead of full systematic analysis when making decisions." },
+    { "front": "Availability heuristic?", "back": "Judge likelihood/frequency by ease of recall — vivid ads or news stories make events seem more common." },
+    { "front": "Representativeness heuristic?", "back": "Judge product by similarity to prototype — e.g. sleek packaging = premium quality (may ignore base-rate evidence)." },
+    { "front": "Price-quality heuristic?", "back": "'You get what you pay for' — higher price assumed to mean higher quality, even without evidence." },
+    { "front": "Brand heuristic?", "back": "Trusted brand name used as quality shortcut — reduces perceived risk in low-involvement purchases (2.3.1)." },
+    { "front": "Tversky & Kahneman link?", "back": "Heuristics are efficient but produce systematic biases — foundation for 2.3.3 decision mistakes." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Choice heuristics** (2.3.2) — link **Tversky & Kahneman** to consumer examples." },
+    {
+      "type": "workedExample",
+      "question": "After seeing a news report about a phone battery fire, Priya avoids that brand despite its high ratings. She buys a more expensive unbranded charger believing 'price means quality', and chooses a cereal because its mascot looks 'healthy and natural'. Identify the heuristics used and evaluate their usefulness for consumer decisions.",
+      "solution": "**Phone — availability heuristic:** Vivid **news report** makes battery fires **easily recalled** → **overestimated risk** for that brand (Tversky & Kahneman). Ignores **statistical base rate** (millions of safe units).\n\n**Charger — price-quality heuristic:** **Higher price** → assumed **better quality** without checking specifications or reviews. May pay premium for identical components.\n\n**Cereal — representativeness heuristic:** **Mascot appearance** ('healthy, natural') judged as representative of product quality → **stereotype** replaces ingredient analysis.\n\n**Evaluate — advantages:** Heuristics **save time and cognitive effort** — adaptive for **low-involvement** purchases (2.3.1) where full analysis is impractical. **Brand heuristic** often correlates with genuine quality.\n\n**Evaluate — disadvantages:** **Systematic errors** — availability distorts **risk perception**; price-quality exploited by marketers (2.2.2 decoy pricing). **Vulnerable consumers** — elderly, rushed shoppers rely heavily on shortcuts. **Marketing exploitation** — packaging and mascots designed to trigger representativeness (2.4.1). Heuristics are **efficient but not optimal**."
+    },
     { "type": "practice", "label": "Mark a choice heuristics question", "href": "/mark?subject=9990&topic=2.3.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.3.1 Consumer decision-making", "href": "/courses/9990/2-3-1-consumer-decision-making" },
+        { "label": "2.3.3 Mistakes in decision-making", "href": "/courses/9990/2-3-3-mistakes-in-decision-making" },
+        { "label": "2.5.2 Advertising-consumer interaction", "href": "/courses/9990/2-5-2-advertising-consumer-interaction" },
+        { "label": "2.4.1 Packaging and positioning", "href": "/courses/9990/2-4-1-packaging-and-positioning-of-a-product" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — self-report scales, physiological indicators, and stress assessment methods.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline self-report measures: PSS, SRRS, hassles scales.",
     "Explain physiological measures: cortisol, heart rate, GSR.",
@@ -24,9 +24,31 @@
       "Combined — multi-method assessment best."
     ]
   },
+  "flashcards": [
+    { "front": "Perceived Stress Scale (PSS)?", "back": "Cohen et al. — 10-item questionnaire measuring **subjective feelings** of stress over the past month; widely used in health research." },
+    { "front": "SRRS measurement?", "back": "Holmes & Rahe **Social Readjustment Rating Scale** — checklist of 43 life events with LCU weights; total score indicates cumulative life change stress." },
+    { "front": "Daily Hassles Scale?", "back": "Kanner et al. — 117-item inventory of minor irritations; **stronger predictor** of psychological symptoms than life events scale." },
+    { "front": "Cortisol as stress measure?", "back": "Stress hormone from **HPA axis** — measured in saliva or blood; objective but fluctuates with **circadian rhythm** and acute vs chronic stress." },
+    { "front": "Galvanic Skin Response (GSR)?", "back": "Measures **electrical conductance** of skin — increases with sweat (sympathetic arousal); used in lab stress studies." },
+    { "front": "Multi-method assessment?", "back": "Combining self-report + physiological measures improves **validity** — captures both subjective experience and objective arousal." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Measuring stress** (3.4.2) — evaluate **self-report vs physiological** validity." },
+    { "type": "intro", "content": "**Measuring stress** (3.4.2) — evaluate **self-report vs physiological** validity. Stress has subjective and objective components — no single measure captures both." },
+    {
+      "type": "workedExample",
+      "question": "Researchers measure stress in nurses using the Perceived Stress Scale (PSS) and salivary cortisol samples taken at 8am.\n\n(a) Identify the type of measure used in each method. [2 marks]\n(b) Outline one strength and one limitation of each measure. [4 marks]\n(c) Evaluate whether physiological measures are more valid than self-report for measuring stress. [6 marks]",
+      "solution": "(a) **Measure types:**\n- PSS — **subjective self-report** measure.\n- Salivary cortisol — **objective physiological** measure.\n\n(b) **Strengths and limitations:**\n\n**PSS (self-report):**\n- Strength: Captures **individual perception** — two nurses with identical workloads may experience different stress levels.\n- Limitation: **Social desirability** — nurses may underreport stress to appear competent.\n\n**Salivary cortisol:**\n- Strength: **Objective** — cannot be faked; directly measures HPA axis activation linked to chronic stress and health outcomes.\n- Limitation: **Circadian variation** — cortisol peaks at waking (8am sample is standardised but still varies); acute stressors (traffic on way to work) spike levels temporarily.\n\n(c) **Evaluation — physiological vs self-report validity:**\n- **Case for physiological superiority:** Objective, quantifiable, linked to **health outcomes** (Kiecolt-Glaser — cortisol suppresses immune function). Avoids bias.\n- **Case against:**\n  - **Low correlation** between self-report and cortisol (r ≈ 0.1–0.3) — they measure **different constructs**: perceived stress vs biological activation.\n  - **Lazarus & Folkman** — stress is fundamentally about **appraisal**, which only self-report captures.\n  - Physiological measures miss **cognitive/emotional** component — a person may show normal cortisol but feel overwhelmed.\n  - **Ethical issues** in lab — inducing stress to measure GSR/cortisol (e.g. stroop, public speaking) requires debriefing.\n  - **Individual differences** — cortisol reactivity varies genetically; baseline differences confound group comparisons.\n\n**Judgement:** Neither is inherently more valid — **multi-method assessment** (PSS + cortisol + daily hassles diary) provides most complete picture, consistent with **biopsychosocial** approach."
+    },
     { "type": "practice", "label": "Mark a measuring stress question", "href": "/mark?subject=9990&topic=3.4.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.4.1 Sources of stress", "href": "/courses/9990/3-4-1-sources-of-stress" },
+        { "label": "3.4.3 Managing stress", "href": "/courses/9990/3-4-3-managing-stress" },
+        { "label": "3.3.2 Measuring pain", "href": "/courses/9990/3-3-2-measuring-pain" },
+        { "label": "3.2.2 Measuring non-adherence", "href": "/courses/9990/3-2-2-measuring-non-adherence" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

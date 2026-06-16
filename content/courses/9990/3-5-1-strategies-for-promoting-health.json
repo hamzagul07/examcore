@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — health education, fear appeals, and behaviour change models.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline health promotion strategies and levels.",
     "Explain Health Belief Model and Theory of Planned Behaviour.",
@@ -24,9 +24,31 @@
       "Fear appeals — must include efficacy message."
     ]
   },
+  "flashcards": [
+    { "front": "Three levels of prevention?", "back": "Primary — prevent onset (vaccination, education). Secondary — early detection (screening). Tertiary — manage existing illness (rehabilitation)." },
+    { "front": "Health Belief Model in health promotion?", "back": "Campaigns target **perceived susceptibility/severity** (threat) and **perceived benefits** minus **barriers** — e.g. smoking cessation ads showing lung damage + quitline support." },
+    { "front": "Theory of Planned Behaviour (TPB)?", "back": "Ajzen — **behavioural intention** predicted by attitude toward behaviour, **subjective norms**, and **perceived behavioural control**." },
+    { "front": "Effective fear appeal?", "back": "Janis & Feshbach — fear must be **moderate** (not so high it causes denial) and include **efficacy message** (how to avoid threat)." },
+    { "front": "Persuasive communication — Hovland?", "back": "Message effectiveness depends on **source credibility**, **message content**, and **audience** characteristics." },
+    { "front": "Why do health campaigns fail?", "back": "Target beliefs but ignore **barriers** (cost, access), **social norms**, or use excessive fear causing **defensive avoidance**." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Health promotion strategies** (3.5.1) opens 3.5. Apply **HBM and TPB** to campaign evaluation." },
+    { "type": "intro", "content": "**Health promotion strategies** (3.5.1) opens 3.5. Apply **HBM and TPB** to campaign evaluation. Always assess whether the campaign addresses **barriers** and **self-efficacy**, not just threat." },
+    {
+      "type": "workedExample",
+      "question": "The NHS runs a campaign showing graphic images of lung cancer on cigarette packets, with a quitline number.\n\n(a) Identify the health promotion strategy and behaviour change model involved. [3 marks]\n(b) Apply the Health Belief Model to explain how this campaign aims to change behaviour. [4 marks]\n(c) Evaluate the use of fear appeals in health promotion. [6 marks]",
+      "solution": "(a) **Strategy and model:**\n- **Primary prevention** strategy — aims to prevent smoking-related illness before it occurs.\n- **Fear appeal** persuasive communication — graphic images create emotional response.\n- **Health Belief Model** — targets perceived severity and susceptibility; quitline addresses barriers.\n\n(b) **HBM applied:**\n- **Perceived susceptibility:** Images link smoking to \"this could happen to me.\"\n- **Perceived severity:** Graphic lung cancer images emphasise serious, life-threatening consequences.\n- **Perceived benefits:** Quitline offers accessible support — benefits of quitting feel achievable.\n- **Perceived barriers:** Quitline reduces barrier of not knowing how to stop; NRT availability lowers withdrawal barrier.\n- **Cue to action:** Warning images on every packet serve as constant reminder.\n\n(c) **Evaluation of fear appeals:**\n- **Strengths:**\n  - **Janis (1967)** — moderate fear + efficacy message = behaviour change; UK plain packaging evidence shows reduced smoking appeal in youth.\n  - Targets **System 1** thinking (Kahneman) — emotional gut response bypasses rational denial.\n  - Cost-effective at population level — reaches all smokers daily.\n- **Limitations:**\n  - **Excessive fear → defensive avoidance** — smokers may **deny** relevance (\"that won't happen to me\" — optimism bias).\n  - **Individual differences** — already-motivated smokers respond; addicted smokers need **pharmacological** support, not just fear.\n  - **Ethical concerns** — graphic images may cause **distress** to non-smokers and ex-smokers; paternalistic.\n  - **Cultural effectiveness varies** — HBM developed in individualist US; collectivist cultures may respond better to **social norm** messages (TPB subjective norms).\n  - Does not address **social barriers** — peer smoking, stress, poverty driving smoking behaviour.\n\n**Judgement:** Fear appeals work best as part of **multi-component campaign** combining threat, efficacy, and barrier reduction — not fear alone."
+    },
     { "type": "practice", "label": "Mark a health promotion question", "href": "/mark?subject=9990&topic=3.5.1" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.5.2 Health promotion in schools and worksites", "href": "/courses/9990/3-5-2-health-promotion-in-schools-and-worksites" },
+        { "label": "3.5.3 Individual factors in changing health beliefs", "href": "/courses/9990/3-5-3-individual-factors-in-changing-health-beliefs" },
+        { "label": "3.2.1 Types of non-adherence", "href": "/courses/9990/3-2-1-types-of-non-adherence-and-reasons-why-patients-do-not-adhere" },
+        { "label": "3.1.3 Misusing health services", "href": "/courses/9990/3-1-3-misusing-health-services" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

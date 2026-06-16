@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Clinical — antidepressants, CBT, ECT, and combined treatments for depression.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline SSRIs and other antidepressant mechanisms.",
     "Explain CBT and interpersonal therapy for depression.",
@@ -24,9 +24,31 @@
       "ECT — severe cases, memory side effects."
     ]
   },
+  "flashcards": [
+    { "front": "How do SSRIs work?", "back": "Block serotonin reuptake at synapse — increased serotonin availability; takes 2–4 weeks for therapeutic effect." },
+    { "front": "CBT for depression?", "back": "Identifies and challenges Beck's negative automatic thoughts and schemas — behavioural activation homework; targets maintaining cycle." },
+    { "front": "IPT focus?", "back": "Interpersonal Therapy addresses role disputes, grief, role transitions, and interpersonal deficits — links mood to relationship problems." },
+    { "front": "ECT procedure?", "back": "Brief electrical current under anaesthesia induces seizure — used for severe/treatment-resistant depression; mechanism unclear." },
+    { "front": "ECT ethical issues?", "back": "Memory loss (retrograde amnesia), stigma, consent concerns — reserved for cases where benefits outweigh risks." },
+    { "front": "Combined treatment?", "back": "CBT + SSRIs often more effective than either alone for moderate-severe depression — addresses cognitive and biological maintenance." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Depression treatment** (1.2.3) completes 1.2. Evaluate **effectiveness vs side effects** for each approach." },
+    {
+      "type": "workedExample",
+      "question": "A patient with moderate depression shows Beck's negative triad. They have no history of psychosis.\n\n(a) Outline CBT and one biological treatment for this patient. [4 marks]\n(b) Evaluate the use of ECT for depression. [6 marks]",
+      "solution": "(a) **AO1 — CBT:**\n- Identify **negative automatic thoughts** (self/world/future triad).\n- **Challenge** evidence for distortions; set **behavioural activation** tasks to break withdrawal cycle.\n- Homework records thoughts and alternative interpretations.\n\n**AO1 — Biological (SSRIs):**\n- e.g. **fluoxetine** — selective serotonin reuptake inhibitor.\n- Increases synaptic serotonin — aims to restore mood regulation over several weeks.\n\n(b) **AO3 — ECT evaluation:**\n- **AO1 — Use:** Reserved for **severe, treatment-resistant** depression, catatonia, or urgent risk — rapid response possible.\n- **Strengths:** Meta-analyses show **short-term efficacy** when drugs/CBT fail; can be life-saving.\n- **Limitations:** **Retrograde amnesia** and cognitive side effects; **mechanism unknown** — raises scientific concern.\n- **Ethics:** Involuntary ECT controversial; stigma from historical misuse; patient must give **informed consent** where possible.\n- **Comparison:** CBT trials (e.g. Hollon et al.) show durable effects with lower side effects — ECT not first-line for moderate cases like this scenario.\n\n**Judgement:** For this patient, **CBT ± SSRI** is appropriate; ECT only if escalation needed — benefits must outweigh memory and ethical costs."
+    },
     { "type": "practice", "label": "Mark a depression treatment question", "href": "/mark?subject=9990&topic=1.2.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.2.1 Mood disorder diagnosis", "href": "/courses/9990/1-2-1-diagnostic-criteria-for-mood-affective-disorders" },
+        { "label": "1.2.2 Explanations of depression", "href": "/courses/9990/1-2-2-explanations-of-mood-affective-disorders-depressive-disorder-unipolar" },
+        { "label": "1.1.3 Treatment of schizophrenia", "href": "/courses/9990/1-1-3-treatment-and-management-of-schizophrenia" },
+        { "label": "1.4.3 Treatment of anxiety disorders", "href": "/courses/9990/1-4-3-treatment-and-management-of-anxiety-disorders-and-fear-related-disorders" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

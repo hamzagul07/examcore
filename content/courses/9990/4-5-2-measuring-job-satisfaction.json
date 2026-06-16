@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Organisational — Job Descriptive Index, Minnesota Satisfaction Questionnaire, and survey methods.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline standardised job satisfaction scales.",
     "Compare global vs facet measurement approaches.",
@@ -24,9 +24,30 @@
       "Limitations — social desirability, momentary mood."
     ]
   },
+  "flashcards": [
+    { "front": "Global vs facet measurement?", "back": "Global = one overall rating; facet = separate scores for pay, supervision, work, etc. — facet pinpoints actionable issues." },
+    { "front": "Job Descriptive Index (JDI)?", "back": "Facet scale using adjective checklists for work, pay, promotion, supervision, co-workers — widely validated." },
+    { "front": "Minnesota Satisfaction Questionnaire (MSQ)?", "back": "Available in short (global) and long (facet) forms — measures intrinsic and extrinsic satisfaction." },
+    { "front": "Self-report limitation: social desirability?", "back": "Employees may over-report satisfaction when they fear identification or want to appear grateful." },
+    { "front": "Self-report limitation: mood?", "back": "Temporary mood on survey day can distort scores — repeated measurement improves reliability." },
+    { "front": "Why HR uses facet surveys?", "back": "Identifies which policies to fix (e.g. low supervision scores → management training) rather than vague dissatisfaction." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Measuring job satisfaction** (4.5.2) — know **JDI** and **facet vs global** distinction." },
+    { "type": "intro", "content": "**Measuring job satisfaction** (4.5.2) — know **JDI** and **facet vs global** distinction. Always critique **self-report** validity in evaluation." },
+    {
+      "type": "workedExample",
+      "question": "An HR team surveys staff with one question: 'Overall, how satisfied are you?' (1–7). Scores look healthy, but turnover is high. They rerun using the JDI facet scales. Explain why results differ and evaluate the methods.",
+      "solution": "**Global measure problem:** Single item **masks facet patterns** — staff may rate **5/7 overall** because **co-workers** are friendly while **pay** and **promotion** facets score poorly (facet model, 4.5.1).\n\n**JDI advantage:** Separate **pay, promotion, supervision, work, co-workers** scores reveal **promotion stagnation** and **supervision issues** driving **turnover** (4.5.3) despite moderate global satisfaction.\n\n**Validity concerns:** Even JDI is **self-report** — **social desirability** if not anonymous; **common method bias** if same mood affects all facet ratings.\n\n**Improvement:** **Anonymous** administration, **longitudinal** repeats, combine with **objective data** (absence, exit interviews).\n\n**Evaluation:** Standardised scales allow **cross-company comparison** but may not capture **organisation-specific concerns**. **Discrepancy theory** suggests measuring **expectations vs reality**, not just current satisfaction."
+    },
     { "type": "practice", "label": "Mark a measuring job satisfaction question", "href": "/mark?subject=9990&topic=4.5.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.5.1 Theories of job satisfaction", "href": "/courses/9990/4-5-1-theories-of-job-satisfaction" },
+        { "label": "4.5.3 Attitudes to work", "href": "/courses/9990/4-5-3-attitudes-to-work" },
+        { "label": "4.1.3 Motivators at work", "href": "/courses/9990/4-1-3-motivators-at-work" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

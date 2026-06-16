@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — pain scales, McGill Pain Questionnaire, and behavioural pain indicators.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline self-report scales: VAS, NRS, faces scales.",
     "Explain McGill Pain Questionnaire structure.",
@@ -24,9 +24,31 @@
       "Behavioural — grimacing, guarding, mobility."
     ]
   },
+  "flashcards": [
+    { "front": "Visual Analogue Scale (VAS)?", "back": "100mm line from 'no pain' to 'worst pain imaginable' — patient marks position; scored 0–100mm. **Simple and sensitive** to change." },
+    { "front": "Numeric Rating Scale (NRS)?", "back": "0–10 verbal rating — \"Rate your pain from 0 to 10.\" Easy to use clinically; **correlates highly** with VAS." },
+    { "front": "Wong-Baker FACES scale?", "back": "Cartoon faces from smiling to crying — designed for **children** and patients with language barriers." },
+    { "front": "McGill Pain Questionnaire?", "back": "Melzack's measure with **20 word categories** (sensory, affective, evaluative, miscellaneous) — captures pain **quality**, not just intensity." },
+    { "front": "Behavioural pain indicators?", "back": "Observed **guarding**, grimacing, reduced mobility, vocalisation — useful when patient **cannot self-report** (infants, dementia)." },
+    { "front": "Why is pain measurement difficult?", "back": "Pain is **subjective and private** — no objective meter; influenced by culture, mood, and **expectancy** (placebo/nocebo effects)." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Measuring pain** (3.3.2) — compare **self-report vs behavioural** measures and validity issues." },
+    { "type": "intro", "content": "**Measuring pain** (3.3.2) — compare **self-report vs behavioural** measures and validity issues. Pain is defined by the patient's experience — \"pain is whatever the experiencing person says it is\" (McCaffery)." },
+    {
+      "type": "workedExample",
+      "question": "A nurse uses a 0–10 Numeric Rating Scale to assess post-operative pain. A patient rates pain as 3/10 but is observed grimacing and refusing to mobilise.\n\n(a) Identify the measurement methods being used and one discrepancy between them. [3 marks]\n(b) Explain how the McGill Pain Questionnaire would provide additional information. [3 marks]\n(c) Evaluate the validity of self-report pain scales. [6 marks]",
+      "solution": "(a) **Methods and discrepancy:**\n- **Self-report:** NRS (0–10 numeric rating) — patient rates pain as 3/10 (mild).\n- **Behavioural observation:** Grimacing and **guarding/refusing mobilisation** — suggests moderate-to-severe pain behaviour.\n- **Discrepancy:** Self-report (**3**) underestimates pain compared to behavioural indicators — possible ** stoicism**, **social desirability** (not wanting to bother staff), or **under-reporting** due to opioid stigma.\n\n(b) **McGill Pain Questionnaire added value:**\n- Captures **pain quality** — sensory descriptors (\"sharp,\" \"throbbing\"), affective (\"sickening,\" \"tiring\"), evaluative (\"annoying,\" \"miserable\").\n- Would reveal whether patient experiences **deep aching** (surgical site) vs **surface pain** — guides analgesic choice.\n- **Present Pain Intensity** subscale provides standardised intensity score comparable across patients.\n\n(c) **Evaluation of self-report validity:**\n- **Strengths:** Respects **subjective nature** of pain; VAS/NRS show **good test–retest reliability** in stable pain; sensitive to **treatment change**.\n- **Limitations:**\n  - **Social desirability** — patients underreport to appear brave or avoid dependency label.\n  - **Cultural variation** — some cultures express pain openly, others stoically — same score may mean different experiences.\n  - **Cognitive factors:** **Kahneman** — peak-end rule means recall of pain depends on worst moment and most recent sensation, not average.\n  - **No objective ground truth** — cannot establish criterion validity against a gold standard.\n  - **Children and non-verbal patients** — self-report impossible; behavioural scales (FLACC, COMFORT) needed.\n\n**Judgement:** Self-report is **necessary but insufficient** — combine NRS with behavioural observation and McGill for comprehensive assessment."
+    },
     { "type": "practice", "label": "Mark a measuring pain question", "href": "/mark?subject=9990&topic=3.3.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.3.1 Types and theories of pain", "href": "/courses/9990/3-3-1-types-and-theories-of-pain" },
+        { "label": "3.3.3 Managing and controlling pain", "href": "/courses/9990/3-3-3-managing-and-controlling-pain" },
+        { "label": "3.2.2 Measuring non-adherence", "href": "/courses/9990/3-2-2-measuring-non-adherence" },
+        { "label": "3.4.2 Measures of stress", "href": "/courses/9990/3-4-2-measures-of-stress" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

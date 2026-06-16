@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Organisational — Tuckman's stages, groupthink, and team decision processes.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline Tuckman's forming-storming-norming-performing model.",
     "Explain Janis's groupthink theory with examples.",
@@ -24,9 +24,30 @@
       "Groupthink — Irving Janis, Challenger example."
     ]
   },
+  "flashcards": [
+    { "front": "Tuckman's four stages?", "back": "Forming (orientation), storming (conflict), norming (rules/cohesion), performing (effective teamwork) — later added adjourning." },
+    { "front": "Storming stage?", "back": "Personality clashes and power struggles emerge — teams must resolve conflict before productive norms form." },
+    { "front": "Janis's groupthink?", "back": "Cohesive groups suppress dissent to maintain harmony — leads to poor, risky decisions without full appraisal." },
+    { "front": "Three symptoms of groupthink?", "back": "Illusion of invulnerability, collective rationalisation, pressure on dissenters — among Janis's full list." },
+    { "front": "Group decision advantage?", "back": "More information, diverse perspectives, better acceptance of final decision." },
+    { "front": "Preventing groupthink?", "back": "Devil's advocate, anonymous input, leader withholds early opinion, seek external opinions." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Group development** (4.3.1) opens 4.3. **Tuckman + Janis** are the essential pairing." },
+    { "type": "intro", "content": "**Group development** (4.3.1) opens 4.3. **Tuckman + Janis** are the essential pairing — stage model for team life cycle, groupthink for decision failure." },
+    {
+      "type": "workedExample",
+      "question": "A hospital committee rushes to approve a new rota without consulting junior nurses. Members who had doubts stayed silent because the head nurse strongly favoured the plan and the team had worked together for years. Patient care errors rose after implementation. Analyse using Tuckman and Janis.",
+      "solution": "**Tuckman:** The committee may have appeared at **norming/performing** (long history, cohesion) but skipped healthy **storming** — dissent was never aired, so norms suppressed debate.\n\n**Janis — groupthink:** **Cohesive in-group** + **directive leader** + **time pressure** = classic antecedents. Symptoms: **self-censorship** (doubting nurses silent), **illusion of unanimity**, **mindguards** protecting the head nurse's view. Outcome: **failure to appraise alternatives** and **incomplete survey of objectives** (junior staff excluded).\n\n**Fixes:** **Devil's advocate** role, **anonymous feedback**, **subgroup analysis**, leader **withholds preference** until others speak.\n\n**Evaluation:** Groupthink explains silence but **oversimplifies** — power imbalance (LMX out-group juniors) also explains fear. Not all cohesive groups groupthink; **psychological safety** allows cohesion with open dissent."
+    },
     { "type": "practice", "label": "Mark a group development question", "href": "/mark?subject=9990&topic=4.3.1" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.3.2 Individual and group performance", "href": "/courses/9990/4-3-2-individual-and-group-performance" },
+        { "label": "4.3.3 Conflict at work", "href": "/courses/9990/4-3-3-conflict-at-work" },
+        { "label": "4.2.2 Leadership style", "href": "/courses/9990/4-2-2-leadership-style" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

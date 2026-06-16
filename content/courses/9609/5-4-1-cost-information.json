@@ -5,28 +5,107 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — fixed, variable, total, and average cost concepts.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — fixed vs variable costs, total and average cost, and why accurate cost data matters for decisions.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define fixed and variable costs.",
-    "Calculate total and average costs.",
-    "Explain importance of accurate cost data.",
-    "Classify costs for decision making."
+    "Define and classify fixed and variable costs.",
+    "Calculate total cost and average cost.",
+    "Explain why accurate cost information is important.",
+    "Apply cost classification to business decisions."
   ],
   "simpleExplanation": {
     "title": "Knowing what things cost",
-    "summary": "Cost information splits spending into fixed overheads and variable costs that change with output, enabling pricing and profit analysis.",
+    "summary": "Cost information splits spending into fixed overheads and variable costs that change with output, enabling pricing, profit analysis, and break-even calculations.",
+    "analogy": "Running a café: rent and manager salary are fixed — you pay them whether you serve 10 or 100 customers. Coffee beans and takeaway cups are variable — the more you sell, the more you spend. You need both numbers before you can price a latte or know if a busy Saturday is actually profitable.",
     "steps": [
-      "Fixed: rent, salaries — unchanged by output.",
-      "Variable: materials, piece wages.",
-      "Total cost = fixed + variable.",
-      "Average cost = total / output."
+      "Fixed costs: rent, salaries — unchanged by output level.",
+      "Variable costs: materials, piece-rate wages — rise with output.",
+      "Total cost = fixed costs + total variable costs.",
+      "Average cost = total cost ÷ output (units produced or sold)."
     ]
   },
+  "flashcards": [
+    { "front": "What is a fixed cost?", "back": "A cost that does not change with the level of output in the short run (e.g. rent, salaried staff, insurance)." },
+    { "front": "What is a variable cost?", "back": "A cost that changes in direct proportion to output (e.g. raw materials, commission, packaging)." },
+    { "front": "Total cost formula?", "back": "Total cost = Fixed costs + Total variable costs." },
+    { "front": "Average cost formula?", "back": "Average cost = Total cost ÷ Output (units)." },
+    { "front": "Why classify costs as fixed vs variable?", "back": "Enables contribution analysis, break-even, pricing decisions, and budget control." },
+    { "front": "Semi-variable (step) cost example?", "back": "Electricity with a standing charge plus usage — partly fixed, partly variable." },
+    { "front": "Why is accurate cost data important?", "back": "Wrong costs lead to bad pricing, false profit figures, and poor investment decisions." },
+    { "front": "Average cost and output relationship?", "back": "As output rises, average fixed cost falls (spreading overheads); average variable cost may rise if efficiency falls." }
+  ],
+  "faq": [
+    {
+      "q": "Is labour always a fixed cost?",
+      "a": "No. Salaried staff are usually fixed in the short run; piece-rate or hourly casual workers paid only when producing are variable. Read the case carefully."
+    },
+    {
+      "q": "What is semi-variable cost?",
+      "a": "A cost with both fixed and variable elements (e.g. phone bill with line rental + call charges). Examiners may ask you to split or treat as one category if told."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Cost information** (5.4.1) underpins **5.4.2–5.4.4**. Label costs **fixed vs variable** before calculating." },
-    { "type": "practice", "label": "Mark a cost information question", "href": "/mark?subject=9609&topic=5.4.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Cost information** (5.4.1) is the foundation for all **9609 AS** finance calculations in unit 5.4. Before break-even, contribution, or budgeting, you must **correctly classify costs** as fixed or variable. Examiners often hide classification in a case paragraph — underline each cost and label it before calculating."
+    },
+    {
+      "type": "heading",
+      "content": "Fixed and variable costs"
+    },
+    {
+      "type": "text",
+      "content": "**Fixed costs (FC)** do not change when output changes in the **short run**. Examples: rent, insurance, salaried management, depreciation on existing equipment.\n\n**Variable costs (VC)** change in proportion to output. Examples: direct materials, packaging, sales commission per unit, piece-rate wages.\n\nSome costs are **semi-variable** (mixed): e.g. electricity with a fixed standing charge plus usage. In exams, follow the case instructions — either split the cost or treat it as given."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Short run only:** Fixed costs are fixed only in the time period given — rent may be fixed this year but renegotiated next year.",
+        "**Direct vs indirect** is different from fixed vs variable — a cost can be direct (traceable to a product) and still fixed (e.g. supervisor salary for one product line).",
+        "**Classify before calculating** — mislabelling a variable cost as fixed destroys break-even and contribution answers."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Total cost and average cost"
+    },
+    {
+      "type": "formula",
+      "content": "Total cost (TC) = Fixed costs + Total variable costs\n\nAverage cost (AC) = $\\frac{\\text{Total cost}}{\\text{Output (units)}}$\n\nAverage fixed cost (AFC) = $\\frac{\\text{Fixed costs}}{\\text{Output}}$\n\nAverage variable cost (AVC) = $\\frac{\\text{Total variable costs}}{\\text{Output}}$"
+    },
+    {
+      "type": "text",
+      "content": "As output increases, **average fixed cost falls** (fixed costs spread over more units). **Average variable cost** may stay constant or rise if, for example, overtime or bulk discounts change unit costs. **Average total cost** typically falls then may rise — the familiar U-shape in theory, though 9609 focuses on calculation not drawing AC curves."
+    },
+    {
+      "type": "workedExample",
+      "question": "A workshop has fixed costs of $8 000 per month. Variable cost is $12 per unit. Calculate total cost and average cost when output is (a) 500 units, (b) 1 000 units.",
+      "solution": "**At 500 units**\nTotal variable cost = 500 × $12 = $6 000\nTotal cost = $8 000 + $6 000 = **$14 000**\nAverage cost = $14 000 ÷ 500 = **$28.00** per unit\n\n**At 1 000 units**\nTotal variable cost = 1 000 × $12 = $12 000\nTotal cost = $8 000 + $12 000 = **$20 000**\nAverage cost = $20 000 ÷ 1 000 = **$20.00** per unit\n\nAverage cost falls because fixed costs are spread over more units (AFC falls from $16 to $8)."
+    },
+    {
+      "type": "heading",
+      "content": "Importance of accurate cost information"
+    },
+    {
+      "type": "text",
+      "content": "Managers use cost data to **set prices**, **measure profit by product**, **control spending**, and **plan production**. Inaccurate data — missing overheads, wrong classification, outdated material prices — leads to selling below cost, overstated profit, and poor decisions."
+    },
+    {
+      "type": "examTip",
+      "content": "In case studies, list costs from the text in a table (Cost | Fixed/Variable | $ amount) before any calculation. Examiners reward clear classification even when the final number is wrong."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a cost information question",
+      "href": "/mark?subject=9609&topic=5.4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "5.4.2 Full vs contribution costing", "href": "/courses/9609/5-4-2-approaches-to-costing-full-contribution" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

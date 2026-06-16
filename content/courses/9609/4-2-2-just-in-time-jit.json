@@ -5,9 +5,9 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — JIT principles, requirements, and benefits/risks.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — JIT principles, prerequisites, benefits, risks, and when to recommend it.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define Just in Time inventory.",
     "Explain prerequisites for successful JIT.",
@@ -16,17 +16,46 @@
   ],
   "simpleExplanation": {
     "title": "Materials arrive exactly when needed",
-    "summary": "JIT minimises inventory by synchronising deliveries with production. It cuts holding costs but needs reliable suppliers.",
+    "summary": "JIT delivers components to the production line only as they are required. It frees working capital and cuts storage but needs flawless suppliers and internal discipline.",
     "steps": [
-      "Parts delivered as required.",
-      "Lower warehouse costs.",
-      "Requires dependable supply chain.",
-      "Vulnerable to disruption."
+      "Parts delivered as required — minimal warehouse stock.",
+      "Lower holding and handling costs.",
+      "Requires dependable suppliers and quality at source.",
+      "Vulnerable to transport strikes, disasters, demand shocks."
     ]
   },
+  "flashcards": [
+    { "front": "JIT definition?", "back": "Inventory system where materials arrive just when needed for production." },
+    { "front": "Main benefit?", "back": "Reduced holding costs and working capital tied up in stock." },
+    { "front": "Toyota link?", "back": "Pioneer of JIT + kaizen; classic case reference." },
+    { "front": "Prerequisites?", "back": "Reliable suppliers, quality control, flexible workforce, good IT." },
+    { "front": "Main risk?", "back": "Supply disruption stops production immediately — no buffer." },
+    { "front": "vs buffer stock?", "back": "JIT minimises buffer; traditional holds safety stock (4.2.1)." },
+    { "front": "Link to lean?", "back": "JIT is core to lean production (9.3.4)." },
+    { "front": "Unsuitable when?", "back": "Unreliable suppliers, volatile demand, long lead times from abroad." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**JIT** (4.2.2) contrasts **4.2.1 buffer stock**. Toyota is the classic **case reference**." },
-    { "type": "practice", "label": "Mark a JIT question", "href": "/mark?subject=9609&topic=4.2.2" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**JIT** (4.2.2) contrasts **4.2.1 buffer stock**. Always **evaluate context** — JIT is not automatically best for a small firm with one unreliable supplier."
+    },
+    {
+      "type": "workedExample",
+      "question": "Car assembler considers JIT for seat deliveries from a supplier 200 km away. Currently holds 3 days' seat stock. Advise whether to adopt JIT.",
+      "solution": "**Pros:** Seats are **bulky** — warehouse savings significant; **cash** freed (5.1.2).\n\n**Prerequisites check:**\n- Supplier must guarantee **on-time, defect-free** delivery — **quality at source**.\n- **IT integration** for production schedule sharing.\n- **Backup supplier** or contingency if road blocked.\n\n**Risk:** Single supplier, 200 km — **strike or weather** halts line (costly).\n\n**Recommendation:** **Pilot JIT** on one model line if supplier agrees **penalty clauses**; keep **minimal safety stock** initially — hybrid until proven."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a JIT question",
+      "href": "/mark?subject=9609&topic=4.2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.2.1 Managing inventory", "href": "/courses/9609/4-2-1-managing-inventory" },
+        { "label": "9.3.4 Lean production", "href": "/courses/9609/9-3-4-lean-production" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

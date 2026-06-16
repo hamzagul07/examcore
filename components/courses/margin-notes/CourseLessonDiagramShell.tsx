@@ -115,7 +115,7 @@ export function CourseLessonDiagramShell({
 
       {embedForStep ? (
         <div className="diagram-embed">
-          <CourseInteractiveEmbed embed={embedForStep} stepLabel={embedStepLabel} />
+          <CourseInteractiveEmbed embed={embedForStep} stepLabel={embedStepLabel} layout="diagram" />
         </div>
       ) : null}
 

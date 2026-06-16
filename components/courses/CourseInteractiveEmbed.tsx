@@ -14,6 +14,8 @@ type Props = {
   className?: string
   /** e.g. "Step 2 of 4" when synced with the step carousel */
   stepLabel?: string
+  /** Diagram shell: viewport-sized stage, no fixed aspect-ratio inline style */
+  layout?: 'default' | 'diagram'
 }
 
 function launchLabel(provider: LessonInteractiveEmbed['provider']): string {
@@ -22,7 +24,7 @@ function launchLabel(provider: LessonInteractiveEmbed['provider']): string {
   return 'Open simulation'
 }
 
-export function CourseInteractiveEmbed({ embed, className = '', stepLabel }: Props) {
+export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layout = 'default' }: Props) {
   const [fullscreen, setFullscreen] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [showSlowHint, setShowSlowHint] = useState(false)
@@ -31,6 +33,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel }: Pro
   const label = launchLabel(embed.provider)
   const cheerpj = isCheerpjEmbedUrl(embed.embedUrl)
   const iframeId = useId()
+  const inDiagram = layout === 'diagram'
 
   const handleLoad = useCallback(() => {
     setLoaded(true)
@@ -60,7 +63,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel }: Pro
 
   return (
     <figure
-      className={`course-interactive-embed ${fullscreen ? 'course-interactive-embed--fullscreen' : ''} ${className}`.trim()}
+      className={`course-interactive-embed ${inDiagram ? 'course-interactive-embed--diagram' : ''} ${fullscreen ? 'course-interactive-embed--fullscreen' : ''} ${className}`.trim()}
     >
       {fullscreen ? (
         <div className="course-interactive-embed-overlay-bar">
@@ -127,7 +130,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel }: Pro
 
       <div
         className="course-interactive-embed-stage"
-        style={fullscreen ? undefined : { aspectRatio }}
+        style={fullscreen || inDiagram ? undefined : { aspectRatio }}
       >
         {!loaded ? (
           <div className="course-interactive-embed-loading" aria-live="polite">

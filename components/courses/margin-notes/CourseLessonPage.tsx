@@ -65,22 +65,26 @@ function FormulaCard({ f }: { f: NonNullable<MarginNotesLesson['formulas']>[numb
           })
         )}
       </div>
-      <div className="formula-parts">
-        {f.parts.map((p) => (
-          <button
-            key={p.s}
-            type="button"
-            className={`fpart${sel === p.s ? ' on' : ''}`}
-            onClick={() => setSel(sel === p.s ? null : p.s)}
-          >
-            <span className="fpart-s mono">{p.s}</span>
-            <span className="fpart-m">{p.m}</span>
-          </button>
-        ))}
-      </div>
-      <p className="formula-hint micro">
-        {selected ? selected.m : 'TAP A SYMBOL — GREAT FOR EXAM DEFINITIONS'}
-      </p>
+      {f.parts.length > 0 ? (
+        <>
+          <div className="formula-parts">
+            {f.parts.map((p) => (
+              <button
+                key={p.s}
+                type="button"
+                className={`fpart${sel === p.s ? ' on' : ''}`}
+                onClick={() => setSel(sel === p.s ? null : p.s)}
+              >
+                <span className="fpart-s mono">{p.s}</span>
+                <span className="fpart-m">{p.m}</span>
+              </button>
+            ))}
+          </div>
+          <p className="formula-hint">
+            {selected ? selected.m : 'Tap a symbol — great for exam definitions'}
+          </p>
+        </>
+      ) : null}
     </div>
   )
 }

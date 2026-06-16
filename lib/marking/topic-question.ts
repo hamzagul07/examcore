@@ -1,4 +1,9 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { getStaticTopicFallback } from '@/lib/marking/topic-fallbacks'
+import {
+  seasonNameFromSessionCode,
+  sessionCodeToYear,
+} from '@/lib/marking/session'
 
 export type TopicQuestionMatch = {
   paper_code: string
@@ -58,6 +63,9 @@ export async function findQuestionForTopic(
     }
   }
 
+  const staticFallback = getStaticTopicFallback(subject, codes)
+  if (staticFallback) return staticFallback
+
   const { data: fallback, error: fallbackError } = await supabase
     .from('mark_schemes')
     .select(
@@ -82,6 +90,35 @@ export async function findQuestionForTopic(
   }
 }
 
+function parsePaperSession(
+  paperSession: string
+): { session: string; year: number } | null {
+  const trimmed = paperSession.trim()
+  const longMatch = trimmed.match(/^(May\/June|October\/November|February\/March|June|November|March)\s+(\d{4})$/i)
+  if (longMatch) {
+    const raw = longMatch[1]
+    const session =
+      raw.includes('/')
+        ? raw
+        : raw.toLowerCase() === 'june'
+          ? 'May/June'
+          : raw.toLowerCase() === 'november'
+            ? 'October/November'
+            : raw.toLowerCase() === 'march'
+              ? 'February/March'
+              : raw
+    return { session, year: Number(longMatch[2]) }
+  }
+  const compact = trimmed.match(/^([smw])(\d{2})$/i)
+  if (compact) {
+    const code = compact[0].toLowerCase()
+    const year = sessionCodeToYear(code)
+    const session = seasonNameFromSessionCode(code)
+    if (year && session) return { session, year }
+  }
+  return null
+}
+
 export function applyTopicQuestionToPaperSelection(match: TopicQuestionMatch): {
   subject: string
   component: string
@@ -91,13 +128,13 @@ export function applyTopicQuestionToPaperSelection(match: TopicQuestionMatch): {
 } | null {
   const [subject, component] = match.paper_code.split('/')
   if (!subject || !component) return null
-  const sessionMatch = match.paper_session.match(/^(.*)\s+(\d{4})$/i)
-  if (!sessionMatch) return null
+  const parsed = parsePaperSession(match.paper_session)
+  if (!parsed) return null
   return {
     subject,
     component,
-    session: sessionMatch[1],
-    year: Number(sessionMatch[2]),
+    session: parsed.session,
+    year: parsed.year,
     questionNumber: match.question_number,
   }
 }

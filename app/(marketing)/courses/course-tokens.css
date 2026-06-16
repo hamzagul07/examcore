@@ -49,9 +49,15 @@
 }
 
 html[data-ec-theme='zen'] .course-root {
-  --course-read-bg: #fafaf9;
-  --course-read-text: #18181b;
-  --course-read-muted: #52525b;
+  --course-read-bg: var(--paper);
+  --course-read-text: var(--text);
+  --course-read-muted: var(--text-2);
+}
+
+html[data-ec-theme='late-night'] .course-root {
+  --course-read-bg: var(--paper);
+  --course-read-text: var(--text);
+  --course-read-muted: var(--text-2);
 }
 
 html[data-ec-theme='late-night'] .course-studio,

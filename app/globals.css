@@ -16,6 +16,7 @@
 @import "../lib/design-system/margin-notes-theme.css";
 @import "../lib/design-system/margin-notes-courses.css";
 @import "../lib/design-system/margin-notes-contrast.css";
+@import "../lib/design-system/ec-theme-contrast.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -322,27 +323,4 @@
   }
 }
 
-/* Zen contrast (tail): wins over utilities in this bundle */
-html[data-ec-theme='zen'] .text-white,
-html[data-ec-theme='zen'] .text-white\/90,
-html[data-ec-theme='zen'] .text-white\/80,
-html[data-ec-theme='zen'] .text-slate-100,
-html[data-ec-theme='zen'] .text-slate-200,
-html[data-ec-theme='zen'] .text-slate-300 {
-  color: var(--ec-text-primary) !important;
-}
-
-html[data-ec-theme='zen'] .text-slate-400,
-html[data-ec-theme='zen'] .text-slate-500,
-html[data-ec-theme='zen'] .text-slate-600 {
-  color: var(--ec-text-secondary) !important;
-}
-
-html[data-ec-theme='zen'] .text-slate-800,
-html[data-ec-theme='zen'] .text-slate-900 {
-  color: var(--ec-text-primary) !important;
-}
-
-html[data-ec-theme='zen'] .hover\:text-white:hover {
-  color: var(--ec-text-primary) !important;
-}
+/* Theme contrast: see ec-theme-contrast.css (loaded via @import above) */

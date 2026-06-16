@@ -1,0 +1,287 @@
+/* ============================================================
+   Theme contrast — final override layer (load after all theme CSS)
+   Uses color-mix for readable secondary/muted text on zen + late-night.
+   ============================================================ */
+
+/* ── Stronger semantic text tokens (both themes) ── */
+[data-ec-theme='zen'] {
+  --text-2: color-mix(in oklch, var(--text) 72%, var(--bg));
+  --muted: color-mix(in oklch, var(--text) 58%, var(--bg));
+  --ec-text-secondary: color-mix(in oklch, var(--ec-text-primary) 72%, var(--ec-canvas));
+  --ec-text-tertiary: color-mix(in oklch, var(--ec-text-primary) 68%, var(--ec-canvas));
+  --ec-text-faint: color-mix(in oklch, var(--ec-text-primary) 58%, var(--ec-canvas));
+}
+
+[data-ec-theme='late-night'] {
+  --text-2: color-mix(in oklch, var(--text) 78%, var(--bg));
+  --muted: color-mix(in oklch, var(--text) 62%, var(--bg));
+  --ec-text-secondary: color-mix(in oklch, var(--ec-text-primary) 78%, var(--ec-canvas));
+  --ec-text-tertiary: color-mix(in oklch, var(--ec-text-primary) 72%, var(--ec-canvas));
+  --ec-text-faint: color-mix(in oklch, var(--ec-text-primary) 62%, var(--ec-canvas));
+}
+
+@media (prefers-contrast: more) {
+  [data-ec-theme='zen'],
+  [data-ec-theme='late-night'] {
+    --muted: var(--text-2);
+    --ec-text-faint: var(--ec-text-secondary);
+    --ec-text-tertiary: var(--ec-text-secondary);
+  }
+}
+
+/* ── Margin Notes shell: bridge legacy ec-* inside course pages ── */
+.course-root {
+  color: var(--text);
+  --course-read-text: var(--text);
+  --course-read-muted: var(--text-2);
+  --ec-text-primary: var(--text);
+  --ec-text-secondary: var(--text-2);
+  --ec-text-tertiary: var(--text-2);
+  --ec-text-faint: color-mix(in oklch, var(--text) 62%, var(--bg));
+  --ec-brand: var(--ink);
+  --ec-border: var(--border);
+  --ec-border-subtle: var(--border);
+  --ec-surface: var(--surface);
+  --ec-surface-raised: var(--bg-soft);
+  --ec-surface-muted: var(--bg-soft);
+  --ec-canvas: var(--bg);
+  --ec-on-brand-text: var(--on-ink-text);
+}
+
+/* ── On-brand (ink) surfaces — always use on-ink text, not page bg ── */
+:is(
+  .btn-primary,
+  .tally,
+  .cmap-core,
+  .cmap-node.on,
+  .fsym.on,
+  .topic-check.on,
+  .complete-btn.done .complete-box,
+  .streak-dot.on,
+  .plan-ribbon,
+  .nav-avatar:hover,
+  .diagram-play:hover,
+  .step-card.on .step-n,
+  .mode-tab.on .mode-count
+) {
+  color: var(--on-ink-text, var(--ec-on-brand-text));
+}
+
+.cmap-core-label,
+.course-root .cmap-core .micro.cmap-core-label {
+  color: var(--on-ink-text, var(--ec-on-brand-text));
+  opacity: 0.85;
+}
+
+/* ── Meta copy: never use bare muted for readable UI labels ── */
+.course-root :is(
+  .hero-stat span,
+  .scard-tab,
+  .scard-meta,
+  .topic-n,
+  .topic-check,
+  .toc-num,
+  .step-n,
+  .qc-reveal,
+  .fcard-hint,
+  .fc-nav-hint,
+  .practice-marks,
+  .practice-scheme-tag,
+  .lesson-resource-go,
+  .subj-code,
+  .subj-go,
+  .streak-days,
+  .streak-dot,
+  .dash-stat-l,
+  .dash-course-go,
+  .weak-go,
+  .plan-was,
+  .plan-per,
+  .cmdk-btn,
+  .crumb-link,
+  .mode-sub
+) {
+  color: var(--text-2);
+}
+
+.course-root :is(
+  .lesson-sheet-meta,
+  .sheet-head,
+  .paper-tab-meta,
+  .chip.dim,
+  .scheme-cite,
+  .objlist-kicker,
+  .diagram-step-label,
+  .lsec-sub,
+  .body-2,
+  .lead
+) {
+  color: var(--text-2);
+}
+
+.course-root .micro:not(.cmap-core-label) {
+  color: var(--text-2);
+}
+
+.course-root .micro.cmap-detail-kicker,
+.course-root .micro.objlist-kicker {
+  color: var(--ink);
+}
+
+/* ── Zen: light text utilities on sand backgrounds ── */
+html[data-ec-theme='zen'] :is(
+  .text-white,
+  .text-white\/90,
+  .text-white\/80,
+  .text-slate-100,
+  .text-slate-200,
+  .text-slate-300,
+  .text-gray-100,
+  .text-gray-200,
+  .text-gray-300,
+  .text-neutral-100,
+  .text-neutral-200,
+  .text-neutral-300
+) {
+  color: var(--ec-text-primary) !important;
+}
+
+html[data-ec-theme='zen'] :is(
+  .text-slate-400,
+  .text-slate-500,
+  .text-slate-600,
+  .text-gray-400,
+  .text-gray-500,
+  .text-neutral-400,
+  .text-neutral-500
+) {
+  color: var(--ec-text-secondary) !important;
+}
+
+html[data-ec-theme='zen'] :is(
+  .text-slate-700,
+  .text-slate-800,
+  .text-slate-900,
+  .text-gray-700,
+  .text-gray-800,
+  .text-gray-900,
+  .text-neutral-700,
+  .text-neutral-800,
+  .text-neutral-900,
+  .text-black
+) {
+  color: var(--ec-text-primary) !important;
+}
+
+/* Keep readable text on brand-filled controls in zen */
+html[data-ec-theme='zen'] :is(
+  .btn-primary,
+  .tally,
+  .cmap-core,
+  .cmap-node.on,
+  .fsym.on,
+  .mode-tab.on .mode-count,
+  .ms-mstep.done .dot
+) {
+  color: var(--ec-on-brand-text) !important;
+}
+
+/* ── Late-night: dark text utilities on warm dark surfaces ── */
+html[data-ec-theme='late-night'] :is(
+  .text-black,
+  .text-gray-900,
+  .text-gray-800,
+  .text-gray-700,
+  .text-neutral-900,
+  .text-neutral-800,
+  .text-neutral-700,
+  .text-slate-900,
+  .text-slate-800,
+  .text-slate-700,
+  .text-\[\#25221b\],
+  .text-\[\#1f1f1f\],
+  .text-\[\#1f1f1f\]\/70
+) {
+  color: var(--ec-text-primary) !important;
+}
+
+html[data-ec-theme='late-night'] :is(
+  .text-gray-600,
+  .text-gray-500,
+  .text-neutral-600,
+  .text-neutral-500,
+  .text-slate-600,
+  .text-slate-500
+) {
+  color: var(--ec-text-secondary) !important;
+}
+
+/* ── KaTeX + rich text (site-wide) ── */
+html[data-ec-theme='zen'] :is(.katex, .katex-display, .course-rich-text, .course-rich-text--prose, .course-rich-text--inline, .course-rich-text--formula, .course-rich-text--flashcard),
+html[data-ec-theme='late-night'] :is(.katex, .katex-display, .course-rich-text, .course-rich-text--prose, .course-rich-text--inline, .course-rich-text--formula, .course-rich-text--flashcard) {
+  color: var(--ec-text-primary);
+}
+
+html[data-ec-theme='zen'] .katex :is(.base, .strut, .mord, .mop, .mbin, .mrel, .mopen, .mclose, .mpunct),
+html[data-ec-theme='late-night'] .katex :is(.base, .strut, .mord, .mop, .mbin, .mrel, .mopen, .mclose, .mpunct) {
+  color: inherit;
+}
+
+html[data-ec-theme='late-night'] .lesson-diagram-svg text {
+  fill: var(--text, var(--ec-text-primary));
+}
+
+html[data-ec-theme='late-night'] .lesson-diagram-svg [stroke] {
+  stroke: var(--text-2, var(--ec-text-secondary));
+}
+
+html[data-ec-theme='zen'] .lesson-diagram-svg text {
+  fill: var(--text, var(--ec-text-primary));
+}
+
+html[data-ec-theme='zen'] .lesson-diagram-svg [stroke] {
+  stroke: var(--ink, var(--ec-brand));
+}
+
+/* ── Mark flow + app pages: bump faint step/meta copy ── */
+.ms-mark-steps-bar {
+  color: var(--ec-text-secondary);
+}
+
+html[data-ec-theme='zen'] :is(
+  .border-white\/5,
+  .border-white\/10,
+  .border-white\/20
+) {
+  border-color: var(--ec-border) !important;
+}
+
+html[data-ec-theme='zen'] :is(
+  .bg-white\/5,
+  .bg-white\/10,
+  .bg-dark-800\/60,
+  .bg-dark-900\/60
+) {
+  background-color: color-mix(in srgb, var(--ec-text-primary) 5%, var(--ec-surface)) !important;
+}
+
+html[data-ec-theme='late-night'] .bg-white\/90 {
+  background-color: color-mix(in srgb, var(--ec-text-primary) 6%, var(--ec-surface)) !important;
+}
+
+html[data-ec-theme='zen'] .placeholder\:text-slate-500::placeholder {
+  color: var(--ec-text-secondary) !important;
+}
+
+html[data-ec-theme='zen'] .hover\:text-white:hover {
+  color: var(--ec-text-primary) !important;
+}
+
+.course-root .gloss:not(.on) .gloss-d {
+  color: var(--text-2);
+}
+
+.course-root .footer h4,
+.course-root .footer-legal {
+  color: var(--text-2);
+}

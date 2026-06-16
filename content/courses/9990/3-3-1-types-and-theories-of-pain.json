@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — acute/chronic pain, gate control theory, and biopsychosocial models.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish acute, chronic, and neuropathic pain.",
     "Explain gate control theory (Melzack & Wall).",
@@ -24,9 +24,31 @@
       "Biopsychosocial — biology + mind + society."
     ]
   },
+  "flashcards": [
+    { "front": "Acute vs chronic pain?", "back": "Acute — short-term warning of tissue damage, resolves with healing. Chronic — persists **≥3–6 months** beyond normal healing, often without ongoing pathology." },
+    { "front": "Neuropathic pain?", "back": "Pain caused by **nerve damage** — burning, shooting, tingling sensations; often resistant to standard analgesics." },
+    { "front": "Gate control theory — who proposed it?", "back": "**Melzack & Wall (1965)** — pain signals pass through a 'gate' in the spinal cord modulated by large/small nerve fibres and brain descending pathways." },
+    { "front": "What closes the gate?", "back": "Activation of **large-diameter fibres** (touch, vibration) and **descending signals** from brain — explains why rubbing an injury reduces pain." },
+    { "front": "What opens the gate?", "back": "**Small-diameter fibres** (pain signals), anxiety, focus on pain, and lack of competing sensory input." },
+    { "front": "Biopsychosocial model of pain?", "back": "Pain = **biological** (nerve damage) + **psychological** (catastrophising, anxiety) + **social** (culture, support) — holistic alternative to purely biomedical model." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Pain theories** (3.3.1) opens 3.3. **Gate control theory** is essential — diagram the mechanism." },
+    { "type": "intro", "content": "**Pain theories** (3.3.1) opens 3.3. **Gate control theory** is essential — diagram the mechanism. Chronic pain challenges purely **biomedical reductionism**." },
+    {
+      "type": "workedExample",
+      "question": "After a back injury, Sam experienced acute pain for two weeks. Six months later, scans show healed tissue but Sam reports constant severe pain that prevents work.\n\n(a) Classify Sam's current pain and explain why it persists despite tissue healing. [4 marks]\n(b) Explain gate control theory and how it accounts for Sam's experience. [4 marks]\n(c) Evaluate the biopsychosocial model as an approach to understanding chronic pain. [6 marks]",
+      "solution": "(a) **Classification and explanation:**\n- Sam now has **chronic pain** — persisting beyond normal healing time (>3–6 months) despite resolved tissue damage.\n- Pain has become **decoupled from nociception** — nervous system maintains pain signals without ongoing injury.\n- Possible **central sensitisation** — spinal cord and brain amplify pain signals.\n\n(b) **Gate control theory applied:**\n- Pain impulses travel via **small-diameter A-delta and C fibres** to substantia gelatinosa in spinal cord.\n- In Sam's case, the gate is **chronically open** — brain descending pathways (anxiety, focus on pain) fail to close it.\n- **Negative mood** and **attention to pain** (psychological factors) keep gate open even without peripheral input.\n- Explains why **TENS** (large fibre stimulation) and **distraction** may help — competing input closes gate.\n\n(c) **Evaluation of biopsychosocial model:**\n- **Strengths:** Integrates **Melzack & Wall** gate theory with psychological (catastrophising, depression) and social (work loss, disability benefits) factors — matches Sam's profile.\n- **Holistic:** Avoids telling patients pain is \"all in the head\" — acknowledges real **neurobiological changes** in chronic pain.\n- **Clinical utility:** Underpins **multimodal pain clinics** combining medication, CBT, and physiotherapy (see 3.3.3).\n- **Limitations:**\n  - **Vague** — difficult to test as a unified model; which component dominates varies by patient.\n  - **Individual responsibility** — may blame patient for \"psychological\" contribution.\n  - Does not fully explain **neuropathic pain** mechanisms at molecular level.\n\n**Judgement:** Superior to purely biomedical model for chronic pain, but treatment still requires targeting each component specifically."
+    },
     { "type": "practice", "label": "Mark a pain theories question", "href": "/mark?subject=9990&topic=3.3.1" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.3.2 Measuring pain", "href": "/courses/9990/3-3-2-measuring-pain" },
+        { "label": "3.3.3 Managing and controlling pain", "href": "/courses/9990/3-3-3-managing-and-controlling-pain" },
+        { "label": "3.4.1 Sources of stress", "href": "/courses/9990/3-4-1-sources-of-stress" },
+        { "label": "3.4.3 Managing stress", "href": "/courses/9990/3-4-3-managing-stress" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — life events, daily hassles, workplace stressors, and individual differences.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define stress and distinguish eustress from distress.",
     "Explain Holmes & Rahe life events scale.",
@@ -24,9 +24,31 @@
       "Individual — personality, coping resources."
     ]
   },
+  "flashcards": [
+    { "front": "Eustress vs distress?", "back": "Eustress — **positive** stress that motivates (e.g. exam preparation). Distress — **negative** stress that overwhelms coping resources." },
+    { "front": "Holmes & Rahe Social Readjustment Rating Scale?", "back": "43 life events ranked by **Life Change Units (LCUs)** — e.g. death of spouse = 100, marriage = 50. Total >300 = high stress risk." },
+    { "front": "Kanner et al. (1981) daily hassles?", "back": "Minor daily irritations (traffic, arguments, deadlines) correlate **more strongly** with health outcomes than major life events — **accumulation effect**." },
+    { "front": "Daily uplifts?", "back": "Small positive events (compliment, good meal) that buffer stress — Kanner found uplifts improve mood and health." },
+    { "front": "Workplace stress — demand-control model?", "back": "Karasek — high **job demands** + low **control** = highest stress and cardiovascular risk (high-strain jobs)." },
+    { "front": "Individual differences in stress?", "back": "Same stressor affects people differently — depends on **appraisal** (Lazarus), **personality** (Type A), and **social support**." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Sources of stress** (3.4.1) opens 3.4. Compare **life events vs daily hassles** research." },
+    { "type": "intro", "content": "**Sources of stress** (3.4.1) opens 3.4. Compare **life events vs daily hassles** research. Remember stress is transactional — source + appraisal = response." },
+    {
+      "type": "workedExample",
+      "question": "Two students experience the same event: failing a mock exam.\n\nStudent A becomes anxious, loses sleep, and stops studying. Student B treats it as useful feedback and increases revision.\n\n(a) Using Holmes & Rahe and Kanner's research, outline two types of stress source relevant to students. [4 marks]\n(b) Explain why the same stressor produced different responses in A and B. [4 marks]\n(c) Evaluate the life events approach to understanding stress. [6 marks]",
+      "solution": "(a) **Stress sources:**\n- **Life events (Holmes & Rahe):** Failing an exam may coincide with other LCUs — e.g. starting university (63 LCU), parental divorce (73) — cumulative score predicts health risk.\n- **Daily hassles (Kanner et al.):** Ongoing minor stressors — coursework deadlines, part-time job shifts, arguments with housemates — **accumulate** and correlate more strongly with anxiety and health complaints than single events.\n\n(b) **Different responses explained:**\n- **Lazarus & Folkman's appraisal model:** Student A performs **primary appraisal** — evaluates failure as **threat** to university place (high perceived severity). Student B appraises as **challenge** — opportunity to improve.\n- **Secondary appraisal:** A believes coping resources are insufficient; B believes revision strategy can be changed.\n- **Individual factors:** A may have **external locus of control** (Rotter) — \"nothing I do will help\"; B has **internal LOC** and higher **self-efficacy** (Bandura).\n\n(c) **Evaluation of life events approach:**\n- **Strengths:** Holmes & Rahe (1967) provided **quantifiable** measure (LCUs); demonstrated link between life change and illness (e.g. tuberculosis, accidents); pioneering stress research.\n- **Limitations:**\n  - **Ignores appraisal** — same event (marriage = 50 LCU) can be positive or negative depending on individual.\n  - **Retrospective bias** — SRRS relies on memory of past events.\n  - **Daily hassles stronger predictor** — Kanner et al. (1981) showed hassles correlate r = .51 with psychological symptoms vs r = .28 for life events.\n  - **Cultural bias** — SRRS developed in 1960s USA; events like \"mortgage >$10,000\" dated.\n  - **Correlation not causation** — life events may co-occur with illness rather than cause it.\n\n**Judgement:** Life events approach is historically important but **insufficient alone** — must combine with daily hassles and appraisal models."
+    },
     { "type": "practice", "label": "Mark a sources of stress question", "href": "/mark?subject=9990&topic=3.4.1" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.4.2 Measures of stress", "href": "/courses/9990/3-4-2-measures-of-stress" },
+        { "label": "3.4.3 Managing stress", "href": "/courses/9990/3-4-3-managing-stress" },
+        { "label": "3.5.2 Health promotion in schools and worksites", "href": "/courses/9990/3-5-2-health-promotion-in-schools-and-worksites" },
+        { "label": "3.3.1 Types and theories of pain", "href": "/courses/9990/3-3-1-types-and-theories-of-pain" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

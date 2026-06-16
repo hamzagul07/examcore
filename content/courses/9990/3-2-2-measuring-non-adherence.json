@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — self-report, pill counts, biochemical markers, and adherence measurement challenges.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline methods: self-report, observation, biochemical tests.",
     "Compare direct vs indirect measurement approaches.",
@@ -24,9 +24,31 @@
       "Electronic monitors — MEMS caps track openings."
     ]
   },
+  "flashcards": [
+    { "front": "Self-report adherence?", "back": "Patient questionnaire or interview — **cheap and easy** but vulnerable to **social desirability bias** (overreporting)." },
+    { "front": "Pill count method?", "back": "Compare pills dispensed vs pills remaining — more **objective** but patients may **dump pills** to appear adherent." },
+    { "front": "Biochemical marker example?", "back": "Blood/urine test for drug metabolites — e.g. HbA1c for long-term glucose control in diabetes; **high validity** but invasive and costly." },
+    { "front": "MEMS cap?", "back": "Electronic Medication Event Monitoring System — records bottle opening times; detects **timing** of doses but not whether pill was swallowed." },
+    { "front": "Direct vs indirect measures?", "back": "Direct — observe ingestion or detect drug in body; indirect — pill count, pharmacy refill records, self-report." },
+    { "front": "Ethical issue in adherence monitoring?", "back": "**Privacy** — covert monitoring undermines trust; patients must **consent** to biochemical testing and electronic tracking." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Measuring adherence** (3.2.2) — compare **methods** on validity, cost, and practicality." },
+    { "type": "intro", "content": "**Measuring adherence** (3.2.2) — compare **methods** on validity, cost, and practicality. No single method is perfect; multi-method assessment improves accuracy." },
+    {
+      "type": "workedExample",
+      "question": "A clinical trial reports 92% adherence based on patient self-report questionnaires.\n\n(a) Outline two alternative methods of measuring adherence that would provide more objective data. [4 marks]\n(b) Evaluate the validity of self-report as a measure of medication adherence. [6 marks]",
+      "solution": "(a) **Alternative methods:**\n- **Pill count:** Pharmacist counts remaining pills vs prescribed amount — semi-objective, low cost.\n- **Biochemical assay:** Blood test for drug metabolite levels — e.g. serum drug concentration confirms ingestion.\n- **MEMS cap:** Electronic monitor records each bottle opening with timestamp.\n- **Pharmacy refill records (MPR):** Medication Possession Ratio from prescription database.\n\n(b) **Evaluation of self-report validity:**\n- **Strengths:** Low cost, non-invasive, captures **patient perspective** and reasons for non-adherence; practical in large trials.\n- **Limitations:**\n  - **Social desirability bias** — patients report what they think doctors want to hear; 92% likely **inflated** (actual adherence often ~50%).\n  - **Recall bias** — difficulty remembering missed doses over weeks.\n  - **Lack of objectivity** — cannot distinguish intentional from unintentional non-adherence without follow-up questions.\n  - **Poor concurrent validity** — self-report correlates weakly with biochemical measures (r ≈ 0.3–0.5 in meta-analyses).\n- **Comparison:** Pill counts improve objectivity but can be **gamed**; biochemical tests are gold standard but **expensive** and impractical for routine care.\n\n**Judgement:** Self-report is useful as a **screening tool** but should be triangulated with at least one objective measure in research. In clinical practice, non-judgemental questioning combined with pill count is most feasible."
+    },
     { "type": "practice", "label": "Mark a measuring adherence question", "href": "/mark?subject=9990&topic=3.2.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.1 Types of non-adherence", "href": "/courses/9990/3-2-1-types-of-non-adherence-and-reasons-why-patients-do-not-adhere" },
+        { "label": "3.2.3 Improving adherence", "href": "/courses/9990/3-2-3-improving-adherence" },
+        { "label": "3.1.2 Research methodology", "href": "/courses/9990/3-1-2-research-methodology" },
+        { "label": "3.3.2 Measuring pain", "href": "/courses/9990/3-3-2-measuring-pain" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

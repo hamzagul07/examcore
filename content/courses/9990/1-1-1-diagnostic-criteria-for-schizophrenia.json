@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Clinical — DSM-5/ICD-11 criteria, symptoms, and reliability of schizophrenia diagnosis.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline positive and negative symptoms of schizophrenia.",
     "Compare DSM-5 and ICD-11 diagnostic criteria.",
@@ -24,9 +24,31 @@
       "Reliability — inter-rater agreement issues."
     ]
   },
+  "flashcards": [
+    { "front": "Positive vs negative symptoms?", "back": "Positive: added experiences (hallucinations, delusions, disorganised speech). Negative: deficits (flat affect, avolition, alogia, anhedonia)." },
+    { "front": "DSM-5 schizophrenia duration rule?", "back": "Two or more characteristic symptoms for at least one month; continuous signs for at least six months including prodromal/residual phases." },
+    { "front": "ICD-11 vs DSM-5 on duration?", "back": "ICD-11 requires one month of characteristic symptoms; DSM-5 requires six months total disturbance — ICD is slightly narrower on overall duration." },
+    { "front": "What is avolition?", "back": "Reduced motivation to initiate and persist in goal-directed activity — a negative symptom affecting daily functioning." },
+    { "front": "Rosenhan (1973) and validity?", "back": "Pseudopatients admitted to psychiatric hospitals — staff failed to detect sanity, suggesting diagnosis may reflect situational bias rather than genuine symptoms." },
+    { "front": "Cultural bias in schizophrenia diagnosis?", "back": "Hallucinations and beliefs judged 'bizarre' in one culture may be normal in another — Western manuals may pathologise culturally shaped expression." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Schizophrenia diagnosis** (1.1.1) opens Clinical Psychology. Know **symptom types** and **classification debates**." },
+    {
+      "type": "workedExample",
+      "question": "A 22-year-old reports hearing voices commenting on their behaviour for six weeks. They believe neighbours are controlling their thoughts. Affect is flat and they have stopped attending university.\n\n(a) Outline the positive and negative symptoms shown. [4 marks]\n(b) Using Rosenhan (1973), evaluate the validity of schizophrenia diagnosis. [6 marks]",
+      "solution": "(a) **AO1 — Positive symptoms:**\n- **Auditory hallucinations** — hearing voices commenting on behaviour.\n- **Delusions** — belief that neighbours control thoughts (delusion of control/persecution).\n\n**AO1 — Negative symptoms:**\n- **Flat affect** — reduced emotional expression.\n- **Avolition** — withdrawal from university, loss of goal-directed activity.\n\n(b) **AO1 — Rosenhan (1973):** Eight sane pseudopatients presented vague symptoms and were all admitted with schizophrenia diagnoses; once inside, normal behaviour was reinterpreted within a psychiatric label.\n\n**AO3 — Evaluation:**\n- **Supports invalidity:** Shows diagnosis may be **over-inclusive** and **context-dependent** — staff expected illness and interpreted normal behaviour pathologically.\n- **Methodological critique:** Small sample, dated institutions, deception ethics — limits generalisability to modern DSM-5/ICD-11 practice.\n- **Counter-evidence:** Improved structured interviews (e.g. SCAN) and explicit criteria aim to increase **inter-rater reliability** — Rosenhan highlights risk, not inevitability, of misdiagnosis.\n\n**Judgement:** Rosenhan usefully warns that **validity** depends on distinguishing genuine psychosis from situational mislabelling — but modern criteria and duration rules (as in this case) aim to reduce false positives."
+    },
     { "type": "practice", "label": "Mark a schizophrenia diagnosis question", "href": "/mark?subject=9990&topic=1.1.1" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.1.2 Explanations of schizophrenia", "href": "/courses/9990/1-1-2-explanations-of-schizophrenia" },
+        { "label": "1.1.3 Treatment of schizophrenia", "href": "/courses/9990/1-1-3-treatment-and-management-of-schizophrenia" },
+        { "label": "1.2.1 Mood disorder diagnosis", "href": "/courses/9990/1-2-1-diagnostic-criteria-for-mood-affective-disorders" },
+        { "label": "1.4.1 Anxiety disorder diagnosis", "href": "/courses/9990/1-4-1-diagnostic-criteria-for-anxiety-disorders-and-fear-related-disorders" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

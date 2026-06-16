@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Clinical — systematic desensitisation, flooding, CBT, and drugs for anxiety.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline systematic desensitisation and flooding.",
     "Explain CBT for anxiety and panic.",
@@ -24,9 +24,31 @@
       "Benzodiazepines — quick relief, dependency risk."
     ]
   },
+  "flashcards": [
+    { "front": "Systematic desensitisation steps?", "back": "1) Relaxation training. 2) Fear hierarchy (least to most feared). 3) Gradual paired exposure while relaxed — counter-conditioning." },
+    { "front": "Flooding?", "back": "Prolonged, intense exposure to feared stimulus without escape until anxiety **habituates** — faster but more distressing." },
+    { "front": "CBT for panic?", "back": "Challenge catastrophic misinterpretations of bodily sensations ('racing heart = heart attack'); interoceptive exposure to feared sensations." },
+    { "front": "Benzodiazepines?", "back": "Enhance GABA — rapid anxiety reduction; **tolerance and dependence** risk limits long-term use." },
+    { "front": "SSRIs for anxiety?", "back": "First-line pharmacological treatment for GAD, panic, social anxiety — slower onset but lower dependency than benzodiazepines." },
+    { "front": "SD vs flooding ethics?", "back": "Flooding causes high distress and may provoke dropout; SD is **gradual** and more acceptable but **slower**." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Anxiety treatment** (1.4.3) completes 1.4. Compare **SD vs flooding** ethics and effectiveness." },
+    {
+      "type": "workedExample",
+      "question": "A patient with a spider phobia avoids gardens and has catastrophised thoughts ('It will attack me').\n\n(a) Outline systematic desensitisation and CBT for this patient. [4 marks]\n(b) Compare systematic desensitisation with flooding. Evaluate the use of benzodiazepines for anxiety. [6 marks]",
+      "solution": "(a) **AO1 — Systematic desensitisation:**\n- Train **relaxation** (e.g. breathing).\n- Build **hierarchy**: spider picture → video → jar at distance → closer exposure.\n- Pair each step with relaxation — **counter-conditioning** replaces fear with calm.\n\n**AO1 — CBT:**\n- Identify **catastrophic thoughts** ('It will attack me').\n- **Evidence testing** — challenge probability and coping ability.\n- **Behavioural experiments** during graded exposure.\n\n(b) **AO3 — SD vs flooding:**\n| | SD | Flooding |\n|---|---|---|\n| **Process** | Gradual hierarchy | Immediate full exposure |\n| **Distress** | Low–moderate | Very high initially |\n| **Ethics** | More acceptable | Risk of dropout, retraumatisation |\n| **Effectiveness** | Strong evidence | Can work if patient persists |\n\n**AO3 — Benzodiazepines evaluation:**\n- **Strengths:** **Rapid** relief of acute anxiety; useful short-term for crisis.\n- **Limitations:** **Tolerance**, **dependence**, withdrawal rebound anxiety; do not address **maintaining** avoidance cognitively.\n- **Comparison:** SSRIs preferred long-term; **CBT/SD** produce durable effects without dependency.\n\n**Judgement:** SD + CBT is **first-line** for this phobia; benzodiazepines at most **short-term adjunct**, not primary treatment."
+    },
     { "type": "practice", "label": "Mark an anxiety treatment question", "href": "/mark?subject=9990&topic=1.4.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.4.1 Anxiety disorder diagnosis", "href": "/courses/9990/1-4-1-diagnostic-criteria-for-anxiety-disorders-and-fear-related-disorders" },
+        { "label": "1.4.2 Explanations of fear-related disorders", "href": "/courses/9990/1-4-2-explanations-of-fear-related-disorders" },
+        { "label": "1.2.3 Treatment of mood disorders", "href": "/courses/9990/1-2-3-treatment-and-management-of-mood-affective-disorders" },
+        { "label": "1.5.3 Treatment of OCD", "href": "/courses/9990/1-5-3-treatment-and-management-of-obsessive-compulsive-disorder" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

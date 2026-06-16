@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Consumer — cognitive biases: anchoring, framing, sunk cost, and overconfidence in purchases.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain anchoring and adjustment in pricing.",
     "Analyse framing effects on product choice.",
@@ -24,9 +24,31 @@
       "Sunk cost — continuing bad purchases."
     ]
   },
+  "flashcards": [
+    { "front": "Anchoring bias?", "back": "First number encountered (e.g. 'was £200, now £80') disproportionately influences judgment — insufficient adjustment from anchor." },
+    { "front": "Framing effect?", "back": "Same information presented differently alters choice — '90% fat-free' preferred over '10% fat' (identical product)." },
+    { "front": "Loss aversion (Kahneman & Tversky)?", "back": "Losses feel roughly twice as painful as equivalent gains — drives fear of missing sales and endowment effect." },
+    { "front": "Sunk cost fallacy?", "back": "Continuing investment because of past spending — e.g. keeping unused gym membership because already paid." },
+    { "front": "Endowment effect?", "back": "Owning something increases its perceived value — free trials and return policies exploit this." },
+    { "front": "Marketer exploitation?", "back": "RRP anchoring, limited-time offers (scarcity), and 'was/now' pricing trigger these biases (2.4.2, 2.5.1)." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Decision mistakes** (2.3.3) completes 2.3. Give **real marketing examples** for each bias." },
+    {
+      "type": "workedExample",
+      "question": "An online retailer displays 'RRP £120 — now £59' on headphones. A customer who would not pay £80 buys them. A yoghurt labelled '95% fat-free' outsells identical yoghurt labelled '5% fat'. A shopper queues 40 minutes for a sale, saying 'I've waited this long, I have to buy something'. Identify the biases and evaluate whether consumers can protect themselves.",
+      "solution": "**Headphones — anchoring:** **£120 RRP** sets high **reference point** → **£59** feels like a bargain. Customer adjusts insufficiently from anchor — would reject at **£80** without anchor (Tversky & Kahneman). **Was/now pricing** is standard retail tactic (2.4.2).\n\n**Yoghurt — framing:** Identical product — **'95% fat-free'** (positive frame) preferred over **'5% fat'** (negative frame). **Prospect theory** — outcomes evaluated relative to reference point and frame.\n\n**Sale queue — sunk cost fallacy:** **40 minutes invested** → feels wasteful to leave empty-handed → purchase to justify wait, despite not needing items. **Irrational** — past time cannot be recovered.\n\n**Evaluate — why biases persist:** **Evolutionary efficiency** — quick decisions often adequate (2.3.2 heuristics). **Marketers deliberately exploit** — anchoring, framing, scarcity (2.5.1) are industry standard.\n\n**Evaluate — protection strategies:** **Cooling-off periods**, **comparison shopping** (break anchor), **focus on absolute value** not relative discount. **Financial literacy** education helps but **bounded rationality** limits full elimination. **Regulation** (e.g. truthful RRP claims) addresses some exploitation but not framing or sunk costs."
+    },
     { "type": "practice", "label": "Mark a decision-making mistakes question", "href": "/mark?subject=9990&topic=2.3.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.3.2 Choice heuristics", "href": "/courses/9990/2-3-2-choice-heuristics" },
+        { "label": "2.3.1 Consumer decision-making", "href": "/courses/9990/2-3-1-consumer-decision-making" },
+        { "label": "2.4.2 Selling the product", "href": "/courses/9990/2-4-2-selling-the-product" },
+        { "label": "2.2.2 Menu design psychology", "href": "/courses/9990/2-2-2-menu-design-psychology" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

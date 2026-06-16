@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Organisational — shift work, flexible hours, and circadian effects on performance.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain circadian rhythms and peak performance times.",
     "Analyse effects of shift work and jet lag on workers.",
@@ -24,9 +24,30 @@
       "Remote work — autonomy vs isolation."
     ]
   },
+  "flashcards": [
+    { "front": "Circadian rhythm?", "back": "Roughly 24-hour biological cycle regulating sleep, alertness, and body temperature — peak alertness often late morning for diurnal humans." },
+    { "front": "Shift work health risks?", "back": "Sleep disruption, fatigue, higher accident rates, cardiovascular and digestive problems from desynchronised body clock." },
+    { "front": "Rotating vs permanent night shifts?", "back": "Both harm health; rapid rotation prevents adaptation; forward rotation (morning→evening→night) often preferred." },
+    { "front": "Flexitime benefits?", "back": "Higher autonomy, better work-life balance, reduced lateness — can improve job satisfaction (Herzberg motivator: responsibility)." },
+    { "front": "Remote work temporal advantage?", "back": "Eliminates commute time, allows scheduling around peak productivity — but blurs work-home boundaries." },
+    { "front": "Chronotype?", "back": "Individual difference in morningness-eveningness — 'larks' vs 'owls' perform best at different times." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Temporal conditions** (4.4.2) — cite **shift work health effects** and **flexibility benefits**." },
+    { "type": "intro", "content": "**Temporal conditions** (4.4.2) — cite **shift work health effects** and **flexibility benefits**. Connect **circadian science** to accident data (4.4.3)." },
+    {
+      "type": "workedExample",
+      "question": "A chemical plant uses rotating night shifts. Error rates spike between 02:00 and 04:00, yet management refuses flexitime for day staff citing 'fairness.' Analyse using circadian rhythms and link to safety.",
+      "solution": "**Circadian rhythm:** Core body temperature and alertness **dip at night** — performance on **monitoring tasks** falls in the **02:00–04:00 window** (circadian trough), increasing **human error** risk.\n\n**Shift work:** **Rotating shifts** prevent full **adaptation** — workers remain **desynchronised** from natural sleep-wake cycle, causing **fatigue** and **microsleeps**.\n\n**Safety (Reason's Swiss cheese):** Fatigue is one **hole** aligning with **procedure lapses** and **equipment complexity** → accidents (see 4.4.3).\n\n**Flexitime for day staff:** Separate issue from nights but improves **day-worker satisfaction** (JCM **autonomy**) without fixing night errors — need **scheduled breaks**, **light exposure**, **limit consecutive nights**.\n\n**Evaluation:** **Chronotype** means some 'owls' cope better on nights but most do not. **Economic cost** of shift premiums vs **accident cost** must be weighed. Flexitime **fairness** argument is weak — different roles have different temporal demands."
+    },
     { "type": "practice", "label": "Mark a temporal conditions question", "href": "/mark?subject=9990&topic=4.4.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.4.1 Physical work conditions", "href": "/courses/9990/4-4-1-physical-work-conditions" },
+        { "label": "4.4.3 Health and safety", "href": "/courses/9990/4-4-3-health-and-safety" },
+        { "label": "4.3.2 Individual and group performance", "href": "/courses/9990/4-3-2-individual-and-group-performance" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

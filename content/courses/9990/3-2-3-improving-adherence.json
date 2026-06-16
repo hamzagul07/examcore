@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — interventions to improve treatment adherence and compliance.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain patient education and simplified regimens.",
     "Analyse reminder systems and social support.",
@@ -24,9 +24,31 @@
       "Address fears — discuss side effects openly."
     ]
   },
+  "flashcards": [
+    { "front": "Patient education intervention?", "back": "Clear verbal and **written instructions** about medication purpose, dosage, and side effects — targets **knowledge gaps** causing unintentional non-adherence." },
+    { "front": "Regimen simplification?", "back": "Reduce dosing frequency (e.g. once-daily vs three-times-daily) — lowers **practical barriers** in Health Belief Model." },
+    { "front": "Motivational interviewing (MI)?", "back": "Client-centred counselling exploring **ambivalence** about treatment — elicits patient's own reasons for change rather than lecturing." },
+    { "front": "SMS reminder systems?", "back": "Automated text messages prompt medication taking — effective for **unintentional** non-adherence; low cost, scalable." },
+    { "front": "Social support role?", "back": "Family reminders and encouragement improve adherence — especially in elderly or paediatric patients." },
+    { "front": "Multi-component intervention?", "back": "Combining education + reminders + simplified regimen + belief-change — more effective than single strategies alone." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Improving adherence** (3.2.3) completes 3.2. Propose **multi-component interventions** in essays." },
+    { "type": "intro", "content": "**Improving adherence** (3.2.3) completes 3.2. Propose **multi-component interventions** in essays — address both **beliefs** (HBM) and **practical barriers**." },
+    {
+      "type": "workedExample",
+      "question": "A hospital wants to improve post-discharge adherence among heart failure patients who frequently miss diuretic medication.\n\n(a) Design a multi-component adherence intervention for these patients. [4 marks]\n(b) Evaluate one psychological technique and one practical technique in your intervention. [6 marks]",
+      "solution": "(a) **Multi-component intervention:**\n1. **Patient education session** before discharge — explain why diuretics prevent fluid retention and hospital readmission (target HBM perceived benefits).\n2. **Simplified regimen** — once-daily dosing timed with breakfast.\n3. **SMS reminders** — daily text at 8am: \"Time for your heart medication.\"\n4. **Pill organiser** (dosette box) pre-filled by pharmacy.\n5. **Motivational interviewing** call at 1 week — explore fears about side effects.\n6. **Family involvement** — teach spouse to support without nagging.\n\n(b) **Evaluation:**\n\n**Motivational interviewing (psychological):**\n- **Strengths:** Respects **patient autonomy** — avoids Milgram-style authority dynamic where doctor orders and patient passively complies. Elicits **intrinsic motivation** — patient articulates own reasons for taking medication.\n- **Limitations:** Requires **trained staff** — time-consuming; not cost-effective for all patients. Less effective for **cognitive impairment** where MI dialogue is difficult.\n\n**SMS reminders (practical):**\n- **Strengths:** Randomised trials show **15–20% adherence improvement**; targets **unintentional** forgetting; low cost, scalable via NHS apps.\n- **Limitations:** **Digital divide** — elderly patients may lack smartphones. Does not address **intentional** non-adherence (e.g. stopping due to side effects). Message fatigue over time.\n\n**Judgement:** Best outcomes when psychological (MI, education) and practical (reminders, simplification) components are **combined** — addresses both belief and behaviour barriers identified in 3.2.1."
+    },
     { "type": "practice", "label": "Mark an improving adherence question", "href": "/mark?subject=9990&topic=3.2.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.1 Types of non-adherence", "href": "/courses/9990/3-2-1-types-of-non-adherence-and-reasons-why-patients-do-not-adhere" },
+        { "label": "3.2.2 Measuring non-adherence", "href": "/courses/9990/3-2-2-measuring-non-adherence" },
+        { "label": "3.5.1 Strategies for promoting health", "href": "/courses/9990/3-5-1-strategies-for-promoting-health" },
+        { "label": "3.5.3 Individual factors in changing health beliefs", "href": "/courses/9990/3-5-3-individual-factors-in-changing-health-beliefs" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

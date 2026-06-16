@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Clinical — genetic, serotonin, and cognitive-behavioural explanations of OCD.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain genetic and neurobiological factors in OCD.",
     "Outline serotonin dysfunction and brain circuits.",
@@ -24,9 +24,31 @@
       "Operant — negative reinforcement of rituals."
     ]
   },
+  "flashcards": [
+    { "front": "Genetic evidence in OCD?", "back": "MZ twin concordance higher than DZ; OCD runs in families — polygenic inheritance, no single gene identified." },
+    { "front": "Serotonin explanation?", "back": "Low serotonin linked to OCD; SSRIs and clomipramine (tricyclic) reduce symptoms — supports neurotransmitter role." },
+    { "front": "Brain circuits in OCD?", "back": "Overactivity in **orbitofrontal cortex** and **caudate nucleus** loop — hyperactive error-detection circuitry." },
+    { "front": "Salkovskis — inflated responsibility?", "back": "Belief that one has power to prevent harm AND duty to do so — drives neutralising compulsions." },
+    { "front": "Thought-action fusion?", "back": "Belief that having a thought is morally equivalent to acting on it, or makes the event more likely — maintains obsessions." },
+    { "front": "Operant maintenance?", "back": "Compulsion temporarily reduces anxiety → **negative reinforcement** → ritual strengthened despite long-term worsening." }
+  ],
   "sections": [
     { "type": "intro", "content": "**OCD explanations** (1.5.2) — integrate **biological + cognitive + learning** in evaluation." },
+    {
+      "type": "workedExample",
+      "question": "A patient with contamination fears believes they will cause serious illness if they do not wash hands repeatedly after touching door handles.\n\n(a) Explain this OCD using Salkovskis's cognitive theory and the operant conditioning account. [5 marks]\n(b) Evaluate the serotonin explanation of OCD. [5 marks]",
+      "solution": "(a) **AO1 — Salkovskis (cognitive):**\n- **Inflated responsibility:** Patient believes they have **power and duty** to prevent illness through washing.\n- **Thought-action fusion:** Touching handle linked to catastrophic outcome — intrusive contamination thought treated as **threat requiring neutralisation**.\n- **Overestimation of threat:** Exaggerated probability and severity of illness from germs.\n\n**AO1 — Operant conditioning:**\n- Hand-washing **reduces anxiety** temporarily → **negative reinforcement**.\n- Ritual strengthened each repetition despite long-term maintenance of disorder.\n\n(b) **AO3 — Serotonin explanation evaluation:**\n- **Strengths:** **SSRIs/clomipramine** reduce OCD symptoms in RCTs — pharmacological evidence for serotonin involvement.\n- **Strengths:** Consistent with **comorbidity** with depression/anxiety (shared serotonin system).\n- **Limitations:** Drugs take weeks to work; **not all patients** respond — incomplete account.\n- **Limitations:** **Reductionist** — does not explain **content** of obsessions (why contamination not violence in this case) — cognitive theory needed.\n- **Correlation vs causation:** Low serotonin may be **effect** of chronic anxiety, not cause.\n\n**Judgement:** Serotonin explanation supported by treatment evidence but **insufficient alone** — cognitive and learning accounts explain symptom content and maintenance."
+    },
     { "type": "practice", "label": "Mark an OCD explanations question", "href": "/mark?subject=9990&topic=1.5.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.5.1 OCD diagnosis", "href": "/courses/9990/1-5-1-diagnostic-criteria-for-obsessive-compulsive-disorder-ocd" },
+        { "label": "1.5.3 Treatment of OCD", "href": "/courses/9990/1-5-3-treatment-and-management-of-obsessive-compulsive-disorder" },
+        { "label": "1.3.2 Explanations of impulse control disorders", "href": "/courses/9990/1-3-2-explanations-of-impulse-control-disorders" },
+        { "label": "1.4.2 Explanations of fear-related disorders", "href": "/courses/9990/1-4-2-explanations-of-fear-related-disorders" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

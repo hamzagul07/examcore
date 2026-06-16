@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Organisational — workplace accidents, stress-related illness, and safety culture.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain human error and accident causation models.",
     "Analyse role of safety culture and training.",
@@ -24,9 +24,30 @@
       "Stress — burnout as occupational hazard."
     ]
   },
+  "flashcards": [
+    { "front": "Reason's Swiss cheese model?", "back": "Accidents occur when holes in multiple defence layers (training, equipment, supervision, culture) align at one moment." },
+    { "front": "Safety culture?", "back": "Shared beliefs and practices about risk — strong culture prioritises reporting near-misses without blame." },
+    { "front": "Active vs latent errors?", "back": "Active = immediate mistakes by front-line staff; latent = hidden organisational flaws (understaffing, poor design) waiting to combine." },
+    { "front": "Human factors in accidents?", "back": "Fatigue, distraction, overload, poor interface design — not just 'careless worker'." },
+    { "front": "Work-related stress as hazard?", "back": "Chronic demand without control (Karasek) links to cardiovascular illness, burnout, and absenteeism." },
+    { "front": "Near-miss reporting?", "back": "Reporting close calls without punishment reveals latent conditions before a serious accident." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Health and safety** (4.4.3) completes 4.4. **Reason's Swiss cheese model** explains accident causation." },
+    { "type": "intro", "content": "**Health and safety** (4.4.3) completes 4.4. **Reason's Swiss cheese model** explains accident causation — never blame individuals in isolation." },
+    {
+      "type": "workedExample",
+      "question": "A nurse administers the wrong drug dose during a double shift on a understaffed ward. The hospital had cut training budgets and managers discouraged incident reports. Analyse using Reason's model and work-stress theory.",
+      "solution": "**Swiss cheese — aligned holes:** (1) **Latent:** Understaffing, **cut training**, culture **discouraging reports**; (2) **Active:** Nurse **slip** under **fatigue** from **double shift** (4.4.2 circadian/stress); (3) **Defences failed:** labelling, checking protocols, staffing ratios.\n\n**Human factors:** Error is **predictable** under high load — not purely individual negligence.\n\n**Stress (demand-control):** High **demand**, low **control** → **strain**, fatigue, impaired attention — occupational **health hazard**.\n\n**Safety culture fix:** **Blame-free near-miss reporting**, restore **training**, **staffing levels**, **checklist protocols** (additional cheese slices).\n\n**Evaluation:** Swiss cheese is **descriptive** not prescriptive — does not rank which layer to fix first. **Legal duty** and **psychological safety** must align. Link to **Maslow** — safety needs unmet under chronic hazard."
+    },
     { "type": "practice", "label": "Mark a health and safety question", "href": "/mark?subject=9990&topic=4.4.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.4.1 Physical work conditions", "href": "/courses/9990/4-4-1-physical-work-conditions" },
+        { "label": "4.4.2 Temporal conditions", "href": "/courses/9990/4-4-2-temporal-conditions-of-work-environments" },
+        { "label": "4.5.3 Attitudes to work", "href": "/courses/9990/4-5-3-attitudes-to-work" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

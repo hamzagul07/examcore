@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — medication non-adherence types and barriers to following treatment.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define adherence and types of non-adherence.",
     "Explain intentional vs unintentional non-adherence.",
@@ -24,9 +24,31 @@
       "Practical — cost, access, complex regimens."
     ]
   },
+  "flashcards": [
+    { "front": "Adherence vs compliance?", "back": "Adherence — active agreement with treatment plan; compliance implies passive obedience. Modern usage prefers **adherence** (patient partnership)." },
+    { "front": "Unintentional non-adherence?", "back": "Patient intends to follow treatment but fails — e.g. **forgetfulness**, misunderstanding instructions, complex regimen." },
+    { "front": "Intentional non-adherence?", "back": "Patient deliberately deviates — e.g. stops medication when feeling better, fears **side effects**, or rejects diagnosis." },
+    { "front": "Health Belief Model — four key components?", "back": "Perceived **susceptibility**, **severity**, **benefits** of action, and **barriers** to action — plus **cues to action** and **self-efficacy**." },
+    { "front": "Why stop antibiotics early?", "back": "Symptoms improve → low perceived severity; underestimating risk of **antibiotic resistance** — intentional non-adherence." },
+    { "front": "Demographic factor in non-adherence?", "back": "Older adults may face **polypharmacy** and confusion; younger adults may feel invulnerable — but age alone is a weak predictor; **beliefs** matter more." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Non-adherence types** (3.2.1) opens 3.2. Apply **Health Belief Model** with examples." },
+    { "type": "intro", "content": "**Non-adherence types** (3.2.1) opens 3.2. Apply **Health Belief Model** with examples. Up to **50%** of patients do not fully adhere — understanding **why** is essential before designing interventions." },
+    {
+      "type": "workedExample",
+      "question": "James, 58, has hypertension. His GP prescribed daily medication, but James often forgets doses and stopped taking the pills when his headaches disappeared.\n\n(a) Classify James's non-adherence using appropriate terminology. [3 marks]\n(b) Apply the Health Belief Model to explain James's behaviour. [4 marks]\n(c) Evaluate the Health Belief Model as an explanation of non-adherence. [5 marks]",
+      "solution": "(a) **Classification:**\n- **Unintentional non-adherence** — forgetting daily doses.\n- **Intentional non-adherence** — deliberately stopping medication when symptoms resolved.\n\n(b) **Health Belief Model applied:**\n- **Low perceived severity:** Headaches gone → James believes hypertension is no longer serious.\n- **Low perceived susceptibility:** No symptoms = no perceived risk of stroke or heart attack.\n- **Perceived benefits low:** Does not see benefit of continuing medication when feeling well.\n- **Barriers:** Daily regimen is inconvenient; possible side effects.\n- **Low cues to action:** No visible symptoms to prompt continued medication.\n\n(c) **Evaluation of HBM:**\n- **Strengths:** Identifies **modifiable beliefs** — interventions can target perceived severity (education) and benefits (explain silent nature of hypertension).\n- **Supported by research:** Becker (1978) found HBM predicted diabetic adherence — perceived seriousness and benefits were key.\n- **Limitations:**\n  - **Ignores habit and routine** — forgetting is not always belief-driven.\n  - **Cultural bias** — developed in US; may not account for collectivist health decision-making (family decides).\n  - **Rational model** — assumes people weigh costs/benefits logically; **Kahneman** shows decisions often use **heuristics** and emotion.\n  - Does not fully explain **intention–behaviour gap** — knowing benefits does not guarantee action (need **self-efficacy**, Bandura).\n\n**Judgement:** HBM is a useful **starting framework** but best combined with practical reminders (3.2.3) and self-efficacy interventions."
+    },
     { "type": "practice", "label": "Mark a non-adherence question", "href": "/mark?subject=9990&topic=3.2.1" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.2 Measuring non-adherence", "href": "/courses/9990/3-2-2-measuring-non-adherence" },
+        { "label": "3.2.3 Improving adherence", "href": "/courses/9990/3-2-3-improving-adherence" },
+        { "label": "3.5.1 Strategies for promoting health", "href": "/courses/9990/3-5-1-strategies-for-promoting-health" },
+        { "label": "3.5.3 Individual factors in changing health beliefs", "href": "/courses/9990/3-5-3-individual-factors-in-changing-health-beliefs" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

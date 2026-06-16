@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 — experiments, observations, self-reports, and data analysis for Paper 2.",
   "durationMin": 30,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Design experiments with IV, DV, controls, and conditions.",
     "Evaluate observations, interviews, questionnaires, and case studies.",
@@ -24,9 +24,31 @@
       "Inferential stats — sign test, Wilcoxon, chi-squared, etc."
     ]
   },
+  "flashcards": [
+    { "front": "IV and DV?", "back": "Independent variable — manipulated by researcher; dependent variable — measured outcome." },
+    { "front": "Extraneous variable?", "back": "Any variable other than the IV that could affect the DV — controlled to protect **internal validity**." },
+    { "front": "Self-report limitation in health research?", "back": "**Social desirability bias** — patients overreport adherence or underreport unhealthy behaviour." },
+    { "front": "When to use chi-squared?", "back": "Test of association between two **nominal/categorical** variables — e.g. treatment group vs recovery status." },
+    { "front": "Operationalisation?", "back": "Defining abstract variables in measurable terms — e.g. 'stress' measured by Perceived Stress Scale score." },
+    { "front": "Ethical issue in health psychology experiments?", "back": "**Protection from harm** — inducing stress or withholding treatment; requires debriefing, informed consent, and right to withdraw." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Research methodology** (3.1.2) is Paper 2. Practise **designing studies** and **interpreting stats** under timed conditions." },
+    { "type": "intro", "content": "**Research methodology** (3.1.2) is Paper 2. Practise **designing studies** and **interpreting stats** under timed conditions. Health Psychology topics (adherence, pain, stress) rely heavily on **self-report** and **field experiments** — always evaluate validity and ethics." },
+    {
+      "type": "workedExample",
+      "question": "A researcher wants to test whether a text-message reminder system improves medication adherence in diabetic patients.\n\n(a) Outline an experimental design for this study, identifying the IV, DV, and one control. [4 marks]\n(b) Identify one ethical issue and one validity issue with this design. [4 marks]",
+      "solution": "(a) **Experimental design:**\n- **Design:** Independent groups — Group A receives **SMS reminders**; Group B receives **no reminders** (control).\n- **IV:** Reminder condition (reminders vs no reminders).\n- **DV:** **Adherence rate** — operationalised as pill count or biochemical marker (HbA1c as proxy for glucose control).\n- **Control:** Match groups on age, diabetes type, and baseline adherence; standardise medication regimen.\n\n(b) **Ethical issue:**\n- **Confidentiality** — health data is sensitive; participants must consent to SMS contact and data storage under GDPR/medical ethics.\n\n**Validity issue:**\n- **Self-report adherence** (if used) lacks **validity** due to social desirability — patients may overreport compliance. Biochemical measures improve objectivity but increase cost.\n\n**Additional evaluation:** Field experiment has **high ecological validity** (real-world setting) but less control over extraneous variables (e.g. family support) than a lab study."
+    },
     { "type": "practice", "label": "Mark a research methods question", "href": "/mark?subject=9990&topic=3.1.2" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.1.1 The core studies", "href": "/courses/9990/3-1-1-the-core-studies" },
+        { "label": "3.2.2 Measuring non-adherence", "href": "/courses/9990/3-2-2-measuring-non-adherence" },
+        { "label": "3.3.2 Measuring pain", "href": "/courses/9990/3-3-2-measuring-pain" },
+        { "label": "3.4.2 Measures of stress", "href": "/courses/9990/3-4-2-measures-of-stress" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Clinical — ERP, CBT, SSRIs, and combined treatment for OCD.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline exposure and response prevention (ERP).",
     "Explain CBT for OCD — challenging responsibility beliefs.",
@@ -24,9 +24,31 @@
       "Combined drug + therapy often best."
     ]
   },
+  "flashcards": [
+    { "front": "What is ERP?", "back": "**Exposure and Response Prevention** — deliberate exposure to obsession trigger while **preventing** compulsive ritual; anxiety habituates without reinforcement." },
+    { "front": "CBT for OCD?", "back": "Challenges **inflated responsibility** and thought-action fusion; behavioural experiments during ERP — Salkovskis's cognitive-behavioural model." },
+    { "front": "SSRIs for OCD?", "back": "Higher doses often needed vs depression; fluoxetine, fluvoxamine, sertraline — NICE recommends CBT first, SSRI if moderate-severe." },
+    { "front": "Combined treatment?", "back": "CBT/ERP + SSRI more effective than either alone for moderate-severe OCD — addresses cognitive and biological components." },
+    { "front": "Deep brain stimulation?", "back": "Surgical electrodes for **treatment-resistant** severe OCD — last resort; ethical concerns about irreversibility." },
+    { "front": "ERP ethics?", "back": "Deliberate distress during exposure requires **informed consent**; must be structured and supported — short-term anxiety for long-term gain." }
+  ],
   "sections": [
     { "type": "intro", "content": "**OCD treatment** (1.5.3) completes Clinical option 1. **ERP** is the gold-standard behavioural treatment." },
+    {
+      "type": "workedExample",
+      "question": "A patient with checking compulsions spends two hours daily verifying appliances are off. CBT alone has had limited success.\n\n(a) Outline exposure and response prevention (ERP) for this patient. [4 marks]\n(b) Evaluate the use of SSRIs combined with CBT for OCD. Refer to treatment guidelines. [6 marks]",
+      "solution": "(a) **AO1 — ERP applied:**\n- **Exposure:** Deliberate contact with trigger — leave house without checking oven/plugs (graded hierarchy from brief to extended absence).\n- **Response prevention:** **Block** checking ritual — resist urge to return and verify.\n- **Mechanism:** Anxiety rises then **habituates** without negative reinforcement — breaks operant maintenance cycle.\n- Therapist supports patient through distress; homework between sessions.\n\n(b) **AO3 — SSRI + CBT evaluation:**\n- **AO1:** NICE/guidelines recommend **CBT/ERP first-line**; add **SSRI** (e.g. fluoxetine at higher dose) if moderate-severe or partial CBT response.\n- **Strengths:** RCTs show **combination** superior to SSRI alone for OCD — addresses both serotonin dysfunction and cognitive-behavioural maintenance.\n- **Strengths:** SSRIs may **reduce anxiety** enough for patient to engage with ERP — practical synergy.\n- **Limitations:** SSRIs have **side effects** (nausea, sexual dysfunction); **4–12 weeks** to full effect; relapse if medication stopped without CBT skills.\n- **Comparison:** ERP alone effective for many — drugs add benefit when severity high (as in this case after limited CBT).\n\n**Judgement:** For this patient, **intensive ERP + SSRI** is evidence-based escalation — combination addresses biological vulnerability and learned ritual maintenance."
+    },
     { "type": "practice", "label": "Mark an OCD treatment question", "href": "/mark?subject=9990&topic=1.5.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.5.1 OCD diagnosis", "href": "/courses/9990/1-5-1-diagnostic-criteria-for-obsessive-compulsive-disorder-ocd" },
+        { "label": "1.5.2 Explanations of OCD", "href": "/courses/9990/1-5-2-explanations-of-obsessive-compulsive-disorder" },
+        { "label": "1.3.3 Treatment of impulse control disorders", "href": "/courses/9990/1-3-3-treatment-and-management-of-impulse-control-disorders" },
+        { "label": "1.4.3 Treatment of anxiety disorders", "href": "/courses/9990/1-4-3-treatment-and-management-of-anxiety-disorders-and-fear-related-disorders" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

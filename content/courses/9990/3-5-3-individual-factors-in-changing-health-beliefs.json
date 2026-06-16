@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — locus of control, self-efficacy, and stages of change in health behaviour.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain Rotter's locus of control in health contexts.",
     "Outline Bandura's self-efficacy and health behaviour.",
@@ -24,9 +24,31 @@
       "Relapse — normal part of behaviour change."
     ]
   },
+  "flashcards": [
+    { "front": "Internal vs external locus of control?", "back": "Rotter — **internal LOC**: outcomes depend on own actions (\"I control my health\"). **External LOC**: outcomes depend on luck, fate, or powerful others." },
+    { "front": "LOC and health behaviour?", "back": "Internal LOC correlates with **health-protective behaviour** (exercise, screening) — people believe their actions make a difference." },
+    { "front": "Bandura's self-efficacy?", "back": "Belief in one's ability to **perform a specific behaviour** — distinct from general confidence; key predictor of health behaviour change." },
+    { "front": "Sources of self-efficacy?", "back": "**Mastery experiences** (past success), **vicarious learning** (seeing others succeed), **verbal persuasion**, **physiological state** (calm vs anxious)." },
+    { "front": "Stages of Change Model?", "back": "Prochaska & DiClemente — **precontemplation → contemplation → preparation → action → maintenance** (± relapse)." },
+    { "front": "Why match intervention to stage?", "back": "Information-only campaigns fail for **precontemplators** (not ready) — need **motivational interviewing**; action-stage individuals need **skill-building** and relapse prevention." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Individual health beliefs** (3.5.3) completes Health Psychology. **Stages of change** model is essential." },
+    { "type": "intro", "content": "**Individual health beliefs** (3.5.3) completes Health Psychology. **Stages of change** model is essential. Tailor interventions to the person's **readiness**, not just their knowledge." },
+    {
+      "type": "workedExample",
+      "question": "Two colleagues receive the same workplace health leaflet about reducing alcohol intake.\n\nColleague X reads it, agrees drinking is a problem, but says \"I've tried before and always fail — what's the point?\"\n\nColleague Y says \"I know I drink too much but I'm not ready to change — I enjoy socialising with the team.\"\n\n(a) Identify each colleague's stage of change and locus of control. [4 marks]\n(b) Explain how self-efficacy explains Colleague X's response. [3 marks]\n(c) Design stage-matched interventions for each colleague. [4 marks]\n(d) Evaluate the Stages of Change Model as a framework for health promotion. [6 marks]",
+      "solution": "(a) **Stage and LOC:**\n- **Colleague X:** **Contemplation** stage — recognises problem but lacks confidence to act. **External LOC** tendency — \"always fail\" suggests outcome feels beyond personal control.\n- **Colleague Y:** **Precontemplation** stage — does not intend to change; minimises problem. **External/social LOC** — social drinking controlled by team norms, not personal choice.\n\n(b) **Self-efficacy (Colleague X):**\n- X has **low self-efficacy** from repeated **failed mastery experiences** — past quit attempts reinforce belief that change is impossible.\n- **Bandura** — without successful past experience or credible model, self-efficacy remains low despite recognising health risk.\n- Verbal persuasion (leaflet alone) is the **weakest** source of self-efficacy — insufficient without supported behaviour attempt.\n\n(c) **Stage-matched interventions:**\n- **Colleague X (contemplation):** **Motivational interviewing** — explore ambivalence, build self-efficacy through small achievable goals (e.g. two alcohol-free days). Provide **vicarious learning** — colleague testimonials. Set **preparation** plan with specific dates.\n- **Colleague Y (precontemplation):** **Consciousness-raising** — personalised feedback (audit score showing units consumed). Highlight **subjective norms** — not everyone drinks heavily. Avoid confrontation; **decisional balance** exercise weighing pros/cons. Do not push action-stage strategies (will fail).\n\n(d) **Evaluation of Stages of Change Model:**\n- **Strengths:**\n  - **Tailored interventions** — prevents wasting resources on precontemplators with action-stage programmes.\n  - **Relapse normalised** — not failure but part of spiral model; reduces dropout guilt.\n  - Supported by **Prochaska et al.** meta-analyses — stage-matched interventions outperform mismatched.\n  - Integrates with **HBM** (contemplation = weighing benefits/barriers) and **TPB** (preparation = forming intention).\n- **Limitations:**\n  - **Stages may not be discrete** — people oscillate between stages; model oversimplifies continuous process.\n  - **Difficult to classify** — X and Y may shift stages within weeks.\n  - **Individual focus** — ignores **social and environmental** barriers (workplace drinking culture).\n  - **Western bias** — assumes autonomous individual decision-maker; less applicable in collectivist cultures.\n  - **Arbitrary time boundaries** — no clear criteria for stage transition.\n\n**Judgement:** Valuable **practical framework** for clinicians and health promoters, but should be combined with HBM/TPB and settings approach (3.5.2) for comprehensive intervention design."
+    },
     { "type": "practice", "label": "Mark a health beliefs question", "href": "/mark?subject=9990&topic=3.5.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.5.1 Strategies for promoting health", "href": "/courses/9990/3-5-1-strategies-for-promoting-health" },
+        { "label": "3.5.2 Health promotion in schools and worksites", "href": "/courses/9990/3-5-2-health-promotion-in-schools-and-worksites" },
+        { "label": "3.2.1 Types of non-adherence", "href": "/courses/9990/3-2-1-types-of-non-adherence-and-reasons-why-patients-do-not-adhere" },
+        { "label": "3.2.3 Improving adherence", "href": "/courses/9990/3-2-3-improving-adherence" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

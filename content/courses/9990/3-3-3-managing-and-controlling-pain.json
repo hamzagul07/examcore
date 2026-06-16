@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — analgesics, TENS, CBT, distraction, and multimodal pain management.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline pharmacological pain management (opioids, NSAIDs).",
     "Explain TENS and gate control application.",
@@ -24,9 +24,31 @@
       "CBT — change catastrophic pain thoughts."
     ]
   },
+  "flashcards": [
+    { "front": "NSAIDs mechanism?", "back": "Non-steroidal anti-inflammatory drugs (e.g. ibuprofen) — reduce **prostaglandins** at injury site; effective for inflammatory pain, not neuropathic." },
+    { "front": "Opioid risk?", "back": "Strong analgesia but **tolerance**, **dependence**, and **respiratory depression** — opioid crisis highlights addiction risk in chronic use." },
+    { "front": "TENS and gate control?", "back": "Transcutaneous Electrical Nerve Stimulation activates **large-diameter fibres** — closes spinal gate per **Melzack & Wall**; non-invasive, patient-controlled." },
+    { "front": "CBT for chronic pain?", "back": "Cognitive Behavioural Therapy targets **catastrophising** and helplessness — changes pain-related thoughts and behaviours; no effect on tissue damage but reduces **disability**." },
+    { "front": "Distraction technique?", "back": "Directing attention away from pain (music, games, VR) — reduces pain perception via **gate closure** and limited attentional capacity." },
+    { "front": "Multimodal pain management?", "back": "Combining **pharmacological + physical + psychological** approaches — standard for chronic pain where single-method treatment fails." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Managing pain** (3.3.3) completes 3.3. Integrate **biological + psychological** approaches." },
+    { "type": "intro", "content": "**Managing pain** (3.3.3) completes 3.3. Integrate **biological + psychological** approaches. For chronic pain, the WHO analgesic ladder plus psychological support is exam-standard." },
+    {
+      "type": "workedExample",
+      "question": "Elena, 45, has chronic lower back pain with no surgical option. She currently takes high-dose opioids daily but reports little functional improvement and fears addiction.\n\n(a) Outline a multimodal pain management plan for Elena. [4 marks]\n(b) Explain how TENS and CBT would help, linking each to pain theory. [4 marks]\n(c) Evaluate psychological approaches to pain management compared to pharmacological approaches. [6 marks]",
+      "solution": "(a) **Multimodal plan:**\n1. **Medication review** — taper opioids under medical supervision; add **NSAIDs** or **gabapentin** (neuropathic component).\n2. **TENS unit** for daily home use.\n3. **CBT programme** — 8 sessions targeting catastrophising.\n4. **Physiotherapy** — graded exercise to rebuild function.\n5. **Mindfulness/relaxation** training.\n6. **Pain clinic referral** for coordinated care.\n\n(b) **Theory links:**\n- **TENS:** Applies **gate control theory** — electrical stimulation activates large-diameter A-beta fibres, closing the gate in substantia gelatinosa. Provides competing sensory input Elena can control.\n- **CBT:** Addresses **psychological gate-openers** — catastrophic thoughts (\"I'll never work again\") increase anxiety and pain focus, keeping gate open. CBT replaces catastrophising with coping statements, reducing pain-related disability per **biopsychosocial model**.\n\n(c) **Evaluation — psychological vs pharmacological:**\n\n**Psychological (CBT, distraction):**\n- **Strengths:** No **side effects** or addiction risk; improves **function and quality of life** even when pain intensity unchanged; addresses **chronic pain** where drugs fail; long-lasting skills.\n- **Limitations:** Requires **motivation and cognitive capacity**; slower onset than drugs; access to trained therapists limited on NHS.\n\n**Pharmacological (opioids, NSAIDs):**\n- **Strengths:** Rapid relief for **acute pain**; essential post-surgery; NSAIDs reduce inflammation at source.\n- **Limitations:** Opioids — **tolerance**, **dependence**, **hyperalgesia** (ironically increased pain sensitivity with long-term use); do not address **psychological maintenance** of chronic pain; **Milgram parallel** — patients may passively comply with prescription without questioning.\n\n**Judgement:** For Elena's chronic pain, **psychological + physical** approaches should be **primary** with pharmacological as adjunct — reversing the typical over-reliance on opioids."
+    },
     { "type": "practice", "label": "Mark a pain management question", "href": "/mark?subject=9990&topic=3.3.3" },
-    { "type": "resources", "items": [{ "label": "9990 course index", "href": "/courses/9990" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.3.1 Types and theories of pain", "href": "/courses/9990/3-3-1-types-and-theories-of-pain" },
+        { "label": "3.3.2 Measuring pain", "href": "/courses/9990/3-3-2-measuring-pain" },
+        { "label": "3.4.3 Managing stress", "href": "/courses/9990/3-4-3-managing-stress" },
+        { "label": "3.2.3 Improving adherence", "href": "/courses/9990/3-2-3-improving-adherence" },
+        { "label": "9990 course index", "href": "/courses/9990" }
+      ]
+    }
   ]
 }

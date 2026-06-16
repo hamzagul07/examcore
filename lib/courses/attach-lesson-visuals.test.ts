@@ -311,5 +311,31 @@ const scarcity = attachCatalogVisuals({
 check('9708 scarcity attaches GeoGebra embed', scarcity.interactiveEmbed?.provider === 'geogebra')
 check('9708 scarcity attaches embed spec', (scarcity.diagramSpec?.steps.length ?? 0) === 4)
 
+const breakeven9706 = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '2-2-4-cost-volume-profit-analysis',
+  topicCode: '2.2.4',
+  title: 'CVP analysis',
+  simpleExplanation: {
+    title: 'CVP',
+    summary: 'Summary',
+    steps: ['Contribution', 'BEP', 'MOS', 'Target profit'],
+  },
+} as GeneratedLesson)
+check('9706 CVP attaches break-even diagram spec', (breakeven9706.diagramSpec?.steps.length ?? 0) === 4)
+
+const stakeholders = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '1-5-1-business-stakeholders',
+  topicCode: '1.5.1',
+  title: 'Stakeholders',
+  simpleExplanation: {
+    title: 'Stakeholders',
+    summary: 'Summary',
+    steps: ['Define', 'Map', 'Prioritise', 'Engage'],
+  },
+} as GeneratedLesson)
+check('9609 stakeholders attaches diagram spec', (stakeholders.diagramSpec?.steps.length ?? 0) === 4)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

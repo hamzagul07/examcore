@@ -385,6 +385,12 @@ const INTERACTIVE_EMBED_CATALOG_RAW: Record<string, LessonInteractiveEmbed> = {
     'BOP correction AS',
     'Expenditure-reducing and switching policies (9708 6.5).'
   ),
+  // ── 9609 Business (GeoGebra) ───────────────────────────────────────────
+  '8-1-1-elasticity': geogebraEntry(
+    'SnqQmKsq',
+    'Demand and elasticity',
+    'Shift demand — compare steep vs flat curves and price responsiveness (9609 8.1.1).'
+  ),
 }
 
 function retainCatalogSlug(slug: string): boolean {

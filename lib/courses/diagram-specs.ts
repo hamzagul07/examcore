@@ -990,6 +990,12 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'What to produce? How? For whom? — basic economic questions.', embedHint: 'Compare points inside, on, and outside the frontier.' },
     { caption: 'PPC links scarcity to opportunity cost (see 1.5 for full analysis).', embedHint: 'Efficient points on the curve — inside means unemployed resources.' },
   ]),
+  '8-1-1-elasticity': embedSpec([
+    { caption: 'PED measures quantity response to a price change.', embedHint: 'Compare steep vs flat demand — steep means inelastic.' },
+    { caption: 'Elastic demand (|PED| > 1): quantity responds strongly.', embedHint: 'Price cut raises total revenue when demand is elastic.' },
+    { caption: 'Inelastic demand (|PED| < 1): quantity responds weakly.', embedHint: 'Price rise raises total revenue when demand is inelastic.' },
+    { caption: 'Apply elasticity to pricing, promotions, and revenue strategy.', embedHint: 'Shift the curve — read new equilibrium P and Q.' },
+  ]),
   '1-5-production-possibility-curves': embedSpec([
     { caption: 'PPC shows maximum output combinations with fixed resources.', embedHint: 'Points on the curve are productively efficient.' },
     { caption: 'Points inside the curve — inefficient (unemployed resources).', embedHint: 'Plot inside — economy could produce more of both goods.' },

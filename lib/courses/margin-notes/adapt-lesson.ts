@@ -232,9 +232,20 @@ function nodeLabel(text: string): string {
   const clean = stripMarkdown(text)
   const bold = clean.match(/^\*\*([^*]+)\*\*/)
   if (bold) return bold[1].trim()
-  const beforeColon = clean.split(/[:.—–-]/)[0]?.trim()
-  if (beforeColon && beforeColon.length <= 48) return beforeColon
-  return clean.length > 48 ? `${clean.slice(0, 45)}…` : clean
+  const varIs = clean.match(/^['']?([a-zA-Z_][\w{}^]*)['']?\s+is\s+(?:the\s+)?(.+?)(?:\.|$)/i)
+  if (varIs) {
+    const noun = varIs[2].replace(/\s+/g, ' ').trim()
+    const short = noun.length > 22 ? `${noun.slice(0, 19)}…` : noun
+    return `${short.charAt(0).toUpperCase()}${short.slice(1)} (${varIs[1]})`
+  }
+  const lead = clean.match(/^([^(]+?)(?:\s*\(|:)/)
+  if (lead) {
+    const trimmed = lead[1].trim()
+    if (trimmed.length >= 3 && trimmed.length <= 36) return trimmed
+  }
+  const firstSentence = clean.split(/\.\s+/)[0]?.trim()
+  if (firstSentence && firstSentence.length <= 36) return firstSentence
+  return clean.length > 36 ? `${clean.slice(0, 33)}…` : clean
 }
 
 function nodeDetail(text: string, defLookup: Map<string, string>): string {
@@ -276,7 +287,7 @@ function buildConceptMap(
 
   return {
     center: partitioned.conceptMap?.center ?? lesson.title,
-    nodes: nodeLabels.map((label, i) => ({
+    nodes: nodeLabels.slice(0, 6).map((label, i) => ({
       id: `n${i}`,
       t: nodeLabel(label),
       d: nodeDetail(label, defLookup),

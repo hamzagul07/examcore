@@ -133,23 +133,24 @@ function ConceptMapBlock({ lesson }: { lesson: MarginNotesLesson }) {
   const cur = cm.nodes.find((n) => n.id === sel)
   return (
     <div className="cmap" data-screen-label="Lesson — concept map">
-      <div className="cmap-stage">
+      <div className="cmap-canvas">
         <div className="cmap-core">
-          <span className="micro cmap-core-label">
-            MAIN IDEA
-          </span>
+          <span className="micro cmap-core-label">MAIN IDEA</span>
           <span className="cmap-core-t">{cm.center}</span>
         </div>
-        {cm.nodes.map((n, i) => (
-          <button
-            key={n.id}
-            type="button"
-            className={`cmap-node n${i}${sel === n.id ? ' on' : ''}`}
-            onClick={() => setSel(sel === n.id ? null : n.id)}
-          >
-            {n.t}
-          </button>
-        ))}
+        <div className="cmap-nodes" role="list">
+          {cm.nodes.map((n) => (
+            <button
+              key={n.id}
+              type="button"
+              role="listitem"
+              className={`cmap-node${sel === n.id ? ' on' : ''}`}
+              onClick={() => setSel(sel === n.id ? null : n.id)}
+            >
+              {n.t}
+            </button>
+          ))}
+        </div>
       </div>
       <div className="cmap-detail">
         {cur ? (

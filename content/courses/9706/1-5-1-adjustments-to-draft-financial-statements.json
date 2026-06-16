@@ -5,9 +5,9 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — accruals, prepayments, depreciation, irrecoverable debts, and inventory.",
+  "summary": "9706 P2 — accruals, prepayments, depreciation, irrecoverable debts, and inventory.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Adjust for accruals and prepayments.",
     "Record depreciation and disposal adjustments.",
@@ -24,9 +24,37 @@
       "Irrecoverable debts — write off and allowance."
     ]
   },
+  "flashcards": [
+    { "front": "Accrual (expense)?", "back": "DR Expense, CR Accrual (liability) — owed but unpaid at year-end." },
+    { "front": "Prepayment (expense)?", "back": "DR Prepayment (asset), CR Expense — paid early, benefit next period." },
+    { "front": "Accrued income?", "back": "DR Accrued income (asset), CR Income — earned but not yet received." },
+    { "front": "Depreciation journal?", "back": "DR Depreciation expense, CR Accumulated depreciation." },
+    { "front": "Irrecoverable debt?", "back": "DR Irrecoverable debts expense, CR Trade receivable." },
+    { "front": "Allowance for receivables?", "back": "Increase: DR Allowance expense, CR Allowance account." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Adjustments** (1.5.1) — list **each adjustment** with journal before statements." },
-    { "type": "practice", "label": "Mark an adjustments question", "href": "/mark?subject=9706&topic=1.5.1" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Adjustments** (1.5.1) — list **each adjustment with journal** before drafting SPL/SOFP. Examiners award method marks for clear accrual/prepayment logic."
+    },
+    {
+      "type": "workedExample",
+      "question": "Draft rent expense in trial balance $12,000. Rent of $1,200 for January next year was paid in December. Electricity $800 owed at year-end. Depreciation on equipment $3,500. Calculate adjusted rent, electricity, and total expense increase.",
+      "solution": "**Rent prepayment:** $1,200 paid for next period → **reduce** rent expense.\nAdjusted rent = 12,000 − 1,200 = **$10,800**\n\n**Electricity accrual:** $800 owed → **increase** expense.\nAdjusted electricity = **$800** (if nil in TB) or add to existing balance.\n\n**Depreciation:** **$3,500** charge to SPL.\n\n**Journals:**\nDR Prepayments 1,200 / CR Rent 1,200\nDR Electricity 800 / CR Accruals 800\nDR Depreciation 3,500 / CR Acc. dep. 3,500\n\n**Total extra expense** (net of prepayment) = 800 + 3,500 − 1,200 = **$3,100** (plus any electricity already in TB)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an adjustments question",
+      "href": "/mark?subject=9706&topic=1.5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.3.2 Changing asset values", "href": "/courses/9706/1-3-2-changing-asset-values" },
+        { "label": "1.5.2 Sole traders", "href": "/courses/9706/1-5-2-sole-traders" },
+        { "label": "9609 10.1.4 Depreciation", "href": "/courses/9609/10-1-4-depreciation" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

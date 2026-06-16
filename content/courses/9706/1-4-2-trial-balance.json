@@ -5,28 +5,54 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — preparing trial balance, errors it reveals, and suspense account.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9706 P2 — preparing a trial balance, suspense account, and errors revealed/not revealed.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Prepare a trial balance from ledger balances.",
-    "List errors not revealed by trial balance.",
-    "Correct errors using journal entries or suspense.",
-    "Explain limitations of trial balance."
+    "Explain purpose and limitations of a trial balance.",
+    "Use a suspense account for temporary imbalance.",
+    "Identify errors not revealed by a balanced TB."
   ],
   "simpleExplanation": {
-    "title": "Do debits equal credits?",
-    "summary": "A trial balance lists all ledger balances — if totals differ, arithmetic errors exist; some errors still leave it balanced.",
+    "title": "Checking double entry",
+    "summary": "A trial balance lists all ledger balances; total debits should equal total credits. A balanced TB does not guarantee error-free accounts — some errors leave it balanced.",
     "steps": [
-      "Extract balances — DR assets/expenses, CR liabilities/income.",
-      "Balanced TB — no single-sided or transposition in both.",
-      "Unbalanced — use suspense account temporarily.",
-      "Not revealed — omission, commission, compensating errors."
+      "Extract DR balances for assets and expenses; CR for liabilities and income.",
+      "Balanced TB — no arithmetical imbalance in double entry.",
+      "Unbalanced — post difference to suspense account temporarily.",
+      "Omission, commission, compensating errors may not show."
     ]
   },
+  "flashcards": [
+    { "front": "Purpose of TB?", "back": "Check arithmetic accuracy of double entry before final accounts." },
+    { "front": "Suspense account?", "back": "Temporary account holding TB difference until errors found." },
+    { "front": "TB does NOT detect?", "back": "Omission, commission, principle (if both sides wrong class), compensating, original entry reversal if equal DR/CR." },
+    { "front": "TB DOES detect?", "back": "Single-sided entry, unequal amounts, some transposition if one side wrong." },
+    { "front": "After corrections?", "back": "Suspense balance must be cleared to zero." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Trial balance** (1.4.2) — know **six errors not revealed** by a balanced TB." },
-    { "type": "practice", "label": "Mark a trial balance question", "href": "/mark?subject=9706&topic=1.4.2" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Trial balance** (1.4.2) — list **what TB can and cannot reveal** — frequent MCQ and explain question."
+    },
+    {
+      "type": "workedExample",
+      "question": "Trial balance totals: DR $51,250, CR $51,000. A payment of $250 to a supplier was credited to cash but not debited to the supplier. Explain the imbalance and correction.",
+      "solution": "**Credit side exceeds debit by $250** — classic **omitted debit** (cash CR recorded, payable DR missing).\n\n**Suspense:** DR **Suspense** $250 to balance TB temporarily.\n\n**Correction:** DR **Trade payable** $250, CR **Suspense** $250.\n\n**Note:** Omission **does not** show as wrong individual balances until corrected — TB would still balance if both sides omitted (not the case here)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a trial balance question",
+      "href": "/mark?subject=9706&topic=1.4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.4.1 Reconciliation", "href": "/courses/9706/1-4-1-reconciliation-and-verification" },
+        { "label": "1.5.1 Adjustments", "href": "/courses/9706/1-5-1-adjustments-to-draft-financial-statements" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

@@ -5,9 +5,9 @@
   "paper": "P2",
   "paperName": "Paper 2 - Fundamentals of Accounting",
   "status": "premium",
-  "summary": "9706 — income statements and statements of financial position for sole traders.",
+  "summary": "9706 P2 — income statements and statements of financial position for sole traders.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Prepare statement of profit or loss for sole trader.",
     "Prepare statement of financial position.",
@@ -24,9 +24,37 @@
       "Drawings — reduce capital, not an expense."
     ]
   },
+  "flashcards": [
+    { "front": "COGS formula?", "back": "Opening inventory + Purchases − Closing inventory." },
+    { "front": "Drawings treatment?", "back": "Reduce capital on SOFP — never an expense on SPL." },
+    { "front": "Closing capital?", "back": "Opening capital + Net profit − Drawings." },
+    { "front": "Vertical SPL order?", "back": "Revenue → COGS → Gross profit → Expenses → Net profit." },
+    { "front": "Current assets examples?", "back": "Inventory, trade receivables, bank, prepayments." },
+    { "front": "Why no appropriation?", "back": "Single owner — all profit belongs to them." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Sole traders** (1.5.2) — **vertical format** with clear **gross → net profit**." },
-    { "type": "practice", "label": "Mark a sole trader accounts question", "href": "/mark?subject=9706&topic=1.5.2" },
-    { "type": "resources", "items": [{ "label": "9706 course index", "href": "/courses/9706" }] }
+    {
+      "type": "intro",
+      "content": "**Sole traders** (1.5.2) — use **vertical format** with clear **gross → net profit**. Capital section must reconcile opening, profit, drawings, closing."
+    },
+    {
+      "type": "workedExample",
+      "question": "Extract: Sales $120,000; opening inventory $8,000; purchases $62,000; closing inventory $10,000; expenses $28,000; capital opening $45,000; drawings $12,000. Calculate gross profit, net profit, and closing capital.",
+      "solution": "**COGS** = 8,000 + 62,000 − 10,000 = **$60,000**\n**Gross profit** = 120,000 − 60,000 = **$60,000**\n**Net profit** = 60,000 − 28,000 = **$32,000**\n\n**Closing capital** = 45,000 + 32,000 − 12,000 = **$65,000**\n\n**SOFP check:** Total assets = **Capital $65,000 + Liabilities**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a sole trader accounts question",
+      "href": "/mark?subject=9706&topic=1.5.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.5.1 Adjustments", "href": "/courses/9706/1-5-1-adjustments-to-draft-financial-statements" },
+        { "label": "1.5.3 Partnerships", "href": "/courses/9706/1-5-3-partnerships" },
+        { "label": "9609 10.1.1 Statement of profit or loss", "href": "/courses/9609/10-1-1-statement-of-profit-or-loss" },
+        { "label": "9706 course index", "href": "/courses/9706" }
+      ]
+    }
   ]
 }

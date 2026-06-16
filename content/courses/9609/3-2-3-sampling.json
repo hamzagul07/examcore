@@ -5,28 +5,67 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — sampling methods, bias, and sample size.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — sampling methods, sample size, representativeness, and bias.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain why sampling is used.",
+    "Explain why sampling is used in market research.",
     "Describe random, stratified, and quota sampling.",
-    "Identify sources of sampling bias.",
-    "Assess representativeness of samples."
+    "Evaluate representativeness and bias.",
+    "Recommend sampling approach for case scenarios."
   ],
   "simpleExplanation": {
-    "title": "Ask a subset, infer the whole",
-    "summary": "Firms rarely survey every customer. A well-designed sample saves cost while reflecting the target population.",
+    "title": "Asking the right people",
+    "summary": "Sampling selects a subset of the population to survey — faster and cheaper than a census, but only valid if the sample represents the target market.",
     "steps": [
-      "Random: every member equal chance.",
-      "Stratified: proportional sub-groups.",
-      "Quota: fill categories to match profile.",
-      "Bias if sample unrepresentative."
+      "Random: every member has equal selection chance.",
+      "Stratified: proportional samples from sub-groups.",
+      "Quota: fill categories to match population profile.",
+      "Unrepresentative samples produce biased results."
     ]
   },
+  "flashcards": [
+    { "front": "Why sample?", "back": "Cheaper and faster than surveying entire population; feasible for primary research." },
+    { "front": "Random sampling?", "back": "Every member of population has equal chance of selection — reduces selection bias." },
+    { "front": "Stratified sampling?", "back": "Population divided into strata (e.g. age groups); random sample from each in proportion." },
+    { "front": "Quota sampling?", "back": "Interviewers fill quotas (e.g. 50 male, 50 female) to match profile — not random within quota." },
+    { "front": "Sample bias?", "back": "Sample does not reflect population — results cannot be generalised." },
+    { "front": "Larger sample?", "back": "Usually more reliable (lower sampling error) but higher cost." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Sampling** (3.2.3) is tested with **method + limitation** for the case market. Name **bias types** explicitly." },
-    { "type": "practice", "label": "Mark a sampling question", "href": "/mark?subject=9609&topic=3.2.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Sampling** (3.2.3) follows **3.2.2**. When a case says \"surveyed 200 people in one city\", ask: **Is the sample representative of the target market?**"
+    },
+    {
+      "type": "heading",
+      "content": "Sampling methods"
+    },
+    {
+      "type": "text",
+      "content": "**Random** — names from database, lottery selection; best for statistical validity.\n\n**Stratified** — ensure age/income/region proportions match population; good for **segmented markets**.\n\n**Quota** — quick street interviews filling quotas; **risk of interviewer bias** choosing approachable people."
+    },
+    {
+      "type": "workedExample",
+      "question": "A skincare brand targets women aged 25–40 nationwide. A student surveys 50 classmates. Evaluate the sampling.",
+      "solution": "**Highly biased / unrepresentative.**\n\n**Problems:** Wrong **age profile** (likely 16–18); **geographic** cluster (one school); **convenience sample** not random or stratified.\n\n**Improvement:** **Stratified random sample** of women 25–40 across regions; online panel or random phone/email from customer database; minimum **200+** for basic reliability.\n\nInvalid sample → **wrong product/pricing decisions** — wasted marketing spend."
+    },
+    {
+      "type": "examTip",
+      "content": "Always name the **bias** (age, location, income, self-selection) when criticising case research."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a sampling question",
+      "href": "/mark?subject=9609&topic=3.2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.4 Market research data", "href": "/courses/9609/3-2-4-market-research-data" },
+        { "label": "3.1.6 Market segmentation", "href": "/courses/9609/3-1-6-market-segmentation" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

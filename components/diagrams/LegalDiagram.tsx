@@ -17,6 +17,33 @@ function box(x: number, y: number, w: number, label: string) {
   )
 }
 
+function adrView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  const methods = ['Negotiation', 'Mediation', 'Arbitration', 'Litigation']
+  return (
+    <>
+      <text x="210" y="28" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+        Dispute resolution ladder
+      </text>
+      {methods.map((m, i) => (
+        <g key={m} opacity={layerOpacity(spec, stepIndex, `step-${i + 1}`)}>
+          <rect x={48 + i * 84} y="48" width="72" height="40" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+          <text x={84 + i * 84} y="72" textAnchor="middle" fontSize="7" fill={DIAGRAM_TEXT}>
+            {m}
+          </text>
+          {i < methods.length - 1 ? (
+            <path d={`M ${120 + i * 84} 68 L ${132 + i * 84} 68`} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+          ) : null}
+        </g>
+      ))}
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="120" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          ADR avoids court cost · binding arbitration vs voluntary mediation
+        </text>
+      </g>
+    </>
+  )
+}
+
 function systemView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
   return (
     <>
@@ -163,6 +190,7 @@ export function LegalDiagram({
   if (family === 'law-precedent') content = precedentView(spec, stepIndex)
   else if (family === 'law-interpretation') content = interpretationView(spec, stepIndex)
   else if (family === 'law-remedies') content = remediesView(spec, stepIndex)
+  else if (family === 'law-adr') content = adrView(spec, stepIndex)
   else if (family === 'law-system-process') content = systemView(spec, stepIndex)
   else if (family === 'law-contract-elements') content = elementsChain(spec, stepIndex, contractLabels)
   else if (family === 'law-criminal-elements') content = elementsChain(spec, stepIndex, criminalLabels)

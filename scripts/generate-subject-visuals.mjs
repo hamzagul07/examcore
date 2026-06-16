@@ -26,6 +26,9 @@ function truncate(s, max) {
 function family9706(slug) {
   if (/cvp|cost-volume-profit|break-even/.test(slug)) return 'commerce-breakeven'
   if (/ratio/.test(slug)) return 'commerce-ratios'
+  if (/bank-reconcil|reconciliation|control-account|verification/.test(slug)) {
+    return 'commerce-bank-reconcil'
+  }
   if (/cost|marginal|absorption|profit|materials|labour|costing/.test(slug)) {
     return 'commerce-accounting-cost'
   }
@@ -43,6 +46,7 @@ function family9609(slug) {
   if (/break-even/.test(slug)) return 'commerce-breakeven'
   if (/ratio|liquidity|profitability|accounting-data/.test(slug)) return 'commerce-ratios'
   if (/investment-appraisal|payback|arr|npv/.test(slug)) return 'commerce-investment'
+  if (/working-capital|cash-flow|budget|variances/.test(slug)) return 'commerce-cashflow'
   if (/stakeholder/.test(slug)) return 'commerce-stakeholder'
   if (/elasticity/.test(slug)) return 'commerce-elasticity'
   const unit = parseInt(slug.split('-')[0], 10)
@@ -54,6 +58,7 @@ function family9609(slug) {
 }
 
 function family9084(slug) {
+  if (/alternative-methods|dispute-resolution/.test(slug)) return 'law-adr'
   if (/judicial-precedent/.test(slug)) return 'law-precedent'
   if (/statutory-interpretation/.test(slug)) return 'law-interpretation'
   if (/remedies/.test(slug)) return 'law-remedies'
@@ -177,6 +182,8 @@ export type CommerceHumanitiesFamilyId =
   | 'commerce-breakeven'
   | 'commerce-ratios'
   | 'commerce-investment'
+  | 'commerce-cashflow'
+  | 'commerce-bank-reconcil'
   | 'commerce-stakeholder'
   | 'commerce-elasticity'
   | 'commerce-marketing'
@@ -191,6 +198,7 @@ export type CommerceHumanitiesFamilyId =
   | 'law-precedent'
   | 'law-interpretation'
   | 'law-remedies'
+  | 'law-adr'
   | 'soc-theory'
   | 'soc-research'
   | 'soc-family'

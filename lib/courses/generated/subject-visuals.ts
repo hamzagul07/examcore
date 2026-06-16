@@ -2273,10 +2273,10 @@ export const SLUG_FAMILY_9706: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '1-2-1-the-accounting-system': 'commerce-accounting-ledger',
   '1-3-1-capital-and-revenue-income-and-expenditure': 'commerce-accounting-statements',
   '1-3-2-changing-asset-values': 'commerce-accounting-statements',
-  '1-4-1-reconciliation-and-verification': 'commerce-accounting-ledger',
+  '1-4-1-reconciliation-and-verification': 'commerce-bank-reconcil',
   '1-4-2-trial-balance': 'commerce-accounting-ledger',
-  '1-4-3-bank-reconciliation-statements': 'commerce-accounting-ledger',
-  '1-4-4-control-accounts': 'commerce-accounting-ledger',
+  '1-4-3-bank-reconciliation-statements': 'commerce-bank-reconcil',
+  '1-4-4-control-accounts': 'commerce-bank-reconcil',
   '1-5-1-adjustments-to-draft-financial-statements': 'commerce-accounting-statements',
   '1-5-2-sole-traders': 'commerce-accounting-statements',
   '1-5-3-partnerships': 'commerce-accounting-statements',
@@ -2356,18 +2356,18 @@ export const SLUG_FAMILY_9609: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '4-3-1-significance-and-measurement-of-capacity-utilisation': 'commerce-operations',
   '4-3-2-outsourcing': 'commerce-operations',
   '5-1-1-the-need-for-business-finance': 'commerce-finance',
-  '5-1-2-working-capital': 'commerce-finance',
+  '5-1-2-working-capital': 'commerce-cashflow',
   '5-2-1-business-ownership-and-sources-of-finance': 'commerce-finance',
   '5-2-2-internal-and-external-sources-of-finance': 'commerce-finance',
   '5-2-3-factors-affecting-the-sources-of-finance': 'commerce-finance',
   '5-2-4-selecting-the-source-of-finance': 'commerce-finance',
-  '5-3-1-cash-flow-forecasts': 'commerce-finance',
+  '5-3-1-cash-flow-forecasts': 'commerce-cashflow',
   '5-4-1-cost-information': 'commerce-finance',
   '5-4-2-approaches-to-costing-full-contribution': 'commerce-finance',
   '5-4-3-uses-of-cost-information': 'commerce-finance',
   '5-4-4-break-even-analysis': 'commerce-breakeven',
-  '5-5-1-the-meaning-and-purpose-of-budgets': 'commerce-finance',
-  '5-5-2-variances': 'commerce-finance',
+  '5-5-1-the-meaning-and-purpose-of-budgets': 'commerce-cashflow',
+  '5-5-2-variances': 'commerce-cashflow',
   '6-1-1-political-and-legal': 'commerce-strategy',
   '6-1-2-economic': 'commerce-strategy',
   '6-1-3-social-and-demographic': 'commerce-strategy',
@@ -2416,7 +2416,7 @@ export const SLUG_FAMILY_9084: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '1-1-4-statutory-interpretation': 'law-interpretation',
   '1-1-5-judicial-precedent': 'law-precedent',
   '1-2-1-civil-courts-and-civil-process': 'law-system-process',
-  '1-2-2-alternative-methods-of-dispute-resolution': 'law-system-process',
+  '1-2-2-alternative-methods-of-dispute-resolution': 'law-adr',
   '1-2-3-criminal-courts-and-criminal-process': 'law-system-process',
   '1-2-4-police-powers': 'law-system-process',
   '1-3-1-the-judiciary-superior-and-inferior-judges': 'law-system-process',
@@ -2582,6 +2582,8 @@ export type CommerceHumanitiesFamilyId =
   | 'commerce-breakeven'
   | 'commerce-ratios'
   | 'commerce-investment'
+  | 'commerce-cashflow'
+  | 'commerce-bank-reconcil'
   | 'commerce-stakeholder'
   | 'commerce-elasticity'
   | 'commerce-marketing'
@@ -2596,6 +2598,7 @@ export type CommerceHumanitiesFamilyId =
   | 'law-precedent'
   | 'law-interpretation'
   | 'law-remedies'
+  | 'law-adr'
   | 'soc-theory'
   | 'soc-research'
   | 'soc-family'

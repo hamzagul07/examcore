@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Tort — neighbour principle, Caparo three-stage test, and established duties.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain Donoghue v Stevenson neighbour principle.",
     "Apply Caparo: foreseeability, proximity, fair/just/reasonable.",
@@ -24,9 +24,38 @@
       "Established categories — easier to prove duty."
     ]
   },
+  "flashcards": [
+    { "front": "Neighbour principle (Donoghue)?", "back": "You must take reasonable care to avoid acts or omissions you can reasonably foresee would injure your neighbour — those closely and directly affected by your conduct." },
+    { "front": "Caparo three-stage test?", "back": "1) Harm reasonably foreseeable; 2) sufficient proximity/relationship; 3) fair, just and reasonable to impose duty." },
+    { "front": "Established duty — road users?", "back": "All road users owe other lawful road users a duty (Nettleship v Weston — learner driver held to same standard)." },
+    { "front": "Established duty — employers?", "back": "Employers owe employees a duty to provide safe system of work, equipment, and competent colleagues (Wilsons & Clyde Coal v English)." },
+    { "front": "Established duty — manufacturers?", "back": "Manufacturers owe end-users a duty in product cases (Donoghue v Stevenson)." },
+    { "front": "When is Caparo used?", "back": "For novel duty situations not already covered by established categories — policy stage often decisive."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Duty of care** (4.1.2) — **Caparo three-stage** test for novel situations." },
-    { "type": "practice", "label": "Mark a duty of care question", "href": "/mark?subject=9084&topic=4.1.2" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Duty of care** (4.1.2) is the first hurdle in negligence. Use **established categories** where they apply; otherwise apply the **Caparo three-stage** test step by step in problem questions."
+    },
+    {
+      "type": "workedExample",
+      "question": "A accountant, Leon, carelessly audits Bright Ltd's accounts. A bank, relying on the audit, lends £500,000 to Bright Ltd, which collapses. The bank loses the loan. Advise whether Leon owes the bank a duty of care. [15 marks]",
+      "solution": "**Issue:** Does Leon owe the **bank** a duty in negligence for **pure economic loss** from a negligent audit?\n\n**Established category?** No simple manufacturer/road-user duty. Apply **Caparo v Dickman [1990]**:\n\n1. **Foreseeability:** If the audit was known to be for lending decisions, financial loss to a lender is **reasonably foreseeable** when accounts are misstated.\n\n2. **Proximity:** In *Caparo*, auditors owed duty to **shareholders as a body**, not individual investors. Here, compare **Hedley Byrne** — special relationship where D knows C will rely on statement. If Leon knew the audit was specifically for the bank's loan decision, proximity is stronger; if audit was general-purpose, proximity is weaker (*Caparo* — no duty to indeterminate class).\n\n3. **Fair, just and reasonable:** Courts restrict **pure economic loss** to prevent indeterminate liability. Policy favours **no duty** unless a **special relationship** exists (assumption of responsibility, reasonable reliance — *Hedley Byrne*, *Smith v Eric S Bush* for surveys).\n\n**Conclusion:** Leon likely owes **no duty** to the bank unless facts show the audit was prepared for its specific reliance — otherwise *Caparo* policy bars recovery. Contrast **physical injury** cases where duty is more readily found (*Donoghue*)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a duty of care question",
+      "href": "/mark?subject=9084&topic=4.1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.1.1 Nature of negligence", "href": "/courses/9084/4-1-1-nature-of-liability-in-negligence" },
+        { "label": "4.1.5 Novel duty situations", "href": "/courses/9084/4-1-5-novel-duty-situations" },
+        { "label": "4.1.3 Breach of duty", "href": "/courses/9084/4-1-3-breach-of-duty" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

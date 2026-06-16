@@ -5,28 +5,55 @@
   "paper": "P1",
   "paperName": "Paper 1 - English Legal System",
   "status": "premium",
-  "summary": "9084 — literal, golden, mischief rules; purposive approach; aids to interpretation.",
+  "summary": "9084 — rules of interpretation, aids, and approaches judges use.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain literal, golden, mischief, and purposive rules.",
-    "Apply intrinsic and extrinsic aids.",
-    "Use presumptions and rules of language.",
-    "Evaluate with cases: Fisher v Bell, Smith v Hughes, R v Allen."
+    "Outline intrinsic and extrinsic aids to interpretation.",
+    "Apply rules to statutory problems with cases.",
+    "Evaluate rules of language: ejusdem generis, expressio unius."
   ],
   "simpleExplanation": {
-    "title": "What did Parliament mean?",
-    "summary": "Judges use rules and aids to interpret ambiguous statutes — from strict literal meaning to filling gaps the mischief rule identifies.",
+    "title": "What does the Act mean?",
+    "summary": "Judges use interpretive rules and aids when statute wording is unclear — balancing plain meaning with Parliament's purpose.",
     "steps": [
-      "Literal — plain words, even absurd results.",
-      "Golden — modify literal to avoid absurdity.",
-      "Mischief — Heydon's Case, fix the gap.",
-      "Purposive — EU-influenced, teleological."
+      "Literal rule — plain words (Fisher v Bell).",
+      "Golden rule — avoid absurdity (R v Allen).",
+      "Mischief rule — Heydon's Case, old law gap.",
+      "Purposive — EU-influenced, Act's purpose."
     ]
   },
+  "flashcards": [
+    { "front": "Literal rule?", "back": "Words given ordinary meaning — even if harsh result (Whitely v Chappell)." },
+    { "front": "Golden rule?", "back": "Modify literal meaning to avoid absurdity (Re Sigsworth)." },
+    { "front": "Mischief rule (Heydon)?", "back": "What gap did Act intend to fill? Judge suppresses mischief." },
+    { "front": "Purposive approach?", "back": "Interpret to give effect to Parliament's purpose (Padfield v Minister)." },
+    { "front": "Ejusdem generis?", "back": "General words limited by specific class — 'other animals' after cats, dogs." },
+    { "front": "Presumption against retrospectivity?", "back": "Statutes not applied to past events unless clear wording." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Statutory interpretation** (1.1.4) — apply **rules + cases** to problem scenarios." },
-    { "type": "practice", "label": "Mark a statutory interpretation question", "href": "/mark?subject=9084&topic=1.1.4" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Statutory interpretation** (1.1.4) — apply **each rule with a case**. Human Rights Act 1998 requires **compatible interpretation** where possible."
+    },
+    {
+      "type": "workedExample",
+      "question": "A shop displays a flick knife in the window with a price tag. Has the shop 'offered' it for sale under the Restriction of Offensive Weapons Act 1959? Apply interpretive rules. [10 marks]",
+      "solution": "**Facts (Fisher v Bell):** Knife in shop window — prosecution argued 'offer for sale'.\n\n**Literal rule:** Display is **invitation to treat**, not offer (*Partridge v Crittenden*, *Pharmaceutical Society v Boots*). Plain meaning of 'offer' in contract law differs from window display.\n\n**Golden/mischief:** Act aimed to **reduce knife crime** — but literal interpretation favoured defendant; Parliament could have drafted 'expose for sale'.\n\n**Held:** **Not an offer** — acquitted. Shows **literal rule** can frustrate apparent legislative purpose.\n\n**Exam tip:** State rule → case → apply to scenario → conclusion."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a statutory interpretation question",
+      "href": "/mark?subject=9084&topic=1.1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.1.5 Judicial precedent", "href": "/courses/9084/1-1-5-judicial-precedent" },
+        { "label": "3.1.2 Offer and acceptance", "href": "/courses/9084/3-1-2-offer-and-acceptance" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

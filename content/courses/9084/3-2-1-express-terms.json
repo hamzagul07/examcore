@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Contract — conditions, warranties, innominate terms, and incorporation.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish express terms from representations.",
     "Explain conditions, warranties, and innominate terms.",
@@ -24,9 +24,30 @@
       "Innominate — effect of breach determines remedy."
     ]
   },
+  "flashcards": [
+    { "front": "Term vs representation?", "back": "Term — contractual promise, breach gives contractual remedy; representation — pre-contract statement, misrepresentation if false (Heilbut, Symons & Co v Buckleton)." },
+    { "front": "Condition?", "back": "Term going to **root** of contract — breach allows termination + damages (Poussard v Spiers: singer must perform opening night)." },
+    { "front": "Warranty?", "back": "Minor term — breach gives **damages only**, no right to terminate (Bettini v Gye: singer late for rehearsals)." },
+    { "front": "Innominate term?", "back": "Neither clearly condition nor warranty — remedy depends on **effect of breach** (Hong Kong Fir Shipping)." },
+    { "front": "L'Estrange v Graucob?", "back": "Signature rule — signing contract binds to all terms regardless of reading; exceptions: misrepresentation, non est factum." },
+    { "front": "Incorporation by notice?", "back": "Must give **reasonable notice** before or at contract — unusual clauses need special steps (Thornton v Shoe Lane, Interfoto)." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Express terms** (3.2.1) opens 3.2. **Classification** determines **remedy on breach**." },
+    {
+      "type": "workedExample",
+      "question": "P hires S, an opera singer, for three months. S is too ill to perform on the first six nights. P dismisses S and hires a replacement. S sues for wrongful dismissal. Advise.",
+      "solution": "**Express term:** Obligation to perform on **opening nights** of the season.\n\n**Classification:** Breach of **condition** — performance on opening night goes to **root** of contract (*Poussard v Spiers*). Contrast *Bettini v Gye* where lateness for rehearsals was only a **warranty**.\n\n**Effect of breach:** P entitled to **terminate** contract and claim **damages** for costs of replacement singer.\n\n**S's claim:** S cannot succeed — P's termination was **lawful** response to repudiatory breach of condition.\n\n**Conclusion:** **No wrongful dismissal** — S breached a condition; P may terminate."
+    },
     { "type": "practice", "label": "Mark an express terms question", "href": "/mark?subject=9084&topic=3.2.1" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.3 Status of terms", "href": "/courses/9084/3-2-3-status-of-terms" },
+        { "label": "3.2.4 Control of exemption clauses", "href": "/courses/9084/3-2-4-control-of-exemption-clauses" },
+        { "label": "3.3.2 Breach", "href": "/courses/9084/3-3-2-breach" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

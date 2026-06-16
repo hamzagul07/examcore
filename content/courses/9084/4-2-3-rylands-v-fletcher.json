@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Tort — strict liability for escape of dangerous things from land.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "State elements of Rylands v Fletcher liability.",
     "Explain 'non-natural use', accumulation, escape.",
@@ -24,9 +24,38 @@
       "Mischief — damage to claimant's property."
     ]
   },
+  "flashcards": [
+    { "front": "Rylands v Fletcher rule?", "back": "Person who for own purposes brings on land and collects/stores anything likely to do mischief if it escapes, and it escapes, is liable for damage — even without negligence." },
+    { "front": "Non-natural use?", "back": "Special use bringing with it increased danger — not ordinary use of land (Cambridge Water: industrial solvent storage may qualify; domestic water tank may not)." },
+    { "front": "Escape requirement?", "back": "Thing must leave D's land and cause damage elsewhere — no Rylands liability for harm on D's own land (Read v Lyons)." },
+    { "front": "Rylands defences?", "back": "Consent of C; default of C; act of stranger (third party); act of God; statutory authority." },
+    { "front": "Cambridge Water significance?", "back": "Foreseeability of damage type required — aligned Rylands with Wagon Mound remoteness; restricted strict liability." },
+    { "front": "Rylands vs negligence?", "back": "Rylands is strict liability once elements proved — no need to show breach of reasonable care; narrower scope (escape + non-natural use)."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Rylands v Fletcher** (4.2.3) — work through **each element**; note **defences**." },
-    { "type": "practice", "label": "Mark a Rylands v Fletcher question", "href": "/mark?subject=9084&topic=4.2.3" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Rylands v Fletcher** (4.2.3) — work through **each element** systematically in problem answers. Note **defences** and **Cambridge Water** foreseeability requirement."
+    },
+    {
+      "type": "workedExample",
+      "question": "A factory stores 50,000 litres of industrial solvent in tanks on its site. A pipe fractures; solvent seeps through soil and contaminates a neighbour's water supply. The factory took reasonable maintenance care. Advise the neighbour on Rylands v Fletcher liability. [15 marks]",
+      "solution": "**Rylands elements:**\n\n1. **Bring on land for own purposes:** Factory stored solvent for manufacturing — **satisfied**.\n\n2. **Likely to do mischief if escapes:** Industrial solvent contaminating water — **satisfied**.\n\n3. **Non-natural use:** *Cambridge Water v Eastern Counties Leather* — storage of solvents in commercial quantities in industrial area analysed. Large-scale industrial chemical storage = **non-natural use** (special risk beyond ordinary land use).\n\n4. **Escape:** Solvent seeped off factory land into neighbour's supply — **satisfied** (*Transco v Stockport* — gas leak from pipe under highway = escape).\n\n5. **Damage:** Contamination of water supply — **property damage** (*Cambridge Water* — pollution damage recoverable if foreseeable type).\n\n**Foreseeability (*Cambridge Water*):** Type of harm (water contamination) must be **reasonably foreseeable** — likely satisfied for solvent seepage.\n\n**Negligence irrelevant:** Reasonable maintenance **does not defeat** Rylands — **strict liability** once elements met.\n\n**Defences:** Neighbour did not consent; no act of stranger unless pipe failure was third-party vandalism; **act of God** unlikely.\n\n**Conclusion:** Neighbour has strong **Rylands** claim for remediation costs and property damage. Also consider **private nuisance** and **negligence** as alternatives."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a Rylands v Fletcher question",
+      "href": "/mark?subject=9084&topic=4.2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.1.4 Causation and remoteness", "href": "/courses/9084/4-1-4-causation-and-remoteness-of-damage" },
+        { "label": "4.2.2 Private nuisance", "href": "/courses/9084/4-2-2-private-nuisance" },
+        { "label": "4.4.1 Defences", "href": "/courses/9084/4-4-1-defences" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

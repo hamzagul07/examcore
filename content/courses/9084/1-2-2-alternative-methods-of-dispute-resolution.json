@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 — negotiation, mediation, conciliation, and arbitration as alternatives to court.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish ADR methods and their processes.",
     "Explain advantages: cost, speed, confidentiality.",
@@ -24,9 +24,37 @@
       "Court direction — pre-action protocols."
     ]
   },
+  "flashcards": [
+    { "front": "Negotiation?", "back": "Parties communicate directly to reach settlement — no third party, fully flexible." },
+    { "front": "Mediation?", "back": "Neutral mediator facilitates agreement — outcome non-binding unless written contract." },
+    { "front": "Conciliation?", "back": "Conciliator may propose solutions — used in employment (ACAS) and family disputes." },
+    { "front": "Arbitration?", "back": "Private tribunal gives binding award — governed by Arbitration Act 1996; limited court appeal." },
+    { "front": "Pre-action protocols?", "back": "CPR requires parties to consider ADR before issuing claim — costs penalties if unreasonably refused." },
+    { "front": "Main ADR advantage?", "back": "Cost, speed, confidentiality, and party control — preserves commercial relationships." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**ADR** (1.2.2) — compare **methods** and when each suits the dispute." },
-    { "type": "practice", "label": "Mark an ADR question", "href": "/mark?subject=9084&topic=1.2.2" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**ADR** (1.2.2) — compare **methods** and when each suits the dispute. **Negotiation** is always available; **mediation** suits ongoing relationships (commercial, neighbour, family); **arbitration** suits technical or international contracts with a binding outcome. Courts actively **encourage ADR** — *Halsey v Milton Keynes NHS Trust* sets out when refusal is unreasonable. Know enforcement: mediated agreements become **consent orders**; arbitral awards enforced under the **Arbitration Act 1996**."
+    },
+    {
+      "type": "workedExample",
+      "question": "Two companies dispute a £200,000 supply contract. One wants confidentiality and a quick resolution; the other insists on a binding outcome without going to court. Advise on suitable ADR methods and evaluate whether a court could penalise refusal to mediate. [10 marks]",
+      "solution": "**Issue:** Which ADR method fits, and consequences of refusing mediation.\n\n**Negotiation:** Cheapest first step — parties' solicitors can exchange without prejudice offers. Non-binding unless agreement reached.\n\n**Mediation:** Suitable for **confidentiality** and **relationship preservation**. Mediator facilitates but does not decide. Outcome only binding if parties sign settlement agreement.\n\n**Arbitration:** Best where parties want a **binding, private decision** without public court process. Arbitrator's award enforceable as contract; appeal grounds narrow (*s69 Arbitration Act 1996*).\n\n**Court penalties:** Under *Halsey*, courts may impose **adverse costs orders** if a party **unreasonably refuses** ADR. Factors: nature of dispute, merits, costs of ADR vs trial, delay, and whether ADR had reasonable prospect of success.\n\n**Conclusion:** Start with negotiation; if deadlock, **arbitration** meets binding/confidential needs. Unreasonable refusal of mediation risks **costs sanctions** even if the refusing party wins at trial.\n\n**Exam tip:** Match method to party priorities — binding vs non-binding, cost, speed, confidentiality."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an ADR question",
+      "href": "/mark?subject=9084&topic=1.2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.2.1 Civil courts and process", "href": "/courses/9084/1-2-1-civil-courts-and-civil-process" },
+        { "label": "1.3.2 Legal professionals", "href": "/courses/9084/1-3-2-legal-professionals" },
+        { "label": "3.3.3 Frustration", "href": "/courses/9084/3-3-3-frustration" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

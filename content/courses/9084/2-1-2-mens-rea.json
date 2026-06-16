@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Criminal — intention, recklessness, negligence, and coincidence rule.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish direct and oblique intention.",
     "Apply Woollin virtual certainty test.",
@@ -24,9 +24,37 @@
       "Coincidence — Thabo Meli, continuing act."
     ]
   },
+  "flashcards": [
+    { "front": "Direct intention?", "back": "D's aim or purpose is to bring about the result — highest form of mens rea." },
+    { "front": "Oblique intention (Woollin)?", "back": "Result virtually certain from D's act AND D appreciates that — jury may find intention." },
+    { "front": "Cunningham recklessness?", "back": "Subjective — D foresees risk of result/consequence and goes ahead anyway (R v Cunningham)." },
+    { "front": "Transferred malice?", "back": "Mens rea transfers where same offence type — e.g. meant to hit A, hit B (R v Latimer)." },
+    { "front": "Coincidence rule?", "back": "Actus reus and mens rea must coincide — exceptions: continuing act (Fagan), pre-meditated sequence (Thabo Meli)." },
+    { "front": "Recklessness vs negligence?", "back": "Recklessness requires awareness of risk; negligence is failure to meet reasonable standard (rare in criminal law)." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Mens rea** (2.1.2) — **Woollin** and **Cunningham** are essential for problem answers." },
-    { "type": "practice", "label": "Mark a mens rea question", "href": "/mark?subject=9084&topic=2.1.2" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Mens rea** (2.1.2) — **Woollin** and **Cunningham** are essential for problem answers. **Direct intention** = aim/purpose. **Oblique intention** — if result is **virtually certain** and D **appreciates** this, jury may find intent (*R v Woollin*). **Recklessness** — **subjective** test: did D foresee the risk? (*R v Cunningham*; *G&R* abolished Caldwell objective recklessness). For **coincidence**, actus reus and mens rea must align — exceptions include **continuing act** (*Fagan v MPC*) and **Thabo Meli** (sequence treated as one transaction)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Carla sets fire to rubbish near a fence to scare her neighbour. The fire spreads and destroys the neighbour's shed. Carla says she only intended to frighten, not destroy property. Discuss her mens rea for criminal damage. [10 marks]",
+      "solution": "**Issue:** Whether Carla has intention or recklessness for criminal damage (s1 Criminal Damage Act 1971 — requires intention or recklessness as to damage).\n\n**Direct intention:** Carla's aim was to **scare**, not destroy shed — **no direct intent** to damage property unless shed destruction was her purpose.\n\n**Oblique intention (Woollin):** Was destruction **virtually certain** and did Carla **appreciate** this? Setting fire near a fence/shed — strong argument destruction was **virtually certain** (*R v Woollin* direction to jury). If Carla realised, jury **may** find intention.\n\n**Cunningham recklessness:** Even without intention, liable if she **foresaw risk** of property damage and proceeded anyway (*R v Cunningham*). Fire near structures — obvious risk; Carla likely **subjectively reckless**.\n\n**Molina/G case law:** Recklessness requires D **thought about risk** — if Carla genuinely considered and dismissed risk, still reckless if unreasonable to proceed.\n\n**Conclusion:** **Recklessness established** at minimum; **oblique intention** arguable if virtual certainty proven.\n\n**Exam tip:** Always discuss intention (direct then oblique) before recklessness — higher mens rea first."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a mens rea question",
+      "href": "/mark?subject=9084&topic=2.1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.1.1 Actus reus", "href": "/courses/9084/2-1-1-actus-reus" },
+        { "label": "2.2.7 Criminal damage", "href": "/courses/9084/2-2-7-criminal-damage-as-defined-in-criminal-damage-act-1971" },
+        { "label": "2.3.1 Adult offenders", "href": "/courses/9084/2-3-1-adult-offenders" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Contract — conditions, warranties, innominate terms, and remedies for breach.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Classify terms by status and importance.",
     "Explain effect of breaching each type.",
@@ -24,9 +24,30 @@
       "Anticipatory breach — Hochster v De La Tour."
     ]
   },
+  "flashcards": [
+    { "front": "Remedy for breach of condition?", "back": "Innocent party may **terminate** contract and claim **damages** — repudiatory breach." },
+    { "front": "Remedy for breach of warranty?", "back": "**Damages only** — contract continues; no right to terminate (*Bettini v Gye*)." },
+    { "front": "Hong Kong Fir approach?", "back": "Ask whether breach **deprives innocent party of substantially whole benefit** — if yes, treat as repudiatory (innominate term)." },
+    { "front": "How to classify a term?", "back": "Look at **parties' intention**, **consequences of breach**, and **statutory labels** — not just the word 'condition' in contract." },
+    { "front": "Anticipatory breach?", "back": "Clear refusal before due date — innocent party may **terminate immediately** or wait (*Hochster v De La Tour*)." },
+    { "front": "Wrongful termination?", "back": "If breach not repudiatory but party terminates anyway — **they** breach; liable in damages." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Status of terms** (3.2.3) — link **classification → breach → remedy** in every answer." },
+    {
+      "type": "workedExample",
+      "question": "Shipowners charter a ship for 24 months. Engine breakdown causes 20 weeks off hire in first year. Charterers terminate. Shipowners claim wrongful termination. Advise using Hong Kong Fir.",
+      "solution": "**Term breached:** **Seaworthiness** obligation — express term in charterparty.\n\n**Classification:** Not automatically condition or warranty — apply **innominate term** approach (*Hong Kong Fir Shipping Co v Kawasaki Kisen Kaisha*).\n\n**Effect of breach:** 20 weeks off hire in year one is **serious** but ship was repaired and remaining 18 months available. Court held breach did **not deprive** charterers of **substantially whole benefit**.\n\n**Charterers' termination:** **Wrongful** — breach was not repudiatory; charterers themselves **repudiated** by terminating.\n\n**Remedy:** Shipowners claim **damages** for wrongful termination; charterers limited to **damages** for off-hire period, not termination.\n\n**Conclusion:** Term is **innominate**; charterers **cannot terminate** — only damages for loss of use."
+    },
     { "type": "practice", "label": "Mark a status of terms question", "href": "/mark?subject=9084&topic=3.2.3" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.1 Express terms", "href": "/courses/9084/3-2-1-express-terms" },
+        { "label": "3.3.2 Breach", "href": "/courses/9084/3-3-2-breach" },
+        { "label": "3.4.1 Common law remedies", "href": "/courses/9084/3-4-1-common-law" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

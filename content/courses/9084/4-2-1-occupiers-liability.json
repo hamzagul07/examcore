@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Tort — OLA 1957 visitors, OLA 1984 trespassers, common duty of care.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define occupier, premises, and visitor under OLA 1957.",
     "Explain common duty of care and s2(3) factors.",
@@ -24,9 +24,38 @@
       "Trespassers — OLA 1984, aware of danger + may suffer."
     ]
   },
+  "flashcards": [
+    { "front": "Who is an occupier (OLA 1957 s1)?", "back": "Person with sufficient control over premises — may be more than one (Wheat v Lacon: brewery and manager both occupiers)." },
+    { "front": "Common duty of care (s2(2))?", "back": "Take such care as is reasonable in all circumstances to see visitor is reasonably safe in using premises for purpose permitted." },
+    { "front": "s2(3) OLA 1957 factors?", "back": "Age of visitor, purpose of visit, degree of care expected of visitor, knowledge of occupier, precautions occupier may expect visitor to take." },
+    { "front": "OLA 1984 trespasser duty?", "back": "Duty if occupier knows of danger, knows/be reasonably expects someone may come near, risk reasonable to offer protection — lower threshold than 1957." },
+    { "front": "Roles v Nathan?", "back": "Independent contractor's fault — occupier not liable if chose competent contractor for specialised work and did not supervise negligently." },
+    { "front": "Visitor vs trespasser?", "back": "Visitor has permission (express/implied); trespasser enters without permission — different statutes and standards apply."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Occupiers' liability** (4.2.1) — distinguish **1957 visitors** vs **1984 trespassers**." },
-    { "type": "practice", "label": "Mark an occupiers liability question", "href": "/mark?subject=9084&topic=4.2.1" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Occupiers' liability** (4.2.1) — always identify **occupier**, classify **visitor or trespasser**, then apply **OLA 1957** or **OLA 1984**. Distinguish from general negligence though standards overlap."
+    },
+    {
+      "type": "workedExample",
+      "question": "A child, aged 8, enters a builder's unfenced site through a gap in hoarding to play. He falls into an uncovered trench and breaks his leg. The builder knew local children sometimes entered. Advise on occupiers' liability. [15 marks]",
+      "solution": "**Occupier:** Builder controlling site = **occupier** (*Wheat v Lacon* — control test).\n\n**Status:** Child entered without permission = **trespasser** (not visitor). Apply **Occupiers' Liability Act 1984**:\n\n1. **Danger:** Uncovered trench — **danger** on premises.\n2. **Occupier knows of danger:** Builder aware of trench — satisfied.\n3. **Knows/reasonably expects trespasser may enter:** Builder knew children sometimes entered — **satisfied** (*British Railways Board v Herrington* — child trespassers foreseeable).\n4. **Risk reasonable to offer some protection:** All s1(3) conditions met → **duty arises** under s1(4) — care reasonable in circumstances.\n\n**Standard:** Lower than 1957 but **child trespassers** attract higher care — **s2(3)(a) OLA 1957** factors analogous by policy (*Phipps v Rochester* — children less careful).\n\n**Defences:** No **volenti** for child; **contributory negligence** unlikely given age.\n\n**Contrast visitor:** If child were invited (delivery), **OLA 1957 s2(2)** common duty — likely **breach** for failing to fence trench given known child entry.\n\n**Conclusion:** Builder likely **liable** under OLA 1984 — should have fenced or covered trench."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an occupiers liability question",
+      "href": "/mark?subject=9084&topic=4.2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.1.3 Breach of duty", "href": "/courses/9084/4-1-3-breach-of-duty" },
+        { "label": "4.2.4 Trespass to land", "href": "/courses/9084/4-2-4-trespass-to-land" },
+        { "label": "4.4.1 Defences", "href": "/courses/9084/4-4-1-defences" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Tort — but-for test, intervening acts, thin skull, Wagon Mound remoteness.",
   "durationMin": 26,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Apply but-for factual causation test.",
     "Explain intervening acts: novus actus, egg-shell skull.",
@@ -24,9 +24,38 @@
       "Intervening acts — break chain if independent."
     ]
   },
+  "flashcards": [
+    { "front": "But-for test (factual causation)?", "back": "Would the harm have occurred but for D's breach? If yes even without breach, no factual causation (Barnett v Chelsea — no duty to treat, but patient would have died anyway)." },
+    { "front": "Thin skull / egg-shell skull rule?", "back": "Take your victim as you find them — D liable for full extent of harm even if C unusually vulnerable (Smith v Leech Brain — burn triggered cancer)." },
+    { "front": "Remoteness test (Wagon Mound)?", "back": "Damage not too remote if the type/kind of harm was reasonably foreseeable — not exact sequence or extent (Overseas Tankship v Morts Dock)." },
+    { "front": "Novus actus interveniens?", "back": "New intervening act breaking the chain — e.g. free, deliberate, informed act of third party (McKew v Holland — claimant's own reckless descent)." },
+    { "front": "Multiple causes?", "back": "Material contribution test may apply where but-for fails but D materially contributed to injury (Bonnington Castings — dust exposure)." },
+    { "front": "Remoteness vs foreseeability at duty stage?", "back": "Different stages — duty uses foreseeability of harm to neighbour; remoteness asks whether this particular damage type was foreseeable once duty exists."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Causation and remoteness** (4.1.4) — separate **factual** from **legal** causation clearly." },
-    { "type": "practice", "label": "Mark a causation question", "href": "/mark?subject=9084&topic=4.1.4" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Causation and remoteness** (4.1.4) — always separate **factual causation** (but-for / material contribution) from **legal causation** (remoteness). Apply the **thin skull** rule where the victim has pre-existing vulnerability."
+    },
+    {
+      "type": "workedExample",
+      "question": "Oil negligently spilled from D's ship in Sydney Harbour. Welding sparks ignite floating oil; wharf and ships catch fire. C claims for fire damage. D argues fire was unforeseeable. Advise on causation and remoteness. [15 marks]",
+      "solution": "**Facts mirror *Overseas Tankship (UK) v Morts Dock (The Wagon Mound No 1)* [1961].**\n\n**Factual causation:** **But-for** test — but for the oil spill, would fire damage have occurred? **No** — oil provided fuel for fire. Factual link established.\n\n**Remoteness (*Wagon Mound*):** Is fire damage too remote?\n- D argued only **fouling** of wharf was foreseeable, not **fire**.\n- Privy Council: test is whether **type/kind** of harm was reasonably foreseeable.\n- **Foreseeability of fire:** Spilled oil + welding sparks in harbour → **fire damage was foreseeable** as a type of harm, even if exact mechanism unlikely.\n\n**Result:** D **liable** for fire damage — not too remote.\n\n**Contrast *Wagon Mound No 2*:** Different claimants, same principle confirmed.\n\n**Earlier *Re Polemis*:** Direct consequence test rejected — remoteness now based on **foreseeability of harm type**, not directness of physical chain.\n\n**Exam tip:** State but-for first, then remoteness separately; cite *Wagon Mound* for oil/fire scenarios."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a causation question",
+      "href": "/mark?subject=9084&topic=4.1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "4.1.3 Breach of duty", "href": "/courses/9084/4-1-3-breach-of-duty" },
+        { "label": "4.1.5 Novel duty situations", "href": "/courses/9084/4-1-5-novel-duty-situations" },
+        { "label": "4.4.2 Remedies", "href": "/courses/9084/4-4-2-remedies" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

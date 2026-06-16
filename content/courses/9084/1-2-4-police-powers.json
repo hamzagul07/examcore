@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 — stop and search, arrest, detention, and PACE 1984 safeguards.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Outline stop and search powers under PACE.",
     "Explain grounds and procedure for arrest.",
@@ -24,9 +24,37 @@
       "Rights — solicitor, silence, appropriate adult."
     ]
   },
+  "flashcards": [
+    { "front": "s1 PACE stop and search?", "back": "Reasonable grounds to suspect stolen/prohibited articles; must state name, station, object, grounds." },
+    { "front": "Arrest necessity criteria?", "back": "s24 PACE as amended — reasonable grounds + necessity test (e.g. prompt investigation, prevent disappearance)." },
+    { "front": "Police caution?", "back": "You do not have to say anything but it may harm your defence if you do not mention when questioned..." },
+    { "front": "Standard detention period?", "back": "24 hours from arrival at police station; superintendent may extend to 36 hours; magistrates up to 96 hours." },
+    { "front": "Right to legal advice?", "back": "s58 PACE — free independent solicitor; delay only in serious arrestable offence with authorisation." },
+    { "front": "Appropriate adult?", "back": "Required for under-18s and vulnerable adults during search, interview, and identification procedures." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Police powers** (1.2.4) — cite **PACE sections** and **Codes of Practice**." },
-    { "type": "practice", "label": "Mark a police powers question", "href": "/mark?subject=9084&topic=1.2.4" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Police powers** (1.2.4) — cite **PACE sections** and **Codes of Practice**. Stop and search requires **reasonable suspicion** (*s1*); arrest needs **reasonable grounds** plus **necessity** (*s24* as amended by PACEDA 2011). In custody, **Code C** governs detention, review, and interviews. Suspects' rights — **legal advice** (*s58*), **silence** (with adverse inference under *s34 CJPOA 1994* in limited circumstances), and **appropriate adults** for vulnerable detainees. Balance **liberty** against effective investigation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Officers stop Marcus on suspicion of burglary, search his bag, find tools, arrest him, and detain him for 30 hours without allowing a solicitor. Marcus is 17. Identify PACE issues and whether evidence may be excluded. [10 marks]",
+      "solution": "**Issue:** Legality of stop/search, arrest, detention, and Marcus's rights as a minor.\n\n**Stop and search (s1 PACE):** Lawful if officers had **reasonable grounds** to suspect stolen/prohibited articles linked to burglary. Must comply with **Code A** — grounds recorded, ethnic monitoring, search conducted appropriately.\n\n**Arrest (s24):** Requires offence committed + **necessity** (e.g. to allow prompt investigation). Tools may support arrest if linked to burglary.\n\n**Detention:** Standard limit **24 hours**; extension to **36 hours** needs **superintendent's authorisation**. 30-hour detention without proper review breaches **s40 PACE** — custody officer must review at intervals.\n\n**Legal advice (s58):** Denial of solicitor is serious breach unless authorised delay in limited cases. **No blanket denial** for 30 hours.\n\n**Appropriate adult:** Marcus is **17** — **Code C** requires appropriate adult for interview and key procedures. Interview without one may be **unfair**.\n\n**Exclusion:** Under **s78 PACE**, court may exclude evidence if admission would have adverse effect on fairness. Strong argument to exclude **interview/confession**; physical evidence (tools) may still be admissible if search lawful.\n\n**Conclusion:** Multiple PACE breaches — detention length, solicitor denial, no appropriate adult.\n\n**Exam tip:** Work through stop → search → arrest → custody rights in sequence; cite Code C for minors."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a police powers question",
+      "href": "/mark?subject=9084&topic=1.2.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.2.3 Criminal courts and process", "href": "/courses/9084/1-2-3-criminal-courts-and-criminal-process" },
+        { "label": "2.1.1 Actus reus", "href": "/courses/9084/2-1-1-actus-reus" },
+        { "label": "2.3.2 Young offenders", "href": "/courses/9084/2-3-2-young-offenders" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

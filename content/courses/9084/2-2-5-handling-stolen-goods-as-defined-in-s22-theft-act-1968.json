@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Criminal — receiving, arranging, assisting disposal knowing or believing goods stolen.",
   "durationMin": 22,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Define handling under s22 and s24 TA 1968.",
     "Explain 'knowing or believing' mens rea.",
@@ -24,9 +24,37 @@
       "Alternative charge if theft cannot be proved."
     ]
   },
+  "flashcards": [
+    { "front": "s22 handling acts?", "back": "Receiving stolen goods, or undertaking/assisting in their retention, removal, disposal, or realisation by/for another." },
+    { "front": "Mens rea for handling?", "back": "Knowing or believing the goods to be stolen at the time of handling — subjective test." },
+    { "front": "s24 presumption?", "back": "If goods were stolen within 12 months and D found in possession, jury may infer guilty knowledge unless explained." },
+    { "front": "Goods still stolen?", "back": "Handling must occur while goods remain stolen — once owner reclaims or police recover, goods may cease to be stolen." },
+    { "front": "R v Grainge?", "back": "Two defendants agreeing to store goods for a third — both guilty of undertaking to assist retention." },
+    { "front": "Alternative to theft?", "back": "Handling charge used when thief cannot be identified or theft difficult to prove." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Handling s22** (2.2.5) — check **goods still stolen** and **subjective belief**." },
-    { "type": "practice", "label": "Mark a handling stolen goods question", "href": "/mark?subject=9084&topic=2.2.5" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Handling s22** (2.2.5) — check **goods still stolen** and **subjective belief** at the moment of handling. Often charged when the **original thief** cannot be identified."
+    },
+    {
+      "type": "workedExample",
+      "question": "Jake buys a laptop for £80 from a stranger in a pub. Jake suspects it may be stolen but does not ask questions. He later agrees to store two more laptops for the seller in his garage. Analyse handling under s22. [10 marks]",
+      "solution": "**1. Stolen goods:** The laptops must be **stolen** at the time of handling — if the stranger stole them, s22 applies. s24 allows jury to infer theft within the previous 12 months if unexplained possession.\n\n**2. First act — receiving:** Jake **received** stolen goods (s22(1)(a)) when he bought the laptop. This is handling if the laptop was stolen at that moment.\n\n**3. Mens rea — knowing or believing:** The test is **subjective** — did Jake **know or believe** the goods were stolen? Mere suspicion is **insufficient** (*R v Raaf*). However, buying far below value from a stranger in a pub with **suspicion** may support a jury finding of **belief**, especially combined with s24 inference.\n\n**4. Second act — assisting retention:** Storing laptops for the seller is **undertaking or assisting in retention** (s22(1)(b)) — *R v Grainge*: agreeing to store for another is handling even if D never takes physical possession of all items.\n\n**5. Timing:** Handling must occur **while goods remain stolen**. If Jake stores them before police recovery, the goods are still stolen.\n\n**Conclusion:** Jake is likely **guilty of handling** for both receiving and assisting retention if the jury finds he **believed** the goods were stolen. Stress that **suspicion alone** is not enough — but facts here strongly suggest belief."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a handling stolen goods question",
+      "href": "/mark?subject=9084&topic=2.2.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "2.2.1 Theft", "href": "/courses/9084/2-2-1-theft-as-defined-in-s1-theft-act-1968" },
+        { "label": "2.2.2 Robbery", "href": "/courses/9084/2-2-2-robbery-as-defined-in-s8-theft-act-1968" },
+        { "label": "2.1.2 Mens rea", "href": "/courses/9084/2-1-2-mens-rea" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

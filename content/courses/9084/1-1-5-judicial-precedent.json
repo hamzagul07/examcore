@@ -5,28 +5,55 @@
   "paper": "P1",
   "paperName": "Paper 1 - English Legal System",
   "status": "premium",
-  "summary": "9084 — stare decisis, ratio decidendi, obiter dicta, and court hierarchy.",
+  "summary": "9084 — stare decisis, hierarchy of courts, ratio/obiter, and avoiding precedent.",
   "durationMin": 24,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define stare decisis, ratio, and obiter.",
-    "Explain binding and persuasive precedent.",
-    "Outline court hierarchy and overruling.",
-    "Evaluate advantages and rigidity of precedent."
+    "Explain stare decisis and hierarchy of courts.",
+    "Distinguish ratio decidendi and obiter dicta.",
+    "Outline ways to avoid precedent: distinguishing, overruling.",
+    "Evaluate advantages and disadvantages of precedent."
   ],
   "simpleExplanation": {
-    "title": "Judges follow past decisions",
-    "summary": "Lower courts must follow binding ratio from higher courts — the doctrine of precedent ensures consistency but can slow reform.",
+    "title": "Judge-made law",
+    "summary": "Courts bind lower courts with ratio decidendi from past decisions — certainty and fairness, but rigidity and slow reform.",
     "steps": [
-      "Ratio decidendi — binding legal reason.",
-      "Obiter dicta — persuasive comments only.",
-      "Supreme Court → Court of Appeal → Divisional → High → Crown/County.",
-      "Overruling vs distinguishing."
+      "Stare decisis — stand by decided matters.",
+      "Supreme Court → Court of Appeal → lower courts.",
+      "Ratio — binding legal reason; obiter — persuasive only.",
+      "Avoid — distinguish, overrule, Practice Statement."
     ]
   },
+  "flashcards": [
+    { "front": "Ratio decidendi?", "back": "Legal principle determining outcome — binding on lower courts." },
+    { "front": "Obiter dicta?", "back": "Judge's comments by the way — persuasive, not binding." },
+    { "front": "Distinguishing?", "back": "Different material facts — precedent does not apply (Balfour v Merritt)." },
+    { "front": "Overruling?", "back": "Higher court declares earlier decision wrong (e.g. R v R)." },
+    { "front": "Practice Statement 1966?", "back": "Supreme Court (HL) may depart from own past decisions when justice requires." },
+    { "front": "Court of Appeal exceptions?", "back": "Young v Bristol Aeroplane — conflict, own earlier decision, statute misapplied." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Judicial precedent** (1.1.5) completes 1.1. Practise **ratio extraction** from case summaries." },
-    { "type": "practice", "label": "Mark a judicial precedent question", "href": "/mark?subject=9084&topic=1.1.5" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "intro",
+      "content": "**Judicial precedent** (1.1.5) — draw **court hierarchy diagram** in essays. Link to **1.1.4** when statutes need interpretation in cases."
+    },
+    {
+      "type": "workedExample",
+      "question": "Explain how the doctrine of judicial precedent operates in the English legal system. [15 marks]",
+      "solution": "**Stare decisis:** Lower courts **bound** by higher courts' **ratio decidendi** on same material facts.\n\n**Hierarchy:** **Supreme Court** binds all; **Court of Appeal (Civil/Criminal)** binds below; **High Court** binds inferior courts; **Crown Court** — limited precedent role.\n\n**Flexibility:** **Distinguishing** on facts; **overruling** by higher court; **Practice Statement** — SC departs from own decisions (*R v G*, *Pepper v Hart*).\n\n**Advantages:** **Certainty**, **consistency**, **efficiency** (similar cases decided alike).\n\n**Disadvantages:** **Rigidity**, **complexity** (finding ratio), **slow reform** until higher court acts.\n\n**Conclusion:** Core of **common law** — balances **predictability** with **limited judicial law-making**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a judicial precedent question",
+      "href": "/mark?subject=9084&topic=1.1.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.1.4 Statutory interpretation", "href": "/courses/9084/1-1-4-statutory-interpretation" },
+        { "label": "1.2.1 Civil courts", "href": "/courses/9084/1-2-1-civil-courts-and-civil-process" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

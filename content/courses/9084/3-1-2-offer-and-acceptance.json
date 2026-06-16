@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Contract — invitation to treat, communication, revocation, and acceptance rules.",
   "durationMin": 28,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Distinguish offers from invitations to treat.",
     "Explain communication and revocation of offers.",
@@ -24,9 +24,30 @@
       "Postal rule — acceptance on posting (Adams v Lindsell)."
     ]
   },
+  "flashcards": [
+    { "front": "Offer vs invitation to treat?", "back": "Offer — firm intent to be bound on acceptance; ITT — invites others to make offers (shop displays: Fisher v Bell)." },
+    { "front": "When is an offer revoked?", "back": "When communicated to offeree before acceptance — even if offeree has not read it (Dickinson v Dodds)." },
+    { "front": "Mirror image rule?", "back": "Acceptance must match offer exactly — counter-offer destroys original offer (Hyde v Wrench)." },
+    { "front": "Postal rule?", "back": "Acceptance effective when posted, not received — Adams v Lindsell; exceptions: instantaneous communication (Entores)." },
+    { "front": "Auction without reserve?", "back": "Bid is offer; auctioneer accepts by fall of hammer (Sale of Goods Act 1979 s57)." },
+    { "front": "Carlill — how was offer accepted?", "back": "By performance of required acts — no separate communication of acceptance needed in unilateral contracts." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Offer and acceptance** (3.1.2) — core for problem Qs. Work **offer → acceptance → timing**." },
+    {
+      "type": "workedExample",
+      "question": "A sells land to B for £100,000. B replies offering £95,000. A refuses. B then writes accepting the original £100,000 offer. Has a contract been formed?",
+      "solution": "**Original offer:** A's offer to sell at £100,000 is a valid **offer**.\n\n**Counter-offer:** B's reply offering £95,000 is a **counter-offer**, not acceptance — it **destroys** A's original offer (*Hyde v Wrench*).\n\n**Attempted acceptance:** B's later letter accepting £100,000 is **not valid acceptance** — there is no live offer to accept. B's counter-offer was itself an offer that A rejected.\n\n**Conclusion:** **No contract** formed. B would need A to make a **fresh offer** at £100,000."
+    },
     { "type": "practice", "label": "Mark an offer and acceptance question", "href": "/mark?subject=9084&topic=3.1.2" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.1.1 Nature of a contract", "href": "/courses/9084/3-1-1-nature-of-a-contract" },
+        { "label": "3.1.3 Intention to create legal relations", "href": "/courses/9084/3-1-3-intention-to-create-legal-relations" },
+        { "label": "3.1.4 Consideration", "href": "/courses/9084/3-1-4-consideration" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

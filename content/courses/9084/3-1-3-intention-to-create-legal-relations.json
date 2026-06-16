@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9084 Contract — domestic/social vs commercial presumptions and rebuttal.",
   "durationMin": 20,
-  "updated": "2026-06-10",
+  "updated": "2026-06-15",
   "learningObjectives": [
     "Explain presumptions in domestic and commercial agreements.",
     "Analyse cases: Balfour v Balfour, Merritt v Merritt, Esso v Commissioners.",
@@ -24,9 +24,30 @@
       "Collective agreements — special rules."
     ]
   },
+  "flashcards": [
+    { "front": "Commercial agreements presumption?", "back": "Strong presumption that parties **intend legal relations** — rarely rebutted (Esso v Commissioners)." },
+    { "front": "Domestic/social presumption?", "back": "Presumption **against** legal intent — family arrangements not normally contracts (Balfour v Balfour)." },
+    { "front": "How was Balfour v Balfour rebutted in Merritt?", "back": "Separated spouses, written agreement, clear terms — court found **intention to be bound** (*Merritt v Merritt*)." },
+    { "front": "Collective agreements?", "back": "Trade union/workplace deals — presumption against legal enforcement unless clear intent (Ford Motor Co v AUEFW)." },
+    { "front": "What evidence rebuts domestic presumption?", "back": "Written formal agreement, separation, business-like conduct, explicit promise to pay." },
+    { "front": "Intention and other elements?", "back": "All four formation elements required — lack of intention means no contract even if agreement + consideration exist." }
+  ],
   "sections": [
     { "type": "intro", "content": "**Intention** (3.1.3) — state **presumption** first, then **rebutting facts**." },
+    {
+      "type": "workedExample",
+      "question": "Mr Balfour, working in Ceylon, agreed to pay his wife £30/month while she remained in England. They later separated and she sued for arrears. Advise on intention.",
+      "solution": "**Presumption:** Domestic agreement between **husband and wife living together** — **presumption against** legal intention (*Balfour v Balfour*).\n\n**Facts:** Agreement made during **cohabitation**; informal arrangement about maintenance while apart for work — typical **domestic** context.\n\n**Rebuttal?** No written formal contract; no separation at time of agreement. Unlike *Merritt v Merritt*, parties were **not separated** when promise made.\n\n**Conclusion:** **No contract** — Mrs Balfour cannot sue. Agreement was a **domestic arrangement**, not intended to create legal relations.\n\n**Contrast:** If they had **separated** and signed a written agreement to pay £30/month, *Merritt* would apply — intention likely found."
+    },
     { "type": "practice", "label": "Mark an intention question", "href": "/mark?subject=9084&topic=3.1.3" },
-    { "type": "resources", "items": [{ "label": "9084 course index", "href": "/courses/9084" }] }
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.1.1 Nature of a contract", "href": "/courses/9084/3-1-1-nature-of-a-contract" },
+        { "label": "3.1.2 Offer and acceptance", "href": "/courses/9084/3-1-2-offer-and-acceptance" },
+        { "label": "3.1.4 Consideration", "href": "/courses/9084/3-1-4-consideration" },
+        { "label": "9084 course index", "href": "/courses/9084" }
+      ]
+    }
   ]
 }

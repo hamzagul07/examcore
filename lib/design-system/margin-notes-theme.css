@@ -133,7 +133,7 @@ a { color: inherit; }
 }
 .lead { font-size: 18px; line-height: 1.65; color: var(--text-2); margin: 0; max-width: 56ch; }
 .body-2 { font-size: 15px; line-height: 1.6; color: var(--text-2); margin: 0; }
-.micro { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; color: var(--muted); }
+.micro { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; color: var(--text-2); }
 
 /* ============ nav ============ */
 .nav {
@@ -211,7 +211,7 @@ a { color: inherit; }
 .chip.ok { color: var(--ink); background: var(--ink-soft); }
 .chip.no { color: var(--red); background: var(--red-soft); }
 .chip.warn { color: var(--amber); background: var(--amber-soft); }
-.chip.dim { color: var(--muted); background: var(--bg-soft); }
+.chip.dim { color: var(--text-2); background: var(--bg-soft); }
 .chip.outline { border: 1px solid var(--border); color: var(--text-2); background: transparent; }
 
 /* ============ exam sheet (D1 artifact) ============ */
@@ -222,7 +222,7 @@ a { color: inherit; }
 }
 .sheet-head {
   display: flex; justify-content: space-between; gap: 12px;
-  font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--text-2);
   border-bottom: 1px solid var(--paper-rule); padding-bottom: 9px; margin-bottom: 4px;
 }
 .sheet-line {
@@ -248,7 +248,7 @@ a { color: inherit; }
 [data-theme='night'] .tally { color: #07130d; }
 .scheme-cite {
   margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px;
-  color: var(--muted); background: var(--bg-soft); border: 1px dashed var(--border);
+  color: var(--text-2); background: var(--bg-soft); border: 1px dashed var(--border);
   padding: 9px 11px; line-height: 1.5;
 }
 

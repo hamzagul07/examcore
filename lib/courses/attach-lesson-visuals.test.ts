@@ -323,6 +323,35 @@ const breakeven9706 = attachCatalogVisuals({
   },
 } as GeneratedLesson)
 check('9706 CVP attaches break-even diagram spec', (breakeven9706.diagramSpec?.steps.length ?? 0) === 4)
+check('9706 CVP attaches GeoGebra embed', breakeven9706.interactiveEmbed?.provider === 'geogebra')
+
+const breakeven9609 = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '5-4-4-break-even-analysis',
+  topicCode: '5.4.4',
+  title: 'Break-even analysis',
+  simpleExplanation: {
+    title: 'Break-even',
+    summary: 'Summary',
+    steps: ['Formula', 'Chart', 'MOS', 'Assumptions'],
+  },
+} as GeneratedLesson)
+check('9609 break-even attaches GeoGebra embed', breakeven9609.interactiveEmbed?.provider === 'geogebra')
+check('9609 break-even attaches embed spec', (breakeven9609.diagramSpec?.steps.length ?? 0) === 4)
+
+const paper5 = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: 'paper-5-planning-and-analysis',
+  topicCode: 'P5',
+  title: 'Paper 5',
+  simpleExplanation: {
+    title: 'Paper 5',
+    summary: 'Summary',
+    steps: ['Error bars', 'LOBF', 'WAL', 'Gradient'],
+  },
+} as GeneratedLesson)
+check('9702 paper 5 attaches WAL diagram spec', paper5.diagramSpec?.steps[0]?.focus.includes('points') === true)
+check('9702 paper 5 gradient step', paper5.diagramSpec?.steps[3]?.focus.includes('gradient') === true)
 
 const stakeholders = attachCatalogVisuals({
   ...baseIntroOnly,

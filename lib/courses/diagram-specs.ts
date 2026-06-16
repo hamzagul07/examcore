@@ -1020,6 +1020,18 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Qualitative factors may override negative NPV.', embedHint: 'Government policy, market entry, competitive threat.' },
     { caption: 'Sensitivity analysis — test assumptions on r and cash flows.', embedHint: 'Change discount rate — does the decision flip?' },
   ]),
+  '5-4-4-break-even-analysis': embedSpec([
+    { caption: 'Break-even output = fixed costs ÷ contribution per unit.', embedHint: 'Set FC and unit variable cost in the sim — read contribution.' },
+    { caption: 'On the chart, total revenue and total cost lines cross at break-even.', embedHint: 'Watch the TR/TC intersection as you change price.' },
+    { caption: 'Margin of safety = actual output − break-even output.', embedHint: 'Drag quantity past break-even — read the profit region.' },
+    { caption: 'Assumes constant price and linear variable costs.', embedHint: 'Test limits — change price and see how BE shifts.' },
+  ]),
+  '2-2-4-cost-volume-profit-analysis': embedSpec([
+    { caption: 'Contribution = selling price − variable cost per unit.', embedHint: 'Adjust price and VC sliders — read contribution per unit.' },
+    { caption: 'Break-even is where total contribution equals fixed costs.', embedHint: 'Find where TR and TC cross on the chart.' },
+    { caption: 'Margin of safety shows how far sales can fall before loss.', embedHint: 'Move output above BE — compare profit vs break-even point.' },
+    { caption: 'CVP supports short-run decisions; check assumptions.', embedHint: 'Change FC — trace the new break-even output.' },
+  ]),
   '1-5-production-possibility-curves': embedSpec([
     { caption: 'PPC shows maximum output combinations with fixed resources.', embedHint: 'Points on the curve are productively efficient.' },
     { caption: 'Points inside the curve — inefficient (unemployed resources).', embedHint: 'Plot inside — economy could produce more of both goods.' },

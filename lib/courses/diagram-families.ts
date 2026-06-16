@@ -542,6 +542,10 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: InvestmentAppraisalDiagram,
     caption: 'Investment appraisal compares payback, ARR, NPV, and IRR for capital projects.',
   },
+  'commerce-investment-npv': {
+    Component: InvestmentAppraisalDiagram,
+    caption: 'NPV discounts future cash flows — accept projects with positive NPV at the required return.',
+  },
   'commerce-cashflow': {
     Component: CashFlowDiagram,
     caption: 'Cash flow forecasts, budgets, and working capital management.',

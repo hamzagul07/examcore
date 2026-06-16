@@ -391,6 +391,26 @@ const INTERACTIVE_EMBED_CATALOG_RAW: Record<string, LessonInteractiveEmbed> = {
     'Demand and elasticity',
     'Shift demand — compare steep vs flat curves and price responsiveness (9609 8.1.1).'
   ),
+  '10-3-1-the-concept-of-investment-appraisal': geogebraEntry(
+    'MtRTuusq',
+    'Investment cash flows',
+    'Compare initial outlay with future returns — focus on incremental cash flows (9609 10.3.1).'
+  ),
+  '10-3-2-basic-methods-payback-accounting-rate-of-return-arr': geogebraEntry(
+    'MtRTuusq',
+    'Payback and ARR',
+    'Track cumulative cash flow for payback — relate average profit to ARR (9609 10.3.2).'
+  ),
+  '10-3-3-discounted-cash-flow-method-net-present-value-npv': geogebraEntry(
+    'MtRTuusq',
+    'NPV and IRR',
+    'Adjust discount rate — watch NPV and IRR change with the cost of capital (9609 10.3.3).'
+  ),
+  '10-3-4-investment-appraisal-decisions': geogebraEntry(
+    'MtRTuusq',
+    'Investment decision',
+    'Compare projects — positive NPV vs payback/ARR trade-offs (9609 10.3.4).'
+  ),
 }
 
 function retainCatalogSlug(slug: string): boolean {

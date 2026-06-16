@@ -3,12 +3,11 @@
 import { useMemo, useState } from 'react'
 import { AlertCircle, CheckCircle2, Info } from 'lucide-react'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
-import { normalizeQuestionText } from '@/lib/rich-text/normalize-question-text'
 import { AskOmniAboutMark } from '@/components/omni-ai/AskOmniAboutMark'
 import { SyllabusTopicBadge } from '@/components/SyllabusTopicBadge'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import type { SyllabusCode } from '@/lib/syllabus'
-import type { LorBandResult } from '@/lib/marking/types'
+import type { LorBandResult, MarkingStyle } from '@/lib/marking/types'
 import { CONTACT_EMAIL } from '@/lib/site-config'
 import {
   ERROR_LABELS,
@@ -21,6 +20,10 @@ import { ExaminerInkPerPage } from '@/components/examiner-ink/ExaminerInkPerPage
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
 import { MarkAuditPanel } from '@/components/mark/MarkAuditPanel'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
+import { MarkSchemeRubricPanel } from '@/components/mark/MarkSchemeRubricPanel'
+import { QuestionContextCard } from '@/components/mark/QuestionContextCard'
+import type { MarkSchemeMeta } from '@/components/mark/QuestionContextCard'
+import type { MarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 
 export type MarkAwarded = {
   mark_id: number | string
@@ -42,6 +45,7 @@ export type MarkingResultData = {
     what_to_study_next: string
     estimated_marks_explanation?: string
     band_result?: LorBandResult
+    marking_style?: MarkingStyle
   }
   ocr_text?: string | null
   question_text?: string | null
@@ -57,6 +61,9 @@ export type MarkingResultData = {
   } | null
   syllabus_tags?: SyllabusCode[] | null
   subject_code?: string | null
+  mark_scheme_meta?: MarkSchemeMeta | null
+  mark_scheme_rubric?: MarkSchemeRubric | null
+  time_spent_seconds?: number | null
 }
 
 function sheetWork(mark: MarkAwarded): string {
@@ -154,6 +161,8 @@ export function MarkingResultView({
         </div>
       </div>
 
+      <QuestionContextCard result={result} subjectCode={badgeSubjectCode} />
+
       {hasStructuredResult ? (
         <div className="ms-result-grid">
           <div>
@@ -210,7 +219,16 @@ export function MarkingResultView({
             gradeLabel={grade.grade}
             schemeLabel={schemeLabel(result)}
             bandResult={result.ai_marking.band_result}
+            rubric={result.mark_scheme_rubric}
           />
+          {result.mark_scheme_rubric &&
+          result.marking_mode === 'official_mark_scheme' ? (
+            <MarkSchemeRubricPanel
+              rubric={result.mark_scheme_rubric}
+              activeMarkType={activeMarkId}
+              compact
+            />
+          ) : null}
         </div>
       ) : null}
 
@@ -306,20 +324,6 @@ export function MarkingResultView({
                   size="md"
                 />
               ))}
-            </div>
-          </div>
-        )}
-
-        {result.question_text && (
-          <div className="ec-card-premium p-5 sm:p-7">
-            <p className="ms-micro" style={{ marginBottom: 12 }}>
-              QUESTION (AS READ)
-            </p>
-            <div className="ec-question-text min-w-0 max-w-full overflow-x-auto break-words whitespace-pre-wrap text-base">
-              <RichTextRenderer
-                text={normalizeQuestionText(result.question_text)}
-                contentKind="question"
-              />
             </div>
           </div>
         )}

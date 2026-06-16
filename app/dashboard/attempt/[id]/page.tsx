@@ -11,6 +11,8 @@ import { SolutionSection } from '@/components/SolutionSection'
 import { MarkAgainButton } from './mark-again-button'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay'
+import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
+import type { MarkingStyle } from '@/lib/marking/types'
 import { signAnswerPhotoUrl } from '@/lib/storage/answer-photos'
 
 const supabaseAdmin = createClient(
@@ -37,7 +39,13 @@ type AttemptRow = {
     paper_code: string | null
     paper_session: string | null
     question_number: string | null
+    question_text?: string | null
+    total_marks?: number | null
+    marking_type?: MarkingStyle | null
+    mark_scheme?: Record<string, unknown> | null
+    syllabus_tags?: string[] | null
   } | null
+  time_spent_seconds?: number | null
 }
 
 /**
@@ -59,7 +67,7 @@ function toMarkingResult(attempt: AttemptRow): MarkingResultData {
     total_marks: attempt.total_marks,
     ai_marking: attempt.ai_marking,
     ocr_text: attempt.ocr_text,
-    question_text: attempt.question_text,
+    question_text: attempt.question_text ?? ms?.question_text ?? null,
     marking_mode: isPastPaper ? 'official_mark_scheme' : 'general_criteria',
     detected_paper:
       isPastPaper && ms
@@ -69,8 +77,23 @@ function toMarkingResult(attempt: AttemptRow): MarkingResultData {
             question_number: ms.question_number!,
           }
         : null,
-    syllabus_tags: attempt.syllabus_tags ?? [],
-    subject_code: attempt.mark_schemes?.paper_code?.split('/')[0] ?? null,
+    syllabus_tags: attempt.syllabus_tags ?? ms?.syllabus_tags ?? [],
+    subject_code: ms?.paper_code?.split('/')[0] ?? null,
+    time_spent_seconds: attempt.time_spent_seconds ?? null,
+    mark_scheme_meta:
+      ms?.paper_code && ms?.paper_session
+        ? {
+            paper_code: ms.paper_code,
+            paper_session: ms.paper_session,
+            question_number: ms.question_number,
+            total_marks: ms.total_marks ?? attempt.total_marks,
+            marking_type: ms.marking_type ?? null,
+            syllabus_tags: ms.syllabus_tags ?? [],
+          }
+        : null,
+    mark_scheme_rubric: ms?.mark_scheme
+      ? extractMarkSchemeRubric(ms.mark_scheme, ms.marking_type)
+      : null,
   }
 }
 
@@ -122,8 +145,11 @@ export default async function AttemptDetailPage({
       `
       id, user_id, source_type, question_text, ocr_text, ai_marking,
       marks_earned, total_marks, full_solution, syllabus_tags, created_at,
-      mark_scheme_id, answer_photo_url, line_references,
-      mark_schemes ( paper_code, paper_session, question_number )
+      mark_scheme_id, answer_photo_url, line_references, time_spent_seconds,
+      mark_schemes (
+        paper_code, paper_session, question_number, question_text,
+        total_marks, marking_type, mark_scheme, syllabus_tags
+      )
     `
     )
     .eq('id', id)

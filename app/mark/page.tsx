@@ -38,6 +38,10 @@ import {
 } from '@/lib/profile-options'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
+import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
+import { MarkingModeHint } from '@/components/mark/MarkingModeHint'
+import { formatClientMarkError } from '@/lib/marking/client-mark-errors'
+import { normalizeQuestionNumber } from '@/lib/marking/question-number'
 import { CinematicMarkingExperience } from '@/components/mark/CinematicMarkingExperienceLazy'
 import { CelebrationModal } from '@/components/ui/CelebrationModal'
 import { UpgradeModal } from '@/components/billing/UpgradeModal'
@@ -216,6 +220,7 @@ export default function MarkPage() {
     reason: string
     returnTo: string | null
   } | null>(null)
+  const [schemeInDb, setSchemeInDb] = useState<boolean | null>(null)
 
   const [availablePapers, setAvailablePapers] = useState<AvailablePapers | null>(
     null
@@ -603,13 +608,26 @@ export default function MarkPage() {
       : ''
 
   useEffect(() => {
-    if (uploadMode !== 'whole_paper' || !wholePaperCode || !wholePaperSession) {
+    const paperCode =
+      uploadMode === 'whole_paper'
+        ? wholePaperCode
+        : !isPracticeMode && selectedSubject && selectedComponent
+          ? `${selectedSubject}/${selectedComponent}`
+          : ''
+    const paperSession =
+      uploadMode === 'whole_paper'
+        ? wholePaperSession
+        : !isPracticeMode && selectedSession && selectedYear !== ''
+          ? `${selectedSession} ${selectedYear}`
+          : ''
+
+    if (!paperCode || !paperSession) {
       setPaperQuestionOptions([])
       return
     }
     let cancelled = false
     fetch(
-      `/api/mark/paper-questions?paper_code=${encodeURIComponent(wholePaperCode)}&paper_session=${encodeURIComponent(wholePaperSession)}`
+      `/api/mark/paper-questions?paper_code=${encodeURIComponent(paperCode)}&paper_session=${encodeURIComponent(paperSession)}`
     )
       .then((r) => r.json())
       .then((d) => {
@@ -623,7 +641,16 @@ export default function MarkPage() {
     return () => {
       cancelled = true
     }
-  }, [uploadMode, wholePaperCode, wholePaperSession])
+  }, [
+    uploadMode,
+    wholePaperCode,
+    wholePaperSession,
+    isPracticeMode,
+    selectedSubject,
+    selectedComponent,
+    selectedSession,
+    selectedYear,
+  ])
 
   const markingMode = isPracticeMode
     ? 'general'
@@ -762,7 +789,10 @@ export default function MarkPage() {
           `${selectedSession} ${selectedYear}`
         )
         if (uploadMode === 'single_question' && questionNumber.trim()) {
-          formData.append('manual_question_number', questionNumber.trim())
+          formData.append(
+            'manual_question_number',
+            normalizeQuestionNumber(questionNumber.trim())
+          )
         }
       }
 
@@ -819,7 +849,19 @@ export default function MarkPage() {
       }
 
       while (true) {
-        const { done, value } = await reader.read()
+        let chunk: ReadableStreamReadResult<Uint8Array>
+        try {
+          chunk = await reader.read()
+        } catch (streamErr) {
+          const { message, retryable } = formatClientMarkError(streamErr)
+          setLoading(false)
+          setMarkProgress(null)
+          setMarkStreamError(message)
+          setErrorMsg(message)
+          setErrorRetryable(retryable)
+          return
+        }
+        const { done, value } = chunk
         if (done) break
         buffer += decoder.decode(value, { stream: true })
         const parts = buffer.split('\n\n')
@@ -847,14 +889,10 @@ export default function MarkPage() {
     } catch (err) {
       setLoading(false)
       setMarkProgress(null)
-      const msg =
-        err instanceof SyntaxError
-          ? 'Lost connection while marking. Please try again.'
-          : err instanceof Error
-            ? err.message
-            : 'Network error'
-      setMarkStreamError(msg)
-      setErrorMsg(msg)
+      const { message, retryable } = formatClientMarkError(err)
+      setMarkStreamError(message)
+      setErrorMsg(message)
+      setErrorRetryable(retryable)
     }
   }
 
@@ -1134,6 +1172,8 @@ export default function MarkPage() {
                   {isPracticeMode ? 'Your question' : 'Which paper is this?'}
                 </h3>
                 <div className="space-y-4">
+                  {isPracticeMode && (
+                <>
                   <div>
                     <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
                       Subject
@@ -1162,8 +1202,10 @@ export default function MarkPage() {
                       })}
                     </select>
                   </div>
+                </>
+              )}
 
-                  {isPracticeMode && (
+              {isPracticeMode && (
                 <div className="space-y-4">
                   <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
                     Paste or photograph the question from your textbook, worksheet, or
@@ -1230,166 +1272,48 @@ export default function MarkPage() {
                 </div>
               )}
 
-              {/* Manual paper selection — past paper only */}
+              {isPracticeMode ? <MarkingModeHint mode="practice" /> : null}
+
               {!isPracticeMode && (
-              <div>
-                <button
-                  type="button"
-                  onClick={() => setShowManualPaper(!showManualPaper)}
-                  className="inline-flex items-center gap-1.5 text-sm ec-link"
-                >
-                  <ChevronRight
-                    className={`h-4 w-4 transition-transform duration-200 ${
-                      showManualPaper ? 'rotate-90' : ''
-                    }`}
-                  />
-                  {showManualPaper
-                    ? 'Hide paper selection'
-                    : 'Select paper manually if needed'}
-                </button>
-
-                {showManualPaper && (
-                  <div className="ec-card mt-4 space-y-4 p-5 sm:p-6">
-                    <p className="text-xs leading-relaxed text-[var(--ec-text-secondary)]">
-                      Use this if your photo doesn&apos;t show the paper header or AI
-                      can&apos;t auto-detect. We&apos;ll remember your selections for
-                      next time.
-                    </p>
-
-                    {papersLoading && (
-                      <p className="text-sm text-[var(--ec-text-secondary)]">
-                        Loading available papers...
-                      </p>
-                    )}
-
-                    {!papersLoading &&
-                      profileSelectableSubjects.length === 0 && (
-                        <p className="text-sm text-[var(--ec-text-secondary)]">
-                          No past papers available yet.
-                        </p>
-                      )}
-
-                    {!papersLoading &&
-                      profileSelectableSubjects.length > 0 && (
-                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                          <div>
-                            <Label htmlFor="manual-subject" className="label-overline mb-2 inline-block">
-                              Subject
-                            </Label>
-                            <select
-                              id="manual-subject"
-                              value={selectedSubject}
-                              onChange={(e) => handleSubjectChange(e.target.value)}
-                              className="ec-input select-chevron appearance-none"
-                            >
-                              <option value="">Select...</option>
-                              {profileSelectableSubjects.map((code) => {
-                                const info = availablePapers?.[code]
-                                const meta = getSubjectByCode(code)
-                                const label =
-                                  info?.subject ?? meta?.label ?? `Subject ${code}`
-                                return (
-                                  <option key={code} value={code}>
-                                    {label} ({code})
-                                  </option>
-                                )
-                              })}
-                            </select>
-                          </div>
-
-                          <div>
-                            <Label htmlFor="manual-year" className="label-overline mb-2 inline-block">
-                              Year
-                            </Label>
-                            <select
-                              id="manual-year"
-                              value={selectedYear === '' ? '' : String(selectedYear)}
-                              onChange={(e) => handleYearChange(e.target.value)}
-                              disabled={!selectedSubject}
-                              className="ec-input select-chevron appearance-none"
-                            >
-                              <option value="">Select...</option>
-                              {availableYears.map((y) => (
-                                <option key={y} value={y}>
-                                  {y}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-
-                          <div>
-                            <Label htmlFor="manual-session" className="label-overline mb-2 inline-block">
-                              Session
-                            </Label>
-                            <select
-                              id="manual-session"
-                              value={selectedSession}
-                              onChange={(e) => handleSessionChange(e.target.value)}
-                              disabled={selectedYear === ''}
-                              className="ec-input select-chevron appearance-none"
-                            >
-                              <option value="">Select...</option>
-                              {availableSeasons.map((s) => (
-                                <option key={s} value={s}>
-                                  {s}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-
-                          <div>
-                            <Label htmlFor="manual-component" className="label-overline mb-2 inline-block">
-                              Paper
-                            </Label>
-                            <select
-                              id="manual-component"
-                              value={selectedComponent}
-                              onChange={(e) => setSelectedComponent(e.target.value)}
-                              disabled={!selectedSession}
-                              className="ec-input select-chevron appearance-none"
-                            >
-                              <option value="">Select...</option>
-                              {availableComponents.map((c) => (
-                                <option key={c} value={c}>
-                                  {componentLabel(c)}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-
-                          <div className="sm:col-span-2">
-                            <Label htmlFor="manual-question" className="label-overline mb-2 inline-block">
-                              Question number
-                            </Label>
-                            <input
-                              id="manual-question"
-                              type="text"
-                              value={questionNumber}
-                              onChange={(e) => setQuestionNumber(e.target.value)}
-                              disabled={!selectedComponent}
-                              placeholder="e.g., 1, 2(a), 3(b)(i)"
-                              className="ec-input"
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                    {isManualFilled && (
-                      <div className="ec-highlight-success">
-                        Selected:{' '}
-                        <strong>
-                          {selectedSubject}/{selectedComponent}
-                        </strong>{' '}
-                        — {selectedSession} {selectedYear}
-                        , Question <strong>{questionNumber.trim()}</strong>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
+                <PastPaperSelectorFields
+                  selectedSubject={selectedSubject}
+                  selectedYear={selectedYear}
+                  selectedSession={selectedSession}
+                  selectedComponent={selectedComponent}
+                  questionNumber={questionNumber}
+                  availableYears={availableYears}
+                  availableSeasons={availableSeasons}
+                  availableComponents={availableComponents}
+                  paperQuestionOptions={paperQuestionOptions}
+                  papersLoading={papersLoading || profileLoading}
+                  profileSelectableSubjects={profileSelectableSubjects}
+                  availablePapers={availablePapers}
+                  componentLabel={componentLabel}
+                  onSubjectChange={(value) => {
+                    handleSubjectChange(value)
+                    setShowManualPaper(true)
+                  }}
+                  onYearChange={handleYearChange}
+                  onSessionChange={handleSessionChange}
+                  onComponentChange={setSelectedComponent}
+                  onQuestionNumberChange={setQuestionNumber}
+                  onSchemeFound={setSchemeInDb}
+                />
               )}
 
-              {/* Question text/photo — optional for past paper */}
+              {!isPracticeMode ? (
+                <MarkingModeHint
+                  mode={
+                    isManualFilled && schemeInDb === true
+                      ? 'official'
+                      : isManualFilled && schemeInDb === false
+                        ? 'missing_paper'
+                        : 'general'
+                  }
+                />
+              ) : null}
+
+              {/* Optional question photo/text — past paper only */}
               {!isPracticeMode && (
               <div>
                 <button

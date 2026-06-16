@@ -1,7 +1,10 @@
 'use client'
 
 import type { MarkAwarded } from '@/components/MarkingResultView'
+import { ErrorClassificationPill } from '@/components/MarkingResultView'
 import type { LorBandResult } from '@/lib/marking/types'
+import type { MarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
+import { rubricPointForMarkType } from '@/lib/marking/mark-scheme-display'
 import { RichTextRenderer } from '@/components/RichTextRenderer'
 import { MarkSnippet } from '@/components/mark/MarkSnippet'
 
@@ -14,6 +17,7 @@ type MarkAuditPanelProps = {
   gradeLabel?: string | null
   schemeLabel?: string | null
   bandResult?: LorBandResult | null
+  rubric?: MarkSchemeRubric | null
 }
 
 function auditDescription(mark: MarkAwarded): string {
@@ -39,9 +43,11 @@ export function MarkAuditPanel({
   gradeLabel,
   schemeLabel,
   bandResult,
+  rubric,
 }: MarkAuditPanelProps) {
   const selected = marks[selectedIndex] ?? marks[0]
   const noteText = selected ? examinerNote(selected) : ''
+  const schemePoint = rubricPointForMarkType(rubric, selected?.type)
 
   return (
     <div className="ms-audit">
@@ -114,6 +120,14 @@ export function MarkAuditPanel({
           <p className="ms-overline" style={{ marginBottom: 10 }}>
             Examiner&apos;s note — {selected.type}
           </p>
+          {!selected.earned ? (
+            <div style={{ marginBottom: 10 }}>
+              <ErrorClassificationPill
+                earned={selected.earned}
+                classification={selected.error_classification}
+              />
+            </div>
+          ) : null}
           <span
             className={[
               'ms-greennote block',
@@ -124,6 +138,16 @@ export function MarkAuditPanel({
           >
             <RichTextRenderer text={noteText} />
           </span>
+          {schemePoint ? (
+            <div className="ms-scheme-criterion">
+              <p className="ms-micro" style={{ marginBottom: 6 }}>
+                SCHEME CRITERION — {schemePoint.type}
+              </p>
+              <div className="text-sm leading-relaxed text-[var(--ec-text-secondary)]">
+                <RichTextRenderer text={schemePoint.description} />
+              </div>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>

@@ -19,6 +19,7 @@ import { buildDetectionPrompt } from '@/lib/marking/prompts'
 import { reconcileDetectionWithQuestion } from '@/lib/marking/subject-inference'
 import { resolveMarkResultSubjectCode } from '@/lib/syllabi/attempts'
 import { buildPerPageInk } from '@/lib/marking/ink-per-page'
+import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import { toMarkingAIResult } from '@/lib/marking/whole-paper'
 import { extractPracticeQuestionFromScript } from '@/lib/marking/practice-question-extract'
 import type { MarkIntent, MarkingMode, MarkSchemeRow } from '@/lib/marking/types'
@@ -345,6 +346,10 @@ export async function runSingleQuestionMark(
       .map((p) => ({ photo_url: p.photo_url!, ocr_lines: p.lines }))
   )
 
+  const markSchemeRubric = markScheme
+    ? extractMarkSchemeRubric(markScheme.mark_scheme, markScheme.marking_type)
+    : null
+
   return {
     marks_earned: markingResult.marks_earned,
     total_marks: markingResult.total_marks,
@@ -362,5 +367,26 @@ export async function runSingleQuestionMark(
     ink_pages: inkPages.length ? inkPages : undefined,
     error_classifications: errorClassifications,
     upload_mode: 'single_question',
+    time_spent_seconds: timeSpentSeconds,
+    mark_scheme_meta: markScheme
+      ? {
+          total_marks: markScheme.total_marks,
+          marking_type: markScheme.marking_type ?? null,
+          syllabus_tags: markScheme.syllabus_tags ?? [],
+          question_number: markScheme.question_number,
+          paper_code: markScheme.paper_code,
+          paper_session: markScheme.paper_session,
+        }
+      : detectedPaper
+        ? {
+            total_marks: markingResult.total_marks,
+            marking_type: markingResult.marking_style ?? null,
+            syllabus_tags: resolvedTags,
+            question_number: detectedPaper.question_number,
+            paper_code: detectedPaper.paper_code,
+            paper_session: detectedPaper.paper_session,
+          }
+        : null,
+    mark_scheme_rubric: markSchemeRubric,
   }
 }

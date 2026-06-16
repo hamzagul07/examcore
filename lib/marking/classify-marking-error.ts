@@ -1,5 +1,6 @@
 import {
   GeminiTimeoutError,
+  isGeminiQuotaExhausted,
   isGeminiTimeoutError,
   isTransientOverloadError,
 } from '@/lib/marking/gemini-retry'
@@ -81,12 +82,36 @@ export function classifyMarkingError(err: unknown): ClassifiedMarkingError {
     }
   }
 
+  if (isGeminiQuotaExhausted(err)) {
+    return {
+      message:
+        'Daily AI marking capacity is full. Try again in a few hours, or email us if this keeps happening.',
+      retryable: false,
+      code: 'overload',
+      status: 503,
+    }
+  }
+
   if (isTransientOverloadError(err)) {
     return {
       message:
         'Marking is busy right now — wait a few seconds, then try again.',
       retryable: true,
       code: 'overload',
+      status: 503,
+    }
+  }
+
+  if (
+    /failed to fetch|fetch failed|ECONNRESET|ETIMEDOUT|UND_ERR_HEADERS_TIMEOUT|socket hang up|network/i.test(
+      message
+    )
+  ) {
+    return {
+      message:
+        'Connection lost while marking. Try again — your upload is still here.',
+      retryable: true,
+      code: 'unknown',
       status: 503,
     }
   }

@@ -162,6 +162,13 @@ export async function POST(request: NextRequest) {
           async start(controller) {
             const send = (data: unknown) =>
               controller.enqueue(encoder.encode(formatSseEvent(data)))
+            const heartbeat = setInterval(() => {
+              try {
+                controller.enqueue(encoder.encode(': heartbeat\n\n'))
+              } catch {
+                clearInterval(heartbeat)
+              }
+            }, 12_000)
             try {
               const payload = await runSingleQuestionMark({
                 ...pipelineInput,
@@ -192,6 +199,8 @@ export async function POST(request: NextRequest) {
                 status: classified.status,
               })
               controller.close()
+            } finally {
+              clearInterval(heartbeat)
             }
           },
         })

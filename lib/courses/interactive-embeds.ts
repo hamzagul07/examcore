@@ -411,6 +411,16 @@ const INTERACTIVE_EMBED_CATALOG_RAW: Record<string, LessonInteractiveEmbed> = {
     'Investment decision',
     'Compare projects — positive NPV vs payback/ARR trade-offs (9609 10.3.4).'
   ),
+  '5-4-4-break-even-analysis': geogebraEntry(
+    'ew4cbg8j',
+    'Break-even analysis',
+    'Adjust fixed costs, variable cost per unit, and price — watch TR and TC cross at break-even (9609 5.4.4).'
+  ),
+  '2-2-4-cost-volume-profit-analysis': geogebraEntry(
+    'ew4cbg8j',
+    'Cost-volume-profit',
+    'Change FC, VC, and selling price — read break-even output and profit/loss region (9706 2.2.4).'
+  ),
 }
 
 function retainCatalogSlug(slug: string): boolean {

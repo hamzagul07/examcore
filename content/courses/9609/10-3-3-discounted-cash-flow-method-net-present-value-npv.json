@@ -5,28 +5,91 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — DCF, discounting, and NPV decision rule.",
-  "durationMin": 26,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — time value of money, discounting cash flows, NPV calculation and decision rule.",
+  "durationMin": 30,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain time value of money.",
-    "Discount future cash flows.",
+    "Explain the time value of money.",
+    "Discount future net cash flows using given factors.",
     "Calculate and interpret NPV.",
     "Compare NPV with payback and ARR."
   ],
   "simpleExplanation": {
     "title": "Money today vs tomorrow",
-    "summary": "NPV sums discounted future cash flows minus initial investment. Positive NPV means the project adds value at the required return.",
+    "summary": "£1 today is worth more than £1 in five years because it can be invested to earn return. NPV discounts future cash flows to today's value and subtracts the initial investment.",
+    "analogy": "Someone offers you $100 now or $110 in two years. If your bank pays 8% interest, $100 now grows to about $116 — so the delayed $110 is actually the worse deal. Discounting makes future money comparable to today.",
     "steps": [
-      "Discount factor = 1 / (1 + r)^n.",
-      "PV of each year's net cash flow.",
-      "NPV = sum of PVs − initial cost.",
-      "Accept if NPV > 0."
+      "Discount factor = 1 ÷ (1 + r)^n (or use exam tables).",
+      "Present value (PV) = net cash flow × discount factor.",
+      "NPV = sum of PVs − initial investment.",
+      "Accept the project if NPV > 0 (at the given cost of capital)."
     ]
   },
+  "flashcards": [
+    { "front": "Time value of money?", "back": "Money received sooner is worth more because it can earn a return; future cash must be discounted." },
+    { "front": "Discount factor formula?", "back": "DF = 1 ÷ (1 + r)^n where r = cost of capital (decimal) and n = year." },
+    { "front": "NPV formula?", "back": "NPV = Σ (PV of net cash flows) − Initial investment." },
+    { "front": "NPV decision rule?", "back": "Accept if NPV > 0; reject if NPV < 0; indifferent if NPV = 0." },
+    { "front": "Cost of capital in NPV?", "back": "The required return / discount rate reflecting risk and cost of finance." },
+    { "front": "Why NPV preferred over payback?", "back": "NPV accounts for timing and size of all cash flows; payback ignores both after recovery and time value." },
+    { "front": "Mutually exclusive projects?", "back": "Choose the project with the **higher NPV** (if both positive and only one can be done)." },
+    { "front": "Negative NPV meaning?", "back": "Project earns less than the required return — destroys shareholder value at that discount rate." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**NPV** (10.3.3) is the **preferred DCF method** at A Level. Practise **discount tables**." },
-    { "type": "practice", "label": "Mark an NPV question", "href": "/mark?subject=9609&topic=10.3.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**NPV** (10.3.3) is the **preferred quantitative method** at 9609 A Level. Examiners provide **discount tables** — show a clear column layout. Use the **NPV GeoGebra sim** to change discount rate and see accept/reject flip."
+    },
+    {
+      "type": "heading",
+      "content": "Discounting cash flows"
+    },
+    {
+      "type": "formula",
+      "content": "Discount factor (year $n$) = $\\frac{1}{(1 + r)^n}$\n\nPresent value = Net cash flow × Discount factor\n\nNPV = $\\sum PV\\text{ of inflows} - \\text{Initial outlay}$"
+    },
+    {
+      "type": "text",
+      "content": "The **cost of capital** (discount rate) reflects the firm's required return given risk and financing costs. Cash flows in **Year 0** are usually not discounted (initial investment). Years 1, 2, 3… each have their own factor."
+    },
+    {
+      "type": "workedExample",
+      "question": "Project costs $100 000 now. Net cash flows: Year 1 $40 000, Year 2 $45 000, Year 3 $50 000. Cost of capital 10%.\n\nDiscount factors: Y1 0.909, Y2 0.826, Y3 0.751.\n\nCalculate NPV and advise.",
+      "solution": "| Year | Net CF | DF @ 10% | PV |\n|------|--------|----------|-----|\n| 0 | (100 000) | 1.000 | (100 000) |\n| 1 | 40 000 | 0.909 | 36 360 |\n| 2 | 45 000 | 0.826 | 37 170 |\n| 3 | 50 000 | 0.751 | 37 550 |\n\nSum of PV inflows = 36 360 + 37 170 + 37 550 = **111 080**\n\nNPV = 111 080 − 100 000 = **+$11 080**\n\n**Accept** — positive NPV means the project exceeds the 10% required return and adds value."
+    },
+    {
+      "type": "workedExample",
+      "question": "Project X NPV = +$8 000. Project Y NPV = +$12 000. Only one can be chosen (mutually exclusive). Which should the firm select?",
+      "solution": "Both have **positive NPV**, but only one can proceed.\n\nChoose **Project Y** — **higher NPV ($12 000)** adds more shareholder value at the same cost of capital.\n\nNote: if Y requires scarce management or strategic conflict, mention qualitative override in a full **recommend** answer (10.3.4)."
+    },
+    {
+      "type": "heading",
+      "content": "NPV vs payback and ARR"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**NPV +:** Time value of money; all cash flows; wealth-maximisation criterion.",
+        "**NPV −:** Needs reliable forecasts and appropriate discount rate; less intuitive for non-finance managers.",
+        "Methods may **conflict** — e.g. short payback but negative NPV; explain which dominates and why."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Show **all columns** (Year, CF, DF, PV) even if the mark scheme only checks NPV — method marks are common. Round consistently (usually to nearest $ or 3 s.f.)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an NPV question",
+      "href": "/mark?subject=9609&topic=10.3.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.3.2 Payback and ARR", "href": "/courses/9609/10-3-2-basic-methods-payback-accounting-rate-of-return-arr" },
+        { "label": "10.3.4 Investment decisions", "href": "/courses/9609/10-3-4-investment-appraisal-decisions" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

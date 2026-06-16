@@ -5,28 +5,57 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — forecasting methods and use in planning.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — quantitative and qualitative forecasting methods, errors, and operational use.",
+  "durationMin": 28,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain purposes of sales forecasts.",
-    "Describe qualitative and quantitative methods.",
-    "Analyse limitations of forecasts.",
-    "Link forecasts to production and finance."
+    "Describe sales forecasting methods.",
+    "Calculate moving averages from time-series data.",
+    "Compare qualitative methods: Delphi, sales force composite.",
+    "Evaluate reliability and limitations of forecasts."
   ],
   "simpleExplanation": {
     "title": "Predicting future sales",
-    "summary": "Forecasts use past data, market research, and manager judgement to plan production, stock, and cash needs.",
+    "summary": "Sales forecasts guide production, staffing, and budgets. Quantitative methods use past data (moving averages); qualitative methods use expert or sales-team judgement — all can fail when markets shift suddenly.",
     "steps": [
-      "Moving averages from time series.",
-      "Sales force composite opinions.",
-      "Delphi expert panels.",
-      "Errors if market shifts suddenly."
+      "Moving averages smooth time-series trends.",
+      "Sales force composite aggregates field opinions.",
+      "Delphi uses expert panels iteratively.",
+      "Forecasts wrong if market structure changes abruptly."
     ]
   },
+  "flashcards": [
+    { "front": "Why forecast sales?", "back": "Plan production, inventory, cash, marketing budget (5.5, 4.2)." },
+    { "front": "Moving average?", "back": "Average of last n periods — smooths random fluctuations." },
+    { "front": "Sales force composite?", "back": "Collect estimates from sales reps — ground-level insight." },
+    { "front": "Delphi method?", "back": "Experts revise forecasts anonymously until consensus." },
+    { "front": "Quantitative limitation?", "back": "Assumes past patterns continue — fails in disruption." },
+    { "front": "Qualitative limitation?", "back": "Optimism bias from sales team; expensive/time-consuming." },
+    { "front": "Link to capacity?", "back": "Over-forecast → excess stock; under-forecast → stock-outs (4.3.1)." },
+    { "front": "Link to finance?", "back": "Cash flow forecasts depend on sales assumptions (5.3)." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Sales forecasting** (8.1.3) feeds **operations 9.3.5** and **cash flow 5.3.1**." },
-    { "type": "practice", "label": "Mark a sales forecasting question", "href": "/mark?subject=9609&topic=8.1.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Sales forecasting** (8.1.3) — show **moving average calculation** if data given. Always **evaluate forecast error** in case of new competitor or pandemic-style shock."
+    },
+    {
+      "type": "workedExample",
+      "question": "Quarterly sales (units): Q1 400, Q2 450, Q3 500, Q4 480. Calculate a 3-quarter moving average for Q4 and comment on trend.",
+      "solution": "**3-period MA for Q4** = (450 + 500 + 480) ÷ 3 = **476.7 units**\n\n**Trend:** Generally **rising** from Q1–Q3, slight **dip in Q4** (480 vs 500).\n\n**Use:** Forecast **Q1 next year** ≈ 477 if trend stable — plan **production** and **inventory**.\n\n**Limitation:** If **new competitor launches** in Q1, historical MA **overstates** demand — supplement with **qualitative Delphi** or **scenario planning**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a sales forecasting question",
+      "href": "/mark?subject=9609&topic=8.1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.2.1 Purposes of market research", "href": "/courses/9609/3-2-1-the-purposes-of-market-research" },
+        { "label": "5.5.2 Variances", "href": "/courses/9609/5-5-2-variances" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

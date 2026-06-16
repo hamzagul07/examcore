@@ -5,28 +5,65 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — PED, YED, XED for marketing decisions.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — PED, YED, XED calculations and strategic pricing implications.",
+  "durationMin": 30,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Calculate and interpret PED.",
-    "Explain income and cross elasticity.",
-    "Link elasticity to pricing and revenue.",
-    "Apply elasticity to case products."
+    "Calculate PED, YED, and XED.",
+    "Interpret elastic and inelastic demand.",
+    "Explain revenue effects of price changes.",
+    "Apply elasticity to marketing decisions."
   ],
   "simpleExplanation": {
-    "title": "How demand responds",
-    "summary": "Elasticity measures sensitivity of demand to price, income, or other goods — guiding pricing and product mix.",
+    "title": "How sensitive demand is",
+    "summary": "Elasticity measures responsiveness of demand to price (PED), income (YED), or other products' prices (XED). It guides pricing, product mix, and competitive strategy.",
     "steps": [
-      "PED: %ΔQd / %ΔP.",
-      "Elastic |PED| > 1: revenue falls if price rises.",
-      "YED: normal vs inferior goods.",
-      "XED: substitutes vs complements."
+      "PED = % change in Qd ÷ % change in price.",
+      "Elastic |PED| > 1: price rise reduces revenue.",
+      "YED: normal goods positive; inferior goods negative.",
+      "XED positive for substitutes; negative for complements."
     ]
   },
+  "flashcards": [
+    { "front": "PED formula?", "back": "% Δ quantity demanded ÷ % Δ price." },
+    { "front": "Elastic demand?", "back": "|PED| > 1 — quantity changes more than proportionately to price." },
+    { "front": "Inelastic demand?", "back": "|PED| < 1 — quantity changes less than price." },
+    { "front": "Price rise + elastic?", "back": "Total revenue falls — lost volume outweighs higher price." },
+    { "front": "Price rise + inelastic?", "back": "Total revenue rises — volume drop is small." },
+    { "front": "YED positive?", "back": "Normal good — demand rises as income rises." },
+    { "front": "XED positive?", "back": "Substitutes — rival's price rise boosts your demand." },
+    { "front": "PED determinants?", "back": "Substitutes, necessity, % of income, time period." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Elasticity** (8.1.1) uses **9708 micro** tools in a **marketing** context. Show **calculation + decision**." },
-    { "type": "practice", "label": "Mark an elasticity question", "href": "/mark?subject=9609&topic=8.1.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Elasticity** (8.1.1) opens **Topic 8**. Always **show calculation** then **apply to pricing decision** — link to **3.1.2 demand** and **3.3.3 price**."
+    },
+    {
+      "type": "formula",
+      "content": "**PED** = % Δ Qd ÷ % Δ P\n\n**YED** = % Δ Qd ÷ % Δ income\n\n**XED** = % Δ Qd of good A ÷ % Δ P of good B"
+    },
+    {
+      "type": "workedExample",
+      "question": "Price rises from $10 to $12 (+20%). Quantity falls from 1,000 to 850 units (−15%). Calculate PED and advise on revenue.",
+      "solution": "**PED** = −15% ÷ +20% = **−0.75** (inelastic, |PED| < 1)\n\n**Revenue before:** 10 × 1,000 = **$10,000**\n**Revenue after:** 12 × 850 = **$10,200**\n\n**Advice:** Demand **inelastic** — **price increase raises revenue** short term. **Caution:** Longer term competitors may attract customers; **brand loyalty** may weaken — monitor **market share** (3.1.6)."
+    },
+    {
+      "type": "examTip",
+      "content": "State **sign** of PED (usually negative) but compare **absolute value** to 1 for elastic/inelastic."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an elasticity question",
+      "href": "/mark?subject=9609&topic=8.1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "3.1.2 Demand and supply", "href": "/courses/9609/3-1-2-demand-and-supply" },
+        { "label": "3.3.4 Pricing methods", "href": "/courses/9609/3-3-4-pricing-methods" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

@@ -156,15 +156,15 @@
 /* ============================================================
    LIVE DIAGRAM
    ============================================================ */
-.diagram-wrap { background: var(--paper); border: 1.5px solid var(--border-strong); border-radius: 4px; box-shadow: var(--shadow-hard); overflow: hidden; }
+.diagram-wrap { background: var(--paper); border: 1.5px solid var(--border-strong); border-radius: 4px; box-shadow: var(--shadow-hard); overflow: hidden; max-width: 100%; width: 100%; }
 .diagram-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--paper-rule); }
 .diagram-step-label { font-size: 11px; color: var(--text-2); flex: 1; }
 .diagram-play { background: var(--ink-soft); border: 1px solid var(--ink-border); color: var(--ink); border-radius: 999px; padding: 5px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; cursor: pointer; }
 .diagram-play:hover { background: var(--ink); color: var(--bg); }
 [data-theme='night'] .diagram-play:hover { color: #07130d; }
 .diagram-svg { display: block; width: 100%; height: auto; background: var(--paper); }
-.diagram-embed { padding: 0; border-bottom: 1px solid var(--paper-rule); background: linear-gradient(180deg, var(--ink-soft) 0%, var(--paper) 100%); }
-.diagram-embed .course-interactive-embed { margin: 0; border: none; border-radius: 0; box-shadow: none; }
+.diagram-embed { padding: 0; border-bottom: 1px solid var(--paper-rule); background: linear-gradient(180deg, var(--ink-soft) 0%, var(--paper) 100%); overflow: hidden; max-width: 100%; }
+.diagram-embed .course-interactive-embed { margin: 0; border: none; border-radius: 0; box-shadow: none; max-width: 100%; }
 .diagram-stage { padding: 0; background: var(--paper); border-top: 1px solid var(--paper-rule); }
 .diagram-stage-caption { margin: 0; padding: 12px 16px 14px; font-size: 14px; line-height: 1.55; color: var(--text-2); border-top: 1px dashed var(--paper-rule); background: var(--bg-soft); }
 .diagram-live-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--ink); font-weight: 600; }
@@ -296,7 +296,7 @@
 .switch.on .knob { left: 21px; }
 
 /* layout */
-.lesson-layout { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; padding-top: 36px; }
+.lesson-layout { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; padding-top: 36px; min-width: 0; }
 .lesson-toc { position: sticky; top: 130px; align-self: start; }
 .lesson-toc nav { display: flex; flex-direction: column; gap: 1px; }
 .toc-link { display: flex; align-items: baseline; gap: 9px; background: none; border: none; text-align: left; padding: 6px 10px; border-radius: 8px; cursor: pointer; font-family: 'Instrument Sans', sans-serif; font-size: 13.5px; color: var(--text-2); border-left: 2px solid transparent; transition: color 140ms ease, background 140ms ease, border-color 140ms ease; }
@@ -307,7 +307,7 @@
 .toc-progress { display: flex; align-items: center; gap: 12px; margin-top: 18px; padding: 14px; }
 
 /* article + sections */
-.lesson-article { min-width: 0; max-width: 760px; }
+.lesson-article { min-width: 0; max-width: min(760px, 100%); }
 .simpler-banner { background: var(--ink-soft); border: 1px dashed var(--ink-border); border-radius: 12px; padding: 12px 18px; margin-bottom: 30px; }
 .simpler-banner .hand { font-size: 22px; color: var(--ink); }
 .lsec { padding-top: 18px; margin-bottom: 56px; scroll-margin-top: 130px; }
@@ -350,11 +350,35 @@
 .step-title { font-family: 'Newsreader', serif; font-size: 17px; font-weight: 500; color: var(--text); }
 
 /* formulas */
-.formula-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-.formula-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: var(--shadow-card); transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; }
+.formula-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; align-items: stretch; }
+.formula-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 .formula-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-pop); border-color: var(--ink-border); }
-.formula-eq { font-size: 26px; font-weight: 600; text-align: center; padding: 14px 0 18px; border-bottom: 1px dashed var(--border); margin-bottom: 14px; color: var(--text); }
-.formula-eq--latex { font-size: inherit; font-weight: inherit; }
+.formula-eq {
+  font-size: clamp(1.15rem, 2.8vw, 1.625rem);
+  font-weight: 600;
+  text-align: center;
+  padding: 14px 8px 18px;
+  border-bottom: 1px dashed var(--border);
+  margin-bottom: 14px;
+  color: var(--text);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  max-width: 100%;
+}
+.formula-eq--latex { font-size: inherit; font-weight: inherit; padding-inline: 4px; }
 .formula-eq--latex .course-rich-text--formula {
   background: none;
   border: none;
@@ -362,21 +386,41 @@
   padding: 0;
   margin: 0;
   text-align: center;
-  font-size: 1.35rem;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: var(--text);
+  max-width: 100%;
+  overflow-x: auto;
 }
-.formula-eq--latex .katex-display { margin: 0; }
-.formula-eq--latex .katex { font-size: 1.15em; color: var(--text); }
-.formula-hint { text-align: center; margin-top: 14px; min-height: 14px; color: var(--text-2); line-height: 1.45; }
-.fsym { font: inherit; background: none; border: none; cursor: pointer; color: var(--ink); padding: 2px 4px; border-radius: 6px; transition: background 140ms ease; }
+.formula-eq--latex .katex-display {
+  margin: 0 auto;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  background: transparent;
+  border: none;
+}
+.formula-eq--latex .katex { font-size: clamp(1em, 2.4vw, 1.15em); color: var(--text); }
+.formula-hint {
+  text-align: center;
+  margin-top: 14px;
+  min-height: 2.5em;
+  color: var(--text-2);
+  line-height: 1.45;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.fsym { font: inherit; background: none; border: none; cursor: pointer; color: var(--ink); padding: 2px 4px; border-radius: 6px; transition: background 140ms ease, color 140ms ease; }
 .fsym:hover { background: var(--ink-soft); }
-.fsym.on { background: var(--ink); color: var(--bg); }
-[data-theme='night'] .fsym.on { color: #07130d; }
-.formula-parts { display: flex; flex-direction: column; gap: 6px; }
-.fpart { display: flex; align-items: baseline; gap: 12px; background: none; border: 1px solid transparent; border-radius: 8px; padding: 7px 10px; cursor: pointer; text-align: left; font-family: inherit; color: inherit; }
+.fsym.on { background: var(--ink); color: var(--on-ink-text, var(--bg)); }
+[data-theme='night'] .fsym.on { color: var(--on-ink-text, #07130d); }
+.formula-parts { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.fpart { display: flex; align-items: baseline; gap: 10px; background: none; border: 1px solid transparent; border-radius: 8px; padding: 7px 10px; cursor: pointer; text-align: left; font-family: inherit; color: inherit; width: 100%; min-width: 0; }
 .fpart:hover { background: var(--bg-soft); }
+.fpart.on { background: var(--ink-soft); border-color: var(--ink-border); }
 .fpart.on .fpart-m { color: var(--text); font-weight: 500; }
-.fpart-s { font-size: 15px; font-weight: 700; color: var(--ink); width: 28px; flex-shrink: 0; }
-.fpart-m { font-size: 13px; color: var(--text-2); }
+.fpart-s { font-size: 14px; font-weight: 700; color: var(--ink); flex-shrink: 0; min-width: 1.5rem; max-width: 5rem; word-break: break-word; }
+.fpart-m { font-size: 13px; color: var(--text-2); line-height: 1.45; flex: 1; min-width: 0; }
 
 /* notes */
 .notes-body { display: flex; flex-direction: column; gap: 26px; }
@@ -883,6 +927,83 @@
   background: var(--paper);
 }
 
+/* PhET / GeoGebra inside lesson diagram — fit viewport width, cap height */
+.course-root .course-interactive-embed--diagram .course-interactive-embed-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  padding: 10px 12px;
+}
+
+.course-root .course-interactive-embed--diagram .course-interactive-embed-hint {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  max-width: 42rem;
+}
+
+.course-root .course-interactive-embed--diagram .course-interactive-embed-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.course-root .course-interactive-embed--diagram .course-interactive-embed-stage {
+  width: 100%;
+  max-width: 100%;
+  height: min(56dvh, 480px, calc((100vw - 72px) * 504 / 834));
+  min-height: 220px;
+  aspect-ratio: unset !important;
+  background: var(--paper);
+}
+
+.course-root .course-interactive-embed--diagram .course-interactive-embed-loading {
+  background: var(--paper);
+}
+
+.course-root .course-interactive-embed--diagram .course-interactive-embed-frame {
+  background: #fff;
+}
+
+.course-root .course-interactive-embed--diagram .course-interactive-embed-fallback-hint,
+.course-root .course-interactive-embed--diagram .course-interactive-embed-attribution {
+  padding: 8px 12px 10px;
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+.course-root .diagram-stage .course-step-stage-diagram {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.course-root .diagram-stage .lesson-diagram-svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: min(52dvh, 440px);
+}
+
+.course-root .diagram-stage .course-diagram-params {
+  padding: 0 12px 10px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.course-root .formula-eq .course-rich-text--formula,
+.course-root .formula-eq .katex,
+.course-root .formula-eq .katex-display {
+  color: var(--text);
+}
+
+.course-root .formula-hint {
+  color: var(--text-2);
+}
+
 .course-root .course-interactive-embed-loading,
 .course-root .course-interactive-embed-fallback-hint,
 .course-root .course-interactive-embed-attribution {
@@ -1113,6 +1234,14 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-o
   .catalog-hero-meta { grid-template-columns: 1fr 1fr 1fr; }
   .pg { padding: 0 18px; }
   .lesson-modebar { padding: 12px 18px; }
+  .course-root .course-interactive-embed--diagram .course-interactive-embed-stage {
+    height: min(46dvh, calc((100vw - 36px) * 504 / 834));
+    min-height: 200px;
+  }
+  .course-root .course-interactive-embed--diagram .course-interactive-embed-hint {
+    display: none;
+  }
+  .formula-card { padding: 16px; }
 }
 
 /* Next.js Link elements replacing prototype buttons */

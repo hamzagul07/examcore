@@ -5,28 +5,57 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — capacity, scheduling, and aligning ops with demand.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — demand forecasts, master production schedule, MRP, and plan monitoring.",
+  "durationMin": 28,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain operations planning process.",
-    "Link sales forecasts to production plans.",
-    "Analyse capacity and inventory decisions.",
-    "Evaluate planning tools such as Gantt charts."
+    "Explain the operations planning process.",
+    "Describe master production schedule (MPS).",
+    "Outline materials requirement planning (MRP).",
+    "Evaluate planning systems using case data."
   ],
   "simpleExplanation": {
-    "title": "Matching supply to demand",
-    "summary": "Operations planning schedules resources to meet forecast demand while controlling cost and service levels.",
+    "title": "Planning what to make and when",
+    "summary": "Operations planning starts with demand forecasts, sets a master production schedule for what to make each period, uses MRP to calculate materials needed, then monitors and revises as actual demand unfolds.",
     "steps": [
-      "Demand forecast input.",
-      "Master production schedule.",
-      "Materials requirement planning.",
-      "Monitor and revise plans."
+      "Demand forecast feeds the planning process.",
+      "Master production schedule (MPS) sets output by period.",
+      "Materials requirement planning (MRP) calculates component orders.",
+      "Monitor actual vs plan and revise schedules."
     ]
   },
+  "flashcards": [
+    { "front": "Operations planning chain?", "back": "Forecast → MPS → MRP → purchase/production orders." },
+    { "front": "Master production schedule?", "back": "States what finished products to make and when." },
+    { "front": "MRP?", "back": "Uses BOM + MPS to calculate raw material/component needs." },
+    { "front": "Bill of materials (BOM)?", "back": "List of components per finished product — MRP input." },
+    { "front": "Forecast error impact?", "back": "Over-forecast → excess stock; under → stock-outs (8.1.3)." },
+    { "front": "ERP link?", "back": "ERP automates MPS/MRP with live inventory (9.3.3)." },
+    { "front": "Rolling schedule?", "back": "Plan updated regularly as new demand data arrives." },
+    { "front": "Capacity check?", "back": "MPS must fit available capacity — link 4.3.1." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Operations planning** (9.3.5) completes **Topic 9**. Integrate **8.1.3 forecasts** and **4.3.1 capacity**." },
-    { "type": "practice", "label": "Mark an operations planning question", "href": "/mark?subject=9609&topic=9.3.5" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Operations planning** (9.3.5) completes **Topic 9**. Show **logical flow**: forecast error propagates through MPS to **wrong material orders**."
+    },
+    {
+      "type": "workedExample",
+      "question": "Furniture maker forecasts 500 tables in March. MPS set accordingly. MRP orders 2,000 table legs (4 per table). Actual sales 350. Explain consequences and improvements.",
+      "solution": "**Over-forecast 30%:** **150 excess tables** if produced — **inventory waste** (9.3.4), **cash tied up** (5.1.2).\n\n**MRP consequence:** **600 excess legs** ordered if production started — **supplier penalties** or **storage costs**.\n\n**Fixes:** **Rolling 4-week MPS** updated from **actual orders** not annual average; **ERP** for **real-time** sales feed (9.3.3).\n\n**Capacity:** Before locking MPS, check **labour hours** vs **4.3.1 utilisation** — don't plan beyond **max capacity**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an operations planning question",
+      "href": "/mark?subject=9609&topic=9.3.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "8.1.3 Sales forecasting", "href": "/courses/9609/8-1-3-sales-forecasting" },
+        { "label": "9.3.3 ERP", "href": "/courses/9609/9-3-3-enterprise-resource-planning-erp" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

@@ -1,32 +1,61 @@
 {
   "slug": "9-3-3-enterprise-resource-planning-erp",
   "topicCode": "9.3.3",
-  "title": "Enterprise resource planning (ERP)",
+  "title": "Enterprise Resource Planning (ERP)",
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — integrated IT systems for operations and finance.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — ERP systems, integration benefits, costs, and implementation challenges.",
+  "durationMin": 26,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define ERP and its modules.",
-    "Explain benefits of integration.",
-    "Analyse costs and implementation risks.",
-    "Evaluate ERP for growing firms."
+    "Define ERP and its main modules.",
+    "Explain benefits of integrated information systems.",
+    "Analyse costs and risks of ERP implementation.",
+    "Evaluate ERP suitability for case organisations."
   ],
   "simpleExplanation": {
-    "title": "One system, whole business",
-    "summary": "ERP software links inventory, production, HR, and finance data in real time for better planning and control.",
+    "title": "One system for the whole business",
+    "summary": "ERP integrates finance, HR, inventory, production, and sales on a single database with real-time data — but implementation is expensive, needs training, and often requires process redesign.",
     "steps": [
-      "Single database across functions.",
-      "Real-time stock and orders.",
-      "High setup cost and training.",
-      "Requires process redesign."
+      "Single database links finance, ops, HR, sales.",
+      "Real-time stock levels, orders, and capacity visibility.",
+      "High licence, hardware, and training costs.",
+      "Success requires business process redesign and change management."
     ]
   },
+  "flashcards": [
+    { "front": "ERP?", "back": "Software integrating core business processes on one database." },
+    { "front": "Main modules?", "back": "Finance, HR/payroll, inventory, production planning, CRM." },
+    { "front": "Key benefit?", "back": "Real-time data — fewer silos, better decisions (7.2.3)." },
+    { "front": "Implementation cost?", "back": "Licences, consultants, hardware, training, downtime." },
+    { "front": "Common failure reason?", "back": "Staff resist change; processes not redesigned to fit system." },
+    { "front": "Link to JIT?", "back": "Accurate live data essential for JIT scheduling (4.2.2)." },
+    { "front": "SME suitability?", "back": "Cloud ERP cheaper; may be overkill for very small firms." },
+    { "front": "Vendor examples?", "back": "SAP, Oracle, Microsoft Dynamics — case may name one." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**ERP** (9.3.3) connects **operations** to **5.5 budgets**. Discuss **implementation failure risk**." },
-    { "type": "practice", "label": "Mark an ERP question", "href": "/mark?subject=9609&topic=9.3.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**ERP** (9.3.3) — evaluate **implementation**, not just features. Link to **7.2 change communication** and **7.1.5 centralisation** of data."
+    },
+    {
+      "type": "workedExample",
+      "question": "Manufacturer uses separate spreadsheets for stock, finance, and production. Frequent stock-outs despite warehouse full. Would ERP help?",
+      "solution": "**Diagnosis:** **Information silos** — production doesn't see **sales forecast**; finance doesn't see **WIP** — classic **horizontal communication failure** (7.2.3).\n\n**ERP benefits:** **Single truth** for **inventory**, **MRP** auto-orders materials (9.3.5), **finance accruals** updated live.\n\n**Costs/risks:** **$500k+ implementation**, **12-month disruption**, **staff retraining** — need **change manager**.\n\n**Verdict:** **Yes if growth continues** — cheaper than lost sales; **pilot one site** first; **clean data migration** critical."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an ERP question",
+      "href": "/mark?subject=9609&topic=9.3.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "9.3.5 Operations planning", "href": "/courses/9609/9-3-5-operations-planning" },
+        { "label": "6.1.4 Technological factors", "href": "/courses/9609/6-1-4-technological" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

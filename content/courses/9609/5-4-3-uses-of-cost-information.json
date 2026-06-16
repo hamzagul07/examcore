@@ -5,28 +5,111 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — pricing, profit measurement, and cost control uses.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — how cost data supports pricing, profit analysis, cost control, and strategic decisions.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain uses of cost data in decisions.",
-    "Link costs to pricing strategies.",
-    "Describe cost control and benchmarking.",
+    "Explain uses of cost data in business decisions.",
+    "Link cost information to pricing strategies.",
+    "Describe cost control and variance awareness.",
     "Evaluate limitations of cost information."
   ],
   "simpleExplanation": {
     "title": "Costs drive decisions",
-    "summary": "Accurate costs support pricing, show product profitability, and highlight where to cut waste.",
+    "summary": "Accurate costs support minimum pricing, show which products earn profit, highlight waste through budget comparison, and inform make-or-buy and closure decisions.",
     "steps": [
-      "Set minimum price above unit cost.",
-      "Compare actual vs budget costs.",
-      "Identify unprofitable products.",
-      "Support make-or-buy choices."
+      "Set floor price — must cover at least variable cost (contribution) short run.",
+      "Compare actual vs budget to control spending.",
+      "Identify unprofitable products or departments.",
+      "Support make-or-buy and capacity decisions."
     ]
   },
+  "flashcards": [
+    { "front": "How does cost data help pricing?", "back": "Sets minimum price (cover VC or full cost depending on horizon); supports cost-plus and contribution-based pricing." },
+    { "front": "Cost control use?", "back": "Compare actual costs to budget; investigate variances; hold managers accountable." },
+    { "front": "Product profitability use?", "back": "Identify which products/lines cover their costs and contribute most to profit." },
+    { "front": "Make-or-buy decision?", "back": "Compare internal cost (including opportunity cost) with supplier quote — often using relevant costs only." },
+    { "front": "Limitation: historical costs?", "back": "Past costs may not predict future — inflation, technology, and volume changes make data outdated." },
+    { "front": "Limitation: allocation of overheads?", "back": "Arbitrary overhead allocation can make a product look unprofitable when it is not." },
+    { "front": "Benchmarking link?", "back": "Compare unit costs with industry best practice to find efficiency gaps." },
+    { "front": "Link to marketing?", "back": "Cost floor interacts with demand and positioning — price must cover costs AND match market willingness to pay." }
+  ],
+  "faq": [
+    {
+      "q": "Should price always cover full unit cost?",
+      "a": "Long run: yes, or the business cannot survive. Short run: a promotional or special order may cover only variable costs if it contributes to fixed costs and does not displace better sales."
+    },
+    {
+      "q": "How does this topic link to 5.4.4 break-even?",
+      "a": "Break-even is one specific use of contribution-based cost information — finding the output where total contribution equals fixed costs."
+    }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Uses of cost information** (5.4.3) connects **operations** and **marketing** pricing. Apply to **case product lines**." },
-    { "type": "practice", "label": "Mark a cost uses question", "href": "/mark?subject=9609&topic=5.4.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Uses of cost information** (5.4.3) connects **finance (5.4)** to **marketing pricing (3.3.4)** and **operations efficiency (4.1)**. Exam questions often ask you to **apply** cost data to a case decision — not recite definitions."
+    },
+    {
+      "type": "heading",
+      "content": "Pricing decisions"
+    },
+    {
+      "type": "text",
+      "content": "Cost data sets a **floor price**. In the **short run**, price must at least cover **variable costs** to earn contribution. In the **long run**, price must cover **full costs** plus profit.\n\n**Cost-plus pricing** adds a markup to unit cost. **Contribution-based pricing** starts from market price and checks whether contribution is sufficient — common when demand is price-sensitive."
+    },
+    {
+      "type": "examTip",
+      "content": "When evaluating pricing in a case, combine **cost floor** with **marketing** (elasticity, competition, brand). Cost alone does not set the optimal price."
+    },
+    {
+      "type": "heading",
+      "content": "Profit measurement and product analysis"
+    },
+    {
+      "type": "text",
+      "content": "Cost information shows **profit by product, department, or region**. Managers can drop unprofitable lines, promote high-contribution products, or renegotiate suppliers. **Customer profitability** analysis links revenue and cost to each segment."
+    },
+    {
+      "type": "heading",
+      "content": "Cost control and budgeting"
+    },
+    {
+      "type": "text",
+      "content": "Comparing **actual vs budget** costs highlights **variances** — favourable (spent less) or adverse (spent more). Investigation may reveal waste, inefficiency, or external price rises. Links forward to **5.5 budgets and variances**."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Make-or-buy:** Compare relevant internal cost with external quote; ignore sunk costs.",
+        "**Close or continue:** If contribution is negative and no strategic reason to stay, consider closure.",
+        "**Capacity:** Rank uses of scarce resources by contribution per limiting factor."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A café sells coffee for $4. Variable cost per cup is $1.20. Fixed costs are $3 600/month. Budgeted sales 4 000 cups; actual sales 3 200 cups. Actual variable costs total $4 000.\n\nExplain two uses of this cost information for the manager.",
+      "solution": "**1. Pricing / break-even**\nContribution per cup = $4 − $1.20 = $2.80. Break-even = $3 600 ÷ $2.80 ≈ 1 286 cups. Manager knows minimum sales needed and can judge whether $4 price is viable.\n\n**2. Cost control (variance)**\nBudgeted VC for 3 200 cups = 3 200 × $1.20 = $3 840. Actual VC = $4 000 → **adverse variance of $160**. Manager should investigate (waste, supplier prices, portion sizes).\n\nAlso: actual sales below budget → lower total contribution; may need marketing or cost review."
+    },
+    {
+      "type": "heading",
+      "content": "Limitations"
+    },
+    {
+      "type": "text",
+      "content": "Cost information is **historical** and may not reflect future conditions. **Overhead allocation** can distort product profitability. **Non-financial factors** (quality, brand, staff morale) are excluded from cost accounts but matter in real decisions."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a cost uses question",
+      "href": "/mark?subject=9609&topic=5.4.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
+        { "label": "3.3.4 Pricing methods", "href": "/courses/9609/3-3-4-pricing-methods" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

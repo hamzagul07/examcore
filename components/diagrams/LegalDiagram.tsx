@@ -1,5 +1,6 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import { DIAGRAM_FILL, DIAGRAM_STROKE, DIAGRAM_TEXT } from '@/components/diagrams/diagram-styles'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 import { getFamilyIdForSlug } from '@/lib/courses/diagram-families'
@@ -35,6 +36,98 @@ function systemView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: nu
   )
 }
 
+function precedentView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  const courts = [
+    { y: 28, w: 200, label: 'Supreme Court' },
+    { y: 68, w: 168, label: 'Court of Appeal' },
+    { y: 108, w: 136, label: 'High Court' },
+    { y: 148, w: 104, label: 'Lower courts' },
+  ]
+  return (
+    <>
+      <text x="210" y="16" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+        Court hierarchy &amp; precedent
+      </text>
+      {courts.map((c, i) => (
+        <g key={c.label} opacity={layerOpacity(spec, stepIndex, `step-${i + 1}`)}>
+          <rect x={210 - c.w / 2} y={c.y} width={c.w} height="32" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+          <text x="210" y={c.y + 20} textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+            {c.label}
+          </text>
+        </g>
+      ))}
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="196" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Ratio decidendi binds · obiter dicta persuasive only
+        </text>
+      </g>
+    </>
+  )
+}
+
+function interpretationView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  const rules = ['Literal', 'Golden', 'Mischief', 'Purposive']
+  return (
+    <>
+      <text x="210" y="28" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+        Statutory interpretation
+      </text>
+      {rules.map((r, i) => (
+        <g key={r} opacity={layerOpacity(spec, stepIndex, `step-${i + 1}`)}>
+          <rect x={48 + i * 84} y="48" width="72" height="40" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+          <text x={84 + i * 84} y="72" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+            {r}
+          </text>
+        </g>
+      ))}
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="120" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Intrinsic aids — text · headings · punctuation
+        </text>
+        <text x="210" y="140" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Extrinsic aids — Hansard · dictionaries · previous statutes
+        </text>
+      </g>
+    </>
+  )
+}
+
+function remediesView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  return (
+    <>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-1')}>
+        <rect x="48" y="48" width="140" height="56" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="118" y="72" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT} fontWeight="600">
+          Damages
+        </text>
+        <text x="118" y="90" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Compensatory · punitive
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-2')}>
+        <rect x="232" y="48" width="140" height="56" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="302" y="72" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT} fontWeight="600">
+          Injunction
+        </text>
+        <text x="302" y="90" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Prohibitory · mandatory
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
+        <rect x="140" y="120" width="140" height="40" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="210" y="144" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Specific performance
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="184" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Aim to put claimant in pre-breach position — remoteness limits recovery
+        </text>
+      </g>
+    </>
+  )
+}
+
 function elementsChain(
   spec: ReturnType<typeof getLessonDiagramSpec>,
   stepIndex: number,
@@ -66,6 +159,15 @@ export function LegalDiagram({
   const criminalLabels = ['Actus reus', 'Mens rea', 'Causation', 'Defences']
   const tortLabels = ['Duty', 'Breach', 'Causation', 'Remedy']
 
+  let content: ReactNode
+  if (family === 'law-precedent') content = precedentView(spec, stepIndex)
+  else if (family === 'law-interpretation') content = interpretationView(spec, stepIndex)
+  else if (family === 'law-remedies') content = remediesView(spec, stepIndex)
+  else if (family === 'law-system-process') content = systemView(spec, stepIndex)
+  else if (family === 'law-contract-elements') content = elementsChain(spec, stepIndex, contractLabels)
+  else if (family === 'law-criminal-elements') content = elementsChain(spec, stepIndex, criminalLabels)
+  else content = elementsChain(spec, stepIndex, tortLabels)
+
   return (
     <svg
       viewBox="0 0 420 220"
@@ -73,13 +175,7 @@ export function LegalDiagram({
       role="img"
       aria-label="Law concept diagram"
     >
-      {family === 'law-system-process'
-        ? systemView(spec, stepIndex)
-        : family === 'law-contract-elements'
-          ? elementsChain(spec, stepIndex, contractLabels)
-          : family === 'law-criminal-elements'
-            ? elementsChain(spec, stepIndex, criminalLabels)
-            : elementsChain(spec, stepIndex, tortLabels)}
+      {content}
     </svg>
   )
 }

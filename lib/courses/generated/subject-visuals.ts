@@ -2413,8 +2413,8 @@ export const SLUG_FAMILY_9084: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '1-1-1-english-legal-system-and-its-context': 'law-system-process',
   '1-1-2-parliamentary-law-making': 'law-system-process',
   '1-1-3-delegated-legislation': 'law-system-process',
-  '1-1-4-statutory-interpretation': 'law-system-process',
-  '1-1-5-judicial-precedent': 'law-system-process',
+  '1-1-4-statutory-interpretation': 'law-interpretation',
+  '1-1-5-judicial-precedent': 'law-precedent',
   '1-2-1-civil-courts-and-civil-process': 'law-system-process',
   '1-2-2-alternative-methods-of-dispute-resolution': 'law-system-process',
   '1-2-3-criminal-courts-and-criminal-process': 'law-system-process',
@@ -2462,63 +2462,63 @@ export const SLUG_FAMILY_9084: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '4-3-2-battery': 'law-tort-elements',
   '4-3-3-false-imprisonment': 'law-tort-elements',
   '4-4-1-defences': 'law-tort-elements',
-  '4-4-2-remedies': 'law-tort-elements',
+  '4-4-2-remedies': 'law-remedies',
 }
 
 export const SLUG_FAMILY_9699: Record<string, keyof typeof COMMERCE_HUMANITIES_FAMILIES> = {
   '1-1-the-process-of-learning-and-socialisation': 'soc-theory',
   '1-2-social-control-conformity-and-resistance': 'soc-theory',
   '1-3-social-identity-and-change': 'soc-theory',
-  '10-1-media-representations-of-class-gender-ethnicity-and-age-groups': 'soc-theory',
-  '10-2-different-models-of-media-effects': 'soc-theory',
-  '10-3-the-impact-of-the-media-on-behaviour': 'soc-theory',
-  '11-1-religion-and-society': 'soc-theory',
-  '11-2-religion-and-social-order': 'soc-theory',
-  '11-3-religion-as-a-source-of-social-change': 'soc-theory',
-  '12-1-the-secularisation-debate': 'soc-theory',
-  '12-2-gender-feminism-and-religion': 'soc-theory',
-  '12-3-religion-and-post-modernity': 'soc-theory',
+  '10-1-media-representations-of-class-gender-ethnicity-and-age-groups': 'soc-media',
+  '10-2-different-models-of-media-effects': 'soc-media',
+  '10-3-the-impact-of-the-media-on-behaviour': 'soc-media',
+  '11-1-religion-and-society': 'soc-religion',
+  '11-2-religion-and-social-order': 'soc-religion',
+  '11-3-religion-as-a-source-of-social-change': 'soc-religion',
+  '12-1-the-secularisation-debate': 'soc-religion',
+  '12-2-gender-feminism-and-religion': 'soc-religion',
+  '12-3-religion-and-post-modernity': 'soc-religion',
   '2-1-types-of-data-methods-and-research-design': 'soc-research',
   '2-2-approaches-to-sociological-research': 'soc-research',
   '2-3-research-issues': 'soc-research',
-  '3-1-perspectives-on-the-role-of-the-family': 'soc-theory',
-  '3-2-diversity-and-social-change': 'soc-theory',
-  '4-1-gender-equality-and-experiences-of-family-life': 'soc-theory',
-  '4-2-age-and-family-life': 'soc-theory',
-  '5-1-theories-about-the-role-of-education': 'soc-theory',
-  '5-2-education-and-social-mobility': 'soc-theory',
-  '5-3-influences-on-the-curriculum': 'soc-theory',
-  '6-1-intelligence-and-educational-attainment': 'soc-theory',
-  '6-2-social-class-and-educational-attainment': 'soc-theory',
-  '6-3-ethnicity-and-educational-attainment': 'soc-theory',
-  '6-4-gender-and-educational-attainment': 'soc-theory',
-  '7-1-perspectives-on-globalisation': 'soc-theory',
-  '7-2-globalisation-and-identity': 'soc-theory',
-  '7-3-globalisation-power-and-politics': 'soc-theory',
-  '8-1-globalisation-poverty-and-inequalities': 'soc-theory',
-  '8-2-globalisation-and-migration': 'soc-theory',
-  '8-3-globalisation-and-crime': 'soc-theory',
-  '9-1-traditional-media-and-the-new-media': 'soc-theory',
-  '9-2-theories-of-the-media-and-influences-on-media-content': 'soc-theory',
-  '9-3-the-impact-of-the-new-media': 'soc-theory',
+  '3-1-perspectives-on-the-role-of-the-family': 'soc-family',
+  '3-2-diversity-and-social-change': 'soc-family',
+  '4-1-gender-equality-and-experiences-of-family-life': 'soc-family',
+  '4-2-age-and-family-life': 'soc-family',
+  '5-1-theories-about-the-role-of-education': 'soc-education',
+  '5-2-education-and-social-mobility': 'soc-education',
+  '5-3-influences-on-the-curriculum': 'soc-education',
+  '6-1-intelligence-and-educational-attainment': 'soc-education',
+  '6-2-social-class-and-educational-attainment': 'soc-education',
+  '6-3-ethnicity-and-educational-attainment': 'soc-education',
+  '6-4-gender-and-educational-attainment': 'soc-education',
+  '7-1-perspectives-on-globalisation': 'soc-globalisation',
+  '7-2-globalisation-and-identity': 'soc-globalisation',
+  '7-3-globalisation-power-and-politics': 'soc-globalisation',
+  '8-1-globalisation-poverty-and-inequalities': 'soc-globalisation',
+  '8-2-globalisation-and-migration': 'soc-globalisation',
+  '8-3-globalisation-and-crime': 'soc-globalisation',
+  '9-1-traditional-media-and-the-new-media': 'soc-media',
+  '9-2-theories-of-the-media-and-influences-on-media-content': 'soc-media',
+  '9-3-the-impact-of-the-new-media': 'soc-media',
 }
 
 export const SLUG_FAMILY_9990: Record<string, keyof typeof COMMERCE_HUMANITIES_FAMILIES> = {
-  '1-1-1-diagnostic-criteria-for-schizophrenia': 'psych-clinical',
-  '1-1-2-explanations-of-schizophrenia': 'psych-clinical',
-  '1-1-3-treatment-and-management-of-schizophrenia': 'psych-clinical',
-  '1-2-1-diagnostic-criteria-for-mood-affective-disorders': 'psych-clinical',
-  '1-2-2-explanations-of-mood-affective-disorders-depressive-disorder-unipolar': 'psych-clinical',
-  '1-2-3-treatment-and-management-of-mood-affective-disorders': 'psych-clinical',
-  '1-3-1-diagnostic-criteria-for-impulse-control-disorders': 'psych-clinical',
-  '1-3-2-explanations-of-impulse-control-disorders': 'psych-clinical',
-  '1-3-3-treatment-and-management-of-impulse-control-disorders': 'psych-clinical',
-  '1-4-1-diagnostic-criteria-for-anxiety-disorders-and-fear-related-disorders': 'psych-clinical',
-  '1-4-2-explanations-of-fear-related-disorders': 'psych-clinical',
-  '1-4-3-treatment-and-management-of-anxiety-disorders-and-fear-related-disorders': 'psych-clinical',
-  '1-5-1-diagnostic-criteria-for-obsessive-compulsive-disorder-ocd': 'psych-clinical',
-  '1-5-2-explanations-of-obsessive-compulsive-disorder': 'psych-clinical',
-  '1-5-3-treatment-and-management-of-obsessive-compulsive-disorder': 'psych-clinical',
+  '1-1-1-diagnostic-criteria-for-schizophrenia': 'psych-clinical-dsm',
+  '1-1-2-explanations-of-schizophrenia': 'psych-clinical-diathesis',
+  '1-1-3-treatment-and-management-of-schizophrenia': 'psych-clinical-treatment',
+  '1-2-1-diagnostic-criteria-for-mood-affective-disorders': 'psych-clinical-dsm',
+  '1-2-2-explanations-of-mood-affective-disorders-depressive-disorder-unipolar': 'psych-clinical-diathesis',
+  '1-2-3-treatment-and-management-of-mood-affective-disorders': 'psych-clinical-treatment',
+  '1-3-1-diagnostic-criteria-for-impulse-control-disorders': 'psych-clinical-dsm',
+  '1-3-2-explanations-of-impulse-control-disorders': 'psych-clinical-diathesis',
+  '1-3-3-treatment-and-management-of-impulse-control-disorders': 'psych-clinical-treatment',
+  '1-4-1-diagnostic-criteria-for-anxiety-disorders-and-fear-related-disorders': 'psych-clinical-dsm',
+  '1-4-2-explanations-of-fear-related-disorders': 'psych-clinical-diathesis',
+  '1-4-3-treatment-and-management-of-anxiety-disorders-and-fear-related-disorders': 'psych-clinical-treatment',
+  '1-5-1-diagnostic-criteria-for-obsessive-compulsive-disorder-ocd': 'psych-clinical-dsm',
+  '1-5-2-explanations-of-obsessive-compulsive-disorder': 'psych-clinical-diathesis',
+  '1-5-3-treatment-and-management-of-obsessive-compulsive-disorder': 'psych-clinical-treatment',
   '2-1-1-retail-store-design': 'psych-consumer',
   '2-1-2-sound-and-consumer-behaviour': 'psych-consumer',
   '2-1-3-retail-atmospherics': 'psych-consumer',
@@ -2593,9 +2593,21 @@ export type CommerceHumanitiesFamilyId =
   | 'law-contract-elements'
   | 'law-criminal-elements'
   | 'law-tort-elements'
+  | 'law-precedent'
+  | 'law-interpretation'
+  | 'law-remedies'
   | 'soc-theory'
   | 'soc-research'
+  | 'soc-family'
+  | 'soc-education'
+  | 'soc-media'
+  | 'soc-globalisation'
+  | 'soc-religion'
   | 'psych-clinical'
+  | 'psych-clinical-dsm'
+  | 'psych-clinical-diathesis'
+  | 'psych-clinical-treatment'
+  | 'psych-research'
   | 'psych-consumer'
   | 'psych-health'
   | 'psych-workplace'

@@ -337,5 +337,31 @@ const stakeholders = attachCatalogVisuals({
 } as GeneratedLesson)
 check('9609 stakeholders attaches diagram spec', (stakeholders.diagramSpec?.steps.length ?? 0) === 4)
 
+const psychDiathesis = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '1-1-2-explanations-of-schizophrenia',
+  topicCode: '1.1.2',
+  title: 'Explanations of schizophrenia',
+  simpleExplanation: {
+    title: 'Explanations',
+    summary: 'Summary',
+    steps: ['Diathesis', 'Stress', 'Onset', 'Compare'],
+  },
+} as GeneratedLesson)
+check('9990 explanation attaches diagram spec', (psychDiathesis.diagramSpec?.steps.length ?? 0) === 4)
+
+const lawPrecedent = attachCatalogVisuals({
+  ...baseIntroOnly,
+  slug: '1-1-5-judicial-precedent',
+  topicCode: '1.1.5',
+  title: 'Judicial precedent',
+  simpleExplanation: {
+    title: 'Precedent',
+    summary: 'Summary',
+    steps: ['Hierarchy', 'Ratio', 'Distinguish', 'Overrule'],
+  },
+} as GeneratedLesson)
+check('9084 precedent attaches diagram spec', (lawPrecedent.diagramSpec?.steps.length ?? 0) === 4)
+
 if (failed > 0) process.exit(1)
 console.log('attach-lesson-visuals.test.ts: all checks passed')

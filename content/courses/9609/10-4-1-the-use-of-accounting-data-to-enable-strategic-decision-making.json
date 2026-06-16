@@ -5,28 +5,78 @@
   "paper": "AL",
   "paperName": "A Level Content (Paper 3 & 4)",
   "status": "premium",
-  "summary": "9609 A Level — linking accounts to corporate and functional strategy.",
-  "durationMin": 22,
-  "updated": "2026-06-10",
+  "summary": "9609 A Level — using financial statements and trends for corporate and functional strategy.",
+  "durationMin": 24,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Explain role of accounting in strategy.",
-    "Use financial data for strategic choices.",
-    "Identify limitations of accounting information.",
-    "Apply to case strategic dilemmas."
+    "Explain the role of accounting in strategic decisions.",
+    "Use financial data for expansion, divestment, and pricing choices.",
+    "Identify limitations of accounting information for strategy.",
+    "Apply analysis to case strategic dilemmas."
   ],
   "simpleExplanation": {
     "title": "Numbers guide strategy",
-    "summary": "Accounting data informs expansion, divestment, pricing, and financing decisions at board level.",
+    "summary": "Accounting data informs board-level choices — whether to expand, close a division, enter a market, or change pricing — by revealing performance and resource availability.",
     "steps": [
-      "Trends in revenue and costs.",
-      "Cash availability for investment.",
-      "Segment profitability analysis.",
-      "Historic data may lag market change."
+      "Analyse trends in revenue, costs, and profit.",
+      "Assess cash available for investment.",
+      "Compare segment or product profitability.",
+      "Remember historic data may lag market change."
     ]
   },
+  "flashcards": [
+    { "front": "Strategic vs operational decisions?", "back": "Strategic: long-term direction (market entry, merger). Operational: day-to-day (scheduling, ordering)." },
+    { "front": "Accounting data for expansion?", "back": "Retained profit, cash, borrowing capacity, ROCE trends show if growth is affordable." },
+    { "front": "Accounting data for divestment?", "back": "Loss-making segments, falling margins, negative contribution guide closure/sale." },
+    { "front": "Segment analysis?", "back": "Split revenue and profit by product/region to see where to invest or cut." },
+    { "front": "Limitation: historic?", "back": "Past results may not predict future — market disruption, new competitors." },
+    { "front": "Limitation: non-financial?", "back": "Brand, culture, innovation not fully in accounts." },
+    { "front": "Link to 6.2 strategy?", "back": "SWOT/Ansoff choices should be supported by financial feasibility." },
+    { "front": "Link to 10.3 investment?", "back": "Capital projects need NPV plus strategic fit assessment." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Accounting for strategy** (10.4.1) links **6.2 planning** to **10.2 ratios**." },
-    { "type": "practice", "label": "Mark an accounting strategy question", "href": "/mark?subject=9609&topic=10.4.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Accounting for strategy** (10.4.1) links **6.2 business strategy** to **10.1 accounts**. Paper 3/4 essays ask how **directors use financial data** when choosing between **Ansoff options** or responding to **external change**."
+    },
+    {
+      "type": "heading",
+      "content": "How accounting supports strategy"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Growth / diversification** — cash, gearing headroom, historical ROCE support expansion.",
+        "**Retrenchment** — identify unprofitable units via segment margins.",
+        "**Pricing strategy** — cost data (5.4) sets floors; margin trends show room for competitive pricing.",
+        "**Finance strategy** — retained earnings vs debt vs equity (5.2) for funding chosen strategy."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A retailer considers closing its online division. Accounts show: stores ROCE 18%, online ROCE 4%, online revenue growing 25% but operating loss $2 m. Discuss how accounting data informs the decision.",
+      "solution": "**For closure:** Low **ROCE (4%)** destroys value vs stores (18%); **operating loss** drains group profit; resources could fund store refurbishment with higher return.\n\n**Against closure:** **Revenue growth 25%** suggests future potential not captured in historic loss; closure costs (redundancies, contracts); **segment data** may omit shared costs fairly.\n\n**Strategic synthesis:** Use **contribution analysis** (5.4.2) for incremental online costs, **NPV** of continuing vs closing (10.3), plus **qualitative** brand presence online. Accounting **starts** the debate — does not alone decide."
+    },
+    {
+      "type": "heading",
+      "content": "Limitations"
+    },
+    {
+      "type": "text",
+      "content": "Accounts are **historical**, **legal-minimum** disclosure, and may **allocate costs arbitrarily** between segments. **Intangible assets** (brand, data, staff skills) are undervalued. Strategy also needs **market research**, **PESTLE**, and **competitive analysis**."
+    },
+    {
+      "type": "practice",
+      "label": "Mark an accounting strategy question",
+      "href": "/mark?subject=9609&topic=10.4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "10.4.2 Ratio analysis for strategy", "href": "/courses/9609/10-4-2-the-use-of-accounting-data-and-ratio-analysis-in-strategic-decision-making" },
+        { "label": "6.2.1 Developing business strategy", "href": "/courses/9609/6-2-1-developing-business-strategy" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

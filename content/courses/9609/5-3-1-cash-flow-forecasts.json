@@ -5,28 +5,75 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — cash inflows, outflows, net cash flow, and closing balance.",
-  "durationMin": 24,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — monthly cash flow forecasts, net cash flow, closing balance, and fixing cash shortfalls.",
+  "durationMin": 28,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Construct a cash flow forecast.",
-    "Interpret net and cumulative cash flow.",
-    "Identify cash shortfalls.",
+    "Construct a monthly cash flow forecast.",
+    "Calculate net cash flow and closing balance.",
+    "Identify and interpret cash shortfalls.",
     "Suggest actions to improve cash position."
   ],
   "simpleExplanation": {
     "title": "Timing of money in and out",
-    "summary": "Cash flow forecasts predict monthly cash movements. Profit does not equal cash — timing of payments matters.",
+    "summary": "A cash flow forecast predicts cash movements over future months. A profitable business can still fail if cash runs out — timing matters.",
+    "analogy": "Your salary might be $3 000/month but rent is due on the 1st while pay arrives on the 28th. Without a forecast you could look 'rich' on paper yet miss rent. Businesses face the same timing gaps with suppliers, wages, and customer payments.",
     "steps": [
-      "Opening balance + inflows − outflows.",
-      "Closing balance carries forward.",
-      "Negative closing balance = problem.",
-      "Credit sales delay cash in."
+      "Opening balance + cash inflows − cash outflows = net cash flow.",
+      "Closing balance = opening + net cash flow.",
+      "Closing balance becomes next month's opening balance.",
+      "Credit sales delay cash in — profit ≠ cash."
     ]
   },
+  "flashcards": [
+    { "front": "Net cash flow formula?", "back": "Cash inflows − Cash outflows (for the period)." },
+    { "front": "Closing balance formula?", "back": "Opening balance + Net cash flow." },
+    { "front": "Why profit ≠ cash?", "back": "Credit sales, depreciation (non-cash), prepaid/accruals, asset purchases affect cash differently from profit." },
+    { "front": "Negative closing balance meaning?", "back": "Cash shortfall — may need overdraft, loan, or cost reduction." },
+    { "front": "Cash inflow examples?", "back": "Cash sales, customer payments, loan received, asset sale." },
+    { "front": "Cash outflow examples?", "back": "Wages, rent, suppliers, loan repayments, asset purchases." },
+    { "front": "Improve cash position?", "back": "Faster debt collection, slower supplier payment (within terms), overdraft, reduce costs, delay capex." },
+    { "front": "Link to 5.5.1 budgets?", "back": "Cash budget is a key budget type; links to liquidity planning." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Cash flow forecasts** (5.3.1) differ from **profit**. Practise **month-by-month tables** under exam conditions." },
-    { "type": "practice", "label": "Mark a cash flow forecast question", "href": "/mark?subject=9609&topic=5.3.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Cash flow forecasts** (5.3.1) sit between **5.2 finance** and **5.4 costs**. Examiners give **monthly tables** to complete — practise carrying **closing → opening** without errors. This is **not** the statement of cash flows (A Level accounts) — it is a **management forecast**."
+    },
+    {
+      "type": "heading",
+      "content": "Building the forecast"
+    },
+    {
+      "type": "formula",
+      "content": "Net cash flow = Cash inflows − Cash outflows\n\nClosing balance = Opening balance + Net cash flow\n\nNext month opening balance = Previous month closing balance"
+    },
+    {
+      "type": "workedExample",
+      "question": "Opening balance January $5 000.\nJanuary: inflows $18 000, outflows $20 000.\nFebruary: inflows $22 000, outflows $19 000.\n\nCalculate net cash flow and closing balance for each month.",
+      "solution": "**January**\nNet cash flow = 18 000 − 20 000 = **−$2 000**\nClosing balance = 5 000 + (−2 000) = **$3 000**\n\n**February**\nOpening balance = **$3 000**\nNet cash flow = 22 000 − 19 000 = **+$3 000**\nClosing balance = 3 000 + 3 000 = **$6 000**"
+    },
+    {
+      "type": "workedExample",
+      "question": "A firm forecasts negative closing balance of $4 000 in March. Suggest three actions to address this.",
+      "solution": "**1. Arrange overdraft** — short-term external finance to cover the gap (link **5.2.2**).\n\n**2. Accelerate receivables** — offer discount for early payment; chase overdue accounts (**10.2.3** receivables days).\n\n**3. Delay non-essential outflows** — postpone equipment purchase or negotiate **longer trade credit** with suppliers.\n\nAlso: reduce inventory purchases temporarily if overstocked."
+    },
+    {
+      "type": "examTip",
+      "content": "When credit sales are given, **cash inflow month** = sale month + credit period (e.g. sold January, 30 days credit → cash in February)."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a cash flow forecast question",
+      "href": "/mark?subject=9609&topic=5.3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "5.2.2 Sources of finance", "href": "/courses/9609/5-2-2-internal-and-external-sources-of-finance" },
+        { "label": "5.5.1 Budgets", "href": "/courses/9609/5-5-1-the-meaning-and-purpose-of-budgets" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

@@ -8,6 +8,7 @@ import {
 } from '@/lib/courses/lesson-layout'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
 import { resolveLessonInteractiveEmbed } from '@/lib/courses/interactive-embeds'
+import { filterResourcesForPromotedEmbed } from '@/lib/courses/embed-from-resources'
 import { resolveDiagramSpec } from '@/lib/courses/diagram-specs'
 import type {
   LessonFormula,
@@ -344,10 +345,12 @@ export function adaptLesson(
   const { prev, next, related } = topicNeighbors(flatTopics, lesson.topicCode)
   const hero = splitHeroTitle(lesson.title)
   const resourcesSection = lesson.sections.find((s) => s.type === 'resources')
-  const resources =
+  const resources = filterResourcesForPromotedEmbed(
     resourcesSection?.type === 'resources' && resourcesSection.items.length
       ? resourcesSection.items
-      : undefined
+      : undefined,
+    interactiveEmbed
+  )
 
   const notes = extractNotes(lesson.sections)
   const formulas = formulasFromLesson(lesson, enriched)

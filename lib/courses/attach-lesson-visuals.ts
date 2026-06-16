@@ -3,6 +3,7 @@ import type { CourseLesson } from '@/lib/courses/types'
 import type { LessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import { getLessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import { getCatalogInteractiveEmbed } from '@/lib/courses/interactive-embeds'
+import { embedFromLessonResources } from '@/lib/courses/embed-from-resources'
 import { preferNativeDiagramOverPlaceholder } from '@/lib/courses/placeholder-embeds'
 import { slugHasVisualCatalogEntry } from '@/lib/courses/visual-catalog'
 
@@ -67,7 +68,7 @@ export function attachCatalogVisuals(lesson: GeneratedLesson): GeneratedLesson {
   if (!interactiveEmbed && !hasInlineInteractive) {
     interactiveEmbed = preferNativeDiagramOverPlaceholder(
       out.slug,
-      getCatalogInteractiveEmbed(out.slug)
+      getCatalogInteractiveEmbed(out.slug) ?? embedFromLessonResources(out) ?? undefined
     )
   } else if (interactiveEmbed) {
     interactiveEmbed = preferNativeDiagramOverPlaceholder(out.slug, interactiveEmbed)

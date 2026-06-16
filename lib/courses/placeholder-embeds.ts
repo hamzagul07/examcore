@@ -1,16 +1,8 @@
 import type { LessonInteractiveEmbed } from '@/lib/courses/types'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
-import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
 
 /** GeoGebra material reused as a generic CS placeholder — not topic-specific. */
 export const PLACEHOLDER_GEOGEBRA_MATERIALS = new Set(['kQBWnCFC'])
-
-/** Gold-standard topics: keep PhET sim even when a native diagram exists. */
-export const PHET_RETAIN_WITH_NATIVE = new Set([
-  '22-2-photoelectric-effect',
-  '3-5-shapes-of-molecules',
-  '4-3-density-and-pressure',
-])
 
 export function isPlaceholderInteractiveEmbed(
   embed: LessonInteractiveEmbed | undefined | null
@@ -22,25 +14,17 @@ export function isPlaceholderInteractiveEmbed(
   return false
 }
 
-function retainsPhetWithNative(slug: string): boolean {
-  if (PHET_RETAIN_WITH_NATIVE.has(slug)) return true
-  const alias = resolveVisualCatalogSlug(slug)
-  return alias !== slug && PHET_RETAIN_WITH_NATIVE.has(alias)
-}
-
-/** Gold-standard topics: native SVG plus retained PhET sim. */
+/** Topics with a native diagram that can pair with an inline sim. */
 export function isDualVisualSlug(slug: string): boolean {
-  return hasLessonLiveDiagram(slug) && retainsPhetWithNative(slug)
+  return hasLessonLiveDiagram(slug)
 }
 
-/** Prefer step-synced native SVG over weak catalog embeds when a diagram exists. */
+/** Drop only generic CS placeholder embeds — keep real PhET/GeoGebra sims. */
 export function preferNativeDiagramOverPlaceholder(
-  slug: string,
+  _slug: string,
   embed: LessonInteractiveEmbed | undefined
 ): LessonInteractiveEmbed | undefined {
-  if (!embed || !hasLessonLiveDiagram(slug)) return embed
+  if (!embed) return embed
   if (isPlaceholderInteractiveEmbed(embed)) return undefined
-  if (embed.provider === 'geogebra') return undefined
-  if (embed.provider === 'phet' && !retainsPhetWithNative(slug)) return undefined
   return embed
 }

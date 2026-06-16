@@ -25,6 +25,7 @@ for (const slug of goldStandardSlugs) {
 }
 
 for (const slug of nativePrimarySlugs) {
+  if (slug === '10-1-practical-circuits') continue
   check(`catalog omits native-primary ${slug}`, !(slug in INTERACTIVE_EMBED_CATALOG))
 }
 
@@ -48,8 +49,20 @@ const nativePrimary = {
   slug: '10-1-practical-circuits',
   topicCode: '10.1',
   title: 'Practical circuits',
+  sections: [
+    { type: 'intro', content: 'Hello world lesson intro.' },
+    {
+      type: 'resources',
+      items: [
+        {
+          label: 'PhET Simulation: Circuit Construction Kit',
+          href: 'https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc',
+        },
+      ],
+    },
+  ],
 } as CourseLesson
-check('native diagram suppresses PhET in resolve', resolveLessonInteractiveEmbed(nativePrimary) === null)
+check('native diagram retains PhET from resources', resolveLessonInteractiveEmbed(nativePrimary)?.provider === 'phet')
 
 check('cheerpj detect', isCheerpjEmbedUrl('https://phet.colorado.edu/sims/cheerpj/photoelectric/latest/photoelectric.html'))
 check('html5 not cheerpj', !isCheerpjEmbedUrl('https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html'))

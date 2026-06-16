@@ -11,7 +11,7 @@ function check(name: string, ok: boolean) {
   }
 }
 
-const base = {
+const baseIntroOnly = {
   slug: '13-3-gravitational-field-of-a-point-mass',
   topicCode: '13.3',
   title: 'Gravitational field',
@@ -32,8 +32,24 @@ const base = {
   },
 }
 
+const base = {
+  ...baseIntroOnly,
+  sections: [
+    { type: 'intro' as const, content: 'Intro text for the lesson here.' },
+    {
+      type: 'resources' as const,
+      items: [
+        {
+          label: 'PhET Simulation: Gravity and Orbits',
+          href: 'https://phet.colorado.edu/en/simulations/gravity-and-orbits',
+        },
+      ],
+    },
+  ],
+}
+
 const attached = attachCatalogVisuals(base as GeneratedLesson)
-check('native grav diagram suppresses PhET embed', attached.interactiveEmbed === undefined)
+check('native grav attaches PhET from resources when listed', attached.interactiveEmbed?.provider === 'phet')
 check('attaches diagram spec', (attached.diagramSpec?.steps.length ?? 0) === 3)
 
 const withExisting = attachCatalogVisuals({
@@ -67,7 +83,7 @@ const noSteps = ensureSimpleExplanationForVisuals({
 check('synthesises simpleExplanation', (noSteps.simpleExplanation?.steps.length ?? 0) >= 3)
 
 const logicGates = attachCatalogVisuals({
-  ...base,
+  ...baseIntroOnly,
   slug: '3-2-logic-gates-and-logic-circuits',
   topicCode: '3.2',
   title: 'Logic gates',
@@ -81,7 +97,7 @@ check('prefers native diagram over placeholder embed', logicGates.interactiveEmb
 check('keeps diagram spec for native logic diagram', (logicGates.diagramSpec?.steps.length ?? 0) === 4)
 
 const algorithms = attachCatalogVisuals({
-  ...base,
+  ...baseIntroOnly,
   slug: '19-1-algorithms',
   topicCode: '19.1',
   title: 'Algorithms',
@@ -98,13 +114,25 @@ const differentiation = attachCatalogVisuals({
   slug: '1-7-differentiation',
   topicCode: '1.7',
   title: 'Differentiation',
+  sections: [
+    { type: 'intro' as const, content: 'Intro text for the lesson here.' },
+    {
+      type: 'resources' as const,
+      items: [
+        {
+          label: 'GeoGebra: Tangent explorer',
+          href: 'https://www.geogebra.org/classic?material=abc123',
+        },
+      ],
+    },
+  ],
   simpleExplanation: {
     title: 'Differentiation',
     summary: 'Summary',
     steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
   },
 } as GeneratedLesson)
-check('9709 native diagram skips geogebra embed', differentiation.interactiveEmbed === undefined)
+check('9709 native diagram keeps geogebra from resources', differentiation.interactiveEmbed?.provider === 'geogebra')
 check('9709 keeps diagram spec with params', (differentiation.diagramSpec?.params?.length ?? 0) >= 2)
 
 const bakedPhEt = attachCatalogVisuals({
@@ -124,20 +152,32 @@ const bakedPhEt = attachCatalogVisuals({
     steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
   },
 } as GeneratedLesson)
-check('strips baked-in embed suppressed by native diagram', bakedPhEt.interactiveEmbed === undefined)
+check('retains baked-in PhET with native diagram', bakedPhEt.interactiveEmbed?.provider === 'phet')
 
 const shm = attachCatalogVisuals({
   ...base,
   slug: '17-1-simple-harmonic-oscillations',
   topicCode: '17.1',
   title: 'SHM',
+  sections: [
+    { type: 'intro' as const, content: 'Intro text for the lesson here.' },
+    {
+      type: 'resources' as const,
+      items: [
+        {
+          label: 'PhET Simulation: Mass on a Spring',
+          href: 'https://phet.colorado.edu/en/simulations/masses-and-springs',
+        },
+      ],
+    },
+  ],
   simpleExplanation: {
     title: 'SHM',
     summary: 'Summary',
     steps: ['Step 1', 'Step 2', 'Step 3', 'Step 4'],
   },
 } as GeneratedLesson)
-check('9702 SHM prefers native over PhET', shm.interactiveEmbed === undefined)
+check('9702 SHM keeps PhET from resources with native diagram', shm.interactiveEmbed?.provider === 'phet')
 
 const photoelectric = attachCatalogVisuals({
   ...base,
@@ -166,7 +206,7 @@ const moleculeShapes = attachCatalogVisuals({
 check('9701 VSEPR retains PhET with native diagram', moleculeShapes.interactiveEmbed?.provider === 'phet')
 
 const idealGas = attachCatalogVisuals({
-  ...base,
+  ...baseIntroOnly,
   slug: '4-1-the-gaseous-state-ideal-and-real-gases-and-pv-nrt',
   topicCode: '4.1',
   title: 'Ideal gases',
@@ -179,7 +219,7 @@ const idealGas = attachCatalogVisuals({
 check('9701 ideal gas prefers native over PhET', idealGas.interactiveEmbed === undefined)
 
 const atomicStructure = attachCatalogVisuals({
-  ...base,
+  ...baseIntroOnly,
   slug: '1-1-particles-in-the-atom-and-atomic-radius',
   topicCode: '1.1',
   title: 'Atomic structure',
@@ -192,7 +232,7 @@ const atomicStructure = attachCatalogVisuals({
 check('9701 atomic structure prefers native over PhET', atomicStructure.interactiveEmbed === undefined)
 
 const stoichiometry = attachCatalogVisuals({
-  ...base,
+  ...baseIntroOnly,
   slug: '2-2-the-mole-and-the-avogadro-constant',
   topicCode: '2.2',
   title: 'The mole',
@@ -205,7 +245,7 @@ const stoichiometry = attachCatalogVisuals({
 check('9701 stoichiometry prefers native over PhET', stoichiometry.interactiveEmbed === undefined)
 
 const electrochemistry = attachCatalogVisuals({
-  ...base,
+  ...baseIntroOnly,
   slug: '24-1-electrolysis',
   topicCode: '24.1',
   title: 'Electrolysis',
@@ -218,7 +258,7 @@ const electrochemistry = attachCatalogVisuals({
 check('9701 electrolysis prefers native over PhET', electrochemistry.interactiveEmbed === undefined)
 
 const spectroscopy = attachCatalogVisuals({
-  ...base,
+  ...baseIntroOnly,
   slug: '37-4-proton-h-nmr-spectroscopy',
   topicCode: '37.4',
   title: 'Proton NMR',

@@ -232,6 +232,42 @@ function religionView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: 
   )
 }
 
+function crimeView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  return (
+    <>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-1')}>
+        <text x="210" y="28" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+          Crime &amp; deviance
+        </text>
+        <circle cx="210" cy="88" r="40" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="210" y="92" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Society
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-2')}>
+        {['Merton', 'Cohen', 'CCS'].map((l, i) => (
+          <g key={l}>
+            <rect x={48 + i * 108} y="140" width="88" height="32" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+            <text x={92 + i * 108} y="160" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+              {l}
+            </text>
+          </g>
+        ))}
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
+        <text x="210" y="188" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Globalisation — transnational crime · green crime · state crime
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="208" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Media amplification · moral panics · labelling theory
+        </text>
+      </g>
+    </>
+  )
+}
+
 export function SocialScienceDiagram({
   className = '',
   stepIndex = 0,
@@ -249,7 +285,9 @@ export function SocialScienceDiagram({
           ? educationView
           : family === 'soc-media'
             ? mediaView
-            : family === 'soc-globalisation'
+            : family === 'soc-crime'
+              ? crimeView
+              : family === 'soc-globalisation'
               ? globalisationView
               : family === 'soc-religion'
                 ? religionView

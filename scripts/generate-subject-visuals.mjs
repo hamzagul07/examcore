@@ -71,6 +71,7 @@ function family9084(slug) {
 
 function family9699(slug) {
   if (/^2-/.test(slug)) return 'soc-research'
+  if (/crime/.test(slug)) return 'soc-crime'
   const unit = parseInt(slug.split('-')[0], 10)
   if (unit === 3 || unit === 4) return 'soc-family'
   if (unit === 5 || unit === 6) return 'soc-education'
@@ -83,7 +84,16 @@ function family9699(slug) {
 function family9990(slug) {
   if (/^4-/.test(slug)) return 'psych-workplace'
   if (/^3-/.test(slug)) return 'psych-health'
-  if (/^2-/.test(slug)) return 'psych-consumer'
+  if (/^2-/.test(slug)) {
+    if (/advertising|brand/.test(slug)) return 'psych-consumer-ads'
+    if (/retail|atmospherics|menu|sound-and-consumer|environmental-influences|personal-space/.test(slug)) {
+      return 'psych-consumer-retail'
+    }
+    if (/decision|heuristic|mistakes|packaging|selling-the-product|buying-the-product/.test(slug)) {
+      return 'psych-consumer-funnel'
+    }
+    return 'psych-consumer'
+  }
   if (/research-methodology|core-studies/.test(slug)) return 'psych-research'
   if (/explanation/.test(slug)) return 'psych-clinical-diathesis'
   if (/treatment|management/.test(slug)) return 'psych-clinical-treatment'
@@ -208,12 +218,16 @@ export type CommerceHumanitiesFamilyId =
   | 'soc-media'
   | 'soc-globalisation'
   | 'soc-religion'
+  | 'soc-crime'
   | 'psych-clinical'
   | 'psych-clinical-dsm'
   | 'psych-clinical-diathesis'
   | 'psych-clinical-treatment'
   | 'psych-research'
   | 'psych-consumer'
+  | 'psych-consumer-funnel'
+  | 'psych-consumer-retail'
+  | 'psych-consumer-ads'
   | 'psych-health'
   | 'psych-workplace'
 

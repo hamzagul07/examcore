@@ -2497,7 +2497,7 @@ export const SLUG_FAMILY_9699: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '7-3-globalisation-power-and-politics': 'soc-globalisation',
   '8-1-globalisation-poverty-and-inequalities': 'soc-globalisation',
   '8-2-globalisation-and-migration': 'soc-globalisation',
-  '8-3-globalisation-and-crime': 'soc-globalisation',
+  '8-3-globalisation-and-crime': 'soc-crime',
   '9-1-traditional-media-and-the-new-media': 'soc-media',
   '9-2-theories-of-the-media-and-influences-on-media-content': 'soc-media',
   '9-3-the-impact-of-the-new-media': 'soc-media',
@@ -2519,21 +2519,21 @@ export const SLUG_FAMILY_9990: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '1-5-1-diagnostic-criteria-for-obsessive-compulsive-disorder-ocd': 'psych-clinical-dsm',
   '1-5-2-explanations-of-obsessive-compulsive-disorder': 'psych-clinical-diathesis',
   '1-5-3-treatment-and-management-of-obsessive-compulsive-disorder': 'psych-clinical-treatment',
-  '2-1-1-retail-store-design': 'psych-consumer',
-  '2-1-2-sound-and-consumer-behaviour': 'psych-consumer',
-  '2-1-3-retail-atmospherics': 'psych-consumer',
-  '2-2-1-environmental-influences-on-consumers': 'psych-consumer',
-  '2-2-2-menu-design-psychology': 'psych-consumer',
-  '2-2-3-consumer-behaviour-and-personal-space': 'psych-consumer',
-  '2-3-1-consumer-decision-making': 'psych-consumer',
-  '2-3-2-choice-heuristics': 'psych-consumer',
-  '2-3-3-mistakes-in-decision-making': 'psych-consumer',
-  '2-4-1-packaging-and-positioning-of-a-product': 'psych-consumer',
-  '2-4-2-selling-the-product': 'psych-consumer',
-  '2-4-3-buying-the-product': 'psych-consumer',
-  '2-5-1-types-of-advertising-and-advertising-techniques': 'psych-consumer',
-  '2-5-2-advertising-consumer-interaction': 'psych-consumer',
-  '2-5-3-brand-awareness-and-recognition': 'psych-consumer',
+  '2-1-1-retail-store-design': 'psych-consumer-retail',
+  '2-1-2-sound-and-consumer-behaviour': 'psych-consumer-retail',
+  '2-1-3-retail-atmospherics': 'psych-consumer-retail',
+  '2-2-1-environmental-influences-on-consumers': 'psych-consumer-retail',
+  '2-2-2-menu-design-psychology': 'psych-consumer-retail',
+  '2-2-3-consumer-behaviour-and-personal-space': 'psych-consumer-retail',
+  '2-3-1-consumer-decision-making': 'psych-consumer-funnel',
+  '2-3-2-choice-heuristics': 'psych-consumer-funnel',
+  '2-3-3-mistakes-in-decision-making': 'psych-consumer-funnel',
+  '2-4-1-packaging-and-positioning-of-a-product': 'psych-consumer-funnel',
+  '2-4-2-selling-the-product': 'psych-consumer-funnel',
+  '2-4-3-buying-the-product': 'psych-consumer-funnel',
+  '2-5-1-types-of-advertising-and-advertising-techniques': 'psych-consumer-ads',
+  '2-5-2-advertising-consumer-interaction': 'psych-consumer-ads',
+  '2-5-3-brand-awareness-and-recognition': 'psych-consumer-ads',
   '3-1-1-the-core-studies': 'psych-health',
   '3-1-2-research-methodology': 'psych-health',
   '3-1-3-misusing-health-services': 'psych-health',
@@ -2607,12 +2607,16 @@ export type CommerceHumanitiesFamilyId =
   | 'soc-media'
   | 'soc-globalisation'
   | 'soc-religion'
+  | 'soc-crime'
   | 'psych-clinical'
   | 'psych-clinical-dsm'
   | 'psych-clinical-diathesis'
   | 'psych-clinical-treatment'
   | 'psych-research'
   | 'psych-consumer'
+  | 'psych-consumer-funnel'
+  | 'psych-consumer-retail'
+  | 'psych-consumer-ads'
   | 'psych-health'
   | 'psych-workplace'
 

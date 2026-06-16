@@ -192,6 +192,100 @@ function consumerView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: 
   )
 }
 
+function consumerFunnelView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  const stages = ['Need', 'Search', 'Evaluate', 'Buy']
+  return (
+    <>
+      <text x="210" y="24" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+        Consumer decision process
+      </text>
+      {stages.map((s, i) => (
+        <g key={s} opacity={layerOpacity(spec, stepIndex, `step-${i + 1}`)}>
+          <polygon
+            points={`${120 + i * 56},48 ${168 + i * 56},48 ${176 + i * 56},88 ${112 + i * 56},88`}
+            fill={DIAGRAM_FILL}
+            stroke={DIAGRAM_STROKE}
+            strokeWidth="1.5"
+          />
+          <text x={144 + i * 56} y="72" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+            {s}
+          </text>
+          {i < stages.length - 1 ? (
+            <path d={`M ${176 + i * 56} 68 L ${120 + (i + 1) * 56} 68`} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+          ) : null}
+        </g>
+      ))}
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="120" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Post-purchase evaluation · cognitive dissonance
+        </text>
+        <text x="210" y="140" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          High involvement → more search and comparison
+        </text>
+      </g>
+    </>
+  )
+}
+
+function consumerRetailView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  return (
+    <>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-1')}>
+        <rect x="48" y="48" width="324" height="100" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="72" y="72" fontSize="8" fill={DIAGRAM_TEXT}>
+          Entrance
+        </text>
+        <text x="210" y="72" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT} fontWeight="600">
+          Store layout
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-2')}>
+        <rect x="120" y="88" width="80" height="40" rx="4" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="160" y="112" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Hot spots
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
+        <text x="210" y="168" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Lighting · music · scent · crowding
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="340" y="72" fontSize="8" fill={DIAGRAM_TEXT}>
+          Checkout
+        </text>
+        <text x="210" y="192" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Mehrabian — personal space and approach behaviour
+        </text>
+      </g>
+    </>
+  )
+}
+
+function consumerAdsView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  const stages = ['Attention', 'Interest', 'Desire', 'Action']
+  return (
+    <>
+      <text x="210" y="28" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+        AIDA advertising model
+      </text>
+      {stages.map((s, i) => (
+        <g key={s} opacity={layerOpacity(spec, stepIndex, `step-${i + 1}`)}>
+          <rect x={48 + i * 84} y="48" width="72" height="36" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+          <text x={84 + i * 84} y="70" textAnchor="middle" fontSize="7" fill={DIAGRAM_TEXT}>
+            {s}
+          </text>
+        </g>
+      ))}
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="120" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Brand awareness · recognition · loyalty
+        </text>
+      </g>
+    </>
+  )
+}
+
 function healthView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
   const nodes = [
     { x: 210, y: 52, label: 'Perceived\nseverity' },
@@ -261,9 +355,15 @@ export function PsychologyDiagram({
   const family = getFamilyIdForSlug(lessonSlug) ?? 'psych-clinical-dsm'
 
   const view =
-    family === 'psych-consumer'
-      ? consumerView
-      : family === 'psych-health'
+    family === 'psych-consumer-funnel'
+      ? consumerFunnelView
+      : family === 'psych-consumer-retail'
+        ? consumerRetailView
+        : family === 'psych-consumer-ads'
+          ? consumerAdsView
+          : family === 'psych-consumer'
+            ? consumerView
+            : family === 'psych-health'
         ? healthView
         : family === 'psych-workplace'
           ? workplaceView

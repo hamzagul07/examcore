@@ -642,6 +642,10 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: SocialScienceDiagram,
     caption: 'Secularisation debate — religion, social change, and post-modernity.',
   },
+  'soc-crime': {
+    Component: SocialScienceDiagram,
+    caption: 'Crime and deviance — globalisation, inequality, and media representations.',
+  },
   'psych-clinical': {
     Component: PsychologyDiagram,
     caption: 'Clinical pathway: diagnosis, explanation, treatment, and evaluation.',
@@ -665,6 +669,18 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'psych-consumer': {
     Component: PsychologyDiagram,
     caption: 'Consumer behaviour links perception, heuristics, and purchase decisions.',
+  },
+  'psych-consumer-funnel': {
+    Component: PsychologyDiagram,
+    caption: 'Consumer decision funnel — recognition, search, evaluation, purchase, post-purchase.',
+  },
+  'psych-consumer-retail': {
+    Component: PsychologyDiagram,
+    caption: 'Retail atmospherics — layout, sound, and environmental cues shape behaviour.',
+  },
+  'psych-consumer-ads': {
+    Component: PsychologyDiagram,
+    caption: 'Advertising techniques — attention, persuasion, and brand awareness.',
   },
   'psych-health': {
     Component: PsychologyDiagram,

@@ -91,6 +91,35 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layou
             </button>
           </div>
         </div>
+      ) : inDiagram ? (
+        <div className="course-interactive-embed-toolbar">
+          <p className="ms-overline course-interactive-embed-overline">
+            Live interactive{stepLabel ? ` · ${stepLabel}` : ''}
+          </p>
+          <div className="course-interactive-embed-actions">
+            {launchUrl ? (
+              <a
+                href={launchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="course-interactive-embed-btn course-interactive-embed-btn--primary"
+              >
+                <ExternalLink className="h-4 w-4" aria-hidden />
+                {label}
+              </a>
+            ) : null}
+            <button
+              type="button"
+              onClick={() => setFullscreen(true)}
+              className="course-interactive-embed-btn"
+              aria-label="Open simulation full screen"
+              disabled={!loaded}
+            >
+              <Maximize2 className="h-4 w-4" aria-hidden />
+              Full screen
+            </button>
+          </div>
+        </div>
       ) : (
         <div className="course-interactive-embed-head">
           <div className="min-w-0">
@@ -170,7 +199,28 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layou
         />
       </div>
 
-      {!fullscreen && launchUrl && !cheerpj ? (
+      {!fullscreen && inDiagram ? (
+        <div className="course-interactive-embed-meta">
+          <figcaption className="course-interactive-embed-title">{embed.title}</figcaption>
+          {embed.hint ? (
+            <p className="course-interactive-embed-hint">{embed.hint}</p>
+          ) : null}
+          {launchUrl && !cheerpj ? (
+            <p className="course-interactive-embed-fallback-hint">
+              If the embed does not load, use{' '}
+              <a href={launchUrl} target="_blank" rel="noopener noreferrer">
+                {label}
+              </a>
+              .
+            </p>
+          ) : null}
+          <p className="course-interactive-embed-attribution">
+            {embed.attribution.source} · {embed.attribution.license}
+          </p>
+        </div>
+      ) : null}
+
+      {!fullscreen && !inDiagram && launchUrl && !cheerpj ? (
         <p className="course-interactive-embed-fallback-hint">
           If the embed does not load, use{' '}
           <a href={launchUrl} target="_blank" rel="noopener noreferrer">
@@ -180,7 +230,7 @@ export function CourseInteractiveEmbed({ embed, className = '', stepLabel, layou
         </p>
       ) : null}
 
-      {!fullscreen ? (
+      {!fullscreen && !inDiagram ? (
         <p className="course-interactive-embed-attribution">
           {embed.attribution.source} · {embed.attribution.license}
         </p>

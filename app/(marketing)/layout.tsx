@@ -1,18 +1,9 @@
-import { MarketingHeader } from '@/components/layout/MarketingHeader'
-import { MarketingFooter } from '@/components/layout/MarketingFooter'
-import { ScrollProgressBar } from '@/components/design-system/ScrollProgressBar'
+import { MarketingLayoutChrome } from '@/components/courses/margin-notes/MarketingLayoutChrome'
 
 export default function MarketingLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <>
-      <ScrollProgressBar />
-      <MarketingHeader />
-      {children}
-      <MarketingFooter />
-    </>
-  )
+  return <MarketingLayoutChrome>{children}</MarketingLayoutChrome>
 }

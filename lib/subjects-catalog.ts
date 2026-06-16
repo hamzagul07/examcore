@@ -5,7 +5,7 @@ import { getSubjectPaperStructure } from '@/lib/subject-papers'
 import type { SubjectOption } from '@/lib/profile-options'
 import type { LandingSubjectPreview } from '@/lib/landing-subjects-preview'
 
-const SUBJECT_GLYPHS: Record<string, string> = {
+export const SUBJECT_GLYPHS: Record<string, string> = {
   '9709': '∫',
   '9231': 'Σ',
   '9702': 'Ω',

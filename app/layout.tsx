@@ -21,7 +21,7 @@ import {
   SITE_URL,
 } from "@/lib/site-config";
 
-const EC_THEME_BOOT_SCRIPT = `(function(){try{var t=localStorage.getItem('ec-theme');if(t==='late-night'){document.documentElement.setAttribute('data-ec-theme','late-night');}}catch(e){}})();`;
+const EC_THEME_BOOT_SCRIPT = `(function(){try{var t=localStorage.getItem('ec-theme');var ec=t==='late-night'?'late-night':'zen';document.documentElement.setAttribute('data-ec-theme',ec);document.documentElement.setAttribute('data-theme',t==='late-night'?'night':'paper');}catch(e){document.documentElement.setAttribute('data-theme','paper');}})();`;
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -101,7 +101,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB" data-ec-theme="zen" className="h-full overflow-x-clip antialiased" suppressHydrationWarning>
+    <html lang="en-GB" data-ec-theme="zen" data-theme="paper" className="h-full overflow-x-clip antialiased" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: EC_THEME_BOOT_SCRIPT }} />
       </head>

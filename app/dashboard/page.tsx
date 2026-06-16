@@ -11,6 +11,8 @@ import { getSubjectById } from '@/lib/profile-options'
 import { getSyllabusByCode, getSyllabusSubjectName, hasSyllabusTree } from '@/lib/syllabi'
 import { getAttemptSubjectCode } from '@/lib/syllabi/attempts'
 import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
+import { buildContinueCatalog } from '@/lib/courses/margin-notes/continue-catalog'
+import { DashboardCoursesPanel } from '@/components/courses/margin-notes/DashboardCoursesPanel'
 import { DashboardEntry } from './dashboard.client'
 import { OmniAIBridge } from '@/components/omni-ai/OmniAIBridge'
 import { HomeHero } from '@/components/dashboard/HomeHero'
@@ -174,6 +176,7 @@ export default async function DashboardPage() {
   }
 
   const isEmpty = attemptsList.length === 0
+  const continueCatalog = buildContinueCatalog()
 
   return (
     <main className="app-shell app-shell-tabbed ms-dash-home">
@@ -187,6 +190,8 @@ export default async function DashboardPage() {
           />
 
           <BillingLimitBanner className="mb-6" />
+
+          <DashboardCoursesPanel catalog={continueCatalog} />
 
           {!isEmpty ? (
             <StudyNotebook

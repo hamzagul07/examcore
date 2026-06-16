@@ -41,7 +41,7 @@ export function CourseVisualLearning({
   const liveDiagram = hasLessonLiveDiagram(lessonSlug)
   const dualVisual = isDualVisualSlug(lessonSlug) && hasEmbed
   const hasExploreVisual = hasEmbed || liveDiagram
-  const showNativeDiagram = liveDiagram && (!hasEmbed || dualVisual)
+  const showNativeDiagram = liveDiagram
   const hasStage = showNativeDiagram || stepCarousel !== null
   const referenceDiagrams = diagramImages.filter(
     (d) => d.src.includes('/alnotes/') || (!liveDiagram && !hasEmbed)

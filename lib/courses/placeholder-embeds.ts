@@ -9,6 +9,7 @@ export const PLACEHOLDER_GEOGEBRA_MATERIALS = new Set(['kQBWnCFC'])
 export const PHET_RETAIN_WITH_NATIVE = new Set([
   '22-2-photoelectric-effect',
   '3-5-shapes-of-molecules',
+  '4-3-density-and-pressure',
 ])
 
 export function isPlaceholderInteractiveEmbed(

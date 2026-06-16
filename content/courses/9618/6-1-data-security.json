@@ -185,8 +185,15 @@
         "focus": [
           "threats"
         ],
-        "caption": "Threats: unauthorised access, malware, interception.",
+        "caption": "Threats: malware, phishing, and denial-of-service attacks.",
         "embedHint": "Match control to threat (firewall, antivirus, encryption)."
+      },
+      {
+        "focus": [
+          "pharming"
+        ],
+        "caption": "Pharming redirects traffic via compromised DNS — even when the user types the correct URL.",
+        "embedHint": "User enters bank.com but DNS returns a fraudulent IP address."
       },
       {
         "focus": [
@@ -197,17 +204,11 @@
       },
       {
         "focus": [
-          "backup"
-        ],
-        "caption": "Backup strategies: full, incremental, off-site.",
-        "embedHint": "Recovery point vs recovery time objectives."
-      },
-      {
-        "focus": [
+          "backup",
           "physical"
         ],
-        "caption": "Physical security complements logical controls.",
-        "embedHint": "Locks, CCTV, and secure disposal of storage."
+        "caption": "Backup strategies and physical security complement logical controls.",
+        "embedHint": "Off-site backup plus locks, CCTV, and secure disposal."
       }
     ]
   }

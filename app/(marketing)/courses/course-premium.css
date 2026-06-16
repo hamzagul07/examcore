@@ -3707,6 +3707,30 @@ html[data-course-focus='true'] .course-studio-grid {
   color: var(--ec-brand);
 }
 
+.course-studio-hero-visual-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.course-hero-native-diagram {
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--course-accent) 35%, var(--course-border));
+  background: color-mix(in srgb, var(--course-accent) 5%, var(--course-surface-deep));
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.course-hero-native-diagram .course-step-stage-diagram,
+.course-hero-native-diagram .course-step-stage-svg,
+.course-hero-native-diagram .lesson-diagram-svg {
+  max-height: min(36vh, 320px);
+}
+
+.course-hero-native-diagram .course-step-stage-label {
+  font-size: 0.7rem;
+}
+
 .course-step-sync-callout {
   padding: 0.85rem 1rem;
   border-radius: 0.85rem;

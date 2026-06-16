@@ -1,8 +1,6 @@
 import { createClient as createServerClient } from '@/lib/supabase-server'
 import { createClient } from '@supabase/supabase-js'
 import { redirect } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft, RefreshCw } from 'lucide-react'
 
 import {
   calculateParentMastery,
@@ -23,6 +21,15 @@ import {
   getAttemptSubjectCode,
   type AttemptWithPaper,
 } from '@/lib/syllabi/attempts'
+import { getCourseCatalog, getCourseLessons } from '@/lib/courses'
+import {
+  adaptDashStats,
+  adaptMilestone,
+  adaptRecentMarks,
+  adaptStreakWeek,
+  adaptWeakFromRecommendations,
+  adaptWeakTopics,
+} from '@/lib/courses/margin-notes/adapt-progress'
 
 import { SyllabusCoverage } from '@/components/progress/SyllabusCoverage'
 import { GradeTrajectory } from '@/components/progress/GradeTrajectory'
@@ -38,6 +45,7 @@ import { BillingLimitBanner } from '@/components/billing/BillingLimitBanner'
 import { MasteryDashboardTeaser } from '@/components/billing/MasteryDashboardTeaser'
 import { isPaidTier } from '@/lib/billing/features'
 import type { SubscriptionTier } from '@/lib/database.types'
+import { ProgressDashboardPage } from '@/components/courses/margin-notes/ProgressDashboardPage'
 
 import {
   resolveDashboardState,
@@ -156,23 +164,19 @@ export default async function ProgressPage({ searchParams }: PageProps) {
   const masteries = flattenLeafMasteries(parentMasteries)
   const coverage = calculateSyllabusCoverage(masteries)
   const prediction = predictGrade(attempts, masteries)
-  const streak = computeStreak(attempts.map((a) => new Date(a.created_at)))
+  const streakDays = computeStreak(allAttempts.map((a) => new Date(a.created_at)))
   const totalTopics = getTotalSyllabusLeaves(selectedCode)
-  const actionItems = generateActionPlan(attempts, masteries, streak, {
+  const actionItems = generateActionPlan(attempts, masteries, streakDays, {
     subjectLabel: `Cambridge ${selectedCode} ${subjectLabel}`,
     totalTopics: totalTopics || 38,
   })
 
-  // ---- insights derivation (all from real data) ----
   const state = resolveDashboardState(attempts.length)
   const patterns = analysePatterns(attempts)
   const speedProfile = analyseSpeedProfile(attempts)
-  const wins = deriveWins(attempts, masteries, streak)
+  const wins = deriveWins(attempts, masteries, streakDays)
   const timelineStations = buildTimeline(attempts)
 
-  // Recommendations resolve to real mark_schemes rows. Only fetched when there's
-  // a point: active paid users get topic-targeted questions; low-attempt users
-  // get generic subject starters.
   let recommendations: Recommendation[] = []
   let genericRecommendations = false
   if (analyticsAvailable && state === 'active') {
@@ -204,23 +208,25 @@ export default async function ProgressPage({ searchParams }: PageProps) {
     subjectLabel,
   })
 
-  const lastUpdated = new Date().toLocaleString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-  })
+  const weakTopics =
+    adaptWeakTopics(masteries, selectedCode).length > 0
+      ? adaptWeakTopics(masteries, selectedCode)
+      : adaptWeakFromRecommendations(recommendations, selectedCode)
 
-  const weakTopics = masteries
+  const topicsCovered = masteries.filter((m) => m.level !== 'unattempted').length
+
+  const dashStats = adaptDashStats(
+    allAttempts as AttemptLite[],
+    topicsCovered,
+    prediction,
+    selectedCode
+  )
+
+  const weakTopicsForOmni = masteries
     .filter((m) => m.level === 'critical')
     .sort((a, b) => a.percentage - b.percentage)
     .map((m) => ({ code: m.code, name: m.name, percentage: m.percentage }))
 
-  // ---- tab content ----
-  // Insights (diagnosis + prescription + reward) and the Journey timeline are
-  // open to every tier — that's the coaching hook. The deeper mastery analytics
-  // (coverage, trajectory, matrix) stay behind the existing paywall in the
-  // Detailed topics tab.
   const insightsNode = (
     <InsightsTab
       state={state}
@@ -258,10 +264,12 @@ export default async function ProgressPage({ searchParams }: PageProps) {
       />
     </div>
   ) : (
-    <div className="ms-dash-card ms-body-2">
-      Detailed topic analytics are coming soon for{' '}
-      <span className="font-semibold text-[var(--ec-text-primary)]">{subjectLabel}</span>.
-      Keep marking — your insights, journey, and attempt history are tracked above.
+    <div className="card card-pad">
+      <p className="body-2">
+        Detailed topic analytics are coming soon for{' '}
+        <strong className="text-main">{subjectLabel}</strong>. Keep marking — your
+        insights, journey, and attempt history are tracked below.
+      </p>
     </div>
   )
   const topicsNode = masteryUnlocked ? (
@@ -272,58 +280,47 @@ export default async function ProgressPage({ searchParams }: PageProps) {
 
   const attemptsNode = <AttemptsList attempts={filteredRaw} />
 
+  const detailedSection = (
+    <>
+      <BillingLimitBanner className="mb-6" />
+      <ProgressSubjectPicker subjects={subjectOptions} selectedCode={selectedCode} />
+      <ProgressTabs
+        insights={insightsNode}
+        journey={journeyNode}
+        topics={topicsNode}
+        attempts={attemptsNode}
+      />
+    </>
+  )
+
+  const courseCatalog = getCourseCatalog().map((c) => ({
+    code: c.code,
+    name: c.name,
+    lessonCount: getCourseLessons(c.code).length,
+  }))
+
   return (
-    <main className="app-shell app-shell-tabbed ms-dash-page ms-progress-page">
-      <div className="mx-auto min-w-0 max-w-7xl">
-        <div className="mb-10 flex min-w-0 flex-col gap-4 sm:flex-row sm:items-start sm:justify-between animate-entry">
-          <div className="min-w-0">
-            <Link
-              href="/dashboard"
-              className="mb-5 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-[var(--ec-text-secondary)] transition-colors hover:text-[var(--ec-brand)]"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              Back to dashboard
-            </Link>
-            <p className="ms-overline">Progress</p>
-            <h1 className="ms-h2" style={{ marginTop: 12 }}>
-              {firstName ? `${firstName}'s` : 'Your'} <em>progress.</em>
-            </h1>
-            <p className="ms-lead" style={{ marginTop: 14, maxWidth: 520 }}>
-              Your diagnosis, your next move, and the map of how far you&rsquo;ve
-              come — built from your marked {subjectLabel} attempts.
-            </p>
-          </div>
-          <div className="ms-micro inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-[var(--ec-border)] bg-[var(--ec-surface)] px-3 py-2 font-mono">
-            <RefreshCw className="h-3 w-3" aria-hidden="true" />
-            Updated {lastUpdated}
-          </div>
-        </div>
-
-        <BillingLimitBanner className="mb-6" />
-
-        <ProgressSubjectPicker
-          subjects={subjectOptions}
-          selectedCode={selectedCode}
-        />
-
-        <ProgressTabs
-          insights={insightsNode}
-          journey={journeyNode}
-          topics={topicsNode}
-          attempts={attemptsNode}
-        />
-      </div>
-
+    <>
+      <ProgressDashboardPage
+        firstName={firstName ?? ''}
+        streakDays={streakDays}
+        streakWeek={adaptStreakWeek(allAttempts.map((a) => new Date(a.created_at)))}
+        stats={dashStats}
+        recent={adaptRecentMarks(allAttempts)}
+        weakTopics={weakTopics}
+        milestone={adaptMilestone(actionItems, heroInsight.body)}
+        courseCatalog={courseCatalog}
+        detailedSection={detailedSection}
+      />
       <DrillToast />
-
-      {analyticsAvailable && (
+      {analyticsAvailable ? (
         <OmniAIBridge
           context={{
             type: 'mastery_matrix',
-            data: { weakTopics, coverage },
+            data: { weakTopics: weakTopicsForOmni, coverage },
           }}
         />
-      )}
-    </main>
+      ) : null}
+    </>
   )
 }

@@ -9,5 +9,5 @@ export const metadata = createPageMetadata({
 })
 
 export default function ProgressLayout({ children }: { children: ReactNode }) {
-  return <div className="min-w-0 overflow-x-clip">{children}</div>
+  return children
 }

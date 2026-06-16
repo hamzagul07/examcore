@@ -2,6 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { Check } from 'lucide-react'
+import {
+  COURSE_PROGRESS_CHANGED,
+  COURSE_LAST_LESSON_CHANGED,
+} from '@/lib/courses/margin-notes/continue-learning'
 
 const STORAGE_KEY = 'markscheme-course-progress'
 
@@ -21,13 +25,40 @@ function writeProgress(map: ProgressMap) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(map))
 }
 
+function notifyProgressChanged() {
+  if (typeof window === 'undefined') return
+  window.dispatchEvent(new CustomEvent(COURSE_PROGRESS_CHANGED))
+}
+
+/** Bump when local course progress changes — keeps catalog/hub rings in sync. */
+export function useCourseProgressRevision(): number {
+  const [revision, setRevision] = useState(0)
+
+  useEffect(() => {
+    const bump = () => setRevision((r) => r + 1)
+    window.addEventListener(COURSE_PROGRESS_CHANGED, bump)
+    window.addEventListener(COURSE_LAST_LESSON_CHANGED, bump)
+    return () => {
+      window.removeEventListener(COURSE_PROGRESS_CHANGED, bump)
+      window.removeEventListener(COURSE_LAST_LESSON_CHANGED, bump)
+    }
+  }, [])
+
+  return revision
+}
+
 export function useCourseProgress(subjectCode: string) {
   const [done, setDone] = useState<Set<string>>(new Set())
 
   useEffect(() => {
-    const map = readProgress()
-    const subject = map[subjectCode] ?? {}
-    setDone(new Set(Object.keys(subject).filter((k) => subject[k])))
+    const sync = () => {
+      const map = readProgress()
+      const subject = map[subjectCode] ?? {}
+      setDone(new Set(Object.keys(subject).filter((k) => subject[k])))
+    }
+    sync()
+    window.addEventListener(COURSE_PROGRESS_CHANGED, sync)
+    return () => window.removeEventListener(COURSE_PROGRESS_CHANGED, sync)
   }, [subjectCode])
 
   const toggle = useCallback(
@@ -42,6 +73,7 @@ export function useCourseProgress(subjectCode: string) {
         else next.delete(lessonSlug)
         return next
       })
+      notifyProgressChanged()
     },
     [subjectCode]
   )

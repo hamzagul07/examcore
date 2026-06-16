@@ -213,6 +213,34 @@ const SPECS: Record<string, LessonDiagramSpec> = {
       { focus: ['period'], caption: 'Period T is independent of amplitude (ideal spring).' },
     ],
   },
+  '4-3-density-and-pressure': {
+    params: [
+      { id: 'h', label: 'Depth h', min: 1, max: 12, step: 1, default: 5, unit: 'm' },
+      { id: 'rho', label: 'Density ρ', min: 800, max: 1200, step: 50, default: 1000, unit: 'kg m⁻³' },
+    ],
+    steps: [
+      {
+        focus: ['density'],
+        caption: 'Density ρ = m/V — mass per unit volume (kg m⁻³).',
+        embedHint: 'Compare block mass in the same volume — denser materials feel heavier.',
+      },
+      {
+        focus: ['pressure'],
+        caption: 'Pressure p = F/A — normal force per unit area (Pa = N m⁻²).',
+        embedHint: 'Spread the same weight over a wider area — pressure drops.',
+      },
+      {
+        focus: ['depth'],
+        caption: 'In a fluid, pressure increases with depth: Δp = ρgh.',
+        embedHint: 'Increase depth in the sim — read how gauge pressure grows linearly with h.',
+      },
+      {
+        focus: ['absolute'],
+        caption: 'Absolute pressure adds atmospheric pressure: p_total = p_atm + ρgh.',
+        embedHint: 'Toggle units and compare gauge vs absolute at the same depth.',
+      },
+    ],
+  },
   '3-5-integration': {
     params: [
       { id: 'a', label: 'Lower limit a', min: 0.5, max: 2.5, step: 0.5, default: 1 },
@@ -2179,10 +2207,10 @@ const SPECS: Record<string, LessonDiagramSpec> = {
   },
   '6-1-data-security': {
     steps: [
-      { focus: ['threats'], caption: 'Threats: unauthorised access, malware, interception.', embedHint: 'Match control to threat (firewall, antivirus, encryption).' },
+      { focus: ['threats'], caption: 'Threats: malware, phishing, and denial-of-service attacks.', embedHint: 'Match control to threat (firewall, antivirus, encryption).' },
+      { focus: ['pharming'], caption: 'Pharming redirects traffic via compromised DNS — even when the user types the correct URL.', embedHint: 'User enters bank.com but DNS returns a fraudulent IP address.' },
       { focus: ['auth'], caption: 'Access levels and authentication (password, 2FA, biometrics).', embedHint: 'Principle of least privilege.' },
-      { focus: ['backup'], caption: 'Backup strategies: full, incremental, off-site.', embedHint: 'Recovery point vs recovery time objectives.' },
-      { focus: ['physical'], caption: 'Physical security complements logical controls.', embedHint: 'Locks, CCTV, and secure disposal of storage.' },
+      { focus: ['backup', 'physical'], caption: 'Backup strategies and physical security complement logical controls.', embedHint: 'Off-site backup plus locks, CCTV, and secure disposal.' },
     ],
   },
   '7-1-ethics-and-ownership': {
@@ -2319,6 +2347,27 @@ const SPECS: Record<string, LessonDiagramSpec> = {
       { focus: ['procedural'], caption: 'Procedural: sequences, procedures, shared state.', embedHint: 'Top-down design with modules.' },
       { focus: ['oop'], caption: 'Object-oriented: classes, encapsulation, inheritance.', embedHint: 'Polymorphism — same interface, different behaviour.' },
       { focus: ['declarative'], caption: 'Declarative: state what, not how (SQL, Prolog outline).', embedHint: 'Contrast with imperative step-by-step code.' },
+    ],
+  },
+
+  'paper-5-planning-and-analysis': {
+    steps: [
+      {
+        focus: ['points'],
+        caption: 'Plot each point with vertical error bars — absolute uncertainty on the dependent variable.',
+      },
+      {
+        focus: ['lobf'],
+        caption: 'Draw the line of best fit (LOBF) — balanced scatter above and below the points.',
+      },
+      {
+        focus: ['wal'],
+        caption: 'Draw the worst acceptable line (WAL) — steepest or shallowest through all error bars.',
+      },
+      {
+        focus: ['gradient'],
+        caption: 'Use a large triangle on each line; gradient uncertainty Δm = |m_LOBF − m_WAL|.',
+      },
     ],
   },
 

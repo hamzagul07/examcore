@@ -5,28 +5,61 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — revenue, employees, capital employed, and market share as size measures.",
-  "durationMin": 18,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — revenue, employees, capital employed, market share as size measures.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "List methods of measuring business size.",
-    "Compare advantages of each measure.",
-    "Explain why size classification matters.",
-    "Apply measures to examples."
+    "Describe methods of measuring business size.",
+    "Compare advantages and limitations of each measure.",
+    "Explain why size measurement matters.",
+    "Apply size measures to case data."
   ],
   "simpleExplanation": {
     "title": "How big is the firm?",
-    "summary": "No single measure is perfect — revenue ignores profit, employees ignore capital intensity, market share needs industry context.",
+    "summary": "Business size can be measured by revenue, number of employees, capital employed, or market share — each suits different industries and has limitations.",
     "steps": [
-      "Revenue/sales value — simple but sector-dependent.",
-      "Number of employees — labour-intensive firms.",
+      "Revenue/sales — simple but varies by sector margins.",
+      "Employees — useful for labour-intensive firms.",
       "Capital employed — asset-heavy industries.",
-      "Market share — relative to industry."
+      "Market share — size relative to the whole market."
     ]
   },
+  "flashcards": [
+    { "front": "Revenue as size measure?", "back": "Total sales value — easy data but high-revenue low-margin firms may be weak." },
+    { "front": "Employees measure?", "back": "Headcount — suits services; misleading for automated factories." },
+    { "front": "Capital employed?", "back": "Total assets minus current liabilities — capital-intensive sectors." },
+    { "front": "Market share?", "back": "Firm sales ÷ total market sales × 100%." },
+    { "front": "Why measure size?", "back": "Compare competitors, government aid thresholds, merger analysis." },
+    { "front": "SME definition?", "back": "Varies by country — often by employees or turnover (1.3.2)." },
+    { "front": "Limitation of one measure?", "back": "Use multiple measures — Amazon high revenue, also huge employment and capital." },
+    { "front": "Link to 9.1.2?", "back": "Economies of scale relate to absolute size." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Business size** (1.3.1) supports **growth** and **objectives** topics. Evaluate **which measure fits** the industry in the stem." },
-    { "type": "practice", "label": "Mark a business size question", "href": "/mark?subject=9609&topic=1.3.1" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Measurements of business size** (1.3.1) — if case gives **different rankings** by revenue vs employees, **explain why** (capital intensity, margins)."
+    },
+    {
+      "type": "formula",
+      "content": "**Market share (%)** = $\\frac{\\text{Firm's sales}}{\\text{Total market sales}} \\times 100$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Firm A: revenue $500m, 2,000 staff. Firm B: revenue $200m, 8,000 staff. Which is 'larger' and which measure is more meaningful for a labour-intensive call centre comparison?",
+      "solution": "**By revenue:** **A is larger** ($500m vs $200m).\n\n**By employees:** **B is larger** (8,000 vs 2,000) — likely **labour-intensive** service model.\n\n**Call centre comparison:** **Employee count** more meaningful — output scales with **headcount**; revenue per employee shows **productivity** ($25k vs $200m/8000 = $25k per worker at B — need more data).\n\n**Lesson:** State **which measure** and **why** for the industry context."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a business size question",
+      "href": "/mark?subject=9609&topic=1.3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "1.3.3 Business growth", "href": "/courses/9609/1-3-3-business-growth" },
+        { "label": "9.1.2 Scale of operations", "href": "/courses/9609/9-1-2-scale-of-operations" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

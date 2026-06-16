@@ -1,7 +1,8 @@
 import type { CourseLesson, LessonInteractiveEmbed } from '@/lib/courses/types'
+import { embedFromLessonResources } from '@/lib/courses/embed-from-resources'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
 import {
-  PHET_RETAIN_WITH_NATIVE,
+  isPlaceholderInteractiveEmbed,
   preferNativeDiagramOverPlaceholder,
 } from '@/lib/courses/placeholder-embeds'
 import { resolveVisualCatalogSlug } from '@/lib/courses/visual-slug-aliases'
@@ -382,10 +383,10 @@ const INTERACTIVE_EMBED_CATALOG_RAW: Record<string, LessonInteractiveEmbed> = {
 }
 
 function retainCatalogSlug(slug: string): boolean {
-  if (!hasLessonLiveDiagram(slug)) return true
-  if (PHET_RETAIN_WITH_NATIVE.has(slug)) return true
-  const alias = resolveVisualCatalogSlug(slug)
-  return alias !== slug && PHET_RETAIN_WITH_NATIVE.has(alias)
+  const embed = INTERACTIVE_EMBED_CATALOG_RAW[slug]
+  if (!embed) return false
+  if (isPlaceholderInteractiveEmbed(embed) && hasLessonLiveDiagram(slug)) return false
+  return true
 }
 
 /** Runtime catalog — omits embeds suppressed when a native diagram exists. */
@@ -417,7 +418,9 @@ export function resolveLessonInteractiveEmbed(
   }
   const catalog =
     INTERACTIVE_EMBED_CATALOG[lesson.slug] ?? getCatalogInteractiveEmbed(lesson.slug)
-  return preferNativeDiagramOverPlaceholder(lesson.slug, catalog) ?? null
+  const fromResources = embedFromLessonResources(lesson)
+  const resolved = catalog ?? fromResources
+  return preferNativeDiagramOverPlaceholder(lesson.slug, resolved) ?? null
 }
 
 export function isCheerpjEmbedUrl(url: string): boolean {

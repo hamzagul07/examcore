@@ -10,7 +10,7 @@ import {
   resolveDiagramSpec,
   stepStateFor,
 } from '@/lib/courses/diagram-specs'
-import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
+import { hasLessonLiveDiagram, getLessonDiagram } from '@/lib/courses/lesson-diagrams'
 import { isDualVisualSlug } from '@/lib/courses/placeholder-embeds'
 import { CourseInteractiveEmbed } from '@/components/courses/CourseInteractiveEmbed'
 import { StepStageVisual } from '@/components/courses/visuals/StepStageVisual'
@@ -51,6 +51,9 @@ export function CourseLessonDiagramShell({
   const diagramStep = clampStepIndex(resolvedSpec, activeIndex)
   const stepState = stepStateFor(resolvedSpec, diagramStep)
   const currentStep = steps[activeIndex] ?? steps[0]
+  const stageCaption =
+    stepState?.caption ??
+    (liveDiagram ? getLessonDiagram(lessonSlug)?.meta.caption : undefined)
 
   const embedForStep = useMemo(() => {
     if (!interactiveEmbed) return null
@@ -138,6 +141,9 @@ export function CourseLessonDiagramShell({
               values={params}
               onChange={handleParamChange}
             />
+          ) : null}
+          {stageCaption ? (
+            <p className="diagram-stage-caption body-2">{stageCaption}</p>
           ) : null}
         </div>
       ) : null}

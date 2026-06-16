@@ -1,0 +1,128 @@
+/* Margin Notes + course pages — readable text per ec-theme (zen = dark on sand, late-night = light on dark). */
+
+/* ── Zen: remap light-on-dark utilities → dark on warm sand ── */
+html[data-ec-theme='zen'] .course-root .text-white,
+html[data-ec-theme='zen'] .course-root .text-white\/90,
+html[data-ec-theme='zen'] .course-root .text-white\/80,
+html[data-ec-theme='zen'] .course-root .text-slate-100,
+html[data-ec-theme='zen'] .course-root .text-slate-200,
+html[data-ec-theme='zen'] .course-root .text-slate-300,
+html[data-ec-theme='zen'] .course-root .text-gray-100,
+html[data-ec-theme='zen'] .course-root .text-gray-200,
+html[data-ec-theme='zen'] .course-root .text-gray-300,
+html[data-ec-theme='zen'] .course-root .text-neutral-100,
+html[data-ec-theme='zen'] .course-root .text-neutral-200 {
+  color: var(--text) !important;
+}
+
+html[data-ec-theme='zen'] .course-root .text-slate-400,
+html[data-ec-theme='zen'] .course-root .text-slate-500,
+html[data-ec-theme='zen'] .course-root .text-gray-400,
+html[data-ec-theme='zen'] .course-root .text-gray-500,
+html[data-ec-theme='zen'] .course-root .text-neutral-400,
+html[data-ec-theme='zen'] .course-root .text-neutral-500 {
+  color: var(--text-2) !important;
+}
+
+/* ec-* fallbacks that may still resolve to late-night light text on zen */
+html[data-ec-theme='zen'] .course-root {
+  color: var(--text);
+}
+
+html[data-ec-theme='zen'] .course-root .katex,
+html[data-ec-theme='zen'] .course-root .katex .base,
+html[data-ec-theme='zen'] .course-root .katex .strut,
+html[data-ec-theme='zen'] .course-root .katex .mord,
+html[data-ec-theme='zen'] .course-root .katex .mop,
+html[data-ec-theme='zen'] .course-root .katex .mbin,
+html[data-ec-theme='zen'] .course-root .katex .mrel,
+html[data-ec-theme='zen'] .course-root .katex .mopen,
+html[data-ec-theme='zen'] .course-root .katex .mclose,
+html[data-ec-theme='zen'] .course-root .katex .mpunct {
+  color: var(--text);
+}
+
+html[data-ec-theme='zen'] .course-root .katex-display {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-ec-theme='zen'] .course-root .course-rich-text,
+html[data-ec-theme='zen'] .course-root .course-rich-text--prose,
+html[data-ec-theme='zen'] .course-root .course-rich-text--inline,
+html[data-ec-theme='zen'] .course-root .course-rich-text--formula,
+html[data-ec-theme='zen'] .course-root .course-rich-text--flashcard {
+  color: var(--text);
+}
+
+/* ── Late-night: remap dark-on-light utilities → light on warm dark ── */
+html[data-ec-theme='late-night'] .course-root .text-black,
+html[data-ec-theme='late-night'] .course-root .text-gray-900,
+html[data-ec-theme='late-night'] .course-root .text-gray-800,
+html[data-ec-theme='late-night'] .course-root .text-gray-700,
+html[data-ec-theme='late-night'] .course-root .text-neutral-900,
+html[data-ec-theme='late-night'] .course-root .text-neutral-800,
+html[data-ec-theme='late-night'] .course-root .text-slate-900,
+html[data-ec-theme='late-night'] .course-root .text-slate-800,
+html[data-ec-theme='late-night'] .course-root .text-slate-700,
+html[data-ec-theme='late-night'] .course-root .text-\[\#25221b\],
+html[data-ec-theme='late-night'] .course-root .text-\[\#1f1f1f\] {
+  color: var(--text) !important;
+}
+
+html[data-ec-theme='late-night'] .course-root .text-gray-600,
+html[data-ec-theme='late-night'] .course-root .text-gray-500,
+html[data-ec-theme='late-night'] .course-root .text-neutral-600,
+html[data-ec-theme='late-night'] .course-root .text-neutral-500,
+html[data-ec-theme='late-night'] .course-root .text-slate-600,
+html[data-ec-theme='late-night'] .course-root .text-slate-500 {
+  color: var(--text-2) !important;
+}
+
+html[data-ec-theme='late-night'] .course-root {
+  color: var(--text);
+}
+
+html[data-ec-theme='late-night'] .course-root .katex,
+html[data-ec-theme='late-night'] .course-root .katex .base,
+html[data-ec-theme='late-night'] .course-root .katex .strut,
+html[data-ec-theme='late-night'] .course-root .katex .mord,
+html[data-ec-theme='late-night'] .course-root .katex .mop,
+html[data-ec-theme='late-night'] .course-root .katex .mbin,
+html[data-ec-theme='late-night'] .course-root .katex .mrel,
+html[data-ec-theme='late-night'] .course-root .katex .mopen,
+html[data-ec-theme='late-night'] .course-root .katex .mclose,
+html[data-ec-theme='late-night'] .course-root .katex .mpunct {
+  color: var(--text);
+}
+
+html[data-ec-theme='late-night'] .course-root .katex-display {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-ec-theme='late-night'] .course-root .course-rich-text,
+html[data-ec-theme='late-night'] .course-root .course-rich-text--prose,
+html[data-ec-theme='late-night'] .course-root .course-rich-text--inline,
+html[data-ec-theme='late-night'] .course-root .course-rich-text--formula,
+html[data-ec-theme='late-night'] .course-root .course-rich-text--flashcard {
+  color: var(--text);
+}
+
+html[data-ec-theme='late-night'] .course-root .lesson-diagram-svg text {
+  fill: var(--text);
+}
+
+html[data-ec-theme='late-night'] .course-root .lesson-diagram-svg [stroke] {
+  stroke: var(--text-2);
+}
+
+html[data-ec-theme='zen'] .course-root .lesson-diagram-svg text {
+  fill: var(--text);
+}
+
+html[data-ec-theme='zen'] .course-root .lesson-diagram-svg [stroke] {
+  stroke: var(--ink);
+}

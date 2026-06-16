@@ -5,7 +5,8 @@
           IBM Plex Mono (codes/labels) · Caveat (handwriting)
    ============================================================ */
 
-:root, [data-theme='paper'] {
+[data-ec-theme='zen'],
+[data-theme='paper'] {
   --bg: #f6f1e7;
   --bg-soft: #f1ebdd;
   --surface: #fffcf4;
@@ -35,9 +36,11 @@
   --shadow-pop: 0 14px 36px rgba(80, 70, 50, 0.12);
   --shadow-hard: 6px 6px 0 rgba(37, 34, 27, 0.1);
   --cta-shadow: 0 10px 24px rgba(30, 138, 94, 0.25);
+  --on-ink-text: #f6f1e7;
   color-scheme: light;
 }
 
+[data-ec-theme='late-night'],
 [data-theme='night'] {
   --bg: #14120d;
   --bg-soft: #1a1711;
@@ -68,6 +71,7 @@
   --shadow-pop: 0 18px 44px rgba(0, 0, 0, 0.45);
   --shadow-hard: 6px 6px 0 rgba(0, 0, 0, 0.45);
   --cta-shadow: 0 10px 28px rgba(0, 245, 160, 0.18);
+  --on-ink-text: #07130d;
   color-scheme: dark;
 }
 

@@ -24,7 +24,7 @@ function truncate(s, max) {
 }
 
 function family9706(slug) {
-  if (/cvp|break-even/.test(slug)) return 'commerce-breakeven'
+  if (/cvp|cost-volume-profit|break-even/.test(slug)) return 'commerce-breakeven'
   if (/ratio/.test(slug)) return 'commerce-ratios'
   if (/cost|marginal|absorption|profit|materials|labour|costing/.test(slug)) {
     return 'commerce-accounting-cost'

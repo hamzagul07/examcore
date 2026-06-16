@@ -2287,7 +2287,7 @@ export const SLUG_FAMILY_9706: Record<string, keyof typeof COMMERCE_HUMANITIES_F
   '2-2-1-costing-applications': 'commerce-accounting-cost',
   '2-2-2-absorption-costing': 'commerce-accounting-cost',
   '2-2-3-marginal-costing': 'commerce-accounting-cost',
-  '2-2-4-cost-volume-profit-analysis': 'commerce-accounting-cost',
+  '2-2-4-cost-volume-profit-analysis': 'commerce-breakeven',
 }
 
 export const SLUG_FAMILY_9609: Record<string, keyof typeof COMMERCE_HUMANITIES_FAMILIES> = {

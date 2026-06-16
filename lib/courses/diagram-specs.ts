@@ -1020,18 +1020,34 @@ const SPECS: Record<string, LessonDiagramSpec> = {
     { caption: 'Qualitative factors may override negative NPV.', embedHint: 'Government policy, market entry, competitive threat.' },
     { caption: 'Sensitivity analysis — test assumptions on r and cash flows.', embedHint: 'Change discount rate — does the decision flip?' },
   ]),
-  '5-4-4-break-even-analysis': embedSpec([
-    { caption: 'Break-even output = fixed costs ÷ contribution per unit.', embedHint: 'Set FC and unit variable cost in the sim — read contribution.' },
-    { caption: 'On the chart, total revenue and total cost lines cross at break-even.', embedHint: 'Watch the TR/TC intersection as you change price.' },
-    { caption: 'Margin of safety = actual output − break-even output.', embedHint: 'Drag quantity past break-even — read the profit region.' },
-    { caption: 'Assumes constant price and linear variable costs.', embedHint: 'Test limits — change price and see how BE shifts.' },
-  ]),
-  '2-2-4-cost-volume-profit-analysis': embedSpec([
-    { caption: 'Contribution = selling price − variable cost per unit.', embedHint: 'Adjust price and VC sliders — read contribution per unit.' },
-    { caption: 'Break-even is where total contribution equals fixed costs.', embedHint: 'Find where TR and TC cross on the chart.' },
-    { caption: 'Margin of safety shows how far sales can fall before loss.', embedHint: 'Move output above BE — compare profit vs break-even point.' },
-    { caption: 'CVP supports short-run decisions; check assumptions.', embedHint: 'Change FC — trace the new break-even output.' },
-  ]),
+  '5-4-4-break-even-analysis': {
+    params: [
+      { id: 'fc', label: 'Fixed costs', min: 4000, max: 20000, step: 1000, default: 12000, unit: '$' },
+      { id: 'sp', label: 'Selling price', min: 24, max: 72, step: 2, default: 48, unit: '$' },
+      { id: 'vc', label: 'Variable cost / unit', min: 8, max: 36, step: 1, default: 18, unit: '$' },
+      { id: 'actual', label: 'Actual output', min: 100, max: 800, step: 25, default: 450, unit: 'units' },
+    ],
+    steps: [
+      { focus: ['step-1'], caption: 'Break-even output = fixed costs ÷ contribution per unit.', embedHint: 'Set FC and unit variable cost in the sim — read contribution.' },
+      { focus: ['step-2'], caption: 'On the chart, total revenue and total cost lines cross at break-even.', embedHint: 'Watch the TR/TC intersection as you change price.' },
+      { focus: ['step-3'], caption: 'Margin of safety = actual output − break-even output.', embedHint: 'Drag quantity past break-even — read the profit region.' },
+      { focus: ['step-4'], caption: 'Assumes constant price and linear variable costs.', embedHint: 'Test limits — change price and see how BE shifts.' },
+    ],
+  },
+  '2-2-4-cost-volume-profit-analysis': {
+    params: [
+      { id: 'fc', label: 'Fixed costs', min: 4000, max: 20000, step: 1000, default: 18000, unit: '$' },
+      { id: 'sp', label: 'Selling price', min: 15, max: 40, step: 1, default: 25, unit: '$' },
+      { id: 'vc', label: 'Variable cost / unit', min: 4, max: 20, step: 1, default: 10, unit: '$' },
+      { id: 'actual', label: 'Budgeted output', min: 800, max: 2000, step: 50, default: 1500, unit: 'units' },
+    ],
+    steps: [
+      { focus: ['step-1'], caption: 'Contribution = selling price − variable cost per unit.', embedHint: 'Adjust price and VC sliders — read contribution per unit.' },
+      { focus: ['step-2'], caption: 'Break-even is where total contribution equals fixed costs.', embedHint: 'Find where TR and TC cross on the chart.' },
+      { focus: ['step-3'], caption: 'Margin of safety shows how far sales can fall before loss.', embedHint: 'Move output above BE — compare profit vs break-even point.' },
+      { focus: ['step-4'], caption: 'CVP supports short-run decisions; check assumptions.', embedHint: 'Change FC — trace the new break-even output.' },
+    ],
+  },
   '1-5-production-possibility-curves': embedSpec([
     { caption: 'PPC shows maximum output combinations with fixed resources.', embedHint: 'Points on the curve are productively efficient.' },
     { caption: 'Points inside the curve — inefficient (unemployed resources).', embedHint: 'Plot inside — economy could produce more of both goods.' },

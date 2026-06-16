@@ -1,77 +1,185 @@
 'use client'
 
+import { useEffect, useMemo, useRef } from 'react'
+import gsap from 'gsap'
 import { DIAGRAM_FILL, DIAGRAM_STROKE, DIAGRAM_TEXT } from '@/components/diagrams/diagram-styles'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
+import { DiagramGrid } from '@/components/diagrams/diagram-chrome'
 import { getLessonDiagramSpec, layerOpacity } from '@/lib/courses/diagram-specs'
 
-const DEFAULT_SLUG = '2-2-4-cost-volume-profit-analysis'
+const DEFAULT_SLUG = '5-4-4-break-even-analysis'
 
-/** CVP / break-even chart — TR, TC, FC lines with break-even point and margin of safety. */
+const AXIS = { x0: 52, y0: 188, x1: 392, y1: 28 }
+
+function fmtMoney(n: number) {
+  if (n >= 1000) return `$${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}k`
+  return `$${Math.round(n)}`
+}
+
+/** CVP / break-even chart — interactive TR, TC, FC with live BE and margin of safety. */
 export function BreakEvenDiagram({
   className = '',
   stepIndex = 0,
+  params,
   lessonSlug = DEFAULT_SLUG,
 }: LessonDiagramComponentProps) {
   const spec = getLessonDiagramSpec(lessonSlug) ?? getLessonDiagramSpec(DEFAULT_SLUG)
-  const axis = { x0: 48, y0: 180, x1: 380, y1: 36 }
-  const beX = 220
-  const beY = 118
+  const beRef = useRef<SVGCircleElement>(null)
+
+  const fc = params?.fc ?? 12_000
+  const sp = params?.sp ?? 48
+  const vc = params?.vc ?? 18
+  const actual = params?.actual ?? 450
+  const contribution = Math.max(sp - vc, 0.01)
+  const beUnits = contribution > 0 ? fc / contribution : 0
+  const mosUnits = Math.max(0, actual - beUnits)
+  const mosPct = actual > 0 ? (mosUnits / actual) * 100 : 0
+
+  const geom = useMemo(() => {
+    const maxQ = Math.max(beUnits * 1.55, actual * 1.12, 520)
+    const trAtMax = sp * maxQ
+    const tcAtMax = fc + vc * maxQ
+    const maxVal = Math.max(trAtMax, tcAtMax, fc) * 1.08
+    const { x0, y0, x1, y1 } = AXIS
+    const xOf = (q: number) => x0 + (q / maxQ) * (x1 - x0)
+    const yOf = (v: number) => y0 - (v / maxVal) * (y0 - y1)
+    const beX = xOf(beUnits)
+    const beY = yOf(sp * beUnits)
+    const actX = xOf(actual)
+    const fcY = yOf(fc)
+    const trEnd = { x: x1, y: yOf(trAtMax) }
+    const tcEnd = { x: x1, y: yOf(tcAtMax) }
+    return { maxQ, maxVal, xOf, yOf, beX, beY, actX, fcY, trEnd, tcEnd }
+  }, [actual, beUnits, fc, sp, vc])
+
+  useEffect(() => {
+    const dot = beRef.current
+    if (!dot || typeof window === 'undefined') return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    gsap.fromTo(dot, { attr: { r: 4 } }, { attr: { r: 7 }, duration: 0.35, yoyo: true, repeat: 1, ease: 'power2.out' })
+  }, [stepIndex, geom.beX, geom.beY])
+
+  const profitFill =
+    contribution <= 0
+      ? 'none'
+      : `M ${geom.beX} ${geom.beY} L ${geom.actX} ${geom.beY} L ${geom.actX} ${AXIS.y0} L ${geom.beX} ${AXIS.y0} Z`
 
   return (
     <svg
-      viewBox="0 0 420 220"
-      className={`lesson-diagram-svg ${className}`.trim()}
+      viewBox="0 0 420 240"
+      className={`lesson-diagram-svg lesson-diagram-svg--breakeven ${className}`.trim()}
       role="img"
-      aria-label="Break-even and cost-volume-profit chart"
+      aria-label={`Break-even chart: ${Math.round(beUnits)} units, margin of safety ${Math.round(mosUnits)} units`}
     >
-      <line x1={axis.x0} y1={axis.y0} x2={axis.x1} y2={axis.y0} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
-      <line x1={axis.x0} y1={axis.y0} x2={axis.x0} y2={axis.y1} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
-      <text x={axis.x1 - 8} y={axis.y0 + 14} fontSize="9" fill={DIAGRAM_TEXT}>
-        Output
-      </text>
-      <text x={12} y={axis.y1 + 4} fontSize="9" fill={DIAGRAM_TEXT}>
-        £
-      </text>
+      <DiagramGrid {...AXIS} xLabel="Output (units)" yLabel="£" columns={8} rows={5} />
 
       <g opacity={layerOpacity(spec, stepIndex, 'step-1')}>
-        <line x1={axis.x0} y1={148} x2={axis.x1} y2={148} stroke={DIAGRAM_STROKE} strokeWidth="2" strokeDasharray="6 4" />
-        <text x={axis.x0 + 8} y={142} fontSize="9" fill={DIAGRAM_TEXT}>
-          Fixed costs
+        <line
+          x1={AXIS.x0}
+          y1={geom.fcY}
+          x2={AXIS.x1}
+          y2={geom.fcY}
+          stroke={DIAGRAM_STROKE}
+          strokeWidth="2"
+          strokeDasharray="7 5"
+        />
+        <text x={AXIS.x0 + 6} y={geom.fcY - 6} fontSize="9" fill={DIAGRAM_TEXT}>
+          Fixed costs {fmtMoney(fc)}
         </text>
-        <text x={260} y={52} fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
-          Contribution = SP − VC
+        <rect x={286} y={34} width={118} height={52} rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1" opacity="0.95" />
+        <text x={345} y={52} textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT} fontWeight="600">
+          Contribution / unit
+        </text>
+        <text x={345} y={68} textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT}>
+          {fmtMoney(contribution)}
+        </text>
+        <text x={345} y={80} textAnchor="middle" fontSize="7" fill={DIAGRAM_TEXT}>
+          = {fmtMoney(sp)} − {fmtMoney(vc)}
         </text>
       </g>
 
       <g opacity={layerOpacity(spec, stepIndex, 'step-2')}>
-        <line x1={axis.x0} y1={148} x2={axis.x1} y2={72} stroke={DIAGRAM_STROKE} strokeWidth="2" />
-        <text x={axis.x1 - 72} y={68} fontSize="9" fill={DIAGRAM_TEXT}>
+        <line
+          x1={AXIS.x0}
+          y1={geom.fcY}
+          x2={geom.tcEnd.x}
+          y2={geom.tcEnd.y}
+          stroke={DIAGRAM_STROKE}
+          strokeWidth="2.25"
+        />
+        <text x={geom.tcEnd.x - 68} y={geom.tcEnd.y - 4} fontSize="9" fill={DIAGRAM_TEXT}>
           Total cost
         </text>
       </g>
 
       <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
-        <line x1={axis.x0} y1={axis.y0} x2={axis.x1} y2={48} stroke={DIAGRAM_STROKE} strokeWidth="2" />
-        <text x={axis.x1 - 64} y={44} fontSize="9" fill={DIAGRAM_TEXT}>
+        <line
+          x1={AXIS.x0}
+          y1={AXIS.y0}
+          x2={geom.trEnd.x}
+          y2={geom.trEnd.y}
+          stroke="var(--course-subject-accent, var(--ec-brand))"
+          strokeWidth="2.25"
+        />
+        <text x={geom.trEnd.x - 72} y={geom.trEnd.y + 12} fontSize="9" fill={DIAGRAM_TEXT}>
           Total revenue
         </text>
-        <circle cx={beX} cy={beY} r="5" fill="var(--ink, var(--ec-brand))" />
-        <text x={beX + 10} y={beY - 6} fontSize="9" fill={DIAGRAM_TEXT} fontWeight="600">
-          Break-even
+        <circle ref={beRef} cx={geom.beX} cy={geom.beY} r="6" fill="var(--ink, var(--ec-brand))" />
+        <line
+          x1={geom.beX}
+          y1={geom.beY}
+          x2={geom.beX}
+          y2={AXIS.y0}
+          stroke={DIAGRAM_STROKE}
+          strokeWidth="1"
+          strokeDasharray="3 3"
+          opacity="0.6"
+        />
+        <text x={geom.beX + 8} y={geom.beY - 8} fontSize="9" fill={DIAGRAM_TEXT} fontWeight="600">
+          BE {Math.round(beUnits)} u
         </text>
-        <text x={beX - 20} y={beY + 22} fontSize="8" fill={DIAGRAM_TEXT}>
-          TR = TC
+        <text x={geom.beX - 4} y={AXIS.y0 + 14} textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          {Math.round(beUnits)}
         </text>
       </g>
 
       <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
-        <rect x={beX} y={beY - 2} width={100} height={axis.y0 - beY + 2} fill={DIAGRAM_FILL} opacity="0.55" />
-        <line x1={beX + 100} y1={axis.y0} x2={beX + 100} y2={beY} stroke={DIAGRAM_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
-        <text x={beX + 108} y={beY + 24} fontSize="9" fill={DIAGRAM_TEXT}>
-          Margin of safety
+        {contribution > 0 && actual > beUnits ? (
+          <path d={profitFill} fill="var(--course-subject-accent, var(--ec-brand))" opacity="0.14" />
+        ) : null}
+        {contribution > 0 && actual > beUnits ? (
+          <>
+            <line
+              x1={geom.beX}
+              y1={geom.beY - 2}
+              x2={geom.actX}
+              y2={geom.beY - 2}
+              stroke={DIAGRAM_STROKE}
+              strokeWidth="1.5"
+            />
+            <text x={(geom.beX + geom.actX) / 2} y={geom.beY - 10} textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+              Margin of safety
+            </text>
+          </>
+        ) : null}
+        <line
+          x1={geom.actX}
+          y1={AXIS.y0}
+          x2={geom.actX}
+          y2={geom.beY}
+          stroke={DIAGRAM_STROKE}
+          strokeWidth="1.5"
+          strokeDasharray="4 3"
+        />
+        <text x={geom.actX} y={AXIS.y0 + 14} textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          {Math.round(actual)}
         </text>
-        <text x={48} y={24} fontSize="9" fill={DIAGRAM_TEXT}>
-          BEP (units) = FC ÷ contribution per unit
+        <rect x={12} y={196} width={188} height={36} rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1" opacity="0.95" />
+        <text x={20} y={210} fontSize="8" fill={DIAGRAM_TEXT}>
+          MoS: {Math.round(mosUnits)} units ({mosPct.toFixed(1)}%)
+        </text>
+        <text x={20} y={224} fontSize="7" fill={DIAGRAM_TEXT}>
+          BE = {fmtMoney(fc)} ÷ {fmtMoney(contribution)} = {Math.round(beUnits)} units
         </text>
       </g>
     </svg>

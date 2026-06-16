@@ -128,6 +128,48 @@ function financeView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: n
   )
 }
 
+function elasticityView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  return (
+    <>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-1')}>
+        <text x="210" y="28" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+          Price elasticity of demand
+        </text>
+        <text x="210" y="48" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          PED = (% ΔQd) / (% ΔP)
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-2')}>
+        <line x1="80" y1="180" x2="340" y2="60" stroke={DIAGRAM_STROKE} strokeWidth="2" />
+        <text x="344" y="64" fontSize="9" fill={DIAGRAM_TEXT}>
+          D
+        </text>
+        <text x="48" y="184" fontSize="9" fill={DIAGRAM_TEXT}>
+          Q
+        </text>
+        <text x="24" y="100" fontSize="9" fill={DIAGRAM_TEXT}>
+          P
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
+        <line x1="180" y1="180" x2="180" y2="60" stroke={DIAGRAM_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
+        <text x="188" y="72" fontSize="8" fill={DIAGRAM_TEXT}>
+          Inelastic — steep
+        </text>
+        <line x1="260" y1="180" x2="260" y2="60" stroke={DIAGRAM_STROKE} strokeWidth="1.5" strokeDasharray="4 3" />
+        <text x="268" y="120" fontSize="8" fill={DIAGRAM_TEXT}>
+          Elastic — flat
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="200" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          |PED| &gt; 1 elastic · &lt; 1 inelastic · link to pricing and total revenue
+        </text>
+      </g>
+    </>
+  )
+}
+
 function strategyView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
   const labels = ['Political', 'Economic', 'Social', 'Tech', 'Legal', 'Env']
   return (
@@ -177,7 +219,9 @@ export function BusinessDiagram({
   const spec = getLessonDiagramSpec(lessonSlug)
   const family = getFamilyIdForSlug(lessonSlug) ?? 'commerce-marketing'
   const variant =
-    family === 'commerce-hrm'
+    family === 'commerce-elasticity'
+      ? 'elasticity'
+      : family === 'commerce-hrm'
       ? 'hrm'
       : family === 'commerce-operations'
         ? 'operations'
@@ -188,7 +232,9 @@ export function BusinessDiagram({
             : 'marketing'
 
   const view =
-    variant === 'hrm'
+    variant === 'elasticity'
+      ? elasticityView
+      : variant === 'hrm'
       ? hrmView
       : variant === 'operations'
         ? operationsView

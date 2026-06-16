@@ -102,6 +102,10 @@ import { BusinessDiagram } from '@/components/diagrams/BusinessDiagram'
 import { LegalDiagram } from '@/components/diagrams/LegalDiagram'
 import { SocialScienceDiagram } from '@/components/diagrams/SocialScienceDiagram'
 import { PsychologyDiagram } from '@/components/diagrams/PsychologyDiagram'
+import { BreakEvenDiagram } from '@/components/diagrams/BreakEvenDiagram'
+import { RatioAnalysisDiagram } from '@/components/diagrams/RatioAnalysisDiagram'
+import { StakeholderDiagram } from '@/components/diagrams/StakeholderDiagram'
+import { InvestmentAppraisalDiagram } from '@/components/diagrams/InvestmentAppraisalDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -523,6 +527,26 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'commerce-accounting-statements': {
     Component: AccountingDiagram,
     caption: 'Financial statements and ratios summarise performance and position.',
+  },
+  'commerce-breakeven': {
+    Component: BreakEvenDiagram,
+    caption: 'Break-even is where total revenue equals total cost — contribution per unit covers fixed costs.',
+  },
+  'commerce-ratios': {
+    Component: RatioAnalysisDiagram,
+    caption: 'Ratio analysis compares liquidity, profitability, efficiency, and gearing over time.',
+  },
+  'commerce-investment': {
+    Component: InvestmentAppraisalDiagram,
+    caption: 'Investment appraisal compares payback, ARR, NPV, and IRR for capital projects.',
+  },
+  'commerce-stakeholder': {
+    Component: StakeholderDiagram,
+    caption: 'Stakeholder mapping uses power and interest to prioritise engagement.',
+  },
+  'commerce-elasticity': {
+    Component: BusinessDiagram,
+    caption: 'Price elasticity links demand responsiveness to revenue and pricing strategy.',
   },
   'commerce-marketing': {
     Component: BusinessDiagram,

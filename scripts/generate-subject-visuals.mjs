@@ -24,11 +24,13 @@ function truncate(s, max) {
 }
 
 function family9706(slug) {
-  if (/cost|marginal|absorption|cvp|profit|materials|labour|costing/.test(slug)) {
+  if (/cvp|break-even/.test(slug)) return 'commerce-breakeven'
+  if (/ratio/.test(slug)) return 'commerce-ratios'
+  if (/cost|marginal|absorption|profit|materials|labour|costing/.test(slug)) {
     return 'commerce-accounting-cost'
   }
   if (
-    /ratio|financial|adjustment|limited|partnership|sole-trader|capital-and-revenue|changing-asset|users-of-accounting|draft/.test(
+    /financial|adjustment|limited|partnership|sole-trader|capital-and-revenue|changing-asset|users-of-accounting|draft/.test(
       slug
     )
   ) {
@@ -38,6 +40,11 @@ function family9706(slug) {
 }
 
 function family9609(slug) {
+  if (/break-even/.test(slug)) return 'commerce-breakeven'
+  if (/ratio|liquidity|profitability|accounting-data/.test(slug)) return 'commerce-ratios'
+  if (/investment-appraisal|payback|arr|npv/.test(slug)) return 'commerce-investment'
+  if (/stakeholder/.test(slug)) return 'commerce-stakeholder'
+  if (/elasticity/.test(slug)) return 'commerce-elasticity'
   const unit = parseInt(slug.split('-')[0], 10)
   if (unit === 3) return 'commerce-marketing'
   if (unit === 2 || unit === 7) return 'commerce-hrm'
@@ -155,6 +162,11 @@ export type CommerceHumanitiesFamilyId =
   | 'commerce-accounting-ledger'
   | 'commerce-accounting-cost'
   | 'commerce-accounting-statements'
+  | 'commerce-breakeven'
+  | 'commerce-ratios'
+  | 'commerce-investment'
+  | 'commerce-stakeholder'
+  | 'commerce-elasticity'
   | 'commerce-marketing'
   | 'commerce-hrm'
   | 'commerce-operations'

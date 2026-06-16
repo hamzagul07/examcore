@@ -54,6 +54,9 @@ function family9609(slug) {
 }
 
 function family9084(slug) {
+  if (/judicial-precedent/.test(slug)) return 'law-precedent'
+  if (/statutory-interpretation/.test(slug)) return 'law-interpretation'
+  if (/remedies/.test(slug)) return 'law-remedies'
   if (/^2-/.test(slug)) return 'law-criminal-elements'
   if (/^4-/.test(slug)) return 'law-tort-elements'
   if (/^3-/.test(slug)) return 'law-contract-elements'
@@ -62,6 +65,12 @@ function family9084(slug) {
 
 function family9699(slug) {
   if (/^2-/.test(slug)) return 'soc-research'
+  const unit = parseInt(slug.split('-')[0], 10)
+  if (unit === 3 || unit === 4) return 'soc-family'
+  if (unit === 5 || unit === 6) return 'soc-education'
+  if (unit === 9 || unit === 10) return 'soc-media'
+  if (unit === 7 || unit === 8) return 'soc-globalisation'
+  if (unit === 11 || unit === 12) return 'soc-religion'
   return 'soc-theory'
 }
 
@@ -69,7 +78,10 @@ function family9990(slug) {
   if (/^4-/.test(slug)) return 'psych-workplace'
   if (/^3-/.test(slug)) return 'psych-health'
   if (/^2-/.test(slug)) return 'psych-consumer'
-  return 'psych-clinical'
+  if (/research-methodology|core-studies/.test(slug)) return 'psych-research'
+  if (/explanation/.test(slug)) return 'psych-clinical-diathesis'
+  if (/treatment|management/.test(slug)) return 'psych-clinical-treatment'
+  return 'psych-clinical-dsm'
 }
 
 const classifiers = {
@@ -176,9 +188,21 @@ export type CommerceHumanitiesFamilyId =
   | 'law-contract-elements'
   | 'law-criminal-elements'
   | 'law-tort-elements'
+  | 'law-precedent'
+  | 'law-interpretation'
+  | 'law-remedies'
   | 'soc-theory'
   | 'soc-research'
+  | 'soc-family'
+  | 'soc-education'
+  | 'soc-media'
+  | 'soc-globalisation'
+  | 'soc-religion'
   | 'psych-clinical'
+  | 'psych-clinical-dsm'
+  | 'psych-clinical-diathesis'
+  | 'psych-clinical-treatment'
+  | 'psych-research'
   | 'psych-consumer'
   | 'psych-health'
   | 'psych-workplace'

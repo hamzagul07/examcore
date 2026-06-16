@@ -584,6 +584,18 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: LegalDiagram,
     caption: 'Negligence: duty of care, breach, causation, and remoteness of damage.',
   },
+  'law-precedent': {
+    Component: LegalDiagram,
+    caption: 'Judicial precedent — stare decisis, ratio decidendi, and court hierarchy.',
+  },
+  'law-interpretation': {
+    Component: LegalDiagram,
+    caption: 'Statutory interpretation rules — literal, golden, mischief, and purposive.',
+  },
+  'law-remedies': {
+    Component: LegalDiagram,
+    caption: 'Civil remedies — compensatory and punitive damages, injunctions, and specific performance.',
+  },
   'soc-theory': {
     Component: SocialScienceDiagram,
     caption: 'Sociological perspectives explain structure, agency, and social change.',
@@ -592,9 +604,45 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: SocialScienceDiagram,
     caption: 'Research design links methods to validity, reliability, and ethics.',
   },
+  'soc-family': {
+    Component: SocialScienceDiagram,
+    caption: 'Family structures, roles, and sociological perspectives on domestic life.',
+  },
+  'soc-education': {
+    Component: SocialScienceDiagram,
+    caption: 'Education reproduces or challenges inequality — theories and attainment gaps.',
+  },
+  'soc-media': {
+    Component: SocialScienceDiagram,
+    caption: 'Media effects models — from hypodermic syringe to active audience theories.',
+  },
+  'soc-globalisation': {
+    Component: SocialScienceDiagram,
+    caption: 'Globalisation reshapes identity, power, migration, and inequality.',
+  },
+  'soc-religion': {
+    Component: SocialScienceDiagram,
+    caption: 'Secularisation debate — religion, social change, and post-modernity.',
+  },
   'psych-clinical': {
     Component: PsychologyDiagram,
     caption: 'Clinical pathway: diagnosis, explanation, treatment, and evaluation.',
+  },
+  'psych-clinical-dsm': {
+    Component: PsychologyDiagram,
+    caption: 'Diagnostic criteria — symptoms, duration, distress, and functional impairment.',
+  },
+  'psych-clinical-diathesis': {
+    Component: PsychologyDiagram,
+    caption: 'Diathesis-stress model — vulnerability plus life stress triggers disorder.',
+  },
+  'psych-clinical-treatment': {
+    Component: PsychologyDiagram,
+    caption: 'Biopsychosocial treatment — drugs, CBT, and social support combined.',
+  },
+  'psych-research': {
+    Component: PsychologyDiagram,
+    caption: 'Research design — IV/DV, controls, ethics, and core study evaluation.',
   },
   'psych-consumer': {
     Component: PsychologyDiagram,

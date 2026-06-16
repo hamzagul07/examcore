@@ -5,6 +5,142 @@ import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-
 import { getFamilyIdForSlug } from '@/lib/courses/diagram-families'
 import { getLessonDiagramSpec, layerOpacity } from '@/lib/courses/diagram-specs'
 
+function dsmView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  const items = ['Symptoms', 'Duration', 'Distress', 'Function']
+  return (
+    <>
+      <text x="210" y="36" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+        Diagnostic criteria checklist
+      </text>
+      {items.map((label, i) => (
+        <g key={label} opacity={layerOpacity(spec, stepIndex, `step-${i + 1}`)}>
+          <rect x={48 + i * 84} y="56" width="72" height="36" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+          <text x={84 + i * 84} y="78" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+            {label}
+          </text>
+        </g>
+      ))}
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <rect x="100" y="112" width="220" height="48" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="210" y="134" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          DSM / ICD — reliable diagnosis for treatment
+        </text>
+        <text x="210" y="150" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Rule out alternative explanations · cultural validity
+        </text>
+      </g>
+    </>
+  )
+}
+
+function diathesisView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  return (
+    <>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-1')}>
+        <rect x="48" y="48" width="120" height="48" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="108" y="68" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT} fontWeight="600">
+          Diathesis
+        </text>
+        <text x="108" y="84" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Genetic · biological vulnerability
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-2')}>
+        <text x="210" y="72" textAnchor="middle" fontSize="14" fill={DIAGRAM_TEXT}>
+          +
+        </text>
+        <rect x="252" y="48" width="120" height="48" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="312" y="68" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT} fontWeight="600">
+          Stressor
+        </text>
+        <text x="312" y="84" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Life events · trauma
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
+        <path d="M 210 96 L 210 128" stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <rect x="150" y="128" width="120" height="40" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="210" y="152" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Disorder onset
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="192" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Compare bio vs psycho vs socio-cultural explanations
+        </text>
+      </g>
+    </>
+  )
+}
+
+function treatmentView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  const layers = [
+    { x: 48, label: 'Biological', sub: 'Drugs · ECT' },
+    { x: 168, label: 'Psychological', sub: 'CBT · psychodynamic' },
+    { x: 288, label: 'Social', sub: 'Support · environment' },
+  ]
+  return (
+    <>
+      <text x="210" y="32" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT} fontWeight="600">
+        Biopsychosocial treatment
+      </text>
+      {layers.map((l, i) => (
+        <g key={l.label} opacity={layerOpacity(spec, stepIndex, `step-${i + 1}`)}>
+          <rect x={l.x} y="48" width="96" height="56" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+          <text x={l.x + 48} y="72" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT} fontWeight="600">
+            {l.label}
+          </text>
+          <text x={l.x + 48} y="90" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+            {l.sub}
+          </text>
+        </g>
+      ))}
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="132" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Evaluate efficacy · side effects · ethics · combination therapy
+        </text>
+        <text x="210" y="152" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Relapse prevention · patient adherence · cultural sensitivity
+        </text>
+      </g>
+    </>
+  )
+}
+
+function psychResearchView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
+  return (
+    <>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-1')}>
+        <rect x="48" y="48" width="88" height="40" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="92" y="72" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          IV
+        </text>
+        <path d="M 136 68 L 168 68" stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <rect x="168" y="48" width="88" height="40" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="212" y="72" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          DV
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-2')}>
+        <rect x="280" y="48" width="100" height="40" rx="6" fill={DIAGRAM_FILL} stroke={DIAGRAM_STROKE} strokeWidth="1.5" />
+        <text x="330" y="72" textAnchor="middle" fontSize="8" fill={DIAGRAM_TEXT}>
+          Controls · random
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-3')}>
+        <text x="210" y="120" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Ethics — consent · debrief · confidentiality
+        </text>
+      </g>
+      <g opacity={layerOpacity(spec, stepIndex, 'step-4')}>
+        <text x="210" y="152" textAnchor="middle" fontSize="9" fill={DIAGRAM_TEXT}>
+          Core study evaluation — method · findings · generalisability
+        </text>
+      </g>
+    </>
+  )
+}
+
 function clinicalView(spec: ReturnType<typeof getLessonDiagramSpec>, stepIndex: number) {
   const steps = ['Diagnosis', 'Explanation', 'Treatment', 'Evaluation']
   return (
@@ -122,7 +258,7 @@ export function PsychologyDiagram({
   lessonSlug = '1-1-1-diagnostic-criteria-for-schizophrenia',
 }: LessonDiagramComponentProps) {
   const spec = getLessonDiagramSpec(lessonSlug)
-  const family = getFamilyIdForSlug(lessonSlug) ?? 'psych-clinical'
+  const family = getFamilyIdForSlug(lessonSlug) ?? 'psych-clinical-dsm'
 
   const view =
     family === 'psych-consumer'
@@ -131,7 +267,15 @@ export function PsychologyDiagram({
         ? healthView
         : family === 'psych-workplace'
           ? workplaceView
-          : clinicalView
+          : family === 'psych-clinical-diathesis'
+            ? diathesisView
+            : family === 'psych-clinical-treatment'
+              ? treatmentView
+              : family === 'psych-research'
+                ? psychResearchView
+                : family === 'psych-clinical-dsm'
+                  ? dsmView
+                  : clinicalView
 
   return (
     <svg

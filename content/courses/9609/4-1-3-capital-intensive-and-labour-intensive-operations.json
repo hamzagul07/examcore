@@ -5,28 +5,57 @@
   "paper": "AS",
   "paperName": "AS Level Content (Paper 1 & 2)",
   "status": "premium",
-  "summary": "9609 AS — choosing between automation and labour in production.",
-  "durationMin": 20,
-  "updated": "2026-06-10",
+  "summary": "9609 AS — choosing capital vs labour intensity, cost structures, and contextual factors.",
+  "durationMin": 22,
+  "updated": "2026-06-15",
   "learningObjectives": [
-    "Define capital and labour intensive operations.",
-    "Compare advantages of each approach.",
-    "Explain factors affecting choice.",
-    "Apply to case study contexts."
+    "Define capital intensive and labour intensive operations.",
+    "Explain factors affecting the choice between them.",
+    "Analyse cost and flexibility implications.",
+    "Apply to manufacturing and service case studies."
   ],
   "simpleExplanation": {
     "title": "Machines vs people",
-    "summary": "Capital-intensive firms invest heavily in equipment; labour-intensive firms rely more on workforce skills and hours.",
+    "summary": "Capital-intensive firms invest heavily in machinery (high fixed costs, low marginal cost). Labour-intensive firms rely on workers (lower setup cost, higher variable labour cost).",
     "steps": [
-      "Capital intensive: high fixed costs, low unit cost at scale.",
-      "Labour intensive: flexible, lower initial investment.",
-      "Wage rates and technology affect choice.",
-      "Services often more labour intensive."
+      "Capital intensive: automation, robotics, high fixed costs.",
+      "Labour intensive: more workers relative to machinery.",
+      "Wage rates and technology prices drive the choice.",
+      "Services (hotels, consulting) often labour intensive."
     ]
   },
+  "flashcards": [
+    { "front": "Capital intensive?", "back": "High proportion of capital (machinery) to labour in production." },
+    { "front": "Labour intensive?", "back": "High proportion of labour costs — e.g. hand tailoring, care homes." },
+    { "front": "Break-even link?", "back": "Capital intensive = higher fixed costs → higher break-even (5.4.4)." },
+    { "front": "When choose capital?", "back": "High volume, stable demand, expensive labour, precision needed." },
+    { "front": "When choose labour?", "back": "Low volume, custom work, low wages, flexible skills." },
+    { "front": "Risk of automation?", "back": "High initial investment; obsolescence; redundancy costs." },
+    { "front": "Link to 5.2 finance?", "back": "Capital investment may need loans/leasing (5.2.2)." },
+    { "front": "Developing country?", "back": "Lower wages favour labour intensity vs automated rich markets." }
+  ],
   "sections": [
-    { "type": "intro", "content": "**Capital vs labour intensity** (4.1.3) links to **4.1.4 methods** and **finance** later. Judge **fit for market size**." },
-    { "type": "practice", "label": "Mark a capital/labour intensity question", "href": "/mark?subject=9609&topic=4.1.3" },
-    { "type": "resources", "items": [{ "label": "9609 course index", "href": "/courses/9609" }] }
+    {
+      "type": "intro",
+      "content": "**Capital vs labour intensity** (4.1.3) connects **operations** to **finance (5.2)** and **break-even (5.4.4)**. Case questions often ask whether **automation** is justified."
+    },
+    {
+      "type": "workedExample",
+      "question": "Garment maker in Country X (low wages) considers automated cutting machines costing $2m. Currently 200 cutters employed. Discuss factors in the decision.",
+      "solution": "**Capital intensive pros:** Faster output, consistent quality, lower **unit labour cost** at high volume.\n\n**Cons:** **$2m finance** (interest, payback — 10.3), **redundancy** and **retraining** (2.1), fixed costs if **fashion demand volatile**.\n\n**Labour intensive pros:** **Flexibility** for small batches (4.1.4 job production), **low wages** reduce automation urgency.\n\n**Decision factors:** **Forecast demand**, **labour cost trend**, **competitor automation**, **lead time** requirements."
+    },
+    {
+      "type": "practice",
+      "label": "Mark a capital vs labour question",
+      "href": "/mark?subject=9609&topic=4.1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        { "label": "5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
+        { "label": "10.3.1 Investment appraisal", "href": "/courses/9609/10-3-1-investment-appraisal" },
+        { "label": "9609 course index", "href": "/courses/9609" }
+      ]
+    }
   ]
 }

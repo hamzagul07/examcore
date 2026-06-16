@@ -1,6 +1,8 @@
 import { createServiceClient } from '@/lib/supabase/service'
 import type { PastPaperQuestionRef } from '@/lib/courses/types'
 import { buildMarkHref, formatPaperSession } from '@/lib/courses/format-session'
+import { getStaticTopicFallback } from '@/lib/marking/topic-fallbacks'
+import { topicLookupCodes } from '@/lib/marking/topic-question'
 
 type DbRow = {
   paper_code: string | null
@@ -37,6 +39,33 @@ const FALLBACK_QUESTIONS: Record<string, PastPaperQuestionRef[]> = {
   ],
 }
 
+function staticFallbackToRef(
+  subjectCode: string,
+  topicCode: string
+): PastPaperQuestionRef[] {
+  const match = getStaticTopicFallback(subjectCode, topicLookupCodes(topicCode))
+  if (!match?.question_text) return []
+  const sessionCode =
+    match.paper_session.match(/^([smw]\d{2})$/i)?.[0]?.toLowerCase() ??
+    (match.paper_session.includes('June') ? 's23' : 'w23')
+  return [
+    {
+      paperCode: match.paper_code,
+      paperSession: sessionCode,
+      sessionLabel: formatPaperSession(sessionCode),
+      questionNumber: match.question_number,
+      questionText: match.question_text,
+      totalMarks: match.total_marks ?? 8,
+      markHref: buildMarkHref(
+        subjectCode,
+        match.paper_code,
+        sessionCode,
+        match.question_number
+      ),
+    },
+  ]
+}
+
 export async function fetchPastPaperQuestionsForTopic(
   subjectCode: string,
   topicCode: string,
@@ -59,7 +88,10 @@ export async function fetchPastPaperQuestionsForTopic(
       .limit(limit)
 
     if (error || !data?.length) {
-      return FALLBACK_QUESTIONS[fallbackKey]?.slice(0, limit) ?? []
+      return (
+        FALLBACK_QUESTIONS[fallbackKey]?.slice(0, limit) ??
+        staticFallbackToRef(subjectCode, topicCode).slice(0, limit)
+      )
     }
 
     return data
@@ -84,6 +116,9 @@ export async function fetchPastPaperQuestionsForTopic(
         }
       })
   } catch {
-    return FALLBACK_QUESTIONS[fallbackKey]?.slice(0, limit) ?? []
+    return (
+      FALLBACK_QUESTIONS[fallbackKey]?.slice(0, limit) ??
+      staticFallbackToRef(subjectCode, topicCode).slice(0, limit)
+    )
   }
 }

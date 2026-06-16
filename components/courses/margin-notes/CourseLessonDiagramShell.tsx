@@ -13,6 +13,7 @@ import {
 import { hasLessonLiveDiagram, getLessonDiagram } from '@/lib/courses/lesson-diagrams'
 import { isDualVisualSlug } from '@/lib/courses/placeholder-embeds'
 import { CourseInteractiveEmbed } from '@/components/courses/CourseInteractiveEmbed'
+import { CourseRichText } from '@/components/courses/CourseRichText'
 import { StepStageVisual } from '@/components/courses/visuals/StepStageVisual'
 import { DiagramParamControls } from '@/components/courses/visuals/DiagramParamControls'
 import type { LessonStep } from '@/lib/courses/margin-notes/types'
@@ -160,6 +161,39 @@ export function CourseLessonDiagramShell({
             />
           ))}
         </div>
+      ) : null}
+
+      {currentStep?.title || currentStep?.body ? (
+        <div className="diagram-step-detail">
+          {currentStep.title ? (
+            <p className="diagram-step-detail-title serif">{currentStep.title}</p>
+          ) : null}
+          {currentStep.body ? (
+            <CourseRichText
+              content={currentStep.body}
+              variant="prose"
+              className="body-2 diagram-step-detail-body"
+              breakAnywhere={false}
+            />
+          ) : null}
+        </div>
+      ) : null}
+
+      {steps.length > 1 ? (
+        <ol className="diagram-step-strip" aria-label="Walkthrough steps">
+          {steps.map((s) => (
+            <li key={s.n}>
+              <button
+                type="button"
+                className={`diagram-step-pill${step === s.n ? ' on' : ''}`}
+                onClick={() => setStep(s.n)}
+              >
+                <span className="diagram-step-pill-n mono">{s.n}</span>
+                <span className="diagram-step-pill-t">{s.title}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
       ) : null}
     </div>
   )

@@ -939,7 +939,7 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
                         : 'Use the live diagram and synced steps — play it or tap a step card to walk through.'
                   }
                 />
-                <div className={`visual-grid${L.steps?.length ? '' : ' visual-grid--solo'}`}>
+                <div className="visual-stack">
                   <CourseLessonDiagramShell
                     lessonSlug={L.lessonSlug}
                     template={L.template}
@@ -953,30 +953,6 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
                     step={step}
                     setStep={setStep}
                   />
-                  {L.steps?.length ? (
-                    <ol className="step-list">
-                      {L.steps.map((s) => (
-                        <li key={s.n}>
-                          <button
-                            type="button"
-                            className={`step-card${step === s.n ? ' on' : ''}`}
-                            onClick={() => setStep(s.n)}
-                          >
-                            <span className="step-n mono">{s.n}</span>
-                            <span className="step-text">
-                              <b className="step-title">{s.title}</b>
-                              <CourseRichText
-                                content={s.body}
-                                variant="prose"
-                                className="body-2 step-body-rich"
-                                breakAnywhere={false}
-                              />
-                            </span>
-                          </button>
-                        </li>
-                      ))}
-                    </ol>
-                  ) : null}
                 </div>
               </section>
             ) : null}

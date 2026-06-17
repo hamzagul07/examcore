@@ -285,3 +285,12 @@ html[data-ec-theme='zen'] .hover\:text-white:hover {
 .course-root .footer-legal {
   color: var(--text-2);
 }
+
+/* Anchor-based primary buttons: the global `a { color: inherit }` reset wins
+   over `.ec-btn-primary` for <a> elements (it only loses to higher specificity),
+   leaving dark body text on the green fill (~2.8:1). Restore the on-brand cream
+   text. Specificity 0,1,1 beats the `a` reset; <button> variants already work. */
+a.ec-btn-primary,
+a.btn-primary {
+  color: var(--ec-on-brand-text);
+}

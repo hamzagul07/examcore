@@ -27,8 +27,15 @@ export function FormulaCard({ f }: { f: NonNullable<MarginNotesLesson['formulas'
   const [sel, setSel] = useState<string | null>(null)
   const latex = f.latex?.trim()
   const useLatex = !!latex && isLatexFormula(latex)
-  const toks = f.tex.split(/(\s+)/)
-  const selected = sel ? f.parts.find((p) => p.s === sel) : null
+  // Strip inline math `$` delimiters so the token fallback never shows raw
+  // "$A$" — bare tokens also match their part symbols and stay tappable.
+  const toks = f.tex.replace(/\$/g, '').split(/(\s+)/)
+  // Drop placeholder/noise parts so cards don't show "Definition coming soon"
+  // or word fragments tagged "key term in this formula".
+  const parts = f.parts.filter(
+    (p) => p.m !== 'Definition coming soon' && !p.m.endsWith('— key term in this formula')
+  )
+  const selected = sel ? parts.find((p) => p.s === sel) : null
 
   return (
     <div className="formula-card">
@@ -37,7 +44,7 @@ export function FormulaCard({ f }: { f: NonNullable<MarginNotesLesson['formulas'
           <CourseRichText content={latex} variant="formula" breakAnywhere={false} />
         ) : (
           toks.map((tk, i) => {
-            const part = f.parts.find((p) => p.s === tk.trim())
+            const part = parts.find((p) => p.s === tk.trim())
             if (!part) return <span key={i}>{tk}</span>
             const active = sel === part.s
             return (
@@ -53,10 +60,10 @@ export function FormulaCard({ f }: { f: NonNullable<MarginNotesLesson['formulas'
           })
         )}
       </div>
-      {f.parts.length > 0 ? (
+      {parts.length > 0 ? (
         <>
           <div className="formula-parts">
-            {f.parts.map((p) => (
+            {parts.map((p) => (
               <button
                 key={p.s}
                 type="button"

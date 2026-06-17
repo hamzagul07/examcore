@@ -68,7 +68,7 @@
 .fam-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .fam-tab { background: none; border: 1px solid transparent; border-radius: 999px; padding: 7px 16px; font-family: 'Instrument Sans', sans-serif; font-size: 14px; font-weight: 500; color: var(--text-2); cursor: pointer; transition: color 140ms ease, background 140ms ease, border-color 140ms ease; }
 .fam-tab:hover { color: var(--ink); }
-.fam-tab.on { background: var(--ink-soft); color: var(--ink); border-color: var(--ink-border); }
+.fam-tab.on { background: var(--ink-soft); color: var(--green-on-tint, var(--ink)); border-color: var(--ink-border); }
 
 /* subject cards */
 .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(248px, 1fr)); gap: 18px; }
@@ -279,7 +279,7 @@
 .mode-tabs { display: flex; gap: 8px; }
 .mode-tab { background: none; border: 1px solid transparent; border-radius: 10px; padding: 9px 18px; font-family: 'Newsreader', serif; font-size: 18px; color: var(--text-2); cursor: pointer; display: flex; align-items: center; gap: 9px; transition: background 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease; }
 .mode-tab:hover { color: var(--ink); background: var(--bg-soft); }
-.mode-tab.on { background: var(--ink-soft); color: var(--ink); border-color: var(--ink-border); box-shadow: 0 0 0 1px var(--ink-border); }
+.mode-tab.on { background: var(--ink-soft); color: var(--green-on-tint, var(--ink)); border-color: var(--ink-border); box-shadow: 0 0 0 1px var(--ink-border); }
 .mode-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--muted); text-transform: uppercase; }
 .mode-tab.on .mode-sub { color: var(--ink); opacity: 0.7; }
 .mode-count {

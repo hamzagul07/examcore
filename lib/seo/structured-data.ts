@@ -74,6 +74,12 @@ export function websiteNode(): JsonLd {
     inLanguage: 'en-GB',
     publisher: { '@id': `${SITE_URL}/#organization` },
     about: { '@id': `${SITE_URL}/#brand` },
+    hasPart: [
+      { '@type': 'WebPage', url: `${SITE_URL}/mark`, name: 'Mark a Cambridge past paper' },
+      { '@type': 'WebPage', url: `${SITE_URL}/subjects`, name: 'Cambridge subjects' },
+      { '@type': 'WebPage', url: `${SITE_URL}/courses`, name: 'Free Cambridge courses' },
+      { '@type': 'WebPage', url: `${SITE_URL}/blog`, name: 'Revision guides & exam tips' },
+    ],
   }
 }
 
@@ -82,6 +88,8 @@ export function learningResourceNode(options: {
   description: string
   url: string
   syllabusCode: string
+  topics?: string[]
+  level?: string
 }): JsonLd {
   return {
     '@type': 'LearningResource',
@@ -89,9 +97,34 @@ export function learningResourceNode(options: {
     description: options.description,
     url: options.url,
     inLanguage: 'en-GB',
-    educationalLevel: 'secondary education',
-    teaches: `Cambridge syllabus ${options.syllabusCode}`,
+    educationalLevel: options.level ?? 'secondary education',
+    teaches: options.topics?.length
+      ? options.topics
+      : `Cambridge syllabus ${options.syllabusCode}`,
+    about: options.topics?.length
+      ? options.topics.map((t) => ({ '@type': 'Thing', name: t }))
+      : { '@type': 'Thing', name: `Cambridge ${options.syllabusCode}` },
     provider: { '@id': `${SITE_URL}/#organization` },
+  }
+}
+
+export function itemListNode(options: {
+  name: string
+  description?: string
+  items: { name: string; url?: string; description?: string }[]
+}): JsonLd {
+  return {
+    '@type': 'ItemList',
+    name: options.name,
+    ...(options.description ? { description: options.description } : {}),
+    numberOfItems: options.items.length,
+    itemListElement: options.items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      ...(item.url ? { url: item.url } : {}),
+      ...(item.description ? { description: item.description } : {}),
+    })),
   }
 }
 
@@ -157,22 +190,6 @@ export function howToNode(options: {
       position: i + 1,
       name: s.name,
       text: s.text,
-    })),
-  }
-}
-
-export function itemListNode(options: {
-  name: string
-  items: { name: string; url?: string }[]
-}): JsonLd {
-  return {
-    '@type': 'ItemList',
-    name: options.name,
-    itemListElement: options.items.map((item, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: item.name,
-      ...(item.url ? { url: item.url } : {}),
     })),
   }
 }

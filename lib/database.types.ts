@@ -91,6 +91,8 @@ export interface UserSubscription {
   currency: string
   region_tier: RegionTier
   founding_member: boolean
+  /** End of the 7-day no-card reverse trial; NULL = no trial. */
+  trial_ends_at: string | null
   created_at: string
   updated_at: string
 }

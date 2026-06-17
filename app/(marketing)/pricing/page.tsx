@@ -4,6 +4,8 @@ import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { createClient } from '@/lib/supabase-server'
 import { resolveRegion, REGION_COOKIE } from '@/lib/billing/region-cookie'
 import { getPricingDisplay } from '@/lib/billing/display-prices'
+import { effectiveAccess } from '@/lib/billing/access'
+import type { SubscriptionStatus, SubscriptionTier } from '@/lib/database.types'
 import { PricingMarginNotesPage } from '@/components/courses/margin-notes/PricingMarginNotesPage'
 
 export const dynamic = 'force-dynamic'
@@ -23,17 +25,21 @@ export default async function PricingPage() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  let founding = false
+  let access: ReturnType<typeof effectiveAccess> = 'free'
   if (user) {
     const { data: sub } = await supabase
       .from('user_subscriptions')
-      .select('founding_member')
+      .select('tier, status, trial_ends_at')
       .eq('user_id', user.id)
       .maybeSingle()
-    founding = Boolean(sub?.founding_member)
+    access = effectiveAccess({
+      tier: (sub?.tier as SubscriptionTier) ?? 'free',
+      status: (sub?.status as SubscriptionStatus) ?? 'canceled',
+      trialEndsAt: sub?.trial_ends_at as string | null | undefined,
+    })
   }
 
-  const display = await getPricingDisplay(region, founding)
+  const display = await getPricingDisplay(region)
 
   return (
     <>
@@ -49,7 +55,8 @@ export default async function PricingPage() {
       <PricingMarginNotesPage
         display={display}
         signedIn={Boolean(user)}
-        founding={founding}
+        access={access}
+        region={region}
       />
     </>
   )

@@ -35,7 +35,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/pricing': {
     title: 'Pricing — free & paid marking plans',
     description:
-      'Free tier to start, then Student, Scholar & Mastery plans for Cambridge marking. Credits never expire. Founding members get 50% off for life.',
+      'Start with a 7-day free trial — no card. Free plan forever with notes & formulas, then Pro & Max for live diagrams, practice and full Cambridge marking.',
   },
   '/faq': {
     title: 'FAQ — marking, privacy & accuracy',
@@ -76,6 +76,19 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: 'Marking methodology — for press & schools',
     description:
       'How MarkScheme applies Cambridge mark schemes to handwritten answers — cite this page for press, educators, and link-building.',
+  },
+  '/courses': {
+    title: 'Free Cambridge courses — A-Level & O-Level notes',
+    description:
+      'Free syllabus-aligned courses for every Cambridge subject we support. Topic-by-topic visual lessons, exam tips, and past-paper marking — 9709, 9702, 9609, 9700 & more.',
+    keywords: [
+      'free A Level course',
+      'free Cambridge notes',
+      '9709 course free',
+      '9702 physics course',
+      '9609 business course',
+      'ZNotes alternative free',
+    ],
   },
   '/privacy': {
     title: 'Privacy policy',

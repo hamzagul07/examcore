@@ -115,7 +115,11 @@ function plainFormulaTex(latex: string): string {
     .trim()
 }
 
-function formulasFromLesson(lesson: CourseLesson, enriched: EnrichedVisualLesson): LessonFormula[] {
+function formulasFromLesson(
+  lesson: CourseLesson,
+  enriched: EnrichedVisualLesson,
+  subjectCode: string
+): LessonFormula[] {
   const formulas: LessonFormula[] = []
   const seen = new Set<string>()
 
@@ -134,7 +138,7 @@ function formulasFromLesson(lesson: CourseLesson, enriched: EnrichedVisualLesson
 
   for (const s of lesson.sections) {
     if (s.type !== 'formula') continue
-    const parsed = parseFormulaParts(s.content, lesson)
+    const parsed = parseFormulaParts(s.content, lesson, subjectCode)
     const latex = parsed.expressions[0] ?? parsed.expression
     if (!latex || seen.has(latex)) continue
     seen.add(latex)
@@ -364,7 +368,7 @@ export function adaptLesson(
   )
 
   const notes = extractNotes(lesson.sections)
-  const formulas = formulasFromLesson(lesson, enriched)
+  const formulas = formulasFromLesson(lesson, enriched, subjectCode)
   const takeaways = extractKeyTakeaways(lesson)
   const comparisonTable = partitioned.comparisonTable
     ? {

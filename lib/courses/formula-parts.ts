@@ -1,5 +1,6 @@
 import type { CourseLesson } from '@/lib/courses/types'
 import type { FormulaPart } from '@/lib/courses/visual-types'
+import { describeBusinessLabel, lookupBusinessTerm } from '@/lib/courses/business-variable-definitions'
 import { lookupVariableDefinitionForLesson } from '@/lib/courses/variable-definitions'
 import { repairMathDelimiters } from '@/lib/courses/math-format'
 
@@ -59,6 +60,26 @@ const KNOWN: KnownFormula[] = [
   { test: /V\s*=\s*IR\b/i, latex: 'V = IR', symbols: ['V', 'I', 'R'] },
   { test: /P\s*=\s*VI\b/i, latex: 'P = VI', symbols: ['P', 'V', 'I'] },
   { test: /p_f\s*=\s*p_i/i, latex: 'p_f = p_i', symbols: ['p_f', 'p_i'] },
+  {
+    test: /\\text\{Fixed costs\}.*\\text\{Contribution/i,
+    latex: 'BE = \\frac{FC}{C}',
+    symbols: ['FC', 'C'],
+  },
+  {
+    test: /\\text\{Gross profit\}.*\\text\{Revenue\}/i,
+    latex: 'GPM = \\frac{GP}{Rev}',
+    symbols: ['GP', 'Rev'],
+  },
+  {
+    test: /\\text\{PBIT\}.*\\text\{Capital employed\}/i,
+    latex: 'ROCE = \\frac{PBIT}{CE}',
+    symbols: ['PBIT', 'CE'],
+  },
+  {
+    test: /\\text\{Current assets\}.*\\text\{Current liabilities\}/i,
+    latex: 'CR = \\frac{CA}{CL}',
+    symbols: ['CA', 'CL'],
+  },
 ]
 
 const DISPLAY_SYMBOLS: Record<string, string> = {
@@ -284,12 +305,66 @@ export function extractLatexSymbols(latex: string): string[] {
   return found.slice(0, 10)
 }
 
-function partsFromSymbols(symbols: string[], topicCode?: string): FormulaPart[] {
+function partsFromSymbols(
+  symbols: string[],
+  topicCode?: string,
+  subjectCode?: string
+): FormulaPart[] {
   return symbols.map((sym, i) => ({
     symbol: displaySymbol(sym),
-    meaning: lookupVariableDefinitionForLesson(sym, topicCode),
+    meaning: lookupVariableDefinitionForLesson(sym, topicCode, subjectCode),
     color: PALETTE[i % PALETTE.length],
   }))
+}
+
+/** Extract \text{…} labels, abbreviations, and bold terms from formula prose. */
+export function extractTextLabelParts(content: string, subjectCode?: string): FormulaPart[] {
+  const parts: FormulaPart[] = []
+  const seen = new Set<string>()
+
+  const add = (label: string) => {
+    const display = label.trim()
+    if (!display || display.length > 52) return
+    const key = display.toLowerCase()
+    if (seen.has(key)) return
+    seen.add(key)
+    const meaning =
+      lookupBusinessTerm(display, subjectCode) ??
+      lookupVariableDefinitionForLesson(display, undefined, subjectCode)
+    parts.push({
+      symbol: display.length > 22 ? `${display.slice(0, 19)}…` : display,
+      meaning: meaning === 'Definition coming soon' ? describeBusinessLabel(display) : meaning,
+      color: PALETTE[parts.length % PALETTE.length],
+    })
+  }
+
+  for (const m of content.matchAll(/\\text\{([^}]+)\}/g)) {
+    add(m[1]!)
+  }
+
+  for (const m of content.matchAll(
+    /\b(FC|VC|SP|TR|TC|NPV|ARR|ROCE|GP|GPM|OPM|CE|COGS|PED|YED|XED|MoS|BEP|NP|PBIT|AC|AFC|AVC|CA|CL)\b/g
+  )) {
+    add(m[1]!)
+  }
+
+  for (const m of content.matchAll(/\*\*([^*]{2,40})\*\*/g)) {
+    add(m[1]!)
+  }
+
+  return parts.slice(0, 12)
+}
+
+function mergeFormulaParts(primary: FormulaPart[], secondary: FormulaPart[]): FormulaPart[] {
+  const out = [...primary]
+  const seen = new Set(primary.map((p) => p.symbol.toLowerCase()))
+  for (const part of secondary) {
+    const key = part.symbol.toLowerCase()
+    if (seen.has(key)) continue
+    seen.add(key)
+    out.push({ ...part, color: PALETTE[out.length % PALETTE.length] })
+  }
+  return out.slice(0, 12)
 }
 
 function symbolsFromLines(lines: string[]): string[] {
@@ -306,27 +381,34 @@ function symbolsFromLines(lines: string[]): string[] {
   return all
 }
 
-export function parseFormulaParts(content: string, _lesson?: CourseLesson): ParsedFormula {
+export function parseFormulaParts(
+  content: string,
+  _lesson?: CourseLesson,
+  subjectCode?: string
+): ParsedFormula {
+  const topicCode = _lesson?.topicCode
   const { description } = splitFormulaContent(content)
   const latexLines = extractLatexEquations(content)
   const hay = latexLines.join(' ')
+  const textParts = extractTextLabelParts(content, subjectCode)
 
   for (const known of KNOWN) {
     if (known.test.test(hay)) {
       const lines = Array.isArray(known.latex) ? known.latex : [known.latex]
       const expressions = lines.map((l) => wrapFormulaExpression(l))
+      const symbolParts = partsFromSymbols(known.symbols, topicCode, subjectCode)
       return {
         description,
         latex: lines.join('\n'),
         expressions,
         expression: expressions[0],
-        parts: partsFromSymbols(known.symbols, _lesson?.topicCode),
+        parts: mergeFormulaParts(textParts, symbolParts),
       }
     }
   }
 
   const symbols = symbolsFromLines(latexLines)
-  const parts = partsFromSymbols(symbols, _lesson?.topicCode)
+  const parts = mergeFormulaParts(textParts, partsFromSymbols(symbols, topicCode, subjectCode))
 
   if (!parts.length) {
     parts.push({

@@ -1,5 +1,10 @@
 import type { SubjectArea } from '@/lib/courses/subject-area'
 import { subjectAreaFromTopicCode } from '@/lib/courses/subject-area'
+import {
+  describeBusinessLabel,
+  isBusinessSubject,
+  lookupBusinessTerm,
+} from '@/lib/courses/business-variable-definitions'
 
 /** Per-symbol physics definitions — never whole-formula prose */
 const DEFAULT_DEFINITIONS: Record<string, string> = {
@@ -123,14 +128,35 @@ export function lookupVariableDefinition(
 
 export function lookupVariableDefinitionForLesson(
   symbol: string,
-  topicCode?: string
+  topicCode?: string,
+  subjectCode?: string
 ): string {
   if (topicCode && /^1\.[12]\b/.test(topicCode)) {
     if (symbol === 'm') return 'metre (m), SI base unit of length'
     if (symbol === 'L') return 'length, in m'
   }
+
+  const business = lookupBusinessTerm(symbol, subjectCode)
+  if (business) return business
+
+  if (isBusinessSubject(subjectCode) && symbol === 'C') {
+    return 'Contribution per unit — selling price minus variable cost (SP − VC)'
+  }
+
+  if (isBusinessSubject(subjectCode) && /^[A-Z]{2,5}$/.test(symbol)) {
+    const abbr = lookupBusinessTerm(symbol, subjectCode)
+    if (abbr) return abbr
+  }
+
   const area = topicCode ? subjectAreaFromTopicCode(topicCode) : 'default'
-  return lookupVariableDefinition(symbol, area)
+  const def = lookupVariableDefinition(symbol, area)
+  if (def !== 'Definition coming soon') return def
+
+  if (isBusinessSubject(subjectCode) || /[A-Za-z]{3,}/.test(symbol)) {
+    return describeBusinessLabel(symbol)
+  }
+
+  return def
 }
 
 /** @deprecated Use lookupVariableDefinitionForLesson — kept for imports */

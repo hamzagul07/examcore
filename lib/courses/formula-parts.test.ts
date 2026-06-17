@@ -143,6 +143,52 @@ assert.equal(
   'N has definition'
 )
 
+const businessLesson = {
+  topicCode: '5.4.4',
+  slug: '5-4-4-break-even-analysis',
+  title: 'Break-even analysis',
+  paper: 'AS',
+  paperName: 'AS',
+  status: 'premium' as const,
+  summary: '',
+  durationMin: 28,
+  sections: [],
+}
+
+const breakEven = parseFormulaParts(
+  'Break-even output (units) = $\\frac{\\text{Fixed costs}}{\\text{Contribution per unit}}$',
+  businessLesson,
+  '9609'
+)
+assert.ok(
+  breakEven.parts.some(
+    (p) => p.meaning.includes('Fixed costs') || p.symbol.toLowerCase().includes('fixed')
+  ),
+  'break-even includes Fixed costs definition'
+)
+assert.ok(
+  breakEven.parts.some((p) => p.meaning.includes('contribution') || p.meaning.includes('Contribution')),
+  'break-even includes contribution definition'
+)
+assert.ok(
+  !breakEven.parts.some((p) => p.meaning === 'Definition coming soon'),
+  'no placeholder defs on break-even formula'
+)
+
+const roce = parseFormulaParts(
+  '$$\\text{ROCE} = \\frac{\\text{PBIT}}{\\text{Capital employed}} \\times 100$$',
+  { ...businessLesson, topicCode: '5.3.1' },
+  '9706'
+)
+assert.ok(
+  roce.parts.some((p) => p.meaning.toLowerCase().includes('capital employed') || p.symbol === 'CE'),
+  'ROCE formula defines capital employed'
+)
+assert.ok(
+  !roce.parts.some((p) => p.meaning === 'Definition coming soon'),
+  'no placeholder defs on ROCE formula'
+)
+
 if (failed > 0) {
   console.error(`\n${failed} extract test(s) failed`)
   process.exit(1)

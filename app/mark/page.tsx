@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import Link from 'next/link'
 import { UploadCloud, ChevronRight, Sparkles } from 'lucide-react'
@@ -70,6 +70,11 @@ import {
   getYearsFromSessions,
 } from '@/lib/subject-papers'
 import { sessionCodeFromYearSeason } from '@/lib/marking/session'
+import {
+  handleMarkStreamEvent,
+  parseMarkStreamPart,
+  refreshBillingSummary,
+} from './mark-stream'
 
 type SessionInfo = {
   year: number
@@ -103,90 +108,6 @@ type UpgradeModalState = {
   creditBalance?: number
 }
 
-/** Notify the header chip (and anyone listening) to refetch billing summary. */
-function refreshBillingSummary() {
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new Event('ec:billing-refresh'))
-  }
-}
-
-type MarkStreamEvent = {
-  type: string
-  stage?: MarkProgressStage
-  percent?: number
-  paper_code?: string | null
-  paper_session?: string | null
-  question_number?: string | null
-  subject_code?: string | null
-  syllabus_tags?: string[] | null
-  payload?: MarkingResultData
-  error?: string
-  retryable?: boolean
-}
-
-function parseMarkStreamPart(part: string): MarkStreamEvent | null {
-  const line = part.trim()
-  if (!line.startsWith('data:')) return null
-  const payload = line.replace(/^data:\s?/, '')
-  if (!payload) return null
-  try {
-    return JSON.parse(payload) as MarkStreamEvent
-  } catch {
-    return null
-  }
-}
-
-function handleMarkStreamEvent(
-  event: MarkStreamEvent,
-  ctx: {
-    setMarkProgress: Dispatch<
-      SetStateAction<{
-        percent: number
-        stage: MarkProgressStage
-        questionNumber?: string
-      } | null>
-    >
-    setMarkContext: Dispatch<SetStateAction<MarkContextPayload | null>>
-    setMarkStreamError: Dispatch<SetStateAction<string | null>>
-    setErrorMsg: Dispatch<SetStateAction<string>>
-    setErrorRetryable: Dispatch<SetStateAction<boolean>>
-    setLoading: Dispatch<SetStateAction<boolean>>
-    questionNumber: string
-  }
-): 'continue' | 'error' | 'result' {
-  if (event.type === 'progress' && event.stage && event.percent != null) {
-    ctx.setMarkProgress({
-      percent: event.percent,
-      stage: event.stage,
-      questionNumber: ctx.questionNumber.trim() || undefined,
-    })
-  }
-  if (event.type === 'context') {
-    ctx.setMarkContext((prev) => ({
-      ...prev,
-      paper_code: event.paper_code ?? prev?.paper_code,
-      paper_session: event.paper_session ?? prev?.paper_session,
-      question_number: event.question_number ?? prev?.question_number,
-      subject_code: event.subject_code ?? prev?.subject_code,
-      syllabus_tags: event.syllabus_tags ?? prev?.syllabus_tags,
-    }))
-  }
-  if (event.type === 'result' && event.payload) {
-    return 'result'
-  }
-  if (event.type === 'error') {
-    const msg = event.error || 'Marking failed.'
-    ctx.setMarkStreamError(msg)
-    ctx.setErrorMsg(msg)
-    ctx.setErrorRetryable(!!event.retryable)
-    ctx.setLoading(false)
-    ctx.setMarkProgress(null)
-    ctx.setMarkContext(null)
-    return 'error'
-  }
-  return 'continue'
-}
-
 export default function MarkPage() {
   const [answerPages, setAnswerPages] = useState<UploadPage[]>([])
   const [questionPhoto, setQuestionPhoto] = useState<File | null>(null)
@@ -209,6 +130,7 @@ export default function MarkPage() {
   // is ready to hand off (onReveal). The ref mirrors it for the reveal callback.
   const [pendingResult, setPendingResult] = useState<MarkingResult | null>(null)
   const pendingResultRef = useRef<MarkingResult | null>(null)
+  const submittingRef = useRef(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [errorRetryable, setErrorRetryable] = useState(false)
   const [firstMarkCelebration, setFirstMarkCelebration] = useState(false)
@@ -772,28 +694,38 @@ export default function MarkPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    if (loading || submittingRef.current) return
+    submittingRef.current = true
     flushSync(() => {
       setLoading(true)
     })
 
+    const releaseSubmit = () => {
+      submittingRef.current = false
+    }
+
     try {
       if (answerPages.length === 0) {
         setLoading(false)
+        releaseSubmit()
         setErrorMsg('Upload at least one page of your answer.')
         return
       }
       if (hasCompressingPages(answerPages)) {
         setLoading(false)
+        releaseSubmit()
         setErrorMsg('Still preparing your images — wait a moment.')
         return
       }
       if (questionPhotoCompressing) {
         setLoading(false)
+        releaseSubmit()
         setErrorMsg('Still preparing your question photo — wait a moment.')
         return
       }
       if (uploadMode === 'whole_paper') {
         setLoading(false)
+        releaseSubmit()
         setErrorMsg('Use the whole-paper upload area to submit your pages.')
         return
       }
@@ -801,11 +733,13 @@ export default function MarkPage() {
       if (isPracticeMode) {
         if (!selectedSubject) {
           setLoading(false)
+          releaseSubmit()
           setErrorMsg('Select a subject so we can apply the right mark scheme style.')
           return
         }
         if (!hasPracticeQuestion) {
           setLoading(false)
+          releaseSubmit()
           setErrorMsg(
             'Add your question — type it or upload a photo — before marking.'
           )
@@ -829,6 +763,7 @@ export default function MarkPage() {
         )
       if (payloadError) {
         setLoading(false)
+        releaseSubmit()
         setMarkProgress(null)
         setErrorMsg(payloadError)
         return
@@ -882,6 +817,7 @@ export default function MarkPage() {
       if (!res.ok || !res.body) {
         const data = await res.json().catch(() => ({}))
         setLoading(false)
+        releaseSubmit()
         setMarkProgress(null)
         // Cap breach (only happens in 'enforce' mode). Show the upgrade modal.
         if (data?.error === 'mark_quota_exceeded') {
@@ -937,6 +873,7 @@ export default function MarkPage() {
         } catch (streamErr) {
           const { message, retryable } = formatClientMarkError(streamErr)
           setLoading(false)
+          releaseSubmit()
           setMarkProgress(null)
           setMarkStreamError(message)
           setErrorMsg(message)
@@ -949,11 +886,17 @@ export default function MarkPage() {
         const parts = buffer.split('\n\n')
         buffer = parts.pop() ?? ''
         for (const part of parts) {
-          if (consumeStreamPart(part)) return
+          if (consumeStreamPart(part)) {
+            releaseSubmit()
+            return
+          }
         }
       }
 
-      if (buffer.trim() && consumeStreamPart(buffer)) return
+      if (buffer.trim() && consumeStreamPart(buffer)) {
+        releaseSubmit()
+        return
+      }
 
       if (finalPayload) {
         // Buffer the payload and let the cinematic wait choreograph the reveal.
@@ -963,6 +906,7 @@ export default function MarkPage() {
         setPendingResult(finalPayload)
       } else {
         setLoading(false)
+        releaseSubmit()
         setMarkProgress(null)
         setMarkContext(null)
         setMarkStreamError(null)
@@ -970,6 +914,7 @@ export default function MarkPage() {
       }
     } catch (err) {
       setLoading(false)
+      submittingRef.current = false
       setMarkProgress(null)
       const { message, retryable } = formatClientMarkError(err)
       setMarkStreamError(message)
@@ -986,6 +931,7 @@ export default function MarkPage() {
     if (!payload) return
     setResult(payload)
     setLoading(false)
+    submittingRef.current = false
     setMarkProgress(null)
     setMarkContext(null)
     setMarkStreamError(null)
@@ -1001,7 +947,7 @@ export default function MarkPage() {
       .then((data: { show?: boolean }) => {
         if (data.show) setFirstMarkCelebration(true)
       })
-      .catch(() => {})
+      .catch((err) => console.error('mark: celebrations check failed', err))
   }, [])
 
   function resetForm() {
@@ -1531,7 +1477,7 @@ export default function MarkPage() {
                         (!!selectedSubject && hasPracticeQuestion))
                     }
                     leftIcon={!loading ? <Sparkles className="h-5 w-5" /> : undefined}
-                    className="justify-center text-base"
+                    className="mark-submit-btn justify-center text-base"
                   >
                     {isPracticeMode ? 'Mark my question' : 'Mark my answer →'}
                   </Button>

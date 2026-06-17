@@ -27,12 +27,6 @@ export const CREDIT_PRODUCTS: Record<
   credits_500: 500,
 }
 
-export const FOUNDING_MEMBER_COUPON = 'FOUNDING_MEMBER_50'
-
-export function applyFoundingMemberDiscount(amountCents: number): number {
-  return Math.round(amountCents * 0.5)
-}
-
 export function isSubscriptionProduct(product: ProductKey): boolean {
   return SUBSCRIPTION_PRODUCTS.includes(product)
 }

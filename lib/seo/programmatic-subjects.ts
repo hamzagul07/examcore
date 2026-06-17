@@ -1,7 +1,7 @@
 import { SUBJECTS, type SubjectOption } from '@/lib/profile-options'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'
 import { getSubjectGuideSlugForCode } from '@/lib/seo/subject-guides'
-import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
+import { buildSubjectMarkingSeo } from '@/lib/seo/subject-seo'
 
 /** Unique syllabus codes with live marking — programmatic SEO pages. */
 export function getMarkingSubjectPages(): SubjectOption[] {
@@ -34,22 +34,19 @@ export function buildSubjectPageCopy(subject: SubjectOption) {
     ? structure.papers.map((p) => `Paper ${p.paper}`).join(', ')
     : 'past papers in our library'
   const guideSlug = getSubjectGuideSlugForCode(subject.code)
-
-  const title = formatSerpTitle(
-    `Mark ${subject.label} (${subject.code}) past papers`,
-    true
-  )
-  const description = formatMetaDescription(
-    `Upload ${subject.label} ${level} answers (${subject.code}). Get ${subject.markingType === 'level_of_response' ? 'essay band' : 'B1/M1/A1'} feedback from real Cambridge mark schemes in seconds. Free to try.`
-  )
+  const seo = buildSubjectMarkingSeo(subject)
 
   return {
-    title,
-    description,
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
+    tagline: seo.tagline,
+    topics: seo.topics,
+    ogImagePath: seo.ogImagePath,
     level,
     papers,
     guideSlug,
-    path: `/subjects/${subject.code}`,
+    path: seo.path,
     quickAnswer: `MarkScheme marks Cambridge ${subject.label} syllabus ${subject.code} (${level}) from photos of your handwriting, using real mark-scheme wording — not a generic AI grade.`,
   }
 }

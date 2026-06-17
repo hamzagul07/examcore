@@ -9,7 +9,7 @@ import { RootFooter } from "@/components/layout/RootFooter";
 import { MobileTabBarGate } from "@/components/layout/MobileTabBarGate";
 import { OmniFABGate } from "@/components/omni-ai/OmniFABGate";
 import { OmniAIProviders } from "@/components/omni-ai/OmniAIProviders";
-import { OmniAI } from "@/components/omni-ai/OmniAI";
+import { OmniAILazy } from "@/components/omni-ai/OmniAILazy";
 import { SeoAnalytics } from "@/components/seo/SeoAnalytics";
 import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
 import { SITE_ICONS } from "@/lib/seo/metadata";
@@ -131,7 +131,7 @@ export default function RootLayout({
               <MobileTabBarGate />
               <OmniFABGate />
             </AppChrome>
-            <OmniAI />
+            <OmniAILazy />
           </OmniAIProviders>
         </ThemeProvider>
       </body>

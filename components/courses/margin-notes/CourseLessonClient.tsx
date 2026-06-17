@@ -9,6 +9,7 @@ import { subjectAccent } from '@/lib/courses/margin-notes/subject-meta'
 import { filterLessonsByPaper, findPaperTrack } from '@/lib/courses/paper-tracks'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
+import { useBillingAccess } from '@/lib/hooks/useBillingAccess'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { CourseLessonPage } from '@/components/courses/margin-notes/CourseLessonPage'
 import { LessonPageSkeleton } from '@/components/courses/margin-notes/MarginNotesSkeletons'
@@ -34,6 +35,7 @@ export function CourseLessonClient({
 }: Props) {
   const { done } = useCourseProgress(subjectCode)
   const { user, loading: authLoading } = useAuthCheck()
+  const { access, trialEndsAt } = useBillingAccess()
   const track = findPaperTrack(subjectCode, lessons, paperQuery ?? null)
   const scoped = track ? filterLessonsByPaper(lessons, track) : lessons
   const flat = useMemo(
@@ -56,6 +58,8 @@ export function CourseLessonClient({
         subjectAcc={subjectAccent(subjectCode)}
         paperQuery={paperQuery}
         signedIn={authLoading ? undefined : !!user}
+        access={access}
+        trialEndsAt={trialEndsAt}
       />
     </Suspense>
   )

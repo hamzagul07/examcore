@@ -9,7 +9,6 @@ import {
   isCreditProduct,
   isSubscriptionProduct,
   resolvePrice,
-  FOUNDING_MEMBER_COUPON,
 } from '@/lib/billing/pricing'
 import { resolveRegion, REGION_COOKIE } from '@/lib/billing/region-cookie'
 import { sanitizeNextPath } from '@/lib/auth-redirect'
@@ -90,14 +89,6 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Founding members get a permanent 50% off via the Stripe coupon.
-  const { data: subRow } = await service
-    .from('user_subscriptions')
-    .select('founding_member')
-    .eq('user_id', user.id)
-    .maybeSingle()
-  const isFounding = Boolean(subRow?.founding_member)
-
   let customerId: string
   try {
     customerId = await getOrCreateStripeCustomer(service, {
@@ -137,10 +128,6 @@ export async function POST(req: NextRequest) {
       ...(isSub
         ? { subscription_data: { metadata: { supabase_user_id: user.id } } }
         : {}),
-      // Apply the founding-member coupon when present. If the coupon doesn't
-      // exist yet (script not run), Stripe rejects it — caught below as a
-      // generic checkout error, so create the coupon via the setup script.
-      ...(isFounding ? { discounts: [{ coupon: FOUNDING_MEMBER_COUPON }] } : {}),
     })
 
     return jsonWithAuthCookies({ url: session.url }, pendingCookies)

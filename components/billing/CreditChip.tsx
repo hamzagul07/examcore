@@ -4,16 +4,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Zap, Loader2, ExternalLink } from 'lucide-react'
 import type { BillingSummaryClient } from '@/lib/billing/question-copy'
+import { tierMarketingName } from '@/lib/billing/caps'
 import { stripePortalButtonLabel, useStripePortal } from '@/lib/hooks/useStripePortal'
 
 type Summary = BillingSummaryClient
-
-const TIER_LABELS: Record<string, string> = {
-  free: 'Free',
-  student: 'Student',
-  scholar: 'Scholar',
-  mastery: 'Mastery',
-}
 
 export function CreditChip() {
   const [summary, setSummary] = useState<Summary | null>(null)
@@ -57,7 +51,8 @@ export function CreditChip() {
 
   if (loading || !summary?.signedIn) return null
 
-  const tierLabel = TIER_LABELS[summary.tier] ?? summary.tier
+  const tierLabel =
+    summary.access === 'trial' ? 'Trial' : tierMarketingName(summary.tier)
   const qLeft = Math.max(0, summary.questions.remaining)
   const oLeft = Math.max(0, summary.omni.remaining)
   const chipLabel = `${qLeft} questions · ${oLeft} chat`

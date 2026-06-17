@@ -20,6 +20,7 @@ type Props = {
   lesson: CourseLesson
   seoTitle: string
   seoDescription: string
+  topics?: string[]
 }
 
 export function CourseLessonJsonLd({
@@ -29,6 +30,7 @@ export function CourseLessonJsonLd({
   lesson,
   seoTitle,
   seoDescription,
+  topics,
 }: Props) {
   const url = `${SITE_URL}/courses/${subjectCode}/${lesson.slug}`
   const faqs = buildCourseLessonFaqs({ code: subjectCode, name: subjectName, level }, lesson)
@@ -43,7 +45,8 @@ export function CourseLessonJsonLd({
     inLanguage: 'en-GB',
     provider: { '@id': `${SITE_URL}/#organization` },
     educationalLevel: level,
-    teaches: lesson.title,
+    teaches: topics?.length ? [...topics, lesson.title] : lesson.title,
+    ...(lesson.updated ? { dateModified: `${lesson.updated}T12:00:00.000Z` } : {}),
     hasCourseInstance: {
       '@type': 'CourseInstance',
       courseMode: 'online',
@@ -67,6 +70,8 @@ export function CourseLessonJsonLd({
       description: seoDescription,
       url,
       syllabusCode: subjectCode,
+      topics: topics?.length ? topics : undefined,
+      level,
     }),
   ]
 

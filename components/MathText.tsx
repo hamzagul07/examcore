@@ -1,6 +1,5 @@
 'use client'
 
-import 'katex/dist/katex.min.css'
 import { Fragment } from 'react'
 import { BlockMath, InlineMath } from 'react-katex'
 

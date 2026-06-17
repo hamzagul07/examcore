@@ -157,30 +157,6 @@ async function createPrice({ productId, productKey, currency, amountCents, billi
   })
 }
 
-const FOUNDING_COUPON_ID = 'FOUNDING_MEMBER_50'
-
-async function ensureFoundingCoupon() {
-  if (DRY_RUN) {
-    console.log(`[DRY RUN] would ensure coupon ${FOUNDING_COUPON_ID}`)
-    return
-  }
-  try {
-    await stripe.coupons.retrieve(FOUNDING_COUPON_ID)
-    console.log(`Coupon ${FOUNDING_COUPON_ID} already exists.`)
-  } catch (err) {
-    if (err?.statusCode === 404 || err?.code === 'resource_missing') {
-      await stripe.coupons.create({
-        id: FOUNDING_COUPON_ID,
-        percent_off: 50,
-        duration: 'forever',
-        name: 'Founding Member 50% Off',
-      })
-      console.log(`Created coupon ${FOUNDING_COUPON_ID} (50% off, forever).`)
-    } else {
-      throw err
-    }
-  }
-}
 
 async function deactivateLegacyProducts() {
   if (DRY_RUN) {
@@ -255,7 +231,6 @@ async function upsertPricingConfig(rows) {
 async function main() {
   console.log(DRY_RUN ? '[DRY RUN] No Stripe/DB writes.\n' : 'Creating Stripe products + prices...\n')
 
-  await ensureFoundingCoupon()
   await deactivateLegacyProducts()
 
   const output = { createdAt: new Date().toISOString(), dryRun: DRY_RUN, products: {} }

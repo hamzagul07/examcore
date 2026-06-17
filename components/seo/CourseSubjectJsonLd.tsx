@@ -15,6 +15,7 @@ type Props = {
   level: string
   description: string
   lessons: CourseLesson[]
+  topics?: string[]
 }
 
 export function CourseSubjectJsonLd({
@@ -23,6 +24,7 @@ export function CourseSubjectJsonLd({
   level,
   description,
   lessons,
+  topics,
 }: Props) {
   const path = `/courses/${subjectCode}`
   const title = `Free Cambridge ${level} ${subjectName} (${subjectCode}) course`
@@ -49,6 +51,7 @@ export function CourseSubjectJsonLd({
           provider: { '@id': `${SITE_URL}/#organization` },
           educationalLevel: level,
           numberOfCredits: lessons.length,
+          teaches: topics?.length ? topics : `${subjectName} syllabus ${subjectCode}`,
           hasCourseInstance: {
             '@type': 'CourseInstance',
             courseMode: 'online',

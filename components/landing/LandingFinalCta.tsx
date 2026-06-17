@@ -26,7 +26,7 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
           Mark your first question
         </Link>
         <p className="ms-micro" style={{ marginTop: 26 }}>
-          FREE TIER · FOUNDING MEMBERS GET 50% OFF FOREVER
+          7-DAY FREE TRIAL · NO CARD · FREE PLAN FOREVER
         </p>
       </div>
     </section>

@@ -11,6 +11,12 @@ import {
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import { loadSupplementaryLessons } from '@/lib/courses/supplementary-lessons'
 import { hydrateLessonCatalogVisuals } from '@/lib/courses/attach-lesson-visuals'
+import {
+  readLessonsCache,
+  readSubjectCache,
+  writeLessonsCache,
+  writeSubjectCache,
+} from '@/lib/courses/catalog-cache'
 import type { CourseLesson, CourseSubject } from '@/lib/courses/types'
 
 /** Subjects with syllabus trees eligible for free courses. */
@@ -40,9 +46,15 @@ function loadPublishedLesson(
 }
 
 export function getCourseSubject(code: string): CourseSubject | null {
+  const cached = readSubjectCache(code)
+  if (cached !== undefined) return cached
+
   const topics = getSyllabusByCode(code)
   const name = getSyllabusSubjectName(code)
-  if (!topics?.length || !name) return null
+  if (!topics?.length || !name) {
+    writeSubjectCache(code, null)
+    return null
+  }
 
   const marking = getMarkingSubjectPages().find((s) => s.code === code)
   const lessons = getCourseLessons(code)
@@ -50,7 +62,7 @@ export function getCourseSubject(code: string): CourseSubject | null {
     (l) => l.status === 'published' || l.status === 'premium'
   ).length
 
-  return {
+  const subject: CourseSubject = {
     code,
     name,
     level: marking?.levels.includes('A-Level')
@@ -62,6 +74,8 @@ export function getCourseSubject(code: string): CourseSubject | null {
     publishedCount,
     path: `/courses/${code}`,
   }
+  writeSubjectCache(code, subject)
+  return subject
 }
 
 export function getCourseCatalog(): CourseSubject[] {
@@ -70,7 +84,32 @@ export function getCourseCatalog(): CourseSubject[] {
     .filter((s): s is CourseSubject => s !== null)
 }
 
-export function getCourseLessons(subjectCode: string): CourseLesson[] {
+function buildOutlineForSlug(
+  subjectCode: string,
+  lessonSlug: string
+): CourseLesson | null {
+  const topics = getSyllabusByCode(subjectCode)
+  const name = getSyllabusSubjectName(subjectCode)
+  if (!topics?.length || !name) return null
+
+  const topic = topics.find((t) => topicToLessonSlug(t.code, t.name) === lessonSlug)
+  if (!topic) return null
+
+  const guideSlug = getSubjectGuideSlugForCode(subjectCode)
+  const outline = buildOutlineLesson(subjectCode, name, topic)
+  if (guideSlug) {
+    const resources = outline.sections.find((s) => s.type === 'resources')
+    if (resources && resources.type === 'resources') {
+      resources.items[0] = {
+        label: `${subjectCode} past paper guide`,
+        href: `/blog/${guideSlug}`,
+      }
+    }
+  }
+  return outline
+}
+
+function loadCourseLessonsUncached(subjectCode: string): CourseLesson[] {
   const topics = getSyllabusByCode(subjectCode)
   const name = getSyllabusSubjectName(subjectCode)
   if (!topics?.length || !name) return []
@@ -99,13 +138,28 @@ export function getCourseLessons(subjectCode: string): CourseLesson[] {
   return [...loadSupplementaryLessons(subjectCode), ...topicLessons]
 }
 
+export function getCourseLessons(subjectCode: string): CourseLesson[] {
+  const cached = readLessonsCache(subjectCode)
+  if (cached) return cached
+  return writeLessonsCache(subjectCode, loadCourseLessonsUncached(subjectCode))
+}
+
 export function getCourseLesson(
   subjectCode: string,
   lessonSlug: string
 ): CourseLesson | null {
-  const lesson = getCourseLessons(subjectCode).find((l) => l.slug === lessonSlug) ?? null
-  if (!lesson) return null
-  return hydrateLessonCatalogVisuals(lesson)
+  const published = loadPublishedLesson(subjectCode, lessonSlug)
+  if (published) return hydrateLessonCatalogVisuals(published)
+
+  const supplementary = loadSupplementaryLessons(subjectCode).find(
+    (l) => l.slug === lessonSlug
+  )
+  if (supplementary) return hydrateLessonCatalogVisuals(supplementary)
+
+  const outline = buildOutlineForSlug(subjectCode, lessonSlug)
+  if (outline) return hydrateLessonCatalogVisuals(outline)
+
+  return null
 }
 
 function readLessonFile(filePath: string, status: CourseLesson['status']): CourseLesson | null {

@@ -1,7 +1,6 @@
 import { createServiceClient } from '@/lib/supabase/service'
 import type { BillingPeriod } from '@/lib/database.types'
 import type { ProductKey } from './pricing'
-import { applyFoundingMemberDiscount } from './pricing'
 import { getFallbackAmountCents } from './pricing-fallback'
 import type { RegionChoice } from './region-cookie'
 
@@ -55,20 +54,16 @@ function subscriptionPrices(
   rows: ConfigRow[],
   product: ProductKey,
   currency: string,
-  founding: boolean,
   fb: (product: ProductKey, period: BillingPeriod | null) => number
 ): SubscriptionDisplayPrices {
-  const discount = (p: DisplayPrice): DisplayPrice =>
-    founding ? { ...p, amountCents: applyFoundingMemberDiscount(p.amountCents) } : p
   return {
-    monthly: discount(pickAmount(rows, product, currency, 'monthly', fb(product, 'monthly'))),
-    yearly: discount(pickAmount(rows, product, currency, 'yearly', fb(product, 'yearly'))),
+    monthly: pickAmount(rows, product, currency, 'monthly', fb(product, 'monthly')),
+    yearly: pickAmount(rows, product, currency, 'yearly', fb(product, 'yearly')),
   }
 }
 
 export async function getPricingDisplay(
-  region: RegionChoice,
-  founding: boolean
+  region: RegionChoice
 ): Promise<PricingDisplay> {
   const supabase = createServiceClient()
   const { data } = await supabase
@@ -89,19 +84,16 @@ export async function getPricingDisplay(
       billingPeriod: period,
     })
 
-  const discount = (p: DisplayPrice): DisplayPrice =>
-    founding ? { ...p, amountCents: applyFoundingMemberDiscount(p.amountCents) } : p
-
   return {
     currency: region.currency,
     configured,
-    student: subscriptionPrices(rows, 'student', region.currency, founding, fb),
-    scholar: subscriptionPrices(rows, 'scholar', region.currency, founding, fb),
-    mastery: subscriptionPrices(rows, 'mastery', region.currency, founding, fb),
+    student: subscriptionPrices(rows, 'student', region.currency, fb),
+    scholar: subscriptionPrices(rows, 'scholar', region.currency, fb),
+    mastery: subscriptionPrices(rows, 'mastery', region.currency, fb),
     credits: {
-      credits_25: discount(pickAmount(rows, 'credits_25', region.currency, null, fb('credits_25', null))),
-      credits_100: discount(pickAmount(rows, 'credits_100', region.currency, null, fb('credits_100', null))),
-      credits_500: discount(pickAmount(rows, 'credits_500', region.currency, null, fb('credits_500', null))),
+      credits_25: pickAmount(rows, 'credits_25', region.currency, null, fb('credits_25', null)),
+      credits_100: pickAmount(rows, 'credits_100', region.currency, null, fb('credits_100', null)),
+      credits_500: pickAmount(rows, 'credits_500', region.currency, null, fb('credits_500', null)),
     },
   }
 }

@@ -12,7 +12,7 @@ export async function GET() {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) {
-    return NextResponse.json({ signedIn: false })
+    return NextResponse.json({ signedIn: false, access: 'free' })
   }
 
   const summary = await computeBillingSummary(user.id)
@@ -22,6 +22,8 @@ export async function GET() {
   return NextResponse.json({
     signedIn: true,
     tier: summary.tier,
+    access: summary.access,
+    trial_ends_at: summary.trial_ends_at ?? null,
     status: summary.status,
     founding_member: summary.founding_member,
     credit_balance: summary.credit_balance,

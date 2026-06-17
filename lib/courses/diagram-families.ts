@@ -99,7 +99,6 @@ import { StatsAdvancedDiagram } from '@/components/diagrams/StatsAdvancedDiagram
 import { MatrixDiagram } from '@/components/diagrams/MatrixDiagram'
 import { AccountingDiagram } from '@/components/diagrams/AccountingDiagram'
 import { BusinessDiagram } from '@/components/diagrams/BusinessDiagram'
-import { LegalDiagram } from '@/components/diagrams/LegalDiagram'
 import { SocialScienceDiagram } from '@/components/diagrams/SocialScienceDiagram'
 import { BreakEvenDiagram } from '@/components/diagrams/BreakEvenDiagram'
 import { RatioAnalysisDiagram } from '@/components/diagrams/RatioAnalysisDiagram'
@@ -131,6 +130,14 @@ import { PsychRetailDiagram } from '@/components/diagrams/PsychRetailDiagram'
 import { PsychAdsDiagram } from '@/components/diagrams/PsychAdsDiagram'
 import { PsychHealthDiagram } from '@/components/diagrams/PsychHealthDiagram'
 import { PsychWorkplaceDiagram } from '@/components/diagrams/PsychWorkplaceDiagram'
+import { LawSystemDiagram } from '@/components/diagrams/LawSystemDiagram'
+import { LawContractDiagram } from '@/components/diagrams/LawContractDiagram'
+import { LawTortDiagram } from '@/components/diagrams/LawTortDiagram'
+import { LawCriminalDiagram } from '@/components/diagrams/LawCriminalDiagram'
+import { LawPrecedentDiagram } from '@/components/diagrams/LawPrecedentDiagram'
+import { LawInterpretationDiagram } from '@/components/diagrams/LawInterpretationDiagram'
+import { LawRemediesDiagram } from '@/components/diagrams/LawRemediesDiagram'
+import { LawAdrDiagram } from '@/components/diagrams/LawAdrDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -606,35 +613,35 @@ const FAMILIES: Record<string, FamilyEntry> = {
     caption: 'PESTLE, stakeholders, and objectives shape strategic choices.',
   },
   'law-system-process': {
-    Component: LegalDiagram,
+    Component: LawSystemDiagram,
     caption: 'Sources of law, courts, and dispute resolution in the English legal system.',
   },
   'law-contract-elements': {
-    Component: LegalDiagram,
+    Component: LawContractDiagram,
     caption: 'Valid contracts require offer, acceptance, consideration, and intention.',
   },
   'law-criminal-elements': {
-    Component: LegalDiagram,
+    Component: LawCriminalDiagram,
     caption: 'Criminal liability requires actus reus and mens rea — plus causation and defences.',
   },
   'law-tort-elements': {
-    Component: LegalDiagram,
+    Component: LawTortDiagram,
     caption: 'Negligence: duty of care, breach, causation, and remoteness of damage.',
   },
   'law-precedent': {
-    Component: LegalDiagram,
+    Component: LawPrecedentDiagram,
     caption: 'Judicial precedent — stare decisis, ratio decidendi, and court hierarchy.',
   },
   'law-interpretation': {
-    Component: LegalDiagram,
+    Component: LawInterpretationDiagram,
     caption: 'Statutory interpretation rules — literal, golden, mischief, and purposive.',
   },
   'law-remedies': {
-    Component: LegalDiagram,
+    Component: LawRemediesDiagram,
     caption: 'Civil remedies — compensatory and punitive damages, injunctions, and specific performance.',
   },
   'law-adr': {
-    Component: LegalDiagram,
+    Component: LawAdrDiagram,
     caption: 'Alternative dispute resolution — negotiation, mediation, arbitration, and litigation.',
   },
   'soc-theory': {

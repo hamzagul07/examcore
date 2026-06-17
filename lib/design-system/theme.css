@@ -112,6 +112,10 @@
   --ec-text-faint: #8d8470;
   --ec-brand: #19774d;
   --ec-brand-deep: #17a86b;
+  /* Darker green for green text sitting on a green tint (chips/toggles), where
+     the standard brand green only reaches ~4.3:1. Night themes fall back to the
+     neon ink via var(--green-on-tint, var(--ink)). */
+  --green-on-tint: #145e3d;
   --ec-brand-muted: rgba(25, 119, 77, 0.06);
   --ec-brand-border: rgba(30, 138, 94, 0.38);
   --ec-accent-light: rgba(30, 138, 94, 0.2);

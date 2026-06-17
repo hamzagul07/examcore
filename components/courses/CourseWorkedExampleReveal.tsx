@@ -47,11 +47,15 @@ export function CourseWorkedExampleReveal({
   const steps = splitSolutionSteps(solution)
   const [revealed, setRevealed] = useState(0)
   const [revealing, setRevealing] = useState(false)
+  const [justRevealed, setJustRevealed] = useState<number | null>(null)
 
   const revealNext = () => {
     if (revealing || revealed >= steps.length) return
     setRevealing(true)
-    setRevealed((n) => Math.min(steps.length, n + 1))
+    const next = revealed + 1
+    setRevealed(next)
+    setJustRevealed(next)
+    window.setTimeout(() => setJustRevealed(null), 450)
     window.setTimeout(() => setRevealing(false), 360)
   }
 
@@ -105,7 +109,7 @@ export function CourseWorkedExampleReveal({
           return (
             <li
               key={i}
-              className={`course-worked-reveal-step${visible ? ' is-visible' : ' is-hidden'}`}
+              className={`course-worked-reveal-step${visible ? ' is-visible' : ' is-hidden'}${justRevealed === i + 1 ? ' course-worked-reveal-step--enter' : ''}`}
             >
               <CourseRichText content={step} variant="prose" />
             </li>

@@ -2509,6 +2509,27 @@ html[data-ec-theme='late-night'] .course-studio {
   animation: course-formula-reveal 0.35s var(--course-ease);
 }
 
+.course-worked-reveal-step--enter.is-visible {
+  animation: course-worked-step-enter 0.42s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes course-worked-step-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-worked-reveal-step--enter.is-visible {
+    animation: none;
+  }
+}
+
 .course-worked-reveal-btn {
   display: inline-flex;
   align-items: center;

@@ -39,7 +39,9 @@ export function BillingSection({ billing }: { billing: SettingsBilling }) {
 
   useEffect(() => {
     if (!billing.hasCustomer) {
-      void fetch('/api/billing/sync-customer', { method: 'POST' }).catch(() => {})
+      void fetch('/api/billing/sync-customer', { method: 'POST' }).catch((err) =>
+        console.error('BillingSection: billing sync-customer failed', err)
+      )
     }
   }, [billing.hasCustomer])
 

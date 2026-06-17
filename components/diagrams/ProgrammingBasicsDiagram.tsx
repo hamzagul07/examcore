@@ -15,13 +15,13 @@ export function ProgrammingBasicsDiagram({ className = '', stepIndex = 0 }: Less
         <text x="108" y="54" textAnchor="middle" fontSize="10" fill={DIAGRAM_TEXT}>count ← 0</text>
       </g>
       <g opacity={layerOpacity(spec, stepIndex, 'io')}>
-        <text x="48" y="96" fontSize="10" fill={DIAGRAM_TEXT}>INPUT age · OUTPUT "Hello"</text>
+        <text x="48" y="96" fontSize="10" fill={DIAGRAM_TEXT}>{'INPUT age · OUTPUT "Hello"'}</text>
       </g>
       <g opacity={layerOpacity(spec, stepIndex, 'operators')}>
         <text x="48" y="124" fontSize="10" fill={DIAGRAM_TEXT}>MOD · DIV · AND · OR · NOT · &lt; &gt; =</text>
       </g>
       <g opacity={layerOpacity(spec, stepIndex, 'comments')}>
-        <text x="48" y="156" fontSize="10" fill={DIAGRAM_TEXT} fontStyle="italic">// comment — not executed</text>
+        <text x="48" y="156" fontSize="10" fill={DIAGRAM_TEXT} fontStyle="italic">{'// comment — not executed'}</text>
       </g>
     </svg>
   )

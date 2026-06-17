@@ -1,12 +1,12 @@
 /**
- * Intent system for the Instant-Action Agent (a.k.a. Command Bar) — the
- * conversational chatbot that lives on the landing page hero. Visitors type a
- * natural-language query, Claude classifies their intent, and the UI renders a
- * matching inline component (past paper, diagnostic, upload zone, CTA).
+ * Intent system for the conversational agent. Visitors type a natural-language
+ * query, the model classifies their intent, and the UI renders a matching
+ * inline component (past paper, diagnostic, upload zone, CTA).
  *
- * This file is shared between the chat backend (`app/api/chat/route.ts`) and
- * the chat widget components (`components/command-bar/*`). Keep types here
- * narrow and JSON-serializable — they cross the API boundary.
+ * Consumed by the Omni-AI feature (`lib/omni-ai/*`, `components/omni-ai/*`) and
+ * the shared inline preview components (`components/command-bar/PaperPreview`,
+ * `DiagnosticPreview`, `InlineUpload`, `InlineCTA`). Keep types here narrow and
+ * JSON-serializable — they cross the API boundary.
  */
 
 import type { SyllabusCode } from './syllabus'

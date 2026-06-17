@@ -147,6 +147,12 @@ import { SocReligionDiagram } from '@/components/diagrams/SocReligionDiagram'
 import { SocCrimeDiagram } from '@/components/diagrams/SocCrimeDiagram'
 import { AcctStatementsDiagram } from '@/components/diagrams/AcctStatementsDiagram'
 import { AcctCostDiagram } from '@/components/diagrams/AcctCostDiagram'
+import { PsychPainDiagram } from '@/components/diagrams/PsychPainDiagram'
+import { PsychStressDiagram } from '@/components/diagrams/PsychStressDiagram'
+import { PsychLeadershipDiagram } from '@/components/diagrams/PsychLeadershipDiagram'
+import { PsychGroupsDiagram } from '@/components/diagrams/PsychGroupsDiagram'
+import { PsychWorkEnvDiagram } from '@/components/diagrams/PsychWorkEnvDiagram'
+import { PsychSatisfactionDiagram } from '@/components/diagrams/PsychSatisfactionDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -729,6 +735,30 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: PsychWorkplaceDiagram,
     caption: 'Workplace psychology covers leadership, motivation, groups, and satisfaction.',
   },
+  'psych-pain': {
+    Component: PsychPainDiagram,
+    caption: 'Gate control theory — psychological factors open or close the pain gate.',
+  },
+  'psych-stress': {
+    Component: PsychStressDiagram,
+    caption: 'The General Adaptation Syndrome: alarm, resistance, then exhaustion.',
+  },
+  'psych-leadership': {
+    Component: PsychLeadershipDiagram,
+    caption: 'Leadership styles range from autocratic control to team freedom.',
+  },
+  'psych-groups': {
+    Component: PsychGroupsDiagram,
+    caption: "Tuckman's stages: forming, storming, norming, and performing.",
+  },
+  'psych-work-env': {
+    Component: PsychWorkEnvDiagram,
+    caption: 'Physical and temporal work conditions shape performance and wellbeing.',
+  },
+  'psych-satisfaction': {
+    Component: PsychSatisfactionDiagram,
+    caption: "Herzberg's two factors: motivators drive satisfaction; hygiene prevents dissatisfaction.",
+  },
   'econ-supply-demand': {
     Component: EconSupplyDemandDiagram,
     caption: 'Demand and supply interact to set the market equilibrium price and quantity.',
@@ -1136,6 +1166,31 @@ const SLUG_FAMILY_9609_OVERRIDE: Record<string, keyof typeof FAMILIES> = Object.
   ])
 ) as Record<string, keyof typeof FAMILIES>
 
+/**
+ * Psychology (9990): the Health and Organisational sections each mapped all of
+ * their lessons to one family (Health Belief Model / Maslow). Re-map specific
+ * subsections to topic-matched diagrams. Scoped to existing psych-* slugs so it
+ * never touches law/sociology lessons that share a numeric prefix.
+ */
+const PSYCH_SUBSECTION_FAMILY: Record<string, keyof typeof FAMILIES> = {
+  '3-3': 'psych-pain',
+  '3-4': 'psych-stress',
+  '4-2': 'psych-leadership',
+  '4-3': 'psych-groups',
+  '4-4': 'psych-work-env',
+  '4-5': 'psych-satisfaction',
+}
+const SLUG_FAMILY_9990_OVERRIDE: Record<string, keyof typeof FAMILIES> = Object.fromEntries(
+  Object.entries(SLUG_FAMILY_COMMERCE_HUMANITIES)
+    .filter(([, fam]) => String(fam).startsWith('psych-'))
+    .map(([slug]) => {
+      const sub = slug.match(/^(\d+-\d+)/)?.[1]
+      const target = sub ? PSYCH_SUBSECTION_FAMILY[sub] : undefined
+      return target ? ([slug, target] as const) : null
+    })
+    .filter((e): e is readonly [string, keyof typeof FAMILIES] => e !== null)
+)
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1145,6 +1200,7 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9708,
   ...SLUG_FAMILY_COMMERCE_HUMANITIES,
   ...SLUG_FAMILY_9609_OVERRIDE,
+  ...SLUG_FAMILY_9990_OVERRIDE,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))

@@ -16,7 +16,7 @@
   --text: #25221b;
   --text-2: #5c5546;
   --muted: #8d8470;
-  --ink: #1e8a5e;
+  --ink: #19774d;
   --ink-bright: #17a86b;
   --ink-soft: rgba(30, 138, 94, 0.11);
   --ink-border: rgba(30, 138, 94, 0.38);
@@ -103,7 +103,10 @@ a { color: inherit; }
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
+  /* --text-2 is an AA-compliant secondary token in every theme; raw --muted
+     collides with the globals shadcn `--muted` (a surface colour) and renders
+     this kicker near-invisible on light backgrounds. */
+  color: var(--text-2);
   margin: 0 0 16px;
 }
 .h-display {

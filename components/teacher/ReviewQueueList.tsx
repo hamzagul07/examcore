@@ -22,6 +22,7 @@ interface Props {
 export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
   const [reviews, setReviews] = useState<Review[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const url = classroomId
@@ -33,7 +34,11 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
         setReviews((d.reviews || []).slice(0, limit))
         setLoading(false)
       })
-      .catch(() => setLoading(false))
+      .catch((err) => {
+        console.error('ReviewQueueList: failed to load reviews', err)
+        setError('Could not load submissions. Please try again.')
+        setLoading(false)
+      })
   }, [classroomId, limit])
 
   return (
@@ -55,7 +60,11 @@ export function ReviewQueueList({ classroomId, limit = 5 }: Props) {
         <p className="text-[var(--ec-text-secondary)]">Loading submissions...</p>
       )}
 
-      {!loading && reviews.length === 0 && (
+      {!loading && error && (
+        <p className="text-[var(--ec-danger,#b91c1c)]">{error}</p>
+      )}
+
+      {!loading && !error && reviews.length === 0 && (
         <p className="text-[var(--ec-text-secondary)]">
           No AI-marked submissions yet. Students need to complete marked attempts
           with full marking data.

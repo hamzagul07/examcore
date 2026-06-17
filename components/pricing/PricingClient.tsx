@@ -125,7 +125,9 @@ export function PricingClient({ display, signedIn, currentTier, founding, region
         body: JSON.stringify({ currency }),
       })
       router.refresh()
-    } catch {
+    } catch (err) {
+      console.error('PricingClient: failed to change currency', err)
+    } finally {
       setChangingRegion(false)
     }
   }

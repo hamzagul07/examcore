@@ -1,0 +1,115 @@
+/* Press / tap feedback for Margin Notes course UI */
+
+.course-root button:not(:disabled),
+.course-root [role='button']:not([aria-disabled='true']),
+.course-root a.btn-primary,
+.course-root a.btn-ghost,
+.course-root .fpart,
+.course-root .fsym,
+.course-root .cmap-node,
+.course-root .fcard,
+.course-root .worked-reveal,
+.course-root .course-worked-reveal-btn,
+.course-root .paper-tab,
+.course-root .mode-tab,
+.course-root .cmdk-btn,
+.course-root .theme-flip,
+.course-root .burger {
+  transition:
+    transform 140ms cubic-bezier(0.2, 0, 0, 1),
+    background 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    filter 140ms ease;
+}
+
+.course-root .btn-primary:active:not(:disabled),
+.course-root .btn-primary.mn-tapped {
+  transform: scale(0.97) translateY(1px);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.course-root .btn-ghost:active:not(:disabled),
+.course-root .btn-ghost.mn-tapped,
+.course-root .worked-reveal:active:not(:disabled),
+.course-root .worked-reveal.mn-tapped,
+.course-root .course-worked-reveal-btn:active:not(:disabled),
+.course-root .course-worked-reveal-btn.mn-tapped {
+  transform: scale(0.97);
+  background: var(--bg-soft);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-root .fpart:active:not(:disabled),
+.course-root .fpart.mn-tapped,
+.course-root .fsym:active:not(:disabled),
+.course-root .fsym.mn-tapped {
+  transform: scale(0.98);
+  background: var(--ink-soft);
+}
+
+.course-root .fpart.on.mn-tapped,
+.course-root .fsym.on.mn-tapped {
+  filter: brightness(0.92);
+}
+
+.course-root .cmap-node:active:not(:disabled),
+.course-root .cmap-node.mn-tapped,
+.course-root .paper-tab:active:not(:disabled),
+.course-root .paper-tab.mn-tapped,
+.course-root .mode-tab:active:not(:disabled),
+.course-root .mode-tab.mn-tapped {
+  transform: scale(0.98);
+}
+
+.course-root .fcard:active,
+.course-root .fcard.mn-tapped {
+  transform: scale(0.985);
+}
+
+.course-root .cmdk-btn:active,
+.course-root .cmdk-btn.mn-tapped,
+.course-root .theme-flip:active,
+.course-root .theme-flip.mn-tapped,
+.course-root .burger:active,
+.course-root .burger.mn-tapped {
+  transform: scale(0.94);
+}
+
+.course-root .gloss:active:not(:disabled),
+.course-root .gloss.mn-tapped,
+.course-root .qc:active:not(:disabled),
+.course-root .qc.mn-tapped,
+.course-root .fc-arrow:active:not(:disabled),
+.course-root .fc-arrow.mn-tapped,
+.course-root .practice-scheme-toggle:active:not(:disabled),
+.course-root .practice-scheme-toggle.mn-tapped {
+  transform: scale(0.98);
+}
+
+.course-root .gloss.mn-tapped,
+.course-root .qc.mn-tapped {
+  background: var(--ink-soft);
+  border-color: var(--ink-border);
+}
+
+.course-root .fc-arrow.mn-tapped {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.course-root .worked-reveal[aria-busy='true'],
+.course-root .course-worked-reveal-btn[aria-busy='true'] {
+  opacity: 0.72;
+  pointer-events: none;
+  cursor: wait;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-root .mn-tapped,
+  .course-root button:active:not(:disabled),
+  .course-root [role='button']:active:not([aria-disabled='true']) {
+    transform: none !important;
+    filter: brightness(0.94);
+  }
+}

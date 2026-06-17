@@ -2530,6 +2530,18 @@ html[data-ec-theme='late-night'] .course-studio {
   transform: translateY(-1px);
 }
 
+.course-worked-reveal-btn:active:not(:disabled),
+.course-worked-reveal-btn.mn-tapped {
+  transform: scale(0.97);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-worked-reveal-btn[aria-busy='true'] {
+  opacity: 0.72;
+  pointer-events: none;
+  cursor: wait;
+}
+
 .course-worked-reveal-done {
   margin: var(--course-space-4, 1rem) 0 0;
   font-size: var(--course-text-sm, 0.875rem);

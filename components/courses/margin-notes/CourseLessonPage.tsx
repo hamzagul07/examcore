@@ -95,6 +95,19 @@ function isLatexFormula(raw: string): boolean {
 
 function Worked({ w, idx }: { w: NonNullable<MarginNotesLesson['worked']>[number]; idx: number }) {
   const [shown, setShown] = useState(1)
+  const [revealing, setRevealing] = useState(false)
+  const [justRevealed, setJustRevealed] = useState<number | null>(null)
+
+  const revealNext = () => {
+    if (revealing || shown >= w.steps.length) return
+    setRevealing(true)
+    const next = shown + 1
+    setShown(next)
+    setJustRevealed(next)
+    window.setTimeout(() => setJustRevealed(null), 450)
+    window.setTimeout(() => setRevealing(false), 360)
+  }
+
   return (
     <div className="worked card" data-screen-label={`Lesson — ${w.title}`}>
       <div className="worked-head">
@@ -105,7 +118,10 @@ function Worked({ w, idx }: { w: NonNullable<MarginNotesLesson['worked']>[number
       </div>
       <ol className="worked-steps">
         {w.steps.slice(0, shown).map((s, i) => (
-          <li key={i} className="worked-step">
+          <li
+            key={i}
+            className={`worked-step${justRevealed === i + 1 ? ' worked-step--enter' : ''}`}
+          >
             <span className="worked-step-n mono">{i + 1}</span>
             <CourseRichText content={s} variant="prose" className="worked-step-rich" />
           </li>
@@ -115,7 +131,9 @@ function Worked({ w, idx }: { w: NonNullable<MarginNotesLesson['worked']>[number
         <button
           type="button"
           className="btn-ghost sm worked-reveal"
-          onClick={() => setShown((n) => n + 1)}
+          aria-busy={revealing || undefined}
+          disabled={revealing}
+          onClick={revealNext}
         >
           Reveal step {shown + 1} of {w.steps.length} →
         </button>
@@ -262,14 +280,24 @@ function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['flashcard
   const zoneRef = useRef<HTMLDivElement>(null)
   const [i, setI] = useState(0)
   const [flip, setFlip] = useState(false)
+  const [busy, setBusy] = useState(false)
   const c = cards[i]
   const go = useCallback(
     (d: number) => {
+      if (busy) return
+      setBusy(true)
       setFlip(false)
       setI((p) => (p + d + cards.length) % cards.length)
+      window.setTimeout(() => setBusy(false), 280)
     },
-    [cards.length]
+    [busy, cards.length]
   )
+  const toggleFlip = useCallback(() => {
+    if (busy) return
+    setBusy(true)
+    setFlip((f) => !f)
+    window.setTimeout(() => setBusy(false), 320)
+  }, [busy])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -289,23 +317,23 @@ function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['flashcard
       } else if (e.key === ' ' || e.key === 'Spacebar') {
         if (focused || document.activeElement === document.body) {
           e.preventDefault()
-          setFlip((f) => !f)
+          toggleFlip()
         }
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [go])
+  }, [go, toggleFlip])
 
   return (
     <div ref={zoneRef} className="fc-zone" data-screen-label="Lesson — flashcards">
       <div
-        className={`fcard${flip ? ' flipped' : ''}`}
-        onClick={() => setFlip((f) => !f)}
+        className={`fcard${flip ? ' flipped' : ''}${busy ? ' fcard--busy' : ''}`}
+        onClick={toggleFlip}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault()
-            setFlip((f) => !f)
+            toggleFlip()
           }
         }}
         role="button"
@@ -332,14 +360,14 @@ function Flashcards({ cards }: { cards: NonNullable<MarginNotesLesson['flashcard
         </div>
       </div>
       <div className="fc-nav">
-        <button type="button" className="fc-arrow" onClick={() => go(-1)} aria-label="Previous card">
+        <button type="button" className="fc-arrow" onClick={() => go(-1)} aria-label="Previous card" disabled={busy}>
           ←
         </button>
         <span className="micro fc-nav-meta">
           {i + 1} / {cards.length}
           <span className="fc-nav-hint"> · ← → space</span>
         </span>
-        <button type="button" className="fc-arrow" onClick={() => go(1)} aria-label="Next card">
+        <button type="button" className="fc-arrow" onClick={() => go(1)} aria-label="Next card" disabled={busy}>
           →
         </button>
       </div>

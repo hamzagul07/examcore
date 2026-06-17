@@ -46,6 +46,14 @@ export function CourseWorkedExampleReveal({
 }) {
   const steps = splitSolutionSteps(solution)
   const [revealed, setRevealed] = useState(0)
+  const [revealing, setRevealing] = useState(false)
+
+  const revealNext = () => {
+    if (revealing || revealed >= steps.length) return
+    setRevealing(true)
+    setRevealed((n) => Math.min(steps.length, n + 1))
+    window.setTimeout(() => setRevealing(false), 360)
+  }
 
   const cleaned = stripImgTags(question)
   const { stem, options } = isMcqPaper ? parseMcqOptions(cleaned) : { stem: cleaned, options: [] }
@@ -108,7 +116,9 @@ export function CourseWorkedExampleReveal({
         <button
           type="button"
           className="course-worked-reveal-btn"
-          onClick={() => setRevealed((n) => Math.min(steps.length, n + 1))}
+          aria-busy={revealing || undefined}
+          disabled={revealing}
+          onClick={revealNext}
         >
           <Eye className="h-4 w-4" aria-hidden />
           Reveal step {revealed + 1} of {steps.length}

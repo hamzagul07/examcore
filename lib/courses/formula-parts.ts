@@ -35,6 +35,16 @@ const KNOWN: KnownFormula[] = [
   { test: /I\s*=\s*Q\s*\/\s*t/i, latex: 'I = \\frac{Q}{t}', symbols: ['I', 'Q', 't'] },
   { test: /p\s*=\s*mv\b/i, latex: 'p = mv', symbols: ['p', 'm', 'v'] },
   {
+    test: /E_k\s*=\s*\\frac\s*\{\s*1\s*\}\s*\{\s*2\s*\}mv/i,
+    latex: 'E_k = \\frac{1}{2}mv^2',
+    symbols: ['E_k', 'm', 'v'],
+  },
+  {
+    test: /N\s*=\s*kg\s*m\s*s/i,
+    latex: 'N = kg m s^{-2}',
+    symbols: ['N', 'kg', 'm', 's'],
+  },
+  {
     test: /F_\{net\}\s*=\s*ma/i,
     latex: ['F_{net} = ma', 'F_{net} = \\frac{\\Delta p}{\\Delta t}'],
     symbols: ['F_net', 'm', 'a', 'Δp', 'Δt'],

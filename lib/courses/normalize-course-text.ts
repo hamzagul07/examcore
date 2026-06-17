@@ -15,6 +15,7 @@ export function normalizeCourseText(text: string): string {
   if (!text) return text
 
   let s = repairMathDelimiters(normalizeMarkdownTables(text))
+  s = convertBacktickMath(s)
   s = s.replace(/\\_/g, '_')
 
   const stashed: string[] = []
@@ -33,6 +34,19 @@ export function normalizeCourseText(text: string): string {
   return repairMathDelimiters(s)
 }
 
+/** Course content often wraps math in backticks instead of $...$ */
+function convertBacktickMath(text: string): string {
+  return text.replace(/`([^`\n]+?)`/g, (_match, inner: string) => {
+    const t = inner.trim()
+    if (!t || t.includes('$')) return t
+    const looksMath =
+      /\\[a-zA-Z]/.test(t) ||
+      /[=^_<>]|\\frac|\\int|\\ln|\\sum|e\^\{/.test(t) ||
+      /^[A-Za-z](?:[₀-₉0-9_^]+)?$/.test(t)
+    return looksMath ? `$${t}$` : t
+  })
+}
+
 function splitTrailingPunctuation(s: string): { expr: string; suffix: string } {
   const m = s.match(/^(.+?)([.,;:!?]?)$/)
   return { expr: (m?.[1] ?? s).trim(), suffix: m?.[2] ?? '' }
@@ -42,6 +56,48 @@ function wrapMath(expr: string): string {
   const { expr: core, suffix } = splitTrailingPunctuation(expr.trim())
   if (!core) return expr
   return `$${core}$${suffix}`
+}
+
+function wrapMathFragment(fragment: string): string {
+  const trimmed = fragment.trim()
+  if (!trimmed || trimmed.includes('$') || !HAS_RAW_LATEX.test(trimmed)) return fragment
+  return wrapMath(trimmed)
+}
+
+/** Prose sentences must not be wrapped as one math block — KaTeX collapses spaces. */
+function isProseWithInlineMath(text: string): boolean {
+  const t = text.trim()
+  if (
+    /^[A-Z][a-z]+\s+(that|the|a|an|how|if|when|where|why|what|calculate|find|show|determine|explain|derive|sketch|state|define|convert|prove)\b/i.test(
+      t
+    )
+  ) {
+    return true
+  }
+  return (t.match(/\b[a-z]{3,}\b/gi) ?? []).length >= 4
+}
+
+function replaceOutsideMath(body: string, replacer: (plain: string) => string): string {
+  const parts = body.split(/(\$[^$\n]+?\$)/g)
+  return parts.map((part, i) => (i % 2 === 1 ? part : replacer(part))).join('')
+}
+
+function wrapInlineEquations(body: string): string {
+  let out = replaceOutsideMath(body, (plain) =>
+    plain.replace(
+      /\b([A-Za-z][A-Za-z0-9_]*\s*=\s*(?:\\[a-zA-Z][^,;.]*)+)/g,
+      (match) => wrapMathFragment(match)
+    )
+  )
+
+  out = replaceOutsideMath(out, (plain) =>
+    plain.replace(
+      /(\d[\d.]*\s*\\times\s*10\^\{?-?\d+\}?[\w\s\\^{}\-]*|\\[a-zA-Z]+(?:\{[^}]*\})*(?:\{[^}]*\})?[^.,;$\n]*)/g,
+      (seg) => wrapMathFragment(seg)
+    )
+  )
+
+  return out
 }
 
 function wrapLatexLine(line: string): string {
@@ -67,21 +123,16 @@ function wrapLatexLine(line: string): string {
     }
   }
 
-  // Equation-heavy line (starts with symbol / backslash)
   const trimmed = body.trim()
-  if (HAS_RAW_LATEX.test(trimmed) && /^[A-Za-z_\\(\\-]/.test(trimmed) && !trimmed.startsWith('$')) {
+  const isStandaloneEquation =
+    HAS_RAW_LATEX.test(trimmed) &&
+    !trimmed.startsWith('$') &&
+    !isProseWithInlineMath(trimmed) &&
+    /^(?:\\|[A-Za-z][A-Za-z0-9_]*\s*=)/.test(trimmed)
+
+  if (isStandaloneEquation) {
     return prefix + wrapMath(trimmed)
   }
 
-  // Inline fragments: 5.97 \times 10^{24}
-  return (
-    prefix +
-    body.replace(
-      /(\d[\d.]*\s*\\times\s*10\^\{?-?\d+\}?[\w\s\\^{}\-]*|\\[a-zA-Z]+(?:\{[^}]*\})*(?:\{[^}]*\})?[^.,;$\n]*)/g,
-      (seg) => {
-        if (!HAS_RAW_LATEX.test(seg) || seg.includes('$')) return seg
-        return wrapMath(seg)
-      }
-    )
-  )
+  return prefix + wrapInlineEquations(body)
 }

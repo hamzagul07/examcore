@@ -104,6 +104,45 @@ const proseOnly = parseFormulaParts(
 assert.equal(proseOnly.expressions.length, 0, 'prose-only formula has no KaTeX expression')
 assert.ok(proseOnly.description.includes('Newton'), 'prose stays in description')
 
+const eK = parseFormulaParts('$E_k = \\frac{1}{2}mv^2$', {
+  topicCode: '1.1',
+  slug: '1-1-physical-quantities',
+  title: 'Physical quantities',
+  paper: 'P2',
+  paperName: 'P2',
+  status: 'premium',
+  summary: '',
+  durationMin: 20,
+  sections: [],
+})
+assert.equal(
+  eK.parts.find((p) => p.symbol === 'E_k')?.meaning,
+  'kinetic energy, in joules (J)',
+  'E_k has definition'
+)
+assert.equal(
+  eK.parts.find((p) => p.symbol === 'm')?.meaning,
+  'metre (m), SI base unit of length',
+  'm uses SI-units topic override'
+)
+
+const newton = parseFormulaParts('$N = kg m s^{-2}$', {
+  topicCode: '1.2',
+  slug: '1-2-si-units',
+  title: 'SI units',
+  paper: 'P2',
+  paperName: 'P2',
+  status: 'premium',
+  summary: '',
+  durationMin: 20,
+  sections: [],
+})
+assert.equal(
+  newton.parts.find((p) => p.symbol === 'N')?.meaning,
+  'newton (N), the SI unit of force',
+  'N has definition'
+)
+
 if (failed > 0) {
   console.error(`\n${failed} extract test(s) failed`)
   process.exit(1)

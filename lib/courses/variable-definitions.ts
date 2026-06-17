@@ -37,8 +37,45 @@ const DEFAULT_DEFINITIONS: Record<string, string> = {
   V: 'potential difference, in volts (V)',
   P: 'power, in watts (W)',
   E: 'energy, in joules (J)',
+  E_k: 'kinetic energy, in joules (J)',
+  E_p: 'potential energy, in joules (J)',
+  KE: 'kinetic energy, in joules (J)',
+  PE: 'potential energy, in joules (J)',
+  U: 'internal energy or potential energy, in joules (J)',
   g: 'gravitational field strength, in N kg⁻¹',
   B: 'magnetic flux density, in tesla (T)',
+  kg: 'kilogram (kg), SI base unit of mass',
+  N: 'newton (N), the SI unit of force',
+  J: 'joule (J), the SI unit of energy or work',
+  s: 'second (s), SI base unit of time',
+  A: 'ampere (A), SI base unit of electric current',
+  mol: 'mole (mol), SI base unit of amount of substance',
+  cd: 'candela (cd), SI base unit of luminous intensity',
+  Hz: 'hertz (Hz), unit of frequency (s⁻¹)',
+  Pa: 'pascal (Pa), unit of pressure (N m⁻²)',
+  W: 'watt (W), unit of power (J s⁻¹)',
+  n: 'amount of substance, in moles (mol); or refractive index (dimensionless)',
+  d: 'distance or displacement, in m',
+  h: 'height, in m; or Planck constant in quantum contexts',
+  r: 'radius or distance, in m',
+  u: 'initial speed or velocity, in m s⁻¹',
+  v_i: 'initial velocity, in m s⁻¹',
+  v_f: 'final velocity, in m s⁻¹',
+  k: 'spring constant, in N m⁻¹',
+  e: 'elementary charge, in coulombs (C)',
+  C: 'coulomb (C), unit of electric charge',
+  M: 'molar mass, in g mol⁻¹ or kg mol⁻¹',
+  rho: 'density, in kg m⁻³',
+  '\u03c1': 'density, in kg m⁻³',
+  l: 'length, in m',
+  D: 'diameter or distance, in m',
+  Z: 'impedance, in ohms (Ω)',
+  q: 'charge, in coulombs (C)',
+  '\u03b5': 'permittivity',
+  '\u03b5_0': 'permittivity of free space',
+  '\u03bc': 'permeability or micro prefix',
+  '\u03c0': 'pi (dimensionless)',
+  b: 'y-intercept or constant term',
 }
 
 const AREA_OVERRIDES: Partial<Record<SubjectArea, Record<string, string>>> = {
@@ -65,6 +102,7 @@ const AREA_OVERRIDES: Partial<Record<SubjectArea, Record<string, string>>> = {
     F: 'force, in newtons (N)',
     F_net: 'net force on the object, in newtons (N)',
     a: 'acceleration, in m s⁻²',
+    E: 'Young modulus, in Pa (N m⁻²), or energy (J) in other contexts',
   },
   electricity: {
     I: 'current, in amperes (A)',
@@ -87,6 +125,10 @@ export function lookupVariableDefinitionForLesson(
   symbol: string,
   topicCode?: string
 ): string {
+  if (topicCode && /^1\.[12]\b/.test(topicCode)) {
+    if (symbol === 'm') return 'metre (m), SI base unit of length'
+    if (symbol === 'L') return 'length, in m'
+  }
   const area = topicCode ? subjectAreaFromTopicCode(topicCode) : 'default'
   return lookupVariableDefinition(symbol, area)
 }

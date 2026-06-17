@@ -153,6 +153,9 @@ import { PsychLeadershipDiagram } from '@/components/diagrams/PsychLeadershipDia
 import { PsychGroupsDiagram } from '@/components/diagrams/PsychGroupsDiagram'
 import { PsychWorkEnvDiagram } from '@/components/diagrams/PsychWorkEnvDiagram'
 import { PsychSatisfactionDiagram } from '@/components/diagrams/PsychSatisfactionDiagram'
+import { BioRespirationDiagram } from '@/components/diagrams/BioRespirationDiagram'
+import { BioEvolutionDiagram } from '@/components/diagrams/BioEvolutionDiagram'
+import { DensityPressureDiagram } from '@/components/diagrams/DensityPressureDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -194,6 +197,10 @@ const FAMILIES: Record<string, FamilyEntry> = {
   'energy-transfer': {
     Component: EnergyTransferDiagram,
     caption: 'Energy transfers between stores; total energy conserved in a closed system.',
+  },
+  'density-pressure': {
+    Component: DensityPressureDiagram,
+    caption: 'Pressure is force per unit area; in a fluid p = ρgh increases with depth.',
   },
   'stress-strain': {
     Component: StressStrainDiagram,
@@ -563,6 +570,14 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: BiotechDiagram,
     caption: 'Recombinant DNA: insert a gene into a vector and clone in host cells.',
   },
+  'bio-respiration': {
+    Component: BioRespirationDiagram,
+    caption: 'Aerobic respiration releases energy from glucose as ATP in the mitochondria.',
+  },
+  'bio-evolution': {
+    Component: BioEvolutionDiagram,
+    caption: 'Natural selection shifts allele frequencies — the population evolves.',
+  },
   'commerce-accounting-ledger': {
     Component: AccountingDiagram,
     caption: 'Double entry flows from source documents through books of prime entry to ledgers.',
@@ -828,7 +843,7 @@ const SLUG_FAMILY_9702: Record<string, keyof typeof FAMILIES> = {
   '1-3-errors-and-uncertainties': 'error-bars',
   '1-4-scalars-and-vectors': 'vectors',
   '3-2-non-uniform-motion': 'kinematics',
-  '4-3-density-and-pressure': 'energy-transfer',
+  '4-3-density-and-pressure': 'density-pressure',
   '5-1-energy-conservation': 'energy-transfer',
   '5-2-gravitational-potential-energy-and-kinetic-energy': 'energy-transfer',
   '6-1-stress-and-strain': 'stress-strain',
@@ -921,8 +936,8 @@ const SLUG_FAMILY_9700: Record<string, keyof typeof FAMILIES> = {
   '10-2-antibiotics': 'bio-immune',
   '11-1-the-immune-system': 'bio-immune',
   '11-2-antibodies-and-vaccination': 'bio-immune',
-  '12-1-energy': 'bio-homeostasis',
-  '12-2-respiration': 'bio-homeostasis',
+  '12-1-energy': 'bio-respiration',
+  '12-2-respiration': 'bio-respiration',
   '13-1-photosynthesis-as-an-energy-transfer-process': 'bio-photosynthesis',
   '13-2-investigation-of-limiting-factors': 'bio-photosynthesis',
   '14-1-homeostasis-in-mammals': 'bio-homeostasis',
@@ -933,8 +948,8 @@ const SLUG_FAMILY_9700: Record<string, keyof typeof FAMILIES> = {
   '16-2-the-roles-of-genes-in-determining-the-phenotype': 'bio-genetics',
   '16-3-gene-control': 'bio-genetics',
   '17-1-variation': 'bio-genetics',
-  '17-2-natural-and-artificial-selection': 'bio-ecology',
-  '17-3-evolution': 'bio-ecology',
+  '17-2-natural-and-artificial-selection': 'bio-evolution',
+  '17-3-evolution': 'bio-evolution',
   '18-1-classification': 'bio-ecology',
   '18-2-biodiversity': 'bio-ecology',
   '18-3-conservation': 'bio-ecology',

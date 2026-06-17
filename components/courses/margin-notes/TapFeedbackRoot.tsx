@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, type ReactNode } from 'react'
-import { useTapFeedback } from '@/lib/hooks/useTapFeedback'
+import { COURSE_TAP_CONFIG, useTapFeedback } from '@/lib/hooks/useTapFeedback'
 
 export function TapFeedbackRoot({
   className,
@@ -11,7 +11,7 @@ export function TapFeedbackRoot({
   children: ReactNode
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  useTapFeedback(ref)
+  useTapFeedback(ref, COURSE_TAP_CONFIG)
   return (
     <div ref={ref} className={className}>
       {children}

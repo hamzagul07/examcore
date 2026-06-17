@@ -101,7 +101,6 @@ import { AccountingDiagram } from '@/components/diagrams/AccountingDiagram'
 import { BusinessDiagram } from '@/components/diagrams/BusinessDiagram'
 import { LegalDiagram } from '@/components/diagrams/LegalDiagram'
 import { SocialScienceDiagram } from '@/components/diagrams/SocialScienceDiagram'
-import { PsychologyDiagram } from '@/components/diagrams/PsychologyDiagram'
 import { BreakEvenDiagram } from '@/components/diagrams/BreakEvenDiagram'
 import { RatioAnalysisDiagram } from '@/components/diagrams/RatioAnalysisDiagram'
 import { StakeholderDiagram } from '@/components/diagrams/StakeholderDiagram'
@@ -123,6 +122,15 @@ import { BizStrategyDiagram } from '@/components/diagrams/BizStrategyDiagram'
 import { BizOrgStructureDiagram } from '@/components/diagrams/BizOrgStructureDiagram'
 import { BizOperationsDiagram } from '@/components/diagrams/BizOperationsDiagram'
 import { BizFinanceDiagram } from '@/components/diagrams/BizFinanceDiagram'
+import { PsychDsmDiagram } from '@/components/diagrams/PsychDsmDiagram'
+import { PsychDiathesisDiagram } from '@/components/diagrams/PsychDiathesisDiagram'
+import { PsychTreatmentDiagram } from '@/components/diagrams/PsychTreatmentDiagram'
+import { PsychResearchDiagram } from '@/components/diagrams/PsychResearchDiagram'
+import { PsychFunnelDiagram } from '@/components/diagrams/PsychFunnelDiagram'
+import { PsychRetailDiagram } from '@/components/diagrams/PsychRetailDiagram'
+import { PsychAdsDiagram } from '@/components/diagrams/PsychAdsDiagram'
+import { PsychHealthDiagram } from '@/components/diagrams/PsychHealthDiagram'
+import { PsychWorkplaceDiagram } from '@/components/diagrams/PsychWorkplaceDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -662,47 +670,47 @@ const FAMILIES: Record<string, FamilyEntry> = {
     caption: 'Crime and deviance — globalisation, inequality, and media representations.',
   },
   'psych-clinical': {
-    Component: PsychologyDiagram,
+    Component: PsychTreatmentDiagram,
     caption: 'Clinical pathway: diagnosis, explanation, treatment, and evaluation.',
   },
   'psych-clinical-dsm': {
-    Component: PsychologyDiagram,
+    Component: PsychDsmDiagram,
     caption: 'Diagnostic criteria — symptoms, duration, distress, and functional impairment.',
   },
   'psych-clinical-diathesis': {
-    Component: PsychologyDiagram,
+    Component: PsychDiathesisDiagram,
     caption: 'Diathesis-stress model — vulnerability plus life stress triggers disorder.',
   },
   'psych-clinical-treatment': {
-    Component: PsychologyDiagram,
+    Component: PsychTreatmentDiagram,
     caption: 'Biopsychosocial treatment — drugs, CBT, and social support combined.',
   },
   'psych-research': {
-    Component: PsychologyDiagram,
+    Component: PsychResearchDiagram,
     caption: 'Research design — IV/DV, controls, ethics, and core study evaluation.',
   },
   'psych-consumer': {
-    Component: PsychologyDiagram,
+    Component: PsychFunnelDiagram,
     caption: 'Consumer behaviour links perception, heuristics, and purchase decisions.',
   },
   'psych-consumer-funnel': {
-    Component: PsychologyDiagram,
+    Component: PsychFunnelDiagram,
     caption: 'Consumer decision funnel — recognition, search, evaluation, purchase, post-purchase.',
   },
   'psych-consumer-retail': {
-    Component: PsychologyDiagram,
+    Component: PsychRetailDiagram,
     caption: 'Retail atmospherics — layout, sound, and environmental cues shape behaviour.',
   },
   'psych-consumer-ads': {
-    Component: PsychologyDiagram,
+    Component: PsychAdsDiagram,
     caption: 'Advertising techniques — attention, persuasion, and brand awareness.',
   },
   'psych-health': {
-    Component: PsychologyDiagram,
+    Component: PsychHealthDiagram,
     caption: 'Health psychology models explain beliefs, adherence, and behaviour change.',
   },
   'psych-workplace': {
-    Component: PsychologyDiagram,
+    Component: PsychWorkplaceDiagram,
     caption: 'Workplace psychology covers leadership, motivation, groups, and satisfaction.',
   },
   'econ-supply-demand': {

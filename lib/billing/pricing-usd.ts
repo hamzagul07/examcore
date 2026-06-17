@@ -8,17 +8,17 @@ export const PRICING_USD = {
     B: { monthly: 1000, yearly: 9000 },
     C: { monthly: 600, yearly: 5000 },
   },
-  // Pro (marketing name) — research-based pricing for a new exam-prep SaaS.
+  // Pro (marketing name) — competitive tier (Quizlet/Photomath/Save My Exams band).
   scholar: {
-    A: { monthly: 1100, yearly: 8900 },
-    B: { monthly: 700, yearly: 5500 },
-    C: { monthly: 400, yearly: 3200 },
+    A: { monthly: 1499, yearly: 11900 },
+    B: { monthly: 999, yearly: 7900 },
+    C: { monthly: 599, yearly: 4700 },
   },
   // Max (marketing name).
   mastery: {
-    A: { monthly: 2200, yearly: 17900 },
-    B: { monthly: 1300, yearly: 9900 },
-    C: { monthly: 800, yearly: 5900 },
+    A: { monthly: 2999, yearly: 23900 },
+    B: { monthly: 1999, yearly: 15900 },
+    C: { monthly: 1199, yearly: 9500 },
   },
   credits_25: { A: 1000, B: 600, C: 400 },
   credits_100: { A: 3000, B: 1800, C: 1200 },

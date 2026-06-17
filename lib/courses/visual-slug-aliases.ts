@@ -31,7 +31,7 @@ export const VISUAL_SLUG_ALIASES: Record<string, string> = {
   '4-3-tests': '6-5-hypothesis-tests',
   '4-4-non-parametric-tests': '6-5-hypothesis-tests',
   '4-5-probability-generating-functions': '6-1-the-poisson-distribution',
-  '1-1-roots-of-polynomial-equations': '1-2-functions',
+  '1-1-roots-of-polynomial-equations': '1-1-quadratics',
 
   // ── 9618 slug normalisation ───────────────────────────────────────────────
   '4-1-central-processing-unit-cpu-architecture': '3-1-computers-and-their-components',

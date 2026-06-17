@@ -108,6 +108,16 @@ import { StakeholderDiagram } from '@/components/diagrams/StakeholderDiagram'
 import { InvestmentAppraisalDiagram } from '@/components/diagrams/InvestmentAppraisalDiagram'
 import { CashFlowDiagram } from '@/components/diagrams/CashFlowDiagram'
 import { BankReconciliationDiagram } from '@/components/diagrams/BankReconciliationDiagram'
+import { EconSupplyDemandDiagram } from '@/components/diagrams/EconSupplyDemandDiagram'
+import { EconElasticityDiagram } from '@/components/diagrams/EconElasticityDiagram'
+import { EconPpcDiagram } from '@/components/diagrams/EconPpcDiagram'
+import { EconInterventionDiagram } from '@/components/diagrams/EconInterventionDiagram'
+import { EconCostCurvesDiagram } from '@/components/diagrams/EconCostCurvesDiagram'
+import { EconMarketStructureDiagram } from '@/components/diagrams/EconMarketStructureDiagram'
+import { EconMacroDiagram } from '@/components/diagrams/EconMacroDiagram'
+import { EconCircularFlowDiagram } from '@/components/diagrams/EconCircularFlowDiagram'
+import { EconTradeDiagram } from '@/components/diagrams/EconTradeDiagram'
+import { EconUtilityDiagram } from '@/components/diagrams/EconUtilityDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -690,6 +700,46 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: PsychologyDiagram,
     caption: 'Workplace psychology covers leadership, motivation, groups, and satisfaction.',
   },
+  'econ-supply-demand': {
+    Component: EconSupplyDemandDiagram,
+    caption: 'Demand and supply interact to set the market equilibrium price and quantity.',
+  },
+  'econ-elasticity': {
+    Component: EconElasticityDiagram,
+    caption: 'Elasticity measures how responsive quantity is to a change in price or income.',
+  },
+  'econ-ppc': {
+    Component: EconPpcDiagram,
+    caption: 'Scarcity forces choice — the PPC shows opportunity cost and productive efficiency.',
+  },
+  'econ-intervention': {
+    Component: EconInterventionDiagram,
+    caption: 'Governments tax, subsidise, or set prices to correct market failure.',
+  },
+  'econ-cost-revenue': {
+    Component: EconCostCurvesDiagram,
+    caption: 'Average and marginal cost curves underpin short- and long-run production decisions.',
+  },
+  'econ-market-structure': {
+    Component: EconMarketStructureDiagram,
+    caption: 'Firms maximise profit where MC = MR; market structure shapes price and output.',
+  },
+  'econ-macro': {
+    Component: EconMacroDiagram,
+    caption: 'AD–AS analysis sets the price level and national output — the basis of macro policy.',
+  },
+  'econ-circular-flow': {
+    Component: EconCircularFlowDiagram,
+    caption: 'Income circulates between households and firms, adjusted by injections and leakages.',
+  },
+  'econ-trade': {
+    Component: EconTradeDiagram,
+    caption: 'Trade, exchange rates, and protectionism shape the balance of payments.',
+  },
+  'econ-utility': {
+    Component: EconUtilityDiagram,
+    caption: 'Consumers maximise utility where the budget line is tangent to an indifference curve.',
+  },
 }
 
 /** 9702 slug → diagram family (custom slug-specific diagrams take priority). */
@@ -956,12 +1006,70 @@ const SLUG_FAMILY_9231: Record<string, keyof typeof FAMILIES> = {
   '2-2-matrices': 'matrices',
 }
 
+/** 9708 Economics slug → diagram family. */
+const SLUG_FAMILY_9708: Record<string, keyof typeof FAMILIES> = {
+  '1-1-scarcity-choice-and-opportunity-cost': 'econ-ppc',
+  '1-2-economic-methodology': 'econ-ppc',
+  '1-3-factors-of-production': 'econ-circular-flow',
+  '1-4-resource-allocation-in-different-economic-systems': 'econ-supply-demand',
+  '1-5-production-possibility-curves': 'econ-ppc',
+  '1-6-classification-of-goods-and-services': 'econ-supply-demand',
+  '2-1-demand-and-supply-curves': 'econ-supply-demand',
+  '2-2-price-elasticity-income-elasticity-and-cross-elasticity-of-demand': 'econ-elasticity',
+  '2-3-price-elasticity-of-supply': 'econ-elasticity',
+  '2-4-the-interaction-of-demand-and-supply': 'econ-supply-demand',
+  '2-5-consumer-and-producer-surplus': 'econ-supply-demand',
+  '3-1-reasons-for-government-intervention-in-markets': 'econ-intervention',
+  '3-2-methods-and-effects-of-government-intervention-in-markets': 'econ-intervention',
+  '3-3-addressing-income-and-wealth-inequality': 'econ-intervention',
+  '4-1-national-income-statistics': 'econ-circular-flow',
+  '4-2-introduction-to-the-circular-flow-of-income': 'econ-circular-flow',
+  '4-3-aggregate-demand-and-aggregate-supply-analysis': 'econ-macro',
+  '4-4-economic-growth': 'econ-macro',
+  '4-5-unemployment': 'econ-macro',
+  '4-6-price-stability': 'econ-macro',
+  '5-1-government-macroeconomic-policy-objectives': 'econ-macro',
+  '5-2-fiscal-policy': 'econ-macro',
+  '5-3-monetary-policy': 'econ-macro',
+  '5-4-supply-side-policy': 'econ-macro',
+  '6-1-the-reasons-for-international-trade': 'econ-trade',
+  '6-2-protectionism': 'econ-trade',
+  '6-3-current-account-of-the-balance-of-payments': 'econ-trade',
+  '6-4-exchange-rates': 'econ-trade',
+  '6-5-policies-to-correct-imbalances-in-the-current-account-of-the-balance-of-payments': 'econ-trade',
+  '7-1-utility': 'econ-utility',
+  '7-2-indifference-curves-and-budget-lines': 'econ-utility',
+  '7-3-efficiency-and-market-failure': 'econ-intervention',
+  '7-4-private-costs-and-benefits-externalities-and-social-costs-and-benefits': 'econ-intervention',
+  '7-5-types-of-cost-revenue-and-profit-short-run-and-long-run-production': 'econ-cost-revenue',
+  '7-6-different-market-structures': 'econ-market-structure',
+  '7-7-growth-and-survival-of-firms': 'econ-market-structure',
+  '7-8-differing-objectives-and-policies-of-firms': 'econ-market-structure',
+  '8-1-government-policies-to-achieve-efficient-resource-allocation-and-correct-market-failure': 'econ-intervention',
+  '8-2-equity-and-redistribution-of-income-and-wealth': 'econ-intervention',
+  '8-3-labour-market-forces-and-government-intervention': 'econ-supply-demand',
+  '9-1-the-circular-flow-of-income': 'econ-circular-flow',
+  '9-2-economic-growth-and-sustainability': 'econ-macro',
+  '9-3-employment-unemployment': 'econ-macro',
+  '9-4-money-and-banking': 'econ-circular-flow',
+  '10-1-government-macroeconomic-policy-objectives': 'econ-macro',
+  '10-2-links-between-macroeconomic-problems-and-their-interrelatedness': 'econ-macro',
+  '10-3-effectiveness-of-policy-options-to-meet-all-macroeconomic-objectives': 'econ-macro',
+  '11-1-policies-to-correct-disequilibrium-in-the-balance-of-payments': 'econ-trade',
+  '11-2-exchange-rates': 'econ-trade',
+  '11-3-economic-development': 'econ-macro',
+  '11-4-characteristics-of-countries-at-different-levels-of-development': 'econ-macro',
+  '11-5-relationship-between-countries-at-different-levels-of-development': 'econ-trade',
+  '11-6-globalisation': 'econ-trade',
+}
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
   ...SLUG_FAMILY_9701,
   ...SLUG_FAMILY_9709,
   ...SLUG_FAMILY_9231,
+  ...SLUG_FAMILY_9708,
   ...SLUG_FAMILY_COMMERCE_HUMANITIES,
 }
 
@@ -988,6 +1096,7 @@ const PSYCHOLOGY_SLUGS = new Set(
     .filter(([, f]) => f.startsWith('psych-'))
     .map(([slug]) => slug)
 )
+const ECONOMICS_SLUGS = new Set(Object.keys(SLUG_FAMILY_9708))
 
 function familyAttribution(slug: string): DiagramAttribution {
   if (BIOLOGY_SLUGS.has(slug)) {
@@ -1014,6 +1123,9 @@ function familyAttribution(slug: string): DiagramAttribution {
   if (PSYCHOLOGY_SLUGS.has(slug)) {
     return { source: 'MarkScheme psychology diagram family', license: 'Proprietary' }
   }
+  if (ECONOMICS_SLUGS.has(slug)) {
+    return { source: 'MarkScheme economics diagram family', license: 'Proprietary' }
+  }
   const isAl = /^1[2-9]|^2[0-5]|^paper-5/.test(slug)
   return {
     source: 'MarkScheme diagram family',
@@ -1031,6 +1143,7 @@ export function getSubjectForSlug(slug: string): string | null {
   if (LAW_SLUGS.has(slug)) return '9084'
   if (SOCIOLOGY_SLUGS.has(slug)) return '9699'
   if (PSYCHOLOGY_SLUGS.has(slug)) return '9990'
+  if (ECONOMICS_SLUGS.has(slug)) return '9708'
   return null
 }
 

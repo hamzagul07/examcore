@@ -118,6 +118,11 @@ import { EconMacroDiagram } from '@/components/diagrams/EconMacroDiagram'
 import { EconCircularFlowDiagram } from '@/components/diagrams/EconCircularFlowDiagram'
 import { EconTradeDiagram } from '@/components/diagrams/EconTradeDiagram'
 import { EconUtilityDiagram } from '@/components/diagrams/EconUtilityDiagram'
+import { BizMarketingMixDiagram } from '@/components/diagrams/BizMarketingMixDiagram'
+import { BizStrategyDiagram } from '@/components/diagrams/BizStrategyDiagram'
+import { BizOrgStructureDiagram } from '@/components/diagrams/BizOrgStructureDiagram'
+import { BizOperationsDiagram } from '@/components/diagrams/BizOperationsDiagram'
+import { BizFinanceDiagram } from '@/components/diagrams/BizFinanceDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -740,6 +745,26 @@ const FAMILIES: Record<string, FamilyEntry> = {
     Component: EconUtilityDiagram,
     caption: 'Consumers maximise utility where the budget line is tangent to an indifference curve.',
   },
+  'biz-marketing': {
+    Component: BizMarketingMixDiagram,
+    caption: 'The marketing mix balances product, price, place, and promotion for the target market.',
+  },
+  'biz-strategy': {
+    Component: BizStrategyDiagram,
+    caption: 'SWOT and the business environment shape strategic choices and objectives.',
+  },
+  'biz-hrm': {
+    Component: BizOrgStructureDiagram,
+    caption: 'Organisational structure sets the chain of command, span of control, and communication.',
+  },
+  'biz-operations': {
+    Component: BizOperationsDiagram,
+    caption: 'Operations transform inputs into outputs — efficiency, quality, and capacity add value.',
+  },
+  'biz-finance': {
+    Component: BizFinanceDiagram,
+    caption: 'Sources of finance fund the business; profit is revenue minus costs.',
+  },
 }
 
 /** 9702 slug → diagram family (custom slug-specific diagrams take priority). */
@@ -1063,6 +1088,30 @@ const SLUG_FAMILY_9708: Record<string, keyof typeof FAMILIES> = {
   '11-6-globalisation': 'econ-trade',
 }
 
+/**
+ * Business (9609): map each lesson to a per-syllabus-section family so topics get
+ * distinct visuals (environment/strategy, HRM, marketing, operations, finance)
+ * instead of one shared diagram. Sections 6–10 are the A2 continuations of 1–5.
+ */
+const BIZ_SECTION_FAMILY: Record<string, keyof typeof FAMILIES> = {
+  '1': 'biz-strategy',
+  '6': 'biz-strategy',
+  '2': 'biz-hrm',
+  '7': 'biz-hrm',
+  '3': 'biz-marketing',
+  '8': 'biz-marketing',
+  '4': 'biz-operations',
+  '9': 'biz-operations',
+  '5': 'biz-finance',
+  '10': 'biz-finance',
+}
+const SLUG_FAMILY_9609_OVERRIDE: Record<string, keyof typeof FAMILIES> = Object.fromEntries(
+  Object.keys(SLUG_FAMILY_9609).map((slug) => [
+    slug,
+    BIZ_SECTION_FAMILY[slug.split('-')[0]!] ?? 'biz-strategy',
+  ])
+) as Record<string, keyof typeof FAMILIES>
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1071,6 +1120,7 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9231,
   ...SLUG_FAMILY_9708,
   ...SLUG_FAMILY_COMMERCE_HUMANITIES,
+  ...SLUG_FAMILY_9609_OVERRIDE,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))

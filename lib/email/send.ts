@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from '@/lib/site-config'
+import { CONTACT_EMAIL, SITE_NAME } from '@/lib/site-config'
 import { renderBrandedEmailHtml, textToHtmlParagraphs } from '@/lib/email/templates'
 
 export type SendEmailParams = {

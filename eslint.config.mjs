@@ -12,6 +12,17 @@ const eslintConfig = defineConfig([
       "react-hooks/purity": "off",
       "react-hooks/immutability": "off",
       "react-hooks/refs": "off",
+      // Allow intentional unused: `_`-prefixed names and rest-sibling omits
+      // (e.g. `const { dropped: _x, ...rest } = obj`).
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   },
   // Override default ignores of eslint-config-next.
@@ -25,6 +36,8 @@ const eslintConfig = defineConfig([
     "perf-baseline/**",
     "scripts/**",
     "tmp/**",
+    // Standalone design mockups — not part of the shipped app.
+    "design-handoff/**",
   ]),
 ]);
 

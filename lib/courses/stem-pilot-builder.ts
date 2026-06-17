@@ -1,4 +1,4 @@
-import type { CourseLesson, LessonSection, SimpleExplanation } from '@/lib/courses/types'
+import type { CourseLesson, LessonSection } from '@/lib/courses/types'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import type { SyllabusTopic } from '@/lib/syllabi'
 import { STEM_TOPIC_OVERRIDES } from './stem-topic-overrides'

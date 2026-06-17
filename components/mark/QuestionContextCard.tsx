@@ -42,10 +42,11 @@ export function QuestionContextCard({ result, subjectCode }: Props) {
     null
 
   const paperLine = formatPaperReference(paperCode, paperSession, questionNumber)
+  const paperSubjectCode = paperCode?.split('/')[0] || null
   const subjectLabel = subjectCode
     ? getSubjectByCode(subjectCode)?.label
-    : paperCode?.split('/')[0]
-      ? getSubjectByCode(paperCode.split('/')[0])?.label
+    : paperSubjectCode
+      ? getSubjectByCode(paperSubjectCode)?.label
       : null
 
   const markingType =

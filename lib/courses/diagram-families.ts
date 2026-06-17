@@ -145,6 +145,8 @@ import { SocMediaDiagram } from '@/components/diagrams/SocMediaDiagram'
 import { SocGlobalisationDiagram } from '@/components/diagrams/SocGlobalisationDiagram'
 import { SocReligionDiagram } from '@/components/diagrams/SocReligionDiagram'
 import { SocCrimeDiagram } from '@/components/diagrams/SocCrimeDiagram'
+import { AcctStatementsDiagram } from '@/components/diagrams/AcctStatementsDiagram'
+import { AcctCostDiagram } from '@/components/diagrams/AcctCostDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -560,11 +562,11 @@ const FAMILIES: Record<string, FamilyEntry> = {
     caption: 'Double entry flows from source documents through books of prime entry to ledgers.',
   },
   'commerce-accounting-cost': {
-    Component: AccountingDiagram,
+    Component: AcctCostDiagram,
     caption: 'Cost behaviour, contribution, and break-even analysis for decision-making.',
   },
   'commerce-accounting-statements': {
-    Component: AccountingDiagram,
+    Component: AcctStatementsDiagram,
     caption: 'Financial statements and ratios summarise performance and position.',
   },
   'commerce-breakeven': {

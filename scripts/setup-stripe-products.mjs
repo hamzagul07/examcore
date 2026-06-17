@@ -59,15 +59,17 @@ const PRICING = {
     B: { monthly: 1000, yearly: 9000 }, // $10 / $90
     C: { monthly: 600, yearly: 5000 }, // $6 / $50
   },
+  // Pro (marketing) — competitive tier (Quizlet/Photomath/Save My Exams band).
   scholar: {
-    A: { monthly: 3800, yearly: 29800 }, // $38 / $298
-    B: { monthly: 2200, yearly: 17800 }, // $22 / $178
-    C: { monthly: 1400, yearly: 11000 }, // $14 / $110
+    A: { monthly: 1499, yearly: 11900 }, // $14.99 / $119
+    B: { monthly: 999, yearly: 7900 }, // $9.99 / $79
+    C: { monthly: 599, yearly: 4700 }, // $5.99 / $47
   },
+  // Max (marketing).
   mastery: {
-    A: { monthly: 7800, yearly: 65800 }, // $78 / $658
-    B: { monthly: 4400, yearly: 37800 }, // $44 / $378
-    C: { monthly: 3000, yearly: 25800 }, // $30 / $258
+    A: { monthly: 2999, yearly: 23900 }, // $29.99 / $239
+    B: { monthly: 1999, yearly: 15900 }, // $19.99 / $159
+    C: { monthly: 1199, yearly: 9500 }, // $11.99 / $95
   },
   credits_25: { A: 1000, B: 600, C: 400 },
   credits_100: { A: 3000, B: 1800, C: 1200 },

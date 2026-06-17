@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ChevronDown, ChevronRight, Grid3X3 } from 'lucide-react'
 import {
@@ -263,12 +263,22 @@ function TopicDetailModal({
   onClose: () => void
 }) {
   const style = MASTERY_STYLES[topic.level]
+  const titleId = useId()
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
 
   return (
     <div
       className="ms-mastery-modal fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4"
       role="dialog"
       aria-modal="true"
+      aria-labelledby={titleId}
     >
       <div
         className="absolute inset-0 ec-modal-backdrop"
@@ -276,7 +286,7 @@ function TopicDetailModal({
       />
       <div className="ec-card relative w-full max-w-lg overflow-hidden rounded-t-3xl p-4 sm:rounded-2xl sm:p-6">
         <p className="ec-label-tech mb-2">{topic.code}</p>
-        <h3 className="text-xl font-bold">{topic.name}</h3>
+        <h3 id={titleId} className="text-xl font-bold">{topic.name}</h3>
         <p className="mt-1 text-sm ec-text-secondary">
           {topic.parent.name} · {topic.paperName} ·{' '}
           <span className={chipClass(topic.level)}>{style.label}</span>

@@ -31,6 +31,7 @@ export function InterventionGenerator({
   const [result, setResult] = useState<{ title: string; count: number } | null>(
     null
   )
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     fetch(`/api/teacher/classroom/${classroomId}/blindspots`)
@@ -46,7 +47,11 @@ export function InterventionGenerator({
         setSelected(new Set(all.slice(0, 4).map((q) => q.id)))
         setLoading(false)
       })
-      .catch(() => setLoading(false))
+      .catch((err) => {
+        console.error('InterventionGenerator: failed to load questions', err)
+        setError('Could not load questions. Please try again.')
+        setLoading(false)
+      })
   }, [classroomId])
 
   function toggle(id: string) {
@@ -61,25 +66,34 @@ export function InterventionGenerator({
   async function generate() {
     if (selected.size < 3) return
     setGenerating(true)
-    const res = await fetch(
-      `/api/teacher/classroom/${classroomId}/intervention`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          target_syllabus_codes: targetCodes,
-          question_ids: [...selected],
-          title: `Intervention: ${targetCodes.join(', ')}`,
-        }),
+    setError(null)
+    try {
+      const res = await fetch(
+        `/api/teacher/classroom/${classroomId}/intervention`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            target_syllabus_codes: targetCodes,
+            question_ids: [...selected],
+            title: `Intervention: ${targetCodes.join(', ')}`,
+          }),
+        }
+      )
+      const data = await res.json()
+      if (data.intervention) {
+        setResult({
+          title: data.intervention.title,
+          count: data.questions?.length ?? selected.size,
+        })
+      } else {
+        setError(data?.error || 'Could not generate the test. Please try again.')
       }
-    )
-    const data = await res.json()
-    setGenerating(false)
-    if (data.intervention) {
-      setResult({
-        title: data.intervention.title,
-        count: data.questions?.length ?? selected.size,
-      })
+    } catch (err) {
+      console.error('InterventionGenerator: failed to generate test', err)
+      setError('Could not generate the test. Please try again.')
+    } finally {
+      setGenerating(false)
     }
   }
 
@@ -139,8 +153,11 @@ export function InterventionGenerator({
             </div>
           ) : (
             <>
+              {error && (
+                <p className="mb-4 text-sm text-[var(--ec-danger,#b91c1c)]">{error}</p>
+              )}
               <div className="mb-6 max-h-80 space-y-2 overflow-y-auto">
-                {questions.length === 0 && (
+                {questions.length === 0 && !error && (
                   <p className="text-[var(--ec-text-secondary)]">
                     No past paper questions found for these topics in the
                     database.

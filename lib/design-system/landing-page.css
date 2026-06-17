@@ -344,6 +344,12 @@
   box-shadow: var(--ec-card-hover-shadow);
 }
 
+/* Keyboard focus indicator — these cards are role="link" with tabIndex={0}. */
+.ms-scard2:focus-visible {
+  outline: 2px solid var(--sc, var(--ec-border));
+  outline-offset: 2px;
+}
+
 .ms-scard2 .ms-tile {
   height: 96px;
   display: grid;

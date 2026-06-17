@@ -1159,11 +1159,26 @@ const BIZ_SECTION_FAMILY: Record<string, keyof typeof FAMILIES> = {
   '5': 'biz-finance',
   '10': 'biz-finance',
 }
+// Specific business subsections with a better-fitting existing diagram than
+// their section default (X-Y prefix → family). Takes priority over the section.
+const BIZ_SUBSECTION_FAMILY: Record<string, keyof typeof FAMILIES> = {
+  '1-5': 'commerce-stakeholder', // business stakeholders
+  '5-3': 'commerce-cashflow', // cash flow forecasts
+  '5-4': 'commerce-breakeven', // cost information / break-even
+  '8-1': 'econ-elasticity', // price elasticity
+  '10-1': 'commerce-accounting-statements', // statement of profit or loss
+  '10-2': 'commerce-ratios', // liquidity / profitability ratios
+  '10-3': 'commerce-investment', // investment appraisal
+}
 const SLUG_FAMILY_9609_OVERRIDE: Record<string, keyof typeof FAMILIES> = Object.fromEntries(
-  Object.keys(SLUG_FAMILY_9609).map((slug) => [
-    slug,
-    BIZ_SECTION_FAMILY[slug.split('-')[0]!] ?? 'biz-strategy',
-  ])
+  Object.keys(SLUG_FAMILY_9609).map((slug) => {
+    const sub = slug.match(/^(\d+-\d+)/)?.[1]
+    const fam =
+      (sub ? BIZ_SUBSECTION_FAMILY[sub] : undefined) ??
+      BIZ_SECTION_FAMILY[slug.split('-')[0]!] ??
+      'biz-strategy'
+    return [slug, fam]
+  })
 ) as Record<string, keyof typeof FAMILIES>
 
 /**
@@ -1191,6 +1206,17 @@ const SLUG_FAMILY_9990_OVERRIDE: Record<string, keyof typeof FAMILIES> = Object.
     .filter((e): e is readonly [string, keyof typeof FAMILIES] => e !== null)
 )
 
+/**
+ * Law (9084): contract remedies (§3-4 — common law damages, equitable remedies)
+ * should show the remedies diagram, not the contract-formation one. Scoped to
+ * law-* slugs so no other subject is affected.
+ */
+const SLUG_FAMILY_9084_OVERRIDE: Record<string, keyof typeof FAMILIES> = Object.fromEntries(
+  Object.entries(SLUG_FAMILY_COMMERCE_HUMANITIES)
+    .filter(([slug, fam]) => String(fam).startsWith('law-') && /^3-4-/.test(slug))
+    .map(([slug]) => [slug, 'law-remedies'])
+) as Record<string, keyof typeof FAMILIES>
+
 const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_9702,
   ...SLUG_FAMILY_9700,
@@ -1201,6 +1227,7 @@ const SLUG_FAMILY: Record<string, keyof typeof FAMILIES> = {
   ...SLUG_FAMILY_COMMERCE_HUMANITIES,
   ...SLUG_FAMILY_9609_OVERRIDE,
   ...SLUG_FAMILY_9990_OVERRIDE,
+  ...SLUG_FAMILY_9084_OVERRIDE,
 }
 
 const BIOLOGY_SLUGS = new Set(Object.keys(SLUG_FAMILY_9700))

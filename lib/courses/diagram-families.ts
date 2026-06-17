@@ -99,7 +99,6 @@ import { StatsAdvancedDiagram } from '@/components/diagrams/StatsAdvancedDiagram
 import { MatrixDiagram } from '@/components/diagrams/MatrixDiagram'
 import { AccountingDiagram } from '@/components/diagrams/AccountingDiagram'
 import { BusinessDiagram } from '@/components/diagrams/BusinessDiagram'
-import { SocialScienceDiagram } from '@/components/diagrams/SocialScienceDiagram'
 import { BreakEvenDiagram } from '@/components/diagrams/BreakEvenDiagram'
 import { RatioAnalysisDiagram } from '@/components/diagrams/RatioAnalysisDiagram'
 import { StakeholderDiagram } from '@/components/diagrams/StakeholderDiagram'
@@ -138,6 +137,14 @@ import { LawPrecedentDiagram } from '@/components/diagrams/LawPrecedentDiagram'
 import { LawInterpretationDiagram } from '@/components/diagrams/LawInterpretationDiagram'
 import { LawRemediesDiagram } from '@/components/diagrams/LawRemediesDiagram'
 import { LawAdrDiagram } from '@/components/diagrams/LawAdrDiagram'
+import { SocTheoryDiagram } from '@/components/diagrams/SocTheoryDiagram'
+import { SocResearchDiagram } from '@/components/diagrams/SocResearchDiagram'
+import { SocFamilyDiagram } from '@/components/diagrams/SocFamilyDiagram'
+import { SocEducationDiagram } from '@/components/diagrams/SocEducationDiagram'
+import { SocMediaDiagram } from '@/components/diagrams/SocMediaDiagram'
+import { SocGlobalisationDiagram } from '@/components/diagrams/SocGlobalisationDiagram'
+import { SocReligionDiagram } from '@/components/diagrams/SocReligionDiagram'
+import { SocCrimeDiagram } from '@/components/diagrams/SocCrimeDiagram'
 import { SLUG_FAMILY_COMMERCE_HUMANITIES, SLUG_FAMILY_9706, SLUG_FAMILY_9609 } from '@/lib/courses/generated/subject-visuals'
 import type { LessonDiagramComponentProps } from '@/components/diagrams/diagram-props'
 type DiagramAttribution = {
@@ -645,35 +652,35 @@ const FAMILIES: Record<string, FamilyEntry> = {
     caption: 'Alternative dispute resolution — negotiation, mediation, arbitration, and litigation.',
   },
   'soc-theory': {
-    Component: SocialScienceDiagram,
+    Component: SocTheoryDiagram,
     caption: 'Sociological perspectives explain structure, agency, and social change.',
   },
   'soc-research': {
-    Component: SocialScienceDiagram,
+    Component: SocResearchDiagram,
     caption: 'Research design links methods to validity, reliability, and ethics.',
   },
   'soc-family': {
-    Component: SocialScienceDiagram,
+    Component: SocFamilyDiagram,
     caption: 'Family structures, roles, and sociological perspectives on domestic life.',
   },
   'soc-education': {
-    Component: SocialScienceDiagram,
+    Component: SocEducationDiagram,
     caption: 'Education reproduces or challenges inequality — theories and attainment gaps.',
   },
   'soc-media': {
-    Component: SocialScienceDiagram,
+    Component: SocMediaDiagram,
     caption: 'Media effects models — from hypodermic syringe to active audience theories.',
   },
   'soc-globalisation': {
-    Component: SocialScienceDiagram,
+    Component: SocGlobalisationDiagram,
     caption: 'Globalisation reshapes identity, power, migration, and inequality.',
   },
   'soc-religion': {
-    Component: SocialScienceDiagram,
+    Component: SocReligionDiagram,
     caption: 'Secularisation debate — religion, social change, and post-modernity.',
   },
   'soc-crime': {
-    Component: SocialScienceDiagram,
+    Component: SocCrimeDiagram,
     caption: 'Crime and deviance — globalisation, inequality, and media representations.',
   },
   'psych-clinical': {

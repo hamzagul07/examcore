@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import type { VisualTemplate } from '@/lib/courses/visual-types'
 import { TopicDiagram } from '@/components/courses/visuals/TopicDiagram'
-import { LessonDiagram } from '@/components/diagrams/LessonDiagram'
-import { getLessonDiagram } from '@/lib/courses/lesson-diagrams'
+import { LazyLiveDiagram } from '@/components/courses/visuals/LazyLiveDiagram'
 import { getLessonDiagramSpec, stepStateFor } from '@/lib/courses/diagram-specs'
 import { CourseRichText } from '@/components/courses/CourseRichText'
 
@@ -36,6 +35,53 @@ type Props = {
   stepCaption?: string
 }
 
+function DiagramStage({
+  template,
+  lessonSlug,
+  stepIndex,
+  params,
+}: Pick<Props, 'template' | 'lessonSlug' | 'stepIndex' | 'params'>) {
+  const [mode, setMode] = useState<'loading' | 'live' | 'topic'>(() =>
+    lessonSlug ? 'loading' : 'topic'
+  )
+
+  useEffect(() => {
+    if (!lessonSlug) {
+      setMode('topic')
+      return
+    }
+    let cancelled = false
+    void import('@/lib/courses/lesson-diagrams').then((mod) => {
+      if (cancelled) return
+      setMode(mod.getLessonDiagram(lessonSlug) ? 'live' : 'topic')
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [lessonSlug])
+
+  if (mode === 'loading') {
+    return (
+      <div
+        className="course-step-stage-diagram min-h-[12rem] animate-pulse rounded-xl bg-[var(--ec-bg-soft)]"
+        aria-hidden
+      />
+    )
+  }
+
+  if (mode === 'live' && lessonSlug) {
+    return (
+      <LazyLiveDiagram
+        slug={lessonSlug}
+        stepIndex={stepIndex}
+        params={params}
+      />
+    )
+  }
+
+  return <TopicDiagram template={template} className="course-step-stage-svg" />
+}
+
 export function StepStageVisual({
   template,
   lessonSlug,
@@ -43,13 +89,27 @@ export function StepStageVisual({
   params,
   stepCaption,
 }: Props) {
-  const custom = lessonSlug ? getLessonDiagram(lessonSlug) : null
   const spec = lessonSlug ? getLessonDiagramSpec(lessonSlug) : null
   const specCaption = stepCaption ?? stepStateFor(spec, stepIndex)?.caption
   const defaultCaption = CAPTIONS[template] ?? {
     text: 'Visual summary of the key ideas in this topic.',
   }
   const diagramRef = useRef<HTMLDivElement>(null)
+  const [isLive, setIsLive] = useState(false)
+
+  useEffect(() => {
+    if (!lessonSlug) {
+      setIsLive(false)
+      return
+    }
+    let cancelled = false
+    void import('@/lib/courses/lesson-diagrams').then((mod) => {
+      if (!cancelled) setIsLive(!!mod.getLessonDiagram(lessonSlug))
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [lessonSlug])
 
   useEffect(() => {
     const el = diagramRef.current
@@ -58,12 +118,12 @@ export function StepStageVisual({
     gsap.fromTo(el, { opacity: 0.85 }, { opacity: 1, duration: 0.3, ease: 'power1.out' })
   }, [stepIndex, params])
 
-  const captionText = specCaption ?? custom?.meta.caption ?? defaultCaption.text
+  const captionText = specCaption ?? defaultCaption.text
 
   return (
     <div className="course-step-stage-visual">
       <p className="course-step-stage-label">
-        {custom ? 'Live diagram' : 'Topic diagram'}
+        {isLive ? 'Live diagram' : 'Topic diagram'}
         {spec?.steps.length ? (
           <span className="course-step-stage-step-badge">
             Step {stepIndex + 1}/{spec.steps.length}
@@ -71,21 +131,14 @@ export function StepStageVisual({
         ) : null}
       </p>
       <div ref={diagramRef} className="course-step-stage-diagram">
-        {custom ? (
-          <LessonDiagram
-            Component={custom.Component}
-            meta={custom.meta}
-            className="course-step-stage-custom-diagram"
-            stepIndex={stepIndex}
-            params={params}
-            lessonSlug={lessonSlug}
-            captionOverride={specCaption}
-          />
-        ) : (
-          <TopicDiagram template={template} className="course-step-stage-svg" />
-        )}
+        <DiagramStage
+          template={template}
+          lessonSlug={lessonSlug}
+          stepIndex={stepIndex}
+          params={params}
+        />
       </div>
-      {!custom ? (
+      {!isLive ? (
         <div className="course-step-stage-caption">
           {defaultCaption.latex ? (
             <div className="course-step-stage-formula">

@@ -1,6 +1,6 @@
 'use client'
 
-import 'katex/dist/katex.min.css'
+import { memo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkMath from 'remark-math'
 import remarkGfm from 'remark-gfm'
@@ -25,7 +25,7 @@ const INLINE_UNWRAP: Components = {
   blockquote: ({ children }) => <>{children}</>,
 }
 
-export function CourseRichText({
+export const CourseRichText = memo(function CourseRichText({
   content,
   className = '',
   variant = 'prose',
@@ -61,4 +61,4 @@ export function CourseRichText({
       </ReactMarkdown>
     </Wrapper>
   )
-}
+})

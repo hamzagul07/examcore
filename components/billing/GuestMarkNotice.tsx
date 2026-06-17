@@ -23,7 +23,7 @@ export function GuestMarkNotice({ className = '' }: Props) {
       <Link href={buildMarketingSignUpHref()} className="ec-link inline-flex min-h-[44px] items-center">
         Create a free account
       </Link>{' '}
-      for your own monthly allowance.
+      for your own monthly allowance, plus a 7-day free trial of everything — no card.
     </p>
   )
 }

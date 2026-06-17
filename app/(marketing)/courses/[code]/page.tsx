@@ -7,6 +7,8 @@ import {
 } from '@/lib/courses'
 import { buildCourseSubjectSeo } from '@/lib/courses/seo'
 import { CourseSubjectJsonLd } from '@/components/seo/CourseSubjectJsonLd'
+import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { buildCourseHubIntro } from '@/lib/seo/hub-intro'
 import { CourseHubClient } from '@/components/courses/margin-notes/CourseHubClient'
 
 type Props = {
@@ -28,6 +30,7 @@ export async function generateMetadata({ params }: Props) {
     description: seo.description,
     path: course.path,
     keywords: seo.keywords,
+    ogImagePath: seo.ogImagePath,
   })
 }
 
@@ -39,6 +42,7 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
 
   const lessons = getCourseLessons(code)
   const seo = buildCourseSubjectSeo(course, course.lessonCount)
+  const intro = buildCourseHubIntro(course, course.lessonCount, course.publishedCount ?? 0)
 
   return (
     <>
@@ -48,7 +52,18 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
         level={course.level}
         description={seo.description}
         lessons={lessons}
+        topics={seo.topics}
       />
+      <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-6 sm:px-6">
+        <HubSeoIntro
+          heading={intro.heading}
+          paragraph={intro.paragraph}
+          links={[
+            { href: `/subjects/${code}`, label: `${code} past papers`, variant: 'muted' },
+            { href: '/mark', label: 'Mark a past paper →', variant: 'primary' },
+          ]}
+        />
+      </div>
       <CourseHubClient
         code={code}
         name={course.name}

@@ -158,7 +158,7 @@ export function enrichLessonVisual(
 
   for (const s of lesson.sections) {
     if (s.type === 'formula') {
-      const parsed = parseFormulaParts(s.content, lesson)
+      const parsed = parseFormulaParts(s.content, lesson, subjectCode)
       blocks.push({
         type: 'formula-visual',
         description: parsed.description,

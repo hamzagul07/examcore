@@ -1,6 +1,5 @@
 'use client'
 
-import 'katex/dist/katex.min.css'
 import ReactMarkdown from 'react-markdown'
 import remarkMath from 'remark-math'
 import remarkGfm from 'remark-gfm'

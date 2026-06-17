@@ -33,6 +33,23 @@ export function capLabel(tier: SubscriptionTier): string {
 }
 
 /**
+ * Marketing-facing plan name for a tier. The DB enum is unchanged
+ * (free/student/scholar/mastery); the brand surfaces are Free / Pro / Max.
+ * `student` is a hidden legacy alias that maps to Pro.
+ */
+export function tierMarketingName(tier: SubscriptionTier): string {
+  switch (tier) {
+    case 'mastery':
+      return 'Max'
+    case 'scholar':
+    case 'student':
+      return 'Pro'
+    default:
+      return 'Free'
+  }
+}
+
+/**
  * Current usage window for a tier. Subscribers use their Stripe period;
  * free users use the calendar month.
  */

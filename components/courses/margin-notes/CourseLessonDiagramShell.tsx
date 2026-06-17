@@ -1,16 +1,15 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { LessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import type { LessonInteractiveEmbed } from '@/lib/courses/types'
 import type { VisualTemplate } from '@/lib/courses/visual-types'
+import type { LessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import {
   clampStepIndex,
   defaultParamValues,
   resolveDiagramSpec,
   stepStateFor,
 } from '@/lib/courses/diagram-specs'
-import { hasLessonLiveDiagram, getLessonDiagram } from '@/lib/courses/lesson-diagrams'
 import { isDualVisualSlug } from '@/lib/courses/placeholder-embeds'
 import { CourseInteractiveEmbed } from '@/components/courses/CourseInteractiveEmbed'
 import { CourseRichText } from '@/components/courses/CourseRichText'
@@ -43,18 +42,26 @@ export function CourseLessonDiagramShell({
   )
   const [playing, setPlaying] = useState(false)
   const [params, setParams] = useState(() => defaultParamValues(resolvedSpec))
+  const [liveDiagram, setLiveDiagram] = useState(false)
   const diagramRef = useRef<HTMLDivElement>(null)
 
-  const liveDiagram = hasLessonLiveDiagram(lessonSlug)
+  useEffect(() => {
+    let cancelled = false
+    void import('@/lib/courses/lesson-diagrams').then((mod) => {
+      if (!cancelled) setLiveDiagram(mod.hasLessonLiveDiagram(lessonSlug))
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [lessonSlug])
+
   const dualVisual = isDualVisualSlug(lessonSlug) && !!interactiveEmbed
   const stepCount = Math.max(steps.length, resolvedSpec?.steps.length ?? 0, 1)
   const activeIndex = Math.max(0, Math.min(stepCount - 1, step - 1))
   const diagramStep = clampStepIndex(resolvedSpec, activeIndex)
   const stepState = stepStateFor(resolvedSpec, diagramStep)
   const currentStep = steps[activeIndex] ?? steps[0]
-  const stageCaption =
-    stepState?.caption ??
-    (liveDiagram ? getLessonDiagram(lessonSlug)?.meta.caption : undefined)
+  const stageCaption = stepState?.caption
 
   const embedForStep = useMemo(() => {
     if (!interactiveEmbed) return null

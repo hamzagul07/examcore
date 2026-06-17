@@ -159,17 +159,9 @@ export async function saveOnboardingProfile(
       }
     }
 
-    try {
-      await service.from('user_subscriptions').upsert(
-        {
-          user_id: userId,
-          founding_member: true,
-        },
-        { onConflict: 'user_id' }
-      )
-    } catch (subscriptionError) {
-      console.error('[onboarding] subscription upsert failed:', subscriptionError)
-    }
+    // The subscription row (with its 7-day reverse-trial default) is created by
+    // the handle_new_user_billing() trigger on signup — no upsert needed here.
+    // (Founding-member granting was removed in the pricing overhaul.)
 
     if (role === 'teacher') {
       const classroomName = (body.classroom_name || '').trim()

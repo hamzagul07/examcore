@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { PAGE_KEYWORDS, SEO_KEYWORDS } from '@/lib/seo/keywords'
+import { keywordsForSubjectPath } from '@/lib/seo/subject-seo'
 import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
 import { SITE_NAME, SITE_URL } from '@/lib/site-config'
 
@@ -7,6 +8,8 @@ type PageMetadataOptions = {
   title: string
   description: string
   path: string
+  /** Canonical URL path when different from `path` (e.g. paper-scoped lesson aliases). */
+  canonicalPath?: string
   index?: boolean
   keywords?: string[]
   ogType?: 'website' | 'article'
@@ -17,7 +20,7 @@ type PageMetadataOptions = {
 }
 
 function mergeKeywords(path: string, extra?: string[]): string[] {
-  const page = PAGE_KEYWORDS[path] ?? []
+  const page = PAGE_KEYWORDS[path] ?? keywordsForSubjectPath(path) ?? []
   const set = new Set<string>([...SEO_KEYWORDS, ...page, ...(extra ?? [])])
   return [...set]
 }
@@ -50,6 +53,7 @@ export function createPageMetadata({
   title,
   description,
   path,
+  canonicalPath,
   index = true,
   keywords: extraKeywords,
   ogType = 'website',
@@ -63,6 +67,7 @@ export function createPageMetadata({
   const pageTitle = formatSerpTitle(rawTitle, true)
   const metaDescription = formatMetaDescription(description)
   const url = `${SITE_URL}${path}`
+  const canonicalUrl = `${SITE_URL}${canonicalPath ?? path}`
   const keywords = mergeKeywords(path, extraKeywords)
   const ogTitle = pageTitle.includes(SITE_NAME)
     ? pageTitle
@@ -102,8 +107,8 @@ export function createPageMetadata({
       images: ogImages(path, ogImagePath, ogTitle).map((i) => i.url),
     },
     alternates: {
-      canonical: url,
-      languages: { 'en-GB': url },
+      canonical: canonicalUrl,
+      languages: { 'en-GB': canonicalUrl },
     },
     robots: index
       ? {

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { buildSignUpHref } from '@/lib/auth-redirect'
 import { Sparkles } from 'lucide-react'
-import { capForTier, omniCapForTier } from '@/lib/billing/caps'
+import { capForTier, omniCapForTier, tierMarketingName } from '@/lib/billing/caps'
 import { Sheet } from '@/components/ui/Sheet'
 import type { SubscriptionTier } from '@/lib/database.types'
 
@@ -35,7 +35,7 @@ function capCopy(
   if (tier === 'free') {
     return `You've used all ${questionCap} of your free questions this month`
   }
-  const label = tier ? tier.charAt(0).toUpperCase() + tier.slice(1) : 'Your'
+  const label = tier ? tierMarketingName(tier) : 'Your'
   return `You've used all ${questionCap} of your ${label} questions this month`
 }
 

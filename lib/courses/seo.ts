@@ -1,6 +1,6 @@
 import type { CourseFaqItem, CourseLesson } from '@/lib/courses/types'
 import { formatMetaDescription, formatSerpTitle } from '@/lib/seo/on-page'
-
+import { buildSubjectCourseSeo } from '@/lib/seo/subject-seo'
 export type CourseSeoContext = {
   code: string
   name: string
@@ -190,30 +190,12 @@ export function buildCourseSubjectSeo(course: CourseSeoContext, lessonCount: num
   title: string
   description: string
   keywords: string[]
+  tagline: string
+  topics: string[]
+  ogImagePath: string
 } {
-  const lp = levelPhrase(course.level)
-  const short = subjectShort(course.name)
-
-  return {
-    title: formatSerpTitle(`Free ${course.name} ${course.code} course — all topics`, true),
-    description: formatMetaDescription(
-      `Free Cambridge ${lp} ${course.name} (${course.code}) course with ${lessonCount} syllabus topics. Visual lessons, exam tips, ${short} revision notes & past-paper marking — 100% free.`
-    ),
-    keywords: [
-      `free ${course.code} course`,
-      `${course.code} notes free`,
-      `Cambridge ${course.code} revision`,
-      `${lp} ${course.name} topics`,
-      `${course.code} syllabus revision`,
-      `ZNotes ${course.code} alternative`,
-      `Save My Exams ${course.code} free`,
-      `Cambridge ${short} course free`,
-      `${course.code} past papers revision`,
-      `learn ${course.name} ${course.code} online`,
-    ],
-  }
+  return buildSubjectCourseSeo(course, lessonCount)
 }
-
 export function lessonLastModified(lesson: CourseLesson): Date | undefined {
   if (lesson.updated) {
     const d = new Date(lesson.updated)

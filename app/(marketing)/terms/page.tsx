@@ -109,10 +109,11 @@ export default function TermsPage() {
           <section>
             <h2 className="ms-h3">Pricing changes</h2>
             <p>
-              Early access is currently free. We may introduce paid plans later
-              with advance notice. Founding members who join during early access
-              may receive discounts as described on our{' '}
-              <Link href="/pricing">pricing page</Link>.
+              New accounts include a 7-day free trial with full access, no card
+              required, after which a free plan continues automatically. Paid
+              plans and current prices are described on our{' '}
+              <Link href="/pricing">pricing page</Link>. We may change prices for
+              new subscriptions with advance notice.
             </p>
           </section>
 

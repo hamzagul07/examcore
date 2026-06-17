@@ -14,7 +14,9 @@ import { buildCourseLessonSeo } from '@/lib/courses/seo'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
+import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { buildSubjectCourseSeo } from '@/lib/seo/subject-seo'
 
 type Props = {
   params: Promise<{ code: string; slug: string[] }>
@@ -86,19 +88,27 @@ export async function generateMetadata({ params, searchParams }: Props) {
   const course = getCourseSubject(code)
   if (!course) return {}
 
-  const { lesson } = resolved
+  const { lesson, lessonSlug } = resolved
   const seo = buildCourseLessonSeo(course, lesson)
+  const canonicalPath = `/courses/${code}/${lessonSlug}`
   const path =
     resolved.mode === 'paper' && resolved.paperDir
-      ? `/courses/${code}/${resolved.paperDir}/${resolved.lessonSlug}${isPilotPreview ? '?pilot=1' : ''}`
-      : `/courses/${code}/${resolved.lessonSlug}`
+      ? `/courses/${code}/${resolved.paperDir}/${lessonSlug}${isPilotPreview ? '?pilot=1' : ''}`
+      : canonicalPath
+  const subjectSeo = buildSubjectCourseSeo(course, course.lessonCount)
+  const isPublished = lesson.status === 'premium' || lesson.status === 'published'
+  const modified = lesson.updated ? `${lesson.updated}T12:00:00.000Z` : undefined
 
   return createPageMetadata({
     title: isPilotPreview ? `[Pilot] ${seo.title}` : seo.title,
     description: seo.description,
     path,
+    canonicalPath: isPilotPreview ? path : canonicalPath,
     keywords: seo.keywords,
-    modifiedTime: lesson.updated ? `${lesson.updated}T12:00:00.000Z` : undefined,
+    ogImagePath: subjectSeo.ogImagePath,
+    ogType: isPublished ? 'article' : 'website',
+    publishedTime: modified,
+    modifiedTime: modified,
     index: !isPilotPreview && lesson.status !== 'pilot',
   })
 }
@@ -120,6 +130,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const pastPaperQuestions = await fetchPastPaperQuestionsForTopic(code, lesson.topicCode, 2)
   const enriched = enrichLessonVisual(code, lesson)
   const seo = buildCourseLessonSeo(course, lesson)
+  const subjectSeo = buildSubjectCourseSeo(course, course.lessonCount)
   const isPilotLesson = lesson.status === 'pilot' || isPilotPreview
   const paperQuery = paper ?? resolved.paperNumber ?? null
 
@@ -132,6 +143,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         lesson={lesson}
         seoTitle={seo.title}
         seoDescription={seo.description}
+        topics={subjectSeo.topics}
       />
 
       {isPilotLesson ? (
@@ -144,6 +156,18 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
               published yet.
             </p>
           </div>
+        </div>
+      ) : null}
+
+      {!isPilotLesson ? (
+        <div className="mx-auto max-w-[var(--ec-content-max,960px)] px-4 pt-4 sm:px-6">
+          <CourseLessonSeoIntro
+            heading={seo.introHeading}
+            paragraph={seo.introParagraph}
+            subjectCode={code}
+            subjectName={course.name}
+            markPath={seo.markPath}
+          />
         </div>
       ) : null}
 

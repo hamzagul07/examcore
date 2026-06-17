@@ -15,6 +15,7 @@ import {
   TIER_MONTHLY_CAPS,
   TIER_OMNI_CAPS,
 } from './caps'
+import { capTierForAccess, effectiveAccess, type EffectiveAccess } from './access'
 import type { SubscriptionTier, SubscriptionStatus } from '@/lib/database.types'
 
 export { TIER_MONTHLY_CAPS, TIER_OMNI_CAPS }
@@ -51,6 +52,8 @@ export type MarkAllowance = QuotaAllowance & { marks_used: number }
 
 export type BillingSummary = {
   tier: SubscriptionTier
+  access: EffectiveAccess
+  trial_ends_at?: string | null
   status: SubscriptionStatus
   founding_member: boolean
   credit_balance: number
@@ -64,6 +67,10 @@ const ACTIVE_STATUSES: SubscriptionStatus[] = ['active', 'trialing']
 
 type BillingContext = {
   tier: SubscriptionTier
+  /** Tier whose caps apply (trial → scholar). */
+  cap_tier: SubscriptionTier
+  access: EffectiveAccess
+  trial_ends_at: string | null
   status: SubscriptionStatus
   founding_member: boolean
   credit_balance: number
@@ -78,16 +85,24 @@ async function loadBillingContext(
   const [{ data: sub }, { data: credits }] = await Promise.all([
     supabase
       .from('user_subscriptions')
-      .select('tier, status, current_period_start, current_period_end, founding_member')
+      .select(
+        'tier, status, current_period_start, current_period_end, founding_member, trial_ends_at'
+      )
       .eq('user_id', userId)
       .maybeSingle(),
     supabase.from('user_credits').select('balance').eq('user_id', userId).maybeSingle(),
   ])
 
   const tier = (sub?.tier ?? 'free') as SubscriptionTier
+  const status = (sub?.status ?? 'active') as SubscriptionStatus
+  const trial_ends_at = (sub?.trial_ends_at ?? null) as string | null
+  const access = effectiveAccess({ tier, status, trialEndsAt: trial_ends_at })
   return {
     tier,
-    status: (sub?.status ?? 'active') as SubscriptionStatus,
+    cap_tier: capTierForAccess(access),
+    access,
+    trial_ends_at,
+    status,
     founding_member: Boolean(sub?.founding_member),
     credit_balance: credits?.balance ?? 0,
     window: currentPeriodWindow({
@@ -180,7 +195,7 @@ async function computeQuestionAllowanceFromContext(
     ctx.window.start,
     ctx.window.end
   )
-  return buildQuotaAllowance(ctx, { used, cap: capForTier(ctx.tier) })
+  return buildQuotaAllowance(ctx, { used, cap: capForTier(ctx.cap_tier) })
 }
 
 async function computeOmniAllowanceFromContext(
@@ -196,7 +211,7 @@ async function computeOmniAllowanceFromContext(
     ctx.window.start,
     ctx.window.end
   )
-  return buildQuotaAllowance(ctx, { used, cap: omniCapForTier(ctx.tier), omni: true })
+  return buildQuotaAllowance(ctx, { used, cap: omniCapForTier(ctx.cap_tier), omni: true })
 }
 
 /**
@@ -231,6 +246,8 @@ export async function computeBillingSummary(
   ])
   return {
     tier: ctx.tier,
+    access: ctx.access,
+    trial_ends_at: ctx.trial_ends_at,
     status: ctx.status,
     founding_member: ctx.founding_member,
     credit_balance: ctx.credit_balance,

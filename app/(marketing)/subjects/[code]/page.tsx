@@ -26,6 +26,8 @@ import {
   getPaperBrowserYears,
   hotTopicsForSubject,
 } from '@/lib/subjects/paper-browser'
+import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
+import { buildSubjectHubIntro } from '@/lib/seo/hub-intro'
 import type { CSSProperties } from 'react'
 
 type Props = { params: Promise<{ code: string }> }
@@ -43,11 +45,8 @@ export async function generateMetadata({ params }: Props) {
     title: copy.title,
     description: copy.description,
     path: copy.path,
-    keywords: [
-      `${code} past papers`,
-      `Cambridge ${subject.label} marking`,
-      `${copy.level} ${subject.label}`,
-    ],
+    keywords: copy.keywords,
+    ogImagePath: copy.ogImagePath,
   })
 }
 
@@ -88,6 +87,8 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
   const hotTopics = hotTopicsForSubject(structure)
   const accent = catalog?.color ?? 'var(--ec-brand)'
 
+  const intro = buildSubjectHubIntro(subject)
+
   return (
     <MarketingPageShell>
       <PageJsonLd
@@ -107,6 +108,8 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
             description: copy.description,
             url,
             syllabusCode: code,
+            topics: copy.topics,
+            level: copy.level,
           }),
           faqPageNode(faq),
         ]}
@@ -157,6 +160,20 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
             Mark a {code} question
           </Link>
         </div>
+
+        <HubSeoIntro
+          heading={intro.heading}
+          paragraph={intro.paragraph}
+          links={[
+            { href: '/mark', label: `Mark ${code} now →`, variant: 'primary' },
+            ...(course
+              ? [{ href: course.path, label: `Free ${code} course`, variant: 'ghost' as const }]
+              : []),
+            ...(copy.guideSlug
+              ? [{ href: `/blog/${copy.guideSlug}`, label: `${code} revision guide`, variant: 'muted' as const }]
+              : []),
+          ]}
+        />
 
         <div className="ms-sd-grid">
           <div>

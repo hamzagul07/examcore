@@ -105,8 +105,8 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         a: `Yes. Free includes ${capForTier('free')} questions and ${omniCapForTier('free')} study chat messages per month across all fifteen subjects, plus Examiner's Ink on single-question marking. No card required.`,
       },
       {
-        q: 'I signed up during early access — what happens to my pricing?',
-        a: 'You\'re a founding member. You get 50% off any paid plan, locked in forever. That discount applies even as we add features or raise prices for new users — your founding rate is permanent.',
+        q: 'Is there a free trial?',
+        a: 'Yes. Every new account gets 7 days of full access — live diagrams, past-paper practice, and higher marking limits — with no card required. When the trial ends you keep the free plan automatically; nothing is charged unless you choose to upgrade.',
       },
       {
         q: 'What counts as one question?',

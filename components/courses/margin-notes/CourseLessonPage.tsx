@@ -16,6 +16,8 @@ import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonC
 import { CourseRichText } from '@/components/courses/CourseRichText'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { buildSignInHref } from '@/lib/auth-redirect'
+import { LessonUpsell } from '@/components/billing/LessonUpsell'
+import { trialDaysLeft, type EffectiveAccess } from '@/lib/billing/access'
 import {
   jumpTo,
   lessonTopicHref,
@@ -35,9 +37,24 @@ type Props = {
   subjectAcc: AccentToken
   paperQuery?: string | null
   signedIn?: boolean
+  /** Effective access level; undefined while loading (renders full content for SEO). */
+  access?: EffectiveAccess
+  trialEndsAt?: string | null
 }
 
-export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }: Props) {
+export function CourseLessonPage({
+  lesson: L,
+  subjectAcc,
+  paperQuery,
+  signedIn,
+  access,
+  trialEndsAt,
+}: Props) {
+  // Free tier sees notes + formulas only — live diagrams, practice questions and
+  // the interactive blocks are gated. `undefined` (loading / SSR) renders full so
+  // crawlers index everything and paid users never flash to a locked state.
+  const locked = access === 'free'
+  const trialDays = access === 'trial' ? trialDaysLeft(trialEndsAt) : 0
   const acc = accentCssVar(subjectAcc)
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -91,21 +108,21 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
     () =>
       [
         { id: 'simple', label: 'Simple explanation', on: !!L.simple },
-        { id: 'visual', label: 'Visual learning', on: hasVisual },
+        { id: 'visual', label: 'Visual learning', on: hasVisual && !locked },
         { id: 'formulas', label: 'Key formulas', on: !!L.formulas?.length },
         { id: 'compare', label: 'Side by side', on: !!L.comparisonTable },
         { id: 'notes', label: 'Full notes', on: !!L.notes?.length },
         { id: 'worked', label: 'Worked examples', on: !!L.worked?.length },
-        { id: 'cmap', label: 'Concept map', on: !!L.conceptMap },
+        { id: 'cmap', label: 'Concept map', on: !!L.conceptMap && !locked },
         { id: 'glossary', label: 'Glossary', on: !!L.glossary?.length },
-        { id: 'quiz', label: 'Quick check', on: !!L.quiz?.length },
-        { id: 'cards', label: 'Flashcards', on: !!L.flashcards?.length },
+        { id: 'quiz', label: 'Quick check', on: !!L.quiz?.length && !locked },
+        { id: 'cards', label: 'Flashcards', on: !!L.flashcards?.length && !locked },
         { id: 'takeaways', label: 'Key takeaways', on: !!L.takeaways?.length },
-        { id: 'practice', label: 'Practice', on: !!L.practice },
+        { id: 'practice', label: 'Practice', on: !!L.practice && !locked },
         { id: 'resources', label: 'Extra links', on: !!L.resources?.length },
         { id: 'faqs', label: 'FAQs', on: !!L.faqs?.length },
       ].filter((s) => s.on),
-    [L, hasVisual]
+    [L, hasVisual, locked]
   )
 
   useEffect(() => {
@@ -208,6 +225,25 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
         />
       </div>
 
+      {access === 'trial' && trialDays > 0 ? (
+        <div className="pg">
+          <div className="lesson-trial-banner" role="status">
+            <span className="lesson-trial-spark mono" aria-hidden>
+              TRIAL
+            </span>
+            <span className="lesson-trial-text">
+              <strong>
+                {trialDays} {trialDays === 1 ? 'day' : 'days'} of full access left
+              </strong>{' '}
+              — diagrams, practice &amp; marking are all unlocked.
+            </span>
+            <Link className="lesson-trial-link" href="/pricing">
+              Keep Pro →
+            </Link>
+          </div>
+        </div>
+      ) : null}
+
       <header className="lesson-hero pg">
         <div className="lesson-hero-main">
           <div className="lesson-tagrow">
@@ -265,18 +301,26 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
               <div className="sheet-line" />
             </div>
             <p className="micro lesson-sheet-meta">{L.papers}</p>
-            <button
-              type="button"
-              className="btn-primary btn-block"
-              onClick={() =>
-                practiceCount > 1 ? setLessonMode('papers') : scrollToSection('practice')
-              }
-            >
-              {practiceCount > 1
-                ? `Past papers (${practiceCount}) →`
-                : 'Practise & mark this topic →'}
-            </button>
-            {hasVisual ? (
+            {locked ? (
+              <Link className="btn-primary btn-block" href="/pricing">
+                {signedIn === false
+                  ? 'Start your 7-day free trial →'
+                  : 'Unlock practice & diagrams →'}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                className="btn-primary btn-block"
+                onClick={() =>
+                  practiceCount > 1 ? setLessonMode('papers') : scrollToSection('practice')
+                }
+              >
+                {practiceCount > 1
+                  ? `Past papers (${practiceCount}) →`
+                  : 'Practise & mark this topic →'}
+              </button>
+            )}
+            {hasVisual && !locked ? (
               <button
                 type="button"
                 className="btn-ghost sm btn-block btn-block-gap"
@@ -360,7 +404,11 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
                 : 'A real Cambridge question for this topic — mark it against the official scheme.'
             }
           />
-          <PracticeSection lesson={L} big />
+          {locked ? (
+            <LessonUpsell feature="practice" signedIn={signedIn} />
+          ) : (
+            <PracticeSection lesson={L} big />
+          )}
           <div className="lesson-end lesson-papers-end">
             <button
               type="button"
@@ -503,21 +551,25 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
                         : 'Use the live diagram and synced steps — play it or tap a step card to walk through.'
                   }
                 />
-                <div className="visual-stack">
-                  <CourseLessonDiagramShell
-                    lessonSlug={L.lessonSlug}
-                    template={L.template}
-                    diagramSpec={L.diagramSpec}
-                    interactiveEmbed={L.interactiveEmbed}
-                    steps={
-                      L.steps?.length
-                        ? L.steps
-                        : [{ n: 1, title: 'Explore', body: L.intro || 'Use the interactive visual below.' }]
-                    }
-                    step={step}
-                    setStep={setStep}
-                  />
-                </div>
+                {locked ? (
+                  <LessonUpsell feature="diagrams" signedIn={signedIn} />
+                ) : (
+                  <div className="visual-stack">
+                    <CourseLessonDiagramShell
+                      lessonSlug={L.lessonSlug}
+                      template={L.template}
+                      diagramSpec={L.diagramSpec}
+                      interactiveEmbed={L.interactiveEmbed}
+                      steps={
+                        L.steps?.length
+                          ? L.steps
+                          : [{ n: 1, title: 'Explore', body: L.intro || 'Use the interactive visual below.' }]
+                      }
+                      step={step}
+                      setStep={setStep}
+                    />
+                  </div>
+                )}
               </section>
             ) : null}
 
@@ -614,7 +666,7 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
               </section>
             ) : null}
 
-            {L.conceptMap ? (
+            {L.conceptMap && !locked ? (
               <section id="cmap" className="lsec">
                 <SecHead
                   k="06"
@@ -636,7 +688,7 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
               </section>
             ) : null}
 
-            {L.quiz?.length ? (
+            {L.quiz?.length && !locked ? (
               <section id="quiz" className="lsec">
                 <SecHead
                   k="08"
@@ -647,7 +699,7 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
               </section>
             ) : null}
 
-            {L.flashcards?.length ? (
+            {L.flashcards?.length && !locked ? (
               <section id="cards" className="lsec">
                 <SecHead
                   k="09"
@@ -683,7 +735,11 @@ export function CourseLessonPage({ lesson: L, subjectAcc, paperQuery, signedIn }
                   title="Practice — then mark it"
                   sub="The whole point: a real Cambridge question, marked mark-by-mark."
                 />
-                <PracticeSection lesson={L} />
+                {locked ? (
+                  <LessonUpsell feature="practice" signedIn={signedIn} />
+                ) : (
+                  <PracticeSection lesson={L} />
+                )}
               </section>
             ) : null}
 

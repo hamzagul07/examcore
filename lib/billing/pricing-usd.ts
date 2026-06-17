@@ -8,15 +8,17 @@ export const PRICING_USD = {
     B: { monthly: 1000, yearly: 9000 },
     C: { monthly: 600, yearly: 5000 },
   },
+  // Pro (marketing name) — research-based pricing for a new exam-prep SaaS.
   scholar: {
-    A: { monthly: 3800, yearly: 29800 },
-    B: { monthly: 2200, yearly: 17800 },
-    C: { monthly: 1400, yearly: 11000 },
+    A: { monthly: 1100, yearly: 8900 },
+    B: { monthly: 700, yearly: 5500 },
+    C: { monthly: 400, yearly: 3200 },
   },
+  // Max (marketing name).
   mastery: {
-    A: { monthly: 7800, yearly: 65800 },
-    B: { monthly: 4400, yearly: 37800 },
-    C: { monthly: 3000, yearly: 25800 },
+    A: { monthly: 2200, yearly: 17900 },
+    B: { monthly: 1300, yearly: 9900 },
+    C: { monthly: 800, yearly: 5900 },
   },
   credits_25: { A: 1000, B: 600, C: 400 },
   credits_100: { A: 3000, B: 1800, C: 1200 },

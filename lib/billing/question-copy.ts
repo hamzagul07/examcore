@@ -1,9 +1,13 @@
 import type { SubscriptionTier } from '@/lib/database.types'
-import { capForTier, omniCapForTier } from './caps'
+import type { EffectiveAccess } from './access'
+import { capForTier, omniCapForTier, tierMarketingName } from './caps'
 
 export type BillingSummaryClient = {
   signedIn: boolean
   tier: SubscriptionTier
+  /** Derived access level used for content gating + trial messaging. */
+  access: EffectiveAccess
+  trial_ends_at: string | null
   status: string
   founding_member: boolean
   credit_balance: number
@@ -36,10 +40,7 @@ export function questionUsageMessage(summary: BillingSummaryClient): {
   }
 
   const q = summary.questions
-  const tierLabel =
-    summary.tier === 'free'
-      ? 'free'
-      : `${summary.tier.charAt(0).toUpperCase()}${summary.tier.slice(1)}`
+  const tierLabel = summary.tier === 'free' ? 'free' : tierMarketingName(summary.tier)
 
   if (q.blocked && summary.enforcement_mode === 'enforce') {
     const reset = summary.period_resets_at

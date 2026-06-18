@@ -25,8 +25,10 @@ export const SCULPTED_FOOTER_PRODUCT = [
 export const SCULPTED_FOOTER_RESOURCES = [
   { href: '/guides/past-paper-marking', label: 'Past paper marking' },
   { href: '/guides/mark-schemes', label: 'Mark schemes hub' },
+  { href: '/guides/grade-boundaries', label: 'Grade boundaries' },
+  { href: '/tools/grade-boundary-calculator', label: 'Grade calculator' },
+  { href: '/tools/command-words', label: 'Command words' },
   { href: '/guides/subject-guides', label: 'Syllabus guides' },
-  { href: '/blog/how-to-mark-cambridge-past-papers-yourself', label: 'Self-marking guide' },
 ] as const
 
 /** Pages that should NOT receive footer sitewide links (save crawl budget). */

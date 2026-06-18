@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test:formula": "tsx lib/courses/formula-parts.test.ts",
-    "test:seo": "tsx lib/seo/hub-intro.test.ts && tsx lib/seo/subject-seo.test.ts",
+    "test:seo": "tsx lib/seo/hub-intro.test.ts && tsx lib/seo/subject-seo.test.ts && tsx lib/seo/grade-boundaries.test.ts",
     "test:catalog": "tsx lib/courses/catalog-cache.test.ts",
     "course:fix-formula-br": "node scripts/fix-formula-br.mjs",
     "sync-papers": "node scripts/sync-bestexamhelp-papers.mjs",

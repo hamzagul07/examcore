@@ -413,3 +413,250 @@
     transition: none;
   }
 }
+
+/* ============================================================
+   Free tools — command-word explainer & grade-boundary calculator
+   ============================================================ */
+
+.cmd-tool {
+  margin-top: 28px;
+}
+
+.cmd-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.cmd-search {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 14px);
+  background: var(--ec-surface);
+  color: var(--ec-text-primary);
+}
+
+.cmd-search:focus {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 1px;
+}
+
+.cmd-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cmd-tab {
+  padding: 7px 14px;
+  font-size: 13px;
+  text-transform: capitalize;
+  border: 1px solid var(--ec-border);
+  border-radius: 999px;
+  background: var(--ec-surface);
+  color: var(--ec-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.cmd-tab:hover {
+  border-color: var(--ec-brand);
+}
+
+.cmd-tab.is-active {
+  background: var(--ec-brand);
+  border-color: var(--ec-brand);
+  color: #fff;
+}
+
+.cmd-group {
+  margin-top: 28px;
+}
+
+.cmd-group-head {
+  margin-bottom: 12px;
+}
+
+.cmd-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cmd-card {
+  padding: 20px 22px;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.cmd-word {
+  font-family: var(--ec-font-display, "Newsreader", serif);
+  font-size: 1.2rem;
+  color: var(--ec-brand);
+  margin: 0 0 6px;
+}
+
+.cmd-meaning {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ec-text-primary);
+  margin: 0 0 12px;
+}
+
+.cmd-detail {
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.cmd-detail dt {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+  margin-bottom: 2px;
+}
+
+.cmd-detail dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+}
+
+/* Grade-boundary calculator */
+.gb-tool {
+  margin-top: 28px;
+}
+
+.gb-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.gb-inputs,
+.gb-result {
+  padding: 22px 24px;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-lg, 16px);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+}
+
+.gb-level {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.gb-field {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.gb-field span {
+  display: block;
+  font-size: 13px;
+  color: var(--ec-text-secondary);
+  margin-bottom: 6px;
+}
+
+.gb-field input,
+.gb-threshold input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid var(--ec-border);
+  border-radius: 10px;
+  background: var(--ec-bg, #fff);
+  color: var(--ec-text-primary);
+}
+
+.gb-field input:focus,
+.gb-threshold input:focus,
+.cmd-tab:focus-visible {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 1px;
+}
+
+.gb-help {
+  color: var(--ec-text-secondary);
+  margin: 4px 0 14px;
+  line-height: 1.5;
+}
+
+.gb-thresholds {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.gb-threshold {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gb-grade-label {
+  font-size: 12px;
+  color: var(--ec-brand);
+  font-weight: 600;
+}
+
+.gb-result {
+  position: sticky;
+  top: 90px;
+  text-align: center;
+}
+
+.gb-result-empty {
+  color: var(--ec-text-secondary);
+  padding: 24px 8px;
+}
+
+.gb-grade-big {
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--ec-brand);
+  font-weight: 600;
+  margin: 6px 0;
+}
+
+.gb-percent {
+  font-size: 14px;
+  color: var(--ec-text-secondary);
+  margin: 0 0 10px;
+}
+
+.gb-next {
+  font-size: 15px;
+  color: var(--ec-text-primary);
+  margin: 0 0 10px;
+}
+
+.gb-disclaimer {
+  color: var(--ec-text-secondary);
+  line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+  .cmd-list {
+    grid-template-columns: 1fr;
+  }
+  .gb-grid {
+    grid-template-columns: 1fr;
+  }
+  .gb-result {
+    position: static;
+  }
+}

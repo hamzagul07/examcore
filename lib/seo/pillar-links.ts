@@ -17,7 +17,17 @@ export const SEO_PILLAR_LINKS: PillarLink[] = [
   {
     href: '/guides',
     label: 'Topic guides (hubs)',
-    description: '8 clusters — marking, mark schemes, subjects, 2026 prep',
+    description: '11 clusters — marking, mark schemes, grade boundaries, command words, subjects',
+  },
+  {
+    href: '/tools/grade-boundary-calculator',
+    label: 'Grade boundary calculator',
+    description: 'Turn raw marks into a Cambridge A*–E grade',
+  },
+  {
+    href: '/tools/command-words',
+    label: 'Command words explainer',
+    description: 'What every Cambridge command word requires',
   },
   {
     href: '/mark',

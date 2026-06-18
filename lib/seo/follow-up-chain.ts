@@ -117,6 +117,60 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/compare',
     },
   ],
+  'grade-boundaries': [
+    {
+      question: 'Where do I find official grade thresholds?',
+      answer:
+        'Cambridge publishes per-syllabus, per-session grade threshold tables on results day — your exams officer also receives them in the results pack.',
+      href: '/guides/grade-boundaries',
+    },
+    {
+      question: 'How do I turn my raw marks into a grade?',
+      answer:
+        'Add your component raw marks and compare against the most recent published thresholds — our calculator does this for the major syllabuses.',
+      href: '/tools/grade-boundary-calculator',
+    },
+    {
+      question: 'Why do boundaries change every year?',
+      answer:
+        'Cambridge adjusts thresholds so a grade means the same standard year on year — if a paper is harder, the boundary drops.',
+      href: '/guides/grade-boundaries',
+    },
+  ],
+  'command-words': [
+    {
+      question: 'What does the command word actually change?',
+      answer:
+        'It sets the depth required: “state” wants a fact, “explain” wants reasoning, “evaluate” wants a judged argument with both sides.',
+      href: '/tools/command-words',
+    },
+    {
+      question: 'Why do I lose marks when my content is correct?',
+      answer:
+        'Examiner reports cite command-word misreading as the top mark loss — describing when asked to explain earns nothing extra.',
+      href: '/blog/cambridge-command-words-explained',
+    },
+    {
+      question: 'How do I practise command words?',
+      answer:
+        'Circle the command word, answer five past-paper questions on the same verb back to back, and mark each against the scheme.',
+      href: '/mark',
+    },
+  ],
+  'free-alternatives': [
+    {
+      question: 'What can I get for free instead of paying?',
+      answer:
+        'Official Cambridge PDFs, free community notes, and scheme-aligned AI marking cover most needs before any subscription.',
+      href: '/guides/free-alternatives',
+    },
+    {
+      question: 'Is free marking actually accurate?',
+      answer:
+        'When it compares your answer against the real mark scheme rather than guessing a grade, yes — that is the test to apply.',
+      href: '/mark',
+    },
+  ],
 }
 
 export function getFollowUpChain(clusterId: ContentClusterId): FollowUpItem[] {

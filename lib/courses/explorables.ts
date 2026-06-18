@@ -13,6 +13,9 @@ export const EXPLORABLE_SLUGS: ReadonlySet<string> = new Set<string>([
   '1-5-trigonometry',
   '1-7-differentiation',
   '5-5-the-normal-distribution',
+  // Physics (9702)
+  '2-1-equations-of-motion',
+  '17-1-simple-harmonic-oscillations',
 ])
 
 export function hasExplorable(slug: string): boolean {

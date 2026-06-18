@@ -274,6 +274,22 @@
 .circ-formula { font-size: 16px; color: var(--text); padding: 9px 13px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); transition: box-shadow 180ms ease, border-color 180ms ease; }
 .circ-formula.hot { border-color: var(--ink-border); box-shadow: 0 0 0 2px var(--ink-soft); }
 
+/* Projectile motion explorer */
+.proj-guide { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: 0.5; transition: opacity 180ms ease, stroke 180ms ease; }
+.proj-guide.hot { stroke: var(--ink); opacity: 0.9; }
+.proj-ball { fill: var(--ink); stroke: var(--paper); stroke-width: 2; }
+.proj-vector { stroke: var(--acc-rose, #b0506b); stroke-width: 2; }
+.proj-arrowhead { fill: var(--acc-rose, #b0506b); }
+
+/* SHM explorer */
+.shm-eq { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 3 3; }
+.shm-amp { stroke: var(--border-strong); stroke-width: 1.4; }
+.shm-mass { fill: var(--ink); stroke: var(--paper); stroke-width: 2.5; }
+.shm-head { fill: var(--ink); stroke: var(--paper); stroke-width: 2; }
+.shm-track-label { fill: var(--muted); font-size: 11px; }
+.shm-vec.vel, .shm-arrow.vel { stroke: var(--acc-blue, #2f6db0); fill: var(--acc-blue, #2f6db0); stroke-width: 2.5; }
+.shm-vec.acc, .shm-arrow.acc { stroke: var(--acc-rose, #b0506b); fill: var(--acc-rose, #b0506b); stroke-width: 2.5; }
+
 /* Syllabus coverage — official sub-topics this lesson covers */
 .subtopics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .subtopic { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }

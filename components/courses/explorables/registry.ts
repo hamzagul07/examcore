@@ -41,6 +41,14 @@ const CircularMeasureExplorer = dynamic(
   () => import('./CircularMeasureExplorer').then((m) => m.CircularMeasureExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const ProjectileExplorer = dynamic(
+  () => import('./ProjectileExplorer').then((m) => m.ProjectileExplorer),
+  { ssr: false, loading: explorableLoading }
+)
+const SHMExplorer = dynamic(
+  () => import('./SHMExplorer').then((m) => m.SHMExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 
 /**
  * First-class, per-lesson interactive diagrams ("explorables"). Returns a React
@@ -62,6 +70,10 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(NormalExplorer, props)
     case '1-4-circular-measure':
       return createElement(CircularMeasureExplorer, props)
+    case '2-1-equations-of-motion':
+      return createElement(ProjectileExplorer, props)
+    case '17-1-simple-harmonic-oscillations':
+      return createElement(SHMExplorer, props)
     default:
       return null
   }

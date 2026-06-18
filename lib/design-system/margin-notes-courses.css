@@ -290,6 +290,23 @@
 .shm-vec.vel, .shm-arrow.vel { stroke: var(--acc-blue, #2f6db0); fill: var(--acc-blue, #2f6db0); stroke-width: 2.5; }
 .shm-vec.acc, .shm-arrow.acc { stroke: var(--acc-rose, #b0506b); fill: var(--acc-rose, #b0506b); stroke-width: 2.5; }
 
+/* Progressive wave explorer */
+.wave-particle { fill: var(--acc-rose, #b0506b); stroke: var(--paper); stroke-width: 2; }
+.wave-particle-line { stroke: var(--acc-rose, #b0506b); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.5; }
+.wave-lambda line { stroke: var(--muted); stroke-width: 1.2; transition: stroke 180ms ease; }
+.wave-lambda.hot line { stroke: var(--ink); }
+.wave-label { fill: var(--text-2); }
+.wave-tick { stroke: var(--muted); stroke-width: 1.2; }
+
+/* Coordinate geometry explorer */
+.coord-line { stroke: var(--ink); stroke-width: 2; opacity: 0.55; }
+.coord-seg { stroke: var(--ink); stroke-width: 3; transition: stroke-width 180ms ease; }
+.coord-seg.hot { stroke-width: 4; }
+.coord-run { stroke: var(--acc-blue, #2f6db0); stroke-width: 2; stroke-dasharray: 4 3; }
+.coord-rise { stroke: var(--acc-rose, #b0506b); stroke-width: 2; stroke-dasharray: 4 3; }
+.coord-mid { fill: var(--acc-violet, #6b4fb0); stroke: var(--paper); stroke-width: 2; }
+.coord-label { fill: var(--text-2); font-size: 11px; }
+
 /* Syllabus coverage — official sub-topics this lesson covers */
 .subtopics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .subtopic { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }

@@ -1,0 +1,56 @@
+name: Extract syllabus outcomes
+
+# Re-runs syllabus-outcome extraction for subjects that don't have outcomes yet,
+# coverage-gates them (skips empty results and numbering mismatches), wires the
+# good ones, and commits — which deploys via Vercel. Built to be retried safely
+# against the intermittently-flaky Gemini API: a bad run simply wires nothing.
+#
+# Required repo secret: GEMINI_API_KEY (Settings → Secrets and variables → Actions).
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 7 * * 2' # Tuesdays 07:00 UTC
+
+concurrency:
+  group: extract-syllabi
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Extract + wire missing syllabi
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          USE_VERTEX_AI: 'false'
+          GEMINI_CALL_TIMEOUT_MS: '300000'
+        run: npx tsx scripts/extract-and-wire-syllabi.mjs
+
+      - name: Commit newly wired outcomes
+        run: |
+          if [ -n "$(git status --porcelain lib/courses/syllabus-objectives)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add lib/courses/syllabus-objectives
+            git commit -m "Auto-wire syllabus outcomes for newly extracted subjects"
+            git push
+          else
+            echo "No new subjects wired this run."
+          fi

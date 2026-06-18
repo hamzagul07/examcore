@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 A Level — taxes, subsidies, regulation, and tradable permits with GeoGebra welfare diagrams.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Evaluate taxes and subsidies for externalities.",
     "Compare command-and-control vs market-based policies.",
@@ -25,17 +25,134 @@
     ]
   },
   "flashcards": [
-    { "front": "What is a Pigouvian tax?", "back": "A tax set equal to the marginal external cost so that MPC shifts up to MSC — internalising the negative externality." },
-    { "front": "Subsidy for positive externality?", "back": "Shifts MPB up toward MSB (e.g. education, vaccinations) — raises output toward the socially optimal level." },
-    { "front": "Tradable pollution permits?", "back": "Cap total emissions; firms trade permits — low-cost abaters sell to high-cost abaters, achieving the cap at minimum cost." },
-    { "front": "Command-and-control vs market-based?", "back": "Regulation sets standards directly; market-based tools (taxes, permits) use price signals — often more cost-effective." },
-    { "front": "What is government failure?", "back": "Intervention that fails to improve allocation — imperfect information, bureaucracy, lobbying, or unintended side effects." },
-    { "front": "When is a tax preferred to regulation?", "back": "When marginal external cost is measurable and firms differ in abatement costs — tax preserves flexibility; regulation may force uniform costly compliance." }
+    {
+      "front": "What is a Pigouvian tax?",
+      "back": "A tax set equal to the marginal external cost so that MPC shifts up to MSC — internalising the negative externality."
+    },
+    {
+      "front": "Subsidy for positive externality?",
+      "back": "Shifts MPB up toward MSB (e.g. education, vaccinations) — raises output toward the socially optimal level."
+    },
+    {
+      "front": "Tradable pollution permits?",
+      "back": "Cap total emissions; firms trade permits — low-cost abaters sell to high-cost abaters, achieving the cap at minimum cost."
+    },
+    {
+      "front": "Command-and-control vs market-based?",
+      "back": "Regulation sets standards directly; market-based tools (taxes, permits) use price signals — often more cost-effective."
+    },
+    {
+      "front": "What is government failure?",
+      "back": "Intervention that fails to improve allocation — imperfect information, bureaucracy, lobbying, or unintended side effects."
+    },
+    {
+      "front": "When is a tax preferred to regulation?",
+      "back": "When marginal external cost is measurable and firms differ in abatement costs — tax preserves flexibility; regulation may force uniform costly compliance."
+    },
+    {
+      "front": "What is a Pigouvian tax?",
+      "back": "A tax levied on any market activity that generates negative externalities. The tax is intended to correct an inefficient market outcome by being set equal to the marginal external cost of the externality at the socially optimal output."
+    },
+    {
+      "front": "How does a subsidy correct the market failure of a positive externality?",
+      "back": "It lowers the private cost of production or increases the private benefit of consumption. This shifts the MPC curve down (or the MPB curve up), encouraging an increase in output from the inefficient market equilibrium (Qe) to the socially optimal equilibrium (Qso), eliminating the deadweight welfare loss."
+    },
+    {
+      "front": "What is the primary advantage of tradable permits over direct regulation?",
+      "back": "Tradable permits provide a financial incentive for firms to find the cheapest way to reduce pollution, leading to the same overall pollution reduction at a lower total cost to the economy compared to a 'one-size-fits-all' regulation which may be inefficient."
+    },
+    {
+      "front": "Define 'deadweight welfare loss' in the context of an externality.",
+      "back": "The loss of economic efficiency that occurs when the free market equilibrium is not at the socially optimal level. It represents the total loss of consumer and producer surplus due to the over-production (negative externality) or under-production (positive externality) of a good."
+    },
+    {
+      "front": "What is 'government failure'?",
+      "back": "A situation where government intervention to correct a market failure creates inefficiency and leads to a net welfare loss. Causes include imperfect information, high administrative costs, unintended consequences, and political self-interest."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Government policy** (8.1) follows **externalities** (7.4). Evaluation essays need **two policies compared** with **diagrams** — show welfare triangles gained and any remaining deadweight loss."
+    },
+    {
+      "type": "heading",
+      "content": "Indirect Taxes to Correct Negative Externalities"
+    },
+    {
+      "type": "text",
+      "content": "To address negative externalities of production, such as pollution from a factory, governments can impose an indirect tax, often called a Pigouvian tax. The goal is to internalise the externality by making the producer pay for the external costs they create. On a welfare diagram, this tax shifts the Marginal Private Cost (MPC) curve vertically upwards by the amount of the tax. Ideally, the tax per unit should equal the Marginal External Cost (MEC) at the socially optimal output level. This new curve, MPC + Tax, represents the Marginal Social Cost (MSC). As a result, the market equilibrium moves from the inefficient free-market position (Qe), where MPC=MPB, to the socially optimal position (Qso), where MSC=MSB. This reduces output, eliminates the deadweight welfare loss, and generates tax revenue for the government."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An indirect tax increases the private cost of production.",
+        "The aim is to make the producer 'internalise' the external cost.",
+        "The tax shifts the MPC curve upwards to align with the MSC curve.",
+        "Output is reduced from the free-market level (Qe) to the socially optimal level (Qso).",
+        "This policy eliminates the deadweight welfare loss associated with overproduction.",
+        "A key challenge is accurately quantifying the monetary value of the external cost to set the correct tax rate."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In your analysis, always state that for the tax to be perfectly corrective, the per-unit tax must equal the marginal external cost at the socially optimal level of output (Qso). Diagrams must be clearly labelled, showing the shift in the cost curve, the initial and final equilibrium points, and the area of deadweight loss that has been eliminated."
+    },
+    {
+      "type": "heading",
+      "content": "Subsidies for Positive Externalities"
+    },
+    {
+      "type": "text",
+      "content": "When the consumption or production of a good generates positive externalities (e.g., vaccinations, education), the free market will under-provide it. A government subsidy can correct this by encouraging more consumption/production. A subsidy paid to producers lowers their costs, shifting the Marginal Private Cost (MPC) curve downwards (or to the right). The aim is to shift MPC to a level where the new market equilibrium (Qso) aligns with the socially optimal output, where Marginal Social Benefit (MSB) equals Marginal Social Cost (MSC). This increases quantity from Qe to Qso, eliminating the deadweight welfare loss of under-consumption. While effective, subsidies represent a significant government expenditure, creating an opportunity cost as the funds cannot be used for other public services."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Subsidies are payments from the government to producers or consumers to encourage an activity.",
+        "They are used to correct market failures arising from positive externalities (merit goods).",
+        "A subsidy on production shifts the MPC curve downwards/rightwards.",
+        "The policy aims to increase output from the market equilibrium (Qe) to the socially optimal level (Qso).",
+        "This eliminates the potential welfare loss from under-provision.",
+        "Subsidies involve an opportunity cost and can be difficult to target and quantify effectively."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Regulation and Direct Provision"
+    },
+    {
+      "type": "text",
+      "content": "Regulation is a non-market-based intervention where the government uses laws and rules to control economic activity. This can include banning certain harmful products, setting maximum pollution levels, or mandating the use of safety equipment. Regulation can be highly effective in achieving a specific outcome, especially when the external cost is very high or difficult to value (e.g., banning asbestos). However, it can be a blunt instrument, lacking flexibility and potentially imposing high costs on all firms regardless of their individual circumstances. Enforcement and monitoring costs can also be substantial. For public goods, or where under-provision of merit goods is severe, the government may opt for direct provision, supplying the good or service itself (e.g., national defence, state education) to ensure allocative efficiency."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Regulation involves legal commands, such as bans, caps, and mandates.",
+        "It is effective when an activity must be stopped entirely or strictly limited.",
+        "Drawbacks include inflexibility, high compliance costs for firms, and costs of enforcement for the government.",
+        "Direct provision is when the government becomes the provider of the good or service.",
+        "This is common for public goods (to overcome the free-rider problem) and some merit goods."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Tradable Pollution Permits"
+    },
+    {
+      "type": "text",
+      "content": "Tradable permits are a market-based solution to control pollution, often called a 'cap and trade' system. The government first sets a 'cap' – a maximum total level of pollution allowed. It then issues permits to firms corresponding to this cap. Firms that can reduce their pollution at a low cost can do so and sell their excess permits to other firms for whom pollution abatement is more expensive. This creates a market for the 'right to pollute', and the price of a permit is determined by supply and demand. This system ensures that the overall pollution target is met in the most cost-effective way for the economy as a whole, as it incentivises firms to find the cheapest methods of reduction. However, setting the initial cap and the method of permit allocation can be politically contentious."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A 'cap' is set on the total quantity of pollution allowed.",
+        "Permits are issued to firms, which can be traded.",
+        "This creates a market and a price for pollution.",
+        "Firms with low abatement costs can sell permits for profit, creating an incentive to innovate.",
+        "The policy achieves a specific quantity of pollution reduction at the lowest overall economic cost.",
+        "Difficulties include setting the initial cap and deciding how to allocate the permits (e.g., auction vs. free distribution)."
+      ]
     },
     {
       "type": "keyPoints",
@@ -59,10 +176,22 @@
     {
       "type": "resources",
       "items": [
-        { "label": "7.4 Externalities and social costs (prerequisite)", "href": "/courses/9708/7-4-private-costs-and-benefits-externalities-and-social-costs-and-benefits" },
-        { "label": "3.2 Methods of government intervention", "href": "/courses/9708/3-2-methods-and-effects-of-government-intervention-in-markets" },
-        { "label": "8.2 Equity and redistribution", "href": "/courses/9708/8-2-equity-and-redistribution-of-income-and-wealth" },
-        { "label": "9708 course index", "href": "/courses/9708" }
+        {
+          "label": "7.4 Externalities and social costs (prerequisite)",
+          "href": "/courses/9708/7-4-private-costs-and-benefits-externalities-and-social-costs-and-benefits"
+        },
+        {
+          "label": "3.2 Methods of government intervention",
+          "href": "/courses/9708/3-2-methods-and-effects-of-government-intervention-in-markets"
+        },
+        {
+          "label": "8.2 Equity and redistribution",
+          "href": "/courses/9708/8-2-equity-and-redistribution-of-income-and-wealth"
+        },
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
       ]
     }
   ],
@@ -97,5 +226,65 @@
         "embedHint": "Evaluate vs market failure."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "q": "If a tax on a negative externality raises prices for consumers, isn't that a bad thing?",
+      "a": "While consumers may face higher prices, the tax aims to make the price reflect the true social cost of the product, including the external damage. The goal is to reduce consumption to the socially optimal level where marginal social benefit equals marginal social cost. The revenue raised can also be used to compensate those affected by the externality or to fund other public services, offsetting some of the negative impact."
+    },
+    {
+      "q": "Why not just ban all activities that cause pollution?",
+      "a": "Banning all polluting activities would be extremely costly and impractical, as many essential economic activities (e.g., transport, manufacturing) generate some pollution. The economic goal is not zero pollution, but the optimal level of pollution, where the marginal social benefit of the activity equals its marginal social cost. Policies like taxes or tradable permits aim to achieve this balance, whereas a total ban might cause a greater loss of welfare than the pollution itself."
+    },
+    {
+      "q": "Are subsidies always the best way to encourage merit goods?",
+      "a": "Not necessarily. While subsidies can be effective, they have significant drawbacks. They carry a large opportunity cost, as the money could be spent elsewhere. It can be difficult to determine the correct size of the subsidy to reach the socially optimal output. Furthermore, subsidies can lead to inefficiency if firms become reliant on them instead of innovating. Other policies like direct government provision or information campaigns might be more appropriate in some cases."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparing Indirect Taxes and Tradable Permits for Negative Externalities",
+    "columns": [
+      "Feature",
+      "Indirect (Pigouvian) Taxes",
+      "Tradable Permits"
+    ],
+    "rows": [
+      {
+        "property": "Mechanism",
+        "cells": [
+          "Price-based: Sets the price of pollution via a tax.",
+          "Quantity-based: Sets the total quantity of pollution via a 'cap'."
+        ]
+      },
+      {
+        "property": "Certainty of Outcome",
+        "cells": [
+          "Certain about the cost per unit of pollution (the tax rate), but uncertain about the exact level of pollution reduction that will be achieved.",
+          "Certain about the total level of pollution reduction (the 'cap'), but uncertain about the final market price of a permit."
+        ]
+      },
+      {
+        "property": "Government Revenue",
+        "cells": [
+          "Generates revenue for the government, which can be used to offset other taxes or fund environmental projects ('double dividend').",
+          "Does not generate revenue if permits are given away for free. Revenue is only generated if permits are auctioned by the government."
+        ]
+      },
+      {
+        "property": "Incentive to Innovate",
+        "cells": [
+          "Provides an ongoing incentive to reduce pollution in order to pay less tax.",
+          "Provides a strong incentive to reduce pollution below a firm's allocation in order to sell surplus permits for profit."
+        ]
+      },
+      {
+        "property": "Implementation Issues",
+        "cells": [
+          "Requires detailed information to set the tax equal to the marginal external cost, which is very difficult to measure accurately.",
+          "Politically difficult to set the initial cap and decide on the allocation of permits (e.g., free distribution vs. auction)."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

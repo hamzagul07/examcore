@@ -198,7 +198,9 @@ export function Glossary({ items }: { items: NonNullable<MarginNotesLesson['glos
           className={`gloss${open === i ? ' on' : ''}`}
           onClick={() => setOpen(open === i ? null : i)}
         >
-          <span className="gloss-t">{g.t}</span>
+          <span className="gloss-t">
+            <CourseRichText content={g.t} variant="inline" />
+          </span>
           <span className="gloss-d">
             {open === i ? (
               <CourseRichText content={g.d} variant="prose" className="gloss-d-rich" />

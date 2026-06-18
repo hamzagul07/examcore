@@ -1,5 +1,6 @@
 import type { CourseLesson } from '@/lib/courses/types'
 import type { MarginNotesTopic } from '@/lib/courses/margin-notes/types'
+import { hasExplorable } from '@/lib/courses/explorables'
 
 export function lessonToTopic(lesson: CourseLesson, opts?: { done?: boolean; active?: boolean }): MarginNotesTopic {
   return {
@@ -8,6 +9,7 @@ export function lessonToTopic(lesson: CourseLesson, opts?: { done?: boolean; act
     slug: lesson.slug,
     done: opts?.done,
     active: opts?.active,
+    interactive: hasExplorable(lesson.slug),
   }
 }
 

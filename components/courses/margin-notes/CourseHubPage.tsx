@@ -234,6 +234,9 @@ export function CourseHubPage({
                           {it.done ? '✓' : it.active ? '◆' : ''}
                         </span>
                         <span className="topic-name">{it.t}</span>
+                        {it.interactive ? (
+                          <span className="topic-interactive mono" title="Interactive diagram">◆ INTERACTIVE</span>
+                        ) : null}
                         <span className="topic-n mono">{it.n}</span>
                         {it.active ? (
                           <span className="topic-flag mono">CONTINUE</span>

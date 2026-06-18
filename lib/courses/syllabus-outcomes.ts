@@ -1,4 +1,5 @@
 import type { LessonSubtopic } from '@/lib/courses/types'
+import o9084 from '@/lib/courses/syllabus-objectives/9084.json'
 import o9700 from '@/lib/courses/syllabus-objectives/9700.json'
 import o9702 from '@/lib/courses/syllabus-objectives/9702.json'
 import o9706 from '@/lib/courses/syllabus-objectives/9706.json'
@@ -13,6 +14,7 @@ import o9706 from '@/lib/courses/syllabus-objectives/9706.json'
 type Outcome = { code: string; topic: string; text: string }
 
 const BY_SUBJECT: Record<string, Outcome[]> = {
+  '9084': o9084 as Outcome[],
   '9700': o9700 as Outcome[],
   '9702': o9702 as Outcome[],
   '9706': o9706 as Outcome[],

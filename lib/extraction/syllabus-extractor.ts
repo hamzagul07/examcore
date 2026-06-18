@@ -4,6 +4,7 @@ import { randomUUID } from 'crypto'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { extractJSON } from '@/lib/marking/json'
 import { generateGeminiWithContents } from '@/lib/ai/gemini-text'
+import { GEMINI_FLASH_MODEL } from '@/lib/ai/gemini-models'
 import { getGeminiRetryStats, resetGeminiRetryStats } from '@/lib/marking/gemini-retry'
 import {
   getPdfPageCountFromPdfLib,
@@ -78,8 +79,13 @@ function syllabusSourcePath(subjectCode: string, rootDir: string): string {
 }
 
 function shouldUseSyllabusSingleShot(pdfBytes: ArrayBuffer, totalPages: number): boolean {
+  // Single-shot only for genuinely small syllabi. Large PDFs sent whole to the
+  // Pro model time out at the gateway (504), so fall back to page-range chunking,
+  // which keeps each request fast. Require BOTH a known small page count AND a
+  // small byte size; an unknown page count (0) forces the safer chunked path.
   return (
-    totalPages <= SYLLABUS_SINGLE_SHOT_MAX_PAGES ||
+    totalPages >= 1 &&
+    totalPages <= SYLLABUS_SINGLE_SHOT_MAX_PAGES &&
     pdfBytes.byteLength <= SYLLABUS_SINGLE_SHOT_MAX_BYTES
   )
 }
@@ -348,7 +354,9 @@ async function extractChunk(
         ],
       },
     ],
-    { task: 'syllabus-extraction', maxOutputTokens: 65536, temperature: 0 }
+    // Flash, not Pro: Pro single-shot PDF extraction was timing out (504/120s).
+    // Flash is fast and accurate enough for listing structured outcomes.
+    { task: 'syllabus-extraction', model: GEMINI_FLASH_MODEL, maxOutputTokens: 65536, temperature: 0 }
   )
 
   const parsed = extractJSON(response.text ?? '') as Record<string, unknown>

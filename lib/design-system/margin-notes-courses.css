@@ -322,6 +322,10 @@
 .stat-node.hot { r: 5.5; }
 .stat-antinode { stroke: var(--acc-rose, #b0506b); stroke-width: 1.2; stroke-dasharray: 2 4; opacity: 0.55; }
 
+/* Integration (Riemann sum) explorer */
+.int-area { fill: color-mix(in srgb, var(--ink) 16%, transparent); stroke: none; }
+.int-rect { fill: color-mix(in srgb, var(--acc-blue, #2f6db0) 18%, transparent); stroke: var(--acc-blue, #2f6db0); stroke-width: 0.75; }
+
 /* Syllabus coverage — official sub-topics this lesson covers */
 .subtopics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .subtopic { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }

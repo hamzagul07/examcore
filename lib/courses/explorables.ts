@@ -13,6 +13,7 @@ export const EXPLORABLE_SLUGS: ReadonlySet<string> = new Set<string>([
   '1-4-circular-measure',
   '1-5-trigonometry',
   '1-7-differentiation',
+  '1-8-integration',
   '3-7-vectors',
   '5-5-the-normal-distribution',
   // Physics (9702)

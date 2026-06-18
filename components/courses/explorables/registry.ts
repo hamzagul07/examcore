@@ -57,6 +57,10 @@ const CoordGeometryExplorer = dynamic(
   () => import('./CoordGeometryExplorer').then((m) => m.CoordGeometryExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const IntegrationExplorer = dynamic(
+  () => import('./IntegrationExplorer').then((m) => m.IntegrationExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 const VectorExplorer = dynamic(
   () => import('./VectorExplorer').then((m) => m.VectorExplorer),
   { ssr: false, loading: explorableLoading }
@@ -82,6 +86,8 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(TrigExplorer, props)
     case '1-7-differentiation':
       return createElement(DiffExplorer, props)
+    case '1-8-integration':
+      return createElement(IntegrationExplorer, props)
     case '5-5-the-normal-distribution':
       return createElement(NormalExplorer, props)
     case '1-4-circular-measure':

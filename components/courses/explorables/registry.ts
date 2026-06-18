@@ -61,6 +61,10 @@ const IntegrationExplorer = dynamic(
   () => import('./IntegrationExplorer').then((m) => m.IntegrationExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const SeriesExplorer = dynamic(
+  () => import('./SeriesExplorer').then((m) => m.SeriesExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 const VectorExplorer = dynamic(
   () => import('./VectorExplorer').then((m) => m.VectorExplorer),
   { ssr: false, loading: explorableLoading }
@@ -88,6 +92,8 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(DiffExplorer, props)
     case '1-8-integration':
       return createElement(IntegrationExplorer, props)
+    case '1-6-series':
+      return createElement(SeriesExplorer, props)
     case '5-5-the-normal-distribution':
       return createElement(NormalExplorer, props)
     case '1-4-circular-measure':

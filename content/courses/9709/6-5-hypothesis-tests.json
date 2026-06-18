@@ -103,7 +103,8 @@
       "content": "Every hypothesis test begins with two competing statements about a population parameter (like the mean, $\\mu$, or proportion, $p$). The null hypothesis, $H_0$, represents the status quo or a statement of no effect. It is the default position we assume to be true. The alternative hypothesis, $H_1$, represents the claim we are trying to find evidence for. It's what we will conclude if we find the null hypothesis is unlikely."
     },
     {
-      "keyPoints": [
+      "type": "keyPoints",
+      "items": [
         "**Null Hypothesis ($H_0$)**: Always includes an equality. E.g., $H_0: \\mu = 100$.",
         "**Alternative Hypothesis ($H_1$)**: Includes an inequality. The form depends on the question.",
         "**One-tailed test**: Used for directional claims. Keywords: 'increase', 'decrease', 'more than', 'less than'. E.g., $H_1: \\mu > 100$ or $H_1: \\mu < 100$.",
@@ -140,7 +141,8 @@
       "content": "Since our conclusion is based on a sample, not the entire population, there's always a chance we've made a mistake. There are two types of errors we can make in hypothesis testing. It's crucial to understand them, especially when considering the consequences of a wrong decision."
     },
     {
-      "keyPoints": [
+      "type": "keyPoints",
+      "items": [
         "**Type I Error**: Rejecting $H_0$ when $H_0$ is actually true. This is like convicting an innocent person. The probability of this error is controlled by the significance level: $P(\\text{Type I error}) = \\alpha$.",
         "**Type II Error**: Failing to reject $H_0$ when $H_0$ is actually false. This is like acquitting a guilty person. The probability is denoted by $\\beta$.",
         "**Relationship**: For a fixed sample size, decreasing $\\alpha$ (making it harder to reject $H_0$) will increase $\\beta$. There is a trade-off between the two types of errors."

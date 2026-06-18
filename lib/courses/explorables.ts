@@ -15,12 +15,14 @@ export const EXPLORABLE_SLUGS: ReadonlySet<string> = new Set<string>([
   '1-6-series',
   '1-7-differentiation',
   '1-8-integration',
+  '2-2-logarithmic-and-exponential-functions',
   '3-7-vectors',
   '5-5-the-normal-distribution',
   // Physics (9702)
   '2-1-equations-of-motion',
   '7-1-progressive-waves',
   '8-1-stationary-waves',
+  '10-3-potential-dividers',
   '17-1-simple-harmonic-oscillations',
 ])
 

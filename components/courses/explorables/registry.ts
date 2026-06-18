@@ -65,6 +65,14 @@ const SeriesExplorer = dynamic(
   () => import('./SeriesExplorer').then((m) => m.SeriesExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const ExpLogExplorer = dynamic(
+  () => import('./ExpLogExplorer').then((m) => m.ExpLogExplorer),
+  { ssr: false, loading: explorableLoading }
+)
+const PotentialDividerExplorer = dynamic(
+  () => import('./PotentialDividerExplorer').then((m) => m.PotentialDividerExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 const VectorExplorer = dynamic(
   () => import('./VectorExplorer').then((m) => m.VectorExplorer),
   { ssr: false, loading: explorableLoading }
@@ -94,6 +102,10 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(IntegrationExplorer, props)
     case '1-6-series':
       return createElement(SeriesExplorer, props)
+    case '2-2-logarithmic-and-exponential-functions':
+      return createElement(ExpLogExplorer, props)
+    case '10-3-potential-dividers':
+      return createElement(PotentialDividerExplorer, props)
     case '5-5-the-normal-distribution':
       return createElement(NormalExplorer, props)
     case '1-4-circular-measure':
@@ -193,6 +205,16 @@ const BEATS_BY_SLUG: Record<string, ExplorableBeat[]> = {
     { label: 'Displacement', caption: 'x = A cos(ωt) — the mass traces a cosine curve against time.' },
     { label: 'Velocity', caption: 'Velocity is greatest at the centre and zero at the extremes.' },
     { label: 'Acceleration', caption: 'a = −ω²x — always directed back toward equilibrium, largest at the extremes.' },
+  ],
+  '2-2-logarithmic-and-exponential-functions': [
+    { label: 'The curve', caption: 'y = a·bˣ passes through (0, a) and changes by a factor of b each step.' },
+    { label: 'Growth / decay', caption: 'b > 1 grows; 0 < b < 1 decays toward zero.' },
+    { label: 'Inverse (log)', caption: 'The logarithm is the mirror image of the exponential in the line y = x.' },
+  ],
+  '10-3-potential-dividers': [
+    { label: 'The divider', caption: 'Two resistors in series share the supply voltage between them.' },
+    { label: 'The ratio', caption: 'V_out = V_in · R₂/(R₁+R₂) — the bigger resistor takes the bigger share.' },
+    { label: 'The current', caption: 'The same current I = V_in/(R₁+R₂) flows through both resistors.' },
   ],
 }
 

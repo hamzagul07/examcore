@@ -334,6 +334,20 @@
 .series-limit.hot line { stroke: var(--ink); }
 .series-limit-label { fill: var(--text-2); }
 
+/* Exponential & logarithm explorer */
+.explog-mirror { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.6; }
+.explog-log { stroke: var(--acc-violet, #6b4fb0); stroke-width: 2.5; }
+
+/* Potential divider explorer */
+.pd-wire { stroke: var(--text-2); stroke-width: 1.6; }
+.pd-r1, .pd-r2 { fill: var(--surface); stroke: var(--border-strong); stroke-width: 1.5; transition: stroke 180ms ease, fill 180ms ease; }
+.pd-r1.hot, .pd-r2.hot { stroke: var(--ink); fill: var(--ink-soft); }
+.pd-tap { stroke: var(--ink); stroke-width: 1.6; stroke-dasharray: 3 3; }
+.pd-label { fill: var(--text-2); font-size: 11px; }
+.pd-bar-r1 { fill: color-mix(in srgb, var(--muted) 30%, transparent); stroke: var(--border-strong); stroke-width: 0.75; }
+.pd-bar-r2 { fill: color-mix(in srgb, var(--ink) 22%, transparent); stroke: var(--ink-border); stroke-width: 0.75; transition: fill 180ms ease; }
+.pd-bar-r2.hot { fill: color-mix(in srgb, var(--ink) 34%, transparent); }
+
 /* Syllabus coverage — official sub-topics this lesson covers */
 .subtopics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .subtopic { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }

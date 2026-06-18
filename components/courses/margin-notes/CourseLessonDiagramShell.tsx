@@ -110,11 +110,13 @@ export function CourseLessonDiagramShell({
     <div className="diagram-wrap" data-screen-label="Lesson — live diagram">
       <div className="diagram-head">
         <span className="micro diagram-live-label">
-          {interactiveEmbed && liveDiagram
-            ? 'LIVE DIAGRAM + SIM'
-            : interactiveEmbed
-              ? providerLabel.toUpperCase()
-              : 'LIVE DIAGRAM'}
+          {explorable
+            ? 'INTERACTIVE'
+            : interactiveEmbed && liveDiagram
+              ? 'LIVE DIAGRAM + SIM'
+              : interactiveEmbed
+                ? providerLabel.toUpperCase()
+                : 'LIVE DIAGRAM'}
         </span>
         <span className="diagram-step-label mono">
           STEP {step} / {stepCount}
@@ -127,13 +129,14 @@ export function CourseLessonDiagramShell({
         ) : null}
       </div>
 
-      {embedForStep ? (
+      {/* A bespoke explorable fully replaces any old GeoGebra/PhET embed. */}
+      {!explorable && embedForStep ? (
         <div className="diagram-embed">
           <CourseInteractiveEmbed embed={embedForStep} stepLabel={embedStepLabel} layout="diagram" />
         </div>
       ) : null}
 
-      {dualVisual || (interactiveEmbed && liveDiagram) ? (
+      {!explorable && (dualVisual || (interactiveEmbed && liveDiagram)) ? (
         <p className="diagram-dual-bridge body-2">
           {dualVisual
             ? 'Step-synced diagram — highlights what to look for in the simulation above.'

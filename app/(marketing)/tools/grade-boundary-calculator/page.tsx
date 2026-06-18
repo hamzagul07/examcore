@@ -7,6 +7,8 @@ import { faqPageNode, softwareApplicationNode } from '@/lib/seo/structured-data'
 import { MarketingHero, MarketingPageShell, MarketingSection } from '@/components/marketing/MarketingPageShell'
 import { GradeBoundaryCalculator } from '@/components/tools/GradeBoundaryCalculator'
 import { getMarkingSubjectPages, buildSubjectPageCopy } from '@/lib/seo/programmatic-subjects'
+import { subjectAccent, subjectGlyph, accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
+import type { CSSProperties } from 'react'
 
 const PATH = '/tools/grade-boundary-calculator'
 
@@ -102,20 +104,25 @@ export default function GradeCalculatorPage() {
             Grade calculators by syllabus
           </h2>
           <ul className="ms-guide-grid sm:grid-cols-2" style={{ marginTop: 16 }}>
-            {subjects.map((s) => (
-              <li key={s.path}>
-                <Link
-                  href={`/tools/grade-boundary-calculator/${s.path.split('/').pop()}`}
-                  className="ms-hub-card"
-                  style={{ display: 'block' }}
-                >
-                  <span className="ec-chip-ms ec-chip-ms--outline">{s.path.split('/').pop()}</span>
-                  <h3 className="ms-h3" style={{ marginTop: 10, fontSize: '1.05rem' }}>
-                    {s.level} grade calculator
-                  </h3>
-                </Link>
-              </li>
-            ))}
+            {subjects.map((s) => {
+              const code = s.path.split('/').pop() ?? ''
+              return (
+                <li key={s.path}>
+                  <Link
+                    href={`/tools/grade-boundary-calculator/${code}`}
+                    className="ms-hub-card subject-accented ec-card-accent-edge"
+                    style={{ display: 'block', '--acc': accentCssVar(subjectAccent(code)) } as CSSProperties}
+                  >
+                    <span className="ec-chip ec-chip-accent" aria-hidden="true">
+                      <span style={{ fontSize: '1rem' }}>{subjectGlyph(code, '')}</span> {code}
+                    </span>
+                    <h3 className="ms-h3" style={{ marginTop: 10, fontSize: '1.05rem' }}>
+                      {s.level} grade calculator
+                    </h3>
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </div>
 

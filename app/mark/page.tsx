@@ -1109,7 +1109,7 @@ export default function MarkPage() {
 
             {uploadMode === 'whole_paper' && (
             <section>
-              <div className="ec-card space-y-4 p-5 sm:p-6">
+              <div className="ec-card ec-card-rounded-lg space-y-4 p-5 sm:p-6">
                 <div>
                   <Label htmlFor="mark-subject" className="label-overline mb-2 inline-block">
                     Subject

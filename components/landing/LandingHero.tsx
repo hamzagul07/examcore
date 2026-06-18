@@ -40,7 +40,7 @@ interface LandingHeroProps {
 
 export function LandingHero({ markHref }: LandingHeroProps) {
   return (
-    <section className="ms-pg ms-hero ec-no-annot-mobile">
+    <section className="ms-pg ms-hero ms-hero--energized ec-no-annot-mobile">
       <div className="ms-fade-in">
         <p className="ms-hero-kicker">Cambridge A-Level &amp; O-Level</p>
         <h1 className="ms-h-display">
@@ -57,9 +57,9 @@ export function LandingHero({ markHref }: LandingHeroProps) {
         </p>
         <div className="ms-hero-ctas">
           <Link href={markHref} className="ec-btn-primary">
-            Mark your first question
+            Mark your first question — free
           </Link>
-          <Link href="/how-it-works" className="ec-btn-underline">
+          <Link href="/how-it-works" className="ec-btn-warm">
             Watch it mark a real script
           </Link>
         </div>

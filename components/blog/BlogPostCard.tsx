@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import type { CSSProperties } from 'react'
 import { ArrowRight, BookOpen, Clock } from 'lucide-react'
 import type { EnrichedBlogMeta } from '@/lib/blog/meta'
 import { formatBlogDate } from '@/lib/blog/meta'
+import { subjectAccent, subjectGlyph, accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
 
 type Props = {
   post: EnrichedBlogMeta
@@ -12,19 +14,23 @@ export function BlogPostCard({ post, variant = 'default' }: Props) {
   const isFeatured = variant === 'featured'
   const isCompact = variant === 'compact'
   const isEditorial = variant === 'editorial' || post.isEditorial
+  const code = post.syllabusCode
 
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className={`ms-guide-card ms-blog-card group ${isEditorial || isFeatured ? 'ms-blog-card--editorial' : ''} ${isCompact ? 'ms-blog-card--compact' : ''}`}
+      className={`ms-guide-card ms-blog-card group ec-card-accent-edge ${code ? 'subject-accented' : ''} ${isEditorial || isFeatured ? 'ms-blog-card--editorial' : ''} ${isCompact ? 'ms-blog-card--compact' : ''}`}
+      style={code ? ({ '--acc': accentCssVar(subjectAccent(code)) } as CSSProperties) : undefined}
     >
       <div className="flex flex-wrap items-center gap-2">
         {post.spotlight ? (
           <span className="ec-chip-ms ec-chip-ms--ok">Spotlight</span>
         ) : null}
         <span className="ec-chip-ms ec-chip-ms--outline">{post.categoryLabel}</span>
-        {post.syllabusCode ? (
-          <span className="ec-chip-ms ec-chip-ms--outline">{post.syllabusCode}</span>
+        {code ? (
+          <span className="ec-chip ec-chip-accent subject-accented" style={{ '--acc': accentCssVar(subjectAccent(code)) } as CSSProperties}>
+            <span aria-hidden="true">{subjectGlyph(code, '')}</span> {code}
+          </span>
         ) : null}
         {post.date ? (
           <time dateTime={post.date} className="ms-micro">

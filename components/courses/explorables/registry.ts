@@ -33,6 +33,14 @@ const DiffExplorer = dynamic(
   () => import('./DiffExplorer').then((m) => m.DiffExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const NormalExplorer = dynamic(
+  () => import('./NormalExplorer').then((m) => m.NormalExplorer),
+  { ssr: false, loading: explorableLoading }
+)
+const CircularMeasureExplorer = dynamic(
+  () => import('./CircularMeasureExplorer').then((m) => m.CircularMeasureExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 
 /**
  * First-class, per-lesson interactive diagrams ("explorables"). Returns a React
@@ -50,6 +58,10 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(TrigExplorer, props)
     case '1-7-differentiation':
       return createElement(DiffExplorer, props)
+    case '5-5-the-normal-distribution':
+      return createElement(NormalExplorer, props)
+    case '1-4-circular-measure':
+      return createElement(CircularMeasureExplorer, props)
     default:
       return null
   }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — variable vs fixed costs, contribution, and marginal costing statements.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Distinguish fixed and variable costs.",
     "Calculate contribution per unit.",
@@ -25,17 +25,131 @@
     ]
   },
   "flashcards": [
-    { "front": "Contribution?", "back": "Sales revenue − Variable costs (per unit or total)." },
-    { "front": "Fixed costs in marginal costing?", "back": "Whole amount charged to period — not in inventory value." },
-    { "front": "Profit reconciliation?", "back": "Absorption profit ± (Opening − Closing inventory) × fixed OAR per unit." },
-    { "front": "When inventory rises?", "back": "Absorption profit > marginal (fixed OH deferred in inventory)." },
-    { "front": "Decision relevance?", "back": "Marginal costing better for short-term pricing/accept orders." },
-    { "front": "Variable production cost?", "back": "Direct materials + direct labour + variable production overhead." }
+    {
+      "front": "Contribution?",
+      "back": "Sales revenue − Variable costs (per unit or total)."
+    },
+    {
+      "front": "Fixed costs in marginal costing?",
+      "back": "Whole amount charged to period — not in inventory value."
+    },
+    {
+      "front": "Profit reconciliation?",
+      "back": "Absorption profit ± (Opening − Closing inventory) × fixed OAR per unit."
+    },
+    {
+      "front": "When inventory rises?",
+      "back": "Absorption profit > marginal (fixed OH deferred in inventory)."
+    },
+    {
+      "front": "Decision relevance?",
+      "back": "Marginal costing better for short-term pricing/accept orders."
+    },
+    {
+      "front": "Variable production cost?",
+      "back": "Direct materials + direct labour + variable production overhead."
+    },
+    {
+      "front": "What is 'contribution'?",
+      "back": "The amount remaining from sales revenue after all variable costs have been deducted. It contributes towards covering fixed costs and then generating profit. Formula: Sales Revenue - Variable Costs."
+    },
+    {
+      "front": "How are fixed production overheads treated in marginal costing?",
+      "back": "They are treated as 'period costs'. This means they are written off in full against the contribution for the period in which they are incurred, regardless of production or sales levels."
+    },
+    {
+      "front": "How is closing inventory valued under marginal costing?",
+      "back": "Closing inventory is valued at its marginal (variable) production cost only. It does not include any share of fixed production overheads."
+    },
+    {
+      "front": "What is the primary difference in the profit statement layout between marginal and absorption costing?",
+      "back": "A marginal costing statement calculates 'contribution' (Sales - Variable Costs) before deducting fixed costs. An absorption costing statement calculates 'gross profit' (Sales - Cost of Goods Sold, which includes fixed overheads)."
+    },
+    {
+      "front": "When will marginal costing profit be higher than absorption costing profit?",
+      "back": "When sales volume is greater than production volume. This causes inventory levels to decrease, releasing fixed costs deferred in opening inventory (under absorption costing) into the income statement, thus lowering the absorption profit."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Marginal costing** (2.2.3) — **contribution format** SPL is essential. Know **reconciliation** with absorption profit."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Cost Behaviour: Variable and Fixed Costs"
+    },
+    {
+      "type": "text",
+      "content": "The foundation of marginal costing lies in the clear distinction between variable and fixed costs. Variable costs are costs that change in total, in direct proportion to the level of activity or output. For instance, the cost of direct materials increases for every additional unit produced. In contrast, fixed costs remain constant in total over a specific period and within a relevant range of activity, regardless of the number of units produced. A classic example is factory rent, which is paid monthly irrespective of production volume. Understanding this behavioural difference is paramount, as marginal costing separates these two cost types to provide insights for decision-making, which is not as clear under other costing methods."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Variable costs per unit are constant, but the total variable cost changes with output.",
+        "Fixed costs in total are constant within a relevant range, but the fixed cost per unit decreases as output increases.",
+        "Marginal costing classifies costs by their behaviour (variable or fixed), not by their function (production or non-production).",
+        "Semi-variable costs (e.g., a telephone bill with a fixed line rental and variable call charges) must be split into their fixed and variable components."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Concept of Contribution"
+    },
+    {
+      "type": "text",
+      "content": "Contribution is the cornerstone of marginal costing. It represents the amount of money generated from sales that is available to 'contribute' towards covering a business's fixed costs and, once these are covered, generating profit. It is calculated by subtracting all variable costs from sales revenue. This can be expressed on a per-unit basis (Selling Price per unit – Variable Cost per unit) or in total (Total Sales Revenue – Total Variable Costs). Each unit sold provides a fixed amount of contribution. This simple but powerful metric allows managers to quickly assess the profitability of products and the financial impact of changes in sales volume, making it indispensable for short-term decision-making."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Formula (per unit): Contribution = Selling Price – Variable Cost.",
+        "Formula (total): Contribution = Sales Revenue – Total Variable Costs.",
+        "Contribution is not profit. Profit is only earned after total contribution has covered all total fixed costs for the period.",
+        "A product with a positive contribution should be continued in the short term, as it helps to cover fixed costs."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, always calculate contribution before deducting any fixed costs. A common mistake is to deduct some fixed costs too early. The structure is rigid: Sales - Variable Costs = Contribution. Then, Contribution - Fixed Costs = Profit."
+    },
+    {
+      "type": "heading",
+      "content": "The Marginal Costing Statement of Profit or Loss"
+    },
+    {
+      "type": "text",
+      "content": "A marginal costing statement presents profit in a format that highlights contribution. The layout is fundamentally different from an absorption costing statement. It begins with sales revenue, from which all variable costs (both production and non-production) are deducted to arrive at the total contribution. Subsequently, all fixed costs for the period (both production and non-production) are subtracted from the total contribution to determine the net profit. A key feature is the valuation of closing inventory, which is valued at its marginal (variable) production cost only. This statement format is not used for external financial reporting but is a vital internal tool for management accounting, particularly for CVP analysis."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Pro-forma: Sales less Variable Costs of Sales = Contribution.",
+        "From Contribution, deduct all Fixed Costs (production and non-production) to find Net Profit.",
+        "Closing inventory is valued at variable production cost per unit.",
+        "This format clearly separates costs by behaviour, aiding short-term decision-making."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Reconciling Marginal and Absorption Costing Profits"
+    },
+    {
+      "type": "text",
+      "content": "The profit figures calculated under marginal and absorption costing will differ if inventory levels change during a period. This difference is due solely to the treatment of fixed production overheads. Under absorption costing, fixed overheads are included in the inventory valuation. Therefore, if inventory increases, some of the period's fixed overheads are carried forward in closing inventory, leading to a higher profit than marginal costing. If inventory decreases, fixed overheads from a previous period are released from opening inventory, leading to a lower profit. The difference in profit can be reconciled by calculating the change in inventory (in units) and multiplying it by the fixed overhead absorption rate per unit."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If production = sales, inventory levels are constant, and both methods give the same profit.",
+        "If production > sales, inventory levels increase, and absorption profit > marginal profit.",
+        "If production < sales, inventory levels decrease, and absorption profit < marginal profit.",
+        "Reconciliation formula: Difference in profit = Change in inventory (units) × Fixed overhead absorption rate per unit."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to reconcile profits, start with the profit from one method, then adjust for the fixed overhead in inventory. The adjustment is: 'add fixed overhead in closing inventory' and 'deduct fixed overhead in opening inventory' to move from marginal to absorption profit."
     },
     {
       "type": "workedExample",
@@ -55,11 +169,83 @@
     {
       "type": "resources",
       "items": [
-        { "label": "2.2.2 Absorption costing", "href": "/courses/9706/2-2-2-absorption-costing" },
-        { "label": "2.2.4 CVP analysis", "href": "/courses/9706/2-2-4-cost-volume-profit-analysis" },
-        { "label": "9609 5.4.4 Break-even analysis", "href": "/courses/9609/5-4-4-break-even-analysis" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "2.2.2 Absorption costing",
+          "href": "/courses/9706/2-2-2-absorption-costing"
+        },
+        {
+          "label": "2.2.4 CVP analysis",
+          "href": "/courses/9706/2-2-4-cost-volume-profit-analysis"
+        },
+        {
+          "label": "9609 5.4.4 Break-even analysis",
+          "href": "/courses/9609/5-4-4-break-even-analysis"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is marginal costing just for manufacturing businesses?",
+      "a": "No, its principles are widely applicable to service and retail businesses too. For example, a retailer's main variable cost is the purchase price of goods sold, and a transport company's variable costs include fuel. The concept of separating costs by behaviour to find contribution is a valuable tool for any business making decisions about pricing, service lines, or special orders."
+    },
+    {
+      "q": "Does marginal costing ignore fixed costs?",
+      "a": "This is a common misconception. Marginal costing does not ignore fixed costs; it simply treats them differently. Instead of including them in the cost of a product (inventory valuation), it treats them as period costs. They are deducted in full from the total contribution for the period to calculate the final net profit. The focus is on how they behave, not on ignoring them."
+    },
+    {
+      "q": "If marginal costing isn't allowed for external financial reports, why do we learn it?",
+      "a": "Its primary value is for internal management decision-making. The contribution concept is fundamental to break-even analysis, limiting factor decisions, make-or-buy choices, and accepting special orders. By separating costs based on their behaviour, managers can more clearly see the financial implications of short-term decisions, which is a key focus of management accounting (9706 Paper 2)."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison: Marginal Costing vs. Absorption Costing",
+    "columns": [
+      "Feature",
+      "Marginal Costing",
+      "Absorption Costing"
+    ],
+    "rows": [
+      {
+        "property": "Cost Classification",
+        "cells": [
+          "Costs are classified by behaviour (variable and fixed).",
+          "Costs are classified by function (production and non-production)."
+        ]
+      },
+      {
+        "property": "Inventory Valuation",
+        "cells": [
+          "Valued at variable production cost only.",
+          "Valued at full production cost (variable + fixed production overheads)."
+        ]
+      },
+      {
+        "property": "Treatment of Fixed Production Overheads",
+        "cells": [
+          "Treated as a period cost and written off in the period incurred.",
+          "Absorbed into the cost of units produced and carried in inventory."
+        ]
+      },
+      {
+        "property": "Reported Profit",
+        "cells": [
+          "Profit varies with sales volume.",
+          "Profit is affected by both sales and production volume."
+        ]
+      },
+      {
+        "property": "Primary Purpose",
+        "cells": [
+          "Internal decision-making (e.g., CVP analysis, special orders).",
+          "External financial reporting (required by IFRS) and internal use."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

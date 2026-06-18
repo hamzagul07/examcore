@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — reconciliation, error types, internal controls, and verification.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Define reconciliation and verification.",
     "Identify types of accounting errors.",
@@ -25,17 +25,127 @@
     ]
   },
   "flashcards": [
-    { "front": "Error of omission?", "back": "Transaction completely left out — TB may still balance." },
-    { "front": "Error of commission?", "back": "Correct amount, wrong personal account." },
-    { "front": "Error of principle?", "back": "Wrong class of account — e.g. capital item expensed." },
-    { "front": "Error of reversal?", "back": "Debits and credits swapped — TB still balances." },
-    { "front": "Compensating errors?", "back": "Two errors cancel — TB balances incorrectly." },
-    { "front": "Internal control example?", "back": "Different staff authorise payments and record them." }
+    {
+      "front": "Error of omission?",
+      "back": "Transaction completely left out — TB may still balance."
+    },
+    {
+      "front": "Error of commission?",
+      "back": "Correct amount, wrong personal account."
+    },
+    {
+      "front": "Error of principle?",
+      "back": "Wrong class of account — e.g. capital item expensed."
+    },
+    {
+      "front": "Error of reversal?",
+      "back": "Debits and credits swapped — TB still balances."
+    },
+    {
+      "front": "Compensating errors?",
+      "back": "Two errors cancel — TB balances incorrectly."
+    },
+    {
+      "front": "Internal control example?",
+      "back": "Different staff authorise payments and record them."
+    },
+    {
+      "front": "What is an unpresented cheque?",
+      "back": "A cheque issued by the business and recorded in its cash book, but which has not yet been presented to or paid by the bank. It is deducted from the bank statement balance in a bank reconciliation."
+    },
+    {
+      "front": "What is the purpose of a suspense account?",
+      "back": "A temporary account used to record the difference on a trial balance, allowing it to balance while the underlying error(s) are located and corrected through journal entries."
+    },
+    {
+      "front": "Define 'Error of Principle'.",
+      "back": "An error where a transaction is recorded in the correct amount and on the correct side, but in the wrong class of account. For example, treating the purchase of a non-current asset (e.g., a vehicle) as a revenue expense (e.g., motor expenses). This error does not affect trial balance agreement."
+    },
+    {
+      "front": "What is a 'Schedule of Trade Receivables'?",
+      "back": "A list of all the individual balances owed by customers (trade receivables) at a specific date, extracted from the sales ledger. The total of this schedule is reconciled with the Sales Ledger Control Account balance."
+    },
+    {
+      "front": "What is the double entry to record a dishonoured cheque from a customer?",
+      "back": "Debit: Sales Ledger Control Account / Customer's Account (to reinstate the debt). Credit: Bank/Cash Book (to reduce the bank balance). This reverses the original entry for the receipt of the cheque."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Reconciliation and verification** (1.4.1) — know **errors NOT revealed by trial balance** (omission, commission, compensating, complete reversal)."
+    },
+    {
+      "type": "heading",
+      "content": "The Purpose and Principles of Bank Reconciliation"
+    },
+    {
+      "type": "text",
+      "content": "A bank reconciliation statement is a crucial internal control document that explains the difference between the bank balance shown in a business's cash book and the corresponding balance on its bank statement. These differences arise primarily due to timing. For example, the business may have recorded a cheque payment in its cash book, but the recipient has not yet presented it to the bank (an unpresented cheque). Conversely, the bank may have processed a direct debit or added bank charges that the business is not yet aware of. The reconciliation process verifies the accuracy of the cash book entries, identifies unrecorded transactions, and detects potential errors or fraudulent activity, ensuring the cash figure reported in the financial statements is accurate and reliable."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Reconciles the business's cash book balance with the bank statement balance.",
+        "Primary causes of differences are timing (unpresented cheques, outstanding lodgements) and items not yet recorded in the cash book (bank charges, direct debits).",
+        "Acts as a key internal control to detect errors and prevent fraud.",
+        "Ensures the cash balance in the statement of financial position is correct."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always update the cash book for items appearing on the bank statement but not yet in the cash book (e.g., bank charges, interest, direct debits) *before* you begin preparing the final reconciliation statement. This is a mandatory first step in the standard examination method."
+    },
+    {
+      "type": "heading",
+      "content": "Control Account Reconciliation"
+    },
+    {
+      "type": "text",
+      "content": "Control accounts, such as the Sales Ledger Control Account (SLCA) and Purchases Ledger Control Account (PLCA), are summary accounts maintained in the general ledger. The SLCA balance should, in theory, equal the total of all individual customer balances in the sales ledger (known as the schedule of trade receivables). A control account reconciliation is the process of comparing these two figures. Any discrepancy signals an error in either the general ledger or the subsidiary ledger. Common errors include incorrect casting in books of prime entry, omissions, or posting to the wrong account. This reconciliation is a vital self-checking mechanism that maintains the accuracy of accounting records and helps to isolate errors efficiently."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The SLCA balance is reconciled with the total of the schedule of trade receivables.",
+        "The PLCA balance is reconciled with the total of the schedule of trade payables.",
+        "The purpose is to verify the arithmetical accuracy of the sales and purchases ledgers.",
+        "Discrepancies must be investigated and corrected via journal entries."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Identifying and Correcting Errors using a Suspense Account"
+    },
+    {
+      "type": "text",
+      "content": "When a trial balance fails to agree, it indicates one or more errors that affect its totals. To proceed with preparing draft financial statements, a suspense account is opened. The difference in the trial balance is entered into this temporary account to make the debit and credit totals equal. The accountant then investigates the cause of the difference. Errors such as transposition (e.g., £54 posted as £45), single-sided entries, or incorrect casting are common culprits. Once an error is identified, a journal entry is created to correct the relevant account(s) and clear the corresponding amount from the suspense account. The ultimate goal is to reduce the suspense account balance to zero, signifying that all identified errors have been rectified."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A suspense account is a temporary account used to balance the trial balance when errors exist.",
+        "It is used for errors that cause unequal debit and credit totals.",
+        "Errors are corrected using journal entries that involve the suspense account.",
+        "A zero balance in the suspense account indicates all identified errors have been corrected."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Reconciliation as a Wider Internal Control Procedure"
+    },
+    {
+      "type": "text",
+      "content": "Beyond the mechanics of balancing accounts, reconciliation is a cornerstone of a strong internal control system. Regular and timely reconciliations (of bank accounts, control accounts, and supplier statements) serve multiple purposes. They act as a deterrent to fraud by increasing the likelihood of detection. They ensure errors are identified and corrected promptly, preventing them from compounding over time. This verification process provides management with assurance that the assets and liabilities of the business are fairly stated. For example, reconciling supplier statements to the PLCA can uncover unrecorded invoices or disputes over payments, safeguarding the business's resources and ensuring liabilities are not understated. Ultimately, it enhances the reliability and integrity of the entire accounting system."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Deters and detects fraudulent activities, such as unauthorised payments.",
+        "Ensures prompt detection and correction of accounting errors.",
+        "Verifies the existence and valuation of assets (cash, receivables) and liabilities (payables).",
+        "Increases management's confidence in the accuracy of financial reports."
+      ]
     },
     {
       "type": "workedExample",
@@ -50,10 +160,72 @@
     {
       "type": "resources",
       "items": [
-        { "label": "1.4.2 Trial balance", "href": "/courses/9706/1-4-2-trial-balance" },
-        { "label": "1.4.3 Bank reconciliation", "href": "/courses/9706/1-4-3-bank-reconciliation-statements" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "1.4.2 Trial balance",
+          "href": "/courses/9706/1-4-2-trial-balance"
+        },
+        {
+          "label": "1.4.3 Bank reconciliation",
+          "href": "/courses/9706/1-4-3-bank-reconciliation-statements"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Do I always have to update the cash book before preparing the bank reconciliation statement?",
+      "a": "Yes, for the Cambridge A-Level examination, this is the standard and expected procedure. You must first update the cash book for any items found on the bank statement that the business has not yet recorded (e.g., bank charges, direct debits, credit transfers, interest). This ensures the cash book balance is correct and up-to-date before you attempt to reconcile it with the bank statement balance."
+    },
+    {
+      "q": "If the Sales Ledger Control Account agrees with the schedule of trade receivables, does that guarantee there are no errors?",
+      "a": "Not necessarily. Agreement only proves that the general ledger and subsidiary ledger are in balance with each other. It would not reveal errors that affect both ledgers equally, such as the complete omission of a sales invoice from both the sales day book and the customer's account. It also would not detect a compensating error, where two or more separate errors cancel each other out."
+    },
+    {
+      "q": "Is a suspense account a permanent account that appears in the financial statements?",
+      "a": "No, a suspense account is strictly temporary. Its sole purpose is to hold the difference from an imbalanced trial balance until the error(s) can be found and corrected. Through corrective journal entries, the balance on the suspense account should be cleared to zero. If a balance remains, it means not all errors have been found and it would be disclosed on the statement of financial position pending investigation."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Error Types",
+    "columns": [
+      "Feature",
+      "Errors NOT Affecting Trial Balance Agreement",
+      "Errors THAT Affect Trial Balance Agreement"
+    ],
+    "rows": [
+      {
+        "property": "Impact on Trial Balance",
+        "cells": [
+          "The trial balance totals still agree. The error results in equal, albeit incorrect, debits and credits.",
+          "The trial balance totals do not agree. The error results in unequal debits and credits."
+        ]
+      },
+      {
+        "property": "Detection",
+        "cells": [
+          "Cannot be found by preparing a trial balance. Often discovered through reconciliations or incidental checks.",
+          "Are revealed by the preparation of a trial balance that does not balance."
+        ]
+      },
+      {
+        "property": "Use of Suspense Account",
+        "cells": [
+          "Correction does not require a suspense account. A journal entry is made between the two (or more) affected accounts.",
+          "A suspense account is required to temporarily balance the books and facilitate correction."
+        ]
+      },
+      {
+        "property": "Examples",
+        "cells": [
+          "Error of Omission, Error of Commission, Error of Principle, Error of Original Entry, Compensating Errors, Complete Reversal of Entries.",
+          "Transposition Error, Casting (addition) Error, Single-sided Entry, Unequal Debit and Credit Posting."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

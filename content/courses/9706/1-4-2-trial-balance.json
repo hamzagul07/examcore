@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — preparing a trial balance, suspense account, and errors revealed/not revealed.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Prepare a trial balance from ledger balances.",
     "Explain purpose and limitations of a trial balance.",
@@ -25,16 +25,136 @@
     ]
   },
   "flashcards": [
-    { "front": "Purpose of TB?", "back": "Check arithmetic accuracy of double entry before final accounts." },
-    { "front": "Suspense account?", "back": "Temporary account holding TB difference until errors found." },
-    { "front": "TB does NOT detect?", "back": "Omission, commission, principle (if both sides wrong class), compensating, original entry reversal if equal DR/CR." },
-    { "front": "TB DOES detect?", "back": "Single-sided entry, unequal amounts, some transposition if one side wrong." },
-    { "front": "After corrections?", "back": "Suspense balance must be cleared to zero." }
+    {
+      "front": "Purpose of TB?",
+      "back": "Check arithmetic accuracy of double entry before final accounts."
+    },
+    {
+      "front": "Suspense account?",
+      "back": "Temporary account holding TB difference until errors found."
+    },
+    {
+      "front": "TB does NOT detect?",
+      "back": "Omission, commission, principle (if both sides wrong class), compensating, original entry reversal if equal DR/CR."
+    },
+    {
+      "front": "TB DOES detect?",
+      "back": "Single-sided entry, unequal amounts, some transposition if one side wrong."
+    },
+    {
+      "front": "After corrections?",
+      "back": "Suspense balance must be cleared to zero."
+    },
+    {
+      "front": "What is the primary purpose of a trial balance?",
+      "back": "To check the arithmetical accuracy of the double-entry bookkeeping system by ensuring that total debit balances equal total credit balances."
+    },
+    {
+      "front": "Name the six types of errors NOT revealed by a trial balance.",
+      "back": "Error of Omission, Error of Commission, Error of Principle, Error of Original Entry, Compensating Errors, and Complete Reversal of Entries."
+    },
+    {
+      "front": "What is a suspense account?",
+      "back": "A temporary account used to record the difference between the debit and credit totals of a trial balance, allowing it to balance while errors are located and corrected."
+    },
+    {
+      "front": "What is an 'error of principle'?",
+      "back": "An error where a transaction is posted to the wrong class of account, for example, debiting a revenue expenditure (e.g., repairs) instead of a capital expenditure (e.g., machinery asset). The trial balance still balances."
+    },
+    {
+      "front": "How is an error of commission corrected?",
+      "back": "Via a journal entry that debits the correct personal account and credits the incorrect personal account (or vice versa). The suspense account is not involved as the trial balance would have balanced."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Trial balance** (1.4.2) — list **what TB can and cannot reveal** — frequent MCQ and explain question."
+    },
+    {
+      "type": "heading",
+      "content": "The Purpose and Preparation of a Trial Balance"
+    },
+    {
+      "type": "text",
+      "content": "A trial balance is a list of all the balances in a business's general ledger accounts at a specific point in time. Its primary purpose is to verify the arithmetical accuracy of the double-entry bookkeeping system. It is prepared by listing all accounts with debit balances in one column and all accounts with credit balances in another. According to the fundamental principle of double-entry, the total of the debit column must equal the total of the credit column. If they agree, the ledgers are said to be 'in balance'. It is an essential internal document prepared at the end of an accounting period, forming the bridge between the ledger accounts and the preparation of the final financial statements, the income statement and statement of financial position."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "It is a list of all ledger account balances.",
+        "Its primary function is to check the arithmetical accuracy of the ledger.",
+        "Total debit balances must equal total credit balances.",
+        "It is an internal working paper, not a formal financial statement.",
+        "It is the basis for preparing the income statement and statement of financial position."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "To correctly classify balances, use the DEAD CLIC mnemonic. DEBIT balances are for Expenses, Assets, and Drawings. CREDIT balances are for Liabilities, Income, and Capital. This will help you quickly and accurately place items in the correct column under exam pressure."
+    },
+    {
+      "type": "heading",
+      "content": "The Suspense Account: Correcting an Imbalance"
+    },
+    {
+      "type": "text",
+      "content": "When the trial balance totals do not agree, it indicates one or more errors in the ledger accounts. To proceed with preparing draft financial statements, the difference is temporarily placed into a suspense account. This is a temporary ledger account created specifically to hold the difference, thus forcing the trial balance to balance. The entry in the suspense account is made on the side with the lower total. For example, if debits are £50,100 and credits are £50,000, a credit entry of £100 is made to the suspense account. The existence of a suspense account balance is a clear signal that an investigation is required to find and correct the underlying error(s). Once all errors are rectified, the suspense account balance will be reduced to zero."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A temporary account used when trial balance totals are unequal.",
+        "The difference is entered on the 'lighter' side to force a balance.",
+        "It allows for the preparation of draft financial statements whilst errors are investigated.",
+        "The goal of error correction is to clear the suspense account balance to nil."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, the opening balance in the suspense T-account is the difference from the initial trial balance. Each journal entry to correct an error that caused the imbalance will feature the suspense account. Ensure your final suspense account balances to zero."
+    },
+    {
+      "type": "heading",
+      "content": "Errors Revealed by the Trial Balance"
+    },
+    {
+      "type": "text",
+      "content": "Certain types of errors will cause the trial balance totals to disagree, thereby being 'revealed' by its preparation. These errors disrupt the equality of debits and credits. Common examples include a single-sided entry (e.g., a debit is posted but the corresponding credit is omitted), transposition errors (where digits are reversed, e.g., £89 posted as £98), casting errors (an incorrect addition of a ledger account or the trial balance columns), or posting unequal amounts (e.g., debiting £100 and crediting £10). These are the errors that necessitate the creation of a suspense account. The value of the initial suspense account balance is the net effect of all such errors."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "These errors cause the debit and credit totals of the trial balance to be unequal.",
+        "They are typically arithmetical or posting mistakes.",
+        "Examples include: omission of one side of an entry, transposition errors, casting errors, and unequal postings.",
+        "Correction of these errors will always involve the suspense account."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A difference in the trial balance that is divisible by 9 is a strong indicator of a transposition error. A difference that is an even number could suggest a debit entry was posted as a credit (or vice versa), as the difference would be double the original amount."
+    },
+    {
+      "type": "heading",
+      "content": "Errors Not Revealed by the Trial Balance"
+    },
+    {
+      "type": "text",
+      "content": "More deceptive errors are those that do not affect the agreement of the trial balance. Although total debits still equal total credits, the accounts are incorrect. These include: errors of omission (a transaction is completely left out of the books), errors of commission (a transaction is posted to the wrong account of the correct class, e.g., debiting trade receivable 'A. Ali' instead of 'B. Ali'), and errors of principle (a transaction is posted to the wrong class of account, e.g., treating the purchase of a non-current asset as a revenue expense). Other such errors are compensating errors (two or more independent errors cancel each other out) and errors of original entry (the wrong figure is used in the book of prime entry and posted correctly thereafter)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "These errors do not cause an imbalance in the trial balance.",
+        "The double-entry principle is technically upheld, but the entries are incorrect.",
+        "Six types: Omission, Commission, Principle, Original Entry, Compensating, and Reversal of Entries.",
+        "Correction is made via a journal entry between the affected accounts, without using the suspense account."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Questions on correcting errors not revealed by the trial balance often lead to calculating the corrected profit. You must analyse how each correction impacts expenses and revenues. For example, correcting an error of principle where an asset purchase was expensed will decrease expenses and therefore increase profit."
     },
     {
       "type": "workedExample",
@@ -49,10 +169,79 @@
     {
       "type": "resources",
       "items": [
-        { "label": "1.4.1 Reconciliation", "href": "/courses/9706/1-4-1-reconciliation-and-verification" },
-        { "label": "1.5.1 Adjustments", "href": "/courses/9706/1-5-1-adjustments-to-draft-financial-statements" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "1.4.1 Reconciliation",
+          "href": "/courses/9706/1-4-1-reconciliation-and-verification"
+        },
+        {
+          "label": "1.5.1 Adjustments",
+          "href": "/courses/9706/1-5-1-adjustments-to-draft-financial-statements"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "If my trial balance balances, does it mean my accounts are 100% correct?",
+      "a": "Not necessarily. A balanced trial balance only confirms the arithmetical equality of debits and credits. It does not detect errors where the double-entry rule was followed but applied incorrectly, such as errors of principle, commission, omission, or original entry. The accounts could still contain significant mistakes."
+    },
+    {
+      "q": "Why is the suspense account difference often divisible by 9?",
+      "a": "This is a classic sign of a transposition error, where two digits in a number are swapped (e.g., £45 is written as £54). The mathematical difference between the original number and the transposed number is always a multiple of 9 (e.g., 54 - 45 = 9). This property is a useful clue for accountants when searching for errors."
+    },
+    {
+      "q": "Do I need a suspense account to correct an error of principle?",
+      "a": "No. An error of principle involves debiting or crediting the wrong class of account (e.g., debiting motor expenses instead of motor vehicles). A debit and a credit of equal value were still posted, so the trial balance would have balanced. The correction is made with a journal entry that debits the correct account and credits the incorrect account, without involving the suspense account."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Errors in Accounting",
+    "columns": [
+      "Feature",
+      "Errors Revealed by Trial Balance",
+      "Errors Not Revealed by Trial Balance"
+    ],
+    "rows": [
+      {
+        "property": "Effect on Trial Balance",
+        "cells": [
+          "Causes debit and credit totals to be unequal.",
+          "Debit and credit totals remain equal."
+        ]
+      },
+      {
+        "property": "Use of Suspense Account",
+        "cells": [
+          "The difference is placed in a suspense account, which is then used in the correction journal entry.",
+          "The suspense account is not used in the correction journal entry."
+        ]
+      },
+      {
+        "property": "Nature of Error",
+        "cells": [
+          "Typically arithmetical or procedural mistakes in posting (e.g., single-sided entry, casting error).",
+          "Conceptual or clerical mistakes where the double-entry principle is technically followed but incorrectly applied."
+        ]
+      },
+      {
+        "property": "Example",
+        "cells": [
+          "A cash payment of £250 is credited to the bank account, but the corresponding debit to an expense account is omitted.",
+          "A purchase of a non-current asset for £1,000 is incorrectly debited to the repairs expense account instead of the asset account."
+        ]
+      },
+      {
+        "property": "Detection Method",
+        "cells": [
+          "Identified immediately when the trial balance fails to balance.",
+          "Found only through detailed checking of accounts, audits, reconciliations, or by chance."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

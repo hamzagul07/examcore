@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — profitability, liquidity, efficiency, and gearing ratios with interpretation.",
   "durationMin": 26,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Calculate profitability ratios: GP%, NP%, ROCE.",
     "Calculate liquidity: current and acid test.",
@@ -25,17 +25,139 @@
     ]
   },
   "flashcards": [
-    { "front": "Gross profit margin?", "back": "(Gross profit ÷ Revenue) × 100." },
-    { "front": "ROCE?", "back": "(PBIT ÷ Capital employed) × 100; CE = equity + long-term liabilities." },
-    { "front": "Current ratio?", "back": "Current assets ÷ Current liabilities." },
-    { "front": "Acid test?", "back": "(Current assets − Inventory) ÷ Current liabilities." },
-    { "front": "Inventory days?", "back": "(Average inventory ÷ COGS) × 365." },
-    { "front": "Gearing?", "back": "(Non-current liabilities ÷ Capital employed) × 100." }
+    {
+      "front": "Gross profit margin?",
+      "back": "(Gross profit ÷ Revenue) × 100."
+    },
+    {
+      "front": "ROCE?",
+      "back": "(PBIT ÷ Capital employed) × 100; CE = equity + long-term liabilities."
+    },
+    {
+      "front": "Current ratio?",
+      "back": "Current assets ÷ Current liabilities."
+    },
+    {
+      "front": "Acid test?",
+      "back": "(Current assets − Inventory) ÷ Current liabilities."
+    },
+    {
+      "front": "Inventory days?",
+      "back": "(Average inventory ÷ COGS) × 365."
+    },
+    {
+      "front": "Gearing?",
+      "back": "(Non-current liabilities ÷ Capital employed) × 100."
+    },
+    {
+      "front": "What does the Return on Capital Employed (ROCE) measure?",
+      "back": "It measures the efficiency and profitability of a company's capital investments. It shows how much profit is generated for every £1 of capital employed. Formula: (Profit from Operations / Capital Employed) x 100."
+    },
+    {
+      "front": "Why is inventory excluded from the Acid Test (Quick) Ratio calculation?",
+      "back": "Inventory is excluded because it is the least liquid of all current assets. It cannot be converted into cash quickly and there is no certainty it can be sold at its book value, especially in a forced sale situation."
+    },
+    {
+      "front": "What is the formula for Trade Receivables Turnover in days and what does it indicate?",
+      "back": "Formula: (Trade Receivables / Credit Revenue) x 365. It indicates the average number of days it takes for a business to collect payment from its credit customers. A shorter period is generally better for a company's cash flow."
+    },
+    {
+      "front": "A company has a high gearing ratio. What does this signify?",
+      "back": "It signifies that the company is financed more by long-term debt than by equity. This increases financial risk due to mandatory interest payments, but it can also amplify returns to shareholders if the business is profitable (financial leverage)."
+    },
+    {
+      "front": "How can a company improve its Gross Profit Margin?",
+      "back": "A company can improve its Gross Profit Margin by either increasing its selling prices without a corresponding fall in demand, or by reducing its direct cost of sales, for example, by finding a cheaper supplier or improving production efficiency."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Ratios** (1.6.2) completes Section 1. Always **calculate → interpret → evaluate**. Use the interactive ratio diagram where available."
+    },
+    {
+      "type": "heading",
+      "content": "Introduction to Ratio Analysis"
+    },
+    {
+      "type": "text",
+      "content": "Ratio analysis is the process of evaluating a business's financial performance and position by comparing items from its financial statements. It is a vital tool for stakeholders—such as investors, managers, and lenders—to make informed decisions. Ratios standardise financial information, allowing for meaningful comparisons over time (trend analysis), against budgeted figures, and with other businesses in the same industry (inter-firm comparison). However, ratios are not an end in themselves; they are indicators that highlight areas requiring further investigation. The four key categories you must master for your examination are profitability, liquidity, efficiency, and gearing. A strong analysis moves beyond mere calculation to interpret what the numbers mean in the context of the business and its economic environment."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Purpose: To assess performance, financial health, and efficiency.",
+        "Comparison: Analysis requires comparison against previous years, budgets, or industry averages.",
+        "Limitations: Ratios are based on historical data and do not show the full picture; they are indicators, not definitive answers.",
+        "Categories: Profitability, Liquidity, Efficiency, and Gearing."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In examination questions, never just state a calculated ratio. You must interpret it. For example, state that the gross profit margin has 'deteriorated from 25% to 20%', then provide a possible reason, such as 'due to an increase in the cost of raw materials'."
+    },
+    {
+      "type": "heading",
+      "content": "Profitability Ratios: Measuring Performance"
+    },
+    {
+      "type": "text",
+      "content": "Profitability ratios measure a company's ability to generate profit from its sales and capital. The Gross Profit Margin ((Gross Profit / Revenue) x 100) reveals how efficiently a business is managing its direct costs of production or purchase. A higher margin is preferable. The Profit Margin ((Profit for the Year / Revenue) x 100) shows the overall profitability after all expenses, including overheads, are deducted. The most comprehensive profitability ratio is the Return on Capital Employed (ROCE), calculated as (Profit from Operations / Capital Employed) x 100. ROCE assesses how effectively the business uses its long-term financing to generate profit, making it a key indicator for investors."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gross Profit Margin: Measures profit on buying/making and selling goods.",
+        "Profit Margin: Measures overall profitability after all expenses.",
+        "Return on Capital Employed (ROCE): Measures the return generated from the capital invested in the business.",
+        "Capital Employed = Total Equity + Non-Current Liabilities OR Total Assets - Current Liabilities."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When analysing ROCE, compare it to the interest rates on loans. If ROCE is higher than the interest rate on borrowed funds, the business is creating value for its shareholders. If it is lower, the debt is not being used effectively."
+    },
+    {
+      "type": "heading",
+      "content": "Liquidity Ratios: Assessing Short-Term Solvency"
+    },
+    {
+      "type": "text",
+      "content": "Liquidity refers to the ability of a business to meet its short-term financial obligations as they fall due. The Current Ratio (Current Assets / Current Liabilities) compares all assets expected to be converted to cash within a year against liabilities due within a year. A commonly cited ideal is between 1.5:1 and 2:1. The Acid Test Ratio, or Quick Ratio, ((Current Assets - Inventory) / Current Liabilities) provides a more stringent measure by excluding inventory, which is often the least liquid current asset. An ideal Acid Test Ratio is typically around 1:1. A ratio below 1:1 suggests potential cash flow problems, as the business may be unable to pay its immediate debts without selling inventory."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Liquidity: The ability to pay short-term debts.",
+        "Current Ratio: A general measure of liquidity.",
+        "Acid Test Ratio: A stricter measure, excluding the least liquid asset (inventory).",
+        "A very high liquidity ratio can be negative, suggesting inefficient use of working capital (e.g., too much cash held idle)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always link liquidity to working capital management. A poor liquidity ratio can often be explained by issues with efficiency ratios, such as slow inventory turnover or long trade receivables collection periods."
+    },
+    {
+      "type": "heading",
+      "content": "Efficiency and Gearing Ratios"
+    },
+    {
+      "type": "text",
+      "content": "Efficiency ratios, or turnover ratios, assess how well a business uses its assets and manages its liabilities. Key examples include Inventory Turnover ((Cost of Sales / Average Inventory) in times, or (Average Inventory / Cost of Sales) x 365 in days), which measures how quickly stock is sold. Trade Receivables Turnover ((Trade Receivables / Credit Revenue) x 365) shows the average time taken to collect cash from customers. The Gearing Ratio ((Non-Current Liabilities / Capital Employed) x 100) measures long-term financial risk. It shows the proportion of capital financed by debt. A business with over 50% gearing is considered highly geared, indicating higher risk for shareholders due to fixed interest payments but also the potential for higher returns."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Inventory Turnover: Measures how quickly inventory is sold. Faster is generally better.",
+        "Trade Receivables Turnover: Measures the average credit period given to customers. Shorter is better for cash flow.",
+        "Trade Payables Turnover: Measures the average time taken to pay suppliers. A longer period aids cash flow but can harm supplier relations.",
+        "Gearing: Measures the proportion of debt in the capital structure, indicating financial risk."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For evaluation, you must connect the ratios. For example, 'The company's liquidity has worsened, as shown by the fall in the current ratio. This is likely caused by the increase in the trade receivables turnover period from 30 to 55 days, which has tied up cash in outstanding customer debts.'"
     },
     {
       "type": "formula",
@@ -54,10 +176,86 @@
     {
       "type": "resources",
       "items": [
-        { "label": "1.6.1 Users of information", "href": "/courses/9706/1-6-1-users-of-accounting-information" },
-        { "label": "9609 10.2.2 Profitability ratios", "href": "/courses/9609/10-2-2-profitability-ratios" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "1.6.1 Users of information",
+          "href": "/courses/9706/1-6-1-users-of-accounting-information"
+        },
+        {
+          "label": "9609 10.2.2 Profitability ratios",
+          "href": "/courses/9609/10-2-2-profitability-ratios"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is a higher ratio always better?",
+      "a": "Not necessarily. While a higher profitability ratio is generally positive, a very high Current Ratio could indicate poor asset management, such as holding too much idle cash or obsolete inventory. Similarly, an extremely high Inventory Turnover might mean the business is losing sales due to stock-outs. Context is crucial; ratios must be compared to industry averages and previous periods to be meaningful."
+    },
+    {
+      "q": "Can I perform a full ratio analysis using only the Statement of Financial Position?",
+      "a": "No, a comprehensive analysis requires data from both the Income Statement and the Statement of Financial Position. Profitability ratios like GPM are derived from the Income Statement. Liquidity and gearing ratios use the Statement of Financial Position. Crucially, key 'bridge' ratios like ROCE and all efficiency ratios require figures from both statements (e.g., profit from the Income Statement and capital employed from the Statement of Financial Position)."
+    },
+    {
+      "q": "What is the difference between 'profit for the year' and 'profit from operations' when calculating ROCE?",
+      "a": "'Profit from operations' (operating profit) is profit before deducting interest and tax. This is the correct figure to use for ROCE because it measures profit generated from the company's core trading activities, independent of its financing and tax structure. This allows for a fairer comparison between companies with different debt levels. 'Profit for the year' is the final profit after all expenses, including interest and tax, have been deducted."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparing Liquidity and Profitability Ratios",
+    "columns": [
+      "Feature",
+      "Liquidity Ratios",
+      "Profitability Ratios"
+    ],
+    "rows": [
+      {
+        "property": "Primary Purpose",
+        "cells": [
+          "To assess the ability to meet short-term debts.",
+          "To measure the ability to generate profit from sales and assets."
+        ]
+      },
+      {
+        "property": "Key Question Answered",
+        "cells": [
+          "Can the business pay its immediate bills?",
+          "Is the business making a sufficient return?"
+        ]
+      },
+      {
+        "property": "Time Horizon",
+        "cells": [
+          "Short-term (typically less than one year).",
+          "Assessed over an accounting period, but reflects long-term viability."
+        ]
+      },
+      {
+        "property": "Primary Financial Statement(s)",
+        "cells": [
+          "Statement of Financial Position.",
+          "Primarily Income Statement, but ROCE uses both statements."
+        ]
+      },
+      {
+        "property": "Example Ratios",
+        "cells": [
+          "Current Ratio, Acid Test (Quick) Ratio.",
+          "Gross Profit Margin, Profit Margin, Return on Capital Employed (ROCE)."
+        ]
+      },
+      {
+        "property": "Stakeholder Focus",
+        "cells": [
+          "Of high interest to short-term creditors and suppliers.",
+          "Of high interest to owners, investors, and management."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — depreciation methods, disposals, and revaluation of non-current assets.",
   "durationMin": 28,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Calculate depreciation using straight-line and reducing balance.",
     "Account for disposal of non-current assets.",
@@ -25,17 +25,128 @@
     ]
   },
   "flashcards": [
-    { "front": "Straight-line formula?", "back": "(Cost − Residual value) ÷ Expected life in years." },
-    { "front": "Reducing balance?", "back": "NBV × % each year — higher charge early years." },
-    { "front": "Accumulated depreciation?", "back": "Contra-asset — total depreciation to date." },
-    { "front": "Net book value?", "back": "Cost − Accumulated depreciation." },
-    { "front": "Disposal gain?", "back": "Proceeds > NBV — credit to SPL (or loss if reverse)." },
-    { "front": "Revaluation surplus?", "back": "Equity reserve — not income through SPL (under revaluation model)." }
+    {
+      "front": "Straight-line formula?",
+      "back": "(Cost − Residual value) ÷ Expected life in years."
+    },
+    {
+      "front": "Reducing balance?",
+      "back": "NBV × % each year — higher charge early years."
+    },
+    {
+      "front": "Accumulated depreciation?",
+      "back": "Contra-asset — total depreciation to date."
+    },
+    {
+      "front": "Net book value?",
+      "back": "Cost − Accumulated depreciation."
+    },
+    {
+      "front": "Disposal gain?",
+      "back": "Proceeds > NBV — credit to SPL (or loss if reverse)."
+    },
+    {
+      "front": "Revaluation surplus?",
+      "back": "Equity reserve — not income through SPL (under revaluation model)."
+    },
+    {
+      "front": "What is the double entry to record annual depreciation?",
+      "back": "Debit: Depreciation Expense (in the Income Statement). Credit: Provision for Depreciation (in the Statement of Financial Position, deducted from the asset's cost)."
+    },
+    {
+      "front": "Define 'Net Book Value' (NBV) or 'Carrying Amount'.",
+      "back": "The value of a non-current asset recorded in the financial statements. It is calculated as the asset's original cost less its total accumulated depreciation to date."
+    },
+    {
+      "front": "What is the purpose of a Revaluation Surplus?",
+      "back": "It is an equity reserve used to record the increase in the value of a non-current asset following an upward revaluation. It represents an unrealised gain and is not distributable as dividends."
+    },
+    {
+      "front": "State the formula for the Straight-Line method of depreciation.",
+      "back": "Annual Depreciation = (Cost of Asset – Estimated Residual Value) / Estimated Useful Life of Asset (in years)."
+    },
+    {
+      "front": "How is the profit or loss on the disposal of a non-current asset calculated?",
+      "back": "It is the difference between the Net Book Value (NBV) of the asset at the time of disposal and the net disposal proceeds (cash received)."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Changing asset values** (1.3.2) — show **full disposal T-account** working in exams; label **profit on disposal** clearly."
+    },
+    {
+      "type": "heading",
+      "content": "Depreciation: The Concept and Its Methods"
+    },
+    {
+      "type": "text",
+      "content": "Depreciation is the systematic allocation of the depreciable amount of a non-current asset over its useful life. It is an application of the matching principle, ensuring that the cost of using an asset is matched against the revenue it helps to generate in a reporting period. It is not a process of valuation, but of cost allocation. The two primary methods required by the Cambridge syllabus are the straight-line method and the reducing (or diminishing) balance method. The choice of method should reflect the pattern in which the asset's future economic benefits are expected to be consumed by the entity. This choice must be applied consistently to ensure comparability of financial statements over time, but can be changed if the pattern of consumption changes."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Depreciation matches the cost of an asset to the periods in which it generates revenue.",
+        "It is a non-cash expense that reduces profit and the asset's carrying amount (net book value).",
+        "The straight-line method allocates cost evenly over the asset's life.",
+        "The reducing balance method allocates a higher charge in the earlier years of an asset's life."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Accounting for the Disposal of a Non-Current Asset"
+    },
+    {
+      "type": "text",
+      "content": "When a non-current asset is sold or scrapped, its value must be removed from the financial statements and any resulting profit or loss must be calculated. This is achieved through a disposal account, which is a temporary ledger account used to collect the relevant figures. The process involves three steps: 1) Transfer the original cost of the asset from the non-current asset account to the disposal account. 2) Transfer the total accumulated depreciation of that specific asset from the provision for depreciation account to the disposal account. 3) Record the cash or trade-in value received. The balancing figure on the disposal account represents either a profit on disposal (credit balance) or a loss on disposal (debit balance), which is then transferred to the income statement."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Debit the Disposal account with the asset's original cost.",
+        "Credit the Disposal account with the asset's total accumulated depreciation.",
+        "Credit the Disposal account with the disposal proceeds (cash received).",
+        "A credit balance on the Disposal account is a profit on disposal (transferred to Income Statement).",
+        "A debit balance on the Disposal account is a loss on disposal (transferred to Income Statement)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, always create a T-account for disposals. It is the safest way to ensure all components are included and to correctly calculate the profit or loss. Remember to remove the *total* depreciation for the asset being sold, not just one year's worth."
+    },
+    {
+      "type": "heading",
+      "content": "Revaluation of Non-Current Assets"
+    },
+    {
+      "type": "text",
+      "content": "Instead of the cost model, entities may choose the revaluation model under IAS 16 Property, Plant and Equipment. This involves revaluing an asset to its fair value. When an asset is revalued upwards, the increase in its carrying amount is credited to a 'Revaluation Surplus' account, which is a component of equity shown on the statement of financial position. Depreciation is then calculated on the new revalued amount. If a subsequent downward revaluation occurs, it is first debited against any existing revaluation surplus for that asset. Any excess decrease beyond the surplus is recognised as an expense in the income statement. A downward revaluation on an asset with no prior surplus is always treated as an expense."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Upward revaluation: Debit Asset, Debit Accumulated Depreciation, Credit Revaluation Surplus.",
+        "The Revaluation Surplus is an equity reserve, not a profit.",
+        "Downward revaluation: Debit Revaluation Surplus (if any), Debit Income Statement (for the excess), Credit Asset.",
+        "Depreciation after revaluation is based on the revalued amount over the remaining useful life."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Depreciation: A Practical Application"
+    },
+    {
+      "type": "text",
+      "content": "The straight-line method is calculated as (Cost – Residual Value) / Useful Life. This results in a constant annual depreciation charge. It is suitable for assets that provide a consistent level of benefit throughout their life, such as buildings. The reducing balance method is calculated as Net Book Value x Depreciation Rate (%). The Net Book Value (NBV) is the asset's cost minus its accumulated depreciation to date. This method results in a higher depreciation charge in the early years, which declines over time. It is appropriate for assets like vehicles or machinery that are more efficient and productive when new, and incur higher maintenance costs as they age. The declining depreciation charge is offset by rising repair costs, smoothing the total expense over time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Straight-line formula: (Cost - Residual Value) / Useful Life.",
+        "Reducing balance formula: (Cost - Accumulated Depreciation) x Rate %.",
+        "Residual value is ignored in the reducing balance calculation but is a 'floor' for the NBV.",
+        "A full year's depreciation is typically charged in the year of purchase, and none in the year of disposal, unless the policy states otherwise (e.g., pro-rata)."
+      ]
     },
     {
       "type": "formula",
@@ -54,10 +165,79 @@
     {
       "type": "resources",
       "items": [
-        { "label": "1.5.1 Adjustments", "href": "/courses/9706/1-5-1-adjustments-to-draft-financial-statements" },
-        { "label": "9609 10.1.4 Depreciation", "href": "/courses/9609/10-1-4-depreciation" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "1.5.1 Adjustments",
+          "href": "/courses/9706/1-5-1-adjustments-to-draft-financial-statements"
+        },
+        {
+          "label": "9609 10.1.4 Depreciation",
+          "href": "/courses/9609/10-1-4-depreciation"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Why don't businesses just record the full cost of a large machine as an expense in the year they buy it?",
+      "a": "This would violate the matching principle. The machine will help generate revenue for many years (its useful life). Depreciation systematically spreads the cost of the machine over these years, matching the expense of using the asset against the revenue it helps to earn in each period. Expensing it all at once would drastically understate profit in the year of purchase and overstate it in subsequent years."
+    },
+    {
+      "q": "Is the profit on disposal of an asset the same as the cash the business receives?",
+      "a": "No, this is a common misconception. The cash received is the 'disposal proceeds'. The 'profit on disposal' is a calculated figure: Disposal Proceeds minus the Net Book Value (NBV) of the asset. For example, if you sell an asset with an NBV of £5,000 for £6,000 cash, you receive £6,000 in cash, but your profit on disposal is only £1,000. This profit is reported in the income statement."
+    },
+    {
+      "q": "If a revaluation increases an asset's value, does that mean the business has made a profit it can pay out to shareholders?",
+      "a": "No. The increase is an 'unrealised' gain because the asset has not been sold. It is credited to the Revaluation Surplus, which is a capital reserve within equity, not to the income statement. Therefore, it does not increase distributable profits and cannot be paid out as dividends. It simply reflects the asset's current fair value on the statement of financial position."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Depreciation Methods",
+    "columns": [
+      "Feature",
+      "Straight-Line Method",
+      "Reducing Balance Method"
+    ],
+    "rows": [
+      {
+        "property": "Annual Depreciation Charge",
+        "cells": [
+          "Constant each year.",
+          "Decreases each year."
+        ]
+      },
+      {
+        "property": "Calculation Basis",
+        "cells": [
+          "Based on original cost and residual value.",
+          "Based on the Net Book Value (NBV) at the start of the period."
+        ]
+      },
+      {
+        "property": "Suitability",
+        "cells": [
+          "Assets that are used up evenly over time (e.g., fixtures, buildings).",
+          "Assets that are more productive in their early years (e.g., vehicles, machinery)."
+        ]
+      },
+      {
+        "property": "Impact on Early Years' Profit",
+        "cells": [
+          "Results in higher reported profit in the early years compared to reducing balance.",
+          "Results in lower reported profit in the early years due to the higher depreciation charge."
+        ]
+      },
+      {
+        "property": "Complexity",
+        "cells": [
+          "Simple to calculate and understand.",
+          "Slightly more complex as the NBV must be recalculated each year."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

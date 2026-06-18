@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — material costs, FIFO/AVCO, labour costing, and inventory valuation.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Calculate material costs including carriage and discounts.",
     "Apply FIFO and AVCO inventory valuation.",
@@ -25,17 +25,140 @@
     ]
   },
   "flashcards": [
-    { "front": "FIFO issue price?", "back": "Oldest batch cost used first for issues." },
-    { "front": "AVCO after receipt?", "back": "New average = (Old value + Receipt value) ÷ Total units." },
-    { "front": "Direct labour?", "back": "Wages of workers directly making the product." },
-    { "front": "Indirect labour?", "back": "Supervisors, stores — treated as overhead." },
-    { "front": "Carriage in?", "back": "Added to purchase cost of materials." },
-    { "front": "Trade discount?", "back": "Deducted from list price — not recorded separately." }
+    {
+      "front": "FIFO issue price?",
+      "back": "Oldest batch cost used first for issues."
+    },
+    {
+      "front": "AVCO after receipt?",
+      "back": "New average = (Old value + Receipt value) ÷ Total units."
+    },
+    {
+      "front": "Direct labour?",
+      "back": "Wages of workers directly making the product."
+    },
+    {
+      "front": "Indirect labour?",
+      "back": "Supervisors, stores — treated as overhead."
+    },
+    {
+      "front": "Carriage in?",
+      "back": "Added to purchase cost of materials."
+    },
+    {
+      "front": "Trade discount?",
+      "back": "Deducted from list price — not recorded separately."
+    },
+    {
+      "front": "What is the formula for calculating the weighted average cost per unit in the AVCO method?",
+      "back": "(Cost of inventory on hand + Cost of new purchase) / (Units of inventory on hand + Units of new purchase). This is calculated after each new purchase."
+    },
+    {
+      "front": "How does FIFO value closing inventory during a period of rising prices (inflation)?",
+      "back": "FIFO values closing inventory at the most recent, higher prices. This results in a higher closing inventory valuation on the statement of financial position compared to AVCO."
+    },
+    {
+      "front": "Distinguish between direct labour and indirect labour.",
+      "back": "Direct labour is the cost of workers directly making the product (e.g., assembly line worker) and is part of the prime cost. Indirect labour is the cost of workers supporting production (e.g., factory supervisor) and is a production overhead."
+    },
+    {
+      "front": "What is the accounting treatment for a trade discount received on raw materials?",
+      "back": "A trade discount is deducted directly from the purchase price of the materials at the point of purchase. It reduces the cost of the inventory recorded in the accounts."
+    },
+    {
+      "front": "What is the 'piecework' system of labour remuneration?",
+      "back": "A system where employees are paid a fixed rate for each unit of output they produce. It is an output-based payment method that directly links wages to individual productivity."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Materials and labour** (2.1.1) opens costing. Master **FIFO vs AVCO** column workings — Paper 2 often tests **perpetual inventory** records."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding and Classifying Material Costs"
+    },
+    {
+      "type": "text",
+      "content": "Material costs are a fundamental component of manufacturing accounts. They are classified as either direct or indirect. Direct materials are raw materials that can be physically and directly traced to each unit of a finished product, such as the wood used to make a chair. Indirect materials are necessary for the production process but are not directly traceable to a specific unit, like glue or sandpaper. The cost of materials recorded in the accounts should include all expenses incurred to bring them to their present location and condition. This includes the purchase price, delivery charges (carriage inwards), and any non-refundable taxes or import duties. Crucially, trade discounts are deducted from the purchase price, whereas settlement (cash) discounts for prompt payment are treated as financial income, not a reduction in material cost."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Direct materials are integral to the final product and are included in the prime cost.",
+        "Indirect materials are treated as a production overhead.",
+        "The cost of materials includes purchase price plus delivery costs and import duties.",
+        "Trade discounts reduce the cost of materials; settlement discounts are treated as 'other income'."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam question, always deduct trade discounts from the list price to find the cost of materials. Settlement (cash) discounts should be ignored when calculating the cost of inventory; they are a financing item recorded in the income statement."
+    },
+    {
+      "type": "heading",
+      "content": "Inventory Valuation: First-In, First-Out (FIFO)"
+    },
+    {
+      "type": "text",
+      "content": "The First-In, First-Out (FIFO) method operates on the assumption that the first units of inventory purchased are the first ones to be issued to production or sold. This means that any inventory remaining at the end of a period (closing inventory) is assumed to be from the most recent purchases. When preparing a stores ledger card using FIFO, issues are priced using the cost of the oldest batch of inventory on hand. Once that batch is exhausted, the cost of the next oldest batch is used. In a period of rising prices (inflation), this method results in the cost of sales being based on older, lower costs, and closing inventory being valued at recent, higher costs. Consequently, reported profit and the inventory value on the statement of financial position will be higher than under other methods."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Assumes the first materials bought are the first materials issued.",
+        "Issues are priced at the cost of the oldest inventory held.",
+        "Closing inventory is valued at the most recent purchase prices.",
+        "In times of inflation, FIFO tends to report higher profits and a higher closing inventory value."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When calculating the value of an issue using FIFO, be systematic. Use a stores ledger card format to track quantities and prices. Ensure you completely use up the quantity of the oldest price batch before moving to the next price batch for a single issue."
+    },
+    {
+      "type": "heading",
+      "content": "Inventory Valuation: Weighted Average Cost (AVCO)"
+    },
+    {
+      "type": "text",
+      "content": "The Weighted Average Cost (AVCO) method smooths out the effect of price fluctuations by calculating a new average cost for all units in inventory after each purchase. This new weighted average cost is calculated by dividing the total cost of inventory on hand (including the new purchase) by the total quantity on hand. All subsequent issues are then priced at this new average cost until another purchase is made. This method is particularly useful when inventory items are identical and intermingled, making it impractical to identify specific batches. Unlike FIFO, AVCO does not attempt to match a specific cost flow to the physical flow of goods, instead providing a blended cost that moderates the impact of price changes on both cost of sales and closing inventory valuation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A new weighted average cost per unit is calculated after every purchase.",
+        "Formula: Total Cost of Available Inventory / Total Units of Available Inventory.",
+        "All issues are priced at the current weighted average cost until the next purchase.",
+        "This method smooths out price fluctuations, leading to more stable profit and inventory values."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A common mistake is to recalculate the average after an issue. Remember, the weighted average cost is only recalculated *after a receipt* of goods. For maximum accuracy, avoid rounding the average cost per unit during intermediate calculations."
+    },
+    {
+      "type": "heading",
+      "content": "Accounting for Labour Costs"
+    },
+    {
+      "type": "text",
+      "content": "Labour costs, like material costs, are categorised as either direct or indirect. Direct labour refers to the wages of employees directly involved in the manufacturing process, whose time can be traced to specific units of production (e.g., a factory machine operator). This cost is a component of the prime cost. Indirect labour is the cost of employees who support the production process but are not directly involved in making the product (e.g., factory supervisors, maintenance staff, cleaners). This is treated as a production overhead. Remuneration can be time-based (e.g., hourly wage), which is simple but may not incentivise efficiency, or output-based (piecework), which links pay to productivity but can compromise quality. Bonus schemes are often used to motivate workers by offering extra pay for achieving specific targets."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Direct labour costs are traceable to a single product and form part of the prime cost.",
+        "Indirect labour costs (e.g., supervisor's salary) are part of production overheads.",
+        "Time-based pay guarantees a wage but does not directly reward productivity.",
+        "Piecework pays employees per unit produced, directly linking pay to output.",
+        "Overtime premium is usually treated as an indirect cost unless worked for a specific job at a customer's request."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Carefully read the question to determine if labour costs are direct or indirect. This distinction is crucial for correctly calculating the prime cost and total production cost. For overtime, the basic pay element is usually direct, while the premium element is usually indirect."
     },
     {
       "type": "workedExample",
@@ -50,10 +173,72 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9609 10.1.3 Inventory valuation", "href": "/courses/9609/10-1-3-inventory-valuation" },
-        { "label": "2.2.1 Costing applications", "href": "/courses/9706/2-2-1-costing-applications" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "9609 10.1.3 Inventory valuation",
+          "href": "/courses/9609/10-1-3-inventory-valuation"
+        },
+        {
+          "label": "2.2.1 Costing applications",
+          "href": "/courses/9706/2-2-1-costing-applications"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Do I recalculate the average cost after every transaction (purchases and issues) when using AVCO?",
+      "a": "No, this is a common error. You only recalculate the weighted average cost per unit *after a purchase* (receipt) of new inventory. All issues made before the next purchase are valued at the existing weighted average cost."
+    },
+    {
+      "q": "If a business physically uses its oldest stock first, does it have to use the FIFO method for accounting?",
+      "a": "Not necessarily. The accounting choice (FIFO or AVCO) is an assumption about cost flow, not a rule about physical flow. A business can choose either method regardless of how it physically manages its inventory, as long as the chosen method is applied consistently in accordance with accounting standards."
+    },
+    {
+      "q": "Is overtime premium always an indirect labour cost?",
+      "a": "Not always, although it is the most common treatment. If overtime is worked to meet a general increase in production demand, the premium (the extra amount paid above the basic rate) is treated as an indirect cost/production overhead. However, if the overtime is worked specifically to complete an urgent job for a particular customer at their request, the entire overtime cost can be treated as a direct labour cost for that specific job."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of FIFO and AVCO Inventory Valuation Methods",
+    "columns": [
+      "Feature",
+      "FIFO (First-In, First-Out)",
+      "AVCO (Weighted Average Cost)"
+    ],
+    "rows": [
+      {
+        "property": "Valuation of Issues",
+        "cells": [
+          "Issues are priced using the cost of the oldest inventory held.",
+          "Issues are priced at a single average cost, which is recalculated after each purchase."
+        ]
+      },
+      {
+        "property": "Closing Inventory Value",
+        "cells": [
+          "Valued at the cost of the most recent purchases.",
+          "Valued at the latest weighted average cost."
+        ]
+      },
+      {
+        "property": "Effect of Inflation",
+        "cells": [
+          "Leads to higher reported profit and a higher inventory value on the statement of financial position.",
+          "Smooths out price fluctuations, leading to more moderate profit and inventory values."
+        ]
+      },
+      {
+        "property": "Realism of Cost Flow",
+        "cells": [
+          "Often matches the actual physical flow of goods, especially for perishable items.",
+          "Represents a blended average cost, which does not reflect the flow of any specific unit."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — double entry, books of prime entry, ledgers, and the accounting cycle.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Explain the double-entry system.",
     "Describe books of prime entry and the ledger.",
@@ -25,17 +25,129 @@
     ]
   },
   "flashcards": [
-    { "front": "DEAD CLIC?", "back": "Debit: Expenses, Assets, Drawings. Credit: Liabilities, Income, Capital." },
-    { "front": "Sales day book?", "back": "Lists credit sales — total DR debtors control, CR sales." },
-    { "front": "Purchases day book?", "back": "Lists credit purchases — DR purchases, CR creditors control." },
-    { "front": "Cash book?", "back": "Records all bank/cash receipts and payments — also a ledger account." },
-    { "front": "General ledger?", "back": "Nominal accounts — expenses, income, assets, liabilities." },
-    { "front": "Personal ledger?", "back": "Receivables and payables — individual customer/supplier accounts." }
+    {
+      "front": "DEAD CLIC?",
+      "back": "Debit: Expenses, Assets, Drawings. Credit: Liabilities, Income, Capital."
+    },
+    {
+      "front": "Sales day book?",
+      "back": "Lists credit sales — total DR debtors control, CR sales."
+    },
+    {
+      "front": "Purchases day book?",
+      "back": "Lists credit purchases — DR purchases, CR creditors control."
+    },
+    {
+      "front": "Cash book?",
+      "back": "Records all bank/cash receipts and payments — also a ledger account."
+    },
+    {
+      "front": "General ledger?",
+      "back": "Nominal accounts — expenses, income, assets, liabilities."
+    },
+    {
+      "front": "Personal ledger?",
+      "back": "Receivables and payables — individual customer/supplier accounts."
+    },
+    {
+      "front": "What is a Book of Prime Entry?",
+      "back": "A book where transactions are first recorded chronologically before being posted to the ledgers. Examples include the Sales Day Book, Purchases Day Book, and Cash Book. They are not part of the double entry system."
+    },
+    {
+      "front": "What is the purpose of the General Journal?",
+      "back": "It is a book of prime entry used to record non-routine, non-cash transactions that do not fit in any other specialised journal. Examples include the purchase/sale of non-current assets on credit, correction of errors, and opening entries."
+    },
+    {
+      "front": "Explain the DEAD CLIC mnemonic.",
+      "back": "A tool to remember the rules of double entry. DEBIT: Expenses, Assets, Drawings. CREDIT: Liabilities, Income, Capital. For accounts in DEAD, an increase is a debit. For accounts in CLIC, an increase is a credit."
+    },
+    {
+      "front": "Differentiate between the General Ledger and a Subsidiary Ledger.",
+      "back": "The General Ledger contains all the accounts needed for the trial balance (e.g., Sales, Purchases, Rent). A Subsidiary Ledger (e.g., Sales Ledger) contains the individual accounts of credit customers, the total of which is represented by a single control account in the General Ledger."
+    },
+    {
+      "front": "What is the primary purpose of a Trial Balance?",
+      "back": "It is an internal document that lists all the account balances from the General Ledger. Its primary purpose is to verify the arithmetical accuracy of the double entry bookkeeping, ensuring that total debits equal total credits."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**The accounting system** (1.2.1) — master **DEAD CLIC** and **control account** postings before Paper 2 journal questions."
+    },
+    {
+      "type": "heading",
+      "content": "The Foundation: The Dual Aspect and Double Entry"
+    },
+    {
+      "type": "text",
+      "content": "The entire accounting system is built upon the dual aspect principle, which states that every business transaction has two effects. This is captured in the accounting equation: Assets = Capital + Liabilities. To record these two effects, we use the double entry bookkeeping system. For every transaction, a debit entry is made in one account and a corresponding credit entry is made in another account. The total value of debits must always equal the total value of credits. Understanding which account to debit and which to credit is crucial. The mnemonic DEAD CLIC is an invaluable tool: Debit what you have (Expenses, Assets, Drawings) and Credit what you owe or own (Liabilities, Income, Capital)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Every transaction affects two accounts.",
+        "For every debit entry, there must be a corresponding credit entry.",
+        "The accounting equation (A = C + L) must always remain in balance.",
+        "Use DEAD CLIC to remember the rules: Debit - Expenses, Assets, Drawings; Credit - Liabilities, Income, Capital."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Stage 1: Books of Prime Entry (Day Books)"
+    },
+    {
+      "type": "text",
+      "content": "Books of prime entry are the first place a transaction is formally recorded. They are not part of the double entry system itself but act as chronological journals, grouping similar transactions before they are posted to the ledgers. This prevents the general ledger from becoming cluttered with excessive detail. The main books include the Sales Day Book (for credit sales), Purchases Day Book (for credit purchases), Sales Returns Day Book, Purchases Returns Day Book, and the Cash Book (for all bank and cash transactions). For any transaction that does not fit into these specialised journals, the General Journal is used. Each book is a memorandum record, compiled from source documents like invoices and credit notes."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Also known as day books or subsidiary books.",
+        "They are books of original entry, not ledger accounts.",
+        "They categorise transactions (e.g., all credit sales together).",
+        "The Cash Book is unique as it is both a book of prime entry and a ledger account."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Stage 2: Ledgers and Posting"
+    },
+    {
+      "type": "text",
+      "content": "The ledgers are the core of the double entry system, containing the accounts where the debits and credits are recorded. Information from the books of prime entry is posted to the ledgers. The system uses a General (or Nominal) Ledger and Subsidiary Ledgers. Periodically (e.g., monthly), the totals from the specialised books of prime entry are posted to the General Ledger. For example, the total of the Sales Day Book is debited to the Sales Ledger Control Account and credited to the Sales Account. Individual transaction details are posted to personal accounts in the Subsidiary Ledgers (the Sales Ledger and the Purchases Ledger). This system maintains a detailed record for each customer and supplier while keeping the General Ledger concise."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The General Ledger contains all accounts for the financial statements.",
+        "Subsidiary Ledgers (Sales and Purchases) contain the individual accounts of credit customers and suppliers.",
+        "Totals are posted from books of prime entry to the General Ledger.",
+        "Individual entries are posted to the relevant accounts in the Subsidiary Ledgers."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently test the link between books of prime entry and control accounts. Remember that the total from the Sales Day Book is posted to the Sales Ledger Control Account in the General Ledger, while the individual invoices are recorded in the individual customer accounts in the Sales Ledger."
+    },
+    {
+      "type": "heading",
+      "content": "The Complete Accounting Cycle"
+    },
+    {
+      "type": "text",
+      "content": "The accounting cycle is the systematic process of identifying, recording, and summarising a business's economic events. It begins with a transaction, evidenced by a source document (e.g., an invoice, receipt). This transaction is then recorded in the appropriate book of prime entry. From there, the information is posted to the relevant ledger accounts (both general and subsidiary). At the end of an accounting period, a trial balance is extracted from the general ledger to check the arithmetical accuracy of the postings. Necessary year-end adjustments are made (e.g., for accruals and prepayments). Finally, the financial statements – the statement of profit or loss and the statement of financial position – are prepared from the adjusted trial balance figures."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Transaction occurs (evidenced by a source document).",
+        "Recorded in a book of prime entry.",
+        "Posted to ledger accounts.",
+        "Trial balance is prepared.",
+        "Adjustments are made for non-cash items.",
+        "Financial statements are produced."
+      ]
     },
     {
       "type": "workedExample",
@@ -50,10 +162,65 @@
     {
       "type": "resources",
       "items": [
-        { "label": "1.4.4 Control accounts", "href": "/courses/9706/1-4-4-control-accounts" },
-        { "label": "9609 10.1.1 Statement of profit or loss", "href": "/courses/9609/10-1-1-statement-of-profit-or-loss" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "1.4.4 Control accounts",
+          "href": "/courses/9706/1-4-4-control-accounts"
+        },
+        {
+          "label": "9609 10.1.1 Statement of profit or loss",
+          "href": "/courses/9609/10-1-1-statement-of-profit-or-loss"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Are the books of prime entry part of the double entry system?",
+      "a": "This is a common misconception. The books of prime entry (or day books) are memorandum records. They are the first place transactions are written down, but they are not part of the double entry ledger system itself. The double entry (debit and credit) takes place when the totals and individual items are posted from these books into the ledger accounts."
+    },
+    {
+      "q": "Do I need to post every single invoice from the Sales Day Book to the General Ledger?",
+      "a": "No. The system is designed for efficiency. You only post the period's total from the Sales Day Book to the General Ledger. This single posting is a debit to the Sales Ledger Control Account and a credit to the Sales Account. The individual invoices are posted to the individual customer accounts in the subsidiary Sales Ledger, not the General Ledger."
+    },
+    {
+      "q": "Is the trial balance one of the main financial statements?",
+      "a": "No, it is not. The trial balance is a crucial internal working document prepared before the financial statements. Its purpose is to check that the total debits in the general ledger equal the total credits. The main financial statements, which are prepared for external users, are the Statement of Profit or Loss, the Statement of Financial Position, and the Statement of Cash Flows."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of General Journal and Specialised Journals",
+    "columns": [
+      "Feature",
+      "General Journal",
+      "Specialised Journals (e.g., Sales Day Book)"
+    ],
+    "rows": [
+      {
+        "property": "Type of Transactions",
+        "cells": [
+          "Records non-routine, infrequent, and varied transactions (e.g., correction of errors, purchase of non-current assets on credit).",
+          "Records routine, high-volume, and similar transactions (e.g., all credit sales)."
+        ]
+      },
+      {
+        "property": "Format",
+        "cells": [
+          "Requires a detailed narrative for each entry explaining the reason for the debit and credit.",
+          "Tabular format with columns for date, invoice number, customer name, and amount. No narrative is needed for each entry."
+        ]
+      },
+      {
+        "property": "Posting to Ledgers",
+        "cells": [
+          "Each individual transaction is posted separately to the relevant debit and credit accounts in the General Ledger.",
+          "Individual entries are posted to the subsidiary ledger daily. The total is posted to the General Ledger periodically (e.g., monthly)."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

@@ -102,43 +102,48 @@ export default async function SubjectGradeCalculatorPage({ params }: Props) {
 
         <GradeBoundaryCalculator defaultLevel={isAS ? 'AS-Level' : 'A-Level'} official={official} />
 
-        {officialSession && (
+        {official && officialSession && (
           <div className="mt-12">
-            <h2 className="ms-h3">
-              Official {code} grade boundaries — {officialSession.session}
-            </h2>
+            <h2 className="ms-h3">Official {code} grade boundaries</h2>
             <p className="ms-body-2" style={{ marginTop: 10, maxWidth: 680 }}>
-              Per-component (per-paper) raw-mark thresholds, taken from the{' '}
-              <a href={officialSession.sourceUrl} target="_blank" rel="noopener noreferrer" className="ec-btn-underline">
-                official Cambridge grade threshold table
-              </a>
-              . A* is awarded only on the overall syllabus aggregate, not on a single paper, and boundaries
-              change every session.
+              Per-component (per-paper) raw-mark thresholds, taken from the official Cambridge grade
+              threshold tables. A* is awarded only on the overall syllabus aggregate, not on a single
+              paper, and boundaries change every session.
             </p>
-            <div style={{ overflowX: 'auto', marginTop: 16 }}>
-              <table className="gb-data-table">
-                <thead>
-                  <tr>
-                    <th>Component</th><th>Paper</th><th>Max</th>
-                    <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {officialSession.components.map((c) => (
-                    <tr key={c.component}>
-                      <td className="mono">{code}/{c.component}</td>
-                      <td>{c.paper}</td>
-                      <td className="mono">{c.max}</td>
-                      <td className="mono">{c.thresholds.A}</td>
-                      <td className="mono">{c.thresholds.B}</td>
-                      <td className="mono">{c.thresholds.C}</td>
-                      <td className="mono">{c.thresholds.D}</td>
-                      <td className="mono">{c.thresholds.E}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            {official.sessions.map((session) => (
+              <div key={session.session} style={{ marginTop: 22 }}>
+                <h3 className="ms-h3" style={{ fontSize: '1.1rem' }}>
+                  {session.session}{' '}
+                  <a href={session.sourceUrl} target="_blank" rel="noopener noreferrer" className="ec-btn-underline" style={{ fontSize: '0.8rem' }}>
+                    (official source)
+                  </a>
+                </h3>
+                <div style={{ overflowX: 'auto', marginTop: 10 }}>
+                  <table className="gb-data-table">
+                    <thead>
+                      <tr>
+                        <th>Component</th><th>Paper</th><th>Max</th>
+                        <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {session.components.map((c) => (
+                        <tr key={c.component}>
+                          <td className="mono">{code}/{c.component}</td>
+                          <td>{c.paper}</td>
+                          <td className="mono">{c.max}</td>
+                          <td className="mono">{c.thresholds.A}</td>
+                          <td className="mono">{c.thresholds.B}</td>
+                          <td className="mono">{c.thresholds.C}</td>
+                          <td className="mono">{c.thresholds.D}</td>
+                          <td className="mono">{c.thresholds.E}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
           </div>
         )}
 

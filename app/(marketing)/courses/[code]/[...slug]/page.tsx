@@ -13,6 +13,7 @@ import { paperNumberFromDir } from '@/lib/courses/paths'
 import { buildCourseLessonSeo } from '@/lib/courses/seo'
 import { fetchPastPaperQuestionsForTopic } from '@/lib/courses/past-paper-questions'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
+import { getSubtopicsForLesson } from '@/lib/courses/syllabus-outcomes'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
@@ -126,6 +127,11 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   if (!course) notFound()
 
   const { lesson, lessonSlug } = resolved
+  // Surface official Cambridge sub-topics: prefer authored ones, else derive from
+  // the extracted syllabus outcomes (server-only data — kept off the client).
+  const lessonForClient: CourseLesson = lesson.subtopics?.length
+    ? lesson
+    : { ...lesson, subtopics: getSubtopicsForLesson(code, lesson.topicCode) }
   const lessons = getCourseLessons(code)
   const pastPaperQuestions = await fetchPastPaperQuestionsForTopic(code, lesson.topicCode, 2)
   const enriched = enrichLessonVisual(code, lesson)
@@ -174,7 +180,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
       <CourseLessonClient
         subjectCode={code}
         subjectName={course.name}
-        lesson={lesson}
+        lesson={lessonForClient}
         enriched={enriched}
         pastPaperQuestions={pastPaperQuestions}
         lessons={lessons}

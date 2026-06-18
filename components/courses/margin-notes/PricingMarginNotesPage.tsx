@@ -135,7 +135,7 @@ export function PricingMarginNotesPage({ display, signedIn, access, region }: Pr
   } {
     if (plan === 'free') {
       if (!signedIn)
-        return { label: 'Start 7-day free trial', href: buildSignUpHref('/pricing'), variant: 'ghost' }
+        return { label: 'Create free account', href: buildSignUpHref('/pricing'), variant: 'ghost' }
       if (access === 'free') return { label: 'Your current plan', variant: 'muted', disabled: true }
       return { label: 'Included', variant: 'muted', disabled: true }
     }

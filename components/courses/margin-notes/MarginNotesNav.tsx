@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useEcTheme } from '@/lib/design-system/ThemeProvider'
 import { useOmniAI } from '@/lib/omni-ai/context'
 import { avatarInitial, useAuthCheck } from '@/lib/hooks/useAuthCheck'
-import { buildSignInHref, isSafeNextPath } from '@/lib/auth-redirect'
+import { buildSignInHref, buildSignUpHref, isSafeNextPath } from '@/lib/auth-redirect'
 
 const LINKS = [
   { id: 'mark', label: 'mark', href: '/mark' },
@@ -95,7 +95,7 @@ export function MarginNotesNav() {
               Mark a paper
             </Link>
           ) : (
-            <Link className="btn-primary sm" href="/courses">
+            <Link className="btn-primary sm" href={buildSignUpHref(signInNext)}>
               Start free
             </Link>
           )}
@@ -121,9 +121,14 @@ export function MarginNotesNav() {
               Dashboard
             </Link>
           ) : (
-            <Link href={buildSignInHref(signInNext)} onClick={() => setMenu(false)}>
-              sign in
-            </Link>
+            <>
+              <Link href={buildSignInHref(signInNext)} onClick={() => setMenu(false)}>
+                sign in
+              </Link>
+              <Link href={buildSignUpHref(signInNext)} onClick={() => setMenu(false)}>
+                Start free
+              </Link>
+            </>
           )}
         </div>
       ) : null}

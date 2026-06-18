@@ -77,6 +77,14 @@ const SupplyDemandExplorer = dynamic(
   () => import('./SupplyDemandExplorer').then((m) => m.SupplyDemandExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const MaxwellBoltzmannExplorer = dynamic(
+  () => import('./MaxwellBoltzmannExplorer').then((m) => m.MaxwellBoltzmannExplorer),
+  { ssr: false, loading: explorableLoading }
+)
+const RadioactiveDecayExplorer = dynamic(
+  () => import('./RadioactiveDecayExplorer').then((m) => m.RadioactiveDecayExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 const VectorExplorer = dynamic(
   () => import('./VectorExplorer').then((m) => m.VectorExplorer),
   { ssr: false, loading: explorableLoading }
@@ -112,6 +120,10 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(PotentialDividerExplorer, props)
     case '2-4-the-interaction-of-demand-and-supply':
       return createElement(SupplyDemandExplorer, props)
+    case '8-2-effect-of-temperature-on-reaction-rates-and-the-concept-of-activation-energy':
+      return createElement(MaxwellBoltzmannExplorer, props)
+    case '23-2-radioactive-decay':
+      return createElement(RadioactiveDecayExplorer, props)
     case '5-5-the-normal-distribution':
       return createElement(NormalExplorer, props)
     case '1-4-circular-measure':
@@ -226,6 +238,16 @@ const BEATS_BY_SLUG: Record<string, ExplorableBeat[]> = {
     { label: 'The curves', caption: 'Demand slopes down, supply slopes up — shift either to model a change in the market.' },
     { label: 'Equilibrium', caption: 'They cross at the market-clearing price and quantity, where demand equals supply.' },
     { label: 'Surplus & shortage', caption: 'Above equilibrium price → surplus (excess supply); below → shortage (excess demand).' },
+  ],
+  '8-2-effect-of-temperature-on-reaction-rates-and-the-concept-of-activation-energy': [
+    { label: 'Distribution', caption: 'Molecules have a spread of energies — few very slow or very fast, most in the middle.' },
+    { label: 'Temperature', caption: 'Raising T flattens and shifts the curve right; far more molecules gain high energy.' },
+    { label: 'Activation energy', caption: 'Only molecules with E ≥ Eₐ can react — the shaded tail. A small T rise greatly enlarges it.' },
+  ],
+  '23-2-radioactive-decay': [
+    { label: 'Decay curve', caption: 'N falls exponentially: the more nuclei remain, the faster the count drops.' },
+    { label: 'Half-life', caption: 'Every half-life the number remaining halves — N₀ → N₀/2 → N₀/4 → …' },
+    { label: 'Decay constant', caption: 'λ = ln2 / t½ sets the rate; activity λN is proportional to how many are left.' },
   ],
 }
 

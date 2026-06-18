@@ -57,6 +57,14 @@ const CoordGeometryExplorer = dynamic(
   () => import('./CoordGeometryExplorer').then((m) => m.CoordGeometryExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const VectorExplorer = dynamic(
+  () => import('./VectorExplorer').then((m) => m.VectorExplorer),
+  { ssr: false, loading: explorableLoading }
+)
+const StationaryWaveExplorer = dynamic(
+  () => import('./StationaryWaveExplorer').then((m) => m.StationaryWaveExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 
 /**
  * First-class, per-lesson interactive diagrams ("explorables"). Returns a React
@@ -86,6 +94,10 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(WaveExplorer, props)
     case '1-3-coordinate-geometry':
       return createElement(CoordGeometryExplorer, props)
+    case '3-7-vectors':
+      return createElement(VectorExplorer, props)
+    case '8-1-stationary-waves':
+      return createElement(StationaryWaveExplorer, props)
     default:
       return null
   }

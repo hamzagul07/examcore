@@ -1,7 +1,8 @@
 'use client'
 
-import { createElement, lazy } from 'react'
+import { createElement } from 'react'
 import type { ReactNode } from 'react'
+import dynamic from 'next/dynamic'
 import { hasExplorable } from '@/lib/courses/explorables'
 
 /**
@@ -13,10 +14,16 @@ export type ExplorableProps = {
   stepCount: number
 }
 
-// Module-level lazy components (stable references — created once at import,
-// never during render). Heavier interactive code stays off the critical path.
-const QuadraticExplorer = lazy(() =>
-  import('./QuadraticExplorer').then((m) => ({ default: m.QuadraticExplorer }))
+// Client-only, code-split components. Explorables are Pro-gated + purely
+// interactive, so they have no SSR value — rendering them client-only (ssr:false)
+// keeps their heavier deps (framer-motion, KaTeX) off the server stream entirely
+// and prevents any SSR-time stalls. Module-level = stable references.
+const explorableLoading = () =>
+  createElement('div', { className: 'diagram-explorable-loading', 'aria-hidden': true })
+
+const QuadraticExplorer = dynamic(
+  () => import('./QuadraticExplorer').then((m) => m.QuadraticExplorer),
+  { ssr: false, loading: explorableLoading }
 )
 
 /**

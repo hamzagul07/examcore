@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9708 A Level externalities — MPC, MSC, MPB, MSB, and welfare analysis with GeoGebra.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Distinguish private and social costs and benefits.",
     "Analyse negative and positive externalities on diagrams.",
@@ -48,12 +48,104 @@
     {
       "front": "What is a Pigouvian subsidy?",
       "back": "A per-unit subsidy equal to the marginal external benefit at the social optimum — encourages more consumption/production of goods with positive externalities."
+    },
+    {
+      "front": "What is an externality?",
+      "back": "A spillover effect of production or consumption on a third party not directly involved in the transaction. It can be positive (a benefit) or negative (a cost)."
+    },
+    {
+      "front": "Define Marginal Social Cost (MSC).",
+      "back": "The total cost to society of producing one extra unit of a good. It is calculated as the sum of the Marginal Private Cost (MPC) and any external costs. Formula: MSC = MPC + External Cost."
+    },
+    {
+      "front": "Define Marginal Social Benefit (MSB).",
+      "back": "The total benefit to society of consuming one extra unit of a good. It is calculated as the sum of the Marginal Private Benefit (MPB) and any external benefits. Formula: MSB = MPB + External Benefit."
+    },
+    {
+      "front": "What is meant by 'deadweight welfare loss' in the context of externalities?",
+      "back": "The loss of economic welfare to society that occurs when the market is not at the socially optimal level of output (where MSB=MSC). It represents the value of the welfare that is lost due to overproduction or under-consumption."
+    },
+    {
+      "front": "When does market failure occur due to externalities?",
+      "back": "Market failure occurs because the price mechanism only accounts for private costs and benefits (MPC and MPB), ignoring external costs and benefits. This leads to an equilibrium output that is not allocatively efficient (where MSB ≠ MSC)."
     }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Externalities** (7.4) are core A Level diagram work. Shade **DWL** and label **Q_market** vs **Q_social** on every answer. Distinguish **production** vs **consumption** externalities."
+    },
+    {
+      "type": "heading",
+      "content": "Private Costs, Private Benefits and the Market Equilibrium"
+    },
+    {
+      "type": "text",
+      "content": "In a free market, economic agents (consumers and producers) make decisions based on their own self-interest. Producers decide how much to supply based on their private costs of production, represented by the Marginal Private Cost (MPC) curve. This curve is effectively the firm's supply curve. Consumers decide how much to demand based on the utility or satisfaction they receive, represented by the Marginal Private Benefit (MPB) curve, which is the demand curve. The market equilibrium occurs where MPC equals MPB. At this point, the price (P_mkt) and quantity (Q_mkt) are determined. This equilibrium is privately optimal, meaning no individual consumer or producer can be made better off by changing their behaviour, assuming they only consider their own costs and benefits."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Marginal Private Cost (MPC) is the cost to the producer of producing one additional unit of a good.",
+        "Marginal Private Benefit (MPB) is the benefit to the consumer of consuming one additional unit of a good.",
+        "The free market equilibrium is established where MPC = MPB.",
+        "This equilibrium does not account for any effects on third parties outside the transaction."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Negative Externalities and Social Costs"
+    },
+    {
+      "type": "text",
+      "content": "A negative externality is a cost imposed on a third party who is not directly involved in the production or consumption of a good. A classic example is pollution from a factory. These external costs are not factored into the producer's decision-making. The true cost to society is the Social Cost, which is the sum of the private cost and the external cost. This is shown by the Marginal Social Cost (MSC) curve, where MSC = MPC + External Cost. Because the MSC is higher than the MPC, the socially optimal level of output (Q_soc), where MSC = MSB, is lower than the market equilibrium output (Q_mkt). The free market therefore results in overproduction and a deadweight welfare loss, representing a misallocation of resources and market failure."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Negative externalities are spillover costs to third parties.",
+        "Marginal Social Cost (MSC) = Marginal Private Cost (MPC) + External Costs.",
+        "The MSC curve lies above the MPC curve.",
+        "The market outcome is overproduction (Q_mkt > Q_soc) and a deadweight welfare loss."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Positive Externalities and Social Benefits"
+    },
+    {
+      "type": "text",
+      "content": "A positive externality is a benefit conferred on a third party from the production or consumption of a good. For instance, an individual receiving a vaccination not only protects themselves (private benefit) but also reduces the likelihood of others in the community contracting the disease (external benefit). The full benefit to society is the Social Benefit, which is the sum of the private benefit and the external benefit. This is represented by the Marginal Social Benefit (MSB) curve, where MSB = MPB + External Benefit. As the MSB is greater than the MPB, the socially optimal level of consumption (Q_soc) is higher than the market equilibrium (Q_mkt). The free market leads to under-consumption and a potential welfare gain that is not realised, creating a deadweight welfare loss."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Positive externalities are spillover benefits to third parties.",
+        "Marginal Social Benefit (MSB) = Marginal Private Benefit (MPB) + External Benefits.",
+        "The MSB curve lies above the MPB curve.",
+        "The market outcome is under-consumption (Q_mkt < Q_soc) and a deadweight welfare loss."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Welfare Analysis and Allocative Efficiency"
+    },
+    {
+      "type": "text",
+      "content": "The presence of externalities signifies market failure because the free market fails to achieve allocative efficiency. Allocative efficiency occurs at the output level where society's welfare is maximised, which is where Marginal Social Benefit (MSB) equals Marginal Social Cost (MSC). In a market with externalities, the private equilibrium (MPC = MPB) does not coincide with this social optimum. The divergence creates a deadweight welfare loss, shown on a diagram as the triangle pointing towards the socially optimal quantity. This triangle represents the total loss of consumer and producer surplus to society resulting from the overproduction (negative externality) or under-consumption (positive externality). The goal of government intervention, such as taxes or subsidies, is to correct this market failure and move the market towards the allocatively efficient output."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Allocative efficiency is achieved when MSB = MSC.",
+        "Externalities cause the market equilibrium (MPC = MPB) to diverge from the social optimum.",
+        "This divergence results in a deadweight welfare loss, indicating a misallocation of resources.",
+        "Interactive tools like GeoGebra can dynamically illustrate how the size of the externality affects the size of the deadweight welfare loss."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, diagrams are crucial. Always fully label your axes (Price/Cost/Benefit and Quantity), all curves (MPC, MSC, MPB, MSB), and both the market equilibrium (P_mkt, Q_mkt) and the socially optimal equilibrium (P_soc, Q_soc). Clearly shade and label the area of deadweight welfare loss. A common mistake is to draw the welfare loss triangle pointing to the wrong equilibrium; it should always point towards the socially optimal quantity, Q_soc."
     },
     {
       "type": "heading",
@@ -100,10 +192,22 @@
     {
       "type": "resources",
       "items": [
-        { "label": "7.3 Efficiency and market failure", "href": "/courses/9708/7-3-efficiency-and-market-failure" },
-        { "label": "8.1 Government policies to correct market failure", "href": "/courses/9708/8-1-government-policies-to-achieve-efficient-resource-allocation-and-correct-market-failure" },
-        { "label": "3.2 Methods of government intervention", "href": "/courses/9708/3-2-methods-and-effects-of-government-intervention-in-markets" },
-        { "label": "9708 course index", "href": "/courses/9708" }
+        {
+          "label": "7.3 Efficiency and market failure",
+          "href": "/courses/9708/7-3-efficiency-and-market-failure"
+        },
+        {
+          "label": "8.1 Government policies to correct market failure",
+          "href": "/courses/9708/8-1-government-policies-to-achieve-efficient-resource-allocation-and-correct-market-failure"
+        },
+        {
+          "label": "3.2 Methods of government intervention",
+          "href": "/courses/9708/3-2-methods-and-effects-of-government-intervention-in-markets"
+        },
+        {
+          "label": "9708 course index",
+          "href": "/courses/9708"
+        }
       ]
     }
   ],
@@ -138,5 +242,72 @@
         "embedHint": "Tax per unit = external cost at optimum."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "q": "Does the socially optimal outcome mean there should be zero pollution?",
+      "a": "No, this is a common misconception. The socially optimal outcome (where MSC = MSB) usually involves some level of production and therefore some level of pollution. The goal is not to eliminate all pollution, which would likely mean halting all production, but to ensure that the level of production is reduced to the point where the marginal social cost of the last unit produced equals its marginal social benefit. It's about balancing the benefits of production with the costs of pollution."
+    },
+    {
+      "q": "If a positive externality exists, why doesn't the market just produce more?",
+      "a": "The market doesn't 'know' about the external benefit. Individual consumers make decisions based on their private benefit (MPB) and the market price. Since they do not receive the external benefits themselves, they are unwilling to pay a higher price to reflect them. Similarly, producers respond to this lower market demand. As a result, the quantity demanded and supplied (Q_mkt) is less than the socially optimal quantity (Q_soc) where the full social benefit is recognised. This under-consumption is the core of the market failure."
+    },
+    {
+      "q": "Is the welfare loss triangle just lost profit for firms?",
+      "a": "No, the deadweight welfare loss is a loss to society as a whole, not just to firms. For a negative externality, it represents the excess of social costs over social benefits for the units produced beyond the social optimum (between Q_soc and Q_mkt). This loss is borne by the third parties suffering the externality. For a positive externality, it represents the potential net benefit to society (excess of MSB over MSC) that is not realised because too little of the good is consumed. It is a loss of total social surplus, which includes consumer surplus, producer surplus, and the welfare of third parties."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Negative and Positive Externalities",
+    "columns": [
+      "Feature",
+      "Negative Externality",
+      "Positive Externality"
+    ],
+    "rows": [
+      {
+        "property": "Definition",
+        "cells": [
+          "A cost imposed on a third party from an economic transaction.",
+          "A benefit conferred on a third party from an economic transaction."
+        ]
+      },
+      {
+        "property": "Key Relationship",
+        "cells": [
+          "Marginal Social Cost > Marginal Private Cost (MSC > MPC)",
+          "Marginal Social Benefit > Marginal Private Benefit (MSB > MPB)"
+        ]
+      },
+      {
+        "property": "Market Outcome",
+        "cells": [
+          "Overproduction/over-consumption relative to the social optimum (Q_mkt > Q_soc).",
+          "Underproduction/under-consumption relative to the social optimum (Q_mkt < Q_soc)."
+        ]
+      },
+      {
+        "property": "Welfare Implication",
+        "cells": [
+          "Deadweight welfare loss due to excess social cost over social benefit.",
+          "Deadweight welfare loss due to unrealised net social benefit."
+        ]
+      },
+      {
+        "property": "Classic Example",
+        "cells": [
+          "Air pollution from a factory (negative externality of production).",
+          "Improved public health from vaccinations (positive externality of consumption)."
+        ]
+      },
+      {
+        "property": "Typical Government Response",
+        "cells": [
+          "Indirect taxes (Pigouvian tax), regulation, tradable permits.",
+          "Subsidies, government provision, positive advertising."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

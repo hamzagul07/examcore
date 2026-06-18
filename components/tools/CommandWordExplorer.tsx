@@ -1,9 +1,18 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type CSSProperties } from 'react'
 import { COMMAND_WORD_TIERS, type CommandWord, type CommandWordTier } from '@/lib/seo/command-words'
 
 const TIER_ORDER: CommandWordTier[] = ['recall', 'understanding', 'application', 'analysis', 'evaluation']
+
+/** Each depth tier gets a distinct accent (uses the shared subject-accent palette). */
+const TIER_ACCENT: Record<CommandWordTier, string> = {
+  recall: 'var(--acc-slate)',
+  understanding: 'var(--acc-blue)',
+  application: 'var(--acc-teal)',
+  analysis: 'var(--acc-violet)',
+  evaluation: 'var(--ink)',
+}
 
 export function CommandWordExplorer({ words }: { words: CommandWord[] }) {
   const [query, setQuery] = useState('')
@@ -28,7 +37,7 @@ export function CommandWordExplorer({ words }: { words: CommandWord[] }) {
   })).filter((g) => g.items.length > 0)
 
   return (
-    <div className="cmd-tool">
+    <div className="cmd-tool subject-accented">
       <div className="cmd-controls">
         <input
           type="search"
@@ -67,11 +76,15 @@ export function CommandWordExplorer({ words }: { words: CommandWord[] }) {
         </p>
       ) : (
         grouped.map((group) => (
-          <section key={group.tier} className="cmd-group">
+          <section
+            key={group.tier}
+            className="cmd-group"
+            style={{ '--acc': TIER_ACCENT[group.tier] } as CSSProperties}
+          >
             <h2 className="ms-overline cmd-group-head">{COMMAND_WORD_TIERS[group.tier]}</h2>
             <ul className="cmd-list">
               {group.items.map((w) => (
-                <li key={w.word} className="cmd-card">
+                <li key={w.word} className="cmd-card ec-card-accent-edge">
                   <h3 className="cmd-word">{w.word}</h3>
                   <p className="cmd-meaning">{w.meaning}</p>
                   <dl className="cmd-detail">

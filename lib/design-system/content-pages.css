@@ -660,3 +660,59 @@
     position: static;
   }
 }
+
+/* Grade calculator — official data picker + table */
+.gb-official {
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  border: 1px solid color-mix(in srgb, var(--ec-brand) 35%, transparent);
+  border-radius: var(--ec-radius-lg, 16px);
+  background: var(--ec-brand-muted);
+}
+
+.gb-official-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.gb-field select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid var(--ec-border);
+  border-radius: 10px;
+  background: var(--ec-bg, #fff);
+  color: var(--ec-text-primary);
+}
+
+.gb-field select:focus {
+  outline: 2px solid var(--ec-brand);
+  outline-offset: 1px;
+}
+
+.gb-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.gb-data-table th,
+.gb-data-table td {
+  border: 1px solid var(--ec-border);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.gb-data-table th {
+  background: var(--ec-brand-muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ec-text-secondary);
+}
+
+.gb-data-table td.mono,
+.gb-data-table th:not(:nth-child(2)) {
+  text-align: center;
+}

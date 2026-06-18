@@ -24,8 +24,11 @@ export const EXPLORABLE_SLUGS: ReadonlySet<string> = new Set<string>([
   '8-1-stationary-waves',
   '10-3-potential-dividers',
   '17-1-simple-harmonic-oscillations',
+  '23-2-radioactive-decay',
   // Economics (9708)
   '2-4-the-interaction-of-demand-and-supply',
+  // Chemistry (9701)
+  '8-2-effect-of-temperature-on-reaction-rates-and-the-concept-of-activation-energy',
 ])
 
 export function hasExplorable(slug: string): boolean {

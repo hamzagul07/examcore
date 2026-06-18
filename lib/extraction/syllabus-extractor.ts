@@ -5,6 +5,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { extractJSON } from '@/lib/marking/json'
 import { generateGeminiWithContents } from '@/lib/ai/gemini-text'
 import { GEMINI_FLASH_MODEL } from '@/lib/ai/gemini-models'
+import { isVertexAIEnabled } from '@/lib/ai/gemini-config'
 import { getGeminiRetryStats, resetGeminiRetryStats } from '@/lib/marking/gemini-retry'
 import {
   getPdfPageCountFromPdfLib,
@@ -354,9 +355,15 @@ async function extractChunk(
         ],
       },
     ],
-    // Flash, not Pro: Pro single-shot PDF extraction was timing out (504/120s).
-    // Flash is fast and accurate enough for listing structured outcomes.
-    { task: 'syllabus-extraction', model: GEMINI_FLASH_MODEL, maxOutputTokens: 65536, temperature: 0 }
+    // On the free API key, Pro single-shot PDF extraction times out (504/120s),
+    // so fall back to Flash there. On Vertex (reliable infra, no 504) use the
+    // task default (Pro) — it extracts these syllabus PDFs far better than Flash.
+    {
+      task: 'syllabus-extraction',
+      model: isVertexAIEnabled() ? undefined : GEMINI_FLASH_MODEL,
+      maxOutputTokens: 65536,
+      temperature: 0,
+    }
   )
 
   const parsed = extractJSON(response.text ?? '') as Record<string, unknown>

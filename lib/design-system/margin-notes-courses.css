@@ -194,7 +194,7 @@
 .qex-panel { padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; background: var(--bg-soft); }
 .qex-eq { display: flex; flex-direction: column; gap: 8px; }
 .qex-eq-row { display: flex; align-items: center; gap: 8px; font-size: 16px; color: var(--text); flex-wrap: wrap; }
-.qex-eq-tag { font-size: 9px; letter-spacing: 0.1em; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; }
+.qex-eq-tag { flex-shrink: 0; font-size: 10px; letter-spacing: 0.08em; font-weight: 600; color: var(--text-2); background: var(--bg-soft); border: 1px solid var(--border-strong); border-radius: 4px; padding: 3px 7px; }
 
 .qex-disc { display: flex; flex-direction: column; gap: 2px; border-radius: 10px; padding: 10px 14px; border: 1.5px solid var(--border); background: var(--surface); transition: box-shadow 200ms ease, border-color 200ms ease; }
 .qex-disc.hot { box-shadow: 0 0 0 3px var(--ink-soft); }

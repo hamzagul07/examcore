@@ -14,6 +14,87 @@
     },
     {
       "type": "heading",
+      "content": "Deconstructing the Planning Question (Q1): A Systematic Approach"
+    },
+    {
+      "type": "text",
+      "content": "The 15-mark planning question requires a logical, detailed, and safe experimental plan. Begin by deconstructing the prompt to identify the independent variable (IV), the dependent variable (DV), and the relationship to be tested. Your response must be structured into clear sections. Start with a labelled diagram of the apparatus. Follow this with a step-by-step method for collecting data, specifying the instruments used (e.g., 'digital callipers' not 'a tool to measure width') and how you will vary the IV and measure the DV. Crucially, detail how you will keep other variables constant. The analysis section must explain how to process the data, typically by plotting a linearised graph, and how to derive the required constant from the gradient or intercept. Finally, include at least one specific and relevant safety precaution."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Identify the Independent Variable (IV), Dependent Variable (DV), and variables to be kept constant.",
+        "Draw a clear, fully labelled diagram of the experimental setup. Use standard circuit symbols where appropriate.",
+        "Write a sequential procedure, explaining how to vary the IV over a wide range (at least 6-8 values) and how to accurately measure the DV.",
+        "For reliability, state that you will take repeat readings of the DV at each value of the IV and calculate a mean.",
+        "Describe the graphical analysis: linearise the given equation and state what to plot on the y-axis and x-axis to get a straight line.",
+        "Explain how the constants in the equation are determined from the gradient and/or y-intercept of the graph.",
+        "Include at least one significant safety precaution with a reason (e.g., 'wear safety goggles as the wire may snap under tension')."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Analysis and Evaluation (Q2): From Raw Data to Final Uncertainty"
+    },
+    {
+      "type": "text",
+      "content": "Question 2 tests your ability to process data, calculate uncertainties, and evaluate the result. You will be given a table of raw data to complete by calculating derived quantities and their absolute uncertainties. Remember the rules: for `y = a ± b`, `Δy = Δa + Δb`; for `y = ab` or `y = a/b`, `Δy/y = Δa/a + Δb/b`. For `y = a^n`, `Δy/y = n(Δa/a)`. After processing, you must plot a graph, including error bars for the calculated DV. The length of each error bar is twice the absolute uncertainty of that point. Your final task is to determine a value from the graph, typically from the gradient, and find its uncertainty using the 'worst acceptable line' method. Always present your final answer as `value ± uncertainty` with correct units and significant figures."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Calculate derived quantities and their absolute uncertainties, showing your working for at least one row.",
+        "Choose sensible scales for your graph axes, using at least half of the graph paper in both directions.",
+        "Plot points accurately and draw error bars for the y-axis quantity. The bar should extend `Δy` above and `Δy` below the point.",
+        "Draw a single, thin Line of Best Fit (LOBF) that has a balance of points on either side and passes through the error bars.",
+        "Calculate the gradient of the LOBF using a large triangle with vertices read from the line itself, not from data points.",
+        "Determine the y-intercept either by reading from the axis (if the scale starts at zero) or by substituting a point from your LOBF into `y = mx + c`."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Q2, when calculating the uncertainty in a derived quantity like `k = x/y²`, first find the percentage uncertainty: `%Δk = %Δx + 2(%Δy)`. Then, convert this back to an absolute uncertainty using `Δk = (%Δk / 100) * k`. Examiners look for this correct propagation of uncertainties."
+    },
+    {
+      "type": "heading",
+      "content": "Senpai Corner: Mastering the Worst Acceptable Line (WAL)"
+    },
+    {
+      "type": "text",
+      "content": "The Worst Acceptable Line (WAL) is the key to finding the uncertainty in your gradient and y-intercept. It is the steepest or shallowest straight line that is still a plausible fit for the data, given the error bars. By definition, the WAL must pass through *all* of the error bars. To draw it, pivot your ruler on the very top of the first point's error bar and rotate it until it just touches the very bottom of the last point's error bar (this gives the shallowest WAL). Calculate the gradient of this line (`m_WAL`). The uncertainty in the gradient is then simply `Δm = |m_LOBF - m_WAL|`. A similar method gives the uncertainty in the y-intercept, `Δc = |c_LOBF - c_WAL|`. This technique is non-negotiable for top marks."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The WAL must pass through every single error bar on the graph.",
+        "There are two possible WALs (steepest and shallowest); you only need to draw and calculate one.",
+        "To draw the shallowest WAL, pivot from the top of the first error bar to the bottom of the last error bar.",
+        "To draw the steepest WAL, pivot from the bottom of the first error bar to the top of the last error bar.",
+        "Calculate the gradient of the WAL using a large triangle, just as you did for the LOBF.",
+        "The final uncertainty is the magnitude of the difference between the best fit and worst fit values.",
+        "Always quote your final result in the form `gradient = m_LOBF ± Δm` to the correct number of significant figures."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Worked Example: Finding 'g' from a Pendulum"
+    },
+    {
+      "type": "text",
+      "content": "Consider an experiment to find `g` using `T = 2π√(L/g)`. The data is linearised by plotting `T²` against `L`. The relationship is `T² = (4π²/g)L`. This is in the form `y = mx`, where `y = T²`, `x = L`, and the gradient `m = 4π²/g`. Suppose your LOBF gives a gradient `m_LOBF = 4.02 s²m⁻¹`. Your WAL gives a gradient `m_WAL = 4.18 s²m⁻¹`. The best value for `g` is `g_best = 4π² / m_LOBF = 4π² / 4.02 = 9.82 ms⁻²`. The 'worst' value for `g` is `g_worst = 4π² / m_WAL = 4π² / 4.18 = 9.45 ms⁻²`. The uncertainty in `g` is `Δg = |g_best - g_worst| = |9.82 - 9.45| = 0.37 ms⁻²`. So, the final result is `g = (9.8 ± 0.4) ms⁻²`."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Step 1: Determine the gradient of the LOBF (`m_LOBF`) and WAL (`m_WAL`).",
+        "Step 2: Use the relationship `m = 4π²/g` to calculate the 'best' value of `g` from `m_LOBF`.",
+        "Step 3: Calculate the 'worst' value of `g` from `m_WAL`.",
+        "Step 4: Find the absolute uncertainty `Δg = |g_best - g_worst|`.",
+        "Step 5: Quote the final answer `g = g_best ± Δg`, ensuring the uncertainty is to 1 or 2 s.f. and the value is to the same number of decimal places."
+      ]
+    },
+    {
+      "type": "heading",
       "content": "Understanding Experimental Errors"
     },
     {
@@ -359,7 +440,7 @@
     }
   ],
   "generatorVersion": "senpai-published-1",
-  "updated": "2026-06-09",
+  "updated": "2026-06-18",
   "simpleExplanation": {
     "title": "Two halves of Paper 5",
     "summary": "Question 1 is design: sketch the kit, control variables, and say how your graph extracts constants. Question 2 is analysis: propagate uncertainties, plot error bars, draw LOBF + WAL, then quote gradient and intercept with absolute uncertainty.",
@@ -427,6 +508,79 @@
     {
       "front": "What improves precision in an experiment?",
       "back": "Repeat readings and average; use instruments with finer resolution."
+    },
+    {
+      "front": "What are the 7 key elements required for a 15-mark Paper 5 planning question?",
+      "back": "1. Defining the problem (IV, DV, controls). 2. Labelled diagram. 3. Method of data collection (step-by-step). 4. Choice of instruments and their precision. 5. Method of analysis (linearised graph). 6. At least one specific safety precaution. 7. Detail on ensuring reliability (e.g., repeat readings)."
+    },
+    {
+      "front": "How do you linearise the equation `V = V₀e^(-t/RC)` to find the time constant, τ = RC?",
+      "back": "Take natural logs of both sides: `ln(V) = ln(V₀) + ln(e^(-t/RC))`, which simplifies to `ln(V) = - (1/RC)t + ln(V₀)`. This is in the form `y = mx + c`. Plot `ln(V)` on the y-axis against `t` on the x-axis. The gradient `m` will be `-1/RC`. Therefore, the time constant `RC = -1/gradient`."
+    },
+    {
+      "front": "What is the rule for drawing a Line of Best Fit (LOBF)?",
+      "back": "The LOBF should be a single, thin, continuous line that represents the general trend of the data. It should have a balanced distribution of plotted points above and below the line and should pass through as many of the error bars as possible."
+    },
+    {
+      "front": "What is the definitive rule for drawing a Worst Acceptable Line (WAL)?",
+      "back": "The WAL is the line of maximum or minimum slope that passes through *every single error bar*. It is typically drawn by pivoting on an extreme point of the first or last error bar to just touch an extreme point of the error bar at the other end of the graph."
+    },
+    {
+      "front": "How is the final uncertainty in a gradient, Δm, determined and stated?",
+      "back": "First, calculate the gradient of the Line of Best Fit (`m_LOBF`). Then, draw a Worst Acceptable Line and calculate its gradient (`m_WAL`). The uncertainty is the magnitude of the difference: `Δm = |m_LOBF - m_WAL|`. The result is stated as `m_LOBF ± Δm`."
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Do I have to draw error bars for both the x and y axes?",
+      "a": "No, this is a common misconception. For Cambridge A-Level Physics, you are almost always expected to calculate and draw error bars for the y-axis quantity only. The uncertainty in the independent variable (x-axis) is usually considered negligible in comparison. Only draw x-axis error bars if the question explicitly instructs you to or if their uncertainty is unusually large and significant."
+    },
+    {
+      "q": "For the planning question, how detailed does my diagram need to be?",
+      "a": "Your diagram must be a clear, labelled line drawing showing the essential apparatus in its correct arrangement for the experiment. It does not need to be artistic, but it must be functional and unambiguous. All key components mentioned in your method must be present and labelled (e.g., power supply, voltmeter, ammeter, variable resistor, test wire, metre rule). If a circuit is involved, a separate, standard circuit diagram is often the clearest approach."
+    },
+    {
+      "q": "My Worst Acceptable Line doesn't go through all the error bars. What have I done wrong?",
+      "a": "The WAL, by definition, must pass through every single error bar. If yours does not, it is not a valid 'worst' line and will not score marks. The most common error is drawing a line that is simply 'a bit steeper' than the best fit line. The correct technique is to 'pivot' your ruler on an extreme of an error bar at one end of the graph (e.g., the very top of the first error bar) and rotate it until it just touches an extreme of an error bar at the other end (e.g., the very bottom of the last error bar). This ensures it cuts through all error bars in between."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Line of Best Fit and Worst Acceptable Line",
+    "columns": [
+      "Feature",
+      "Line of Best Fit (LOBF)",
+      "Worst Acceptable Line (WAL)"
+    ],
+    "rows": [
+      {
+        "property": "Purpose",
+        "cells": [
+          "To show the most probable trend and relationship between the variables.",
+          "To determine the maximum plausible uncertainty in the gradient and/or y-intercept."
+        ]
+      },
+      {
+        "property": "Positioning",
+        "cells": [
+          "Balanced distribution of points on either side; passes through as many error bars as possible.",
+          "Pivoted on an extreme point's error bar; must pass through ALL error bars, often at their limits."
+        ]
+      },
+      {
+        "property": "Gradient represents...",
+        "cells": [
+          "The best experimental value for the constant being determined.",
+          "The maximum or minimum possible value for the constant, used to find the uncertainty."
+        ]
+      },
+      {
+        "property": "Uniqueness",
+        "cells": [
+          "There is only one 'best' line for a given set of points.",
+          "There are two WALs: one steepest, one shallowest. You only need to draw and use one of them."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

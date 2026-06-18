@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "This lesson defines potential difference (p.d.) as the energy transferred per unit charge and electrical power as the rate of energy transfer. It explores the key equations P = VI, P = I²R, and P = V²/R, and their applications in solving circuit problems.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Define potential difference and the volt.",
     "Recall and use the formula for power: P = VI.",
@@ -73,12 +73,108 @@
     {
       "front": "A common mistake is to confuse p.d. with e.m.f. What is the key difference?",
       "back": "E.m.f. (electromotive force) is the energy converted from chemical/other forms to electrical energy per unit charge by a source. P.d. is the energy converted from electrical to other forms per unit charge in a component."
+    },
+    {
+      "front": "What is the definition of the volt (V)?",
+      "back": "One volt is the potential difference between two points when one joule of work is done in moving one coulomb of charge from one point to the other. (1 V = 1 J C⁻¹)"
+    },
+    {
+      "front": "How is the equation P = I²R derived?",
+      "back": "Start with the fundamental power equation, P = VI. From Ohm's Law, we know V = IR. Substitute this expression for V into the power equation: P = (IR) × I, which simplifies to P = I²R."
+    },
+    {
+      "front": "Why is electricity transmitted at very high voltages over long distances?",
+      "back": "To minimise power loss. Power loss in cables is given by P = I²R. For a given power transmission (P_transmitted = VI), using a very high voltage (V) allows for a very low current (I). Since the power loss is proportional to the square of the current (I²), this significantly reduces the energy wasted as heat in the cables."
+    },
+    {
+      "front": "A 6 Ω resistor and a 3 Ω resistor are connected in series to a battery. Which resistor dissipates more power, and why?",
+      "back": "The 6 Ω resistor. In a series circuit, the current (I) is the same through both resistors. Using P = I²R, power is directly proportional to resistance (R). Therefore, the resistor with the larger resistance dissipates more power."
+    },
+    {
+      "front": "A 6 Ω resistor and a 3 Ω resistor are connected in parallel to a battery. Which resistor dissipates more power, and why?",
+      "back": "The 3 Ω resistor. In a parallel circuit, the potential difference (V) is the same across both resistors. Using P = V²/R, power is inversely proportional to resistance (R). Therefore, the resistor with the smaller resistance dissipates more power."
     }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "Every time you switch on a light, charge your phone, or use a kettle, you are witnessing the principles of potential difference and power in action. Understanding how 'electrical pressure' drives current and how we can calculate the rate of energy use is fundamental to the study of electricity. This lesson will equip you with the essential formulas and concepts to analyse any DC circuit."
+    },
+    {
+      "type": "heading",
+      "content": "The Concept of Potential Difference"
+    },
+    {
+      "type": "text",
+      "content": "Potential difference (p.d.), often called voltage, is a measure of the energy transferred between two points in a circuit. Formally, it is defined as the work done per unit positive charge as it moves from one point to the other. Imagine charge carriers (like electrons) moving through a component, such as a lamp. As they pass through, they do work, transferring their electrical potential energy into other forms like light and heat. The p.d. across the lamp quantifies this energy transfer. The defining equation is V = W/Q, where V is the p.d., W is the work done (energy transferred), and Q is the charge. The SI unit for p.d. is the volt (V), where one volt is equivalent to one joule per coulomb (1 V = 1 J C⁻¹)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Potential difference (p.d.) is the energy transferred from electrical potential energy to other forms, per unit charge.",
+        "The defining equation is V = W/Q.",
+        "The unit of p.d. is the volt (V), where 1 V = 1 J C⁻¹.",
+        "P.d. is measured across a component using a voltmeter connected in parallel."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When defining potential difference, be precise. State that it is the 'work done per unit charge' or 'energy transferred per unit charge'. Simply saying 'energy per charge' may be considered too vague. It is the conversion of electrical energy into other forms that defines p.d. across a load."
+    },
+    {
+      "type": "heading",
+      "content": "Electrical Power: The Rate of Energy Transfer"
+    },
+    {
+      "type": "text",
+      "content": "Electrical power is the rate at which electrical energy is transferred or converted in a circuit component. Since power (P) is the rate of doing work (P = W/t), we can combine this with the definition of potential difference (V = W/Q) to derive the fundamental equation for electrical power. By rearranging for work done, W = VQ, and substituting this into the power equation, we get P = VQ/t. We know that electric current (I) is the rate of flow of charge, I = Q/t. Substituting this relationship into our expression for power gives the essential equation P = VI. This means the power dissipated in any component is the product of the potential difference across it and the current flowing through it."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Power is the rate of energy transfer, P = W/t, measured in watts (W).",
+        "The fundamental equation for electrical power is P = VI.",
+        "This equation is universally applicable to any electrical component.",
+        "It calculates the rate at which a component converts electrical energy into other forms (e.g., heat, light)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Power Dissipation in Resistors: P = I²R"
+    },
+    {
+      "type": "text",
+      "content": "For components that obey Ohm's Law (ohmic resistors), we can derive two further equations for power. By combining P = VI with Ohm's Law (V = IR), we can substitute for V. This yields P = (IR) × I, which simplifies to P = I²R. This equation is particularly powerful for analysing power dissipation, usually as heat, in resistive components. The I² term is highly significant; it shows that the power dissipated as heat is proportional to the square of the current. This is why even a small increase in current can cause a large increase in heat generation, a principle that underlies the operation of fuses and the reason for significant energy losses in power transmission lines."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "By substituting V = IR into P = VI, we derive P = I²R.",
+        "This equation is ideal for calculating power dissipated as heat in a resistor.",
+        "Power is proportional to the square of the current for a fixed resistance.",
+        "It is essential for problems involving series circuits, where current is the common factor."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Power, Voltage and Resistance: P = V²/R"
+    },
+    {
+      "type": "text",
+      "content": "The third power equation is derived by again starting with P = VI, but this time substituting for the current, I. From Ohm's Law, we can rearrange to get I = V/R. Substituting this into the power equation gives P = V × (V/R), which simplifies to P = V²/R. This form is most useful in situations where the potential difference is the known, constant quantity. A common example is household appliances connected in parallel to the mains supply, which provides a constant voltage. This equation shows that for a fixed voltage, the power is inversely proportional to resistance. Therefore, a higher-power device (like a 2000 W kettle) has a much lower resistance than a lower-power device (like a 50 W lamp)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "By substituting I = V/R into P = VI, we derive P = V²/R.",
+        "This equation is ideal for problems involving parallel circuits, where voltage is the common factor.",
+        "For a fixed voltage, power is inversely proportional to resistance.",
+        "It explains why high-power appliances have low resistance."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to compare the power dissipated in two resistors, first identify if they are in series or parallel. If in series, current is constant, so use P = I²R and compare resistances. If in parallel, voltage is constant, so use P = V²/R and compare resistances."
     },
     {
       "type": "heading",
@@ -202,5 +298,65 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "faq": [
+    {
+      "q": "Does a higher voltage always mean more power?",
+      "a": "Not necessarily. Power depends on both voltage and current (P = VI). A device can operate at a high voltage but draw a very small current, resulting in low power. Conversely, a low-voltage device can draw a large current and have high power. For a fixed resistance, power is proportional to the square of the voltage (P = V²/R), but in general, you must consider both V and I."
+    },
+    {
+      "q": "Is potential difference the same as voltage?",
+      "a": "Yes, in the context of A-Level Physics, the terms 'potential difference' (p.d.) and 'voltage' are used interchangeably. Both refer to the work done per unit charge (V = W/Q) and are measured in volts (V). 'Potential difference' is the more formal and descriptive term, emphasising that it is a measure of the difference in electrical potential between two points."
+    },
+    {
+      "q": "If P = I²R, power increases with resistance, but P = V²/R means power decreases with resistance. Which is correct?",
+      "a": "Both equations are correct, but they describe different physical constraints. P = I²R is used when current (I) is the constant parameter. In this case, power is proportional to resistance. This applies when comparing resistors in series. P = V²/R is used when potential difference (V) is the constant parameter. Here, power is inversely proportional to resistance. This applies when comparing resistors in parallel. The key is to identify which quantity (V or I) is constant for the components being compared."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Potential Difference (p.d.) and Electromotive Force (e.m.f.)",
+    "columns": [
+      "Feature",
+      "Potential Difference (p.d.)",
+      "Electromotive Force (e.m.f.)"
+    ],
+    "rows": [
+      {
+        "property": "Definition",
+        "cells": [
+          "Energy transferred from electrical potential energy to other forms per unit charge.",
+          "Energy transferred to electrical potential energy from other forms per unit charge."
+        ]
+      },
+      {
+        "property": "Location in Circuit",
+        "cells": [
+          "Measured across a component that consumes energy (e.g., a resistor, lamp).",
+          "Measured across a source of electrical energy (e.g., a battery, generator)."
+        ]
+      },
+      {
+        "property": "Energy Conversion",
+        "cells": [
+          "Electrical energy → Other forms (heat, light, etc.)",
+          "Chemical/Mechanical/etc. energy → Electrical energy"
+        ]
+      },
+      {
+        "property": "Role in a Circuit",
+        "cells": [
+          "Drives current through a component.",
+          "Drives current around the entire circuit."
+        ]
+      },
+      {
+        "property": "In a Real Circuit",
+        "cells": [
+          "The sum of p.d.s across all external components equals the terminal p.d. of the source.",
+          "The e.m.f. is the sum of the terminal p.d. and the 'lost volts' across the internal resistance (ε = V + Ir)."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

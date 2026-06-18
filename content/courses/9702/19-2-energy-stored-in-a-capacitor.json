@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "This lesson explains how energy is stored in a capacitor. It covers the derivation of the energy equations from the potential-charge graph and their application in solving problems, including the key distinction between energy supplied by the source and energy stored in the capacitor.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Understand that charging a capacitor requires work to be done, which is stored as electrical potential energy.",
     "Derive the formulas for energy stored in a capacitor using the area under a potential-charge graph.",
@@ -65,12 +65,102 @@
     {
       "front": "What physical form does the stored energy in a capacitor take?",
       "back": "The energy is stored in the electric field created between the two oppositely charged plates."
+    },
+    {
+      "front": "What does the area under a potential difference-charge (V-Q) graph for a capacitor represent?",
+      "back": "The work done in charging the capacitor, which is equal to the electrical potential energy stored in it."
+    },
+    {
+      "front": "State the three equations for the energy (W) stored in a capacitor with capacitance C, charge Q, and potential difference V.",
+      "back": "1. W = ½ QV\n2. W = ½ CV²\n3. W = Q²/(2C)"
+    },
+    {
+      "front": "A capacitor is charged by a battery. How does the energy supplied by the battery compare to the energy stored in the capacitor?",
+      "back": "The energy supplied by the battery (QV) is exactly double the energy stored in the capacitor (½ QV)."
+    },
+    {
+      "front": "Where is the 'missing' energy when a capacitor is charged from a constant voltage source?",
+      "back": "It is dissipated as thermal energy (heat) in the resistance of the charging circuit (e.g., connecting wires). The energy lost is equal to the energy stored (½ QV)."
+    },
+    {
+      "front": "How is energy physically stored in a capacitor?",
+      "back": "It is stored as electrical potential energy in the uniform electric field that is established in the dielectric material between the two parallel plates."
     }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "Capacitors are essential components in electronics, from the flash in your camera to the timing circuits in your computer. Their ability to store and rapidly release energy is their defining feature. In this lesson, we will explore precisely how much energy a capacitor can hold and the physics that governs this storage."
+    },
+    {
+      "type": "heading",
+      "content": "Work Done and Energy Storage"
+    },
+    {
+      "type": "text",
+      "content": "Charging a capacitor involves moving charge from a power source onto its plates. Initially, the plates are neutral, but as charge accumulates, an electric field forms and a potential difference develops. To add more charge onto a plate, work must be done by the power supply against the electrostatic repulsion of the charge already present. This work done is not lost; it is converted into electrical potential energy. This energy is stored within the electric field established in the dielectric material between the capacitor's plates. The process is analogous to compressing a spring: the more it is compressed, the more work is required for each additional increment of compression."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Work is done by the power supply to separate charges and place them on opposite plates.",
+        "This work is done against the opposing potential difference across the capacitor.",
+        "The work done is stored as electrical potential energy in the electric field between the plates."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Graphical Derivation of Stored Energy"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between the charge stored (Q) and the potential difference (V) across a capacitor is defined by Q = CV. A graph of potential difference against charge (a V-Q graph) is therefore a straight line passing through the origin. The work done, dW, in moving a small amount of charge, dQ, onto the plates at a potential difference V is given by dW = V dQ. The total work done to charge the capacitor to a final charge Q and potential difference V is the sum of all these small increments. This total work corresponds to the area under the V-Q graph. Since the graph forms a triangle, the area is calculated as ½ × base × height, leading directly to the fundamental equation for stored energy."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The area under a potential difference (V) versus charge (Q) graph represents the energy stored.",
+        "The graph is a straight line through the origin, forming a right-angled triangle.",
+        "The area of this triangle is ½ × Q × V, giving the energy stored W = ½ QV."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Three Equations for Stored Energy"
+    },
+    {
+      "type": "text",
+      "content": "Starting with the base formula W = ½ QV, we can derive two alternative forms using the defining equation for capacitance, Q = CV. By substituting Q = CV into the energy equation, we get W = ½ (CV)V, which simplifies to W = ½ CV². This is the most commonly used form, especially when the capacitance and final voltage are known. Alternatively, we can rearrange Q = CV to V = Q/C and substitute this into the base formula. This gives W = ½ Q(Q/C), which simplifies to W = Q²/(2C). The choice of which equation to use depends on the quantities provided in a specific problem. Being able to use and derive all three is essential."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The three inter-convertible equations for energy stored (W) are:",
+        "W = ½ QV",
+        "W = ½ CV²",
+        "W = Q²/(2C)"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Energy Supplied vs. Energy Stored"
+    },
+    {
+      "type": "text",
+      "content": "A crucial distinction exists between the energy supplied by the source and the energy stored in the capacitor. A power source, such as a battery, provides a constant potential difference, V. The total work done by the battery to move a total charge Q is given by W_supplied = QV. However, the energy stored in the capacitor is only W_stored = ½ QV. This means that exactly half of the energy drawn from the source is stored in the capacitor's electric field. The other half is dissipated as thermal energy (heat) in the resistance of the charging circuit. This 50% energy loss is a fundamental characteristic of charging a capacitor from a constant voltage source."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Energy supplied by the source is W_supplied = QV.",
+        "Energy stored in the capacitor is W_stored = ½ QV.",
+        "Energy dissipated as heat in the circuit resistance is W_dissipated = W_supplied - W_stored = ½ QV.",
+        "Therefore, for a constant voltage source, the efficiency of charging is always 50%."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the wording of exam questions. 'Energy supplied by the battery' requires you to calculate QV. 'Energy stored in the capacitor' requires ½QV (or its other forms). 'Energy lost' or 'energy dissipated as heat' is the difference between these, which is also ½QV."
     },
     {
       "type": "heading",
@@ -150,5 +240,58 @@
       ]
     }
   ],
-  "generatorVersion": "stem-deep-author-1"
+  "generatorVersion": "stem-deep-author-1",
+  "faq": [
+    {
+      "q": "Why isn't the energy stored simply W = QV? The work done to move a charge Q through a potential V is QV.",
+      "a": "This is a common misconception. The formula W = QV applies when moving a charge Q through a *constant* potential difference V. When charging a capacitor, the potential difference is not constant; it increases from zero to its final value, V. The average potential difference during the charging process is ½V. Therefore, the work done is (total charge) × (average potential difference) = Q × (½V) = ½ QV."
+    },
+    {
+      "q": "If half the energy is always lost as heat, is charging a capacitor always 50% efficient?",
+      "a": "The 50% energy loss figure applies specifically when charging a capacitor from a *constant voltage source* (like a battery) through a resistor. In more advanced circuits, such as those using switch-mode power supplies, it is possible to charge a capacitor with much higher efficiency. However, for the scope of A-Level Physics, you can assume the 50% loss for standard DC charging circuits."
+    },
+    {
+      "q": "Does the value of the resistor in the charging circuit affect the total energy dissipated?",
+      "a": "No, surprisingly. The total amount of energy dissipated as heat is always ½ QV, regardless of the value of the resistance R. A larger resistance will mean the capacitor takes longer to charge (a larger time constant, τ = RC), so the energy is dissipated over a longer period at a lower rate (power). A smaller resistance leads to a faster charge and the same amount of energy being dissipated more quickly at a higher power. The total energy lost remains the same."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Energy in a Capacitor Charging Circuit",
+    "columns": [
+      "Feature",
+      "Energy Supplied by the Source",
+      "Energy Stored in the Capacitor"
+    ],
+    "rows": [
+      {
+        "property": "Formula",
+        "cells": [
+          "W = QV",
+          "W = ½ QV"
+        ]
+      },
+      {
+        "property": "Calculation Basis",
+        "cells": [
+          "Total charge moved at the full, constant source potential difference.",
+          "Area under the V-Q graph, representing charge moved against an increasing potential difference."
+        ]
+      },
+      {
+        "property": "Physical Form",
+        "cells": [
+          "Chemical energy converted to electrical energy by the source.",
+          "Potential energy stored in the electric field between the plates."
+        ]
+      },
+      {
+        "property": "Associated Energy Transformation",
+        "cells": [
+          "50% is stored in the capacitor, 50% is dissipated as heat in the circuit resistance.",
+          "This is the useful energy captured by the capacitor, representing 50% of the energy supplied."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

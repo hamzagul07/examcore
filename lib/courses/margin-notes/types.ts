@@ -102,6 +102,7 @@ export type MarginNotesLesson = {
   mins: number
   intro: string
   objectives?: string[]
+  subtopics?: { code?: string; title: string; detail?: string }[]
   simple?: {
     title?: string
     lead: string

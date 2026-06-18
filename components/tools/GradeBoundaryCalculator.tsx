@@ -3,7 +3,13 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { A_LEVEL_GRADES, AS_LEVEL_GRADES, computeGrade, type GradeThreshold } from '@/lib/seo/grade-boundaries'
+import {
+  A_LEVEL_GRADES,
+  AS_LEVEL_GRADES,
+  computeGrade,
+  type GradeThreshold,
+  type OfficialBoundaries,
+} from '@/lib/seo/grade-boundaries'
 
 function initialRows(grades: readonly string[]): GradeThreshold[] {
   return grades.map((grade) => ({ grade, mark: '' }))
@@ -12,9 +18,11 @@ function initialRows(grades: readonly string[]): GradeThreshold[] {
 export function GradeBoundaryCalculator({
   defaultLevel = 'A-Level',
   defaultTotal = '',
+  official = null,
 }: {
   defaultLevel?: 'A-Level' | 'AS-Level'
   defaultTotal?: string
+  official?: OfficialBoundaries | null
 }) {
   const [level, setLevel] = useState<'A-Level' | 'AS-Level'>(defaultLevel)
   const [raw, setRaw] = useState('')
@@ -26,6 +34,23 @@ export function GradeBoundaryCalculator({
   function switchLevel(next: 'A-Level' | 'AS-Level') {
     setLevel(next)
     setRows(initialRows(next === 'AS-Level' ? AS_LEVEL_GRADES : A_LEVEL_GRADES))
+  }
+
+  // Official-data picker (only when verified data is supplied)
+  const sessions = official?.sessions ?? []
+  const [sessionIdx, setSessionIdx] = useState(0)
+  const [componentCode, setComponentCode] = useState('')
+  const activeSession = sessions[sessionIdx]
+
+  function applyOfficial(code: string) {
+    setComponentCode(code)
+    const comp = activeSession?.components.find((c) => c.component === code)
+    if (!comp) return
+    setLevel('A-Level')
+    setTotal(String(comp.max))
+    setRows(
+      A_LEVEL_GRADES.map((g) => ({ grade: g, mark: g === 'A*' ? '' : comp.thresholds[g as 'A' | 'B' | 'C' | 'D' | 'E'] }))
+    )
   }
 
   function setMark(i: number, value: string) {
@@ -45,6 +70,46 @@ export function GradeBoundaryCalculator({
 
   return (
     <div className="gb-tool">
+      {official && activeSession && (
+        <div className="gb-official">
+          <p className="ms-overline" style={{ color: 'var(--ec-brand)', marginBottom: 8 }}>
+            Load official {official.code} boundaries
+          </p>
+          <div className="gb-official-controls">
+            {sessions.length > 1 && (
+              <label className="gb-field">
+                <span>Session</span>
+                <select
+                  value={sessionIdx}
+                  onChange={(e) => { setSessionIdx(Number(e.target.value)); setComponentCode('') }}
+                >
+                  {sessions.map((s, i) => (
+                    <option key={s.session} value={i}>{s.session}</option>
+                  ))}
+                </select>
+              </label>
+            )}
+            <label className="gb-field">
+              <span>Paper / component</span>
+              <select value={componentCode} onChange={(e) => applyOfficial(e.target.value)}>
+                <option value="">Choose a paper…</option>
+                {activeSession.components.map((c) => (
+                  <option key={c.component} value={c.component}>
+                    {official.code}/{c.component} — {c.paper}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <p className="gb-help micro" style={{ margin: '6px 0 0' }}>
+            Verified from the{' '}
+            <a href={activeSession.sourceUrl} target="_blank" rel="noopener noreferrer" className="ec-btn-underline">
+              official Cambridge {activeSession.session} grade thresholds
+            </a>
+            . {official.note}
+          </p>
+        </div>
+      )}
       <div className="gb-grid">
         <div className="gb-inputs">
           <div className="gb-level">

@@ -11,6 +11,27 @@
 
 export type GradeThreshold = { grade: string; mark: number | '' }
 
+/** Shape of the verified official data in content/data/grade-boundaries/{code}.json. */
+export type OfficialComponent = {
+  component: string
+  paper: string
+  max: number
+  thresholds: { A: number; B: number; C: number; D: number; E: number }
+}
+export type OfficialSession = {
+  session: string
+  sourceUrl: string
+  components: OfficialComponent[]
+}
+export type OfficialBoundaries = {
+  code: string
+  subject: string
+  level: string
+  source: string
+  note: string
+  sessions: OfficialSession[]
+}
+
 /** Default A-Level grade ladder (highest first). */
 export const A_LEVEL_GRADES = ['A*', 'A', 'B', 'C', 'D', 'E'] as const
 /** Default AS-Level grade ladder (highest first). */

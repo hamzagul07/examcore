@@ -43,4 +43,28 @@ r = computeGrade(82, 100, [
 assert.equal(r.grade, 'A', 'unsorted -> A')
 assert.equal(r.marksToNext, 8, 'A->A* gap from unsorted')
 
+// --- verified official data integrity ---
+import fs from 'node:fs'
+import path from 'node:path'
+const dataDir = path.join(process.cwd(), 'content', 'data', 'grade-boundaries')
+if (fs.existsSync(dataDir)) {
+  for (const file of fs.readdirSync(dataDir).filter((f) => f.endsWith('.json'))) {
+    const data = JSON.parse(fs.readFileSync(path.join(dataDir, file), 'utf8'))
+    assert.equal(`${data.code}.json`, file, `${file}: code matches filename`)
+    assert.ok(data.sessions?.length, `${file}: has sessions`)
+    for (const s of data.sessions) {
+      assert.ok(s.sourceUrl?.includes('cambridgeinternational.org'), `${file} ${s.session}: official source URL`)
+      for (const c of s.components) {
+        const t = c.thresholds
+        const order = [t.A, t.B, t.C, t.D, t.E]
+        for (let i = 1; i < order.length; i++) {
+          assert.ok(order[i] < order[i - 1], `${file} ${s.session} ${c.component}: thresholds must strictly descend (${order.join(',')})`)
+        }
+        assert.ok(t.A <= c.max, `${file} ${s.session} ${c.component}: A (${t.A}) must be <= max (${c.max})`)
+        assert.ok(t.E >= 0, `${file} ${s.session} ${c.component}: E >= 0`)
+      }
+    }
+  }
+}
+
 console.log('grade-boundaries.test.ts: ok')

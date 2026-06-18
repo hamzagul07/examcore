@@ -91,8 +91,25 @@
     {
       "q": "What does 'no real roots' mean graphically?",
       "a": "Graphically, 'no real roots' means the parabola does not touch or cross the x-axis at all. If the coefficient 'a' is positive, the entire curve will be above the x-axis. If 'a' is negative, the entire curve will be below the x-axis."
+    },
+    {
+      "q": "Is the vertex always the lowest point of the parabola?",
+      "a": "Only when $a > 0$. If $a < 0$ the parabola is n-shaped and the vertex is the highest point (a maximum). The sign of $a$ decides minimum versus maximum every time — try dragging the vertex above the x-axis with a negative $a$ in the explorer to see it flip."
+    },
+    {
+      "q": "Does a larger value of 'a' make the parabola wider or narrower?",
+      "a": "Narrower. Increasing $|a|$ stretches the curve vertically so it rises more steeply and looks narrower; values of $|a|$ between 0 and 1 make it wider and flatter, and a negative $a$ flips it upside-down."
     }
   ],
+  "comparisonTable": {
+    "caption": "Three ways to solve $ax^2 + bx + c = 0$ — pick the right tool",
+    "columns": ["Method", "Reach for it when…", "Always works?", "Bonus it gives you"],
+    "rows": [
+      { "property": "Factorisation", "cells": ["The factors jump out within ~20 seconds", "No — only if it factorises neatly", "The fastest marks in the exam"] },
+      { "property": "Completing the square", "cells": ["You also need the vertex, or it is a 'show that' proof", "Yes", "The vertex $(h, k)$ directly"] },
+      { "property": "Quadratic formula", "cells": ["Factors will not come, or an answer to 3 s.f. is asked", "Yes", "The discriminant $b^2 - 4ac$"] }
+    ]
+  },
   "sections": [
     {
       "type": "intro",
@@ -142,6 +159,11 @@
     {
       "type": "examTip",
       "content": "Exam questions frequently ask for the set of values of a constant, say $k$, for which a quadratic equation has 'real roots' or 'two distinct roots'. For 'real roots', use the condition $b^2 - 4ac \\ge 0$. For 'two distinct roots', use the strict inequality $b^2 - 4ac > 0$. Be careful with the wording!"
+    },
+    {
+      "type": "workedExample",
+      "question": "The equation $x^2 + (k+3)x + (k+6) = 0$ has two distinct real roots. Find the set of values of $k$.",
+      "solution": "'Two distinct real roots' means we need the discriminant to be strictly positive: $b^2 - 4ac > 0$.\n\nIdentify the coefficients: $a = 1$, $b = (k+3)$, and $c = (k+6)$.\n\nSubstitute into the discriminant:\n$(k+3)^2 - 4(1)(k+6) > 0$\n\nExpand and simplify:\n$k^2 + 6k + 9 - 4k - 24 > 0$\n$k^2 + 2k - 15 > 0$\n\nFactorise the quadratic in $k$:\n$(k+5)(k-3) > 0$\n\nThe critical values are $k = -5$ and $k = 3$. Because this is an upward-opening parabola in $k$, the expression is positive outside the roots.\n\nTherefore the set of values is $k < -5$ or $k > 3$."
     },
     {
       "type": "heading",

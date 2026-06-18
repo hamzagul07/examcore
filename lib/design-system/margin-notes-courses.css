@@ -1061,11 +1061,10 @@
 .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 880px; margin: 0 auto; }
 .plan { padding: 28px 28px 30px; position: relative; transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease; }
 .plan:hover { transform: translateY(-3px); border-color: var(--ink-border); box-shadow: var(--shadow-card); }
-.plan.featured { border: 1.5px solid var(--ink); box-shadow: var(--shadow-pop); }
+.plan.featured { border: 1.5px solid var(--ink); border-radius: var(--ec-radius-card-lg, 20px); background: var(--ec-surface-warm, var(--surface)); box-shadow: var(--shadow-pop); }
 .plan.featured:hover { box-shadow: var(--shadow-pop); }
 .plan-cta { width: 100%; justify-content: center; }
-.plan-ribbon { position: absolute; top: -11px; right: 24px; background: var(--ink); color: var(--bg); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 12px; border-radius: 999px; }
-[data-theme='night'] .plan-ribbon { color: #07130d; }
+.plan-ribbon { position: absolute; top: -11px; right: 24px; background: var(--ec-accent-warm, var(--ink)); color: #241405; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 12px; border-radius: 999px; }
 .plan-tag { font-size: 11px; color: var(--ink); margin-bottom: 8px; }
 .plan-name { font-size: 26px; font-weight: 500; margin: 0 0 8px; }
 .plan-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }

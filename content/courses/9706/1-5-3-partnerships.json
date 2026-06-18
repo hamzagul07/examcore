@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — appropriation account, partner capital/current accounts, admission and retirement.",
   "durationMin": 26,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Prepare appropriation account and partner accounts.",
     "Apply profit-sharing ratios, salary, and interest on capital.",
@@ -25,17 +25,131 @@
     ]
   },
   "flashcards": [
-    { "front": "Appropriation account order?", "back": "Net profit → salaries → interest on capital → residual profit share." },
-    { "front": "Interest on drawings?", "back": "Charged to partner — reduces their share (income to partnership)." },
-    { "front": "Goodwill on admission?", "back": "DR Goodwill, CR Old partners' capital in old ratio (unless otherwise stated)." },
-    { "front": "Capital vs current account?", "back": "Capital — permanent; current — drawings, interest, profit share." },
-    { "front": "Partner retirement?", "back": "Revalue assets, adjust goodwill, settle capital/current balance." },
-    { "front": "Fixed capital method?", "back": "All appropriations through current accounts only." }
+    {
+      "front": "Appropriation account order?",
+      "back": "Net profit → salaries → interest on capital → residual profit share."
+    },
+    {
+      "front": "Interest on drawings?",
+      "back": "Charged to partner — reduces their share (income to partnership)."
+    },
+    {
+      "front": "Goodwill on admission?",
+      "back": "DR Goodwill, CR Old partners' capital in old ratio (unless otherwise stated)."
+    },
+    {
+      "front": "Capital vs current account?",
+      "back": "Capital — permanent; current — drawings, interest, profit share."
+    },
+    {
+      "front": "Partner retirement?",
+      "back": "Revalue assets, adjust goodwill, settle capital/current balance."
+    },
+    {
+      "front": "Fixed capital method?",
+      "back": "All appropriations through current accounts only."
+    },
+    {
+      "front": "What is the purpose of the Appropriation Account?",
+      "back": "To show the distribution of the net profit for the year among the partners, after accounting for partners' salaries, interest on capital, and interest on drawings. It is not part of the double-entry system but a working statement."
+    },
+    {
+      "front": "What is the double entry for charging a partner interest on their drawings?",
+      "back": "Debit the partner's Current Account (reducing what the firm owes them) and Credit the Appropriation Account (increasing the profit available for distribution)."
+    },
+    {
+      "front": "What are the two steps for adjusting for goodwill upon the admission of a new partner?",
+      "back": "1. Raise Goodwill: Debit Goodwill account, Credit Old Partners' Capital accounts (in old PSR). 2. Write-off Goodwill: Debit All Partners' Capital accounts (in new PSR), Credit Goodwill account."
+    },
+    {
+      "front": "How is a profit on revaluation distributed when a new partner is admitted?",
+      "back": "The profit on revaluation is shared between the OLD partners in their OLD profit-sharing ratio. It is credited to their Capital Accounts."
+    },
+    {
+      "front": "What happens to the amount owed to a retiring partner if it is not paid immediately?",
+      "back": "The total balance due to the retiring partner (from their combined capital and current accounts) is transferred to a 'Loan from retiring partner' account. This becomes a non-current liability of the partnership."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Partnerships** (1.5.3) — the **appropriation account** is the key extra step vs sole trader. Show **salaries and interest before profit ratio**."
+    },
+    {
+      "type": "heading",
+      "content": "The Partnership Agreement and Appropriation Account"
+    },
+    {
+      "type": "text",
+      "content": "A partnership is governed by a Partnership Agreement (or Deed), a legal document outlining how the business will operate. This includes the profit-sharing ratio (PSR), interest on capital, interest on drawings, and any partner salaries. If no agreement exists, the Partnership Act 1890 applies, stipulating equal profit sharing and no interest or salaries. The Appropriation Account is prepared after the Statement of Profit or Loss to show how the net profit is distributed among partners. It begins with the net profit, then adjusts for salaries and interest on capital (reducing the distributable profit) and interest on drawings (increasing it). The final figure, the residual profit or loss, is then shared among the partners according to their PSR."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The Partnership Agreement is the primary document for profit distribution.",
+        "In the absence of an agreement, the Partnership Act 1890 dictates terms.",
+        "The Appropriation Account is a distribution statement, not an expense account.",
+        "Key adjustments include interest on capital, interest on drawings, and partners' salaries.",
+        "The residual profit/loss is the final amount shared according to the profit-sharing ratio."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Remember that partners' salaries and interest on capital are appropriations of profit, not business expenses. They are debited in the Appropriation Account and credited to the partners' current accounts. They do not appear in the Statement of Profit or Loss."
+    },
+    {
+      "type": "heading",
+      "content": "Fixed Capital and Current Accounts"
+    },
+    {
+      "type": "text",
+      "content": "In a partnership using a fixed capital system, two accounts are maintained for each partner: a capital account and a current account. The Capital Account records the partner's long-term stake in the business. It remains 'fixed' and only changes if a partner makes a permanent capital contribution or withdrawal. All other transactions are recorded in the Current Account. This includes credits for the partner's share of profits, salary, and interest on capital. Debits are made for drawings taken during the year and any interest charged on those drawings. A credit balance on the current account means the partnership owes money to the partner, while a debit balance means the partner owes money to the partnership."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Fixed Capital Accounts hold the permanent, long-term investment.",
+        "Current Accounts are working accounts for annual appropriations and drawings.",
+        "Credits to the Current Account increase the amount owed to the partner (e.g., profit share, salary).",
+        "Debits to the Current Account decrease the amount owed to the partner (e.g., drawings, interest on drawings).",
+        "The final balance of the Current Account is shown in the Statement of Financial Position."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Admission of a New Partner: Goodwill"
+    },
+    {
+      "type": "text",
+      "content": "When a new partner is admitted, the value of the firm's goodwill must be accounted for. Goodwill is the intangible value of a business's reputation. The Cambridge A-Level method requires a two-step process. First, the full value of goodwill is raised by debiting a Goodwill account and crediting the old partners' capital accounts in their old profit-sharing ratio. This rewards them for building the firm's reputation. Immediately after, the goodwill is written off by crediting the Goodwill account and debiting the capital accounts of all partners (including the new one) in the new profit-sharing ratio. This ensures goodwill does not remain as a permanent asset on the Statement of Financial Position, and effectively transfers a portion of the new partner's capital to the old partners."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Goodwill compensates existing partners for the value of the reputation they have built.",
+        "Step 1 (Raise Goodwill): Dr Goodwill, Cr Old Partners' Capital Accounts (in old PSR).",
+        "Step 2 (Write-off Goodwill): Dr All Partners' Capital Accounts (in new PSR), Cr Goodwill.",
+        "These adjustments are always made to the Capital Accounts, not Current Accounts.",
+        "The net effect is a debit to the new partner's capital and a credit to the old partners' capital."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Admission and Retirement: Revaluation of Assets"
+    },
+    {
+      "type": "text",
+      "content": "On the admission or retirement of a partner, the partnership's assets and liabilities should be revalued to their current fair market value. This is done to ensure fairness. For an admission, it ensures the new partner does not share in unrealised gains that arose before they joined. A temporary 'Revaluation Account' is used. Increases in asset values and decreases in liabilities are credited to this account. Decreases in asset values and increases in liabilities are debited. The resulting balance on the Revaluation Account represents a profit or loss. This profit or loss on revaluation is then shared only between the old partners in their old profit-sharing ratio, and transferred to their capital accounts."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Revaluation ensures the Statement of Financial Position reflects current asset values at the point of change.",
+        "A Revaluation Account is opened to calculate the net profit or loss from these adjustments.",
+        "Profit on revaluation is a credit balance; loss on revaluation is a debit balance.",
+        "The revaluation profit/loss is shared among the OLD partners in their OLD profit-sharing ratio.",
+        "The adjustment is made to the partners' Capital Accounts."
+      ]
     },
     {
       "type": "workedExample",
@@ -50,11 +164,76 @@
     {
       "type": "resources",
       "items": [
-        { "label": "1.5.2 Sole traders", "href": "/courses/9706/1-5-2-sole-traders" },
-        { "label": "1.5.4 Limited companies", "href": "/courses/9706/1-5-4-limited-companies" },
-        { "label": "9609 1.2.2 Business ownership", "href": "/courses/9609/1-2-2-business-ownership" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "1.5.2 Sole traders",
+          "href": "/courses/9706/1-5-2-sole-traders"
+        },
+        {
+          "label": "1.5.4 Limited companies",
+          "href": "/courses/9706/1-5-4-limited-companies"
+        },
+        {
+          "label": "9609 1.2.2 Business ownership",
+          "href": "/courses/9609/1-2-2-business-ownership"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Why is interest charged on partners' drawings? Isn't it their own money?",
+      "a": "Interest on drawings is charged to ensure fairness between partners. It discourages partners from taking excessive drawings throughout the year, which would reduce the capital available for the business to use. A partner who withdraws more money is effectively using more of the firm's resources, and interest on drawings compensates the partnership for this. It acts as a deterrent and promotes equity among all partners."
+    },
+    {
+      "q": "What happens if a partnership is formed without a formal Partnership Agreement?",
+      "a": "If there is no Partnership Agreement, or if the agreement is silent on certain matters, the provisions of the Partnership Act 1890 (UK) will apply. The key provisions are: 1) Profits and losses are shared equally, regardless of capital contributed. 2) No partner is entitled to a salary. 3) No interest is paid on capital contributions. 4) No interest is charged on drawings. 5) Partners are entitled to interest at 5% per annum on any loans they make to the firm."
+    },
+    {
+      "q": "Why is goodwill raised and then immediately written off? Why not just make a single capital transfer?",
+      "a": "This two-step method is the required accounting procedure to demonstrate the full process. Raising the goodwill first creates the intangible asset and formally recognises its value, crediting the old partners who created that value. The immediate write-off ensures that this subjective asset does not remain on the Statement of Financial Position, which is prudent accounting practice. While the net effect is a transfer of capital from the new partner to the old, the two-step process provides a clear audit trail and correctly reflects the creation and subsequent removal of the asset from the books."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Fixed Capital and Current Accounts",
+    "columns": [
+      "Feature",
+      "Capital Account",
+      "Current Account"
+    ],
+    "rows": [
+      {
+        "property": "Purpose",
+        "cells": [
+          "To record the long-term, permanent capital invested by a partner.",
+          "To record day-to-day transactions, including profit share, drawings, salaries, and interest."
+        ]
+      },
+      {
+        "property": "Volatility",
+        "cells": [
+          "Stable. It only changes with permanent capital injections or withdrawals.",
+          "Fluctuates annually with each year's profit distribution and drawings."
+        ]
+      },
+      {
+        "property": "Typical Items Recorded",
+        "cells": [
+          "Opening capital balance, additional permanent capital, capital withdrawn permanently.",
+          "Drawings, interest on drawings, interest on capital, partner's salary, share of residual profit/loss."
+        ]
+      },
+      {
+        "property": "Normal Balance",
+        "cells": [
+          "Always a credit balance.",
+          "Can have a credit balance (firm owes partner) or a debit balance (partner owes firm)."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

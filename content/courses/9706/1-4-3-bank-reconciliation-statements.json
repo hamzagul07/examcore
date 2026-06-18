@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — updating cash book, unpresented cheques, uncredited deposits, reconciliation format.",
   "durationMin": 26,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Update cash book from bank statement items.",
     "Explain unpresented cheques and uncredited deposits.",
@@ -25,17 +25,131 @@
     ]
   },
   "flashcards": [
-    { "front": "Unpresented cheque?", "back": "Payment recorded in cash book; cheque not yet processed by bank." },
-    { "front": "Uncredited deposit?", "back": "Lodged in cash book; not yet on bank statement." },
-    { "front": "Bank charges?", "back": "Update cash book first — DR bank charges, CR bank." },
-    { "front": "Reconciliation layout?", "back": "Balance per cash book ± timing items = balance per bank statement." },
-    { "front": "Who prepares?", "back": "Business accountant — not the bank." },
-    { "front": "Link to control?", "back": "Part of internal verification (1.4.1)." }
+    {
+      "front": "Unpresented cheque?",
+      "back": "Payment recorded in cash book; cheque not yet processed by bank."
+    },
+    {
+      "front": "Uncredited deposit?",
+      "back": "Lodged in cash book; not yet on bank statement."
+    },
+    {
+      "front": "Bank charges?",
+      "back": "Update cash book first — DR bank charges, CR bank."
+    },
+    {
+      "front": "Reconciliation layout?",
+      "back": "Balance per cash book ± timing items = balance per bank statement."
+    },
+    {
+      "front": "Who prepares?",
+      "back": "Business accountant — not the bank."
+    },
+    {
+      "front": "Link to control?",
+      "back": "Part of internal verification (1.4.1)."
+    },
+    {
+      "front": "What is an unpresented cheque?",
+      "back": "A cheque issued by the business and recorded as a payment in its cash book, but which has not yet been presented to the bank by the payee and therefore has not been deducted from the bank account."
+    },
+    {
+      "front": "What is an uncredited deposit (or outstanding lodgement)?",
+      "back": "Cash or cheques paid into the bank by the business and recorded as a receipt in its cash book, but which have not yet been processed by the bank and added to the bank account balance."
+    },
+    {
+      "front": "What is the first step in the bank reconciliation process?",
+      "back": "To update the cash book by recording all items that appear on the bank statement but have not yet been entered in the business's cash book (e.g., bank charges, direct debits, standing orders)."
+    },
+    {
+      "front": "Which cash balance is reported in the Statement of Financial Position?",
+      "back": "The balance as per the updated cash book. This figure represents the true cash position of the business at the end of the accounting period."
+    },
+    {
+      "front": "How is a dishonoured cheque treated when updating the cash book?",
+      "back": "It is entered on the credit side of the cash book. This entry reverses the original deposit and correctly reduces the business's cash balance, as the funds were not successfully collected."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Bank reconciliation** (1.4.3) — **always update cash book first**, then reconcile. Examiners penalise reversing unpresented/uncredited treatment."
+    },
+    {
+      "type": "heading",
+      "content": "The Purpose of Bank Reconciliation"
+    },
+    {
+      "type": "text",
+      "content": "A bank reconciliation statement is a crucial internal control document that explains any differences between the bank balance shown in a business's cash book and the balance shown on its bank statement. These two records are prepared by different parties (the business and the bank) and are rarely identical at a specific date. Discrepancies arise from two main sources: timing differences, such as cheques issued but not yet presented for payment, and items recorded by the bank but not yet by the business, like bank charges or direct debits. The primary purpose of the reconciliation is to identify and account for these differences, detect any errors made by either the business or the bank, and ultimately determine the correct cash balance to be reported in the statement of financial position."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "It is a statement, not an account in the double-entry system.",
+        "It explains differences between the cash book and the bank statement.",
+        "Key causes of difference are timing and unrecorded items.",
+        "It acts as a control to detect errors and potential fraud."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Step 1: Updating the Cash Book"
+    },
+    {
+      "type": "text",
+      "content": "Before preparing the reconciliation statement, the business's cash book must be brought up to date. This is a non-negotiable first step. By comparing the bank statement with the cash book, you identify transactions the bank knows about but the business has not yet recorded. These items must be entered into the cash book to reflect the true cash position. Common examples include bank charges, interest earned, standing orders, direct debits, credit transfers received, and dishonoured cheques. Once all such items are posted, the cash book is balanced to find the 'updated cash book balance'. This updated balance is the figure that will be reported as 'Cash and cash equivalents' in the statement of financial position."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Compare the bank statement debits/credits with the cash book credits/debits.",
+        "Enter items found only on the bank statement into the cash book.",
+        "Examples: Bank charges (credit cash book), Interest received (debit cash book).",
+        "Calculate a new, updated closing balance for the cash book."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always update the cash book before starting the bank reconciliation statement. The closing balance of your updated cash book is the starting figure for the reconciliation and the final figure for the statement of financial position."
+    },
+    {
+      "type": "heading",
+      "content": "Identifying Reconciling Items: Timing Differences"
+    },
+    {
+      "type": "text",
+      "content": "After updating the cash book, any remaining differences are typically timing differences. These are items correctly recorded in the updated cash book but not yet processed by the bank by the statement date. The two main categories are unpresented cheques and uncredited deposits (or outstanding lodgements). Unpresented cheques are those issued and sent to suppliers, and therefore credited in the cash book, but which the suppliers have not yet paid into their own bank accounts. Uncredited deposits are funds the business has paid into the bank, and debited in its cash book, but which have not yet been processed and appeared on the bank statement. These items do not require any adjustment to the cash book; they are the core components of the reconciliation statement itself."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Unpresented cheques: Recorded as a payment by the business, but not yet paid by the bank.",
+        "Uncredited deposits/lodgements: Recorded as a receipt by the business, but not yet shown on the bank statement.",
+        "These items form the bridge between the updated cash book balance and the bank statement balance.",
+        "Bank errors are also reconciling items, but they are less common."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Preparing the Bank Reconciliation Statement"
+    },
+    {
+      "type": "text",
+      "content": "The statement begins with the balance from one document and reconciles to the balance on the other. A standard format starts with the balance as per the updated cash book. To this figure, you must add any unpresented cheques. This is because these payments have already reduced the cash book balance, but have not yet reduced the bank statement balance. Then, you must deduct any uncredited deposits, as these receipts have already increased the cash book balance but have not yet increased the bank statement balance. The resulting figure should exactly match the balance as per the bank statement. If it does not, an error exists in the cash book, the bank statement, or the reconciliation process itself."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Start with the Balance as per updated cash book.",
+        "ADD unpresented cheques.",
+        "LESS uncredited deposits/lodgements.",
+        "The result must equal the Balance as per bank statement."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be very careful with overdrafts. A cash book overdraft is a credit balance. When starting the reconciliation with an overdraft, show it as a negative figure. For example, 'Balance as per updated cash book (overdrawn) (£XXX)'."
     },
     {
       "type": "workedExample",
@@ -50,10 +164,72 @@
     {
       "type": "resources",
       "items": [
-        { "label": "9609 10.1.2 Statement of financial position", "href": "/courses/9609/10-1-2-statement-of-financial-position" },
-        { "label": "1.4.4 Control accounts", "href": "/courses/9706/1-4-4-control-accounts" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "9609 10.1.2 Statement of financial position",
+          "href": "/courses/9609/10-1-2-statement-of-financial-position"
+        },
+        {
+          "label": "1.4.4 Control accounts",
+          "href": "/courses/9706/1-4-4-control-accounts"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Why do we add unpresented cheques in the reconciliation statement? Surely a cheque payment is a deduction?",
+      "a": "The reconciliation aims to explain the difference between two balances. We start with the updated cash book balance, which has already been reduced by the cheque payment. The bank statement balance is higher because it has not yet been reduced by this payment. To get from our lower cash book balance to the higher bank statement balance, we must add back the value of the unpresented cheques."
+    },
+    {
+      "q": "If the bank makes an error (e.g., takes money from my account by mistake), do I correct it in my cash book?",
+      "a": "No. The business's records in the cash book are correct. The error was made by the bank. Therefore, the correction is shown as an adjustment on the bank reconciliation statement itself to explain why the bank statement balance is incorrect. You would then contact the bank to have them rectify their error in the next statement period."
+    },
+    {
+      "q": "Is a bank overdraft a debit or a credit balance?",
+      "a": "This is a common point of confusion. In the business's cash book (which is an asset account), a normal positive balance is a debit balance, so an overdraft is a credit balance. On the bank statement (which shows the bank's liability to the business), a positive balance is a credit balance, so an overdraft is a debit balance (often shown as 'DR' or a negative figure)."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Adjustments",
+    "columns": [
+      "Feature",
+      "Updated Cash Book",
+      "Bank Reconciliation Statement"
+    ],
+    "rows": [
+      {
+        "property": "Purpose",
+        "cells": [
+          "To correct the business's own records and find the true cash balance.",
+          "To explain the difference between the true cash balance and the bank statement balance."
+        ]
+      },
+      {
+        "property": "Items Included",
+        "cells": [
+          "Bank charges, interest, standing orders, direct debits, dishonoured cheques.",
+          "Unpresented cheques, uncredited deposits, bank errors."
+        ]
+      },
+      {
+        "property": "Nature of Items",
+        "cells": [
+          "Items the business was unaware of until seeing the bank statement.",
+          "Mainly timing differences; items already correctly recorded by the business."
+        ]
+      },
+      {
+        "property": "End Result",
+        "cells": [
+          "The cash balance for the Statement of Financial Position.",
+          "Proof that the two balances (updated cash book and bank statement) are reconciled."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

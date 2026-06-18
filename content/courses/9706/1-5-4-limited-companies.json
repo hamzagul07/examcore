@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — share capital, reserves, and basic company financial statements.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Distinguish ordinary and preference share capital.",
     "Explain share premium and retained earnings.",
@@ -25,17 +25,139 @@
     ]
   },
   "flashcards": [
-    { "front": "Ordinary shares?", "back": "Variable dividend; voting rights; residual claim." },
-    { "front": "Preference shares?", "back": "Fixed dividend priority; usually non-voting." },
-    { "front": "Share premium account?", "back": "Credit balance — amount above nominal on share issue." },
-    { "front": "Proposed dividend?", "back": "Disclose in notes; not a liability until approved/paid (syllabus treatment)." },
-    { "front": "Retained earnings movement?", "back": "Opening + Profit − Dividends = Closing." },
-    { "front": "Limited liability?", "back": "Shareholders lose at most amount invested." }
+    {
+      "front": "Ordinary shares?",
+      "back": "Variable dividend; voting rights; residual claim."
+    },
+    {
+      "front": "Preference shares?",
+      "back": "Fixed dividend priority; usually non-voting."
+    },
+    {
+      "front": "Share premium account?",
+      "back": "Credit balance — amount above nominal on share issue."
+    },
+    {
+      "front": "Proposed dividend?",
+      "back": "Disclose in notes; not a liability until approved/paid (syllabus treatment)."
+    },
+    {
+      "front": "Retained earnings movement?",
+      "back": "Opening + Profit − Dividends = Closing."
+    },
+    {
+      "front": "Limited liability?",
+      "back": "Shareholders lose at most amount invested."
+    },
+    {
+      "front": "What is the double entry to record the issue of 50,000 $1 ordinary shares at $1.80 each?",
+      "back": "Dr Bank $90,000; Cr Ordinary Share Capital $50,000; Cr Share Premium $40,000."
+    },
+    {
+      "front": "Define 'retained earnings'.",
+      "back": "The cumulative profit of a company after corporation tax and dividends have been deducted. It is a revenue reserve available for future reinvestment or distribution to shareholders."
+    },
+    {
+      "front": "What is the difference between an interim dividend and a final dividend?",
+      "back": "An interim dividend is paid part-way through the financial year based on estimated profits. A final dividend is proposed at the end of the year based on actual profits and is paid after shareholder approval."
+    },
+    {
+      "front": "Name two types of capital reserve.",
+      "back": "Share Premium and Revaluation Reserve."
+    },
+    {
+      "front": "What is the purpose of the Statement of Changes in Equity?",
+      "back": "To show the movement in each component of shareholders' equity (share capital, reserves, retained earnings) from the beginning to the end of the accounting period, detailing the effects of profit, dividends, and share issues."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Limited companies** (1.5.4) completes Section 1.5. Know **equity section layout**: share capital, share premium, retained earnings."
+    },
+    {
+      "type": "heading",
+      "content": "Formation and Share Capital Fundamentals"
+    },
+    {
+      "type": "text",
+      "content": "A limited company is a distinct legal entity, separate from its owners (shareholders). This core principle grants the company the ability to own assets and incur liabilities in its own name. The primary advantage for shareholders is limited liability, meaning their personal assets are protected; their financial risk is restricted to the amount invested or agreed to be invested in the company's shares. Capital is raised by issuing shares. The two main classifications are authorised share capital, the maximum value of shares a company can issue as stated in its formation documents, and issued share capital, the nominal value of shares that have actually been sold to shareholders. This structure allows for a wider pool of investment compared to unincorporated businesses."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A company has a separate legal personality from its owners.",
+        "Shareholders have limited liability, protecting their personal wealth.",
+        "Authorised share capital is the maximum potential share issue.",
+        "Issued share capital represents the shares actually held by investors."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In the Statement of Financial Position, always show the breakdown of share capital. For example, 'Ordinary Share Capital (X shares of $Y each)'. This demonstrates a clear understanding of the capital structure."
+    },
+    {
+      "type": "heading",
+      "content": "The Process of Issuing Shares"
+    },
+    {
+      "type": "text",
+      "content": "When a company issues shares, it can do so at their nominal value (par) or at a price higher than their nominal value (at a premium). If 100,000 $1 shares are issued at par, the entry is Dr Bank $100,000, Cr Ordinary Share Capital $100,000. If issued at $1.20, the extra $0.20 per share is the premium. The entry becomes: Dr Bank $120,000, Cr Ordinary Share Capital $100,000 (always the nominal value), and Cr Share Premium $20,000. The Share Premium account is a capital reserve, not distributable as cash dividends. It reflects capital contributed by shareholders above the par value and its use is legally restricted, such as for issuing bonus shares."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Shares can be issued at par (nominal value) or at a premium (above nominal value).",
+        "The Share Capital account is always credited with the nominal value of the shares issued.",
+        "The excess received over the nominal value is credited to a Share Premium account.",
+        "Share premium is a capital reserve and cannot be used to pay cash dividends."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be precise with the double-entry for a share issue. A common error is to credit the entire cash proceeds to the Share Capital account. Remember to split the amount between Share Capital (nominal) and Share Premium."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Company Reserves"
+    },
+    {
+      "type": "text",
+      "content": "Company reserves are broadly categorised into capital reserves and revenue reserves. Capital reserves arise from non-trading, capital transactions. Key examples include the Share Premium account (from issuing shares above par) and the Revaluation Reserve (from upwardly revaluing non-current assets). These are generally non-distributable as cash dividends. In contrast, revenue reserves are generated from trading profits. The main revenue reserve is Retained Earnings, which represents the accumulated net profits after tax and dividends have been accounted for. A company may also create a General Reserve by voluntarily transferring an amount from retained earnings to set aside profits for future expansion or contingencies. Revenue reserves are distributable to shareholders as dividends."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Capital reserves (e.g., Share Premium, Revaluation Reserve) are from capital transactions and are non-distributable.",
+        "Revenue reserves (e.g., Retained Earnings, General Reserve) are from accumulated profits and are distributable.",
+        "Retained earnings are the primary source for the payment of dividends.",
+        "The equity section of the Statement of Financial Position is comprised of Share Capital and all Reserves."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When preparing the equity section of the Statement of Financial Position, list share capital first, followed by capital reserves (Share Premium, Revaluation Reserve), and then revenue reserves (General Reserve, Retained Earnings)."
+    },
+    {
+      "type": "heading",
+      "content": "Profit Appropriation and the Statement of Changes in Equity"
+    },
+    {
+      "type": "text",
+      "content": "Unlike a sole trader's profit, a company's profit after tax is formally appropriated. This involves decisions on paying dividends and transferring funds to reserves. Dividends are the return paid to shareholders. Interim dividends are paid during the year, while final dividends are proposed after the year-end. These appropriations are not expenses; they are distributions of profit. The Statement of Changes in Equity (SOCIE) is a key financial statement that details these movements. It reconciles the opening and closing balances of each equity component (Share Capital, Share Premium, Revaluation Reserve, Retained Earnings), showing how profit for the year, dividends, and new share issues have affected the overall equity of the company during the period."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Dividends are an appropriation of profit, not a business expense.",
+        "Interim dividends are paid during the year; final dividends are proposed at the year-end.",
+        "The Statement of Changes in Equity (SOCIE) tracks all changes in each equity account.",
+        "The SOCIE provides a vital link between the Statement of Profit or Loss and the Statement of Financial Position."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Remember that only paid and declared dividends affect the financial statements. A proposed final dividend is disclosed in the notes to the accounts but is not recorded as a liability or a reduction in retained earnings until it is formally approved by shareholders."
     },
     {
       "type": "workedExample",
@@ -50,11 +172,90 @@
     {
       "type": "resources",
       "items": [
-        { "label": "1.5.3 Partnerships", "href": "/courses/9706/1-5-3-partnerships" },
-        { "label": "1.6.2 Ratio analysis", "href": "/courses/9706/1-6-2-calculation-and-evaluation-of-ratios" },
-        { "label": "9609 5.1.1 Need for business finance", "href": "/courses/9609/5-1-1-the-need-for-business-finance" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "1.5.3 Partnerships",
+          "href": "/courses/9706/1-5-3-partnerships"
+        },
+        {
+          "label": "1.6.2 Ratio analysis",
+          "href": "/courses/9706/1-6-2-calculation-and-evaluation-of-ratios"
+        },
+        {
+          "label": "9609 5.1.1 Need for business finance",
+          "href": "/courses/9609/5-1-1-the-need-for-business-finance"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Are dividends an expense for the business, like wages?",
+      "a": "No. Dividends are not an operating expense and do not appear in the calculation of profit for the year. They are an appropriation of profit, meaning a distribution of profit to the owners (shareholders). They are shown in the Statement of Changes in Equity as a deduction from retained earnings."
+    },
+    {
+      "q": "Can a company pay dividends from its Share Premium account?",
+      "a": "No, this is a common misconception. The Share Premium account is a capital reserve, not a revenue reserve. It represents capital contributed by shareholders above the nominal value of shares and is not legally distributable as cash dividends. Its uses are restricted, for example, to issuing bonus shares."
+    },
+    {
+      "q": "If a company has authorised share capital of $1,000,000, does this mean it has $1,000,000 in the bank?",
+      "a": "Not at all. Authorised share capital is simply the maximum nominal value of shares the company is legally permitted to issue. The actual capital raised is the 'issued and paid-up' capital. A company may have authorised capital of $1,000,000 but may have only issued $200,000 of shares, raising cash only for that specific issue."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Business Structures",
+    "columns": [
+      "Feature",
+      "Sole Trader / Partnership",
+      "Limited Company"
+    ],
+    "rows": [
+      {
+        "property": "Liability",
+        "cells": [
+          "Unlimited personal liability for business debts.",
+          "Limited to the amount invested or unpaid on shares."
+        ]
+      },
+      {
+        "property": "Legal Status",
+        "cells": [
+          "The business and owner(s) are the same legal entity.",
+          "A separate legal entity from its owners (shareholders)."
+        ]
+      },
+      {
+        "property": "Source of Capital",
+        "cells": [
+          "Owner's capital contributions, personal loans.",
+          "Issue of shares (ordinary, preference), debentures, loans."
+        ]
+      },
+      {
+        "property": "Distribution of Profit",
+        "cells": [
+          "Drawings taken by the owner(s).",
+          "Dividends paid to shareholders."
+        ]
+      },
+      {
+        "property": "Key Financial Statements",
+        "cells": [
+          "Statement of Profit or Loss, Statement of Financial Position.",
+          "Statement of Profit or Loss and OCI, Statement of Financial Position, Statement of Changes in Equity."
+        ]
+      },
+      {
+        "property": "Taxation",
+        "cells": [
+          "Owner(s) pay Income Tax on business profits.",
+          "Company pays Corporation Tax on its profits."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

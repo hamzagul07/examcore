@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — unit, job, and batch costing for different production types.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Distinguish unit, job, and batch costing.",
     "Calculate cost per unit/job/batch.",
@@ -25,17 +25,127 @@
     ]
   },
   "flashcards": [
-    { "front": "Unit costing used when?", "back": "Mass production of identical items (e.g. chemicals, bricks)." },
-    { "front": "Job costing used when?", "back": "Custom/bespoke orders — furniture, printing." },
-    { "front": "Batch costing?", "back": "Group similar jobs; cost per batch ÷ units = unit cost." },
-    { "front": "Cost unit?", "back": "Unit of output to which cost is assigned (litre, job no., batch)." },
-    { "front": "Quotation uses?", "back": "Estimated cost + profit mark-up." },
-    { "front": "Job cost sheet?", "back": "Record of materials, labour, overheads for one job." }
+    {
+      "front": "Unit costing used when?",
+      "back": "Mass production of identical items (e.g. chemicals, bricks)."
+    },
+    {
+      "front": "Job costing used when?",
+      "back": "Custom/bespoke orders — furniture, printing."
+    },
+    {
+      "front": "Batch costing?",
+      "back": "Group similar jobs; cost per batch ÷ units = unit cost."
+    },
+    {
+      "front": "Cost unit?",
+      "back": "Unit of output to which cost is assigned (litre, job no., batch)."
+    },
+    {
+      "front": "Quotation uses?",
+      "back": "Estimated cost + profit mark-up."
+    },
+    {
+      "front": "Job cost sheet?",
+      "back": "Record of materials, labour, overheads for one job."
+    },
+    {
+      "front": "What is the primary purpose of a job cost sheet?",
+      "back": "To accumulate all the costs (direct materials, direct labour, direct expenses, and absorbed production overheads) associated with a specific job, in order to determine its total cost and profitability."
+    },
+    {
+      "front": "How is the cost per unit calculated in batch costing?",
+      "back": "The total cost of the entire batch is calculated first. This total cost is then divided by the number of finished units produced in that batch."
+    },
+    {
+      "front": "What is 'Specific Order Costing'?",
+      "back": "A costing principle used for work that consists of separately identifiable jobs or batches, each authorised by a specific customer order. It includes both job costing and batch costing."
+    },
+    {
+      "front": "Give two examples of industries that would use job costing.",
+      "back": "Construction (e.g., building a specific house), shipbuilding, bespoke tailoring, audit firms, or advertising agencies."
+    },
+    {
+      "front": "How are production overheads assigned to a specific job?",
+      "back": "They are absorbed into the job cost using a predetermined overhead absorption rate (OAR). The OAR is multiplied by the actual amount of the absorption base (e.g., direct labour hours) used by the job."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Costing applications** (2.2.1) — choose **method to match production type**. Justify choice in evaluation questions."
+    },
+    {
+      "type": "heading",
+      "content": "Introduction to Specific Order Costing"
+    },
+    {
+      "type": "text",
+      "content": "Specific order costing is a method used by businesses that produce non-standardised goods or services based on individual customer orders. Unlike mass production, each output is distinct, requiring costs to be traced and allocated to a specific 'cost unit', which could be a single job or a batch of items. The primary objective is to determine the cost and, subsequently, the profitability of each individual order. This involves meticulously tracking direct materials, direct labour, and direct expenses attributable to the order, and then absorbing a fair share of the business's production overheads. Job costing and batch costing are the two principal methods that fall under the umbrella of specific order costing, each suited to different production environments."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Applies to production based on specific customer orders.",
+        "Costs are collected for each identifiable job or batch.",
+        "Aims to calculate the cost and profit for each individual order.",
+        "Includes both job costing and batch costing methods."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Job Costing: Costing for Unique Items"
+    },
+    {
+      "type": "text",
+      "content": "Job costing is applied when work is undertaken to a customer's specific requirements, resulting in a unique, non-standard product or service. Each job is treated as a separate cost centre. Examples include construction projects, bespoke furniture making, and professional services like auditing or advertising campaigns. The core document is the 'job cost sheet' or 'job cost card', which acts as a ledger for accumulating all costs associated with a particular job. Direct materials are tracked via materials requisitions, and direct labour is recorded using timesheets. Production overheads are then absorbed into the job cost, typically using a predetermined overhead absorption rate (OAR) based on direct labour hours or machine hours. The total cost on the sheet represents the cost of production for that single job."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Used for unique, one-off products or services.",
+        "Each job is a distinct cost unit.",
+        "Costs are accumulated on a job cost sheet.",
+        "Overheads are absorbed using a predetermined rate (OAR)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Batch Costing: A Hybrid Approach"
+    },
+    {
+      "type": "text",
+      "content": "Batch costing is a form of specific order costing used when a group of identical or similar items are produced together for a single order or for stock. The 'cost unit' is the batch itself. This method is common in industries like baking (a batch of loaves), printing (a run of 1,000 leaflets), and clothing manufacture (a batch of 500 identical shirts). Costs for materials, labour, and overheads are accumulated for the entire batch, similar to job costing. Once the total cost of the batch is determined, the cost per unit is calculated by dividing the total batch cost by the number of units produced in that batch. This provides an average cost for each item within the group, blending principles of both job and process costing."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Applies to groups (batches) of identical items produced together.",
+        "The cost unit is the batch.",
+        "Total batch cost is calculated first, then divided by the number of units.",
+        "Common in food production, printing, and component manufacturing."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Unit Costs and Profit"
+    },
+    {
+      "type": "text",
+      "content": "A key objective of any costing system is to determine the cost per unit, which is fundamental for setting selling prices and measuring profitability. In job costing, the 'unit' is the job itself, so the total job cost is the final figure. In batch costing, the unit cost is found by the formula: Total Batch Cost / Number of Units in Batch. For continuous production of a single product (sometimes called single or output costing), the formula is: Total Production Costs for a Period / Number of Units Produced in the Period. Once the total cost of a job or the unit cost from a batch is known, the business can calculate its profit by subtracting this cost from the selling price or revenue."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Job Costing: The total cost of the job is the final cost.",
+        "Batch Costing: Unit Cost = Total Batch Cost ÷ Number of Units.",
+        "Profit = Selling Price - Total Cost.",
+        "Accurate unit costs are essential for pricing decisions and performance evaluation."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, you will often be provided with direct material costs, direct labour hours and rates, and information to calculate a predetermined overhead absorption rate (OAR). You must be able to construct a job cost sheet, calculate the total cost of the job or batch, and then determine the profit or the required selling price based on a desired profit margin or mark-up. Pay close attention to the basis of overhead absorption (e.g., labour hours, machine hours)."
     },
     {
       "type": "workedExample",
@@ -50,10 +160,85 @@
     {
       "type": "resources",
       "items": [
-        { "label": "2.1.1 Materials and labour", "href": "/courses/9706/2-1-1-materials-and-labour" },
-        { "label": "2.2.2 Absorption costing", "href": "/courses/9706/2-2-2-absorption-costing" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "2.1.1 Materials and labour",
+          "href": "/courses/9706/2-1-1-materials-and-labour"
+        },
+        {
+          "label": "2.2.2 Absorption costing",
+          "href": "/courses/9706/2-2-2-absorption-costing"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is batch costing just a more complicated version of job costing?",
+      "a": "Not exactly. Batch costing is best seen as a variation of job costing. While job costing deals with a single, unique unit, batch costing deals with a group of identical units. The cost collection process is very similar (accumulating costs for the 'order'), but batch costing has the additional step of calculating an average cost per unit within the batch, which is not relevant in job costing where the 'job' is the unit."
+    },
+    {
+      "q": "How can factory rent be a cost of a single small job? It seems unfair.",
+      "a": "This is a common and valid point. Factory rent is an indirect cost or an overhead. It cannot be directly traced to a single job. That is why we use overhead absorption. We estimate the total overheads for the factory for a period and then divide this by an estimated activity level (like total labour hours) to get a predetermined overhead absorption rate (OAR). Each job is then charged a 'fair share' of the total overheads based on how much of that activity it used. This ensures all products bear a portion of the necessary indirect costs."
+    },
+    {
+      "q": "What is the difference between unit costing and process costing?",
+      "a": "For the purposes of the AS Level syllabus, 'unit costing' often refers to the simple calculation of cost per unit in a single-product environment (Total Costs / Total Units). 'Process costing' is a more detailed method, typically covered later, used when products pass through multiple, distinct processes to be completed (e.g., mixing, then bottling, then packaging). While both aim to find an average cost per unit, process costing involves tracking costs for each process separately and dealing with concepts like work-in-progress, which is more complex than simple unit costing."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Costing Methods",
+    "columns": [
+      "Feature",
+      "Job Costing",
+      "Batch Costing",
+      "Unit (or Process) Costing"
+    ],
+    "rows": [
+      {
+        "property": "Nature of Product",
+        "cells": [
+          "Unique, non-standard, made to specific order.",
+          "Groups of identical items produced together.",
+          "Homogeneous, identical products in continuous flow."
+        ]
+      },
+      {
+        "property": "Cost Unit",
+        "cells": [
+          "The specific job.",
+          "The specific batch.",
+          "The unit of output (e.g., a litre, a tonne)."
+        ]
+      },
+      {
+        "property": "Cost Accumulation",
+        "cells": [
+          "Costs are collected for each individual job.",
+          "Costs are collected for each batch.",
+          "Costs are collected by process or department for a period."
+        ]
+      },
+      {
+        "property": "Cost Calculation",
+        "cells": [
+          "Total cost of the job is the final cost.",
+          "Total batch cost is divided by units in the batch.",
+          "Total costs for a period are divided by units produced."
+        ]
+      },
+      {
+        "property": "Examples",
+        "cells": [
+          "Shipbuilding, construction, bespoke furniture.",
+          "Baking, clothing manufacture, printing.",
+          "Oil refining, chemical production, cement manufacture."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

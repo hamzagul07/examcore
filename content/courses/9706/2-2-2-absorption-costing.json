@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9706 P2 — overhead absorption rates, full unit cost, and over/under absorption.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Allocate and apportion overheads to cost centres.",
     "Calculate overhead absorption rates.",
@@ -25,17 +25,127 @@
     ]
   },
   "flashcards": [
-    { "front": "OAR formula?", "back": "Budgeted production overhead ÷ Budgeted activity level." },
-    { "front": "Under-absorption?", "back": "Actual overhead > absorbed — increases expenses (reduce profit)." },
-    { "front": "Over-absorption?", "back": "Absorbed > actual — reduces expenses (increase profit)." },
-    { "front": "Activity basis examples?", "back": "Direct labour hours, machine hours, units produced." },
-    { "front": "Full unit cost?", "back": "Direct materials + direct labour + absorbed overhead." },
-    { "front": "Closing inventory valuation?", "back": "Includes absorbed production overheads." }
+    {
+      "front": "OAR formula?",
+      "back": "Budgeted production overhead ÷ Budgeted activity level."
+    },
+    {
+      "front": "Under-absorption?",
+      "back": "Actual overhead > absorbed — increases expenses (reduce profit)."
+    },
+    {
+      "front": "Over-absorption?",
+      "back": "Absorbed > actual — reduces expenses (increase profit)."
+    },
+    {
+      "front": "Activity basis examples?",
+      "back": "Direct labour hours, machine hours, units produced."
+    },
+    {
+      "front": "Full unit cost?",
+      "back": "Direct materials + direct labour + absorbed overhead."
+    },
+    {
+      "front": "Closing inventory valuation?",
+      "back": "Includes absorbed production overheads."
+    },
+    {
+      "front": "What is the formula for the Overhead Absorption Rate (OAR)?",
+      "back": "OAR = Budgeted Total Production Overheads / Budgeted Activity Level (e.g., labour hours, machine hours)."
+    },
+    {
+      "front": "How is the full production cost of a single unit calculated using absorption costing?",
+      "back": "Direct Materials + Direct Labour + (OAR × Activity per unit). This total is the full production cost."
+    },
+    {
+      "front": "What is 'under-absorption' of overheads?",
+      "back": "When the overheads absorbed into production (OAR × Actual Activity) are less than the actual overheads incurred. It results in an additional charge in the Income Statement."
+    },
+    {
+      "front": "What is 'over-absorption' of overheads?",
+      "back": "When the overheads absorbed into production (OAR × Actual Activity) are greater than the actual overheads incurred. It results in a credit (reduction of expense) in the Income Statement."
+    },
+    {
+      "front": "Why are non-production overheads excluded from the absorption costing unit cost?",
+      "back": "Because they are period costs, not product costs. They relate to the accounting period as a whole (e.g., selling, admin) and are not part of the manufacturing process. They are charged directly to the Income Statement."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Absorption costing** (2.2.2) — show **OAR calculation** and **adjustment for under/over absorption** in SPL. State basis of absorption."
+    },
+    {
+      "type": "heading",
+      "content": "The Principle of Absorption Costing"
+    },
+    {
+      "type": "text",
+      "content": "Absorption costing, also known as full costing, is a method where all manufacturing costs, both direct and indirect, are included in the cost of a product. Its fundamental principle is that all production overheads are 'absorbed' by the units produced. This is essential for creating a full cost per unit, which is used for inventory valuation in financial statements, as mandated by IAS 2 Inventories. The main challenge in absorption costing is the fair allocation of indirect production costs (overheads) to different products or departments. This is achieved by calculating a predetermined overhead absorption rate (OAR) at the beginning of an accounting period, ensuring that each unit of output carries a share of the factory's indirect costs."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Includes all production costs: direct materials, direct labour, and production overheads.",
+        "Aims to determine a 'full production cost' per unit.",
+        "Required by IAS 2 Inventories for valuing closing inventory in financial statements.",
+        "Treats non-production overheads (e.g., selling, administration) as period costs, which are written off to the Income Statement."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating and Applying the Overhead Absorption Rate (OAR)"
+    },
+    {
+      "type": "text",
+      "content": "The Overhead Absorption Rate (OAR) is a predetermined rate used to assign production overheads to cost units. It is calculated at the start of a period using the formula: OAR = Budgeted Production Overheads ÷ Budgeted Activity Level. The choice of activity level, or 'absorption basis', is critical for accuracy. Common bases include direct labour hours, machine hours, or units of production. The most appropriate basis is the one that is the main driver of overhead costs in a particular cost centre. For instance, a machine-intensive department should use machine hours, while a labour-intensive department should use direct labour hours. Once calculated, this rate is used throughout the period to charge overheads to production."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Formula: OAR = Budgeted Production Overheads / Budgeted Activity Level.",
+        "Calculated using budgeted figures before the accounting period begins.",
+        "Common absorption bases: direct labour hours, machine hours, units produced.",
+        "The chosen basis should reflect the cause of the overhead costs for greater accuracy."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating the Full Production Cost Per Unit"
+    },
+    {
+      "type": "text",
+      "content": "To determine the full production cost of a single unit, you combine its direct costs with a share of the indirect production costs. The calculation starts with the prime cost, which is the sum of direct materials and direct labour. To this, you add the absorbed production overhead. This is calculated by multiplying the predetermined OAR by the amount of the activity base required to produce one unit (e.g., OAR per hour × hours per unit). The resulting figure is the total absorbed cost per unit. This cost is crucial for valuing closing inventory and calculating the cost of goods sold. Remember, non-production overheads like marketing or administration costs are excluded from this calculation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Full Production Cost = Direct Materials + Direct Labour + Absorbed Production Overheads.",
+        "Absorbed Overhead per unit = OAR × Activity level required per unit.",
+        "This unit cost is used to value inventory in the Statement of Financial Position.",
+        "Non-production overheads are treated as period costs and are not included in the product cost."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, always clearly show your calculation for the OAR first. Then, apply this rate to find the overhead absorbed per unit before calculating the final full cost. Marks are often awarded for each step. Be careful to only use production overheads in your OAR calculation."
+    },
+    {
+      "type": "heading",
+      "content": "Over and Under Absorption of Overheads"
+    },
+    {
+      "type": "text",
+      "content": "Over or under absorption arises because the OAR is based on budgeted data, whereas actual overhead costs and activity levels will inevitably differ. We compare the 'Absorbed Overheads' (OAR × Actual Activity Level) with the 'Actual Overheads' for the period. If absorbed overheads are less than actual overheads, it results in under-absorption, meaning not enough cost was charged to production. Conversely, if absorbed overheads are greater than actual overheads, it results in over-absorption. The resulting under- or over-absorbed amount is an adjustment in the Income Statement, usually to the cost of sales, to ensure the period's profit is calculated using the actual overheads incurred."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "It is the difference between actual overheads incurred and overheads absorbed into production.",
+        "Under-absorption: Actual Overheads > Absorbed Overheads. This increases the cost of sales.",
+        "Over-absorption: Actual Overheads < Absorbed Overheads. This decreases the cost of sales.",
+        "The adjustment ensures the Income Statement reflects the actual overhead costs for the period."
+      ]
     },
     {
       "type": "workedExample",
@@ -50,10 +160,34 @@
     {
       "type": "resources",
       "items": [
-        { "label": "2.2.3 Marginal costing", "href": "/courses/9706/2-2-3-marginal-costing" },
-        { "label": "2.2.4 CVP analysis", "href": "/courses/9706/2-2-4-cost-volume-profit-analysis" },
-        { "label": "9706 course index", "href": "/courses/9706" }
+        {
+          "label": "2.2.3 Marginal costing",
+          "href": "/courses/9706/2-2-3-marginal-costing"
+        },
+        {
+          "label": "2.2.4 CVP analysis",
+          "href": "/courses/9706/2-2-4-cost-volume-profit-analysis"
+        },
+        {
+          "label": "9706 course index",
+          "href": "/courses/9706"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Why do we use a predetermined OAR based on budgets instead of just using actual overheads at the end of the period?",
+      "a": "A predetermined OAR is used to provide a consistent and timely cost per unit throughout the accounting period. Waiting until the end of the period to know the actual costs would delay crucial business decisions like setting selling prices, valuing inventory, and preparing interim reports. Using a budgeted rate also smooths out month-to-month fluctuations in overhead spending and production volume, providing a more stable unit cost."
+    },
+    {
+      "q": "If a company has both machine-intensive and labour-intensive departments, should it use a single factory-wide OAR?",
+      "a": "No, this is generally inaccurate and not recommended. Using a single, factory-wide OAR can lead to significant product costing errors. A machine-intensive department's overheads are driven by machine usage, so a machine-hour rate is most appropriate. A labour-intensive department's overheads are better absorbed using a direct labour-hour rate. Using separate departmental OARs provides a more accurate allocation of overheads and therefore a fairer and more realistic product cost."
+    },
+    {
+      "q": "Does under-absorption of overheads automatically mean the business has been inefficient?",
+      "a": "Not necessarily. Under-absorption can be caused by two main factors: 1) The actual overhead spending was higher than budgeted (an expenditure variance), which could indicate inefficiency or unexpected cost increases. 2) The actual activity level was lower than budgeted (a volume variance), which might be due to lower-than-expected sales demand rather than production inefficiency. It is crucial to analyse the reasons for the under-absorption before drawing conclusions about performance."
+    }
+  ],
+  "contentDeepened": true
 }

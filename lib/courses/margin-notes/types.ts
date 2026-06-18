@@ -29,6 +29,8 @@ export type MarginNotesTopic = {
   slug: string
   done?: boolean
   active?: boolean
+  /** True when the lesson has a bespoke interactive explorable. */
+  interactive?: boolean
 }
 
 export type MarginNotesUnit = {

@@ -108,6 +108,7 @@ export function CourseLessonPage({
     () =>
       [
         { id: 'simple', label: 'Simple explanation', on: !!L.simple },
+        { id: 'syllabus', label: 'Syllabus coverage', on: !!L.subtopics?.length },
         { id: 'visual', label: 'Visual learning', on: hasVisual && !locked },
         { id: 'formulas', label: 'Key formulas', on: !!L.formulas?.length },
         { id: 'compare', label: 'Side by side', on: !!L.comparisonTable },
@@ -535,6 +536,33 @@ export function CourseLessonPage({
                     ))}
                   </ol>
                 ) : null}
+              </section>
+            ) : null}
+
+            {L.subtopics?.length ? (
+              <section id="syllabus" className="lsec">
+                <SecHead
+                  k="·"
+                  title="What this topic covers"
+                  sub="The official Cambridge syllabus points this lesson works through."
+                />
+                <ol className="subtopics">
+                  {L.subtopics.map((st, i) => (
+                    <li key={i} className="subtopic card">
+                      <span className="subtopic-code mono">{st.code ?? i + 1}</span>
+                      <div className="subtopic-body">
+                        <p className="subtopic-title serif">
+                          <CourseRichText content={st.title} variant="inline" breakAnywhere={false} />
+                        </p>
+                        {st.detail ? (
+                          <p className="body-2 subtopic-detail">
+                            <CourseRichText content={st.detail} variant="inline" breakAnywhere={false} />
+                          </p>
+                        ) : null}
+                      </div>
+                    </li>
+                  ))}
+                </ol>
               </section>
             ) : null}
 

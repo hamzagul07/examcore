@@ -102,6 +102,16 @@ export type LessonInteractiveEmbed = {
   }
 }
 
+/** An official syllabus sub-topic / learning outcome this lesson covers. */
+export type LessonSubtopic = {
+  /** Cambridge syllabus reference, e.g. "1.1.1" (optional where codes don't apply). */
+  code?: string
+  /** The sub-topic / learning-outcome statement. */
+  title: string
+  /** Optional one-line elaboration. */
+  detail?: string
+}
+
 export type CourseLesson = {
   slug: string
   topicCode: string
@@ -113,6 +123,8 @@ export type CourseLesson = {
   durationMin: number
   sections: LessonSection[]
   learningObjectives?: string[]
+  /** Official syllabus sub-topics this lesson covers (rendered as a coverage section). */
+  subtopics?: LessonSubtopic[]
   simpleExplanation?: SimpleExplanation
   faq?: CourseFaqItem[]
   diagram?: { src: string; alt: string }

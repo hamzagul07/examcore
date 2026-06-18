@@ -407,6 +407,7 @@ export function adaptLesson(
     mins: lesson.durationMin,
     intro,
     objectives: lesson.learningObjectives,
+    subtopics: lesson.subtopics,
     simple: lesson.simpleExplanation
       ? {
           title: lesson.simpleExplanation.title,

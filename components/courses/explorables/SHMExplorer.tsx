@@ -10,6 +10,8 @@
 import { useMemo, useState } from 'react'
 import { InlineMath } from 'react-katex'
 import type { ExplorableProps } from './registry'
+import { useAnimatedTime } from './useAnimatedTime'
+import { TimeSlider } from './TimeSlider'
 
 const W = 520
 const H = 300
@@ -33,7 +35,7 @@ const BEATS: Beat[] = ['displacement', 'velocity', 'acceleration']
 export function SHMExplorer({ step, stepCount }: ExplorableProps) {
   const [A, setA] = useState(4)
   const [T, setT] = useState(2)
-  const [tFrac, setTFrac] = useState(0.15)
+  const { t: tFrac, scrub: setTFrac, playing, toggle } = useAnimatedTime(0.25, 0.15)
   const beat = BEATS[clamp(step, 0, stepCount - 1)] ?? 'displacement'
 
   const omega = (2 * Math.PI) / T
@@ -124,7 +126,7 @@ export function SHMExplorer({ step, stepCount }: ExplorableProps) {
         <div className="qex-controls">
           <Slider label="A (amplitude)" value={A} min={1} max={5} step={0.25} onChange={setA} />
           <Slider label="T (period, s)" value={T} min={1} max={4} step={0.1} onChange={setT} />
-          <Slider label="time" value={tFrac} min={0} max={1} step={0.005} onChange={setTFrac} />
+          <TimeSlider value={tFrac} playing={playing} onScrub={setTFrac} onToggle={toggle} />
         </div>
       </div>
     </div>

@@ -10,6 +10,8 @@
 import { useMemo, useState } from 'react'
 import { InlineMath } from 'react-katex'
 import type { ExplorableProps } from './registry'
+import { useAnimatedTime } from './useAnimatedTime'
+import { TimeSlider } from './TimeSlider'
 
 const W = 520
 const H = 240
@@ -28,7 +30,7 @@ const BEATS: Beat[] = ['pattern', 'nodes', 'harmonics']
 
 export function StationaryWaveExplorer({ step, stepCount }: ExplorableProps) {
   const [n, setN] = useState(3)
-  const [tFrac, setTFrac] = useState(0.2)
+  const { t: tFrac, scrub: setTFrac, playing, toggle } = useAnimatedTime(0.22, 0.2)
   const beat = BEATS[clamp(step, 0, stepCount - 1)] ?? 'pattern'
 
   const x0 = PAD_X
@@ -99,10 +101,7 @@ export function StationaryWaveExplorer({ step, stepCount }: ExplorableProps) {
             <span className="qex-slider-head"><span className="qex-slider-label mono">n (harmonic)</span><span className="qex-slider-val mono">{n}</span></span>
             <input type="range" min={1} max={6} step={1} value={n} onChange={(e) => setN(Number(e.target.value))} aria-label="harmonic number" />
           </label>
-          <label className="qex-slider">
-            <span className="qex-slider-head"><span className="qex-slider-label mono">time</span><span className="qex-slider-val mono">{fmt(tFrac, 2)}</span></span>
-            <input type="range" min={0} max={1} step={0.005} value={tFrac} onChange={(e) => setTFrac(Number(e.target.value))} aria-label="time" />
-          </label>
+          <TimeSlider value={tFrac} playing={playing} onScrub={setTFrac} onToggle={toggle} />
         </div>
       </div>
     </div>

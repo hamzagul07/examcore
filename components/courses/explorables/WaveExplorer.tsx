@@ -10,6 +10,8 @@
 import { useMemo, useState } from 'react'
 import { InlineMath } from 'react-katex'
 import type { ExplorableProps } from './registry'
+import { useAnimatedTime } from './useAnimatedTime'
+import { TimeSlider } from './TimeSlider'
 
 const W = 520
 const H = 250
@@ -34,7 +36,7 @@ export function WaveExplorer({ step, stepCount }: ExplorableProps) {
   const [A, setA] = useState(1)
   const [lambda, setLambda] = useState(1.5)
   const [f, setF] = useState(1)
-  const [tFrac, setTFrac] = useState(0)
+  const { t: tFrac, scrub: setTFrac, playing, toggle } = useAnimatedTime(0.18, 0)
   const beat = BEATS[clamp(step, 0, stepCount - 1)] ?? 'shape'
 
   const T = 1 / f
@@ -100,7 +102,7 @@ export function WaveExplorer({ step, stepCount }: ExplorableProps) {
           <Slider label="A (amplitude)" value={A} min={0.3} max={1.4} step={0.1} onChange={setA} />
           <Slider label="λ (wavelength, m)" value={lambda} min={0.5} max={3} step={0.1} onChange={setLambda} />
           <Slider label="f (frequency, Hz)" value={f} min={0.5} max={3} step={0.1} onChange={setF} />
-          <Slider label="time" value={tFrac} min={0} max={1} step={0.005} onChange={setTFrac} />
+          <TimeSlider value={tFrac} playing={playing} onScrub={setTFrac} onToggle={toggle} />
         </div>
       </div>
     </div>

@@ -60,6 +60,11 @@ async function main() {
     process.exit(1)
   }
 
+  // Give Gemini more headroom — PDF extraction can exceed the 120s default,
+  // which surfaced as client-abort "timeout" failures.
+  const { setGeminiCallTimeoutMs } = await import('../lib/ai/gemini-text.ts')
+  setGeminiCallTimeoutMs(Number(process.env.GEMINI_CALL_TIMEOUT_MS) || 300_000)
+
   const { extractSyllabus, persistSyllabusObjectives } = await import(
     '../lib/extraction/syllabus-extractor.ts'
   )

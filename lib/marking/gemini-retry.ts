@@ -1,4 +1,4 @@
-const GEMINI_RETRYABLE_STATUS = [429, 500, 503]
+const GEMINI_RETRYABLE_STATUS = [429, 500, 502, 503, 504]
 
 /** Thrown when a Gemini/Vertex HTTP call exceeds the per-request timeout. */
 export class GeminiTimeoutError extends Error {

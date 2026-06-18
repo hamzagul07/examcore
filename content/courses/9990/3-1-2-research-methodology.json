@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 — experiments, observations, self-reports, and data analysis for Paper 2.",
   "durationMin": 30,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Design experiments with IV, DV, controls, and conditions.",
     "Evaluate observations, interviews, questionnaires, and case studies.",
@@ -25,30 +25,235 @@
     ]
   },
   "flashcards": [
-    { "front": "IV and DV?", "back": "Independent variable — manipulated by researcher; dependent variable — measured outcome." },
-    { "front": "Extraneous variable?", "back": "Any variable other than the IV that could affect the DV — controlled to protect **internal validity**." },
-    { "front": "Self-report limitation in health research?", "back": "**Social desirability bias** — patients overreport adherence or underreport unhealthy behaviour." },
-    { "front": "When to use chi-squared?", "back": "Test of association between two **nominal/categorical** variables — e.g. treatment group vs recovery status." },
-    { "front": "Operationalisation?", "back": "Defining abstract variables in measurable terms — e.g. 'stress' measured by Perceived Stress Scale score." },
-    { "front": "Ethical issue in health psychology experiments?", "back": "**Protection from harm** — inducing stress or withholding treatment; requires debriefing, informed consent, and right to withdraw." }
+    {
+      "front": "IV and DV?",
+      "back": "Independent variable — manipulated by researcher; dependent variable — measured outcome."
+    },
+    {
+      "front": "Extraneous variable?",
+      "back": "Any variable other than the IV that could affect the DV — controlled to protect **internal validity**."
+    },
+    {
+      "front": "Self-report limitation in health research?",
+      "back": "**Social desirability bias** — patients overreport adherence or underreport unhealthy behaviour."
+    },
+    {
+      "front": "When to use chi-squared?",
+      "back": "Test of association between two **nominal/categorical** variables — e.g. treatment group vs recovery status."
+    },
+    {
+      "front": "Operationalisation?",
+      "back": "Defining abstract variables in measurable terms — e.g. 'stress' measured by Perceived Stress Scale score."
+    },
+    {
+      "front": "Ethical issue in health psychology experiments?",
+      "back": "**Protection from harm** — inducing stress or withholding treatment; requires debriefing, informed consent, and right to withdraw."
+    },
+    {
+      "front": "Standard Deviation",
+      "back": "A measure of dispersion that calculates the average distance of each score from the mean. A large standard deviation indicates scores are widely spread out; a small one indicates they are clustered close to the mean."
+    },
+    {
+      "front": "Demand Characteristics",
+      "back": "Cues in a research setting that may reveal the aim of the study to participants, leading them to change their behaviour (e.g., by trying to please the researcher). This is a threat to internal validity."
+    },
+    {
+      "front": "Inter-rater Reliability",
+      "back": "The extent to which two or more observers agree on their observations. It is assessed by correlating the observers' separate recordings. A high positive correlation (e.g., +0.80 or above) indicates good reliability."
+    },
+    {
+      "front": "Semi-structured Interview",
+      "back": "A self-report method where the interviewer has a set of pre-prepared questions but can also ask unplanned, follow-up questions to explore interesting responses in more depth. It generates both quantitative and qualitative data."
+    },
+    {
+      "front": "Thematic Analysis",
+      "back": "A method for analysing qualitative data. It involves a process of reading and re-reading the data to identify, analyse, and report patterns (themes) that emerge from the text."
+    }
   ],
   "sections": [
-    { "type": "intro", "content": "**Research methodology** (3.1.2) is Paper 2. Practise **designing studies** and **interpreting stats** under timed conditions. Health Psychology topics (adherence, pain, stress) rely heavily on **self-report** and **field experiments** — always evaluate validity and ethics." },
+    {
+      "type": "intro",
+      "content": "**Research methodology** (3.1.2) is Paper 2. Practise **designing studies** and **interpreting stats** under timed conditions. Health Psychology topics (adherence, pain, stress) rely heavily on **self-report** and **field experiments** — always evaluate validity and ethics."
+    },
+    {
+      "type": "heading",
+      "content": "The Experimental Method: IVs, DVs, and Controls"
+    },
+    {
+      "type": "text",
+      "content": "The experimental method is the cornerstone of psychological research, designed to establish cause-and-effect relationships. It involves the deliberate manipulation of an Independent Variable (IV) to observe its effect on a Dependent Variable (DV), while rigorously controlling all other extraneous variables. For example, a researcher might manipulate the type of music played (IV) to measure its effect on task performance (DV). There are three main types: laboratory, field, and natural/quasi-experiments. Laboratory experiments offer the highest level of control, enhancing internal validity, but may suffer from low ecological validity due to their artificial setting. Field experiments balance control with realism by taking place in a natural environment, while natural experiments study the effects of a naturally occurring IV that the researcher cannot manipulate."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The core purpose is to test a hypothesis about cause and effect between an IV and a DV.",
+        "Control over extraneous variables is crucial to ensure changes in the DV are caused by the IV alone.",
+        "Laboratory experiments prioritise control, field experiments prioritise realism, and natural experiments investigate pre-existing IVs.",
+        "Internal validity refers to the confidence that the IV caused the DV change; ecological validity refers to how well findings generalise to real life."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When evaluating a study in Paper 2, always link the type of experiment to its specific strengths and weaknesses. For a lab experiment, praise the high control over extraneous variables but criticise the artificiality and potential for demand characteristics."
+    },
+    {
+      "type": "heading",
+      "content": "Observational Techniques: Structure and Roles"
+    },
+    {
+      "type": "text",
+      "content": "Observations involve watching and recording behaviour. They can be structured, using pre-determined behavioural categories and a coding scheme, or unstructured, where the researcher records all relevant behaviour without a system. The observer's role is also key. In a participant observation, the researcher becomes part of the group being studied, whereas in a non-participant observation, they remain separate. Furthermore, observations can be overt (participants know they are being watched) or covert (participants are unaware). Covert, participant observations can yield highly valid data as they reduce demand characteristics, but they raise significant ethical issues regarding deception and informed consent. Structured observations produce quantitative data that is easy to analyse, while unstructured observations provide rich, qualitative detail."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Structured vs. Unstructured: Using a pre-set coding scheme vs. recording all behaviour.",
+        "Participant vs. Non-participant: The researcher is part of the group vs. observing from a distance.",
+        "Overt vs. Covert: Participants are aware vs. unaware of being observed.",
+        "Ethical issues (deception, consent, privacy) are particularly prominent in covert observations."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When a question asks you to 'describe the observation' used in a core study, be precise. For example, state it was a 'covert, non-participant, structured observation' and justify each element with evidence from the study's procedure."
+    },
+    {
+      "type": "heading",
+      "content": "Self-Report Methods: Questionnaires and Interviews"
+    },
+    {
+      "type": "text",
+      "content": "Self-report methods gather data by asking participants about their thoughts, feelings, or behaviours. Questionnaires use written questions and can include closed questions (e.g., yes/no, rating scales like Likert scales) which generate quantitative data, or open questions which generate detailed qualitative data. Interviews are face-to-face or remote conversations. Structured interviews use pre-set questions, making them standardised and replicable. Semi-structured interviews have some prepared questions but allow the interviewer flexibility to ask follow-up questions to explore responses in more depth. A major weakness of all self-reports is the potential for social desirability bias, where participants give answers they believe are more socially acceptable, reducing the validity of the data."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Questionnaires can gather large amounts of data quickly; interviews allow for more in-depth exploration.",
+        "Closed questions produce quantitative data; open questions produce qualitative data.",
+        "Structured interviews are standardised; semi-structured interviews offer flexibility.",
+        "Key weaknesses include social desirability bias, leading questions, and potential for subjective interpretation by the researcher."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 2, you may be asked to suggest an alternative way to study something. If the original study used an experiment, suggesting a self-report method like a semi-structured interview is a valid alternative. Justify your choice by explaining how it would overcome a weakness of the original method (e.g., by providing insight into 'why' a behaviour occurred)."
+    },
+    {
+      "type": "heading",
+      "content": "Data Analysis and Presentation"
+    },
+    {
+      "type": "text",
+      "content": "Once data is collected, it must be analysed and presented. Quantitative (numerical) data is summarised using descriptive statistics. Measures of central tendency (mean, median, mode) describe the 'typical' score, while measures of dispersion (range, standard deviation) describe the spread of scores. The mean is the arithmetic average, the median is the middle value, and the mode is the most frequent value. The standard deviation is a powerful measure of how scores cluster around the mean. Qualitative (non-numerical) data, such as interview transcripts, is often analysed using thematic analysis to identify recurring patterns and themes. Data can be presented visually in graphs, such as bar charts for discrete categories or histograms for continuous data, to make patterns easier to understand."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Quantitative data is numerical; qualitative data is descriptive and word-based.",
+        "Measures of Central Tendency: Mean (average), Median (middle), Mode (most frequent).",
+        "Measures of Dispersion: Range (highest minus lowest), Standard Deviation (spread around the mean).",
+        "Thematic analysis is a common method for identifying patterns in qualitative data.",
+        "Bar charts display frequencies of discrete categories; histograms display frequencies of continuous data."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, if you are given a small data set, be prepared to calculate the mean, median, mode, or range. Always show your working. When asked to draw a conclusion, refer specifically to the descriptive statistics (e.g., 'The median score for Group A was 7, which is higher than the median of 4 for Group B, suggesting...')."
+    },
     {
       "type": "workedExample",
       "question": "A researcher wants to test whether a text-message reminder system improves medication adherence in diabetic patients.\n\n(a) Outline an experimental design for this study, identifying the IV, DV, and one control. [4 marks]\n(b) Identify one ethical issue and one validity issue with this design. [4 marks]",
       "solution": "(a) **Experimental design:**\n- **Design:** Independent groups — Group A receives **SMS reminders**; Group B receives **no reminders** (control).\n- **IV:** Reminder condition (reminders vs no reminders).\n- **DV:** **Adherence rate** — operationalised as pill count or biochemical marker (HbA1c as proxy for glucose control).\n- **Control:** Match groups on age, diabetes type, and baseline adherence; standardise medication regimen.\n\n(b) **Ethical issue:**\n- **Confidentiality** — health data is sensitive; participants must consent to SMS contact and data storage under GDPR/medical ethics.\n\n**Validity issue:**\n- **Self-report adherence** (if used) lacks **validity** due to social desirability — patients may overreport compliance. Biochemical measures improve objectivity but increase cost.\n\n**Additional evaluation:** Field experiment has **high ecological validity** (real-world setting) but less control over extraneous variables (e.g. family support) than a lab study."
     },
-    { "type": "practice", "label": "Mark a research methods question", "href": "/mark?subject=9990&topic=3.1.2" },
+    {
+      "type": "practice",
+      "label": "Mark a research methods question",
+      "href": "/mark?subject=9990&topic=3.1.2"
+    },
     {
       "type": "resources",
       "items": [
-        { "label": "3.1.1 The core studies", "href": "/courses/9990/3-1-1-the-core-studies" },
-        { "label": "3.2.2 Measuring non-adherence", "href": "/courses/9990/3-2-2-measuring-non-adherence" },
-        { "label": "3.3.2 Measuring pain", "href": "/courses/9990/3-3-2-measuring-pain" },
-        { "label": "3.4.2 Measures of stress", "href": "/courses/9990/3-4-2-measures-of-stress" },
-        { "label": "9990 course index", "href": "/courses/9990" }
+        {
+          "label": "3.1.1 The core studies",
+          "href": "/courses/9990/3-1-1-the-core-studies"
+        },
+        {
+          "label": "3.2.2 Measuring non-adherence",
+          "href": "/courses/9990/3-2-2-measuring-non-adherence"
+        },
+        {
+          "label": "3.3.2 Measuring pain",
+          "href": "/courses/9990/3-3-2-measuring-pain"
+        },
+        {
+          "label": "3.4.2 Measures of stress",
+          "href": "/courses/9990/3-4-2-measures-of-stress"
+        },
+        {
+          "label": "9990 course index",
+          "href": "/courses/9990"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is a natural experiment the same as a field experiment?",
+      "a": "No. A field experiment takes place in a natural setting, but the researcher still manipulates the Independent Variable (IV). In a natural experiment, the IV is an event or change that occurs naturally, without any intervention from the researcher (e.g., a change in law). The researcher simply records the effect of this change on a Dependent Variable (DV)."
+    },
+    {
+      "q": "Can a study use both quantitative and qualitative data?",
+      "a": "Yes, this is called a mixed-methods approach and is very common. For example, a questionnaire might use Likert scales to gather quantitative data on attitudes, and also include an open-ended question asking participants to explain their views, which provides rich qualitative data. This allows for both statistical analysis and a deeper, more nuanced understanding of the topic."
+    },
+    {
+      "q": "What is the difference between reliability and validity?",
+      "a": "Reliability refers to the consistency of a measure or study. If the study were repeated, would the same results be found? Validity refers to the accuracy of a measure or study. Does it truly measure what it claims to measure? A measure can be reliable but not valid (e.g., a faulty weighing scale consistently shows you are 5kg too light), but it cannot be valid if it is not reliable (if the results are inconsistent, they cannot be accurate)."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparing Laboratory and Field Experiments",
+    "columns": [
+      "Feature",
+      "Laboratory Experiment",
+      "Field Experiment"
+    ],
+    "rows": [
+      {
+        "property": "Setting",
+        "cells": [
+          "Controlled, artificial environment (e.g., a university psychology lab).",
+          "Natural, everyday environment relevant to the behaviour being studied (e.g., a school playground)."
+        ]
+      },
+      {
+        "property": "Control over Variables",
+        "cells": [
+          "High. The researcher can minimise the influence of extraneous variables.",
+          "Lower. It is more difficult to control all extraneous variables in a real-world setting."
+        ]
+      },
+      {
+        "property": "Internal Validity",
+        "cells": [
+          "High. Greater confidence that the IV caused the change in the DV.",
+          "Lower. Extraneous variables may have influenced the DV, reducing certainty about cause and effect."
+        ]
+      },
+      {
+        "property": "Ecological Validity",
+        "cells": [
+          "Low. The artificial setting and tasks may not reflect real-life behaviour.",
+          "High. Behaviour is more likely to be natural and representative of real life."
+        ]
+      },
+      {
+        "property": "Demand Characteristics",
+        "cells": [
+          "High risk. Participants are aware they are in a study and may guess the aim.",
+          "Lower risk. Participants may be unaware they are being studied, leading to more natural behaviour."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

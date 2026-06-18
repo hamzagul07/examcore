@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — analgesics, TENS, CBT, distraction, and multimodal pain management.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Outline pharmacological pain management (opioids, NSAIDs).",
     "Explain TENS and gate control application.",
@@ -25,30 +25,239 @@
     ]
   },
   "flashcards": [
-    { "front": "NSAIDs mechanism?", "back": "Non-steroidal anti-inflammatory drugs (e.g. ibuprofen) — reduce **prostaglandins** at injury site; effective for inflammatory pain, not neuropathic." },
-    { "front": "Opioid risk?", "back": "Strong analgesia but **tolerance**, **dependence**, and **respiratory depression** — opioid crisis highlights addiction risk in chronic use." },
-    { "front": "TENS and gate control?", "back": "Transcutaneous Electrical Nerve Stimulation activates **large-diameter fibres** — closes spinal gate per **Melzack & Wall**; non-invasive, patient-controlled." },
-    { "front": "CBT for chronic pain?", "back": "Cognitive Behavioural Therapy targets **catastrophising** and helplessness — changes pain-related thoughts and behaviours; no effect on tissue damage but reduces **disability**." },
-    { "front": "Distraction technique?", "back": "Directing attention away from pain (music, games, VR) — reduces pain perception via **gate closure** and limited attentional capacity." },
-    { "front": "Multimodal pain management?", "back": "Combining **pharmacological + physical + psychological** approaches — standard for chronic pain where single-method treatment fails." }
+    {
+      "front": "NSAIDs mechanism?",
+      "back": "Non-steroidal anti-inflammatory drugs (e.g. ibuprofen) — reduce **prostaglandins** at injury site; effective for inflammatory pain, not neuropathic."
+    },
+    {
+      "front": "Opioid risk?",
+      "back": "Strong analgesia but **tolerance**, **dependence**, and **respiratory depression** — opioid crisis highlights addiction risk in chronic use."
+    },
+    {
+      "front": "TENS and gate control?",
+      "back": "Transcutaneous Electrical Nerve Stimulation activates **large-diameter fibres** — closes spinal gate per **Melzack & Wall**; non-invasive, patient-controlled."
+    },
+    {
+      "front": "CBT for chronic pain?",
+      "back": "Cognitive Behavioural Therapy targets **catastrophising** and helplessness — changes pain-related thoughts and behaviours; no effect on tissue damage but reduces **disability**."
+    },
+    {
+      "front": "Distraction technique?",
+      "back": "Directing attention away from pain (music, games, VR) — reduces pain perception via **gate closure** and limited attentional capacity."
+    },
+    {
+      "front": "Multimodal pain management?",
+      "back": "Combining **pharmacological + physical + psychological** approaches — standard for chronic pain where single-method treatment fails."
+    },
+    {
+      "front": "What is the primary mechanism of opioid analgesics like morphine?",
+      "back": "They bind to opioid receptors in the central nervous system (brain and spinal cord), mimicking the body's natural endorphins to block the transmission of pain signals and alter pain perception."
+    },
+    {
+      "front": "According to the Gate Control Theory, how does TENS work?",
+      "back": "TENS stimulates large A-beta nerve fibres. This activity 'closes the gate' in the spinal cord's dorsal horn, preventing pain signals from smaller A-delta and C fibres from ascending to the brain."
+    },
+    {
+      "front": "What is 'catastrophising' in the context of CBT for pain?",
+      "back": "It is a maladaptive cognitive pattern involving rumination, magnification of the threat value of pain, and feelings of helplessness. CBT aims to identify and restructure these thoughts."
+    },
+    {
+      "front": "What is the core principle behind distraction as a pain management technique?",
+      "back": "The principle of limited attentional capacity. By focusing attention on a non-painful stimulus (e.g., a video game), fewer cognitive resources are available to process and perceive the pain signals."
+    },
+    {
+      "front": "Define multimodal pain management.",
+      "back": "A holistic, integrated approach that combines multiple treatment methods (e.g., biochemical, physical, and psychological) to address the various biological, psychological, and social aspects of a patient's pain."
+    }
   ],
   "sections": [
-    { "type": "intro", "content": "**Managing pain** (3.3.3) completes 3.3. Integrate **biological + psychological** approaches. For chronic pain, the WHO analgesic ladder plus psychological support is exam-standard." },
+    {
+      "type": "intro",
+      "content": "**Managing pain** (3.3.3) completes 3.3. Integrate **biological + psychological** approaches. For chronic pain, the WHO analgesic ladder plus psychological support is exam-standard."
+    },
+    {
+      "type": "heading",
+      "content": "Biochemical Management: Analgesics"
+    },
+    {
+      "type": "text",
+      "content": "Analgesics are medications, commonly known as painkillers, that manage pain by acting on the nervous system. They are broadly categorised into non-opioids and opioids. Non-opioids, such as paracetamol and non-steroidal anti-inflammatory drugs (NSAIDs) like ibuprofen, work peripherally at the site of injury. NSAIDs, for instance, inhibit the production of prostaglandins, chemicals that cause inflammation and sensitise nerve endings. Opioids, such as morphine and codeine, work centrally by binding to opioid receptors in the brain and spinal cord. This mimics the action of endogenous painkillers (endorphins), blocking the transmission of pain signals to the brain and altering pain perception. While highly effective, particularly for severe acute pain, long-term opioid use carries significant risks of tolerance, dependence, and addiction."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Analgesics are biochemical agents that relieve pain.",
+        "Non-opioids (e.g., NSAIDs) act peripherally, often by inhibiting prostaglandins.",
+        "Opioids (e.g., morphine) act centrally on the brain and spinal cord, mimicking endorphins.",
+        "Opioids are potent but have a high potential for tolerance and addiction."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Stimulation Therapy: Transcutaneous Electrical Nerve Stimulation (TENS)"
+    },
+    {
+      "type": "text",
+      "content": "Transcutaneous Electrical Nerve Stimulation (TENS) is a non-invasive method that uses low-voltage electrical currents to relieve pain. Its mechanism is best explained by Melzack and Wall's (1965) Gate Control Theory. Electrodes are placed on the skin near the source of pain, and the TENS machine delivers small electrical impulses. This stimulation is thought to activate large-diameter A-beta nerve fibres. According to the theory, activity in these fibres closes a 'gate' in the dorsal horn of the spinal cord, which inhibits the transmission of pain signals carried by smaller A-delta and C fibres from reaching the brain. A secondary mechanism suggests that TENS may also stimulate the body to produce its own natural painkillers, endorphins. It is commonly used for chronic musculoskeletal pain, arthritis, and labour pain."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "TENS uses low-voltage electrical currents applied via skin electrodes.",
+        "It is based on the Gate Control Theory of Pain.",
+        "Stimulation of A-beta fibres 'closes the gate' to pain signals from A-delta and C fibres.",
+        "TENS may also promote the release of endorphins."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When discussing TENS, always link it explicitly to the Gate Control Theory of Pain. Explain how stimulating large nerve fibres (A-beta) can inhibit the signals from small pain fibres (A-delta and C) at the spinal 'gate'."
+    },
+    {
+      "type": "heading",
+      "content": "Psychological Management: Cognitive Behavioural Therapy (CBT)"
+    },
+    {
+      "type": "text",
+      "content": "Cognitive Behavioural Therapy (CBT) for pain is a psychological intervention that helps individuals change how they think about and respond to their pain. It does not eliminate the pain sensation itself but reduces its debilitating impact. The cognitive component focuses on identifying and challenging maladaptive thoughts, such as 'catastrophising' (e.g., 'This pain is unbearable and will never get better'). Patients learn to reframe these thoughts into more realistic and helpful ones. The behavioural component focuses on changing unhelpful behaviours, such as activity avoidance. Patients are taught skills like activity pacing, relaxation techniques, and goal setting to gradually increase their functional ability without triggering a pain flare-up. A meta-analysis by Morley, Eccleston & Williams (1999) found CBT to be effective in reducing the negative impact of chronic pain."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "CBT addresses the thoughts (cognitions) and actions (behaviours) associated with pain.",
+        "Cognitive restructuring challenges negative thought patterns like catastrophising.",
+        "Behavioural strategies include activity pacing and relaxation to improve function.",
+        "The goal is to reduce the disability and distress caused by pain, rather than eliminate the sensation."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Psychological Management: Distraction and Imagery"
+    },
+    {
+      "type": "text",
+      "content": "Distraction is a psychological technique that involves focusing attention on something other than the pain. The underlying principle is that our attentional capacity is limited; by engaging in a sufficiently demanding task, fewer cognitive resources are available to process and perceive pain signals. Distraction can be active, such as playing a video game or having a conversation, or passive, like listening to music or watching a film. Research, particularly using virtual reality (VR), has shown significant pain reduction during medical procedures. Guided imagery is a related technique where the individual is encouraged to create a detailed, vivid mental scene that is pleasant and absorbing. This mental 'escape' serves as a powerful internal form of distraction, reducing the perceived intensity of pain."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Distraction works by diverting limited attentional resources away from pain signals.",
+        "It can be active (engaging in a task) or passive (observing a stimulus).",
+        "Virtual Reality (VR) is a modern and highly effective form of distraction.",
+        "Guided imagery uses the mind to create an absorbing mental scene to reduce pain perception."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Multimodal Pain Management"
+    },
+    {
+      "type": "text",
+      "content": "Recognising that chronic pain is a complex biopsychosocial experience, multimodal management has become the gold standard of care. This approach rejects a 'one-size-fits-all' solution and instead combines multiple treatment modalities to address the different facets of a patient's condition. A typical multimodal pain clinic might offer a programme that integrates biochemical treatments (e.g., carefully managed analgesics), physical therapies (e.g., physiotherapy, TENS), and psychological interventions (e.g., CBT, mindfulness). By tackling the pain from different angles simultaneously, this synergistic approach can lead to better outcomes in terms of pain reduction, improved physical functioning, and enhanced psychological well-being than any single treatment used in isolation. It empowers the patient with a diverse toolkit for managing their long-term condition."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Multimodal management combines biochemical, physical, and psychological treatments.",
+        "It is based on the biopsychosocial model of pain.",
+        "This approach is considered the gold standard for managing complex chronic pain.",
+        "The combination of therapies often has a synergistic effect, leading to better outcomes."
+      ]
+    },
     {
       "type": "workedExample",
       "question": "Elena, 45, has chronic lower back pain with no surgical option. She currently takes high-dose opioids daily but reports little functional improvement and fears addiction.\n\n(a) Outline a multimodal pain management plan for Elena. [4 marks]\n(b) Explain how TENS and CBT would help, linking each to pain theory. [4 marks]\n(c) Evaluate psychological approaches to pain management compared to pharmacological approaches. [6 marks]",
       "solution": "(a) **Multimodal plan:**\n1. **Medication review** — taper opioids under medical supervision; add **NSAIDs** or **gabapentin** (neuropathic component).\n2. **TENS unit** for daily home use.\n3. **CBT programme** — 8 sessions targeting catastrophising.\n4. **Physiotherapy** — graded exercise to rebuild function.\n5. **Mindfulness/relaxation** training.\n6. **Pain clinic referral** for coordinated care.\n\n(b) **Theory links:**\n- **TENS:** Applies **gate control theory** — electrical stimulation activates large-diameter A-beta fibres, closing the gate in substantia gelatinosa. Provides competing sensory input Elena can control.\n- **CBT:** Addresses **psychological gate-openers** — catastrophic thoughts (\"I'll never work again\") increase anxiety and pain focus, keeping gate open. CBT replaces catastrophising with coping statements, reducing pain-related disability per **biopsychosocial model**.\n\n(c) **Evaluation — psychological vs pharmacological:**\n\n**Psychological (CBT, distraction):**\n- **Strengths:** No **side effects** or addiction risk; improves **function and quality of life** even when pain intensity unchanged; addresses **chronic pain** where drugs fail; long-lasting skills.\n- **Limitations:** Requires **motivation and cognitive capacity**; slower onset than drugs; access to trained therapists limited on NHS.\n\n**Pharmacological (opioids, NSAIDs):**\n- **Strengths:** Rapid relief for **acute pain**; essential post-surgery; NSAIDs reduce inflammation at source.\n- **Limitations:** Opioids — **tolerance**, **dependence**, **hyperalgesia** (ironically increased pain sensitivity with long-term use); do not address **psychological maintenance** of chronic pain; **Milgram parallel** — patients may passively comply with prescription without questioning.\n\n**Judgement:** For Elena's chronic pain, **psychological + physical** approaches should be **primary** with pharmacological as adjunct — reversing the typical over-reliance on opioids."
     },
-    { "type": "practice", "label": "Mark a pain management question", "href": "/mark?subject=9990&topic=3.3.3" },
+    {
+      "type": "practice",
+      "label": "Mark a pain management question",
+      "href": "/mark?subject=9990&topic=3.3.3"
+    },
     {
       "type": "resources",
       "items": [
-        { "label": "3.3.1 Types and theories of pain", "href": "/courses/9990/3-3-1-types-and-theories-of-pain" },
-        { "label": "3.3.2 Measuring pain", "href": "/courses/9990/3-3-2-measuring-pain" },
-        { "label": "3.4.3 Managing stress", "href": "/courses/9990/3-4-3-managing-stress" },
-        { "label": "3.2.3 Improving adherence", "href": "/courses/9990/3-2-3-improving-adherence" },
-        { "label": "9990 course index", "href": "/courses/9990" }
+        {
+          "label": "3.3.1 Types and theories of pain",
+          "href": "/courses/9990/3-3-1-types-and-theories-of-pain"
+        },
+        {
+          "label": "3.3.2 Measuring pain",
+          "href": "/courses/9990/3-3-2-measuring-pain"
+        },
+        {
+          "label": "3.4.3 Managing stress",
+          "href": "/courses/9990/3-4-3-managing-stress"
+        },
+        {
+          "label": "3.2.3 Improving adherence",
+          "href": "/courses/9990/3-2-3-improving-adherence"
+        },
+        {
+          "label": "9990 course index",
+          "href": "/courses/9990"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "If psychological therapies like CBT can help with pain, does that mean the pain is 'all in your head'?",
+      "a": "No, this is a common misconception. The pain is a real, physical sensation. However, the brain is not just a passive receiver of pain signals; it actively interprets them. Psychological factors like thoughts, emotions, and attention can significantly amplify or dampen our perception of pain. CBT works by helping patients manage their reaction to the real pain, reducing distress and disability, not by suggesting the pain is imaginary."
+    },
+    {
+      "q": "Are analgesics always the best first-line treatment for pain?",
+      "a": "Not necessarily, especially for chronic pain. While analgesics are very effective for acute pain (e.g., after an injury or surgery), their long-term use for chronic conditions can be problematic. Non-opioids can have side effects, and opioids carry a high risk of tolerance and addiction. For chronic pain, a multimodal approach that includes physical and psychological therapies is often more effective and safer in the long run than relying solely on medication."
+    },
+    {
+      "q": "Does TENS work for everyone and for all types of pain?",
+      "a": "No, the effectiveness of TENS varies considerably between individuals and pain conditions. It often works best for neuropathic pain (pain from nerve damage) and musculoskeletal pain. However, some people find it provides little to no relief. The success of the treatment can also depend heavily on correct electrode placement, as well as the frequency and intensity settings of the device, which often require trial and error to optimise for the individual."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparing Biochemical and Psychological Approaches to Pain Management",
+    "columns": [
+      "Feature",
+      "Analgesics (Biochemical)",
+      "CBT (Psychological)"
+    ],
+    "rows": [
+      {
+        "property": "Primary Target",
+        "cells": [
+          "Physiological pain pathways (e.g., nerve signals, inflammation, brain receptors).",
+          "Maladaptive thoughts, emotions, and behaviours related to the experience of pain."
+        ]
+      },
+      {
+        "property": "Mechanism of Action",
+        "cells": [
+          "Alters nerve transmission or blocks the production of pain-sensitising chemicals (e.g., prostaglandins).",
+          "Cognitive restructuring to change pain beliefs, and behavioural activation to improve function."
+        ]
+      },
+      {
+        "property": "Typical Application",
+        "cells": [
+          "Most effective for acute pain, post-surgical pain, and cancer-related pain.",
+          "Primarily used for chronic, non-malignant pain conditions (e.g., back pain, fibromyalgia)."
+        ]
+      },
+      {
+        "property": "Patient Role",
+        "cells": [
+          "Largely passive; the patient receives and takes the medication as prescribed.",
+          "Highly active; the patient must learn, practise, and apply cognitive and behavioural skills."
+        ]
+      },
+      {
+        "property": "Potential Side Effects / Downsides",
+        "cells": [
+          "Drowsiness, nausea, constipation. Risk of tolerance, dependence, and addiction with opioids.",
+          "Requires significant patient motivation and effort. Can cause temporary emotional distress."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — life events, daily hassles, workplace stressors, and individual differences.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Define stress and distinguish eustress from distress.",
     "Explain Holmes & Rahe life events scale.",
@@ -25,30 +25,222 @@
     ]
   },
   "flashcards": [
-    { "front": "Eustress vs distress?", "back": "Eustress — **positive** stress that motivates (e.g. exam preparation). Distress — **negative** stress that overwhelms coping resources." },
-    { "front": "Holmes & Rahe Social Readjustment Rating Scale?", "back": "43 life events ranked by **Life Change Units (LCUs)** — e.g. death of spouse = 100, marriage = 50. Total >300 = high stress risk." },
-    { "front": "Kanner et al. (1981) daily hassles?", "back": "Minor daily irritations (traffic, arguments, deadlines) correlate **more strongly** with health outcomes than major life events — **accumulation effect**." },
-    { "front": "Daily uplifts?", "back": "Small positive events (compliment, good meal) that buffer stress — Kanner found uplifts improve mood and health." },
-    { "front": "Workplace stress — demand-control model?", "back": "Karasek — high **job demands** + low **control** = highest stress and cardiovascular risk (high-strain jobs)." },
-    { "front": "Individual differences in stress?", "back": "Same stressor affects people differently — depends on **appraisal** (Lazarus), **personality** (Type A), and **social support**." }
+    {
+      "front": "Eustress vs distress?",
+      "back": "Eustress — **positive** stress that motivates (e.g. exam preparation). Distress — **negative** stress that overwhelms coping resources."
+    },
+    {
+      "front": "Holmes & Rahe Social Readjustment Rating Scale?",
+      "back": "43 life events ranked by **Life Change Units (LCUs)** — e.g. death of spouse = 100, marriage = 50. Total >300 = high stress risk."
+    },
+    {
+      "front": "Kanner et al. (1981) daily hassles?",
+      "back": "Minor daily irritations (traffic, arguments, deadlines) correlate **more strongly** with health outcomes than major life events — **accumulation effect**."
+    },
+    {
+      "front": "Daily uplifts?",
+      "back": "Small positive events (compliment, good meal) that buffer stress — Kanner found uplifts improve mood and health."
+    },
+    {
+      "front": "Workplace stress — demand-control model?",
+      "back": "Karasek — high **job demands** + low **control** = highest stress and cardiovascular risk (high-strain jobs)."
+    },
+    {
+      "front": "Individual differences in stress?",
+      "back": "Same stressor affects people differently — depends on **appraisal** (Lazarus), **personality** (Type A), and **social support**."
+    },
+    {
+      "front": "What is the Social Readjustment Rating Scale (SRRS)?",
+      "back": "A self-report questionnaire by Holmes and Rahe (1967) to measure stress from major life events. It assigns a Life Change Unit (LCU) score to 43 events. A high total LCU score in a year is correlated with an increased risk of illness."
+    },
+    {
+      "front": "What is the main argument of the 'daily hassles' model of stress?",
+      "back": "Proposed by Kanner et al. (1981), it argues that the frequent, minor irritations of everyday life are a more significant source of stress than major life events because their cumulative effect wears down an individual's coping abilities."
+    },
+    {
+      "front": "According to Marmot et al.'s (1997) Whitehall II study, what is a key workplace stressor?",
+      "back": "Low job control. The study of British civil servants found that employees in lower-grade jobs, who had less control over their work, had a higher risk of developing coronary heart disease than those in higher-grade jobs with more control."
+    },
+    {
+      "front": "Describe the key characteristics of a Type A personality.",
+      "back": "As identified by Friedman and Rosenman, Type A individuals are characterised by being highly competitive, ambitious, work-driven, impatient, time-urgent, and prone to anger and hostility."
+    },
+    {
+      "front": "What is meant by the 'hostility component' in relation to personality and stress?",
+      "back": "It is the element of the Type A personality that is now considered the most 'toxic' and the strongest predictor of stress-related illness, particularly coronary heart disease. It involves tendencies towards anger, cynicism, and mistrust."
+    }
   ],
   "sections": [
-    { "type": "intro", "content": "**Sources of stress** (3.4.1) opens 3.4. Compare **life events vs daily hassles** research. Remember stress is transactional — source + appraisal = response." },
+    {
+      "type": "intro",
+      "content": "**Sources of stress** (3.4.1) opens 3.4. Compare **life events vs daily hassles** research. Remember stress is transactional — source + appraisal = response."
+    },
+    {
+      "type": "heading",
+      "content": "Major Life Events as a Source of Stress"
+    },
+    {
+      "type": "text",
+      "content": "A primary source of stress stems from major life events, which are significant but relatively infrequent occurrences that disrupt an individual's normal routine and require substantial psychological readjustment. Holmes and Rahe (1967) developed the Social Readjustment Rating Scale (SRRS) to quantify this stress. The scale lists 43 life events, from death of a spouse to minor violations of the law, each assigned a 'Life Change Unit' (LCU) score based on the perceived level of adjustment needed. The core principle is that both positive (e.g., marriage) and negative events are stressful. A high cumulative LCU score over a 12-month period is correlated with an increased likelihood of experiencing physical illness, suggesting that the effort of adapting to change depletes our resources and makes us more vulnerable."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Life events are significant occurrences requiring major psychological readjustment.",
+        "Holmes and Rahe's Social Readjustment Rating Scale (SRRS) measures stress using Life Change Units (LCUs).",
+        "Both positive and negative events are considered stressful as they both demand adaptation.",
+        "A high cumulative LCU score is positively correlated with the onset of stress-related illness."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When evaluating the life events approach, critically consider its correlational nature. The SRRS shows a link between high LCU scores and illness, but it does not prove that life events *caused* the illness. Other variables, such as personality, coping style, or social support, could be influential."
+    },
+    {
+      "type": "heading",
+      "content": "The Cumulative Impact of Daily Hassles"
+    },
+    {
+      "type": "text",
+      "content": "In contrast to major life events, daily hassles are the frequent, minor irritations and frustrations of everyday life. Kanner et al. (1981) argued that the cumulative effect of these stressors, such as losing keys, traffic jams, or arguments, is a more significant source of stress than major life events. They developed the Hassles and Uplifts Scale to measure these experiences, proposing that 'uplifts' (minor positive experiences) could partially offset the negative impact of hassles. Research by DeLongis et al. (1982) supported this view, finding that daily hassles were a better predictor of psychological symptoms and health problems than the life event scores from the SRRS. This suggests that the constant wearing down of our coping resources by minor stressors is particularly damaging to our health."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Daily hassles are frequent, minor, everyday irritations.",
+        "Kanner et al. (1981) proposed that the cumulative effect of hassles is more damaging than major life events.",
+        "The Hassles and Uplifts Scale was developed to measure these experiences.",
+        "Research suggests hassles are often a stronger predictor of negative health outcomes than life events."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Workplace Stress: Workload and Control"
+    },
+    {
+      "type": "text",
+      "content": "For many adults, the workplace is a major source of chronic stress. Two key factors identified by research are workload and control. Workload refers to the volume and pace of work; both overload (too much to do) and underload (boring, repetitive tasks) can be stressful. Control refers to the autonomy an employee has over their tasks, work pace, and decisions. The Whitehall II study by Marmot et al. (1997) was a landmark piece of research in this area. It studied British civil servants and found a clear social gradient in health. Employees in lower-status jobs with low control were significantly more likely to develop coronary heart disease than those in higher-status jobs with high control, even when other risk factors were accounted for."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The workplace is a significant source of chronic stress.",
+        "Key stressors include workload (the amount of work) and control (autonomy over one's job).",
+        "Marmot et al.'s (1997) Whitehall II study linked low job control to an increased risk of heart disease.",
+        "The combination of high demand and low control is considered particularly stressful."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Individual Differences: The Role of Personality"
+    },
+    {
+      "type": "text",
+      "content": "The experience of stress is not universal; individual differences mediate how a person perceives and reacts to a potential stressor. Personality is a key factor. Friedman and Rosenman (1974) identified the Type A and Type B personalities. Type A individuals are characterised by competitiveness, time urgency, ambition, and hostility. In their longitudinal study, they found that men with a Type A personality were more than twice as likely to develop coronary heart disease (CHD) as their more relaxed, patient, and easy-going Type B counterparts. Subsequent research has refined this, identifying the 'hostility component' of the Type A personality as the most toxic element, strongly predicting poor health outcomes. This demonstrates how dispositional factors can create a vulnerability to stress."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Individual differences, such as personality, mediate the stress response.",
+        "Friedman and Rosenman identified Type A (competitive, hostile) and Type B (relaxed, patient) personalities.",
+        "Their research found a significant link between the Type A personality and a higher incidence of coronary heart disease.",
+        "The hostility component of Type A personality is now considered the most significant predictor of ill health."
+      ]
+    },
     {
       "type": "workedExample",
       "question": "Two students experience the same event: failing a mock exam.\n\nStudent A becomes anxious, loses sleep, and stops studying. Student B treats it as useful feedback and increases revision.\n\n(a) Using Holmes & Rahe and Kanner's research, outline two types of stress source relevant to students. [4 marks]\n(b) Explain why the same stressor produced different responses in A and B. [4 marks]\n(c) Evaluate the life events approach to understanding stress. [6 marks]",
       "solution": "(a) **Stress sources:**\n- **Life events (Holmes & Rahe):** Failing an exam may coincide with other LCUs — e.g. starting university (63 LCU), parental divorce (73) — cumulative score predicts health risk.\n- **Daily hassles (Kanner et al.):** Ongoing minor stressors — coursework deadlines, part-time job shifts, arguments with housemates — **accumulate** and correlate more strongly with anxiety and health complaints than single events.\n\n(b) **Different responses explained:**\n- **Lazarus & Folkman's appraisal model:** Student A performs **primary appraisal** — evaluates failure as **threat** to university place (high perceived severity). Student B appraises as **challenge** — opportunity to improve.\n- **Secondary appraisal:** A believes coping resources are insufficient; B believes revision strategy can be changed.\n- **Individual factors:** A may have **external locus of control** (Rotter) — \"nothing I do will help\"; B has **internal LOC** and higher **self-efficacy** (Bandura).\n\n(c) **Evaluation of life events approach:**\n- **Strengths:** Holmes & Rahe (1967) provided **quantifiable** measure (LCUs); demonstrated link between life change and illness (e.g. tuberculosis, accidents); pioneering stress research.\n- **Limitations:**\n  - **Ignores appraisal** — same event (marriage = 50 LCU) can be positive or negative depending on individual.\n  - **Retrospective bias** — SRRS relies on memory of past events.\n  - **Daily hassles stronger predictor** — Kanner et al. (1981) showed hassles correlate r = .51 with psychological symptoms vs r = .28 for life events.\n  - **Cultural bias** — SRRS developed in 1960s USA; events like \"mortgage >$10,000\" dated.\n  - **Correlation not causation** — life events may co-occur with illness rather than cause it.\n\n**Judgement:** Life events approach is historically important but **insufficient alone** — must combine with daily hassles and appraisal models."
     },
-    { "type": "practice", "label": "Mark a sources of stress question", "href": "/mark?subject=9990&topic=3.4.1" },
+    {
+      "type": "practice",
+      "label": "Mark a sources of stress question",
+      "href": "/mark?subject=9990&topic=3.4.1"
+    },
     {
       "type": "resources",
       "items": [
-        { "label": "3.4.2 Measures of stress", "href": "/courses/9990/3-4-2-measures-of-stress" },
-        { "label": "3.4.3 Managing stress", "href": "/courses/9990/3-4-3-managing-stress" },
-        { "label": "3.5.2 Health promotion in schools and worksites", "href": "/courses/9990/3-5-2-health-promotion-in-schools-and-worksites" },
-        { "label": "3.3.1 Types and theories of pain", "href": "/courses/9990/3-3-1-types-and-theories-of-pain" },
-        { "label": "9990 course index", "href": "/courses/9990" }
+        {
+          "label": "3.4.2 Measures of stress",
+          "href": "/courses/9990/3-4-2-measures-of-stress"
+        },
+        {
+          "label": "3.4.3 Managing stress",
+          "href": "/courses/9990/3-4-3-managing-stress"
+        },
+        {
+          "label": "3.5.2 Health promotion in schools and worksites",
+          "href": "/courses/9990/3-5-2-health-promotion-in-schools-and-worksites"
+        },
+        {
+          "label": "3.3.1 Types and theories of pain",
+          "href": "/courses/9990/3-3-1-types-and-theories-of-pain"
+        },
+        {
+          "label": "9990 course index",
+          "href": "/courses/9990"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Are only negative events stressful? The SRRS includes things like marriage and promotion.",
+      "a": "This is a common misconception. The life events model suggests that stress is caused by the need for psychological readjustment to *any* major change, not just negative ones. Positive events like marriage require significant adaptation in one's life and routines, which is inherently stressful. Therefore, the SRRS includes both positive and negative events, with stressfulness rated by the amount of readjustment required."
+    },
+    {
+      "q": "If daily hassles are a better predictor of illness, does that mean major life events don't matter?",
+      "a": "Not at all. While research suggests daily hassles may have a stronger correlation with health outcomes, this doesn't invalidate the impact of major life events. The two sources of stress often interact. For example, a major life event like divorce (a high LCU score) can trigger a cascade of daily hassles (e.g., financial worries, arguments), creating a combined and amplified stressful experience. Both are important sources of stress."
+    },
+    {
+      "q": "Is everyone with a Type A personality guaranteed to get heart disease?",
+      "a": "No, this is a deterministic view that isn't supported by evidence. The link between Type A personality and coronary heart disease is correlational, indicating an increased risk, not a certainty. Many other factors mediate this relationship, including social support, coping strategies, diet, and genetics. Furthermore, modern research suggests it is the 'hostility component', rather than ambition alone, that carries the most significant health risk."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparing Life Events and Daily Hassles as Sources of Stress",
+    "columns": [
+      "Feature",
+      "Life Events",
+      "Daily Hassles"
+    ],
+    "rows": [
+      {
+        "property": "Nature of Stressor",
+        "cells": [
+          "Major, infrequent life changes requiring significant adaptation.",
+          "Minor, frequent, everyday irritations and frustrations."
+        ]
+      },
+      {
+        "property": "Key Researchers",
+        "cells": [
+          "Holmes and Rahe (1967)",
+          "Kanner et al. (1981)"
+        ]
+      },
+      {
+        "property": "Measurement Tool",
+        "cells": [
+          "Social Readjustment Rating Scale (SRRS)",
+          "Hassles and Uplifts Scale"
+        ]
+      },
+      {
+        "property": "Assumed Impact",
+        "cells": [
+          "Stress arises from the effort of readjustment to change.",
+          "Stress arises from the cumulative effect of minor stressors wearing down coping resources."
+        ]
+      },
+      {
+        "property": "Predictive Validity",
+        "cells": [
+          "Correlated with illness, but often found to be a weaker predictor than hassles.",
+          "Often found to be a stronger and more reliable predictor of psychological and physical health problems."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

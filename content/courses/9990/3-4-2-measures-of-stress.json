@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — self-report scales, physiological indicators, and stress assessment methods.",
   "durationMin": 20,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Outline self-report measures: PSS, SRRS, hassles scales.",
     "Explain physiological measures: cortisol, heart rate, GSR.",
@@ -25,30 +25,219 @@
     ]
   },
   "flashcards": [
-    { "front": "Perceived Stress Scale (PSS)?", "back": "Cohen et al. — 10-item questionnaire measuring **subjective feelings** of stress over the past month; widely used in health research." },
-    { "front": "SRRS measurement?", "back": "Holmes & Rahe **Social Readjustment Rating Scale** — checklist of 43 life events with LCU weights; total score indicates cumulative life change stress." },
-    { "front": "Daily Hassles Scale?", "back": "Kanner et al. — 117-item inventory of minor irritations; **stronger predictor** of psychological symptoms than life events scale." },
-    { "front": "Cortisol as stress measure?", "back": "Stress hormone from **HPA axis** — measured in saliva or blood; objective but fluctuates with **circadian rhythm** and acute vs chronic stress." },
-    { "front": "Galvanic Skin Response (GSR)?", "back": "Measures **electrical conductance** of skin — increases with sweat (sympathetic arousal); used in lab stress studies." },
-    { "front": "Multi-method assessment?", "back": "Combining self-report + physiological measures improves **validity** — captures both subjective experience and objective arousal." }
+    {
+      "front": "Perceived Stress Scale (PSS)?",
+      "back": "Cohen et al. — 10-item questionnaire measuring **subjective feelings** of stress over the past month; widely used in health research."
+    },
+    {
+      "front": "SRRS measurement?",
+      "back": "Holmes & Rahe **Social Readjustment Rating Scale** — checklist of 43 life events with LCU weights; total score indicates cumulative life change stress."
+    },
+    {
+      "front": "Daily Hassles Scale?",
+      "back": "Kanner et al. — 117-item inventory of minor irritations; **stronger predictor** of psychological symptoms than life events scale."
+    },
+    {
+      "front": "Cortisol as stress measure?",
+      "back": "Stress hormone from **HPA axis** — measured in saliva or blood; objective but fluctuates with **circadian rhythm** and acute vs chronic stress."
+    },
+    {
+      "front": "Galvanic Skin Response (GSR)?",
+      "back": "Measures **electrical conductance** of skin — increases with sweat (sympathetic arousal); used in lab stress studies."
+    },
+    {
+      "front": "Multi-method assessment?",
+      "back": "Combining self-report + physiological measures improves **validity** — captures both subjective experience and objective arousal."
+    },
+    {
+      "front": "What is the Social Readjustment Rating Scale (SRRS)?",
+      "back": "A self-report questionnaire by Holmes and Rahe (1967) to measure stress from major life events. It has 43 events, each with a Life Change Unit (LCU) score. The total score over a past period is used to predict the likelihood of illness."
+    },
+    {
+      "front": "What is the Galvanic Skin Response (GSR)?",
+      "back": "A physiological measure of stress that records changes in the electrical conductivity of the skin. Conductivity increases with sweat production, which is activated by the sympathetic nervous system (SAM pathway) in response to a stressor."
+    },
+    {
+      "front": "What is a key criticism of using major life events to measure stress?",
+      "back": "They fail to account for individual differences in perception. An event like 'pregnancy' is assigned a fixed stress score on the SRRS, but it may be a joyful event for one person and a highly stressful one for another, a nuance the scale misses."
+    },
+    {
+      "front": "How did Kanner et al. (1981) propose to measure stress differently from Holmes and Rahe?",
+      "back": "Kanner et al. argued that the cumulative effect of minor, daily hassles (e.g., traffic, arguments) is a better predictor of ill health than infrequent major life events. They developed the Hassles and Uplifts Scale to measure this."
+    },
+    {
+      "front": "What is a major advantage of using physiological measures of stress over self-report measures?",
+      "back": "Objectivity. Physiological measures like cortisol levels or blood pressure provide quantitative, scientific data that is not subject to a participant's subjective interpretation, memory biases, or social desirability effects that can affect self-report scales."
+    }
   ],
   "sections": [
-    { "type": "intro", "content": "**Measuring stress** (3.4.2) — evaluate **self-report vs physiological** validity. Stress has subjective and objective components — no single measure captures both." },
+    {
+      "type": "intro",
+      "content": "**Measuring stress** (3.4.2) — evaluate **self-report vs physiological** validity. Stress has subjective and objective components — no single measure captures both."
+    },
+    {
+      "type": "heading",
+      "content": "Introduction to Measuring Stress"
+    },
+    {
+      "type": "text",
+      "content": "Measuring stress is fundamental to understanding its impact on health and behaviour. Psychologists use two primary categories of measurement: self-report scales and physiological indicators. Self-report measures capture an individual's subjective experience, asking them to reflect on their feelings and the events they perceive as stressful. In contrast, physiological measures provide objective data by recording the body's automatic biological responses to a stressor, such as changes in heart rate or hormone levels. As stress is a complex psychophysiological phenomenon, neither method is perfect on its own. Researchers often employ a combination of both approaches, a practice known as triangulation, to achieve a more valid and comprehensive assessment of an individual's stress levels and their effects."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Stress measurement is crucial for understanding its causes, effects, and for developing effective interventions.",
+        "The two main methods are self-report (subjective experience) and physiological (objective bodily responses).",
+        "A multi-method approach, combining both types, enhances the validity and reliability of stress assessment."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Self-Report Measures: Major Life Events"
+    },
+    {
+      "type": "text",
+      "content": "A classic self-report tool is the Social Readjustment Rating Scale (SRRS), developed by Holmes and Rahe (1967). It is based on the hypothesis that major life events requiring significant social readjustment are a primary source of stress. The scale consists of 43 life events, each assigned a 'Life Change Unit' (LCU) score based on the perceived level of adjustment required. Participants tick the events they have experienced over a set period (e.g., 12 months), and their LCU scores are totalled. A high score is positively correlated with an increased likelihood of future illness. However, the scale is criticised for being correlational, not causal, and for failing to account for individual differences in how an event is perceived and managed."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The SRRS quantifies stress based on 43 major life events, each with a pre-assigned Life Change Unit (LCU) score.",
+        "It proposes a positive correlation between a high total LCU score and the probability of subsequent illness.",
+        "Key criticisms include its correlational nature and its lack of consideration for individual perception and coping abilities."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Self-Report Measures: Daily Hassles"
+    },
+    {
+      "type": "text",
+      "content": "As a counterpoint to the focus on major life events, Kanner et al. (1981) proposed that the cumulative effect of minor, everyday stressors—or 'daily hassles'—is a more significant predictor of poor health. They developed the Hassles and Uplifts Scale. The Hassles Scale lists common irritants like 'losing things' or 'traffic jams', which participants rate for severity. The Uplifts Scale measures positive daily events, such as 'getting on well with colleagues', which may buffer the negative effects of stress. Kanner's research found that the severity of daily hassles was a better predictor of psychological symptoms, like anxiety and depression, than the LCU scores from the SRRS, highlighting the importance of chronic, low-level stress."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Developed by Kanner et al. (1981) to measure the stress from minor, everyday irritants (hassles).",
+        "The scale also measures positive daily events (uplifts) that may mediate the effects of stress.",
+        "Research suggests daily hassles are a stronger predictor of psychological health problems than major life events."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Physiological Measures of Stress"
+    },
+    {
+      "type": "text",
+      "content": "Physiological measures assess the body's involuntary response to stress, providing objective data. These methods target the two main stress pathways. The Sympathomedullary (SAM) pathway, responsible for the 'fight or flight' response, can be measured via heart rate, blood pressure, and the Galvanic Skin Response (GSR). The GSR measures changes in the skin's electrical conductivity caused by sweating. The Hypothalamic-Pituitary-Adrenal (HPA) axis, associated with chronic stress, is assessed by measuring levels of the hormone cortisol. This can be done through samples of saliva, blood, or urine. While these measures are scientific and avoid subjective bias, they can be invasive, expensive, and the results can be confounded by other factors like caffeine, exercise, or the stress of the measurement procedure itself."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Physiological measures provide objective data on the body's automatic response to a stressor.",
+        "Key indicators include blood pressure and Galvanic Skin Response (GSR) for the SAM pathway.",
+        "Cortisol levels (measured in saliva, blood, or urine) are a primary indicator of HPA axis activity.",
+        "These measures are objective but can be invasive and affected by confounding variables."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When evaluating a study on stress, always critique the specific measure used. For example, if a study uses only the SRRS, you can argue it lacks validity as it ignores individual perception. If it uses only GSR, you can question whether the arousal measured was definitely due to stress and not another factor like excitement or physical exertion. The strongest research often combines both types of measures."
+    },
     {
       "type": "workedExample",
       "question": "Researchers measure stress in nurses using the Perceived Stress Scale (PSS) and salivary cortisol samples taken at 8am.\n\n(a) Identify the type of measure used in each method. [2 marks]\n(b) Outline one strength and one limitation of each measure. [4 marks]\n(c) Evaluate whether physiological measures are more valid than self-report for measuring stress. [6 marks]",
       "solution": "(a) **Measure types:**\n- PSS — **subjective self-report** measure.\n- Salivary cortisol — **objective physiological** measure.\n\n(b) **Strengths and limitations:**\n\n**PSS (self-report):**\n- Strength: Captures **individual perception** — two nurses with identical workloads may experience different stress levels.\n- Limitation: **Social desirability** — nurses may underreport stress to appear competent.\n\n**Salivary cortisol:**\n- Strength: **Objective** — cannot be faked; directly measures HPA axis activation linked to chronic stress and health outcomes.\n- Limitation: **Circadian variation** — cortisol peaks at waking (8am sample is standardised but still varies); acute stressors (traffic on way to work) spike levels temporarily.\n\n(c) **Evaluation — physiological vs self-report validity:**\n- **Case for physiological superiority:** Objective, quantifiable, linked to **health outcomes** (Kiecolt-Glaser — cortisol suppresses immune function). Avoids bias.\n- **Case against:**\n  - **Low correlation** between self-report and cortisol (r ≈ 0.1–0.3) — they measure **different constructs**: perceived stress vs biological activation.\n  - **Lazarus & Folkman** — stress is fundamentally about **appraisal**, which only self-report captures.\n  - Physiological measures miss **cognitive/emotional** component — a person may show normal cortisol but feel overwhelmed.\n  - **Ethical issues** in lab — inducing stress to measure GSR/cortisol (e.g. stroop, public speaking) requires debriefing.\n  - **Individual differences** — cortisol reactivity varies genetically; baseline differences confound group comparisons.\n\n**Judgement:** Neither is inherently more valid — **multi-method assessment** (PSS + cortisol + daily hassles diary) provides most complete picture, consistent with **biopsychosocial** approach."
     },
-    { "type": "practice", "label": "Mark a measuring stress question", "href": "/mark?subject=9990&topic=3.4.2" },
+    {
+      "type": "practice",
+      "label": "Mark a measuring stress question",
+      "href": "/mark?subject=9990&topic=3.4.2"
+    },
     {
       "type": "resources",
       "items": [
-        { "label": "3.4.1 Sources of stress", "href": "/courses/9990/3-4-1-sources-of-stress" },
-        { "label": "3.4.3 Managing stress", "href": "/courses/9990/3-4-3-managing-stress" },
-        { "label": "3.3.2 Measuring pain", "href": "/courses/9990/3-3-2-measuring-pain" },
-        { "label": "3.2.2 Measuring non-adherence", "href": "/courses/9990/3-2-2-measuring-non-adherence" },
-        { "label": "9990 course index", "href": "/courses/9990" }
+        {
+          "label": "3.4.1 Sources of stress",
+          "href": "/courses/9990/3-4-1-sources-of-stress"
+        },
+        {
+          "label": "3.4.3 Managing stress",
+          "href": "/courses/9990/3-4-3-managing-stress"
+        },
+        {
+          "label": "3.3.2 Measuring pain",
+          "href": "/courses/9990/3-3-2-measuring-pain"
+        },
+        {
+          "label": "3.2.2 Measuring non-adherence",
+          "href": "/courses/9990/3-2-2-measuring-non-adherence"
+        },
+        {
+          "label": "9990 course index",
+          "href": "/courses/9990"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is a high score on the SRRS a guarantee that I will get ill?",
+      "a": "No, it is not a guarantee. The SRRS shows a positive correlation, not a causation. A high score indicates an increased statistical risk or vulnerability to illness, but many other factors like coping strategies, social support, and genetics play a crucial role. The scale is a predictive tool, not a diagnostic certainty."
+    },
+    {
+      "q": "Are physiological measures always better because they are 'scientific'?",
+      "a": "Not necessarily. While objective, they have limitations. An increased heart rate can be caused by excitement or exercise, not just stress. The measurement process itself can be stressful, confounding the results. Crucially, they do not capture the person's subjective experience of stress, which is a vital part of the overall picture."
+    },
+    {
+      "q": "Why do psychologists focus on 'daily hassles'? Surely big events like divorce are more stressful?",
+      "a": "While major events are highly stressful, research by Kanner suggests the chronic, cumulative effect of daily hassles can be more damaging to health over time. This constant activation of the stress response, without adequate recovery, leads to 'wear and tear' on the body (known as allostatic load) and may be a stronger predictor of health problems than infrequent major life events."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Self-Report and Physiological Measures of Stress",
+    "columns": [
+      "Feature",
+      "Self-Report Measures",
+      "Physiological Measures"
+    ],
+    "rows": [
+      {
+        "property": "Type of Data",
+        "cells": [
+          "Subjective (based on personal perception and recall).",
+          "Objective (based on biological and physical readings)."
+        ]
+      },
+      {
+        "property": "Examples",
+        "cells": [
+          "Holmes & Rahe's SRRS; Kanner's Hassles & Uplifts Scale; Perceived Stress Scale (PSS).",
+          "Galvanic Skin Response (GSR); Blood pressure monitoring; Cortisol levels (saliva/blood)."
+        ]
+      },
+      {
+        "property": "Key Strength",
+        "cells": [
+          "Provides rich insight into the individual's subjective experience. Cheap and easy to administer to large groups.",
+          "Highly reliable and scientific. Avoids response biases like social desirability as results cannot be easily faked."
+        ]
+      },
+      {
+        "property": "Key Weakness",
+        "cells": [
+          "Prone to biases (e.g., social desirability, inaccurate recall). Scales like the SRRS are not individualised.",
+          "Can be invasive, expensive, and stressful to administer. Readings can be affected by confounding variables (e.g., caffeine, exercise)."
+        ]
+      },
+      {
+        "property": "Primary Application",
+        "cells": [
+          "Large-scale correlational studies, initial clinical screening, assessing perceived stress.",
+          "Laboratory experiments on acute stress, monitoring chronic stress via HPA axis activity."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

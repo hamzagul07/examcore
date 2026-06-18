@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9990 Health — pain scales, McGill Pain Questionnaire, and behavioural pain indicators.",
   "durationMin": 20,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Outline self-report scales: VAS, NRS, faces scales.",
     "Explain McGill Pain Questionnaire structure.",
@@ -25,30 +25,233 @@
     ]
   },
   "flashcards": [
-    { "front": "Visual Analogue Scale (VAS)?", "back": "100mm line from 'no pain' to 'worst pain imaginable' — patient marks position; scored 0–100mm. **Simple and sensitive** to change." },
-    { "front": "Numeric Rating Scale (NRS)?", "back": "0–10 verbal rating — \"Rate your pain from 0 to 10.\" Easy to use clinically; **correlates highly** with VAS." },
-    { "front": "Wong-Baker FACES scale?", "back": "Cartoon faces from smiling to crying — designed for **children** and patients with language barriers." },
-    { "front": "McGill Pain Questionnaire?", "back": "Melzack's measure with **20 word categories** (sensory, affective, evaluative, miscellaneous) — captures pain **quality**, not just intensity." },
-    { "front": "Behavioural pain indicators?", "back": "Observed **guarding**, grimacing, reduced mobility, vocalisation — useful when patient **cannot self-report** (infants, dementia)." },
-    { "front": "Why is pain measurement difficult?", "back": "Pain is **subjective and private** — no objective meter; influenced by culture, mood, and **expectancy** (placebo/nocebo effects)." }
+    {
+      "front": "Visual Analogue Scale (VAS)?",
+      "back": "100mm line from 'no pain' to 'worst pain imaginable' — patient marks position; scored 0–100mm. **Simple and sensitive** to change."
+    },
+    {
+      "front": "Numeric Rating Scale (NRS)?",
+      "back": "0–10 verbal rating — \"Rate your pain from 0 to 10.\" Easy to use clinically; **correlates highly** with VAS."
+    },
+    {
+      "front": "Wong-Baker FACES scale?",
+      "back": "Cartoon faces from smiling to crying — designed for **children** and patients with language barriers."
+    },
+    {
+      "front": "McGill Pain Questionnaire?",
+      "back": "Melzack's measure with **20 word categories** (sensory, affective, evaluative, miscellaneous) — captures pain **quality**, not just intensity."
+    },
+    {
+      "front": "Behavioural pain indicators?",
+      "back": "Observed **guarding**, grimacing, reduced mobility, vocalisation — useful when patient **cannot self-report** (infants, dementia)."
+    },
+    {
+      "front": "Why is pain measurement difficult?",
+      "back": "Pain is **subjective and private** — no objective meter; influenced by culture, mood, and **expectancy** (placebo/nocebo effects)."
+    },
+    {
+      "front": "What is the primary limitation of unidimensional pain scales like the VAS or NRS?",
+      "back": "They only measure one aspect of pain – its intensity. They do not capture the qualitative nature of the pain, such as whether it is burning or throbbing (sensory) or how distressing it is (affective)."
+    },
+    {
+      "front": "Name the three main components of the McGill Pain Questionnaire (MPQ).",
+      "back": "1. Word descriptors (grouped into sensory, affective, and evaluative categories). 2. A body map to indicate the location of the pain. 3. A Present Pain Intensity (PPI) scale."
+    },
+    {
+      "front": "In what situations are behavioural pain indicators most useful?",
+      "back": "When patients are unable to self-report their pain. This includes infants, young children, patients who are unconscious, sedated, or have severe cognitive impairments or communication difficulties."
+    },
+    {
+      "front": "Define 'affective' in the context of pain measurement.",
+      "back": "The 'affective' dimension refers to the emotional component of the pain experience. It includes feelings such as fear, anxiety, depression, and the overall unpleasantness or distress caused by the pain."
+    },
+    {
+      "front": "What is the UAB Pain Behavior Scale?",
+      "back": "It is a structured observational tool used to measure pain by recording the frequency of specific pain-related behaviours, such as guarding, bracing, rubbing, grimacing, and sighing, over a set observation period."
+    }
   ],
   "sections": [
-    { "type": "intro", "content": "**Measuring pain** (3.3.2) — compare **self-report vs behavioural** measures and validity issues. Pain is defined by the patient's experience — \"pain is whatever the experiencing person says it is\" (McCaffery)." },
+    {
+      "type": "intro",
+      "content": "**Measuring pain** (3.3.2) — compare **self-report vs behavioural** measures and validity issues. Pain is defined by the patient's experience — \"pain is whatever the experiencing person says it is\" (McCaffery)."
+    },
+    {
+      "type": "heading",
+      "content": "Introduction to Pain Measurement"
+    },
+    {
+      "type": "text",
+      "content": "Pain is an inherently subjective and personal experience, which presents a significant challenge for objective measurement. Unlike a physiological variable such as blood pressure, there is no device that can definitively quantify what an individual is feeling. Despite this, accurate measurement is crucial for effective clinical practice. It allows healthcare professionals to diagnose conditions, select appropriate treatments, monitor the effectiveness of interventions like analgesics, and conduct vital research into pain mechanisms and therapies. Pain assessment methods are broadly categorised into self-report measures, where the patient describes their pain, and observational measures, where a clinician assesses behavioural or physiological indicators. The choice of method is tailored to the patient's ability to communicate and the specific clinical context."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Pain is a subjective, private experience, making objective measurement difficult.",
+        "Measuring pain is essential for diagnosis, treatment planning, and evaluating therapeutic outcomes.",
+        "Primary methods include self-report (e.g., scales), behavioural observation, and physiological indicators.",
+        "The most appropriate measure depends on the patient's condition, age, and cognitive status."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Unidimensional Self-Report Pain Scales"
+    },
+    {
+      "type": "text",
+      "content": "Unidimensional scales are the simplest and most common method of pain assessment, designed to measure a single dimension of pain: its intensity. The Numerical Rating Scale (NRS) asks patients to rate their pain on a scale, typically from 0 (no pain) to 10 (worst pain imaginable). The Visual Analogue Scale (VAS) consists of a 10cm line, anchored by 'no pain' and 'worst pain imaginable', where the patient marks their pain level. The Verbal Rating Scale (VRS) provides a list of adjectives, such as 'no pain', 'mild', 'moderate', and 'severe', from which the patient chooses. While quick and easy to use, especially for acute pain, their major limitation is their failure to capture the complex, multifaceted nature of the pain experience."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "These scales measure only one dimension of pain: intensity.",
+        "Examples include the Numerical Rating Scale (NRS), Visual Analogue Scale (VAS), and Verbal Rating Scale (VRS).",
+        "They are valued for their speed and simplicity, making them ideal for frequent monitoring.",
+        "Their primary weakness is a lack of qualitative detail about the pain experience."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When evaluating unidimensional scales, state clearly that while they may have good reliability for tracking changes in pain intensity over time, their construct validity can be questioned as they oversimplify the complex, multidimensional nature of pain."
+    },
+    {
+      "type": "heading",
+      "content": "The McGill Pain Questionnaire (MPQ)"
+    },
+    {
+      "type": "text",
+      "content": "Developed by Melzack and Torgerson (1971), the McGill Pain Questionnaire (MPQ) is a sophisticated, multidimensional self-report tool. It provides a far richer assessment than simple scales by evaluating three dimensions of the pain experience. First, patients select words from 20 groups that best describe their pain, categorised as sensory (e.g., 'throbbing', 'burning'), affective (e.g., 'tiring', 'frightful'), and evaluative (overall intensity). Second, they mark the location of their pain on a body diagram. Third, they rate their Present Pain Intensity (PPI). The responses generate a Pain Rating Index (PRI), providing both quantitative and qualitative data. This makes the MPQ particularly valuable for diagnosing and managing complex chronic pain conditions, where understanding the nature of the pain is key."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The MPQ is a multidimensional self-report questionnaire.",
+        "It assesses sensory, affective (emotional), and evaluative aspects of pain.",
+        "Its main components are word descriptors, a body map, and a Present Pain Intensity scale.",
+        "It yields a detailed profile of a patient's pain, which is highly useful for chronic pain assessment."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Observing Pain: Behavioural Indicators"
+    },
+    {
+      "type": "text",
+      "content": "Behavioural pain measures are essential when patients cannot provide a self-report. This applies to infants, unconscious patients, or individuals with dementia or other cognitive impairments. Assessment involves a trained clinician observing and recording specific behaviours known to be associated with pain. These indicators include vocalizations (crying, moaning, groaning), facial expressions (grimacing, wincing, frowning), and body movements (restlessness, muscle tension, guarding a painful area). To improve objectivity and reliability, structured tools like the UAB (University of Alabama at Birmingham) Pain Behavior Scale are used. This scale systematically records the frequency of ten specific behaviours, such as guarding, bracing, and rubbing, providing a standardised score that can be tracked over time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Used for non-verbal patients, such as infants or those with cognitive impairments.",
+        "Involves observing and recording specific pain-related behaviours.",
+        "Key indicators include facial expressions, vocalisations, and body posturing.",
+        "Structured tools like the UAB Pain Behavior Scale enhance inter-rater reliability and standardise assessment."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When discussing behavioural measures, always consider the issue of reliability. The consistency of observations can be low if observers are not properly trained. Mentioning the need for clear operational definitions and training to ensure high inter-rater reliability will strengthen your evaluation."
+    },
     {
       "type": "workedExample",
       "question": "A nurse uses a 0–10 Numeric Rating Scale to assess post-operative pain. A patient rates pain as 3/10 but is observed grimacing and refusing to mobilise.\n\n(a) Identify the measurement methods being used and one discrepancy between them. [3 marks]\n(b) Explain how the McGill Pain Questionnaire would provide additional information. [3 marks]\n(c) Evaluate the validity of self-report pain scales. [6 marks]",
       "solution": "(a) **Methods and discrepancy:**\n- **Self-report:** NRS (0–10 numeric rating) — patient rates pain as 3/10 (mild).\n- **Behavioural observation:** Grimacing and **guarding/refusing mobilisation** — suggests moderate-to-severe pain behaviour.\n- **Discrepancy:** Self-report (**3**) underestimates pain compared to behavioural indicators — possible ** stoicism**, **social desirability** (not wanting to bother staff), or **under-reporting** due to opioid stigma.\n\n(b) **McGill Pain Questionnaire added value:**\n- Captures **pain quality** — sensory descriptors (\"sharp,\" \"throbbing\"), affective (\"sickening,\" \"tiring\"), evaluative (\"annoying,\" \"miserable\").\n- Would reveal whether patient experiences **deep aching** (surgical site) vs **surface pain** — guides analgesic choice.\n- **Present Pain Intensity** subscale provides standardised intensity score comparable across patients.\n\n(c) **Evaluation of self-report validity:**\n- **Strengths:** Respects **subjective nature** of pain; VAS/NRS show **good test–retest reliability** in stable pain; sensitive to **treatment change**.\n- **Limitations:**\n  - **Social desirability** — patients underreport to appear brave or avoid dependency label.\n  - **Cultural variation** — some cultures express pain openly, others stoically — same score may mean different experiences.\n  - **Cognitive factors:** **Kahneman** — peak-end rule means recall of pain depends on worst moment and most recent sensation, not average.\n  - **No objective ground truth** — cannot establish criterion validity against a gold standard.\n  - **Children and non-verbal patients** — self-report impossible; behavioural scales (FLACC, COMFORT) needed.\n\n**Judgement:** Self-report is **necessary but insufficient** — combine NRS with behavioural observation and McGill for comprehensive assessment."
     },
-    { "type": "practice", "label": "Mark a measuring pain question", "href": "/mark?subject=9990&topic=3.3.2" },
+    {
+      "type": "practice",
+      "label": "Mark a measuring pain question",
+      "href": "/mark?subject=9990&topic=3.3.2"
+    },
     {
       "type": "resources",
       "items": [
-        { "label": "3.3.1 Types and theories of pain", "href": "/courses/9990/3-3-1-types-and-theories-of-pain" },
-        { "label": "3.3.3 Managing and controlling pain", "href": "/courses/9990/3-3-3-managing-and-controlling-pain" },
-        { "label": "3.2.2 Measuring non-adherence", "href": "/courses/9990/3-2-2-measuring-non-adherence" },
-        { "label": "3.4.2 Measures of stress", "href": "/courses/9990/3-4-2-measures-of-stress" },
-        { "label": "9990 course index", "href": "/courses/9990" }
+        {
+          "label": "3.3.1 Types and theories of pain",
+          "href": "/courses/9990/3-3-1-types-and-theories-of-pain"
+        },
+        {
+          "label": "3.3.3 Managing and controlling pain",
+          "href": "/courses/9990/3-3-3-managing-and-controlling-pain"
+        },
+        {
+          "label": "3.2.2 Measuring non-adherence",
+          "href": "/courses/9990/3-2-2-measuring-non-adherence"
+        },
+        {
+          "label": "3.4.2 Measures of stress",
+          "href": "/courses/9990/3-4-2-measures-of-stress"
+        },
+        {
+          "label": "9990 course index",
+          "href": "/courses/9990"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is one pain measure better than all the others?",
+      "a": "No single measure is universally 'best'. The choice depends on the patient and the clinical context. For quick, repeated assessment of acute pain (e.g., post-surgery), a simple Numerical Rating Scale (NRS) is efficient. For a detailed understanding of a complex, chronic pain condition, the multidimensional McGill Pain Questionnaire (MPQ) is superior. For a non-verbal patient, a behavioural scale is the only option. Often, a combination of measures provides the most valid assessment."
+    },
+    {
+      "q": "Can't doctors just use brain scans to see how much pain someone is in?",
+      "a": "While neuroimaging techniques like fMRI can show which brain areas are active during a painful experience (the 'pain matrix'), they cannot objectively measure the subjective intensity or quality of that pain. There is no simple 'pain spot' in the brain, and activity levels vary greatly between individuals for the same stimulus. Therefore, brain scans are currently a research tool and are not used for routine clinical pain assessment. The patient's self-report remains the gold standard."
+    },
+    {
+      "q": "If pain is subjective, how can a self-report scale be considered scientific or reliable?",
+      "a": "While the experience of pain is subjective, the tools used to measure it are designed to be as reliable and valid as possible. Reliability is established by showing that the scale gives consistent results (e.g., test-retest reliability). Validity is shown by correlating the scale's scores with other indicators of pain, such as behaviour or response to analgesics. For example, if a patient's score on a VAS decreases after receiving pain medication, this supports the scale's validity. So, while the input is subjective, the measurement process is standardised and scientific."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Unidimensional and Multidimensional Pain Scales",
+    "columns": [
+      "Feature",
+      "Unidimensional Scales (e.g., VAS, NRS)",
+      "McGill Pain Questionnaire (MPQ)"
+    ],
+    "rows": [
+      {
+        "property": "Dimensions Measured",
+        "cells": [
+          "Intensity only.",
+          "Sensory, affective, and evaluative dimensions."
+        ]
+      },
+      {
+        "property": "Data Type",
+        "cells": [
+          "Quantitative (a single number or point on a line).",
+          "Both quantitative (Pain Rating Index) and qualitative (word descriptors, location)."
+        ]
+      },
+      {
+        "property": "Time to Administer",
+        "cells": [
+          "Very quick (seconds to a minute).",
+          "Longer (5-20 minutes)."
+        ]
+      },
+      {
+        "property": "Best Use Case",
+        "cells": [
+          "Acute pain, frequent monitoring, situations requiring speed.",
+          "Chronic pain, initial detailed diagnosis, research."
+        ]
+      },
+      {
+        "property": "Sensitivity to Nuance",
+        "cells": [
+          "Low; cannot distinguish between different types of pain (e.g., burning vs. aching).",
+          "High; provides a rich, detailed profile of the pain experience."
+        ]
+      },
+      {
+        "property": "Patient Burden",
+        "cells": [
+          "Very low; easy for most patients to understand and complete.",
+          "Higher; requires good literacy and concentration, can be difficult for some patients."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

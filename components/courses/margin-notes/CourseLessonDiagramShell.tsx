@@ -2,7 +2,7 @@
 
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { LessonInteractiveEmbed } from '@/lib/courses/types'
-import { hasLessonExplorable, renderLessonExplorable } from '@/components/courses/explorables/registry'
+import { getExplorableBeats, hasLessonExplorable, renderLessonExplorable } from '@/components/courses/explorables/registry'
 import type { VisualTemplate } from '@/lib/courses/visual-types'
 import type { LessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import {
@@ -58,12 +58,17 @@ export function CourseLessonDiagramShell({
   }, [lessonSlug])
 
   const dualVisual = isDualVisualSlug(lessonSlug) && !!interactiveEmbed
-  const stepCount = Math.max(steps.length, resolvedSpec?.steps.length ?? 0, 1)
+  // When an explorable is active, its own beats drive the steps/captions so the
+  // narration matches the interactive (not the lesson's old static-diagram spec).
+  const beats = explorable ? getExplorableBeats(lessonSlug) : []
+  const stepCount = beats.length || Math.max(steps.length, resolvedSpec?.steps.length ?? 0, 1)
   const activeIndex = Math.max(0, Math.min(stepCount - 1, step - 1))
   const diagramStep = clampStepIndex(resolvedSpec, activeIndex)
   const stepState = stepStateFor(resolvedSpec, diagramStep)
+  const activeBeat = beats[activeIndex]
   const currentStep = steps[activeIndex] ?? steps[0]
-  const stageCaption = stepState?.caption
+  const stepTitle = activeBeat?.label ?? currentStep?.title
+  const stageCaption = activeBeat?.caption ?? stepState?.caption
 
   const embedForStep = useMemo(() => {
     if (!interactiveEmbed) return null
@@ -113,7 +118,7 @@ export function CourseLessonDiagramShell({
         </span>
         <span className="diagram-step-label mono">
           STEP {step} / {stepCount}
-          {currentStep?.title ? ` · ${currentStep.title}` : ''}
+          {stepTitle ? ` · ${stepTitle}` : ''}
         </span>
         {stepCount > 1 ? (
           <button className="diagram-play" type="button" onClick={() => setPlaying((p) => !p)}>
@@ -181,7 +186,7 @@ export function CourseLessonDiagramShell({
         </div>
       ) : null}
 
-      {currentStep?.title || currentStep?.body ? (
+      {!beats.length && (currentStep?.title || currentStep?.body) ? (
         <div className="diagram-step-detail">
           {currentStep.title ? (
             <p className="diagram-step-detail-title serif">{currentStep.title}</p>
@@ -197,7 +202,22 @@ export function CourseLessonDiagramShell({
         </div>
       ) : null}
 
-      {steps.length > 1 ? (
+      {beats.length > 1 ? (
+        <ol className="diagram-step-strip" aria-label="Walkthrough steps">
+          {beats.map((b, i) => (
+            <li key={i}>
+              <button
+                type="button"
+                className={`diagram-step-pill${step === i + 1 ? ' on' : ''}`}
+                onClick={() => setStep(i + 1)}
+              >
+                <span className="diagram-step-pill-n mono">{i + 1}</span>
+                <span className="diagram-step-pill-t">{b.label}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      ) : steps.length > 1 ? (
         <ol className="diagram-step-strip" aria-label="Walkthrough steps">
           {steps.map((s) => (
             <li key={s.n}>

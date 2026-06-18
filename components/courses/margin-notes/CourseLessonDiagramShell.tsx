@@ -1,7 +1,8 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { LessonInteractiveEmbed } from '@/lib/courses/types'
+import { hasLessonExplorable, renderLessonExplorable } from '@/components/courses/explorables/registry'
 import type { VisualTemplate } from '@/lib/courses/visual-types'
 import type { LessonDiagramSpec } from '@/lib/courses/diagram-specs'
 import {
@@ -40,6 +41,7 @@ export function CourseLessonDiagramShell({
     () => resolveDiagramSpec(lessonSlug, diagramSpec),
     [diagramSpec, lessonSlug]
   )
+  const explorable = hasLessonExplorable(lessonSlug)
   const [playing, setPlaying] = useState(false)
   const [params, setParams] = useState(() => defaultParamValues(resolvedSpec))
   const [liveDiagram, setLiveDiagram] = useState(false)
@@ -90,7 +92,7 @@ export function CourseLessonDiagramShell({
     setParams((prev) => ({ ...prev, [id]: value }))
   }, [])
 
-  if (!liveDiagram && !interactiveEmbed) return null
+  if (!liveDiagram && !interactiveEmbed && !explorable) return null
 
   const providerLabel =
     interactiveEmbed?.provider === 'geogebra'
@@ -134,7 +136,16 @@ export function CourseLessonDiagramShell({
         </p>
       ) : null}
 
-      {liveDiagram ? (
+      {explorable ? (
+        <div ref={diagramRef} className="diagram-stage diagram-stage--explorable">
+          <Suspense fallback={<div className="diagram-explorable-loading" aria-hidden />}>
+            {renderLessonExplorable(lessonSlug, { step: activeIndex, stepCount })}
+          </Suspense>
+          {stageCaption ? (
+            <p className="diagram-stage-caption body-2">{stageCaption}</p>
+          ) : null}
+        </div>
+      ) : liveDiagram ? (
         <div ref={diagramRef} className="diagram-stage">
           <StepStageVisual
             template={template}

@@ -167,6 +167,73 @@
 .diagram-embed .course-interactive-embed { margin: 0; border: none; border-radius: 0; box-shadow: none; max-width: 100%; }
 .diagram-stage { padding: 0; background: var(--paper); border-top: 1px solid var(--paper-rule); }
 .diagram-stage-caption { margin: 0; padding: 12px 16px 14px; font-size: 14px; line-height: 1.55; color: var(--text-2); border-top: 1px dashed var(--paper-rule); background: var(--bg-soft); }
+
+/* ── Interactive explorables (first-class authored diagrams) ───────────── */
+.diagram-stage--explorable { padding: 0; }
+.diagram-explorable-loading { min-height: 320px; background:
+  repeating-linear-gradient(135deg, var(--paper) 0 12px, var(--bg-soft) 12px 24px); opacity: 0.5; }
+
+.qex { --qex-acc: var(--acc-lesson, var(--ink)); display: grid; grid-template-columns: 1.25fr 1fr; gap: 0; }
+.qex-stagewrap { position: relative; padding: 8px 8px 4px; border-right: 1px solid var(--paper-rule); min-width: 0; }
+.qex-svg { display: block; width: 100%; height: auto; touch-action: none; }
+.qex-grid { stroke: var(--paper-rule); stroke-width: 1; opacity: 0.6; }
+.qex-axis { stroke: var(--border-strong); stroke-width: 1.4; }
+.qex-symmetry { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 5; opacity: 0.5; transition: opacity 200ms ease, stroke 200ms ease; }
+.qex-symmetry.hot { stroke: var(--qex-acc); opacity: 0.9; }
+.qex-curve { stroke: var(--qex-acc); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.qex-yint { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5; }
+.qex-root circle { fill: var(--paper); stroke: var(--qex-acc); stroke-width: 2.5; transition: r 160ms ease; }
+.qex-root-drop { stroke: var(--qex-acc); stroke-width: 1.2; stroke-dasharray: 2 4; opacity: 0.45; }
+.qex-root.hot circle { fill: var(--qex-acc); }
+.qex-vertex { transition: filter 200ms ease; }
+.qex-vertex-halo { fill: var(--qex-acc); opacity: 0.12; transition: opacity 180ms ease; }
+.qex-vertex.hot .qex-vertex-halo, .qex-vertex.grab .qex-vertex-halo { opacity: 0.26; }
+.qex-vertex-dot { fill: var(--qex-acc); stroke: var(--paper); stroke-width: 2.5; }
+.qex-draghint { margin: 2px 0 6px; text-align: center; color: var(--muted); }
+
+.qex-panel { padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; background: var(--bg-soft); }
+.qex-eq { display: flex; flex-direction: column; gap: 8px; }
+.qex-eq-row { display: flex; align-items: center; gap: 8px; font-size: 16px; color: var(--text); flex-wrap: wrap; }
+.qex-eq-tag { font-size: 9px; letter-spacing: 0.1em; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; }
+
+.qex-disc { display: flex; flex-direction: column; gap: 2px; border-radius: 10px; padding: 10px 14px; border: 1.5px solid var(--border); background: var(--surface); transition: box-shadow 200ms ease, border-color 200ms ease; }
+.qex-disc.hot { box-shadow: 0 0 0 3px var(--ink-soft); }
+.qex-disc-val { font-size: 13px; color: var(--text-2); }
+.qex-disc-label { font-size: 15px; font-weight: 600; }
+.qex-disc.tone-pos { border-color: color-mix(in srgb, var(--ink) 55%, transparent); }
+.qex-disc.tone-pos .qex-disc-label { color: var(--ink); }
+.qex-disc.tone-mid { border-color: color-mix(in srgb, var(--amber, #b8860b) 55%, transparent); }
+.qex-disc.tone-mid .qex-disc-label { color: var(--amber, #b8860b); }
+.qex-disc.tone-neg { border-color: color-mix(in srgb, var(--red, #b3261e) 50%, transparent); }
+.qex-disc.tone-neg .qex-disc-label { color: var(--red, #b3261e); }
+
+.qex-readout { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; margin: 0; }
+.qex-readout > div { display: flex; flex-direction: column; gap: 1px; }
+.qex-readout dt { font-size: 11px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
+.qex-readout dd { margin: 0; font-size: 14.5px; color: var(--text); }
+
+.qex-controls { display: flex; flex-direction: column; gap: 10px; padding-top: 4px; border-top: 1px dashed var(--paper-rule); }
+.qex-slider { display: flex; flex-direction: column; gap: 4px; }
+.qex-slider-head { display: flex; justify-content: space-between; align-items: baseline; }
+.qex-slider-label { font-size: 13px; font-weight: 600; color: var(--qex-acc); }
+.qex-slider-val { font-size: 13px; color: var(--text-2); }
+.qex-slider input[type='range'] { width: 100%; accent-color: var(--qex-acc); height: 22px; cursor: pointer; }
+.qex-reset { align-self: flex-start; margin-top: 2px; background: transparent; border: 1px solid var(--border-strong); color: var(--text-2); border-radius: 8px; padding: 6px 14px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: border-color 150ms ease, color 150ms ease; }
+.qex-reset:hover { border-color: var(--ink); color: var(--ink); }
+
+@media (max-width: 720px) {
+  .qex { grid-template-columns: 1fr; }
+  .qex-stagewrap { border-right: none; border-bottom: 1px solid var(--paper-rule); }
+}
+
+/* Openly-licensed figure with attribution */
+.licensed-figure { margin: 0; }
+.licensed-figure-frame { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.licensed-figure-img { display: block; width: 100%; height: auto; }
+.licensed-figure-caption { margin: 10px 0 4px; color: var(--text-2); }
+.licensed-figure-credit { color: var(--muted); }
+.licensed-figure-credit a { color: var(--text-2); text-decoration: underline; text-underline-offset: 2px; }
+.licensed-figure-credit a:hover { color: var(--ink); }
 .diagram-live-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--ink); font-weight: 600; }
 .diagram-dual-bridge { margin: 0; padding: 12px 16px; font-size: 14px; line-height: 1.5; color: var(--text-2); background: var(--bg-soft); border-top: 1px solid var(--paper-rule); border-bottom: 1px solid var(--paper-rule); }
 .visual-stack { display: flex; flex-direction: column; gap: 0; width: 100%; }

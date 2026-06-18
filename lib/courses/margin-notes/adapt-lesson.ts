@@ -7,6 +7,7 @@ import {
   partitionEnrichedBlocks,
 } from '@/lib/courses/lesson-layout'
 import { hasLessonLiveDiagram } from '@/lib/courses/lesson-diagrams'
+import { hasExplorable } from '@/lib/courses/explorables'
 import { resolveLessonInteractiveEmbed } from '@/lib/courses/interactive-embeds'
 import { filterResourcesForPromotedEmbed } from '@/lib/courses/embed-from-resources'
 import { resolveDiagramSpec } from '@/lib/courses/diagram-specs'
@@ -323,7 +324,12 @@ export function adaptLesson(
   const interactiveEmbed = resolveLessonInteractiveEmbed(lesson)
   const liveDiagram = hasLessonLiveDiagram(lesson.slug)
   const steps = buildSteps(lesson, enriched, lesson.slug)
-  const hasVisual = !!(liveDiagram || interactiveEmbed || steps?.length)
+  const hasVisual = !!(
+    liveDiagram ||
+    interactiveEmbed ||
+    steps?.length ||
+    hasExplorable(lesson.slug)
+  )
 
   const introSection = lesson.sections.find((s) => s.type === 'intro')
   const intro = introSection?.type === 'intro' ? introSection.content : lesson.summary

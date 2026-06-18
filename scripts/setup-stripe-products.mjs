@@ -82,8 +82,39 @@ const CURRENCIES_PER_TIER = {
   C: ['usd', 'inr', 'pkr'],
 }
 
-// Approximate FX from USD. Update at script-run time if rates drift.
+// USD-based FX. These are FALLBACK values only — applyLiveFxRates() overwrites
+// them with real current rates at run time. Kept so the script still works
+// offline / if the FX API is down.
 const FX = { usd: 1, gbp: 0.79, eur: 0.92, aud: 1.52, inr: 83, pkr: 280 }
+const FX_SUPPORTED = ['gbp', 'eur', 'aud', 'inr', 'pkr']
+
+/**
+ * Fetch live USD-based exchange rates and merge them into FX so every non-USD
+ * price is converted at the real current rate. Stripe prices are immutable, so
+ * "real-time" means: accurate as of each sync — re-run on a schedule (cron) to
+ * keep them current. Falls back to the static table on any failure.
+ */
+async function applyLiveFxRates() {
+  try {
+    const res = await fetch('https://open.er-api.com/v6/latest/USD', {
+      signal: AbortSignal.timeout(10000),
+    })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    if (data?.result !== 'success' || !data?.rates) throw new Error('malformed FX response')
+    const applied = []
+    for (const cur of FX_SUPPORTED) {
+      const rate = data.rates[cur.toUpperCase()]
+      if (typeof rate === 'number' && rate > 0) {
+        FX[cur] = rate
+        applied.push(`${cur}=${rate}`)
+      }
+    }
+    console.log(`Live FX (USD base, updated ${data.time_last_update_utc || 'now'}): ${applied.join(', ')}\n`)
+  } catch (err) {
+    console.warn(`⚠ Live FX fetch failed (${err.message}); using static fallback rates.\n`)
+  }
+}
 
 // Round to a sensible unit per currency so prices look intentional, not noisy.
 const ROUND_TO_CENTS = { usd: 1, gbp: 1, eur: 1, aud: 1, inr: 100, pkr: 10000 }
@@ -233,6 +264,7 @@ async function upsertPricingConfig(rows) {
 async function main() {
   console.log(DRY_RUN ? '[DRY RUN] No Stripe/DB writes.\n' : 'Creating Stripe products + prices...\n')
 
+  await applyLiveFxRates()
   await deactivateLegacyProducts()
 
   const output = { createdAt: new Date().toISOString(), dryRun: DRY_RUN, products: {} }

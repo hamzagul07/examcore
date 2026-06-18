@@ -49,6 +49,14 @@ const SHMExplorer = dynamic(
   () => import('./SHMExplorer').then((m) => m.SHMExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const WaveExplorer = dynamic(
+  () => import('./WaveExplorer').then((m) => m.WaveExplorer),
+  { ssr: false, loading: explorableLoading }
+)
+const CoordGeometryExplorer = dynamic(
+  () => import('./CoordGeometryExplorer').then((m) => m.CoordGeometryExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 
 /**
  * First-class, per-lesson interactive diagrams ("explorables"). Returns a React
@@ -74,6 +82,10 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(ProjectileExplorer, props)
     case '17-1-simple-harmonic-oscillations':
       return createElement(SHMExplorer, props)
+    case '7-1-progressive-waves':
+      return createElement(WaveExplorer, props)
+    case '1-3-coordinate-geometry':
+      return createElement(CoordGeometryExplorer, props)
     default:
       return null
   }

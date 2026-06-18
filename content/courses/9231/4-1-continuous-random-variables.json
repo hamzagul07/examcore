@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "This lesson introduces continuous random variables (CRVs), focusing on the probability density function (PDF) and the cumulative distribution function (CDF). You will learn how to verify a valid PDF, calculate probabilities, and find the expectation and variance for a CRV.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Understand the properties of a probability density function (PDF) and a cumulative distribution function (CDF).",
     "Calculate probabilities by integrating a PDF over a specified interval.",
@@ -73,12 +73,118 @@
     {
       "front": "How do you use the CDF, $F(x)$, to find $P(a < X < b)$?",
       "back": "$P(a < X < b) = F(b) - F(a)$. This is often quicker than integrating the PDF if the CDF is already known."
+    },
+    {
+      "front": "What are the two conditions for a function f(x) to be a valid probability density function (PDF)?",
+      "back": "1. f(x) ≥ 0 for all x. \n2. The integral of f(x) over its entire domain equals 1 (i.e., ∫ f(x) dx = 1)."
+    },
+    {
+      "front": "How is the cumulative distribution function, F(x), related to the probability density function, f(x)?",
+      "back": "F(x) is the integral of f(t) from the lower bound of the domain up to x. Conversely, f(x) is the derivative of F(x), i.e., f(x) = F'(x)."
+    },
+    {
+      "front": "State the formula for the expectation (mean), E(X), of a continuous random variable X with PDF f(x).",
+      "back": "E(X) = ∫ x * f(x) dx, where the integral is taken over the entire domain of X."
+    },
+    {
+      "front": "What is the formula for the variance, Var(X), of a continuous random variable?",
+      "back": "Var(X) = E(X²) - [E(X)]², where E(X²) = ∫ x² * f(x) dx."
+    },
+    {
+      "front": "For a continuous random variable X, what is the value of P(X = c) for any constant c?",
+      "back": "P(X = c) = 0. Probability for a CRV is only defined over an interval, representing the area under the PDF curve. The area of a line of zero width is zero."
     }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "Welcome to the study of continuous random variables. Unlike discrete variables which you've met before (like the score on a die), continuous variables can take any value in a range. Think of the exact time it takes for a bus to arrive or the precise height of a student. In this topic, we move from summing probabilities to integrating functions, opening up a powerful way to model real-world phenomena."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Continuous Random Variables and the PDF"
+    },
+    {
+      "type": "text",
+      "content": "A continuous random variable (CRV) is a variable that can take any value within a given range or interval. Unlike discrete random variables which have countable outcomes (like the score on a die), a CRV's possible values are infinite (like the exact height of a person). The behaviour of a CRV is described by its probability density function (PDF), denoted f(x). It is crucial to understand that for a CRV, the value of f(x) itself is not a probability. Instead, the area under the graph of f(x) between two points represents the probability that the variable falls within that interval. A direct consequence of this is that the probability of a CRV taking any single exact value is zero, i.e., P(X = c) = 0."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A CRV can take any value in a continuous interval.",
+        "The probability density function, f(x), describes the distribution.",
+        "Probability is the area under the PDF curve: P(a ≤ X ≤ b) = ∫[a,b] f(x) dx.",
+        "The probability of a CRV equalling a specific value is always zero: P(X = c) = 0."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Since P(X=a) = 0 and P(X=b) = 0, remember that P(a ≤ X ≤ b), P(a < X ≤ b), P(a ≤ X < b), and P(a < X < b) are all identical for a continuous random variable. Do not waste time considering the endpoints."
+    },
+    {
+      "type": "heading",
+      "content": "Verifying a Probability Density Function"
+    },
+    {
+      "type": "text",
+      "content": "For a function f(x) to be a valid PDF, it must satisfy two fundamental conditions. Firstly, the function must be non-negative for all possible values of x, meaning f(x) ≥ 0. This makes intuitive sense, as probability density cannot be negative. Secondly, the total area under the curve over its entire domain must be equal to 1. This represents the certainty that the variable will take some value within its range. This condition is expressed mathematically as ∫[-∞,∞] f(x) dx = 1, though in practice the integral is taken over the interval where f(x) is non-zero. Exam questions frequently require you to use this second property to find the value of an unknown constant within a given PDF."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Condition 1: f(x) ≥ 0 for all x in the domain.",
+        "Condition 2: The total integral of f(x) over its entire domain is 1.",
+        "These two properties are used to validate a function as a PDF.",
+        "Finding an unknown constant 'k' in a PDF usually involves setting the total integral equal to 1."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When showing that f(x) ≥ 0, consider the nature of the function. For example, if f(x) = kx² for x > 0, you only need to show that the constant k is positive. If the function is more complex, a sketch or consideration of its minimum value may be required."
+    },
+    {
+      "type": "heading",
+      "content": "The Cumulative Distribution Function (CDF)"
+    },
+    {
+      "type": "text",
+      "content": "The cumulative distribution function (CDF), denoted F(x), gives the probability that the random variable X takes a value less than or equal to x. That is, F(x) = P(X ≤ x). It is obtained by integrating the PDF, f(t), from the lower limit of the domain up to x: F(x) = ∫[-∞,x] f(t) dt. The CDF is a non-decreasing function that starts at 0 and ends at 1. It provides a convenient way to calculate probabilities for intervals, using the property P(a < X ≤ b) = F(b) - F(a). Conversely, the PDF can be found by differentiating the CDF: f(x) = F'(x). A complete definition of F(x) must cover all real numbers, including being 0 below the domain and 1 above it."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "F(x) = P(X ≤ x).",
+        "F(x) is found by integrating the PDF: F(x) = ∫[lower bound, x] f(t) dt.",
+        "The PDF is the derivative of the CDF: f(x) = F'(x).",
+        "Probabilities of intervals are found easily: P(a < X ≤ b) = F(b) - F(a).",
+        "F(x) must be defined for all real x, typically as a piecewise function."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When constructing a piecewise CDF, be meticulous. Define F(x) = 0 for x less than the lower bound, F(x) = 1 for x greater than the upper bound, and the integral expression for x within the bounds. Check that your function is continuous at the boundaries."
+    },
+    {
+      "type": "heading",
+      "content": "Expectation and Variance of a CRV"
+    },
+    {
+      "type": "text",
+      "content": "The expectation or mean of a CRV, E(X), represents its long-term average value. It is calculated by integrating the product of x and the PDF f(x) over the variable's domain: E(X) = ∫ x * f(x) dx. The variance, Var(X), measures the spread of the distribution around the mean. It is calculated using the formula Var(X) = E(X²) - [E(X)]². To use this, you must first calculate E(X) and E(X²). The term E(X²) is found using the general formula for the expectation of a function of X, E(g(X)) = ∫ g(x) * f(x) dx, where here g(x) = x². Thus, E(X²) = ∫ x² * f(x) dx. The standard deviation is the square root of the variance."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Expectation (Mean): E(X) = ∫ x * f(x) dx.",
+        "Expectation of a function g(X): E(g(X)) = ∫ g(x) * f(x) dx.",
+        "Specifically, E(X²) = ∫ x² * f(x) dx.",
+        "Variance: Var(X) = E(X²) - [E(X)]².",
+        "Standard Deviation: SD(X) = √Var(X)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A common mistake is confusing E(X²) with [E(X)]². Calculate E(X) and E(X²) as two separate, distinct steps before substituting them into the variance formula. This systematic approach reduces the chance of calculation errors."
     },
     {
       "type": "heading",
@@ -194,5 +300,72 @@
         "embedHint": "Var(aX + b) = a²Var(X) only."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "q": "Why is P(X=a) = 0 for a continuous random variable? It seems like the variable must take *some* value.",
+      "a": "While the variable will indeed take a specific value, the probability of it being *exactly* that one value out of an infinite number of possibilities is infinitesimally small, and thus is defined as zero. Probability for a CRV is the area under the PDF curve over an interval. The area corresponding to a single point (an interval of width zero) is zero. We can only talk about the probability of X being in a range, e.g., P(a ≤ X ≤ b)."
+    },
+    {
+      "q": "Can the probability density function f(x) have a value greater than 1?",
+      "a": "Yes, it can. Unlike a probability, the value of f(x) is a measure of 'probability density', not probability itself. For example, a uniform distribution on the interval [0, 0.5] has a PDF of f(x) = 2 for 0 ≤ x ≤ 0.5. The key constraint is that the *area* under the f(x) curve, which represents the total probability, must integrate to 1."
+    },
+    {
+      "q": "When finding the CDF, F(x), why do I need to define it for values outside the main range of the PDF?",
+      "a": "The cumulative distribution function, F(x) = P(X ≤ x), must be defined for all real numbers x from -∞ to +∞. For a PDF defined on an interval [a, b], the probability of X being less than 'a' is zero, so F(x) = 0 for x < a. The probability of X being less than or equal to any value greater than 'b' is one, as all possible values are within that range. Therefore, F(x) = 1 for x ≥ b. A complete piecewise definition is required for a full description of the distribution."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Discrete vs. Continuous Random Variables",
+    "columns": [
+      "Feature",
+      "Discrete Random Variable (DRV)",
+      "Continuous Random Variable (CRV)"
+    ],
+    "rows": [
+      {
+        "property": "Possible Values",
+        "cells": [
+          "Countable set of distinct values (e.g., 0, 1, 2, ...)",
+          "Any value within a given continuous range (e.g., 0 ≤ x ≤ 1)"
+        ]
+      },
+      {
+        "property": "Probability Function",
+        "cells": [
+          "Probability Mass Function (PMF), P(X=x)",
+          "Probability Density Function (PDF), f(x)"
+        ]
+      },
+      {
+        "property": "Probability of a single point",
+        "cells": [
+          "P(X=x) can be > 0",
+          "P(X=x) = 0"
+        ]
+      },
+      {
+        "property": "Total Probability",
+        "cells": [
+          "Sum of all P(X=x) equals 1 (Σ P(X=x) = 1)",
+          "Total area under f(x) equals 1 (∫ f(x) dx = 1)"
+        ]
+      },
+      {
+        "property": "Calculating E(X)",
+        "cells": [
+          "E(X) = Σ x * P(X=x)",
+          "E(X) = ∫ x * f(x) dx"
+        ]
+      },
+      {
+        "property": "Interval Probability",
+        "cells": [
+          "P(a ≤ X ≤ b) ≠ P(a < X < b) in general",
+          "P(a ≤ X ≤ b) = P(a < X < b)"
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

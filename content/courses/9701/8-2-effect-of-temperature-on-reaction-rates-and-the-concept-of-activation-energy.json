@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "This lesson explores the quantitative relationship between temperature, kinetic energy, and reaction rates. It introduces the concept of activation energy ($E_a$) as the minimum energy barrier for a reaction and uses Boltzmann distribution curves to visualise how temperature changes affect the proportion of particles capable of successful collisions. The role of catalysts in providing lower-energy pathways is also explained.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Explain the effect of temperature on reaction rate in terms of the kinetic energy of particles and the frequency of collisions.",
     "Define activation energy ($E_a$) as the minimum energy required for a reaction to occur.",
@@ -69,12 +69,103 @@
     {
       "front": "Why does a Boltzmann distribution curve always start at the origin (0,0)?",
       "back": "Because there are zero molecules that have zero kinetic energy. All particles are in continuous, random motion (unless at absolute zero)."
+    },
+    {
+      "front": "What is activation energy ($E_a$)?",
+      "back": "The minimum kinetic energy that colliding particles must possess for a successful collision to occur, leading to a chemical reaction."
+    },
+    {
+      "front": "What do the axes on a Boltzmann distribution curve represent?",
+      "back": "The y-axis represents the 'Number of particles' (or proportion of molecules), and the x-axis represents 'Kinetic energy'."
+    },
+    {
+      "front": "Describe two changes to the Boltzmann distribution curve when temperature is increased.",
+      "back": "1. The peak of the curve becomes lower and shifts to the right (higher most probable energy). 2. The curve becomes broader/more spread out."
+    },
+    {
+      "front": "Why does a small increase in temperature cause a large increase in reaction rate?",
+      "back": "Because it causes a disproportionately large increase in the number of particles that have kinetic energy equal to or greater than the activation energy ($E_a$), leading to a much higher frequency of successful collisions."
+    },
+    {
+      "front": "How does a catalyst increase the rate of reaction in terms of activation energy?",
+      "back": "A catalyst provides an alternative reaction pathway with a lower activation energy ($E_a$). This means more particles have sufficient energy to react at the same temperature."
     }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "In our study of reaction rates, we've established that particles must collide with the correct orientation. However, there's another crucial condition: they must collide with sufficient energy. This lesson delves into this energy requirement, known as activation energy, and explores how temperature provides particles with the kinetic energy needed to overcome this barrier, thereby influencing the rate of reaction."
+    },
+    {
+      "type": "heading",
+      "content": "Revisiting Collision Theory and Energy"
+    },
+    {
+      "type": "text",
+      "content": "For a chemical reaction to occur, reactant particles must collide. However, not all collisions result in a reaction. Two crucial conditions must be met: the particles must collide with the correct orientation, and they must possess sufficient energy. This minimum required energy is known as the activation energy. Increasing the temperature of a system increases the average kinetic energy of all particles. This leads to two effects: particles move faster, increasing the frequency of all collisions, and more importantly, a significantly greater proportion of these collisions possess energy equal to or greater than the activation energy. The second effect is the primary reason for the substantial increase in reaction rate observed with a rise in temperature."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Two conditions for a successful collision: correct orientation and sufficient energy.",
+        "Increasing temperature increases the average kinetic energy of particles.",
+        "This results in more frequent collisions and, more significantly, a higher proportion of effective (successful) collisions."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Activation Energy (Ea) – The Energy Barrier"
+    },
+    {
+      "type": "text",
+      "content": "Activation energy, symbolised as $E_a$, is the minimum amount of kinetic energy that colliding particles must have for a reaction to occur. It can be visualised as an energy barrier that must be overcome, similar to pushing a boulder over a hill before it can roll down the other side. This energy is required to break existing chemical bonds in the reactants, allowing new bonds to form in the products. Reactions with a high activation energy will have a slow rate at a given temperature because only a small fraction of particles possess enough energy to overcome the barrier. Conversely, reactions with a low $E_a$ proceed more rapidly as a larger fraction of collisions are successful."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Activation energy ($E_a$) is the minimum kinetic energy required for a successful collision.",
+        "It represents an energy barrier that must be surmounted.",
+        "The magnitude of $E_a$ determines the rate of reaction; high $E_a$ means a slow rate, low $E_a$ means a fast rate.",
+        "The value of $E_a$ is specific to a particular reaction and is unaffected by temperature."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Boltzmann Distribution of Molecular Energies"
+    },
+    {
+      "type": "text",
+      "content": "At any given temperature, the particles in a gas or solution do not all have the same kinetic energy. Their energies are described by the Boltzmann distribution. A plot of the number of particles against their kinetic energy shows a characteristic curve that starts at the origin (no particles have zero energy), rises to a peak representing the most probable energy, and then tails off asymptotically towards the x-axis (a few particles have very high energies). The total area under the curve represents the total number of particles in the sample. This distribution is fundamental to understanding why temperature has such a profound effect on reaction rate, as it allows us to visualise the proportion of particles that possess the required activation energy."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The Boltzmann distribution shows the range of kinetic energies of particles at a constant temperature.",
+        "The y-axis is 'Number of particles' and the x-axis is 'Kinetic energy'.",
+        "Key features: starts at (0,0), has a peak (most probable energy), and is asymptotic to the energy axis.",
+        "The area under the curve is constant for a fixed number of particles."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "How Temperature Changes the Boltzmann Distribution"
+    },
+    {
+      "type": "text",
+      "content": "When temperature is increased from T1 to a higher temperature T2, the Boltzmann distribution curve changes shape. The peak of the curve becomes lower and shifts to the right, indicating that the most probable energy has increased. The curve also becomes broader and more spread out, showing a wider range of energies. Although the shape changes, the total area under the curve remains constant because the total number of particles has not changed. By marking the activation energy ($E_a$) on the energy axis, we can see that the area under the curve to the right of $E_a$ is significantly larger at T2 than at T1. This shaded area represents the number of particles with sufficient energy to react, explaining the dramatic increase in reaction rate."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Increasing temperature lowers the peak of the curve and shifts it to the right.",
+        "The curve becomes more spread out at higher temperatures.",
+        "The area under the curve to the right of $E_a$ represents the number of particles capable of reacting.",
+        "This area increases significantly with a small increase in temperature, leading to a much higher frequency of successful collisions."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When drawing or interpreting Boltzmann distribution curves, always label the axes correctly ('Number of particles' vs 'Kinetic energy'). When comparing two temperatures, ensure the curve for the higher temperature (T2) has a lower peak, is shifted to the right, and crosses the lower temperature (T1) curve only once. Crucially, show that both curves start at the origin and neither touches the x-axis at high energy."
     },
     {
       "type": "heading",
@@ -197,5 +288,58 @@
         "embedHint": "Relate activation energy to the energy barrier in collision theory."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "q": "Does increasing the temperature also increase the activation energy?",
+      "a": "No, this is a common misconception. The activation energy ($E_a$) is a fixed property for a specific reaction pathway. Increasing the temperature increases the kinetic energy of the reactant particles, meaning a greater proportion of them have enough energy to overcome the fixed $E_a$ barrier. The barrier itself does not change."
+    },
+    {
+      "q": "If the peak of the Boltzmann curve is lower at a higher temperature, doesn't that mean fewer particles are reacting?",
+      "a": "No. The peak represents the 'most probable' energy, not the total number of reactive particles. At a higher temperature, the energy distribution spreads out. While fewer particles have the 'most probable' energy, the overall average energy is higher, and crucially, a much larger proportion of particles is found at the high-energy end of the curve, beyond the activation energy. This larger number of high-energy particles is what increases the reaction rate."
+    },
+    {
+      "q": "Does every collision with energy greater than the activation energy lead to a reaction?",
+      "a": "Not necessarily. For a collision to be 'successful' or 'effective', two conditions must be met: the particles must possess energy equal to or greater than the activation energy, AND they must collide with the correct geometric orientation. Simply having enough energy is not sufficient if the particles are not correctly aligned to allow bonds to break and form."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Increasing Temperature vs. Adding a Catalyst",
+    "columns": [
+      "Feature",
+      "Increasing Temperature",
+      "Adding a Catalyst"
+    ],
+    "rows": [
+      {
+        "property": "Effect on Activation Energy ($E_a$)",
+        "cells": [
+          "No effect. The activation energy remains unchanged.",
+          "Lowers the activation energy by providing an alternative reaction pathway."
+        ]
+      },
+      {
+        "property": "Effect on Particle Kinetic Energy",
+        "cells": [
+          "Increases the average kinetic energy of all particles.",
+          "No effect. The average kinetic energy of particles remains the same."
+        ]
+      },
+      {
+        "property": "Effect on Boltzmann Distribution Curve",
+        "cells": [
+          "The curve flattens and shifts to the right. The area representing particles with E ≥ $E_a$ increases.",
+          "The curve itself does not change. A new, lower activation energy ($E_{a,cat}$) is marked on the axis, increasing the proportion of particles that can react."
+        ]
+      },
+      {
+        "property": "Mechanism of Rate Increase",
+        "cells": [
+          "Increases the frequency and energy of collisions, so a greater proportion of collisions are successful.",
+          "Increases the proportion of successful collisions by lowering the energy requirement, without changing collision frequency or particle energy."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

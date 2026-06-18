@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "This lesson introduces the strategic approach to designing multi-step organic syntheses. It focuses on retrosynthetic analysis to plan pathways and revisits the key functional group interconversions required to execute these plans, including the use of protecting groups for more complex targets.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Explain the concept of retrosynthesis and apply it to design synthetic routes.",
     "Recall and select appropriate reagents and conditions for key functional group interconversions.",
@@ -69,12 +69,104 @@
     {
       "front": "How do you convert a secondary alcohol to a ketone?",
       "back": "Oxidation using acidified potassium dichromate(VI) ($K_2Cr_2O_7 / H_2SO_4$) and heating under reflux."
+    },
+    {
+      "front": "What is retrosynthetic analysis?",
+      "back": "A strategy for planning an organic synthesis by working backwards from the target molecule to simpler, commercially available starting materials. It uses 'disconnections' to identify potential precursors."
+    },
+    {
+      "front": "What is the purpose of a 'disconnection' in retrosynthesis?",
+      "back": "It is an imaginary bond-breaking step, shown with a retrosynthetic arrow (=>), that simplifies the target molecule. It must correspond to a known, reliable bond-forming reaction in the forward synthesis."
+    },
+    {
+      "front": "Give an example of a reaction that extends a carbon chain by one carbon atom.",
+      "back": "The reaction of a haloalkane with potassium cyanide (KCN) in ethanol. This is a nucleophilic substitution that replaces the halogen with a -CN group, which can then be hydrolysed to a carboxylic acid."
+    },
+    {
+      "front": "What is Functional Group Interconversion (FGI)?",
+      "back": "A reaction that converts one functional group into another without changing the carbon skeleton of the molecule, for example, the oxidation of a primary alcohol to a carboxylic acid using acidified potassium manganate(VII)."
+    },
+    {
+      "front": "What is the three-step process for using a protecting group?",
+      "back": "1. Protect: Convert the sensitive functional group into an unreactive form. 2. React: Carry out the desired transformation elsewhere in the molecule. 3. Deprotect: Remove the protecting group to restore the original functional group."
     }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "Welcome to the world of organic synthesis, where you become a molecular architect. This topic brings together all the reactions you've learned and challenges you to use them strategically to build target molecules from simpler starting materials. It's less about learning new reactions and more about mastering the art of planning and problem-solving."
+    },
+    {
+      "type": "heading",
+      "content": "The Logic of Organic Synthesis"
+    },
+    {
+      "type": "text",
+      "content": "Organic synthesis is the art and science of constructing complex organic molecules from simpler, readily available starting materials. It is not a random process of mixing chemicals but a logical, strategic exercise akin to a game of chess or solving a complex puzzle. The primary goal is to devise a reaction sequence, or 'synthetic pathway', that efficiently converts simple precursors into a desired 'target molecule'. An ideal synthesis is characterised by a high overall yield, a small number of steps, the use of inexpensive and safe reagents, and good atom economy. To achieve this, chemists must have a deep understanding of a wide range of reactions and apply a strategic approach to planning the route before any practical work begins."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Synthesis involves creating a complex target molecule from simpler starting materials.",
+        "A good synthesis has a high yield, few steps, and uses safe, economical reagents.",
+        "Planning a synthetic pathway is a crucial first step.",
+        "Success relies on a thorough knowledge of functional group reactions and their conditions."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Thinking Backwards: Retrosynthetic Analysis"
+    },
+    {
+      "type": "text",
+      "content": "Instead of guessing a starting point, modern synthesis is planned using retrosynthetic analysis. This involves working backwards from the target molecule. We perform imaginary 'disconnections' of bonds in the target, guided by our knowledge of reliable bond-forming reactions. This process breaks the complex molecule down into simpler precursors. Each disconnection is represented by a special retrosynthetic arrow (=>). The disconnection leads to idealised fragments called 'synthons', which don't usually exist but represent the required reactivity. We then identify the real-world reagents, or 'synthetic equivalents', that correspond to these synthons. For example, disconnecting the C-OH bond of a secondary alcohol suggests it could be made from an aldehyde and a Grignard reagent. This process is repeated until we arrive at simple, commercially available starting materials."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Retrosynthesis is the process of planning a synthesis by working backwards from the target.",
+        "A 'disconnection' is the imaginary breaking of a bond that corresponds to a reliable forward reaction.",
+        "The retrosynthetic arrow (=>) indicates a disconnection step.",
+        "Synthons are idealised fragments; synthetic equivalents are the actual reagents used."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, you will be asked to devise a multi-step synthesis for a given target molecule. Always start by identifying the functional groups in the starting material and the target. Work backwards from the target, asking 'What reaction could I use to make this functional group?' or 'What reaction could form this C-C bond?'."
+    },
+    {
+      "type": "heading",
+      "content": "The Chemist's Toolkit: Functional Group Interconversion (FGI)"
+    },
+    {
+      "type": "text",
+      "content": "A significant part of any synthetic pathway involves Functional Group Interconversion (FGI). This is any step that converts one functional group into another without altering the carbon skeleton of the molecule. FGI is crucial for manipulating the reactivity of a molecule to set it up for a subsequent, often more complex, reaction. For instance, you might need to form an ester, but your starting material is an alkane. The pathway would involve FGI steps: free-radical substitution of the alkane to a haloalkane, hydrolysis to an alcohol, and then oxidation to a carboxylic acid, which can finally be esterified. Recognising the required FGI sequence is a key skill in planning a synthesis."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "FGI changes a functional group without changing the carbon backbone.",
+        "It is used to prepare a molecule for a subsequent reaction step.",
+        "Examples include oxidation of alcohols, reduction of carbonyls, or hydrolysis of nitriles.",
+        "Mastering FGI requires knowing the full map of A-Level organic reactions."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Protecting Sensitive Groups"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes a reagent required to modify one part of a molecule is incompatible with another functional group present. For example, attempting to reduce an ester to an alcohol using LiAlH₄ in a molecule that also contains a ketone would reduce both groups. To solve this, we use a 'protecting group'. This involves a three-stage strategy: 1) 'Protect' the sensitive group by converting it into an unreactive derivative. 2) Carry out the desired reaction on the other part of the molecule. 3) 'Deprotect' the molecule to regenerate the original functional group. For instance, the acidic -OH of a phenol can be protected by converting it to an ester before nitrating the ring, preventing unwanted side reactions. The ester is then hydrolysed to restore the phenol."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Protecting groups temporarily mask a reactive functional group.",
+        "This prevents unwanted side reactions during a synthesis.",
+        "The process is: Protect -> React -> Deprotect.",
+        "A common example is protecting an alcohol or phenol as an ester."
+      ]
     },
     {
       "type": "heading",
@@ -199,5 +291,58 @@
         "embedHint": "Purify between steps if asked."
       }
     ]
-  }
+  },
+  "faq": [
+    {
+      "q": "Is there only one correct way to synthesise a molecule?",
+      "a": "No, there are often multiple valid synthetic routes. The 'best' route is usually the one with the fewest steps, highest overall yield, and uses the cheapest/safest reagents. For exams, any chemically correct route using reactions from the syllabus will be credited."
+    },
+    {
+      "q": "What is the difference between a synthon and a synthetic equivalent?",
+      "a": "A synthon is an idealised, often unstable, charged fragment resulting from a disconnection (e.g., a carbocation R⁺ or carbanion R⁻). A synthetic equivalent is the actual, stable reagent used in the laboratory that corresponds to that synthon (e.g., a haloalkane R-X is the synthetic equivalent for the R⁺ synthon)."
+    },
+    {
+      "q": "Why can't I just perform a C-C bond forming reaction on any molecule?",
+      "a": "Carbon-carbon bond forming reactions, like those using Grignard reagents, are very specific. Grignard reagents are strong nucleophiles and strong bases. They will react with any acidic protons in the molecule (e.g., from -OH, -COOH, or -NH₂ groups) before they react with a carbonyl group. Therefore, the molecule must be prepared correctly using FGI or protecting groups first."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Forward Synthesis and Retrosynthetic Analysis",
+    "columns": [
+      "Feature",
+      "Forward Synthesis (Without Planning)",
+      "Retrosynthetic Analysis (Planning)"
+    ],
+    "rows": [
+      {
+        "property": "Direction of Thought",
+        "cells": [
+          "Starts with simple reagents and moves forward.",
+          "Starts with the complex target molecule and works backwards."
+        ]
+      },
+      {
+        "property": "Key Question",
+        "cells": [
+          "\"What will happen if I mix reagent A and reagent B?\"",
+          "\"What known reaction could have formed this bond in my target molecule?\""
+        ]
+      },
+      {
+        "property": "Efficiency",
+        "cells": [
+          "Can be inefficient and lead to dead ends or unexpected products.",
+          "Highly efficient; identifies a viable and logical pathway before starting lab work."
+        ]
+      },
+      {
+        "property": "Primary Goal",
+        "cells": [
+          "To see what product is formed.",
+          "To devise a logical sequence of reactions to make a specific product."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

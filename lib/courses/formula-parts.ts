@@ -259,12 +259,19 @@ export function extractLatexSymbols(latex: string): string[] {
   function tokenize(chunk: string) {
     let c = chunk
 
+    // Unwrap simple \frac{a}{b}. The numerator/denominator patterns use [^{}]*
+    // so they never span nested braces; the `next === c` guard then breaks out
+    // when a \frac contains nested braces (e.g. \frac{-b \pm \sqrt{...}}{2a}),
+    // which would otherwise spin forever. Any leftover \frac is handled by the
+    // stripLatexSymbols pass below.
     while (/\\frac\{/.test(c)) {
-      c = c.replace(/\\frac\{([^}]*)\}\{([^}]*)\}/, (_, a: string, b: string) => {
+      const next = c.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/, (_, a: string, b: string) => {
         tokenize(a)
         tokenize(b)
         return ' '
       })
+      if (next === c) break
+      c = next
     }
 
     c = stripLatexSymbols(c)

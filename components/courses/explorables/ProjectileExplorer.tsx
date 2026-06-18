@@ -9,6 +9,8 @@
 
 import { useMemo, useState } from 'react'
 import type { ExplorableProps } from './registry'
+import { useAnimatedTime } from './useAnimatedTime'
+import { TimeSlider } from './TimeSlider'
 
 const W = 500
 const H = 300
@@ -34,7 +36,7 @@ const BEATS: Beat[] = ['flight', 'peak', 'range']
 export function ProjectileExplorer({ step, stepCount }: ExplorableProps) {
   const [u, setU] = useState(25)
   const [angle, setAngle] = useState(45)
-  const [tFrac, setTFrac] = useState(0.45) // fraction of flight time
+  const { t: tFrac, scrub: setTFrac, playing, toggle } = useAnimatedTime(0.2, 0.45)
   const beat = BEATS[clamp(step, 0, stepCount - 1)] ?? 'flight'
 
   const rad = (angle * Math.PI) / 180
@@ -109,7 +111,7 @@ export function ProjectileExplorer({ step, stepCount }: ExplorableProps) {
         <div className="qex-controls">
           <Slider label="u (m/s)" value={u} min={5} max={32} step={0.5} onChange={setU} />
           <Slider label="θ (°)" value={angle} min={10} max={80} step={1} onChange={setAngle} />
-          <Slider label="time" value={tFrac} min={0} max={1} step={0.01} onChange={setTFrac} />
+          <TimeSlider value={tFrac} playing={playing} onScrub={setTFrac} onToggle={toggle} />
         </div>
       </div>
     </div>

@@ -220,6 +220,10 @@
 .qex-slider input[type='range'] { width: 100%; accent-color: var(--qex-acc); height: 22px; cursor: pointer; }
 .qex-reset { align-self: flex-start; margin-top: 2px; background: transparent; border: 1px solid var(--border-strong); color: var(--text-2); border-radius: 8px; padding: 6px 14px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: border-color 150ms ease, color 150ms ease; }
 .qex-reset:hover { border-color: var(--ink); color: var(--ink); }
+.qex-time-head { display: inline-flex; align-items: center; gap: 8px; }
+.qex-playbtn { width: 24px; height: 24px; flex-shrink: 0; display: grid; place-items: center; border-radius: 6px; border: 1px solid var(--ink-border); background: var(--ink-soft); color: var(--ink); font-size: 10px; cursor: pointer; line-height: 1; padding: 0; }
+.qex-playbtn:hover { background: var(--ink); color: var(--bg); }
+[data-theme='night'] .qex-playbtn:hover { color: #07130d; }
 
 @media (max-width: 720px) {
   .qex { grid-template-columns: 1fr; }

@@ -12,6 +12,9 @@ export type ContentClusterId =
   | 'subject-choice'
   | 'exam-integrity'
   | 'resources-tools'
+  | 'grade-boundaries'
+  | 'command-words'
+  | 'free-alternatives'
 
 export type ContentCluster = {
   id: ContentClusterId
@@ -67,10 +70,10 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^how-to-read-a-cambridge-mark-scheme/,
       /^cambridge-a-level-maths-mark-scheme/,
       /^cambridge-mcq-past-papers/,
-      /^cambridge-command-words/,
-      /^cambridge-grade-boundaries/,
       /^cambridge-pum-/,
       /^cambridge-data-response/,
+      /-mark-scheme-abbreviations$/,
+      /-mark-scheme-explained$/,
     ],
   },
   {
@@ -96,6 +99,7 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^cambridge-igcse-most-tested/,
       /^cambridge-results-day/,
       /^cambridge-enquiry-about-results/,
+      /^how-to-revise-cambridge-\d{4}/,
     ],
   },
   {
@@ -166,6 +170,8 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^cambridge-may-june-2026/,
       /^revision-tiktok-and-social-media/,
       /^cambridge-digital-exams/,
+      /-exam-dates-2026$/,
+      /^cambridge-predicted-papers-2026/,
     ],
   },
   {
@@ -180,6 +186,58 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
     pillarBlogSlug: 'best-cambridge-past-paper-revision-resources-2026',
     moneyPath: '/mark',
     slugPatterns: [/^best-cambridge-past-paper/, /^free-cambridge-a-level-courses/],
+  },
+  {
+    id: 'grade-boundaries',
+    path: '/guides/grade-boundaries',
+    title: 'Grade boundaries 2026',
+    description:
+      'How Cambridge grade boundaries work, where to find them, and how to turn raw marks into an A*–E grade for every major syllabus.',
+    headTerm: 'Cambridge grade boundaries',
+    intent: 'informational',
+    format: 'hub',
+    pillarBlogSlug: 'how-to-read-cambridge-grade-boundaries',
+    moneyPath: '/tools/grade-boundary-calculator',
+    slugPatterns: [
+      /^cambridge-grade-boundaries/,
+      /^how-to-read-cambridge-grade-boundaries/,
+      /-grade-boundaries-2026$/,
+    ],
+  },
+  {
+    id: 'command-words',
+    path: '/guides/command-words',
+    title: 'Command words',
+    description:
+      'What Cambridge command words like Explain, Evaluate, Discuss and Justify actually require — and how examiners reward each one.',
+    headTerm: 'Cambridge command words',
+    intent: 'informational',
+    format: 'hub',
+    pillarBlogSlug: 'cambridge-command-words-explained',
+    moneyPath: '/mark',
+    slugPatterns: [
+      /^cambridge-command-words/,
+      /-command-words-guide$/,
+      /^how-to-answer-/,
+    ],
+  },
+  {
+    id: 'free-alternatives',
+    path: '/guides/free-alternatives',
+    title: 'Free revision resources',
+    description:
+      'The best free alternatives to paid Cambridge revision sites — notes, past papers, mark schemes and AI marking that cost nothing.',
+    headTerm: 'free Cambridge revision resources',
+    intent: 'commercial',
+    format: 'comparison',
+    pillarBlogSlug: 'best-free-cambridge-revision-resources-2026',
+    moneyPath: '/mark',
+    slugPatterns: [
+      /^best-free-/,
+      /-free-alternative$/,
+      /-alternative-free$/,
+      /^free-.*-revision-notes$/,
+    ],
   },
 ]
 

@@ -60,6 +60,32 @@ export const CLUSTER_SEMANTIC_ENTITIES: Record<ContentClusterId, string[]> = {
     'examiner report',
     'tutor vs self-study',
   ],
+  'grade-boundaries': [
+    'grade threshold',
+    'raw mark',
+    'percentage uniform mark',
+    'A* to E boundaries',
+    'results day',
+    'grade conversion',
+    'component marks',
+  ],
+  'command-words': [
+    'command word',
+    'explain vs describe',
+    'evaluate',
+    'discuss',
+    'justify',
+    'assessment objective',
+    'mark scheme phrasing',
+  ],
+  'free-alternatives': [
+    'free revision notes',
+    'official Cambridge PDFs',
+    'free past papers',
+    'free mark scheme',
+    'free AI marking',
+    'paid vs free',
+  ],
 }
 
 export function getSemanticChecklist(clusterId: ContentClusterId): string[] {

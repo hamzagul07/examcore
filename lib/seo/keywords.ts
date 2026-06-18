@@ -63,6 +63,31 @@ export const KEYWORD_CLUSTERS = {
     'mark whole past paper',
     'exam revision feedback',
   ],
+  gradeBoundaries: [
+    'Cambridge grade boundaries',
+    'Cambridge grade boundaries 2026',
+    '9709 grade boundaries',
+    '9702 grade boundaries',
+    'A-Level grade boundaries Cambridge',
+    'raw marks to grade calculator',
+    'how to read grade boundaries',
+  ],
+  commandWords: [
+    'Cambridge command words',
+    'command words A-Level',
+    'how to answer evaluate questions',
+    'how to answer explain questions',
+    'discuss command word',
+    'command words meaning Cambridge',
+  ],
+  freeAlternatives: [
+    'free Cambridge revision resources',
+    'Save My Exams free alternative',
+    'ZNotes alternative',
+    'free A-Level revision notes',
+    'free past paper marking',
+    'Physics and Maths Tutor alternative',
+  ],
 } as const
 
 /** Flat list for root metadata — high-volume head terms first. */

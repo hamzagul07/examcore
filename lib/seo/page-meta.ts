@@ -60,7 +60,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/guides': {
     title: 'Study guides — past papers & mark schemes',
     description:
-      'Eight topic hubs: marking workflow, mark schemes, revision strategy, subject guides, 2026 integrity, and resources — built for search intent.',
+      'Eleven topic hubs: marking workflow, mark schemes, grade boundaries, command words, revision strategy, subject guides, and free resources — built for search intent.',
   },
   '/insights': {
     title: 'Marking insights — self-mark gap data',

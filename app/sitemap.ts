@@ -22,6 +22,8 @@ const STATIC_ROUTES = [
   { path: '/research', priority: 0.75, changeFrequency: 'monthly' as const },
   { path: '/insights', priority: 0.87, changeFrequency: 'weekly' as const },
   { path: '/courses', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/tools/grade-boundary-calculator', priority: 0.82, changeFrequency: 'monthly' as const },
+  { path: '/tools/command-words', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/join', priority: 0.5, changeFrequency: 'monthly' as const },
   { path: '/auth/signin', priority: 0.45, changeFrequency: 'monthly' as const },
   { path: '/auth/signup', priority: 0.45, changeFrequency: 'monthly' as const },
@@ -63,6 +65,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
+  const calculatorEntries: MetadataRoute.Sitemap = getMarkingSubjectCodes().map(
+    (code) => ({
+      url: `${base}/tools/grade-boundary-calculator/${code}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })
+  )
+
   const courseSubjectEntries: MetadataRoute.Sitemap = getCourseSubjectCodes().map(
     (code) => ({
       url: `${base}/courses/${code}`,
@@ -98,6 +109,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticEntries,
     ...guideEntries,
     ...subjectEntries,
+    ...calculatorEntries,
     ...courseSubjectEntries,
     ...courseLessonEntries,
     ...blogEntries,

@@ -25,6 +25,14 @@ const QuadraticExplorer = dynamic(
   () => import('./QuadraticExplorer').then((m) => m.QuadraticExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const TrigExplorer = dynamic(
+  () => import('./TrigExplorer').then((m) => m.TrigExplorer),
+  { ssr: false, loading: explorableLoading }
+)
+const DiffExplorer = dynamic(
+  () => import('./DiffExplorer').then((m) => m.DiffExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 
 /**
  * First-class, per-lesson interactive diagrams ("explorables"). Returns a React
@@ -38,6 +46,10 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
   switch (slug) {
     case '1-1-quadratics':
       return createElement(QuadraticExplorer, props)
+    case '1-5-trigonometry':
+      return createElement(TrigExplorer, props)
+    case '1-7-differentiation':
+      return createElement(DiffExplorer, props)
     default:
       return null
   }

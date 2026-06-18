@@ -9,6 +9,8 @@
  */
 export const EXPLORABLE_SLUGS: ReadonlySet<string> = new Set<string>([
   '1-1-quadratics',
+  '1-5-trigonometry',
+  '1-7-differentiation',
 ])
 
 export function hasExplorable(slug: string): boolean {

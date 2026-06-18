@@ -348,6 +348,20 @@
 .pd-bar-r2 { fill: color-mix(in srgb, var(--ink) 22%, transparent); stroke: var(--ink-border); stroke-width: 0.75; transition: fill 180ms ease; }
 .pd-bar-r2.hot { fill: color-mix(in srgb, var(--ink) 34%, transparent); }
 
+/* Supply & demand explorer */
+.sd-demand { stroke: var(--acc-blue, #2f6db0); stroke-width: 2.5; }
+.sd-supply { stroke: var(--acc-rose, #b0506b); stroke-width: 2.5; }
+.sd-label.demand { fill: var(--acc-blue, #2f6db0); }
+.sd-label.supply { fill: var(--acc-rose, #b0506b); }
+.sd-eq circle { fill: var(--ink); stroke: var(--paper); stroke-width: 2; }
+.sd-eq-drop { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.6; }
+.sd-eq.hot circle { r: 6.5; }
+.sd-priceline { stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.sd-gap { stroke-width: 5; opacity: 0.6; }
+.sd-gap.surplus { stroke: var(--red, #b3261e); }
+.sd-gap.shortage { stroke: var(--amber, #b8860b); }
+.sd-gap-label { fill: var(--text-2); }
+
 /* Syllabus coverage — official sub-topics this lesson covers */
 .subtopics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .subtopic { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }

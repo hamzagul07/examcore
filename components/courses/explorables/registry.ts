@@ -73,6 +73,10 @@ const PotentialDividerExplorer = dynamic(
   () => import('./PotentialDividerExplorer').then((m) => m.PotentialDividerExplorer),
   { ssr: false, loading: explorableLoading }
 )
+const SupplyDemandExplorer = dynamic(
+  () => import('./SupplyDemandExplorer').then((m) => m.SupplyDemandExplorer),
+  { ssr: false, loading: explorableLoading }
+)
 const VectorExplorer = dynamic(
   () => import('./VectorExplorer').then((m) => m.VectorExplorer),
   { ssr: false, loading: explorableLoading }
@@ -106,6 +110,8 @@ export function renderLessonExplorable(slug: string, props: ExplorableProps): Re
       return createElement(ExpLogExplorer, props)
     case '10-3-potential-dividers':
       return createElement(PotentialDividerExplorer, props)
+    case '2-4-the-interaction-of-demand-and-supply':
+      return createElement(SupplyDemandExplorer, props)
     case '5-5-the-normal-distribution':
       return createElement(NormalExplorer, props)
     case '1-4-circular-measure':
@@ -215,6 +221,11 @@ const BEATS_BY_SLUG: Record<string, ExplorableBeat[]> = {
     { label: 'The divider', caption: 'Two resistors in series share the supply voltage between them.' },
     { label: 'The ratio', caption: 'V_out = V_in · R₂/(R₁+R₂) — the bigger resistor takes the bigger share.' },
     { label: 'The current', caption: 'The same current I = V_in/(R₁+R₂) flows through both resistors.' },
+  ],
+  '2-4-the-interaction-of-demand-and-supply': [
+    { label: 'The curves', caption: 'Demand slopes down, supply slopes up — shift either to model a change in the market.' },
+    { label: 'Equilibrium', caption: 'They cross at the market-clearing price and quantity, where demand equals supply.' },
+    { label: 'Surplus & shortage', caption: 'Above equilibrium price → surplus (excess supply); below → shortage (excess demand).' },
   ],
 }
 

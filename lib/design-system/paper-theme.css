@@ -42,6 +42,21 @@
   --ec-pen: #9eb0f5;
   --ec-hl: rgba(255, 205, 74, 0.45);
   --ec-shadow-hard: 6px 6px 0 rgba(0, 0, 0, 0.45);
+  /* Flip the remaining paper/ink tokens for dark mode so paper surfaces don't
+     keep light backgrounds with light text (and subject colours stay legible
+     on dark surfaces). Values mirror theme.css late-night. */
+  --ec-paper: #211e14;
+  --ec-paper-rule: #383223;
+  --ec-red: #e06c6c;
+  --ec-red-deep: #e06c6c;
+  --ec-c-math: #d9b36a;
+  --ec-c-phys: #8fa9f7;
+  --ec-c-chem: #b5a3e8;
+  --ec-c-bio: #4fd1c5;
+  --ec-c-biz: #4fd1c5;
+  --ec-c-hum: #e788ad;
+  --ec-c-comp: #8fa9f7;
+  --ec-c-media: #e788ad;
 }
 
 /* Paper grain overlay — subtle texture on canvas */

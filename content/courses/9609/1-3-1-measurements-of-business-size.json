@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9609 AS — revenue, employees, capital employed, market share as size measures.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Describe methods of measuring business size.",
     "Compare advantages and limitations of each measure.",
@@ -25,19 +25,159 @@
     ]
   },
   "flashcards": [
-    { "front": "Revenue as size measure?", "back": "Total sales value — easy data but high-revenue low-margin firms may be weak." },
-    { "front": "Employees measure?", "back": "Headcount — suits services; misleading for automated factories." },
-    { "front": "Capital employed?", "back": "Total assets minus current liabilities — capital-intensive sectors." },
-    { "front": "Market share?", "back": "Firm sales ÷ total market sales × 100%." },
-    { "front": "Why measure size?", "back": "Compare competitors, government aid thresholds, merger analysis." },
-    { "front": "SME definition?", "back": "Varies by country — often by employees or turnover (1.3.2)." },
-    { "front": "Limitation of one measure?", "back": "Use multiple measures — Amazon high revenue, also huge employment and capital." },
-    { "front": "Link to 9.1.2?", "back": "Economies of scale relate to absolute size." }
+    {
+      "front": "Revenue as size measure?",
+      "back": "Total sales value — easy data but high-revenue low-margin firms may be weak."
+    },
+    {
+      "front": "Employees measure?",
+      "back": "Headcount — suits services; misleading for automated factories."
+    },
+    {
+      "front": "Capital employed?",
+      "back": "Total assets minus current liabilities — capital-intensive sectors."
+    },
+    {
+      "front": "Market share?",
+      "back": "Firm sales ÷ total market sales × 100%."
+    },
+    {
+      "front": "Why measure size?",
+      "back": "Compare competitors, government aid thresholds, merger analysis."
+    },
+    {
+      "front": "SME definition?",
+      "back": "Varies by country — often by employees or turnover (1.3.2)."
+    },
+    {
+      "front": "Limitation of one measure?",
+      "back": "Use multiple measures — Amazon high revenue, also huge employment and capital."
+    },
+    {
+      "front": "Link to 9.1.2?",
+      "back": "Economies of scale relate to absolute size."
+    },
+    {
+      "front": "What is 'Capital Employed'?",
+      "back": "The total value of all long-term finance invested in the business. It is calculated as (Total Assets - Current Liabilities) or (Shareholders' Equity + Non-Current Liabilities)."
+    },
+    {
+      "front": "Define 'Market Share' and provide the formula.",
+      "back": "The percentage of a market's total sales that is earned by a particular company. Formula: (Company's Sales / Total Market Sales) × 100."
+    },
+    {
+      "front": "Why is revenue a potentially misleading measure of business size?",
+      "back": "It measures sales income, not profitability. A business can have high revenue but be making a loss. It also doesn't account for the value of assets or the number of employees required to generate that revenue."
+    },
+    {
+      "front": "In which type of industry is 'number of employees' a particularly useful measure of size?",
+      "back": "Labour-intensive industries, such as services like cleaning, catering, or consultancy, where the number of staff directly relates to the scale of operations."
+    },
+    {
+      "front": "Why is it important for stakeholders to measure business size?",
+      "back": "To allow for comparison with competitors (benchmarking), to attract investors who may seek market leaders, to help governments assess market concentration, and for internal analysis of growth over time."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Measurements of business size** (1.3.1) — if case gives **different rankings** by revenue vs employees, **explain why** (capital intensity, margins)."
+    },
+    {
+      "type": "heading",
+      "content": "Introduction to Measuring Business Size"
+    },
+    {
+      "type": "text",
+      "content": "Measuring the size of a business is not as straightforward as it might seem, as there is no single, universally accepted method. Different stakeholders, from investors to governments, use various quantitative measures to compare firms, analyse performance, and understand market structures. The most common measures used in A-Level Business are revenue, number of employees, capital employed, and market share. Each method provides a different perspective on the scale of an organisation's operations. The choice of the most appropriate measure depends heavily on the industry in which the business operates and the specific purpose of the comparison. For example, a capital-intensive manufacturing firm is best compared using capital employed, whereas a service-based business might be better understood by its number of employees."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "There is no single 'best' way to measure business size.",
+        "Common measures include revenue, number of employees, capital employed, and market share.",
+        "The choice of measure depends on the industry and the reason for measurement.",
+        "Stakeholders use these measures to make comparisons and investment decisions."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Revenue (Turnover)"
+    },
+    {
+      "type": "text",
+      "content": "Revenue, often referred to as turnover, is the total value of sales made by a business over a specific period, typically one year. It is calculated by multiplying the selling price per unit by the quantity of units sold. This measure is particularly useful for comparing businesses in the retail or fast-moving consumer goods (FMCG) sectors, where high sales volume is a key indicator of size and market presence. However, revenue can be a misleading indicator of size on its own. It does not account for the costs incurred to generate those sales, meaning a business with high revenue could still be unprofitable. Furthermore, it may not accurately reflect the size of businesses in sectors where asset value or intellectual property is more significant than sales volume."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Definition: Total income from sales over a period (Price x Quantity).",
+        "Strength: A good indicator for high-volume businesses like supermarkets.",
+        "Weakness: Does not measure profitability; a high-revenue firm can still make a loss.",
+        "Weakness: Less relevant for businesses with high-value assets but low sales."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, when asked to compare the size of two businesses, always state which measure you are using and justify why it is (or is not) appropriate for the given industry. For example, 'Using revenue, Firm A is larger, which is a suitable measure for the retail industry. However, this ignores profitability...'"
+    },
+    {
+      "type": "heading",
+      "content": "Number of Employees"
+    },
+    {
+      "type": "text",
+      "content": "Measuring a business by its number of employees is a straightforward method that indicates the scale of its workforce. This measure is most effective in labour-intensive industries, such as hospitality, cleaning services, or consultancy, where the size of the workforce directly correlates with the organisation's capacity to deliver its service. However, this method has significant limitations. It fails to account for the rise of automation and capital-intensive production, where a very large business (e.g., an oil refinery or a data centre) may operate with a relatively small, highly skilled workforce. It also does not differentiate between full-time, part-time, and temporary staff, which can distort comparisons between firms with different employment structures."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Definition: The total number of people employed by the business.",
+        "Strength: Simple to calculate and understand.",
+        "Strength: Very relevant for labour-intensive service industries.",
+        "Weakness: Misleading in capital-intensive industries where automation is prevalent.",
+        "Weakness: Does not distinguish between full-time and part-time workers."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Capital Employed"
+    },
+    {
+      "type": "text",
+      "content": "Capital employed represents the total long-term and permanent capital invested in a business. It is calculated as Total Assets less Current Liabilities, or alternatively as Shareholders' Equity plus Non-Current Liabilities. This measure is an excellent indicator of the scale of investment in a business and is particularly useful for comparing firms in capital-intensive industries like manufacturing, transportation (e.g., airlines), or utilities (e.g., energy providers). A business with a high value of capital employed has a large asset base. Its main limitation is that it is less relevant for labour-intensive service businesses that require minimal fixed assets to operate. Furthermore, the value of assets can be subject to different accounting valuation methods (e.g., depreciation), which can make direct comparisons challenging."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Definition: The total value of all long-term finance invested in the business.",
+        "Calculation: Total Assets - Current Liabilities OR Shareholders' Equity + Non-Current Liabilities.",
+        "Strength: Excellent for comparing firms in capital-intensive industries (e.g., manufacturing, airlines).",
+        "Weakness: Less relevant for service businesses with few non-current assets.",
+        "Weakness: Asset valuation can be subjective and vary between businesses."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Market Share"
+    },
+    {
+      "type": "text",
+      "content": "Market share measures a business's sales as a percentage of the total sales in a specific market. It is calculated by dividing the firm's sales revenue by the total market sales revenue and multiplying by 100. This is a relative measure of size, indicating a firm's dominance and competitive strength within its industry. A high market share often implies market leadership, brand recognition, and potential economies of scale. The primary limitation is that the definition of the 'market' can be subjective. A business might have a 90% share of a small, niche market, but still be a very small business in absolute terms. Conversely, a firm with a 5% share of a vast global market (like smartphones) could be an enormous multinational corporation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Definition: The proportion of total market sales held by one business.",
+        "Calculation: (Firm's Sales / Total Market Sales) x 100.",
+        "Strength: Indicates relative size, market power, and competitiveness.",
+        "Weakness: The value depends on how narrowly or broadly the market is defined.",
+        "Weakness: A large share of a small market does not mean the business is large overall."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Market share is a powerful tool for analysis. Use it to discuss a firm's competitive position. A business with a high market share is a 'market leader' and may have significant influence over prices and distribution channels."
     },
     {
       "type": "formula",
@@ -56,10 +196,73 @@
     {
       "type": "resources",
       "items": [
-        { "label": "1.3.3 Business growth", "href": "/courses/9609/1-3-3-business-growth" },
-        { "label": "9.1.2 Scale of operations", "href": "/courses/9609/9-1-2-scale-of-operations" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "1.3.3 Business growth",
+          "href": "/courses/9609/1-3-3-business-growth"
+        },
+        {
+          "label": "9.1.2 Scale of operations",
+          "href": "/courses/9609/9-1-2-scale-of-operations"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is a business with high revenue always 'bigger' than a business with high profit?",
+      "a": "Not necessarily. 'Size' is a multi-faceted concept. A supermarket might have massive revenue but tiny profit margins, making it large by the revenue measure. A specialist software firm could have lower revenue but huge profits and be considered large due to its profitability and market value. Different measures tell different stories about a business's scale and success."
+    },
+    {
+      "q": "Can a business be considered 'large' by one measure but 'small' by another?",
+      "a": "Absolutely. This is a key point of analysis. For example, a modern technology firm might have a huge market share and high capital employed (servers, infrastructure) but a relatively small number of employees due to automation. Conversely, a large legal firm might have thousands of employees but relatively low capital employed as its main assets are its people."
+    },
+    {
+      "q": "How do you decide which measure of size is the 'best' one to use?",
+      "a": "There is no single 'best' measure; the most appropriate one depends entirely on the context. You must consider the industry and the purpose of the comparison. For comparing manufacturing firms, capital employed is often most suitable. For retailers, revenue is a common benchmark. For assessing market power, market share is key. A good analysis will often use multiple measures to build a more complete picture."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Key Measures of Business Size",
+    "columns": [
+      "Feature",
+      "Revenue",
+      "Number of Employees",
+      "Capital Employed",
+      "Market Share"
+    ],
+    "rows": [
+      {
+        "property": "Primary Strength",
+        "cells": [
+          "Good for comparing businesses with high sales volume.",
+          "Simple to calculate and understand; good for service firms.",
+          "Excellent for comparing asset-heavy, industrial businesses.",
+          "Shows relative size and competitive strength in a market."
+        ]
+      },
+      {
+        "property": "Primary Weakness",
+        "cells": [
+          "Ignores profitability and efficiency.",
+          "Misleading in automated, capital-intensive industries.",
+          "Less relevant for service firms; can be affected by accounting methods.",
+          "Dependent on the definition of the 'market'; a large share of a small market can be misleading."
+        ]
+      },
+      {
+        "property": "Best Suited For",
+        "cells": [
+          "Retail, Fast-Moving Consumer Goods (FMCG)",
+          "Services (e.g., cleaning, consultancy, education)",
+          "Manufacturing, Utilities, Airlines, Oil & Gas",
+          "Assessing market leadership and competitive dynamics in any industry."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9609 A Level — capacity, outsourcing, inventory, and maintenance operational decisions.",
   "durationMin": 26,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Identify key operational decisions managers face.",
     "Analyse capacity scheduling choices.",
@@ -25,19 +25,152 @@
     ]
   },
   "flashcards": [
-    { "front": "Capacity scheduling?", "back": "Matching production to demand — shifts, temps, overtime." },
-    { "front": "Subcontract peak demand?", "back": "Use external capacity without permanent fixed cost increase." },
-    { "front": "Outsource decision?", "back": "Cost, quality, control, strategic importance (4.3.2)." },
-    { "front": "Stock decision trade-off?", "back": "Holding cost vs stock-out cost (4.2.1)." },
-    { "front": "Preventive maintenance?", "back": "Scheduled servicing to avoid costly unplanned downtime." },
-    { "front": "Breakdown cost?", "back": "Lost output, rush repairs, missed customer deadlines." },
-    { "front": "Link to utilisation?", "back": "4.3.1 — schedule to improve capacity use." },
-    { "front": "Short-term vs strategic?", "back": "Ops decisions tactical; location/ERP more strategic." }
+    {
+      "front": "Capacity scheduling?",
+      "back": "Matching production to demand — shifts, temps, overtime."
+    },
+    {
+      "front": "Subcontract peak demand?",
+      "back": "Use external capacity without permanent fixed cost increase."
+    },
+    {
+      "front": "Outsource decision?",
+      "back": "Cost, quality, control, strategic importance (4.3.2)."
+    },
+    {
+      "front": "Stock decision trade-off?",
+      "back": "Holding cost vs stock-out cost (4.2.1)."
+    },
+    {
+      "front": "Preventive maintenance?",
+      "back": "Scheduled servicing to avoid costly unplanned downtime."
+    },
+    {
+      "front": "Breakdown cost?",
+      "back": "Lost output, rush repairs, missed customer deadlines."
+    },
+    {
+      "front": "Link to utilisation?",
+      "back": "4.3.1 — schedule to improve capacity use."
+    },
+    {
+      "front": "Short-term vs strategic?",
+      "back": "Ops decisions tactical; location/ERP more strategic."
+    },
+    {
+      "front": "What is the formula for Capacity Utilisation?",
+      "back": "(Current output level / Maximum possible output level) x 100. It measures the percentage of total capacity that is being used."
+    },
+    {
+      "front": "Define 'Outsourcing' in a business context.",
+      "back": "The business practice of contracting out non-core business activities or functions to third-party providers, rather than performing them in-house."
+    },
+    {
+      "front": "What is 'Buffer Inventory'?",
+      "back": "A quantity of inventory held in reserve to protect against unforeseen shortages or surges in demand. It helps to prevent stock-outs caused by delays in supply or unexpected customer orders."
+    },
+    {
+      "front": "Explain 'Preventative Maintenance'.",
+      "back": "A proactive maintenance strategy involving regular, scheduled servicing and inspection of equipment to detect and correct potential failures before they occur, minimising unexpected downtime."
+    },
+    {
+      "front": "What is 'Lead Time' in inventory management?",
+      "back": "The time that elapses between a new order for inventory being placed and the goods being delivered and ready for use."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Operational decisions** (9.3.1) opens **Topic 9.3**. Structure answers around **decision → options → criteria → recommendation** using case numbers where given."
+    },
+    {
+      "type": "heading",
+      "content": "The Strategic Role of Operational Decisions"
+    },
+    {
+      "type": "text",
+      "content": "Operational decisions are tactical choices made by a business to manage its internal processes and resources effectively, directly impacting the transformation of inputs into outputs. These decisions, concerning capacity, outsourcing, inventory, and maintenance, are not merely day-to-day management but are fundamental to achieving strategic objectives like cost leadership or differentiation. For instance, a decision to invest in high-capacity machinery aligns with a growth strategy, while adopting a Just-in-Time inventory system supports a strategy focused on efficiency and waste reduction. The cumulative effect of these decisions determines a firm's operational efficiency, cost structure, and ability to respond to market changes, making them a cornerstone of competitive advantage."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Operational decisions are the day-to-day choices that manage the transformation process.",
+        "They link directly to the achievement of long-term strategic business objectives.",
+        "Key decisions include managing capacity, outsourcing, inventory levels, and maintenance schedules.",
+        "Effective operational decisions are a source of competitive advantage through improved efficiency and responsiveness."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Managing Capacity Utilisation"
+    },
+    {
+      "type": "text",
+      "content": "Capacity utilisation measures the extent to which a firm's maximum possible output is currently being reached, calculated as (Current Output / Maximum Possible Output) x 100. Persistently low utilisation (<70-80%) increases average fixed costs per unit, potentially harming profitability and suggesting excess capacity. Conversely, sustained high utilisation (>90-95%) can strain resources, leading to reduced quality, employee stress, and an inability to accept new orders or perform maintenance. Effective management involves strategies like rationalisation to reduce capacity or finding new markets to increase demand. The ideal level is high enough to ensure efficiency but with a sufficient buffer to maintain flexibility and quality standards."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Capacity utilisation is the proportion of maximum output capacity currently being achieved.",
+        "Low utilisation leads to high unit fixed costs and inefficiency.",
+        "High utilisation can compromise quality, flexibility, and employee welfare.",
+        "Strategies to manage capacity include rationalisation, increasing demand, or using subcontractors."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When analysing capacity utilisation, always consider the context. A luxury car manufacturer might deliberately operate at lower capacity to maintain quality and exclusivity, whereas a budget airline needs very high utilisation to be profitable. Use this context to justify your evaluation."
+    },
+    {
+      "type": "heading",
+      "content": "The Outsourcing (Make-or-Buy) Decision"
+    },
+    {
+      "type": "text",
+      "content": "The make-or-buy decision involves choosing whether to produce a component or provide a service in-house (make) or to purchase it from an external supplier (buy/outsource). This is a critical strategic choice. Key benefits of outsourcing include access to specialist expertise, potential cost savings through economies of scale of the supplier, and allowing the business to focus on its core competencies. However, risks are significant and include loss of direct control over quality and delivery times, potential for supplier dependency, and the risk of confidential information being compromised. A quantitative analysis comparing the cost to make versus the cost to buy is a starting point, but qualitative factors like quality, reliability, and strategic alignment are often decisive."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Outsourcing is contracting a business process to an external provider.",
+        "Benefits include cost savings, access to expertise, and focus on core activities.",
+        "Drawbacks include loss of control, dependency on suppliers, and potential quality issues.",
+        "The decision requires both quantitative (cost) and qualitative (strategic) analysis."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Strategic Inventory Management"
+    },
+    {
+      "type": "text",
+      "content": "Inventory management is the process of ordering, storing, and using a company's inventory, which includes raw materials, work-in-progress, and finished goods. Holding inventory incurs significant costs: storage, insurance, security (holding costs), and the opportunity cost of the capital tied up. However, insufficient inventory can lead to production stoppages and lost sales (stock-out costs). The key is to find a balance. Buffer inventory is extra stock held to manage uncertainties in demand or supply lead times. While lean production methods like Just-in-Time (JIT) aim to minimise inventory to near zero, this requires highly reliable suppliers and a stable production environment, making it a high-risk, high-reward strategy."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Inventory management balances the costs of holding stock against the risks of stock-outs.",
+        "Key costs include holding costs, ordering costs, and stock-out costs.",
+        "Buffer inventory provides a safety net against supply and demand fluctuations.",
+        "Lean methods like Just-in-Time (JIT) aim to minimise inventory but increase reliance on suppliers."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Importance of Maintenance Decisions"
+    },
+    {
+      "type": "text",
+      "content": "Maintenance decisions concern the upkeep of machinery and equipment to ensure production continuity and efficiency. The two main approaches are preventative maintenance and corrective (or breakdown) maintenance. Preventative maintenance involves regular, scheduled servicing to prevent failures, which reduces unexpected downtime and can extend the life of assets. While it involves planned downtime and upfront costs, it is often cheaper in the long run. Corrective maintenance, in contrast, is reactive, occurring only after a machine has failed. This approach avoids maintenance costs until a problem arises but can lead to catastrophic, unscheduled production halts, significant repair bills, and potential safety hazards. The choice of strategy depends on the criticality of the equipment and the cost of failure."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Maintenance ensures production assets remain efficient and reliable.",
+        "Preventative maintenance is a proactive approach involving scheduled servicing to prevent failures.",
+        "Corrective (breakdown) maintenance is a reactive approach, fixing equipment only after it fails.",
+        "The choice of strategy depends on a cost-benefit analysis of downtime versus maintenance costs."
+      ]
     },
     {
       "type": "workedExample",
@@ -52,10 +185,79 @@
     {
       "type": "resources",
       "items": [
-        { "label": "4.3.1 Capacity utilisation", "href": "/courses/9609/4-3-1-significance-and-measurement-of-capacity-utilisation" },
-        { "label": "4.2.1 Managing inventory", "href": "/courses/9609/4-2-1-managing-inventory" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "4.3.1 Capacity utilisation",
+          "href": "/courses/9609/4-3-1-significance-and-measurement-of-capacity-utilisation"
+        },
+        {
+          "label": "4.2.1 Managing inventory",
+          "href": "/courses/9609/4-2-1-managing-inventory"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is achieving 100% capacity utilisation always the primary operational goal?",
+      "a": "No, this is a common misconception. While high utilisation is often desirable for spreading fixed costs, operating at 100% capacity leaves no room for error, unexpected new orders, or essential maintenance. It can lead to employee burnout, a decline in quality control, and an inability to respond flexibly to market opportunities. Most businesses aim for an optimal level, typically around 85-95%, which balances efficiency with flexibility."
+    },
+    {
+      "q": "Does outsourcing non-core functions always result in cost savings?",
+      "a": "Not necessarily. While cost reduction is a major driver for outsourcing, it is not guaranteed. Hidden costs can arise, such as managing the supplier relationship (contract management), monitoring quality, and rectifying errors. Furthermore, if the chosen supplier is inefficient or increases their prices, the expected savings may not materialise. The decision should also weigh qualitative factors like loss of control and potential damage to the brand's reputation if the supplier underperforms."
+    },
+    {
+      "q": "Does a 'Just-in-Time' (JIT) inventory system mean a business holds absolutely no stock?",
+      "a": "This is an oversimplification. JIT aims to minimise inventory to the lowest possible level, not necessarily eliminate it entirely. The goal is for materials to arrive 'just in time' for them to be used in production, and for finished goods to be produced 'just in time' to be dispatched to customers. There may still be very small amounts of buffer stock or work-in-progress within the system. The core principle is the relentless pursuit of waste reduction, which includes the waste of holding excessive inventory."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "In-house Production vs. Outsourcing",
+    "columns": [
+      "Feature",
+      "In-house Production",
+      "Outsourcing"
+    ],
+    "rows": [
+      {
+        "property": "Control",
+        "cells": [
+          "Direct and complete control over quality, processes, and timelines.",
+          "Relies on supplier's quality control; loss of direct oversight."
+        ]
+      },
+      {
+        "property": "Cost Structure",
+        "cells": [
+          "High fixed costs in plant and equipment; variable costs per unit.",
+          "Lower fixed costs; costs are largely variable, based on supplier's price."
+        ]
+      },
+      {
+        "property": "Expertise",
+        "cells": [
+          "Relies on internal skills and knowledge, which may be limited.",
+          "Access to specialist expertise and technology from the supplier."
+        ]
+      },
+      {
+        "property": "Flexibility",
+        "cells": [
+          "Can be inflexible to changes in demand if at full capacity.",
+          "Can offer greater flexibility to scale production up or down by adjusting orders."
+        ]
+      },
+      {
+        "property": "Capital Investment",
+        "cells": [
+          "Requires significant upfront capital investment in machinery and facilities.",
+          "Avoids large capital expenditure, freeing up capital for core activities."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

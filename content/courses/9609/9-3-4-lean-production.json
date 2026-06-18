@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9609 A Level — lean philosophy, waste (muda), JIT, pull systems, Kaizen, and 5S.",
   "durationMin": 28,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Explain lean production philosophy.",
     "Identify the seven wastes (muda).",
@@ -25,19 +25,137 @@
     ]
   },
   "flashcards": [
-    { "front": "Lean goal?", "back": "Maximise value, minimise waste (muda)." },
-    { "front": "Seven wastes (examples)?", "back": "Overproduction, waiting, transport, inventory, motion, over-processing, defects." },
-    { "front": "Pull vs push?", "back": "Pull = produce to order; push = produce to forecast/stock." },
-    { "front": "Kaizen?", "back": "Continuous improvement — all staff suggest changes." },
-    { "front": "5S?", "back": "Sort, set, shine, standardise, sustain — workplace organisation." },
-    { "front": "Toyota Production System?", "back": "Reference model for lean + JIT + respect for people." },
-    { "front": "Lean requirement?", "back": "Reliable suppliers, quality at source, flexible workforce." },
-    { "front": "vs mass production?", "back": "Mass = high stock, economies of scale; lean = low waste, responsiveness." }
+    {
+      "front": "Lean goal?",
+      "back": "Maximise value, minimise waste (muda)."
+    },
+    {
+      "front": "Seven wastes (examples)?",
+      "back": "Overproduction, waiting, transport, inventory, motion, over-processing, defects."
+    },
+    {
+      "front": "Pull vs push?",
+      "back": "Pull = produce to order; push = produce to forecast/stock."
+    },
+    {
+      "front": "Kaizen?",
+      "back": "Continuous improvement — all staff suggest changes."
+    },
+    {
+      "front": "5S?",
+      "back": "Sort, set, shine, standardise, sustain — workplace organisation."
+    },
+    {
+      "front": "Toyota Production System?",
+      "back": "Reference model for lean + JIT + respect for people."
+    },
+    {
+      "front": "Lean requirement?",
+      "back": "Reliable suppliers, quality at source, flexible workforce."
+    },
+    {
+      "front": "vs mass production?",
+      "back": "Mass = high stock, economies of scale; lean = low waste, responsiveness."
+    },
+    {
+      "front": "What is 'muda' in the context of lean production?",
+      "back": "Muda is the Japanese term for waste. It refers to any activity that consumes resources but adds no value for the customer. The seven wastes are: Transport, Inventory, Motion, Waiting, Overproduction, Over-processing, and Defects."
+    },
+    {
+      "front": "What is a 'pull system' of production?",
+      "back": "A system where production is triggered by actual customer demand. An order from a customer 'pulls' the product through the manufacturing process. This is a core component of JIT and contrasts with a 'push system' based on forecasts."
+    },
+    {
+      "front": "What is the core principle of Kaizen?",
+      "back": "The core principle of Kaizen is continuous, incremental improvement involving all employees in an organisation, from senior management to the shop floor, to collectively identify and eliminate waste."
+    },
+    {
+      "front": "What is the primary purpose of the 5S framework?",
+      "back": "To create and maintain a clean, organised, safe, and efficient workplace. It is a foundational lean tool that makes waste and process abnormalities more visible and easier to address."
+    },
+    {
+      "front": "What is the main disadvantage or risk of implementing a Just-in-Time (JIT) system?",
+      "back": "The main risk is the lack of buffer stock, which makes the production process highly vulnerable to disruptions in the supply chain. Any delay or quality issue from a supplier can halt the entire production line."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Lean production** (9.3.4) extends **4.2.2 JIT**. Name **specific wastes** from the case — overproduction and inventory are exam favourites."
+    },
+    {
+      "type": "heading",
+      "content": "The Philosophy of Lean Production and 'Muda'"
+    },
+    {
+      "type": "text",
+      "content": "Lean production is a business philosophy, originating from the Toyota Production System, focused on maximising customer value whilst minimising waste. It is not merely a cost-cutting exercise, but a systematic approach to identify and eliminate all activities that do not add value for the end customer. This non-value-adding activity is known as 'muda', the Japanese term for waste. The core principle is to create a smooth, efficient flow of production by removing interruptions and inefficiencies. By focusing on value from the customer's perspective, a lean organisation can improve quality, reduce production times, and lower costs, thereby enhancing its competitive advantage. This requires a profound cultural shift within the entire organisation, not just on the factory floor."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Lean production aims to maximise customer value by eliminating waste.",
+        "Waste ('muda') is any activity that consumes resources but adds no value for the customer.",
+        "The seven key wastes are: Transport, Inventory, Motion, Waiting, Overproduction, Over-processing, and Defects (TIMWOOD).",
+        "It is a holistic philosophy requiring a change in organisational culture."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Just-in-Time (JIT) and Pull Systems"
+    },
+    {
+      "type": "text",
+      "content": "Just-in-Time (JIT) is a cornerstone of lean production. It is an inventory management strategy where materials, components, and products are ordered from suppliers and produced only as they are needed in the production process. This contrasts with traditional 'just-in-case' buffer stock systems. JIT operates on a 'pull' system, where production is triggered by actual customer orders rather than forecasts. When a customer places an order, it 'pulls' the required items through the production line. This drastically reduces inventory holding costs, minimises waste from obsolete stock, and can improve quality by making defects immediately apparent. However, it creates a high dependency on supplier reliability and leaves the business vulnerable to supply chain disruptions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "JIT means receiving inputs and producing goods only when they are needed.",
+        "It operates on a 'pull' system, where customer demand initiates production.",
+        "Key benefits include reduced inventory costs and improved working capital.",
+        "Significant risks include production stoppages due to supply chain failures or quality issues with inputs."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When evaluating JIT, always balance the significant cost savings from reduced inventory against the major risk of production halting due to supply chain disruptions. A top-level answer will discuss the critical importance of supplier relationships for JIT to be successful."
+    },
+    {
+      "type": "heading",
+      "content": "Kaizen: The Principle of Continuous Improvement"
+    },
+    {
+      "type": "text",
+      "content": "Kaizen is the Japanese philosophy of continuous, incremental improvement. It is a fundamental element of a lean culture, involving every member of the organisation, from senior executives to assembly line workers. Rather than seeking large, radical changes, Kaizen focuses on making small, ongoing improvements to processes and efficiency. This is often facilitated through mechanisms like 'Kaizen circles' or quality circles, where groups of employees work together to identify problems and suggest solutions. The philosophy empowers employees, encourages a sense of ownership, and fosters a culture where waste is actively identified and eliminated on a daily basis. It promotes the idea that the experts in any process are the people who perform it every day."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Kaizen means 'continuous improvement' involving all employees.",
+        "It focuses on small, incremental changes rather than large, disruptive ones.",
+        "Empowers employees by involving them in problem-solving and process improvement.",
+        "Fosters a proactive culture of identifying and eliminating waste."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The 5S Framework for an Organised Workplace"
+    },
+    {
+      "type": "text",
+      "content": "The 5S framework is a systematic method for organising a workplace to improve efficiency, safety, and morale. It is often seen as a foundational step in implementing broader lean initiatives, as a disorganised environment makes waste difficult to see. The five steps are: Seiri (Sort), removing all unnecessary items from the workspace; Seiton (Set in order), arranging necessary items logically so they are easy to find and use; Seiso (Shine), cleaning the workspace and equipment regularly; Seiketsu (Standardise), creating standard procedures to maintain the first three S's; and Shitsuke (Sustain), developing the self-discipline to maintain the standards and make 5S a habit. This creates a visual, efficient, and safe working environment."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "5S is a workplace organisation method and a pillar of lean production.",
+        "Seiri (Sort): Remove what is not needed.",
+        "Seiton (Set in order): A place for everything, and everything in its place.",
+        "Seiso (Shine): Clean the workspace.",
+        "Seiketsu (Standardise): Create rules to maintain order.",
+        "Shitsuke (Sustain): Maintain discipline and make it a habit."
+      ]
     },
     {
       "type": "heading",
@@ -68,10 +186,79 @@
     {
       "type": "resources",
       "items": [
-        { "label": "4.2.2 Just in Time", "href": "/courses/9609/4-2-2-just-in-time-jit" },
-        { "label": "9.2.1 Quality control and assurance", "href": "/courses/9609/9-2-1-quality-control-and-quality-assurance" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "4.2.2 Just in Time",
+          "href": "/courses/9609/4-2-2-just-in-time-jit"
+        },
+        {
+          "label": "9.2.1 Quality control and assurance",
+          "href": "/courses/9609/9-2-1-quality-control-and-quality-assurance"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is lean production just another term for cutting costs by firing employees?",
+      "a": "This is a common misconception. The primary goal of lean production is to eliminate waste ('muda') from processes, not to reduce headcount. The philosophy is about creating more value for the customer with the same resources. Whilst efficiency gains may lead to changes in labour requirements, the focus is on process improvement. In fact, lean principles rely heavily on the knowledge and engagement of all employees to identify and solve problems."
+    },
+    {
+      "q": "Can lean production principles be applied to service-based businesses?",
+      "a": "Yes, absolutely. Whilst lean production originated in manufacturing, its principles are widely applied in service industries such as healthcare, banking, software development, and administration. 'Waste' in a service context can include delays in patient treatment (waiting), unnecessary paperwork (over-processing), data entry errors (defects), or inefficient movement of staff. The same tools like 5S, Kaizen, and value stream mapping can be used to improve service quality and efficiency."
+    },
+    {
+      "q": "Does implementing Just-in-Time (JIT) mean a business holds zero inventory?",
+      "a": "Not necessarily. The goal of JIT is to minimise inventory to the lowest possible level, not always to eliminate it entirely. Businesses may still hold very small amounts of 'safety' or 'buffer' stock to guard against minor variations in demand or supply. However, the principle is to move away from large stockpiles and rely on a highly efficient, responsive supply chain. The ideal is a seamless flow, but a pragmatic implementation accepts minimal, strategic inventory."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Push and Pull Production Systems",
+    "columns": [
+      "Feature",
+      "Push Production (Traditional)",
+      "Pull Production (Lean/JIT)"
+    ],
+    "rows": [
+      {
+        "property": "Production Trigger",
+        "cells": [
+          "Based on forecasts of future demand. Production 'pushes' products to the market.",
+          "Based on actual customer orders. Demand 'pulls' products through the system."
+        ]
+      },
+      {
+        "property": "Inventory Levels",
+        "cells": [
+          "High. Large stocks of raw materials, work-in-progress, and finished goods are held ('Just-in-Case').",
+          "Minimal. Inventory is seen as a waste and is kept to the lowest possible level ('Just-in-Time')."
+        ]
+      },
+      {
+        "property": "Production Flow",
+        "cells": [
+          "Often produced in large batches to achieve economies of scale.",
+          "Focused on small batch sizes or single-piece flow to respond quickly to demand."
+        ]
+      },
+      {
+        "property": "Ideal Environment",
+        "cells": [
+          "Suitable for products with stable, predictable demand and long production lead times.",
+          "Suitable for environments with fluctuating demand and a need for product variety and customisation."
+        ]
+      },
+      {
+        "property": "Risk Profile",
+        "cells": [
+          "Risk of high obsolescence and inventory holding costs if forecasts are inaccurate.",
+          "Risk of production stoppages and lost sales if there are disruptions in the supply chain."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

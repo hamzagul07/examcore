@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9609 A Level — demand forecasts, master production schedule, MRP, and plan monitoring.",
   "durationMin": 28,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Explain the operations planning process.",
     "Describe master production schedule (MPS).",
@@ -25,19 +25,135 @@
     ]
   },
   "flashcards": [
-    { "front": "Operations planning chain?", "back": "Forecast → MPS → MRP → purchase/production orders." },
-    { "front": "Master production schedule?", "back": "States what finished products to make and when." },
-    { "front": "MRP?", "back": "Uses BOM + MPS to calculate raw material/component needs." },
-    { "front": "Bill of materials (BOM)?", "back": "List of components per finished product — MRP input." },
-    { "front": "Forecast error impact?", "back": "Over-forecast → excess stock; under → stock-outs (8.1.3)." },
-    { "front": "ERP link?", "back": "ERP automates MPS/MRP with live inventory (9.3.3)." },
-    { "front": "Rolling schedule?", "back": "Plan updated regularly as new demand data arrives." },
-    { "front": "Capacity check?", "back": "MPS must fit available capacity — link 4.3.1." }
+    {
+      "front": "Operations planning chain?",
+      "back": "Forecast → MPS → MRP → purchase/production orders."
+    },
+    {
+      "front": "Master production schedule?",
+      "back": "States what finished products to make and when."
+    },
+    {
+      "front": "MRP?",
+      "back": "Uses BOM + MPS to calculate raw material/component needs."
+    },
+    {
+      "front": "Bill of materials (BOM)?",
+      "back": "List of components per finished product — MRP input."
+    },
+    {
+      "front": "Forecast error impact?",
+      "back": "Over-forecast → excess stock; under → stock-outs (8.1.3)."
+    },
+    {
+      "front": "ERP link?",
+      "back": "ERP automates MPS/MRP with live inventory (9.3.3)."
+    },
+    {
+      "front": "Rolling schedule?",
+      "back": "Plan updated regularly as new demand data arrives."
+    },
+    {
+      "front": "Capacity check?",
+      "back": "MPS must fit available capacity — link 4.3.1."
+    },
+    {
+      "front": "What is a Master Production Schedule (MPS)?",
+      "back": "A detailed plan that states which end products are required, how many are needed, and when they need to be produced. It links demand forecasts to specific production activities, considering capacity and inventory."
+    },
+    {
+      "front": "What are the three key inputs for an MRP I system?",
+      "back": "1. The Master Production Schedule (MPS). 2. The Bill of Materials (BOM). 3. The Inventory Records File (IRF)."
+    },
+    {
+      "front": "Define 'Bill of Materials' (BOM).",
+      "back": "A comprehensive, structured list of all the raw materials, components, and sub-assemblies required to produce one unit of a finished product. It is essential for MRP calculations."
+    },
+    {
+      "front": "What is the primary purpose of demand forecasting in operations?",
+      "back": "To predict future customer demand for products, enabling a business to plan production levels, manage inventory, and allocate resources effectively to meet that demand without excessive waste or stock-outs."
+    },
+    {
+      "front": "How does MRP II (Manufacturing Resource Planning) differ from MRP I?",
+      "back": "MRP II expands on MRP I by integrating all manufacturing resources, including finance (budgets), marketing (sales data), and HR (labour planning), into the planning process. It is a business-wide system, not just a materials control tool."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Operations planning** (9.3.5) completes **Topic 9**. Show **logical flow**: forecast error propagates through MPS to **wrong material orders**."
+    },
+    {
+      "type": "heading",
+      "content": "Demand Forecasting in Operations Planning"
+    },
+    {
+      "type": "text",
+      "content": "Demand forecasting is the foundational activity of operations planning. It involves using historical data and market intelligence to estimate future demand for a company's products or services. Accurate forecasts are critical; over-forecasting leads to excess inventory, tying up working capital and risking obsolescence, while under-forecasting results in stock-outs, lost sales, and diminished customer loyalty. Methods range from qualitative techniques, such as the Delphi method or consumer surveys, to quantitative techniques like time-series analysis (e.g., moving averages, exponential smoothing) and causal modelling (e.g., regression analysis). The choice of method depends on data availability, the product life cycle stage, and the required accuracy. This forecast provides the primary input for the Master Production Schedule."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Predicts future sales to guide production and resource allocation.",
+        "Reduces uncertainty and risks of overproduction or stock-outs.",
+        "Utilises qualitative (expert opinion, surveys) and quantitative (time-series analysis) methods.",
+        "Forms the basis for creating the Master Production Schedule (MPS)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Master Production Schedule (MPS)"
+    },
+    {
+      "type": "text",
+      "content": "The Master Production Schedule (MPS) translates the aggregate demand forecast into a specific and detailed production plan for finished goods. It specifies exactly which end products are to be made, in what quantities, and on what dates over a given planning horizon. The MPS is not a forecast; it is a definitive statement of production intent. It considers the demand forecast, current inventory levels, and the firm's actual production capacity. An effective MPS provides stability for the production floor, enables valid order promises to customers, and serves as the primary driver for Materials Requirement Planning (MRP). It acts as the crucial link between a business's strategic goals (meeting demand) and its tactical operations (producing goods)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A detailed plan for *end products*, specifying quantity and timing.",
+        "Inputs include the demand forecast, inventory data, and production capacity.",
+        "It is a statement of what the business *plans to produce*, not just a sales prediction.",
+        "The MPS is the main input for the Materials Requirement Planning (MRP) system."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, clearly distinguish between a demand forecast and an MPS. A forecast is a prediction of what might be sold, whereas the MPS is a concrete plan of what will be produced, taking capacity and inventory into account."
+    },
+    {
+      "type": "heading",
+      "content": "Materials Requirement Planning (MRP I)"
+    },
+    {
+      "type": "text",
+      "content": "Materials Requirement Planning, often referred to as MRP I, is a computer-based inventory management system designed to ensure that the necessary materials and components are available for production at the right time and in the right quantity. It takes the Master Production Schedule (MPS) and 'explodes' it using two other key data files: the Bill of Materials (BOM), which details all components needed for one finished product, and the Inventory Records File (IRF), which contains data on current stock levels and lead times. By processing these three inputs, the MRP system calculates the net requirements for each component and generates a schedule of purchase orders for suppliers and work orders for internal departments, thereby optimising inventory levels and production flow."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A system for planning and ordering materials and components.",
+        "Uses three key inputs: MPS, Bill of Materials (BOM), and Inventory Records File (IRF).",
+        "Calculates net material needs to prevent shortages and minimise inventory holding costs.",
+        "Outputs include purchase orders for external suppliers and work orders for internal production."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Monitoring and Controlling the Operations Plan"
+    },
+    {
+      "type": "text",
+      "content": "Creating a plan is only half the battle; effective monitoring and control are essential for success. This process involves continuously tracking actual performance against the planned schedules set out in the MPS and MRP. Managers use variance analysis to identify deviations, such as production delays, higher-than-expected scrap rates, or late supplier deliveries. When significant variances are detected, corrective action is required. This could involve authorising overtime to catch up, finding an alternative supplier, or, in more serious cases, revising the MPS itself. This feedback loop ensures that the operations plan remains a realistic and effective tool for achieving business objectives like efficiency, cost control, and on-time delivery, rather than becoming an obsolete document."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Involves comparing actual performance against the MPS and MRP schedules.",
+        "Identifies variances in output, quality, costs, and timings.",
+        "Triggers corrective actions to bring performance back in line with the plan.",
+        "Ensures the plan remains relevant and helps achieve operational objectives."
+      ]
     },
     {
       "type": "workedExample",
@@ -52,10 +168,79 @@
     {
       "type": "resources",
       "items": [
-        { "label": "8.1.3 Sales forecasting", "href": "/courses/9609/8-1-3-sales-forecasting" },
-        { "label": "9.3.3 ERP", "href": "/courses/9609/9-3-3-enterprise-resource-planning-erp" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "8.1.3 Sales forecasting",
+          "href": "/courses/9609/8-1-3-sales-forecasting"
+        },
+        {
+          "label": "9.3.3 ERP",
+          "href": "/courses/9609/9-3-3-enterprise-resource-planning-erp"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is a demand forecast the same as a sales target?",
+      "a": "No. A demand forecast is a prediction of what a business *expects* to sell based on data and trends. A sales target is a motivational goal set for the sales team, representing what the business *wants* to sell. The forecast informs the production plan (MPS), while the target drives sales activity."
+    },
+    {
+      "q": "Can a small business use Materials Requirement Planning (MRP)?",
+      "a": "Yes, although the complexity and cost of large-scale systems can be a barrier. MRP principles can be applied on a smaller scale using spreadsheets or more affordable, specialised software. The core logic of using a production schedule, bill of materials, and inventory data to plan purchasing is scalable and beneficial for any business managing assembly."
+    },
+    {
+      "q": "Does the Master Production Schedule (MPS) ever change?",
+      "a": "Yes, the MPS is a dynamic, rolling plan, often reviewed weekly or monthly. It must be updated to reflect changes in customer orders, revised demand forecasts, supplier issues, or production capacity problems. This flexibility is crucial for a business to remain responsive. A 'frozen' period may exist where changes are not permitted close to the production date to ensure stability."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of MRP I and MRP II Systems",
+    "columns": [
+      "Feature",
+      "MRP I (Materials Requirement Planning)",
+      "MRP II (Manufacturing Resource Planning)"
+    ],
+    "rows": [
+      {
+        "property": "Primary Focus",
+        "cells": [
+          "Materials and inventory control. It is a 'what and when' system for components.",
+          "Coordination of all manufacturing resources across the entire business."
+        ]
+      },
+      {
+        "property": "Scope",
+        "cells": [
+          "Primarily concerned with the production and inventory management departments.",
+          "Integrates production, marketing, finance, engineering, and human resources."
+        ]
+      },
+      {
+        "property": "Key Question",
+        "cells": [
+          "\"What materials do we need and when do we need them?\"",
+          "\"What resources (materials, capacity, finance) do we need to meet our business objectives?\""
+        ]
+      },
+      {
+        "property": "System Type",
+        "cells": [
+          "Often a standalone computational tool or module.",
+          "An integrated, company-wide information system with feedback loops."
+        ]
+      },
+      {
+        "property": "Outputs",
+        "cells": [
+          "Purchase orders, material schedules, and work orders.",
+          "Financial reports, capacity plans, and business forecasts in addition to material schedules."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

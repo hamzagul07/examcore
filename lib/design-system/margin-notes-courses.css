@@ -254,6 +254,26 @@
 .diff-label { fill: var(--text-2); }
 .diff-note { margin: 4px 0 0; color: var(--text-2); font-size: 13px; line-height: 1.45; }
 
+/* Normal distribution explorer */
+.norm-shade { fill: color-mix(in srgb, var(--ink) 22%, transparent); stroke: none; }
+.norm-mean { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.norm-handle-line { stroke: var(--ink); stroke-width: 1.5; opacity: 0.7; }
+.norm-handle-grip { fill: var(--ink); }
+.norm-handle-label { fill: var(--bg); font-size: 10px; text-anchor: middle; }
+[data-theme='night'] .norm-handle-label { fill: #07130d; }
+
+/* Circular measure explorer */
+.circ-outline { stroke: var(--border-strong); stroke-width: 1.4; }
+.circ-sector { fill: color-mix(in srgb, var(--ink) 14%, transparent); stroke: none; transition: fill 180ms ease; }
+.circ-sector.hot { fill: color-mix(in srgb, var(--ink) 26%, transparent); }
+.circ-radius { stroke: var(--muted); stroke-width: 1.5; }
+.circ-arc { stroke: var(--ink); stroke-width: 3; opacity: 0.6; transition: opacity 180ms ease, stroke-width 180ms ease; }
+.circ-arc.hot { opacity: 1; stroke-width: 5; }
+.circ-theta { fill: var(--text-2); }
+.circ-centre { fill: var(--ink); }
+.circ-formula { font-size: 16px; color: var(--text); padding: 9px 13px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); transition: box-shadow 180ms ease, border-color 180ms ease; }
+.circ-formula.hot { border-color: var(--ink-border); box-shadow: 0 0 0 2px var(--ink-soft); }
+
 /* Syllabus coverage — official sub-topics this lesson covers */
 .subtopics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .subtopic { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }

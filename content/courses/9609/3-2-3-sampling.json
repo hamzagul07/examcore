@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9609 AS — sampling methods, sample size, representativeness, and bias.",
   "durationMin": 22,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Explain why sampling is used in market research.",
     "Describe random, stratified, and quota sampling.",
@@ -25,17 +25,139 @@
     ]
   },
   "flashcards": [
-    { "front": "Why sample?", "back": "Cheaper and faster than surveying entire population; feasible for primary research." },
-    { "front": "Random sampling?", "back": "Every member of population has equal chance of selection — reduces selection bias." },
-    { "front": "Stratified sampling?", "back": "Population divided into strata (e.g. age groups); random sample from each in proportion." },
-    { "front": "Quota sampling?", "back": "Interviewers fill quotas (e.g. 50 male, 50 female) to match profile — not random within quota." },
-    { "front": "Sample bias?", "back": "Sample does not reflect population — results cannot be generalised." },
-    { "front": "Larger sample?", "back": "Usually more reliable (lower sampling error) but higher cost." }
+    {
+      "front": "Why sample?",
+      "back": "Cheaper and faster than surveying entire population; feasible for primary research."
+    },
+    {
+      "front": "Random sampling?",
+      "back": "Every member of population has equal chance of selection — reduces selection bias."
+    },
+    {
+      "front": "Stratified sampling?",
+      "back": "Population divided into strata (e.g. age groups); random sample from each in proportion."
+    },
+    {
+      "front": "Quota sampling?",
+      "back": "Interviewers fill quotas (e.g. 50 male, 50 female) to match profile — not random within quota."
+    },
+    {
+      "front": "Sample bias?",
+      "back": "Sample does not reflect population — results cannot be generalised."
+    },
+    {
+      "front": "Larger sample?",
+      "back": "Usually more reliable (lower sampling error) but higher cost."
+    },
+    {
+      "front": "What is meant by the 'population' in market research?",
+      "back": "The entire group of people from which a sample is drawn, and about whom a business wants to make conclusions (e.g., all university students in London)."
+    },
+    {
+      "front": "Define 'Stratified Sampling'.",
+      "back": "A probability sampling method where the population is divided into distinct subgroups (strata) based on shared characteristics. A random sample is then taken from each stratum, often in proportion to its size in the overall population."
+    },
+    {
+      "front": "What is 'Quota Sampling'?",
+      "back": "A non-probability method where the researcher identifies subgroups in the population and sets a target number (a quota) of individuals to be sampled from each. The researcher then selects participants non-randomly until the quotas are filled."
+    },
+    {
+      "front": "Explain 'Sampling Bias'.",
+      "back": "A systematic error in the sampling process that causes the selected sample to be unrepresentative of its population. This leads to inaccurate results and flawed conclusions."
+    },
+    {
+      "front": "What is the key difference between probability and non-probability sampling?",
+      "back": "In probability sampling, every member of the population has a known, non-zero chance of being selected, typically through a random process. In non-probability sampling, selection is subjective and not based on random chance."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Sampling** (3.2.3) follows **3.2.2**. When a case says \"surveyed 200 people in one city\", ask: **Is the sample representative of the target market?**"
+    },
+    {
+      "type": "heading",
+      "content": "The Purpose and Principles of Sampling"
+    },
+    {
+      "type": "text",
+      "content": "Sampling is the process of selecting a representative subset of individuals from a larger group, known as the 'population', to conduct market research. It is often impractical, too expensive, or time-consuming to survey every single person in the target market. By studying a carefully selected sample, a business can gain insights and make inferences about the entire population's characteristics, preferences, and behaviours. The fundamental goal is to gather data that is valid and reliable enough to inform business decisions, such as marketing strategies or new product development, without incurring the cost of a full census. The effectiveness of this process hinges on how well the sample mirrors the population it is intended to represent."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Sampling is a cost-effective and time-efficient alternative to a census.",
+        "The 'population' is the total group of interest for the research.",
+        "A 'sample' is the smaller group selected from the population for study.",
+        "The primary goal is to make accurate generalisations about the population based on the sample's findings."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, always link the choice of sampling to business objectives. For example, justify using a small, focused sample for a niche product or a large, stratified sample for a mass-market product launch."
+    },
+    {
+      "type": "heading",
+      "content": "Probability Sampling Methods"
+    },
+    {
+      "type": "text",
+      "content": "Probability (or random) sampling ensures that every member of the population has a known, non-zero chance of being selected. This method is considered statistically robust and is more likely to produce a representative sample, minimising sampling bias. Key techniques include: Simple Random Sampling, where each individual has an equal chance of being chosen (like a lottery); Systematic Sampling, where individuals are selected at regular intervals from a list (e.g., every 50th customer); and Stratified Sampling, where the population is divided into relevant subgroups (strata), and a random sample is drawn from each. While these methods are highly credible, they can be more complex, time-consuming, and expensive to implement than non-probability alternatives."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Every member of the population has a calculable chance of selection.",
+        "Methods include Simple Random, Systematic, and Stratified sampling.",
+        "Reduces sampling bias and increases the statistical validity of results.",
+        "Often requires a complete list of the population (a 'sampling frame'), which can be difficult to obtain."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When discussing stratified sampling, specify the 'strata' relevant to the case study, such as age groups, income levels, or geographical regions, to demonstrate application of knowledge."
+    },
+    {
+      "type": "heading",
+      "content": "Non-Probability Sampling Methods"
+    },
+    {
+      "type": "text",
+      "content": "Non-probability sampling involves selecting a sample based on the subjective judgement of the researcher or convenience, rather than random selection. As a result, not all members of the population have a chance of being included. The two main methods are Quota Sampling, where researchers select a specific number of individuals from different subgroups (e.g., 50 males and 50 females), and Convenience Sampling, which involves using participants who are most easily accessible (e.g., interviewing shoppers at a local centre). While these methods are quick, easy, and inexpensive, they carry a high risk of bias and may not produce a sample that accurately represents the target population, limiting the generalisability of the findings."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Selection is not random and is based on judgement or ease of access.",
+        "Common methods are Quota and Convenience sampling.",
+        "Advantages include low cost, speed, and simplicity.",
+        "Disadvantages include a high risk of bias and creating an unrepresentative sample."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Justify the use of non-probability sampling in the context of business constraints. A start-up with a limited budget might reasonably use convenience sampling for initial exploratory research, and you should acknowledge this trade-off."
+    },
+    {
+      "type": "heading",
+      "content": "Sample Size, Representativeness, and Bias"
+    },
+    {
+      "type": "text",
+      "content": "The size of the sample is a critical consideration, but it is not the only factor determining accuracy. While a larger sample size generally reduces sampling error and increases the confidence level in the results, the principle of diminishing returns applies. More importantly, the sample must be representative, meaning it accurately reflects the key characteristics of the population. A large but biased sample is far less valuable than a smaller, representative one. Sampling bias occurs when the selection process systematically favours certain outcomes or individuals, leading to a skewed and misleading representation of the population. This can invalidate the entire research effort and lead to poor strategic decisions based on flawed data."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Representativeness is more crucial for accuracy than sample size alone.",
+        "A larger sample size increases statistical confidence but also cost.",
+        "Sampling bias is a systematic error that makes a sample unrepresentative.",
+        "Decisions based on biased data can be very costly for a business."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When evaluating market research data in a case study, always question the potential for sampling bias. Ask: Who was surveyed? When? How were they chosen? Could the method have excluded important segments of the population?"
     },
     {
       "type": "heading",
@@ -62,10 +184,86 @@
     {
       "type": "resources",
       "items": [
-        { "label": "3.2.4 Market research data", "href": "/courses/9609/3-2-4-market-research-data" },
-        { "label": "3.1.6 Market segmentation", "href": "/courses/9609/3-1-6-market-segmentation" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "3.2.4 Market research data",
+          "href": "/courses/9609/3-2-4-market-research-data"
+        },
+        {
+          "label": "3.1.6 Market segmentation",
+          "href": "/courses/9609/3-1-6-market-segmentation"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is a bigger sample always more representative?",
+      "a": "Not necessarily. While a larger sample size can increase statistical confidence, representativeness is more important. A very large but biased sample (e.g., 10,000 people all from one city) is far less useful than a smaller, well-chosen sample of 500 that accurately reflects the entire population's demographic and geographic mix. The method of selection is often more critical than the sample size alone."
+    },
+    {
+      "q": "Why would a business ever use non-probability sampling if it's more biased?",
+      "a": "Businesses often face constraints of time and money. Non-probability methods like convenience or quota sampling are significantly cheaper, faster, and easier to implement than probability methods. For initial exploratory research, testing a concept, or when a high degree of statistical accuracy is not the primary goal, the speed and low cost can be a justifiable trade-off against the higher risk of bias."
+    },
+    {
+      "q": "What is the difference between stratified sampling and quota sampling?",
+      "a": "Both methods involve dividing the population into subgroups. The key difference is how participants are selected from these subgroups. In stratified sampling (a probability method), participants are chosen randomly from each subgroup. In quota sampling (a non-probability method), the researcher selects participants non-randomly until a pre-set quota for each subgroup is filled, often based on convenience. This makes stratified sampling more statistically robust but also more complex and expensive."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Comparison of Probability and Non-Probability Sampling",
+    "columns": [
+      "Feature",
+      "Probability Sampling",
+      "Non-Probability Sampling"
+    ],
+    "rows": [
+      {
+        "property": "Selection Basis",
+        "cells": [
+          "Randomised; every member has a known, non-zero chance of selection.",
+          "Non-random; based on convenience, researcher's judgement, or pre-set quotas."
+        ]
+      },
+      {
+        "property": "Representativeness",
+        "cells": [
+          "High likelihood of being representative of the population if implemented correctly.",
+          "Lower likelihood of being representative; high risk of failing to reflect the population accurately."
+        ]
+      },
+      {
+        "property": "Risk of Bias",
+        "cells": [
+          "Low, as randomisation minimises selection bias.",
+          "High, due to the subjective and non-random nature of the selection process."
+        ]
+      },
+      {
+        "property": "Cost and Time",
+        "cells": [
+          "Generally more expensive, time-consuming, and complex to plan and execute.",
+          "Relatively inexpensive, quick, and simple to carry out."
+        ]
+      },
+      {
+        "property": "Typical Use Case",
+        "cells": [
+          "Conclusive research where high accuracy is vital (e.g., national surveys, final product testing).",
+          "Exploratory research, pre-testing questionnaires, or when time and budget are severely limited."
+        ]
+      },
+      {
+        "property": "Examples",
+        "cells": [
+          "Simple Random, Systematic, Stratified.",
+          "Quota, Convenience."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

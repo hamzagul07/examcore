@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9609 AS — stock types, holding costs, reorder levels, buffer stock, and stock-out risk.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Explain reasons for holding inventory.",
     "Identify costs of holding stock.",
@@ -25,19 +25,137 @@
     ]
   },
   "flashcards": [
-    { "front": "Three stock types?", "back": "Raw materials, work-in-progress (WIP), finished goods." },
-    { "front": "Why hold stock?", "back": "Meet demand spikes, bulk-buy discounts, avoid production stops." },
-    { "front": "Holding costs?", "back": "Warehouse rent, insurance, security, spoilage, opportunity cost of cash." },
-    { "front": "Buffer (safety) stock?", "back": "Extra inventory above expected need — covers delivery delays." },
-    { "front": "Reorder level?", "back": "Stock level that triggers new purchase order." },
-    { "front": "Stock-out cost?", "back": "Lost sales, idle production, damaged reputation." },
-    { "front": "Link to 5.1 finance?", "back": "High inventory reduces working capital available (5.1.2)." },
-    { "front": "Alternative to high stock?", "back": "JIT (4.2.2) — minimal inventory." }
+    {
+      "front": "Three stock types?",
+      "back": "Raw materials, work-in-progress (WIP), finished goods."
+    },
+    {
+      "front": "Why hold stock?",
+      "back": "Meet demand spikes, bulk-buy discounts, avoid production stops."
+    },
+    {
+      "front": "Holding costs?",
+      "back": "Warehouse rent, insurance, security, spoilage, opportunity cost of cash."
+    },
+    {
+      "front": "Buffer (safety) stock?",
+      "back": "Extra inventory above expected need — covers delivery delays."
+    },
+    {
+      "front": "Reorder level?",
+      "back": "Stock level that triggers new purchase order."
+    },
+    {
+      "front": "Stock-out cost?",
+      "back": "Lost sales, idle production, damaged reputation."
+    },
+    {
+      "front": "Link to 5.1 finance?",
+      "back": "High inventory reduces working capital available (5.1.2)."
+    },
+    {
+      "front": "Alternative to high stock?",
+      "back": "JIT (4.2.2) — minimal inventory."
+    },
+    {
+      "front": "What is 'opportunity cost' in the context of inventory management?",
+      "back": "The financial return that is lost because capital is tied up in holding stock, instead of being invested in the next best alternative, such as earning interest in a bank or funding a new project."
+    },
+    {
+      "front": "Define 'lead time' on a stock control chart.",
+      "back": "The time period between placing an order for new stock with a supplier and that stock being delivered and ready for use."
+    },
+    {
+      "front": "What is the primary purpose of 'buffer stock'?",
+      "back": "To act as a safety reserve to protect the business against unexpected increases in customer demand or unforeseen delays in receiving deliveries from suppliers."
+    },
+    {
+      "front": "Identify the three main types of inventory.",
+      "back": "1. Raw materials: Inputs awaiting use in the production process. 2. Work-in-progress (WIP): Partially completed goods. 3. Finished goods: Completed products ready for sale."
+    },
+    {
+      "front": "What is a 'stock-out' and what is its main commercial consequence?",
+      "back": "A stock-out occurs when a business runs out of an item of inventory. Its main commercial consequence is lost sales, as customers are unable to make a purchase and may go to a competitor instead."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Managing inventory** (4.2.1) leads to **4.2.2 JIT**. In evaluation, **quantify**: holding $X stock vs cost of one stock-out stopping a production line."
+    },
+    {
+      "type": "heading",
+      "content": "The Nature and Purpose of Inventory"
+    },
+    {
+      "type": "text",
+      "content": "Inventory, commonly known as stock, refers to the assets held by a business for the purpose of production or for sale to customers. Effective management of inventory is crucial for operational smoothness and profitability. There are three primary types of inventory. Raw materials are the basic inputs purchased from suppliers, awaiting use in the production process. Work-in-progress (WIP) consists of partly finished goods at various stages of completion on the production line. Finally, finished goods are completed products ready for dispatch and sale. Businesses hold inventory to meet anticipated customer demand, to decouple production processes, to take advantage of bulk purchasing economies of scale, and as a buffer against uncertainties in demand or supply."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Inventory exists in three forms: raw materials, work-in-progress (WIP), and finished goods.",
+        "Holding stock allows a business to satisfy customer orders promptly.",
+        "It provides a buffer against supply chain delays or unexpected surges in demand.",
+        "Bulk buying stock can lead to lower unit costs from suppliers (purchasing economies of scale)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Analysing the Costs of Holding Inventory"
+    },
+    {
+      "type": "text",
+      "content": "While necessary, holding inventory incurs significant costs that can impact a firm's profitability. These are known as holding or carrying costs. Storage costs include the rent or depreciation of warehouse space, heating, lighting, refrigeration, and security. Obsolescence costs arise when stock becomes outdated, spoiled, or damaged, rendering it unsellable or requiring heavy discounts. A critical but often overlooked expense is the opportunity cost of the capital tied up in inventory; this money could have been invested elsewhere to generate a return, such as in a high-interest account or a new marketing campaign. Finally, administrative costs for staff to manage, count, and track stock, along with insurance premiums to protect against theft or fire, add to the total financial burden."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Storage Costs: Rent, utilities, and security for the warehouse.",
+        "Obsolescence Costs: Stock losing value due to age, damage, or changes in fashion/technology.",
+        "Opportunity Cost: The financial return lost from capital being tied up in stock.",
+        "Administrative & Insurance Costs: Staff salaries for stock control and insurance premiums."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, when asked to analyse the costs of holding stock, always try to explain the opportunity cost. It demonstrates a deeper understanding of business finance beyond the more obvious physical costs like storage. For example, explain that £50,000 of stock is £50,000 that cannot be used to pay off a loan and reduce interest payments."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Traditional Stock Control Charts"
+    },
+    {
+      "type": "text",
+      "content": "A stock control chart is a graphical tool used to manage inventory levels over time. It features several key metrics. The Re-order Level is the inventory level at which a new order is placed with a supplier. The Lead Time is the duration between placing an order and receiving the goods. The Buffer Stock (or minimum stock level) is a reserve held to guard against unexpected events, such as a supplier delay or a sudden increase in demand. The chart typically shows stock being used at a steady rate (a downward sloping line) until it hits the re-order level. An order is placed, and during the lead time, stock continues to be used. Ideally, the new delivery arrives just as the stock level reaches the buffer stock, causing a sharp vertical rise in the inventory level."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Re-order Level: The trigger point for placing a new stock order.",
+        "Lead Time: The time lag between ordering and receiving stock.",
+        "Buffer Stock: A safety reserve of inventory for emergencies.",
+        "Re-order Quantity: The fixed amount of stock ordered each time.",
+        "The chart visually represents the flow of stock in and out of the business."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Buffer Stock and the Risks of a Stock-Out"
+    },
+    {
+      "type": "text",
+      "content": "The level of buffer stock is a critical strategic decision, representing a trade-off between cost and risk. A larger buffer stock provides greater security against disruptions but increases holding costs. Conversely, a smaller buffer stock reduces holding costs but increases the risk of a 'stock-out'—running out of inventory completely. The consequences of a stock-out can be severe. The most immediate impact is lost sales and revenue as customers cannot purchase the desired product. This can lead to long-term damage to customer loyalty and brand reputation, as consumers may perceive the business as unreliable and switch to competitors. For a manufacturer, a stock-out of raw materials can cause costly production stoppages, leaving machinery and labour idle."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A stock-out occurs when a business has no inventory to fulfil customer orders or production needs.",
+        "Key risks include immediate lost sales and potential loss of future sales due to damaged customer loyalty.",
+        "Production can be halted if raw materials run out, increasing unit costs.",
+        "A business's reputation for reliability can be significantly harmed.",
+        "The optimal buffer stock level minimises the combined costs of holding stock and the costs of potential stock-outs."
+      ]
     },
     {
       "type": "workedExample",
@@ -52,10 +170,34 @@
     {
       "type": "resources",
       "items": [
-        { "label": "4.2.2 Just in Time", "href": "/courses/9609/4-2-2-just-in-time-jit" },
-        { "label": "5.1.2 Working capital", "href": "/courses/9609/5-1-2-working-capital" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "4.2.2 Just in Time",
+          "href": "/courses/9609/4-2-2-just-in-time-jit"
+        },
+        {
+          "label": "5.1.2 Working capital",
+          "href": "/courses/9609/5-1-2-working-capital"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is holding more stock always better to avoid running out?",
+      "a": "Not necessarily. While high stock levels reduce the risk of a stock-out, they significantly increase holding costs (storage, insurance, opportunity cost) and the risk of obsolescence. Effective inventory management aims to find the optimal balance that minimises the total costs of holding stock and the costs of potential stock-outs, not simply to avoid stock-outs at any price."
+    },
+    {
+      "q": "Is buffer stock just 'extra' stock that is never used?",
+      "a": "Buffer stock is a strategic reserve, not simply 'extra' stock. Under normal conditions, inventory levels should not fall into the buffer zone. It is specifically there to be used during unexpected events, like a supplier delay or a surge in demand. It is a crucial component of risk management, and once used, it should be replenished."
+    },
+    {
+      "q": "Does the re-order level have to be higher than the buffer stock level?",
+      "a": "Yes, always. The re-order level is the trigger point for placing a new order. It is calculated to cover the expected demand during the lead time, plus the buffer stock. A common formula is: Re-order Level = (Average daily usage x Lead time in days) + Buffer Stock. This ensures that the stock used while waiting for the new delivery does not deplete the safety buffer, which is reserved only for emergencies."
+    }
+  ],
+  "contentDeepened": true
 }

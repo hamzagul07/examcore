@@ -7,7 +7,7 @@
   "status": "premium",
   "summary": "9609 A Level — dividend yield, dividend cover, P/E ratio, and shareholder analysis.",
   "durationMin": 24,
-  "updated": "2026-06-15",
+  "updated": "2026-06-18",
   "learningObjectives": [
     "Calculate dividend yield and dividend cover.",
     "Calculate and interpret the price/earnings (P/E) ratio.",
@@ -25,19 +25,139 @@
     ]
   },
   "flashcards": [
-    { "front": "Dividend per share (DPS)?", "back": "Total dividend paid ÷ Number of shares in issue." },
-    { "front": "Earnings per share (EPS)?", "back": "Profit for the year attributable to ordinary shareholders ÷ Number of shares." },
-    { "front": "Dividend yield formula?", "back": "DPS ÷ Share price × 100%." },
-    { "front": "Dividend cover formula?", "back": "EPS ÷ DPS — how many times earnings cover the dividend." },
-    { "front": "P/E ratio formula?", "back": "Share price ÷ EPS." },
-    { "front": "High dividend yield?", "back": "High income return — but may signal low share price or unsustainable payout." },
-    { "front": "Low dividend cover?", "back": "Little profit retained after dividends — risky if earnings fall." },
-    { "front": "High P/E?", "back": "Market expects future growth; expensive relative to current earnings." }
+    {
+      "front": "Dividend per share (DPS)?",
+      "back": "Total dividend paid ÷ Number of shares in issue."
+    },
+    {
+      "front": "Earnings per share (EPS)?",
+      "back": "Profit for the year attributable to ordinary shareholders ÷ Number of shares."
+    },
+    {
+      "front": "Dividend yield formula?",
+      "back": "DPS ÷ Share price × 100%."
+    },
+    {
+      "front": "Dividend cover formula?",
+      "back": "EPS ÷ DPS — how many times earnings cover the dividend."
+    },
+    {
+      "front": "P/E ratio formula?",
+      "back": "Share price ÷ EPS."
+    },
+    {
+      "front": "High dividend yield?",
+      "back": "High income return — but may signal low share price or unsustainable payout."
+    },
+    {
+      "front": "Low dividend cover?",
+      "back": "Little profit retained after dividends — risky if earnings fall."
+    },
+    {
+      "front": "High P/E?",
+      "back": "Market expects future growth; expensive relative to current earnings."
+    },
+    {
+      "front": "What is the formula for Dividend Yield and what does it measure?",
+      "back": "Formula: (Dividend per share / Market price per share) x 100. It measures the annual return an investor receives from dividends, expressed as a percentage of the share's current price."
+    },
+    {
+      "front": "What is the formula for Dividend Cover and what does it indicate?",
+      "back": "Formula: Profit for the year / Annual dividends. It indicates how many times the company's annual profit can pay for the total annual dividend payout, showing the sustainability of the dividend."
+    },
+    {
+      "front": "What is the formula for the Price/Earnings (P/E) Ratio?",
+      "back": "Formula: Market price per share / Earnings per share (EPS). It is a valuation ratio that reflects market expectations about a company's future earnings growth."
+    },
+    {
+      "front": "Why might an investor be concerned about a very high dividend yield (e.g., 10%)?",
+      "back": "A very high yield might be caused by a falling share price, signalling a lack of market confidence in the company's future. It may also suggest the dividend is unsustainably high and at risk of being cut."
+    },
+    {
+      "front": "How do Dividend Cover and Dividend Yield provide a more complete picture when used together?",
+      "back": "A high dividend yield might seem attractive, but if the dividend cover is low (e.g., 1.2), it signals that the high payout is risky and may not be sustainable. A healthy dividend cover (e.g., 2.5) validates the sustainability of the dividend yield."
+    }
   ],
   "sections": [
     {
       "type": "intro",
       "content": "**Investment ratios** (10.2.5) complete **Topic 10.2**. Questions often give **share price**, **DPS**, and **profit/ shares** — calculate **EPS first**, then yield, cover, and P/E."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Investment Ratios"
+    },
+    {
+      "type": "text",
+      "content": "Investment ratios, also known as shareholder ratios, are financial metrics used by existing and potential shareholders to assess the performance and attractiveness of an investment in a public limited company (plc). Unlike profitability or liquidity ratios which are primarily for internal management or lenders, these ratios focus on the returns and market value associated with shares. They help investors to compare the performance of different companies, understand the return on their investment in the form of dividends and share price appreciation (capital gains), and evaluate the risk associated with a company's dividend policy and market valuation. These ratios are crucial for making informed investment decisions, as they provide a snapshot of market confidence and the sustainability of shareholder returns."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Used primarily by external shareholders to evaluate investment potential.",
+        "Focus on returns (dividends, capital gains) and market perception.",
+        "Enable comparison between different companies or against industry averages.",
+        "Key ratios include Dividend Yield, Dividend Cover, and the Price/Earnings (P/E) Ratio."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Dividend Yield"
+    },
+    {
+      "type": "text",
+      "content": "The dividend yield ratio measures the annual dividend per share as a percentage of the current market price of that share. The formula is: (Dividend per share / Market price per share) x 100. A higher dividend yield suggests a greater cash return on the investment for the shareholder. However, context is vital. A very high yield could be a warning sign, potentially caused by a rapidly falling share price, which indicates a lack of market confidence. Conversely, a low yield might be found in a 'growth' company that reinvests most of its profits for expansion, promising future capital gains instead of immediate income. Investors often compare a company's dividend yield to the interest rates available from a bank to assess its relative attractiveness as an income-generating asset."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Formula: (Dividend per share / Market price per share) x 100.",
+        "Indicates the percentage return on a share's price from dividends alone.",
+        "A high yield may attract income-seeking investors but can also signal risk.",
+        "A low yield is typical for growth companies reinvesting profits."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, when analysing dividend yield, always consider the trade-off between dividend income and potential capital growth. A company with a low yield isn't necessarily a poor investment if it is successfully reinvesting profits to increase its future value and share price."
+    },
+    {
+      "type": "heading",
+      "content": "Dividend Cover"
+    },
+    {
+      "type": "text",
+      "content": "Dividend cover measures a company's ability to pay its declared dividends to shareholders from its post-tax profits. The formula is: Profit for the year / Annual dividends. This ratio reveals the sustainability of the dividend payments. A dividend cover of 2, for example, means that the company's profits are twice the amount of the dividend payout. A low cover, especially if it is below 1.5, is a significant concern as it suggests the company is paying out a large proportion of its earnings, leaving little for reinvestment or to absorb a future fall in profits. A cover below 1 indicates the company is using retained profits from previous years to fund the dividend, which is unsustainable. A healthy cover provides confidence that dividend payments can be maintained."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Formula: Profit for the year / Annual dividends.",
+        "Assesses the sustainability of dividend payments from current profits.",
+        "A cover of around 2 is often considered a safe and prudent level.",
+        "A cover below 1.5 is a warning sign; below 1 is unsustainable."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Price/Earnings (P/E) Ratio"
+    },
+    {
+      "type": "text",
+      "content": "The Price/Earnings (P/E) ratio is a key valuation metric that compares a company's current share price to its earnings per share (EPS). The formula is: Market price per share / Earnings per share. In essence, it shows how much investors are willing to pay for each pound of a company's earnings. A high P/E ratio often indicates that the market has high expectations for future earnings growth, and investors are willing to pay a premium for that potential. Technology companies frequently have high P/E ratios. Conversely, a low P/E ratio might suggest a mature company with stable but slow-growing earnings, or it could indicate that the company is undervalued by the market. It is most useful when compared over time or against other companies in the same industry."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Formula: Market price per share / Earnings per share (EPS).",
+        "Reflects market confidence and expectations of future growth.",
+        "A high P/E suggests expectations of strong future earnings growth.",
+        "A low P/E may indicate an undervalued company or low growth prospects."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Avoid stating that a high P/E ratio is simply 'good' or a low one is 'bad'. A high P/E ratio represents high expectations, which also means high risk if the company fails to deliver the expected growth. Analysis must always be in context."
     },
     {
       "type": "formula",
@@ -64,10 +184,77 @@
     {
       "type": "resources",
       "items": [
-        { "label": "10.2.2 Profitability ratios", "href": "/courses/9609/10-2-2-profitability-ratios" },
-        { "label": "10.3.4 Investment decisions", "href": "/courses/9609/10-3-4-investment-appraisal-decisions" },
-        { "label": "9609 course index", "href": "/courses/9609" }
+        {
+          "label": "10.2.2 Profitability ratios",
+          "href": "/courses/9609/10-2-2-profitability-ratios"
+        },
+        {
+          "label": "10.3.4 Investment decisions",
+          "href": "/courses/9609/10-3-4-investment-appraisal-decisions"
+        },
+        {
+          "label": "9609 course index",
+          "href": "/courses/9609"
+        }
       ]
     }
-  ]
+  ],
+  "faq": [
+    {
+      "q": "Is a higher dividend yield always better for an investor?",
+      "a": "Not necessarily. While a high yield provides good income, it can also be a red flag. It might result from a falling share price (indicating poor performance) or an unsustainable payout policy. Investors seeking capital growth may prefer a company with a lower yield that reinvests more profit for future expansion, which could lead to a higher share price."
+    },
+    {
+      "q": "What does it mean if a company has a negative or undefined P/E ratio?",
+      "a": "A P/E ratio is calculated using 'Earnings per share'. If a company is making a loss, its earnings are negative. In this case, the P/E ratio is not a meaningful metric and is usually stated as 'N/A' (not applicable). Investors would then need to use other metrics to value the company, such as its assets or future sales potential."
+    },
+    {
+      "q": "Why would shareholders in the same company have different views on its dividend policy?",
+      "a": "Shareholders have different investment objectives. An institutional investor like a pension fund or a retiree may prioritise a reliable, high dividend for income. They would favour a high dividend yield with strong dividend cover. In contrast, a younger investor might prefer the company to pay low or no dividends and reinvest the profits to fuel growth, aiming for long-term capital gains through a rising share price."
+    }
+  ],
+  "comparisonTable": {
+    "caption": "Shareholder Ratio Analysis: Mature PLC vs. Growth PLC",
+    "columns": [
+      "Ratio",
+      "Company A (Mature PLC)",
+      "Company B (Growth PLC)",
+      "Interpretation for Shareholders"
+    ],
+    "rows": [
+      {
+        "property": "Dividend Yield",
+        "cells": [
+          "5.5%",
+          "0.8%",
+          "Company A offers a high immediate return, attractive for income-seeking investors. Company B provides a low income return, as it retains profits for growth."
+        ]
+      },
+      {
+        "property": "Dividend Cover",
+        "cells": [
+          "2.1x",
+          "9.5x",
+          "Company A's dividend is secure and sustainable. Company B could easily pay a much higher dividend but chooses to reinvest heavily, making its current small dividend extremely safe."
+        ]
+      },
+      {
+        "property": "P/E Ratio",
+        "cells": [
+          "12",
+          "45",
+          "The market has low growth expectations for Company A, valuing it as a stable income provider. The market has very high growth expectations for Company B, paying a premium for anticipated future profits."
+        ]
+      },
+      {
+        "property": "Investor Profile",
+        "cells": [
+          "Retirees, pension funds, income investors.",
+          "Growth-focused investors, venture capitalists, those with a long-term investment horizon.",
+          "The ratios guide different types of investors to the company that best matches their financial objectives (income vs. capital appreciation)."
+        ]
+      }
+    ]
+  },
+  "contentDeepened": true
 }

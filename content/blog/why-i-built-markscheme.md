@@ -27,4 +27,4 @@ It *is* a study companion that works like an examiner when your teacher isn't av
 
 MarkScheme is free while we learn from real students. If you're preparing for Cambridge A-Levels and want faster feedback on your past papers, [sign up](/auth/signup) and mark something you already wrote.
 
-— Hassan
+— Hamza Gul

@@ -13,7 +13,7 @@ export type SiteAuthor = {
 /** Default E-E-A-T author — first-hand Cambridge A-Level experience. */
 export const DEFAULT_BLOG_AUTHOR: SiteAuthor = {
   id: 'hassan',
-  name: 'Hassan',
+  name: 'Hamza Gul',
   role: 'Founder & A-Level student',
   bio: 'Built MarkScheme after marking hundreds of Cambridge past papers by hand. Writes guides from real revision sessions — not generic AI filler.',
   credentials: [

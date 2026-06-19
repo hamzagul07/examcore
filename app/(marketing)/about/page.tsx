@@ -65,7 +65,7 @@ export default function AboutPage() {
               <span
                 className="font-[family-name:var(--ec-font-handwriting)] text-[19px] leading-tight text-[var(--ec-brand)]"
               >
-                Hassan ✎
+                Hamza Gul ✎
               </span>
             </div>
             <div>
@@ -75,7 +75,7 @@ export default function AboutPage() {
                 day disagrees.&rdquo;
               </p>
               <p className="ms-body-2" style={{ fontSize: 16 }}>
-                MarkScheme was built by Hassan, an A-Level student who got tired of waiting weeks for
+                MarkScheme was built by Hamza Gul, an A-Level student who got tired of waiting weeks for
                 marked papers and guessing what examiners actually wanted. It marks your work the way
                 Cambridge does — not a replacement for teachers, just faster, honest feedback when
                 you&apos;re revising alone at midnight.

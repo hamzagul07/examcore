@@ -279,3 +279,102 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Past-papers hub & subject archive ─────────────────────────── */
+.ms-pp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ms-pp-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--ec-surface);
+  border: 1px solid var(--ec-border);
+  border-radius: var(--ec-radius-card-lg, 16px);
+  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.06));
+  text-decoration: none;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.ms-pp-card:hover {
+  border-color: color-mix(in srgb, var(--acc, var(--ec-brand)) 45%, var(--ec-border));
+  box-shadow: var(--ec-card-hover-shadow-warm, 0 12px 28px rgba(0, 0, 0, 0.1));
+  transform: translateY(-2px);
+}
+
+.ms-pp-glyph {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--acc, var(--ec-brand));
+  background: color-mix(in srgb, var(--acc, var(--ec-brand)) 13%, transparent);
+  flex-shrink: 0;
+}
+
+.ms-pp-title {
+  display: block;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+  line-height: 1.2;
+}
+
+.ms-pp-code {
+  color: var(--ec-text-faint);
+  font-size: 0.85em;
+}
+
+.ms-pp-meta {
+  display: block;
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: var(--ec-text-secondary);
+}
+
+.ms-pp-cta {
+  color: var(--acc, var(--ec-brand));
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ms-pp-year-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ms-pp-year-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ms-pp-year {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ec-text-primary);
+}
+
+.ms-pp-paperno {
+  font-size: 12.5px;
+  color: var(--ec-text-faint);
+}

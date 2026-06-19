@@ -4,6 +4,7 @@ import { getAllBlogSlugs, getBlogPostLastModified } from '@/lib/blog'
 import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
+import { getPastPaperSubjectCodes } from '@/lib/seo/past-papers'
 import { getCourseLessons, getCourseSubjectCodes } from '@/lib/courses'
 import { lessonLastModified } from '@/lib/courses/seo'
 
@@ -22,6 +23,7 @@ const STATIC_ROUTES = [
   { path: '/research', priority: 0.75, changeFrequency: 'monthly' as const },
   { path: '/insights', priority: 0.87, changeFrequency: 'weekly' as const },
   { path: '/courses', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/past-papers', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/tools/grade-boundary-calculator', priority: 0.82, changeFrequency: 'monthly' as const },
   { path: '/tools/command-words', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/join', priority: 0.5, changeFrequency: 'monthly' as const },
@@ -74,6 +76,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
+  const pastPaperEntries: MetadataRoute.Sitemap = getPastPaperSubjectCodes().map(
+    (code) => ({
+      url: `${base}/past-papers/${code}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.83,
+    })
+  )
+
   const courseSubjectEntries: MetadataRoute.Sitemap = getCourseSubjectCodes().map(
     (code) => ({
       url: `${base}/courses/${code}`,
@@ -109,6 +120,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticEntries,
     ...guideEntries,
     ...subjectEntries,
+    ...pastPaperEntries,
     ...calculatorEntries,
     ...courseSubjectEntries,
     ...courseLessonEntries,

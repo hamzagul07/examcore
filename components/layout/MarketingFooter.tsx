@@ -3,6 +3,7 @@ import { WordmarkLink } from '@/components/layout/Wordmark'
 
 const PRODUCT_LINKS = [
   { href: '/mark', label: 'Mark a question' },
+  { href: '/past-papers', label: 'Past papers' },
   { href: '/courses', label: 'Free courses' },
   { href: '/tools/grade-boundary-calculator', label: 'Grade calculator' },
   { href: '/tools/command-words', label: 'Command words' },

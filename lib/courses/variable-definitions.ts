@@ -126,6 +126,15 @@ export function lookupVariableDefinition(
   return DEFAULT_DEFINITIONS[symbol] ?? 'Definition coming soon'
 }
 
+/**
+ * Subjects whose formulas use the physics/maths symbol table above. For any
+ * other subject (e.g. Chemistry 9701, Biology 9700) a single-letter symbol
+ * pulled out of a reaction equation — the "A" in ATP, the "C" in CO₂, the "q"
+ * in "(aq)" — must NOT be labelled with a physics SI unit/quantity. Those
+ * single letters carry no standalone meaning there, so we leave them undefined.
+ */
+const PHYSICS_MATHS_SUBJECTS = new Set(['9702', '9231', '9709'])
+
 export function lookupVariableDefinitionForLesson(
   symbol: string,
   topicCode?: string,
@@ -138,6 +147,16 @@ export function lookupVariableDefinitionForLesson(
 
   const business = lookupBusinessTerm(symbol, subjectCode)
   if (business) return business
+
+  // Suppress physics single-letter defaults for non-physics/maths subjects.
+  if (
+    symbol.length === 1 &&
+    subjectCode &&
+    !PHYSICS_MATHS_SUBJECTS.has(subjectCode) &&
+    !isBusinessSubject(subjectCode)
+  ) {
+    return 'Definition coming soon'
+  }
 
   if (isBusinessSubject(subjectCode) && symbol === 'C') {
     return 'Contribution per unit — selling price minus variable cost (SP − VC)'

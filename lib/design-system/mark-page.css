@@ -2,6 +2,13 @@
 
 .ms-mark-shell {
   padding-top: 48px;
+  /* Faint brand glow up top — gives the upload page a calmer, premium focus */
+  background-image: radial-gradient(
+    760px circle at 50% -160px,
+    var(--ec-brand-muted) 0%,
+    transparent 62%
+  );
+  background-repeat: no-repeat;
 }
 
 .ms-mark-pg {
@@ -86,13 +93,24 @@
   padding: 9px 22px;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 150ms ease, box-shadow 150ms ease;
+  transition: color 150ms ease, box-shadow 150ms ease, transform 150ms ease, background 150ms ease;
+}
+
+.ms-lvl-tab:hover {
+  color: var(--ec-text-primary);
 }
 
 .ms-lvl-tab.on {
   background: var(--ec-surface);
   color: var(--ec-brand);
-  box-shadow: var(--ec-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.08));
+  box-shadow: var(--ec-card-shadow, 0 4px 14px rgba(0, 0, 0, 0.08));
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-lvl-tab.on {
+    transform: none;
+  }
 }
 
 .ms-upload-grid {
@@ -363,10 +381,11 @@
 
 .ms-mark-result-head {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   margin-bottom: 38px;
-  flex-wrap: wrap;
   gap: 16px;
 }
 

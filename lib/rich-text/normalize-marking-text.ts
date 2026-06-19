@@ -30,6 +30,10 @@ export function isRealMath(inner: string): boolean {
     return true
   }
 
+  // Any LaTeX letter-command (\theta, \pi, \sin, \vec, \Delta, \begin, …) is
+  // math. `\$` (escaped currency dollar) has no letters, so it is NOT matched.
+  if (/\\[a-zA-Z]{2,}/.test(s)) return true
+
   // Algebraic: letter + ^ or _ or = with letters
   if (/[=^_]/.test(s) && /[a-zA-Z]/.test(s)) return true
 
@@ -87,8 +91,13 @@ export function normalizeMarkingText(text: string): string {
   )
 
   // 3. Inline math written as `\(...\)` (Claude sometimes emits this directly).
-  working = working.replace(/\\\(([\s\S]*?)\\\)/g, (full, inner: string) =>
+  working = working.replace(/\\\(([\s\S]*?)\\\)/g, (_full, inner: string) =>
     isRealMath(inner) ? stashMath(inner, false) : formatPlainCurrency(inner)
+  )
+
+  // 3b. Display math written as `\[...\]`.
+  working = working.replace(/\\\[([\s\S]*?)\\\]/g, (_full, inner: string) =>
+    isRealMath(inner) ? stashMath(inner, true) : formatPlainCurrency(inner)
   )
 
   // 4. Escape every remaining unescaped `$` (currency / stray) so remark-math
@@ -187,7 +196,12 @@ export function prepareMarkingSnippet(text: string): string {
   const trimmed = text.trim()
   if (!trimmed) return ''
 
-  if (/(?<!\\)\$/.test(trimmed) || trimmed.includes('\\(') || trimmed.includes('$$')) {
+  if (
+    /(?<!\\)\$/.test(trimmed) ||
+    trimmed.includes('\\(') ||
+    trimmed.includes('\\[') ||
+    trimmed.includes('$$')
+  ) {
     return normalizeMarkingText(trimmed)
   }
 

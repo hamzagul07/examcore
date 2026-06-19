@@ -232,9 +232,16 @@ function paperKey(paperCode, paperSession) {
   return `${paperCode}|${paperSession}`
 }
 
+// Optional: scope a run to specific subjects with --subjects=9708,9702
+const SUBJECT_ARG = process.argv.find((a) => a.startsWith('--subjects='))
+const ONLY_SUBJECTS = SUBJECT_ARG
+  ? new Set(SUBJECT_ARG.split('=')[1].split(',').map((s) => s.trim()).filter(Boolean))
+  : null
+
 function buildPaperList() {
   const list = []
   for (const { subject, components } of PAPER_SETS) {
+    if (ONLY_SUBJECTS && !ONLY_SUBJECTS.has(subject)) continue
     for (const session of SESSIONS) {
       const paperSession = sessionCodeToName(session)
       if (!paperSession) continue

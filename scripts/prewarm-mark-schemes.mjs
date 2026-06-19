@@ -321,6 +321,13 @@ async function extractFullPaper(paper) {
             ],
           },
         ],
+        // Deterministic, untruncated, clean JSON — prevents the flaky
+        // "all questions failed validation" caused by variable/truncated output.
+        config: {
+          temperature: 0,
+          maxOutputTokens: 32768,
+          responseMimeType: 'application/json',
+        },
       })
       return res.text || ''
     },

@@ -23,7 +23,9 @@ const ROOT = join(__dirname, '..')
 const LOG_PATH = join(__dirname, 'prewarm-log.json')
 
 const DRY_RUN = process.argv.includes('--dry-run')
-const PACE_MS = 30_000
+// Seconds between papers; overridable with --pace=10 (min 2s).
+const PACE_ARG = process.argv.find((a) => a.startsWith('--pace='))
+const PACE_MS = PACE_ARG ? Math.max(2000, Number(PACE_ARG.split('=')[1]) * 1000) : 30_000
 
 const SUBJECT_NAMES = {
   '9709': 'Mathematics',

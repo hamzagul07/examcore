@@ -412,6 +412,73 @@ for (const code of ['9709', '9702', '9708']) {
   })
 }
 
+// 11. "How to get an A*" — high-volume aspirational, every subject (howto schema)
+const COURSE_CODES = new Set(['9709','9702','9701','9700','9708','9609','9990','9489','9706','9699','9084','9231','9488','9618','9607'])
+for (const code of Object.keys(SUBJECTS)) {
+  const s = SUBJECTS[code]
+  const topGrade = s.level === 'O-Level' ? 'A*' : 'A*'
+  const links = [
+    [`/past-papers/${code}`, `${code} past papers`],
+    [`/subjects/${code}`, `${code} marking`],
+    ['/mark', 'mark a paper'],
+  ]
+  if (COURSE_CODES.has(code)) links.splice(1, 0, [`/courses/${code}`, `free ${code} course`])
+  briefs.push({
+    slug: `how-to-get-an-a-star-in-cambridge-${code}-${s.label}`,
+    cluster: 'revision-strategy', format: 'howto', category: 'revision',
+    title: `How to get an ${topGrade} in Cambridge ${code} ${s.name}`,
+    description: `A step-by-step plan to reach an ${topGrade} in Cambridge ${s.level} ${s.name} (${code}): master every topic, drill past papers, and mark to the real scheme.`,
+    keywords: `how to get an A* in ${s.level} ${s.name}, ${code} A* tips, how to get an A in ${code} ${s.label}, ${code} ${s.label} revision, top grade ${code} ${s.name}`,
+    facts: [
+      `${code} is Cambridge ${s.level} ${s.name}; marking uses ${s.marking}.`,
+      `Papers: ${s.papers}.`,
+      `A top grade comes from consistent full-mark technique on questions you can already do — not just from knowing more content.`,
+      `At the top, the avoidable losses dominate: misreading the command word, dropped units or working, arithmetic slips, and not finishing the paper.`,
+      `Cover every syllabus point — strong candidates rarely have a weak topic to hide, because examiners can sample anywhere.`,
+      `Timed past papers, marked strictly against the official scheme, are the fastest way to find and close the gap to the top grade.`,
+    ],
+    mustNotClaim: [
+      'Do NOT state specific grade boundary numbers or claim a fixed percentage guarantees an A* — boundaries move every session.',
+      'Do NOT promise any grade; describe the method, not a guarantee.',
+    ],
+    links,
+  })
+}
+
+// 12. Hub-boosting past-paper revision posts
+briefs.push({
+  slug: 'how-to-revise-with-cambridge-past-papers',
+  cluster: 'revision-strategy', format: 'howto', category: 'revision',
+  title: 'How to revise with Cambridge past papers (the right way)',
+  description: 'A step-by-step method for revising with Cambridge past papers: when to start, how to work them under timed conditions, and how to mark them like an examiner.',
+  keywords: 'how to revise with past papers, Cambridge past paper revision, how to use past papers, past paper technique, revise with mark schemes',
+  facts: [
+    'Reading past papers is not revising — you only improve when you attempt them under realistic conditions and then mark honestly.',
+    'Cambridge publishes past papers, mark schemes and examiner reports for free; work the paper before you ever open the scheme.',
+    'A strong loop: attempt a paper timed, self-mark strictly against the scheme, list every mark you dropped, then re-drill those exact skills.',
+    'Marking your own handwriting against the real scheme — point by point — is where most of the learning happens.',
+    'Spread papers across the syllabus so no topic stays untested before the exam.',
+  ],
+  mustNotClaim: ['Do NOT invent specific grade boundaries or guarantee a grade.'],
+  links: [['/past-papers', 'browse past papers by subject'], ['/mark', 'mark a past paper'], ['/courses', 'free topic courses']],
+})
+briefs.push({
+  slug: 'should-you-do-cambridge-past-papers-by-topic-or-full-paper',
+  cluster: 'revision-strategy', format: 'guide', category: 'revision',
+  title: 'Past papers by topic or full papers? A Cambridge revision guide',
+  description: 'Should you do Cambridge past papers topic by topic or as whole timed papers? When each approach works best, and how to combine them as the exam nears.',
+  keywords: 'past papers by topic, topic questions vs past papers, Cambridge past paper strategy, full past papers, how to structure past paper revision',
+  facts: [
+    'Topic-by-topic practice is best early: it isolates a weak skill so you can fix it without a whole paper getting in the way.',
+    'Full timed papers are essential later: they build exam stamina, time management and the ability to switch between topics.',
+    'A common mistake is doing only full papers from the start, which hides which specific topics are costing marks.',
+    'Mark every attempt against the official scheme so you know exactly where the marks went — by topic or by paper.',
+    'As the exam nears, shift the balance from topic drills towards complete, timed past papers under exam conditions.',
+  ],
+  mustNotClaim: ['Do NOT invent grade boundaries or promise a grade.'],
+  links: [['/past-papers', 'past papers by subject'], ['/mark', 'mark your answers'], ['/courses', 'topic-by-topic courses']],
+})
+
 // ---------- prompt + generation ----------
 function buildPrompt(b) {
   const isHowto = b.format === 'howto'

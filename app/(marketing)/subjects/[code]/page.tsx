@@ -166,6 +166,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           paragraph={intro.paragraph}
           links={[
             { href: '/mark', label: `Mark ${code} now →`, variant: 'primary' },
+            { href: `/past-papers/${code}`, label: `${code} past papers`, variant: 'ghost' as const },
             ...(course
               ? [{ href: course.path, label: `Free ${code} course`, variant: 'ghost' as const }]
               : []),

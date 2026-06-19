@@ -35,6 +35,7 @@ import { createClient } from '@/lib/supabase'
 import {
   getSubjectByCode,
   getSubjectById,
+  SUBJECTS,
 } from '@/lib/profile-options'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
@@ -545,7 +546,13 @@ export default function MarkPage() {
   ])
 
   const profileSelectableSubjects = useMemo(() => {
-    const codes = profileSubjectCodes.length ? profileSubjectCodes : ['9709']
+    // Signed-in users see their profile subjects; guests (no profile) get the
+    // full markable list — NOT just Mathematics. The filter keeps only subjects
+    // that actually have a paper structure / available papers.
+    const allMarkable = Array.from(
+      new Set(SUBJECTS.filter((s) => s.markingEnabled).map((s) => s.code))
+    )
+    const codes = profileSubjectCodes.length ? profileSubjectCodes : allMarkable
     return codes.filter(
       (code) => availablePapers?.[code] || getSubjectPaperStructure(code)
     )

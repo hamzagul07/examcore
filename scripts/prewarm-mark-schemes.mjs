@@ -33,7 +33,11 @@ const SUBJECT_NAMES = {
   '9708': 'Economics',
 }
 
-const SESSIONS = ['s24', 'w24', 's25']
+// Default sessions, overridable with --sessions=s24,w24 to scope a run.
+const SESSION_ARG = process.argv.find((a) => a.startsWith('--sessions='))
+const SESSIONS = SESSION_ARG
+  ? SESSION_ARG.split('=')[1].split(',').map((s) => s.trim()).filter(Boolean)
+  : ['s24', 'w24', 's25']
 
 const PAPER_SETS = [
   {
@@ -106,25 +110,32 @@ function resolveMarkingType(subjectCode) {
 }
 
 function buildExtractionPrompt(markingType) {
-  return `You are extracting Cambridge International A-Level mark schemes from official PDFs. You have been given:
-- The QUESTION PAPER (first PDF) — contains the actual problem statements
-- The MARK SCHEME (second PDF) — contains the marking criteria
+  return `You are extracting a Cambridge International A-Level mark scheme from two official PDFs:
+- PDF 1 = the QUESTION PAPER (problem statements)
+- PDF 2 = the MARK SCHEME (marking criteria)
 
-For every question and sub-part in this paper (including 1, 2(a), 2(b), 3(a)(i), etc.), cross-reference both PDFs to extract:
+For EVERY question and sub-part (1, 2(a), 2(b), 3(a)(i), …), cross-reference both PDFs and output an object with EXACTLY these fields:
+- "question_number": string, exactly as printed (e.g. "2(a)", "3(b)(i)")
+- "question_text": string — the full problem statement from the question paper
+- "total_marks": a number greater than 0
+- "marking_type": one of "point_based" | "level_of_response" | "mcq"
+- "mark_scheme": an object whose shape MUST match the marking_type EXACTLY:
 
-1. question_number — exactly as printed
-2. question_text — the full problem statement from the question paper
-3. total_marks — sum of marks for this question/sub-part
-4. marking_type — one of: mcq, point_based, level_of_response, mixed
-5. mark_scheme — structured JSON appropriate to the marking type
+  point_based →
+  {"type":"point_based","marks":[{"id":1,"type":"M1","value":1,"description":"what earns this mark","ecf_from":null,"acceptable_forms":null}, …]}
+  • one entry per awardable mark point; "type" is the mark code (M1, A1, B1, DM1, …); "value" is the marks for that point; the "marks" array MUST be non-empty.
 
-Be thorough. Extract EVERY question, every sub-part. Don't skip any.
+  level_of_response →
+  {"type":"level_of_response","bands":[{"level":4,"marks_min":9,"marks_max":10,"descriptor":"the level descriptor"}, …]}
+  • one entry per band/level; "bands" MUST be non-empty.
 
-Output ONLY this JSON (no markdown):
-{
-  "paper_marking_type": "${markingType}",
-  "questions": [ ... ]
-}`
+  mcq →
+  {"type":"mcq","answer_key":{"1":"B","2":"C", …}}
+
+Most ${markingType === 'mixed' ? 'Economics ' : ''}questions are ${markingType === 'mixed' ? 'point_based (data response / short answers) OR level_of_response (essays) — choose per question from what the mark scheme shows' : markingType}. Be thorough: extract EVERY question and sub-part, skip none.
+
+Output ONLY this JSON, no markdown, no commentary:
+{"paper_marking_type":"${markingType}","questions":[ … ]}`
 }
 
 function extractJSON(text) {

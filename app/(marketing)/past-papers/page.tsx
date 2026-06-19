@@ -98,7 +98,9 @@ export default function PastPapersHubPage() {
               description: `${s.level} · ${s.yearRange}`,
             })),
           }),
-          faqPageNode(FAQ),
+          faqPageNode(FAQ, {
+            speakableSelectors: ['.ms-subject-faq dt', '.ms-subject-faq dd'],
+          }),
         ]}
       />
 

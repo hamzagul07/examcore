@@ -5,6 +5,7 @@ import { blogSitemapPriority } from '@/lib/seo/sitemap-priority'
 import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
 import { getPastPaperSubjectCodes } from '@/lib/seo/past-papers'
+import { getAllTopicQuestionParams } from '@/lib/seo/topic-questions'
 import { getCourseLessons, getCourseSubjectCodes } from '@/lib/courses'
 import { lessonLastModified } from '@/lib/courses/seo'
 
@@ -85,6 +86,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
+  const topicQuestionEntries: MetadataRoute.Sitemap = getAllTopicQuestionParams().map(
+    ({ code, topic }) => ({
+      url: `${base}/past-papers/${code}/${topic}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.72,
+    })
+  )
+
   const courseSubjectEntries: MetadataRoute.Sitemap = getCourseSubjectCodes().map(
     (code) => ({
       url: `${base}/courses/${code}`,
@@ -121,6 +131,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...guideEntries,
     ...subjectEntries,
     ...pastPaperEntries,
+    ...topicQuestionEntries,
     ...calculatorEntries,
     ...courseSubjectEntries,
     ...courseLessonEntries,

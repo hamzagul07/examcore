@@ -111,7 +111,9 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
             topics: copy.topics,
             level: copy.level,
           }),
-          faqPageNode(faq),
+          faqPageNode(faq, {
+            speakableSelectors: ['.ms-subject-faq dt', '.ms-subject-faq dd'],
+          }),
         ]}
       />
 

@@ -1,5 +1,6 @@
 import { SITE_NAME, SITE_URL, CONTACT_EMAIL } from '@/lib/site-config'
 import type { SiteAuthor } from '@/lib/seo/authors'
+import { DEFAULT_BLOG_AUTHOR } from '@/lib/seo/authors'
 import { BRAND_ENTITY, getBrandSameAs, getFounderSameAs } from '@/lib/seo/entity'
 
 export type JsonLd = Record<string, unknown>
@@ -31,6 +32,11 @@ export function organizationNode(): JsonLd {
       email: CONTACT_EMAIL,
       availableLanguage: ['en'],
     },
+    founder: {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/about#${DEFAULT_BLOG_AUTHOR.id}`,
+      name: DEFAULT_BLOG_AUTHOR.name,
+    },
     ...(sameAs.length > 0 ? { sameAs } : {}),
   }
 }
@@ -61,6 +67,14 @@ export function personNode(author: SiteAuthor): JsonLd {
       'Past paper marking',
       'Mark schemes',
     ],
+    ...(author.credentials?.length
+      ? {
+          hasCredential: author.credentials.map((c) => ({
+            '@type': 'EducationalOccupationalCredential',
+            name: c,
+          })),
+        }
+      : {}),
     ...(founderSameAs.length > 0 ? { sameAs: founderSameAs } : {}),
   }
 }
@@ -159,9 +173,22 @@ export function webPageNode(options: {
   }
 }
 
-export function faqPageNode(items: { q: string; a: string }[]): JsonLd {
+export function faqPageNode(
+  items: { q: string; a: string }[],
+  opts: { speakableSelectors?: string[] } = {}
+): JsonLd {
   return {
     '@type': 'FAQPage',
+    // Speakable points voice/AI answer engines at the on-page Q&A. Only set
+    // when the caller's DOM actually exposes the given selectors.
+    ...(opts.speakableSelectors?.length
+      ? {
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: opts.speakableSelectors,
+          },
+        }
+      : {}),
     mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.q,

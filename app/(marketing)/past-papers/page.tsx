@@ -15,7 +15,7 @@ const PATH = '/past-papers'
 
 export function generateMetadata() {
   return createPageMetadata({
-    title: 'Cambridge Past Papers & Mark Schemes — Practise with Instant Marking',
+    title: 'Cambridge Past Papers & Mark Schemes',
     description:
       'Browse Cambridge CAIE past papers and mark schemes across A-Level, AS, O-Level and IGCSE. Upload your answers and get instant, mark-scheme-accurate marking on every paper — free to start.',
     path: PATH,

@@ -89,7 +89,7 @@ export function getPastPaperSubjectCodes(): string[] {
 export function buildPastPaperSubjectCopy(subject: PastPaperSubject) {
   const { label, code, level, yearRange: range, componentCount, years } = subject
   const sessionCount = subject.structure.sessions.length
-  const title = `${label} (${code}) Past Papers & Mark Schemes${range ? ` ${range}` : ''}`
+  const title = `${code} ${label} Past Papers & Mark Schemes`
   const description = `Practise every Cambridge ${level} ${label} (${code}) past paper${
     range ? ` from ${range}` : ''
   } and get instant mark-scheme marking. ${componentCount} components across ${sessionCount} exam series — upload your answers and score against the real ${code} mark scheme.`

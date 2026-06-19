@@ -22,6 +22,7 @@ import {
 } from '@/lib/seo/past-papers'
 import { getCatalogSubject } from '@/lib/subjects-catalog'
 import { getCourseSubject } from '@/lib/courses'
+import { getTopicQuestionPages } from '@/lib/seo/topic-questions'
 import { seasonNameFromSessionCode, sessionCodeToYear } from '@/lib/marking/session'
 
 type Props = { params: Promise<{ code: string }> }
@@ -74,6 +75,7 @@ export default async function PastPaperSubjectPage({ params }: Props) {
   const course = getCourseSubject(code)
   const archive = archiveByYear(structure.sessions)
   const components = [...new Set(structure.papers.flatMap((p) => p.components))].sort()
+  const topicPages = getTopicQuestionPages(code)
   const url = `${SITE_URL}${copy.path}`
 
   const markHref = (session?: string) =>
@@ -140,7 +142,9 @@ export default async function PastPaperSubjectPage({ params }: Props) {
               { name: 'Fix weak topics', text: 'Review where you lost marks and drill those topics.' },
             ],
           }),
-          faqPageNode(faq),
+          faqPageNode(faq, {
+            speakableSelectors: ['.ms-subject-faq dt', '.ms-subject-faq dd'],
+          }),
         ]}
       />
 
@@ -255,6 +259,30 @@ export default async function PastPaperSubjectPage({ params }: Props) {
             </div>
           </div>
         </div>
+
+        {topicPages.length ? (
+          <section aria-labelledby="pp-topics" style={{ marginTop: 40 }}>
+            <h2 id="pp-topics" className="ms-h3" style={{ marginBottom: 6 }}>
+              {label} past-paper questions by topic
+            </h2>
+            <p className="ms-body-2" style={{ marginBottom: 16, color: 'var(--ec-text-secondary)' }}>
+              Drill {code} past-paper questions one topic at a time — each set is marked against the real scheme.
+            </p>
+            <ul className="ms-pp-topic-grid">
+              {topicPages.map((t) => (
+                <li key={t.topicSlug}>
+                  <Link
+                    href={`/past-papers/${code}/${t.topicSlug}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-[var(--ec-border)] px-3.5 py-2 text-[13px] font-semibold text-[var(--ec-text-secondary)] hover:border-[var(--ec-brand)]/40 hover:text-[var(--ec-brand)]"
+                  >
+                    {t.title}
+                    <span style={{ color: 'var(--ec-text-faint)' }}>{t.questionCount}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         <section className="ms-subject-faq" aria-labelledby="pp-subject-faq">
           <h2 id="pp-subject-faq" className="ms-h3">

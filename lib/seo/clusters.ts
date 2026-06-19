@@ -100,6 +100,9 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /^cambridge-results-day/,
       /^cambridge-enquiry-about-results/,
       /^how-to-revise-cambridge-\d{4}/,
+      /^how-to-get-an-a-star-in-cambridge-/,
+      /^how-to-revise-with-/,
+      /^should-you-do-cambridge-past-papers/,
     ],
   },
   {

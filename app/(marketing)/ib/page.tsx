@@ -10,6 +10,8 @@ import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { getIbSubjects, getIbSubjectsByGroup, ibYearRange } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
+import { IB_GLOBAL_RESOURCES } from '@/lib/ib/resources'
+import { IbResources } from '@/components/ib/IbResources'
 
 const PATH = '/ib'
 
@@ -150,6 +152,8 @@ export default function IbHubPage() {
             ))}
           </dl>
         </section>
+
+        <IbResources resources={IB_GLOBAL_RESOURCES} />
 
         <nav className="mt-12 border-t border-[var(--ec-border)] pt-8" aria-label="Related">
           <div className="flex flex-wrap gap-2">

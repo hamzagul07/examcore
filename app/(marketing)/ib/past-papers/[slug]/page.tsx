@@ -17,6 +17,8 @@ import {
   ibYearRange,
 } from '@/lib/ib/catalog'
 import { buildIbPastPaperCopy, ibShortName } from '@/lib/seo/ib-seo'
+import { getIbResources } from '@/lib/ib/resources'
+import { IbResources } from '@/components/ib/IbResources'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -190,6 +192,8 @@ export default async function IbPastPaperSubjectPage({ params }: Props) {
             ))}
           </dl>
         </section>
+
+        <IbResources resources={getIbResources(subject)} heading={`Best free IB ${subject.name} resources`} />
 
         <nav className="mt-12 border-t border-[var(--ec-border)] pt-8" aria-label="More IB past papers">
           <p className="ms-micro" style={{ marginBottom: 12 }}>

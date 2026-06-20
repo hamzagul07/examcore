@@ -1,3 +1,6 @@
+import fs from 'node:fs'
+import path from 'node:path'
+
 /** Shared MarkScheme logo colours (fixed hex — not CSS variables). */
 export const LOGO_COLORS = {
   bg: '#f7f2e7',
@@ -27,19 +30,23 @@ export function logoMarkSvgMarkup(): string {
 </svg>`
 }
 
-/** App icon / favicon — centered M with crimson dot after the letter (wordmark lockup). */
-export function faviconSvgMarkup(): string {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="MarkScheme">
-  <rect width="48" height="48" rx="11" fill="${LOGO_COLORS.bg}"/>
-  <rect x="1" y="1" width="46" height="46" rx="10" stroke="${LOGO_COLORS.brand}" stroke-width="0.75" opacity="0.18"/>
-  <text x="24" y="32" text-anchor="middle" dominant-baseline="middle" font-family="Newsreader, Georgia, 'Times New Roman', serif" font-size="25" font-weight="600" letter-spacing="-0.02em">
-    <tspan fill="${LOGO_COLORS.ink}">M</tspan><tspan fill="${LOGO_COLORS.brand}">.</tspan>
-  </text>
-</svg>`
-}
+/** Public favicon paths (static assets in app/ and public/). */
+export const FAVICON_PATHS = {
+  tab: '/icon',
+  apple: '/apple-icon',
+  pwa: '/favicon.png',
+  large: '/icon-512.png',
+} as const
 
+let cachedFaviconDataUrl: string | undefined
+
+/** Data URL for OG images and other server-rendered contexts. */
 export function faviconDataUrl(): string {
-  return `data:image/svg+xml,${encodeURIComponent(faviconSvgMarkup())}`
+  if (cachedFaviconDataUrl) return cachedFaviconDataUrl
+  const file = path.join(process.cwd(), 'app', 'apple-icon.png')
+  const buf = fs.readFileSync(file)
+  cachedFaviconDataUrl = `data:image/png;base64,${buf.toString('base64')}`
+  return cachedFaviconDataUrl
 }
 
 export function logoMarkDataUrl(): string {

@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { logoMarkDataUrl } from '@/lib/brand/logo-mark'
+import { faviconDataUrl } from '@/lib/brand/logo-mark'
 import { SITE_NAME } from '@/lib/site-config'
 
 export const OG_SIZE = { width: 1200, height: 630 }
@@ -32,7 +32,7 @@ export function createOgImage({ title, subtitle }: OgImageProps) {
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoMarkDataUrl()} width={52} height={52} alt="" />
+          <img src={faviconDataUrl()} width={52} height={52} alt="" />
           <span
             style={{
               fontSize: 28,

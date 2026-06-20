@@ -24,7 +24,9 @@ export function organizationNode(): JsonLd {
     knowsAbout: [...BRAND_ENTITY.knowsAbout],
     logo: {
       '@type': 'ImageObject',
-      url: `${SITE_URL}/icon`,
+      url: `${SITE_URL}/apple-icon`,
+      width: 180,
+      height: 180,
     },
     contactPoint: {
       '@type': 'ContactPoint',
@@ -47,7 +49,7 @@ export function brandNode(): JsonLd {
     '@id': `${SITE_URL}/#brand`,
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/icon`,
+    logo: `${SITE_URL}/apple-icon`,
     parentOrganization: { '@id': `${SITE_URL}/#organization` },
   }
 }

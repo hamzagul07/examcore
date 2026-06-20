@@ -1,0 +1,177 @@
+{
+  "slug": "c1-1-enzymes-and-metabolism",
+  "topicCode": "C1.1",
+  "title": "Enzymes and metabolism",
+  "paper": "P2",
+  "paperName": "Biology HL",
+  "status": "premium",
+  "summary": "This lesson explores the intricate control of cellular chemistry, focusing on metabolic pathways as sequences of enzyme-catalysed reactions. It details the mechanisms of competitive and non-competitive inhibition and explains how end-product inhibition provides an elegant feedback system for regulating these pathways.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define and describe metabolic pathways as sequences of enzyme-catalysed reactions.",
+    "Distinguish between competitive and non-competitive enzyme inhibition with reference to their mechanisms and effects on Vmax and Km.",
+    "Explain the role of end-product inhibition as a method of metabolic control.",
+    "Analyse graphical data to determine the type and effect of enzyme inhibitors."
+  ],
+  "simpleExplanation": {
+    "title": "Metabolic Traffic Control",
+    "summary": "Metabolism is like a city's road network, with chemical reactions as the roads and enzymes as the traffic lights. Inhibitors act like temporary road closures or red lights, controlling the flow of chemical traffic to meet the cell's needs.",
+    "analogy": "Imagine a factory assembly line for building toy cars. Each worker is an enzyme, performing one specific step. A competitive inhibitor is like a worker from another assembly line who occasionally sits in a spot, preventing the correct worker from doing their job until they leave. A non-competitive inhibitor is like a manager who switches off the power to a specific worker's station; it doesn't matter how many car parts (substrates) pile up, that station is simply out of action.",
+    "steps": [
+      "Observe a multi-step metabolic pathway where substance A is converted to substance D via enzymes 1, 2, and 3.",
+      "Introduce a competitive inhibitor that competes with substance B for the active site of enzyme 2. Notice that high concentrations of substance B can overcome the inhibition.",
+      "Introduce a non-competitive inhibitor that binds to an allosteric site on enzyme 1. Observe that the maximum rate of the pathway is reduced and cannot be restored by adding more of substance A.",
+      "Model end-product inhibition by showing how substance D, the final product, acts as a non-competitive inhibitor for enzyme 1, shutting down its own production when levels get too high."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a metabolic pathway?",
+      "back": "A sequence of chemical reactions occurring within a cell, where the product of one reaction is the substrate for the next. These pathways are catalysed by enzymes."
+    },
+    {
+      "front": "Distinguish between anabolism and catabolism.",
+      "back": "Anabolism is the synthesis of complex molecules from simpler ones, requiring energy (e.g., protein synthesis). Catabolism is the breakdown of complex molecules into simpler ones, releasing energy (e.g., cellular respiration)."
+    },
+    {
+      "front": "What is competitive inhibition?",
+      "back": "A type of enzyme inhibition where the inhibitor molecule is structurally similar to the substrate and binds to the active site, preventing the substrate from binding."
+    },
+    {
+      "front": "What is non-competitive inhibition?",
+      "back": "A type of enzyme inhibition where the inhibitor binds to a site on the enzyme other than the active site (an allosteric site), causing a conformational change that inactivates the enzyme."
+    },
+    {
+      "front": "What is an allosteric site?",
+      "back": "A site on an enzyme, other than the active site, to which a molecule (an allosteric effector) can bind to regulate the enzyme's activity."
+    },
+    {
+      "front": "How does a competitive inhibitor affect $V_{max}$ and $K_m$?",
+      "back": "$V_{max}$ remains unchanged because the inhibition can be overcome by high substrate concentrations. $K_m$ increases, as a higher substrate concentration is needed to reach half $V_{max}$."
+    },
+    {
+      "front": "How does a non-competitive inhibitor affect $V_{max}$ and $K_m$?",
+      "back": "$V_{max}$ is decreased because some enzyme molecules are permanently inactivated. $K_m$ remains unchanged as the affinity of the active enzymes for the substrate is not altered."
+    },
+    {
+      "front": "What is end-product inhibition (feedback inhibition)?",
+      "back": "A form of metabolic control where the final product of a metabolic pathway acts as a non-competitive inhibitor for an enzyme early in the pathway, thus regulating its own production."
+    },
+    {
+      "front": "Give a biological example of end-product inhibition.",
+      "back": "The synthesis of the amino acid isoleucine from threonine in E. coli. As isoleucine concentration increases, it binds to an allosteric site on the first enzyme in the pathway (threonine deaminase), inhibiting it."
+    },
+    {
+      "front": "Common Trap: Can you always overcome competitive inhibition by adding more substrate?",
+      "back": "In theory, yes. High substrate concentration outcompetes the inhibitor for the active site, allowing the reaction to eventually reach its normal $V_{max}$. This is the key difference from non-competitive inhibition."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is end-product inhibition always non-competitive?",
+      "a": "In the context of the IB Biology syllabus and most biological examples, end-product inhibition is treated as a form of non-competitive (allosteric) inhibition. The final product binds to an allosteric site on an early enzyme, not the active site. This is the most common and efficient mechanism for this type of regulation."
+    },
+    {
+      "q": "How can I quickly tell the difference between competitive and non-competitive inhibition from a Michaelis-Menten graph?",
+      "a": "Look at two key features. First, check the $V_{max}$ (the plateau of the curve). If the inhibitor's curve can eventually reach the same $V_{max}$ as the uninhibited enzyme, it's competitive. If the inhibitor's curve has a lower $V_{max}$, it's non-competitive. Second, look at the $K_m$. For a competitive inhibitor, the curve is shifted to the right, meaning a higher $K_m$. For a non-competitive inhibitor, the $K_m$ is unchanged."
+    },
+    {
+      "q": "Why is it important for an end-product to inhibit the *first* enzyme in a pathway?",
+      "a": "Inhibiting the first enzyme is the most efficient strategy. It immediately shuts down the entire pathway, preventing the build-up of any intermediate products. If a later enzyme were inhibited, the cell would continue to waste energy and resources making the intermediate compounds up to that point."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The cell is a bustling hub of chemical activity, with thousands of reactions occurring every second. This sum total of reactions is called metabolism. Far from being chaotic, metabolism is highly organised into intricate metabolic pathways, with enzymes acting as the master regulators, ensuring that the cell produces what it needs, when it needs it, and in the correct amounts."
+    },
+    {
+      "type": "heading",
+      "content": "Metabolic Pathways: The Cell's Chemical Assembly Lines"
+    },
+    {
+      "type": "text",
+      "content": "A metabolic pathway is a series of linked, enzyme-catalysed reactions. The product of the first reaction becomes the substrate for the second, and so on. These pathways can be linear, like the conversion of threonine to isoleucine, or cyclical, like the Krebs cycle in cellular respiration. They are fundamental to all life, responsible for both breaking down molecules to release energy (catabolism) and building up complex molecules for growth and maintenance (anabolism)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Metabolic pathways are sequences of enzyme-catalysed reactions.",
+        "They can be linear chains or cycles.",
+        "Pathways are compartmentalised within the cell, often occurring in specific organelles.",
+        "Control of these pathways is essential for homeostasis."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Enzyme Inhibition: Regulating the Flow"
+    },
+    {
+      "type": "text",
+      "content": "To prevent the wasteful overproduction of substances or the depletion of resources, cells must be able to control the activity of their metabolic pathways. One of the primary ways they achieve this is through enzyme inhibition. An inhibitor is a molecule that binds to an enzyme and decreases its activity. We will focus on two key types of reversible inhibition: competitive and non-competitive."
+    },
+    {
+      "type": "heading",
+      "content": "Competitive vs. Non-Competitive Inhibition"
+    },
+    {
+      "type": "text",
+      "content": "In **competitive inhibition**, the inhibitor molecule has a similar shape to the substrate and competes for the same active site. When the inhibitor is bound, the substrate cannot bind. However, this is a reversible process. If the substrate concentration is increased, the substrate molecules will out-compete the inhibitor for the active site, and the maximum rate of reaction ($V_{max}$) can still be reached. The Michaelis constant ($K_m$), which is the substrate concentration at half $V_{max}$, is increased in the presence of a competitive inhibitor, reflecting the need for more substrate to achieve the same rate."
+    },
+    {
+      "type": "text",
+      "content": "In **non-competitive inhibition**, the inhibitor binds to the enzyme at a location other than the active site, called an allosteric site. This binding causes the enzyme to change its three-dimensional shape (conformation), including the active site, so that it can no longer bind the substrate effectively, or cannot catalyse the reaction. Because the inhibitor does not compete with the substrate, increasing the substrate concentration will not overcome this type of inhibition. Consequently, the $V_{max}$ is lowered. The $K_m$ remains unchanged because the inhibitor does not affect the binding of substrate to the active enzymes that remain."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently use graphs of reaction rate versus substrate concentration to test your understanding of inhibition. Be prepared to identify the type of inhibitor by analysing changes in $V_{max}$ and $K_m$. Remember: Competitive increases $K_m$, no change in $V_{max}$. Non-competitive decreases $V_{max}$, no change in $K_m$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph below shows the rate of an enzyme-catalysed reaction at different substrate concentrations, with and without the presence of an inhibitor. \n\n(a) Determine the $V_{max}$ and $K_m$ for the uninhibited reaction. \n(b) State the type of inhibition shown. \n(c) Justify your answer to (b) with reference to the data in the graph. \n\n(Assume the graph shows a curve for the uninhibited reaction reaching a $V_{max}$ of 80 µmol min⁻¹ and a curve for the inhibited reaction that also approaches 80 µmol min⁻¹ but requires a higher substrate concentration to do so. The $K_m$ for the uninhibited reaction is 4 mM, and for the inhibited reaction, it is 8 mM).",
+      "solution": "*(Note: A graph would be provided in an exam. The following solution is based on the described data.)*\n\n**(a) [2 marks]**\n- The $V_{max}$ for the uninhibited reaction is the maximum rate reached, which is **80 µmol min⁻¹**. [1]\n- The $K_m$ is the substrate concentration at half $V_{max}$ (40 µmol min⁻¹). From the graph, this corresponds to **4 mM**. [1]\n\n**(b) [1 mark]**\n- The type of inhibition is **competitive inhibition**. [1]\n\n**(c) [2 marks]**\n- The maximum velocity ($V_{max}$) is the same for both the inhibited and uninhibited reactions (80 µmol min⁻¹). This means at high substrate concentrations, the inhibition is overcome. [1]\n- The Michaelis constant ($K_m$) is increased in the presence of the inhibitor (from 4 mM to 8 mM), indicating that a higher substrate concentration is required to achieve half the maximum rate. This is characteristic of a competitive inhibitor competing for the active site. [1]"
+    },
+    {
+      "type": "heading",
+      "content": "End-Product Inhibition: An Elegant Feedback System"
+    },
+    {
+      "type": "text",
+      "content": "End-product inhibition is a clever and efficient biological control mechanism. In this process, the final product of a metabolic pathway binds to an allosteric site on the first enzyme of that same pathway. This binding inhibits the enzyme's activity, thereby slowing down or stopping the entire pathway. It's a classic example of negative feedback. When the cell has enough of the final product, the product itself switches off its own production line. As the cell uses up the product, its concentration falls, the inhibitor molecules detach from the enzyme, and the pathway becomes active again. This prevents the cell from wasting energy and resources synthesising a product it doesn't currently need."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The final product of a pathway inhibits an early enzyme (often the first one).",
+        "This is a form of non-competitive, allosteric inhibition.",
+        "It acts as a negative feedback loop, ensuring production matches cellular demand.",
+        "It is a reversible process, allowing the pathway to switch back on when product levels are low."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An experiment was conducted to investigate the effect of two inhibitors, X and Y, on the activity of an enzyme. The rate of reaction was measured at various substrate concentrations. The enzyme's normal $V_{max}$ is 150 units and its $K_m$ is 5 mM. \n\nData Table:\n| Substrate [mM] | Rate with Inhibitor X (units) | Rate with Inhibitor Y (units) |\n|---|---|---|\n| 2.5 | 37.5 | 25.0 |\n| 5.0 | 60.0 | 37.5 |\n| 10.0 | 85.7 | 50.0 |\n| 20.0 | 114.3 | 60.0 |\n| 40.0 | 133.3 | 66.7 |\n\nIdentify the type of inhibition caused by inhibitor X and inhibitor Y. For each, provide a justification based on the data.",
+      "solution": "**Inhibitor X: [2 marks]**\n- **Identification:** Competitive inhibition. [1]\n- **Justification:** As the substrate concentration increases, the rate of reaction with inhibitor X approaches the uninhibited $V_{max}$ of 150 units (at 40mM substrate, the rate is 133.3, still rising). However, the rate at the original $K_m$ (5 mM) is 60 units, which is less than half the uninhibited $V_{max}$ (75 units), indicating the apparent $K_m$ has increased. This pattern is characteristic of competitive inhibition. [1]\n\n**Inhibitor Y: [2 marks]**\n- **Identification:** Non-competitive inhibition. [1]\n- **Justification:** The rate of reaction with inhibitor Y appears to be plateauing at a new, lower $V_{max}$ of approximately 75 units, which is half the original $V_{max}$. Even at high substrate concentrations (40 mM), the rate (66.7 units) does not approach the original $V_{max}$. This reduction in $V_{max}$ is the hallmark of non-competitive inhibition. [1]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Enzymes and Metabolism",
+      "href": "/mark?subject=ib-biology-hl&topic=C1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive animation of enzyme inhibition",
+          "href": "https://www.wiley.com/college/boyer/0470003790/animations/enzyme_inhibition/enzyme_inhibition.htm"
+        },
+        {
+          "label": "Detailed explanation of metabolic control from KEGG",
+          "href": "https://www.genome.jp/kegg/pathway.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

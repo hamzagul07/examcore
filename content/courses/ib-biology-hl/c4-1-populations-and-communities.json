@@ -1,0 +1,209 @@
+{
+  "slug": "c4-1-populations-and-communities",
+  "topicCode": "C4.1",
+  "title": "Populations and communities",
+  "paper": "P2",
+  "paperName": "Biology HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of population ecology. We will define key terms like population, community, and niche, and explore the factors that limit population growth. You will learn to interpret the sigmoid (S-shaped) growth curve and apply the capture-mark-release-recapture method to estimate population sizes.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define and distinguish between population, community, ecosystem, habitat, and niche.",
+    "Explain how limiting factors (density-dependent and independent) determine the carrying capacity of an environment.",
+    "Analyse the sigmoid (S-shaped) population growth curve, explaining the exponential, transitional, and plateau phases.",
+    "Outline the principles and calculations of the capture-mark-release-recapture method for estimating population size."
+  ],
+  "simpleExplanation": {
+    "title": "The Ecosystem's Occupancy Limit",
+    "summary": "Every environment has a 'full' sign, known as its carrying capacity. This lesson explores how populations grow rapidly at first, then slow down as they hit this limit due to finite resources like food and space.",
+    "analogy": "Imagine a new, popular café opening. Initially, customers can walk right in and get a table (exponential growth). As word spreads, it gets crowded, queues form, and resources like seats and coffee run low (limiting factors). Eventually, the café can't hold any more people; it has reached its maximum capacity (carrying capacity), and the number of people inside stays relatively constant.",
+    "steps": [
+      "First, we define the key players: a 'population' is a group of one species, a 'community' is all the different populations interacting, and an 'ecosystem' includes the community and its physical environment.",
+      "Next, we identify the environmental limits. No population can grow forever because resources like food, water, and space are finite. These are called 'limiting factors'.",
+      "Then, we model this process with the S-shaped (sigmoid) growth curve. It shows a slow start, a rapid growth spurt, and a final levelling-off as the population hits the 'carrying capacity' ($K$).",
+      "Finally, we learn how to count a mobile population without counting every single individual. We use the 'capture-mark-release-recapture' method and a simple formula to estimate the total number."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Define 'population'.",
+      "back": "A group of organisms of the same species who live in the same area at the same time."
+    },
+    {
+      "front": "Define 'community'.",
+      "back": "A group of populations of different species living and interacting with each other in an area."
+    },
+    {
+      "front": "What is the difference between a fundamental niche and a realised niche?",
+      "back": "A fundamental niche is the potential range of conditions and resources an organism could use. A realised niche is the actual range it occupies due to competition and other interactions."
+    },
+    {
+      "front": "Define 'carrying capacity' ($K$).",
+      "back": "The maximum population size of a species that can be sustainably supported by a given environment."
+    },
+    {
+      "front": "What is a density-dependent limiting factor?",
+      "back": "A factor that limits population growth and has a greater effect as population density increases. Examples: competition, predation, disease."
+    },
+    {
+      "front": "What is a density-independent limiting factor?",
+      "back": "A factor that affects population size regardless of its density. Examples: natural disasters like fire, flood, or extreme weather events."
+    },
+    {
+      "front": "Describe the exponential growth phase of the sigmoid curve.",
+      "back": "The initial phase where the population growth rate is rapid because resources are abundant and limiting factors are negligible. Natality far exceeds mortality."
+    },
+    {
+      "front": "Describe the plateau phase of the sigmoid curve.",
+      "back": "The final phase where the population size fluctuates around the carrying capacity ($K$). Natality is approximately equal to mortality."
+    },
+    {
+      "front": "What is the name of the formula used in the capture-mark-release-recapture method?",
+      "back": "The Lincoln-Petersen Index."
+    },
+    {
+      "front": "State one key assumption of the capture-mark-release-recapture method.",
+      "back": "The marking does not affect the survival or behaviour of the animal (e.g., make it more visible to predators). OR The marked individuals have had enough time to mix randomly with the rest of the population."
+    },
+    {
+      "front": "What does the transitional phase of the S-curve represent?",
+      "back": "The phase where population growth slows down as limiting factors begin to take effect. The rate of natality decreases while the rate of mortality increases."
+    },
+    {
+      "front": "Distinguish between 'habitat' and 'ecosystem'.",
+      "back": "A habitat is the specific environment in which a species lives. An ecosystem is broader, encompassing the entire community of interacting organisms (biotic) and their physical environment (abiotic)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a population and a community?",
+      "a": "A population consists of all the individuals of a single species in a particular area. A community includes all the populations of all the different species interacting in that area. Think of it as one species vs. all species."
+    },
+    {
+      "q": "Is the carrying capacity ($K$) for a species always the same in every environment?",
+      "a": "No, carrying capacity is specific to a particular environment at a particular time. It can change if the environment changes. For example, a prolonged drought could lower the carrying capacity for a plant species, while a new food source could potentially increase it."
+    },
+    {
+      "q": "Why is the capture-mark-release-recapture method an estimate and not an exact count?",
+      "a": "It's an estimate because it's based on a sample, not the entire population. Its accuracy depends on how well the assumptions are met. For example, if the marked animals don't mix randomly back into the population, the second sample won't be representative, leading to an inaccurate estimate."
+    },
+    {
+      "q": "Can a population stay in the exponential growth phase forever?",
+      "a": "No, this is impossible in any natural ecosystem. Exponential growth assumes unlimited resources and no limiting factors, which is never the case in the real world. Sooner or later, every population will encounter limits that slow its growth."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to population ecology, the branch of biology that studies the dynamics of species populations and how these populations interact with the environment. In this lesson, we'll unpack the core terminology used to describe ecological systems and investigate the mathematical models that predict how populations change over time. Understanding these principles is crucial for conservation, resource management, and predicting the ecological impact of environmental changes."
+    },
+    {
+      "type": "heading",
+      "content": "Fundamental Ecological Concepts"
+    },
+    {
+      "type": "text",
+      "content": "To study ecology, we need a precise vocabulary. A **population** refers to all the organisms of a single species in a defined area. When we consider all the different populations of different species interacting within that area, we are talking about a **community**. The physical place where an organism lives is its **habitat**. Broadening our view further, an **ecosystem** includes the entire community (all biotic, or living, components) plus the non-living, or **abiotic**, components of the environment, such as water, soil, and sunlight."
+    },
+    {
+      "type": "heading",
+      "content": "The Niche Concept: An Organism's Role"
+    },
+    {
+      "type": "text",
+      "content": "An organism's **ecological niche** is its unique role and position within its ecosystem. It encompasses all its interactions with the biotic and abiotic factors of its environment – what it eats, what eats it, its habitat, and its behaviours. We can distinguish between two types of niches."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Fundamental Niche:** The theoretical niche, representing the full range of environmental conditions and resources an organism could possibly occupy and use, in the absence of competition from other species.",
+        "**Realised Niche:** The actual niche an organism occupies. It is always smaller than the fundamental niche due to limiting factors, especially competition with other species for the same resources."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Population Growth and Its Limits"
+    },
+    {
+      "type": "text",
+      "content": "In an ideal world with unlimited resources, a population would grow exponentially. However, in reality, every ecosystem has **limiting factors** that constrain growth. These factors determine the environment's **carrying capacity ($K$)**, which is the maximum population size that can be sustained indefinitely. These factors fall into two categories."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Density-dependent factors:** Their impact intensifies as the population becomes more crowded. Examples include competition for food, increased predation, and easier transmission of diseases and parasites.",
+        "**Density-independent factors:** They affect the population regardless of its density. Examples include natural disasters (floods, fires), climate change, and pollution events."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Sigmoid (S-Shaped) Growth Curve"
+    },
+    {
+      "type": "text",
+      "content": "The logistic or sigmoid growth model provides a more realistic picture of population growth than the exponential model. It is characterised by three distinct phases when population size is plotted against time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Phase 1: Exponential (Lag/Log) Phase:** Growth is slow at first (lag) then becomes very rapid (log). Resources are plentiful, and the population is far below carrying capacity. The birth rate (natality) is much higher than the death rate (mortality).",
+        "**Phase 2: Transitional Phase:** The growth rate begins to slow down. This is because limiting factors are starting to have an effect. Competition increases, mortality rises, and/or natality falls.",
+        "**Phase 3: Plateau Phase:** The population size stabilises and fluctuates around the carrying capacity ($K$). The growth rate is zero as natality and mortality rates are roughly equal. The population has reached the maximum size the environment can support."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For exams, you must be able to not only draw and label the S-shaped curve but also *explain* what is happening at each phase in terms of natality, mortality, and limiting factors. Remember to mention that the population in the plateau phase often oscillates around $K$ rather than remaining perfectly flat."
+    },
+    {
+      "type": "heading",
+      "content": "Estimating Population Size: Capture-Mark-Release-Recapture"
+    },
+    {
+      "type": "text",
+      "content": "For motile organisms, counting every individual is often impossible. Ecologists use the capture-mark-release-recapture method to estimate population size. The procedure involves capturing a sample of animals, marking them in a harmless way, releasing them back into the population, and then taking a second sample after a period of time to allow for mixing. The proportion of marked animals in the second sample is used to estimate the total population size."
+    },
+    {
+      "type": "formula",
+      "content": "Population Size ($N$) = $\\frac{n_1 \\times n_2}{n_3}$"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n- $n_1$ = number of individuals initially caught, marked and released.\n- $n_2$ = total number of individuals caught in the second sample.\n- $n_3$ = number of marked individuals recaptured in the second sample."
+    },
+    {
+      "type": "workedExample",
+      "question": "A biologist is studying a population of snails in a garden. They collect and mark 80 snails ($n_1$) with a non-toxic paint dot. After one week, they return and collect 100 snails ($n_2$). Of these 100 snails, 16 are found to have the paint mark ($n_3$). Estimate the total snail population in the garden.",
+      "solution": "1. **State the formula:** The Lincoln-Petersen Index is used: $N = \\frac{n_1 \\times n_2}{n_3}$.\n2. **Identify the variables:**\n   - $n_1$ (first capture, marked) = 80\n   - $n_2$ (second capture, total) = 100\n   - $n_3$ (recaptured, marked) = 16\n3. **Substitute the values into the formula:**\n   $N = \\frac{80 \\times 100}{16}$\n4. **Calculate the result:**\n   $N = \\frac{8000}{16}$\n   $N = 500$\n5. **State the final answer with units:** The estimated population size is 500 snails."
+    },
+    {
+      "type": "workedExample",
+      "question": "In a capture-recapture study on field mice, 50 mice were initially captured and marked. In the second trapping, 60 mice were captured, of which only 5 were marked. However, the biologist suspects the marking paint made the mice more vulnerable to owls. Explain how this would affect the population estimate.",
+      "solution": "1. **Calculate the initial estimate:**\n   $N = \\frac{n_1 \\times n_2}{n_3} = \\frac{50 \\times 60}{5} = \\frac{3000}{5} = 600$ mice.\n2. **Analyse the effect of the violation:** The assumption is that marking does not affect survival. If the marking increased predation, the marked mice ($n_1$) would be removed from the population at a higher rate than unmarked mice.\n3. **Relate to the formula:** This would lead to a lower number of marked individuals being recaptured ($n_3$) than would be expected in a random sample. \n4. **Determine the impact on the estimate:** In the formula $N = (n_1 \\times n_2) / n_3$, a smaller denominator ($n_3$) results in a larger calculated value for $N$. Therefore, the population size would be **overestimated**."
+    },
+    {
+      "type": "examTip",
+      "content": "Be prepared to discuss the assumptions of the capture-mark-release-recapture method. Key assumptions include: the marked individuals mix randomly, the marking is not lost and does not harm the animal, and there is no significant immigration, emigration, birth, or death between the two samples (a closed population)."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Populations and Communities",
+      "href": "/mark?subject=ib-biology-hl&topic=C4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Population Ecology Graphs: Logistic Growth",
+          "href": "https://www.khanacademy.org/science/ap-biology/ecology-ap/population-ecology-ap/a/population-growth-and-regulation"
+        },
+        {
+          "label": "Virtual Lab: Population Biology",
+          "href": "https://www.biologysimulations.com/population-biology"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

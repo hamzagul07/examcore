@@ -1,0 +1,167 @@
+{
+  "slug": "d1-3-mutation-and-gene-editing",
+  "topicCode": "D1.3",
+  "title": "Mutation and gene editing",
+  "paper": "P2",
+  "paperName": "Biology HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental processes of mutation, including their types and causes (mutagens). It then delves into the revolutionary technology of gene editing, focusing on the CRISPR-Cas9 system, its mechanism, applications in medicine and research, and the profound ethical considerations it raises.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Distinguish between gene and chromosomal mutations, and outline the effects of different types of mutagens.",
+    "Explain the mechanism of the CRISPR-Cas9 system for gene editing.",
+    "Analyse the applications and ethical implications of gene editing technologies in various contexts.",
+    "Evaluate the potential consequences of somatic versus germline mutations."
+  ],
+  "simpleExplanation": {
+    "title": "DNA's Spellchecker and Editor",
+    "summary": "Mutations are like typos in the book of life, which can be harmless, helpful, or harmful. Gene editing tools like CRISPR are like a 'find and replace' function, allowing scientists to correct these typos with precision.",
+    "analogy": "Imagine a huge instruction manual written in a four-letter code. A mutation is a typo in that manual. To fix it, you use a tool like CRISPR. You first create a 'guide' that is a perfect copy of the sentence with the typo (the 'find' function). This guide leads a molecular scissor (the 'replace' button) directly to the typo, which then cuts it out. The cell's own repair crew then either pastes the ends back together, often disabling the faulty instruction, or uses a correct template you provide to perfectly rewrite the sentence.",
+    "steps": [
+      "A specific 'guide RNA' (gRNA) is designed to match the target DNA sequence you want to edit.",
+      "The gRNA is attached to a DNA-cutting enzyme called Cas9, and this complex is introduced into a cell.",
+      "The gRNA molecule guides the Cas9 enzyme to the exact corresponding sequence in the cell's DNA.",
+      "Cas9 cuts both strands of the DNA. The cell then repairs the break, either by sticking the ends together (disrupting the gene) or by using a provided template to insert new DNA (correcting the gene)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a gene mutation?",
+      "back": "A permanent alteration in the DNA sequence that makes up a single gene. Examples include point mutations and small insertions/deletions."
+    },
+    {
+      "front": "What is a mutagen?",
+      "back": "A physical, chemical, or biological agent that increases the frequency of mutations above the natural background rate. Examples include UV radiation, asbestos, and human papillomavirus (HPV)."
+    },
+    {
+      "front": "Distinguish between a somatic and a germline mutation.",
+      "back": "A somatic mutation occurs in a non-reproductive body cell and is not inherited. A germline mutation occurs in a gamete (sperm or egg) and can be passed on to offspring."
+    },
+    {
+      "front": "What are the two key components of the CRISPR-Cas9 system?",
+      "back": "1. Cas9 enzyme: A nuclease that cuts the DNA. 2. Guide RNA (gRNA): A short RNA molecule that directs the Cas9 to a specific target sequence in the genome."
+    },
+    {
+      "front": "What is the purpose of the double-strand break (DSB) created by Cas9?",
+      "back": "The DSB triggers the cell's natural DNA repair mechanisms. It is the activation of these repair pathways that allows for gene editing to occur."
+    },
+    {
+      "front": "What is Non-Homologous End Joining (NHEJ)?",
+      "back": "A DNA repair pathway that quickly ligates broken DNA ends. It is error-prone and often introduces small insertions or deletions (indels), which can be used to knock out (disable) a gene."
+    },
+    {
+      "front": "What is Homology-Directed Repair (HDR)?",
+      "back": "A DNA repair pathway that uses a homologous DNA template to accurately repair a double-strand break. Scientists can supply an engineered template to make precise edits, such as correcting a mutation or inserting a new gene."
+    },
+    {
+      "front": "What are 'off-target effects' in gene editing?",
+      "back": "Unintended cuts and edits made by the CRISPR-Cas9 system at sites in the genome that are similar, but not identical, to the intended target sequence. This is a major safety concern for therapeutic applications."
+    },
+    {
+      "front": "IB Exam Trap: Are all mutations harmful?",
+      "back": "No. Many mutations are neutral, having no effect on the phenotype (e.g., silent mutations, mutations in non-coding regions). A small fraction are beneficial, providing a selective advantage. Avoid stating that mutation is always negative."
+    },
+    {
+      "front": "What is the difference between a missense and a nonsense mutation?",
+      "back": "A missense mutation is a point mutation that results in a different amino acid being coded for. A nonsense mutation is a point mutation that results in a premature stop codon, truncating the protein."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between somatic and germline gene editing?",
+      "a": "Somatic gene editing targets the body cells of an individual to treat a disease. These changes are not heritable and affect only that person. Germline editing targets reproductive cells (sperm, eggs, or embryos). These changes are heritable and would be passed on to all future generations, which is why it is far more ethically controversial."
+    },
+    {
+      "q": "Are all mutations bad?",
+      "a": "No. In fact, most mutations are neutral; they have no effect on an organism's fitness. Some occur in non-coding DNA, while others are 'silent' and don't change the amino acid sequence. A small minority of mutations are beneficial, providing new variation for natural selection to act upon, while others are deleterious or harmful."
+    },
+    {
+      "q": "Is CRISPR the only gene-editing tool?",
+      "a": "No, but it is the most famous due to its efficiency, low cost, and ease of use. Other gene-editing tools exist, such as Zinc-Finger Nucleases (ZFNs) and Transcription Activator-Like Effector Nucleases (TALENs). These were developed before CRISPR and also work by creating double-strand breaks at specific genomic locations, but they are generally more complex and expensive to engineer."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The genetic code is the blueprint of life, remarkable for its stability across generations. However, this code is not immutable. It is subject to spontaneous and induced changes known as mutations. While mutation is the ultimate source of all genetic variation and the raw material for evolution, it can also cause disease. In this topic, we will examine the nature of mutations and explore how our understanding has led to the development of powerful gene-editing tools that promise to rewrite the code of life itself."
+    },
+    {
+      "type": "heading",
+      "content": "The Nature and Causes of Mutation"
+    },
+    {
+      "type": "text",
+      "content": "A mutation is a change in the nucleotide sequence of an organism's DNA. These can be classified by their scale. **Gene mutations** affect a single gene, often involving a single nucleotide (point mutations) or a few nucleotides (small insertions/deletions). **Chromosomal mutations** are large-scale changes affecting the structure or number of chromosomes. Mutations can arise spontaneously due to errors in DNA replication, or they can be induced by mutagens."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Point Mutations**: Substitution of a single base. Can be silent (no amino acid change), missense (different amino acid), or nonsense (creates a stop codon).",
+        "**Frameshift Mutations**: Insertions or deletions of nucleotides not in multiples of three. They alter the reading frame of all subsequent codons, usually resulting in a non-functional protein.",
+        "**Mutagens**: Agents that increase mutation rate. Physical (e.g., UV light, X-rays), Chemical (e.g., nitrosamines in tobacco smoke, benzene), and Biological (e.g., certain viruses like HPV, bacteria like *Helicobacter pylori*)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A researcher exposes a culture of bacteria to UV radiation. The initial mutation rate in the *lacZ* gene was measured as $2.5 \\times 10^{-8}$ mutations per cell division. After exposure, the rate increased to $4.0 \\times 10^{-6}$ mutations per cell division. \n\n(i) Calculate the fold increase in the mutation rate. [1]\n(ii) State the type of mutagen used. [1]\n(iii) Suggest one possible consequence of a mutation in the *lacZ* gene for a bacterium in a lactose-rich environment. [1]",
+      "solution": "(i) Fold increase = (Final rate) / (Initial rate) \n= $(4.0 \\times 10^{-6}) / (2.5 \\times 10^{-8})$ \n= $(400 \\times 10^{-8}) / (2.5 \\times 10^{-8})$ \n= 160\nThe mutation rate increased 160-fold. ✓\n\n(ii) Physical mutagen (or UV radiation). ✓\n\n(iii) The *lacZ* gene codes for β-galactosidase, which digests lactose. A mutation would likely render this enzyme non-functional. Therefore, the bacterium would be unable to metabolise lactose and would not be able to grow or compete effectively in that environment. ✓"
+    },
+    {
+      "type": "heading",
+      "content": "Gene Editing with CRISPR-Cas9"
+    },
+    {
+      "type": "text",
+      "content": "CRISPR-Cas9 is a powerful gene-editing technology adapted from a natural defence system in bacteria. It allows for precise, targeted modification of an organism's genome. The system has two main components: the Cas9 protein, which is an endonuclease that acts like molecular scissors to cut DNA, and a guide RNA (gRNA), which is a small, customisable RNA molecule that directs the Cas9 to a specific 20-base-pair sequence in the genome. When the gRNA binds to its complementary DNA sequence, the Cas9 enzyme creates a double-strand break (DSB) in the DNA."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Mechanism**: The gRNA-Cas9 complex scans the genome. When the gRNA finds its matching DNA sequence, it binds, and Cas9 cuts the DNA.",
+        "**Repair Pathway 1: NHEJ**: Non-Homologous End Joining is the cell's default, error-prone repair mechanism. It often creates small insertions or deletions ('indels') at the cut site, which disrupts the gene's reading frame and 'knocks out' its function.",
+        "**Repair Pathway 2: HDR**: Homology-Directed Repair is a more precise mechanism that uses a DNA template to repair the break. Scientists can supply an artificial donor template containing a desired sequence. The cell uses this template to repair the DSB, allowing for precise correction of a mutation or insertion of a new gene."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When explaining CRISPR, always mention both components: the guide RNA (gRNA) for specificity and the Cas9 enzyme for cutting. For top marks, you must also distinguish between the two repair pathways (NHEJ and HDR) and their different outcomes (gene knockout vs. precise editing)."
+    },
+    {
+      "type": "heading",
+      "content": "Applications and Ethical Dimensions"
+    },
+    {
+      "type": "text",
+      "content": "The potential applications of CRISPR are vast. In medicine, it's being explored to treat monogenic diseases like sickle cell anaemia and cystic fibrosis by correcting the causative mutations in somatic cells. In agriculture, it can be used to create crops with enhanced yield, drought resistance, or nutritional value. However, the power of this technology raises significant ethical questions. The most contentious issue is germline editing—making heritable changes to human embryos or gametes. While this could potentially eradicate genetic diseases from a family line, it raises concerns about unforeseen long-term effects, consent, and the potential for creating 'designer babies', exacerbating social inequalities."
+    },
+    {
+      "type": "workedExample",
+      "question": "A research team is developing a CRISPR-based therapy for a genetic liver disease. They need to deliver the CRISPR-Cas9 system into liver cells (hepatocytes) and then use HDR to correct the faulty gene. The efficiency of delivering the system into a hepatocyte is 30%. Of the cells that receive the system, the HDR pathway is successfully used for correction in only 5% of cases. Calculate the overall percentage of hepatocytes in the patient's liver that would be successfully corrected by this therapy. [2]",
+      "solution": "This is a two-step probability problem. Both events must occur for a cell to be successfully corrected.\n\n1. Probability of delivery (transfection) = 30% = 0.30\n2. Probability of HDR, given successful delivery = 5% = 0.05\n\nOverall probability = P(delivery) × P(HDR | delivery) ✓\n= 0.30 × 0.05\n= 0.015\n\nTo express this as a percentage, multiply by 100:\n0.015 × 100 = 1.5%\n\nTherefore, only 1.5% of the total hepatocytes would be successfully corrected. ✓\n(This highlights the significant efficiency challenges in developing in vivo gene therapies)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: D1.3 Mutation and Gene Editing",
+      "href": "/mark?subject=ib-biology-hl&topic=D1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Video: What is CRISPR?",
+          "href": "https://www.youtube.com/watch?v=jAhjPd4uNFY"
+        },
+        {
+          "label": "Article: Gene editing and its ethical dilemmas",
+          "href": "https://www.nature.com/articles/d41586-019-00673-1"
+        },
+        {
+          "label": "Interactive: DNA Mutation Simulation",
+          "href": "https://www.sepa.du.edu/education/simulations/dnarom_sim.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

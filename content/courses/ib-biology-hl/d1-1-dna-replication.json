@@ -1,0 +1,175 @@
+{
+  "slug": "d1-1-dna-replication",
+  "topicCode": "D1.1",
+  "title": "DNA replication",
+  "paper": "P2",
+  "paperName": "Biology HL",
+  "status": "premium",
+  "summary": "This lesson provides a detailed examination of DNA replication, focusing on the semi-conservative mechanism in both prokaryotes and eukaryotes. It explores the specific roles of key enzymes, the distinction between leading and lagging strand synthesis, and the unique challenges of replicating linear chromosomes, including the function of telomeres.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Explain the process of DNA replication in prokaryotes, including the roles of helicase, primase, DNA polymerases, and ligase.",
+    "Describe the formation of the lagging strand, including the synthesis and ligation of Okazaki fragments.",
+    "Compare and contrast the process of DNA replication in prokaryotic and eukaryotic cells.",
+    "Explain the role of telomeres in eukaryotic DNA replication and the concept of the end-replication problem."
+  ],
+  "simpleExplanation": {
+    "title": "The DNA Photocopier",
+    "summary": "DNA replication is the cell's process for making an identical copy of its entire genome before dividing. Each strand of the original DNA molecule serves as a template to build a new, complementary strand.",
+    "analogy": "Imagine a long, zipped-up jacket. To copy it, you first unzip it down the middle (helicase). Now you have two separate sides. A fast worker starts at one end of a side and sews a new half on continuously (leading strand). On the other side, a different worker has to sew in short segments, working backwards from the zipper, then stitch those segments together (lagging strand). The result is two complete, identical jackets.",
+    "steps": [
+      "The enzyme helicase unwinds and separates the two DNA strands at an origin of replication, creating a replication fork.",
+      "On the leading strand, DNA polymerase III continuously synthesises a new complementary strand in the 5' to 3' direction, moving towards the replication fork.",
+      "On the lagging strand, primase creates short RNA primers. DNA polymerase III then adds nucleotides in short sections called Okazaki fragments, also in the 5' to 3' direction, but moving away from the fork.",
+      "DNA polymerase I replaces the RNA primers with DNA, and the enzyme DNA ligase joins the Okazaki fragments together, creating a continuous strand."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Helicase",
+      "back": "The enzyme that unwinds the DNA double helix at the replication fork by breaking the hydrogen bonds between complementary base pairs. It requires ATP for energy."
+    },
+    {
+      "front": "DNA Polymerase III",
+      "back": "The primary enzyme for synthesising new DNA. It adds deoxynucleoside triphosphates (dNTPs) to the 3' end of a growing DNA strand, moving in a 5' to 3' direction. It also has a proofreading function."
+    },
+    {
+      "front": "DNA Polymerase I",
+      "back": "An enzyme that removes the RNA primers from the lagging strand (and the single primer from the leading strand) and replaces them with DNA nucleotides."
+    },
+    {
+      "front": "Primase",
+      "back": "An RNA polymerase that synthesises a short RNA primer on the DNA template. This primer provides the necessary 3'-OH group for DNA polymerase III to begin synthesis."
+    },
+    {
+      "front": "DNA Ligase",
+      "back": "The enzyme that joins the sugar-phosphate backbones of DNA fragments, primarily by forming a phosphodiester bond to connect Okazaki fragments on the lagging strand."
+    },
+    {
+      "front": "Okazaki fragment",
+      "back": "Short, newly synthesised DNA fragments that are formed on the lagging template strand during DNA replication. They are later joined together by DNA ligase."
+    },
+    {
+      "front": "Leading Strand vs. Lagging Strand",
+      "back": "The leading strand is synthesised continuously towards the replication fork. The lagging strand is synthesised discontinuously in fragments (Okazaki fragments) away from the replication fork."
+    },
+    {
+      "front": "Semi-conservative replication",
+      "back": "The mechanism of DNA replication where each new DNA molecule consists of one original (parental) strand and one newly synthesised strand."
+    },
+    {
+      "front": "Telomere",
+      "back": "A region of repetitive nucleotide sequences at each end of a eukaryotic chromosome. It protects the end of the chromosome from deterioration or fusion with neighbouring chromosomes."
+    },
+    {
+      "front": "Common Trap: Why is an RNA primer needed?",
+      "back": "DNA polymerases (I and III) cannot initiate synthesis on a bare template strand. They can only add nucleotides to a pre-existing 3'-hydroxyl (-OH) group. Primase, an RNA polymerase, can start a new chain from scratch."
+    },
+    {
+      "front": "Common Trap: Distinguishing DNA Pol I and Pol III",
+      "back": "Pol III is the main 'builder', responsible for synthesising most of the new DNA. Pol I is the 'repair person', removing RNA primers and filling in the gaps with DNA."
+    },
+    {
+      "front": "Origin of Replication (ori)",
+      "back": "A specific sequence in a genome at which replication is initiated. Prokaryotes typically have one circular ori, while eukaryotes have multiple linear origins."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is an RNA primer used instead of a DNA primer?",
+      "a": "DNA polymerases are unable to start synthesising a chain from scratch; they can only add nucleotides to an existing 3'-OH group. Primase, which is a type of RNA polymerase, can initiate synthesis de novo (from nothing). The short RNA sequence it lays down provides the necessary 3'-OH starting block for DNA polymerase to take over."
+    },
+    {
+      "q": "What happens to the telomeres at the ends of chromosomes as a cell ages?",
+      "a": "In most somatic (body) cells, the telomeres shorten slightly with each round of DNA replication due to the end-replication problem on the lagging strand. This progressive shortening is linked to cellular ageing (senescence) and limits the number of times a cell can divide. In contrast, stem cells, germ cells, and cancer cells express an enzyme called telomerase, which can extend the telomeres, allowing for continued division."
+    },
+    {
+      "q": "Is DNA replication happening all the time in a cell?",
+      "a": "No, DNA replication is a tightly controlled process that occurs only during a specific phase of the cell cycle, known as the S phase (Synthesis phase), which is part of interphase. This ensures that the DNA is duplicated exactly once before the cell proceeds to mitosis (M phase) and divides."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Before a cell can divide, it must create a complete and faithful copy of its genetic blueprint. This process, known as DNA replication, is fundamental to heredity and the continuity of life. The mechanism is described as semi-conservative, a concept elegantly demonstrated by Meselson and Stahl. This lesson delves into the molecular machinery that carries out this remarkable feat, highlighting the enzymes, the challenges posed by the DNA structure, and the differences between prokaryotic and eukaryotic systems."
+    },
+    {
+      "type": "heading",
+      "content": "The Molecular Toolkit for Replication"
+    },
+    {
+      "type": "text",
+      "content": "DNA replication is orchestrated by a suite of highly specialised enzymes, each with a distinct role. Think of it as a biological construction site with a team of workers. The key players include:\n\n*   **Helicase:** The 'unzipper'. It unwinds the double helix, separating the two parental strands.\n*   **DNA Gyrase (a type of Topoisomerase):** Relieves the torsional strain that builds up ahead of the replication fork as DNA unwinds.\n*   **Single-Strand Binding (SSB) Proteins:** Bind to the separated strands to prevent them from re-annealing.\n*   **Primase:** The 'primer'. It synthesises a short RNA primer to provide a starting point (a 3'-OH group) for DNA polymerase.\n*   **DNA Polymerase III:** The 'master builder'. It adds nucleotides to the new strand, synthesising DNA in the 5' to 3' direction.\n*   **DNA Polymerase I:** The 'clean-up crew'. It removes the RNA primers and replaces them with DNA.\n*   **DNA Ligase:** The 'glue'. It joins DNA fragments (Okazaki fragments) by forming phosphodiester bonds."
+    },
+    {
+      "type": "heading",
+      "content": "Antiparallel Strands and Asymmetric Synthesis"
+    },
+    {
+      "type": "text",
+      "content": "The two strands of a DNA molecule are antiparallel, meaning they run in opposite directions. One strand runs 5' to 3', while its complement runs 3' to 5'. This structural feature has a profound consequence for replication because DNA polymerase III can only synthesise DNA by adding nucleotides to the 3' end of a growing chain. Therefore, it can only synthesise in the 5' to 3' direction."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Leading Strand:** The template strand that runs 3' to 5' towards the replication fork allows for continuous synthesis of a new strand in the 5' to 3' direction. Only one primer is needed to start.",
+        "**Lagging Strand:** The template strand that runs 5' to 3' towards the fork must be synthesised discontinuously. Synthesis occurs in short segments (Okazaki fragments) in the 5' to 3' direction, but moving away from the fork. Each fragment requires its own RNA primer."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Describe the synthesis of the lagging strand during DNA replication. [5 marks]",
+      "solution": "1. As helicase unwinds the DNA, the lagging strand template is exposed in the 5' to 3' direction. \n2. Primase synthesises multiple short RNA primers at intervals along the template strand. \n3. DNA polymerase III binds to the RNA primer and synthesises a short stretch of DNA, called an Okazaki fragment, in the 5' to 3' direction, moving away from the replication fork until it reaches the next primer. \n4. DNA polymerase I then removes the RNA primer from the preceding Okazaki fragment and replaces it with DNA nucleotides. \n5. Finally, DNA ligase forms a phosphodiester bond to join the sugar-phosphate backbones of the adjacent Okazaki fragments, creating a continuous DNA strand."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, always specify the direction of synthesis (5' to 3') for DNA polymerase activity. When drawing diagrams of replication forks, clearly label the 5' and 3' ends of all template and newly synthesised strands. Marks are frequently lost for ambiguity in directionality."
+    },
+    {
+      "type": "heading",
+      "content": "Prokaryotic vs. Eukaryotic Replication"
+    },
+    {
+      "type": "text",
+      "content": "While the fundamental mechanism of replication is conserved, there are significant differences between prokaryotes and eukaryotes, largely due to the differences in their chromosome structure and cellular organisation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Origin of Replication:** Prokaryotes have a single origin on their circular chromosome. Eukaryotes have multiple origins on each linear chromosome, allowing for faster replication of their much larger genomes.",
+        "**Chromosome Structure:** Prokaryotic DNA is a small, circular molecule. Eukaryotic DNA is organised into multiple, large, linear chromosomes complexed with histone proteins.",
+        "**Enzymes:** The enzymes are functionally analogous but are different proteins. For example, eukaryotes have a wider variety of DNA polymerases (e.g., Pol δ and Pol ε for elongation).",
+        "**End-Replication Problem:** The ends of linear eukaryotic chromosomes (telomeres) pose a problem. On the lagging strand, the final RNA primer cannot be replaced with DNA, leading to a shortening of the chromosome with each replication cycle. Prokaryotes, with their circular DNA, do not have this issue."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Compare and contrast DNA replication in prokaryotes and eukaryotes. [4 marks]",
+      "solution": "A table is an excellent way to structure this answer.\n\n| Feature | Prokaryotes | Eukaryotes | Mark |\n| :--- | :--- | :--- | :--- |\n| **Similarity** | Both use a semi-conservative mechanism with leading and lagging strands. | Both use a semi-conservative mechanism with leading and lagging strands. | 1 |\n| **Difference 1: Origin** | Single origin of replication. | Multiple origins of replication per chromosome. | 1 |\n| **Difference 2: Chromosome** | Replicates a circular chromosome. | Replicates linear chromosomes. | 1 |\n| **Difference 3: Telomeres** | No end-replication problem. | Telomeres shorten with each replication cycle due to the end-replication problem. | 1 |\n\n*Award 1 mark for a valid similarity. Award up to 3 marks for valid differences.*"
+    },
+    {
+      "type": "examTip",
+      "content": "The 'end-replication problem' is a key concept unique to eukaryotes and a common high-level question topic. Be prepared to explain why it occurs (removal of the final RNA primer on the lagging strand) and its consequence (chromosome shortening), linking it to the role of telomeres and the enzyme telomerase (which is active in stem cells and cancer cells)."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge of DNA Replication",
+      "href": "/mark?subject=ib-biology-hl&topic=D1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "HHMI BioInteractive: DNA Replication (Advanced Detail)",
+          "href": "https://www.hhmi.org/biointeractive/dna-replication-advanced-detail"
+        },
+        {
+          "label": "Khan Academy: Molecular mechanism of DNA replication",
+          "href": "https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/replication/a/molecular-mechanism-of-dna-replication"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

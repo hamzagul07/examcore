@@ -16,9 +16,11 @@ import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import { createClient } from '@supabase/supabase-js'
 
-// Use the direct GEMINI_API_KEY path (free, gentler quota) instead of Vertex,
-// which throttles hard under burst tagging. Must be set before the env loader.
-process.env.USE_VERTEX_AI = 'false'
+// Default to the direct GEMINI_API_KEY path (free, but a hard DAILY cap). Pass
+// --vertex to use Vertex instead (draws on Cloud credits, NO daily cap — only a
+// per-minute rate quota that the write/read retries + low concurrency smooth over).
+// Must be set before the env loader so it isn't overridden by .env.local.
+if (!process.argv.includes('--vertex')) process.env.USE_VERTEX_AI = 'false'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 for (const line of readFileSync(join(ROOT, '.env.local'), 'utf8').split('\n')) {

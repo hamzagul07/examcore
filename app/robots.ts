@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/', '/blog/', '/courses/', '/mark', '/subjects/', '/past-papers/', '/tools/', '/guides/', '/feed.xml'],
+        allow: ['/', '/blog/', '/courses/', '/mark', '/subjects/', '/past-papers/', '/ib', '/ib/', '/tools/', '/guides/', '/feed.xml'],
         disallow: [
           '/api/',
           '/auth/callback',

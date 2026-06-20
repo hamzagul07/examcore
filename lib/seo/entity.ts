@@ -34,13 +34,15 @@ export const BRAND_ENTITY = {
   url: SITE_URL,
   email: CONTACT_EMAIL,
   description:
-    'Cambridge International A-Level and O-Level past-paper marking against real mark schemes.',
+    'Cambridge International A-Level and O-Level past-paper marking against real mark schemes, plus IB Diploma (IBDP) past papers and mark-scheme guidance.',
   founder: DEFAULT_BLOG_AUTHOR.name,
   areaServed: 'Worldwide',
   knowsAbout: [
     'Cambridge International Examinations',
+    'International Baccalaureate Diploma Programme',
     'A-Level past papers',
     'O-Level past papers',
+    'IB past papers',
     'Mark schemes',
     'Exam marking',
   ],

@@ -161,3 +161,24 @@ export function resolveMarkingTypeForPaper(paperCode: string): MarkingStyle {
   if (!parsed) return 'point_based'
   return getComponentMarkingType(parsed.subjectCode, parsed.component)
 }
+
+// ─── IB Diploma component → marking-style map ───────────────────────────────
+// Keyed `${subjectSlug}/${paperName}` (e.g. "biology-hl/Paper 1"). Used as the
+// default hint during IB extraction; per-question marking_type from the scheme
+// still wins. IB sciences: Paper 1 = MCQ; Papers 2/3 = mixed short + extended.
+const IB_COMPONENT_OVERRIDES: Record<string, MarkingStyle> = {
+  'biology-hl/Paper 1': 'mcq',
+  'biology-hl/Paper 2': 'mixed',
+  'biology-hl/Paper 3': 'mixed',
+  'biology-sl/Paper 1': 'mcq',
+  'biology-sl/Paper 2': 'mixed',
+  'biology-sl/Paper 3': 'mixed',
+}
+
+export function getIbComponentMarkingType(slug: string, paper: string): MarkingStyle {
+  const key = `${slug}/${paper}`
+  if (IB_COMPONENT_OVERRIDES[key]) return IB_COMPONENT_OVERRIDES[key]
+  if (/paper\s*1/i.test(paper) && /^(biology|chemistry|physics)-/.test(slug)) return 'mcq'
+  if (/^maths-/.test(slug)) return 'point_based'
+  return 'mixed'
+}

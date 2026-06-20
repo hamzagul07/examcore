@@ -5,7 +5,11 @@ import {
   buildPointBasedMarkingPrompt,
   buildLorMarkingPrompt,
   buildMcqMarkingPrompt,
+  buildIbPointBasedMarkingPrompt,
+  buildIbLorMarkingPrompt,
 } from './prompts'
+
+const IB_BOARD = 'IB Diploma'
 import type { MarkSchemeRow } from './types'
 import { parsePaperCode } from './component-types'
 import { buildSyllabusTaggingBlock } from '@/lib/syllabi'
@@ -29,13 +33,14 @@ export function buildMarkingPrompt(params: {
     isOfficial,
   } = params
 
+  const isIb = markScheme?.board === IB_BOARD
   const parsed = markScheme?.paper_code
     ? parsePaperCode(markScheme.paper_code)
     : null
   const effectiveCode = parsed?.subjectCode ?? subjectCode
-  const is9709 = effectiveCode === '9709'
+  const is9709 = !isIb && effectiveCode === '9709'
   const syllabusBlock =
-    effectiveCode && !is9709
+    effectiveCode && !is9709 && !isIb
       ? buildSyllabusTaggingBlock(effectiveCode)
       : undefined
 
@@ -69,6 +74,16 @@ export function buildMarkingPrompt(params: {
 
   const effectiveStyle =
     (markScheme.mark_scheme?.type as MarkingStyle) || markingStyle
+
+  if (isIb) {
+    if (effectiveStyle === 'mcq') {
+      return buildMcqMarkingPrompt(subjectName, msJson, ocrText, total)
+    }
+    if (effectiveStyle === 'level_of_response') {
+      return buildIbLorMarkingPrompt(subjectName, qText, total, msJson, ocrText)
+    }
+    return buildIbPointBasedMarkingPrompt(subjectName, qText, total, msJson, ocrText)
+  }
 
   if (effectiveStyle === 'mcq') {
     return buildMcqMarkingPrompt(subjectName, msJson, ocrText, total, syllabusBlock)

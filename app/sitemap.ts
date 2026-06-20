@@ -6,6 +6,7 @@ import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getMarkingSubjectCodes } from '@/lib/seo/programmatic-subjects'
 import { getPastPaperSubjectCodes } from '@/lib/seo/past-papers'
 import { getAllTopicQuestionParams } from '@/lib/seo/topic-questions'
+import { getIbSubjectSlugs } from '@/lib/ib/catalog'
 import { getCourseLessons, getCourseSubjectCodes } from '@/lib/courses'
 import { lessonLastModified } from '@/lib/courses/seo'
 
@@ -25,6 +26,9 @@ const STATIC_ROUTES = [
   { path: '/insights', priority: 0.87, changeFrequency: 'weekly' as const },
   { path: '/courses', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/past-papers', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/ib', priority: 0.88, changeFrequency: 'weekly' as const },
+  { path: '/ib/subjects', priority: 0.82, changeFrequency: 'monthly' as const },
+  { path: '/ib/past-papers', priority: 0.85, changeFrequency: 'weekly' as const },
   { path: '/tools/grade-boundary-calculator', priority: 0.82, changeFrequency: 'monthly' as const },
   { path: '/tools/command-words', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/join', priority: 0.5, changeFrequency: 'monthly' as const },
@@ -95,6 +99,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
+  const ibEntries: MetadataRoute.Sitemap = getIbSubjectSlugs().flatMap((slug) => [
+    {
+      url: `${base}/ib/subjects/${slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${base}/ib/past-papers/${slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+  ])
+
   const courseSubjectEntries: MetadataRoute.Sitemap = getCourseSubjectCodes().map(
     (code) => ({
       url: `${base}/courses/${code}`,
@@ -132,6 +151,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...subjectEntries,
     ...pastPaperEntries,
     ...topicQuestionEntries,
+    ...ibEntries,
     ...calculatorEntries,
     ...courseSubjectEntries,
     ...courseLessonEntries,

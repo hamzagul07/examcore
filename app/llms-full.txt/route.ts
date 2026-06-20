@@ -4,6 +4,7 @@ import { CONTENT_CLUSTERS } from '@/lib/seo/clusters'
 import { getAllBlogSlugs } from '@/lib/blog'
 import { getPastPaperSubjects } from '@/lib/seo/past-papers'
 import { getAllTopicQuestionParams } from '@/lib/seo/topic-questions'
+import { getIbSubjects } from '@/lib/ib/catalog'
 
 /** Expanded llms.txt — chunk-friendly URL index for RAG / AI crawlers. */
 export async function GET() {
@@ -12,6 +13,7 @@ export async function GET() {
   const blogs = getAllBlogSlugs()
   const pastPaperSubjects = getPastPaperSubjects()
   const topicParams = getAllTopicQuestionParams()
+  const ibSubjects = getIbSubjects()
 
   const lines = [
     `# ${SITE_NAME} — full corpus index`,
@@ -48,6 +50,14 @@ export async function GET() {
           ...topicParams.map(({ code, topic }) => `- ${base}/past-papers/${code}/${topic}`),
         ]
       : []),
+    '',
+    '## IB Diploma (IBDP) — past papers & mark schemes by HL/SL subject',
+    `- ${base}/ib — IB Diploma past papers & mark schemes hub`,
+    `- ${base}/ib/subjects — all IB subjects (HL & SL)`,
+    `- ${base}/ib/past-papers — IB past papers directory`,
+    ...ibSubjects.map(
+      (s) => `- ${base}/ib/past-papers/${s.slug} — IB ${s.name} ${s.level} past papers`
+    ),
     '',
     '## Blog articles',
     ...blogs.map((slug) => `- ${base}/blog/${slug}`),

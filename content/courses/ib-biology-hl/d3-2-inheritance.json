@@ -1,0 +1,192 @@
+{
+  "slug": "d3-2-inheritance",
+  "topicCode": "D3.2",
+  "title": "Inheritance",
+  "paper": "P2",
+  "paperName": "Biology HL",
+  "status": "premium",
+  "summary": "This lesson explores inheritance patterns that go beyond simple Mendelian genetics. It covers continuous and discontinuous variation, the mechanisms of polygenic inheritance, and gene linkage. A key focus is the application of the chi-squared test to analyse genetic data and test hypotheses about inheritance.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Distinguish between continuous and discontinuous variation, linking them to monogenic and polygenic inheritance.",
+    "Explain polygenic inheritance using the example of human skin colour or height.",
+    "Calculate and interpret the results of the chi-squared test to evaluate genetic hypotheses.",
+    "Analyse dihybrid cross data to identify gene linkage and calculate recombination frequencies."
+  ],
+  "simpleExplanation": {
+    "title": "Genetics: The Full Picture",
+    "summary": "We explore how most traits are not simple on/off switches but are shaped by multiple genes and the environment. You'll learn how to statistically test genetic theories and understand what happens when genes are physically connected on a chromosome.",
+    "analogy": "Imagine baking a cake. A simple Mendelian trait is like a light switch: the cake is either chocolate or vanilla (discontinuous). Polygenic inheritance is like the cake's overall flavour complexity, resulting from mixing multiple ingredients (genes for flour, sugar, eggs, spices) in varying amounts. The final taste is also affected by the oven's temperature and baking time (the environment), creating a continuous range of outcomes.",
+    "steps": [
+      "First, identify the inheritance pattern by observing the phenotypes. Are they in discrete categories (discontinuous variation, likely monogenic) or a smooth range (continuous variation, likely polygenic)?",
+      "Next, for a genetic cross, formulate a null hypothesis ($H_0$). This is a testable statement, such as 'the genes for wing shape and body colour assort independently' with an expected 9:3:3:1 ratio.",
+      "Then, perform the chi-squared test. Use the formula $χ^2 = Σ((O-E)^2/E)$ to calculate a value that quantifies the deviation between your observed (O) and expected (E) results.",
+      "Finally, interpret the result. Compare your calculated $χ^2$ value to the critical value from a table. If your value is larger, you reject the null hypothesis, indicating a significant difference, possibly due to gene linkage."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is discontinuous variation?",
+      "back": "A type of variation where individuals fall into a limited number of distinct categories or classes for a specific trait. It is typically controlled by a single gene (monogenic). Example: ABO blood groups."
+    },
+    {
+      "front": "What is continuous variation?",
+      "back": "A type of variation where a characteristic shows a wide range of intermediate phenotypes between two extremes. It is controlled by multiple genes (polygenic) and is often influenced by environmental factors. Example: human height."
+    },
+    {
+      "front": "Define polygenic inheritance.",
+      "back": "A pattern of inheritance where a single characteristic is controlled by the additive effects of two or more genes at different loci. This results in continuous variation."
+    },
+    {
+      "front": "What is the purpose of the null hypothesis ($H_0$) in a chi-squared test for genetics?",
+      "back": "It proposes that there is no statistically significant difference between the observed results of a cross and the expected results based on a specific genetic model (e.g., Mendelian independent assortment)."
+    },
+    {
+      "front": "What does the chi-squared ($χ^2$) test measure?",
+      "back": "It is a statistical test that measures the 'goodness of fit' between observed and expected categorical data. In genetics, it determines if deviations from an expected ratio are due to random chance or a significant underlying factor like gene linkage."
+    },
+    {
+      "front": "How do you calculate degrees of freedom (df) for a chi-squared test in genetics?",
+      "back": "Degrees of freedom are calculated as the number of phenotypic classes (n) minus one. Formula: df = n - 1."
+    },
+    {
+      "front": "What is the significance of the critical value in a $χ^2$ test?",
+      "back": "The critical value is a threshold from a probability table (usually at p=0.05). If your calculated $χ^2$ value is greater than the critical value, you reject the null hypothesis as the deviation is statistically significant."
+    },
+    {
+      "front": "Define gene linkage.",
+      "back": "The tendency for genes located on the same chromosome to be inherited together. Linked genes do not assort independently during meiosis, leading to a higher proportion of parental phenotypes in the offspring."
+    },
+    {
+      "front": "What are recombinants in the context of linked genes?",
+      "back": "Offspring that have a different combination of alleles than either of the original parents. They are formed as a result of crossing over between homologous chromosomes during prophase I of meiosis, which separates linked genes."
+    },
+    {
+      "front": "How is recombination frequency (RF) calculated and what does it indicate?",
+      "back": "RF = (Number of recombinant offspring / Total number of offspring) × 100%. It represents the frequency of crossing over between two linked genes and is used as a measure of the physical distance between them on a chromosome (1% RF = 1 map unit or centimorgan)."
+    },
+    {
+      "front": "What is a test cross and why is it useful for studying linkage?",
+      "back": "A cross between an individual with an unknown genotype (usually heterozygous for the genes of interest) and a homozygous recessive individual. The phenotypes of the offspring directly reflect the gametes produced by the heterozygous parent, making it easy to identify parental and recombinant types."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between polygenic inheritance and multiple alleles?",
+      "a": "Polygenic inheritance involves multiple genes at different loci contributing to a single trait (e.g., skin colour, height), resulting in continuous variation. Multiple alleles involve a single gene that has more than two possible alleles within a population (e.g., the ABO blood group gene has three alleles: $I^A$, $I^B$, and $i$), resulting in discontinuous variation."
+    },
+    {
+      "q": "Why is the p-value of 0.05 used as the standard significance level in biology?",
+      "a": "The p=0.05 level is a scientific convention. It establishes a 95% confidence level in our conclusion. It means we are willing to accept a 5% probability that we have incorrectly rejected the null hypothesis when it was actually true (this is called a Type I error). It provides a reasonable balance between being too strict and missing a real effect, and being too lenient and claiming an effect that is just due to random chance."
+    },
+    {
+      "q": "If two genes are on the same chromosome, does that automatically mean they are linked?",
+      "a": "Genetically, they are physically linked. However, for linkage to be *observed* in the results of a cross (i.e., RF < 50%), they must be relatively close together. If two genes are very far apart on the same large chromosome, crossing over will occur between them so frequently that they will assort independently, just as if they were on separate chromosomes. In this case, the recombination frequency would be 50%."
+    },
+    {
+      "q": "Can the chi-squared test prove that genes are linked?",
+      "a": "Strictly speaking, the chi-squared test cannot 'prove' linkage. What it does is provide statistical evidence to reject the null hypothesis of independent assortment. If the deviation from the expected 9:3:3:1 (or 1:1:1:1) ratio is statistically significant, gene linkage is the most likely biological explanation, but it's not absolute proof on its own."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "While Gregor Mendel's work laid the foundation of genetics, the inheritance of many traits is far more complex. In this topic, we move beyond simple dominant-recessive patterns to explore the nuances of real-world genetics. We will investigate how multiple genes can influence a single trait, how the environment plays a role, and what happens when genes are physically located on the same chromosome. Crucially, we will learn how to use statistical analysis to test our genetic hypotheses and draw valid conclusions from experimental data."
+    },
+    {
+      "type": "heading",
+      "content": "Continuous vs. Discontinuous Variation"
+    },
+    {
+      "type": "text",
+      "content": "Genetic variation within a population can be classified into two main types. **Discontinuous variation** is where traits fall into distinct, non-overlapping categories. This is characteristic of traits controlled by a single gene with a few different alleles, such as human ABO blood groups (A, B, AB, or O) or the ability to roll one's tongue. In contrast, **continuous variation** shows a complete range of measurements from one extreme to another, with no clear-cut divisions. Examples include human height, weight, and skin colour. When plotted on a graph, continuous variation typically produces a bell-shaped curve, or normal distribution, with most individuals clustering around the mean value."
+    },
+    {
+      "type": "heading",
+      "content": "Polygenic Inheritance"
+    },
+    {
+      "type": "text",
+      "content": "Continuous variation is the result of **polygenic inheritance**, where a single characteristic is controlled by two or more genes. Each gene involved has an additive effect on the phenotype. A classic example is human skin colour, which is determined by the amount of melanin pigment produced. Several genes contribute to melanin production. For each gene, there are alleles that contribute to melanin production (contributing alleles) and alleles that do not. An individual with a high number of contributing alleles across all relevant genes will have darker skin, while an individual with few contributing alleles will have lighter skin. This additive effect of multiple genes creates the continuous spectrum of skin tones we see in the human population."
+    },
+    {
+      "type": "heading",
+      "content": "The Chi-Squared ($χ^2$) Test in Genetics"
+    },
+    {
+      "type": "text",
+      "content": "The chi-squared test is an essential statistical tool for geneticists. It allows us to compare the observed frequencies of phenotypes from a genetic cross with the frequencies we would expect based on a specific hypothesis (e.g., Mendelian inheritance). The test determines if any difference between the observed (O) and expected (E) values is statistically significant or simply due to random chance. This is crucial for determining if genes assort independently or if they are linked."
+    },
+    {
+      "type": "formula",
+      "content": "χ² = Σ \\frac{(O - E)²}{E}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "First, state a clear null hypothesis ($H_0$), which assumes no significant difference between observed and expected data (e.g., 'the data fits a 9:3:3:1 ratio').",
+        "Calculate the degrees of freedom (df), which is the number of phenotypic classes minus one (df = n - 1).",
+        "The standard significance level (p-value) in biology is 0.05. This means we accept a 5% chance of being wrong when rejecting the null hypothesis.",
+        "Compare the calculated $χ^2$ value to the critical value found in a probability table for the correct df and p=0.05.",
+        "If $χ^2$ > critical value, reject $H_0$. The difference is significant.",
+        "If $χ^2$ ≤ critical value, accept $H_0$. Any difference is likely due to chance."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In pea plants, tall (T) is dominant to dwarf (t). A heterozygous tall plant was self-pollinated, producing 200 offspring. 160 were tall and 40 were dwarf. The expected Mendelian ratio is 3:1. Use a chi-squared test to determine if these results are consistent with Mendelian inheritance. The critical value for 1 degree of freedom at p=0.05 is 3.84.",
+      "solution": "1.  **Hypotheses:**\n    *   $H_0$ (Null Hypothesis): There is no significant difference between the observed and expected results; the trait follows a 3:1 Mendelian ratio.\n    *   $H_A$ (Alternative Hypothesis): There is a significant difference.\n\n2.  **Calculate Expected (E) values:**\n    *   Total offspring = 200.\n    *   Expected tall (3/4) = 0.75 × 200 = 150.\n    *   Expected dwarf (1/4) = 0.25 × 200 = 50.\n\n3.  **Calculate the $χ^2$ value:**\n    *   Create a table for clarity:\n| Phenotype | Observed (O) | Expected (E) | O - E | (O - E)² | (O - E)²/E |\n|-----------|--------------|--------------|-------|----------|-------------|\n| Tall      | 160          | 150          | 10    | 100      | 100/150 = 0.67 |\n| Dwarf     | 40           | 50           | -10   | 100      | 100/50 = 2.00 |\n\n    *   $χ^2 = Σ \\frac{(O - E)²}{E} = 0.67 + 2.00 = 2.67$\n\n4.  **Conclusion:**\n    *   Degrees of freedom (df) = number of classes - 1 = 2 - 1 = 1.\n    *   The calculated $χ^2$ value (2.67) is less than the critical value (3.84) for df=1 at p=0.05.\n    *   Therefore, we accept the null hypothesis. The observed results are not significantly different from the expected 3:1 ratio. The deviation is likely due to random chance."
+    },
+    {
+      "type": "heading",
+      "content": "Gene Linkage and Recombination"
+    },
+    {
+      "type": "text",
+      "content": "According to Mendel's Law of Independent Assortment, alleles for different genes are inherited independently of one another. However, this only holds true for genes located on different chromosomes or very far apart on the same chromosome. Genes that are located close together on the same chromosome are said to be **linked**. They tend to be inherited as a single unit because they are physically connected. This linkage can be broken by crossing over during prophase I of meiosis, which can swap segments of homologous chromosomes. This process creates new combinations of alleles, resulting in **recombinant** gametes. The frequency of recombination between two linked genes is proportional to the physical distance between them."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "In a dihybrid cross involving linked genes, the parental (non-recombinant) phenotypes appear in the offspring at a much higher frequency than expected.",
+        "Recombinant phenotypes appear at a much lower frequency than expected.",
+        "A test cross (heterozygote × homozygous recessive) is the standard method for detecting linkage and measuring recombination frequency.",
+        "Recombination Frequency (RF) is calculated as: $RF = \\frac{\\text{Number of recombinant offspring}}{\\text{Total number of offspring}} \\times 100\\%$",
+        "An RF of < 50% indicates gene linkage. An RF of 50% indicates independent assortment."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When answering a chi-squared question, structure is key to gaining full marks. Always explicitly state your null hypothesis, show your calculations for expected values, present the chi-squared calculation clearly (using a table is highly recommended), state the degrees of freedom and the critical value, and write a final concluding sentence that directly compares your calculated $χ^2$ to the critical value and accepts or rejects the null hypothesis in the biological context of the question."
+    },
+    {
+      "type": "workedExample",
+      "question": "In *Drosophila*, the gene for body colour (grey, B, is dominant to black, b) and wing shape (normal, Vg, is dominant to vestigial, vg) are linked. A fly heterozygous for both traits was test-crossed with a black-bodied, vestigial-winged fly. The following offspring were produced:\n*   Grey body, normal wings: 410\n*   Black body, vestigial wings: 422\n*   Grey body, vestigial wings: 82\n*   Black body, normal wings: 86\n\nCalculate the recombination frequency between these two genes.",
+      "solution": "1.  **Identify Parental and Recombinant Phenotypes:**\n    *   A test cross involves a homozygous recessive parent (bb vgvg), which only produces (b vg) gametes.\n    *   The phenotypes of the offspring therefore reveal the gametes produced by the heterozygous parent.\n    *   The most numerous offspring classes represent the parental gamete combinations: Grey/Normal (BVg) and Black/Vestigial (bvg). These are the non-recombinant types.\n    *   The least numerous classes represent gametes formed by crossing over: Grey/Vestigial (Bvg) and Black/Normal (bVg). These are the recombinant types.\n\n2.  **Count the Offspring:**\n    *   Number of recombinant offspring = 82 (Grey/Vestigial) + 86 (Black/Normal) = 168.\n    *   Total number of offspring = 410 + 422 + 82 + 86 = 1000.\n\n3.  **Calculate Recombination Frequency (RF):**\n    *   $RF = \\frac{\\text{Number of recombinant offspring}}{\\text{Total number of offspring}} \\times 100\\%$\n    *   $RF = \\frac{168}{1000} \\times 100\\% = 16.8\\%$\n\n4.  **Conclusion:**\n    *   The recombination frequency between the genes for body colour and wing shape is 16.8%. This indicates the genes are linked and are approximately 16.8 map units (centimorgans) apart on the chromosome."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge of complex inheritance patterns",
+      "href": "/mark?subject=ib-biology-hl&topic=D3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Chi-Squared Calculator",
+          "href": "https://www.graphpad.com/quickcalcs/chisquared1.cfm"
+        },
+        {
+          "label": "Khan Academy: Polygenic Inheritance and Environmental Effects",
+          "href": "https://www.khanacademy.org/science/ap-biology/heredity/non-mendelian-genetics/a/polygenic-inheritance-and-environmental-effects"
+        },
+        {
+          "label": "Nature Education: Gene Linkage and Genetic Mapping",
+          "href": "https://www.nature.com/scitable/topicpage/thomas-hunt-morgan-genetic-recombination-and-gene-496/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

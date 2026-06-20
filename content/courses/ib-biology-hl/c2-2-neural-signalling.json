@@ -1,0 +1,193 @@
+{
+  "slug": "c2-2-neural-signalling",
+  "topicCode": "C2.2",
+  "title": "Neural signalling",
+  "paper": "P2",
+  "paperName": "Biology HL",
+  "status": "premium",
+  "summary": "This lesson details the mechanisms of neural signalling, a cornerstone of neurobiology. It covers the establishment of the resting potential, the generation and propagation of action potentials, and the process of chemical synaptic transmission. Emphasis is placed on the roles of ion channels, pumps, and neurotransmitters in this rapid communication system.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Explain the establishment of resting potential in a neuron, including the roles of the sodium-potassium pump and ion channels.",
+    "Describe the generation of an action potential, including threshold potential, depolarisation, repolarisation, and the refractory period.",
+    "Analyse the propagation of nerve impulses, comparing continuous conduction with saltatory conduction in myelinated axons.",
+    "Outline the process of synaptic transmission, including the role of neurotransmitters and receptors."
+  ],
+  "simpleExplanation": {
+    "title": "The Neuron's Electrical Relay",
+    "summary": "Neurons transmit signals using a rapid, temporary change in electrical charge called an action potential. This electrical signal travels down the axon and is then converted into a chemical signal to cross the gap to the next neuron.",
+    "analogy": "Imagine a Mexican wave in a giant sports stadium. The wave travels all the way around the stadium, but each individual person only stands up and sits down in their spot. Similarly, an action potential travels down a neuron's axon, but it's just a wave of ions moving in and out of the membrane at each point along the way.",
+    "steps": [
+      "A neuron at rest is like a charged battery. The sodium-potassium pump actively maintains a negative charge inside the axon (-70mV), known as the resting potential.",
+      "A stimulus triggers the opening of voltage-gated sodium channels. If the stimulus is strong enough to reach a 'threshold' level, a massive influx of positive sodium ions causes a rapid reversal of charge called depolarisation.",
+      "This depolarisation triggers the next segment of the axon to do the same, creating a self-propagating wave of electrical activity—the action potential—that travels down the axon.",
+      "At the axon terminal, the electrical signal causes the release of chemical messengers (neurotransmitters) into a tiny gap (the synapse), which then signal the next neuron to fire."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is resting potential?",
+      "back": "The potential difference across the membrane of a neuron when it is not firing an impulse. It is typically around -70mV, with the inside of the axon being negative relative to the outside."
+    },
+    {
+      "front": "What is the role of the sodium-potassium pump in maintaining resting potential?",
+      "back": "It uses active transport (ATP) to pump 3 Na+ ions out of the axon for every 2 K+ ions it pumps in. This creates concentration gradients and contributes to the net negative charge inside."
+    },
+    {
+      "front": "Define threshold potential.",
+      "back": "The minimum membrane potential that must be reached (approx. -55mV) for an action potential to be generated. It is the potential at which voltage-gated sodium channels are triggered to open."
+    },
+    {
+      "front": "What happens during depolarisation?",
+      "back": "If threshold is reached, voltage-gated Na+ channels open, causing a rapid influx of Na+ ions. This reverses the membrane potential, making the inside positive relative to the outside (up to approx. +30mV)."
+    },
+    {
+      "front": "What happens during repolarisation?",
+      "back": "Voltage-gated Na+ channels inactivate and voltage-gated K+ channels open. K+ ions diffuse out of the axon, causing the membrane potential to return to a negative value."
+    },
+    {
+      "front": "What is hyperpolarisation (or the refractory period)?",
+      "back": "A brief period after repolarisation where the membrane potential becomes more negative than the resting potential. This is because K+ channels are slow to close. It prevents the neuron from firing another action potential immediately."
+    },
+    {
+      "front": "What is saltatory conduction?",
+      "back": "The 'jumping' of an action potential from one node of Ranvier to the next in a myelinated axon. This is much faster than propagation in unmyelinated axons."
+    },
+    {
+      "front": "What is a synapse?",
+      "back": "The junction between two neurons, or between a neuron and an effector cell (like a muscle). It consists of the presynaptic terminal, the synaptic cleft, and the postsynaptic membrane."
+    },
+    {
+      "front": "Outline the role of Ca²⁺ ions in synaptic transmission.",
+      "back": "When an action potential arrives at the presynaptic terminal, it opens voltage-gated calcium channels. The influx of Ca²⁺ ions triggers the fusion of synaptic vesicles (containing neurotransmitters) with the presynaptic membrane, leading to exocytosis."
+    },
+    {
+      "front": "What determines if a postsynaptic neuron will fire an action potential?",
+      "back": "The summation of all excitatory (EPSPs) and inhibitory (IPSPs) postsynaptic potentials. If the net effect depolarises the postsynaptic membrane to its threshold potential, an action potential is generated."
+    },
+    {
+      "front": "How are neurotransmitters removed from the synaptic cleft?",
+      "back": "By enzymatic degradation (e.g., acetylcholinesterase breaking down acetylcholine) or by reuptake into the presynaptic terminal. This terminates the signal."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the action potential described as 'all-or-nothing'?",
+      "a": "Because the magnitude (size) of the action potential is always the same, regardless of the strength of the stimulus, as long as the stimulus is strong enough to reach the threshold potential. A stronger stimulus does not produce a 'bigger' action potential; instead, it increases the frequency (number) of action potentials fired."
+    },
+    {
+      "q": "What is the main difference between resting potential and an action potential?",
+      "a": "Resting potential is the stable, negative charge (-70mV) of an inactive neuron, maintained by the Na+/K+ pump and leak channels. An action potential is a brief, rapid, and large change in membrane potential (from -70mV to +30mV and back) that occurs when a neuron is stimulated, caused by the opening and closing of voltage-gated ion channels."
+    },
+    {
+      "q": "How does myelin actually speed up nerve impulse transmission?",
+      "a": "Myelin is a fatty substance that insulates the axon, preventing ions from flowing across the membrane. This means that the slow process of opening and closing ion channels only needs to happen at the uninsulated gaps, the nodes of Ranvier. The electrical current flows passively and very quickly under the myelin sheath to the next node, where the action potential is regenerated. This 'jumping' (saltatory conduction) is much faster than regenerating the action potential at every single point along an unmyelinated axon."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The nervous system is the body's high-speed communication network. To achieve this speed, its fundamental units, neurons, use a sophisticated system of electrical and chemical signalling. This lesson explores the ionic basis of these signals, from the resting state of a neuron to the transmission of a message across a synapse."
+    },
+    {
+      "type": "heading",
+      "content": "Establishing the Resting Potential"
+    },
+    {
+      "type": "text",
+      "content": "Before a neuron can send a signal, it must be in a state of readiness. This is the resting potential, a stable electrical potential difference across the axon membrane of approximately -70 millivolts (mV). This 'polarised' state is actively maintained by the cell."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sodium-Potassium ($Na^+$/$K^+$) Pump**: This transmembrane protein uses ATP to actively transport three $Na^+$ ions out of the axon for every two $K^+$ ions it pumps in. This establishes steep concentration gradients for both ions.",
+        "**Potassium ($K^+$) Leak Channels**: The membrane is highly permeable to $K^+$ ions due to numerous open $K^+$ channels. $K^+$ ions diffuse out of the axon down their concentration gradient, making the outside more positive and the inside more negative.",
+        "**Sodium ($Na^+$) Leak Channels**: The membrane is much less permeable to $Na^+$ ions. A small amount of $Na^+$ leaks into the axon, slightly counteracting the effect of $K^+$ efflux.",
+        "**Organic Anions**: Large, negatively charged proteins and other organic molecules are trapped inside the axon, contributing significantly to the negative internal charge."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Action Potential: An All-or-Nothing Signal"
+    },
+    {
+      "type": "text",
+      "content": "An action potential is a rapid, temporary, and self-propagating reversal of the membrane potential. It is an 'all-or-nothing' phenomenon: if the stimulus is strong enough to depolarise the membrane to a threshold potential (around -55 mV), a full action potential is generated. If the threshold is not reached, nothing happens."
+    },
+    {
+      "type": "workedExample",
+      "question": "The diagram shows the change in membrane potential during an action potential. \n\n(a) State the value of the resting potential shown in the diagram. [1]\n\n(b) Explain the movement of ions that causes the change in potential between 1 ms and 2 ms (depolarisation). [3]\n\n(c) Identify the process occurring between 2 ms and 3 ms. [1]",
+      "solution": "*(A diagram would typically be provided, showing potential rising from -70mV to +30mV and then falling back down)*\n\n**(a)** -70 mV [1]\n\n**(b)**\n1. A stimulus causes the membrane to reach the threshold potential (-55 mV).\n2. This triggers the opening of voltage-gated sodium ($Na^+$) channels.\n3. $Na^+$ ions flood into the axon down their concentration and electrical gradients, causing the rapid depolarisation of the membrane to approximately +30 mV. [3]\n\n**(c)** Repolarisation. [1]"
+    },
+    {
+      "type": "examTip",
+      "content": "Be precise with your terminology. Distinguish between 'leak channels' (always open, maintain resting potential) and 'voltage-gated channels' (open/close in response to potential changes, cause action potential). Stating 'sodium channels open' is too vague; specify 'voltage-gated sodium channels'."
+    },
+    {
+      "type": "heading",
+      "content": "Propagation and Saltatory Conduction"
+    },
+    {
+      "type": "text",
+      "content": "Once generated, the action potential must travel along the axon. The influx of $Na^+$ ions at one point creates a 'local current' that depolarises the adjacent region of the membrane to its threshold, triggering a new action potential there. This process repeats along the axon. In myelinated axons, this process is dramatically sped up. The myelin sheath acts as an electrical insulator, preventing ion flow across the membrane except at the gaps, known as nodes of Ranvier. The action potential effectively 'jumps' from node to node, a process called saltatory conduction, which is significantly faster and more energy-efficient than continuous conduction in unmyelinated axons."
+    },
+    {
+      "type": "heading",
+      "content": "Synaptic Transmission: From Electrical to Chemical"
+    },
+    {
+      "type": "text",
+      "content": "When the action potential reaches the axon terminal, it must be transmitted to the next neuron across a specialised junction called a synapse. As neurons are not physically connected, the signal is converted from an electrical form (the action potential) to a chemical one (neurotransmitters)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Arrival of AP**: The action potential arrives at the presynaptic terminal.",
+        "**Calcium Influx**: Depolarisation opens voltage-gated calcium ($Ca^{2+}$) channels. $Ca^{2+}$ ions enter the terminal.",
+        "**Vesicle Fusion**: The influx of $Ca^{2+}$ causes synaptic vesicles, filled with neurotransmitters, to fuse with the presynaptic membrane.",
+        "**Neurotransmitter Release**: Neurotransmitters are released into the synaptic cleft by exocytosis.",
+        "**Receptor Binding**: Neurotransmitters diffuse across the cleft and bind to specific receptors on the postsynaptic membrane.",
+        "**Postsynaptic Potential**: This binding opens ligand-gated ion channels, causing a change in the postsynaptic membrane potential (either an excitatory or inhibitory postsynaptic potential).",
+        "**Signal Termination**: The neurotransmitter is quickly removed from the cleft by enzymes or reuptake pumps to end the signal."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Neonicotinoid insecticides are widely used in agriculture. They function by binding to acetylcholine receptors on the postsynaptic membrane of cholinergic synapses in insects. This binding is irreversible. Explain the consequences of neonicotinoid exposure on synaptic transmission in an insect. [4]",
+      "solution": "1. Neonicotinoids bind to the acetylcholine receptors on the postsynaptic membrane.\n2. This binding is irreversible, meaning the insecticide is not broken down or removed like acetylcholine.\n3. The receptors are therefore continuously stimulated, causing ligand-gated sodium channels to remain open.\n4. This leads to a permanent depolarisation of the postsynaptic neuron, preventing any further signals from being transmitted correctly.\n5. This results in paralysis and ultimately the death of the insect. [Max 4 marks]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Neural Signalling",
+      "href": "/mark?subject=ib-biology-hl&topic=C2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Animation of an Action Potential",
+          "href": "https://phet.colorado.edu/en/simulations/neuron"
+        },
+        {
+          "label": "In-depth video on Synaptic Transmission",
+          "href": "https://www.youtube.com/watch?v=L41TYx_2I3o"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Interactive Animation of an Action Potential",
+    "embedUrl": "https://phet.colorado.edu/sims/html/neuron/latest/neuron_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/neuron",
+    "hint": "Explore “Interactive Animation of an Action Potential” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

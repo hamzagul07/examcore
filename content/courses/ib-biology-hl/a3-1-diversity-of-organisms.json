@@ -1,0 +1,184 @@
+{
+  "slug": "a3-1-diversity-of-organisms",
+  "topicCode": "A3.1",
+  "title": "Diversity of organisms",
+  "paper": "P2",
+  "paperName": "Biology HL",
+  "status": "premium",
+  "summary": "This lesson explores the concept of biodiversity, breaking it down into its three core components: genetic, species, and ecosystem diversity. You will learn how to quantify and compare the biodiversity of different habitats using Simpson's reciprocal index, and understand the crucial link between biodiversity and ecosystem stability.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define biodiversity, including its components: species, genetic, and ecosystem diversity.",
+    "Calculate Simpson's reciprocal index of diversity from ecological data.",
+    "Analyse the relationship between biodiversity and ecosystem stability and resilience.",
+    "Interpret the value of Simpson's reciprocal index in comparing communities."
+  ],
+  "simpleExplanation": {
+    "title": "Biodiversity: Nature's Safety Net",
+    "summary": "Biodiversity is the variety of all life on Earth, from the tiniest genes to vast ecosystems. The more diverse an ecosystem is, the more stable and resilient it is to change.",
+    "analogy": "Imagine building a financial portfolio. If you invest all your money in one company's stock (low diversity), you risk losing everything if that company fails. But if you invest in many different types of stocks, bonds, and assets (high diversity), you are much more protected from a single failure. An ecosystem is the same: a wide variety of species provides a buffer against disturbances like disease or climate change, ensuring the whole system doesn't collapse.",
+    "steps": [
+      "First, grasp that biodiversity has three levels: the variety of genes within a species (genetic), the number and abundance of different species (species), and the range of different habitats (ecosystem).",
+      "Next, learn to quantify species diversity using a specific mathematical tool. This tool, Simpson's reciprocal index (D), measures both the number of species (richness) and their relative population sizes (evenness).",
+      "Then, apply the formula $D = \\frac{N(N-1)}{\\sum n(n-1)}$ to raw data from an ecological sample. A higher calculated value for D signifies greater biodiversity.",
+      "Finally, use the D value to make meaningful comparisons. A community with a high D is generally considered healthier, more stable, and more resilient to environmental stress than one with a low D."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is biodiversity?",
+      "back": "The variety of life in a particular habitat or ecosystem, encompassing genetic, species, and ecosystem diversity."
+    },
+    {
+      "front": "What is species diversity?",
+      "back": "A component of biodiversity that considers both the number of different species present (richness) and the relative abundance of each species (evenness)."
+    },
+    {
+      "front": "What is genetic diversity?",
+      "back": "The total number of different genetic characteristics (alleles) in the genetic makeup of a species or population. It is the raw material for adaptation."
+    },
+    {
+      "front": "What is ecosystem diversity?",
+      "back": "The variety of different habitats, communities, and ecological processes within a specific area."
+    },
+    {
+      "front": "Define species richness.",
+      "back": "The number of different species present in an ecosystem. It is a simple count, ignoring abundance."
+    },
+    {
+      "front": "Define species evenness.",
+      "back": "A measure of the relative abundance of the different species in an area. High evenness means most species have similar population sizes."
+    },
+    {
+      "front": "What is Simpson's reciprocal index (D)?",
+      "back": "A quantitative measure of biodiversity in a community. It takes into account both species richness and evenness. The formula is $D = \\frac{N(N-1)}{\\sum n(n-1)}$."
+    },
+    {
+      "front": "What does a high value of Simpson's reciprocal index (D) indicate?",
+      "back": "A high value of D (greater than 1) indicates high biodiversity. The ecosystem is likely to be stable and resilient, with a large number of species that have similar abundances."
+    },
+    {
+      "front": "What does a low value of Simpson's reciprocal index (D) indicate?",
+      "back": "A low value of D (approaching 1) indicates low biodiversity. The ecosystem may be dominated by one or a few species, suggesting it is less stable and more vulnerable to change."
+    },
+    {
+      "front": "What is the relationship between biodiversity and ecosystem stability?",
+      "back": "Generally, higher biodiversity leads to greater ecosystem stability. A more diverse ecosystem has more complex food webs and is more resilient to disturbances because the loss of one species has a smaller impact on the whole system."
+    },
+    {
+      "front": "What is a monoculture and how does it relate to biodiversity?",
+      "back": "A monoculture is the cultivation of a single crop or species in a given area. It represents extremely low biodiversity and is highly unstable, requiring significant human input (fertilisers, pesticides) and being very vulnerable to disease."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between species richness and species evenness?",
+      "a": "Species richness is simply a count of the number of different species in an area. Species evenness is a measure of the relative abundance of those species. An ecosystem can have high richness but low evenness if one species is overwhelmingly dominant, which would result in a lower overall diversity index."
+    },
+    {
+      "q": "Why do we use the *reciprocal* of Simpson's index?",
+      "a": "The original Simpson's Index (λ) actually calculates the probability that two randomly selected individuals will be of the same species. Its value ranges from 0 to 1, where 1 represents no diversity (only one species). This is counter-intuitive. By taking the reciprocal (1/λ), we get an index (D) where the value increases with diversity, which is much easier to interpret. A higher D means higher diversity."
+    },
+    {
+      "q": "Can an ecosystem have high richness but low diversity?",
+      "a": "Yes. Imagine a forest with 20 different tree species (high richness), but 99% of the individual trees are of a single species. While the richness is high, the evenness is extremely low. Simpson's reciprocal index (D) would be very low for this community, correctly identifying it as having low overall diversity because it is dominated by one species."
+    },
+    {
+      "q": "What is a 'good' value for D?",
+      "a": "There is no universal 'good' value for D, as it is highly dependent on the type of ecosystem being studied. A tropical rainforest will naturally have a much higher D value than an arctic tundra. The real power of the index is not in its absolute value, but in its use for comparison: comparing a habitat before and after a disturbance, comparing a pristine site with a polluted one, or tracking changes over time."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From the Amazon rainforest, teeming with millions of species, to the seemingly barren Antarctic icefish, life on Earth is extraordinarily diverse. This diversity, or biodiversity, is not just about having a long list of species; it's the intricate web that supports life itself. In this topic, we will dissect the concept of biodiversity, learn how to measure it objectively, and explore why it is fundamental to the health and stability of our planet."
+    },
+    {
+      "type": "heading",
+      "content": "The Three Components of Biodiversity"
+    },
+    {
+      "type": "text",
+      "content": "Biodiversity is a broad term, best understood by considering its three distinct levels. Each level contributes to the overall robustness of an ecosystem and the planet."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Genetic Diversity:** This refers to the variety of genes and alleles within a single species. High genetic diversity allows a population to adapt to changing environmental conditions, such as new diseases or climate shifts. For example, a crop with high genetic diversity is less likely to be wiped out by a single pathogen.",
+        "**Species Diversity:** This is the most commonly understood level of biodiversity. It refers to the variety of different species within a particular habitat or region. It is measured by considering both the number of species (richness) and their relative population sizes (evenness).",
+        "**Ecosystem Diversity:** This is the variety of different ecosystems within a geographical location. This includes the diversity of habitats, biotic communities, and ecological processes. For example, a region containing forests, wetlands, and grasslands has higher ecosystem diversity than a region covered only by forest."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Measuring Biodiversity: Simpson's Reciprocal Index"
+    },
+    {
+      "type": "text",
+      "content": "To compare the biodiversity of two different habitats or to monitor changes in one habitat over time, we need a quantitative measure. Simply counting the number of species (richness) is not enough, as it doesn't account for how many individuals of each species there are (evenness). An ecosystem dominated by one species is less diverse than one where several species have similar population sizes. Simpson's reciprocal index (D) is a tool that incorporates both richness and evenness."
+    },
+    {
+      "type": "formula",
+      "content": "Simpson's Reciprocal Index: $D = \\frac{N(N-1)}{\\sum n(n-1)}$ <br>Where: <br><b>D</b> = Diversity index <br><b>N</b> = Total number of organisms of all species found <br><b>n</b> = Number of individuals of a particular species <br><b>$\\sum$</b> = Sum of"
+    },
+    {
+      "type": "workedExample",
+      "question": "An ecologist sampled insects in two different fields, a wheat monoculture (Field A) and a wildflower meadow (Field B). The results are shown below. Calculate Simpson's reciprocal index (D) for each field and determine which is more diverse. \n\n| Species | Field A (n) | Field B (n) |\n|---|---|---|\n| Ladybird | 120 | 25 |\n| Grasshopper | 5 | 30 |\n| Butterfly | 2 | 28 |\n| Bee | 3 | 22 |",
+      "solution": "To solve this, we must calculate D for each field separately. The key is to first calculate the sum of n(n-1) for each field.\n\n**For Field A (Wheat Monoculture):**\n1.  Calculate total individuals (N): $N = 120 + 5 + 2 + 3 = 130$.\n2.  Calculate n(n-1) for each species:\n    *   Ladybird: $120 \\times (120-1) = 120 \\times 119 = 14280$\n    *   Grasshopper: $5 \\times (5-1) = 5 \\times 4 = 20$\n    *   Butterfly: $2 \\times (2-1) = 2 \\times 1 = 2$\n    *   Bee: $3 \\times (3-1) = 3 \\times 2 = 6$\n3.  Calculate the sum: $\\sum n(n-1) = 14280 + 20 + 2 + 6 = 14308$.\n4.  Calculate D:\n    $D = \\frac{N(N-1)}{\\sum n(n-1)} = \\frac{130(129)}{14308} = \\frac{16770}{14308} = 1.17$\n\n**For Field B (Wildflower Meadow):**\n1.  Calculate total individuals (N): $N = 25 + 30 + 28 + 22 = 105$.\n2.  Calculate n(n-1) for each species:\n    *   Ladybird: $25 \\times 24 = 600$\n    *   Grasshopper: $30 \\times 29 = 870$\n    *   Butterfly: $28 \\times 27 = 756$\n    *   Bee: $22 \\times 21 = 462$\n3.  Calculate the sum: $\\sum n(n-1) = 600 + 870 + 756 + 462 = 2688$.\n4.  Calculate D:\n    $D = \\frac{N(N-1)}{\\sum n(n-1)} = \\frac{105(104)}{2688} = \\frac{10920}{2688} = 4.06$\n\n**Conclusion:**\nField A has a D value of 1.17, while Field B has a D value of 4.06. Since $4.06 > 1.17$, the wildflower meadow (Field B) is significantly more diverse than the wheat monoculture (Field A). This makes sense as the individuals are more evenly distributed across the species in the meadow."
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, you will always be given the formula for Simpson's reciprocal index. However, you must show your working. A common mistake is to miscalculate $\\sum n(n-1)$. Always create a column in your table for $n(n-1)$ for each species before summing them. Remember: a higher value of D means higher biodiversity."
+    },
+    {
+      "type": "workedExample",
+      "question": "A river was sampled for invertebrate species upstream and downstream of a factory outlet pipe. The data is below. Calculate the diversity for both sites and comment on the likely impact of the factory effluent.\n\n| Species | Upstream (n) | Downstream (n) |\n|---|---|---|\n| Mayfly nymph | 45 | 3 |\n| Stonefly nymph | 38 | 1 |\n| Caddisfly larva | 35 | 5 |\n| Bloodworm | 10 | 95 |\n| Water louse | 12 | 8 |\n",
+      "solution": "We will calculate D for both sites to compare them.\n\n**Upstream Site:**\n*   $N = 45+38+35+10+12 = 140$\n*   $\\sum n(n-1) = (45 \\times 44) + (38 \\times 37) + (35 \\times 34) + (10 \\times 9) + (12 \\times 11)$\n*   $\\sum n(n-1) = 1980 + 1406 + 1190 + 90 + 132 = 4798$\n*   $D_{upstream} = \\frac{140(139)}{4798} = \\frac{19460}{4798} = 4.06$\n\n**Downstream Site:**\n*   $N = 3+1+5+95+8 = 112$\n*   $\\sum n(n-1) = (3 \\times 2) + (1 \\times 0) + (5 \\times 4) + (95 \\times 94) + (8 \\times 7)$\n*   $\\sum n(n-1) = 6 + 0 + 20 + 8930 + 56 = 9012$\n*   $D_{downstream} = \\frac{112(111)}{9012} = \\frac{12432}{9012} = 1.38$\n\n**Comment:**\nThe upstream site has a high diversity index (D = 4.06), indicating a healthy, balanced community of invertebrates. The downstream site has a much lower diversity index (D = 1.38). This suggests the factory effluent is causing pollution, which has drastically reduced biodiversity. The community downstream is now dominated by a single, pollution-tolerant species (Bloodworm), while sensitive species like mayfly and stonefly nymphs have almost disappeared. This is a classic indicator of organic pollution."
+    },
+    {
+      "type": "heading",
+      "content": "Biodiversity, Stability, and Resilience"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between biodiversity and ecosystem stability is a cornerstone of ecology. An ecosystem's stability refers to its ability to resist change (resistance) and recover after a disturbance (resilience). Generally, ecosystems with higher biodiversity are more stable. This is because they have more complex food webs and functional redundancy. If one species is lost, other species can fill its ecological niche, preventing a catastrophic collapse. For instance, if a disease affects one species of pollinator in a diverse meadow, other pollinator species can still service the plants. In contrast, a low-diversity system like an agricultural monoculture is extremely vulnerable. A single pest or disease can devastate the entire crop, as there are no alternative species to perform the same function."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Stability:** The ability of an ecosystem to maintain its structure and function over time.",
+        "**Resilience:** The ability of an ecosystem to recover quickly from a disturbance.",
+        "**Resistance:** The ability of an ecosystem to withstand a disturbance without changing.",
+        "**Redundancy:** In a high-biodiversity ecosystem, multiple species may perform similar roles (e.g., pollination, decomposition). This redundancy provides a buffer against the loss of any single species."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When discussing the link between biodiversity and stability, use the terms 'resilience' and 'resistance'. Provide specific examples, such as comparing a tropical rainforest (high diversity, high stability) with a wheat field (low diversity, low stability). Acknowledge that the relationship is complex; some naturally low-diversity ecosystems, like salt marshes, can be very stable and resilient."
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding of biodiversity",
+      "href": "/mark?subject=ib-biology-hl&topic=A3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "WWF: What is Biodiversity?",
+          "href": "https://www.worldwildlife.org/pages/what-is-biodiversity"
+        },
+        {
+          "label": "IUCN Red List of Threatened Species",
+          "href": "https://www.iucnredlist.org/"
+        },
+        {
+          "label": "Video explanation of Simpson's Index",
+          "href": "https://www.youtube.com/watch?v=iI-B-WjU_M4"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

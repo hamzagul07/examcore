@@ -16,6 +16,10 @@ export type GenerateStemDeepParams = {
   subjectCode: string
   subjectName: string
   topic: SyllabusTopic
+  /** e.g. 'IB Diploma Higher Level'; defaults to Cambridge A-Level. */
+  boardLabel?: string
+  /** e.g. 'IB markbands and assessment criteria'; defaults to Cambridge mark-scheme. */
+  markingConvention?: string
 }
 
 function catalogContext(slug: string): string {
@@ -34,10 +38,15 @@ function catalogContext(slug: string): string {
   return lines.length ? lines.join('\n') : 'No curated live visual — still write 4 exam-focused steps.'
 }
 
-function buildSystemPrompt(subjectCode: string, subjectName: string): string {
-  return `You are an expert Cambridge International A-Level ${subjectName} (${subjectCode}) lesson author.
+function buildSystemPrompt(
+  subjectCode: string,
+  subjectName: string,
+  boardLabel = 'Cambridge International A-Level',
+  markingConvention = 'mark-scheme'
+): string {
+  return `You are an expert ${boardLabel} ${subjectName} (${subjectCode}) lesson author.
 
-Write ORIGINAL teaching content — British English, ages 16–18, exam-aligned. Do NOT copy third-party notes.
+Write ORIGINAL teaching content — British English, ages 16–18, exam-aligned. Do NOT copy third-party notes or any copyrighted past-paper text. Use the ${markingConvention} conventions for working.
 
 Output ONLY valid JSON matching this shape:
 {
@@ -150,7 +159,12 @@ export async function generateStemDeepLesson(
     try {
       const rawText = await generateGeminiText(buildUserPrompt(params, slug), {
         task: 'content-generation',
-        system: buildSystemPrompt(params.subjectCode, params.subjectName),
+        system: buildSystemPrompt(
+          params.subjectCode,
+          params.subjectName,
+          params.boardLabel,
+          params.markingConvention
+        ),
         temperature: 0.35,
         maxOutputTokens: 65536,
       })

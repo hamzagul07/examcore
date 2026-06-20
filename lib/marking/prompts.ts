@@ -375,6 +375,118 @@ Return ONLY this JSON:
 }`
 }
 
+// ─── IB Diploma marking prompts ─────────────────────────────────────────────
+// Same output JSON as the Cambridge prompts (so downstream rendering is unchanged)
+// but the examiner instructions use IB conventions: markbands / achievement levels /
+// assessment criteria — NOT Cambridge B1/M1/A1 codes or ECF.
+
+export function buildIbPointBasedMarkingPrompt(
+  subjectName: string,
+  questionText: string,
+  totalMarks: number,
+  markSchemeJson: string,
+  ocrText: string
+): string {
+  return `You are an IB Diploma Programme ${subjectName} examiner. Mark this student's work against the official IB markscheme.
+
+IB awards marks against the markscheme's marking points (there are NO Cambridge B1/M1/A1 codes). For each marking point: award the mark where the response satisfies it, accept equivalent valid answers, and give credit for valid alternative methods or working (OWTTE — or words to that effect). Do not invent marking points that are not in the scheme.
+
+QUESTION:
+${questionText}
+
+TOTAL MARKS AVAILABLE: ${totalMarks}
+
+OFFICIAL IB MARKSCHEME:
+${markSchemeJson}
+
+STUDENT'S TRANSCRIBED ANSWER:
+${ocrText}
+
+For each marking point in the scheme: decide if earned and explain why in plain English. Use the scheme's own mark label in "type" (or "1 mark" if none).
+
+${TONE_BLOCK}
+
+${ERROR_CLASSIFICATION_BLOCK}
+
+${MATH_NOTATION_BLOCK}
+
+${JSON_RULES_BLOCK}
+
+Return ONLY this JSON:
+{
+  "marks_awarded": [
+    {
+      "mark_id": 1,
+      "type": "1 mark",
+      "earned": true,
+      "reasoning": "...",
+      "error_classification": "no_error",
+      "line_reference": "",
+      "margin_note": null
+    }
+  ],
+  "marks_earned": 0,
+  "total_marks": ${totalMarks},
+  "summary": "...",
+  "weak_topics": ["..."],
+  "what_to_study_next": "...",
+  "marking_style": "point_based"
+}`
+}
+
+export function buildIbLorMarkingPrompt(
+  subjectName: string,
+  questionText: string,
+  totalMarks: number,
+  markSchemeJson: string,
+  ocrText: string
+): string {
+  return `You are an IB Diploma Programme ${subjectName} senior examiner marking an extended response against the IB markbands and assessment criteria. Work like a real examiner at a marking conference:
+
+1. Read the student's response holistically
+2. Compare against the IB markband / achievement-level descriptors (and any per-criterion descriptors) in the markscheme
+3. Decide which band best fits — IB uses level descriptors and assessment criteria, NOT Cambridge assessment objectives or B1/M1/A1 codes
+4. Place the response within that band — top, middle or bottom — and assign a specific mark
+5. Justify your placement by quoting the descriptor wording the response meets or misses
+
+QUESTION:
+${questionText}
+
+TOTAL MARKS AVAILABLE: ${totalMarks}
+
+OFFICIAL IB MARKSCHEME (with markband / criterion descriptors):
+${markSchemeJson}
+
+STUDENT'S TRANSCRIBED ANSWER:
+${ocrText}
+
+${TONE_BLOCK}
+
+${MATH_NOTATION_BLOCK}
+
+${JSON_RULES_BLOCK}
+
+Return ONLY this JSON:
+{
+  "band_result": {
+    "level": 3,
+    "marks_awarded": 10,
+    "marks_available": ${totalMarks},
+    "band_descriptor": "The markband descriptor for the band you placed them in",
+    "justification": "Detailed examiner justification referencing the band/criterion descriptors",
+    "strengths": ["what they did well"],
+    "improvements": ["what would push them into the next band"]
+  },
+  "marks_earned": 10,
+  "total_marks": ${totalMarks},
+  "marks_awarded": [],
+  "summary": "Overall examiner feedback to the student",
+  "weak_topics": ["..."],
+  "what_to_study_next": "...",
+  "marking_style": "level_of_response"
+}`
+}
+
 const DETECTION_SUBJECT_CODES = `9084 Law, 9231 Further Math, 9488 Islamic Studies, 9489 History, 9607 Media Studies, 9609 Business, 9618 Computer Science, 9699 Sociology, 9700 Biology, 9701 Chemistry, 9702 Physics, 9706 Accounting, 9708 Economics, 9709 Math, 9990 Psychology`
 
 export function buildDetectionPrompt(

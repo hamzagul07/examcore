@@ -109,8 +109,19 @@ for (let i = 0; i < questions.length; i += CHUNK) {
       })
     }
     if (PERSIST) {
-      const { error } = await sb.from('mark_schemes').update({ syllabus_tags: codes }).eq('id', res.question_id)
-      if (!error) wrote++
+      // Retry transient network/DNS blips (EAI_AGAIN / fetch failed) on the write.
+      let ok = false
+      for (let a = 0; a < 5 && !ok; a++) {
+        const { data: updRows, error } = await sb
+          .from('mark_schemes')
+          .update({ syllabus_tags: codes })
+          .eq('id', res.question_id)
+          .select('id')
+        if (!error && updRows?.length) ok = true
+        else await new Promise((r) => setTimeout(r, 600 * (a + 1)))
+      }
+      if (ok) wrote++
+      else console.error('PERSIST FAILED after retries for', res.question_id)
     }
   }
   processed += slice.length

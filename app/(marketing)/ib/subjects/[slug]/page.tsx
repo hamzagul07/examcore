@@ -11,6 +11,8 @@ import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { getIbSubject, getIbSubjects, getIbSubjectSlugs } from '@/lib/ib/catalog'
 import { buildIbSubjectCopy, ibShortName } from '@/lib/seo/ib-seo'
+import { getIbResources } from '@/lib/ib/resources'
+import { IbResources } from '@/components/ib/IbResources'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -200,6 +202,8 @@ export default async function IbSubjectPage({ params }: Props) {
             ))}
           </dl>
         </section>
+
+        <IbResources resources={getIbResources(subject)} heading={`Best free IB ${subject.name} resources`} />
 
         {related.length ? (
           <nav className="mt-12 border-t border-[var(--ec-border)] pt-8" aria-label="Related IB subjects">

@@ -13,6 +13,7 @@ import { getIbSubject, getIbSubjects, getIbSubjectSlugs } from '@/lib/ib/catalog
 import { buildIbSubjectCopy, ibShortName } from '@/lib/seo/ib-seo'
 import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
+import { getIbCourse } from '@/lib/courses/ib'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -132,6 +133,9 @@ export default async function IbSubjectPage({ params }: Props) {
           paragraph={`${subject.blurb} Below are the papers you'll sit and how examiners award marks. Practise past papers, learn the markbands, then check your own answers for feedback.`}
           links={[
             { href: `/ib/past-papers/${subject.slug}`, label: 'Past papers →', variant: 'primary' },
+            ...(getIbCourse(subject.slug)
+              ? [{ href: `/ib/courses/${subject.slug}`, label: `Free ${short} course`, variant: 'ghost' as const }]
+              : []),
             { href: '/mark', label: 'Get feedback on your answer', variant: 'ghost' },
             { href: '/ib', label: 'All IB subjects', variant: 'muted' },
           ]}

@@ -1,0 +1,179 @@
+{
+  "slug": "r2-3-how-far-the-extent-of-chemical-change",
+  "topicCode": "R2.3",
+  "title": "How far? The extent of chemical change",
+  "paper": "P2",
+  "paperName": "Chemistry HL",
+  "status": "premium",
+  "summary": "This lesson explores the quantitative relationship between thermodynamics and chemical equilibrium. We will use the Gibbs free energy change (ΔG) to predict the extent of a reaction, calculating the equilibrium constant (K) from standard Gibbs free energy (ΔG°) and determining the direction of spontaneous change using the reaction quotient (Q).",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Explain the relationship between the standard Gibbs free energy change (ΔG°) and the equilibrium constant (K).",
+    "Calculate the equilibrium constant (K) from ΔG° using the equation ΔG° = -RT lnK.",
+    "Relate the reaction quotient (Q) to the non-standard Gibbs free energy change (ΔG_r) to predict the direction of spontaneous change.",
+    "Interpret the magnitude of K and the sign of ΔG° to determine the extent of a reaction at equilibrium."
+  ],
+  "simpleExplanation": {
+    "title": "The Energy Valley of Reactions",
+    "summary": "This lesson connects a reaction's inherent energy change (Gibbs free energy) to how far it proceeds towards products. We'll see how the standard energy difference sets the final balance point (equilibrium), while the current energy change tells us which way the reaction will spontaneously move.",
+    "analogy": "Imagine a skateboarder in a half-pipe. The difference in height between the two top edges represents the standard Gibbs free energy change (ΔG°); it tells you which side is ultimately lower. The skateboarder's current position on the ramp determines the immediate slope and which way they will roll to reach the bottom (equilibrium). At the very bottom, the slope is zero (ΔG_r = 0), and they are at equilibrium.",
+    "steps": [
+      "Identify the standard Gibbs free energy change, ΔG°, for the reaction. This value tells you about the ultimate position of equilibrium.",
+      "Use the core equation ΔG° = -RT lnK to link ΔG° to the equilibrium constant, K. Remember to use R in Joules (8.31 J K⁻¹ mol⁻¹) and convert ΔG° to Joules.",
+      "Calculate K and interpret its magnitude. A large K (>1) means products are favoured at equilibrium, while a small K (<1) means reactants are favoured.",
+      "For non-equilibrium conditions, calculate the reaction quotient, Q, and use ΔG_r = ΔG° + RT lnQ to find the direction of spontaneous change. A negative ΔG_r means the forward reaction will proceed."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the relationship between the standard Gibbs free energy change (ΔG°) and the equilibrium constant (K)?",
+      "back": "ΔG° = -RT lnK, where R is the ideal gas constant (8.31 J K⁻¹ mol⁻¹) and T is the absolute temperature in Kelvin."
+    },
+    {
+      "front": "If ΔG° for a reaction is large and negative, what does this imply about the value of K and the position of equilibrium?",
+      "back": "A large negative ΔG° means K will be very large (K >> 1). The equilibrium lies far to the right, strongly favouring the formation of products."
+    },
+    {
+      "front": "If ΔG° for a reaction is large and positive, what does this imply about the value of K and the position of equilibrium?",
+      "back": "A large positive ΔG° means K will be very small (K << 1). The equilibrium lies far to the left, strongly favouring the reactants. The reaction is not spontaneous under standard conditions."
+    },
+    {
+      "front": "What is the value of the Gibbs free energy change (ΔG_r) at equilibrium?",
+      "back": "At equilibrium, the Gibbs free energy change is zero (ΔG_r = 0). The forward and reverse reaction rates are equal, and there is no net change in the concentrations of reactants and products."
+    },
+    {
+      "front": "What is the difference between ΔG° and ΔG_r?",
+      "back": "ΔG° is the standard Gibbs free energy change under standard conditions (100 kPa, 1 mol dm⁻³). It's a fixed value that determines K. ΔG_r is the Gibbs free energy change under any non-standard set of conditions and indicates the direction of spontaneous change from that point."
+    },
+    {
+      "front": "What is the reaction quotient, Q?",
+      "back": "Q is a measure of the relative amounts of products and reactants present in a reaction at any given time. Its expression has the same form as the equilibrium constant, K, but uses non-equilibrium concentrations or pressures."
+    },
+    {
+      "front": "How does Q relate to K to predict the direction of a reaction?",
+      "back": "If Q < K, the reaction proceeds in the forward direction. If Q > K, the reaction proceeds in the reverse direction. If Q = K, the system is at equilibrium."
+    },
+    {
+      "front": "What is the equation that relates the non-standard Gibbs free energy change (ΔG_r) to Q?",
+      "back": "ΔG_r = ΔG° + RT lnQ. This can also be written as ΔG_r = RT ln(Q/K)."
+    },
+    {
+      "front": "Common trap: What unit conversion is essential when using ΔG° = -RT lnK?",
+      "back": "ΔG° is typically given in kJ mol⁻¹, but the gas constant R is 8.31 J K⁻¹ mol⁻¹. You must convert ΔG° to J mol⁻¹ by multiplying by 1000 before calculating K."
+    },
+    {
+      "front": "How do you rearrange ΔG° = -RT lnK to solve for K?",
+      "back": "First, isolate lnK: lnK = -ΔG° / (RT). Then, take the exponential of both sides: K = e^(-ΔG°/RT)."
+    },
+    {
+      "front": "What does it mean if ΔG° is close to zero?",
+      "back": "If ΔG° ≈ 0, then lnK ≈ 0, which means K ≈ 1. At equilibrium, there will be significant concentrations of both reactants and products."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real difference between ΔG° and ΔG_r?",
+      "a": "Think of ΔG° as a fixed, theoretical value that tells you the 'potential' of a reaction. It's calculated for idealised standard conditions and determines the value of the equilibrium constant, K. ΔG_r is the 'real-time' Gibbs free energy change for a specific, non-standard mixture of reactants and products. It is the true indicator of spontaneity at that moment and tells you which direction the reaction will shift to reach equilibrium, where ΔG_r becomes zero."
+    },
+    {
+      "q": "Why does the equation use the natural logarithm (ln) and not log base 10 (log)?",
+      "a": "The natural logarithm, ln, arises fundamentally from the integration used in the thermodynamic derivation of the equation. The relationship between entropy and the number of microstates (Boltzmann's equation, S = k ln W) is logarithmic, and this mathematical form carries through to the final equation linking G and K. While you can convert using ln(x) ≈ 2.303 log(x), the base equation in chemistry and physics uses ln."
+    },
+    {
+      "q": "Can the equilibrium constant K ever be negative?",
+      "a": "No, the equilibrium constant K can never be negative. It is a ratio of concentrations or pressures, which are always positive values. K can be very large (e.g., 10²⁰) or very small (e.g., 10⁻²⁰), but it must always be greater than zero."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "We know that reversible reactions reach a state of dynamic equilibrium. But how can we predict whether the equilibrium mixture will be mostly products, mostly reactants, or a balanced mix? The answer lies in thermodynamics, specifically the Gibbs free energy. This topic provides the quantitative tools to determine the extent of a chemical reaction, connecting the spontaneity we studied previously with the position of equilibrium."
+    },
+    {
+      "type": "heading",
+      "content": "Standard Gibbs Free Energy and the Equilibrium Constant"
+    },
+    {
+      "type": "text",
+      "content": "The standard Gibbs free energy change, ΔG°, represents the change in free energy when pure reactants in their standard states are converted to pure products in their standard states. Its sign and magnitude are a powerful indicator of where the equilibrium position lies. A negative ΔG° indicates that the products are thermodynamically more stable than the reactants, suggesting the equilibrium will favour the products. Conversely, a positive ΔG° suggests reactants are more stable. This relationship is captured by a fundamental equation."
+    },
+    {
+      "type": "formula",
+      "content": "$\\Delta G^\\circ = -RT \\ln K$"
+    },
+    {
+      "type": "text",
+      "content": "Where:\n- $$\\Delta G^\\circ$$ is the standard Gibbs free energy change (in J mol⁻¹).\n- $$R$$ is the ideal gas constant, 8.31 J K⁻¹ mol⁻¹.\n- $$T$$ is the absolute temperature (in Kelvin).\n- $$\\ln K$$ is the natural logarithm of the equilibrium constant, K."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If **ΔG° < 0** (negative), then lnK > 0, which means **K > 1**. The equilibrium favours the products.",
+        "If **ΔG° > 0** (positive), then lnK < 0, which means **K < 1**. The equilibrium favours the reactants.",
+        "If **ΔG° = 0**, then lnK = 0, which means **K = 1**. Reactants and products are present in comparable amounts at equilibrium."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The synthesis of ammonia, N₂(g) + 3H₂(g) ⇌ 2NH₃(g), has a standard Gibbs free energy change, ΔG°, of -32.9 kJ mol⁻¹ at 298 K. Calculate the value of the equilibrium constant, K, at this temperature.",
+      "solution": "1.  **State the formula:**\n    $\\Delta G^\\circ = -RT \\ln K$\n\n2.  **Convert units:** ΔG° must be in J mol⁻¹ to match the units of R.\n    $\\Delta G^\\circ = -32.9 \\text{ kJ mol}^{-1} \\times 1000 \\text{ J kJ}^{-1} = -32900 \\text{ J mol}^{-1}$\n\n3.  **Rearrange the formula to solve for lnK:**\n    $\\ln K = -\\frac{\\Delta G^\\circ}{RT}$\n\n4.  **Substitute the values and solve:**\n    $\\ln K = -\\frac{-32900 \\text{ J mol}^{-1}}{(8.31 \\text{ J K}^{-1} \\text{mol}^{-1}) \\times (298 \\text{ K})}$\n    $\\ln K = \\frac{32900}{2477.58} \\approx 13.28$\n\n5.  **Calculate K by taking the exponential:**\n    $K = e^{13.28}$\n    $K \\approx 5.85 \\times 10^5$\n\n    **Answer:** The equilibrium constant K is $5.85 \\times 10^5$. The large value confirms that the formation of products is highly favoured at 298 K."
+    },
+    {
+      "type": "heading",
+      "content": "Predicting the Direction of Change: ΔG_r and Q"
+    },
+    {
+      "type": "text",
+      "content": "While ΔG° tells us about the final equilibrium position, it doesn't describe the spontaneity of a reaction under non-standard conditions. For that, we need the non-standard Gibbs free energy change, ΔG_r, and the reaction quotient, Q. The reaction quotient, Q, has the same mathematical form as K but uses the *current* concentrations or partial pressures, not the equilibrium ones. ΔG_r is the slope of the Gibbs energy graph at that specific composition and tells us which way the reaction must shift to reach equilibrium."
+    },
+    {
+      "type": "formula",
+      "content": "$\\Delta G_r = \\Delta G^\\circ + RT \\ln Q$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If **Q < K**, then lnQ < lnK, making the RTln(Q/K) term negative. Thus, **ΔG_r < 0**, and the forward reaction is spontaneous.",
+        "If **Q > K**, then lnQ > lnK, making the RTln(Q/K) term positive. Thus, **ΔG_r > 0**, and the reverse reaction is spontaneous.",
+        "If **Q = K**, the system is at equilibrium. The equation simplifies to ΔG_r = ΔG° + RTlnK. Since ΔG° = -RTlnK, this gives **ΔG_r = 0**."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is mixing up units. Always convert ΔG° from kJ mol⁻¹ to J mol⁻¹ before using it in calculations with R = 8.31 J K⁻¹ mol⁻¹. Write down the unit conversion step explicitly in your working to avoid losing marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "For the reaction 2SO₂(g) + O₂(g) ⇌ 2SO₃(g) at 700 K, ΔG° = -92.0 kJ mol⁻¹. A reaction vessel at 700 K contains the gases at the following partial pressures: P(SO₂) = 0.50 bar, P(O₂) = 0.20 bar, and P(SO₃) = 2.0 bar. Calculate ΔG_r and predict the direction of spontaneous change.",
+      "solution": "1.  **Write the expression for Q_p and calculate its value:**\n    $Q_p = \\frac{(P_{SO_3})^2}{(P_{SO_2})^2 (P_{O_2})}$\n    $Q_p = \\frac{(2.0)^2}{(0.50)^2 (0.20)} = \\frac{4.0}{0.25 \\times 0.20} = \\frac{4.0}{0.050} = 80$\n\n2.  **State the formula for ΔG_r:**\n    $\\Delta G_r = \\Delta G^\\circ + RT \\ln Q_p$\n\n3.  **Convert units for ΔG°:**\n    $\\Delta G^\\circ = -92.0 \\text{ kJ mol}^{-1} = -92000 \\text{ J mol}^{-1}$\n\n4.  **Substitute values and solve for ΔG_r:**\n    $\\Delta G_r = -92000 \\text{ J mol}^{-1} + (8.31 \\text{ J K}^{-1} \\text{mol}^{-1})(700 \\text{ K}) \\ln(80)$\n    $\\Delta G_r = -92000 + (5817) \\times (4.382)$\n    $\\Delta G_r = -92000 + 25488$\n    $\\Delta G_r = -66512 \\text{ J mol}^{-1} \\approx -66.5 \\text{ kJ mol}^{-1}$\n\n5.  **Interpret the result:**\n    Since **ΔG_r is negative** (-66.5 kJ mol⁻¹), the reaction is spontaneous in the **forward direction** under these conditions. The system will shift to the right, producing more SO₃ to reach equilibrium."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Gibbs Free Energy and Reaction Progress"
+    },
+    {
+      "type": "text",
+      "content": "It is helpful to visualise the total Gibbs free energy (G) of the system as the reaction progresses from pure reactants to pure products. The graph of G versus the 'extent of reaction' is typically a curve. The minimum point on this curve represents the position of equilibrium, where the system's Gibbs free energy is lowest. The slope of the curve at any point is the value of ΔG_r. The reaction spontaneously 'rolls downhill' towards the minimum. The overall difference in G between pure products and pure reactants is ΔG°."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Gibbs free energy and equilibrium",
+          "href": "https://www.khanacademy.org/science/chemistry/thermodynamics-chemistry/gibbs-free-energy/a/gibbs-free-energy-and-spontaneity"
+        },
+        {
+          "label": "Chemistry LibreTexts: The Relationship between Free Energy and the Equilibrium Constant",
+          "href": "https://chem.libretexts.org/Bookshelves/General_Chemistry/Map%3A_Chemistry_-_The_Central_Science_(Brown_et_al.)/19%3A_Chemical_Thermodynamics/19.7%3A_Gibbs_Free_Energy_and_the_Equilibrium_Constant"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,171 @@
+{
+  "slug": "s2-1-the-ionic-model",
+  "topicCode": "S2.1",
+  "title": "The ionic model",
+  "paper": "P2",
+  "paperName": "Chemistry HL",
+  "status": "premium",
+  "summary": "This lesson explores the ionic model, focusing on the energetic changes involved in forming an ionic lattice. You will learn to define and calculate lattice enthalpy using Born-Haber cycles, and to evaluate the extent of covalent character in ionic compounds by comparing theoretical and experimental data.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define lattice enthalpy, electron affinity, and other key enthalpy changes.",
+    "Construct Born-Haber cycles for simple ionic compounds (e.g., MX and MX₂) to determine lattice enthalpy.",
+    "Explain how ionic charge and radius affect the magnitude of lattice enthalpy.",
+    "Use the discrepancy between theoretical and experimental lattice enthalpies to assess the degree of covalent character in an ionic bond."
+  ],
+  "simpleExplanation": {
+    "title": "The Price of an Ionic Crystal",
+    "summary": "The ionic model describes how positive and negative ions snap together to form a strong crystal lattice. We can calculate the huge energy release during this process, called lattice enthalpy, using a clever energy accounting loop called a Born-Haber cycle.",
+    "analogy": "Imagine building a complex LEGO model. You could try to measure the total effort to build it in one go, which is tricky. Alternatively, you could measure the effort for each small, distinct step: opening the bags, sorting the bricks, and clicking each piece into place. A Born-Haber cycle is like adding up the energy cost (or gain) of each small chemical step to find the total energy change for building the final crystal.",
+    "steps": [
+      "Start with the elements in their standard states, for example, solid sodium and chlorine gas.",
+      "Convert the solid metal and molecular non-metal into separate, gaseous atoms. This requires energy (enthalpy of atomisation).",
+      "Convert the gaseous atoms into gaseous ions. This involves removing electrons from the metal (ionisation energy) and adding them to the non-metal (electron affinity).",
+      "Combine the gaseous positive and negative ions to form the solid ionic lattice. This step releases a large amount of energy, which is the lattice enthalpy."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Lattice Enthalpy (ΔH°_lat)?",
+      "back": "The standard enthalpy change when one mole of a solid ionic compound is formed from its constituent gaseous ions. It is always a large, exothermic value (negative ΔH)."
+    },
+    {
+      "front": "What is First Electron Affinity (EA₁)?",
+      "back": "The standard enthalpy change when one mole of gaseous atoms each acquires one electron to form one mole of gaseous 1- ions. For most non-metals, this is an exothermic process."
+    },
+    {
+      "front": "Why is the Second Electron Affinity (EA₂) always endothermic?",
+      "back": "Energy is required to add a negative electron to an already negative ion (e.g., O⁻(g) + e⁻ → O²⁻(g)) due to electrostatic repulsion between the like charges."
+    },
+    {
+      "front": "What is the purpose of a Born-Haber cycle?",
+      "back": "It is an application of Hess's Law used to calculate the lattice enthalpy of an ionic compound, which cannot be measured directly. It relates lattice enthalpy to other measurable enthalpy changes."
+    },
+    {
+      "front": "What is the 'ionic model'?",
+      "back": "A model that assumes ions are perfect, hard spheres with evenly distributed charge. It assumes bonding is 100% electrostatic attraction, with no covalent character."
+    },
+    {
+      "front": "What two factors make lattice enthalpy more exothermic (a larger negative value)?",
+      "back": "1. Higher ionic charges (e.g., Mg²⁺O²⁻ vs Na⁺Cl⁻). 2. Smaller ionic radii (e.g., Li⁺F⁻ vs Cs⁺I⁻). Both increase the electrostatic attraction between ions."
+    },
+    {
+      "front": "What is meant by 'polarisation' in an ionic bond?",
+      "back": "The distortion of the electron cloud of the anion by the positive charge of the cation. This introduces some sharing of electrons, leading to covalent character."
+    },
+    {
+      "front": "Which type of cation has the highest polarising power?",
+      "back": "A cation with a high charge density: one that is small and/or has a high positive charge (e.g., Al³⁺ is highly polarising)."
+    },
+    {
+      "front": "Which type of anion is most easily polarised?",
+      "back": "An anion with a diffuse electron cloud: one that is large and/or has a high negative charge (e.g., I⁻ is more polarisable than F⁻)."
+    },
+    {
+      "front": "How does a large difference between experimental and theoretical lattice enthalpy indicate covalent character?",
+      "back": "The theoretical value is calculated using the perfect ionic model. The experimental value is from a Born-Haber cycle. If the experimental value is significantly more exothermic (more negative) than the theoretical one, it suggests additional bonding is present, i.e., covalent character, which strengthens the lattice."
+    },
+    {
+      "front": "What is the relationship between the enthalpy changes in a Born-Haber cycle?",
+      "back": "Based on Hess's Law, the direct route (enthalpy of formation) is equal to the sum of the enthalpy changes in the indirect route.  $\\Delta H_f^\\circ = \\Sigma (\\text{other enthalpy changes})$. Be careful with signs!"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is lattice enthalpy defined as formation from gaseous ions, not the other way around?",
+      "a": "This is a standard convention. The formation of the lattice from gaseous ions is a highly exothermic process, reflecting the stability of the resulting crystal. Defining it this way gives a large negative value. The reverse process, breaking one mole of the solid lattice into its constituent gaseous ions, is called the lattice dissociation enthalpy. It is an endothermic process with an equal but opposite magnitude (e.g., if ΔH°_lat = -787 kJ mol⁻¹, then ΔH°_diss = +787 kJ mol⁻¹)."
+    },
+    {
+      "q": "Can a Born-Haber cycle be used for covalent compounds?",
+      "a": "No, the Born-Haber cycle is specifically designed for ionic compounds. The steps involve forming ions (ionisation energy, electron affinity) and a lattice (lattice enthalpy), which are concepts central to ionic bonding. The energetics of covalent compounds are typically described using bond enthalpies."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In Topic 4, we learned about ionic bonding as the electrostatic attraction between oppositely charged ions. The ionic model is a refinement of this idea, treating ions as perfect spheres and the bonding as purely electrostatic. While this is a useful simplification, this topic delves into the energetics of forming an ionic lattice and explores the limitations of the 'perfect' ionic model, introducing the idea of covalent character."
+    },
+    {
+      "type": "heading",
+      "content": "Lattice Enthalpy (ΔH°_lat)"
+    },
+    {
+      "type": "text",
+      "content": "Lattice enthalpy is the cornerstone of this topic. It quantifies the strength of the ionic bond in a crystal lattice. Formally, it is the standard enthalpy change that occurs upon the formation of one mole of a solid ionic compound from its constituent gaseous ions under standard conditions. As forming a bond is an energy-releasing process, lattice enthalpy is always exothermic, meaning its value is negative."
+    },
+    {
+      "type": "formula",
+      "content": "For a generic salt MX: \\\\ $M^+(g) + X^-(g) \\rightarrow MX(s) \\quad \\Delta H_{lat}^\\circ < 0$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A more negative lattice enthalpy indicates stronger electrostatic attraction and a more stable lattice.",
+        "Magnitude of ΔH°_lat increases with higher ionic charges (e.g., MgO vs NaCl). The force of attraction is proportional to the product of the charges ($Q_1Q_2$).",
+        "Magnitude of ΔH°_lat increases with smaller ionic radii. The ions are closer together, leading to a stronger electrostatic force (inversely proportional to the distance between ions)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Born-Haber Cycle"
+    },
+    {
+      "type": "text",
+      "content": "It is impossible to directly measure the energy change when gaseous ions combine. Instead, we use an energy cycle called a Born-Haber cycle. This is a practical application of Hess's Law, which states that the total enthalpy change for a reaction is independent of the route taken. The cycle relates the standard enthalpy of formation (the direct route) to a series of steps that form the ionic lattice from its elements (the indirect route)."
+    },
+    {
+      "type": "formula",
+      "content": "For a compound like MgCl₂, the overall relationship is: \\\\ $\\Delta H_f^\\circ = \\Delta H_{at(Mg)}^\\circ + 2\\Delta H_{at(Cl)}^\\circ + IE_1(Mg) + IE_2(Mg) + 2EA_1(Cl) + \\Delta H_{lat}^\\circ$ \\\\ This can be rearranged to find the unknown lattice enthalpy."
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the lattice enthalpy of sodium chloride (NaCl) using the data provided below. \\\\ Standard enthalpy of formation of NaCl(s): -411 kJ mol⁻¹ \\\\ Enthalpy of atomisation of Na(s): +107 kJ mol⁻¹ \\\\ First ionisation energy of Na(g): +496 kJ mol⁻¹ \\\\ Enthalpy of atomisation of Cl(g): +122 kJ mol⁻¹ \\\\ First electron affinity of Cl(g): -349 kJ mol⁻¹",
+      "solution": "The Born-Haber cycle for NaCl relates the enthalpy of formation to the individual steps. \\\\ **Step 1: Set up the Hess's Law equation.** \\\\ $\\Delta H_f^\\circ (NaCl) = \\Delta H_{at}^\\circ (Na) + IE_1(Na) + \\Delta H_{at}^\\circ (Cl) + EA_1(Cl) + \\Delta H_{lat}^\\circ (NaCl)$ \\\\ *[1 mark for correct equation]* \\\\ **Step 2: Rearrange the equation to solve for lattice enthalpy.** \\\\ $\\Delta H_{lat}^\\circ = \\Delta H_f^\\circ - (\\Delta H_{at(Na)}^\\circ + IE_1(Na) + \\Delta H_{at(Cl)}^\\circ + EA_1(Cl))$ \\\\ *[1 mark for correct rearrangement]* \\\\ **Step 3: Substitute the values and calculate.** \\\\ $\\Delta H_{lat}^\\circ = (-411) - (107 + 496 + 122 + (-349))$ \\\\ $\\Delta H_{lat}^\\circ = -411 - (725 - 349)$ \\\\ $\\Delta H_{lat}^\\circ = -411 - 376$ \\\\ $\\Delta H_{lat}^\\circ = -787 \\text{ kJ mol}^{-1}$ \\\\ *[1 mark for correct substitution and final answer with units]*"
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a sketch of the Born-Haber cycle diagram in an exam. It helps you visualise the steps and ensure you have the correct signs and stoichiometry. For diatomic elements like Cl₂, F₂, or O₂, remember that the enthalpy of atomisation is per mole of atoms. So for MgCl₂, you need 2 x ΔH°_at(Cl). Alternatively, if given bond enthalpy for Cl-Cl, you use that value directly as it produces 2Cl(g)."
+    },
+    {
+      "type": "heading",
+      "content": "Assessing the Ionic Model: Covalent Character"
+    },
+    {
+      "type": "text",
+      "content": "The perfect ionic model assumes ions are hard spheres and bonding is 100% electrostatic. However, in reality, the positive cation can attract and distort the electron cloud of the negative anion. This distortion is called polarisation. When the electron cloud is polarised, electron density is drawn between the two nuclei, introducing a degree of electron sharing, which is the definition of a covalent bond. Therefore, most real ionic compounds have some covalent character."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Cation's polarising power:** Small, highly charged cations (e.g., Al³⁺, Mg²⁺) are strong polarisers.",
+        "**Anion's polarisability:** Large, highly charged anions (e.g., I⁻, S²⁻) are easily polarised.",
+        "**Consequence:** A significant difference between the experimental lattice enthalpy (from a Born-Haber cycle) and the theoretical lattice enthalpy (calculated using the perfect ionic model) suggests significant covalent character. The experimental value will be more exothermic because the covalent character provides additional lattice stability."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The theoretical lattice enthalpy for silver chloride (AgCl), calculated assuming a perfect ionic model, is -770 kJ mol⁻¹. The experimental value, determined from a Born-Haber cycle, is -905 kJ mol⁻¹. \\\\ (a) Calculate the percentage difference between the two values. \\\\ (b) Explain the discrepancy with reference to the bonding in AgCl.",
+      "solution": "**(a) Percentage Difference Calculation** \\\\ Difference = |Experimental - Theoretical| = |-905 - (-770)| = 135 kJ mol⁻¹ \\\\ Percentage difference = (Difference / |Theoretical|) * 100 \\\\ Percentage difference = (135 / 770) * 100 = 17.5% \\\\ *[1 mark for correct calculation and answer]* \\\\ **(b) Explanation of Discrepancy** \\\\ The experimental lattice enthalpy is significantly more exothermic (more negative) than the theoretical value. *[1 mark]* \\\\ The theoretical value is based on a pure ionic model with 100% electrostatic attraction. *[1 mark]* \\\\ The discrepancy suggests that the bonding in AgCl is not purely ionic and has significant covalent character. The Ag⁺ ion polarises the Cl⁻ ion, leading to some electron sharing, which strengthens the overall bonding and makes the lattice more stable than predicted by the ionic model. *[1 mark for linking polarisation/covalent character to stronger bonding/more exothermic enthalpy]*"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-chemistry-hl&topic=S2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Born-Haber Cycle Builder",
+          "href": "https://www.chem.uic.edu/dept/jc/serve/GENCHEM/A/BORN/Born.html"
+        },
+        {
+          "label": "Video explanation of Born-Haber Cycles by MaChemGuy",
+          "href": "https://www.youtube.com/watch?v=iQ_iH5aY_s0"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,199 @@
+{
+  "slug": "r1-1-measuring-enthalpy-changes",
+  "topicCode": "R1.1",
+  "title": "Measuring enthalpy changes",
+  "paper": "P2",
+  "paperName": "Chemistry HL",
+  "status": "premium",
+  "summary": "This lesson explores calorimetry, the experimental technique for measuring the enthalpy change of a chemical reaction. You will learn the fundamental equation q = mcΔT, how to apply it to neutralisation and combustion reactions, and critically evaluate the assumptions and sources of error inherent in simple calorimetric experiments.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Calculate the enthalpy change of a reaction from experimental data using the equation q = mcΔT.",
+    "Identify the key assumptions made in simple calorimetry experiments.",
+    "Evaluate the main sources of error in calorimetry and suggest improvements.",
+    "Distinguish between the heat change of the surroundings (q) and the enthalpy change of the system (ΔH)."
+  ],
+  "simpleExplanation": {
+    "title": "Catching a Reaction's Heat",
+    "summary": "Calorimetry is like being a detective for heat. We measure the temperature change of the surroundings (usually water) to figure out how much heat a chemical reaction has released or absorbed.",
+    "analogy": "Imagine you're trying to find out how hot a small, freshly baked cake is. You can't stick a thermometer in it without ruining it. Instead, you could place it in a sealed, insulated box full of a known amount of water and measure how much the water's temperature rises. By measuring the water's heat gain, you can deduce the heat lost by the cake. In chemistry, the 'cake' is our reaction, and the 'box of water' is our calorimeter.",
+    "steps": [
+      "Set up an insulated calorimeter (e.g., a polystyrene cup) with a known mass of water and measure its initial temperature.",
+      "Initiate the chemical reaction within the water and stir, monitoring the temperature until a maximum or minimum value is reached.",
+      "Calculate the heat (q) absorbed or released by the water using the formula q = mcΔT.",
+      "Determine the moles of the limiting reactant and calculate the molar enthalpy change (ΔH) for the reaction, remembering to apply the correct sign."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is calorimetry?",
+      "back": "The experimental process of measuring the heat transferred during a chemical or physical change. It typically involves measuring the temperature change of a known mass of a substance, often water."
+    },
+    {
+      "front": "State the formula used to calculate heat change in calorimetry.",
+      "back": "$q = mc\\Delta T$, where $q$ is heat (J), $m$ is mass (g), $c$ is specific heat capacity (J g⁻¹ K⁻¹ or J g⁻¹ °C⁻¹), and $\\Delta T$ is the change in temperature (K or °C)."
+    },
+    {
+      "front": "What is the value and definition of the specific heat capacity of water, $c_{water}$?",
+      "back": "$c_{water} = 4.18$ J g⁻¹ K⁻¹. It is the energy required to raise the temperature of 1 gram of water by 1 Kelvin (or 1 °C)."
+    },
+    {
+      "front": "What is the relationship between the heat change of the surroundings ($q_{surr}$) and the enthalpy change of the reaction ($ΔH_{sys}$)?",
+      "back": "They are equal in magnitude but opposite in sign: $\\Delta H_{sys} = -q_{surr}$. If the surroundings heat up ($q > 0$), the reaction is exothermic ($\\Delta H < 0$)."
+    },
+    {
+      "front": "What are two key assumptions made when calculating enthalpy changes from a reaction in an aqueous solution?",
+      "back": "1. The density of the solution is the same as pure water (1.00 g cm⁻³). 2. The specific heat capacity of the solution is the same as pure water (4.18 J g⁻¹ K⁻¹)."
+    },
+    {
+      "front": "Why is a polystyrene cup a suitable container for a simple calorimeter?",
+      "back": "Polystyrene is a good thermal insulator, which minimises heat loss to or heat gain from the external environment, a major source of error."
+    },
+    {
+      "front": "In an experiment, the temperature increases. Is the reaction endothermic or exothermic, and what is the sign of $\\Delta H$?",
+      "back": "The reaction is exothermic. Heat is released into the surroundings, causing the temperature to rise. The sign of $\\Delta H$ is negative."
+    },
+    {
+      "front": "How do you calculate the molar enthalpy change from the calculated heat change, $q$?",
+      "back": "Divide the heat change by the number of moles ($n$) of the limiting reactant: $\\Delta H = -q / n$. The units are typically kJ mol⁻¹."
+    },
+    {
+      "front": "What is the single largest source of error in simple 'coffee cup' calorimetry?",
+      "back": "Heat loss to the surroundings (or heat gain from the surroundings for an endothermic reaction). The insulation is never perfect."
+    },
+    {
+      "front": "Why is it important to measure the mass of fuel burned in an enthalpy of combustion experiment?",
+      "back": "To calculate the moles of fuel ($n = \\text{mass} / M_r$) that produced the measured heat change, which is necessary to determine the molar enthalpy of combustion ($\\Delta H_c = -q/n$)."
+    },
+    {
+      "front": "What is a bomb calorimeter used for?",
+      "back": "It is a device used to accurately measure the enthalpy of combustion of a substance. It is a sealed, high-pressure container that minimises heat loss far more effectively than a simple calorimeter."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the enthalpy change (ΔH) negative when the temperature goes up?",
+      "a": "The temperature you are measuring is that of the *surroundings* (the water). If the surroundings get hotter, it means they have absorbed energy. This energy must have been released by the *system* (the chemical reaction). A process that releases energy is called exothermic, and by convention, it is assigned a negative ΔH value."
+    },
+    {
+      "q": "What is the difference between heat (q) and enthalpy change (ΔH)?",
+      "a": "Heat ($q$) is the total amount of thermal energy transferred, measured in Joules (J). Enthalpy change ($\\Delta H$) is the heat transferred per mole of reaction, measured under constant pressure. We calculate $q$ for the specific amounts used in our experiment, then use the number of moles ($n$) to standardise this to a molar value, $\\Delta H = -q/n$, with units of J mol⁻¹ or kJ mol⁻¹."
+    },
+    {
+      "q": "How do I decide on the correct number of significant figures for my final answer?",
+      "a": "Your final calculated answer should be given to the same number of significant figures as the least precise piece of measurement data used in the calculation. In calorimetry, this is often the temperature change ($\\Delta T$) or the mass of a substance measured. For example, if your $\\Delta T$ is 6.7 °C (2 s.f.) and your masses are to 3 s.f., your final answer should be given to 2 s.f."
+    },
+    {
+      "q": "Why is it better to extrapolate a cooling curve to find ΔT rather than just using the maximum temperature?",
+      "a": "In a real experiment, the system starts losing heat to the surroundings as soon as the reaction begins. By the time the maximum temperature is reached, some heat has already been lost. By plotting temperature against time and extrapolating the cooling portion of the graph back to the time of mixing, we can estimate the theoretical maximum temperature that would have been reached if there were no heat loss, giving a more accurate $\\Delta T$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Have you ever used a disposable hand warmer or wondered how the energy content of food is measured? Both involve the release of heat from chemical reactions. In this lesson, we'll delve into calorimetry, the practical method chemists use to quantify these energy changes. Mastering this technique is not just about getting the right answer; it's about understanding the bridge between theoretical concepts like enthalpy and real-world experimental measurements, including their inherent limitations."
+    },
+    {
+      "type": "heading",
+      "content": "The Principle of Calorimetry"
+    },
+    {
+      "type": "text",
+      "content": "The First Law of Thermodynamics states that energy cannot be created or destroyed, only transferred. In calorimetry, we apply this by isolating a chemical reaction (the **system**) and measuring the heat it exchanges with its immediate **surroundings**. In a simple 'coffee-cup' calorimeter, the surroundings are typically a known mass of water contained in an insulated cup. By measuring the temperature change of the water, we can calculate the heat it has absorbed or lost. We then make the crucial inference that this heat is equal in magnitude and opposite in sign to the enthalpy change of the reaction itself."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**System:** The chemical reaction being studied.",
+        "**Surroundings:** Everything outside the system that can exchange heat with it (e.g., the water, the calorimeter, the air).",
+        "**Conservation of Energy:** Heat lost by the system = Heat gained by the surroundings (for an exothermic reaction).",
+        "**Insulation:** The goal is to minimise heat exchange with anything other than the measured part of the surroundings (the water)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Calorimetry Calculation: q = mcΔT"
+    },
+    {
+      "type": "text",
+      "content": "This equation is the cornerstone of all calorimetry calculations. It relates the heat transferred to the mass of the substance being heated, its specific heat capacity, and the observed temperature change. It's vital to understand what each term represents and to use consistent units."
+    },
+    {
+      "type": "formula",
+      "content": "q = mc\\Delta T"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**q:** Heat absorbed or released by the surroundings, in Joules (J).",
+        "**m:** Mass of the substance being heated or cooled (the surroundings), in grams (g). For reactions in solution, this is the mass of the solution.",
+        "**c:** Specific heat capacity of the substance. For water (and assumed for aqueous solutions), this is 4.18 J g⁻¹ K⁻¹ or 4.18 J g⁻¹ °C⁻¹.",
+        "**ΔT:** The change in temperature ($T_{final} - T_{initial}$), in Kelvin (K) or degrees Celsius (°C). A change of 1 K is the same as a change of 1 °C."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In a neutralisation reaction, 50.0 cm³ of 1.00 mol dm⁻³ HCl(aq) was added to 50.0 cm³ of 1.00 mol dm⁻³ NaOH(aq) in a polystyrene cup. The initial temperature of both solutions was 22.5 °C, and the maximum temperature reached after mixing was 29.2 °C. Calculate the molar enthalpy of neutralisation, $\\Delta H_{neut}$.",
+      "solution": "1.  **Calculate temperature change (ΔT):**\n    $\\Delta T = T_{final} - T_{initial} = 29.2 \\,^\\circ\\text{C} - 22.5 \\,^\\circ\\text{C} = 6.7 \\,^\\circ\\text{C}$ (or 6.7 K)\n\n2.  **Calculate total mass of solution (m):**\n    Total volume = 50.0 cm³ + 50.0 cm³ = 100.0 cm³.\n    Assume density of solution = density of water = 1.00 g cm⁻³.\n    $m = \\text{volume} \\times \\text{density} = 100.0 \\,\\text{cm}^3 \\times 1.00 \\,\\text{g cm}^{-3} = 100.0 \\,\\text{g}$\n\n3.  **Calculate heat absorbed by solution (q):**\n    Assume specific heat capacity of solution = c of water = 4.18 J g⁻¹ K⁻¹.\n    $q = mc\\Delta T = (100.0 \\,\\text{g}) \\times (4.18 \\,\\text{J g}^{-1} \\text{K}^{-1}) \\times (6.7 \\,\\text{K})$\n    $q = 2800.6 \\,\\text{J}$\n\n4.  **Calculate moles of limiting reactant (n):**\n    Moles HCl = $C \\times V = 1.00 \\,\\text{mol dm}^{-3} \\times (50.0 / 1000) \\,\\text{dm}^3 = 0.0500 \\,\\text{mol}$\n    Moles NaOH = $C \\times V = 1.00 \\,\\text{mol dm}^{-3} \\times (50.0 / 1000) \\,\\text{dm}^3 = 0.0500 \\,\\text{mol}$\n    The reaction is HCl + NaOH → NaCl + H₂O. The stoichiometry is 1:1, so moles of H₂O formed = 0.0500 mol.\n\n5.  **Calculate molar enthalpy change (ΔH):**\n    The reaction is exothermic (temperature increased), so $\\Delta H$ must be negative. $\\Delta H = -q / n$.\n    $\\Delta H = -2800.6 \\,\\text{J} / 0.0500 \\,\\text{mol} = -56012 \\,\\text{J mol}^{-1}$\n\n6.  **Final answer with correct units and significant figures:**\n    Convert to kJ mol⁻¹ and use 2 significant figures (from $\\Delta T$).\n    $\\Delta H_{neut} = -56 \\,\\text{kJ mol}^{-1}$"
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is forgetting the sign of $\\Delta H$. The equation $q = mc\\Delta T$ calculates the heat gained by the *surroundings*. If $\\Delta T$ is positive (exothermic), $q$ is positive. However, the enthalpy change of the *system* ($ΔH$) is the opposite. Always remember: **exo, temp up, $\\Delta H$ negative; endo, temp down, $\\Delta H$ positive.** The IB markscheme will penalise an incorrect or missing sign."
+    },
+    {
+      "type": "heading",
+      "content": "Assumptions and Sources of Error"
+    },
+    {
+      "type": "text",
+      "content": "Simple calorimetry is effective for illustrating principles, but it is prone to errors. For your exam, you must be able to identify the underlying assumptions and explain how they lead to inaccuracies in the calculated enthalpy change. The most significant error is almost always heat loss."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Heat loss:** The primary source of error. The polystyrene cup is not a perfect insulator, and heat is lost to the air, the thermometer, and the stirrer. This makes the measured $\\Delta T$ smaller than the true value, leading to a calculated $|\\Delta H|$ that is less exothermic (or less endothermic) than the actual value.",
+        "**Assumptions about the solution:** We assume the solution has the same density (1.00 g cm⁻³) and specific heat capacity (4.18 J g⁻¹ K⁻¹) as pure water. This is an approximation, as the presence of dissolved ions will slightly alter these values.",
+        "**Heat capacity of the calorimeter:** We assume that the polystyrene cup and thermometer do not absorb any heat. In reality, they do, which means not all the heat from the reaction goes into the water.",
+        "**Incomplete or slow reaction:** We assume the reaction goes to completion instantaneously. If it is slow, heat loss becomes more significant as it occurs over a longer period."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The combustion of propan-1-ol (CH₃CH₂CH₂OH, $M_r = 60.11$ g mol⁻¹) was investigated using a spirit burner to heat 200.0 g of water in a copper can. The initial temperature of the water was 20.2 °C and the final temperature was 35.7 °C. The initial mass of the spirit burner was 121.67 g and the final mass was 120.95 g. Calculate the experimental molar enthalpy of combustion for propan-1-ol.",
+      "solution": "1.  **Calculate mass of fuel burned:**\n    Mass burned = $121.67 \\,\\text{g} - 120.95 \\,\\text{g} = 0.72 \\,\\text{g}$\n\n2.  **Calculate moles of fuel burned (n):**\n    $n = \\text{mass} / M_r = 0.72 \\,\\text{g} / 60.11 \\,\\text{g mol}^{-1} = 0.011978 \\,\\text{mol}$\n\n3.  **Calculate heat absorbed by water (q):**\n    $\\Delta T = 35.7 \\,^\\circ\\text{C} - 20.2 \\,^\\circ\\text{C} = 15.5 \\,^\\circ\\text{C}$ (or 15.5 K)\n    $q = mc\\Delta T = (200.0 \\,\\text{g}) \\times (4.18 \\,\\text{J g}^{-1} \\text{K}^{-1}) \\times (15.5 \\,\\text{K})$\n    $q = 12958 \\,\\text{J}$\n\n4.  **Calculate molar enthalpy change (ΔH):**\n    Combustion is always exothermic, so $\\Delta H$ must be negative. $\\Delta H = -q / n$.\n    $\\Delta H = -12958 \\,\\text{J} / 0.011978 \\,\\text{mol} = -1081816 \\,\\text{J mol}^{-1}$\n\n5.  **Final answer with correct units and significant figures:**\n    Convert to kJ mol⁻¹ and use 3 significant figures (from mass and temperature data).\n    $\\Delta H_c = -1080 \\,\\text{kJ mol}^{-1}$\n\n    *(Note: The data booklet value is -2021 kJ mol⁻¹. The large discrepancy is mainly due to massive heat loss to the surroundings in this type of experiment.)*"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Measuring Enthalpy Changes",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R.1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Calorimetry Simulation",
+          "href": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes"
+        },
+        {
+          "label": "Khan Academy: Calorimetry",
+          "href": "https://www.khanacademy.org/science/chemistry/thermodynamics-chemistry/calorimetry/a/calorimetry"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Calorimetry Simulation",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes",
+    "hint": "Explore “Calorimetry Simulation” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

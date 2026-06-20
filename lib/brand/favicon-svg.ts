@@ -1,8 +1,8 @@
 export {
   FAVICON,
+  FAVICON_PATHS,
   LOGO_COLORS,
   faviconDataUrl,
-  faviconSvgMarkup,
   logoMarkDataUrl,
   logoMarkSvgMarkup,
 } from '@/lib/brand/logo-mark'

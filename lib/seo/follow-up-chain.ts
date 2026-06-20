@@ -171,6 +171,26 @@ export const FOLLOW_UP_CHAINS: Record<ContentClusterId, FollowUpItem[]> = {
       href: '/mark',
     },
   ],
+  ib: [
+    {
+      question: 'Where can I find IB past papers?',
+      answer:
+        'Browse every IB Diploma subject at HL and SL by exam session and paper, with mark-scheme and markband guidance for each.',
+      href: '/ib/past-papers',
+    },
+    {
+      question: 'How is IB marking different from A-Level?',
+      answer:
+        'IB uses markbands and assessment criteria rather than B1/M1/A1 codes — examiners place your answer in a level band against descriptors.',
+      href: '/ib',
+    },
+    {
+      question: 'What is the difference between HL and SL?',
+      answer:
+        'Higher Level covers more content and usually an extra paper with greater depth; Standard Level is a lighter syllabus. Each subject page lists both.',
+      href: '/ib/subjects',
+    },
+  ],
 }
 
 export function getFollowUpChain(clusterId: ContentClusterId): FollowUpItem[] {

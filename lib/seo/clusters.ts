@@ -15,6 +15,7 @@ export type ContentClusterId =
   | 'grade-boundaries'
   | 'command-words'
   | 'free-alternatives'
+  | 'ib'
 
 export type ContentCluster = {
   id: ContentClusterId
@@ -241,6 +242,19 @@ export const CONTENT_CLUSTERS: ContentCluster[] = [
       /-alternative-free$/,
       /^free-.*-revision-notes$/,
     ],
+  },
+  {
+    id: 'ib',
+    path: '/guides/ib',
+    title: 'IB Diploma',
+    description:
+      'IB Diploma (IBDP) past papers, mark schemes, markbands and revision — HL and SL across every subject group.',
+    headTerm: 'IB past papers',
+    intent: 'informational',
+    format: 'hub',
+    pillarBlogSlug: 'ib-diploma-past-papers-guide',
+    moneyPath: '/ib',
+    slugPatterns: [/^ib-/, /-ib-guide$/],
   },
 ]
 

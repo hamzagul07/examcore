@@ -86,6 +86,15 @@ export const CLUSTER_SEMANTIC_ENTITIES: Record<ContentClusterId, string[]> = {
     'free AI marking',
     'paid vs free',
   ],
+  ib: [
+    'IB Diploma Programme',
+    'Higher Level and Standard Level',
+    'markbands',
+    'assessment criteria',
+    'Papers 1, 2 and 3',
+    'May and November sessions',
+    'internal assessment',
+  ],
 }
 
 export function getSemanticChecklist(clusterId: ContentClusterId): string[] {

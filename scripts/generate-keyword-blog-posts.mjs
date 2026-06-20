@@ -479,6 +479,122 @@ briefs.push({
   links: [['/past-papers', 'past papers by subject'], ['/mark', 'mark your answers'], ['/courses', 'topic-by-topic courses']],
 })
 
+// 13. IB Diploma (IBDP) cluster — new board, traffic jackpot
+const IB_MUST_NOT = [
+  'Do NOT invent specific IB grade boundaries or mark thresholds — they vary by session and are set after marking.',
+  'Do NOT claim MarkScheme currently marks against the official IB mark scheme; describe markbands generally — official IB-scheme marking is still rolling out.',
+]
+// 13a. Pillar
+briefs.push({
+  slug: 'ib-diploma-past-papers-guide',
+  cluster: 'ib', format: 'guide', category: 'revision',
+  title: 'IB Diploma past papers: the complete guide',
+  description: 'How to find and use IB Diploma past papers — HL vs SL, Papers 1–3, markbands, and a revision workflow that actually moves your grade.',
+  keywords: 'IB past papers, IB Diploma past papers, IBDP past papers, IB mark scheme, how to use IB past papers, IB HL SL papers',
+  facts: [
+    'The IB Diploma Programme (IBDP) assesses most subjects at Higher Level (HL) and Standard Level (SL), with HL covering more content and usually an extra paper.',
+    'Exams run in two sessions a year: May (most schools) and November (Southern hemisphere), with time-zone variants.',
+    'Most subjects use Paper 1, Paper 2 and (often at HL) Paper 3, plus an internal assessment (IA).',
+    'IB marks with markbands and assessment criteria — examiners place a response in a level band against descriptors — not Cambridge B1/M1/A1 codes.',
+    'Each subject is graded 1–7; the diploma is out of 45 with up to 3 bonus points from Theory of Knowledge and the Extended Essay; 24 points is the minimum to pass.',
+    'The most effective workflow: work a paper timed, mark yourself against the band descriptors, then drill the skills that kept you out of the top band.',
+  ],
+  mustNotClaim: IB_MUST_NOT,
+  links: [['/ib/past-papers', 'IB past papers by subject'], ['/ib', 'IB Diploma hub'], ['/mark', 'get feedback on your answer']],
+})
+// 13b. Per-subject HL guides (high-volume)
+const IB_GUIDE_SUBJECTS = [
+  { slug: 'biology-hl', name: 'Biology', short: 'Biology', papers: 'Paper 1 (multiple choice), Paper 2 (data and extended response) and Paper 3 (option/short answers)' },
+  { slug: 'chemistry-hl', name: 'Chemistry', short: 'Chemistry', papers: 'Paper 1 (multiple choice), Paper 2 (structured) and Paper 3 (data and option)' },
+  { slug: 'physics-hl', name: 'Physics', short: 'Physics', papers: 'Paper 1 (multiple choice), Paper 2 (structured) and Paper 3 (data and option)' },
+  { slug: 'maths-aa-hl', name: 'Mathematics: Analysis and Approaches', short: 'Maths AA', papers: 'Paper 1 (no calculator), Paper 2 (calculator) and Paper 3 (extended problem solving)' },
+  { slug: 'economics-hl', name: 'Economics', short: 'Economics', papers: 'Paper 1 (extended response), Paper 2 (data response) and Paper 3 (HL quantitative/policy)' },
+  { slug: 'business-management-hl', name: 'Business Management', short: 'Business Management', papers: 'Paper 1 (pre-released case study) and Paper 2 (structured and extended response)' },
+  { slug: 'psychology-hl', name: 'Psychology', short: 'Psychology', papers: 'Paper 1 (the approaches), Paper 2 (options) and Paper 3 (HL qualitative research)' },
+  { slug: 'history-hl', name: 'History', short: 'History', papers: 'Paper 1 (source analysis), Paper 2 (thematic essays) and Paper 3 (HL regional depth study)' },
+  { slug: 'english-a-lang-lit-hl', name: 'English A: Language and Literature', short: 'English Lang & Lit', papers: 'Paper 1 (guided textual analysis) and Paper 2 (comparative essay)' },
+  { slug: 'computer-science-hl', name: 'Computer Science', short: 'Computer Science', papers: 'Paper 1 (core theory), Paper 2 (the case study) and Paper 3 (HL chosen option)' },
+]
+for (const s of IB_GUIDE_SUBJECTS) {
+  briefs.push({
+    slug: `ib-${s.slug}-past-papers-guide`,
+    cluster: 'ib', format: 'guide', category: 'revision',
+    title: `IB ${s.short} HL past papers & revision guide`,
+    description: `How to revise IB ${s.name} HL with past papers: the papers, the markbands examiners reward, and a workflow to push from a 5 to a 7.`,
+    keywords: `IB ${s.name} HL, IB ${s.short} past papers, IB ${s.name} mark scheme, IB ${s.short} HL revision, IB ${s.name} markbands`,
+    facts: [
+      `IB ${s.name} at Higher Level is assessed by ${s.papers}, plus an internal assessment.`,
+      'IB marks with markbands and assessment criteria (level descriptors), not Cambridge B1/M1/A1 codes — knowing the band wording is how you reach a 7.',
+      'Exams run in the May and November sessions; the subject is graded 1–7.',
+      'Best practice: work a full paper timed, mark against the band descriptors, then drill the weak skill before the next session.',
+    ],
+    mustNotClaim: IB_MUST_NOT,
+    links: [[`/ib/past-papers/${s.slug}`, `IB ${s.short} past papers`], [`/ib/subjects/${s.slug}`, `IB ${s.name} HL`], ['/mark', 'get feedback on your answer']],
+  })
+}
+// 13c. Standalone IB explainers
+briefs.push({
+  slug: 'ib-markbands-explained',
+  cluster: 'ib', format: 'guide', category: 'exam-technique',
+  title: 'IB markbands explained: how examiners award marks',
+  description: 'What IB markbands and assessment criteria are, how examiners place your answer in a level band, and how to write to the top descriptor.',
+  keywords: 'IB markbands, IB assessment criteria, how IB marking works, IB level descriptors, IB mark scheme explained',
+  facts: [
+    'IB uses markbands (level descriptors) and assessment criteria rather than itemised B1/M1/A1 codes; examiners judge the response as a whole against band wording.',
+    'Each band describes the quality of knowledge, application, analysis and evaluation expected — you are placed in the band your answer best fits.',
+    'Many papers list assessment criteria (e.g. A, B, C, D) each with their own band descriptors that are added together.',
+    'To climb a band you must hit the descriptor language — e.g. "sustained and convincing analysis" beats "some analysis".',
+  ],
+  mustNotClaim: IB_MUST_NOT,
+  links: [['/ib', 'IB Diploma hub'], ['/ib/past-papers', 'IB past papers'], ['/mark', 'check your answer']],
+})
+briefs.push({
+  slug: 'ib-grade-boundaries-explained',
+  cluster: 'ib', format: 'guide', category: 'revision',
+  title: 'IB grade boundaries explained (1–7 and the /45)',
+  description: 'How IB grade boundaries work: subject grades 1–7, the 45-point diploma, bonus points, and why boundaries move each session.',
+  keywords: 'IB grade boundaries, IB grading explained, IB 7 points, IB 45 points, IB passing score, how IB grades work',
+  facts: [
+    'Each IB subject is graded 1–7, set by markbands and boundaries that are fixed after marking each session.',
+    'The full diploma is scored out of 45: six subjects (max 42) plus up to 3 bonus points from Theory of Knowledge and the Extended Essay.',
+    'You need 24 points to pass, subject to conditions (no grade 1, limited 2s/3s, and passing TOK/EE).',
+    'Boundaries move between sessions so a grade represents the same standard year on year — you cannot rely on a fixed percentage.',
+  ],
+  mustNotClaim: IB_MUST_NOT,
+  links: [['/ib', 'IB Diploma hub'], ['/ib/past-papers', 'IB past papers'], ['/mark', 'get feedback']],
+})
+briefs.push({
+  slug: 'ib-vs-a-level',
+  cluster: 'ib', format: 'comparison', category: 'revision',
+  title: 'IB vs A-Level: which is harder and how marking differs',
+  description: 'IB Diploma vs A-Levels — breadth vs depth, the 45-point system vs A*–E, and how IB markbands differ from Cambridge mark schemes.',
+  keywords: 'IB vs A-Level, IB or A-Levels, is IB harder than A-Levels, IB vs A-Level grading, IB Diploma vs A-Level',
+  facts: [
+    'The IB Diploma is broad: six subjects across groups plus Theory of Knowledge, the Extended Essay and CAS — versus typically three or four A-Levels chosen for depth.',
+    'IB grades each subject 1–7 (diploma out of 45); A-Levels grade A*–E per subject.',
+    'IB marks with markbands and assessment criteria; Cambridge A-Levels use itemised point marks (B1/M1/A1) and level-of-response bands for essays.',
+    'Neither is universally "harder" — IB rewards consistency across many subjects and skills; A-Levels reward depth in a few.',
+  ],
+  mustNotClaim: [...IB_MUST_NOT, 'Be fair to both qualifications; do NOT declare one objectively easier.'],
+  needsTable: true,
+  links: [['/ib', 'IB Diploma hub'], ['/subjects', 'Cambridge A-Level subjects'], ['/mark', 'mark your answers']],
+})
+briefs.push({
+  slug: 'ib-exam-revision-strategy',
+  cluster: 'ib', format: 'howto', category: 'revision',
+  title: 'How to revise for IB exams (a paper-by-paper plan)',
+  description: 'A step-by-step IB revision plan built around past papers and markbands — how to turn practice into a higher grade across HL and SL.',
+  keywords: 'how to revise for IB, IB revision strategy, IB exam preparation, IB past paper revision, IB study plan',
+  facts: [
+    'IB exams reward exam technique against markbands as much as content — practising papers and self-marking is the highest-leverage revision.',
+    'Start topic by topic to fix weak areas, then move to full timed papers as the session approaches.',
+    'Mark every attempt against the band descriptors so you know exactly which skill kept you out of the next band.',
+    'Balance revision across all six subjects plus TOK/EE so no component drags your /45 total.',
+  ],
+  mustNotClaim: IB_MUST_NOT,
+  links: [['/ib/past-papers', 'IB past papers'], ['/ib', 'IB Diploma hub'], ['/mark', 'get feedback on your answer']],
+})
+
 // ---------- prompt + generation ----------
 function buildPrompt(b) {
   const isHowto = b.format === 'howto'

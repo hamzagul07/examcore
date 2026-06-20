@@ -1,0 +1,163 @@
+{
+  "slug": "r1-3-energy-from-fuels",
+  "topicCode": "R1.3",
+  "title": "Energy from fuels",
+  "paper": "P2",
+  "paperName": "Chemistry HL",
+  "status": "premium",
+  "summary": "This lesson explores the quantitative comparison of different fuels. It introduces and differentiates between specific energy (energy per unit mass) and energy density (energy per unit volume), providing the tools to calculate and compare the energy output from various fuel sources, including hydrocarbons, hydrogen, and biofuels.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define and calculate the specific energy of a fuel.",
+    "Define and calculate the energy density of a fuel.",
+    "Compare the specific energy and energy density of different fuels, such as fossil fuels, hydrogen, and biofuels.",
+    "Analyse the relationship between the nature of a fuel and its energy output."
+  ],
+  "simpleExplanation": {
+    "title": "Fuel Power: More Bang for Your Gram",
+    "summary": "Specific energy tells you how much energy you get from a certain mass of fuel, while energy density tells you how much energy is packed into a certain volume. These two measures help us choose the best fuel for a specific job, like flying a plane or driving a car.",
+    "analogy": "Imagine packing snacks for a long hike. You could bring a watermelon, which is heavy and bulky but not very energy-rich for its weight (low specific energy). Or, you could bring a small bag of nuts; it's lightweight but packed with calories (high specific energy). Specific energy is like the energy-to-weight ratio of your snack, while energy density is the energy-to-space ratio in your backpack.",
+    "steps": [
+      "Identify the fuel and the given quantity (mass or volume).",
+      "Find the correct energy value: specific energy (e.g., kJ g⁻¹) or energy density (e.g., MJ dm⁻³).",
+      "Select the appropriate formula: Energy = mass × specific energy, or Energy = volume × energy density.",
+      "Calculate the total energy, ensuring units are consistent and the final answer has the correct significant figures."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is specific energy?",
+      "back": "Specific energy is the amount of energy released per unit mass of a fuel. It is calculated by dividing the total energy released by the mass of the fuel burnt."
+    },
+    {
+      "front": "What are the common units for specific energy?",
+      "back": "Joules per gram (J g⁻¹), kilojoules per gram (kJ g⁻¹), or megajoules per kilogram (MJ kg⁻¹)."
+    },
+    {
+      "front": "What is energy density?",
+      "back": "Energy density is the amount of energy released per unit volume of a fuel. It is calculated by dividing the total energy released by the volume of the fuel burnt."
+    },
+    {
+      "front": "What are the common units for energy density?",
+      "back": "Joules per cubic centimetre (J cm⁻³), kilojoules per cubic decimetre (kJ dm⁻³), or megajoules per cubic metre (MJ m⁻³)."
+    },
+    {
+      "front": "What is the formula to calculate energy from specific energy?",
+      "back": "Total Energy = mass × specific energy"
+    },
+    {
+      "front": "What is the formula to calculate energy from energy density?",
+      "back": "Total Energy = volume × energy density"
+    },
+    {
+      "front": "Why does hydrogen have a very high specific energy?",
+      "back": "Because hydrogen has a very low molar mass (approx. 2 g mol⁻¹). A small mass of hydrogen contains a large number of moles, and since combustion energy is released per mole, the energy per gram is exceptionally high."
+    },
+    {
+      "front": "Why is hydrogen's low energy density a problem?",
+      "back": "As a gas at standard conditions, hydrogen molecules are far apart, so a large volume is needed to store a meaningful mass of fuel. This makes storage and transport for applications like cars very challenging."
+    },
+    {
+      "front": "How does specific energy generally change as the hydrocarbon chain length increases?",
+      "back": "For alkanes, specific energy increases slightly and then plateaus. Shorter chains have a higher proportion of C-H bonds to C-C bonds, but also a higher proportion of oxygen is needed for the balanced equation, making the trend complex. It generally converges towards the value for polyethylene (~46 kJ g⁻¹)."
+    },
+    {
+      "front": "What is a common mistake when comparing specific energy and enthalpy of combustion?",
+      "back": "Enthalpy of combustion is typically given per mole (kJ mol⁻¹). Specific energy is per mass (kJ g⁻¹ or kJ kg⁻¹). You must use the molar mass to convert between them."
+    },
+    {
+      "front": "Compare the specific energy of ethanol and octane.",
+      "back": "Octane (a major component of petrol) has a higher specific energy (~47 kJ g⁻¹) than ethanol (~30 kJ g⁻¹). This is because ethanol is a partially oxidised hydrocarbon; the oxygen atom in its structure does not contribute to combustion energy but adds to the molar mass."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is specific energy more important for aeroplanes, while energy density is more important for cars?",
+      "a": "For an aeroplane, every kilogram of mass requires a significant amount of energy (lift) to keep it in the air. Therefore, minimising the mass of the fuel is paramount, making high specific energy (energy per kg) the most critical factor. For a car, the total weight is less critical, but the space available for the fuel tank is limited. Therefore, packing as much energy as possible into that fixed volume is key, making high energy density (energy per dm³) the more important property."
+    },
+    {
+      "q": "How does specific energy relate to the enthalpy of combustion, ΔHc?",
+      "a": "The standard enthalpy of combustion ($ΔH_c^⦵$) is the energy released per mole of a substance (units: kJ mol⁻¹). Specific energy is the energy released per unit mass (e.g., kJ g⁻¹). You can convert between them using the molar mass (M, in g mol⁻¹) of the substance: Specific Energy = $\\frac{|ΔH_c^⦵|}{M}$."
+    },
+    {
+      "q": "Why do biofuels like ethanol have lower specific energy than fossil fuels like octane?",
+      "a": "Ethanol ($C_2H_5OH$) is a partially oxidised hydrocarbon; it contains an oxygen atom. This oxygen atom adds to the molar mass of the molecule but does not contribute to the energy released during combustion (as it's already bonded to carbon and hydrogen). In contrast, hydrocarbons like octane ($C_8H_{18}$) consist solely of carbon and hydrogen. For a given mass, octane has a higher proportion of high-energy C-H and C-C bonds, resulting in a higher specific energy upon combustion."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Our world runs on energy, and for decades, the primary source has been the combustion of fuels. But not all fuels are created equal. To make informed decisions about energy sources, from powering vehicles to generating electricity, we need a way to quantitatively compare them. This lesson introduces two crucial metrics: specific energy and energy density, which allow us to evaluate and rank fuels based on their energy output relative to their mass and volume."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Energy Output: Specific Energy and Energy Density"
+    },
+    {
+      "type": "text",
+      "content": "When we burn a fuel, we are carrying out an exothermic reaction that releases chemical potential energy as heat. To compare how 'good' a fuel is, we need to standardise the amount of energy it produces. We can do this in two main ways. Specific energy considers the mass of the fuel, which is a critical factor in applications where weight must be minimised, such as in aviation. Energy density considers the volume of the fuel, which is vital when storage space is limited, as in the fuel tank of a car."
+    },
+    {
+      "type": "formula",
+      "content": "Specific Energy = \\frac{\\text{Energy Released (J)}}{\\text{Mass of Fuel (kg)}} \\quad (Units: J\\,kg^{-1})\n\nEnergy Density = \\frac{\\text{Energy Released (J)}}{\\text{Volume of Fuel (m}^3)}} \\quad (Units: J\\,m^{-3})"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Specific Energy**: Energy per unit mass. High specific energy means more 'power for the pound'. Units are typically kJ g⁻¹ or MJ kg⁻¹.",
+        "**Energy Density**: Energy per unit volume. High energy density means more energy in a smaller space. Units are typically kJ cm⁻³ or MJ dm⁻³.",
+        "These two properties are distinct and the preferred fuel depends on the application's constraints (weight vs. space)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Comparing Fuels: A Case Study of Hydrocarbons"
+    },
+    {
+      "type": "text",
+      "content": "Hydrocarbons, the primary components of fossil fuels, provide a useful context for understanding these concepts. As the length of an alkane chain increases, the molar mass increases. The enthalpy of combustion per mole also increases, as more C-C and C-H bonds are broken and more C=O and O-H bonds are formed. The specific energy (energy per gram) shows a less dramatic trend, increasing slightly before levelling off for long chains. This is because the ratio of high-energy C-H bonds to C-C bonds changes, and the overall composition approaches a repeating $-CH_2-$ unit. Energy density, however, generally increases with chain length for liquid hydrocarbons, as the longer molecules pack together more efficiently, increasing the density of the fuel."
+    },
+    {
+      "type": "workedExample",
+      "question": "Propane, $C_3H_8$, is a common fuel used for heating and cooking. Its standard enthalpy of combustion is $-2220$ kJ mol⁻¹. Calculate its specific energy in kJ g⁻¹.",
+      "solution": "1. **Find the molar mass (M) of propane, $C_3H_8$.**\n   $M = (3 \\times 12.01) + (8 \\times 1.01) = 36.03 + 8.08 = 44.11$ g mol⁻¹.\n\n2. **Identify the energy released per mole.**\n   The enthalpy of combustion is $-2220$ kJ mol⁻¹. For energy calculations, we use the magnitude: $2220$ kJ mol⁻¹.\n\n3. **Calculate the specific energy.**\n   Specific energy is the energy per gram. We can find this by dividing the energy per mole by the mass per mole (molar mass).\n   Specific Energy = $\\frac{\\text{Energy per mole}}{\\text{Molar mass}}$\n   Specific Energy = $\\frac{2220 \\text{ kJ mol}^{-1}}{44.11 \\text{ g mol}^{-1}} = 50.328...$ kJ g⁻¹.\n\n4. **State the answer to the correct significant figures.**\n   The data is given to 4 and 4 significant figures. So the answer should be given to 3 or 4 s.f. Let's use 3 s.f.\n   Specific Energy = $50.3$ kJ g⁻¹."
+    },
+    {
+      "type": "examTip",
+      "content": "Always pay close attention to the units given and required. A common source of error is mixing up kJ and J, or g and kg. It's good practice to write the units at every step of your calculation to avoid mistakes. For example, if you are given specific energy in kJ g⁻¹ but a mass in kg, you must convert one of them before multiplying."
+    },
+    {
+      "type": "heading",
+      "content": "Alternative Fuels: Hydrogen and Biofuels"
+    },
+    {
+      "type": "text",
+      "content": "The search for cleaner energy sources has led to great interest in alternatives like hydrogen ($H_2$) and biofuels like ethanol ($C_2H_5OH$). Hydrogen boasts an exceptionally high specific energy (around 142 kJ g⁻¹), over double that of petrol. This is due to its extremely low molar mass. However, its major drawback is its very low energy density as a gas, making it difficult and expensive to store enough of it on board a vehicle. Ethanol, produced from fermentation of biomass, is a renewable fuel. Its specific energy (~30 kJ g⁻¹) is lower than that of petrol (~47 kJ g⁻¹) because it is already partially oxidised. This means a car running on pure ethanol would require a larger mass of fuel to travel the same distance."
+    },
+    {
+      "type": "workedExample",
+      "question": "A bus is designed to run on compressed hydrogen gas. Its fuel tank holds 40.0 kg of $H_2$. Given that the specific energy of hydrogen is 142 MJ kg⁻¹, calculate the total energy stored in the tank. If diesel has an energy density of 35.8 MJ dm⁻³, what volume of diesel would be required to provide the same amount of energy?",
+      "solution": "1. **Calculate the total energy from hydrogen.**\n   Use the formula: Energy = mass × specific energy.\n   Energy = $40.0 \\text{ kg} \\times 142 \\text{ MJ kg}^{-1} = 5680$ MJ.\n\n2. **Calculate the required volume of diesel.**\n   First, rearrange the energy density formula: Volume = $\\frac{\\text{Energy}}{\\text{Energy Density}}$.\n   The energy required is the same as that provided by the hydrogen: 5680 MJ.\n   Volume = $\\frac{5680 \\text{ MJ}}{35.8 \\text{ MJ dm}^{-3}} = 158.659...$ dm³.\n\n3. **State the answer to the correct significant figures.**\n   The data is given to 3 significant figures. \n   Total energy from hydrogen = $5680$ MJ (or $5.68 \\times 10^3$ MJ).\n   Volume of diesel = $159$ dm³.\n\n   This shows that while hydrogen is very light for the energy it provides, a large volume of diesel would be needed to match it, highlighting the different advantages of each fuel."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge on Energy from Fuels",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R1.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Chemistry Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/chemistry/assessment/"
+        },
+        {
+          "label": "Khan Academy: Enthalpy of Combustion",
+          "href": "https://www.khanacademy.org/science/chemistry/thermochemistry-chemistry/enthalpy-calorimetry/a/enthalpy"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

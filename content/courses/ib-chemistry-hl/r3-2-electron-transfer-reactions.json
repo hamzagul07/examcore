@@ -1,0 +1,213 @@
+{
+  "slug": "r3-2-electron-transfer-reactions",
+  "topicCode": "R3.2",
+  "title": "Electron transfer reactions",
+  "paper": "P2",
+  "paperName": "Chemistry HL",
+  "status": "premium",
+  "summary": "This lesson explores the principles of electron transfer reactions, focusing on electrochemical cells. It covers the distinction between spontaneous voltaic cells and non-spontaneous electrolytic cells, the calculation of cell potentials under standard and non-standard conditions, and the quantitative aspects of electrolysis.",
+  "durationMin": 55,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Distinguish between voltaic (galvanic) and electrolytic cells in terms of energy conversion and electrode polarity.",
+    "Calculate cell potentials using standard electrode potentials ($E^\\ominus$) and predict the spontaneity of redox reactions.",
+    "Apply the Nernst equation to determine cell potentials under non-standard conditions.",
+    "Perform quantitative calculations related to electrolysis using Faraday's laws."
+  ],
+  "simpleExplanation": {
+    "title": "Redox Batteries and Forced Reactions",
+    "summary": "Electrochemical cells are systems where redox reactions either produce electricity or are driven by it. Understanding which direction electrons want to flow tells us if a reaction can power a device or if it needs power to occur.",
+    "analogy": "Imagine a waterfall versus a water pump. A waterfall is a spontaneous process where water flows downhill, releasing potential energy which could be used to turn a turbine. This is like a voltaic cell (a battery). A water pump, however, uses energy to force water uphill against gravity. This is like an electrolytic cell, which uses electricity to drive a non-spontaneous chemical reaction.",
+    "steps": [
+      "Identify the oxidation and reduction half-reactions and locate their standard electrode potentials ($E^\\ominus$) in the data booklet.",
+      "Calculate the standard cell potential ($E^\\ominus_{cell}$) to determine the spontaneous direction of the reaction under standard conditions.",
+      "For non-standard conditions (e.g., concentrations not 1 mol dm⁻³), apply the Nernst equation to find the actual cell potential ($E_{cell}$).",
+      "In electrolytic cells, use Faraday's laws ($Q=It$ and $n(e^-)=Q/F$) to calculate the amount of substance produced or consumed by a given current over time."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a voltaic (galvanic) cell?",
+      "back": "An electrochemical cell that converts chemical energy from a spontaneous redox reaction into electrical energy. $E_{cell}$ is positive and $\\Delta G$ is negative."
+    },
+    {
+      "front": "What is an electrolytic cell?",
+      "back": "An electrochemical cell that uses electrical energy to drive a non-spontaneous redox reaction. $E_{cell}$ is negative and $\\Delta G$ is positive."
+    },
+    {
+      "front": "What is the anode in an electrochemical cell?",
+      "back": "The electrode where oxidation occurs. It is the negative electrode in a voltaic cell and the positive electrode in an electrolytic cell."
+    },
+    {
+      "front": "What is the cathode in an electrochemical cell?",
+      "back": "The electrode where reduction occurs. It is the positive electrode in a voltaic cell and the negative electrode in an electrolytic cell."
+    },
+    {
+      "front": "What is the function of a salt bridge?",
+      "back": "To complete the electrical circuit by allowing the migration of ions between the two half-cells, maintaining charge neutrality."
+    },
+    {
+      "front": "What is Standard Electrode Potential ($E^\\ominus$)?",
+      "back": "The potential difference of a half-cell measured under standard conditions (1 mol dm⁻³ concentration, 100 kPa pressure, 298 K) relative to the Standard Hydrogen Electrode (SHE)."
+    },
+    {
+      "front": "What is the Standard Hydrogen Electrode (SHE)?",
+      "back": "The reference electrode used for measuring other electrode potentials, assigned a potential of exactly 0.00 V. The reaction is $2H^+(aq) + 2e^- \\rightleftharpoons H_2(g)$."
+    },
+    {
+      "front": "How do you calculate the standard cell potential, $E^\\ominus_{cell}$?",
+      "back": "$E^\\ominus_{cell} = E^\\ominus_{cathode} - E^\\ominus_{anode}$. The values for $E^\\ominus$ are taken directly from the data booklet (which lists reduction potentials)."
+    },
+    {
+      "front": "What condition on $E^\\ominus_{cell}$ indicates a spontaneous reaction?",
+      "back": "A positive value for $E^\\ominus_{cell}$ ($E^\\ominus_{cell} > 0$) indicates a spontaneous reaction under standard conditions."
+    },
+    {
+      "front": "What is the Nernst Equation used for?",
+      "back": "To calculate the cell potential ($E_{cell}$) under non-standard conditions of concentration and temperature. $E_{cell} = E^\\ominus_{cell} - \\frac{RT}{nF} \\ln Q$."
+    },
+    {
+      "front": "What is Faraday's constant (F)?",
+      "back": "The electric charge carried by one mole of electrons. Its value is approximately 96500 C mol⁻¹."
+    },
+    {
+      "front": "What is the relationship between charge (Q), current (I), and time (t)?",
+      "back": "$Q = I \\times t$, where Q is in coulombs (C), I is in amperes (A), and t is in seconds (s)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do the anode and cathode have different signs in voltaic and electrolytic cells?",
+      "a": "The signs are a consequence of the process. In a voltaic cell, the spontaneous reaction at the anode releases electrons, creating a negative charge buildup, so it's the negative terminal. In an electrolytic cell, an external power supply forces electrons onto the cathode, making it electron-rich and thus the negative terminal. The definitions of anode (oxidation) and cathode (reduction) are constant, but the polarity depends on whether the cell is producing or consuming electricity."
+    },
+    {
+      "q": "What happens if the salt bridge is removed from a voltaic cell?",
+      "a": "If the salt bridge is removed, the circuit becomes incomplete. As the reaction proceeds, positive charge would build up in the anode compartment (as metal ions are formed) and negative charge would build up in the cathode compartment (as positive ions are consumed). This charge imbalance quickly opposes the flow of electrons, and the current stops almost immediately."
+    },
+    {
+      "q": "In the electrolysis of aqueous sodium chloride, why is hydrogen gas produced at the cathode instead of sodium metal?",
+      "a": "In aqueous solution, there are two possible reduction reactions at the cathode: $Na^+(aq) + e^- \\rightarrow Na(s)$ ($E^\\ominus = -2.71\\,V$) and $2H_2O(l) + 2e^- \\rightarrow H_2(g) + 2OH^-(aq)$ ($E^\\ominus = -0.83\\,V$ at pH 7). Since the reduction of water has a significantly less negative (more positive) electrode potential, it is much easier to reduce water than sodium ions. Therefore, hydrogen gas is produced."
+    },
+    {
+      "q": "How does the Nernst equation relate to the concept of chemical equilibrium?",
+      "a": "When a cell reaches equilibrium, the reaction stops, and the cell potential ($E_{cell}$) becomes zero. This is a 'dead' battery. If we set $E_{cell} = 0$ in the Nernst equation, we get $E^\\ominus_{cell} = \\frac{RT}{nF} \\ln K$, where Q has become the equilibrium constant K. This powerful equation shows the direct thermodynamic link between the standard cell potential and the equilibrium constant for a redox reaction."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of electron transfer reactions, the heart of electrochemistry. This field bridges the gap between chemical reactions and electricity, underpinning technologies from the batteries in your phone to industrial processes like metal refining. In this lesson, we will dissect the two main types of electrochemical cells, learn how to predict whether a reaction will happen spontaneously, and calculate just how much product we can get from driving a reaction with electricity."
+    },
+    {
+      "type": "heading",
+      "content": "Voltaic (Galvanic) Cells: Generating Electricity"
+    },
+    {
+      "type": "text",
+      "content": "A voltaic cell is a device that harnesses a spontaneous redox reaction to produce an electric current. It consists of two half-cells, each containing an electrode immersed in an electrolyte solution. The electrode where oxidation occurs is the anode (the negative terminal), and the electrode where reduction occurs is the cathode (the positive terminal). A salt bridge connects the two half-cells, allowing ions to flow and maintain charge balance, thus completing the circuit."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Converts chemical energy to electrical energy.",
+        "Based on a spontaneous reaction ($\\Delta G < 0$, $E_{cell} > 0$).",
+        "Anode: Oxidation occurs, negative terminal.",
+        "Cathode: Reduction occurs, positive terminal.",
+        "Mnemonic: **AN OX** (Anode-Oxidation) and **RED CAT** (Reduction-Cathode)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Standard Electrode Potentials and Spontaneity"
+    },
+    {
+      "type": "text",
+      "content": "To compare the tendencies of different half-reactions to occur, we use standard electrode potentials, $E^\\ominus$. These are measured relative to the Standard Hydrogen Electrode (SHE) under standard conditions (298 K, 1 mol dm⁻³ solutions, 100 kPa gases). The values, found in the IB Data Booklet (Section 24), are all listed as reduction potentials. A more positive $E^\\ominus$ value indicates a greater tendency for the species to be reduced. We can use these values to calculate the overall cell potential for any combination of half-cells."
+    },
+    {
+      "type": "formula",
+      "content": "E^\\ominus_{cell} = E^\\ominus_{reduction \\, (cathode)} - E^\\ominus_{oxidation \\, (anode)}"
+    },
+    {
+      "type": "text",
+      "content": "A positive $E^\\ominus_{cell}$ signifies that the forward reaction is spontaneous under standard conditions. The Gibbs free energy change is related by the equation $\\Delta G^\\ominus = -nFE^\\ominus_{cell}$, where 'n' is the number of moles of electrons transferred and 'F' is the Faraday constant."
+    },
+    {
+      "type": "workedExample",
+      "question": "A voltaic cell is constructed from a zinc half-cell, $Zn(s) | Zn^{2+}(aq)$, and a copper half-cell, $Cu(s) | Cu^{2+}(aq)$, under standard conditions. Using the data booklet, determine:\n(a) The standard cell potential, $E^\\ominus_{cell}$.\n(b) The overall balanced equation for the spontaneous reaction.\n\nData: $E^\\ominus(Zn^{2+}/Zn) = -0.76\\,V$; $E^\\ominus(Cu^{2+}/Cu) = +0.34\\,V$.",
+      "solution": "**(a) Determine the standard cell potential**\n\n1.  **Identify cathode and anode:** The half-reaction with the more positive $E^\\ominus$ value will be the reduction (cathode). Here, $Cu^{2+}/Cu$ has $E^\\ominus = +0.34\\,V$, which is more positive than $Zn^{2+}/Zn$ ($E^\\ominus = -0.76\\,V$).\n    *   Cathode (Reduction): $Cu^{2+}(aq) + 2e^- \\rightarrow Cu(s)$\n    *   Anode (Oxidation): $Zn(s) \\rightarrow Zn^{2+}(aq) + 2e^-$\n\n2.  **Calculate $E^\\ominus_{cell}$:** Use the formula $E^\\ominus_{cell} = E^\\ominus_{cathode} - E^\\ominus_{anode}$.\n    *   $E^\\ominus_{cell} = (+0.34\\,V) - (-0.76\\,V)$ ✓\n    *   $E^\\ominus_{cell} = +1.10\\,V$ ✓\n    *(Since $E^\\ominus_{cell}$ is positive, the reaction is spontaneous.)*\n\n**(b) Write the overall balanced equation**\n\n1.  **Combine half-equations:** Add the cathode and anode half-equations, ensuring the electrons cancel out.\n    *   Reduction: $Cu^{2+}(aq) + 2e^- \\rightarrow Cu(s)$\n    *   Oxidation: $Zn(s) \\rightarrow Zn^{2+}(aq) + 2e^-$\n    *   Overall: $Zn(s) + Cu^{2+}(aq) \\rightarrow Zn^{2+}(aq) + Cu(s)$ ✓"
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is to flip the sign of the $E^\\ominus$ value for the anode *before* substituting it into the $E^\\ominus_{cell} = E^\\ominus_{cathode} - E^\\ominus_{anode}$ formula. Do not do this! The formula is designed to use the reduction potentials directly from the data booklet. The subtraction operation effectively accounts for the reversal of the oxidation half-reaction."
+    },
+    {
+      "type": "heading",
+      "content": "The Nernst Equation: Non-Standard Conditions"
+    },
+    {
+      "type": "text",
+      "content": "Standard conditions are rarely met in reality. The Nernst equation allows us to calculate the cell potential, $E_{cell}$, under any set of conditions. It adjusts the standard cell potential based on the reaction quotient, Q, which has the same form as the equilibrium constant expression but uses non-equilibrium concentrations. For a generic reaction $aA + bB \\rightarrow cC + dD$, $Q = \\frac{[C]^c[D]^d}{[A]^a[B]^b}$."
+    },
+    {
+      "type": "formula",
+      "content": "E_{cell} = E^\\ominus_{cell} - \\frac{RT}{nF} \\ln Q"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "R is the ideal gas constant (8.31 J K⁻¹ mol⁻¹).",
+        "T is the temperature in Kelvin.",
+        "n is the number of moles of electrons transferred in the balanced equation.",
+        "F is the Faraday constant (96500 C mol⁻¹).",
+        "If $Q < 1$ (reactants > products), $\\ln Q$ is negative, and $E_{cell} > E^\\ominus_{cell}$.",
+        "If $Q > 1$ (products > reactants), $\\ln Q$ is positive, and $E_{cell} < E^\\ominus_{cell}$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "For the Zn/Cu cell from the previous example, calculate the cell potential at 298 K if the concentrations are $[Zn^{2+}] = 1.50\\,mol\\,dm^{-3}$ and $[Cu^{2+}] = 0.10\\,mol\\,dm^{-3}$.",
+      "solution": "1.  **Recall standard information:**\n    *   $E^\\ominus_{cell} = +1.10\\,V$\n    *   Overall reaction: $Zn(s) + Cu^{2+}(aq) \\rightarrow Zn^{2+}(aq) + Cu(s)$\n    *   Number of electrons transferred, $n = 2$.\n\n2.  **Calculate the reaction quotient, Q:**\n    *   $Q = \\frac{[Products]}{[Reactants]} = \\frac{[Zn^{2+}]}{[Cu^{2+}]}$ (Solids are not included)\n    *   $Q = \\frac{1.50}{0.10} = 15.0$ ✓\n\n3.  **Apply the Nernst Equation:**\n    *   $E_{cell} = E^\\ominus_{cell} - \\frac{RT}{nF} \\ln Q$\n    *   $E_{cell} = 1.10 - \\frac{(8.31)(298)}{(2)(96500)} \\ln(15.0)$ ✓\n    *   $E_{cell} = 1.10 - (0.01284) \\times (2.708)$\n    *   $E_{cell} = 1.10 - 0.0348\\,V$\n    *   $E_{cell} = 1.0652\\,V \\approx 1.07\\,V$ (to 3 s.f.) ✓\n    *(As expected, since $Q>1$, the cell potential has decreased from its standard value.)*"
+    },
+    {
+      "type": "heading",
+      "content": "Electrolytic Cells and Quantitative Electrolysis"
+    },
+    {
+      "type": "text",
+      "content": "Electrolytic cells use an external power source to drive non-spontaneous reactions. This process, called electrolysis, is crucial for applications like electroplating and producing reactive metals from their ores. In an electrolytic cell, the anode is still the site of oxidation, but it is now the positive electrode, connected to the positive terminal of the power supply. The cathode is the site of reduction and is the negative electrode. The amount of substance produced is directly proportional to the total electric charge passed through the cell."
+    },
+    {
+      "type": "formula",
+      "content": "Charge (C): Q = I \\times t \\quad | \\quad Moles of electrons: n(e^-) = \\frac{Q}{F} = \\frac{I \\times t}{F}"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the mass of magnesium metal produced at the cathode during the electrolysis of molten $MgCl_2$ if a current of 10.0 A is applied for 1.50 hours. ($M_r(Mg) = 24.31$)",
+      "solution": "1.  **Write the half-equation:** At the cathode (negative electrode), magnesium ions are reduced.\n    *   $Mg^{2+}(l) + 2e^- \\rightarrow Mg(l)$ ✓\n    *   This shows that 2 moles of electrons are required to produce 1 mole of Mg.\n\n2.  **Calculate the total charge (Q):** First, convert time to seconds.\n    *   $t = 1.50 \\, hours \\times \\frac{3600 \\, s}{1 \\, hour} = 5400 \\, s$ ✓\n    *   $Q = I \\times t = 10.0 \\, A \\times 5400 \\, s = 54000 \\, C$ ✓\n\n3.  **Calculate moles of electrons ($n(e^-)$):**\n    *   $n(e^-) = \\frac{Q}{F} = \\frac{54000 \\, C}{96500 \\, C \\, mol^{-1}} = 0.55958... \\, mol$ ✓\n\n4.  **Calculate moles of Magnesium ($n(Mg)$):** Use the mole ratio from the half-equation.\n    *   $n(Mg) = n(e^-) \\times \\frac{1 \\, mol \\, Mg}{2 \\, mol \\, e^-} = 0.55958... \\div 2 = 0.27979... \\, mol$ ✓\n\n5.  **Calculate mass of Magnesium:**\n    *   $mass = n \\times M_r = 0.27979... \\, mol \\times 24.31 \\, g \\, mol^{-1}$ ✓\n    *   $mass = 6.802... \\, g \\approx 6.80 \\, g$ (to 3 s.f.) ✓"
+    },
+    {
+      "type": "examTip",
+      "content": "For electrolysis of aqueous solutions, you must consider the possible reduction of water at the cathode ($2H_2O + 2e^- \\rightarrow H_2 + 2OH^-$) and oxidation of water at the anode ($2H_2O \\rightarrow O_2 + 4H^+ + 4e^-$). Compare the $E^\\ominus$ values of the competing reactions to predict the products. Water is preferentially reduced if the metal cation is very reactive (e.g., Na⁺, K⁺, Mg²⁺) and preferentially oxidised if the anion is a polyatomic ion like SO₄²⁻ or NO₃⁻."
+    },
+    {
+      "type": "practice",
+      "label": "R3.2 Practice Questions",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Chemistry Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/chemistry/chemistry-data-booklet/"
+        },
+        {
+          "label": "In-depth guide to Electrochemistry",
+          "href": "https://chem.libretexts.org/Bookshelves/Analytical_Chemistry/Supplemental_Modules_(Analytical_Chemistry)/Electrochemistry"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

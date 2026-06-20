@@ -1,0 +1,163 @@
+{
+  "slug": "r2-1-how-much-the-amount-of-chemical-change",
+  "topicCode": "R2.1",
+  "title": "How much? The amount of chemical change",
+  "paper": "P2",
+  "paperName": "Chemistry HL",
+  "status": "premium",
+  "summary": "This lesson revisits and extends the fundamental concept of the mole, applying it to stoichiometric calculations. It covers determining empirical and molecular formulas, identifying limiting reactants, and calculating theoretical and percentage yields, which are essential skills for quantitative chemical analysis.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Solve stoichiometric problems involving mass, moles, solutions, and gases using balanced chemical equations.",
+    "Determine the empirical and molecular formula of a compound from percentage composition or mass data.",
+    "Identify the limiting reactant in a chemical reaction and calculate the theoretical yield.",
+    "Calculate the percentage yield of a reaction using the actual and theoretical yields."
+  ],
+  "simpleExplanation": {
+    "title": "The Chemist's Recipe",
+    "summary": "Stoichiometry is the 'recipe' of chemistry, telling us the exact amounts of reactants needed and products formed. The mole is our standard 'cup' or 'gram' for counting atoms and molecules, allowing us to scale reactions up or down precisely.",
+    "analogy": "Imagine you're baking cakes, and the recipe is '2 cups of flour + 1 egg = 1 cake'. If you have 8 cups of flour but only 3 eggs, you can't make 4 cakes. The eggs limit you to making only 3 cakes. In chemistry, the 'egg' is the limiting reactant, and the '3 cakes' is your theoretical yield.",
+    "steps": [
+      "Write and balance the chemical equation. This is your non-negotiable recipe.",
+      "Convert the given mass or volume of your starting material (reactant) into moles.",
+      "Use the molar ratio from the balanced equation to calculate the moles of the desired product.",
+      "Convert the moles of the product back into the required units, such as mass or volume."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the mole (mol)?",
+      "back": "The SI unit for the amount of substance. It represents a specific number of particles ($6.02 \\times 10^{23}$), defined as the number of atoms in exactly 12 g of carbon-12."
+    },
+    {
+      "front": "What is Avogadro's constant ($L$ or $N_A$)?",
+      "back": "The number of particles (atoms, molecules, ions) in one mole of a substance. Its value is $6.02 \\times 10^{23} \\text{ mol}^{-1}$."
+    },
+    {
+      "front": "Define Molar Mass ($M$).",
+      "back": "The mass of one mole of a substance, expressed in grams per mole ($g \\text{ mol}^{-1}$). It is numerically equal to the relative atomic or molecular mass."
+    },
+    {
+      "front": "What is an empirical formula?",
+      "back": "The simplest whole-number ratio of atoms of each element present in a compound."
+    },
+    {
+      "front": "What is a molecular formula?",
+      "back": "The actual number of atoms of each element in a molecule of a compound. It is a whole-number multiple of the empirical formula."
+    },
+    {
+      "front": "What is a limiting reactant (or reagent)?",
+      "back": "The reactant that is completely consumed in a chemical reaction and therefore determines the maximum amount of product that can be formed."
+    },
+    {
+      "front": "What is an excess reactant?",
+      "back": "The reactant that is present in a quantity greater than is required to react completely with the limiting reactant. Some of it will be left over after the reaction is complete."
+    },
+    {
+      "front": "Define theoretical yield.",
+      "back": "The maximum amount of product that can be produced from a given amount of reactants, calculated from the stoichiometry of the balanced equation, assuming 100% reaction."
+    },
+    {
+      "front": "What is the formula for percentage yield?",
+      "back": "Percentage Yield = $(\\frac{\\text{Actual Yield}}{\\text{Theoretical Yield}}) \\times 100\\%$. The actual yield is the amount of product experimentally obtained."
+    },
+    {
+      "front": "Common Trap: When calculating empirical formula, you get a ratio like 1:1.5. What do you do?",
+      "back": "Do NOT round to the nearest whole number. Multiply all parts of the ratio by the smallest integer (in this case, 2) to obtain a whole-number ratio (2:3)."
+    },
+    {
+      "front": "Common Trap: Forgetting to identify the limiting reactant.",
+      "back": "If you are given quantities for more than one reactant, you MUST first determine which one is limiting. All calculations for the theoretical yield must be based on this limiting reactant."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the actual yield nearly always less than the theoretical yield?",
+      "a": "There are several reasons. The reaction may be reversible and not go to completion. Side reactions may occur, forming unwanted by-products. There can be physical losses of the product during transfer between glassware, filtration, or other purification steps. Finally, the reactants themselves may not be 100% pure."
+    },
+    {
+      "q": "Can the percentage yield be over 100%?",
+      "a": "Theoretically, no. However, an experimental result over 100% is possible and indicates an error. The most common reason is that the product collected is not pure and is still wet (containing solvent, e.g., water) or contaminated with by-products or unreacted starting materials. This adds to the measured mass, giving an artificially high actual yield."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Chemistry is a quantitative science. Whether synthesising a new medicine or analysing an environmental sample, we need to know 'how much'. This topic builds on your foundational understanding of the mole to provide the tools for answering this crucial question. We will explore how to use balanced equations to predict reaction outcomes, determine chemical formulas, and evaluate the efficiency of a reaction."
+    },
+    {
+      "type": "heading",
+      "content": "The Mole: The Heart of Chemical Calculation"
+    },
+    {
+      "type": "text",
+      "content": "The mole is the bridge that connects the macroscopic world (what we can measure, like mass in grams) to the microscopic world of atoms and molecules. One mole of any substance contains Avogadro's constant ($L = 6.02 \\times 10^{23}$) of particles. This allows us to 'count' atoms by weighing them. We can relate the amount in moles ($n$) to mass ($m$), concentration ($c$), and volume ($V$)."
+    },
+    {
+      "type": "formula",
+      "content": "Amount (mol) from mass: $n = \\frac{m}{M}$ \\\\ Amount (mol) from solution: $n = cV$ \\\\ Amount (mol) from gas volume at STP: $n = \\frac{V}{22.7 \\text{ dm}^3 \\text{mol}^{-1}}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The mole is the central unit in stoichiometry.",
+        "Molar ratios from balanced equations are exact and essential for calculations.",
+        "Always ensure your units are consistent, e.g., convert cm³ to dm³ for concentration calculations ($1 \\text{ dm}^3 = 1000 \\text{ cm}^3$)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Iron(III) oxide reacts with carbon monoxide in a blast furnace to produce iron. The equation is: $Fe_2O_3(s) + 3CO(g) \\rightarrow 2Fe(l) + 3CO_2(g)$. Calculate the mass of iron that can be produced from 150.0 kg of iron(III) oxide.",
+      "solution": "1. **Find the molar mass of $Fe_2O_3$ and $Fe$:**\n   $M(Fe_2O_3) = (2 \\times 55.85) + (3 \\times 16.00) = 159.70 \\text{ g mol}^{-1}$\n   $M(Fe) = 55.85 \\text{ g mol}^{-1}$\n\n2. **Convert the mass of $Fe_2O_3$ to moles:**\n   First, convert kg to g: $150.0 \\text{ kg} = 150.0 \\times 10^3 \\text{ g}$\n   $n(Fe_2O_3) = \\frac{m}{M} = \\frac{150.0 \\times 10^3 \\text{ g}}{159.70 \\text{ g mol}^{-1}} = 939.26 \\text{ mol}$\n\n3. **Use the molar ratio to find moles of Fe:**\n   From the balanced equation, the ratio $Fe_2O_3 : Fe$ is $1:2$.\n   $n(Fe) = 2 \\times n(Fe_2O_3) = 2 \\times 939.26 \\text{ mol} = 1878.52 \\text{ mol}$\n\n4. **Convert moles of Fe to mass:**\n   $m(Fe) = n \\times M = 1878.52 \\text{ mol} \\times 55.85 \\text{ g mol}^{-1} = 104930 \\text{ g}$\n\n5. **Convert to kg and apply significant figures:**\n   $m(Fe) = 104.93 \\text{ kg}$. Given mass was to 4 s.f., so the answer should be too.\n   **Final Answer: 104.9 kg**"
+    },
+    {
+      "type": "heading",
+      "content": "Determining Empirical and Molecular Formulas"
+    },
+    {
+      "type": "text",
+      "content": "When a new compound is discovered, its formula is unknown. We can determine its empirical formula, the simplest ratio of atoms, by finding the mass of each element within a sample. If we also know the compound's molar mass (often found using mass spectrometry), we can then determine its molecular formula, which gives the actual number of atoms in one molecule."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sample of a hydrocarbon was found to contain 85.6% carbon and 14.4% hydrogen by mass. A mass spectrometer determined its molar mass to be $56.10 \\text{ g mol}^{-1}$. Determine the empirical and molecular formulas of the hydrocarbon.",
+      "solution": "1. **Assume 100 g sample and find moles of each element:**\n   Mass of C = 85.6 g; Mass of H = 14.4 g\n   $n(C) = \\frac{85.6 \\text{ g}}{12.01 \\text{ g mol}^{-1}} = 7.127 \\text{ mol}$\n   $n(H) = \\frac{14.4 \\text{ g}}{1.01 \\text{ g mol}^{-1}} = 14.26 \\text{ mol}$\n\n2. **Find the simplest whole-number ratio (empirical formula):**\n   Divide by the smallest number of moles (7.127):\n   C: $\\frac{7.127}{7.127} = 1.00$\n   H: $\\frac{14.26}{7.127} = 2.00$\n   The ratio is 1:2. **Empirical formula is $CH_2$.**\n\n3. **Determine the molecular formula:**\n   Calculate the molar mass of the empirical formula:\n   $M(CH_2) = 12.01 + (2 \\times 1.01) = 14.03 \\text{ g mol}^{-1}$\n   Find the multiple, $x = \\frac{\\text{Molar mass of compound}}{\\text{Molar mass of empirical formula}}$\n   $x = \\frac{56.10 \\text{ g mol}^{-1}}{14.03 \\text{ g mol}^{-1}} \\approx 4$\n\n4. **Multiply the empirical formula by the multiple:**\n   Molecular formula = $(CH_2)_4 = C_4H_8$\n   **Final Answer: Empirical formula is $CH_2$, Molecular formula is $C_4H_8$.**"
+    },
+    {
+      "type": "heading",
+      "content": "Reaction Yields and Limiting Reactants"
+    },
+    {
+      "type": "text",
+      "content": "In practice, chemical reactions are rarely perfect. Not all reactants may be converted to products due to incomplete reactions, side reactions, or losses during product recovery. The reactant that runs out first is the limiting reactant, and it dictates the maximum possible amount of product, known as the theoretical yield. By comparing the actual yield (what you physically collect) to the theoretical yield, we can calculate the percentage yield, a measure of the reaction's efficiency."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Percentage Yield} = \\frac{\\text{Actual Yield}}{\\text{Theoretical Yield}} \\times 100\\%"
+    },
+    {
+      "type": "examTip",
+      "content": "In questions where you are given the quantities of two or more reactants, it is a strong hint that you must first identify the limiting reactant. To do this, calculate the moles of each reactant and compare their mole ratio to the stoichiometric ratio in the balanced equation. Don't fall into the trap of assuming the reactant with the smaller mass is the limiting one!"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Stoichiometry Problems",
+      "href": "/mark?subject=ib-chemistry-hl&topic=R2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Stoichiometry",
+          "href": "https://www.khanacademy.org/science/chemistry/chemical-reactions-stoichiome"
+        },
+        {
+          "label": "Chem LibreTexts: Reaction Yields",
+          "href": "https://chem.libretexts.org/Bookshelves/General_Chemistry/Map%3A_Chemistry_-_The_Central_Science_(Brown_et_al.)/03._Stoichiometry%3A_Calculations_with_Chemical_Formulas_and_Equations/3.7%3A_Limiting_Reactants"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

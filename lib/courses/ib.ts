@@ -15,6 +15,27 @@ function ibCourseDir(slug: string): string {
   return path.join(COURSES_DIR, `ib-${slug}`)
 }
 
+/**
+ * Canonical topic order from the factual syllabus (`lib/syllabi/ib-{slug}.json`),
+ * keyed by topicCode → index. Lets lessons render in the order the syllabus
+ * defines, rather than relying on alphanumeric code sort — needed where theme
+ * letters don't sort into teaching order (e.g. Chemistry's Structure before
+ * Reactivity: "R" < "S" alphabetically). Returns null if no syllabus file.
+ */
+function getSyllabusOrder(slug: string): Map<string, number> | null {
+  const file = path.join(process.cwd(), 'lib', 'syllabi', `ib-${slug}.json`)
+  if (!fs.existsSync(file)) return null
+  try {
+    const syllabus = JSON.parse(fs.readFileSync(file, 'utf8')) as { topics?: { code: string }[] }
+    if (!Array.isArray(syllabus.topics)) return null
+    const order = new Map<string, number>()
+    syllabus.topics.forEach((t, i) => order.set(t.code, i))
+    return order
+  } catch {
+    return null
+  }
+}
+
 /** IB subject slugs that have a generated course folder with lessons. */
 export function getIbCourseSlugs(): string[] {
   if (!fs.existsSync(COURSES_DIR)) return []
@@ -39,7 +60,15 @@ export function getIbCourseLessons(slug: string): CourseLesson[] {
       /* skip malformed */
     }
   }
-  return lessons.sort((a, b) => a.topicCode.localeCompare(b.topicCode, undefined, { numeric: true }))
+  const order = getSyllabusOrder(slug)
+  return lessons.sort((a, b) => {
+    if (order) {
+      const ia = order.get(a.topicCode) ?? Number.MAX_SAFE_INTEGER
+      const ib = order.get(b.topicCode) ?? Number.MAX_SAFE_INTEGER
+      if (ia !== ib) return ia - ib
+    }
+    return a.topicCode.localeCompare(b.topicCode, undefined, { numeric: true })
+  })
 }
 
 export function getIbCourseLesson(slug: string, lessonSlug: string): CourseLesson | null {

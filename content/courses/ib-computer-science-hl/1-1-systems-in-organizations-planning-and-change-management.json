@@ -1,0 +1,199 @@
+{
+  "slug": "1-1-systems-in-organizations-planning-and-change-management",
+  "topicCode": "1.1",
+  "title": "Systems in organizations: planning and change management",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores the critical processes of planning for and implementing new computer systems within organizations. It covers feasibility studies, change management strategies like parallel running and direct changeover, data migration challenges, and the importance of user training and support to ensure a successful transition.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Analyse the need for and feasibility of a new system.",
+    "Evaluate different strategies for managing change when a new system is introduced.",
+    "Describe the complexities of compatibility and data migration between old and new systems.",
+    "Explain the importance of user training and the consequences of inadequate planning."
+  ],
+  "simpleExplanation": {
+    "title": "Upgrading the School Canteen",
+    "summary": "Introducing a new IT system is like renovating a school canteen to use a new payment system instead of cash. Careful planning is needed to avoid chaos and ensure everyone can still get their lunch.",
+    "analogy": "Imagine your school canteen decides to stop accepting cash and wants everyone to pay using a new pre-paid card. Before they just throw out the cash registers, they need a plan. They have to choose the right card system, transfer everyone's lunch money balances to the new cards, teach students and staff how to use the new machines, and have a backup plan in case the card reader breaks. This whole process, from the initial idea to everyone happily using their new cards, is what planning and change management is all about for any new system.",
+    "steps": [
+      "First, the school analyses why the cash system is a problem (long queues, security risks) and researches different card systems to find one that is affordable and reliable.",
+      "Next, they select a vendor, customise the software to link with school records, and install the new card readers and top-up machines.",
+      "Then, they implement the system. They might run it alongside cash for a week (parallel running) and hold sessions to teach everyone how to add money and pay with their new card.",
+      "Finally, after the new system is fully operational, they gather feedback to see if the queues are shorter and fix any bugs, like a card not scanning properly."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Legacy System",
+      "back": "An old method, technology, computer system, or application program that may or may not be supported/available for purchase anymore. It is still in use because it serves a critical function."
+    },
+    {
+      "front": "Merger",
+      "back": "The combination of two or more organizations into one. This often involves integrating different and potentially incompatible IT systems."
+    },
+    {
+      "front": "Direct Changeover",
+      "back": "The old system is stopped and the new system is started immediately. High risk, but low cost as you don't run two systems at once."
+    },
+    {
+      "front": "Parallel Running",
+      "back": "The new system is started, but the old system is kept running alongside it for a period. It's very safe as there is a backup, but it's expensive and resource-intensive."
+    },
+    {
+      "front": "Phased Implementation",
+      "back": "The new system is introduced in parts or stages. For example, one department or module at a time. This limits the impact of any failure."
+    },
+    {
+      "front": "Pilot Running",
+      "back": "The new system is implemented in its entirety in one specific location or department to test it in a live environment. If successful, it's rolled out to the rest of the organization."
+    },
+    {
+      "front": "Data Migration",
+      "back": "The process of transferring data from a storage system, database, or application to another. It often involves dealing with incompatible formats and data validation issues."
+    },
+    {
+      "front": "Stakeholders",
+      "back": "Anyone who has an interest in or is affected by a new system. This includes users, managers, clients, and the development team."
+    },
+    {
+      "front": "Feasibility Study",
+      "back": "An investigation that gauges the probability of success of a proposed project and provides a rough assessment of its viability. Often uses frameworks like TELOS."
+    },
+    {
+      "front": "TELOS",
+      "back": "A framework for a feasibility study: Technical (is it possible?), Economic (is it affordable?), Legal (is it lawful?), Operational (will it work in practice?), Schedule (can it be done on time?)."
+    },
+    {
+      "front": "Gantt Chart",
+      "back": "A type of bar chart that illustrates a project schedule. It lists tasks on the vertical axis and time intervals on the horizontal axis, showing start/end dates and dependencies."
+    },
+    {
+      "front": "User Documentation",
+      "back": "Documents designed to help end-users understand and use a system. Can include manuals, help files, and online tutorials."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between phased and pilot implementation?",
+      "a": "Phased implementation introduces a new system part-by-part (e.g., module by module) to the whole organization. Pilot implementation introduces the *entire* new system, but only to a small, selected part of the organization (e.g., one branch). Think of it as 'parts of the system to everyone' (phased) vs. 'all of the system to a few people' (pilot)."
+    },
+    {
+      "q": "Why is user involvement so important during the planning stage?",
+      "a": "Involving users from the beginning helps ensure the new system actually meets their needs. They are the experts in their own jobs. Their early feedback can prevent costly design flaws and, crucially, it gives them a sense of ownership, which reduces resistance to change later on."
+    },
+    {
+      "q": "Is a 'legacy system' always a bad thing?",
+      "a": "Not necessarily. A legacy system might be old, but it could also be extremely reliable and efficient at its specific task. The term 'legacy' simply means it's based on older technology. The problem arises when it can no longer be supported, is incompatible with new systems, or hinders business growth."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In today's world, organizations rely heavily on computer systems for everything from sales and marketing to logistics and finance. However, these systems age, business needs change, or companies merge, necessitating the introduction of new systems. This process is complex and fraught with risk. This topic examines the structured approach required to plan, implement, and manage the transition to a new system, ensuring it meets its goals without crippling the organization in the process."
+    },
+    {
+      "type": "heading",
+      "content": "1. Planning and Feasibility"
+    },
+    {
+      "type": "text",
+      "content": "Before any code is written or hardware is purchased, a thorough planning phase is essential. This begins with identifying a problem or opportunity and defining the scope of the proposed new system. A key part of this is the feasibility study, which assesses the project's potential for success. A common framework for this is TELOS."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Technical Feasibility:** Does the technology exist? Do we have the technical expertise to implement it?",
+        "**Economic Feasibility:** Is the project cost-effective? Will the benefits outweigh the costs (Cost-Benefit Analysis)?",
+        "**Legal Feasibility:** Does the proposed system comply with all relevant laws and regulations (e.g., GDPR, data protection acts)?",
+        "**Operational Feasibility:** Will the system be used? Does it fit with existing business practices? Can we manage the change?",
+        "**Schedule Feasibility:** Can the project be completed in an acceptable timeframe?"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The output of this phase is a detailed requirements specification and a project plan, often visualised using tools like a Gantt chart to map out tasks, timelines, and dependencies."
+    },
+    {
+      "type": "heading",
+      "content": "2. Change Management Strategies"
+    },
+    {
+      "type": "text",
+      "content": "Changeover, or 'go-live', is the moment of truth. It's the process of switching from the old system to the new one. The chosen method depends on the complexity of the system, the level of risk the organization can tolerate, and the available budget. There are four main strategies."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Direct Changeover:** The old system is switched off and the new one is switched on. **Pros:** Fast, cheapest option. **Cons:** Extremely high risk; if the new system fails, there is no backup.",
+        "**Parallel Running:** Both old and new systems run simultaneously for a set period. **Pros:** Very low risk; the old system acts as a backup. **Cons:** Very expensive in terms of cost and staff effort (double data entry).",
+        "**Phased Implementation:** The new system is introduced in stages, one module or part at a time. **Pros:** Allows users to adapt gradually; failure is contained to one part. **Cons:** Can take a long time; may cause compatibility issues between new and old modules.",
+        "**Pilot Running:** The new system is fully deployed in a single, isolated part of the organization (e.g., one office or branch). **Pros:** Real-world testing in a controlled environment; failure has limited impact. **Cons:** The pilot site may not be representative of the whole organization."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A national bank with 500 branches is replacing its 20-year-old legacy mainframe system with a modern, networked banking platform. The new system handles all customer transactions. The bank cannot afford any downtime or data loss. Propose and justify the most suitable changeover method.",
+      "solution": "A combination of **Pilot Running** followed by **Phased Implementation** would be most suitable.\n\n**Marking Points:**\n1.  **Method Choice:** Pilot and/or Phased Implementation. [1 mark]\n2.  **Justification for Pilot:** The bank could first implement the full new system in a small number of branches (e.g., 5-10). [1 mark] This allows for real-world testing with live transactions in a controlled environment, identifying bugs and performance issues without affecting the entire network. [1 mark]\n3.  **Justification for Phased:** After a successful pilot, the bank could roll out the system to other branches in phases, perhaps region by region. [1 mark] This manages the scale of the rollout, making training and support more manageable. It avoids the 'big bang' risk of a direct changeover across 500 branches simultaneously. [1 mark]\n4.  **Rejection of other methods:** Direct changeover is unacceptably risky for a national bank where system failure would be catastrophic. Parallel running would be operationally impossible and prohibitively expensive across 500 branches, requiring double the staff effort for every transaction. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "3. Compatibility and Data Migration"
+    },
+    {
+      "type": "text",
+      "content": "A new system rarely exists in a vacuum. It often needs to interact with other existing systems, and crucial data from the old system must be transferred. This process is a major source of problems. Compatibility issues can arise from different hardware, software platforms, or data formats. Data migration involves extracting data from the source, transforming it into a compatible format, and loading it into the new system (ETL: Extract, Transform, Load). This must be carefully planned and tested to prevent data corruption or loss."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Incompatible File Formats:** Data stored in a proprietary format in the legacy system may not be readable by the new system.",
+        "**Data Structure Differences:** Field names, data types (e.g., integer vs. string), and relationships between tables may differ.",
+        "**Validation Rules:** The new system may have stricter validation rules (e.g., requiring an 8-character password) that old data does not meet.",
+        "**Incomplete or 'Dirty' Data:** The old system might contain duplicate records, incomplete entries, or outdated information that needs to be 'cleansed' before migration."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A hospital is migrating patient records from an old system to a new one. In the old system, patient date of birth is stored as a text string, e.g., \"23rd March 1984\". The new system requires it in a `YYYY-MM-DD` date format. Describe a problem that will occur and outline the steps to solve it.",
+      "solution": "**Problem:**\n1.  **Data Type Incompatibility:** The string format \"23rd March 1984\" from the old system cannot be directly inserted into the new system's `YYYY-MM-DD` date field. This will cause an error during the data loading process, and the records will be rejected. [1 mark]\n2.  **Inconsistent String Formats:** The text field in the old system might contain inconsistent formats (e.g., \"23/03/1984\", \"Mar 23 1984\", \"23 March, 84\"), making a simple conversion impossible. [1 mark]\n\n**Solution Steps:**\n1.  **Extraction & Analysis:** Extract all date of birth strings from the old system. Analyse the data to identify all the different formats used. [1 mark]\n2.  **Transformation Script:** Write a program (a transformation script) that can parse these different string formats. The script should use conditional logic or regular expressions to correctly identify the day, month, and year from each string. [1 mark]\n3.  **Standardisation:** The script must convert the extracted components into the standard `YYYY-MM-DD` format. For example, \"23rd March 1984\" becomes \"1984-03-23\". [1 mark]\n4.  **Validation & Loading:** Before loading, validate the transformed dates (e.g., check for impossible dates like \"1984-02-30\"). Finally, load the clean, standardised data into the new system. Any records that cannot be automatically converted should be flagged for manual review. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "4. The Human Factor: User Training and Support"
+    },
+    {
+      "type": "text",
+      "content": "A perfectly designed system can still fail if users don't know how, or don't want, to use it. User resistance is a significant challenge in change management. Therefore, comprehensive user training and ongoing support are not optional extras; they are fundamental to a project's success. Training should be tailored to different user groups and can be delivered in various ways, such as formal classes, one-to-one coaching, or online tutorials. Good user documentation is also vital for long-term support."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, questions on this topic are often scenario-based. Always refer directly to the details given in the stimulus material. When asked to 'evaluate' or 'justify' a choice (like a changeover method), you must provide both pros and cons in the context of the scenario. For example, don't just say 'Direct changeover is risky'; say 'Direct changeover is too risky for the airline's booking system because a failure could lead to millions in lost revenue and reputational damage.'"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-computer-science-hl&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Gantt Charts Explained (YouTube)",
+          "href": "https://www.youtube.com/watch?v=E_pZ_2L_a-c"
+        },
+        {
+          "label": "Change Management Models",
+          "href": "https://www.pmi.org/learning/library/change-management-models-tools-techniques-7093"
+        },
+        {
+          "label": "Data Migration Strategies",
+          "href": "https://aws.amazon.com/cloud-migration/data-migration/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

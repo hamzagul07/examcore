@@ -1,0 +1,184 @@
+{
+  "slug": "5-2-linked-lists",
+  "topicCode": "5.2",
+  "title": "Linked lists",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces linked lists as a fundamental dynamic data structure. It covers their structure, core operations like traversal, insertion, and deletion, and provides a critical comparison with static arrays, aligning with IB exam expectations.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the structure of a linked list and its components (node, data, pointer).",
+    "Explain the processes of traversing, inserting, and deleting nodes in a linked list.",
+    "Compare and contrast the use of linked lists and arrays for different scenarios.",
+    "Construct algorithms in pseudocode for common linked list operations."
+  ],
+  "simpleExplanation": {
+    "title": "The Data Conga Line",
+    "summary": "Linked lists are a way to store data in a chain, where each item points to the next. This makes it easy to add or remove items anywhere in the chain without shifting everything else.",
+    "analogy": "Imagine a treasure hunt. Each clue (a 'node') has a piece of treasure (the 'data') and tells you where to find the next clue (the 'pointer'). The first clue is the 'head', and the last clue says \"End of hunt\" (a 'null' pointer). You can't just jump to the middle; you have to follow the clues in order from the start.",
+    "steps": [
+      "A 'node' is created, holding a piece of data and an empty 'next' pointer.",
+      "The first node is designated as the 'head' of the list, which is our only entry point.",
+      "A new node is added by making the previous node's pointer link to it.",
+      "The final node in the chain has a 'null' pointer, indicating the end of the list."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a node in a linked list?",
+      "back": "A fundamental unit of a linked list, typically an object, containing two parts: the data being stored and a pointer (or reference) to the next node in the sequence."
+    },
+    {
+      "front": "What is a pointer (or reference) in the context of a linked list?",
+      "back": "A variable that stores the memory address of another value. In a node, the pointer stores the address of the next node in the list."
+    },
+    {
+      "front": "What is the 'head' of a linked list?",
+      "back": "A pointer that stores the memory address of the very first node in the linked list. It is the sole entry point for accessing the list."
+    },
+    {
+      "front": "What does a 'null' pointer signify in a linked list?",
+      "back": "It indicates the end of the list. The 'next' pointer of the last node in the list is set to null."
+    },
+    {
+      "front": "What is traversal of a linked list?",
+      "back": "The process of visiting each node in the list in sequence, starting from the head and following the 'next' pointers until a null pointer is reached."
+    },
+    {
+      "front": "Why is a linked list considered a dynamic data structure?",
+      "back": "Because its size can be changed during program execution (runtime). Nodes can be added or removed as needed, with memory allocated on demand."
+    },
+    {
+      "front": "Contrast linked lists with arrays in terms of memory allocation.",
+      "back": "Arrays require a single, contiguous block of memory of a fixed size. Linked lists can be stored in non-contiguous memory locations, as each node points to the next, wherever it may be."
+    },
+    {
+      "front": "Compare the efficiency of insertion into the middle of an array versus a linked list.",
+      "back": "In an array, insertion is inefficient (O(n)) as it requires shifting all subsequent elements. In a linked list, it is efficient (O(1)) once the target location is found, as it only requires updating two pointers."
+    },
+    {
+      "front": "Compare the efficiency of accessing an element by its index in an array versus a linked list.",
+      "back": "In an array, access is very fast (O(1)) because the element's memory location can be calculated directly from the index. In a linked list, access is slow (O(n)) as it requires traversing the list from the head."
+    },
+    {
+      "front": "What is a common and critical error when traversing or modifying a linked list?",
+      "back": "Losing the reference to the 'head' pointer. If you modify the head pointer itself to traverse the list, you lose the starting point and thus the entire list. Always use a temporary pointer (e.g., 'current') for traversal."
+    },
+    {
+      "front": "Why do you often need a 'previous' pointer when deleting a node from a singly linked list?",
+      "back": "To delete a node 'N', you must modify the 'next' pointer of the node *before* N. Without a reference to this 'previous' node, you cannot 'bypass' N to remove it from the chain."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why would I ever use a linked list if array access is so much faster?",
+      "a": "The choice depends on the application. If your program involves frequent insertions and deletions (like managing a list of active tasks in an operating system), the cost of shifting elements in an array becomes very high. A linked list's ability to insert/delete in constant time (once the location is found) makes it far more suitable for such dynamic scenarios, even if direct access is slower."
+    },
+    {
+      "q": "What happens if I accidentally lose the 'head' pointer?",
+      "a": "If you overwrite the variable holding the head pointer and have no other reference to the first node, you have effectively lost the entire linked list. The nodes still exist in memory, but you have no way to access them. This is a memory leak, as the allocated memory cannot be reached or freed until the program terminates."
+    },
+    {
+      "q": "What is a doubly linked list?",
+      "a": "A doubly linked list is an extension where each node has two pointers: one `next` pointer to the following node, and one `previous` pointer to the preceding node. This allows for traversal in both forward and backward directions, and can simplify some operations like deletion, as you no longer need to keep a separate 'previous' tracker during traversal."
+    },
+    {
+      "q": "Are linked lists used in real-world software?",
+      "a": "Absolutely. They are used extensively. For example, your operating system might use a linked list to manage the queue of processes waiting for the CPU. Web browsers use them for the 'back' and 'forward' button history. They are also the underlying structure for other data structures like stacks and queues."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our study of data structures, we've seen the power and utility of arrays. However, their fixed size can be a significant limitation. If we need a list of items but don't know how many there will be, or if the list will change size frequently, an array can be inefficient. This is where linked lists come in. They are a fundamental dynamic data structure that provides flexibility in memory and size, forming the basis for many other complex structures like stacks, queues, and graphs."
+    },
+    {
+      "type": "heading",
+      "content": "The Anatomy of a Linked List"
+    },
+    {
+      "type": "text",
+      "content": "A linked list is not stored as a contiguous block in memory like an array. Instead, it is a collection of individual objects called **nodes**. Each node is a simple structure with two essential components:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Data**: The actual value we want to store (e.g., an integer, a string, a more complex object).",
+        "**Pointer (or Reference)**: A memory address that 'points' to the next node in the sequence. We'll often call this the `next` pointer."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The entire list is accessed through a single starting point: a pointer called the **head**. This points to the first node. From there, you can follow the `next` pointers from node to node. The `next` pointer of the very last node in the list points to **null**, which is a special value indicating there are no more nodes. This prevents us from trying to access memory that doesn't belong to our list."
+    },
+    {
+      "type": "heading",
+      "content": "Core Operations on Singly Linked Lists"
+    },
+    {
+      "type": "text",
+      "content": "The dynamic nature of linked lists is realised through a set of core operations. Understanding how to traverse, insert, and delete nodes is crucial."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Traversal**: The process of visiting every node. You start with a temporary pointer, `current`, set to `head`. In a loop, you process `current.data`, and then advance the pointer by setting `current = current.next`. The loop terminates when `current` becomes `null`.",
+        "**Insertion**: To add a new node, you first create it. Then, you adjust pointers to fit it into the list. Inserting at the head is a special case where the main `head` pointer must be updated to point to the new node. Inserting elsewhere involves changing the `next` pointer of the *previous* node.",
+        "**Deletion**: To remove a node, you must find its predecessor (the node before it). The predecessor's `next` pointer is then updated to point to the node *after* the one being deleted, effectively bypassing and removing it from the chain. Deleting the head node is again a special case requiring an update to the main `head` pointer."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A singly linked list of integers is sorted in ascending order. The list is accessed via a `head` pointer. Write an algorithm in pseudocode to insert a new integer, `value`, into the list while maintaining the sorted order.",
+      "solution": "The key is to find the correct position for the new node. We need to traverse the list to find the first node that is greater than `value`. The new node should be inserted just before it.\n\n**Mark Scheme & Pseudocode:**\n\n```\nALGORITHM insertSorted(head, value)\n\n  // Create the new node [1 mark]\n  newNode = new Node(value)\n\n  // Case 1: List is empty or new value is smallest [1 mark]\n  IF head == NULL OR head.data >= value THEN\n    newNode.next = head\n    head = newNode\n    RETURN head // Return the new head of the list\n  END IF\n\n  // Case 2: Find insertion point in the middle or end [1 mark for loop structure]\n  current = head\n  WHILE current.next != NULL AND current.next.data < value\n    current = current.next\n  END WHILE\n\n  // Insert the node [1 mark for pointer manipulation]\n  newNode.next = current.next\n  current.next = newNode\n\n  RETURN head // Head hasn't changed\n\nEND ALGORITHM\n```\n\n**Explanation:**\n1.  A new node is created with the given `value`.\n2.  We first check the edge case: if the list is empty (`head == NULL`) or if the new value should be the new head. If so, we point the new node's `next` to the old head and update the `head` pointer itself.\n3.  If not inserting at the start, we traverse the list with a `current` pointer. The loop continues as long as we are not at the end of the list (`current.next != NULL`) and the *next* node's data is still smaller than our new value.\n4.  When the loop terminates, `current` is the node just before our desired insertion point.\n5.  We set `newNode.next` to point to what `current` was pointing to, and then update `current.next` to point to our `newNode`. This correctly splices the new node into the list."
+    },
+    {
+      "type": "workedExample",
+      "question": "A singly linked list stores student names, accessed by a `head` pointer. Write an algorithm in pseudocode to delete the node containing a specific `targetName`.",
+      "solution": "To delete a node, we must find it while keeping track of the previous node. This is because the previous node's `next` pointer must be updated.\n\n**Mark Scheme & Pseudocode:**\n\n```\nALGORITHM deleteNode(head, targetName)\n\n  // Check if the list is empty\n  IF head == NULL THEN\n    RETURN NULL\n  END IF\n\n  // Case 1: The head node is the one to be deleted [1 mark]\n  IF head.data == targetName THEN\n    temp = head.next\n    // Deallocate memory for head if language requires it\n    RETURN temp // The new head is the next node\n  END IF\n\n  // Case 2: Search for the node to delete [1 mark for loop with previous]\n  current = head\n  previous = NULL\n  WHILE current != NULL AND current.data != targetName\n    previous = current\n    current = current.next\n  END WHILE\n\n  // If target was not found in the list\n  IF current == NULL THEN\n    RETURN head // No change to the list\n  END IF\n\n  // Unlink the node from the list [1 mark for pointer update]\n  previous.next = current.next\n  // Deallocate memory for current if language requires it\n\n  RETURN head // Head pointer is unchanged\n\nEND ALGORITHM\n```\n\n**Explanation:**\n1.  First, handle the edge case of an empty list.\n2.  Handle the special case where the `head` node itself contains the `targetName`. If so, the new head becomes `head.next`.\n3.  If the target is not at the head, we traverse the list using two pointers: `current` and `previous`. In each step of the loop, we advance both pointers.\n4.  The loop stops when `current` points to the node to be deleted, or when `current` becomes `NULL` (meaning the name wasn't found).\n5.  If the node is found (`current != NULL`), we bypass it by setting `previous.next = current.next`. This removes `current` from the chain."
+    },
+    {
+      "type": "heading",
+      "content": "Evaluation: Linked Lists vs. Arrays"
+    },
+    {
+      "type": "text",
+      "content": "Choosing between a linked list and an array is a classic design decision that depends entirely on the problem's requirements. There is no universally 'better' option; each has distinct advantages and disadvantages that you must be able to analyse for the exam."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Size & Memory**: Arrays have a fixed size declared at compile time, which can lead to wasted memory or overflow errors. Linked lists are dynamic and grow/shrink at runtime, using memory more efficiently for lists of unknown size.",
+        "**Memory Layout**: Arrays require a single, contiguous block of memory. Linked lists can be scattered throughout memory, which can be an advantage if memory is fragmented.",
+        "**Insertion/Deletion Speed**: Linked lists excel here. Inserting or deleting an element in the middle of a list is an O(1) operation (once the position is found), as it only involves redirecting pointers. For an array, this is an O(n) operation because subsequent elements must be shifted.",
+        "**Access Speed**: Arrays excel here. Accessing an element at a specific index `i` (e.g., `myArray[i]`) is an O(1) operation. For a linked list, this is an O(n) operation as you must traverse the list from the `head` to the nth element.",
+        "**Summary**: Use an array when you have a fixed number of elements and require frequent, fast random access. Use a linked list when the number of elements is unknown or changes frequently, and you perform many insertions or deletions."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners love to test your understanding of edge cases in linked list algorithms. Before finalising your pseudocode, always ask yourself: 'What happens if the list is empty (head is null)?', 'Does my code correctly handle operations on the first node (changing the head)?', and 'Does it work for the last node?'. Writing down these checks and ensuring your algorithm handles them is a key to scoring full marks."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Linked Lists",
+      "href": "/mark?subject=ib-computer-science-hl&topic=5.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Visualgo: Linked List Visualization",
+          "href": "https://visualgo.net/en/list"
+        },
+        {
+          "label": "GeeksforGeeks: Linked List Data Structure",
+          "href": "https://www.geeksforgeeks.org/data-structures/linked-list/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

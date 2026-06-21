@@ -1,0 +1,182 @@
+{
+  "slug": "7-1-control-systems-sensors-actuators-and-feedback",
+  "topicCode": "7.1",
+  "title": "Control systems: sensors, actuators and feedback",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of control systems, a core topic in robotics and automation. It explores the key components—sensors, processors, and actuators—and explains how they interact through feedback loops to manage and regulate environments. The distinction between open-loop and closed-loop systems is a central theme, alongside the necessary conversion between analogue and digital signals.",
+  "durationMin": 45,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define and differentiate between sensors, actuators, and processors within a control system.",
+    "Explain the role of feedback in open-loop and closed-loop control systems.",
+    "Analyse a real-world control system, identifying its components, processes, and data flow.",
+    "Describe the function of Analogue-to-Digital Converters (ADC) and Digital-to-Analogue Converters (DAC) in interfacing with the physical world."
+  ],
+  "simpleExplanation": {
+    "title": "The Smart Thermostat",
+    "summary": "Control systems are the brains behind automated devices, from your home's heating to a factory robot. They use sensors to perceive the world, a processor to make decisions, and actuators to perform actions.",
+    "analogy": "Imagine you are cooking. You look at the food to see if it's cooked (your eyes are sensors). You decide it needs five more minutes (your brain is the processor). You turn the oven dial down (your hand is the actuator). After a few minutes, you check again (this is feedback), creating a closed-loop system to get the perfect result. Without checking again, it would be an open-loop system – you'd just be guessing.",
+    "steps": [
+      "A sensor, like a thermometer, measures a physical property from the environment, converting it into an electrical signal.",
+      "A processor compares the sensor's reading to a pre-defined target value, known as the setpoint.",
+      "Based on the difference, the processor commands an actuator, such as a heater or a fan, to take action.",
+      "The sensor continuously monitors the environment, feeding new data back to the processor, creating a feedback loop for ongoing adjustments."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a control system?",
+      "back": "A system that manages, commands, directs, or regulates the behaviour of other devices or systems to achieve a desired result. It consists of sensors, a processor, and actuators."
+    },
+    {
+      "front": "What is a sensor?",
+      "back": "A device that detects or measures a physical property (e.g., temperature, light, pressure) and converts it into a signal, usually electrical, which can be read by a processor."
+    },
+    {
+      "front": "What is an actuator?",
+      "back": "A component of a machine that is responsible for moving and controlling a mechanism or system. It takes an electrical signal from the processor and converts it into physical action (e.g., a motor turning, a valve opening, a heater switching on)."
+    },
+    {
+      "front": "What is the role of the processor in a control system?",
+      "back": "The processor (often a microcontroller) receives data from sensors, compares it to a desired value (setpoint), and makes a decision to send a command signal to an actuator."
+    },
+    {
+      "front": "What is feedback in a control system?",
+      "back": "The process where the output of a system is measured by a sensor and fed back to the input of the processor to influence the system's action. It allows for self-correction."
+    },
+    {
+      "front": "What is a closed-loop control system?",
+      "back": "A system that uses feedback to automatically correct for deviations from a desired setpoint. It is self-regulating. Example: a thermostat controlling a heater."
+    },
+    {
+      "front": "What is an open-loop control system?",
+      "back": "A system that does not use feedback. It operates on a pre-set basis without monitoring the output. Example: a simple timer-based toaster."
+    },
+    {
+      "front": "What is an Analogue-to-Digital Converter (ADC)?",
+      "back": "A device that converts a continuous analogue signal (from a sensor) into a discrete digital signal that a processor can understand."
+    },
+    {
+      "front": "What is a Digital-to-Analogue Converter (DAC)?",
+      "back": "A device that converts a digital signal (from a processor) into a continuous analogue signal to drive an actuator in the real world."
+    },
+    {
+      "front": "What is a 'setpoint'?",
+      "back": "The target value or desired state that a control system aims to achieve and maintain. For example, 21°C on a thermostat."
+    },
+    {
+      "front": "Common Trap: Confusing Sensors and Actuators",
+      "back": "A light sensor DETECTS light (input), while an LED or light bulb PRODUCES light (output/action). Remember: sensors sense, actuators act."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is a human a type of control system?",
+      "a": "Yes, in many ways. The human body is full of complex biological closed-loop control systems. For example, your body regulates its internal temperature. Skin receptors (sensors) detect changes, the brain (processor) processes this, and you might shiver or sweat (actuators) to return to the setpoint of ~37°C."
+    },
+    {
+      "q": "What is the difference between a microcontroller and a microprocessor in this context?",
+      "a": "A microprocessor is just the central processing unit (CPU). A microcontroller is a small computer on a single chip containing a processor core, memory, and programmable input/output peripherals. For most embedded control systems, a microcontroller is used as the 'processor' because it has everything needed to interface with sensors and actuators built-in."
+    },
+    {
+      "q": "Can a system be both open-loop and closed-loop?",
+      "a": "A single control loop is either open or closed. However, a complex machine can contain multiple subsystems, some of which might be open-loop (e.g., a simple timed light) while others are closed-loop (e.g., a temperature regulation system). For the exam, focus on analysing a single process loop at a time."
+    },
+    {
+      "q": "Why not make every system closed-loop if it's more accurate?",
+      "a": "Closed-loop systems are more complex, require more components (sensors), and are therefore more expensive and have more potential points of failure. For simple, non-critical tasks where high precision isn't needed, a cheaper and more reliable open-loop system is often the better engineering choice. For example, a simple bread toaster doesn't need a sensor to check how brown the toast is; a timer is sufficient and cost-effective."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From the cruise control in a car to the air conditioning in a building, control systems are everywhere. They are the unseen intelligence that automates our world, making processes more efficient, reliable, and safe. This topic unpacks the fundamental principles of how these systems perceive their environment, make decisions, and enact change."
+    },
+    {
+      "type": "heading",
+      "content": "Core Components of a Control System"
+    },
+    {
+      "type": "text",
+      "content": "Every control system, regardless of its complexity, is built upon three fundamental types of components that work in a sequence: sensors, a processor, and actuators. Understanding the distinct role of each is crucial to analysing any automated system."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sensors:** The 'senses' of the system. They measure physical quantities from the environment like temperature, humidity, light level, or speed. They convert this physical measurement into an electrical signal.",
+        "**Processor:** The 'brain' of the system. This is typically a microcontroller or a dedicated computer. It reads the signal from the sensor, processes this information according to its programming (e.g., comparing it to a setpoint), and decides what action to take.",
+        "**Actuators:** The 'muscles' of the system. They receive a command signal from the processor and convert it into a physical action. Examples include motors, pumps, heaters, valves, and speakers."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Bridging Worlds: Analogue and Digital Signals"
+    },
+    {
+      "type": "text",
+      "content": "The physical world is inherently analogue; properties like temperature or pressure can have any value within a continuous range. However, the processors at the heart of control systems are digital, working with discrete values (0s and 1s). This creates a need for conversion between the two domains."
+    },
+    {
+      "type": "formula",
+      "content": "Physical Property \\xrightarrow{\\text{Sensor}} \\text{Analogue Signal} \\xrightarrow{\\text{ADC}} \\text{Digital Data} \\xrightarrow{\\text{Processor}} \\text{Digital Data} \\xrightarrow{\\text{DAC}} \\text{Analogue Signal} \\xrightarrow{\\text{Actuator}} \\text{Physical Action}"
+    },
+    {
+      "type": "text",
+      "content": "An **Analogue-to-Digital Converter (ADC)** samples the continuous analogue signal from the sensor at regular intervals and quantises it into a digital representation. Conversely, a **Digital-to-Analogue Converter (DAC)** takes the digital command from the processor and generates a corresponding analogue voltage or current to drive an actuator."
+    },
+    {
+      "type": "heading",
+      "content": "Feedback: Open vs. Closed Loops"
+    },
+    {
+      "type": "text",
+      "content": "The most significant distinction in control systems is the presence or absence of feedback. Feedback is the mechanism by which a system's output is used to modify its input, allowing for self-regulation. This leads to two categories of systems: open-loop and closed-loop."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Open-Loop Systems:** These systems do not use feedback. The control action is independent of the output. They are simpler and cheaper but can be inaccurate and unable to compensate for disturbances. A microwave oven operating on a timer is an open-loop system; it runs for the set time regardless of how cooked the food is.",
+        "**Closed-Loop Systems:** These systems use feedback. The output is measured by a sensor and compared to the setpoint. The difference (error) is used to adjust the control action. These systems are more complex and expensive but are highly accurate and stable. A car's cruise control is a classic example; it constantly adjusts the engine throttle to maintain a constant speed despite hills or wind."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A domestic central heating system uses a thermostat to maintain a comfortable room temperature. Analyse this as a closed-loop control system. Identify the setpoint, sensor, processor, actuator, and describe the feedback loop. [5 marks]",
+      "solution": "Here is a possible mark-scheme breakdown:\n\n*   **Setpoint:** The desired temperature set by the user on the thermostat, e.g., 20°C. [1 mark]\n*   **Sensor:** A thermometer (or thermistor) located inside the thermostat unit. It measures the current ambient room temperature. [1 mark]\n*   **Processor:** The microcontroller within the thermostat. It compares the sensor's reading (current temperature) with the setpoint. [1 mark]\n*   **Actuator:** The system that turns the boiler and/or water pump on or off. The processor sends a signal to a relay or switch which controls the boiler. [1 mark]\n*   **Feedback Loop:** If the current temperature is below the setpoint, the processor activates the boiler (actuator). The boiler heats the room, causing the temperature to rise. The sensor continuously measures this rising temperature and feeds it back to the processor. When the temperature reaches (or slightly exceeds) the setpoint, the processor deactivates the boiler. This cycle repeats to maintain the temperature. [1 mark for a clear description of the cycle]"
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to describe a control system, always be specific about the components. Instead of just 'sensor', state 'light sensor' or 'temperature sensor'. Similarly, for actuators, 'motor' or 'heater' is better than just 'actuator'. Drawing a simple block diagram showing the sensor, processor, actuator, and feedback loop can earn marks and clarify your thinking."
+    },
+    {
+      "type": "workedExample",
+      "question": "An automated irrigation system for a farm needs to maintain optimal soil moisture. Describe a closed-loop system to achieve this, identifying the necessary components and explaining the process, including signal conversion. [6 marks]",
+      "solution": "Here is a possible mark-scheme breakdown:\n\n*   **Sensor:** A soil moisture sensor is placed in the ground. It measures the water content of the soil and outputs a variable voltage (an analogue signal). [1 mark]\n*   **Signal Conversion (ADC):** The analogue signal from the moisture sensor is sent to an Analogue-to-Digital Converter (ADC). The ADC converts the continuous voltage into a discrete digital value that the processor can read. [1 mark]\n*   **Processor:** A microcontroller acts as the processor. It reads the digital value from the ADC and compares it to a pre-programmed setpoint for optimal moisture. [1 mark]\n*   **Actuator:** A solenoid valve connected to a water supply. This is the actuator. [1 mark]\n*   **Process/Control Action:** If the measured moisture level is below the setpoint, the processor sends a digital 'ON' signal to the solenoid valve, opening it and starting irrigation. (A DAC might be needed if the valve requires a variable analogue signal, but a simple on/off system is more common). [1 mark]\n*   **Feedback Loop:** As the system irrigates, the soil moisture increases. The sensor continuously measures this change and sends the updated value through the ADC to the processor. Once the moisture level reaches the setpoint, the processor sends an 'OFF' signal to the valve, stopping the water. This prevents over-watering and conserves water. [1 mark]"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions on Control Systems",
+      "href": "/mark?subject=ib-computer-science-hl&topic=7.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Control Systems Explained (Video)",
+          "href": "https://www.youtube.com/watch?v=O-i29wQZ4pA"
+        },
+        {
+          "label": "Arduino Blink: A Simple Open-Loop System",
+          "href": "https://docs.arduino.cc/built-in-examples/basics/Blink"
+        },
+        {
+          "label": "Feedback and Control Systems - MIT OpenCourseWare",
+          "href": "https://ocw.mit.edu/courses/aeronautics-and-astronautics/16-06-principles-of-automatic-control-fall-2012/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

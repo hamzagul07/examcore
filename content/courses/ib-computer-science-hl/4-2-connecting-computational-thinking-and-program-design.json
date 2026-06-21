@@ -1,0 +1,180 @@
+{
+  "slug": "4-2-connecting-computational-thinking-and-program-design",
+  "topicCode": "4.2",
+  "title": "Connecting computational thinking and program design",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores the crucial link between computational thinking and program design. It details how principles like decomposition, pattern recognition, and abstraction are not just theoretical concepts but practical tools used to design robust, efficient, and maintainable software solutions. We will cover how to translate a problem into a structured design using techniques like structure charts and pseudocode.",
+  "durationMin": 90,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Explain how computational thinking principles are applied in program design.",
+    "Apply decomposition to break down a complex problem into manageable sub-problems, procedures, and functions.",
+    "Utilise pattern recognition and abstraction to create simplified, reusable, and modular code.",
+    "Represent a program's design using standard tools such as structure charts, flowcharts, and IB-approved pseudocode."
+  ],
+  "simpleExplanation": {
+    "title": "From Idea to Code: The Architect's Blueprint",
+    "summary": "Just as an architect designs a detailed blueprint before building a house, a programmer uses computational thinking to design a program before writing code. This design process ensures the final software is logical, efficient, and solves the problem correctly.",
+    "analogy": "Imagine building a complex LEGO spaceship. You wouldn't just start randomly connecting bricks. First, you'd look at the overall design and break it down into smaller parts like the cockpit, wings, and engines (decomposition). You'd notice that both wings are identical, so you can build one and just copy the pattern (pattern recognition). You might use a pre-made engine piece without needing to know how the LEGO company moulded it (abstraction). Finally, you would follow the step-by-step instruction booklet to assemble everything in the correct order (algorithm). This is exactly how computational thinking guides program design.",
+    "steps": [
+      "Decompose the Problem: Break the main challenge into smaller, self-contained sub-tasks or modules.",
+      "Identify Patterns & Abstract: Look for repeating logic or data structures. Hide complex details behind simple interfaces, like functions with clear inputs and outputs.",
+      "Design Algorithms: Create step-by-step instructions, using pseudocode or flowcharts, to solve each individual sub-task.",
+      "Structure the Program: Organise the modules and their algorithms into a coherent program structure, using a structure chart to visualise how they interact and pass data."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the relationship between Computational Thinking and Program Design?",
+      "back": "Computational Thinking is the thought process used to formulate a problem and its solution. Program Design is the practical application of these thoughts to structure and plan the software solution before coding begins."
+    },
+    {
+      "front": "Decomposition in program design",
+      "back": "The process of breaking down a large, complex problem into smaller, more manageable, and self-contained sub-problems. This directly leads to modular design using functions or procedures."
+    },
+    {
+      "front": "Pattern Recognition in program design",
+      "back": "Identifying recurring themes, sequences, or characteristics within a problem. This allows for the creation of reusable solutions, such as loops to repeat actions or functions to perform a common task."
+    },
+    {
+      "front": "Abstraction in program design",
+      "back": "Hiding unnecessary complexity to focus on essential features. Procedural abstraction involves using a function without knowing its implementation. Data abstraction involves using a data structure (like a Stack) without knowing its underlying representation (array or linked list)."
+    },
+    {
+      "front": "What is a structure chart?",
+      "back": "A top-down diagram that shows the overall structure of a program. It visualises modules as rectangles and illustrates the hierarchy of how they call each other and pass data, but it does not show the logical flow (like loops or decisions)."
+    },
+    {
+      "front": "What is the key difference between a structure chart and a flowchart?",
+      "back": "A structure chart shows program structure and hierarchy (which module calls which). A flowchart shows the logical flow and sequence of operations within a single module or program (the step-by-step instructions)."
+    },
+    {
+      "front": "What is modular design?",
+      "back": "An approach to program design where a program is broken down into independent, interchangeable modules (e.g., functions, procedures, classes). Each module has a specific responsibility."
+    },
+    {
+      "front": "What is top-down design?",
+      "back": "A design methodology that starts with the main, highest-level problem and systematically breaks it down into smaller, more detailed sub-problems. It's a direct application of decomposition."
+    },
+    {
+      "front": "What is a sub-procedure or function?",
+      "back": "A named block of code that performs a specific task and can be called from other parts of the program. It is the primary way to implement modular design derived from decomposition."
+    },
+    {
+      "front": "What is the interface of a module?",
+      "back": "The 'public face' of a module, defining how it interacts with other modules. It specifies the module's name, the parameters it accepts, and the value(s) it returns, hiding the internal implementation details."
+    },
+    {
+      "front": "Common trap: Confusing decomposition with algorithm design.",
+      "back": "Decomposition is about *what* needs to be done (breaking the problem into tasks). Algorithm design is about *how* to do it (the step-by-step instructions for a single task)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between a structure chart and a flowchart?",
+      "a": "A structure chart shows program **structure** and hierarchy – which modules exist and which ones call others. It's like an organisational chart for your code. A flowchart shows program **logic** and flow – the step-by-step sequence of actions, decisions, and loops within a single module. You would use a structure chart to design the overall program and a flowchart (or pseudocode) to design the internals of each module in the chart."
+    },
+    {
+      "q": "Is top-down design the only method? What about bottom-up design?",
+      "a": "Top-down design is the most common and is heavily emphasized in the IB curriculum. However, bottom-up design also exists. In this approach, you start by building and testing low-level, generic utility functions first, and then combine them to create larger, more complex modules. It's often used when you know you'll need a library of reusable components. In practice, many large projects use a hybrid approach."
+    },
+    {
+      "q": "Do I have to use the exact IB-approved pseudocode in the exam?",
+      "a": "Yes, you are strongly encouraged to use the approved notation for pseudocode. While examiners may try to understand minor variations, using the standard format ensures your meaning is clear and unambiguous. It removes any risk of being misunderstood and losing marks. The guide is provided in the resources section for this reason."
+    },
+    {
+      "q": "How does Object-Oriented Programming (OOP) relate to these design principles?",
+      "a": "OOP is a powerful way to implement these principles. **Decomposition** is achieved by breaking a problem into objects (e.g., a `Car` object, a `Driver` object). **Abstraction** is a core pillar of OOP, where an object's complex internal state and methods are hidden behind a simple public interface. **Pattern Recognition** might lead you to create a parent `Vehicle` class with child classes like `Car` and `Motorbike` inheriting common properties. The algorithms are then implemented as methods within these classes."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "When faced with a complex programming task, the temptation is often to jump straight into writing code. However, this 'code-first' approach frequently leads to disorganised, buggy, and hard-to-maintain programs. This lesson introduces a more disciplined, engineering-based approach: program design. We will learn how to leverage the principles of computational thinking to create a clear, logical blueprint for our software *before* writing a single line of code, ensuring a more successful and efficient development process."
+    },
+    {
+      "type": "heading",
+      "content": "The Four Pillars of Computational Thinking in Design"
+    },
+    {
+      "type": "text",
+      "content": "You have already encountered the four pillars of computational thinking: decomposition, pattern recognition, abstraction, and algorithms. In program design, we move from defining these concepts to actively applying them. They become our primary tools for transforming a vague problem statement into a concrete, implementable plan. Each pillar plays a distinct but interconnected role in shaping the final program structure."
+    },
+    {
+      "type": "heading",
+      "content": "1. Decomposition and Modular Design"
+    },
+    {
+      "type": "text",
+      "content": "Decomposition is the cornerstone of 'top-down design'. We start with the main goal and break it into smaller, more specific sub-tasks. Each sub-task can then be implemented as a separate module, such as a function or a procedure. For example, designing a simple ATM program would involve decomposing the main task 'Perform Transaction' into sub-tasks like `displayMenu`, `getPIN`, `checkBalance`, `withdrawCash`, and `depositCash`. This modularity makes the code easier to write, test, and debug."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Manageability:** Smaller modules are easier to understand and work on than a single monolithic program.",
+        "**Reusability:** A well-designed module (e.g., `validateInput`) can be reused in different parts of the program or even in other projects.",
+        "**Easier Testing:** Each module can be tested independently (unit testing) before being integrated into the main system.",
+        "**Collaboration:** Different programmers can work on different modules simultaneously, speeding up development."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Representing the Decomposition: Structure Charts"
+    },
+    {
+      "type": "text",
+      "content": "A structure chart is a powerful diagrammatic tool for visualising the decomposition of a system. It shows the hierarchy of modules, how they are related, and what data is passed between them. Modules are represented by rectangles, a line connecting two modules indicates a call, and small arrows with circles indicate data parameters being passed. An arrow with an empty circle means a control flag (like a boolean `true`/`false`) is passed, while a filled circle indicates data (like a number or string)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A teacher needs a simple program to analyse student test scores. The program must read a list of integer scores from a file, calculate the average score, and find the highest score. The program should then display the list of scores, the calculated average, and the highest score. Design the system using a structure chart and provide pseudocode for the main modules.",
+      "solution": "### 1. Structure Chart Design\n\nThe system can be decomposed as follows:\n\n- **Main Module (Process Scores)**\n  - Calls `Read Scores` to get the list of scores from a file.\n  - Calls `Calculate Average`, passing the list of scores and receiving the average.\n  - Calls `Find Highest`, passing the list of scores and receiving the highest score.\n  - Calls `Display Results`, passing the list, average, and highest score.\n\nThis creates a clear, top-down hierarchy. `Read Scores`, `Calculate Average`, `Find Highest`, and `Display Results` are all sub-modules of `Process Scores`.\n\n### 2. Pseudocode for Modules\n\n**Main Module:**\n```\nprocedure processScores()\n  scoresArray = readScores(\"scores.txt\")\n  if scoresArray is not empty then\n    average = calculateAverage(scoresArray)\n    highest = findHighest(scoresArray)\n    displayResults(scoresArray, average, highest)\n  else\n    output \"No scores found or file is empty.\"\n  end if\nend procedure\n```\n\n**Calculate Average Module:**\n```\nfunction calculateAverage(scores)\n  sum = 0\n  count = scores.length\n  if count == 0 then\n    return 0 // Avoid division by zero\n  end if\n  loop for i from 0 to count - 1\n    sum = sum + scores[i]\n  end loop\n  return sum / count\nend function\n```\n\n**Find Highest Module:**\n```\nfunction findHighest(scores)\n  highestScore = scores[0]\n  loop for i from 1 to scores.length - 1\n    if scores[i] > highestScore then\n      highestScore = scores[i]\n    end if\n  end loop\n  return highestScore\nend function\n```\n\n**Marking Scheme Considerations:**\n- **[1 mark]** for a design that correctly decomposes the problem into at least three logical sub-modules (e.g., read, calculate, display).\n- **[1 mark]** for pseudocode that correctly calculates the average (initialises sum, loops through all elements, divides by count).\n- **[1 mark]** for pseudocode that correctly finds the highest score (initialises highest, correctly compares within a loop).\n- **[1 mark]** for the main module correctly calling the sub-modules and passing appropriate parameters."
+    },
+    {
+      "type": "heading",
+      "content": "2. Pattern Recognition & 3. Abstraction"
+    },
+    {
+      "type": "text",
+      "content": "Pattern recognition and abstraction work hand-in-hand. By recognising a repeating pattern of logic, we can create a function to encapsulate it. This function is an abstraction. For example, in a graphics program, you might notice that drawing a square, a triangle, and a star all involve setting a colour, moving a pen, and drawing lines. The pattern is 'draw a shape'. We can abstract this into a `drawShape(points)` function. Now, we can use `drawShape` without worrying about the low-level details of pixel manipulation. This is procedural abstraction and it makes our main code simpler and more readable."
+    },
+    {
+      "type": "examTip",
+      "content": "In IB exams, when asked to design a solution, explicitly look for opportunities to create functions for repeated tasks. For example, if you need to validate user input in multiple places, create a single `validateInput(input, min, max)` function. This demonstrates your understanding of both pattern recognition and abstraction, and will likely earn you higher marks for design quality."
+    },
+    {
+      "type": "heading",
+      "content": "4. Algorithms: The Step-by-Step Plan"
+    },
+    {
+      "type": "text",
+      "content": "Once we have decomposed the problem into modules, we need to design an algorithm for each one. This is the detailed, step-by-step logic that the module will execute. Pseudocode and flowcharts are the two primary tools for representing these algorithms. For the IB exam, you must be proficient in writing and interpreting the approved IB pseudocode. This algorithm design phase is where you make critical decisions about efficiency, such as choosing between a linear search and a binary search if the data is sorted."
+    },
+    {
+      "type": "workedExample",
+      "question": "A library's software needs a function to handle book returns. The function receives the unique ISBN (International Standard Book Number) of the returned book. The system stores book information in an array of `Book` objects, where each object has properties `ISBN`, `title`, and `onLoan` (a boolean). Design an algorithm in pseudocode that finds the book with the matching ISBN in the array and updates its `onLoan` status to `false`. The function should return `true` if the book was found and updated, and `false` otherwise. The array of books is not sorted.",
+      "solution": "### 1. Algorithm Design\n\nThe problem requires searching for an item in an unsorted array. A linear search is the appropriate algorithm.\n\n- **Input:** The target `ISBN` (string or integer) and the `bookList` (array of Book objects).\n- **Process:**\n  1. Iterate through each `Book` in the `bookList` from the first to the last.\n  2. In each iteration, compare the `ISBN` of the current `Book` object with the target `ISBN`.\n  3. If they match, change the `onLoan` property of that `Book` object to `false` and immediately return `true` to indicate success.\n  4. If the loop completes without finding a match, it means the book is not in the list. Return `false`.\n- **Output:** A boolean value (`true` or `false`).\n\n### 2. Pseudocode\n\n```\nfunction processReturn(targetISBN, bookList)\n  // bookList is an array of Book objects\n  // Each Book object has properties: ISBN, title, onLoan\n\n  found = false\n  i = 0\n  \n  // Loop through the array to find the book\n  loop while i < bookList.length AND found == false\n    if bookList[i].ISBN == targetISBN then\n      bookList[i].onLoan = false\n      found = true\n    end if\n    i = i + 1\n  end loop\n\n  return found\nend function\n```\n\n**Alternative (more efficient) Pseudocode:**\n```\nfunction processReturn(targetISBN, bookList)\n  loop for i from 0 to bookList.length - 1\n    if bookList[i].ISBN == targetISBN then\n      bookList[i].onLoan = false\n      return true // Exit and return immediately upon finding the book\n    end if\n  end loop\n\n  return false // This line is only reached if the loop finishes without a match\nend function\n```\n\n**Marking Scheme Considerations:**\n- **[1 mark]** for a function signature with appropriate parameters (`targetISBN`, `bookList`).\n- **[1 mark]** for a loop that correctly iterates through the `bookList`.\n- **[1 mark]** for a correct comparison between the target ISBN and the ISBN of the book in the list (`bookList[i].ISBN == targetISBN`).\n- **[1 mark]** for correctly updating the `onLoan` status upon finding a match.\n- **[1 mark]** for correctly handling both the 'found' case (returning `true`) and the 'not found' case (returning `false` after checking all elements)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-computer-science-hl&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Pseudocode Guide",
+          "href": "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/approved-notation-for-pseudo-code.pdf"
+        },
+        {
+          "label": "Visualising Structure Charts",
+          "href": "https://www.cs.drexel.edu/~jhk39/teaching/cs164/s05/lectures/L-04_Structure_Charts.pdf"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

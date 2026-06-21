@@ -1,0 +1,183 @@
+{
+  "slug": "2-3-binary-representation-of-data",
+  "topicCode": "2.3",
+  "title": "Binary representation of data",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental concept of binary representation. We will cover how computers use bits and bytes to store integers using two's complement, characters via ASCII and Unicode, and colours using the RGB model. We will also learn to calculate data storage requirements using standard units.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Explain how and why computers represent all data in binary form.",
+    "Represent positive and negative integers using the 8-bit two's complement system.",
+    "Describe how characters (ASCII, Unicode) and colours (24-bit RGB) are represented in binary.",
+    "Calculate data storage requirements for various data types, using appropriate units."
+  ],
+  "simpleExplanation": {
+    "title": "The Computer's Secret Code",
+    "summary": "Computers fundamentally operate with 'on' and 'off' electrical signals, which we represent as 1s and 0s (binary). This lesson decodes how these simple bits are cleverly combined to represent everything we see and use on a screen.",
+    "analogy": "Imagine you only have a light switch. To communicate, you could create a code: 'on-off-on' means 'A', 'off-off-on' means 'B'. This is exactly what computers do. A sequence of 1s and 0s (a byte) is a pattern that can represent a number, a letter, or a pixel's colour.",
+    "steps": [
+      "The Bit is Basic: Start with the smallest unit, a single binary digit (0 or 1), representing an 'off' or 'on' state.",
+      "Bytes for Building: Group 8 bits into a byte. A byte can hold 2^8 = 256 distinct patterns, perfect for representing characters or small integers.",
+      "Handling Negatives: Use the two's complement system to represent both positive and negative integers within a fixed number of bits, like an 8-bit byte.",
+      "Encoding Everything Else: Map characters to binary numbers using standards like ASCII and Unicode. Represent colours by storing the binary values for Red, Green, and Blue components (RGB)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Bit",
+      "back": "The smallest unit of data in a computer, representing a single binary value of either 0 or 1. Short for 'binary digit'."
+    },
+    {
+      "front": "Byte",
+      "back": "A group of 8 bits. It is the standard unit of storage for a single character and can represent $2^8 = 256$ different values."
+    },
+    {
+      "front": "Two's Complement",
+      "back": "A method for representing signed integers (positive, negative, and zero) in binary. The most significant bit (MSB) indicates the sign (0 for positive, 1 for negative)."
+    },
+    {
+      "front": "How do you find the two's complement of a negative number (e.g., -X)?",
+      "back": "1. Find the binary representation of the positive number (+X).\n2. Invert all the bits (change 1s to 0s and 0s to 1s).\n3. Add 1 to the result."
+    },
+    {
+      "front": "Most Significant Bit (MSB)",
+      "back": "The bit in a binary number with the greatest value, located at the far-left position. In two's complement, it also serves as the sign bit."
+    },
+    {
+      "front": "Least Significant Bit (LSB)",
+      "back": "The bit in a binary number with the lowest value, located at the far-right position. It determines if the number is odd or even."
+    },
+    {
+      "front": "ASCII (American Standard Code for Information Interchange)",
+      "back": "A 7-bit character encoding standard for electronic communication. It can represent 128 specified characters, including English letters, numbers, and control characters. Extended ASCII uses 8 bits for 256 characters."
+    },
+    {
+      "front": "Unicode",
+      "back": "A universal character encoding standard that assigns a unique number to every character, symbol, and emoji across all languages. It is a superset of ASCII and uses variable-width encodings like UTF-8."
+    },
+    {
+      "front": "RGB Colour Model",
+      "back": "An additive colour model where Red, Green, and Blue light are added together to reproduce a broad array of colours. In 24-bit colour, each component uses 8 bits, allowing for approx. 16.7 million colours."
+    },
+    {
+      "front": "Hexadecimal",
+      "back": "A base-16 number system using digits 0-9 and letters A-F. It is often used as a human-friendly shorthand for representing long binary strings, as one hex digit corresponds to exactly four bits."
+    },
+    {
+      "front": "Kibibyte (KiB) vs. Kilobyte (KB)",
+      "back": "A common point of confusion. A Kibibyte (KiB) is a power of 2: $2^{10} = 1024$ bytes. A Kilobyte (KB) is often a power of 10: $10^3 = 1000$ bytes. IB exams usually use the KB=1000 bytes convention."
+    },
+    {
+      "front": "Overflow Error",
+      "back": "An error that occurs when a calculation produces a result that is too large to be stored in the number of bits allocated. For example, adding two positive 8-bit numbers and getting a result that requires 9 bits."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why use two's complement instead of a simpler system like sign-and-magnitude?",
+      "a": "Sign-and-magnitude, which uses one bit for the sign and the rest for the number's magnitude, seems simpler but has two major drawbacks. Firstly, it has two different representations for zero: a 'positive zero' (e.g., `00000000`) and a 'negative zero' (e.g., `10000000`). This is redundant and can cause errors. Secondly, performing arithmetic is more complex, requiring different logic for addition and subtraction depending on the signs of the numbers. Two's complement avoids both these issues: it has a single, unique representation for zero, and subtraction can be performed by adding the negative equivalent, simplifying the CPU's arithmetic logic unit (ALU)."
+    },
+    {
+      "q": "What is the difference between ASCII and Unicode?",
+      "a": "Think of ASCII as a small, English-only dictionary and Unicode as a massive, multilingual encyclopaedia. ASCII uses 7 or 8 bits and can only represent a limited set of characters, primarily for English. Unicode is a modern standard designed to include every character from every language, plus symbols and emojis. It uses variable-length encodings like UTF-8, where common characters (like those in ASCII) use fewer bits, and rarer characters use more."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "At the most fundamental level, a computer's processor is made of billions of transistors, which are tiny switches that can be either on or off. This two-state system is the foundation of all digital computing. We represent 'off' with 0 and 'on' with 1, forming the binary number system. This lesson explores how these simple 0s and 1s are organised to represent all the complex data we interact with, from numbers and text to vibrant images."
+    },
+    {
+      "type": "heading",
+      "content": "The Building Blocks: Bits and Bytes"
+    },
+    {
+      "type": "text",
+      "content": "The smallest unit of data in a computer is a **bit** (binary digit), which can hold a value of either 0 or 1. While a single bit isn't very useful on its own, grouping them together allows us to represent more complex information. The most common grouping is a **byte**, which consists of 8 bits."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "1 bit can represent $2^1 = 2$ values (0 or 1).",
+        "8 bits = 1 byte. A byte can represent $2^8 = 256$ different values (from 00000000 to 11111111).",
+        "The rightmost bit is the **Least Significant Bit (LSB)**, and the leftmost bit is the **Most Significant Bit (MSB)**."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Representing Integers: Two's Complement"
+    },
+    {
+      "type": "text",
+      "content": "Representing positive integers is straightforward binary conversion. However, to represent negative integers, computers commonly use a system called **two's complement**. In an n-bit two's complement system, the Most Significant Bit (MSB) acts as a sign indicator. If the MSB is 0, the number is positive. If it is 1, the number is negative. This system is efficient because it allows arithmetic operations (like addition and subtraction) to be performed with the same hardware, regardless of the numbers' signs."
+    },
+    {
+      "type": "formula",
+      "content": "The range of integers that can be represented by an n-bit two's complement number is from $-(2^{n-1})$ to $2^{n-1} - 1$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Represent the decimal number -42 as an 8-bit two's complement binary number.",
+      "solution": "1. **Find the binary for the positive equivalent (+42):**\n   $42_{10} = 32 + 8 + 2 = 2^5 + 2^3 + 2^1$\n   In 8 bits, this is `00101010`.\n\n2. **Invert all the bits (one's complement):**\n   `00101010` becomes `11010101`.\n\n3. **Add 1 to the result:**\n   `11010101 + 1 = 11010110`.\n\n**Answer:** $-42_{10}$ in 8-bit two's complement is `11010110`.\n\n*Marking: [1] for correct positive binary representation. [1] for inverting. [1] for adding 1 to get the final correct answer.*"
+    },
+    {
+      "type": "examTip",
+      "content": "When converting a decimal number to two's complement, always start by writing out the positive binary version to the full number of bits required (e.g., 8 bits). Forgetting to pad with leading zeros is a common mistake that leads to an incorrect inversion."
+    },
+    {
+      "type": "heading",
+      "content": "Representing Characters and Colours"
+    },
+    {
+      "type": "text",
+      "content": "Binary is not just for numbers. By agreeing on a standard mapping, we can represent characters. **ASCII** (American Standard Code for Information Interchange) is an early 7-bit standard, representing 128 characters. **Unicode** is a modern, more extensive standard that aims to represent every character from every language, using variable-width encodings like UTF-8. For colours, the **RGB model** is common. It represents a colour by specifying the intensity of its Red, Green, and Blue components. In 24-bit 'true colour', each of the three components is assigned 8 bits, allowing for $2^8 = 256$ levels of intensity per component."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**ASCII:** Uses 7 or 8 bits per character. Standard ASCII (7-bit) can represent 128 characters (enough for English letters, numbers, and symbols).",
+        "**Unicode:** A superset of ASCII. It can represent over 140,000 characters using up to 32 bits per character, covering most world languages and symbols (e.g., emojis).",
+        "**24-bit RGB Colour:** Uses 8 bits for Red, 8 for Green, and 8 for Blue. This allows for $256 \\times 256 \\times 256 = 2^{24} \\approx 16.7$ million different colours."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Data Storage Calculations"
+    },
+    {
+      "type": "text",
+      "content": "Understanding binary representation is key to calculating data storage requirements. When discussing file sizes and memory capacity, we use units like kilobytes, megabytes, and gigabytes. It is crucial to distinguish between the SI decimal prefixes (powers of 1000) and the IEC binary prefixes (powers of 1024). In exam questions, the IB typically follows the SI convention where 1 kilobyte (KB) = 1000 bytes. Always check the question for the specific definition to use."
+    },
+    {
+      "type": "workedExample",
+      "question": "An uncompressed image has a resolution of 800 x 600 pixels. Each pixel is stored using a 24-bit RGB colour depth. Calculate the size of the image file in Megabytes (MB), assuming 1 MB = 1,000,000 bytes.",
+      "solution": "1. **Calculate the total number of pixels:**\n   Total pixels = width × height = $800 \\times 600 = 480,000$ pixels.\n\n2. **Calculate the total number of bits:**\n   Each pixel requires 24 bits.\n   Total bits = Total pixels × bits per pixel = $480,000 \\times 24 = 11,520,000$ bits.\n\n3. **Convert total bits to bytes:**\n   There are 8 bits in a byte.\n   Total bytes = Total bits / 8 = $11,520,000 / 8 = 1,440,000$ bytes.\n\n4. **Convert bytes to Megabytes (MB):**\n   The question specifies 1 MB = 1,000,000 bytes.\n   File size in MB = Total bytes / 1,000,000 = $1,440,000 / 1,000,000 = 1.44$ MB.\n\n**Answer:** The file size is 1.44 MB.\n\n*Marking: [1] for calculating total pixels. [1] for calculating total bits (or bytes). [1] for the final correct answer with correct units.*"
+    },
+    {
+      "type": "examTip",
+      "content": "Always read the question carefully to see which convention for units is being used (e.g., '1 KB = 1000 bytes' or '1 KiB = 1024 bytes'). If it is not specified, it is safest to state your assumption (e.g., 'Assuming 1 KB = 1000 bytes...'), but the SI convention is the most common in IB exams."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions on Binary Representation",
+      "href": "/mark?subject=ib-computer-science-hl&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "CS Unplugged - Binary Numbers",
+          "href": "https://www.csunplugged.org/en/topics/binary-numbers/"
+        },
+        {
+          "label": "Computerphile: Two's Complement",
+          "href": "https://www.youtube.com/watch?v=l_vjV_L_FpI"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

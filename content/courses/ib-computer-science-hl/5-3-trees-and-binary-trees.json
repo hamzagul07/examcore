@@ -1,0 +1,178 @@
+{
+  "slug": "5-3-trees-and-binary-trees",
+  "topicCode": "5.3",
+  "title": "Trees and binary trees",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces the tree, a fundamental non-linear data structure. We will explore its hierarchical nature, define key terminology such as root, node, and leaf, and differentiate between general trees and the more specific binary tree, a crucial building block for advanced algorithms.",
+  "durationMin": 90,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define a tree as a non-linear data structure and identify its key properties (nodes, edges, root, parent, child, leaf).",
+    "Distinguish between a general tree and a binary tree, explaining the constraints of a binary tree.",
+    "Describe and identify the root, leaf, child, parent, and sub-tree within a given tree structure.",
+    "Explain and calculate the height of a tree, and the depth or level of a specific node."
+  ],
+  "simpleExplanation": {
+    "title": "The Family Tree of Data",
+    "summary": "Trees are a way to store data that has a hierarchical relationship, like a family tree or a company's organisation chart. Unlike linear structures such as arrays, trees branch out, allowing for efficient organisation of nested information.",
+    "analogy": "Imagine a real family tree. You have a single ancestor at the top (the root). They have children, who in turn have their own children. Each person is a 'node', and the lines connecting them are 'edges'. People with no children are at the ends of the branches, like 'leaves' on a tree. This structure is perfect for representing relationships where one thing has many things below it.",
+    "steps": [
+      "Start with the 'root' node at the top, the single origin point of the entire structure.",
+      "Connect the root to its 'children' using 'edges'. These children are now 'parent' nodes to their own children.",
+      "Continue adding nodes. Any node with no children is a 'leaf' node, representing the end of a branch.",
+      "A 'binary tree' is a special type where each parent node can have at most two children: a left child and a right child."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Tree (Data Structure)",
+      "back": "A non-linear data structure that represents hierarchical data. It consists of nodes connected by edges, with a single root node and no cycles."
+    },
+    {
+      "front": "Node",
+      "back": "A fundamental component of a tree that contains a data value and may have links (pointers) to child nodes."
+    },
+    {
+      "front": "Edge",
+      "back": "The connection or link between two nodes in a tree, specifically between a parent and a child."
+    },
+    {
+      "front": "Root",
+      "back": "The single, top-most node in a tree. It is the only node that does not have a parent."
+    },
+    {
+      "front": "Parent Node",
+      "back": "A node that has one or more nodes connected below it in the hierarchy. These connected nodes are its children."
+    },
+    {
+      "front": "Child Node",
+      "back": "A node that is connected to a node above it in the hierarchy. The node above is its parent."
+    },
+    {
+      "front": "Leaf Node (or Terminal Node)",
+      "back": "A node in a tree that has no children. These are the nodes at the very bottom of the hierarchy."
+    },
+    {
+      "front": "Subtree",
+      "back": "A portion of a tree that can be viewed as a complete tree in itself. It consists of a node and all of its descendants."
+    },
+    {
+      "front": "Binary Tree",
+      "back": "A specific type of tree in which each node can have at most two children, referred to as the left child and the right child."
+    },
+    {
+      "front": "Height of a Tree",
+      "back": "The number of edges on the longest path from the root node to any leaf node. A tree with only a root node has a height of 0."
+    },
+    {
+      "front": "Depth of a Node",
+      "back": "The number of edges on the path from the root node to that specific node. The depth of the root node is 0."
+    },
+    {
+      "front": "Siblings",
+      "back": "Nodes in a tree that share the same parent node."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a tree and a graph?",
+      "a": "A tree is a specific type of graph. A graph is a collection of nodes (vertices) and edges, but a tree has two extra rules: it must be connected (you can get from any node to any other node) and it must have no cycles (you can't follow a path of edges and end up back where you started). All trees are graphs, but not all graphs are trees."
+    },
+    {
+      "q": "Why is the root of a computer science tree always drawn at the top?",
+      "a": "This is purely a convention for visualisation. In nature, a tree's root is at the bottom. In computer science, we draw the root at the top to represent the start of the hierarchy, with descendants branching downwards. It makes reading the structure from its origin more intuitive."
+    },
+    {
+      "q": "Can a tree have only one node?",
+      "a": "Yes. A single node is a perfectly valid tree. It is both the root and a leaf node. Such a tree has a height of 0."
+    },
+    {
+      "q": "Is a linked list a type of tree?",
+      "a": "A linked list can be considered a special, degenerate case of a tree where every node has at most one child. It follows the rules of a tree (no cycles, connected), but it doesn't have the branching structure that makes trees useful for representing complex hierarchies."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our study of data structures so far, we've focused on linear collections like arrays, queues, and linked lists, where elements follow a sequential order. However, much of the world's data isn't linear; it's hierarchical. Think of a file system, a company's organisational chart, or even the structure of an HTML document. To represent these relationships, we need a non-linear data structure: the tree. Trees provide an efficient and intuitive way to manage data that has parent-child relationships."
+    },
+    {
+      "type": "heading",
+      "content": "Fundamental Tree Terminology"
+    },
+    {
+      "type": "text",
+      "content": "A tree is a collection of entities called **nodes**. Nodes are connected by **edges**. Each tree has exactly one **root** node, which is the starting point of the tree. Every other node is connected by a directed edge from exactly one other node, its **parent**. A node can have multiple **child** nodes. A **path** is a sequence of nodes and edges connecting a node with a descendant. For example, in a file system, the root directory (e.g., C:\\) is the root node, folders are nodes, and the files within them are also nodes. The connection between a folder and a sub-folder is an edge."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Root**: The top-most node; it has no parent. A tree has only one root.",
+        "**Parent**: A node that has at least one child node.",
+        "**Child**: A node that has a parent.",
+        "**Siblings**: Nodes that share the same parent.",
+        "**Leaf (Terminal Node)**: A node with no children.",
+        "**Internal Node**: Any node that is not a leaf (i.e., has at least one child)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the following tree diagram where letters represent the data in each node.\n```\n      A\n     /|\\\n    B C D\n   / \\   |\n  E   F  G\n         |\n         H\n```\n(a) Identify the root node. [1]\n(b) Identify all leaf nodes. [2]\n(c) Identify the parent of node G. [1]\n(d) Identify the children of node B. [1]\n(e) Identify the siblings of node C. [1]",
+      "solution": "(a) The root node is the single top-most node.\n**A** [1]\n\n(b) Leaf nodes are those with no children.\n**E, F, H** [2] (Award [1] for two correct, [2] for all three correct. Deduct [1] for any incorrect additions).\n\n(c) The parent of G is the node directly connected above it.\n**D** [1]\n\n(d) The children of B are the nodes directly connected below it.\n**E, F** [1]\n\n(e) The siblings of C are the nodes that share the same parent (A).\n**B, D** [1]"
+    },
+    {
+      "type": "heading",
+      "content": "Tree Properties: Height, Depth, and Level"
+    },
+    {
+      "type": "text",
+      "content": "To analyse the efficiency of tree-based algorithms, we need to measure their structure. The **depth** of a node is the length of the path (number of edges) from the root to that node. The root node is at depth 0. The **height** of a tree is the depth of its deepest leaf node, which is equivalent to the length of the longest path from the root to any leaf. A tree with a single node has a height of 0. The **level** of a node is often defined as its depth, with the root being at level 0. Be careful, as some definitions start levels at 1, but the IB convention generally aligns with depth starting at 0."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently ask for the height of a tree. Remember the definition: it's the number of *edges* on the longest path from root to leaf. A common mistake is to count the number of *nodes* instead. For a tree with a single node, the height is 0, not 1."
+    },
+    {
+      "type": "heading",
+      "content": "The Binary Tree"
+    },
+    {
+      "type": "text",
+      "content": "While a general tree can have any number of children per node, a **binary tree** is a more restricted and very common type of tree. In a binary tree, each node can have at most two children. These children are distinguished as the **left child** and the **right child**. This ordering is important. A node with one child must specify whether it is a left or right child. This simple constraint makes binary trees much easier to implement and analyse, and they form the basis for many advanced structures, including the Binary Search Tree (BST) which we will cover separately."
+    },
+    {
+      "type": "formula",
+      "content": "For a binary tree of height $h$, the maximum number of nodes it can contain is $N_{max} = 2^{h+1} - 1$. This occurs when the tree is 'full', meaning every node has either 0 or 2 children, and all leaves are at the same depth."
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the binary tree below:\n```\n      10\n     /  \\\n    5    15\n   /    /  \\\n  2    12   20\n```\n(a) State the height of this binary tree. [1]\n(b) State the data in the right child of the node containing 15. [1]\n(c) Explain why this is a valid binary tree. [2]\n(d) Calculate the maximum number of nodes this tree could hold, given its height. [2]",
+      "solution": "(a) The longest path from the root (10) to a leaf is to node 2, 12, or 20. Let's take the path 10 -> 5 -> 2. This path has 2 edges.\n**Height = 2** [1]\n\n(b) Find the node containing 15. Its right child is the node connected to its right.\n**20** [1]\n\n(c) This is a valid binary tree because:\n- Each node has at most two children. [1]\n- It is a connected structure with a single root and no cycles. [1]\n\n(d) The height of the tree is $h=2$.\nUsing the formula $N_{max} = 2^{h+1} - 1$: [1] for formula or correct substitution.\n$N_{max} = 2^{2+1} - 1 = 2^3 - 1 = 8 - 1 = 7$.\n**7 nodes** [1] for the correct answer."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-computer-science-hl&topic=5.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "VisuAlgo - Binary Heap (visualises tree structure)",
+          "href": "https://visualgo.net/en/heap"
+        },
+        {
+          "label": "GeeksforGeeks - Introduction to Trees",
+          "href": "https://www.geeksforgeeks.org/introduction-to-trees-data-structure-and-algorithm-tutorials/"
+        },
+        {
+          "label": "CS Unplugged - The Muddy City (Graph Theory)",
+          "href": "https://www.csunplugged.org/en/topics/graph-theory/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

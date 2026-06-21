@@ -1,0 +1,182 @@
+{
+  "slug": "8-2-inheritance-polymorphism-and-abstraction",
+  "topicCode": "8.2",
+  "title": "Inheritance, polymorphism and abstraction",
+  "paper": "P2",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores the core object-oriented programming (OOP) principles of inheritance, polymorphism, and abstraction. It covers how these concepts enable code reuse, flexibility, and the creation of well-structured, maintainable software systems, with a focus on their application in IB exam-style questions.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Explain the concepts of inheritance, polymorphism, and abstraction.",
+    "Discuss the advantages and disadvantages of using inheritance and polymorphism.",
+    "Construct and interpret Unified Modelling Language (UML) diagrams representing inheritance relationships.",
+    "Analyse and trace code that demonstrates polymorphic behaviour."
+  ],
+  "simpleExplanation": {
+    "title": "OOP's Powerful Trio",
+    "summary": "Inheritance, polymorphism, and abstraction are tools that let us build flexible and efficient code. They allow us to create a general 'blueprint' and then derive more specific, specialised versions from it.",
+    "analogy": "Imagine you have a general blueprint for a 'Vehicle'. This blueprint states all vehicles must have a speed and a way to move. From this single blueprint, you can create more specific designs like a 'Car' (adding doors) or a 'Bicycle' (adding pedals). Inheritance is creating the specific designs from the general one. Polymorphism is the ability to treat a 'Car' and a 'Bicycle' both simply as 'Vehicles' in a list, yet when you tell each to 'move', they do so in their own unique way. Abstraction is the initial blueprint itself—it defines the essential features of a 'Vehicle' without getting bogged down in the specific details of how a car's engine or a bike's pedals work.",
+    "steps": [
+      "Define a general 'superclass' blueprint with common attributes and methods (e.g., a `Person` class).",
+      "Create specialised 'subclasses' that inherit these features and add their own (e.g., a `Student` class inherits from `Person` and adds a `studentID`).",
+      "Customise behaviour in subclasses by overriding methods from the superclass (e.g., a `display()` method shows different information for a `Person` and a `Student`).",
+      "Treat objects of different subclasses as if they are of the superclass type, allowing for flexible and dynamic code (e.g., an array of `Person` objects holding both `Person` and `Student` instances)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is inheritance in OOP?",
+      "back": "A mechanism where a new class (subclass or child class) derives attributes and methods from an existing class (superclass or parent class). It represents an \"is-a\" relationship."
+    },
+    {
+      "front": "What is a superclass (or parent class)?",
+      "back": "The class from which other classes inherit. It contains the common attributes and methods that are shared by its subclasses."
+    },
+    {
+      "front": "What is a subclass (or child class)?",
+      "back": "The class that inherits from a superclass. It can use the superclass's features and also add its own unique attributes and methods."
+    },
+    {
+      "front": "What is polymorphism?",
+      "back": "Literally \"many forms\". In OOP, it's the ability of an object to take on many forms. The most common use is when a superclass reference is used to refer to a subclass object, allowing the same method call to invoke different implementations."
+    },
+    {
+      "front": "What is method overriding?",
+      "back": "A feature of polymorphism where a subclass provides a specific implementation for a method that is already defined in its superclass. The method signature (name, parameters) must be the same."
+    },
+    {
+      "front": "What is the difference between method overriding and method overloading?",
+      "back": "Overriding is a subclass replacing a superclass method (same signature). Overloading is defining multiple methods with the same name but different parameters within the same class. Overloading is not polymorphism."
+    },
+    {
+      "front": "What is abstraction in OOP?",
+      "back": "The concept of hiding complex implementation details and showing only the essential features of the object. It's achieved using abstract classes and interfaces."
+    },
+    {
+      "front": "What is an abstract class?",
+      "back": "A class that cannot be instantiated on its own and is meant to be inherited by other classes. It can contain both abstract methods (with no implementation) and concrete methods."
+    },
+    {
+      "front": "What is an abstract method?",
+      "back": "A method declared in an abstract class without an implementation (no body). Subclasses are required to provide an implementation for it."
+    },
+    {
+      "front": "How is inheritance represented in a UML diagram?",
+      "back": "With a solid line and a hollow, closed arrowhead pointing from the subclass to the superclass. This arrow signifies \"is a kind of\"."
+    },
+    {
+      "front": "What is a common disadvantage of inheritance?",
+      "back": "It creates tight coupling between the superclass and subclass. A change in the superclass can have unintended consequences for all its subclasses."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between an abstract class and a regular (concrete) superclass?",
+      "a": "The main difference is instantiation. You cannot create an object of an abstract class. A concrete superclass can be instantiated. Also, an abstract class can contain abstract methods (methods without a body), which a concrete class cannot. You use an abstract class when the base concept is too general to exist on its own (e.g., 'Animal') and you want to force subclasses to implement certain methods."
+    },
+    {
+      "q": "Can a class inherit from more than one class in Java or IB Pseudocode?",
+      "a": "No, both Java and the IB pseudocode specification only support single inheritance, meaning a class can only have one direct superclass. This avoids the 'diamond problem' of multiple inheritance. To achieve similar functionality, you can use 'interfaces' (covered in Topic D.1), which allow a class to implement multiple sets of behaviours."
+    },
+    {
+      "q": "What does the `super` keyword do?",
+      "a": "The `super` keyword is used inside a subclass to refer to members (attributes, methods, and constructors) of its superclass. The most common use is `super()` to call the superclass's constructor from the subclass's constructor. You can also use it to call an overridden method from the superclass, e.g., `super.myMethod()`."
+    },
+    {
+      "q": "Is polymorphism only about method overriding?",
+      "a": "Method overriding is the primary way polymorphism is implemented and tested in the IB syllabus. However, the broader concept of polymorphism also includes method overloading (ad-hoc polymorphism) and generic programming (parametric polymorphism), but for exam purposes, your focus should be on overriding and treating subclass objects as superclass types."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In object-oriented programming, we often encounter situations where different types of objects share common characteristics. For example, a `Manager` and a `Clerk` are both types of `Employee`. Instead of writing separate, repetitive code for each, we can use the principles of inheritance, polymorphism, and abstraction to build a more logical, reusable, and maintainable system. These concepts are fundamental to modern software design and are frequently tested in Paper 2."
+    },
+    {
+      "type": "heading",
+      "content": "Inheritance: Building on Existing Code"
+    },
+    {
+      "type": "text",
+      "content": "Inheritance allows a new class, called a **subclass** or **child class**, to acquire the properties (attributes) and behaviours (methods) of an existing class, known as a **superclass** or **parent class**. This establishes an \"is-a\" relationship; for instance, a `Car` is a `Vehicle`. The subclass can then extend the functionality by adding new attributes and methods or modify existing behaviours."
+    },
+    {
+      "type": "formula",
+      "content": "// IB Pseudocode for Inheritance\nclass SuperclassName\n  // attributes and methods\nend class\n\nclass SubclassName extends SuperclassName\n  // additional attributes and methods\nend class"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage: Code Reusability.** Avoids duplicating code by placing common functionality in a superclass.",
+        "**Advantage: Extensibility.** New features can be added in a subclass without modifying the superclass.",
+        "**Disadvantage: Tight Coupling.** Subclasses are tightly bound to their superclass's implementation. Changes to the superclass can break subclasses.",
+        "**UML Representation:** A solid line with a hollow arrowhead points from the subclass to the superclass."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A software system models different types of media. A `MediaItem` has a `title` (String) and `duration` in seconds (integer). A `Song` is a type of `MediaItem` that also has an `artist` (String).\n\n(a) Using IB-style pseudocode, declare the `MediaItem` class with a constructor. [2]\n(b) Declare the `Song` class, which inherits from `MediaItem`. It should have a constructor that initialises all three attributes. [3]",
+      "solution": "**Mark Scheme & Solution**\n\n**(a) `MediaItem` class**\n```java\nclass MediaItem\n  private title\n  private duration\n\n  public constructor(t, d)\n    title = t\n    duration = d\n  end constructor\nend class\n```\n*   **[1 mark]** for correct class and attribute declaration (`title`, `duration`).\n*   **[1 mark]** for a constructor that correctly initialises the attributes.\n\n**(b) `Song` class**\n```java\nclass Song extends MediaItem\n  private artist\n\n  public constructor(t, d, a)\n    super(t, d)\n    artist = a\n  end constructor\nend class\n```\n*   **[1 mark]** for correct class declaration using `extends MediaItem`.\n*   **[1 mark]** for a constructor that calls the superclass constructor using `super(t, d)`.\n*   **[1 mark]** for initialising the `artist` attribute."
+    },
+    {
+      "type": "heading",
+      "content": "Polymorphism: One Interface, Many Implementations"
+    },
+    {
+      "type": "text",
+      "content": "Polymorphism allows objects of different classes to be treated as objects of a common superclass. A key mechanism for this is **method overriding**, where a subclass provides its own implementation of a method that it inherited from its superclass. This means you can call the same method on different objects and get different, specialised behaviour depending on the object's actual class."
+    },
+    {
+      "type": "examTip",
+      "content": "Be careful not to confuse method **overriding** (polymorphism) with method **overloading**. Overloading involves multiple methods in the same class with the same name but different parameters. Overriding involves a method in a subclass with the exact same signature as a method in its superclass. Exam questions often test this distinction."
+    },
+    {
+      "type": "workedExample",
+      "question": "Continuing from the previous example, a `PodcastEpisode` class also extends `MediaItem` and has a `host` attribute. Both `Song` and `PodcastEpisode` need a `display()` method. For a `Song`, it should output \"Title by Artist\". For a `PodcastEpisode`, it should output \"Title hosted by Host\".\n\nAn array `myPlaylist` is created as follows:\n`myPlaylist = {new Song(\"Bohemian Rhapsody\", 355, \"Queen\"), new PodcastEpisode(\"The Daily\", 1500, \"NYT\")}`\n\nTrace the output of the following code snippet:\n```java\nloop for item in myPlaylist\n  item.display()\nend loop\n```",
+      "solution": "**Mark Scheme & Solution**\n\nThe `display()` method is overridden in both subclasses. When `item.display()` is called, the Java Virtual Machine (or equivalent runtime) uses dynamic dispatch to determine the object's actual type (`Song` or `PodcastEpisode`) and calls the appropriate version of the method.\n\n**Trace:**\n1.  **Iteration 1:** `item` refers to the `Song` object. The `display()` method from the `Song` class is executed.\n    *   **Output:** `Bohemian Rhapsody by Queen`\n2.  **Iteration 2:** `item` refers to the `PodcastEpisode` object. The `display()` method from the `PodcastEpisode` class is executed.\n    *   **Output:** `The Daily hosted by NYT`\n\n**Final Output:**\n```\nBohemian Rhapsody by Queen\nThe Daily hosted by NYT\n```\n*   **[1 mark]** for correctly identifying that the first loop iteration calls the `Song`'s `display` method and produces the correct output.\n*   **[1 mark]** for correctly identifying that the second loop iteration calls the `PodcastEpisode`'s `display` method and produces the correct output.\n*   **[1 mark]** for showing understanding that polymorphism allows different methods to be called on objects stored in a superclass-type array."
+    },
+    {
+      "type": "heading",
+      "content": "Abstraction: Focusing on the Essentials"
+    },
+    {
+      "type": "text",
+      "content": "Abstraction is the process of hiding implementation details from the user and only providing functionality. In OOP, this is often achieved with **abstract classes** and **abstract methods**. An abstract class is a blueprint that cannot be instantiated itself. It can define `abstract` methods—methods without any implementation—which act as a contract, forcing any non-abstract subclass to provide an implementation for them. This ensures that all subclasses have a certain set of behaviours, even if the implementation of those behaviours differs."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Purpose:** To hide complexity and define a contract for subclasses.",
+        "**Abstract Class:** Cannot be instantiated. Designed to be inherited.",
+        "**Abstract Method:** A method declared without an implementation. Must be overridden by any concrete (non-abstract) subclass.",
+        "**Advantage:** Enforces a common structure across a family of classes, promoting consistency and reducing errors.",
+        "**Advantage:** Simplifies the understanding of complex systems by focusing on *what* an object does, not *how* it does it."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In a design question (often in Paper 2), justifying the use of an abstract class is a high-level skill. You can argue for it when you have a general concept (like `Shape` or `Account`) that doesn't make sense to create an object of directly, but you want to enforce common methods (like `getArea()` or `deposit()`) in all its specific subclasses (`Circle`, `SavingsAccount`)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Exam Questions",
+      "href": "/mark?subject=ib-computer-science-hl&topic=8.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeeksforGeeks on OOP Concepts",
+          "href": "https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/"
+        },
+        {
+          "label": "UML Class Diagram Tutorial",
+          "href": "https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

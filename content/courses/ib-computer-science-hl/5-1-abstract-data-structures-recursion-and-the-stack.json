@@ -1,0 +1,172 @@
+{
+  "slug": "5-1-abstract-data-structures-recursion-and-the-stack",
+  "topicCode": "5.1",
+  "title": "Abstract data structures: recursion and the stack",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores the concept of recursion, a powerful problem-solving technique where a function calls itself. It details the crucial role of the call stack in managing recursive calls, preventing infinite loops, and returning results. The lesson contrasts recursion with iteration and provides worked examples to solidify understanding.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define recursion and identify the base case and recursive step in an algorithm.",
+    "Explain the role of the call stack in managing recursive function calls.",
+    "Trace recursive algorithms using a call stack diagram.",
+    "Compare and contrast recursive and iterative solutions to a problem."
+  ],
+  "simpleExplanation": {
+    "title": "The Russian Doll Problem",
+    "summary": "Recursion is a method where a function calls itself to solve smaller, identical versions of a problem until a simple, solvable 'base case' is reached. The call stack is a system memory structure that keeps track of all these calls, ensuring everything gets put back together correctly.",
+    "analogy": "Imagine you have a set of Russian nesting dolls. To find the smallest doll, you open the current doll (the recursive step) to reveal a slightly smaller one inside. You repeat this process, opening doll after doll. Your 'base case' is when you open a doll and find it's solid, with no smaller doll inside. The call stack is like your memory of which dolls you've opened, so you can close them all back up in the reverse order once you've found the smallest one.",
+    "steps": [
+      "A recursive function is first called with the main problem's parameters. This initial call is placed (pushed) onto the call stack.",
+      "Inside the function, it calls itself with modified parameters that move it closer to a solution. This new call is pushed on top of the stack.",
+      "This process repeats. Each new recursive call adds another layer (a 'stack frame') to the top of the call stack.",
+      "When the 'base case' is finally met, the current function returns a value without making another recursive call. Its frame is removed (popped) from the stack, and control returns to the function below it, which can now complete its calculation and return its own value."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is recursion?",
+      "back": "A programming technique where a function calls itself in order to solve a problem. The problem is broken down into smaller, similar sub-problems."
+    },
+    {
+      "front": "What is a 'base case' in recursion?",
+      "back": "The condition under which a recursive function stops calling itself and returns a value. It prevents infinite recursion."
+    },
+    {
+      "front": "What is a 'recursive step'?",
+      "back": "The part of a recursive function where it calls itself, but with modified arguments that move it closer to the base case."
+    },
+    {
+      "front": "What is the call stack?",
+      "back": "A data structure used by the system to store information about the active subroutines in a program. It operates on a Last-In, First-Out (LIFO) principle."
+    },
+    {
+      "front": "What is a stack frame?",
+      "back": "A block of memory on the call stack that stores information for a single function call, including its parameters, local variables, and the return address."
+    },
+    {
+      "front": "What does 'LIFO' stand for and mean?",
+      "back": "Last-In, First-Out. It's the principle governing how a stack operates: the last item added (pushed) is the first item to be removed (popped)."
+    },
+    {
+      "front": "What is a stack overflow error?",
+      "back": "An error that occurs when the call stack runs out of memory. In recursion, this is typically caused by too many nested function calls, often due to a missing or incorrect base case."
+    },
+    {
+      "front": "What is the 'push' operation on a stack?",
+      "back": "Adding a new element (e.g., a stack frame) to the top of the stack."
+    },
+    {
+      "front": "What is the 'pop' operation on a stack?",
+      "back": "Removing the top element from the stack and returning control to the address it specifies."
+    },
+    {
+      "front": "When might iteration be preferred over recursion?",
+      "back": "When memory is a concern, as iteration does not have the overhead of the call stack. Also for simpler problems where a loop is more readable and less prone to stack overflow errors."
+    },
+    {
+      "front": "What is tail recursion?",
+      "back": "A specific form of recursion where the recursive call is the very last action performed by the function. Modern compilers can optimize this to be as memory-efficient as an iterative loop."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is a stack overflow error and how can I prevent it?",
+      "a": "A stack overflow error occurs when the call stack runs out of allocated memory. In the context of recursion, this happens when a function calls itself too many times without reaching a base case. To prevent it, you must ensure your recursive function has a well-defined base case that is guaranteed to be reached."
+    },
+    {
+      "q": "Is recursion always less efficient than iteration?",
+      "a": "In terms of memory, recursion is usually less efficient due to the overhead of maintaining the call stack. Each function call adds a new frame to the stack. In terms of time complexity, they are often equivalent (e.g., both factorial implementations are O(n)). However, for some problems like tree traversals, a recursive solution is far more intuitive and simpler to implement."
+    },
+    {
+      "q": "What is tail recursion and why is it special?",
+      "a": "Tail recursion is a specific form of recursion where the recursive call is the absolute last operation in the function. There is no pending operation (like `n * ...`) to be performed after the recursive call returns. Modern compilers can optimize tail-recursive functions into simple loops, eliminating the risk of stack overflow and making them as memory-efficient as an iterative solution. This is called tail-call optimization."
+    },
+    {
+      "q": "Can I use recursion for any problem that uses a loop?",
+      "a": "Yes, theoretically, any problem that can be solved with iteration (loops) can also be solved with recursion, and vice-versa. The choice between them often comes down to the nature of the problem, code clarity, and performance considerations like memory usage."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Recursion is a fundamental and elegant concept in computer science. It allows complex problems to be expressed in a very clean and often intuitive way. However, to truly understand recursion, we must also understand the underlying mechanism that makes it possible: the call stack. This lesson will demystify both concepts and show how they work together."
+    },
+    {
+      "type": "heading",
+      "content": "The Anatomy of a Recursive Function"
+    },
+    {
+      "type": "text",
+      "content": "Every recursive algorithm has two essential components. The first is the **base case**, which is a simple condition that can be solved directly without further recursion. This is the stopping point. The second is the **recursive step**, where the function calls itself with a modified input that is a step closer to the base case. Without a correctly defined base case, a recursive function would call itself indefinitely, leading to a stack overflow error."
+    },
+    {
+      "type": "formula",
+      "content": "function recursiveFunction(parameters)\n    if (base case is met) then\n        return some simple value\n    else\n        // Modify parameters to move closer to base case\n        return recursiveFunction(modified parameters)\n    end if\nend function"
+    },
+    {
+      "type": "heading",
+      "content": "The Call Stack: The Engine of Recursion"
+    },
+    {
+      "type": "text",
+      "content": "When a function is called in a program, the computer needs to keep track of where it was called from, so it can return to that point when the function finishes. The **call stack** is the data structure that manages this. It works on a Last-In, First-Out (LIFO) principle. Each time a function is called, a **stack frame** containing its local variables, parameters, and the return address is 'pushed' onto the top of the stack. When the function returns, its frame is 'popped' off the stack, and execution resumes at the stored return address."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The call stack is a system-level stack data structure.",
+        "It follows the LIFO (Last-In, First-Out) principle.",
+        "Each recursive call adds a new stack frame to the top of the stack.",
+        "When a base case is hit, the stack begins to 'unwind' as frames are popped off, and values are returned to the caller."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A recursive function `factorial(n)` calculates $n!$. Trace the execution of `factorial(4)` showing the state of the call stack at each key step. The pseudocode is:\n\n```\nfunction factorial(n)\n    if n <= 1 then\n        return 1\n    else\n        return n * factorial(n - 1)\n    end if\nend function\n```",
+      "solution": "### Mark Scheme\n- **[1 mark]** for correctly showing the stack growing with each recursive call (`factorial(4)` to `factorial(1)`).\n- **[1 mark]** for correctly identifying the base case (`n=1`) and the return value of 1.\n- **[1 mark]** for correctly showing the stack unwinding and calculating the final result (24).\n\n### Execution Trace\n\n1.  **Call `factorial(4)`:** The main program calls `factorial(4)`. A stack frame for `factorial(4)` is pushed onto the stack. Since `4 > 1`, it must calculate `4 * factorial(3)`. It pauses and calls `factorial(3)`.\n    *Stack:* `[factorial(4)]`\n\n2.  **Call `factorial(3)`:** A new frame for `factorial(3)` is pushed on top. Since `3 > 1`, it must calculate `3 * factorial(2)`. It pauses and calls `factorial(2)`.\n    *Stack:* `[factorial(4), factorial(3)]`\n\n3.  **Call `factorial(2)`:** A new frame for `factorial(2)` is pushed on top. Since `2 > 1`, it must calculate `2 * factorial(1)`. It pauses and calls `factorial(1)`.\n    *Stack:* `[factorial(4), factorial(3), factorial(2)]`\n\n4.  **Call `factorial(1)` (Base Case):** A frame for `factorial(1)` is pushed. Here, the condition `n <= 1` is true. The function returns `1` without another recursive call.\n    *Stack:* `[factorial(4), factorial(3), factorial(2), factorial(1)]`\n\n5.  **Unwinding - Return to `factorial(2)`:** The `factorial(1)` frame is popped. Execution returns to `factorial(2)`, which was waiting for the result. It can now complete its calculation: `return 2 * 1`, which is `2`.\n    *Stack:* `[factorial(4), factorial(3), factorial(2)]` -> `[factorial(4), factorial(3)]`\n\n6.  **Unwinding - Return to `factorial(3)`:** The `factorial(2)` frame is popped. Execution returns to `factorial(3)`. It completes its calculation: `return 3 * 2`, which is `6`.\n    *Stack:* `[factorial(4), factorial(3)]` -> `[factorial(4)]`\n\n7.  **Unwinding - Return to `factorial(4)`:** The `factorial(3)` frame is popped. Execution returns to `factorial(4)`. It completes its calculation: `return 4 * 6`, which is `24`.\n    *Stack:* `[factorial(4)]` -> `[]`\n\n8.  **Final Result:** The `factorial(4)` frame is popped. The final result, `24`, is returned to the main program."
+    },
+    {
+      "type": "heading",
+      "content": "Recursion vs. Iteration"
+    },
+    {
+      "type": "text",
+      "content": "Most recursive algorithms can also be implemented iteratively using loops (like `for` or `while`). Recursive solutions are often more elegant and easier to read for problems that are naturally recursive, such as tree traversals or divide-and-conquer algorithms. However, they come at the cost of higher memory consumption due to the call stack overhead. Iterative solutions are generally more memory-efficient and can be faster due to the absence of function call overhead, but they can sometimes be more complex to write and understand."
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, when asked to trace a recursive algorithm, always draw or describe the call stack. Explicitly show what is being pushed onto the stack with each call and what is being popped off as functions return. Mention the parameters for each call and the final return value. This structured approach ensures you don't miss any marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "A recursive binary search is performed on the sorted integer array `A = [3, 7, 11, 15, 19, 22, 25]` to find the target value `19`. The function signature is `binarySearch(A, target, low, high)`. Trace the recursive calls, stating the values of `low`, `high`, and `mid` for each call.",
+      "solution": "### Mark Scheme\n- **[1 mark]** for the correct parameters of the initial call.\n- **[1 mark]** for the correct parameters of the first recursive call, showing the search space has been halved correctly.\n- **[1 mark]** for identifying the base case where the element is found and the function returns.\n\n### Execution Trace\n\n1.  **Initial Call:** `binarySearch(A, 19, 0, 6)`\n    - `low = 0`, `high = 6`\n    - `mid = floor((0 + 6) / 2) = 3`\n    - `A[mid]` is `A[3]`, which is `15`.\n    - Since `19 > 15`, the target must be in the upper half. A recursive call is made on the sub-array from `mid + 1` to `high`.\n    - *Stack Push:* `binarySearch(A, 19, 0, 6)` frame is pushed.\n\n2.  **First Recursive Call:** `binarySearch(A, 19, 4, 6)`\n    - `low = 4`, `high = 6`\n    - `mid = floor((4 + 6) / 2) = 5`\n    - `A[mid]` is `A[5]`, which is `22`.\n    - Since `19 < 22`, the target must be in the lower half of this new sub-array. A recursive call is made from `low` to `mid - 1`.\n    - *Stack Push:* `binarySearch(A, 19, 4, 6)` frame is pushed.\n\n3.  **Second Recursive Call:** `binarySearch(A, 19, 4, 4)`\n    - `low = 4`, `high = 4`\n    - `mid = floor((4 + 4) / 2) = 4`\n    - `A[mid]` is `A[4]`, which is `19`.\n    - **Base Case Met:** The target `19` is equal to `A[mid]`. The function returns the index `mid`, which is `4`.\n\n4.  **Unwinding:**\n    - The `binarySearch(A, 19, 4, 4)` call returns `4` to its caller, `binarySearch(A, 19, 4, 6)`.\n    - The `binarySearch(A, 19, 4, 6)` frame is popped, and it returns `4` to its caller, `binarySearch(A, 19, 0, 6)`.\n    - The `binarySearch(A, 19, 0, 6)` frame is popped, and it returns the final result `4` to the main program."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Recursion and the Stack",
+      "href": "/mark?subject=ib-computer-science-hl&topic=5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Visualgo - Recursion Tree",
+          "href": "https://visualgo.net/en/recursion"
+        },
+        {
+          "label": "GeeksForGeeks - Recursion",
+          "href": "https://www.geeksforgeeks.org/recursion/"
+        },
+        {
+          "label": "Computerphile: What is a Stack Overflow?",
+          "href": "https://www.youtube.com/watch?v=R_44-igYq3I"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

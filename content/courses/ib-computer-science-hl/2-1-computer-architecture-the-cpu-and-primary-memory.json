@@ -1,0 +1,222 @@
+{
+  "slug": "2-1-computer-architecture-the-cpu-and-primary-memory",
+  "topicCode": "2.1",
+  "title": "Computer architecture: the CPU and primary memory",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental components of computer architecture, focusing on the Central Processing Unit (CPU) and primary memory. We will dissect the CPU's internal structure, including the Control Unit, Arithmetic Logic Unit, and registers, and understand their roles in the machine instruction cycle. The lesson also differentiates between types of primary memory, RAM and ROM, and explains their interaction with the CPU.",
+  "durationMin": 75,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Explain the role of the Central Processing Unit (CPU) and its core components: the Control Unit (CU) and the Arithmetic Logic Unit (ALU).",
+    "Describe the function of key CPU registers, including the Memory Address Register (MAR), Memory Data Register (MDR), Program Counter (PC), and Accumulator (ACC).",
+    "Outline the stages of the machine instruction cycle (fetch-decode-execute).",
+    "Distinguish between Random Access Memory (RAM) and Read-Only Memory (ROM), explaining the concepts of volatility and storage purpose."
+  ],
+  "simpleExplanation": {
+    "title": "The Computer's Conductor",
+    "summary": "The CPU is the brain of the computer, constantly fetching instructions from memory and executing them to perform tasks. This process, known as the machine instruction cycle, is the fundamental rhythm that powers all computation.",
+    "analogy": "Imagine a master chef (the CPU) in a kitchen. The recipe book is the program stored in memory (RAM). To cook a dish, the chef first finds the right page and instruction (fetch), reads and understands what to do, like 'chop onions' (decode), and then actually chops the onions using their knives and hands (execute). The chopped onions might be placed in a special bowl on the counter (a register) before being used in the next step.",
+    "steps": [
+      "The CPU's Program Counter (PC) holds the address of the next instruction to be executed.",
+      "The CPU fetches this instruction from memory, placing it in the Instruction Register (IR) for decoding.",
+      "The Control Unit (CU) interprets the instruction and sends signals to other components, like the ALU, to perform the required operation.",
+      "The result of the operation is stored, either in a register like the Accumulator or back into primary memory, and the cycle repeats."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the CPU?",
+      "back": "The Central Processing Unit is the primary component of a computer that executes instructions. It is often called the 'brain' of the computer."
+    },
+    {
+      "front": "What are the two main components of the CPU?",
+      "back": "The Arithmetic Logic Unit (ALU) and the Control Unit (CU)."
+    },
+    {
+      "front": "What is the function of the Arithmetic Logic Unit (ALU)?",
+      "back": "The ALU performs all arithmetic operations (e.g., addition, subtraction) and logical operations (e.g., AND, OR, NOT)."
+    },
+    {
+      "front": "What is the function of the Control Unit (CU)?",
+      "back": "The CU directs the operation of the processor. It decodes instructions and sends control signals to coordinate the activities of other components."
+    },
+    {
+      "front": "What is a register?",
+      "back": "A small, very fast storage location inside the CPU used to hold data or instructions temporarily during processing."
+    },
+    {
+      "front": "What does the Program Counter (PC) hold?",
+      "back": "The memory address of the next instruction to be fetched from primary memory."
+    },
+    {
+      "front": "What is the role of the Memory Address Register (MAR)?",
+      "back": "The MAR holds the memory address of the data or instruction that is to be fetched from or written to primary memory."
+    },
+    {
+      "front": "What is the role of the Memory Data Register (MDR)?",
+      "back": "The MDR holds the data or instruction that has just been fetched from memory or is about to be written to memory. It acts as a buffer."
+    },
+    {
+      "front": "What is the difference between RAM and ROM?",
+      "back": "RAM (Random Access Memory) is volatile, read/write memory for current programs and data. ROM (Read-Only Memory) is non-volatile, read-only memory containing the bootstrap loader and BIOS."
+    },
+    {
+      "front": "What does 'volatile memory' mean?",
+      "back": "Volatile memory, like RAM, requires constant power to maintain the stored information. If power is lost, its contents are erased."
+    },
+    {
+      "front": "What is the machine instruction cycle?",
+      "back": "The sequence of steps that the CPU follows to execute an instruction: Fetch, Decode, Execute. It is the fundamental operation of the CPU."
+    },
+    {
+      "front": "What is the Accumulator (ACC)?",
+      "back": "A special-purpose register within the ALU that holds the intermediate results of arithmetic and logic operations."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between cache memory and registers?",
+      "a": "Both are very fast memory, but registers are located *inside* the CPU and hold the single piece of data/instruction being worked on *right now*. Cache is a small amount of fast memory located very close to the CPU (sometimes on the same chip, but not inside the core processing units) that stores frequently accessed data from RAM. Registers are faster than cache, but you have far fewer of them. Think of a register as what's in your hand, and cache as what's on your desk, while RAM is the filing cabinet across the room."
+    },
+    {
+      "q": "Why do computers need both RAM and ROM?",
+      "a": "They serve two different, essential purposes. ROM is non-volatile and holds the permanent instructions needed to start the computer (the 'bootstrap loader'). Without ROM, the computer wouldn't know what to do when you press the power button. RAM is volatile and provides a large, fast workspace for the operating system and applications to run in once the computer has started. Its contents change constantly and are lost on shutdown."
+    },
+    {
+      "q": "How does clock speed relate to the machine instruction cycle?",
+      "a": "The clock provides a series of electronic pulses that synchronise the CPU's operations. Each stage of the machine instruction cycle (fetch, decode, execute) takes a certain number of clock cycles to complete. A higher clock speed (measured in GHz) means more cycles per second, allowing the CPU to perform more machine instruction cycles per second, thus executing programs faster. However, modern CPUs can sometimes perform multiple instructions per cycle, so it's not always a direct 1:1 relationship."
+    },
+    {
+      "q": "Is the Accumulator the only register that holds data?",
+      "a": "No, the Accumulator is a specific type of general-purpose register for ALU results. Modern CPUs have many general-purpose registers that can hold data temporarily to reduce the need to access slower RAM. The Accumulator is a key one to know for the IB syllabus as it simplifies the conceptual model of the CPU."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the core of how a computer works. In this lesson, we will demystify the central components that bring a computer to life. We'll explore the von Neumann architecture, a model for a computer system where the instructions to be executed and the data to be processed are both stored in the same primary memory. Understanding this architecture is key to comprehending everything from how your code runs to the performance limitations of a system."
+    },
+    {
+      "type": "heading",
+      "content": "The Central Processing Unit (CPU): The Computer's Brain"
+    },
+    {
+      "type": "text",
+      "content": "The CPU is the hardware component responsible for executing the instructions of a computer program. It performs the basic arithmetic, logic, controlling, and input/output (I/O) operations specified by the instructions. A CPU's performance is a critical factor in the overall speed of a computer system, often measured in Gigahertz (GHz), which relates to its clock speed."
+    },
+    {
+      "type": "heading",
+      "content": "Core Components of the CPU"
+    },
+    {
+      "type": "text",
+      "content": "Within the CPU, two main components work in tandem. The **Control Unit (CU)** acts as the manager, fetching instructions from memory, decoding them, and directing other parts of the computer to carry them out. It doesn't execute instructions itself but orchestrates the process. The **Arithmetic Logic Unit (ALU)** is the mathematician and logician, performing all calculations (like addition and multiplication) and logical comparisons (like AND, OR, and NOT) that the program requires."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Control Unit (CU):** Fetches, decodes, and coordinates the execution of instructions by sending control signals.",
+        "**Arithmetic Logic Unit (ALU):** Executes all arithmetic and logical operations.",
+        "**Clock:** Synchronises all computer operations. The clock speed (e.g., 3.2 GHz) determines how many cycles the CPU can execute per second."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "CPU Registers: High-Speed Local Storage"
+    },
+    {
+      "type": "text",
+      "content": "Registers are small amounts of very fast, temporary memory located directly within the CPU. They are used to store data, instructions, or memory addresses that are actively being used by the CPU. Because they are physically inside the CPU chip, access times are incredibly low compared to accessing primary memory (RAM)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Program Counter (PC):** Holds the memory address of the *next* instruction to be fetched.",
+        "**Memory Address Register (MAR):** Holds the address in primary memory that is currently being read from or written to.",
+        "**Memory Data Register (MDR):** A two-way register that holds data fetched from memory (and ready for the CPU to process) or data waiting to be stored in memory.",
+        "**Current Instruction Register (CIR):** Holds the actual instruction that has just been fetched from memory and is being decoded and executed.",
+        "**Accumulator (ACC):** A general-purpose register used to hold data temporarily and to store the results of ALU operations."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "IB questions frequently ask you to distinguish between the MAR and MDR. Remember: MAR holds the **address** (like a house number), while MDR holds the actual **data** or **instruction** (like the mail in the letterbox at that address)."
+    },
+    {
+      "type": "heading",
+      "content": "The Machine Instruction Cycle"
+    },
+    {
+      "type": "text",
+      "content": "The fundamental operation of a CPU is to execute a sequence of instructions. This is done through a continuous cycle, often called the fetch-decode-execute cycle. Each cycle processes one machine-language instruction. This process is repeated billions of times per second in a modern processor."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Fetch:** The CU fetches the instruction from the memory address held in the PC. The PC is then incremented to point to the next instruction. The instruction is loaded into the CIR via the MAR and MDR.",
+        "**Decode:** The CU interprets the instruction in the CIR. It determines what operation is to be performed and what data is needed.",
+        "**Execute:** The CU sends signals to the appropriate components (e.g., the ALU) to carry out the instruction. This might involve fetching data from memory or a register, performing a calculation, or changing the state of a register.",
+        "**Store (optional):** The result of the execution may be stored in a register (like the Accumulator) or written back to primary memory."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A CPU is executing a program. The Program Counter (PC) currently holds the address `101`. The instruction `LOAD 105` is stored at address `101`. The value `42` is stored at memory address `105`. Trace the contents of the PC, MAR, MDR, and Accumulator (ACC) during the fetch stage and the execution of this instruction.",
+      "solution": "Here is a step-by-step trace with mark-scheme style annotation:\n\n**Initial State:**\n- PC: `101`\n- ACC: (unchanged/unknown)\n- Memory[101]: `LOAD 105`\n- Memory[105]: `42`\n\n**Fetch Stage:**\n1.  The address from the PC is copied to the MAR. [1 mark]\n    - MAR: `101`\n2.  The PC is incremented to point to the next instruction. [1 mark]\n    - PC: `102`\n3.  The instruction at the address in the MAR (`101`) is fetched from memory and placed in the MDR. [1 mark]\n    - MDR: `LOAD 105`\n4.  The instruction is copied from the MDR to the Current Instruction Register (CIR) for decoding.\n    - CIR: `LOAD 105`\n\n**Execute Stage:**\n5.  The CU decodes `LOAD 105`. It identifies the operation (`LOAD`) and the address part of the instruction (`105`). This address is copied to the MAR. [1 mark]\n    - MAR: `105`\n6.  The data at the address in the MAR (`105`) is fetched from memory and placed in the MDR. [1 mark]\n    - MDR: `42`\n7.  The data from the MDR is copied to the Accumulator (ACC). [1 mark]\n    - ACC: `42`\n\n**Final State (after this instruction):**\n- PC: `102`\n- ACC: `42`"
+    },
+    {
+      "type": "heading",
+      "content": "Primary Memory"
+    },
+    {
+      "type": "text",
+      "content": "Primary memory is the computer's main workspace. It is directly accessible by the CPU and is used to store the data and instructions for the currently running programs. It is much faster to access than secondary storage (like a hard drive or SSD) but is typically smaller in capacity and more expensive per byte. There are two main types: RAM and ROM."
+    },
+    {
+      "type": "heading",
+      "content": "Random Access Memory (RAM)"
+    },
+    {
+      "type": "text",
+      "content": "RAM is the workhorse of primary memory. The 'Random Access' means that any memory location can be accessed directly and in any order, taking roughly the same amount of time regardless of its physical location. RAM is **volatile**, which means it loses its contents when the computer is powered off. It is a read/write memory, used to store the operating system, application programs, and data currently in use so that they can be quickly reached by the computer's processor."
+    },
+    {
+      "type": "heading",
+      "content": "Read-Only Memory (ROM)"
+    },
+    {
+      "type": "text",
+      "content": "ROM is a type of **non-volatile** memory, meaning its contents are retained even when the computer is powered off. As the name suggests, the data stored in ROM is either unchangeable or requires a special operation to change. It is primarily used to store firmware or software that is rarely changed, such as the **BIOS** (Basic Input/Output System) or the **bootstrap loader**. This is the very first code that runs when you turn your computer on, responsible for testing the hardware and loading the operating system from the hard drive into RAM."
+    },
+    {
+      "type": "workedExample",
+      "question": "The Accumulator holds the value `10`. The instruction at address `204` is `ADD 250`, where memory location `250` contains the value `5`. Trace the execution of this instruction, assuming it has already been fetched and decoded.",
+      "solution": "This example focuses on the execute stage involving the ALU.\n\n**Initial State:**\n- ACC: `10`\n- Memory[250]: `5`\n- Instruction in CIR: `ADD 250`\n\n**Execution Trace:**\n1.  The CU identifies the address part of the instruction (`250`) and copies it to the MAR. [1 mark]\n    - MAR: `250`\n2.  A read signal is sent to memory. The data at address `250` is fetched and placed in the MDR. [1 mark]\n    - MDR: `5`\n3.  The CU instructs the ALU to perform an addition. The value from the Accumulator (`10`) and the value from the MDR (`5`) are sent to the ALU. [1 mark]\n4.  The ALU performs the addition: `10 + 5 = 15`. [1 mark]\n5.  The result (`15`) is stored back into the Accumulator, overwriting the previous value. [1 mark]\n    - ACC: `15`\n\n**Final State:**\n- ACC: `15`"
+    },
+    {
+      "type": "examTip",
+      "content": "When asked to trace an instruction, be precise about which register is used at each step. Don't just say 'the CPU fetches data'. Instead, specify: 'The address is placed in the MAR, and the data is returned via the MDR'. Marks are awarded for this level of detail."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-computer-science-hl&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Crash Course Computer Science: The CPU",
+          "href": "https://www.youtube.com/watch?v=cNN_tTXABUA"
+        },
+        {
+          "label": "Cambridge Computer Science: Von Neumann Architecture",
+          "href": "https://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/ok01.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

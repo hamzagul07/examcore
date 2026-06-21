@@ -1,0 +1,184 @@
+{
+  "slug": "3-1-network-fundamentals",
+  "topicCode": "3.1",
+  "title": "Network fundamentals",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of computer networks, covering their structure, essential components, the protocols that govern communication, and the methods used to measure their performance. It lays the groundwork for understanding how digital devices connect and share information.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify and describe the function of key hardware and software components of a network.",
+    "Explain the role of protocols in network communication, with examples like TCP/IP and HTTP.",
+    "Differentiate between key network performance metrics such as bandwidth, throughput, and latency.",
+    "Distinguish between different types of networks, including LANs and WANs."
+  ],
+  "simpleExplanation": {
+    "title": "How Computers Talk to Each Other",
+    "summary": "A computer network is simply a collection of connected devices that can share resources and data. This communication is governed by a set of rules, called protocols, ensuring that information is sent and received correctly.",
+    "analogy": "Imagine a global postal service. To send a letter, you don't just throw it out the window. You put it in an envelope (a data packet), write the recipient's address (IP address) and your return address, and trust the postal workers (routers and switches) to follow specific procedures (protocols) to deliver it. The network is the entire postal system, from post boxes to delivery vans and sorting offices, all working together to get your message to its destination.",
+    "steps": [
+      "A device needs to send data. This data is broken down into smaller, manageable chunks called packets.",
+      "Each packet is given a 'header' containing control information, like the source and destination IP addresses, much like an address on an envelope.",
+      "The packets are transmitted over a medium, such as a copper cable, fibre optic line, or wireless radio waves (Wi-Fi).",
+      "Receiving devices collect the packets, check for errors, and reassemble them in the correct order to reconstruct the original data."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a computer network?",
+      "back": "A collection of interconnected computing devices that can exchange data and share resources. For example, a Local Area Network (LAN) in a school or a Wide Area Network (WAN) like the internet."
+    },
+    {
+      "front": "What is a protocol?",
+      "back": "A set of rules that governs how data is formatted, transmitted, and received in a network. Example: HTTP for web pages, SMTP for email."
+    },
+    {
+      "front": "What is a data packet?",
+      "back": "A small unit of data transmitted over a network. It contains a portion of the user's data (payload) and control information (header) with details like source and destination addresses."
+    },
+    {
+      "front": "Differentiate between a LAN and a WAN.",
+      "back": "A LAN (Local Area Network) covers a small geographical area (e.g., a single building). A WAN (Wide Area Network) covers a large geographical area (e.g., a country or the globe) and often connects multiple LANs."
+    },
+    {
+      "front": "What is the function of a router?",
+      "back": "A router connects different networks together and directs data packets between them. It operates at the network layer and uses IP addresses to make forwarding decisions."
+    },
+    {
+      "front": "What is the difference between a switch and a hub?",
+      "back": "A hub broadcasts incoming data to all connected devices. A switch is more intelligent; it sends data only to the specific device it's intended for, reducing network traffic. Switches are far more common today."
+    },
+    {
+      "front": "What is an IP Address?",
+      "back": "An Internet Protocol address is a unique numerical label assigned to each device on a network. It is used for identification and location addressing, like a house address."
+    },
+    {
+      "front": "What is bandwidth?",
+      "back": "The maximum theoretical rate at which data can be transferred over a network connection in a given amount of time. It is typically measured in bits per second (bps)."
+    },
+    {
+      "front": "What is latency?",
+      "back": "The time delay for a data packet to travel from its source to its destination. Low latency is crucial for real-time applications like online gaming and video calls."
+    },
+    {
+      "front": "What is the TCP/IP model?",
+      "back": "A four-layer conceptual model and set of communication protocols used on the internet. Its layers are Application, Transport, Internet, and Link. It provides end-to-end data communication."
+    },
+    {
+      "front": "Common Trap: Is bandwidth the same as speed?",
+      "back": "Not exactly. Bandwidth is the *capacity* of the connection (like the number of lanes on a motorway), while 'speed' is often perceived as a combination of bandwidth and latency (delay). A high-bandwidth connection can still feel slow if latency is very high."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the internet and the World Wide Web?",
+      "a": "This is a common point of confusion. The internet is the global network of interconnected computers (the hardware and infrastructure). The World Wide Web (WWW) is a service that runs on the internet; it's the collection of web pages, documents, and other content that you access using web browsers and protocols like HTTP."
+    },
+    {
+      "q": "Why is my internet 'speed' so much lower than the bandwidth my ISP advertises?",
+      "a": "The advertised bandwidth is a theoretical maximum. Your actual speed, or throughput, is affected by many factors: the number of people using the network in your area (congestion), the quality of your Wi-Fi signal, the performance of the server you are connecting to, and the overhead from network protocols themselves. Throughput will almost always be lower than the advertised bandwidth."
+    },
+    {
+      "q": "Do I need to memorise the OSI model for the IB exam?",
+      "a": "The IB Computer Science syllabus focuses more on the practical application and understanding of the 4-layer TCP/IP model. While knowing the 7-layer OSI model (Physical, Data Link, Network, Transport, Session, Presentation, Application) can be useful for deeper understanding, questions are more likely to refer to the layers and protocols of the TCP/IP suite. Focus on the function of each TCP/IP layer and the key protocols within them."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our hyper-connected world, from streaming movies to collaborating on documents, computer networks are the invisible backbone of modern society. This topic explores the fundamental principles that allow billions of devices to communicate seamlessly across the globe. Understanding these fundamentals is essential for any computer scientist."
+    },
+    {
+      "type": "heading",
+      "content": "The Building Blocks of a Network"
+    },
+    {
+      "type": "text",
+      "content": "At its core, a network consists of two or more connected computers that can share resources (like printers or a file server), exchange files, or allow electronic communications. The devices on a network can be categorised as clients, which request services, and servers, which provide them. The connection between these devices is managed by specialised hardware and established over a transmission medium."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Clients & Servers:** A client (e.g., your laptop) requests information or a service. A server (e.g., a web server) provides that information or service.",
+        "**Network Interface Card (NIC):** A hardware component that connects a computer to a computer network.",
+        "**Transmission Media:** The physical path between transmitter and receiver. This can be wired (e.g., Twisted Pair Cable, Coaxial Cable, Fibre Optic Cable) or wireless (e.g., radio waves for Wi-Fi, microwaves).",
+        "**Hub:** A basic networking device that connects multiple devices in a LAN, broadcasting all data to all ports. Largely obsolete.",
+        "**Switch:** An intelligent device that connects devices in a LAN, forwarding data packets only to the intended recipient's port.",
+        "**Router:** A device that forwards data packets between different computer networks, for example, connecting your home LAN to the internet (a WAN)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Measuring Network Performance"
+    },
+    {
+      "type": "text",
+      "content": "Simply connecting devices is not enough; the performance of the network is critical. We use several key metrics to quantify and evaluate how well a network is performing. The most common are bandwidth, throughput, and latency."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Bandwidth:** The theoretical maximum data transfer rate of a network connection. It's measured in bits per second (bps), kilobits per second (kbps), megabits per second (Mbps), or gigabits per second (Gbps). Think of it as the width of a pipe.",
+        "**Throughput:** The actual measured data transfer rate, which is almost always lower than the bandwidth due to factors like network congestion, protocol overhead, and hardware limitations. It's the actual flow of water through the pipe.",
+        "**Latency:** The delay in data communication. It's the time it takes for a single bit of data to travel from the source to the destination. Measured in milliseconds (ms). High latency causes noticeable lag."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A user wants to download a 4 Gigabyte (GB) film. The network connection has a advertised bandwidth of 80 Mbps. Assuming ideal conditions (throughput equals bandwidth), calculate the download time in minutes and seconds. Note: 1 GB = 1024 MB, 1 MB = 1024 KB, 1 KB = 1024 Bytes, and 1 Byte = 8 bits.",
+      "solution": "This question requires careful unit conversion. IB exams often use powers of 10 for prefixes (1 GB = 1000 MB), but we will use the binary prefixes (powers of 2) as specified, which is common in OS file sizes.\n\n**Step 1: Convert file size from Gigabytes (GB) to Megabits (Mb).**\n*   File size in Bytes: $4 \\text{ GB} = 4 \\times 1024 \\times 1024 \\times 1024 \\text{ Bytes} = 4,294,967,296 \\text{ Bytes}$\n*   File size in bits: $4,294,967,296 \\text{ Bytes} \\times 8 \\text{ bits/Byte} = 34,359,738,368 \\text{ bits}$\n*   File size in Megabits (Mb): $34,359,738,368 \\text{ bits} / (10^6 \\text{ bits/Mb}) \\approx 34,360 \\text{ Mb}$\n    *Note: Network speeds (Mbps) use decimal prefixes (mega = $10^6$), while file sizes often use binary prefixes (Giga = $2^{30}$). We must be consistent. Let's convert the file size to decimal megabits.*\n*   Alternative, simpler conversion: $4 \\text{ GB} \\approx 4000 \\text{ MB}$. $4000 \\text{ MB} \\times 8 \\text{ bits/Byte} = 32,000 \\text{ Mb}$. This approximation is often acceptable in exams unless high precision is specified.\n\n**Step 2: Calculate the transfer time in seconds.**\n*   Formula: $Time = \\frac{\\text{Total Data}}{\\text{Bandwidth}}$\n*   Using the approximation: $Time = \\frac{32,000 \\text{ Mb}}{80 \\text{ Mbps}} = 400 \\text{ seconds}$\n\n**Step 3: Convert seconds to minutes and seconds.**\n*   Minutes: $400 / 60 = 6$ with a remainder of $40$.\n*   Result: 6 minutes and 40 seconds.\n\n**Mark Scheme:**\n*   [1] For correctly converting file size to bits (e.g., showing $4 \\times 1000 \\times 8$ or a more precise conversion).\n*   [1] For correctly applying the formula Time = Data / Bandwidth.\n*   [1] For the final correct answer in minutes and seconds (e.g., 400 seconds or 6m 40s)."
+    },
+    {
+      "type": "heading",
+      "content": "Protocols: The Rules of Communication"
+    },
+    {
+      "type": "text",
+      "content": "For devices from different manufacturers to communicate, they must agree on a common set of rules, or protocols. These protocols define everything from how to initiate a connection to how errors are handled. The most dominant suite of protocols is the TCP/IP model, which governs communication on the internet."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**TCP (Transmission Control Protocol):** A connection-oriented protocol that ensures reliable data delivery. It breaks data into packets, numbers them, and reassembles them at the destination, re-sending any lost packets. Used for web browsing, file transfer, and email.",
+        "**IP (Internet Protocol):** Responsible for addressing and routing packets from the source host to the destination host across one or more networks.",
+        "**HTTP (Hypertext Transfer Protocol):** The foundation of data communication for the World Wide Web. It defines how messages are formatted and transmitted between web browsers and web servers.",
+        "**FTP (File Transfer Protocol):** A standard network protocol used for the transfer of computer files between a client and server on a computer network.",
+        "**SMTP (Simple Mail Transfer Protocol):** The standard protocol for sending email from a client to a mail server."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners love to ask you to differentiate between concepts. Be prepared to explain the difference between: a hub and a switch; a router and a switch; bandwidth and throughput; latency and bandwidth; TCP and UDP (User Datagram Protocol - a connectionless protocol that is faster but less reliable than TCP)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A real-time online game sends small 128-byte packets of game state information. Network A has a latency of 150 ms and 1 Gbps bandwidth. Network B has a latency of 10 ms and 50 Mbps bandwidth. Which network would provide a better gaming experience and why? Justify your answer by calculating the total time to send one packet for each network.",
+      "solution": "The key here is to identify that online gaming is latency-sensitive, not bandwidth-intensive.\n\n**Step 1: Calculate the transmission time for one packet on each network.**\n*   Packet size in bits: $128 \\text{ Bytes} \\times 8 \\text{ bits/Byte} = 1024 \\text{ bits}$.\n*   Network A bandwidth: $1 \\text{ Gbps} = 1,000,000,000 \\text{ bps}$.\n*   Network B bandwidth: $50 \\text{ Mbps} = 50,000,000 \\text{ bps}$.\n\n*   Transmission Time (A): $\\frac{1024 \\text{ bits}}{1,000,000,000 \\text{ bps}} \\approx 0.000001024 \\text{ seconds} \\approx 0.001 \\text{ ms}$.\n*   Transmission Time (B): $\\frac{1024 \\text{ bits}}{50,000,000 \\text{ bps}} \\approx 0.00002048 \\text{ seconds} \\approx 0.02 \\text{ ms}$.\n\n**Step 2: Calculate the total time (latency + transmission time) for one packet.**\n*   Total Time (A): $150 \\text{ ms (latency)} + 0.001 \\text{ ms (transmission)} \\approx 150 \\text{ ms}$.\n*   Total Time (B): $10 \\text{ ms (latency)} + 0.02 \\text{ ms (transmission)} \\approx 10.02 \\text{ ms}$.\n\n**Step 3: Conclude and Justify.**\n*   Network B is significantly better for the gaming experience.\n*   **Justification:** The total time for a packet to arrive on Network B (approx. 10 ms) is much lower than on Network A (approx. 150 ms). For real-time applications like gaming, low latency is the most critical factor for responsiveness. The transmission time for such small packets is negligible on both networks, so the massive bandwidth advantage of Network A is irrelevant. The high latency of Network A would cause noticeable 'lag'.\n\n**Mark Scheme:**\n*   [1] For identifying that latency is the key factor for online gaming.\n*   [1] For calculating the total time for a packet on both networks (or correctly arguing that transmission time is negligible and comparing latencies directly).\n*   [1] For a clear conclusion that Network B is better, with justification linking low latency to a better real-time experience."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Network Fundamentals",
+      "href": "/mark?subject=ib-computer-science-hl&topic=3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeeksforGeeks: Basics of Computer Networking",
+          "href": "https://www.geeksforgeeks.org/basics-of-computer-networking/"
+        },
+        {
+          "label": "MDN Web Docs: An overview of HTTP",
+          "href": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
+        },
+        {
+          "label": "Cloudflare: What is Latency?",
+          "href": "https://www.cloudflare.com/en-gb/learning/performance/what-is-latency/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

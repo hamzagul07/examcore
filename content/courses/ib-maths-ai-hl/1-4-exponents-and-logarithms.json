@@ -1,0 +1,188 @@
+{
+  "slug": "1-4-exponents-and-logarithms",
+  "topicCode": "1.4",
+  "title": "Exponents and logarithms",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental relationship between exponents and logarithms. You will learn their properties, master the laws of logarithms, and apply them to solve exponential and logarithmic equations, a key skill for modelling growth and decay.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and apply the laws of exponents for integer and rational exponents.",
+    "Understand the definition and properties of logarithms as the inverse of exponential functions.",
+    "Apply the laws of logarithms, including the change of base formula, to simplify expressions and solve equations.",
+    "Solve exponential and logarithmic equations using both algebraic manipulation and a graphic display calculator (GDC)."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Exponential Puzzles",
+    "summary": "Exponents represent repeated multiplication, showing how quickly things grow or shrink. Logarithms are the inverse tool, helping us find the 'time' or 'power' needed for that growth to happen.",
+    "analogy": "Imagine you have a single bacterium that doubles every hour. After 1 hour you have 2, after 2 hours you have 4, after 3 hours you have 8. Exponents help you quickly calculate the population after, say, 10 hours ($2^{10}$). Logarithms do the reverse: they tell you how many hours it would take to reach a population of, say, 1024 ($log_2(1024) = 10$ hours).",
+    "steps": [
+      "Identify the type of equation: is the unknown in the exponent (exponential) or inside a logarithm (logarithmic)?",
+      "For exponential equations like $a^{f(x)} = b$, take logarithms of both sides (usually $\\ln$) to bring the exponent down.",
+      "For logarithmic equations like $\\log_c(f(x)) = b$, rewrite the equation in exponential form ($f(x) = c^b$) or use log laws to combine terms first.",
+      "Solve the resulting linear or polynomial equation for the unknown, and always check your solutions, especially for logarithmic equations, to ensure they are valid."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the definition of a logarithm?",
+      "back": "A logarithm answers the question: 'To what power must the base be raised to get this number?' The expression $\\log_b(y) = x$ is equivalent to $b^x = y$."
+    },
+    {
+      "front": "What is the change of base formula for logarithms?",
+      "back": "$\\log_b(a) = \\frac{\\log_c(a)}{\\log_c(b)}$. This is useful for calculating logs with bases not on your calculator, typically by changing to base 10 ($\\log$) or base $e$ ($\\ln$)."
+    },
+    {
+      "front": "State the product rule for logarithms.",
+      "back": "$\\log_b(xy) = \\log_b(x) + \\log_b(y)$. The log of a product is the sum of the logs."
+    },
+    {
+      "front": "State the quotient rule for logarithms.",
+      "back": "$\\log_b(x/y) = \\log_b(x) - \\log_b(y)$. The log of a quotient is the difference of the logs."
+    },
+    {
+      "front": "State the power rule for logarithms.",
+      "back": "$\\log_b(x^p) = p \\log_b(x)$. The exponent inside a log can be brought out as a multiplier."
+    },
+    {
+      "front": "What is the relationship between the natural logarithm $\\ln(x)$ and the exponential function $e^x$?",
+      "back": "They are inverse functions. $\\ln(e^x) = x$ and $e^{\\ln(x)} = x$. The natural logarithm, $\\ln(x)$, is simply a logarithm with base $e$, i.e., $\\log_e(x)$."
+    },
+    {
+      "front": "What is the value of $a^0$ for any non-zero number $a$?",
+      "back": "$a^0 = 1$. Any non-zero number raised to the power of zero is 1."
+    },
+    {
+      "front": "What does a negative exponent, like $a^{-n}$, mean?",
+      "back": "It means 'take the reciprocal'. $a^{-n} = \\frac{1}{a^n}$."
+    },
+    {
+      "front": "What does a fractional exponent, like $a^{m/n}$, mean?",
+      "back": "It represents a root and a power. $a^{m/n} = (\\sqrt[n]{a})^m = \\sqrt[n]{a^m}$. The denominator is the root, the numerator is the power."
+    },
+    {
+      "front": "Is $\\log(a+b) = \\log(a) + \\log(b)$ a valid rule?",
+      "back": "No, this is a common mistake. The correct rule is for products: $\\log(ab) = \\log(a) + \\log(b)$. There is no simplification rule for the logarithm of a sum or difference."
+    },
+    {
+      "front": "What is the difference between $\\log(x^2)$ and $(\\log x)^2$?",
+      "back": "$\\log(x^2) = 2\\log(x)$ by the power rule. $(\\log x)^2 = (\\log x) \\times (\\log x)$ is the entire logarithm squared. They are not equal."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we use base 'e' (natural log) so often instead of base 10?",
+      "a": "The natural logarithm and its base $e$ appear naturally in many areas of mathematics and science, particularly in calculus and models of continuous growth or decay. The derivative of $e^x$ is simply $e^x$, and the derivative of $\\ln(x)$ is $1/x$, which makes them much easier to work with in calculus than other bases."
+    },
+    {
+      "q": "What's the difference between $\\log_2(x)$ and $2\\log(x)$?",
+      "a": "They are very different. $\\log_2(x)$ is a logarithm with a base of 2. $2\\log(x)$ means $2 \\times \\log_{10}(x)$, which by the power rule is equal to $\\log_{10}(x^2)$. The base is different, and the structure is different."
+    },
+    {
+      "q": "My calculator only has 'log' and 'ln' buttons. How do I calculate something like $\\log_5(100)$?",
+      "a": "You use the change of base formula: $\\log_b(a) = \\frac{\\ln(a)}{\\ln(b)}$. So, to calculate $\\log_5(100)$, you would type `ln(100) / ln(5)` into your calculator, which gives approximately 2.86. Some modern GDCs also have a dedicated log base function, often found in the math menu."
+    },
+    {
+      "q": "Can you take the log of a negative number?",
+      "a": "No. In the context of real numbers, the function $y = b^x$ (with $b>0$) always produces a positive result $y>0$. Since the logarithm $\\log_b(y)=x$ is the inverse, its input ($y$) must be positive. The domain of $\\log_b(x)$ is $x>0$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Exponents and logarithms are the language of rapid change. From calculating compound interest on a loan to modelling population growth or radioactive decay, these concepts are fundamental to understanding how quantities scale. In this lesson, we'll demystify their rules and learn how to solve equations that are crucial for many applications in science, finance, and beyond."
+    },
+    {
+      "type": "heading",
+      "content": "Reviewing the Laws of Exponents"
+    },
+    {
+      "type": "text",
+      "content": "An exponent, or power, tells us how many times to multiply a base number by itself. For example, in $2^5 = 32$, the base is 2, the exponent is 5, and 32 is the result. To manipulate expressions involving exponents efficiently, we use a set of established rules."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Product Rule: $a^m \\times a^n = a^{m+n}$",
+        "Quotient Rule: $a^m \\div a^n = a^{m-n}$",
+        "Power of a Power Rule: $(a^m)^n = a^{mn}$",
+        "Zero Exponent: $a^0 = 1$ (for $a \\neq 0$)",
+        "Negative Exponent: $a^{-n} = \\frac{1}{a^n}$",
+        "Fractional Exponent (Roots): $a^{m/n} = \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Introducing Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "A logarithm is the inverse operation of exponentiation. It answers the question: 'What exponent do I need to put on this base to get that number?' For example, we know $10^2 = 100$. The logarithm asks, 'What power do we raise 10 to, to get 100?' The answer is 2. We write this as $\\log_{10}(100) = 2$."
+    },
+    {
+      "type": "formula",
+      "content": "$$y = b^x \\iff x = \\log_b(y)$$"
+    },
+    {
+      "type": "text",
+      "content": "While any positive number (except 1) can be a base, two bases are particularly common. The **common logarithm** uses base 10 and is written as $\\log(x)$. The **natural logarithm** uses the mathematical constant $e \\approx 2.718$ as its base and is written as $\\ln(x)$. Your GDC has dedicated buttons for both `log` and `ln`, and we will primarily use the natural log, $\\ln$, for solving equations."
+    },
+    {
+      "type": "heading",
+      "content": "Mastering the Laws of Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "Just like exponents, logarithms have rules that allow us to simplify expressions and solve equations. These rules directly correspond to the laws of exponents."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Product Rule: $\\log_b(MN) = \\log_b(M) + \\log_b(N)$",
+        "Quotient Rule: $\\log_b(M/N) = \\log_b(M) - \\log_b(N)$",
+        "Power Rule: $\\log_b(M^p) = p \\log_b(M)$",
+        "Change of Base Rule: $\\log_b(a) = \\frac{\\ln(a)}{\\ln(b)}$ or $\\frac{\\log(a)}{\\log(b)}$",
+        "Important Identities: $\\log_b(b) = 1$ and $\\log_b(1) = 0$"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A biologist is modelling a bacterial culture. The population, $P$, after $t$ hours is given by $P(t) = 500 \\times 1.4^t$. Find the time it takes for the population to reach 2000, giving your answer correct to 3 significant figures.",
+      "solution": "We need to solve the equation $2000 = 500 \\times 1.4^t$.\n\nFirst, isolate the exponential term by dividing both sides by 500.\n$$ \\frac{2000}{500} = 1.4^t $$\n$$ 4 = 1.4^t \\quad \\text{(M1 for isolating the exponential term)}$$\nNow, to solve for the exponent $t$, we take the natural logarithm of both sides.\n$$ \\ln(4) = \\ln(1.4^t) \\quad \\text{(M1 for taking logs)}$$\nUsing the power rule for logarithms, we can bring the $t$ down.\n$$ \\ln(4) = t \\ln(1.4) $$\nFinally, isolate $t$ by dividing by $\\ln(1.4)$.\n$$ t = \\frac{\\ln(4)}{\\ln(1.4)} $$\nUsing a calculator:\n$$ t \\approx 4.1274... $$\n$$ t = 4.13 \\text{ hours (to 3 s.f.)} \\quad \\text{(A1)}$$\nThe population will reach 2000 after approximately 4.13 hours."
+    },
+    {
+      "type": "examTip",
+      "content": "For equations like $a^{f(x)} = b$, taking natural logs ($\\ln$) is the standard algebraic method. On your GDC, you can also solve this graphically by finding the intersection of $y_1 = a^{f(x)}$ and $y_2 = b$, or by using the numerical solver function. Always use the algebraic method unless the question says 'write down' or allows for a GDC-only solution."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $\\log_3(x+1) + \\log_3(x-1) = 1$ for $x$.",
+      "solution": "First, use the product rule for logarithms to combine the two log terms.\n$$ \\log_3((x+1)(x-1)) = 1 \\quad \\text{(M1 for using the product rule)}$$\nSimplify the expression inside the logarithm.\n$$ \\log_3(x^2 - 1) = 1 $$\nNow, convert the logarithmic equation into its equivalent exponential form ($y = \\log_b(a) \\iff a = b^y$).\n$$ x^2 - 1 = 3^1 \\quad \\text{(M1 for converting to exponential form)}$$\n$$ x^2 - 1 = 3 $$\nSolve the resulting quadratic equation.\n$$ x^2 = 4 $$\n$$ x = \\pm 2 $$\nFinally, we must check both solutions in the original equation, because the argument of a logarithm must be positive.\nCheck $x=2$:\n$\\log_3(2+1) + \\log_3(2-1) = \\log_3(3) + \\log_3(1) = 1 + 0 = 1$. This solution is valid.\nCheck $x=-2$:\n$\\log_3(-2+1) = \\log_3(-1)$. The logarithm of a negative number is undefined. Therefore, $x=-2$ is not a valid solution. \\quad (R1 for rejecting the extraneous solution)\n\nThe only solution is $x=2$. \\quad (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is forgetting to check for extraneous solutions in logarithmic equations. The domain of $\\log_b(f(x))$ requires that $f(x) > 0$. Always substitute your final answers back into the *original* equation to ensure all log arguments are positive."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Exponents & Logarithms",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs"
+        },
+        {
+          "label": "Revision Village: IB Maths AI HL Questionbank",
+          "href": "https://www.revisionvillage.com/ib-maths/analysis-and-approaches-hl/questionbank/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,185 @@
+{
+  "slug": "5-8-differential-equations-eulers-method-and-slope-fields",
+  "topicCode": "5.8",
+  "title": "Differential equations: Euler's method and slope fields",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces differential equations through two key techniques: slope fields for visualising solutions and Euler's method for numerical approximation. Students will learn to sketch and interpret slope fields and apply the iterative process of Euler's method to estimate solutions to first-order differential equations, understanding the impact of step size on accuracy.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Sketch and interpret slope fields for a given first-order differential equation.",
+    "Use Euler's method to find an approximate solution to a differential equation with an initial condition.",
+    "Understand the relationship between step size ($h$) and the accuracy of the approximation in Euler's method.",
+    "Apply these techniques to solve problems in a real-world context."
+  ],
+  "simpleExplanation": {
+    "title": "Navigating with Tiny Steps",
+    "summary": "Slope fields provide a map of gradients for a differential equation, showing the direction of travel at any point. Euler's method is like taking a series of small, straight steps on this map to approximate a path.",
+    "analogy": "Imagine you're in a dense fog on a hilly landscape, and your only tool is a special compass that always points in the steepest downhill direction at your current location. You don't have a full map of the terrain. To find your way down, you check your compass, take a small, straight step in that direction, then stop. You check your compass again at your new spot and repeat the process. This sequence of short, straight steps creates an approximate path down the hill. This is exactly how Euler's method works: it uses the gradient (the compass direction) at a point to take a small step and approximate the solution curve (your path).",
+    "steps": [
+      "A differential equation $\\frac{dy}{dx} = f(x, y)$ gives the gradient of a solution curve at any point $(x, y)$. A slope field is a plot of these gradients as short line segments.",
+      "Begin at a known initial condition $(x_0, y_0)$. This is your starting point on the solution curve.",
+      "Use the Euler's method formula, $y_{n+1} = y_n + h \\cdot f(x_n, y_n)$, where $h$ is the step size. This calculates the next approximate $y$-value by moving a small distance in the direction of the gradient at the current point.",
+      "Update your position to $(x_{n+1}, y_{n+1})$, where $x_{n+1} = x_n + h$. Repeat the process for the required number of steps to trace out an approximate solution."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a differential equation?",
+      "back": "An equation that relates a function with one or more of its derivatives. For example, $\\frac{dy}{dx} = 2y - x$."
+    },
+    {
+      "front": "What is a slope field (or direction field)?",
+      "back": "A graphical representation of a first-order differential equation, showing the gradient of the solution curve at a grid of points in the $xy$-plane."
+    },
+    {
+      "front": "What does each line segment in a slope field represent?",
+      "back": "The slope (gradient) of the tangent to the solution curve that passes through the midpoint of that segment."
+    },
+    {
+      "front": "What is an initial condition for a differential equation?",
+      "back": "A specific point, $(x_0, y_0)$, that a particular solution to a differential equation must pass through. It 'anchors' the solution curve."
+    },
+    {
+      "front": "What is Euler's method used for?",
+      "back": "To find a numerical approximation of the solution to a first-order ordinary differential equation with a given initial value."
+    },
+    {
+      "front": "State the formula for Euler's method.",
+      "back": "$y_{n+1} = y_n + h \\cdot f(x_n, y_n)$, where $\\frac{dy}{dx} = f(x, y)$ and $h$ is the step size."
+    },
+    {
+      "front": "In Euler's method, what does the step size, $h$, represent?",
+      "back": "The change in the independent variable, usually $x$, for each iteration. It is often written as $h = \\Delta x$."
+    },
+    {
+      "front": "How does the step size $h$ affect the accuracy of Euler's method?",
+      "back": "A smaller step size $h$ generally leads to a more accurate approximation of the true solution, but requires more computational steps."
+    },
+    {
+      "front": "Common Trap: Forgetting to update both coordinates in Euler's method.",
+      "back": "Remember to update both $x$ and $y$ at each step. The new x-value is $x_{n+1} = x_n + h$. This new $x_{n+1}$ and the calculated $y_{n+1}$ form the next point."
+    },
+    {
+      "front": "Common Trap: Calculating the gradient using the wrong point.",
+      "back": "The gradient for the step from $n$ to $n+1$ is calculated at the *current* point $(x_n, y_n)$. That is, you must use $f(x_n, y_n)$."
+    },
+    {
+      "front": "Can Euler's method give an exact solution?",
+      "back": "No, it provides an approximation. The error generally decreases as the step size $h$ approaches zero, but it only becomes exact in the limit, or for the trivial case of a linear function."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we need Euler's method if we can solve some differential equations analytically?",
+      "a": "Many differential equations, especially those that arise from complex real-world models, do not have a simple 'closed-form' or analytical solution. Euler's method provides a robust way to find an approximate solution numerically, which is often sufficient for practical applications in fields like physics, biology, and finance."
+    },
+    {
+      "q": "Is Euler's method a Paper 1 or Paper 2 topic?",
+      "a": "It is primarily a Paper 1 topic, where you'll be expected to perform the calculations by hand for a small number of steps. However, the underlying concepts are crucial for modelling, so they could appear on Paper 2 in a context where you might use your GDC to perform a larger number of iterations or analyse a given slope field."
+    },
+    {
+      "q": "If I use a smaller step size, will my answer always be better?",
+      "a": "Generally, yes. For the functions and problems you'll encounter in this course, a smaller step size leads to a more accurate approximation because the tangent line segments stay closer to the true curve. However, in advanced numerical analysis, there's a trade-off, as extremely small step sizes can lead to an accumulation of computer rounding errors, but this is beyond the scope of the IB syllabus."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Many real-world systems, from population growth to cooling objects, are described by rates of change. These relationships are formalised as differential equations. While you have learned to solve some simple differential equations analytically, many are too complex. This lesson introduces two powerful techniques for tackling them: slope fields, which provide a visual understanding, and Euler's method, a numerical approach to approximate solutions. These are essential tools for modelling in science and engineering."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Solutions with Slope Fields"
+    },
+    {
+      "type": "text",
+      "content": "A differential equation like $\\frac{dy}{dx} = f(x, y)$ defines a gradient for every point in the plane. A slope field, or direction field, is a plot that illustrates this. At various points $(x, y)$ on a grid, a small line segment is drawn with the gradient calculated from $f(x, y)$. By looking at the 'flow' of these segments, you can visualise the shape of the entire family of solution curves without solving the equation. An initial condition, like $(x_0, y_0)$, specifies a starting point, allowing you to trace a unique solution curve that follows the directions indicated by the field."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A slope field is a graphical representation of the gradients of a differential equation.",
+        "Solution curves are paths that are always tangent to the line segments of the slope field.",
+        "Different initial conditions will produce different solution curves on the same slope field, representing the family of solutions."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the differential equation $\\frac{dy}{dx} = \\frac{x}{y}$.\n\n(a) A slope field for this equation is shown below. Sketch the solution curve that passes through the point $(1, 2)$.\n\n(b) Find the equation of the isocline where the gradient is equal to 1.",
+      "solution": "(a) To sketch the solution curve, start at the point $(1, 2)$. Draw a smooth curve that follows the direction of the line segments in the slope field. The curve should move upwards and to the right, becoming steeper as $x$ increases and less steep as $y$ increases. It should also be symmetrical about the y-axis, reflecting the nature of the solution. [A1] for a curve starting at (1,2) and reasonably following the field lines.\n\n(b) An isocline is a curve along which the gradient is constant. We are looking for where the gradient, $\\frac{dy}{dx}$, is equal to 1. [M1]\nSet the differential equation equal to 1:\n$\\frac{x}{y} = 1$ \nThis simplifies to:\n$y = x$ (for $y \\neq 0$) [A1]\nThis is the equation of the isocline where the slope of the solution curves is 1."
+    },
+    {
+      "type": "heading",
+      "content": "Euler's Method: A Numerical Approach"
+    },
+    {
+      "type": "text",
+      "content": "Euler's method is an iterative procedure to approximate the solution of a first-order differential equation with a given initial value. It uses the tangent line at a known point to estimate the next point on the solution curve. By repeating this process over small intervals (steps), we can build a sequence of points that approximates the true solution curve."
+    },
+    {
+      "type": "formula",
+      "content": "Given $\\frac{dy}{dx} = f(x, y)$ with initial condition $(x_0, y_0)$ and step size $h$:\n\nNew x-value: $x_{n+1} = x_n + h$\nNew y-value: $y_{n+1} = y_n + h \\cdot f(x_n, y_n)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The rate of growth of a plant's height, $H$ in cm, is modelled by the differential equation $\\frac{dH}{dt} = 0.2(10 - H)$, where $t$ is the time in weeks. Initially, at $t=0$, the plant has a height of 2 cm.\n\nUse Euler's method with a step size of $h=0.5$ weeks to estimate the height of the plant at $t=1$ week.",
+      "solution": "We are given $\\frac{dH}{dt} = f(t, H) = 0.2(10 - H)$.\nThe initial condition is $(t_0, H_0) = (0, 2)$.\nThe step size is $h=0.5$. We need to find $H(1)$, which requires two steps.\n\n**Step 1: Find H(0.5)**\n$t_0 = 0$, $H_0 = 2$.\nCalculate the gradient at this point:\n$f(0, 2) = 0.2(10 - 2) = 0.2(8) = 1.6$ [M1]\nNow use Euler's formula to find $H_1$:\n$H_1 = H_0 + h \\cdot f(t_0, H_0) = 2 + 0.5 \\cdot (1.6) = 2 + 0.8 = 2.8$ [A1]\nSo, at $t_1 = 0.5$, the estimated height is $H_1 = 2.8$ cm.\n\n**Step 2: Find H(1.0)**\n$t_1 = 0.5$, $H_1 = 2.8$.\nCalculate the new gradient:\n$f(0.5, 2.8) = 0.2(10 - 2.8) = 0.2(7.2) = 1.44$ [M1]\nUse Euler's formula to find $H_2$:\n$H_2 = H_1 + h \\cdot f(t_1, H_1) = 2.8 + 0.5 \\cdot (1.44) = 2.8 + 0.72 = 3.52$ [A1]\n\nThe estimated height of the plant at $t=1$ week is 3.52 cm. [R1]"
+    },
+    {
+      "type": "heading",
+      "content": "Accuracy and Step Size"
+    },
+    {
+      "type": "text",
+      "content": "Euler's method is fundamentally an approximation. The error at each step is the difference between the linear estimate and the true curved path of the solution. This error can accumulate over many steps. The primary way to improve the accuracy of Euler's method is to decrease the step size, $h$. A smaller $h$ means the tangent line approximation is used over a shorter distance, so it stays closer to the actual curve. However, this comes at the cost of increased computation, as more steps are needed to cover the same interval."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Euler's method provides an approximate, not exact, solution.",
+        "The accuracy is dependent on the step size $h$. Smaller $h$ values generally yield more accurate results.",
+        "The total error is a cumulative effect of the local error at each step.",
+        "For many problems, halving the step size will roughly halve the total error."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, you must show your working for Euler's method clearly. A table with columns for $n$, $x_n$, $y_n$, $\\frac{dy}{dx}$, and $y_{n+1}$ is highly recommended to keep your calculations organised and to ensure you get method marks, even if you make a small arithmetic error. Always calculate the gradient $f(x_n, y_n)$ *before* calculating the next y-value, $y_{n+1}$."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Euler's Method & Slope Fields",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=5.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Slope Field Plotter",
+          "href": "https://www.geogebra.org/m/W7d52Ysy"
+        },
+        {
+          "label": "Paul's Online Math Notes - Euler's Method",
+          "href": "https://tutorial.math.lamar.edu/classes/de/eulersmethod.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Slope Field Plotter",
+    "embedUrl": "https://www.geogebra.org/classic?material=W7d52Ysy",
+    "launchUrl": "https://www.geogebra.org/classic?material=W7d52Ysy",
+    "hint": "Use “GeoGebra Slope Field Plotter” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

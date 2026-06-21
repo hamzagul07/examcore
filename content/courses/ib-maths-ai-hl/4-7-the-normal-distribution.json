@@ -1,0 +1,199 @@
+{
+  "slug": "4-7-the-normal-distribution",
+  "topicCode": "4.7",
+  "title": "The normal distribution",
+  "paper": "P2",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces the normal distribution, the 'bell curve' central to statistics. It covers its properties, calculating probabilities, and solving inverse problems to find data values or the distribution's parameters, with a strong focus on GDC techniques for Paper 2.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify the key properties of a normal distribution and the parameters μ and σ².",
+    "Calculate probabilities for a normal distribution using a GDC.",
+    "Solve inverse normal problems to find a data value given a probability.",
+    "Find unknown parameters μ and σ using standardisation and simultaneous equations."
+  ],
+  "simpleExplanation": {
+    "title": "Mastering the Bell Curve",
+    "summary": "The normal distribution describes how lots of natural data, like height or exam scores, cluster around an average. This creates a symmetrical, bell-shaped graph.",
+    "analogy": "Imagine you're a baker selling muffins. Most days you sell an average number, say 100. Some days you sell a few more (110), some days a few less (90). It's very rare to sell a huge number (200) or very few (10). If you plot your daily sales, you'll get a bell curve shape – the normal distribution.",
+    "steps": [
+      "Define the variable and its parameters: State X ~ N(μ, σ²), identifying the mean (μ) and standard deviation (σ).",
+      "Sketch the curve: Draw a quick bell curve, mark the mean, and shade the area corresponding to the probability you need to find.",
+      "Select GDC function: Use `normalCdf` to find a probability (area) or `invNorm` to find a data value (x) from a known probability.",
+      "Interpret and state the answer: Write down your final answer clearly, including units if applicable, to the required degree of accuracy (usually 3 s.f.)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the normal distribution?",
+      "back": "A continuous probability distribution for a random variable, represented by a symmetrical, bell-shaped curve. Its notation is $X \\sim N(\\mu, \\sigma^2)$."
+    },
+    {
+      "front": "What are the key properties of the normal distribution curve?",
+      "back": "It's bell-shaped and symmetrical about the mean. Mean = Median = Mode. The total area under the curve is 1. The curve never touches the x-axis."
+    },
+    {
+      "front": "What do $\\mu$ and $\\sigma$ represent in $X \\sim N(\\mu, \\sigma^2)$?",
+      "back": "$\\mu$ is the population mean (the centre of the distribution). $\\sigma$ is the population standard deviation (a measure of the spread of the data). Note: The second parameter is variance, $\\sigma^2$."
+    },
+    {
+      "front": "What is the Empirical Rule (68-95-99.7)?",
+      "back": "For a normal distribution, approximately 68% of data falls within $\\pm 1\\sigma$ of the mean, 95% within $\\pm 2\\sigma$, and 99.7% within $\\pm 3\\sigma$."
+    },
+    {
+      "front": "When do I use `normalCdf` on my GDC?",
+      "back": "Use `normalCdf(lower, upper, \\mu, \\sigma)` to find the probability (the area under the curve) between a `lower` and `upper` bound."
+    },
+    {
+      "front": "When do I use `invNorm` on my GDC?",
+      "back": "Use `invNorm(area, \\mu, \\sigma)` to find a data value, $k$, when you know the probability (area) to the left of $k$, i.e., $P(X < k)$."
+    },
+    {
+      "front": "What is the Standard Normal Distribution?",
+      "back": "A special case of the normal distribution with a mean of 0 and a standard deviation of 1. Its notation is $Z \\sim N(0, 1^2)$."
+    },
+    {
+      "front": "What is a z-score?",
+      "back": "A z-score measures how many standard deviations a data point ($x$) is from the mean ($\\mu$). The formula is $Z = \\frac{X - \\mu}{\\sigma}$. It's used for standardising."
+    },
+    {
+      "front": "Common Trap: What is the value for 'upper' in `normalCdf` when calculating $P(X > a)$?",
+      "back": "You need to use a very large number to represent infinity. A common choice is $1 \\times 10^{99}$ (or `1E99` on your GDC). For $P(X < a)$, the lower bound would be $-1 \\times 10^{99}$."
+    },
+    {
+      "front": "Common Trap: My GDC's `invNorm` only accepts 'area to the left'. How do I find the value $k$ for the top 10%?",
+      "back": "The top 10% corresponds to an area of 0.1 to the right. This means there is an area of $1 - 0.1 = 0.9$ to the left. You must use `invNorm(0.9, \\mu, \\sigma)`."
+    },
+    {
+      "front": "What's the difference between $\\sigma$ and $\\sigma^2$?",
+      "back": "$\\sigma$ is the standard deviation, which measures the spread in the same units as the data. $\\sigma^2$ is the variance. The GDC requires the standard deviation, $\\sigma$, so always take the square root of the variance if that's what you're given."
+    },
+    {
+      "front": "When should I use `normalPdf`?",
+      "back": "Almost never for IB exam questions. `normalPdf` gives the height of the curve at a single point, not a probability. For a continuous distribution, the probability of any single exact value is zero. Always use `normalCdf` for probabilities over a range."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When do I use `normalCdf` vs `invNorm`?",
+      "a": "Use `normalCdf` when you know the data value(s) and want to find the probability (the area). Use `invNorm` when you know the probability (the area) and want to find the data value."
+    },
+    {
+      "q": "What's the difference between the Normal and Standard Normal distribution?",
+      "a": "The Normal distribution can have any mean ($\\mu$) and standard deviation ($\\sigma$). The Standard Normal distribution is a specific case where the mean is 0 and the standard deviation is 1. We use the Standard Normal distribution to find z-scores, which helps in comparing different normal distributions or solving for unknown parameters."
+    },
+    {
+      "q": "Why is `normalPdf` not used for calculating probabilities of a range?",
+      "a": "`normalPdf(x)` gives the height of the probability density function at point $x$. For a continuous distribution, the probability of any single exact value is zero, i.e., $P(X=x)=0$. Probability is represented by the area under the curve over an interval, which is calculated by `normalCdf`."
+    },
+    {
+      "q": "Do I have to draw a diagram in the exam?",
+      "a": "While not always explicitly awarded marks, it is highly recommended. A diagram helps you understand the problem, select the correct GDC inputs (especially for `invNorm` and bounds), and acts as a check for your answer's reasonableness. It can also help an examiner follow your thought process if you make a mistake elsewhere."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The normal distribution is arguably the most important concept in statistics. From the heights of people to the measurement errors in scientific experiments, many real-world phenomena naturally follow this 'bell curve' pattern. Mastering it is crucial for understanding the world through data and for success in your Paper 2 exam."
+    },
+    {
+      "type": "heading",
+      "content": "Properties of the Normal Distribution"
+    },
+    {
+      "type": "text",
+      "content": "A continuous random variable $X$ is said to be normally distributed if its probability density function is a symmetrical, bell-shaped curve. The distribution is defined by two parameters: the mean, $\\mu$, which determines the centre of the graph, and the standard deviation, $\\sigma$, which determines the width or spread of the graph. We use the notation $X \\sim N(\\mu, \\sigma^2)$ to describe this, where $\\sigma^2$ is the variance."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The curve is symmetrical about the mean, $\\mu$.",
+        "The mean, median, and mode are all equal.",
+        "The total area under the curve is equal to 1 (or 100%).",
+        "The curve extends infinitely in both directions but never touches the horizontal axis.",
+        "The shape is determined by $\\sigma$: a smaller $\\sigma$ results in a taller, narrower curve, while a larger $\\sigma$ gives a shorter, wider curve."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Probabilities with a GDC"
+    },
+    {
+      "type": "text",
+      "content": "Since the normal distribution is continuous, we are interested in finding the probability that a variable falls within a certain interval, not at a specific point. This probability corresponds to the area under the curve for that interval. While this can be done with calculus, for this course, we use our GDC's built-in functions. The key function is `normalCdf`."
+    },
+    {
+      "type": "workedExample",
+      "question": "The weights of adult male Golden Retrievers are normally distributed with a mean of 32 kg and a standard deviation of 2.5 kg. A dog is selected at random. (a) Find the probability that the dog weighs less than 30 kg. (b) Find the probability that the dog weighs between 31 kg and 35 kg.",
+      "solution": "Let $W$ be the random variable representing the weight of an adult male Golden Retriever.\nWe are given that $W \\sim N(32, 2.5^2)$.\n\n(a) We want to find $P(W < 30)$.\nThis corresponds to the area to the left of 30 on the bell curve.\nUsing the GDC:\n`normalCdf(lower: -1E99, upper: 30, \\mu: 32, \\sigma: 2.5)` (M1 for correct function and parameters)\n$P(W < 30) = 0.211855...$\n$P(W < 30) \\approx 0.212$ (3 s.f.) (A1)\n\n(b) We want to find $P(31 < W < 35)$.\nThis corresponds to the area between 31 and 35.\nUsing the GDC:\n`normalCdf(lower: 31, upper: 35, \\mu: 32, \\sigma: 2.5)` (M1 for correct function and parameters)\n$P(31 < W < 35) = 0.54039...$\n$P(31 < W < 35) \\approx 0.540$ (3 s.f.) (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a quick sketch of the normal distribution for every question. Mark the mean and shade the area you are looking for. This helps you visualise the problem, choose the correct GDC function and bounds, and check if your answer is reasonable. Also, write down the GDC function name and the parameters you used (`normalCdf(...)` or `invNorm(...)`) to secure method marks."
+    },
+    {
+      "type": "heading",
+      "content": "The Inverse Normal Distribution"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, we know the probability (the area under the curve) and need to find the corresponding data value. This is the reverse of the previous process and is called an inverse normal problem. For this, we use the `invNorm` function on our GDC. It's crucial to remember that most calculators require the 'area to the left' of the value you are trying to find."
+    },
+    {
+      "type": "workedExample",
+      "question": "The scores on an aptitude test are normally distributed with a mean of 500 and a standard deviation of 80. The company running the test wants to award a 'High Distinction' to the top 7% of candidates. What is the minimum score required to receive this award?",
+      "solution": "Let $S$ be the random variable for the test score. We have $S \\sim N(500, 80^2)$.\nWe need to find the score $k$ such that $P(S > k) = 0.07$.\nA sketch shows we are interested in the right tail of the distribution.\nThe `invNorm` function requires the area to the left.\nArea to the left of $k$ is $P(S < k) = 1 - P(S > k) = 1 - 0.07 = 0.93$. (M1 for correct area)\nUsing the GDC:\n`invNorm(area: 0.93, \\mu: 500, \\sigma: 80)` (M1 for correct function and parameters)\n$k = 618.04...$\nThe minimum score required is 619 (since scores are likely integers and a score of 618 would not be in the top 7%). (A1)(R1 for contextual rounding)\nMinimum score = 619."
+    },
+    {
+      "type": "heading",
+      "content": "Finding Unknown Parameters μ and σ"
+    },
+    {
+      "type": "text",
+      "content": "A common HL problem involves finding an unknown mean $\\mu$ or standard deviation $\\sigma$, or both. The key is to use the given probabilities to standardise the variables into z-scores. The z-score tells us how many standard deviations a value is from the mean. We can then set up one or two equations to solve for the unknown parameters."
+    },
+    {
+      "type": "formula",
+      "content": "Z-score: $Z = \\frac{X - \\mu}{\\sigma}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The lengths of a certain type of snake are normally distributed. It is found that 20% of the snakes are less than 55 cm long, and 10% are more than 70 cm long. Find the mean and standard deviation of the lengths of these snakes.",
+      "solution": "Let $L$ be the length of a snake, $L \\sim N(\\mu, \\sigma^2)$.\nGiven: $P(L < 55) = 0.20$ and $P(L > 70) = 0.10$.\nStandardise the variables. First, find the corresponding z-scores from $Z \\sim N(0, 1^2)$.\nFor $P(L < 55) = 0.20$:\n$z_1 = \\text{invNorm(0.2, 0, 1)} = -0.84162...$ (M1)\nThis gives the equation: $\\frac{55 - \\mu}{\\sigma} = -0.84162... \\implies 55 - \\mu = -0.84162...\\sigma$ (Eq. 1) (A1)\nFor $P(L > 70) = 0.10$, we have $P(L < 70) = 1 - 0.10 = 0.90$.\n$z_2 = \\text{invNorm(0.9, 0, 1)} = 1.28155...$ (M1)\nThis gives the equation: $\\frac{70 - \\mu}{\\sigma} = 1.28155... \\implies 70 - \\mu = 1.28155...\\sigma$ (Eq. 2) (A1)\nWe now have a system of two linear equations with two unknowns, $\\mu$ and $\\sigma$:\n1) $\\mu - 0.84162...\\sigma = 55$\n2) $\\mu + 1.28155...\\sigma = 70$\nUsing a GDC's simultaneous equation solver: (M1 for attempt to solve)\n$\\mu = 60.946...$ and $\\sigma = 7.0649...$\nTherefore, the mean is $\\mu = 60.9$ cm and the standard deviation is $\\sigma = 7.06$ cm (to 3 s.f.). (A1, A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Normal Distribution Practice",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=4.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Normal Distribution Calculator",
+          "href": "https://www.geogebra.org/m/k83s26S9"
+        },
+        {
+          "label": "IB AI HL Questionbank - Normal Distribution",
+          "href": "https://www.ibdocuments.com/questionbank/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Normal Distribution Calculator",
+    "embedUrl": "https://www.geogebra.org/classic?material=k83s26S9",
+    "launchUrl": "https://www.geogebra.org/classic?material=k83s26S9",
+    "hint": "Use “GeoGebra Normal Distribution Calculator” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

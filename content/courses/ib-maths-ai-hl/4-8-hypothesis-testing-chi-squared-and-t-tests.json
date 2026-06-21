@@ -1,0 +1,239 @@
+{
+  "slug": "4-8-hypothesis-testing-chi-squared-and-t-tests",
+  "topicCode": "4.8",
+  "title": "Hypothesis testing: chi-squared and t-tests",
+  "paper": "P2",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of hypothesis testing, a core statistical method for making decisions based on data. We will explore two key types of tests: chi-squared tests for analysing categorical data (testing for independence and goodness of fit) and t-tests for comparing means of one or two samples.",
+  "durationMin": 110,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Formulate null and alternative hypotheses for chi-squared and t-tests.",
+    "Perform chi-squared tests for independence and goodness of fit using a GDC.",
+    "Conduct one-sample, two-sample, and paired t-tests using a GDC.",
+    "Interpret p-values and test statistics to draw statistically sound conclusions in the context of a given problem."
+  ],
+  "simpleExplanation": {
+    "title": "Data on Trial: Guilty or Not Guilty?",
+    "summary": "Hypothesis testing is like a legal trial for a claim about data. We start by assuming the claim is true (the 'null hypothesis') and then use statistical evidence to decide if it should be rejected.",
+    "analogy": "Imagine a courtroom. A suspect is 'innocent until proven guilty'. In statistics, the 'null hypothesis' (e.g., a coin is fair) is our 'innocent' assumption. We then collect data (e.g., flip the coin 100 times) which is our 'evidence'. The statistical test is the 'trial'. If the evidence is strong enough (a very unlikely result, like 95 heads), we reject the 'innocent' assumption and declare the coin is likely not fair. If the evidence is weak (e.g., 53 heads), we don't have enough to convict, so we 'fail to reject' the innocent assumption.",
+    "steps": [
+      "State Hypotheses: Clearly define the null hypothesis ($H_0$, the 'no effect' or 'status quo' claim) and the alternative hypothesis ($H_A$, what you're trying to prove).",
+      "Choose Test & Significance Level: Select the correct statistical test (e.g., $\\chi^2$ test, t-test) based on your data type and question. Set the significance level ($\\alpha$), usually 5% (0.05), which is your threshold for 'reasonable doubt'.",
+      "Calculate Test Statistic & p-value: Use your GDC to run the chosen test on your data. The calculator will provide a test statistic (like $\\chi^2$ or $t$) and, most importantly, a p-value.",
+      "Conclude in Context: Compare your p-value to $\\alpha$. If the p-value is less than $\\alpha$, you have strong evidence to reject $H_0$. If it's greater, you do not. Always state your final conclusion in the context of the original problem."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a Null Hypothesis ($H_0$)?",
+      "back": "The null hypothesis is a statement of 'no effect' or 'no difference'. It's the default assumption that any observed variation is due to chance. E.g., $H_0$: There is no association between gender and voting preference."
+    },
+    {
+      "front": "What is an Alternative Hypothesis ($H_A$ or $H_1$)?",
+      "back": "The alternative hypothesis is the claim the researcher is trying to prove. It contradicts the null hypothesis. E.g., $H_A$: There is an association between gender and voting preference."
+    },
+    {
+      "front": "What is a p-value?",
+      "back": "The p-value is the probability of observing data as extreme as, or more extreme than, the collected sample, assuming the null hypothesis is true. A small p-value suggests the observed data is unlikely under the null hypothesis."
+    },
+    {
+      "front": "What is the Significance Level ($\\alpha$)?",
+      "back": "The significance level, $\\alpha$, is a pre-determined threshold for statistical significance. It's the probability of rejecting the null hypothesis when it is actually true (a Type I error). Common values are 0.10, 0.05, and 0.01."
+    },
+    {
+      "front": "What is the decision rule for hypothesis testing using a p-value?",
+      "back": "If p-value < $\\alpha$, reject $H_0$. If p-value $\\ge \\alpha$, do not reject $H_0$. A helpful rhyme: 'If p is low, the null must go.'"
+    },
+    {
+      "front": "When do you use a Chi-Squared ($\\chi^2$) Test for Independence?",
+      "back": "Use it to determine if there is a statistically significant association between two categorical variables. Data is presented in a contingency table. E.g., Is there a relationship between a person's age group and their preferred social media platform?"
+    },
+    {
+      "front": "When do you use a Chi-Squared ($\\chi^2$) Goodness of Fit Test?",
+      "back": "Use it to determine if the observed frequencies of a single categorical variable match the expected frequencies of a hypothesised distribution. E.g., Do the colours in a bag of sweets follow the distribution claimed by the manufacturer?"
+    },
+    {
+      "front": "When do you use a t-test?",
+      "back": "Use a t-test to compare means. A one-sample t-test compares a sample mean to a known value. A two-sample t-test compares the means of two independent groups. A paired t-test compares means from the same group at different times (e.g., before and after)."
+    },
+    {
+      "front": "What is a Type I error?",
+      "back": "A Type I error occurs when you incorrectly reject a true null hypothesis. It's a 'false positive'. The probability of a Type I error is equal to the significance level, $\\alpha$."
+    },
+    {
+      "front": "What is a Type II error?",
+      "back": "A Type II error occurs when you fail to reject a false null hypothesis. It's a 'false negative' - you miss a real effect. The probability is denoted by $\\beta$."
+    },
+    {
+      "front": "What is a critical value?",
+      "back": "A critical value is a point on the scale of the test statistic beyond which we reject the null hypothesis. If your calculated test statistic is more extreme than the critical value, you reject $H_0$. This is an alternative to the p-value method."
+    },
+    {
+      "front": "What are the degrees of freedom for a $\\chi^2$ test of independence?",
+      "back": "The degrees of freedom (df) are calculated as: df = (number of rows - 1) $\\times$ (number of columns - 1). Your GDC calculates this for you."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a one-tailed and a two-tailed test?",
+      "a": "A two-tailed test checks for a difference in any direction (e.g., $H_A: \\mu \\neq 50$). A one-tailed test is more specific, checking for a difference in one particular direction (e.g., $H_A: \\mu > 50$ or $H_A: \\mu < 50$). You choose based on the research question. If the question asks if a value has 'changed' or is 'different', use a two-tailed test. If it asks if a value has 'increased', 'decreased', 'improved', or 'worsened', use a one-tailed test."
+    },
+    {
+      "q": "Why can't I say 'accept the null hypothesis'?",
+      "a": "In science and statistics, we can never prove something is true with 100% certainty; we can only gather evidence against it. Failing to reject $H_0$ doesn't mean it's true, it just means our sample didn't provide strong enough evidence to prove it's false. It's like a 'not guilty' verdict in court – it doesn't mean the person is definitively innocent, just that the prosecution didn't prove their guilt beyond a reasonable doubt."
+    },
+    {
+      "q": "What do I do if an expected frequency in a chi-squared test is less than 5?",
+      "a": "The chi-squared test relies on an assumption that the expected frequencies are not too small, typically greater than 5. If you have an expected frequency below 5, the test result may be inaccurate. The standard procedure is to combine that row or column with an adjacent one, so the new combined expected frequency is above 5. You must then adjust the degrees of freedom accordingly. In an IB exam, you would be expected to state that the test's validity is compromised or follow instructions to combine categories."
+    },
+    {
+      "q": "How do I know which test to use on the exam?",
+      "a": "First, identify the type of data. Is it categorical (counts, frequencies, percentages)? If so, it's a chi-squared test. If it's numerical data (measurements, means, averages), it's a t-test. Then, for chi-squared, are you comparing one variable to a known distribution (Goodness of Fit) or checking for a relationship between two variables (Independence)? For t-tests, are you comparing one sample's mean to a specific number (One-Sample), comparing the means of two completely separate groups (Two-Sample), or comparing 'before and after' data for the same group (Paired)?"
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Have you ever wondered if a new teaching method really improves exam scores, or if a company's claim about its product is true? Hypothesis testing is the formal process statisticians use to answer such questions. It provides a structured framework for using sample data to make inferences about an entire population. In this lesson, we'll master the essential tools for this process: the chi-squared test for categorical data and the t-test for numerical averages."
+    },
+    {
+      "type": "heading",
+      "content": "The Core Principles of Hypothesis Testing"
+    },
+    {
+      "type": "text",
+      "content": "Every hypothesis test follows the same fundamental logic. We begin with two competing hypotheses: the null hypothesis ($H_0$) and the alternative hypothesis ($H_A$). The null hypothesis represents the status quo or a statement of no effect, while the alternative represents the change or effect we wish to detect. We then collect data and calculate a p-value, which measures the strength of our evidence against the null hypothesis. The final step is to compare this p-value to a pre-defined significance level, $\\alpha$, to make a decision."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Null Hypothesis ($H_0$):** A statement of no difference or no relationship. Assumed to be true until evidence suggests otherwise.",
+        "**Alternative Hypothesis ($H_A$):** The claim you are testing. It can be one-tailed (e.g., $\\mu > 10$) or two-tailed (e.g., $\\mu \\neq 10$).",
+        "**Significance Level ($\\alpha$):** The threshold for rejecting $H_0$. Typically 5% (0.05), 1% (0.01), or 10% (0.10). It's the risk of making a Type I error.",
+        "**p-value:** The probability of getting your observed data (or more extreme) if $H_0$ were true.",
+        "**Decision Rule:** If p-value < $\\alpha$, reject $H_0$. If p-value $\\ge \\alpha$, do not reject $H_0$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Chi-Squared ($\\chi^2$) Test for Independence"
+    },
+    {
+      "type": "text",
+      "content": "This test is used when you have data for two categorical variables and you want to see if there is a relationship or association between them. For example, is there an association between a student's year group and their preferred method of transport to school? The test works by comparing the observed frequencies in your data (what you actually found) with the expected frequencies that you would anticipate if there were no relationship between the variables."
+    },
+    {
+      "type": "formula",
+      "content": "Hypotheses for Test of Independence:\\\\$H_0$: The two variables are independent.\\\\$H_A$: The two variables are not independent (they are associated)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A survey asked 200 people about their preferred holiday type (Beach, City Break, Adventure) and their employment status (Employed, Unemployed, Student). The results are shown in the table. Perform a chi-squared test at the 5% significance level to determine if there is an association between employment status and preferred holiday type. \\n\\n| | Beach | City Break | Adventure | Total |\\n|---|---|---|---|---|\\n| Employed | 35 | 40 | 25 | 100 |\\n| Unemployed | 15 | 5 | 5 | 25 |\\n| Student | 20 | 35 | 20 | 75 |\\n| Total | 70 | 80 | 50 | 200 |",
+      "solution": "1. **State the hypotheses:**\n   $H_0$: Employment status and preferred holiday type are independent.\n   $H_A$: Employment status and preferred holiday type are not independent. (M1)\n\n2. **State the test and significance level:**\n   A chi-squared test for independence will be used at a 5% significance level ($\\alpha = 0.05$).\n\n3. **Enter data and find p-value from GDC:**\n   Enter the observed frequencies into a 3x3 matrix in your calculator.\n   Run the $\\chi^2$ 2-Way Test.\n   GDC output:\n   $\\chi^2 = 13.345... \\approx 13.3$ (A1)\n   p-value = $0.00972... \\approx 0.00972$ (A1)\n   Degrees of freedom = $(3-1)(3-1) = 4$\n\n4. **Compare p-value with $\\alpha$:**\n   $0.00972 < 0.05$ (R1)\n\n5. **State the conclusion:**\n   Since the p-value is less than the significance level, we reject the null hypothesis. There is sufficient evidence to suggest that there is an association between a person's employment status and their preferred holiday type. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Chi-Squared ($\\chi^2$) Goodness of Fit Test"
+    },
+    {
+      "type": "text",
+      "content": "This test is used when you have one categorical variable and you want to see if its frequency distribution fits a specific, hypothesised pattern. For example, a company claims that the M&Ms in its bags are distributed as 20% red, 30% blue, and 50% green. You could take a sample of M&Ms and use a goodness of fit test to see if your observed counts are consistent with their claim."
+    },
+    {
+      "type": "formula",
+      "content": "Hypotheses for Goodness of Fit Test:\\\\$H_0$: The data fits the specified distribution.\\\\$H_A$: The data does not fit the specified distribution."
+    },
+    {
+      "type": "workedExample",
+      "question": "A dice is rolled 120 times to see if it is fair. The results are shown below. Test, at the 1% significance level, whether the dice is fair.\\n\\n| Score | 1 | 2 | 3 | 4 | 5 | 6 |\\n|---|---|---|---|---|---|---|\\n| Frequency | 15 | 24 | 18 | 13 | 27 | 23 |",
+      "solution": "1. **State the hypotheses:**\n   $H_0$: The dice is fair (the distribution of scores is uniform).\n   $H_A$: The dice is not fair (the distribution of scores is not uniform). (M1)\n\n2. **Calculate Expected Frequencies:**\n   If the dice is fair, each outcome is equally likely. The total number of rolls is 120. \n   Expected frequency for each score = $120 / 6 = 20$. (M1)\n\n3. **State the test and significance level:**\n   A chi-squared goodness of fit test will be used at a 1% significance level ($\\alpha = 0.01$).\n\n4. **Enter data and find p-value from GDC:**\n   Enter the observed frequencies (15, 24, 18, 13, 27, 23) into one list and the expected frequencies (20, 20, 20, 20, 20, 20) into another.\n   Run the $\\chi^2$ GOF Test.\n   GDC output:\n   $\\chi^2 = 8.6$ (A1)\n   p-value = $0.1260... \\approx 0.126$ (A1)\n   Degrees of freedom = $6-1 = 5$\n\n5. **Compare p-value with $\\alpha$:**\n   $0.126 > 0.01$ (R1)\n\n6. **State the conclusion:**\n   Since the p-value is greater than the significance level, we do not reject the null hypothesis. There is insufficient evidence to suggest that the dice is not fair. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "For chi-squared tests, a key condition is that all *expected* frequencies should be greater than 5. If you calculate expected frequencies and find one is less than 5, you should state that the test may not be valid. In an exam, you may be asked to combine rows or columns to meet this condition before proceeding."
+    },
+    {
+      "type": "heading",
+      "content": "The t-Test Family: Testing Means"
+    },
+    {
+      "type": "text",
+      "content": "When your data is numerical and you want to test a hypothesis about its mean (average), you'll likely use a t-test. These tests are robust and widely used. The key is to identify which type of t-test is appropriate for your situation: comparing one sample to a known value, comparing two separate groups, or comparing two related measurements."
+    },
+    {
+      "type": "heading",
+      "content": "One-Sample t-Test"
+    },
+    {
+      "type": "text",
+      "content": "This test compares the mean of a single sample to a known or hypothesised population mean, $\\mu_0$. For example, a manufacturer claims its batteries last for 500 hours. You could test a sample of batteries and use a one-sample t-test to see if your sample's mean lifespan is significantly different from 500."
+    },
+    {
+      "type": "formula",
+      "content": "Hypotheses for One-Sample t-Test (two-tailed):\\\\$H_0: \\mu = \\mu_0$\\\\$H_A: \\mu \\neq \\mu_0$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A coffee shop claims that the average volume of a 'large' latte is 450 ml. A trading standards officer measures the volume of 16 randomly selected large lattes and finds a sample mean of 445 ml with a sample standard deviation of 8 ml. Is there evidence, at the 5% significance level, that the average volume is not 450 ml?",
+      "solution": "1. **State the hypotheses:**\n   $H_0: \\mu = 450$ (The average volume is 450 ml).\n   $H_A: \\mu \\neq 450$ (The average volume is not 450 ml). (M1)\n\n2. **State the test and significance level:**\n   A one-sample t-test will be used at a 5% significance level ($\\alpha = 0.05$).\n\n3. **Enter data and find p-value from GDC:**\n   Use the T-Test function with 'Stats' input.\n   $\\mu_0: 450$\n   $\\bar{x}: 445$\n   $s_x: 8$\n   $n: 16$\n   Alternative: $\\neq \\mu_0$\n   GDC output:\n   $t = -2.5$ (A1)\n   p-value = $0.0243... \\approx 0.0243$ (A1)\n\n4. **Compare p-value with $\\alpha$:**\n   $0.0243 < 0.05$ (R1)\n\n5. **State the conclusion:**\n   Since the p-value is less than the significance level, we reject the null hypothesis. There is sufficient evidence to suggest that the average volume of a large latte is not 450 ml. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Two-Sample t-Test (Independent)"
+    },
+    {
+      "type": "text",
+      "content": "This test is used to compare the means of two independent groups. The term 'independent' is crucial; it means the selection of individuals in one group has no bearing on the selection in the other. For example, comparing the exam scores of a group of students who used a new revision app with a different group who did not."
+    },
+    {
+      "type": "formula",
+      "content": "Hypotheses for Two-Sample t-Test:\\\\$H_0: \\mu_1 = \\mu_2$ (The means of the two populations are equal.)\\\\$H_A: \\mu_1 \\neq \\mu_2$ (or $\\mu_1 > \\mu_2$, or $\\mu_1 < \\mu_2$)"
+    },
+    {
+      "type": "heading",
+      "content": "Paired t-Test"
+    },
+    {
+      "type": "text",
+      "content": "Use a paired t-test when you have two sets of measurements that are not independent. This typically occurs when you measure the same subjects twice, for example, 'before' and 'after' a treatment or intervention. The test works by first calculating the difference for each pair and then performing a one-sample t-test on these differences, testing if the mean difference is zero."
+    },
+    {
+      "type": "formula",
+      "content": "Hypotheses for Paired t-Test:\\\\$H_0: \\mu_d = 0$ (The mean of the differences is zero.)\\\\$H_A: \\mu_d \\neq 0$ (or $\\mu_d > 0$, or $\\mu_d < 0$)"
+    },
+    {
+      "type": "workedExample",
+      "question": "A new training programme is designed to improve the 100m sprint times of athletes. The times for 8 athletes were recorded before and after the programme. Test, at the 5% significance level, whether the programme was effective in reducing sprint times.\\n\\n| Athlete | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\\n|---|---|---|---|---|---|---|---|---|\\n| Time Before (s) | 12.5 | 13.1 | 12.8 | 13.5 | 12.9 | 13.3 | 12.7 | 13.0 |\\n| Time After (s) | 12.3 | 12.9 | 12.9 | 13.2 | 12.6 | 13.2 | 12.4 | 12.8 |",
+      "solution": "1. **State the hypotheses:**\n   Let $\\mu_d$ be the mean of the differences (Before - After).\n   $H_0: \\mu_d = 0$ (The programme has no effect on sprint times).\n   $H_A: \\mu_d > 0$ (The programme reduces sprint times, so 'Before' times are greater than 'After' times). (M1) *Note: This is a one-tailed test.*\n\n2. **State the test and significance level:**\n   A paired t-test will be used at a 5% significance level ($\\alpha = 0.05$).\n\n3. **Enter data and find p-value from GDC:**\n   Enter the 'Before' times into List 1 and 'After' times into List 2.\n   Create List 3 = List 1 - List 2. The differences are: 0.2, 0.2, -0.1, 0.3, 0.3, 0.1, 0.3, 0.2.\n   Run a T-Test on List 3.\n   $\\mu_0: 0$\n   List: L3\n   Freq: 1\n   Alternative: $> \\mu_0$\n   GDC output:\n   $t = 3.674... \\approx 3.67$ (A1)\n   p-value = $0.00396... \\approx 0.00396$ (A1)\n\n4. **Compare p-value with $\\alpha$:**\n   $0.00396 < 0.05$ (R1)\n\n5. **State the conclusion:**\n   Since the p-value is less than the significance level, we reject the null hypothesis. There is sufficient evidence to suggest that the training programme is effective in reducing athletes' 100m sprint times. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "Choosing the correct test is a common exam challenge. Use this flowchart: Is the data in categories/counts? -> Chi-Squared Test. Is the data numerical/averages? -> t-Test. For t-tests: one sample vs a number? -> 1-Sample. Two separate groups? -> 2-Sample. One group measured twice? -> Paired."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=4.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GDC Tutorial: Hypothesis Testing on the TI-84",
+          "href": "https://www.youtube.com/watch?v=zJ8e_w5g_sE"
+        },
+        {
+          "label": "Stat Trek: Explanations of Statistical Concepts",
+          "href": "https://stattrek.com/hypothesis-test/hypothesis-testing"
+        },
+        {
+          "label": "Interactive p-value Visualiser",
+          "href": "https://rpsychologist.com/d3/p-value/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

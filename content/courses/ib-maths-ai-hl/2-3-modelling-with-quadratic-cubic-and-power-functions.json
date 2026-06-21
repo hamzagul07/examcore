@@ -1,0 +1,188 @@
+{
+  "slug": "2-3-modelling-with-quadratic-cubic-and-power-functions",
+  "topicCode": "2.3",
+  "title": "Modelling with quadratic, cubic and power functions",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores how to model real-world data using quadratic, cubic, and power functions. You will learn to identify the appropriate function type from a scatter plot, use a GDC to perform regression analysis, and interpret the resulting models to make predictions and draw conclusions.",
+  "durationMin": 45,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify the characteristics of quadratic, cubic, and power function graphs.",
+    "Use a GDC to find the equation of a regression model for a given set of data.",
+    "Assess the appropriateness of a model using the coefficient of determination, $R^2$.",
+    "Use a model to make predictions (interpolation and extrapolation) and interpret parameters in context."
+  ],
+  "simpleExplanation": {
+    "title": "Fitting Curves to Reality",
+    "summary": "Modelling is the process of finding a mathematical function that best represents a set of real-world data. This allows us to understand underlying patterns and make predictions about future outcomes.",
+    "analogy": "Imagine you're a tailor fitting a suit for a client. The client's measurements are your data points. You have several pre-made patterns (a quadratic 'parabola' cut, a cubic 'S-curve' cut, a power function cut). Your job is to choose the pattern that best fits the client's specific measurements, perhaps even making small adjustments. The best-fitting pattern is your mathematical model.",
+    "steps": [
+      "Plot the data on a scatter diagram and visually inspect the shape to hypothesise a suitable model (e.g., parabolic, S-shaped).",
+      "Use your GDC's statistical functions to perform the appropriate regression (e.g., QuadReg, CubicReg, PwrReg) on the data.",
+      "Analyse the output, paying close attention to the coefficient of determination ($R^2$) to quantify how well the model fits the data.",
+      "Use the derived function equation to make predictions by substituting values, and always interpret your answer in the context of the original problem."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the general form of a quadratic function?",
+      "back": "$y = ax^2 + bx + c$, where $a \\neq 0$. Its graph is a parabola."
+    },
+    {
+      "front": "What is the general form of a cubic function?",
+      "back": "$y = ax^3 + bx^2 + cx + d$, where $a \\neq 0$. Its graph is typically an 'S' shape with up to two turning points."
+    },
+    {
+      "front": "What is the general form of a power function?",
+      "back": "$y = ax^b$, where $a, b$ are constants. These models are often used in physics and biology."
+    },
+    {
+      "front": "What is regression analysis?",
+      "back": "A statistical process for finding the 'line of best fit' or 'curve of best fit' that describes the relationship between variables in a dataset."
+    },
+    {
+      "front": "What is the coefficient of determination, $R^2$?",
+      "back": "A value between 0 and 1 that indicates how well the regression model predicts the outcome. A value of 1 means the model perfectly explains the data, while 0 means it has no explanatory power."
+    },
+    {
+      "front": "What is the difference between interpolation and extrapolation?",
+      "back": "Interpolation is making a prediction within the range of the original data. Extrapolation is predicting outside the range. Extrapolation is generally less reliable."
+    },
+    {
+      "front": "What is a key feature of a quadratic model's graph?",
+      "back": "The vertex, which represents the maximum or minimum point of the function. This is often a point of interest in modelling problems (e.g., maximum height, minimum cost)."
+    },
+    {
+      "front": "What is a key feature of a cubic model's graph?",
+      "back": "Points of inflection, where the concavity of the graph changes. This can represent a change in the rate of growth or decline."
+    },
+    {
+      "front": "Common Trap: Is the model with the highest $R^2$ value always the best?",
+      "back": "Not necessarily. While a high $R^2$ is important, you must also consider the context. A complex model (like a high-degree polynomial) might 'overfit' the data and be a poor predictor. Sometimes a simpler model is more appropriate."
+    },
+    {
+      "front": "Common Trap: Why must you be cautious with extrapolation?",
+      "back": "Because you are assuming the trend observed in your data continues indefinitely, which is often not true in the real world. Your predictions become increasingly unreliable the further you extrapolate."
+    },
+    {
+      "front": "GDC Command: How do you perform quadratic regression?",
+      "back": "After entering your data into lists (e.g., L1, L2), go to the STAT > CALC menu and select QuadReg. Specify the lists, e.g., QuadReg L1, L2."
+    },
+    {
+      "front": "GDC Command: How do you perform cubic regression?",
+      "back": "After entering your data into lists, go to the STAT > CALC menu and select CubicReg. Specify the lists, e.g., CubicReg L1, L2."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know which regression model (quadratic, cubic, power) to use?",
+      "a": "The best first step is always to create a scatter plot of your data. The visual shape is your biggest clue: a U-shape suggests a quadratic model, an S-shape a cubic model, and a curve starting from the origin and increasing rapidly might be a power model. If you are unsure, you can run multiple regressions and compare their $R^2$ values. The one closest to 1 is statistically the best fit, but you must also consider if the model makes sense in the context of the problem."
+    },
+    {
+      "q": "What is a 'good' $R^2$ value?",
+      "a": "A value closer to 1 indicates a better fit. In the context of IB exams, an $R^2$ value greater than 0.95 is typically considered a very strong correlation, while a value above 0.99 is exceptionally strong. However, there's no universal 'good' value; it depends on the field of study. The key is to use $R^2$ as a comparative tool: model A is a better fit than model B because its $R^2$ value is higher (closer to 1)."
+    },
+    {
+      "q": "Can I use a quartic or quintic regression for an even better fit?",
+      "a": "While your GDC might offer higher-order polynomial regressions, you should be cautious. Using an overly complex model can lead to 'overfitting', where the curve fits your specific data points perfectly but is a poor predictor of general trends. In IB Maths AI HL, you will almost always be expected to use linear, quadratic, cubic, exponential, logarithmic, or power models unless explicitly told otherwise. Stick to the simplest model that provides a good fit."
+    },
+    {
+      "q": "My GDC doesn't show the $R^2$ value. What should I do?",
+      "a": "You likely need to turn on the diagnostic display. On most TI calculators, you can do this by going to the CATALOG (2nd + 0), scrolling down to 'DiagnosticOn', and pressing ENTER twice. This is a one-time setup; once enabled, the $R^2$ value will appear with all future regression calculations."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The world is full of complex relationships, from the trajectory of a football to the growth of a company's profit. Mathematical modelling allows us to capture these relationships using functions. In this lesson, we'll focus on using quadratic, cubic, and power functions to build models from data, allowing us to make sense of the world and predict future behaviour."
+    },
+    {
+      "type": "heading",
+      "content": "Visual Identification of Models"
+    },
+    {
+      "type": "text",
+      "content": "Before you even touch your calculator, the first step in modelling is to visualise the data. By creating a scatter plot, you can often see a pattern that suggests a particular type of function. A U-shape or an inverted U-shape suggests a quadratic model. An S-shaped curve that rises, flattens, and then rises again (or the reverse) points towards a cubic model. A curve that starts at the origin and rises steeply, or one that is asymptotic to both axes, might be a power function."
+    },
+    {
+      "type": "heading",
+      "content": "Quadratic Modelling"
+    },
+    {
+      "type": "text",
+      "content": "Quadratic functions are excellent for modelling situations where a value increases to a maximum and then decreases, or vice versa. Common examples include the height of a projectile over time, or the profit of a business as a function of production level. The key feature is the single turning point, known as the vertex."
+    },
+    {
+      "type": "formula",
+      "content": "y = ax^2 + bx + c"
+    },
+    {
+      "type": "workedExample",
+      "question": "A small rocket is launched from a platform. Its height, $h$ metres, above the ground is recorded at various times, $t$ seconds, after launch. The data is shown in the table below.\n\n| Time (t) | 0 | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|---|\n| Height (h) | 2 | 47 | 82 | 107 | 122 | 127 |\n\n(a) Using your GDC, find a quadratic model for the height of the rocket as a function of time.\n(b) Find the coefficient of determination, $R^2$, for this model.\n(c) Using the model, find the maximum height reached by the rocket.\n(d) The rocket is designed to deploy its parachute when it starts to fall back to the ground. Find the time at which the parachute should be deployed.",
+      "solution": "(a) Enter the time data into List 1 and the height data into List 2 on the GDC. Perform a quadratic regression (QuadReg L1, L2).\n\n$h(t) = -5t^2 + 60t + 2$  (A2)\n*(Award (A1) for correct form with some correct coefficients, (A2) for all correct.)*\n\n(b) The GDC output from the regression gives the $R^2$ value.\n\n$R^2 = 1$  (A1)\n*(Note: An R² of 1 is rare in real data and suggests this is 'clean' data for an exercise. In a real scenario, a value like 0.998 would be more likely and still considered an excellent fit.)*\n\n(c) The maximum height occurs at the vertex of the parabola. The time at which this occurs is given by $t = -\\frac{b}{2a}$.\n\n$t = -\\frac{60}{2(-5)} = -\\frac{60}{-10} = 6$ seconds  (M1)\n\nSubstitute this time back into the model to find the maximum height:\n$h(6) = -5(6)^2 + 60(6) + 2$  (M1)\n$h(6) = -5(36) + 360 + 2$\n$h(6) = -180 + 360 + 2 = 182$ metres  (A1)\n*Alternatively, use the GDC's graph trace or maximum function on the plotted equation to find the vertex at (6, 182).*\n\n(d) The parachute should be deployed when the rocket reaches its maximum height and begins to fall. This is at the time found for the vertex.\n\nTime for deployment = 6 seconds  (A1)ft\n*(ft for follow-through from part c)*"
+    },
+    {
+      "type": "heading",
+      "content": "Cubic and Power Modelling"
+    },
+    {
+      "type": "text",
+      "content": "When relationships are more complex than a simple parabola, we might turn to cubic or power functions. Cubic functions, with their characteristic 'S' shape, can model phenomena that exhibit a period of growth, followed by a levelling-off, and then further growth (or similar patterns of rising and falling). Power functions are fundamental in the natural sciences, describing relationships like the gravitational force between two objects or the metabolic rate of an animal relative to its mass."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Cubic Model ($y = ax^3 + bx^2 + cx + d$): Use when the data has up to two turning points. Useful for modelling some economic or population growth cycles.",
+        "Power Model ($y = ax^b$): Use when one variable is proportional to a power of another. The graph often passes through or near the origin (0,0). If you plot $\\log(y)$ against $\\log(x)$ and get a straight line, a power model is appropriate.",
+        "Choosing the Model: Always plot the data first. If multiple models seem plausible, calculate the regression for each and compare their $R^2$ values. The model with the $R^2$ value closest to 1 is often the best statistical fit."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When a question asks you to 'comment on the validity' of a prediction, consider whether you are interpolating or extrapolating. An interpolated value is generally considered reliable. An extrapolated value is less reliable; you should state this and mention that your prediction assumes the model holds true outside the given data range."
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of bacteria in a culture is monitored over 8 hours. The population, $P$, is recorded at different times, $t$ (in hours).\n\n| Time (t) | 1 | 2 | 4 | 6 | 8 |\n|---|---|---|---|---|---|\n| Population (P) | 30 | 180 | 1500 | 5500 | 13000 |\n\nA biologist suggests this relationship can be modelled by a power function $P(t) = at^b$.\n\n(a) Find the values of $a$ and $b$ for this model, giving your answers to 3 significant figures.\n(b) Find the $R^2$ value for this model.\n(c) Use the model to estimate the number of bacteria after 5 hours.\n(d) Use the model to predict the time it takes for the population to reach 20,000.",
+      "solution": "(a) Enter the time data into List 1 and the population data into List 2. Perform a power regression (PwrReg L1, L2).\n\nThe GDC output gives the values for $a$ and $b$.\n$a \\approx 28.9$  (A1)\n$b \\approx 2.51$  (A1)\nSo, the model is $P(t) = 28.9t^{2.51}$.\n\n(b) The GDC output also provides the $R^2$ value.\n$R^2 \\approx 0.9996...$\n$R^2 \\approx 1.00$ (to 3 s.f.)  (A1)\n*(This indicates an extremely strong fit.)*\n\n(c) To estimate the population after 5 hours, we substitute $t=5$ into our model. This is an interpolation as 5 is within our data range [1, 8].\n$P(5) = 28.9 \\times 5^{2.51}$  (M1)\n$P(5) \\approx 28.9 \\times 55.45...$\n$P(5) \\approx 1602.6...$\nSo, the estimated population is approximately 1600 bacteria.  (A1)\n*(Note: It is good practice to state the unrounded answer before giving the final answer rounded to an appropriate degree of accuracy, e.g., 2 or 3 significant figures.)*\n\n(d) We need to find $t$ when $P(t) = 20000$. This is an extrapolation as 20000 is outside our observed population range.\n$20000 = 28.9t^{2.51}$  (M1)\nWe can solve this using the GDC's numerical solver or graphically.\nGraphically: Plot $y_1 = 28.9x^{2.51}$ and $y_2 = 20000$ and find their intersection.\nIntersection occurs at $t \\approx 8.853...$  (A1)\nSo, it takes approximately 8.85 hours for the population to reach 20,000.  (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "Always write down the full model equation from your GDC before using it. For regression questions, marks are often awarded for the equation itself. Also, state the $R^2$ value if you are using it to justify your choice of model. Don't just say 'the $R^2$ value is high'; write down the value."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Modelling with Functions",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Polynomial Regression",
+          "href": "https://www.geogebra.org/m/d44BJMzN"
+        },
+        {
+          "label": "Revision Village: Topic 2.3 Video",
+          "href": "https://www.revisionvillage.com/ib-maths-ai-hl/topic-2-functions/2-3-modelling/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Polynomial Regression",
+    "embedUrl": "https://www.geogebra.org/classic?material=d44BJMzN",
+    "launchUrl": "https://www.geogebra.org/classic?material=d44BJMzN",
+    "hint": "Use “Polynomial Regression” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

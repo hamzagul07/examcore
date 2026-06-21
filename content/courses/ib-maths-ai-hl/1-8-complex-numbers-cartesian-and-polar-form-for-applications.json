@@ -1,0 +1,193 @@
+{
+  "slug": "1-8-complex-numbers-cartesian-and-polar-form-for-applications",
+  "topicCode": "1.8",
+  "title": "Complex numbers: Cartesian and polar form for applications",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces complex numbers, exploring their representation in both Cartesian form (a + bi) and polar form (r(cosθ + isinθ)). It covers the techniques for converting between these forms and visualising them on an Argand diagram, with a focus on applications relevant to the AI HL course.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and represent complex numbers in Cartesian form (a + bi) on an Argand diagram.",
+    "Define and calculate the modulus and argument of a complex number.",
+    "Convert complex numbers between Cartesian and polar forms (r(cosθ + isinθ)).",
+    "Apply complex number forms to solve contextual problems."
+  ],
+  "simpleExplanation": {
+    "title": "Two Ways to Pinpoint a Number",
+    "summary": "Complex numbers have a real and an imaginary part, which can be plotted on a 2D plane. We can find this point using grid-like 'along and up' coordinates (Cartesian form) or by stating its distance and direction from the centre (polar form).",
+    "analogy": "Imagine you're giving a friend directions to a treasure in a large field. You could say, 'Start at the centre, walk 40 metres East, then 30 metres North'. That's the Cartesian method. Alternatively, you could say, 'Start at the centre and walk 50 metres at an angle of 37 degrees from East'. That's the polar method. Both sets of instructions lead to the exact same spot, but they describe the path differently.",
+    "steps": [
+      "For a complex number z = a + bi, identify the real part 'a' and the imaginary part 'b'. Plot this as a coordinate (a, b) on the Argand diagram.",
+      "Calculate the modulus 'r', which is the distance from the origin to the point (a, b). Use the formula r = |z| = √(a² + b²).",
+      "Calculate the argument 'θ', the angle from the positive real axis. Use θ = arctan(b/a), but always check the quadrant of (a, b) to ensure the angle is correct.",
+      "Combine the modulus and argument to write the number in polar form: z = r(cosθ + i sinθ), or the shorthand z = r cis(θ)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the imaginary unit, $i$?",
+      "back": "$i$ is defined as the square root of negative one, $i = \\sqrt{-1}$. This means $i^2 = -1$."
+    },
+    {
+      "front": "What is the Cartesian form of a complex number?",
+      "back": "$z = a + bi$, where $a$ is the real part, $\\text{Re}(z)$, and $b$ is the imaginary part, $\\text{Im}(z)$."
+    },
+    {
+      "front": "What is an Argand diagram?",
+      "back": "A 2D plane where the horizontal axis represents the real part and the vertical axis represents the imaginary part of a complex number."
+    },
+    {
+      "front": "How do you calculate the modulus of $z = a + bi$?",
+      "back": "The modulus, $|z|$ or $r$, is the magnitude of the complex number. It is calculated using $|z| = \\sqrt{a^2 + b^2}$."
+    },
+    {
+      "front": "How do you find the argument of $z = a + bi$?",
+      "back": "The argument, $\\arg(z)$ or $\\theta$, is the angle with the positive real axis. Use $\\theta = \\arctan(b/a)$ and adjust for the correct quadrant."
+    },
+    {
+      "front": "What is the polar form of a complex number?",
+      "back": "$z = r(\\cos\\theta + i\\sin\\theta)$, where $r$ is the modulus and $\\theta$ is the argument."
+    },
+    {
+      "front": "What does the notation $r\\text{cis}\\theta$ mean?",
+      "back": "It is a shorthand for the polar form $r(\\cos\\theta + i\\sin\\theta)$."
+    },
+    {
+      "front": "What is the principal argument of a complex number?",
+      "back": "The unique value of the argument $\\theta$ that lies within the interval $(-\\pi, \\pi]$. Your GDC often defaults to this range."
+    },
+    {
+      "front": "Common Trap: Calculating the argument for $z = -2 - 2i$.",
+      "back": "$\\arctan(-2/-2) = \\arctan(1) = \\pi/4$. This is incorrect. The point $(-2, -2)$ is in the third quadrant. The correct argument is $\\theta = -3\\pi/4$ or $5\\pi/4$."
+    },
+    {
+      "front": "How do you convert from polar form $z = r\\text{cis}\\theta$ back to Cartesian form $a+bi$?",
+      "back": "Use the relationships $a = r\\cos\\theta$ and $b = r\\sin\\theta$."
+    },
+    {
+      "front": "What is the complex conjugate of $z = a+bi$?",
+      "back": "The complex conjugate is $\\bar{z} = a-bi$. On an Argand diagram, it is the reflection of $z$ in the real axis."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we need two different forms for complex numbers?",
+      "a": "Different mathematical operations are easier in one form than the other. Addition and subtraction are straightforward in Cartesian form ($a+bi$). Multiplication, division, and finding powers or roots are much simpler in polar form ($r\\text{cis}\\theta$)."
+    },
+    {
+      "q": "What is the 'principal argument' and why is it important?",
+      "a": "The argument of a complex number can have infinitely many values (e.g., $\\pi/2$, $5\\pi/2$, $-3\\pi/2$ all point 'up'). The principal argument is the specific angle value chosen to be in a standard interval, usually $(-\\pi, \\pi]$. This ensures a unique answer, which is what your calculator will typically provide."
+    },
+    {
+      "q": "Can the modulus of a complex number be negative?",
+      "a": "No. The modulus represents the distance from the origin on the Argand diagram. Since distance cannot be negative, the modulus $r$ is always greater than or equal to zero."
+    },
+    {
+      "q": "Is the argument of $z=0$ defined?",
+      "a": "The modulus of $z=0$ is clearly 0. However, its argument is undefined. The point is at the origin, so there is no line segment to form an angle with the positive real axis."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of complex numbers. While they might sound abstract, they are a powerful extension of the real number system we are used to. Complex numbers provide solutions to equations that have no real solutions, like $x^2 = -1$, and are fundamental in many real-world applications, including electrical engineering, signal processing, and fluid dynamics. In this lesson, we'll learn the two main ways to describe them: Cartesian and polar form."
+    },
+    {
+      "type": "heading",
+      "content": "The Cartesian Form and the Argand Diagram"
+    },
+    {
+      "type": "text",
+      "content": "A complex number, $z$, is written in Cartesian form as $z = a + bi$. Here, $a$ is the 'real part' and $b$ is the 'imaginary part'. The letter $i$ is the imaginary unit, defined by the property $i^2 = -1$. We can think of a complex number not as a single point on a number line, but as a point on a two-dimensional plane."
+    },
+    {
+      "type": "text",
+      "content": "This plane is called the Argand diagram. The horizontal axis is the real axis (for the $a$ part) and the vertical axis is the imaginary axis (for the $b$ part). So, the complex number $z = 3 + 2i$ can be visualised as the coordinate $(3, 2)$ on the Argand diagram. This provides a powerful geometric interpretation of complex numbers."
+    },
+    {
+      "type": "heading",
+      "content": "Modulus and Argument: The Polar Building Blocks"
+    },
+    {
+      "type": "text",
+      "content": "Instead of using Cartesian coordinates $(a, b)$, we can describe the position of a complex number using a distance and an angle. This is the basis of the polar form. The distance from the origin $(0,0)$ to the point $(a,b)$ on the Argand diagram is called the modulus. The angle that the line segment from the origin to $(a,b)$ makes with the positive real axis is called the argument."
+    },
+    {
+      "type": "formula",
+      "content": "Modulus: $|z| = r = \\sqrt{a^2 + b^2}$"
+    },
+    {
+      "type": "formula",
+      "content": "Argument: $\\theta = \\arg(z)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The modulus is always non-negative, as it represents a distance.",
+        "The argument $\\theta$ is measured anti-clockwise from the positive real axis.",
+        "A common convention is to use the principal argument, which is in the range $-\\pi < \\theta \\le \\pi$.",
+        "Be careful when using $\\arctan(b/a)$ to find $\\theta$. Always consider which of the four quadrants the complex number lies in to find the correct angle."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A complex number is given by $z = -\\sqrt{3} + i$. \n\na) Find the modulus of $z$. \n\nb) Find the argument of $z$ in radians. \n\nc) Hence, express $z$ in polar form $z = r(\\cos\\theta + i\\sin\\theta)$.",
+      "solution": "Here, $a = -\\sqrt{3}$ and $b = 1$. The point $(-\\sqrt{3}, 1)$ is in the second quadrant.\n\na) To find the modulus, we use the formula $|z| = \\sqrt{a^2 + b^2}$.\n$|z| = \\sqrt{(-\\sqrt{3})^2 + 1^2}$ (M1)\n$|z| = \\sqrt{3 + 1} = \\sqrt{4} = 2$ (A1)\n\nb) To find the argument, we first find the related acute angle $\\alpha = \\arctan\\left|\\frac{b}{a}\\right|$.\n$\\alpha = \\arctan\\left|\\frac{1}{-\\sqrt{3}}\\right| = \\arctan\\left(\\frac{1}{\\sqrt{3}}\\right) = \\frac{\\pi}{6}$ (M1)\nSince $z$ is in the second quadrant (negative real part, positive imaginary part), the argument is $\\theta = \\pi - \\alpha$.\n$\\theta = \\pi - \\frac{pi}{6} = \\frac{5\\pi}{6}$ (M1)(A1)\n\nc) Using the values $r=2$ and $\\theta = \\frac{5\\pi}{6}$:\n$z = 2\\left(\\cos\\left(\\frac{5\\pi}{6}\\right) + i\\sin\\left(\\frac{5\\pi}{6}\\right)\\right)$ (A1)\nThis can also be written as $z = 2\\text{cis}\\left(\\frac{5\\pi}{6}\\right)$."
+    },
+    {
+      "type": "heading",
+      "content": "The Polar Form and Its Applications"
+    },
+    {
+      "type": "text",
+      "content": "The polar form of a complex number is written as $z = r(\\cos\\theta + i\\sin\\theta)$, or more compactly as $z = r\\text{cis}\\theta$. This form is incredibly useful for certain operations, especially multiplication and division of complex numbers, and for finding powers and roots (which you will see in De Moivre's Theorem)."
+    },
+    {
+      "type": "text",
+      "content": "To convert from polar form back to Cartesian form, we simply expand the expression using trigonometry. Given $z = r(\\cos\\theta + i\\sin\\theta)$, we can find the real part $a$ and imaginary part $b$ using the relations: $a = r\\cos\\theta$ and $b = r\\sin\\theta$. This allows us to switch between the two forms flexibly, depending on which is more convenient for the problem at hand."
+    },
+    {
+      "type": "examTip",
+      "content": "Your GDC is a powerful tool for complex number calculations and conversions. Familiarise yourself with the complex number modes and functions on your specific calculator model. It can quickly find the modulus, argument, and convert between forms. However, you must still understand the underlying principles to show working and earn method marks in an exam."
+    },
+    {
+      "type": "workedExample",
+      "question": "The voltage in an AC circuit is represented by the complex number $V = 120\\text{cis}(0.8)$ volts, and the impedance is $Z = 6\\text{cis}(-0.3)$ ohms. The current $I$ is given by the formula $I = \\frac{V}{Z}$.\n\na) Express $V$ and $Z$ in Cartesian form, $a+bi$, with values correct to 3 significant figures.\n\nb) In polar form, the division $I = \\frac{V}{Z}$ is performed by dividing the moduli and subtracting the arguments. Find $I$ in polar form.\n\nc) Using your answer from part (b), find the current $I$ in Cartesian form.",
+      "solution": "a) For Voltage $V = 120\\text{cis}(0.8) = 120(\\cos(0.8) + i\\sin(0.8))$:\n$a = 120\\cos(0.8) \\approx 83.6$ (M1)\n$b = 120\\sin(0.8) \\approx 86.1$\n$V \\approx 83.6 + 86.1i$ volts (A1)\nFor Impedance $Z = 6\\text{cis}(-0.3) = 6(\\cos(-0.3) + i\\sin(-0.3))$:\n$a = 6\\cos(-0.3) \\approx 5.73$ (M1)\n$b = 6\\sin(-0.3) \\approx -1.78$\n$Z \\approx 5.73 - 1.78i$ ohms (A1)\n\nb) To find $I = \\frac{V}{Z}$ in polar form:\nModulus: $|I| = \\frac{|V|}{|Z|} = \\frac{120}{6} = 20$ (M1)\nArgument: $\\arg(I) = \\arg(V) - \\arg(Z) = 0.8 - (-0.3) = 1.1$ (M1)\nSo, $I = 20\\text{cis}(1.1)$ amps. (A1)\n\nc) To convert $I = 20\\text{cis}(1.1)$ to Cartesian form:\n$a = 20\\cos(1.1) \\approx 9.07$ (M1)\n$b = 20\\sin(1.1) \\approx 17.8$\n$I \\approx 9.07 + 17.8i$ amps. (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Complex Number Conversions",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Argand Diagram Explorer",
+          "href": "https://www.geogebra.org/m/c9b8v5v3"
+        },
+        {
+          "label": "Khan Academy: Polar & Cartesian Forms",
+          "href": "https://www.khanacademy.org/math/algebra-home/alg-complex-numbers/alg-complex-numbers-in-polar-form/v/polar-form-of-a-complex-number"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Argand Diagram Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=c9b8v5v3",
+    "launchUrl": "https://www.geogebra.org/classic?material=c9b8v5v3",
+    "hint": "Use “Argand Diagram Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

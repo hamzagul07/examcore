@@ -1,0 +1,200 @@
+{
+  "slug": "1-6-matrices-determinants-inverses-and-applications",
+  "topicCode": "1.6",
+  "title": "Matrices: determinants, inverses and applications",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores matrix determinants and inverses. It covers calculating the determinant for 2x2 and 3x3 matrices, finding the inverse of a matrix, and applying these concepts to solve systems of linear equations, a key skill for Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Calculate the determinant of 2x2 and 3x3 matrices.",
+    "Find the inverse of a 2x2 matrix by hand and a 3x3 matrix using technology.",
+    "Represent a system of linear equations in matrix form (AX = B).",
+    "Solve systems of linear equations using the inverse matrix method (X = A⁻¹B)."
+  ],
+  "simpleExplanation": {
+    "title": "The Matrix Master Key",
+    "summary": "The inverse of a matrix acts like a 'master key' to unlock systems of equations. By finding this key, we can efficiently solve for multiple unknown variables at once.",
+    "analogy": "Imagine you have a secret message written as a list of numbers. To encode it, you multiply it by a secret 'key' matrix, scrambling the numbers. To decode the message, your friend needs the 'inverse key' matrix. Multiplying the scrambled message by this inverse matrix reveals the original message. The determinant is a special number that tells you if an inverse key even exists; if it's zero, the code is unbreakable because there's no unique inverse.",
+    "steps": [
+      "Calculate the determinant of the coefficient matrix. This single number determines if a unique solution exists.",
+      "For a 2x2 matrix, use the formula to find its inverse. For 3x3 or larger, use your GDC.",
+      "Represent the system of linear equations in the matrix form AX = B, where A is the coefficient matrix, X is the variable matrix, and B is the constant matrix.",
+      "Solve for the variables by calculating X = A⁻¹B. This involves multiplying the inverse matrix by the constant matrix, which your GDC can do in one step."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the determinant of a 2x2 matrix, $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$?",
+      "back": "The determinant is the scalar value $det(A) = ad - bc$."
+    },
+    {
+      "front": "What is a singular matrix?",
+      "back": "A square matrix whose determinant is zero. A singular matrix does not have an inverse."
+    },
+    {
+      "front": "What is a non-singular matrix?",
+      "back": "A square matrix whose determinant is not zero. A non-singular matrix always has an inverse."
+    },
+    {
+      "front": "What is the identity matrix, $I$?",
+      "back": "A square matrix with 1s on the main diagonal and 0s elsewhere. For any matrix A, $AI = IA = A$."
+    },
+    {
+      "front": "What is the inverse of a matrix A?",
+      "back": "A matrix $A^{-1}$ such that the product $AA^{-1} = A^{-1}A = I$, where $I$ is the identity matrix."
+    },
+    {
+      "front": "What is the formula for the inverse of a 2x2 matrix, $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$?",
+      "back": "$A^{-1} = \\frac{1}{ad-bc} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$. This is in the formula booklet."
+    },
+    {
+      "front": "How do you represent a system of linear equations in matrix form?",
+      "back": "As the equation $AX = B$, where A is the matrix of coefficients, X is the column matrix of variables, and B is the column matrix of constants."
+    },
+    {
+      "front": "How do you solve the matrix equation $AX = B$ for $X$?",
+      "back": "Pre-multiply both sides by the inverse of A: $X = A^{-1}B$. The order of multiplication is crucial."
+    },
+    {
+      "front": "When does a system of linear equations represented by $AX=B$ have a unique solution?",
+      "back": "When the coefficient matrix A is non-singular, meaning its determinant is non-zero ($det(A) \\neq 0$)."
+    },
+    {
+      "front": "What is a common mistake when finding a 2x2 inverse by hand?",
+      "back": "Forgetting to multiply the rearranged matrix by the scalar fraction $1/det(A)$. This is a frequent cause of lost marks."
+    },
+    {
+      "front": "How should you find the inverse of a 3x3 matrix in an exam?",
+      "back": "Always use your Graphical Display Calculator (GDC). The exam is testing your ability to set up the problem and use your tool efficiently, not perform lengthy manual calculations."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What does it mean if the determinant of a matrix is zero?",
+      "a": "If $det(A) = 0$, the matrix A is called 'singular'. This means it does not have an inverse. In the context of solving a system of linear equations $AX=B$, this implies that the system does not have a unique solution. It will either have no solutions at all or an infinite number of solutions."
+    },
+    {
+      "q": "Do I need to memorise the formula for the inverse of a 3x3 matrix?",
+      "a": "Absolutely not. For the Mathematics: Applications and Interpretation HL course, you are only expected to calculate the inverse of a 2x2 matrix by hand using the formula in the booklet. For any matrix of size 3x3 or larger, you should always use your GDC. The skill being tested is your ability to set up the problem and use technology to find the solution."
+    },
+    {
+      "q": "Why is the solution $X = A^{-1}B$ and not $X = BA^{-1}$?",
+      "a": "This is because matrix multiplication is not commutative, which means the order of multiplication matters ($AB \\neq BA$ in general). To solve $AX=B$, we must 'pre-multiply' both sides by $A^{-1}$ to maintain the order. This gives $A^{-1}(AX) = A^{-1}B$. Since $A^{-1}A = I$ (the identity matrix) and $IX = X$, the equation simplifies to $X = A^{-1}B$. Multiplying in the wrong order ($BA^{-1}$) would be mathematically incorrect and would give the wrong answer."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Matrices are more than just grids of numbers; they are powerful tools used in diverse fields like computer graphics to rotate and scale images, in economics to model complex market systems, and in cryptography to secure information. In this lesson, we will unlock one of the most powerful applications of matrices: solving systems of linear equations by exploring determinants and inverses."
+    },
+    {
+      "type": "heading",
+      "content": "The Determinant: A Matrix's 'Magic Number'"
+    },
+    {
+      "type": "text",
+      "content": "Every square matrix has a special number associated with it, called its determinant. This single value, denoted as $det(A)$ or $|A|$, tells us crucial information about the matrix, most importantly whether an inverse of the matrix exists. For the AI HL course, you need to calculate the determinant of a 2x2 matrix by hand and use your GDC for any larger matrix, such as a 3x3."
+    },
+    {
+      "type": "formula",
+      "content": "For a 2x2 matrix $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$, the determinant is calculated as: \n$det(A) = ad - bc$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The determinant is a scalar (a single number), not a matrix.",
+        "If $det(A) = 0$, the matrix is called **singular**. It has no inverse.",
+        "If $det(A) \\neq 0$, the matrix is called **non-singular**. It has an inverse."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Finding the Inverse of a Matrix"
+    },
+    {
+      "type": "text",
+      "content": "The inverse of a matrix $A$, denoted $A^{-1}$, is the matrix that 'undoes' the effect of $A$. When a matrix is multiplied by its inverse, the result is the identity matrix $I$. This property is the key to solving matrix equations. You are expected to find the inverse of a 2x2 matrix using a formula, and the inverse of a 3x3 matrix using your GDC."
+    },
+    {
+      "type": "formula",
+      "content": "The inverse of a 2x2 matrix $A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ is given by:\n$A^{-1} = \\frac{1}{det(A)} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$"
+    },
+    {
+      "type": "examTip",
+      "content": "The formula for the 2x2 inverse is in your formula booklet. However, you must remember the condition for its existence: $det(A) \\neq 0$. For any matrix of size 3x3 or larger, go straight to your GDC. The marks are for setting up the problem correctly and interpreting the calculator's output."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let the matrix $P = \\begin{pmatrix} 4 & -2 \\\\ 5 & -3 \\end{pmatrix}$.\n(a) Find $det(P)$.\n(b) Hence, find $P^{-1}$.",
+      "solution": "(a) Using the formula $det(P) = ad - bc$.\n$det(P) = (4)(-3) - (-2)(5)$ (M1 for correct substitution)\n$det(P) = -12 - (-10)$\n$det(P) = -2$ (A1)\n\n(b) Since $det(P) \\neq 0$, an inverse exists. Using the formula $P^{-1} = \\frac{1}{det(P)} \\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$.\n$P^{-1} = \\frac{1}{-2} \\begin{pmatrix} -3 & 2 \\\\ -5 & 4 \\end{pmatrix}$ (M1 for correct substitution into formula)\n$P^{-1} = \\begin{pmatrix} 1.5 & -1 \\\\ 2.5 & -2 \\end{pmatrix}$ (A1)\nIt is acceptable to leave the answer with the scalar multiple outside or to multiply it in."
+    },
+    {
+      "type": "heading",
+      "content": "Application: Solving Systems of Linear Equations"
+    },
+    {
+      "type": "text",
+      "content": "The primary application of matrix inverses in this course is solving systems of linear equations. A system of equations can be elegantly represented by a single matrix equation, $AX = B$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**A** is the square matrix of the coefficients of the variables.",
+        "**X** is a column matrix of the variables (e.g., $x, y, z$).",
+        "**B** is a column matrix of the constants on the right-hand side of the equations."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "To solve for the variables in matrix X, we can't 'divide' by matrix A. Instead, we pre-multiply both sides of the equation by the inverse matrix, $A^{-1}$."
+    },
+    {
+      "type": "formula",
+      "content": "$A X = B \\implies A^{-1}(AX) = A^{-1}B \\implies (A^{-1}A)X = A^{-1}B \\implies IX = A^{-1}B \\implies X = A^{-1}B$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A bakery sells three types of cakes: Chocolate, Vanilla, and Red Velvet. On Monday, they sell 10 Chocolate, 5 Vanilla, and 8 Red Velvet cakes for a total revenue of £350. On Tuesday, they sell 12 Chocolate, 7 Vanilla, and 6 Red Velvet cakes for £390. On Wednesday, they sell 8 Chocolate, 10 Vanilla, and 5 Red Velvet cakes for £395. Let $c, v, r$ be the prices in £ for one Chocolate, Vanilla, and Red Velvet cake, respectively. Find the price of each type of cake.",
+      "solution": "First, set up the system of linear equations:\n$10c + 5v + 8r = 350$\n$12c + 7v + 6r = 390$\n$8c + 10v + 5r = 395$ (M1 for setting up all three equations correctly)\n\nNext, write this system in matrix form $AX = B$:\n$A = \\begin{pmatrix} 10 & 5 & 8 \\\\ 12 & 7 & 6 \\\\ 8 & 10 & 5 \\end{pmatrix}$, $X = \\begin{pmatrix} c \\\\ v \\\\ r \\end{pmatrix}$, $B = \\begin{pmatrix} 350 \\\\ 390 \\\\ 395 \\end{pmatrix}$ (A1 for correct matrices A, X and B)\n\nWe solve for X by calculating $X = A^{-1}B$. This is done on the GDC.\nEnter matrix A and matrix B into your calculator. Then compute $A^{-1}B$. (M1 for the intent to solve using $X=A^{-1}B$)\n\nThe calculator gives:\n$X = \\begin{pmatrix} 15 \\\\ 20 \\\\ 12.5 \\end{pmatrix}$ (A2 for all correct values)\n\nTherefore, the prices are: Chocolate cake = £15, Vanilla cake = £20, and Red Velvet cake = £12.50. (A1 for correct interpretation in context)"
+    },
+    {
+      "type": "examTip",
+      "content": "For questions involving solving systems of equations, you MUST show the initial setup. Writing down the system of equations (if not given) and then the matrix equation $AX=B$ will earn you method marks, even if you make a mistake entering the numbers into your calculator. Simply writing the final answer from your GDC will not earn full marks."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Solving Matrix Equations",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Matrix Inverse Visualizer",
+          "href": "https://www.geogebra.org/m/C3b4bN9Z"
+        },
+        {
+          "label": "Khan Academy: Solving systems with matrix inverses",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:solving-equations-with-matrix-inverses/a/solving-systems-of-equations-with-matrix-inverses"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Matrix Inverse Visualizer",
+    "embedUrl": "https://www.geogebra.org/classic?material=C3b4bN9Z",
+    "launchUrl": "https://www.geogebra.org/classic?material=C3b4bN9Z",
+    "hint": "Use “Matrix Inverse Visualizer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

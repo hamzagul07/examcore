@@ -1,0 +1,156 @@
+{
+  "slug": "3-4-voronoi-diagrams-and-nearest-neighbour-problems",
+  "topicCode": "3.4",
+  "title": "Voronoi diagrams and nearest-neighbour problems",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces Voronoi diagrams as a powerful tool for solving nearest-neighbour problems. You will learn to construct these diagrams, identify their key features, and apply them to practical scenarios such as facility location and spatial analysis.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the definition and components of a Voronoi diagram: sites, cells, edges, and vertices.",
+    "Construct a Voronoi diagram for a given set of sites by finding perpendicular bisectors.",
+    "Solve nearest-neighbour problems, including identifying the closest site to a given point.",
+    "Apply Voronoi diagrams to solve problems, such as finding the location for a new facility (the largest empty circle problem)."
+  ],
+  "simpleExplanation": {
+    "title": "Mapping Your Territory",
+    "summary": "A Voronoi diagram carves up a map into territories based on proximity to specific points. Each territory contains all the locations that are closer to its designated point than to any other.",
+    "analogy": "Imagine several ice cream vans park in different spots in a large park. The Voronoi diagram would show each van's 'delivery zone'. If you are standing in a particular zone, the van for that zone is the closest one to you. The lines between the zones are the places where you are exactly the same distance from two vans.",
+    "steps": [
+      "Start with a set of points, called 'sites', on a plane.",
+      "For each pair of neighbouring sites, construct the perpendicular bisector. This line represents all points equidistant from the two sites.",
+      "The intersections of these perpendicular bisectors form the 'vertices' of the diagram.",
+      "The regions, or 'cells', that are formed around each site contain all points in the plane that are closer to that site than any other."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a Voronoi diagram?",
+      "back": "A partition of a plane into regions (cells) based on distance to points in a specific subset of the plane (the sites). For each site, there is a corresponding region consisting of all points closer to that site than to any other."
+    },
+    {
+      "front": "What is a 'site' in a Voronoi diagram?",
+      "back": "A site is one of the initial, fixed points in the plane used to generate the Voronoi diagram. For example, the locations of hospitals or schools."
+    },
+    {
+      "front": "What is a 'cell' in a Voronoi diagram?",
+      "back": "A cell is the region around a site that contains all points in the plane that are closer to that site than to any other site. It is also known as a Voronoi polygon."
+    },
+    {
+      "front": "What is an 'edge' in a Voronoi diagram?",
+      "back": "An edge is a line segment that forms part of the boundary of a Voronoi cell. Any point on an edge is equidistant from the two sites whose cells the edge separates."
+    },
+    {
+      "front": "What is a 'vertex' in a Voronoi diagram?",
+      "back": "A vertex is a point where three or more Voronoi edges meet. A vertex is equidistant from the three (or more) sites whose cells meet at that point."
+    },
+    {
+      "front": "What is the geometric relationship between a Voronoi edge and the two sites it separates?",
+      "back": "The Voronoi edge is a segment of the perpendicular bisector of the line segment connecting the two sites."
+    },
+    {
+      "front": "What is the 'largest empty circle' problem?",
+      "back": "This problem seeks to find the largest possible circle within a boundary that does not contain any of the sites. Its centre is often a vertex of the Voronoi diagram."
+    },
+    {
+      "front": "How do you find the equation of a perpendicular bisector between two sites A and B?",
+      "back": "1. Find the midpoint M of AB. 2. Find the gradient of the line segment AB. 3. The gradient of the perpendicular bisector is the negative reciprocal. 4. Use the point-slope form y - y₁ = m(x - x₁) with midpoint M and the perpendicular gradient."
+    },
+    {
+      "front": "Common Trap: Confusing sites and vertices.",
+      "back": "Sites are the initial given points (e.g., hospitals). Vertices are calculated points where the boundary lines of the cells meet. A vertex is a potential location for a new facility equidistant from three sites."
+    },
+    {
+      "front": "What is nearest-neighbour interpolation?",
+      "back": "A method of estimating the value of a function at a specific point by taking the value of the function at the nearest site (data point). The Voronoi diagram determines the 'nearest site' for any given point."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a site and a vertex in a Voronoi diagram?",
+      "a": "A 'site' is one of the original data points you start with, like the location of a hospital or a post office. A 'vertex' is a calculated point where the boundary lines (edges) of the Voronoi cells meet. A vertex is special because it is equidistant from the three (or more) sites whose cells meet at that point, whereas a site is just a starting location."
+    },
+    {
+      "q": "Do I need to draw the diagrams to scale in an exam?",
+      "a": "No, you are not usually required to draw a perfectly scaled diagram. A clear, well-labelled sketch is sufficient. The key is to show you understand the relationships between sites, edges, and vertices. The marks are awarded for the calculations (finding midpoints, gradients, equations of lines, and intersection points), not for artistic accuracy."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the fascinating world of Voronoi diagrams! This topic combines geometry, algebra, and real-world problem-solving. We'll explore how to divide a space into regions based on proximity to certain points, a concept with applications ranging from epidemiology and urban planning to computer graphics and biology."
+    },
+    {
+      "type": "heading",
+      "content": "The Building Blocks of a Voronoi Diagram"
+    },
+    {
+      "type": "text",
+      "content": "A Voronoi diagram is constructed from a set of points called **sites**. The diagram partitions the plane into **cells**, where each cell corresponds to one site. The cell for site P contains all points in the plane that are closer to P than to any other site. The boundaries of these cells are called **edges**, and the points where edges intersect are called **vertices**. Understanding these components is the first step to mastering Voronoi diagrams."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sites:** The initial points given in the problem (e.g., locations of shops).",
+        "**Cells:** The region of influence around each site.",
+        "**Edges:** Lines of equidistance between two sites. They are always segments of perpendicular bisectors.",
+        "**Vertices:** Points of equidistance between three or more sites. They are the intersection points of the edges."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Constructing the Diagram: Perpendicular Bisectors"
+    },
+    {
+      "type": "text",
+      "content": "The core of constructing a Voronoi diagram by hand lies in coordinate geometry. The edge separating two sites, say $A(x_A, y_A)$ and $B(x_B, y_B)$, is part of the perpendicular bisector of the line segment $[AB]$. To find the equation of this edge, you need two things: the midpoint of $[AB]$ and the gradient of the perpendicular line."
+    },
+    {
+      "type": "formula",
+      "content": "Midpoint of $[AB]$: $M = \\left( \\frac{x_A+x_B}{2}, \\frac{y_A+y_B}{2} \\right)$ \\\\ Gradient of $[AB]$: $m_{AB} = \\frac{y_B-y_A}{x_B-x_A}$ \\\\ Gradient of perpendicular bisector: $m_{\\perp} = -\\frac{1}{m_{AB}}$ \\\\ Equation of perpendicular bisector: $y - y_M = m_{\\perp}(x - x_M)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Three mobile phone masts are located at points A(1, 5), B(7, 7), and C(9, 1). A Voronoi diagram is to be constructed. \\n a) Find the equation of the perpendicular bisector of the line segment [AB]. \\n b) The equation of the perpendicular bisector of [BC] is $y = x - 2$. Find the coordinates of the Voronoi vertex.",
+      "solution": "a) First, find the midpoint of [AB]. \\n $M_{AB} = \\left( \\frac{1+7}{2}, \\frac{5+7}{2} \\right) = (4, 6)$ (M1) \\n Next, find the gradient of the line segment [AB]. \\n $m_{AB} = \\frac{7-5}{7-1} = \\frac{2}{6} = \\frac{1}{3}$ (A1) \\n The gradient of the perpendicular bisector is the negative reciprocal. \\n $m_{\\perp} = -\\frac{1}{1/3} = -3$ (M1) \\n Now use the point-slope form with the midpoint (4, 6) and gradient -3. \\n $y - 6 = -3(x - 4)$ \\n $y - 6 = -3x + 12$ \\n $y = -3x + 18$ (A1) \\n\\n b) The Voronoi vertex is the intersection of the two perpendicular bisectors. We need to solve the system of equations: \\n 1) $y = -3x + 18$ \\n 2) $y = x - 2$ \\n Set the expressions for y equal to each other: \\n $-3x + 18 = x - 2$ (M1) \\n $20 = 4x$ \\n $x = 5$ (A1) \\n Substitute $x=5$ into either equation to find y. Using equation 2: \\n $y = 5 - 2 = 3$ \\n The coordinates of the Voronoi vertex are (5, 3). (A1) This point is equidistant from sites A, B, and C."
+    },
+    {
+      "type": "heading",
+      "content": "Application: The Largest Empty Circle Problem"
+    },
+    {
+      "type": "text",
+      "content": "A classic application of Voronoi diagrams is finding the optimal location for a new facility that needs to be as far as possible from existing sites. This could be a hazardous waste dump that must be distant from towns, or a new park's quiet zone away from noisy playgrounds. The centre of the largest circle that can be drawn on the diagram without containing any sites is called the 'largest empty circle'. Its centre will be one of the Voronoi vertices, and its radius will be the distance from that vertex to any of the three equidistant sites."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will have your GDC. Use it to your advantage! You can use the simultaneous equation solver to find the intersection of perpendicular bisectors (the vertex). Always write down the equations you are solving to get method marks, even if you use the GDC to find the final answer."
+    },
+    {
+      "type": "workedExample",
+      "question": "Following on from the previous example with phone masts at A(1, 5), B(7, 7), and C(9, 1), a new emergency services antenna needs to be placed as far as possible from all three masts. \\n a) State the optimal location for the new antenna. \\n b) Calculate the distance from this optimal location to any of the three masts, giving your answer to 3 significant figures.",
+      "solution": "a) The optimal location to be as far as possible from all three sites is the Voronoi vertex, which is equidistant from sites A, B, and C. \\n From the previous example, the Voronoi vertex is at (5, 3). (A1) \\n So, the optimal location is (5, 3). \\n\\n b) To find the radius of the 'largest empty circle', we calculate the distance from the vertex V(5, 3) to any of the sites, for example, site A(1, 5). \\n Using the distance formula: $d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$ (M1) \\n $d_{VA} = \\sqrt{(5-1)^2 + (3-5)^2}$ \\n $d_{VA} = \\sqrt{4^2 + (-2)^2}$ \\n $d_{VA} = \\sqrt{16 + 4} = \\sqrt{20}$ (A1) \\n $d_{VA} \\approx 4.4721...$ \\n The distance is 4.47 (to 3 s.f.). (A1) \\n (Check with another site, e.g., B(7,7)): \\n $d_{VB} = \\sqrt{(5-7)^2 + (3-7)^2} = \\sqrt{(-2)^2 + (-4)^2} = \\sqrt{4+16} = \\sqrt{20}$. The distance is the same, as expected. (R1)"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=3.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Voronoi Diagram Generator",
+          "href": "https://www.jasondavies.com/voronoi/"
+        },
+        {
+          "label": "Khan Academy: Voronoi Diagrams",
+          "href": "https://www.khanacademy.org/computing/computer-science/algorithms/voronoi-diagrams/a/voronoi-diagrams"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,159 @@
+{
+  "slug": "5-5-further-differentiation-and-the-second-derivative",
+  "topicCode": "5.5",
+  "title": "Further differentiation and the second derivative",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson expands your calculus toolkit, introducing the chain, product, and quotient rules for differentiating complex functions. We will also explore the second derivative, its notation, and its application in analysing a function's concavity and finding points of inflexion.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Apply the chain rule to differentiate composite functions.",
+    "Apply the product and quotient rules to differentiate functions formed by multiplying or dividing other functions.",
+    "Calculate the second derivative of a function.",
+    "Interpret the second derivative as the rate of change of the gradient and use it to determine concavity and find points of inflexion."
+  ],
+  "simpleExplanation": {
+    "title": "Calculus Power-Ups: Beyond the Basics",
+    "summary": "These 'further differentiation' rules are your power-ups for tackling more complex functions that can't be solved with basic rules alone. They provide systematic methods for functions that are combined through composition, multiplication, or division.",
+    "analogy": "Imagine you're a chef. The basic power rule is like knowing how to chop a single vegetable. The chain rule is for a recipe within a recipe, like making a sauce (inner function) to go on your pasta (outer function). The product rule is for combining two separate dishes, like serving steak *and* fries. The quotient rule is for figuring out the ratio of ingredients, like the amount of flour *per* egg in a cake mix.",
+    "steps": [
+      "Analyse the function: Is it a function within a function (chain rule), two functions multiplied (product rule), or one divided by another (quotient rule)?",
+      "Identify the component parts of the function. For product/quotient rules, label them 'u' and 'v'. For the chain rule, identify the 'inner' and 'outer' functions.",
+      "Differentiate the component parts separately using the rules you already know.",
+      "Substitute these derivatives back into the correct formula (chain, product, or quotient) and simplify the resulting expression."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "State the Product Rule for differentiation.",
+      "back": "If $f(x) = u(x)v(x)$, then the derivative is $f'(x) = u(x)v'(x) + v(x)u'(x)$. In words: 'the first times the derivative of the second, plus the second times the derivative of the first'."
+    },
+    {
+      "front": "State the Quotient Rule for differentiation.",
+      "back": "If $f(x) = \\frac{u(x)}{v(x)}$, then $f'(x) = \\frac{v(x)u'(x) - u(x)v'(x)}{[v(x)]^2}$. A common mnemonic is: 'low d-high minus high d-low, square the bottom and away we go'."
+    },
+    {
+      "front": "State the Chain Rule for differentiation.",
+      "back": "If $y = f(g(x))$, then $\\frac{dy}{dx} = f'(g(x)) \\cdot g'(x)$. In words: 'differentiate the outer function, leave the inner function alone, then multiply by the derivative of the inner function'."
+    },
+    {
+      "front": "What is the second derivative, $f''(x)$?",
+      "back": "It is the derivative of the first derivative, $f'(x)$. It describes the rate of change of the gradient of the function."
+    },
+    {
+      "front": "What does $f''(x) > 0$ tell you about the graph of $f(x)$?",
+      "back": "The graph of $f(x)$ is concave up (shaped like a cup or a smile). This means the gradient, $f'(x)$, is increasing."
+    },
+    {
+      "front": "What does $f''(x) < 0$ tell you about the graph of $f(x)$?",
+      "back": "The graph of $f(x)$ is concave down (shaped like a frown). This means the gradient, $f'(x)$, is decreasing."
+    },
+    {
+      "front": "What is a non-stationary point of inflexion?",
+      "back": "A point on the curve where the concavity changes (from up to down, or vice versa). It occurs where $f''(x) = 0$ (or is undefined) and $f''(x)$ changes sign around that point, but $f'(x) \\neq 0$."
+    },
+    {
+      "front": "What are the common notations for the second derivative of $y=f(x)$?",
+      "back": "$f''(x)$, $y''$, and $\\frac{d^2y}{dx^2}$."
+    },
+    {
+      "front": "What is a common mistake when applying the Quotient Rule?",
+      "back": "Incorrectly ordering the terms in the numerator. The formula is $vu' - uv'$, not $uv' - vu'$. The minus sign makes the order critical, unlike the plus sign in the product rule."
+    },
+    {
+      "front": "How do you differentiate $y = \\ln(kx)$?",
+      "back": "Using the chain rule. Let $u=kx$, so $u'=k$. Let $y=\\ln(u)$, so $y' = \\frac{1}{u}$. Then $\\frac{dy}{dx} = \\frac{1}{u} \\cdot k = \\frac{1}{kx} \\cdot k = \\frac{1}{x}$. Alternatively, use log rules first: $\\ln(kx) = \\ln(k) + \\ln(x)$. The derivative is $0 + \\frac{1}{x} = \\frac{1}{x}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can I avoid the quotient rule by rewriting a fraction and using the product rule?",
+      "a": "Yes, you can always rewrite $\\frac{u(x)}{v(x)}$ as $u(x) \\cdot [v(x)]^{-1}$ and then apply the product rule. When you differentiate the $[v(x)]^{-1}$ term, you will need to use the chain rule. This method is mathematically valid and sometimes simpler, but often the quotient rule is more direct. You should be comfortable with both and choose the most efficient method for a given problem."
+    },
+    {
+      "q": "What's the difference between a stationary point and a point of inflexion?",
+      "a": "A stationary point is where the gradient is zero, i.e., $f'(x)=0$. This can be a local maximum, minimum, or a stationary point of inflexion. A point of inflexion is where the concavity changes, i.e., where $f''(x)$ changes sign (often where $f''(x)=0$). If a point of inflexion is also a stationary point ($f'(x)=0$ and $f''(x)=0$ with a sign change), it's a 'stationary point of inflexion'. If the gradient is not zero at the point of inflexion, it's a 'non-stationary point of inflexion'."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "So far, you've mastered differentiating basic functions like polynomials, exponentials, and logarithms. But what happens when functions get more complex? How do we find the gradient function for $f(x) = x^2 \\sin(x)$ or $g(x) = e^{x^2+1}$? This lesson introduces the essential rules for differentiating products, quotients, and compositions of functions, and explores the deeper insights provided by the second derivative."
+    },
+    {
+      "type": "heading",
+      "content": "The Product Rule"
+    },
+    {
+      "type": "text",
+      "content": "When a function is the product of two other functions, like $f(x) = u(x)v(x)$, you cannot simply multiply their individual derivatives. The product rule provides the correct method for finding the derivative of such a function."
+    },
+    {
+      "type": "formula",
+      "content": "If $y = uv$, where $u$ and $v$ are functions of $x$, then: \n$$ \\frac{dy}{dx} = u\\frac{dv}{dx} + v\\frac{du}{dx} $$ \nOr in function notation, for $f(x) = u(x)v(x)$: \n$$ f'(x) = u(x)v'(x) + v(x)u'(x) $$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A company's profit, $P$ (in thousands of pounds), from selling $x$ hundred units of a product is modelled by the function $P(x) = 5x^2 e^{-0.1x}$ for $x \\ge 0$. Find the rate of change of profit when 10 hundred (i.e., 1000) units are sold.",
+      "solution": "We need to find $P'(x)$ and evaluate it at $x=10$. The function $P(x)$ is a product of two functions, so we use the product rule.\nLet $u(x) = 5x^2$ and $v(x) = e^{-0.1x}$.\nFirst, find the derivatives of $u$ and $v$: \n$u'(x) = 10x$ (M1 for derivative of u)\n$v'(x) = -0.1e^{-0.1x}$ (M1 for derivative of v, using chain rule)\nNow, apply the product rule: $P'(x) = u(x)v'(x) + v(x)u'(x)$.\n$P'(x) = (5x^2)(-0.1e^{-0.1x}) + (e^{-0.1x})(10x)$ (A1 for correct substitution into rule)\n$P'(x) = -0.5x^2e^{-0.1x} + 10xe^{-0.1x}$\nWe can factor out common terms to simplify:\n$P'(x) = e^{-0.1x}(-0.5x^2 + 10x)$\nNow, substitute $x=10$ to find the rate of change:\n$P'(10) = e^{-0.1(10)}(-0.5(10)^2 + 10(10))$ (M1 for substitution)\n$P'(10) = e^{-1}(-0.5(100) + 100)$\n$P'(10) = e^{-1}(-50 + 100)$\n$P'(10) = 50e^{-1} \\approx 18.39$\nThe rate of change of profit is approximately £18.39 thousand per hundred units, or £183.90 per unit. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "The Quotient and Chain Rules"
+    },
+    {
+      "type": "text",
+      "content": "The quotient rule is used for functions that are expressed as a fraction, where both the numerator and denominator are functions of $x$. The chain rule is arguably the most important differentiation rule, used when you have a 'function of a function' (a composite function)."
+    },
+    {
+      "type": "formula",
+      "content": "Quotient Rule: If $y = \\frac{u}{v}$, then $ \\frac{dy}{dx} = \\frac{v\\frac{du}{dx} - u\\frac{dv}{dx}}{v^2} $ \n\nChain Rule: If $y = f(g(x))$, then $ \\frac{dy}{dx} = f'(g(x)) \\cdot g'(x) $"
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will have access to the formula booklet which contains the product, quotient, and chain rules. However, you must be able to recognise when to apply each rule and identify the component functions ($u, v$, inner/outer) correctly and quickly. For the quotient rule, the order in the numerator is critical due to the subtraction. Always start with the denominator function, $v$."
+    },
+    {
+      "type": "heading",
+      "content": "The Second Derivative and Concavity"
+    },
+    {
+      "type": "text",
+      "content": "Differentiating a function twice gives us the second derivative, denoted $f''(x)$ or $\\frac{d^2y}{dx^2}$. While the first derivative tells us about the slope of a function, the second derivative tells us how the slope is changing. This is a measure of the function's curvature, or 'concavity'."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If $f''(x) > 0$ on an interval, the graph of $f(x)$ is **concave up** on that interval. The gradient is increasing.",
+        "If $f''(x) < 0$ on an interval, the graph of $f(x)$ is **concave down** on that interval. The gradient is decreasing.",
+        "A point where concavity changes is called a **point of inflexion**. This often occurs when $f''(x) = 0$, but you must check that the sign of $f''(x)$ changes around the point."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The concentration, $C(t)$, of a drug in the bloodstream $t$ hours after injection is given by $C(t) = \\frac{10t}{t^2 + 4}$ mg/L for $t \\ge 0$.\na) Find the rate of change of concentration, $C'(t)$.\nb) Find the value of $C''(2)$ and interpret its meaning in the context of the problem.",
+      "solution": "a) We use the quotient rule with $u=10t$ and $v=t^2+4$. \n$u' = 10$ and $v' = 2t$. (M1 for derivatives)\n$C'(t) = \\frac{v u' - u v'}{v^2} = \\frac{(t^2+4)(10) - (10t)(2t)}{(t^2+4)^2}$ (M1 for applying quotient rule)\n$C'(t) = \\frac{10t^2 + 40 - 20t^2}{(t^2+4)^2} = \\frac{40 - 10t^2}{(t^2+4)^2}$ (A1)\n\nb) To find $C''(t)$, we differentiate $C'(t)$. Let's use the quotient rule again.\nNumerator $N(t) = 40 - 10t^2 \\implies N'(t) = -20t$.\nDenominator $D(t) = (t^2+4)^2 \\implies D'(t) = 2(t^2+4)(2t) = 4t(t^2+4)$ (using chain rule). (M1 for derivatives)\n$C''(t) = \\frac{D(t)N'(t) - N(t)D'(t)}{[D(t)]^2}$\n$C''(t) = \\frac{(t^2+4)^2(-20t) - (40-10t^2)(4t(t^2+4))}{((t^2+4)^2)^2}$ (A1 for correct substitution)\nThis looks complex. Let's substitute $t=2$ before simplifying too much.\nAt $t=2$: \n$N(2) = 40 - 10(2^2) = 0$. This simplifies things greatly!\n$N'(2) = -20(2) = -40$.\n$D(2) = (2^2+4)^2 = (8)^2 = 64$.\n$C''(2) = \\frac{(64)(-40) - (0)(\\text{anything})}{(64)^2}$ (M1 for substitution)\n$C''(2) = \\frac{-64 \\times 40}{64 \\times 64} = -\\frac{40}{64} = -\\frac{5}{8} = -0.625$ (A1)\n**Interpretation:** At $t=2$ hours, the concentration is at its maximum value (since $C'(2) = \\frac{40-10(2^2)}{(2^2+4)^2} = 0$). The value $C''(2) = -0.625$ is negative, which confirms the graph is concave down at this point, consistent with a local maximum. It means the rate at which concentration changes is decreasing; the concentration is increasing ever more slowly just before $t=2$ and starts to decrease just after $t=2$. (R1 for interpretation)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=5.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AI HL Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-in-practice/formula-booklet/"
+        },
+        {
+          "label": "GeoGebra Graphing Calculator",
+          "href": "https://www.geogebra.org/graphing"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

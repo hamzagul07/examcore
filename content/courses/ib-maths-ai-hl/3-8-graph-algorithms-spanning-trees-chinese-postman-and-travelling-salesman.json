@@ -1,0 +1,212 @@
+{
+  "slug": "3-8-graph-algorithms-spanning-trees-chinese-postman-and-travelling-salesman",
+  "topicCode": "3.8",
+  "title": "Graph algorithms: spanning trees, Chinese postman and travelling salesman",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces three fundamental graph theory algorithms for solving optimisation problems. You will learn how to find the most economical way to connect a network using Kruskal's algorithm for minimum spanning trees, determine the shortest route covering every path with the Chinese Postman Problem, and estimate the shortest tour visiting every location using bounds for the Travelling Salesman Problem.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Apply Kruskal's algorithm to find the weight of a minimum spanning tree (MST).",
+    "Solve the Chinese Postman Problem (CPP) for graphs with and without Eulerian circuits.",
+    "Determine upper and lower bounds for the solution to the Travelling Salesman Problem (TSP).",
+    "Distinguish between the appropriate applications for MST, CPP, and TSP algorithms."
+  ],
+  "simpleExplanation": {
+    "title": "Finding the Smartest Path",
+    "summary": "This topic teaches you how to solve real-world network problems, like designing the cheapest cable network or planning the most efficient delivery route. We use specific step-by-step methods, called algorithms, to find the best possible solution from many options.",
+    "analogy": "Imagine you're planning a trip to visit several friends in different cities. You want to find the shortest possible driving route that visits every friend and returns home (Travelling Salesman). Or, if you're a postal worker, you need to walk down every single street in a neighbourhood to deliver mail and want the shortest total walk (Chinese Postman). Or, if you're connecting houses to a new internet service, you want to use the minimum amount of cable to connect everyone (Minimum Spanning Tree). Each problem requires a different 'smart' map-reading technique.",
+    "steps": [
+      "Identify the Problem: Do you need to connect all points (Spanning Tree), cover all paths (Chinese Postman), or visit all points (Travelling Salesman)?",
+      "Check Graph Properties: Examine the graph. Note the weights on edges and the degree (number of connections) of each vertex. This information determines which algorithm to use.",
+      "Apply the Algorithm: Systematically follow the steps of the chosen method, such as Kruskal's for MST, or finding bounds for TSP. Keep your working organised.",
+      "State the Solution: Clearly write down your final answer, including the total weight or distance, and the path or set of edges that achieves it."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a spanning tree?",
+      "back": "A subgraph that connects all vertices of the original graph together with the minimum possible number of edges ($v-1$ edges for $v$ vertices), and contains no cycles."
+    },
+    {
+      "front": "What is a Minimum Spanning Tree (MST)?",
+      "back": "A spanning tree of a weighted, connected graph that has the minimum possible total weight when the weights of all its edges are summed up."
+    },
+    {
+      "front": "What is the first step of Kruskal's algorithm?",
+      "back": "List all the edges in the graph in ascending order of their weights. If two edges have the same weight, their order doesn't matter."
+    },
+    {
+      "front": "When using Kruskal's algorithm, when do you reject an edge?",
+      "back": "You reject adding an edge from your sorted list if it would create a cycle (a closed loop) with the edges you have already selected."
+    },
+    {
+      "front": "What is an Eulerian circuit?",
+      "back": "A route that traverses every edge exactly once, starting and finishing at the same vertex. A graph has an Eulerian circuit if and only if all its vertices have an even degree."
+    },
+    {
+      "front": "What is the core problem solved by the Chinese Postman Problem (CPP)?",
+      "back": "To find the shortest possible route that travels along every edge of a graph at least once, returning to the starting vertex."
+    },
+    {
+      "front": "How do you solve the CPP for a graph with odd-degree vertices?",
+      "back": "Identify all odd-degree vertices. Find the shortest paths between all possible pairs of these vertices. Choose the pairing combination with the minimum total weight to 'add' to the graph. The total route is the sum of all original edge weights plus this minimum additional weight."
+    },
+    {
+      "front": "What is the Travelling Salesman Problem (TSP)?",
+      "back": "To find the shortest possible route that visits each vertex in a graph exactly once and returns to the starting vertex. This is equivalent to finding a Hamiltonian cycle with the minimum weight."
+    },
+    {
+      "front": "Why is finding the exact solution to the TSP often difficult?",
+      "back": "The TSP is an NP-hard problem. The number of possible routes grows factorially with the number of vertices, so checking every route becomes computationally infeasible for even moderately sized graphs."
+    },
+    {
+      "front": "How do you find an upper bound for the TSP using the Nearest Neighbour algorithm?",
+      "back": "Start at a designated vertex. Move to the nearest unvisited vertex. Repeat this process until all vertices have been visited. Finally, return to the starting vertex. The total weight of this path is an upper bound."
+    },
+    {
+      "front": "How do you find a lower bound for the TSP?",
+      "back": "A common method is: 1. Remove a vertex. 2. Find the weight of the Minimum Spanning Tree of the remaining graph. 3. Add the weights of the two shortest edges that connected to the removed vertex. This sum is a lower bound."
+    },
+    {
+      "front": "What is the key difference in the objective of CPP and TSP?",
+      "back": "The Chinese Postman Problem (CPP) aims to traverse every EDGE. The Travelling Salesman Problem (TSP) aims to visit every VERTEX. Remember: Postman -> Paths (edges), Salesman -> Places (vertices)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between Prim's and Kruskal's algorithm for finding an MST?",
+      "a": "Both algorithms find a Minimum Spanning Tree. Kruskal's algorithm builds the MST by selecting the cheapest edges from anywhere in the graph, as long as they don't form a cycle. Prim's algorithm starts from a single vertex and grows the tree by adding the cheapest edge that connects a vertex in the tree to a vertex outside the tree. The IB AI HL syllabus specifically mentions Kruskal's algorithm."
+    },
+    {
+      "q": "In the Chinese Postman Problem, what if there are more than two odd vertices?",
+      "a": "The number of odd-degree vertices in any graph is always even. If you have four odd vertices (e.g., A, B, C, D), you need to consider all possible pairings: (AB + CD), (AC + BD), and (AD + BC). You calculate the shortest path distance for each edge in the pairings (e.g., shortest path from A to B, C to D) and then sum them up for each combination. The combination with the smallest total sum is the one you add to the original graph's total weight."
+    },
+    {
+      "q": "Why is the Nearest Neighbour algorithm not guaranteed to find the best route for the TSP?",
+      "a": "The Nearest Neighbour algorithm is a 'greedy' algorithm. It makes a locally optimal choice at each step (picking the closest next vertex) without considering the overall picture. This can lead to a situation where it forces you into a very long final edge to complete the tour, resulting in a suboptimal overall path."
+    },
+    {
+      "q": "Can I use my GDC to solve these problems?",
+      "a": "Your GDC is an excellent tool for calculations, but it won't have a built-in function to directly solve these graph theory problems. For Paper 1, you are expected to show the steps of the algorithms by hand. For Paper 2, you might use a matrix representation of a graph, but the algorithmic thinking (listing edges, identifying odd vertices, etc.) is still a manual process you must demonstrate in your working."
+    },
+    {
+      "q": "What does 'NP-hard' mean in the context of the TSP?",
+      "a": "NP-hard essentially means 'very difficult to solve'. For NP-hard problems, there is no known algorithm that can find the exact optimal solution in a reasonable amount of time (polynomial time) as the problem size grows. This is why for the TSP, we resort to finding bounds or using heuristic methods to find a 'good' solution instead of the perfect one."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of graph algorithms, a cornerstone of optimisation and network analysis. In this lesson, we'll explore three powerful, real-world problems. We'll learn how to design the most cost-effective networks, plan the most efficient inspection routes, and find optimal tours. These algorithms form the basis of modern logistics, telecommunications, and circuit design. Let's begin with connecting things together as cheaply as possible."
+    },
+    {
+      "type": "heading",
+      "content": "Minimum Spanning Trees: Kruskal's Algorithm"
+    },
+    {
+      "type": "text",
+      "content": "Imagine you need to connect several locations with a utility like water pipes or internet cables. Your goal is to connect every location while using the minimum possible amount of pipe or cable. A Minimum Spanning Tree (MST) is the solution. For a given weighted graph, the MST is a subgraph that connects all vertices with no cycles and has the minimum possible total edge weight. Kruskal's algorithm is a straightforward method to find it."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Objective:** Connect all vertices with minimum total edge weight.",
+        "**Algorithm (Kruskal's):**",
+        "1. List all edges in the graph in ascending order of weight.",
+        "2. Select the edge with the lowest weight from the list.",
+        "3. Continue selecting the next-lightest edge, but **reject** any edge that would form a cycle with the edges already chosen.",
+        "4. Repeat until $v-1$ edges have been selected, where $v$ is the number of vertices. The selected edges form the MST.",
+        "**Result:** The sum of the weights of the selected edges is the weight of the MST."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A company plans to link its 6 offices (A, B, C, D, E, F) with a fibre optic network. The costs of laying cable between pairs of offices, in thousands of dollars, are shown in the weighted graph below. Find the minimum cost to connect all the offices.",
+      "solution": "The problem asks for the Minimum Spanning Tree of the graph. We will use Kruskal's algorithm.\n\n**Step 1: List all edges in ascending order of weight.**\n\n| Edge | Weight (in $1000s) |$\n|---|---|\n| EF | 3 |\n| CD | 4 |\n| AB | 5 |\n| DF | 6 |\n| BC | 7 |\n| BE | 8 |\n| AF | 9 |\n| CE | 10 |\n| DE | 11 |\n\n(M1) for listing edges in order or starting with the three smallest.\n\n**Step 2: Select edges, avoiding cycles.**\n\n| Edge | Weight | Action | Total Weight |\n|---|---|---|---|\n| EF | 3 | Select | 3 |\n| CD | 4 | Select | 3 + 4 = 7 |\n| AB | 5 | Select | 7 + 5 = 12 |\n| DF | 6 | Select | 12 + 6 = 18 |\n| BC | 7 | Select | 18 + 7 = 25 |\n| BE | 8 | Reject (forms cycle B-C-D-F-E-B) | 25 |\n| AF | 9 | Reject (forms cycle A-B-C-D-F-A) | 25 |\n\nWe have selected 5 edges (n-1 = 6-1 = 5), so we are done. The edges in the MST are EF, CD, AB, DF, and BC. (A1) for correct selection of 5 edges.\n\n**Step 3: Calculate the total minimum cost.**\n\nThe total weight of the MST is $3 + 4 + 5 + 6 + 7 = 25$. (M1)\n\nSince the weights are in thousands of dollars, the minimum cost is $25 \\times 1000 = \\$25,000$. (A1)\n\n**Final Answer:** The minimum cost to connect all offices is $25,000.$"
+    },
+    {
+      "type": "heading",
+      "content": "The Chinese Postman Problem (CPP)"
+    },
+    {
+      "type": "text",
+      "content": "The Chinese Postman Problem, named in honour of the Chinese mathematician who first studied it, seeks the shortest route that traverses every single edge of a graph at least once, starting and ending at the same vertex. This is exactly the problem faced by a postman, a snowplough driver, or a road inspector. The solution depends on the degrees of the vertices in the graph."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Objective:** Find the shortest route that covers every edge at least once, returning to the start.",
+        "**Case 1: All vertices have even degree.** The graph is 'Eulerian'. The optimal route length is simply the sum of all edge weights in the graph.",
+        "**Case 2: There are vertices with odd degree.** Odd-degree vertices always come in pairs. The optimal route will have to repeat some edges. To find the minimum route length:",
+        "1. Identify all vertices with an odd degree.",
+        "2. Find the shortest path between all possible pairs of these odd vertices.",
+        "3. Find the combination of pairs that connects all odd vertices with the minimum possible total length.",
+        "4. The length of the Chinese Postman route is the sum of all original edge weights plus this minimum additional length."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A park ranger needs to patrol all the paths in a nature reserve. The graph shows the paths and their lengths in hundreds of metres. The ranger must start and finish at the entrance, A. Find the minimum distance the ranger must travel.",
+      "solution": "We need to solve the Chinese Postman Problem for this graph.\n\n**Step 1: Find the sum of all edge weights.**\nTotal weight = $AB+AC+BC+CD+BD+DE = 8+10+9+12+6+7 = 52$. (A1)\nThis is 5200 metres.\n\n**Step 2: Identify vertices of odd degree.**\nThe degree of a vertex is the number of edges connected to it.\n- deg(A) = 2 (even)\n- deg(B) = 3 (odd)\n- deg(C) = 2 (even)\n- deg(D) = 3 (odd)\n- deg(E) = 2 (even)\nThe odd vertices are B and D. (M1)\n\n**Step 3: Find the shortest path between the odd vertices.**\nWe need to find the shortest path between B and D. We can travel directly from B to D, or via other vertices.\n- Path B-D: length 6.\n- Path B-A-C-D: length 8+10+12 = 30.\n- Path B-C-D: length 9+12 = 21.\nThe shortest path between B and D is the direct edge BD, with weight 6. (M1)\n\n**Step 4: Calculate the total length of the route.**\nThe minimum length of the route is the sum of all original edges plus the weight of the repeated path.\nTotal length = (Sum of all weights) + (Shortest path between B and D) (M1)\nTotal length = $52 + 6 = 58$. (A1)\n\n**Final Answer:** The minimum distance the ranger must travel is $58 \\times 100 = 5800$ metres. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "A common mistake is confusing the Chinese Postman Problem (CPP) with the Travelling Salesman Problem (TSP). Remember the key difference: CPP requires traversing every **Edge** (like a Postman on a path), while TSP requires visiting every **Vertex** (like a Salesman visiting a city). Check the question carefully to see if you need to cover all roads or visit all locations."
+    },
+    {
+      "type": "heading",
+      "content": "The Travelling Salesman Problem (TSP)"
+    },
+    {
+      "type": "text",
+      "content": "The TSP is one of the most famous problems in computer science and operations research. It asks for the shortest possible route that visits a set of locations (vertices) exactly once and returns to the origin. Unlike the previous problems, finding the guaranteed optimal solution is extremely difficult for large graphs. Therefore, in this course, we focus on finding an upper bound (a 'good enough' solution) and a lower bound (a value the optimal solution cannot be less than)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Objective:** Find the shortest tour that visits every vertex exactly once and returns to the start (a minimum weight Hamiltonian cycle).",
+        "**Upper Bound (Nearest Neighbour Algorithm):**",
+        "1. Start at a given vertex.",
+        "2. From the current vertex, go to the nearest unvisited vertex.",
+        "3. Repeat until all vertices have been visited.",
+        "4. Return to the starting vertex to complete the tour. The total weight is an upper bound.",
+        "**Lower Bound (MST-based method):**",
+        "1. Choose and temporarily delete a vertex and all edges connected to it.",
+        "2. Find the weight of the Minimum Spanning Tree (MST) for the remaining graph.",
+        "3. Add the weights of the two shortest edges that were connected to the deleted vertex.",
+        "4. The sum is a lower bound for the TSP tour."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A courier starts at city A and must deliver to cities B, C, D, and E, before returning to A. The table shows the shortest travel times in minutes between the cities.\n\n| | A | B | C | D | E |\n|---|---|---|---|---|---|\n| A | - | 12 | 20 | 15 | 25 |\n| B | 12 | - | 10 | 18 | 14 |\n| C | 20 | 10 | - | 11 | 16 |\n| D | 15 | 18 | 11 | - | 13 |\n| E | 25 | 14 | 16 | 13 | - |\n\n(a) Using the nearest-neighbour algorithm starting at A, find an upper bound for the travel time.\n(b) By removing vertex A, find a lower bound for the travel time.",
+      "solution": "**(a) Upper Bound using Nearest Neighbour Algorithm**\n\n1.  **Start at A.**\n2.  From A, the nearest neighbour is B (time 12). Path: A → B. (M1)\n3.  From B, the nearest unvisited neighbours are C (10), D (18), E (14). Choose C. Path: A → B → C.\n4.  From C, the nearest unvisited neighbours are D (11), E (16). Choose D. Path: A → B → C → D.\n5.  From D, the only unvisited neighbour is E. Path: A → B → C → D → E.\n6.  All cities visited. Return to A. Tour: A → B → C → D → E → A. (M1) for the complete path.\n\nCalculate the total time:\nTime = Time(A→B) + Time(B→C) + Time(C→D) + Time(D→E) + Time(E→A)\nTime = $12 + 10 + 11 + 13 + 25 = 71$ minutes. (A1)\n\nAn upper bound for the travel time is 71 minutes.\n\n**(b) Lower Bound by removing vertex A**\n\n1.  **Remove vertex A.** We are left with vertices B, C, D, E. (M1)\n2.  **Find the MST of the remaining graph {B, C, D, E}.**\n    Edges in order of weight: BC (10), CD (11), DE (13), BE (14), CE (16), BD (18).\n    - Select BC (10).\n    - Select CD (11).\n    - Select DE (13).\n    We have 3 edges (n-1 = 4-1 = 3), so the MST is formed by {BC, CD, DE}. (M1) for finding MST.\n    Weight of MST = $10 + 11 + 13 = 34$ minutes.\n\n3.  **Add the two shortest edges from the removed vertex A.**\n    The edges from A were AB (12), AC (20), AD (15), AE (25).\n    The two shortest are AB (12) and AD (15). (A1)\n\n4.  **Calculate the lower bound.**\n    Lower Bound = Weight of MST + Weight(AB) + Weight(AD)\n    Lower Bound = $34 + 12 + 15 = 61$ minutes. (A1)\n\nA lower bound for the travel time is 61 minutes.\n\nSo, the optimal route time $T$ is in the interval $61 \\le T \\le 71$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Graph Algorithm Problems",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=3.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Graph Theory Algorithms Visualiser",
+          "href": "https://www.cs.usfca.edu/~galles/visualization/Algorithms.html"
+        },
+        {
+          "label": "Video explanation of Kruskal's Algorithm",
+          "href": "https://www.youtube.com/watch?v=4ZlRH0eK-qQ"
+        },
+        {
+          "label": "Detailed guide to the Chinese Postman Problem",
+          "href": "https://www.youtube.com/watch?v=p24-gSrsOUQ"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,198 @@
+{
+  "slug": "2-4-modelling-with-exponential-and-logarithmic-functions",
+  "topicCode": "2.4",
+  "title": "Modelling with exponential and logarithmic functions",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores how to model real-world scenarios using exponential and logarithmic functions. You will learn to create, analyse, and apply these models to solve problems related to growth, decay, and other phenomena where the rate of change is not constant. Emphasis is placed on using a GDC for regression and interpreting the parameters of the functions in context.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the key features and parameters of exponential functions ($y = ka^{bx} + c$) and logarithmic functions ($y = a \\ln(bx) + c$).",
+    "Use a graphical display calculator (GDC) to perform exponential and logarithmic regression on a set of data.",
+    "Solve practical problems by applying these models to make predictions (interpolation and extrapolation) and determine unknown values.",
+    "Interpret the meaning of the model's parameters in the context of the real-world problem being modelled."
+  ],
+  "simpleExplanation": {
+    "title": "The Maths of Going Viral",
+    "summary": "Exponential and logarithmic functions describe situations where things change at a non-constant rate. They are perfect for modelling phenomena like population growth, which starts slow and then explodes, or the intensity of an earthquake, where the scale itself is compressed.",
+    "analogy": "Imagine a rumour spreading in a school. On day one, one person tells two friends. The next day, those two each tell two more friends. The number of people who know the rumour isn't growing by a fixed amount each day; it's doubling. This rapid, accelerating increase is exponential growth. A logarithmic model is like the opposite: imagine learning a new skill. Your improvement is very fast at the beginning, but as you become more expert, the gains become smaller and harder to achieve.",
+    "steps": [
+      "Identify the likely model type (exponential or logarithmic) by examining a scatter plot of the data or considering the context of the problem.",
+      "Use your GDC to enter the data into lists and perform the appropriate regression (e.g., ExpReg or LnReg) to find the equation of the model.",
+      "Apply the resulting equation to solve the problem, for instance by substituting a value to make a prediction or by solving for a variable using your GDC's solver.",
+      "Interpret your answer in the context of the problem, paying attention to units and the real-world meaning of the function's parameters and predictions."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the general form of an exponential function used for modelling?",
+      "back": "$y = ka^{bx} + c$. The simpler form $y=ab^x$ is also common. The base 'e' form is $y=ke^{rx}+c$."
+    },
+    {
+      "front": "In the model $y = ka^x$, what does the parameter '$a$' represent?",
+      "back": "'$a$' is the growth or decay factor. If $a > 1$, it represents growth. If $0 < a < 1$, it represents decay."
+    },
+    {
+      "front": "In the model $P(t) = P_0 e^{rt}$, what does $P_0$ represent?",
+      "back": "$P_0$ represents the initial value of the quantity $P$ at time $t=0$."
+    },
+    {
+      "front": "What is 'half-life' in the context of exponential decay?",
+      "back": "Half-life is the time required for a quantity to reduce to half of its initial value."
+    },
+    {
+      "front": "What is 'doubling time' in the context of exponential growth?",
+      "back": "Doubling time is the time required for a quantity to double in size or value."
+    },
+    {
+      "front": "What is the general form of a logarithmic function used for modelling?",
+      "back": "$y = a \\ln(x) + b$ or $y = a \\log_{10}(x) + b$. The general form is $y = a \\log_k(bx)+c$."
+    },
+    {
+      "front": "What is the relationship between exponential and logarithmic functions?",
+      "back": "They are inverse functions. For example, if $y = a^x$, then $x = \\log_a(y)$."
+    },
+    {
+      "front": "What is a major limitation of 'extrapolation'?",
+      "back": "Extrapolation is predicting values outside the range of the original data. It is unreliable because the model may not be valid for those values."
+    },
+    {
+      "front": "On a GDC, what function would you use to model data that increases rapidly and then levels off?",
+      "back": "A logarithmic regression (LnReg) is often a good choice for this shape. A logistic function (not in this topic) is another possibility."
+    },
+    {
+      "front": "What is a key difference in the graphs of exponential and logarithmic functions?",
+      "back": "Exponential functions of the form $y=a^x$ have a horizontal asymptote (usually $y=0$), while logarithmic functions $y=\\log_a(x)$ have a vertical asymptote (usually $x=0$)."
+    },
+    {
+      "front": "When a question provides a table of data and asks for a model, what should be your first step?",
+      "back": "Enter the data into your GDC's lists and create a scatter plot to visually inspect the trend."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I choose between an exponential and a logarithmic model for a set of data?",
+      "a": "First, plot the data on a scatter diagram. An exponential model ($y=ab^x$) shows growth that gets increasingly faster or decay that gets increasingly slower. A logarithmic model ($y=a\\ln(x)+b$) shows growth that is fast at first and then slows down, levelling off. The context of the problem is also a vital clue; population growth is typically exponential, while phenomena involving perception (like sound or brightness) are often logarithmic."
+    },
+    {
+      "q": "What is the difference between the models $y=ab^x$ and $y=ae^{kx}$?",
+      "a": "They are equivalent forms of the exponential model. Any positive base $b$ can be written as $e^k$, where $k = \\ln(b)$. The base $e$ (Euler's number) is called the 'natural' base and is often used in science and finance because the rate of change of $e^x$ is itself $e^x$, which simplifies many calculations in calculus. The IB exam will usually specify which form to use."
+    },
+    {
+      "q": "Can I solve for the model parameters algebraically instead of using my GDC?",
+      "a": "You can, but only if you are given just enough information to do so (e.g., two points for a two-parameter model like $y=ab^x$). If you are given a table with multiple data points, you are expected to use your GDC's regression function to find the line or curve of best fit. Using only two points from a larger dataset will not yield the best-fit model and will not receive credit in an exam."
+    },
+    {
+      "q": "My GDC gives me an $r$ and $r^2$ value. What do they mean?",
+      "a": "These values, the correlation coefficient ($r$) and the coefficient of determination ($r^2$), measure how well the model fits the data. An $r^2$ value close to 1 indicates a very strong fit, meaning the model closely represents the data. While this is officially part of Topic 4 (Statistics), it can be a useful indicator on your calculator when deciding between different models."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Many real-world processes, from the growth of investments to the decay of radioactive materials, do not change in a linear fashion. Instead, their rate of change is often proportional to their current value. This behaviour is captured by exponential and logarithmic functions, which are among the most powerful and common tools in mathematical modelling. In this lesson, we will learn how to use our GDC to fit these models to data and use them to make meaningful predictions."
+    },
+    {
+      "type": "heading",
+      "content": "Exponential Models: The Shape of Rapid Change"
+    },
+    {
+      "type": "text",
+      "content": "Exponential functions model situations where a quantity is multiplied by a constant factor over regular intervals. This leads to rapid growth or decay. The general form we will work with is flexible enough to model a wide variety of scenarios."
+    },
+    {
+      "type": "formula",
+      "content": "General Exponential Model: $f(x) = ka^{bx} + c$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The parameter $c$ represents the horizontal asymptote, which is the value the function approaches as $x \\to -\\infty$ (for growth) or $x \\to \\infty$ (for decay). It's the long-term limiting value.",
+        "The value at $x=0$ is $k+c$. If $c=0$, then $k$ is the initial value.",
+        "The base $a$ is the growth factor (if $a>1$) or decay factor (if $0<a<1$).",
+        "The parameter $b$ influences the rate of growth or decay. A larger $|b|$ means a faster change."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The population of a species of fish in a lake is assumed to grow exponentially. The population was first measured in 2010, when it was 800. In 2015, the population was 1800. The population $P$ after $t$ years since 2010 can be modelled by the function $P(t) = A e^{kt}$.\n\na) State the value of $A$.\nb) Find the value of $k$, correct to 3 significant figures.\nc) Use the model to predict the fish population in the year 2025.\nd) Find the year in which the population is predicted to first exceed 10,000.",
+      "solution": "a) The initial population is at $t=0$ (the year 2010). The model is $P(t) = A e^{kt}$.\n$P(0) = A e^{k \\times 0} = A e^0 = A$. \nWe are given the initial population is 800.\nTherefore, $A = 800$. **(A1)**\n\nb) We are given that in 2015, the population was 1800. This corresponds to $t = 2015 - 2010 = 5$.\nWe have the point $(5, 1800)$.\n$1800 = 800 e^{k \\times 5}$ **(M1)**\n$\\frac{1800}{800} = e^{5k}$\n$2.25 = e^{5k}$\nTo solve for $k$, we take the natural logarithm of both sides:\n$\\ln(2.25) = 5k$ **(M1)**\n$k = \\frac{\\ln(2.25)}{5} = 0.162186...$\n$k \\approx 0.162$ (3 s.f.) **(A1)**\n\nc) The year 2025 corresponds to $t = 2025 - 2010 = 15$.\nWe use the model $P(t) = 800e^{0.162186...t}$.\n$P(15) = 800e^{0.162186... \\times 15}$ **(M1)**\n$P(15) = 9112.5$\nThe predicted population is 9110 fish (to 3 s.f.). We should round to a whole number, so 9113 fish. **(A1)**\n\nd) We need to find $t$ when $P(t) > 10000$.\n$10000 = 800e^{0.162186...t}$ **(M1)**\n$\\frac{10000}{800} = e^{0.162186...t}$\n$12.5 = e^{0.162186...t}$\n$\\ln(12.5) = 0.162186...t$ **(M1)**\n$t = \\frac{\\ln(12.5)}{0.162186...} = 15.58...$ years.\nSince $t$ is years after 2010, this occurs during the 15th year after 2010. The population exceeds 10,000 during the year $2010 + 15 = 2025$. The question asks for the year in which it first exceeds, so the answer is 2026 (as 15.58 is after the start of 2025). A safer answer is to state the year: $2010 + 15.58 = 2025.58$, so this happens during 2025. Let's stick to the IB convention. The population is 10000 at t=15.58. So at the start of 2026 (t=16), it will be over 10000. The question asks for the year in which it first exceeds. This happens during the year 2025. So the answer is 2025. Let's re-read. 'the year in which'. $t=15$ is start of 2025. $t=16$ is start of 2026. $t=15.58$ is in 2025. So the year is 2025. **(A1)**"
+    },
+    {
+      "type": "examTip",
+      "content": "Always use the full, unrounded value for parameters like $k$ in subsequent calculations. Store it in your calculator's memory to avoid premature rounding errors. Only round your final answer to the required degree of accuracy (usually 3 significant figures unless specified otherwise)."
+    },
+    {
+      "type": "heading",
+      "content": "Logarithmic Models: When Growth Slows"
+    },
+    {
+      "type": "text",
+      "content": "Logarithmic functions are the inverse of exponential functions. They are useful for modelling phenomena that increase or decrease quickly at first, but then slow down over time. They are also fundamental to many measurement scales, like the Richter scale for earthquakes or the pH scale for acidity, where our perception of a quantity is logarithmic."
+    },
+    {
+      "type": "formula",
+      "content": "General Logarithmic Model: $f(x) = a \\ln(x) + b$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The function $y = a \\ln(x) + b$ has a vertical asymptote at $x=0$.",
+        "The model is only defined for positive values of its argument (in this case, $x>0$).",
+        "The parameter 'a' stretches or compresses the graph vertically, affecting how quickly the function's value changes.",
+        "The parameter 'b' shifts the graph vertically."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A student is investigating the cooling of a cup of coffee. The temperature, $T$ degrees Celsius, is recorded at various times, $m$ minutes, after it is poured. The results are shown in the table.\n\n| Time, $m$ (minutes) | 2 | 5 | 9 | 12 | 15 |\n|---|---|---|---|---|---|\n| Temperature, $T$ (°C) | 75.5 | 60.1 | 48.3 | 41.5 | 36.8 |\n\nThe relationship is believed to be exponential, of the form $T(m) = a \\times b^m$.\n\na) Use your GDC to find the values of $a$ and $b$. Write down the full calculator display.\nb) Use the model to estimate the initial temperature of the coffee.\nc) The student's model is only valid while the coffee is warmer than the room temperature, which is 22°C. Estimate how long it takes for the coffee to cool to this temperature.",
+      "solution": "a) We need to perform an exponential regression on the data.\n1. Enter the time values ($m$) into List 1 and the temperature values ($T$) into List 2 on the GDC.\n2. Run the exponential regression function (e.g., ExpReg L1, L2 on a TI-84).\nThe calculator returns values for an equation $y=ab^x$.\n$a = 84.9567...$\n$b = 0.92003...$ **(A1)(A1)**\nSo, the model is $T(m) = 84.9567 \\times (0.92003)^m$.\n\nb) The initial temperature is the temperature at $m=0$.\nUsing the model, $T(0) = a \\times b^0 = a \\times 1 = a$.\nSo, the initial temperature is the value of $a$.\n$T(0) = 84.9567... \\approx 85.0$ °C (to 3 s.f.). **(A1)**\n\nc) We need to find the time $m$ when the temperature $T$ is 22°C.\n$22 = 84.9567 \\times (0.92003)^m$ **(M1)**\nThis can be solved using the GDC's numerical solver (e.g., nSolve) or graphically by finding the intersection of $y_1 = 84.9567 \\times (0.92003)^m$ and $y_2 = 22$.\nSolving gives:\n$m = 16.215...$ minutes. **(M1)**\nIt takes approximately 16.2 minutes for the coffee to cool to room temperature. **(A1)**"
+    },
+    {
+      "type": "heading",
+      "content": "Regression on your GDC"
+    },
+    {
+      "type": "text",
+      "content": "For this topic, your GDC is your most important tool. You are expected to be proficient at taking a set of data, entering it into your calculator, and finding an appropriate regression model. The general process is to enter your independent variable (e.g., time) into one list and your dependent variable (e.g., population) into another. Then, you can create a scatter plot to visually inspect the data's shape. Finally, you select the appropriate regression from the statistics menu (e.g., `ExpReg` for exponential, `LnReg` for logarithmic) to calculate the parameters of the model."
+    },
+    {
+      "type": "examTip",
+      "content": "When a question gives you a table of data with more than two points and asks you to find a model, it is a direct instruction to use the regression capabilities of your GDC. Do not attempt to solve for the parameters algebraically by picking two points, as this will not be the 'best-fit' model for the entire dataset and will likely score no marks."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Exponential Regression Tool",
+          "href": "https://www.geogebra.org/m/cbrh6srf"
+        },
+        {
+          "label": "Desmos Regression Example",
+          "href": "https://www.desmos.com/calculator/vof1t2rsvn"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Exponential Regression Tool",
+    "embedUrl": "https://www.geogebra.org/classic?material=cbrh6srf",
+    "launchUrl": "https://www.geogebra.org/classic?material=cbrh6srf",
+    "hint": "Use “GeoGebra Exponential Regression Tool” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "slug": "3-5-vectors-properties-operations-and-applications",
+  "topicCode": "3.5",
+  "title": "Vectors: properties, operations and applications",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces vectors in two and three dimensions. It covers fundamental properties, vector operations (addition, subtraction, scalar multiplication), the calculation of magnitude, and the scalar (dot) product. Applications in geometry and kinematics are explored through worked examples.",
+  "durationMin": 50,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and represent vectors in 2D and 3D using different notations.",
+    "Perform vector operations including addition, subtraction, scalar multiplication, and calculate the scalar (dot) product.",
+    "Calculate the magnitude of a vector, find a unit vector, and determine the angle between two vectors.",
+    "Apply vector concepts to solve problems in geometry, kinematics, and other real-world contexts."
+  ],
+  "simpleExplanation": {
+    "title": "Vectors: Your Guide to Space",
+    "summary": "Vectors are mathematical objects that have both a size (magnitude) and a direction. They are fundamental for describing quantities like displacement, velocity, and force, where just a number isn't enough information.",
+    "analogy": "Imagine you're giving directions to a friend to find a hidden café. Just saying 'it's 500 metres away' isn't helpful. You need to say 'go 300 metres east, then 400 metres north'. Each of those instructions is a vector – it has a distance (magnitude) and a direction. Combining them gives a resultant vector that leads straight to the café.",
+    "steps": [
+      "Identify the vectors in the problem and write them in component form, like (x, y, z) or using i, j, k.",
+      "Perform the required operations, such as adding vectors for resultant displacement or subtracting for a relative position.",
+      "Calculate key properties like magnitude (length) using Pythagoras or the scalar product to find the angle between vectors.",
+      "Interpret your numerical answer in the context of the question, stating the final distance, speed, or angle with units."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the difference between a vector and a scalar?",
+      "back": "A vector has both magnitude (size) and direction (e.g., velocity, force). A scalar has only magnitude (e.g., speed, mass, temperature)."
+    },
+    {
+      "front": "What is a position vector?",
+      "back": "A vector that starts at the origin (O) and ends at a point P. It is denoted by $\\vec{OP}$ or simply $\\mathbf{p}$. The components of the position vector are the same as the coordinates of the point P."
+    },
+    {
+      "front": "How do you find the vector $\\vec{AB}$ from point A to point B?",
+      "back": "Subtract the position vector of the starting point (A) from the position vector of the end point (B). $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$."
+    },
+    {
+      "front": "How do you calculate the magnitude (or modulus) of a vector $\\mathbf{v} = \\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}$?",
+      "back": "Using the 3D Pythagorean theorem: $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2 + v_3^2}$."
+    },
+    {
+      "front": "What is a unit vector?",
+      "back": "A vector with a magnitude of 1. To find the unit vector $\\hat{\\mathbf{v}}$ in the direction of $\\mathbf{v}$, you divide the vector by its magnitude: $\\hat{\\mathbf{v}} = \\frac{\\mathbf{v}}{|\\mathbf{v}|}$."
+    },
+    {
+      "front": "What is the result of the scalar (dot) product of two vectors?",
+      "back": "A scalar value (a single number), not another vector. It is calculated as $\\mathbf{a} \\cdot \\mathbf{b} = a_1b_1 + a_2b_2 + a_3b_3$."
+    },
+    {
+      "front": "What is the geometric interpretation of the scalar product $\\mathbf{a} \\cdot \\mathbf{b}$?",
+      "back": "$\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta$, where $\\theta$ is the angle between the two vectors when placed tail-to-tail."
+    },
+    {
+      "front": "What does it mean if the scalar product of two non-zero vectors is zero?",
+      "back": "If $\\mathbf{a} \\cdot \\mathbf{b} = 0$, then the vectors $\\mathbf{a}$ and $\\mathbf{b}$ are perpendicular (orthogonal), because $\\cos(90^\\circ) = 0$."
+    },
+    {
+      "front": "How can you tell if two vectors $\\mathbf{a}$ and $\\mathbf{b}$ are parallel?",
+      "back": "Two vectors are parallel if one is a scalar multiple of the other. That is, $\\mathbf{a} = k\\mathbf{b}$ for some non-zero scalar $k$."
+    },
+    {
+      "front": "What is a common trap when finding the angle between vectors $\\vec{AB}$ and $\\vec{CA}$?",
+      "back": "The vectors must be directed away from the vertex where the angle is being measured. To find the angle at A, you must use vectors $\\vec{AB}$ and $\\vec{AC}$ (not $\\vec{CA}$). Remember: 'away-away'."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a position vector and a direction vector?",
+      "a": "A position vector, like $\\vec{OP}$, specifies the location of a single point P relative to the origin O. A direction vector (or free vector), like $\\vec{AB}$, describes the displacement (magnitude and direction) needed to get from point A to point B. It is not tied to the origin."
+    },
+    {
+      "q": "How do I know when to use the scalar (dot) product?",
+      "a": "Use the scalar product whenever a question involves the angle between two vectors. It's also the primary method to test if two vectors are perpendicular (orthogonal), as their dot product will be zero."
+    },
+    {
+      "q": "Can my GDC do all vector calculations?",
+      "a": "Modern GDCs (like the TI-Nspire or Casio CG50) have built-in functions for most vector operations: addition, subtraction, scalar multiplication, magnitude (norm), and dot product. Some can even find the angle between vectors directly. It's essential you learn how to use these functions to save time in an exam, but also understand the underlying formulas for questions that require showing working."
+    },
+    {
+      "q": "What is the vector or cross product? Is it in this course?",
+      "a": "The vector (or cross) product is another way to multiply two vectors, resulting in a new vector that is perpendicular to both original vectors. This is a key topic in the IB Maths Analysis and Approaches HL course but is NOT part of the Applications and Interpretation HL syllabus. You only need to know the scalar (dot) product."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of vectors. While we are used to dealing with quantities like length and temperature which can be described by a single number, many phenomena in the world require more information. To describe how a plane is flying, you need to know not just its speed, but also its direction. Vectors provide a powerful mathematical framework for handling quantities that possess both magnitude and direction, with wide-ranging applications from physics and engineering to computer graphics and data science."
+    },
+    {
+      "type": "heading",
+      "content": "Representing Vectors"
+    },
+    {
+      "type": "text",
+      "content": "A vector can be represented geometrically as a directed line segment. Algebraically, we most commonly use column vectors or unit vector notation. A 3D vector $\\mathbf{v}$ can be written as $\\mathbf{v} = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$ or $\\mathbf{v} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k}$, where $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$ are unit vectors along the x, y, and z axes respectively. A position vector, such as $\\vec{OA}$ or $\\mathbf{a}$, gives the position of a point A relative to the origin O."
+    },
+    {
+      "type": "text",
+      "content": "To find the vector that connects two points, say from A to B, we find the 'path' from A to the origin and then from the origin to B. This gives $\\vec{AB} = \\vec{AO} + \\vec{OB}$. Since $\\vec{AO} = -\\vec{OA}$, this simplifies to the crucial formula: $\\vec{AB} = \\mathbf{b} - \\mathbf{a}$."
+    },
+    {
+      "type": "heading",
+      "content": "Vector Operations"
+    },
+    {
+      "type": "text",
+      "content": "Vectors can be added, subtracted, and multiplied by scalars. Vector addition is commutative ($\\mathbf{a} + \\mathbf{b} = \\mathbf{b} + \\mathbf{a}$) and is performed by adding corresponding components. Geometrically, this corresponds to the 'head-to-tail' rule. Subtracting a vector is equivalent to adding its negative, where the negative vector has the same magnitude but opposite direction."
+    },
+    {
+      "type": "formula",
+      "content": "For $\\mathbf{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix}$ and scalar $k$: \\\\ Addition: $\\mathbf{a} + \\mathbf{b} = \\begin{pmatrix} a_1 + b_1 \\\\ a_2 + b_2 \\end{pmatrix}$ \\\\ Subtraction: $\\mathbf{a} - \\mathbf{b} = \\begin{pmatrix} a_1 - b_1 \\\\ a_2 - b_2 \\end{pmatrix}$ \\\\ Scalar Multiplication: $k\\mathbf{a} = \\begin{pmatrix} ka_1 \\\\ ka_2 \\end{pmatrix}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Points P and Q have position vectors $\\mathbf{p} = \\mathbf{i} - 2\\mathbf{j} + 5\\mathbf{k}$ and $\\mathbf{q} = 4\\mathbf{i} + 4\\mathbf{j} - 7\\mathbf{k}$ respectively. \\\\ (a) Find the vector $\\vec{PQ}$. \\\\ (b) Find the position vector of point M, the midpoint of PQ. \\\\ (c) A point R is such that $\\vec{PR} = 3\\vec{PQ}$. Find the coordinates of R.",
+      "solution": "(a) To find $\\vec{PQ}$, we use $\\mathbf{q} - \\mathbf{p}$. \\\\ $\\vec{PQ} = (4\\mathbf{i} + 4\\mathbf{j} - 7\\mathbf{k}) - (\\mathbf{i} - 2\\mathbf{j} + 5\\mathbf{k})$ (M1 for attempting subtraction) \\\\ $\\vec{PQ} = (4-1)\\mathbf{i} + (4-(-2))\\mathbf{j} + (-7-5)\\mathbf{k}$ \\\\ $\\vec{PQ} = 3\\mathbf{i} + 6\\mathbf{j} - 12\\mathbf{k}$ (A1) \\\\ \\\\ (b) The position vector of the midpoint M is the average of the position vectors of P and Q. \\\\ $\\mathbf{m} = \\frac{1}{2}(\\mathbf{p} + \\mathbf{q})$ (M1 for midpoint formula) \\\\ $\\mathbf{p} + \\mathbf{q} = (1+4)\\mathbf{i} + (-2+4)\\mathbf{j} + (5-7)\\mathbf{k} = 5\\mathbf{i} + 2\\mathbf{j} - 2\\mathbf{k}$ \\\\ $\\mathbf{m} = \\frac{1}{2}(5\\mathbf{i} + 2\\mathbf{j} - 2\\mathbf{k}) = 2.5\\mathbf{i} + \\mathbf{j} - \\mathbf{k}$ (A1) \\\\ \\\\ (c) We are given $\\vec{PR} = 3\\vec{PQ}$. Let $\\mathbf{r}$ be the position vector of R. \\\\ $\\mathbf{r} - \\mathbf{p} = 3(3\\mathbf{i} + 6\\mathbf{j} - 12\\mathbf{k})$ (M1 for setting up the equation) \\\\ $\\mathbf{r} - (\\mathbf{i} - 2\\mathbf{j} + 5\\mathbf{k}) = 9\\mathbf{i} + 18\\mathbf{j} - 36\\mathbf{k}$ \\\\ $\\mathbf{r} = (9\\mathbf{i} + 18\\mathbf{j} - 36\\mathbf{k}) + (\\mathbf{i} - 2\\mathbf{j} + 5\\mathbf{k})$ (M1 for isolating $\\mathbf{r}$) \\\\ $\\mathbf{r} = 10\\mathbf{i} + 16\\mathbf{j} - 31\\mathbf{k}$ \\\\ The coordinates of R are $(10, 16, -31)$. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Magnitude, Unit Vectors and the Scalar Product"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude (or modulus) of a vector is its length, calculated using Pythagoras' theorem. A unit vector is a vector of length 1, useful for specifying a direction without a magnitude. The scalar product (or dot product) is a powerful operation that relates two vectors to the angle between them. It has two calculation methods which can be equated to solve problems."
+    },
+    {
+      "type": "formula",
+      "content": "Magnitude: $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2 + v_3^2}$ \\\\ Unit Vector: $\\hat{\\mathbf{v}} = \\frac{\\mathbf{v}}{|\\mathbf{v}|}$ \\\\ Scalar Product: $\\mathbf{a} \\cdot \\mathbf{b} = a_1b_1 + a_2b_2 + a_3b_3 = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta$"
+    },
+    {
+      "keyPoints": [
+        "The magnitude of a vector is always non-negative.",
+        "If $\\mathbf{a} \\cdot \\mathbf{b} = 0$, the vectors are perpendicular (orthogonal).",
+        "If $\\mathbf{a} \\cdot \\mathbf{b} > 0$, the angle between the vectors is acute ($<90^\\circ$).",
+        "If $\\mathbf{a} \\cdot \\mathbf{b} < 0$, the angle between the vectors is obtuse ($>90^\\circ$).",
+        "The angle $\\theta$ between two vectors is found by rearranging the scalar product formula: $\\cos\\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Two vectors are given by $\\mathbf{a} = 2\\mathbf{i} + p\\mathbf{j} + 3\\mathbf{k}$ and $\\mathbf{b} = -\\mathbf{i} + 6\\mathbf{j} - 4\\mathbf{k}$. \\\\ (a) Find the value of $p$ for which the vectors $\\mathbf{a}$ and $\\mathbf{b}$ are perpendicular. \\\\ (b) For $p=1$, find the angle in degrees between $\\mathbf{a}$ and $\\mathbf{b}$.",
+      "solution": "(a) For perpendicular vectors, their scalar product is zero: $\\mathbf{a} \\cdot \\mathbf{b} = 0$. (M1) \\\\ $\\mathbf{a} \\cdot \\mathbf{b} = (2)(-1) + (p)(6) + (3)(-4) = 0$ \\\\ $-2 + 6p - 12 = 0$ \\\\ $6p - 14 = 0$ (A1) \\\\ $6p = 14$ \\\\ $p = \\frac{14}{6} = \\frac{7}{3}$ (A1) \\\\ \\\\ (b) Let $p=1$. Then $\\mathbf{a} = 2\\mathbf{i} + \\mathbf{j} + 3\\mathbf{k}$. \\\\ We use the formula $\\cos\\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$. \\\\ First, calculate the scalar product: \\\\ $\\mathbf{a} \\cdot \\mathbf{b} = (2)(-1) + (1)(6) + (3)(-4) = -2 + 6 - 12 = -8$. (A1 for dot product) \\\\ Next, calculate the magnitudes: \\\\ $|\\mathbf{a}| = \\sqrt{2^2 + 1^2 + 3^2} = \\sqrt{4+1+9} = \\sqrt{14}$. (A1 for one magnitude) \\\\ $|\\mathbf{b}| = \\sqrt{(-1)^2 + 6^2 + (-4)^2} = \\sqrt{1+36+16} = \\sqrt{53}$. (A1 for other magnitude) \\\\ Now substitute into the formula: \\\\ $\\cos\\theta = \\frac{-8}{\\sqrt{14}\\sqrt{53}}$ (M1 for substitution) \\\\ $\\cos\\theta \\approx -0.2941...$ \\\\ $\\theta = \\arccos(-0.2941...) = 107.109...^\\circ$ \\\\ $\\theta \\approx 107^\\circ$ (to 3 s.f.) (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "Your GDC is a powerful tool for vector calculations. On Paper 1 and Paper 2, you can use it to find magnitudes, dot products, and angles quickly. For Paper 3, you will still need to show understanding of the underlying formulae. Always double-check your vector inputs into the calculator. Be precise with notation: $\\vec{AB}$ is not the same as $\\vec{BA}$ (it's $-\\vec{BA}$), and $|mathbf{a}|$ is different from $\\mathbf{a}$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Vector Problems",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=3.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra 3D Vector Explorer",
+          "href": "https://www.geogebra.org/m/s9n6a5p8"
+        },
+        {
+          "label": "Khan Academy: Vectors",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:vectors"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra 3D Vector Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=s9n6a5p8",
+    "launchUrl": "https://www.geogebra.org/classic?material=s9n6a5p8",
+    "hint": "Use “GeoGebra 3D Vector Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "slug": "3-1-distances-volumes-and-surface-areas-of-3d-solids",
+  "topicCode": "3.1",
+  "title": "Distances, volumes and surface areas of 3D solids",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores the application of geometry and trigonometry to three-dimensional solids. You will learn to calculate distances, angles, volumes, and surface areas of common shapes like cuboids, pyramids, cones, and spheres, as well as composite solids. The focus is on breaking down 3D problems into manageable 2D triangles and applying Pythagoras' theorem, SOH CAH TOA, and the sine and cosine rules.",
+  "durationMin": 25,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Calculate distances between points and angles between lines and planes within 3D solids.",
+    "Apply the sine and cosine rules to solve problems involving non-right-angled triangles in 3D contexts.",
+    "Determine the volume and surface area of pyramids, cones, spheres, and composite solids.",
+    "Solve multi-step, real-world problems by synthesising 3D geometry and trigonometry skills."
+  ],
+  "simpleExplanation": {
+    "title": "From Flat Plans to 3D Forms",
+    "summary": "This topic elevates your 2D geometry skills into the third dimension. You'll learn to 'see' the hidden triangles inside solid shapes to measure lengths, angles, and space.",
+    "analogy": "Imagine you're building a custom tent for a camping trip. The design on paper is 2D, but to know the length of the main pole (a diagonal distance), the angle the roof makes with the ground (angle between planes), or how much fabric you need (surface area), you must think in 3D. This topic provides the mathematical toolkit to solve exactly these kinds of practical, spatial puzzles.",
+    "steps": [
+      "Visualise and sketch the 2D triangles hidden within the 3D solid that contain the required length or angle.",
+      "Select the correct trigonometric tool: Pythagoras' theorem for right-angled triangles, or the sine and cosine rules for others.",
+      "Use the appropriate formula from the IB formula booklet to calculate the volume or surface area of the solid.",
+      "For complex problems, combine results from multiple steps, ensuring you don't round intermediate answers prematurely."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the 'slant height' of a cone?",
+      "back": "The distance from the apex (the point) down the side of the cone to a point on the circumference of the base. It is the hypotenuse of the triangle formed by the perpendicular height and the radius. It is denoted by $l$."
+    },
+    {
+      "front": "How do you find the angle between a line and a plane?",
+      "back": "Find the projection (or 'shadow') of the line onto the plane. The required angle is the angle between the line and its projection. This forms a right-angled triangle."
+    },
+    {
+      "front": "What is the crucial difference between perpendicular height ($h$) and slant height ($l$) when calculating volume vs. surface area of a cone?",
+      "back": "Volume uses the perpendicular height: $V = \\frac{1}{3}\\pi r^2 h$. The curved surface area uses the slant height: $A = \\pi r l$."
+    },
+    {
+      "front": "When is the Cosine Rule more useful than the Sine Rule?",
+      "back": "Use the Cosine Rule when you know two sides and the included angle (SAS) to find the third side, or when you know all three sides (SSS) to find an angle."
+    },
+    {
+      "front": "What is the formula for the volume of a pyramid?",
+      "back": "$V = \\frac{1}{3} \\times (\\text{Area of base}) \\times (\\text{Perpendicular height})$. This is in the formula booklet."
+    },
+    {
+      "front": "What must you remember when calculating the *total* surface area of a cone or pyramid?",
+      "back": "You must add the area of the base to the lateral (or curved) surface area. For a cone: $A_{total} = \\pi r l + \\pi r^2$. For a pyramid, add the area of the base polygon to the sum of the areas of the triangular faces."
+    },
+    {
+      "front": "How do you find the length of a space diagonal in a cuboid with side lengths $l, w, h$?",
+      "back": "Use Pythagoras' theorem in 3D: $d = \\sqrt{l^2 + w^2 + h^2}$. This is derived by using Pythagoras twice: first on the base, then on the vertical triangle."
+    },
+    {
+      "front": "What is the Sine Rule?",
+      "back": "In any triangle ABC, $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$. It's used to find a side when you know two angles and one side, or to find an angle when you know two sides and a non-included angle."
+    },
+    {
+      "front": "How do you find the angle between two planes (e.g., two sloping faces of a pyramid)?",
+      "back": "1. Find the line of intersection of the two planes. 2. Pick a point on this line and draw a line in each plane, both perpendicular to the line of intersection. 3. The angle between these two new lines is the angle between the planes. Use the Cosine Rule on the triangle formed by these lines."
+    },
+    {
+      "front": "What is a 'great circle' of a sphere?",
+      "back": "A circle on the surface of a sphere that has the same centre and radius as the sphere itself. The equator is an example. The shortest distance between two points on a sphere is along the arc of a great circle."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I find the angle between two planes, for example, two adjacent faces of a pyramid?",
+      "a": "1. Identify the line where the two planes intersect (this will be a common edge, e.g., a slanted edge of the pyramid). 2. Create a new triangle whose plane is perpendicular to this line of intersection. To do this, find the midpoint of the base edge of each triangular face and connect these midpoints to the pyramid's apex. The line connecting the two midpoints forms the base of your new triangle. 3. You now have an isosceles triangle. The two equal sides are the heights of the pyramid's triangular faces, and the base is the line you just drew. 4. Use the Cosine Rule on this new triangle to find the angle at the apex, which is the angle between the two planes."
+    },
+    {
+      "q": "The question asks for an 'exact' answer. What does this mean?",
+      "a": "An 'exact' answer means you should not round your result to a decimal. You should leave it in terms of $\\pi$, square roots (surds), or fractions. For example, if you calculate a length to be $\\sqrt{50}$, you should simplify it to $5\\sqrt{2}$ rather than writing 7.07. If a volume is $32\\pi$, leave it as $32\\pi$ and not 100.53."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of three-dimensional geometry. While we often sketch on 2D paper, the world around us is in 3D. This lesson equips you with the essential skills to analyse 3D objects, a fundamental requirement in fields like architecture, engineering, computer graphics, and physics. We will build upon your existing knowledge of trigonometry and apply it to more complex, spatial scenarios."
+    },
+    {
+      "type": "heading",
+      "content": "Distances and Angles in 3D Solids"
+    },
+    {
+      "type": "text",
+      "content": "The key to solving 3D geometry problems is to identify and isolate the relevant two-dimensional triangles within the solid. By sketching these triangles separately, a complex 3D problem is reduced to a series of simpler 2D calculations. You will frequently use Pythagoras' theorem and basic trigonometric ratios (SOH CAH TOA) for right-angled triangles."
+    },
+    {
+      "type": "text",
+      "content": "A common task is finding the angle between a line and a plane. Imagine a flagpole and its shadow on the ground. The angle between the flagpole (the line) and the ground (the plane) is the angle formed between the flagpole itself and its shadow. This always creates a right-angled triangle, with the height of the object as the 'opposite' side and the shadow as the 'adjacent' side."
+    },
+    {
+      "type": "workedExample",
+      "question": "A cuboid has dimensions AB = 12 cm, BC = 5 cm and CG = 8 cm. Point M is the midpoint of the edge EH. Find:\na) The exact length of the space diagonal AG.\nb) The length of AM.\nc) The angle that the line segment AM makes with the base plane EFGH.",
+      "solution": "First, sketch the cuboid and label the points.\n\na) To find the space diagonal AG, we can first find the diagonal of the base, AC.\nIn $\\triangle ABC$, $AC^2 = AB^2 + BC^2 = 12^2 + 5^2 = 144 + 25 = 169$. (M1)\nSo, $AC = \\sqrt{169} = 13$ cm.\nNow consider the right-angled triangle $\\triangle ACG$. The right angle is at C.\n$AG^2 = AC^2 + CG^2 = 13^2 + 8^2 = 169 + 64 = 233$. (M1)\nThe exact length of AG is $\\sqrt{233}$ cm. (A1)\n\nb) M is the midpoint of EH. EH has the same length as BC, which is 5 cm. So, EM = 2.5 cm. AE has the same length as CG, which is 8 cm. Consider the right-angled triangle $\\triangle AEM$. The right angle is at E.\n$AM^2 = AE^2 + EM^2 = 8^2 + 2.5^2 = 64 + 6.25 = 70.25$. (M1)\n$AM = \\sqrt{70.25} \\approx 8.38$ cm (3 s.f.). (A1)\n\nc) The angle AM makes with the plane EFGH is $\\angle AMH$. We need the length of the projection of AM onto the plane, which is MH. In the rectangle EFGH, we consider the right-angled triangle $\\triangle EHM$. We need the length of HM. We know EH = 5 cm and EM = 2.5 cm. Wait, the projection of A is E, so the projection of AM is EM. The angle required is $\\angle AME$. Let this angle be $\\theta$.\nWe have a right-angled triangle $\\triangle AEM$. We know AE = 8 cm (opposite) and EM = 2.5 cm (adjacent).\n$\\tan(\\theta) = \\frac{\\text{opposite}}{\\text{adjacent}} = \\frac{AE}{EM} = \\frac{8}{2.5}$. (M1)\n$\\theta = \\arctan(\\frac{8}{2.5}) = 72.645...^{\\circ}$.\nAngle is $72.6^{\\circ}$ (3 s.f.). (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Applying Sine and Cosine Rules in 3D"
+    },
+    {
+      "type": "text",
+      "content": "Many triangles hidden inside 3D shapes are not right-angled. For these, we must use the Sine Rule or the Cosine Rule. A typical example is finding the angle between two slanted faces of a pyramid, which involves constructing a non-right-angled triangle. Always check if you have enough information for SAS (Side-Angle-Side) or SSS (Side-Side-Side) for the Cosine Rule, or ASA (Angle-Side-Angle) or SSA (Side-Side-Angle) for the Sine Rule."
+    },
+    {
+      "type": "formula",
+      "content": "Cosine Rule: $c^2 = a^2 + b^2 - 2ab \\cos C$  or  $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$\n\nSine Rule: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a clear 2D sketch of the triangle you are working with, pulling it out of the 3D diagram. Label it with all known lengths and angles. This simple step prevents confusion and reduces errors. Also, carry unrounded values in your calculator's memory for subsequent calculations to maintain accuracy."
+    },
+    {
+      "type": "heading",
+      "content": "Volume and Surface Area Calculations"
+    },
+    {
+      "type": "text",
+      "content": "The IB formula booklet is your best friend for this topic. It contains the formulas for the volume and surface area of many standard solids. Be careful to distinguish between lateral surface area (the area of the sides only) and total surface area (sides plus base/s). For composite solids, break the shape down into its standard components, calculate the volume or surface area for each, and then add or subtract them as required."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Volume calculations for pyramids and cones always use the perpendicular height, not the slant height.",
+        "Surface area of a cone ($A = \\pi r l$) uses the slant height, $l$. You may need to calculate $l$ first using Pythagoras: $l^2 = h^2 + r^2$.",
+        "For composite shapes, be careful not to double-count surfaces. For example, when a cone is placed on a cylinder, the circular area where they join is not part of the total surface area."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A solid consists of a hemisphere of radius 4 cm on top of a cone with the same radius and a perpendicular height of 10 cm. \na) Calculate the slant height of the cone. \nb) Calculate the total volume of the solid. \nc) Calculate the total surface area of the solid.",
+      "solution": "a) Let $l$ be the slant height, $h=10$ be the height, and $r=4$ be the radius. Using Pythagoras' theorem:\n$l^2 = h^2 + r^2 = 10^2 + 4^2 = 100 + 16 = 116$. (M1)\n$l = \\sqrt{116} = 10.770...$\nThe slant height is $10.8$ cm (3 s.f.). (A1)\n\nb) The total volume is the volume of the hemisphere plus the volume of the cone.\n$V_{hemisphere} = \\frac{1}{2} \\times \\frac{4}{3}\\pi r^3 = \\frac{2}{3}\\pi (4)^3 = \\frac{128}{3}\\pi$. (M1)\n$V_{cone} = \\frac{1}{3}\\pi r^2 h = \\frac{1}{3}\\pi (4)^2 (10) = \\frac{160}{3}\\pi$. (M1)\n$V_{total} = V_{hemisphere} + V_{cone} = \\frac{128}{3}\\pi + \\frac{160}{3}\\pi = \\frac{288}{3}\\pi = 96\\pi$. (A1)\n$V_{total} \\approx 301.59...$\nThe total volume is $302$ cm$^3$ (3 s.f.). (A1)\n\nc) The total surface area is the curved surface area of the hemisphere plus the curved surface area of the cone. The circular base where they join is not on the surface.\n$A_{hemisphere} = \\frac{1}{2} \\times 4\\pi r^2 = 2\\pi (4)^2 = 32\\pi$. (M1)\n$A_{cone} = \\pi r l = \\pi (4) (\\sqrt{116})$. (M1)\n$A_{total} = 32\\pi + 4\\sqrt{116}\\pi = (32 + 4\\sqrt{116})\\pi$. (A1)\n$A_{total} \\approx (32 + 4 \\times 10.770...) \\pi = (75.08...)\\pi \\approx 235.88...$\nThe total surface area is $236$ cm$^2$ (3 s.f.). (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra 3D Calculator",
+          "href": "https://www.geogebra.org/3d"
+        },
+        {
+          "label": "3D Shapes Volume & Surface Area Calculator",
+          "href": "https://www.calculatorsoup.com/calculators/geometry-solids/index.php"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

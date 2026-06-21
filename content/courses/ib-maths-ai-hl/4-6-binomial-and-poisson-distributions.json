@@ -1,0 +1,197 @@
+{
+  "slug": "4-6-binomial-and-poisson-distributions",
+  "topicCode": "4.6",
+  "title": "Binomial and Poisson distributions",
+  "paper": "P2",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces two fundamental discrete probability distributions: the Binomial and the Poisson. You will learn to identify the conditions under which each distribution is appropriate, calculate probabilities, and determine key statistics like the mean and variance.",
+  "durationMin": 45,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify the conditions for Binomial and Poisson distributions.",
+    "Calculate probabilities for both distributions using a GDC.",
+    "Calculate and interpret the mean and variance for both distributions.",
+    "Solve problems involving a change of interval for the Poisson distribution."
+  ],
+  "simpleExplanation": {
+    "title": "Counting Successes: Fixed Trials vs. Fixed Intervals",
+    "summary": "The Binomial distribution counts successes in a fixed number of attempts, like flipping a coin 10 times. The Poisson distribution counts events over a fixed period of time or space, like the number of emails you receive in an hour.",
+    "analogy": "Imagine you're a basketball player. The Binomial distribution would be used to find the probability of making exactly 7 out of 10 free throws (a fixed number of trials). Each throw is independent, and you either score or miss. Now, imagine you're counting the number of shooting stars you see in a 30-minute window (a fixed interval of time). The Poisson distribution would help you find the probability of seeing 0, 1, or more than 5 stars, assuming they appear at a known average rate but at random moments.",
+    "steps": [
+      "Identify the Distribution: Read the problem. Is there a fixed number of trials ($n$)? If so, it's likely Binomial. Is there a fixed interval (time/space) and an average rate ($\"lambda\"$)? If so, it's likely Poisson.",
+      "Define Parameters: For Binomial, find $n$ (number of trials) and $p$ (probability of success). For Poisson, find the mean rate, $m$, for the interval in the question. You may need to scale the given rate up or down.",
+      "State the Distribution: Write down the distribution and its parameters, for example, $X \\sim B(n, p)$ or $Y \\sim Po(m)$. This is a crucial step for showing your understanding and often earns a mark.",
+      "Calculate the Probability: Use your GDC's `binomPdf/Cdf` or `poissonPdf/Cdf`. For 'at least' or 'more than' questions ($P(X \\ge k)$), use the complement rule: $1 - P(X \\le k-1)$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What are the four conditions for a Binomial distribution?",
+      "back": "BINS: Binary (two outcomes, success/failure), Independent trials, Number of trials is fixed ($n$), Success probability is constant ($p$)."
+    },
+    {
+      "front": "What are the key conditions for a Poisson distribution?",
+      "back": "Events occur at a constant average rate, independently of each other, and randomly within a given interval of time or space. It often models rare events."
+    },
+    {
+      "front": "What is the formula for the mean (expected value) of a Binomial distribution $X \\sim B(n, p)$?",
+      "back": "$E(X) = np$"
+    },
+    {
+      "front": "What is the formula for the mean (expected value) of a Poisson distribution $X \\sim Po(m)$?",
+      "back": "$E(X) = m$"
+    },
+    {
+      "front": "What is a key property connecting the mean and variance of a Poisson distribution?",
+      "back": "The mean and variance are equal: $E(X) = Var(X) = m$."
+    },
+    {
+      "front": "When do you use a `pdf` (probability density function) on your GDC?",
+      "back": "For calculating the probability of an exact value, e.g., $P(X = k)$. Use `binomPdf(n, p, k)` or `poissonPdf(m, k)`."
+    },
+    {
+      "front": "When do you use a `cdf` (cumulative distribution function) on your GDC?",
+      "back": "For calculating the probability of a range of values up to a certain point, e.g., $P(X \\le k)$. Use `binomCdf(n, p, k)` or `poissonCdf(m, k)`."
+    },
+    {
+      "front": "How do you calculate $P(X > 5)$ using a `cdf` which only calculates $P(X \\le k)$?",
+      "back": "$P(X > 5)$ is the same as $P(X \\ge 6)$. Use the complement rule: $1 - P(X \\le 5)$."
+    },
+    {
+      "front": "A call centre receives 6 calls per hour on average. How do you find the parameter $m$ for the number of calls in a 10-minute period?",
+      "back": "The rate is 6 calls per 60 minutes. A 10-minute period is 1/6 of an hour. So, the new rate is $m = 6 \\times \\frac{10}{60} = 1$. The distribution is $X \\sim Po(1)$."
+    },
+    {
+      "front": "What is the main difference between a Binomial and a Poisson variable?",
+      "back": "A Binomial variable has a finite number of possible outcomes (from 0 to $n$). A Poisson variable has an infinite number of possible outcomes (0, 1, 2, ...), although high-value outcomes are very improbable."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When do I use `pdf` and when do I use `cdf`?",
+      "a": "Use `pdf` (Probability Density Function) for the probability of a single, exact outcome, like $P(X=5)$. Use `cdf` (Cumulative Distribution Function) for the probability of a range of outcomes up to a certain value, like $P(X \\le 5)$."
+    },
+    {
+      "q": "What's the difference between $P(X < 5)$ and $P(X \\le 5)$ for a discrete distribution?",
+      "a": "$P(X \\le 5)$ includes the outcome $X=5$. $P(X < 5)$ does not. Since these are discrete distributions (only integer values are possible), $P(X < 5)$ is exactly the same as $P(X \\le 4)$. This distinction is crucial when using your GDC's `cdf` function."
+    },
+    {
+      "q": "How do I change the rate for a Poisson distribution?",
+      "a": "The Poisson parameter $m$ must match the interval of the question. If the given rate is, for example, 10 events per hour, and the question asks for the probability over 30 minutes, you must adjust the rate. Since 30 minutes is half an hour, the new rate is $m = 10 \\times 0.5 = 5$. Always check that the rate's interval and the question's interval match."
+    },
+    {
+      "q": "Can the mean be a decimal for these distributions, even if the variable can only be an integer?",
+      "a": "Yes, absolutely. The mean or expected value ($E(X)$) is a long-term average. For example, if you flip a coin 3 times, the expected number of heads is $E(X) = np = 3 \\times 0.5 = 1.5$. While you can never get 1.5 heads in a single set of 3 flips, if you repeated the experiment many times, the average number of heads per experiment would approach 1.5."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In mathematics, we often want to model random events. Discrete probability distributions are powerful tools that allow us to calculate the likelihood of a specific number of 'successes' or 'occurrences'. In this lesson, we will explore two of the most important discrete distributions you'll encounter: the Binomial distribution, which deals with a fixed number of trials, and the Poisson distribution, which models events happening over a continuous interval."
+    },
+    {
+      "type": "heading",
+      "content": "The Binomial Distribution: Fixed Trials, Two Outcomes"
+    },
+    {
+      "type": "text",
+      "content": "The Binomial distribution is used when an experiment is repeated a fixed number of times, and each repetition can result in one of two outcomes, often labelled 'success' or 'failure'. A helpful acronym to remember the conditions for a binomial model is BINS."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**B**inary: There are only two possible outcomes for each trial (e.g., heads/tails, pass/fail).",
+        "**I**ndependent: The outcome of one trial does not affect the outcome of another.",
+        "**N**umber: The number of trials, $n$, is fixed in advance.",
+        "**S**uccess: The probability of success, $p$, is the same for every trial."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "If a random variable $X$ follows a binomial distribution, we write $X \\sim B(n, p)$, where $n$ is the number of trials and $p$ is the probability of success."
+    },
+    {
+      "type": "formula",
+      "content": "Mean: $E(X) = np$ \\\\ Variance: $Var(X) = np(1-p)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A factory produces light bulbs, and the probability that a bulb is defective is 0.08. A quality control inspector randomly selects 20 bulbs. Let $X$ be the number of defective bulbs in the sample. \n\na) State the distribution of $X$, giving its parameters.\nb) Find the probability that exactly 2 bulbs are defective.\nc) Find the probability that at most 3 bulbs are defective.\nd) Find the expected number of defective bulbs in the sample.",
+      "solution": "a) The situation fits the binomial model: fixed number of trials ($n=20$), two outcomes (defective/not defective), constant probability of success (defective) ($p=0.08$), and independent trials. \n$X \\sim B(20, 0.08)$ (A1)(A1) for distribution and parameters.\n\nb) We need to find $P(X=2)$. We use the binomial probability density function.\nUsing GDC: `binomPdf(n=20, p=0.08, x=2)` (M1) for correct method.\n$P(X=2) = 0.27108... \\approx 0.271$ (3 s.f.) (A1)\n\nc) 'At most 3' means $X \\le 3$, which is $P(X=0) + P(X=1) + P(X=2) + P(X=3)$. We use the binomial cumulative distribution function.\nUsing GDC: `binomCdf(n=20, p=0.08, lower=0, upper=3)` or `binomCdf(n=20, p=0.08, x=3)` depending on GDC model. (M1) for correct method.\n$P(X \\le 3) = 0.9463... \\approx 0.946$ (3 s.f.) (A1)\n\nd) The expected number is the mean of the distribution.\n$E(X) = np$ (M1)\n$E(X) = 20 \\times 0.08 = 1.6$ (A1)\nWe expect to find 1.6 defective bulbs on average in a sample of 20."
+    },
+    {
+      "type": "heading",
+      "content": "The Poisson Distribution: Events in an Interval"
+    },
+    {
+      "type": "text",
+      "content": "The Poisson distribution models the number of times an event occurs within a specified continuous interval, such as time, area, or volume. It's particularly useful for events that are relatively rare. The key conditions are that events occur randomly, independently of each other, and at a constant average rate, denoted by $m$ or $\\lambda$ (the IB syllabus prefers $m$). If a random variable $Y$ follows a Poisson distribution, we write $Y \\sim Po(m)$."
+    },
+    {
+      "type": "formula",
+      "content": "Mean: $E(Y) = m$ \\\\ Variance: $Var(Y) = m$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The mean and variance of a Poisson distribution are equal.",
+        "The parameter $m$ must correspond to the interval of the question. If a question asks about a different interval, you must scale $m$ accordingly.",
+        "The Poisson distribution has no upper limit; theoretically, any non-negative integer number of events could occur."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A customer service desk receives emails at an average rate of 4.5 per hour. Assume the number of emails received follows a Poisson distribution.\n\na) Find the probability that the desk receives exactly 6 emails in a given hour.\nb) Find the probability that the desk receives fewer than 3 emails in a given hour.\nc) Find the probability that the desk receives at least 10 emails in a two-hour period.",
+      "solution": "a) The interval is one hour, so we use the given rate. Let $X$ be the number of emails in one hour. \n$X \\sim Po(4.5)$ (A1)\nWe need $P(X=6)$.\nUsing GDC: `poissonPdf(m=4.5, x=6)` (M1)\n$P(X=6) = 0.1281... \\approx 0.128$ (3 s.f.) (A1)\n\nb) 'Fewer than 3 emails' means $X < 3$, which is $X \\le 2$. \nWe need $P(X \\le 2) = P(X=0) + P(X=1) + P(X=2)$.\nUsing GDC: `poissonCdf(m=4.5, x=2)` (M1)\n$P(X \\le 2) = 0.1735... \\approx 0.174$ (3 s.f.) (A1)\n\nc) The question now concerns a two-hour period. We must adjust the rate parameter. \nNew rate $m = 4.5 \\text{ emails/hour} \\times 2 \\text{ hours} = 9$. (M1) for scaling the rate.\nLet $Y$ be the number of emails in two hours. $Y \\sim Po(9)$. (A1)\nWe need to find 'at least 10', which is $P(Y \\ge 10)$.\nCalculators find $P(Y \\le k)$, so we use the complement rule: $P(Y \\ge 10) = 1 - P(Y \\le 9)$. (M1) for correct complement rule.\nUsing GDC: $1 - $ `poissonCdf(m=9, x=9)`\n$1 - 0.5874... = 0.4125... \\approx 0.413$ (3 s.f.) (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Distinguishing Between Binomial and Poisson"
+    },
+    {
+      "type": "text",
+      "content": "Choosing the correct distribution is a critical first step. The main deciding factor is the nature of the 'experiment'. The Binomial distribution is used for a discrete number of trials, where you are counting the 'successes'. The Poisson distribution is used for events occurring in a continuous medium (like time or space), where you are counting the number of occurrences. Ask yourself: 'Is there a fixed number of trials, $n$?' If yes, it's almost certainly Binomial. If the scenario involves an average rate over a period, but no fixed number of trials, it's almost certainly Poisson."
+    },
+    {
+      "type": "examTip",
+      "content": "For questions involving inequalities like 'at least', 'at most', 'more than', or 'fewer than', be extremely careful. Write down the inequality (e.g., $P(X \\ge 5)$) and then translate it into what your GDC can calculate. For $P(X \\ge 5)$, you must calculate $1 - P(X \\le 4)$. A quick sketch of a number line can help you avoid off-by-one errors, which are very common."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge with exam-style questions on Binomial and Poisson distributions.",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=4.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Binomial Distribution Visualiser",
+          "href": "https://www.geogebra.org/m/gYc83YqN"
+        },
+        {
+          "label": "GeoGebra: Poisson Distribution Visualiser",
+          "href": "https://www.geogebra.org/m/W9gD2T3D"
+        },
+        {
+          "label": "Khan Academy: Binomial vs. Poisson",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/binomial-random-variables/v/binomial-distribution"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Binomial Distribution Visualiser",
+    "embedUrl": "https://www.geogebra.org/classic?material=gYc83YqN",
+    "launchUrl": "https://www.geogebra.org/classic?material=gYc83YqN",
+    "hint": "Use “Binomial Distribution Visualiser” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

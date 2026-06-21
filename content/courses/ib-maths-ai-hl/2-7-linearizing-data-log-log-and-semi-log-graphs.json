@@ -1,0 +1,206 @@
+{
+  "slug": "2-7-linearizing-data-log-log-and-semi-log-graphs",
+  "topicCode": "2.7",
+  "title": "Linearizing data: log-log and semi-log graphs",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "Learn how to transform non-linear data sets into straight lines using logarithms. This lesson covers log-log and semi-log transformations to model power law and exponential relationships, a key skill for analysing real-world data.",
+  "durationMin": 50,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the purpose of linearizing data and identify when it is appropriate.",
+    "Apply logarithmic transformations to data to model power law ($y=ax^n$) and exponential ($y=ab^x$) relationships.",
+    "Determine the parameters of a non-linear model by analysing the gradient and y-intercept of the corresponding linear graph.",
+    "Use a GDC to perform linear regression on transformed data and interpret the results in the context of the original problem."
+  ],
+  "simpleExplanation": {
+    "title": "Straightening Out the Curves",
+    "summary": "Many real-world relationships aren't straight lines, making them tricky to analyse. By applying logarithms, we can transform these curved relationships into straight lines, allowing us to use familiar linear analysis tools.",
+    "analogy": "Imagine trying to measure the length of a winding country road on a flat map. It's difficult. But if you could magically straighten the road out on the map, measuring it would be simple. Linearization is like that magic trick for data; we use logarithms as our 'straightening tool' to make curved data linear and easy to model.",
+    "steps": [
+      "Plot the original data $(x, y)$ and observe the non-linear pattern.",
+      "Choose a transformation: for a suspected power law ($y=ax^b$), plot $\\log y$ vs $\\log x$; for an exponential relationship ($y=ab^x$), plot $\\log y$ vs $x$.",
+      "Use your GDC to find the linear regression equation, $Y = mX + c$, for the transformed data.",
+      "Use the gradient ($m$) and intercept ($c$) to find the original parameters ($a$ and $b$) by reversing the transformation."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is linearization of data?",
+      "back": "The process of transforming a non-linear relationship between variables into a linear one, usually by applying a function like a logarithm to one or both variables."
+    },
+    {
+      "front": "Why do we linearize data?",
+      "back": "To use the methods of linear regression (like finding a line of best fit and the correlation coefficient, $r$) on data that is not inherently linear. This allows us to model more complex relationships."
+    },
+    {
+      "front": "What non-linear model is associated with a **log-log** transformation?",
+      "back": "A power law model of the form $y = ax^n$."
+    },
+    {
+      "front": "What non-linear model is associated with a **semi-log** transformation?",
+      "back": "An exponential model of the form $y = ab^x$."
+    },
+    {
+      "front": "For a power law $y = ax^n$, what do you plot to get a straight line?",
+      "back": "Plot $\\log(y)$ against $\\log(x)$. The resulting graph will be linear."
+    },
+    {
+      "front": "For an exponential model $y = ab^x$, what do you plot to get a straight line?",
+      "back": "Plot $\\log(y)$ against $x$. The resulting graph will be linear."
+    },
+    {
+      "front": "On a log-log plot of $\\log(y)$ vs $\\log(x)$ for $y=ax^n$, what is the gradient?",
+      "back": "The gradient is the power, $n$."
+    },
+    {
+      "front": "On a log-log plot of $\\log(y)$ vs $\\log(x)$ for $y=ax^n$, what is the y-intercept?",
+      "back": "The y-intercept is $\\log(a)$. To find $a$, you must calculate $10^{\\text{intercept}}$ (for log base 10) or $e^{\\text{intercept}}$ (for ln)."
+    },
+    {
+      "front": "On a semi-log plot of $\\log(y)$ vs $x$ for $y=ab^x$, what is the gradient?",
+      "back": "The gradient is $\\log(b)$. To find $b$, you must calculate $10^{\\text{gradient}}$ or $e^{\\text{gradient}}$."
+    },
+    {
+      "front": "On a semi-log plot of $\\log(y)$ vs $x$ for $y=ab^x$, what is the y-intercept?",
+      "back": "The y-intercept is $\\log(a)$. To find $a$, you must calculate $10^{\\text{intercept}}$ or $e^{\\text{intercept}}$."
+    },
+    {
+      "front": "What's a common mistake when finding the parameter 'a' from the intercept 'c'?",
+      "back": "Forgetting to reverse the logarithm. If the intercept $c = \\log(a)$, then $a = 10^c$ or $a = e^c$. Simply stating $a=c$ is incorrect."
+    },
+    {
+      "front": "What is the key difference in the variables plotted for log-log vs semi-log graphs?",
+      "back": "Log-log plots use the logarithm of **both** variables (e.g., $\\ln y$ vs $\\ln x$). Semi-log plots use the logarithm of only **one** variable (e.g., $\\ln y$ vs $x$)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does it matter if I use natural log (ln) or base-10 log (log)?",
+      "a": "Generally, no, as long as you are consistent throughout your calculation. The values of the gradient and intercept will be different, but the final parameters ($a, n, b$) of your model will be the same (or very close due to rounding). If an exam question provides partially transformed data, you must use the same log base they have used. Natural log ($\\ln$) is often preferred in science and for models involving the constant $e$."
+    },
+    {
+      "q": "How do I know whether to use a log-log or a semi-log transformation?",
+      "a": "It depends on the underlying model you suspect or are told to test. If you are testing for a power law ($y=ax^n$), use a log-log plot ($\\log y$ vs $\\log x$). If you are testing for an exponential model ($y=ab^x$), use a semi-log plot ($\\log y$ vs $x$). Sometimes, you may need to plot both and see which one produces a straighter line (i.e., has a Pearson's correlation coefficient, $r$, closer to 1 or -1)."
+    },
+    {
+      "q": "My calculator can fit exponential and power models directly. Why do I need to learn this?",
+      "a": "This is a great question! While your GDC is a powerful tool, exam questions are specifically designed to test your understanding of the linearization process itself. You might be given a pre-linearized graph and asked to find the original parameters, or be asked to explain the meaning of the gradient on a log-log plot. Understanding the transformation is crucial for these types of questions, which test deeper conceptual knowledge beyond just pressing calculator buttons."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our study of statistics, we've seen how powerful linear regression is for modelling relationships between two variables. However, the world is not always linear. Many relationships in science, economics, and biology follow curved patterns. This lesson introduces a powerful technique called linearization, which allows us to transform these non-linear relationships into straight lines, so we can apply the familiar tools of linear regression."
+    },
+    {
+      "type": "heading",
+      "content": "Recognising Non-Linear Relationships"
+    },
+    {
+      "type": "text",
+      "content": "When you first plot a scatter diagram of your data, you might notice that the points do not form a straight line. Instead, they might follow a curve that gets steeper and steeper, characteristic of exponential growth, or a curve that resembles a parabola, which could be a power law relationship. Our goal is to identify the likely type of relationship and then apply a transformation that 'straightens' the data."
+    },
+    {
+      "type": "heading",
+      "content": "Linearizing Power Law Models: The Log-Log Transformation"
+    },
+    {
+      "type": "text",
+      "content": "A power law relationship is described by an equation of the form $y = ax^n$, where $a$ and $n$ are constants. This type of model is common in physics and biology, for example in describing the relationship between the metabolic rate and mass of an animal. To linearize this, we take the logarithm of both sides of the equation. It is common to use the natural logarithm (ln), but base-10 log also works perfectly well."
+    },
+    {
+      "type": "formula",
+      "content": "$$ \\begin{align*} y &= ax^n \\\\ \\ln(y) &= \\ln(ax^n) \\\\ \\ln(y) &= \\ln(a) + \\ln(x^n) \\\\ \\ln(y) &= \\ln(a) + n\\ln(x) \\\\ \\ln(y) &= n\\ln(x) + \\ln(a) \\end{align*} $$"
+    },
+    {
+      "type": "text",
+      "content": "This equation is now in the form of a straight line, $Y = mX + c$. By letting $Y = \\ln(y)$ and $X = \\ln(x)$, we can see that the gradient of the line is $m = n$ and the y-intercept is $c = \\ln(a)$. This is called a log-log transformation because we take the log of both variables."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Model:** Power Law, $y = ax^n$",
+        "**Transformation:** Plot $\\ln(y)$ against $\\ln(x)$ (or $\\log(y)$ vs $\\log(x)$).",
+        "**New Variables:** $Y = \\ln(y)$, $X = \\ln(x)$",
+        "**Linear Equation:** $Y = nX + \\ln(a)$",
+        "**Gradient:** $m = n$ (the power)",
+        "**Y-intercept:** $c = \\ln(a)$, so $a = e^c$"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The orbital period, $T$ (in Earth years), and the average distance from the Sun, $R$ (in astronomical units, AU), for several planets in our solar system are recorded in the table. \n\n| Planet | Distance, R (AU) | Period, T (years) |\n| :--- | :---: | :---: |\n| Mercury | 0.39 | 0.24 |\n| Venus | 0.72 | 0.62 |\n| Earth | 1.00 | 1.00 |\n| Mars | 1.52 | 1.88 |\n| Jupiter | 5.20 | 11.9 |\n\nIt is believed that this data follows a power law model of the form $T = aR^n$. \n\n(a) By linearizing the data, find the values of $n$ and $a$. \n(b) Write down the equation for $T$ in terms of $R$.",
+      "solution": "(a) The model is $T = aR^n$. We linearize this by taking natural logs:\n\n$\\ln(T) = \\ln(aR^n) = \\ln(a) + n\\ln(R)$\n\nThis means a plot of $\\ln(T)$ against $\\ln(R)$ will be a straight line with gradient $n$ and y-intercept $\\ln(a)$.\n\nFirst, we transform the data:\n\n| $\\ln(R)$ | $\\ln(T)$ |\n| :---: | :---: |\n| -0.942 | -1.427 |\n| -0.329 | -0.478 |\n| 0.000 | 0.000 |\n| 0.419 | 0.631 |\n| 1.649 | 2.477 |\n\n(M1) for transforming at least one column correctly.\n\nUsing a GDC, we perform a linear regression on the transformed data ($\\ln(T)$ vs $\\ln(R)$).\n\nThis gives the regression line equation: $\\ln(T) = 1.50\\ln(R) - 0.000514$. (A2)\n\nComparing this to $\\ln(T) = n\\ln(R) + \\ln(a)$:\n\nThe gradient is $n$. So, $n = 1.50$ (to 3 s.f.). (A1)\n\nThe y-intercept is $\\ln(a)$. So, $\\ln(a) = -0.000514$. (M1)\n\nTo find $a$, we calculate $a = e^{-0.000514} \\approx 0.999$. So, $a = 1.00$ (to 3 s.f.). (A1)\n\n(b) Substituting the values of $a$ and $n$ back into the original model:\n\n$T = 1.00R^{1.50}$ (or simply $T = R^{1.5}$) (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Linearizing Exponential Models: The Semi-Log Transformation"
+    },
+    {
+      "type": "text",
+      "content": "An exponential relationship is described by an equation of the form $y = ab^x$, where $a$ and $b$ are constants. These models are fundamental in describing phenomena like population growth, compound interest, and radioactive decay. To linearize this model, we again take the logarithm of both sides."
+    },
+    {
+      "type": "formula",
+      "content": "$$ \\begin{align*} y &= ab^x \\\\ \\log(y) &= \\log(ab^x) \\\\ \\log(y) &= \\log(a) + \\log(b^x) \\\\ \\log(y) &= \\log(a) + x\\log(b) \\\\ \\log(y) &= (\\log(b))x + \\log(a) \\end{align*} $$"
+    },
+    {
+      "type": "text",
+      "content": "This equation is also in the form of a straight line, $Y = mX + c$. Here, we let $Y = \\log(y)$ but we keep $X = x$. The gradient of the line is $m = \\log(b)$ and the y-intercept is $c = \\log(a)$. This is called a semi-log transformation because we only take the log of one variable (the y-variable)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Model:** Exponential, $y = ab^x$",
+        "**Transformation:** Plot $\\log(y)$ against $x$.",
+        "**New Variables:** $Y = \\log(y)$, $X = x$",
+        "**Linear Equation:** $Y = (\\log(b))X + \\log(a)$",
+        "**Gradient:** $m = \\log(b)$, so $b = 10^m$ (or $e^m$ if using ln)",
+        "**Y-intercept:** $c = \\log(a)$, so $a = 10^c$ (or $e^c$ if using ln)"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A biologist is studying a bacterial culture. The population, $P$, of the bacteria is recorded every hour, $t$. The results are shown in the table.\n\n| Time, t (hours) | Population, P |\n| :---: | :---: |\n| 0 | 50 |\n| 1 | 75 |\n| 2 | 110 |\n| 3 | 168 |\n| 4 | 250 |\n\nThe relationship is modelled by the equation $P = ab^t$. By linearizing the data, determine the values of the constants $a$ and $b$.",
+      "solution": "The model is $P = ab^t$. We linearize this by taking base-10 logarithms:\n\n$\\log(P) = \\log(ab^t) = \\log(a) + t\\log(b)$\n\nA plot of $\\log(P)$ against $t$ will be a straight line with gradient $\\log(b)$ and y-intercept $\\log(a)$.\n\nFirst, we transform the P-values:\n\n| t | $\\log(P)$ |\n| :---: | :---: |\n| 0 | 1.699 |\n| 1 | 1.875 |\n| 2 | 2.041 |\n| 3 | 2.225 |\n| 4 | 2.398 |\n\n(M1) for transforming the P-values.\n\nUsing a GDC, perform a linear regression on $\\log(P)$ vs $t$.\n\nThe regression line equation is: $\\log(P) = 0.176t + 1.70$. (A2)\n\nComparing this to $\\log(P) = (\\log(b))t + \\log(a)$:\n\nThe gradient is $\\log(b)$. So, $\\log(b) = 0.176$. (M1)\n$b = 10^{0.176} \\approx 1.4996...$ So, $b \\approx 1.50$ (to 3 s.f.). (A1)\n\nThe y-intercept is $\\log(a)$. So, $\\log(a) = 1.70$. (M1)\n$a = 10^{1.70} \\approx 50.118...$ So, $a \\approx 50.1$ (to 3 s.f.). (A1)\n\nThe values are $a \\approx 50.1$ and $b \\approx 1.50$."
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, always state the transformation you are using and define your new variables (e.g., 'Let $Y = \\ln(y)$ and $X = \\ln(x)$'). When you find the gradient and intercept from your GDC, write them down before calculating the final parameters. Be very careful with the final step: if your intercept $c = \\ln(a)$, then $a = e^c$, not $a=c$. This is a very common place to lose marks. Unless specified, using either `log` (base 10) or `ln` (base e) is fine, as long as you are consistent."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Linearization Problems",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Linearizing data",
+          "href": "https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/transforming-nonlinear-data/v/linearizing-exponential-growth"
+        },
+        {
+          "label": "GeoGebra: Log-Log and Semi-Log Transformations",
+          "href": "https://www.geogebra.org/m/mcejk2a5"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Log-Log and Semi-Log Transformations",
+    "embedUrl": "https://www.geogebra.org/classic?material=mcejk2a5",
+    "launchUrl": "https://www.geogebra.org/classic?material=mcejk2a5",
+    "hint": "Use “Log-Log and Semi-Log Transformations” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

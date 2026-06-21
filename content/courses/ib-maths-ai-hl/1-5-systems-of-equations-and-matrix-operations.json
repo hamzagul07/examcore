@@ -1,0 +1,171 @@
+{
+  "slug": "1-5-systems-of-equations-and-matrix-operations",
+  "topicCode": "1.5",
+  "title": "Systems of equations and matrix operations",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores how to represent systems of linear equations in matrix form, $AX=B$. You will learn to solve these systems by finding the inverse of the coefficient matrix, $A$, and to use the determinant to understand the nature of the solutions. The focus is on using a GDC efficiently to handle systems with up to three variables.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Represent a system of linear equations using the matrix equation $AX=B$.",
+    "Solve systems of linear equations for up to three variables using the inverse matrix method on a GDC.",
+    "Understand the role of the determinant in identifying whether a system has a unique solution.",
+    "Interpret the solutions of a system of equations in the context of a given problem."
+  ],
+  "simpleExplanation": {
+    "title": "The Matrix Recipe Solver",
+    "summary": "Matrices provide a powerful and organised method for solving several simultaneous equations. This is like having a master key that unlocks the values of all your variables at once.",
+    "analogy": "Imagine you're a baker with three secret recipes for cakes that use different amounts of flour, sugar, and eggs. You know the total amount of each ingredient you used today and the total number of each cake you baked, but you've forgotten the recipes themselves. Setting up this problem with matrices is like using a machine to analyse your stock and sales, which then perfectly reconstructs each secret recipe for you.",
+    "steps": [
+      "Translate the word problem or equations into the matrix form $AX = B$, identifying the coefficient matrix $A$, variable matrix $X$, and constant matrix $B$.",
+      "Use your GDC to find the determinant of the coefficient matrix, $\\det(A)$. If it's zero, there is no unique solution.",
+      "If $\\det(A) \\neq 0$, use your GDC to calculate the inverse matrix, $A^{-1}$.",
+      "Calculate the solution by multiplying the inverse matrix by the constant matrix: $X = A^{-1}B$. The resulting matrix gives the values of your variables."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the standard matrix form for a system of linear equations?",
+      "back": "$AX = B$, where $A$ is the coefficient matrix, $X$ is the variable matrix, and $B$ is the constant matrix."
+    },
+    {
+      "front": "In the equation $AX=B$, what does the matrix $A$ represent?",
+      "back": "$A$ is the coefficient matrix. Each entry $a_{ij}$ is the coefficient of the $j$-th variable in the $i$-th equation."
+    },
+    {
+      "front": "How do you solve for the variable matrix $X$ in the equation $AX=B$?",
+      "back": "By pre-multiplying both sides by the inverse of $A$: $X = A^{-1}B$."
+    },
+    {
+      "front": "Why is the order $X = A^{-1}B$ important?",
+      "back": "Matrix multiplication is not commutative, so $A^{-1}B$ is generally not equal to $BA^{-1}$. The correct order is essential for the correct solution."
+    },
+    {
+      "front": "What condition must be met for a system of equations to have a unique solution?",
+      "back": "The determinant of the coefficient matrix $A$ must be non-zero ($det(A) \\neq 0$)."
+    },
+    {
+      "front": "What does it mean if $\\det(A) = 0$?",
+      "back": "The system does not have a unique solution. It will either have no solutions or infinitely many solutions."
+    },
+    {
+      "front": "What is a singular matrix?",
+      "back": "A square matrix whose determinant is zero. A singular matrix does not have an inverse."
+    },
+    {
+      "front": "What is an augmented matrix?",
+      "back": "A matrix formed by combining the coefficient matrix $A$ and the constant matrix $B$ into a single matrix, written as $[A|B]$. It's used for Gaussian elimination (rref)."
+    },
+    {
+      "front": "Common Trap: When solving $AX=B$, a student calculates $X = BA^{-1}$. Why is this incorrect?",
+      "back": "Matrix multiplication is not commutative. The correct derivation is $A^{-1}(AX) = A^{-1}B \\implies (A^{-1}A)X = A^{-1}B \\implies IX = A^{-1}B \\implies X = A^{-1}B$."
+    },
+    {
+      "front": "How can you use your GDC to solve a system of equations without finding the inverse matrix explicitly?",
+      "back": "You can use the 'rref' (Reduced Row Echelon Form) function on an augmented matrix $[A|B]$. The final column of the resulting matrix will be the solution vector."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What happens if I get a 'Singular Matrix' or 'Domain Error' on my GDC when finding the inverse?",
+      "a": "This error means the determinant of your coefficient matrix is zero. The system does not have a unique solution. In an exam, you should state that $\\det(A) = 0$ and therefore no unique solution exists. The system will have either no solutions or infinitely many solutions."
+    },
+    {
+      "q": "Can I solve these systems by hand?",
+      "a": "While it's possible to solve 2x2 systems by hand (by finding the inverse manually) and 3x3 systems (using a very long process), the AI HL syllabus expects you to use your GDC for efficiency. The marks are awarded for setting up the problem correctly and interpreting the GDC's output, not for manual matrix inversion."
+    },
+    {
+      "q": "Does the order of the equations matter when I set up the matrix A and B?",
+      "a": "The order of the equations (the rows) does not matter, as long as you are consistent. The first row of matrix A must correspond to the first element of matrix B, the second row of A to the second element of B, and so on. Swapping two equations is equivalent to swapping the corresponding two rows in both A and B, which will still lead to the correct answer."
+    },
+    {
+      "q": "What's the difference between using $X=A^{-1}B$ and using 'rref' on an augmented matrix?",
+      "a": "Both are valid GDC methods to solve a system of linear equations. $X=A^{-1}B$ is a direct calculation based on the inverse matrix. Using 'rref' (Reduced Row Echelon Form) on an augmented matrix $[A|B]$ performs a process called Gaussian elimination. For systems with a unique solution, they will give the same answer. The 'rref' method is more general as it can also reveal information about systems with no or infinite solutions."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "While you're familiar with solving two simultaneous equations using substitution or elimination, these methods become cumbersome and inefficient for systems with three or more variables. Matrix algebra provides a clean, systematic, and powerful framework for representing and solving large systems of linear equations, which are common in fields like economics, engineering, and computer science."
+    },
+    {
+      "type": "heading",
+      "content": "Representing Systems of Equations with Matrices"
+    },
+    {
+      "type": "text",
+      "content": "Any system of linear equations can be expressed in the compact matrix form $AX = B$. This involves organising the coefficients, variables, and constants into three distinct matrices. Consider a system with three variables $x, y, z$:"
+    },
+    {
+      "type": "formula",
+      "content": "$\\begin{cases} a_1x + b_1y + c_1z = d_1 \\\\ a_2x + b_2y + c_2z = d_2 \\\\ a_3x + b_3y + c_3z = d_3 \\end{cases} \\quad \\iff \\quad \\begin{pmatrix} a_1 & b_1 & c_1 \\\\ a_2 & b_2 & c_2 \\\\ a_3 & b_3 & c_3 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = \\begin{pmatrix} d_1 \\\\ d_2 \\\\ d_3 \\end{pmatrix}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**A** is the **coefficient matrix**, containing the coefficients of the variables.",
+        "**X** is the **variable matrix** (a column vector), containing the variables.",
+        "**B** is the **constant matrix** (a column vector), containing the constants from the right-hand side of the equations."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Solving Systems using the Inverse Matrix"
+    },
+    {
+      "type": "text",
+      "content": "If we can represent our system as $AX = B$, we can solve for the variables in matrix $X$ by using the inverse of matrix $A$. By pre-multiplying both sides of the equation by $A^{-1}$, we isolate $X$. Remember that $A^{-1}A$ results in the identity matrix, $I$, and $IX = X$."
+    },
+    {
+      "type": "formula",
+      "content": "AX = B \\implies A^{-1}(AX) = A^{-1}B \\implies (A^{-1}A)X = A^{-1}B \\implies IX = A^{-1}B \\implies X = A^{-1}B"
+    },
+    {
+      "type": "examTip",
+      "content": "The order of multiplication is critical. The solution is $X = A^{-1}B$, not $BA^{-1}$. On your GDC, you will define matrix A and matrix B, then compute $A^{-1} \\times B$. Make sure the dimensions are compatible for multiplication."
+    },
+    {
+      "type": "workedExample",
+      "question": "A cinema sells adult tickets and child tickets. On Friday, it sold 120 adult tickets and 85 child tickets, with total takings of £1,940. On Saturday, it sold 210 adult tickets and 150 child tickets, with total takings of £3,450. Let £$a$ be the price of an adult ticket and £$c$ be the price of a child ticket. Find the price of each type of ticket.",
+      "solution": "First, set up the system of linear equations:\n$120a + 85c = 1940$ (Friday)\n$210a + 150c = 3450$ (Saturday)\n\n[M1] - For correctly formulating at least one equation.\n\nNext, write this in matrix form $AX=B$:\n$A = \\begin{pmatrix} 120 & 85 \\\\ 210 & 150 \\end{pmatrix}$, $X = \\begin{pmatrix} a \\\\ c \\end{pmatrix}$, $B = \\begin{pmatrix} 1940 \\\\ 3450 \\end{pmatrix}$\n\n[M1] - For correctly identifying matrices A, X, and B.\n\nNow, we solve for $X$ using $X = A^{-1}B$. We use a GDC for this.\nEnter matrix $A$ and matrix $B$ into your calculator.\nFirst, check the determinant of A:\n$\\det(A) = (120)(150) - (85)(210) = 18000 - 17850 = 150$.\nSince $\\det(A) \\neq 0$, a unique solution exists.\n\nNow, calculate $A^{-1}B$ on the GDC:\n$X = \\begin{pmatrix} 120 & 85 \\\\ 210 & 150 \\end{pmatrix}^{-1} \\begin{pmatrix} 1940 \\\\ 3450 \\end{pmatrix} = \\begin{pmatrix} 11 \\\\ 7.5 \\end{pmatrix}$\n\n[M1] - For the correct setup $X = A^{-1}B$.\n\nSo, $a = 11$ and $c = 7.5$.\nThe price of an adult ticket is £11.00 and the price of a child ticket is £7.50.\n\n[A2] - For both correct values. Award [A1] for one correct value."
+    },
+    {
+      "type": "heading",
+      "content": "The Role of the Determinant"
+    },
+    {
+      "type": "text",
+      "content": "The inverse of a matrix $A$ only exists if its determinant, $\\det(A)$, is non-zero. This has a direct implication for systems of equations. If $\\det(A) \\neq 0$, the system has a single, unique solution. If $\\det(A) = 0$, the matrix is called 'singular', and the system does not have a unique solution. Geometrically, for a 2x2 system, this means the lines are either parallel (no solution) or the exact same line (infinitely many solutions). For a 3x3 system, it represents planes that intersect in a line, are coincident, or are parallel."
+    },
+    {
+      "type": "workedExample",
+      "question": "A company produces three products, P1, P2, and P3, using three raw materials, M1, M2, and M3. The requirements are given below:\n- To produce one unit of P1 requires 1 kg of M1, 3 kg of M2, and 2 kg of M3.\n- To produce one unit of P2 requires 2 kg of M1, 2 kg of M2, and 4 kg of M3.\n- To produce one unit of P3 requires 3 kg of M1, 1 kg of M2, and 1 kg of M3.\nThe company has 140 kg of M1, 200 kg of M2, and 190 kg of M3 available. Let $x, y, z$ be the number of units of P1, P2, and P3 produced, respectively. Find the number of units of each product the company can produce to use up all the raw materials.",
+      "solution": "First, set up the system of equations based on the usage of each material:\n$x + 2y + 3z = 140$ (Material M1)\n$3x + 2y + z = 200$ (Material M2)\n$2x + 4y + z = 190$ (Material M3)\n\n[M1] - For correctly formulating the system of equations.\n\nWrite this in matrix form $AX=B$:\n$A = \\begin{pmatrix} 1 & 2 & 3 \\\\ 3 & 2 & 1 \\\\ 2 & 4 & 1 \\end{pmatrix}$, $X = \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix}$, $B = \\begin{pmatrix} 140 \\\\ 200 \\\\ 190 \\end{pmatrix}$\n\n[M1] - For setting up the correct matrix equation.\n\nUsing a GDC, find the determinant of A:\n$\\det(A) = 20$. Since this is not zero, a unique solution exists.\n\n[R1] - For stating that a unique solution exists because the determinant is non-zero.\n\nNow solve for $X$ using $X = A^{-1}B$ on the GDC:\n$X = \\begin{pmatrix} 1 & 2 & 3 \\\\ 3 & 2 & 1 \\\\ 2 & 4 & 1 \\end{pmatrix}^{-1} \\begin{pmatrix} 140 \\\\ 200 \\\\ 190 \\end{pmatrix} = \\begin{pmatrix} 50 \\\\ 15 \\\\ 20 \\end{pmatrix}$\n\n[M1] - For evidence of using the GDC to solve (e.g., showing $A^{-1}B$).\n\nThe solution is $x=50, y=15, z=20$.\nThe company can produce 50 units of P1, 15 units of P2, and 20 units of P3.\n\n[A2] - For all three correct values. Award [A1] for one or two correct values."
+    },
+    {
+      "type": "examTip",
+      "content": "For questions involving setting up your own equations from a word problem, read very carefully. It's easy to mix up rows and columns. A good habit is to label your equations (like 'Material M1', 'Material M2') to ensure your matrix rows are consistent."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Solving Systems with Matrices",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GDC Tutorial: Solving Systems with Matrices (TI-Nspire)",
+          "href": "https://www.youtube.com/watch?v=guL9f2tI-3k"
+        },
+        {
+          "label": "Khan Academy: Matrix Equations",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:solving-systems-of-linear-equations-with-matrices/v/matrix-equations-systems"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

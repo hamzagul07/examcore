@@ -1,0 +1,183 @@
+{
+  "slug": "1-7-eigenvalues-and-eigenvectors",
+  "topicCode": "1.7",
+  "title": "Eigenvalues and eigenvectors",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces eigenvalues and eigenvectors, fundamental concepts in linear algebra. We explore their geometric interpretation as vectors that are only scaled by a transformation, and learn how to calculate them for 2x2 matrices and find them for larger matrices using a GDC. Applications in dynamic systems, such as population modelling, are highlighted.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the definition of eigenvalues and eigenvectors and their relationship through the equation Av = λv.",
+    "Calculate eigenvalues and eigenvectors for a 2x2 matrix using the characteristic equation.",
+    "Use a Graphic Display Calculator (GDC) to find eigenvalues and eigenvectors for n x n matrices.",
+    "Interpret the meaning of eigenvalues and eigenvectors in the context of transformations and dynamic systems."
+  ],
+  "simpleExplanation": {
+    "title": "The Unchanging Direction",
+    "summary": "Imagine a transformation that squashes, stretches, or rotates things. Eigenvectors are special vectors that don't change their direction under this transformation; they only get scaled by a factor called the eigenvalue.",
+    "analogy": "Think of a funhouse mirror that only stretches you vertically. If you stand perfectly upright, your reflection is taller but still upright. Your 'upright' direction is an eigenvector because its direction hasn't changed, only its length. The amount you were stretched by is the eigenvalue. Any other pose would be distorted in a more complex way, changing both its shape and direction.",
+    "steps": [
+      "Define the transformation with a square matrix A.",
+      "Set up the core equation Av = λv, where v is the eigenvector and λ is the eigenvalue.",
+      "For a 2x2 matrix, solve the characteristic equation det(A - λI) = 0 to find the eigenvalues λ.",
+      "For each eigenvalue, solve the system (A - λI)v = 0 to find the corresponding eigenvectors v."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an eigenvector of a matrix A?",
+      "back": "A non-zero vector $\\mathbf{v}$ that, when multiplied by matrix A, results in a vector that is a scalar multiple of $\\mathbf{v}$. Its direction remains unchanged (or is flipped 180 degrees)."
+    },
+    {
+      "front": "What is an eigenvalue of a matrix A?",
+      "back": "A scalar, denoted by $\\lambda$, that represents the factor by which an eigenvector is stretched or shrunk when multiplied by matrix A. $A\\mathbf{v} = \\lambda\\mathbf{v}$."
+    },
+    {
+      "front": "What is the characteristic equation used to find eigenvalues?",
+      "back": "$\\det(A - \\lambda I) = 0$, where A is the square matrix, $\\lambda$ is the eigenvalue, and I is the identity matrix of the same size as A."
+    },
+    {
+      "front": "What does it mean if an eigenvalue is negative?",
+      "back": "The corresponding eigenvector's direction is reversed (flipped 180°) by the transformation."
+    },
+    {
+      "front": "What does it mean if an eigenvalue is 1?",
+      "back": "The corresponding eigenvector is unchanged by the transformation. It is a 'fixed' vector."
+    },
+    {
+      "front": "What does it mean if an eigenvalue is 0?",
+      "back": "The corresponding eigenvector is transformed into the zero vector. The transformation collapses space along that vector's direction."
+    },
+    {
+      "front": "Is an eigenvector unique?",
+      "back": "No. Any non-zero scalar multiple of an eigenvector is also an eigenvector for the same eigenvalue. For example, if $\\mathbf{v}$ is an eigenvector, so is $2\\mathbf{v}$ and $-0.5\\mathbf{v}$."
+    },
+    {
+      "front": "What is the 'dominant eigenvalue'?",
+      "back": "The eigenvalue with the largest absolute value (magnitude). In many applications, like population models, it determines the long-term behaviour of the system."
+    },
+    {
+      "front": "How do you find eigenvectors once you have an eigenvalue $\\lambda$?",
+      "back": "Solve the system of linear equations given by $(A - \\lambda I)\\mathbf{v} = \\mathbf{0}$ for the vector $\\mathbf{v}$."
+    },
+    {
+      "front": "Can a matrix have complex eigenvalues?",
+      "back": "Yes. If a real matrix has complex eigenvalues, they will always appear in conjugate pairs. Geometrically, this often corresponds to a rotation."
+    },
+    {
+      "front": "What is the relationship between the determinant of a matrix and its eigenvalues?",
+      "back": "The determinant of a matrix is the product of its eigenvalues. $\\det(A) = \\lambda_1 \\times \\lambda_2 \\times ... \\times \\lambda_n$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to calculate eigenvalues and eigenvectors of a 3x3 matrix by hand?",
+      "a": "No. For the AI HL course, calculating eigenvalues for matrices larger than 2x2 is a task for your GDC. You should, however, understand the concept of the characteristic equation, $\\det(A - \\lambda I) = 0$, as you may be asked to set it up."
+    },
+    {
+      "q": "Why is the eigenvector not unique?",
+      "a": "An eigenvector defines a direction. Any vector pointing in that same direction (or the exact opposite direction) is also an eigenvector for the same eigenvalue. If $\\mathbf{v}$ is an eigenvector, then $k\\mathbf{v}$ (for any non-zero scalar $k$) is also an eigenvector because $A(k\\mathbf{v}) = k(A\\mathbf{v}) = k(\\lambda\\mathbf{v}) = \\lambda(k\\mathbf{v})$."
+    },
+    {
+      "q": "What is the use of the 'dominant' eigenvalue?",
+      "a": "In systems that evolve over time (like population models or Markov chains), the dominant eigenvalue (the one with the largest magnitude) dictates the long-term behaviour. If its magnitude is greater than 1, the system grows; if less than 1, it shrinks; if equal to 1, it stabilises."
+    },
+    {
+      "q": "What if my GDC gives me complex eigenvalues?",
+      "a": "For real matrices, complex eigenvalues always come in conjugate pairs (e.g., $a+bi$ and $a-bi$). They typically represent a rotational component in the transformation. In the context of AI HL, you are more likely to deal with real eigenvalues, but you should be aware that complex ones can exist and your GDC can find them."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of eigenvalues and eigenvectors, a topic that unlocks the deeper properties of matrices and their transformations. While the name might sound complex, the core idea is surprisingly elegant. We are looking for special vectors that hold their direction when a matrix transformation is applied. This concept is not just an abstract mathematical curiosity; it is the engine behind Google's PageRank algorithm, facial recognition software, and models that predict population changes over time. In this course, we will focus on understanding the concept and using our GDC to apply it to real-world scenarios."
+    },
+    {
+      "type": "heading",
+      "content": "The Fundamental Relationship"
+    },
+    {
+      "type": "text",
+      "content": "A matrix transformation, represented by multiplying a vector by a matrix $A$, can stretch, shrink, rotate, or shear the vector. An eigenvector is a special, non-zero vector $\\mathbf{v}$ that does not change its direction under the transformation. It is only scaled (stretched or shrunk) by a certain factor. This scaling factor is the eigenvalue, $\\lambda$."
+    },
+    {
+      "type": "formula",
+      "content": "A\\mathbf{v} = \\lambda\\mathbf{v}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\mathbf{A}$ is an $n \\times n$ square matrix.",
+        "$\\mathbf{v}$ is a non-zero $n \\times 1$ column vector (the eigenvector).",
+        "$\\lambda$ is a scalar (the eigenvalue)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Finding Eigenvalues and Eigenvectors (By Hand for 2x2)"
+    },
+    {
+      "type": "text",
+      "content": "To find these special pairs, we rearrange the fundamental equation. The goal is to find values of $\\lambda$ for which the equation has a non-zero solution for $\\mathbf{v}$. This leads us to the 'characteristic equation'."
+    },
+    {
+      "type": "formula",
+      "content": "$$A\\mathbf{v} = \\lambda\\mathbf{v} \\implies A\\mathbf{v} - \\lambda\\mathbf{v} = \\mathbf{0} \\implies A\\mathbf{v} - \\lambda I\\mathbf{v} = \\mathbf{0} \\implies (A - \\lambda I)\\mathbf{v} = \\mathbf{0}$$"
+    },
+    {
+      "type": "text",
+      "content": "For this equation to have a non-zero solution for $\\mathbf{v}$, the matrix $(A - \\lambda I)$ must be 'singular', which means its determinant must be zero. This gives us the characteristic equation, which we can solve for $\\lambda$."
+    },
+    {
+      "type": "formula",
+      "content": "\\det(A - \\lambda I) = 0"
+    },
+    {
+      "type": "text",
+      "content": "Once we find the eigenvalues, we substitute each one back into $(A - \\lambda I)\\mathbf{v} = \\mathbf{0}$ to find the corresponding eigenvectors."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $A = \\begin{pmatrix} 4 & -2 \\\\ 1 & 1 \\end{pmatrix}$.\n\na) Find the eigenvalues of A.\nb) For each eigenvalue, find a corresponding eigenvector.",
+      "solution": "a) First, set up the characteristic equation $\\det(A - \\lambda I) = 0$.\n$A - \\lambda I = \\begin{pmatrix} 4 & -2 \\\\ 1 & 1 \\end{pmatrix} - \\lambda \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 4-\\lambda & -2 \\\\ 1 & 1-\\lambda \\end{pmatrix}$ (M1)\n\nNow, find the determinant:\n$\\det(A - \\lambda I) = (4-\\lambda)(1-\\lambda) - (-2)(1) = 0$\n$4 - 4\\lambda - \\lambda + \\lambda^2 + 2 = 0$\n$\\lambda^2 - 5\\lambda + 6 = 0$ (A1)\n\nFactorise the quadratic equation:\n$(\\lambda - 2)(\\lambda - 3) = 0$ (M1)\nSo, the eigenvalues are $\\lambda_1 = 2$ and $\\lambda_2 = 3$. (A1)\n\nb) Now find the eigenvector for each eigenvalue.\n\nFor $\\lambda_1 = 2$:\nSolve $(A - 2I)\\mathbf{v} = \\mathbf{0}$.\n$\\begin{pmatrix} 4-2 & -2 \\\\ 1 & 1-2 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} \\implies \\begin{pmatrix} 2 & -2 \\\\ 1 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ (M1)\nThis gives the equation $2x - 2y = 0$ (and $x - y = 0$, which is the same).\nSo, $x = y$. Any vector where the two components are equal is an eigenvector. A simple choice is $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$. (A1)\n\nFor $\\lambda_2 = 3$:\nSolve $(A - 3I)\\mathbf{v} = \\mathbf{0}$.\n$\\begin{pmatrix} 4-3 & -2 \\\\ 1 & 1-3 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} \\implies \\begin{pmatrix} 1 & -2 \\\\ 1 & -2 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ (M1)\nThis gives the equation $x - 2y = 0$, so $x = 2y$.\nLet $y=1$, then $x=2$. A simple choice is $\\mathbf{v}_2 = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Using Your GDC"
+    },
+    {
+      "type": "text",
+      "content": "While it's important to understand the underlying theory, for matrices larger than 2x2, or in any time-pressured exam situation, you will use your GDC. The specific steps vary between calculator models (e.g., TI-Nspire, Casio), but the general process involves entering the matrix and then using a built-in function like 'Eigenvalues' or 'EigVl' and 'Eigenvectors' or 'EigVc'."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will almost certainly use your GDC to find eigenvalues and eigenvectors. Make sure you are fluent with the process on your specific calculator model. For a 2x2 matrix, they might ask for the characteristic equation, but for a 3x3, it's a GDC task. Always write down the matrix you entered and the function you used."
+    },
+    {
+      "type": "workedExample",
+      "question": "The population of a species of birds is modelled by the matrix equation $\\mathbf{p}_{n+1} = L \\mathbf{p}_n$, where $\\mathbf{p}_n$ is a vector representing the number of juvenile and adult birds in year $n$, and $L = \\begin{pmatrix} 0 & 1.5 \\\\ 0.6 & 0.8 \\end{pmatrix}$.\n\na) Find the eigenvalues and corresponding eigenvectors of the matrix $L$ using your GDC.\nb) The dominant eigenvalue determines the long-term growth rate of the population. What is the annual percentage growth rate of the bird population in the long run?\nc) What is the long-term ratio of juvenile to adult birds?",
+      "solution": "a) Using a GDC, we find the eigenvalues and eigenvectors of $L = \\begin{pmatrix} 0 & 1.5 \\\\ 0.6 & 0.8 \\end{pmatrix}$.\nEnter the matrix $L$ into the calculator.\nUse the eigenvalue/eigenvector function (e.g., `eigVl(L)` and `eigVc(L)`).\n(M1) for evidence of GDC use.\n\nThe eigenvalues are $\\lambda_1 = 1.5$ and $\\lambda_2 = -0.4$. (A1)\n\nThe corresponding eigenvectors are (or are scalar multiples of):\nFor $\\lambda_1 = 1.5$: $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$ (or $\\begin{pmatrix} 1.5 \\\\ 1.5 \\end{pmatrix}$ depending on GDC).\nFor $\\lambda_2 = -0.4$: $\\mathbf{v}_2 = \\begin{pmatrix} -1.875 \\\\ 0.75 \\end{pmatrix}$ or $\\begin{pmatrix} -2.5 \\\\ 1 \\end{pmatrix}$. (A2) - A1 for each vector.\n\nb) The dominant eigenvalue is the one with the largest magnitude, which is $\\lambda_1 = 1.5$. (A1)\nThis means the population is multiplied by a factor of 1.5 each year in the long term.\nGrowth rate = $1.5 - 1 = 0.5$.\nPercentage growth rate = $0.5 \\times 100\\% = 50\\%$. (A1)\n\nc) The long-term ratio of the population is given by the eigenvector corresponding to the dominant eigenvalue. \n$\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} \\text{juvenile} \\\\ \\text{adult} \\end{pmatrix}$. (M1)\nThe long-term ratio of juvenile to adult birds is 1:1. (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Eigenvalues & Eigenvectors",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "3Blue1Brown on Eigenvectors",
+          "href": "https://www.youtube.com/watch?v=PFDu9o5coao"
+        },
+        {
+          "label": "Paul's Online Math Notes",
+          "href": "https://tutorial.math.lamar.edu/classes/de/eigenvalues.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

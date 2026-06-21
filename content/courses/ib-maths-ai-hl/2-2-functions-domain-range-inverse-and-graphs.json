@@ -1,0 +1,171 @@
+{
+  "slug": "2-2-functions-domain-range-inverse-and-graphs",
+  "topicCode": "2.2",
+  "title": "Functions: domain, range, inverse and graphs",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores the core concepts of functions, including their domain and range. It covers the process of finding and interpreting inverse functions, and the graphical relationship between a function and its inverse, with a focus on using a GDC for analysis.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and determine the domain and range of various functions.",
+    "Find the inverse of a function, $f^{-1}(x)$, both algebraically and graphically.",
+    "Analyse the graphs of functions to identify key features like intercepts, asymptotes, and turning points using a GDC.",
+    "Understand the relationship between the domain and range of a function and its inverse."
+  ],
+  "simpleExplanation": {
+    "title": "Functions: The Ultimate Rulebook",
+    "summary": "A function is a mathematical rule that takes an input and produces exactly one output. The domain is the set of all possible inputs, and the range is the set of all possible outputs.",
+    "analogy": "Think of a function like a vending machine. You input a specific code (the domain), the machine follows a rule to process it, and it gives you one specific snack (the range). You can't get two different snacks for one code, and some codes might not work at all. The inverse function would be like a machine that tells you which code to press to get a specific snack.",
+    "steps": [
+      "Identify the function and its rule. Determine the domain by looking for restrictions, such as division by zero or square roots of negative numbers.",
+      "Determine the range by considering the set of all possible output values the function can produce for the given domain.",
+      "To find the inverse function, swap the $x$ and $y$ variables in the equation and rearrange to make $y$ the subject again.",
+      "Analyse the graph of the function and its inverse. The inverse's graph is a reflection of the original in the line $y=x$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the 'domain' of a function?",
+      "back": "The set of all possible input values (often $x$-values) for which the function is defined."
+    },
+    {
+      "front": "What is the 'range' of a function?",
+      "back": "The set of all possible output values (often $y$-values or $f(x)$-values) that result from using the domain's input values."
+    },
+    {
+      "front": "What is the Vertical Line Test?",
+      "back": "A graphical test to determine if a curve is a function. If any vertical line intersects the graph more than once, it is not a function."
+    },
+    {
+      "front": "What is the relationship between the domain of $f(x)$ and the range of its inverse, $f^{-1}(x)$?",
+      "back": "The range of the inverse function $f^{-1}(x)$ is the same as the domain of the original function $f(x)$."
+    },
+    {
+      "front": "What is the relationship between the range of $f(x)$ and the domain of its inverse, $f^{-1}(x)$?",
+      "back": "The domain of the inverse function $f^{-1}(x)$ is the same as the range of the original function $f(x)$."
+    },
+    {
+      "front": "How do you find the inverse of a function $y=f(x)$ algebraically?",
+      "back": "1. Swap $x$ and $y$ in the equation to get $x=f(y)$. 2. Rearrange the equation to make $y$ the subject. The new expression for $y$ is $f^{-1}(x)$."
+    },
+    {
+      "front": "What is the graphical relationship between a function and its inverse?",
+      "back": "The graph of $y=f^{-1}(x)$ is a reflection of the graph of $y=f(x)$ in the line $y=x$."
+    },
+    {
+      "front": "What condition must a function satisfy to have an inverse function?",
+      "back": "The function must be one-to-one. This means that for every output $y$, there is only one unique input $x$. This can be checked with the Horizontal Line Test."
+    },
+    {
+      "front": "Common Trap: What is the difference between $f^{-1}(x)$ and $(f(x))^{-1}$?",
+      "back": "$f^{-1}(x)$ is the inverse function. $(f(x))^{-1}$ is the reciprocal of the function, which is $1/f(x)$. They are not the same."
+    },
+    {
+      "front": "What are two common situations that restrict the domain of a function?",
+      "back": "1. The denominator of a fraction cannot be zero. 2. The expression inside a square root (or any even root) cannot be negative."
+    },
+    {
+      "front": "What is a self-inverse function?",
+      "back": "A function for which the inverse is the same as the original function, i.e., $f(x) = f^{-1}(x)$. An example is $f(x) = 1/x$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does every function have an inverse function?",
+      "a": "No. A function must be 'one-to-one' to have an inverse function. This means that every output value in the range comes from exactly one input value in the domain. You can test this graphically with the Horizontal Line Test: if any horizontal line intersects the graph more than once, the function is not one-to-one and does not have a unique inverse."
+    },
+    {
+      "q": "What is the difference between finding $f^{-1}(2)$ and $(f(2))^{-1}$?",
+      "a": "$f^{-1}(2)$ means you are finding the output of the inverse function when the input is 2. This is equivalent to finding the value of $x$ for which $f(x)=2$. In contrast, $(f(2))^{-1}$ means you first calculate the output of the original function at $x=2$ to get $f(2)$, and then you find the reciprocal of that result, i.e., $1/f(2)$."
+    },
+    {
+      "q": "How can I use my GDC to find the domain and range?",
+      "a": "Graph the function on your GDC. For the domain, look at the graph from left to right. Identify any vertical asymptotes or points where the graph starts or stops. For the range, look at the graph from bottom to top. Identify any horizontal asymptotes or minimum/maximum values, which will define the boundaries of your range."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of functions, the building blocks of many mathematical models. A function describes a relationship between an input and an output. In this lesson, we will dissect this relationship by exploring the concepts of domain and range, learning how to 'undo' functions by finding their inverse, and using our GDC to visualise and analyse their behaviour."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding Domain and Range"
+    },
+    {
+      "type": "text",
+      "content": "The **domain** of a function is the complete set of possible input values. Think of it as the 'allowed' $x$-values. The **range** is the complete set of possible output values that the function can produce. It's the set of all resulting $y$-values. When defining a function, we must be mindful of mathematical rules that limit the domain. For example, we cannot divide by zero, and we cannot take the square root of a negative number (in the real number system)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Domain:** All possible inputs ($x$-values). Look for denominators ($ $\neq 0$) and even roots ($ ge 0$).$",
+        "**Range:** All possible outputs ($y$-values). Consider the function's behaviour, such as minimum/maximum values and asymptotes.",
+        "**Notation:** Domain and range can be expressed using inequalities (e.g., $x > 3$), set notation (e.g., ${x in mathbb{R} | x $\neq 2}$), or interval notation (e.g., $[0, infty)$).$"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the function $f(x) = sqrt{x-5} + 2$.\n(a) State the domain of $f(x)$.\n(b) Find the range of $f(x)$.",
+      "solution": "(a) To find the domain, we must ensure the expression inside the square root is non-negative.\n$x-5 ge 0$ (M1)\n$x ge 5$\nThe domain is $[5, infty)$ or $x ge 5$. (A1)\n\n(b) The square root term, $sqrt{x-5}$, has a minimum value of 0, which occurs when $x=5$. \nTherefore, the minimum value of the entire function is $f(5) = sqrt{5-5} + 2 = 0 + 2 = 2$. (M1)\nAs $x$ increases, $sqrt{x-5}$ increases, so $f(x)$ increases without bound. \nThe range is $[2, infty)$ or $f(x) ge 2$. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Inverse Functions"
+    },
+    {
+      "type": "text",
+      "content": "An inverse function, denoted $f^{-1}(x)$, essentially reverses the action of the original function $f(x)$. If $f$ maps $a$ to $b$, then $f^{-1}$ maps $b$ back to $a$. For a function to have a unique inverse, it must be 'one-to-one', meaning each output corresponds to exactly one input. We can find the inverse algebraically by swapping the roles of $x$ and $y$ in the function's equation and then solving for the new $y$."
+    },
+    {
+      "type": "formula",
+      "content": "If $f^{-1}$ is the inverse of $f$, then: \n$f(f^{-1}(x)) = x$ and $f^{-1}(f(x)) = x$"
+    },
+    {
+      "type": "examTip",
+      "content": "A very common exam question involves stating the domain and range of an inverse function. Remember this simple rule: The domain of $f^{-1}(x)$ is the range of $f(x)$, and the range of $f^{-1}(x)$ is the domain of $f(x)$. You don't need to analyse the inverse function itself if you've already found the domain and range of the original!"
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $g(x) = \frac{3x+2}{x-4}$, where $x in mathbb{R}, x $\neq 4$.$\n(a) Find an expression for the inverse function, $g^{-1}(x)$.\n(b) State the domain of $g^{-1}(x)$.",
+      "solution": "(a) Let $y = g(x)$.\n$y = \frac{3x+2}{x-4}$\nTo find the inverse, swap $x$ and $y$: \n$x = \frac{3y+2}{y-4}$ (M1)\nNow, rearrange to make $y$ the subject.\n$x(y-4) = 3y+2$\n$xy - 4x = 3y+2$\n$xy - 3y = 4x+2$\n$y(x-3) = 4x+2$ (M1)\n$y = \frac{4x+2}{x-3}$\nSo, $g^{-1}(x) = \frac{4x+2}{x-3}$. (A1)\n\n(b) The domain of $g^{-1}(x)$ is the range of $g(x)$. The function $g(x)$ is a rational function with a horizontal asymptote. As $x \to infty$, $g(x) \to \frac{3x}{x} = 3$. So the horizontal asymptote is at $y=3$. This means the function $g(x)$ can never equal 3. \nThe range of $g(x)$ is $y in mathbb{R}, y $\neq 3$. (M1)$\nTherefore, the domain of $g^{-1}(x)$ is $x in mathbb{R}, x $\neq 3$. (A1)(ft)$\nNote: We can also see this from the expression for $g^{-1}(x)$, where the denominator $x-3$ cannot be zero."
+    },
+    {
+      "type": "heading",
+      "content": "Graphs of Functions and Their Inverses"
+    },
+    {
+      "type": "text",
+      "content": "Your GDC is an essential tool for investigating functions. You should be proficient at graphing a function and using the calculator's features to find key properties. These include $x$- and $y$-intercepts, local maximum and minimum points, and vertical or horizontal asymptotes. The graph of an inverse function, $y=f^{-1}(x)$, is always a reflection of the original function's graph, $y=f(x)$, in the line $y=x$. This means that if the point $(a, b)$ is on the graph of $f$, the point $(b, a)$ will be on the graph of $f^{-1}$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Reflection:** The graph of $f^{-1}(x)$ is the reflection of the graph of $f(x)$ in the line $y=x$.",
+        "**GDC Skills:** Use your calculator to plot the function, the line $y=x$, and the inverse to visually confirm the relationship.",
+        "**Key Features:** Intercepts, asymptotes, and turning points of $f(x)$ have corresponding features on the graph of $f^{-1}(x)$. For example, an $x$-intercept at $(a, 0)$ on $f(x)$ becomes a $y$-intercept at $(0, a)$ on $f^{-1}(x)$."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Function Grapher",
+          "href": "https://www.geogebra.org/graphing"
+        },
+        {
+          "label": "Khan Academy: Inverse functions",
+          "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:functions/x2f8bb11595b61c86:inverse-functions/v/introduction-to-inverse-functions"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

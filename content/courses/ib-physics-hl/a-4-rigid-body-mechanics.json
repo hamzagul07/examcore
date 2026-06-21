@@ -1,0 +1,207 @@
+{
+  "slug": "a-4-rigid-body-mechanics",
+  "topicCode": "A.4",
+  "title": "Rigid body mechanics",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson explores the dynamics of rotating objects, known as rigid body mechanics. We will define rotational analogues for force (torque), mass (moment of inertia), and momentum (angular momentum). You will learn to apply Newton's second law for rotation and principles of conservation of energy and angular momentum to solve problems involving spinning and rolling objects.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define and calculate torque, moment of inertia, and angular momentum.",
+    "Apply Newton's second law for rotation (Στ = Iα) to solve problems involving rigid bodies.",
+    "Use the principles of conservation of energy and angular momentum for rotating systems.",
+    "Solve problems involving both rotational and translational motion, such as objects rolling without slipping."
+  ],
+  "simpleExplanation": {
+    "title": "The Physics of Spinning",
+    "summary": "Just as forces make objects move in a line, torques make them spin. How easily an object spins depends on its shape and mass distribution, a property called moment of inertia.",
+    "analogy": "Imagine trying to open a heavy door. Pushing near the hinges is difficult, but pushing far from the hinges is easy. The force you apply is the same, but its turning effect—the torque—is much greater when you push further from the pivot (the hinges). This turning effect is what rigid body mechanics is all about.",
+    "steps": [
+      "Identify all forces on the body and choose a pivot point. Draw a clear free-body diagram.",
+      "Calculate the net torque (Στ) about the pivot. Remember τ = rFsinθ and assign signs for clockwise (-) and counter-clockwise (+) rotations.",
+      "Determine the moment of inertia (I). This is often given or found using a standard formula for the object's shape (e.g., I = ½MR² for a solid cylinder).",
+      "Apply the core rotational equations: use Στ = Iα to find angular acceleration, or apply conservation of energy or angular momentum where appropriate."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is torque, τ?",
+      "back": "The rotational equivalent of force; a turning effect. Calculated as τ = rFsinθ, where r is the distance from the pivot to the point of force application and θ is the angle between the position vector r and the force vector F."
+    },
+    {
+      "front": "What is the SI unit of torque?",
+      "back": "Newton-metre (N m). It is dimensionally equivalent to the Joule, but this unit is not used for torque to avoid confusion between a turning effect and work or energy."
+    },
+    {
+      "front": "What is moment of inertia, I?",
+      "back": "A measure of an object's resistance to angular acceleration. It is the rotational analogue of mass and is calculated as I = Σmᵢrᵢ²."
+    },
+    {
+      "front": "What does the moment of inertia depend on?",
+      "back": "The total mass of the object and, crucially, how that mass is distributed relative to the axis of rotation. An object with mass concentrated further from the axis has a larger moment of inertia."
+    },
+    {
+      "front": "State Newton's second law for rotation.",
+      "back": "The net external torque on a rigid body is equal to its moment of inertia multiplied by its angular acceleration: Στ = Iα."
+    },
+    {
+      "front": "What is the formula for rotational kinetic energy?",
+      "back": "E_K,rot = ½Iω², where I is the moment of inertia and ω is the angular velocity in rad s⁻¹."
+    },
+    {
+      "front": "What is angular momentum, L?",
+      "back": "The rotational equivalent of linear momentum. For a rigid body rotating about a fixed axis, it is calculated as L = Iω. It is a vector quantity."
+    },
+    {
+      "front": "State the principle of conservation of angular momentum.",
+      "back": "If the net external torque acting on a system is zero, its total angular momentum remains constant. This means Iᵢωᵢ = I_fω_f."
+    },
+    {
+      "front": "A solid cylinder and a hollow hoop of the same mass and radius roll down a ramp from the same height. Which reaches the bottom first?",
+      "back": "The solid cylinder. It has a smaller moment of inertia (I_cyl = ½MR² vs I_hoop = MR²), so less of its initial potential energy is converted to rotational kinetic energy, meaning more is available for translational kinetic energy, resulting in a higher linear speed."
+    },
+    {
+      "front": "What are the two conditions for an object to be in static equilibrium?",
+      "back": "1. The net force acting on the object must be zero (ΣF = 0). 2. The net torque about any pivot point must be zero (Στ = 0)."
+    },
+    {
+      "front": "What is the 'rolling without slipping' condition?",
+      "back": "The point of contact between the rolling object and the surface is momentarily at rest. This links translational and rotational motion via the equation v = rω, where v is the speed of the centre of mass."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is torque a vector if it doesn't point in the direction of motion?",
+      "a": "Torque is a 'pseudovector'. Its direction is defined by the right-hand rule and points along the axis of rotation. A positive torque (counter-clockwise) points out of the page, while a negative torque (clockwise) points into the page. This vector direction defines the axis and sense of the resulting angular acceleration."
+    },
+    {
+      "q": "Can an object have zero net force but a non-zero net torque?",
+      "a": "Yes. This happens when two equal and opposite forces are applied to an object at different points. This pair of forces is called a 'couple'. The net force is zero, so the centre of mass does not accelerate, but the net torque is non-zero, causing the object to undergo pure angular acceleration."
+    },
+    {
+      "q": "How do I choose the pivot point for calculating torque in equilibrium problems?",
+      "a": "For an object in static equilibrium, the net torque is zero about *any* point. You can choose whichever point makes the calculation easiest. A very common strategy is to choose the pivot point to be at the location of one of the unknown forces. This makes the torque produced by that force equal to zero (since r=0), simplifying your torque equation."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "So far in physics, we have largely treated objects as point masses, focusing on their linear motion (translation). However, real-world objects can also rotate. This topic introduces the mechanics of 'rigid bodies'—objects that do not change shape or size. We will develop a set of rotational quantities and laws that perfectly parallel the linear ones you already know, allowing us to analyse everything from a spinning top to a rolling wheel."
+    },
+    {
+      "type": "heading",
+      "content": "Torque and Rotational Equilibrium"
+    },
+    {
+      "type": "text",
+      "content": "In linear motion, a force causes acceleration. In rotational motion, the equivalent concept is torque. Torque is the turning effect of a force. It depends not only on the magnitude of the force but also on where it is applied and in which direction."
+    },
+    {
+      "type": "formula",
+      "content": "\\tau = rF\\sin\\theta"
+    },
+    {
+      "type": "text",
+      "content": "Here, $r$ is the magnitude of the position vector from the pivot point to where the force is applied, $F$ is the magnitude of the force, and $\\theta$ is the angle between the vectors $\\vec{r}$ and $\\vec{F}$. The product $r\\sin\\theta$ is often called the 'lever arm'. For an object to be in static equilibrium, it must have no translational acceleration and no angular acceleration. This requires both the net force and the net torque to be zero."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Torque is a vector. By convention, counter-clockwise torques are positive, and clockwise torques are negative.",
+        "For equilibrium problems ($\\sum \\tau = 0$), you can choose any point as the pivot. A strategic choice is a point where an unknown force acts, as its torque about that point will be zero, simplifying the calculation."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Moment of Inertia and Rotational Dynamics"
+    },
+    {
+      "type": "text",
+      "content": "If torque is the rotational analogue of force, what is the analogue of mass? This quantity is the moment of inertia, $I$. It represents an object's resistance to being spun up or slowed down. Unlike mass, it is not an intrinsic property but depends on the axis of rotation and how the object's mass is distributed around that axis."
+    },
+    {
+      "type": "formula",
+      "content": "I = \\sum m_i r_i^2"
+    },
+    {
+      "type": "text",
+      "content": "This formula shows that mass further from the axis of rotation ($r_i$) contributes more to the moment of inertia. This is why it's harder to spin a long rod from its end than from its centre. With torque and moment of inertia defined, we can state Newton's second law for rotation."
+    },
+    {
+      "type": "formula",
+      "content": "\\sum \\tau = I\\alpha"
+    },
+    {
+      "type": "text",
+      "content": "This powerful equation states that a net torque causes an angular acceleration ($\\alpha$), and the magnitude of this acceleration is inversely proportional to the moment of inertia."
+    },
+    {
+      "type": "workedExample",
+      "question": "A solid cylindrical grinding wheel has a mass of 2.5 kg and a radius of 0.20 m. A tangential force of 10 N is applied to its edge, while a constant frictional torque of 0.50 N m opposes the motion. Determine the angular acceleration of the wheel. (For a solid cylinder/disc, $I = \\frac{1}{2}MR^2$)",
+      "solution": "1.  **Calculate the applied torque:** The force is tangential, so $\\theta = 90^\\circ$ and $\\sin\\theta = 1$. \n    $\\tau_{app} = rF\\sin\\theta = (0.20 \\text{ m})(10 \\text{ N})(1) = 2.0 \\text{ N m}$. [1]\n2.  **Calculate the net torque:** The frictional torque opposes the applied torque. Let the direction of the applied torque be positive.\n    $\\sum \\tau = \\tau_{app} - \\tau_{friction} = 2.0 \\text{ N m} - 0.50 \\text{ N m} = 1.5 \\text{ N m}$. [1]\n3.  **Calculate the moment of inertia:** Use the given formula for a solid cylinder.\n    $I = \\frac{1}{2}MR^2 = \\frac{1}{2}(2.5 \\text{ kg})(0.20 \\text{ m})^2 = 0.050 \\text{ kg m}^2$. [1]\n4.  **Apply Newton's second law for rotation:**\n    $\\sum \\tau = I\\alpha \\implies \\alpha = \\frac{\\sum \\tau}{I}$.\n    $\\alpha = \\frac{1.5 \\text{ N m}}{0.050 \\text{ kg m}^2} = 30 \\text{ rad s}^{-2}$. [1]\n    The angular acceleration is 30 rad s⁻²."
+    },
+    {
+      "type": "heading",
+      "content": "Rotational Energy and Angular Momentum"
+    },
+    {
+      "type": "text",
+      "content": "A rotating object has kinetic energy. This rotational kinetic energy is distinct from any translational kinetic energy its centre of mass may have. For an object that is both moving and spinning, like a ball rolling down a hill, its total kinetic energy is the sum of both forms."
+    },
+    {
+      "type": "formula",
+      "content": "E_{K,total} = E_{K,trans} + E_{K,rot} = \\frac{1}{2}mv^2 + \\frac{1}{2}I\\omega^2"
+    },
+    {
+      "type": "text",
+      "content": "Just as linear momentum is conserved in the absence of external forces, angular momentum, $L$, is conserved in the absence of external torques. This principle explains why an ice skater spins faster when they pull their arms in: their moment of inertia decreases, so their angular velocity must increase to keep $L$ constant."
+    },
+    {
+      "type": "formula",
+      "content": "L = I\\omega"
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions involving rolling objects, always check if it's 'rolling without slipping'. If so, you can use the crucial link $v = r\\omega$. This allows you to express the total kinetic energy in terms of just $v$ or just $\\omega$, which is essential for solving conservation of energy problems."
+    },
+    {
+      "type": "workedExample",
+      "question": "A solid sphere (mass 0.50 kg, radius 0.050 m) rolls without slipping from rest down a ramp of vertical height 0.80 m. What is its linear speed at the bottom of the ramp? (For a solid sphere, $I = \\frac{2}{5}MR^2$)",
+      "solution": "1.  **Apply the principle of conservation of energy:** The initial gravitational potential energy at the top is converted into translational and rotational kinetic energy at the bottom.\n    $E_{top} = E_{bottom} \\implies E_p = E_{K,trans} + E_{K,rot}$. [1]\n    $mgh = \\frac{1}{2}mv^2 + \\frac{1}{2}I\\omega^2$.\n2.  **Substitute for I and ω:** Use the given moment of inertia for a sphere and the 'rolling without slipping' condition, $\\omega = v/r$.\n    $I = \\frac{2}{5}mr^2$. [1]\n    $mgh = \\frac{1}{2}mv^2 + \\frac{1}{2} \\left( \\frac{2}{5}mr^2 \\right) \\left( \\frac{v}{r} \\right)^2$.\n3.  **Simplify the expression:** Notice that the mass $m$ and radius $r$ will cancel out.\n    $mgh = \\frac{1}{2}mv^2 + \\frac{1}{5}mv^2$. [1]\n    $gh = \\frac{1}{2}v^2 + \\frac{1}{5}v^2 = \\left( \\frac{5+2}{10} \\right)v^2 = \\frac{7}{10}v^2$.\n4.  **Solve for v:**\n    $v^2 = \\frac{10gh}{7}$.\n    $v = \\sqrt{\\frac{10gh}{7}} = \\sqrt{\\frac{10(9.81 \\text{ m s}^{-2})(0.80 \\text{ m})}{7}}$. [1]\n    $v \\approx 3.35 \\text{ m s}^{-1}$. The final speed is 3.4 m s⁻¹ (to 2 s.f.)."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-physics-hl&topic=A.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Torque",
+          "href": "https://phet.colorado.edu/en/simulations/torque"
+        },
+        {
+          "label": "Video: Introduction to Rotational Motion",
+          "href": "https://www.youtube.com/watch?v=_kY3yY_J_A8"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Torque",
+    "embedUrl": "https://phet.colorado.edu/sims/html/torque/latest/torque_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/torque",
+    "hint": "Explore “Torque” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

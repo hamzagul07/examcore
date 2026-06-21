@@ -1,0 +1,194 @@
+{
+  "slug": "d-1-gravitational-fields",
+  "topicCode": "D.1",
+  "title": "Gravitational fields",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson introduces Newton's Law of Universal Gravitation, defining the force between two point masses. It then develops the concept of a gravitational field as a property of space created by a mass, and defines gravitational field strength, g, as the force per unit test mass. Vector addition of fields (superposition) is also covered.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "State and apply Newton's Law of Universal Gravitation.",
+    "Define gravitational field strength as the force per unit mass.",
+    "Derive the formula for gravitational field strength due to a point mass.",
+    "Apply the principle of superposition to determine the net gravitational field strength at a point due to multiple masses."
+  ],
+  "simpleExplanation": {
+    "title": "Gravity's Invisible Influence",
+    "summary": "Every object with mass creates an invisible 'gravitational field' around it, altering the space in its vicinity. When another mass enters this field, it experiences a force, which we call gravity.",
+    "analogy": "Imagine a hot radiator in a cold room. The radiator creates a 'heat field' around it. You don't need to touch the radiator to know it's there; you can feel the warmth (the field) from a distance. Similarly, a planet creates a gravitational field, and other objects 'feel' this field as a force, pulling them closer.",
+    "steps": [
+      "First, identify the masses involved (e.g., a planet and a satellite) and the distance 'r' between their centres of mass.",
+      "Use Newton's Law of Universal Gravitation, $F = G \\frac{M_1 M_2}{r^2}$, to calculate the magnitude of the attractive force between them.",
+      "To find the gravitational field strength 'g' at a specific point, consider it as the force experienced by a small 'test mass' placed there, divided by that mass ($g = F/m$).",
+      "Calculate 'g' directly using the source mass M and distance r: $g = G \\frac{M}{r^2}$. Remember that field strength is a vector pointing towards the source mass."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Newton's Law of Universal Gravitation?",
+      "back": "The law states that any two point masses attract each other with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centres. $F = G \\frac{m_1 m_2}{r^2}$."
+    },
+    {
+      "front": "What is a gravitational field?",
+      "back": "A region of space where a mass experiences a non-contact force. It is a vector field, created by a source mass, that specifies the gravitational force per unit mass at any point."
+    },
+    {
+      "front": "Define gravitational field strength, g.",
+      "back": "The gravitational force per unit mass experienced by a small point mass placed at that point in the field. $g = \\frac{F}{m}$. It is a vector quantity."
+    },
+    {
+      "front": "What is the value and unit of the universal gravitational constant, G?",
+      "back": "$G \\approx 6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$. It is a fundamental constant of nature."
+    },
+    {
+      "front": "What is the key difference between 'g' and 'G'?",
+      "back": "'G' is the universal gravitational constant, the same everywhere in the universe. 'g' is the gravitational field strength at a specific location, which depends on the source mass and distance from it."
+    },
+    {
+      "front": "What is the 'point mass assumption'?",
+      "back": "For a spherically symmetric mass distribution (like a planet), we can treat its entire mass as being concentrated at its centre when calculating the gravitational force or field outside the sphere."
+    },
+    {
+      "front": "What does the 'inverse square law' mean in the context of gravity?",
+      "back": "It means the gravitational force (and field strength) decreases with the square of the distance from the source. If you double the distance, the force becomes four times weaker ($1/2^2$)."
+    },
+    {
+      "front": "What are the units of gravitational field strength, g?",
+      "back": "N kg⁻¹. These are dimensionally equivalent to m s⁻², the units of acceleration."
+    },
+    {
+      "front": "What is the principle of superposition for gravitational fields?",
+      "back": "The net gravitational field at a point due to two or more masses is the vector sum of the individual gravitational fields produced by each mass."
+    },
+    {
+      "front": "Why is the gravitational force always attractive?",
+      "back": "Unlike electrostatic forces which can be attractive or repulsive, mass is always positive. The nature of the gravitational interaction as described by Newton's law (and General Relativity) is purely attractive."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the gravitational force strong or weak?",
+      "a": "The gravitational force is by far the weakest of the four fundamental forces of nature. The reason it is so dominant on a macroscopic scale (planets, stars, galaxies) is that it is always attractive and has an infinite range. The electromagnetic force, while much stronger, can be attractive or repulsive, so on large scales, positive and negative charges tend to cancel each other out, neutralizing the net force."
+    },
+    {
+      "q": "Why do we use 'r' for distance in the formula? Does it stand for radius?",
+      "a": "Yes, 'r' is often used because in many common problems, we are dealing with spherical objects (like planets) and the distance is from the centre to a point on or above the surface, which is a radial distance. However, it simply represents the separation distance between the centres of any two masses, whether they are spherical or not."
+    },
+    {
+      "q": "What is the difference between gravitational mass and inertial mass?",
+      "a": "Gravitational mass is the 'charge' of gravity – it's the property of an object that causes it to create and experience a gravitational field (the 'm' in $F=GMm/r^2$). Inertial mass is an object's resistance to acceleration (the 'm' in $F=ma$). The 'Principle of Equivalence' states that these two masses are experimentally indistinguishable and fundamentally equivalent. This is a profound concept that forms a cornerstone of Einstein's General Theory of Relativity."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "We are all familiar with gravity as the force that keeps us on the ground, often calculated using the simple formula $W=mg$. However, this is just a local approximation. In this topic, we will explore the universal nature of gravity, as described by Isaac Newton. We will learn how any object with mass creates a gravitational field and how to calculate the forces and fields produced by celestial bodies like planets and stars."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's Law of Universal Gravitation"
+    },
+    {
+      "type": "text",
+      "content": "Isaac Newton proposed that the force that causes an apple to fall to the ground is the same force that keeps the Moon in orbit around the Earth. His Law of Universal Gravitation states that every point mass attracts every other point mass with a force that is directly proportional to the product of their masses and inversely proportional to the square of the separation between them. This force acts along the line connecting the two masses and is always attractive."
+    },
+    {
+      "type": "formula",
+      "content": "F = G \\frac{m_1 m_2}{r^2}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\bf{F}$ is the magnitude of the gravitational force between the two masses (in Newtons, N).",
+        "$\\bf{G}$ is the universal gravitational constant, approximately $6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}$.",
+        "$\\bf{m_1}$ and $\\bf{m_2}$ are the two masses (in kilograms, kg).",
+        "$\\bf{r}$ is the distance between the centres of the two masses (in metres, m)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is forgetting to square the distance, $r$. Another is using distance in km instead of converting to m. Always ensure your units are in the standard SI form before calculating. Also, remember that $r$ is the distance between the *centres* of the masses, not their surfaces."
+    },
+    {
+      "type": "workedExample",
+      "question": "The mass of the Earth is $5.97 \\times 10^{24}$ kg and the mass of the Moon is $7.35 \\times 10^{22}$ kg. The average distance between their centres is $3.84 \\times 10^8$ m. Calculate the magnitude of the gravitational force between the Earth and the Moon.",
+      "solution": "1. **State the formula:**\n   $F = G \\frac{m_E m_M}{r^2}$ ✓\n\n2. **Substitute the values:**\n   $F = (6.67 \\times 10^{-11}) \\frac{(5.97 \\times 10^{24}) \\times (7.35 \\times 10^{22})}{(3.84 \\times 10^8)^2}$ ✓\n\n3. **Calculate the numerator and denominator:**\n   Numerator: $(6.67 \\times 10^{-11}) \\times (4.38795 \\times 10^{47}) = 2.9269 \\times 10^{37}$\n   Denominator: $(3.84 \\times 10^8)^2 = 1.47456 \\times 10^{17}$\n\n4. **Calculate the final force:**\n   $F = \\frac{2.9269 \\times 10^{37}}{1.47456 \\times 10^{17}} = 1.985 \\times 10^{20}$ N\n\n5. **Final Answer with appropriate significant figures:**\n   $F \\approx 1.99 \\times 10^{20}$ N ✓\n   (The result is given to 3 s.f. as the input values are.)"
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational Field Strength"
+    },
+    {
+      "type": "text",
+      "content": "The concept of a 'field' helps explain how gravity can act over a distance. A mass $M$ modifies the space around it, creating a gravitational field. Any other mass $m$ placed in this field will experience a force. We define the gravitational field strength, $g$, at a point as the force per unit mass at that point."
+    },
+    {
+      "type": "formula",
+      "content": "g = \\frac{F}{m}"
+    },
+    {
+      "type": "text",
+      "content": "By substituting Newton's Law of Gravitation for $F$, we can derive a more useful expression for $g$ that depends only on the source mass $M$ and the distance $r$ from it. If $F = G \\frac{Mm}{r^2}$, then $g = \\frac{1}{m} \\left( G \\frac{Mm}{r^2} \\right)$, which simplifies to:"
+    },
+    {
+      "type": "formula",
+      "content": "g = G \\frac{M}{r^2}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gravitational field strength $g$ is a vector quantity.",
+        "Its direction is the direction of the force on a test mass, which is always towards the source mass $M$.",
+        "The units are N kg⁻¹, which are equivalent to m s⁻² (acceleration).",
+        "Near the Earth's surface, $g \\approx 9.81$ m s⁻²."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Superposition of Gravitational Fields"
+    },
+    {
+      "type": "text",
+      "content": "What happens if there are multiple masses, like in a solar system? The principle of superposition states that the total gravitational field at any point is the vector sum of the individual fields from each mass. For points along a line connecting two masses, this means you might add or subtract the magnitudes of the fields, depending on their directions."
+    },
+    {
+      "type": "workedExample",
+      "question": "Two masses, $M_A = 4.0 \\times 10^{12}$ kg and $M_B = 1.0 \\times 10^{12}$ kg, are separated by a distance of 3000 m. Determine the point P on the line between them where the net gravitational field strength is zero.",
+      "solution": "1. **Set up the condition:**\n   For the net field to be zero, the magnitude of the field from mass A must equal the magnitude of the field from mass B.\n   $g_A = g_B$ ✓\n\n2. **Define distances:**\n   Let point P be a distance $x$ from mass $M_A$. Then its distance from mass $M_B$ will be $(3000 - x)$.\n\n3. **Write the equation using the field formula:**\n   $G \\frac{M_A}{x^2} = G \\frac{M_B}{(3000 - x)^2}$ ✓\n\n4. **Simplify and substitute values:**\n   The G's cancel out.\n   $\\frac{4.0 \\times 10^{12}}{x^2} = \\frac{1.0 \\times 10^{12}}{(3000 - x)^2}$\n   $\\frac{4}{x^2} = \\frac{1}{(3000 - x)^2}$ ✓\n\n5. **Solve for x:**\n   Take the square root of both sides:\n   $\\frac{2}{x} = \\frac{1}{3000 - x}$ ✓\n   $2(3000 - x) = x$\n   $6000 - 2x = x$\n   $6000 = 3x$\n   $x = 2000$ m ✓\n\n6. **State the final answer:**\n   The net gravitational field is zero at a point 2000 m from mass A (and 1000 m from mass B)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice D.1 Questions",
+      "href": "/mark?subject=ib-physics-hl&topic=D.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Gravity and Orbits",
+          "href": "https://phet.colorado.edu/en/simulations/gravity-and-orbits"
+        },
+        {
+          "label": "NASA page on Gravity",
+          "href": "https://spaceplace.nasa.gov/what-is-gravity/en/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Gravity and Orbits",
+    "embedUrl": "https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/gravity-and-orbits",
+    "hint": "Explore “Gravity and Orbits” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

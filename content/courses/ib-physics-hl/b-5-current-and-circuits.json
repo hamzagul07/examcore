@@ -1,0 +1,218 @@
+{
+  "slug": "b-5-current-and-circuits",
+  "topicCode": "B.5",
+  "title": "Current and circuits",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson extends our understanding of electric circuits from Topic 5 to include capacitors. We will explore capacitance, the energy stored in a capacitor, and the behaviour of resistor-capacitor (RC) circuits, focusing on the exponential discharge process and the concept of the time constant.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define capacitance and solve problems involving charge, voltage, and capacitance.",
+    "Derive and apply formulas for the energy stored in a capacitor.",
+    "Analyse the exponential discharge of a capacitor through a resistor.",
+    "Define and calculate the time constant for an RC circuit and use it to solve problems."
+  ],
+  "simpleExplanation": {
+    "title": "Capacitors: The Circuit's Rechargeable Battery",
+    "summary": "A capacitor is a component that stores electrical charge and energy, acting like a tiny, fast-charging battery. It can then release this stored energy back into the circuit, with the voltage and current decreasing over time.",
+    "analogy": "Imagine a water tower (the capacitor) being filled with water (charge). The water pressure at the bottom (voltage) increases as it fills. If you open a tap connected to a narrow pipe (a resistor) at the bottom, water flows out (current). Initially, the flow is strong because the pressure is high, but as the water level drops, the pressure decreases, and the flow slows to a trickle. The size of the tower determines how much water it can hold for a given pressure (its capacitance), and the narrowness of the pipe determines how slowly it empties (the time constant).",
+    "steps": [
+      "First, a capacitor is connected to a power source like a battery. It accumulates charge on its plates until the voltage across it equals the battery's voltage.",
+      "Next, the battery is disconnected, and the charged capacitor is connected to a resistor, forming a simple 'RC' circuit.",
+      "Charge begins to flow from the capacitor through the resistor, creating a current. This process is called 'discharging'.",
+      "The current, and the voltage across the capacitor, both decrease exponentially over time. The rate of this decrease is determined by the capacitance (C) and resistance (R)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is capacitance?",
+      "back": "Capacitance (C) is the ratio of the charge (Q) stored on one plate of a capacitor to the potential difference (V) between the plates. It is a measure of a capacitor's ability to store charge. Formula: $C = Q/V$."
+    },
+    {
+      "front": "What is the unit of capacitance?",
+      "back": "The Farad (F). One Farad is one Coulomb per Volt (1 F = 1 C V⁻¹). Practical capacitors are often measured in microfarads (μF), nanofarads (nF), or picofarads (pF)."
+    },
+    {
+      "front": "How is energy stored in a capacitor calculated?",
+      "back": "The electric potential energy (E) stored is given by three equivalent formulas: $E = \\frac{1}{2}QV$, $E = \\frac{1}{2}CV^2$, and $E = \\frac{1}{2}\\frac{Q^2}{C}$."
+    },
+    {
+      "front": "What is a dielectric?",
+      "back": "A dielectric is an electrical insulator that is placed between the plates of a capacitor. It increases the capacitance by becoming polarised, which reduces the electric field between the plates."
+    },
+    {
+      "front": "What is the time constant ($\\\\tau$) of an RC circuit?",
+      "back": "The time constant is a measure of how quickly a capacitor discharges. It is the time taken for the charge, voltage, or current to decrease to $1/e$ (approximately 37%) of its initial value."
+    },
+    {
+      "front": "What is the formula for the time constant?",
+      "back": "The time constant ($\\\\tau$) is the product of the resistance (R) and the capacitance (C). Formula: $\\\\tau = RC$. The unit of the time constant is seconds."
+    },
+    {
+      "front": "What equation describes the charge $Q$ on a discharging capacitor as a function of time $t$?",
+      "back": "$Q(t) = Q_0 e^{-t/RC}$, where $Q_0$ is the initial charge at $t=0$."
+    },
+    {
+      "front": "What equation describes the voltage $V$ across a discharging capacitor as a function of time $t$?",
+      "back": "$V(t) = V_0 e^{-t/RC}$, where $V_0$ is the initial potential difference at $t=0$."
+    },
+    {
+      "front": "What equation describes the current $I$ in an RC circuit during discharge as a function of time $t$?",
+      "back": "$I(t) = I_0 e^{-t/RC}$, where $I_0$ is the initial current at $t=0$. Note that $I_0 = V_0/R$."
+    },
+    {
+      "front": "How do you combine capacitors in parallel?",
+      "back": "The total capacitance is the sum of the individual capacitances: $C_{parallel} = C_1 + C_2 + ...$. This is the opposite rule to resistors in parallel."
+    },
+    {
+      "front": "How do you combine capacitors in series?",
+      "back": "The reciprocal of the total capacitance is the sum of the reciprocals of the individual capacitances: $\\frac{1}{C_{series}} = \\frac{1}{C_1} + \\frac{1}{C_2} + ...$. This is the opposite rule to resistors in series."
+    },
+    {
+      "front": "Trap: A question asks for the time to discharge to half the initial voltage. Is this the time constant?",
+      "back": "No. The time constant is the time to discharge to 37% ($1/e$) of the initial value. The time to reach half the initial value is called the half-life, $t_{1/2}$, and is equal to $RC \\ln(2)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are the rules for combining capacitors the opposite of resistors?",
+      "a": "For resistors in series, the current is the same but voltage adds up. For capacitors in series, the charge $Q$ on each is the same, but the voltages add up ($V_{tot} = V_1 + V_2$). Since $V=Q/C$, this gives $Q/C_{tot} = Q/C_1 + Q/C_2$, which simplifies to the reciprocal rule. For capacitors in parallel, the voltage is the same across each, but the total charge is the sum ($Q_{tot} = Q_1 + Q_2$). Since $Q=CV$, this gives $C_{tot}V = C_1V + C_2V$, which simplifies to $C_{tot} = C_1 + C_2$."
+    },
+    {
+      "q": "This lesson focuses on discharging. What happens when a capacitor is charging?",
+      "a": "Charging also follows an exponential pattern, but in reverse. When charging a capacitor through a resistor from a supply voltage $V_s$, the voltage across the capacitor increases over time according to $V(t) = V_s(1 - e^{-t/RC})$. The current starts at a maximum ($I_0 = V_s/R$) and decays to zero exponentially, just as in discharging. The time constant $\\tau=RC$ has the same meaning."
+    },
+    {
+      "q": "How exactly does a dielectric material increase capacitance?",
+      "a": "A dielectric is an insulator. When placed in the electric field between the capacitor plates, its molecules become polarised, forming tiny electric dipoles. These dipoles align themselves to create an internal electric field that opposes the external field from the plates. This reduces the net electric field, which in turn reduces the potential difference $V$ for the same amount of charge $Q$. Since capacitance $C = Q/V$, a smaller $V$ for the same $Q$ results in a larger capacitance $C$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our previous studies of circuits, we focused on resistors, which dissipate energy. Now, we introduce a new component: the capacitor. Capacitors are unique in their ability to store electrical energy and then release it back into a circuit. This lesson delves into the principles of capacitance, energy storage, and the transient behaviour of circuits containing both resistors and capacitors (RC circuits)."
+    },
+    {
+      "type": "heading",
+      "content": "Capacitance"
+    },
+    {
+      "type": "text",
+      "content": "A capacitor typically consists of two conductive plates separated by an insulating material called a dielectric. When connected to a voltage source, charge of equal magnitude but opposite sign accumulates on each plate. The capacitance, $C$, is a measure of how much charge $Q$ the capacitor can store for a given potential difference $V$ across it."
+    },
+    {
+      "type": "formula",
+      "content": "C = \\frac{Q}{V}"
+    },
+    {
+      "type": "text",
+      "content": "The SI unit for capacitance is the Farad (F), named after Michael Faraday. A one-Farad capacitor is very large; in practice, we usually work with microfarads (1 μF = $10^{-6}$ F), nanofarads (1 nF = $10^{-9}$ F), or picofarads (1 pF = $10^{-12}$ F). Capacitance is a geometric property, depending on the area of the plates, the distance between them, and the dielectric material used."
+    },
+    {
+      "type": "heading",
+      "content": "Energy Stored in a Capacitor"
+    },
+    {
+      "type": "text",
+      "content": "Work must be done by an external power source to move charge from one plate to the other against the opposing electric field. This work is stored as electric potential energy in the electric field between the plates. The energy stored can be expressed in several ways, depending on which variables are known."
+    },
+    {
+      "type": "formula",
+      "content": "E = \\frac{1}{2}QV = \\frac{1}{2}CV^2 = \\frac{1}{2}\\frac{Q^2}{C}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The energy is stored in the electric field between the capacitor plates.",
+        "The formula $E = \\frac{1}{2}CV^2$ is often the most useful, as capacitance and voltage are frequently known or measured.",
+        "Remember that the energy is proportional to the square of the voltage ($V^2$) or the square of the charge ($Q^2$)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A 470 μF capacitor is connected to a 12.0 V battery and is fully charged. Calculate: \n a) The charge stored on the capacitor. \n b) The energy stored in the capacitor.",
+      "solution": "a) Identify knowns: $C = 470 \\text{ μF} = 470 \\times 10^{-6} \\text{ F}$, $V = 12.0 \\text{ V}$.\nUse the definition of capacitance: $C = Q/V \\implies Q = CV$.\n$Q = (470 \\times 10^{-6} \\text{ F}) \\times (12.0 \\text{ V})$\n$Q = 5.64 \\times 10^{-3} \\text{ C}$ or $5.64 \\text{ mC}$. [1 mark]\n\nb) Use the formula for energy stored. Using $E = \\frac{1}{2}CV^2$ is direct.\n$E = \\frac{1}{2} (470 \\times 10^{-6} \\text{ F}) \\times (12.0 \\text{ V})^2$ [1 mark for substitution]\n$E = \\frac{1}{2} (470 \\times 10^{-6}) \\times 144$\n$E = 0.03384 \\text{ J}$\n$E \\approx 3.38 \\times 10^{-2} \\text{ J}$ (to 3 s.f.) [1 mark for answer and unit]"
+    },
+    {
+      "type": "heading",
+      "content": "Discharging a Capacitor through a Resistor"
+    },
+    {
+      "type": "text",
+      "content": "When a charged capacitor is connected to a resistor, it forms an RC circuit. The capacitor begins to discharge, meaning the stored charge flows through the resistor, creating a current. As charge leaves the capacitor, the potential difference across it decreases. According to Ohm's law ($I=V/R$), this means the current in the circuit also decreases. This process is not linear; the charge, voltage, and current all decrease exponentially with time."
+    },
+    {
+      "type": "formula",
+      "content": "V(t) = V_0 e^{-t/RC} \\quad Q(t) = Q_0 e^{-t/RC} \\quad I(t) = I_0 e^{-t/RC}"
+    },
+    {
+      "type": "text",
+      "content": "Here, $V_0$, $Q_0$, and $I_0$ are the initial values at time $t=0$. The term $RC$ in the exponent is crucial and is known as the time constant."
+    },
+    {
+      "type": "heading",
+      "content": "The Time Constant, $\\tau$"
+    },
+    {
+      "type": "text",
+      "content": "The time constant, represented by the Greek letter tau ($\\tau$), characterises the rate of discharge in an RC circuit. It is defined as the product of the resistance and the capacitance."
+    },
+    {
+      "type": "formula",
+      "content": "\\tau = RC"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The unit of $\\tau$ is seconds. (Since $R = V/I$ and $C = Q/V$, $RC = (V/I)(Q/V) = Q/I = Q/(Q/t) = t$).",
+        "$\\tau$ is the time it takes for the voltage (or charge, or current) to fall to $1/e$ (approximately 37%) of its initial value.",
+        "A large time constant (large R or C) means a slow discharge.",
+        "A small time constant (small R or C) means a rapid discharge.",
+        "After 5 time constants ($t=5\\tau$), a capacitor is considered to be fully discharged, as its charge has dropped to less than 1% of its initial value ($e^{-5} \\approx 0.0067$)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In data analysis questions, you may be asked to determine the time constant from a graph of voltage vs. time. You can do this by finding the time at which the voltage has dropped to $V_0/e$. A more robust method is to linearise the data. Plot $\\ln(V)$ against $t$. The equation becomes $\\ln(V) = \\ln(V_0) - \\frac{t}{RC}$. This is a straight line with a gradient of $-\\frac{1}{RC}$, from which you can calculate $\\tau = RC$."
+    },
+    {
+      "type": "workedExample",
+      "question": "In an experiment, a $2200 \\text{ μF}$ capacitor is discharged through a $5.5 \\text{ kΩ}$ resistor. The capacitor is initially charged to a potential difference of 9.0 V.\n a) Calculate the time constant of the circuit.\n b) Determine the potential difference across the capacitor after 20 s.",
+      "solution": "a) Identify knowns: $C = 2200 \\text{ μF} = 2.2 \\times 10^{-3} \\text{ F}$, $R = 5.5 \\text{ kΩ} = 5.5 \\times 10^3 \\text{ Ω}$.\nUse the formula for the time constant: $\\tau = RC$.\n$\\tau = (5.5 \\times 10^3 \\text{ Ω}) \\times (2.2 \\times 10^{-3} \\text{ F})$ [1 mark]\n$\\tau = 12.1 \\text{ s}$. [1 mark]\n\nb) Identify knowns: $V_0 = 9.0 \\text{ V}$, $t = 20 \\text{ s}$, and $RC = 12.1 \\text{ s}$.\nUse the exponential decay formula for voltage: $V(t) = V_0 e^{-t/RC}$.\n$V(20) = 9.0 \\times e^{-20/12.1}$ [1 mark for substitution]\n$V(20) = 9.0 \\times e^{-1.6528...}$\n$V(20) = 9.0 \\times 0.1915...$\n$V(20) \\approx 1.72 \\text{ V}$ (to 3 s.f.) [1 mark for answer]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Current & Circuits",
+      "href": "/mark?subject=ib-physics-hl&topic=B.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Capacitor Lab",
+          "href": "https://phet.colorado.edu/en/simulations/capacitor-lab-basics"
+        },
+        {
+          "label": "Physics Classroom: RC Circuits",
+          "href": "https://www.physicsclassroom.com/class/circuits/Lesson-4/RC-Circuits"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Capacitor Lab",
+    "embedUrl": "https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/capacitor-lab-basics",
+    "hint": "Explore “Capacitor Lab” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

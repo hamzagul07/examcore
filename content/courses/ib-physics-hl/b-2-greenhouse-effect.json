@@ -1,0 +1,192 @@
+{
+  "slug": "b-2-greenhouse-effect",
+  "topicCode": "B.2",
+  "title": "Greenhouse effect",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson explores the physics of the Earth's greenhouse effect, a crucial component of climate science. We will model the Earth as a black body to understand its energy balance, investigate the role of atmospheric gases in absorbing infrared radiation through resonance, and quantify their impact on the planet's surface temperature using the Stefan-Boltzmann law.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Describe the Earth's energy balance and the roles of solar radiation and terrestrial radiation.",
+    "Explain the molecular mechanisms by which greenhouse gases absorb infrared radiation.",
+    "Apply the Stefan-Boltzmann law to model the Earth's temperature with and without a greenhouse effect.",
+    "Define and use the concepts of albedo and emissivity in energy balance calculations."
+  ],
+  "simpleExplanation": {
+    "title": "Earth's Atmospheric Blanket",
+    "summary": "The greenhouse effect is the process by which certain gases in the atmosphere trap heat, keeping the Earth warmer than it would be otherwise. This natural process is vital for life, but its enhancement by human activities is a cause for concern.",
+    "analogy": "Imagine a car parked in the sun. Sunlight (short-wavelength visible light) passes easily through the windows and heats the seats and dashboard. These heated surfaces then radiate heat (long-wavelength infrared), but this heat can't pass back out through the windows as easily. The trapped energy makes the inside of the car much warmer than the outside air. The Earth's atmosphere acts like the car's windows, and greenhouse gases are what make the glass 'opaque' to outgoing heat.",
+    "steps": [
+      "The Sun emits high-energy, short-wavelength radiation (mostly visible and UV) that passes through the Earth's atmosphere.",
+      "The Earth's surface absorbs this energy and heats up. As a warm body, it re-radiates the energy as lower-energy, long-wavelength infrared (IR) radiation.",
+      "Greenhouse gas molecules (like CO₂, H₂O, CH₄) in the atmosphere have natural frequencies of vibration that match the frequency of this outgoing IR radiation.",
+      "This causes resonance, where the gas molecules absorb the IR radiation. They then re-radiate this energy in all directions, including back down to the Earth's surface, trapping heat and warming the planet."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the greenhouse effect?",
+      "back": "A natural process where certain atmospheric gases (greenhouse gases) absorb outgoing long-wave infrared radiation from the Earth's surface, re-radiating it and thus warming the lower atmosphere and the surface."
+    },
+    {
+      "front": "What is the main difference between solar radiation and terrestrial radiation?",
+      "back": "Solar radiation is primarily short-wavelength (UV, visible). Terrestrial radiation is long-wavelength (infrared) because the Earth's surface is much cooler than the Sun's."
+    },
+    {
+      "front": "Define Albedo (α).",
+      "back": "The fraction of incident radiation that is reflected by a surface. It is a dimensionless quantity ranging from 0 (perfect absorber) to 1 (perfect reflector). Earth's average albedo is about 0.3."
+    },
+    {
+      "front": "Define Emissivity (e).",
+      "back": "The ratio of the power radiated by a body to the power radiated by a perfect black body of the same surface area and temperature. It ranges from 0 to 1, where e=1 for a perfect black body."
+    },
+    {
+      "front": "State the Stefan-Boltzmann Law.",
+      "back": "The total power P radiated by a body is proportional to its surface area A and the fourth power of its absolute temperature T. Formula: $P = e \\sigma A T^4$, where $e$ is emissivity and $\\sigma$ is the Stefan-Boltzmann constant."
+    },
+    {
+      "front": "State Wien's Displacement Law.",
+      "back": "The peak wavelength ($\\lambda_{max}$) of emitted radiation by a black body is inversely proportional to its absolute temperature (T). Formula: $\\lambda_{max} = \\frac{b}{T}$, where b is Wien's constant."
+    },
+    {
+      "front": "What is the molecular mechanism for IR absorption by greenhouse gases?",
+      "back": "Greenhouse gas molecules have natural vibrational frequencies. If the frequency of incident IR radiation matches one of these natural frequencies, resonance occurs, and the molecule absorbs the energy, increasing its vibrational and rotational energy."
+    },
+    {
+      "front": "Why is N₂ not a greenhouse gas?",
+      "back": "Diatomic molecules like N₂ and O₂ have a simple structure with no net change in dipole moment when they vibrate. Therefore, they cannot interact with and absorb the electric field of electromagnetic radiation like IR."
+    },
+    {
+      "front": "What is the 'atmospheric window'?",
+      "back": "A range of infrared wavelengths (around 8-14 µm) that are not significantly absorbed by greenhouse gases (especially water vapour), allowing some thermal radiation to escape directly into space."
+    },
+    {
+      "front": "Common Trap: Confusing the greenhouse effect with ozone layer depletion.",
+      "back": "The greenhouse effect traps outgoing IR radiation, causing warming. Ozone layer depletion involves CFCs destroying stratospheric ozone, which increases incoming UV radiation. They are separate phenomena, though some chemicals can contribute to both."
+    },
+    {
+      "front": "What is the Solar Constant?",
+      "back": "The intensity (power per unit area) of the Sun's radiation at the mean distance of the Earth from the Sun, measured outside the atmosphere. Its value is approximately 1360 W m⁻²."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the greenhouse effect a bad thing?",
+      "a": "No, the natural greenhouse effect is essential for life on Earth. Without it, the average temperature would be about -18°C, and the planet would be frozen. The problem is the *enhanced* greenhouse effect, where human activities, primarily the burning of fossil fuels, release extra greenhouse gases into the atmosphere, trapping more heat and leading to global warming and climate change."
+    },
+    {
+      "q": "If CO₂ makes up such a small percentage of the atmosphere, how can it have such a large effect?",
+      "a": "While gases like nitrogen (N₂) and oxygen (O₂) make up about 99% of the atmosphere, they are not greenhouse gases because their simple molecular structure means they don't absorb infrared radiation. Greenhouse gases, even in small concentrations, are very effective at absorbing specific IR frequencies that would otherwise escape to space. It's not about the quantity of gas, but its specific physical properties."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "The greenhouse effect is a fundamental concept in understanding Earth's climate. While often discussed in the context of climate change, it is a natural and essential phenomenon. In this lesson, we will dissect the physics behind this effect, from the energy balance of our planet to the quantum behaviour of molecules that makes it all happen."
+    },
+    {
+      "type": "heading",
+      "content": "Energy Balance and Black-Body Radiation"
+    },
+    {
+      "type": "text",
+      "content": "To a first approximation, the Earth's temperature is determined by a balance between the energy it absorbs from the Sun and the energy it radiates back into space. All objects with a temperature above absolute zero radiate electromagnetic energy. The characteristics of this radiation are described by treating the object as a 'black body' – a theoretical perfect absorber and emitter of radiation."
+    },
+    {
+      "type": "text",
+      "content": "The Sun, with a surface temperature of about 5800 K, radiates primarily in the visible spectrum, as predicted by Wien's Law. The Earth, being much cooler at an average of 288 K, radiates in the long-wavelength infrared part of the spectrum."
+    },
+    {
+      "type": "formula",
+      "content": "Wien's Displacement Law: \\lambda_{max} = \\frac{b}{T} \\quad (b = 2.9 \\times 10^{-3} \\text{ m K})"
+    },
+    {
+      "type": "text",
+      "content": "The total power radiated is given by the Stefan-Boltzmann Law. For the Earth to be in thermal equilibrium, the power absorbed must equal the power radiated."
+    },
+    {
+      "type": "formula",
+      "content": "Stefan-Boltzmann Law: P_{radiated} = e \\sigma A T^4 \\quad (\\sigma = 5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{K}^{-4})"
+    },
+    {
+      "type": "heading",
+      "content": "Modelling Earth's Temperature"
+    },
+    {
+      "type": "text",
+      "content": "We can build a simple model to predict Earth's temperature. The power absorbed by Earth depends on the solar constant (S), the Earth's cross-sectional area ($\\pi r^2$), and its albedo ($\\alpha$), which is the fraction of sunlight reflected away. The power radiated depends on its total surface area ($4\\pi r^2$) and its temperature (T)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Power Absorbed: $P_{in} = (1 - \\alpha) S (\\pi r^2)$. The $(1-\\alpha)$ term accounts for the energy that isn't reflected.",
+        "Power Radiated: $P_{out} = \\sigma A T^4 = \\sigma (4\\pi r^2) T^4$. We assume Earth is a perfect black body (emissivity e=1) for this simple model.",
+        "Equilibrium Condition: $P_{in} = P_{out}$. By setting these equal, we can solve for the effective temperature of the Earth."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "By modelling the Earth as a black body with no atmosphere, calculate its predicted surface temperature. Use the following data:\nSolar constant, S = 1360 W m⁻²\nAverage albedo of Earth, α = 0.30\nStefan-Boltzmann constant, σ = 5.67 x 10⁻⁸ W m⁻² K⁻⁴",
+      "solution": "1. **Set up the energy balance equation.**\nThe power absorbed by the Earth must equal the power radiated by the Earth for a stable temperature.\n$P_{in} = P_{out}$ ✓\n\n2. **Write expressions for power in and power out.**\nPower in is the solar intensity intercepted by the Earth's disc ($A_{disc} = \\pi r^2$), adjusted for albedo.\n$P_{in} = S (1 - \\alpha) \\pi r^2$\nPower out is the radiation from the Earth's entire surface ($A_{surface} = 4\\pi r^2$) according to the Stefan-Boltzmann law (assuming emissivity e=1).\n$P_{out} = \\sigma (4\\pi r^2) T^4$ ✓\n\n3. **Equate and simplify.**\n$S (1 - \\alpha) \\pi r^2 = \\sigma (4\\pi r^2) T^4$\nThe $\\pi r^2$ terms cancel out, which is a key insight – the result is independent of the planet's radius.\n$S (1 - \\alpha) = 4 \\sigma T^4$ ✓\n\n4. **Rearrange to solve for T.**\n$T^4 = \\frac{S(1 - \\alpha)}{4\\sigma}$\n$T = \\sqrt[4]{\\frac{S(1 - \\alpha)}{4\\sigma}}$ ✓\n\n5. **Substitute values and calculate.**\n$T = \\sqrt[4]{\\frac{1360 \\times (1 - 0.30)}{4 \\times 5.67 \\times 10^{-8}}}$\n$T = \\sqrt[4]{\\frac{1360 \\times 0.70}{2.268 \\times 10^{-7}}}$\n$T = \\sqrt[4]{4.1975 \\times 10^9} \\approx 255$ K ✓\n\n6. **Convert to Celsius (optional but good for context).**\n$T(°C) = 255 - 273 = -18°C$.\nThis is much colder than the actual average surface temperature of about 15°C (288 K), demonstrating the warming effect of the atmosphere."
+    },
+    {
+      "type": "heading",
+      "content": "The Molecular Mechanism of Absorption"
+    },
+    {
+      "type": "text",
+      "content": "The 'missing' 33°C of warmth comes from the greenhouse effect. This is not a simple blanket; it's a selective absorption process. Greenhouse gases like water vapour (H₂O), carbon dioxide (CO₂), and methane (CH₄) have molecular structures that allow them to vibrate and rotate in complex ways. These vibrational modes have specific, quantised energy levels, corresponding to frequencies in the infrared part of the spectrum."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Resonance:** When an outgoing IR photon has a frequency that exactly matches a natural vibrational frequency of a greenhouse gas molecule, the photon is absorbed. This is a resonance phenomenon.",
+        "**Energy Transfer:** The molecule's vibrational energy increases. This energy is then quickly transferred to other molecules (like N₂ and O₂) through collisions, increasing their kinetic energy and thus the overall temperature of the atmosphere.",
+        "**Re-radiation:** The excited molecule can also de-excite by re-radiating a photon of the same frequency, but in a random direction. A significant portion of this re-radiated energy is directed back towards the Earth's surface, contributing to warming."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be precise with your language. Don't say greenhouse gases 'reflect' heat back to Earth. They *absorb* long-wave radiation and then *re-radiate* it in all directions. A significant fraction of this re-radiated energy returns to the surface. This distinction is crucial for scoring high marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph shows the absorption spectrum for atmospheric gases. The dashed line is the black-body emission spectrum for a body at 288 K (Earth's surface). Explain how this graph demonstrates the greenhouse effect, referring to specific gases and the concept of the 'atmospheric window'.",
+      "solution": "*(Note: A graph would be provided in an exam, showing absorption peaks for H₂O, CO₂, O₃, etc., against the Earth's emission curve.)*\n\n1. **Identify the key features.**\nThe dashed line shows the intensity of long-wave infrared radiation emitted by the Earth's surface, peaking at around 10 µm, consistent with Wien's Law for a body at 288 K. ✓\nThe shaded areas show the wavelengths at which atmospheric gases absorb this radiation. ✓\n\n2. **Explain the absorption by specific gases.**\nThere are strong absorption bands for carbon dioxide (CO₂) around 4 µm and 15 µm, and for water vapour (H₂O) across a wide range, particularly below 8 µm and above 18 µm. ✓\nThis absorption occurs because the frequencies of the IR radiation at these wavelengths match the natural vibrational frequencies of the CO₂ and H₂O molecules, causing resonance. ✓\n\n3. **Explain the consequence of absorption.**\nBy absorbing this outgoing energy, the gases prevent it from escaping directly to space. The energy is then re-radiated, with a portion returning to the Earth's surface and lower atmosphere, causing a net warming effect. This is the greenhouse effect. ✓\n\n4. **Explain the 'atmospheric window'.**\nThere is a region between approximately 8 µm and 14 µm where absorption by the main greenhouse gases is weak. ✓\nThis 'window' allows a significant fraction of the Earth's thermal radiation to escape directly into space. Gases that absorb in this window, such as methane (CH₄) and CFCs, are particularly potent greenhouse gases because they are 'closing' a previously open window. ✓"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on the Greenhouse Effect",
+      "href": "/mark?subject=ib-physics-hl&topic=B.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "NASA: The Causes of Climate Change",
+          "href": "https://climate.nasa.gov/causes/"
+        },
+        {
+          "label": "PhET Simulation: The Greenhouse Effect",
+          "href": "https://phet.colorado.edu/en/simulations/greenhouse-effect"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "The Greenhouse Effect",
+    "embedUrl": "https://phet.colorado.edu/sims/html/greenhouse-effect/latest/greenhouse-effect_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/greenhouse-effect",
+    "hint": "Explore “The Greenhouse Effect” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

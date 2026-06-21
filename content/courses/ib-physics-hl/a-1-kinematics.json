@@ -1,0 +1,176 @@
+{
+  "slug": "a-1-kinematics",
+  "topicCode": "A.1",
+  "title": "Kinematics",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson introduces the kinematics of relative motion, a cornerstone of the Astrophysics option. It covers inertial frames of reference, Galilean transformations for position, velocity, and acceleration, and the classical principle of relativity, setting the stage for Einstein's theories.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define and identify inertial frames of reference.",
+    "State and apply Galilean transformations to solve problems involving relative motion in one and two dimensions.",
+    "Explain the Galilean principle of relativity and its limitations concerning the speed of light.",
+    "Distinguish between invariant and variant quantities under Galilean transformations."
+  ],
+  "simpleExplanation": {
+    "title": "Relative Motion: A Matter of Perspective",
+    "summary": "This topic explores how we describe motion from different viewpoints, or 'frames of reference'. We will learn the classical rules for how velocities add up and see how this seemingly simple idea leads to profound questions in physics.",
+    "analogy": "Imagine you are on a moving train and you throw a ball straight up. To you, it goes up and down. To someone watching from the station platform, the ball traces a curved, parabolic path as it moves forward with the train. Both observations are correct; they are just made from different 'frames of reference'. Galilean transformations are the mathematical rules for translating between these viewpoints.",
+    "steps": [
+      "Identify the different frames of reference in the problem. For example, 'the ground' (frame S) and 'the moving object' (frame S').",
+      "Define the variables for position and velocity for the object in each frame, and the relative velocity (V) between the frames.",
+      "Select the appropriate Galilean transformation equation. For velocities in one dimension, this is typically $v = v' + V$.",
+      "Solve for the unknown quantity, paying close attention to the signs of the vectors, and state your answer with appropriate units and direction."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a frame of reference?",
+      "back": "A coordinate system used to describe the position, displacement, velocity, and acceleration of an object."
+    },
+    {
+      "front": "What is an inertial frame of reference?",
+      "back": "A frame of reference in which Newton's First Law (the law of inertia) holds true. It is a frame that is not accelerating."
+    },
+    {
+      "front": "State the Galilean transformation for position in 1D.",
+      "back": "$x' = x - Vt$, where $x'$ is the position in frame S', $x$ is the position in frame S, and $V$ is the constant relative velocity of S' with respect to S."
+    },
+    {
+      "front": "State the Galilean transformation for velocity in 1D.",
+      "back": "$v' = v - V$ or $v = v' + V$. This is the classical law of velocity addition."
+    },
+    {
+      "front": "What is the Galilean transformation for acceleration?",
+      "back": "$a' = a$. Acceleration is an invariant quantity under Galilean transformations."
+    },
+    {
+      "front": "What is the Galilean principle of relativity?",
+      "back": "The laws of mechanics are the same in all inertial frames of reference. No mechanical experiment can determine absolute motion."
+    },
+    {
+      "front": "What quantities are considered invariant under Galilean transformations?",
+      "back": "Time intervals ($t'=t$), mass, force, and acceleration. These quantities are the same for all observers in inertial frames."
+    },
+    {
+      "front": "What quantities are NOT invariant under Galilean transformations?",
+      "back": "Position and velocity. Their measured values depend on the frame of reference of the observer."
+    },
+    {
+      "front": "What is the key assumption about time in Galilean relativity?",
+      "back": "Time is absolute. It is assumed that $t' = t$, meaning time passes at the same rate for all observers, regardless of their motion."
+    },
+    {
+      "front": "Why do Galilean transformations fail for electromagnetism?",
+      "back": "Maxwell's equations predict a constant speed of light, $c$. Galilean transformations incorrectly predict that the speed of light should vary depending on the observer's motion ($c' = c - V$), which contradicts experimental evidence."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Earth truly an inertial frame of reference?",
+      "a": "Not perfectly. The Earth rotates on its axis and orbits the Sun, both of which are forms of acceleration. However, these accelerations are very small, so for most introductory physics problems, we can approximate the Earth as an inertial frame. For high-precision measurements or large-scale phenomena (like weather patterns), these effects (e.g., the Coriolis effect) become significant."
+    },
+    {
+      "q": "What is the difference between this topic (A.1) and core Topic 2 (Mechanics)?",
+      "a": "Topic 2 focuses on describing motion (kinematics) and its causes (dynamics) within a single frame of reference. This topic, A.1, is concerned with the more fundamental question of how descriptions of motion change when you switch between different inertial frames of reference. It's the physics of 'point of view'."
+    },
+    {
+      "q": "Why is acceleration invariant under Galilean transformations but velocity is not?",
+      "a": "The velocity transformation is $v' = v - V$. If we differentiate this equation with respect to time, we get $a' = a - 0$, because the relative velocity $V$ between inertial frames is constant. Therefore, acceleration ($a$) is the same for both observers, while velocity ($v$) is relative."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Have you ever been in a stationary train and felt like you were moving when the train on the next track started to leave the station? This confusion highlights a fundamental concept in physics: all motion is relative. In this lesson, we will formalise this idea by exploring how to describe motion from different points of view, a field known as kinematics. This forms the essential groundwork for understanding Einstein's revolutionary theories of relativity."
+    },
+    {
+      "type": "heading",
+      "content": "Inertial Frames of Reference"
+    },
+    {
+      "type": "text",
+      "content": "A frame of reference is simply a coordinate system against which we measure position and motion. An **inertial frame of reference** is a special type of frame that is not accelerating. In such a frame, an object with no net force acting on it will either remain at rest or move with a constant velocity. This is a restatement of Newton's First Law. For most purposes, a laboratory on Earth can be considered an approximate inertial frame. In contrast, a frame that is accelerating, like a spinning carousel or a car turning a corner, is a **non-inertial frame**. In these frames, Newton's First Law does not appear to hold without introducing fictitious forces like the centrifugal force."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An inertial frame is one where Newton's First Law is valid.",
+        "Any frame moving with a constant velocity relative to an inertial frame is also an inertial frame.",
+        "An accelerating frame is a non-inertial frame."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Galilean Transformations"
+    },
+    {
+      "type": "text",
+      "content": "Galilean transformations provide a mathematical method to relate the measurements of an event made in two different inertial frames. Consider two frames, S (the 'stationary' frame, e.g., the ground) and S' (the 'moving' frame, e.g., a train), where S' moves with a constant velocity $V$ relative to S along the x-axis. We assume the origins coincide at $t=0$ and that time is absolute ($t'=t$)."
+    },
+    {
+      "type": "formula",
+      "content": "Position: $x' = x - Vt$ \\\\ Velocity: $v'_{x} = v_{x} - V$ \\\\ Acceleration: $a'_{x} = a_{x}$"
+    },
+    {
+      "type": "text",
+      "content": "The velocity transformation is often rearranged to $v_{x} = v'_{x} + V$, which is the intuitive rule for adding velocities. Notice that acceleration is invariant—both observers measure the same acceleration for an object. This is a crucial result, as it means that Newton's Second Law ($F=ma$) will have the same form in both inertial frames, since force and mass are also considered invariant."
+    },
+    {
+      "type": "workedExample",
+      "question": "A river flows east at a speed of 1.5 m s⁻¹. A boat, which has a speed of 4.0 m s⁻¹ in still water, is pointed north, directly across the river. Determine the velocity of the boat as measured by an observer on the riverbank.",
+      "solution": "1.  **Identify frames and vectors:**\n    Let the riverbank be frame S and the water be frame S'.\n    Velocity of the water relative to the bank (the relative velocity of the frames), $\\vec{V} = 1.5$ m s⁻¹ East.\n    Velocity of the boat relative to the water, $\\vec{v'} = 4.0$ m s⁻¹ North.\n    We need to find the velocity of the boat relative to the bank, $\\vec{v}$.\n\n2.  **Apply vector addition:**\n    The Galilean transformation for velocity is $\\vec{v} = \\vec{v'} + \\vec{V}$.\n    Since the vectors are perpendicular, we can use Pythagoras to find the magnitude of the resultant velocity:\n    $|\\vec{v}| = \\sqrt{|\\vec{v'}|^2 + |\\vec{V}|^2} = \\sqrt{(4.0)^2 + (1.5)^2}$ ✓\n    $|\\vec{v}| = \\sqrt{16 + 2.25} = \\sqrt{18.25} \\approx 4.27$ m s⁻¹ ✓\n\n3.  **Determine the direction:**\n    The direction can be found using trigonometry. Let $\\theta$ be the angle the boat's path makes with the northward direction.\n    $\\tan{\\theta} = \\frac{\\text{opposite}}{\\text{adjacent}} = \\frac{|\\vec{V}|}{|\\vec{v'}|} = \\frac{1.5}{4.0} = 0.375$ ✓\n    $\\theta = \\arctan(0.375) \\approx 20.6^\\circ$\n\n4.  **State the final answer:**\n    The velocity of the boat relative to the bank is 4.3 m s⁻¹ at an angle of 21° East of North. ✓"
+    },
+    {
+      "type": "heading",
+      "content": "The Principle of Relativity and its Limitations"
+    },
+    {
+      "type": "text",
+      "content": "The **Galilean principle of relativity** states that the laws of mechanics are the same in all inertial frames. This means that no experiment involving mechanics (e.g., dropping a ball, collisions) can be performed to determine whether you are at rest or moving at a constant velocity. However, this principle ran into a major problem at the end of the 19th century. James Clerk Maxwell's equations of electromagnetism predicted that the speed of light in a vacuum, $c$, is a universal constant, independent of the motion of the source or observer. This directly contradicts the Galilean velocity addition rule, which would predict that the speed of light should change depending on your frame of reference. This conflict was a major crisis in physics and ultimately led to Einstein's development of the Special Theory of Relativity."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, be precise with your language. When asked about inertial frames, always link your definition back to Newton's First Law. For calculation problems involving relative velocity, drawing a simple vector diagram is often the key to avoiding sign errors and correctly resolving components."
+    },
+    {
+      "type": "workedExample",
+      "question": "A spaceship (A) is moving away from Earth at a speed of $0.5c$. It fires a probe (P) in the same direction with a speed of $0.4c$ relative to the spaceship. According to Galilean relativity, what is the speed of the probe relative to Earth (E)?",
+      "solution": "1.  **Identify frames and velocities:**\n    Let the Earth be the stationary frame S. The spaceship is the moving frame S'.\n    Velocity of S' relative to S: $V = 0.5c$. ✓\n    Velocity of the probe relative to S': $v' = 0.4c$. ✓\n    We need to find the velocity of the probe relative to S, which is $v$.\n\n2.  **Apply Galilean velocity transformation:**\n    The formula is $v = v' + V$. ✓\n\n3.  **Calculate the speed:**\n    $v = 0.4c + 0.5c = 0.9c$. ✓\n\n4.  **State the answer:**\n    According to Galilean relativity, the speed of the probe relative to Earth is $0.9c$. \n    *(Note: This is the classical answer. Special relativity gives a different result, $0.75c$, which you will learn about in Topic A.2. This type of question highlights the limitations of Galilean transformations.)*"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems: A.1 Kinematics",
+      "href": "/mark?subject=ib-physics-hl&topic=A.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Motion in 2D",
+          "href": "https://phet.colorado.edu/en/simulations/motion-2d"
+        },
+        {
+          "label": "HyperPhysics: Frames of Reference",
+          "href": "http://hyperphysics.phy-astr.gsu.edu/hbase/frames.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Motion in 2D",
+    "embedUrl": "https://phet.colorado.edu/sims/html/motion-2d/latest/motion-2d_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/motion-2d",
+    "hint": "Explore “Motion in 2D” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

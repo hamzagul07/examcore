@@ -1,0 +1,197 @@
+{
+  "slug": "a-3-work-energy-and-power",
+  "topicCode": "A.3",
+  "title": "Work, energy and power",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson extends the core concepts of work, energy, and power to rotational dynamics. It introduces the rotational analogues of force (torque), mass (moment of inertia), and velocity (angular velocity) to analyse the energy and power of spinning objects.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Calculate the work done by a torque using the expression W = τΔθ.",
+    "Define and calculate rotational kinetic energy using Ek,rot = ½Iω².",
+    "Apply the work-energy theorem to solve problems involving rotating bodies.",
+    "Calculate the power developed by a torque using P = τω."
+  ],
+  "simpleExplanation": {
+    "title": "The Physics of Spin",
+    "summary": "Just like pushing an object in a straight line involves work and energy, spinning an object also requires work and gives it energy. We'll explore the rotational versions of familiar concepts like force, energy, and power.",
+    "analogy": "Imagine trying to spin a playground roundabout. It's much easier to get it moving by pushing on the outer edge than near the centre; this turning effect is 'torque'. A heavy, large roundabout is harder to start and stop than a light, small one, representing its 'moment of inertia'. The energy it possesses while spinning is its 'rotational kinetic energy'.",
+    "steps": [
+      "Identify the system as rotational and determine the acting torques. Is the torque constant or variable?",
+      "Calculate the work done by the net torque using W = τΔθ. Remember to use radians for the angular displacement Δθ.",
+      "Apply the rotational work-energy theorem: the net work done equals the change in rotational kinetic energy, W_net = ΔE_k,rot = ½Iω_f² - ½Iω_i².",
+      "Determine the power output at a specific instant using P = τω, ensuring angular velocity ω is in rad s⁻¹."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is torque (τ)?",
+      "back": "Torque is the rotational analogue of force; it is a measure of the turning effect of a force. It is calculated as τ = rFsinθ and has units of Newton-metres (Nm)."
+    },
+    {
+      "front": "What is moment of inertia (I)?",
+      "back": "Moment of inertia is the rotational analogue of mass. It measures an object's resistance to angular acceleration. It depends on the mass and its distribution relative to the axis of rotation. Units are kg m²."
+    },
+    {
+      "front": "How do you calculate the work done by a constant torque?",
+      "back": "The work done (W) by a constant torque (τ) is the product of the torque and the angular displacement (Δθ) in radians. The formula is W = τΔθ."
+    },
+    {
+      "front": "What is the formula for rotational kinetic energy?",
+      "back": "E_k,rot = ½Iω², where I is the moment of inertia and ω is the angular velocity in rad s⁻¹."
+    },
+    {
+      "front": "What is the rotational equivalent of the work-energy theorem?",
+      "back": "The net work done on a rigid body by external torques is equal to the change in its rotational kinetic energy: W_net = ΔE_k,rot = ½Iω_f² - ½Iω_i²."
+    },
+    {
+      "front": "How is power calculated in rotational motion?",
+      "back": "Power (P) is the rate at which work is done. For a rotating object, it is the product of torque (τ) and angular velocity (ω). The formula is P = τω."
+    },
+    {
+      "front": "What is a common unit conversion trap in rotational work calculations?",
+      "back": "Angular displacement (Δθ) must always be in radians, not degrees or revolutions. Remember that 1 revolution = 2π radians and 360° = 2π radians."
+    },
+    {
+      "front": "What is the relationship between linear power (P=Fv) and rotational power (P=τω)?",
+      "back": "They are analogous. Torque τ is the rotational equivalent of force F, and angular velocity ω is the rotational equivalent of linear velocity v."
+    },
+    {
+      "front": "If torque is not constant, how is work done calculated?",
+      "back": "If torque varies with angular position, the work done is the area under the torque-angle (τ vs θ) graph."
+    },
+    {
+      "front": "A solid sphere and a hollow sphere of the same mass and radius roll down an incline. Which reaches the bottom first?",
+      "back": "The solid sphere. It has a smaller moment of inertia (I_solid = 2/5MR², I_hollow = 2/3MR²), so for a given potential energy loss, more energy is converted to translational kinetic energy, making it faster. This connects to Topic 9."
+    },
+    {
+      "front": "What is the symbol for moment of inertia, and what can it be confused with?",
+      "back": "The symbol is I. In IB Physics, this can be confused with Impulse (also I or J) and electric current (I). Always read the question carefully to understand the context."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between work done by a force and work done by a torque?",
+      "a": "They are analogous concepts for different types of motion. Work done by a force ($W = Fd\\cos\\phi$) involves a force causing a linear displacement, typically changing an object's translational kinetic energy. Work done by a torque ($W = \\tau\\Delta\\theta$) involves a torque causing an angular displacement (rotation), changing an object's rotational kinetic energy."
+    },
+    {
+      "q": "Why must angular displacement be in radians for these formulas?",
+      "a": "The formulas $W = \\tau\\Delta\\theta$ and the kinematic equations they derive from are based on the relationship between arc length ($s$), radius ($r$), and angle in radians ($s = r\\theta$). Using degrees or revolutions would introduce conversion factors (like $\\pi/180$) into the formulas, making them more complex. Radians provide the most direct and fundamental link between linear and angular quantities."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In previous topics, we studied work, energy, and power in the context of linear (or translational) motion. However, many real-world systems involve rotation, from planets orbiting the sun to the wheels of a car. This section extends our energy analysis to the realm of rotational dynamics, establishing direct parallels between linear and angular quantities."
+    },
+    {
+      "type": "heading",
+      "content": "Work Done by a Torque"
+    },
+    {
+      "type": "text",
+      "content": "Just as a constant force doing work is given by $W = Fd$, a constant torque doing work is given by a similar expression. Torque, $\\tau$, is the rotational equivalent of force, and angular displacement, $\\Delta\\theta$, is the rotational equivalent of linear displacement, $d$. Therefore, the work done by a constant torque is the product of the torque and the angular displacement."
+    },
+    {
+      "type": "formula",
+      "content": "W = \\tau \\Delta\\theta"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The angular displacement $\\Delta\\theta$ must be measured in radians (rad).",
+        "The torque $\\tau$ is assumed to be constant for this formula.",
+        "If the torque is not constant, the work done is found by calculating the area under a torque-angle graph.",
+        "Positive work is done when the torque acts in the same direction as the rotation, increasing the object's rotational energy."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A motor applies a constant torque of 120 Nm to a grinding wheel. The wheel starts from rest and turns through 50 revolutions. Calculate the work done by the motor on the wheel.",
+      "solution": "1.  **Identify knowns:**\n    Torque, $\\tau = 120$ Nm\n    Angular displacement in revolutions = 50 rev\n\n2.  **Convert angular displacement to radians:**\n    The formula $W = \\tau \\Delta\\theta$ requires $\\Delta\\theta$ to be in radians.\n    $\\Delta\\theta = 50 \\text{ rev} \\times \\frac{2\\pi \\text{ rad}}{1 \\text{ rev}} = 100\\pi$ rad.\n\n3.  **Apply the work formula:**\n    $W = \\tau \\Delta\\theta$\n    $W = (120 \\text{ Nm}) \\times (100\\pi \\text{ rad})$\n\n4.  **Calculate the final answer:**\n    $W = 12000\\pi$ J\n    $W \\approx 37699$ J\n    To 3 significant figures, $W = 37700$ J or $37.7$ kJ. [3 marks]"
+    },
+    {
+      "type": "heading",
+      "content": "Rotational Kinetic Energy and the Work-Energy Theorem"
+    },
+    {
+      "type": "text",
+      "content": "An object that is rotating possesses kinetic energy because its constituent particles are in motion. This is called rotational kinetic energy. Its formula is directly analogous to the one for linear kinetic energy, $E_k = \\frac{1}{2}mv^2$, by substituting mass $m$ with moment of inertia $I$ and linear velocity $v$ with angular velocity $\\omega$."
+    },
+    {
+      "type": "formula",
+      "content": "E_{k,rot} = \\frac{1}{2}I\\omega^2"
+    },
+    {
+      "type": "text",
+      "content": "The work-energy theorem also applies in a rotational context. The net work done by all torques acting on a body is equal to the change in its rotational kinetic energy."
+    },
+    {
+      "type": "formula",
+      "content": "W_{net} = \\Delta E_{k,rot} = \\frac{1}{2}I\\omega_f^2 - \\frac{1}{2}I\\omega_i^2"
+    },
+    {
+      "type": "examTip",
+      "content": "Many problems involve objects that are both translating and rotating, like a ball rolling down a hill. In these cases, the total kinetic energy is the sum of the translational and rotational kinetic energies: $E_{k,total} = \\frac{1}{2}mv^2 + \\frac{1}{2}I\\omega^2$. Don't forget to account for both forms of energy!"
+    },
+    {
+      "type": "workedExample",
+      "question": "A flywheel with a moment of inertia of 2.5 kg m² is rotating at an angular velocity of 60.0 rad s⁻¹. A constant frictional torque is applied, bringing the flywheel to rest after 150 rotations. Calculate (a) the initial rotational kinetic energy and (b) the magnitude of the frictional torque.",
+      "solution": "**(a) Initial Rotational Kinetic Energy**\n\n1.  **Identify knowns:**\n    $I = 2.5$ kg m²\n    $\\omega_i = 60.0$ rad s⁻¹\n\n2.  **Apply the rotational kinetic energy formula:**\n    $E_{k,i} = \\frac{1}{2}I\\omega_i^2$\n    $E_{k,i} = \\frac{1}{2}(2.5 \\text{ kg m}^2)(60.0 \\text{ rad s}^{-1})^2$\n    $E_{k,i} = 0.5 \\times 2.5 \\times 3600$\n    $E_{k,i} = 4500$ J or 4.50 kJ. [2 marks]\n\n**(b) Magnitude of Frictional Torque**\n\n1.  **Apply the work-energy theorem:**\n    The work done by friction, $W_{fric}$, brings the flywheel to rest. So, the final kinetic energy $E_{k,f} = 0$.\n    $W_{fric} = \\Delta E_{k,rot} = E_{k,f} - E_{k,i} = 0 - 4500$ J = -4500 J.\n\n2.  **Calculate angular displacement in radians:**\n    $\\Delta\\theta = 150 \\text{ rotations} \\times 2\\pi \\text{ rad/rotation} = 300\\pi$ rad.\n\n3.  **Use the work formula to find torque:**\n    $W = \\tau \\Delta\\theta$\n    $-4500 \\text{ J} = \\tau \\times (300\\pi \\text{ rad})$\n    $\\tau = \\frac{-4500}{300\\pi} = -\\frac{15}{\\pi}$ Nm\n    $\\tau \\approx -4.77$ Nm.\n\n4.  **State the magnitude:**\n    The magnitude of the frictional torque is 4.77 Nm. The negative sign indicates the torque opposes the motion. [3 marks]"
+    },
+    {
+      "type": "heading",
+      "content": "Power in Rotational Motion"
+    },
+    {
+      "type": "text",
+      "content": "Power is the rate at which work is done or energy is transferred. In linear motion, instantaneous power is $P = Fv$. The analogous relationship in rotational motion gives power as the product of torque and angular velocity."
+    },
+    {
+      "type": "formula",
+      "content": "P = \\tau \\omega"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This formula gives the instantaneous power. If torque or angular velocity changes, the power will change.",
+        "Angular velocity $\\omega$ must be in rad s⁻¹.",
+        "The unit of power is the Watt (W), where 1 W = 1 J s⁻¹."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding",
+      "href": "/mark?subject=ib-physics-hl&topic=A.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Torque",
+          "href": "https://phet.colorado.edu/en/simulations/torque"
+        },
+        {
+          "label": "Video Tutorial: Rotational Work and Energy",
+          "href": "https://www.youtube.com/watch?v=86-X2S52VwY"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Torque",
+    "embedUrl": "https://phet.colorado.edu/sims/html/torque/latest/torque_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/torque",
+    "hint": "Explore “Torque” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

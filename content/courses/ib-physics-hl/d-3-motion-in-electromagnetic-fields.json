@@ -1,0 +1,201 @@
+{
+  "slug": "d-3-motion-in-electromagnetic-fields",
+  "topicCode": "D.3",
+  "title": "Motion in electromagnetic fields",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson explores the motion of charged particles in uniform magnetic and electric fields. It covers the Lorentz force, circular and helical motion, and the principles of velocity selectors and cyclotrons. Emphasis is placed on deriving and applying key equations to solve quantitative problems.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the path of a charged particle in a uniform magnetic field.",
+    "Derive and apply the formula for the radius of the circular path of a charged particle in a magnetic field.",
+    "Explain the principle of a velocity selector, where electric and magnetic forces are balanced.",
+    "Solve problems involving the motion of charged particles in combined electric and magnetic fields."
+  ],
+  "simpleExplanation": {
+    "title": "Cosmic Billiards",
+    "summary": "Charged particles moving through magnetic fields are pushed sideways, forcing them into circular or spiral paths. By adding an electric field, we can precisely steer these particles or filter them by speed.",
+    "analogy": "Imagine rolling a metal ball bearing across a table. If you hold a strong magnet just to the side of its path, the ball won't slow down, but it will curve away from its straight line. The magnetic force is always sideways, constantly turning the ball. If the magnet is strong enough and the table big enough, the ball will go in a circle. Now, if you also tilt the table (creating an electric field-like force), you can try to balance the magnetic curve with the downhill roll to make the ball go straight again, but only if it's rolling at one specific speed.",
+    "steps": [
+      "A charged particle moving in a magnetic field experiences a force, called the Lorentz force. This force is always perpendicular to both the particle's velocity and the magnetic field direction.",
+      "Use the Right-Hand Rule to find the direction of the force. Point your fingers in the direction of the magnetic field (B), and your thumb in the direction of the velocity (v) of a positive charge. The force (F) pushes out from your palm.",
+      "Because the force is always perpendicular to the velocity, it acts as a centripetal force. This causes the charged particle to move in a uniform circular path (if v is perpendicular to B).",
+      "If an electric field is also present, the particle experiences both an electric force and a magnetic force. By carefully balancing these, we can create a 'velocity selector' that only allows particles of a specific speed to pass through undeflected."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the Lorentz force?",
+      "back": "The total force experienced by a charged particle moving in a region with both electric and magnetic fields. It is the vector sum of the electric force and the magnetic force: $\\vec{F} = q\\vec{E} + q(\\vec{v} \\times \\vec{B})$."
+    },
+    {
+      "front": "What is the formula for the magnetic force on a moving charge?",
+      "back": "The magnitude is given by $F = qvB\\sin\\theta$, where $q$ is the charge, $v$ is the velocity, $B$ is the magnetic field strength, and $\\theta$ is the angle between the velocity vector and the magnetic field vector."
+    },
+    {
+      "front": "How do you determine the direction of the magnetic force on a positive charge?",
+      "back": "Using the Right-Hand Rule: Fingers point in the direction of the magnetic field (B), thumb points in the direction of velocity (v). The force acts out of the palm."
+    },
+    {
+      "front": "What is the direction of the magnetic force on a negative charge?",
+      "back": "Use the Right-Hand Rule as for a positive charge, but the resulting force is in the opposite direction. Alternatively, use a Left-Hand Rule."
+    },
+    {
+      "front": "Why does a magnetic field cause a charged particle to move in a circle?",
+      "back": "The magnetic force is always perpendicular to the particle's velocity. This means it acts as a centripetal force, constantly changing the direction of the velocity without changing its speed, resulting in uniform circular motion."
+    },
+    {
+      "front": "Does a magnetic force do work on a charged particle?",
+      "back": "No. Work is done when a force has a component parallel to the displacement ($W = Fd\\cos\\theta$). Since the magnetic force is always perpendicular to the velocity (and thus the displacement), the angle is 90°, $\\cos(90°) = 0$, and no work is done. The kinetic energy of the particle remains constant."
+    },
+    {
+      "front": "What is the formula for the radius of the circular path of a charge in a magnetic field?",
+      "back": "By equating magnetic force to centripetal force ($qvB = mv^2/r$), we get $r = \\frac{mv}{qB}$. This shows the radius is proportional to momentum ($mv$) and inversely proportional to charge and magnetic field strength."
+    },
+    {
+      "front": "What is a velocity selector?",
+      "back": "A device with crossed (perpendicular) electric and magnetic fields. It allows only particles with a specific velocity, $v = E/B$, to pass through undeflected, as the electric and magnetic forces cancel out."
+    },
+    {
+      "front": "What is cyclotron frequency?",
+      "back": "The frequency of the circular motion of a charged particle in a uniform magnetic field. It is given by $f = \\frac{qB}{2\\pi m}$ and is independent of the particle's velocity or the radius of its path."
+    },
+    {
+      "front": "What happens if a charged particle's velocity is NOT perpendicular to the magnetic field?",
+      "back": "The velocity component parallel to the field is unaffected, while the component perpendicular to the field causes circular motion. The combination of these two motions results in a helical (corkscrew-shaped) path."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What happens if the charged particle is stationary in the magnetic field?",
+      "a": "If the velocity $v=0$, then the magnetic force $F = qvB\\sin\\theta$ is also zero. A stationary charge experiences no force from a static magnetic field."
+    },
+    {
+      "q": "Why doesn't the magnetic force change the speed of the particle?",
+      "a": "The magnetic force is always perpendicular to the direction of motion (the velocity). Because work done is the product of force and displacement in the direction of the force, and there is no displacement in the direction of the magnetic force, no work is done on the particle. According to the work-energy theorem, if no work is done, the kinetic energy (and therefore speed) of the particle remains constant."
+    },
+    {
+      "q": "What is the difference between the Right-Hand Rule here and the one for magnetic fields from a current?",
+      "a": "They are used for different purposes. The 'Force' Right-Hand Rule (or Fleming's Left-Hand Rule) finds the direction of the force on a charge moving in a field. The 'Current' Right-Hand Rule (or Grip Rule) finds the direction of the magnetic field produced by a current-carrying wire."
+    },
+    {
+      "q": "In a velocity selector, what happens to particles that are too fast or too slow?",
+      "a": "If a particle is too fast ($v > E/B$), the magnetic force ($F_B = qvB$) will be stronger than the electric force ($F_E = qE$), and the particle will be deflected in the direction of the magnetic force. If it's too slow ($v < E/B$), the electric force will be stronger, and it will be deflected in the direction of the electric force. Only particles with the exact speed $v = E/B$ pass straight through."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "When a charged particle, like an electron or a proton, moves through a magnetic field, it experiences a force that is quite different from gravitational or electric forces. This magnetic force leads to fascinating and important phenomena, from the beautiful aurora borealis to the operation of particle accelerators. In this lesson, we will dissect this interaction and learn to predict the motion of charges in electromagnetic fields."
+    },
+    {
+      "type": "heading",
+      "content": "The Magnetic Force on a Moving Charge"
+    },
+    {
+      "type": "text",
+      "content": "A stationary charge experiences no force from a static magnetic field. However, once the charge is in motion, a force emerges. This magnetic force, a component of the broader Lorentz force, has a unique directional property: it is always perpendicular to both the velocity of the charge and the magnetic field itself. The magnitude of this force depends on the charge, its speed, the strength of the magnetic field, and the angle between the velocity and field vectors."
+    },
+    {
+      "type": "formula",
+      "content": "Magnetic Force: $F_B = qvB\\sin\\theta$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The force is maximum when velocity $\\vec{v}$ is perpendicular to the magnetic field $\\vec{B}$ ($\\theta = 90^{\\circ}$, $\\sin\\theta = 1$).",
+        "The force is zero if the charge moves parallel or anti-parallel to the magnetic field ($\\theta = 0^{\\circ}$ or $180^{\\circ}$, $\\sin\\theta = 0$).",
+        "The direction is given by the right-hand rule for positive charges and the opposite direction for negative charges."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Circular Motion in a Uniform Magnetic Field"
+    },
+    {
+      "type": "text",
+      "content": "Consider a charge entering a uniform magnetic field with its velocity perpendicular to the field lines. The magnetic force will be constant in magnitude ($F = qvB$) and always directed at 90° to the velocity. A force that is constant in magnitude and always perpendicular to velocity is the definition of a centripetal force. Therefore, the charged particle will undergo uniform circular motion. We can find the radius of this circle by equating the magnetic force to the formula for centripetal force."
+    },
+    {
+      "type": "formula",
+      "content": "Magnetic Force = Centripetal Force \\\\ $qvB = \\frac{mv^2}{r}$ \\\\ Radius of path: $r = \\frac{mv}{qB}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A proton (mass $1.67 \\times 10^{-27}$ kg, charge $+1.60 \\times 10^{-19}$ C) is injected with a velocity of $2.0 \\times 10^6$ m s$^{-1}$ perpendicularly into a uniform magnetic field of strength 0.50 T. \n a) Calculate the magnitude of the magnetic force on the proton. \n b) Determine the radius of the circular path it follows.",
+      "solution": "a) The velocity is perpendicular to the field, so $\\theta = 90^{\\circ}$ and $\\sin\\theta = 1$. \n Using the formula for magnetic force: \n $F = qvB\\sin\\theta$ [1] \n $F = (1.60 \\times 10^{-19} \\text{ C}) \\times (2.0 \\times 10^6 \\text{ m s}^{-1}) \\times (0.50 \\text{ T}) \\times \\sin(90^{\\circ})$ \n $F = 1.6 \\times 10^{-13}$ N [1] \n\n b) The magnetic force provides the centripetal force for the circular motion. \n $F_{magnetic} = F_{centripetal}$ \n $qvB = \\frac{mv^2}{r}$ [1] \n Rearranging for the radius, $r$: \n $r = \\frac{mv}{qB}$ [1] \n $r = \\frac{(1.67 \\times 10^{-27} \\text{ kg}) \\times (2.0 \\times 10^6 \\text{ m s}^{-1})}{(1.60 \\times 10^{-19} \\text{ C}) \\times (0.50 \\text{ T})}$ \n $r = \\frac{3.34 \\times 10^{-21}}{8.0 \\times 10^{-20}}$ \n $r = 0.04175$ m [1] \n $r \\approx 4.2$ cm (to 2 s.f.) [1]"
+    },
+    {
+      "type": "heading",
+      "content": "Motion in Crossed Electric and Magnetic Fields"
+    },
+    {
+      "type": "text",
+      "content": "When a charged particle moves through a region with both an electric field ($\"E\"$) and a magnetic field ($\"B\"$), it experiences both an electric force ($F_E = qE$) and a magnetic force ($F_B = qvB\\sin\\theta$). A particularly useful arrangement is when the E-field, B-field, and the particle's velocity are all mutually perpendicular. In this case, the electric and magnetic forces act in opposite directions. By adjusting the field strengths, we can create a situation where these two forces are perfectly balanced."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This setup is known as a velocity selector.",
+        "For a particle to pass through undeflected, the net force must be zero: $F_E = F_B$.",
+        "This leads to the condition $qE = qvB$.",
+        "The charge $q$ cancels out, meaning the selection is independent of the particle's charge (as long as it is not zero). The selected velocity is given by $v = E/B$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always be careful with the direction of forces. For the right-hand rule, remember it is defined for a POSITIVE charge. If the particle is negative (like an electron), the force will be in the OPPOSITE direction to what the rule predicts. It's a common place to lose marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "A velocity selector has a magnetic field of strength 0.10 T. A beam of ions with charge $+2e$ is fired into the selector. Only ions with a speed of $5.0 \\times 10^5$ m s$^{-1}$ pass through undeflected. The magnetic field, electric field and ion velocity are mutually perpendicular. \n a) Calculate the required strength of the electric field. \n b) Describe the direction of the electric field relative to the magnetic field and the velocity for the ions to pass undeflected.",
+      "solution": "a) For the ions to pass undeflected, the magnetic force must be equal and opposite to the electric force. \n $F_E = F_B$ \n $qE = qvB$ [1] \n The charge $q$ cancels, so we can solve for E: \n $E = vB$ [1] \n $E = (5.0 \\times 10^5 \\text{ m s}^{-1}) \\times (0.10 \\text{ T})$ \n $E = 5.0 \\times 10^4$ V m$^{-1}$ (or N C$^{-1}$) [1] \n\n b) Let's define a coordinate system. Let the velocity $\\vec{v}$ be in the $+x$ direction and the magnetic field $\\vec{B}$ be in the $+z$ direction (out of the page). \n Using the right-hand rule for the positive ions: thumb along $+x$, fingers along $+z$. The palm pushes upwards, so the magnetic force $\\vec{F}_B$ is in the $+y$ direction. [1] \n For the net force to be zero, the electric force $\\vec{F}_E$ must be in the opposite direction, i.e., the $-y$ direction. \n Since the ions are positively charged, the electric force is in the same direction as the electric field ($\"\\vec{F}_E = q\\vec{E}\"$). \n Therefore, the electric field $\\vec{E}$ must be directed in the $-y$ direction. [1] \n The electric field must be perpendicular to both the velocity and the magnetic field."
+    },
+    {
+      "type": "heading",
+      "content": "Helical Motion"
+    },
+    {
+      "type": "text",
+      "content": "What if the initial velocity of the charged particle is not perpendicular to the magnetic field? We can resolve the velocity vector into two components: one parallel to the B-field ($v_\\parallel$) and one perpendicular to it ($v_\\perp$). The parallel component is unaffected by the magnetic field, so the particle continues to move along the field direction with constant velocity $v_\\parallel$. The perpendicular component, however, causes the particle to execute circular motion. The combination of uniform motion in one direction and circular motion in a plane perpendicular to it results in a helical, or corkscrew-like, path. This is the principle behind 'magnetic bottles' used in fusion research and explains why charged particles from the sun (the solar wind) spiral around the Earth's magnetic field lines, causing the aurora."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-physics-hl&topic=D.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Video explanation of Lorentz Force",
+          "href": "https://www.youtube.com/watch?v=N8L386eBq3o"
+        },
+        {
+          "label": "Interactive simulation of charges in fields",
+          "href": "https://phet.colorado.edu/en/simulations/charges-and-fields"
+        },
+        {
+          "label": "In-depth article on particle accelerators",
+          "href": "https://home.cern/science/accelerators"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Interactive simulation of charges in fields",
+    "embedUrl": "https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/charges-and-fields",
+    "hint": "Explore “Interactive simulation of charges in fields” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

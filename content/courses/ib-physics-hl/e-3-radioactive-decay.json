@@ -1,0 +1,200 @@
+{
+  "slug": "e-3-radioactive-decay",
+  "topicCode": "E.3",
+  "title": "Radioactive decay",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental principles of radioactive decay. We will define and apply the radioactive decay law, understand the concepts of half-life, decay constant, and activity, and solve quantitative problems related to these phenomena, including radiometric dating.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe radioactive decay as a random and spontaneous process.",
+    "State and apply the radioactive decay law, N = N₀e⁻ˡᵗ, and its equivalent for activity, A = A₀e⁻ˡᵗ.",
+    "Define and relate the decay constant (λ), activity (A), and half-life (T₁/₂).",
+    "Solve problems involving radioactive decay, including the use of decay curves and radiometric dating."
+  ],
+  "simpleExplanation": {
+    "title": "Cosmic Popcorn",
+    "summary": "Radioactive decay is the process where unstable atomic nuclei release energy by emitting radiation. This is a random event for any single nucleus but is highly predictable for a large collection of them.",
+    "analogy": "Imagine a giant tray of popcorn kernels being heated. You can't predict exactly which kernel will pop next or when. However, you can say with some certainty that after a minute, roughly half of the kernels will have popped. As time goes on, the rate of popping slows down because there are fewer un-popped kernels left. Radioactive decay works in the same way: the rate of decay decreases as the number of unstable nuclei decreases.",
+    "steps": [
+      "Identify the given quantities: initial number of nuclei or activity (N₀ or A₀), final number or activity (N or A), half-life (T₁/₂), and time (t).",
+      "Calculate the decay constant (λ) if it's not given, using the half-life formula: λ = ln(2) / T₁/₂. Ensure the units of time are consistent.",
+      "Select the appropriate decay equation: N = N₀e⁻ˡᵗ for the number of nuclei, or A = A₀e⁻ˡᵗ for activity.",
+      "Substitute the known values into the equation and solve for the unknown variable. This may involve using natural logarithms (ln) to solve for time."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What are the two key characteristics of radioactive decay for an individual nucleus?",
+      "back": "It is **random** (cannot predict which nucleus will decay next) and **spontaneous** (the decay is not influenced by external physical or chemical conditions like temperature or pressure)."
+    },
+    {
+      "front": "What is the decay constant, λ?",
+      "back": "The decay constant (λ) is the probability of decay of a single nucleus per unit time. Its unit is s⁻¹ or yr⁻¹, etc."
+    },
+    {
+      "front": "Define 'activity' (A) and state its SI unit.",
+      "back": "Activity is the rate at which nuclei in a sample decay. Its SI unit is the Becquerel (Bq), where 1 Bq = 1 decay per second."
+    },
+    {
+      "front": "What is the radioactive decay law?",
+      "back": "The number of undecayed nuclei, N, remaining after time t is given by $N = N_0 e^{-\\lambda t}$, where $N_0$ is the initial number of nuclei and $\\lambda$ is the decay constant."
+    },
+    {
+      "front": "How is activity (A) related to the number of undecayed nuclei (N)?",
+      "back": "Activity is directly proportional to the number of undecayed nuclei: $A = \\lambda N$."
+    },
+    {
+      "front": "What is the formula for the decay of activity over time?",
+      "back": "$A = A_0 e^{-\\lambda t}$, where $A_0$ is the initial activity."
+    },
+    {
+      "front": "Define 'half-life' (T₁/₂).",
+      "back": "Half-life is the time required for half of the radioactive nuclei in a sample to decay. It is also the time for the activity of a sample to fall to half its initial value."
+    },
+    {
+      "front": "What is the mathematical relationship between half-life (T₁/₂) and the decay constant (λ)?",
+      "back": "$T_{1/2} = \\frac{\\ln 2}{\\lambda}$. A common approximation is $T_{1/2} \\approx \\frac{0.693}{\\lambda}$."
+    },
+    {
+      "front": "A sample has a half-life of 10 days. What fraction of the original sample remains after 30 days?",
+      "back": "30 days is 3 half-lives. After 1 half-life, 1/2 remains. After 2, 1/4 remains. After 3, 1/8 remains. So, $(1/2)^3 = 1/8$ of the sample remains."
+    },
+    {
+      "front": "Common Trap: A question asks for the number of nuclei that *have decayed*. How do you calculate this?",
+      "back": "First, calculate the number of nuclei *remaining*, $N$, using $N = N_0 e^{-\\lambda t}$. Then, subtract this from the initial number: Number decayed = $N_0 - N$."
+    },
+    {
+      "front": "Common Trap: Why might a calculation using the decay law give an incorrect answer?",
+      "back": "A common error is using inconsistent units for time. The time interval 't' and the decay constant 'λ' must be in reciprocal time units (e.g., if t is in years, λ must be in years⁻¹)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is radioactive decay a random process?",
+      "a": "Radioactive decay is fundamentally a quantum mechanical process. The principles of quantum mechanics state that we can only determine the probability of an event occurring in a given time interval. We cannot predict the exact moment of decay for a single nucleus, just as we cannot know both the precise position and momentum of a particle simultaneously."
+    },
+    {
+      "q": "Can the half-life of a radioactive isotope be changed?",
+      "a": "No. The half-life is an intrinsic property of a specific nuclide. It is determined by the forces within the nucleus and is not affected by external physical or chemical conditions like temperature, pressure, or the compound the atom is part of. This reliability is what makes it so useful for dating."
+    },
+    {
+      "q": "What is the difference between 'activity' and 'count rate'?",
+      "a": "Activity is the total number of decays occurring in the source per second (measured in Bq). Count rate is the number of decays detected by a radiation detector per second. The count rate is almost always lower than the activity because detectors are not 100% efficient and they only capture radiation emitted in their direction (geometric factor)."
+    },
+    {
+      "q": "After two half-lives, are all the atoms gone?",
+      "a": "No. After one half-life, half (1/2) of the original atoms remain. After a second half-life, half of *that* remainder decays, so one-quarter (1/4) of the original atoms are left. The number of atoms approaches zero exponentially but theoretically never reaches it."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to our exploration of radioactive decay. At the heart of this topic is the concept of nuclear instability. Certain combinations of protons and neutrons in a nucleus are unstable, and these 'radionuclides' will eventually transform into a more stable configuration by emitting particles or energy. This process is fundamental to many fields, from nuclear power and medicine to geology and archaeology."
+    },
+    {
+      "type": "heading",
+      "content": "The Nature of Radioactive Decay"
+    },
+    {
+      "type": "text",
+      "content": "Radioactive decay is governed by the laws of quantum mechanics and probability. For any single unstable nucleus, it is impossible to predict the exact moment it will decay. This is the **random** nature of decay. Furthermore, the decay process is **spontaneous**; it is an inherent property of the nucleus and is not influenced by external factors such as temperature, pressure, or chemical bonding. This is why the half-life of a given isotope is a constant."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Random:** The decay of an individual nucleus is a chance event.",
+        "**Spontaneous:** The decay cannot be controlled or influenced by external environmental factors.",
+        "The rate of decay depends only on the number of unstable nuclei present."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Law of Radioactive Decay"
+    },
+    {
+      "type": "text",
+      "content": "While we cannot predict the decay of a single nucleus, we can accurately model the behaviour of a large population of nuclei. The rate of decay, or activity, is directly proportional to the number of undecayed nuclei, $N$, present at that time. This relationship is expressed as a differential equation:"
+    },
+    {
+      "type": "formula",
+      "content": "\\frac{dN}{dt} = -\\lambda N"
+    },
+    {
+      "type": "text",
+      "content": "Here, $\\frac{dN}{dt}$ is the rate of change of the number of nuclei, and $\\lambda$ is the decay constant. The negative sign indicates that the number of undecayed nuclei decreases over time. Integrating this equation from time $t=0$ (with $N_0$ nuclei) to a later time $t$ (with $N$ nuclei) yields the exponential decay law."
+    },
+    {
+      "type": "formula",
+      "content": "N = N_0 e^{-\\lambda t}"
+    },
+    {
+      "type": "heading",
+      "content": "Activity, Half-life and the Decay Constant"
+    },
+    {
+      "type": "text",
+      "content": "The **activity (A)** of a radioactive sample is defined as the number of decays per unit time. From our previous equation, we can see that the magnitude of the rate of decay is $A = |\\frac{dN}{dt}| = \\lambda N$. The SI unit for activity is the Becquerel (Bq), where 1 Bq corresponds to one decay per second. Since activity is proportional to the number of nuclei, it also follows an exponential decay law."
+    },
+    {
+      "type": "formula",
+      "content": "A = A_0 e^{-\\lambda t}"
+    },
+    {
+      "type": "text",
+      "content": "A more intuitive measure of decay rate is the **half-life ($T_{1/2}$)**. This is the time it takes for half of the initial nuclei to decay, or equivalently, for the activity to fall to half its initial value. We can derive a crucial relationship by setting $N = N_0/2$ at $t = T_{1/2}$ in the decay law: $\\frac{N_0}{2} = N_0 e^{-\\lambda T_{1/2}}$. Solving for $T_{1/2}$ gives:"
+    },
+    {
+      "type": "formula",
+      "content": "T_{1/2} = \\frac{\\ln 2}{\\lambda}"
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, you must show your working clearly. When calculating a decay constant from a half-life, always write the formula $T_{1/2} = \\frac{\\ln 2}{\\lambda}$ first. Also, double-check that your time units are consistent. If half-life is in years, your decay constant will be in years⁻¹, and any time 't' you use in the decay equation must also be in years."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sample of Cobalt-60 has an initial activity of 4.80 x 10¹² Bq. The half-life of Cobalt-60 is 5.27 years. \n\na) Calculate the decay constant for Cobalt-60 in s⁻¹.\nb) Determine the activity of the sample after 10.0 years.",
+      "solution": "**a) Calculate the decay constant**\n\n1.  First, convert the half-life to seconds to get λ in s⁻¹.\n    $T_{1/2} = 5.27 \\text{ years} \\times 365.25 \\frac{\\text{days}}{\\text{year}} \\times 24 \\frac{\\text{hours}}{\\text{day}} \\times 3600 \\frac{\\text{s}}{\\text{hour}}$\n    $T_{1/2} = 1.663 \\times 10^8 \\text{ s}$ ✓\n\n2.  Use the relationship between half-life and decay constant.\n    $\\lambda = \\frac{\\ln 2}{T_{1/2}}$\n    $\\lambda = \\frac{\\ln 2}{1.663 \\times 10^8 \\text{ s}}$ ✓\n    $\\lambda = 4.17 \\times 10^{-9} \\text{ s}^{-1}$ ✓\n\n**b) Determine the activity after 10.0 years**\n\n*Method 1: Using λ in years⁻¹*\n\n1.  Calculate λ in years⁻¹ as the time is given in years.\n    $\\lambda = \\frac{\\ln 2}{5.27 \\text{ years}} = 0.1315 \\text{ years}^{-1}$ ✓\n\n2.  Use the activity decay formula.\n    $A = A_0 e^{-\\lambda t}$\n    $A = (4.80 \\times 10^{12} \\text{ Bq}) \\times e^{-(0.1315 \\text{ years}^{-1} \\times 10.0 \\text{ years})}$ ✓\n    $A = (4.80 \\times 10^{12}) \\times e^{-1.315}$\n    $A = 1.28 \\times 10^{12} \\text{ Bq}$ ✓\n\n*(Note: Using the λ value in s⁻¹ from part (a) would also work, but you would need to convert t=10.0 years into seconds. This method is more direct.)*"
+    },
+    {
+      "type": "workedExample",
+      "question": "An ancient wooden spear handle is discovered. The activity of Carbon-14 in the handle is measured to be 0.15 Bq per gram of carbon. A sample of living wood has a Carbon-14 activity of 0.24 Bq per gram of carbon. The half-life of Carbon-14 is 5730 years. Estimate the age of the spear handle.",
+      "solution": "1.  State the knowns:\n    $A_0 = 0.24 \\text{ Bq g}^{-1}$ (activity of living sample)\n    $A = 0.15 \\text{ Bq g}^{-1}$ (activity of ancient sample)\n    $T_{1/2} = 5730 \\text{ years}$\n\n2.  Calculate the decay constant, λ.\n    $\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{\\ln 2}{5730 \\text{ years}}$ ✓\n    $\\lambda = 1.209 \\times 10^{-4} \\text{ years}^{-1}$\n\n3.  State the activity decay law and rearrange for time, t.\n    $A = A_0 e^{-\\lambda t}$\n    $\\frac{A}{A_0} = e^{-\\lambda t}$\n    $\\ln(\\frac{A}{A_0}) = -\\lambda t$\n    $t = -\\frac{1}{\\lambda} \\ln(\\frac{A}{A_0})$ ✓\n\n4.  Substitute the values and solve for t.\n    $t = -\\frac{1}{1.209 \\times 10^{-4}} \\ln(\\frac{0.15}{0.24})$ ✓\n    $t = -\\frac{1}{1.209 \\times 10^{-4}} \\ln(0.625)$\n    $t = -\\frac{1}{1.209 \\times 10^{-4}} \\times (-0.470)$\n    $t = 3887 \\text{ years}$\n\n5.  State the final answer to an appropriate number of significant figures (2 s.f. based on the data).\n    Age ≈ 3900 years ✓"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Radioactive Decay",
+      "href": "/mark?subject=ib-physics-hl&topic=E.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Radioactive Dating Game",
+          "href": "https://phet.colorado.edu/en/simulations/radioactive-dating-game"
+        },
+        {
+          "label": "IAEA Article on Radioactive Decay",
+          "href": "https://www.iaea.org/newscenter/news/what-is-radioactive-decay"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Radioactive Dating Game",
+    "embedUrl": "https://phet.colorado.edu/sims/html/radioactive-dating-game/latest/radioactive-dating-game_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/radioactive-dating-game",
+    "hint": "Explore “Radioactive Dating Game” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

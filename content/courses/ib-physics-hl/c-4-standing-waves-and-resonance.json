@@ -1,0 +1,198 @@
+{
+  "slug": "c-4-standing-waves-and-resonance",
+  "topicCode": "C.4",
+  "title": "Standing waves and resonance",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson explores the formation and properties of standing waves, contrasting them with travelling waves. It covers the mathematical treatment of harmonics on strings and in pipes (open and closed), and introduces the concept of resonance as the driving force behind these phenomena.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the formation of a standing wave from the superposition of two identical waves travelling in opposite directions.",
+    "Distinguish between the properties of standing waves and travelling waves, including energy transfer, amplitude, and phase.",
+    "Solve problems involving boundary conditions for standing waves on strings and in air columns.",
+    "Explain resonance in terms of natural frequency and a driving frequency, and relate it to the formation of standing waves."
+  ],
+  "simpleExplanation": {
+    "title": "The Guitar String's Secret",
+    "summary": "Imagine two identical waves travelling towards each other. When they meet and interfere, they can create a stationary pattern of peaks and troughs that doesn't travel anywhere. This is a standing wave, and it only happens at specific 'magic' frequencies.",
+    "analogy": "Think of two people holding a long skipping rope. If they both send waves towards each other at random, the rope just looks messy. But if they time their shakes perfectly (at a resonant frequency), the rope forms beautiful, stable loops that seem to stand still. These loops are a standing wave, with points that don't move (nodes) and points that move the most (antinodes).",
+    "steps": [
+      "A wave is generated in a medium, like a string fixed at both ends. It travels towards one end.",
+      "The wave reflects from the fixed end. The reflection is inverted and travels back in the opposite direction.",
+      "The incident and reflected waves, which are identical in frequency and amplitude, interfere with each other.",
+      "At specific resonant frequencies, this superposition creates a stable pattern of nodes (zero motion) and antinodes (maximum motion), known as a standing wave."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a standing (stationary) wave?",
+      "back": "A wave pattern formed by the superposition of two identical progressive waves travelling in opposite directions. It stores energy instead of transferring it and has points of no displacement (nodes) and maximum displacement (antinodes)."
+    },
+    {
+      "front": "What is a node?",
+      "back": "A point on a standing wave that has permanent zero amplitude, caused by total destructive interference."
+    },
+    {
+      "front": "What is an antinode?",
+      "back": "A point on a standing wave that has maximum amplitude, caused by constructive interference."
+    },
+    {
+      "front": "How far apart are two consecutive nodes?",
+      "back": "Half a wavelength ($\\lambda/2$)."
+    },
+    {
+      "front": "How does energy transfer differ between standing and travelling waves?",
+      "back": "Travelling waves transfer energy in the direction of propagation. Standing waves do not have a net transfer of energy; energy is stored in the oscillation between nodes."
+    },
+    {
+      "front": "What is the fundamental frequency ($f_1$)?",
+      "back": "The lowest resonant frequency of an oscillating system. For a standing wave, it corresponds to the longest possible wavelength (the first harmonic, n=1)."
+    },
+    {
+      "front": "What is a harmonic?",
+      "back": "A resonant frequency that is an integer multiple of the fundamental frequency. The nth harmonic has frequency $f_n = n \\times f_1$."
+    },
+    {
+      "front": "What is the formula for the harmonic frequencies on a string of length L fixed at both ends?",
+      "back": "$f_n = n \\frac{v}{2L}$ for $n = 1, 2, 3, ...$"
+    },
+    {
+      "front": "What is the formula for the harmonic frequencies in a pipe of length L open at one end and closed at the other?",
+      "back": "$f_n = n \\frac{v}{4L}$ for $n = 1, 3, 5, ...$ (odd harmonics only)."
+    },
+    {
+      "front": "What is resonance?",
+      "back": "A phenomenon where the amplitude of an oscillation grows very large when a system is driven by a periodic force at a frequency equal or very close to one of its natural frequencies."
+    },
+    {
+      "front": "IB Trap: A pipe is closed at one end. What is its second possible resonant frequency called?",
+      "back": "It is the third harmonic ($n=3$). The term 'second overtone' is sometimes used, but it's safer to refer to harmonics. The 'second harmonic' ($n=2$) does not exist in a closed pipe."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do standing waves transfer energy?",
+      "a": "No, a pure standing wave does not have a net propagation of energy. The energy from the two constituent travelling waves is 'trapped' and stored in the oscillation of the medium between the nodes."
+    },
+    {
+      "q": "Why are only odd harmonics present in a pipe closed at one end?",
+      "a": "The boundary conditions require a displacement node at the closed end and a displacement antinode at the open end. This geometric constraint means that only an odd number of quarter-wavelengths can fit into the length of the pipe ($L = \\lambda/4, 3\\lambda/4, 5\\lambda/4$, etc.). This leads to resonant frequencies being odd integer multiples of the fundamental."
+    },
+    {
+      "q": "What is the difference between a harmonic and an overtone?",
+      "a": "A harmonic is an integer multiple of the fundamental frequency ($f_n = n f_1$). An overtone is any resonant frequency higher than the fundamental. For strings and open pipes, the 1st overtone is the 2nd harmonic, the 2nd overtone is the 3rd harmonic, and so on. For a closed pipe, the 1st overtone is the 3rd harmonic, the 2nd overtone is the 5th harmonic, etc. The IB syllabus prefers the term 'harmonic'."
+    },
+    {
+      "q": "Is the end of an open pipe a perfect antinode?",
+      "a": "In reality, the antinode is located slightly outside the physical end of the pipe. This is called the 'end correction'. For IB Physics, you can assume the antinode is exactly at the open end unless the question specifies an end correction value."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Have you ever wondered how a guitar produces different notes, or how a flute can play a beautiful melody? The physics behind these instruments is the science of standing waves and resonance. Unlike waves that travel across the ocean, standing waves appear to be fixed in place, oscillating with a distinctive pattern of nodes and antinodes. This phenomenon occurs when waves interfere with their own reflections, but only at very specific frequencies. Understanding these resonant frequencies is key to designing musical instruments, bridges, and many other engineering structures."
+    },
+    {
+      "type": "heading",
+      "content": "The Formation of Standing Waves"
+    },
+    {
+      "type": "text",
+      "content": "A standing wave is not a wave in the traditional sense of something that 'travels'. Instead, it is a stationary pattern of vibration that results from the superposition of two identical progressive waves travelling in opposite directions. Typically, this happens when a wave reflects from a boundary and interferes with the original incident wave."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Superposition:** The incident and reflected waves combine. The displacement at any point is the vector sum of the individual displacements.",
+        "**Interference:** Where the waves meet in phase, constructive interference occurs, creating an antinode (maximum amplitude). Where they meet out of phase (180° or $\\pi$ radians difference), destructive interference occurs, creating a node (zero amplitude).",
+        "**Nodes:** Points of permanent zero displacement. The distance between adjacent nodes is $\\lambda/2$.",
+        "**Antinodes:** Points of maximum displacement (oscillating between $+A_{max}$ and $-A_{max}$). The distance between adjacent antinodes is also $\\lambda/2$.",
+        "**Phase:** All particles between any two adjacent nodes oscillate in phase with each other. Particles in the next segment (across a node) oscillate in antiphase (180° out of phase)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Boundary Conditions and Harmonics"
+    },
+    {
+      "type": "text",
+      "content": "Standing waves can only be sustained if the conditions at the boundaries of the medium are met. These boundaries dictate which wavelengths, and therefore which frequencies, are allowed to form stable standing waves. These allowed frequencies are called resonant frequencies or harmonics."
+    },
+    {
+      "type": "text",
+      "content": "**Strings Fixed at Both Ends:** A guitar or violin string is a classic example. Both ends are fixed, so they must be nodes."
+    },
+    {
+      "type": "formula",
+      "content": "Length of string: $L = n \\frac{\\lambda_n}{2}$ \\\\ Frequency of nth harmonic: $f_n = \\frac{v}{\\lambda_n} = n \\frac{v}{2L}$ \\\\ where $n = 1, 2, 3, ...$ (all harmonics are present)."
+    },
+    {
+      "type": "text",
+      "content": "**Pipes with Air Columns:** In wind instruments, standing sound waves are formed. The boundary conditions depend on whether the ends are open or closed. An open end allows air to move freely, so it is a displacement antinode. A closed end prevents air movement, so it is a displacement node."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Pipe Open at Both Ends (e.g., flute):** Has an antinode at each end. The formula is the same as for a string: $f_n = n \\frac{v}{2L}$ for $n=1, 2, 3, ...$.",
+        "**Pipe Closed at One End (e.g., clarinet):** Has a node at the closed end and an antinode at the open end. This changes the condition.",
+        "**Formula for Closed Pipe:** $L = n \\frac{\\lambda_n}{4}$ and $f_n = n \\frac{v}{4L}$ where $n = 1, 3, 5, ...$ (only odd harmonics are present)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A cello string has a length of 70.0 cm and a fundamental frequency of 220 Hz. \n(a) Calculate the speed of the wave on the string. \n(b) Determine the frequency of the fourth harmonic.",
+      "solution": "The string is fixed at both ends, so we use the formula for harmonics on a string.\n\n**(a) Calculate wave speed**\n1. Identify knowns: $L = 0.700$ m, $f_1 = 220$ Hz. The fundamental frequency corresponds to $n=1$.\n2. State the formula for the fundamental frequency: $f_1 = \\frac{v}{2L}$. ✓\n3. Rearrange for speed, $v$: $v = 2L f_1$. ✓\n4. Substitute values: $v = 2 \\times 0.700 \\text{ m} \\times 220 \\text{ Hz}$.\n5. Calculate the result: $v = 308$ m/s. ✓\n\n**(b) Determine fourth harmonic frequency**\n1. The frequency of the nth harmonic is given by $f_n = n f_1$. ✓\n2. For the fourth harmonic, $n=4$.\n3. Substitute values: $f_4 = 4 \\times f_1 = 4 \\times 220$ Hz.\n4. Calculate the result: $f_4 = 880$ Hz. ✓"
+    },
+    {
+      "type": "heading",
+      "content": "Resonance"
+    },
+    {
+      "type": "text",
+      "content": "Resonance is a crucial concept linked to standing waves. Every system that can oscillate has a set of 'natural frequencies' at which it will vibrate if disturbed. If you apply a periodic driving force to the system with a frequency that matches one of these natural frequencies, the system will absorb energy very efficiently, and the amplitude of its oscillation will increase dramatically. The harmonic frequencies of a string or pipe are its natural frequencies. When you blow across a bottle top, you create a turbulent mix of frequencies (the driving force), but the air column inside only 'responds' to the one that matches its fundamental frequency, creating a loud, clear note. This is resonance."
+    },
+    {
+      "type": "examTip",
+      "content": "When dealing with pipes, always draw a diagram! Sketch the pipe and mark the nodes (N) and antinodes (A) for the harmonic in question. A closed end is always a displacement node. An open end is always a displacement antinode. This simple sketch will help you determine if you need the $L = n\\lambda/2$ or $L = n\\lambda/4$ relationship and prevent common errors."
+    },
+    {
+      "type": "workedExample",
+      "question": "An organ pipe is closed at one end and has a length of 0.85 m. The speed of sound in the air inside the pipe is 340 m/s. \n(a) Calculate the fundamental frequency of the pipe. \n(b) A second pipe, open at both ends, is designed to have the same fundamental frequency. What is its length?",
+      "solution": "**(a) Fundamental frequency of closed pipe**\n1. Identify system: Pipe closed at one end. Knowns: $L = 0.85$ m, $v = 340$ m/s.\n2. For a closed pipe, the fundamental frequency ($n=1$) is given by $f_1 = \\frac{v}{4L}$. ✓\n3. Substitute values: $f_1 = \\frac{340 \\text{ m/s}}{4 \\times 0.85 \\text{ m}}$. ✓\n4. Calculate: $f_1 = \\frac{340}{3.4} = 100$ Hz. ✓\n\n**(b) Length of open pipe with same fundamental frequency**\n1. Identify system: Pipe open at both ends. Knowns: $f_1 = 100$ Hz, $v = 340$ m/s.\n2. For an open pipe, the fundamental frequency ($n=1$) is given by $f_1 = \\frac{v}{2L_{open}}$. ✓\n3. Rearrange for length: $L_{open} = \\frac{v}{2f_1}$.\n4. Substitute values: $L_{open} = \\frac{340 \\text{ m/s}}{2 \\times 100 \\text{ Hz}}$. ✓\n5. Calculate: $L_{open} = \\frac{340}{200} = 1.7$ m. ✓\nNotice that the open pipe needs to be twice as long as the closed pipe to produce the same fundamental frequency."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge on standing waves",
+      "href": "/mark?subject=ib-physics-hl&topic=C.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Waves on a String",
+          "href": "https://phet.colorado.edu/en/simulations/wave-on-a-string"
+        },
+        {
+          "label": "Video: Tacoma Narrows Bridge Collapse (Resonance)",
+          "href": "https://www.youtube.com/watch?v=j-zczJXSxnw"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Waves on a String",
+    "embedUrl": "https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/wave-on-a-string",
+    "hint": "Explore “Waves on a String” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

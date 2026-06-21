@@ -20,10 +20,12 @@ export default function TermsPage() {
           <section>
             <h2 className="ms-h3">What MarkScheme is</h2>
             <p>
-              MarkScheme is an AI-assisted marking tool for Cambridge A-Level
-              self-study. It helps you check past-paper answers against official
-              mark schemes. It is not a tutoring agency, exam board, or
-              replacement for qualified teachers or Cambridge examiners.
+              MarkScheme is an AI-assisted study platform for exam self-study. It
+              helps you check past-paper answers against official mark schemes —
+              currently Cambridge International, with International Baccalaureate (IB)
+              and more boards being added — and offers free topic-by-topic study
+              courses. It is not a tutoring agency, exam board, or replacement for
+              qualified teachers or examiners.
             </p>
           </section>
 
@@ -42,10 +44,10 @@ export default function TermsPage() {
             <h2 className="ms-h3">AI limitations</h2>
             <p>
               AI marking is not perfect. MarkScheme provides feedback based on
-              Cambridge mark schemes, but errors happen. Use it as a{' '}
+              official mark schemes and markbands, but errors happen. Use it as a{' '}
               <strong className="text-[var(--ec-text-primary)]">study companion</strong>, not
-              a final grade. Final grades are determined by Cambridge
-              International examiners, not MarkScheme.
+              a final grade. Final grades are determined by your exam board&apos;s
+              examiners, not MarkScheme.
             </p>
             <p>
               We do not guarantee that feedback will match what a human examiner
@@ -75,10 +77,13 @@ export default function TermsPage() {
           <section>
             <h2 className="ms-h3">Intellectual property</h2>
             <p>
-              Cambridge subject codes, syllabus references, and mark schemes
-              are property of Cambridge Assessment International Education, used
-              here for educational purposes. MarkScheme is not affiliated with or
-              endorsed by Cambridge International.
+              Exam-board subject codes, syllabus references, and mark schemes are
+              the property of their respective owners — including Cambridge
+              Assessment International Education and the International Baccalaureate
+              Organization — and are referenced here for educational purposes only.
+              Our study courses are original content. MarkScheme is an independent
+              tool and is not affiliated with, authorised by, or endorsed by
+              Cambridge International or the IB.
             </p>
             <p>
               You retain ownership of work you upload. You grant us a licence to

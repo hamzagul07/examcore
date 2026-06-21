@@ -1,0 +1,187 @@
+{
+  "slug": "a-2-forces-and-momentum",
+  "topicCode": "A.2",
+  "title": "Forces and momentum",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson extends Newton's second law to define impulse and the impulse-momentum theorem. It covers analysing force-time graphs and applying the law of conservation of linear momentum to solve problems involving collisions and explosions in two dimensions.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Define impulse as the product of force and time, and as the change in momentum.",
+    "Calculate impulse from the area under a force-time graph.",
+    "State and apply the principle of conservation of linear momentum for isolated systems in two dimensions.",
+    "Solve problems involving collisions and explosions by resolving momentum vectors into perpendicular components."
+  ],
+  "simpleExplanation": {
+    "title": "Cosmic Billiards",
+    "summary": "Impulse is a 'kick' that changes an object's momentum, found by multiplying force by the time it acts. In any collision, from billiard balls to galaxies, the total momentum before and after is the same, as long as no external forces interfere.",
+    "analogy": "Imagine a game of pool. When you strike the cue ball, the cue stick delivers an impulse, a specific force for a short time, which changes the ball's momentum from zero to some value. When this cue ball hits another ball, they collide. The total momentum of the cue ball and the other ball is conserved. If you add up the momentum of all the balls moving in different directions after the break, it will equal the initial momentum of the cue ball. This is true for every direction, which is why we can analyse the 'left-right' and 'up-down' motion separately.",
+    "steps": [
+      "First, identify the objects in your system and check if it's 'isolated' – meaning no significant external forces (like friction) are acting. If so, total momentum is conserved.",
+      "Next, set up a coordinate system (x and y axes). Calculate the total initial momentum in the x-direction and the y-direction by summing the components for all objects.",
+      "Then, apply the conservation law. The total final momentum in the x-direction must equal the total initial x-momentum. Do the same for the y-direction.",
+      "Finally, use the calculated final momentum components to find the unknown final velocities. You may need to use Pythagoras and trigonometry to find the final speed and direction."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is impulse ($J$)?",
+      "back": "Impulse is the change in momentum of an object. It is also defined as the product of the net force acting on an object and the time interval over which the force acts. Units: Ns or kg m s⁻¹."
+    },
+    {
+      "front": "State the impulse-momentum theorem.",
+      "back": "The impulse on an object is equal to the object's change in momentum. Mathematically, $J = \\Delta p = F_{net} \\Delta t$."
+    },
+    {
+      "front": "How is impulse determined from a force-time graph?",
+      "back": "The impulse is the area under the force-time graph. For a variable force, this area represents the integral of force with respect to time, $\\int F \\, dt$."
+    },
+    {
+      "front": "State the law of conservation of linear momentum.",
+      "back": "If the net external force on a system is zero (i.e., the system is isolated), then the total linear momentum of the system remains constant."
+    },
+    {
+      "front": "What is an isolated system in the context of momentum?",
+      "back": "An isolated system is one where the net external force acting on it is zero. In such a system, momentum is conserved. Internal forces (like between colliding particles) do not affect the total momentum of the system."
+    },
+    {
+      "front": "What is the key difference between momentum conservation in 1D and 2D problems?",
+      "back": "In 2D problems, momentum must be treated as a vector. The conservation law must be applied independently to two perpendicular components (e.g., x and y directions). Total initial x-momentum equals total final x-momentum, and the same for the y-direction."
+    },
+    {
+      "front": "Is kinetic energy always conserved when momentum is conserved?",
+      "back": "No. Momentum is conserved in all collisions within an isolated system. Kinetic energy is only conserved in perfectly elastic collisions. In inelastic collisions, some kinetic energy is transformed into other forms (heat, sound, deformation)."
+    },
+    {
+      "front": "How is Newton's second law expressed in terms of momentum?",
+      "back": "The net force acting on an object is equal to the rate of change of its momentum. $F_{net} = \\frac{\\Delta p}{\\Delta t}$. This is the most general form of the law."
+    },
+    {
+      "front": "Common Trap: A student calculates the magnitude of momentum for each object before and after a 2D collision and adds them up. Why is this incorrect?",
+      "back": "Momentum is a vector. You cannot simply add the magnitudes. You must add the vectors, which is best done by resolving each momentum vector into perpendicular components, adding the components, and then recombining them to find the resultant."
+    },
+    {
+      "front": "What is the total momentum of a system of two objects moving towards each other with equal and opposite momentum?",
+      "back": "The total momentum of the system is zero. If object 1 has momentum $p$ and object 2 has momentum $-p$, the total momentum is $p + (-p) = 0$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is momentum conserved if there is friction?",
+      "a": "No. Friction is an external force acting on the system. If friction is significant over the time of the interaction, the system is not isolated and total momentum is not conserved. However, for very rapid events like collisions or explosions, the interaction time is so short that the impulse of external forces like friction is often negligible compared to the large internal forces, so we can approximate momentum as being conserved."
+    },
+    {
+      "q": "What is the difference between an elastic and an inelastic collision?",
+      "a": "In all collisions within an isolated system, momentum is conserved. The difference lies in kinetic energy (KE). In a perfectly elastic collision, total KE is also conserved. In an inelastic collision, some KE is converted into other forms of energy (like heat, sound, or potential energy of deformation), so the total KE decreases. A perfectly inelastic collision is one where the objects stick together after colliding."
+    },
+    {
+      "q": "Why do we resolve momentum into components? Can't we just use the law of cosines?",
+      "a": "You can use vector addition rules like the law of sines and cosines, especially if there are only two objects in the final state. However, resolving into components is a more systematic and robust method that works for any number of objects. It breaks a complex 2D vector problem into two simpler 1D scalar problems, which is often less prone to error."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our earlier studies, we explored momentum and forces in a straight line. However, the real world is rarely so simple. From car crashes to planetary orbits and particle interactions, events unfold in two or three dimensions. This topic extends our understanding of momentum, introducing the concept of impulse and applying the powerful law of conservation of momentum to analyse multi-dimensional scenarios."
+    },
+    {
+      "type": "heading",
+      "content": "Impulse and the Impulse-Momentum Theorem"
+    },
+    {
+      "type": "text",
+      "content": "When a force acts on an object, it changes its velocity and therefore its momentum. Newton's second law in its most general form states that the net force is the rate of change of momentum. If we rearrange this, we can define a new quantity called impulse."
+    },
+    {
+      "type": "formula",
+      "content": "F_{net} = \\frac{\\Delta p}{\\Delta t} \\implies F_{net} \\Delta t = \\Delta p"
+    },
+    {
+      "type": "text",
+      "content": "The quantity $F_{net} \\Delta t$ is called the **impulse**, symbol $J$. It represents the effect of a force acting over a time interval. The equation $J = \\Delta p$ is known as the **impulse-momentum theorem**. It states that the impulse delivered to an object is equal to its change in momentum. Both impulse and momentum are vector quantities, so their direction is crucial."
+    },
+    {
+      "type": "heading",
+      "content": "Force-Time Graphs"
+    },
+    {
+      "type": "text",
+      "content": "In many real-world collisions, the force is not constant. For example, when a tennis ball is struck by a racket, the force rapidly increases to a maximum and then decreases as the ball leaves the strings. In such cases, we can find the impulse by analysing a graph of force versus time."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The area under a force-time graph is equal to the impulse, $J$.",
+        "For a non-constant force, this area represents the integral $\\int F(t) dt$.",
+        "If the force is constant, the area is simply a rectangle: $J = F \\times \\Delta t$.",
+        "The average force, $F_{avg}$, is the constant force that would produce the same impulse over the same time interval."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A 0.15 kg cricket ball, initially at rest, is struck by a bat. The graph shows the variation of the force exerted by the bat on the ball with time. The force is modelled as a triangle, reaching a peak of 800 N at 1.0 ms and returning to zero at 2.0 ms. Calculate the final speed of the ball.",
+      "solution": "1.  **Identify the principle:** The final speed can be found from the change in momentum, which is equal to the impulse. The impulse is the area under the force-time graph.\n\n2.  **Calculate the impulse (Area):**\nThe graph is a triangle.\nArea = $\\frac{1}{2} \\times \\text{base} \\times \\text{height}$\nBase = $2.0 \\text{ ms} = 2.0 \\times 10^{-3} \\text{ s}$\nHeight = $800 \\text{ N}$\n$J = \\frac{1}{2} \\times (2.0 \\times 10^{-3} \\text{ s}) \\times (800 \\text{ N}) = 0.80 \\text{ Ns}$\n\n3.  **Apply the impulse-momentum theorem:**\n$J = \\Delta p = p_f - p_i = mv_f - mv_i$\n\n4.  **Solve for the final velocity:**\nThe ball is initially at rest, so $v_i = 0$.\n$J = mv_f$\n$v_f = \\frac{J}{m}$\n$v_f = \\frac{0.80 \\text{ Ns}}{0.15 \\text{ kg}} = 5.333... \\text{ m s}^{-1}$\n\n5.  **Final Answer:**\nRounding to 2 significant figures (consistent with the data from the graph, e.g., 800 N, 2.0 ms).\nFinal speed, $v_f = 5.3 \\text{ m s}^{-1}$."
+    },
+    {
+      "type": "heading",
+      "content": "Conservation of Momentum in Two Dimensions"
+    },
+    {
+      "type": "text",
+      "content": "The law of conservation of linear momentum states that for an isolated system, the total momentum remains constant. This is a fundamental principle of physics. The key to applying this in two (or three) dimensions is to remember that momentum is a vector. This means that the total momentum in the x-direction is conserved, and the total momentum in the y-direction is conserved, independently."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An isolated system is one where the net external force is zero.",
+        "For a collision between objects A and B: $p_{A,initial} + p_{B,initial} = p_{A,final} + p_{B,final}$ (vector equation).",
+        "In practice, we resolve this into two scalar equations:",
+        "x-direction: $p_{Ax,i} + p_{Bx,i} = p_{Ax,f} + p_{Bx,f}$",
+        "y-direction: $p_{Ay,i} + p_{By,i} = p_{Ay,f} + p_{By,f}$"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw clear 'before' and 'after' diagrams for momentum problems. Label all masses, velocities, and angles. Establish a clear coordinate system (x and y axes) and stick to it. This will help you correctly resolve the momentum vectors into components and avoid sign errors."
+    },
+    {
+      "type": "workedExample",
+      "question": "A 2.0 kg sphere (A) moving horizontally at 5.0 m s⁻¹ collides with a stationary 3.0 kg sphere (B). After the collision, sphere A moves with a velocity of 3.0 m s⁻¹ at an angle of 30° above the horizontal. Determine the magnitude and direction of the velocity of sphere B after the collision.",
+      "solution": "1.  **Define system and coordinates:** The system is spheres A and B. Let the initial direction of A be the +x axis. The perpendicular direction is the +y axis. Momentum is conserved as there are no external forces.\n\n2.  **Initial Momentum:**\n$p_{ix} = m_A u_A + m_B u_B = (2.0 \\text{ kg})(5.0 \\text{ m s}^{-1}) + (3.0 \\text{ kg})(0) = 10 \\text{ kg m s}^{-1}$\n$p_{iy} = 0$\n\n3.  **Final Momentum (in components):**\nLet the final velocity of B be $v_B$ at an angle $\\theta$.\nSphere A: \n$p_{Ax,f} = m_A v_A \\cos(30°) = (2.0)(3.0)\\cos(30°) = 5.20 \\text{ kg m s}^{-1}$\n$p_{Ay,f} = m_A v_A \\sin(30°) = (2.0)(3.0)\\sin(30°) = 3.00 \\text{ kg m s}^{-1}$\nSphere B: \n$p_{Bx,f} = m_B v_{Bx} = 3.0 v_{Bx}$\n$p_{By,f} = m_B v_{By} = 3.0 v_{By}$\n\n4.  **Apply Conservation of Momentum:**\n**x-direction:** $p_{ix} = p_{Ax,f} + p_{Bx,f}$\n$10 = 5.20 + 3.0 v_{Bx} \\implies 3.0 v_{Bx} = 4.80 \\implies v_{Bx} = 1.60 \\text{ m s}^{-1}$\n**y-direction:** $p_{iy} = p_{Ay,f} + p_{By,f}$\n$0 = 3.00 + 3.0 v_{By} \\implies 3.0 v_{By} = -3.00 \\implies v_{By} = -1.00 \\text{ m s}^{-1}$\n\n5.  **Calculate Final Velocity of B:**\nMagnitude: $v_B = \\sqrt{v_{Bx}^2 + v_{By}^2} = \\sqrt{(1.60)^2 + (-1.00)^2} = \\sqrt{2.56 + 1.00} = \\sqrt{3.56} = 1.886... \\text{ m s}^{-1}$\nDirection: $\\theta = \\tan^{-1} \\left( \\frac{v_{By}}{v_{Bx}} \\right) = \\tan^{-1} \\left( \\frac{-1.00}{1.60} \\right) = -32.0°$\n\n6.  **Final Answer:**\nSphere B moves with a velocity of magnitude **1.9 m s⁻¹** at an angle of **32° below the original horizontal direction**."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-physics-hl&topic=A.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "2D Collisions Simulator",
+          "href": "https://phet.colorado.edu/en/simulations/collision-lab"
+        },
+        {
+          "label": "In-depth article on Impulse",
+          "href": "https://www.physicsclassroom.com/class/momentum/Lesson-1/Impulse"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "2D Collisions Simulator",
+    "embedUrl": "https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/collision-lab",
+    "hint": "Explore “2D Collisions Simulator” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

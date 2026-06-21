@@ -1,0 +1,181 @@
+{
+  "slug": "b-1-thermal-energy-transfers",
+  "topicCode": "B.1",
+  "title": "Thermal energy transfers",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson explores the three mechanisms of thermal energy transfer: conduction, convection, and radiation. It provides the mathematical frameworks for conduction (Fourier's Law) and radiation (Stefan-Boltzmann Law), and introduces the concept of U-values for practical applications in thermal insulation.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Describe the mechanisms of thermal energy transfer: conduction, convection, and radiation.",
+    "Solve problems involving Fourier's Law for conduction and the Stefan-Boltzmann Law for radiation.",
+    "Distinguish between thermal conductivity (k-value) and thermal transmittance (U-value).",
+    "Analyse the factors that affect the rate of thermal energy transfer in different scenarios."
+  ],
+  "simpleExplanation": {
+    "title": "The Great Energy Escape",
+    "summary": "Heat always flows from hotter to colder regions, and it has three distinct ways to travel: conduction, convection, and radiation. We can precisely calculate how fast this energy escapes, which is crucial for everything from designing a thermos flask to understanding planetary climates.",
+    "analogy": "Imagine you're trying to stay warm in a cold cabin. You lose heat by touching the cold window pane (conduction). A chilly draft of air circulating in the room steals your warmth (convection). And even with no drafts or contact, you're constantly radiating heat away like a tiny, warm star (radiation). Understanding these three 'escape routes' is key to managing thermal energy.",
+    "steps": [
+      "Identify the primary mode of heat transfer in the problem: conduction (through a solid), convection (in a fluid), or radiation (through space).",
+      "Select the appropriate formula. For conduction, use Fourier's Law. For radiation, use the Stefan-Boltzmann Law.",
+      "Calculate the rate of energy transfer (power), ensuring all quantities are in SI units. Pay special attention to converting temperatures to Kelvin for radiation problems.",
+      "Interpret the result in the context of the problem, for example, by comparing the effectiveness of different insulators or explaining a physical phenomenon."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is conduction?",
+      "back": "The transfer of thermal energy through a substance without any bulk movement of the substance itself. It occurs via particle-to-particle vibrations and, in metals, the diffusion of free electrons."
+    },
+    {
+      "front": "What is convection?",
+      "back": "The transfer of thermal energy in a fluid (liquid or gas) through the bulk movement of the fluid itself. Hotter, less dense fluid rises, and cooler, denser fluid sinks, creating a convection current."
+    },
+    {
+      "front": "What is thermal radiation?",
+      "back": "The transfer of energy via electromagnetic waves (specifically infrared for most everyday temperatures). It does not require a medium and can travel through a vacuum."
+    },
+    {
+      "front": "Define thermal conductivity, $k$.",
+      "back": "A measure of a material's ability to conduct heat. It is the rate of heat flow per unit area for a unit temperature gradient. Units: W m⁻¹ K⁻¹."
+    },
+    {
+      "front": "What is the Stefan-Boltzmann Law?",
+      "back": "It states that the total power radiated per unit surface area of a black body is directly proportional to the fourth power of its absolute temperature. $P = \\sigma A T^4$ for a black body."
+    },
+    {
+      "front": "Define emissivity, $\\epsilon$.",
+      "back": "A dimensionless quantity between 0 and 1 that is the ratio of the energy radiated by a particular material to the energy radiated by a black body at the same temperature. A perfect black body has $\\epsilon = 1$."
+    },
+    {
+      "front": "What is a black body?",
+      "back": "An idealised object that absorbs all incident electromagnetic radiation, regardless of frequency or angle of incidence. It is also a perfect emitter of thermal radiation, with an emissivity of 1."
+    },
+    {
+      "front": "What is a U-value (Thermal Transmittance)?",
+      "back": "The rate of heat transfer through a structure of unit area, per unit temperature difference across the structure. It's the reciprocal of the total thermal resistance. Lower U-values mean better insulation. Units: W m⁻² K⁻¹."
+    },
+    {
+      "front": "What is a common mistake when using the Stefan-Boltzmann Law?",
+      "back": "Forgetting to convert temperature from Celsius to Kelvin. The law involves $T^4$, so this error leads to vastly incorrect answers. Always use absolute temperature (Kelvin)."
+    },
+    {
+      "front": "Distinguish between heat and temperature.",
+      "back": "Temperature is a measure of the average kinetic energy of the particles in a substance. Heat (or thermal energy) is the energy transferred from a hotter object to a colder one due to the temperature difference."
+    },
+    {
+      "front": "What is Fourier's Law of Conduction?",
+      "back": "It states that the rate of heat transfer through a material is proportional to the negative temperature gradient and the area perpendicular to the gradient. $\\frac{\\Delta Q}{\\Delta t} = -kA \\frac{\\Delta T}{\\Delta x}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is convection not significant in solids?",
+      "a": "Convection requires the bulk movement of matter. In solids, particles are fixed in a lattice structure and can only vibrate about their fixed positions. They cannot move from one place to another, so convection currents cannot be established."
+    },
+    {
+      "q": "What is the difference between thermal conductivity (k-value) and thermal transmittance (U-value)?",
+      "a": "Thermal conductivity (k) is an intrinsic property of a material, indicating how well it conducts heat per unit thickness. A U-value (thermal transmittance) is a property of a specific structure or component (like a whole window or wall), which may be made of several materials. It measures the overall rate of heat transfer across that entire structure. A low U-value means good insulation, and it is calculated based on the k-values and thicknesses of all the layers in the structure."
+    },
+    {
+      "q": "Do objects only radiate heat when they are 'hot'?",
+      "a": "No, all objects with a temperature above absolute zero (0 Kelvin) radiate thermal energy. You, the chair you're sitting on, and an ice cube all radiate energy. Hotter objects radiate energy at a much higher rate and at shorter wavelengths than cooler objects, which is why we can feel the heat from a fire but not from an ice cube."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to our exploration of thermal energy transfers. This fundamental topic in thermodynamics explains how heat moves from one place to another. We will dissect the three core mechanisms—conduction, convection, and radiation—and apply mathematical models to quantify these processes. Understanding this is vital for fields ranging from engineering and architecture to astrophysics and climate science."
+    },
+    {
+      "type": "heading",
+      "content": "Conduction: The Molecular Relay Race"
+    },
+    {
+      "type": "text",
+      "content": "Conduction is the transfer of thermal energy through direct contact. At the microscopic level in solids, atoms and molecules in a lattice vibrate. When one part of the material is heated, its particles vibrate more vigorously and collide with their neighbours, passing on kinetic energy. In metals, this process is greatly enhanced by the movement of delocalised 'free' electrons, which can transport energy rapidly through the material. This is why metals are generally excellent thermal and electrical conductors."
+    },
+    {
+      "type": "formula",
+      "content": "The rate of heat transfer by conduction, $P = \\frac{\\Delta Q}{\\Delta t}$, is described by Fourier's Law: \\n$$ P = kA \\frac{T_{hot} - T_{cold}}{L} = -kA \\frac{\\Delta T}{\\Delta x} $$ \\nWhere: \\n- $k$ is the thermal conductivity of the material (W m⁻¹ K⁻¹). \\n- $A$ is the cross-sectional area of heat flow (m²). \\n- $\\Delta T$ is the temperature difference across the material (K or °C). \\n- $L$ or $\\Delta x$ is the thickness of the material (m). \\n- The negative sign indicates that heat flows in the direction of decreasing temperature (down the temperature gradient)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A brick wall of a house is 3.0 m high, 5.0 m wide, and 0.20 m thick. The thermal conductivity of the brick is 0.60 W m⁻¹ K⁻¹. On a particular day, the inside surface temperature of the wall is 18°C, and the outside surface temperature is 4°C. Calculate the rate of heat loss through the wall.",
+      "solution": "1.  **Identify knowns and calculate area:** \\n    Area, $A = \\text{height} \\times \\text{width} = 3.0 \\, \\text{m} \\times 5.0 \\, \\text{m} = 15 \\, \\text{m}^2$. \\n    Thickness, $L = 0.20 \\, \\text{m}$. \\n    Thermal conductivity, $k = 0.60 \\, \\text{W m}^{-1} \\text{K}^{-1}$. \\n    Temperature difference, $\\Delta T = T_{hot} - T_{cold} = 18°\\text{C} - 4°\\text{C} = 14°\\text{C} = 14 \\, \\text{K}$. (A difference in Celsius is equal to a difference in Kelvin). ✓\\n\n2.  **State the formula:** \\n    Use Fourier's Law of Conduction: $P = kA \\frac{\\Delta T}{L}$. ✓\\n\n3.  **Substitute values and calculate:** \\n    $P = (0.60 \\, \\text{W m}^{-1} \\text{K}^{-1}) \\times (15 \\, \\text{m}^2) \\times \\frac{14 \\, \\text{K}}{0.20 \\, \\text{m}}$ ✓\\n    $P = 630 \\, \\text{W}$.\\n\n4.  **Final Answer:** \\n    The rate of heat loss through the wall is 630 W (or 630 J s⁻¹). ✓"
+    },
+    {
+      "type": "heading",
+      "content": "Convection: The Moving Fluid"
+    },
+    {
+      "type": "text",
+      "content": "Convection involves heat transfer through the bulk movement of fluids (liquids or gases). When a fluid is heated, it typically expands, becomes less dense, and rises. Cooler, denser fluid sinks to take its place, gets heated, and rises in turn. This continuous circulation, known as a convection current, efficiently transfers heat. Natural convection is driven by buoyancy forces (like a pot of boiling water), while forced convection uses external means like a fan or pump to move the fluid (like a fan oven or a car's cooling system). The quantitative analysis of convection is complex, so the IB syllabus focuses on a qualitative understanding."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Convection only occurs in fluids (liquids and gases).",
+        "It involves the mass movement of particles.",
+        "Natural convection is driven by density differences.",
+        "Forced convection uses external devices like fans or pumps."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Radiation: The Universal Emitter"
+    },
+    {
+      "type": "text",
+      "content": "Unlike conduction and convection, thermal radiation does not require a medium. All objects with a temperature above absolute zero (0 K) emit energy in the form of electromagnetic waves. The rate of this energy emission is highly dependent on the object's temperature and its surface characteristics. A perfect emitter is also a perfect absorber, known as a black body."
+    },
+    {
+      "type": "formula",
+      "content": "The power radiated by an object is given by the Stefan-Boltzmann Law: \\n$$ P = \\epsilon \\sigma A T^4 $$ \\nWhere: \\n- $P$ is the total power radiated (W). \\n- $\\epsilon$ is the emissivity of the surface (a dimensionless value from 0 to 1). \\n- $\\sigma$ is the Stefan-Boltzmann constant ($5.67 \\times 10^{-8} \\, \\text{W m}^{-2} \\text{K}^{-4}$). \\n- $A$ is the surface area of the object (m²). \\n- $T$ is the absolute temperature of the object's surface in Kelvin (K)."
+    },
+    {
+      "type": "examTip",
+      "content": "For any calculation involving the Stefan-Boltzmann Law, you MUST convert the temperature to Kelvin ($K = °C + 273.15$). Since the temperature is raised to the fourth power, using Celsius will result in a completely wrong answer and lose you significant marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "A sphere with a radius of 10 cm has an emissivity of 0.85. It is at a temperature of 500 K and is located in a vacuum chamber whose walls are maintained at 300 K. Calculate the net rate of heat loss from the sphere.",
+      "solution": "1.  **Identify variables and calculate area:** \\n    Radius, $r = 10 \\, \\text{cm} = 0.10 \\, \\text{m}$. \\n    Surface area of sphere, $A = 4\\pi r^2 = 4\\pi (0.10)^2 = 0.1257 \\, \\text{m}^2$. ✓\\n    Emissivity, $\\epsilon = 0.85$. \\n    Object temperature, $T_{obj} = 500 \\, \\text{K}$. \\n    Surroundings temperature, $T_{surr} = 300 \\, \\text{K}$. \\n    Stefan-Boltzmann constant, $\\sigma = 5.67 \\times 10^{-8} \\, \\text{W m}^{-2} \\text{K}^{-4}$.\\n\n2.  **State the formula for net power:** \\n    The sphere both radiates heat and absorbs heat from the surroundings. The net power loss is the difference between power radiated and power absorbed. \\n    $P_{net} = P_{radiated} - P_{absorbed} = \\epsilon \\sigma A T_{obj}^4 - \\epsilon \\sigma A T_{surr}^4$. \\n    $P_{net} = \\epsilon \\sigma A (T_{obj}^4 - T_{surr}^4)$. ✓\\n\n3.  **Substitute values and calculate:** \\n    $P_{net} = (0.85)(5.67 \\times 10^{-8})(0.1257) \\times (500^4 - 300^4)$ ✓\\n    $P_{net} = (6.056 \\times 10^{-9}) \\times (6.25 \\times 10^{10} - 8.1 \\times 10^9)$ \\n    $P_{net} = (6.056 \\times 10^{-9}) \\times (5.44 \\times 10^{10}) \\approx 329 \\, \\text{W}$. ✓\\n\n4.  **Final Answer:** \\n    The net rate of heat loss from the sphere is approximately 330 W (to 2 significant figures)."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-physics-hl&topic=B.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Energy Forms and Changes",
+          "href": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes"
+        },
+        {
+          "label": "IB Physics Guide: Topic B.1",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Energy Forms and Changes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes",
+    "hint": "Explore “Energy Forms and Changes” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

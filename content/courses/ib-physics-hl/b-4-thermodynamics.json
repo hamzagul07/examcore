@@ -1,0 +1,197 @@
+{
+  "slug": "b-4-thermodynamics",
+  "topicCode": "B.4",
+  "title": "Thermodynamics",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental principles of thermodynamics. It covers the First Law as a statement of energy conservation, detailing the relationship between internal energy, heat, and work. We will analyse four key thermodynamic processes (isobaric, isochoric, isothermal, adiabatic) using P-V diagrams. The lesson culminates with the Second Law of Thermodynamics, introducing entropy as a measure of disorder and exploring its profound implications for the direction of natural processes.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "State and apply the First Law of Thermodynamics to solve problems involving heat, work, and internal energy.",
+    "Describe and analyse isobaric, isochoric, isothermal, and adiabatic processes using P-V diagrams.",
+    "Calculate the work done by or on a gas from the area under a P-V graph.",
+    "State the Second Law of Thermodynamics in terms of entropy and analyse its implications for thermodynamic systems."
+  ],
+  "simpleExplanation": {
+    "title": "Thermodynamics: Energy, Work, and Disorder",
+    "summary": "Thermodynamics explains how energy moves and changes form, particularly between heat and mechanical work. It's governed by fundamental laws that dictate the efficiency and direction of all energy transformations in the universe.",
+    "analogy": "Imagine a bicycle pump. Pushing the handle does work on the air inside, compressing it. The pump and the air get warm, which means their internal energy has increased. Some of this warmth then escapes as heat into your hands and the surroundings. Thermodynamics is the physics of this precise energy accounting, ensuring that energy is always conserved but tends to spread out.",
+    "steps": [
+      "Identify the process type (isobaric, isochoric, isothermal, or adiabatic) from the problem description or a P-V diagram.",
+      "Apply the First Law of Thermodynamics, $\\Delta U = Q - W$, paying close attention to the sign conventions for heat ($Q$) and work ($W$).",
+      "Calculate the work done ($W$) by finding the area under the P-V graph. For a complete cycle, this is the area enclosed by the loop.",
+      "Apply the Second Law and the entropy formula, $\\Delta S = Q/T$, to determine the change in disorder and verify the direction of spontaneous change."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the First Law of Thermodynamics?",
+      "back": "It is a statement of the conservation of energy. The change in the internal energy of a system ($\\Delta U$) is equal to the heat added to the system ($Q$) minus the work done by the system ($W$). The formula is $\\Delta U = Q - W$."
+    },
+    {
+      "front": "What is the sign convention for work ($W$) in the formula $\\Delta U = Q - W$?",
+      "back": "$W > 0$ when work is done *by* the system on its surroundings (expansion). $W < 0$ when work is done *on* the system by its surroundings (compression)."
+    },
+    {
+      "front": "What is the sign convention for heat ($Q$) in the formula $\\Delta U = Q - W$?",
+      "back": "$Q > 0$ when heat is added *to* the system from the surroundings. $Q < 0$ when heat is removed *from* the system to the surroundings."
+    },
+    {
+      "front": "What is an isochoric (isovolumetric) process?",
+      "back": "A thermodynamic process where the volume remains constant ($\\Delta V = 0$). No work is done ($W=0$), so the First Law simplifies to $\\Delta U = Q$. On a P-V diagram, this is a vertical line."
+    },
+    {
+      "front": "What is an isobaric process?",
+      "back": "A thermodynamic process where the pressure remains constant ($\\Delta p = 0$). The work done is given by $W = p \\Delta V$. On a P-V diagram, this is a horizontal line."
+    },
+    {
+      "front": "What is an isothermal process for an ideal gas?",
+      "back": "A process occurring at a constant temperature ($\\Delta T = 0$). Since the internal energy of an ideal gas depends only on its temperature, the change in internal energy is zero ($\\Delta U = 0$). Therefore, from the First Law, $Q = W$."
+    },
+    {
+      "front": "What is an adiabatic process?",
+      "back": "A process with no heat transfer between the system and its surroundings ($Q=0$). This can occur in a well-insulated system or during a very rapid process. The First Law becomes $\\Delta U = -W$."
+    },
+    {
+      "front": "How is work done represented on a Pressure-Volume (P-V) diagram?",
+      "back": "The work done ($W$) during a process is equal to the area under the curve on a P-V diagram. For a full cycle, the net work done is the area enclosed by the loop."
+    },
+    {
+      "front": "What is the Second Law of Thermodynamics?",
+      "back": "The total entropy of an isolated system (or the universe) always increases over time, or remains constant in ideal reversible processes. It never decreases. Mathematically, $\\Delta S_{universe} \\ge 0$."
+    },
+    {
+      "front": "Define the change in entropy ($\\Delta S$).",
+      "back": "Entropy is a measure of a system's microscopic disorder. For a reversible process at a constant absolute temperature $T$, the change in entropy is defined as the heat transferred ($Q$) divided by the temperature: $\\Delta S = Q/T$."
+    },
+    {
+      "front": "What is a common trap when calculating work in a thermodynamic cycle from a P-V diagram?",
+      "back": "Forgetting the significance of the cycle's direction. A clockwise cycle represents a heat engine and has a net positive work output ($W_{net} > 0$). An anticlockwise cycle represents a refrigerator or heat pump and has a net negative work output ($W_{net} < 0$), meaning net work is done on the system."
+    },
+    {
+      "front": "What is the change in internal energy for any complete thermodynamic cycle?",
+      "back": "Zero. The system returns to its initial state (same pressure, volume, and temperature). Since internal energy is a state function, its value at the start and end is the same, so $\\Delta U_{cycle} = 0$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the change in internal energy zero for an isothermal process in an ideal gas?",
+      "a": "The internal energy of an ideal gas is defined as the total random kinetic energy of its molecules. This kinetic energy is directly proportional to the absolute temperature. If the temperature is constant (isothermal), the average kinetic energy of the molecules does not change. Consequently, the total internal energy ($U$) remains constant, and the change in internal energy ($\\Delta U$) is zero."
+    },
+    {
+      "q": "Can the entropy of a system ever decrease?",
+      "a": "Yes, the entropy of a specific *system* can decrease. For example, when water vapour condenses into liquid water, its entropy decreases as the molecules become more ordered. However, the Second Law of Thermodynamics applies to the *universe* (the system plus its surroundings). The condensation process releases heat into the surroundings, increasing the surroundings' entropy. This increase is always greater than or equal to the system's decrease, so the total entropy of the universe always increases or stays the same."
+    },
+    {
+      "q": "What is the difference between the physics and chemistry sign conventions for work?",
+      "a": "This is a common point of confusion. In physics and the IB syllabus, work done *by* the system on its surroundings (e.g., a gas expanding) is positive ($W>0$). In many chemistry contexts, work done *by* the system is considered negative. This leads to two forms of the first law: $\\Delta U = Q - W$ (physics) and $\\Delta U = Q + W$ (chemistry, where $W$ is work done *on* the system). For your IB Physics exams, you must use the convention where work done *by* the system is positive and the law is $\\Delta U = Q - W$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of thermodynamics, the branch of physics that deals with heat, work, and temperature, and their relation to energy, radiation, and the physical properties of matter. At its core, thermodynamics is governed by two fundamental laws that dictate how and why energy flows and transforms. Understanding these laws is key to fields ranging from engineering to cosmology."
+    },
+    {
+      "type": "heading",
+      "content": "The First Law of Thermodynamics"
+    },
+    {
+      "type": "text",
+      "content": "The First Law is a version of the law of conservation of energy, adapted for thermodynamic systems. It states that the change in the internal energy of a system is equal to the heat added to the system minus the work done by the system on its surroundings. Internal energy ($U$) is the sum of all the microscopic kinetic and potential energies of the particles within the system."
+    },
+    {
+      "type": "formula",
+      "content": "$\\Delta U = Q - W$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\Delta U$ is the change in internal energy of the system.",
+        "$Q$ is the heat added to the system. ($Q>0$ for heat in, $Q<0$ for heat out).",
+        "$W$ is the work done by the system. ($W>0$ for expansion, $W<0$ for compression)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Thermodynamic Processes and P-V Diagrams"
+    },
+    {
+      "type": "text",
+      "content": "A P-V diagram is a graph of pressure versus volume for a gas, and it is an essential tool for visualising thermodynamic processes. The state of a gas is a point on the diagram, and a process is a path from one state to another. The area under this path represents the work done."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Isobaric (constant pressure):** Horizontal line on P-V diagram. $W = p\\Delta V$.",
+        "**Isochoric (constant volume):** Vertical line on P-V diagram. $W = 0$.",
+        "**Isothermal (constant temperature):** For an ideal gas, $\\Delta U = 0$, so $Q=W$. The curve is a hyperbola ($p \\propto 1/V$).",
+        "**Adiabatic (no heat exchange):** $Q = 0$, so $\\Delta U = -W$. The curve is steeper than an isotherm."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An ideal gas expands at a constant pressure of 200 kPa from an initial volume of $1.5 \\times 10^{-3} \\text{ m}^3$ to a final volume of $4.0 \\times 10^{-3} \\text{ m}^3$. In this isobaric process, 550 J of heat is supplied to the gas. Calculate (a) the work done by the gas, and (b) the change in internal energy of the gas.",
+      "solution": "a) Identify the process and relevant formula.\nThis is an isobaric (constant pressure) process, so the work done is $W = p \\Delta V$.\n\nCalculate the change in volume:\n$\\Delta V = V_{final} - V_{initial} = (4.0 \\times 10^{-3}) - (1.5 \\times 10^{-3}) = 2.5 \\times 10^{-3} \\text{ m}^3$ ✓\n\nCalculate the work done:\n$p = 200 \\text{ kPa} = 200 \\times 10^3 \\text{ Pa}$\n$W = (200 \\times 10^3 \\text{ Pa}) \\times (2.5 \\times 10^{-3} \\text{ m}^3) = 500 \\text{ J}$ ✓\n\nb) Apply the First Law of Thermodynamics: $\\Delta U = Q - W$.\n\nIdentify the values for Q and W:\nHeat is supplied, so $Q = +550 \\text{ J}$.\nThe gas expands, so work is done by the gas, $W = +500 \\text{ J}$.\n\nCalculate the change in internal energy:\n$\\Delta U = 550 \\text{ J} - 500 \\text{ J} = 50 \\text{ J}$ ✓\nThe internal energy of the gas increases by 50 J."
+    },
+    {
+      "type": "heading",
+      "content": "The Second Law of Thermodynamics and Entropy"
+    },
+    {
+      "type": "text",
+      "content": "While the First Law states that energy is conserved, it doesn't explain why certain processes happen spontaneously and others don't (e.g., why heat flows from hot to cold). The Second Law introduces the concept of entropy ($S$), a measure of disorder or the number of ways energy can be distributed in a system. It states that for any spontaneous process, the total entropy of the universe must increase."
+    },
+    {
+      "type": "formula",
+      "content": "$\\Delta S_{universe} = \\Delta S_{system} + \\Delta S_{surroundings} \\ge 0$"
+    },
+    {
+      "type": "text",
+      "content": "For a reversible process occurring at a constant absolute temperature $T$, the change in a system's entropy is given by $\\Delta S = Q/T$, where $Q$ is the heat transferred to the system. This law sets a fundamental direction to the arrow of time and explains why perpetual motion machines of the second kind are impossible."
+    },
+    {
+      "type": "examTip",
+      "content": "On P-V diagrams, be meticulous with calculating the area under the graph for work. For complex shapes, break them down into rectangles and triangles. Remember that for a full cycle, the net work is the area *enclosed* by the loop. A clockwise loop means net work is done *by* the system ($W>0$), while an anticlockwise loop means net work is done *on* the system ($W<0$)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A heat engine operates in a cycle. In one cycle, it absorbs 2500 J of heat from a hot reservoir at 750 K and expels 1500 J of heat to a cold reservoir at 300 K. Calculate (a) the net work done by the engine in one cycle, and (b) the total change in entropy of the universe for one cycle, stating whether the process is possible.",
+      "solution": "a) For a complete cycle, the change in internal energy is zero ($\\Delta U = 0$).\nFrom the First Law, $\\Delta U = Q_{net} - W_{net}$, so $W_{net} = Q_{net}$.\n\n$Q_{net}$ is the heat absorbed minus the heat expelled:\n$Q_{net} = Q_H - Q_C = 2500 \\text{ J} - 1500 \\text{ J} = 1000 \\text{ J}$ ✓\n\nTherefore, the net work done by the engine is $W_{net} = 1000 \\text{ J}$. ✓\n\nb) The total entropy change is the sum of the entropy changes of the reservoirs.\n$\\Delta S_{universe} = \\Delta S_{hot} + \\Delta S_{cold}$\n\nFor the hot reservoir (loses heat, so Q is negative):\n$\\Delta S_{hot} = \\frac{Q_H}{T_H} = \\frac{-2500 \\text{ J}}{750 \\text{ K}} = -3.33 \\text{ J K}^{-1}$ ✓\n\nFor the cold reservoir (gains heat, so Q is positive):\n$\\Delta S_{cold} = \\frac{Q_C}{T_C} = \\frac{+1500 \\text{ J}}{300 \\text{ K}} = +5.00 \\text{ J K}^{-1}$ ✓\n\nTotal entropy change:\n$\\Delta S_{universe} = -3.33 + 5.00 = +1.67 \\text{ J K}^{-1}$ ✓\n\nSince $\\Delta S_{universe} > 0$, the process is possible according to the Second Law of Thermodynamics. ✓"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-physics-hl&topic=B.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Gas Properties",
+          "href": "https://phet.colorado.edu/en/simulations/gas-properties"
+        },
+        {
+          "label": "Video explanation of Thermodynamic Processes",
+          "href": "https://www.youtube.com/watch?v=YAl_y_V3s4M"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Gas Properties",
+    "embedUrl": "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/gas-properties",
+    "hint": "Explore “Gas Properties” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

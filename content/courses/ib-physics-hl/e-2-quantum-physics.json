@@ -1,0 +1,203 @@
+{
+  "slug": "e-2-quantum-physics",
+  "topicCode": "E.2",
+  "title": "Quantum physics",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson delves into the foundational concepts of quantum physics, introducing the Schrödinger equation, the probabilistic nature of the wave function, and the quantisation of energy using the 'particle in a box' model. It also explores the non-classical phenomenon of quantum tunnelling.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the role of the Schrödinger equation and the probabilistic interpretation of the wave function, $\\Psi$.",
+    "Solve problems involving the quantised energy levels of a particle in an infinite potential well.",
+    "Describe the phenomenon of quantum tunnelling through a potential barrier.",
+    "Qualitatively analyse how tunnelling probability is affected by particle mass, barrier width, and the energy difference."
+  ],
+  "simpleExplanation": {
+    "title": "The Quantum Escape Artist",
+    "summary": "Quantum physics describes particles not as tiny balls, but as waves of probability governed by the Schrödinger equation. This wave-like nature allows for bizarre effects like particles 'tunnelling' through barriers they shouldn't be able to cross.",
+    "analogy": "Imagine you're in a room with high walls (a 'potential well'). Classically, you need enough energy to jump over the wall to get out. In quantum mechanics, you're more like a 'ghost' whose presence is spread throughout the room. There's a tiny, non-zero chance your 'ghostliness' extends through the wall, allowing you to appear on the other side without ever going 'over' it. This is quantum tunnelling.",
+    "steps": [
+      "First, describe a quantum particle using its wave function, $\\Psi$, which contains all information about it.",
+      "Next, find the probability of locating the particle at a certain point by calculating the square of the wave function's amplitude, $|\\Psi|^2$.",
+      "Then, apply constraints, like confining the particle to a 'box'. This forces the wave function to fit in specific ways, leading to quantised energy levels.",
+      "Finally, consider the wave function encountering a barrier. It decays but doesn't vanish, allowing a small probability for the particle to 'tunnel' through to the other side."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the wave function, $\\Psi$?",
+      "back": "A mathematical function that describes the quantum state of a particle. It is a complex-valued probability amplitude, and its solution is derived from the Schrödinger equation."
+    },
+    {
+      "front": "What is the physical significance of $|\\Psi|^2$?",
+      "back": "It represents the probability density of finding the particle at a particular point in space. The probability of finding the particle in a small volume $dV$ is $|\\Psi|^2 dV$."
+    },
+    {
+      "front": "What are the units of probability density, $|\\Psi|^2$, in one dimension?",
+      "back": "Per unit length, or m⁻¹. This is a common trap; it's not a dimensionless probability."
+    },
+    {
+      "front": "What is the Schrödinger equation?",
+      "back": "A fundamental equation in quantum mechanics that describes how the quantum state (wave function) of a physical system changes over time. The time-independent version gives the allowed stationary states and their energies."
+    },
+    {
+      "front": "What is quantum tunnelling?",
+      "back": "A quantum mechanical phenomenon where a particle passes through a potential energy barrier that it classically cannot surmount because its total energy is less than the potential energy of the barrier."
+    },
+    {
+      "front": "How does barrier width affect tunnelling probability?",
+      "back": "The tunnelling probability decreases exponentially as the barrier width increases. A wider barrier means a much lower chance of tunnelling."
+    },
+    {
+      "front": "How does particle mass affect tunnelling probability?",
+      "back": "The tunnelling probability decreases as the mass of the particle increases. This is why macroscopic objects are not observed to tunnel."
+    },
+    {
+      "front": "What is the 'particle in a box' model?",
+      "back": "A model system of a single particle confined inside an infinitely deep potential well. It demonstrates the quantisation of energy."
+    },
+    {
+      "front": "What is the formula for the energy levels of a particle in a 1D infinite potential well of length $L$?",
+      "back": "$E_n = \\frac{n^2h^2}{8mL^2}$, where $n = 1, 2, 3, ...$ is the principal quantum number."
+    },
+    {
+      "front": "Why is the ground state energy ($n=1$) of a particle in a box not zero?",
+      "back": "If the energy were zero, the momentum would also be zero. This would mean the particle is stationary ($\"Delta p = 0$), so its position would be completely uncertain, violating the confinement to the box. It is a consequence of the Heisenberg Uncertainty Principle."
+    },
+    {
+      "front": "What is the relationship between the energy difference $\\Delta E = V_0 - E$ and tunnelling probability?",
+      "back": "A larger energy difference (i.e., the particle's energy is much lower than the barrier height) leads to a lower tunnelling probability. The decay of the wave function inside the barrier is more rapid."
+    }
+  ],
+  "faq": [
+    {
+      "q": "If the wave function is a 'probability wave', what is waving?",
+      "a": "Nothing is physically waving in the same way water waves. The wave function is a complex mathematical abstraction. Its magnitude squared gives a probability, so it's a wave of information or probability amplitude. The 'waving' describes the changing probability of finding a particle at different locations in space."
+    },
+    {
+      "q": "Why don't we see quantum effects like tunnelling in our everyday macroscopic world?",
+      "a": "The probability of a macroscopic object (like a tennis ball) tunnelling through a wall is astronomically small. This is because the tunnelling probability decreases exponentially with increasing mass and barrier width. For everyday objects and barriers, the probability is so close to zero that it would likely not happen even over the age of the universe."
+    },
+    {
+      "q": "Is quantum tunnelling just a theoretical idea?",
+      "a": "No, it's a very real phenomenon with important applications. The Scanning Tunnelling Microscope (STM), which can image individual atoms, works based on electrons tunnelling from a sharp tip to a surface. Nuclear fusion in the Sun also relies on protons tunnelling through the electrostatic repulsion barrier that would otherwise keep them apart."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the strange and fascinating world of quantum physics. This option topic builds on your knowledge from Topic 7, moving beyond the introductory ideas of wave-particle duality to the mathematical framework that governs the subatomic realm. We will explore the Schrödinger equation, the probabilistic nature of reality, and phenomena that defy classical intuition, such as quantum tunnelling."
+    },
+    {
+      "type": "heading",
+      "content": "The Schrödinger Equation and the Wave Function"
+    },
+    {
+      "type": "text",
+      "content": "In classical mechanics, Newton's laws allow us to predict the exact position and momentum of a particle at any time. In quantum mechanics, this certainty is lost. Instead, we describe a particle using a wave function, denoted by the Greek letter Psi, $\\Psi$. The wave function itself is not directly observable, but it contains all the information about the particle's state. The fundamental equation that governs the behaviour of $\\Psi$ is the Schrödinger equation."
+    },
+    {
+      "type": "formula",
+      "content": "Time-Independent Schrödinger Equation (1D): $$-\\frac{\\hbar^2}{2m} \\frac{d^2\\Psi}{dx^2} + V\\Psi = E\\Psi$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "This equation is an eigenvalue equation. Solving it for a given potential $V$ yields the allowed energy levels $E$ (the eigenvalues) and the corresponding wave functions $\\Psi$ (the eigenfunctions).",
+        "$\\hbar$ is the reduced Planck constant, $\\hbar = h/(2\\pi)$.",
+        "$m$ is the mass of the particle.",
+        "$V$ is the potential energy function.",
+        "$E$ is the total energy of the particle, which is often quantised."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "The crucial step is interpreting what $\\Psi$ means. The Born interpretation states that the square of the modulus of the wave function, $|\\Psi(x)|^2$, gives the probability density of finding the particle at position $x$. This means that where $|\\Psi|^2$ is large, the particle is likely to be found, and where it is zero, the particle will never be found."
+    },
+    {
+      "type": "heading",
+      "content": "The Particle in an Infinite Potential Well"
+    },
+    {
+      "type": "text",
+      "content": "A foundational model in quantum mechanics is the 'particle in a box'. We imagine a particle of mass $m$ trapped in a one-dimensional box of length $L$. The potential energy is zero inside the box ($0 < x < L$) and infinite everywhere else. This confinement forces the wave function to be zero at the walls, leading to standing wave solutions and, most importantly, quantised energy levels."
+    },
+    {
+      "type": "formula",
+      "content": "Allowed Energy Levels: $$E_n = \\frac{n^2h^2}{8mL^2} \\quad \\text{for } n=1, 2, 3, ...$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The energy is quantised, meaning it can only take on discrete values determined by the quantum number $n$.",
+        "The lowest possible energy, the ground state ($n=1$), is greater than zero. The particle can never be at rest.",
+        "The energy levels are not equally spaced; the gap between successive levels increases as $n$ increases ($E_n \\propto n^2$).",
+        "The wave functions are sine waves, $\\Psi_n(x) = A \\sin(\\frac{n\\pi x}{L})$, with $n$ corresponding to the number of antinodes."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An electron is confined within a one-dimensional infinite potential well of width 0.50 nm. \n\na) Calculate the energy of the ground state in joules.\nb) Calculate the energy of the first excited state ($n=2$) in electronvolts.",
+      "solution": "a) **Identify knowns and formula**\nMass of electron, $m_e = 9.11 \\times 10^{-31}$ kg\nPlanck's constant, $h = 6.63 \\times 10^{-34}$ J s\nWidth of well, $L = 0.50 \\times 10^{-9}$ m\nGround state corresponds to $n=1$.\nThe energy formula is $E_n = \\frac{n^2h^2}{8mL^2}$.\n\n**Substitute values for ground state (n=1)**\n$E_1 = \\frac{1^2 \\times (6.63 \\times 10^{-34})^2}{8 \\times (9.11 \\times 10^{-31}) \\times (0.50 \\times 10^{-9})^2}$ ✓\n$E_1 = \\frac{4.396 \\times 10^{-67}}{8 \\times (9.11 \\times 10^{-31}) \\times (2.5 \\times 10^{-19})}$\n$E_1 = \\frac{4.396 \\times 10^{-67}}{1.822 \\times 10^{-48}}$\n$E_1 = 2.41 \\times 10^{-19}$ J ✓\n\nb) **Calculate energy for first excited state (n=2)**\nWe can use the ratio method since $E_n \\propto n^2$.\n$E_2 = 2^2 \\times E_1 = 4 \\times E_1$\n$E_2 = 4 \\times (2.41 \\times 10^{-19} \\text{ J}) = 9.64 \\times 10^{-19}$ J ✓\n\n**Convert to electronvolts (eV)**\n$1 \\text{ eV} = 1.60 \\times 10^{-19}$ J\n$E_2 (\\text{eV}) = \\frac{9.64 \\times 10^{-19} \\text{ J}}{1.60 \\times 10^{-19} \\text{ J/eV}}$\n$E_2 = 6.0$ eV ✓\n\n*(Full marks for correct final answers with units. Intermediate steps show working.)*"
+    },
+    {
+      "type": "heading",
+      "content": "Quantum Tunnelling"
+    },
+    {
+      "type": "text",
+      "content": "One of the most striking predictions of quantum mechanics is tunnelling. Imagine a particle with total energy $E$ approaching a potential barrier of height $V_0$, where $V_0 > E$. Classically, the particle would always be reflected. Quantum mechanically, however, the wave function does not become zero at the barrier. It decays exponentially within the barrier, but if the barrier is thin enough, the wave function will still have a small, non-zero amplitude on the other side. This implies there is a finite probability that the particle will appear on the other side of the barrier, having 'tunnelled' through."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Tunnelling is a direct consequence of the wave nature of matter.",
+        "The transmission probability, $T$, is the probability that a particle will tunnel through the barrier.",
+        "$T$ depends strongly on: \n  - **Barrier width ($L$):** $T$ decreases exponentially as $L$ increases.\n  - **Energy difference ($V_0 - E$):** $T$ decreases as the difference between barrier height and particle energy increases.\n  - **Particle mass ($m$):** $T$ decreases as $m$ increases."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For IB exams, you are not required to solve the Schrödinger equation for a finite barrier. However, you must be able to sketch the wave function $\\Psi$ for a tunnelling particle. Key features to show are: a sinusoidal wave before the barrier, exponential decay inside the barrier, and a sinusoidal wave of much smaller amplitude after the barrier. The wavelength after the barrier is the same as before, as the particle's kinetic energy is unchanged."
+    },
+    {
+      "type": "workedExample",
+      "question": "An electron and a proton, with the same kinetic energy, are incident on an identical potential barrier of height $V_0$ and width $L$. The kinetic energy of both particles is less than $V_0$. Compare, with a reason, the probability of tunnelling for the electron and the proton.",
+      "solution": "**1. Identify the key variable**\nThe question asks to compare the tunnelling probability for an electron and a proton. The key difference between them is their mass. ✓\n$m_{proton} \\approx 1836 \\times m_{electron}$. The proton is much more massive than the electron.\n\n**2. State the relationship**\nThe probability of tunnelling is highly dependent on the mass of the particle. It decreases exponentially as the mass increases. ✓\n\n**3. Conclusion**\nSince the proton is significantly more massive than the electron, its tunnelling probability will be significantly (many orders of magnitude) smaller. ✓\nThe electron has a much higher probability of tunnelling through the barrier compared to the proton. ✓\n\n*(This is a descriptive question. Marks are awarded for identifying mass as the key factor, stating the correct relationship, and drawing a clear conclusion.)*"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-physics-hl&topic=E.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Quantum Tunnelling",
+          "href": "https://phet.colorado.edu/en/simulations/quantum-tunneling-and-wave-packets"
+        },
+        {
+          "label": "HyperPhysics: Particle in a Box",
+          "href": "http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/pbox.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Quantum Tunnelling",
+    "embedUrl": "https://phet.colorado.edu/sims/html/quantum-tunneling-and-wave-packets/latest/quantum-tunneling-and-wave-packets_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/quantum-tunneling-and-wave-packets",
+    "hint": "Explore “Quantum Tunnelling” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

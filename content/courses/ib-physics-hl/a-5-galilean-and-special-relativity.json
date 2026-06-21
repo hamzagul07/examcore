@@ -1,0 +1,219 @@
+{
+  "slug": "a-5-galilean-and-special-relativity",
+  "topicCode": "A.5",
+  "title": "Galilean and special relativity",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson contrasts classical Galilean relativity with Einstein's special relativity. We will explore the two postulates of special relativity and their profound consequences, including time dilation, length contraction, and the equivalence of mass and energy. The concepts of the Lorentz factor, relativistic momentum, and total energy will be introduced and applied to solve problems.",
+  "durationMin": 22,
+  "updated": "2026-06-20",
+  "learningObjectives": [
+    "Understand and apply Galilean transformations.",
+    "State and explain the two postulates of special relativity.",
+    "Apply the time dilation and length contraction formulae to solve problems.",
+    "Solve problems involving relativistic momentum, rest energy, and total energy."
+  ],
+  "simpleExplanation": {
+    "title": "The Universe's Speed Limit",
+    "summary": "Our everyday intuition for adding speeds breaks down when things move close to the speed of light. Einstein's theory of special relativity provides the new rules, revealing that time and space are not absolute but relative.",
+    "analogy": "Imagine you're on a train and throw a ball forward. To someone on the platform, the ball's speed is the train's speed plus your throw's speed. This is Galilean relativity. Now, if you shine a torch, both you and the person on the platform measure the light's speed as *exactly the same*, a constant 'c'. This bizarre fact is the cornerstone of special relativity, forcing us to rethink time and space.",
+    "steps": [
+      "First, we examine Galilean relativity, the 'common sense' rules for motion. In this view, velocities simply add up, like throwing a ball on a moving train.",
+      "Next, we see the problem: James Clerk Maxwell's equations showed that light speed is a constant, 'c', for everyone. This directly contradicts the Galilean idea of adding velocities.",
+      "Then, we introduce Einstein's two postulates. He proposed that the laws of physics and the speed of light are the same for all observers in uniform motion, resolving the conflict.",
+      "Finally, we explore the mind-bending consequences. To keep the speed of light constant for everyone, time must slow down (time dilation) and lengths must shorten (length contraction) for moving objects."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Inertial Reference Frame",
+      "back": "A frame of reference in which Newton's First Law is valid. It is a non-accelerating frame where an object with no net force acting on it moves at a constant velocity."
+    },
+    {
+      "front": "Galilean Transformation",
+      "back": "The classical rules for converting the coordinates and velocities of an event from one inertial frame to another. For example, $u' = u - v$. It assumes time is absolute."
+    },
+    {
+      "front": "First Postulate of Special Relativity",
+      "back": "The Principle of Relativity: The laws of physics are the same in all inertial reference frames. This means there is no 'absolute' rest frame; all inertial motion is relative."
+    },
+    {
+      "front": "Second Postulate of Special Relativity",
+      "back": "The Constancy of the Speed of Light: The speed of light in a vacuum, $c$, has the same value for all observers in inertial reference frames, regardless of the motion of the source or the observer."
+    },
+    {
+      "front": "Time Dilation",
+      "back": "The phenomenon where a clock that is moving relative to an observer is measured to tick slower than a clock that is at rest with respect to the observer. $\\Delta t = \\gamma \\Delta t_0$."
+    },
+    {
+      "front": "Proper Time ($\\Delta t_0$)",
+      "back": "The time interval between two events measured by an observer for whom the events occur at the same location in space. It is the shortest possible time interval measured for those events."
+    },
+    {
+      "front": "Length Contraction",
+      "back": "The phenomenon where the length of a moving object is measured to be shorter in its direction of motion than its length when at rest. $L = L_0 / \\gamma$."
+    },
+    {
+      "front": "Proper Length ($L_0$)",
+      "back": "The length of an object as measured by an observer who is at rest with respect to the object. It is the longest possible length measured for that object."
+    },
+    {
+      "front": "Lorentz Factor ($\\gamma$)",
+      "back": "A factor that determines the extent of time dilation and length contraction. It is defined as $\\gamma = (1 - v^2/c^2)^{-1/2}$. It is always greater than or equal to 1."
+    },
+    {
+      "front": "Rest Energy ($E_0$)",
+      "back": "The energy an object has due to its mass alone, given by Einstein's famous equation $E_0 = m_0 c^2$, where $m_0$ is the rest mass."
+    },
+    {
+      "front": "Total Relativistic Energy ($E$)",
+      "back": "The sum of an object's rest energy and its kinetic energy. It is given by $E = \\gamma m_0 c^2$. This energy approaches infinity as an object's speed approaches $c$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the main difference between Galilean and Special Relativity?",
+      "a": "Galilean relativity assumes time and space are absolute, and velocities simply add up. Special relativity, driven by the constant speed of light, shows that time and space are relative and intertwined. This leads to effects like time dilation and length contraction, which are absent in the Galilean model."
+    },
+    {
+      "q": "Why can't anything with mass travel at the speed of light?",
+      "a": "According to the formula for total energy, $E = \\gamma m_0 c^2$, the energy of an object increases as its speed increases. The Lorentz factor, $\\gamma$, approaches infinity as the object's speed approaches the speed of light, $c$. Therefore, it would require an infinite amount of energy to accelerate an object with mass to the speed of light, which is physically impossible."
+    },
+    {
+      "q": "Does special relativity allow for time travel to the past?",
+      "a": "No, special relativity does not permit travel to the past. Time dilation allows for a form of 'time travel' to the future: if you travel at a high speed away from Earth and then return, less time will have passed for you than for people on Earth. You will have effectively jumped into their future. However, moving backwards in time would violate causality (the principle that a cause must precede its effect), and there is no mechanism for this within the theory of special relativity."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "For centuries, Newton's laws of motion and gravity described the universe with incredible accuracy. This classical view, formalised by Galilean relativity, assumed that space and time were absolute, unchanging backdrops for events. However, at the turn of the 20th century, inconsistencies between mechanics and the new theory of electromagnetism led a young Albert Einstein to propose a radical new framework: the theory of special relativity. This lesson explores the shift from our intuitive classical understanding to the counter-intuitive but experimentally verified world of relativistic physics."
+    },
+    {
+      "type": "heading",
+      "content": "Galilean Relativity and Its Limitations"
+    },
+    {
+      "type": "text",
+      "content": "An inertial frame of reference is one that is not accelerating. Imagine you are on a perfectly smooth train moving at a constant velocity. Inside, a dropped ball falls straight down, just as it would on the ground. According to the principle of Galilean relativity, the laws of mechanics are the same in all inertial frames. To relate measurements between two frames, say one on the train and one on the platform, we use Galilean transformations."
+    },
+    {
+      "type": "formula",
+      "content": "Position: $x' = x - vt$ \\\\ Velocity: $u' = u - v$"
+    },
+    {
+      "type": "text",
+      "content": "These transformations work perfectly for everyday speeds. However, they imply that velocities simply add or subtract. If you shine a torch from the front of the train, Galilean relativity predicts that an observer on the platform would measure the light's speed as $c + v_{train}$. This contradicts Maxwell's equations of electromagnetism, which predicted that the speed of light in a vacuum, $c$, is a universal constant, independent of the source's motion."
+    },
+    {
+      "type": "heading",
+      "content": "The Postulates of Special Relativity"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**The Principle of Relativity:** The laws of physics are identical in all inertial frames of reference. This extends Galileo's principle from just mechanics to all laws of physics, including electromagnetism.",
+        "**The Constancy of the Speed of Light:** The speed of light in a vacuum, $c$, is the same for all inertial observers, regardless of the motion of the light source or the observer. This is the revolutionary postulate that breaks from classical intuition."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "You must be able to state both postulates of special relativity clearly and precisely. They are the fundamental axioms from which all other results, like time dilation and length contraction, are derived. Questions often ask you to state them or use them to explain a phenomenon."
+    },
+    {
+      "type": "heading",
+      "content": "Consequences of Special Relativity: Time Dilation and Length Contraction"
+    },
+    {
+      "type": "text",
+      "content": "To reconcile the two postulates, Einstein realised that our concepts of absolute space and absolute time had to be abandoned. Instead, space and time are interwoven into a four-dimensional fabric called spacetime. One of the most startling consequences is time dilation. For a moving observer, time itself passes more slowly compared to a stationary observer."
+    },
+    {
+      "type": "formula",
+      "content": "Time Dilation: $\\Delta t = \\gamma \\Delta t_0$ \\\\ Lorentz Factor: $\\gamma = \\frac{1}{\\sqrt{1 - \\frac{v^2}{c^2}}}$"
+    },
+    {
+      "type": "text",
+      "content": "Here, $\\Delta t_0$ is the 'proper time', which is the time interval measured in the frame where the event is stationary (e.g., the lifetime of a particle in its own rest frame). $\\Delta t$ is the dilated time measured by an observer moving relative to that frame. Since $\\gamma \\ge 1$, the moving clock always appears to run slower."
+    },
+    {
+      "type": "workedExample",
+      "question": "A muon is an unstable particle with a mean proper lifetime of $2.20 \\times 10^{-6}$ s. Muons are produced in the upper atmosphere and travel towards the Earth's surface at a speed of $0.995c$. An observer on Earth measures the lifetime of the muons. (a) Calculate the Lorentz factor, $\\gamma$. (b) Determine the mean lifetime of the muon as measured by the observer on Earth.",
+      "solution": "**(a)** The Lorentz factor is given by $\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}$. ✓\nGiven $v = 0.995c$, the ratio $v/c = 0.995$.\n$\\gamma = \\frac{1}{\\sqrt{1 - (0.995)^2}}$ ✓\n$\\gamma = \\frac{1}{\\sqrt{1 - 0.990025}} = \\frac{1}{\\sqrt{0.009975}}$\n$\\gamma \\approx 10.0$ ✓ (to 3 s.f.)\n\n**(b)** The proper lifetime is $\\Delta t_0 = 2.20 \\times 10^{-6}$ s. This is the time in the muon's own reference frame.\nThe lifetime measured on Earth, $\\Delta t$, is found using the time dilation formula: $\\Delta t = \\gamma \\Delta t_0$. ✓\n$\\Delta t = 10.0 \\times (2.20 \\times 10^{-6} \\text{ s})$ ✓\n$\\Delta t = 2.20 \\times 10^{-5}$ s (or $22.0 \\ \\mu$s) ✓\nThis result explains why we can detect muons at sea level; in our frame, their lifetime is extended, allowing them to travel much further than they would classically."
+    },
+    {
+      "type": "text",
+      "content": "Just as time is relative, so is space. Length contraction is the phenomenon where the length of an object moving relative to an observer is measured to be shorter than its proper length. The contraction only occurs in the direction of motion."
+    },
+    {
+      "type": "formula",
+      "content": "Length Contraction: $L = \\frac{L_0}{\\gamma}$"
+    },
+    {
+      "type": "text",
+      "content": "$L_0$ is the 'proper length', the length of the object in its own rest frame. $L$ is the contracted length measured by an observer moving relative to the object. As with time dilation, this effect is only significant at relativistic speeds."
+    },
+    {
+      "type": "workedExample",
+      "question": "A rocket travels from Earth to a star that is 20.0 light-years away, as measured in the Earth's reference frame. The rocket travels at a constant speed of $0.950c$. (a) Calculate the time taken for the journey as measured by an observer on Earth. (b) Calculate the distance to the star as measured by an astronaut in the rocket.",
+      "solution": "**(a)** The distance in the Earth frame is $d = 20.0$ ly and the speed is $v = 0.950c$.\nThe time taken is $t = \\frac{d}{v}$. ✓\n$t = \\frac{20.0 \\text{ ly}}{0.950c} = \\frac{20.0 \\times c \\times \\text{year}}{0.950c}$\n$t \\approx 21.1$ years ✓\n\n**(b)** The astronaut is in the moving frame, so they will measure a contracted length. The proper length $L_0$ is the distance measured in the rest frame of the two points (Earth and the star), so $L_0 = 20.0$ ly.\nFirst, calculate the Lorentz factor, $\\gamma$.\n$\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}} = \\frac{1}{\\sqrt{1 - (0.950)^2}}$ ✓\n$\\gamma = \\frac{1}{\\sqrt{1 - 0.9025}} = \\frac{1}{\\sqrt{0.0975}} \\approx 3.20$ ✓\nNow, use the length contraction formula: $L = \\frac{L_0}{\\gamma}$.\n$L = \\frac{20.0 \\text{ ly}}{3.20}$ ✓\n$L \\approx 6.25$ light-years ✓\nTo the astronaut, the journey is much shorter, which is consistent with the shorter time they experience due to time dilation."
+    },
+    {
+      "type": "heading",
+      "content": "Relativistic Mechanics"
+    },
+    {
+      "type": "text",
+      "content": "Special relativity also revolutionised our understanding of mass, momentum, and energy. Newton's second law in its classical form is no longer sufficient. Momentum and energy both depend on the Lorentz factor, $\\gamma$, and increase without bound as an object's speed approaches the speed of light."
+    },
+    {
+      "type": "formula",
+      "content": "Relativistic Momentum: $p = \\gamma m_0 v$ \\\\ Total Energy: $E = \\gamma m_0 c^2$ \\\\ Rest Energy: $E_0 = m_0 c^2$ \\\\ Kinetic Energy: $E_K = E - E_0 = (\\gamma - 1)m_0 c^2$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The rest mass, $m_0$, is an invariant quantity for a particle, the same in all reference frames. The IB syllabus avoids the confusing concept of 'relativistic mass'.",
+        "The total energy of a particle is the sum of its rest energy ($E_0$) and its kinetic energy ($E_K$). The famous equation $E=mc^2$ is more precisely the rest energy, $E_0=m_0c^2$, which represents the energy locked away in mass itself.",
+        "As $v \\to c$, $\\gamma \\to \\infty$. This means the energy required to accelerate a particle with mass to the speed of light is infinite, which is why it's impossible."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be very careful with the different energy terms. $E_0$ is rest energy, $E_K$ is kinetic energy, and $E$ is the total energy. A common mistake is to use the classical kinetic energy formula $\\frac{1}{2}mv^2$, which is only an approximation at low speeds. At relativistic speeds, you must use $E_K = (\\gamma - 1)m_0 c^2$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-physics-hl&topic=A.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: The Relativity of Simultaneity",
+          "href": "https://phet.colorado.edu/en/simulations/relativity-of-simultaneity"
+        },
+        {
+          "label": "HyperPhysics: Special Relativity",
+          "href": "http://hyperphysics.phy-astr.gsu.edu/hbase/relativ/srel.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "The Relativity of Simultaneity",
+    "embedUrl": "https://phet.colorado.edu/sims/html/relativity-of-simultaneity/latest/relativity-of-simultaneity_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/relativity-of-simultaneity",
+    "hint": "Explore “The Relativity of Simultaneity” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

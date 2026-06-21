@@ -1,0 +1,193 @@
+{
+  "slug": "d-4-induction",
+  "topicCode": "D.4",
+  "title": "Induction",
+  "paper": "P2",
+  "paperName": "Physics HL",
+  "status": "premium",
+  "summary": "This lesson explores electromagnetic induction within the context of astrophysics. It covers Faraday's Law, Lenz's Law, and the concept of motional EMF, applying these principles to solve problems involving rotating coils and conductors moving through magnetic fields, such as those found in astronomical phenomena.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the mechanism of electromagnetic induction using the concept of magnetic flux.",
+    "Apply Faraday's Law and Lenz's Law to solve problems involving induced EMF and current.",
+    "Calculate the motional EMF induced in conductors moving through magnetic fields, including astrophysical examples.",
+    "Analyse the energy transformations that occur during electromagnetic induction, linking to the principle of conservation of energy."
+  ],
+  "simpleExplanation": {
+    "title": "Cosmic Dynamos: Generating Power in Space",
+    "summary": "Moving a wire in a magnetic field, or changing the field around a wire, creates a voltage and can drive a current. This is the fundamental principle behind electric generators on Earth and explains how some massive cosmic objects generate huge electrical energies.",
+    "analogy": "Imagine a bicycle dynamo used to power a light. As you pedal, a wheel spins a magnet next to a coil of wire. The moving magnetic field 'pushes' the electrons in the wire, creating a current that lights up the lamp. The faster you pedal, the faster the magnet spins, the greater the 'push', and the brighter the light. This is exactly like induction: a faster change in the magnetic field induces a larger voltage.",
+    "steps": [
+      "Identify the physical situation: is a conductor moving through a magnetic field, or is the magnetic field changing through a loop?",
+      "Quantify the change in magnetic flux. Use the formula $\\Phi = BA \\cos\\theta$ and calculate its rate of change, $\\frac{\\Delta \\Phi}{\\Delta t}$.",
+      "Apply Faraday's Law, $\\mathcal{E} = -N \\frac{\\Delta \\Phi}{\\Delta t}$, to find the magnitude of the induced electromotive force (EMF).",
+      "Use Lenz's Law (the minus sign) to determine the direction of the induced current. The current will flow in a direction that creates its own magnetic field to oppose the initial change in flux."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is magnetic flux ($\\Phi$)?",
+      "back": "Magnetic flux is the measure of the total magnetic field lines passing through a given area. It is calculated by $\\Phi = BA \\cos\\theta$, where B is the magnetic field strength, A is the area, and $\\theta$ is the angle between the field and the normal to the area. Its unit is the Weber (Wb)."
+    },
+    {
+      "front": "State Faraday's Law of Induction.",
+      "back": "The magnitude of the induced electromotive force (EMF) in a circuit is directly proportional to the rate of change of magnetic flux linkage through the circuit. Mathematically, $\\mathcal{E} = -N \\frac{d\\Phi}{dt}$."
+    },
+    {
+      "front": "What is Lenz's Law?",
+      "back": "The direction of an induced current is such that it will create a magnetic field that opposes the change in magnetic flux that produced it. This is the physical meaning of the negative sign in Faraday's Law."
+    },
+    {
+      "front": "What is motional EMF?",
+      "back": "Motional EMF is the electromotive force induced in a conductor moving through a magnetic field. It is caused by the magnetic force acting on the charge carriers within the conductor. For a straight conductor, $\\mathcal{E} = BLv$ (when B, L, and v are mutually perpendicular)."
+    },
+    {
+      "front": "Define the Weber (Wb).",
+      "back": "The Weber is the SI unit of magnetic flux. One Weber is equal to one Tesla-metre squared (1 Wb = 1 T m²)."
+    },
+    {
+      "front": "What is the difference between magnetic flux and magnetic field strength?",
+      "back": "Magnetic field strength (B, in Tesla) is a vector quantity representing the force on a moving charge at a point. Magnetic flux ($\\Phi$, in Weber) is a scalar quantity representing the total amount of field passing through a surface area."
+    },
+    {
+      "front": "How does Lenz's Law uphold the conservation of energy?",
+      "back": "The opposing force described by Lenz's Law means that external work must be done to change the flux (e.g., to push a magnet into a coil). This work is converted into the electrical energy of the induced current, thus conserving energy."
+    },
+    {
+      "front": "What are eddy currents?",
+      "back": "Eddy currents are loops of electrical current induced within bulk conductors by a changing magnetic field in the conductor, according to Faraday's law. They flow in closed loops, creating magnetic fields that oppose the change, often leading to a braking effect and heating."
+    },
+    {
+      "front": "How do you determine the direction of motional EMF in a straight wire?",
+      "back": "Use the right-hand rule (for positive charge carriers). Point your fingers in the direction of the magnetic field (B). Point your thumb in the direction of the velocity (v). The direction your palm faces indicates the direction of the magnetic force (F) on the charges, which pushes them to the 'positive' end of the conductor."
+    },
+    {
+      "front": "Common trap: What happens if a coil moves with constant velocity through a uniform magnetic field?",
+      "back": "If the entire coil is within the uniform field, the magnetic flux through it is constant. Since there is no change in flux ($\\frac{d\\Phi}{dt} = 0$), no EMF is induced. An EMF is only induced when the coil is entering or leaving the field, as this is when the flux changes."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the EMF induced by a changing field and motional EMF?",
+      "a": "Both are consequences of Faraday's Law. However, the physical mechanism is viewed differently. For a stationary conductor in a changing B-field, an induced electric field drives the charges. For a conductor moving in a constant B-field (motional EMF), the magnetic force on the moving charges drives them. In IB Physics, you can solve most problems by calculating the rate of change of flux, $\\frac{d\\Phi}{dt}$, regardless of the cause."
+    },
+    {
+      "q": "Why does Lenz's Law have to be true?",
+      "a": "Lenz's Law is a direct consequence of the principle of conservation of energy. If the induced current created a magnetic field that *assisted* the change in flux, it would cause the change to increase, which would induce an even larger current, and so on. This would create energy from nothing, which is impossible. The induced current must oppose the change, requiring external work to be done to sustain the change, which is then converted into electrical energy."
+    },
+    {
+      "q": "Can an EMF be induced in an insulator?",
+      "a": "Yes, an EMF is induced in any material (conductor or insulator) placed in a region of changing magnetic flux. An EMF is a potential difference. However, a significant *current* will only flow if the material is a conductor, as insulators have very few free charge carriers to move in response to the EMF."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Electromagnetic induction is a cornerstone of modern physics and technology, describing how a changing magnetic environment can generate an electric current. This phenomenon, discovered by Michael Faraday, is not only the basis for electric generators and transformers but also plays a crucial role in the universe. In astrophysics, induction helps explain the powerful magnetic fields of stars, the emission from pulsars, and the dynamics of galactic plasma. This topic connects the microscopic world of electrons to the vast scales of cosmic structures."
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic Flux and Flux Linkage"
+    },
+    {
+      "type": "text",
+      "content": "To understand induction, we must first quantify the 'amount' of magnetic field passing through a surface. This quantity is called magnetic flux, denoted by the Greek letter Phi ($\\Phi$). It depends on the strength of the magnetic field ($B$), the area it passes through ($A$), and the orientation of the area relative to the field."
+    },
+    {
+      "type": "formula",
+      "content": "\\Phi = BA \\cos\\theta"
+    },
+    {
+      "type": "text",
+      "content": "Here, $\\theta$ is the angle between the magnetic field lines and the normal (a line perpendicular) to the surface area. The unit of magnetic flux is the Weber (Wb), where 1 Wb = 1 T m². If we have a coil with $N$ turns, the total flux passing through all the turns is called the magnetic flux linkage, which is simply $N\\Phi$."
+    },
+    {
+      "type": "heading",
+      "content": "Faraday's Law and Lenz's Law"
+    },
+    {
+      "type": "text",
+      "content": "Faraday's Law of Induction states that an electromotive force (EMF), $\\mathcal{E}$, is induced in a closed loop whenever the magnetic flux through that loop changes. The magnitude of this induced EMF is equal to the rate of change of the magnetic flux linkage."
+    },
+    {
+      "type": "formula",
+      "content": "\\mathcal{E} = -N \\frac{\\Delta \\Phi}{\\Delta t}"
+    },
+    {
+      "type": "text",
+      "content": "The crucial negative sign is a manifestation of Lenz's Law. It signifies that the induced EMF (and the resulting current, if the loop is a conductor) will be in a direction that creates its own magnetic field to oppose the very change in flux that created it. This opposition is a direct consequence of the principle of conservation of energy."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A constant magnetic flux induces no EMF. The flux must be changing.",
+        "The induced EMF is larger if the flux changes more rapidly.",
+        "Lenz's Law dictates the direction of the induced current, ensuring energy is conserved.",
+        "The change in flux can be caused by changing the magnetic field strength B, the area A, or the angle $\\theta$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A circular coil of radius 5.0 cm has 150 turns. It is placed in a uniform magnetic field of 0.40 T, with its plane perpendicular to the field. The coil is then pulled out of the field in 0.25 s. Calculate the average induced EMF.",
+      "solution": "1.  Identify the given information: $N=150$, $r=0.050$ m, $B=0.40$ T, $\\Delta t = 0.25$ s. The plane is perpendicular to the field, so the normal is parallel to the field, meaning $\\theta=0^{\\circ}$.\n2.  Calculate the area of the coil: $A = \\pi r^2 = \\pi (0.050)^2 = 7.854 \\times 10^{-3} \\text{ m}^2$. [1 mark]\n3.  Calculate the initial magnetic flux, $\\Phi_{initial}$. Since $\\cos(0^{\\circ})=1$, $\\Phi_{initial} = BA = (0.40 \\text{ T})(7.854 \\times 10^{-3} \\text{ m}^2) = 3.142 \\times 10^{-3} \\text{ Wb}$. [1 mark]\n4.  The final magnetic flux, $\\Phi_{final}$, is zero because the coil is removed from the field. [1 mark]\n5.  Calculate the change in flux: $\\Delta \\Phi = \\Phi_{final} - \\Phi_{initial} = 0 - 3.142 \\times 10^{-3} = -3.142 \\times 10^{-3} \\text{ Wb}$.\n6.  Apply Faraday's Law to find the average EMF: $\\mathcal{E} = -N \\frac{\\Delta \\Phi}{\\Delta t} = -150 \\times \\frac{-3.142 \\times 10^{-3} \\text{ Wb}}{0.25 \\text{ s}}$. [1 mark]\n7.  $\\{E} = 150 \\times \\frac{3.142 \\times 10^{-3}}{0.25} = 1.885 \\text{ V}$.\n8.  The average induced EMF is approximately 1.9 V. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Motional EMF"
+    },
+    {
+      "type": "text",
+      "content": "A special case of induction occurs when a conductor moves through a constant magnetic field. The free charge carriers (electrons) inside the conductor are moving along with it, and therefore experience a magnetic force ($F=qvB$). This force pushes the charges towards one end of the conductor, creating a separation of charge and thus an electric potential difference, or EMF, across its ends. This is known as motional EMF."
+    },
+    {
+      "type": "formula",
+      "content": "\\mathcal{E} = B L v"
+    },
+    {
+      "type": "text",
+      "content": "This simple formula is valid when the magnetic field ($B$), the length of the conductor ($L$), and the velocity of the conductor ($v$) are all mutually perpendicular. If the velocity vector is at an angle $\\theta$ to the magnetic field, you must use the perpendicular component of velocity, $v \\sin\\theta$."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions involving motional EMF, always draw a diagram and check the angles between B, L, and v. The IB formula booklet gives $\\mathcal{E} = BLv$, which implicitly assumes perpendicularity. If they are not perpendicular, you must find the component of velocity that is perpendicular to the field and the length. A common scenario is a rod rotating in a field, which requires a more careful integration or averaging approach."
+    },
+    {
+      "type": "workedExample",
+      "question": "The Hubble Space Telescope orbits at a speed of $7.5 \\times 10^3 \\text{ m s}^{-1}$. It has a 12 m long antenna that moves perpendicular to the Earth's magnetic field, which has a strength of $5.0 \\times 10^{-5}$ T in that region. Calculate the motional EMF induced in the antenna.",
+      "solution": "1.  Identify the given information: $v = 7.5 \\times 10^3 \\text{ m s}^{-1}$, $L = 12$ m, $B = 5.0 \\times 10^{-5}$ T. [1 mark]\n2.  The problem states that the motion is perpendicular to the field, and the antenna's length is also perpendicular to both. This means we can directly apply the motional EMF formula. [1 mark]\n3.  Apply the formula $\\mathcal{E} = BLv$. [1 mark]\n4.  Substitute the values: $\\mathcal{E} = (5.0 \\times 10^{-5} \\text{ T}) \\times (12 \\text{ m}) \\times (7.5 \\times 10^3 \\text{ m s}^{-1})$.\n5.  Calculate the result: $\\mathcal{E} = (5.0 \\times 12 \\times 7.5) \\times 10^{-5+3} = 450 \\times 10^{-2} = 4.5 \\text{ V}$. [1 mark]\n6.  The induced EMF in the antenna is 4.5 V."
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding",
+      "href": "/mark?subject=ib-physics-hl&topic=D.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Faraday's Law",
+          "href": "https://phet.colorado.edu/en/simulations/faradays-law"
+        },
+        {
+          "label": "NASA: Space Telescope Science Institute",
+          "href": "https://www.stsci.edu/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Faraday's Law",
+    "embedUrl": "https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/faradays-law",
+    "hint": "Explore “Faraday's Law” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

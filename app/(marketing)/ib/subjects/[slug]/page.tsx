@@ -13,7 +13,8 @@ import { getIbSubject, getIbSubjects, getIbSubjectSlugs } from '@/lib/ib/catalog
 import { buildIbSubjectCopy, ibShortName } from '@/lib/seo/ib-seo'
 import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
-import { getIbCourse } from '@/lib/courses/ib'
+import { getIbCourse, getIbCourseLessons } from '@/lib/courses/ib'
+import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -140,6 +141,16 @@ export default async function IbSubjectPage({ params }: Props) {
             { href: '/ib', label: 'All IB subjects', variant: 'muted' },
           ]}
         />
+
+        {getIbCourse(subject.slug) ? (
+          <SubjectChapters
+            code={subject.slug}
+            lessons={getIbCourseLessons(subject.slug)}
+            basePath="/ib/courses"
+            accent={subject.accent}
+            heading={`${subject.name} ${subject.level} chapters`}
+          />
+        ) : null}
 
         <div className="ms-sd-grid">
           <div>

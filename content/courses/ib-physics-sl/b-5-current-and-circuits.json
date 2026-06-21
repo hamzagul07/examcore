@@ -1,0 +1,197 @@
+{
+  "slug": "b-5-current-and-circuits",
+  "topicCode": "B.5",
+  "title": "Current and circuits",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamentals of electric circuits, covering Ohm's law, the behaviour of resistors in series and parallel, and the concepts of electromotive force (e.m.f.) and internal resistance. It provides the foundational knowledge for analysing and solving problems related to direct current (DC) circuits.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Analyse series and parallel circuits to calculate current, potential difference, and resistance.",
+    "Apply Ohm's law to individual components and entire circuits.",
+    "Define and differentiate between electromotive force (e.m.f.) and terminal potential difference.",
+    "Solve problems involving real-world power sources with internal resistance."
+  ],
+  "simpleExplanation": {
+    "title": "The Water Park of Circuits",
+    "summary": "An electric circuit behaves much like a water park. The battery is the pump, pushing charge (water) around, while components like resistors are the slides and water features that slow it down.",
+    "analogy": "Imagine a water park. A large pump (the battery) lifts water to the top of a slide, giving it potential energy. This 'push' is the electromotive force (e.m.f.). The amount of water flowing per second is the current. The slides themselves provide resistance, slowing the water's flow. A narrow, long slide has high resistance, while a wide, short one has low resistance. The actual height difference the water falls down the slide is the terminal potential difference, which is slightly less than the total pump height because the pump itself uses some energy just to run (internal resistance).",
+    "steps": [
+      "First, understand the key players: Voltage ($V$) is the electrical 'push', Current ($I$) is the 'flow' of charge, and Resistance ($R$) is the 'opposition' to that flow.",
+      "Next, use Ohm's Law, $V=IR$, which is the main rule connecting these three quantities for many common components like resistors.",
+      "Then, learn how to combine resistors. In series (one after another), resistances add up. In parallel (side-by-side), they provide more paths, so the total resistance decreases.",
+      "Finally, consider real batteries. They have 'internal resistance' ($r$), which causes a voltage drop inside the battery itself, meaning the voltage supplied to the circuit is less than the battery's total e.m.f."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is electric current ($I$)?",
+      "back": "The rate of flow of electric charge. It is measured in Amperes (A), where 1 A = 1 C s⁻¹. The conventional current direction is the direction of positive charge flow."
+    },
+    {
+      "front": "What is potential difference ($V$)?",
+      "back": "The work done per unit charge in moving a charge between two points in a circuit. Measured in Volts (V), where 1 V = 1 J C⁻¹."
+    },
+    {
+      "front": "What is resistance ($R$)?",
+      "back": "A measure of the opposition to the flow of electric current. It is defined as the ratio of potential difference across a component to the current flowing through it ($R=V/I$). Measured in Ohms (Ω)."
+    },
+    {
+      "front": "State Ohm's Law.",
+      "back": "For a conductor at constant temperature, the current flowing through it is directly proportional to the potential difference across its ends. Mathematically, $V \\propto I$ or $V=IR$ where R is constant."
+    },
+    {
+      "front": "What is an ohmic conductor?",
+      "back": "A conductor that obeys Ohm's Law. Its resistance is constant regardless of the voltage or current. Its I-V graph is a straight line through the origin."
+    },
+    {
+      "front": "What is the formula for total resistance of resistors in series?",
+      "back": "$R_{total} = R_1 + R_2 + R_3 + ...$. The total resistance is the sum of the individual resistances."
+    },
+    {
+      "front": "What is the formula for total resistance of resistors in parallel?",
+      "back": "$\\frac{1}{R_{total}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} + ...$. The reciprocal of the total resistance is the sum of the reciprocals of individual resistances."
+    },
+    {
+      "front": "What is electromotive force (e.m.f. or $\\varepsilon$)?",
+      "back": "The total energy supplied per unit charge by a source (like a battery). It is the work done by the source to move a unit charge around a complete circuit. Measured in Volts (V)."
+    },
+    {
+      "front": "What is internal resistance ($r$)?",
+      "back": "The resistance within a source of e.m.f. (e.g., a battery) due to its physical components. This causes energy to be dissipated as heat inside the source when current flows."
+    },
+    {
+      "front": "What is terminal potential difference ($V_{terminal}$)?",
+      "back": "The potential difference across the terminals of a source when a current is being supplied to an external circuit. It is equal to e.m.f. minus the 'lost volts': $V_{terminal} = \\varepsilon - Ir$."
+    },
+    {
+      "front": "What is a common trap when calculating parallel resistance?",
+      "back": "Forgetting to take the final reciprocal. After calculating $\\frac{1}{R_{total}}$, you must invert the answer to find $R_{total}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real difference between e.m.f. and potential difference?",
+      "a": "E.m.f. (electromotive force) is about energy conversion. It's the total chemical energy converted to electrical energy per unit charge by the source. Potential difference is about energy dissipation. It's the electrical energy converted to other forms (like heat or light) per unit charge in a component. For a battery in a circuit, the e.m.f. is always greater than the terminal p.d. because some energy is 'lost' inside the battery itself."
+    },
+    {
+      "q": "Why does adding a resistor in parallel *decrease* the total resistance?",
+      "a": "Think of it like opening more checkout lanes at a supermarket. Each resistor in parallel is an additional path for the current to flow. Even if the new path has high resistance (a slow checkout lane), it still allows more total customers (current) to pass through per minute. More paths mean less overall opposition to flow, so the total resistance decreases."
+    },
+    {
+      "q": "Is a filament light bulb an ohmic or non-ohmic device?",
+      "a": "A filament light bulb is a classic example of a non-ohmic device. As current flows through the thin metal filament, it gets very hot. The resistance of a metal increases with temperature. Therefore, as the voltage and current increase, the bulb's resistance also increases, and it does not obey Ohm's Law. Its I-V graph is a curve that flattens out at higher voltages."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of electric circuits. This is a fundamental topic in physics that deals with how electrical energy is transferred and used. We will build a model of circuits from basic principles, allowing us to analyse everything from a simple torch to more complex electronic devices."
+    },
+    {
+      "type": "heading",
+      "content": "Ohm's Law and Electrical Resistance"
+    },
+    {
+      "type": "text",
+      "content": "For an electric current to flow, we need a complete circuit and a source of potential difference, like a battery. The potential difference ($V$) provides the 'push' (energy per charge), and the current ($I$) is the resulting flow of charge. Most materials, however, resist this flow. This property is called resistance ($R$). For many materials, particularly metals at a constant temperature, these three quantities are related by a simple, powerful equation."
+    },
+    {
+      "type": "formula",
+      "content": "Ohm's Law: $V = IR$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Ohm's Law states that voltage is directly proportional to current for a component at constant physical conditions (e.g., temperature).",
+        "Components that obey Ohm's Law are called 'ohmic' (e.g., a standard resistor). Their resistance is constant.",
+        "Components that do not obey Ohm's Law are 'non-ohmic' (e.g., a filament lamp or a diode). Their resistance changes as the current and voltage change."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Resistors in Series and Parallel"
+    },
+    {
+      "type": "text",
+      "content": "Circuits often contain multiple resistors. How they are connected determines their combined effect. When connected in series, the components are arranged end-to-end, forming a single path for the current. When in parallel, they are connected across the same two points, providing multiple paths for the current."
+    },
+    {
+      "type": "formula",
+      "content": "Resistors in Series: $R_{total} = R_1 + R_2 + ...$ \\\\ Resistors in Parallel: $\\frac{1}{R_{total}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ...$"
+    },
+    {
+      "type": "workedExample",
+      "question": "In the circuit shown, a 12 V battery is connected to a 2.0 Ω resistor in series with a parallel combination of a 6.0 Ω resistor and a 3.0 Ω resistor. Calculate: \n a) The total resistance of the parallel combination. \n b) The total resistance of the circuit. \n c) The total current drawn from the battery.",
+      "solution": "a) For the parallel part: \\\\ $\\frac{1}{R_p} = \\frac{1}{R_1} + \\frac{1}{R_2} = \\frac{1}{6.0} + \\frac{1}{3.0}$ ✓ \\\\ $\\frac{1}{R_p} = \\frac{1}{6.0} + \\frac{2}{6.0} = \\frac{3}{6.0} = 0.50$ Ω⁻¹ \\\\ $R_p = \\frac{1}{0.50} = 2.0$ Ω ✓ \n\n b) The total resistance is the series resistor plus the equivalent resistance of the parallel part: \\\\ $R_{total} = R_{series} + R_p = 2.0~\\Omega + 2.0~\\Omega$ ✓ \\\\ $R_{total} = 4.0$ Ω ✓ \n\n c) Using Ohm's Law for the whole circuit: \\\\ $I_{total} = \\frac{V_{total}}{R_{total}} = \\frac{12~V}{4.0~\\Omega}$ ✓ \\\\ $I_{total} = 3.0$ A ✓"
+    },
+    {
+      "type": "examTip",
+      "content": "A crucial check for parallel resistors: the total equivalent resistance must *always* be smaller than the smallest individual resistance in the parallel combination. In the example above, the parallel total (2.0 Ω) is smaller than the smallest resistor (3.0 Ω). This is a quick way to spot calculation errors."
+    },
+    {
+      "type": "heading",
+      "content": "E.M.F. and Internal Resistance"
+    },
+    {
+      "type": "text",
+      "content": "An ideal battery is a perfect source of e.m.f. However, real batteries are made of materials that have their own resistance. We model this as a small 'internal resistance' ($r$) in series with an ideal e.m.f. ($\"varepsilon$). The e.m.f. is the total energy per unit charge the battery can provide. When current flows, some of this energy is used to push the charge through the battery itself, dissipating as heat. This results in 'lost volts'. The actual voltage available to the external circuit, called the terminal potential difference ($V_{terminal}$), is therefore the e.m.f. minus these lost volts."
+    },
+    {
+      "type": "formula",
+      "content": "E.M.F. Equation: $\\varepsilon = I(R_{load} + r)$ \\\\ Terminal P.D.: $V_{terminal} = \\varepsilon - Ir$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Electromotive force (e.m.f., $\\varepsilon$) is the total voltage of the source.",
+        "Internal resistance ($r$) is the resistance inside the source.",
+        "Terminal potential difference ($V_{terminal}$) is the voltage measured across the battery terminals when it's in use.",
+        "'Lost volts' is the voltage drop across the internal resistor, equal to $Ir$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A car battery has an e.m.f. of 12.6 V and an internal resistance of 0.080 Ω. The battery is connected to a starter motor which has a resistance of 0.22 Ω. Calculate: \n a) The current delivered to the starter motor. \n b) The terminal potential difference of the battery while the motor is running. \n c) The power dissipated in the starter motor.",
+      "solution": "a) The total resistance of the circuit is the sum of the external (load) resistance and the internal resistance. \\\\ $R_{total} = R_{load} + r = 0.22~\\Omega + 0.080~\\Omega = 0.30~\\Omega$ ✓ \\\\ Using the e.m.f. equation: $\\varepsilon = I R_{total}$ \\\\ $I = \\frac{\\varepsilon}{R_{total}} = \\frac{12.6~V}{0.30~\\Omega}$ ✓ \\\\ $I = 42$ A ✓ \n\n b) The terminal potential difference can be found in two ways. \\\\ Method 1: $V_{terminal} = \\varepsilon - Ir = 12.6~V - (42~A \\times 0.080~\\Omega)$ ✓ \\\\ $V_{terminal} = 12.6~V - 3.36~V = 9.24~V \\approx 9.2$ V ✓ \\\\ Method 2: $V_{terminal}$ is the p.d. across the external resistor. $V_{terminal} = I R_{load} = 42~A \\times 0.22~\\Omega = 9.24~V \\approx 9.2$ V. \n\n c) Power dissipated in the motor is $P = I^2 R_{load}$. \\\\ $P = (42~A)^2 \\times 0.22~\\Omega$ ✓ \\\\ $P = 1764 \\times 0.22 = 388.08$ W \\\\ $P \\approx 390$ W (to 2 s.f.) ✓"
+    },
+    {
+      "type": "examTip",
+      "content": "The relationship $V_{terminal} = \\varepsilon - Ir$ is in the form of a straight line equation, $y = c + mx$. A graph of terminal p.d. ($V$) on the y-axis against current ($I$) on the x-axis will be a straight line. The y-intercept is the e.m.f. ($\"varepsilon$), and the gradient is the negative of the internal resistance ($-r$). This is a common experimental analysis question."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Circuit Problems",
+      "href": "/mark?subject=ib-physics-sl&topic=B.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Circuit Construction Kit (DC)",
+          "href": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc"
+        },
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-course-specific-resources/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "PhET Circuit Construction Kit (DC)",
+    "embedUrl": "https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/circuit-construction-kit-dc",
+    "hint": "Explore “PhET Circuit Construction Kit (DC)” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

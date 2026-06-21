@@ -1,0 +1,177 @@
+{
+  "slug": "b-1-thermal-energy-transfers",
+  "topicCode": "B.1",
+  "title": "Thermal energy transfers",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson explores the three fundamental mechanisms of thermal energy transfer: conduction, convection, and radiation. We will investigate the factors that influence the rate of energy transfer for each process and apply quantitative models to solve problems related to them.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the three mechanisms of thermal energy transfer: conduction, convection, and radiation.",
+    "Explain the roles of molecular vibrations and free electrons in conduction.",
+    "Solve problems involving the rate of heat transfer by conduction ($P = kA \\frac{\\Delta T}{L}$).",
+    "Solve problems involving the rate of energy transfer by radiation using the Stefan-Boltzmann law ($P = e \\sigma A T^4$)."
+  ],
+  "simpleExplanation": {
+    "title": "How Heat Gets Around",
+    "summary": "Thermal energy isn't static; it always moves from hotter to colder regions. This happens in three main ways: conduction (through touch), convection (through fluid movement), and radiation (through waves).",
+    "analogy": "Imagine you want to get a message to a friend across a crowded room. You could pass a note along a line of people (conduction), give the note to a person who walks across the room (convection), or just shout the message so the sound waves travel directly to them (radiation).",
+    "steps": [
+      "Identify the objects: Determine the hot object (source) and the cold object (sink) and the medium between them.",
+      "Choose the mechanism: Decide which transfer process—conduction, convection, or radiation—is dominant based on the state of matter (solid, liquid, gas, vacuum).",
+      "Apply the formula: For conduction or radiation, select the correct equation (rate of conduction or Stefan-Boltzmann law) and identify all variables.",
+      "Calculate and analyse: Substitute values, ensuring correct units (especially Kelvin for temperature in radiation), and calculate the rate of energy transfer."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is thermal conduction?",
+      "back": "The transfer of thermal energy through a substance without any bulk movement of the substance itself. It occurs via particle collisions and, in metals, free electron diffusion."
+    },
+    {
+      "front": "What is thermal convection?",
+      "back": "The transfer of thermal energy in a fluid (liquid or gas) through the bulk movement of the fluid itself. Hotter, less dense fluid rises, and cooler, denser fluid sinks."
+    },
+    {
+      "front": "What is thermal radiation?",
+      "back": "The transfer of thermal energy via electromagnetic waves (specifically infrared). It does not require a medium and can travel through a vacuum."
+    },
+    {
+      "front": "Define thermal conductivity, $k$.",
+      "back": "A measure of a material's ability to conduct heat. Good conductors have high $k$ values (e.g., metals), while insulators have low $k$ values (e.g., wood, air). Units: W m⁻¹ K⁻¹."
+    },
+    {
+      "front": "What is a 'black body'?",
+      "back": "An idealised object that absorbs all incident electromagnetic radiation, regardless of frequency or angle of incidence. It is also a perfect emitter of radiation."
+    },
+    {
+      "front": "Define emissivity, $e$.",
+      "back": "A dimensionless quantity (0 to 1) that is the ratio of the energy radiated by a particular material to that radiated by a black body at the same temperature. A perfect black body has $e=1$."
+    },
+    {
+      "front": "State the Stefan-Boltzmann Law.",
+      "back": "The total power radiated by an object is proportional to its surface area and the fourth power of its absolute temperature. The formula is $P = e \\sigma A T^4$."
+    },
+    {
+      "front": "What is the most important unit conversion for radiation calculations?",
+      "back": "Temperature must be in Kelvin (K). To convert from Celsius (°C) to Kelvin, use K = °C + 273. Using Celsius will give a completely wrong answer because the relationship is not linear."
+    },
+    {
+      "front": "Why are metals good conductors of heat?",
+      "back": "They have a 'sea' of delocalised (free) electrons. These electrons can move rapidly and transfer kinetic energy much more efficiently than lattice vibrations alone."
+    },
+    {
+      "front": "Why does convection not occur in solids?",
+      "back": "Convection requires the bulk movement of particles (flow), which cannot happen in solids where particles are fixed in a lattice structure."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can all three heat transfer mechanisms occur at the same time?",
+      "a": "Yes, absolutely. For example, when you hold your hand over a campfire, you feel heat via radiation directly from the flames, and via convection from the rising hot air. If you were to touch a metal poker that was in the fire, you would feel heat via conduction. In most real-world scenarios, one mechanism is dominant, but the others are often present."
+    },
+    {
+      "q": "What is the difference between thermal energy and heat?",
+      "a": "In IB Physics, thermal energy is the total random kinetic energy of the particles in a substance. Heat is the energy that is transferred from a hotter object to a colder object. So, an object *has* thermal energy, but it *transfers* heat."
+    },
+    {
+      "q": "For the conduction formula, does it matter if I use Kelvin or Celsius for ΔT?",
+      "a": "No, because it is a temperature *difference*. A change of 1°C is equal to a change of 1 K. So, ΔT in Celsius will have the same numerical value as ΔT in Kelvin. However, for the Stefan-Boltzmann law, you are using the absolute temperature T, not a difference, so you MUST use Kelvin. It's good practice to be consistent, but for ΔT in conduction, either is acceptable."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "We live in a world of temperature differences, from a hot cup of tea to a cold winter's day. This topic explores how thermal energy, the energy associated with the random motion of atoms and molecules, moves from hotter to colder places. Understanding these transfer mechanisms—conduction, convection, and radiation—is crucial for everything from designing energy-efficient buildings to understanding how stars lose energy."
+    },
+    {
+      "type": "heading",
+      "content": "Conduction: The Domino Effect of Heat"
+    },
+    {
+      "type": "text",
+      "content": "Conduction is the primary method of heat transfer in solids. Imagine a line of dominoes. Pushing the first one causes a chain reaction. In a similar way, when one part of a solid is heated, its particles gain kinetic energy and vibrate more vigorously. They collide with their less energetic neighbours, passing on this energy. In metals, this process is greatly enhanced by free-moving electrons, which act like a high-speed delivery service for thermal energy, making metals excellent conductors. Materials that are poor conductors, like wood or plastic, are called thermal insulators."
+    },
+    {
+      "type": "formula",
+      "content": "The rate of heat transfer by conduction, $P$ (measured in Watts), through a material is given by:\n$P = kA \\frac{\\Delta T}{L}$\nWhere:\n- $k$ is the thermal conductivity of the material (W m⁻¹ K⁻¹).\n- $A$ is the cross-sectional area through which the heat is flowing (m²).\n- $\\Delta T$ is the temperature difference across the material (K or °C).\n- $L$ is the thickness of the material (m).\nThe term $\\frac{\\Delta T}{L}$ is known as the temperature gradient."
+    },
+    {
+      "type": "workedExample",
+      "question": "A single-glazed window has an area of 2.0 m² and a thickness of 4.0 mm. On a cold day, the indoor temperature is 21°C and the outdoor temperature is -5.0°C. The thermal conductivity of glass is 0.96 W m⁻¹ K⁻¹. Calculate the rate of heat loss through the window.",
+      "solution": "1. **Identify variables:**\n   - $A = 2.0 \\text{ m}^2$\n   - $L = 4.0 \\text{ mm} = 4.0 \\times 10^{-3} \\text{ m}$\n   - $k = 0.96 \\text{ W m}^{-1} \\text{ K}^{-1}$\n   - $T_{in} = 21 \\text{ °C}$\n   - $T_{out} = -5.0 \\text{ °C}$\n2. **Calculate temperature difference:**\n   - $\\Delta T = T_{in} - T_{out} = 21 - (-5.0) = 26 \\text{ °C}$\n   - (Note: A difference in Celsius is the same as a difference in Kelvin, so $\\Delta T = 26 \\text{ K}$) [1 mark]\n3. **Apply the conduction formula:**\n   - $P = kA \\frac{\\Delta T}{L}$ [1 mark]\n   - $P = (0.96) \\times (2.0) \\times \\frac{26}{4.0 \\times 10^{-3}}$ [1 mark for substitution]\n4. **Calculate the result:**\n   - $P = 12480 \\text{ W}$\n   - $P \\approx 12 \\text{ kW}$ (to 2 significant figures) [1 mark for correct answer with unit]\n*This high value shows why double-glazing, which traps a layer of insulating air, is so important.*"
+    },
+    {
+      "type": "heading",
+      "content": "Convection: Heat on the Move"
+    },
+    {
+      "type": "text",
+      "content": "Convection is the transfer of heat through the bulk movement of fluids (liquids and gases). When a part of a fluid is heated, it expands, becomes less dense, and rises. Cooler, denser fluid then moves in to take its place, gets heated, and also rises. This creates a continuous circulation of fluid called a convection current, which efficiently transfers heat. This is how a radiator heats a room or water boils in a kettle. We can distinguish between *natural convection* (driven by density differences) and *forced convection*, where a pump or fan is used to move the fluid, such as in a computer's cooling system."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Convection involves the mass movement of particles.",
+        "It only occurs in liquids and gases (fluids).",
+        "Convection currents are driven by density changes due to temperature variations.",
+        "It is a much faster process of heat transfer than conduction in fluids."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Radiation: The Universal Heat Transfer"
+    },
+    {
+      "type": "text",
+      "content": "Unlike conduction and convection, thermal radiation does not require a medium to travel. It is the transfer of energy by electromagnetic waves, specifically in the infrared part of the spectrum. Every object with a temperature above absolute zero (0 K) emits thermal radiation. The hotter an object is, the more power it radiates. The nature of the object's surface also plays a key role. Dark, matt surfaces are good absorbers and good emitters of radiation, while shiny, light-coloured surfaces are poor absorbers and poor emitters (they are good reflectors). This is why a person wearing a black shirt on a sunny day feels hotter than someone in a white shirt."
+    },
+    {
+      "type": "formula",
+      "content": "The power $P$ radiated by an object is given by the Stefan-Boltzmann Law:\n$P = e \\sigma A T^4$\nWhere:\n- $e$ is the emissivity of the surface (a dimensionless value between 0 and 1).\n- $\\sigma$ is the Stefan-Boltzmann constant ($\\sigma \\approx 5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{ K}^{-4}$). This is a constant in the IB Physics data booklet.\n- $A$ is the surface area of the object (m²).\n- $T$ is the absolute temperature of the surface in Kelvin (K)."
+    },
+    {
+      "type": "examTip",
+      "content": "The Stefan-Boltzmann law involves temperature to the fourth power ($T^4$). This means that even a small change in temperature can have a very large effect on the radiated power. Crucially, you MUST use the absolute temperature in Kelvin (K = °C + 273). Forgetting this conversion is a very common and costly mistake in exams."
+    },
+    {
+      "type": "workedExample",
+      "question": "The surface of the Sun can be approximated as a black body with a temperature of 5800 K. The Sun's radius is $6.96 \\times 10^8$ m. Calculate the total power radiated by the Sun. (The surface area of a sphere is $A = 4\\pi r^2$).",
+      "solution": "1. **Identify variables:**\n   - The Sun is a black body, so its emissivity $e = 1$. [1 mark]\n   - $T = 5800 \\text{ K}$\n   - $r = 6.96 \\times 10^8 \\text{ m}$\n   - $\\sigma = 5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{ K}^{-4}$\n2. **Calculate the surface area:**\n   - $A = 4\\pi r^2 = 4\\pi (6.96 \\times 10^8)^2$\n   - $A \\approx 6.09 \\times 10^{18} \\text{ m}^2$ [1 mark]\n3. **Apply the Stefan-Boltzmann Law:**\n   - $P = e \\sigma A T^4$ [1 mark]\n   - $P = (1) \\times (5.67 \\times 10^{-8}) \\times (6.09 \\times 10^{18}) \\times (5800)^4$ [1 mark for substitution]\n4. **Calculate the result:**\n   - $P = (5.67 \\times 10^{-8}) \\times (6.09 \\times 10^{18}) \\times (1.13 \\times 10^{15})$\n   - $P \\approx 3.90 \\times 10^{26} \\text{ W}$ [1 mark for correct answer with unit]"
+    },
+    {
+      "type": "practice",
+      "label": "B.1 Practice Questions",
+      "href": "/mark?subject=ib-physics-sl&topic=B.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Energy Forms and Changes",
+          "href": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes"
+        },
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Energy Forms and Changes",
+    "embedUrl": "https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/energy-forms-and-changes",
+    "hint": "Explore “Energy Forms and Changes” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

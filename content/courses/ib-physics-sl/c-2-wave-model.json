@@ -1,0 +1,224 @@
+{
+  "slug": "c-2-wave-model",
+  "topicCode": "C.2",
+  "title": "Wave model",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson explores the wave model of light as applied to astrophysics. It covers how stellar spectra reveal a star's composition, how Wien's and Stefan-Boltzmann's laws are used to determine temperature and luminosity, and how the Doppler effect for light allows us to measure a star's radial velocity.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the formation of stellar absorption spectra.",
+    "Apply Wien's displacement law and the Stefan-Boltzmann law to analyse stellar characteristics.",
+    "Explain the Doppler effect for light from distant stars and galaxies.",
+    "Solve problems involving stellar temperature, luminosity, and radial velocity."
+  ],
+  "simpleExplanation": {
+    "title": "Decoding Starlight: A Star's Fingerprint",
+    "summary": "Stars send us light that acts like a cosmic message. By analysing this light, we can determine a star's temperature, composition, and how fast it's moving towards or away from us.",
+    "analogy": "Imagine you're a detective listening to a siren. Just from the change in pitch as it passes, you know if the ambulance is coming or going. Starlight changes 'colour' in a similar way (blueshift/redshift) if the star is moving. Furthermore, the unique 'tune' of the siren is like the star's spectrum, a unique barcode that tells you what elements are in its atmosphere.",
+    "steps": [
+      "Analyse the Spectrum: Observe the light from a star spread into a rainbow. The dark absorption lines act as a unique barcode, revealing the elements in the star's atmosphere.",
+      "Find the Peak Colour: Identify the wavelength (λ_max) where the star's light is most intense. This peak colour reveals the star's surface temperature using Wien's Law; hotter stars are bluer, cooler stars are redder.",
+      "Measure the Total Power: Calculate the star's total energy output per second (Luminosity) using its temperature and size via the Stefan-Boltzmann law. Bigger, hotter stars are vastly more luminous.",
+      "Check for Shifts: Compare the star's spectral lines to known laboratory patterns. If the lines are shifted towards the red end (redshift), the star is moving away. The amount of shift reveals its speed."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an absorption spectrum?",
+      "back": "A continuous spectrum that has passed through a cool, low-density gas, resulting in dark lines at specific wavelengths corresponding to the elements in the gas."
+    },
+    {
+      "front": "What is Wien's Displacement Law?",
+      "back": "It states that the peak emission wavelength ($lambda_{max}$) of a black body is inversely proportional to its absolute temperature (T). Formula: $lambda_{max} = b/T$."
+    },
+    {
+      "front": "What is the Stefan-Boltzmann Law?",
+      "back": "It states that the total power radiated per unit surface area of a black body is directly proportional to the fourth power of its absolute temperature. For a star, total luminosity is $L = \\sigma A T^4$."
+    },
+    {
+      "front": "What is Luminosity (L)?",
+      "back": "The total amount of energy emitted by a star per second. It is an intrinsic property of the star. Unit: Watts (W)."
+    },
+    {
+      "front": "What is Apparent Brightness (b)?",
+      "back": "The power received per unit area at the observer's location. It depends on both luminosity and distance. Unit: Watts per square metre (W m⁻²)."
+    },
+    {
+      "front": "What is the Doppler effect for light?",
+      "back": "The change in the observed wavelength (and frequency) of light due to the relative motion between the source and the observer along the line of sight."
+    },
+    {
+      "front": "What is redshift?",
+      "back": "An increase in the observed wavelength of light, caused by the source moving away from the observer. Spectral lines are shifted towards the red end of the spectrum."
+    },
+    {
+      "front": "What is blueshift?",
+      "back": "A decrease in the observed wavelength of light, caused by the source moving towards the observer. Spectral lines are shifted towards the blue end of the spectrum."
+    },
+    {
+      "front": "Common Trap: Why must temperature be in Kelvin for Wien's and Stefan-Boltzmann's laws?",
+      "back": "These laws are based on absolute temperature scales where 0 represents the complete absence of thermal energy. Using Celsius would lead to incorrect calculations and nonsensical results, such as negative luminosity."
+    },
+    {
+      "front": "Common Trap: What is the most common mistake when using the Stefan-Boltzmann law, $L = \\sigma A T^4$?",
+      "back": "Forgetting that the temperature term is raised to the fourth power ($T^4$). A small error in temperature leads to a very large error in the calculated luminosity."
+    },
+    {
+      "front": "What is the formula for redshift, z?",
+      "back": "For speeds much less than c, $z = \\frac{\\Delta \\lambda}{\\lambda_0} \\approx \\frac{v}{c}$, where $\\lambda_0$ is the rest wavelength and $\\Delta \\lambda$ is the change in wavelength."
+    },
+    {
+      "front": "What is a black body?",
+      "back": "An idealised object that absorbs all incident electromagnetic radiation, regardless of frequency or angle of incidence. When in thermal equilibrium, it emits a characteristic spectrum of radiation (black-body radiation). Stars are good approximations of black bodies."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we use Kelvin for temperature in these laws?",
+      "a": "Because both Wien's and the Stefan-Boltzmann law are based on absolute temperature, where 0 K represents absolute zero (the lowest possible thermal energy). Using a relative scale like Celsius would give incorrect and physically meaningless results, as the relationships are proportional to the absolute temperature."
+    },
+    {
+      "q": "Does redshift mean a star actually looks red?",
+      "a": "Not necessarily. Redshift means the light we receive from the star has its wavelengths shifted towards the red end of the spectrum compared to when it was emitted. A very hot, blue star moving away from us will still appear blue, but its characteristic spectral lines will be found at longer (redder) wavelengths than expected."
+    },
+    {
+      "q": "How do luminosity and apparent brightness differ?",
+      "a": "Luminosity is the star's intrinsic, total power output—a fixed property of the star itself, measured in Watts. Apparent brightness is how bright the star appears from Earth. It depends on both the star's luminosity and its distance from us, following an inverse square law ($b = L / (4\\pi d^2)$)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Almost everything we know about stars, from their temperature to their motion through space, is derived from analysing the light they emit. In this lesson, we will explore the key physics principles that allow us to act as cosmic detectives, decoding the messages hidden within starlight."
+    },
+    {
+      "type": "heading",
+      "content": "Stellar Spectra: A Star's Barcode"
+    },
+    {
+      "type": "text",
+      "content": "When we pass starlight through a prism or diffraction grating, we see a spectrum. A star's hot, dense core produces a continuous spectrum, like a perfect rainbow. However, as this light passes through the star's cooler, less dense outer atmosphere, atoms of specific elements absorb photons of very specific energies (and therefore wavelengths). This process removes certain colours from the spectrum, creating a pattern of dark lines known as an absorption spectrum. Each element has a unique spectral fingerprint, so by identifying these lines, we can determine the chemical composition of the star's atmosphere."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Continuous Spectrum:** Produced by a hot, dense object (like a star's core).",
+        "**Absorption Spectrum:** A continuous spectrum with dark lines, created when light passes through a cooler gas (like a star's atmosphere).",
+        "**Emission Spectrum:** Bright lines on a dark background, produced by a hot, low-density gas. We see this in nebulae."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Wien's Displacement Law: Colour and Temperature"
+    },
+    {
+      "type": "text",
+      "content": "Stars behave as near-perfect black bodies, meaning they emit radiation across a range of wavelengths with an intensity that depends on their temperature. Wien's Displacement Law provides a simple relationship between a star's surface temperature and the wavelength at which it emits most of its light. The law states that the peak wavelength, $\\lambda_{max}$, is inversely proportional to the absolute temperature, T. This is why hot stars appear blue-white (short peak wavelength) and cooler stars appear red-orange (long peak wavelength)."
+    },
+    {
+      "type": "formula",
+      "content": "$\\lambda_{max} = \\frac{b}{T}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\lambda_{max}$ is the peak wavelength in metres (m).",
+        "T is the surface temperature in Kelvin (K).",
+        "b is Wien's displacement constant, $2.90 \\times 10^{-3} \\text{ m K}$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The star Rigel has a bluish colour and a peak emission wavelength of approximately 240 nm. Calculate its surface temperature.",
+      "solution": "1.  **State the relevant law:** Wien's Displacement Law, $\\lambda_{max} = b/T$. [1]\n2.  **Rearrange for temperature:** $T = b / \\lambda_{max}$. [1]\n3.  **Substitute values, ensuring correct units:** The wavelength must be in metres. $\\lambda_{max} = 240 \\text{ nm} = 240 \\times 10^{-9} \\text{ m}$.\n    $T = \\frac{2.90 \\times 10^{-3} \\text{ m K}}{240 \\times 10^{-9} \\text{ m}}$ [1]\n4.  **Calculate the result:** $T \\approx 12083 \\text{ K}$. A reasonable answer is $12100 \\text{ K}$ (3 s.f.). [1]\n    *Final Answer: 12100 K*"
+    },
+    {
+      "type": "heading",
+      "content": "The Stefan-Boltzmann Law: Luminosity, Size, and Temperature"
+    },
+    {
+      "type": "text",
+      "content": "While Wien's law tells us about the peak wavelength, the Stefan-Boltzmann law describes the total energy radiated by a star, its luminosity (L). Luminosity is the total power output in watts. This law states that the power radiated per unit area is proportional to the fourth power of the absolute temperature. To find the total luminosity, we multiply this by the star's total surface area, A."
+    },
+    {
+      "type": "formula",
+      "content": "$L = \\sigma A T^4$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "L is the luminosity in Watts (W).",
+        "$\\sigma$ is the Stefan-Boltzmann constant, $5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{ K}^{-4}$.",
+        "A is the star's surface area in square metres ($m^2$), usually $A = 4\\pi r^2$.",
+        "T is the surface temperature in Kelvin (K)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The $T^4$ term is crucial. A star that is twice as hot as another star of the same size will be $2^4 = 16$ times more luminous. Always convert temperatures to Kelvin before using this formula. A common mistake is to use Celsius or to forget the power of four."
+    },
+    {
+      "type": "workedExample",
+      "question": "Our Sun has a surface temperature of approximately 5800 K and a radius of $6.96 \\times 10^8$ m. Calculate its luminosity.",
+      "solution": "1.  **State the relevant law:** Stefan-Boltzmann Law, $L = \\sigma A T^4$. [1]\n2.  **Calculate the surface area (A):** The Sun is a sphere, so $A = 4\\pi r^2$.\n    $A = 4\\pi (6.96 \\times 10^8 \\text{ m})^2 = 6.087 \\times 10^{18} \\text{ m}^2$. [1]\n3.  **Substitute all values into the Stefan-Boltzmann law:**\n    $L = (5.67 \\times 10^{-8} \\text{ W m}^{-2} \\text{ K}^{-4}) \\times (6.087 \\times 10^{18} \\text{ m}^2) \\times (5800 \\text{ K})^4$. [1]\n4.  **Calculate the final result:**\n    $L = (5.67 \\times 10^{-8}) \\times (6.087 \\times 10^{18}) \\times (1.1316 \\times 10^{15})$\n    $L \\approx 3.90 \\times 10^{26} \\text{ W}$. [1]\n    *Final Answer: $3.90 \\times 10^{26} \\text{ W}$*"
+    },
+    {
+      "type": "heading",
+      "content": "The Doppler Effect: Measuring Stellar Motion"
+    },
+    {
+      "type": "text",
+      "content": "The Doppler effect describes the change in wave frequency and wavelength due to motion of the source or observer. For starlight, if a star is moving towards us, the light waves are compressed, decreasing their wavelength. This is called a blueshift. If a star is moving away from us, the waves are stretched, increasing their wavelength. This is called a redshift. By measuring the shift of known spectral lines compared to their stationary (laboratory) values, we can calculate the star's radial velocity—its speed along our line of sight."
+    },
+    {
+      "type": "formula",
+      "content": "For speeds $v \\ll c$: $\\frac{\\Delta \\lambda}{\\lambda_0} \\approx \\frac{v}{c}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$\\Delta \\lambda$ is the change in wavelength ($lambda_{observed} - \\lambda_0$).",
+        "$\\lambda_0$ is the rest wavelength (the wavelength measured in a lab on Earth).",
+        "v is the radial velocity of the source.",
+        "c is the speed of light ($3.00 \\times 10^8 \\text{ m s}^{-1}$).",
+        "A positive v (and positive $\\Delta \\lambda$) indicates redshift (moving away).",
+        "A negative v (and negative $\\Delta \\lambda$) indicates blueshift (moving towards)."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding with exam-style questions on the wave model of stars.",
+      "href": "/mark?subject=ib-physics-sl&topic=C.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Blackbody Spectrum",
+          "href": "https://phet.colorado.edu/en/simulations/blackbody-spectrum"
+        },
+        {
+          "label": "NASA's Introduction to Stellar Spectra",
+          "href": "https://imagine.gsfc.nasa.gov/science/toolbox/spectra1.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Blackbody Spectrum",
+    "embedUrl": "https://phet.colorado.edu/sims/html/blackbody-spectrum/latest/blackbody-spectrum_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/blackbody-spectrum",
+    "hint": "Explore “Blackbody Spectrum” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

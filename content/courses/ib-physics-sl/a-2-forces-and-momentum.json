@@ -1,0 +1,188 @@
+{
+  "slug": "a-2-forces-and-momentum",
+  "topicCode": "A.2",
+  "title": "Forces and momentum",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson explores Newton's law of universal gravitation, gravitational fields, potential, and the mechanics of orbital motion. It provides the tools to calculate forces between celestial bodies, the energy required to escape a planet's gravity, and the parameters of stable orbits.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Apply Newton's law of universal gravitation to solve problems involving point masses.",
+    "Define and calculate gravitational field strength and gravitational potential.",
+    "Derive and apply the formula for escape speed.",
+    "Analyse the mechanics of circular orbital motion, including speed, period, and energy."
+  ],
+  "simpleExplanation": {
+    "title": "Cosmic Billiards: Gravity's Game",
+    "summary": "We'll explore how gravity, the universal force of attraction, dictates the motion of everything from apples to galaxies. Understanding this force allows us to calculate orbital paths and the energy needed to escape a planet's pull.",
+    "analogy": "Imagine rolling marbles on a stretched rubber sheet. A heavy bowling ball placed in the centre creates a dip, or a 'gravity well'. The marbles (planets) will roll around the bowling ball (star) in curved paths, trapped in its well. To get a marble to fly off the sheet, you need to roll it fast enough – that's like escape speed.",
+    "steps": [
+      "Start any gravity problem by clearly identifying the two masses ($M$ and $m$) and the distance ($r$) between their centres. Remember $r$ is centre-to-centre, not surface-to-surface.",
+      "Choose the right equation based on the question: force ($F = G\\frac{Mm}{r^2}$), field strength ($g = G\\frac{M}{r^2}$), potential ($V_g = -G\\frac{M}{r}$), or escape speed ($v_{esc} = \\sqrt{\\frac{2GM}{r}}$).",
+      "For stable circular orbits, the gravitational force provides the necessary centripetal force. Set $G\\frac{Mm}{r^2} = \\frac{mv^2}{r}$ to find orbital speed or period.",
+      "For problems involving changes in height or escape, think about energy. Use gravitational potential energy ($E_p = -G\\frac{Mm}{r}$) and kinetic energy ($E_k = \\frac{1}{2}mv^2$). Remember that total energy is conserved in an isolated system."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "State Newton's Law of Universal Gravitation.",
+      "back": "The gravitational force of attraction between two point masses $M$ and $m$ is directly proportional to the product of their masses and inversely proportional to the square of the distance $r$ between their centres. Formula: $F = G\\frac{Mm}{r^2}$."
+    },
+    {
+      "front": "What is the significance of the negative sign in the gravitational potential formula, $V_g = -G\\frac{M}{r}$?",
+      "back": "It signifies that gravitational potential is defined as zero at an infinite distance. Since gravity is attractive, work must be done against the field to move a mass away, so potential at any finite distance is negative."
+    },
+    {
+      "front": "Define gravitational field strength, $g$.",
+      "back": "The force per unit mass experienced by a small test mass placed at a point in a gravitational field. $g = \\frac{F}{m}$. Its units are N kg⁻¹."
+    },
+    {
+      "front": "What is escape speed?",
+      "back": "The minimum initial speed an object at the surface of a planet must have to escape its gravitational field completely, i.e., to reach an infinite distance with zero final speed."
+    },
+    {
+      "front": "What is the condition for a stable circular orbit?",
+      "back": "The gravitational force of attraction between the satellite and the central body provides the exact centripetal force required for the circular motion. $F_g = F_c$."
+    },
+    {
+      "front": "Why is a satellite's total energy negative in a stable orbit?",
+      "back": "The negative gravitational potential energy is larger in magnitude than the positive kinetic energy. This means the satellite is 'bound' to the central mass and cannot escape without an input of energy. Total energy $E_T = -G\\frac{Mm}{2r}$."
+    },
+    {
+      "front": "Common Trap: What distance 'r' should be used in gravitational equations?",
+      "back": "'r' is always the distance between the *centres* of the two masses. For a satellite orbiting a planet of radius $R$ at an altitude $h$, the orbital radius is $r = R + h$."
+    },
+    {
+      "front": "Define gravitational potential at a point.",
+      "back": "The work done per unit mass in bringing a small test mass from infinity to that point in the field. $V_g = \\frac{W}{m}$. Its units are J kg⁻¹."
+    },
+    {
+      "front": "Does the escape speed of a rocket depend on its own mass?",
+      "back": "No. The formula $v_{esc} = \\sqrt{\\frac{2GM}{r}}$ shows that escape speed depends only on the mass ($M$) and radius ($r$) of the planet being escaped from, not the mass of the escaping object."
+    },
+    {
+      "front": "How does the orbital speed of a satellite depend on its orbital radius?",
+      "back": "Orbital speed decreases as the orbital radius increases. From the formula $v_{orb} = \\sqrt{\\frac{GM}{r}}$, we can see that $v_{orb} \\propto \\frac{1}{\\sqrt{r}}$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is gravitational potential energy considered negative?",
+      "a": "This is a result of a convention where we define the gravitational potential energy of two objects to be zero when they are infinitely far apart. Since gravity is an attractive force, the system loses potential energy as the objects move closer together. To separate them again, you must do work *on* the system, increasing its energy back towards zero. Therefore, any system with a finite separation distance must have a negative potential energy relative to this zero point at infinity."
+    },
+    {
+      "q": "Can I use g = 9.81 m s⁻² for satellite problems?",
+      "a": "No, you should not unless the question specifies to assume so for an object very near the Earth's surface. The value $g=9.81$ m s⁻² is the specific gravitational field strength *at the surface of the Earth*. For satellites in orbit, the distance $r$ from the Earth's centre is significantly larger, so the gravitational field strength is weaker. You must use the universal formula $g = G\\frac{M}{r^2}$ with the correct orbital radius $r = R_{Earth} + altitude$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From the apocryphal story of Newton and the apple to the mind-bending reality of black holes, a single fundamental force governs the motion of celestial objects: gravity. This lesson delves into the mathematical framework of gravitation, enabling us to understand and predict the dance of planets, stars, and satellites across the cosmos."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's Law of Universal Gravitation"
+    },
+    {
+      "type": "text",
+      "content": "Sir Isaac Newton proposed that every particle in the universe attracts every other particle with a force. This force is always attractive and acts along the line connecting the centres of the two objects. For macroscopic objects that are spherically symmetric (like planets and stars), we can treat them as 'point masses' with all their mass concentrated at their geometric centre."
+    },
+    {
+      "type": "formula",
+      "content": "$$ F = G\\frac{Mm}{r^2} $$ Where $F$ is the gravitational force, $M$ and $m$ are the two masses, $r$ is the distance between their centres, and $G$ is the universal gravitational constant, approximately $6.67 \\times 10^{-11}$ N m² kg⁻²."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gravity is an inverse-square law: the force decreases with the square of the distance.",
+        "The force is directly proportional to the product of the masses.",
+        "It is a universal law, applying to all objects with mass, from subatomic particles to galaxy clusters."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The mass of the Earth is $5.97 \\times 10^{24}$ kg and the mass of the Moon is $7.35 \\times 10^{22}$ kg. The average distance between their centres is $3.84 \\times 10^8$ m. Calculate the magnitude of the gravitational force between them. Use $G = 6.67 \\times 10^{-11}$ N m² kg⁻².",
+      "solution": "1.  State the formula for gravitational force: \n$F = G\\frac{M_E M_M}{r^2}$ ✓\n\n2.  Substitute the given values into the equation:\n$F = (6.67 \\times 10^{-11} \\text{ N m}^2 \\text{ kg}^{-2}) \\frac{(5.97 \\times 10^{24} \\text{ kg})(7.35 \\times 10^{22} \\text{ kg})}{(3.84 \\times 10^8 \\text{ m})^2}$ ✓\n\n3.  Calculate the product of masses and the square of the distance:\n$F = \\frac{(6.67 \\times 10^{-11})(4.38795 \\times 10^{47})}{1.47456 \\times 10^{17}}$\n\n4.  Compute the final result:\n$F = \\frac{2.9268 \\times 10^{37}}{1.47456 \\times 10^{17}} \\approx 1.985 \\times 10^{20}$ N ✓\n\n5.  State the final answer to an appropriate number of significant figures (3 s.f. based on data):\n$F = 1.99 \\times 10^{20}$ N"
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational Fields and Potential"
+    },
+    {
+      "type": "text",
+      "content": "Instead of thinking about forces acting at a distance, it's often more useful to use the concept of a field. A mass creates a gravitational field in the space around it. Any other mass placed in this field will experience a force. We can quantify this field using two key concepts: gravitational field strength ($g$) and gravitational potential ($V_g$)."
+    },
+    {
+      "type": "formula",
+      "content": "Gravitational Field Strength: $g = \\frac{F}{m} = G\\frac{M}{r^2}$ (a vector, in N kg⁻¹)\n\nGravitational Potential: $V_g = \\frac{W}{m} = -G\\frac{M}{r}$ (a scalar, in J kg⁻¹)"
+    },
+    {
+      "type": "text",
+      "content": "Gravitational potential is defined as zero at an infinite distance from the mass $M$. Because gravity is attractive, the potential at any finite distance $r$ is negative. This means work must be done *on* a test mass to move it from that point to infinity (i.e., to escape the field)."
+    },
+    {
+      "type": "examTip",
+      "content": "Be careful with signs and definitions. Gravitational potential ($V_g$) is always negative for a single mass. Gravitational potential *energy* ($E_p$) is $m V_g$, so it's also negative. A change in potential energy, $\\Delta E_p$, can be positive or negative. Also, don't confuse gravitational field strength $g$ with the constant $g \\approx 9.81$ m s⁻², which is only valid at the Earth's surface."
+    },
+    {
+      "type": "heading",
+      "content": "Orbital Mechanics and Escape Speed"
+    },
+    {
+      "type": "text",
+      "content": "For an object like a satellite to maintain a stable circular orbit around a planet, the gravitational force must provide the exact amount of centripetal force needed. By equating the formulae for these two forces, we can derive the speed required for a given orbital radius. To escape the planet's gravity entirely, an object must be given enough kinetic energy to overcome its negative gravitational potential energy. This minimum launch speed is called the escape speed."
+    },
+    {
+      "type": "formula",
+      "content": "Orbital Speed: $v_{orb} = \\sqrt{\\frac{GM}{r}}$\n\nEscape Speed: $v_{esc} = \\sqrt{\\frac{2GM}{r}}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For a stable orbit, centripetal force equals gravitational force: $\\frac{mv^2}{r} = G\\frac{Mm}{r^2}$.",
+        "Escape speed is precisely $\\sqrt{2}$ times the orbital speed at the same radius ($v_{esc} = \\sqrt{2} \\, v_{orb}$).",
+        "The total energy of an orbiting satellite is $E_T = E_K + E_P = -G\\frac{Mm}{2r}$. The negative sign indicates it is a bound system."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Mars has a mass of $6.42 \\times 10^{23}$ kg and a radius of $3.39 \\times 10^6$ m. \n(a) Calculate the escape speed from the surface of Mars. \n(b) A satellite orbits Mars at an altitude of 300 km. Calculate its orbital speed.",
+      "solution": "(a) **Escape Speed**\n1.  State the formula for escape speed. The distance $r$ is the radius of Mars, $R_M$.\n$v_{esc} = \\sqrt{\\frac{2GM}{R_M}}$ ✓\n\n2.  Substitute values:\n$v_{esc} = \\sqrt{\\frac{2(6.67 \\times 10^{-11})(6.42 \\times 10^{23})}{3.39 \\times 10^6}}$ ✓\n\n3.  Calculate the value under the square root:\n$v_{esc} = \\sqrt{2.525 \\times 10^7} \\approx 5025$ m s⁻¹\n\n4.  Final answer with appropriate units and sig figs:\n$v_{esc} = 5.03 \\times 10^3$ m s⁻¹ or $5.03$ km s⁻¹. ✓\n\n(b) **Orbital Speed**\n1.  First, calculate the orbital radius, $r$. This is the planet's radius plus the altitude, $h$.\n$r = R_M + h = 3.39 \\times 10^6 \\text{ m} + 300 \\times 10^3 \\text{ m} = 3.69 \\times 10^6$ m. ✓\n\n2.  State the formula for orbital speed:\n$v_{orb} = \\sqrt{\\frac{GM}{r}}$ ✓\n\n3.  Substitute values using the calculated orbital radius:\n$v_{orb} = \\sqrt{\\frac{(6.67 \\times 10^{-11})(6.42 \\times 10^{23})}{3.69 \\times 10^6}}$ ✓\n\n4.  Calculate the value:\n$v_{orb} = \\sqrt{1.160 \\times 10^7} \\approx 3406$ m s⁻¹\n\n5.  Final answer:\n$v_{orb} = 3.41 \\times 10^3$ m s⁻¹ or $3.41$ km s⁻¹. ✓"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: A.2 Forces and Momentum",
+      "href": "/mark?subject=ib-physics-sl&topic=A.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Gravity and Orbits",
+          "href": "https://phet.colorado.edu/en/simulations/gravity-and-orbits"
+        },
+        {
+          "label": "NASA Solar System Exploration",
+          "href": "https://solarsystem.nasa.gov/planets/overview/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Gravity and Orbits",
+    "embedUrl": "https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/gravity-and-orbits",
+    "hint": "Explore “Gravity and Orbits” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

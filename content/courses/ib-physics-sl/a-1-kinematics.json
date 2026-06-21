@@ -1,0 +1,190 @@
+{
+  "slug": "a-1-kinematics",
+  "topicCode": "A.1",
+  "title": "Kinematics",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of kinematics, the study of motion. It covers the key vector and scalar quantities, the equations of uniform acceleration (SUVAT), and their graphical representations, providing a foundational framework for analysing motion in one dimension.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define and distinguish between displacement, velocity, acceleration, speed, and distance.",
+    "Apply the equations of uniform acceleration (SUVAT equations) to solve one-dimensional motion problems.",
+    "Interpret and construct displacement-time, velocity-time, and acceleration-time graphs.",
+    "Analyse motion under gravity as a case of constant acceleration."
+  ],
+  "simpleExplanation": {
+    "title": "The Sat-Nav of Physics",
+    "summary": "Kinematics is like using a car's satellite navigation system to describe a journey. It tells you where you are (displacement), how fast you're going (velocity), and if you're speeding up or slowing down (acceleration).",
+    "analogy": "Imagine you're planning a road trip. Your sat-nav needs to know your starting point, your destination, your current speed, and how you might speed up on a motorway or slow down in a city. Kinematics provides the physics 'rules' or equations that a sat-nav would use to predict your journey's duration and path, assuming you travel with constant acceleration between points.",
+    "steps": [
+      "First, identify all the known and unknown quantities in the problem. List them using the symbols: s (displacement), u (initial velocity), v (final velocity), a (acceleration), and t (time).",
+      "Next, choose the kinematic equation that connects your known quantities to the one you need to find. Select the equation that is missing the variable you don't have and don't need.",
+      "Then, carefully substitute the known values into the equation. Pay close attention to units and signs (e.g., is motion upwards positive or negative?).",
+      "Finally, solve the equation for the unknown variable. State your final answer clearly with the correct units and an appropriate number of significant figures."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is displacement ($s$)?",
+      "back": "The change in position of an object. It is a vector quantity, meaning it has both magnitude and direction. Measured in metres (m)."
+    },
+    {
+      "front": "What is the difference between distance and displacement?",
+      "back": "Distance is a scalar quantity representing the total path length covered. Displacement is a vector quantity representing the straight-line distance and direction from the start point to the end point."
+    },
+    {
+      "front": "What is velocity ($v$)?",
+      "back": "The rate of change of displacement. It is a vector quantity. Measured in metres per second (m s⁻¹)."
+    },
+    {
+      "front": "What is the difference between speed and velocity?",
+      "back": "Speed is a scalar quantity (how fast an object is moving). Velocity is a vector quantity (how fast and in which direction an object is moving)."
+    },
+    {
+      "front": "What is acceleration ($a$)?",
+      "back": "The rate of change of velocity. It is a vector quantity. Measured in metres per second squared (m s⁻²)."
+    },
+    {
+      "front": "What is the condition for using the SUVAT equations?",
+      "back": "The acceleration of the object must be uniform (constant). They do not apply if acceleration is changing."
+    },
+    {
+      "front": "SUVAT equation without final velocity ($v$)?",
+      "back": "$s = ut + \\frac{1}{2}at^2$"
+    },
+    {
+      "front": "SUVAT equation without time ($t$)?",
+      "back": "$v^2 = u^2 + 2as$"
+    },
+    {
+      "front": "What does the gradient of a displacement-time graph represent?",
+      "back": "Velocity. A straight line indicates constant velocity, while a curve indicates changing velocity (acceleration)."
+    },
+    {
+      "front": "What does the area under a velocity-time graph represent?",
+      "back": "Displacement. The area can be calculated using geometric shapes (rectangles, triangles)."
+    },
+    {
+      "front": "What is the value of acceleration due to gravity, $g$, near the Earth's surface?",
+      "back": "Approximately $g = 9.81$ m s⁻². It is a constant acceleration directed downwards. Air resistance is often ignored in IB SL problems."
+    },
+    {
+      "front": "Common trap: A ball is thrown upwards. What is its velocity and acceleration at its highest point?",
+      "back": "At the highest point, its instantaneous velocity is zero ($v=0$). Its acceleration is still $9.81$ m s⁻² downwards, as gravity is always acting on it."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between average speed and average velocity?",
+      "a": "Average speed is total distance divided by total time (a scalar). Average velocity is total displacement divided by total time (a vector). If you run a 400m lap on a track and end where you started, your displacement is zero, so your average velocity is zero, but your average speed is positive."
+    },
+    {
+      "q": "Do the SUVAT equations work if acceleration is not constant?",
+      "a": "No. The SUVAT equations are derived on the fundamental assumption that acceleration is uniform. If acceleration changes, you must use calculus (integration and differentiation), which is beyond the scope of the SL course, or graphical methods (finding the area under a non-linear velocity-time graph)."
+    },
+    {
+      "q": "How do I choose the right SUVAT equation for a problem?",
+      "a": "First, list the five variables (s, u, v, a, t). Identify the values you are given in the question and what you need to find. You will have one variable that is not given and not asked for. Choose the one equation out of the four that does not contain this 'unwanted' variable."
+    },
+    {
+      "q": "What do the gradient and area of an acceleration-time graph represent?",
+      "a": "The area under an acceleration-time graph represents the change in velocity ($\"Delta v = v - u$\"). The gradient of an acceleration-time graph represents the rate of change of acceleration, sometimes called 'jerk', but this is not required for the IB SL syllabus."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to kinematics, the branch of mechanics that describes the motion of objects without considering the forces that cause the motion. In this topic, we will build a mathematical and graphical toolkit to analyse everything from a sprinter starting a race to a ball thrown in the air. Mastering these foundational concepts is crucial for success in many other areas of physics."
+    },
+    {
+      "type": "heading",
+      "content": "Describing Motion: Scalars and Vectors"
+    },
+    {
+      "type": "text",
+      "content": "To describe motion accurately, we must distinguish between scalar and vector quantities. A scalar has only magnitude (a size or number), like distance (50 m) or speed (10 m s⁻¹). A vector has both magnitude and direction, such as displacement (50 m East) or velocity (10 m s⁻¹ North). In one-dimensional motion, we use positive and negative signs to indicate direction (e.g., + for right, - for left)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Distance (scalar):** Total path length covered.",
+        "**Displacement ($s$) (vector):** Change in position from start to end.",
+        "**Speed (scalar):** Rate of change of distance.",
+        "**Velocity ($u, v$) (vector):** Rate of change of displacement.",
+        "**Acceleration ($a$) (vector):** Rate of change of velocity."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Equations of Uniform Acceleration (SUVAT)"
+    },
+    {
+      "type": "text",
+      "content": "When an object moves with constant acceleration, we can use a set of four powerful equations to relate the five key kinematic variables. These are often called the SUVAT equations, named after the symbols used."
+    },
+    {
+      "type": "formula",
+      "content": "1. $v = u + at$\n2. $s = ut + \\frac{1}{2}at^2$\n3. $v^2 = u^2 + 2as$\n4. $s = \\frac{(u+v)}{2}t$"
+    },
+    {
+      "type": "text",
+      "content": "Here, $s$ is displacement, $u$ is initial velocity, $v$ is final velocity, $a$ is acceleration, and $t$ is time. Each equation is missing one of the five variables, which is the key to selecting the correct one for a given problem."
+    },
+    {
+      "type": "workedExample",
+      "question": "A car starts from rest and accelerates uniformly at 2.5 m s⁻² for 6.0 s. Calculate its final velocity and the displacement in this time.",
+      "solution": "### Part 1: Final Velocity\n\n**1. List knowns and unknowns:**\n$s = ?$ \n$u = 0$ m s⁻¹ ('from rest')\n$v = ?$ \n$a = 2.5$ m s⁻²\n$t = 6.0$ s\n\n**2. Choose the equation:**\nTo find $v$, we need an equation with $u, a, t$. We use $v = u + at$. [1]\n\n**3. Substitute and solve:**\n$v = 0 + (2.5 \\times 6.0)$ [1]\n$v = 15$ m s⁻¹ [1]\n\n### Part 2: Displacement\n\n**1. Choose the equation:**\nWe can now use our calculated $v$, but it's better practice to use original data to avoid carrying forward errors. We choose the equation without $v$: $s = ut + \\frac{1}{2}at^2$. [1]\n\n**2. Substitute and solve:**\n$s = (0 \\times 6.0) + \\frac{1}{2}(2.5)(6.0)^2$ [1]\n$s = 0 + \\frac{1}{2}(2.5)(36)$\n$s = 45$ m [1]\n\n**Final Answer:** The final velocity is 15 m s⁻¹ and the displacement is 45 m."
+    },
+    {
+      "type": "heading",
+      "content": "Motion Under Gravity"
+    },
+    {
+      "type": "text",
+      "content": "An object moving freely under the influence of gravity (ignoring air resistance) is a prime example of motion with constant acceleration. The acceleration is the acceleration due to gravity, $g$, which is approximately $9.81$ m s⁻² directed downwards. When solving these problems, it is crucial to establish a consistent sign convention. For example, if we define the upward direction as positive, then acceleration $a = -g = -9.81$ m s⁻²."
+    },
+    {
+      "type": "examTip",
+      "content": "For vertical motion problems, always state your sign convention clearly (e.g., 'upwards is positive'). A common mistake is to forget that acceleration is *always* $-9.81$ m s⁻² (if up is positive), even when the object is moving upwards or is momentarily at rest at its peak."
+    },
+    {
+      "type": "workedExample",
+      "question": "A ball is thrown vertically upwards with an initial speed of 20.0 m s⁻¹. Air resistance is negligible. Calculate:\na) The maximum height reached.\nb) The total time the ball is in the air before returning to its starting point.",
+      "solution": "First, establish a sign convention: **Upwards is positive**.\nThis means $u = +20.0$ m s⁻¹ and $a = -g = -9.81$ m s⁻².\n\n**a) Maximum height:**\nAt the maximum height, the instantaneous vertical velocity is zero. \n\n**1. List variables:**\n$s = ?$ (this will be the max height)\n$u = +20.0$ m s⁻¹\n$v = 0$ m s⁻¹\n$a = -9.81$ m s⁻²\n$t = ?$\n\n**2. Choose equation:**\nWe need to find $s$ and we don't have $t$. Use $v^2 = u^2 + 2as$. [1]\n\n**3. Substitute and solve:**\n$0^2 = (20.0)^2 + 2(-9.81)s$ [1]\n$0 = 400 - 19.62s$\n$19.62s = 400$\n$s = \\frac{400}{19.62} = 20.387... \\approx 20.4$ m [1]\n\n**b) Total time in the air:**\nThe ball returns to its starting point, so its total displacement is zero ($s=0$).\n\n**1. List variables:**\n$s = 0$ m\n$u = +20.0$ m s⁻¹\n$v = ?$\n$a = -9.81$ m s⁻²\n$t = ?$\n\n**2. Choose equation:**\nWe need to find $t$ and we don't have $v$. Use $s = ut + \\frac{1}{2}at^2$. [1]\n\n**3. Substitute and solve:**\n$0 = (20.0)t + \\frac{1}{2}(-9.81)t^2$ [1]\n$0 = 20.0t - 4.905t^2$\n$0 = t(20.0 - 4.905t)$\nThis gives two solutions: $t=0$ (the start) and $20.0 - 4.905t = 0$.\n$4.905t = 20.0$\n$t = \\frac{20.0}{4.905} = 4.077... \\approx 4.08$ s [1]\n\n**Final Answer:** The maximum height is 20.4 m and the total time in the air is 4.08 s."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Kinematics",
+      "href": "/mark?subject=ib-physics-sl&topic=A.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/sciences/physics/"
+        },
+        {
+          "label": "PhET Simulation: The Moving Man",
+          "href": "https://phet.colorado.edu/en/simulations/moving-man"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "The Moving Man",
+    "embedUrl": "https://phet.colorado.edu/sims/html/moving-man/latest/moving-man_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/moving-man",
+    "hint": "Explore “The Moving Man” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

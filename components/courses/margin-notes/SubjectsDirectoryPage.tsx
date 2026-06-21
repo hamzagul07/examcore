@@ -1,13 +1,12 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
-import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import type { MarginNotesSubject, SubjectFamily } from '@/lib/courses/margin-notes/types'
-import { accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
 import { subjectProgressPercent } from '@/lib/courses/margin-notes/continue-learning'
 import { useCourseProgressRevision } from '@/components/courses/CourseProgressClient'
 import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
+import { SubjectCard } from '@/components/courses/margin-notes/SubjectCard'
 
 type Props = {
   subjects: MarginNotesSubject[]
@@ -84,38 +83,9 @@ export function SubjectsDirectoryPage({ subjects }: Props) {
           <span className="micro catalog-count">{filtered.length} subjects</span>
         </div>
 
-        <div className="subj-ledger">
+        <div className="catalog-grid">
           {filtered.length ? (
-            filtered.map((s) => (
-              <Link
-                key={s.code}
-                className="subj-row"
-                style={{ '--acc': accentCssVar(s.acc) } as React.CSSProperties}
-                href={`/courses/${s.code}`}
-                data-screen-label={`Subjects — ${s.name}`}
-              >
-                <span className="subj-glyph">{s.glyph}</span>
-                <div className="subj-main">
-                  <h3 className="subj-name">{s.name}</h3>
-                  <span className="subj-code mono">
-                    {s.code} · {s.level} · {s.units} units
-                  </span>
-                </div>
-                <div className="subj-tags">
-                  <span className="subj-tag mono">{s.lessons} LESSONS</span>
-                  <span className="subj-tag mono">{s.q} QUESTIONS</span>
-                  {s.prog > 0 ? (
-                    <span className="subj-tag on mono">{s.prog}% COVERED</span>
-                  ) : null}
-                </div>
-                <div className="subj-links">
-                  <span className="subj-pill">Course</span>
-                  <span className="subj-pill">Papers</span>
-                  <span className="subj-pill">Boundaries</span>
-                </div>
-                <span className="subj-go">→</span>
-              </Link>
-            ))
+            filtered.map((s) => <SubjectCard key={s.code} s={s} />)
           ) : (
             <div className="catalog-empty card card-pad">
               <p className="overline mono">No matches</p>

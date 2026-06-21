@@ -11,8 +11,8 @@ import { buildSignInHref, buildSignUpHref, isSafeNextPath } from '@/lib/auth-red
 const LINKS = [
   { id: 'mark', label: 'mark', href: '/mark' },
   { id: 'catalog', label: 'courses', href: '/courses' },
+  { id: 'ib', label: 'IB', href: '/ib' },
   { id: 'subjects', label: 'subjects', href: '/subjects' },
-  { id: 'progress', label: 'progress', href: '/dashboard/progress' },
   { id: 'guides', label: 'guides & blog', href: '/blog' },
   { id: 'pricing', label: 'pricing', href: '/pricing' },
 ] as const

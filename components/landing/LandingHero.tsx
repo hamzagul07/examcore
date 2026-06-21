@@ -42,7 +42,7 @@ export function LandingHero({ markHref }: LandingHeroProps) {
   return (
     <section className="ms-pg ms-hero ms-hero--energized ec-no-annot-mobile">
       <div className="ms-fade-in">
-        <p className="ms-hero-kicker">Cambridge A-Level &amp; O-Level</p>
+        <p className="ms-hero-kicker">Cambridge A-Level, O-Level &amp; IB Diploma</p>
         <h1 className="ms-h-display">
           Your past papers, <InkCircle>marked</InkCircle> like the{' '}
           <em>

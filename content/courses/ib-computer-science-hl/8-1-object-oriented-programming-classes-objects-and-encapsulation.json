@@ -1,0 +1,163 @@
+{
+  "slug": "8-1-object-oriented-programming-classes-objects-and-encapsulation",
+  "topicCode": "8.1",
+  "title": "Object-oriented programming: classes, objects and encapsulation",
+  "paper": "P2",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental principles of Object-Oriented Programming (OOP). Students will learn to distinguish between classes and objects, understand the process of instantiation, and grasp the crucial concept of encapsulation for building robust and modular software.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define the terms class, object, instantiation, and encapsulation.",
+    "Explain the relationship between classes and objects.",
+    "Construct unified modelling language (UML) diagrams to represent classes.",
+    "Write pseudocode to define classes, instantiate objects, and demonstrate encapsulation."
+  ],
+  "simpleExplanation": {
+    "title": "Programming with Blueprints",
+    "summary": "Object-Oriented Programming lets us model real-world things as 'objects' in our code. We first design a 'class', which acts as a blueprint, and then we create individual 'objects' based on that blueprint.",
+    "analogy": "Imagine you're a property developer. You don't just start building a house; you first get an architect to draw up a detailed blueprint. This blueprint defines all the properties of a house: number of bedrooms, size of the kitchen, type of roof. The blueprint itself isn't a house, but it's the master plan. Using this single blueprint, you can then build many individual, unique houses. In OOP, the 'class' is the blueprint, and each 'house' you build is an 'object'.",
+    "steps": [
+      "First, identify a 'thing' you want to represent in your programme, like a 'Car'.",
+      "Next, design a 'class' as a blueprint. Define its properties (attributes like 'colour', 'maxSpeed') and its behaviours (methods like 'accelerate()', 'brake()').",
+      "Then, create specific instances, or 'objects', from the class. For example, a red Ferrari object and a blue Ford object, each with its own state.",
+      "Finally, use encapsulation to protect the object's internal state. You interact with the car using its public methods (steering wheel, pedals), not by directly manipulating the engine parts."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a class?",
+      "back": "A blueprint or template for creating objects. It defines a set of attributes (data) and methods (behaviours) that the created objects will have."
+    },
+    {
+      "front": "What is an object?",
+      "back": "An instance of a class. It is a concrete entity created from a class blueprint, with its own state (specific values for its attributes)."
+    },
+    {
+      "front": "What is instantiation?",
+      "back": "The process of creating a new object (an instance) from a class. This is typically done using a special method called a constructor."
+    },
+    {
+      "front": "What is encapsulation?",
+      "back": "The bundling of data (attributes) and the methods that operate on that data into a single unit (a class). It also involves restricting direct access to an object's internal state, which is known as data hiding."
+    },
+    {
+      "front": "What is an attribute?",
+      "back": "A variable defined within a class that holds data for an object. For a `Car` class, attributes might include `colour`, `currentSpeed`, and `fuelLevel`."
+    },
+    {
+      "front": "What is a method?",
+      "back": "A function or procedure defined within a class that defines a behaviour for an object. For a `Car` class, methods might include `accelerate()` and `brake()`."
+    },
+    {
+      "front": "What is a constructor?",
+      "back": "A special type of method within a class that is automatically called when a new object is instantiated. Its purpose is to initialise the object's attributes."
+    },
+    {
+      "front": "What does the `private` access modifier do?",
+      "back": "It restricts access to an attribute or method, making it only accessible from within the same class. This is key to encapsulation and data hiding."
+    },
+    {
+      "front": "What does the `public` access modifier do?",
+      "back": "It allows an attribute or method to be accessed from any code outside the class. Public methods form the object's interface."
+    },
+    {
+      "front": "What is a 'getter' (or accessor) method?",
+      "back": "A public method used to safely retrieve the value of a private attribute. For example, `getSpeed()` would return the value of the private `currentSpeed` attribute."
+    },
+    {
+      "front": "What is a 'setter' (or mutator) method?",
+      "back": "A public method used to safely modify the value of a private attribute. It often includes validation logic to ensure the new value is valid."
+    },
+    {
+      "front": "Common Trap: Confusing Class and Object",
+      "back": "A class is the recipe (`Car`), an object is the actual cake you baked from it (`myRedFerrari`). You can't 'drive' a class, but you can 'drive' an object."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real difference between a class and an object?",
+      "a": "Think of it this way: a `class` is a cookie cutter. It defines the shape and properties of a cookie. An `object` is an actual cookie that you have made using the cutter. You can have many cookies (objects) from one cutter (class), and you can eat the cookies, but you can't eat the cookie cutter."
+    },
+    {
+      "q": "Why is encapsulation so important? Can't I just make all my attributes public?",
+      "a": "You could, but it's like leaving the engine of your car completely exposed with all its wires and moving parts. Anyone could tamper with it, potentially breaking it in ways you never intended. By making attributes `private` and providing `public` methods (like a steering wheel and pedals), you create a safe, predictable interface. This prevents bugs, improves security, and makes your code much easier to update later on."
+    },
+    {
+      "q": "Is a constructor a method?",
+      "a": "Yes, a constructor is a special type of method. Its main distinctions are that it usually has the same name as the class, it has no return type, and it is called automatically when an object is created (`instantiated`). Its sole purpose is to set up the initial state of the new object."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to Object-Oriented Programming (OOP). This paradigm shifts our thinking from a list of instructions (procedural programming) to a collection of interacting objects. OOP helps us manage complexity in large software projects by modelling real-world entities, making our code more modular, reusable, and easier to maintain."
+    },
+    {
+      "type": "heading",
+      "content": "Classes: The Blueprint"
+    },
+    {
+      "type": "text",
+      "content": "A class is the fundamental building block in OOP. It's a template that defines the properties and behaviours of a certain type of object. The properties are stored in **attributes** (variables), and the behaviours are defined by **methods** (functions). For example, we could define a `Dog` class. Its attributes might be `name`, `breed`, and `age`. Its methods could be `bark()`, `wagTail()`, and `fetch()`."
+    },
+    {
+      "type": "heading",
+      "content": "Objects: The Real Thing"
+    },
+    {
+      "type": "text",
+      "content": "If a class is the blueprint, an object is the actual house built from it. An object is a specific **instance** of a class. Using our `Dog` class, we can create multiple dog objects, each with its own unique state. For example, we could have one object `dog1` with `name = \"Fido\"`, `breed = \"Golden Retriever\"`, and `age = 5`. Another object, `dog2`, could have `name = \"Rex\"`, `breed = \"German Shepherd\"`, and `age = 3`. Both are `Dog` objects, but they are distinct entities in the computer's memory."
+    },
+    {
+      "type": "workedExample",
+      "question": "A `GameCharacter` class is required for a new video game. It needs to store a character's `name` (String) and `healthPoints` (Integer). In IB pseudocode, define this class including a constructor to initialise its attributes. Then, show how to instantiate an object named `playerOne` for a character named \"Arion\" with 100 health points.",
+      "solution": "Here is the solution, with marks allocated as they might be in an exam.\n\n**Class Definition:**\n```\nclass GameCharacter\n  private name as String\n  private healthPoints as Integer\n\n  // Constructor to initialise the object\n  public constructor(newName, newHealth)\n    name = newName\n    healthPoints = newHealth\n  end constructor\n\n  // ... other methods would go here\n\nend class\n```\n\n**Instantiation:**\n```\nplayerOne = new GameCharacter(\"Arion\", 100)\n```\n\n**Mark Scheme:**\n*   **[1 mark]** for correctly defining the class `GameCharacter` with appropriate private attributes (`name`, `healthPoints`).\n*   **[1 mark]** for a correct constructor that accepts parameters and assigns them to the attributes.\n*   **[1 mark]** for the correct instantiation of the `playerOne` object with the specified values."
+    },
+    {
+      "type": "heading",
+      "content": "Encapsulation: The Protective Bubble"
+    },
+    {
+      "type": "text",
+      "content": "Encapsulation is the principle of bundling an object's data (attributes) and the methods that operate on that data together within the class. A vital part of this is **data hiding**, where we make the attributes `private`. This means they cannot be accessed or modified directly from outside the class. Instead, we provide `public` methods, often called 'getters' and 'setters', to act as a controlled interface. This prevents accidental or malicious corruption of an object's state and allows us to add validation logic."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Security:** Protects an object's internal state from unintended external modification.",
+        "**Modularity:** The internal implementation of a class can be changed without affecting the code that uses it, as long as the public interface remains the same.",
+        "**Maintainability:** Code is easier to understand and debug because an object's state can only be changed through its well-defined methods."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, when asked to design a class, always explicitly state whether your attributes and methods are `public` or `private`. The default assumption should be that attributes are `private` to demonstrate your understanding of encapsulation. Use getters and setters to provide controlled access."
+    },
+    {
+      "type": "workedExample",
+      "question": "A `BankAccount` class needs to manage a customer's balance. The `balance` attribute (a float) must be private. It should be initialised to 0.0 via a constructor. A public method `deposit(amount)` should add to the balance, and a public method `withdraw(amount)` should subtract from it, but only if sufficient funds are available. A public method `getBalance()` should return the current balance. Write the pseudocode for this class to demonstrate encapsulation.",
+      "solution": "This solution demonstrates correct encapsulation by protecting the `balance` attribute.\n\n**Class Definition:**\n```\nclass BankAccount\n  private balance as Float\n\n  // Constructor to initialise the balance\n  public constructor()\n    balance = 0.0\n  end constructor\n\n  // Public method to deposit money\n  public method deposit(amount as Float)\n    if amount > 0 then\n      balance = balance + amount\n    end if\n  end method\n\n  // Public method to withdraw money\n  public method withdraw(amount as Float)\n    if amount > 0 AND amount <= balance then\n      balance = balance - amount\n      return true\n    else\n      return false\n    end if\n  end method\n\n  // Public getter method for the balance\n  public method getBalance() returns Float\n    return balance\n  end method\n\nend class\n```\n\n**Mark Scheme:**\n*   **[1 mark]** for declaring `balance` as a `private` attribute.\n*   **[1 mark]** for creating a `public` constructor that initialises `balance`.\n*   **[1 mark]** for implementing `deposit` and `withdraw` as `public` methods with correct logic (e.g., checking for sufficient funds in `withdraw`).\n*   **[1 mark]** for implementing a `public` getter method (`getBalance`) to provide read-only access to the balance."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on OOP Fundamentals",
+      "href": "/mark?subject=ib-computer-science-hl&topic=8.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "UML Class Diagrams Explained (External Link)",
+          "href": "https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-class-diagram/"
+        },
+        {
+          "label": "GeeksForGeeks: Encapsulation in Java",
+          "href": "https://www.geeksforgeeks.org/encapsulation-in-java/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,215 @@
+{
+  "slug": "4-3-introduction-to-programming-variables-control-and-methods",
+  "topicCode": "4.3",
+  "title": "Introduction to programming: variables, control and methods",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental building blocks of programming. It covers variables and constants for storing data, operators for manipulating it, control structures (sequence, selection, iteration) for managing program flow, and sub-routines (methods/functions) for organising code into reusable blocks. Mastery of these concepts is essential for writing any computer program.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Distinguish between variables, constants and operators.",
+    "Identify and use fundamental and compound data types.",
+    "Explain and apply the control structures of sequence, selection and iteration.",
+    "Outline the need for and use of sub-routines, functions and/or methods."
+  ],
+  "simpleExplanation": {
+    "title": "The Programmer's Recipe Book",
+    "summary": "Writing a program is like writing a recipe for a computer to follow. You need to list your ingredients (variables), provide step-by-step instructions (sequence), include decision points (selection), and specify repetitive tasks (iteration).",
+    "analogy": "Imagine you're baking a cake. Your variables are the ingredients: `flourAmount`, `numberOfEggs`, `sugarGrams`. A constant might be the `OVEN_TEMPERATURE`, which doesn't change. The recipe itself is a sequence of instructions. A selection statement is like, 'IF the batter is too dry, THEN add a splash of milk'. An iteration is a loop, like 'WHISK for 3 minutes'. A sub-routine is like a mini-recipe for 'making the frosting', which you might use for many different cakes.",
+    "steps": [
+      "First, declare your variables and constants. This is like listing all the ingredients and equipment you'll need before you start cooking.",
+      "Next, write the basic sequence of instructions. These are the simple, step-by-step commands the computer executes in order, like 'mix flour and sugar'.",
+      "Then, add control structures to manage the flow. Use 'IF' statements for decisions and 'FOR' or 'WHILE' loops for repetitive tasks, making your program dynamic.",
+      "Finally, organise your code into sub-routines (methods). Group related instructions into named blocks that you can call whenever needed, keeping your main program clean and readable."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a variable?",
+      "back": "A named memory location that stores a value which can be changed during the program's execution. For example, `userScore = 10`."
+    },
+    {
+      "front": "What is a constant?",
+      "back": "A named memory location that stores a value that cannot be altered by the program during its execution. Often written in all caps, e.g., `PI = 3.14159`."
+    },
+    {
+      "front": "Define 'data type'.",
+      "back": "A classification that specifies which type of value a variable can hold and what type of mathematical, relational, or logical operations can be applied to it without causing an error. Examples: Integer, Real, String, Boolean."
+    },
+    {
+      "front": "What is the 'assignment' operator?",
+      "back": "The operator used to assign a value to a variable. In IB pseudocode, it is `<-` or `=`. For example, `myVariable <- 5`."
+    },
+    {
+      "front": "What is the difference between `=` and `==`?",
+      "back": "A common trap! `=` is the assignment operator (e.g., `x = 5`). `==` is the relational operator for equality comparison (e.g., `if x == 5`). In IB pseudocode, assignment is `<-` and comparison is `=` or `==`."
+    },
+    {
+      "front": "Name the three fundamental control structures.",
+      "back": "1. Sequence: Instructions executed one after another.\n2. Selection: A decision is made to follow a particular path (e.g., IF...THEN...ELSE).\n3. Iteration: A block of code is executed repeatedly (e.g., FOR, WHILE loops)."
+    },
+    {
+      "front": "What is a `FOR` loop best used for?",
+      "back": "Iteration where the number of repetitions is known beforehand (a fixed or counted loop). Example: `for i from 0 to 9` will run exactly 10 times."
+    },
+    {
+      "front": "What is a `WHILE` loop?",
+      "back": "A pre-condition loop. It checks a condition *before* each iteration. The loop body will only execute if the condition is true. It may not run at all."
+    },
+    {
+      "front": "What is a sub-routine (or method)?",
+      "back": "A named block of code that performs a specific task. It helps in breaking down a program into smaller, manageable and reusable parts (modularity)."
+    },
+    {
+      "front": "What is the difference between a function and a procedure?",
+      "back": "A function is a sub-routine that *returns a value* to the part of the code that called it. A procedure is a sub-routine that performs a task but *does not* return a value."
+    },
+    {
+      "front": "What is a parameter?",
+      "back": "A special kind of variable used in a sub-routine to refer to one of the pieces of data provided as input to the sub-routine. E.g., in `calculateArea(width, height)`, `width` and `height` are parameters."
+    },
+    {
+      "front": "What do the `DIV` and `MOD` operators do?",
+      "back": "`DIV` performs integer division, returning the whole number result (e.g., `10 DIV 3` is 3). `MOD` (modulo) returns the remainder of a division (e.g., `10 MOD 3` is 1)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between `DIV` and `/` in pseudocode?",
+      "a": "`DIV` is used for integer division; it discards any fractional part and returns only the whole number. For example, `13 DIV 5` results in `2`. The standard division operator `/` performs floating-point division, returning a real number. For example, `13 / 5` results in `2.6`."
+    },
+    {
+      "q": "Why should I use a constant instead of just a variable I don't change?",
+      "a": "Using a constant has three main benefits: 1. **Readability:** It signals to anyone reading the code that this value is fixed and important. 2. **Maintainability:** If the value needs to be updated (e.g., a tax rate changes), you only need to change it in one place. 3. **Safety:** The compiler/interpreter will prevent any accidental attempts to change the value of a constant within the code, reducing bugs."
+    },
+    {
+      "q": "When should I use a `FOR` loop versus a `WHILE` loop?",
+      "a": "Use a `FOR` loop when you know exactly how many times you need to iterate, for example, when processing every item in an array of a known size. Use a `WHILE` loop when the number of iterations is unknown and depends on a condition being met, for example, looping until a user enters a valid password or a sensor reading exceeds a certain threshold."
+    },
+    {
+      "q": "In the context of the IB exam, what's the difference between a method and a function?",
+      "a": "For the IB exam, the terms are often used interchangeably to mean 'sub-routine'. However, a strict distinction is that a **function** must return a value (e.g., `area = getArea()`), while a **procedure** (or a method that returns nothing, sometimes called `void`) performs an action without returning a value (e.g., `printResults()`). The IB pseudocode uses `function...endfunction` for sub-routines that return a value and `procedure...endprocedure` for those that do not."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the absolute core of computer science and programming. The concepts in this topic are the fundamental tools you will use to build any software, from a simple calculator to a complex operating system. While programming languages may have different syntax, the underlying logic of variables, control flow, and modularisation is universal. This lesson focuses on the IB's pseudocode conventions, which provide a language-agnostic way to express these ideas."
+    },
+    {
+      "type": "heading",
+      "content": "Variables, Constants and Data Types"
+    },
+    {
+      "type": "text",
+      "content": "At its heart, a program manipulates data. To do this, we need places to store that data. A **variable** is a named location in the computer's memory where we can store a value. The key feature of a variable is that its value can change as the program runs. A **constant** is similar, but its value is fixed when the program starts and cannot be changed. Using constants for values like the rate of VAT or the value of Pi makes code more readable and easier to maintain."
+    },
+    {
+      "type": "text",
+      "content": "Every variable or constant has a **data type**, which tells the computer what kind of data it holds. This is crucial because it determines how the data is stored and what operations can be performed on it. You can't, for example, mathematically multiply two strings of text."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Integer:** Whole numbers, positive or negative (e.g., `-5`, `0`, `42`).",
+        "**Real / Float:** Numbers with a fractional part (e.g., `3.14`, `-0.01`, `99.9`).",
+        "**String:** A sequence of characters, enclosed in quotes (e.g., `\"Hello World\"`, `\"IB CS\"`).",
+        "**Char:** A single character (e.g., `'A'`, `'!'`).",
+        "**Boolean:** Represents logical values, can only be `true` or `false`."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A program is required to calculate and output the total cost of a number of cinema tickets. The price per ticket is £11.50. The program should ask the user for the number of tickets they wish to buy. Write an algorithm in pseudocode to solve this problem.",
+      "solution": "```\n// [1] for declaring a constant with a sensible name and correct value\nconstant TICKET_PRICE = 11.50\n\n// [1] for declaring variables with sensible names and appropriate types\n// Note: numTickets should be an integer, totalCost a real\nnumTickets = 0\ntotalCost = 0.0\n\n// [1] for prompting the user for input\noutput \"Enter the number of tickets:\"\n\n// [1] for reading the user's input into the correct variable\ninput numTickets\n\n// [1] for the correct calculation using the constant and variable\ntotalCost = numTickets * TICKET_PRICE\n\n// [1] for outputting the result with a descriptive message\noutput \"The total cost is £\" + totalCost\n```\n**Marking:** Total 6 marks. Marks are awarded for correct declaration of constants and variables, clear user interaction (prompt and input), the core calculation, and a clear final output."
+    },
+    {
+      "type": "heading",
+      "content": "Operators"
+    },
+    {
+      "type": "text",
+      "content": "Operators are special symbols that perform operations on variables and values (operands). They are the verbs of programming, allowing you to process data. They fall into three main categories."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Arithmetic Operators:** Used for mathematical calculations. `+` (add), `-` (subtract), `*` (multiply), `/` (divide), `MOD` (modulo, remainder), `DIV` (integer division).",
+        "**Relational Operators:** Used for comparison, they evaluate to a Boolean (`true` or `false`). `==` or `=` (equal to), `!=` or `<>` (not equal to), `<` (less than), `>` (greater than), `<=` (less than or equal to), `>=` (greater than or equal to).",
+        "**Logical (Boolean) Operators:** Used to combine or invert Boolean values. `AND` (true if both operands are true), `OR` (true if at least one operand is true), `NOT` (inverts the value, `true` becomes `false` and vice versa)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A frequent source of error in exams is confusing the assignment operator (`<-` or `=`) with the equality comparison operator (`==` or `=`). When checking if two values are the same inside an `IF` statement, you must use the comparison operator. For example: `if score == 100 then...`. Assigning a value would be `score <- 100`."
+    },
+    {
+      "type": "heading",
+      "content": "Control Structures"
+    },
+    {
+      "type": "text",
+      "content": "By default, a computer executes instructions in **sequence**, one after the other from top to bottom. However, to create useful programs, we need to alter this flow. Control structures allow us to make decisions (**selection**) and repeat actions (**iteration**)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sequence:** The standard line-by-line execution of code.",
+        "**Selection:** Uses conditions to choose which block of code to execute. The primary tool is the `IF...THEN...ELSE...ENDIF` structure. You can also have nested `IF` statements for more complex decisions.",
+        "**Iteration (Looping):** Repeats a block of code. The IB syllabus focuses on three types: `FOR...TO...NEXT` (a counted loop for when you know the number of iterations), `WHILE...DO...ENDWHILE` (a pre-condition loop that checks before running), and `REPEAT...UNTIL` (a post-condition loop that runs at least once)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An array `SCORES` contains 20 integer test scores. Write an algorithm in pseudocode that iterates through the array, counts how many scores are 50 or greater, and outputs this count.",
+      "solution": "```\n// Assume SCORES is a pre-populated array of 20 integers\n\n// [1] for declaring and initialising a counter variable\npassCount = 0\n\n// [1] for a loop that correctly iterates through all 20 elements\n// The loop should go from 0 to 19 or 1 to 20, depending on indexing convention\nfor i from 0 to 19\n\n    // [1] for correctly accessing the array element at the current index\n    // [1] for the correct conditional check (>= 50)\n    if SCORES[i] >= 50 then\n\n        // [1] for correctly incrementing the counter inside the IF block\n        passCount = passCount + 1\n\n    endif\n\nnext i\n\n// [1] for outputting the final count after the loop has finished\noutput \"Number of passing scores: \" + passCount\n```\n**Marking:** Total 6 marks. Marks are awarded for initialising the counter, setting up the loop correctly, using a selection statement with the right condition, incrementing the counter appropriately, and outputting the final result outside the loop."
+    },
+    {
+      "type": "heading",
+      "content": "Sub-routines: Methods and Functions"
+    },
+    {
+      "type": "text",
+      "content": "As programs grow, it becomes essential to organise code. Sub-routines (also known as methods, functions, or procedures) are named blocks of code designed to perform a specific, self-contained task. For example, instead of writing the code to calculate a circle's area every time you need it, you can write a single `calculateCircleArea` function and simply call it."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Modularity:** Breaking a complex problem into smaller, simpler, solvable pieces.",
+        "**Reusability:** Writing code once and using it multiple times. This follows the 'Don't Repeat Yourself' (DRY) principle.",
+        "**Abstraction:** Hiding the complex details of an implementation. You can use the `calculateCircleArea` function without needing to know the exact formula inside it.",
+        "**Function vs. Procedure:** A **function** returns a value (e.g., `area = calculateCircleArea(radius)`). A **procedure** performs an action but does not return a value (e.g., `printWelcomeMessage()`).",
+        "**Parameters:** Sub-routines can accept inputs, called parameters or arguments, to work with (e.g., the `radius` in `calculateCircleArea(radius)`)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will often be asked to write a sub-routine. Use clear, descriptive names for your sub-routines and parameters. For example, `function calculateVat(price, rate)` is much better than `function calc(p, r)`. This improves readability and can gain you marks for clarity."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-computer-science-hl&topic=4.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Pseudocode Guide",
+          "href": "https://www.ibo.org/contentassets/5895a05412144fe89c31850aee3438ea/approved-notation-for-pseudocode-2017.pdf"
+        },
+        {
+          "label": "GeeksForGeeks: Control Structures",
+          "href": "https://www.geeksforgeeks.org/control-structures-in-programming/"
+        },
+        {
+          "label": "TutorialsPoint: Programming Basics",
+          "href": "https://www.tutorialspoint.com/computer_programming/computer_programming_basics.htm"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,207 @@
+{
+  "slug": "6-2-memory-management-and-virtual-memory",
+  "topicCode": "6.2",
+  "title": "Memory management and virtual memory",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores how the operating system manages finite memory resources. We will examine key techniques like paging and segmentation, and delve into virtual memory, a crucial mechanism that allows computers to run programs larger than the available physical RAM, while also considering its performance implications like thrashing.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Explain the role of the operating system in allocating and managing memory resources.",
+    "Compare and contrast paging and segmentation as two distinct memory management techniques.",
+    "Describe the concept of virtual memory, its implementation using demand paging, and the handling of page faults.",
+    "Analyse the advantages of virtual memory and evaluate the performance degradation known as thrashing."
+  ],
+  "simpleExplanation": {
+    "title": "The Library of Memory",
+    "summary": "Your computer's operating system acts like a clever librarian, managing a small desk (RAM) for active tasks. It uses a vast library (hard disk) to store everything else, swapping items back and forth so you can work on big projects without running out of desk space.",
+    "analogy": "Imagine you're a researcher at a library with a very small desk (your computer's RAM). You can only have a few books on your desk at once. The main library has millions of books (your hard drive). The librarian (the OS) watches which books you're using. When you need a book from the main library, the librarian fetches it for you. If your desk is full, the librarian cleverly takes a book you haven't touched in a while and puts it back in the main library to make space. This swapping is what virtual memory does, making your small desk feel infinitely large, though fetching books from the main library takes a little longer.",
+    "steps": [
+      "A program is divided into fixed-size blocks called 'pages'.",
+      "The physical memory (RAM) is also divided into fixed-size blocks called 'frames'.",
+      "The Operating System's Memory Management Unit (MMU) maps the program's pages to available frames in RAM.",
+      "If RAM is full, the OS moves inactive pages to the hard disk (virtual memory) and brings them back only when needed, a process called swapping."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Memory Management",
+      "back": "The process by which an operating system manages the computer's primary memory (RAM), allocating portions to programs as needed and freeing it when no longer in use."
+    },
+    {
+      "front": "Paging",
+      "back": "A memory management scheme where a computer stores and retrieves data from secondary storage for use in main memory. The OS divides a program's logical address space into fixed-size blocks called 'pages'."
+    },
+    {
+      "front": "Page vs. Frame",
+      "back": "A 'page' is a block of a program's logical address space. A 'frame' is a block of physical memory (RAM). The OS maps pages to frames."
+    },
+    {
+      "front": "Page Table",
+      "back": "A data structure used by the virtual memory system to store the mapping between logical addresses (pages) and physical addresses (frames)."
+    },
+    {
+      "front": "Segmentation",
+      "back": "A memory management scheme that divides a program into logically distinct address spaces, or 'segments' (e.g., code, data, stack). Segments are of variable size."
+    },
+    {
+      "front": "Internal Fragmentation",
+      "back": "Wasted memory within an allocated block. Occurs in paging when a process is allocated a frame but doesn't use all the space within it."
+    },
+    {
+      "front": "External Fragmentation",
+      "back": "Wasted memory that exists as small, non-contiguous blocks between allocated memory portions. Common in segmentation."
+    },
+    {
+      "front": "Virtual Memory",
+      "back": "A memory management technique that provides an 'idealised' abstraction of the storage resources, creating the illusion of a very large main memory by using a portion of the hard disk."
+    },
+    {
+      "front": "Page Fault",
+      "back": "An interrupt that occurs when a program tries to access a page that is mapped in its virtual address space, but is not currently loaded into physical memory (RAM)."
+    },
+    {
+      "front": "Thrashing",
+      "back": "A state of excessive paging where the computer's performance collapses. The system spends more time swapping pages between RAM and disk than executing instructions."
+    },
+    {
+      "front": "Memory Management Unit (MMU)",
+      "back": "A hardware device responsible for handling all memory and caching operations, including the translation of virtual memory addresses to physical addresses."
+    },
+    {
+      "front": "Demand Paging",
+      "back": "A common implementation of virtual memory where pages are loaded from secondary storage into RAM only when they are demanded by the CPU (i.e., on a page fault)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is virtual memory a physical chip on the motherboard?",
+      "a": "No, virtual memory is not a physical component. It's a memory management technique implemented by the operating system and the Memory Management Unit (MMU) hardware. It uses a portion of your hard drive or SSD to simulate extra RAM."
+    },
+    {
+      "q": "What's the real difference between internal and external fragmentation?",
+      "a": "Internal fragmentation is wasted space *inside* an allocated block of memory (e.g., a 3KB process in a 4KB page frame wastes 1KB). External fragmentation is wasted space *between* allocated blocks (e.g., you have 2MB free, but it's split into two non-adjacent 1MB chunks, so you can't allocate a 2MB process)."
+    },
+    {
+      "q": "Can I turn off virtual memory?",
+      "a": "On most modern operating systems like Windows, macOS, and Linux, managing virtual memory is an integral part of the OS and is largely automatic. While you can sometimes adjust its settings (like the size of the paging file), disabling it completely is generally not recommended or possible, as it would severely limit the system's ability to multitask and run large applications."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Every application you run, from a web browser to a complex game, requires a slice of the computer's memory. But what happens when you want to run more programs than you have physical memory for? This is where the operating system's role as a memory manager becomes critical. This lesson explores the sophisticated techniques the OS uses to juggle memory, protect processes from one another, and even create the illusion of more memory than physically exists."
+    },
+    {
+      "type": "heading",
+      "content": "The OS as a Memory Manager"
+    },
+    {
+      "type": "text",
+      "content": "The operating system is the ultimate resource manager, and memory is one of its most precious resources. Its primary memory management duties include: keeping track of which parts of memory are currently being used and by which process, deciding which processes (or parts of processes) to load into memory when space becomes available, allocating and deallocating memory space as needed by processes, and ensuring that one process cannot interfere with the memory space of another. Without this careful management, a single faulty program could crash the entire system."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Allocation/Deallocation: Assigning memory to processes and reclaiming it afterwards.",
+        "Tracking: Maintaining a status for each memory location (allocated or free).",
+        "Protection: Preventing processes from accessing memory not allocated to them.",
+        "Efficiency: Maximising the number of processes that can be stored in memory to improve CPU utilisation."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Memory Partitioning: Paging and Segmentation"
+    },
+    {
+      "type": "text",
+      "content": "To manage memory effectively, the OS needs a way to divide it up. Two primary methods are paging and segmentation. Paging involves dividing a process's logical address space into fixed-size blocks called **pages**. Physical memory (RAM) is similarly divided into fixed-size **frames**. The OS maintains a **page table** for each process, which maps the pages to their corresponding frames in RAM. This allows a process's memory to be non-contiguous, meaning its pages can be scattered across different physical memory locations, which is highly flexible."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Paging Pros:** Solves the problem of external fragmentation. Allocation is simple as any free frame can be used.",
+        "**Paging Cons:** Can suffer from internal fragmentation if a process's memory needs are not an exact multiple of the page size. The page table itself consumes memory."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "Segmentation takes a different approach. Instead of fixed-size blocks, it divides a program into logical units of varying sizes, called **segments**. A typical program might be segmented into a code segment, a data segment, and a stack segment. Each segment is a contiguous block of memory. This model is more intuitive from a programmer's perspective, as it mirrors the logical structure of the program and allows for granular protection (e.g., making the code segment read-only)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Segmentation Pros:** No internal fragmentation. Logical grouping of code and data supports sharing and protection.",
+        "**Segmentation Cons:** Suffers from external fragmentation, where free memory is broken into small, unusable pieces. Memory allocation is more complex."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners love asking for a comparison of paging and segmentation. Create a table with key features: block size (fixed vs. variable), fragmentation (internal vs. external), and logical structure (physical vs. programmer's view). This will help you structure your answer for maximum marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "A computer system uses paging with a page size of 4 KB ($2^{12}$ bytes). A process has a logical address of 7156. Determine the page number and the offset for this address.",
+      "solution": "The page size is 4 KB, which is $4 \\times 1024 = 4096$ bytes. We can find the page number and offset using integer division and the modulo operator.\n\n**1. Find the Page Number:**\nPage Number = Integer part of (Logical Address / Page Size)\nPage Number = $\\lfloor \\frac{7156}{4096} \\rfloor$\nPage Number = $\\lfloor 1.747... \\rfloor$\nPage Number = 1\n\n**2. Find the Offset:**\nOffset = Logical Address % Page Size\nOffset = 7156 mod 4096\nOffset = 3060\n\n**Answer:** The logical address 7156 corresponds to **page number 1** with an **offset of 3060**."
+    },
+    {
+      "type": "heading",
+      "content": "Virtual Memory: The Illusion of Infinite Space"
+    },
+    {
+      "type": "text",
+      "content": "Virtual memory is a powerful technique that allows a system to run programs that are larger than the physical RAM available. It achieves this by using a portion of the secondary storage (like an SSD or HDD) as an extension of RAM. The OS moves data between RAM and this secondary storage area (often called the 'swap file' or 'paging file') as needed. This process is typically implemented using **demand paging**, where pages are only loaded into RAM when they are actually requested by the CPU."
+    },
+    {
+      "type": "text",
+      "content": "When a program tries to access a memory address on a page that isn't currently in RAM, a hardware trap called a **page fault** occurs. The OS's page fault handler then takes over. It finds the required page on the disk, finds a free frame in RAM (or swaps out an existing page if RAM is full), loads the required page into the frame, updates the page table, and resumes the instruction that caused the fault. To the program, this entire process is transparent, apart from a slight delay."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Allows for an effective memory size much larger than the physical memory.",
+        "Increases the degree of multiprogramming, as more processes can be kept in memory.",
+        "Implemented using demand paging and a swap file on the hard disk.",
+        "Page faults are the mechanism for loading pages on demand."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Thrashing: When Swapping Goes Wrong"
+    },
+    {
+      "type": "text",
+      "content": "While virtual memory is incredibly useful, it has a significant drawback if overused. If a system has too many processes competing for too little physical memory, it can enter a state known as **thrashing**. In this state, the OS is constantly swapping pages in and out of memory because processes are frequently faulting for pages they need. The system spends the vast majority of its time servicing page faults rather than executing program code, leading to a catastrophic drop in performance. The CPU utilisation plummets because processes are always waiting for the disk."
+    },
+    {
+      "type": "workedExample",
+      "question": "A computer with 64 MB of available physical RAM is attempting to run four processes, each with a memory requirement of 20 MB. The OS uses virtual memory with demand paging.\n(a) Explain how the OS can run these processes simultaneously. [3 marks]\n(b) Describe a potential performance problem that could arise in this scenario. [2 marks]",
+      "solution": "(a) [3 marks]\n- The total memory required by the processes is $4 \\times 20$ MB = 80 MB, which is greater than the 64 MB of available RAM. [1 mark]\n- The OS uses virtual memory to manage this. It will load only a subset of the pages for each process into RAM initially. [1 mark]\n- When a process needs a page that is not in RAM, a page fault occurs, and the OS loads the required page from the hard disk, swapping out another page if necessary. This creates the illusion that all 80 MB are in main memory. [1 mark]\n\n(b) [2 marks]\n- The potential problem is **thrashing**. [1 mark]\n- Since the total working set of the processes (80 MB) significantly exceeds the physical RAM (64 MB), there will be a high rate of page faults. The system will spend most of its time swapping pages between RAM and the disk, leading to extremely poor performance and low CPU utilisation. [1 mark]"
+    },
+    {
+      "type": "examTip",
+      "content": "When asked about performance issues with virtual memory, 'thrashing' is the key term. Always explain *why* it happens: the sum of the active memory needs ('working sets') of all processes is larger than the physical memory, causing excessive swapping."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Memory Management",
+      "href": "/mark?subject=ib-computer-science-hl&topic=6.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeeksforGeeks: Operating System - Memory Management",
+          "href": "https://www.geeksforgeeks.org/operating-system-memory-management/"
+        },
+        {
+          "label": "Video: Paging and Virtual Memory",
+          "href": "https://www.youtube.com/watch?v=1w5h_a-5L1s"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

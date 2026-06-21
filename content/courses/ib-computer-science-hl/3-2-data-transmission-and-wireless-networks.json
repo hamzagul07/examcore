@@ -1,0 +1,198 @@
+{
+  "slug": "3-2-data-transmission-and-wireless-networks",
+  "topicCode": "3.2",
+  "title": "Data transmission and wireless networks",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores the fundamental principles of data transmission, including different modes, synchronisation methods, and error-checking techniques. It then delves into wireless networking, covering standards like Wi-Fi, security protocols such as WPA3, and key performance metrics like bandwidth and latency.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Explain the different modes of data transmission (simplex, half/full-duplex, serial/parallel).",
+    "Describe and compare methods of error checking in data transmission (parity, checksum, CRC).",
+    "Evaluate the use of different wireless networking technologies and security protocols.",
+    "Distinguish between bit rate, baud rate, bandwidth, and latency."
+  ],
+  "simpleExplanation": {
+    "title": "From Bits to Wi-Fi Waves",
+    "summary": "Data transmission is the process of sending digital information from one point to another. To ensure this happens reliably, we use specific rules (protocols) and checks to catch any errors that occur along the way.",
+    "analogy": "Imagine sending a very long letter as a series of postcards. You could send them one after another down a single post route (serial), or use several couriers to deliver batches of postcards at the same time (parallel). To make sure the recipient gets the full message, you might add a note on each postcard saying 'this is postcard 3 of 100' and a special code calculated from the message content (error checking). If a postcard arrives with a code that doesn't match its content, the recipient knows it was smudged or altered in transit and can request it to be sent again.",
+    "steps": [
+      "First, data is broken into packets. The transmission mode is chosen: one-way (simplex), two-way one at a time (half-duplex), or two-way simultaneously (full-duplex).",
+      "Next, a transmission method is selected. Serial sends bits one by one over a single channel, ideal for long distances. Parallel sends multiple bits simultaneously over multiple channels, faster but for short distances.",
+      "Error-checking data is added to each packet. This could be a simple parity bit, a calculated checksum, or a more robust Cyclic Redundancy Check (CRC) to detect corruption during transit.",
+      "Finally, the data is transmitted. In a wireless network, this involves modulating the data onto radio waves according to a standard like Wi-Fi (802.11ax) and securing it with an encryption protocol like WPA3."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Simplex Transmission",
+      "back": "Data transmission in one direction only. Example: A computer sending a signal to a printer, or a radio broadcast."
+    },
+    {
+      "front": "Half-Duplex Transmission",
+      "back": "Data transmission in both directions, but not at the same time. Example: A walkie-talkie."
+    },
+    {
+      "front": "Full-Duplex Transmission",
+      "back": "Data transmission in both directions simultaneously. Example: A telephone conversation or a video call."
+    },
+    {
+      "front": "Serial vs Parallel Transmission",
+      "back": "Serial sends data one bit at a time over a single wire (e.g., USB). Parallel sends multiple bits at once over multiple wires (e.g., old printer ports). Serial is better for long distances due to lack of 'skew'."
+    },
+    {
+      "front": "Asynchronous vs Synchronous Transmission",
+      "back": "Asynchronous transmission sends data with start and stop bits for each byte (less efficient). Synchronous transmission uses a shared clock signal to coordinate the sending and receiving of large blocks of data (more efficient)."
+    },
+    {
+      "front": "Parity Bit",
+      "back": "An extra bit added to a string of binary code to ensure the total number of 1s is either even (even parity) or odd (odd parity). It can detect single bit errors but fails if an even number of bits are flipped."
+    },
+    {
+      "front": "Checksum",
+      "back": "An error-detection method where a value is calculated from a block of data and sent with it. The receiver recalculates the checksum and compares it to the sent value to detect errors. More robust than a parity bit."
+    },
+    {
+      "front": "Cyclic Redundancy Check (CRC)",
+      "back": "A powerful error-detecting code based on binary polynomial division. It is very effective at detecting accidental alterations to raw data and is commonly used in storage devices and digital networks."
+    },
+    {
+      "front": "Bit Rate vs Baud Rate",
+      "back": "Bit rate is the number of bits transmitted per second (bps). Baud rate is the number of signal changes or symbols per second. Since one symbol can represent multiple bits, the bit rate can be greater than the baud rate."
+    },
+    {
+      "front": "Latency vs Bandwidth",
+      "back": "Bandwidth is the maximum data transfer capacity of a network (in bps). Latency is the time delay for a data packet to travel from the source to the destination (in ms). High bandwidth doesn't guarantee low latency."
+    },
+    {
+      "front": "SSID (Service Set Identifier)",
+      "back": "The public name of a wireless local area network (WLAN). Hiding the SSID is a weak form of security ('security by obscurity') as the name is still broadcast and can be found with network analysis tools."
+    },
+    {
+      "front": "WPA3 (Wi-Fi Protected Access 3)",
+      "back": "The latest and most secure Wi-Fi security protocol. It offers stronger encryption and better protection against brute-force attacks compared to its predecessors, WEP and WPA/WPA2."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real-world difference between bit rate and baud rate?",
+      "a": "Think of a courier delivering packages (symbols). Baud rate is how many deliveries the courier makes per hour. Bit rate is the total number of items inside all those packages per hour. If the courier can carry more items in each package (using a more complex encoding scheme), the bit rate increases even if the delivery rate (baud rate) stays the same. Modern modems use techniques like QAM to pack many bits into a single symbol."
+    },
+    {
+      "q": "Why is parallel transmission not used for long distances like serial is?",
+      "a": "Parallel transmission uses multiple wires. Over long distances, tiny differences in the physical properties of the wires or external interference can cause the signals to travel at slightly different speeds. This means the bits, sent at the same time, arrive at slightly different times, a problem called 'data skew'. This corrupts the data. Serial transmission uses one wire, so all bits arrive in the order they were sent, eliminating skew."
+    },
+    {
+      "q": "If CRC is so good, why would anyone use a simple parity check?",
+      "a": "It's a trade-off between complexity, overhead, and the required level of reliability. A parity check requires minimal processing power and adds only one extra bit per byte. For some internal, low-noise communication buses where speed and simplicity are paramount and errors are rare, it might be sufficient. CRC requires more complex calculations (hardware or software) and adds more overhead bits, but is essential for noisy channels like network communication or disk storage where data integrity is critical."
+    },
+    {
+      "q": "Is hiding my Wi-Fi's SSID a good security practice?",
+      "a": "It's considered 'security through obscurity' and is not very effective. While it stops your network name from appearing in a casual scan, the SSID is still broadcast in management packets. Anyone with a basic network analysis tool can easily discover it. You should rely on strong encryption (WPA3) and a complex password as your primary security measures."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever wondered how a 4K video streams flawlessly from a server thousands of miles away to your device, or how your keystrokes appear instantly in a collaborative document? The magic lies in the complex, high-speed process of data transmission. This lesson unpacks the journey of a bit, from the method of its travel to the checks that ensure its safe arrival and the wireless technologies that set it free from cables."
+    },
+    {
+      "type": "heading",
+      "content": "Modes of Data Transmission"
+    },
+    {
+      "type": "text",
+      "content": "Before data can be sent, the rules of communication must be established. This involves deciding the direction of data flow and the physical method of sending the bits. The direction can be simplex (one way, like a TV remote), half-duplex (two ways, but not simultaneously, like a walkie-talkie), or full-duplex (two ways at once, like a phone call)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Serial Transmission:** Bits are sent one after another over a single channel. This is slower but reliable over long distances as there's no risk of bits arriving out of sync (a problem called data skew). Used in USB and Ethernet.",
+        "**Parallel Transmission:** Multiple bits are sent simultaneously over multiple channels. This is much faster but only effective over short distances (e.g., inside a computer's motherboard) because of the risk of data skew, where signals on different wires travel at slightly different speeds."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Ensuring Data Integrity: Error Checking"
+    },
+    {
+      "type": "text",
+      "content": "Data travelling through a medium, whether a copper wire or the air, is susceptible to interference or 'noise', which can flip bits (a 0 becomes a 1 or vice versa). To combat this, we use error detection techniques. These methods add redundant information to the data, allowing the receiver to check if the data was corrupted during transmission."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Parity Check:** The simplest method. An extra bit (parity bit) is added to a byte. For 'even parity', the parity bit is set to 0 or 1 to make the total number of 1s in the byte even. It's simple but can't detect an even number of bit errors.",
+        "**Checksum:** A block of data is treated as a sequence of numbers, and these are added up to produce a sum. This sum (the checksum) is sent with the data. The receiver performs the same calculation and compares the result. It's more reliable than a parity check.",
+        "**Cyclic Redundancy Check (CRC):** The most robust of the three. It treats the data block as a binary polynomial and divides it by a fixed generator polynomial. The remainder of this division is the CRC, which is appended to the data. It has a very high probability of detecting errors caused by noise."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A system transmits the 7-bit ASCII character 'K' (1001011) using odd parity. What 8-bit byte is transmitted? The byte is later received as 01001011. Using the parity check, determine if an error has occurred.",
+      "solution": "1. **Determine the parity bit:** The original data is `1001011`. Count the number of '1's. There are four '1's. [1 mark]\n2. **Apply odd parity:** For odd parity, the total number of '1's must be odd. Since we currently have an even number (4), the parity bit must be `1` to make the total five. [1 mark]\n3. **Form the transmitted byte:** The parity bit is typically prepended (or appended). Let's prepend it: `11001011`. This is the transmitted byte. [1 mark]\n4. **Check the received byte:** The received byte is `01001011`. Count the number of '1's. There are four '1's. [1 mark]\n5. **Conclusion:** The received byte has an even number of '1's, but the system uses odd parity. Therefore, the parity check indicates that a transmission error has occurred. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Performance Metrics: Speed and Delay"
+    },
+    {
+      "type": "text",
+      "content": "Network performance isn't just about speed. It's a balance of several factors. Bandwidth refers to the theoretical maximum capacity of a connection, like the number of lanes on a motorway. The actual speed you experience is the bit rate. Latency is the delay, or the time it takes for a single packet to make a round trip, like the time it takes one car to travel to a destination and back."
+    },
+    {
+      "type": "formula",
+      "content": "Theoretical Transfer Time (seconds) = \\frac{\\text{File Size (bits)}}{\\text{Bandwidth (bits per second)}}"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate the theoretical minimum time to download a 250 MiB file over a network connection with a bandwidth of 80 Mbps. Give your answer in seconds.",
+      "solution": "1. **Convert file size to bits:**\n   - 1 MiB (Mebibyte) = $2^{20}$ bytes = 1,048,576 bytes.\n   - File size in bytes = $250 \\times 1,048,576 = 262,144,000$ bytes. [1 mark]\n   - File size in bits = $262,144,000 \\text{ bytes} \\times 8 \\text{ bits/byte} = 2,097,152,000$ bits. [1 mark]\n2. **Express bandwidth in bits per second:**\n   - 80 Mbps (Megabits per second) = $80 \\times 10^6$ bps = 80,000,000 bps. [1 mark]\n3. **Calculate transfer time:**\n   - Time = Total bits / Bandwidth\n   - Time = $\\frac{2,097,152,000}{80,000,000} = 26.2144$ seconds. [1 mark]\n4. **Final Answer:** The theoretical minimum time is approximately 26.2 seconds."
+    },
+    {
+      "type": "heading",
+      "content": "Wireless Networking and Security"
+    },
+    {
+      "type": "text",
+      "content": "Wireless networks transmit data using radio waves. A device's wireless adapter (or NIC) converts digital data into radio signals, which are broadcast via an antenna. A Wireless Access Point (WAP) receives these signals, decodes them, and sends the data to the internet or local network. Key technologies include Wi-Fi (governed by IEEE 802.11 standards like 802.11ac and 802.11ax/Wi-Fi 6) for local networking, and Bluetooth for short-range device-to-device communication."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**SSID (Service Set Identifier):** The network's name. Hiding it offers minimal security as it can still be detected.",
+        "**MAC Address Filtering:** A whitelist or blacklist of devices based on their unique physical MAC address. Can be circumvented by 'MAC spoofing'.",
+        "**Wireless Encryption:** The most crucial security layer. \n   - **WEP (Wired Equivalent Privacy):** Obsolete and highly insecure. Avoid at all costs.\n   - **WPA/WPA2 (Wi-Fi Protected Access):** WPA2 has been the standard for many years and is secure for most purposes.\n   - **WPA3:** The current standard, offering robust protection against modern attacks and ensuring forward secrecy."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For exam questions asking you to 'evaluate' or 'compare' wireless security methods, don't just list them. Structure your answer by comparing them on specific criteria like encryption strength, ease of cracking, and recommended use case. For example: 'While MAC filtering provides a basic layer of access control, it is vulnerable to spoofing. In contrast, WPA3 provides robust cryptographic security that protects the data itself, making it a far superior security measure.'"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Data Transmission",
+      "href": "/mark?subject=ib-computer-science-hl&topic=3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Wi-Fi Standards Explained (802.11ax/ac/n/g)",
+          "href": "https://www.youtube.com/watch?v=p2n2KGp_P_g"
+        },
+        {
+          "label": "Computerphile: Cyclic Redundancy Checks",
+          "href": "https://www.youtube.com/watch?v=izG7qT0EpBw"
+        },
+        {
+          "label": "Detailed article on WPA3 security",
+          "href": "https://www.wi-fi.org/discover-wi-fi/security"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,183 @@
+{
+  "slug": "5-4-stacks-queues-and-the-application-of-data-structures",
+  "topicCode": "5.4",
+  "title": "Stacks, queues and the application of data structures",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces two fundamental abstract data types (ADTs): stacks and queues. It explores their defining principles (LIFO and FIFO), core operations, common applications, and how to trace their behaviour in exam-style scenarios.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the characteristics and applications of a stack.",
+    "Describe the characteristics and applications of a queue.",
+    "Construct algorithms using the access methods of stacks and queues.",
+    "Trace the execution of algorithms that use stacks and queues."
+  ],
+  "simpleExplanation": {
+    "title": "Orderly Piles and Patient Lines",
+    "summary": "Stacks and queues are simple but powerful ways to organise data. A stack is like a pile of plates where you can only take the top one, while a queue is like a line at a shop where the first person to arrive is the first to be served.",
+    "analogy": "Imagine you're at a cafeteria. The stack of clean trays is a perfect example of a stack. You take the top tray, which was the last one placed on the pile (Last-In, First-Out). Now, think about the line for the food. You join at the back and wait your turn. The person at the front of the line, who arrived first, gets served first (First-In, First-Out). This is a queue. In computing, we use these same principles to manage tasks, data, and processes in an orderly fashion.",
+    "steps": [
+      "First, let's look at a stack. We'll use the 'push' operation to add items, which pile up on top of each other.",
+      "Now, we'll use the 'pop' operation. Notice how the last item we pushed is the first one to be removed. This is the LIFO principle.",
+      "Next, consider a queue. We'll 'enqueue' items, which join the back of the line.",
+      "When we 'dequeue', the item at the front of the line is removed. This demonstrates the FIFO principle, essential for fairness in processing tasks."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a stack?",
+      "back": "A stack is an Abstract Data Type (ADT) that stores a collection of elements, with the principal operations being Push (add to top) and Pop (remove from top). It follows the Last-In, First-Out (LIFO) principle."
+    },
+    {
+      "front": "What is a queue?",
+      "back": "A queue is an Abstract Data Type (ADT) that stores a collection of elements, with the principal operations being Enqueue (add to rear) and Dequeue (remove from front). It follows the First-In, First-Out (FIFO) principle."
+    },
+    {
+      "front": "Define LIFO.",
+      "back": "Last-In, First-Out. The last element added to the data structure is the first one to be removed. This is the defining characteristic of a stack."
+    },
+    {
+      "front": "Define FIFO.",
+      "back": "First-In, First-Out. The first element added to the data structure is the first one to be removed. This is the defining characteristic of a queue."
+    },
+    {
+      "front": "What is the 'push' operation?",
+      "back": "The operation to add a new element to the top of a stack."
+    },
+    {
+      "front": "What is the 'pop' operation?",
+      "back": "The operation to remove and return the element from the top of a stack."
+    },
+    {
+      "front": "What is the 'enqueue' operation?",
+      "back": "The operation to add a new element to the rear (end) of a queue."
+    },
+    {
+      "front": "What is the 'dequeue' operation?",
+      "back": "The operation to remove and return the element from the front (start) of a queue."
+    },
+    {
+      "front": "What is a stack underflow error?",
+      "back": "An error that occurs when attempting to 'pop' an element from an empty stack. It's a common runtime error to watch for."
+    },
+    {
+      "front": "What is a queue overflow error?",
+      "back": "An error that occurs when attempting to 'enqueue' an element into a full queue, especially when the queue is implemented with a fixed-size array."
+    },
+    {
+      "front": "Give a common application of a stack.",
+      "back": "The 'call stack' used by a computer to manage active function calls. Also, undo/redo functionality in software and parsing expressions (e.g., reverse Polish notation)."
+    },
+    {
+      "front": "Give a common application of a queue.",
+      "back": "A print spooler, which queues up documents to be printed in the order they were sent. Also used in CPU scheduling and network packet handling."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between an Abstract Data Type (ADT) and a Data Structure?",
+      "a": "An ADT (like a stack or queue) is a logical description. It defines what the data represents and the operations that can be performed on it, but not how it will be implemented. A Data Structure (like an array or a linked list) is a concrete implementation. You can implement the 'stack' ADT using an 'array' data structure or a 'linked list' data structure."
+    },
+    {
+      "q": "Why is a circular queue better than a simple linear queue in an array?",
+      "a": "In a simple linear queue using an array, as you dequeue items, the `front` pointer moves forward, leaving unused space at the beginning of the array. You can quickly run out of space at the end (`rear` hits the array limit) even if the start of the array is empty. A circular queue solves this by allowing the `rear` pointer to 'wrap around' to the start of the array if there is free space, making much more efficient use of the fixed-size array."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In computer science, how we store and access data is fundamental to creating efficient and logical programs. Stacks and queues are not data structures themselves, but rather Abstract Data Types (ADTs). An ADT defines a set of operations and a logical behaviour, without specifying how it should be implemented. This lesson will explore the rules and uses of these two essential ADTs."
+    },
+    {
+      "type": "heading",
+      "content": "Stacks: The LIFO Principle"
+    },
+    {
+      "type": "text",
+      "content": "A stack is a data collection that operates on a **Last-In, First-Out (LIFO)** basis. Think of it as a vertical pile. You can only add items to the top and you can only remove items from the top. This makes stacks useful for situations where you need to reverse order or handle nested operations, like function calls."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Principle:** Last-In, First-Out (LIFO).",
+        "**Primary Operations:**",
+        "  - `push(item)`: Adds an item to the top of the stack.",
+        "  - `pop()`: Removes and returns the item from the top of the stack.",
+        "**Auxiliary Operations:**",
+        "  - `peek()` or `top()`: Returns the top item without removing it.",
+        "  - `isEmpty()`: Returns true if the stack has no elements.",
+        "  - `isFull()`: Returns true if the stack is at maximum capacity (for static implementations).",
+        "**Common Applications:** Managing function calls (the call stack), undo/redo features, expression evaluation and conversion (e.g., infix to postfix)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A stack, with a maximum size of 4, is initially empty. The following operations are performed in sequence: `PUSH(17)`, `PUSH(22)`, `POP()`, `PUSH(5)`, `PUSH(99)`. Trace the contents of the stack after each operation and state the value returned by the `POP` operation.",
+      "solution": "We will trace the state of the stack, with the top of the stack shown on the right.\n\n1.  **Initial State:** `[]` (empty)\n2.  **`PUSH(17)`:** The stack now contains `[17]`.\n3.  **`PUSH(22)`:** The stack now contains `[17, 22]`.\n4.  **`POP()`:** The top element, 22, is removed. The value **22** is returned. The stack now contains `[17]`.\n5.  **`PUSH(5)`:** The stack now contains `[17, 5]`.\n6.  **`PUSH(99)`:** The stack now contains `[17, 5, 99]`.\n\n**Final Answer:**\n- The value returned by the `POP()` operation is **22**. [1 mark]\n- The final contents of the stack are **[17, 5, 99]**. [1 mark]"
+    },
+    {
+      "type": "heading",
+      "content": "Queues: The FIFO Principle"
+    },
+    {
+      "type": "text",
+      "content": "A queue models a real-world waiting line. It operates on a **First-In, First-Out (FIFO)** basis. New items are added to one end (the rear) and items are removed from the other end (the front). This ensures fairness and is ideal for managing resources or tasks in the order they are received."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Principle:** First-In, First-Out (FIFO).",
+        "**Primary Operations:**",
+        "  - `enqueue(item)`: Adds an item to the rear of the queue.",
+        "  - `dequeue()`: Removes and returns the item from the front of the queue.",
+        "**Auxiliary Operations:**",
+        "  - `peek()` or `front()`: Returns the front item without removing it.",
+        "  - `isEmpty()`: Returns true if the queue has no elements.",
+        "**Implementation:** Often uses two pointers, `front` and `rear`, to keep track of the ends of the queue, especially in an array-based implementation.",
+        "**Common Applications:** Print job scheduling, CPU task scheduling, handling requests on a web server, breadth-first search algorithms in graphs."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A queue is implemented using a static array of size 5, indexed 0 to 4. Initially, the queue is empty, with `front = 0` and `rear = -1`. Trace the state of the array and the pointers after the following operations: `ENQUEUE('X')`, `ENQUEUE('Y')`, `DEQUEUE()`, `ENQUEUE('Z')`.",
+      "solution": "We will trace the array contents and the values of the `front` and `rear` pointers.\n\n1.  **Initial State:**\n    - `front = 0`, `rear = -1`\n    - `Array: [ , , , , ]`\n\n2.  **`ENQUEUE('X')`:** `rear` is incremented to 0. 'X' is placed at index `rear`.\n    - `front = 0`, `rear = 0`\n    - `Array: ['X', , , , ]`\n\n3.  **`ENQUEUE('Y')`:** `rear` is incremented to 1. 'Y' is placed at index `rear`.\n    - `front = 0`, `rear = 1`\n    - `Array: ['X', 'Y', , , ]`\n\n4.  **`DEQUEUE()`:** The element at index `front` ('X') is returned. `front` is incremented to 1.\n    - `front = 1`, `rear = 1`\n    - `Array: ['X', 'Y', , , ]` (Note: 'X' is logically removed but may still physically be in the array slot, which is now ignored).\n\n5.  **`ENQUEUE('Z')`:** `rear` is incremented to 2. 'Z' is placed at index `rear`.\n    - `front = 1`, `rear = 2`\n    - `Array: ['X', 'Y', 'Z', , ]`\n\n**Final Answer:**\n- The final value of the `front` pointer is **1**. [1 mark]\n- The final value of the `rear` pointer is **2**. [1 mark]\n- The logical contents of the queue are **['Y', 'Z']**. [1 mark]"
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, when asked to trace a stack or queue, always draw a diagram for each step. For stacks, show the pile growing and shrinking. For queues, especially array-based ones, draw the array and clearly label the `front` and `rear` pointers or indices. Be precise about whether an operation returns a value (like `pop` and `dequeue`) and state what that value is. Pay close attention to potential underflow and overflow errors."
+    },
+    {
+      "type": "heading",
+      "content": "Implementation Considerations"
+    },
+    {
+      "type": "text",
+      "content": "While stacks and queues are ADTs, they must be implemented using concrete data structures. The two most common choices are arrays (static) and linked lists (dynamic). An array implementation is simple but has a fixed size, leading to potential overflow. A linked list implementation can grow and shrink as needed, avoiding overflow, but requires more memory to store pointers and can be slightly more complex to code. For queues in arrays, a 'circular queue' is often used to efficiently reuse empty space at the beginning of the array."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Stacks & Queues",
+      "href": "/mark?subject=ib-computer-science-hl&topic=5.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Visualgo - Stack and Queue Visualization",
+          "href": "https://visualgo.net/en/list"
+        },
+        {
+          "label": "GeeksForGeeks - Applications of Stack",
+          "href": "https://www.geeksforgeeks.org/applications-of-stack/"
+        },
+        {
+          "label": "GeeksForGeeks - Applications of Queue",
+          "href": "https://www.geeksforgeeks.org/applications-of-queue-data-structure/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

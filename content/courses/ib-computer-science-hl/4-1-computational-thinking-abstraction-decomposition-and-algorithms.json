@@ -1,0 +1,175 @@
+{
+  "slug": "4-1-computational-thinking-abstraction-decomposition-and-algorithms",
+  "topicCode": "4.1",
+  "title": "Computational thinking: abstraction, decomposition and algorithms",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces the core principles of computational thinking: abstraction, decomposition, and algorithms. It explores how these techniques are used to break down complex problems and design effective, efficient computational solutions, a foundational skill for all areas of computer science.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define and differentiate between abstraction, decomposition, and algorithms.",
+    "Apply decomposition to break a complex problem into smaller, manageable sub-problems.",
+    "Use abstraction to identify essential details and remove unnecessary complexity from a problem.",
+    "Design and represent a simple algorithm to solve a defined problem."
+  ],
+  "simpleExplanation": {
+    "title": "Thinking Like a Problem-Solver",
+    "summary": "Computational thinking is a powerful method for solving complex problems by breaking them down into simpler pieces. It involves focusing only on the essential details and then creating a clear, step-by-step plan to reach the solution.",
+    "analogy": "Imagine you have to build a large, complex LEGO model. First, you wouldn't just tip all the bricks out and start randomly connecting them. You'd use decomposition to sort the pieces by colour and shape, and build the model in sections (e.g., the base, the walls, the roof). You'd use abstraction by ignoring the tiny manufacturing numbers inside each brick, as they are irrelevant to building the model. Finally, you'd follow the instruction booklet step-by-step, which is your algorithm.",
+    "steps": [
+      "Decompose the problem: Break a large, complex problem into smaller, more manageable sub-problems.",
+      "Abstract the details: For each sub-problem, identify the crucial information and ignore irrelevant details.",
+      "Design the algorithm: Create a precise, step-by-step sequence of instructions to solve each sub-problem.",
+      "Evaluate and generalise: Test the solution to ensure it works correctly and consider how it could be adapted for similar problems."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Computational Thinking?",
+      "back": "A problem-solving process that involves formulating a problem and its solution in a way that a computer (human or machine) can effectively carry out. It includes decomposition, abstraction, pattern recognition, and algorithm design."
+    },
+    {
+      "front": "Define Decomposition.",
+      "back": "The process of breaking down a complex problem or system into smaller, more manageable, and understandable sub-problems. Each sub-problem can then be solved independently."
+    },
+    {
+      "front": "Define Abstraction.",
+      "back": "The process of filtering out and ignoring the characteristics of a problem that are not relevant to the solution. It involves focusing on the essential details and creating a simplified representation."
+    },
+    {
+      "front": "What is an Algorithm?",
+      "back": "A finite, well-defined, step-by-step sequence of instructions or rules designed to perform a specific task or solve a particular problem."
+    },
+    {
+      "front": "What is the key difference between Decomposition and Abstraction?",
+      "back": "Decomposition breaks a problem 'down' into smaller parts. Abstraction filters 'out' unnecessary details. You decompose the 'what' (the problem components) and abstract the 'how' (the level of detail)."
+    },
+    {
+      "front": "Give an example of abstraction in creating a computer game character.",
+      "back": "Representing the character's health as a single integer (e.g., 100) is an abstraction. It ignores the complex biological realities of health and simplifies it to a single, manageable variable."
+    },
+    {
+      "front": "Give an example of decomposition for a 'food delivery app' system.",
+      "back": "Decomposing the system into modules: User Registration, Restaurant Search, Menu Display, Order Placement, Payment Processing, and Delivery Tracking."
+    },
+    {
+      "front": "What are the essential characteristics of an algorithm?",
+      "back": "It must be finite (terminates after a set number of steps), unambiguous (each step is precisely defined), and effective (it must solve the problem it was designed for)."
+    },
+    {
+      "front": "What is 'pattern recognition' in computational thinking?",
+      "back": "The process of identifying trends, similarities, or regularities within a problem or in data. Recognising patterns can simplify the problem and lead to more efficient solutions."
+    },
+    {
+      "front": "What is 'generalisation' in the context of algorithms?",
+      "back": "A form of abstraction that involves adapting a solution for one specific problem to solve a wider class of similar problems. For example, creating a 'sort' algorithm that works on any list of numbers, not just a specific one."
+    },
+    {
+      "front": "Why is it important to define the problem precisely before applying computational thinking?",
+      "back": "An imprecise problem definition leads to incorrect decomposition and abstraction. You might solve the wrong problem or create a solution that doesn't meet the actual requirements."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is decomposition the same as creating functions or methods in programming?",
+      "a": "It's very closely related. Decomposition is the conceptual act of breaking the problem down. Creating functions, methods, or modules is the practical implementation of that decomposition in a programming language. So, you decompose the problem first, then you write functions to solve the resulting sub-problems."
+    },
+    {
+      "q": "How is abstraction different from just simplifying a problem?",
+      "a": "Abstraction is a specific *type* of simplification. It's about creating a model by removing details that are non-essential for the given context. 'Simplifying' is a broader term. Abstraction is a formal process to manage complexity by defining clear interfaces and hiding implementation details, which is a cornerstone of good software design (like APIs)."
+    },
+    {
+      "q": "Do I always need to use all parts of computational thinking for every problem?",
+      "a": "For any non-trivial problem, you will almost certainly use all of them, even if you don't consciously think about it. Simple problems might not require much decomposition, but you will still abstract (e.g., using a number to represent a quantity) and you will follow an algorithm (a sequence of steps) to solve it."
+    },
+    {
+      "q": "Is pattern recognition an official part of the IB syllabus for this topic?",
+      "a": "While the IB syllabus for 4.1 explicitly lists abstraction, decomposition, and algorithms, pattern recognition is a widely accepted fourth pillar of computational thinking. Understanding it provides useful context and can help you identify opportunities to create more efficient, generalisable algorithms, which is definitely relevant to the IB course."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Computational thinking is not about thinking *like* a computer, but rather about thinking *about* a problem in a structured way that allows a computer to help solve it. It's a fundamental skill set in computer science, underpinning everything from software development to data analysis. This topic breaks down the three core pillars you'll use constantly throughout your IB CS journey: decomposition, abstraction, and algorithms."
+    },
+    {
+      "type": "heading",
+      "content": "Decomposition: Breaking Down the Beast"
+    },
+    {
+      "type": "text",
+      "content": "Complex problems are often overwhelming. Decomposition is the strategy of breaking a large, complex problem into smaller, more manageable sub-problems. The goal is to create sub-problems that are easier to understand, program, and test. For example, developing a social media platform would be decomposed into tasks like user authentication, news feed generation, private messaging, and profile management. Each of these can be developed and tested by separate teams or at different times."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Makes problems easier to manage and understand.",
+        "Allows for parallel development, where different teams can work on different parts simultaneously.",
+        "Simplifies the testing and debugging process, as you can isolate faults to specific components."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Abstraction: Seeing the Wood for the Trees"
+    },
+    {
+      "type": "text",
+      "content": "Abstraction is the art of removing unnecessary detail to focus on the essential characteristics of a problem. It's about creating a simplified model of a complex reality. When you drive a car, you use the steering wheel, accelerator, and brake – this is an abstraction. You don't need to know about the internal combustion engine, the fuel injection system, or the precise mechanics of the disc brakes. In programming, we use abstraction constantly, for example, by using variables to store data without needing to know the specific memory address where the data is physically located."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Reduces complexity by hiding irrelevant details.",
+        "Focuses on the 'what' rather than the 'how'.",
+        "Helps in creating generalisable solutions that are not tied to specific, unnecessary details."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A school wants to create a software system to manage its sports day. The system should handle student registration for events, record results, and calculate house points. Using decomposition and abstraction, outline the main components and key data requirements for this system.",
+      "solution": "Here is a possible breakdown using computational thinking principles:\n\n**Decomposition:**\nThe overall problem 'Manage Sports Day' can be decomposed into the following sub-problems/modules:\n1.  **Student Registration Module:** Allows students to sign up for specific events. [1 mark]\n2.  **Event Management Module:** Allows staff to create, modify, and list events (e.g., 100m sprint, javelin). [1 mark]\n3.  **Results Entry Module:** Allows officials to input the results for each event (e.g., times, distances, positions). [1 mark]\n4.  **Points Calculation Module:** Automatically calculates points for each student and house based on event results. [1 mark]\n5.  **Reporting Module:** Generates leaderboards for houses and individual champions. [1 mark]\n\n**Abstraction:**\nFor the 'Student' entity, we need to identify the essential data and ignore irrelevant details.\n*   **Essential Data:** `studentID`, `firstName`, `lastName`, `houseName`, `eventsRegistered`. [1 mark for any two valid attributes]\n*   **Abstracted (Ignored) Data:** `homeAddress`, `dateOfBirth`, `academicGrades`, `lockerNumber`. These are not relevant to managing a sports day. [1 mark for identifying irrelevant data]\n\nFor the 'Event' entity:\n*   **Essential Data:** `eventID`, `eventName`, `eventType` (e.g., track, field), `scoringSystem` (e.g., points for 1st, 2nd, 3rd). [1 mark for any two valid attributes]\n*   **Abstracted (Ignored) Data:** `equipmentManufacturer`, `timeOfDay`, `specificOfficialAssigned`. These details are not core to the system's function."
+    },
+    {
+      "type": "heading",
+      "content": "Algorithms: The Recipe for Success"
+    },
+    {
+      "type": "text",
+      "content": "Once a problem has been decomposed and abstracted, you need a plan to actually solve it. An algorithm is that plan. It's a finite, ordered, and unambiguous set of steps to solve a problem. Think of it as a recipe: it lists the ingredients (inputs), provides step-by-step instructions, and results in a finished dish (output). In computer science, we often express algorithms using flowcharts or pseudocode before writing them in a specific programming language."
+    },
+    {
+      "type": "formula",
+      "content": "// Basic Algorithm Structure in Pseudocode\n\nPROCEDURE solveProblem(parameters)\n  // Step 1: Initialise variables\n  DECLARE variable1 = initial_value\n\n  // Step 2: Process data (e.g., using loops, conditionals)\n  LOOP for each item in data\n    IF condition is true THEN\n      // perform action\n    END IF\n  END LOOP\n\n  // Step 3: Return the result\n  RETURN result\nEND PROCEDURE"
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, questions on computational thinking are often scenario-based. You will be given a real-world problem and asked to apply decomposition or abstraction. Be specific in your answers. Don't just say 'break the problem down'; state *what* the sub-problems would be. Don't just say 'remove details'; state *which* specific details are irrelevant and why."
+    },
+    {
+      "type": "workedExample",
+      "question": "An environmental sensor records air quality as a value from 0 (good) to 500 (hazardous). The sensor sometimes malfunctions, returning a value of -999. Design an algorithm in pseudocode that takes an array of 100 readings, calculates the average air quality, and ignores any malfunction readings. It should also count how many malfunctions occurred.",
+      "solution": "Here is a possible algorithm:\n\n**Algorithm Design:**\n1.  Initialise variables for the sum of valid readings (`totalQuality`), the count of valid readings (`validCount`), and the count of malfunctions (`malfunctionCount`).\n2.  Iterate through each reading in the input array.\n3.  For each reading, check if it is a malfunction reading (-999).\n4.  If it is a malfunction, increment `malfunctionCount`.\n5.  If it is a valid reading, add its value to `totalQuality` and increment `validCount`.\n6.  After checking all readings, calculate the average by dividing `totalQuality` by `validCount`. Handle the case where there are no valid readings to avoid division by zero.\n7.  Output the calculated average and the `malfunctionCount`.\n\n**Pseudocode:**\n```\nPROCEDURE calculateAverageQuality(readings) // readings is an array of integers\n  DECLARE totalQuality = 0\n  DECLARE validCount = 0\n  DECLARE malfunctionCount = 0\n  DECLARE averageQuality = 0.0\n\n  LOOP index from 0 to readings.length - 1\n    IF readings[index] == -999 THEN\n      malfunctionCount = malfunctionCount + 1  // [1 mark] for correctly identifying and counting malfunctions\n    ELSE\n      totalQuality = totalQuality + readings[index] // [1 mark] for correctly summing valid readings\n      validCount = validCount + 1 // [1 mark] for correctly counting valid readings\n    END IF\n  END LOOP\n\n  IF validCount > 0 THEN\n    averageQuality = totalQuality / validCount // [1 mark] for correct average calculation\n  ELSE\n    averageQuality = 0 // [1 mark] for handling division by zero case\n  END IF\n\n  OUTPUT \"Average Air Quality: \", averageQuality\n  OUTPUT \"Number of Malfunctions: \", malfunctionCount // [1 mark] for outputting both results\nEND PROCEDURE\n```"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Computational Thinking Skills",
+      "href": "/mark?subject=ib-computer-science-hl&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "BBC Bitesize on Computational Thinking",
+          "href": "https://www.bbc.co.uk/bitesize/guides/zp92mp3/revision/1"
+        },
+        {
+          "label": "CS Unplugged - Activities on Algorithms",
+          "href": "https://www.csunplugged.org/en/topics/algorithms/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

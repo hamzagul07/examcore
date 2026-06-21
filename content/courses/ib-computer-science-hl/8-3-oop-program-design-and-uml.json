@@ -1,0 +1,171 @@
+{
+  "slug": "8-3-oop-program-design-and-uml",
+  "topicCode": "8.3",
+  "title": "OOP program design and UML",
+  "paper": "P2",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "Explore how Unified Modeling Language (UML) class diagrams serve as the essential blueprint for designing robust and scalable object-oriented programs. This lesson covers key notation, class relationships like inheritance, aggregation, and composition, and practical application in exam-style scenarios.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify the key components of a UML class diagram, including class names, attributes, methods, and visibility.",
+    "Distinguish between different types of relationships between classes: association, aggregation, composition, inheritance, and dependency.",
+    "Interpret and construct UML class diagrams from a given problem scenario.",
+    "Explain how UML diagrams facilitate the design and communication of complex object-oriented systems."
+  ],
+  "simpleExplanation": {
+    "title": "Blueprints for Code",
+    "summary": "UML class diagrams are the architect's blueprints for software. They provide a standard visual way to design the structure of an object-oriented program before writing any code.",
+    "analogy": "Imagine building a large, complex house without any architectural plans. It would be chaotic! UML is like those plans; it allows a team of builders (programmers) to understand the structure, what each room (class) contains, and how they are all connected, ensuring everyone is working from the same design.",
+    "steps": [
+      "Analyse the problem description to identify the main entities, which will become your classes.",
+      "For each class, define its properties (attributes) and behaviours (methods), assigning appropriate visibility (public, private).",
+      "Determine how the classes relate to each other: is it an 'is-a' (inheritance), 'has-a' (aggregation/composition), or 'uses-a' (dependency) relationship?",
+      "Draw the diagram using standard UML notation, connecting classes and specifying multiplicities to show how many objects are involved in each relationship."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What does UML stand for?",
+      "back": "Unified Modeling Language. It's a standardised graphical notation used for designing and documenting object-oriented software systems."
+    },
+    {
+      "front": "What are the three sections of a class in a UML diagram?",
+      "back": "1. Class Name (top), 2. Attributes/Fields (middle), 3. Methods/Operations (bottom)."
+    },
+    {
+      "front": "What does the `+` symbol signify in a UML class diagram?",
+      "back": "Public visibility. The attribute or method is accessible from any other class."
+    },
+    {
+      "front": "What does the `-` symbol signify in a UML class diagram?",
+      "back": "Private visibility. The attribute or method is only accessible from within the same class."
+    },
+    {
+      "front": "What does the `#` symbol signify in a UML class diagram?",
+      "back": "Protected visibility. The attribute or method is accessible within the class itself and by its subclasses."
+    },
+    {
+      "front": "What is an 'is-a' relationship and how is it shown in UML?",
+      "back": "Inheritance (or Generalisation). A subclass inherits from a superclass. It's shown with a solid line and a large, hollow triangular arrowhead pointing to the superclass."
+    },
+    {
+      "front": "What is a 'has-a' relationship represented by a hollow diamond?",
+      "back": "Aggregation. It's a whole-part relationship where the part can exist independently of the whole. E.g., a `Team` has `Player`s, but a `Player` can exist without being on that `Team`."
+    },
+    {
+      "front": "What is a 'part-of' relationship represented by a filled diamond?",
+      "back": "Composition. A strong form of aggregation where the part's lifecycle is tied to the whole; it cannot exist independently. E.g., a `Room` is part of a `House`."
+    },
+    {
+      "front": "What does multiplicity `0..*` mean on a UML diagram?",
+      "back": "It indicates that zero or more objects of that class can be involved in the relationship. For example, one `Customer` can have `0..*` `Order`s."
+    },
+    {
+      "front": "What is a 'uses-a' relationship in UML?",
+      "back": "Dependency. It occurs when one class uses another class, but not as an attribute. A change in one class might require a change in the other. Shown with a dashed line and an open arrowhead."
+    },
+    {
+      "front": "What is the key difference between Aggregation and Composition?",
+      "back": "Lifecycle dependency. In Composition, the 'part' object is destroyed when the 'whole' object is destroyed. In Aggregation, the 'part' object can exist on its own."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a class diagram and an object diagram?",
+      "a": "A class diagram is a blueprint that describes the structure of classes and their relationships. An object diagram is a snapshot of the system at a particular moment in time, showing specific instances (objects) of those classes and their current state."
+    },
+    {
+      "q": "For the IB exam, do I need to know all 14 types of UML diagrams?",
+      "a": "No. For the IB Computer Science HL course, the primary focus is on **class diagrams**. You should be able to interpret and construct them confidently. A general awareness of others like use case diagrams might be helpful for context, but class diagrams are the examinable core."
+    },
+    {
+      "q": "Why is it important to define visibility (public/private)?",
+      "a": "Visibility is a core principle of encapsulation in OOP. Making attributes private (`-`) and providing public (`+`) methods to access them (getters/setters) protects the internal state of an object from being changed in unexpected ways, leading to more robust and maintainable code."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In object-oriented programming, building complex systems requires careful planning. Just as an architect drafts blueprints before construction begins, software developers use design tools to model a program's structure. The Unified Modeling Language (UML) is the industry-standard tool for this, providing a clear, visual language to design, discuss, and document software systems before a single line of code is written."
+    },
+    {
+      "type": "heading",
+      "content": "Understanding the UML Class Diagram"
+    },
+    {
+      "type": "text",
+      "content": "A class diagram is a static, structural diagram that describes the structure of a system by showing the system's classes, their attributes, operations (or methods), and the relationships among objects. It is the most common and fundamental type of UML diagram used in OOP. Think of it as a detailed blueprint for the classes you will eventually code."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Each class is represented by a rectangle divided into three compartments.",
+        "Top compartment: Class Name (in bold).",
+        "Middle compartment: Attributes (variables), written as `visibility name: type`.",
+        "Bottom compartment: Methods (functions), written as `visibility name(parameters): returnType`.",
+        "Visibility Modifiers: `+` for public, `-` for private, `#` for protected, `~` for package (default)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Key Relationships Between Classes"
+    },
+    {
+      "type": "text",
+      "content": "Classes in an OOP system rarely exist in isolation. They interact and relate to each other in various ways. UML provides specific notation to model these relationships, which is crucial for understanding the system's architecture."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Inheritance (Generalisation)**: An 'is-a' relationship. A subclass inherits properties and methods from a superclass. Notation: A solid line with a hollow triangular arrowhead pointing from the child to the parent class. Example: A `Car` and a `Truck` are both types of `Vehicle`.",
+        "**Association**: Represents a relationship where objects of one class are connected to objects of another. It's the most general relationship. Notation: A solid line between classes. You can add multiplicity and role names.",
+        "**Aggregation**: A 'has-a' relationship, representing a whole-part connection where the part can exist independently. Notation: A solid line with a hollow diamond on the side of the 'whole' class. Example: A `University` has `Department`s.",
+        "**Composition**: A strong 'owns-a' relationship where the part cannot exist without the whole. Its lifecycle is dependent on the whole. Notation: A solid line with a filled diamond on the side of the 'whole' class. Example: A `Book` has `Page`s.",
+        "**Dependency**: A 'uses-a' relationship, where one class depends on another (e.g., as a method parameter), but not as an instance variable. Notation: A dashed line with an open arrowhead pointing to the class being depended upon."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A school management system needs to model `Student`s and `Locker`s. Each student is assigned exactly one locker. A locker is assigned to at most one student. A locker cannot exist without being part of the school, but a student can. Model the relationship between a `Student` and a `Locker`. Include attributes: `studentID: int`, `name: String` for `Student`; and `lockerNumber: int`, `location: String` for `Locker`. Both classes have a `getDetails()` method.",
+      "solution": "**1. Identify Classes:** `Student` and `Locker`.\n\n**2. Define Attributes and Methods:**\n*   **Student Class:**\n    *   Attributes: `- studentID: int`, `- name: String`\n    *   Methods: `+ getDetails(): String`\n*   **Locker Class:**\n    *   Attributes: `- lockerNumber: int`, `- location: String`\n    *   Methods: `+ getDetails(): String`\n\n**3. Determine Relationship and Multiplicity:**\n*   The relationship is an **association** between `Student` and `Locker`.\n*   'Each student is assigned exactly one locker' -> Multiplicity on the `Locker` side is `1`.\n*   'A locker is assigned to at most one student' -> Multiplicity on the `Student` side is `0..1` (0 if unassigned, 1 if assigned).\n\n**4. UML Diagram Description:**\n*   Draw two class boxes for `Student` and `Locker` with their respective private attributes and public methods.\n*   Draw a solid line connecting the two classes to show the association.\n*   At the `Student` end of the line, write the multiplicity `0..1`.\n*   At the `Locker` end of the line, write the multiplicity `1`.\n\n**Marking Points:**\n*   [1] For correctly identifying both classes with correct names.\n*   [1] For correctly identifying attributes and methods with appropriate visibility (`-` for attributes, `+` for methods).\n*   [1] For showing a correct association link between the two classes.\n*   [1] For correct multiplicities (`1` and `0..1`) at the correct ends of the association line."
+    },
+    {
+      "type": "examTip",
+      "content": "Examiners frequently test the difference between aggregation and composition. Remember the 'lifecycle test': if the 'whole' is deleted, is the 'part' also deleted? If yes, it's **composition** (e.g., `House`/`Room`). If no, it's **aggregation** (e.g., `Library`/`Book`). Always justify your choice of relationship in written answers by referring to the problem's context."
+    },
+    {
+      "type": "heading",
+      "content": "Designing a System with Multiple Relationships"
+    },
+    {
+      "type": "text",
+      "content": "Real-world systems involve a network of interacting classes. A single UML diagram can capture multiple types of relationships simultaneously, providing a holistic view of the system's architecture. The key is to break down the problem description sentence by sentence to identify each class and its connections."
+    },
+    {
+      "type": "workedExample",
+      "question": "Design a UML class diagram for a simple online shopping system. The system has `Customer`s. Each `Customer` has a unique `ShoppingCart`. The `ShoppingCart` contains multiple `Item`s. An `Item` has a `price` and `name`. When a `Customer` account is deleted, their `ShoppingCart` is also deleted. However, the `Item`s themselves still exist in the system's product catalogue. A `Customer` also has an `Address`. The `Address` is part of the `Customer`'s profile.",
+      "solution": "**1. Identify Classes:** `Customer`, `ShoppingCart`, `Item`, `Address`.\n\n**2. Define Relationships:**\n*   **Customer and ShoppingCart:** 'Each Customer has a unique ShoppingCart'. 'When a Customer account is deleted, their ShoppingCart is also deleted'. This indicates a strong ownership and lifecycle dependency. This is **Composition**.\n    *   `Customer` is the 'whole', `ShoppingCart` is the 'part'.\n    *   Multiplicity: 1 `Customer` has exactly 1 `ShoppingCart` (`1` on both ends).\n*   **ShoppingCart and Item:** 'The ShoppingCart contains multiple Items'. 'Items themselves still exist'. This indicates a 'has-a' relationship where the parts can exist independently. This is **Aggregation**.\n    *   `ShoppingCart` is the 'whole', `Item` is the 'part'.\n    *   Multiplicity: 1 `ShoppingCart` contains `0..*` `Item`s.\n*   **Customer and Address:** 'Address is part of the Customer's profile'. This implies the address is intrinsically linked to the customer. This is **Composition**.\n    *   `Customer` is the 'whole', `Address` is the 'part'.\n    *   Multiplicity: 1 `Customer` has 1 `Address`.\n\n**3. UML Diagram Description:**\n*   **Customer Class:** Attributes like `- customerID`, `- name`. Connected to `ShoppingCart` with a solid line and a **filled diamond** at the `Customer` end (multiplicity `1` to `1`). Connected to `Address` with a solid line and a **filled diamond** at the `Customer` end (multiplicity `1` to `1`).\n*   **ShoppingCart Class:** Attributes like `- createdDate`. Connected to `Item` with a solid line and a **hollow diamond** at the `ShoppingCart` end (multiplicity `1` to `0..*`).\n*   **Item Class:** Attributes like `- name: String`, `- price: double`.\n*   **Address Class:** Attributes like `- street: String`, `- city: String`.\n\n**Marking Points:**\n*   [1] For identifying all four classes: `Customer`, `ShoppingCart`, `Item`, `Address`.\n*   [1] For correctly identifying the **composition** relationship between `Customer` and `ShoppingCart` (filled diamond).\n*   [1] For correctly identifying the **aggregation** relationship between `ShoppingCart` and `Item` (hollow diamond).\n*   [1] For correctly identifying the **composition** relationship between `Customer` and `Address` (filled diamond).\n*   [1] For correct multiplicities on at least two relationships."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Exam Questions",
+      "href": "/mark?subject=ib-computer-science-hl&topic=8.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "UML Distilled by Martin Fowler (Summary)",
+          "href": "https://www.uml-diagrams.org/uml-distilled.html"
+        },
+        {
+          "label": "IBM UML Basics Tutorial",
+          "href": "https://www.ibm.com/docs/en/rational-soft-arch/9.7.0?topic=models-uml-basics"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,181 @@
+{
+  "slug": "1-2-system-design-basics-components-usability-and-documentation",
+  "topicCode": "1.2",
+  "title": "System design basics: components, usability and documentation",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson introduces the foundational concepts of system design, covering the essential components of a computer system, the principles of usability for creating user-friendly interfaces, and the critical role of both user and technical documentation.",
+  "durationMin": 50,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the key components of a computer system: hardware, software, peripherals, network, and human resources.",
+    "Explain the importance of usability and evaluate it using criteria like effectiveness, efficiency, and satisfaction.",
+    "Distinguish between different types of documentation (user, technical) and their purposes.",
+    "Analyse the relationship between system components and their impact on overall system performance and usability."
+  ],
+  "simpleExplanation": {
+    "title": "Building a System: Blueprint and User Manual",
+    "summary": "Designing a computer system is like planning a new kitchen. You need to choose the right appliances (components), make sure it's easy to cook in (usability), and have instructions for everything (documentation).",
+    "analogy": "Imagine you're setting up a home cinema. You need a TV, speakers, and a streaming device (the components). It needs to be easy for anyone in the family to turn on and find a film (usability). Finally, you'll have the manuals for the TV and speakers (technical documentation) and maybe a simple one-page guide you wrote for your grandparents (user documentation). A well-designed system considers all these aspects from the start.",
+    "steps": [
+      "Identify Components: List all the necessary parts: hardware (like a server), software (the operating system), peripherals (printers), and the people who will use and maintain it.",
+      "Define Usability Goals: Determine how to make the system easy to learn, efficient to use, and satisfying for the end-users. This includes considering accessibility for all users.",
+      "Plan Documentation: Decide what information is needed for users (how to use it) and for developers or technicians (how it works and how to fix it).",
+      "Integrate and Test: Assemble the components, test how they work together, and get feedback from real users to check if usability goals have been met."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What are the five key components of a computer system?",
+      "back": "Hardware, Software, Peripherals, Network, and Human Resources."
+    },
+    {
+      "front": "Define 'Usability'.",
+      "back": "The extent to which a system, product or service can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use. (ISO 9241-210)"
+    },
+    {
+      "front": "What is the main difference between User Documentation and Technical Documentation?",
+      "back": "User documentation is for the end-user and explains how to use the system's features. Technical documentation is for developers and maintainers, explaining the system's architecture, code, and APIs."
+    },
+    {
+      "front": "What are the three main criteria for evaluating usability according to ISO 9241?",
+      "back": "Effectiveness (accuracy and completeness), Efficiency (resources expended), and Satisfaction (user comfort and acceptability)."
+    },
+    {
+      "front": "What is a 'peripheral'?",
+      "back": "An auxiliary device used to put information into and get information out of the computer. Examples include a keyboard, mouse, printer, or scanner."
+    },
+    {
+      "front": "Why are 'Human Resources' considered a component of a computer system?",
+      "back": "Because humans are essential for operating, maintaining, and using the system. Their skills, training, and roles are integral to the system's success or failure."
+    },
+    {
+      "front": "What is 'accessibility' in the context of system design?",
+      "back": "The practice of designing systems to be usable by people with disabilities, including visual, auditory, motor, and cognitive impairments. It is a crucial part of modern usability."
+    },
+    {
+      "front": "Give an example of a usability problem.",
+      "back": "A website with a confusing navigation menu that makes it difficult for users to find information. This reduces efficiency and satisfaction, and may reduce effectiveness."
+    },
+    {
+      "front": "What is the purpose of a 'System Flowchart'?",
+      "back": "A type of technical documentation that graphically represents the flow of data through a system and the operations performed within it, helping developers understand the system's logic."
+    },
+    {
+      "front": "Why is good documentation crucial during system maintenance?",
+      "back": "It allows new developers or maintenance teams to understand the system's structure and logic quickly, reducing the time and cost of fixing bugs or adding new features."
+    },
+    {
+      "front": "What is a common trap when considering 'Human Resources'?",
+      "back": "Forgetting to account for the training, skill level, and potential resistance to change from the people who will use the new system. The best technical system can fail if the human element is ignored."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the internet always considered a 'network' component in a system?",
+      "a": "It depends on the system's scope. For a standalone application like a word processor running entirely on one PC, a network isn't a necessary component. However, for a web browser, a cloud-based application like Google Docs, or an online game, the internet is a critical part of the network component. Always consider the context of the specific system in the question."
+    },
+    {
+      "q": "Can a system be usable but not accessible?",
+      "a": "Yes, this is a common issue. A system might be very efficient and satisfying for a user with no disabilities but completely unusable for someone who relies on a screen reader or cannot use a mouse. This is why accessibility is now considered a fundamental part of good usability design, not an optional extra. Modern design principles aim for 'universal design' that works for everyone."
+    },
+    {
+      "q": "In an exam, if I'm asked for 'components', is it enough to just list them?",
+      "a": "No, this will score minimal marks. For a higher-level response, you must relate the components to the specific scenario given in the question. For example, instead of just 'Hardware', you should write 'The hardware, such as the powerful servers needed to process the large dataset...' or 'The handheld barcode scanners used by the warehouse staff'. Context is key to scoring in the higher markbands."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the fundamentals of system design. Think about the best and worst apps or websites you've used. The difference between them often comes down to design. A poorly designed system is frustrating, inefficient, and error-prone, while a well-designed one feels intuitive and empowering. This topic explores the foundational principles that separate the two, covering the building blocks of any system, how to make them usable for people, and how to document them effectively."
+    },
+    {
+      "type": "heading",
+      "content": "The Components of a Computer System"
+    },
+    {
+      "type": "text",
+      "content": "A computer system is more than just the machine on your desk or the phone in your hand. It's a complex interplay of various elements working together to achieve a specific goal. In IB Computer Science, we categorise these into five main groups. Understanding each component and how it relates to the others is the first step in designing or analysing any system, from a simple mobile game to a global banking network."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Hardware:** The physical parts of the system you can touch. This includes the central processing unit (CPU), memory (RAM), storage (SSD/HDD), and motherboard.",
+        "**Software:** The set of instructions that tells the hardware what to do. This includes the operating system (e.g., Windows, macOS, Android) and application software (e.g., a web browser, a word processor).",
+        "**Peripherals:** Auxiliary input, output, and storage devices connected to the computer. Examples: keyboard, mouse, monitor, printer, external hard drive.",
+        "**Network:** The communication infrastructure connecting systems and allowing them to share resources. This can be a Local Area Network (LAN) in a school, or a Wide Area Network (WAN) like the internet. It includes routers, switches, and cabling.",
+        "**Human Resources:** The people who use, manage, and maintain the system. This is a critical component, encompassing end-users, system administrators, developers, and trainers."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Usability: Designing for Humans"
+    },
+    {
+      "type": "text",
+      "content": "Usability is a quality attribute that assesses how easy a user interface is to use. It's not just about aesthetics; it's a scientific approach to making systems effective, efficient, and satisfying. A system with high usability allows users to accomplish their tasks with minimal friction and frustration, while a system with low usability can lead to errors, abandonment, and financial loss. The International Organization for Standardization (ISO 9241-11) provides a useful framework for defining and measuring usability."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Effectiveness:** Can users successfully achieve their goals with accuracy and completeness? For example, can a user successfully book the correct flight on a travel website?",
+        "**Efficiency:** How much effort (time, clicks, cognitive load) does it take for users to achieve their goals? For example, how many steps and how long does it take to complete the flight booking?",
+        "**Satisfaction:** How do users feel about their experience? Is it pleasant, frustrating, or neutral? This is often measured with post-use questionnaires.",
+        "**Accessibility:** Can people with disabilities (e.g., visual impairments, motor difficulties) use the system? This involves features like screen reader compatibility, keyboard navigation, and sufficient colour contrast. Accessibility is a vital component of inclusive usability."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A school is implementing a new online library system for students to borrow e-books. Identify the five key components of this system and provide a specific, relevant example for each.",
+      "solution": "A correct response must link each component to the specific context of the school library system.\n\n*   **Hardware:** The central server hosting the e-book database and website [1]. Also includes the students' personal devices (laptops, tablets) used to access the system [1].\n*   **Software:** The library management software running on the server and the web browser or dedicated app on the student's device [1]. The server's operating system (e.g., Linux) is also part of this component [1].\n*   **Peripherals:** While not central, this could include a school printer for printing booking confirmations [1] or a barcode scanner at the library desk if the system also integrates with physical books [1].\n*   **Network:** The school's Wi-Fi/LAN and the wider internet, which connect the students' devices to the library server [1].\n*   **Human Resources:** The students (end-users), the librarian (acting as system administrator), and the school's IT technicians who maintain the server and network [1]."
+    },
+    {
+      "type": "heading",
+      "content": "The Critical Role of Documentation"
+    },
+    {
+      "type": "text",
+      "content": "Documentation is the collection of texts and diagrams that explains how a system works or how to use it. It is a common point of failure in many projects, but when done well, it is essential for a system's long-term success, maintainability, and usability. We broadly categorise documentation into two types, each serving a very different audience and purpose."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**User Documentation:** This is aimed at the end-user and focuses on *what* the system does and *how* to perform tasks. It should be written in clear, non-technical language. Examples include user manuals, online help systems, tutorials, and Frequently Asked Questions (FAQs).",
+        "**Technical Documentation:** This is for developers, system administrators, and maintenance teams. It focuses on *how* the system is built and *why* specific design decisions were made. It is highly technical and includes system architecture diagrams, API documentation, code comments, database schemas, and test plans."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, when asked to evaluate a system described in a scenario, don't just focus on the hardware and software. A common scenario involves a technically advanced system that is failing. The marks are often found by analysing the human side: poor usability, inadequate training (a 'Human Resources' issue), or unclear user documentation. Always consider the interaction between all five system components."
+    },
+    {
+      "type": "workedExample",
+      "question": "A new point-of-sale (POS) system is installed in a busy cafe. After one month, staff are making frequent errors, and customer queues are longer than with the old system. The new system has a modern touchscreen and more features. Using the concepts of usability, explain two likely reasons for these problems, justifying your answer.",
+      "solution": "The question requires an explanation linked to usability concepts.\n\n*   **Reason 1: Low Efficiency.** The new user interface, despite being 'modern', may be inefficiently designed. For example, common items like 'Latte' or 'Croissant' might be hidden in sub-menus, requiring more taps and time to complete an order compared to the old system [1]. This directly increases the time per transaction, leading to longer queues. The problem is not the technology (touchscreen) but its application, which has reduced the efficiency of the workflow [1].\n*   **Reason 2: Lack of Training & Low Effectiveness.** The frequent errors suggest that staff have not been able to achieve their goals effectively. This is likely due to a failure in the 'Human Resources' component, specifically inadequate training on the new system [1]. Without proper training, staff cannot use the system's features correctly, leading to mistakes (low effectiveness). The problem is not necessarily a flaw in the system itself, but a failure to prepare the users for the change, possibly compounded by poor user documentation [1]."
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge with exam-style questions on System Design Basics.",
+      "href": "/mark?subject=ib-computer-science-hl&topic=1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Nielsen Norman Group - Usability 101",
+          "href": "https://www.nngroup.com/articles/usability-101-introduction-to-usability/"
+        },
+        {
+          "label": "ISO 9241-11 Standard Overview",
+          "href": "https://www.iso.org/standard/63500.html"
+        },
+        {
+          "label": "IBM - Introduction to technical documentation",
+          "href": "https://www.ibm.com/docs/en/dita-ot/3.6?topic=dita-introduction-technical-documentation"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

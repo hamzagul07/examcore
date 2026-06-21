@@ -1,0 +1,168 @@
+{
+  "slug": "6-1-resource-management-system-resources-and-scheduling",
+  "topicCode": "6.1",
+  "title": "Resource management: system resources and scheduling",
+  "paper": "P1",
+  "paperName": "Computer Science HL",
+  "status": "premium",
+  "summary": "This lesson explores how the Operating System (OS) acts as a resource manager, focusing on the crucial role of the scheduler. We will identify key system resources, analyse various scheduling algorithms like FCFS, SJF, and Round Robin, and understand how they impact system performance.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify the primary system resources managed by the operating system.",
+    "Explain the role of the scheduler in managing process execution.",
+    "Compare and contrast non-preemptive and preemptive scheduling algorithms, including FCFS, SJF, and Round Robin.",
+    "Analyse the performance of scheduling algorithms using metrics like waiting time and turnaround time."
+  ],
+  "simpleExplanation": {
+    "title": "The OS as a Restaurant Manager",
+    "summary": "The Operating System manages your computer's resources just like a restaurant manager handles tables, chefs, and ingredients. It decides which task gets what resource and when, ensuring everything runs smoothly and efficiently.",
+    "analogy": "Imagine a busy restaurant on a Saturday night. The manager is the Operating System. Customers arriving are 'processes' needing service. The manager (scheduler) must decide who gets a table (CPU time) and in what order. A simple 'first-come, first-served' approach might leave a solo diner waiting behind a large party ordering a three-course meal. A better manager might quickly serve the solo diner first to free up a table, optimising the overall customer flow. This is the essence of resource management and scheduling in a computer.",
+    "steps": [
+      "A process arrives, requesting CPU time and other resources, like a customer entering the restaurant.",
+      "The OS scheduler places the process in a 'ready queue', which is like the waiting area for a table.",
+      "The scheduler selects a process from the queue based on an algorithm (e.g., first-come, first-served) and allocates the CPU to it.",
+      "The process runs until it completes, waits for an I/O operation, or its time slice expires, at which point the scheduler allocates the CPU to the next process."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Resource Management in an OS?",
+      "back": "The task of allocating and managing system resources (CPU, memory, I/O devices) among competing processes to ensure efficient and fair operation of the computer system."
+    },
+    {
+      "front": "What is a Scheduler?",
+      "back": "A system software component of the OS responsible for deciding which process in the 'ready' queue should be allocated the CPU next."
+    },
+    {
+      "front": "Define 'Process'.",
+      "back": "A program in execution. It is an active entity that requires resources like CPU time, memory, and I/O to complete its task."
+    },
+    {
+      "front": "What is an Interrupt?",
+      "back": "A signal sent to the CPU by hardware or software, indicating an event that needs immediate attention. It interrupts the current process, allowing the OS to handle the event."
+    },
+    {
+      "front": "First-Come, First-Served (FCFS)",
+      "back": "A non-preemptive scheduling algorithm where processes are executed in the order they arrive in the ready queue. Simple to implement but can be inefficient."
+    },
+    {
+      "front": "What is the 'Convoy Effect'?",
+      "back": "A performance issue in FCFS scheduling where short processes get stuck waiting behind a long process, leading to poor average waiting times. It's like being stuck behind a very slow driver on a single-lane road."
+    },
+    {
+      "front": "Shortest Job First (SJF)",
+      "back": "A scheduling algorithm that selects the process with the smallest estimated execution time to run next. It is provably optimal for minimising average waiting time but can lead to starvation."
+    },
+    {
+      "front": "What is 'Starvation' in scheduling?",
+      "back": "A situation where a process is perpetually denied necessary resources to proceed. In SJF, a long process might never be executed if a continuous stream of shorter processes arrives."
+    },
+    {
+      "front": "Round Robin (RR)",
+      "back": "A preemptive scheduling algorithm where each process is assigned a fixed time unit (time quantum). It runs for that duration before being moved to the back of the ready queue. Ensures fairness."
+    },
+    {
+      "front": "What is a 'Time Quantum' or 'Time Slice'?",
+      "back": "A small, fixed unit of CPU time assigned to a process in Round Robin scheduling. After the quantum expires, the OS preempts the process and schedules the next one."
+    },
+    {
+      "front": "Preemptive vs. Non-preemptive Scheduling",
+      "back": "Preemptive: The OS can forcibly stop a running process to allocate the CPU to another. Non-preemptive: A process runs until it completes or voluntarily gives up the CPU (e.g., for I/O)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between preemptive and non-preemptive scheduling?",
+      "a": "In non-preemptive scheduling, once the CPU has been allocated to a process, the process keeps the CPU until it releases it, either by terminating or by switching to the waiting state. In preemptive scheduling, the CPU can be taken away from a process, for example, when its time slice expires in Round Robin, or when a higher priority process arrives."
+    },
+    {
+      "q": "Why isn't Shortest Job First (SJF) always used if it gives the minimum average waiting time?",
+      "a": "SJF has two major drawbacks. Firstly, it's impossible to know the exact future CPU burst time of a process; we can only estimate it. Secondly, it can lead to 'starvation', where a process with a long burst time might never get the CPU if there is a continuous supply of shorter processes."
+    },
+    {
+      "q": "How does the OS choose the length of the time quantum for Round Robin?",
+      "a": "Choosing the time quantum is a trade-off. If it's too large, RR behaves like FCFS. If it's too small, the overhead from frequent context switching (saving the state of one process and loading another) becomes significant and can degrade system performance. The optimal value is typically a balance, long enough for a process to do meaningful work but short enough to provide good response time for interactive users."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of resource management, the invisible but essential workhorse of any modern operating system. Every time you open an application, browse the web, and listen to music simultaneously, the OS is furiously working behind the scenes. It juggles all these tasks, allocating precious resources like processor time and memory to prevent chaos and keep your system responsive. This lesson peels back the curtain on how the OS achieves this feat, focusing on the critical component known as the scheduler."
+    },
+    {
+      "type": "heading",
+      "content": "Identifying System Resources"
+    },
+    {
+      "type": "text",
+      "content": "A computer system has a finite set of resources that must be shared among various programs and users. The OS acts as the manager for these resources. The main categories are:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**CPU (Central Processing Unit):** The 'brain' of the computer. The OS must schedule which process gets to use the CPU at any given moment.",
+        "**Primary Memory (RAM):** Volatile memory where currently running programs and their data are stored. The OS allocates memory space to each process and ensures they don't interfere with each other.",
+        "**I/O Devices:** Includes input devices (keyboard, mouse), output devices (printer, monitor), and storage devices (HDD, SSD). The OS manages access to these devices to prevent conflicts.",
+        "**Files and Data:** The OS manages the file system, controlling who can access, create, and delete files on secondary storage."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Scheduler and Scheduling Algorithms"
+    },
+    {
+      "type": "text",
+      "content": "The low-level scheduler (or dispatcher) is the part of the OS that decides which of the ready processes will be allocated the CPU. Its goal is to optimise system performance based on certain criteria, such as maximising CPU utilisation or minimising response time for users. To do this, it employs a scheduling algorithm. There is no single 'best' algorithm; the choice depends on the system's requirements (e.g., a real-time system has different needs from a batch processing system)."
+    },
+    {
+      "type": "heading",
+      "content": "Non-Preemptive Algorithm: First-Come, First-Served (FCFS)"
+    },
+    {
+      "type": "text",
+      "content": "This is the simplest scheduling algorithm. As processes become ready, they are added to the end of a queue. The process at the front of the queue is selected for execution and runs until it completes or blocks for I/O. It is non-preemptive, meaning once a process has the CPU, it cannot be taken away. While fair in a sense, it can suffer from the 'convoy effect', where a long process makes many shorter processes wait."
+    },
+    {
+      "type": "workedExample",
+      "question": "Four processes arrive as shown in the table. Using the First-Come, First-Served (FCFS) algorithm, calculate the average waiting time and average turnaround time. All times are in milliseconds (ms).\n\n| Process | Arrival Time | Burst Time |\n|---|---|---|\n| P1 | 0 | 7 |\n| P2 | 2 | 4 |\n| P3 | 4 | 1 |\n| P4 | 5 | 4 |",
+      "solution": "With FCFS, processes are served in the order they arrive: P1, P2, P3, P4.\n\n**1. Gantt Chart:**\nWe can visualise the execution with a Gantt chart:\n\n| P1 (7ms) | P2 (4ms) | P3 (1ms) | P4 (4ms) |\n|---|---|---|---|\n0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16\n\n**2. Calculate Times:**\nWe use the following formulas:\n- Turnaround Time = Completion Time - Arrival Time\n- Waiting Time = Turnaround Time - Burst Time\n\n| Process | Arrival | Burst | Completion | Turnaround Time | Waiting Time |\n|---|---|---|---|---|---|\n| P1 | 0 | 7 | 7 | 7 - 0 = 7 | 7 - 7 = 0 |\n| P2 | 2 | 4 | 11 | 11 - 2 = 9 | 9 - 4 = 5 |\n| P3 | 4 | 1 | 12 | 12 - 4 = 8 | 8 - 1 = 7 |\n| P4 | 5 | 4 | 16 | 16 - 5 = 11 | 11 - 4 = 7 |\n\n**3. Calculate Averages:**\n- **Average Waiting Time:** (0 + 5 + 7 + 7) / 4 = 19 / 4 = **4.75 ms** [1 mark for correct calculation, 1 mark for correct answer]\n- **Average Turnaround Time:** (7 + 9 + 8 + 11) / 4 = 35 / 4 = **8.75 ms** [1 mark for correct calculation, 1 mark for correct answer]"
+    },
+    {
+      "type": "heading",
+      "content": "Preemptive Algorithms: Round Robin (RR)"
+    },
+    {
+      "type": "text",
+      "content": "Round Robin is a preemptive algorithm designed especially for time-sharing systems. It is similar to FCFS, but preemption is added to switch between processes. A small unit of time, called a time quantum or time slice (typically 10-100 ms), is defined. The ready queue is treated as a circular queue. The scheduler goes around the queue, allocating the CPU to each process for a time interval of up to one time quantum. This prevents any single process from hogging the CPU."
+    },
+    {
+      "type": "examTip",
+      "content": "In exams, you will often be asked to compare scheduling algorithms. Make sure you can clearly state the pros and cons of each. For example, FCFS is simple but has the convoy effect. SJF is optimal for average wait time but risks starvation and requires future knowledge. RR is fair but has overhead from context switching and its performance depends on the quantum size."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the same processes from the previous example, calculate the average waiting time and average turnaround time using the Round Robin (RR) algorithm with a time quantum of 3 ms.\n\n| Process | Arrival Time | Burst Time |\n|---|---|---|\n| P1 | 0 | 7 |\n| P2 | 2 | 4 |\n| P3 | 4 | 1 |\n| P4 | 5 | 4 |",
+      "solution": "With RR and a quantum of 3ms, processes will be preempted.\n\n**1. Gantt Chart:**\nLet's trace the execution. The ready queue changes over time.\n- t=0: Q=[P1]. P1 runs.\n- t=2: P2 arrives. Q=[P2].\n- t=3: P1 is preempted (4ms left). Q=[P2, P1]. P2 runs.\n- t=4: P3 arrives. Q=[P2, P1, P3].\n- t=5: P4 arrives. Q=[P2, P1, P3, P4].\n- t=6: P2 is preempted (1ms left). Q=[P1, P3, P4, P2]. P1 runs.\n- t=9: P1 is preempted (1ms left). Q=[P3, P4, P2, P1]. P3 runs.\n- t=10: P3 completes. Q=[P4, P2, P1]. P4 runs.\n- t=13: P4 is preempted (1ms left). Q=[P2, P1, P4]. P2 runs.\n- t=14: P2 completes. Q=[P1, P4]. P1 runs.\n- t=15: P1 completes. Q=[P4]. P4 runs.\n- t=16: P4 completes. Q=[].\n\n| P1 | P2 | P1 | P3 | P4 | P2 | P1 | P4 |\n|---|---|---|---|---|---|---|---|\n0 &nbsp;&nbsp;&nbsp; 3 &nbsp;&nbsp;&nbsp; 6 &nbsp;&nbsp;&nbsp; 9 &nbsp;&nbsp;&nbsp; 10 &nbsp;&nbsp; 13 &nbsp;&nbsp; 14 &nbsp;&nbsp; 15 &nbsp;&nbsp; 16\n\n**2. Calculate Times:**\n- Completion Times: P1=15, P2=14, P3=10, P4=16\n- Turnaround Time = Completion Time - Arrival Time\n- Waiting Time = Turnaround Time - Burst Time\n\n| Process | Arrival | Burst | Completion | Turnaround Time | Waiting Time |\n|---|---|---|---|---|---|\n| P1 | 0 | 7 | 15 | 15 - 0 = 15 | 15 - 7 = 8 |\n| P2 | 2 | 4 | 14 | 14 - 2 = 12 | 12 - 4 = 8 |\n| P3 | 4 | 1 | 10 | 10 - 4 = 6 | 6 - 1 = 5 |\n| P4 | 5 | 4 | 16 | 16 - 5 = 11 | 11 - 4 = 7 |\n\n**3. Calculate Averages:**\n- **Average Waiting Time:** (8 + 8 + 5 + 7) / 4 = 28 / 4 = **7.0 ms** [1 mark for Gantt chart logic, 1 mark for correct calculation, 1 mark for correct answer]\n- **Average Turnaround Time:** (15 + 12 + 6 + 11) / 4 = 44 / 4 = **11.0 ms** [1 mark for correct calculation, 1 mark for correct answer]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Resource Management",
+      "href": "/mark?subject=ib-computer-science-hl&topic=6.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "OS Scheduling Algorithms Visualization",
+          "href": "https://www.cs.usfca.edu/~galles/visualization/os-scheduling.html"
+        },
+        {
+          "label": "GeeksforGeeks: CPU Scheduling",
+          "href": "https://www.geeksforgeeks.org/cpu-scheduling-in-operating-systems/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

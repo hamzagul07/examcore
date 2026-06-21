@@ -22,6 +22,8 @@ type Props = {
   pastPaperQuestions: PastPaperQuestionRef[]
   lessons: CourseLesson[]
   paperQuery?: string | null
+  basePath?: string
+  coursesCrumb?: { label: string; href: string }
 }
 
 export function CourseLessonClient({
@@ -32,6 +34,8 @@ export function CourseLessonClient({
   pastPaperQuestions,
   lessons,
   paperQuery,
+  basePath,
+  coursesCrumb,
 }: Props) {
   const { done } = useCourseProgress(subjectCode)
   const { user, loading: authLoading } = useAuthCheck()
@@ -60,6 +64,8 @@ export function CourseLessonClient({
         signedIn={authLoading ? undefined : !!user}
         access={access}
         trialEndsAt={trialEndsAt}
+        basePath={basePath}
+        coursesCrumb={coursesCrumb}
       />
     </Suspense>
   )

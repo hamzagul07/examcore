@@ -18,6 +18,8 @@ type Props = {
   level: string
   lessons: CourseLesson[]
   initialPaperNumber?: string | null
+  basePath?: string
+  coursesCrumb?: { label: string; href: string }
 }
 
 function paperIdFromNumber(
@@ -29,7 +31,15 @@ function paperIdFromNumber(
   return match?.id
 }
 
-export function CourseHubClient({ code, name, level, lessons, initialPaperNumber }: Props) {
+export function CourseHubClient({
+  code,
+  name,
+  level,
+  lessons,
+  initialPaperNumber,
+  basePath,
+  coursesCrumb,
+}: Props) {
   const { done } = useCourseProgress(code)
   const { user, loading: authLoading } = useAuthCheck()
   const completedSlugs = useMemo(() => {
@@ -60,6 +70,8 @@ export function CourseHubClient({ code, name, level, lessons, initialPaperNumber
       streakLabel={streakLabel}
       glyph={subjectGlyph(code, name)}
       signedIn={authLoading ? undefined : !!user}
+      basePath={basePath}
+      coursesCrumb={coursesCrumb}
     />
   )
 }

@@ -68,6 +68,8 @@ export default async function IbCoursePage({ params }: Props) {
         level={course.level}
         lessons={lessons}
         initialPaperNumber={null}
+        basePath="/ib/courses"
+        coursesCrumb={{ label: 'IB', href: '/ib' }}
       />
     </>
   )

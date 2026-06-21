@@ -40,6 +40,10 @@ type Props = {
   /** Effective access level; undefined while loading (renders full content for SEO). */
   access?: EffectiveAccess
   trialEndsAt?: string | null
+  /** URL prefix for course links — '/courses' (Cambridge) or '/ib/courses' (IB). */
+  basePath?: string
+  /** First breadcrumb crumb — defaults to the Cambridge "Courses" hub. */
+  coursesCrumb?: { label: string; href: string }
 }
 
 export function CourseLessonPage({
@@ -49,6 +53,8 @@ export function CourseLessonPage({
   signedIn,
   access,
   trialEndsAt,
+  basePath = '/courses',
+  coursesCrumb = { label: 'Courses', href: '/courses' },
 }: Props) {
   // Free tier sees notes + formulas only — live diagrams, practice questions and
   // the interactive blocks are gated. `undefined` (loading / SSR) renders full so
@@ -200,7 +206,7 @@ export function CourseLessonPage({
   }, [mode, toc])
 
   const topicLink = (topic: { slug: string; n: string; t: string }) => {
-    const base = lessonTopicHref(L.code, topic)
+    const base = lessonTopicHref(L.code, topic, basePath)
     return paperQuery ? `${base}?paper=${encodeURIComponent(paperQuery)}` : base
   }
 
@@ -214,12 +220,12 @@ export function CourseLessonPage({
       <div className="pg">
         <Breadcrumb
           items={[
-            { label: 'Courses', href: '/courses' },
+            coursesCrumb,
             {
               label: `${L.sub} ${L.code}`,
               href: paperQuery
-                ? `/courses/${L.code}?paper=${encodeURIComponent(paperQuery)}`
-                : `/courses/${L.code}`,
+                ? `${basePath}/${L.code}?paper=${encodeURIComponent(paperQuery)}`
+                : `${basePath}/${L.code}`,
             },
             { label: L.name },
           ]}

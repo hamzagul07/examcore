@@ -17,6 +17,11 @@ export const APP_NAV_ITEMS: AppNavItem[] = [
     isActive: (p) => p === '/courses' || p.startsWith('/courses/'),
   },
   {
+    href: '/ib',
+    label: 'IB',
+    isActive: (p) => p === '/ib' || p.startsWith('/ib/'),
+  },
+  {
     href: '/subjects',
     label: 'Subjects',
     isActive: (p) => p === '/subjects' || p.startsWith('/subjects/'),

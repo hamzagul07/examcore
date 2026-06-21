@@ -19,8 +19,12 @@ export function jumpTo(id: string) {
   }
 }
 
-export function lessonTopicHref(code: string, topic: { slug: string; n: string; t: string }) {
-  return `/courses/${code}/${topic.slug}`
+export function lessonTopicHref(
+  code: string,
+  topic: { slug: string; n: string; t: string },
+  basePath = '/courses'
+) {
+  return `${basePath}/${code}/${topic.slug}`
 }
 
 export function FormulaCard({ f }: { f: NonNullable<MarginNotesLesson['formulas']>[number] }) {

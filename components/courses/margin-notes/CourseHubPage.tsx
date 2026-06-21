@@ -44,6 +44,10 @@ type Props = {
   initialPaperId?: number
   streakLabel?: string
   signedIn?: boolean
+  /** URL prefix for course links — '/courses' (Cambridge) or '/ib/courses' (IB). */
+  basePath?: string
+  /** First breadcrumb crumb — defaults to the Cambridge "Courses" hub. */
+  coursesCrumb?: { label: string; href: string }
 }
 
 export function CourseHubPage({
@@ -56,6 +60,8 @@ export function CourseHubPage({
   initialPaperId,
   streakLabel = 'New — start your streak today',
   signedIn,
+  basePath = '/courses',
+  coursesCrumb = { label: 'Courses', href: '/courses' },
 }: Props) {
   const papers = course.papers
   const defaultPaper = initialPaperId ?? papers[0]?.id ?? 1
@@ -71,7 +77,7 @@ export function CourseHubPage({
     setPaper(id)
     const meta = papers.find((p) => p.id === id)
     if (meta?.number) {
-      router.replace(`/courses/${code}?paper=${encodeURIComponent(meta.number)}`, { scroll: false })
+      router.replace(`${basePath}/${code}?paper=${encodeURIComponent(meta.number)}`, { scroll: false })
     }
   }
 
@@ -108,7 +114,7 @@ export function CourseHubPage({
   const paperNumber = paperMeta?.number
 
   const topicHref = (slug: string) =>
-    paperNumber ? `/courses/${code}/${slug}?paper=${encodeURIComponent(paperNumber)}` : `/courses/${code}/${slug}`
+    paperNumber ? `${basePath}/${code}/${slug}?paper=${encodeURIComponent(paperNumber)}` : `${basePath}/${code}/${slug}`
 
   return (
     <main
@@ -120,7 +126,7 @@ export function CourseHubPage({
         <Breadcrumb
           items={[
             { label: 'Home', href: '/' },
-            { label: 'Courses', href: '/courses' },
+            coursesCrumb,
             { label: name },
           ]}
         />
@@ -172,7 +178,7 @@ export function CourseHubPage({
                   {signedIn === false ? (
                     <>
                       SAVED ON THIS DEVICE ·{' '}
-                      <Link className="hub-sync-link" href={buildSignInHref(`/courses/${code}`)}>
+                      <Link className="hub-sync-link" href={buildSignInHref(`${basePath}/${code}`)}>
                         SIGN IN TO SYNC
                       </Link>
                     </>

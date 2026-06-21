@@ -18,6 +18,12 @@ export function normalizeCourseText(text: string): string {
   s = convertBacktickMath(s)
   s = s.replace(/\\_/g, '_')
 
+  // Matrices / multi-row environments (pmatrix, bmatrix, cases, array, aligned…)
+  // must be DISPLAY math: single-$ inline math breaks on the `\\` row separators
+  // (markdown treats them as escapes), leaving the LaTeX raw. Promote any single-$
+  // span containing a \begin{…} to $$…$$ so KaTeX renders it.
+  s = s.replace(/(?<![$\\])\$(?!\$)([^$\n]*\\begin\{[a-zA-Z*]+\}[^$\n]*)\$(?!\$)/g, (_m, inner) => `$$${inner}$$`)
+
   const stashed: string[] = []
   const protect = (m: string) => {
     stashed.push(m)

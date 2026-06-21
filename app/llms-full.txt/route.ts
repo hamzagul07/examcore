@@ -5,6 +5,7 @@ import { getAllBlogSlugs } from '@/lib/blog'
 import { getPastPaperSubjects } from '@/lib/seo/past-papers'
 import { getAllTopicQuestionParams } from '@/lib/seo/topic-questions'
 import { getIbSubjects } from '@/lib/ib/catalog'
+import { getIbCourse, getIbCourseSlugs } from '@/lib/courses/ib'
 
 /** Expanded llms.txt — chunk-friendly URL index for RAG / AI crawlers. */
 export async function GET() {
@@ -14,6 +15,10 @@ export async function GET() {
   const pastPaperSubjects = getPastPaperSubjects()
   const topicParams = getAllTopicQuestionParams()
   const ibSubjects = getIbSubjects()
+  const ibCourses = getIbCourseSlugs()
+    .map((slug) => getIbCourse(slug))
+    .filter((c): c is NonNullable<typeof c> => Boolean(c))
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   const lines = [
     `# ${SITE_NAME} — full corpus index`,
@@ -58,6 +63,15 @@ export async function GET() {
     ...ibSubjects.map(
       (s) => `- ${base}/ib/past-papers/${s.slug} — IB ${s.name} ${s.level} past papers`
     ),
+    ...(ibCourses.length
+      ? [
+          '',
+          '## Free IB Diploma courses — topic-by-topic lessons (worked examples, markbands, flashcards)',
+          ...ibCourses.map(
+            (c) => `- ${base}${c.path} — IB ${c.name} ${c.level} course (${c.lessonCount} lessons)`
+          ),
+        ]
+      : []),
     '',
     '## Blog articles',
     ...blogs.map((slug) => `- ${base}/blog/${slug}`),

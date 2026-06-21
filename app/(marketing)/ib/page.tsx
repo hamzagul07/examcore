@@ -12,6 +12,7 @@ import { getIbSubjects, getIbSubjectsByGroup, ibYearRange } from '@/lib/ib/catal
 import { ibShortName } from '@/lib/seo/ib-seo'
 import { IB_GLOBAL_RESOURCES } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
+import { getIbCourse, getIbCourseSlugs } from '@/lib/courses/ib'
 
 const PATH = '/ib'
 
@@ -50,6 +51,10 @@ const FAQ = [
 export default function IbHubPage() {
   const subjects = getIbSubjects()
   const grouped = getIbSubjectsByGroup()
+  const courses = getIbCourseSlugs()
+    .map((slug) => getIbCourse(slug))
+    .filter((c): c is NonNullable<typeof c> => Boolean(c))
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   return (
     <MarketingPageShell>
@@ -83,6 +88,18 @@ export default function IbHubPage() {
             })),
           }),
           faqPageNode(FAQ, { speakableSelectors: ['.ms-subject-faq dt', '.ms-subject-faq dd'] }),
+          ...(courses.length
+            ? [
+                itemListNode({
+                  name: 'Free IB Diploma courses',
+                  items: courses.map((c) => ({
+                    name: `IB ${c.name} ${c.level} course`,
+                    url: `${SITE_URL}${c.path}`,
+                    description: `${c.lessonCount} lessons`,
+                  })),
+                }),
+              ]
+            : []),
         ]}
       />
 
@@ -104,6 +121,38 @@ export default function IbHubPage() {
             { href: '/mark', label: 'Get feedback on your answer', variant: 'muted' },
           ]}
         />
+
+        {courses.length ? (
+          <section style={{ marginTop: 40 }} aria-labelledby="ib-courses">
+            <h2 id="ib-courses" className="ms-h3" style={{ marginBottom: 6 }}>
+              Free IB courses
+            </h2>
+            <p className="ms-body-2" style={{ marginBottom: 16, color: 'var(--ec-text-secondary)', maxWidth: '52ch' }}>
+              Full topic-by-topic courses built for the current IB syllabus — worked examples, markband
+              tips and flashcards on every page. Free, no sign-up.
+            </p>
+            <ul className="ms-pp-grid">
+              {courses.map((c) => (
+                <li key={c.code}>
+                  <Link href={c.path} className="ms-pp-card subject-accented">
+                    <span className="ms-pp-glyph" aria-hidden>
+                      ◆
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="ms-pp-title">
+                        {c.name} <em className="ms-pp-code">· {c.level}</em>
+                      </span>
+                      <span className="ms-pp-meta">{c.lessonCount} lessons · free course</span>
+                    </span>
+                    <span className="ms-pp-cta" aria-hidden>
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         {grouped.map((g) => (
           <section key={g.group} style={{ marginTop: 40 }} aria-labelledby={`grp-${g.groupNumber}`}>

@@ -1,0 +1,196 @@
+{
+  "slug": "3-6-compound-and-double-angle-identities-inverse-trig",
+  "topicCode": "3.6",
+  "title": "Compound and double angle identities; inverse trig",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores the compound and double angle trigonometric identities, essential tools for simplifying expressions and solving equations without a calculator. It also covers the definitions, domains, and ranges of the inverse trigonometric functions, a crucial concept for finding angles.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and apply the compound angle identities for sine, cosine, and tangent.",
+    "Derive and utilise the double angle identities from the compound angle formulae.",
+    "Define and correctly use the inverse trigonometric functions, including their restricted domains and ranges.",
+    "Solve trigonometric equations and prove identities using these formulae, particularly in non-calculator contexts."
+  ],
+  "simpleExplanation": {
+    "title": "Trigonometry's Plus-One and Times-Two Rules",
+    "summary": "These identities are special rules that tell us how to find the trigonometry of a combined angle (like A+B) or a doubled angle (like 2A). They are the key to breaking down complex angles into simpler, more manageable parts.",
+    "analogy": "Imagine you're a sound engineer mixing two audio tracks (Angle A and Angle B). You can't just add the sound waves together; that would create a mess. Instead, you use a mixing console with specific formulas (the compound angle identities) to combine the tracks harmoniously into a new, single track (Angle A+B). The double angle identity is like using a special effect to double the frequency of a single track.",
+    "steps": [
+      "Identify the structure: Is it a sum/difference of angles like sin(A+B), or a multiple like cos(2θ)?",
+      "Select the appropriate identity from your formula booklet.",
+      "Substitute the known values or expressions carefully into the chosen formula.",
+      "Simplify the resulting expression algebraically or solve the equation for the variable."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the compound angle identity for $\\sin(A+B)$?",
+      "back": "$\\sin(A+B) = \\sin A \\cos B + \\cos A \\sin B$. (Sine of sum = Same signs)"
+    },
+    {
+      "front": "What is the compound angle identity for $\\cos(A+B)$?",
+      "back": "$\\cos(A+B) = \\cos A \\cos B - \\sin A \\sin B$. (Cosine of sum = Changed sign)"
+    },
+    {
+      "front": "What is the compound angle identity for $\\tan(A+B)$?",
+      "back": "$\\tan(A+B) = \\frac{\\tan A + \\tan B}{1 - \\tan A \\tan B}$"
+    },
+    {
+      "front": "What is the double angle identity for $\\sin(2A)$?",
+      "back": "$\\sin(2A) = 2\\sin A \\cos A$. This is derived from $\\sin(A+A)$."
+    },
+    {
+      "front": "List the three double angle identities for $\\cos(2A)$.",
+      "back": "1. $\\cos(2A) = \\cos^2 A - \\sin^2 A$ \n2. $\\cos(2A) = 2\\cos^2 A - 1$ \n3. $\\cos(2A) = 1 - 2\\sin^2 A$"
+    },
+    {
+      "front": "When is it useful to use $\\cos(2A) = 2\\cos^2 A - 1$?",
+      "back": "When solving an equation that also contains a $\\cos A$ term, as it allows you to form a quadratic equation in terms of $\\cos A$."
+    },
+    {
+      "front": "What is the definition of $y = \\arcsin(x)$?",
+      "back": "$y = \\arcsin(x)$ means $x = \\sin(y)$, where the angle $y$ is restricted to the range $-\\frac{\\pi}{2} \\le y \\le \\frac{\\pi}{2}$."
+    },
+    {
+      "front": "What are the domain and range of $f(x) = \\arccos(x)$?",
+      "back": "Domain: $x \\in [-1, 1]$. Range: $y \\in [0, \\pi]$. The output is always an angle in the first or second quadrant."
+    },
+    {
+      "front": "What are the domain and range of $f(x) = \\arctan(x)$?",
+      "back": "Domain: $x \\in \\mathbb{R}$. Range: $y \\in (-\\frac{\\pi}{2}, \\frac{\\pi}{2})$. The range uses strict inequalities."
+    },
+    {
+      "front": "Common Trap: What is wrong with writing $\\sin(A+B) = \\sin(A) + \\sin(B)$?",
+      "back": "Trigonometric functions are not distributive. For example, $\\sin(90^\\circ) = 1$, but $\\sin(60^\\circ) + \\sin(30^\\circ) = \\frac{\\sqrt{3}}{2} + \\frac{1}{2} \\neq 1$. You must use the compound angle formula."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are the ranges of inverse trigonometric functions restricted?",
+      "a": "The original functions like $y=\\sin(x)$ are periodic, meaning they fail the horizontal line test and are not one-to-one. To define an inverse that is a true function (passing the vertical line test), we must restrict the domain of the original function. This restricted domain becomes the range of the inverse function, often called the principal value range."
+    },
+    {
+      "q": "How do I decide which of the three $\\cos(2\\theta)$ formulas to use?",
+      "a": "It depends on the problem. If the rest of the equation involves $\\sin(\\theta)$, use $\\cos(2\\theta) = 1 - 2\\sin^2(\\theta)$. If it involves $\\cos(\\theta)$, use $\\cos(2\\theta) = 2\\cos^2(\\theta) - 1$. If you are proving an identity, you might need the original form, $\\cos(2\\theta) = \\cos^2(\\theta) - \\sin^2(\\theta)$."
+    },
+    {
+      "q": "Are all these formulas in the IB formula booklet?",
+      "a": "Yes, the compound angle and double angle identities are provided in the 'Topic 3: Geometry and Trigonometry' section. The domain and range of inverse trig functions are not explicitly listed, so you must memorise them."
+    },
+    {
+      "q": "Can I use degrees instead of radians?",
+      "a": "Yes, unless the question specifies radians or involves calculus (where radians are mandatory). However, it's good practice to be comfortable with both, as IB questions can be set in either. The principal value ranges are usually defined in radians, so it's best to know them that way."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to a cornerstone of higher-level trigonometry. You're familiar with the trigonometric ratios for standard angles like $30^\\circ, 45^\\circ,$ and $60^\\circ$. But what about an angle like $75^\\circ$? It's tempting to think $\\cos(30^\\circ+45^\\circ)$ is just $\\cos(30^\\circ)+\\cos(45^\\circ)$, but this is incorrect. This lesson introduces the identities that govern how angles combine, providing you with a powerful toolkit for solving complex problems, especially in Paper 1 where calculators are forbidden."
+    },
+    {
+      "type": "heading",
+      "content": "Compound Angle Identities"
+    },
+    {
+      "type": "text",
+      "content": "The compound angle identities, also known as the addition formulae, allow us to express the trigonometric ratio of a sum or difference of two angles (e.g., $A+B$ or $A-B$) in terms of the trigonometric ratios of the individual angles $A$ and $B$. These are provided in the IB formula booklet, so you don't need to memorise them, but you must be fluent in their application."
+    },
+    {
+      "type": "formula",
+      "content": "$\\sin(A \\pm B) = \\sin A \\cos B \\pm \\cos A \\sin B$ \n\n $\\cos(A \\pm B) = \\cos A \\cos B \\mp \\sin A \\sin B$ \n\n $\\tan(A \\pm B) = \\frac{\\tan A \\pm \\tan B}{1 \\mp \\tan A \\tan B}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Notice the pattern: for $\\sin(A \\pm B)$, the sign in the middle of the expansion is the same. For $\\cos(A \\pm B)$, the sign is opposite.",
+        "These formulae are the key to finding exact values for non-standard angles that can be expressed as sums or differences of standard angles (e.g., $15^\\circ = 45^\\circ - 30^\\circ$ or $105^\\circ = 60^\\circ + 45^\\circ$).",
+        "The tangent identity can be derived by dividing the sine identity by the cosine identity: $\\tan(A+B) = \\frac{\\sin(A+B)}{\\cos(A+B)}$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Without using a calculator, find the exact value of $\\sin(165^\\circ)$.",
+      "solution": "We need to express $165^\\circ$ as a sum or difference of standard angles. We can use $165^\\circ = 120^\\circ + 45^\\circ$ or $165^\\circ = 180^\\circ - 15^\\circ$. Let's use $120^\\circ + 45^\\circ$.\n\nFirst, identify the required values:\n$\\sin(120^\\circ) = \\sin(180^\\circ-60^\\circ) = \\sin(60^\\circ) = \\frac{\\sqrt{3}}{2}$\n$\\cos(120^\\circ) = \\cos(180^\\circ-60^\\circ) = -\\cos(60^\\circ) = -\\frac{1}{2}$\n$\\sin(45^\\circ) = \\frac{\\sqrt{2}}{2}$\n$\\cos(45^\\circ) = \\frac{\\sqrt{2}}{2}$\n\n(M1) for selecting the correct compound angle formula and angles.\n$\\sin(165^\\circ) = \\sin(120^\\circ + 45^\\circ) = \\sin(120^\\circ)\\cos(45^\\circ) + \\cos(120^\\circ)\\sin(45^\\circ)$\n\n(A1) for correct substitution of exact values.\n$= \\left(\\frac{\\sqrt{3}}{2}\\right)\\left(\\frac{\\sqrt{2}}{2}\\right) + \\left(-\\frac{1}{2}\\right)\\left(\\frac{\\sqrt{2}}{2}\\right)$\n\n$= \\frac{\\sqrt{6}}{4} - \\frac{\\sqrt{2}}{4}$\n\n(A1) for the final correct answer.\n$= \\frac{\\sqrt{6} - \\sqrt{2}}{4}$"
+    },
+    {
+      "type": "heading",
+      "content": "Double Angle Identities"
+    },
+    {
+      "type": "text",
+      "content": "The double angle identities are a direct consequence of the compound angle identities, derived by setting $B=A$. For example, $\\sin(2A) = \\sin(A+A)$. These are extremely useful for solving trigonometric equations and in calculus for integration. While they are also in the formula booklet, understanding their derivation is key."
+    },
+    {
+      "type": "formula",
+      "content": "$\\sin(2A) = 2\\sin A \\cos A$\n\n$\\cos(2A) = \\cos^2 A - \\sin^2 A = 2\\cos^2 A - 1 = 1 - 2\\sin^2 A$\n\n$\\tan(2A) = \\frac{2\\tan A}{1 - \\tan^2 A}$"
+    },
+    {
+      "type": "text",
+      "content": "The three forms for $\\cos(2A)$ are interchangeable. The choice of which one to use depends on the context of the problem. If you need to solve an equation involving $\\cos(A)$, you would choose the form $2\\cos^2(A)-1$ to create a quadratic in terms of $\\cos(A)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Given that $\\sin(\\theta) = \\frac{3}{5}$ and $\\theta$ is an obtuse angle, find the exact value of $\\cos(2\\theta)$.",
+      "solution": "The phrase '$\\theta$ is an obtuse angle' means $\\frac{\\pi}{2} < \\theta < \\pi$ (or $90^\\circ < \\theta < 180^\\circ$). In this quadrant, cosine is negative.\n\nFirst, find $\\cos(\\theta)$. We can use a right-angled triangle with opposite side 3 and hypotenuse 5. The adjacent side is $\\sqrt{5^2 - 3^2} = \\sqrt{16} = 4$. (M1)\n\nSince $\\theta$ is obtuse, $\\cos(\\theta)$ is negative. So, $\\cos(\\theta) = -\\frac{4}{5}$. (A1)\n\nWe need to find $\\cos(2\\theta)$. We have three formulae to choose from. Let's use the one that only involves $\\sin(\\theta)$, as that was given in the question, reducing the chance of carry-through errors.\n\nUse $\\cos(2\\theta) = 1 - 2\\sin^2(\\theta)$. (M1)\n\nSubstitute the given value $\\sin(\\theta) = \\frac{3}{5}$:\n$\\cos(2\\theta) = 1 - 2\\left(\\frac{3}{5}\\right)^2$ (A1)\n\n$= 1 - 2\\left(\\frac{9}{25}\\right)$\n\n$= 1 - \\frac{18}{25}$\n\n$= \\frac{25}{25} - \\frac{18}{25} = \\frac{7}{25}$ (A1)\n\nAlternatively, using $\\cos(2\\theta) = 2\\cos^2(\\theta) - 1$:\n$\\cos(2\\theta) = 2\\left(-\\frac{4}{5}\\right)^2 - 1 = 2\\left(\\frac{16}{25}\\right) - 1 = \\frac{32}{25} - 1 = \\frac{7}{25}$. The result is the same."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, questions often combine these identities. For example, you might be asked to solve an equation like $\\cos(2x) = \\sin(x)$. The key is to use an identity to rewrite the equation in terms of a single trigonometric function, e.g., change $\\cos(2x)$ to $1-2\\sin^2(x)$ to get a quadratic in $\\sin(x)$. Always check the required domain for your final answers."
+    },
+    {
+      "type": "heading",
+      "content": "Inverse Trigonometric Functions"
+    },
+    {
+      "type": "text",
+      "content": "The inverse trigonometric functions, $\\arcsin(x)$, $\\arccos(x)$, and $\\arctan(x)$, are used to find an angle given its trigonometric ratio. For these to be true functions (i.e., for each input to have only one output), their ranges must be restricted. These restricted ranges are known as the 'principal values' and are crucial to remember."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**arcsin(x)**: Domain: $[-1, 1]$. Range (Principal Value): $[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$ (Quadrants 1 and 4).",
+        "**arccos(x)**: Domain: $[-1, 1]$. Range (Principal Value): $[0, \\pi]$ (Quadrants 1 and 2).",
+        "**arctan(x)**: Domain: $\\mathbb{R}$. Range (Principal Value): $(-\\frac{\\pi}{2}, \\frac{\\pi}{2})$ (Quadrants 1 and 4, excluding the endpoints)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A common HL problem involves finding the value of a composite function like $\\cos(\\arctan(2))$. To solve this, let $\\theta = \\arctan(2)$, which means $\\tan(\\theta) = 2$. Draw a right-angled triangle with opposite side 2 and adjacent side 1. The hypotenuse is $\\sqrt{2^2+1^2} = \\sqrt{5}$. From the triangle, you can now find $\\cos(\\theta) = \\frac{1}{\\sqrt{5}}$."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Identities & Inverse Trig",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Geogebra: Visualising Compound Angle Identities",
+          "href": "https://www.geogebra.org/m/jfrztq6s"
+        },
+        {
+          "label": "Khan Academy: Inverse Trigonometric Functions",
+          "href": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:trig/x9e81a4f98389efdf:inverse-trig-functions/a/inverse-trig-functions-review"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Visualising Compound Angle Identities",
+    "embedUrl": "https://www.geogebra.org/classic?material=jfrztq6s",
+    "launchUrl": "https://www.geogebra.org/classic?material=jfrztq6s",
+    "hint": "Use “Visualising Compound Angle Identities” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "slug": "4-1-descriptive-statistics",
+  "topicCode": "4.1",
+  "title": "Descriptive statistics",
+  "paper": "P2",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces descriptive statistics, focusing on methods to summarise, present, and interpret data. You will learn to calculate and analyse measures of central tendency and dispersion, and create key statistical diagrams, primarily using a Graphic Display Calculator (GDC) as expected in Paper 2.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Calculate and interpret measures of central tendency (mean, median, mode) for both raw and grouped data.",
+    "Calculate and interpret measures of dispersion (range, interquartile range, variance, standard deviation).",
+    "Construct and interpret box-and-whisker plots, frequency histograms, and cumulative frequency graphs.",
+    "Utilise a GDC effectively to perform statistical calculations and analyse data sets."
+  ],
+  "simpleExplanation": {
+    "title": "Telling Stories with Numbers",
+    "summary": "Descriptive statistics is about turning a messy pile of data into a clear story. We use summaries like averages and spreads to understand the main features of the data at a glance.",
+    "analogy": "Imagine you're a film critic reviewing a new movie. Instead of retelling the entire two-hour film scene-by-scene (the raw data), you'd summarise it. You'd mention the genre (like the 'mode'), the overall rating (the 'mean'), and whether it was consistently good or had big highs and lows (the 'spread' or 'variance'). Descriptive statistics is the 'review' for a dataset.",
+    "steps": [
+      "Organise Your Data: First, collect and organise your raw data. This could be a simple list of numbers or a more structured frequency table.",
+      "Find the Centre: Calculate measures of central tendency (mean, median, mode) to find a 'typical' value that represents the dataset.",
+      "Measure the Spread: Calculate measures of dispersion (range, IQR, standard deviation) to understand how spread out or consistent the data points are.",
+      "Visualise and Interpret: Create visualisations like box plots or histograms to see the shape of the data and draw conclusions about its distribution."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the 'mean'?",
+      "back": "A measure of central tendency calculated by summing all values and dividing by the number of values. It is sensitive to outliers. For a sample, it's denoted $\\bar{x}$."
+    },
+    {
+      "front": "How do you find the 'median'?",
+      "back": "The middle value in an ordered dataset. For $n$ data points, it's the value at position $\\frac{n+1}{2}$. It is resistant to outliers."
+    },
+    {
+      "front": "What is the 'mode'?",
+      "back": "The value that appears most frequently in a dataset. A dataset can have one mode (unimodal), two modes (bimodal), or more (multimodal)."
+    },
+    {
+      "front": "Define 'Interquartile Range' (IQR).",
+      "back": "A measure of dispersion representing the range of the middle 50% of the data. It is calculated as $IQR = Q_3 - Q_1$, where $Q_3$ is the upper quartile and $Q_1$ is the lower quartile."
+    },
+    {
+      "front": "What is 'standard deviation' ($\\sigma$)?",
+      "back": "A measure of the amount of variation or dispersion of a set of values. A low standard deviation indicates that the values tend to be close to the mean, while a high standard deviation indicates that the values are spread out over a wider range."
+    },
+    {
+      "front": "What is 'variance' ($\\sigma^2$)?",
+      "back": "The square of the standard deviation. It measures how far each number in the set is from the mean and therefore from every other number in the set."
+    },
+    {
+      "front": "How do you calculate the mean from a frequency table?",
+      "back": "Use the formula $\\bar{x} = \\frac{\\sum f_i x_i}{\\sum f_i}$, where $x_i$ is the data value (or midpoint of a class) and $f_i$ is its frequency. On a GDC, this is done using lists."
+    },
+    {
+      "front": "What is an 'outlier'?",
+      "back": "A data point that differs significantly from other observations. A common rule of thumb is to classify a point as an outlier if it falls more than $1.5 \\times IQR$ below $Q_1$ or above $Q_3$."
+    },
+    {
+      "front": "What are the five key values shown on a box-and-whisker plot?",
+      "back": "Minimum value, Lower Quartile ($Q_1$), Median ($Q_2$), Upper Quartile ($Q_3$), and Maximum value."
+    },
+    {
+      "front": "What is the difference between a histogram and a bar chart?",
+      "back": "A histogram is used for continuous data, and the bars must touch. The width of the bars can vary, and the area of the bar represents frequency. A bar chart is for discrete or categorical data, and the bars have gaps between them."
+    },
+    {
+      "front": "What is a cumulative frequency graph (ogive)?",
+      "back": "A graph that shows the total frequency for a value or 'less than' that value. It is plotted with upper class boundaries against cumulative frequency. The median and quartiles can be estimated from it."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between population and sample standard deviation?",
+      "a": "Population standard deviation ($\\sigma_x$) is calculated when your dataset includes every member of the entire group you are interested in. Sample standard deviation ($s_x$) is used when your dataset is a sample of a larger population, and you want to estimate the standard deviation of that larger population. In IB exams, unless a question specifies that the data is a sample used for estimation, you should use the population standard deviation, $\\sigma_x$, which is the default on most GDCs."
+    },
+    {
+      "q": "When should I use the median instead of the mean?",
+      "a": "You should consider using the median as the primary measure of central tendency when the data is skewed or contains significant outliers. The mean is pulled towards outliers, so for example, in a dataset of salaries where a few CEOs earn vastly more than everyone else, the median salary is a much better representation of a 'typical' salary than the mean."
+    },
+    {
+      "q": "Can the standard deviation be negative?",
+      "a": "No, the standard deviation can never be negative. It is calculated as the square root of the variance, which itself is an average of squared differences. The smallest possible value for standard deviation is 0, which occurs only if all data points are identical (i.e., there is no spread)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of descriptive statistics. This is the branch of mathematics focused on collecting, summarising, and presenting data in a meaningful way. In the IB AA HL course, and particularly on Paper 2, you'll be expected to use your Graphic Display Calculator (GDC) as a powerful tool to analyse datasets quickly and accurately. This lesson will equip you with the foundational skills to describe data using numerical measures and visual plots."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Central Tendency"
+    },
+    {
+      "type": "text",
+      "content": "When we have a set of data, we often want to find a single value that can represent the 'centre' or 'typical' value of the dataset. These are called measures of central tendency. The three main measures are the mean, median, and mode. The mean is the arithmetic average, but it can be heavily influenced by unusually high or low values (outliers). The median, or middle value, is more robust against outliers. The mode is simply the most frequent value, which is most useful for categorical or discrete data."
+    },
+    {
+      "type": "formula",
+      "content": "Mean of a dataset: $\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n} = \\frac{\\text{Sum of all data values}}{\\text{Number of data values}}$ \\\\ \\\\ Mean from a frequency table: $\\bar{x} = \\frac{\\sum_{i=1}^{k} f_i x_i}{\\sum_{i=1}^{k} f_i}$, where $x_i$ is a data value and $f_i$ is its corresponding frequency."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Dispersion"
+    },
+    {
+      "type": "text",
+      "content": "Knowing the 'centre' of the data is only half the story. We also need to know how spread out the data is. This is measured by measures of dispersion. A small dispersion indicates high consistency, while a large dispersion suggests the data is widely scattered. The simplest measure is the range (maximum - minimum), but it's very sensitive to outliers. The interquartile range (IQR) is more reliable as it measures the spread of the middle 50% of the data. For a more comprehensive measure that considers every data point, we use variance and its square root, the standard deviation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Range: The difference between the maximum and minimum values. Highly affected by outliers.",
+        "Interquartile Range (IQR): $Q_3 - Q_1$. It measures the spread of the middle half of the data and is robust to outliers.",
+        "Standard Deviation ($\\sigma$): Measures the average distance of data points from the mean. A larger $\\sigma$ means greater spread. This is the most common measure of spread in higher-level statistics.",
+        "Variance ($\\sigma^2$): The square of the standard deviation. It's important for theoretical work but less intuitive to interpret than standard deviation as its units are squared."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of coffees sold by a cafe each hour over a 12-hour day is recorded as follows: \\\\ 25, 32, 28, 45, 51, 48, 42, 38, 35, 31, 29, 26. \\\\ (a) Find the mean and standard deviation of the number of coffees sold. \\\\ (b) Find the median and interquartile range. \\\\ (c) The cafe manager considers any hour where sales are $1.5 \\times IQR$ above the upper quartile to be a 'peak hour'. Determine if any hours qualify as peak hours.",
+      "solution": "(a) Using a GDC: \\\\ Enter the data into a list (e.g., L1). \\\\ Use the 1-Var Stats function. \\\\ Mean, $\\bar{x} = 35.833... \\approx 35.8$ coffees (3 s.f.) [A1] \\\\ Population Standard Deviation, $\\sigma_x = 8.233... \\approx 8.23$ coffees (3 s.f.) [A1] \\\\ \\\\ (b) From the GDC's 1-Var Stats output: \\\\ Median ($Q_2$) = 33.5 coffees [A1] \\\\ Lower Quartile ($Q_1$) = 28.5 \\\\ Upper Quartile ($Q_3$) = 43.5 \\\\ Interquartile Range (IQR) = $Q_3 - Q_1 = 43.5 - 28.5 = 15$ [M1][A1] \\\\ \\\\ (c) First, calculate the outlier boundary. \\\\ Boundary = $Q_3 + 1.5 \\times IQR$ [M1] \\\\ Boundary = $43.5 + 1.5 \\times 15 = 43.5 + 22.5 = 66$ [A1] \\\\ The maximum number of coffees sold in any hour was 51. Since $51 < 66$, no hours qualify as 'peak hours' by this definition. [R1][AG] \\\\ *Note: Marks are indicative. [M1] for method, [A1] for correct answer, [R1] for reasoning, [AG] for 'Answer Given' (or in this case, conclusion reached).* "
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Data: Histograms and Box Plots"
+    },
+    {
+      "type": "text",
+      "content": "Numerical summaries are powerful, but visualisations can often reveal patterns, skewness, and other features of the data more intuitively. A frequency histogram shows the distribution of continuous data, with the area of each bar being proportional to the frequency. A box-and-whisker plot provides a concise visual summary of the 'five-number summary': minimum, $Q_1$, median, $Q_3$, and maximum. It is excellent for comparing distributions of two or more datasets side-by-side."
+    },
+    {
+      "type": "workedExample",
+      "question": "The heights (h, in cm) of 80 plants were measured. The data is summarised in the following grouped frequency table: \\\\ \n| Height (cm) | Frequency | \n|---|---| \n| $10 \\le h < 20$ | 12 | \n| $20 \\le h < 30$ | 20 | \n| $30 \\le h < 40$ | 28 | \n| $40 \\le h < 50$ | 15 | \n| $50 \\le h < 60$ | 5 | \n \\\\ (a) Write down the modal class. \\\\ (b) Estimate the mean and standard deviation of the plant heights. \\\\ (c) Draw a cumulative frequency graph for this data and use it to estimate the median height.",
+      "solution": "(a) The modal class is the class with the highest frequency. \\\\ Modal class is $30 \\le h < 40$. [A1] \\\\ \\\\ (b) To estimate the mean and standard deviation, we use the mid-interval values. \\\\ Midpoints ($x_i$): 15, 25, 35, 45, 55. \\\\ Frequencies ($f_i$): 12, 20, 28, 15, 5. \\\\ Enter midpoints into L1 and frequencies into L2 on the GDC. Use 1-Var Stats with L1 as List and L2 as FreqList. [M1] \\\\ Estimated mean, $\\bar{x} \\approx 32.4$ cm (3 s.f.) [A1] \\\\ Estimated standard deviation, $\\sigma_x \\approx 11.1$ cm (3 s.f.) [A1] \\\\ \\\\ (c) First, create a cumulative frequency table: \\\\ \n| Height ($h$) | Cumulative Frequency | \n|---|---| \n| $h < 10$ | 0 | \n| $h < 20$ | 12 | \n| $h < 30$ | 12+20 = 32 | \n| $h < 40$ | 32+28 = 60 | \n| $h < 50$ | 60+15 = 75 | \n| $h < 60$ | 75+5 = 80 | \nPlot points (20, 12), (30, 32), (40, 60), (50, 75), (60, 80) and join with a smooth curve starting from (10,0). [A2] for correct plot. \\\\ To estimate the median, find the value on the horizontal axis corresponding to a cumulative frequency of $50\\%$ of 80, which is 40. \\\\ From the graph, locate 40 on the y-axis, move across to the curve, and then down to the x-axis. [M1] \\\\ Estimated median height $\\approx 32.9$ cm (accept answers in range [32.5, 33.5]). [A1] \\\\ *(A sketch of the graph would be required in an exam.)*"
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 2, you should be an expert with the statistics functions of your GDC. For any question asking for mean, standard deviation, median, or quartiles, go straight to your calculator. There are no marks for manual calculation. However, you MUST understand the concepts. For grouped data, remember to use the mid-interval values. Always state the values you are using (e.g., midpoints) before writing down the final answer from your GDC."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Descriptive Statistics",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Questionbank",
+          "href": "/questionbank?subject=ib-maths-aa-hl"
+        },
+        {
+          "label": "TI-84 GDC Statistics Tutorial",
+          "href": "https://www.youtube.com/watch?v=D8aI4j33k-A"
+        },
+        {
+          "label": "Casio fx-CG50 Statistics Tutorial",
+          "href": "https://www.youtube.com/watch?v=f2J-P4WmdyM"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

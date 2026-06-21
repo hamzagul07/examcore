@@ -1,0 +1,184 @@
+{
+  "slug": "5-2-differentiation-rules-chain-product-and-quotient",
+  "topicCode": "5.2",
+  "title": "Differentiation rules: chain, product and quotient",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "Master the essential tools of calculus: the chain, product, and quotient rules. This lesson breaks down how to differentiate complex functions by applying these rules systematically, both individually and in combination, preparing you for challenging exam questions.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Apply the product rule to find the derivative of a product of two functions.",
+    "Apply the quotient rule to find the derivative of a function formed by the division of two functions.",
+    "Apply the chain rule to find the derivative of a composite function.",
+    "Combine differentiation rules to find the derivative of more complex functions."
+  ],
+  "simpleExplanation": {
+    "title": "Your Calculus Toolkit",
+    "summary": "These three rules are the essential power tools for differentiation. They allow you to break down complicated functions into manageable parts, differentiate them, and then reassemble them correctly.",
+    "analogy": "Think of it like cooking. The power rule is like chopping a single vegetable. The product rule is for a dish with two main ingredients cooked together (like steak and onions). The quotient rule is for a layered dish (like a lasagne). The chain rule is for an ingredient that has its own filling (like a stuffed pepper).",
+    "steps": [
+      "Analyse the function: Is it a product ($u \\times v$), a quotient ($u/v$), or a composite function ($f(g(x))$)?",
+      "Identify the component parts. For product/quotient, name them $u$ and $v$. For chain rule, identify the 'outer' function $f$ and 'inner' function $g$.",
+      "Differentiate the component parts separately. Find $u'$, $v'$, or $f'$ and $g'$-values.",
+      "Substitute these parts into the correct formula (product, quotient, or chain rule) and simplify the resulting expression."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the product rule for differentiation?",
+      "back": "If $y = uv$, where $u$ and $v$ are functions of $x$, then $\\frac{dy}{dx} = u \\frac{dv}{dx} + v \\frac{du}{dx}$ or $(uv)' = u'v + uv'$."
+    },
+    {
+      "front": "What is the quotient rule for differentiation?",
+      "back": "If $y = \\frac{u}{v}$, then $\\frac{dy}{dx} = \\frac{v \\frac{du}{dx} - u \\frac{dv}{dx}}{v^2}$ or $(\\frac{u}{v})' = \\frac{u'v - uv'}{v^2}$."
+    },
+    {
+      "front": "What is the chain rule for differentiation?",
+      "back": "If $y = f(g(x))$, then $\\frac{dy}{dx} = f'(g(x)) \\cdot g'(x)$. Alternatively, if $y=f(u)$ and $u=g(x)$, then $\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}$."
+    },
+    {
+      "front": "What is a common mistake when differentiating a product of two functions?",
+      "back": "Differentiating each part separately and then multiplying the derivatives: $(uv)' \\neq u'v'$. This is incorrect. You must use the full formula: $u'v + uv'$."
+    },
+    {
+      "front": "What is a helpful mnemonic for the quotient rule?",
+      "back": "'Low d-high minus high d-low, over the square of what's below.' This helps remember the order $\\frac{v u' - u v'}{v^2}$."
+    },
+    {
+      "front": "When is the chain rule necessary?",
+      "back": "When you have a composite function, which is a 'function of a function'. For example, $\\sin(x^2)$, $e^{3x-1}$, or $(2x+5)^7$."
+    },
+    {
+      "front": "How do you differentiate $y = \\ln(f(x))$ using the chain rule?",
+      "back": "The derivative is $y' = \\frac{f'(x)}{f(x)}$. The outer function is $\\ln(u)$ and the inner function is $u=f(x)$."
+    },
+    {
+      "front": "How do you differentiate $y = e^{f(x)}$ using the chain rule?",
+      "back": "The derivative is $y' = e^{f(x)} \\cdot f'(x)$. The outer function is $e^u$ and the inner function is $u=f(x)$."
+    },
+    {
+      "front": "Can you use the product rule instead of the quotient rule?",
+      "back": "Yes. You can rewrite $\\frac{u}{v}$ as $u \\cdot v^{-1}$ and apply the product rule (along with the chain rule for the $v^{-1}$ term). This can sometimes be simpler, but the quotient rule is often more direct."
+    },
+    {
+      "front": "What's the derivative of $y = \\cos^3(x)$?",
+      "back": "This is a composite function, $y = (\\cos x)^3$. Use the chain rule: $y' = 3(\\cos x)^2 \\cdot (-\\sin x) = -3\\cos^2(x)\\sin(x)$."
+    },
+    {
+      "front": "How would you start differentiating $y = x^2 e^x \\sin(x)$?",
+      "back": "Apply the product rule twice. Group it as $(x^2 e^x) \\sin(x)$. First find the derivative of the bracketed term using the product rule, then apply the product rule again to the whole expression."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know which rule to use first when they are combined?",
+      "a": "Look at the overall structure of the function. If it's fundamentally a fraction, start with the quotient rule. If it's fundamentally a product, start with the product rule. The chain rule will often be needed as a 'sub-step' to differentiate one of the parts."
+    },
+    {
+      "q": "Is there a product rule for three functions, like $f(x) = u(x)v(x)w(x)$?",
+      "a": "Yes, it's an extension of the two-function rule: $(uvw)' = u'vw + uv'w + uvw'$. You differentiate one function at a time and add the results. You can derive this by applying the standard product rule twice: treat it as $(uv)w$."
+    },
+    {
+      "q": "The formula booklet has $y=g(f(x)) \\Rightarrow \\frac{dy}{dx} = g'(f(x))f'(x)$. Is this the same as my teacher's $f(g(x))$ notation?",
+      "a": "Yes, the letters used for the functions don't matter, only the concept. The formula booklet calls the inner function $f(x)$ and the outer function $g(x)$. The principle is the same: derivative of the outer (with the inner unchanged) times the derivative of the inner."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to this lesson on the fundamental differentiation rules. While you can differentiate simple polynomials, these three rules—the product, quotient, and chain rules—unlock the ability to differentiate almost any function you will encounter in the AA HL course. Mastering them is non-negotiable for success in calculus."
+    },
+    {
+      "type": "heading",
+      "content": "The Product Rule: Differentiating Multiplied Functions"
+    },
+    {
+      "type": "text",
+      "content": "When you encounter a function that is the product of two other functions, such as $f(x) = x^2 \\ln(x)$, you cannot simply differentiate each part and multiply them. Instead, you must apply the product rule, which correctly accounts for how a change in each function affects the overall product."
+    },
+    {
+      "type": "formula",
+      "content": "Given $y = u(x)v(x)$, its derivative is given by: \\\\ [ \\frac{dy}{dx} = u \\frac{dv}{dx} + v \\frac{du}{dx} \\] Or, in prime notation: \\\\ [ (uv)' = u'v + uv' \\]"
+    },
+    {
+      "type": "workedExample",
+      "question": "A curve has the equation $y = (2x+1)e^{3x}$. Find the equation of the tangent to the curve at the point where $x=0$.",
+      "solution": "First, we need to find the derivative $\\frac{dy}{dx}$ using the product rule. \\\\ Let $u = 2x+1$ and $v = e^{3x}$. **(M1)** for identifying $u$ and $v$. \\\\ Then, we differentiate each part: \\\\ $u' = \\frac{du}{dx} = 2$ \\\\ $v' = \\frac{dv}{dx} = 3e^{3x}$ (using the chain rule). **(A1)** for both correct derivatives. \\\\ Now, apply the product rule formula: $\\frac{dy}{dx} = u'v + uv'$. \\\\ $\\frac{dy}{dx} = (2)(e^{3x}) + (2x+1)(3e^{3x})$ **(A1)** for correct substitution. \\\\ At $x=0$, we find the gradient of the tangent, $m$: \\\\ $m = \\frac{dy}{dx}|_{x=0} = 2e^{0} + (2(0)+1)(3e^{0}) = 2(1) + (1)(3) = 5$. **(M1)** for substituting $x=0$. \\\\ We also need the y-coordinate at $x=0$: \\\\ $y = (2(0)+1)e^{0} = 1 \\times 1 = 1$. The point is $(0,1)$. \\\\ The equation of the tangent is given by $y - y_1 = m(x - x_1)$. \\\\ $y - 1 = 5(x - 0)$ \\\\ $y = 5x + 1$. **(A1)** for the final correct equation. [5 marks]"
+    },
+    {
+      "type": "heading",
+      "content": "The Quotient Rule: Differentiating Divided Functions"
+    },
+    {
+      "type": "text",
+      "content": "The quotient rule is used for functions that are expressed as a fraction, with one function in the numerator and another in the denominator. It's crucial to get the order of terms in the numerator correct, as there is a subtraction sign which makes it not commutative."
+    },
+    {
+      "type": "formula",
+      "content": "Given $y = \\frac{u(x)}{v(x)}$, its derivative is given by: \\\\ [ \\frac{dy}{dx} = \\frac{v \\frac{du}{dx} - u \\frac{dv}{dx}}{[v(x)]^2} \\] Or, in prime notation: \\\\ [ \\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2} \\]"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The numerator is $u'v - uv'$, not the other way around. The minus sign makes the order critical.",
+        "The denominator is always the square of the original denominator, $v^2$.",
+        "A common mnemonic is 'low d-high minus high d-low, over low-low', where 'low' is $v$, 'high' is $u$, and 'd' means 'the derivative of'."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will often be asked to find stationary points, which means setting the derivative to zero. For a fraction $\\frac{A}{B}$ to be zero, the numerator $A$ must be zero. This means for the quotient rule, you only need to solve $u'v - uv' = 0$. Don't forget to check that the denominator $v^2$ is not zero for these values."
+    },
+    {
+      "type": "heading",
+      "content": "The Chain Rule: Differentiating Composite Functions"
+    },
+    {
+      "type": "text",
+      "content": "The chain rule is arguably the most important and versatile differentiation rule. It is used for composite functions, which are functions nested inside one another, like Russian dolls. The core idea is to differentiate the 'outer' function while keeping the 'inner' function the same, then multiply by the derivative of the 'inner' function."
+    },
+    {
+      "type": "formula",
+      "content": "Given a composite function $y = f(g(x))$, its derivative is: \\\\ [ \\frac{dy}{dx} = f'(g(x)) \\cdot g'(x) \\] Using Leibniz notation, if $y=f(u)$ and $u=g(x)$: \\\\ [ \\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx} \\]"
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $f(x) = \\sqrt{4x^2 - 5}$. Find $f'(x)$.",
+      "solution": "The function can be written as $f(x) = (4x^2 - 5)^{1/2}$. This is a composite function. \\\\ The outer function is $u^{1/2}$ and the inner function is $u = 4x^2 - 5$. **(M1)** for identifying the composite structure. \\\\ Differentiate the outer function with respect to u: $\\frac{d}{du}(u^{1/2}) = \\frac{1}{2}u^{-1/2}$. \\\\ Differentiate the inner function with respect to x: $\\frac{du}{dx} = 8x$. **(A1)** for both derivatives. \\\\ Apply the chain rule, $f'(x) = \\frac{dy}{du} \\cdot \\frac{du}{dx}$: \\\\ $f'(x) = \\frac{1}{2}(4x^2 - 5)^{-1/2} \\cdot (8x)$ **(A1)** for correct substitution into chain rule. \\\\ Now, simplify the expression: \\\\ $f'(x) = \\frac{8x}{2\\sqrt{4x^2 - 5}} = \\frac{4x}{\\sqrt{4x^2 - 5}}$. **(A1)** for the simplified final answer. [4 marks]"
+    },
+    {
+      "type": "heading",
+      "content": "Combining the Rules"
+    },
+    {
+      "type": "text",
+      "content": "Many functions in IB exams require a combination of these rules. For example, you might need to use the chain rule to find a derivative within a larger product or quotient rule problem. The key is to be systematic, break the problem down, and clearly label your parts ($u, v, u', v'$)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the derivative of $y = \\frac{x^2}{\\cos(2x)}$.",
+      "solution": "This requires the quotient rule. \\\\ Let $u = x^2$ and $v = \\cos(2x)$. **(M1)** \\\\ Differentiate the parts: \\\\ $u' = 2x$. \\\\ To find $v'$, we need the chain rule. Let $w=2x$, so $v=\\cos(w)$. Then $\\frac{dv}{dx} = \\frac{dv}{dw} \\cdot \\frac{dw}{dx} = -\\sin(w) \\cdot 2 = -2\\sin(2x)$. **(A1)** for $u'$ and **(A1)** for $v'$. \\\\ Now apply the quotient rule: $\\frac{dy}{dx} = \\frac{u'v - uv'}{v^2}$. \\\\ $\\frac{dy}{dx} = \\frac{(2x)(\\cos(2x)) - (x^2)(-2\\sin(2x))}{(\\cos(2x))^2}$ **(A1)** for correct substitution. \\\\ Simplify the numerator: \\\\ $\\frac{dy}{dx} = \\frac{2x\\cos(2x) + 2x^2\\sin(2x)}{\\cos^2(2x)}$. **(A1)** for the final answer. It can be left in this form unless further simplification is requested. [5 marks]"
+    },
+    {
+      "type": "examTip",
+      "content": "When combining rules, write everything down. If you are using the quotient rule and the numerator requires the product rule to differentiate, do that as a separate sub-problem on your page. This reduces cognitive load and makes it easier for the examiner to follow your working and award method marks, even if you make a slip."
+    },
+    {
+      "type": "practice",
+      "label": "Practise Differentiating Complex Functions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics-analysis-and-approaches/assessment/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

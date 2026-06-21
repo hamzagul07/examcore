@@ -1,0 +1,196 @@
+{
+  "slug": "1-1-sequences-and-series-arithmetic-and-geometric",
+  "topicCode": "1.1",
+  "title": "Sequences and series: arithmetic and geometric",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces arithmetic and geometric sequences and series. It covers the core formulas for finding the nth term, the sum of n terms, and the sum to infinity for convergent geometric series, with a focus on problem-solving skills required for Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Distinguish between arithmetic and geometric sequences by identifying a common difference or a common ratio.",
+    "Apply formulas for the nth term and the sum of the first n terms of arithmetic and geometric sequences.",
+    "Determine the convergence of an infinite geometric series and calculate its sum to infinity.",
+    "Solve multi-step problems involving sequences and series, including those in financial contexts."
+  ],
+  "simpleExplanation": {
+    "title": "The Building Blocks of Patterns",
+    "summary": "We explore two key types of numerical patterns: arithmetic sequences, which change by adding a constant, and geometric sequences, which change by multiplying by a constant. We'll learn how to predict any term in these patterns and how to find their sums.",
+    "analogy": "Imagine saving money. An arithmetic sequence is like putting exactly £10 into your piggy bank every week – the amount grows by a fixed sum. A geometric sequence is like having your savings in an account that earns 2% interest each month – the amount added increases as your total savings grow, because it's based on a percentage of the current total.",
+    "steps": [
+      "Identify the pattern: Is there a constant difference (arithmetic) or a constant ratio (geometric)?",
+      "Determine key values: Find the first term ($u_1$), the common difference ($d$) or common ratio ($r$).",
+      "Select the right tool: Choose the correct formula from the booklet for the nth term ($u_n$), sum of n terms ($S_n$), or sum to infinity ($S_\\infty$).",
+      "Solve and interpret: Substitute your values, calculate the result, and check that the answer is reasonable in the context of the question."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an arithmetic sequence?",
+      "back": "A sequence where the difference between any two consecutive terms is constant. This constant is called the common difference, $d$."
+    },
+    {
+      "front": "What is a geometric sequence?",
+      "back": "A sequence where the ratio of any two consecutive terms is constant. This constant is called the common ratio, $r$."
+    },
+    {
+      "front": "Formula for the $n$-th term of an arithmetic sequence.",
+      "back": "$u_n = u_1 + (n-1)d$"
+    },
+    {
+      "front": "Formula for the $n$-th term of a geometric sequence.",
+      "back": "$u_n = u_1 r^{n-1}$"
+    },
+    {
+      "front": "Formula for the sum of the first $n$ terms of an arithmetic series ($S_n$).",
+      "back": "$S_n = \\frac{n}{2}(u_1 + u_n)$ or $S_n = \\frac{n}{2}(2u_1 + (n-1)d)$"
+    },
+    {
+      "front": "Formula for the sum of the first $n$ terms of a geometric series ($S_n$).",
+      "back": "$S_n = \\frac{u_1(r^n - 1)}{r-1} = \\frac{u_1(1 - r^n)}{1-r}$, where $r \\neq 1$."
+    },
+    {
+      "front": "What is the condition for an infinite geometric series to have a finite sum (to converge)?",
+      "back": "The absolute value of the common ratio $r$ must be less than 1. In symbols: $|r| < 1$, or $-1 < r < 1$."
+    },
+    {
+      "front": "Formula for the sum to infinity of a convergent geometric series ($S_\\infty$).",
+      "back": "$S_\\infty = \\frac{u_1}{1-r}$, which is only valid when $|r| < 1$."
+    },
+    {
+      "front": "Common Trap: A question asks for the 10th term. What is the value of $n$?",
+      "back": "$n=10$. A common mistake is to use $n-1=10$, so $n=11$. The $n$ in the formulas $u_n$ and $S_n$ always refers to the number of the term or the number of terms being summed."
+    },
+    {
+      "front": "How do you find the common ratio $r$ if you are given two non-consecutive terms, e.g., $u_3 = 12$ and $u_6 = 96$?",
+      "back": "Set up a ratio of the terms. $\\frac{u_6}{u_3} = \\frac{u_1 r^5}{u_1 r^2} = r^3$. So, $r^3 = \\frac{96}{12} = 8$, which means $r=2$."
+    },
+    {
+      "front": "What is the difference between a sequence and a series?",
+      "back": "A sequence is an ordered list of numbers (e.g., 3, 6, 9, 12). A series is the sum of the terms in a sequence (e.g., 3 + 6 + 9 + 12)."
+    },
+    {
+      "front": "A sequence has alternating signs, like $5, -10, 20, -40, ...$. What does this tell you about the common ratio $r$?",
+      "back": "The common ratio $r$ must be negative. In this case, $r = \\frac{-10}{5} = -2$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between using $u_n = u_1 + (n-1)d$ and $u_n = u_0 + nd$?",
+      "a": "Both can describe an arithmetic sequence, but the IB formula booklet and standard convention use $u_1$ to represent the first term. The formula $u_n = u_1 + (n-1)d$ is the one you should use, where $n$ is the term number (starting from $n=1$). The alternative, $u_n = u_0 + nd$, assumes a 'zeroth' term, which can be useful in some specific modelling contexts but is non-standard for exams. Sticking to the formula booklet convention is the safest way to secure method marks."
+    },
+    {
+      "q": "Can an arithmetic sequence have a sum to infinity?",
+      "a": "No. For any arithmetic sequence with a non-zero common difference $d$, the terms will either increase or decrease without limit. Therefore, the sum of the terms will also increase or decrease without limit (it will diverge to positive or negative infinity). A finite sum to infinity only exists for convergent geometric series."
+    },
+    {
+      "q": "How do I apply sequence formulas to compound interest problems?",
+      "a": "Compound interest is a direct application of geometric sequences. If an initial principal amount $P$ is invested at an annual interest rate of $i\\%$, the value of the investment at the *end* of each year forms a geometric sequence. The value after 1 year is $u_1 = P(1 + \\frac{i}{100})$, after 2 years is $u_2 = P(1 + \\frac{i}{100})^2$, and so on. The first term is $u_1 = P(1+r_{rate})$ and the common ratio is $r = (1+r_{rate})$, where $r_{rate}$ is the interest rate as a decimal."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Patterns are everywhere, from the spiral of a seashell to the growth of your savings. In mathematics, we formalise the study of patterns using sequences and series. This lesson focuses on the two most fundamental types: arithmetic and geometric. Mastering them is not just crucial for your exams, but also provides a foundation for more advanced topics like calculus and financial mathematics."
+    },
+    {
+      "type": "heading",
+      "content": "Arithmetic Sequences and Series"
+    },
+    {
+      "type": "text",
+      "content": "An arithmetic sequence is a list of numbers where you get from one term to the next by adding a fixed value. This value is called the common difference, denoted by $d$. For example, the sequence 5, 8, 11, 14, ... is an arithmetic sequence with a first term $u_1 = 5$ and a common difference $d = 3$."
+    },
+    {
+      "type": "formula",
+      "content": "The $n$-th term: $u_n = u_1 + (n-1)d$"
+    },
+    {
+      "type": "text",
+      "content": "An arithmetic series is the sum of the terms of an arithmetic sequence. There are two useful formulas for finding this sum, depending on whether you know the last term or the number of terms."
+    },
+    {
+      "type": "formula",
+      "content": "Sum of the first $n$ terms: $S_n = \\frac{n}{2}(2u_1 + (n-1)d) = \\frac{n}{2}(u_1 + u_n)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "In an arithmetic sequence, the third term is 10 and the eighth term is 25. Find (a) the common difference and the first term, and (b) the sum of the first 20 terms.",
+      "solution": " (a) We are given $u_3 = 10$ and $u_8 = 25$. \\\\ Using the formula $u_n = u_1 + (n-1)d$: \\\\ $u_3 = u_1 + (3-1)d = u_1 + 2d = 10$  (1) \\\\ $u_8 = u_1 + (8-1)d = u_1 + 7d = 25$  (2) \\\\ We have a system of two linear equations. Subtracting (1) from (2): \\\\ $(u_1 + 7d) - (u_1 + 2d) = 25 - 10$ \\\\ $5d = 15$ **(M1)** \\\\ $d = 3$ **(A1)** \\\\ Substitute $d=3$ into (1): \\\\ $u_1 + 2(3) = 10 \\implies u_1 + 6 = 10$ \\\\ $u_1 = 4$ **(A1)** \\\\ So the common difference is 3 and the first term is 4. \\\\ \\\\ (b) We need to find $S_{20}$. We have $u_1=4$, $d=3$, $n=20$. \\\\ Using the formula $S_n = \\frac{n}{2}(2u_1 + (n-1)d)$: \\\\ $S_{20} = \\frac{20}{2}(2(4) + (20-1)3)$ **(M1)** \\\\ $S_{20} = 10(8 + 19 \\times 3)$ \\\\ $S_{20} = 10(8 + 57)$ \\\\ $S_{20} = 10(65) = 650$ **(A1)**"
+    },
+    {
+      "type": "heading",
+      "content": "Geometric Sequences and Series"
+    },
+    {
+      "type": "text",
+      "content": "A geometric sequence is a list of numbers where you get from one term to the next by multiplying by a fixed, non-zero value. This value is called the common ratio, denoted by $r$. For example, the sequence 3, 6, 12, 24, ... is a geometric sequence with a first term $u_1 = 3$ and a common ratio $r = 2$."
+    },
+    {
+      "type": "formula",
+      "content": "The $n$-th term: $u_n = u_1 r^{n-1}$ \\\\ Sum of the first $n$ terms: $S_n = \\frac{u_1(r^n - 1)}{r-1}$, for $r \\neq 1$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The common ratio $r$ is found by dividing any term by its preceding term: $r = u_{n+1} / u_n$.",
+        "If terms alternate between positive and negative, the common ratio $r$ is negative.",
+        "For financial questions involving percentage change, the common ratio is key. A 5% increase corresponds to $r=1.05$. A 10% decrease corresponds to $r=0.90$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Infinite Geometric Series"
+    },
+    {
+      "type": "text",
+      "content": "What happens if we keep adding the terms of a geometric series forever? If the common ratio $r$ is 'small enough', specifically if its magnitude is less than 1 ($|r|<1$), the terms get progressively smaller and the sum approaches a finite value. This is called a convergent series. If $|r| \\ge 1$, the terms do not shrink to zero, and the sum will grow infinitely large (diverge)."
+    },
+    {
+      "type": "formula",
+      "content": "Sum to infinity: $S_\\infty = \\frac{u_1}{1-r}$, valid only for $|r|<1$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A ball is dropped from a height of 16 metres. After hitting the ground, it bounces back to $\\frac{3}{4}$ of the height from which it fell. This process continues indefinitely. Find the total distance travelled by the ball until it comes to rest.",
+      "solution": "This problem has two parts: the downward distances and the upward distances. \\\\ The initial drop is 16 m. \\\\ The sequence of upward bounces is a geometric sequence: \\\\ First bounce height: $u_1 = 16 \\times \\frac{3}{4} = 12$ m. \\\\ Second bounce height: $u_2 = 12 \\times \\frac{3}{4} = 9$ m. \\\\ The common ratio is $r = \\frac{3}{4}$. **(M1)** \\\\ The total distance travelled upwards is the sum to infinity of this sequence. \\\\ Since $|r| = |\\frac{3}{4}| < 1$, the sum converges. **(R1)** \\\\ $S_{\\infty, \\text{up}} = \\frac{u_1}{1-r} = \\frac{12}{1 - \\frac{3}{4}} = \\frac{12}{\\frac{1}{4}} = 48$ m. **(M1)(A1)** \\\\ The sequence of downward falls (after the first drop) is identical to the sequence of upward bounces: 12 m, 9 m, ... \\\\ So, the total distance travelled downwards (excluding the first drop) is also 48 m. \\\\ Total distance = Initial drop + Total upward distance + Total subsequent downward distance \\\\ Total distance = $16 + 48 + 48$ **(M1)** \\\\ Total distance = $112$ metres. **(A1)** \\\\ Alternative approach: Total distance = $16 + 2 \\times (\\text{sum of bounces}) = 16 + 2 \\times 48 = 16 + 96 = 112$ m."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you won't have a calculator. Questions are designed to be solvable with mental arithmetic or simple pen-and-paper calculations. If you find yourself dealing with very awkward numbers (e.g., calculating $1.17^9$), you have likely misinterpreted the question or used the wrong formula. Look for ways to simplify expressions before calculating, such as in the example $r^3 = 96/12 = 8$, which easily gives $r=2$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-course-related-material/"
+        },
+        {
+          "label": "Sequences and Series Visualiser",
+          "href": "https://www.geogebra.org/m/uyt33vct"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Sequences and Series Visualiser",
+    "embedUrl": "https://www.geogebra.org/classic?material=uyt33vct",
+    "launchUrl": "https://www.geogebra.org/classic?material=uyt33vct",
+    "hint": "Use “Sequences and Series Visualiser” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

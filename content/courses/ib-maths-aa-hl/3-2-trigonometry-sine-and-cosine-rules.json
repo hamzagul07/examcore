@@ -1,0 +1,183 @@
+{
+  "slug": "3-2-trigonometry-sine-and-cosine-rules",
+  "topicCode": "3.2",
+  "title": "Trigonometry: sine and cosine rules",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson covers the sine and cosine rules for solving non-right-angled triangles. It details their application, including finding sides, angles, and area, with a special focus on the ambiguous case of the sine rule, a key topic for Higher Level students.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Apply the sine rule to find unknown sides and angles in non-right-angled triangles.",
+    "Apply the cosine rule to find unknown sides and angles when the sine rule is not applicable.",
+    "Identify and solve problems involving the ambiguous case of the sine rule (SSA).",
+    "Use the formula Area = 1/2 ab sin(C) to calculate the area of any triangle."
+  ],
+  "simpleExplanation": {
+    "title": "Your Triangle Detective Toolkit",
+    "summary": "The sine and cosine rules are your essential tools for solving any triangle, not just right-angled ones. They create a relationship between sides and angles, allowing you to find missing pieces of information when SOHCAHTOA doesn't apply.",
+    "analogy": "Imagine you're a surveyor trying to measure a triangular plot of land, but there's a lake in the middle. You can measure the lengths of the sides you can walk along and the angles at the corners you can stand at. The sine and cosine rules are your special formulas that let you calculate the length of the inaccessible side or the size of a distant angle without having to physically measure them, acting like a 'mathematical drone' to get the missing data.",
+    "steps": [
+      "Assess the Triangle: Label the sides (a, b, c) opposite their corresponding angles (A, B, C). Identify what you know and what you need to find.",
+      "Choose Your Rule: Use the Sine Rule if you have a side-angle pair (e.g., side 'a' and angle 'A'). Use the Cosine Rule if you know two sides and the included angle (SAS) or all three sides (SSS).",
+      "Apply the Formula: Substitute the known values into the correct formula. Be precise with your algebraic manipulation, especially when solving for an angle.",
+      "Check for Ambiguity: When using the sine rule to find an angle (the SSA case), always check for a second possible solution. If you find angle B, also check if 180° - B is a valid angle for the triangle."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the sine rule for finding sides?",
+      "back": "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$"
+    },
+    {
+      "front": "What is the sine rule for finding angles?",
+      "back": "$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$. This form is more convenient as the unknown is in the numerator."
+    },
+    {
+      "front": "When should you use the sine rule?",
+      "back": "When you are given a side and its opposite angle (a 'known pair'), along with one other piece of information (another side or angle). This covers AAS and ASA cases."
+    },
+    {
+      "front": "What is the cosine rule for finding a side?",
+      "back": "$c^2 = a^2 + b^2 - 2ab \\cos C$. Note the side you're finding ($c$) corresponds to the angle you're using ($C$)."
+    },
+    {
+      "front": "What is the cosine rule for finding an angle?",
+      "back": "$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$. The side being subtracted in the numerator ($c^2$) is opposite the angle you are finding ($C$)."
+    },
+    {
+      "front": "When should you use the cosine rule?",
+      "back": "When you are given either two sides and the included angle (SAS) or all three sides (SSS)."
+    },
+    {
+      "front": "What is the 'ambiguous case' of the sine rule?",
+      "back": "When given two sides and a non-included angle (SSA), there may be zero, one, or two possible triangles that can be formed. This is because $\\sin \\theta = \\sin(180^\\circ - \\theta)$."
+    },
+    {
+      "front": "How do you check for the ambiguous case?",
+      "back": "When using the sine rule to find angle B, calculate $B_1 = \\arcsin(k)$. The second potential angle is $B_2 = 180^\\circ - B_1$. Check if $A + B_2 < 180^\\circ$. If it is, two triangles are possible."
+    },
+    {
+      "front": "What is the formula for the area of a non-right-angled triangle?",
+      "back": "Area $= \\frac{1}{2}ab \\sin C$. You need two sides and the angle included between them."
+    },
+    {
+      "front": "Common Paper 1 Trap?",
+      "back": "Forgetting that questions may involve exact trigonometric values for $30^\\circ, 45^\\circ, 60^\\circ$. You must know these values, e.g., $\\sin(60^\\circ) = \\frac{\\sqrt{3}}{2}$."
+    },
+    {
+      "front": "What is a good way to check your answer?",
+      "back": "In any triangle, the largest side is opposite the largest angle, and the smallest side is opposite the smallest angle. If your answer violates this, you've made a mistake."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I decide whether to use the sine rule or the cosine rule?",
+      "a": "It's a process of elimination based on the information given. First, check if you have a 'known pair' (a side and its opposite angle). If yes, use the sine rule. If no, you almost certainly need the cosine rule. The cosine rule covers the two main scenarios where you don't have a known pair: two sides and the included angle (SAS), or all three sides (SSS)."
+    },
+    {
+      "q": "Is the ambiguous case only for the sine rule?",
+      "a": "Yes, the ambiguous case only arises with the sine rule when you are given two sides and a non-included angle (SSA) and are trying to find another angle. The cosine rule does not have an ambiguous case because the inverse cosine function, $\\arccos(x)$, gives a unique angle between $0^\\circ$ and $180^\\circ$."
+    },
+    {
+      "q": "What if a Paper 1 question gives me an angle like 15°?",
+      "a": "While you don't need to memorise $\\sin(15^\\circ)$, the question will be structured so you can derive it, often using compound angle formulas (e.g., $15^\\circ = 45^\\circ - 30^\\circ$) or by constructing a specific geometric shape. The sine and cosine rules themselves might be part of a larger, multi-step problem."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the essential toolkit for solving any triangle. While SOHCAHTOA is a powerful tool for right-angled triangles, most triangles in the world aren't so cooperative. The sine and cosine rules are generalisations that work for any triangle, allowing us to deduce unknown side lengths and angles from partial information. Mastering these is fundamental for many areas of mathematics, from geometry to vectors and complex numbers."
+    },
+    {
+      "type": "heading",
+      "content": "The Cosine Rule: For SAS and SSS"
+    },
+    {
+      "type": "text",
+      "content": "The cosine rule is your go-to formula when you don't have a known side-angle pair. It's a generalised version of Pythagoras' theorem that works for all triangles. You use it in two main scenarios: when you know two sides and the angle between them (Side-Angle-Side, SAS) and want to find the third side, or when you know all three sides (Side-Side-Side, SSS) and want to find an angle."
+    },
+    {
+      "type": "formula",
+      "content": "To find a side: $a^2 = b^2 + c^2 - 2bc \\cos A$\n\nTo find an angle (rearranged form): $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "In triangle $XYZ$, $x = 8$ cm, $y = 11$ cm, and angle $Z = 60^\\circ$. Find the length of side $z$ and the area of the triangle.",
+      "solution": "We are given two sides and the included angle (SAS), so we use the cosine rule to find side $z$.\n\n[M1] Using the cosine rule $z^2 = x^2 + y^2 - 2xy \\cos Z$.\n$z^2 = 8^2 + 11^2 - 2(8)(11)\\cos(60^\\circ)$\n\n[A1] We know from exact values that $\\cos(60^\\circ) = \\frac{1}{2}$.\n$z^2 = 64 + 121 - 176(\\frac{1}{2})$\n$z^2 = 185 - 88$\n$z^2 = 97$\n\n[A1] $z = \\sqrt{97}$ cm. (It's a prime number, so we leave it as a surd for an exact answer).\n\nTo find the area, we use the formula Area $= \\frac{1}{2}xy \\sin Z$.\n\n[M1] Area $= \\frac{1}{2}(8)(11)\\sin(60^\\circ)$\n\n[A1] We know from exact values that $\\sin(60^\\circ) = \\frac{\\sqrt{3}}{2}$.\nArea $= \\frac{1}{2}(88)(\\frac{\\sqrt{3}}{2})$\nArea $= 44(\\frac{\\sqrt{3}}{2})$\n\n[A1] Area $= 22\\sqrt{3}$ cm$^2$."
+    },
+    {
+      "type": "heading",
+      "content": "The Sine Rule: For AAS and ASA"
+    },
+    {
+      "type": "text",
+      "content": "The sine rule establishes a ratio between the sine of an angle and the length of its opposite side. This ratio is constant for all three angle-side pairs in a given triangle. This rule is used when you have a 'known pair' – an angle and its opposite side. It's perfect for situations where you know two angles and any side (AAS), or two angles and the included side (ASA), because you can always find the third angle as angles in a triangle sum to $180^\\circ$."
+    },
+    {
+      "type": "formula",
+      "content": "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$"
+    },
+    {
+      "type": "heading",
+      "content": "The Ambiguous Case (SSA)"
+    },
+    {
+      "type": "text",
+      "content": "This is a crucial and often-tested Higher Level concept. When you are given two sides and a non-included angle (SSA), the sine rule can lead to two possible solutions for a missing angle. This happens because $\\sin \\theta$ is positive for both acute angles ($\\{theta}$) and obtuse angles ($180^\\circ - \\theta$). You must always check if this second potential angle is valid by ensuring it doesn't make the total angles in the triangle exceed $180^\\circ$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Given sides $a, b$ and angle $A$. You use the sine rule to find angle $B$.",
+        "Calculate $\\sin B = \\frac{b \\sin A}{a}$.",
+        "If $\\frac{b \\sin A}{a} > 1$, there is no solution (no triangle exists).",
+        "If $\\frac{b \\sin A}{a} = 1$, there is one solution (a right-angled triangle).",
+        "If $\\frac{b \\sin A}{a} < 1$, there might be two solutions. Find $B_1 = \\arcsin(\\frac{b \\sin A}{a})$. The second potential angle is $B_2 = 180^\\circ - B_1$.",
+        "Check validity: If $A + B_2 < 180^\\circ$, then two distinct triangles are possible."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "In triangle $ABC$, side $a = 5\\sqrt{2}$ cm, side $b = 10$ cm, and angle $A = 30^\\circ$. Find all possible values for angle $B$.",
+      "solution": "We are given two sides and a non-included angle (SSA), so we must be alert for the ambiguous case. We use the sine rule to find angle $B$.\n\n[M1] Using the sine rule $\\frac{\\sin B}{b} = \\frac{\\sin A}{a}$.\n$\\frac{\\sin B}{10} = \\frac{\\sin 30^\\circ}{5\\sqrt{2}}$\n\n[A1] We know $\\sin 30^\\circ = \\frac{1}{2}$.\n$\\sin B = \\frac{10 \\times \\frac{1}{2}}{5\\sqrt{2}} = \\frac{5}{5\\sqrt{2}} = \\frac{1}{\\sqrt{2}}$\n\n[A1] $\\sin B = \\frac{\\sqrt{2}}{2}$.\n\nThe principal value for $B$ is $B_1 = \\arcsin(\\frac{\\sqrt{2}}{2}) = 45^\\circ$.\n\n[M1] Now we check for the second possible solution, $B_2 = 180^\\circ - B_1$.\n$B_2 = 180^\\circ - 45^\\circ = 135^\\circ$.\n\n[R1] We must check if this second angle is valid. We check if $A + B_2 < 180^\\circ$.\n$30^\\circ + 135^\\circ = 165^\\circ$. Since $165^\\circ < 180^\\circ$, this is a valid solution.\n\n[A1] Therefore, two possible values for angle B exist: $B = 45^\\circ$ or $B = 135^\\circ$."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will not have a calculator. This means any trigonometry question will use 'special' angles ($0^\\circ, 30^\\circ, 45^\\circ, 60^\\circ, 90^\\circ$ and their multiples) for which you must know the exact sin, cos, and tan values. Practice recalling these values quickly and accurately. Often, a complex-looking problem simplifies nicely if you use the correct exact value."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Sine & Cosine Rules",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Ambiguous Case of Sine Law",
+          "href": "https://www.geogebra.org/m/C3t5pYjP"
+        },
+        {
+          "label": "Video tutorial on Sine and Cosine Rules",
+          "href": "https://www.youtube.com/watch?v=e3A4p2-d6xY"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Ambiguous Case of Sine Law",
+    "embedUrl": "https://www.geogebra.org/classic?material=C3t5pYjP",
+    "launchUrl": "https://www.geogebra.org/classic?material=C3t5pYjP",
+    "hint": "Use “Ambiguous Case of Sine Law” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

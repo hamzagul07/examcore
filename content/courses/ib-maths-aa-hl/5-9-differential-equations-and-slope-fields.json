@@ -1,0 +1,181 @@
+{
+  "slug": "5-9-differential-equations-and-slope-fields",
+  "topicCode": "5.9",
+  "title": "Differential equations and slope fields",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces differential equations and their graphical representation through slope fields. You will learn how to sketch and interpret slope fields, and master the technique of separation ofvariables to find both general and particular solutions to first-order differential equations.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the concept of a differential equation and its connection to rates of change.",
+    "Sketch and interpret a slope field for a given first-order differential equation.",
+    "Solve separable first-order differential equations to find a general solution.",
+    "Use an initial condition to find a particular solution to a differential equation."
+  ],
+  "simpleExplanation": {
+    "title": "Mapping the Flow of Change",
+    "summary": "A differential equation tells you the gradient of a function at any point. A slope field is a visual map of these gradients, showing the 'flow' of all possible solution curves.",
+    "analogy": "Imagine you're in a large field, and at every single point, there's a small arrow on the ground pointing in a certain direction. A differential equation is the rule that determines the direction of these arrows. A slope field is the entire field of arrows. A solution curve is the path you would walk if you started at one point and always followed the direction of the arrows.",
+    "steps": [
+      "Start with a differential equation, like $\\frac{dy}{dx} = f(x, y)$. This gives the gradient of the solution curve at any point $(x, y)$.",
+      "Choose a grid of points in the $xy$-plane. At each point, substitute the coordinates into the equation to find the value of the gradient.",
+      "At each grid point, draw a short line segment with the calculated gradient. A positive gradient slopes up, a negative gradient slopes down, and a zero gradient is horizontal.",
+      "To find a particular solution, start at a given initial point and sketch a curve that 'flows' with the slope field, staying tangent to the line segments."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a differential equation?",
+      "back": "An equation that contains a function and one or more of its derivatives. For example, $\\frac{dy}{dx} = 2y - x$."
+    },
+    {
+      "front": "What is a slope field (or direction field)?",
+      "back": "A graphical representation of the solutions to a first-order differential equation. It consists of short line segments at various points in the plane, where the slope of each segment is given by the differential equation."
+    },
+    {
+      "front": "What is a general solution to a differential equation?",
+      "back": "A family of functions that solves the differential equation, containing an arbitrary constant of integration, usually denoted by $C$. For example, $y = x^2 + C$."
+    },
+    {
+      "front": "What is a particular solution to a differential equation?",
+      "back": "A single solution from the family of general solutions, obtained by using an initial condition to determine the value of the constant of integration $C$."
+    },
+    {
+      "front": "What is an initial condition?",
+      "back": "A point $(x_0, y_0)$ that a solution curve must pass through. It is used to find a particular solution."
+    },
+    {
+      "front": "How do you find the gradient at a point $(a, b)$ for a slope field of $\\frac{dy}{dx} = f(x, y)$?",
+      "back": "Substitute $x=a$ and $y=b$ into the expression for $\\frac{dy}{dx}$. The result, $f(a, b)$, is the gradient of the line segment at that point."
+    },
+    {
+      "front": "What does a horizontal line segment on a slope field indicate?",
+      "back": "It indicates that the gradient $\\frac{dy}{dx}$ is zero at that point."
+    },
+    {
+      "front": "What does it mean if line segments in a slope field appear vertical?",
+      "back": "It indicates that the gradient $\\frac{dy}{dx}$ is undefined at those points, often due to division by zero in the differential equation (e.g., for $\\frac{dy}{dx} = \\frac{x}{y}$, gradients are vertical where $y=0$ and $x \\neq 0$)."
+    },
+    {
+      "front": "What is the method of 'separation of variables'?",
+      "back": "A technique for solving first-order differential equations of the form $\\frac{dy}{dx} = g(x)h(y)$ by rearranging the equation so that all $y$ terms are on one side and all $x$ terms are on the other, then integrating both sides."
+    },
+    {
+      "front": "Common Trap: What is often forgotten after integrating both sides of a differential equation?",
+      "back": "The constant of integration, $+C$. It must be included on one side immediately after integrating to represent the general solution."
+    },
+    {
+      "front": "Common Trap: When solving for a particular solution, when should you find the value of $C$?",
+      "back": "Substitute the initial condition to find $C$ *after* integrating but *before* making $y$ the subject. This often simplifies the algebra."
+    },
+    {
+      "front": "What is the integral of $\\frac{1}{y}$ with respect to $y$?",
+      "back": "$\\int \\frac{1}{y} dy = \\ln|y| + C$. Forgetting the absolute value is a common error and can lead to incorrect domains for the solution."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the constant of integration, $C$, so important?",
+      "a": "The constant $C$ represents the fact that a single differential equation has an infinite family of solution curves. Each value of $C$ corresponds to a different curve on the slope field. Without it, you would find only one of these infinitely many solutions. An initial condition is what allows you to pinpoint the specific value of $C$ for a particular real-world scenario."
+    },
+    {
+      "q": "Can all differential equations be solved by separating variables?",
+      "a": "No. Separation of variables is a powerful technique, but it only works for first-order differential equations that are 'separable' - meaning they can be written in the form $\\frac{dy}{dx} = g(x)h(y)$. Many differential equations do not fit this form and require more advanced techniques, which are beyond the scope of the AA HL syllabus."
+    },
+    {
+      "q": "In the solution $\\ln|y| = ...$, why can we sometimes drop the absolute value?",
+      "a": "When you exponentiate both sides, you get $|y| = e^{\\text{stuff}}$. This means $y = \\pm e^{\\text{stuff}}$. The $\\pm$ can be absorbed into the arbitrary constant. For example, $y = Ae^{kx}$ where $A$ can be positive or negative. In many modelling problems (like population or volume), the variable must be positive, so we can drop the absolute value and assume a positive constant from the context of the problem."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the fascinating intersection of calculus and geometry. Differential equations are the language of change, describing everything from population growth to radioactive decay. In this lesson, we'll explore how to visualise these equations using slope fields and learn a powerful algebraic technique to solve them, laying the groundwork for modelling real-world phenomena."
+    },
+    {
+      "type": "heading",
+      "content": "What is a Differential Equation?"
+    },
+    {
+      "type": "text",
+      "content": "A differential equation (DE) is an equation that relates an unknown function to its derivatives. You've already encountered simple ones: if you're told $f'(x) = 2x$, that's a differential equation. Its solution is $f(x) = x^2 + C$. In this topic, we focus on first-order differential equations, which involve only the first derivative, $\\frac{dy}{dx}$. These equations can depend on both $x$ and $y$, for example, $\\frac{dy}{dx} = y-x$ or $\\frac{dy}{dx} = \\frac{x^2}{y}$."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Solutions: Slope Fields"
+    },
+    {
+      "type": "text",
+      "content": "Since a differential equation $\\frac{dy}{dx} = f(x, y)$ gives us the gradient of a solution curve at any point $(x, y)$, we can visualise this information without actually solving the equation. A slope field is created by choosing a grid of points in the $xy$-plane and drawing a small line segment at each point that has the gradient specified by the DE. The resulting field of slopes shows the 'flow' of all possible solution curves. By starting at a point (an initial condition) and following the flow, you can sketch a particular solution curve."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To construct a slope field for $\\frac{dy}{dx} = f(x, y)$, select a grid of $(x, y)$ points.",
+        "At each point, calculate the gradient $m = f(x, y)$.",
+        "Draw a short line segment at that point with gradient $m$.",
+        "Look for patterns: Where is the gradient zero (horizontal segments)? Where is it positive or negative? Where is it constant (e.g., along a vertical or horizontal line)?"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the differential equation $\\frac{dy}{dx} = \\frac{x}{2}$.\n\n(a) On a grid for $x \\in \\{-2, -1, 0, 1, 2\\}$ and $y \\in \\{-1, 0, 1\\}$, sketch the slope field.\n\n(b) Sketch the solution curve that passes through the point $(-1, 1)$.",
+      "solution": "(a) The differential equation $\\frac{dy}{dx} = \\frac{x}{2}$ depends only on $x$. This means for a given $x$-value, the gradient is the same for all $y$-values.\n\nCalculate the gradients:\n- At $x=-2$, $\\frac{dy}{dx} = \\frac{-2}{2} = -1$.\n- At $x=-1$, $\\frac{dy}{dx} = \\frac{-1}{2} = -0.5$.\n- At $x=0$, $\\frac{dy}{dx} = \\frac{0}{2} = 0$.\n- At $x=1$, $\\frac{dy}{dx} = \\frac{1}{2} = 0.5$.\n- At $x=2$, $\\frac{dy}{dx} = \\frac{2}{2} = 1$.\n\n(M1) for calculating at least three distinct correct gradients.\n\nNow, draw the line segments on the grid. At all points with $x=0$, the segments are horizontal. At all points with $x=-2$, the segments have a gradient of -1, and so on.\n\n*(A visual representation would show vertical columns of parallel line segments)*\n\n(A1) for a correctly sketched slope field with correct gradients at the specified points.\n\n(b) To sketch the solution curve through $(-1, 1)$, start at this point. The slope field at $x=-1$ has a gradient of $-0.5$. As we move towards $x=0$, the slopes become less steep, flattening to 0 at $x=0$. As we move into positive $x$ values, the slopes become positive and steeper. The curve should be tangent to the slope field lines it passes near. The resulting curve will be a parabola opening upwards.\n\n(A1) for a smooth curve starting at $(-1,1)$ and correctly following the flow of the slope field.\n\n*Note: The general solution is $y = \\frac{x^2}{4} + C$. For $(-1,1)$, $1 = \\frac{(-1)^2}{4} + C \\implies C = \\frac{3}{4}$. The curve is $y = \\frac{x^2}{4} + \\frac{3}{4}$.*"
+    },
+    {
+      "type": "heading",
+      "content": "Solving Differential Equations: Separation of Variables"
+    },
+    {
+      "type": "text",
+      "content": "While slope fields give a qualitative view, we often need an explicit formula for the solution. For a specific class of first-order DEs, called separable equations, we can find this formula. An equation is separable if it can be written in the form $\\frac{dy}{dx} = g(x)h(y)$, where the expression for the derivative is a product of a function of $x$ only and a function of $y$ only. The method involves algebraically separating the variables and then integrating each side of the equation."
+    },
+    {
+      "type": "formula",
+      "content": "If $\\frac{dy}{dx} = g(x)h(y)$, we can separate it as:\n\n$\\frac{1}{h(y)} dy = g(x) dx$\n\nThen, we integrate both sides:\n\n$\\int \\frac{1}{h(y)} dy = \\int g(x) dx$"
+    },
+    {
+      "type": "examTip",
+      "content": "Always add the constant of integration, $+C$, immediately after you perform the indefinite integration. It's best practice to add it to the side with the independent variable (usually $x$). Forgetting the $+C$ will mean you can only find one specific solution, not the general solution, and will lose significant marks."
+    },
+    {
+      "type": "workedExample",
+      "question": "A population of bacteria, $P$, grows at a rate proportional to its current size. This can be modelled by the differential equation $\\frac{dP}{dt} = kP$, where $t$ is time in hours.\n\n(a) Find the general solution for $P$ in terms of $t$ and $k$.\n\n(b) Initially, at $t=0$, the population is 200. After 2 hours, the population is 450. Find the particular solution for $P(t)$.",
+      "solution": "(a) We have the differential equation $\\frac{dP}{dt} = kP$.\n\nSeparate the variables:\n$\\frac{1}{P} dP = k dt$ (M1)\n\nIntegrate both sides:\n$\\int \\frac{1}{P} dP = \\int k dt$\n$\\ln|P| = kt + C$ (A1)(A1) for LHS and RHS with C\n\nSince population $P$ must be positive, we can drop the absolute value: $\\ln(P) = kt + C$.\n\nTo make $P$ the subject, exponentiate both sides:\n$P = e^{kt+C} = e^{kt}e^C$\n\nLet $A = e^C$. Since $C$ is an arbitrary constant, $A$ is an arbitrary positive constant.\n$P(t) = Ae^{kt}$ (A1)\nThis is the general solution.\n\n(b) We are given two conditions: $P(0) = 200$ and $P(2) = 450$.\n\nUse the initial condition $P(0) = 200$:\n$200 = Ae^{k(0)} = Ae^0 = A \\cdot 1$\nSo, $A = 200$. (M1)\n\nThe solution is now $P(t) = 200e^{kt}$.\n\nUse the second condition $P(2) = 450$ to find $k$:\n$450 = 200e^{k(2)}$ (M1)\n$\\frac{450}{200} = e^{2k}$\n$2.25 = e^{2k}$\n\nTake the natural logarithm of both sides:\n$\\ln(2.25) = 2k$\n$k = \\frac{1}{2}\\ln(2.25) = \\ln(\\sqrt{2.25}) = \\ln(1.5)$ (A1)\n\nSo the particular solution is:\n$P(t) = 200e^{t \\ln(1.5)}$ or $P(t) = 200(1.5)^t$. (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.9"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Slope Field Plotter",
+          "href": "https://www.geogebra.org/m/W7dAdgqc"
+        },
+        {
+          "label": "Paul's Online Math Notes - Differential Equations",
+          "href": "https://tutorial.math.lamar.edu/Classes/DE/Intro.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Slope Field Plotter",
+    "embedUrl": "https://www.geogebra.org/classic?material=W7dAdgqc",
+    "launchUrl": "https://www.geogebra.org/classic?material=W7dAdgqc",
+    "hint": "Use “GeoGebra Slope Field Plotter” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

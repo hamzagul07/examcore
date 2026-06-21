@@ -1,0 +1,163 @@
+{
+  "slug": "4-4-discrete-random-variables-and-expected-value",
+  "topicCode": "4.4",
+  "title": "Discrete random variables and expected value",
+  "paper": "P2",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces discrete random variables, which model random processes with a countable number of outcomes. You will learn to construct and analyse probability distributions, and to calculate the expected value (mean), a crucial concept for predicting long-term averages and making decisions under uncertainty.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define a discrete random variable and construct its probability distribution.",
+    "Verify the properties of a probability distribution.",
+    "Calculate and interpret the expected value (mean) of a discrete random variable.",
+    "Apply these concepts to solve problems involving games of chance, insurance, and other real-world scenarios."
+  ],
+  "simpleExplanation": {
+    "title": "Predicting the Average Outcome",
+    "summary": "A discrete random variable takes specific, separate numerical values based on chance. The expected value tells us the long-run average outcome we'd anticipate if we repeated the random experiment countless times.",
+    "analogy": "Imagine a simple carnival game where you spin a wheel to win money. The prizes are £0, £1, £5, and £20, but they aren't equally likely. The random variable is the prize money you win on a single spin. While you can't predict one spin, the 'expected value' is the average amount of money you would expect to win per spin if you played all day. It helps you decide if the game is worth playing.",
+    "steps": [
+      "Identify the discrete random variable, $X$, and list all its possible numerical outcomes, $x$.",
+      "Determine the probability, $P(X=x)$, for each possible outcome. Check that all probabilities are between 0 and 1.",
+      "Organise the outcomes and their probabilities in a probability distribution table. Ensure the sum of all probabilities is exactly 1.",
+      "Calculate the expected value, $E(X)$, by summing the products of each outcome and its corresponding probability."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a discrete random variable?",
+      "back": "A variable, $X$, whose value is a numerical outcome of a random phenomenon, which can only take a countable number of distinct values. For example, the score on a die."
+    },
+    {
+      "front": "What is a probability distribution for a discrete random variable?",
+      "back": "A table, function, or graph that lists all possible values of the random variable and their corresponding probabilities."
+    },
+    {
+      "front": "What are the two essential properties of a discrete probability distribution?",
+      "back": "1. The probability of any value $x$ is $0 \\le P(X=x) \\le 1$. \\n2. The sum of all probabilities is 1: $\\sum P(X=x) = 1$."
+    },
+    {
+      "front": "What is the formula for the expected value of a discrete random variable $X$?",
+      "back": "$E(X) = \\sum x \\cdot P(X=x)$. It is the sum of each outcome multiplied by its probability."
+    },
+    {
+      "front": "What is another name and symbol for the expected value, $E(X)$?",
+      "back": "The mean, denoted by the Greek letter $\\mu$ (mu)."
+    },
+    {
+      "front": "What does the expected value, $E(X)$, represent in a practical sense?",
+      "back": "It represents the long-run average value of the random variable over many repeated trials of the experiment."
+    },
+    {
+      "front": "True or False: The expected value must be one of the possible outcomes of the random variable.",
+      "back": "False. For example, the expected score when rolling a fair six-sided die is 3.5, which is not a possible outcome on a single roll."
+    },
+    {
+      "front": "What does it mean for a game to be 'fair' in the context of expected value?",
+      "back": "A game is considered fair if the expected profit or net winnings are zero. $E(X) = 0$."
+    },
+    {
+      "front": "What is the formula for the expectation of a linear transformation, $E(aX+b)$?",
+      "back": "$E(aX+b) = aE(X) + b$. The expectation of a linear transformation is the linear transformation of the expectation."
+    },
+    {
+      "front": "Common Trap: You are given a probability distribution with a missing probability, $p$. How do you find it?",
+      "back": "Use the property that the sum of all probabilities must be 1. Add up all the known probabilities and subtract from 1 to find the value of $p$."
+    },
+    {
+      "front": "How can you calculate $E(X)$ efficiently on a GDC?",
+      "back": "Enter the outcomes ($x$ values) into List 1 and the probabilities ($P(X=x)$ values) into List 2. Then use the 1-Variable Statistics function, setting List 1 as the 'List' and List 2 as the 'FreqList'. The mean, $\\bar{x}$, shown in the output is your $E(X)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can the expected value be a number that the random variable cannot actually take?",
+      "a": "Yes, absolutely. A classic example is rolling a fair six-sided die. The possible outcomes are {1, 2, 3, 4, 5, 6}, but the expected value is 3.5. This is because the expected value is a long-term average, not a prediction for a single event."
+    },
+    {
+      "q": "What is the difference between a discrete and a continuous random variable again?",
+      "a": "The key difference is countability. A discrete random variable has values you can count, often integers (e.g., number of cars passing a point, number of defective items). There are gaps between the values. A continuous random variable has values you measure, which can take any value in a given range (e.g., height, weight, time). There are no gaps between possible values."
+    },
+    {
+      "q": "How do I use my GDC to calculate expected value?",
+      "a": "The most reliable method is using lists. For a variable $X$ with outcomes $x$ and probabilities $P(X=x)$: \n1. Go to your statistics editor. \n2. Enter all the outcomes ($x$ values) into List 1. \n3. Enter the corresponding probabilities into List 2. \n4. Select the '1-Variable Statistics' calculation. \n5. Set your 'List' to L1 and your 'FreqList' (or 'Frequency') to L2. \n6. Execute the calculation. The mean value displayed, usually as $\\bar{x}$, is the expected value $E(X)$."
+    },
+    {
+      "q": "What if the probabilities are given as a function, like $P(X=x) = x/10$ for $x=1,2,3,4$?",
+      "a": "First, you need to generate the probability distribution table. Calculate $P(X=x)$ for each value of $x$. For this example: $P(X=1)=1/10$, $P(X=2)=2/10$, $P(X=3)=3/10$, $P(X=4)=4/10$. Always check that the probabilities sum to 1: $(1+2+3+4)/10 = 10/10 = 1$. Once you have the table, you can calculate the expected value as usual."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In mathematics, we often seek certainty and precise answers. However, the world is full of uncertainty, from weather forecasts to lottery jackpots. This topic provides the tools to quantify and analyse this uncertainty. We will explore how to model random events with numbers and calculate the 'expected' outcome, a powerful concept that forms the bedrock of insurance, finance, and game theory."
+    },
+    {
+      "type": "heading",
+      "content": "Discrete Random Variables"
+    },
+    {
+      "type": "text",
+      "content": "A **random variable** is a variable whose value depends on the outcome of a random event. We use a capital letter, like $X$, to denote a random variable. A **discrete** random variable is one that can only take on a countable number of specific values. Think of things you can count, not measure. For example, if we flip a coin three times, the number of heads we get, $H$, can be 0, 1, 2, or 3. It cannot be 2.5. This makes $H$ a discrete random variable. In contrast, the height of a student is a continuous variable because it can take any value within a given range."
+    },
+    {
+      "type": "heading",
+      "content": "Probability Distributions"
+    },
+    {
+      "type": "text",
+      "content": "A probability distribution provides a full picture of a discrete random variable. It tells us every possible value the variable can take, along with the probability of each of those values occurring. We can represent this information in a table, as a function (called a probability mass function or p.m.f.), or visually with a bar chart."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "For any probability distribution, two conditions must always be met:",
+        "1. Every individual probability must be between 0 and 1, inclusive: $0 \\le P(X=x) \\le 1$.",
+        "2. The sum of all the probabilities for all possible outcomes must be exactly 1: $\\sum P(X=x) = 1$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A spinner is biased. The random variable $S$ represents the score, and its probability distribution is given in the table below. \n\n| $s$ | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $P(S=s)$ | $0.4$ | $k$ | $2k$ | $0.1$ |\n\n(a) Find the value of $k$. \n(b) State the complete probability distribution for $S$.",
+      "solution": "(a) The sum of probabilities in a probability distribution must be 1. \n\n$P(S=1) + P(S=2) + P(S=3) + P(S=4) = 1$ \n\n$0.4 + k + 2k + 0.1 = 1$  (M1 for setting up the sum to 1)\n\n$0.5 + 3k = 1$ \n\n$3k = 0.5$ \n\n$k = \\frac{0.5}{3} = \\frac{1}{6}$ (A1)\n\n(b) Now substitute $k = 1/6$ back into the table.\n\n$P(S=2) = k = 1/6$ \n\n$P(S=3) = 2k = 2(1/6) = 1/3$ \n\nThe complete probability distribution is: \n\n| $s$ | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|\n| $P(S=s)$ | $0.4$ | $1/6$ | $1/3$ | $0.1$ |\n\n(A1 for correct probabilities. It's good practice to check: $0.4 + 1/6 + 1/3 + 0.1 = 2/5 + 1/6 + 2/6 + 1/10 = 12/30 + 5/30 + 10/30 + 3/30 = 30/30 = 1$)"
+    },
+    {
+      "type": "heading",
+      "content": "Expected Value: The Long-Run Average"
+    },
+    {
+      "type": "text",
+      "content": "The expected value, denoted $E(X)$ or $\\mu$, is the single most important value describing a random variable. It's not what we 'expect' to happen on the next trial, but rather the theoretical mean outcome if the experiment were repeated an infinite number of times. For instance, if you play a game with an expected winning of £2, you might lose on the next go, but if you played thousands of times, you'd expect your average winnings per game to be very close to £2."
+    },
+    {
+      "type": "formula",
+      "content": "E(X) = \\mu = \\sum_{i=1}^{n} x_i P(X=x_i) = x_1 P(X=x_1) + x_2 P(X=x_2) + \\dots + x_n P(X=x_n)"
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 2, you will always have your GDC. For calculating expected value, this is a huge time-saver. Enter the outcomes ($x$ values) into one list (e.g., L1) and the corresponding probabilities into a second list (e.g., L2). Use the 1-Var Stats function, specifying L1 as your data list and L2 as your frequency list. The calculator's mean ($\\bar{x}$) is the expected value $E(X)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "A small business makes a profit of £50,000 in a good year with probability 0.6, and suffers a loss of £20,000 in a bad year with probability 0.4. Let the random variable $P$ be the annual profit in pounds.\n\n(a) Construct the probability distribution table for $P$.\n(b) Calculate the expected annual profit.\n(c) The business owner pays a consultant £1,000 to help improve their chances. This changes the probability of a good year to 0.65. Is the consultant's fee a worthwhile investment based on the change in expected profit?",
+      "solution": "(a) The possible values for the profit $P$ are £50,000 and -£20,000. The probability distribution is:\n\n| Profit, $p$ (£) | 50,000 | -20,000 |\n|---|---|---|\n| $P(P=p)$ | 0.6 | 0.4 |\n\n(A1 for correct table)\n\n(b) We calculate the expected value $E(P)$.\n\n$E(P) = \\sum p \\cdot P(P=p)$ \n\n$E(P) = (50000)(0.6) + (-20000)(0.4)$ (M1 for correct substitution into formula)\n\n$E(P) = 30000 - 8000$ \n\n$E(P) = 22000$ (A1)\n\nThe expected annual profit is £22,000.\n\n(c) First, calculate the new expected profit, let's call it $E(P_{new})$.\nThe probability of a good year is now 0.65, so the probability of a bad year is $1 - 0.65 = 0.35$. (M1 for finding new probability)\n\n$E(P_{new}) = (50000)(0.65) + (-20000)(0.35)$ \n\n$E(P_{new}) = 32500 - 7000 = 25500$ (A1)\n\nThe new expected profit is £25,500. The increase in expected profit is:\n\nIncrease = $E(P_{new}) - E(P) = 25500 - 22000 = £3500$. (M1 for finding the difference)\n\nThe consultant's fee is £1,000. Since the increase in expected profit (£3,500) is greater than the fee (£1,000), it is a worthwhile investment. (R1 for correct comparison and conclusion)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=4.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Questionbank",
+          "href": "/questionbank?subject=ib-maths-aa-hl"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

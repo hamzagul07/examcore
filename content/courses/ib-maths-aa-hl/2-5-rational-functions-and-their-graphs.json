@@ -1,0 +1,183 @@
+{
+  "slug": "2-5-rational-functions-and-their-graphs",
+  "topicCode": "2.5",
+  "title": "Rational functions and their graphs",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores rational functions, which are functions expressed as a ratio of two polynomials. You will learn to identify and analyse their key graphical features, including vertical, horizontal, and oblique asymptotes, as well as axes intercepts. The focus is on developing the skills to sketch accurate graphs of these functions without a calculator, a crucial skill for Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify and determine the equations of vertical, horizontal, and oblique asymptotes of a rational function.",
+    "Calculate the coordinates of x- and y-intercepts.",
+    "Analyse the behaviour of the function near its asymptotes.",
+    "Sketch the graph of a rational function, clearly showing all key features like asymptotes and intercepts."
+  ],
+  "simpleExplanation": {
+    "title": "Graphing the Unreachable",
+    "summary": "Rational functions are essentially fractions made of polynomials. Their graphs often have 'no-go zones' called asymptotes, which are lines the graph gets infinitely close to but never touches or crosses (in the case of vertical asymptotes).",
+    "analogy": "Imagine you're walking along a path representing the function's graph. Ahead of you is a perfectly straight, infinitely long river, a vertical asymptote. You can walk right up to the riverbank, getting closer and closer, but you can never step into the water. As you walk towards the horizon, your path might level out, approaching a specific altitude, like a plane on its final approach to a runway. This runway is a horizontal asymptote; the plane gets closer and closer but only touches down at the very end (infinity).",
+    "steps": [
+      "Find Asymptotes: Locate vertical asymptotes where the denominator is zero. Find horizontal or oblique asymptotes by comparing the degrees of the numerator and denominator.",
+      "Find Intercepts: Calculate the y-intercept by setting x=0. Find the x-intercept(s) by setting the numerator to zero.",
+      "Analyse Behaviour: Test points in the regions created by the vertical asymptotes to see if the function is positive or negative, and how the graph approaches the asymptotes.",
+      "Sketch the Graph: Combine all the information – asymptotes, intercepts, and regional behaviour – to draw a smooth curve, ensuring it passes through the correct points and approaches the asymptotes correctly."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a rational function?",
+      "back": "A function of the form $f(x) = \\frac{P(x)}{Q(x)}$, where $P(x)$ and $Q(x)$ are polynomials and $Q(x) \\neq 0$."
+    },
+    {
+      "front": "How do you find a vertical asymptote of $f(x) = \\frac{P(x)}{Q(x)}$?",
+      "back": "Solve $Q(x) = 0$. If $x=a$ is a solution and $P(a) \\neq 0$, then $x=a$ is a vertical asymptote."
+    },
+    {
+      "front": "How do you find the horizontal asymptote when the degree of the numerator is LESS than the degree of the denominator?",
+      "back": "The horizontal asymptote is the line $y=0$ (the x-axis)."
+    },
+    {
+      "front": "How do you find the horizontal asymptote when the degrees of the numerator and denominator are EQUAL?",
+      "back": "The horizontal asymptote is $y = \\frac{\\text{leading coefficient of numerator}}{\\text{leading coefficient of denominator}}$."
+    },
+    {
+      "front": "When does a rational function have an oblique (slant) asymptote?",
+      "back": "When the degree of the numerator is exactly one more than the degree of the denominator."
+    },
+    {
+      "front": "How do you find the equation of an oblique asymptote?",
+      "back": "Use polynomial long division to divide the numerator by the denominator. The quotient (ignoring the remainder) gives the equation of the oblique asymptote, $y = mx+c$."
+    },
+    {
+      "front": "What is a 'hole' in the graph of a rational function?",
+      "back": "A removable discontinuity that occurs at $x=c$ if $(x-c)$ is a factor of both the numerator and the denominator. The graph looks continuous but has a single point missing."
+    },
+    {
+      "front": "How do you find the x-intercept(s) of a rational function?",
+      "back": "Set the function equal to zero, which means setting the numerator equal to zero and solving for $x$. The intercepts are the points $(x, 0)$."
+    },
+    {
+      "front": "How do you find the y-intercept of a rational function?",
+      "back": "Substitute $x=0$ into the function. The intercept is the point $(0, f(0))$."
+    },
+    {
+      "front": "Can the graph of a rational function cross its horizontal asymptote?",
+      "back": "Yes. A horizontal asymptote describes the end behaviour of the function as $x \\to \\pm\\infty$. The graph can cross it for finite values of $x$."
+    },
+    {
+      "front": "Can the graph of a rational function cross its vertical asymptote?",
+      "back": "No. A vertical asymptote represents a value of $x$ for which the function is undefined. The graph can never touch or cross it."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can a graph cross its horizontal or oblique asymptote?",
+      "a": "Yes, absolutely. A horizontal or oblique asymptote describes the 'end behaviour' of the function as $x$ approaches positive or negative infinity. The graph can intersect the asymptote for finite, 'middle' values of $x$. To find where it crosses, you would set the function equal to the asymptote's equation and solve for $x$."
+    },
+    {
+      "q": "What's the difference between a hole and a vertical asymptote?",
+      "a": "A vertical asymptote at $x=c$ occurs when the denominator of the simplified rational function is zero. The function's value shoots off to $\\pm\\infty$. A hole occurs when a factor $(x-c)$ exists in both the numerator and denominator. When you cancel this factor, the function is no longer undefined at $x=c$, but the original function was. This creates a single missing point, or 'hole', in an otherwise continuous-looking curve."
+    },
+    {
+      "q": "How do I know which side of the asymptote the graph is on?",
+      "a": "The most reliable method is to test points. For a vertical asymptote at $x=a$, pick a value slightly larger than $a$ (like $a+0.1$) and one slightly smaller (like $a-0.1$). Plug them into the function. A large positive result means the graph goes to $+\\infty$; a large negative result means it goes to $-\\infty$. For horizontal/oblique asymptotes, consider the sign of the remainder term from your long division as $x \\to \\pm\\infty$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of rational functions. These functions, formed by the division of two polynomials, appear in various fields of science and engineering to model complex relationships. Understanding their graphs is key to interpreting these models. In this lesson, we'll dissect these functions to reveal their hidden structure, focusing on asymptotes and intercepts to build a complete graphical picture from scratch."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Rational Functions"
+    },
+    {
+      "type": "text",
+      "content": "A rational function is any function which can be written as the ratio of two polynomial functions, $P(x)$ and $Q(x)$. The domain of the function consists of all real numbers except those for which the denominator, $Q(x)$, is zero."
+    },
+    {
+      "type": "formula",
+      "content": "f(x) = \\frac{P(x)}{Q(x)}, \\quad Q(x) \\neq 0"
+    },
+    {
+      "type": "heading",
+      "content": "Finding the Asymptotes: The Invisible Fences"
+    },
+    {
+      "type": "text",
+      "content": "Asymptotes are lines that the graph of a function approaches but, in the case of vertical asymptotes, never touches. They act as guidelines for sketching the curve and are crucial for understanding the function's behaviour. There are three types: vertical, horizontal, and oblique (or slant)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Vertical Asymptotes (VA):** Occur where the denominator is zero (and the numerator is non-zero). If $f(x) = \\frac{P(x)}{Q(x)}$, the line $x=c$ is a VA if $Q(c)=0$ and $P(c) \\neq 0$.",
+        "**Horizontal Asymptotes (HA):** Describe the end behaviour as $x \\to \\pm \\infty$. For $f(x) = \\frac{a_n x^n + \\dots}{b_m x^m + \\dots}$:",
+        "If $n < m$, the HA is $y=0$.",
+        "If $n = m$, the HA is $y = \\frac{a_n}{b_m}$.",
+        "If $n > m$, there is no horizontal asymptote.",
+        "**Oblique Asymptotes (OA):** Exist only when the degree of the numerator is exactly one greater than the degree of the denominator ($n = m+1$). The equation is found using polynomial long division."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the function $f(x) = \\frac{2x-4}{x+3}$. Find any asymptotes, axes intercepts, and sketch the graph, showing these features clearly.",
+      "solution": "1.  **Asymptotes**\n    *   **Vertical Asymptote:** Set the denominator to zero. \n        $x+3 = 0 \\implies x = -3$. The line $x=-3$ is a vertical asymptote. **(M1)(A1)**\n    *   **Horizontal Asymptote:** The degree of the numerator (1) is equal to the degree of the denominator (1). The asymptote is the ratio of the leading coefficients.\n        $y = \\frac{2}{1} = 2$. The line $y=2$ is a horizontal asymptote. **(M1)(A1)**\n\n2.  **Axes Intercepts**\n    *   **y-intercept (set $x=0$):**\n        $f(0) = \\frac{2(0)-4}{0+3} = -\\frac{4}{3}$. The y-intercept is at $(0, -\\frac{4}{3})$. **(A1)**\n    *   **x-intercept (set $f(x)=0$):** This occurs when the numerator is zero.\n        $2x-4 = 0 \\implies 2x = 4 \\implies x = 2$. The x-intercept is at $(2, 0)$. **(A1)**\n\n3.  **Sketch**\n    *   Draw dashed lines for the asymptotes $x=-3$ and $y=2$ and label them.\n    *   Plot the intercepts $(0, -4/3)$ and $(2, 0)$.\n    *   The intercepts are in the bottom-right quadrant formed by the asymptotes. Sketch the hyperbolic branch in this region, approaching the asymptotes.\n    *   For the top-left quadrant, test a point, e.g., $x=-4$. $f(-4) = \\frac{2(-4)-4}{-4+3} = \\frac{-12}{-1} = 12$. This is above the HA ($y=2$), so the other branch is in this region.\n    *   Draw the second branch, approaching the asymptotes. **(A1) for correct shape and position, (A1) for all features labelled.**"
+    },
+    {
+      "type": "examTip",
+      "content": "On an exam, always draw asymptotes as dashed lines and clearly label them with their equations (e.g., $x=3$, $y=1$). This is often worth a specific mark in the markscheme. Also, ensure your curve is clearly shown to be *approaching* the asymptotes, not stopping short or curling away from them."
+    },
+    {
+      "type": "heading",
+      "content": "Advanced Features: Holes and Oblique Asymptotes"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, a rational function might have a 'hole' instead of a vertical asymptote. This happens when a factor like $(x-c)$ can be cancelled from both the numerator and the denominator, creating a 'removable discontinuity'. When the degree of the numerator is exactly one greater than the denominator, the function's end behaviour is not a horizontal line but a slanted one, called an oblique or slant asymptote."
+    },
+    {
+      "type": "formula",
+      "content": "If $f(x) = \\frac{P(x)}{Q(x)}$ where $\\text{deg}(P) = \\text{deg}(Q) + 1$, we perform polynomial division to get $f(x) = (ax+b) + \\frac{R(x)}{Q(x)}$. The oblique asymptote is the line $y=ax+b$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $g(x) = \\frac{x^2 - 3x + 1}{x-1}$. Find the equations of all asymptotes. Hence, sketch the graph of $y=g(x)$.",
+      "solution": "1.  **Asymptotes**\n    *   **Vertical Asymptote:** Set the denominator to zero.\n        $x-1 = 0 \\implies x=1$. The line $x=1$ is a vertical asymptote. **(M1)(A1)**\n    *   **Horizontal Asymptote:** Degree of numerator (2) is greater than degree of denominator (1). Therefore, there is no horizontal asymptote. **(R1)**\n    *   **Oblique Asymptote:** Since deg(num) = deg(den) + 1, an oblique asymptote exists. We perform polynomial long division.\n        ```\n              x   - 2\n            _______\n        x-1 | x^2 - 3x + 1\n            -(x^2 -  x)\n            --------\n                 -2x + 1\n                -(-2x + 2)\n                --------\n                      -1\n        ```\n        So, $g(x) = x-2 - \\frac{1}{x-1}$. **(M1)(A1)**\n        The oblique asymptote is the quotient, $y = x-2$. **(A1)**\n\n2.  **Sketch**\n    *   Draw the vertical asymptote $x=1$ and the oblique asymptote $y=x-2$ as dashed lines.\n    *   Analyse the remainder term, $-\\frac{1}{x-1}$.\n        *   As $x \\to \\infty$, the remainder is a small negative number, so the graph is just *below* the line $y=x-2$.\n        *   As $x \\to -\\infty$, the remainder is a small positive number, so the graph is just *above* the line $y=x-2$.\n    *   Analyse behaviour near the VA $x=1$.\n        *   As $x \\to 1^+$, $g(x) \\approx 1-2 - \\frac{1}{\\text{small +ve}} \\to -\\infty$.\n        *   As $x \\to 1^-$, $g(x) \\approx 1-2 - \\frac{1}{\\text{small -ve}} \\to +\\infty$.\n    *   Sketch the two branches of the curve in the regions defined by the asymptotes, following the behaviour identified. **(A1) for correct shape and position relative to asymptotes.**"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Rational Function Sketching",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Rational Function Grapher",
+          "href": "https://www.geogebra.org/m/W7dAdgY5"
+        },
+        {
+          "label": "Polynomial Long Division Calculator",
+          "href": "https://www.symbolab.com/solver/polynomial-long-division-calculator"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Rational Function Grapher",
+    "embedUrl": "https://www.geogebra.org/classic?material=W7dAdgY5",
+    "launchUrl": "https://www.geogebra.org/classic?material=W7dAdgY5",
+    "hint": "Use “Rational Function Grapher” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

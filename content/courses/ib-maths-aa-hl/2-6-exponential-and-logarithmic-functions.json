@@ -1,0 +1,233 @@
+{
+  "slug": "2-6-exponential-and-logarithmic-functions",
+  "topicCode": "2.6",
+  "title": "Exponential and logarithmic functions",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores the inverse relationship between exponential and logarithmic functions. We will cover their definitions, fundamental properties, graphical representations, and the laws of logarithms, focusing on algebraic manipulation and problem-solving skills essential for Paper 1.",
+  "durationMin": 50,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define and understand the properties of exponential ($y=a^x$) and logarithmic ($y=\\log_a x$) functions.",
+    "Master the laws of logarithms to simplify expressions and solve equations without a calculator.",
+    "Sketch and analyse graphs of exponential and logarithmic functions, including transformations.",
+    "Apply the change of base formula in theoretical contexts."
+  ],
+  "simpleExplanation": {
+    "title": "The Power and the Question",
+    "summary": "Exponential functions show how things grow at an ever-increasing rate. Logarithmic functions are their inverse, designed to answer the question: 'how long does the growth take?'",
+    "analogy": "Think of baking a cake. The recipe says 'bake for 25 minutes at 180°C'. The exponential part is the heat causing the cake to rise over time. The logarithm is like you asking, 'How long do I need to bake it to get this perfect rise?'. It solves for the time (the exponent).",
+    "steps": [
+      "Recognise the exponential form $y = a^x$, where 'a' is the base and 'x' is the exponent or power.",
+      "Convert to the inverse logarithmic form $x = \\log_a y$, which asks 'what power of 'a' gives 'y'?'",
+      "Apply the three core laws of logarithms (product, quotient, power) to manipulate and simplify expressions.",
+      "Solve equations by isolating the logarithmic or exponential term and then switching forms to find the unknown."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the fundamental relationship between exponential and logarithmic functions?",
+      "back": "They are inverse functions. $y = a^x \\iff x = \\log_a y$."
+    },
+    {
+      "front": "What is the value of $\\log_a 1$?",
+      "back": "$\\log_a 1 = 0$, because $a^0 = 1$ for any valid base $a$."
+    },
+    {
+      "front": "What is the value of $\\log_a a$?",
+      "back": "$\\log_a a = 1$, because $a^1 = a$."
+    },
+    {
+      "front": "State the product rule for logarithms.",
+      "back": "$\\log_c (ab) = \\log_c a + \\log_c b$."
+    },
+    {
+      "front": "State the quotient rule for logarithms.",
+      "back": "$\\log_c (a/b) = \\log_c a - \\log_c b$."
+    },
+    {
+      "front": "State the power rule for logarithms.",
+      "back": "$\\log_c (a^p) = p \\log_c a$."
+    },
+    {
+      "front": "What is a common mistake when simplifying $\\log a + \\log b$?",
+      "back": "A common error is to write $\\log(a+b)$. The correct simplification is $\\log(ab)$. Remember, adding logs corresponds to multiplying their arguments."
+    },
+    {
+      "front": "What does $\\ln x$ represent?",
+      "back": "$\\ln x$ is the natural logarithm, which is a logarithm with base $e$. So, $\\ln x \\equiv \\log_e x$."
+    },
+    {
+      "front": "What is the domain and range of $f(x) = \\ln x$?",
+      "back": "Domain: $x > 0$ (or $(0, \\infty)$). Range: $y \\in \\mathbb{R}$ (or $(-\\infty, \\infty)$)."
+    },
+    {
+      "front": "What is the equation of the asymptote for the graph of $y = \\log_a (x-h)$?",
+      "back": "The vertical asymptote is at $x=h$. The argument of the log, $(x-h)$, must be greater than zero."
+    },
+    {
+      "front": "State the change of base formula for logarithms.",
+      "back": "$\\log_b a = \\frac{\\log_c a}{\\log_c b}$ for any new base $c$."
+    },
+    {
+      "front": "Why must the base $a$ of a logarithm be positive and not equal to 1?",
+      "back": "If $a=1$, $1^x=1$ for all $x$, so it's not a one-to-one function and has no unique inverse. If $a \\le 0$, $a^x$ is not defined for many real values of $x$ (e.g., $(-2)^{1/2}$)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why can't the base of a logarithm be 1 or negative?",
+      "a": "If the base $a=1$, then $1^x=1$ for any $x$. This isn't a one-to-one function, so it doesn't have a well-defined inverse. If the base $a$ is negative, say $a=-2$, then expressions like $(-2)^{1/2} = \\sqrt{-2}$ are not real numbers, making the function problematic over the real domain."
+    },
+    {
+      "q": "What's the difference between $\\log x$ and $\\ln x$?",
+      "a": "$\\ln x$ always means the natural logarithm, $\\log_e x$. The meaning of $\\log x$ (with no base written) can be ambiguous. In IB Maths and most scientific contexts, it usually means the common logarithm, $\\log_{10} x$. However, in advanced mathematics and computer science, it can sometimes mean $\\ln x$. The IB will always be clear or use $\\ln$ and $\\log_{10}$ explicitly if needed."
+    },
+    {
+      "q": "How do I remember the log laws?",
+      "a": "Link them to the index laws you already know!\n- $a^m \\times a^n = a^{m+n}$ becomes $\\log(xy) = \\log x + \\log y$ (multiplication becomes addition).\n- $a^m / a^n = a^{m-n}$ becomes $\\log(x/y) = \\log x - \\log y$ (division becomes subtraction).\n- $(a^m)^n = a^{mn}$ is related to the power rule $\\log(x^p) = p\\log x$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "You are already familiar with indices and exponential growth from previous studies. Exponential functions model many real-world phenomena, from population growth to radioactive decay. In this lesson, we introduce the logarithmic function, which is the inverse of the exponential function. Understanding this relationship is key to solving a new class of equations and is a fundamental concept in higher mathematics."
+    },
+    {
+      "type": "heading",
+      "content": "The Exponential Function Revisited"
+    },
+    {
+      "type": "text",
+      "content": "An exponential function is of the form $f(x) = a^x$, where the base $a$ is a positive constant, and $a \\neq 1$. The variable $x$ is in the exponent. The graph of $y=a^x$ always passes through the point $(0, 1)$ because $a^0=1$. It has a horizontal asymptote at $y=0$ (the x-axis) and its domain is all real numbers, while its range is $y>0$."
+    },
+    {
+      "type": "heading",
+      "content": "Defining the Logarithm"
+    },
+    {
+      "type": "text",
+      "content": "For every exponential statement, there is an equivalent logarithmic statement. The logarithm is the inverse operation of exponentiation. The expression $\\log_a y$ asks the question: 'To what power must we raise the base $a$ to get the value $y$?' This 'power' is the answer."
+    },
+    {
+      "type": "formula",
+      "content": "$$y = a^x \\iff x = \\log_a y$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The base of the logarithm, $a$, must be a positive number and not equal to 1 ($a > 0, a \\neq 1$).",
+        "You can only take the logarithm of a positive number, so in $\\log_a y$, we must have $y > 0$.",
+        "The output of a logarithm can be any real number."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "(a) Express $2^5 = 32$ in logarithmic form. \n(b) Find the value of $\\log_4 64$. \n(c) Solve for $x$ in $\\log_x 49 = 2$.",
+      "solution": "(a) Using the definition $y = a^x \\iff x = \\log_a y$, we have base $a=2$, power $x=5$, and result $y=32$. Therefore, the logarithmic form is $\\log_2 32 = 5$. [A1]\n\n(b) We need to find the power to which 4 must be raised to get 64. Let $\\log_4 64 = k$. This means $4^k = 64$. (M1) We know that $4^3 = 4 \\times 4 \\times 4 = 64$. Therefore, $k=3$. So, $\\log_4 64 = 3$. [A1]\n\n(c) The equation is $\\log_x 49 = 2$. Converting to exponential form gives $x^2 = 49$. (M1) Taking the square root gives $x = \\pm 7$. However, the base of a logarithm must be positive ($x>0$). Therefore, $x=7$. [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "The Laws of Logarithms"
+    },
+    {
+      "type": "text",
+      "content": "Just as we have laws of indices to manipulate powers, we have laws of logarithms to manipulate logarithmic expressions. These laws are derived directly from the index laws and are essential for simplifying expressions and solving equations. They only apply when the logarithms have the same base."
+    },
+    {
+      "type": "formula",
+      "content": "$$\\text{Product Rule: } \\log_a (xy) = \\log_a x + \\log_a y$$ $$\\text{Quotient Rule: } \\log_a \\left(\\frac{x}{y}\\right) = \\log_a x - \\log_a y$$ $$\\text{Power Rule: } \\log_a (x^p) = p \\log_a x$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "These rules are given in the formula booklet, but you must know how and when to apply them instantly.",
+        "Remember the special cases: $\\log_a a = 1$ and $\\log_a 1 = 0$.",
+        "A common mistake is to confuse the rules. For example, $\\frac{\\log_a x}{\\log_a y}$ is NOT $\\log_a(x-y)$ or $\\log_a(x/y)$. It cannot be simplified further using the basic laws."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will often be asked to express answers as a single logarithm or solve equations that require you to combine multiple logs into one. Always check your final answer in solving equations, as logarithmic functions have a restricted domain. Solutions that result in taking the log of a non-positive number are invalid."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $\\log_2(x+1) + \\log_2(x-1) = 3$ for $x > 1$.",
+      "solution": "First, use the product rule for logarithms to combine the terms on the left-hand side. \n $\\log_2((x+1)(x-1)) = 3$ [M1] \n This simplifies to $\\log_2(x^2 - 1) = 3$. [A1] \n Now, convert the logarithmic equation into its equivalent exponential form. \n $x^2 - 1 = 2^3$ [M1] \n $x^2 - 1 = 8$ \n $x^2 = 9$ \n $x = \\pm 3$ [A1] \n The question specifies that $x > 1$. Also, the arguments of the original logarithms, $(x+1)$ and $(x-1)$, must be positive. If $x=3$, both are positive. If $x=-3$, both are negative, which is not allowed. \n Therefore, the only valid solution is $x=3$. [R1][AG]"
+    },
+    {
+      "type": "heading",
+      "content": "The Natural Logarithm and Euler's Number"
+    },
+    {
+      "type": "text",
+      "content": "A special base for logarithms and exponentials is the irrational number $e \\approx 2.718$. The function $f(x) = e^x$ is called the natural exponential function, and its inverse, $\\log_e x$, is called the natural logarithm, usually written as $\\ln x$. These functions are 'natural' because they arise frequently and simply in calculus and models of natural processes."
+    },
+    {
+      "type": "formula",
+      "content": "$$\\ln x \\equiv \\log_e x$$"
+    },
+    {
+      "type": "heading",
+      "content": "Graphs of Exponential and Logarithmic Functions"
+    },
+    {
+      "type": "text",
+      "content": "The graphs of $y=a^x$ and $y=\\log_a x$ are reflections of each other in the line $y=x$, which is a property of inverse functions. For $y=a^x$ (with $a>1$), the graph increases, passes through $(0,1)$, and has a horizontal asymptote at $y=0$. For its inverse $y=\\log_a x$, the graph increases, passes through $(1,0)$, and has a vertical asymptote at $x=0$."
+    },
+    {
+      "type": "examTip",
+      "content": "When sketching transformed graphs like $y = k \\ln(x-h) + v$, start with the basic shape of $y=\\ln x$. Then apply the transformations in order: horizontal shift to find the new asymptote $x=h$, then any stretches/reflections, and finally the vertical shift. Always label the asymptote and any axis intercepts."
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the function $f(x) = 2\\ln(x-3)$. \n(a) State the domain of $f$. \n(b) Find the coordinates of the x-intercept. \n(c) State the equation of the vertical asymptote. \n(d) Sketch the graph of $y=f(x)$.",
+      "solution": "(a) For the logarithm to be defined, the argument must be positive. \n $x-3 > 0 \\implies x > 3$. \n The domain is $\\{x \\in \\mathbb{R} | x > 3\\}$ or $(3, \\infty)$. [A1]\n\n(b) The x-intercept occurs when $y=f(x)=0$. \n $2\\ln(x-3) = 0$ \n $\\ln(x-3) = 0$ [M1] \n Convert to exponential form (base e). \n $x-3 = e^0$ \n $x-3 = 1$ \n $x = 4$. \n The x-intercept is at $(4, 0)$. [A1]\n\n(c) The vertical asymptote occurs where the argument of the logarithm is zero. \n $x-3 = 0 \\implies x=3$. \n The equation of the vertical asymptote is $x=3$. [A1]\n\n(d) To sketch the graph, we need the key features: \n - Vertical asymptote at $x=3$. \n - x-intercept at $(4,0)$. \n - The graph has the general shape of $y=\\ln x$ but is stretched vertically by a factor of 2. It passes through $(4,0)$ and approaches the asymptote $x=3$ from the right. \n [A1] for correct shape (increasing, concave down). \n [A1] for asymptote correctly drawn and labelled. \n [A1] for intercept correctly marked. (A sketch would be drawn here showing these features)."
+    },
+    {
+      "type": "heading",
+      "content": "The Change of Base Formula"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes you need to evaluate a logarithm with a base that is not convenient, or you need to relate logarithms with different bases. The change of base formula allows you to convert a logarithm from one base to another. While its main use is for calculators (which typically only have $\\log_{10}$ and $\\ln$), it is a required algebraic tool for Paper 1. A common application is to change to base 10 or base $e$. For example, $\\log_2 7 = \\frac{\\ln 7}{\\ln 2}$. In Paper 1, you might see it used to solve an equation like $\\log_2 x = \\log_4 16$. Here, you could calculate $\\log_4 16 = 2$, so $\\log_2 x = 2$, which gives $x=4$. Alternatively, you could change the base: $\\log_2 x = \\frac{\\log_2 16}{\\log_2 4} = \\frac{4}{2} = 2$, leading to the same result."
+    },
+    {
+      "type": "formula",
+      "content": "$$\\log_b a = \\frac{\\log_c a}{\\log_c b}$$"
+    },
+    {
+      "type": "practice",
+      "label": "Exponential and Logarithmic Functions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Graphs of Logarithmic Functions",
+          "href": "https://www.geogebra.org/m/y7btr3t7"
+        },
+        {
+          "label": "Paul's Online Math Notes - Logarithm Functions",
+          "href": "https://tutorial.math.lamar.edu/classes/alg/logfunctions.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Graphs of Logarithmic Functions",
+    "embedUrl": "https://www.geogebra.org/classic?material=y7btr3t7",
+    "launchUrl": "https://www.geogebra.org/classic?material=y7btr3t7",
+    "hint": "Use “Graphs of Logarithmic Functions” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

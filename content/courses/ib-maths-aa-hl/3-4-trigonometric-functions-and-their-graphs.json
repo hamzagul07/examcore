@@ -1,0 +1,176 @@
+{
+  "slug": "3-4-trigonometric-functions-and-their-graphs",
+  "topicCode": "3.4",
+  "title": "Trigonometric functions and their graphs",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores the graphs of sine, cosine, and tangent functions. It covers transformations including changes in amplitude, period, phase shift, and vertical translation, and teaches how to sketch these graphs and determine their equations from given information. This is a key skill for modelling periodic phenomena and is frequently tested in Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Sketch graphs of the form y = a sin(b(x-c)) + d, and the equivalent for cosine and tangent.",
+    "Identify the amplitude, period, phase shift, and principal axis from a trigonometric function's equation or graph.",
+    "Understand the properties of the tangent graph, including its period and the location of its asymptotes.",
+    "Determine the equation of a trigonometric function from its graph."
+  ],
+  "simpleExplanation": {
+    "title": "Riding the Trigonometric Wave",
+    "summary": "Trigonometric functions create repeating wave-like patterns, essential for modelling cyclical events. We'll learn to manipulate these waves by stretching, squashing, and shifting them, just like adjusting the controls on a wave machine.",
+    "analogy": "Imagine a Ferris wheel. Your height above the ground follows a predictable, repeating cycle as the wheel turns. This cycle can be perfectly described by a sine or cosine graph. The wheel's radius is the 'amplitude', the time for one full rotation is the 'period', the point where you got on the ride determines the 'phase shift', and the height of the wheel's centre off the ground is the 'vertical shift' or 'principal axis'.",
+    "steps": [
+      "Identify the base function: Start by recognising the fundamental shape of y=sin(x), y=cos(x), or y=tan(x).",
+      "Determine key parameters: From y = a f(b(x-c)) + d, find the amplitude |a|, period (2π/|b| or π/|b|), horizontal shift c, and vertical shift d.",
+      "Sketch the transformed graph: Apply transformations in order: horizontal shift, period change, amplitude change, and vertical shift. Mark key points like maxima, minima, and intercepts.",
+      "Check domain and range: Ensure your sketch is confined to the specified domain and correctly reflects the new range, which for sin/cos is [d-|a|, d+|a|]."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the period of the function $y = \\sin(x)$?",
+      "back": "The period is $2\\pi$ radians. The graph completes one full cycle over this interval."
+    },
+    {
+      "front": "What is the period of the function $y = \\tan(x)$?",
+      "back": "The period is $\\pi$ radians. It's half the period of sine and cosine."
+    },
+    {
+      "front": "In the function $y = a \\cos(b(x-c)) + d$, what does the parameter '$a$' represent?",
+      "back": "The parameter '$a$' determines the amplitude, which is $|a|$. It represents a vertical stretch or compression."
+    },
+    {
+      "front": "How do you calculate the period of $y = \\sin(bx)$?",
+      "back": "The period is calculated as $\\frac{2\\pi}{|b|}$. Remember the modulus for $b$!"
+    },
+    {
+      "front": "How do you calculate the period of $y = \\tan(bx)$?",
+      "back": "The period is calculated as $\\frac{\\pi}{|b|}$."
+    },
+    {
+      "front": "What is the effect of '$c$' in $y = \\sin(x-c)$?",
+      "back": "It causes a horizontal translation (phase shift) of $c$ units. If $c>0$, the shift is to the right. If $c<0$, the shift is to the left."
+    },
+    {
+      "front": "What is the equation of the principal axis for $y = a \\cos(x) + d$?",
+      "back": "The principal axis is the horizontal line $y=d$. It's the midline of the oscillation."
+    },
+    {
+      "front": "What is the range of the function $y = 5\\cos(x) - 2$?",
+      "back": "The range is $[d-|a|, d+|a|]$. Here, $d=-2$ and $a=5$. So the range is $[-2-5, -2+5]$, which is $[-7, 3]$."
+    },
+    {
+      "front": "Where are the vertical asymptotes of the basic tangent function, $y = \\tan(x)$?",
+      "back": "The asymptotes occur where $\\cos(x)=0$. This is at $x = \\frac{\\pi}{2} + k\\pi$, where $k$ is any integer."
+    },
+    {
+      "front": "What is a common mistake when determining the phase shift from an equation like $y = \\sin(2x + \\pi)$?",
+      "back": "The phase shift is not $-\\pi$. You must first factor out the 'b' term: $y = \\sin(2(x + \\frac{pi}{2}))$. The phase shift is $-\\frac{\\pi}{2}$, or $\\frac{pi}{2}$ to the left."
+    },
+    {
+      "front": "What is the relationship between the graphs of $y=\\sin(x)$ and $y=\\cos(x)$?",
+      "back": "The graph of $y=\\cos(x)$ is a horizontal translation of the graph of $y=\\sin(x)$. Specifically, $\\cos(x) = \\sin(x + \\frac{\\pi}{2})$."
+    },
+    {
+      "front": "Does the function $y=\\tan(x)$ have an amplitude?",
+      "back": "No. Amplitude is defined as half the distance between the maximum and minimum values. Since the range of tangent is $(-\\infty, \\infty)$, it has no maximum or minimum, and thus no amplitude."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know whether to use a sine or cosine function when finding an equation from a graph?",
+      "a": "You can often use either, as a cosine graph is just a phase-shifted sine graph ($\"\\cos(x) = \\sin(x + \\frac{\\pi}{2})$\"). The choice depends on which is simpler. If a maximum or minimum point lies on the y-axis, using a cosine function is easiest as the phase shift, $c$, will be zero. If the graph passes through its principal axis on the y-axis, a sine function is the simplest choice (again, $c=0$). If neither is true, you will need a phase shift regardless, and you can choose either function."
+    },
+    {
+      "q": "What's the difference between phase shift and horizontal shift?",
+      "a": "They mean the same thing in this context. 'Phase shift' is the term more commonly used in physics and engineering when dealing with wave functions, and it has been adopted in mathematics for trigonometric graphs. It refers to the horizontal translation of the graph from its 'standard' position."
+    },
+    {
+      "q": "How do I find the asymptotes of a transformed tangent function, like $y = \\tan(2x - \\pi)$?",
+      "a": "The asymptotes of the basic function $y=\\tan(\\theta)$ occur when $\\theta = \\frac{\\pi}{2} + k\\pi$ for any integer $k$. For your transformed function, the angle is $\\theta = 2x - \\pi$. So, set $2x - \\pi = \\frac{\\pi}{2} + k\\pi$. Now, solve for $x$: \n$2x = \\frac{\\pi}{2} + \\pi + k\\pi = \\frac{3\\pi}{2} + k\\pi$. \n$x = \\frac{3\\pi}{4} + \\frac{k\\pi}{2}$. These are the equations of your vertical asymptotes."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of trigonometric functions and their graphs. These functions are fundamental not only in mathematics but also in the real world, providing mathematical models for countless periodic phenomena, from sound waves and light waves to alternating current and the orbits of planets. In this lesson, we will dissect the graphs of sine, cosine, and tangent, and master the art of transforming them. A solid understanding of these graphs is crucial for Paper 1, where you'll be expected to sketch and analyse them without a calculator."
+    },
+    {
+      "type": "heading",
+      "content": "The Basic Trigonometric Graphs"
+    },
+    {
+      "type": "text",
+      "content": "Before we can transform these graphs, we must be intimately familiar with their basic forms. The functions $y=\\sin(x)$ and $y=\\cos(x)$ are periodic with a period of $2\\pi$, meaning their shape repeats every $2\\pi$ units along the x-axis. Their range is $[-1, 1]$. The function $y=\\tan(x)$ is different; it has a period of $\\pi$ and its range is all real numbers, $(-\\infty, \\infty)$. It features vertical asymptotes wherever its value is undefined."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Sine ($y=\\sin(x)$):** Starts at $(0,0)$, reaches a maximum of 1 at $x=\\frac{\\pi}{2}$, passes through $(\\pi,0)$, reaches a minimum of -1 at $x=\\frac{3\\pi}{2}$, and returns to $(2\\pi,0)$.",
+        "**Cosine ($y=\\cos(x)$):** Starts at a maximum $(0,1)$, passes through $(\\frac{\\pi}{2},0)$, reaches a minimum of -1 at $x=\\pi$, passes through $(\\frac{3\\pi}{2},0)$, and returns to a maximum at $(2\\pi,1)$.",
+        "**Tangent ($y=\\tan(x)$):** Passes through $(0,0)$, increases towards infinity as $x$ approaches $\\frac{\\pi}{2}$ (asymptote), and repeats this pattern every $\\pi$ units. Asymptotes are at $x = \\frac{\\pi}{2} + k\\pi$ for any integer $k$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Transformations of Sine and Cosine Graphs"
+    },
+    {
+      "type": "text",
+      "content": "We can transform the basic sine and cosine graphs using four parameters: $a, b, c,$ and $d$. Understanding the role of each is key to sketching and interpreting these functions. The general form we use is:"
+    },
+    {
+      "type": "formula",
+      "content": "y = a \\sin(b(x-c)) + d \\quad \\text{or} \\quad y = a \\cos(b(x-c)) + d"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Amplitude ($|a|$):** This is the vertical stretch. The amplitude is the distance from the principal axis to a maximum or minimum point. The range becomes $[d-|a|, d+|a|]$.",
+        "**Period ($\\frac{2\\pi}{|b|}$):** This is the horizontal compression or stretch. It's the length of one full cycle. If $b>1$, the graph is compressed; if $0<b<1$, it's stretched.",
+        "**Phase Shift ($c$):** This is the horizontal translation. A positive $c$ in $(x-c)$ shifts the graph $c$ units to the right.",
+        "**Vertical Shift ($d$):** This is the vertical translation. The entire graph is shifted up or down by $d$ units. The line $y=d$ becomes the new horizontal midline, called the principal axis."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the function $f(x) = 3\\cos(2(x - \\frac{\\pi}{4})) + 1$. \n(a) State the amplitude, period, and the equation of the principal axis. \n(b) Sketch the graph of $y=f(x)$ for $0 \\le x \\le \\pi$.",
+      "solution": "(a) We compare $f(x) = 3\\cos(2(x - \\frac{pi}{4})) + 1$ with the general form $y = a\\cos(b(x-c)) + d$.\nAmplitude is $|a| = |3| = 3$. **(A1)**\nPeriod is $\\frac{2\\pi}{|b|} = \\frac{2\\pi}{2} = \\pi$. **(A1)**\nPrincipal axis is the line $y=d$, so $y=1$. **(A1)**\n\n(b) To sketch the graph, we apply the transformations:\n1.  **Base graph:** $y=\\cos(x)$. Max at $(0,1)$, min at $(\\pi, -1)$.\n2.  **Period change:** $y=\\cos(2x)$. Period becomes $\\pi$. Max at $(0,1)$, min at $(\\frac{\\pi}{2}, -1)$.\n3.  **Phase shift:** $y=\\cos(2(x - \\frac{pi}{4}))$. Shift right by $\\frac{pi}{4}$. Max moves to $(\\frac{pi}{4}, 1)$, min moves to $(\\frac{pi}{2}+\\frac{pi}{4}, -1) = (\\frac{3\\pi}{4}, -1)$.\n4.  **Amplitude and vertical shift:** $y = 3\\cos(2(x - \\frac{pi}{4})) + 1$. Amplitude is 3, principal axis is $y=1$. The range is $[1-3, 1+3] = [-2, 4]$.\n    The maximum point $(\\frac{pi}{4}, 1)$ becomes $(\\frac{pi}{4}, 3(1)+1) = (\\frac{pi}{4}, 4)$.\n    The minimum point $(\\frac{3\\pi}{4}, -1)$ becomes $(\\frac{3\\pi}{4}, 3(-1)+1) = (\\frac{3\\pi}{4}, -2)$.\n\n**Sketching:**\n- Draw and label axes. Mark the domain $0 \\le x \\le \\pi$.\n- Draw the principal axis $y=1$ as a dashed line.\n- Plot the key points: Max at $(\\frac{pi}{4}, 4)$, Min at $(\\frac{3\\pi}{4}, -2)$.\n- The graph will cross the principal axis halfway between the max and min, at $x = \\frac{\\pi}{4} + \\frac{\\pi}{4} = \\frac{pi}{2}$ and $x = \\frac{3\\pi}{4} + \\frac{pi}{4} = \\pi$. So we have points $(\\frac{pi}{2}, 1)$ and $(\\pi, 1)$.\n- Find the y-intercept by setting $x=0$: $f(0) = 3\\cos(2(-\\frac{pi}{4}))+1 = 3\\cos(-\\frac{pi}{2})+1 = 3(0)+1=1$. The graph starts at $(0,1)$.\n- Connect the points $(0,1)$, $(\\frac{pi}{4}, 4)$, $(\\frac{pi}{2}, 1)$, $(\\frac{3\\pi}{4}, -2)$, and $(\\pi, 1)$ with a smooth cosine curve. **(M1)** for correct shape. **(A1)** for correct max/min points. **(A1)** for correct endpoints $(0,1)$ and $(\\pi,1)$ within the domain."
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, you must show your reasoning clearly. When asked to find the equation from a graph, calculate each parameter ($a, b, d$) step-by-step. For sketching, always label the coordinates of any maximums, minimums, and axis intercepts within the given domain. Drawing the principal axis as a dashed line is a great way to guide your sketch and earn method marks."
+    },
+    {
+      "type": "heading",
+      "content": "Finding the Equation from a Graph"
+    },
+    {
+      "type": "text",
+      "content": "A common exam question provides a graph and asks you to determine its equation. This is the reverse process of sketching. By identifying the key features from the graph, you can systematically find the values of the parameters $a, b, c,$ and $d$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph below represents a function of the form $f(x) = a\\sin(b(x-c)) + d$. A maximum point is at $P(\\frac{\\pi}{3}, 5)$ and a subsequent minimum point is at $Q(\\frac{5\\pi}{6}, 1)$. Find a possible equation for $f(x)$, assuming $a>0$ and $b>0$.",
+      "solution": "1.  **Find the vertical shift, d (Principal Axis):**\nThe principal axis is halfway between the maximum and minimum y-values.\n$d = \\frac{y_{max} + y_{min}}{2} = \\frac{5 + 1}{2} = 3$. So the principal axis is $y=3$. **(M1)(A1)**\n\n2.  **Find the amplitude, a:**\nThe amplitude is the distance from the principal axis to the maximum value.\n$a = y_{max} - d = 5 - 3 = 2$. (Since we assume $a>0$). **(M1)(A1)**\n\n3.  **Find the period and b:**\nThe horizontal distance from a maximum to the next minimum is half a period.\nHalf period = $x_Q - x_P = \\frac{5\\pi}{6} - \\frac{\\pi}{3} = \\frac{5\\pi}{6} - \\frac{2\\pi}{6} = \\frac{3\\pi}{6} = \\frac{\\pi}{2}$. **(M1)**\nFull period = $2 \\times \\frac{pi}{2} = \\pi$.\nWe know Period = $\\frac{2\\pi}{b}$, so $\\pi = \\frac{2\\pi}{b}$.\nThis gives $b\\pi = 2\\pi$, so $b=2$. **(A1)**\n\n4.  **Find the phase shift, c:**\nWe have the form $y = 2\\sin(2(x-c)) + 3$. A standard sine graph starts at the principal axis and goes up. The point on the principal axis before the maximum at $x=\\frac{\\pi}{3}$ is a quarter period to the left.\nQuarter period = $\\frac{\\text{Period}}{4} = \\frac{\\pi}{4}$.\nThe graph passes through $(c,d)$ while increasing. This point is at $x = x_{max} - \\frac{\\text{Period}}{4} = \\frac{pi}{3} - \\frac{pi}{4} = \\frac{4\\pi - 3\\pi}{12} = \\frac{\\pi}{12}$.\nSo, a possible phase shift is $c = \\frac{\\pi}{12}$. **(M1)(A1)**\n\n**Equation:**\nA possible equation is $f(x) = 2\\sin(2(x - \\frac{\\pi}{12})) + 3$. **(A1)**\n*(Note: Other answers are possible, e.g., using a cosine function or a different phase shift.)*"
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding with exam-style questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Interactive Trigonometric Graph Plotter",
+          "href": "https://www.desmos.com/calculator"
+        },
+        {
+          "label": "Khan Academy: Graphing trig functions",
+          "href": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:trig/x2ec2f6f830c9fb89:amp-mid-period/v/midline-amplitude-period"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,195 @@
+{
+  "slug": "5-3-tangents-normals-and-the-second-derivative",
+  "topicCode": "5.3",
+  "title": "Tangents, normals and the second derivative",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores the geometric applications of differentiation. You will learn how to find the equations of tangents and normals to a curve. Furthermore, you will delve into the significance of the second derivative in determining a function's concavity and identifying points of inflexion.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Find the equation of a tangent and a normal to a curve at a given point.",
+    "Understand the concept of concavity and use the second derivative to determine intervals where a function is concave up or concave down.",
+    "Locate and justify the existence of points of inflexion.",
+    "Apply the second derivative test to classify stationary points."
+  ],
+  "simpleExplanation": {
+    "title": "The Geometry of Derivatives",
+    "summary": "The first derivative tells us the slope of a curve at a point, which defines its tangent and normal lines. The second derivative describes how the slope itself is changing, revealing the curve's 'bend' or concavity.",
+    "analogy": "Imagine driving on a winding, hilly road. At any moment, the direction your car is pointing is the tangent. A line pointing straight out to your side, perpendicular to the road, is the normal. If you're in a dip, the road is 'concave up' (like a bowl). If you're on a crest, it's 'concave down' (like a dome). A point of inflexion is that exact spot on the road where it changes from curving one way to the other, like the middle of an 'S' bend.",
+    "steps": [
+      "Differentiate the function $f(x)$ to find the gradient function, $f'(x)$.",
+      "Substitute the given x-coordinate, $x=a$, into $f'(x)$ to find the gradient of the tangent, $m_T = f'(a)$.",
+      "Use the point-gradient formula, $y - f(a) = m(x - a)$, to write the equation for the tangent (using $m=m_T$) or the normal (using $m = -1/m_T$).",
+      "Find the second derivative, $f''(x)$, and set it to zero to find potential points of inflexion. Test the sign of $f''(x)$ on either side to confirm the change in concavity."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a tangent to a curve $y=f(x)$ at a point $P$?",
+      "back": "A straight line that 'just touches' the curve at point $P$. Its gradient is equal to the gradient of the curve at that point."
+    },
+    {
+      "front": "How do you find the gradient of the tangent to $y=f(x)$ at $x=a$?",
+      "back": "Calculate the first derivative, $f'(x)$, and then evaluate it at $x=a$. The gradient is $m_T = f'(a)$."
+    },
+    {
+      "front": "What is a normal to a curve $y=f(x)$ at a point $P$?",
+      "back": "A straight line that is perpendicular to the tangent at the point of contact, $P$."
+    },
+    {
+      "front": "What is the relationship between the gradient of the tangent ($m_T$) and the gradient of the normal ($m_N$)?",
+      "back": "They are negative reciprocals of each other: $m_N = -1/m_T$. Their product is $m_T \\times m_N = -1$ (for non-horizontal/vertical lines)."
+    },
+    {
+      "front": "What does it mean if a curve is 'concave up' on an interval?",
+      "back": "The gradient of the curve is increasing. The curve bends upwards, like a cup (U). This occurs when $f''(x) > 0$."
+    },
+    {
+      "front": "What does it mean if a curve is 'concave down' on an interval?",
+      "back": "The gradient of the curve is decreasing. The curve bends downwards, like a frown (∩). This occurs when $f''(x) < 0$."
+    },
+    {
+      "front": "What is a point of inflexion?",
+      "back": "A point on a curve at which the concavity changes (from up to down, or down to up)."
+    },
+    {
+      "front": "What is a necessary condition for a point of inflexion at $x=c$?",
+      "back": "The second derivative must be zero: $f''(c) = 0$. However, this is not sufficient."
+    },
+    {
+      "front": "Trap: If $f''(c)=0$, is $(c, f(c))$ always a point of inflexion?",
+      "back": "No. You must also show that the sign of $f''(x)$ changes as $x$ passes through $c$. For $f(x)=x^4$, $f''(0)=0$ but it's a minimum, not an inflexion point."
+    },
+    {
+      "front": "How can the second derivative test be used to classify a stationary point at $x=a$ (where $f'(a)=0$)?",
+      "back": "If $f''(a) > 0$, it's a local minimum. If $f''(a) < 0$, it's a local maximum. If $f''(a) = 0$, the test is inconclusive."
+    },
+    {
+      "front": "What is the general form for the equation of a line passing through $(x_1, y_1)$ with gradient $m$?",
+      "back": "The point-gradient form: $y - y_1 = m(x - x_1)$."
+    },
+    {
+      "front": "What is a stationary point of inflexion?",
+      "back": "A point that is both a stationary point ($f'(x)=0$) and a point of inflexion ($f''(x)$ changes sign). Example: $y=x^3$ at $(0,0)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a stationary point and a point of inflexion?",
+      "a": "A stationary point occurs where the gradient is zero, i.e., $f'(x)=0$. It can be a local maximum, local minimum, or a stationary point of inflexion. A point of inflexion is where the concavity of the curve changes, which is identified by a sign change in the second derivative, $f''(x)$. A point can be both, for example $y=x^3$ at $x=0$, where $f'(0)=0$ and $f''(x)$ changes sign."
+    },
+    {
+      "q": "If I find that $f''(a) = 0$, can I immediately conclude that $x=a$ is a point of inflexion?",
+      "a": "No, this is a very common misconception. $f''(a)=0$ is a necessary condition, but it is not sufficient. You must always perform a further test to confirm that the sign of $f''(x)$ changes as $x$ passes through $a$. The classic counterexample is $f(x)=x^4$ at $x=0$. Here, $f''(x)=12x^2$, so $f''(0)=0$. However, $f''(x)$ is positive for all $x \\neq 0$, so there is no change in concavity, and $(0,0)$ is a local minimum, not a point of inflexion."
+    },
+    {
+      "q": "What happens if the tangent is horizontal or vertical?",
+      "a": "If the tangent is horizontal, its gradient is 0. This means $f'(a)=0$, and you have a stationary point. The equation of the tangent is simply $y=f(a)$. The normal will be a vertical line with equation $x=a$. If the tangent is vertical, its gradient is undefined. This happens when the denominator of the derivative is zero, for example in implicitly defined curves. The normal would be a horizontal line."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our study of calculus, we've seen that the derivative gives us the instantaneous rate of change of a function. This lesson moves from the abstract concept of rate of change to its powerful geometric interpretations. We will use the first derivative to construct lines that are fundamental to understanding a curve's local behaviour—tangents and normals. Then, we'll introduce the second derivative to analyse the 'curvature' of a function, allowing us to describe its shape and pinpoint key features like points of inflexion."
+    },
+    {
+      "type": "heading",
+      "content": "Equations of Tangents and Normals"
+    },
+    {
+      "type": "text",
+      "content": "The first derivative, $f'(x)$, provides the gradient of the tangent line to the curve $y=f(x)$ at any point. To find the specific equation of a tangent at a point, say $(a, f(a))$, we first calculate the gradient at that point, $m_T = f'(a)$, and then use the point-gradient formula for a straight line."
+    },
+    {
+      "type": "text",
+      "content": "The normal line is defined as the line perpendicular to the tangent at the same point. Since the product of the gradients of two perpendicular lines is -1, the gradient of the normal, $m_N$, is the negative reciprocal of the tangent's gradient."
+    },
+    {
+      "type": "formula",
+      "content": "Gradient of Tangent: $m_T = f'(a)$ \\\\ Gradient of Normal: $m_N = -\\frac{1}{f'(a)}$ (provided $f'(a) \\neq 0$)"
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the equations of the tangent and the normal to the curve with equation $f(x) = x^3 - 2x^2 + 5$ at the point where $x=2$.",
+      "solution": "First, find the y-coordinate of the point. \\\\ $f(2) = (2)^3 - 2(2)^2 + 5 = 8 - 8 + 5 = 5$. \\\\ The point of contact is P(2, 5). (A1) \\\\ Next, find the derivative of the function to get the gradient function. \\\\ $f'(x) = 3x^2 - 4x$ (M1) \\\\ Now, evaluate the derivative at $x=2$ to find the gradient of the tangent. \\\\ $m_T = f'(2) = 3(2)^2 - 4(2) = 12 - 8 = 4$. (A1) \\\\ Using the point-gradient form $y - y_1 = m(x - x_1)$ for the tangent: \\\\ $y - 5 = 4(x - 2)$ \\\\ $y - 5 = 4x - 8$ \\\\ $y = 4x - 3$ (A1) \\\\ The gradient of the normal is the negative reciprocal of the tangent's gradient. \\\\ $m_N = -\\frac{1}{m_T} = -\\frac{1}{4}$. (M1) \\\\ Using the point-gradient form for the normal: \\\\ $y - 5 = -\\frac{1}{4}(x - 2)$ \\\\ $4(y - 5) = -(x - 2)$ \\\\ $4y - 20 = -x + 2$ \\\\ $x + 4y - 22 = 0$ (A1) \\\\ The equations are $y=4x-3$ for the tangent and $x+4y-22=0$ for the normal."
+    },
+    {
+      "type": "heading",
+      "content": "The Second Derivative and Concavity"
+    },
+    {
+      "type": "text",
+      "content": "The second derivative, denoted $f''(x)$ or $\\frac{d^2y}{dx^2}$, is found by differentiating the first derivative. Geometrically, it tells us about the concavity of the curve. It describes the rate at which the gradient is changing. If the gradient is increasing, the curve bends upwards (concave up). If the gradient is decreasing, the curve bends downwards (concave down)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If $f''(x) > 0$ on an interval, the function is **concave up** on that interval.",
+        "If $f''(x) < 0$ on an interval, the function is **concave down** on that interval."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A simple mnemonic: 'Concave up looks like a cup U, concave down looks like a frown ∩'. The IB syllabus uses this terminology, so avoid using 'convex' to prevent confusion, even though it is mathematically valid."
+    },
+    {
+      "type": "heading",
+      "content": "Points of Inflexion"
+    },
+    {
+      "type": "text",
+      "content": "A point of inflexion is a point on a curve where the concavity changes. This is a crucial feature when sketching graphs as it marks where the 'bending' direction reverses. For a point of inflexion to occur at $x=c$, we must have $f''(c)=0$ and the sign of $f''(x)$ must change as $x$ passes through $c$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A **necessary** condition for a point of inflexion at $x=c$ is $f''(c) = 0$.",
+        "A **sufficient** condition is that $f''(c)=0$ AND $f''(x)$ changes sign at $x=c$.",
+        "To check for a sign change, test values of $f''(x)$ in intervals just before and just after the candidate point. A sign table is an excellent way to present your reasoning."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the function $g(x) = \\frac{1}{4}x^4 - 2x^3 + 6x$. Find the coordinates of the points of inflexion.",
+      "solution": "First, we need to find the second derivative of $g(x)$. \\\\ $g'(x) = x^3 - 6x^2 + 6$ (M1) \\\\ $g''(x) = 3x^2 - 12x$ (A1) \\\\ To find potential points of inflexion, set $g''(x) = 0$. \\\\ $3x^2 - 12x = 0$ \\\\ $3x(x - 4) = 0$ (M1) \\\\ This gives potential points of inflexion at $x=0$ and $x=4$. \\\\ Now, we must test for a change in sign of $g''(x)$ around these values. We can use a sign diagram for $g''(x) = 3x(x-4)$: \\\\ For $x < 0$ (e.g., $x=-1$): $g''(-1) = 3(-1)(-1-4) = 15 > 0$ (Concave up). \\\\ For $0 < x < 4$ (e.g., $x=1$): $g''(1) = 3(1)(1-4) = -9 < 0$ (Concave down). \\\\ For $x > 4$ (e.g., $x=5$): $g''(5) = 3(5)(5-4) = 15 > 0$ (Concave up). \\\\ Since the sign of $g''(x)$ changes at both $x=0$ and $x=4$, both are x-coordinates of points of inflexion. (R1) \\\\ Now we find the corresponding y-coordinates: \\\\ At $x=0$: $g(0) = 0$. The point is $(0, 0)$. (A1) \\\\ At $x=4$: $g(4) = \\frac{1}{4}(4)^4 - 2(4)^3 + 6(4) = 64 - 128 + 24 = -40$. The point is $(4, -40)$. (A1) \\\\ The points of inflexion are $(0, 0)$ and $(4, -40)$."
+    },
+    {
+      "type": "examTip",
+      "content": "When a question asks for the 'coordinates' of a point, you must provide both the x and y values. A common error is to only find the x-value where $f''(x)=0$. Always substitute back into the original function $f(x)$ to find the y-value to secure all available marks."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Tangents, Normals, and Concavity",
+          "href": "https://www.geogebra.org/m/CUNeTjWc"
+        },
+        {
+          "label": "Interactive Graph of Concavity",
+          "href": "https://www.desmos.com/calculator/ch8vwadc8j"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Tangents, Normals, and Concavity",
+    "embedUrl": "https://www.geogebra.org/classic?material=CUNeTjWc",
+    "launchUrl": "https://www.geogebra.org/classic?material=CUNeTjWc",
+    "hint": "Use “Tangents, Normals, and Concavity” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

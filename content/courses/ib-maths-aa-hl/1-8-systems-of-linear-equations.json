@@ -1,0 +1,159 @@
+{
+  "slug": "1-8-systems-of-linear-equations",
+  "topicCode": "1.8",
+  "title": "Systems of linear equations",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson covers the algebraic and geometric interpretation of systems of linear equations in up to three variables. It focuses on the elimination method for solving 3x3 systems, a key skill for Paper 1, and explores the cases of unique, no, and infinite solutions.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Solve systems of linear equations in up to three variables using algebraic elimination and substitution.",
+    "Understand and describe the geometric interpretation of solutions in two and three dimensions (intersecting lines/planes).",
+    "Identify and interpret inconsistent (no solution) and dependent (infinitely many solutions) systems.",
+    "Express infinite solutions in parametric form."
+  ],
+  "simpleExplanation": {
+    "title": "The Meeting Point of Planes",
+    "summary": "Systems of linear equations are about finding a common point that satisfies multiple conditions at once. In 3D, this means finding the exact location where three flat planes intersect.",
+    "analogy": "Imagine you're a detective trying to pinpoint a location. One clue tells you the location is on a specific, perfectly straight road (a line). A second clue says it's also on another straight road. The solution is where the roads cross. For a 3D system, imagine three infinitely large, thin sheets of glass in a room. The solution is the single point in space where all three sheets touch simultaneously.",
+    "steps": [
+      "Reduce the system: Choose a variable to eliminate. Use two different pairs of the original equations to eliminate this variable, creating a new 2x2 system.",
+      "Solve the 2x2 system: Use elimination or substitution on the new pair of equations to find the values of the two remaining variables.",
+      "Back-substitute: Plug the two values you just found back into one of the original three equations to solve for the first variable you eliminated.",
+      "Check and interpret: Verify your solution (x, y, z) works in all original equations. State the geometric meaning: a unique point, a line of intersection, or no common intersection."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a system of linear equations?",
+      "back": "A set of two or more linear equations involving the same set of variables. A solution must satisfy every equation in the system simultaneously."
+    },
+    {
+      "front": "What is the geometric interpretation of a unique solution to a 3x3 system?",
+      "back": "Three distinct planes intersecting at a single, unique point in 3D space."
+    },
+    {
+      "front": "What is an inconsistent system?",
+      "back": "A system of equations with no solution. Algebraically, the elimination process leads to a contradiction, such as $0 = 5$."
+    },
+    {
+      "front": "What is a dependent system?",
+      "back": "A system of equations with infinitely many solutions. Algebraically, the elimination process leads to an identity, such as $0 = 0$."
+    },
+    {
+      "front": "Describe one geometric scenario for an inconsistent 3x3 system.",
+      "back": "The three planes are parallel to each other (like floors in a building). Alternatively, two planes are parallel and the third intersects them, or the planes intersect in pairs to form a triangular prism with no common point."
+    },
+    {
+      "front": "Describe the geometric scenario for a dependent 3x3 system.",
+      "back": "The three planes intersect along a common line (like pages of a book meeting at the spine), or all three planes are coincident (they are the same plane)."
+    },
+    {
+      "front": "What is the elimination method?",
+      "back": "An algebraic technique to solve systems of equations by adding or subtracting equations (or multiples of them) to eliminate one variable, reducing the complexity of the system."
+    },
+    {
+      "front": "What is back-substitution?",
+      "back": "The process of finding the remaining variables in a system after one has been found. The known value is substituted back into a simpler equation from a previous step."
+    },
+    {
+      "front": "In a 3x3 system, you eliminate $z$ and get $0x + 0y = 8$. What does this mean?",
+      "back": "This simplifies to $0 = 8$, which is a contradiction. The system is inconsistent and has no solution."
+    },
+    {
+      "front": "In a 3x3 system, you eliminate variables and get $0 = 0$. What's next?",
+      "back": "This indicates infinitely many solutions. You must parameterise the solution by setting one variable equal to a parameter (e.g., $z=t$) and expressing the other variables in terms of $t$."
+    },
+    {
+      "front": "Why is it important to label equations when solving a 3x3 system?",
+      "back": "It helps you keep track of your steps, reduces the chance of careless errors, and allows an examiner to follow your working to award method marks, even if you make a final error."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can I use matrices or my calculator's system solver on Paper 1?",
+      "a": "No. Matrix methods (like Gaussian elimination or finding an inverse matrix) and calculator solvers are explicitly for Paper 2 and Paper 3. For Paper 1, you must demonstrate proficiency with algebraic methods like elimination and substitution."
+    },
+    {
+      "q": "What is the geometric difference between 'no solution' and 'infinitely many solutions' in 3D?",
+      "a": "A system with 'no solution' (inconsistent) means the three planes never meet at a single common point. They might be parallel, or intersect in pairs to form a triangular prism. A system with 'infinitely many solutions' (dependent) means the planes intersect along a common line or are all the exact same plane."
+    },
+    {
+      "q": "How do I write the final answer for a system with infinitely many solutions?",
+      "a": "You must provide a parameterised solution. This involves choosing one variable to be a parameter (e.g., let $z=t$), and then expressing the other two variables ($x$ and $y$) in terms of that parameter $t$. The final answer is given as a coordinate triplet in terms of $t$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of systems of linear equations. While you are familiar with solving two equations with two unknowns from previous courses, the HL syllabus requires mastery of systems with three equations and three variables. These are fundamental in many areas of science, engineering, and economics. In Paper 1, we must rely on robust algebraic techniques, as calculators with solver functions are not permitted."
+    },
+    {
+      "type": "heading",
+      "content": "Geometric Interpretation in 2D and 3D"
+    },
+    {
+      "type": "text",
+      "content": "Before diving into the algebra, it's crucial to understand what we are looking for geometrically. A linear equation in two variables, like $ax + by = c$, represents a line on the Cartesian plane. A system of two such equations can result in one of three scenarios: intersecting lines (a unique solution), parallel lines (no solution), or coincident lines (infinitely many solutions)."
+    },
+    {
+      "type": "text",
+      "content": "In three dimensions, a linear equation like $ax + by + cz = d$ represents not a line, but a flat plane that extends infinitely. The solution to a system of three such equations is the set of all points that lie on all three planes simultaneously."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Unique Solution:** The three planes intersect at a single point. This is the most common case in exam questions.",
+        "**No Solution (Inconsistent):** The planes do not share any common points. This can happen if the planes form a triangular prism, if two are parallel, or if all three are parallel.",
+        "**Infinite Solutions (Dependent):** The planes intersect along a common line, or all three planes are identical (coincident). The solution is a line or a plane."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Solving Systems using Elimination"
+    },
+    {
+      "type": "text",
+      "content": "The elimination method is a systematic way to solve systems of equations. The strategy for a 3x3 system is to reduce it to a 2x2 system, which you can then solve easily. The key is to be organised and methodical in your working."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the following system of equations:\n$x + 2y + z = 8$ \n$2x + y - z = 1$ \n$x - y + 2z = 7$",
+      "solution": "Let the equations be:\n(1) $x + 2y + z = 8$\n(2) $2x + y - z = 1$\n(3) $x - y + 2z = 7$\n\n**Step 1: Eliminate one variable from two pairs of equations.**\nWe will eliminate $z$. \n\nAdd (1) and (2):\n$(x + 2y + z) + (2x + y - z) = 8 + 1$\n$3x + 3y = 9$\nDividing by 3 gives: \n(4) $x + y = 3$  **(M1)** for a valid elimination attempt\n\nNow use a different pair, say (2) and (3). To eliminate $z$, we can do $2 \\times (2) + (3)$:\n$2(2x + y - z) + (x - y + 2z) = 2(1) + 7$\n$4x + 2y - 2z + x - y + 2z = 2 + 7$\n$5x + y = 9$ (5)  **(A1)** for two correct equations in two variables\n\n**Step 2: Solve the new 2x2 system.**\nWe have:\n(4) $x + y = 3$\n(5) $5x + y = 9$\n\nSubtract (4) from (5):\n$(5x + y) - (x + y) = 9 - 3$\n$4x = 6$\n$x = \\frac{6}{4} = \\frac{3}{2}$  **(M1)** for solving the 2x2 system\n\nSubstitute $x = \\frac{3}{2}$ into (4):\n$\\frac{3}{2} + y = 3$\n$y = 3 - \\frac{3}{2} = \\frac{3}{2}$\n\n**Step 3: Back-substitute to find the remaining variable.**\nSubstitute $x = \\frac{3}{2}$ and $y = \\frac{3}{2}$ into (1):\n$\\frac{3}{2} + 2(\\frac{3}{2}) + z = 8$\n$\\frac{3}{2} + 3 + z = 8$\n$\\frac{9}{2} + z = 8$\n$z = 8 - \\frac{9}{2} = \\frac{16-9}{2} = \\frac{7}{2}$\n\n**Step 4: State the solution.**\nThe solution is $(x, y, z) = (\\frac{3}{2}, \\frac{3}{2}, \\frac{7}{2})$.  **(A1)** for all three correct values. A check in (2) or (3) is recommended: $2(\\frac{3}{2}) + \\frac{3}{2} - \\frac{7}{2} = 3 + \\frac{3-7}{2} = 3 - 2 = 1$. Correct."
+    },
+    {
+      "type": "heading",
+      "content": "Inconsistent and Dependent Systems"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, the elimination process doesn't lead to a unique solution. If you arrive at a statement that is impossible (e.g., $0=5$), the system is inconsistent and has no solution. If you arrive at an identity (e.g., $0=0$), the system is dependent and has infinitely many solutions. For dependent systems, you must express the solution set in parametric form."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the system of equations:\n$x + y - z = 4$\n$2x - y + 3z = 5$\n$4x + y + z = 13$",
+      "solution": "Let the equations be:\n(1) $x + y - z = 4$\n(2) $2x - y + 3z = 5$\n(3) $4x + y + z = 13$\n\n**Step 1: Eliminate y.**\nAdd (1) and (2):\n$(x + y - z) + (2x - y + 3z) = 4 + 5$\n(4) $3x + 2z = 9$ **(M1)**\n\nAdd (2) and (3):\n$(2x - y + 3z) + (4x + y + z) = 5 + 13$\n$6x + 4z = 18$ **(A1)**\n\n**Step 2: Analyse the new system.**\nWe have the system:\n(4) $3x + 2z = 9$\n(5) $6x + 4z = 18$\n\nNotice that equation (5) is exactly twice equation (4). If we try to solve this system, for example by subtracting $2 \\times (4)$ from (5), we get:\n$(6x + 4z) - 2(3x + 2z) = 18 - 2(9)$\n$6x + 4z - 6x - 4z = 18 - 18$\n$0 = 0$ **(R1)** for recognising the implication of a dependent system\n\nThis identity indicates there are infinitely many solutions. The three planes intersect in a line.\n\n**Step 3: Parameterise the solution.**\nLet $z = t$, where $t$ is a parameter ($t \\in \\mathbb{R}$). **(M1)**\nSubstitute this into equation (4):\n$3x + 2t = 9$\n$3x = 9 - 2t$\n$x = 3 - \\frac{2}{3}t$\n\nNow substitute $x$ and $z$ into one of the original equations, for example (1), to find $y$ in terms of $t$.\n$(3 - \\frac{2}{3}t) + y - t = 4$\n$y = 4 - 3 + t + \\frac{2}{3}t$\n$y = 1 + \\frac{5}{3}t$\n\nThe solution is $(x, y, z) = (3 - \\frac{2}{3}t, 1 + \\frac{5}{3}t, t)$ for any $t \\in \\mathbb{R}$. **(A1)** for the fully parameterised solution."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, always present your working clearly. Label your equations (1), (2), (3) and any new equations you derive, like (4) and (5). This makes it easy to follow your logic and helps you avoid getting lost in the algebra. If you find a solution, a quick check in one of the original equations you didn't use for back-substitution can catch costly errors."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Solving Linear Systems",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra 3D Grapher",
+          "href": "https://www.geogebra.org/3d"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

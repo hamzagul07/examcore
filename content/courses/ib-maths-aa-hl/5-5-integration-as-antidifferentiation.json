@@ -1,0 +1,172 @@
+{
+  "slug": "5-5-integration-as-antidifferentiation",
+  "topicCode": "5.5",
+  "title": "Integration as antidifferentiation",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces integration as the reverse process of differentiation, known as antidifferentiation. It covers the fundamental rules for finding indefinite integrals, including the power rule, and highlights the crucial role of the constant of integration, 'C'.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand integration as the process of antidifferentiation.",
+    "Find the indefinite integral of functions of the form $f(x) = ax^n$, $e^x$, $\\sin(x)$, $\\cos(x)$, and $\\frac{1}{x}$.",
+    "Recognise and use the notation $\\int f(x) \\, dx$.",
+    "Determine the constant of integration, $C$, given a boundary condition to find a particular solution."
+  ],
+  "simpleExplanation": {
+    "title": "Integration: Rewinding the Maths",
+    "summary": "Integration is the reverse of differentiation. If you know the gradient function (the derivative), integration helps you find the original function it came from.",
+    "analogy": "Imagine you have a video recording of a car's speed at every moment. Differentiation is like calculating the car's acceleration (the rate of change of speed). Integration is like using that same speed recording to work out the total distance the car has travelled. You're 'un-doing' the rate of change to get back to the original quantity.",
+    "steps": [
+      "Identify the function you need to integrate, which is often a derivative like $f'(x)$ or $\\frac{dy}{dx}$.",
+      "Apply the rules of integration, such as the power rule in reverse: add one to the power and divide by the new power.",
+      "Always add the constant of integration, '+ C', to your result. This represents an unknown vertical shift.",
+      "If given a point on the original curve, substitute the x and y values to solve for 'C' and find the specific function."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an indefinite integral?",
+      "back": "An indefinite integral, denoted $\\int f(x) \\, dx$, represents the family of all functions whose derivative is $f(x)$. It is also called the general antiderivative of $f(x)$."
+    },
+    {
+      "front": "What is the power rule for integration?",
+      "back": "For $n \\neq -1$, the power rule for integration is $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$."
+    },
+    {
+      "front": "Why must we add '+ C' to an indefinite integral?",
+      "back": "The derivative of any constant is zero. So, if $F(x)$ is an antiderivative of $f(x)$, then $F(x) + C$ is also an antiderivative for any constant $C$. '+ C' represents this entire family of functions."
+    },
+    {
+      "front": "What is the integral of $\\frac{1}{x}$?",
+      "back": "$\\int \\frac{1}{x} \\, dx = \\ln|x| + C$. The absolute value is important because the domain of $\\ln(x)$ is $x>0$, while $\\frac{1}{x}$ is defined for all $x \\neq 0$."
+    },
+    {
+      "front": "What is the integral of $e^{ax}$?",
+      "back": "$\\int e^{ax} \\, dx = \\frac{1}{a}e^{ax} + C$. This is the reverse of the chain rule for differentiating $e^{ax}$."
+    },
+    {
+      "front": "What is the integral of $\\cos(ax)$?",
+      "back": "$\\int \\cos(ax) \\, dx = \\frac{1}{a}\\sin(ax) + C$."
+    },
+    {
+      "front": "What is the integral of $\\sin(ax)$?",
+      "back": "$\\int \\sin(ax) \\, dx = -\\frac{1}{a}\\cos(ax) + C$. Be careful with the negative sign!"
+    },
+    {
+      "front": "What does it mean to find a 'particular solution'?",
+      "back": "It means finding the specific value of the constant of integration, $C$, by using a given condition, such as a point $(x, y)$ that the function passes through."
+    },
+    {
+      "front": "Can you integrate a function term by term?",
+      "back": "Yes. The integral of a sum of terms is the sum of their individual integrals. $\\int (f(x) + g(x)) \\, dx = \\int f(x) \\, dx + \\int g(x) \\, dx$."
+    },
+    {
+      "front": "Common trap: What is $\\int \\frac{2}{x^3} \\, dx$?",
+      "back": "First, rewrite as $\\int 2x^{-3} \\, dx$. Then apply the power rule: $2 \\frac{x^{-3+1}}{-3+1} + C = 2 \\frac{x^{-2}}{-2} + C = -x^{-2} + C = -\\frac{1}{x^2} + C$. Do not use $\\ln$ unless the power is -1."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a definite and an indefinite integral?",
+      "a": "An indefinite integral, $\\int f(x) \\, dx$, gives a function (or family of functions), $F(x) + C$. A definite integral, $\\int_a^b f(x) \\, dx$, gives a single numerical value, which represents the area under the curve of $f(x)$ from $x=a$ to $x=b$. We will cover definite integrals in a later topic."
+    },
+    {
+      "q": "Why is the integral of $x^{-1}$ not covered by the power rule?",
+      "a": "If you tried to apply the power rule to $x^{-1}$, you would get $\\frac{x^{-1+1}}{-1+1} = \\frac{x^0}{0}$, which involves division by zero and is undefined. This is why $\\int x^{-1} \\, dx$ is a special case, resulting in $\\ln|x| + C$."
+    },
+    {
+      "q": "I keep mixing up the integrals and derivatives of sin and cos. Any tips?",
+      "a": "Create a cycle diagram: $\\sin x \\xrightarrow{\\text{differentiate}} \\cos x \\xrightarrow{\\text{differentiate}} -\\sin x \\xrightarrow{\\text{differentiate}} -\\cos x \\xrightarrow{\\text{differentiate}} \\sin x$. Integration is just going backwards around this cycle. For example, to integrate $\\cos x$, move backwards from $\\cos x$ to get $\\sin x$."
+    },
+    {
+      "q": "Do I always have to write '+ C'?",
+      "a": "Yes, for any indefinite integral. On an exam, you will lose a mark if you forget it. It's a crucial part of the general solution. The only time you don't need it is when you are calculating a definite integral, which has limits of integration."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our study of calculus, we've focused heavily on differentiation – the process of finding the rate of change of a function. Now, we'll explore the reverse process. What if we know the rate of change and want to find the original function? This process is called integration, or more specifically for this lesson, antidifferentiation. It's a fundamental concept that unlocks a vast new area of mathematics with applications from physics to economics."
+    },
+    {
+      "type": "heading",
+      "content": "Antiderivatives and the Indefinite Integral"
+    },
+    {
+      "type": "text",
+      "content": "A function $F(x)$ is called an antiderivative of a function $f(x)$ if $F'(x) = f(x)$. For example, an antiderivative of $f(x) = 2x$ is $F(x) = x^2$, because the derivative of $x^2$ is $2x$. However, $x^2 + 5$ is also an antiderivative, as is $x^2 - 100$. In fact, any function of the form $x^2 + C$, where $C$ is a constant, is an antiderivative of $2x$. This family of functions is represented by the indefinite integral."
+    },
+    {
+      "type": "formula",
+      "content": "The indefinite integral of $f(x)$ with respect to $x$ is denoted by:\n$\\int f(x) \\, dx = F(x) + C$\nwhere $F'(x) = f(x)$ and $C$ is the constant of integration."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The symbol $\\int$ is the integral sign.",
+        "$f(x)$ is the integrand, the function being integrated.",
+        "$dx$ indicates that the variable of integration is $x$.",
+        "$C$ is the constant of integration, representing an entire family of functions."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Power Rule and Linearity"
+    },
+    {
+      "type": "text",
+      "content": "The most common rule you'll use is the power rule, which is the reverse of the power rule for differentiation. Instead of multiplying by the power and subtracting one, we add one to the power and divide by the new power. It's also important to know that integration is a linear operator, meaning you can integrate a function term by term and factor out constants."
+    },
+    {
+      "type": "formula",
+      "content": "Power Rule for Integration (for $n \\neq -1$):\n$\\int ax^n \\, dx = a \\frac{x^{n+1}}{n+1} + C$"
+    },
+    {
+      "type": "workedExample",
+      "question": "The gradient of a curve is given by $\\frac{dy}{dx} = 6x^2 - 4x + 5$. The curve passes through the point $P(1, 8)$. Find the equation of the curve.",
+      "solution": "The equation of the curve, $y$, is the integral of its gradient function, $\\frac{dy}{dx}$.\n$y = \\int (6x^2 - 4x + 5) \\, dx$ \n\nIntegrate term by term using the power rule:\n$y = 6\\frac{x^{2+1}}{2+1} - 4\\frac{x^{1+1}}{1+1} + 5x + C$ [M1] for attempting to integrate.\n$y = 6\\frac{x^3}{3} - 4\\frac{x^2}{2} + 5x + C$\n$y = 2x^3 - 2x^2 + 5x + C$ [A1] for correct integration.\n\nNow, we use the given point $P(1, 8)$ to find the particular solution. Substitute $x=1$ and $y=8$ into the equation:\n$8 = 2(1)^3 - 2(1)^2 + 5(1) + C$ [M1] for substituting the point.\n$8 = 2 - 2 + 5 + C$\n$8 = 5 + C$\n$C = 3$ [A1]\n\nTherefore, the equation of the curve is:\n$y = 2x^3 - 2x^2 + 5x + 3$ [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "Integrating Other Standard Functions"
+    },
+    {
+      "type": "text",
+      "content": "Beyond polynomials, you must be able to integrate other elementary functions. These are typically the reverse of the derivatives you have already memorised. Pay close attention to the signs and any constants that appear from reversing the chain rule."
+    },
+    {
+      "type": "formula",
+      "content": "$\\int \\frac{1}{x} \\, dx = \\ln|x| + C$\n$\\int e^x \\, dx = e^x + C$\n$\\int \\sin x \\, dx = -\\cos x + C$\n$\\int \\cos x \\, dx = \\sin x + C$"
+    },
+    {
+      "type": "examTip",
+      "content": "A great way to check your integration is to differentiate your answer. You should get back to the original integrand. This is especially useful in an exam to catch sign errors or mistakes with the power rule."
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle moves along a straight line. Its velocity, $v$ m/s, at time $t$ seconds is given by $v(t) = 3\\cos(t) + \\frac{4}{t^2}$ for $t > 0$. Given that the particle's displacement is $s=0$ when $t=\\frac{\\pi}{2}$, find an expression for the displacement $s(t)$.",
+      "solution": "Displacement, $s(t)$, is the integral of velocity, $v(t)$.\n$s(t) = \\int v(t) \\, dt = \\int (3\\cos(t) + \\frac{4}{t^2}) \\, dt$\n\nFirst, rewrite the expression with a negative power:\n$s(t) = \\int (3\\cos(t) + 4t^{-2}) \\, dt$ [M1] for rewriting $\\frac{4}{t^2}$.\n\nNow, integrate term by term:\n$s(t) = 3\\sin(t) + 4\\frac{t^{-2+1}}{-2+1} + C$ [A1] for $3\\sin(t)$, [A1] for $4\\frac{t^{-1}}{-1}$.\n$s(t) = 3\\sin(t) - 4t^{-1} + C$\n$s(t) = 3\\sin(t) - \\frac{4}{t} + C$\n\nUse the given condition: $s=0$ when $t=\\frac{\\pi}{2}$.\n$0 = 3\\sin(\\frac{\\pi}{2}) - \\frac{4}{\\pi/2} + C$ [M1] for substitution.\n$0 = 3(1) - \\frac{8}{\\pi} + C$\n$0 = 3 - \\frac{8}{\\pi} + C$\n$C = \\frac{8}{\\pi} - 3$ [A1]\n\nTherefore, the expression for the displacement is:\n$s(t) = 3\\sin(t) - \\frac{4}{t} + \\frac{8}{\\pi} - 3$"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Questionbank",
+          "href": "/questionbank/ib-maths-aa-hl"
+        },
+        {
+          "label": "Past Paper Video Solutions",
+          "href": "https://www.youtube.com/@studynova_ib"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,173 @@
+{
+  "slug": "5-7-further-differentiation-implicit-related-rates-and-lhopital",
+  "topicCode": "5.7",
+  "title": "Further differentiation: implicit, related rates and L'Hopital",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson covers three advanced differentiation techniques essential for the HL course: implicit differentiation for curves not easily expressed as y=f(x), related rates for problems involving rates of change with respect to time, and L'Hôpital's Rule for evaluating limits of indeterminate forms.",
+  "durationMin": 120,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Differentiate functions and relations defined implicitly, including finding tangents and normals.",
+    "Set up and solve problems involving related rates of change.",
+    "Identify indeterminate forms and apply L'Hôpital's Rule to evaluate limits.",
+    "Apply the product, quotient, and chain rules in the context of these advanced techniques."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Tricky Derivatives",
+    "summary": "This topic gives you the tools to find rates of change for complex relationships where variables are tangled together, and a powerful shortcut to solve tricky limits that look like 0/0 or ∞/∞.",
+    "analogy": "Imagine a balloon being inflated. As its volume increases, its radius and surface area also grow. You can't easily write the radius as a simple function of time, but you know all these quantities are related. Related rates let you calculate how fast the radius is growing if you know how fast air is being pumped in. It's about finding the connection between different rates of change.",
+    "steps": [
+      "Identify the problem type: Is it an implicit equation (x's and y's mixed), a related rates scenario (rates over time), or a limit of an indeterminate form?",
+      "Differentiate according to the rules: For implicit, use the chain rule on y-terms, adding dy/dx. For related rates, differentiate all variables with respect to time (d/dt). For L'Hôpital's, differentiate the numerator and denominator separately.",
+      "Substitute known values and isolate the target: Plug in given coordinates or rates. Use algebra to solve for the required derivative (dy/dx, dh/dt, etc.) or to re-evaluate the limit.",
+      "State the final answer: Provide the numerical value of the gradient, the rate of change with correct units, or the value of the limit. Ensure your answer directly addresses the question asked."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the key step when differentiating a term involving 'y' with respect to 'x' in implicit differentiation?",
+      "back": "Apply the chain rule. For example, $\\frac{d}{dx}(y^3) = 3y^2 \\cdot \\frac{dy}{dx}$. You must multiply by $\\frac{dy}{dx}$."
+    },
+    {
+      "front": "How do you differentiate a product term like $xy$ with respect to $x$?",
+      "back": "Use the product rule: $\\frac{d}{dx}(xy) = (1)(y) + (x)(\\frac{dy}{dx}) = y + x\\frac{dy}{dx}$."
+    },
+    {
+      "front": "What are the two main indeterminate forms for which L'Hôpital's Rule can be applied directly?",
+      "back": "$\\frac{0}{0}$ and $\\frac{\\infty}{\\infty}$."
+    },
+    {
+      "front": "What is the most common mistake when applying L'Hôpital's Rule to $\\lim_{x \\to a} \\frac{f(x)}{g(x)}$?",
+      "back": "Incorrectly applying the quotient rule to the fraction. You must differentiate the numerator and denominator *separately*: $\\lim_{x \\to a} \\frac{f'(x)}{g'(x)}$."
+    },
+    {
+      "front": "In a related rates problem, what variable do you typically differentiate with respect to?",
+      "back": "Time, $t$. For example, you would differentiate an equation like $V = \\frac{4}{3}\\pi r^3$ to get $\\frac{dV}{dt} = 4\\pi r^2 \\frac{dr}{dt}$."
+    },
+    {
+      "front": "What is the first step in solving a related rates problem?",
+      "back": "Identify all given quantities and rates, and the quantity or rate you need to find. Draw a diagram if possible and write down an equation that relates the variables."
+    },
+    {
+      "front": "How can you handle an indeterminate form like $0 \\cdot \\infty$ before using L'Hôpital's Rule?",
+      "back": "Rewrite the expression as a fraction. If you have $f(x)g(x)$, you can write it as $\\frac{f(x)}{1/g(x)}$ or $\\frac{g(x)}{1/f(x)}$ to convert it into a $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$ form."
+    },
+    {
+      "front": "What does $\\frac{dy}{dx}$ represent for an implicitly defined curve?",
+      "back": "It still represents the gradient of the tangent to the curve at any point $(x, y)$ on the curve."
+    },
+    {
+      "front": "If you apply L'Hôpital's Rule and the result is still an indeterminate form, what should you do?",
+      "back": "You can apply L'Hôpital's Rule again, provided the new limit still meets the conditions (e.g., it's still $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$). Differentiate the top and bottom again."
+    },
+    {
+      "front": "In a related rates problem involving a cone, what is the crucial step to simplify the volume formula $V = \\frac{1}{3}\\pi r^2 h$?",
+      "back": "Use similar triangles to express the radius $r$ in terms of the height $h$ (or vice versa), so that the volume $V$ is a function of a single variable before differentiating."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When should I use implicit differentiation instead of just solving for y?",
+      "a": "Use implicit differentiation when it is algebraically difficult or impossible to isolate y. For equations like $x^3 + y^3 = 6xy$ or $\\sin(xy) = y^2$, solving for y is not practical. Implicit differentiation provides a direct method to find $\\frac{dy}{dx}$ without this step."
+    },
+    {
+      "q": "In related rates, how do I know which variable to eliminate before differentiating?",
+      "a": "Look at what the question asks you to find. If you need to find $\\frac{dh}{dt}$, your goal is to have an equation with only $V$ and $h$ (or whatever variables are relevant). Use the geometric constraints of the problem (like similar triangles in a cone) to eliminate other variables (like $r$)."
+    },
+    {
+      "q": "Can I use L'Hôpital's Rule for indeterminate forms like $0 \\cdot \\infty$ or $\\infty - \\infty$?",
+      "a": "Not directly. You must first algebraically manipulate the expression to get it into the form $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$. For $0 \\cdot \\infty$, rewrite $f \\cdot g$ as $\\frac{f}{1/g}$. For $\\infty - \\infty$, try to combine the terms into a single fraction by finding a common denominator."
+    },
+    {
+      "q": "Is it possible to get an answer for $\\frac{dy}{dx}$ that only has x's or only has y's?",
+      "a": "Yes, it's possible, although less common. The expression for $\\frac{dy}{dx}$ typically involves both $x$ and $y$ because the slope at a point on an implicit curve can depend on both its x and y coordinates. However, through algebraic simplification, one of the variables might cancel out in some specific cases."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to a powerful extension of your differentiation toolkit. So far, you've mostly dealt with functions written as $y = f(x)$. But what happens when $x$ and $y$ are tangled together in one equation, or when multiple quantities are all changing over time? This lesson introduces three advanced techniques—implicit differentiation, related rates, and L'Hôpital's Rule—that are fundamental to solving more complex calculus problems you'll encounter in the exam."
+    },
+    {
+      "type": "heading",
+      "content": "1. Implicit Differentiation"
+    },
+    {
+      "type": "text",
+      "content": "Implicit differentiation is a technique used when a relationship between $x$ and $y$ is defined by an equation, but it's difficult or impossible to express $y$ explicitly as a function of $x$. For example, the equation of a circle $x^2 + y^2 = 25$. Instead of solving for $y$, we can differentiate the entire equation term by term with respect to $x$, remembering to apply the chain rule whenever we differentiate a term containing $y$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Differentiate both sides of the equation with respect to $x$.",
+        "When differentiating a term with $y$, apply the chain rule: $\\frac{d}{dx}(f(y)) = f'(y) \\cdot \\frac{dy}{dx}$.",
+        "After differentiating, algebraically rearrange the equation to solve for $\\frac{dy}{dx}$.",
+        "The resulting expression for $\\frac{dy}{dx}$ will often contain both $x$ and $y$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Consider the curve defined by the equation $x^3 + y^3 = 6xy$. Find the equation of the tangent to the curve at the point $(3, 3)$.",
+      "solution": "First, we need to find the gradient of the tangent by calculating $\\frac{dy}{dx}$. We use implicit differentiation.\n\n**Step 1: Differentiate each term with respect to $x$.**\n$\\frac{d}{dx}(x^3) + \\frac{d}{dx}(y^3) = \\frac{d}{dx}(6xy)$ \n\n**Step 2: Apply differentiation rules.**\nFor the left side: $3x^2 + 3y^2 \\frac{dy}{dx}$\nFor the right side, use the product rule on $6xy$: $6(1 \\cdot y + x \\cdot \\frac{dy}{dx}) = 6y + 6x\\frac{dy}{dx}$ \nSo, the full differentiated equation is: \n$3x^2 + 3y^2 \\frac{dy}{dx} = 6y + 6x\\frac{dy}{dx}$ [M1][A1]\n\n**Step 3: Isolate $\\frac{dy}{dx}$.**\nGroup terms with $\\frac{dy}{dx}$ on one side:\n$3y^2 \\frac{dy}{dx} - 6x\\frac{dy}{dx} = 6y - 3x^2$\nFactor out $\\frac{dy}{dx}$:\n$\\frac{dy}{dx}(3y^2 - 6x) = 6y - 3x^2$ [M1]\nSolve for $\\frac{dy}{dx}$:\n$\\frac{dy}{dx} = \\frac{6y - 3x^2}{3y^2 - 6x} = \\frac{2y - x^2}{y^2 - 2x}$\n\n**Step 4: Evaluate the gradient at the point $(3, 3)$.**\nSubstitute $x=3$ and $y=3$ into the expression for $\\frac{dy}{dx}$:\n$m = \\frac{2(3) - (3)^2}{(3)^2 - 2(3)} = \\frac{6 - 9}{9 - 6} = \\frac{-3}{3} = -1$ [A1]\n\n**Step 5: Find the equation of the tangent.**\nUsing the point-gradient form $y - y_1 = m(x - x_1)$ with $(x_1, y_1) = (3, 3)$ and $m = -1$:\n$y - 3 = -1(x - 3)$ [M1]\n$y - 3 = -x + 3$\n$y = -x + 6$ or $x + y - 6 = 0$ [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "2. Related Rates"
+    },
+    {
+      "type": "text",
+      "content": "Related rates problems involve finding the rate at which some quantity is changing by relating it to other quantities whose rates of change are known. The key is to find an equation that connects the variables and then differentiate that equation with respect to time, $t$. These problems often involve geometric shapes and require careful application of the chain rule."
+    },
+    {
+      "type": "workedExample",
+      "question": "A water tank has the shape of an inverted circular cone with base radius 2 m and height 4 m. If water is being pumped into the tank at a rate of $2 \\text{ m}^3\\text{/min}$, find the rate at which the water level is rising when the water is 3 m deep.",
+      "solution": "Let $V$ be the volume of water, $h$ be the depth of the water, and $r$ be the radius of the water's surface at time $t$.\nWe are given $\\frac{dV}{dt} = 2 \\text{ m}^3\\text{/min}$. We want to find $\\frac{dh}{dt}$ when $h = 3 \\text{ m}$.\n\n**Step 1: Write the formula for the volume and establish a relationship between $r$ and $h$.**\nThe volume of a cone is $V = \\frac{1}{3}\\pi r^2 h$. [M1]\nBy similar triangles, the ratio of the radius to the height is constant:\n$\\frac{r}{h} = \\frac{\\text{cone radius}}{\\text{cone height}} = \\frac{2}{4} = \\frac{1}{2}$ [M1]\nThis gives us a relationship: $r = \\frac{h}{2}$.\n\n**Step 2: Express $V$ as a function of $h$ only.**\nSubstitute $r = \\frac{h}{2}$ into the volume formula:\n$V = \\frac{1}{3}\\pi (\\frac{h}{2})^2 h = \\frac{1}{3}\\pi (\\frac{h^2}{4}) h = \\frac{\\pi}{12}h^3$ [A1]\n\n**Step 3: Differentiate with respect to time $t$.**\nApply the chain rule to differentiate the volume equation with respect to $t$:\n$\\frac{dV}{dt} = \\frac{d}{dt}(\\frac{\\pi}{12}h^3) = \\frac{\\pi}{12} \\cdot 3h^2 \\cdot \\frac{dh}{dt} = \\frac{\\pi h^2}{4} \\frac{dh}{dt}$ [M1][A1]\n\n**Step 4: Substitute known values and solve for $\\frac{dh}{dt}$.**\nWe know $\\frac{dV}{dt} = 2$ and we want to find $\\frac{dh}{dt}$ when $h = 3$.\n$2 = \\frac{\\pi (3)^2}{4} \\frac{dh}{dt}$\n$2 = \\frac{9\\pi}{4} \\frac{dh}{dt}$ [M1]\n$\\frac{dh}{dt} = 2 \\cdot \\frac{4}{9\\pi} = \\frac{8}{9\\pi}$\n\nThe water level is rising at a rate of $\\frac{8}{9\\pi}$ m/min. [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "3. L'Hôpital's Rule"
+    },
+    {
+      "type": "text",
+      "content": "L'Hôpital's Rule is a brilliant shortcut for finding limits of fractions that result in an 'indeterminate form', most commonly $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$. If you encounter such a limit, the rule states that you can differentiate the numerator and the denominator separately and then take the limit of the new fraction. Be warned: you must check that it is an indeterminate form before applying the rule!"
+    },
+    {
+      "type": "formula",
+      "content": "If $\\lim_{x \\to c} f(x) = \\lim_{x \\to c} g(x) = 0$ or $\\pm\\infty$, and $\\lim_{x \\to c} \\frac{f'(x)}{g'(x)}$ exists, then:\n\n$$ \\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f'(x)}{g'(x)} $$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the exact value of the limit $\\lim_{x \\to 0} \\frac{e^x - 1 - x}{x^2}$.",
+      "solution": "**Step 1: Check for indeterminate form.**\nAs $x \\to 0$, the numerator is $e^0 - 1 - 0 = 1 - 1 = 0$.\nAs $x \\to 0$, the denominator is $0^2 = 0$.\nSince we have the indeterminate form $\\frac{0}{0}$, we can apply L'Hôpital's Rule. [M1]\n\n**Step 2: Apply L'Hôpital's Rule.**\nDifferentiate the numerator and denominator separately:\n$f(x) = e^x - 1 - x \\implies f'(x) = e^x - 1$\n$g(x) = x^2 \\implies g'(x) = 2x$\nSo, the limit becomes:\n$\\lim_{x \\to 0} \\frac{e^x - 1}{2x}$ [A1]\n\n**Step 3: Re-evaluate the limit.**\nAs $x \\to 0$, the new numerator is $e^0 - 1 = 0$.\nAs $x \\to 0$, the new denominator is $2(0) = 0$.\nWe have the indeterminate form $\\frac{0}{0}$ again. We must apply L'Hôpital's Rule a second time. [M1]\n\n**Step 4: Apply L'Hôpital's Rule again.**\nDifferentiate the new numerator and denominator:\n$f'(x) = e^x - 1 \\implies f''(x) = e^x$\n$g'(x) = 2x \\implies g''(x) = 2$\nSo, the limit becomes:\n$\\lim_{x \\to 0} \\frac{e^x}{2}$ [A1]\n\n**Step 5: Evaluate the final limit.**\nSubstitute $x=0$ into the final expression:\n$\\frac{e^0}{2} = \\frac{1}{2}$ [A1]\n\nTherefore, $\\lim_{x \\to 0} \\frac{e^x - 1 - x}{x^2} = \\frac{1}{2}$."
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, questions are designed to have 'nice' numerical answers. If you find yourself with very complicated algebra in a related rates or implicit differentiation problem, double-check your differentiation, especially the product rule and chain rule. A small mistake at the beginning can cascade into a huge mess. For L'Hôpital's rule, always write down that you are checking the $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$ form to earn method marks."
+    },
+    {
+      "type": "practice",
+      "label": "Further Differentiation Practice",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Implicit Differentiation",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-advanced/ab-implicit-differentiation/v/implicit-differentiation-1"
+        },
+        {
+          "label": "Paul's Online Math Notes: Related Rates",
+          "href": "https://tutorial.math.lamar.edu/classes/calci/relatedrates.aspx"
+        },
+        {
+          "label": "3Blue1Brown: L'Hôpital's Rule",
+          "href": "https://www.youtube.com/watch?v=kfF40MiS7zA"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

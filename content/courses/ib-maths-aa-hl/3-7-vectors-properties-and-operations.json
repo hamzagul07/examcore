@@ -1,0 +1,203 @@
+{
+  "slug": "3-7-vectors-properties-and-operations",
+  "topicCode": "3.7",
+  "title": "Vectors: properties and operations",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of vectors, including their properties, notation, and basic operations. It covers vector addition, subtraction, scalar multiplication, the calculation of magnitude, and the determination of unit vectors, providing the foundational skills for solving problems in geometry and mechanics.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and use different forms of vector notation, including column vectors and unit vector form (i, j, k).",
+    "Perform vector operations: addition, subtraction, and scalar multiplication, both algebraically and geometrically.",
+    "Calculate the magnitude of a vector and find a unit vector in a given direction.",
+    "Apply vector properties to solve problems in 2D and 3D space, including finding displacement vectors and midpoints."
+  ],
+  "simpleExplanation": {
+    "title": "Vectors: Your GPS for Maths",
+    "summary": "Vectors are mathematical objects that possess both magnitude (size) and direction. They are essentially instructions that tell you how far to travel and in which direction.",
+    "analogy": "Imagine giving a friend directions to your house. Saying \"walk 500 metres\" is ambiguous. But saying \"walk 500 metres north-east\" is a vector. It has a magnitude (500 metres) and a direction (north-east). Vectors provide the complete, unambiguous instructions needed in mathematics and physics.",
+    "steps": [
+      "Identify the Vectors: Represent the given information as column vectors or using i, j, k notation. For instance, a point A is represented by its position vector from the origin,  $\\vec{OA}$.",
+      "Choose the Operation: Determine whether you need to add, subtract, or scale vectors based on the problem. To find the vector from point A to point B, you calculate $\\vec{AB} = \\vec{OB} - \\vec{OA}$.",
+      "Perform the Calculation: Apply the rules of vector arithmetic component-wise. For addition/subtraction, combine corresponding components. For scalar multiplication, multiply each component by the scalar.",
+      "Interpret the Result: The resulting vector represents a new displacement, position, or force. Calculate its magnitude or direction if the question requires it, ensuring your answer format matches the question (vector or scalar)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a vector?",
+      "back": "A quantity that has both magnitude (size or length) and direction."
+    },
+    {
+      "front": "What is a position vector?",
+      "back": "A vector that starts from the origin (O) and ends at a specific point (P). It is denoted by $\\vec{OP}$ or simply $\\mathbf{p}$."
+    },
+    {
+      "front": "How do you find the magnitude of a 2D vector $\\mathbf{v} = \\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix}$?",
+      "back": "The magnitude is $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2}$."
+    },
+    {
+      "front": "How do you find the magnitude of a 3D vector $\\mathbf{v} = \\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}$?",
+      "back": "The magnitude is $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2 + v_3^2}$."
+    },
+    {
+      "front": "How do you add two vectors $\\mathbf{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}$ and $\\mathbf{b} = \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix}$?",
+      "back": "Add the corresponding components: $\\mathbf{a} + \\mathbf{b} = \\begin{pmatrix} a_1 + b_1 \\\\ a_2 + b_2 \\end{pmatrix}$."
+    },
+    {
+      "front": "What is the result of scalar multiplication $k \\mathbf{a}$ for $\\mathbf{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}$?",
+      "back": "Multiply each component by the scalar $k$: $k\\mathbf{a} = \\begin{pmatrix} ka_1 \\\\ ka_2 \\end{pmatrix}$."
+    },
+    {
+      "front": "What is a unit vector?",
+      "back": "A vector with a magnitude of exactly 1. It is used to specify a direction."
+    },
+    {
+      "front": "How do you find the unit vector $\\hat{\\mathbf{v}}$ in the direction of a vector $\\mathbf{v}$?",
+      "back": "Divide the vector by its magnitude: $\\hat{\\mathbf{v}} = \\frac{1}{|\\mathbf{v}|}\\mathbf{v}$."
+    },
+    {
+      "front": "What is the condition for two non-zero vectors $\\mathbf{a}$ and $\\mathbf{b}$ to be parallel?",
+      "back": "One vector must be a scalar multiple of the other: $\\mathbf{a} = k\\mathbf{b}$ for some non-zero scalar $k$."
+    },
+    {
+      "front": "How is the displacement vector $\\vec{AB}$ calculated from position vectors $\\vec{OA}$ and $\\vec{OB}$?",
+      "back": "$\\vec{AB} = \\vec{OB} - \\vec{OA}$. A common mistake is calculating $\\vec{OA} - \\vec{OB}$."
+    },
+    {
+      "front": "How can you use vectors to show that points A, B, and C are collinear?",
+      "back": "Show that the vector $\\vec{AB}$ is parallel to the vector $\\vec{BC}$ (i.e., $\\vec{AB} = k \\vec{BC}$) and that they share a common point (B)."
+    },
+    {
+      "front": "What is the zero vector?",
+      "back": "A vector with all components equal to zero, e.g., $\\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$. It has a magnitude of 0 and no defined direction. It is the identity element for vector addition."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a position vector and a displacement vector?",
+      "a": "A position vector, like $\\vec{OP}$, always starts from the origin (O) and points to a specific point (P), defining its location in space. A displacement vector, like $\\vec{AB}$, describes the movement or 'journey' from one point (A) to another (B). It represents a change in position and is independent of the origin."
+    },
+    {
+      "q": "Can a vector be negative?",
+      "a": "The components of a vector can certainly be negative, which indicates its direction relative to the coordinate axes. For example, a negative y-component means it points downwards. Multiplying a whole vector by a negative scalar (e.g., $-1$) creates a new vector of the same magnitude but opposite direction. However, the magnitude (length) of a vector is a scalar and can never be negative."
+    },
+    {
+      "q": "Why is $\\vec{AB} = \\vec{OB} - \\vec{OA}$? It feels backwards.",
+      "a": "Think of it as a journey. To get from point A to point B, you can take an indirect route via the origin O. First, you must travel from A back to O. This journey is the opposite of the position vector $\\vec{OA}$, so we represent it as $-\\vec{OA}$. From the origin, you then travel to B, which is represented by the vector $\\vec{OB}$. Adding these two parts of the journey gives the total displacement: $\\vec{AB} = (\\text{journey from A to O}) + (\\text{journey from O to B}) = -\\vec{OA} + \\vec{OB}$, which is the same as $\\vec{OB} - \\vec{OA}$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of vectors! Unlike scalars, which only have magnitude (like temperature or mass), vectors possess both magnitude and direction. They are the mathematical tool for describing displacement, velocity, and force. Mastering vector operations is crucial for understanding more advanced topics in geometry, mechanics, and other areas of science and engineering."
+    },
+    {
+      "type": "heading",
+      "content": "Vector Notation and Representation"
+    },
+    {
+      "type": "text",
+      "content": "A vector can be represented in several ways. In printed text, you'll often see a bold lowercase letter, such as $\\mathbf{v}$. When writing by hand, you should underline the letter, $\\underline{v}$, or use an arrow, $\\vec{v}$. The IB expects you to use underlining in your exam scripts. Vectors can also be represented by their components, either as a column vector or using the standard unit vectors $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Handwritten: $\\underline{a}$ or $\\vec{a}$",
+        "Printed: $\\mathbf{a}$",
+        "2D Column Vector: $\\mathbf{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix}$",
+        "3D Column Vector: $\\mathbf{a} = \\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix}$",
+        "Unit Vector Form (3D): $\\mathbf{a} = a_1\\mathbf{i} + a_2\\mathbf{j} + a_3\\mathbf{k}$"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Position and Displacement Vectors"
+    },
+    {
+      "type": "text",
+      "content": "A position vector gives the location of a point relative to a fixed origin, O. The position vector of a point P is denoted $\\vec{OP}$. A displacement vector, on the other hand, represents the journey or displacement from one point to another. The displacement vector from point A to point B is written as $\\vec{AB}$. A crucial relationship connects these two concepts."
+    },
+    {
+      "type": "formula",
+      "content": "To find the displacement vector from A to B, you subtract the position vector of the starting point from the position vector of the end point: \\n\n$$ \\vec{AB} = \\vec{OB} - \\vec{OA} $$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Points A and B have position vectors $\\vec{OA} = 3\\mathbf{i} - 2\\mathbf{j} + \\mathbf{k}$ and $\\vec{OB} = \\mathbf{i} + 4\\mathbf{j} - 2\\mathbf{k}$ relative to an origin O.\n\n(a) Find the vector $\\vec{AB}$.\n(b) Calculate the magnitude of $\\vec{AB}$.\n(c) Find the position vector of M, the midpoint of the line segment [AB].",
+      "solution": "(a) To find $\\vec{AB}$, we use the formula $\\vec{AB} = \\vec{OB} - \\vec{OA}$.\n\n$\\vec{AB} = (\\mathbf{i} + 4\\mathbf{j} - 2\\mathbf{k}) - (3\\mathbf{i} - 2\\mathbf{j} + \\mathbf{k})$  [M1]\n\nGroup the components:\n\n$\\vec{AB} = (1-3)\\mathbf{i} + (4-(-2))\\mathbf{j} + (-2-1)\\mathbf{k}$\n\n$\\vec{AB} = -2\\mathbf{i} + 6\\mathbf{j} - 3\\mathbf{k}$  [A1]\n\n(b) The magnitude is found using the 3D Pythagoras theorem.\n\n$|\\vec{AB}| = \\sqrt{(-2)^2 + 6^2 + (-3)^2}$  [M1]\n\n$|\\vec{AB}| = \\sqrt{4 + 36 + 9} = \\sqrt{49}$\n\n$|\\vec{AB}| = 7$  [A1]\n\n(c) The position vector of the midpoint M is the average of the position vectors of A and B.\n\n$\\vec{OM} = \\frac{1}{2}(\\vec{OA} + \\vec{OB})$  [M1]\n\n$\\vec{OM} = \\frac{1}{2}((3\\mathbf{i} - 2\\mathbf{j} + \\mathbf{k}) + (\\mathbf{i} + 4\\mathbf{j} - 2\\mathbf{k}))$\n\n$\\vec{OM} = \\frac{1}{2}(4\\mathbf{i} + 2\\mathbf{j} - \\mathbf{k})$\n\n$\\vec{OM} = 2\\mathbf{i} + \\mathbf{j} - \\frac{1}{2}\\mathbf{k}$  [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "Vector Operations"
+    },
+    {
+      "type": "text",
+      "content": "The basic arithmetic operations of addition, subtraction, and scalar multiplication are performed component-wise. Geometrically, vector addition follows the 'head-to-tail' or triangle rule: to find $\\mathbf{a} + \\mathbf{b}$, place the tail of $\\mathbf{b}$ at the head of $\\mathbf{a}$. The resultant vector goes from the tail of $\\mathbf{a}$ to the head of $\\mathbf{b}$. Scalar multiplication, $k\\mathbf{a}$, scales the length of $\\mathbf{a}$ by a factor of $|k|$. If $k<0$, the direction of the vector is reversed."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Addition**: $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} + \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix} = \\begin{pmatrix} a_1+b_1 \\\\ a_2+b_2 \\end{pmatrix}$",
+        "**Subtraction**: $\\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} - \\begin{pmatrix} b_1 \\\\ b_2 \\end{pmatrix} = \\begin{pmatrix} a_1-b_1 \\\\ a_2-b_2 \\end{pmatrix}$",
+        "**Scalar Multiplication**: $k \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} = \\begin{pmatrix} ka_1 \\\\ ka_2 \\end{pmatrix}$",
+        "**Parallel Vectors**: Two non-zero vectors $\\mathbf{u}$ and $\\mathbf{v}$ are parallel if and only if $\\mathbf{u} = k\\mathbf{v}$ for some scalar $k \\in \\mathbb{R}, k \\neq 0$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the wording of the question. If it asks for a 'vector', your answer must be in a vector form (e.g., column vector or $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$ form). If it asks for 'magnitude', 'distance', 'length' or 'speed', your answer must be a scalar value. Confusing the two is a common way to lose marks."
+    },
+    {
+      "type": "heading",
+      "content": "Magnitude and Unit Vectors"
+    },
+    {
+      "type": "text",
+      "content": "The magnitude (or modulus) of a vector is its length. It is a scalar quantity and is always non-negative. We calculate it using Pythagoras' theorem on its components. A unit vector is a vector with a magnitude of 1. It is extremely useful for defining a direction in space without being concerned about a specific length. The standard unit vectors $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$ point along the x, y, and z axes, respectively."
+    },
+    {
+      "type": "formula",
+      "content": "For a vector $\\mathbf{v} = \\begin{pmatrix} v_1 \\\\ v_2 \\\\ v_3 \\end{pmatrix}$, its magnitude is $|\\mathbf{v}| = \\sqrt{v_1^2 + v_2^2 + v_3^2}$.\n\nThe unit vector in the direction of $\\mathbf{v}$ is $\\hat{\\mathbf{v}} = \\frac{\\mathbf{v}}{|\\mathbf{v}|} = \\frac{1}{|\\mathbf{v}|}\\mathbf{v}$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Given the vectors $\\mathbf{p} = \\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$ and $\\mathbf{q} = \\begin{pmatrix} -2 \\\\ 3 \\end{pmatrix}$.\n\n(a) Find the vector $2\\mathbf{p} - 3\\mathbf{q}$.\n(b) Find a unit vector in the direction of $\\mathbf{p}$.\n(c) Find the value of $k$ such that the vector $\\mathbf{r} = \\begin{pmatrix} k \\\\ -6 \\end{pmatrix}$ is parallel to $\\mathbf{q}$.",
+      "solution": "(a) Substitute the vectors into the expression.\n\n$2\\mathbf{p} - 3\\mathbf{q} = 2\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix} - 3\\begin{pmatrix} -2 \\\\ 3 \\end{pmatrix}$  [M1]\n\n$= \\begin{pmatrix} 8 \\\\ -2 \\end{pmatrix} - \\begin{pmatrix} -6 \\\\ 9 \\end{pmatrix} = \\begin{pmatrix} 8 - (-6) \\\\ -2 - 9 \\end{pmatrix} = \\begin{pmatrix} 14 \\\\ -11 \\end{pmatrix}$  [A1]\n\n(b) First, find the magnitude of $\\mathbf{p}$.\n\n$|\\mathbf{p}| = \\sqrt{4^2 + (-1)^2} = \\sqrt{16+1} = \\sqrt{17}$  [M1]\n\nThe unit vector is $\\hat{\\mathbf{p}} = \\frac{1}{|\\mathbf{p}|}\\mathbf{p}$.\n\n$\\hat{\\mathbf{p}} = \\frac{1}{\\sqrt{17}}\\begin{pmatrix} 4 \\\\ -1 \\end{pmatrix}$  [A1]\n\n(c) For $\\mathbf{r}$ to be parallel to $\\mathbf{q}$, there must be a scalar, let's call it $c$, such that $\\mathbf{r} = c\\mathbf{q}$.\n\n$\\begin{pmatrix} k \\\\ -6 \\end{pmatrix} = c\\begin{pmatrix} -2 \\\\ 3 \\end{pmatrix}$  [M1]\n\nEquating the second components gives:\n\n$-6 = 3c \\implies c = -2$  [A1]\n\nNow substitute $c=-2$ into the equation for the first components:\n\n$k = c(-2) = (-2)(-2) = 4$\n\nSo, $k=4$.  [A1]"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra 3D Vector Explorer",
+          "href": "https://www.geogebra.org/m/j35d2zsp"
+        },
+        {
+          "label": "Vector Operations Visualiser",
+          "href": "https://www.geogebra.org/m/c2a4k5q9"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra 3D Vector Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=j35d2zsp",
+    "launchUrl": "https://www.geogebra.org/classic?material=j35d2zsp",
+    "hint": "Use “GeoGebra 3D Vector Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

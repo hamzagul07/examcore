@@ -1,0 +1,193 @@
+{
+  "slug": "3-5-trigonometric-identities-and-equations",
+  "topicCode": "3.5",
+  "title": "Trigonometric identities and equations",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson covers the essential trigonometric identities, including Pythagorean, compound angle, and double angle formulae. You will learn to use these to prove more complex identities and solve trigonometric equations within a given domain, a crucial skill for Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Recall and apply fundamental trigonometric identities (Pythagorean, reciprocal, quotient).",
+    "Use compound angle and double angle formulae to simplify expressions, prove identities, and find exact values.",
+    "Solve trigonometric equations for a specified domain, including those requiring algebraic manipulation and identity substitution.",
+    "Express $a \\sin x + b \\cos x$ in the form $R \\sin(x \\pm \\alpha)$ or $R \\cos(x \\pm \\alpha)$ to solve equations and find maximum/minimum values."
+  ],
+  "simpleExplanation": {
+    "title": "The Swiss Army Knife of Trigonometry",
+    "summary": "Trigonometric identities are the tools that let you take apart complex trigonometric expressions and rebuild them in a simpler, more useful form. Mastering them is like learning the grammar of trigonometry, allowing you to solve equations that initially look impossible.",
+    "analogy": "Think of identities like a set of universal adaptors. You might have a device with a European plug (like $\\tan x$) and a British wall socket (an equation involving only $\\sin x$ and $\\cos x$). The identity $\\tan x \\equiv \\sin x / \\cos x$ is the adaptor that lets you connect the two and make it work. The goal is to convert everything into a common 'format' to solve the problem.",
+    "steps": [
+      "Standardise the Form: Your first step is to simplify the equation. Use identities to express all trigonometric terms using the same function (e.g., all in terms of $\\sin x$) or the same angle (e.g., all angles are $x$, not $2x$).",
+      "Create a Solvable Equation: Rearrange the simplified expression into a standard algebraic form. This is often a linear equation (e.g., $\\cos x = k$) or a quadratic equation (e.g., $2\\sin^2 x - \\sin x - 1 = 0$).",
+      "Find the Principal Value: Solve the basic equation to find the principal value (or first solution) for the angle. Use your knowledge of exact values and the CAST diagram or unit circle.",
+      "Find All Solutions in the Domain: Consider the period of the function and its symmetry to find all other solutions that lie within the specified interval. Don't forget to check for extraneous solutions if you squared both sides."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Pythagorean Identity",
+      "back": "$\\sin^2 \\theta + \\cos^2 \\theta \\equiv 1$. This is the most fundamental identity, derived from the unit circle equation $x^2+y^2=1$."
+    },
+    {
+      "front": "How do you derive the identity involving $\\tan^2 \\theta$?",
+      "back": "Start with $\\sin^2 \\theta + \\cos^2 \\theta \\equiv 1$ and divide every term by $\\cos^2 \\theta$ to get $\\tan^2 \\theta + 1 \\equiv \\sec^2 \\theta$."
+    },
+    {
+      "front": "How do you derive the identity involving $\\cot^2 \\theta$?",
+      "back": "Start with $\\sin^2 \\theta + \\cos^2 \\theta \\equiv 1$ and divide every term by $\\sin^2 \\theta$ to get $1 + \\cot^2 \\theta \\equiv \\csc^2 \\theta$."
+    },
+    {
+      "front": "Reciprocal identity for $\\sec \\theta$?",
+      "back": "$\\sec \\theta \\equiv \\frac{1}{\\cos \\theta}$"
+    },
+    {
+      "front": "Reciprocal identity for $\\csc \\theta$?",
+      "back": "$\\csc \\theta \\equiv \\frac{1}{\\sin \\theta}$"
+    },
+    {
+      "front": "Quotient identity for $\\cot \\theta$?",
+      "back": "$\\cot \\theta \\equiv \\frac{\\cos \\theta}{\\sin \\theta} \\equiv \\frac{1}{\\tan \\theta}$"
+    },
+    {
+      "front": "Compound Angle Formula for $\\sin(A+B)$",
+      "back": "$\\sin(A+B) \\equiv \\sin A \\cos B + \\cos A \\sin B$. Remember: Sine is 'sociable' - it mixes sin and cos."
+    },
+    {
+      "front": "Compound Angle Formula for $\\cos(A+B)$",
+      "back": "$\\cos(A+B) \\equiv \\cos A \\cos B - \\sin A \\sin B$. Remember: Cosine is 'cliquey' - it keeps cos with cos, sin with sin, and changes the sign."
+    },
+    {
+      "front": "The three forms of the double angle formula for $\\cos(2\\theta)$",
+      "back": "$\\cos(2\\theta) \\equiv \\cos^2 \\theta - \\sin^2 \\theta \\equiv 2\\cos^2 \\theta - 1 \\equiv 1 - 2\\sin^2 \\theta$. Choose the form that best simplifies your equation."
+    },
+    {
+      "front": "Double angle formula for $\\sin(2\\theta)$",
+      "back": "$\\sin(2\\theta) \\equiv 2\\sin\\theta\\cos\\theta$. This is the only form."
+    },
+    {
+      "front": "Common Trap: Solving $\\sin x = \\cos x$",
+      "back": "Dividing by $\\cos x$ to get $\\tan x = 1$ is valid, but you must first ensure $\\cos x \\neq 0$. In this case, if $\\cos x = 0$, then $\\sin x = \\pm 1$, so $\\sin x \\neq \\cos x$. The division is safe."
+    },
+    {
+      "front": "Common Trap: Forgetting the $\\pm$ when square rooting",
+      "back": "If you have $\\sin^2 x = 1/4$, then $\\sin x = +1/2$ or $\\sin x = -1/2$. Forgetting the negative solution will lose you half the marks."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between an equation and an identity?",
+      "a": "An identity is a statement that is true for all possible values of the variable(s). For example, $\\sin^2 x + \\cos^2 x \\equiv 1$ is true for any angle $x$. An equation is only true for certain specific values, called solutions. For example, $\\cos x = 1/2$ is only true for $x = \\pi/3 + 2n\\pi$ and $x = 5\\pi/3 + 2n\\pi$."
+    },
+    {
+      "q": "How do I know which identity to use when proving something?",
+      "a": "Look at the target expression (the RHS). If it involves $\\tan x$, you'll probably need to create a $\\sin x / \\cos x$. If the angle is halved (e.g., going from $2x$ to $x$), you must use a double angle formula. If you have a mix of $\\sin^2 x$ and $\\cos x$, use $\\sin^2 x = 1 - \\cos^2 x$ to get a single function. It's a process of pattern recognition that improves with practice."
+    },
+    {
+      "q": "Why do we need to check for extraneous solutions?",
+      "a": "Extraneous solutions can be introduced by operations that are not perfectly reversible. The most common culprit is squaring both sides of an equation. For example, $x=2$ has one solution. But if you square it to get $x^2=4$, the solutions are now $x=2$ and $x=-2$. The $x=-2$ is extraneous. When solving trigonometric equations, this can happen, so it's good practice to substitute your final answers back into the original equation to ensure they are valid."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to one of the most powerful topics in trigonometry. Identities and equations are the bedrock of advanced mathematics, particularly in calculus. Here, you'll move beyond simply finding sides of triangles and learn to manipulate and solve complex trigonometric expressions. This is about fluency and strategic thinking, skills highly valued in the HL exam."
+    },
+    {
+      "type": "heading",
+      "content": "The Core Toolkit: Fundamental Identities"
+    },
+    {
+      "type": "text",
+      "content": "All trigonometric identities are ultimately derived from the geometry of the unit circle. The most fundamental of these are the Pythagorean identities, which are direct consequences of Pythagoras' theorem applied to the right-angled triangle within the circle. You must know these by heart."
+    },
+    {
+      "type": "formula",
+      "content": "$\\sin^2 \\theta + \\cos^2 \\theta \\equiv 1$ \\\\ $1 + \\tan^2 \\theta \\equiv \\sec^2 \\theta$ \\\\ $1 + \\cot^2 \\theta \\equiv \\csc^2 \\theta$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The symbol $\\equiv$ means 'is identically equal to', signifying the relationship is true for all valid values of $\\theta$.",
+        "Remember the reciprocal functions: $\\sec x = 1/\\cos x$, $\\csc x = 1/\\sin x$, $\\cot x = 1/\\tan x$.",
+        "And the quotient identities: $\\tan x = \\sin x/\\cos x$, $\\cot x = \\cos x/\\sin x$.",
+        "These are your basic tools for rewriting and simplifying expressions."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Prove the identity $\\frac{\\sin(2x)}{1+\\cos(2x)} \\equiv \\tan x$.",
+      "solution": "We start with the left-hand side (LHS) and manipulate it to get the right-hand side (RHS). \\\\ **LHS** $= \\frac{\\sin(2x)}{1+\\cos(2x)}$ \\\\ We need to express this in terms of $x$, not $2x$. We use the double angle formulae from the formula booklet. For the numerator, $\\sin(2x) = 2\\sin x \\cos x$. For the denominator, we want to cancel the '1'. The identity $\\cos(2x) = 2\\cos^2 x - 1$ is perfect for this. (M1 - for selecting appropriate identities) \\\\ **LHS** $= \\frac{2\\sin x \\cos x}{1 + (2\\cos^2 x - 1)}$ \\\\ The '1's in the denominator cancel out. (A1) \\\\ **LHS** $= \\frac{2\\sin x \\cos x}{2\\cos^2 x}$ \\\\ Now we can cancel common factors. The '2's cancel. We can also cancel one factor of $\\cos x$, provided $\\cos x \\neq 0$. (M1 - for simplification) \\\\ **LHS** $= \\frac{\\sin x}{\\cos x}$ \\\\ By definition, this is $\\tan x$. \\\\ **LHS** $= \\tan x =$ **RHS**. (A1) \\\\ The identity is proven. (R1 - for a complete and clear argument)"
+    },
+    {
+      "type": "heading",
+      "content": "Solving Trigonometric Equations"
+    },
+    {
+      "type": "text",
+      "content": "Solving an equation means finding the specific values of the variable that make the statement true. Unlike identities, equations are not true for all values. The general strategy is to use identities to simplify the equation into a form like $\\sin(u) = k$, and then find all solutions within the given domain."
+    },
+    {
+      "type": "examTip",
+      "content": "When an equation involves multiple angles, like $x$ and $2x$, always use a double angle identity to express everything in terms of a single angle, usually the smaller one. Also, if the domain is $0 \\le x < 2\\pi$ and your equation has $\\sin(2x)$, your working domain for the angle $2x$ is $0 \\le 2x < 4\\pi$. Find all solutions for $2x$ in this larger domain before dividing by 2."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $2\\sin^2 x - \\cos x = 1$ for $x$ in the interval $0 \\le x \\le 2\\pi$.",
+      "solution": "The equation contains both $\\sin x$ and $\\cos x$. We need to express it in terms of a single trigonometric function. We can use the Pythagorean identity $\\sin^2 x = 1 - \\cos^2 x$. (M1 - for using the correct identity) \\\\ $2(1 - \\cos^2 x) - \\cos x = 1$ \\\\ $2 - 2\\cos^2 x - \\cos x = 1$ \\\\ Rearrange into a quadratic equation in the form $ax^2+bx+c=0$, where $x$ is $\\cos x$. \\\\ $0 = 2\\cos^2 x + \\cos x - 1$ (A1) \\\\ Let $y = \\cos x$. The equation is $2y^2 + y - 1 = 0$. We can factorise this. \\\\ $(2y - 1)(y + 1) = 0$ (M1 - for solving the quadratic) \\\\ So, $y = 1/2$ or $y = -1$. \\\\ This means we have two simpler equations to solve: \\\\ Case 1: $\\cos x = 1/2$ \\\\ The principal value is $x = \\arccos(1/2) = \\pi/3$. (A1) \\\\ Cosine is positive in the 1st and 4th quadrants. The second solution is $x = 2\\pi - \\pi/3 = 5\\pi/3$. (A1) \\\\ Case 2: $\\cos x = -1$ \\\\ The solution in the domain $0 \\le x \\le 2\\pi$ is $x = \\pi$. (A1) \\\\ The complete set of solutions is $x = \\{\\pi/3, \\pi, 5\\pi/3\\}$. These are all within the specified domain."
+    },
+    {
+      "type": "heading",
+      "content": "Harmonic Form: $a \\sin x + b \\cos x$"
+    },
+    {
+      "type": "text",
+      "content": "Expressions of the form $a \\sin x + b \\cos x$ can be simplified into a single sinusoidal function. This is extremely useful for finding the maximum and minimum values of the function and for solving equations of the form $a \\sin x + b \\cos x = k$."
+    },
+    {
+      "type": "formula",
+      "content": "To express $a \\sin x + b \\cos x$ in the form $R \\sin(x+\\alpha)$: \\\\ $R = \\sqrt{a^2 + b^2}$ \\\\ $\\cos \\alpha = \\frac{a}{R}$ and $\\sin \\alpha = \\frac{b}{R}$, which implies $\\tan \\alpha = \\frac{b}{a}$. \\\\ The maximum value of the function is $R$ and the minimum is $-R$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The R-formula is given in the formula booklet, but you must know how to apply it.",
+        "Pay close attention to the form required, e.g., $R\\sin(x+\\alpha)$ vs $R\\cos(x-\\alpha)$, as this affects the calculation of $\\alpha$.",
+        "Always be careful determining the quadrant of $\\alpha$ by checking the signs of $\\cos \\alpha$ and $\\sin \\alpha$ (i.e., the signs of $a$ and $b$)."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Trigonometric Identities & Equations",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Formula Booklet",
+          "href": "https://www.ibdocuments.com/IB%20DOCUMENTS/Miscellaneous/Formula%20Booklets/Mathematics%20-%20Analysis%20and%20Approaches%20(first%20assessment%202021)%20-%20English.pdf"
+        },
+        {
+          "label": "GeoGebra Interactive Unit Circle",
+          "href": "https://www.geogebra.org/m/s79g2t7v"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Interactive Unit Circle",
+    "embedUrl": "https://www.geogebra.org/classic?material=s79g2t7v",
+    "launchUrl": "https://www.geogebra.org/classic?material=s79g2t7v",
+    "hint": "Use “GeoGebra Interactive Unit Circle” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

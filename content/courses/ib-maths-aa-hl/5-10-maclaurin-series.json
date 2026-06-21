@@ -1,0 +1,177 @@
+{
+  "slug": "5-10-maclaurin-series",
+  "topicCode": "5.10",
+  "title": "Maclaurin series",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces Maclaurin series, a powerful tool for approximating functions with infinite polynomials centred at x=0. You will learn to derive and use these series, including the standard expansions for key functions found in the IB formula booklet.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the Maclaurin series as a power series expansion of a function about $x=0$.",
+    "Derive the Maclaurin series for a given function from first principles.",
+    "Recall and apply the standard Maclaurin series for $e^x$, $\\sin(x)$, $\\cos(x)$, $\\ln(1+x)$, and $(1+x)^p$.",
+    "Use Maclaurin series to find approximations and evaluate limits."
+  ],
+  "simpleExplanation": {
+    "title": "Function Blueprints: Building with Derivatives",
+    "summary": "A Maclaurin series is a way to rebuild any 'smooth' function using an infinite polynomial. We use the function's derivatives at zero as the 'building blocks' for this polynomial approximation.",
+    "analogy": "Imagine a bespoke tailor creating a suit. They take a series of precise measurements at one specific point (your body at rest) to cut the cloth. The first measurement gives a rough shape, the next refines the fit, and so on. A Maclaurin series is similar: it uses the function's value, its slope (1st derivative), its curvature (2nd derivative), and so on, all at $x=0$, to build a polynomial that perfectly matches the function at that point and provides an excellent approximation nearby.",
+    "steps": [
+      "Choose the function $f(x)$ you want to expand.",
+      "Repeatedly differentiate the function: find $f'(x)$, $f''(x)$, $f'''(x)$, and so on.",
+      "Evaluate the function and all its derivatives at $x=0$ to get the coefficients: $f(0)$, $f'(0)$, $f''(0)$, etc.",
+      "Substitute these values into the Maclaurin formula: $f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\dots$"
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a Maclaurin series?",
+      "back": "It's a Taylor series expansion of a function about the point $x=0$. It represents a function as an infinite polynomial whose coefficients are determined by the function's derivatives at zero."
+    },
+    {
+      "front": "What is the general formula for a Maclaurin series?",
+      "back": "$f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(0)}{n!}x^n = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\dots$"
+    },
+    {
+      "front": "What is the Maclaurin series for $e^x$?",
+      "back": "$e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\dots = \\sum_{n=0}^{\\infty} \\frac{x^n}{n!}$"
+    },
+    {
+      "front": "What is the Maclaurin series for $\\sin(x)$?",
+      "back": "$\\sin(x) = x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\dots = \\sum_{n=0}^{\\infty} \\frac{(-1)^n x^{2n+1}}{(2n+1)!}$. Note: only odd powers."
+    },
+    {
+      "front": "What is the Maclaurin series for $\\cos(x)$?",
+      "back": "$\\cos(x) = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\dots = \\sum_{n=0}^{\\infty} \\frac{(-1)^n x^{2n}}{(2n)!}$. Note: only even powers."
+    },
+    {
+      "front": "What is the Maclaurin series for $\\ln(1+x)$?",
+      "back": "$\\ln(1+x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\dots = \\sum_{n=1}^{\\infty} \\frac{(-1)^{n-1} x^n}{n}$. Note: no factorials in the denominator."
+    },
+    {
+      "front": "What is the Maclaurin series for $(1+x)^p$, where $p \\in \\mathbb{Q}$?",
+      "back": "$1 + px + \\frac{p(p-1)}{2!}x^2 + \\frac{p(p-1)(p-2)}{3!}x^3 + \\dots$. This is the binomial series."
+    },
+    {
+      "front": "Common Trap: What is often forgotten when writing the terms of a Maclaurin series?",
+      "back": "The factorial in the denominator, $n!$. Forgetting this is a very common error, especially when working quickly. Remember it's $\\frac{f^{(n)}(0)}{n!}x^n$."
+    },
+    {
+      "front": "How do you find the Maclaurin series for a function like $f(x) = e^{x^2}$?",
+      "back": "Do not differentiate $e^{x^2}$ repeatedly. Instead, take the standard series for $e^u = 1 + u + u^2/2! + \\dots$ and substitute $u=x^2$. This gives $1 + x^2 + (x^2)^2/2! + \\dots = 1 + x^2 + x^4/2 + \\dots$."
+    },
+    {
+      "front": "What is the relationship between the series for $\\sin(x)$, $\\cos(x)$, and $e^{ix}$ (Euler's formula)?",
+      "back": "The series for $e^{ix}$ is $\\sum \\frac{(ix)^n}{n!}$. Separating this into real and imaginary parts gives the series for $\\cos(x)$ (real part) and $i\\sin(x)$ (imaginary part), demonstrating Euler's formula: $e^{ix} = \\cos(x) + i\\sin(x)$."
+    },
+    {
+      "front": "Common Trap: When finding the series for $\\ln(1-x)$, what's the mistake to avoid?",
+      "back": "Don't just alternate the signs of the $\\ln(1+x)$ series. Substitute $(-x)$ into the series for $\\ln(1+u)$: $\\ln(1-x) = (-x) - \\frac{(-x)^2}{2} + \\frac{(-x)^3}{3} - \\dots = -x - \\frac{x^2}{2} - \\frac{x^3}{3} - \\dots$. All terms are negative."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a Taylor series and a Maclaurin series?",
+      "a": "A Maclaurin series is a specific type of Taylor series. A Taylor series is a power series expansion of a function about any point $x=a$. A Maclaurin series is the special case where the expansion is about the point $a=0$. All Maclaurin series are Taylor series, but not all Taylor series are Maclaurin series."
+    },
+    {
+      "q": "Why are there factorials ($n!$) in the denominators?",
+      "a": "The factorials appear naturally when you repeatedly differentiate powers of $x$. To make the $k$-th derivative of a polynomial term $c_k x^k$ equal to the function's $k$-th derivative at zero, you find that the coefficient $c_k$ must be $\\frac{f^{(k)}(0)}{k!}$. For example, the 3rd derivative of $x^3$ is $3 \\times 2 \\times 1 = 3!$."
+    },
+    {
+      "q": "How many terms of the series do I need to use in an exam question?",
+      "a": "The question will almost always guide you. It might say 'find the first three non-zero terms' or 'find the series up to the term in $x^4$'. If you're using a series to approximate a value, using the number of terms specified in the first part of the question is a safe bet."
+    },
+    {
+      "q": "Can I always find a Maclaurin series for any function?",
+      "a": "No. A function must be 'infinitely differentiable' at $x=0$, meaning you must be able to find its first, second, third, and all subsequent derivatives at that point. Functions like $f(x)=|x|$ or $f(x)=\\ln(x)$ do not have Maclaurin series because they are not differentiable or not defined at $x=0$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Imagine you needed to calculate $\\sin(0.1)$ without a calculator. How would you do it? Polynomials are easy to compute, but trigonometric functions are not. Maclaurin series provide a bridge, allowing us to approximate complex functions like $\\sin(x)$, $e^x$, or $\\ln(x)$ using simple polynomials. This is a cornerstone of calculus, with applications from physics to finance. We will focus on the Maclaurin series, which is a special case of the more general Taylor series, centred at the convenient point $x=0$."
+    },
+    {
+      "type": "heading",
+      "content": "The Maclaurin Series Formula"
+    },
+    {
+      "type": "text",
+      "content": "A function $f(x)$ that is infinitely differentiable at $x=0$ can be represented by its Maclaurin series. The series is constructed by matching the value of the polynomial and all its derivatives to the value of the function and its derivatives at $x=0$. This 'locks' the polynomial to the function at that point, providing a good approximation nearby."
+    },
+    {
+      "type": "formula",
+      "content": "f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(0)}{n!}x^n = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\dots"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The notation $f^{(n)}(0)$ means the $n$-th derivative of $f(x)$, evaluated at $x=0$.",
+        "The term $n!$ (n factorial) in the denominator is crucial and comes from the process of repeated differentiation.",
+        "The series is an infinite sum, but in practice we use a finite number of terms (a Maclaurin polynomial) to get an approximation."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the first three non-zero terms of the Maclaurin series for $f(x) = \\cos(2x)$.",
+      "solution": "We need to find the values of the function and its first few derivatives at $x=0$. \\\\ **Step 1: Find derivatives.** \\\\ $f(x) = \\cos(2x)$ \\\\ $f'(x) = -2\\sin(2x)$ \\\\ $f''(x) = -4\\cos(2x)$ \\\\ $f'''(x) = 8\\sin(2x)$ \\\\ $f^{(4)}(x) = 16\\cos(2x)$ \\\\ **Step 2: Evaluate at x=0.** \\\\ $f(0) = \\cos(0) = 1$ [A1] \\\\ $f'(0) = -2\\sin(0) = 0$ \\\\ $f''(0) = -4\\cos(0) = -4$ [A1] \\\\ $f'''(0) = 8\\sin(0) = 0$ \\\\ $f^{(4)}(0) = 16\\cos(0) = 16$ [A1] \\\\ **Step 3: Substitute into the Maclaurin formula.** \\\\ $f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\frac{f^{(4)}(0)}{4!}x^4 + \\dots$ \\\\ $\\cos(2x) = 1 + (0)x + \\frac{-4}{2!}x^2 + (0)x^3 + \\frac{16}{4!}x^4 + \\dots$ [M1] \\\\ **Step 4: Simplify to find the first three non-zero terms.** \\\\ $\\cos(2x) = 1 - \\frac{4}{2}x^2 + \\frac{16}{24}x^4 + \\dots$ \\\\ $\\cos(2x) = 1 - 2x^2 + \\frac{2}{3}x^4 + \\dots$ [A1] \\\\ The first three non-zero terms are $1$, $-2x^2$, and $\\frac{2}{3}x^4$."
+    },
+    {
+      "type": "heading",
+      "content": "Standard Series from the Formula Booklet"
+    },
+    {
+      "type": "text",
+      "content": "Deriving series from first principles is a key skill, but for many common functions, the results are provided in the IB Maths AA formula booklet. You are expected to know these and, more importantly, how to use them. These standard series are powerful shortcuts in exam questions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$e^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\dots$ for all $x$.",
+        "$\\ln(1+x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\dots$ for $-1 < x \\le 1$.",
+        "$\\sin(x) = x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\dots$ for all $x$.",
+        "$\\cos(x) = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\dots$ for all $x$.",
+        "$(1+x)^p = 1 + px + \\frac{p(p-1)}{2!}x^2 + \\dots$ for $|x| < 1, p \\in \\mathbb{Q}$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common exam question asks for a series that can be found by substituting into one of the standard series. For example, to find the series for $\\sqrt{1-x^2}$, you would use the binomial expansion for $(1+u)^p$ with $u = -x^2$ and $p = 1/2$. This is much faster and less error-prone than differentiating from scratch."
+    },
+    {
+      "type": "heading",
+      "content": "Combining and Applying Series"
+    },
+    {
+      "type": "text",
+      "content": "The real power of Maclaurin series becomes apparent when you learn to manipulate them. You can add, subtract, multiply, differentiate, and integrate them term-by-term (within their interval of convergence). This allows you to build series for a vast range of complicated functions from the basic building blocks."
+    },
+    {
+      "type": "workedExample",
+      "question": "By using the Maclaurin series for $e^x$ and $\\sin(x)$, find the Maclaurin series for $f(x) = e^x \\sin(x)$ up to and including the term in $x^3$. Hence, estimate the value of $\\int_0^{0.5} e^x \\sin(x) \\,dx$ to 4 decimal places.",
+      "solution": "**Part 1: Find the series for $e^x \\sin(x)$** \\\\ We use the standard series: \\\\ $e^x = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\dots$ \\\\ $\\sin(x) = x - \\frac{x^3}{6} + \\dots$ \\\\ Now, multiply these, collecting terms up to $x^3$: \\\\ $e^x \\sin(x) = (1 + x + \\frac{x^2}{2} + \\dots)(x - \\frac{x^3}{6} + \\dots)$ [M1] \\\\ We expand the brackets, ignoring terms with powers higher than 3. \\\\ $= 1(x) + 1(-\\frac{x^3}{6}) + x(x) + x(-\\frac{x^3}{6}) + \\frac{x^2}{2}(x) + \\dots$ \\\\ $= x - \\frac{x^3}{6} + x^2 - \\frac{x^4}{6} + \\frac{x^3}{2} + \\dots$ \\\\ Now, collect like terms: \\\\ $= x + x^2 + (\\frac{1}{2} - \\frac{1}{6})x^3 + \\dots$ [A1] \\\\ $= x + x^2 + (\\frac{3}{6} - \\frac{1}{6})x^3 + \\dots$ \\\\ $= x + x^2 + \\frac{2}{6}x^3 + \\dots$ \\\\ So, $e^x \\sin(x) = x + x^2 + \\frac{1}{3}x^3 + \\dots$ [A1] \\\\ **Part 2: Estimate the integral** \\\\ We integrate our series approximation term by term: \\\\ $\\int_0^{0.5} e^x \\sin(x) \\,dx \\approx \\int_0^{0.5} (x + x^2 + \\frac{1}{3}x^3) \\,dx$ [M1] \\\\ $= [\\frac{x^2}{2} + \\frac{x^3}{3} + \\frac{1}{3} \\cdot \\frac{x^4}{4}]_0^{0.5}$ \\\\ $= [\\frac{x^2}{2} + \\frac{x^3}{3} + \\frac{x^4}{12}]_0^{0.5}$ [A1] \\\\ $= (\\frac{(0.5)^2}{2} + \\frac{(0.5)^3}{3} + \\frac{(0.5)^4}{12}) - (0)$ \\\\ $= (\\frac{0.25}{2} + \\frac{0.125}{3} + \\frac{0.0625}{12})$ \\\\ $= 0.125 + 0.041666... + 0.005208...$ [M1] \\\\ $= 0.171875$ \\\\ To 4 decimal places, the estimate is $0.1719$. [A1]"
+    },
+    {
+      "type": "practice",
+      "label": "Maclaurin Series",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.10"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "3Blue1Brown: Taylor series",
+          "href": "https://www.youtube.com/watch?v=3d6DsjIBzJ4"
+        },
+        {
+          "label": "Paul's Online Math Notes: Taylor Series",
+          "href": "https://tutorial.math.lamar.edu/classes/calcii/taylorseries.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

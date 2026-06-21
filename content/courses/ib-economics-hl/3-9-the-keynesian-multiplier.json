@@ -1,0 +1,172 @@
+{
+  "slug": "3-9-the-keynesian-multiplier",
+  "topicCode": "3.9",
+  "title": "The Keynesian multiplier",
+  "paper": "P3",
+  "paperName": "Economics HL",
+  "status": "premium",
+  "summary": "This lesson explains the Keynesian multiplier effect, detailing how an initial change in aggregate demand leads to a proportionally larger final change in national income. It covers the calculation of the multiplier using marginal propensities and illustrates its impact on GDP through worked examples and graphical analysis.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Explain the multiplier effect as a result of the circular flow of income.",
+    "Calculate the value of the Keynesian multiplier using the marginal propensity to consume (MPC) or marginal propensity to withdraw (MPW).",
+    "Analyse the impact of the multiplier on national income following a change in an injection.",
+    "Illustrate the multiplier effect on both the Keynesian 45-degree diagram and the AD/AS model."
+  ],
+  "simpleExplanation": {
+    "title": "The Economic Ripple Effect",
+    "summary": "An initial injection of spending into the economy creates a ripple effect, leading to a much larger final increase in national income. The multiplier quantifies this magnified impact.",
+    "analogy": "Imagine dropping a large stone into a still pond. The initial splash is the government spending £10 billion on a new railway. The ripples that spread out are the subsequent rounds of spending: the railway company pays its workers, who then buy groceries, and the grocer then pays their suppliers. The total economic 'disturbance' is far greater than the size of the initial stone.",
+    "steps": [
+      "An autonomous injection, like an increase in government spending (G) or investment (I), enters the circular flow of income.",
+      "This spending becomes income for households and firms. For example, construction workers are paid wages.",
+      "A fraction of this new income is spent again (determined by the MPC), while the rest 'leaks' out as savings (MPS), taxes (MPT), or spending on imports (MPM).",
+      "This new spending becomes income for another group, and the process repeats. The cumulative increase in national income is a multiple of the initial injection."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the Keynesian multiplier effect?",
+      "back": "The phenomenon where an initial autonomous change in aggregate demand (AD) leads to a proportionally larger final change in national income (real GDP)."
+    },
+    {
+      "front": "Define Marginal Propensity to Consume (MPC).",
+      "back": "The proportion of any additional income that households choose to spend on domestic goods and services. Formula: MPC = ΔC / ΔY."
+    },
+    {
+      "front": "Define Marginal Propensity to Save (MPS).",
+      "back": "The proportion of any additional income that households choose to save. Formula: MPS = ΔS / ΔY."
+    },
+    {
+      "front": "Define Marginal Propensity to Tax (MPT).",
+      "back": "The proportion of any additional income that is paid to the government in taxes. Formula: MPT = ΔT / ΔY."
+    },
+    {
+      "front": "Define Marginal Propensity to Import (MPM).",
+      "back": "The proportion of any additional income that is spent on imported goods and services. Formula: MPM = ΔM / ΔY."
+    },
+    {
+      "front": "What are 'withdrawals' or 'leakages' in the context of the multiplier?",
+      "back": "Portions of income that are not passed on in the circular flow of income. The three main withdrawals are savings (S), taxes (T), and imports (M)."
+    },
+    {
+      "front": "What is the formula for the Marginal Propensity to Withdraw (MPW)?",
+      "back": "MPW is the sum of the marginal propensities of all withdrawals. Formula: MPW = MPS + MPT + MPM."
+    },
+    {
+      "front": "What is the relationship between MPC and the other marginal propensities in a closed economy with no government?",
+      "back": "In a simple model, any income not consumed is saved. Therefore, MPC + MPS = 1."
+    },
+    {
+      "front": "State the two main formulas for calculating the multiplier (k).",
+      "back": "1. k = 1 / (1 - MPC) \n2. k = 1 / MPW (where MPW = MPS + MPT + MPM)"
+    },
+    {
+      "front": "How do you calculate the total change in Real GDP from an initial injection?",
+      "back": "Total Change in Real GDP = Initial Change in Injection × Multiplier (k). For example, ΔY = ΔG × k."
+    },
+    {
+      "front": "Common Trap: Why is the multiplier smaller in an open economy with a government compared to a simple closed economy?",
+      "back": "Because there are more leakages. In addition to savings (MPS), income also leaks out as taxes (MPT) and spending on imports (MPM), increasing the value of MPW and thus reducing the size of the multiplier."
+    },
+    {
+      "front": "Common Trap: What is the difference between an autonomous and an induced change in spending?",
+      "back": "Autonomous spending does not depend on the level of income (e.g., a government's policy decision to invest). Induced spending is a result of a change in income (e.g., households spending more because their wages increased)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why might the real-world multiplier be smaller than the calculated value?",
+      "a": "The simple multiplier formula assumes several things that may not hold true. Firstly, there are time lags; it takes time for income to be received and then re-spent. Secondly, the MPC may not be constant; people might save more of their new income if they are uncertain about the future. Thirdly, if the economy is close to full employment, an increase in AD may lead to inflation (higher prices) rather than an increase in real output, which dampens the multiplier effect. This is known as 'crowding out'."
+    },
+    {
+      "q": "Does the multiplier effect also work in reverse?",
+      "a": "Yes, absolutely. This is sometimes called the 'reverse multiplier' or 'negative multiplier' effect. An initial withdrawal from the circular flow, such as a decrease in government spending or a fall in investment, will lead to a proportionally larger final decrease in national income. This is a key reason why recessions can sometimes deepen quickly."
+    },
+    {
+      "q": "What is the difference between the expenditure multiplier and the tax multiplier?",
+      "a": "The expenditure multiplier (which we've focused on) applies to changes in autonomous spending (G, I, X). The tax multiplier applies to changes in autonomous taxes. The tax multiplier is always smaller than the expenditure multiplier because a tax cut is not fully spent; a portion is saved. Its formula is -MPC / (1-MPC). A $100 increase in G has a bigger impact than a $100 tax cut."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to our exploration of the Keynesian multiplier. This is a cornerstone of Keynesian economics, explaining why small changes in government policy or private investment can have surprisingly large effects on the overall economy. Understanding the multiplier is crucial for evaluating fiscal policy and comprehending the dynamics of economic booms and recessions."
+    },
+    {
+      "type": "heading",
+      "content": "The Core Concept: A Chain Reaction of Spending"
+    },
+    {
+      "type": "text",
+      "content": "The multiplier effect is based on a simple observation: one person's spending is another person's income. When there is an initial injection of new spending into the economy (e.g., from government investment in infrastructure), this becomes income for the recipients. They, in turn, will spend a portion of this new income, which then becomes income for others, and so on. This creates a chain reaction, or ripple effect, where the total increase in national income is much larger than the initial injection."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "An injection is an addition of spending into the circular flow of income (Investment, Government Spending, Exports).",
+        "A withdrawal (or leakage) is income that is not passed on in the circular flow (Savings, Taxes, Imports).",
+        "The multiplier process continues until the additional spending in each round becomes infinitesimally small.",
+        "The size of the multiplier depends on the size of the leakages from the circular flow."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating the Multiplier"
+    },
+    {
+      "type": "text",
+      "content": "To quantify the multiplier effect, we use marginal propensities. These measure how much of an *additional* pound of income is allocated to spending, saving, taxes, or imports. The most important is the Marginal Propensity to Consume (MPC), which dictates how much of each new pound is passed on as further spending."
+    },
+    {
+      "type": "formula",
+      "content": "\\text{Multiplier (k)} = \\frac{1}{1 - \\text{MPC}} = \\frac{1}{\\text{MPS} + \\text{MPT} + \\text{MPM}} = \\frac{1}{\\text{MPW}}"
+    },
+    {
+      "type": "text",
+      "content": "Where MPC is the marginal propensity to consume and MPW is the marginal propensity to withdraw. A higher MPC (meaning people spend more of their extra income) leads to a smaller denominator and therefore a larger multiplier. Conversely, higher leakages (higher MPS, MPT, or MPM) increase the denominator and shrink the multiplier."
+    },
+    {
+      "type": "workedExample",
+      "question": "In a closed economy with no government, the Marginal Propensity to Consume (MPC) is 0.75. The government initiates an investment project worth £50 billion.\n\n(a) Calculate the value of the multiplier.\n(b) Calculate the total increase in national income.",
+      "solution": "**(a) Calculate the multiplier (k):**\n\n*   **Formula:** In a simple closed economy, k = 1 / (1 - MPC).\n*   **Substitution:** k = 1 / (1 - 0.75) = 1 / 0.25.\n*   **Answer:** k = 4.\n\n**(b) Calculate the total increase in national income (ΔY):**\n\n*   **Formula:** ΔY = Initial Injection × k.\n*   **Substitution:** ΔY = £50 billion × 4.\n*   **Answer:** ΔY = £200 billion.\n\n**Working:** The initial £50bn injection leads to a total increase in GDP of £200 billion because of the multiplier effect. For every new pound injected, £0.75 is re-spent in the next round."
+    },
+    {
+      "type": "heading",
+      "content": "Graphical Representation of the Multiplier"
+    },
+    {
+      "type": "text",
+      "content": "The multiplier effect can be visualised on the Keynesian 45-degree (income-expenditure) diagram. An initial autonomous increase in aggregate expenditure (AE), for example from ΔG, shifts the AE curve upwards. The economy moves to a new equilibrium where the change in income (ΔY) is visibly larger than the initial vertical shift in the AE curve (ΔG). The same effect can be shown on an AD/AS diagram, where an initial shift of AD₁ to AD₂ is magnified by the multiplier, resulting in a final, larger shift to AD₃, leading to a greater increase in real GDP (assuming the economy is operating below full employment)."
+    },
+    {
+      "type": "examTip",
+      "content": "When drawing the multiplier on a 45-degree diagram, ensure your labels are precise. The initial vertical shift is the change in autonomous expenditure (e.g., ΔI or ΔG). The horizontal change along the x-axis represents the total change in national income (ΔY). Examiners look for clear evidence that you understand ΔY > ΔI."
+    },
+    {
+      "type": "workedExample",
+      "question": "An open economy has the following characteristics: Marginal Propensity to Save (MPS) = 0.2, Marginal Propensity to Tax (MPT) = 0.2, and Marginal Propensity to Import (MPM) = 0.1. The government increases its spending by $25 billion to stimulate the economy.$\n\nCalculate the total change in the nation's GDP.",
+      "solution": "**Step 1: Calculate the Marginal Propensity to Withdraw (MPW).**\n\n*   **Formula:** MPW = MPS + MPT + MPM.\n*   **Substitution:** MPW = 0.2 + 0.2 + 0.1.\n*   **Answer:** MPW = 0.5.\n\n**Step 2: Calculate the multiplier (k).**\n\n*   **Formula:** k = 1 / MPW.\n*   **Substitution:** k = 1 / 0.5.\n*   **Answer:** k = 2.\n\n**Step 3: Calculate the total change in GDP (ΔY).**\n\n*   **Formula:** ΔY = Initial Change in Injection × k.\n*   **Substitution:** ΔY = $25 billion × 2.$\n*   **Answer:** ΔY = $50 billion.$\n\n**Working:** The initial government spending of $25 billion will lead to a total increase in GDP of $50 billion. The relatively high leakages (totaling 0.5) result in a small multiplier of 2."
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding of the Keynesian multiplier with exam-style questions.",
+      "href": "/mark?subject=ib-economics-hl&topic=3.9"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "In-depth video on the Multiplier Effect",
+          "href": "https://www.youtube.com/watch?v=1uIzs_2A_yQ"
+        },
+        {
+          "label": "Khan Academy: The Multiplier Effect",
+          "href": "https://www.khanacademy.org/economics-finance-domain/ap-macroeconomics/income-and-expenditure-topic-ap/the-multiplier-effect-2/a/the-multiplier-effect-cnx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

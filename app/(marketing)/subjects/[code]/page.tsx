@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createPageMetadata } from '@/lib/seo/metadata'
-import { getCourseSubject } from '@/lib/courses'
+import { getCourseSubject, getCourseLessons } from '@/lib/courses'
+import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import {
   buildSubjectPageCopy,
   getMarkingSubjectCodes,
@@ -86,6 +87,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
   const paperYears = structure ? getPaperBrowserYears(structure) : []
   const hotTopics = hotTopicsForSubject(structure)
   const accent = catalog?.color ?? 'var(--ec-brand)'
+  const lessons = course ? getCourseLessons(code) : []
 
   const intro = buildSubjectHubIntro(subject)
 
@@ -178,7 +180,17 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           ]}
         />
 
-        <div className="ms-sd-grid">
+        {lessons.length && course ? (
+          <SubjectChapters
+            code={code}
+            lessons={lessons}
+            basePath="/courses"
+            accent={accent}
+            heading={`${subject.label} chapters`}
+          />
+        ) : null}
+
+        <div className="ms-sd-grid" style={{ marginTop: 40 }}>
           <div>
             {structure && paperSessions.length > 0 ? (
               <SubjectPaperBrowser

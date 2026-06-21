@@ -290,6 +290,31 @@
   margin: 0;
 }
 
+/* "Inside subject" chapter browser (ZNotes-style chapters view) */
+.subj-chapters { margin-top: 40px; }
+.subj-chapters-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.subj-chapter-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px; list-style: none; padding: 0; margin: 0;
+}
+.subj-chapter {
+  display: flex; align-items: center; gap: 12px; padding: 13px 15px;
+  background: var(--ec-surface); border: 1px solid var(--ec-border);
+  border-radius: 12px; text-decoration: none; transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+.subj-chapter:hover {
+  transform: translateX(3px);
+  border-color: color-mix(in srgb, var(--sc, var(--ec-brand)) 45%, var(--ec-border));
+  background: color-mix(in srgb, var(--sc, var(--ec-brand)) 5%, var(--ec-surface));
+}
+.subj-chapter-n {
+  flex-shrink: 0; min-width: 40px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--sc, var(--ec-brand)); text-align: left;
+}
+.subj-chapter-title { flex: 1; min-width: 0; font-size: 14.5px; font-weight: 500; color: var(--ec-text-primary); }
+.subj-chapter-go { flex-shrink: 0; color: var(--ec-text-faint); transition: color 150ms ease, transform 150ms ease; }
+.subj-chapter:hover .subj-chapter-go { color: var(--sc, var(--ec-brand)); transform: translateX(2px); }
+
 .ms-pp-card {
   display: flex;
   align-items: center;

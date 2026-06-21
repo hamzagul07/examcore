@@ -21,9 +21,9 @@ export default function PrivacyPage() {
             <h2 className="ms-h3">Who we are</h2>
             <p>
               MarkScheme (&quot;we&quot;, &quot;us&quot;) provides an AI-assisted marking
-              tool for Cambridge A-Level students at{' '}
-              <Link href="/">{SITE_HOST}</Link>. This policy explains what data we
-              collect and how we use it during early access.
+              tool and free study courses for students preparing for Cambridge, IB,
+              and other exams at <Link href="/">{SITE_HOST}</Link>. This policy
+              explains what data we collect and how we use it during early access.
             </p>
           </section>
 
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="ms-h3">How we use your data</h2>
             <ul className="list-disc space-y-2 pl-5">
-              <li>To mark your work and show you feedback tied to Cambridge mark schemes.</li>
+              <li>To mark your work and show you feedback tied to official mark schemes and markbands.</li>
               <li>To maintain your account, mastery tracking, and attempt history.</li>
               <li>To improve the product — fixing bugs, understanding which features help students.</li>
               <li>To communicate with you about your account, early access, or future pricing changes.</li>

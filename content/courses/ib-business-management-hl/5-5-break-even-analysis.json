@@ -1,0 +1,217 @@
+{
+  "slug": "5-5-break-even-analysis",
+  "topicCode": "5.5",
+  "title": "Break-even analysis",
+  "paper": "P2",
+  "paperName": "Business Management HL",
+  "status": "premium",
+  "summary": "This lesson introduces break-even analysis, a fundamental financial tool used to determine the sales volume at which a business's total revenues equal its total costs, resulting in neither a profit nor a loss. We will explore the calculation of the break-even point, the construction of break-even charts, and the analysis of margin of safety and target profit levels. This topic is crucial for understanding business viability, pricing strategies, and decision-making under various cost and revenue scenarios.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Calculate the break-even quantity, profit or loss, margin of safety, and the level of output required to achieve a target profit.",
+    "Construct and interpret a break-even chart, labelling all key elements correctly.",
+    "Analyse the effects of changes in price, output, and costs on the break-even point and profit.",
+    "Evaluate the benefits and limitations of break-even analysis as a decision-making tool for businesses."
+  ],
+  "simpleExplanation": {
+    "title": "Finding Your Financial Tipping Point",
+    "summary": "Break-even analysis pinpoints the exact number of units you need to sell to cover all your costs. It's the moment your business stops losing money and starts having the potential to make a profit.",
+    "analogy": "Imagine you're selling custom-printed t-shirts to fund a school trip. The trip costs a fixed £200 (your fixed cost). Each plain t-shirt and the ink cost you £5 (your variable cost), and you sell the finished product for £15. Break-even analysis is figuring out how many t-shirts you must sell just to cover the £200 trip cost and the £5 cost for each t-shirt sold, before you start making any extra money for yourself.",
+    "steps": [
+      "Identify and categorise all business costs into two groups: fixed costs (e.g., rent, salaries) that don't change with output, and variable costs (e.g., raw materials) that do.",
+      "Calculate the contribution per unit. This is the amount each unit sold contributes towards covering fixed costs, found by subtracting the variable cost per unit from the selling price per unit.",
+      "Determine the break-even quantity (BEQ). This is calculated by dividing the total fixed costs by the contribution per unit.",
+      "Analyse the results. Use the BEQ to calculate the margin of safety and assess risk, or adapt the formula to find the output needed for a specific target profit."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Break-Even Point (BEP)",
+      "back": "The point at which total revenue equals total costs. At this point, the business makes neither a profit nor a loss. It can be expressed in terms of quantity (units) or sales value (£)."
+    },
+    {
+      "front": "Break-Even Quantity (BEQ)",
+      "back": "The specific number of units a business must sell to achieve the break-even point."
+    },
+    {
+      "front": "Fixed Costs (FC)",
+      "back": "Costs that do not vary with the level of output in the short term. Examples include rent, salaries, and insurance."
+    },
+    {
+      "front": "Variable Costs (VC)",
+      "back": "Costs that vary directly with the level of output. Examples include raw materials, piece-rate labour, and direct energy consumption for production."
+    },
+    {
+      "front": "Total Costs (TC)",
+      "back": "The sum of total fixed costs and total variable costs at a given level of output. Formula: TC = TFC + TVC."
+    },
+    {
+      "front": "Total Revenue (TR)",
+      "back": "The total income received from selling a given level of output. Formula: TR = Selling Price per unit × Quantity Sold."
+    },
+    {
+      "front": "Contribution per unit",
+      "back": "The amount of money each unit sold contributes towards paying for the fixed costs of the business. Formula: Selling Price per unit - Variable Cost per unit."
+    },
+    {
+      "front": "Total Contribution",
+      "back": "The total amount available to cover fixed costs and contribute to profit. Formula: Contribution per unit × Quantity Sold OR Total Revenue - Total Variable Costs."
+    },
+    {
+      "front": "Margin of Safety (MoS)",
+      "back": "The difference between the current or budgeted level of output and the break-even quantity. It indicates how much sales can fall before the business starts making a loss. Formula: Current Output - Break-Even Quantity."
+    },
+    {
+      "front": "Target Profit Output",
+      "back": "The level of output a business needs to sell to achieve a specific, desired level of profit. Formula: (Fixed Costs + Target Profit) / Contribution per unit."
+    },
+    {
+      "front": "Trap: Confusing Contribution with Profit",
+      "back": "Contribution per unit is NOT the same as profit per unit. Profit is only generated AFTER all fixed costs have been covered by the total contribution."
+    },
+    {
+      "front": "Trap: Assuming linear relationships",
+      "back": "A key limitation of break-even analysis is that it assumes costs and revenues move in straight lines. In reality, businesses might get bulk purchase discounts (reducing VC per unit) or have to lower prices to sell more (reducing TR per unit)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between contribution and profit?",
+      "a": "Contribution is the revenue from a sale left over to cover fixed costs after variable costs have been paid (Price - VC). Profit is what remains after *all* costs, both variable and fixed, have been covered. A business makes a profit only when its total contribution exceeds its total fixed costs."
+    },
+    {
+      "q": "Can the break-even point be a non-integer, like 960.5 units?",
+      "a": "Yes, mathematically it often is. In a real-world context, you must round the number *up* to the next whole unit. You cannot sell half a unit, and selling 960 units would mean you haven't quite broken even, so you must sell 961 units to ensure all costs are covered."
+    },
+    {
+      "q": "Why is break-even analysis so important for a start-up business?",
+      "a": "For a start-up, break-even analysis is vital for three main reasons. First, it helps determine the viability of the business idea – is the break-even point realistically achievable? Second, it is a crucial part of a business plan used to secure financing from banks or investors, as it demonstrates financial awareness. Third, it helps in setting an initial selling price that will allow the business to become profitable."
+    },
+    {
+      "q": "What happens to the break-even point if fixed costs increase?",
+      "a": "If fixed costs increase, the break-even point will also increase. The business will need to sell more units to generate enough total contribution to cover the higher fixed costs. On a break-even chart, the fixed cost line and the total cost line would shift upwards, moving the intersection point with the total revenue line to the right."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Break-even analysis is a cornerstone of financial planning for any business, from a local café to a multinational corporation. It provides a clear, quantitative answer to a fundamental question: 'How much do we need to sell to cover our costs?' By understanding this critical threshold, managers can make more informed decisions about pricing, cost control, and production levels. This lesson will equip you with the tools to calculate, visualise, and critically evaluate break-even points."
+    },
+    {
+      "type": "heading",
+      "content": "The Core Components of Break-Even Analysis"
+    },
+    {
+      "type": "text",
+      "content": "To perform a break-even analysis, we must first classify a business's costs. Fixed Costs (FC) are expenses that remain constant regardless of production output, such as monthly rent or administrative salaries. Variable Costs (VC) change in direct proportion to the volume of output, like the cost of raw materials for each product made. Total Costs (TC) are simply the sum of fixed and variable costs. On the other side, Total Revenue (TR) is the income generated from sales."
+    },
+    {
+      "type": "heading",
+      "content": "Calculating the Break-Even Point"
+    },
+    {
+      "type": "text",
+      "content": "The key to finding the break-even point lies in the concept of 'contribution'. The contribution per unit is the portion of the selling price that is left over after the variable cost for that unit has been covered. This 'contribution' is then used to pay off the fixed costs. Once fixed costs are fully paid, any further contribution becomes profit."
+    },
+    {
+      "type": "formula",
+      "content": "Contribution per unit = Selling Price per unit - Variable Cost per unit"
+    },
+    {
+      "type": "text",
+      "content": "To find the break-even quantity (BEQ), we determine how many units' worth of contribution is needed to cover the total fixed costs."
+    },
+    {
+      "type": "formula",
+      "content": "Break-Even Quantity (units) = \\frac{\\text{Total Fixed Costs}}{\\text{Contribution per unit}}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A start-up, 'Artisan Bakes', produces a single type of sourdough bread. Their monthly fixed costs (oven lease, rent) are £2,400. The variable cost per loaf (flour, yeast, energy) is £1.50. They sell each loaf for £4.00. Calculate the number of loaves Artisan Bakes must sell each month to break even.",
+      "solution": "1. **Calculate Contribution per unit:**\n   Contribution = Selling Price - Variable Cost\n   Contribution = £4.00 - £1.50 = £2.50 per loaf\n\n2. **Calculate Break-Even Quantity (BEQ):**\n   BEQ = Total Fixed Costs / Contribution per unit\n   BEQ = £2,400 / £2.50\n   BEQ = 960 loaves\n\n**Answer:** Artisan Bakes must sell 960 loaves of sourdough bread per month to cover all their costs."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Break-Even: The Chart"
+    },
+    {
+      "type": "text",
+      "content": "A break-even chart provides a powerful visual representation of the relationship between costs, revenue, and output. The horizontal axis represents the level of output (quantity), and the vertical axis represents costs and revenue (£). Key lines plotted are the horizontal Fixed Cost line, the upward-sloping Total Cost line (starting from the FC line), and the upward-sloping Total Revenue line (starting from the origin). The point where the Total Cost and Total Revenue lines intersect is the break-even point. The area between these lines to the left of the BEP represents a loss, while the area to the right represents a profit."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The x-axis is 'Output' or 'Quantity' in units.",
+        "The y-axis is 'Costs and Revenue' in a currency (e.g., £, $, €).$",
+        "The Total Revenue (TR) line always starts at the origin (0,0).",
+        "The Total Cost (TC) line starts on the y-axis at the level of Total Fixed Costs (TFC).",
+        "The break-even point is the intersection of the TR and TC lines.",
+        "The Margin of Safety is the distance along the x-axis between the current output level and the break-even point."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, if you are asked to draw a break-even chart, you will be awarded marks for accuracy and clear labelling. Always label your axes, each line (TFC, TC, TR), the break-even point, and any indicated profit/loss areas. Use a ruler for straight lines and plot points accurately based on your calculations."
+    },
+    {
+      "type": "heading",
+      "content": "Beyond Break-Even: Margin of Safety and Target Profit"
+    },
+    {
+      "type": "text",
+      "content": "Break-even analysis is not just about finding the minimum sales needed. The Margin of Safety (MoS) is a crucial risk indicator. It measures the buffer between a firm's current sales level and its break-even point, showing how much sales could decline before the firm starts incurring losses. A higher MoS indicates lower risk."
+    },
+    {
+      "type": "formula",
+      "content": "Margin of Safety (units) = Current Output - Break-Even Quantity"
+    },
+    {
+      "type": "text",
+      "content": "Furthermore, businesses can adapt the break-even formula to plan for growth. To find the level of output needed to achieve a specific profit target, the target profit is treated as an additional fixed cost that must be covered by the contribution."
+    },
+    {
+      "type": "formula",
+      "content": "Target Profit Output (units) = \\frac{\\text{Total Fixed Costs + Target Profit}}{\\text{Contribution per unit}}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A company, 'TechWidgets Ltd', manufactures a smart device. Annual fixed costs are £500,000. The selling price is £120 per unit and the variable cost is £70 per unit. The company currently produces and sells 15,000 units per year.\n(a) Calculate the break-even quantity.\n(b) Calculate the margin of safety in units.\n(c) The board sets a target profit of £100,000 for next year. Calculate the number of units that must be sold to achieve this.",
+      "solution": "**(a) Break-Even Quantity (BEQ)**\n1. **Contribution per unit:** £120 - £70 = £50\n2. **BEQ:** £500,000 / £50 = 10,000 units\n\n**(b) Margin of Safety (MoS)**\n1. **MoS Formula:** Current Output - BEQ\n2. **MoS:** 15,000 units - 10,000 units = 5,000 units\n\n**(c) Target Profit Output**\n1. **Formula:** (Fixed Costs + Target Profit) / Contribution per unit\n2. **Calculation:** (£500,000 + £100,000) / £50\n   = £600,000 / £50\n   = 12,000 units\n\n**Answers:**\n(a) The BEQ is 10,000 units.\n(b) The margin of safety is 5,000 units.\n(c) TechWidgets must sell 12,000 units to achieve a profit of £100,000."
+    },
+    {
+      "type": "heading",
+      "content": "Evaluation: Strengths and Limitations of Break-Even Analysis"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Strengths:** It is simple to calculate and easy to understand visually. It allows for quick 'what-if' scenario analysis (e.g., 'What if we raise the price?'). It is a useful tool for start-ups seeking bank loans or investment.",
+        "**Limitations:** It assumes all output is sold and no stock is held. It assumes costs and revenues are linear, ignoring economies of scale or price discounts for large orders. It is a static model, not accounting for changes in the business environment over time. Its accuracy is entirely dependent on the reliability of the cost and revenue data used."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For higher-level evaluation marks (e.g., in a 10-mark question), don't just list limitations. Explain *why* a limitation is significant for the specific business in the case study. For example, for a fashion retailer, the assumption that 'all stock is sold' is a major weakness because seasonal trends mean stock often has to be discounted heavily to be cleared, which breaks the model's assumptions."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding of Break-Even Analysis",
+      "href": "/mark?subject=ib-business-management-hl&topic=5.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Investopedia: Break-Even Analysis Explained",
+          "href": "https://www.investopedia.com/terms/b/breakevenanalysis.asp"
+        },
+        {
+          "label": "YouTube Tutorial: Break-Even Calculations by Tutor2u",
+          "href": "https://www.youtube.com/watch?v=A-e8g9rdc24"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

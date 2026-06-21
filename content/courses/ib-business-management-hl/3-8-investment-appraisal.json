@@ -1,0 +1,199 @@
+{
+  "slug": "3-8-investment-appraisal",
+  "topicCode": "3.8",
+  "title": "Investment appraisal",
+  "paper": "P2",
+  "paperName": "Business Management HL",
+  "status": "premium",
+  "summary": "This lesson explores quantitative investment appraisal techniques used to evaluate the viability of capital projects. It covers the calculation and interpretation of the Payback Period (PBP), Average Rate of Return (ARR), and, for HL students, Net Present Value (NPV), emphasising their respective strengths and weaknesses in business decision-making.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Calculate and interpret the Payback Period (PBP) for an investment project.",
+    "Calculate and interpret the Average Rate of Return (ARR) and compare it to a criterion rate.",
+    "Calculate and interpret the Net Present Value (NPV) of an investment, understanding the role of discounting (HL Only).",
+    "Evaluate the advantages and disadvantages of each appraisal method to make a justified investment recommendation."
+  ],
+  "simpleExplanation": {
+    "title": "Go or No-Go for the Dough?",
+    "summary": "Investment appraisal is how a business decides if a big spending project, like opening a new factory or buying new machinery, is worth the money. It uses financial calculations to predict whether the investment will pay off in the long run.",
+    "analogy": "Imagine you're deciding whether to buy a brand-new, expensive bicycle for a delivery job. You'd first calculate how long it would take for your delivery earnings to cover the bike's cost (Payback). Then, you'd figure out the average yearly profit you'd make from the job as a percentage of the bike's price (ARR). Finally, you might consider that money you earn in the future is worth less than money today, so you'd calculate the project's total value in today's money (NPV). Investment appraisal is just a more formal version of this for businesses.",
+    "steps": [
+      "First, identify the initial cost of the investment, also known as the capital outlay.",
+      "Next, forecast the expected net cash flows (cash inflows minus cash outflows) for each year of the project's life.",
+      "Then, apply the appraisal formulas: calculate the Payback Period, the Average Rate of Return (ARR), and the Net Present Value (NPV).",
+      "Finally, analyse the results. Compare them to the business's targets and weigh them against non-financial factors to make a final recommendation."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Investment Appraisal",
+      "back": "A set of quantitative techniques used to evaluate the financial viability and potential profitability of an investment project or capital expenditure."
+    },
+    {
+      "front": "Payback Period (PBP)",
+      "back": "The time it takes for an investment project's net cash inflows to recover the initial cost of the investment. It focuses on liquidity and risk."
+    },
+    {
+      "front": "Average Rate of Return (ARR)",
+      "back": "A measure of the average annual profit of an investment as a percentage of the initial investment cost. It focuses on profitability."
+    },
+    {
+      "front": "Net Present Value (NPV) (HL Only)",
+      "back": "The difference between the present value of future net cash inflows and the initial cost of an investment. It accounts for the time value of money."
+    },
+    {
+      "front": "Initial Outlay / Capital Cost",
+      "back": "The total cost required to start an investment project. This is the cash flow at Year 0 and is always a negative figure."
+    },
+    {
+      "front": "Net Cash Flow (NCF)",
+      "back": "The difference between cash inflows and cash outflows for a specific period (usually a year). It is not the same as profit."
+    },
+    {
+      "front": "Discounting (HL Only)",
+      "back": "The process of converting a future sum of money to its equivalent present value. It reflects the principle that money today is worth more than the same amount in the future."
+    },
+    {
+      "front": "Discount Factor (HL Only)",
+      "back": "The multiplier used to calculate the present value of a future cash flow. It is calculated as $1 / (1+r)^n$, where 'r' is the discount rate and 'n' is the number of years."
+    },
+    {
+      "front": "Residual Value",
+      "back": "The estimated scrap or resale value of an asset at the end of its useful life. It is treated as a cash inflow in the final year of the project."
+    },
+    {
+      "front": "Criterion Rate/Level",
+      "back": "The minimum target set by a business for an investment to be considered acceptable. For ARR, it's a minimum percentage; for Payback, a maximum time period."
+    },
+    {
+      "front": "Common Trap: Profit vs. Cash Flow",
+      "back": "ARR uses profit (which includes non-cash costs like depreciation), while Payback and NPV use net cash flows. Be sure to use the correct figure for each calculation."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between profit and net cash flow in these calculations?",
+      "a": "Net cash flow is simply cash inflows minus cash outflows. Profit is a more complex accounting measure, calculated as revenue minus expenses. Crucially, profit calculations include non-cash expenses like depreciation. Payback and NPV use net cash flow, while ARR uses profit. Always check which figure you need for the formula you are using."
+    },
+    {
+      "q": "How do I choose which investment appraisal method is best?",
+      "a": "There is no single 'best' method; they each tell a different story. That's why businesses often use all three. Payback is good for assessing risk and cash constraints. ARR is good for assessing profitability in an easy-to-understand percentage. NPV (HL only) is theoretically the best as it considers the time value of money and overall value creation. A good manager uses them in combination to get a well-rounded view."
+    },
+    {
+      "q": "What are 'qualitative factors' and why are they important in investment appraisal?",
+      "a": "Qualitative factors are non-numerical aspects that can influence an investment decision. Examples include the project's impact on employee morale, brand reputation, customer loyalty, environmental sustainability, or competitive positioning. A project might have a borderline financial return but be essential for strategic reasons, like keeping up with a competitor's technology. A strong evaluation always balances the quantitative results (PBP, ARR, NPV) with these qualitative considerations."
+    },
+    {
+      "q": "What happens if a project has a residual or scrap value?",
+      "a": "The residual value of an asset is its worth at the end of its useful life. For calculation purposes, it is treated as a cash inflow in the final year of the project. For ARR, it also affects the total profit calculation and can sometimes be used in an alternative ARR formula where the average investment is used as the denominator."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Businesses constantly face decisions about where to allocate their financial resources for future growth. Should they invest in a new production line, launch a major marketing campaign, or upgrade their IT systems? Investment appraisal provides a structured, quantitative framework to analyse these long-term decisions, helping managers to compare different projects and select the one that offers the most favourable financial return."
+    },
+    {
+      "type": "heading",
+      "content": "The Payback Period (PBP)"
+    },
+    {
+      "type": "text",
+      "content": "The Payback Period is the simplest appraisal method. It calculates the length of time required for the net cash inflows from a project to equal the initial investment. A shorter payback period is generally preferred as it indicates lower risk and a quicker return of cash, which can then be used for other purposes. It's a popular method for businesses concerned with cash flow and liquidity."
+    },
+    {
+      "type": "formula",
+      "content": "For projects with constant annual cash flows: $Payback Period = \\frac{Initial \\, Investment}{Annual \\, Net \\, Cash \\, Flow}$ \\n For projects with variable annual cash flows: $Payback Period = Years \\, before \\, full \\, recovery + \\frac{Shortfall \\, to \\, recover}{Net \\, cash \\, flow \\, in \\, recovery \\, year}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A bakery is considering buying a new oven for £90,000. The forecasted net cash flows are: Year 1: £30,000, Year 2: £40,000, Year 3: £50,000, Year 4: £50,000. Calculate the payback period.",
+      "solution": "1. **Track Cumulative Cash Flow:**\n   - Initial Cost: -£90,000\n   - End of Year 1: £30,000 (Outstanding: £60,000)\n   - End of Year 2: £30,000 + £40,000 = £70,000 (Outstanding: £20,000)\n2. **Identify Recovery Year:** The investment is not fully paid back by the end of Year 2. The remaining £20,000 will be recovered during Year 3.\n3. **Calculate the fraction of the year:**\n   - Amount needed in Year 3 = £20,000\n   - Cash flow in Year 3 = £50,000\n   - Fraction = £20,000 / £50,000 = 0.4 years\n4. **Convert to months (for clarity):**\n   - 0.4 years * 12 months/year = 4.8 months\n5. **Final Answer:** The payback period is **2 years and 4.8 months** (or 2.4 years)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage:** Simple to calculate and understand, making it easy to compare projects.",
+        "**Advantage:** Focuses on liquidity and is a good measure of risk; faster payback means less time for the investment to be at risk.",
+        "**Disadvantage:** Ignores all cash flows that occur after the payback period has been reached, thus ignoring overall profitability.",
+        "**Disadvantage:** Does not account for the time value of money (i.e., it treats £1 earned in Year 3 as equal in value to £1 earned in Year 1)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Average Rate of Return (ARR)"
+    },
+    {
+      "type": "text",
+      "content": "The Average Rate of Return measures the net return (or profit) of a project each year as a percentage of the initial capital cost. Unlike payback, ARR considers the profitability of the entire project. The calculated ARR is then compared to a pre-set criterion rate set by the business, and also against the ARR of other potential projects."
+    },
+    {
+      "type": "formula",
+      "content": "Step 1: $Average \\, Annual \\, Profit = \\frac{Total \\, Net \\, Profit \\, (over \\, project's \\, life)}{Project \\, Lifespan \\, (in \\, years)}$ \\n where Total Net Profit = Total Cash Inflows - Initial Cost. \\n\\n Step 2: $ARR \\, (\\%) = \\frac{Average \\, Annual \\, Profit}{Initial \\, Cost} \\times 100$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the same bakery project: Initial cost £90,000, 4-year life, and total net cash flows of £170,000 (£30k+£40k+£50k+£50k). Assume no residual value. Calculate the ARR.",
+      "solution": "1. **Calculate Total Profit:**\n   - Total Profit = Total Cash Inflows - Initial Cost\n   - Total Profit = £170,000 - £90,000 = £80,000\n2. **Calculate Average Annual Profit:**\n   - Average Annual Profit = Total Profit / Lifespan\n   - Average Annual Profit = £80,000 / 4 years = £20,000 per year\n3. **Calculate ARR:**\n   - ARR = (Average Annual Profit / Initial Cost) x 100\n   - ARR = (£20,000 / £90,000) x 100\n4. **Final Answer:** The ARR is **22.22%**. If the bakery's criterion rate is 15%, this project would be considered financially acceptable."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage:** Focuses on profitability over the entire project life, providing a more complete picture than PBP.",
+        "**Advantage:** The percentage result is easily understood and comparable to other forms of investment return, like interest rates.",
+        "**Disadvantage:** Like PBP, it ignores the timing of cash flows and the time value of money.",
+        "**Disadvantage:** The result can be manipulated depending on how depreciation is calculated, as it is based on profit, not cash flow."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Net Present Value (NPV) (HL Only)"
+    },
+    {
+      "type": "text",
+      "content": "Net Present Value is the most sophisticated appraisal method as it directly addresses the concept of the 'time value of money'. It recognises that money received in the future is worth less than money received today due to inflation and opportunity cost (what you could have earned with the money in the meantime). NPV calculates the total value of a project in today's terms by 'discounting' all future net cash flows back to their present value and then subtracting the initial investment. A positive NPV indicates the project is financially viable and will generate a return greater than the discount rate."
+    },
+    {
+      "type": "formula",
+      "content": "$NPV = \\sum \\frac{Net \\, Cash \\, Flow_t}{(1+r)^t} - Initial \\, Investment$ \\n Where 't' is the year of the cash flow and 'r' is the discount rate. In exams, you are usually given a table of discount factors to simplify the calculation."
+    },
+    {
+      "type": "workedExample",
+      "question": "A tech firm is considering a software project with an initial outlay of £500,000. Forecasted net cash flows are: Y1: £150,000, Y2: £200,000, Y3: £250,000. The company uses a discount rate of 10%. The discount factors are: Y1=0.909, Y2=0.826, Y3=0.751. Calculate the NPV.",
+      "solution": "1. **Calculate the Present Value (PV) for each year's cash flow:**\n   - PV Year 1 = Net Cash Flow Y1 x Discount Factor Y1 = £150,000 x 0.909 = £136,350\n   - PV Year 2 = Net Cash Flow Y2 x Discount Factor Y2 = £200,000 x 0.826 = £165,200\n   - PV Year 3 = Net Cash Flow Y3 x Discount Factor Y3 = £250,000 x 0.751 = £187,750\n2. **Sum the Present Values:**\n   - Total PV = £136,350 + £165,200 + £187,750 = £489,300\n3. **Calculate NPV:**\n   - NPV = Total PV - Initial Investment\n   - NPV = £489,300 - £500,000\n4. **Final Answer:** The NPV is **-£10,700**. Since the NPV is negative, the project should be rejected as it is forecast to generate a return less than the company's required 10%."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Advantage:** It is the only method that accounts for the time value of money, making it theoretically superior.",
+        "**Advantage:** The result is an absolute value (£, $, €), which clearly indicates the expected value added to the business.$",
+        "**Disadvantage:** It is more complex to calculate and can be difficult for non-financial managers to understand.",
+        "**Disadvantage:** The result is highly sensitive to the chosen discount rate, which is itself an estimate and can be subjective."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, you will often be asked to calculate figures for two or all three methods and then make a justified recommendation. Do not just state the results. You must synthesise the information. For example: 'Although Project A has a shorter payback period of 2.5 years compared to Project B's 3 years, Project B has a significantly higher ARR (18% vs 12%) and a positive NPV, whereas Project A's is negative. Therefore, despite the higher initial risk indicated by the longer payback, Project B is the recommended choice as it offers superior long-term profitability and adds shareholder value, which aligns with the company's objective of growth.' Always consider qualitative factors mentioned in the case study, such as alignment with brand image, employee morale, or environmental impact, to support your final judgement."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Investment Appraisal",
+      "href": "/mark?subject=ib-business-management-hl&topic=3.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Investopedia: A Deep Dive into NPV",
+          "href": "https://www.investopedia.com/articles/financial-theory/11/net-present-value.asp"
+        },
+        {
+          "label": "Corporate Finance Institute: Payback vs ARR vs NPV",
+          "href": "https://corporatefinanceinstitute.com/resources/knowledge/modeling/investment-appraisal-techniques/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

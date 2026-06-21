@@ -1,0 +1,185 @@
+{
+  "slug": "5-6-production-planning",
+  "topicCode": "5.6",
+  "title": "Production planning",
+  "paper": "P1",
+  "paperName": "Business Management HL",
+  "status": "premium",
+  "summary": "This lesson explores the critical components of production planning for HL students. It covers the management of stock levels using stock control charts, the calculation and strategic implications of capacity utilisation, and the quantitative and qualitative factors influencing make-or-buy decisions. These tools are essential for ensuring operational efficiency and profitability.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Analyse stock control charts and their components (e.g., buffer stock, re-order level, lead time).",
+    "Calculate and interpret capacity utilisation rates and discuss their implications for a business.",
+    "Evaluate the quantitative and qualitative factors that influence make-or-buy decisions.",
+    "Understand the interconnectedness of these planning tools in achieving operational objectives."
+  ],
+  "simpleExplanation": {
+    "title": "The Factory's Grand Plan",
+    "summary": "Production planning is how a business organises its resources to make products efficiently. It's about having the right materials, at the right time, and using your factory space and machinery effectively to meet customer orders.",
+    "analogy": "Imagine you're running a popular pizza stall. Production planning is your strategy. You need to know how much dough, cheese, and tomato sauce to keep (stock control), so you don't run out during the lunch rush. You also need to know the maximum number of pizzas your oven can bake per hour (capacity) and decide if it's cheaper to make your own pizza bases or buy them pre-made (make-or-buy decision). Getting this plan right means happy customers and more profit.",
+    "steps": [
+      "Forecast customer demand to predict how many products you need to make.",
+      "Manage your inventory using a stock control system to ensure you have enough raw materials without holding too much costly stock.",
+      "Calculate your capacity utilisation to see how efficiently you are using your machinery and staff, and if you can take on more work.",
+      "Make strategic 'make-or-buy' decisions for components, weighing up costs, quality, and supplier reliability."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Production Plan",
+      "back": "An operational plan detailing how a business will use its resources (labour, capital, materials) to produce goods or services that meet forecasted demand over a specific time period."
+    },
+    {
+      "front": "Stock Control",
+      "back": "The process of managing the levels of raw materials, work-in-progress, and finished goods to minimise costs while ensuring availability for production and customer demand."
+    },
+    {
+      "front": "Buffer Stock (or Safety Stock)",
+      "back": "The minimum level of inventory a business aims to hold to protect against stock-outs caused by unexpected demand increases or delays in delivery from suppliers."
+    },
+    {
+      "front": "Lead Time",
+      "back": "The time delay between placing an order for new stock and the stock being delivered and ready for use. A key variable in determining the re-order level."
+    },
+    {
+      "front": "Re-order Level",
+      "back": "The inventory level at which a new order is automatically placed with a supplier. It is calculated to ensure new stock arrives just as the buffer stock is about to be used."
+    },
+    {
+      "front": "Re-order Quantity",
+      "back": "The amount of stock that is ordered from a supplier in a single order. This is often determined by considering economic order quantity (EOQ) principles to balance ordering costs and holding costs."
+    },
+    {
+      "front": "Capacity Utilisation",
+      "back": "A measure of the extent to which a firm's productive capacity is being used. It compares the actual level of output with the maximum possible output over a period."
+    },
+    {
+      "front": "Full Capacity",
+      "back": "The maximum level of output that a business can produce with its existing resources (machinery, labour, facilities) in a given time period. Also known as maximum capacity."
+    },
+    {
+      "front": "Make-or-Buy Decision",
+      "back": "A strategic choice where a business decides whether to manufacture a component or product in-house ('make') or purchase it from an external supplier ('buy')."
+    },
+    {
+      "front": "Outsourcing",
+      "back": "The business practice of hiring an external party to perform services or create goods that were traditionally performed in-house. A common outcome of a 'buy' decision."
+    },
+    {
+      "front": "Subcontracting",
+      "back": "A specific form of outsourcing where a business hires another firm (the subcontractor) to complete part of a larger project or contract. Often used to manage short-term capacity issues."
+    },
+    {
+      "front": "Just-in-Case (JIC)",
+      "back": "A stock control strategy where a business holds a high level of buffer stock 'just in case' there are unforeseen supply chain disruptions or sudden increases in demand."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is a high capacity utilisation rate always a good thing?",
+      "a": "Not necessarily. While a high rate (e.g., 95%) indicates efficient use of assets and lower average fixed costs, operating at or very near 100% capacity is risky. It leaves no room for machine maintenance, staff absences, or quality control checks, and makes it impossible to accept sudden, profitable rush orders. This can lead to stress on machinery and staff, potentially increasing defects and staff turnover. The 'ideal' rate is often considered to be around 85-95%, balancing efficiency with flexibility."
+    },
+    {
+      "q": "What's the difference between outsourcing and subcontracting?",
+      "a": "Outsourcing is the broad strategic decision to have an entire business function (like IT support, accounting, or manufacturing a component) performed by an external company. Subcontracting is a more specific type of outsourcing where a firm hires another company to perform a part of a larger contract or project that the firm is responsible for. For example, a construction firm (the main contractor) might subcontract the electrical and plumbing work to specialist firms."
+    },
+    {
+      "q": "How does Just-in-Time (JIT) relate to stock control charts?",
+      "a": "JIT is an advanced stock control philosophy that aims to eliminate the need for holding significant stock, including buffer stock. In a pure JIT system, materials arrive from suppliers exactly when they are needed for production. Therefore, a traditional stock control chart with its large re-order quantities and buffer stock would not apply. JIT effectively aims to have a buffer stock of zero and a lead time that is perfectly synchronised with production needs, which requires extremely reliable suppliers and accurate demand forecasting."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Imagine a popular electronics company launching a new smartphone. If they produce too few, they face angry customers and lose sales to competitors. If they produce too many, they are left with expensive, unsold stock that quickly becomes obsolete. Production planning is the art and science of getting this balance right, ensuring a smooth, efficient, and profitable operation. This lesson will equip you with the key tools used by operations managers to master this challenge."
+    },
+    {
+      "type": "heading",
+      "content": "Stock Control Management"
+    },
+    {
+      "type": "text",
+      "content": "Holding stock is a double-edged sword. It's necessary to ensure production doesn't halt and customer orders can be met, but it also ties up capital and incurs costs such as storage, insurance, and potential obsolescence. Effective stock control uses charts and key metrics to maintain an optimal level of inventory, balancing the risk of stock-outs against the cost of holding stock."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Buffer Stock:** The emergency reserve to guard against supply delays or demand spikes.",
+        "**Lead Time:** The crucial delay between ordering and receiving stock. The longer the lead time, the higher the re-order level needs to be.",
+        "**Re-order Level:** The trigger point for a new order. It's calculated as: (Maximum daily usage × Maximum lead time) or (Average daily usage × Average lead time) + Buffer Stock.",
+        "**Maximum Stock Level:** The upper limit of inventory a business wishes to hold, constrained by storage space and holding costs."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A furniture maker uses a specific type of wood. Their buffer stock is 50 units. The lead time for a new delivery is 5 days. Daily usage of wood is constant at 20 units per day. The re-order quantity is 250 units. The current stock level is 150 units. \n\n(a) Calculate the re-order level. [2]\n(b) Determine if an order should be placed today. [2]",
+      "solution": "**(a) Re-order Level Calculation**\n\nThe re-order level must cover demand during the lead time, plus the buffer stock.\nRe-order Level = (Daily Usage × Lead Time) + Buffer Stock\nRe-order Level = (20 units/day × 5 days) + 50 units [1 mark]\nRe-order Level = 100 units + 50 units = 150 units [1 mark]\n\n**Therefore, the re-order level is 150 units.**\n\n**(b) Decision to Place Order**\n\nThe current stock level is 150 units. [1 mark]\nThe calculated re-order level is also 150 units. [1 mark]\n\n**Since the current stock level has reached the re-order level, an order for 250 units should be placed today.** This ensures the new stock arrives just as the buffer stock is about to be used, assuming constant usage."
+    },
+    {
+      "type": "heading",
+      "content": "Capacity Utilisation"
+    },
+    {
+      "type": "text",
+      "content": "Capacity utilisation measures how much of a firm's potential output is actually being achieved. A high rate suggests efficiency and that fixed costs are being spread over more units, reducing the average cost per unit. However, a rate that is too high (e.g., 100%) can be problematic, leaving no flexibility for maintenance, staff training, or responding to sudden new orders. Most businesses aim for a rate of around 85-95% to maintain a balance between efficiency and flexibility."
+    },
+    {
+      "type": "formula",
+      "content": "Capacity Utilisation Rate (%) = \\frac{\\text{Actual Output}}{\\text{Maximum Possible Output}} \\times 100"
+    },
+    {
+      "type": "workedExample",
+      "question": "Ceramica Ltd. has a factory that can produce a maximum of 80,000 pots per month. In March, it produced 68,000 pots. \n\n(a) Calculate the capacity utilisation rate for March. [2]\n(b) In April, the company wants to accept a special order for 15,000 pots in addition to its regular production of 68,000. Is this feasible? Justify your answer. [2]",
+      "solution": "**(a) Capacity Utilisation Calculation**\n\nCapacity Utilisation = (Actual Output / Maximum Possible Output) × 100\nCapacity Utilisation = (68,000 / 80,000) × 100 [1 mark]\nCapacity Utilisation = 0.85 × 100 = 85% [1 mark]\n\n**The capacity utilisation rate for March was 85%.**\n\n**(b) Feasibility of Special Order**\n\nTotal required output for April = Regular Production + Special Order\nTotal required output = 68,000 + 15,000 = 83,000 pots [1 mark]\n\nThe factory's maximum capacity is 80,000 pots per month. Since the required output of 83,000 pots exceeds the maximum capacity of 80,000 pots, it is not feasible to accept the entire special order without changes like outsourcing or overtime. [1 mark for justification]"
+    },
+    {
+      "type": "examTip",
+      "content": "When evaluating capacity utilisation, always consider the context. A rate of 98% might be excellent for a utility company with predictable demand but dangerous for a fashion manufacturer facing volatile trends. In your analysis, discuss the trade-offs: high utilisation lowers unit costs but increases risks (no downtime for repairs, inability to accept rush orders), while low utilisation provides flexibility but raises average fixed costs."
+    },
+    {
+      "type": "heading",
+      "content": "Make-or-Buy Decisions"
+    },
+    {
+      "type": "text",
+      "content": "This is a fundamental strategic decision. Should a car manufacturer produce its own gearboxes ('make'), or purchase them from a specialist supplier like ZF ('buy')? The decision rests on both quantitative and qualitative factors. Quantitatively, a firm will compare the cost of making the component in-house against the cost of buying it from an external supplier. Qualitatively, it must consider issues like quality control, supplier reliability, intellectual property protection, and whether the component is part of its core competency."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Quantitative Factors:** Compare Cost to Make (CTM) vs. Cost to Buy (CTB). CTM = Fixed Costs + (Variable Cost per unit × Quantity). CTB = Price per unit × Quantity. A break-even analysis can find the quantity where CTM = CTB.",
+        "**Qualitative Factors (Make):** Greater control over quality, protection of proprietary technology, potential for better integration with other parts.",
+        "**Qualitative Factors (Buy):** Access to specialist expertise and technology, potential economies of scale from the supplier leading to lower prices, increased flexibility.",
+        "**Strategic Considerations:** Does making the component align with the company's core mission? Outsourcing non-core activities can allow a firm to focus on what it does best."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "For a 'make-or-buy' question, a balanced argument is crucial for high marks. Don't just perform the calculation and stop. Use your calculation as the starting point for a wider strategic discussion. For example, 'Although buying is cheaper at the forecasted sales level of 10,000 units, making the component in-house would give the company full control over quality, which is critical for its premium brand image. Therefore, despite the higher cost, making the component may be the better long-term strategy.'"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge on Production Planning",
+      "href": "/mark?subject=ib-business-management-hl&topic=5.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Investopedia: The Make-or-Buy Decision",
+          "href": "https://www.investopedia.com/terms/m/make-or-buy-decision.asp"
+        },
+        {
+          "label": "YouTube: What is Capacity Utilization?",
+          "href": "https://www.youtube.com/watch?v=kccLuMr_KHw"
+        },
+        {
+          "label": "Lean Enterprise Institute: JIT vs JIC",
+          "href": "https://www.lean.org/lexicon/jit-just-in-time/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

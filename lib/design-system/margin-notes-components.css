@@ -627,6 +627,26 @@
     flex-wrap: wrap;
   }
 
+  .ec-ms-footer__legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    flex-basis: 100%;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--ec-border);
+    padding-bottom: 14px;
+  }
+
+  .ec-ms-footer__legal-links a {
+    color: var(--ec-text-secondary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .ec-ms-footer__legal-links a:hover {
+    color: var(--ec-brand);
+  }
+
   @media (max-width: 900px) {
     .ec-ms-footer__inner {
       grid-template-columns: 1fr 1fr;

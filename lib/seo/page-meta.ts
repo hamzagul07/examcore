@@ -100,6 +100,16 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       'Terms for using MarkScheme to mark Cambridge International past papers — subscriptions, acceptable use, and limitations.',
   },
+  '/refunds': {
+    title: 'Refund & cancellation policy',
+    description:
+      'How refunds, cancellations, and the 7-day free trial work on MarkScheme — including your 14-day cooling-off rights and our goodwill refund promise.',
+  },
+  '/cookies': {
+    title: 'Cookie policy',
+    description:
+      'The small set of cookies and local storage MarkScheme uses — for sign-in, preferences, and basic analytics. No advertising trackers, no data selling.',
+  },
 }
 
 export function getPageMetadata(

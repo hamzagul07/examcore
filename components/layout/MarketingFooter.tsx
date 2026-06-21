@@ -11,6 +11,13 @@ const PRODUCT_LINKS = [
   { href: '/pricing', label: 'Pricing' },
 ]
 
+const LEGAL_LINKS = [
+  { href: '/terms', label: 'Terms' },
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/refunds', label: 'Refunds' },
+  { href: '/cookies', label: 'Cookies' },
+]
+
 const SUBJECT_LINKS = [
   { href: '/subjects/9709', label: '9709 Mathematics' },
   { href: '/subjects/9702', label: '9702 Physics' },
@@ -68,6 +75,13 @@ export function MarketingFooter() {
       </div>
 
       <div className="ec-ms-footer__legal">
+        <nav className="ec-ms-footer__legal-links" aria-label="Legal">
+          {LEGAL_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
         <span>© 2026 MarkScheme — built by a student, for students.</span>
         <span>Not endorsed by Cambridge International.</span>
       </div>

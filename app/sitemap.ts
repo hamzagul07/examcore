@@ -37,6 +37,8 @@ const STATIC_ROUTES = [
   { path: '/auth/signup', priority: 0.45, changeFrequency: 'monthly' as const },
   { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' as const },
   { path: '/terms', priority: 0.3, changeFrequency: 'yearly' as const },
+  { path: '/refunds', priority: 0.3, changeFrequency: 'yearly' as const },
+  { path: '/cookies', priority: 0.3, changeFrequency: 'yearly' as const },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

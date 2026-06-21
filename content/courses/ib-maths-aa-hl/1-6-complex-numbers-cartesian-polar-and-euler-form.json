@@ -1,0 +1,195 @@
+{
+  "slug": "1-6-complex-numbers-cartesian-polar-and-euler-form",
+  "topicCode": "1.6",
+  "title": "Complex numbers: Cartesian, polar and Euler form",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores the three fundamental representations of complex numbers: Cartesian, polar, and Euler's form. It covers the techniques for converting between these forms and demonstrates how polar and Euler's forms simplify complex multiplication, division, and finding powers.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and represent complex numbers in Cartesian, polar, and Euler's forms on an Argand diagram.",
+    "Convert complex numbers fluently between the three forms.",
+    "Apply polar and Euler's forms to simplify multiplication and division of complex numbers.",
+    "Understand the geometric interpretation of complex number operations."
+  ],
+  "simpleExplanation": {
+    "title": "Three Ways to Pinpoint a Number",
+    "summary": "Complex numbers can be described in three different but equivalent ways, much like giving directions to a location. Each form has its own strengths, particularly for different mathematical operations.",
+    "analogy": "Imagine you're giving a friend directions to a hidden treasure. You could say, 'From the starting point, walk 4 metres East, then 3 metres North'. That's the Cartesian form. Alternatively, you could say, 'Face 37 degrees from East and walk 5 metres straight'. That's the polar form. Both sets of instructions lead to the same spot, but the second one is much simpler if you just want to know the direct distance.",
+    "steps": [
+      "Start with a complex number in Cartesian form, $z = x + iy$, and plot it on the Argand diagram.",
+      "Calculate the modulus (distance from origin) using $r = \\sqrt{x^2 + y^2}$.",
+      "Calculate the argument (angle from the positive real axis) using $\\theta = \\arctan(y/x)$, ensuring you adjust for the correct quadrant.",
+      "Express the number in polar form $z = r(\\cos\\theta + i\\sin\\theta)$ and Euler's form $z = re^{i\\theta}$ using the calculated $r$ and $\\theta$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the Cartesian form of a complex number?",
+      "back": "$z = x + iy$, where $x$ is the real part and $y$ is the imaginary part."
+    },
+    {
+      "front": "What is the Polar form of a complex number?",
+      "back": "$z = r(\\cos\\theta + i\\sin\\theta)$, where $r$ is the modulus and $\\theta$ is the argument. Often abbreviated to $z = r \\text{cis} \\theta$."
+    },
+    {
+      "front": "What is Euler's form of a complex number?",
+      "back": "$z = re^{i\\theta}$, where $r$ is the modulus and $\\theta$ is the argument in radians."
+    },
+    {
+      "front": "How do you calculate the modulus, $r$ or $|z|$?",
+      "back": "For $z = x + iy$, the modulus is the distance from the origin: $r = |z| = \\sqrt{x^2 + y^2}$."
+    },
+    {
+      "front": "How do you calculate the argument, $\\theta$ or $\\arg(z)$?",
+      "back": "For $z = x + iy$, $\\theta = \\arctan(\\frac{y}{x})$. You must check the quadrant of $(x, y)$ to ensure $\\theta$ is correct. For example, if $x < 0$, add or subtract $\\pi$ from the calculator value."
+    },
+    {
+      "front": "What is the Principal Argument?",
+      "back": "The unique value of the argument $\\theta$ such that $-\\pi < \\theta \\le \\pi$. This is the standard range required by the IB unless specified otherwise."
+    },
+    {
+      "front": "How do you multiply two complex numbers in Euler's form, $z_1 = r_1e^{i\\theta_1}$ and $z_2 = r_2e^{i\\theta_2}$?",
+      "back": "Multiply the moduli and add the arguments: $z_1z_2 = r_1r_2e^{i(\\theta_1 + \\theta_2)}$."
+    },
+    {
+      "front": "How do you divide two complex numbers in Euler's form, $z_1 = r_1e^{i\\theta_1}$ and $z_2 = r_2e^{i\\theta_2}$?",
+      "back": "Divide the moduli and subtract the arguments: $\\frac{z_1}{z_2} = \\frac{r_1}{r_2}e^{i(\\theta_1 - \\theta_2)}$."
+    },
+    {
+      "front": "What is Euler's formula?",
+      "back": "The identity that links the exponential function to trigonometric functions: $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$."
+    },
+    {
+      "front": "What is the complex conjugate of $z = re^{i\\theta}$?",
+      "back": "The conjugate is $z^* = re^{-i\\theta}$. In polar form, this is $z^* = r(\\cos\\theta - i\\sin\\theta)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we need three different forms for complex numbers?",
+      "a": "Each form is optimised for different tasks. Cartesian form ($x+iy$) is best for addition and subtraction. Polar and Euler's forms ($re^{i\\theta}$) are significantly easier for multiplication, division, powers, and finding roots."
+    },
+    {
+      "q": "What is the difference between polar form and Euler's form?",
+      "a": "They are very closely related and represent the same geometric idea. Polar form, $r(\\cos\\theta + i\\sin\\theta)$, expresses the components trigonometrically. Euler's form, $re^{i\\theta}$, is a compact notation derived from the polar form using Euler's formula ($e^{i\\theta} = \\cos\\theta + i\\sin\\theta$). Euler's form is often preferred for calculations because it makes operations like multiplication look like standard exponent rules."
+    },
+    {
+      "q": "Is the argument $\\theta$ always in $(-\\pi, \\pi]$?",
+      "a": "This range, called the principal argument, is the standard convention used by the IB to ensure a unique answer. You can add or subtract multiples of $2\\pi$ to any argument to get an equivalent angle, but your final answer should usually be the principal argument unless the question states otherwise."
+    },
+    {
+      "q": "Can I use degrees for the argument?",
+      "a": "While you can think in degrees to help with visualisation, all calculations, especially those involving Euler's form and calculus later on, must be done in radians. The IB exams exclusively use radians for complex number arguments."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of complex numbers, where we move beyond the simple number line into a two-dimensional plane. While the Cartesian form $z=x+iy$ is fundamental, you'll discover that the polar and Euler forms provide powerful new perspectives and computational shortcuts. This is especially true for multiplication, division, and powers, which become surprisingly intuitive."
+    },
+    {
+      "type": "heading",
+      "content": "From Cartesian to Polar Form"
+    },
+    {
+      "type": "text",
+      "content": "Any complex number $z = x + iy$ can be plotted as a point $(x, y)$ on a special 2D plane called the Argand diagram. The horizontal axis is the real axis (Re) and the vertical axis is the imaginary axis (Im). Instead of using Cartesian coordinates $(x, y)$, we can use polar coordinates $(r, \\theta)$ to describe the same point."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The **modulus**, $r = |z|$, is the direct distance from the origin to the point $(x, y)$. It's always non-negative.",
+        "The **argument**, $\\theta = \\arg(z)$, is the angle measured anti-clockwise from the positive real axis to the line segment connecting the origin to the point. The angle is measured in radians.",
+        "The IB specifies the **principal argument** to be in the range $-\\pi < \\theta \\le \\pi$."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Conversion from Cartesian ($x+iy$) to Polar ($r(\\cos\\theta + i\\sin\\theta)$): \\\\ $r = \\sqrt{x^2 + y^2}$ \\\\ $\\theta = \\arctan\\left(\\frac{y}{x}\\right)$ (with quadrant adjustment)"
+    },
+    {
+      "type": "examTip",
+      "content": "A common mistake is to blindly use $\\arctan(y/x)$ without considering the quadrant. Always sketch a quick Argand diagram to determine if you are in quadrant 1, 2, 3, or 4. For example, if $z = -1 - i$, both $x$ and $y$ are negative (Quadrant 3), so the argument must be between $-\\pi$ and $-\\pi/2$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Express the complex number $z = -2 + 2i$ in polar form, $r(\\cos\\theta + i\\sin\\theta)$, using the principal argument.",
+      "solution": "The complex number is $z = -2 + 2i$. We identify $x = -2$ and $y = 2$.\n\n1.  **Find the modulus $r$:**\n    $r = |z| = \\sqrt{(-2)^2 + 2^2} = \\sqrt{4 + 4} = \\sqrt{8}$  (M1)\n    $r = 2\\sqrt{2}$  (A1)\n\n2.  **Find the argument $\\theta$:**\n    The point $(-2, 2)$ is in the second quadrant. \n    First, find the reference angle $\\alpha$ in the first quadrant:\n    $\\alpha = \\arctan\\left|\\frac{2}{-2}\\right| = \\arctan(1) = \\frac{\\pi}{4}$  (M1)\n    Since the point is in the second quadrant, the principal argument is $\\theta = \\pi - \\alpha$.\n    $\\theta = \\pi - \\frac{\\pi}{4} = \\frac{3\\pi}{4}$  (A1)\n\n3.  **Write in polar form:**\n    $z = 2\\sqrt{2} \\left(\\cos\\left(\\frac{3\\pi}{4}\\right) + i\\sin\\left(\\frac{3\\pi}{4}\\right)\\right)$  (A1)\n    *Note: Full marks are awarded for the correct final expression with correct working shown.*"
+    },
+    {
+      "type": "heading",
+      "content": "Euler's Form: The Elegant Connection"
+    },
+    {
+      "type": "text",
+      "content": "Euler's form, $z = re^{i\\theta}$, is arguably the most powerful and compact representation. It stems from Euler's formula, which establishes a profound relationship between exponential functions and trigonometry. This form makes multiplying and dividing complex numbers as easy as applying exponent rules."
+    },
+    {
+      "type": "formula",
+      "content": "Euler's Formula: $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$"
+    },
+    {
+      "type": "text",
+      "content": "By substituting Euler's formula into the polar form $z = r(\\cos\\theta + i\\sin\\theta)$, we directly obtain the Euler form $z = re^{i\\theta}$. Remember, $\\theta$ must be in radians for this form to be valid."
+    },
+    {
+      "type": "heading",
+      "content": "Operations in Polar and Euler's Form"
+    },
+    {
+      "type": "text",
+      "content": "The true utility of these forms shines when performing multiplication and division. What was a cumbersome process in Cartesian form becomes a simple geometric transformation."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Multiplication**: To multiply two complex numbers, multiply their moduli and add their arguments. Geometrically, this corresponds to a rotation and a scaling.",
+        "**Division**: To divide two complex numbers, divide their moduli and subtract their arguments."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "Let $z_1 = r_1 e^{i\\theta_1}$ and $z_2 = r_2 e^{i\\theta_2}$. Then: \\\\ Multiplication: $z_1 z_2 = r_1 r_2 e^{i(\\theta_1 + \\theta_2)}$ \\\\ Division: $\\frac{z_1}{z_2} = \\frac{r_1}{r_2} e^{i(\\theta_1 - \\theta_2)}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Given $w = \\sqrt{3} - i$ and $z = 1 + i$. Find $\\frac{w}{z}$ in the form $re^{i\\theta}$.",
+      "solution": "First, convert both complex numbers to Euler's form.\n\n**For $w = \\sqrt{3} - i$:**\n$|w| = \\sqrt{(\\sqrt{3})^2 + (-1)^2} = \\sqrt{3+1} = 2$. (A1)\nPoint $(\\sqrt{3}, -1)$ is in Q4. Reference angle $\\alpha = \\arctan(1/\\sqrt{3}) = \\pi/6$.\n$arg(w) = -\\pi/6$. (M1)\nSo, $w = 2e^{-i\\pi/6}$. (A1)\n\n**For $z = 1 + i$:**\n$|z| = \\sqrt{1^2 + 1^2} = \\sqrt{2}$. (A1)\nPoint $(1, 1)$ is in Q1. $arg(z) = \\arctan(1/1) = \\pi/4$. (M1)\nSo, $z = \\sqrt{2}e^{i\\pi/4}$. (A1)\n\n**Now, perform the division:**\n$\\frac{w}{z} = \\frac{2e^{-i\\pi/6}}{\\sqrt{2}e^{i\\pi/4}}$\n$= \\frac{2}{\\sqrt{2}} e^{i(-\\pi/6 - \\pi/4)}$ (M1 for dividing moduli and subtracting arguments)\n$= \\sqrt{2} e^{i(-2\\pi/12 - 3\\pi/12)}$\n$= \\sqrt{2} e^{-i5\\pi/12}$ (A1)\n\nThe result is in the form $re^{i\\theta}$ with $r=\\sqrt{2}$ and $\\theta = -5\\pi/12$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Complex Number Forms Explorer",
+          "href": "https://www.geogebra.org/m/w9j2a2a9"
+        },
+        {
+          "label": "Paul's Online Math Notes - Complex Numbers",
+          "href": "https://tutorial.math.lamar.edu/classes/de/complexnumbers.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Complex Number Forms Explorer",
+    "embedUrl": "https://www.geogebra.org/classic?material=w9j2a2a9",
+    "launchUrl": "https://www.geogebra.org/classic?material=w9j2a2a9",
+    "hint": "Use “Complex Number Forms Explorer” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

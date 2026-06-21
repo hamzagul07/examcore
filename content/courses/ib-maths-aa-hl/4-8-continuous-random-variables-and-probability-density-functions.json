@@ -1,0 +1,158 @@
+{
+  "slug": "4-8-continuous-random-variables-and-probability-density-functions",
+  "topicCode": "4.8",
+  "title": "Continuous random variables and probability density functions",
+  "paper": "P2",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces continuous random variables and their associated probability density functions (PDFs). You will learn the properties of a PDF, and how to use integration to calculate probabilities, the mean (expected value), variance, median, and mode of a continuous distribution. This topic extends the concepts of probability from discrete variables to a continuous scale.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the concept of a continuous random variable and its probability density function (PDF).",
+    "Verify that a function is a valid PDF and calculate unknown constants.",
+    "Calculate probabilities, mean, variance, median, and mode for a continuous random variable by integration.",
+    "Effectively use a GDC to solve problems involving continuous probability distributions."
+  ],
+  "simpleExplanation": {
+    "title": "From Steps to Slopes: The World of Continuous Probability",
+    "summary": "Unlike discrete variables that jump between values (like dice rolls), continuous variables flow smoothly over a range (like height or time). We use a Probability Density Function (PDF), where the area under its curve represents probability.",
+    "analogy": "Imagine trying to measure the exact height of every person in a city. It's impossible to list all the heights because they can be any value within a range (e.g., 175.1cm, 175.11cm, 175.112cm...). Instead of assigning a probability to each exact height (which would be zero!), we can find the probability of someone's height falling *within* a certain range, say between 170cm and 180cm. This probability is the area under a curve (the PDF) between those two values.",
+    "steps": [
+      "Identify the Probability Density Function (PDF), $f(x)$, and the domain over which it is defined.",
+      "Verify it's a valid PDF. Check that $f(x) \\ge 0$ and that the total area under the curve is 1, i.e., $\\int_{-\\infty}^{\\infty} f(x) \\, dx = 1$.",
+      "Calculate the probability of the variable falling in an interval $[a, b]$ by integrating the PDF: $P(a \\le X \\le b) = \\int_a^b f(x) \\, dx$.",
+      "Find the mean ($E(X)$) and variance ($Var(X)$) by evaluating the integrals $E(X) = \\int x f(x) \\, dx$ and $Var(X) = \\int x^2 f(x) \\, dx - [E(X)]^2$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a continuous random variable?",
+      "back": "A random variable that can take any value within a given range or interval. Examples include height, weight, and time."
+    },
+    {
+      "front": "What is a Probability Density Function (PDF)?",
+      "back": "A function, $f(x)$, used to describe the probabilities for a continuous random variable. The area under the graph of the PDF corresponds to probability."
+    },
+    {
+      "front": "What are the two essential properties of any PDF, $f(x)$?",
+      "back": "1. $f(x) \\ge 0$ for all $x$. (The function can never be negative). \\n2. $\\int_{-\\infty}^{\\infty} f(x) \\, dx = 1$. (The total area under the curve is 1)."
+    },
+    {
+      "front": "For a continuous random variable $X$, what is $P(X=a)$?",
+      "back": "Zero. The probability of a continuous random variable taking any single, exact value is always 0. This is because the area under the curve at a single point is zero."
+    },
+    {
+      "front": "How do you calculate the probability $P(a \\le X \\le b)$?",
+      "back": "By integrating the PDF from $a$ to $b$: $P(a \\le X \\le b) = \\int_a^b f(x) \\, dx$."
+    },
+    {
+      "front": "What is the formula for the expected value (mean) of a continuous random variable $X$?",
+      "back": "$E(X) = \\mu = \\int_{-\\infty}^{\\infty} x f(x) \\, dx$. You integrate the product of $x$ and the PDF over the entire domain."
+    },
+    {
+      "front": "What is the formula for the variance of a continuous random variable $X$?",
+      "back": "$Var(X) = \\sigma^2 = \\int_{-\\infty}^{\\infty} (x - \\mu)^2 f(x) \\, dx = E(X^2) - [E(X)]^2$. The second form is usually easier to calculate."
+    },
+    {
+      "front": "Is there a difference between $P(a \\le X \\le b)$ and $P(a < X < b)$ for a continuous random variable?",
+      "back": "No. Since $P(X=a) = 0$ and $P(X=b) = 0$, the inclusion or exclusion of the endpoints does not change the probability."
+    },
+    {
+      "front": "How do you find the mode of a continuous distribution?",
+      "back": "The mode is the value of $x$ where the PDF, $f(x)$, reaches its maximum value. This can often be found using differentiation to find the turning point of $f(x)$."
+    },
+    {
+      "front": "How do you find the median, $m$, of a continuous distribution?",
+      "back": "The median is the value $m$ that splits the area in half. It is found by solving the equation $\\int_{-\\infty}^{m} f(x) \\, dx = 0.5$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why is the probability of a continuous random variable being an exact value, like $P(X=3)$, always zero?",
+      "a": "Think of probability as the area under the PDF curve. The probability $P(X=3)$ would be the area of a region with a width of zero (from $x=3$ to $x=3$). A rectangle with zero width has zero area. Mathematically, this is represented by the integral $\\int_3^3 f(x) \\, dx$, which is always 0. We can only find non-zero probabilities for intervals, which have a non-zero width."
+    },
+    {
+      "q": "What is the difference between a PDF and a CDF?",
+      "a": "A PDF, or Probability Density Function, $f(x)$, gives the 'density' of probability at a point $x$. The area under the PDF gives probability. A CDF, or Cumulative Distribution Function, $F(x)$, gives the *cumulative* probability up to a point $x$. That is, $F(x) = P(X \\le x) = \\int_{-\\infty}^x f(t) \\, dt$. The CDF is the integral of the PDF, and therefore the PDF is the derivative of the CDF."
+    },
+    {
+      "q": "Can a PDF value, $f(x)$, be greater than 1?",
+      "a": "Yes, it can. It is a common misconception that $f(x)$ must be between 0 and 1. The value of the PDF is a 'probability density', not a probability itself. The only condition is that the *area* under the PDF curve must integrate to 1. For example, the function $f(x) = 2x$ for $0 \\le x \\le 1$ is a valid PDF. At $x=1$, $f(1)=2$, which is greater than 1. However, the total area is $\\int_0^1 2x \\, dx = [x^2]_0^1 = 1$, so it is valid."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In our study of probability, we've previously focused on discrete random variables, which take on countable values like the outcome of a dice roll. Now, we shift our attention to continuous random variables. These variables, such as the height of a student or the time taken to run a race, can assume any value within a specified range. To handle the infinite possibilities, we introduce a new tool: the Probability Density Function (PDF)."
+    },
+    {
+      "type": "heading",
+      "content": "The Probability Density Function (PDF)"
+    },
+    {
+      "type": "text",
+      "content": "For a continuous random variable $X$, we cannot assign a probability to each specific outcome. Instead, we use a function $f(x)$, called the probability density function. The key idea is that probability is represented by the area under the curve of $f(x)$. The probability that $X$ lies within an interval $[a, b]$ is the area under the curve from $x=a$ to $x=b$. This is found by calculating a definite integral."
+    },
+    {
+      "type": "heading",
+      "content": "Properties of a Valid PDF"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Non-negativity:** The function must always be greater than or equal to zero for all possible values of $x$. A negative probability makes no sense. So, $f(x) \\ge 0$.",
+        "**Total Area is One:** The total area under the curve of the PDF, across its entire domain, must be exactly 1. This represents the certainty that the variable will take on some value. So, $\\int_{-\\infty}^{\\infty} f(x) \\, dx = 1$."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "A crucial consequence of this area-based approach is that the probability of a continuous random variable taking on any single exact value is zero. For any constant $c$, $P(X=c) = \\int_c^c f(x) \\, dx = 0$. This means that for continuous variables, $P(a \\le X \\le b) = P(a < X < b) = P(a \\le X < b) = P(a < X \\le b)$. The inclusion of endpoints doesn't alter the probability."
+    },
+    {
+      "type": "workedExample",
+      "question": "A continuous random variable $X$ has the probability density function $f(x) = k(4-x)$ for $0 \\le x \\le 4$, and $f(x)=0$ otherwise. \n(a) Show that $k = \\frac{1}{8}$. \n(b) Find $P(1 \\le X \\le 3)$.",
+      "solution": "(a) For $f(x)$ to be a valid PDF, the total area under the curve must be 1. We set up the integral over the defined domain:\n\n$\\int_{0}^{4} k(4-x) \\, dx = 1$  [M1]\n\n$k \\int_{0}^{4} (4-x) \\, dx = 1$\n\n$k \\left[ 4x - \\frac{x^2}{2} \\right]_{0}^{4} = 1$  [A1]\n\n$k \\left( (4(4) - \\frac{4^2}{2}) - (0) \\right) = 1$\n\n$k \\left( 16 - \\frac{16}{2} \\right) = 1$\n\n$k(16 - 8) = 1$\n\n$8k = 1 \\implies k = \\frac{1}{8}$  [AG]\n\n(b) Now we use the value of $k$ to find the probability. We need to calculate the area under the curve from $x=1$ to $x=3$.\n\n$P(1 \\le X \\le 3) = \\int_{1}^{3} \\frac{1}{8}(4-x) \\, dx$  [M1]\n\nUsing a GDC for the definite integral:\n\n$P(1 \\le X \\le 3) = 0.5$ (or $\\frac{1}{2}$)  [A1]\n\n*Alternatively, by hand:*\n\n$\\frac{1}{8} \\left[ 4x - \\frac{x^2}{2} \\right]_{1}^{3} = \\frac{1}{8} \\left( (4(3) - \\frac{3^2}{2}) - (4(1) - \\frac{1^2}{2}) \\right)$\n\n$= \\frac{1}{8} \\left( (12 - 4.5) - (4 - 0.5) \\right) = \\frac{1}{8} (7.5 - 3.5) = \\frac{4}{8} = 0.5$."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Central Tendency and Spread"
+    },
+    {
+      "type": "text",
+      "content": "Just like with discrete variables, we can calculate the mean, median, mode, and variance for continuous distributions. However, instead of using summations, we use integration. These measures give us important information about the 'centre' of the distribution and how spread out the data is."
+    },
+    {
+      "type": "formula",
+      "content": "For a continuous random variable $X$ with PDF $f(x)$:\n\n**Mean (Expected Value):** $E(X) = \\mu = \\int_{-\\infty}^{\\infty} x f(x) \\, dx$\n\n**Variance:** $Var(X) = E(X^2) - [E(X)]^2$, where $E(X^2) = \\int_{-\\infty}^{\\infty} x^2 f(x) \\, dx$\n\n**Median ($m$):** The value $m$ such that $\\int_{-\\infty}^{m} f(x) \\, dx = 0.5$\n\n**Mode:** The value of $x$ which maximises $f(x)$."
+    },
+    {
+      "type": "examTip",
+      "content": "Paper 2 is a calculator paper! For any question involving definite integrals with a PDF, you should use your GDC's numerical integration function. It is much faster and less prone to arithmetic errors. However, you MUST write down the integral you are evaluating to secure the method marks, e.g., $E(X) = \\int_{0}^{5} x \\cdot f(x) \\, dx = ...$."
+    },
+    {
+      "type": "workedExample",
+      "question": "The lifetime, $T$, in years, of a certain electronic component is a continuous random variable with PDF given by $f(t) = \\frac{1}{4}t$ for $0 \\le t \\le 2$ and $f(t) = 1 - \\frac{1}{4}t$ for $2 < t \\le 4$. \n(a) Find the mean lifetime, $E(T)$. \n(b) Find the median lifetime. \n(c) Find the variance of $T$.",
+      "solution": "(a) To find the mean, we must evaluate $\\int t f(t) \\, dt$ over the entire domain. Since $f(t)$ is a piecewise function, we must split the integral.\n\n$E(T) = \\int_{0}^{4} t f(t) \\, dt = \\int_{0}^{2} t(\\frac{1}{4}t) \\, dt + \\int_{2}^{4} t(1 - \\frac{1}{4}t) \\, dt$  [M1]\n\nUsing a GDC to evaluate both integrals:\n\n$\\int_{0}^{2} \\frac{1}{4}t^2 \\, dt = \\frac{2}{3} \\approx 0.666...$\n\n$\\int_{2}^{4} (t - \\frac{1}{4}t^2) \\, dt = \\frac{4}{3} \\approx 1.333...$\n\n$E(T) = \\frac{2}{3} + \\frac{4}{3} = \\frac{6}{3} = 2$ years.  [A1]\n\n(b) The median $m$ is the value where the area is 0.5. By symmetry of the triangular distribution, the median is equal to the mean. So, the median is 2 years. Let's verify by integration. The area from 0 to 2 is $\\int_0^2 \\frac{1}{4}t \\, dt = [\\frac{t^2}{8}]_0^2 = \\frac{4}{8} = 0.5$. Since the area up to $t=2$ is exactly 0.5, the median is $m=2$ years. [R1][A1]\n\n(c) To find the variance, we first need $E(T^2)$.\n\n$E(T^2) = \\int_{0}^{4} t^2 f(t) \\, dt = \\int_{0}^{2} t^2(\\frac{1}{4}t) \\, dt + \\int_{2}^{4} t^2(1 - \\frac{1}{4}t) \\, dt$  [M1]\n\nUsing a GDC:\n\n$\\int_{0}^{2} \\frac{1}{4}t^3 \\, dt = 1$\n\n$\\int_{2}^{4} (t^2 - \\frac{1}{4}t^3) \\, dt = \\frac{16}{3} \\approx 5.333...$\n\n$E(T^2) = 1 + \\frac{16}{3} = \\frac{19}{3}$.  [A1]\n\nNow, use the variance formula: $Var(T) = E(T^2) - [E(T)]^2$.\n\n$Var(T) = \\frac{19}{3} - (2)^2 = \\frac{19}{3} - 4 = \\frac{19}{3} - \\frac{12}{3} = \\frac{7}{3}$.  [A1]\n\nSo, the variance is $\\frac{7}{3}$ years$^2$ (or approx 2.33)."
+    },
+    {
+      "type": "practice",
+      "label": "Practise with Exam-Style Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=4.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Questionbank",
+          "href": "/questionbank?subject=ib-maths-aa-hl"
+        },
+        {
+          "label": "IB Maths AA HL Past Papers",
+          "href": "/past-papers?subject=ib-maths-aa-hl"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

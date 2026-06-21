@@ -1,0 +1,166 @@
+{
+  "slug": "3-1-geometry-of-3d-solids-volume-and-surface-area",
+  "topicCode": "3.1",
+  "title": "Geometry of 3D solids: volume and surface area",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson covers the calculation of volume and surface area for common 3D solids, including prisms, pyramids, cones, cylinders, and spheres. It focuses on solving problems involving composite solids, frustums, and applying calculus for optimization, aligning with the demands of Paper 1.",
+  "durationMin": 45,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Recall and apply formulae for the volume and surface area of standard 3D solids.",
+    "Solve problems involving composite solids by combining or subtracting volumes and surface areas.",
+    "Calculate the dimensions, surface area, and volume of a frustum of a cone or pyramid.",
+    "Set up and solve optimization problems related to volume and surface area using differential calculus."
+  ],
+  "simpleExplanation": {
+    "title": "Unpacking 3D Shapes",
+    "summary": "This topic is about measuring the space inside a 3D object (volume) and the total area of its surfaces. We'll use standard formulas and combine them to solve complex problems often involving algebra and calculus.",
+    "analogy": "Imagine you're wrapping a gift and filling the box. The amount of wrapping paper you need is the 'surface area'. The amount of stuff you can fit inside the box is the 'volume'. For more complicated shapes, like a model rocket, it's like wrapping and filling several different parts (a cone for the nose, a cylinder for the body) that are stuck together. You have to figure out the total paper and total space needed.",
+    "steps": [
+      "Identify the Solid(s): Deconstruct the problem into familiar shapes like cones, cylinders, or spheres. A quick sketch is often very helpful.",
+      "Select the Correct Formula: Choose the appropriate volume or surface area formula from the formula booklet. For composite shapes, determine if you are adding or subtracting components.",
+      "Substitute and Manipulate: Plug in the given values. In Paper 1, this will involve algebraic manipulation with variables, $\\pi$, or surds to find an unknown or simplify an expression.",
+      "Calculate and Justify: Perform the final calculation. For optimization problems, use the second derivative test to justify that you have found a maximum or minimum."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the volume of a right pyramid?",
+      "back": "$V = \\frac{1}{3} \\times (\\text{Area of base}) \\times h$. This formula is in the booklet and applies to any pyramid, regardless of the base shape."
+    },
+    {
+      "front": "What is the formula for the total surface area of a right cone?",
+      "back": "$A = \\pi r l + \\pi r^2$, where $l$ is the slant height. The first term, $\\pi r l$, is the curved surface area."
+    },
+    {
+      "front": "How are the height $h$, radius $r$, and slant height $l$ of a cone related?",
+      "back": "By Pythagoras' theorem: $l^2 = h^2 + r^2$. You will often need to use this to find a missing dimension before you can calculate area or volume."
+    },
+    {
+      "front": "What is a frustum?",
+      "back": "A frustum is the part of a cone or pyramid left after its top has been cut off by a plane parallel to the base."
+    },
+    {
+      "front": "How do you find the volume of a frustum of a cone?",
+      "back": "Use similar triangles to find the height of the small cone that was removed. Then, calculate $V_{\\text{frustum}} = V_{\\text{large cone}} - V_{\\text{small cone}}$."
+    },
+    {
+      "front": "What is a common trap when finding the surface area of a composite solid?",
+      "back": "Do not simply add the individual surface areas of the component shapes. The surfaces where the solids are joined are internal and must be excluded from the calculation."
+    },
+    {
+      "front": "What is the formula for the volume of a sphere?",
+      "back": "$V = \\frac{4}{3}\\pi r^3$. This is in the formula booklet."
+    },
+    {
+      "front": "What is the formula for the surface area of a sphere?",
+      "back": "$A = 4\\pi r^2$. Notice that $\\frac{dV}{dr} = A$. This relationship is a useful check and a key concept linking geometry and calculus."
+    },
+    {
+      "front": "What is the key first step in an optimization problem involving 3D shapes?",
+      "back": "Identify the quantity to be optimized (e.g., Volume) and the constraint (e.g., fixed Surface Area). Use the constraint equation to express the quantity to be optimized as a function of a single variable."
+    },
+    {
+      "front": "What are the correct units for Volume and Surface Area?",
+      "back": "Volume is measured in cubic units (e.g., cm³, m³). Surface Area is measured in square units (e.g., cm², m²). An answer with incorrect units will lose marks."
+    },
+    {
+      "front": "How do you calculate the volume of a prism?",
+      "back": "$V = A_b h$, where $A_b$ is the area of the cross-sectional base and $h$ is the height (or length) of the prism. A cylinder is a special case of this."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to memorize all these formulas?",
+      "a": "No, the formulas for the volume and surface area of standard shapes like cylinders, cones, and spheres are provided in the IB formula booklet. Your focus should be on understanding which formula to use, how to adapt it for non-standard shapes (like frustums or composite solids), and how to manipulate the associated algebraic expressions."
+    },
+    {
+      "q": "What is the difference between a prism and a cylinder?",
+      "a": "A cylinder can be considered a type of prism with a circular base. A prism is a more general term for a solid object with two identical, parallel ends (bases) and flat sides. The volume for any right prism (including a cylinder) is found by the formula $V = (\\text{Area of base}) \\times \\text{height}$."
+    },
+    {
+      "q": "How do I know when a problem requires calculus?",
+      "a": "Look for keywords in the question such as 'maximum' or 'minimum' (e.g., 'maximum volume', 'minimum surface area', 'least material', 'greatest capacity'). These are strong indicators that you are dealing with an optimization problem that requires you to use differentiation."
+    },
+    {
+      "q": "How do I deal with a frustum?",
+      "a": "To find the volume or surface area of a frustum, you should model it as a large cone (or pyramid) with a smaller cone removed from the top. Use similar triangles to find the dimensions (height, radius, slant height) of the smaller, removed cone. Then, the volume of the frustum is the volume of the large cone minus the volume of the small cone."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the geometry of 3D solids. While you'll be familiar with many of the shapes from your previous studies, at HL we explore them in greater depth. This involves tackling complex composite solids, using algebraic manipulation to solve for unknown dimensions, and, crucially, applying calculus to optimize their properties. These skills are not just for exams; they are fundamental in fields like engineering, architecture, and product design."
+    },
+    {
+      "type": "heading",
+      "content": "Fundamental Formulae (From the Formula Booklet)"
+    },
+    {
+      "type": "text",
+      "content": "The IB Maths AA formula booklet is your best friend here. It contains the essential formulae for the volume and surface area of cylinders, cones, and spheres. The challenge in Paper 1 is not memorization, but application. You must be able to select the correct formula, adapt it for composite shapes, and work accurately with expressions involving $\\pi$ and radicals."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Volume of a cylinder: $V = \\pi r^2 h$",
+        "Surface area of a cylinder: $A = 2\\pi rh + 2\\pi r^2$",
+        "Volume of a right-cone: $V = \\frac{1}{3}\\pi r^2 h$",
+        "Curved surface area of a cone: $A = \\pi r l$",
+        "Volume of a sphere: $V = \\frac{4}{3}\\pi r^3$",
+        "Surface area of a sphere: $A = 4\\pi r^2$"
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Composite Solids"
+    },
+    {
+      "type": "text",
+      "content": "Composite solids are 3D objects formed from two or more simpler solids. For example, a grain silo might be a cylinder with a cone on top, or a pill capsule could be a cylinder with two hemispheres at the ends. When calculating volume, you typically add the volumes of the component parts. For surface area, you must be more careful, only including the surfaces that are exposed externally."
+    },
+    {
+      "type": "workedExample",
+      "question": "A solid is formed by a cylinder of height 10 cm and a hemisphere, both with radius 3 cm. The hemisphere is placed on top of one of the circular faces of the cylinder. Find the exact volume and total surface area of the solid.",
+      "solution": "Let $r=3$ cm be the radius and $h=10$ cm be the height of the cylinder.\\\n\\\n**Volume Calculation**\\\nThe total volume is the sum of the cylinder's volume and the hemisphere's volume.\\\n$V_{\\text{cylinder}} = \\pi r^2 h = \\pi (3^2)(10) = 90\\pi \\text{ cm}^3$ [M1]\\\n$V_{\\text{hemisphere}} = \\frac{1}{2} \\times V_{\\text{sphere}} = \\frac{1}{2} \\times \\frac{4}{3}\\pi r^3 = \\frac{2}{3}\\pi (3^3) = 18\\pi \\text{ cm}^3$ [M1]\\\n$V_{\\text{total}} = V_{\\text{cylinder}} + V_{\\text{hemisphere}} = 90\\pi + 18\\pi = 108\\pi \\text{ cm}^3$ [A1]\\\n\\\n**Surface Area Calculation**\\\nThe total surface area consists of the base of the cylinder, the curved side of the cylinder, and the curved surface of the hemisphere. The top of the cylinder is covered by the hemisphere and is not part of the surface area.\\\n$A_{\\text{base}} = \\pi r^2 = \\pi (3^2) = 9\\pi \\text{ cm}^2$ [M1]\\\n$A_{\\text{curved cylinder}} = 2\\pi r h = 2\\pi (3)(10) = 60\\pi \\text{ cm}^2$ [M1]\\\n$A_{\\text{curved hemisphere}} = \\frac{1}{2} \\times A_{\\text{sphere}} = \\frac{1}{2} \\times 4\\pi r^2 = 2\\pi r^2 = 2\\pi (3^2) = 18\\pi \\text{ cm}^2$ [M1]\\\n$A_{\\text{total}} = A_{\\text{base}} + A_{\\text{curved cylinder}} + A_{\\text{curved hemisphere}} = 9\\pi + 60\\pi + 18\\pi = 87\\pi \\text{ cm}^2$ [A1]"
+    },
+    {
+      "type": "examTip",
+      "content": "For composite surface area, always sketch the shape and imagine 'painting' only the external surfaces. The area where the shapes are joined is internal and should not be included. This helps avoid the common error of just adding the two individual total surface areas."
+    },
+    {
+      "type": "heading",
+      "content": "Optimization with Calculus"
+    },
+    {
+      "type": "text",
+      "content": "This is a classic HL application where geometry meets calculus. Problems typically ask you to find the dimensions of a shape that will maximize volume for a fixed surface area, or minimize surface area for a fixed volume. The process is systematic: establish equations for the quantity to optimize and the constraint, use the constraint to create a function of a single variable, differentiate, set the derivative to zero to find stationary points, and use the second derivative to justify the nature of these points (maximum, minimum, or point of inflection)."
+    },
+    {
+      "type": "workedExample",
+      "question": "A closed cylindrical can is to be made to hold a volume of $54\\pi$ cm³. Find the radius and height of the can that will use the minimum amount of material, and justify your answer.",
+      "solution": "Let $r$ be the radius and $h$ be the height of the can.\\\n**Objective:** Minimize Surface Area, $A = 2\\pi r^2 + 2\\pi r h$.\\\n**Constraint:** Volume, $V = \\pi r^2 h = 54\\pi$. [M1]\\\n\\\nFrom the constraint, we can express $h$ in terms of $r$: \\\n$h = \\frac{54\\pi}{\\pi r^2} = \\frac{54}{r^2}$. [M1]\\\n\\\nSubstitute this into the area formula to get $A$ as a function of $r$ only:\\\n$A(r) = 2\\pi r^2 + 2\\pi r \\left(\\frac{54}{r^2}\\right) = 2\\pi r^2 + \\frac{108\\pi}{r}$. [A1]\\\n\\\nTo find the minimum area, we differentiate $A(r)$ with respect to $r$ and set the derivative to zero.\\\n$\\frac{dA}{dr} = 4\\pi r - \\frac{108\\pi}{r^2}$. [M1][A1]\\\n\\\nSet $\\frac{dA}{dr} = 0$: \\\n$4\\pi r - \\frac{108\\pi}{r^2} = 0$\\\n$4\\pi r = \\frac{108\\pi}{r^2}$\\\n$4r^3 = 108$\\\n$r^3 = 27$\\\n$r = 3$ cm. [M1][A1]\\\n\\\nNow find the corresponding height:\\\n$h = \\frac{54}{r^2} = \\frac{54}{3^2} = \\frac{54}{9} = 6$ cm. [A1]\\\n\\\n**Justification:** We must use the second derivative test to confirm this is a minimum.\\\n$\\frac{d^2A}{dr^2} = 4\\pi + \\frac{216\\pi}{r^3}$.\\\nAt $r=3$, $\\frac{d^2A}{dr^2} = 4\\pi + \\frac{216\\pi}{3^3} = 4\\pi + 8\\pi = 12\\pi$.\\\nSince $\\frac{d^2A}{dr^2} > 0$, the surface area is at a local minimum when $r=3$. [R1]\\\n\\\nThe dimensions for minimum material are radius 3 cm and height 6 cm."
+    },
+    {
+      "type": "examTip",
+      "content": "In optimization problems, a significant number of marks are awarded for the process: setting up the equations, differentiating correctly, and solving. However, the final mark (often an 'R1' for reasoning) is for justifying that you have found a maximum or a minimum. Always use the second derivative test (or first derivative sign table) to secure this mark."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems on 3D Solids",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=3.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics-analysis-and-approaches/assessment/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

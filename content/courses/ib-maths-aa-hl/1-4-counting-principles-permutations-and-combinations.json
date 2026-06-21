@@ -1,0 +1,201 @@
+{
+  "slug": "1-4-counting-principles-permutations-and-combinations",
+  "topicCode": "1.4",
+  "title": "Counting principles, permutations and combinations",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental counting principles used to determine the number of possible outcomes in various scenarios. We will explore the multiplication principle, differentiate between permutations (where order matters) and combinations (where order does not matter), and apply these concepts to solve complex problems, including those with restrictions and repetitions.",
+  "durationMin": 25,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and apply the multiplication principle for sequential events.",
+    "Distinguish between permutations and combinations based on whether the order of selection is important.",
+    "Calculate the number of permutations and combinations using formulae and calculator functions, including cases with repetition.",
+    "Solve multi-stage and constrained counting problems by breaking them down into simpler components."
+  ],
+  "simpleExplanation": {
+    "title": "Arrangements, Selections, and the Art of Counting",
+    "summary": "This topic provides powerful tools for counting the number of ways things can be arranged or selected, without having to list every single possibility. The key is to determine if the order of items is important (a permutation) or not (a combination).",
+    "analogy": "Imagine you're making a fruit salad with 3 fruits from a choice of 10. The order you put the fruits in the bowl doesn't matter – it's the same salad. This is a **combination**. Now, imagine you're setting a 3-digit PIN code for your phone. The order of the digits is crucial – 1-2-3 is different from 3-2-1. This is a **permutation**.",
+    "steps": [
+      "Analyse the problem: Does the order of selection matter? Keywords like 'arrange', 'line up', 'position' suggest a permutation. Keywords like 'select', 'choose', 'committee' suggest a combination.",
+      "Identify the key numbers: What is the total number of items available ($n$)? How many items are you choosing or arranging ($r$)?",
+      "Select the correct formula or method. For permutations, use $^nP_r$. For combinations, use $^nC_r$. For a sequence of independent choices, use the multiplication principle.",
+      "Calculate the result, paying close attention to any constraints. For 'at least one' type problems, consider calculating the total minus the unwanted 'none' case."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the Multiplication Principle?",
+      "back": "If an event can occur in $m$ ways, and a second independent event can occur in $n$ ways, then the two events can occur in sequence in $m \\times n$ ways."
+    },
+    {
+      "front": "What does $n!$ (n factorial) mean?",
+      "back": "The product of all positive integers up to $n$. $n! = n \\times (n-1) \\times \\dots \\times 2 \\times 1$. By definition, $0! = 1$."
+    },
+    {
+      "front": "What is a permutation?",
+      "back": "An arrangement of a set of objects in a specific order. Order matters."
+    },
+    {
+      "front": "What is the formula for the number of permutations of $r$ items from a set of $n$?",
+      "back": "$^nP_r = \\frac{n!}{(n-r)!}$. This counts the number of ways to arrange $r$ items chosen from $n$ distinct items."
+    },
+    {
+      "front": "What is a combination?",
+      "back": "A selection of items from a collection, such that the order of selection does not matter."
+    },
+    {
+      "front": "What is the formula for the number of combinations of $r$ items from a set of $n$?",
+      "back": "$^nC_r = \\binom{n}{r} = \\frac{n!}{r!(n-r)!}$. This counts the number of ways to choose $r$ items from $n$ distinct items."
+    },
+    {
+      "front": "How do you arrange $n$ distinct items in a circle?",
+      "back": "The number of distinct arrangements is $(n-1)!$. This is because the starting position is irrelevant, so we fix one item's position and arrange the rest."
+    },
+    {
+      "front": "How do you find the number of permutations of $n$ items where some are identical?",
+      "back": "Use the formula $\\frac{n!}{n_1! n_2! \\dots n_k!}$, where $n_1, n_2, \\dots, n_k$ are the frequencies of each of the distinct items."
+    },
+    {
+      "front": "When solving counting problems, when should you add and when should you multiply?",
+      "back": "Multiply for sequential events (AND logic). Add for mutually exclusive choices (OR logic). For example, choosing a starter AND a main vs. choosing a car OR a motorbike."
+    },
+    {
+      "front": "What is a common strategy for 'at least one' problems?",
+      "back": "Calculate the total number of possibilities and subtract the number of possibilities for the complementary event (i.e., 'none'). For example, 'at least one red ball' = Total outcomes - Outcomes with 'no red balls'."
+    },
+    {
+      "front": "What is the relationship between $^nP_r$ and $^nC_r$?",
+      "back": "$^nP_r = ^nC_r \\times r!$. A permutation is a combination followed by an arrangement of the chosen items."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the real difference between permutations and combinations?",
+      "a": "The only difference is whether order matters. A permutation is an ordered list (like a password), while a combination is an unordered group (like a hand of cards). If you can swap the items around and it counts as a different outcome, it's a permutation. If swapping them makes no difference, it's a combination."
+    },
+    {
+      "q": "When do I add and when do I multiply the number of ways?",
+      "a": "Use the multiplication principle ('AND') when you are performing a sequence of tasks one after another. For example, choosing a shirt AND a pair of trousers. Use the addition principle ('OR') when you are choosing between mutually exclusive options. For example, choosing to travel by bus OR by train."
+    },
+    {
+      "q": "How do I handle a constraint like 'two specific people must sit together' in a line?",
+      "a": "Treat the two people as a single 'block' or unit. Arrange this block along with the other individuals. Then, multiply your result by the number of ways the people within the block can be arranged. For two people, you'd multiply by $2! = 2$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "How many possible passwords can you create? How many different lottery tickets would you need to buy to guarantee a win? These questions, which seem dauntingly large, can be answered systematically using counting principles. This topic is the foundation of probability and is crucial for understanding statistics and risk."
+    },
+    {
+      "type": "heading",
+      "content": "The Foundation: The Multiplication Principle"
+    },
+    {
+      "type": "text",
+      "content": "The multiplication principle (or rule of product) is the most fundamental counting tool. It states that if you have a sequence of choices to make, the total number of possibilities is the product of the number of options at each stage. For example, if you have 3 shirts and 4 pairs of trousers, you have $3 \\times 4 = 12$ possible outfits."
+    },
+    {
+      "type": "workedExample",
+      "question": "A new car model is available with 5 exterior colour choices, 3 interior trim options, and a choice of either a manual or an automatic gearbox. Additionally, customers can choose to add a sunroof or not. How many different configurations of the car are possible?",
+      "solution": "This is a sequence of independent choices. We use the multiplication principle.\nNumber of choices for colour = 5\nNumber of choices for interior = 3\nNumber of choices for gearbox = 2\nNumber of choices for sunroof = 2 (yes or no)\nTotal configurations = $5 \\times 3 \\times 2 \\times 2$ (M1 for multiplying the number of options)\nTotal configurations = 60. (A1)\nThere are 60 different possible configurations for the car."
+    },
+    {
+      "type": "heading",
+      "content": "Permutations: When Order Matters"
+    },
+    {
+      "type": "text",
+      "content": "A permutation is an arrangement of objects in a definite order. Think of it as a specific lineup or sequence. The number of ways to arrange $n$ distinct objects is $n!$ (n factorial). If we are only arranging a subset, $r$, of the $n$ objects, we use the permutation formula."
+    },
+    {
+      "type": "formula",
+      "content": "$^nP_r = \\frac{n!}{(n-r)!}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "In a race with 10 runners, in how many different ways can the gold, silver, and bronze medals be awarded? Furthermore, if two of the runners are from the same team, what is the number of ways the medals can be awarded such that these two teammates finish in the top two positions (in any order)?",
+      "solution": "**Part 1: Awarding medals**\nWe are arranging 3 people from 10, and the order (gold, silver, bronze) is important. This is a permutation.\n$n=10$, $r=3$.\nNumber of ways = $^{10}P_3 = \\frac{10!}{(10-3)!} = \\frac{10!}{7!}$ (M1 for identifying permutation and using correct formula)\n$= 10 \\times 9 \\times 8 = 720$. (A1)\nThere are 720 ways to award the medals.\n\n**Part 2: Teammates in top two**\nThis is a constrained problem. Let's break it down.\nStep 1: Arrange the two teammates in the top two positions (1st and 2nd). The number of ways to do this is $^2P_2 = 2! = 2$. (M1 for arranging the teammates)\nStep 2: The third medal (bronze) must go to one of the remaining $10 - 2 = 8$ runners. There are 8 choices. (M1 for selecting the third medallist)\nStep 3: By the multiplication principle, the total number of ways is the product of the outcomes from Step 1 and Step 2.\nTotal ways = $2 \\times 8 = 16$. (A1)\nThere are 16 ways for the two teammates to win the top two medals."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you won't have a calculator. Be prepared to simplify factorial expressions by hand. For example, $\\frac{10!}{7!} = \\frac{10 \\times 9 \\times 8 \\times 7!}{7!} = 10 \\times 9 \\times 8$. Always look for cancellations."
+    },
+    {
+      "type": "heading",
+      "content": "Combinations: When Order Doesn't Matter"
+    },
+    {
+      "type": "text",
+      "content": "A combination is a selection of objects where the order of selection is irrelevant. Think of choosing a group of people for a committee – it doesn't matter who was picked first, second, or third, only who is in the final group. Since the order doesn't matter, the number of combinations is always less than the number of permutations for the same $n$ and $r$ (where $r>1$)."
+    },
+    {
+      "type": "formula",
+      "content": "$^nC_r = \\binom{n}{r} = \\frac{n!}{r!(n-r)!}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Permutation: Order matters. Keywords: Arrange, order, position, line up, medals.",
+        "Combination: Order does not matter. Keywords: Choose, select, committee, group, sample.",
+        "The number of permutations is $r!$ times larger than the number of combinations: $^nP_r = ^nC_r \\times r!$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A school committee of 5 members is to be formed from a group of 8 teachers and 10 students.\n(a) How many different committees can be formed?\n(b) How many committees can be formed if the committee must contain exactly 2 teachers?\n(c) How many committees can be formed if the committee must contain at least 4 students?",
+      "solution": "Total people = $8 + 10 = 18$. We need to choose a committee of 5. Order does not matter, so we use combinations.\n\n**(a) Total committees**\nWe choose 5 people from 18.\nNumber of committees = $^{18}C_5 = \\frac{18!}{5!13!}$ (M1)\n$= \\frac{18 \\times 17 \\times 16 \\times 15 \\times 14}{5 \\times 4 \\times 3 \\times 2 \\times 1} = 18 \\times 17 \\times 2 \\times 14 = 8568$. (A1)\n\n**(b) Exactly 2 teachers**\nThis requires two steps: choosing the teachers AND choosing the students.\nStep 1: Choose 2 teachers from 8. Number of ways = $^8C_2$.\nStep 2: Choose the remaining $5-2=3$ members from the 10 students. Number of ways = $^{10}C_3$.\nTotal committees = $^8C_2 \\times ^{10}C_3$ (M1 for product of combinations)\n$^8C_2 = \\frac{8 \\times 7}{2} = 28$.\n$^{10}C_3 = \\frac{10 \\times 9 \\times 8}{3 \\times 2 \\times 1} = 120$.\nTotal = $28 \\times 120 = 3360$. (A1)\n\n**(c) At least 4 students**\nThis means the committee can have either 4 students OR 5 students. These are mutually exclusive cases, so we add the results.\nCase 1: 4 students and 1 teacher.\nNumber of ways = $^{10}C_4 \\times ^8C_1$. (M1 for one correct case)\n$^{10}C_4 = \\frac{10 \\times 9 \\times 8 \\times 7}{4 \\times 3 \\times 2 \\times 1} = 210$.\n$^8C_1 = 8$.\nWays for Case 1 = $210 \\times 8 = 1680$.\nCase 2: 5 students and 0 teachers.\nNumber of ways = $^{10}C_5 \\times ^8C_0$.\n$^{10}C_5 = \\frac{10 \\times 9 \\times 8 \\times 7 \\times 6}{5 \\times 4 \\times 3 \\times 2 \\times 1} = 252$.\n$^8C_0 = 1$.\nWays for Case 2 = $252 \\times 1 = 252$.\nTotal committees = (Ways for Case 1) + (Ways for Case 2) = $1680 + 252$ (M1 for adding cases)\nTotal = $1932$. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Handling Repetitions and Constraints"
+    },
+    {
+      "type": "text",
+      "content": "Some problems involve arrangements where items are not distinct, such as arranging the letters in the word 'MISSISSIPPI'. In these cases, we must divide by the factorial of the count of each repeated item to avoid overcounting. Constraints, such as two people insisting on sitting together, are handled by treating the constrained group as a single 'block' first, and then considering arrangements within that block."
+    },
+    {
+      "type": "formula",
+      "content": "Arrangements of $n$ objects with repetitions: $\\frac{n!}{n_1! n_2! \\dots n_k!}$"
+    },
+    {
+      "type": "examTip",
+      "content": "For problems with constraints like 'A and B must not be together', it is often easiest to calculate the total number of arrangements without any constraints, and then subtract the number of arrangements where 'A and B *are* together'."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Permutations and Combinations Explained (YouTube)",
+          "href": "https://www.youtube.com/watch?v=XqQTXW7XfYA"
+        },
+        {
+          "label": "Interactive Permutation/Combination Calculator",
+          "href": "https://www.geogebra.org/m/csm7x3y7"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Interactive Permutation/Combination Calculator",
+    "embedUrl": "https://www.geogebra.org/classic?material=csm7x3y7",
+    "launchUrl": "https://www.geogebra.org/classic?material=csm7x3y7",
+    "hint": "Use “Interactive Permutation/Combination Calculator” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

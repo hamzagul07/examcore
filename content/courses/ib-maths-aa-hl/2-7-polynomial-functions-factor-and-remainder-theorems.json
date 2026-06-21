@@ -1,0 +1,163 @@
+{
+  "slug": "2-7-polynomial-functions-factor-and-remainder-theorems",
+  "topicCode": "2.7",
+  "title": "Polynomial functions, factor and remainder theorems",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores polynomial functions, focusing on the Remainder and Factor Theorems. You'll learn how to efficiently find remainders, identify factors, solve polynomial equations, and fully factorise polynomials, which are essential skills for Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and apply the Remainder Theorem to find the remainder when a polynomial is divided by a linear expression.",
+    "Apply the Factor Theorem to determine if a linear expression is a factor of a polynomial and to find unknown coefficients.",
+    "Use polynomial division (long or synthetic) in conjunction with the Factor Theorem to completely factorise polynomials of degree 3 or higher.",
+    "Solve polynomial equations and identify the roots of polynomial functions."
+  ],
+  "simpleExplanation": {
+    "title": "Polynomials: The Remainder and Factor Shortcuts",
+    "summary": "The Remainder and Factor Theorems are powerful shortcuts that let you test for factors of polynomials without performing long division. They help you break down complex polynomials into simpler parts.",
+    "analogy": "Imagine a polynomial is a locked safe. Trying to guess the combination (the roots) is hard. The Remainder Theorem is like a device that tells you how close one of your number guesses is. The Factor Theorem is when that device beeps 'zero' – you've found a correct number in the combination, and the safe's door clicks open a little, making it easier to find the rest.",
+    "steps": [
+      "Given a polynomial $P(x)$ and a potential linear factor $(x-a)$, identify the value of $a$.",
+      "Substitute $a$ into the polynomial to calculate $P(a)$. This value is the remainder.",
+      "Check if the remainder is zero. If $P(a)=0$, the Factor Theorem confirms that $(x-a)$ is a factor.",
+      "If a factor is found, use polynomial division to find the quotient. Then, factorise the quotient to find all remaining factors and roots."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the Remainder Theorem?",
+      "back": "When a polynomial $P(x)$ is divided by a linear expression $(x-a)$, the remainder is equal to the value of the polynomial at $x=a$, which is $P(a)$."
+    },
+    {
+      "front": "What is the Factor Theorem?",
+      "back": "A linear expression $(x-a)$ is a factor of a polynomial $P(x)$ if and only if $P(a) = 0$. It's a special case of the Remainder Theorem where the remainder is zero."
+    },
+    {
+      "front": "What is the connection between a factor and a root?",
+      "back": "If $(x-a)$ is a factor of a polynomial $P(x)$, then $x=a$ is a root of the equation $P(x)=0$. A root is a value of $x$ that makes the polynomial equal to zero."
+    },
+    {
+      "front": "How do you apply the theorems if the divisor is $(ax-b)$?",
+      "back": "The divisor $(ax-b)$ corresponds to the root $x = b/a$. To find the remainder, you calculate $P(b/a)$. If $P(b/a) = 0$, then $(ax-b)$ is a factor."
+    },
+    {
+      "front": "Common trap: What is the value of 'a' for the divisor $(x+3)$?",
+      "back": "The divisor is in the form $(x-a)$, so for $(x+3)$, which is $(x-(-3))$, the value to substitute is $a = -3$. A common mistake is to use $a=3$."
+    },
+    {
+      "front": "What does the degree of a polynomial tell you?",
+      "back": "The degree of a polynomial is the highest power of the variable. A polynomial of degree $n$ has at most $n$ distinct real roots."
+    },
+    {
+      "front": "How can you find a first factor for a cubic polynomial in an exam?",
+      "back": "Use the Rational Root Theorem (implicitly). Test integer values that are factors of the constant term. For $P(x) = x^3 + \\dots + 6$, try $x = \\pm 1, \\pm 2, \\pm 3, \\pm 6$."
+    },
+    {
+      "front": "What's the difference between 'factorise' and 'solve'?",
+      "back": "'Factorise' means to write the polynomial as a product of its factors, e.g., $(x-1)(x+2)(x-3)$. 'Solve' means to find the roots of the equation $P(x)=0$, e.g., $x=1, x=-2, x=3$."
+    },
+    {
+      "front": "What must you show in your working after finding a root?",
+      "back": "You must explicitly state the connection. For example: \"Let $P(x) = \\dots$. $P(2) = 8 - 8 + 2 - 2 = 0$. Since $P(2)=0$, $(x-2)$ is a factor.\" This earns a reasoning mark (R1)."
+    },
+    {
+      "front": "What if you use the Remainder Theorem and the result is, say, 5?",
+      "back": "It means that when $P(x)$ is divided by $(x-a)$, the remainder is 5. It also means $(x-a)$ is NOT a factor of $P(x)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the main difference between the Remainder and Factor Theorems?",
+      "a": "The Factor Theorem is a specific outcome of the Remainder Theorem. The Remainder Theorem gives you the remainder for *any* linear division. The Factor Theorem just deals with the special case where that remainder is 0, which tells you the divisor is a factor."
+    },
+    {
+      "q": "Do I have to use polynomial long division? Can I use synthetic division?",
+      "a": "You can use whichever method you prefer and are more accurate with. Synthetic division is often faster for linear divisors like $(x-a)$, but it's crucial to be careful with signs. Long division is more versatile and can be used for non-linear divisors (though this is less common in AA HL). Both methods are accepted in exams."
+    },
+    {
+      "q": "How does the Remainder Theorem work with a divisor like $(2x-1)$?",
+      "a": "First, find the root of the divisor: $2x-1=0 \\implies x = 1/2$. Then, substitute this value into the polynomial, $P(1/2)$. The result, $P(1/2)$, is the remainder when $P(x)$ is divided by $(2x-1)$. The same logic applies to the Factor Theorem: if $P(1/2)=0$, then $(2x-1)$ is a factor."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to our lesson on polynomial functions. Polynomials appear everywhere in mathematics and science, from modelling projectile motion to designing rollercoasters. In this lesson, we'll master two powerful tools, the Remainder and Factor Theorems, which provide elegant shortcuts for factorising and solving polynomial equations – key skills for success in Paper 1."
+    },
+    {
+      "type": "heading",
+      "content": "Revisiting Polynomials"
+    },
+    {
+      "type": "text",
+      "content": "A polynomial function is an expression consisting of variables and coefficients, involving only the operations of addition, subtraction, multiplication, and non-negative integer exponents of variables. The degree of a polynomial is the highest exponent of its variable. For example, $f(x) = 3x^4 - 5x^2 + x - 10$ is a polynomial of degree 4."
+    },
+    {
+      "type": "formula",
+      "content": "The general form of a polynomial of degree $n$ is: $P(x) = a_n x^n + a_{n-1} x^{n-1} + \\dots + a_1 x + a_0$, where $a_n, a_{n-1}, \\dots, a_0$ are constant coefficients and $a_n \\neq 0$."
+    },
+    {
+      "type": "heading",
+      "content": "The Remainder Theorem: A Clever Shortcut"
+    },
+    {
+      "type": "text",
+      "content": "Imagine you need to find the remainder when a large polynomial is divided by a simple linear expression. You could use polynomial long division, but this can be time-consuming and prone to errors. The Remainder Theorem gives us a much faster way. It states that the remainder of this division is simply the value of the polynomial when you substitute the root of the linear expression."
+    },
+    {
+      "type": "formula",
+      "content": "When a polynomial $P(x)$ is divided by $(x-a)$, the remainder is $R = P(a)$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the remainder when the polynomial $P(x) = 2x^3 - 5x^2 + x + 8$ is divided by $(x-3)$.",
+      "solution": "Let the divisor be $(x-a)$, so here $a=3$. (M1 for identifying the correct value to substitute)\n\nAccording to the Remainder Theorem, the remainder is $P(3)$.\n\n$P(3) = 2(3)^3 - 5(3)^2 + (3) + 8$ (M1 for substitution)\n\n$P(3) = 2(27) - 5(9) + 3 + 8$\n\n$P(3) = 54 - 45 + 11$\n\n$P(3) = 9 + 11 = 20$\n\nSo, the remainder is 20. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "The Factor Theorem: Finding the Keys"
+    },
+    {
+      "type": "text",
+      "content": "The Factor Theorem is a direct and powerful consequence of the Remainder Theorem. What happens if the remainder is zero? It means the division is perfect, and the divisor is a factor of the polynomial. This theorem is the cornerstone of factorising higher-degree polynomials without a calculator."
+    },
+    {
+      "type": "formula",
+      "content": "$(x-a)$ is a factor of a polynomial $P(x)$ if and only if $P(a) = 0$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "If $P(a) = 0$, then $(x-a)$ is a factor of $P(x)$.",
+        "If $(x-a)$ is a factor of $P(x)$, then $P(a) = 0$.",
+        "If $(x-a)$ is a factor, then $x=a$ is a root (or zero) of the polynomial equation $P(x)=0$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The polynomial $P(x) = x^3 + ax^2 - x - 6$ has a factor of $(x+2)$.\n(a) Find the value of $a$.\n(b) Hence, factorise $P(x)$ completely and state its roots.",
+      "solution": "(a) Since $(x+2)$ is a factor, by the Factor Theorem, $P(-2) = 0$. (M1 for applying the Factor Theorem)\n\n$P(-2) = (-2)^3 + a(-2)^2 - (-2) - 6 = 0$\n\n$-8 + a(4) + 2 - 6 = 0$ (A1 for correct substitution)\n\n$4a - 12 = 0$\n\n$4a = 12$\n\n$a = 3$ (A1)\n\n(b) So, the polynomial is $P(x) = x^3 + 3x^2 - x - 6$. We know $(x+2)$ is a factor. We can use polynomial long division or synthetic division to find the other factors.\n\nUsing long division:\n```\n        x²  + x  - 3\n      ________________\nx + 2 | x³ + 3x² - x - 6\n      -(x³ + 2x²)\n      _________\n            x² - x\n          -(x² + 2x)\n          _________\n               -3x - 6\n             -(-3x - 6)\n             __________\n                    0\n```\n(M1 for attempting division)\n\nThe quotient is $x^2 + x - 3$. (A1)\n\nSo, $P(x) = (x+2)(x^2 + x - 3)$.\n\nThe quadratic factor $x^2 + x - 3$ cannot be factorised easily into integers. The question asks to factorise completely and state the roots.\n\nComplete factorisation: $P(x) = (x+2)(x^2 + x - 3)$. (A1)\n\nThe roots are found by setting each factor to zero:\n$x+2 = 0 \\implies x = -2$\n$x^2 + x - 3 = 0 \\implies x = \\frac{-1 \\pm \\sqrt{1^2 - 4(1)(-3)}}{2(1)} = \\frac{-1 \\pm \\sqrt{13}}{2}$ (M1 for using quadratic formula)\n\nThe roots are $x = -2$, $x = \\frac{-1 + \\sqrt{13}}{2}$, and $x = \\frac{-1 - \\sqrt{13}}{2}$. (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, when asked to factorise a cubic, you are expected to find the first root by testing integer factors of the constant term. For $P(x) = x^3 - 2x^2 - 5x + 6$, the constant term is 6. You should test $P(1), P(-1), P(2)$, etc. Once you find one that gives zero, e.g., $P(1)=0$, immediately state 'Therefore $(x-1)$ is a factor' to secure the reasoning mark before proceeding with division."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Polynomials on GeoGebra",
+          "href": "https://www.geogebra.org/graphing?lang=en"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

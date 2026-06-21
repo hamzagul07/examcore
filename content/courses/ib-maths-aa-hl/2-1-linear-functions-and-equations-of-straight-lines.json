@@ -1,0 +1,184 @@
+{
+  "slug": "2-1-linear-functions-and-equations-of-straight-lines",
+  "topicCode": "2.1",
+  "title": "Linear functions and equations of straight lines",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson provides a comprehensive review of linear functions and the equations of straight lines. It covers the core concepts of gradient, different forms of linear equations, and the relationships between parallel and perpendicular lines, all foundational for the Maths AA HL course.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Determine the equation of a straight line in various forms (slope-intercept, point-slope, general).",
+    "Calculate and interpret the gradient of a line, including cases for horizontal and vertical lines.",
+    "Understand and apply the conditions for parallel and perpendicular lines.",
+    "Solve problems involving points of intersection, intercepts, and distances on the Cartesian plane."
+  ],
+  "simpleExplanation": {
+    "title": "The Straight Story on Lines",
+    "summary": "A linear function is a straight line with a constant steepness, called the gradient. We can describe any line perfectly with just its gradient and one point it passes through.",
+    "analogy": "Think of a straight road on a map. The equation of the line is like your GPS. It tells you your exact location (y-coordinate) based on how far east you've travelled (x-coordinate). The gradient is the constant steepness of the road – a positive gradient is uphill, a negative one is downhill, and a zero gradient is a flat road.",
+    "steps": [
+      "Find the gradient (steepness) of the line using two points.",
+      "Use the point-slope form, y - y₁ = m(x - x₁), to build the initial equation.",
+      "Rearrange the equation into the required form, such as slope-intercept (y = mx + c) or general form (ax + by + d = 0).",
+      "Analyse the line's properties, like its relationship to other lines (parallel or perpendicular) and where it crosses the axes."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the formula for the gradient, $m$, of a line passing through points $(x_1, y_1)$ and $(x_2, y_2)$?",
+      "back": "$m = \\frac{\\text{rise}}{\\text{run}} = \\frac{y_2 - y_1}{x_2 - x_1}$"
+    },
+    {
+      "front": "What is the slope-intercept form of a linear equation?",
+      "back": "$y = mx + c$, where $m$ is the gradient and $c$ is the y-intercept."
+    },
+    {
+      "front": "What is the point-slope form of a linear equation?",
+      "back": "$y - y_1 = m(x - x_1)$, where $m$ is the gradient and $(x_1, y_1)$ is a point on the line. This is often the quickest way to find an equation."
+    },
+    {
+      "front": "What is the general form of a linear equation?",
+      "back": "$ax + by + d = 0$, where $a, b,$ and $d$ are integers. The IB requires integer coefficients for this form."
+    },
+    {
+      "front": "What is the condition for two non-vertical lines, $L_1$ and $L_2$, to be parallel?",
+      "back": "Their gradients must be equal: $m_1 = m_2$."
+    },
+    {
+      "front": "What is the condition for two non-vertical lines, $L_1$ and $L_2$, to be perpendicular?",
+      "back": "The product of their gradients must be -1: $m_1 \\times m_2 = -1$. This means one gradient is the negative reciprocal of the other, $m_2 = -\\frac{1}{m_1}$."
+    },
+    {
+      "front": "How do you find the y-intercept of a line from its equation?",
+      "back": "Set $x=0$ and solve for $y$. The y-intercept is the point $(0, c)$."
+    },
+    {
+      "front": "How do you find the x-intercept of a line from its equation?",
+      "back": "Set $y=0$ and solve for $x$. The x-intercept is the point where the line crosses the x-axis."
+    },
+    {
+      "front": "What is the gradient of a horizontal line?",
+      "back": "The gradient is 0. The equation is of the form $y = c$."
+    },
+    {
+      "front": "What is the gradient of a vertical line?",
+      "back": "The gradient is undefined. The equation is of the form $x = k$."
+    },
+    {
+      "front": "Common Trap: When finding the equation of a perpendicular line, what is the most common mistake?",
+      "back": "Students often find the reciprocal but forget to also change the sign (i.e., they use $\\frac{1}{m}$ instead of $-\\frac{1}{m}$). Always find the *negative* reciprocal."
+    },
+    {
+      "front": "How do you find the point of intersection of two lines?",
+      "back": "Solve their equations simultaneously. This can be done by substitution or elimination."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are there so many different forms for the equation of a line?",
+      "a": "Each form is optimised for a different starting point. If you have a point and the gradient, the point-slope form is fastest. If you know the y-intercept and gradient, the slope-intercept form is best. The general form is useful for standardising equations and for certain advanced formulas. Being fluent in all of them makes you a more flexible problem-solver."
+    },
+    {
+      "q": "What's the difference between a linear function and a linear equation?",
+      "a": "A linear function is a specific type of function, $f(x) = mx+c$, that produces a straight-line graph. A linear equation is a broader term for any equation involving linear terms, like $ax+by+d=0$. A vertical line, $x=k$, can be described by a linear equation but is not a function because it fails the vertical line test."
+    },
+    {
+      "q": "How do I handle a vertical line when dealing with perpendicularity?",
+      "a": "A vertical line has an undefined gradient. A line perpendicular to it must be horizontal, which has a gradient of 0. The $m_1 \\times m_2 = -1$ rule doesn't work here because you can't use an undefined value in a multiplication. You must rely on this geometric understanding: vertical is perpendicular to horizontal."
+    },
+    {
+      "q": "Is $y = 3$ a linear function?",
+      "a": "Yes, it is. It can be written as $y = 0x + 3$. This is a linear function with a gradient $m=0$ and a y-intercept $c=3$. Its graph is a horizontal line."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the bedrock of coordinate geometry. Linear functions are not just about drawing straight lines; they are the fundamental building blocks for modelling relationships with constant rates of change. Mastering these concepts is crucial, as they appear frequently on their own and as the first step in more complex calculus and vector problems."
+    },
+    {
+      "type": "heading",
+      "content": "1. The Gradient of a Straight Line"
+    },
+    {
+      "type": "text",
+      "content": "The gradient, often denoted by $m$, measures the steepness and direction of a line. It is defined as the ratio of the vertical change (the 'rise') to the horizontal change (the 'run') between any two distinct points on the line. A positive gradient indicates an upward slope from left to right, while a negative gradient indicates a downward slope."
+    },
+    {
+      "type": "formula",
+      "content": "For two points $(x_1, y_1)$ and $(x_2, y_2)$ on a line, the gradient $m$ is: \\\\ $m = \\frac{\\Delta y}{\\Delta x} = \\frac{y_2 - y_1}{x_2 - x_1}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Positive gradient ($m > 0$)**: Line slopes upwards from left to right.",
+        "**Negative gradient ($m < 0$)**: Line slopes downwards from left to right.",
+        "**Zero gradient ($m = 0$)**: Line is horizontal. Equation: $y = c$.",
+        "**Undefined gradient**: Line is vertical. Equation: $x = k$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "2. Forms of the Equation of a Straight Line"
+    },
+    {
+      "type": "text",
+      "content": "Depending on the information you are given, different forms of the linear equation can be more convenient. It is essential to be able to convert fluently between them."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Slope-Intercept Form**: $y = mx + c$. This is useful when you know the gradient ($m$) and the y-intercept ($c$). It is the most common form for final answers unless specified otherwise.",
+        "**Point-Slope Form**: $y - y_1 = m(x - x_1)$. This is the most direct way to find an equation if you have the gradient ($m$) and any point $(x_1, y_1)$ on the line.",
+        "**General Form**: $ax + by + d = 0$. In the IB, $a, b,$ and $d$ must be integers. This form is useful for certain applications, such as finding the distance from a point to a line, and is often requested in exam questions."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A line $L_1$ passes through the points $A(-2, 5)$ and $B(4, -7)$. \\\\ (a) Find the equation of $L_1$ in the form $y=mx+c$. \\\\ (b) A second line, $L_2$, is perpendicular to $L_1$ and passes through the point $C(1, 3)$. Find the equation of $L_2$ in the form $ax+by+d=0$ where $a, b, d \\in \\mathbb{Z}$.",
+      "solution": "(a) First, find the gradient of $L_1$. \\\\ $m_1 = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{-7 - 5}{4 - (-2)}$ (M1) \\\\ $m_1 = \\frac{-12}{6} = -2$ (A1) \\\\ Now use the point-slope form with point A(-2, 5). \\\\ $y - 5 = -2(x - (-2))$ \\\\ $y - 5 = -2(x + 2)$ (M1) \\\\ $y - 5 = -2x - 4$ \\\\ $y = -2x + 1$ (A1) \\\\ \n(b) The gradient of $L_2$ is the negative reciprocal of $m_1$. \\\\ $m_2 = -\\frac{1}{m_1} = -\\frac{1}{-2} = \\frac{1}{2}$ (M1) \\\\ $L_2$ passes through C(1, 3). Using the point-slope form: \\\\ $y - 3 = \\frac{1}{2}(x - 1)$ (M1) \\\\ To get the general form, we eliminate the fraction and move all terms to one side. \\\\ $2(y - 3) = 1(x - 1)$ \\\\ $2y - 6 = x - 1$ \\\\ $x - 2y + 5 = 0$ (A1) \\\\ Note: $-x + 2y - 5 = 0$ is also a correct answer."
+    },
+    {
+      "type": "heading",
+      "content": "3. Parallel and Perpendicular Lines"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between two lines can be determined entirely by their gradients. Parallel lines have the same steepness, and thus the same gradient. Perpendicular lines meet at a right angle (90 degrees), and their gradients have a specific product."
+    },
+    {
+      "type": "formula",
+      "content": "For two lines with gradients $m_1$ and $m_2$: \\\\ **Parallel**: $m_1 = m_2$ \\\\ **Perpendicular**: $m_1 \\times m_2 = -1$"
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 1, you will not have a calculator. Be prepared to work with fractions confidently, especially when finding negative reciprocals. When a question asks for the equation in the form $ax+by+d=0$, remember to multiply the entire equation by a suitable number to clear any fractions and ensure $a, b, d$ are integers."
+    },
+    {
+      "type": "workedExample",
+      "question": "A company's monthly cost, $C$ (in thousands of GBP), for producing $x$ units of a product is modelled by a linear function. In January, it produced 150 units at a cost of £20,000. In February, it produced 250 units at a cost of £28,000. \\\\ (a) Find the equation for the cost $C$ in terms of the number of units $x$. \\\\ (b) The fixed cost is the cost incurred even if no units are produced. Find the company's fixed cost. \\\\ (c) What is the cost per unit to produce?",
+      "solution": "(a) We have two points $(x, C)$: $P_1(150, 20)$ and $P_2(250, 28)$. Note that the cost is in thousands of GBP. \\\\ First, find the gradient, which represents the cost per unit. \\\\ $m = \\frac{C_2 - C_1}{x_2 - x_1} = \\frac{28 - 20}{250 - 150}$ (M1) \\\\ $m = \\frac{8}{100} = 0.08$ (A1) \\\\ Now use the point-slope form with $P_1(150, 20)$. \\\\ $C - 20 = 0.08(x - 150)$ (M1) \\\\ $C - 20 = 0.08x - 12$ \\\\ $C = 0.08x + 8$ (A1) \\\\ \n(b) The fixed cost is the cost when $x=0$. This is the C-intercept of our linear function. \\\\ From the equation $C = 0.08x + 8$, when $x=0$, $C=8$. (M1) \\\\ Since $C$ is in thousands of GBP, the fixed cost is £8,000. (A1) \\\\ \n(c) The cost per unit to produce is the gradient of the cost function. \\\\ From part (a), the gradient is $m = 0.08$. (M1) \\\\ This means £0.08 thousands per unit, which is £80 per unit. (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Linear Functions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra Straight Line Graph",
+          "href": "https://www.geogebra.org/graphing/c9hbbhgz"
+        },
+        {
+          "label": "Khan Academy - Forms of linear equations",
+          "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:forms-of-linear-equations"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

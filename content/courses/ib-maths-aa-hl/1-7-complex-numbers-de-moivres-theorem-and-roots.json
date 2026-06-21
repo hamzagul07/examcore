@@ -1,0 +1,189 @@
+{
+  "slug": "1-7-complex-numbers-de-moivres-theorem-and-roots",
+  "topicCode": "1.7",
+  "title": "Complex numbers: De Moivre's theorem and roots",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores De Moivre's theorem, a powerful tool for calculating integer powers of complex numbers. It then extends this concept to find the n-th roots of complex numbers, revealing their beautiful geometric properties on the Argand diagram.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and apply De Moivre's theorem for integer exponents.",
+    "Find the n-th roots of a non-zero complex number and understand their geometric representation.",
+    "Solve equations of the form z^n = w where w is a complex number.",
+    "Recognise the application of De Moivre's theorem in deriving trigonometric identities."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Powers and Roots",
+    "summary": "De Moivre's theorem provides a shortcut for raising complex numbers to any power. It simplifies the process by working with the number's polar coordinates (its distance from the origin and its angle).",
+    "analogy": "Imagine spinning a spinning top. Raising a complex number to a power is like spinning it multiple times. Instead of tracking the complicated path, De Moivre's theorem just tells you the final angle (by multiplying the original angle) and the final 'stretch' (by raising the original length to the power). Finding roots is like asking: 'If this is the final position after spinning 'n' times, what were the possible starting positions?'",
+    "steps": [
+      "Convert the complex number from Cartesian form (a + bi) to polar form (r(cosθ + i sinθ) or r cis θ).",
+      "Apply De Moivre's theorem: To find z^n, raise the modulus to the power n and multiply the argument by n.",
+      "For n-th roots, use the root formula: take the n-th root of the modulus and divide the argument (plus 2kπ) by n.",
+      "Generate all n distinct roots by using k = 0, 1, 2, ..., n-1. Convert back to Cartesian form if required."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is De Moivre's theorem for an integer exponent $n$?",
+      "back": "For a complex number $z = r(\\cos \\theta + i \\sin \\theta)$, the theorem states: $z^n = [r(\\cos \\theta + i \\sin \\theta)]^n = r^n(\\cos(n\\theta) + i \\sin(n\\theta))$. In cis notation: $(r \\text{cis} \\theta)^n = r^n \\text{cis}(n\\theta)$."
+    },
+    {
+      "front": "What is the formula for the $n$-th roots of a complex number $z = r \\text{cis} \\theta$?",
+      "back": "The $n$ distinct roots are given by $z_k = r^{1/n} \\text{cis} \\left( \\frac{\\theta + 2k\\pi}{n} \\right)$ for $k = 0, 1, 2, \\dots, n-1$."
+    },
+    {
+      "front": "What does the notation 'cis $\\theta$' represent?",
+      "back": "'cis $\\theta$' is a shorthand for $\\cos \\theta + i \\sin \\theta$. It helps to simplify the writing of complex numbers in polar form."
+    },
+    {
+      "front": "What is the geometric interpretation of the $n$-th roots of a complex number?",
+      "back": "The $n$ distinct $n$-th roots of a complex number form the vertices of a regular $n$-sided polygon (an $n$-gon) inscribed in a circle of radius $r^{1/n}$ centred at the origin of the Argand diagram."
+    },
+    {
+      "front": "What is a common mistake when finding the $n$-th roots of a complex number?",
+      "back": "Forgetting to add the $2k\\pi$ term to the argument before dividing by $n$. This results in finding only the principal root, not all $n$ distinct roots."
+    },
+    {
+      "front": "How many cube roots does the number $z=8$ have in the complex plane?",
+      "back": "Three. Every non-zero complex number has exactly $n$ distinct $n$-th roots. The roots are $2$, $-1+i\\sqrt{3}$, and $-1-i\\sqrt{3}$."
+    },
+    {
+      "front": "What is the principal argument, Arg($z$)?",
+      "back": "The unique angle $\\theta$ such that $-\\pi < \\theta \\le \\pi$. Calculators typically return the principal argument. Be careful to adjust it to the correct quadrant based on the signs of the real and imaginary parts."
+    },
+    {
+      "front": "How do you convert $z=a+bi$ to polar form $r \\text{cis} \\theta$?",
+      "back": "Find the modulus $r = |z| = \\sqrt{a^2 + b^2}$. Find the argument $\\theta = \\arctan(|b/a|)$ and adjust for the correct quadrant."
+    },
+    {
+      "front": "How do you convert $z=r \\text{cis} \\theta$ to Cartesian form $a+bi$?",
+      "back": "Expand the cis notation: $z = r(\\cos \\theta + i \\sin \\theta)$. Calculate the values of $\\cos \\theta$ and $\\sin \\theta$ and distribute the modulus $r$. This gives $a = r\\cos\\theta$ and $b = r\\sin\\theta$."
+    },
+    {
+      "front": "How can De Moivre's theorem be used to find an expression for $\\cos(3\\theta)$?",
+      "back": "Use De Moivre's theorem for $n=3$: $(\\cos\\theta + i\\sin\\theta)^3 = \\cos(3\\theta) + i\\sin(3\\theta)$. Expand the left side using the binomial theorem and then equate the real parts to find the expression for $\\cos(3\\theta)$."
+    },
+    {
+      "front": "If you find one root, $z_0$, how can you find the others geometrically?",
+      "back": "The other roots are found by rotating $z_0$ by multiples of $2\\pi/n$ radians around the origin. The angle between adjacent roots is always $2\\pi/n$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why do we need to add $2k\\pi$ to the argument when finding roots?",
+      "a": "The term $2k\\pi$ represents full rotations around the origin. While $\\theta$ and $\\theta + 2\\pi$ represent the same complex number, when you divide by $n$ (as in the root formula), you get $\\frac{\\theta}{n}$ and $\\frac{\\theta}{n} + \\frac{2\\pi}{n}$. These are different angles, leading to different roots. The $k$ allows us to find all $n$ of these distinct roots."
+    },
+    {
+      "q": "Can I use degrees instead of radians?",
+      "a": "Yes, you can, but radians are the standard in IB HL Maths and are required for calculus topics. The root formula in degrees would be $z_k = r^{1/n} \\text{cis} \\left( \\frac{\\theta + 360k}{n} \\right)$. It's strongly recommended to become fluent in radians as they are used almost exclusively in exam questions."
+    },
+    {
+      "q": "What happens if I use $k=n$ or $k=-1$ when finding roots?",
+      "a": "You will simply get one of the roots you have already found. For example, using $k=n$ gives $\\frac{\\theta + 2n\\pi}{n} = \\frac{\\theta}{n} + 2\\pi$, which is coterminal with the argument for $k=0$. The values $k=0, 1, \\dots, n-1$ are chosen because they are the simplest set of integers that generate all the unique roots."
+    },
+    {
+      "q": "Does De Moivre's theorem work for non-integer powers?",
+      "a": "Yes, but it becomes more complex. When the power is a rational number, like $p/q$, it leads to multiple values, which is essentially the process of finding roots. For irrational or complex powers, the situation is even more advanced and is handled by the complex logarithm, which is beyond the AA HL syllabus."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "We've seen how to add, subtract, multiply, and divide complex numbers. But what about raising them to a power, like finding $(1+i)^{12}$? Or going the other way, finding the cube root of $i$? Direct calculation is tedious and sometimes seems impossible. This is where De Moivre's theorem comes in, providing an elegant and efficient method by leveraging the power of polar form."
+    },
+    {
+      "type": "heading",
+      "content": "De Moivre's Theorem for Integer Powers"
+    },
+    {
+      "type": "text",
+      "content": "Abraham de Moivre discovered a remarkable connection between complex numbers in polar form and integer powers. The theorem states that to raise a complex number to a power $n$, you raise its modulus to the power $n$ and multiply its argument by $n$. This turns a difficult multiplication problem into a simple arithmetic one."
+    },
+    {
+      "type": "formula",
+      "content": "If $z = r(\\cos \\theta + i \\sin \\theta) = r \\text{cis} \\theta$, and $n$ is an integer, then: \n$$z^n = r^n (\\cos(n\\theta) + i \\sin(n\\theta)) = r^n \\text{cis}(n\\theta)$$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Calculate $(1+i\\sqrt{3})^6$ using De Moivre's theorem.",
+      "solution": "Let $z = 1+i\\sqrt{3}$. First, we convert $z$ to polar form, $r(\\cos\\theta + i\\sin\\theta)$.\n\n**Step 1: Find the modulus, r.**\n$r = |z| = \\sqrt{1^2 + (\\sqrt{3})^2} = \\sqrt{1+3} = \\sqrt{4} = 2$. (M1)\n\n**Step 2: Find the argument, $\\theta$.**\nThe point $(1, \\sqrt{3})$ is in the first quadrant. \n$\\theta = \\arctan\\left(\\frac{\\sqrt{3}}{1}\\right) = \\frac{\\pi}{3}$. (A1)\nSo, $z = 2(\\cos(\\frac{\\pi}{3}) + i\\sin(\\frac{\\pi}{3})) = 2 \\text{cis}(\\frac{\\pi}{3})$.\n\n**Step 3: Apply De Moivre's Theorem.**\n$z^6 = (2 \\text{cis}(\\frac{\\pi}{3}))^6 = 2^6 \\text{cis}(6 \\times \\frac{\\pi}{3})$. (M1)\n\n**Step 4: Simplify.**\n$z^6 = 64 \\text{cis}(2\\pi) = 64(\\cos(2\\pi) + i\\sin(2\\pi))$. (A1)\nSince $\\cos(2\\pi)=1$ and $\\sin(2\\pi)=0$,\n$z^6 = 64(1 + i \\cdot 0) = 64$. (A1)\n\nTherefore, $(1+i\\sqrt{3})^6 = 64$."
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 1, you are expected to know the exact values of sine and cosine for special angles like $\\pi/6, \\pi/4, \\pi/3$. Always show your conversion to polar form clearly to secure method marks, even if the final answer seems simple."
+    },
+    {
+      "type": "heading",
+      "content": "Finding the n-th Roots of a Complex Number"
+    },
+    {
+      "type": "text",
+      "content": "De Moivre's theorem can be adapted to find roots. While a positive real number has two square roots (e.g., $\\pm 2$ for 4), a complex number has $n$ distinct $n$-th roots. To find them all, we must consider that adding multiples of $2\\pi$ to an angle doesn't change its position on the Argand diagram. This seemingly small detail is the key to unlocking all the roots."
+    },
+    {
+      "type": "formula",
+      "content": "The $n$ distinct $n$-th roots of $w = r \\text{cis} \\theta$ are given by:\n$$z_k = r^{1/n} \\text{cis} \\left( \\frac{\\theta + 2k\\pi}{n} \\right)$$ \nfor $k = 0, 1, 2, \\dots, n-1$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "First, write the complex number whose roots you are finding, $w$, in polar form $r \\text{cis} \\theta$.",
+        "The modulus of each root is the $n$-th root of the original modulus, $r^{1/n}$.",
+        "The arguments are found by taking the original argument $\\theta$, adding $2k\\pi$, and then dividing by $n$.",
+        "Cycle through integer values of $k$ from $0$ to $n-1$ to find all $n$ unique roots."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the three cube roots of $w = -8i$. Express your answers in Cartesian form $a+bi$.",
+      "solution": "We want to solve the equation $z^3 = -8i$.\n\n**Step 1: Convert $w = -8i$ to polar form.**\n$w$ is on the negative imaginary axis. \nThe modulus is $r = |-8i| = 8$. (A1)\nThe argument is $\\theta = -\\frac{\\pi}{2}$. (A1)\nSo, $w = 8 \\text{cis} \\left(-\\frac{\\pi}{2} + 2k\\pi\\right)$. We include the $2k\\pi$ term for the general form of the argument. (M1)\n\n**Step 2: Apply the n-th root formula.**\nThe roots are $z_k = 8^{1/3} \\text{cis} \\left( \\frac{-\\pi/2 + 2k\\pi}{3} \\right) = 2 \\text{cis} \\left( -\\frac{\\pi}{6} + \\frac{2k\\pi}{3} \\right)$ for $k=0, 1, 2$. (M1)\n\n**Step 3: Calculate each root.**\nFor $k=0$: \n$z_0 = 2 \\text{cis} \\left( -\\frac{\\pi}{6} \\right) = 2(\\cos(-\\frac{\\pi}{6}) + i\\sin(-\\frac{\\pi}{6})) = 2(\\frac{\\sqrt{3}}{2} - \\frac{1}{2}i) = \\sqrt{3} - i$. (A1)\n\nFor $k=1$: \n$z_1 = 2 \\text{cis} \\left( -\\frac{\\pi}{6} + \\frac{2\\pi}{3} \\right) = 2 \\text{cis} \\left( \\frac{3\\pi}{6} \\right) = 2 \\text{cis} \\left( \\frac{\\pi}{2} \\right) = 2(\\cos(\\frac{\\pi}{2}) + i\\sin(\\frac{\\pi}{2})) = 2(0+i) = 2i$. (A1)\n\nFor $k=2$: \n$z_2 = 2 \\text{cis} \\left( -\\frac{\\pi}{6} + \\frac{4\\pi}{3} \\right) = 2 \\text{cis} \\left( \\frac{7\\pi}{6} \\right) = 2(\\cos(\\frac{7\\pi}{6}) + i\\sin(\\frac{7\\pi}{6})) = 2(-\\frac{\\sqrt{3}}{2} - \\frac{1}{2}i) = -\\sqrt{3} - i$. (A1)\n\nThe three cube roots are $\\sqrt{3}-i$, $2i$, and $-\\sqrt{3}-i$."
+    },
+    {
+      "type": "heading",
+      "content": "Geometric Interpretation of Roots"
+    },
+    {
+      "type": "text",
+      "content": "There is a stunning visual pattern to the roots of a complex number. When plotted on an Argand diagram, the $n$ distinct $n$-th roots of a complex number are equally spaced around a circle. They form the vertices of a regular $n$-sided polygon. This symmetry is a powerful tool for checking your answers. The angle separating each consecutive root is always $2\\pi/n$ radians."
+    },
+    {
+      "type": "examTip",
+      "content": "After calculating your roots, quickly sketch them on an Argand diagram. If you are finding cube roots, they should form an equilateral triangle. If you are finding fourth roots, they should form a square. If they don't look right, you've likely made a calculation error, often in the argument."
+    },
+    {
+      "type": "practice",
+      "label": "De Moivre's Theorem & Roots",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=1.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: The Geometry of n-th Roots",
+          "href": "https://www.geogebra.org/m/C2b4y9H3"
+        },
+        {
+          "label": "Paul's Online Math Notes: Complex Numbers - Powers and Roots",
+          "href": "https://tutorial.math.lamar.edu/classes/de/complexnumbers.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "The Geometry of n-th Roots",
+    "embedUrl": "https://www.geogebra.org/classic?material=C2b4y9H3",
+    "launchUrl": "https://www.geogebra.org/classic?material=C2b4y9H3",
+    "hint": "Use “The Geometry of n-th Roots” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

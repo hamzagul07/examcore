@@ -1,0 +1,167 @@
+{
+  "slug": "4-7-conditional-probability-and-bayes-theorem",
+  "topicCode": "4.7",
+  "title": "Conditional probability and Bayes' theorem",
+  "paper": "P2",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores conditional probability, the probability of an event occurring given that another event has already occurred. We will cover the core formula, its application using tree and Venn diagrams, and extend this to the powerful Bayes' theorem for updating probabilities based on new evidence.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and apply the formula for conditional probability, P(A|B).",
+    "Represent conditional probability problems using tree diagrams and Venn diagrams.",
+    "Understand the statement and application of Bayes' theorem for two events.",
+    "Solve complex probability problems involving conditional events and Bayes' theorem in various contexts."
+  ],
+  "simpleExplanation": {
+    "title": "Updating Beliefs with New Clues",
+    "summary": "Conditional probability adjusts the likelihood of an event based on new information. Bayes' theorem is a formal method for reversing this logic, allowing us to calculate the probability of an earlier event given a later outcome.",
+    "analogy": "Imagine you're a detective. At the start of a case, you have several suspects (initial probabilities). When you find a clue at the crime scene—say, a size 11 footprint—you update your beliefs. Suspects with size 11 feet become more likely culprits, while others become less likely. Bayes' theorem is the mathematical tool you'd use to precisely calculate how much more likely each suspect becomes.",
+    "steps": [
+      "Define the events. Clearly state what A and B represent, and identify if you need to find P(A|B) or P(B|A).",
+      "Choose your tool. A tree diagram is excellent for sequential events, while a Venn diagram or formula is good for simultaneous information.",
+      "Calculate necessary components. Find P(A ∩ B) and P(B) to use the main formula P(A|B) = P(A ∩ B) / P(B).",
+      "For Bayes' theorem, use the formula P(A|B) = (P(B|A)P(A)) / P(B) to find the 'posterior' probability after considering new evidence."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the formula for the conditional probability of event A given event B?",
+      "back": "$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$, provided $P(B) \\neq 0$."
+    },
+    {
+      "front": "In words, what does $P(A|B)$ mean?",
+      "back": "The probability of event A occurring, given that event B has already occurred."
+    },
+    {
+      "front": "What is the key difference between independent and dependent events in terms of conditional probability?",
+      "back": "For independent events, $P(A|B) = P(A)$. For dependent events, $P(A|B) \\neq P(A)$. The occurrence of B changes the probability of A."
+    },
+    {
+      "front": "What is the formula for Bayes' Theorem for two events A and B?",
+      "back": "$P(A|B) = \\frac{P(B|A)P(A)}{P(B)}$."
+    },
+    {
+      "front": "What is the 'Law of Total Probability' often used for the denominator in Bayes' theorem?",
+      "back": "To find $P(B)$, we can sum over all possibilities: $P(B) = P(B|A)P(A) + P(B|A')P(A')$."
+    },
+    {
+      "front": "What is the common trap when interpreting medical test results?",
+      "back": "Confusing the probability of having the disease given a positive test, $P(\\text{Disease}|\\text{Positive})$, with the probability of testing positive given you have the disease, $P(\\text{Positive}|\\text{Disease})$. Bayes' theorem is needed to find the former."
+    },
+    {
+      "front": "How can you rearrange the conditional probability formula to find the intersection (multiplication rule)?",
+      "back": "$P(A \\cap B) = P(A|B)P(B)$ or $P(A \\cap B) = P(B|A)P(A)$."
+    },
+    {
+      "front": "If events A and B are mutually exclusive, what is $P(A|B)$?",
+      "back": "Zero. If B has occurred, A cannot occur, so $P(A \\cap B) = 0$."
+    },
+    {
+      "front": "What is a 'prior probability' in the context of Bayes' theorem?",
+      "back": "The initial probability of an event before any new evidence is considered. For example, $P(A)$ is the prior probability of A."
+    },
+    {
+      "front": "What is a 'posterior probability' in the context of Bayes' theorem?",
+      "back": "The revised or updated probability of an event after new evidence has been taken into account. For example, $P(A|B)$ is the posterior probability of A given B."
+    },
+    {
+      "front": "How do you represent conditional probability on a tree diagram?",
+      "back": "The probabilities on the second (and subsequent) set of branches are conditional probabilities. For example, the path A then B would have branches with probabilities $P(A)$ and then $P(B|A)$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between $P(A|B)$ and $P(B|A)$?",
+      "a": "They are fundamentally different and a common source of confusion. $P(A|B)$ is the probability of A happening, given that B has already happened. $P(B|A)$ is the probability of B happening, given that A has already happened. Think of the medical test example: $P(\\text{Positive}|\\text{Disease})$ is the probability a sick person tests positive (usually high), while $P(\\text{Disease}|\\text{Positive})$ is the probability a person who tested positive is actually sick (can be surprisingly low). Bayes' theorem is the tool that connects these two reverse probabilities."
+    },
+    {
+      "q": "When should I use a Venn diagram versus a tree diagram?",
+      "a": "A Venn diagram is great for visualizing the relationship between events when you're given information about intersections and unions, like in the first worked example ($P(M)$, $P(P)$, $P(M \\cap P)$). A tree diagram is superior for sequential events where outcomes happen in a specific order, or for problems where you're given conditional probabilities directly, like in the Bayes' theorem example ($P(T|D)$)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to our lesson on conditional probability and Bayes' theorem. We often encounter situations where the probability of an event depends on whether another event has happened. For example, the probability of it raining tomorrow might be higher if we know it's cloudy today. This lesson will formalise this idea, providing you with the tools to tackle complex probability problems, a common feature of Paper 2."
+    },
+    {
+      "type": "heading",
+      "content": "Conditional Probability"
+    },
+    {
+      "type": "text",
+      "content": "Conditional probability is the heart of understanding how events relate to one another. The notation $P(A|B)$ asks for the probability of event A happening, under the new condition that we know for certain event B has already happened. This effectively reduces our 'sample space' of all possible outcomes to only those outcomes where B is true."
+    },
+    {
+      "type": "formula",
+      "content": "The probability of A given B is defined as: $$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$$ where $P(B) > 0$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The vertical bar '|' is read as 'given'.",
+        "$P(A \\cap B)$ is the probability that both A and B occur.",
+        "The formula essentially re-scales the probability of the intersection, $P(A \\cap B)$, by the probability of the new, smaller sample space, $P(B)$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "At a university, 60% of students take a mathematics course (M), 35% take a physics course (P), and 20% take both.\n\n(a) A student is chosen at random. Find the probability that the student takes physics, given that they take mathematics.\n\n(b) Determine if the events 'takes mathematics' and 'takes physics' are independent.",
+      "solution": "Let M be the event a student takes mathematics, and P be the event a student takes physics.\nWe are given: $P(M) = 0.60$, $P(P) = 0.35$, and $P(M \\cap P) = 0.20$.\n\n(a) We need to find $P(P|M)$.\nUsing the formula for conditional probability:\n$P(P|M) = \\frac{P(P \\cap M)}{P(M)}$ [M1]\n$P(P|M) = \\frac{0.20}{0.60}$ [A1]\n$P(P|M) = \\frac{1}{3} \\approx 0.333$ [A1]\n\nThe probability that a student takes physics, given they take mathematics, is $\\frac{1}{3}$.\n\n(b) For events to be independent, we must have $P(P|M) = P(P)$ or $P(M \\cap P) = P(M)P(P)$.\n\nMethod 1: Using conditional probability.\nWe found $P(P|M) = \\frac{1}{3} \\approx 0.333$. [R1]\nWe are given $P(P) = 0.35$.\nSince $0.333 \\neq 0.35$, the events are not independent. [A1]\n\nMethod 2: Using the intersection formula.\n$P(M) \\times P(P) = 0.60 \\times 0.35 = 0.21$. [M1]\nWe are given $P(M \\cap P) = 0.20$.\nSince $P(M \\cap P) \\neq P(M)P(P)$ (i.e., $0.20 \\neq 0.21$), the events are not independent. [R1][A1]\n\nBoth methods show the events are dependent."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising with Tree Diagrams"
+    },
+    {
+      "type": "text",
+      "content": "Tree diagrams are exceptionally useful for problems involving a sequence of events. The first set of branches represents the probabilities of the first event. The second set of branches shows the conditional probabilities of the second event, given the outcome of the first. To find the probability of a specific path (an intersection of events), you multiply the probabilities along the branches."
+    },
+    {
+      "type": "examTip",
+      "content": "Always draw a tree diagram for sequential probability questions. It helps to structure your thoughts and ensures you don't miss any outcomes. Label each branch clearly with the event and its probability. Remember that the probabilities branching from a single point must sum to 1."
+    },
+    {
+      "type": "heading",
+      "content": "Bayes' Theorem: Reversing the Condition"
+    },
+    {
+      "type": "text",
+      "content": "Often, we know $P(B|A)$ but we need to find $P(A|B)$. For example, we might know the probability of a fire alarm ringing given there is a fire, but we want to know the probability there is a fire given that the alarm is ringing. Bayes' theorem provides the formula to do exactly this, allowing us to update our initial (prior) beliefs in light of new evidence."
+    },
+    {
+      "type": "formula",
+      "content": "Bayes' Theorem: $$P(A|B) = \\frac{P(B|A)P(A)}{P(B)}$$\nOften, the denominator $P(B)$ is not given directly and must be calculated using the Law of Total Probability:\n$$P(B) = P(B|A)P(A) + P(B|A')P(A')$$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A rare disease affects 1 in 1000 people. A test for this disease is 99% accurate for those who have it (true positive) and has a 2% false positive rate (i.e., it incorrectly indicates the disease is present in 2% of healthy people). A person is selected at random and tests positive. What is the probability they actually have the disease?",
+      "solution": "Let D be the event the person has the disease, and T be the event the person tests positive.\nWe are given:\n$P(D) = \\frac{1}{1000} = 0.001$ (Prior probability)\n$P(D') = 1 - 0.001 = 0.999$\n$P(T|D) = 0.99$ (True positive rate)\n$P(T|D') = 0.02$ (False positive rate)\n\nWe want to find $P(D|T)$, the probability of having the disease given a positive test.\n\nUsing Bayes' theorem: $P(D|T) = \\frac{P(T|D)P(D)}{P(T)}$ [M1]\n\nFirst, we need to find $P(T)$ using the Law of Total Probability:\n$P(T) = P(T|D)P(D) + P(T|D')P(D')$ [M1]\n$P(T) = (0.99)(0.001) + (0.02)(0.999)$ [A1]\n$P(T) = 0.00099 + 0.01998 = 0.02097$\n\nNow substitute this back into Bayes' theorem:\n$P(D|T) = \\frac{(0.99)(0.001)}{0.02097}$ [M1]\n$P(D|T) = \\frac{0.00099}{0.02097} \\approx 0.04721...$\n\nSo, $P(D|T) \\approx 0.0472$ (to 3 s.f.) [A1]\n\nThis surprising result means that even with a positive test, there is only about a 4.7% chance the person actually has the disease. This is a classic example of how Bayes' theorem challenges our intuition, especially when dealing with rare events."
+    },
+    {
+      "type": "examTip",
+      "content": "For Bayes' theorem questions, especially in medical or quality control contexts, drawing a tree diagram is highly recommended. Let the first branches be the 'true state' (e.g., Disease/No Disease) and the second branches be the 'evidence' (e.g., Test Positive/Test Negative). This makes it much easier to calculate the denominator $P(B)$ and the numerator $P(A \\cap B)$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=4.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Questionbank",
+          "href": "/questionbank?subject=ib-maths-aa-hl"
+        },
+        {
+          "label": "Past Paper Video Solutions",
+          "href": "https://www.youtube.com/playlist?list=PL_S28kr0L-OO3u9969G5n5R-A0R3fS6pT"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

@@ -1,0 +1,186 @@
+{
+  "slug": "5-8-integration-techniques-substitution-by-parts-and-partial-fractions",
+  "topicCode": "5.8",
+  "title": "Integration techniques: substitution, by parts and partial fractions",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson provides a comprehensive guide to advanced integration techniques essential for the IB Maths AA HL Paper 1. It covers integration by substitution, integration by parts, and integration using partial fractions, equipping you with the tools to tackle complex integrals.",
+  "durationMin": 25,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify and apply the appropriate integration technique for a given function.",
+    "Master integration by substitution by correctly choosing 'u' and transforming the integral.",
+    "Execute integration by parts, including selecting 'u' and 'dv/dx' strategically using the LIATE/ILATE principle.",
+    "Decompose rational functions into partial fractions to facilitate integration."
+  ],
+  "simpleExplanation": {
+    "title": "Your Integration Toolkit",
+    "summary": "Just as you need different tools to fix different things, you need different techniques to solve different integrals. This lesson adds substitution, parts, and partial fractions to your mathematical toolkit.",
+    "analogy": "Imagine you're a detective trying to crack a code (the integral). Sometimes the code is a simple substitution cipher (u-substitution). Other times, it's a two-part code where solving one part helps you solve the other (integration by parts). And occasionally, the code is a jumble of messages you must first separate before you can read them (partial fractions).",
+    "steps": [
+      "Analyse the integrand to spot key features, like a function and its derivative, a product of functions, or a rational expression.",
+      "Select the most promising technique: substitution for 'inside functions', parts for products, or partial fractions for rational functions.",
+      "Carefully apply the chosen method, transforming the integral into a simpler form. Pay close attention to details like 'du' and the integration constant.",
+      "Solve the new, simpler integral and substitute back if necessary to express the final answer in terms of the original variable."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the formula for integration by parts?",
+      "back": "$\\int u \\frac{dv}{dx} dx = uv - \\int v \\frac{du}{dx} dx$. It's derived from the product rule for differentiation."
+    },
+    {
+      "front": "When is integration by substitution (u-substitution) a good strategy?",
+      "back": "When the integrand contains a function and its derivative (or a constant multiple of its derivative). Look for a composite function form $f(g(x))g'(x)$."
+    },
+    {
+      "front": "What does the acronym LIATE or ILATE stand for?",
+      "back": "It's a heuristic for choosing 'u' in integration by parts: Logarithmic, Inverse Trig, Algebraic, Trigonometric, Exponential. The function type that appears first in the list is the best choice for 'u'."
+    },
+    {
+      "front": "What is the first step when integrating a rational function where the numerator's degree is $\\ge$ the denominator's degree?",
+      "back": "Perform polynomial long division first. This will express the function as a polynomial plus a proper rational function, which can then be integrated (possibly using partial fractions)."
+    },
+    {
+      "front": "How do you decompose a fraction with distinct linear factors in the denominator, like $\\frac{P(x)}{(ax+b)(cx+d)}$?",
+      "back": "Set it equal to $\\frac{A}{ax+b} + \\frac{B}{cx+d}$ and solve for the constants A and B."
+    },
+    {
+      "front": "How do you decompose a fraction with a repeated linear factor, like $\\frac{P(x)}{(ax+b)^2}$?",
+      "back": "Set it equal to $\\frac{A}{ax+b} + \\frac{B}{(ax+b)^2}$ and solve for the constants A and B."
+    },
+    {
+      "front": "What is a common mistake in u-substitution?",
+      "back": "Forgetting to change the differential term. If $u = g(x)$, then $du = g'(x)dx$. You must substitute for $dx$ as well as for the terms involving $x$."
+    },
+    {
+      "front": "What is the integral of $\\frac{1}{ax+b}$?",
+      "back": "$\\frac{1}{a} \\ln|ax+b| + C$. The factor of $1/a$ is crucial and often forgotten."
+    },
+    {
+      "front": "In integration by parts, what happens if you choose 'u' and 'dv/dx' poorly?",
+      "back": "The new integral, $\\int v \\frac{du}{dx} dx$, might be more complicated than the original. If this happens, try swapping your choices for 'u' and 'dv/dx'."
+    },
+    {
+      "front": "Why is the absolute value important in $\\int \\frac{1}{x} dx = \\ln|x| + C$?",
+      "back": "The function $1/x$ is defined for all $x \\neq 0$, but $\\ln(x)$ is only defined for $x>0$. The absolute value $|x|$ ensures the domain of the antiderivative matches the domain of the original function."
+    },
+    {
+      "front": "How do you handle definite integrals with u-substitution?",
+      "back": "You have two options: 1) Change the limits of integration to be in terms of 'u' and evaluate. 2) Solve the indefinite integral first, substitute back to 'x', and then use the original 'x' limits."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I know which integration technique to use?",
+      "a": "It's a process of elimination and pattern recognition. First, check if it's a basic integral. If not, look for a function and its derivative (substitution). If it's a product of two unrelated function types (like algebraic and trig), think 'by parts'. If it's a rational function (polynomial divided by polynomial), think 'partial fractions'. Sometimes, you'll need to combine techniques."
+    },
+    {
+      "q": "What if I choose the wrong 'u' and 'dv/dx' in integration by parts?",
+      "a": "If your new integral $\\int v \\, du$ is more complicated than the original, you've likely made a suboptimal choice. Don't erase everything! Just go back, swap your choices for 'u' and 'dv/dx', and try again. This is a common part of the process."
+    },
+    {
+      "q": "For partial fractions, do I always have to do long division if the numerator's degree is higher?",
+      "a": "Yes, always. The method of partial fractions is defined for proper rational functions, where the degree of the numerator is strictly less than the degree of the denominator. Performing long division is the essential first step to get the expression into the correct form."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the heavy lifting of calculus. While you've mastered basic integration, many functions can't be integrated with simple rules. This lesson introduces three powerful techniques—substitution, by parts, and partial fractions—that dramatically expand the range of integrals you can solve. Mastering these is crucial for success in Paper 1, where analytical skill is paramount."
+    },
+    {
+      "type": "heading",
+      "content": "1. Integration by Substitution"
+    },
+    {
+      "type": "text",
+      "content": "Integration by substitution is essentially the chain rule in reverse. It's your go-to method when you see a function 'nested' inside another, and the derivative of the 'inner' function is also present in the integrand. The goal is to simplify the integral by changing the variable of integration."
+    },
+    {
+      "type": "formula",
+      "content": "Let $u = g(x)$, then $du = g'(x)dx$. The substitution transforms the integral: \\[ \\int f(g(x))g'(x) \\, dx = \\int f(u) \\, du \\]"
+    },
+    {
+      "type": "workedExample",
+      "question": "Find $\\int \\sin^4(x) \\cos(x) \\, dx$.",
+      "solution": "We notice that $\\cos(x)$ is the derivative of $\\sin(x)$. This suggests substitution.\n\nLet $u = \\sin(x)$. [M1] - for selecting a suitable substitution.\n\nThen, differentiate with respect to $x$: $\\frac{du}{dx} = \\cos(x)$.\nRearranging gives $du = \\cos(x) dx$. [A1] - for correct relationship between $du$ and $dx$.\n\nNow substitute $u$ and $du$ into the integral:\n\n$\\int \\sin^4(x) \\cos(x) \\, dx = \\int u^4 \\, du$ [A1] - for correct substitution into the integral.\n\nThis is a simple power integral:\n\n$\\int u^4 \\, du = \\frac{u^5}{5} + C$ [A1] - for correct integration with respect to u.\n\nFinally, substitute back for $u = \\sin(x)$ to get the answer in terms of $x$:\n\n$\\frac{\\sin^5(x)}{5} + C$ [A1] - for the final answer including the constant of integration."
+    },
+    {
+      "type": "heading",
+      "content": "2. Integration by Parts"
+    },
+    {
+      "type": "text",
+      "content": "This technique is the reverse of the product rule for differentiation and is used to integrate the product of two functions. The key is to split the integrand into two parts, 'u' and 'dv/dx', and apply the integration by parts formula. The choice of 'u' and 'dv/dx' is critical; a good choice simplifies the problem, while a poor one can make it harder."
+    },
+    {
+      "type": "formula",
+      "content": "The formula for integration by parts is: \\begin{equation} \\int u \\frac{dv}{dx} \\, dx = uv - \\int v \\frac{du}{dx} \\, dx \\end{equation} A more compact notation is often used: $\\int u \\, dv = uv - \\int v \\, du$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Choosing 'u':** Use the LIATE/ILATE principle (Logarithmic, Inverse Trig, Algebraic, Trig, Exponential). Choose 'u' as the function type that comes first in the list.",
+        "**Choosing 'dv/dx':** This will be the remaining part of the product. You must be able to integrate it to find 'v'.",
+        "**Repeated Application:** Sometimes you need to apply integration by parts more than once to solve an integral (e.g., for $\\int x^2 e^x dx$)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Evaluate the definite integral $\\int_1^e x \\ln(x) \\, dx$.",
+      "solution": "This is a product of an algebraic function ($x$) and a logarithmic function ($\\ln(x)$). We use integration by parts.\n\nUsing LIATE, we choose $u = \\ln(x)$ and $\\frac{dv}{dx} = x$. [M1] - for correct choice of u and dv/dx.\n\nThen we find $\\frac{du}{dx}$ and $v$:\n$\\frac{du}{dx} = \\frac{1}{x}$\n$v = \\int x \\, dx = \\frac{x^2}{2}$ [A1] - for correct du/dx and v.\n\nApply the integration by parts formula: $\\int u \\frac{dv}{dx} dx = uv - \\int v \\frac{du}{dx} dx$.\n\n$\\int x \\ln(x) \\, dx = \\ln(x) \\cdot \\frac{x^2}{2} - \\int \\frac{x^2}{2} \\cdot \\frac{1}{x} \\, dx$ [M1] - for correct substitution into the parts formula.\n\n$= \\frac{x^2 \\ln(x)}{2} - \\int \\frac{x}{2} \\, dx$\n\n$= \\frac{x^2 \\ln(x)}{2} - \\frac{x^2}{4} + C$\n\nNow evaluate the definite integral using the limits $[1, e]$:\n\n$\\left[ \\frac{x^2 \\ln(x)}{2} - \\frac{x^2}{4} \\right]_1^e = \\left( \\frac{e^2 \\ln(e)}{2} - \\frac{e^2}{4} \\right) - \\left( \\frac{1^2 \\ln(1)}{2} - \\frac{1^2}{4} \\right)$ [M1] - for substituting limits.\n\nSince $\\ln(e) = 1$ and $\\ln(1) = 0$:\n\n$= \\left( \\frac{e^2}{2} - \\frac{e^2}{4} \\right) - \\left( 0 - \\frac{1}{4} \\right)$ [A1] - for correct evaluation of ln terms.\n\n$= \\frac{2e^2 - e^2}{4} + \\frac{1}{4}$\n\n$= \\frac{e^2+1}{4}$ [A1] - for the final simplified answer."
+    },
+    {
+      "type": "examTip",
+      "content": "For integrals like $\\int e^x \\sin(x) \\, dx$, you may need to apply integration by parts twice. This often leads to the original integral reappearing on the right-hand side. Don't panic! This is expected. Simply treat the integral as an algebraic variable and solve for it."
+    },
+    {
+      "type": "heading",
+      "content": "3. Integration by Partial Fractions"
+    },
+    {
+      "type": "text",
+      "content": "This technique is used for integrating rational functions (a fraction where the numerator and denominator are both polynomials). The idea is to break down a complicated fraction into a sum of simpler fractions that are easier to integrate. This method only works for 'proper' rational functions, where the degree of the numerator is less than the degree of the denominator."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Step 1: Check Degrees.** If degree(numerator) $\\ge$ degree(denominator), perform polynomial long division first.",
+        "**Step 2: Factorise Denominator.** Factorise the denominator completely into linear and/or irreducible quadratic factors.",
+        "**Step 3: Decompose.** Write the rational function as a sum of partial fractions with unknown constants (A, B, C...).",
+        "**Step 4: Solve for Constants.** Multiply through by the original denominator and solve for the constants. You can do this by substituting strategic values of $x$ or by equating coefficients.",
+        "**Step 5: Integrate.** Integrate the sum of the simpler fractions, which usually involves logarithms."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find $\\int \\frac{5x-4}{x^2-x-2} \\, dx$.",
+      "solution": "First, factorise the denominator: $x^2-x-2 = (x-2)(x+1)$. [M1] - for factorising denominator.\n\nNow, set up the partial fraction decomposition:\n\n$\\frac{5x-4}{(x-2)(x+1)} = \\frac{A}{x-2} + \\frac{B}{x+1}$ [M1] - for correct form of partial fractions.\n\nMultiply both sides by $(x-2)(x+1)$ to clear the denominators:\n\n$5x-4 = A(x+1) + B(x-2)$\n\nTo find A, let $x=2$: $5(2)-4 = A(2+1) + B(0) \\implies 6 = 3A \\implies A=2$. [A1] - for one correct constant.\n\nTo find B, let $x=-1$: $5(-1)-4 = A(0) + B(-1-2) \\implies -9 = -3B \\implies B=3$. [A1] - for the second correct constant.\n\nSo, the integral becomes:\n\n$\\int \\left( \\frac{2}{x-2} + \\frac{3}{x+1} \\right) dx$\n\n$= \\int \\frac{2}{x-2} dx + \\int \\frac{3}{x+1} dx$\n\n$= 2\\ln|x-2| + 3\\ln|x+1| + C$ [A1][A1] - one mark for each correct log term, including the constant C."
+    },
+    {
+      "type": "examTip",
+      "content": "When solving for constants in partial fractions, substituting values of $x$ that are roots of the denominator is usually the quickest method. If you have repeated factors, you may also need to equate coefficients of powers of $x$."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Integration Techniques",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AA HL Questionbank",
+          "href": "/questions?subject=ib-maths-aa-hl"
+        },
+        {
+          "label": "Paul's Online Math Notes - Integration Techniques",
+          "href": "https://tutorial.math.lamar.edu/Classes/CalcII/IntegrationTechniques.aspx"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

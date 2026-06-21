@@ -1,0 +1,200 @@
+{
+  "slug": "2-4-transformations-of-graphs",
+  "topicCode": "2.4",
+  "title": "Transformations of graphs",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson covers the transformation of graphs, a core concept in function analysis. It details how to apply and combine translations, reflections, and stretches to a given function $y=f(x)$, and how these transformations affect key points and features of the graph.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and apply vertical and horizontal translations to the graph of a function $y=f(x)$.",
+    "Understand and apply reflections in the x-axis and y-axis, and stretches/compressions parallel to the axes.",
+    "Analyse and apply composite transformations to a function, understanding the importance of the order of operations.",
+    "Determine the equation of a transformed graph from a description or a visual representation."
+  ],
+  "simpleExplanation": {
+    "title": "Function Makeovers",
+    "summary": "Graph transformations are like giving a function's graph a makeover. We can shift it, flip it, or stretch it to create a new, related graph.",
+    "analogy": "Imagine you have a photo on your computer. You can move the photo around the screen (a translation), flip it horizontally or vertically (a reflection), or resize it by stretching it taller or wider (a stretch). We do the exact same things to the graph of a function, but we use algebra to describe these changes precisely.",
+    "steps": [
+      "Identify the original, or 'parent', function, $y=f(x)$.",
+      "Analyse the transformation rule. Is it inside the function bracket, like $f(x+c)$, or outside, like $f(x)+d$?",
+      "Apply horizontal transformations first (from inside the bracket). Remember these often feel 'backwards': $f(x+2)$ moves left, $f(2x)$ is a horizontal squash.",
+      "Apply vertical transformations second (from outside the bracket). These work as you'd expect: $-2f(x)$ reflects in the x-axis and stretches vertically by factor 2."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "Describe the transformation $y = f(x) + d$.",
+      "back": "A vertical translation by the vector $\\begin{pmatrix} 0 \\\\ d \\end{pmatrix}$. The graph shifts up if $d>0$ and down if $d<0$."
+    },
+    {
+      "front": "Describe the transformation $y = f(x+c)$.",
+      "back": "A horizontal translation by the vector $\\begin{pmatrix} -c \\\\ 0 \\end{pmatrix}$. The graph shifts left if $c>0$ and right if $c<0$. This is a common trap!"
+    },
+    {
+      "front": "Describe the transformation $y = -f(x)$.",
+      "back": "A reflection in the x-axis. The y-coordinate of every point is multiplied by -1."
+    },
+    {
+      "front": "Describe the transformation $y = f(-x)$.",
+      "back": "A reflection in the y-axis. The x-coordinate of every point is multiplied by -1."
+    },
+    {
+      "front": "Describe the transformation $y = af(x)$ for $a>0$.",
+      "back": "A vertical stretch with scale factor $a$, parallel to the y-axis. If $0<a<1$, it is a vertical compression."
+    },
+    {
+      "front": "Describe the transformation $y = f(bx)$ for $b>0$.",
+      "back": "A horizontal stretch with scale factor $1/b$, parallel to the x-axis. If $b>1$, it is a horizontal compression. Another common trap!"
+    },
+    {
+      "front": "What is a recommended order for applying transformations for $y = af(b(x-h))+k$?",
+      "back": "A reliable order is Stretches/Reflections, then Translations (SRT). First apply the horizontal stretch ($b$), then the vertical stretch ($a$), then the horizontal translation ($h$), and finally the vertical translation ($k$)."
+    },
+    {
+      "front": "How does the transformation $y = af(x)+d$ affect a point $(p, q)$ on the graph of $y=f(x)$?",
+      "back": "The point $(p, q)$ is mapped to the point $(p, aq+d)$. The x-coordinate is unchanged."
+    },
+    {
+      "front": "How does the transformation $y = f(b(x-h))$ affect a point $(p, q)$ on the graph of $y=f(x)$?",
+      "back": "The point $(p, q)$ is mapped to the point $(\\frac{p}{b}+h, q)$. The y-coordinate is unchanged."
+    },
+    {
+      "front": "What is the effect of the transformation $y=|f(x)|$?",
+      "back": "Any part of the graph of $y=f(x)$ below the x-axis is reflected in the x-axis. The part of the graph on or above the x-axis remains unchanged."
+    },
+    {
+      "front": "What is the effect of the transformation $y=f(|x|)$?",
+      "back": "The portion of the graph for $x<0$ is discarded and replaced by a reflection of the portion for $x \\ge 0$ in the y-axis. The resulting graph has y-axis symmetry."
+    },
+    {
+      "front": "What are invariant points under a stretch?",
+      "back": "For a vertical stretch $y=af(x)$, any point on the x-axis (where $y=0$) is invariant. For a horizontal stretch $y=f(bx)$, any point on the y-axis (where $x=0$) is invariant."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does the order of transformations matter?",
+      "a": "Yes, the order is crucial. For example, applying a vertical stretch of factor 2 and then a vertical translation of 3 units up to $f(x)$ gives $2f(x)+3$. Reversing the order gives $2(f(x)+3) = 2f(x)+6$. These are different functions. A standard, safe order is Stretches/Reflections first, then Translations (SRT)."
+    },
+    {
+      "q": "Why does $f(x+c)$ translate the graph to the left, not the right?",
+      "a": "Think about which new x-value will produce the same output as an old x-value. For the graph of $f(x)$, the feature at $x=0$ is $f(0)$. For the graph of $g(x)=f(x+c)$, to get the same output $f(0)$, we need the input of $g$ to be $x=-c$, because $g(-c) = f(-c+c) = f(0)$. So, the feature that was at $x=0$ has moved to $x=-c$. If $c$ is positive, this is a shift to the left."
+    },
+    {
+      "q": "What's the difference between $y=2f(x)$ and $y=f(2x)$?",
+      "a": "$y=2f(x)$ is a vertical stretch by a factor of 2. Every y-coordinate is doubled, making the graph twice as tall. $y=f(2x)$ is a horizontal stretch by a factor of $1/2$ (i.e., a compression). Every x-coordinate is halved, squashing the graph horizontally towards the y-axis."
+    },
+    {
+      "q": "How do I handle transformations like $y = f(3x+6)$?",
+      "a": "The best way to avoid errors is to factor the coefficient of $x$ inside the bracket. Rewrite $y = f(3x+6)$ as $y = f(3(x+2))$. Now you can clearly see the two horizontal transformations: a horizontal stretch by factor $1/3$, and a horizontal translation 2 units to the left. Applying the stretch first to a point $(x,y)$ gives $(x/3, y)$, then applying the translation gives $(x/3 - 2, y)$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In mathematics, we often work with families of functions. Graph transformations provide a powerful visual and algebraic tool to understand the relationships between these functions. By learning a few simple rules, we can take a basic 'parent' graph, like $y=x^2$ or $y=\\sin(x)$, and shift, reflect, and stretch it to create an infinite variety of new functions. This skill is fundamental for modelling real-world phenomena and for quickly sketching and interpreting complex functions without needing to plot many points."
+    },
+    {
+      "type": "heading",
+      "content": "1. Translations: Shifting the Graph"
+    },
+    {
+      "type": "text",
+      "content": "A translation simply slides the entire graph to a new position without changing its shape, size, or orientation. We can shift the graph vertically (up or down) or horizontally (left or right)."
+    },
+    {
+      "type": "formula",
+      "content": "Vertical Translation: $y = f(x) + d$ \\\\ Translates the graph of $y=f(x)$ by the vector $\\begin{pmatrix} 0 \\\\ d \\end{pmatrix}$. \\\\ \\\\ Horizontal Translation: $y = f(x+c)$ \\\\ Translates the graph of $y=f(x)$ by the vector $\\begin{pmatrix} -c \\\\ 0 \\end{pmatrix}$. Note the minus sign; a positive $c$ shifts the graph to the left."
+    },
+    {
+      "type": "heading",
+      "content": "2. Reflections: Creating a Mirror Image"
+    },
+    {
+      "type": "text",
+      "content": "A reflection flips the graph across a line of reflection, creating a mirror image. In this course, we focus on reflections in the x-axis and the y-axis. These correspond to negating the function's output or its input, respectively."
+    },
+    {
+      "type": "formula",
+      "content": "Reflection in the x-axis: $y = -f(x)$ \\\\ All y-coordinates are multiplied by -1. \\\\ \\\\ Reflection in the y-axis: $y = f(-x)$ \\\\ All x-coordinates are multiplied by -1."
+    },
+    {
+      "type": "heading",
+      "content": "3. Stretches and Compressions: Resizing the Graph"
+    },
+    {
+      "type": "text",
+      "content": "Stretches and compressions change the size of the graph, either vertically or horizontally. A stretch pulls the graph away from an axis, while a compression squashes it towards an axis. A compression can be thought of as a stretch with a scale factor between 0 and 1."
+    },
+    {
+      "type": "formula",
+      "content": "Vertical Stretch: $y = af(x)$ \\\\ Stretches the graph vertically by a scale factor of $a$. The distance of each point from the x-axis is multiplied by $a$. \\\\ \\\\ Horizontal Stretch: $y = f(bx)$ \\\\ Stretches the graph horizontally by a scale factor of $1/b$. The distance of each point from the y-axis is multiplied by $1/b$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Outside the function affects vertical (y) values:** $f(x) \\to f(x)+d$, $f(x) \\to af(x)$. These changes are intuitive.",
+        "**Inside the function affects horizontal (x) values:** $f(x) \\to f(x+c)$, $f(x) \\to f(bx)$. These changes are often counter-intuitive.",
+        "**Mapping a point:** A point $(x, y)$ on $y=f(x)$ is mapped to $(\\frac{x}{b}-c, ay+d)$ on $y=af(b(x+c))+d$. It's often easier to apply transformations sequentially."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph of $y=f(x)$ where $f(x) = \\ln(x)$ is transformed to the graph of $y=g(x)$ where $g(x) = -f(x-3) + 2$. \\\\ (a) Describe the full sequence of transformations that maps the graph of $f$ onto the graph of $g$. [3 marks] \\\\ (b) The point $P(e, 1)$ lies on the graph of $f$. Find the coordinates of the image of $P$, let's call it $P'$, on the graph of $g$. [2 marks] \\\\ (c) Find the equation of the asymptote of the graph of $g$. [1 mark]",
+      "solution": "(a) We can identify the transformations by comparing $g(x) = -f(x-3) + 2$ to $y=f(x)$. \\\\ 1. **Horizontal translation by the vector $\\begin{pmatrix} 3 \\\\ 0 \\end{pmatrix}$** (or 'translation 3 units to the right'). This is from the $(x-3)$ term. [A1] \\\\ 2. **Reflection in the x-axis.** This is from the negative sign in front of $f$. [A1] \\\\ 3. **Vertical translation by the vector $\\begin{pmatrix} 0 \\\\ 2 \\end{pmatrix}$** (or 'translation 2 units up'). This is from the $+2$ term. [A1] \\\\ The order of reflection and vertical translation can be swapped, but the horizontal translation should be considered separately. \\\\ \\\\ (b) We apply the transformations to the point $P(e, 1)$. \\\\ Original point: $(e, 1)$ \\\\ 1. Horizontal translation by 3 units right: $(e+3, 1)$ [M1] \\\\ 2. Reflection in x-axis: $(e+3, -1)$ \\\\ 3. Vertical translation by 2 units up: $(e+3, -1+2) = (e+3, 1)$ \\\\ So, the coordinates of $P'$ are $(e+3, 1)$. [A1] \\\\ \\\\ (c) The graph of $f(x)=\\ln(x)$ has a vertical asymptote at $x=0$. Transformations that affect the x-coordinates will move the asymptote. The only such transformation is the horizontal translation 3 units to the right. The reflection and vertical translation do not affect a vertical line. \\\\ Original asymptote: $x=0$. \\\\ New asymptote: $x = 0+3 = 3$. [A1]"
+    },
+    {
+      "type": "heading",
+      "content": "4. Combining Transformations"
+    },
+    {
+      "type": "text",
+      "content": "When a function undergoes multiple transformations, the order in which they are applied is critical. For a transformation of the form $y = af(bx+c)+d$, there can be ambiguity. To avoid this, it is highly recommended to factor out the 'b' term: $y = af(b(x+\\frac{c}{b}))+d$. This separates the transformations clearly. A reliable order to apply them is: 1. Stretches/Reflections, then 2. Translations. So, apply the horizontal stretch (factor $1/b$), then the vertical stretch (factor $a$), then the horizontal translation (by $-c/b$), and finally the vertical translation (by $d$)."
+    },
+    {
+      "type": "examTip",
+      "content": "In exam questions, always describe transformations with full detail. For a translation, give the vector. For a reflection, state the line of reflection (e.g., x-axis). For a stretch, specify the scale factor and the direction (e.g., 'parallel to the y-axis'). When sketching, transform key points first – vertices, intercepts, endpoints – and then draw the curve connecting them."
+    },
+    {
+      "type": "workedExample",
+      "question": "The graph of a function $y=f(x)$ has a local maximum at $A(-4, 8)$ and a y-intercept at $(0, 2)$. The graph of $y=g(x)$ is obtained by applying the following transformations to the graph of $y=f(x)$: a horizontal stretch with scale factor $\\frac{1}{2}$, followed by a vertical translation of 5 units downwards. \\\\ (a) Find the coordinates of the local maximum on the graph of $y=g(x)$. [2 marks] \\\\ (b) Find the y-intercept of the graph of $y=g(x)$. [2 marks]",
+      "solution": "(a) Let the coordinates of the maximum on $g(x)$ be $A'$. We apply the transformations to the point $A(-4, 8)$. \\\\ A point $(x, y)$ is transformed to $(\\frac{1}{2}x, y-5)$. \\\\ Applying this to $A(-4, 8)$: \\\\ $x' = \\frac{1}{2}(-4) = -2$ [M1] \\\\ $y' = 8 - 5 = 3$ \\\\ The new maximum is at $A'(-2, 3)$. [A1] \\\\ \\\\ (b) We apply the transformations to the y-intercept, $(0, 2)$. \\\\ Let the new y-intercept be $B'$. \\\\ Applying the mapping $(x, y) \\to (\\frac{1}{2}x, y-5)$: \\\\ $x' = \\frac{1}{2}(0) = 0$ [M1] \\\\ $y' = 2 - 5 = -3$ \\\\ The new point is $(0, -3)$. Since the x-coordinate is 0, this is the new y-intercept. \\\\ The y-intercept of $g(x)$ is $-3$. [A1]"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Graph Transformation Visualiser",
+          "href": "https://www.geogebra.org/m/c89t3k3g"
+        },
+        {
+          "label": "IB Revision Village: Topic 2.4 Questionbank",
+          "href": "https://www.revisionvillage.com/ib-maths/analysis-and-approaches-hl/questionbank/topic-2-functions/2-4-transformations/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Graph Transformation Visualiser",
+    "embedUrl": "https://www.geogebra.org/classic?material=c89t3k3g",
+    "launchUrl": "https://www.geogebra.org/classic?material=c89t3k3g",
+    "hint": "Use “Graph Transformation Visualiser” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

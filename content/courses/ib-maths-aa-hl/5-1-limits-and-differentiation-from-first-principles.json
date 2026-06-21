@@ -1,0 +1,189 @@
+{
+  "slug": "5-1-limits-and-differentiation-from-first-principles",
+  "topicCode": "5.1",
+  "title": "Limits and differentiation from first principles",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concept of a limit and its application in defining the derivative of a function from first principles. Students will learn to evaluate limits, understand continuity, and use the formal definition to find the gradient function, laying the groundwork for all of calculus.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and evaluate limits of functions, including one-sided limits.",
+    "Determine if a function is continuous at a point by applying the three conditions of continuity.",
+    "Understand the derivative as the gradient of a tangent, derived from the limit of the gradient of a secant line.",
+    "Calculate the derivative of a function from first principles using the formal limit definition."
+  ],
+  "simpleExplanation": {
+    "title": "The Gradient Under the Microscope",
+    "summary": "Differentiation from first principles is the method of finding the exact gradient of a curve at a single point. We do this by calculating the gradient between two points on the curve and then moving them infinitely close together using limits.",
+    "analogy": "Imagine you're tracking a race car. To find its exact speed at a precise moment, you could measure the distance it travels in a very short time interval, say 0.01 seconds, and calculate 'distance over time'. Differentiation from first principles is like making that time interval infinitesimally small. The resulting calculation gives you the car's perfect, instantaneous speed, which is analogous to the curve's instantaneous gradient.",
+    "steps": [
+      "Start with a function $f(x)$ and a point $(x, f(x))$.",
+      "Consider a second point a tiny horizontal distance $h$ away, at $(x+h, f(x+h))$.",
+      "Calculate the gradient of the secant line connecting these two points: $\\frac{f(x+h) - f(x)}{h}$.",
+      "Find the limit of this gradient as the separation $h$ shrinks to zero. This gives the gradient of the tangent, $f'(x)$."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the notation for the limit of a function $f(x)$ as $x$ approaches $c$?",
+      "back": "$\\lim_{x \\to c} f(x) = L$, where $L$ is the value the function approaches."
+    },
+    {
+      "front": "What is the intuitive definition of a limit?",
+      "back": "A limit is the value that a function 'approaches' as the input 'approaches' some value. It's about the journey, not necessarily the destination."
+    },
+    {
+      "front": "When does the limit $\\lim_{x \\to c} f(x)$ exist?",
+      "back": "The limit exists if and only if the left-hand limit equals the right-hand limit. That is, $\\lim_{x \\to c^-} f(x) = \\lim_{x \\to c^+} f(x)$."
+    },
+    {
+      "front": "What are the three conditions for a function $f(x)$ to be continuous at a point $x=c$?",
+      "back": "1. $f(c)$ must be defined. 2. $\\lim_{x \\to c} f(x)$ must exist. 3. $\\lim_{x \\to c} f(x) = f(c)$."
+    },
+    {
+      "front": "What is the formula for differentiation from first principles?",
+      "back": "$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$"
+    },
+    {
+      "front": "What does the expression $\\frac{f(x+h) - f(x)}{h}$ represent geometrically?",
+      "back": "It represents the gradient of the secant line passing through the points $(x, f(x))$ and $(x+h, f(x+h))$ on the curve of $y=f(x)$."
+    },
+    {
+      "front": "What does $f'(x)$ represent geometrically?",
+      "back": "$f'(x)$ represents the gradient of the tangent line to the curve $y=f(x)$ at the point $(x, f(x))$. It gives the instantaneous rate of change of the function at that point."
+    },
+    {
+      "front": "What is an 'indeterminate form' when evaluating limits?",
+      "back": "An expression like $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$. It signals that you need to perform more algebraic manipulation (e.g., factorisation, rationalisation) to find the limit's true value."
+    },
+    {
+      "front": "Common trap: What is the error in finding $\\lim_{h \\to 0} \\frac{(x+h)^2 - x^2}{h}$ by substituting $h=0$ immediately?",
+      "back": "Substituting $h=0$ immediately gives $\\frac{x^2 - x^2}{0} = \\frac{0}{0}$, which is indeterminate. You must first expand and simplify the numerator: $\\frac{x^2 + 2xh + h^2 - x^2}{h} = \\frac{2xh + h^2}{h} = 2x + h$. Then you can take the limit, which is $2x$."
+    },
+    {
+      "front": "If a question asks you to differentiate 'from first principles' or 'using the definition', can you use the power rule?",
+      "back": "No. You must use the full limit definition, $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$, to receive any marks. The rules are shortcuts not permitted for this type of question."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the value of a function at a point, $f(c)$, and the limit as $x$ approaches $c$?",
+      "a": "The value $f(c)$ is the actual output of the function when the input is exactly $c$. The limit, $\\lim_{x \\to c} f(x)$, describes what value the function's output is getting closer and closer to as the input gets arbitrarily close to $c$. For a continuous function, these two are the same. However, for a function with a 'hole' at $x=c$, the limit might exist while $f(c)$ is undefined."
+    },
+    {
+      "q": "Why do we need to learn differentiation from first principles if there are much faster rules?",
+      "a": "First principles is the formal definition upon which all of calculus is built. Understanding it is crucial for grasping what a derivative actually is. The faster rules are shortcuts derived from this fundamental definition. IB exams specifically include questions on first principles to test this foundational understanding, not just your ability to apply a rule."
+    },
+    {
+      "q": "What does it mean if I get $\\frac{0}{0}$ when trying to evaluate a limit?",
+      "a": "This is called an indeterminate form. It does not mean the limit is zero or undefined. It's a sign that you need to do more work. The function's value at that exact point might be undefined, but the limit might still exist. You must use algebraic techniques like factorisation, expansion, or rationalisation to simplify the expression and eliminate the cause of the $\\frac{0}{0}$ form before you can evaluate the limit."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the foundation of differential calculus. So far in mathematics, you've mostly dealt with constant rates of change, like the gradient of a straight line. But how do we find the rate of change of a curve, which is constantly changing? This lesson introduces the concept of a limit, which allows us to 'zoom in' on a point on a curve until it looks like a straight line, enabling us to find its gradient precisely. This process is called differentiation from first principles."
+    },
+    {
+      "type": "heading",
+      "content": "The Concept of a Limit"
+    },
+    {
+      "type": "text",
+      "content": "A limit describes the behaviour of a function as its input gets closer and closer to a particular value. It's not about what happens *at* the value, but what happens in its immediate neighbourhood. We use the following notation:"
+    },
+    {
+      "type": "formula",
+      "content": "\\lim_{x \\to c} f(x) = L"
+    },
+    {
+      "type": "text",
+      "content": "This is read as 'the limit of $f(x)$ as $x$ approaches $c$ is $L$'. For a limit to exist, the function must approach the same value from both the left and the right side. We call these one-sided limits: $\\lim_{x \\to c^-} f(x)$ (from the left, i.e., values less than $c$) and $\\lim_{x \\to c^+} f(x)$ (from the right, i.e., values greater than $c$). The limit $L$ exists if and only if both one-sided limits exist and are equal to $L$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Direct Substitution:** If the function is continuous at $c$, the limit is simply $f(c)$.",
+        "**Factorisation:** If substitution gives $\\frac{0}{0}$, try to factorise the numerator and denominator to cancel common factors.",
+        "**Rationalisation:** If you have square roots and get $\\frac{0}{0}$, try multiplying the numerator and denominator by the conjugate."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the limit $\\lim_{x \\to 3} \\frac{x^2 - x - 6}{x - 3}$.",
+      "solution": "Direct substitution of $x=3$ gives $\\frac{3^2 - 3 - 6}{3 - 3} = \\frac{9 - 9}{0} = \\frac{0}{0}$. This is an indeterminate form, so we must simplify the expression.\n\nFactorise the numerator: $x^2 - x - 6 = (x-3)(x+2)$. [M1]\n\nNow substitute this back into the limit expression:\n$\\lim_{x \\to 3} \\frac{(x-3)(x+2)}{x - 3}$\n\nSince $x$ is approaching 3 but is not equal to 3, $x-3 \\neq 0$, so we can cancel the $(x-3)$ terms. [M1]\n$\\lim_{x \\to 3} (x+2)$\n\nNow we can use direct substitution:\n$3 + 2 = 5$ [A1]\n\nSo, $\\lim_{x \\to 3} \\frac{x^2 - x - 6}{x - 3} = 5$."
+    },
+    {
+      "type": "heading",
+      "content": "Continuity"
+    },
+    {
+      "type": "text",
+      "content": "A function is continuous if you can draw its graph without lifting your pen from the paper. More formally, a function $f$ is continuous at a point $x=c$ if the limit as $x$ approaches $c$ is equal to the function's value at $c$. This simple idea is powerful and relies on three conditions being met."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A function $f$ is continuous at $x=c$ if all three of these conditions are met:",
+        "1. $f(c)$ is defined (the point exists).",
+        "2. $\\lim_{x \\to c} f(x)$ exists (the function approaches a single value from both sides).",
+        "3. $\\lim_{x \\to c} f(x) = f(c)$ (the limit value is the same as the point's value)."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Differentiation from First Principles"
+    },
+    {
+      "type": "text",
+      "content": "The derivative of a function, denoted $f'(x)$, gives the gradient of the tangent line at any point $x$. To find this, we start by approximating it with the gradient of a secant line between two points: $(x, f(x))$ and a nearby point $(x+h, f(x+h))$. The gradient of this secant is $\\frac{f(x+h) - f(x)}{h}$. By taking the limit as the distance between these points, $h$, approaches zero, the secant line becomes the tangent line, and its gradient becomes the derivative."
+    },
+    {
+      "type": "formula",
+      "content": "f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}"
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, if a question explicitly states 'from first principles' or 'using the definition of the derivative', you MUST use the limit formula. Using differentiation rules (like the power rule) will score zero marks, even if the final answer is correct. Show every step of your algebraic simplification clearly."
+    },
+    {
+      "type": "workedExample",
+      "question": "Let $f(x) = 3x^2 + 4x - 1$. Using the definition of the derivative, find $f'(x)$.",
+      "solution": "We use the formula $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$.\n\nFirst, find an expression for $f(x+h)$:\n$f(x+h) = 3(x+h)^2 + 4(x+h) - 1$\n$= 3(x^2 + 2xh + h^2) + 4x + 4h - 1$\n$= 3x^2 + 6xh + 3h^2 + 4x + 4h - 1$ [A1]\n\nNow substitute $f(x+h)$ and $f(x)$ into the formula: [M1]\n$f'(x) = \\lim_{h \\to 0} \\frac{(3x^2 + 6xh + 3h^2 + 4x + 4h - 1) - (3x^2 + 4x - 1)}{h}$\n\nSimplify the numerator by collecting like terms. Notice that all terms without an $h$ will cancel out.\n$f'(x) = \\lim_{h \\to 0} \\frac{3x^2 - 3x^2 + 6xh + 3h^2 + 4x - 4x + 4h - 1 + 1}{h}$\n$f'(x) = \\lim_{h \\to 0} \\frac{6xh + 3h^2 + 4h}{h}$ [A1]\n\nFactor out $h$ from the numerator:\n$f'(x) = \\lim_{h \\to 0} \\frac{h(6x + 3h + 4)}{h}$ [M1]\n\nCancel the $h$ terms (since $h \\neq 0$):\n$f'(x) = \\lim_{h \\to 0} (6x + 3h + 4)$\n\nNow, evaluate the limit by substituting $h=0$:\n$f'(x) = 6x + 3(0) + 4$\n$f'(x) = 6x + 4$ [A1][AG]\n\nNote: The final [AG] (Answer Given) mark is often used in such questions, so showing clear steps is crucial."
+    },
+    {
+      "type": "practice",
+      "label": "Practice First Principles",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Secant line to Tangent line",
+          "href": "https://www.geogebra.org/m/C3t3kE3h"
+        },
+        {
+          "label": "Khan Academy: Limits and continuity",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-limits-new"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Secant line to Tangent line",
+    "embedUrl": "https://www.geogebra.org/classic?material=C3t3kE3h",
+    "launchUrl": "https://www.geogebra.org/classic?material=C3t3kE3h",
+    "hint": "Use “Secant line to Tangent line” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

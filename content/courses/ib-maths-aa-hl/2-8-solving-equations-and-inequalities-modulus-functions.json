@@ -1,0 +1,191 @@
+{
+  "slug": "2-8-solving-equations-and-inequalities-modulus-functions",
+  "topicCode": "2.8",
+  "title": "Solving equations and inequalities; modulus functions",
+  "paper": "P1",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson introduces the modulus function, its graphical representation, and methods for solving equations and inequalities involving absolute values. It covers both algebraic and graphical techniques, essential for Paper 1.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand the definition of the absolute value (modulus) and its properties.",
+    "Solve equations of the form |f(x)| = g(x) algebraically and graphically.",
+    "Solve inequalities of the form |f(x)| < g(x) or |f(x)| > g(x).",
+    "Sketch graphs of y = |f(x)| and y = f(|x|) from the graph of y = f(x)."
+  ],
+  "simpleExplanation": {
+    "title": "The Distance Keeper",
+    "summary": "The modulus function, written as |x|, tells you a number's distance from zero on the number line, so the result is always positive or zero. It strips away the negative sign, focusing only on magnitude.",
+    "analogy": "Imagine you're standing at a point marked '0' on a long path. Walking 3 metres forward or walking 3 metres backward both mean you've travelled a distance of 3 metres. The modulus function is like a pedometer that only counts your steps; it doesn't care about the direction, so the distance it records is always positive.",
+    "steps": [
+      "Isolate the modulus expression on one side of the equation or inequality.",
+      "Set up two separate cases. Case 1: The expression inside the modulus is positive or zero. Case 2: The expression inside the modulus is negative.",
+      "Solve the resulting two equations or inequalities. Remember to flip the inequality sign in the second case if you multiply or divide by a negative.",
+      "Combine your solutions. For '>' inequalities this is usually an 'or' condition, while for '<' it's an 'and' condition. Check for any extraneous solutions."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the formal definition of the modulus function, |x|?",
+      "back": "It's a piecewise function: $|x| = \\begin{cases} x, & \\text{if } x \\ge 0 \\\\ -x, & \\text{if } x < 0 \\end{cases}$"
+    },
+    {
+      "front": "How do you solve an equation of the form |f(x)| = k, where k > 0?",
+      "back": "You create two separate equations: f(x) = k or f(x) = -k, and solve both."
+    },
+    {
+      "front": "How do you solve an inequality of the form |f(x)| < k, where k > 0?",
+      "back": "You create a single compound inequality: -k < f(x) < k."
+    },
+    {
+      "front": "How do you solve an inequality of the form |f(x)| > k, where k > 0?",
+      "back": "You create two separate inequalities: f(x) > k or f(x) < -k."
+    },
+    {
+      "front": "What is the graphical effect of the transformation y = |f(x)|?",
+      "back": "Any part of the graph of y = f(x) that is below the x-axis (where y < 0) is reflected in the x-axis."
+    },
+    {
+      "front": "What is the graphical effect of the transformation y = f(|x|)?",
+      "back": "The part of the graph of y = f(x) for x < 0 is discarded. The part for x ≥ 0 is kept and is also reflected in the y-axis."
+    },
+    {
+      "front": "When solving |f(x)| = g(x), what is a crucial final step?",
+      "back": "You must check your solutions in the original equation. Solutions that don't work are called extraneous solutions. They often arise when g(x) can be negative."
+    },
+    {
+      "front": "What is a reliable method for solving an inequality like |f(x)| > |g(x)|?",
+      "back": "Squaring both sides. Since both sides are non-negative, this is a valid operation that preserves the inequality. It transforms the problem into a standard polynomial inequality."
+    },
+    {
+      "front": "What is a common mistake when solving |x - a| > b?",
+      "back": "Incorrectly writing it as a single compound inequality. The correct approach is to split it into two: x - a > b OR x - a < -b."
+    },
+    {
+      "front": "What does the graph of y = |ax + b| look like?",
+      "back": "A 'V' shape, with the vertex (the point of the 'V') on the x-axis at x = -b/a."
+    },
+    {
+      "front": "What is the triangle inequality?",
+      "back": "For any real numbers a and b, $|a + b| \\le |a| + |b|$. Equality holds when a and b have the same sign (or one is zero)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "When should I square both sides versus using the two-cases method for inequalities?",
+      "a": "Squaring both sides is an excellent method for inequalities of the form $|f(x)| > |g(x)|$ or $|f(x)| < |g(x)|$ because it neatly removes the modulus signs and leads to a polynomial inequality. However, for $|f(x)| > k$ (where k is a constant), using the two cases ($f(x) > k$ or $f(x) < -k$) is often more direct. For $|f(x)| < k$, using the 'sandwich' inequality ($-k < f(x) < k$) is the most efficient method. Be cautious squaring if one side isn't a modulus, e.g., $|f(x)| > g(x)$, as you must ensure $g(x) \\ge 0$ for the squaring to be valid, which can add extra complexity."
+    },
+    {
+      "q": "Why do I sometimes get 'extraneous' solutions?",
+      "a": "Extraneous solutions typically appear when solving equations of the form $|f(x)| = g(x)$. The algebraic process of splitting into two cases, $f(x) = g(x)$ and $f(x) = -g(x)$, doesn't account for the implicit condition that the right-hand side, $g(x)$, must be non-negative (since it equals a modulus). A solution obtained from the algebra might make $g(x)$ negative, which contradicts the original equation. This is why checking your solutions is not just good practice—it's a mathematical necessity."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to our lesson on one of the fundamental concepts in functions: the modulus, or absolute value. This topic is a bridge between algebra and geometry, representing distance on a number line. Mastering the techniques to solve modulus equations and inequalities is crucial for success in Paper 1 and provides a foundation for more advanced topics in calculus and complex numbers."
+    },
+    {
+      "type": "heading",
+      "content": "The Modulus Function: Definition and Graph"
+    },
+    {
+      "type": "text",
+      "content": "The modulus of a real number x, denoted by |x|, is its non-negative value without regard to its sign. In essence, it's the number's distance from 0 on the number line. For example, |5| = 5 and |-5| = 5."
+    },
+    {
+      "type": "formula",
+      "content": "|x| = \\begin{cases} x, & \\text{if } x \\ge 0 \\\\ -x, & \\text{if } x < 0 \\end{cases}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The output of |f(x)| is always greater than or equal to zero.",
+        "The graph of y = |x| is a characteristic 'V' shape with its vertex at the origin.",
+        "Geometrically, |a - b| represents the distance between the points a and b on the number line."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Solving Modulus Equations"
+    },
+    {
+      "type": "text",
+      "content": "When solving equations involving modulus, the core strategy is to convert the single modulus equation into two separate linear or polynomial equations. This is based on the definition: if |A| = k, then A must be either k or -k. A graphical approach, where you sketch the functions on each side of the equals sign and find their points of intersection, is also a powerful tool for verification and understanding."
+    },
+    {
+      "type": "workedExample",
+      "question": "Solve the equation $|3x + 4| = 8$.",
+      "solution": "We consider the two possible cases based on the definition of the modulus function.\n\n**Case 1:** The expression inside the modulus is equal to 8.\n$3x + 4 = 8$  (M1)\n$3x = 4$\n$x = \\frac{4}{3}$  (A1)\n\n**Case 2:** The expression inside the modulus is equal to -8.\n$3x + 4 = -8$  (M1)\n$3x = -12$\n$x = -4$  (A1)\n\nThe two solutions are $x = \\frac{4}{3}$ and $x = -4$."
+    },
+    {
+      "type": "examTip",
+      "content": "For equations of the form $|f(x)| = g(x)$, where there's a variable on the right-hand side, it is absolutely essential to check your final answers. Substitute them back into the original equation. Sometimes a valid algebraic step can produce an 'extraneous' solution which does not satisfy the original equation (e.g., it might make the right-hand side negative, which is impossible)."
+    },
+    {
+      "type": "heading",
+      "content": "Solving Modulus Inequalities"
+    },
+    {
+      "type": "text",
+      "content": "Solving inequalities with modulus requires careful handling. The method depends on the direction of the inequality sign. For a 'less than' inequality, you are looking for values 'sandwiched' between two bounds. For a 'greater than' inequality, you are looking for values in two separate regions, 'outside' a certain range. An alternative, and often safer, method for inequalities involving two modulus expressions is to square both sides."
+    },
+    {
+      "type": "formula",
+      "content": "For a positive constant $k$:\n$|A| < k \\iff -k < A < k$\n$|A| > k \\iff A > k \\text{ or } A < -k$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Find the set of values of $x$ for which $|x - 1| > |2x - 5|$.",
+      "solution": "Since both sides of the inequality are non-negative, we can square both sides without changing the direction of the inequality sign. This is often the most efficient method for this type of problem.\n\n$(x - 1)^2 > (2x - 5)^2$  (M1)\n\nExpand both sides:\n$x^2 - 2x + 1 > 4x^2 - 20x + 25$  (A1)\n\nRearrange to form a quadratic inequality:\n$0 > 3x^2 - 18x + 24$\n\nDivide by 3 to simplify:\n$x^2 - 6x + 8 < 0$  (A1)\n\nTo find the roots of the corresponding quadratic equation $x^2 - 6x + 8 = 0$, we can factorise:\n$(x - 2)(x - 4) = 0$  (M1)\nThe roots are $x = 2$ and $x = 4$.\n\nThe quadratic $y = x^2 - 6x + 8$ is a parabola opening upwards. We are looking for where it is less than 0, which is the region between the roots. (R1)\n\nTherefore, the solution is $2 < x < 4$. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Graphical Transformations"
+    },
+    {
+      "type": "text",
+      "content": "It is vital to distinguish between the two main types of modulus transformations. The transformation $y = |f(x)|$ affects the output of the function, while $y = f(|x|)$ affects the input. They produce very different graphs and have distinct geometric interpretations."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "To sketch $y = |f(x)|$: First sketch $y = f(x)$. Then, reflect any part of the graph that lies below the x-axis ($y<0$) upwards across the x-axis. The part of the graph already on or above the x-axis remains unchanged.",
+        "To sketch $y = f(|x|)$: First sketch $y = f(x)$ for $x \\ge 0$. Then, reflect this part of the graph in the y-axis. This reflection replaces the original part of the graph for $x < 0$. The resulting graph is symmetric about the y-axis."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Practise solving modulus equations and inequalities",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=2.8"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Modulus Function Grapher",
+          "href": "https://www.geogebra.org/m/c53n4bpt"
+        },
+        {
+          "label": "IB Maths AA HL Questionbank",
+          "href": "/questionbank?subject=ib-maths-aa-hl"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Modulus Function Grapher",
+    "embedUrl": "https://www.geogebra.org/classic?material=c53n4bpt",
+    "launchUrl": "https://www.geogebra.org/classic?material=c53n4bpt",
+    "hint": "Use “Modulus Function Grapher” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

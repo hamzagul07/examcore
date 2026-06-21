@@ -1,0 +1,206 @@
+{
+  "slug": "4-2-bivariate-data-correlation-and-linear-regression",
+  "topicCode": "4.2",
+  "title": "Bivariate data: correlation and linear regression",
+  "paper": "P2",
+  "paperName": "Maths AA HL",
+  "status": "premium",
+  "summary": "This lesson explores bivariate data, focusing on how to visualise relationships using scatter diagrams, quantify them with Pearson's correlation coefficient ($r$), and model them using linear regression. You will learn to use your GDC to perform calculations and make predictions, a key skill for Paper 2.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Create and interpret scatter diagrams to identify the nature of the relationship between two variables.",
+    "Calculate and interpret Pearson's product-moment correlation coefficient ($r$) to measure the strength and direction of a linear correlation.",
+    "Determine the equation of the least squares regression line of $y$ on $x$ and use it to make predictions (interpolation and extrapolation).",
+    "Calculate and interpret the coefficient of determination ($R^2$) as a measure of how well the model fits the data."
+  ],
+  "simpleExplanation": {
+    "title": "Connecting the Dots: From Data to Predictions",
+    "summary": "Bivariate data is just a fancy term for data with two variables, like height and weight. We plot these pairs of data on a scatter diagram to see if they're related, and if they form a rough line, we can find the 'line of best fit' to predict one variable from the other.",
+    "analogy": "Imagine you're tracking how many hours of sunshine a plant gets each day and how much it grows. Each day gives you a data point (hours of sun, growth in cm). Plotting these points might show a trend: more sun, more growth. The regression line is like drawing the most accurate straight line through your plotted points to predict how much the plant would grow on a day with, say, 7 hours of sunshine.",
+    "steps": [
+      "Input your two lists of data ($x$ and $y$ values) into your Graphic Display Calculator (GDC).",
+      "Generate a scatter plot on your GDC to visually assess the relationship. Look for its form (linear/non-linear), direction (positive/negative), and strength (strong/moderate/weak).",
+      "Use your GDC's 'LinReg(ax+b)' function to calculate the correlation coefficient ($r$) and the parameters ($a$ and $b$) for the regression line equation, $y = ax + b$.",
+      "Interpret the values of $r$ and the regression equation. Use the equation to predict values, being mindful of whether you are interpolating (reliable) or extrapolating (unreliable)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is bivariate data?",
+      "back": "Data that involves two different variables, where each value of one variable is paired with a value of the other. For example, a person's age and their blood pressure."
+    },
+    {
+      "front": "What is a scatter diagram used for?",
+      "back": "To visually represent bivariate data as a set of points in the Cartesian plane, helping to identify patterns and potential relationships between the two variables."
+    },
+    {
+      "front": "What does Pearson's product-moment correlation coefficient ($r$) measure?",
+      "back": "It measures the strength and direction of the *linear* relationship between two quantitative variables. It does not measure non-linear relationships."
+    },
+    {
+      "front": "What is the range of possible values for $r$?",
+      "back": "$-1 \\le r \\le 1$. A value of -1 indicates perfect negative linear correlation, +1 indicates perfect positive linear correlation, and 0 indicates no linear correlation."
+    },
+    {
+      "front": "What is the 'line of best fit' also known as?",
+      "back": "The least squares regression line. It's the line that minimises the sum of the squares of the vertical distances from each data point to the line."
+    },
+    {
+      "front": "What is the difference between interpolation and extrapolation?",
+      "back": "Interpolation is predicting a value within the range of the original data set. Extrapolation is predicting a value outside the range. Interpolation is generally considered more reliable."
+    },
+    {
+      "front": "What is the coefficient of determination, $R^2$?",
+      "back": "It is the square of the correlation coefficient ($r^2$). It represents the proportion of the variance in the dependent variable ($y$) that can be explained by the linear regression model on the independent variable ($x$)."
+    },
+    {
+      "front": "If $r=0.9$, what does $R^2=0.81$ mean?",
+      "back": "It means that 81% of the variation in the $y$-variable can be explained by the linear relationship with the $x$-variable. The remaining 19% is due to other factors."
+    },
+    {
+      "front": "Trap: If two variables have a strong correlation, does one cause the other?",
+      "back": "Not necessarily. Correlation does not imply causation. There could be a third, confounding variable causing both, or the relationship could be coincidental."
+    },
+    {
+      "front": "What important point does the regression line $y=ax+b$ always pass through?",
+      "back": "The mean point, $(\\bar{x}, \\bar{y})$, where $\\bar{x}$ is the mean of the $x$-values and $\\bar{y}$ is the mean of the $y$-values."
+    },
+    {
+      "front": "In the regression equation $y = ax + b$, what does the gradient 'a' represent?",
+      "back": "The change in the dependent variable ($y$) for a one-unit increase in the independent variable ($x$). For example, if $y$ is height in cm and $x$ is age in years, $a=5$ means the model predicts a 5 cm increase in height for each additional year of age."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to memorise the formula for the correlation coefficient, $r$?",
+      "a": "No. The formula is in the IB formula booklet for reference, but for all exam questions, you are expected to calculate $r$ using your GDC."
+    },
+    {
+      "q": "What is the difference between $r$ and $R^2$?",
+      "a": "$r$ (Pearson's coefficient) measures the strength and direction (positive or negative) of a *linear* relationship, ranging from -1 to 1. $R^2$ (the coefficient of determination) measures what proportion of the variance in the dependent variable is explained by the model, ranging from 0 to 1. $R^2$ does not indicate the direction of the relationship."
+    },
+    {
+      "q": "When is it inappropriate to find a linear regression line for a set of data?",
+      "a": "It is inappropriate if the scatter plot shows a clear non-linear pattern (e.g., a parabola or exponential curve) or if the linear correlation is very weak or non-existent ($r$ is close to 0). A linear model is only suitable for data that exhibits a linear trend."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In many real-world scenarios, we are interested in the relationship between two different quantities. For instance, does an increase in advertising spending lead to an increase in sales? Does the age of a car affect its resale value? This section introduces the statistical tools to analyse such bivariate data. We will learn how to visualise, quantify, and model these relationships, relying heavily on our Graphic Display Calculator (GDC) as is expected in Paper 2."
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Relationships: Scatter Diagrams"
+    },
+    {
+      "type": "text",
+      "content": "The first step in analysing bivariate data is to create a scatter diagram (or scatter plot). This is a graph where each pair of values $(x, y)$ is plotted as a point on a Cartesian coordinate system. By looking at the cloud of points, we can get an initial idea about the relationship between the two variables. We look for three things:\n1.  **Form**: Is the pattern linear (a straight line) or non-linear (a curve)?\n2.  **Direction**: Is the relationship positive (as $x$ increases, $y$ tends to increase) or negative (as $x$ increases, $y$ tends to decrease)?\n3.  **Strength**: How closely do the points follow the pattern? The relationship can be strong, moderate, or weak."
+    },
+    {
+      "type": "heading",
+      "content": "Quantifying the Relationship: Pearson's Correlation Coefficient ($r$)"
+    },
+    {
+      "type": "text",
+      "content": "While a scatter diagram gives us a visual impression, we need a numerical measure to be precise. Pearson's product-moment correlation coefficient, denoted by $r$, quantifies the strength and direction of the *linear* relationship between two variables. Your GDC will calculate this for you, so you don't need to use the formula by hand in an exam."
+    },
+    {
+      "type": "formula",
+      "content": "The value of $r$ is calculated by your GDC. The formula, for reference, is $r = \\frac{S_{xy}}{\\sqrt{S_{xx}S_{yy}}}$. The interpretation of its value is crucial:"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$r$ is always between -1 and 1, inclusive (i.e., $-1 \\le r \\le 1$).",
+        "If $r > 0$, there is a positive correlation.",
+        "If $r < 0$, there is a negative correlation.",
+        "If $r = 0$, there is no *linear* correlation (there could still be a non-linear relationship).",
+        "The closer $|r|$ is to 1, the stronger the linear correlation. The IB generally uses this scale:\n        *   $0 < |r| \\le 0.25$: Very weak\n        *   $0.25 < |r| \\le 0.5$: Weak\n        *   $0.5 < |r| \\le 0.75$: Moderate\n        *   $0.75 < |r| \\le 1$: Strong"
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A classic exam question involves a statement like 'A strong positive correlation was found between ice cream sales and incidents of drowning.' You might be asked to comment on the conclusion that eating ice cream causes drowning. The correct response is that correlation does not imply causation. A third variable, such as high temperature, is likely influencing both (more people buy ice cream and more people go swimming in hot weather)."
+    },
+    {
+      "type": "workedExample",
+      "question": "The table below shows the maximum daily temperature, $T$ (in ${}^\\circ$C), and the number of cold drinks, $N$, sold by a kiosk on eight different days.\n| Temperature, $T$ (${}^\\circ$C) | 21 | 24 | 28 | 32 | 34 | 30 | 26 | 22 |\n|---|---|---|---|---|---|---|---|---|\n| Number of drinks, $N$ | 45 | 58 | 75 | 90 | 98 | 85 | 65 | 50 |\n(a) Find Pearson's product-moment correlation coefficient, $r$, for this data.\n(b) Describe the correlation between the maximum daily temperature and the number of cold drinks sold.",
+      "solution": "(a) We use a Graphic Display Calculator.\n1.  Enter the temperature data into List 1 (L1) and the number of drinks data into List 2 (L2).\n2.  Go to the statistics calculation menu and select 'Linear Regression (ax+b)'. Ensure the X-list is L1 and the Y-list is L2.\n\nThe calculator gives $r \\approx 0.99337...$\n$r = 0.993$ (3 s.f.) (A2)\n\n*(Note: Ensure 'Stat Diagnostics' is turned ON on your calculator to see the r-value.)*\n\n(b) Since $r$ is very close to +1 ($0.993 > 0.75$), there is a **strong, positive linear correlation** between the maximum daily temperature and the number of cold drinks sold. (A1)(A1)\n\n*(Marks are typically awarded for 'strong' and 'positive'.)*"
+    },
+    {
+      "type": "heading",
+      "content": "Modelling the Trend: The Regression Line of $y$ on $x$"
+    },
+    {
+      "type": "text",
+      "content": "When the correlation between two variables is strong enough, we can model their relationship using a straight line. This line is called the 'line of best fit' or, more formally, the 'least squares regression line of $y$ on $x$'. It's the line that best represents the trend in the data. We use it to make predictions."
+    },
+    {
+      "type": "formula",
+      "content": "The equation of the regression line is given in the form $y = ax + b$. Your GDC calculates the values of the gradient, $a$, and the $y$-intercept, $b$. A key property is that this line always passes through the point of averages, $(\\bar{x}, \\bar{y})$."
+    },
+    {
+      "type": "workedExample",
+      "question": "Using the data from the previous example on temperature and drink sales:\n(a) Find the equation of the regression line of $N$ on $T$, in the form $N = aT + b$.\n(b) Use your equation to estimate the number of cold drinks that will be sold on a day when the maximum temperature is $29{}^\\circ$C.\n(c) Comment on the reliability of your estimate in part (b).",
+      "solution": "(a) Using the same GDC calculation as before (LinReg(ax+b)):\n$a \\approx 4.158...$\n$b \\approx -45.09...$\n\nThe equation is $N = 4.16T - 45.1$ (coefficients to 3 s.f.). (M1)(A1)\n*(M1 for attempting to find the regression line, A1 for the correct equation.)*\n\n(b) We substitute $T=29$ into our equation:\n$N = 4.158(29) - 45.09$ (M1)\n$N \\approx 120.582 - 45.09 = 75.492$\n\nWe estimate that approximately 75 or 76 drinks will be sold.\n$N = 75.5$ (3 s.f.) (A1)\n*(M1 for substitution into their regression equation.)*\n\n(c) The temperature range in the data is from $21{}^\\circ$C to $34{}^\\circ$C. Since $T=29{}^\\circ$C is within this range, this is an **interpolation**. The correlation is very strong ($r=0.993$). Therefore, the estimate is considered to be **reliable**. (R1)(R1)\n*(R1 for identifying interpolation, R1 for mentioning strong correlation as justification for reliability.)*"
+    },
+    {
+      "type": "heading",
+      "content": "Explaining the Variation: The Coefficient of Determination ($R^2$)"
+    },
+    {
+      "type": "text",
+      "content": "The coefficient of determination, $R^2$ (or $r^2$), provides another way to assess how well our linear model fits the data. It is simply the square of the correlation coefficient, $r$. Its value tells us the proportion of the variation in the dependent variable ($y$) that is explained by the linear relationship with the independent variable ($x$). For example, if $R^2 = 0.85$, it means that 85% of the changes in $y$ can be accounted for by the changes in $x$ according to our model."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$R^2 = r^2$, so $0 \\le R^2 \\le 1$.",
+        "It is often expressed as a percentage. An $R^2$ of 0.64 means 64% of the variance in $y$ is predictable from $x$.",
+        "The higher the $R^2$ value, the better the linear model fits the data."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Be very careful with predictions. If you are asked to predict a $y$ value for an $x$ value that is far outside the range of the original data (extrapolation), you must state that the prediction is likely to be unreliable. The linear trend may not continue indefinitely. For example, a model predicting a child's height based on age will not work for an adult."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-aa-hl&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "TI-84 Bivariate Data Tutorial",
+          "href": "https://www.youtube.com/watch?v=8v_i-c9i-gE"
+        },
+        {
+          "label": "GeoGebra: Linear Regression Applet",
+          "href": "https://www.geogebra.org/m/sP2b42C7"
+        },
+        {
+          "label": "Correlation vs Causation Explained",
+          "href": "https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/correlation-causation/a/correlation-and-causation"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Linear Regression Applet",
+    "embedUrl": "https://www.geogebra.org/classic?material=sP2b42C7",
+    "launchUrl": "https://www.geogebra.org/classic?material=sP2b42C7",
+    "hint": "Use “Linear Regression Applet” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

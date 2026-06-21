@@ -1,0 +1,164 @@
+{
+  "slug": "d-2-electric-and-magnetic-fields",
+  "topicCode": "D.2",
+  "title": "Electric and magnetic fields",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson explores the profound influence of electric and magnetic fields on matter across the cosmos. We will investigate how these invisible forces accelerate particles to near light speed, shape magnificent nebulae, and produce unique forms of radiation that unveil the universe's most energetic processes.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the role of electric fields in accelerating charged particles in astrophysical contexts.",
+    "Explain the effects of magnetic fields on charged particles, including the formation of aurorae and synchrotron radiation.",
+    "Solve problems involving the motion of charged particles in electric and magnetic fields.",
+    "Distinguish between thermal and non-thermal radiation spectra, with synchrotron radiation as a key example."
+  ],
+  "simpleExplanation": {
+    "title": "Cosmic Particle Pushers",
+    "summary": "Imagine space isn't empty, but has invisible 'currents' (electric fields) and 'guides' (magnetic fields). These fields dictate how charged particles, like protons and electrons, travel through the universe, accelerating them and making them glow.",
+    "analogy": "Think of a garden sprinkler. The water pressure from the pump is like an electric field, pushing water droplets (charged particles) outwards and speeding them up. If you then use a curved wall (a magnetic field) to intercept the water, you can't make the droplets faster, but you can change their direction, forcing them to follow the curve of the wall.",
+    "steps": [
+      "Identify a source of a field, like a rapidly spinning neutron star (pulsar) generating strong electric and magnetic fields.",
+      "Place a charged particle, such as an electron, into this environment.",
+      "Analyse the forces: the electric field accelerates the electron, while the magnetic field forces it into a spiral path.",
+      "Observe the consequences: the spiralling, accelerating electron emits a special type of light called synchrotron radiation, which we can detect with telescopes."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the primary role of electric fields in astrophysics?",
+      "back": "To accelerate charged particles. This occurs in environments like the magnetosphere of pulsars or in supernova remnants, increasing the kinetic energy of the particles."
+    },
+    {
+      "front": "What is the primary role of magnetic fields on moving charged particles in astrophysics?",
+      "back": "To change the direction of moving charged particles, causing them to follow spiral or circular paths. They do not change the particle's speed or kinetic energy."
+    },
+    {
+      "front": "What is synchrotron radiation?",
+      "back": "Electromagnetic radiation emitted by charged particles (usually electrons) moving at relativistic speeds and spiralling in a magnetic field. It is a non-thermal process."
+    },
+    {
+      "front": "Why is synchrotron radiation considered 'non-thermal'?",
+      "back": "Because its spectrum does not follow the characteristic black-body curve which depends on temperature. Instead, its intensity depends on the magnetic field strength and particle energy."
+    },
+    {
+      "front": "What force does a charged particle experience in a magnetic field?",
+      "back": "The Lorentz force, given by $F = qvB\\sin(\\theta)$, where $\\theta$ is the angle between the velocity vector $v$ and the magnetic field vector $B$."
+    },
+    {
+      "front": "Can a magnetic field do work on a charged particle?",
+      "back": "No. The magnetic force is always perpendicular to the particle's velocity. Since work done is force times distance in the direction of the force, and there is no displacement in the direction of the magnetic force, no work is done. The particle's speed and kinetic energy remain constant."
+    },
+    {
+      "front": "What are aurorae (e.g., Aurora Borealis)?",
+      "back": "Luminous displays in the sky caused by charged particles from the Sun (the solar wind) being guided by the Earth's magnetic field into the upper atmosphere, where they collide with and excite gas atoms."
+    },
+    {
+      "front": "What is the Interstellar Medium (ISM)?",
+      "back": "The diffuse matter and radiation (gas, dust, cosmic rays) that exists in the space between the star systems within a galaxy. It is permeated by magnetic fields."
+    },
+    {
+      "front": "How do magnetic fields help shape planetary nebulae and supernova remnants?",
+      "back": "The magnetic fields present in the interstellar medium and originating from the central star can confine and channel the outflowing ionised gas, creating complex, non-spherical shapes like filaments and jets."
+    },
+    {
+      "front": "What is the formula for the radius of a charged particle's circular path in a uniform magnetic field?",
+      "back": "By equating magnetic force and centripetal force ($qvB = \\frac{mv^2}{r}$), the radius is $r = \\frac{mv}{qB}$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "While space may appear empty, it is a dynamic environment governed by powerful, invisible forces. This lesson delves into the roles of electric and magnetic fields in astrophysics. We will see how these fields are not just theoretical concepts, but are directly responsible for accelerating cosmic rays, shaping beautiful nebulae, and generating signals that provide crucial evidence about extreme cosmic events."
+    },
+    {
+      "type": "heading",
+      "content": "Electric Fields: The Cosmic Accelerators"
+    },
+    {
+      "type": "text",
+      "content": "In astrophysics, electric fields are the primary mechanism for accelerating charged particles to enormous energies. While large-scale, static electric fields are rare in the conductive plasma of space, they can be induced in specific, extreme environments. For example, the rapidly rotating, powerful magnetic fields of a pulsar can induce immense electric fields that strip particles from the neutron star's surface and accelerate them into space."
+    },
+    {
+      "type": "formula",
+      "content": "The force $F$ on a charge $q$ in an electric field $E$ is given by: $F = qE$. This force causes a constant acceleration if the field is uniform, leading to a rapid increase in the particle's kinetic energy."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Electric fields are responsible for increasing the kinetic energy of charged particles.",
+        "They are found in specific astrophysical environments like pulsar magnetospheres and supernova shock fronts.",
+        "The energy gained by a charge $q$ moving through a potential difference $\\Delta V$ is $\\Delta E_k = q\\Delta V$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An electron is accelerated from rest across an electric field between two points with a potential difference of $1.5 \\times 10^{12} \\text{ V}$ near a pulsar. Calculate its final kinetic energy in joules and in electronvolts (eV). (Charge of electron $e = 1.60 \\times 10^{-19} \\text{ C}$)",
+      "solution": "1.  **Identify the relationship between energy, charge, and potential difference.**\nThe energy gained by the electron is $\\Delta E_k = q\\Delta V$. [1]\n\n2.  **Substitute the values to find energy in Joules.**\n$q = e = 1.60 \\times 10^{-19} \\text{ C}$\n$\\Delta V = 1.5 \\times 10^{12} \\text{ V}$\n$\\Delta E_k = (1.60 \\times 10^{-19} \\text{ C}) \\times (1.5 \\times 10^{12} \\text{ V})$\n$\\Delta E_k = 2.4 \\times 10^{-7} \\text{ J}$ [1]\n\n3.  **Convert the energy to electronvolts.**\nBy definition, the energy gained by an electron moving through 1 volt is 1 eV. Therefore, moving through $1.5 \\times 10^{12} \\text{ V}$ gives it an energy of $1.5 \\times 10^{12} \\text{ eV}$.\nAlternatively, using the conversion $1 \\text{ eV} = 1.60 \\times 10^{-19} \\text{ J}$:\n$\\Delta E_k = \\frac{2.4 \\times 10^{-7} \\text{ J}}{1.60 \\times 10^{-19} \\text{ J/eV}} = 1.5 \\times 10^{12} \\text{ eV}$ [1]\n\nFinal answer: $2.4 \\times 10^{-7} \\text{ J}$ or $1.5 \\times 10^{12} \\text{ eV}$ (which is 1.5 TeV)."
+    },
+    {
+      "type": "heading",
+      "content": "Magnetic Fields: The Cosmic Sculptors"
+    },
+    {
+      "type": "text",
+      "content": "Unlike electric fields, magnetic fields cannot increase a particle's speed or kinetic energy. The magnetic force is always perpendicular to the particle's velocity. Instead, they act as 'guiding centres', forcing charged particles into helical or circular paths. This has profound consequences, from trapping the solar wind in Earth's Van Allen belts and creating aurorae, to confining hot plasma in stars and shaping the intricate structures of nebulae."
+    },
+    {
+      "type": "formula",
+      "content": "The magnetic force on a charge $q$ moving with velocity $v$ in a magnetic field $B$ is: $F = qvB\\sin(\\theta)$. The direction of the force is given by the right-hand rule (for positive charges)."
+    },
+    {
+      "type": "examTip",
+      "content": "A common mistake is to think magnetic fields speed up particles. They don't! Remember: E-fields accelerate (change speed), B-fields deflect (change direction). The magnetic force does no work. This is a crucial distinction and a frequent source of exam questions."
+    },
+    {
+      "type": "heading",
+      "content": "Synchrotron Radiation: A Telltale Glow"
+    },
+    {
+      "type": "text",
+      "content": "When a charged particle is forced to change direction by a magnetic field, it undergoes acceleration (a change in velocity vector). According to classical electromagnetism, any accelerating charge radiates energy. When the particle is moving at relativistic speeds, this radiation is intense, beamed in the forward direction, and known as synchrotron radiation. Its detection is direct evidence for the presence of high-energy electrons and strong magnetic fields, such as in the Crab Nebula or the jets from active galactic nuclei. The spectrum of this radiation is non-thermal, meaning it doesn't follow a black-body curve."
+    },
+    {
+      "type": "workedExample",
+      "question": "A proton (mass $m_p = 1.67 \\times 10^{-27} \\text{ kg}$, charge $q = +1.60 \\times 10^{-19} \\text{ C}$) is travelling at $10\\%$ of the speed of light ($v = 3.0 \\times 10^7 \\text{ m s}^{-1}$) and enters a region of uniform interstellar magnetic field of strength $B = 2.0 \\times 10^{-9} \\text{ T}$. The proton's velocity is perpendicular to the field. Calculate the radius of its circular path.",
+      "solution": "1.  **Equate the magnetic force and the centripetal force.**\nThe magnetic field provides the centripetal force that keeps the proton in a circular path. The velocity is perpendicular to the field, so $\\sin(\\theta) = \\sin(90^\\circ) = 1$. [1]\nMagnetic Force = Centripetal Force\n$qvB = \\frac{mv^2}{r}$ [1]\n\n2.  **Rearrange the formula to solve for the radius, r.**\n$r = \\frac{mv^2}{qvB} = \\frac{mv}{qB}$ [1]\n\n3.  **Substitute the given values and calculate r.**\n$m = 1.67 \\times 10^{-27} \\text{ kg}$\n$v = 3.0 \\times 10^7 \\text{ m s}^{-1}$\n$q = 1.60 \\times 10^{-19} \\text{ C}$\n$B = 2.0 \\times 10^{-9} \\text{ T}$\n$r = \\frac{(1.67 \\times 10^{-27} \\text{ kg}) \\times (3.0 \\times 10^7 \\text{ m s}^{-1})}{(1.60 \\times 10^{-19} \\text{ C}) \\times (2.0 \\times 10^{-9} \\text{ T})}$\n$r = \\frac{5.01 \\times 10^{-20}}{3.20 \\times 10^{-28}}$\n$r = 1.565... \\times 10^8 \\text{ m}$ [1]\n\n4.  **State the final answer to an appropriate number of significant figures.**\n$r \\approx 1.6 \\times 10^8 \\text{ m}$ (or about 0.001 AU)\nThis is a very large radius, highlighting the vast scales involved in astrophysics."
+    },
+    {
+      "type": "faq",
+      "q": "Where do the huge magnetic fields in space come from?",
+      "a": "Cosmic magnetic fields are thought to be generated by the 'dynamo effect'. This process involves the motion of conductive fluids (like plasma in stars or liquid iron in a planet's core) that twists and amplifies weak 'seed' magnetic fields over time. For objects like neutron stars, the immense magnetic field of the original star is compressed into a much smaller volume, making it incredibly strong."
+    },
+    {
+      "type": "faq",
+      "q": "If a magnetic field doesn't change a particle's energy, how does it cause aurorae to emit light?",
+      "a": "The magnetic field itself doesn't give the particle energy to emit light. It only guides the already-energetic particles from the solar wind towards the Earth's poles. When these high-energy particles collide with atoms (like oxygen and nitrogen) in the upper atmosphere, they transfer their kinetic energy to the atoms. The atoms become 'excited' and then de-excite by emitting photons of light, which we see as the aurora."
+    },
+    {
+      "type": "faq",
+      "q": "What is the difference between cyclotron and synchrotron radiation?",
+      "a": "Both are produced by charged particles spiralling in a magnetic field. The key difference is the particle's speed. Cyclotron radiation is produced by non-relativistic particles (moving much slower than light). Synchrotron radiation is the name given to the same process when the particles are moving at relativistic speeds (close to the speed of light). Synchrotron radiation is much more powerful and beamed in the direction of motion."
+    },
+    {
+      "type": "practice",
+      "label": "Astrophysics Practice",
+      "href": "/mark?subject=ib-physics-sl&topic=D.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "NASA Hubblesite - Nebulae",
+          "href": "https://hubblesite.org/science/nebulae"
+        },
+        {
+          "label": "Chandra X-ray Observatory - Synchrotron Radiation",
+          "href": "https://chandra.harvard.edu/xray_sources/synchrotron.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

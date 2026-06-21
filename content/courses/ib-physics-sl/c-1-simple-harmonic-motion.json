@@ -1,0 +1,208 @@
+{
+  "slug": "c-1-simple-harmonic-motion",
+  "topicCode": "C.1",
+  "title": "Simple harmonic motion",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson introduces Simple Harmonic Motion (SHM) as a fundamental type of periodic motion. We will explore the defining conditions, the mathematical equations describing displacement, velocity, and acceleration, and the energy transformations involved in an SHM system.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Define Simple Harmonic Motion (SHM) in terms of its restoring force and acceleration.",
+    "Solve problems using the equations for displacement, velocity, and acceleration in SHM.",
+    "Describe the interchange between kinetic and potential energy during SHM.",
+    "Apply the concepts of angular frequency, period, and amplitude to SHM systems."
+  ],
+  "simpleExplanation": {
+    "title": "The Rhythm of Repetition",
+    "summary": "Simple Harmonic Motion is a special, predictable back-and-forth motion, like a pendulum's swing or a mass on a spring. The key is that the force pulling it back to the middle is strongest when it's furthest away.",
+    "analogy": "Imagine pushing a child on a swing. The further you pull them back from the lowest point (equilibrium), the stronger the urge for the swing to return to the bottom. As they pass through the bottom, they're moving at their fastest. At the very peak of their swing, they momentarily stop before changing direction. This constant exchange between speed and position, driven by a restoring force, is the essence of SHM.",
+    "steps": [
+      "Identify the equilibrium position. This is the point of zero net force, and all displacements are measured from here.",
+      "Analyse the restoring force. For SHM, this force must be directed towards the equilibrium position and be directly proportional to the displacement from it ($F \\propto -x$).",
+      "Apply the SHM equations. Use the sinusoidal equations for displacement, velocity, and acceleration, which depend on amplitude ($x_0$), angular frequency ($\\omega$), and time ($t$).",
+      "Track the energy transformations. Understand that total mechanical energy is conserved (in the absence of damping), continuously converting between kinetic energy (max at equilibrium) and potential energy (max at extreme positions)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the definition of Simple Harmonic Motion (SHM)?",
+      "back": "A type of periodic motion where the acceleration ($a$) is directly proportional to the displacement ($x$) from a fixed equilibrium position, and is directed towards that position."
+    },
+    {
+      "front": "What is the defining equation of SHM in terms of acceleration?",
+      "back": "$a = -\\omega^2 x$, where $a$ is acceleration, $\\omega$ is angular frequency, and $x$ is displacement."
+    },
+    {
+      "front": "What does the negative sign in the SHM defining equation ($a = -\\omega^2 x$) signify?",
+      "back": "It indicates that the acceleration (and thus the net force) is always directed in the opposite direction to the displacement. It is a restoring force."
+    },
+    {
+      "front": "What is angular frequency ($\\omega$)?",
+      "back": "A measure of the rate of oscillation in radians per second. It is related to the period $T$ by $\\omega = 2\\pi / T$ and frequency $f$ by $\\omega = 2\\pi f$."
+    },
+    {
+      "front": "What is the standard equation for displacement $x$ as a function of time $t$ in SHM (starting from max displacement)?",
+      "back": "$x = x_0 \\cos(\\omega t)$, where $x_0$ is the amplitude (maximum displacement)."
+    },
+    {
+      "front": "What is the equation for velocity $v$ as a function of time $t$ in SHM?",
+      "back": "$v = -\\omega x_0 \\sin(\\omega t)$. The maximum velocity, $v_{max}$, is $\\omega x_0$ and occurs at the equilibrium position ($x=0$)."
+    },
+    {
+      "front": "What is the equation for velocity $v$ as a function of displacement $x$ in SHM?",
+      "back": "$v = \\pm \\omega \\sqrt{x_0^2 - x^2}$"
+    },
+    {
+      "front": "How does energy vary in an undamped SHM system?",
+      "back": "The total mechanical energy is constant. Kinetic energy is maximum at the equilibrium position ($x=0$) and zero at the extremes. Potential energy is zero at equilibrium and maximum at the extremes ($x = \\pm x_0$)."
+    },
+    {
+      "front": "What is the formula for the total energy ($E_T$) of an oscillating mass-spring system?",
+      "back": "$E_T = \\frac{1}{2}kx_0^2$, where $k$ is the spring constant and $x_0$ is the amplitude. This is also equal to $\\frac{1}{2}m(\\omega x_0)^2$."
+    },
+    {
+      "front": "What is the relationship between angular frequency $\\omega$, mass $m$, and spring constant $k$ for a mass-spring system?",
+      "back": "$\\omega = \\sqrt{\\frac{k}{m}}$"
+    },
+    {
+      "front": "Trap: Is angular frequency ($\\omega$) the same as angular velocity?",
+      "back": "No. In SHM, $\\omega$ is a scalar quantity representing the rate of oscillation (in rad s⁻¹). While it has the same units as angular velocity, it doesn't necessarily describe a physical rotation. It's a mathematical convenience to describe the phase of the oscillation."
+    },
+    {
+      "front": "When does maximum acceleration occur in SHM?",
+      "back": "At the points of maximum displacement (the amplitude, $x = \\pm x_0$), where the restoring force is greatest. $a_{max} = \\omega^2 x_0$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between period and frequency?",
+      "a": "Period ($T$) is the time taken to complete one full oscillation, measured in seconds. Frequency ($f$) is the number of complete oscillations per unit time, measured in Hertz (Hz), where 1 Hz = 1 s⁻¹. They are reciprocals of each other: $f = 1/T$."
+    },
+    {
+      "q": "Why is there a negative sign in the main SHM equation, $a = -\\omega^2 x$?",
+      "a": "The negative sign is fundamental to SHM. It signifies that the acceleration (and the net force) is a 'restoring' force. It always acts in the opposite direction to the displacement, pulling or pushing the object back towards the equilibrium position."
+    },
+    {
+      "q": "Can I use $x = x_0 \\sin(\\omega t)$ instead of the cosine version?",
+      "a": "Yes, you can. The choice depends on the initial conditions (the 'phase'). Using $x = x_0 \\cos(\\omega t)$ assumes the object starts from maximum positive displacement at $t=0$. Using $x = x_0 \\sin(\\omega t)$ assumes the object starts at the equilibrium position ($x=0$) and is moving in the positive direction at $t=0$. Both describe SHM, but you must be consistent with the corresponding velocity and acceleration equations."
+    },
+    {
+      "q": "Does the total energy of an SHM system depend on the mass?",
+      "a": "Yes. The total energy can be written as $E_{total} = \\frac{1}{2}m\\omega^2x_0^2$. Since both mass $m$ and angular frequency $\\omega$ (which itself can depend on mass, as in $\\omega = \\sqrt{k/m}$) are in the formula, the total energy is dependent on the mass of the oscillating object."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From the swing of a pendulum to the vibrations of a guitar string, oscillatory motion is all around us. Simple Harmonic Motion, or SHM, is the fundamental model used to describe these phenomena. It represents the simplest form of oscillation and provides a powerful framework for understanding more complex vibrations. In this lesson, we will dissect the conditions that define SHM and learn to use the equations that govern it."
+    },
+    {
+      "type": "heading",
+      "content": "Defining Simple Harmonic Motion"
+    },
+    {
+      "type": "text",
+      "content": "For an object to be undergoing SHM, two conditions must be met. Firstly, it must oscillate about a fixed point, known as the equilibrium position. This is the position where the object would rest if undisturbed, as the net force on it is zero. Secondly, the object must experience a restoring force that is directly proportional to its displacement from the equilibrium position and always acts towards it. This means the further you pull the object away, the stronger the force pulling it back."
+    },
+    {
+      "type": "formula",
+      "content": "a = -\\omega^2 x"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The negative sign is crucial: it shows the acceleration $a$ is always in the opposite direction to the displacement $x$.",
+        "$\\omega^2$ is the constant of proportionality. $\\omega$ is the angular frequency, a key characteristic of the specific oscillating system.",
+        "Since Force = mass × acceleration ($F=ma$), the restoring force is also proportional to displacement: $F = -m\\omega^2 x$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Kinematics of SHM"
+    },
+    {
+      "type": "text",
+      "content": "The motion of an object in SHM can be described by sinusoidal functions (sine or cosine). If we start timing ($t=0$) when the object is at its maximum displacement ($x_0$, the amplitude), its position $x$ at any later time $t$ is given by a cosine function. The velocity and acceleration can be found by differentiating this displacement function with respect to time."
+    },
+    {
+      "type": "formula",
+      "content": "x(t) = x_0 \\cos(\\omega t) \\\\ v(t) = -\\omega x_0 \\sin(\\omega t) \\\\ a(t) = -\\omega^2 x_0 \\cos(\\omega t) = -\\omega^2 x"
+    },
+    {
+      "type": "text",
+      "content": "Notice that when displacement is maximum (at $t=0$, $\\cos(0)=1$), velocity is zero ($sin(0)=0$). When displacement is zero (e.g., at $t=T/4$, $\\cos(\\pi/2)=0$), the velocity is at its maximum magnitude ($\\sin(\\pi/2)=1$). The angular frequency $\\omega$ links these kinematic equations to the period $T$ and frequency $f$ of the oscillation."
+    },
+    {
+      "type": "formula",
+      "content": "\\omega = \\frac{2\\pi}{T} = 2\\pi f"
+    },
+    {
+      "type": "workedExample",
+      "question": "A 250 g block is attached to a light spring and rests on a frictionless horizontal surface. The block is pulled 8.0 cm from its equilibrium position and released, causing it to oscillate with a period of 1.5 s. Calculate:\n(a) The angular frequency of the oscillation.\n(b) The maximum speed of the block.\n(c) The acceleration of the block when it is 4.0 cm from the equilibrium position.",
+      "solution": "(a) The angular frequency $\\omega$ is related to the period $T$.\n$\\omega = \\frac{2\\pi}{T}$ [1]\n$\\omega = \\frac{2\\pi}{1.5} = 4.1887... \\approx 4.2$ rad s⁻¹ [1]\n\n(b) The maximum speed $v_{max}$ occurs at the equilibrium position and is given by $v_{max} = \\omega x_0$. Remember to convert cm to m.\n$x_0 = 8.0 \\text{ cm} = 0.080 \\text{ m}$ [1]\n$v_{max} = (4.1887...) \\times 0.080 = 0.3351... \\approx 0.34$ m s⁻¹ [1]\n\n(c) The acceleration is given by the defining equation of SHM, $a = -\\omega^2 x$. Remember to convert cm to m.\n$x = 4.0 \\text{ cm} = 0.040 \\text{ m}$\n$a = -(4.1887...)^2 \\times 0.040$ [1]\n$a = -(17.545...) \\times 0.040 = -0.7018... \\approx -0.70$ m s⁻² [1]\nThe negative sign indicates the acceleration is directed back towards the equilibrium position."
+    },
+    {
+      "type": "heading",
+      "content": "Energy in Simple Harmonic Motion"
+    },
+    {
+      "type": "text",
+      "content": "In an ideal SHM system with no friction or air resistance (undamped), the total mechanical energy remains constant. This energy continuously transforms between kinetic energy ($E_k$) and potential energy ($E_p$). At the amplitude positions, all the energy is potential. As the object moves towards the centre, potential energy is converted into kinetic energy. At the equilibrium position, all the energy is kinetic, and the object is moving at its maximum speed."
+    },
+    {
+      "type": "formula",
+      "content": "E_{total} = E_k + E_p = \\frac{1}{2}mv^2 + \\frac{1}{2}kx^2 = \\text{constant} = \\frac{1}{2}kx_0^2 = \\frac{1}{2}m\\omega^2x_0^2"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Kinetic energy $E_k$ is maximum at $x=0$ and zero at $x=\\pm x_0$.",
+        "Potential energy $E_p$ is zero at $x=0$ and maximum at $x=\\pm x_0$.",
+        "The total energy $E_{total}$ is proportional to the square of the amplitude ($x_0^2$)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "When using the SHM equations involving $\\cos(\\omega t)$ or $\\sin(\\omega t)$, ensure your calculator is set to **radians mode**. The term $\\omega t$ is an angle in radians. A very common mistake is to leave the calculator in degrees mode, which will lead to incorrect answers."
+    },
+    {
+      "type": "workedExample",
+      "question": "A mass of 400 g oscillates on a spring with a spring constant $k=100$ N m⁻¹. The amplitude of the oscillation is 5.0 cm. \n(a) Calculate the total energy of the oscillator. \n(b) Determine the speed of the mass when its displacement is 2.0 cm from equilibrium.",
+      "solution": "(a) The total energy $E_{total}$ is equal to the maximum potential energy, which occurs at the amplitude $x_0$. First, convert units.\n$x_0 = 5.0 \\text{ cm} = 0.050 \\text{ m}$\n$E_{total} = \\frac{1}{2}kx_0^2$ [1]\n$E_{total} = \\frac{1}{2}(100)(0.050)^2 = 50 \\times 0.0025$ [1]\n$E_{total} = 0.125$ J [1]\n\n(b) We use the principle of conservation of energy. The total energy is the sum of kinetic and potential energy at any point. Convert units for displacement and mass.\n$x = 2.0 \\text{ cm} = 0.020 \\text{ m}$\n$m = 400 \\text{ g} = 0.400 \\text{ kg}$\n$E_{total} = E_k + E_p = \\frac{1}{2}mv^2 + \\frac{1}{2}kx^2$ [1]\n$0.125 = \\frac{1}{2}(0.400)v^2 + \\frac{1}{2}(100)(0.020)^2$ [1]\n$0.125 = 0.200v^2 + 50(0.0004)$\n$0.125 = 0.200v^2 + 0.02$\n$0.105 = 0.200v^2$\n$v^2 = \\frac{0.105}{0.200} = 0.525$\n$v = \\sqrt{0.525} = 0.7245... \\approx 0.72$ m s⁻¹ [1]"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Problems",
+      "href": "/mark?subject=ib-physics-sl&topic=C.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Mass & Springs Simulation",
+          "href": "https://phet.colorado.edu/en/simulations/masses-and-springs"
+        },
+        {
+          "label": "Graphs of SHM",
+          "href": "https://www.walter-fendt.de/html5/phen/sringpendulum_en.htm"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "PhET Mass & Springs Simulation",
+    "embedUrl": "https://phet.colorado.edu/sims/html/masses-and-springs/latest/masses-and-springs_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/masses-and-springs",
+    "hint": "Explore “PhET Mass & Springs Simulation” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

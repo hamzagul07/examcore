@@ -1,0 +1,214 @@
+{
+  "slug": "c-3-wave-phenomena",
+  "topicCode": "C.3",
+  "title": "Wave phenomena",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "Explores the key wave phenomena of diffraction, interference, and resolution. This topic covers the conditions for constructive and destructive interference, the behaviour of light in single-slit, double-slit, and diffraction grating setups, and the limits of resolving power for optical instruments.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the phenomenon of diffraction and the characteristics of the single-slit diffraction pattern.",
+    "Solve problems involving Young's double-slit experiment and diffraction gratings.",
+    "Explain the role of path difference and phase change in thin-film interference.",
+    "State and apply the Rayleigh criterion to problems on resolution for circular apertures."
+  ],
+  "simpleExplanation": {
+    "title": "Ripples, Rainbows, and Resolution",
+    "summary": "Waves don't just travel in straight lines; they spread, overlap, and interact to create complex patterns. Understanding this behaviour explains the colours on a soap bubble and the clarity of a telescope's image.",
+    "analogy": "Imagine you and a friend are dropping pebbles into a still pond a short distance apart. The circular ripples from each pebble spread out and cross over. Where two crests meet, the water is extra high. Where a crest meets a trough, the water is flat. This pattern of high and flat spots is exactly like the pattern of bright and dark fringes seen when light waves interfere.",
+    "steps": [
+      "First, identify the wave setup: Is it a single slit (diffraction), double slit/grating (interference), a thin film, or an aperture (resolution)?",
+      "For interference, determine the path difference between the waves. This is the extra distance one wave travels compared to the other to reach a point.",
+      "For thin films, check for phase changes on reflection. A wave reflecting from a denser medium (higher refractive index) flips, adding a half-wavelength path difference.",
+      "Finally, apply the correct formula (e.g., $s = \\frac{\\lambda D}{d}$ for double-slit, $d \\sin\\theta = n\\lambda$ for gratings, $\\theta = 1.22 \\frac{\\lambda}{b}$ for resolution) to find the required value."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is diffraction?",
+      "back": "The spreading of a wave as it passes through an aperture or around an obstacle. It is most significant when the size of the aperture or obstacle is comparable to the wavelength of the wave."
+    },
+    {
+      "front": "What is the principle of superposition?",
+      "back": "When two or more waves overlap, the resultant displacement at any point and at any instant is the vector sum of the displacements that each individual wave would cause at that point and instant."
+    },
+    {
+      "front": "What are coherent sources?",
+      "back": "Sources of waves are coherent if they emit waves that have a constant phase difference between them and have the same frequency."
+    },
+    {
+      "front": "What is path difference?",
+      "back": "The difference in the distance travelled by two waves from their sources to a specific point. It is often expressed as a multiple of the wavelength, $\\lambda$."
+    },
+    {
+      "front": "What is the condition for constructive interference in terms of path difference?",
+      "back": "Constructive interference occurs when the path difference is an integer multiple of the wavelength: Path Difference = $n\\lambda$, where $n = 0, 1, 2, ...$"
+    },
+    {
+      "front": "What is the condition for destructive interference in terms of path difference?",
+      "back": "Destructive interference occurs when the path difference is a half-integer multiple of the wavelength: Path Difference = $(n + \\frac{1}{2})\\lambda$, where $n = 0, 1, 2, ...$"
+    },
+    {
+      "front": "What is the formula for fringe spacing in Young's double-slit experiment?",
+      "back": "$s = \\frac{\\lambda D}{d}$, where $s$ is the fringe spacing, $\\lambda$ is the wavelength, $D$ is the distance to the screen, and $d$ is the slit separation."
+    },
+    {
+      "front": "What is a diffraction grating?",
+      "back": "An optical component with a periodic structure that splits and diffracts light into several beams travelling in different directions. It consists of many closely spaced parallel slits or grooves."
+    },
+    {
+      "front": "When does a phase change of $\\pi$ radians occur upon reflection?",
+      "back": "A phase change of $\\pi$ radians (or 180°) occurs when a wave reflects off the boundary of a medium with a higher refractive index (an optically denser medium)."
+    },
+    {
+      "front": "What is the Rayleigh criterion?",
+      "back": "Two point sources are just resolved (distinguishable) if the central maximum of the diffraction pattern of one source is located on the first minimum of the diffraction pattern of the other source."
+    },
+    {
+      "front": "What is resolution in optics?",
+      "back": "The ability of an imaging instrument (like a telescope or microscope) to produce separate images of two closely spaced objects."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between diffraction and interference?",
+      "a": "In simple terms, diffraction is the spreading of a single wave, while interference is the superposition (or 'adding up') of multiple waves. However, they are fundamentally linked. In an experiment like the double-slit, light first diffracts through each individual slit, and it is these two diffracted waves that then interfere with each other to create the final pattern. You can think of interference as the result of overlapping diffracted waves."
+    },
+    {
+      "q": "Why is the central maximum in a single-slit pattern twice as wide as the others?",
+      "a": "The central maximum extends from the first minimum on one side to the first minimum on the other. The angle to the first minimum is $\\theta = \\lambda/b$. So, the total angular width of the central maximum is $2\\theta = 2\\lambda/b$. The next maximum is located roughly halfway between the first and second minima. The angular positions of the minima are at $n\\lambda/b$ (for $n=1, 2, 3...$), so the width of the secondary maxima (e.g., between the first and second minima) is approximately $\\lambda/b$. Thus, the central maximum is twice as wide."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "While we often model light as travelling in straight lines (rays), this is only an approximation. In reality, light is a wave, and it exhibits behaviours that are unique to waves. This lesson explores some of the most important wave phenomena: diffraction, interference, and resolution. These concepts are fundamental to understanding how optical instruments work and provide some of the strongest evidence for the wave nature of light."
+    },
+    {
+      "type": "heading",
+      "content": "Diffraction and the Single Slit"
+    },
+    {
+      "type": "text",
+      "content": "Diffraction is the tendency of waves to spread out as they pass through an opening (aperture) or bend around an obstacle. This effect is most pronounced when the size of the aperture, $b$, is on the order of the wavelength, $\\lambda$, of the wave. When monochromatic light passes through a single narrow slit, it doesn't just create a single bright spot on a screen. Instead, it forms a central bright band, which is much wider and more intense than the dimmer, narrower bright bands on either side, separated by dark minima."
+    },
+    {
+      "type": "formula",
+      "content": "The angular position, $\\theta$, of the first minimum in a single-slit diffraction pattern is given by: $$\\theta = \\frac{\\lambda}{b}$$ where $\\lambda$ is the wavelength of the light and $b$ is the width of the slit. Note that this angle is in radians."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Diffraction is the spreading of waves.",
+        "The effect is most significant when aperture size $\\approx$ wavelength.",
+        "A single-slit pattern has a wide, bright central maximum, which is twice the width of the secondary maxima.",
+        "The intensity of the maxima decreases rapidly as you move away from the centre."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Interference: Young's Double-Slit Experiment"
+    },
+    {
+      "type": "text",
+      "content": "When waves from two coherent sources overlap, they interfere. Thomas Young's double-slit experiment is a classic demonstration of this. Monochromatic light is passed through two very narrow, closely spaced slits. The light diffracts at each slit, and the two resulting cylindrical waves act as coherent sources. On a distant screen, a pattern of equally spaced bright and dark bands, called interference fringes, is observed. Bright fringes (maxima) occur where the waves interfere constructively, and dark fringes (minima) occur where they interfere destructively."
+    },
+    {
+      "type": "formula",
+      "content": "The separation between adjacent bright fringes (the fringe spacing, $s$) is given by: $$s = \\frac{\\lambda D}{d}$$ where $\\lambda$ is the wavelength, $D$ is the perpendicular distance from the slits to the screen, and $d$ is the separation of the centres of the slits."
+    },
+    {
+      "type": "workedExample",
+      "question": "Light of wavelength 633 nm from a laser is incident on two parallel slits. An interference pattern is observed on a screen 2.5 m away. The distance between the central bright fringe and the fourth bright fringe is 1.2 cm. Calculate the separation of the slits.",
+      "solution": "1.  **Identify knowns and convert units:**\n    Wavelength, $\\lambda = 633 \\text{ nm} = 633 \\times 10^{-9} \\text{ m}$\n    Distance to screen, $D = 2.5 \\text{ m}$\n    Distance for 4 fringes = $1.2 \\text{ cm} = 1.2 \\times 10^{-2} \\text{ m}$\n\n2.  **Calculate the fringe spacing, s:**\n    The distance from the central maximum (n=0) to the 4th bright fringe (n=4) corresponds to 4 fringe spacings.\n    $4s = 1.2 \\times 10^{-2} \\text{ m}$\n    $s = \\frac{1.2 \\times 10^{-2}}{4} = 3.0 \\times 10^{-3} \\text{ m}$ ✓\n\n3.  **Rearrange the formula and solve for d:**\n    The formula for fringe spacing is $s = \\frac{\\lambda D}{d}$.\n    Rearranging for the slit separation, $d$: $d = \\frac{\\lambda D}{s}$ ✓\n\n4.  **Substitute values and calculate:**\n    $d = \\frac{(633 \\times 10^{-9} \\text{ m}) \\times (2.5 \\text{ m})}{3.0 \\times 10^{-3} \\text{ m}}$\n    $d = 5.275 \\times 10^{-4} \\text{ m}$ ✓\n    $d \\approx 5.3 \\times 10^{-4} \\text{ m}$ (or 0.53 mm)"
+    },
+    {
+      "type": "heading",
+      "content": "Diffraction Gratings"
+    },
+    {
+      "type": "text",
+      "content": "A diffraction grating is essentially a multi-slit device, consisting of thousands of very fine, parallel, equally spaced slits or grooves on a glass or plastic slide. When light passes through a grating, the interference pattern is dramatically different from a double slit. The bright maxima become much sharper, brighter, and more widely separated. This makes diffraction gratings extremely useful for separating light into its constituent wavelengths, a process called spectroscopy."
+    },
+    {
+      "type": "formula",
+      "content": "The condition for constructive interference (bright maxima) for a diffraction grating is: $$d \\sin\\theta = n\\lambda$$ where $d$ is the distance between adjacent slits, $\\theta$ is the angle of the maximum relative to the central 'straight-through' direction, $n$ is the order of the maximum ($n=0, 1, 2, ...$), and $\\lambda$ is the wavelength of light."
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the units for a diffraction grating. Often, the grating is specified by the number of lines per millimetre or per metre, $N$. The slit separation $d$ is the reciprocal of this value, i.e., $d = 1/N$. Always convert $N$ to lines per metre to find $d$ in metres before using the formula."
+    },
+    {
+      "type": "heading",
+      "content": "Thin-Film Interference"
+    },
+    {
+      "type": "text",
+      "content": "The vibrant, swirling colours seen on soap bubbles or oil slicks are caused by thin-film interference. This occurs when light waves reflecting from the top and bottom surfaces of a thin, transparent film interfere with each other. The key to understanding this phenomenon is to consider both the path difference created by the film's thickness and any phase changes that occur upon reflection."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A phase change of $\\pi$ radians (180°) occurs when light reflects from a boundary with an optically denser medium (higher refractive index).",
+        "No phase change occurs on reflection from a boundary with an optically less dense medium (lower refractive index).",
+        "The geometric path difference for light entering and exiting the film at near-normal incidence is approximately $2t$, where $t$ is the film thickness.",
+        "The wavelength of light changes inside the film: $\\lambda_{film} = \\lambda_{vacuum} / n_{film}$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A soap bubble has a refractive index of 1.33. Calculate the minimum non-zero thickness of the bubble that will result in constructive interference for reflected light with a wavelength of 550 nm in a vacuum.",
+      "solution": "1.  **Analyse reflections and phase changes:**\n    - Reflection 1 (front surface): Air ($n \\approx 1$) to soap ($n = 1.33$). This is a reflection at a denser boundary, so there is a $\\pi$ phase change. ✓\n    - Reflection 2 (back surface): Soap ($n = 1.33$) to air ($n \\approx 1$). This is a reflection at a less dense boundary, so there is no phase change. ✓\n\n2.  **Determine the condition for constructive interference:**\n    Because there is one phase change, the two reflected waves are already out of phase by $\\pi$ radians. For them to interfere constructively, the path difference must compensate for this. The path difference must be a half-integer multiple of the wavelength in the film.\n    Path difference = $2t$. Wavelength in film = $\\lambda' = \\lambda/n$.\n    Condition for constructive interference: $2t = (m + \\frac{1}{2})\\lambda'$ where $m = 0, 1, 2, ...$ ✓\n\n3.  **Find the minimum thickness:**\n    Minimum non-zero thickness occurs for the smallest value of $m$, which is $m=0$.\n    $2t = (0 + \\frac{1}{2})\\lambda' = \\frac{\\lambda'}{2}$\n    $t = \\frac{\\lambda'}{4} = \\frac{\\lambda}{4n}$ ✓\n\n4.  **Substitute values and calculate:**\n    $t = \\frac{550 \\times 10^{-9} \\text{ m}}{4 \\times 1.33}$\n    $t = 1.0338... \\times 10^{-7} \\text{ m}$\n    $t \\approx 103 \\text{ nm}$ ✓"
+    },
+    {
+      "type": "heading",
+      "content": "Resolution"
+    },
+    {
+      "type": "text",
+      "content": "Due to diffraction, the image of a point source of light produced by a lens or mirror is not a perfect point but a diffraction pattern. For a circular aperture like a telescope lens, this is an 'Airy disk'—a bright central spot surrounded by concentric rings. Resolution is the ability of an optical instrument to distinguish between two closely spaced objects. If two objects are too close, their Airy disks overlap so much that they cannot be seen as separate."
+    },
+    {
+      "type": "formula",
+      "content": "The Rayleigh criterion gives the minimum angular separation, $\\theta$, at which two point sources can be just resolved by a circular aperture: $$\\theta \\approx 1.22 \\frac{\\lambda}{b}$$ where $\\lambda$ is the wavelength of light and $b$ is the diameter of the circular aperture (e.g., the diameter of the objective lens of a telescope)."
+    },
+    {
+      "type": "examTip",
+      "content": "To improve resolution, you need to make the minimum resolvable angle $\\theta$ smaller. According to the Rayleigh criterion, this can be achieved by either decreasing the wavelength $\\lambda$ (e.g., using a blue filter instead of a red one) or increasing the aperture diameter $b$ (which is why research telescopes have very large mirrors)."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Wave Phenomena",
+      "href": "/mark?subject=ib-physics-sl&topic=C.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Wave Interference",
+          "href": "https://phet.colorado.edu/en/simulations/wave-interference"
+        },
+        {
+          "label": "Video Explainer: Diffraction and Resolution",
+          "href": "https://www.youtube.com/watch?v=F6s9s433qCg"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Wave Interference",
+    "embedUrl": "https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/wave-interference",
+    "hint": "Explore “Wave Interference” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

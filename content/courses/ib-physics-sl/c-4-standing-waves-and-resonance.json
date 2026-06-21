@@ -1,0 +1,188 @@
+{
+  "slug": "c-4-standing-waves-and-resonance",
+  "topicCode": "C.4",
+  "title": "Standing waves and resonance",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson explores the formation and properties of standing waves, contrasting them with travelling waves. It covers the concepts of nodes, antinodes, and resonance, and applies these principles to calculate harmonic frequencies for waves on strings and in open and closed pipes.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the nature of standing waves and the conditions required for their formation.",
+    "Define nodes and antinodes and identify their positions for different harmonics.",
+    "Solve problems involving standing waves on strings and in pipes (open at both ends and closed at one end).",
+    "Explain resonance in the context of standing waves and natural frequencies."
+  ],
+  "simpleExplanation": {
+    "title": "The Guitar String's Secret Dance",
+    "summary": "Standing waves are stationary wave patterns created when two identical waves travelling in opposite directions interfere. Resonance is the phenomenon where an object vibrates with maximum amplitude when driven at one of its natural frequencies.",
+    "analogy": "Imagine you and a friend are holding a long skipping rope. If you both send waves down it, they just travel past each other. But if one end is fixed and you shake the other, the wave reflects and interferes with the one you're sending. At certain 'magic' frequencies, the rope forms stable loops that just oscillate up and down in place. These are standing waves. Hitting that magic frequency to get the biggest loops is resonance.",
+    "steps": [
+      "Identify the boundary conditions: Is it a string fixed at both ends (nodes)? A pipe open at one or both ends (antinodes)? This dictates the wave pattern.",
+      "Sketch the required harmonic: Draw the simplest pattern for the fundamental (n=1), then the next for the second harmonic (n=2), ensuring nodes and antinodes are at the correct boundaries.",
+      "Relate wavelength to length: For your sketch, determine the relationship between the wavelength (λ) and the length of the string or pipe (L). For a string's fundamental, the length L contains half a wavelength, so L = λ/2.",
+      "Apply the wave equation: Use the universal wave equation, v = fλ, combined with the length-wavelength relationship from the previous step, to solve for frequency, speed, or wavelength."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a standing (or stationary) wave?",
+      "back": "A wave pattern formed by the superposition of two identical waves travelling in opposite directions. It stores energy rather than transferring it."
+    },
+    {
+      "front": "What is a node?",
+      "back": "A point on a standing wave that has zero amplitude and zero displacement at all times."
+    },
+    {
+      "front": "What is an antinode?",
+      "back": "A point on a standing wave that oscillates with maximum amplitude."
+    },
+    {
+      "front": "How far apart are two consecutive nodes?",
+      "back": "Half a wavelength (λ/2)."
+    },
+    {
+      "front": "What is resonance?",
+      "back": "The phenomenon where a system oscillates with maximum amplitude when a periodic driving force is applied at its natural frequency."
+    },
+    {
+      "front": "What is the fundamental frequency?",
+      "back": "The lowest natural frequency of an oscillating system, also known as the first harmonic."
+    },
+    {
+      "front": "What is the boundary condition for a string fixed at both ends?",
+      "back": "Both ends must be nodes."
+    },
+    {
+      "front": "What is the boundary condition for a pipe open at one end and closed at the other?",
+      "back": "The closed end must be a node (displacement node) and the open end must be an antinode (displacement antinode)."
+    },
+    {
+      "front": "Which harmonics are present in a pipe closed at one end?",
+      "back": "Only the odd harmonics (1st, 3rd, 5th, etc.). The even harmonics cannot satisfy the boundary conditions."
+    },
+    {
+      "front": "How does a standing wave differ from a travelling wave in terms of energy?",
+      "back": "A travelling wave transfers energy from one point to another. A standing wave stores energy in its oscillations; there is no net energy transfer along the medium."
+    },
+    {
+      "front": "What is the relationship between harmonics and overtones for a guitar string?",
+      "back": "All harmonics are present. The 1st harmonic is the fundamental. The 2nd harmonic is the 1st overtone. The 3rd harmonic is the 2nd overtone, and so on."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a harmonic and an overtone?",
+      "a": "The term 'harmonic' refers to all integer multiples of the fundamental frequency. The first harmonic is the fundamental itself. The term 'overtone' refers to any frequency produced that is higher than the fundamental. So, the second harmonic is the first overtone, the third harmonic is the second overtone, and so on. Be careful with closed pipes: since only odd harmonics exist, the first overtone is the third harmonic."
+    },
+    {
+      "q": "Why is an open end of a pipe an antinode?",
+      "a": "At an open end, the air column is exposed to the open atmosphere. The air molecules at this boundary are free to move back and forth with the greatest amplitude, as there is no physical barrier to restrict their motion. This point of maximum displacement is, by definition, an antinode."
+    },
+    {
+      "q": "Can standing waves be formed by other types of waves, like light?",
+      "a": "Yes, absolutely. Standing waves are a general wave phenomenon. Light waves can form standing waves, which is a principle used in lasers and other optical resonant cavities. The same principles of superposition and boundary conditions apply."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "So far, we have studied travelling waves, which transfer energy from a source. However, when waves are confined within a space, such as on a guitar string or in an organ pipe, they can interfere with their own reflections to create a special pattern: a standing wave. This phenomenon is responsible for the distinct pitches produced by musical instruments and is a key application of the principle of superposition."
+    },
+    {
+      "type": "heading",
+      "content": "Formation of Standing Waves"
+    },
+    {
+      "type": "text",
+      "content": "A standing wave is formed from the superposition of two identical progressive waves travelling in opposite directions. This typically occurs when a wave reflects from a boundary and interferes with the incident wave. The resulting pattern does not propagate through space; instead, specific points remain fixed while others oscillate up and down."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Nodes:** Points of destructive interference where the amplitude is always zero.",
+        "**Antinodes:** Points of constructive interference where the amplitude is always at its maximum.",
+        "The distance between two consecutive nodes (or antinodes) is always half a wavelength, $\\lambda/2$.",
+        "The distance between a node and the adjacent antinode is a quarter of a wavelength, $\\lambda/4$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Standing Waves on a String"
+    },
+    {
+      "type": "text",
+      "content": "Consider a string of length $L$ fixed at both ends, like on a guitar or violin. Since the ends cannot move, they must be nodes. This boundary condition restricts the possible wavelengths, and therefore frequencies, that can form standing waves. These allowed frequencies are called the natural frequencies or harmonics of the string."
+    },
+    {
+      "type": "formula",
+      "content": "For a string of length $L$ with wave speed $v$, the harmonic frequencies $f_n$ are given by: $$ f_n = \\frac{nv}{2L} \\quad (n = 1, 2, 3, ...) $$ Where $n$ is the harmonic number. The $n=1$ case is the fundamental frequency."
+    },
+    {
+      "type": "workedExample",
+      "question": "A guitar string has a length of 64.0 cm and a mass of 2.00 g. It is stretched with a tension of 81.0 N. Calculate the frequency of its second harmonic.",
+      "solution": "1.  First, find the mass per unit length, $\\mu$: \n    $\\mu = \\frac{\\text{mass}}{\\text{length}} = \\frac{2.00 \\times 10^{-3} \\text{ kg}}{0.640 \\text{ m}} = 3.125 \\times 10^{-3} \\text{ kg m}^{-1}$ \n\n2.  Next, calculate the speed of the wave on the string, $v$: \n    $v = \\sqrt{\\frac{T}{\\mu}} = \\sqrt{\\frac{81.0 \\text{ N}}{3.125 \\times 10^{-3} \\text{ kg m}^{-1}}} = \\sqrt{25920} = 161 \\text{ m s}^{-1}$ ✓\n\n3.  Now, use the formula for harmonics on a string for $n=2$: \n    $f_n = \\frac{nv}{2L}$ \n    $f_2 = \\frac{2 \\times 161 \\text{ m s}^{-1}}{2 \\times 0.640 \\text{ m}}$ ✓\n\n4.  Calculate the final answer: \n    $f_2 = \\frac{161}{0.640} = 251.56... \\approx 252 \\text{ Hz}$ (to 3 s.f.) ✓"
+    },
+    {
+      "type": "heading",
+      "content": "Standing Waves in Pipes"
+    },
+    {
+      "type": "text",
+      "content": "Standing waves can also be set up in columns of air, such as in wind instruments. The boundary conditions depend on whether the ends of the pipe are open or closed. A closed end is a displacement node (air molecules can't move), while an open end is a displacement antinode (air molecules are free to move with maximum amplitude)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Pipe open at both ends:** Has an antinode at each end. The harmonic frequencies are the same as for a string: $f_n = \\frac{nv}{2L}$ for $n=1, 2, 3, ...$",
+        "**Pipe closed at one end:** Has a node at the closed end and an antinode at the open end. This means only odd multiples of the fundamental frequency can exist."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "For a pipe of length $L$ closed at one end, the harmonic frequencies $f_n$ are given by: $$ f_n = \\frac{nv}{4L} \\quad (n = 1, 3, 5, ...) $$ Where $v$ is the speed of sound in the air."
+    },
+    {
+      "type": "examTip",
+      "content": "A very common exam question involves comparing the harmonics of open and closed pipes. Remember the key difference: a closed pipe of length $L$ has a fundamental wavelength of $4L$ and only supports odd harmonics. An open pipe of the same length $L$ has a fundamental wavelength of $2L$ and supports all harmonics. This means the fundamental frequency of a closed pipe is half that of an open pipe of the same length."
+    },
+    {
+      "type": "workedExample",
+      "question": "An organ pipe is open at both ends and has a length of 0.85 m. The speed of sound in air is 340 m s⁻¹. \n(a) Calculate the fundamental frequency of the pipe. \n(b) The pipe is now closed at one end. Calculate the new fundamental frequency.",
+      "solution": "(a) For a pipe open at both ends:\n   The fundamental frequency corresponds to $n=1$.\n   $f_1 = \\frac{v}{2L}$ ✓\n   $f_1 = \\frac{340 \\text{ m s}^{-1}}{2 \\times 0.85 \\text{ m}} = \\frac{340}{1.70} = 200 \\text{ Hz}$ ✓\n\n(b) For a pipe closed at one end:\n   The fundamental frequency corresponds to $n=1$ in the closed pipe formula.\n   $f_1 = \\frac{v}{4L}$ ✓\n   $f_1 = \\frac{340 \\text{ m s}^{-1}}{4 \\times 0.85 \\text{ m}} = \\frac{340}{3.40} = 100 \\text{ Hz}$ ✓"
+    },
+    {
+      "type": "practice",
+      "label": "Test your knowledge with exam-style questions on Standing Waves and Resonance.",
+      "href": "/mark?subject=ib-physics-sl&topic=C.4"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Waves on a String",
+          "href": "https://phet.colorado.edu/en/simulations/wave-on-a-string"
+        },
+        {
+          "label": "PhET Simulation: Sound",
+          "href": "https://phet.colorado.edu/en/simulations/sound"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Waves on a String",
+    "embedUrl": "https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/wave-on-a-string",
+    "hint": "Explore “Waves on a String” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

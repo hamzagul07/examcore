@@ -1,0 +1,227 @@
+{
+  "slug": "b-3-gas-laws",
+  "topicCode": "B.3",
+  "title": "Gas laws",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson explores the relationships between pressure, volume, and temperature for a fixed mass of gas, known as the experimental gas laws (Boyle's, Charles's, and Gay-Lussac's). These are unified into the ideal gas law, which provides a powerful equation of state for modelling gas behaviour under various conditions.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "State and apply Boyle's Law, Charles's Law, and the Gay-Lussac Law for a fixed mass of an ideal gas.",
+    "Apply the combined gas law to solve problems involving changes in pressure, volume, and temperature.",
+    "State the assumptions of the kinetic model of an ideal gas and apply the ideal gas equation PV = nRT.",
+    "Distinguish between the two forms of the ideal gas law, PV = nRT and PV = Nk_BT, and know when to use each."
+  ],
+  "simpleExplanation": {
+    "title": "The Gas Dance: Pressure, Volume & Temperature",
+    "summary": "The properties of a gas—its pressure, volume, and temperature—are all linked. Changing one property will cause the others to change in predictable ways, like partners in a dance.",
+    "analogy": "Imagine you have a party balloon. If you squeeze it, the pressure inside increases while its volume decreases (Boyle's Law). If you take it outside on a cold day, it shrinks as the temperature drops (Charles's Law). If you were to heat the balloon in a rigid, unexpandable box, the pressure inside would build up (Gay-Lussac's Law). The gas laws are the rules that govern this 'dance' between pressure, volume, and temperature.",
+    "steps": [
+      "First, consider a gas in a sealed container at a constant temperature. If you decrease the volume by pushing on a piston, the gas molecules collide with the walls more frequently, increasing the pressure. This is Boyle's Law: pressure is inversely proportional to volume ($P \\propto 1/V$).",
+      "Next, keep the pressure constant. If you heat the gas, the molecules move faster and push outwards, causing the volume to increase. This is Charles's Law: volume is directly proportional to absolute temperature ($V \\propto T$).",
+      "Now, keep the volume constant in a rigid container. Heating the gas makes the molecules hit the walls harder and more often, increasing the pressure. This is Gay-Lussac's Law: pressure is directly proportional to absolute temperature ($P \\propto T$).",
+      "Finally, we combine these relationships and account for the amount of gas. This gives us the Ideal Gas Law, $PV = nRT$, a single powerful equation that connects all four properties: Pressure (P), Volume (V), amount of gas (n), and Temperature (T)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Boyle's Law?",
+      "back": "For a fixed mass of gas at constant temperature, the pressure is inversely proportional to the volume. Formula: $P_1V_1 = P_2V_2$."
+    },
+    {
+      "front": "What is Charles's Law?",
+      "back": "For a fixed mass of gas at constant pressure, the volume is directly proportional to the absolute temperature (in Kelvin). Formula: $V_1/T_1 = V_2/T_2$."
+    },
+    {
+      "front": "What is the Gay-Lussac Law (or Pressure Law)?",
+      "back": "For a fixed mass of gas at constant volume, the pressure is directly proportional to the absolute temperature (in Kelvin). Formula: $P_1/T_1 = P_2/T_2$."
+    },
+    {
+      "front": "What is the most common mistake when using the gas laws?",
+      "back": "Forgetting to convert temperature from degrees Celsius ($^\\circ\\text{C}$) to Kelvin (K). Always use Kelvin by adding 273.15 (or 273 for IB SL) to the Celsius value."
+    },
+    {
+      "front": "What is an ideal gas?",
+      "back": "A theoretical gas whose molecules occupy negligible volume and have no intermolecular forces. It perfectly obeys the gas laws under all conditions."
+    },
+    {
+      "front": "State the ideal gas equation.",
+      "back": "$PV = nRT$, where P is pressure, V is volume, n is the number of moles, R is the universal gas constant, and T is the absolute temperature."
+    },
+    {
+      "front": "What are the units for the terms in $PV = nRT$?",
+      "back": "P in Pascals (Pa), V in cubic metres (m³), n in moles (mol), T in Kelvin (K), and R in J K⁻¹ mol⁻¹."
+    },
+    {
+      "front": "What is the combined gas law?",
+      "back": "A law that combines Boyle's, Charles's, and Gay-Lussac's laws for a fixed amount of gas: $(P_1V_1)/T_1 = (P_2V_2)/T_2$."
+    },
+    {
+      "front": "What is the value and unit of the universal gas constant, R?",
+      "back": "$R = 8.31 \\text{ J K}^{-1} \\text{mol}^{-1}$. This value is in the IB Physics data booklet."
+    },
+    {
+      "front": "What is the alternative form of the ideal gas law using the Boltzmann constant?",
+      "back": "$PV = Nk_BT$, where N is the number of molecules and $k_B$ is the Boltzmann constant ($1.38 \\times 10^{-23} \\text{ J K}^{-1}$)."
+    },
+    {
+      "front": "How are the number of moles (n) and the number of molecules (N) related?",
+      "back": "Through Avogadro's constant, $N_A$: $N = n \\times N_A$. Be careful not to mix them up in exam questions."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a real gas and an ideal gas?",
+      "a": "An ideal gas is a theoretical concept that follows the gas laws perfectly. It assumes molecules have no volume and no intermolecular forces. A real gas deviates from ideal behaviour, especially at high pressures (when molecular volume becomes significant) and low temperatures (when intermolecular forces become significant)."
+    },
+    {
+      "q": "Why must temperature be in Kelvin for the gas laws?",
+      "a": "The relationships in Charles's Law and Gay-Lussac's Law are based on direct proportionality to absolute temperature. The Kelvin scale starts at absolute zero (0 K), the theoretical point where particles have minimum kinetic energy. A temperature of 0°C is just the freezing point of water and is not a true zero point for thermal energy. Using Celsius would lead to incorrect ratios and nonsensical results (e.g., dividing by 0°C)."
+    },
+    {
+      "q": "When should I use $PV = nRT$ versus $PV = Nk_BT$?",
+      "a": "Use $PV = nRT$ when the question involves the 'amount of substance' in moles (mol) or asks you to find it. Use $PV = Nk_BT$ when the question deals with the number of individual atoms or molecules (N) or properties related to single particles."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In this topic, we move from the microscopic world of individual particles to the macroscopic world of gases. We will explore the fundamental laws that describe the behaviour of gases in terms of pressure, volume, and temperature. These principles are not just theoretical; they explain everything from how a car engine works to the weather patterns in our atmosphere."
+    },
+    {
+      "type": "heading",
+      "content": "The Experimental Gas Laws"
+    },
+    {
+      "type": "text",
+      "content": "Historically, scientists studied gases by systematically changing one property while keeping others constant. This led to the formulation of three key experimental laws that form the foundation of our understanding of gas behaviour. These laws apply to a fixed mass of gas."
+    },
+    {
+      "type": "heading",
+      "content": "Boyle's Law: Pressure and Volume"
+    },
+    {
+      "type": "text",
+      "content": "Robert Boyle discovered that if you keep the temperature of a gas constant, its pressure and volume are inversely proportional. This means that if you double the pressure on a gas, its volume will halve. This relationship is fundamental to understanding how compression and expansion affect a gas."
+    },
+    {
+      "type": "formula",
+      "content": "P \\propto \\frac{1}{V} \\quad \\text{(at constant T and n)} \\\\ \\implies P_1V_1 = P_2V_2"
+    },
+    {
+      "type": "heading",
+      "content": "Charles's Law: Volume and Temperature"
+    },
+    {
+      "type": "text",
+      "content": "Jacques Charles found that at a constant pressure, the volume of a gas is directly proportional to its absolute temperature. This implies that as a gas heats up, it expands, and as it cools down, it contracts. Crucially, the temperature must be measured on the absolute (Kelvin) scale for this direct proportionality to hold."
+    },
+    {
+      "type": "formula",
+      "content": "V \\propto T \\quad \\text{(at constant P and n)} \\\\ \\implies \\frac{V_1}{T_1} = \\frac{V_2}{T_2}"
+    },
+    {
+      "type": "heading",
+      "content": "Gay-Lussac's Law: Pressure and Temperature"
+    },
+    {
+      "type": "text",
+      "content": "Joseph Louis Gay-Lussac established that if the volume of a gas is held constant, its pressure is directly proportional to its absolute temperature. This is why a sealed container of gas can become highly pressurised if heated. Like Charles's Law, this relationship relies on using the Kelvin temperature scale."
+    },
+    {
+      "type": "formula",
+      "content": "P \\propto T \\quad \\text{(at constant V and n)} \\\\ \\implies \\frac{P_1}{T_1} = \\frac{P_2}{T_2}"
+    },
+    {
+      "type": "examTip",
+      "content": "A very common source of error is failing to convert temperatures to Kelvin. Remember the conversion: $T(\\text{K}) = T(^\\circ\\text{C}) + 273$. If a question gives you temperatures in Celsius, your first step should always be to convert them to Kelvin before substituting into any gas law formula."
+    },
+    {
+      "type": "heading",
+      "content": "The Combined Gas Law"
+    },
+    {
+      "type": "text",
+      "content": "The three experimental laws can be merged into a single, more versatile equation called the combined gas law. This law is extremely useful for problems where pressure, volume, and temperature all change for a fixed amount of gas."
+    },
+    {
+      "type": "formula",
+      "content": "\\frac{P_1V_1}{T_1} = \\frac{P_2V_2}{T_2}"
+    },
+    {
+      "type": "workedExample",
+      "question": "A weather balloon is filled with $2.0 \\text{ m}^3$ of helium at sea level, where the temperature is $17^\\circ\\text{C}$ and the pressure is $1.01 \\times 10^5$ Pa. The balloon rises to an altitude where the temperature is $-33^\\circ\\text{C}$ and the pressure is $2.50 \\times 10^4$ Pa. Calculate the new volume of the balloon.",
+      "solution": "1.  **Identify initial and final states and convert temperatures to Kelvin.**\n    $P_1 = 1.01 \\times 10^5$ Pa, $V_1 = 2.0 \\text{ m}^3$, $T_1 = 17 + 273 = 290$ K\n    $P_2 = 2.50 \\times 10^4$ Pa, $T_2 = -33 + 273 = 240$ K, $V_2 = ?$\n\n2.  **State the combined gas law.**\n    $\\frac{P_1V_1}{T_1} = \\frac{P_2V_2}{T_2}$\n\n3.  **Rearrange the formula to solve for the unknown, $V_2$.**\n    $V_2 = V_1 \\times \\frac{P_1}{P_2} \\times \\frac{T_2}{T_1}$\n\n4.  **Substitute the values and calculate.**\n    $V_2 = (2.0 \\text{ m}^3) \\times \\frac{1.01 \\times 10^5 \\text{ Pa}}{2.50 \\times 10^4 \\text{ Pa}} \\times \\frac{240 \\text{ K}}{290 \\text{ K}}$\n    $V_2 = 8.08 \\times 0.8275...$\n    $V_2 \\approx 6.68 \\text{ m}^3$\n\n5.  **State the final answer with appropriate significant figures and units.**\n    The new volume is $6.7 \\text{ m}^3$ (to 2 s.f.).\n    \n    *Marking points: [1] for Kelvin conversion, [1] for rearranging the formula, [1] for the final answer.*"
+    },
+    {
+      "type": "heading",
+      "content": "The Ideal Gas Law"
+    },
+    {
+      "type": "text",
+      "content": "The combined gas law is great for a fixed amount of gas, but what if the amount of gas changes? The Ideal Gas Law extends our model by incorporating the number of moles of gas, $n$. It describes the state of a hypothetical 'ideal gas'. While no real gas is truly ideal, this model is an excellent approximation under most conditions."
+    },
+    {
+      "type": "formula",
+      "content": "PV = nRT"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Assumptions of an Ideal Gas:**",
+        "The gas consists of a large number of identical molecules.",
+        "The volume of the molecules themselves is negligible compared to the volume of the container.",
+        "The molecules are in constant, random motion.",
+        "There are no intermolecular forces between the molecules (except during collisions).",
+        "Collisions between molecules and with the container walls are perfectly elastic."
+      ]
+    },
+    {
+      "type": "text",
+      "content": "An alternative form of the ideal gas law uses the number of molecules, $N$, and the Boltzmann constant, $k_B$. This is useful when dealing with properties on a per-molecule basis. The two forms are equivalent since $n = N/N_A$ and $R = N_A k_B$, where $N_A$ is Avogadro's constant."
+    },
+    {
+      "type": "formula",
+      "content": "PV = Nk_BT"
+    },
+    {
+      "type": "workedExample",
+      "question": "A rigid steel cylinder with a volume of $0.050 \\text{ m}^3$ contains nitrogen gas at a pressure of $4.0 \\times 10^5$ Pa and a temperature of $290$ K. The universal gas constant $R$ is $8.31 \\text{ J K}^{-1} \\text{mol}^{-1}$. Calculate the number of moles of nitrogen gas in the cylinder.",
+      "solution": "1.  **Identify the known variables.**\n    $P = 4.0 \\times 10^5$ Pa\n    $V = 0.050 \\text{ m}^3$\n    $T = 290$ K\n    $R = 8.31 \\text{ J K}^{-1} \\text{mol}^{-1}$\n\n2.  **State the ideal gas law.**\n    $PV = nRT$\n\n3.  **Rearrange the formula to solve for the number of moles, $n$.**\n    $n = \\frac{PV}{RT}$\n\n4.  **Substitute the values into the rearranged equation.**\n    $n = \\frac{(4.0 \\times 10^5 \\text{ Pa}) \\times (0.050 \\text{ m}^3)}{(8.31 \\text{ J K}^{-1} \\text{mol}^{-1}) \\times (290 \\text{ K})}$\n    $n = \\frac{20000}{2410.9}$\n    $n \\approx 8.295... \\text{ mol}$\n\n5.  **State the final answer to an appropriate number of significant figures.**\n    The number of moles is $8.3$ mol (to 2 s.f.).\n\n    *Marking points: [1] for correct rearrangement, [1] for correct substitution, [1] for final answer.*"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the units. Pressure must be in Pascals (Pa), not kPa or atm. Volume must be in cubic metres (m³), not litres or cm³. If you are given values in other units, you must convert them before using the ideal gas law. Forgetting to do so is a frequent cause of lost marks."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions: Gas Laws",
+      "href": "/mark?subject=ib-physics-sl&topic=B.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Gas Properties",
+          "href": "https://phet.colorado.edu/en/simulations/gas-properties"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Gas Properties",
+    "embedUrl": "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/gas-properties",
+    "hint": "Explore “Gas Properties” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

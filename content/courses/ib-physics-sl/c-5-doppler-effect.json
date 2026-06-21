@@ -1,0 +1,199 @@
+{
+  "slug": "c-5-doppler-effect",
+  "topicCode": "C.5",
+  "title": "Doppler effect",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "The Doppler effect describes the change in observed frequency and wavelength of a wave when there is relative motion between the source and the observer. This lesson covers the effect for both sound and light, deriving and applying the relevant formulae for moving sources and observers. We will explore applications such as police speed guns and the cosmological redshift of distant galaxies.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Describe the Doppler effect as the change in observed frequency of a wave due to relative motion between the source and observer.",
+    "Solve problems involving the Doppler effect for sound with a moving source or a moving observer.",
+    "Explain the Doppler effect for electromagnetic waves in terms of redshift and blueshift, and apply the approximation formula for non-relativistic speeds."
+  ],
+  "simpleExplanation": {
+    "title": "The Sound of Motion",
+    "summary": "When a sound source moves towards you, the sound waves get squashed together, making the pitch higher. When it moves away, the waves spread out, making the pitch lower.",
+    "analogy": "Imagine you're standing by the road and an ambulance with its siren on speeds past. You hear a high-pitched \"neee\" as it approaches, which drops to a low-pitched \"yoooow\" as it moves away. The siren's actual pitch never changes; your perception of it does because of the ambulance's motion relative to you.",
+    "steps": [
+      "Identify the moving object: Is it the source of the wave (e.g., ambulance) or the observer (e.g., you)?",
+      "Determine the direction of relative motion: Are they moving towards or away from each other?",
+      "Choose the correct formula and sign: Use the moving source formula for a moving source, and the moving observer formula for a moving observer. The sign (+ or -) depends on whether they are moving towards or away.",
+      "Calculate the observed frequency: Substitute the known values (source frequency, wave speed, object speed) into the formula to find the new, observed frequency."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the Doppler effect?",
+      "back": "The apparent change in the frequency (and wavelength) of a wave, perceived by an observer, due to relative motion between the wave source and the observer."
+    },
+    {
+      "front": "What is the formula for the Doppler effect with a moving source of sound?",
+      "back": "$f' = f \\left( \\frac{v}{v \\pm u_s} \\right)$, where $f'$ is the observed frequency, $f$ is the source frequency, $v$ is the speed of sound, and $u_s$ is the speed of the source."
+    },
+    {
+      "front": "For a moving sound source, when do you use the minus sign in the denominator of $f' = f \\left( \\frac{v}{v \\pm u_s} \\right)$?",
+      "back": "Use the minus sign ($-$) when the source is moving **towards** the observer. This results in a smaller denominator and a higher observed frequency ($f' > f$)."
+    },
+    {
+      "front": "What is the formula for the Doppler effect with a moving observer of sound?",
+      "back": "$f' = f \\left( \\frac{v \\pm u_o}{v} \\right)$, where $f'$ is the observed frequency, $f$ is the source frequency, $v$ is the speed of sound, and $u_o$ is the speed of the observer."
+    },
+    {
+      "front": "For a moving observer of sound, when do you use the plus sign in the numerator of $f' = f \\left( \\frac{v \\pm u_o}{v} \\right)$?",
+      "back": "Use the plus sign ($+$) when the observer is moving **towards** the source. This results in a larger numerator and a higher observed frequency ($f' > f$)."
+    },
+    {
+      "front": "What is cosmological redshift?",
+      "back": "The stretching of the wavelength of light from distant galaxies, caused by the expansion of the universe. It is a form of Doppler shift where the 'motion' is the expansion of space itself."
+    },
+    {
+      "front": "What is blueshift?",
+      "back": "The decrease in the wavelength (and increase in frequency) of electromagnetic radiation due to the source moving **towards** the observer."
+    },
+    {
+      "front": "What is the approximate formula for the Doppler shift of light for speeds much less than c?",
+      "back": "$\\frac{\\Delta f}{f} \\approx \\frac{v}{c}$ or $\\frac{\\Delta \\lambda}{\\lambda} \\approx \\frac{v}{c}$, where $v$ is the relative speed between source and observer, and $c$ is the speed of light."
+    },
+    {
+      "front": "A common trap: A student uses $f' = f \\left( \\frac{v}{v - u_s} \\right)$ for a car moving away from them. What is their mistake?",
+      "back": "They used the minus sign for motion 'away'. For a moving source, the minus sign is for motion **towards** the observer. They should have used the plus sign: $f' = f \\left( \\frac{v}{v + u_s} \\right)$."
+    },
+    {
+      "front": "Does the Doppler effect change the actual frequency produced by the source?",
+      "back": "No. The source frequency remains constant. The Doppler effect describes the change in the *observed* frequency due to relative motion."
+    },
+    {
+      "front": "Why can't the sound Doppler effect formulas be used for light?",
+      "back": "The sound formulas assume a medium (like air) for wave propagation. Light does not require a medium, and its speed is constant for all inertial observers (a principle of special relativity), leading to a different formula."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Why are the formulas for the Doppler effect different for sound and light?",
+      "a": "The formulas for sound are derived based on a wave travelling through a stationary medium (like air). The speeds of the source ($u_s$) and observer ($u_o$) are measured relative to this medium. Light, however, does not require a medium and its speed in a vacuum, $c$, is the same for all inertial observers, a key principle of Einstein's Special Theory of Relativity. This fundamental difference in the nature of the wave and its propagation leads to a different mathematical description, especially at high speeds. The formula $\\Delta \\lambda / \\lambda \\approx v/c$ is a simplified version that works well when the relative speed $v$ is much smaller than the speed of light."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Ever noticed how a police siren or a racing car's engine sounds higher in pitch as it comes towards you and then suddenly drops as it passes? This everyday experience is a perfect example of the Doppler effect. It's not just about sound; this phenomenon is crucial for everything from weather forecasting radar to our understanding of the expanding universe."
+    },
+    {
+      "type": "heading",
+      "content": "The Doppler Effect for Sound"
+    },
+    {
+      "type": "text",
+      "content": "The Doppler effect for sound occurs because the motion of the source or observer affects how the wavefronts are received. When a source moves towards a stationary observer, it's essentially 'chasing' its own sound waves. This causes the wavefronts to bunch up in front of it, leading to a shorter perceived wavelength and thus a higher frequency (higher pitch). Conversely, as the source moves away, the wavefronts are spread out, leading to a longer perceived wavelength and a lower frequency (lower pitch)."
+    },
+    {
+      "type": "heading",
+      "content": "Case 1: Moving Source"
+    },
+    {
+      "type": "text",
+      "content": "Let's consider a source emitting sound of frequency $f$ moving with speed $u_s$ relative to the air. A stationary observer listens. The speed of sound in the air is $v$. The observed frequency, $f'$, will be different from the source frequency $f$."
+    },
+    {
+      "type": "formula",
+      "content": "$f' = f \\left( \\frac{v}{v \\pm u_s} \\right)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use $v - u_s$ in the denominator when the source moves **towards** the observer. This gives $f' > f$.",
+        "Use $v + u_s$ in the denominator when the source moves **away** from the observer. This gives $f' < f$.",
+        "Remember, $v$ is the speed of the wave (sound), and $u_s$ is the speed of the source."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "An ambulance travels at 30.0 m s⁻¹ along a straight road. Its siren emits a sound of frequency 450 Hz. A stationary observer is standing by the side of the road. The speed of sound in air is 340 m s⁻¹. Calculate the frequency heard by the observer (a) as the ambulance approaches, and (b) as it moves away.",
+      "solution": "(a) As the ambulance approaches, the source is moving towards the observer. We use the minus sign in the denominator.\n**Formula:** $f' = f \\left( \\frac{v}{v - u_s} \\right)$ [1]\n**Substitution:** $f' = 450 \\left( \\frac{340}{340 - 30.0} \\right)$ [1]\n$f' = 450 \\left( \\frac{340}{310} \\right)$\n**Answer:** $f' \\approx 494$ Hz [1]\n\n(b) As the ambulance moves away, the source is moving away from the observer. We use the plus sign in the denominator.\n**Formula:** $f' = f \\left( \\frac{v}{v + u_s} \\right)$ [1]\n**Substitution:** $f' = 450 \\left( \\frac{340}{340 + 30.0} \\right)$ [1]\n$f' = 450 \\left( \\frac{340}{370} \\right)$\n**Answer:** $f' \\approx 414$ Hz [1]"
+    },
+    {
+      "type": "heading",
+      "content": "Case 2: Moving Observer"
+    },
+    {
+      "type": "text",
+      "content": "Now, imagine the source is stationary, and the observer is moving with speed $u_o$. As the observer moves towards the source, they encounter wavefronts more frequently than if they were stationary. This leads to a higher observed frequency. When moving away, they encounter wavefronts less frequently, leading to a lower observed frequency."
+    },
+    {
+      "type": "formula",
+      "content": "$f' = f \\left( \\frac{v \\pm u_o}{v} \\right)$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Use $v + u_o$ in the numerator when the observer moves **towards** the source. This gives $f' > f$.",
+        "Use $v - u_o$ in the numerator when the observer moves **away** from the source. This gives $f' < f$.",
+        "Notice the sign convention is opposite to the moving source case to achieve the same physical outcome (frequency increases when moving towards)."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "The IB Physics data booklet provides both formulas, but not the rules for the signs. You MUST memorise: **Towards = Higher Frequency**, **Away = Lower Frequency**. Then, choose the sign (+ or -) in the formula that mathematically produces this result. For a moving source, a smaller denominator (minus) gives a higher frequency. For a moving observer, a larger numerator (plus) gives a higher frequency."
+    },
+    {
+      "type": "heading",
+      "content": "The Doppler Effect for Light"
+    },
+    {
+      "type": "text",
+      "content": "The Doppler effect also applies to light and other electromagnetic waves. However, the situation is different because light does not require a medium, and its speed, $c$, is constant for all observers in a vacuum. When a light source moves away from us, the observed wavelength increases (shifts towards the red end of the spectrum), an effect called **redshift**. When it moves towards us, the wavelength decreases (shifts towards the blue end), called **blueshift**. For speeds much less than the speed of light ($v \\ll c$), we can use a simple approximation."
+    },
+    {
+      "type": "formula",
+      "content": "$\\frac{\\Delta f}{f} \\approx \\frac{v}{c}$ or $\\frac{\\Delta \\lambda}{\\lambda} \\approx \\frac{v}{c}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "$v$ is the relative radial speed between the source and observer.",
+        "Redshift ($\\Delta \\lambda > 0$) occurs for objects moving away. This is the primary evidence for the expansion of the universe.",
+        "Blueshift ($\\Delta \\lambda < 0$) occurs for objects moving towards us (e.g., the Andromeda galaxy)."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "Light from a distant galaxy is analysed. A spectral line of hydrogen, which has a laboratory wavelength of 656.3 nm, is observed to have a wavelength of 672.8 nm.\n(a) Calculate the change in wavelength, $\\Delta \\lambda$.\n(b) Determine the speed at which the galaxy is receding from Earth. (Speed of light $c = 3.00 \\times 10^8$ m s⁻¹)",
+      "solution": "(a) The change in wavelength is the difference between the observed and laboratory (rest) wavelengths.\n**Calculation:** $\\Delta \\lambda = \\lambda_{observed} - \\lambda_{rest} = 672.8 \\text{ nm} - 656.3 \\text{ nm}$ [1]\n**Answer:** $\\Delta \\lambda = 16.5$ nm [1]\n\n(b) The galaxy is receding because the wavelength has increased (redshift). We can use the Doppler approximation formula.\n**Formula:** $\\frac{\\Delta \\lambda}{\\lambda} \\approx \\frac{v}{c}$ [1]\n**Rearrangement:** $v \\approx c \\left( \\frac{\\Delta \\lambda}{\\lambda} \\right)$\n**Substitution:** $v \\approx (3.00 \\times 10^8) \\left( \\frac{16.5 \\text{ nm}}{656.3 \\text{ nm}} \\right)$ [1]\n(Note: The units of wavelength cancel, so no conversion is needed).\n$v \\approx (3.00 \\times 10^8) \\times 0.02514$\n**Answer:** $v \\approx 7.54 \\times 10^6$ m s⁻¹ [1]"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Doppler Effect Problems",
+      "href": "/mark?subject=ib-physics-sl&topic=C.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Doppler Effect",
+          "href": "https://phet.colorado.edu/en/simulations/doppler-effect"
+        },
+        {
+          "label": "Video Explainer: The Doppler Effect",
+          "href": "https://www.youtube.com/watch?v=h4OnBYrbCjY"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Doppler Effect",
+    "embedUrl": "https://phet.colorado.edu/sims/html/doppler-effect/latest/doppler-effect_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/doppler-effect",
+    "hint": "Explore “Doppler Effect” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

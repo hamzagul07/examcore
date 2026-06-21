@@ -1,0 +1,210 @@
+{
+  "slug": "d-1-gravitational-fields",
+  "topicCode": "D.1",
+  "title": "Gravitational fields",
+  "paper": "P2",
+  "paperName": "Physics SL",
+  "status": "premium",
+  "summary": "This lesson introduces Newton's Law of Universal Gravitation, describing the attractive force between any two masses. It defines the concept of a gravitational field and derives the expression for gravitational field strength, exploring its vector nature and representation using field lines.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "State Newton's Law of Universal Gravitation and apply it to solve problems involving point masses.",
+    "Define gravitational field strength as the force per unit mass experienced by a small test mass.",
+    "Derive and apply the formula for the gravitational field strength of a point mass.",
+    "Represent gravitational fields using field lines and understand their properties."
+  ],
+  "simpleExplanation": {
+    "title": "The Universe's Invisible Pull",
+    "summary": "Every object with mass creates an invisible 'dip' in space around it, called a gravitational field. This field pulls other massive objects towards it, with a force that depends on their masses and how far apart they are.",
+    "analogy": "Imagine a large, stretched rubber sheet. If you place a heavy bowling ball in the centre, it creates a dip. Now, if you roll a smaller marble nearby, it won't travel in a straight line; it will curve and roll down into the dip towards the bowling ball. The dip in the sheet is like the gravitational field created by the bowling ball's mass, and the rolling of the marble represents the gravitational force.",
+    "steps": [
+      "First, identify the two masses involved ($M$ and $m$) and the distance ($r$) separating their centres of mass.",
+      "Use Newton's Law of Universal Gravitation, $F = G \\frac{Mm}{r^2}$, to calculate the magnitude of the attractive force between them.",
+      "To find the gravitational field strength ($g$) at a point, calculate the force per unit mass, $g = F/m$. This tells you the acceleration a small mass would experience at that location.",
+      "Alternatively, calculate the field strength created by a source mass $M$ directly using $g = G \\frac{M}{r^2}$. This is often more direct in exam questions."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Newton's Law of Universal Gravitation?",
+      "back": "The law states that any two point masses attract each other with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centres."
+    },
+    {
+      "front": "What is the formula for Newton's Law of Universal Gravitation?",
+      "back": "$F = G \\frac{m_1 m_2}{r^2}$, where $G$ is the universal gravitational constant, $m_1$ and $m_2$ are the masses, and $r$ is the distance between their centres."
+    },
+    {
+      "front": "What is a gravitational field?",
+      "back": "A region of space where a mass experiences a non-contact force. It is created by any object with mass."
+    },
+    {
+      "front": "Define gravitational field strength, $g$.",
+      "back": "The gravitational force per unit mass exerted on a small, point test mass placed at that point in the field. $g = F/m$."
+    },
+    {
+      "front": "What are the units of gravitational field strength?",
+      "back": "Newtons per kilogram (N kg⁻¹) or, equivalently, metres per second squared (m s⁻²)."
+    },
+    {
+      "front": "What is the difference between $G$ and $g$?",
+      "back": "$G$ is the universal gravitational constant ($6.67 \\times 10^{-11}$ N m² kg⁻²), which is the same everywhere. $g$ is the gravitational field strength at a specific point, which varies with location."
+    },
+    {
+      "front": "What is an 'inverse square law'?",
+      "back": "A law stating that a physical quantity is inversely proportional to the square of the distance from the source. In gravitation, $F \\propto 1/r^2$ and $g \\propto 1/r^2$."
+    },
+    {
+      "front": "What is a 'test mass'?",
+      "back": "A small, theoretical mass used to probe a field. It must be small enough that its own gravitational field does not significantly alter the field it is measuring."
+    },
+    {
+      "front": "In the formula $F = G \\frac{m_1 m_2}{r^2}$, what does 'r' represent?",
+      "back": "$r$ is the distance between the *centres* of the two masses, not their surfaces. This is a common mistake in problems involving planets."
+    },
+    {
+      "front": "Are gravitational forces attractive or repulsive?",
+      "back": "Gravitational forces are always attractive. There is no known 'negative mass' that would cause gravitational repulsion."
+    },
+    {
+      "front": "How is the strength of a gravitational field represented by field lines?",
+      "back": "The density of the field lines (how close they are to each other) represents the strength of the field. Closer lines mean a stronger field."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is gravitational field strength a vector or a scalar?",
+      "a": "Gravitational field strength is a vector quantity. It has both magnitude (the value in N kg⁻¹) and direction (always directed towards the centre of the mass creating the field)."
+    },
+    {
+      "q": "Why do we use a 'small' test mass when defining gravitational field strength?",
+      "a": "The test mass is defined as being 'small' or 'of negligible mass' so that its own gravitational field does not significantly disturb the field that we are trying to measure. It's a theoretical tool to probe the field without changing it."
+    },
+    {
+      "q": "What is the real difference between 'g' (the acceleration of free fall) and 'G' (the universal gravitational constant)?",
+      "a": "'G' is a fundamental constant of nature, with a value of $6.67 \\times 10^{-11}$ N m² kg⁻². It is the same everywhere in the universe. 'g' is the gravitational field strength at a particular point in space. Its value depends on the mass of the nearby object and the distance from it. For example, 'g' on the Moon's surface is much smaller than 'g' on Earth's surface."
+    },
+    {
+      "q": "If gravity is so weak (G is a tiny number), why is it the dominant force on a large scale?",
+      "a": "Although gravity is the weakest of the four fundamental forces, it has an infinite range and acts on mass. Unlike the strong and weak nuclear forces which have very short ranges, and the electromagnetic force which can be shielded and involves both attraction and repulsion (often cancelling out), gravity is always attractive. Over large distances and with massive objects like planets and stars, its effects accumulate and dominate."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "We are all familiar with gravity – it's the force that keeps us on the ground and causes an apple to fall from a tree. However, this force is not unique to the Earth. In this topic, we will explore the universal nature of gravity as described by Isaac Newton. We will learn how to calculate the force between any two objects in the universe and introduce the powerful concept of a gravitational field to describe gravity's influence on the space around a massive object."
+    },
+    {
+      "type": "heading",
+      "content": "Newton's Law of Universal Gravitation"
+    },
+    {
+      "type": "text",
+      "content": "Isaac Newton proposed that the force that pulls an apple to the ground is the same force that keeps the Moon in orbit around the Earth. He formulated this into a single, powerful law. It states that every particle of matter in the universe attracts every other particle with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centres."
+    },
+    {
+      "type": "formula",
+      "content": "F = G \\frac{m_1 m_2}{r^2}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**F** is the magnitude of the gravitational force between the two masses.",
+        "**m₁** and **m₂** are the two masses.",
+        "**r** is the distance between the centres of the two masses.",
+        "**G** is the Universal Gravitational Constant, approximately $6.67 \\times 10^{-11}$ N m² kg⁻². This value is provided in the IB Physics data booklet."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The mass of the Earth is $5.97 \\times 10^{24}$ kg and the mass of the Moon is $7.35 \\times 10^{22}$ kg. The average distance between the centre of the Earth and the centre of the Moon is $3.84 \\times 10^8$ m. Calculate the magnitude of the gravitational force exerted by the Earth on the Moon.",
+      "solution": "1. **Identify the formula:** Newton's Law of Universal Gravitation is required.\n$F = G \\frac{m_1 m_2}{r^2}$\n\n2. **Substitute the values:**\n$m_1 = 5.97 \\times 10^{24}$ kg\n$m_2 = 7.35 \\times 10^{22}$ kg\n$r = 3.84 \\times 10^8$ m\n$G = 6.67 \\times 10^{-11}$ N m² kg⁻²\n$F = (6.67 \\times 10^{-11}) \\frac{(5.97 \\times 10^{24}) \\times (7.35 \\times 10^{22})}{(3.84 \\times 10^8)^2}$ ✓\n\n3. **Calculate the result:**\n$F = \\frac{2.926 \\times 10^{37}}{1.475 \\times 10^{17}}$\n$F \\approx 1.98 \\times 10^{20}$ N ✓\n\n*Note: The force exerted by the Moon on the Earth has the same magnitude, according to Newton's third law.*"
+    },
+    {
+      "type": "heading",
+      "content": "Gravitational Field Strength"
+    },
+    {
+      "type": "text",
+      "content": "The idea of a 'force at a distance' can be tricky. To help with this, physicists use the concept of a field. A mass, $M$, creates a gravitational field in the space around it. This field is a property of space itself. If we place another mass, $m$, at a point in this field, it will experience a force. We define the gravitational field strength, $g$, at a point as the force per unit mass on a small test mass placed at that point."
+    },
+    {
+      "type": "formula",
+      "content": "g = \\frac{F}{m}"
+    },
+    {
+      "type": "text",
+      "content": "Since $g$ is force per unit mass, its units are N kg⁻¹. Notice that this is dimensionally equivalent to acceleration (m s⁻²), which is why the acceleration due to gravity on Earth's surface is often denoted by $g$. We can derive a more useful expression for $g$ by substituting Newton's law of gravitation into the definition. If $M$ is the source mass creating the field, and $m$ is the test mass, then $F = G \\frac{Mm}{r^2}$. Substituting this into $g = F/m$ gives:"
+    },
+    {
+      "type": "formula",
+      "content": "g = G \\frac{M}{r^2}"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gravitational field strength, $g$, is a vector quantity. Its direction is the same as the direction of the force on a test mass (i.e., towards the source mass $M$).",
+        "The formula $g = G \\frac{M}{r^2}$ shows that the field strength depends only on the source mass $M$ and the distance $r$, not on the test mass $m$.",
+        "Near the Earth's surface, $g$ is approximately constant at $9.81$ N kg⁻¹."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A very common mistake is to mix up the two equations for field strength. Use $g = F/m$ when you are given the force on a specific mass. Use $g = G M/r^2$ when you are dealing with the field created by a source mass (like a planet) at a certain distance."
+    },
+    {
+      "type": "workedExample",
+      "question": "The International Space Station (ISS) orbits at an altitude of approximately 408 km above the Earth's surface. The radius of the Earth is $6.37 \\times 10^6$ m and its mass is $5.97 \\times 10^{24}$ kg. Calculate the gravitational field strength at the location of the ISS.",
+      "solution": "1. **Identify the formula:** We need to find the field strength due to a source mass (Earth), so we use $g = G \\frac{M}{r^2}$.\n\n2. **Determine the correct distance, r:** The distance $r$ is from the centre of the Earth. We must add the Earth's radius to the altitude.\nAltitude = $408$ km = $408 \\times 10^3$ m.\nRadius of Earth = $6.37 \\times 10^6$ m.\n$r = (6.37 \\times 10^6) + (408 \\times 10^3) = 6.778 \\times 10^6$ m. ✓ *This step is crucial and often missed.*\n\n3. **Substitute values:**\n$M = 5.97 \\times 10^{24}$ kg\n$G = 6.67 \\times 10^{-11}$ N m² kg⁻²\n$g = (6.67 \\times 10^{-11}) \\frac{(5.97 \\times 10^{24})}{(6.778 \\times 10^6)^2}$ ✓\n\n4. **Calculate the result:**\n$g = \\frac{3.982 \\times 10^{14}}{4.594 \\times 10^{13}}$\n$g \\approx 8.67$ N kg⁻¹ (or m s⁻²) ✓\n\n*This shows that astronauts on the ISS are not 'weightless'; they are in a state of continuous free-fall where gravity is still about 88% as strong as on the surface.*"
+    },
+    {
+      "type": "heading",
+      "content": "Visualising Gravitational Fields"
+    },
+    {
+      "type": "text",
+      "content": "We can visualise gravitational fields using field lines (or lines of force). These are imaginary lines that show the direction and strength of the field. For a single spherical mass, the field lines are radial, pointing inwards towards the centre of the mass. This indicates that the force on any test mass would be directed towards the centre."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Field lines show the direction of the force on a positive test mass. For gravity, this is always inwards.",
+        "Field lines are always perpendicular to the surface of a spherical mass.",
+        "The spacing of the field lines indicates the field strength. Where the lines are closer together, the field is stronger.",
+        "Field lines can never cross each other."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-physics-sl&topic=D.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "PhET Simulation: Gravity and Orbits",
+          "href": "https://phet.colorado.edu/en/simulations/gravity-and-orbits"
+        },
+        {
+          "label": "IB Physics Data Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/dp-course-specific-resources/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "phet",
+    "title": "Gravity and Orbits",
+    "embedUrl": "https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_en.html",
+    "launchUrl": "https://phet.colorado.edu/en/simulations/gravity-and-orbits",
+    "hint": "Explore “Gravity and Orbits” — drag sliders and watch how the model responds in real time.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "PhET Interactive Simulations, University of Colorado Boulder",
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://phet.colorado.edu"
+    }
+  }
+}

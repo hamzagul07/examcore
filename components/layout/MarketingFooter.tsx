@@ -43,7 +43,7 @@ export function MarketingFooter() {
             Past papers marked the way a real examiner marks — against the official Cambridge
             scheme.
           </p>
-          <p className="ec-ms-footer__micro">IB &amp; MORE BOARDS — COMING LATER</p>
+          <p className="ec-ms-footer__micro">CAMBRIDGE &amp; IB — PAST PAPERS, MARKING &amp; FREE COURSES</p>
         </div>
 
         <div className="ec-ms-footer__col">

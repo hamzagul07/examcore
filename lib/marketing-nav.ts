@@ -9,8 +9,8 @@ export type MarketingNavItem = {
 export const MARKETING_NAV_PRIMARY: MarketingNavItem[] = [
   { href: '/mark', label: 'Mark' },
   { href: '/courses', label: 'Courses' },
+  { href: '/ib', label: 'IB' },
   { href: '/subjects', label: 'Subjects' },
-  { href: '/dashboard', label: 'Progress' },
   { href: '/guides', label: 'Guides & blog' },
   { href: '/pricing', label: 'Pricing' },
 ]

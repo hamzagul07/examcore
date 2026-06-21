@@ -287,7 +287,10 @@ a { color: inherit; }
 .footer-col { display: flex; flex-direction: column; gap: 9px; }
 .footer-col a, .footer-col button { font-size: 14.5px; color: var(--text-2); text-decoration: none; background: none; border: none; padding: 0; cursor: pointer; text-align: left; font-family: 'Instrument Sans', sans-serif; }
 .footer-col a:hover, .footer-col button:hover { color: var(--ink); }
-.footer-legal { max-width: 1200px; margin: 0 auto; padding: 0 32px 28px; display: flex; justify-content: space-between; gap: 16px; font-size: 12.5px; color: var(--muted); }
+.footer-legal { max-width: 1200px; margin: 0 auto; padding: 0 32px 28px; display: flex; justify-content: space-between; gap: 16px; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; }
+.footer-legal-links { display: flex; flex-wrap: wrap; gap: 16px; flex-basis: 100%; margin-bottom: 4px; padding-bottom: 14px; border-bottom: 1px solid var(--line, rgba(127,127,127,0.2)); }
+.footer-legal-links a { color: var(--text-2, inherit); font-weight: 600; text-decoration: none; }
+.footer-legal-links a:hover { color: var(--brand, currentColor); }
 .footer-wordmark { display: inline-block; margin-bottom: 12px; }
 .footer-tagline { max-width: 34ch; margin: 0; }
 .footer-coming { margin-top: 16px; }

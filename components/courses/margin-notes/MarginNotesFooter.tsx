@@ -13,12 +13,13 @@ export function MarginNotesFooter() {
           <p className="body-2 footer-tagline">
             Past papers marked the way a real examiner marks — against the official Cambridge scheme.
           </p>
-          <p className="micro footer-coming">IB &amp; MORE BOARDS — COMING LATER</p>
+          <p className="micro footer-coming">CAMBRIDGE &amp; IB — PAST PAPERS, MARKING &amp; FREE COURSES</p>
         </div>
         <div className="footer-col">
           <h4>Product</h4>
           <Link href="/mark">Mark a question</Link>
           <Link href="/courses">Free courses</Link>
+          <Link href="/ib">IB Diploma</Link>
           <Link href="/dashboard/progress">Progress</Link>
           <Link href="/pricing">Pricing</Link>
         </div>
@@ -38,8 +39,14 @@ export function MarginNotesFooter() {
         </div>
       </div>
       <div className="footer-legal">
+        <nav className="footer-legal-links" aria-label="Legal">
+          <Link href="/terms">Terms</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/refunds">Refunds</Link>
+          <Link href="/cookies">Cookies</Link>
+        </nav>
         <span>© 2026 MarkScheme — built by a student, for students.</span>
-        <span>Not endorsed by Cambridge International.</span>
+        <span>Not endorsed by Cambridge International or the IB.</span>
       </div>
     </footer>
   )

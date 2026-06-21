@@ -1,0 +1,186 @@
+{
+  "slug": "2-1-linear-models-and-equations-of-straight-lines",
+  "topicCode": "2.1",
+  "title": "Linear models and equations of straight lines",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces linear models, focusing on the equation of a straight line. It covers calculating and interpreting the gradient and y-intercept, finding the equation of a line from given information, and understanding the relationships between parallel and perpendicular lines. These foundational skills are crucial for modelling real-world scenarios.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and use the gradient-intercept form of a straight line equation, $y = mx + c$.",
+    "Calculate the equation of a straight line given two points or one point and the gradient.",
+    "Interpret the gradient and intercepts of a linear model in a real-world context.",
+    "Apply the conditions for parallel and perpendicular lines to solve geometric and modelling problems."
+  ],
+  "simpleExplanation": {
+    "title": "Decoding Straight Lines",
+    "summary": "Linear models use straight lines to represent a consistent relationship between two variables. Understanding their equations allows us to make predictions and analyse trends in data.",
+    "analogy": "Think of a mobile phone contract. You pay a fixed monthly fee (the y-intercept) even if you use no data. Then, for every gigabyte of data you use, the bill increases by a set amount (the gradient). Your total monthly bill can be perfectly predicted using a linear equation based on your data usage.",
+    "steps": [
+      "Identify what you know: Are you given two points, or a gradient and one point? What form should the final equation be in?",
+      "Calculate the gradient (m): If you have two points $(x_1, y_1)$ and $(x_2, y_2)$, use the formula $m = \\frac{y_2 - y_1}{x_2 - x_1}$.",
+      "Find the y-intercept (c): Substitute the gradient and the coordinates of one known point into $y = mx + c$ and solve for $c$.",
+      "Write and interpret the final equation: State the full equation, e.g., $y = 2x + 5$. In context, explain what the gradient and y-intercept represent."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the gradient of a line?",
+      "back": "The gradient, $m$, measures the steepness of a line. It is the change in the vertical direction for every one-unit change in the horizontal direction."
+    },
+    {
+      "front": "What is the formula for the gradient, $m$, between two points $(x_1, y_1)$ and $(x_2, y_2)$?",
+      "back": "$m = \\frac{\\text{rise}}{\\text{run}} = \\frac{y_2 - y_1}{x_2 - x_1}$"
+    },
+    {
+      "front": "What is the y-intercept of a line?",
+      "back": "The y-intercept, $c$, is the point where the line crosses the y-axis. Its coordinates are $(0, c)$. In modelling, it often represents an initial or fixed value."
+    },
+    {
+      "front": "What is the gradient-intercept form of a linear equation?",
+      "back": "$y = mx + c$, where $m$ is the gradient and $c$ is the y-intercept."
+    },
+    {
+      "front": "What is the general form of a linear equation?",
+      "back": "$ax + by + d = 0$, where $a$, $b$, and $d$ are constants. Note that the IB syllabus sometimes uses $ax+by+c=0$ or other variations."
+    },
+    {
+      "front": "What is the condition for two lines to be parallel?",
+      "back": "Their gradients must be equal. For two lines with gradients $m_1$ and $m_2$, they are parallel if $m_1 = m_2$."
+    },
+    {
+      "front": "What is the condition for two lines to be perpendicular?",
+      "back": "The product of their gradients must be -1. For two lines with gradients $m_1$ and $m_2$, they are perpendicular if $m_1 \\times m_2 = -1$. This means $m_2 = -\\frac{1}{m_1}$."
+    },
+    {
+      "front": "What is the gradient of a horizontal line?",
+      "back": "The gradient is 0. The equation is of the form $y = k$, where $k$ is a constant."
+    },
+    {
+      "front": "What is the gradient of a vertical line?",
+      "back": "The gradient is undefined. The equation is of the form $x = h$, where $h$ is a constant."
+    },
+    {
+      "front": "Exam Trap: How do you find the gradient from the general form $ax + by + d = 0$?",
+      "back": "You must first rearrange the equation into the form $y = mx + c$. Solving for $y$ gives $y = -\\frac{a}{b}x - \\frac{d}{b}$. So, the gradient is $m = -\\frac{a}{b}$. Do not assume the gradient is $a$."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between the forms $y=mx+c$ and $ax+by+d=0$?",
+      "a": "$y=mx+c$ is the gradient-intercept form, which is useful because it directly tells you the gradient ($m$) and y-intercept ($c$). $ax+by+d=0$ is the general form. It's less intuitive but can be useful for certain calculations, and you must be able to convert between the two forms. To find the gradient from the general form, always rearrange it to make $y$ the subject."
+    },
+    {
+      "q": "How do I find the equation of a vertical line?",
+      "a": "A vertical line has an undefined gradient because the 'run' ($x_2 - x_1$) is zero, leading to division by zero. All points on a vertical line have the same x-coordinate. Therefore, its equation is always of the form $x = k$, where $k$ is the constant x-coordinate."
+    },
+    {
+      "q": "In a real-world problem, what does the y-intercept represent if it's negative?",
+      "a": "A negative y-intercept represents a starting debt or a loss at time/quantity zero. For example, if a company's profit is modelled by $P = 50x - 2000$, the y-intercept of -2000 represents the initial setup costs or fixed costs that must be overcome before a profit is made."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "From predicting business profits to modelling climate change, linear relationships are the simplest and one of the most powerful tools in mathematics. This lesson will equip you with the skills to describe these relationships using equations, a fundamental concept for the entire Applications and Interpretation course."
+    },
+    {
+      "type": "heading",
+      "content": "The Anatomy of a Straight Line: Gradient and Intercept"
+    },
+    {
+      "type": "text",
+      "content": "Every straight line can be described by its steepness (gradient) and where it crosses the vertical axis (y-intercept). The most common form of a linear equation brings these two properties together."
+    },
+    {
+      "type": "formula",
+      "content": "Gradient-Intercept Form: $y = mx + c$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**m (Gradient):** Represents the rate of change. For every 1 unit increase in $x$, the value of $y$ increases by $m$. A positive gradient slopes upwards from left to right, while a negative gradient slopes downwards.",
+        "**c (y-intercept):** Represents the value of $y$ when $x=0$. In applied problems, this is often a starting value, a fixed cost, or an initial condition."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Finding the Equation of a Line"
+    },
+    {
+      "type": "text",
+      "content": "To define a unique straight line, you need two pieces of information. This is typically either two points on the line, or one point and the gradient. The first step is always to determine the gradient."
+    },
+    {
+      "type": "formula",
+      "content": "Gradient Formula: $m = \\frac{y_2 - y_1}{x_2 - x_1}$"
+    },
+    {
+      "type": "text",
+      "content": "Once the gradient $m$ is known, you can use the coordinates of a point $(x_1, y_1)$ that lies on the line and substitute these values into $y = mx + c$ to solve for the y-intercept, $c$. An alternative method is to use the point-gradient form $y - y_1 = m(x - x_1)$, which your formula booklet provides."
+    },
+    {
+      "type": "workedExample",
+      "question": "A local gym offers a membership plan. The total cost, $C$ (in USD), is linearly related to the number of months, $n$, of membership. After 3 months, the total cost is $200. After 8 months, the total cost is $425.\n\na) Find the equation for the total cost, $C$, in terms of the number of months, $n$.\nb) Interpret the meaning of the gradient and the C-intercept in this context.\nc) Find the cost of a 2-year membership.",
+      "solution": "a) We have two points $(n_1, C_1) = (3, 200)$ and $(n_2, C_2) = (8, 425)$.\nFirst, find the gradient, which represents the monthly cost.\n$m = \\frac{C_2 - C_1}{n_2 - n_1} = \\frac{425 - 200}{8 - 3}$ (M1 for substitution into gradient formula)\n$m = \\frac{225}{5} = 45$\nSo the monthly cost is $45. (A1)$\nNow use the form $C = mn + k$ (using $k$ for the intercept to avoid confusion with cost $C$).\n$C = 45n + k$\nSubstitute one of the points, e.g., (3, 200), to find the intercept $k$.\n$200 = 45(3) + k$ (M1 for substitution)\n$200 = 135 + k$\n$k = 200 - 135 = 65$\nThe equation is $C = 45n + 65$. (A1)\n\nb) The gradient ($m=45$) is the monthly fee for the gym, i.e., the cost increases by $45 USD each month. (R1)$\nThe C-intercept ($k=65$) is the initial sign-up or administration fee, the cost at month zero. (R1)\n\nc) A 2-year membership is $n = 2 \\times 12 = 24$ months.\n$C = 45(24) + 65$ (M1 for correct substitution)\n$C = 1080 + 65 = 1145$\nThe cost for 2 years is $1145 USD. (A1)$"
+    },
+    {
+      "type": "heading",
+      "content": "Parallel and Perpendicular Lines"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between two lines can be determined entirely by their gradients. Parallel lines have the same steepness, while perpendicular lines meet at a right angle (90°), and their gradients have a special relationship."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Parallel Lines:** Two lines are parallel if and only if their gradients are equal. $m_1 = m_2$.",
+        "**Perpendicular Lines:** Two lines are perpendicular if and only if the product of their gradients is -1. $m_1 \\times m_2 = -1$. This means the gradient of one is the negative reciprocal of the other, e.g., if $m_1 = 2$, then $m_2 = -\\frac{1}{2}$."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "A common exam question asks for the equation of a perpendicular bisector of a line segment. This requires three steps: 1. Find the midpoint of the segment. 2. Find the gradient of the segment. 3. Calculate the perpendicular gradient. Then use the midpoint and perpendicular gradient to find the new line's equation."
+    },
+    {
+      "type": "workedExample",
+      "question": "Line $L_1$ has the equation $3x + 2y - 6 = 0$. Line $L_2$ is perpendicular to $L_1$ and passes through the point P(6, -1).\n\na) Find the gradient of line $L_1$.\nb) Find the equation of line $L_2$, giving your answer in the form $y=mx+c$.",
+      "solution": "a) First, rearrange the equation of $L_1$ into the form $y=mx+c$ to find its gradient.\n$3x + 2y - 6 = 0$\n$2y = -3x + 6$ (M1 for attempt to isolate y)\n$y = -\\frac{3}{2}x + 3$\nThe gradient of $L_1$ is $m_1 = -\\frac{3}{2}$. (A1)\n\nb) Line $L_2$ is perpendicular to $L_1$. Let the gradient of $L_2$ be $m_2$.\nThe condition for perpendicular lines is $m_1 \\times m_2 = -1$.\n$-\\frac{3}{2} \\times m_2 = -1$ (M1 for using perpendicular condition)\n$m_2 = (-1) \\times (-\\frac{2}{3}) = \\frac{2}{3}$. (A1)\nNow we have the gradient of $L_2$ ($m_2 = \\frac{2}{3}$) and a point it passes through, P(6, -1).\nUsing $y = mx + c$:\n$-1 = \\frac{2}{3}(6) + c$ (M1 for substituting point and gradient)\n$-1 = 4 + c$\n$c = -5$\nTherefore, the equation of $L_2$ is $y = \\frac{2}{3}x - 5$. (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Equation of a Line",
+          "href": "https://www.geogebra.org/m/s9b35a2p"
+        },
+        {
+          "label": "IB AI HL Formula Booklet",
+          "href": "https://www.ibdocuments.com/IB-Formula-Booklets.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Equation of a Line",
+    "embedUrl": "https://www.geogebra.org/classic?material=s9b35a2p",
+    "launchUrl": "https://www.geogebra.org/classic?material=s9b35a2p",
+    "hint": "Use “Equation of a Line” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

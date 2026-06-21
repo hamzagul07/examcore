@@ -1,0 +1,197 @@
+{
+  "slug": "5-7-kinematics-and-related-rates-of-change",
+  "topicCode": "5.7",
+  "title": "Kinematics and related rates of change",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores kinematics, the mathematical study of motion. It connects the concepts of displacement, velocity, and acceleration using calculus. You will learn to apply differentiation to find rates of change and integration to determine total change, as well as solving problems involving related rates.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and apply the relationships between displacement, velocity, and acceleration.",
+    "Use differentiation to solve problems in kinematics and related rates.",
+    "Use integration with initial conditions to solve problems in kinematics.",
+    "Distinguish between displacement/distance and velocity/speed in kinematic problems."
+  ],
+  "simpleExplanation": {
+    "title": "Calculus in Motion",
+    "summary": "Kinematics uses the tools of calculus to precisely describe how objects move. By understanding derivatives and integrals, we can switch between describing an object's position, its speed, and its acceleration.",
+    "analogy": "Imagine you're driving a car. Your position on a long, straight road is your displacement. The reading on your speedometer is your velocity (speed in a specific direction). How hard you press the accelerator or brake determines your acceleration. Calculus provides the mathematical engine to connect these three ideas: pressing the accelerator (acceleration) changes your speed (velocity), which in turn changes your position (displacement) over time.",
+    "steps": [
+      "First, identify the key variables in the problem, such as displacement ($s$), velocity ($v$), acceleration ($a$), and time ($t$). Note down any given initial conditions.",
+      "To find velocity from displacement, or acceleration from velocity, differentiate the relevant function with respect to time ($v = \\frac{ds}{dt}$, $a = \\frac{dv}{dt}$).",
+      "To find velocity from acceleration, or displacement from velocity, integrate the relevant function with respect to time ($v = \\int a(t) \\, dt$, $s = \\int v(t) \\, dt$).",
+      "Always include the constant of integration, $C$, after integrating. Use the given initial conditions (e.g., 'starts from rest' or 'initial position is 5m') to solve for $C$ and find the specific solution."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is Kinematics?",
+      "back": "The branch of mechanics concerned with the motion of objects without reference to the forces which cause the motion."
+    },
+    {
+      "front": "Define Displacement ($s$).",
+      "back": "The position of an object relative to a fixed origin. It is a vector quantity, so it can be positive or negative."
+    },
+    {
+      "front": "Define Velocity ($v$).",
+      "back": "The rate of change of displacement with respect to time. It is a vector quantity, measured in units like m/s."
+    },
+    {
+      "front": "Define Acceleration ($a$).",
+      "back": "The rate of change of velocity with respect to time. It is a vector quantity, measured in units like m/s²."
+    },
+    {
+      "front": "How do you find velocity from a displacement function $s(t)$?",
+      "back": "Differentiate with respect to time: $v(t) = s'(t) = \\frac{ds}{dt}$."
+    },
+    {
+      "front": "How do you find acceleration from a velocity function $v(t)$?",
+      "back": "Differentiate with respect to time: $a(t) = v'(t) = \\frac{dv}{dt}$."
+    },
+    {
+      "front": "How do you find displacement from a velocity function $v(t)$?",
+      "back": "Integrate with respect to time: $s(t) = \\int v(t) \\, dt$. Don't forget the constant of integration, $C$."
+    },
+    {
+      "front": "How do you find velocity from an acceleration function $a(t)$?",
+      "back": "Integrate with respect to time: $v(t) = \\int a(t) \\, dt$. Don't forget the constant of integration, $C$."
+    },
+    {
+      "front": "What is the difference between speed and velocity?",
+      "back": "Velocity is a vector (has direction), while speed is a scalar (magnitude only). Speed is the magnitude of velocity, speed = $|v|$. If velocity is -5 m/s, the speed is 5 m/s."
+    },
+    {
+      "front": "What is the difference between total distance and displacement?",
+      "back": "Displacement is the net change in position from start to finish. Total distance is the sum of all movements, regardless of direction. To find total distance, you must integrate the speed, $|v(t)|$."
+    },
+    {
+      "front": "What does 'at rest' mean in a kinematics problem?",
+      "back": "The object's velocity is zero. $v(t) = 0$."
+    },
+    {
+      "front": "What does 'initially' mean in a kinematics problem?",
+      "back": "This refers to the state at time $t=0$."
+    },
+    {
+      "front": "What is the core idea of 'Related Rates of Change'?",
+      "back": "Using the chain rule (e.g., $\\frac{dy}{dt} = \\frac{dy}{dx} \\times \\frac{dx}{dt}$) to find the rate of change of one quantity by relating it to other quantities whose rates of change are known."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between speed and velocity again?",
+      "a": "Velocity is a vector, meaning it has both magnitude and direction. A velocity of -10 m/s means moving at 10 m/s in the negative direction. Speed is the scalar magnitude of velocity, so it's always non-negative. In this case, the speed would be $|-10| = 10$ m/s."
+    },
+    {
+      "q": "And what about displacement versus total distance?",
+      "a": "Displacement is the straight-line distance and direction from the starting point to the ending point. If you walk 5m east and then 5m west, your displacement is 0m, but the total distance you travelled is 10m. In calculus terms, displacement is $\\int v(t) dt$, while total distance is $\\int |v(t)| dt$."
+    },
+    {
+      "q": "I'm confused about the constant of integration, C. How do I always find it?",
+      "a": "The constant $C$ arises from indefinite integration. To find it, you need a piece of information that 'pins down' the function. This is usually an 'initial condition' given in the problem, like 'The particle starts from rest' (meaning $v=0$ at $t=0$) or 'The initial displacement is 5 metres' (meaning $s=5$ at $t=0$). You substitute these values into your integrated equation and solve for $C$."
+    },
+    {
+      "q": "When can I use my GDC in these questions?",
+      "a": "You can use your GDC extensively, but you must show your method. For differentiation and integration, write down the derivative or integral you are about to calculate before using the GDC's numerical functions (nDeriv/fnInt). For solving equations like $v(t)=0$, write the equation first, then use the GDC's solver and state that you did. Your GDC is a tool to speed up calculation, not to skip showing your mathematical understanding."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of kinematics, where calculus meets the real world of motion. This topic is fundamental in physics and engineering, allowing us to model everything from a thrown ball to a planet's orbit. We will see how the simple acts of differentiating and integrating provide a powerful framework for describing and predicting movement."
+    },
+    {
+      "type": "heading",
+      "content": "The Language of Motion: Displacement, Velocity, and Acceleration"
+    },
+    {
+      "type": "text",
+      "content": "To analyse motion, we need a precise vocabulary. We consider motion along a straight line. \n\n*   **Displacement ($s$)**: This is the object's position relative to a fixed point, called the origin. It's measured in units of length (e.g., metres). A positive displacement might mean 'right of the origin', while a negative displacement means 'left of the origin'.\n*   **Velocity ($v$)**: This is how fast the displacement is changing. It's the rate of change of displacement with respect to time. It's measured in units like metres per second (m/s). A positive velocity means moving away from the origin in the positive direction, while a negative velocity means moving towards or past the origin in the negative direction.\n*   **Acceleration ($a$)**: This is how fast the velocity is changing. It's the rate of change of velocity with respect to time, measured in units like metres per second squared (m/s²). Positive acceleration means the velocity is increasing; negative acceleration (or deceleration) means the velocity is decreasing."
+    },
+    {
+      "type": "heading",
+      "content": "From Position to Acceleration: Differentiation"
+    },
+    {
+      "type": "text",
+      "content": "Since velocity is the rate of change of displacement, and acceleration is the rate of change of velocity, we can use differentiation to find one from the other. This is the core link between these kinematic quantities."
+    },
+    {
+      "type": "formula",
+      "content": "Velocity: $v(t) = \\frac{ds}{dt} = s'(t)$ \n\nAcceleration: $a(t) = \\frac{dv}{dt} = v'(t) = \\frac{d^2s}{dt^2} = s''(t)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle moves along a straight line. Its displacement, $s$ metres from a point O, at time $t$ seconds ($t \\ge 0$) is given by $s(t) = 2t^3 - 15t^2 + 24t + 10$.\n\na) Find the velocity of the particle at time $t$.\nb) Find the value of $t$ when the particle is at rest.\nc) Find the acceleration of the particle at the times when it is at rest.",
+      "solution": "a) Velocity is the derivative of displacement.\n$v(t) = s'(t) = \\frac{d}{dt}(2t^3 - 15t^2 + 24t + 10)$ \n$v(t) = 6t^2 - 30t + 24$ (m/s)  (A2)\n\n_Award (A2) for all terms correct, (A1) for two terms correct._\n\nb) The particle is at rest when its velocity is zero, so $v(t) = 0$.\n$6t^2 - 30t + 24 = 0$  (M1)\n_This is a quadratic equation. We can solve it using the GDC's polynomial solver or by factoring._\nDividing by 6: $t^2 - 5t + 4 = 0$\nFactoring: $(t-1)(t-4) = 0$  (M1)\nSo, $t=1$ second and $t=4$ seconds.  (A1)\n\n_Award (M1) for setting their v(t) to 0, (M1) for attempting to solve the quadratic, (A1) for both correct answers._\n\nc) First, find the acceleration function by differentiating velocity.\n$a(t) = v'(t) = \\frac{d}{dt}(6t^2 - 30t + 24)$\n$a(t) = 12t - 30$ (m/s²)  (A1)\n\nNow, substitute the times when the particle is at rest ($t=1$ and $t=4$).\nAt $t=1$: $a(1) = 12(1) - 30 = -18$ m/s²  (A1)\nAt $t=4$: $a(4) = 12(4) - 30 = 48 - 30 = 18$ m/s²  (A1)\n\n_Award (A1) for the correct acceleration function, and (A1) for each correct acceleration value._"
+    },
+    {
+      "type": "heading",
+      "content": "From Acceleration to Position: Integration"
+    },
+    {
+      "type": "text",
+      "content": "Just as we can differentiate to move from displacement to velocity to acceleration, we can integrate to go in the opposite direction. When we integrate, we must always include a constant of integration, $C$. This constant is determined by the 'initial conditions' of the problem, such as the object's starting position or starting velocity."
+    },
+    {
+      "type": "formula",
+      "content": "Velocity from acceleration: $v(t) = \\int a(t) \\, dt + C_1$\n\nDisplacement from velocity: $s(t) = \\int v(t) \\, dt + C_2$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The constant of integration, $C$, is essential and represents an initial value.",
+        "An object 'starting from rest' means its initial velocity is zero ($v=0$ at $t=0$).",
+        "An object 'starting from the origin' means its initial displacement is zero ($s=0$ at $t=0$).",
+        "Always read the question carefully to find the initial conditions needed to solve for $C$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle P starts from a point O and moves in a straight line. The acceleration of P at time $t$ seconds ($t \\ge 0$) is given by $a(t) = 12 - 4t$ m/s². The initial velocity of P is 8 m/s.\n\na) Find an expression for the velocity of P at time $t$.\nb) Find the displacement of P from O after 3 seconds.",
+      "solution": "a) To find velocity, we integrate acceleration.\n$v(t) = \\int a(t) \\, dt = \\int (12 - 4t) \\, dt$  (M1)\n$v(t) = 12t - \\frac{4t^2}{2} + C = 12t - 2t^2 + C$  (A1)\n\nWe are given that the initial velocity is 8 m/s. This means $v=8$ when $t=0$.\n$v(0) = 8 = 12(0) - 2(0)^2 + C$  (M1)\n$C = 8$\n\nSo, the velocity expression is $v(t) = -2t^2 + 12t + 8$ m/s.  (A1)\n\n_Award (M1) for attempting to integrate a(t), (A1) for the correct integration, (M1) for using initial conditions, (A1) for the final correct expression._\n\nb) To find displacement, we integrate velocity. The particle starts from O, so its initial displacement is 0.\n$s(t) = \\int v(t) \\, dt = \\int (-2t^2 + 12t + 8) \\, dt$  (M1)\n$s(t) = -\\frac{2t^3}{3} + \\frac{12t^2}{2} + 8t + K$ (Note: use a different letter, K, for the new constant)\n$s(t) = -\\frac{2}{3}t^3 + 6t^2 + 8t + K$  (A1)\n\nSince the particle starts from O, $s=0$ when $t=0$.\n$s(0) = 0 = -\\frac{2}{3}(0)^3 + 6(0)^2 + 8(0) + K implies K=0$.\nSo, $s(t) = -\\frac{2}{3}t^3 + 6t^2 + 8t$.\n\nWe need the displacement after 3 seconds, so we substitute $t=3$.\n$s(3) = -\\frac{2}{3}(3)^3 + 6(3)^2 + 8(3)$  (M1)\n$s(3) = -\\frac{2}{3}(27) + 6(9) + 24$\n$s(3) = -18 + 54 + 24 = 60$\n\nThe displacement of P from O after 3 seconds is 60 metres.  (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Related Rates of Change"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, two or more quantities that change over time are linked by an equation. For example, the volume, radius, and height of a cylinder. If we know the rate at which one quantity is changing (e.g., the radius is increasing), we can find the rate at which another is changing (e.g., the volume is increasing). The key is to use the chain rule with respect to time, $t$."
+    },
+    {
+      "type": "formula",
+      "content": "The Chain Rule for Related Rates: $\\frac{dy}{dt} = \\frac{dy}{dx} \\times \\frac{dx}{dt}$"
+    },
+    {
+      "type": "workedExample",
+      "question": "Air is being pumped into a spherical balloon at a rate of 160 cm³/s. Find the rate at which the radius of the balloon is increasing when its radius is 5 cm. The volume of a sphere is given by $V = \\frac{4}{3}\\pi r^3$.",
+      "solution": "1. **Identify knowns and unknowns.**\nWe are given the rate of change of volume: $\\frac{dV}{dt} = 160$ cm³/s.\nWe are given the radius at a specific instant: $r = 5$ cm.\nWe want to find the rate of change of the radius: $\\frac{dr}{dt}$. (M1)\n\n2. **Find the equation linking the variables.**\nThe equation is given: $V = \\frac{4}{3}\\pi r^3$.\n\n3. **Differentiate the equation with respect to time, $t$.**\nWe need to differentiate both sides of $V = \\frac{4}{3}\\pi r^3$ with respect to $t$. We use the chain rule for the right side, since $r$ is a function of $t$.\n$\\frac{dV}{dt} = \\frac{d}{dt} \\left(\\frac{4}{3}\\pi r^3\\right)$\n$\\frac{dV}{dt} = \\frac{d}{dr} \\left(\\frac{4}{3}\\pi r^3\\right) \\times \\frac{dr}{dt}$  (M1)\n$\\frac{dV}{dt} = \\left(3 \\times \\frac{4}{3}\\pi r^2\\right) \\times \\frac{dr}{dt}$\n$\\frac{dV}{dt} = 4\\pi r^2 \\frac{dr}{dt}$  (A1)\n\n4. **Substitute known values and solve for the unknown.**\nSubstitute $\\frac{dV}{dt} = 160$ and $r=5$ into the differentiated equation.\n$160 = 4\\pi (5)^2 \\frac{dr}{dt}$  (M1)\n$160 = 4\\pi (25) \\frac{dr}{dt}$\n$160 = 100\\pi \\frac{dr}{dt}$\n\nNow, rearrange to solve for $\\frac{dr}{dt}$.\n$\\frac{dr}{dt} = \\frac{160}{100\\pi} = \\frac{1.6}{\\pi}$  (A1)\n\nCalculating the value:\n$\\frac{dr}{dt} \\approx 0.50929...$\n\nThe radius is increasing at a rate of approximately 0.509 cm/s (to 3 s.f.).  (A1)"
+    },
+    {
+      "type": "examTip",
+      "content": "In kinematics questions, a common trap is the difference between 'displacement' and 'total distance travelled'. Displacement is $\\int_{t_1}^{t_2} v(t) \\, dt$. Total distance travelled is $\\int_{t_1}^{t_2} |v(t)| \\, dt$. On your GDC, this means using the absolute value of the velocity function. Always sketch the velocity graph to see if it crosses the t-axis (goes from positive to negative or vice-versa) in the interval you are considering."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Kinematics & Related Rates",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=5.7"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB AI HL Questionbank",
+          "href": "https://www.ibtaskmaker.com/home.php"
+        },
+        {
+          "label": "Revision Village - Kinematics",
+          "href": "https://www.revisionvillage.com/ib-math-ai-hl/calculus/kinematics/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

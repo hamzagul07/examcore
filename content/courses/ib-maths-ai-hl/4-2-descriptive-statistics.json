@@ -1,0 +1,167 @@
+{
+  "slug": "4-2-descriptive-statistics",
+  "topicCode": "4.2",
+  "title": "Descriptive statistics",
+  "paper": "P2",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores descriptive statistics, covering the calculation and interpretation of measures of central tendency and dispersion. It details how to use a GDC to analyse both raw and grouped data, and how to represent data visually using box plots and cumulative frequency graphs.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Calculate and interpret measures of central tendency (mean, median, mode) for raw and grouped data.",
+    "Calculate and interpret measures of dispersion (range, IQR, variance, standard deviation).",
+    "Construct and interpret box plots and cumulative frequency graphs (ogives).",
+    "Analyse the effect of constant changes on statistical measures."
+  ],
+  "simpleExplanation": {
+    "title": "Telling Stories with Data",
+    "summary": "Descriptive statistics are tools that help us summarise and understand the main features of a dataset. They provide a simple snapshot of what the data looks like without showing every single value.",
+    "analogy": "Imagine you're describing a football team to a friend. Instead of listing every player's height, you might say the *average* height is 185 cm (a measure of centre) and that most players are between 180 cm and 190 cm tall (a measure of spread). This gives a clear picture without overwhelming detail, just like descriptive statistics do for a dataset.",
+    "steps": [
+      "Input Data: Enter your raw or grouped data into your GDC's statistical lists. For grouped data, use the mid-interval values.",
+      "Calculate Statistics: Use the '1-Var Stats' or equivalent function to find key values like the mean, standard deviation, and the five-number summary (min, Q1, median, Q3, max).",
+      "Visualise Data: Construct a box plot using the five-number summary, or a cumulative frequency graph to visualise the data's distribution, spread, and key percentiles.",
+      "Interpret Results: Use the calculated statistics and graphs to describe the data's centre, spread, and shape, and to answer the specific question asked in context."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the 'mean' of a dataset?",
+      "back": "The mean is the sum of all data values divided by the number of data values. It is a measure of central tendency but is sensitive to outliers. Formula: $\\bar{x} = \\frac{\\sum x_i}{n}$."
+    },
+    {
+      "front": "What is the 'median' of a dataset?",
+      "back": "The median is the middle value of an ordered dataset. If there is an even number of values, it is the average of the two middle values. It is a resistant measure, not affected by outliers."
+    },
+    {
+      "front": "What is the 'interquartile range' (IQR)?",
+      "back": "The IQR is a measure of statistical dispersion, representing the range of the middle 50% of the data. It is calculated as the difference between the third quartile (Q3) and the first quartile (Q1). Formula: $IQR = Q_3 - Q_1$."
+    },
+    {
+      "front": "What is 'standard deviation'?",
+      "back": "Standard deviation measures the average amount of variation or dispersion of a set of data values from the mean. A low standard deviation indicates that the values tend to be close to the mean, while a high standard deviation indicates that the values are spread out over a wider range."
+    },
+    {
+      "front": "What is 'variance'?",
+      "back": "Variance is the square of the standard deviation. It also measures how far a set of numbers is spread out from their average value. Standard deviation is often preferred for interpretation as it is in the same units as the original data."
+    },
+    {
+      "front": "How do you identify an outlier using the IQR rule?",
+      "back": "A data point is considered an outlier if it is less than $Q_1 - 1.5 \\times IQR$ or greater than $Q_3 + 1.5 \\times IQR$."
+    },
+    {
+      "front": "What is a common trap when finding the mean of grouped data?",
+      "back": "Forgetting to use the mid-interval value for each class when calculating the estimated mean. You must multiply each mid-interval value by its frequency, sum these products, and divide by the total frequency."
+    },
+    {
+      "front": "What is a five-number summary?",
+      "back": "A set of descriptive statistics that provides information about a dataset. It consists of the five most important sample percentiles: the minimum (min), the first quartile (Q1), the median (Q2), the third quartile (Q3), and the maximum (max)."
+    },
+    {
+      "front": "If you add a constant 'k' to every value in a dataset, how do the mean and standard deviation change?",
+      "back": "The mean will increase by 'k'. The standard deviation will remain unchanged, as the spread of the data has not changed."
+    },
+    {
+      "front": "If you multiply every value in a dataset by a constant 'k' (where k > 0), how do the mean and standard deviation change?",
+      "back": "The mean will be multiplied by 'k'. The standard deviation will also be multiplied by 'k'."
+    },
+    {
+      "front": "What is a cumulative frequency graph (ogive)?",
+      "back": "A graph that shows the cumulative frequency for each upper class boundary. It is useful for estimating the median, quartiles, and other percentiles of grouped data."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between population and sample standard deviation?",
+      "a": "Population standard deviation ($\\sigma$) is calculated using data from an entire population, whereas sample standard deviation ($s_n$ or $s_{n-1}$) is calculated from a sample of the population. Your GDC will calculate both. In IB exams, you are almost always dealing with a sample. The AI syllabus formula booklet uses $\\sigma_x$ for what is technically the sample standard deviation. Always follow the context of the question; if it refers to a 'sample', use the sample statistics."
+    },
+    {
+      "q": "When should I use the median instead of the mean?",
+      "a": "Use the median when your dataset is skewed or contains significant outliers. The mean is pulled by extreme values, which can make it a misleading measure of central tendency in these cases. The median, being the middle value, is 'resistant' to these effects and provides a better representation of the typical value."
+    },
+    {
+      "q": "How do I find the median from a cumulative frequency graph?",
+      "a": "First, calculate 50% of the total frequency (n/2). Find this value on the vertical (cumulative frequency) axis. From that point, draw a horizontal line across to the curve. Then, draw a vertical line down from the point of intersection to the horizontal (data) axis. The value you read on the horizontal axis is the estimated median."
+    },
+    {
+      "q": "My GDC gives me $\\sigma_x$ and $s_x$. Which one should I use for standard deviation?",
+      "a": "This is a common point of confusion. For the IB AI course, when a question asks for the standard deviation of a dataset presented as a sample, you should use the value your calculator gives for $\\sigma_x$. This is the value calculated using 'n' as the denominator. While statisticians often prefer $s_x$ (using 'n-1' in the denominator) for estimating the population standard deviation from a sample, the IB curriculum and markschemes for AI are consistent in using the $\\sigma_x$ value. Always check the formula booklet and past paper markschemes for the most current convention."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to Descriptive Statistics. In this topic, we learn the fundamental techniques for summarising and describing the key features of a dataset. This is the foundation of data analysis, allowing us to condense large amounts of information into a few meaningful numbers and graphs. For Paper 2, your Graphical Display Calculator (GDC) is your most powerful tool, and mastering its statistical functions is crucial for success."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Central Tendency"
+    },
+    {
+      "type": "text",
+      "content": "Measures of central tendency provide a single value that attempts to describe the 'centre' of a dataset. The three main measures are the mean, median, and mode. The **mean** is the arithmetic average. The **median** is the middle value when the data is sorted, making it robust against extreme values (outliers). The **mode** is the most frequently occurring value, which is most useful for categorical data."
+    },
+    {
+      "type": "formula",
+      "content": "Mean of a sample: $\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}$. \n\nEstimated mean for grouped data: $\\bar{x} \\approx \\frac{\\sum f_i x_i}{\\sum f_i}$, where $x_i$ is the mid-interval value of the $i$-th class and $f_i$ is its frequency."
+    },
+    {
+      "type": "heading",
+      "content": "Measures of Dispersion"
+    },
+    {
+      "type": "text",
+      "content": "While central tendency tells us about the centre of the data, measures of dispersion describe how 'spread out' the data is. The simplest measure is the **range** (maximum - minimum), but it's highly affected by outliers. The **interquartile range (IQR)** measures the spread of the middle 50% of the data and is much more resistant to outliers. The **standard deviation** is the most common measure of spread, indicating the typical distance of data points from the mean. Its square is the **variance**."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Resistant Measures:** Median and IQR are not significantly affected by outliers.",
+        "**Sensitive Measures:** Mean, Range, and Standard Deviation are all influenced by outliers.",
+        "Choose your measures wisely: use the mean and standard deviation for symmetric data without outliers, and the median and IQR for skewed data or data with outliers."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The reaction times (in milliseconds, ms) of 12 participants in an experiment were recorded as follows:\n\n254, 261, 249, 275, 255, 281, 244, 259, 263, 251, 298, 257.\n\n(a) Using your GDC, find the mean and standard deviation of these reaction times. [2]\n(b) Find the five-number summary for this data. [2]\n(c) Calculate the interquartile range (IQR). [1]\n(d) Determine if the measurement of 298 ms is an outlier. Justify your answer. [3]",
+      "solution": "(a) Enter the data into a list on your GDC (e.g., L1). Use the 1-Variable Statistics function.\nMean ($\\bar{x}$) = 262.25 ms (A1)\nStandard Deviation ($\\sigma_x$) = 14.8 ms (3 s.f.) (A1)\n\n(b) From the GDC's 1-Var Stats output:\nMin = 244\nQ1 = 252.5\nMedian = 258\nQ3 = 269\nMax = 298 (A2 for all 5 correct, A1 for 3 or 4 correct)\n\n(c) $IQR = Q_3 - Q_1$\n$IQR = 269 - 252.5 = 16.5$ ms (A1)\n\n(d) To check for outliers, we calculate the upper boundary.\nUpper boundary = $Q_3 + 1.5 \\times IQR$ (M1 for formula)\nUpper boundary = $269 + 1.5 \\times 16.5 = 269 + 24.75 = 293.75$ (A1 for correct boundary)\nSince $298 > 293.75$, the value of 298 ms is an outlier. (R1 for comparison and conclusion)"
+    },
+    {
+      "type": "heading",
+      "content": "Grouped Data and Visualisation"
+    },
+    {
+      "type": "text",
+      "content": "Often, data is presented in a frequency table, which groups values into classes. We can estimate the mean and standard deviation by using the midpoint of each class interval. To visualise data, we use **box plots** (or box-and-whisker plots), which are drawn using the five-number summary and give a quick visual of the data's centre and spread. **Cumulative frequency graphs** (ogives) are plotted using the upper boundary of each class against the cumulative frequency. They are excellent for estimating the median, quartiles, and other percentiles."
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, almost all descriptive statistics questions should be solved using your GDC. Do not waste time calculating the mean or standard deviation by hand. Show minimal working, such as the formula for IQR or an outlier boundary, but state the final values directly from your calculator screen to the required accuracy. Always write down the unrounded calculator value before rounding."
+    },
+    {
+      "type": "workedExample",
+      "question": "The table below shows the length, in cm, of 80 fish caught in a lake.\n\n| Length, $L$ (cm) | Frequency |\n|---|---|\n| $10 < L \\le 20$ | 8 |\n| $20 < L \\le 30$ | 22 |\n| $30 < L \\le 40$ | 35 |\n| $40 < L \\le 50$ | 11 |\n| $50 < L \\le 60$ | 4 |\n\n(a) Write down the modal class. [1]\n(b) Estimate the mean and standard deviation of the lengths of the fish. [3]\n(c) Complete the following cumulative frequency table.\n\n| Length, $L$ (cm) | Cumulative Frequency |\n|---|---|\n| $L \\le 20$ | 8 |\n| $L \\le 30$ | ... |\n| $L \\le 40$ | ... |\n| $L \\le 50$ | ... |\n| $L \\le 60$ | 80 |\n\n(d) Using the cumulative frequency, find an estimate for the median length. [2]",
+      "solution": "(a) The class with the highest frequency is $30 < L \\le 40$. (A1)\n\n(b) Enter the mid-interval values (15, 25, 35, 45, 55) into L1 and the frequencies (8, 22, 35, 11, 4) into L2 on your GDC. Use 1-Var Stats with L1 as List and L2 as FreqList. (M1 for attempt)\nEstimated mean ($\\bar{x}$) = 32.25 cm (A1)\nStandard deviation ($\\sigma_x$) = 9.84 cm (3 s.f.) (A1)\n\n(c)\n| Length, $L$ (cm) | Cumulative Frequency |\n|---|---|\n| $L \\le 20$ | 8 |\n| $L \\le 30$ | 30 (8+22) |\n| $L \\le 40$ | 65 (30+35) |\n| $L \\le 50$ | 76 (65+11) |\n| $L \\le 60$ | 80 (76+4) |\n(A1 for all correct values)\n\n(d) The median is the value of the $(n/2)$-th fish, which is the $80/2 = 40$th fish. (M1 for using 40)\nLooking at the cumulative frequency table, the 40th fish falls within the $30 < L \\le 40$ class. We can use linear interpolation or read from a CFG. For an estimate from the table, we see it's past the 30th fish (at 30cm) and into the next group of 35 fish spanning 10cm. A more precise method like linear interpolation (not always required but good practice) is: $30 + \\frac{40-30}{35} \\times 10 \\approx 32.9$ cm. An answer found by drawing and reading from a correct CFG would also be accepted. Let's assume the question implies using the GDC or a CFG. The GDC cannot find the median from grouped data directly, so a CFG is the intended method. A reasonable estimate from the table structure is sufficient if a graph is not requested. The 40th value is 10/35 of the way into the interval [30, 40]. Median $\\approx 30 + (10/35)*(40-30) = 32.857... \\approx 32.9$ cm. (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Descriptive Statistics",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=4.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Summarizing quantitative data",
+          "href": "https://www.khanacademy.org/math/ap-statistics/summarizing-quantitative-data-ap"
+        },
+        {
+          "label": "Revision Village: Descriptive Statistics",
+          "href": "https://www.revisionvillage.com/ib-maths/applications-and-interpretation-hl/statistics-and-probability/descriptive-statistics/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

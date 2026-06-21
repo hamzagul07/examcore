@@ -1,0 +1,175 @@
+{
+  "slug": "5-1-introduction-to-differentiation-and-rates-of-change",
+  "topicCode": "5.1",
+  "title": "Introduction to differentiation and rates of change",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concept of differentiation as the instantaneous rate of change. It explores the connection between the gradient of a tangent, the limit of secant gradients, and the formal definition of the derivative from first principles, while also highlighting the practical application of using a GDC to find derivatives.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and interpret the concept of a rate of change in various contexts.",
+    "Distinguish between average rate of change (gradient of a secant) and instantaneous rate of change (gradient of a tangent).",
+    "Recognise the derivative as the gradient of the tangent line and as a limit.",
+    "Use a GDC to calculate the numerical value of a derivative at a specific point."
+  ],
+  "simpleExplanation": {
+    "title": "From Average Speed to Instant Speed",
+    "summary": "Differentiation is the mathematical tool for finding the exact rate of change at a single moment. It's like looking at your car's speedometer to see your speed right now, rather than calculating your average speed over a whole trip.",
+    "analogy": "Imagine you're on a long car journey. If you travel 120 km in 2 hours, your average speed is 60 km/h. This is the 'average rate of change'. But during that trip, you sped up, slowed down, and stopped at lights. The number on your speedometer at any single moment, say 85 km/h, is your 'instantaneous rate of change'. Differentiation is the process of finding that instantaneous value.",
+    "steps": [
+      "Start with a function's graph, which shows how one quantity changes with another (e.g., distance over time).",
+      "To find the average rate of change between two points, draw a straight line (a secant) connecting them and calculate its gradient.",
+      "To find the instantaneous rate of change at a single point, imagine a second point on the curve moving closer and closer to your first point.",
+      "As the two points merge, the secant line becomes a tangent line touching the curve at that single point. The gradient of this tangent is the derivative."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a rate of change?",
+      "back": "A measure of how one quantity changes in relation to another quantity. Graphically, it is represented by the gradient of a line."
+    },
+    {
+      "front": "What is a secant line?",
+      "back": "A line that passes through two distinct points on a curve. Its gradient represents the average rate of change between those two points."
+    },
+    {
+      "front": "What is a tangent line?",
+      "back": "A line that 'just touches' a curve at a single point, matching the curve's gradient at that point. Its gradient represents the instantaneous rate of change."
+    },
+    {
+      "front": "What is the derivative of a function $f(x)$ at a point $x=a$?",
+      "back": "The instantaneous rate of change of the function at that point. It is the gradient of the tangent to the curve $y=f(x)$ at $x=a$."
+    },
+    {
+      "front": "What is the 'limit' concept in differentiation?",
+      "back": "It describes the value that a function or sequence 'approaches' as the input approaches some value. For derivatives, we find the limit of the secant gradient as the distance between the two points approaches zero."
+    },
+    {
+      "front": "What is the notation for the derivative of $y = f(x)$?",
+      "back": "Leibniz's notation: $\\frac{dy}{dx}$. Lagrange's notation: $f'(x)$. Both represent the derivative function."
+    },
+    {
+      "front": "What does 'differentiation from first principles' mean?",
+      "back": "Calculating the derivative by using the formal limit definition: $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$. This is not typically required for calculation in AI HL but is the theoretical foundation."
+    },
+    {
+      "front": "What is the difference between average and instantaneous rate of change?",
+      "back": "Average rate of change is over an interval (gradient of a secant), while instantaneous rate of change is at a single point (gradient of a tangent)."
+    },
+    {
+      "front": "If the position of an object is given by $s(t)$, what does its derivative $s'(t)$ represent?",
+      "back": "The instantaneous velocity of the object at time $t$."
+    },
+    {
+      "front": "Common Trap: If a question asks for the 'rate of change' at a specific point, what should you calculate?",
+      "back": "You should calculate the instantaneous rate of change, which means finding the value of the derivative at that point."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to learn the limit formula for the derivative for the exam?",
+      "a": "You need to understand it conceptually as the foundation of differentiation. However, in AI HL, you will not be asked to perform calculations using the 'first principles' formula. You will use your GDC for numerical derivatives or apply differentiation rules (covered in the next topic)."
+    },
+    {
+      "q": "What's the difference between $f'(x)$ and $\\frac{dy}{dx}$?",
+      "a": "They mean the same thing: the derivative of a function. $f'(x)$ is Lagrange's notation and is useful for showing the derivative as a function of $x$. $\\frac{dy}{dx}$ is Leibniz's notation, which is helpful as it looks like a fraction ($\"Delta y / Delta x\"$) and reminds us that the derivative is a rate of change."
+    },
+    {
+      "q": "My calculator gives a slightly different answer for the derivative. Is that okay?",
+      "a": "Different GDC models use different numerical algorithms and may have very minor differences in the final decimal places. This is normal. IB markschemes allow for a range of answers to account for this. As long as your method is correct and your answer is rounded correctly to 3 significant figures, it will be accepted."
+    },
+    {
+      "q": "What does a negative derivative mean?",
+      "a": "A negative derivative at a point means the function is decreasing at that point. For example, if the velocity of an object is negative, it means its displacement is decreasing (it's moving backwards). If marginal profit is negative, it means producing one more item will decrease the total profit."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of calculus! Differentiation is one of the two major branches of calculus, and it's all about rates of change. We see rates of change everywhere: the speed of a car, the growth of a population, the fluctuation of stock prices. This topic provides the tools to move from discussing average changes over time to pinpointing the exact rate of change at a specific instant."
+    },
+    {
+      "type": "heading",
+      "content": "Average Rate of Change: The Secant Line"
+    },
+    {
+      "type": "text",
+      "content": "You are already familiar with finding the gradient of a straight line. The average rate of change between two points on a curve is simply the gradient of the straight line connecting them. This line is called a secant line."
+    },
+    {
+      "type": "formula",
+      "content": "Average Rate of Change = $\\frac{\\text{change in } y}{\\text{change in } x} = \\frac{\\Delta y}{\\Delta x} = \\frac{f(b) - f(a)}{b - a}$"
+    },
+    {
+      "type": "text",
+      "content": "For a function $f(x)$, the average rate of change between $x=a$ and $x=b$ is the gradient of the line segment joining the points $(a, f(a))$ and $(b, f(b))$. This is useful for a 'big picture' view but doesn't tell us what's happening at any specific moment within that interval."
+    },
+    {
+      "type": "heading",
+      "content": "Instantaneous Rate of Change: The Tangent Line and the Derivative"
+    },
+    {
+      "type": "text",
+      "content": "To find the rate of change at a single point, we need to think about what happens as the interval for our average rate of change becomes infinitesimally small. Imagine the two points on our curve getting closer and closer together. The secant line connecting them pivots until it just touches the curve at a single point. This new line is the tangent line."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The instantaneous rate of change of a function at a point is the gradient of the tangent to the curve at that point.",
+        "This value is called the derivative of the function at that point.",
+        "The derivative is found by taking the limit of the average rate of change as the interval size approaches zero."
+      ]
+    },
+    {
+      "type": "formula",
+      "content": "The derivative, $f'(x)$, is defined by the limit: $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$"
+    },
+    {
+      "type": "text",
+      "content": "This is known as differentiation from 'first principles'. While you need to understand this concept, in AI HL you will almost always use your GDC to find the numerical value of a derivative."
+    },
+    {
+      "type": "workedExample",
+      "question": "The height, $h$, in metres, of a ball thrown vertically upwards is modelled by the function $h(t) = -4.9t^2 + 20t + 1.5$, where $t$ is the time in seconds after it is thrown.\n\na) Find the average velocity of the ball between $t=1$ and $t=2$ seconds.\nb) Find the instantaneous velocity of the ball at $t=1$ second.",
+      "solution": "a) First, calculate the height at $t=1$ and $t=2$.\n$h(1) = -4.9(1)^2 + 20(1) + 1.5 = 16.6$ metres.\n$h(2) = -4.9(2)^2 + 20(2) + 1.5 = -19.6 + 40 + 1.5 = 21.9$ metres. (A1)\n\nNow, calculate the average rate of change (velocity).\nAverage velocity = $\\frac{h(2) - h(1)}{2 - 1}$ (M1)\n$= \\frac{21.9 - 16.6}{1} = 5.3$ m/s. (A1)\n\n\nb) The instantaneous velocity is the derivative of $h(t)$ at $t=1$. We use the GDC's numerical derivative function.\nOn most calculators, this is found in the math menu, often labelled nDeriv or d/dx.\nThe syntax is typically: `nDeriv(function, variable, value)`\n\nSo we input: `nDeriv(-4.9x^2 + 20x + 1.5, x, 1)` (M1) for setting up the derivative calculation on the GDC.\n\nThe calculator returns a value of $10.2$. (A1)\nSo, the instantaneous velocity at $t=1$ second is $10.2$ m/s. (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Using Your GDC for Derivatives"
+    },
+    {
+      "type": "text",
+      "content": "For Paper 1 and Paper 2 in AI HL, you are expected to use your Graphical Display Calculator (GDC) to find the derivative of a function at a given point. This is a crucial skill that saves a lot of time and avoids complex algebraic manipulation. The key is to know the syntax for your specific calculator model (e.g., TI-Nspire, Casio fx-CG50)."
+    },
+    {
+      "type": "examTip",
+      "content": "In an exam, if a question asks for a 'rate of change', 'gradient of the tangent', 'velocity' (from a displacement function), or 'marginal cost/revenue/profit' at a specific point, it is a signal to find the derivative. Always use your GDC for this unless explicitly asked to show another method. Write down the expression you are evaluating, e.g., $f'(3)$, and then the answer from your calculator."
+    },
+    {
+      "type": "workedExample",
+      "question": "A company's profit, $P$, in thousands of dollars, from selling $x$ hundred items is given by the function $P(x) = -0.1x^3 + 1.5x^2 + 5x - 10$ for $0 \\le x \\le 20$.\n\na) Find the profit when 800 items are sold.\nb) Find the marginal profit when 800 items are sold, and interpret its meaning.",
+      "solution": "a) 800 items corresponds to $x=8$ (since $x$ is in hundreds).\nSubstitute $x=8$ into the profit function:\n$P(8) = -0.1(8)^3 + 1.5(8)^2 + 5(8) - 10$ (M1)\n$P(8) = -0.1(512) + 1.5(64) + 40 - 10$\n$P(8) = -51.2 + 96 + 40 - 10 = 74.8$\nSince $P$ is in thousands of dollars, the profit is $74.8 \\times 1000 = \\$74,800$. (A1)\n\nb) 'Marginal profit' is the instantaneous rate of change of profit, which is the derivative $P'(x)$. We need to find $P'(8)$.\nUsing the GDC's numerical derivative function: (M1)\n`d/dx(-0.1x^3 + 1.5x^2 + 5x - 10)` at $x=8$.\nThis gives $P'(8) = 9.8$. (A1)\n\nInterpretation: The value $P'(8) = 9.8$ means that when production is at 800 items, the profit is increasing at a rate of \\$9.8$ thousand per hundred items. (R1) More simply, selling the next item (or the 801st item) will increase the profit by approximately $\\frac{9.8 \\times 1000}{100} = \\$98$. (R1)$"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Finding Rates of Change",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=5.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Derivatives as a concept",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-concept"
+        },
+        {
+          "label": "Revision Village: IB Maths AI HL Differentiation",
+          "href": "https://www.revisionvillage.com/ib-maths-ai-hl/calculus/"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

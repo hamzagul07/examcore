@@ -1,0 +1,183 @@
+{
+  "slug": "4-5-discrete-random-variables-and-expected-value",
+  "topicCode": "4.5",
+  "title": "Discrete random variables and expected value",
+  "paper": "P2",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces discrete random variables, their probability distributions, and the concept of expected value. Students will learn to construct probability tables and calculate the long-run average outcome of a random process, a crucial skill for modelling in finance, insurance, and games of chance.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and define a discrete random variable and its probability distribution.",
+    "Construct and use probability distribution tables for discrete random variables.",
+    "Calculate the expected value (mean) of a discrete random variable.",
+    "Apply these concepts to solve problems involving games, finance, and other real-world scenarios."
+  ],
+  "simpleExplanation": {
+    "title": "Predicting the Average Outcome",
+    "summary": "A discrete random variable is just a number that comes from a random event, like the score on a die. The expected value tells us the average result we'd get if we repeated the event over and over again.",
+    "analogy": "Imagine a simple raffle with different cash prizes. You probably won't win the top prize, and you might win nothing. The expected value is like finding the average prize money per ticket if you could buy millions of them and average out all your winnings. It's not the prize you'll likely get, but the long-term average payout per ticket.",
+    "steps": [
+      "Identify the variable (X) and list all its possible numerical outcomes.",
+      "Determine the probability for each outcome and create a probability distribution table.",
+      "Check that all probabilities are between 0 and 1, and that they sum to exactly 1.",
+      "Calculate the expected value using the formula E(X) = ΣxP(X=x) or your GDC's statistical functions."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a discrete random variable?",
+      "back": "A variable, often denoted by X, that can only take a countable number of distinct numerical values as a result of a random event. For example, the number of heads in three coin tosses (0, 1, 2, 3)."
+    },
+    {
+      "front": "What is a probability distribution?",
+      "back": "A table, formula, or graph that describes the probability of each possible outcome of a random variable."
+    },
+    {
+      "front": "What are the two key properties of a discrete probability distribution?",
+      "back": "1. The probability of any outcome x, P(X=x), must be between 0 and 1 inclusive. 2. The sum of all probabilities for all possible outcomes must be exactly 1. (ΣP(X=x) = 1)"
+    },
+    {
+      "front": "What is the formula for the expected value, E(X)?",
+      "back": "E(X) = μ = Σx * P(X=x). You sum the products of each outcome and its corresponding probability."
+    },
+    {
+      "front": "What is another name for the expected value of a random variable?",
+      "back": "The mean, often denoted by the Greek letter μ (mu)."
+    },
+    {
+      "front": "What does the expected value represent in a practical sense?",
+      "back": "It represents the long-run average value of the random variable if the experiment were repeated many times."
+    },
+    {
+      "front": "Can the expected value be a value that the random variable cannot actually take?",
+      "back": "Yes. For example, the expected number of heads from 3 coin flips is 1.5, but you can't get 1.5 heads in reality. It's an average."
+    },
+    {
+      "front": "What is a 'fair game' in the context of expected value?",
+      "back": "A game is considered fair if the expected profit or gain is zero. This means, in the long run, you are expected to neither win nor lose money."
+    },
+    {
+      "front": "Common Trap: Forgetting to check the sum of probabilities.",
+      "back": "Before calculating the expected value, always quickly sum the probabilities in the distribution. If they don't add up to 1, there is an error in the problem setup or your understanding."
+    },
+    {
+      "front": "How can a GDC be used to find the expected value?",
+      "back": "Enter the outcomes (x-values) into one list (e.g., L1) and their corresponding probabilities into a second list (e.g., L2). Then use the '1-Variable Statistics' function, setting L1 as the 'List' and L2 as the 'FrequencyList'. The mean (x̄ or μ) is the expected value."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between a discrete and a continuous random variable?",
+      "a": "A discrete random variable has countable, distinct values (e.g., number of cars passing a point in an hour: 0, 1, 2...). A continuous random variable can take any value within a given range (e.g., the height of a student, which could be 1.75m, 1.751m, 1.7511m...)."
+    },
+    {
+      "q": "Is the expected value the most likely outcome?",
+      "a": "Not necessarily. The most likely outcome is the mode of the distribution (the value with the highest probability). The expected value is the mean (the long-run average) and may not even be a possible outcome itself."
+    },
+    {
+      "q": "How do I deal with 'find the value of k' problems in probability distributions?",
+      "a": "These problems rely on the property that the sum of all probabilities must equal 1. Set up an equation where you sum all the given probabilities (including the terms with 'k') and set the total equal to 1. Then, solve the resulting equation for k."
+    },
+    {
+      "q": "What does a negative expected value mean in the context of a game?",
+      "a": "A negative expected value for a player means the game is not in their favour. On average, over many plays, the player is expected to lose money. For the person running the game (e.g., a casino), this negative expected value for the player corresponds to a positive expected profit for the house."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In mathematics, we often want to model situations involving uncertainty. A discrete random variable allows us to attach numerical values to the outcomes of a random process, like a game of chance or a business venture. By understanding its probability distribution, we can calculate the 'expected value', a powerful concept that tells us the average outcome we can anticipate in the long run."
+    },
+    {
+      "type": "heading",
+      "content": "Discrete Random Variables and Probability Distributions"
+    },
+    {
+      "type": "text",
+      "content": "A **random variable** is a variable whose value is a numerical outcome of a random phenomenon. We use a capital letter, like $X$, to denote a random variable. A **discrete** random variable is one which can only take on a finite or countably infinite number of distinct values. Think of things you can count, like the number of defective items in a batch, the score on a die, or the number of goals in a football match."
+    },
+    {
+      "type": "text",
+      "content": "The **probability distribution** of a discrete random variable $X$ lists all possible values of $X$ along with their corresponding probabilities, $P(X=x)$. This is most commonly shown in a table."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Each probability $P(X=x)$ must be between 0 and 1, i.e., $0 \\le P(X=x) \\le 1$.",
+        "The sum of all the probabilities must be exactly 1, i.e., $\\sum P(X=x) = 1$."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A bag contains 5 red balls and 3 blue balls. A ball is drawn at random, its colour is noted, and it is not replaced. A second ball is then drawn. Let the random variable $X$ be the number of red balls drawn. Find the probability distribution of $X$.",
+      "solution": "The possible values for $X$ (the number of red balls) are 0, 1, or 2.\nWe can use a tree diagram to find the probabilities.\nTotal balls = 8.\n\n$P(X=0) = P(\\text{Blue and Blue}) = \\frac{3}{8} \\times \\frac{2}{7} = \\frac{6}{56}$ (M1 for product of probabilities)\n\n$P(X=1) = P(\\text{Red and Blue}) + P(\\text{Blue and Red})$\n$= (\\frac{5}{8} \\times \\frac{3}{7}) + (\\frac{3}{8} \\times \\frac{5}{7}) = \\frac{15}{56} + \\frac{15}{56} = \\frac{30}{56}$ (M1 for summing two paths)\n\n$P(X=2) = P(\\text{Red and Red}) = \\frac{5}{8} \\times \\frac{4}{7} = \\frac{20}{56}$ (A1 for one correct probability)\n\nCheck: $\\frac{6}{56} + \\frac{30}{56} + \\frac{20}{56} = \\frac{56}{56} = 1$. The probabilities sum to 1.\n\nThe probability distribution is:\n\n| $x$ | 0 | 1 | 2 |\n|---|---|---|---|\n| $P(X=x)$ | $\\frac{6}{56}$ | $\\frac{30}{56}$ | $\\frac{20}{56}$ | (A2 for the full, correct table)"
+    },
+    {
+      "type": "heading",
+      "content": "Expected Value E(X)"
+    },
+    {
+      "type": "text",
+      "content": "The expected value of a discrete random variable is a measure of the central tendency of its distribution. It is the long-run average value you would expect to get if you repeated the random experiment an infinite number of times. It's a weighted average of the possible values, where the weights are their probabilities. The expected value is also called the mean and is denoted by $E(X)$ or $\\mu$."
+    },
+    {
+      "type": "formula",
+      "content": "E(X) = \\mu = \\sum x \\cdot P(X=x)"
+    },
+    {
+      "type": "examTip",
+      "content": "For Paper 2, calculating the expected value is a standard GDC task. Enter the outcomes in List 1 and probabilities in List 2. Use the 1-Var Stats function with List 2 as the frequency. The mean, $\\bar{x}$, shown in the output is your expected value, $E(X)$. This saves time and reduces calculation errors."
+    },
+    {
+      "type": "workedExample",
+      "question": "A game at a school fair costs £1.50 to play. A spinner has four sectors with prizes of £0, £1, £2, and £5. The probabilities of landing on these sectors are 0.4, 0.3, 0.2, and 0.1 respectively.\n\n(a) Find the expected value of the prize money.\n(b) Calculate the expected profit or loss for a player in one game.",
+      "solution": "(a) Let $X$ be the prize money in pounds. The probability distribution is:\n\n| Prize, $x$ (£) | 0 | 1 | 2 | 5 |\n|---|---|---|---|---|\n| $P(X=x)$ | 0.4 | 0.3 | 0.2 | 0.1 |\n\nTo find the expected prize money, we calculate $E(X)$.\n$E(X) = \\sum x \\cdot P(X=x)$\n$E(X) = (0 \\times 0.4) + (1 \\times 0.3) + (2 \\times 0.2) + (5 \\times 0.1)$ (M1 for correct substitution into formula)\n$E(X) = 0 + 0.3 + 0.4 + 0.5$\n$E(X) = \\pounds1.20$ (A1)\n\n(b) The cost to play is £1.50. The expected prize (return) is £1.20.\nExpected Profit = Expected Return - Cost to Play\nExpected Profit = $1.20 - 1.50$ (M1 for subtracting cost from their E(X))\nExpected Profit = $-\\pounds0.30$ (A1)\n\nThis means that, on average, a player is expected to lose 30 pence each time they play the game. (R1 for correct interpretation)"
+    },
+    {
+      "type": "heading",
+      "content": "Applications and Interpretation"
+    },
+    {
+      "type": "text",
+      "content": "Expected value is not just for games of chance. Insurance companies use it to set premiums. They calculate the expected payout for claims on a policy and add a margin for profit and administrative costs. In finance, investors use expected return to compare different investment opportunities, weighing the potential gains against their probabilities. In all cases, it's a tool for making decisions under uncertainty by focusing on the long-term average outcome."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=4.5"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Expected Value",
+          "href": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library/expected-value-random-variables/v/expected-value-of-a-discrete-random-variable"
+        },
+        {
+          "label": "GeoGebra Simulation: Expected Value of a Dice Roll",
+          "href": "https://www.geogebra.org/m/c55ytrg2"
+        },
+        {
+          "label": "IB AI HL Questionbank - Topic 4.5",
+          "href": "https://www.ibdocuments.com/questions/hl-ai"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "GeoGebra Simulation: Expected Value of a Dice Roll",
+    "embedUrl": "https://www.geogebra.org/classic?material=c55ytrg2",
+    "launchUrl": "https://www.geogebra.org/classic?material=c55ytrg2",
+    "hint": "Use “GeoGebra Simulation: Expected Value of a Dice Roll” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

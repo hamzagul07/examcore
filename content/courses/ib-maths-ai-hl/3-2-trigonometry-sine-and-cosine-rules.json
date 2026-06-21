@@ -1,0 +1,180 @@
+{
+  "slug": "3-2-trigonometry-sine-and-cosine-rules",
+  "topicCode": "3.2",
+  "title": "Trigonometry: sine and cosine rules",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores the sine and cosine rules, essential tools for solving problems involving non-right-angled triangles. It covers when and how to apply each rule, including the ambiguous case of the sine rule, to find unknown sides and angles.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify the appropriate trigonometric rule (sine or cosine) based on the given information in a non-right-angled triangle.",
+    "Apply the sine rule to find unknown sides and angles, including handling the ambiguous case (SSA).",
+    "Apply the cosine rule to find unknown sides (SAS) and angles (SSS).",
+    "Solve multi-step contextual problems using a combination of the sine rule, cosine rule, and the formula for the area of a triangle."
+  ],
+  "simpleExplanation": {
+    "title": "Your Triangle Detective Toolkit",
+    "summary": "The sine and cosine rules are your advanced tools for solving any triangle, not just right-angled ones. They allow you to find missing sides and angles using specific combinations of known information.",
+    "analogy": "Imagine you're a ship's navigator trying to determine your position. If you know your distance to two different lighthouses and the angle between the lines of sight (Side-Angle-Side), you can calculate your distance to a third point. If you know the distances to three lighthouses (Side-Side-Side), you can calculate all the angles between them. The sine and cosine rules are the mathematical formulas that perform these calculations for any triangle.",
+    "steps": [
+      "Analyse the triangle: Identify all known sides and angles given in the problem.",
+      "Choose your rule: Use the Sine Rule if you have a side-angle pair. Use the Cosine Rule if you have Side-Angle-Side (SAS) or Side-Side-Side (SSS).",
+      "Substitute and calculate: Carefully substitute the known values into the chosen formula. Use your GDC to perform the calculation, paying attention to the order of operations.",
+      "Interpret the result: Solve for the unknown side or angle. If using the Sine Rule to find an angle, check for the ambiguous case (a second possible solution)."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the Sine Rule for finding a side 'a'?",
+      "back": "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$. You need the angle opposite 'a' (A) and another side-angle pair (e.g., b and B)."
+    },
+    {
+      "front": "What is the Sine Rule for finding an angle 'A'?",
+      "back": "$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$. It's often easier to use this inverted form when the unknown is an angle."
+    },
+    {
+      "front": "What is the Cosine Rule for finding a side 'a'?",
+      "back": "$a^2 = b^2 + c^2 - 2bc \\cos A$. You need two sides (b, c) and the included angle (A)."
+    },
+    {
+      "front": "How do you rearrange the Cosine Rule to find an angle A?",
+      "back": "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$. Remember to use $\\arccos$ at the end to find the angle A."
+    },
+    {
+      "front": "When should you use the Sine Rule?",
+      "back": "When you know a side and its opposite angle (a pair), plus one other piece of information. This corresponds to Angle-Angle-Side (AAS) or Angle-Side-Angle (ASA) cases. It can also be used for Side-Side-Angle (SSA), but this may lead to the ambiguous case."
+    },
+    {
+      "front": "When should you use the Cosine Rule?",
+      "back": "When you know two sides and the angle between them (SAS) to find the third side, OR when you know all three sides (SSS) to find an angle. The Cosine Rule does not have an ambiguous case."
+    },
+    {
+      "front": "What is the 'ambiguous case' of the Sine Rule?",
+      "back": "When using the Sine Rule with Side-Side-Angle (SSA) information to find an angle, there might be two possible solutions for the angle: an acute angle $\\theta$ and an obtuse angle $180^\\circ - \\theta$. You must check if the second solution is valid."
+    },
+    {
+      "front": "How do you check if the second solution in the ambiguous case is valid?",
+      "back": "Let the given angle be A and the calculated second angle be $B_2$. If $A + B_2 < 180^\\circ$, then the second solution is valid and two different triangles can be formed."
+    },
+    {
+      "front": "What is a common calculator error in trigonometry?",
+      "back": "Being in the wrong mode. Always check if the question requires degrees ($^\\circ$) or radians and set your GDC accordingly before any calculation."
+    },
+    {
+      "front": "What is the formula for the area of a non-right-angled triangle?",
+      "back": "Area $= \\frac{1}{2}ab\\sin C$. You need to know two sides and the angle included between them."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I decide whether to use the Sine Rule or the Cosine Rule?",
+      "a": "It depends on the information you are given. \n1. Check if you have a side and its opposite angle (a 'pair'). If yes, you can use the Sine Rule. This covers AAS, ASA, and SSA cases.\n2. If you do not have a known pair, you will likely need the Cosine Rule. This applies when you have two sides and the angle between them (SAS), or all three sides (SSS)."
+    },
+    {
+      "q": "Do I always need to check for the ambiguous case?",
+      "a": "No. The ambiguous case only occurs under specific conditions: when you are using the Sine Rule to find an angle, and the information you were given was Side-Side-Angle (SSA). If you are finding a side, or if you are using the Cosine Rule, or if you were given AAS or ASA information, there is no ambiguity."
+    },
+    {
+      "q": "My calculator gave me an error when I tried to find an angle using the Cosine Rule. What went wrong?",
+      "a": "This usually happens if the value you are trying to take the arccos of is outside the valid range of [-1, 1]. For $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$, this error means the sides a, b, and c cannot form a triangle. This could be due to a calculation mistake or because the triangle described is impossible (e.g., two shorter sides don't add up to more than the longest side)."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In previous studies, your work with trigonometry likely focused on right-angled triangles using SOH CAH TOA and Pythagoras' theorem. However, most triangles in the real world are not right-angled. This lesson introduces the sine and cosine rules, powerful formulae that unlock the ability to solve for any missing side or angle in any triangle, forming a cornerstone of trigonometry."
+    },
+    {
+      "type": "heading",
+      "content": "The Sine Rule"
+    },
+    {
+      "type": "text",
+      "content": "The Sine Rule establishes a relationship between the sides of a triangle and the sines of their opposite angles. It is the perfect tool when you already know a side and the angle opposite it (a 'pair'), plus one other piece of information (another side or angle)."
+    },
+    {
+      "type": "formula",
+      "content": "For any triangle with angles A, B, C and opposite sides a, b, c:\n\nTo find a side: $$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$$\n\nTo find an angle: $$\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The key to using the Sine Rule is having a known 'opposite pair' (e.g., side 'a' and angle 'A').",
+        "It is used for cases Angle-Angle-Side (AAS), Angle-Side-Angle (ASA), and Side-Side-Angle (SSA).",
+        "The SSA case is known as the 'ambiguous case' and requires special attention."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "The Ambiguous Case of the Sine Rule (SSA)"
+    },
+    {
+      "type": "text",
+      "content": "When you are given two sides and a non-included angle (SSA), using the sine rule to find an angle can yield two possible results. This is because $\\sin \\theta = \\sin(180^\\circ - \\theta)$. For example, $\\sin(30^\\circ) = 0.5$ and $\\sin(150^\\circ) = 0.5$. When you calculate an angle $B = \\arcsin(x)$, your calculator will give you the acute angle, but an obtuse angle may also be a valid solution. You must check if this second possibility can form a valid triangle."
+    },
+    {
+      "type": "workedExample",
+      "question": "In triangle PQR, angle $P = 35^\\circ$, side $p = 8$ cm, and side $q = 11$ cm. Find all possible values for angle Q and the corresponding values for angle R.",
+      "solution": "This is the Side-Side-Angle (SSA) case, so we must check for ambiguity.\n\n1.  **Use the Sine Rule to find angle Q:**\n    $\\frac{\\sin Q}{q} = \\frac{\\sin P}{p}$\n    $\\frac{\\sin Q}{11} = \\frac{\\sin 35^\\circ}{8}$ (M1)\n\n2.  **Solve for $\\sin Q$:**\n    $\\sin Q = \\frac{11 \\sin 35^\\circ}{8} \\approx 0.7885...$\n\n3.  **Find the first possible angle for Q:**\n    $Q_1 = \\arcsin(0.7885...) \\approx 52.05...^\\circ$\n    $Q_1 = 52.1^\\circ$ (to 3 s.f.) (A1)\n\n4.  **Find the second possible angle for Q:**\n    $Q_2 = 180^\\circ - Q_1 = 180^\\circ - 52.05...^\\circ \\approx 127.94...^\\circ$\n    $Q_2 = 128^\\circ$ (to 3 s.f.) (M1)\n\n5.  **Check validity and find corresponding angle R:**\n    **Case 1:** If $Q_1 = 52.1^\\circ$\n    $P + Q_1 = 35^\\circ + 52.1^\\circ = 87.1^\\circ < 180^\\circ$. This is a valid triangle.\n    $R_1 = 180^\\circ - (35^\\circ + 52.1^\\circ) = 92.9^\\circ$ (A1)\n\n    **Case 2:** If $Q_2 = 128^\\circ$\n    $P + Q_2 = 35^\\circ + 128^\\circ = 163^\\circ < 180^\\circ$. This is also a valid triangle. (R1)\n    $R_2 = 180^\\circ - (35^\\circ + 128^\\circ) = 17.0^\\circ$ (A1)\n\n**Final Answer:** Two triangles are possible.\nSolution 1: $Q = 52.1^\\circ, R = 92.9^\\circ$\nSolution 2: $Q = 128^\\circ, R = 17.0^\\circ$"
+    },
+    {
+      "type": "heading",
+      "content": "The Cosine Rule"
+    },
+    {
+      "type": "text",
+      "content": "The Cosine Rule is your go-to formula when the Sine Rule cannot be used. This typically happens when you don't have a known side-angle pair. It's used in two main scenarios: when you know two sides and the angle between them (SAS) and want to find the third side, or when you know all three sides (SSS) and want to find an angle."
+    },
+    {
+      "type": "formula",
+      "content": "For any triangle with angles A, B, C and opposite sides a, b, c:\n\nTo find a side: $$a^2 = b^2 + c^2 - 2bc \\cos A$$\n\nTo find an angle: $$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$$"
+    },
+    {
+      "type": "examTip",
+      "content": "When finding an angle with the Cosine Rule, calculate the numerator and denominator separately before dividing. This helps avoid calculator entry errors. A negative value for $\\cos A$ simply means that angle A is obtuse (between 90° and 180°)."
+    },
+    {
+      "type": "workedExample",
+      "question": "Two ships, A and B, leave a port P at the same time. Ship A sails on a bearing of $075^\\circ$ at 15 km/h. Ship B sails on a bearing of $140^\\circ$ at 20 km/h. Calculate the distance between the two ships after 2 hours.",
+      "solution": "1.  **Visualise and find distances/angles:**\n    After 2 hours:\n    Distance PA = $15 \\text{ km/h} \\times 2 \\text{ h} = 30$ km.\n    Distance PB = $20 \\text{ km/h} \\times 2 \\text{ h} = 40$ km. (M1 for both)\n    The angle between their paths at the port P is the difference in their bearings:\n    Angle APB = $140^\\circ - 75^\\circ = 65^\\circ$. (M1)\n\n2.  **Identify the situation:**\n    We have a triangle PAB with two sides (PA=30, PB=40) and the included angle (P=65°). This is a Side-Angle-Side (SAS) case, so we use the Cosine Rule to find the distance AB.\n\n3.  **Apply the Cosine Rule:**\n    Let the distance AB be $p$. Then $p^2 = a^2 + b^2 - 2ab \\cos P$.\n    $AB^2 = 30^2 + 40^2 - 2(30)(40)\\cos(65^\\circ)$ (M1)(A1)\n\n4.  **Calculate:**\n    $AB^2 = 900 + 1600 - 2400\\cos(65^\\circ)$\n    $AB^2 = 2500 - 2400(0.4226...)$\n    $AB^2 = 2500 - 1014.28...$\n    $AB^2 = 1485.71...$ (M1 for calculation)\n\n5.  **Find the final distance:**\n    $AB = \\sqrt{1485.71...} \\approx 38.54...$ km.\n\n**Final Answer:** The distance between the ships after 2 hours is 38.5 km (to 3 s.f.). (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Practice Sine & Cosine Rule Problems",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=3.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB AI HL Questionbank: Trigonometry",
+          "href": "https://www.ibtaskmaker.com/maker.php?subject=math_ai&topic=3"
+        },
+        {
+          "label": "Video tutorial on Sine and Cosine Rules",
+          "href": "https://www.youtube.com/watch?v=eS_s1p_i2HA"
+        },
+        {
+          "label": "Geogebra: Sine Rule Ambiguous Case",
+          "href": "https://www.geogebra.org/m/C3aA9NfV"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Sine Rule Ambiguous Case",
+    "embedUrl": "https://www.geogebra.org/classic?material=C3aA9NfV",
+    "launchUrl": "https://www.geogebra.org/classic?material=C3aA9NfV",
+    "hint": "Use “Sine Rule Ambiguous Case” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "slug": "3-3-applications-bearings-elevation-and-gradients",
+  "topicCode": "3.3",
+  "title": "Applications: bearings, elevation and gradients",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson covers the practical applications of trigonometry in 2D and 3D space. It focuses on solving real-world problems involving bearings for navigation, angles of elevation and depression for height and distance calculations, and gradients for measuring steepness.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Calculate distances and angles in 2D and 3D problems using bearings.",
+    "Solve problems involving angles of elevation and depression.",
+    "Understand and calculate gradients as a ratio and as an angle.",
+    "Combine these concepts to solve multi-step, real-world problems."
+  ],
+  "simpleExplanation": {
+    "title": "Mapping Your World with Trig",
+    "summary": "This topic uses trigonometry to solve real-world navigation and construction problems. You'll learn the language of bearings, elevation, and gradients to find unknown lengths and angles.",
+    "analogy": "Imagine you're a character in a 3D open-world game. To get to a quest marker, you need a direction (the bearing), you might need to look up or down a hill (angle of elevation/depression), and the steepness of that hill is its gradient. Trigonometry is the game's physics engine that calculates all these paths for you, turning angles and distances into a clear route.",
+    "steps": [
+      "Always start by drawing a large, clear diagram. Label all given points, angles, and lengths. Add a North line at each relevant point for bearing problems.",
+      "Break down the problem into right-angled or non-right-angled triangles. Determine if you're working in a 2D plane (like a map) or a 3D space.",
+      "Select the right trigonometric tool. For right-angled triangles, use SOH CAH TOA or Pythagoras. For non-right-angled triangles, use the Sine Rule or Cosine Rule.",
+      "Calculate the unknown value and interpret the result. Ensure your final answer is in the correct format (e.g., a three-figure bearing) and includes units. Check if the answer is reasonable."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a bearing?",
+      "back": "A bearing is an angle measured clockwise from the North direction, always given as a three-figure number (e.g., 045° or 270°)."
+    },
+    {
+      "front": "How do you find the bearing of A *from* B?",
+      "back": "Draw a North line at point B and measure the clockwise angle to the line segment BA."
+    },
+    {
+      "front": "What is the relationship between the bearing of B from A ($\"\\theta\"$) and the bearing of A from B?",
+      "back": "If the bearing $\\theta < 180°$, the return bearing is $\\theta + 180°$. If $\\theta > 180°$, the return bearing is $\\theta - 180°$. This is due to co-interior angles between parallel North lines."
+    },
+    {
+      "front": "What is the angle of elevation?",
+      "back": "The angle measured upwards from a horizontal line to an object that is above the observer's eye level."
+    },
+    {
+      "front": "What is the angle of depression?",
+      "back": "The angle measured downwards from a horizontal line to an object that is below the observer's eye level."
+    },
+    {
+      "front": "What is the geometric relationship between the angle of elevation and angle of depression between two points?",
+      "back": "They are equal. The angle of elevation of B from A is equal to the angle of depression of A from B. This is because they are alternate interior angles between two parallel horizontal lines."
+    },
+    {
+      "front": "How is gradient defined mathematically?",
+      "back": "Gradient is the ratio of the vertical change (rise) to the horizontal change (run). Gradient = $\\frac{\\text{rise}}{\\text{run}}$."
+    },
+    {
+      "front": "How do you find the angle of inclination, $\\theta$, from the gradient, $m$?",
+      "back": "The gradient is the tangent of the angle of inclination. So, $m = \\tan(\\theta)$, which means $\\theta = \\arctan(m)$."
+    },
+    {
+      "front": "Trap: A bearing is given as 90°. How must you write it?",
+      "back": "As a three-figure number: 090°. Forgetting the leading zero is a common notation error."
+    },
+    {
+      "front": "Trap: In a 3D problem with a vertical mast on horizontal ground, what is the angle between the mast and any line on the ground?",
+      "back": "The mast is perpendicular (90°) to *any* line on the horizontal ground that passes through its base."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between 'bearing of A from B' and 'bearing of B from A'?",
+      "a": "'Bearing of A from B' means you are standing at point B and measuring the clockwise angle from North to get to A. 'Bearing of B from A' means you are standing at A and measuring the clockwise angle from North to get to B. Always draw your North line at the 'from' point. The two bearings will differ by exactly 180°."
+    },
+    {
+      "q": "My calculator gives a negative angle when I use arctan for a gradient problem. What should I do?",
+      "a": "The angle of inclination is typically given as a positive angle from the horizontal. A negative angle from $\\arctan(m)$ indicates a downward slope (a negative gradient). The magnitude of the angle is the steepness. For example, if $\\arctan(-0.5) \\approx -26.6°$, this represents a downward slope of 26.6°. The context of the question will determine how you should state the answer, but usually, the size of the angle is what's important."
+    },
+    {
+      "q": "Do I lose marks for not writing bearings with three figures?",
+      "a": "Yes. The three-figure format (e.g., 075°) is a strict convention for bearings. You will likely lose the final answer mark (A1) for incorrect notation, even if your calculated angle is correct. Always write bearings like 009°, 082°, or 154°."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to one of the most practical topics in trigonometry. We move beyond abstract triangles to see how these mathematical principles are essential for real-world tasks like navigation, surveying, and architecture. This lesson will equip you with the skills to interpret and solve problems involving bearings, angles of elevation and depression, and gradients, which are frequently tested in Paper 1."
+    },
+    {
+      "type": "heading",
+      "content": "1. Bearings: Navigating with Angles"
+    },
+    {
+      "type": "text",
+      "content": "Bearings are the language of navigation, used by pilots, ship captains, and hikers to define direction. A bearing specifies a direction as an angle measured from a fixed reference point, which in mathematics and real-world navigation is almost always North."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Bearings are always measured from the North line.",
+        "Measurement is always in a clockwise direction.",
+        "Bearings are always expressed using three figures, e.g., 005°, 072°, or 315°.",
+        "The phrase 'bearing of A from B' means you should place your North line at B and measure the angle to A.",
+        "All North lines are parallel, so you can use angle rules (alternate, co-interior) to find unknown angles in your diagrams."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A ship sails from port P on a bearing of 124° for 50 km to a point Q. It then changes course and sails on a bearing of 230° for 80 km to a point R.\n\n(a) Find the direct distance from P to R.\n\n(b) Find the bearing of P from R.",
+      "solution": "First, draw a clear diagram. \n\n(a) To find the distance PR, we need the angle inside the triangle at Q, i.e., $\\angle PQR$. \nDraw a North line at Q, parallel to the North line at P. The angle between the North line at Q and the line QP extended backwards is 124°. The angle between the South line at Q and QP is $180° - 124° = 56°$. \nThe bearing of R from Q is 230°. This is the angle from the North line at Q, clockwise to QR. The angle between the South line at Q and QR is $230° - 180° = 50°$. \nTherefore, $\\angle PQR = 56° + 50° = 106°$. **(M1)(A1)**\n\nNow use the Cosine Rule in $\\triangle PQR$:\n$PR^2 = PQ^2 + QR^2 - 2(PQ)(QR)\\cos(\\angle PQR)$ **(M1)**\n$PR^2 = 50^2 + 80^2 - 2(50)(80)\\cos(106°)$\n$PR^2 = 2500 + 6400 - 8000(-0.2756...)$\n$PR^2 = 8900 + 2205.09... = 11105.09...$ **(A1)**\n$PR = \\sqrt{11105.09...} = 105.38...$ km\nDistance PR = 105 km (3 s.f.) **(A1)**\n\n(b) To find the bearing of P from R, we need the angle measured clockwise from North at R to P. First, find $\\angle QRP$ using the Sine Rule in $\\triangle PQR$:\n$\\frac{\\sin(\\angle QRP)}{PQ} = \\frac{\\sin(\\angle PQR)}{PR}$ **(M1)**\n$\\sin(\\angle QRP) = \\frac{50 \\sin(106°)}{105.38...} = 0.4559...$ **(A1)**\n$\\angle QRP = \\arcsin(0.4559...) = 27.12...°$\n\nNext, find the bearing of the line RQ. The bearing of R from Q was 230°. The back bearing of Q from R is $230° - 180° = 050°$. This is the angle from North at R clockwise to Q. **(M1)**\nThe bearing of P from R is this back bearing minus $\\angle QRP$. \nBearing = $50° - 27.12...° = 22.87...°$\nThe bearing of P from R is 022.9° (to 1 d.p. or 3 s.f.). **(A1)**"
+    },
+    {
+      "type": "heading",
+      "content": "2. Angles of Elevation and Depression"
+    },
+    {
+      "type": "text",
+      "content": "These angles are used to describe the direction of an object in a vertical plane. The angle of elevation is the angle you look *up* from the horizontal, while the angle of depression is the angle you look *down* from the horizontal. A crucial point is that both are always measured from a horizontal line, never a vertical one."
+    },
+    {
+      "type": "formula",
+      "content": "Angle of Elevation (A to B) = Angle of Depression (B to A)"
+    },
+    {
+      "type": "examTip",
+      "content": "For 3D problems, it's often helpful to draw two separate diagrams: a 'bird's eye view' of the horizontal plane (the floor), and a side view (cross-section) of the vertical plane(s). This helps to separate the different triangles involved and prevent confusion."
+    },
+    {
+      "type": "workedExample",
+      "question": "From a point A on level ground, the angle of elevation to the top of a vertical cliff, T, is 35°. An observer walks 100 m directly towards the base of the cliff, B, to a point C. The new angle of elevation to T is 50°.\n\n(a) Find the height of the cliff, TB.\n\n(b) The observer then walks to a point D, such that D is 80m from C and $\\angle BCD = 110°$. Find the distance from D to the top of the cliff, T.",
+      "solution": "(a) Let the height of the cliff $TB = h$ and the distance $CB = x$. We have two right-angled triangles, $\\triangle TBA$ and $\\triangle TBC$. \nIn $\\triangle TBC$: $\\tan(50°) = \\frac{h}{x} \\implies x = \\frac{h}{\\tan(50°)}$. **(M1)**\nIn $\\triangle TBA$: $\\tan(35°) = \\frac{h}{100+x}$. **(M1)**\nSubstitute the expression for $x$ into the second equation:\n$\\tan(35°) = \\frac{h}{100 + \\frac{h}{\\tan(50°)}}$.\n$100\\tan(35°) + h\\frac{\\tan(35°)}{\\tan(50°)} = h$. **(M1)**\n$100\\tan(35°) = h \\left(1 - \\frac{\\tan(35°)}{\\tan(50°)}\\right)$.\n$h = \\frac{100\\tan(35°)}{1 - \\frac{\\tan(35°)}{\\tan(50°)}} = 169.65...$ m.\nThe height of the cliff is 170 m (3 s.f.). **(A1)**\n\n(b) This is a 3D problem. We need to find the length of the hypotenuse TD in the right-angled triangle $\\triangle TBD$. First, we need the length of the base, BD. We can find this using the Cosine Rule in $\\triangle BCD$ on the ground plane.\nWe need the length $BC = x$. Using the unrounded height $h=169.65...$ m:\n$BC = x = \\frac{169.65...}{\\tan(50°)} = 142.35...$ m.\nIn $\\triangle BCD$:\n$BD^2 = BC^2 + CD^2 - 2(BC)(CD)\\cos(\\angle BCD)$ **(M1)**\n$BD^2 = (142.35...)^2 + 80^2 - 2(142.35...)(80)\\cos(110°)$ **(A1)**\n$BD^2 = 20263.9... + 6400 - (-7789.6...) = 34453.5...$\n$BD = \\sqrt{34453.5...} = 185.61...$ m.\n\nNow consider the right-angled triangle $\\triangle TBD$, with the right angle at B.\nUsing Pythagoras' Theorem: $TD^2 = TB^2 + BD^2$. **(M1)**\n$TD^2 = (169.65...)^2 + (185.61...)^2$\n$TD^2 = 28782.1... + 34453.5... = 63235.6...$\n$TD = \\sqrt{63235.6...} = 251.46...$ m.\nThe distance TD is 251 m (3 s.f.). **(A1)**"
+    },
+    {
+      "type": "heading",
+      "content": "3. Gradient"
+    },
+    {
+      "type": "text",
+      "content": "Gradient is a measure of the steepness of a slope. It is defined as the ratio of the vertical change ('rise') to the horizontal change ('run'). In trigonometry, the gradient is directly related to the angle of inclination, which is the angle the slope makes with the horizontal."
+    },
+    {
+      "type": "formula",
+      "content": "Gradient, $m = \\frac{\\text{vertical change}}{\\text{horizontal change}} = \\tan(\\theta)$ \n\nwhere $\\theta$ is the angle of inclination."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Gradient can be expressed as a fraction, a decimal, or a percentage (by multiplying the ratio by 100).",
+        "A gradient of 1 corresponds to an angle of inclination of 45°, as $\\tan(45°) = 1$.",
+        "To find the angle of inclination from a given gradient $m$, use the inverse tangent function: $\\theta = \\arctan(m)$.",
+        "Ensure your calculator is in degrees mode when calculating the angle."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Understanding",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=3.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Angle of Elevation/Depression",
+          "href": "https://www.geogebra.org/m/jafv2j2g"
+        },
+        {
+          "label": "GeoGebra: 3D Bearings Simulator",
+          "href": "https://www.geogebra.org/m/g8U4zP4W"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Angle of Elevation/Depression",
+    "embedUrl": "https://www.geogebra.org/classic?material=jafv2j2g",
+    "launchUrl": "https://www.geogebra.org/classic?material=jafv2j2g",
+    "hint": "Use “Angle of Elevation/Depression” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

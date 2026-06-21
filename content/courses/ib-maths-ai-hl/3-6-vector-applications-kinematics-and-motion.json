@@ -1,0 +1,185 @@
+{
+  "slug": "3-6-vector-applications-kinematics-and-motion",
+  "topicCode": "3.6",
+  "title": "Vector applications: kinematics and motion",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores the application of vectors to kinematics, the study of motion. You will learn how to use vector functions for position, velocity, and acceleration, and apply calculus to solve problems involving the motion of objects in two and three dimensions.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand and use vector equations to model the position, velocity, and acceleration of a particle over time.",
+    "Apply differentiation to find velocity and acceleration vectors from a position vector.",
+    "Apply integration to find velocity and position vectors from an acceleration or velocity vector, including finding the constant of integration.",
+    "Solve kinematic problems involving speed, displacement, and total distance travelled."
+  ],
+  "simpleExplanation": {
+    "title": "Vectors in Motion: Your GPS for Physics",
+    "summary": "Vectors are perfect for describing motion because they tell us both the speed and the direction of an object. This lesson shows how we use calculus with these vectors to track an object's path, speed, and acceleration over time.",
+    "analogy": "Imagine you're tracking a drone. You don't just care how fast it's going; you need to know *where* it's going. Its velocity is a vector: '30 km/h, heading north-east'. If you know its velocity vector at every moment, you can integrate to map out its entire flight path. If you know its position vector at all times, you can differentiate to find its velocity at any instant. This is the core of vector kinematics.",
+    "steps": [
+      "Identify the given vector functions for position, velocity, or acceleration, along with any initial conditions.",
+      "Use calculus to find the required vector function. Differentiate position for velocity, or integrate acceleration for velocity.",
+      "If you integrated, use the given initial conditions (e.g., position at t=0) to solve for the vector constant of integration, 'c'.",
+      "Substitute the specific time 't' into the correct vector equation to find the answer. Calculate the magnitude for speed or distance problems."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a position vector, $\\boldsymbol{r}(t)$?",
+      "back": "A vector that gives the position of a point relative to a fixed origin at time $t$. It's often written in component form, e.g., $\\boldsymbol{r}(t) = x(t)\\boldsymbol{i} + y(t)\\boldsymbol{j}$."
+    },
+    {
+      "front": "How is the velocity vector, $\\boldsymbol{v}(t)$, related to the position vector, $\\boldsymbol{r}(t)$?",
+      "back": "Velocity is the rate of change of position. Mathematically, $\\boldsymbol{v}(t) = \\frac{d\\boldsymbol{r}}{dt} = \\boldsymbol{r}'(t)$. You differentiate the position vector with respect to time."
+    },
+    {
+      "front": "How is the acceleration vector, $\\boldsymbol{a}(t)$, related to the velocity vector, $\\boldsymbol{v}(t)$?",
+      "back": "Acceleration is the rate of change of velocity. Mathematically, $\\boldsymbol{a}(t) = \\frac{d\\boldsymbol{v}}{dt} = \\boldsymbol{v}'(t) = \\boldsymbol{r}''(t)$. You differentiate the velocity vector."
+    },
+    {
+      "front": "What is the difference between speed and velocity?",
+      "back": "Velocity is a vector quantity (magnitude and direction), while speed is a scalar (magnitude only). Speed is the magnitude of the velocity vector: Speed = $|\\boldsymbol{v}(t)|$."
+    },
+    {
+      "front": "How do you find the position vector, $\\boldsymbol{r}(t)$, from the velocity vector, $\\boldsymbol{v}(t)$?",
+      "back": "You integrate the velocity vector with respect to time: $\\boldsymbol{r}(t) = \\int \\boldsymbol{v}(t) \\, dt$. Don't forget the vector constant of integration, $\\boldsymbol{c}$!"
+    },
+    {
+      "front": "What is the difference between displacement and distance travelled?",
+      "back": "Displacement is the vector change in position: $\\Delta \\boldsymbol{r} = \\boldsymbol{r}(t_2) - \\boldsymbol{r}(t_1)$. Distance is the scalar length of the path taken, found by integrating speed: $D = \\int_{t_1}^{t_2} |\\boldsymbol{v}(t)| \\, dt$."
+    },
+    {
+      "front": "How do you find the displacement of a particle between $t_1$ and $t_2$ using integration?",
+      "back": "Displacement is the definite integral of the velocity vector: $\\Delta \\boldsymbol{r} = \\int_{t_1}^{t_2} \\boldsymbol{v}(t) \\, dt$."
+    },
+    {
+      "front": "A particle moves with constant velocity $\\boldsymbol{v}$. What is its position vector $\\boldsymbol{r}(t)$ if its initial position is $\\boldsymbol{r}_0$?",
+      "back": "$\\boldsymbol{r}(t) = \\boldsymbol{r}_0 + \\boldsymbol{v}t$. This is a vector equation of a line."
+    },
+    {
+      "front": "Common Trap: Forgetting the constant of integration.",
+      "back": "When you integrate to find velocity or position, you must include a constant vector, $\\boldsymbol{c}$. Use the initial conditions provided in the question to find its value."
+    },
+    {
+      "front": "Common Trap: Calculating distance by integrating velocity.",
+      "back": "Integrating velocity gives displacement. To find the total distance travelled, you must integrate speed, which is the magnitude of the velocity vector, $|\\boldsymbol{v}(t)|$. This often requires a GDC."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between displacement and distance travelled?",
+      "a": "Displacement is a vector representing the shortest path from the initial to the final point, calculated as $\\boldsymbol{r}_{final} - \\boldsymbol{r}_{initial}$. Distance is a scalar representing the total length of the path actually taken, calculated by integrating speed, $\\int |\\boldsymbol{v}(t)| \\, dt$."
+    },
+    {
+      "q": "How do I find the vector constant of integration, $\\boldsymbol{c}$?",
+      "a": "After you integrate to find a general solution for velocity or position, you must use an initial condition given in the problem (e.g., the position at $t=0$). Substitute the time and the corresponding position/velocity into your equation and solve for the components of the vector $\\boldsymbol{c}$."
+    },
+    {
+      "q": "Can I just integrate each component of the vector separately?",
+      "a": "Yes, absolutely. Integration and differentiation of vectors are performed component-wise. For a vector $\\boldsymbol{v}(t) = v_x(t)\\boldsymbol{i} + v_y(t)\\boldsymbol{j}$, its integral is $(\\int v_x(t) \\, dt)\\boldsymbol{i} + (\\int v_y(t) \\, dt)\\boldsymbol{j}$."
+    },
+    {
+      "q": "What does it mean if a particle is moving 'parallel to the y-axis'?",
+      "a": "If a particle's motion is parallel to the y-axis (or the vector $\\boldsymbol{j}$), it means its velocity has no horizontal component. You should set the $\\boldsymbol{i}$ component of the velocity vector, $v_x(t)$, equal to zero and solve for $t$."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to vector kinematics, where we bring motion to life using vectors. This powerful tool is fundamental in physics, engineering, and even computer graphics to model the movement of objects. From tracking an aeroplane's flight path to programming the characters in a video game, understanding how to describe motion with vectors is a crucial skill."
+    },
+    {
+      "type": "heading",
+      "content": "Position, Velocity, and Acceleration as Vectors"
+    },
+    {
+      "type": "text",
+      "content": "In one-dimensional motion, we can use positive and negative signs to indicate direction. However, for motion in a 2D plane or in 3D space, we need vectors. The position, velocity, and acceleration of a particle are all vector quantities, as they possess both magnitude and direction. We denote them as functions of time $t$: position $\\boldsymbol{r}(t)$, velocity $\\boldsymbol{v}(t)$, and acceleration $\\boldsymbol{a}(t)$."
+    },
+    {
+      "type": "text",
+      "content": "For example, a particle's position at time $t$ might be given by $\\boldsymbol{r}(t) = (2t+1)\\boldsymbol{i} + (t^2-3)\\boldsymbol{j}$, where $\\boldsymbol{i}$ and $\\boldsymbol{j}$ are the standard unit vectors in the x and y directions."
+    },
+    {
+      "type": "heading",
+      "content": "The Calculus Connection"
+    },
+    {
+      "type": "text",
+      "content": "The relationship between position, velocity, and acceleration is defined by calculus. To move from position to velocity, and from velocity to acceleration, we differentiate. To move in the opposite direction, from acceleration to velocity, and from velocity to position, we integrate. This process is performed component-wise on the vectors."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Velocity is the derivative of position: $\\boldsymbol{v}(t) = \\frac{d\\boldsymbol{r}}{dt} = \\boldsymbol{r}'(t)$",
+        "Acceleration is the derivative of velocity: $\\boldsymbol{a}(t) = \\frac{d\\boldsymbol{v}}{dt} = \\boldsymbol{v}'(t)$",
+        "Velocity is the integral of acceleration: $\\boldsymbol{v}(t) = \\int \\boldsymbol{a}(t) \\, dt + \\boldsymbol{c}_1$",
+        "Position is the integral of velocity: $\\boldsymbol{r}(t) = \\int \\boldsymbol{v}(t) \\, dt + \\boldsymbol{c}_2$"
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A particle P starts from the origin. Its velocity is given by the vector $\\boldsymbol{v}(t) = (6t - 2)\\boldsymbol{i} + (3t^2)\\boldsymbol{j}$ m s⁻¹. Find (a) the acceleration of P at $t=3$ seconds, and (b) the position vector of P at $t=3$ seconds.",
+      "solution": "a) To find acceleration, we differentiate the velocity vector with respect to time.\n$\\boldsymbol{a}(t) = \\frac{d\\boldsymbol{v}}{dt} = \\frac{d}{dt}((6t - 2)\\boldsymbol{i} + (3t^2)\\boldsymbol{j})$\n$\\boldsymbol{a}(t) = 6\\boldsymbol{i} + 6t\\boldsymbol{j}$ (M1)\nNow substitute $t=3$ into the acceleration vector:\n$\\boldsymbol{a}(3) = 6\\boldsymbol{i} + 6(3)\\boldsymbol{j} = 6\\boldsymbol{i} + 18\\boldsymbol{j}$ m s⁻² (A1)\n\nb) To find the position vector, we integrate the velocity vector.\n$\\boldsymbol{r}(t) = \\int \\boldsymbol{v}(t) \\, dt = \\int ((6t - 2)\\boldsymbol{i} + (3t^2)\\boldsymbol{j}) \\, dt$\n$\\boldsymbol{r}(t) = (3t^2 - 2t)\\boldsymbol{i} + (t^3)\\boldsymbol{j} + \\boldsymbol{c}$ (M1)\nThe particle starts from the origin, so at $t=0$, $\\boldsymbol{r}(0) = \\boldsymbol{0}$.\n$\\boldsymbol{r}(0) = (3(0)^2 - 2(0))\\boldsymbol{i} + (0^3)\\boldsymbol{j} + \\boldsymbol{c} = \\boldsymbol{0}$\nThis implies $\\boldsymbol{c} = \\boldsymbol{0}$. (M1)\nSo, the position vector is $\\boldsymbol{r}(t) = (3t^2 - 2t)\\boldsymbol{i} + t^3\\boldsymbol{j}$.\nNow substitute $t=3$:\n$\\boldsymbol{r}(3) = (3(3)^2 - 2(3))\\boldsymbol{i} + (3^3)\\boldsymbol{j}$\n$\\boldsymbol{r}(3) = (27 - 6)\\boldsymbol{i} + 27\\boldsymbol{j} = 21\\boldsymbol{i} + 27\\boldsymbol{j}$ m (A1)"
+    },
+    {
+      "type": "heading",
+      "content": "Speed, Displacement, and Distance"
+    },
+    {
+      "type": "text",
+      "content": "It is vital to distinguish between these three related, but distinct, concepts. Velocity and displacement are vectors, whereas speed and distance are scalars. Speed is simply the magnitude of the velocity vector. Displacement is the 'straight line' vector from the starting point to the ending point. Distance, however, is the total length of the path travelled, which can be found by integrating speed over a time interval."
+    },
+    {
+      "type": "formula",
+      "content": "Speed: $s(t) = |\\boldsymbol{v}(t)| = \\sqrt{(v_x)^2 + (v_y)^2 + (v_z)^2}$"
+    },
+    {
+      "type": "formula",
+      "content": "Total distance from $t_a$ to $t_b$: $D = \\int_{t_a}^{t_b} |\\boldsymbol{v}(t)| \\, dt$"
+    },
+    {
+      "type": "examTip",
+      "content": "Your GDC is essential for calculating the total distance travelled. The integral of the speed, $\\int |\\boldsymbol{v}(t)| \\, dt$, is often too difficult to compute analytically. Be sure you know how to use the numerical integration function on your calculator for this type of question, as it is common on Paper 1 and Paper 2."
+    },
+    {
+      "type": "workedExample",
+      "question": "The velocity of a drone is given by $\\boldsymbol{v}(t) = (2t-8)\\boldsymbol{i} + 3\\boldsymbol{j}$ m s⁻¹ for $t \\ge 0$. (a) Find the speed of the drone at $t=5$ s. (b) Find the value of $t$ when the drone's velocity is perpendicular to the vector $\\boldsymbol{i}$. (c) Find the total distance the drone travels in the first 6 seconds.",
+      "solution": "a) First, find the velocity vector at $t=5$.\n$\\boldsymbol{v}(5) = (2(5)-8)\\boldsymbol{i} + 3\\boldsymbol{j} = 2\\boldsymbol{i} + 3\\boldsymbol{j}$ m s⁻¹ (M1)\nSpeed is the magnitude of this vector.\nSpeed = $|\\boldsymbol{v}(5)| = \\sqrt{2^2 + 3^2} = \\sqrt{4+9} = \\sqrt{13}$ m s⁻¹ (A1)\n(Approximately 3.61 m s⁻¹)\n\nb) The vector $\\boldsymbol{i}$ is $\\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$. For the velocity to be perpendicular to $\\boldsymbol{i}$, its $\\boldsymbol{i}$ component must be zero. (M1)\n$2t - 8 = 0$\n$2t = 8$\n$t = 4$ seconds (A1)\n\nc) The total distance is the integral of the speed.\nSpeed = $|\\boldsymbol{v}(t)| = \\sqrt{(2t-8)^2 + 3^2} = \\sqrt{(2t-8)^2 + 9}$.\nDistance = $\\int_{0}^{6} \\sqrt{(2t-8)^2 + 9} \\, dt$. (M1)\nThis integral is best calculated using a GDC.\nUsing a GDC's numerical integration function: (M1)\nDistance $\\approx 25.5$ m (3 s.f.) (A1)"
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=3.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Vector-valued functions and motion",
+          "href": "https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/differentiating-vector-valued-functions/v/vector-valued-functions-and-motion-in-2d"
+        },
+        {
+          "label": "GeoGebra: Vector Kinematics Simulation",
+          "href": "https://www.geogebra.org/m/cpcp7t9e"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Vector Kinematics Simulation",
+    "embedUrl": "https://www.geogebra.org/classic?material=cpcp7t9e",
+    "launchUrl": "https://www.geogebra.org/classic?material=cpcp7t9e",
+    "hint": "Use “Vector Kinematics Simulation” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

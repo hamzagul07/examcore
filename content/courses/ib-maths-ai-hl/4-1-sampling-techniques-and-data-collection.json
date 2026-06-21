@@ -1,0 +1,179 @@
+{
+  "slug": "4-1-sampling-techniques-and-data-collection",
+  "topicCode": "4.1",
+  "title": "Sampling techniques and data collection",
+  "paper": "P2",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces the fundamental concepts of statistical sampling. It covers the distinction between populations and samples, details various probability and non-probability sampling techniques, and explores the critical issues of bias, reliability, and validity in data collection.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Distinguish between a population and a sample, and identify a suitable sampling frame.",
+    "Describe and apply simple random, systematic, stratified, quota, and convenience sampling methods.",
+    "Identify potential sources of bias in data collection and explain their impact on the validity of conclusions.",
+    "Understand the concepts of reliability and validity in the context of sampling."
+  ],
+  "simpleExplanation": {
+    "title": "Tasting the Soup",
+    "summary": "Sampling is the process of selecting a small group from a larger population to learn about the whole group. The way we choose the sample is crucial for the results to be meaningful and representative.",
+    "analogy": "Imagine you've made a huge pot of soup. To check if it's seasoned correctly, you don't need to eat the entire pot. Instead, you stir it well to ensure everything is mixed, and then take one spoonful. That spoonful is your sample. If you don't stir (randomise), you might get a spoonful of just water or a lump of salt, giving you a biased and inaccurate taste of the whole soup.",
+    "steps": [
+      "Define the entire group you're interested in (the 'population') and what you want to measure.",
+      "Choose a sampling method that fits your population and research question, like picking names from a hat or selecting every 10th person.",
+      "Carefully collect the data from your chosen sample, ensuring the process is consistent.",
+      "Analyse the data from your sample to draw conclusions about the entire population, always considering any limitations or potential biases from your method."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a population in statistics?",
+      "back": "The entire group of individuals, items, or data about which information is sought in a statistical study."
+    },
+    {
+      "front": "What is a sample in statistics?",
+      "back": "A subset of the population that is selected for analysis, intended to be representative of the whole population."
+    },
+    {
+      "front": "What is a sampling frame?",
+      "back": "A list of all the items or individuals in the population from which a sample is drawn. An incomplete or inaccurate frame can be a source of bias."
+    },
+    {
+      "front": "Describe Simple Random Sampling.",
+      "back": "A method where every member of the population has an equal and independent chance of being selected. Example: drawing names from a hat."
+    },
+    {
+      "front": "Describe Systematic Sampling.",
+      "back": "A method where items are selected from a population at a regular interval, $k$. $k = \\text{Population Size} / \\text{Sample Size}$. The starting point is chosen randomly."
+    },
+    {
+      "front": "Describe Stratified Sampling.",
+      "back": "The population is divided into subgroups (strata) based on shared characteristics. A simple random sample is then taken from each stratum, proportional to its size in the population."
+    },
+    {
+      "front": "What is the key difference between Stratified and Quota sampling?",
+      "back": "Stratified sampling uses random selection within strata, making it a probability method. Quota sampling selects participants non-randomly until a quota for each subgroup is met."
+    },
+    {
+      "front": "Describe Convenience Sampling.",
+      "back": "A non-probability method where the sample is drawn from the part of the population that is close to hand or easy to reach. It is prone to significant bias."
+    },
+    {
+      "front": "What is sampling bias?",
+      "back": "A flaw in the sampling process that causes the sample to be unrepresentative of the population. This can be due to the selection method (e.g., convenience) or issues with the sampling frame."
+    },
+    {
+      "front": "What is non-response bias?",
+      "back": "Bias that occurs when individuals chosen for the sample are unwilling or unable to participate. The respondents' answers may differ in meaningful ways from those of the non-respondents."
+    },
+    {
+      "front": "What is the difference between reliability and validity?",
+      "back": "Reliability refers to the consistency of a measure (if you repeat the study, do you get similar results?). Validity refers to the accuracy of a measure (does it measure what it's supposed to measure?)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the real difference between stratified sampling and quota sampling? They seem very similar.",
+      "a": "The key difference lies in how the final participants are selected. In stratified sampling, after dividing the population into strata, participants are chosen using a random process (like a random number generator). This makes it a probability sampling method. In quota sampling, after setting quotas for each subgroup, the researcher selects participants non-randomly based on convenience or judgment until the quotas are met. This makes it a non-probability method and more susceptible to researcher bias."
+    },
+    {
+      "q": "Can a sample be reliable but not valid?",
+      "a": "Yes, absolutely. Imagine using a faulty scale to weigh yourself. If the scale is consistently 5 kg off, it will give you a very similar (reliable) reading every time, but it's not an accurate or valid measure of your true weight. In sampling, if you use a biased method like only surveying your friends, you might get consistent (reliable) opinions, but they won't be a valid representation of the whole population's views."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In an ideal world, to find out information about a group, we would ask everyone. However, for large groups like the entire population of a country or all the products made by a factory, this is impossible. This is where sampling comes in. It's the science of selecting a representative few to understand the many, forming the bedrock of statistical inference and a key tool for your Internal Assessment."
+    },
+    {
+      "type": "heading",
+      "content": "Populations, Samples, and Sampling Frames"
+    },
+    {
+      "type": "text",
+      "content": "Before we can collect any data, we must define our terms. The **population** is the complete set of all items that we are interested in studying. A **sample** is a smaller, manageable subset of that population. The goal is to use the sample to make an inference, or a conclusion, about the entire population. To select a sample, we often use a **sampling frame**, which is a list of all the members of the population. For example, a school's student register could be a sampling frame for its student population."
+    },
+    {
+      "type": "heading",
+      "content": "Probability Sampling Methods"
+    },
+    {
+      "type": "text",
+      "content": "Probability sampling methods are the gold standard in statistical research. In these methods, every member of the population has a known, non-zero chance of being selected. This feature is crucial because it allows us to generalise findings from the sample to the population with a known degree of confidence and to estimate the margin of error."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Simple Random Sampling (SRS):** Every member has an equal chance of selection. This can be done using random number generators on your GDC or by drawing names from a hat. It's unbiased but can be impractical for large populations.",
+        "**Systematic Sampling:** Select a random starting point and then pick every $k$-th member. The interval $k$ is calculated as $k = N/n$, where $N$ is the population size and $n$ is the desired sample size. It's simpler than SRS but can be biased if there's an underlying pattern in the list.",
+        "**Stratified Sampling:** The population is divided into distinct subgroups, or 'strata', based on a shared characteristic (e.g., age, gender, location). A random sample is then taken from each stratum in proportion to its size in the overall population. This ensures all subgroups are represented."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A company has 1200 employees, categorised by department: 600 in Production, 350 in Sales, 150 in Management, and 100 in Administration. The CEO wants to conduct a survey on employee satisfaction using a stratified sample of 80 employees. Calculate the number of employees that should be sampled from each department.",
+      "solution": "The total number of employees is $N=1200$. The desired sample size is $n=80$. We need to find the number of employees to sample from each department, proportional to the department's size.\n\n**1. Production:**\nProportion of Production employees = $\\frac{600}{1200} = 0.5$\nNumber to sample = $0.5 \\times 80 = 40$ employees.\n\n**2. Sales:**\nProportion of Sales employees = $\\frac{350}{1200}$\nNumber to sample = $(\\frac{350}{1200}) \\times 80 \\approx 23.33$. We round to the nearest whole number: 23 employees. (M1) for correct method for at least one stratum.\n\n**3. Management:**\nProportion of Management employees = $\\frac{150}{1200}$\nNumber to sample = $(\\frac{150}{1200}) \\times 80 = 10$ employees. (A1) for at least two correct values.\n\n**4. Administration:**\nProportion of Administration employees = $\\frac{100}{1200}$\nNumber to sample = $(\\frac{100}{1200}) \\times 80 \\approx 6.67$. We round to the nearest whole number: 7 employees.\n\n**Check:** The total number of sampled employees is $40 + 23 + 10 + 7 = 80$. The numbers are consistent. (A1) for all four correct integer values that sum to 80.\n\nFinal Answer: The sample should consist of 40 from Production, 23 from Sales, 10 from Management, and 7 from Administration."
+    },
+    {
+      "type": "heading",
+      "content": "Non-Probability Sampling Methods"
+    },
+    {
+      "type": "text",
+      "content": "Sometimes, it's not feasible or necessary to use a probability method. Non-probability sampling methods do not give all individuals in the population an equal chance of being selected. While they are often cheaper and quicker, the results cannot be reliably generalised to the whole population, and they are highly susceptible to bias."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Convenience Sampling:** Researchers select individuals who are easiest to reach. For example, surveying shoppers at a single mall entrance. This is fast and inexpensive but likely to be highly unrepresentative.",
+        "**Quota Sampling:** This is the non-probability equivalent of stratified sampling. The population is segmented into subgroups, and a quota (a target number) is set for each subgroup. The interviewer then selects people non-randomly until the quotas are filled."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A machine produces 2,500 microchips in a day. A quality control manager decides to test a sample of 100 chips using systematic sampling. \n(a) Determine the sampling interval, $k$. \n(b) If the first chip selected is the 11th chip off the production line, state the numbers of the 2nd, 3rd, and 50th chips selected for testing.",
+      "solution": "(a) The sampling interval $k$ is the ratio of the population size ($N=2500$) to the sample size ($n=100$).\n$k = \\frac{N}{n} = \\frac{2500}{100}$ (M1)\n$k = 25$\nEvery 25th chip should be selected.\n\n(b) The selection process forms an arithmetic sequence with first term $u_1 = 11$ and common difference $d = k = 25$.\nThe general term is $u_m = u_1 + (m-1)d$.\n\n2nd chip selected ($m=2$):\n$u_2 = 11 + (2-1) \\times 25 = 11 + 25 = 36$. (A1)\n\n3rd chip selected ($m=3$):\n$u_3 = 11 + (3-1) \\times 25 = 11 + 50 = 61$. (A1)\n\n50th chip selected ($m=50$):\n$u_{50} = 11 + (50-1) \\times 25 = 11 + 49 \\times 25$ (M1)\n$u_{50} = 11 + 1225 = 1236$. (A1)\n\nFinal Answer: The 2nd, 3rd, and 50th chips selected are the 36th, 61st, and 1236th chips on the production line."
+    },
+    {
+      "type": "heading",
+      "content": "Bias, Reliability, and Validity"
+    },
+    {
+      "type": "text",
+      "content": "The primary goal of good sampling is to obtain a sample that is representative of the population. Bias is any systematic error that results in an unrepresentative sample. It's crucial to identify and minimise bias to ensure the **validity** of your conclusions, meaning your study accurately measures what it intends to measure. **Reliability**, on the other hand, is about consistency; a reliable method will produce similar results if the study is repeated under the same conditions."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Selection Bias:** Occurs when the sampling method itself is flawed. Convenience sampling is a major source of selection bias.",
+        "**Undercoverage:** When the sampling frame does not include all parts of the population (e.g., a phone survey using only landlines excludes mobile-only households).",
+        "**Non-response Bias:** When there's a significant difference between those who participated in the survey and those who didn't.",
+        "**Response Bias:** When participants provide inaccurate responses, perhaps due to leading questions, social desirability, or misunderstanding the question."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "In Paper 2, you may be asked to 'suggest an appropriate sampling method' for a given scenario. A high-scoring answer will not just name a method but will also justify the choice in the context of the problem. For example, 'Stratified sampling is appropriate here because the population is composed of distinct age groups, and we want to ensure the views of each group are represented proportionally in the sample.' Also, be prepared to critique a given method by identifying potential sources of bias."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Sampling Techniques",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=4.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "Khan Academy: Sampling Methods",
+          "href": "https://www.khanacademy.org/math/statistics-probability/designing-studies/sampling-methods-stats/a/sampling-methods-review"
+        },
+        {
+          "label": "Simply Psychology: Sampling Methods",
+          "href": "https://www.simplypsychology.org/sampling.html"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

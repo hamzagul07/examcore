@@ -1,0 +1,201 @@
+{
+  "slug": "1-2-arithmetic-and-geometric-sequences-and-series",
+  "topicCode": "1.2",
+  "title": "Arithmetic and geometric sequences and series",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores arithmetic and geometric sequences and series. You will learn to identify these patterns, use formulas to find specific terms and sums, and apply these concepts to real-world scenarios, particularly in financial mathematics such as calculating interest and depreciation.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Distinguish between arithmetic and geometric sequences and series.",
+    "Use the formulas for the nth term and the sum of the first n terms of arithmetic and geometric sequences.",
+    "Apply sequences and series to model and solve real-world problems, including financial applications like interest and depreciation.",
+    "Understand and apply the condition for convergence of an infinite geometric series and calculate its sum."
+  ],
+  "simpleExplanation": {
+    "title": "Unlocking Number Patterns",
+    "summary": "A sequence is an ordered list of numbers following a specific rule, like a conga line where each person's move is related to the person in front. A series is simply the sum of the numbers in that sequence.",
+    "analogy": "Imagine you're saving money. If you add £5 to your piggy bank every week, your total savings form an 'arithmetic' sequence. If, instead, a magical piggy bank increases your total savings by 10% each month, your savings grow in a 'geometric' sequence. This lesson gives you the tools to predict how much you'll have at any point in the future.",
+    "steps": [
+      "Identify the type of sequence: Is there a common difference (arithmetic) or a common ratio (geometric)?",
+      "List the knowns and unknowns: Write down the values you are given, such as the first term ($u_1$), difference ($d$), ratio ($r$), or number of terms ($n$). Identify what you need to find.",
+      "Select the correct formula: Choose the appropriate equation from the IB formula booklet for the nth term ($u_n$) or the sum of terms ($S_n$).",
+      "Solve and interpret: Substitute your known values into the formula, calculate the result, and ensure your final answer is presented clearly in the context of the problem, including units."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is an arithmetic sequence?",
+      "back": "A sequence of numbers where the difference between consecutive terms is constant. This constant difference is called the common difference, $d$."
+    },
+    {
+      "front": "What is a geometric sequence?",
+      "back": "A sequence of numbers where each term after the first is found by multiplying the previous one by a fixed, non-zero number called the common ratio, $r$."
+    },
+    {
+      "front": "What is the difference between a sequence and a series?",
+      "back": "A sequence is an ordered list of numbers ($u_1, u_2, ...$). A series is the sum of the terms in a sequence ($u_1 + u_2 + ...$)."
+    },
+    {
+      "front": "Formula for the nth term of an arithmetic sequence.",
+      "back": "$u_n = u_1 + (n-1)d$"
+    },
+    {
+      "front": "Formula for the sum of a finite arithmetic series.",
+      "back": "$S_n = \\frac{n}{2}(2u_1 + (n-1)d)$ or $S_n = \\frac{n}{2}(u_1 + u_n)$"
+    },
+    {
+      "front": "Formula for the nth term of a geometric sequence.",
+      "back": "$u_n = u_1 r^{n-1}$"
+    },
+    {
+      "front": "Formula for the sum of a finite geometric series.",
+      "back": "$S_n = \\frac{u_1(r^n - 1)}{r-1}$ or $S_n = \\frac{u_1(1 - r^n)}{1-r}$"
+    },
+    {
+      "front": "What is the condition for an infinite geometric series to converge?",
+      "back": "The series converges (has a finite sum) if and only if the absolute value of the common ratio is less than 1. In symbols: $|r| < 1$."
+    },
+    {
+      "front": "Formula for the sum of a convergent infinite geometric series.",
+      "back": "$S_\\infty = \\frac{u_1}{1-r}$, provided $|r| < 1$."
+    },
+    {
+      "front": "Common Trap: In a question about value 'after 5 years', what value of $n$ should you use to find the term?",
+      "back": "If $u_1$ is the initial value (at year 1 or time 0), the value 'after 5 years' corresponds to the start of the 6th year, so you would calculate the 6th term, $u_6$ (using $n=6$). Always be careful with how 'time' is defined."
+    },
+    {
+      "front": "How do you find the common ratio, $r$, from two consecutive terms?",
+      "back": "Divide any term by the previous term. For example, $r = \\frac{u_3}{u_2}$."
+    },
+    {
+      "front": "What happens if you try to find the sum of an infinite geometric series where $|r| \\ge 1$?",
+      "back": "The series diverges, meaning the sum does not approach a finite value. It either tends to infinity (or negative infinity) or oscillates. You cannot use the $S_\\infty$ formula."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's the main difference between an arithmetic and a geometric sequence?",
+      "a": "An arithmetic sequence has a constant *difference* between terms (you add or subtract the same number each time). A geometric sequence has a constant *ratio* between terms (you multiply or divide by the same number each time)."
+    },
+    {
+      "q": "How do I know from the question whether to use an arithmetic or geometric formula?",
+      "a": "Look for keywords. 'Constant increase/decrease by a fixed amount', 'annual salary rise', or 'simple interest' suggest an arithmetic sequence. 'Percentage increase/decrease', 'compounding interest', 'depreciation by a percentage', or 'half-life' suggest a geometric sequence."
+    },
+    {
+      "q": "Can the common difference ($d$) or common ratio ($r$) be negative?",
+      "a": "Yes. A negative common difference means the terms are decreasing (e.g., 10, 7, 4, ... where $d=-3$). A negative common ratio means the terms alternate in sign (e.g., 3, -6, 12, -24, ... where $r=-2$)."
+    },
+    {
+      "q": "Why is the condition $|r| < 1$ so important for infinite geometric series?",
+      "a": "If $|r| < 1$, each successive term is smaller than the previous one, so the additions become progressively smaller and the sum approaches a finite value. If $|r| \\ge 1$, the terms either stay the same size, get larger, or oscillate without getting smaller, so the sum does not settle on a single finite value (it diverges)."
+    },
+    {
+      "q": "My GDC has a finance solver. Can I use that for these problems?",
+      "a": "Yes! The finance solver (like TVM Solver) is an excellent tool for many sequence and series problems, especially those involving compound interest, loans, and annuities. It's essentially applying the same geometric series formulas in a financial context. It's a great way to check your work or solve complex financial questions quickly in Paper 2 and 3, but you must still understand the underlying sequence formulas for Paper 1."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the study of sequences and series, the mathematical language of patterns. From the spiral of a seashell to the growth of your savings account, predictable patterns are everywhere. In this lesson, we'll focus on two fundamental types: arithmetic and geometric. Mastering these will provide you with powerful tools for modelling change and making predictions, skills that are essential in fields like finance, computer science, and biology."
+    },
+    {
+      "type": "heading",
+      "content": "Arithmetic Sequences and Series"
+    },
+    {
+      "type": "text",
+      "content": "An arithmetic sequence is a list of numbers where you get from one term to the next by adding a fixed amount. This fixed amount is called the common difference, denoted by $d$. For example, the sequence 5, 8, 11, 14, ... is an arithmetic sequence with a first term $u_1 = 5$ and a common difference $d = 3$. The sum of the terms of an arithmetic sequence is called an arithmetic series."
+    },
+    {
+      "type": "formula",
+      "content": "nth term: $u_n = u_1 + (n-1)d$ \\n Sum of first n terms: $S_n = \\frac{n}{2}(2u_1 + (n-1)d) = \\frac{n}{2}(u_1 + u_n)$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A new employee starts on an annual salary of £32,000. The company gives a guaranteed annual pay rise of £1,250. \n(a) Calculate the employee's salary in their 8th year of employment. \n(b) Calculate the total amount the employee will have earned after completing 10 years of employment.",
+      "solution": "This scenario describes an arithmetic sequence where the salary increases by a constant amount each year.\n\n**Part (a): Salary in the 8th year**\nFirst, identify the components of the arithmetic sequence:\nFirst term, $u_1 = 32000$\nCommon difference, $d = 1250$\nWe need to find the salary in the 8th year, so we are looking for $u_8$ ($n=8$).\n\nUsing the formula for the nth term, $u_n = u_1 + (n-1)d$: \n$u_8 = 32000 + (8-1) \\times 1250$  **(M1)** for substituting into the correct formula.\n$u_8 = 32000 + 7 \\times 1250$\n$u_8 = 32000 + 8750$\n$u_8 = 40750$\n\nThe employee's salary in their 8th year will be £40,750. **(A1)**\n\n**Part (b): Total earnings after 10 years**\nNow we need to find the sum of the salaries for the first 10 years, which is $S_{10}$ ($n=10$).\n\nUsing the formula for the sum of an arithmetic series, $S_n = \\frac{n}{2}(2u_1 + (n-1)d)$:\n$S_{10} = \\frac{10}{2}(2 \\times 32000 + (10-1) \\times 1250)$ **(M1)** for substituting into the correct sum formula.\n$S_{10} = 5(64000 + 9 \\times 1250)$\n$S_{10} = 5(64000 + 11250)$\n$S_{10} = 5(75250)$\n$S_{10} = 376250$\n\nThe total amount earned after 10 years is £376,250. **(A1)**"
+    },
+    {
+      "type": "heading",
+      "content": "Geometric Sequences and Series"
+    },
+    {
+      "type": "text",
+      "content": "A geometric sequence is a list of numbers where you get from one term to the next by multiplying by a fixed, non-zero amount. This fixed multiplier is called the common ratio, denoted by $r$. For instance, the sequence 2, 6, 18, 54, ... is a geometric sequence with a first term $u_1 = 2$ and a common ratio $r = 3$. The sum of the terms is a geometric series."
+    },
+    {
+      "type": "formula",
+      "content": "nth term: $u_n = u_1 r^{n-1}$ \\n Sum of first n terms: $S_n = \\frac{u_1(r^n - 1)}{r-1} = \\frac{u_1(1 - r^n)}{1-r}$"
+    },
+    {
+      "type": "examTip",
+      "content": "When dealing with percentage increases or decreases, you are almost always working with a geometric sequence. A 15% decrease corresponds to a common ratio of $r = 1 - 0.15 = 0.85$. A 5% increase corresponds to $r = 1 + 0.05 = 1.05$. This is a crucial link for financial maths problems."
+    },
+    {
+      "type": "workedExample",
+      "question": "A new car is bought for $28,000. Its value depreciates by 18% each year. $\n(a) Find the value of the car after 5 years. \n(b) Find the first year in which the car's value will be less than $10,000.$",
+      "solution": "This is a geometric sequence as the value is multiplied by a constant factor each year.\n\n**Part (a): Value after 5 years**\nFirst term, $u_1 = 28000$. This is the value at the start (year 1).\nThe value depreciates by 18%, so the common ratio is $r = 1 - 0.18 = 0.82$. **(M1)** for finding the correct ratio.\n'After 5 years' means we are at the start of the 6th year. So we need to find $u_6$ ($n=6$).\n\nUsing the formula $u_n = u_1 r^{n-1}$:\n$u_6 = 28000 \\times (0.82)^{6-1}$ **(M1)** for correct substitution.\n$u_6 = 28000 \\times (0.82)^5$\n$u_6 = 10375.58...$\n\nThe value of the car after 5 years is $10,376 (to the nearest dollar). **(A1)**$\n\n**Part (b): Value less than $10,000**$\nWe need to find the smallest integer $n$ for which $u_n < 10000$.\nSet up the inequality: $28000 \\times (0.82)^{n-1} < 10000$ **(M1)** for setting up the inequality.\n\nThis can be solved using a GDC (graphing $y_1 = 28000(0.82)^{x-1}$ and $y_2 = 10000$ and finding the intersection) or algebraically with logarithms.\n\nAlgebraic method:\n$(0.82)^{n-1} < \\frac{10000}{28000}$\n$(0.82)^{n-1} < \\frac{5}{14}$\nTake logarithms of both sides:\n$(n-1) \\ln(0.82) < \\ln(\\frac{5}{14})$ **(M1)** for using logarithms.\n$n-1 > \\frac{\\ln(5/14)}{\\ln(0.82)}$ (Note: inequality sign flips because $\\ln(0.82)$ is negative).\n$n-1 > 5.19...$\n$n > 6.19...$\n\nSince $n$ must be an integer, the smallest value for $n$ is 7. This means the value drops below $10,000 during the 6th year, and is below this value at the start of the 7th year. $\nSo, the first year is the 7th year. **(A1)**"
+    },
+    {
+      "type": "heading",
+      "content": "Infinite Geometric Series"
+    },
+    {
+      "type": "text",
+      "content": "What happens if you keep adding the terms of a geometric sequence forever? Sometimes, the sum gets bigger and bigger, heading towards infinity. However, if the common ratio $r$ is 'small enough' (specifically, if its absolute value is less than 1), the terms get progressively smaller and the sum approaches a finite limit. This is called a convergent series."
+    },
+    {
+      "type": "formula",
+      "content": "Sum to infinity: $S_\\infty = \\frac{u_1}{1-r}$, valid only when $|r| < 1$."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Arithmetic:** Constant difference ($d$), linear growth.",
+        "**Geometric:** Constant ratio ($r$), exponential growth or decay.",
+        "**Series vs Sequence:** A series is a SUM ($S_n$), a sequence is a LIST of terms ($u_n$).",
+        "**Convergence:** Only geometric series can converge to an infinite sum, and only if $|r| < 1$."
+      ]
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.2"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Formula Booklet",
+          "href": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/formula-booklet/"
+        },
+        {
+          "label": "Khan Academy: Sequences",
+          "href": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:sequences"
+        },
+        {
+          "label": "GeoGebra: Visualising Sequences",
+          "href": "https://www.geogebra.org/m/jTq5b2bJ"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Visualising Sequences",
+    "embedUrl": "https://www.geogebra.org/classic?material=jTq5b2bJ",
+    "launchUrl": "https://www.geogebra.org/classic?material=jTq5b2bJ",
+    "hint": "Use “Visualising Sequences” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

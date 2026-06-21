@@ -1,0 +1,185 @@
+{
+  "slug": "1-1-standard-form-approximation-and-percentage-error",
+  "topicCode": "1.1",
+  "title": "Standard form, approximation and percentage error",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson covers the fundamental skills of handling numbers: expressing very large or small values using standard form, approximating values through rounding, and quantifying the discrepancy between an approximation and the true value using percentage error. These skills are essential for presenting results clearly and accurately in various applications.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Express numbers in standard form (scientific notation) and convert them back to ordinary form.",
+    "Round numbers to a specified number of decimal places or significant figures.",
+    "Calculate the percentage error between an approximate value and an exact value.",
+    "Apply these concepts to solve practical problems, paying close attention to the required degree of accuracy."
+  ],
+  "simpleExplanation": {
+    "title": "Estimate, Express, and Evaluate",
+    "summary": "This topic gives you the tools to handle numbers of all sizes and to understand how accurate your calculations are. It's about being both efficient with big numbers and precise about your level of error.",
+    "analogy": "Imagine you're baking a cake using a recipe. The recipe calls for exactly 153g of flour (the exact value). You don't have a digital scale, so you use a measuring cup and get roughly 150g (the approximate value). Standard form is like writing '1.5 x 10² g' if you were dealing with a giant cake. Approximation is what you did with the cup. Percentage error tells you exactly how 'off' your 150g measurement was compared to the perfect 153g, helping you decide if your cake will still turn out well.",
+    "steps": [
+      "Convert very large or small numbers into standard form, $a \\times 10^k$, for easier handling.",
+      "Round a given number or a calculation's result to a specified number of significant figures or decimal places.",
+      "Identify the approximate (or measured) value and the exact (or accepted) value from a problem.",
+      "Calculate the percentage error using the formula to determine the accuracy of the approximation."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is the format for a number in standard form?",
+      "back": "A number in the form $a \\times 10^k$, where $1 \\le |a| < 10$ and $k$ is an integer."
+    },
+    {
+      "front": "How do you round 3.14159 to 3 significant figures?",
+      "back": "The first three significant figures are 3, 1, and 4. The next digit is 1, which is less than 5, so we round down (keep the 4). The answer is 3.14."
+    },
+    {
+      "front": "How do you round 0.007852 to 2 significant figures?",
+      "back": "The first significant figure is 7. The second is 8. The next digit is 5, so we round up. The answer is 0.0079."
+    },
+    {
+      "front": "What is the formula for percentage error?",
+      "back": "$\\epsilon = \\left| \\frac{v_A - v_E}{v_E} \\right| \\times 100\\%$, where $v_A$ is the approximate value and $v_E$ is the exact value."
+    },
+    {
+      "front": "What is the difference between rounding to 2 decimal places and 2 significant figures for the number 123.456?",
+      "back": "2 decimal places: 123.46. The first two digits after the decimal point are considered. \n2 significant figures: 120. The first two digits of the entire number (1 and 2) are considered, and the rest are replaced by placeholders."
+    },
+    {
+      "front": "What is a common mistake when using your GDC for multi-step calculations?",
+      "back": "Premature rounding. You should always use the full, unrounded answer from your calculator for subsequent steps and only round the final answer to the required accuracy."
+    },
+    {
+      "front": "In the percentage error formula, what does the subscript 'A' in $v_A$ stand for?",
+      "back": "Approximate value. This is often a measured value, an estimated value, or a rounded value."
+    },
+    {
+      "front": "In the percentage error formula, what does the subscript 'E' in $v_E$ stand for?",
+      "back": "Exact value. This is the true, theoretical, or accepted value."
+    },
+    {
+      "front": "Why are the absolute value bars important in the percentage error formula?",
+      "back": "They ensure the error is always a positive value. Percentage error measures the magnitude of the error, not its direction (i.e., whether the approximation was an overestimate or underestimate)."
+    },
+    {
+      "front": "Convert 0.000507 into standard form.",
+      "back": "$5.07 \\times 10^{-4}$. The decimal point moves 4 places to the right."
+    },
+    {
+      "front": "Convert $2.31 \\times 10^5$ into an ordinary number.",
+      "back": "231,000. The decimal point moves 5 places to the right."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between rounding to 3 significant figures and 3 decimal places?",
+      "a": "Rounding to 3 decimal places considers the first three digits *after* the decimal point. For example, 12.3456 becomes 12.346. Rounding to 3 significant figures considers the first three non-zero digits of the number from left to right. For 12.3456, this would be 12.3. For 0.012345, this would be 0.0123."
+    },
+    {
+      "q": "Do I lose marks for rounding too early in a calculation?",
+      "a": "Yes, this is a very common error called premature rounding. It can lead to an inaccurate final answer, causing you to lose the final accuracy mark (A1). Always use the full, unrounded value stored in your calculator for any intermediate steps. Only round your very last answer."
+    },
+    {
+      "q": "Is percentage error ever negative?",
+      "a": "No. The formula for percentage error includes absolute value bars, $\\left| ... \\right|$, which means the result is always positive. Percentage error measures the size of the error, not whether the approximation was an overestimate or an underestimate."
+    },
+    {
+      "q": "How do I enter numbers in standard form on my GDC?",
+      "a": "Most calculators (like the TI-Nspire or Casio CG50) have a button labelled 'EE' or 'EXP', or you can use the multiplication symbol and the power of 10 key (e.g., `x 10^x`). For example, to enter $3.1 \\times 10^5$, you would type `3.1 EE 5`. This is often more reliable than typing `3.1 * 10 ^ 5` as it treats the number as a single entity."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In the world of applications and interpretation, we are constantly dealing with data. This data can represent astronomical distances, microscopic lengths, financial models, or simple everyday measurements. This lesson equips you with the fundamental toolkit for managing these numbers effectively, ensuring your calculations are both manageable and communicate a clear level of accuracy."
+    },
+    {
+      "type": "heading",
+      "content": "Standard Form (Scientific Notation)"
+    },
+    {
+      "type": "text",
+      "content": "Standard form is a convenient way to write very large or very small numbers. It simplifies calculations and makes numbers easier to compare. Any number can be expressed in standard form."
+    },
+    {
+      "type": "formula",
+      "content": "Standard Form: $a \\times 10^k$ \\\\ Where $1 \\le |a| < 10$ and $k$ is an integer."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "A positive value for $k$ indicates a large number (e.g., $3,000,000 = 3 \\times 10^6$).",
+        "A negative value for $k$ indicates a small number between -1 and 1 (e.g., $0.005 = 5 \\times 10^{-3}$).",
+        "Your GDC can display and work with numbers in standard form. Look for the 'sci' mode or the 'EE' button."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Approximation: Rounding to Decimal Places and Significant Figures"
+    },
+    {
+      "type": "text",
+      "content": "Approximation is the process of simplifying a number to one that is easier to work with. In IB examinations, you will almost always be asked to give your final answer to a specific degree of accuracy, most commonly 3 significant figures. It is vital to understand the difference between rounding to decimal places (d.p.) and significant figures (s.f.)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "**Decimal Places (d.p.):** Count digits from the decimal point to the right.",
+        "**Significant Figures (s.f.):** Count digits from the first non-zero digit, moving from left to right.",
+        "Leading zeros (e.g., in 0.052) are not significant.",
+        "Zeros between non-zero digits (e.g., in 5.02) are significant.",
+        "Trailing zeros in the decimal part (e.g., in 5.20) are significant."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "Unless otherwise specified in the question, you must give all numerical answers exactly or correct to **three significant figures**. Failing to do so will result in losing the final accuracy mark (A1). Always use the unrounded value from your GDC in intermediate steps to avoid premature rounding errors."
+    },
+    {
+      "type": "workedExample",
+      "question": "The distance from Earth to the star Proxima Centauri is approximately 40,208,000,000,000 km. A student is performing a calculation and uses an approximation for this distance.\n\na) Write the distance to Proxima Centauri in the form $a \\times 10^k$, where $1 \\le a < 10$ and $k \\in \\mathbb{Z}$.\nb) The student rounds this distance to two significant figures. Write down the student's approximated distance.\nc) The student uses their approximated value from part (b) in a further calculation. Calculate the percentage error in using this approximation.",
+      "solution": "a) To write 40,208,000,000,000 in standard form, we move the decimal point to between the 4 and the 0.\nThe decimal point moves 13 places to the left.\nDistance = $4.0208 \\times 10^{13}$ km.  **(A1)(A1)**\n*(A1 for 4.0208, A1 for $10^{13}$)*\n\nb) The exact distance is 40,208,000,000,000 km. The first two significant figures are 4 and 0. The third digit is 2, which is less than 5, so we round down.\nApproximated distance = 40,000,000,000,000 km or $4.0 \\times 10^{13}$ km. **(A1)**\n\nc) We need to find the percentage error.\nExact value ($v_E$) = 40,208,000,000,000\nApproximate value ($v_A$) = 40,000,000,000,000\nPercentage error formula: $\\epsilon = \\left| \\frac{v_A - v_E}{v_E} \\right| \\times 100\\%$\n$\\epsilon = \\left| \\frac{4.0 \\times 10^{13} - 4.0208 \\times 10^{13}}{4.0208 \\times 10^{13}} \\right| \\times 100\\%$ **(M1)**\n*(M1 for correct substitution into the formula)*\n$\\epsilon = \\left| \\frac{-0.0208 \\times 10^{13}}{4.0208 \\times 10^{13}} \\right| \\times 100\\%$\n$\\epsilon = \\left| -0.005173... \\right| \\times 100\\%$\n$\\epsilon = 0.5173...\\%$\n$\\epsilon = 0.517\\%$ (to 3 s.f.) **(A1)**\n*(A1 for the correct final answer, rounded to 3 s.f.)*"
+    },
+    {
+      "type": "heading",
+      "content": "Percentage Error"
+    },
+    {
+      "type": "text",
+      "content": "Percentage error is a measure of how inaccurate a measurement or approximation is, compared to the correct (exact) value. It is a crucial concept in experimental sciences and quality control, as it provides a standardised way to express the magnitude of an error."
+    },
+    {
+      "type": "formula",
+      "content": "Percentage Error ($\\epsilon$): \\\\ $\\epsilon = \\left| \\frac{\\text{Approximate Value} - \\text{Exact Value}}{\\text{Exact Value}} \\right| \\times 100\\% = \\left| \\frac{v_A - v_E}{v_E} \\right| \\times 100\\%$"
+    },
+    {
+      "type": "workedExample",
+      "question": "A rectangular garden bed is measured to be 4.5 m long and 2.8 m wide. These measurements are correct to the nearest 0.1 m.\n\na) Calculate the area of the garden bed using the measured values.\nb) The actual length of the garden bed is 4.52 m and the actual width is 2.78 m. Calculate the actual area of the garden bed.\nc) Calculate the percentage error between the measured area and the actual area.",
+      "solution": "a) Measured Area = length $\\times$ width\nMeasured Area = $4.5 \\times 2.8$ **(M1)**\nMeasured Area = $12.6 \\text{ m}^2$ **(A1)**\n\nb) Actual Area = actual length $\\times$ actual width\nActual Area = $4.52 \\times 2.78$ **(M1)**\nActual Area = $12.5656 \\text{ m}^2$ **(A1)**\n*(Note: Keep the full value for the next part)*\n\nc) We identify the values for the percentage error formula.\n$v_A$ (Approximate Value) = $12.6 \\text{ m}^2$\n$v_E$ (Exact Value) = $12.5656 \\text{ m}^2$\n$\\epsilon = \\left| \\frac{v_A - v_E}{v_E} \\right| \\times 100\\%$ **(M1)**\n*(M1 for correct substitution of their values from (a) and (b))*\n$\\epsilon = \\left| \\frac{12.6 - 12.5656}{12.5656} \\right| \\times 100\\%$\n$\\epsilon = \\left| \\frac{0.0344}{12.5656} \\right| \\times 100\\%$\n$\\epsilon = 0.2737...\\%$\n$\\epsilon = 0.274\\%$ (to 3 s.f.) **(A1)**\n*(A1 for the final answer, correctly rounded)*"
+    },
+    {
+      "type": "examTip",
+      "content": "When a question involves finding percentage error, the 'exact' value ($v_E$) is the denominator. A common mistake is to divide by the approximate value ($v_A$). Always read the question carefully to identify which value is the approximation and which is the true or accepted value."
+    },
+    {
+      "type": "practice",
+      "label": "Practice Questions",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=1.1"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "IB Maths AI HL Questionbank",
+          "href": "/questionbank?subject=ib-maths-ai-hl"
+        },
+        {
+          "label": "Past Paper Video Solutions",
+          "href": "https://www.youtube.com/playlist?list=PL_S21gXl_m2C-qB5Y7L5k0Z8c1Z0b4j7"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

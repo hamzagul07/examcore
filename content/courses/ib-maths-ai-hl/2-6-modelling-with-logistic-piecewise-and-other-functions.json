@@ -1,0 +1,202 @@
+{
+  "slug": "2-6-modelling-with-logistic-piecewise-and-other-functions",
+  "topicCode": "2.6",
+  "title": "Modelling with logistic, piecewise and other functions",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson explores advanced mathematical modelling techniques beyond simple functions. It focuses on logistic functions for growth with limits, piecewise functions for situations with changing conditions, and other models like sinusoidal and polynomial functions for cyclical or complex data patterns. The emphasis is on using technology to fit these models and interpret their parameters in real-world contexts.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Identify the characteristics of logistic, piecewise, sinusoidal, and polynomial functions.",
+    "Use a GDC to create and fit these models to a given set of data.",
+    "Interpret the parameters of each model in the context of a real-world problem.",
+    "Apply the models to make predictions, find key features (e.g., carrying capacity, points of discontinuity), and solve problems."
+  ],
+  "simpleExplanation": {
+    "title": "Beyond the Straight Line",
+    "summary": "Real-life isn't always a straight line or a simple curve; it often has limits, sudden changes, or repeating cycles. This lesson introduces the functions that can model this complexity, such as the 'S-shaped' logistic curve for growth and piecewise functions for things like tax brackets.",
+    "analogy": "Think of modelling data like creating a music playlist. A simple linear model is like one song on repeat. A piecewise model is a playlist where each song has a different tempo and style, changing abruptly from one to the next. A logistic model is like a song that starts quietly, builds to a loud crescendo (the fastest growth), and then levels off at a maximum volume (the carrying capacity).",
+    "steps": [
+      "First, visualise the data on your GDC. Does its shape suggest limited growth (S-curve for logistic), sharp turns (piecewise), or a repeating wave (sinusoidal)?",
+      "Next, define the function. For a piecewise model, this means specifying the rule and domain for each part. For a logistic model, you'll be looking for its key parameters like the carrying capacity.",
+      "Then, use your GDC's regression capabilities to find the specific equation for your chosen model (e.g., Logistic, SinReg, CubicReg). This fits the function to your data points.",
+      "Finally, use your calculated model to answer the question. This could involve making a prediction, finding a maximum or minimum, or explaining what a parameter like the carrying capacity means in context."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is a logistic function?",
+      "back": "A function that models exponential growth at the start, which then slows down as it approaches a maximum value called the carrying capacity. Its graph is 'S'-shaped."
+    },
+    {
+      "front": "What is the general form of a logistic function?",
+      "back": "$f(x) = \\frac{L}{1 + Ce^{-kx}}$, where $L$ is the carrying capacity, $k$ is a growth constant, and $C$ is a constant related to the initial value."
+    },
+    {
+      "front": "What is the 'carrying capacity' in a logistic model?",
+      "back": "The maximum value that the function can reach, represented by the parameter $L$. It's the horizontal asymptote as $x \\to \\infty$."
+    },
+    {
+      "front": "Where does the fastest growth occur in a logistic model?",
+      "back": "At the point of inflection, which is always at half the carrying capacity, i.e., when the output value is $L/2$."
+    },
+    {
+      "front": "What is a piecewise function?",
+      "back": "A function defined by multiple sub-functions, where each sub-function applies to a different interval in the domain."
+    },
+    {
+      "front": "What is a 'boundary point' in a piecewise function?",
+      "back": "The x-value where the function's definition changes from one piece to another. For example, in $f(x) = \\begin{cases} x & x<2 \\\\ x^2 & x \\ge 2 \\end{cases}$, the boundary point is $x=2$."
+    },
+    {
+      "front": "How do you check for continuity at a boundary point of a piecewise function?",
+      "back": "Substitute the boundary x-value into both pieces of the function that meet at that point. If the resulting y-values are the same, the function is continuous."
+    },
+    {
+      "front": "When is a sinusoidal model appropriate?",
+      "back": "When the data shows regular, repeating oscillations or cycles, such as daily temperatures, tidal heights, or the position of a Ferris wheel."
+    },
+    {
+      "front": "What is a common trap when choosing a polynomial model?",
+      "back": "Overfitting. A higher-degree polynomial (e.g., quartic) might fit the given data points perfectly but be a very poor predictor for values outside the data range. Often, a simpler model is better."
+    },
+    {
+      "front": "Trap: Confusing logistic and exponential growth.",
+      "back": "Exponential growth is unlimited, continuing to increase at an ever-faster rate. Logistic growth starts like exponential growth but is limited and levels off at a carrying capacity."
+    },
+    {
+      "front": "Trap: Forgetting units when interpreting parameters.",
+      "back": "Always state the units for parameters like carrying capacity (e.g., '10,000 people', not just '10,000') or rates of change (e.g., 'metres per second')."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I choose between a cubic and a quartic model if both seem to fit the data well?",
+      "a": "This is a great question about the 'principle of parsimony'. Generally, if two models fit the data almost equally well, the simpler model (cubic) is preferred. A higher-degree polynomial (quartic) might fit the given data points perfectly but behave erratically between or beyond them (a phenomenon called 'overfitting'). In an exam, the IB will often guide you on which degree of polynomial to use. If not given, justify your choice based on the visual shape of the data and the real-world context."
+    },
+    {
+      "q": "Do I need to memorise the formula for the logistic function?",
+      "a": "The general form $f(x) = \\frac{L}{1 + Ce^{-kx}}$ is not in the formula booklet, so being familiar with it is highly beneficial. More importantly, you must be able to identify the carrying capacity $L$ from the formula and understand its meaning. In many questions, the formula will be given to you."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "In the real world, many relationships are more complex than a straight line or a simple parabola. Populations don't grow forever, phone bills can change based on usage, and temperatures rise and fall in daily cycles. This lesson equips you with the tools to model these more nuanced situations using logistic, piecewise, and other types of functions. We will focus on how to choose an appropriate model, use our GDC to find its equation, and, most importantly, interpret what our model tells us about the real-world context."
+    },
+    {
+      "type": "heading",
+      "content": "The Logistic Function: Modelling Limited Growth"
+    },
+    {
+      "type": "text",
+      "content": "The logistic function is ideal for modelling situations that start with rapid (almost exponential) growth but then slow down and level off due to limiting factors. Think of the spread of a rumour in a school, the adoption of a new technology, or a population of animals in an environment with finite resources. The distinctive 'S'-shaped curve, or sigmoid curve, visually represents this pattern of growth."
+    },
+    {
+      "type": "formula",
+      "content": "General Form: $P(t) = \\frac{L}{1 + Ce^{-kt}}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The parameter $L$ is the **carrying capacity**, the maximum value or horizontal asymptote of the function.",
+        "The point of fastest growth occurs at the point of inflection, which is always at half the carrying capacity ($y = L/2$).",
+        "The initial value (at $t=0$) is $P(0) = \\frac{L}{1+C}$.",
+        "Your GDC's logistic regression feature (`Logistic`) is essential for finding the parameters from a set of data."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The number of students in a large school who have heard a rumour is modelled by the function $N(t) = \\frac{800}{1 + 159e^{-0.9t}}$, where $t$ is the number of hours after the rumour started.\n\n(a) Find the number of students who started the rumour.\n(b) Find the total number of students in the school according to this model.\n(c) Find the number of students who have heard the rumour after 4 hours.\n(d) Determine the time, in hours, when the rumour is spreading the fastest.",
+      "solution": "(a) The number of students who started the rumour is the initial value, $N(0)$.\n$N(0) = \\frac{800}{1 + 159e^{-0.9 \\times 0}} = \\frac{800}{1 + 159(1)} = \\frac{800}{160} = 5$ students. [M1][A1]\n\n(b) The total number of students in the school is represented by the carrying capacity, $L$. From the numerator, $L=800$ students. [A1]\n\n(c) We need to find $N(4)$.\n$N(4) = \\frac{800}{1 + 159e^{-0.9 \\times 4}} = \\frac{800}{1 + 159e^{-3.6}}$\n$N(4) \\approx 150.39...$\nApproximately 150 students have heard the rumour. [M1][A1]\n\n(d) The rumour spreads fastest at the point of inflection, which occurs when the number of students is half the carrying capacity.\n$N(t) = L/2 = 800/2 = 400$.\nWe need to solve for $t$ when $N(t) = 400$.\n$400 = \\frac{800}{1 + 159e^{-0.9t}}$ [M1]\n$1 = \\frac{2}{1 + 159e^{-0.9t}}$\n$1 + 159e^{-0.9t} = 2$\n$159e^{-0.9t} = 1$\n$e^{-0.9t} = \\frac{1}{159}$\n$-0.9t = \\ln(\\frac{1}{159})$\n$t = \\frac{\\ln(1/159)}{-0.9} \\approx 5.632...$\nThe rumour is spreading fastest after approximately 5.63 hours. [A1]\n(Alternatively, use GDC solver for $N(t)=400$)"
+    },
+    {
+      "type": "examTip",
+      "content": "For logistic models, questions about the 'fastest rate of change' or 'fastest growth' are clues to find the point of inflection. You don't need calculus; just set the function equal to half the carrying capacity ($L/2$) and solve for the independent variable (usually time)."
+    },
+    {
+      "type": "heading",
+      "content": "Piecewise Functions: Modelling with Conditions"
+    },
+    {
+      "type": "text",
+      "content": "A piecewise function is defined by different rules for different parts of its domain. This makes them perfect for modelling situations with abrupt changes or different pricing structures. Common examples include income tax brackets, mobile phone data plans with overage charges, or postage costs based on weight."
+    },
+    {
+      "type": "formula",
+      "content": "Example Structure: $f(x) = \\begin{cases} \\text{rule 1,} & \\text{for domain 1} \\\\ \\text{rule 2,} & \\text{for domain 2} \\\\ \\dots & \\dots \\end{cases}$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Read the domain for each piece carefully, paying close attention to whether the boundary point is included ($≤, ≥$) or excluded ($<, >$).",
+        "To evaluate the function at a certain x-value, first determine which domain interval the x-value falls into.",
+        "A function is **continuous** at a boundary point if the function values from the pieces on either side are equal at that point."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "A car park charges for parking based on the time, $t$ hours, a car is parked. The cost, $C$ in euros (€), is given by the piecewise function:\n$C(t) = \\begin{cases} 3 & \\text{if } 0 < t \\le 1 \\\\ 3 + 2.5(t-1) & \\text{if } 1 < t \\le 4 \\\\ 12 & \\text{if } t > 4 \\end{cases}$\n\n(a) Find the cost of parking for 30 minutes.\n(b) Find the cost of parking for 3 hours.\n(c) A driver pays €9.25. For how long was their car parked?\n(d) Show that the function is not continuous at $t=4$.",
+      "solution": "(a) 30 minutes is 0.5 hours. Since $0 < 0.5 \\le 1$, we use the first rule.\n$C(0.5) = €3$. [M1][A1]\n\n(b) For $t=3$, we use the second rule since $1 < 3 \\le 4$.\n$C(3) = 3 + 2.5(3-1) = 3 + 2.5(2) = 3 + 5 = €8$. [M1][A1]\n\n(c) The cost €9.25 is between €3 and €12, so it must fall under the second rule.\n$9.25 = 3 + 2.5(t-1)$ [M1]\n$6.25 = 2.5(t-1)$\n$2.5 = t-1$\n$t = 3.5$ hours. [A1]\n\n(d) To check for continuity at $t=4$, we check the limits from the left and right.\nFrom the second rule (approaching from the left): $C(4) = 3 + 2.5(4-1) = 3 + 2.5(3) = 10.5$. [M1]\nFrom the third rule (approaching from the right): The cost is a flat €12. [M1]\nSince $10.5 \\neq 12$, the function is not continuous at $t=4$. There is a 'jump' in the price. [R1][AG]\nNote: The [AG] would apply if the question was 'Show that...'. Here it's a conclusion."
+    },
+    {
+      "type": "heading",
+      "content": "Other Models: Sinusoidal and Polynomial"
+    },
+    {
+      "type": "text",
+      "content": "When data doesn't fit a logistic or piecewise model, other functions come into play. Sinusoidal functions (sine and cosine) are the go-to for any phenomenon that is periodic or cyclical, like tides, temperatures, or alternating current. For data with several turning points that isn't cyclical, a polynomial regression (cubic or quartic) can provide a good fit, but must be used with caution, especially when extrapolating."
+    },
+    {
+      "type": "formula",
+      "content": "Sinusoidal: $f(x) = a \\sin(b(x-c)) + d$ \\\\ Polynomial (Cubic): $f(x) = ax^3 + bx^2 + cx + d$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Always plot your data first. A scatter plot is the best way to visually determine a suitable model.",
+        "Use your GDC's regression functions: `SinReg` for sinusoidal data, and `CubicReg` or `QuartReg` for polynomial data.",
+        "For sinusoidal models, remember the parameters: $a$ is amplitude, $d$ is the vertical shift (principal axis), and the period is $\\frac{2\\pi}{b}$.",
+        "Be wary of extrapolation with polynomial models. They can produce unrealistic results outside the range of your data."
+      ]
+    },
+    {
+      "type": "examTip",
+      "content": "On Paper 1, you will not have to perform complex regressions from scratch without a GDC. However, you must be able to recognise the function types, interpret given functions, and use your GDC to solve equations derived from them (e.g., finding when a model reaches a certain value, or finding a maximum/minimum)."
+    },
+    {
+      "type": "practice",
+      "label": "Test Your Knowledge",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=2.6"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GeoGebra: Logistic Growth Model",
+          "href": "https://www.geogebra.org/m/v3g3b3yq"
+        },
+        {
+          "label": "Desmos: Piecewise Functions",
+          "href": "https://www.desmos.com/calculator/tqwystkyfg"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1",
+  "interactiveEmbed": {
+    "provider": "geogebra",
+    "title": "Logistic Growth Model",
+    "embedUrl": "https://www.geogebra.org/classic?material=v3g3b3yq",
+    "launchUrl": "https://www.geogebra.org/classic?material=v3g3b3yq",
+    "hint": "Use “Logistic Growth Model” — shift curves or drag points to see equilibrium and slopes change.",
+    "aspectRatio": "834 / 504",
+    "attribution": {
+      "source": "GeoGebra",
+      "license": "GeoGebra Terms of Service",
+      "sourceUrl": "https://www.geogebra.org"
+    }
+  }
+}

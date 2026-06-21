@@ -1,0 +1,181 @@
+{
+  "slug": "5-3-introduction-to-integration-and-area-under-a-curve",
+  "topicCode": "5.3",
+  "title": "Introduction to integration and area under a curve",
+  "paper": "P1",
+  "paperName": "Maths AI HL",
+  "status": "premium",
+  "summary": "This lesson introduces the concept of integration as a tool for finding the area under a curve. It focuses on setting up definite integrals and using a GDC to solve them, exploring the practical applications of integration in various contexts like calculating total change from a rate of change.",
+  "durationMin": 22,
+  "updated": "2026-06-21",
+  "learningObjectives": [
+    "Understand integration as the reverse process of differentiation and as a method for finding the area under a curve.",
+    "Set up a definite integral to represent the area between a curve and the x-axis over a given interval.",
+    "Use a GDC to calculate the value of a definite integral.",
+    "Interpret the meaning of a definite integral in the context of a real-world problem, such as finding total displacement from velocity."
+  ],
+  "simpleExplanation": {
+    "title": "Summing Up Infinite Slices",
+    "summary": "Integration is a powerful mathematical tool for finding the total amount of something when its rate of change is known. It's most easily visualised as a way to calculate the exact area of an irregular shape bounded by a curve.",
+    "analogy": "Imagine you want to find the area of a sand dune's shadow. You can't use a simple length × width formula. Instead, you could slice the shadow into thousands of incredibly thin vertical strips, each so narrow it's almost a perfect rectangle. By calculating the area of each tiny rectangle (height × tiny width) and adding them all up, you get a very accurate estimate of the total area. Integration is the mathematical process of doing this with infinitely many, infinitely thin slices to get the exact area.",
+    "steps": [
+      "Identify the function f(x) that defines the curve and the interval [a, b] on the x-axis.",
+      "Visualise the area required. It is the region enclosed by the curve, the x-axis, and the vertical lines x=a and x=b.",
+      "Set up the definite integral expression: ∫ from a to b of f(x) dx.",
+      "Use your GDC's numerical integration function (e.g., fnInt or ∫dx) to compute the value, which represents the area."
+    ]
+  },
+  "flashcards": [
+    {
+      "front": "What is integration?",
+      "back": "Integration is the mathematical process used to find the antiderivative of a function. Geometrically, it can be used to find the area under a curve."
+    },
+    {
+      "front": "What is a definite integral?",
+      "back": "A definite integral, written as $\\int_a^b f(x) \\, dx$, calculates a specific numerical value, which represents the net area between the curve $f(x)$ and the x-axis from $x=a$ to $x=b$."
+    },
+    {
+      "front": "What are the 'limits of integration'?",
+      "back": "In the definite integral $\\int_a^b f(x) \\, dx$, the values 'a' and 'b' are the limits of integration. 'a' is the lower limit and 'b' is the upper limit."
+    },
+    {
+      "front": "What is the 'integrand'?",
+      "back": "In the definite integral $\\int_a^b f(x) \\, dx$, the function $f(x)$ that is being integrated is called the integrand."
+    },
+    {
+      "front": "What does the '$dx$' in an integral signify?",
+      "back": "The '$dx$' indicates that the integration is being performed 'with respect to x'. It relates to the infinitely small width of the 'slices' being summed up along the x-axis."
+    },
+    {
+      "front": "What happens if you integrate a function that is below the x-axis?",
+      "back": "The definite integral will yield a negative value. If you are asked for the 'area', you must take the absolute value (positive value) of the result, as area cannot be negative."
+    },
+    {
+      "front": "How do you find the total area if a function is both above and below the x-axis in the interval?",
+      "back": "You must split the integral into parts. Calculate the integral for the section(s) above the axis, and separately calculate the integral for the section(s) below. Take the absolute value of the negative results and add them all together."
+    },
+    {
+      "front": "If $v(t)$ is the velocity of an object in m/s, what does $\\int_{t_1}^{t_2} v(t) \\, dt$ represent?",
+      "back": "It represents the net displacement (change in position) of the object in metres between time $t_1$ and $t_2$. It is not necessarily the total distance travelled."
+    },
+    {
+      "front": "Do I need to know how to integrate by hand (analytically) for Paper 1?",
+      "back": "No. For Maths AI HL, you are expected to use your GDC to evaluate all definite integrals. Your skill is in setting up the correct integral and interpreting the result."
+    },
+    {
+      "front": "What are the units of the result of a definite integral $\\int_a^b y \\, dx$?",
+      "back": "The units of the result are the (units of y) multiplied by the (units of x). For example, if y is in metres per second and x is in seconds, the integral's result is in metres."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between a definite integral and an indefinite integral?",
+      "a": "A definite integral, $\\int_a^b f(x) \\, dx$, has limits of integration and evaluates to a single number (representing net area). An indefinite integral, $\\int f(x) \\, dx$, has no limits and gives a family of functions (the antiderivative, plus a constant of integration 'C'). In AI HL, you will primarily focus on definite integrals calculated with your GDC."
+    },
+    {
+      "q": "What happens if the area I need to find is below the x-axis?",
+      "a": "The definite integral will give a negative value for any area below the x-axis. Since 'area' is a physical quantity that must be positive, you should take the absolute value of the integral's result. For example, if $\\int_2^5 f(x) \\, dx = -8$, the area is 8 square units."
+    },
+    {
+      "q": "How do I find the total area if the curve crosses the x-axis within my interval?",
+      "a": "You must first find the x-intercepts (the roots) of the function within the interval. Then, you split the integral at each root. For example, to find the area from $x=a$ to $x=c$ where the function crosses the axis at $x=b$, you would calculate Area = $|\\int_a^b f(x) \\, dx| + |\\int_b^c f(x) \\, dx|$. You add the absolute values of the separate parts."
+    },
+    {
+      "q": "My calculator gives a different answer to the mark scheme. What could be wrong?",
+      "a": "First, double-check that you have typed the function and the limits of integration correctly. A very common error, especially with trigonometric functions, is having your calculator in the wrong mode (degrees vs. radians). For calculus, your GDC should almost always be in Radian mode."
+    }
+  ],
+  "sections": [
+    {
+      "type": "intro",
+      "content": "Welcome to the world of integration! While differentiation is about finding rates of change (the gradient of a curve), integration is its inverse. We use it to 'add up' an infinite number of tiny pieces to find a whole. Its most famous application, and our starting point, is calculating the exact area of complex shapes defined by functions."
+    },
+    {
+      "type": "heading",
+      "content": "The Definite Integral and Area"
+    },
+    {
+      "type": "text",
+      "content": "Imagine we want to find the area under the curve of a function $y = f(x)$ between two points, $x=a$ and $x=b$. We can't use simple geometric formulas. The core idea of integration is to slice this area into an infinite number of infinitesimally thin vertical rectangles. The sum of the areas of all these rectangles gives us the total area under the curve. This process of 'summing up' is what we call integration."
+    },
+    {
+      "type": "formula",
+      "content": "Area $= \\int_a^b f(x) \\, dx$"
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "The symbol $\\int$ is the integral sign, derived from a stylised 'S' for 'sum'.",
+        "$a$ is the lower limit and $b$ is the upper limit of integration, defining the interval on the x-axis.",
+        "$f(x)$ is the integrand, the function whose curve forms the top boundary of the area.",
+        "$dx$ indicates that we are integrating with respect to the variable $x$."
+      ]
+    },
+    {
+      "type": "heading",
+      "content": "Calculating Definite Integrals with a GDC"
+    },
+    {
+      "type": "text",
+      "content": "For the Applications and Interpretation course, you are not required to perform integration by hand (analytical integration). Your key skill is correctly setting up the definite integral and then using your Graphical Display Calculator (GDC) to find its numerical value. You must be proficient with your calculator's integration function."
+    },
+    {
+      "type": "workedExample",
+      "question": "A garden designer is creating a curved flowerbed. The edge of the flowerbed is modelled by the function $f(x) = -0.5x^2 + 2x + 3$, where $x$ is the horizontal distance in metres from a wall. Find the area of the flowerbed between $x=1$ and $x=4$ metres.",
+      "solution": "1. **Identify the function and limits.**\nThe function is $f(x) = -0.5x^2 + 2x + 3$. The limits of integration are from $a=1$ to $b=4$.\n\n2. **Set up the definite integral.**\nThe area is given by the integral of the function between the limits.\nArea $= \\int_1^4 (-0.5x^2 + 2x + 3) \\, dx$  (M1 for correct integral setup, including limits and dx)\n\n3. **Use the GDC to evaluate.**\nEnter the expression into your calculator's numerical integration tool.\nFor TI-Nspire: In a calculator page, press the template key and select the definite integral template $\\int_{a}^{b} f(x) \\, dx$. Fill in the limits and the function.\nFor Casio: Go to RUN-MATRIX, then MATH (F4), then $\\int dx$ (F4). Enter the function, lower limit, and upper limit.\n\n4. **State the answer.**\n$\\int_1^4 (-0.5x^2 + 2x + 3) \\, dx = 13.5$ (A1)\n\nThe area of the flowerbed is 13.5 square metres. (A1 for correct units and context)\n\n**Total: 3 marks**"
+    },
+    {
+      "type": "examTip",
+      "content": "Always write down the integral you are about to calculate on your exam paper before you type it into your GDC. This will almost always be worth a method mark (M1), even if your final answer is incorrect. Don't just write down the number from your calculator screen."
+    },
+    {
+      "type": "heading",
+      "content": "Interpreting the Meaning of Integration"
+    },
+    {
+      "type": "text",
+      "content": "Integration is not just about geometric area. It's a powerful tool for accumulating a quantity when you know its rate of change. If a function $f(x)$ represents a rate (e.g., metres per second, litres per minute, dollars per item), then its integral represents the total accumulated quantity over an interval (e.g., total metres, total litres, total dollars)."
+    },
+    {
+      "type": "keyPoints",
+      "items": [
+        "Integrating a velocity function, $v(t)$, gives the total displacement (change in position).",
+        "Integrating an acceleration function, $a(t)$, gives the total change in velocity.",
+        "Integrating a marginal cost function, $C'(q)$, gives the total change in cost to produce a certain range of items.",
+        "Integrating a flow rate function, $R(t)$, gives the total volume that has flowed."
+      ]
+    },
+    {
+      "type": "workedExample",
+      "question": "The rate at which water flows out of a tank is modelled by the function $R(t) = 200e^{-0.1t}$, where $R$ is in litres per minute and $t$ is the time in minutes since the tap was opened. Calculate the total amount of water that has flowed out of the tank in the first 10 minutes.",
+      "solution": "1. **Recognise that the total amount is the integral of the rate.**\nWe are given the rate of flow, $R(t)$, and we need to find the total volume over an interval. This requires integration.\n\n2. **Identify the limits of integration.**\n'The first 10 minutes' means the interval is from $t=0$ to $t=10$.\n\n3. **Set up the definite integral.**\nTotal Volume $= \\int_0^{10} 200e^{-0.1t} \\, dt$ (M1 for correct integral, A1 for correct limits and function)\n\n4. **Use the GDC to evaluate.**\nUsing the numerical integration function on the GDC:\n$\\int_0^{10} 200e^{-0.1t} \\, dt \\approx 1264.241...$\n\n5. **State the final answer to 3 significant figures.**\nThe total amount of water that has flowed out is 1260 litres. (A1)\n\n**Total: 3 marks**"
+    },
+    {
+      "type": "examTip",
+      "content": "Pay close attention to the units. If you integrate a rate in 'litres per minute' with respect to time in 'minutes', the units of your answer will be (litres/minute) × (minutes) = litres. This is a great way to check if your interpretation of the question is correct."
+    },
+    {
+      "type": "practice",
+      "label": "Test your understanding",
+      "href": "/mark?subject=ib-maths-ai-hl&topic=5.3"
+    },
+    {
+      "type": "resources",
+      "items": [
+        {
+          "label": "GDC Guide: TI-Nspire Integration",
+          "href": "https://www.youtube.com/watch?v=yso6_3-s_yE"
+        },
+        {
+          "label": "GDC Guide: Casio fx-CG50 Integration",
+          "href": "https://www.youtube.com/watch?v=yso6_3-s_yE"
+        },
+        {
+          "label": "Conceptual Introduction to Integrals",
+          "href": "https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new/ab-6-1/v/introduction-to-integrals"
+        }
+      ]
+    }
+  ],
+  "generatorVersion": "stem-deep-author-1"
+}

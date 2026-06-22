@@ -50,5 +50,7 @@ export type SettingsContext = {
   notifications: {
     emailExamReminders: boolean
     emailProductUpdates: boolean
+    emailCommunityReplies: boolean
+    emailCommunityDigest: boolean
   }
 }

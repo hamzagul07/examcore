@@ -11,6 +11,15 @@
     },
     "app/api/omni-ai/route.ts": {
       "maxDuration": 120
+    },
+    "app/api/cron/community-digest/route.ts": {
+      "maxDuration": 120
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/community-digest",
+      "schedule": "0 9 * * 1"
+    }
+  ]
 }

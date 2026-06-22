@@ -68,7 +68,7 @@ function CommentItem({
   const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <li className="rc-comment">
+    <li className="rc-comment" id={`comment-${node.id}`}>
       <div className="rc-comment-row">
         <button
           type="button"

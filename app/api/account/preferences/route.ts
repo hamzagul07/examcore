@@ -4,6 +4,8 @@ import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-se
 type Body = {
   email_exam_reminders?: boolean
   email_product_updates?: boolean
+  email_community_replies?: boolean
+  email_community_digest?: boolean
 }
 
 export async function PATCH(request: NextRequest) {
@@ -28,6 +30,12 @@ export async function PATCH(request: NextRequest) {
   }
   if (typeof body.email_product_updates === 'boolean') {
     patch.email_product_updates = body.email_product_updates
+  }
+  if (typeof body.email_community_replies === 'boolean') {
+    patch.email_community_replies = body.email_community_replies
+  }
+  if (typeof body.email_community_digest === 'boolean') {
+    patch.email_community_digest = body.email_community_digest
   }
 
   if (Object.keys(patch).length === 0) {

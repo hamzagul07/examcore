@@ -4,7 +4,7 @@ import { useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { CSSProperties } from 'react'
 import type { Board } from '@/lib/community/posts'
-import { COMMUNITY_BOARDS } from '@/lib/community/subjects'
+import { COMMUNITY_BOARDS } from '@/lib/community/boards'
 import type { CommunityAttachment } from '@/lib/community/uploads'
 
 type SubjectOpt = { id: string; name: string; board: Board; accent: string; glyph: string }

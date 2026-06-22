@@ -8,9 +8,11 @@ import { getPostCountsBySubject } from '@/lib/community/counts'
 import { compactCount } from '@/lib/community/format'
 
 export const metadata = createPageMetadata({
-  title: 'Browse communities — Exam Room',
-  description: 'Every Cambridge A-Level and IB subject community in one place.',
+  title: 'Browse communities — Cambridge A-Level & IB',
+  description:
+    'Every Cambridge A-Level and IB Diploma subject community in one place. Ask doubts, share notes, and discuss grade boundaries with students revising the same syllabus.',
   path: '/community/subjects',
+  keywords: ['Cambridge A Level communities', 'IB subject forums', 'student revision groups'],
 })
 
 export const dynamic = 'force-dynamic'
@@ -30,7 +32,7 @@ export default async function CommunitySubjectsPage() {
   )
 
   return (
-    <div className="rc-page rc-page-narrow">
+    <div className="rc-page">
       <div className="rc-dir-head">
         <Link href="/community" className="rc-back">← Exam Room</Link>
         <h1 className="rc-dir-h1">Browse communities</h1>

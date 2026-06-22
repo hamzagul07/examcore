@@ -1,45 +1,75 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
+import type { Board } from '@/lib/community/posts'
 import { getCommunitySubjects } from '@/lib/community/subjects'
 import { getSubjectLeaderboard } from '@/lib/community/leaderboard'
 import { getSubjectPostCount, getPostCountsBySubject } from '@/lib/community/counts'
 import { compactCount } from '@/lib/community/format'
 
 /** Right rail for the community home. */
-export async function CommunitySidebar() {
+export async function CommunitySidebar({ board = 'all' }: { board?: Board | 'all' }) {
   const counts = await getPostCountsBySubject()
-  const subjects = getCommunitySubjects()
+  const cambridge = getCommunitySubjects()
+    .filter((s) => s.board === 'cambridge')
     .map((s) => ({ ...s, posts: counts[s.id] ?? 0 }))
     .sort((a, b) => b.posts - a.posts || a.name.localeCompare(b.name))
-    .slice(0, 12)
+    .slice(0, 6)
+  const ib = getCommunitySubjects()
+    .filter((s) => s.board === 'ib')
+    .map((s) => ({ ...s, posts: counts[s.id] ?? 0 }))
+    .sort((a, b) => b.posts - a.posts || a.name.localeCompare(b.name))
+    .slice(0, 6)
+
+  const showCambridge = board === 'all' || board === 'cambridge'
+  const showIb = board === 'all' || board === 'ib'
 
   return (
     <aside className="rc-sidebar">
       <section className="rc-side-card rc-side-about">
         <h2 className="rc-side-title">Exam Room</h2>
         <p className="rc-side-text">
-          The student community for Cambridge A-Level &amp; IB. Ask doubts, share cheat sheets and
-          resources, and discuss everything from grade boundaries to tricky past-paper questions.
+          Free communities for <strong>Cambridge A-Level</strong> and <strong>IB Diploma</strong>.
+          Ask doubts, share cheat sheets, discuss grade boundaries, and help each other revise.
         </p>
         <Link href="/community/submit" className="rc-btn rc-btn-primary rc-side-cta">Create a post</Link>
         <Link href="/community/guidelines" className="rc-side-link">Community guidelines →</Link>
       </section>
 
-      <section className="rc-side-card">
-        <h3 className="rc-side-subtitle">Popular subjects</h3>
-        <ul className="rc-side-subjects">
-          {subjects.map((s) => (
-            <li key={s.id}>
-              <Link href={`/community/s/${s.id}`} className="rc-side-subject" style={{ '--sc': s.accent } as CSSProperties}>
-                <span className="rc-side-subject-glyph">{s.glyph}</span>
-                <span className="rc-side-subject-name">{s.name}</span>
-                <span className="rc-side-subject-count">{compactCount(s.posts)}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <Link href="/community/subjects" className="rc-side-link">Browse all subjects →</Link>
-      </section>
+      {showCambridge ? (
+        <section className="rc-side-card">
+          <h3 className="rc-side-subtitle">Cambridge A-Level</h3>
+          <ul className="rc-side-subjects">
+            {cambridge.map((s) => (
+              <li key={s.id}>
+                <Link href={`/community/s/${s.id}`} className="rc-side-subject" style={{ '--sc': s.accent } as CSSProperties}>
+                  <span className="rc-side-subject-glyph">{s.glyph}</span>
+                  <span className="rc-side-subject-name">{s.name}</span>
+                  <span className="rc-side-subject-count">{compactCount(s.posts)}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {showIb ? (
+        <section className="rc-side-card">
+          <h3 className="rc-side-subtitle">IB Diploma</h3>
+          <ul className="rc-side-subjects">
+            {ib.map((s) => (
+              <li key={s.id}>
+                <Link href={`/community/s/${s.id}`} className="rc-side-subject" style={{ '--sc': s.accent } as CSSProperties}>
+                  <span className="rc-side-subject-glyph">{s.glyph}</span>
+                  <span className="rc-side-subject-name">{s.name}</span>
+                  <span className="rc-side-subject-count">{compactCount(s.posts)}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      <Link href="/community/subjects" className="rc-side-link rc-side-link-block">Browse all subjects →</Link>
     </aside>
   )
 }

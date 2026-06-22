@@ -115,6 +115,19 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       'How MarkScheme community notes and Q&A work — be helpful, honest and kind. What to do, what not to do, and how moderation and reporting work.',
   },
+  '/community': {
+    title: 'Exam Room — Cambridge A-Level & IB community',
+    description:
+      'Free student community for Cambridge A-Level and IB Diploma. Ask past-paper doubts, share cheat sheets and PDFs, discuss grade boundaries — every subject has its own room.',
+    keywords: [
+      'Cambridge A Level forum',
+      'IB Diploma discussion',
+      'past paper help community',
+      'grade boundaries',
+      'A Level revision forum',
+      'IB study group',
+    ],
+  },
 }
 
 export function getPageMetadata(

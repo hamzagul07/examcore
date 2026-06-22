@@ -14,8 +14,7 @@ import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseLessons } from '@/lib/courses/ib'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
-import { ExamRoomEntry } from '@/components/community/ExamRoomEntry'
-import { getSubjectCommunityCounts } from '@/lib/community/counts'
+import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -65,7 +64,7 @@ export default async function IbSubjectPage({ params }: Props) {
   const related = getIbSubjects()
     .filter((s) => s.group === subject.group && s.slug !== subject.slug)
     .slice(0, 8)
-  const communityCounts = isCommunityEnabled() ? await getSubjectCommunityCounts(subject.slug) : null
+  const communityOn = isCommunityEnabled()
 
   return (
     <>
@@ -141,9 +140,19 @@ export default async function IbSubjectPage({ params }: Props) {
               ? [{ href: `/ib/courses/${subject.slug}`, label: `Free ${short} course`, variant: 'ghost' as const }]
               : []),
             { href: '/mark', label: 'Get feedback on your answer', variant: 'ghost' },
+            { href: `/community/s/${subject.slug}`, label: 'Exam Room community', variant: 'muted' },
             { href: '/ib', label: 'All IB subjects', variant: 'muted' },
           ]}
         />
+
+        {communityOn ? (
+          <div style={{ marginTop: 32 }}>
+            <CommunityEntry
+              subjectCode={subject.slug}
+              title={`IB ${subject.name} ${subject.level} community`}
+            />
+          </div>
+        ) : null}
 
         {getIbCourse(subject.slug) ? (
           <SubjectChapters
@@ -220,16 +229,6 @@ export default async function IbSubjectPage({ params }: Props) {
             ))}
           </dl>
         </section>
-
-        {communityCounts ? (
-          <ExamRoomEntry
-            subjectCode={subject.slug}
-            subjectName={`${subject.name} ${subject.level}`}
-            noteCount={communityCounts.notes}
-            questionCount={communityCounts.questions}
-            accent={subject.accent}
-          />
-        ) : null}
 
         <IbResources resources={getIbResources(subject)} heading={`Best free IB ${subject.name} resources`} />
 

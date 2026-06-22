@@ -4,26 +4,36 @@ import type { ProductKey } from './pricing'
 /** USD list prices in cents (source of truth — keep in sync with setup-stripe-products.mjs). */
 export const PRICING_USD = {
   student: {
-    A: { monthly: 1800, yearly: 15800 },
-    B: { monthly: 1000, yearly: 9000 },
-    C: { monthly: 600, yearly: 5000 },
+    A: { monthly: 3300, yearly: 25900 },
+    B: { monthly: 2200, yearly: 17300 },
+    C: { monthly: 1320, yearly: 10400 },
   },
-  // Pro (marketing name) — competitive tier (Quizlet/Photomath/Save My Exams band).
+  // Pro (marketing name) — PKR anchor: Rs 3,700 / month (tier C).
   scholar: {
-    A: { monthly: 1499, yearly: 11900 },
-    B: { monthly: 999, yearly: 7900 },
-    C: { monthly: 599, yearly: 4700 },
+    A: { monthly: 3300, yearly: 25900 },
+    B: { monthly: 2200, yearly: 17300 },
+    C: { monthly: 1321, yearly: 10370 },
   },
-  // Max (marketing name).
+  // Max (marketing name) — PKR anchor: Rs 6,999 / month (tier C).
   mastery: {
-    A: { monthly: 2999, yearly: 23900 },
-    B: { monthly: 1999, yearly: 15900 },
-    C: { monthly: 1199, yearly: 9500 },
+    A: { monthly: 6250, yearly: 49100 },
+    B: { monthly: 4170, yearly: 32700 },
+    C: { monthly: 2500, yearly: 19620 },
   },
   credits_25: { A: 1000, B: 600, C: 400 },
   credits_100: { A: 3000, B: 1800, C: 1200 },
   credits_500: { A: 10000, B: 6000, C: 4000 },
 } as const
+
+/** Exact PKR amounts for region tier C (Pakistan). Overrides FX conversion. */
+export const PRICING_PKR_C: Record<
+  (typeof SUBSCRIPTION_KEYS)[number],
+  { monthly: number; yearly: number }
+> = {
+  student: { monthly: 370_000, yearly: 2_903_000 },
+  scholar: { monthly: 370_000, yearly: 2_903_000 },
+  mastery: { monthly: 699_900, yearly: 5_491_000 },
+}
 
 export const PRICING_FX: Record<string, number> = {
   usd: 1,
@@ -40,7 +50,7 @@ export const PRICING_ROUND_TO_CENTS: Record<string, number> = {
   eur: 1,
   aud: 1,
   inr: 100,
-  pkr: 10000,
+  pkr: 100,
 }
 
 const SUBSCRIPTION_KEYS = ['student', 'scholar', 'mastery'] as const
@@ -71,6 +81,15 @@ export function getListAmountCents(opts: {
   currency: string
   billingPeriod?: BillingPeriod | null
 }): number {
+  const cur = opts.currency.toLowerCase()
+  const period = opts.billingPeriod === 'yearly' ? 'yearly' : 'monthly'
+  if (
+    cur === 'pkr' &&
+    opts.tier === 'C' &&
+    SUBSCRIPTION_KEYS.includes(opts.product as (typeof SUBSCRIPTION_KEYS)[number])
+  ) {
+    return PRICING_PKR_C[opts.product as (typeof SUBSCRIPTION_KEYS)[number]][period]
+  }
   return convertUsdCents(
     getBaseUsdCents({
       product: opts.product,

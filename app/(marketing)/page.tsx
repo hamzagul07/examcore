@@ -5,6 +5,7 @@ import { LandingTrustStrip } from '@/components/landing/LandingTrustStrip'
 import { LandingFeatures } from '@/components/landing/LandingFeatures'
 import { LandingSteps } from '@/components/landing/LandingSteps'
 import { LandingCoursesPromo } from '@/components/landing/LandingCoursesPromo'
+import { LandingCommunity } from '@/components/landing/LandingCommunity'
 import { LandingSubjects } from '@/components/landing/LandingSubjects'
 import { LandingFounder } from '@/components/landing/LandingFounder'
 import { LandingComparison } from '@/components/landing/LandingComparison'
@@ -25,6 +26,7 @@ export default function Home() {
         <LandingFeatures />
         <LandingSteps />
         <LandingCoursesPromo />
+        <LandingCommunity />
         <LandingSubjects />
         <LandingFounder />
         <LandingComparison />

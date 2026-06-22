@@ -4,24 +4,90 @@
    ────────────────────────────────────────────────────────────────────────── */
 
 .rc-page {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 16px 80px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 24px clamp(16px, 2.5vw, 40px) 80px;
 }
-.rc-page-narrow { max-width: 760px; }
+.rc-page-narrow { max-width: 960px; margin: 0 auto; }
+.rc-page--hub { padding-top: 16px; }
 
 .rc-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 312px;
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: clamp(16px, 2vw, 28px);
   align-items: start;
+  max-width: 1680px;
+  margin: 0 auto;
+}
+.rc-layout--hub {
+  grid-template-columns: 220px minmax(0, 1fr) 300px;
+}
+@media (max-width: 1180px) {
+  .rc-layout--hub { grid-template-columns: minmax(0, 1fr) 300px; }
+  .rc-left-rail { display: none; }
 }
 @media (max-width: 920px) {
-  .rc-layout { grid-template-columns: minmax(0, 1fr); }
+  .rc-layout, .rc-layout--hub { grid-template-columns: minmax(0, 1fr); }
   .rc-sidebar { display: none; }
 }
 
 .rc-main { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Hub intro + FAQ (SEO) ─────────────────────────────────────────────── */
+.rc-hub-intro { max-width: 1680px; margin: 0 auto 20px; }
+.rc-faq {
+  max-width: 1680px;
+  margin: 0 auto 28px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--ec-border);
+}
+.rc-faq-title { font-size: 18px; font-weight: 800; color: var(--ec-text-primary); margin-bottom: 14px; }
+.rc-faq-list { display: grid; gap: 16px; }
+.rc-faq-list dt { font-size: 14px; font-weight: 700; color: var(--ec-text-primary); }
+.rc-faq-list dd { margin-top: 6px; font-size: 13.5px; line-height: 1.55; color: var(--ec-text-secondary); }
+
+/* ── Board tabs ────────────────────────────────────────────────────────── */
+.rc-boardtabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.rc-boardtab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: var(--ec-surface-raised);
+  border: 1px solid var(--ec-border);
+  min-width: 140px;
+  transition: border-color .15s, background .15s;
+}
+.rc-boardtab:hover { border-color: color-mix(in srgb, var(--ec-brand) 40%, var(--ec-border)); }
+.rc-boardtab.on {
+  border-color: var(--ec-brand);
+  background: color-mix(in srgb, var(--ec-brand) 12%, var(--ec-surface-raised));
+}
+.rc-boardtab-label { font-size: 13.5px; font-weight: 700; color: var(--ec-text-primary); }
+.rc-boardtab-sub { font-size: 11px; color: var(--ec-text-secondary); }
+
+/* ── Left rail (desktop) ───────────────────────────────────────────────── */
+.rc-left-rail { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 88px; }
+.rc-left-nav { display: flex; flex-direction: column; gap: 2px; }
+.rc-left-nav-item {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ec-text-secondary);
+  transition: background .12s, color .12s;
+}
+.rc-left-nav-item:hover { background: var(--ec-surface); color: var(--ec-text-primary); }
+.rc-left-nav-item.on { background: color-mix(in srgb, var(--ec-brand) 14%, transparent); color: var(--ec-brand); }
+.rc-side-link-block { display: block; padding: 0 4px; margin-top: -6px; }
 
 /* ── Create-post bar ───────────────────────────────────────────────────── */
 .rc-create-bar {

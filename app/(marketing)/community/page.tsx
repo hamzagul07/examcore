@@ -2,24 +2,39 @@ import { redirect } from 'next/navigation'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { createClient } from '@/lib/supabase-server'
-import { listPosts, getUserPostVotes, type PostSort } from '@/lib/community/posts'
+import { listPosts, getUserPostVotes, type Board, type PostSort } from '@/lib/community/posts'
 import { CreatePostBar } from '@/components/community/reddit/CreatePostBar'
 import { CommunitySearchBar } from '@/components/community/reddit/CommunitySearchBar'
 import { SortTabs } from '@/components/community/reddit/SortTabs'
+import { BoardTabs } from '@/components/community/reddit/BoardTabs'
 import { PostFeed } from '@/components/community/reddit/PostFeed'
 import { CommunitySidebar } from '@/components/community/reddit/Sidebar'
+import { CommunityLeftRail } from '@/components/community/reddit/CommunityLeftRail'
+import { CommunityHubSeo } from '@/components/community/reddit/CommunityHubSeo'
+import { ensureCommunitySeed } from '@/lib/community/ensure-seed'
 
 export const metadata = createPageMetadata({
-  title: 'Exam Room — the student community',
+  title: 'Exam Room — Cambridge A-Level & IB student community',
   description:
-    'Reddit-style community for Cambridge A-Level and IB students: ask doubts, share cheat sheets and resources, and discuss grade boundaries and past papers.',
+    'Free Reddit-style community for Cambridge A-Level and IB Diploma students. Ask past-paper doubts, share cheat sheets and PDFs, discuss grade boundaries, and help each other revise — every subject has its own room.',
   path: '/community',
+  keywords: [
+    'Cambridge A Level forum',
+    'IB Diploma discussion',
+    'past paper help',
+    'grade boundaries discussion',
+    'A Level revision community',
+    'IB study group',
+    '9702 physics help',
+    'math AA HL IA',
+    'student cheat sheets',
+  ],
 })
 
 export const dynamic = 'force-dynamic'
 
 type PageProps = {
-  searchParams: Promise<{ sort?: string; subject?: string; ask?: string }>
+  searchParams: Promise<{ sort?: string; subject?: string; ask?: string; board?: string }>
 }
 
 const SORTS: PostSort[] = ['hot', 'new', 'top', 'rising']
@@ -38,32 +53,49 @@ export default async function CommunityHomePage({ searchParams }: PageProps) {
   }
 
   const sp = await searchParams
-  // Legacy deep-links (?subject= / ?ask=) → route into the subject or composer.
   if (sp.ask === '1') {
     redirect(`/community/submit${sp.subject ? `?subject=${sp.subject}&kind=question` : '?kind=question'}`)
   }
   if (sp.subject) redirect(`/community/s/${sp.subject}`)
 
   const sort: PostSort = SORTS.includes(sp.sort as PostSort) ? (sp.sort as PostSort) : 'hot'
+  const board: Board | 'all' =
+    sp.board === 'cambridge' || sp.board === 'ib' ? sp.board : 'all'
+
+  await ensureCommunitySeed()
 
   const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const posts = await listPosts({ sort, limit: 30 })
+  const posts = await listPosts({
+    sort,
+    board: board === 'all' ? undefined : board,
+    limit: 30,
+  })
   const userVotes = user ? await getUserPostVotes(user.id, posts.map((p) => p.id)) : {}
 
+  const emptyLabel =
+    board === 'cambridge'
+      ? 'No Cambridge A-Level posts yet — start a discussion.'
+      : board === 'ib'
+        ? 'No IB Diploma posts yet — start a discussion.'
+        : 'No posts yet. Be the first to start a discussion.'
+
   return (
-    <div className="rc-page">
-      <div className="rc-layout">
+    <div className="rc-page rc-page--hub">
+      <CommunityHubSeo />
+      <div className="rc-layout rc-layout--hub">
+        <CommunityLeftRail board={board} />
         <main className="rc-main">
           <CommunitySearchBar />
           <CreatePostBar signedIn={!!user} />
-          <SortTabs active={sort} basePath="/community" />
-          <PostFeed posts={posts} userVotes={userVotes} signedIn={!!user} />
+          <BoardTabs active={board} basePath="/community" sort={sort} />
+          <SortTabs active={sort} basePath={board === 'all' ? '/community' : `/community?board=${board}`} />
+          <PostFeed posts={posts} userVotes={userVotes} signedIn={!!user} emptyLabel={emptyLabel} />
         </main>
-        <CommunitySidebar />
+        <CommunitySidebar board={board} />
       </div>
     </div>
   )

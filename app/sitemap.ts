@@ -10,6 +10,8 @@ import { getIbSubjectSlugs } from '@/lib/ib/catalog'
 import { getIbCourseSlugs, getAllIbCourseLessonParams } from '@/lib/courses/ib'
 import { getCourseLessons, getCourseSubjectCodes } from '@/lib/courses'
 import { lessonLastModified } from '@/lib/courses/seo'
+import { getCommunitySubjects } from '@/lib/community/subjects'
+import { isCommunityEnabled } from '@/lib/community/enabled'
 
 const STATIC_ROUTES = [
   { path: '', priority: 1, changeFrequency: 'weekly' as const },
@@ -40,6 +42,8 @@ const STATIC_ROUTES = [
   { path: '/refunds', priority: 0.3, changeFrequency: 'yearly' as const },
   { path: '/cookies', priority: 0.3, changeFrequency: 'yearly' as const },
   { path: '/community/guidelines', priority: 0.4, changeFrequency: 'yearly' as const },
+  { path: '/community', priority: 0.88, changeFrequency: 'daily' as const },
+  { path: '/community/subjects', priority: 0.82, changeFrequency: 'weekly' as const },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -164,6 +168,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   )
 
+  const communityEntries: MetadataRoute.Sitemap = isCommunityEnabled()
+    ? getCommunitySubjects().map((s) => ({
+        url: `${base}/community/s/${s.id}`,
+        lastModified: now,
+        changeFrequency: 'daily' as const,
+        priority: s.board === 'cambridge' ? 0.76 : 0.74,
+      }))
+    : []
+
   return [
     ...staticEntries,
     ...guideEntries,
@@ -175,6 +188,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...calculatorEntries,
     ...courseSubjectEntries,
     ...courseLessonEntries,
+    ...communityEntries,
     ...blogEntries,
   ]
 }

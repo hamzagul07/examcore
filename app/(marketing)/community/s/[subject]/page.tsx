@@ -23,11 +23,22 @@ export async function generateMetadata({ params }: PageProps) {
   const { subject } = await params
   const s = findCommunitySubject(subject)
   return createPageMetadata({
-    title: s ? `s/${subject} — ${s.name} community` : 'Subject community',
+    title: s
+      ? `s/${subject} — ${s.name} ${s.board === 'ib' ? 'IB' : 'A-Level'} community`
+      : 'Subject community',
     description: s
-      ? `Doubts, cheat sheets and discussion for ${s.name} students.`
+      ? `Free ${s.name} student community — ask past-paper doubts, share cheat sheets and PDFs, discuss grade boundaries and revision tips with other ${s.board === 'ib' ? 'IB' : 'Cambridge A-Level'} students.`
       : 'Subject community.',
     path: `/community/s/${subject}`,
+    keywords: s
+      ? [
+          `${s.name} forum`,
+          `${s.id} past paper help`,
+          s.board === 'ib' ? 'IB discussion' : 'A Level forum',
+          'grade boundaries',
+          'revision community',
+        ]
+      : undefined,
   })
 }
 

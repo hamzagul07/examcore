@@ -118,6 +118,7 @@ export default function IbHubPage() {
           links={[
             { href: '/ib/past-papers', label: 'Browse IB past papers →', variant: 'primary' },
             { href: '/ib/subjects', label: 'All IB subjects', variant: 'ghost' },
+            { href: '/community?board=ib', label: 'IB Exam Room', variant: 'muted' },
             { href: '/mark', label: 'Get feedback on your answer', variant: 'muted' },
           ]}
         />

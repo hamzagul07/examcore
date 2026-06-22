@@ -55,25 +55,32 @@ loadEnvFile('.env.local')
 
 const PRICING = {
   student: {
-    A: { monthly: 1800, yearly: 15800 }, // $18 / $158
-    B: { monthly: 1000, yearly: 9000 }, // $10 / $90
-    C: { monthly: 600, yearly: 5000 }, // $6 / $50
+    A: { monthly: 3300, yearly: 25900 },
+    B: { monthly: 2200, yearly: 17300 },
+    C: { monthly: 1320, yearly: 10400 },
   },
-  // Pro (marketing) — competitive tier (Quizlet/Photomath/Save My Exams band).
+  // Pro (marketing) — PKR anchor: Rs 3,700 / month (tier C).
   scholar: {
-    A: { monthly: 1499, yearly: 11900 }, // $14.99 / $119
-    B: { monthly: 999, yearly: 7900 }, // $9.99 / $79
-    C: { monthly: 599, yearly: 4700 }, // $5.99 / $47
+    A: { monthly: 3300, yearly: 25900 },
+    B: { monthly: 2200, yearly: 17300 },
+    C: { monthly: 1321, yearly: 10370 },
   },
-  // Max (marketing).
+  // Max (marketing) — PKR anchor: Rs 6,999 / month (tier C).
   mastery: {
-    A: { monthly: 2999, yearly: 23900 }, // $29.99 / $239
-    B: { monthly: 1999, yearly: 15900 }, // $19.99 / $159
-    C: { monthly: 1199, yearly: 9500 }, // $11.99 / $95
+    A: { monthly: 6250, yearly: 49100 },
+    B: { monthly: 4170, yearly: 32700 },
+    C: { monthly: 2500, yearly: 19620 },
   },
   credits_25: { A: 1000, B: 600, C: 400 },
   credits_100: { A: 3000, B: 1800, C: 1200 },
   credits_500: { A: 10000, B: 6000, C: 4000 },
+}
+
+/** Exact PKR for tier C — keep in sync with lib/billing/pricing-usd.ts */
+const PRICING_PKR_C = {
+  student: { monthly: 370_000, yearly: 2_903_000 },
+  scholar: { monthly: 370_000, yearly: 2_903_000 },
+  mastery: { monthly: 699_900, yearly: 5_491_000 },
 }
 
 const CURRENCIES_PER_TIER = {
@@ -117,7 +124,7 @@ async function applyLiveFxRates() {
 }
 
 // Round to a sensible unit per currency so prices look intentional, not noisy.
-const ROUND_TO_CENTS = { usd: 1, gbp: 1, eur: 1, aud: 1, inr: 100, pkr: 10000 }
+const ROUND_TO_CENTS = { usd: 1, gbp: 1, eur: 1, aud: 1, inr: 100, pkr: 100 }
 
 const SUBSCRIPTION_KEYS = ['student', 'scholar', 'mastery']
 const CREDIT_KEYS = ['credits_25', 'credits_100', 'credits_500']
@@ -135,6 +142,18 @@ function convert(usdCents, currency) {
   const raw = usdCents * (FX[currency] ?? 1)
   const unit = ROUND_TO_CENTS[currency] ?? 1
   return Math.max(unit, Math.round(raw / unit) * unit)
+}
+
+function resolveAmountCents({ usdCents, currency, tier, productKey, period }) {
+  if (
+    currency === 'pkr' &&
+    tier === 'C' &&
+    SUBSCRIPTION_KEYS.includes(productKey) &&
+    period
+  ) {
+    return PRICING_PKR_C[productKey][period]
+  }
+  return convert(usdCents, currency)
 }
 
 // --- Clients ----------------------------------------------------------------
@@ -289,7 +308,13 @@ async function main() {
           : PRICING[productKey][tier]
 
         for (const currency of currencies) {
-          const amountCents = convert(usdCents, currency)
+          const amountCents = resolveAmountCents({
+            usdCents,
+            currency,
+            tier,
+            productKey,
+            period,
+          })
 
           if (!isSub) {
             await deactivatePriorCreditPricing(productKey, tier, currency)

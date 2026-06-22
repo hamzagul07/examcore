@@ -51,6 +51,7 @@ export default function CoursesIndexPage() {
           paragraph="Browse free A-Level and O-Level courses aligned to Cambridge International syllabuses. Each subject is broken into official topic codes with visual lessons, exam tips, and links to past-paper marking — 100% free."
           links={[
             { href: '/subjects', label: 'Browse subjects', variant: 'muted' },
+            { href: '/community', label: 'Exam Room community', variant: 'muted' },
             { href: '/mark', label: 'Mark a past paper →', variant: 'primary' },
           ]}
         />

@@ -11,7 +11,7 @@ export const MARKETING_NAV_PRIMARY: MarketingNavItem[] = [
   { href: '/courses', label: 'Courses' },
   { href: '/ib', label: 'IB' },
   { href: '/subjects', label: 'Subjects' },
-  { href: '/guides', label: 'Guides & blog' },
+  { href: '/community', label: 'Community' },
   { href: '/pricing', label: 'Pricing' },
 ]
 

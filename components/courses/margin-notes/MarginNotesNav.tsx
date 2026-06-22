@@ -13,7 +13,7 @@ const LINKS = [
   { id: 'catalog', label: 'courses', href: '/courses' },
   { id: 'ib', label: 'IB', href: '/ib' },
   { id: 'subjects', label: 'subjects', href: '/subjects' },
-  { id: 'guides', label: 'guides & blog', href: '/blog' },
+  { id: 'community', label: 'community', href: '/community' },
   { id: 'pricing', label: 'pricing', href: '/pricing' },
 ] as const
 

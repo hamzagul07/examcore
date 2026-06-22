@@ -27,6 +27,11 @@ export const APP_NAV_ITEMS: AppNavItem[] = [
     isActive: (p) => p === '/subjects' || p.startsWith('/subjects/'),
   },
   {
+    href: '/community',
+    label: 'Community',
+    isActive: (p) => p === '/community' || p.startsWith('/community/'),
+  },
+  {
     href: '/dashboard/progress',
     label: 'Progress',
     isActive: (p) =>

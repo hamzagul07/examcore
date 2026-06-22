@@ -3,6 +3,8 @@ export function isMarginNotesShellPath(pathname: string): boolean {
   return (
     pathname === '/courses' ||
     pathname.startsWith('/courses/') ||
+    pathname === '/ib/courses' ||
+    pathname.startsWith('/ib/courses/') ||
     pathname === '/subjects' ||
     pathname === '/pricing'
   )
@@ -11,6 +13,7 @@ export function isMarginNotesShellPath(pathname: string): boolean {
 /** Routes using MarketingHeader/Footer — must stay in sync with app/(marketing)/*. */
 const MARKETING_PREFIXES = [
   '/subjects',
+  '/ib',
   '/how-it-works',
   '/pricing',
   '/faq',
@@ -22,6 +25,8 @@ const MARKETING_PREFIXES = [
   '/compare',
   '/research',
   '/courses',
+  '/past-papers',
+  '/tools',
   '/privacy',
   '/terms',
   '/refunds',
@@ -62,6 +67,7 @@ export function shouldShowMobileTabBar(pathname: string): boolean {
 export const MARKETING_ROUTES = [
   '/',
   '/subjects',
+  '/ib',
   '/how-it-works',
   '/pricing',
   '/faq',
@@ -73,6 +79,8 @@ export const MARKETING_ROUTES = [
   '/compare',
   '/research',
   '/courses',
+  '/past-papers',
+  '/tools',
   '/privacy',
   '/terms',
   '/refunds',

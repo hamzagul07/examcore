@@ -16,10 +16,7 @@ import type { MarkingStyle } from '@/lib/marking/types'
 import { signAnswerPhotoUrl } from '@/lib/storage/answer-photos'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { resolveExtractedQuestionId } from '@/lib/community/anchor'
-import { PaperDoubtThread } from '@/components/community/PaperDoubtThread'
-import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
-import { accentCssVar, subjectAccent } from '@/lib/courses/margin-notes/subject-meta'
-
+import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
@@ -206,11 +203,7 @@ export default async function AttemptDetailPage({
       : null
   const communityHref =
     communityOn && subjectCode
-      ? extractedQuestionId
-        ? `/community?ask=1&subject=${subjectCode}&question=${extractedQuestionId}`
-        : pastPaper
-          ? `/community?ask=1&subject=${subjectCode}&paper=${pastPaper.paper_code}&session=${pastPaper.paper_session}&q=${pastPaper.question_number}`
-          : `/community?ask=1&subject=${subjectCode}`
+      ? `/community/submit?subject=${subjectCode}&kind=question`
       : null
 
   return (
@@ -276,14 +269,12 @@ export default async function AttemptDetailPage({
           />
         </div>
 
-        {communityOn && subjectCode && result.marking_mode === 'official_mark_scheme' ? (
+        {communityOn && subjectCode ? (
           <div className="animate-entry stagger-4 mt-10">
-            <PaperDoubtThread
-              board="cambridge"
+            <CommunityEntry
               subjectCode={subjectCode}
-              subjectName={SUBJECT_CODE_MAP[subjectCode] ?? subjectCode}
               questionId={extractedQuestionId}
-              accent={accentCssVar(subjectAccent(subjectCode))}
+              title="Ask the Exam Room"
             />
           </div>
         ) : null}

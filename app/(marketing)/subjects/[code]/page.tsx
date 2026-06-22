@@ -3,9 +3,7 @@ import { notFound } from 'next/navigation'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getCourseSubject, getCourseLessons } from '@/lib/courses'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
-import { ExamRoomEntry } from '@/components/community/ExamRoomEntry'
-import { SubjectLeaderboard } from '@/components/community/SubjectLeaderboard'
-import { getSubjectCommunityCounts } from '@/lib/community/counts'
+import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import {
   buildSubjectPageCopy,
@@ -93,7 +91,7 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
   const lessons = course ? getCourseLessons(code) : []
 
   const intro = buildSubjectHubIntro(subject)
-  const communityCounts = isCommunityEnabled() ? await getSubjectCommunityCounts(code) : null
+  const communityOn = isCommunityEnabled()
 
   return (
     <>
@@ -183,6 +181,12 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
               : []),
           ]}
         />
+
+        {communityOn ? (
+          <div style={{ marginTop: 32 }}>
+            <CommunityEntry subjectCode={code} title={`${subject.label} community`} />
+          </div>
+        ) : null}
 
         {lessons.length && course ? (
           <SubjectChapters
@@ -285,19 +289,6 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
             </div>
           </div>
         </div>
-
-        {communityCounts ? (
-          <>
-            <ExamRoomEntry
-              subjectCode={code}
-              subjectName={subject.label}
-              noteCount={communityCounts.notes}
-              questionCount={communityCounts.questions}
-              accent={accent}
-            />
-            <SubjectLeaderboard subjectCode={code} subjectName={subject.label} />
-          </>
-        ) : null}
 
         <section className="ms-subject-faq" aria-labelledby="subject-faq">
           <h2 id="subject-faq" className="ms-h3">

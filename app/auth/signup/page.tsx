@@ -22,6 +22,7 @@ import {
   GoogleAuthSectionSkeleton,
 } from '@/components/auth/GoogleAuthSection'
 import { AuthDivider } from '@/components/auth/AuthDivider'
+import { UsernameField, type UsernameState } from '@/components/auth/UsernameField'
 
 /**
  * Map a Command Bar `?intent=` query param to a post-signup destination.
@@ -108,6 +109,7 @@ function SignUpForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [username, setUsername] = useState<UsernameState>({ value: '', valid: false })
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -115,12 +117,16 @@ function SignUpForm() {
   const passwordsMatch =
     password.length === 0 || confirmPassword.length === 0 || password === confirmPassword
   const passwordValid = password.length >= 8
-  const canSubmitPassword = passwordValid && password === confirmPassword
+  const canSubmitPassword = passwordValid && password === confirmPassword && username.valid
 
   async function handleMagicLink(e: React.FormEvent) {
     e.preventDefault()
     if (!email.includes('@')) {
       setErrorMsg('Enter a valid email address.')
+      return
+    }
+    if (!username.valid) {
+      setErrorMsg('Pick an available username.')
       return
     }
     setLoading(true)
@@ -140,6 +146,7 @@ function SignUpForm() {
       options: {
         emailRedirectTo: callbackUrl,
         shouldCreateUser: true,
+        data: { username: username.value },
       },
     })
 
@@ -165,6 +172,10 @@ function SignUpForm() {
       setErrorMsg('Passwords do not match.')
       return
     }
+    if (!username.valid) {
+      setErrorMsg('Pick an available username.')
+      return
+    }
     setLoading(true)
     setErrorMsg('')
 
@@ -179,6 +190,7 @@ function SignUpForm() {
       password,
       options: {
         emailRedirectTo: callbackUrl,
+        data: { username: username.value },
       },
     })
 
@@ -198,6 +210,17 @@ function SignUpForm() {
       }
       router.push(`/auth/verify-email?${params.toString()}`)
       return
+    }
+
+    // Session is live immediately (email confirmation off) — claim the username now.
+    try {
+      await fetch('/api/community/username', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: username.value }),
+      })
+    } catch {
+      // Non-fatal — onboarding reconciles from user_metadata as a fallback.
     }
 
     const afterSignup =
@@ -249,6 +272,12 @@ function SignUpForm() {
                   className="ec-input"
                 />
               </div>
+              <div>
+                <Label htmlFor="username-magic" className="label-overline mb-2 inline-block">
+                  Username
+                </Label>
+                <UsernameField id="username-magic" value={username.value} onChange={setUsername} />
+              </div>
 
               {errorMsg && <ErrorBox message={errorMsg} />}
 
@@ -256,6 +285,7 @@ function SignUpForm() {
                 loading={loading}
                 idleLabel="Send sign-up link"
                 loadingLabel="Sending..."
+                disabled={!username.valid}
               />
             </form>
           ) : (
@@ -274,6 +304,12 @@ function SignUpForm() {
                   placeholder="you@example.com"
                   className="ec-input"
                 />
+              </div>
+              <div>
+                <Label htmlFor="username-pw" className="label-overline mb-2 inline-block">
+                  Username
+                </Label>
+                <UsernameField id="username-pw" value={username.value} onChange={setUsername} />
               </div>
               <div>
                 <Label htmlFor="password" className="label-overline mb-2 inline-block">

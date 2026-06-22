@@ -7,10 +7,12 @@ import {
   SettingsFieldGroup,
   SettingsSectionCard,
 } from '@/components/settings/SettingsSectionCard'
+import { UsernameField, type UsernameState } from '@/components/auth/UsernameField'
 
 type Props = {
   email: string
   initialFullName: string
+  initialUsername: string
   board: string
   level: string
   subjects: string[]
@@ -19,6 +21,7 @@ type Props = {
 export function ProfileSection({
   email,
   initialFullName,
+  initialUsername,
   board,
   level,
   subjects,
@@ -27,6 +30,41 @@ export function ProfileSection({
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+
+  const [username, setUsername] = useState<UsernameState>({
+    value: initialUsername,
+    valid: false,
+  })
+  const [savedUsername, setSavedUsername] = useState(initialUsername)
+  const [usernameLoading, setUsernameLoading] = useState(false)
+  const [usernameError, setUsernameError] = useState('')
+  const [usernameSuccess, setUsernameSuccess] = useState('')
+
+  async function handleSaveUsername(e: React.FormEvent) {
+    e.preventDefault()
+    setUsernameError('')
+    setUsernameSuccess('')
+    if (!username.valid || username.value === savedUsername) {
+      setUsernameError(
+        username.value === savedUsername ? 'That is already your username.' : 'Pick an available username.'
+      )
+      return
+    }
+    setUsernameLoading(true)
+    const res = await fetch('/api/community/username', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: username.value }),
+    })
+    setUsernameLoading(false)
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      setUsernameError(data?.error || 'Could not save your username.')
+      return
+    }
+    setSavedUsername(data.username || username.value)
+    setUsernameSuccess('Username updated.')
+  }
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
@@ -55,6 +93,40 @@ export function ProfileSection({
   }
 
   return (
+    <>
+    <SettingsSectionCard
+      title="Community username"
+      description="Your public name in the Exam Room community (u/yourname)."
+    >
+      <form onSubmit={handleSaveUsername} className="space-y-4">
+        <SettingsFieldGroup label="Username">
+          {savedUsername ? (
+            <p className="mb-2 text-sm text-[var(--ec-text-secondary)]">
+              Current: <strong className="text-[var(--ec-text-primary)]">u/{savedUsername}</strong>
+            </p>
+          ) : (
+            <p className="mb-2 text-sm text-[var(--ec-text-secondary)]">
+              You haven&apos;t set a username yet.
+            </p>
+          )}
+          <UsernameField value={username.value} onChange={setUsername} />
+        </SettingsFieldGroup>
+
+        {usernameError && <ErrorBox message={usernameError} />}
+        {usernameSuccess && <SuccessBox message={usernameSuccess} />}
+
+        <Button
+          type="submit"
+          variant="primary"
+          size="md"
+          isLoading={usernameLoading}
+          loadingText="Saving..."
+        >
+          {savedUsername ? 'Change username' : 'Set username'}
+        </Button>
+      </form>
+    </SettingsSectionCard>
+
     <SettingsSectionCard
       title="Profile"
       description="How you appear across MarkScheme."
@@ -101,5 +173,6 @@ export function ProfileSection({
         </Button>
       </form>
     </SettingsSectionCard>
+    </>
   )
 }

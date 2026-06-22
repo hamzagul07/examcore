@@ -20,6 +20,8 @@ type Props = {
   initialPaperNumber?: string | null
   basePath?: string
   coursesCrumb?: { label: string; href: string }
+  /** Exam Room entry card — rendered from a server component parent. */
+  community?: React.ReactNode
 }
 
 function paperIdFromNumber(
@@ -39,6 +41,7 @@ export function CourseHubClient({
   initialPaperNumber,
   basePath,
   coursesCrumb,
+  community,
 }: Props) {
   const { done } = useCourseProgress(code)
   const { user, loading: authLoading } = useAuthCheck()
@@ -75,6 +78,7 @@ export function CourseHubClient({
       signedIn={authLoading ? undefined : !!user}
       basePath={basePath}
       coursesCrumb={coursesCrumb}
+      community={community}
     />
   )
 }

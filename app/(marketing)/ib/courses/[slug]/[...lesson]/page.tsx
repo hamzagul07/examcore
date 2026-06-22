@@ -9,6 +9,8 @@ import {
 import { getIbSubject } from '@/lib/ib/catalog'
 import { enrichLessonVisual } from '@/lib/courses/enrich-lesson-visual'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
+import { isCommunityEnabled } from '@/lib/community/enabled'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { learningResourceNode, faqPageNode } from '@/lib/seo/structured-data'
@@ -49,6 +51,7 @@ export default async function IbLessonPage({ params }: Props) {
   const lessons = getIbCourseLessons(slug)
   const enriched = enrichLessonVisual(slug, l)
   const url = `${SITE_URL}/ib/courses/${slug}/${l.slug}`
+  const communityOn = isCommunityEnabled()
 
   return (
     <>
@@ -87,6 +90,16 @@ export default async function IbLessonPage({ params }: Props) {
         paperQuery={null}
         basePath="/ib/courses"
         coursesCrumb={{ label: 'IB', href: '/ib' }}
+        community={
+          communityOn ? (
+            <div className="lesson-community">
+              <CommunityEntry
+                subjectCode={slug}
+                title={`Discuss ${l.title}`}
+              />
+            </div>
+          ) : null
+        }
       />
     </>
   )

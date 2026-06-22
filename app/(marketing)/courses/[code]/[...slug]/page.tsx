@@ -17,6 +17,8 @@ import { getSubtopicsForLesson } from '@/lib/courses/syllabus-outcomes'
 import { CourseLessonJsonLd } from '@/components/seo/CourseLessonJsonLd'
 import { CourseLessonSeoIntro } from '@/components/courses/CourseLessonSeoIntro'
 import { CourseLessonClient } from '@/components/courses/margin-notes/CourseLessonClient'
+import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
+import { isCommunityEnabled } from '@/lib/community/enabled'
 import { buildSubjectCourseSeo } from '@/lib/seo/subject-seo'
 
 type Props = {
@@ -139,6 +141,7 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
   const subjectSeo = buildSubjectCourseSeo(course, course.lessonCount)
   const isPilotLesson = lesson.status === 'pilot' || isPilotPreview
   const paperQuery = paper ?? resolved.paperNumber ?? null
+  const communityOn = isCommunityEnabled()
 
   return (
     <>
@@ -185,6 +188,16 @@ export default async function CourseLessonCatchAllPage({ params, searchParams }:
         pastPaperQuestions={pastPaperQuestions}
         lessons={lessons}
         paperQuery={paperQuery}
+        community={
+          communityOn && !isPilotLesson ? (
+            <div className="lesson-community">
+              <CommunityEntry
+                subjectCode={code}
+                title={`Discuss ${lesson.title}`}
+              />
+            </div>
+          ) : null
+        }
       />
     </>
   )

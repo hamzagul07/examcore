@@ -4,6 +4,8 @@ import { getIbCourse, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses
 import { getIbSubject } from '@/lib/ib/catalog'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { CourseHubClient } from '@/components/courses/margin-notes/CourseHubClient'
+import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
+import { isCommunityEnabled } from '@/lib/community/enabled'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -38,6 +40,7 @@ export default async function IbCoursePage({ params }: Props) {
   if (!course || !subject) notFound()
 
   const lessons = getIbCourseLessons(slug)
+  const communityOn = isCommunityEnabled()
 
   return (
     <>
@@ -59,6 +62,9 @@ export default async function IbCoursePage({ params }: Props) {
           links={[
             { href: `/ib/subjects/${slug}`, label: `${subject.name} past papers`, variant: 'muted' },
             { href: '/mark', label: 'Get feedback on your answer →', variant: 'primary' },
+            ...(communityOn
+              ? [{ href: `/community/s/${slug}`, label: 'Exam Room community', variant: 'muted' as const }]
+              : []),
           ]}
         />
       </div>
@@ -70,6 +76,16 @@ export default async function IbCoursePage({ params }: Props) {
         initialPaperNumber={null}
         basePath="/ib/courses"
         coursesCrumb={{ label: 'IB', href: '/ib' }}
+        community={
+          communityOn ? (
+            <div className="hub-community">
+              <CommunityEntry
+                subjectCode={slug}
+                title={`IB ${subject.name} ${subject.level} Exam Room`}
+              />
+            </div>
+          ) : null
+        }
       />
     </>
   )

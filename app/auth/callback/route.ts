@@ -7,6 +7,7 @@ import {
 import { resolvePostAuthPath } from '@/lib/auth-redirect'
 import { isOnboardingComplete } from '@/lib/onboarding'
 import { handlePostAuthEmails } from '@/lib/email/notifications'
+import { claimUsernameFromMetadata } from '@/lib/community/claim-username'
 
 /**
  * Lands here after a magic-link click, password-signup confirmation, or
@@ -66,6 +67,12 @@ export async function GET(request: NextRequest) {
 
   const admin = createServiceClient()
   void handlePostAuthEmails(admin, user)
+
+  // Claim the username chosen at sign-up (stored in user_metadata).
+  await claimUsernameFromMetadata(
+    user.id,
+    (user.user_metadata as { username?: string } | undefined)?.username
+  )
 
   const { data: profile } = await supabase
     .from('user_profiles')

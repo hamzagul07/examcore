@@ -3,6 +3,7 @@ import type { EnforcementMode } from '@/lib/billing/enforcement-mode'
 
 export type SettingsProfile = {
   full_name: string
+  username: string
   board: string
   level: string
   subjects: string[]

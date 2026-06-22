@@ -10,6 +10,7 @@ export default async function ProfileSettingsPage() {
     <ProfileSection
       email={email}
       initialFullName={profile.full_name}
+      initialUsername={profile.username}
       board={profile.board}
       level={profile.level}
       subjects={profile.subjects}

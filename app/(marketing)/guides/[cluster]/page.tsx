@@ -5,9 +5,9 @@ import { getPageMetadata } from '@/lib/seo/page-meta'
 import {
   getAllClusterIds,
   getClusterById,
-  getClusterSpokes,
   type ContentClusterId,
 } from '@/lib/seo/clusters'
+import { getClusterSpokes } from '@/lib/seo/cluster-spokes'
 import { getBlogPost, getBlogPosts } from '@/lib/blog'
 import { ContentHubNav } from '@/components/content/ContentHubNav'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'

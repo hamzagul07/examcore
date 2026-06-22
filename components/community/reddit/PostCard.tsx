@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import type { CommunityPost } from '@/lib/community/posts'
-import { findCommunitySubject, communityBoardMeta } from '@/lib/community/subjects'
+import { findCommunitySubject } from '@/lib/community/subjects'
+import { communityBoardMeta } from '@/lib/community/boards'
 import { timeAgo } from '@/lib/community/format'
 import { VoteBox } from './VoteBox'
 

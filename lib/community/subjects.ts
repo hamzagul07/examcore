@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { getCourseCatalog } from '@/lib/courses'
 import { adaptAllCatalogSubjects } from '@/lib/courses/margin-notes/adapt-subject'
 import { accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
@@ -12,26 +14,7 @@ export type CommunitySubject = {
   board: Board
 }
 
-export const COMMUNITY_BOARDS = [
-  {
-    id: 'cambridge' as const,
-    label: 'Cambridge A-Level',
-    short: 'A-Level',
-    sub: 'CAIE · 15 subjects',
-    glyph: '🎓',
-  },
-  {
-    id: 'ib' as const,
-    label: 'IB Diploma',
-    short: 'IB',
-    sub: 'HL & SL programmes',
-    glyph: '🌍',
-  },
-] as const
-
-export function communityBoardMeta(board: Board) {
-  return COMMUNITY_BOARDS.find((b) => b.id === board) ?? COMMUNITY_BOARDS[0]
-}
+export { COMMUNITY_BOARDS, communityBoardMeta } from '@/lib/community/boards'
 
 let cache: CommunitySubject[] | null = null
 

@@ -1,4 +1,4 @@
-import { isSubjectGuideSlug } from '@/lib/seo/subject-guides'
+import { isSubjectGuideSlug } from '@/lib/seo/subject-guide-slugs'
 import type { BlogPostMeta } from '@/lib/blog'
 import { headingSlug, isSkippedBlogHeading } from '@/lib/blog/heading-slug'
 

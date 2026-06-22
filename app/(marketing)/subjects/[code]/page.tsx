@@ -4,6 +4,7 @@ import { createPageMetadata } from '@/lib/seo/metadata'
 import { getCourseSubject, getCourseLessons } from '@/lib/courses'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import { NotesSection } from '@/components/community/NotesSection'
+import { isCommunityEnabled } from '@/lib/community/enabled'
 import {
   buildSubjectPageCopy,
   getMarkingSubjectCodes,
@@ -283,12 +284,14 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           </div>
         </div>
 
-        <NotesSection
-          board="cambridge"
-          subjectCode={code}
-          subjectName={subject.label}
-          accent={accent}
-        />
+        {isCommunityEnabled() ? (
+          <NotesSection
+            board="cambridge"
+            subjectCode={code}
+            subjectName={subject.label}
+            accent={accent}
+          />
+        ) : null}
 
         <section className="ms-subject-faq" aria-labelledby="subject-faq">
           <h2 id="subject-faq" className="ms-h3">

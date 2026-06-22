@@ -92,6 +92,19 @@ export default function TermsPage() {
           </section>
 
           <section>
+            <h2 className="ms-h3">Community contributions</h2>
+            <p>
+              If you post notes, questions, or answers to our community features, you keep ownership of
+              your content and grant MarkScheme a non-exclusive, worldwide licence to host, display, and
+              distribute it within the service. You are responsible for what you post and confirm it is
+              your own work (or that you have the right to share it). Content must follow our{' '}
+              <Link href="/community/guidelines">community guidelines</Link>. We screen submissions
+              automatically and may remove content or suspend accounts that break the rules. You can ask
+              us to remove your contributions at any time.
+            </p>
+          </section>
+
+          <section>
             <h2 className="ms-h3">Disclaimer of warranties</h2>
             <p>
               MarkScheme is provided &quot;as is&quot; during early access. We do not

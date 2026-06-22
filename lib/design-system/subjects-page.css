@@ -371,6 +371,15 @@
 .community-answer-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
 .community-thread .community-vote { border: 1px solid var(--ec-border); border-radius: 10px; align-self: flex-start; }
 
+/* Notification bell */
+.notif-bell-wrap { position: relative; display: inline-flex; }
+.notif-bell { position: relative; background: none; border: none; cursor: pointer; font-size: 17px; line-height: 1; padding: 4px; }
+.notif-badge { position: absolute; top: -3px; right: -4px; background: var(--ec-error-ink, #c0392b); color: #fff; font-size: 10px; font-weight: 700; border-radius: 999px; padding: 0 5px; line-height: 16px; min-width: 16px; text-align: center; }
+.notif-dropdown { position: absolute; right: 0; top: calc(100% + 8px); width: 290px; max-height: 360px; overflow-y: auto; background: var(--ec-surface); border: 1px solid var(--ec-border); border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.18); z-index: 60; padding: 6px; }
+.notif-item { display: block; padding: 10px 12px; border-radius: 8px; font-size: 13.5px; color: var(--ec-text-primary); text-decoration: none; }
+.notif-item:hover { background: color-mix(in srgb, var(--ec-brand) 7%, transparent); }
+.notif-empty { padding: 14px; font-size: 13px; color: var(--ec-text-faint); margin: 0; text-align: center; }
+
 .ms-pp-card {
   display: flex;
   align-items: center;

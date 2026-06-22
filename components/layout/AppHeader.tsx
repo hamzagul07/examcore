@@ -7,6 +7,7 @@ import { WordmarkLink } from '@/components/layout/Wordmark'
 import { CreditChip } from '@/components/billing/CreditChip'
 import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
 import { CommandKTrigger, MobileSearchMenuButton, ThemeFlip } from '@/components/margin-notes'
+import { NotificationBell } from '@/components/community/NotificationBell'
 import { useAuthenticatedAppChrome } from '@/lib/hooks/useAuthenticatedAppChrome'
 import { avatarInitial, useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { APP_NAV_ITEMS } from '@/lib/app-nav'
@@ -58,6 +59,7 @@ export function AppHeader() {
           <GuestSignInChip />
           <CreditChip />
           <CommandKTrigger />
+          <NotificationBell />
           <ThemeFlip />
           {loading ? (
             <span

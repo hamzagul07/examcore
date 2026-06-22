@@ -110,6 +110,11 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       'The small set of cookies and local storage MarkScheme uses — for sign-in, preferences, and basic analytics. No advertising trackers, no data selling.',
   },
+  '/community/guidelines': {
+    title: 'Community guidelines',
+    description:
+      'How MarkScheme community notes and Q&A work — be helpful, honest and kind. What to do, what not to do, and how moderation and reporting work.',
+  },
 }
 
 export function getPageMetadata(

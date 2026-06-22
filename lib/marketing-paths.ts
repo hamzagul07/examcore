@@ -26,6 +26,8 @@ const MARKETING_PREFIXES = [
   '/terms',
   '/refunds',
   '/cookies',
+  '/community',
+  '/u',
 ] as const
 
 const AUTH_PREFIX = '/auth'
@@ -75,4 +77,6 @@ export const MARKETING_ROUTES = [
   '/terms',
   '/refunds',
   '/cookies',
+  '/community',
+  '/u',
 ] as const

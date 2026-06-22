@@ -15,6 +15,7 @@ import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseLessons } from '@/lib/courses/ib'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
+import { NotesSection } from '@/components/community/NotesSection'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -217,6 +218,13 @@ export default async function IbSubjectPage({ params }: Props) {
             ))}
           </dl>
         </section>
+
+        <NotesSection
+          board="ib"
+          subjectCode={subject.slug}
+          subjectName={`${subject.name} ${subject.level}`}
+          accent={subject.accent}
+        />
 
         <IbResources resources={getIbResources(subject)} heading={`Best free IB ${subject.name} resources`} />
 

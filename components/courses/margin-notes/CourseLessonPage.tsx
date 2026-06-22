@@ -18,9 +18,6 @@ import { CourseRichText } from '@/components/courses/CourseRichText'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { LessonUpsell } from '@/components/billing/LessonUpsell'
-import { NotesSection } from '@/components/community/NotesSection'
-import { QASection } from '@/components/community/QASection'
-import { isCommunityEnabledClient } from '@/lib/community/enabled'
 import { trialDaysLeft, type EffectiveAccess } from '@/lib/billing/access'
 import {
   jumpTo,
@@ -48,6 +45,8 @@ type Props = {
   basePath?: string
   /** First breadcrumb crumb — defaults to the Cambridge "Courses" hub. */
   coursesCrumb?: { label: string; href: string }
+  /** Exam Room entry card — rendered from a server component parent. */
+  community?: React.ReactNode
 }
 
 export function CourseLessonPage({
@@ -59,6 +58,7 @@ export function CourseLessonPage({
   trialEndsAt,
   basePath = '/courses',
   coursesCrumb = { label: 'Courses', href: '/courses' },
+  community,
 }: Props) {
   // Free tier sees notes + formulas only — live diagrams, practice questions and
   // the interactive blocks are gated. `undefined` (loading / SSR) renders full so
@@ -818,24 +818,7 @@ export function CourseLessonPage({
               ) : null}
             </div>
 
-            {isCommunityEnabledClient() ? (
-              <div className="lesson-community">
-                <NotesSection
-                  board={basePath.startsWith('/ib') ? 'ib' : 'cambridge'}
-                  subjectCode={L.code}
-                  subjectName={L.sub}
-                  lessonSlug={L.slug}
-                  accent={acc}
-                />
-                <QASection
-                  board={basePath.startsWith('/ib') ? 'ib' : 'cambridge'}
-                  subjectCode={L.code}
-                  subjectName={L.sub}
-                  lessonSlug={L.slug}
-                  accent={acc}
-                />
-              </div>
-            ) : null}
+            {community}
           </article>
         </div>
       )}

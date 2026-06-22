@@ -10,6 +10,8 @@ import { CourseSubjectJsonLd } from '@/components/seo/CourseSubjectJsonLd'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { buildCourseHubIntro } from '@/lib/seo/hub-intro'
 import { CourseHubClient } from '@/components/courses/margin-notes/CourseHubClient'
+import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
+import { isCommunityEnabled } from '@/lib/community/enabled'
 
 type Props = {
   params: Promise<{ code: string }>
@@ -43,6 +45,7 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
   const lessons = getCourseLessons(code)
   const seo = buildCourseSubjectSeo(course, course.lessonCount)
   const intro = buildCourseHubIntro(course, course.lessonCount, course.publishedCount ?? 0)
+  const communityOn = isCommunityEnabled()
 
   return (
     <>
@@ -61,6 +64,9 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
           links={[
             { href: `/subjects/${code}`, label: `${code} past papers`, variant: 'muted' },
             { href: '/mark', label: 'Mark a past paper →', variant: 'primary' },
+            ...(communityOn
+              ? [{ href: `/community/s/${code}`, label: 'Exam Room community', variant: 'muted' as const }]
+              : []),
           ]}
         />
       </div>
@@ -70,6 +76,13 @@ export default async function CourseSubjectPage({ params, searchParams }: Props)
         level={course.level}
         lessons={lessons}
         initialPaperNumber={paper ?? null}
+        community={
+          communityOn ? (
+            <div className="hub-community">
+              <CommunityEntry subjectCode={code} title={`${course.name} Exam Room`} />
+            </div>
+          ) : null
+        }
       />
     </>
   )

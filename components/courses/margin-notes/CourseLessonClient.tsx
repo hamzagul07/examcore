@@ -24,6 +24,8 @@ type Props = {
   paperQuery?: string | null
   basePath?: string
   coursesCrumb?: { label: string; href: string }
+  /** Exam Room entry card — rendered from a server component parent. */
+  community?: React.ReactNode
 }
 
 export function CourseLessonClient({
@@ -36,6 +38,7 @@ export function CourseLessonClient({
   paperQuery,
   basePath,
   coursesCrumb,
+  community,
 }: Props) {
   const { done } = useCourseProgress(subjectCode)
   const { user, loading: authLoading } = useAuthCheck()
@@ -66,6 +69,7 @@ export function CourseLessonClient({
         trialEndsAt={trialEndsAt}
         basePath={basePath}
         coursesCrumb={coursesCrumb}
+        community={community}
       />
     </Suspense>
   )

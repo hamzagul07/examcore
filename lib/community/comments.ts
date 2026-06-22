@@ -1,5 +1,4 @@
 import { createServiceClient } from '@/lib/supabase-server'
-import { screenContribution } from '@/lib/community/ai-screen'
 import { clampNoteContent, stripRawHtml } from '@/lib/community/sanitize'
 
 export type CommunityComment = {
@@ -98,7 +97,7 @@ export type CreateCommentInput = {
 }
 
 export type CreateCommentResult =
-  | { ok: true; id: string; status: string }
+  | { ok: true; id: string; status: string; body: string; subject: string; isTopLevel: boolean }
   | { ok: false; error: string }
 
 export async function createComment(input: CreateCommentInput): Promise<CreateCommentResult> {
@@ -107,34 +106,33 @@ export async function createComment(input: CreateCommentInput): Promise<CreateCo
 
   const admin = createServiceClient()
 
-  // Reject if post is locked.
-  const { data: post } = await admin
+  const postPromise = admin
     .from('community_posts')
     .select('is_locked, subject_code')
     .eq('id', input.postId)
     .maybeSingle()
+  const parentPromise = input.parentId
+    ? admin
+        .from('community_comments')
+        .select('depth, post_id')
+        .eq('id', input.parentId)
+        .maybeSingle()
+    : Promise.resolve({ data: null })
+
+  const [{ data: post }, { data: parent }] = await Promise.all([postPromise, parentPromise])
+
   if (!post) return { ok: false, error: 'Post not found.' }
   if (post.is_locked) return { ok: false, error: 'This thread is locked.' }
 
   let depth = 0
   if (input.parentId) {
-    const { data: parent } = await admin
-      .from('community_comments')
-      .select('depth, post_id')
-      .eq('id', input.parentId)
-      .maybeSingle()
     if (!parent || parent.post_id !== input.postId) {
       return { ok: false, error: 'Parent comment not found.' }
     }
     depth = Math.min((parent.depth as number) + 1, 8)
   }
 
-  const verdict = await screenContribution({
-    kind: 'answer',
-    body,
-    subject: input.subjectName ?? (post.subject_code as string),
-  })
-  const status = verdict.ok ? 'published' : 'flagged'
+  const subject = input.subjectName ?? (post.subject_code as string)
 
   const { data, error } = await admin
     .from('community_comments')
@@ -144,7 +142,7 @@ export async function createComment(input: CreateCommentInput): Promise<CreateCo
       author_id: input.authorId,
       body_md: body,
       depth,
-      status,
+      status: 'published',
     })
     .select('id')
     .single()
@@ -154,28 +152,14 @@ export async function createComment(input: CreateCommentInput): Promise<CreateCo
     .from('community_comment_votes')
     .insert({ comment_id: data.id, user_id: input.authorId, value: 1 })
 
-  // Notify the post author of a new top-level comment.
-  if (!input.parentId) {
-    const { data: p } = await admin
-      .from('community_posts')
-      .select('author_id, title')
-      .eq('id', input.postId)
-      .maybeSingle()
-    if (p && p.author_id !== input.authorId) {
-      try {
-        await admin.from('notifications').insert({
-          user_id: p.author_id,
-          type: 'comment',
-          title: `New comment on "${(p.title as string).slice(0, 60)}"`,
-          href: `/community/posts/${input.postId}`,
-        })
-      } catch {
-        // Notifications are best-effort — never fail a comment over them.
-      }
-    }
+  return {
+    ok: true,
+    id: data.id,
+    status: 'published',
+    body,
+    subject,
+    isTopLevel: !input.parentId,
   }
-
-  return { ok: true, id: data.id, status }
 }
 
 export async function voteComment(commentId: string, userId: string, value: -1 | 1): Promise<number> {

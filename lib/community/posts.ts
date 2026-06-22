@@ -1,5 +1,4 @@
 import { createServiceClient } from '@/lib/supabase-server'
-import { screenContribution } from '@/lib/community/ai-screen'
 import { clampNoteContent, stripRawHtml } from '@/lib/community/sanitize'
 import type { CommunityAttachment } from '@/lib/community/uploads'
 
@@ -171,14 +170,6 @@ export async function createPost(input: CreatePostInput): Promise<CreatePostResu
     return { ok: false, error: 'Add some text to your post.' }
   }
 
-  const verdict = await screenContribution({
-    kind: input.kind === 'question' ? 'question' : 'note',
-    title,
-    body: `${body}`,
-    subject: input.subjectName ?? input.subjectCode,
-  })
-  const status = verdict.ok ? 'published' : 'needs_edit'
-
   const admin = createServiceClient()
   const { data, error } = await admin
     .from('community_posts')
@@ -194,8 +185,8 @@ export async function createPost(input: CreatePostInput): Promise<CreatePostResu
       title,
       body_md: body,
       attachments,
-      status,
-      moderation_reason: verdict.ok ? null : verdict.reason,
+      status: 'published',
+      moderation_reason: null,
     })
     .select('id')
     .single()
@@ -205,7 +196,7 @@ export async function createPost(input: CreatePostInput): Promise<CreatePostResu
   // Author auto-upvote (Reddit behaviour) — trigger recomputes score + hot_rank.
   await admin.from('community_post_votes').insert({ post_id: data.id, user_id: input.authorId, value: 1 })
 
-  return { ok: true, id: data.id, status, reason: verdict.reason ?? null }
+  return { ok: true, id: data.id, status: 'published' }
 }
 
 /** Toggle/set a user's vote on a post. Returns the new vote value (-1/0/1). */

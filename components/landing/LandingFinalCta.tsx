@@ -18,13 +18,21 @@ export function LandingFinalCta({ markHref }: LandingFinalCtaProps) {
             <InkScribble>About a minute.</InkScribble>
           </em>
         </h2>
-        <p className="ms-lead" style={{ margin: '18px auto 34px', textAlign: 'center' }}>
-          No card, no commitment. Mark something you already wrote and see what examiner-style
-          feedback looks like.
+        <p className="ms-lead" style={{ margin: '18px auto 34px', textAlign: 'center', fontWeight: 500 }}>
+          No card, no commitment. Mark a question, browse free courses, or join a subject
+          discussion in Exam Room.
         </p>
-        <Link href={markHref} className="ec-btn-primary">
-          Mark your first question
-        </Link>
+        <div className="ms-cta-row ms-cta-row--center">
+          <Link href={markHref} className="ec-btn-primary">
+            Mark your first question
+          </Link>
+          <Link href="/courses" className="ec-btn-ghost ec-btn-ghost--sm">
+            Free courses
+          </Link>
+          <Link href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
+            Exam Room
+          </Link>
+        </div>
         <p className="ms-micro" style={{ marginTop: 26 }}>
           7-DAY FREE TRIAL · NO CARD · FREE PLAN FOREVER
         </p>

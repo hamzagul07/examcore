@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import type { CommunityPost } from '@/lib/community/posts'
-import { findCommunitySubject } from '@/lib/community/subjects'
+import { findCommunitySubject, communityBoardMeta } from '@/lib/community/subjects'
 import { timeAgo } from '@/lib/community/format'
 import { VoteBox } from './VoteBox'
 
@@ -33,6 +33,7 @@ export function PostCard({
 }) {
   const subject = findCommunitySubject(post.subjectCode)
   const accent = subject?.accent ?? 'var(--ec-brand)'
+  const boardMeta = communityBoardMeta(post.board)
   const href = `/community/posts/${post.id}`
   const body = snippet(post.bodyMd)
   const imageCount = post.attachments.filter((a) => a.kind === 'image').length
@@ -45,6 +46,8 @@ export function PostCard({
       </div>
       <div className="rc-card-body">
         <div className="rc-card-meta">
+          <span className={`rc-board-badge rc-board-badge--${post.board}`}>{boardMeta.short}</span>
+          <span className="rc-dot">·</span>
           <Link href={`/community/s/${post.subjectCode}`} className="rc-subject-pill" style={{ '--sc': accent } as CSSProperties}>
             <span className="rc-subject-glyph">{subject?.glyph ?? '#'}</span>
             <span>s/{post.subjectCode}</span>

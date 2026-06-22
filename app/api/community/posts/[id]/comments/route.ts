@@ -1,6 +1,10 @@
-import { NextRequest } from 'next/server'
+import { NextRequest, after } from 'next/server'
 import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-server'
 import { createComment, getCommentTree } from '@/lib/community/comments'
+import {
+  moderateCommentAfterInsert,
+  notifyPostAuthorOfComment,
+} from '@/lib/community/moderate-async'
 import { getUserUsername } from '@/lib/community/require-username'
 
 /** GET /api/community/posts/[id]/comments — full comment tree. */
@@ -41,5 +45,13 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   if (!result.ok) {
     return jsonWithAuthCookies({ error: result.error }, pendingCookies, { status: 400 })
   }
+
+  after(async () => {
+    await moderateCommentAfterInsert(result.id, { body: result.body, subject: result.subject })
+    if (result.isTopLevel) {
+      await notifyPostAuthorOfComment(id, user.id)
+    }
+  })
+
   return jsonWithAuthCookies({ ok: true, id: result.id, status: result.status }, pendingCookies)
 }

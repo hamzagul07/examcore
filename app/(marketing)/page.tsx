@@ -1,6 +1,8 @@
 import { getPageMetadata } from '@/lib/seo/page-meta'
 import { HomeJsonLd } from '@/components/seo/HomeJsonLd'
 import { LandingHero } from '@/components/landing/LandingHero'
+import { LandingPillars } from '@/components/landing/LandingPillars'
+import { LandingPlatformDetail } from '@/components/landing/LandingPlatformDetail'
 import { LandingTrustStrip } from '@/components/landing/LandingTrustStrip'
 import { LandingFeatures } from '@/components/landing/LandingFeatures'
 import { LandingSteps } from '@/components/landing/LandingSteps'
@@ -22,7 +24,9 @@ export default function Home() {
       <HomeJsonLd />
       <main>
         <LandingHero markHref={markHref} />
+        <LandingPillars />
         <LandingTrustStrip />
+        <LandingPlatformDetail />
         <LandingFeatures />
         <LandingSteps />
         <LandingCoursesPromo />

@@ -13,9 +13,9 @@ export type PageSeoEntry = {
  */
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Cambridge past paper marking — upload handwriting',
+    title: 'Cambridge past paper marking, courses & community',
     description:
-      'Mark Cambridge A-Level & O-Level past papers mark-by-mark. Upload photos of your working, get B1/M1/A1 and essay-band feedback from real mark schemes. Free tier.',
+      'Mark Cambridge & IB past papers mark-by-mark, learn in free syllabus courses, and discuss in Exam Room subject communities. Upload handwriting — B1/M1/A1 feedback. Free tier.',
   },
   '/mark': {
     title: 'Mark a Cambridge past paper online — free',

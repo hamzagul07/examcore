@@ -15,6 +15,7 @@ import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import type { MarkingStyle } from '@/lib/marking/types'
 import { signAnswerPhotoUrl } from '@/lib/storage/answer-photos'
 import { isCommunityEnabled } from '@/lib/community/enabled'
+import { boardForSubject } from '@/lib/community/subjects'
 import { resolveExtractedQuestionId } from '@/lib/community/anchor'
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 const supabaseAdmin = createClient(
@@ -203,7 +204,7 @@ export default async function AttemptDetailPage({
       : null
   const communityHref =
     communityOn && subjectCode
-      ? `/community/submit?subject=${subjectCode}&kind=question`
+      ? `/community/submit?board=${boardForSubject(subjectCode)}&subject=${subjectCode}&kind=question`
       : null
 
   return (

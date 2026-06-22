@@ -380,9 +380,22 @@
 .notif-item:hover { background: color-mix(in srgb, var(--ec-brand) 7%, transparent); }
 .notif-empty { padding: 14px; font-size: 13px; color: var(--ec-text-faint); margin: 0; text-align: center; }
 
-/* Community hub feed */
-.community-hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 8px; }
-@media (max-width: 820px) { .community-hub-grid { grid-template-columns: 1fr; gap: 28px; } }
+/* Community subject browser */
+.community-browser { margin-top: 8px; }
+.community-board-tabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--ec-surface); border: 1px solid var(--ec-border); border-radius: 999px; margin-bottom: 20px; }
+.community-board-tab { border: none; background: none; cursor: pointer; padding: 8px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--ec-text-secondary); transition: background 150ms ease, color 150ms ease; }
+.community-board-tab.on { background: var(--ec-brand); color: #fff; }
+.community-pick-hint { color: var(--ec-text-secondary); margin: 0 0 16px; }
+.community-subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 0; }
+.community-subject-chip { width: 100%; display: flex; align-items: center; gap: 12px; padding: 13px 15px; border: 1px solid var(--ec-border); border-radius: 14px; background: var(--ec-surface); cursor: pointer; text-align: left; transition: transform 150ms ease, border-color 150ms ease; }
+.community-subject-chip:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--sc) 50%, var(--ec-border)); }
+.community-subject-glyph, .community-selected-glyph { flex-shrink: 0; display: grid; place-items: center; border-radius: 12px; font-family: var(--font-display); color: #fff; background: linear-gradient(135deg, var(--sc), color-mix(in srgb, var(--sc) 68%, #00000014)); }
+.community-subject-glyph { width: 42px; height: 42px; font-size: 21px; }
+.community-selected-glyph { width: 48px; height: 48px; font-size: 24px; }
+.community-subject-name { flex: 1; min-width: 0; font-weight: 600; font-size: 14.5px; color: var(--ec-text-primary); }
+.community-subject-go { color: var(--ec-text-faint); }
+.community-back { display: inline-block; margin-bottom: 14px; }
+.community-selected-head { display: flex; align-items: center; gap: 12px; margin: 6px 0 4px; }
 
 /* Community embedded on course hub + lesson pages */
 .hub-community { margin-top: 8px; }

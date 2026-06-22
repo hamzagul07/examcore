@@ -16,6 +16,7 @@ import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseLessons } from '@/lib/courses/ib'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
 import { NotesSection } from '@/components/community/NotesSection'
+import { QASection } from '@/components/community/QASection'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -221,12 +222,10 @@ export default async function IbSubjectPage({ params }: Props) {
         </section>
 
         {isCommunityEnabled() ? (
-          <NotesSection
-            board="ib"
-            subjectCode={subject.slug}
-            subjectName={`${subject.name} ${subject.level}`}
-            accent={subject.accent}
-          />
+          <>
+            <NotesSection board="ib" subjectCode={subject.slug} subjectName={`${subject.name} ${subject.level}`} accent={subject.accent} />
+            <QASection board="ib" subjectCode={subject.slug} subjectName={`${subject.name} ${subject.level}`} accent={subject.accent} />
+          </>
         ) : null}
 
         <IbResources resources={getIbResources(subject)} heading={`Best free IB ${subject.name} resources`} />

@@ -34,7 +34,7 @@ export function SubjectCard({
         <span className="scard-glyph">{s.glyph}</span>
         <span className="scard-tab">{s.code}</span>
         {started ? (
-          <Ring pct={s.prog} size={40} stroke={3.5} color="var(--acc)" />
+          <Ring pct={s.prog} size={40} stroke={3.5} color="#ffffff" />
         ) : (
           <span className="stamp-free">
             FREE

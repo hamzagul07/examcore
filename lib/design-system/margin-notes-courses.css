@@ -82,21 +82,30 @@
 .scard:hover { transform: translateY(-4px); box-shadow: var(--shadow-pop); border-color: color-mix(in srgb, var(--acc) 40%, var(--border)); }
 .scard-top {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
-  padding: 20px 18px 16px; min-height: 96px;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 20%, var(--surface)), color-mix(in srgb, var(--acc) 5%, var(--surface)));
-  border-bottom: 1px solid color-mix(in srgb, var(--acc) 18%, var(--border)); position: relative; overflow: hidden;
+  padding: 22px 18px 18px; min-height: 116px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 78%, var(--surface)), color-mix(in srgb, var(--acc) 42%, var(--surface)));
+  border-bottom: 1px solid color-mix(in srgb, var(--acc) 30%, var(--border)); position: relative; overflow: hidden;
 }
 /* oversized faded subject glyph watermark for a bold, colourful ZNotes-style card */
 .scard-watermark {
-  position: absolute; right: -10px; bottom: -28px; font-family: 'Newsreader', serif;
-  font-size: 116px; line-height: 1; color: var(--acc); opacity: 0.13; pointer-events: none;
+  position: absolute; right: -12px; bottom: -30px; font-family: 'Newsreader', serif;
+  font-size: 128px; line-height: 1; color: #fff; opacity: 0.16; pointer-events: none;
   transition: transform 260ms cubic-bezier(.4,0,.2,1); z-index: 0;
 }
-.scard:hover .scard-watermark { transform: scale(1.08) rotate(-4deg); }
-.scard-glyph { position: relative; z-index: 1; font-family: 'Newsreader', serif; font-size: 50px; line-height: 0.8; color: var(--acc); font-weight: 500; }
-.scard-tab { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); z-index: 1; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
+.scard:hover .scard-watermark { transform: scale(1.1) rotate(-5deg); }
+/* white "app-icon" chip holding the subject glyph — pops on the coloured band, contrasts in both themes */
+.scard-glyph {
+  position: relative; z-index: 1; display: grid; place-items: center;
+  width: 60px; height: 60px; border-radius: 16px;
+  background: var(--surface); color: var(--acc);
+  font-family: 'Newsreader', serif; font-size: 32px; line-height: 1; font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transition: transform 220ms cubic-bezier(.4,0,.2,1);
+}
+.scard:hover .scard-glyph { transform: translateY(-3px) rotate(-4deg); }
+.scard-tab { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); z-index: 1; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: #fff; opacity: 0.92; }
 .scard-top > svg, .scard-top > .stamp-free { position: relative; z-index: 1; }
-.stamp-free { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 700; line-height: 1.15; text-align: center; color: var(--ink); border: 1.5px solid var(--ink-border); border-radius: 6px; padding: 4px 7px; transform: rotate(4deg); letter-spacing: 0.05em; }
+.stamp-free { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 700; line-height: 1.15; text-align: center; color: #fff; border: 1.5px solid rgba(255,255,255,0.7); border-radius: 6px; padding: 4px 7px; transform: rotate(4deg); letter-spacing: 0.05em; }
 .scard-body { padding: 14px 18px 4px; flex: 1; }
 .scard-name { font-family: 'Newsreader', serif; font-size: 22px; font-weight: 500; margin: 0 0 4px; letter-spacing: -0.01em; }
 .scard-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); margin: 0 0 8px; letter-spacing: 0.03em; }

@@ -1,26 +1,21 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import type { MarginNotesSubject, SubjectFamily } from '@/lib/courses/margin-notes/types'
+import { useEffect, useState } from 'react'
+import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import { subjectProgressPercent } from '@/lib/courses/margin-notes/continue-learning'
 import { useCourseProgressRevision } from '@/components/courses/CourseProgressClient'
 import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
 import { SubjectCard } from '@/components/courses/margin-notes/SubjectCard'
+import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/FamilyFilterStrip'
 
 type Props = {
   subjects: MarginNotesSubject[]
 }
 
-const FAMS: Array<SubjectFamily | 'All'> = ['All', 'Sciences', 'Maths', 'Commerce', 'Humanities']
-
 export function SubjectsDirectoryPage({ subjects }: Props) {
-  const pathname = usePathname()
-  const router = useRouter()
-  const searchParams = useSearchParams()
   const progressRev = useCourseProgressRevision()
   const [list, setList] = useState(subjects)
-  const [fam, setFam] = useState<SubjectFamily | 'All'>('All')
+  const { fam, selectFam } = useFamilyFilterFromUrl()
 
   useEffect(() => {
     setList(
@@ -30,25 +25,6 @@ export function SubjectsDirectoryPage({ subjects }: Props) {
       }))
     )
   }, [subjects, progressRev])
-
-  useEffect(() => {
-    const param = searchParams.get('fam')
-    if (param && FAMS.includes(param as SubjectFamily | 'All')) {
-      setFam(param as SubjectFamily | 'All')
-    }
-  }, [searchParams])
-
-  const selectFam = useCallback(
-    (next: SubjectFamily | 'All') => {
-      setFam(next)
-      const params = new URLSearchParams(searchParams.toString())
-      if (next === 'All') params.delete('fam')
-      else params.set('fam', next)
-      const qs = params.toString()
-      router.replace(`${pathname}${qs ? `?${qs}` : ''}`, { scroll: false })
-    },
-    [pathname, router, searchParams]
-  )
 
   const filtered = fam === 'All' ? list : list.filter((s) => s.fam === fam)
 
@@ -68,18 +44,12 @@ export function SubjectsDirectoryPage({ subjects }: Props) {
         </header>
 
         <div className="catalog-bar">
-          <div className="fam-tabs">
-            {FAMS.map((f) => (
-              <button
-                key={f}
-                type="button"
-                className={`fam-tab${fam === f ? ' on' : ''}`}
-                onClick={() => selectFam(f)}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
+          <FamilyFilterStrip
+            value={fam}
+            onChange={selectFam}
+            className="fam-tabs"
+            tabClassName="fam-tab"
+          />
           <span className="micro catalog-count">{filtered.length} subjects</span>
         </div>
 

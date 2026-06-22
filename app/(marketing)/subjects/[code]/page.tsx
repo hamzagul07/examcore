@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { getCourseSubject, getCourseLessons } from '@/lib/courses'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
-import { NotesSection } from '@/components/community/NotesSection'
-import { QASection } from '@/components/community/QASection'
+import { ExamRoomEntry } from '@/components/community/ExamRoomEntry'
+import { SubjectLeaderboard } from '@/components/community/SubjectLeaderboard'
+import { getSubjectCommunityCounts } from '@/lib/community/counts'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import {
   buildSubjectPageCopy,
@@ -16,8 +17,6 @@ import { getSubjectByCode } from '@/lib/profile-options'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { learningResourceNode, faqPageNode } from '@/lib/seo/structured-data'
-import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
-import { SITE_URL } from '@/lib/site-config'
 import { SubjectPaperBrowser } from '@/components/subjects/SubjectPaperBrowser'
 import { Chip } from '@/components/margin-notes'
 import {
@@ -32,6 +31,7 @@ import {
 } from '@/lib/subjects/paper-browser'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { buildSubjectHubIntro } from '@/lib/seo/hub-intro'
+import { SITE_URL } from '@/lib/site-config'
 import type { CSSProperties } from 'react'
 
 type Props = { params: Promise<{ code: string }> }
@@ -93,9 +93,10 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
   const lessons = course ? getCourseLessons(code) : []
 
   const intro = buildSubjectHubIntro(subject)
+  const communityCounts = isCommunityEnabled() ? await getSubjectCommunityCounts(code) : null
 
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={copy.path}
         title={`${subject.label} ${code} past paper marking`}
@@ -285,10 +286,16 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           </div>
         </div>
 
-        {isCommunityEnabled() ? (
+        {communityCounts ? (
           <>
-            <NotesSection board="cambridge" subjectCode={code} subjectName={subject.label} accent={accent} />
-            <QASection board="cambridge" subjectCode={code} subjectName={subject.label} accent={accent} />
+            <ExamRoomEntry
+              subjectCode={code}
+              subjectName={subject.label}
+              noteCount={communityCounts.notes}
+              questionCount={communityCounts.questions}
+              accent={accent}
+            />
+            <SubjectLeaderboard subjectCode={code} subjectName={subject.label} />
           </>
         ) : null}
 
@@ -334,6 +341,6 @@ export default async function SubjectProgrammaticPage({ params }: Props) {
           </Link>
         </nav>
       </div>
-    </MarketingPageShell>
+    </>
   )
 }

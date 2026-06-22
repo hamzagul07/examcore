@@ -17,6 +17,7 @@ export async function GET(request: NextRequest) {
     subjectCode: sp.get('subject') || undefined,
     topicCode: sp.get('topic') || undefined,
     lessonSlug: sp.get('lesson') || undefined,
+    questionId: sp.get('questionId') || undefined,
     limit: Math.min(Number(sp.get('limit')) || 50, 100),
   })
   return Response.json({ questions })
@@ -58,6 +59,7 @@ export async function POST(request: NextRequest) {
     subjectName: body.subjectName,
     topicCode: body.topicCode,
     lessonSlug: body.lessonSlug,
+    questionId: body.questionId,
     title: body.title || '',
     bodyMd: body.bodyMd || '',
   })

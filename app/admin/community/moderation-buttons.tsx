@@ -2,7 +2,14 @@
 
 import { useState } from 'react'
 
-export function ModerationButtons({ noteId, status }: { noteId: string; status: string }) {
+export function ModerationButtons({
+  targetType,
+  targetId,
+}: {
+  targetType: 'note' | 'question' | 'answer'
+  targetId: string
+  status?: string
+}) {
   const [done, setDone] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
 
@@ -12,7 +19,7 @@ export function ModerationButtons({ noteId, status }: { noteId: string; status: 
       const res = await fetch('/api/community/admin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ noteId, action }),
+        body: JSON.stringify({ targetType, targetId, action }),
       })
       if (res.ok) setDone(action === 'remove' ? 'Removed' : 'Restored')
     } catch {

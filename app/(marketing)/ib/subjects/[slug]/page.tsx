@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { CSSProperties } from 'react'
 import { createPageMetadata } from '@/lib/seo/metadata'
-import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { learningResourceNode, itemListNode, faqPageNode } from '@/lib/seo/structured-data'
@@ -15,8 +14,8 @@ import { getIbResources } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
 import { getIbCourse, getIbCourseLessons } from '@/lib/courses/ib'
 import { SubjectChapters } from '@/components/subjects/SubjectChapters'
-import { NotesSection } from '@/components/community/NotesSection'
-import { QASection } from '@/components/community/QASection'
+import { ExamRoomEntry } from '@/components/community/ExamRoomEntry'
+import { getSubjectCommunityCounts } from '@/lib/community/counts'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -66,9 +65,10 @@ export default async function IbSubjectPage({ params }: Props) {
   const related = getIbSubjects()
     .filter((s) => s.group === subject.group && s.slug !== subject.slug)
     .slice(0, 8)
+  const communityCounts = isCommunityEnabled() ? await getSubjectCommunityCounts(subject.slug) : null
 
   return (
-    <MarketingPageShell>
+    <>
       <PageJsonLd
         path={copy.path}
         title={copy.title}
@@ -221,11 +221,14 @@ export default async function IbSubjectPage({ params }: Props) {
           </dl>
         </section>
 
-        {isCommunityEnabled() ? (
-          <>
-            <NotesSection board="ib" subjectCode={subject.slug} subjectName={`${subject.name} ${subject.level}`} accent={subject.accent} />
-            <QASection board="ib" subjectCode={subject.slug} subjectName={`${subject.name} ${subject.level}`} accent={subject.accent} />
-          </>
+        {communityCounts ? (
+          <ExamRoomEntry
+            subjectCode={subject.slug}
+            subjectName={`${subject.name} ${subject.level}`}
+            noteCount={communityCounts.notes}
+            questionCount={communityCounts.questions}
+            accent={subject.accent}
+          />
         ) : null}
 
         <IbResources resources={getIbResources(subject)} heading={`Best free IB ${subject.name} resources`} />
@@ -253,6 +256,6 @@ export default async function IbSubjectPage({ params }: Props) {
           </nav>
         ) : null}
       </div>
-    </MarketingPageShell>
+    </>
   )
 }

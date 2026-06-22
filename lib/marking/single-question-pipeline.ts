@@ -338,6 +338,14 @@ export async function runSingleQuestionMark(
     syllabus_tags: resolvedTags,
   })
 
+  if (userId && attempt?.id) {
+    const { isCommunityEnabled } = await import('@/lib/community/enabled')
+    if (isCommunityEnabled()) {
+      const { awardMarkingXp } = await import('@/lib/community/feed')
+      await awardMarkingXp(userId, subject_code, attempt.id)
+    }
+  }
+
   const aiResult = toMarkingAIResult(markingResult)
   const inkPages = buildPerPageInk(
     aiResult,

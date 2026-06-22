@@ -11,6 +11,7 @@ import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
 import { Ring } from '@/components/courses/margin-notes/Ring'
 import { ReadingProgress } from '@/components/courses/margin-notes/ReadingProgress'
 import { MarginNote } from '@/components/courses/margin-notes/HandAnnotations'
+import { LessonEndBlock } from '@/components/courses/margin-notes/LessonEndBlock'
 import { CourseLessonDiagramShell } from '@/components/courses/margin-notes/CourseLessonDiagramShell'
 import { LessonComparisonTable } from '@/components/courses/margin-notes/LessonComparisonTable'
 import { CourseRichText } from '@/components/courses/CourseRichText'
@@ -420,44 +421,19 @@ export function CourseLessonPage({
             <PracticeSection lesson={L} big />
           )}
           <div className="lesson-end lesson-papers-end">
-            <button
-              type="button"
-              className={`complete-btn${isDone ? ' done' : ''}`}
-              onClick={handleComplete}
-            >
-              <span className="complete-box">{isDone ? '✓' : ''}</span>
-              {isDone ? 'Topic complete — nice work' : 'Mark topic as complete'}
-            </button>
-            {celebrate ? (
-              <MarginNote className="complete-note">
-                nailed it — ring&apos;s filling up ✓
-              </MarginNote>
-            ) : null}
-            <div className="prevnext">
-              {prev ? (
-                <Link className="pn-btn" href={topicLink(prev)}>
-                  <span className="micro">← PREVIOUS</span>
-                  <span className="pn-t serif">
-                    {prev.n} {prev.t}
-                  </span>
-                </Link>
-              ) : (
-                <span />
-              )}
-              {next ? (
-                <Link className="pn-btn right" href={topicLink(next)}>
-                  <span className="micro">NEXT →</span>
-                  <span className="pn-t serif">
-                    {next.n} {next.t}
-                  </span>
-                </Link>
-              ) : (
-                <span />
-              )}
-            </div>
-            <button type="button" className="btn-ghost sm lesson-papers-back" onClick={() => setLessonMode('learn')}>
-              ← Back to lesson notes
-            </button>
+            <LessonEndBlock
+              isDone={isDone}
+              celebrate={celebrate}
+              onComplete={handleComplete}
+              prev={prev}
+              next={next}
+              topicLink={topicLink}
+              extra={
+                <button type="button" className="btn-ghost sm lesson-papers-back" onClick={() => setLessonMode('learn')}>
+                  ← Back to lesson notes
+                </button>
+              }
+            />
           </div>
         </div>
       ) : (
@@ -817,41 +793,14 @@ export function CourseLessonPage({
             ) : null}
 
             <div className="lesson-end">
-              <button
-                type="button"
-                className={`complete-btn${isDone ? ' done' : ''}`}
-                onClick={handleComplete}
-              >
-                <span className="complete-box">{isDone ? '✓' : ''}</span>
-                {isDone ? 'Topic complete — nice work' : 'Mark topic as complete'}
-              </button>
-              {celebrate ? (
-                <MarginNote className="complete-note">
-                  nailed it — ring&apos;s filling up ✓
-                </MarginNote>
-              ) : null}
-              <div className="prevnext">
-                {prev ? (
-                  <Link className="pn-btn" href={topicLink(prev)}>
-                    <span className="micro">← PREVIOUS</span>
-                    <span className="pn-t serif">
-                      {prev.n} {prev.t}
-                    </span>
-                  </Link>
-                ) : (
-                  <span />
-                )}
-                {next ? (
-                  <Link className="pn-btn right" href={topicLink(next)}>
-                    <span className="micro">NEXT →</span>
-                    <span className="pn-t serif">
-                      {next.n} {next.t}
-                    </span>
-                  </Link>
-                ) : (
-                  <span />
-                )}
-              </div>
+            <LessonEndBlock
+              isDone={isDone}
+              celebrate={celebrate}
+              onComplete={handleComplete}
+              prev={prev}
+              next={next}
+              topicLink={topicLink}
+            />
               {related.length > 0 ? (
                 <div className="related">
                   <p className="micro related-kicker">

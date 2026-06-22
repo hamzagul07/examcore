@@ -11,6 +11,7 @@ export type Question = {
   subjectCode: string
   topicCode: string | null
   lessonSlug: string | null
+  questionId: string | null
   title: string
   bodyMd: string
   status: string
@@ -42,6 +43,7 @@ function mapQuestion(r: any, username: string | null): Question {
   return {
     id: r.id, authorId: r.author_id, authorUsername: username, board: r.board,
     subjectCode: r.subject_code, topicCode: r.topic_code, lessonSlug: r.lesson_slug,
+    questionId: r.question_id ?? null,
     title: r.title, bodyMd: r.body_md, status: r.status, answerCount: r.answer_count,
     voteCount: r.vote_count, acceptedAnswerId: r.accepted_answer_id, createdAt: r.created_at,
   }
@@ -52,6 +54,8 @@ export async function listQuestions(params: {
   subjectCode?: string
   topicCode?: string
   lessonSlug?: string
+  questionId?: string
+  authorId?: string
   limit?: number
 }): Promise<Question[]> {
   const admin = createServiceClient()
@@ -65,6 +69,8 @@ export async function listQuestions(params: {
   if (params.subjectCode) q = q.eq('subject_code', params.subjectCode)
   if (params.topicCode) q = q.eq('topic_code', params.topicCode)
   if (params.lessonSlug) q = q.eq('lesson_slug', params.lessonSlug)
+  if (params.questionId) q = q.eq('question_id', params.questionId)
+  if (params.authorId) q = q.eq('author_id', params.authorId)
   const { data } = await q
   const rows = data ?? []
   const names = await usernames(admin, rows.map((r: any) => r.author_id))
@@ -98,7 +104,8 @@ export type CreateResult = { ok: true; id: string; status: string; reason?: stri
 
 export async function createQuestion(input: {
   authorId: string; board: Board; subjectCode: string; subjectName?: string
-  topicCode?: string | null; lessonSlug?: string | null; title: string; bodyMd: string
+  topicCode?: string | null; lessonSlug?: string | null; questionId?: string | null
+  title: string; bodyMd: string
 }): Promise<CreateResult> {
   const title = (input.title || '').trim().slice(0, 160)
   const body = clampNoteContent((input.bodyMd || '').trim(), 8000)
@@ -109,7 +116,9 @@ export async function createQuestion(input: {
   const { data, error } = await admin.from('community_questions').insert({
     author_id: input.authorId, board: input.board, subject_code: input.subjectCode,
     topic_code: input.topicCode ?? null, lesson_slug: input.lessonSlug ?? null,
+    question_id: input.questionId ?? null,
     title, body_md: body, status,
+    moderation_reason: verdict.ok ? null : verdict.reason,
   }).select('id').single()
   if (error || !data) { console.error('[community/qa] question insert failed:', error); return { ok: false, error: 'Could not post your question.' } }
   return { ok: true, id: data.id, status, reason: verdict.reason }
@@ -144,10 +153,14 @@ export async function createAnswer(input: {
 
 export async function acceptAnswer(questionId: string, answerId: string, userId: string): Promise<boolean> {
   const admin = createServiceClient()
-  const { data: q } = await admin.from('community_questions').select('author_id').eq('id', questionId).maybeSingle()
-  if (!q || q.author_id !== userId) return false
-  await admin.from('community_answers').update({ is_accepted: false }).eq('question_id', questionId)
-  await admin.from('community_answers').update({ is_accepted: true }).eq('id', answerId).eq('question_id', questionId)
-  await admin.from('community_questions').update({ accepted_answer_id: answerId }).eq('id', questionId)
-  return true
+  const { data, error } = await admin.rpc('community_accept_answer', {
+    p_question_id: questionId,
+    p_answer_id: answerId,
+    p_user_id: userId,
+  })
+  if (error) {
+    console.error('[community/qa] accept_answer rpc failed:', error)
+    return false
+  }
+  return data === true
 }

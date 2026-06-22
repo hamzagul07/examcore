@@ -14,6 +14,11 @@ import type { LineReference } from '@/components/examiner-ink/ExaminerInkOverlay
 import { extractMarkSchemeRubric } from '@/lib/marking/mark-scheme-display'
 import type { MarkingStyle } from '@/lib/marking/types'
 import { signAnswerPhotoUrl } from '@/lib/storage/answer-photos'
+import { isCommunityEnabled } from '@/lib/community/enabled'
+import { resolveExtractedQuestionId } from '@/lib/community/anchor'
+import { PaperDoubtThread } from '@/components/community/PaperDoubtThread'
+import { SUBJECT_CODE_MAP } from '@/lib/profile-options'
+import { accentCssVar, subjectAccent } from '@/lib/courses/margin-notes/subject-meta'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -187,6 +192,27 @@ export default async function AttemptDetailPage({
     year: 'numeric',
   })
 
+  const communityOn = isCommunityEnabled()
+  const pastPaper = result.detected_paper
+  const subjectCode =
+    pastPaper?.paper_code.split('/')[0] ?? result.subject_code ?? null
+  const extractedQuestionId =
+    communityOn && pastPaper
+      ? await resolveExtractedQuestionId({
+          paperCode: pastPaper.paper_code,
+          paperSession: pastPaper.paper_session,
+          questionNumber: pastPaper.question_number,
+        })
+      : null
+  const communityHref =
+    communityOn && subjectCode
+      ? extractedQuestionId
+        ? `/community?ask=1&subject=${subjectCode}&question=${extractedQuestionId}`
+        : pastPaper
+          ? `/community?ask=1&subject=${subjectCode}&paper=${pastPaper.paper_code}&session=${pastPaper.paper_session}&q=${pastPaper.question_number}`
+          : `/community?ask=1&subject=${subjectCode}`
+      : null
+
   return (
     <main className="app-shell app-shell-tabbed ms-attempt-page">
       <div className="mx-auto min-w-0 max-w-3xl">
@@ -250,6 +276,18 @@ export default async function AttemptDetailPage({
           />
         </div>
 
+        {communityOn && subjectCode && result.marking_mode === 'official_mark_scheme' ? (
+          <div className="animate-entry stagger-4 mt-10">
+            <PaperDoubtThread
+              board="cambridge"
+              subjectCode={subjectCode}
+              subjectName={SUBJECT_CODE_MAP[subjectCode] ?? subjectCode}
+              questionId={extractedQuestionId}
+              accent={accentCssVar(subjectAccent(subjectCode))}
+            />
+          </div>
+        ) : null}
+
         {/* Mark-again CTA — pre-fills the /mark page if this was a past paper */}
         <div className="animate-entry stagger-4 mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
           {sessionParts ? (
@@ -268,6 +306,14 @@ export default async function AttemptDetailPage({
               Mark a new question
             </Link>
           )}
+          {communityHref ? (
+            <Link
+              href={communityHref}
+              className="ec-btn-secondary justify-center px-7 py-4 text-base sm:w-auto"
+            >
+              Ask the room about this question
+            </Link>
+          ) : null}
           <Link
             href="/dashboard"
             className="ec-btn-secondary justify-center px-7 py-4 text-base sm:w-auto"

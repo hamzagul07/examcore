@@ -2,10 +2,10 @@
 
 import { usePathname } from 'next/navigation'
 import { ScrollProgressBar } from '@/components/design-system/ScrollProgressBar'
-import { MarketingHeader } from '@/components/layout/MarketingHeader'
-import { MarketingFooter } from '@/components/layout/MarketingFooter'
+import { SiteHeader } from '@/components/layout/SiteHeader'
+import { SiteFooter } from '@/components/layout/SiteFooter'
 import { MarginNotesPageShell } from '@/components/courses/margin-notes/MarginNotesPageShell'
-import { isMarginNotesShellPath } from '@/lib/marketing-paths'
+import { getSiteChromeVariant } from '@/lib/site-chrome'
 
 function isLessonPath(pathname: string): boolean {
   return /^\/courses\/[^/]+\/.+/.test(pathname)
@@ -13,8 +13,9 @@ function isLessonPath(pathname: string): boolean {
 
 export function MarketingLayoutChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const variant = getSiteChromeVariant(pathname)
 
-  if (isMarginNotesShellPath(pathname)) {
+  if (variant === 'reading') {
     return (
       <MarginNotesPageShell showReadingProgress={!isLessonPath(pathname)}>
         {children}
@@ -22,12 +23,16 @@ export function MarketingLayoutChrome({ children }: { children: React.ReactNode 
     )
   }
 
-  return (
-    <>
-      <ScrollProgressBar />
-      <MarketingHeader />
-      {children}
-      <MarketingFooter />
-    </>
-  )
+  if (variant === 'marketing') {
+    return (
+      <>
+        <ScrollProgressBar />
+        <SiteHeader variant="marketing" />
+        {children}
+        <SiteFooter variant="marketing" />
+      </>
+    )
+  }
+
+  return <>{children}</>
 }

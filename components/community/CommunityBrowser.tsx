@@ -10,12 +10,21 @@ export type BrowserSubject = { id: string; name: string; glyph: string; accent: 
 export function CommunityBrowser({
   cambridge,
   ib,
+  initialSubjectId,
+  askOpen = false,
+  questionId,
 }: {
   cambridge: BrowserSubject[]
   ib: BrowserSubject[]
+  initialSubjectId?: string
+  askOpen?: boolean
+  questionId?: string | null
 }) {
-  const [board, setBoard] = useState<'cambridge' | 'ib'>('cambridge')
-  const [sel, setSel] = useState<BrowserSubject | null>(null)
+  const initialIb = initialSubjectId ? ib.find((s) => s.id === initialSubjectId) : null
+  const initialCam = initialSubjectId ? cambridge.find((s) => s.id === initialSubjectId) : null
+  const initialSel = initialIb ?? initialCam ?? null
+  const [board, setBoard] = useState<'cambridge' | 'ib'>(initialIb ? 'ib' : 'cambridge')
+  const [sel, setSel] = useState<BrowserSubject | null>(initialSel)
   const list = board === 'cambridge' ? cambridge : ib
   const boardLabel = board === 'ib' ? 'IB' : 'A-Level'
 
@@ -60,7 +69,14 @@ export function CommunityBrowser({
             </h2>
           </div>
           <NotesSection board={board} subjectCode={sel.id} subjectName={sel.name} accent={sel.accent} />
-          <QASection board={board} subjectCode={sel.id} subjectName={sel.name} accent={sel.accent} />
+          <QASection
+            board={board}
+            subjectCode={sel.id}
+            subjectName={sel.name}
+            accent={sel.accent}
+            questionId={questionId}
+            askOpen={askOpen && sel.id === initialSubjectId}
+          />
         </div>
       ) : (
         <>

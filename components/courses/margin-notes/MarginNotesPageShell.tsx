@@ -1,8 +1,8 @@
 'use client'
 
 import type { ReactNode } from 'react'
-import { MarginNotesNav } from '@/components/courses/margin-notes/MarginNotesNav'
-import { MarginNotesFooter } from '@/components/courses/margin-notes/MarginNotesFooter'
+import { SiteHeader } from '@/components/layout/SiteHeader'
+import { SiteFooter } from '@/components/layout/SiteFooter'
 import { ReadingProgress } from '@/components/courses/margin-notes/ReadingProgress'
 import { TapFeedbackRoot } from '@/components/courses/margin-notes/TapFeedbackRoot'
 
@@ -20,9 +20,9 @@ export function MarginNotesPageShell({
   return (
     <TapFeedbackRoot className="course-root min-w-0 overflow-x-clip">
       {showReadingProgress ? <ReadingProgress accent={readingAccent} /> : null}
-      <MarginNotesNav />
+      <SiteHeader variant="reading" />
       {children}
-      <MarginNotesFooter />
+      <SiteFooter variant="reading" />
     </TapFeedbackRoot>
   )
 }

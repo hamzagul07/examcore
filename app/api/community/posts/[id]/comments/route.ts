@@ -3,8 +3,8 @@ import { authenticateRouteRequest, jsonWithAuthCookies } from '@/lib/supabase-se
 import { createComment, getCommentTree } from '@/lib/community/comments'
 import {
   moderateCommentAfterInsert,
-  notifyPostAuthorOfComment,
 } from '@/lib/community/moderate-async'
+import { notifyCommentActivity } from '@/lib/community/notify'
 import { getUserUsername } from '@/lib/community/require-username'
 
 /** GET /api/community/posts/[id]/comments — full comment tree. */
@@ -48,9 +48,13 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
 
   after(async () => {
     await moderateCommentAfterInsert(result.id, { body: result.body, subject: result.subject })
-    if (result.isTopLevel) {
-      await notifyPostAuthorOfComment(id, user.id)
-    }
+    await notifyCommentActivity({
+      postId: id,
+      commentId: result.id,
+      commentAuthorId: user.id,
+      parentId: body.parentId ?? null,
+      bodyPreview: result.body.slice(0, 200),
+    })
   })
 
   return jsonWithAuthCookies({ ok: true, id: result.id, status: result.status }, pendingCookies)

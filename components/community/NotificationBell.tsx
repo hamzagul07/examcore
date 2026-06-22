@@ -3,10 +3,27 @@
 import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useAuthCheck } from '@/lib/hooks/useAuthCheck'
+import { timeAgo } from '@/lib/community/format'
 
-type Notif = { id: string; title: string; href: string | null; read: boolean; created_at: string }
+type Notif = {
+  id: string
+  type: string
+  title: string
+  body: string | null
+  href: string | null
+  read: boolean
+  created_at: string
+}
 
 const COMMUNITY_ON = process.env.NEXT_PUBLIC_COMMUNITY_ENABLED === 'true'
+const POLL_MS = 45_000
+
+function notifIcon(type: string): string {
+  if (type === 'reply') return '↩'
+  if (type === 'digest') return '🔥'
+  if (type === 'upvote') return '↑'
+  return '💬'
+}
 
 export function NotificationBell() {
   const { user, loading } = useAuthCheck()
@@ -26,7 +43,10 @@ export function NotificationBell() {
   }, [])
 
   useEffect(() => {
-    if (COMMUNITY_ON && user) fetchNotifs()
+    if (!COMMUNITY_ON || !user) return
+    fetchNotifs()
+    const id = window.setInterval(fetchNotifs, POLL_MS)
+    return () => window.clearInterval(id)
   }, [user, fetchNotifs])
 
   if (!COMMUNITY_ON || loading || !user) return null
@@ -36,6 +56,7 @@ export function NotificationBell() {
     setOpen(next)
     if (next && unread > 0) {
       setUnread(0)
+      setItems((prev) => prev.map((n) => ({ ...n, read: true })))
       try {
         await fetch('/api/community/notifications', { method: 'POST' })
       } catch {
@@ -44,22 +65,57 @@ export function NotificationBell() {
     }
   }
 
+  async function openItem(n: Notif) {
+    setOpen(false)
+    if (!n.read) {
+      setItems((prev) => prev.map((item) => (item.id === n.id ? { ...item, read: true } : item)))
+      setUnread((c) => Math.max(0, c - 1))
+      try {
+        await fetch('/api/community/notifications', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: n.id }),
+        })
+      } catch {
+        /* ignore */
+      }
+    }
+  }
+
   return (
     <div className="notif-bell-wrap">
-      <button type="button" className="notif-bell" onClick={toggle} aria-label="Notifications">
+      <button type="button" className="notif-bell" onClick={toggle} aria-label="Notifications" aria-expanded={open}>
         🔔
         {unread > 0 ? <span className="notif-badge">{unread > 9 ? '9+' : unread}</span> : null}
       </button>
       {open ? (
         <div className="notif-dropdown" role="menu">
+          <div className="notif-dropdown-head">
+            <span className="notif-dropdown-title">Notifications</span>
+            <Link href="/account/preferences" className="notif-dropdown-prefs" onClick={() => setOpen(false)}>
+              Preferences
+            </Link>
+          </div>
           {items.length ? (
             items.map((n) => (
-              <Link key={n.id} href={n.href || '#'} className="notif-item" onClick={() => setOpen(false)}>
-                {n.title}
+              <Link
+                key={n.id}
+                href={n.href || '#'}
+                className={`notif-item${n.read ? '' : ' unread'}`}
+                onClick={() => openItem(n)}
+              >
+                <span className="notif-item-icon" aria-hidden>
+                  {notifIcon(n.type)}
+                </span>
+                <span className="notif-item-main">
+                  <span className="notif-item-title">{n.title}</span>
+                  {n.body ? <span className="notif-item-body">{n.body}</span> : null}
+                  <span className="notif-item-time">{timeAgo(n.created_at)}</span>
+                </span>
               </Link>
             ))
           ) : (
-            <p className="notif-empty">No notifications yet.</p>
+            <p className="notif-empty">No notifications yet — comment in Exam Room to get started.</p>
           )}
         </div>
       ) : null}

@@ -198,7 +198,7 @@ export function SiteHeader({ variant }: Props) {
             </>
           ) : null}
           <CommandKTrigger />
-          {variant === 'app' ? <NotificationBell /> : null}
+          {variant === 'app' || variant === 'marketing' ? <NotificationBell /> : null}
           <ThemeFlip />
           {variant === 'app' ? (
             loading ? (

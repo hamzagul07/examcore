@@ -10,6 +10,8 @@ export default async function PreferencesSettingsPage() {
     <PreferencesSection
       initialExamReminders={notifications.emailExamReminders}
       initialProductUpdates={notifications.emailProductUpdates}
+      initialCommunityReplies={notifications.emailCommunityReplies}
+      initialCommunityDigest={notifications.emailCommunityDigest}
     />
   )
 }

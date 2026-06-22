@@ -1,44 +1,19 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import type { MarginNotesSubject, SubjectFamily } from '@/lib/courses/margin-notes/types'
+import type { MarginNotesSubject } from '@/lib/courses/margin-notes/types'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 import { ContinueLearningStrip } from '@/components/courses/margin-notes/ContinueLearningStrip'
 import { SubjectCard } from '@/components/courses/margin-notes/SubjectCard'
 import { InkScribble, MarginNote } from '@/components/courses/margin-notes/HandAnnotations'
+import { FamilyFilterStrip, useFamilyFilterFromUrl } from '@/components/courses/FamilyFilterStrip'
 
 type Props = {
   subjects: MarginNotesSubject[]
   continueCatalog: ContinueCatalogEntry[]
 }
 
-const FAMS: Array<SubjectFamily | 'All'> = ['All', 'Sciences', 'Maths', 'Commerce', 'Humanities']
-
 export function CourseCatalogPage({ subjects, continueCatalog }: Props) {
-  const pathname = usePathname()
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [fam, setFam] = useState<SubjectFamily | 'All'>('All')
-
-  useEffect(() => {
-    const param = searchParams.get('fam')
-    if (param && FAMS.includes(param as SubjectFamily | 'All')) {
-      setFam(param as SubjectFamily | 'All')
-    }
-  }, [searchParams])
-
-  const selectFam = useCallback(
-    (next: SubjectFamily | 'All') => {
-      setFam(next)
-      const params = new URLSearchParams(searchParams.toString())
-      if (next === 'All') params.delete('fam')
-      else params.set('fam', next)
-      const qs = params.toString()
-      router.replace(`${pathname}${qs ? `?${qs}` : ''}`, { scroll: false })
-    },
-    [pathname, router, searchParams]
-  )
+  const { fam, selectFam } = useFamilyFilterFromUrl()
 
   const list = fam === 'All' ? subjects : subjects.filter((s) => s.fam === fam)
   const totalLessons = subjects.reduce((a, s) => a + s.lessons, 0)
@@ -80,18 +55,12 @@ export function CourseCatalogPage({ subjects, continueCatalog }: Props) {
         <ContinueLearningStrip catalog={continueCatalog} screenLabel="Courses — continue learning" />
 
         <div className="catalog-bar">
-          <div className="fam-tabs">
-            {FAMS.map((f) => (
-              <button
-                key={f}
-                type="button"
-                className={`fam-tab${fam === f ? ' on' : ''}`}
-                onClick={() => selectFam(f)}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
+          <FamilyFilterStrip
+            value={fam}
+            onChange={selectFam}
+            className="fam-tabs"
+            tabClassName="fam-tab"
+          />
           <span className="micro catalog-count">{list.length} courses · A-Level</span>
         </div>
 

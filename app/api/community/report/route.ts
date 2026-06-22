@@ -46,17 +46,29 @@ export async function POST(request: NextRequest) {
     })
   }
 
-  // Auto-hide a note once enough distinct open reports accumulate (admin reviews).
-  if (targetType === 'note') {
-    const { count } = await admin
-      .from('community_reports')
-      .select('id', { count: 'exact', head: true })
-      .eq('target_type', 'note')
-      .eq('target_id', body.targetId)
-      .eq('status', 'open')
-    if ((count ?? 0) >= FLAG_THRESHOLD) {
+  // Auto-hide content once enough distinct open reports accumulate (admin reviews).
+  const { count } = await admin
+    .from('community_reports')
+    .select('id', { count: 'exact', head: true })
+    .eq('target_type', targetType)
+    .eq('target_id', body.targetId)
+    .eq('status', 'open')
+  if ((count ?? 0) >= FLAG_THRESHOLD) {
+    if (targetType === 'note') {
       await admin
         .from('community_notes')
+        .update({ status: 'flagged' })
+        .eq('id', body.targetId)
+        .eq('status', 'published')
+    } else if (targetType === 'question') {
+      await admin
+        .from('community_questions')
+        .update({ status: 'flagged' })
+        .eq('id', body.targetId)
+        .eq('status', 'published')
+    } else if (targetType === 'answer') {
+      await admin
+        .from('community_answers')
         .update({ status: 'flagged' })
         .eq('id', body.targetId)
         .eq('status', 'published')

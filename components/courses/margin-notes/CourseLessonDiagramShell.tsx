@@ -45,12 +45,16 @@ export function CourseLessonDiagramShell({
   const [playing, setPlaying] = useState(false)
   const [params, setParams] = useState(() => defaultParamValues(resolvedSpec))
   const [liveDiagram, setLiveDiagram] = useState(false)
+  const [diagramResolved, setDiagramResolved] = useState(false)
   const diagramRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let cancelled = false
     void import('@/lib/courses/lesson-diagrams').then((mod) => {
-      if (!cancelled) setLiveDiagram(mod.hasLessonLiveDiagram(lessonSlug))
+      if (!cancelled) {
+        setLiveDiagram(mod.hasLessonLiveDiagram(lessonSlug))
+        setDiagramResolved(true)
+      }
     })
     return () => {
       cancelled = true
@@ -96,6 +100,10 @@ export function CourseLessonDiagramShell({
   const handleParamChange = useCallback((id: string, value: number) => {
     setParams((prev) => ({ ...prev, [id]: value }))
   }, [])
+
+  if (!diagramResolved && !interactiveEmbed && !explorable) {
+    return <div className="diagram-wrap diagram-wrap--loading" aria-hidden />
+  }
 
   if (!liveDiagram && !interactiveEmbed && !explorable) return null
 

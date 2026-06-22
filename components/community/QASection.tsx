@@ -21,6 +21,8 @@ export function QASection({
   subjectName,
   topicCode,
   lessonSlug,
+  questionId,
+  askOpen = false,
   accent = 'var(--ec-brand)',
 }: {
   board: 'cambridge' | 'ib'
@@ -28,18 +30,21 @@ export function QASection({
   subjectName: string
   topicCode?: string
   lessonSlug?: string
+  questionId?: string | null
+  askOpen?: boolean
   accent?: string
 }) {
   const { user, loading: authLoading } = useAuthCheck()
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(askOpen)
 
   const load = useCallback(async () => {
     setLoading(true)
     const qs = new URLSearchParams({ board, subject: subjectCode })
     if (topicCode) qs.set('topic', topicCode)
     if (lessonSlug) qs.set('lesson', lessonSlug)
+    if (questionId) qs.set('questionId', questionId)
     try {
       const res = await fetch(`/api/community/questions?${qs}`)
       const data = await res.json()
@@ -48,7 +53,7 @@ export function QASection({
       setQuestions([])
     }
     setLoading(false)
-  }, [board, subjectCode, topicCode, lessonSlug])
+  }, [board, subjectCode, topicCode, lessonSlug, questionId])
 
   useEffect(() => {
     load()
@@ -83,6 +88,7 @@ export function QASection({
           subjectName={subjectName}
           topicCode={topicCode}
           lessonSlug={lessonSlug}
+          questionId={questionId}
           onPosted={() => {
             setOpen(false)
             load()
@@ -129,6 +135,7 @@ function AskForm({
   subjectName,
   topicCode,
   lessonSlug,
+  questionId,
   onPosted,
 }: {
   board: 'cambridge' | 'ib'
@@ -136,6 +143,7 @@ function AskForm({
   subjectName: string
   topicCode?: string
   lessonSlug?: string
+  questionId?: string | null
   onPosted: () => void
 }) {
   const [title, setTitle] = useState('')
@@ -168,7 +176,7 @@ function AskForm({
       const res = await fetch('/api/community/questions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ board, subjectCode, subjectName, topicCode, lessonSlug, title, bodyMd }),
+        body: JSON.stringify({ board, subjectCode, subjectName, topicCode, lessonSlug, questionId, title, bodyMd }),
       })
       const data = await res.json()
       if (!res.ok) {

@@ -4,6 +4,7 @@ import {
   jsonWithAuthCookies,
   createServiceClient,
 } from '@/lib/supabase-server'
+import { bumpAuthorRepOnUpvote } from '@/lib/community/vote-rep'
 
 /** POST /api/community/notes/[id]/vote — toggle the signed-in user's upvote. */
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -30,6 +31,17 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       return jsonWithAuthCookies({ error: 'Could not record your vote.' }, pendingCookies, { status: 500 })
     }
     voted = true
+    const { data: note } = await admin
+      .from('community_notes')
+      .select('author_id, subject_code')
+      .eq('id', id)
+      .maybeSingle()
+    if (note?.author_id && note.author_id !== user.id && note.subject_code) {
+      await bumpAuthorRepOnUpvote(admin, {
+        authorId: note.author_id as string,
+        subjectCode: note.subject_code as string,
+      })
+    }
   }
   const { data: note } = await admin
     .from('community_notes')

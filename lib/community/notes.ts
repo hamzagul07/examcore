@@ -12,6 +12,7 @@ export type CommunityNote = {
   subjectCode: string
   topicCode: string | null
   lessonSlug: string | null
+  questionId: string | null
   title: string
   contentMd: string
   imagePaths: string[]
@@ -46,6 +47,7 @@ function mapRow(r: Row, username: string | null): CommunityNote {
     subjectCode: r.subject_code,
     topicCode: r.topic_code,
     lessonSlug: r.lesson_slug,
+    questionId: (r as Row & { question_id?: string | null }).question_id ?? null,
     title: r.title,
     contentMd: r.content_md,
     imagePaths: r.image_paths ?? [],
@@ -109,6 +111,7 @@ export type CreateNoteInput = {
   subjectCode: string
   topicCode?: string | null
   lessonSlug?: string | null
+  questionId?: string | null
   title: string
   contentMd: string
   imagePaths?: string[]
@@ -143,6 +146,7 @@ export async function createNote(input: CreateNoteInput): Promise<CreateNoteResu
       subject_code: input.subjectCode,
       topic_code: input.topicCode ?? null,
       lesson_slug: input.lessonSlug ?? null,
+      question_id: input.questionId ?? null,
       title,
       content_md: content,
       image_paths: input.imagePaths ?? [],

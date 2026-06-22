@@ -53,7 +53,10 @@ export function CourseHubClient({
     lessons.map((l) => l.slug)
   )
 
-  const course = adaptCourseHub(code, name, lessons, completedSlugs, activeSlug)
+  const course = useMemo(
+    () => adaptCourseHub(code, name, lessons, completedSlugs, activeSlug),
+    [code, name, lessons, completedSlugs, activeSlug]
+  )
   const initialPaperId = paperIdFromNumber(course.papers, initialPaperNumber ?? null)
   const prog = lessons.length ? Math.round((done.size / lessons.length) * 100) : 0
   const streakLabel =

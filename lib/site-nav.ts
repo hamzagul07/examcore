@@ -1,0 +1,160 @@
+import { MARKETING_NAV } from '@/lib/site-config'
+
+export type NavDropdownItem = { href: string; label: string; sublabel?: string }
+
+export type SiteNavItem = {
+  id: string
+  href: string
+  label: string
+  children?: NavDropdownItem[]
+  isActive: (pathname: string) => boolean
+  /** Which header variants show this item. */
+  variants: Array<'marketing' | 'app' | 'reading'>
+}
+
+/** Subjects dropdown — both boards under one menu. */
+export const SUBJECTS_DROPDOWN: NavDropdownItem[] = [
+  { href: '/subjects', label: 'A-Level', sublabel: 'Cambridge International' },
+  { href: '/ib', label: 'IB Diploma', sublabel: 'HL & SL' },
+]
+
+function subjectsActive(pathname: string) {
+  return (
+    pathname === '/subjects' ||
+    pathname.startsWith('/subjects/') ||
+    pathname === '/ib' ||
+    pathname.startsWith('/ib/')
+  )
+}
+
+/** Single source of truth for primary navigation across all headers. */
+export const SITE_NAV_ITEMS: SiteNavItem[] = [
+  {
+    id: 'mark',
+    href: '/mark',
+    label: 'Mark',
+    variants: ['marketing', 'app', 'reading'],
+    isActive: (p) => p === '/mark' || p.startsWith('/mark/'),
+  },
+  {
+    id: 'courses',
+    href: '/courses',
+    label: 'Courses',
+    variants: ['marketing', 'app', 'reading'],
+    isActive: (p) => p === '/courses' || p.startsWith('/courses/'),
+  },
+  {
+    id: 'subjects',
+    href: '/subjects',
+    label: 'Subjects',
+    children: SUBJECTS_DROPDOWN,
+    variants: ['marketing', 'app', 'reading'],
+    isActive: subjectsActive,
+  },
+  {
+    id: 'community',
+    href: '/community',
+    label: 'Community',
+    variants: ['marketing', 'app', 'reading'],
+    isActive: (p) => p === '/community' || p.startsWith('/community/'),
+  },
+  {
+    id: 'pricing',
+    href: '/pricing',
+    label: 'Pricing',
+    variants: ['marketing', 'reading'],
+    isActive: (p) => p === '/pricing',
+  },
+  {
+    id: 'progress',
+    href: '/dashboard/progress',
+    label: 'Progress',
+    variants: ['app'],
+    isActive: (p) =>
+      p.startsWith('/dashboard/progress') ||
+      p.startsWith('/dashboard/attempt/') ||
+      p === '/dashboard',
+  },
+  {
+    id: 'account',
+    href: '/account',
+    label: 'Account',
+    variants: ['app'],
+    isActive: (p) => p.startsWith('/account'),
+  },
+]
+
+export type SiteHeaderVariant = 'marketing' | 'app' | 'reading'
+
+export function getNavItemsForVariant(variant: SiteHeaderVariant): SiteNavItem[] {
+  return SITE_NAV_ITEMS.filter((item) => item.variants.includes(variant))
+}
+
+/** Blog + guides share one nav item — active on either route. */
+export function isGuidesBlogNavActive(pathname: string) {
+  return (
+    pathname === '/blog' ||
+    pathname.startsWith('/blog/') ||
+    pathname === '/guides' ||
+    pathname.startsWith('/guides/')
+  )
+}
+
+/** Secondary links — mobile menu overflow + footer. */
+export const MARKETING_NAV_SECONDARY = MARKETING_NAV.filter(
+  (item) => !SITE_NAV_ITEMS.some((p) => p.href === item.href)
+).map((item) => ({ href: item.href, label: item.label }))
+
+/** @deprecated Use SITE_NAV_ITEMS — kept for import compatibility. */
+export type AppNavItem = {
+  href: string
+  label: string
+  isActive: (pathname: string) => boolean
+  children?: NavDropdownItem[]
+}
+
+export const APP_NAV_ITEMS: AppNavItem[] = getNavItemsForVariant('app').map((item) => ({
+  href: item.href,
+  label: item.label,
+  isActive: item.isActive,
+  children: item.children,
+}))
+
+/** @deprecated Use SITE_NAV_ITEMS — kept for import compatibility. */
+export const MARKETING_NAV_PRIMARY = getNavItemsForVariant('marketing').map((item) => ({
+  href: item.href,
+  label: item.label,
+  children: item.children,
+}))
+
+export const FOOTER_PRODUCT_LINKS = [
+  { href: '/mark', label: 'Mark a question' },
+  { href: '/past-papers', label: 'Past papers' },
+  { href: '/ib', label: 'IB past papers' },
+  { href: '/courses', label: 'Free courses' },
+  { href: '/tools/grade-boundary-calculator', label: 'Grade calculator' },
+  { href: '/tools/command-words', label: 'Command words' },
+  { href: '/pricing', label: 'Pricing' },
+]
+
+export const FOOTER_SUBJECT_LINKS = [
+  { href: '/subjects/9709', label: '9709 Mathematics' },
+  { href: '/subjects/9702', label: '9702 Physics' },
+  { href: '/subjects/9701', label: '9701 Chemistry' },
+  { href: '/subjects', label: 'All subjects' },
+]
+
+export const FOOTER_COMPANY_LINKS = [
+  { href: '/about', label: 'The story' },
+  { href: '/how-it-works', label: 'How it works' },
+  { href: '/guides', label: 'Guides & blog' },
+  { href: '/how-it-works#honest', label: 'Honest about AI' },
+  { href: '/contact', label: 'Contact' },
+]
+
+export const FOOTER_LEGAL_LINKS = [
+  { href: '/terms', label: 'Terms' },
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/refunds', label: 'Refunds' },
+  { href: '/cookies', label: 'Cookies' },
+]

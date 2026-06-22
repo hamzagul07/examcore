@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
     subjectName?: string
     topicCode?: string
     lessonSlug?: string
+    questionId?: string
     title?: string
     contentMd?: string
     imagePaths?: string[]
@@ -84,6 +85,7 @@ export async function POST(request: NextRequest) {
     subjectCode: body.subjectCode,
     topicCode: body.topicCode,
     lessonSlug: body.lessonSlug,
+    questionId: body.questionId,
     title: body.title || '',
     contentMd: body.contentMd || '',
     imagePaths: Array.isArray(body.imagePaths) ? body.imagePaths.slice(0, 8) : [],

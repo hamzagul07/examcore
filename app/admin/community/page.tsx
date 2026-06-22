@@ -23,38 +23,46 @@ export default async function AdminCommunityPage() {
         Community moderation
       </h1>
       <p className="ms-body-2" style={{ color: 'var(--ec-text-secondary)', marginBottom: 24 }}>
-        Notes auto-flagged by reports or held by the AI gate. {queue.length} pending.
+        Notes, doubts, and answers auto-flagged by reports or held by the AI gate. {queue.length}{' '}
+        pending.
       </p>
 
       {queue.length === 0 ? (
         <p className="ms-body-2">Nothing to review. 🎉</p>
       ) : (
         <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 18 }}>
-          {queue.map((n) => (
+          {queue.map((item) => (
             <li
-              key={n.id}
+              key={`${item.targetType}-${item.id}`}
               className="ms-sd-card ms-sd-card-pad"
               style={{ border: '1px solid var(--ec-border)', borderRadius: 14 }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
                 <div>
                   <p className="ms-overline" style={{ margin: 0 }}>
-                    {n.status === 'flagged' ? `⚑ ${n.reportCount} report(s)` : '🤖 held by AI gate'} ·{' '}
-                    {n.board} · {n.subjectCode}
+                    {item.targetType} ·{' '}
+                    {item.status === 'flagged' ? `⚑ ${item.reportCount} report(s)` : '🤖 held by AI gate'}
+                    {item.subjectCode ? ` · ${item.subjectCode}` : ''}
                   </p>
-                  <strong style={{ fontSize: 16 }}>{n.title}</strong>{' '}
+                  <strong style={{ fontSize: 16 }}>{item.title}</strong>{' '}
                   <span style={{ color: 'var(--ec-text-faint)', fontSize: 13 }}>
-                    by {n.authorUsername ? `@${n.authorUsername}` : n.authorId.slice(0, 8)}
+                    by {item.authorUsername ? `@${item.authorUsername}` : item.authorId.slice(0, 8)}
                   </span>
                 </div>
-                <Link href={`/community/notes/${n.id}`} className="ec-btn-underline text-sm">
-                  open →
-                </Link>
+                {item.targetType === 'note' ? (
+                  <Link href={`/community/notes/${item.id}`} className="ec-btn-underline text-sm">
+                    open →
+                  </Link>
+                ) : item.targetType === 'question' ? (
+                  <Link href={`/community/questions/${item.id}`} className="ec-btn-underline text-sm">
+                    open →
+                  </Link>
+                ) : null}
               </div>
               <div className="community-note-body" style={{ maxHeight: 240, overflow: 'auto', margin: '8px 0 14px' }}>
-                <CommunityMarkdown content={n.contentMd} />
+                <CommunityMarkdown content={item.body} />
               </div>
-              <ModerationButtons noteId={n.id} status={n.status} />
+              <ModerationButtons targetType={item.targetType} targetId={item.id} status={item.status} />
             </li>
           ))}
         </ul>

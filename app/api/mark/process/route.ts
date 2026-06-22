@@ -393,6 +393,12 @@ export async function POST(request: NextRequest) {
       // Whole paper = exactly 1 mark (not N questions).
       if (userId) {
         await recordMarkUsage(userId, attempt?.id ?? null, 'mark_whole_paper')
+        const { isCommunityEnabled } = await import('@/lib/community/enabled')
+        if (isCommunityEnabled() && attempt?.id) {
+          const subjectCode = paperCode?.split('/')[0] ?? null
+          const { awardMarkingXp } = await import('@/lib/community/feed')
+          await awardMarkingXp(userId, subjectCode, attempt.id)
+        }
       }
 
       return NextResponse.json(

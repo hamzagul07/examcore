@@ -1,5 +1,6 @@
 import { SUBJECTS } from '@/lib/profile-options'
 import type { AccentToken, SubjectFamily } from '@/lib/courses/margin-notes/types'
+import { accentCssVar as accentVar, getSubjectAccent } from '@/lib/design-system/subject-accents'
 
 const SUBJECT_GLYPHS: Record<string, string> = {
   '9709': '∫',
@@ -27,33 +28,6 @@ const SUBJECT_GLYPHS: Record<string, string> = {
   '7707': '¤',
 }
 
-const ACCENT_BY_CODE: Record<string, AccentToken> = {
-  '9709': 'acc-blue',
-  '9231': 'acc-blue',
-  '4024': 'acc-blue',
-  '4037': 'acc-blue',
-  '9702': 'acc-violet',
-  '5054': 'acc-violet',
-  '9701': 'acc-teal',
-  '5070': 'acc-teal',
-  '9700': 'ink',
-  '5090': 'ink',
-  '9708': 'acc-rose',
-  '2281': 'acc-rose',
-  '9609': 'acc-teal',
-  '9706': 'amber',
-  '7115': 'acc-teal',
-  '7707': 'amber',
-  '9618': 'acc-slate',
-  '2210': 'acc-slate',
-  '9990': 'acc-violet',
-  '9699': 'acc-slate',
-  '9489': 'red',
-  '9084': 'acc-slate',
-  '9607': 'acc-rose',
-  '9488': 'acc-teal',
-}
-
 const GROUP_TO_FAM: Record<string, SubjectFamily> = {
   Mathematics: 'Maths',
   Sciences: 'Sciences',
@@ -66,7 +40,7 @@ export function subjectGlyph(code: string, name: string): string {
 }
 
 export function subjectAccent(code: string): AccentToken {
-  return ACCENT_BY_CODE[code] ?? 'ink'
+  return getSubjectAccent(code)
 }
 
 export function subjectFamily(code: string): SubjectFamily {
@@ -76,5 +50,5 @@ export function subjectFamily(code: string): SubjectFamily {
 }
 
 export function accentCssVar(acc: AccentToken): string {
-  return `var(--${acc})`
+  return accentVar(acc)
 }

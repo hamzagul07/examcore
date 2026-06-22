@@ -1,4 +1,4 @@
-import { getSubjectColor } from '@/lib/design-system/subject-colors'
+import { getSubjectColor } from '@/lib/design-system/subject-accents'
 import { getCourseSubject } from '@/lib/courses'
 import { getMarkingSubjectPages } from '@/lib/seo/programmatic-subjects'
 import { getSubjectPaperStructure } from '@/lib/subject-papers'

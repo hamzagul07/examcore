@@ -11,6 +11,9 @@ import { buildSignInHref } from '@/lib/auth-redirect'
 import { Breadcrumb } from '@/components/courses/margin-notes/Breadcrumb'
 import { Ring } from '@/components/courses/margin-notes/Ring'
 import { MarginNote } from '@/components/courses/margin-notes/HandAnnotations'
+import { NotesSection } from '@/components/community/NotesSection'
+import { QASection } from '@/components/community/QASection'
+import { isCommunityEnabledClient } from '@/lib/community/enabled'
 
 function HowItWorks() {
   const steps = [
@@ -63,6 +66,7 @@ export function CourseHubPage({
   basePath = '/courses',
   coursesCrumb = { label: 'Courses', href: '/courses' },
 }: Props) {
+  const communityBoard: 'cambridge' | 'ib' = basePath.startsWith('/ib') ? 'ib' : 'cambridge'
   const papers = course.papers
   const defaultPaper = initialPaperId ?? papers[0]?.id ?? 1
   const [paper, setPaper] = useState(defaultPaper)
@@ -286,6 +290,13 @@ export function CourseHubPage({
             </div>
           </aside>
         </div>
+
+        {isCommunityEnabledClient() ? (
+          <div className="hub-community">
+            <NotesSection board={communityBoard} subjectCode={code} subjectName={name} accent={accVar} />
+            <QASection board={communityBoard} subjectCode={code} subjectName={name} accent={accVar} />
+          </div>
+        ) : null}
       </div>
     </main>
   )

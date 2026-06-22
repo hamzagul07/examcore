@@ -17,6 +17,9 @@ import { CourseRichText } from '@/components/courses/CourseRichText'
 import { useCourseProgress } from '@/components/courses/CourseProgressClient'
 import { buildSignInHref } from '@/lib/auth-redirect'
 import { LessonUpsell } from '@/components/billing/LessonUpsell'
+import { NotesSection } from '@/components/community/NotesSection'
+import { QASection } from '@/components/community/QASection'
+import { isCommunityEnabledClient } from '@/lib/community/enabled'
 import { trialDaysLeft, type EffectiveAccess } from '@/lib/billing/access'
 import {
   jumpTo,
@@ -865,6 +868,25 @@ export function CourseLessonPage({
                 </div>
               ) : null}
             </div>
+
+            {isCommunityEnabledClient() ? (
+              <div className="lesson-community">
+                <NotesSection
+                  board={basePath.startsWith('/ib') ? 'ib' : 'cambridge'}
+                  subjectCode={L.code}
+                  subjectName={L.sub}
+                  lessonSlug={L.slug}
+                  accent={acc}
+                />
+                <QASection
+                  board={basePath.startsWith('/ib') ? 'ib' : 'cambridge'}
+                  subjectCode={L.code}
+                  subjectName={L.sub}
+                  lessonSlug={L.slug}
+                  accent={acc}
+                />
+              </div>
+            ) : null}
           </article>
         </div>
       )}

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import type { Board } from '@/lib/community/posts'
-import { getCommunitySubjects } from '@/lib/community/subjects'
+import { getCommunitySubjects, findCommunitySubject } from '@/lib/community/subjects'
 import { getSubjectLeaderboard } from '@/lib/community/leaderboard'
 import { getSubjectPostCount, getPostCountsBySubject } from '@/lib/community/counts'
 import { compactCount } from '@/lib/community/format'
@@ -89,6 +89,12 @@ export async function SubjectSidebar({
     getSubjectLeaderboard(subjectCode, 8),
   ])
 
+  const subjectMeta = findCommunitySubject(subjectCode)
+  const submitQs = new URLSearchParams({
+    board: subjectMeta?.board ?? 'cambridge',
+    subject: subjectCode,
+  })
+
   return (
     <aside className="rc-sidebar">
       <section className="rc-side-card" style={{ '--sc': accent } as CSSProperties}>
@@ -97,7 +103,7 @@ export async function SubjectSidebar({
         <div className="rc-side-stats">
           <div><strong>{compactCount(postCount)}</strong><span>posts</span></div>
         </div>
-        <Link href={`/community/submit?subject=${subjectCode}`} className="rc-btn rc-btn-primary rc-side-cta">
+        <Link href={`/community/submit?${submitQs}`} className="rc-btn rc-btn-primary rc-side-cta">
           Create post
         </Link>
       </section>

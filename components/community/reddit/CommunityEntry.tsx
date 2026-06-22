@@ -26,9 +26,9 @@ export async function CommunityEntry({
     ? await listPosts({ questionId, sort: 'hot', limit: 4 })
     : await listPosts({ subjectCode, sort: 'hot', limit: 4 })
 
-  const submitHref = questionId
-    ? `/community/submit?subject=${subjectCode}&kind=question`
-    : `/community/submit?subject=${subjectCode}`
+  const submitParams = new URLSearchParams({ board: subject?.board ?? 'cambridge', subject: subjectCode })
+  if (questionId) submitParams.set('kind', 'question')
+  const submitHref = `/community/submit?${submitParams}`
 
   return (
     <section className="rc-entry" style={{ '--sc': accent } as CSSProperties}>

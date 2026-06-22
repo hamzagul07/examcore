@@ -145,6 +145,363 @@
   transform: rotate(-1deg);
 }
 
+/* pillars — mark / learn / discuss */
+.ms-pillars-wrap {
+  padding-top: 56px;
+}
+
+.ms-pillars-heading {
+  margin-top: 8px;
+}
+
+.ms-pillars-lead {
+  max-width: 52ch;
+  margin-top: 12px;
+}
+
+.ms-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.ms-pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 26px;
+  min-height: 100%;
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.ms-pillar:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ec-card-hover-shadow);
+}
+
+.ms-pillar--featured {
+  border-color: color-mix(in srgb, var(--ec-brand) 45%, var(--ec-border));
+  background: color-mix(in srgb, var(--ec-brand) 5%, var(--ec-surface-raised));
+}
+
+.ms-pillar-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ms-pillar-glyph {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--ec-brand-muted);
+  font-size: 18px;
+}
+
+.ms-pillar-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+}
+
+.ms-pillar-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--ec-chip-neutral-bg);
+  color: var(--ec-text-secondary);
+}
+
+.ms-pillar .ms-h3 {
+  font-weight: 700;
+}
+
+.ms-pillar .ms-body-2 {
+  flex: 1;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.ms-pillar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 4px;
+}
+
+.ms-pillar-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.ms-pillar-bullets li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ec-text-secondary);
+}
+
+.ms-pillar-bullets li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--ec-brand);
+  font-weight: 800;
+}
+
+/* platform detail — deep dive panels */
+.ms-platform-detail-wrap {
+  padding-top: 72px;
+}
+
+.ms-platform-detail-lead {
+  max-width: 58ch;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+.ms-platform-detail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+  align-items: stretch;
+}
+
+.ms-detail-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 26px;
+}
+
+.ms-detail-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.ms-detail-icon {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--ec-brand-muted);
+  font-size: 22px;
+}
+
+.ms-detail-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ec-brand);
+  margin: 0 0 4px;
+}
+
+.ms-detail-intro {
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.ms-detail-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ms-detail-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-detail-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--ec-brand);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ms-detail-list--compact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-left: 0;
+}
+
+.ms-detail-list--compact li::before {
+  content: none;
+}
+
+.ms-detail-list-icon {
+  flex: none;
+  width: 22px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.ms-detail-list--compact li strong {
+  color: var(--ec-text-primary);
+  font-weight: 700;
+}
+
+.ms-detail-steps {
+  margin: 0;
+  padding: 0 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ms-detail-steps li {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ec-text-secondary);
+}
+
+.ms-detail-steps strong {
+  color: var(--ec-text-primary);
+  font-weight: 700;
+}
+
+.ms-detail-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ms-detail-boards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ms-detail-board-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.ms-detail-board-tag--caie {
+  background: color-mix(in srgb, #3a5fb8 14%, transparent);
+  color: #3a5fb8;
+}
+
+.ms-detail-board-tag--ib {
+  background: color-mix(in srgb, #6b5b8a 16%, transparent);
+  color: #6b5b8a;
+}
+
+.ms-detail-foot {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ec-text-faint);
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.ms-detail-foot--muted {
+  color: var(--ec-text-secondary);
+}
+
+.ms-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+
+/* reusable CTA button row — stacks full-width on phones */
+.ms-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.ms-cta-row--center {
+  justify-content: center;
+}
+
+/* community flow on landing */
+.ms-community-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: var(--ec-bg-soft);
+  border: 1px solid var(--ec-border);
+}
+
+.ms-community-flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ms-community-flow-num {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ec-brand-muted);
+  color: var(--ec-brand);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.ms-community-flow-step strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ec-text-primary);
+}
+
+.ms-community-flow-step p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ec-text-secondary);
+}
+
 /* trust */
 .ms-trust {
   display: flex;
@@ -633,18 +990,37 @@
     padding-top: 40px;
   }
 
-  .ms-hero-ctas .ec-btn-primary {
+  .ms-hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .ms-hero-ctas .ec-btn-primary,
+  .ms-hero-ctas .ec-btn-warm,
+  .ms-hero-ctas .ec-btn-ghost {
     width: 100%;
     justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
   }
 
   .ms-trust {
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   .ms-trust > div {
-    flex: 1 1 45%;
+    flex: 1 1 100%;
+    border-right: none;
     border-bottom: 1px solid var(--ec-border);
+  }
+
+  .ms-trust > div:last-child {
+    border-bottom: none;
+  }
+
+  .ms-pillars,
+  .ms-platform-detail {
+    grid-template-columns: 1fr;
   }
 
   .ms-feat-grid,
@@ -658,7 +1034,27 @@
 
   .ms-courses-promo {
     grid-template-columns: 1fr;
-    padding: 32px 24px;
+    padding: 28px 18px;
+  }
+
+  .ms-final-cta {
+    padding: 48px 24px;
+  }
+
+  .ms-course-mini {
+    grid-template-columns: 1fr;
+  }
+
+  .ms-platform-detail-wrap {
+    padding-top: 48px;
+  }
+
+  .ms-detail-panel {
+    padding: 22px 18px;
+  }
+
+  .ms-pillars-wrap {
+    padding-top: 48px;
   }
 
   .ms-scard-grid {
@@ -679,6 +1075,42 @@
 }
 
 @media (max-width: 520px) {
+  .ms-pg {
+    padding: 0 14px;
+  }
+
+  .ms-courses-promo {
+    padding: 22px 14px;
+  }
+
+  .ms-final-cta {
+    padding: 36px 16px;
+    border-radius: 16px;
+  }
+
+  .ms-community-flow {
+    padding: 14px;
+  }
+
+  .ms-pillar-actions,
+  .ms-detail-actions,
+  .ms-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .ms-pillar-actions > a,
+  .ms-detail-actions > a,
+  .ms-cta-row > a,
+  .ms-pillar-actions > button,
+  .ms-detail-actions > button,
+  .ms-cta-row > button {
+    width: 100%;
+    justify-content: center;
+    min-height: var(--ec-touch-min, 44px);
+  }
+
   .ms-scard-grid {
     grid-template-columns: 1fr;
   }

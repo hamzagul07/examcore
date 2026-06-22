@@ -13,7 +13,7 @@ export const metadata = createPageMetadata({
 
 export const dynamic = 'force-dynamic'
 
-type PageProps = { searchParams: Promise<{ subject?: string; kind?: string }> }
+type PageProps = { searchParams: Promise<{ subject?: string; kind?: string; board?: string }> }
 
 export default async function SubmitPage({ searchParams }: PageProps) {
   if (!isCommunityEnabled()) redirect('/community')
@@ -33,9 +33,23 @@ export default async function SubmitPage({ searchParams }: PageProps) {
     glyph: s.glyph,
   }))
 
+  const subjectMeta = sp.subject ? subjects.find((s) => s.id === sp.subject) : null
+  const initialBoard =
+    sp.board === 'cambridge' || sp.board === 'ib'
+      ? sp.board
+      : subjectMeta?.board
+  const initialKind =
+    sp.kind === 'question' || sp.kind === 'resource' || sp.kind === 'discussion' ? sp.kind : undefined
+
   return (
     <div className="rc-page rc-page-narrow">
-      <PostComposer subjects={subjects} initialSubject={sp.subject} signedIn={!!user} />
+      <PostComposer
+        subjects={subjects}
+        initialSubject={sp.subject}
+        initialBoard={initialBoard}
+        initialKind={initialKind}
+        signedIn={!!user}
+      />
     </div>
   )
 }

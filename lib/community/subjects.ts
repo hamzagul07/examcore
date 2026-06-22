@@ -12,7 +12,38 @@ export type CommunitySubject = {
   board: Board
 }
 
+export const COMMUNITY_BOARDS = [
+  {
+    id: 'cambridge' as const,
+    label: 'Cambridge A-Level',
+    short: 'A-Level',
+    sub: 'CAIE · 15 subjects',
+    glyph: '🎓',
+  },
+  {
+    id: 'ib' as const,
+    label: 'IB Diploma',
+    short: 'IB',
+    sub: 'HL & SL programmes',
+    glyph: '🌍',
+  },
+] as const
+
+export function communityBoardMeta(board: Board) {
+  return COMMUNITY_BOARDS.find((b) => b.id === board) ?? COMMUNITY_BOARDS[0]
+}
+
 let cache: CommunitySubject[] | null = null
+
+/** Cambridge A-Level subjects only. */
+export function getCambridgeCommunitySubjects(): CommunitySubject[] {
+  return getCommunitySubjects().filter((s) => s.board === 'cambridge')
+}
+
+/** IB Diploma subjects only. */
+export function getIbCommunitySubjects(): CommunitySubject[] {
+  return getCommunitySubjects().filter((s) => s.board === 'ib')
+}
 
 /** Unified, sorted list of every subject "subreddit" (Cambridge + IB). */
 export function getCommunitySubjects(): CommunitySubject[] {
@@ -33,6 +64,10 @@ export function getCommunitySubjects(): CommunitySubject[] {
   }))
   cache = [...cambridge, ...ib].sort((a, b) => a.name.localeCompare(b.name))
   return cache
+}
+
+export function getCommunitySubjectsForBoard(board: Board): CommunitySubject[] {
+  return getCommunitySubjects().filter((s) => s.board === board)
 }
 
 export function findCommunitySubject(id: string | null | undefined): CommunitySubject | null {

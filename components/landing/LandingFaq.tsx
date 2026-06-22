@@ -13,11 +13,27 @@ const FAQS = [
   },
   {
     q: 'Which subjects are covered?',
-    a: '15 Cambridge syllabuses across A-Level and O-Level: maths (9709), physics (9702), chemistry (9701), biology (9700), economics, business, computer science, English and more.',
+    a: '15 Cambridge A-Levels and O-Level subjects — maths (9709), physics (9702), chemistry, biology, economics, business, computer science, English and more — plus IB Diploma HL and SL courses. Marking, courses, and Exam Room all follow the same subject list where available.',
+  },
+  {
+    q: 'What\'s in a free course lesson?',
+    a: 'Syllabus-aligned notes, formula sheets, worked examples, and links to a real past-paper question for that topic. Pro trial unlocks live diagrams, flashcards, and practice quizzes. You can read every lesson without paying.',
+  },
+  {
+    q: 'How does Exam Room work?',
+    a: 'Choose Cambridge A-Level or IB Diploma, pick a subject room (like s/9702 or s/math-aa-hl), then post a discussion, doubt, or resource. Other students upvote and reply in threads. It\'s free — you just need a username.',
   },
   {
     q: 'What does it cost?',
     a: 'Single-question marking has a free tier — no card. Paid plans add whole-paper marking and deeper analytics. The courses are 100% free, forever.',
+  },
+  {
+    q: 'Are the courses really free?',
+    a: 'Yes — every syllabus lesson, formula sheet, worked example and flashcard deck is free with no card. Paid plans add live diagrams, practice drills and higher marking limits.',
+  },
+  {
+    q: 'Is there a student community?',
+    a: 'Yes — Exam Room is a free Reddit-style community for Cambridge A-Level and IB Diploma. Pick your board, choose a subject room, and post discussions, doubts, or PDFs and images.',
   },
   {
     q: 'Is MarkScheme affiliated with Cambridge?',
@@ -51,7 +67,7 @@ export function LandingFaq() {
               </button>
               <div
                 className="ms-faq-a"
-                style={{ maxHeight: open ? '200px' : '0px' }}
+                style={{ maxHeight: open ? '320px' : '0px' }}
                 hidden={!open}
               >
                 {open ? <p className="ms-body-2">{item.a}</p> : null}

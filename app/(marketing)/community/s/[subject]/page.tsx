@@ -4,7 +4,7 @@ import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
 import { createClient } from '@/lib/supabase-server'
 import { listPosts, getUserPostVotes, type PostSort } from '@/lib/community/posts'
-import { findCommunitySubject } from '@/lib/community/subjects'
+import { findCommunitySubject, communityBoardMeta } from '@/lib/community/subjects'
 import { CreatePostBar } from '@/components/community/reddit/CreatePostBar'
 import { SortTabs } from '@/components/community/reddit/SortTabs'
 import { PostFeed } from '@/components/community/reddit/PostFeed'
@@ -65,6 +65,7 @@ export default async function SubjectCommunityPage({ params, searchParams }: Pag
         <div className="rc-subject-banner-inner">
           <span className="rc-subject-banner-glyph">{subjectMeta.glyph}</span>
           <div>
+            <p className="rc-subject-banner-board">{communityBoardMeta(subjectMeta.board).label}</p>
             <h1 className="rc-subject-banner-title">s/{subject}</h1>
             <p className="rc-subject-banner-sub">{subjectMeta.name}</p>
           </div>
@@ -72,7 +73,7 @@ export default async function SubjectCommunityPage({ params, searchParams }: Pag
       </div>
       <div className="rc-layout">
         <main className="rc-main">
-          <CreatePostBar subjectCode={subject} signedIn={!!user} />
+          <CreatePostBar subjectCode={subject} board={subjectMeta.board} signedIn={!!user} />
           <SortTabs active={sort} basePath={`/community/s/${subject}`} />
           <PostFeed
             posts={posts}

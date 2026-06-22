@@ -52,19 +52,22 @@ export function LandingHero({ markHref }: LandingHeroProps) {
           <MarginNote style={{ top: '-44px', right: '-10px' }}>this step earns M1!</MarginNote>
         </h1>
         <p className="ms-lead ms-hero-lead">
-          Photograph your handwritten answer. We mark it point by point against the official
-          Cambridge scheme — and write the examiner&apos;s notes right in your margins.
+          Mark past papers against real Cambridge schemes, learn every syllabus point in free
+          courses, and discuss with other students in subject communities — all in one place.
         </p>
         <div className="ms-hero-ctas">
           <Link href={markHref} className="ec-btn-primary">
             Mark your first question — free
           </Link>
-          <Link href="/how-it-works" className="ec-btn-warm">
-            Watch it mark a real script
+          <Link href="/courses" className="ec-btn-warm">
+            Free courses
+          </Link>
+          <Link href="/community" className="ec-btn-ghost ec-btn-ghost--sm">
+            Exam Room
           </Link>
         </div>
         <p className="ms-micro ms-hero-micro">
-          FREE TIER · NO CARD · B1 / M1 / A1 / MCQ / ESSAY BANDS
+          MARK · COURSES · EXAM ROOM · FREE TIER · NO CARD
         </p>
       </div>
       <div className="ms-fade-in ms-stag-2">

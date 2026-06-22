@@ -1,8 +1,8 @@
 const TRUST_ITEMS = [
-  { value: '15', label: 'Cambridge syllabuses' },
-  { value: 'B1 · M1 · A1', label: 'Real marking codes' },
+  { value: 'Mark', label: 'B1 · M1 · A1 schemes' },
+  { value: 'Learn', label: 'Free syllabus courses' },
+  { value: 'Discuss', label: 'A-Level & IB rooms' },
   { value: '~60 sec', label: 'Photo to feedback' },
-  { value: '100% free', label: 'Premium courses' },
 ] as const
 
 export function LandingTrustStrip() {

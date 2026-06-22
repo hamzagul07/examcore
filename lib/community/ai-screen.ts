@@ -4,12 +4,11 @@ import { GEMINI_FLASH_MODEL } from '@/lib/ai/gemini-models'
 export type ScreenVerdict = { ok: boolean; reason?: string }
 
 /**
- * Moderation gate for user-contributed content. Returns ok:true to publish, or
- * ok:false + a short reason to hold as `needs_edit`.
+ * Moderation classifier for user-contributed content.
  *
- * FAIL-OPEN by design: if Gemini is unconfigured, errors, or returns garbage we
- * publish anyway — the report/flag + admin queue is the backstop, and we never
- * want a moderation outage to silently break all contributions.
+ * Used **after** publish (see moderate-async.ts) so posts/comments feel instant.
+ * FAIL-OPEN: if Gemini is unconfigured or errors, content stays published — reports
+ * and the admin queue are the backstop.
  */
 export async function screenContribution(input: {
   kind: 'note' | 'question' | 'answer'

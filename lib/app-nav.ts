@@ -1,8 +1,11 @@
+import { SUBJECTS_DROPDOWN } from '@/lib/marketing-nav'
+
 /** Primary app routes shown in header (desktop) and mobile drawer (guests). */
 export type AppNavItem = {
   href: string
   label: string
   isActive: (pathname: string) => boolean
+  children?: { href: string; label: string; sublabel?: string }[]
 }
 
 export const APP_NAV_ITEMS: AppNavItem[] = [
@@ -17,14 +20,11 @@ export const APP_NAV_ITEMS: AppNavItem[] = [
     isActive: (p) => p === '/courses' || p.startsWith('/courses/'),
   },
   {
-    href: '/ib',
-    label: 'IB',
-    isActive: (p) => p === '/ib' || p.startsWith('/ib/'),
-  },
-  {
     href: '/subjects',
     label: 'Subjects',
-    isActive: (p) => p === '/subjects' || p.startsWith('/subjects/'),
+    isActive: (p) =>
+      p === '/subjects' || p.startsWith('/subjects/') || p === '/ib' || p.startsWith('/ib/'),
+    children: SUBJECTS_DROPDOWN,
   },
   {
     href: '/community',

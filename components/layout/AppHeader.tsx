@@ -8,6 +8,7 @@ import { CreditChip } from '@/components/billing/CreditChip'
 import { GuestSignInChip } from '@/components/billing/GuestSignInChip'
 import { CommandKTrigger, MobileSearchMenuButton, ThemeFlip } from '@/components/margin-notes'
 import { NotificationBell } from '@/components/community/NotificationBell'
+import { NavDropdown } from '@/components/layout/NavDropdown'
 import { useAuthenticatedAppChrome } from '@/lib/hooks/useAuthenticatedAppChrome'
 import { avatarInitial, useAuthCheck } from '@/lib/hooks/useAuthCheck'
 import { APP_NAV_ITEMS } from '@/lib/app-nav'
@@ -41,6 +42,19 @@ export function AppHeader() {
 
         <nav className="ec-nav-links" aria-label="Main">
           {APP_NAV_ITEMS.map((item) => {
+            if (item.children) {
+              return (
+                <NavDropdown
+                  key={item.label}
+                  label={item.label}
+                  items={item.children}
+                  isActive={(href) => pathname === href || pathname.startsWith(href + '/')}
+                  triggerClass="ec-nav-link"
+                  activeClass="ec-nav-link--active"
+                  lowercase
+                />
+              )
+            }
             const active = item.isActive(pathname)
             return (
               <Link
@@ -117,13 +131,19 @@ export function AppHeader() {
             Mark a question
           </Link>
           <MobileSearchMenuButton />
-          {APP_NAV_ITEMS.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
-          <Link href="/courses">Courses</Link>
-          <Link href="/subjects">Subjects</Link>
+          {APP_NAV_ITEMS.map((item) =>
+            item.children ? (
+              item.children.map((c) => (
+                <Link key={c.href} href={c.href}>
+                  {item.label}: {c.label}
+                </Link>
+              ))
+            ) : (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            )
+          )}
           <Link href="/pricing">Pricing</Link>
           {isGuest ? (
             <>

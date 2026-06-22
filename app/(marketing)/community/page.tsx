@@ -1,22 +1,22 @@
-import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import { isCommunityEnabled } from '@/lib/community/enabled'
-import { listNotes } from '@/lib/community/notes'
-import { listQuestions } from '@/lib/community/qa'
+import { getCourseCatalog } from '@/lib/courses'
+import { adaptAllCatalogSubjects } from '@/lib/courses/margin-notes/adapt-subject'
+import { accentCssVar } from '@/lib/courses/margin-notes/subject-meta'
+import { getIbSubjects } from '@/lib/ib/catalog'
+import { CommunityBrowser, type BrowserSubject } from '@/components/community/CommunityBrowser'
 import { MarketingPageShell } from '@/components/marketing/MarketingPageShell'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 import { createPageMetadata } from '@/lib/seo/metadata'
 
-export const dynamic = 'force-dynamic'
-
 export const metadata = createPageMetadata({
   title: 'Community — student notes & Q&A',
   description:
-    'Free student-contributed notes and a public Q&A for Cambridge and IB subjects. Read, upvote, ask, and answer — all moderated.',
+    'Free student-contributed notes and a public Q&A for every Cambridge A-Level and IB subject. Pick a subject to read, upvote, ask and answer — all moderated.',
   path: '/community',
 })
 
-export default async function CommunityHubPage() {
+export default function CommunityHubPage() {
   if (!isCommunityEnabled()) {
     return (
       <MarketingPageShell narrow>
@@ -31,86 +31,24 @@ export default async function CommunityHubPage() {
     )
   }
 
-  const [notes, questions] = await Promise.all([
-    listNotes({ limit: 16 }),
-    listQuestions({ limit: 16 }),
-  ])
+  const cambridge: BrowserSubject[] = adaptAllCatalogSubjects(getCourseCatalog())
+    .map((s) => ({ id: s.code, name: s.name, glyph: s.glyph, accent: accentCssVar(s.acc) }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+  const ib: BrowserSubject[] = getIbSubjects()
+    .map((s) => ({ id: s.slug, name: `${s.name} ${s.level}`, glyph: s.glyph, accent: s.accent }))
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   return (
     <MarketingPageShell>
       <div className="ms-pg ms-subjects-page" style={{ paddingTop: 48, '--sc': 'var(--ec-brand)' } as CSSProperties}>
         <HubSeoIntro
           heading="The MarkScheme community"
-          paragraph="Real notes and answers from students, for students — across every Cambridge and IB subject. Read for free, upvote what helps, and share your own. Everything is moderated and on-topic."
+          paragraph="Real notes and answers from students, for students — across every Cambridge A-Level and IB subject. Pick your subject below to read for free, upvote what helps, ask a question, or share your own notes. Everything is moderated and on-topic."
           links={[
-            { href: '/subjects', label: 'Contribute on a subject →', variant: 'primary' },
-            { href: '/ib/subjects', label: 'IB subjects', variant: 'ghost' },
             { href: '/community/guidelines', label: 'Community guidelines', variant: 'muted' },
           ]}
         />
-
-        <div className="community-hub-grid">
-          <section aria-labelledby="hub-notes">
-            <div className="community-head">
-              <h2 id="hub-notes" className="ms-h3">Latest notes</h2>
-              <Link href="/subjects" className="ec-btn-underline text-sm">contribute →</Link>
-            </div>
-            {notes.length ? (
-              <ul className="community-note-list">
-                {notes.map((n) => (
-                  <li key={n.id} className="community-note-row">
-                    <span className="community-vote" aria-hidden>
-                      <span className="community-vote-caret">▲</span>
-                      <span className="community-vote-n">{n.upvoteCount}</span>
-                    </span>
-                    <Link href={`/community/notes/${n.id}`} className="community-note-main">
-                      <span className="community-note-title">{n.title}</span>
-                      <span className="community-note-meta">
-                        {n.board === 'ib' ? 'IB' : 'Cambridge'} · {n.subjectCode}
-                        {n.authorUsername ? ` · @${n.authorUsername}` : ''}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="ms-body-2" style={{ color: 'var(--ec-text-secondary)' }}>
-                No notes yet — be the first on a <Link href="/subjects" className="ec-btn-underline">subject page</Link>.
-              </p>
-            )}
-          </section>
-
-          <section aria-labelledby="hub-qa">
-            <div className="community-head">
-              <h2 id="hub-qa" className="ms-h3">Latest questions</h2>
-              <Link href="/subjects" className="ec-btn-underline text-sm">ask →</Link>
-            </div>
-            {questions.length ? (
-              <ul className="community-note-list">
-                {questions.map((q) => (
-                  <li key={q.id} className="community-note-row">
-                    <span className="community-vote" aria-hidden>
-                      <span className="community-vote-caret">▲</span>
-                      <span className="community-vote-n">{q.voteCount}</span>
-                    </span>
-                    <Link href={`/community/questions/${q.id}`} className="community-note-main">
-                      <span className="community-note-title">
-                        {q.title} {q.acceptedAnswerId ? <span className="community-solved">solved ✓</span> : null}
-                      </span>
-                      <span className="community-note-meta">
-                        {q.board === 'ib' ? 'IB' : 'Cambridge'} · {q.subjectCode} · {q.answerCount} answers
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="ms-body-2" style={{ color: 'var(--ec-text-secondary)' }}>
-                No questions yet — ask one from any <Link href="/subjects" className="ec-btn-underline">subject page</Link>.
-              </p>
-            )}
-          </section>
-        </div>
+        <CommunityBrowser cambridge={cambridge} ib={ib} />
       </div>
     </MarketingPageShell>
   )

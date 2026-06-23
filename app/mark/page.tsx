@@ -37,7 +37,7 @@ import {
   getSubjectById,
   SUBJECTS,
 } from '@/lib/profile-options'
-import { getIbMarkableSubjectCodes, resolveSubjectLabel } from '@/lib/ib/marking-config'
+import { getIbMarkableSubjectCodes, resolveSubjectLabel, isIbSubjectCode } from '@/lib/ib/marking-config'
 import { WholePaperFlow } from '@/components/whole-paper/WholePaperFlow'
 import { PostMarkNextSteps } from '@/components/mark/PostMarkNextSteps'
 import { PastPaperSelectorFields } from '@/components/mark/PastPaperSelectorFields'
@@ -152,6 +152,8 @@ export default function MarkPage() {
     returnTo: string | null
     foundQuestion: boolean
     paperLabel?: string
+    ibPractice?: boolean
+    criteriaSummary?: string | null
   } | null>(null)
   const [schemeInDb, setSchemeInDb] = useState<boolean | null>(null)
 
@@ -374,12 +376,32 @@ export default function MarkPage() {
       .then((r) => r.json())
       .then((data: {
         found?: boolean
+        ib_practice?: boolean
         topic_name?: string
         paper_code?: string
         paper_session?: string
         question_number?: string
+        practice_prompt?: string
+        criteria_summary?: string | null
       }) => {
         if (cancelled) return
+
+        if (data.ib_practice && isIbSubjectCode(subject)) {
+          setUploadMode('single_question')
+          setMarkIntent('practice_question')
+          setShowManualPaper(false)
+          if (data.practice_prompt) setQuestionTextInput(data.practice_prompt)
+          setCourseTopicContext({
+            topicCode: topic,
+            topicName: data.topic_name ?? topic,
+            returnTo,
+            foundQuestion: false,
+            ibPractice: true,
+            criteriaSummary: data.criteria_summary ?? null,
+          })
+          return
+        }
+
         if (data.found && data.paper_code && data.paper_session && data.question_number) {
           const selection = applyTopicQuestionToPaperSelection({
             paper_code: data.paper_code,
@@ -1050,10 +1072,17 @@ export default function MarkPage() {
                   : ''}
               </p>
               <p className="mt-1 text-sm leading-relaxed text-[var(--ec-text-secondary)]">
-                {courseTopicContext.foundQuestion && courseTopicContext.paperLabel
-                  ? `We picked ${courseTopicContext.paperLabel} from our mark scheme bank — upload your answer below.`
-                  : 'Select a past paper question on this topic, or upload your answer and we will detect the paper.'}
+                {courseTopicContext.ibPractice
+                  ? 'IB criterion practice — upload your answer below. We mark band-by-band against the official assessment criteria.'
+                  : courseTopicContext.foundQuestion && courseTopicContext.paperLabel
+                    ? `We picked ${courseTopicContext.paperLabel} from our mark scheme bank — upload your answer below.`
+                    : 'Select a past paper question on this topic, or upload your answer and we will detect the paper.'}
               </p>
+              {courseTopicContext.ibPractice && courseTopicContext.criteriaSummary ? (
+                <p className="mt-2 text-xs font-medium text-[var(--ec-brand)]">
+                  {courseTopicContext.criteriaSummary}
+                </p>
+              ) : null}
               {courseTopicContext.returnTo ? (
                 <Link
                   href={courseTopicContext.returnTo}

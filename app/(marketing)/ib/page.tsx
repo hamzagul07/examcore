@@ -8,7 +8,7 @@ import { collectionPageNode, itemListNode, faqPageNode } from '@/lib/seo/structu
 import { SITE_URL } from '@/lib/site-config'
 import { Chip } from '@/components/margin-notes'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
-import { getIbSubjects, getIbSubjectsByGroup, ibYearRange } from '@/lib/ib/catalog'
+import { getIbSubjects, getIbSubjectsByGroup, getIbSubject, ibYearRange } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
 import { IB_GLOBAL_RESOURCES } from '@/lib/ib/resources'
 import { IbResources } from '@/components/ib/IbResources'
@@ -55,6 +55,17 @@ export default function IbHubPage() {
     .map((slug) => getIbCourse(slug))
     .filter((c): c is NonNullable<typeof c> => Boolean(c))
     .sort((a, b) => a.name.localeCompare(b.name))
+
+  const courseTracks = {
+    core: courses.filter((c) => getIbSubject(c.code)?.groupNumber === 7),
+    arts: courses.filter((c) => getIbSubject(c.code)?.groupNumber === 6),
+    stem: courses.filter(
+      (c) => {
+        const g = getIbSubject(c.code)?.groupNumber
+        return g !== 6 && g !== 7
+      }
+    ),
+  }
 
   return (
     <MarketingPageShell>
@@ -132,26 +143,52 @@ export default function IbHubPage() {
               Full topic-by-topic courses built for the current IB syllabus — worked examples, markband
               tips and flashcards on every page. Free, no sign-up.
             </p>
-            <ul className="ms-pp-grid">
-              {courses.map((c) => (
-                <li key={c.code}>
-                  <Link href={c.path} className="ms-pp-card subject-accented">
-                    <span className="ms-pp-glyph" aria-hidden>
-                      ◆
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="ms-pp-title">
-                        {c.name} <em className="ms-pp-code">· {c.level}</em>
-                      </span>
-                      <span className="ms-pp-meta">{c.lessonCount} lessons · free course</span>
-                    </span>
-                    <span className="ms-pp-cta" aria-hidden>
-                      →
-                    </span>
-                  </Link>
-                </li>
+            {(
+              [
+                { key: 'core', label: 'Core — TOK, EE & CAS', items: courseTracks.core },
+                { key: 'arts', label: 'Group 6 — The Arts', items: courseTracks.arts },
+                { key: 'stem', label: 'Sciences, maths & humanities', items: courseTracks.stem },
+              ] as const
+            )
+              .filter((track) => track.items.length > 0)
+              .map((track) => (
+                <div key={track.key} style={{ marginBottom: 24 }}>
+                  <h3 className="ms-overline" style={{ marginBottom: 12 }}>
+                    {track.label}
+                  </h3>
+                  <ul className="ms-pp-grid">
+                    {track.items.map((c) => {
+                      const subject = getIbSubject(c.code)
+                      return (
+                        <li key={c.code}>
+                          <Link
+                            href={c.path}
+                            className="ms-pp-card subject-accented"
+                            style={
+                              subject
+                                ? ({ '--acc': subject.accent } as CSSProperties)
+                                : undefined
+                            }
+                          >
+                            <span className="ms-pp-glyph" aria-hidden>
+                              {subject?.glyph ?? '◆'}
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="ms-pp-title">
+                                {c.name} <em className="ms-pp-code">· {c.level}</em>
+                              </span>
+                              <span className="ms-pp-meta">{c.lessonCount} lessons · free course</span>
+                            </span>
+                            <span className="ms-pp-cta" aria-hidden>
+                              →
+                            </span>
+                          </Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
               ))}
-            </ul>
           </section>
         ) : null}
 

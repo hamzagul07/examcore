@@ -97,6 +97,16 @@ const DANCE_CRITERIA: IbCriterion[] = [
   { id: 'B', name: 'Analysis and justification', maxMarks: 10, bands: LOR_BANDS_5 },
 ]
 
+const CAS_LO_CRITERIA: IbCriterion[] = [
+  { id: 'LO1', name: 'Strengths and growth', maxMarks: 2, bands: LOR_BANDS_5 },
+  { id: 'LO2', name: 'Challenge and skills', maxMarks: 2, bands: LOR_BANDS_5 },
+  { id: 'LO3', name: 'Initiative and planning', maxMarks: 2, bands: LOR_BANDS_5 },
+  { id: 'LO4', name: 'Commitment and perseverance', maxMarks: 2, bands: LOR_BANDS_5 },
+  { id: 'LO5', name: 'Collaboration', maxMarks: 2, bands: LOR_BANDS_5 },
+  { id: 'LO6', name: 'Global engagement', maxMarks: 2, bands: LOR_BANDS_5 },
+  { id: 'LO7', name: 'Ethics of choices and actions', maxMarks: 2, bands: LOR_BANDS_5 },
+]
+
 function profile(
   slug: string,
   name: string,
@@ -216,9 +226,10 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
     'Core',
     'Core',
     'level_of_response',
-    8,
+    14,
     { Portfolio: 'level_of_response' },
-    'CAS reflections and learning outcomes — formative criterion-style feedback (not exam graded).'
+    'CAS reflections and learning outcomes — formative criterion-style feedback against all seven LOs.',
+    CAS_LO_CRITERIA
   ),
 
   // ── Group 6 — The Arts ─────────────────────────────────────────────────────

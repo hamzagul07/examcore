@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { createPageMetadata } from '@/lib/seo/metadata'
@@ -61,21 +62,31 @@ export default async function SubjectCommunityPage({ params, searchParams }: Pag
   const userVotes = user ? await getUserPostVotes(user.id, posts.map((p) => p.id)) : {}
 
   return (
-    <div className="rc-page" style={{ '--sc': subjectMeta.accent } as CSSProperties}>
+    <div className="rc-page rc-page--subject" style={{ '--sc': subjectMeta.accent } as CSSProperties}>
       <div className="rc-subject-banner" style={{ '--sc': subjectMeta.accent } as CSSProperties}>
         <div className="rc-subject-banner-inner">
           <span className="rc-subject-banner-glyph">{subjectMeta.glyph}</span>
-          <div>
+          <div className="rc-subject-banner-copy">
             <p className="rc-subject-banner-board">{communityBoardMeta(subjectMeta.board).label}</p>
             <h1 className="rc-subject-banner-title">s/{subject}</h1>
             <p className="rc-subject-banner-sub">{subjectMeta.name}</p>
           </div>
         </div>
+        <div className="rc-subject-banner-actions">
+          <Link href="/community/subjects" className="rc-subject-banner-link">
+            All subjects
+          </Link>
+          <Link href="/community/guidelines" className="rc-subject-banner-link">
+            Guidelines
+          </Link>
+        </div>
       </div>
       <div className="rc-layout">
         <main className="rc-main">
-          <CreatePostBar subjectCode={subject} board={subjectMeta.board} signedIn={!!user} />
-          <SortTabs active={sort} basePath={`/community/s/${subject}`} />
+          <div className="rc-feed-toolbar">
+            <CreatePostBar subjectCode={subject} board={subjectMeta.board} signedIn={!!user} />
+            <SortTabs active={sort} basePath={`/community/s/${subject}`} />
+          </div>
           <PostFeed
             posts={posts}
             userVotes={userVotes}

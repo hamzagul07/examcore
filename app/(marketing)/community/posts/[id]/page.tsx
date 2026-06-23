@@ -60,7 +60,7 @@ export default async function PostDetailPage({ params }: PageProps) {
   const commentVotes = user ? await getUserCommentVotes(user.id, commentIds) : {}
 
   return (
-    <div className="rc-page" style={{ '--sc': accent } as CSSProperties}>
+    <div className="rc-page rc-page--thread" style={{ '--sc': accent } as CSSProperties}>
       <div className="rc-layout">
         <main className="rc-main">
           <Link href={`/community/s/${post.subjectCode}`} className="rc-back">← s/{post.subjectCode}</Link>
@@ -95,9 +95,11 @@ export default async function PostDetailPage({ params }: PageProps) {
                   <span className="rc-meta-muted">{timeAgo(post.createdAt)}</span>
                 </div>
                 <h1 className="rc-post-title">
-                  <span className={`rc-kind rc-kind-${post.kind}`}>{KIND_LABEL[post.kind]}</span>
-                  {post.flair ? <span className="rc-flair">{post.flair}</span> : null}
-                  {post.title}
+                  <span className="rc-post-title-chips">
+                    <span className={`rc-kind rc-kind-${post.kind}`}>{KIND_LABEL[post.kind]}</span>
+                    {post.flair ? <span className="rc-flair">{post.flair}</span> : null}
+                  </span>
+                  <span className="rc-post-title-text">{post.title}</span>
                 </h1>
                 {post.status === 'needs_edit' ? (
                   <p className="rc-status-note">⏳ Held for review — only you can see this until approved.</p>

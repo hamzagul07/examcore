@@ -55,7 +55,8 @@ export function CommunityHubIntro() {
       <JsonLd data={faqPageNode([...COMMUNITY_FAQ], { speakableSelectors: ['.rc-faq dt', '.rc-faq dd'] })} />
       <div className="rc-hub-intro">
         <HubSeoIntro
-          heading="Exam Room — Cambridge A-Level & IB community"
+          collapsibleOnMobile
+          heading="Exam Room"
           paragraph="Free student communities for every subject we support. Ask past-paper doubts, share cheat sheets and PDFs, debate grade boundaries, and help each other revise — Cambridge CAIE and IB Diploma in one place."
           links={[
             { href: '/community/submit', label: 'Create a post →', variant: 'primary' },

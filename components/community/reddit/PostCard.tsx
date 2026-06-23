@@ -67,9 +67,11 @@ export function PostCard({
 
         <Link href={href} className="rc-card-title-link">
           <h3 className="rc-card-title">
-            <span className={`rc-kind rc-kind-${post.kind}`}>{KIND_LABEL[post.kind]}</span>
-            {post.flair ? <span className="rc-flair">{post.flair}</span> : null}
-            {post.title}
+            <span className="rc-card-title-chips">
+              <span className={`rc-kind rc-kind-${post.kind}`}>{KIND_LABEL[post.kind]}</span>
+              {post.flair ? <span className="rc-flair">{post.flair}</span> : null}
+            </span>
+            <span className="rc-card-title-text">{post.title}</span>
           </h3>
         </Link>
 

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import 'server-only'
 import type { CourseLesson, CourseSubject } from '@/lib/courses/types'
 import { getIbSubject } from '@/lib/ib/catalog'
 

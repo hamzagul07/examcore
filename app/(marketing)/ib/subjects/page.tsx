@@ -9,7 +9,7 @@ import { SITE_URL } from '@/lib/site-config'
 import { getIbSubjects, getIbSubjectsByGroup } from '@/lib/ib/catalog'
 import { ibShortName } from '@/lib/seo/ib-seo'
 import { getIbCourse } from '@/lib/courses/ib'
-import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display'
+import { getIbCatalogCards } from '@/lib/courses/ib-catalog-display.server'
 import { HubSeoIntro } from '@/components/seo/HubSeoIntro'
 
 const PATH = '/ib/subjects'

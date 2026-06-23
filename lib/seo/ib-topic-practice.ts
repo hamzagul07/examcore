@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { getIbCourseLesson, getIbCourseLessons, getIbCourseSlugs } from '@/lib/courses/ib'
 import { topicToLessonSlug } from '@/lib/courses/slug'
 import { getIbSubject } from '@/lib/ib/catalog'

@@ -1,5 +1,5 @@
 import { getCourseCatalog, getCourseLessons } from '@/lib/courses'
-import { ibContinueCatalogEntries } from '@/lib/courses/ib-catalog-display'
+import { ibContinueCatalogEntries } from '@/lib/courses/ib-catalog-display.server'
 import type { ContinueCatalogEntry } from '@/lib/courses/margin-notes/continue-learning'
 
 /** Server-only: lesson metadata for client continue-learning strip. */

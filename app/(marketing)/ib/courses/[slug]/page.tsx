@@ -7,6 +7,7 @@ import { CourseHubClient } from '@/components/courses/margin-notes/CourseHubClie
 import { CommunityEntry } from '@/components/community/reddit/CommunityEntry'
 import { isCommunityEnabled } from '@/lib/community/enabled'
 import { PageJsonLd } from '@/components/seo/PageJsonLd'
+import { IbLegitResourcesPanel } from '@/components/ib/IbLegitResourcesPanel'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -76,6 +77,8 @@ export default async function IbCoursePage({ params }: Props) {
         initialPaperNumber={null}
         basePath="/ib/courses"
         coursesCrumb={{ label: 'IB', href: '/ib' }}
+        board="ib"
+        asideExtra={<IbLegitResourcesPanel slug={slug} />}
         community={
           communityOn ? (
             <div className="hub-community">

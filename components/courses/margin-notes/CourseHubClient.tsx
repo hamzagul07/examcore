@@ -22,6 +22,10 @@ type Props = {
   coursesCrumb?: { label: string; href: string }
   /** Exam Room entry card — rendered from a server component parent. */
   community?: React.ReactNode
+  /** Extra aside content (e.g. IB legitimate resources panel). */
+  asideExtra?: React.ReactNode
+  /** Board label for hub copy — defaults to Cambridge. */
+  board?: 'cambridge' | 'ib'
 }
 
 function paperIdFromNumber(
@@ -42,6 +46,8 @@ export function CourseHubClient({
   basePath,
   coursesCrumb,
   community,
+  asideExtra,
+  board = 'cambridge',
 }: Props) {
   const { done } = useCourseProgress(code)
   const { user, loading: authLoading } = useAuthCheck()
@@ -79,6 +85,8 @@ export function CourseHubClient({
       basePath={basePath}
       coursesCrumb={coursesCrumb}
       community={community}
+      asideExtra={asideExtra}
+      board={board}
     />
   )
 }

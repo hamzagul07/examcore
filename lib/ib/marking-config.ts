@@ -181,6 +181,66 @@ export const IB_MARKING_PROFILES: IbMarkingProfile[] = [
     'Paper 2': 'level_of_response',
     'Paper 3': 'level_of_response',
   }, 'IB Psychology HL — ERQs marked with markbands per approach/option.'),
+  profile('history-hl', 'History', 'HL', 'Individuals and Societies', 'level_of_response', 22, {
+    'Paper 1': 'mixed',
+    'Paper 2': 'level_of_response',
+    'Paper 3': 'level_of_response',
+  }, 'IB History HL — source analysis and essay markbands.'),
+  profile('history-sl', 'History', 'SL', 'Individuals and Societies', 'level_of_response', 15, {
+    'Paper 1': 'mixed',
+    'Paper 2': 'level_of_response',
+  }, 'IB History SL — source-based and thematic essay marking.'),
+  profile('geography-hl', 'Geography', 'HL', 'Individuals and Societies', 'level_of_response', 20, {
+    'Paper 1': 'mixed',
+    'Paper 2': 'level_of_response',
+    'Paper 3': 'level_of_response',
+  }, 'IB Geography HL — geographic themes and HL extension essays.'),
+  profile('geography-sl', 'Geography', 'SL', 'Individuals and Societies', 'level_of_response', 15, {
+    'Paper 1': 'mixed',
+    'Paper 2': 'level_of_response',
+  }, 'IB Geography SL — structured and extended response markbands.'),
+  profile('english-a-lang-lit-hl', 'English A: Language and Literature', 'HL', 'Studies in Language and Literature', 'level_of_response', 20, {
+    'Paper 1': 'level_of_response',
+    'Paper 2': 'level_of_response',
+    'HL Essay': 'level_of_response',
+    IO: 'level_of_response',
+  }, 'IB English A Lang & Lit HL — textual analysis and comparative essay criteria.'),
+  profile('english-a-lang-lit-sl', 'English A: Language and Literature', 'SL', 'Studies in Language and Literature', 'level_of_response', 15, {
+    'Paper 1': 'level_of_response',
+    'Paper 2': 'level_of_response',
+    IO: 'level_of_response',
+  }, 'IB English A Lang & Lit SL — guided analysis and comparative essay.'),
+  profile('english-a-literature-hl', 'English A: Literature', 'HL', 'Studies in Language and Literature', 'level_of_response', 20, {
+    'Paper 1': 'level_of_response',
+    'Paper 2': 'level_of_response',
+    'HL Essay': 'level_of_response',
+    IO: 'level_of_response',
+  }, 'IB English A Literature HL — literary analysis and comparative essay.'),
+  profile('english-a-literature-sl', 'English A: Literature', 'SL', 'Studies in Language and Literature', 'level_of_response', 15, {
+    'Paper 1': 'level_of_response',
+    'Paper 2': 'level_of_response',
+    IO: 'level_of_response',
+  }, 'IB English A Literature SL — guided analysis and comparative essay.'),
+  profile('spanish-b-hl', 'Spanish B', 'HL', 'Language Acquisition', 'level_of_response', 15, {
+    'Paper 1': 'level_of_response',
+    'Paper 2': 'mixed',
+    IO: 'level_of_response',
+  }, 'IB Spanish B HL — productive writing and receptive skills markbands.'),
+  profile('spanish-b-sl', 'Spanish B', 'SL', 'Language Acquisition', 'level_of_response', 12, {
+    'Paper 1': 'level_of_response',
+    'Paper 2': 'mixed',
+    IO: 'level_of_response',
+  }, 'IB Spanish B SL — writing and comprehension criteria.'),
+  profile('french-b-hl', 'French B', 'HL', 'Language Acquisition', 'level_of_response', 15, {
+    'Paper 1': 'level_of_response',
+    'Paper 2': 'mixed',
+    IO: 'level_of_response',
+  }, 'IB French B HL — productive writing and receptive skills markbands.'),
+  profile('french-b-sl', 'French B', 'SL', 'Language Acquisition', 'level_of_response', 12, {
+    'Paper 1': 'level_of_response',
+    'Paper 2': 'mixed',
+    IO: 'level_of_response',
+  }, 'IB French B SL — writing and comprehension criteria.'),
   profile('computer-science-hl', 'Computer Science', 'HL', 'Sciences', 'mixed', 12, {
     'Paper 1': 'mixed',
     'Paper 2': 'mixed',

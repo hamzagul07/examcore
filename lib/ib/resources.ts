@@ -86,6 +86,24 @@ const BY_SUBJECT: Record<string, IbResource[]> = {
   dance: [
     { label: 'IB Academy Dance guide', href: 'https://www.ib.academy/', note: 'Free Dance composition and investigation guidance.' },
   ],
+  history: [
+    { label: 'IB Academy History guide', href: 'https://www.ib.academy/', note: 'Free History Paper 1–3 skills and essay technique.' },
+  ],
+  geography: [
+    { label: 'Geographyalltheway.com', href: 'https://www.geographyalltheway.com/', note: 'Free IB Geography resources and case studies.' },
+  ],
+  'english-a-lang-lit': [
+    { label: 'IB Academy English A guide', href: 'https://www.ib.academy/', note: 'Free Lang & Lit Paper 1/2 and IO guidance.' },
+  ],
+  'english-a-literature': [
+    { label: 'IB Academy English A guide', href: 'https://www.ib.academy/', note: 'Free Literature analysis and comparative essay tips.' },
+  ],
+  'spanish-b': [
+    { label: 'IB Academy Spanish B guide', href: 'https://www.ib.academy/', note: 'Free Spanish B themes, Paper 1/2 and oral guidance.' },
+  ],
+  'french-b': [
+    { label: 'IB Academy French B guide', href: 'https://www.ib.academy/', note: 'Free French B themes, Paper 1/2 and oral guidance.' },
+  ],
 }
 
 function subjectBase(slug: string): string {

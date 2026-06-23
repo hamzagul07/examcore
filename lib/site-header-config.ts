@@ -95,6 +95,15 @@ function coursesContext(pathname: string): HeaderContext | undefined {
     return { label: 'IB courses', href: '/ib/courses', glyph: '📚' }
   }
 
+  const ibTopicMatch = pathname.match(/^\/ib\/past-papers\/([^/]+)\/([^/]+)/)
+  if (ibTopicMatch?.[1]) {
+    return {
+      label: ibSubjectLabel(ibTopicMatch[1]),
+      href: `/ib/past-papers/${ibTopicMatch[1]}`,
+      glyph: getIbSubject(ibTopicMatch[1])?.glyph ?? '📄',
+    }
+  }
+
   const lessonMatch = pathname.match(/^\/courses\/([^/]+)(?:\/(.+))?/)
   if (lessonMatch?.[2]) {
     return {

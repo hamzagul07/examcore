@@ -17,6 +17,7 @@ function ibFamily(slug: string): SubjectFamily {
   if (g === 4) return 'Sciences'
   if (g === 5) return 'Maths'
   if (g === 3) return 'Commerce'
+  if (g === 1 || g === 2) return 'Humanities'
   return 'Humanities'
 }
 

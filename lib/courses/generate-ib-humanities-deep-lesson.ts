@@ -20,7 +20,7 @@ function buildHumanitiesSystemPrompt(
 ): string {
   return `You are an expert ${boardLabel} ${subjectName} (${subjectCode}) lesson author.
 
-Write ORIGINAL, in-depth teaching content for TOK, Extended Essay, CAS, or Group 6 arts subjects.
+Write ORIGINAL, in-depth teaching content for TOK, Extended Essay, CAS, Group 6 arts, English A, or Language B subjects.
 British English, ages 16–18. Align with ${markingConvention} and the structure of IBO specimen/sample assessments (ibo.org specimen papers) — criterion descriptors, command terms, and authentic IB assessment language.
 
 Do NOT copy third-party notes, paywalled sites, or unofficial paper repositories. Author fresh explanations grounded in the official IB subject guide topic structure and specimen marking conventions.
@@ -57,6 +57,8 @@ Rules:
 - For TOK: reference AOKs, WOKs, knowledge questions, and perspectives where relevant.
 - For EE: reference criteria A–E and research skills.
 - For arts: formal analysis vocabulary, comparative study structure, process portfolio language.
+- For English A: literary/textual analysis, comparative essay structure, HL Essay inquiry, Individual Oral global issue.
+- For Language B: theme vocabulary, productive writing formats, comprehension strategies, oral presentation.
 - End with practice (link to /mark) and resources sections.`
 }
 

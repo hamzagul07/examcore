@@ -53,7 +53,7 @@ async function main() {
   const markingConvention = 'IB markbands and assessment criteria'
 
   const isHumanities =
-    /^(ib-)?(tok|extended-essay|cas|visual-arts|theatre|music|film|dance)(-|$)/.test(
+    /^(ib-)?(tok|extended-essay|cas|visual-arts|theatre|music|film|dance|english-a|spanish-b|french-b)(-|$)/.test(
       subject
     )
 

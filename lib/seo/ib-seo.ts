@@ -6,6 +6,8 @@ const SHORT_NAME: Record<string, string> = {
   'maths-ai': 'Maths AI',
   'english-a-lang-lit': 'English Lang & Lit',
   'english-a-literature': 'English Literature',
+  'spanish-b': 'Spanish B',
+  'french-b': 'French B',
   'environmental-systems-and-societies': 'ESS',
 }
 
